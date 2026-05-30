@@ -1,24 +1,255 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://VOTRE-ADRESSE.fr/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/bibliotheque/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/a-propos/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/le-bapteme/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/la-grace-sanctifiante/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/la-paix-du-christ/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/les-vertus-theologales/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/la-foi/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/l-esperance/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/la-charite/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/la-grace-actuelle/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/l-eglise/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/la-trinite/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/le-pere/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/le-fils/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/l-esprit-saint/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/le-verbe/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/l-immaculee-conception/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/marie/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/la-nouvelle-arche/</loc></url>
-  <url><loc>https://VOTRE-ADRESSE.fr/article/reine-du-ciel/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://lumenveritatis.net/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/bibliotheque/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/bibliotheque/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/library/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/bibliotheque/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/library/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/bibliotheque/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/library/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/bibliotheque/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/a-propos/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/a-propos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/a-propos/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/a-propos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/a-propos/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/le-bapteme/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/le-bapteme/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/baptism/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/le-bapteme/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/baptism/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/le-bapteme/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/baptism/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/le-bapteme/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/la-grace-sanctifiante/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-grace-sanctifiante/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/sanctifying-grace/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-grace-sanctifiante/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/sanctifying-grace/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-grace-sanctifiante/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/sanctifying-grace/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-grace-sanctifiante/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/la-paix-du-christ/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-paix-du-christ/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-peace-of-christ/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-paix-du-christ/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/the-peace-of-christ/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-paix-du-christ/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-peace-of-christ/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-paix-du-christ/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/les-vertus-theologales/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/les-vertus-theologales/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-theological-virtues/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/les-vertus-theologales/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/the-theological-virtues/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/les-vertus-theologales/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-theological-virtues/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/les-vertus-theologales/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/la-foi/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-foi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/faith/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-foi/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/faith/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-foi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/faith/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-foi/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/l-esperance/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/l-esperance/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/hope/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/l-esperance/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/hope/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/l-esperance/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/hope/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/l-esperance/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/la-charite/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-charite/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/charity/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-charite/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/charity/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-charite/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/charity/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-charite/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/la-grace-actuelle/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-grace-actuelle/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/actual-grace/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-grace-actuelle/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/actual-grace/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-grace-actuelle/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/actual-grace/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-grace-actuelle/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/l-eglise/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/l-eglise/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-church/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/l-eglise/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/the-church/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/l-eglise/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-church/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/l-eglise/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/la-trinite/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-trinite/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-trinity/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-trinite/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/the-trinity/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-trinite/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-trinity/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-trinite/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/le-pere/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/le-pere/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-father/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/le-pere/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/the-father/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/le-pere/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-father/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/le-pere/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/le-fils/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/le-fils/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-son/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/le-fils/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/the-son/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/le-fils/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-son/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/le-fils/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/l-esprit-saint/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/l-esprit-saint/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-holy-spirit/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/l-esprit-saint/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/the-holy-spirit/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/l-esprit-saint/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-holy-spirit/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/l-esprit-saint/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/le-verbe/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/le-verbe/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-word/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/le-verbe/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/the-word/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/le-verbe/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-word/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/le-verbe/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/l-immaculee-conception/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/l-immaculee-conception/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-immaculate-conception/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/l-immaculee-conception/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/the-immaculate-conception/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/l-immaculee-conception/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-immaculate-conception/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/l-immaculee-conception/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/marie/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/marie/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/mary/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/marie/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/mary/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/marie/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/mary/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/marie/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/la-nouvelle-arche/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-nouvelle-arche/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-new-ark/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-nouvelle-arche/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/the-new-ark/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-nouvelle-arche/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-new-ark/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-nouvelle-arche/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/article/reine-du-ciel/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/reine-du-ciel/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/queen-of-heaven/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/reine-du-ciel/"/>
+  </url>
+  <url>
+    <loc>https://lumenveritatis.net/en/article/queen-of-heaven/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/reine-du-ciel/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/queen-of-heaven/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/reine-du-ciel/"/>
+  </url>
 </urlset>

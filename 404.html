@@ -5,19 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Page introuvable · Lumen</title>
 <meta name="description" content="Cette page n'existe pas.">
-<link rel="canonical" href="https://VOTRE-ADRESSE.fr/404.html">
+<link rel="canonical" href="https://lumenveritatis.net/404.html">
+<link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/404.html">
+<link rel="alternate" hreflang="en" href="https://lumenveritatis.net/404.html">
+<link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/404.html">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Lumen">
 <meta property="og:title" content="Page introuvable · Lumen">
 <meta property="og:description" content="Cette page n'existe pas.">
-<meta property="og:url" content="https://VOTRE-ADRESSE.fr/404.html">
+<meta property="og:url" content="https://lumenveritatis.net/404.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   LUMEN — feuille de style
+   LUMEN - feuille de style
    Palette « manuscrit nocturne » : encre profonde, parchemin, or ancien.
    ============================================================ */
 :root{
@@ -316,6 +319,10 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--par
   .titre-section h2{font-size:26px;white-space:normal}
   .titre-section{flex-wrap:wrap}
 }
+
+nav.menu a.lien-langue{font-size:13px;letter-spacing:.2em;opacity:.65}
+nav.menu a.lien-langue:hover{opacity:1}
+@media(max-width:720px){nav.menu a.lien-langue{font-size:16px;letter-spacing:.12em;opacity:1}}
 </style>
 </head>
 <body>
@@ -327,13 +334,15 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--par
       <a href="./">Accueil</a>
       <a href="bibliotheque/">Bibliothèque</a>
       <a href="a-propos/">À propos</a>
+      <a href="/en/" class="lien-langue" hreflang="en">EN</a>
     </nav>
     <div class="contexte-bar" id="contexte"></div>
   </div>
 </header>
 <main id="app">
-<div class="vue"><section class="bandeau-page"><h1>Page introuvable</h1>
-    <p class="desc">Cette page n'existe pas. <a href="./" style="color:var(--or)">Revenir à l'accueil</a>.</p></section></div>
+<div class="vue"><section class="bandeau-page"><h1>Page introuvable · Page not found</h1>
+    <p class="desc">Cette page n'existe pas. <a href="/" style="color:var(--or)">Revenir à l'accueil</a>.<br>
+    This page does not exist. <a href="/en/" style="color:var(--or)">Back to home</a>.</p></section></div>
 </main>
 <footer>
   <div class="marque">Lumen</div>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://VOTRE-ADRESSE.fr/sitemap.xml
+Sitemap: https://lumenveritatis.net/sitemap.xml

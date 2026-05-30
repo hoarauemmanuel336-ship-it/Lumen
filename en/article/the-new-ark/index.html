@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="undefined">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The New Ark · Lumen</title>
+<meta name="description" content="Mary read as the Ark of the new covenant: she carries within her the presence of God, the Word made flesh, which the ark of old foreshadowed.">
+<link rel="canonical" href="https://lumenveritatis.net/en/article/the-new-ark/">
+<link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/article/la-nouvelle-arche/">
+<link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/article/the-new-ark/">
+<link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/article/la-nouvelle-arche/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Lumen">
+<meta property="og:title" content="The New Ark · Lumen">
+<meta property="og:description" content="Mary read as the Ark of the new covenant: she carries within her the presence of God, the Word made flesh, which the ark of old foreshadowed.">
+<meta property="og:url" content="https://lumenveritatis.net/en/article/the-new-ark/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   LUMEN - feuille de style
+   Palette « manuscrit nocturne » : encre profonde, parchemin, or ancien.
+   ============================================================ */
+:root{
+  --encre:#000000;          /* fond global, noir total */
+  --encre-2:#0b0b0b;        /* fond des surfaces légèrement levées */
+  --parchemin:#ffffff;      /* texte principal, blanc franc */
+  --parchemin-att:#ffffff;  /* texte secondaire, blanc lui aussi */
+  --or:#efe6cf;             /* accent principal, crème clair */
+  --or-pale:#f8f3e6;        /* crème éclairci, hover */
+  --pourpre:#9a3b3b;        /* accent rare, rouge liturgique */
+  --filet:rgba(231,224,207,.14); /* filets fins */
+  --filet-fort:rgba(231,224,207,.28);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--encre);
+  color:var(--parchemin);
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:18px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+::selection{background:rgba(198,164,92,.25)}
+
+a{color:inherit;text-decoration:none}
+
+/* ---------- bandeau d'en-tête ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--filet);
+}
+.barre{
+  max-width:1080px;margin:0 auto;
+  padding:20px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;position:relative;
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:500;font-size:26px;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--parchemin);
+  padding-left:.34em;
+}
+.logo:hover{color:var(--or-pale)}
+nav.menu{display:flex;gap:30px}
+nav.menu a{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--parchemin-att);
+  padding-bottom:3px;
+  border-bottom:1px solid transparent;
+  transition:color .3s,border-color .3s;
+}
+nav.menu a:hover,nav.menu a.actif{color:var(--parchemin);border-color:var(--or)}
+
+/* bouton menu mobile */
+.burger{display:none;background:none;border:none;color:var(--parchemin);
+  font-size:24px;cursor:pointer;line-height:1}
+
+/* contexte d'article (thème · date) centré dans le bandeau */
+.contexte-bar{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--parchemin-att);white-space:nowrap;pointer-events:auto;
+}
+.contexte-bar:empty{display:none}
+.contexte-bar a{transition:color .3s}
+.contexte-bar a:hover{color:var(--or)}
+
+/* ---------- conteneur de page ---------- */
+main{max-width:1080px;margin:0 auto;padding:0 32px;min-height:70vh}
+.vue{animation:apparait .6s ease both}
+@keyframes apparait{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- accueil ---------- */
+.hero{
+  padding:112px 0 100px;
+  text-align:center;
+  border-bottom:1px solid var(--filet);
+}
+.croix{
+  position:relative;
+  width:72px;height:132px;
+  margin:0 auto;
+}
+.croix::before{
+  content:"";position:absolute;
+  left:50%;top:0;transform:translateX(-50%);
+  width:2px;height:100%;
+  background:#ffffff;
+}
+.croix::after{
+  content:"";position:absolute;
+  top:40px;left:0;
+  width:100%;height:2px;
+  background:#ffffff;
+}
+
+.intro{
+  max-width:680px;margin:64px auto;
+  text-align:center;
+  font-size:20px;color:var(--parchemin-att);
+}
+.intro p+p{margin-top:18px}
+
+/* titres de section internes */
+.titre-section{
+  display:flex;align-items:baseline;gap:18px;
+  margin:72px 0 36px;
+}
+.titre-section .num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;letter-spacing:.2em;color:var(--or);
+  white-space:nowrap;
+}
+.titre-section h2{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;font-size:34px;letter-spacing:.02em;
+  white-space:nowrap;
+}
+.titre-section .trait{flex:1;height:1px;background:var(--filet)}
+
+/* grille des domaines */
+.domaines{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1px;background:var(--filet);
+  border:1px solid var(--filet);
+}
+.domaine{
+  background:var(--encre);
+  padding:34px 30px;
+  cursor:pointer;
+  transition:background .35s;
+  display:flex;flex-direction:column;gap:12px;
+}
+.domaine:hover{background:var(--encre-2)}
+.domaine .d-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;letter-spacing:.18em;color:var(--or);
+}
+.domaine h3{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:500;font-size:25px;letter-spacing:.01em;
+  transition:color .3s;
+}
+.domaine:hover h3{color:var(--or-pale)}
+.domaine p{font-size:16px;color:var(--parchemin-att);line-height:1.65}
+.domaine .compte{
+  margin-top:auto;font-size:13px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--parchemin-att);
+  font-family:'Cormorant Garamond',serif;
+}
+
+/* ---------- bibliothèque : liste d'articles ---------- */
+.bandeau-page{
+  padding:80px 0 40px;border-bottom:1px solid var(--filet);margin-bottom:8px;
+}
+.bandeau-page .sur-titre{
+  font-family:'Cormorant Garamond',serif;
+  text-transform:uppercase;letter-spacing:.36em;
+  font-size:12px;color:var(--or);margin-bottom:22px;
+}
+.bandeau-page h1{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(40px,6vw,68px);letter-spacing:.02em;line-height:1.05;
+}
+.bandeau-page .desc{
+  margin-top:20px;max-width:620px;font-size:19px;color:var(--parchemin-att);
+}
+
+/* filtres de thèmes */
+.filtres{display:flex;flex-wrap:wrap;gap:10px;margin:72px 0 16px}
+.filtre{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--parchemin-att);
+  padding:7px 16px;border:1px solid var(--filet);
+  cursor:pointer;transition:all .3s;
+  background:none;
+}
+.filtre:hover{color:var(--parchemin);border-color:var(--filet-fort)}
+.filtre.actif{color:var(--encre);background:var(--or);border-color:var(--or)}
+
+/* liste */
+.liste{margin-top:24px}
+.article-lien{
+  display:block;padding:30px 4px;
+  border-bottom:1px solid var(--filet);
+  transition:padding-left .35s;
+  cursor:pointer;
+}
+.article-lien:hover{padding-left:18px}
+.article-lien .meta{
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--or);margin-bottom:8px;
+}
+.article-lien h3{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;font-size:30px;letter-spacing:.01em;
+  transition:color .3s;line-height:1.15;
+}
+.article-lien:hover h3{color:var(--or-pale)}
+.article-lien p{margin-top:8px;font-size:17px;color:var(--parchemin-att)}
+.vide{padding:60px 0;text-align:center;color:var(--parchemin-att);font-style:italic;font-size:19px}
+
+/* ---------- article ---------- */
+article.lecture{max-width:720px;margin:0 auto;padding:64px 0 80px}
+article.lecture h1{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(38px,6vw,60px);line-height:1.08;letter-spacing:.01em;
+  margin:0 0 56px;text-align:center;
+}
+article.lecture h1+p::first-letter{
+  font-family:'Cormorant Garamond',serif;
+  float:left;font-size:78px;line-height:.78;
+  font-weight:500;color:var(--or);
+  margin:8px 14px 0 0;
+}
+article.lecture p{margin-bottom:22px}
+article.lecture h2{
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-size:30px;letter-spacing:.01em;
+  margin:48px 0 18px;
+}
+article.lecture h3{
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-size:23px;margin:34px 0 14px;color:var(--parchemin)
+}
+/* référence biblique en ligne */
+.ref{font-weight:600;font-family:'Cormorant Garamond',serif;
+  letter-spacing:.04em;color:var(--or);white-space:nowrap}
+/* renvois internes entre articles */
+article.lecture a,.prose a{
+  color:var(--or);
+  border-bottom:1px solid rgba(239,230,207,.35);
+  transition:color .3s,border-color .3s;
+}
+article.lecture a:hover,.prose a:hover{color:var(--or-pale);border-color:var(--or-pale)}
+article.lecture blockquote{
+  margin:30px 0;padding-left:26px;border-left:2px solid var(--filet-fort);
+  font-style:italic;color:var(--parchemin-att);
+}
+.fin-article{
+  text-align:center;margin:60px 0 0;
+  font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--or);letter-spacing:.4em;
+}
+
+/* ---------- à propos ---------- */
+.prose{max-width:680px;margin:0 auto;padding:8px 0 80px;font-size:19px}
+.prose p{margin-bottom:22px}
+
+/* ---------- pied de page ---------- */
+footer{
+  border-top:1px solid var(--filet);
+  margin-top:40px;
+  padding:48px 32px 56px;
+  text-align:center;
+}
+footer .marque{
+  font-family:'Cormorant Garamond',serif;
+  letter-spacing:.34em;text-transform:uppercase;font-size:18px;
+  padding-left:.34em;color:var(--parchemin);
+}
+footer .verset-pied{
+  margin-top:18px;font-style:italic;color:var(--parchemin-att);font-size:17px;
+}
+footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--parchemin-att);
+  font-family:'Cormorant Garamond',serif}
+
+/* ---------- responsive ---------- */
+@media(max-width:720px){
+  body{font-size:17px}
+  .barre{padding:16px 20px}
+  main{padding:0 20px}
+  nav.menu{
+    position:fixed;inset:62px 0 auto 0;
+    flex-direction:column;gap:0;
+    background:var(--encre-2);
+    border-bottom:1px solid var(--filet);
+    transform:translateY(-130%);transition:transform .35s;
+  }
+  nav.menu.ouvert{transform:none}
+  nav.menu a{padding:18px 20px;border-bottom:1px solid var(--filet)}
+  .burger{display:block}
+  .contexte-bar{display:none}
+  .titre-section h2{font-size:26px;white-space:normal}
+  .titre-section{flex-wrap:wrap}
+}
+
+nav.menu a.lien-langue{font-size:13px;letter-spacing:.2em;opacity:.65}
+nav.menu a.lien-langue:hover{opacity:1}
+@media(max-width:720px){nav.menu a.lien-langue{font-size:16px;letter-spacing:.12em;opacity:1}}
+</style>
+</head>
+<body>
+<header>
+  <div class="barre">
+    <a href="../../" class="logo">Lumen</a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+    <nav class="menu" id="menu">
+      <a href="../../">Home</a>
+      <a href="../../library/">Library</a>
+      <a href="../../about/">About</a>
+      <a href="../../../article/la-nouvelle-arche/" class="lien-langue" hreflang="fr">FR</a>
+    </nav>
+    <div class="contexte-bar" id="contexte"><a href="../../library/?theme=ecriture">Scripture and Exegesis</a></div>
+  </div>
+</header>
+<main id="app">
+<div class="vue">
+    <article class="lecture">
+      <h1>The New Ark</h1>
+      
+      <p>The ark of the covenant was the holiest object of Israel: a chest covered with gold where God made himself present in the midst of his people, and before which one stood with awe and joy. The faith of the Church recognises in <a href="../../article/mary/">Mary</a> the new Ark: she carries within her the presence of God in person, the <a href="../../article/the-word/">Word</a> made flesh. Saint John says it with a verb that evokes the holy tent of the desert: the Word pitched his tent among us: <em>“The Word became flesh, and dwelt among us.”</em> <span class="ref">John 1:14</span></p>
+      <h2>What the ark carried</h2>
+      <p>The ark held three signs of the covenant: the tables of the Law, the word of God engraved in stone; a portion of manna, the bread come from heaven; and the staff of Aaron, the mark of the priesthood: <em>“In the ark were the golden urn holding the manna, the staff of Aaron, and the tables of the covenant.”</em> <span class="ref">Hebrews 9:4</span></p>
+      <p>Mary carries the reality that these three signs foreshadowed. She carries the Word, the living Word of God; she carries the true bread of life; she carries the eternal priest who will offer himself for the world. What the ark held in figure, Mary gives in person.</p>
+      <h2>The shadow of the cloud</h2>
+      <p>One same Greek word links the ancient Dwelling and Mary. When the Dwelling of Israel was completed, the cloud covered it and the glory of God filled it: <em>“The cloud covered the tent of meeting, and the glory of the Lord filled the Dwelling.”</em> <span class="ref">Exodus 40:34-35</span> In the Greek version of the Old Testament (the Septuagint), the verb that names this cloud is “episkiazō” (ἐπισκιάζω), “to overshadow.” It is this verb that the angel takes up at the Annunciation: <em>“the power of the Most High will overshadow you.”</em> <span class="ref">Luke 1:35</span> What the cloud did for the tent, the Spirit does for Mary: she becomes the place where the glory of God comes to dwell.</p>
+      <h2>The Visitation and the ark</h2>
+      <p>Saint Luke recounts the Visitation on the model of the ark going up toward Jerusalem, in the second book of Samuel. Mary arises and sets out in haste toward the hill country of Judea, as the ark had gone up there. Before the ark, David had cried out: <em>“How shall the ark of the Lord come to me?”</em> <span class="ref">2 Samuel 6:9</span> Elizabeth welcomes Mary with the same words: <em>“How is it granted me that the mother of my Lord should come to me?”</em> <span class="ref">Luke 1:43</span></p>
+      <p>David danced with joy before the ark; John the Baptist leaps for gladness in his mother's womb at the approach of Mary. And Mary remains about three months with Elizabeth, as the ark had stayed three months in the house of Obed-Edom. The parallels are too precise to be by chance: the evangelist shows Mary as the new ark.</p>
+      <h2>The ark in heaven</h2>
+      <p>At the close of Scripture, the ark reappears in the vision of John. The sanctuary of heaven opens and the ark of the covenant is seen there: <em>“The temple of God in heaven was opened, and the ark of his covenant appeared in his temple.”</em> <span class="ref">Revelation 11:19</span> At once a woman arises, clothed with the sun, crowned with twelve stars. The ark and the woman are one and the same reality: Mary, who carries the Saviour.</p>
+      <div class="fin-article">✦</div>
+    
+    </article>
+  </div>
+</main>
+<footer>
+  <div class="marque">Lumen</div>
+  <div class="verset-pied">“The light shines in the darkness” (John 1:5)</div>
+  <div class="copy" id="annee"></div>
+</footer>
+<script>
+document.getElementById('burger').addEventListener('click',function(){document.getElementById('menu').classList.toggle('ouvert');});
+document.getElementById('annee').textContent='© '+new Date().getFullYear()+' Lumen';
+
+</script>
+</body>
+</html>
