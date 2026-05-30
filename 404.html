@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page introuvable · Lumen</title>
+<meta name="description" content="Cette page n'existe pas.">
+<link rel="canonical" href="https://VOTRE-ADRESSE.fr/404.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Lumen">
+<meta property="og:title" content="Page introuvable · Lumen">
+<meta property="og:description" content="Cette page n'existe pas.">
+<meta property="og:url" content="https://VOTRE-ADRESSE.fr/404.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   LUMEN — feuille de style
+   Palette « manuscrit nocturne » : encre profonde, parchemin, or ancien.
+   ============================================================ */
+:root{
+  --encre:#000000;          /* fond global, noir total */
+  --encre-2:#0b0b0b;        /* fond des surfaces légèrement levées */
+  --parchemin:#ffffff;      /* texte principal, blanc franc */
+  --parchemin-att:#ffffff;  /* texte secondaire, blanc lui aussi */
+  --or:#efe6cf;             /* accent principal, crème clair */
+  --or-pale:#f8f3e6;        /* crème éclairci, hover */
+  --pourpre:#9a3b3b;        /* accent rare, rouge liturgique */
+  --filet:rgba(231,224,207,.14); /* filets fins */
+  --filet-fort:rgba(231,224,207,.28);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--encre);
+  color:var(--parchemin);
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:18px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+::selection{background:rgba(198,164,92,.25)}
+
+a{color:inherit;text-decoration:none}
+
+/* ---------- bandeau d'en-tête ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--filet);
+}
+.barre{
+  max-width:1080px;margin:0 auto;
+  padding:20px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;position:relative;
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:500;font-size:26px;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--parchemin);
+  padding-left:.34em;
+}
+.logo:hover{color:var(--or-pale)}
+nav.menu{display:flex;gap:30px}
+nav.menu a{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--parchemin-att);
+  padding-bottom:3px;
+  border-bottom:1px solid transparent;
+  transition:color .3s,border-color .3s;
+}
+nav.menu a:hover,nav.menu a.actif{color:var(--parchemin);border-color:var(--or)}
+
+/* bouton menu mobile */
+.burger{display:none;background:none;border:none;color:var(--parchemin);
+  font-size:24px;cursor:pointer;line-height:1}
+
+/* contexte d'article (thème · date) centré dans le bandeau */
+.contexte-bar{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--parchemin-att);white-space:nowrap;pointer-events:auto;
+}
+.contexte-bar:empty{display:none}
+.contexte-bar a{transition:color .3s}
+.contexte-bar a:hover{color:var(--or)}
+
+/* ---------- conteneur de page ---------- */
+main{max-width:1080px;margin:0 auto;padding:0 32px;min-height:70vh}
+.vue{animation:apparait .6s ease both}
+@keyframes apparait{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- accueil ---------- */
+.hero{
+  padding:112px 0 100px;
+  text-align:center;
+  border-bottom:1px solid var(--filet);
+}
+.croix{
+  position:relative;
+  width:72px;height:132px;
+  margin:0 auto;
+}
+.croix::before{
+  content:"";position:absolute;
+  left:50%;top:0;transform:translateX(-50%);
+  width:2px;height:100%;
+  background:#ffffff;
+}
+.croix::after{
+  content:"";position:absolute;
+  top:40px;left:0;
+  width:100%;height:2px;
+  background:#ffffff;
+}
+
+.intro{
+  max-width:680px;margin:64px auto;
+  text-align:center;
+  font-size:20px;color:var(--parchemin-att);
+}
+.intro p+p{margin-top:18px}
+
+/* titres de section internes */
+.titre-section{
+  display:flex;align-items:baseline;gap:18px;
+  margin:72px 0 36px;
+}
+.titre-section .num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;letter-spacing:.2em;color:var(--or);
+  white-space:nowrap;
+}
+.titre-section h2{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;font-size:34px;letter-spacing:.02em;
+  white-space:nowrap;
+}
+.titre-section .trait{flex:1;height:1px;background:var(--filet)}
+
+/* grille des domaines */
+.domaines{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1px;background:var(--filet);
+  border:1px solid var(--filet);
+}
+.domaine{
+  background:var(--encre);
+  padding:34px 30px;
+  cursor:pointer;
+  transition:background .35s;
+  display:flex;flex-direction:column;gap:12px;
+}
+.domaine:hover{background:var(--encre-2)}
+.domaine .d-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;letter-spacing:.18em;color:var(--or);
+}
+.domaine h3{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:500;font-size:25px;letter-spacing:.01em;
+  transition:color .3s;
+}
+.domaine:hover h3{color:var(--or-pale)}
+.domaine p{font-size:16px;color:var(--parchemin-att);line-height:1.65}
+.domaine .compte{
+  margin-top:auto;font-size:13px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--parchemin-att);
+  font-family:'Cormorant Garamond',serif;
+}
+
+/* ---------- bibliothèque : liste d'articles ---------- */
+.bandeau-page{
+  padding:80px 0 40px;border-bottom:1px solid var(--filet);margin-bottom:8px;
+}
+.bandeau-page .sur-titre{
+  font-family:'Cormorant Garamond',serif;
+  text-transform:uppercase;letter-spacing:.36em;
+  font-size:12px;color:var(--or);margin-bottom:22px;
+}
+.bandeau-page h1{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(40px,6vw,68px);letter-spacing:.02em;line-height:1.05;
+}
+.bandeau-page .desc{
+  margin-top:20px;max-width:620px;font-size:19px;color:var(--parchemin-att);
+}
+
+/* filtres de thèmes */
+.filtres{display:flex;flex-wrap:wrap;gap:10px;margin:72px 0 16px}
+.filtre{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--parchemin-att);
+  padding:7px 16px;border:1px solid var(--filet);
+  cursor:pointer;transition:all .3s;
+  background:none;
+}
+.filtre:hover{color:var(--parchemin);border-color:var(--filet-fort)}
+.filtre.actif{color:var(--encre);background:var(--or);border-color:var(--or)}
+
+/* liste */
+.liste{margin-top:24px}
+.article-lien{
+  display:block;padding:30px 4px;
+  border-bottom:1px solid var(--filet);
+  transition:padding-left .35s;
+  cursor:pointer;
+}
+.article-lien:hover{padding-left:18px}
+.article-lien .meta{
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--or);margin-bottom:8px;
+}
+.article-lien h3{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;font-size:30px;letter-spacing:.01em;
+  transition:color .3s;line-height:1.15;
+}
+.article-lien:hover h3{color:var(--or-pale)}
+.article-lien p{margin-top:8px;font-size:17px;color:var(--parchemin-att)}
+.vide{padding:60px 0;text-align:center;color:var(--parchemin-att);font-style:italic;font-size:19px}
+
+/* ---------- article ---------- */
+article.lecture{max-width:720px;margin:0 auto;padding:64px 0 80px}
+article.lecture h1{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(38px,6vw,60px);line-height:1.08;letter-spacing:.01em;
+  margin:0 0 56px;text-align:center;
+}
+article.lecture h1+p::first-letter{
+  font-family:'Cormorant Garamond',serif;
+  float:left;font-size:78px;line-height:.78;
+  font-weight:500;color:var(--or);
+  margin:8px 14px 0 0;
+}
+article.lecture p{margin-bottom:22px}
+article.lecture h2{
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-size:30px;letter-spacing:.01em;
+  margin:48px 0 18px;
+}
+article.lecture h3{
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-size:23px;margin:34px 0 14px;color:var(--parchemin)
+}
+/* référence biblique en ligne */
+.ref{font-weight:600;font-family:'Cormorant Garamond',serif;
+  letter-spacing:.04em;color:var(--or);white-space:nowrap}
+/* renvois internes entre articles */
+article.lecture a,.prose a{
+  color:var(--or);
+  border-bottom:1px solid rgba(239,230,207,.35);
+  transition:color .3s,border-color .3s;
+}
+article.lecture a:hover,.prose a:hover{color:var(--or-pale);border-color:var(--or-pale)}
+article.lecture blockquote{
+  margin:30px 0;padding-left:26px;border-left:2px solid var(--filet-fort);
+  font-style:italic;color:var(--parchemin-att);
+}
+.fin-article{
+  text-align:center;margin:60px 0 0;
+  font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--or);letter-spacing:.4em;
+}
+
+/* ---------- à propos ---------- */
+.prose{max-width:680px;margin:0 auto;padding:8px 0 80px;font-size:19px}
+.prose p{margin-bottom:22px}
+
+/* ---------- pied de page ---------- */
+footer{
+  border-top:1px solid var(--filet);
+  margin-top:40px;
+  padding:48px 32px 56px;
+  text-align:center;
+}
+footer .marque{
+  font-family:'Cormorant Garamond',serif;
+  letter-spacing:.34em;text-transform:uppercase;font-size:18px;
+  padding-left:.34em;color:var(--parchemin);
+}
+footer .verset-pied{
+  margin-top:18px;font-style:italic;color:var(--parchemin-att);font-size:17px;
+}
+footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--parchemin-att);
+  font-family:'Cormorant Garamond',serif}
+
+/* ---------- responsive ---------- */
+@media(max-width:720px){
+  body{font-size:17px}
+  .barre{padding:16px 20px}
+  main{padding:0 20px}
+  nav.menu{
+    position:fixed;inset:62px 0 auto 0;
+    flex-direction:column;gap:0;
+    background:var(--encre-2);
+    border-bottom:1px solid var(--filet);
+    transform:translateY(-130%);transition:transform .35s;
+  }
+  nav.menu.ouvert{transform:none}
+  nav.menu a{padding:18px 20px;border-bottom:1px solid var(--filet)}
+  .burger{display:block}
+  .contexte-bar{display:none}
+  .titre-section h2{font-size:26px;white-space:normal}
+  .titre-section{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="barre">
+    <a href="./" class="logo">Lumen</a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+    <nav class="menu" id="menu">
+      <a href="./">Accueil</a>
+      <a href="bibliotheque/">Bibliothèque</a>
+      <a href="a-propos/">À propos</a>
+    </nav>
+    <div class="contexte-bar" id="contexte"></div>
+  </div>
+</header>
+<main id="app">
+<div class="vue"><section class="bandeau-page"><h1>Page introuvable</h1>
+    <p class="desc">Cette page n'existe pas. <a href="./" style="color:var(--or)">Revenir à l'accueil</a>.</p></section></div>
+</main>
+<footer>
+  <div class="marque">Lumen</div>
+  <div class="verset-pied">« La lumière luit dans les ténèbres » (Jean 1:5)</div>
+  <div class="copy" id="annee"></div>
+</footer>
+<script>
+document.getElementById('burger').addEventListener('click',function(){document.getElementById('menu').classList.toggle('ouvert');});
+document.getElementById('annee').textContent='© '+new Date().getFullYear()+' Lumen';
+
+</script>
+</body>
+</html>
