@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="undefined">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lumen · Catholic Theology</title>
-<meta name="description" content="A place to enter into the understanding of the Catholic faith, from the very first steps to the deepest questions.">
-<link rel="canonical" href="https://lumenveritatis.net/en/">
-<link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/">
-<link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/">
-<link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/">
+<title>Bibliothèque · Lumen</title>
+<meta name="description" content="Toutes les entrées de Lumen, classées par domaine : doctrine, Écriture, sacrements, figures, histoire et philosophie.">
+<link rel="canonical" href="https://lumenveritatis.net/bibliotheque/">
+<link rel="alternate" hreflang="fr" href="https://lumenveritatis.net/bibliotheque/">
+<link rel="alternate" hreflang="en" href="https://lumenveritatis.net/en/library/">
+<link rel="alternate" hreflang="x-default" href="https://lumenveritatis.net/bibliotheque/">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Lumen">
-<meta property="og:title" content="Lumen · Catholic Theology">
-<meta property="og:description" content="A place to enter into the understanding of the Catholic faith, from the very first steps to the deepest questions.">
-<meta property="og:url" content="https://lumenveritatis.net/en/">
+<meta property="og:title" content="Bibliothèque · Lumen">
+<meta property="og:description" content="Toutes les entrées de Lumen, classées par domaine : doctrine, Écriture, sacrements, figures, histoire et philosophie.">
+<meta property="og:url" content="https://lumenveritatis.net/bibliotheque/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
@@ -328,79 +328,142 @@ nav.menu a.lien-langue:hover{opacity:1}
 <body>
 <header>
   <div class="barre">
-    <a href="./" class="logo">Lumen</a>
+    <a href="../" class="logo">Lumen</a>
     <button class="burger" id="burger" aria-label="Menu">☰</button>
     <nav class="menu" id="menu">
-      <a href="./" class="actif">Home</a>
-      <a href="library/">Library</a>
-      <a href="about/">About</a>
-      <a href="../" class="lien-langue" hreflang="fr">FR</a>
+      <a href="../">Accueil</a>
+      <a href="../bibliotheque/" class="actif">Bibliothèque</a>
+      <a href="../a-propos/">À propos</a>
+      <a href="../en/library/" class="lien-langue" hreflang="en">EN</a>
     </nav>
-    <div class="contexte-bar" id="contexte"></div>
+    <div class="contexte-bar" id="contexte">La bibliothèque</div>
   </div>
 </header>
 <main id="app">
 <div class="vue">
-    <section class="hero">
-      <div class="croix" aria-hidden="true"></div>
-    </section>
-    <section class="intro">
-      <p>A place to enter into the understanding of the Catholic faith, from the very first steps to the deepest questions.</p>
-    </section>
-    <div class="titre-section">
-      <span class="num">The domains</span>
-      <h2>Explore by theme</h2>
-      <span class="trait"></span>
-    </div>
-    <section class="domaines">
-    <a class="domaine" href="library/?theme=doctrine">
-      <span class="d-num">01</span>
-      <h3>Doctrine and Dogma</h3>
-      <p>What the Church believes and teaches: God, Christ, salvation, the Church, the last things.</p>
-      <span class="compte">16 entries</span>
+    <div class="filtres"><button class="filtre actif" data-theme="tous">Tout</button><button class="filtre" data-theme="doctrine">Doctrine et dogmes</button><button class="filtre" data-theme="ecriture">Écriture et exégèse</button><button class="filtre" data-theme="sacrements">Liturgie et sacrements</button><button class="filtre" data-theme="saints">Figures et saints</button><button class="filtre" data-theme="histoire">Histoire de l'Église</button><button class="filtre" data-theme="philosophie">Philosophie et raison</button></div>
+    <section class="liste">
+    <a class="article-lien" data-theme="sacrements" href="../article/le-bapteme/">
+      <div class="meta">Liturgie et sacrements</div>
+      <h3>Le Baptême</h3>
+      <p>La première porte de la vie chrétienne : la renaissance par l'eau et l'Esprit, qui efface le péché et fait entrer dans le corps du Christ.</p>
     </a>
-    <a class="domaine" href="library/?theme=ecriture">
-      <span class="d-num">02</span>
-      <h3>Scripture and Exegesis</h3>
-      <p>The reading of the Scriptures in the faith of the Church, from the literal sense to the spiritual senses.</p>
-      <span class="compte">1 entry</span>
+    <a class="article-lien" data-theme="doctrine" href="../article/la-grace/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>La grâce</h3>
+      <p>La faveur gratuite par laquelle Dieu donne à l'homme part à sa propre vie et fait de lui son enfant : la source dont découlent la grâce sanctifiante et la grâce actuelle.</p>
     </a>
-    <a class="domaine" href="library/?theme=sacrements">
-      <span class="d-num">03</span>
-      <h3>Liturgy and Sacraments</h3>
-      <p>The efficacious signs of grace and the worship by which the Church gives glory to God.</p>
-      <span class="compte">1 entry</span>
+    <a class="article-lien" data-theme="doctrine" href="../article/la-grace-sanctifiante/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>La grâce sanctifiante</h3>
+      <p>Le don créé par lequel Dieu fait participer l'âme à sa propre vie, la rend son enfant et la dispose au ciel.</p>
     </a>
-    <a class="domaine" href="library/?theme=saints">
-      <span class="d-num">04</span>
-      <h3>Figures and Saints</h3>
-      <p>Those who lived and thought the faith: Fathers, doctors, mystics, witnesses.</p>
-      <span class="compte">1 entry</span>
+    <a class="article-lien" data-theme="doctrine" href="../article/la-paix-du-christ/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>La paix du Christ</h3>
+      <p>La paix que le Christ donne en réconciliant l'homme avec Dieu, née de la Croix, et qui demeure au cœur de l'épreuve.</p>
     </a>
-    <a class="domaine" href="library/?theme=histoire">
-      <span class="d-num">05</span>
-      <h3>History of the Church</h3>
-      <p>The path of the Church through the centuries, its councils and its struggles.</p>
-      <span class="compte">0 entries</span>
+    <a class="article-lien" data-theme="doctrine" href="../article/les-vertus-theologales/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Les vertus théologales</h3>
+      <p>Les trois vertus infuses par Dieu, la foi, l'espérance et la charité, qui rendent l'homme capable de vivre en relation avec lui.</p>
     </a>
-    <a class="domaine" href="library/?theme=philosophie">
-      <span class="d-num">06</span>
-      <h3>Philosophy and Reason</h3>
-      <p>Reason in the service of faith: the natural path toward God and truth.</p>
-      <span class="compte">0 entries</span>
+    <a class="article-lien" data-theme="doctrine" href="../article/la-foi/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>La foi</h3>
+      <p>La première des vertus théologales : par elle, l'homme adhère à Dieu et tient pour vrai tout ce qu'il a révélé, parce que Dieu est la vérité même.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/l-esperance/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>L’espérance</h3>
+      <p>La deuxième des vertus théologales : par elle, l'homme désire la vie éternelle comme son bonheur et attend avec confiance les biens que Dieu a promis.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/la-charite/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>La charité</h3>
+      <p>La plus grande des vertus théologales : par elle, l'homme aime Dieu par-dessus tout, parce qu'il est le souverain bien, et son prochain comme lui-même pour l'amour de Dieu.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/la-grace-actuelle/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>La grâce actuelle</h3>
+      <p>Le secours passager que Dieu donne à l'âme pour accomplir le bien, en éclairant l'intelligence et en fortifiant la volonté vers le salut.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/l-eglise/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>L’Église</h3>
+      <p>L'assemblée que Dieu rassemble dans le Christ pour former un seul Peuple : corps du Christ, animée par l'Esprit Saint, et moyen du salut offert à tous.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/la-trinite/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>La Trinité</h3>
+      <p>Le mystère central de la foi : un seul Dieu en trois Personnes, le Père, le Fils et l'Esprit Saint, égales et éternelles, dans une seule vie divine.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/le-pere/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Le Père</h3>
+      <p>La première Personne de la Trinité : l'origine sans origine, créateur de toutes choses, révélé par le Fils, et le Père qui adopte les hommes comme ses enfants.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/le-fils/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Le Fils</h3>
+      <p>La deuxième Personne de la Trinité : le Verbe éternel engendré du Père, vrai Dieu, fait homme en Jésus-Christ pour le salut des hommes.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/l-esprit-saint/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>L’Esprit Saint</h3>
+      <p>La troisième Personne de la Trinité : vrai Dieu, l'amour du Père et du Fils, Seigneur qui donne la vie, répandu à la Pentecôte et présent dans l'âme des fidèles.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/le-verbe/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Le Verbe</h3>
+      <p>Le Fils de Dieu nommé comme la Parole éternelle du Père : son expression parfaite, par qui tout a été créé, et qui s'est fait chair en Jésus-Christ.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/l-immaculee-conception/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>L’Immaculée Conception</h3>
+      <p>Marie préservée du péché originel dès le premier instant de sa conception, par une grâce singulière de Dieu et en vue des mérites du Christ : la première et la plus parfaite des rachetés.</p>
+    </a>
+    <a class="article-lien" data-theme="saints" href="../article/marie/">
+      <div class="meta">Figures et saints</div>
+      <h3>Marie</h3>
+      <p>La Vierge choisie par Dieu pour être la Mère de son Fils : Mère de Dieu, toujours Vierge, élevée au ciel, et donnée pour mère à tous les croyants.</p>
+    </a>
+    <a class="article-lien" data-theme="ecriture" href="../article/la-nouvelle-arche/">
+      <div class="meta">Écriture et exégèse</div>
+      <h3>La nouvelle Arche</h3>
+      <p>Marie lue comme l'Arche de la nouvelle alliance : elle porte en elle la présence de Dieu, le Verbe fait chair, que l'arche d'autrefois annonçait en figure.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/reine-du-ciel/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Reine du ciel</h3>
+      <p>Marie couronnée Reine du ciel et de la terre, associée au règne de son Fils : mère du Roi à la manière des reines mères de David, et intercédant pour son peuple.</p>
     </a></section>
     <div style="height:60px"></div>
   </div>
 </main>
 <footer>
   <div class="marque">Lumen</div>
-  <div class="verset-pied">“The light shines in the darkness” (John 1:5)</div>
+  <div class="verset-pied">« La lumière luit dans les ténèbres » (Jean 1:5)</div>
   <div class="copy" id="annee"></div>
 </footer>
 <script>
 document.getElementById('burger').addEventListener('click',function(){document.getElementById('menu').classList.toggle('ouvert');});
 document.getElementById('annee').textContent='© '+new Date().getFullYear()+' Lumen';
-
+(function(){
+  var boutons=document.querySelectorAll('.filtre');
+  var articles=document.querySelectorAll('.article-lien');
+  function appliquer(theme){
+    boutons.forEach(function(b){b.classList.toggle('actif', b.dataset.theme===theme);});
+    articles.forEach(function(a){a.style.display=(theme==='tous'||a.dataset.theme===theme)?'':'none';});
+  }
+  boutons.forEach(function(b){b.addEventListener('click',function(){
+    var t=b.dataset.theme;
+    appliquer(t);
+    history.replaceState(null,'', t==='tous'?'./':'./?theme='+t);
+  });});
+  var p=new URLSearchParams(location.search).get('theme');
+  if(p) appliquer(p);
+})();
 </script>
 </body>
 </html>
