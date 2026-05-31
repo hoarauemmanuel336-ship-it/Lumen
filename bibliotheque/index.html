@@ -41,7 +41,7 @@ body{
   background:var(--encre);
   color:var(--parchemin);
   font-family:'EB Garamond',Georgia,serif;
-  font-size:18px;
+  font-size:20px;
   line-height:1.75;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
@@ -60,10 +60,11 @@ header{
 .barre{
   max-width:1080px;margin:0 auto;
   padding:20px 32px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:24px;position:relative;
+  display:grid;grid-template-columns:auto auto 1fr;align-items:center;
+  gap:24px;
 }
 .logo{
+  grid-column:1;grid-row:1;
   font-family:'Cormorant Garamond',serif;
   font-weight:500;font-size:26px;
   letter-spacing:.34em;
@@ -72,7 +73,7 @@ header{
   padding-left:.34em;
 }
 .logo:hover{color:var(--or-pale)}
-nav.menu{display:flex;gap:30px}
+nav.menu{display:flex;gap:30px;grid-column:3;grid-row:1;justify-self:end}
 nav.menu a{
   font-family:'Cormorant Garamond',serif;
   font-size:16px;letter-spacing:.12em;
@@ -90,7 +91,8 @@ nav.menu a:hover,nav.menu a.actif{color:var(--parchemin);border-color:var(--or)}
 
 /* contexte d'article (thème · date) centré dans le bandeau */
 .contexte-bar{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  grid-column:2;grid-row:1;text-align:left;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;
   font-family:'Cormorant Garamond',serif;
   font-size:13px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--parchemin-att);white-space:nowrap;pointer-events:auto;
@@ -98,6 +100,30 @@ nav.menu a:hover,nav.menu a.actif{color:var(--parchemin);border-color:var(--or)}
 .contexte-bar:empty{display:none}
 .contexte-bar a{transition:color .3s}
 .contexte-bar a:hover{color:var(--or)}
+
+/* ---------- recherche ---------- */
+.rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:var(--parchemin-att);transition:color .3s;background:none;border:none;padding:0;outline:none}
+.rech-loupe:hover,.rech-loupe:focus{color:var(--or)}
+.rech-loupe svg{display:block}
+.rech-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);display:none}
+.rech-overlay.ouvert{display:block}
+.rech-boite{max-width:760px;margin:0 auto;padding:8vh 24px 40px;height:100%;display:flex;flex-direction:column;box-sizing:border-box}
+.rech-haut{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--filet-fort);padding-bottom:18px}
+.rech-haut svg{color:var(--or);flex:none}
+#rech-champ{flex:1;min-width:0;background:none;border:none;outline:none;color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:30px;letter-spacing:.01em}
+#rech-champ::placeholder{color:var(--parchemin-att);opacity:.5}
+.rech-fermer{cursor:pointer;color:var(--parchemin-att);font-size:24px;line-height:1;transition:color .3s;flex:none;outline:none}
+.rech-fermer:hover,.rech-fermer:focus{color:var(--parchemin)}
+.rech-res{margin-top:6px;overflow-y:auto;flex:1}
+.rech-msg{padding:38px 4px;color:var(--parchemin-att);font-style:italic;font-size:18px}
+.rech-item{display:block;padding:22px 4px;border-bottom:1px solid var(--filet);cursor:pointer;transition:padding-left .3s}
+.rech-item:hover{padding-left:14px}
+.rech-meta{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin-bottom:6px}
+.rech-titre{font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.15;transition:color .3s}
+.rech-item:hover .rech-titre{color:var(--or-pale)}
+.rech-extrait{margin-top:7px;font-size:16px;color:var(--parchemin-att);line-height:1.55}
+.rech-extrait mark{background:none;color:var(--or);font-weight:600}
+@media(max-width:720px){#rech-champ{font-size:24px}.rech-boite{padding-top:6vh}}
 
 /* ---------- conteneur de page ---------- */
 main{max-width:1080px;margin:0 auto;padding:0 32px;min-height:70vh}
@@ -176,7 +202,7 @@ main{max-width:1080px;margin:0 auto;padding:0 32px;min-height:70vh}
   transition:color .3s;
 }
 .domaine:hover h3{color:var(--or-pale)}
-.domaine p{font-size:16px;color:var(--parchemin-att);line-height:1.65}
+.domaine p{font-size:17px;color:var(--parchemin-att);line-height:1.65}
 .domaine .compte{
   margin-top:auto;font-size:13px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--parchemin-att);
@@ -233,8 +259,16 @@ main{max-width:1080px;margin:0 auto;padding:0 32px;min-height:70vh}
   transition:color .3s;line-height:1.15;
 }
 .article-lien:hover h3{color:var(--or-pale)}
-.article-lien p{margin-top:8px;font-size:17px;color:var(--parchemin-att)}
+.article-lien p{margin-top:8px;font-size:18px;color:var(--parchemin-att)}
 .vide{padding:60px 0;text-align:center;color:var(--parchemin-att);font-style:italic;font-size:19px}
+.cat-titre{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--or);
+  margin:46px 0 2px;padding-bottom:14px;
+  border-bottom:1px solid var(--filet-fort);
+}
+.liste > .cat-titre:first-child{margin-top:8px}
 
 /* ---------- article ---------- */
 article.lecture{max-width:720px;margin:0 auto;padding:64px 0 80px}
@@ -279,7 +313,7 @@ article.lecture blockquote{
 }
 
 /* ---------- à propos ---------- */
-.prose{max-width:680px;margin:0 auto;padding:8px 0 80px;font-size:19px}
+.prose{max-width:680px;margin:0 auto;padding:8px 0 80px;font-size:21px}
 .prose p{margin-bottom:22px}
 
 /* ---------- pied de page ---------- */
@@ -303,7 +337,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--par
 /* ---------- responsive ---------- */
 @media(max-width:720px){
   body{font-size:17px}
-  .barre{padding:16px 20px}
+  .barre{padding:16px 20px;display:flex;justify-content:space-between}
   main{padding:0 20px}
   nav.menu{
     position:fixed;inset:62px 0 auto 0;
@@ -335,19 +369,110 @@ nav.menu a.lien-langue:hover{opacity:1}
       <a href="../bibliotheque/" class="actif">Bibliothèque</a>
       <a href="../a-propos/">À propos</a>
       <a href="../en/library/" class="lien-langue" hreflang="en">EN</a>
+      <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="Rechercher"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg></span>
     </nav>
     <div class="contexte-bar" id="contexte">La bibliothèque</div>
   </div>
 </header>
+<div class="rech-overlay" id="rech-overlay">
+  <div class="rech-boite">
+    <div class="rech-haut">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg>
+      <input type="search" id="rech-champ" placeholder="Rechercher dans Lumen…" autocomplete="off" spellcheck="false">
+      <span class="rech-fermer" id="rech-fermer" role="button" tabindex="0" aria-label="Fermer">✕</span>
+    </div>
+    <div class="rech-res" id="rech-res"></div>
+  </div>
+</div>
 <main id="app">
 <div class="vue">
-    <div class="filtres"><button class="filtre actif" data-theme="tous">Tout</button><button class="filtre" data-theme="doctrine">Doctrine et dogmes</button><button class="filtre" data-theme="ecriture">Écriture et exégèse</button><button class="filtre" data-theme="sacrements">Liturgie et sacrements</button><button class="filtre" data-theme="saints">Figures et saints</button><button class="filtre" data-theme="histoire">Histoire de l'Église</button><button class="filtre" data-theme="philosophie">Philosophie et raison</button></div>
+    <div class="filtres"><button class="filtre actif" data-theme="tous">Tout</button><button class="filtre" data-theme="doctrine">Doctrine et dogmes</button><button class="filtre" data-theme="ecriture">Écriture et exégèse</button><button class="filtre" data-theme="sacrements">Liturgie et sacrements</button><button class="filtre" data-theme="saints">Figures et saints</button><button class="filtre" data-theme="histoire">Histoire de l'Église</button><button class="filtre" data-theme="philosophie">Philosophie et raison</button><button class="filtre" data-theme="apologetique">Apologétique</button></div>
     <section class="liste">
-    <a class="article-lien" data-theme="sacrements" href="../article/le-bapteme/">
-      <div class="meta">Liturgie et sacrements</div>
-      <h3>Le Baptême</h3>
-      <p>La première porte de la vie chrétienne : la renaissance par l'eau et l'Esprit, qui efface le péché et fait entrer dans le corps du Christ.</p>
+    <div class="cat-titre" data-theme="doctrine" style="display:none">Dieu et la Trinité</div>
+    <a class="article-lien" data-theme="doctrine" href="../article/la-trinite/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>La Trinité</h3>
+      <p>Le mystère central de la foi : un seul Dieu en trois Personnes, le Père, le Fils et l'Esprit Saint, égales et éternelles, dans une seule vie divine.</p>
     </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/le-pere/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Le Père</h3>
+      <p>La première Personne de la Trinité : l'origine sans origine, créateur de toutes choses, révélé par le Fils, et le Père qui adopte les hommes comme ses enfants.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/le-fils/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Le Fils</h3>
+      <p>La deuxième Personne de la Trinité : le Verbe éternel engendré du Père, vrai Dieu, fait homme en Jésus-Christ pour le salut des hommes.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/le-verbe/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Le Verbe</h3>
+      <p>Le Fils de Dieu nommé comme la Parole éternelle du Père : son expression parfaite, par qui tout a été créé, et qui s'est fait chair en Jésus-Christ.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/l-esprit-saint/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>L’Esprit Saint</h3>
+      <p>La troisième Personne de la Trinité : vrai Dieu, l'amour du Père et du Fils, Seigneur qui donne la vie, répandu à la Pentecôte et présent dans l'âme des fidèles.</p>
+    </a>
+    <div class="cat-titre" data-theme="doctrine" style="display:none">Le péché et la chute</div>
+    <a class="article-lien" data-theme="doctrine" href="../article/le-peche/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Le péché</h3>
+      <p>Le refus libre de l'amour de Dieu, par lequel l'homme se détourne de lui : ce qu'il est, ses degrés du véniel au mortel, et le pardon qui en relève.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/le-peche-originel/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Le péché originel</h3>
+      <p>L'état de privation de la grâce dans lequel tout homme naît, conséquence de la faute des origines transmise à toute l'humanité : non une faute commise, mais un héritage, que le baptême efface.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/la-justice-originelle/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>La justice originelle</h3>
+      <p>L'état de sainteté et d'harmonie dans lequel Dieu créa l'homme : la grâce qui l'unissait à Dieu et les dons préternaturels qui ordonnaient sa nature, perdus à la chute.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/les-passions-et-la-concupiscence/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Les passions et la concupiscence</h3>
+      <p>Les mouvements spontanés de l'âme devant le bien et le mal, bons lorsqu'ils servent la raison ; et la concupiscence, leur dérèglement né du péché originel, qui incline au mal sans être elle-même une faute.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/le-nouvel-adam-et-la-nouvelle-eve/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Le nouvel Adam et la nouvelle Ève</h3>
+      <p>Le Christ et Marie réparant ce qu'Adam et Ève avaient perdu : par un homme et une femme le péché est entré dans le monde, par un homme et une femme le salut est venu.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/l-age-de-raison/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>L'âge de raison</h3>
+      <p>L'âge où l'enfant acquiert l'usage de la raison et devient capable de discerner le bien du mal : le seuil, situé vers sept ans, à partir duquel il répond de ses actes et peut commettre un péché personnel.</p>
+    </a>
+    <div class="cat-titre" data-theme="doctrine" style="display:none">Le Christ et la Rédemption</div>
+    <a class="article-lien" data-theme="doctrine" href="../article/l-incarnation/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>L'Incarnation</h3>
+      <p>Le mystère par lequel le Fils de Dieu a pris chair et s'est fait homme sans cesser d'être Dieu : vrai Dieu et vrai homme, une seule personne en deux natures unies sans confusion, pour le salut des hommes.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/la-croix-et-la-resurrection/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>La Croix et la Résurrection</h3>
+      <p>Le mystère pascal, cœur de la foi : pourquoi Dieu sauve par la Croix, où sa justice et sa miséricorde se rencontrent ; comment le Christ rachète le péché et vainc la mort ; et comment l'homme en est justifié.</p>
+    </a>
+    <div class="cat-titre" data-theme="doctrine" style="display:none">La Vierge Marie</div>
+    <a class="article-lien" data-theme="doctrine" href="../article/l-immaculee-conception/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>L’Immaculée Conception</h3>
+      <p>Marie préservée du péché originel dès le premier instant de sa conception, par une grâce singulière de Dieu et en vue des mérites du Christ : la première et la plus parfaite des rachetés.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/la-virginite-perpetuelle-de-marie/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>La virginité perpétuelle de Marie</h3>
+      <p>Le dogme selon lequel Marie est demeurée vierge avant, pendant et après la naissance du Christ : sa conception virginale par l'Esprit Saint, son intégrité gardée dans l'enfantement, et sa virginité maintenue toute sa vie, les « frères de Jésus » étant ses proches parents.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/reine-du-ciel/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Reine du ciel</h3>
+      <p>Marie couronnée Reine du ciel et de la terre, associée au règne de son Fils : mère du Roi à la manière des reines mères de David, et intercédant pour son peuple.</p>
+    </a>
+    <div class="cat-titre" data-theme="doctrine" style="display:none">La grâce et le salut</div>
     <a class="article-lien" data-theme="doctrine" href="../article/la-grace/">
       <div class="meta">Doctrine et dogmes</div>
       <h3>La grâce</h3>
@@ -358,10 +483,10 @@ nav.menu a.lien-langue:hover{opacity:1}
       <h3>La grâce sanctifiante</h3>
       <p>Le don créé par lequel Dieu fait participer l'âme à sa propre vie, la rend son enfant et la dispose au ciel.</p>
     </a>
-    <a class="article-lien" data-theme="doctrine" href="../article/la-paix-du-christ/">
+    <a class="article-lien" data-theme="doctrine" href="../article/la-grace-actuelle/">
       <div class="meta">Doctrine et dogmes</div>
-      <h3>La paix du Christ</h3>
-      <p>La paix que le Christ donne en réconciliant l'homme avec Dieu, née de la Croix, et qui demeure au cœur de l'épreuve.</p>
+      <h3>La grâce actuelle</h3>
+      <p>Le secours passager que Dieu donne à l'âme pour accomplir le bien, en éclairant l'intelligence et en fortifiant la volonté vers le salut.</p>
     </a>
     <a class="article-lien" data-theme="doctrine" href="../article/les-vertus-theologales/">
       <div class="meta">Doctrine et dogmes</div>
@@ -383,60 +508,170 @@ nav.menu a.lien-langue:hover{opacity:1}
       <h3>La charité</h3>
       <p>La plus grande des vertus théologales : par elle, l'homme aime Dieu par-dessus tout, parce qu'il est le souverain bien, et son prochain comme lui-même pour l'amour de Dieu.</p>
     </a>
-    <a class="article-lien" data-theme="doctrine" href="../article/la-grace-actuelle/">
+    <a class="article-lien" data-theme="doctrine" href="../article/la-paix-du-christ/">
       <div class="meta">Doctrine et dogmes</div>
-      <h3>La grâce actuelle</h3>
-      <p>Le secours passager que Dieu donne à l'âme pour accomplir le bien, en éclairant l'intelligence et en fortifiant la volonté vers le salut.</p>
+      <h3>La paix du Christ</h3>
+      <p>La paix que le Christ donne en réconciliant l'homme avec Dieu, née de la Croix, et qui demeure au cœur de l'épreuve.</p>
     </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/le-salut/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Le salut</h3>
+      <p>L'œuvre par laquelle Dieu délivre l'homme du péché et de la mort et lui donne part à sa propre vie : accomplie par le Christ, offerte à tous, reçue dans la foi et achevée dans la vie éternelle.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/le-bapteme-de-desir/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Le baptême de désir</h3>
+      <p>Comment ceux qui meurent sans avoir reçu le baptême d'eau, le catéchumène, le martyr, l'homme qui a cherché Dieu sans connaître l'Évangile, peuvent recevoir la grâce du baptême par le désir ou par le sang.</p>
+    </a>
+    <div class="cat-titre" data-theme="doctrine" style="display:none">L'Église</div>
     <a class="article-lien" data-theme="doctrine" href="../article/l-eglise/">
       <div class="meta">Doctrine et dogmes</div>
       <h3>L’Église</h3>
       <p>L'assemblée que Dieu rassemble dans le Christ pour former un seul Peuple : corps du Christ, animée par l'Esprit Saint, et moyen du salut offert à tous.</p>
     </a>
-    <a class="article-lien" data-theme="doctrine" href="../article/la-trinite/">
+    <a class="article-lien" data-theme="doctrine" href="../article/l-infaillibilite-pontificale/">
       <div class="meta">Doctrine et dogmes</div>
-      <h3>La Trinité</h3>
-      <p>Le mystère central de la foi : un seul Dieu en trois Personnes, le Père, le Fils et l'Esprit Saint, égales et éternelles, dans une seule vie divine.</p>
+      <h3>L'infaillibilité pontificale</h3>
+      <p>Le don par lequel le pape, lorsqu'il définit solennellement une doctrine de foi ou de morale à tenir par toute l'Église, est préservé de l'erreur par l'Esprit Saint : ses conditions, son fondement dans la promesse faite à Pierre, et ses limites.</p>
     </a>
-    <a class="article-lien" data-theme="doctrine" href="../article/le-pere/">
+    <a class="article-lien" data-theme="doctrine" href="../article/la-communion-des-saints/">
       <div class="meta">Doctrine et dogmes</div>
-      <h3>Le Père</h3>
-      <p>La première Personne de la Trinité : l'origine sans origine, créateur de toutes choses, révélé par le Fils, et le Père qui adopte les hommes comme ses enfants.</p>
+      <h3>La communion des saints</h3>
+      <p>L'union de tous les membres de l'Église dans le Christ, sur la terre, au purgatoire et au ciel : les saints vivent en Dieu, intercèdent pour nous, et leur prière est une grâce offerte à toute l'Église.</p>
     </a>
-    <a class="article-lien" data-theme="doctrine" href="../article/le-fils/">
+    <div class="cat-titre" data-theme="doctrine" style="display:none">Les fins dernières</div>
+    <a class="article-lien" data-theme="doctrine" href="../article/les-fins-dernieres/">
       <div class="meta">Doctrine et dogmes</div>
-      <h3>Le Fils</h3>
-      <p>La deuxième Personne de la Trinité : le Verbe éternel engendré du Père, vrai Dieu, fait homme en Jésus-Christ pour le salut des hommes.</p>
+      <h3>Les fins dernières</h3>
+      <p>Les réalités ultimes qui attendent l'homme : la mort, qui scelle son choix ; le jugement particulier, qui fixe aussitôt son sort ; le paradis, le purgatoire ou l'enfer ; puis, à la fin des temps, la résurrection de la chair et le jugement dernier.</p>
     </a>
-    <a class="article-lien" data-theme="doctrine" href="../article/l-esprit-saint/">
+    <a class="article-lien" data-theme="doctrine" href="../article/le-jugement-particulier/">
       <div class="meta">Doctrine et dogmes</div>
-      <h3>L’Esprit Saint</h3>
-      <p>La troisième Personne de la Trinité : vrai Dieu, l'amour du Père et du Fils, Seigneur qui donne la vie, répandu à la Pentecôte et présent dans l'âme des fidèles.</p>
+      <h3>Le jugement particulier</h3>
+      <p>La rencontre par laquelle chaque âme, à l'instant de sa mort, paraît devant Dieu et reçoit aussitôt son sort éternel : le paradis, le purgatoire puis le paradis, ou l'enfer. Il fixe pour chacun ce que le jugement dernier manifestera devant tous à la fin du monde.</p>
     </a>
-    <a class="article-lien" data-theme="doctrine" href="../article/le-verbe/">
+    <a class="article-lien" data-theme="doctrine" href="../article/le-purgatoire/">
       <div class="meta">Doctrine et dogmes</div>
-      <h3>Le Verbe</h3>
-      <p>Le Fils de Dieu nommé comme la Parole éternelle du Père : son expression parfaite, par qui tout a été créé, et qui s'est fait chair en Jésus-Christ.</p>
+      <h3>Le purgatoire</h3>
+      <p>L'état de purification que traversent après la mort les sauvés qui ne sont pas encore pleinement purifiés. Le pardon remet la faute et la peine éternelle ; une peine temporelle demeure souvent à acquitter, que le purgatoire achève. Notre prière peut hâter la délivrance de ces âmes.</p>
     </a>
-    <a class="article-lien" data-theme="doctrine" href="../article/l-immaculee-conception/">
+    <a class="article-lien" data-theme="doctrine" href="../article/le-paradis/">
       <div class="meta">Doctrine et dogmes</div>
-      <h3>L’Immaculée Conception</h3>
-      <p>Marie préservée du péché originel dès le premier instant de sa conception, par une grâce singulière de Dieu et en vue des mérites du Christ : la première et la plus parfaite des rachetés.</p>
+      <h3>Le paradis</h3>
+      <p>Le bonheur parfait et éternel des élus, qu'on appelle aussi le ciel : voir Dieu face à face, la vision béatifique, et vivre de sa vie. Ce don surnaturel comble tout désir de l'homme, fait pour Dieu ; il est une communion, celle des saints parvenue à son terme, et rejaillira sur le corps glorifié à la résurrection.</p>
     </a>
-    <a class="article-lien" data-theme="saints" href="../article/marie/">
-      <div class="meta">Figures et saints</div>
-      <h3>Marie</h3>
-      <p>La Vierge choisie par Dieu pour être la Mère de son Fils : Mère de Dieu, toujours Vierge, élevée au ciel, et donnée pour mère à tous les croyants.</p>
+    <a class="article-lien" data-theme="doctrine" href="../article/l-enfer/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>L'enfer</h3>
+      <p>L'état de séparation éternelle d'avec Dieu, sort de celui qui meurt en refusant librement son amour. Sa peine première est la perte de Dieu, pour qui l'âme était faite ; son éternité tient au choix fixé à la mort. Dieu veut le salut de tous : l'enfer est le terme d'un refus libre, l'envers de la grandeur de notre liberté.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/la-resurrection-de-la-chair/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>La résurrection de la chair</h3>
+      <p>La réunion, au dernier jour, de chaque âme à son propre corps, rendu immortel. Le salut atteint l'homme entier ; fondée sur la résurrection du Christ, prémices des nôtres, elle est universelle. Les sauvés reçoivent un corps glorieux, semblable à celui du Christ ; le corps des damnés se relève immortel et imputrescible, mais sans gloire.</p>
+    </a>
+    <a class="article-lien" data-theme="doctrine" href="../article/le-jugement-dernier/">
+      <div class="meta">Doctrine et dogmes</div>
+      <h3>Le jugement dernier</h3>
+      <p>La comparution de tous les hommes devant le Christ, à la fin du monde, après la résurrection des morts. Au retour glorieux du Seigneur, ce que le jugement particulier avait fixé pour chaque âme est manifesté et confirmé devant l'univers entier, pour l'homme tout entier ; la justice de Dieu sur toute l'histoire éclate, et la création est renouvelée.</p>
     </a>
     <a class="article-lien" data-theme="ecriture" href="../article/la-nouvelle-arche/">
       <div class="meta">Écriture et exégèse</div>
       <h3>La nouvelle Arche</h3>
       <p>Marie lue comme l'Arche de la nouvelle alliance : elle porte en elle la présence de Dieu, le Verbe fait chair, que l'arche d'autrefois annonçait en figure.</p>
     </a>
-    <a class="article-lien" data-theme="doctrine" href="../article/reine-du-ciel/">
-      <div class="meta">Doctrine et dogmes</div>
-      <h3>Reine du ciel</h3>
-      <p>Marie couronnée Reine du ciel et de la terre, associée au règne de son Fils : mère du Roi à la manière des reines mères de David, et intercédant pour son peuple.</p>
+    <a class="article-lien" data-theme="sacrements" href="../article/les-sacrements/">
+      <div class="meta">Liturgie et sacrements</div>
+      <h3>Les sacrements</h3>
+      <p>Les sept signes institués par le Christ, par lesquels il communique sa grâce : signes efficaces qui produisent ce qu'ils représentent, ils tirent leur force de sa Passion. Trois servent l'initiation chrétienne (baptême, confirmation, eucharistie), deux la guérison (confession, onction des malades), deux le service de la communion (ordre, mariage).</p>
+    </a>
+    <div class="cat-titre" data-theme="sacrements" style="display:none">Les sacrements de l'initiation chrétienne</div>
+    <a class="article-lien" data-theme="sacrements" href="../article/le-bapteme/">
+      <div class="meta">Liturgie et sacrements</div>
+      <h3>Le Baptême</h3>
+      <p>La première porte de la vie chrétienne : la renaissance par l'eau et l'Esprit, qui efface le péché et fait entrer dans le corps du Christ.</p>
+    </a>
+    <a class="article-lien" data-theme="sacrements" href="../article/la-confirmation/">
+      <div class="meta">Liturgie et sacrements</div>
+      <h3>La confirmation</h3>
+      <p>Le sacrement qui donne au baptisé la plénitude de l'Esprit Saint, comme les apôtres la reçurent à la Pentecôte. Troisième sacrement de l'initiation, après le baptême et avec l'eucharistie, il parfait la grâce baptismale, accroît les dons de l'Esprit, imprime un sceau définitif et donne la force de témoigner de sa foi.</p>
+    </a>
+    <a class="article-lien" data-theme="sacrements" href="../article/l-eucharistie/">
+      <div class="meta">Liturgie et sacrements</div>
+      <h3>L'Eucharistie</h3>
+      <p>Le sacrement du Corps et du Sang du Christ, institué à la Cène : préfiguré par l'Ancien Testament, il rend le Christ réellement présent sous les espèces, perpétue le sacrifice de la Croix, reçoit l'adoration et unit les fidèles dans la communion.</p>
+    </a>
+    <div class="cat-titre" data-theme="sacrements" style="display:none">Les sacrements de guérison</div>
+    <a class="article-lien" data-theme="sacrements" href="../article/la-confession/">
+      <div class="meta">Liturgie et sacrements</div>
+      <h3>La confession</h3>
+      <p>Le sacrement par lequel le baptisé reçoit, par le ministère du prêtre, le pardon des péchés commis depuis son baptême. Le Christ en a donné le pouvoir à ses apôtres ; par la contrition, l'aveu et la satisfaction du pénitent, l'absolution remet la faute et rend la grâce, réconciliant le pécheur avec Dieu et avec l'Église.</p>
+    </a>
+    <a class="article-lien" data-theme="sacrements" href="../article/l-absolution/">
+      <div class="meta">Liturgie et sacrements</div>
+      <h3>L'absolution</h3>
+      <p>La parole par laquelle le prêtre, au nom du Christ, remet ses péchés au pénitent : l'acte central de la confession, où le pardon est effectivement donné. Le prêtre confère le pardon à la place du Christ, et l'absolution porte son fruit dans le cœur que le regret et l'aveu ont disposé.</p>
+    </a>
+    <a class="article-lien" data-theme="sacrements" href="../article/la-satisfaction/">
+      <div class="meta">Liturgie et sacrements</div>
+      <h3>La satisfaction</h3>
+      <p>Le troisième acte du pénitent dans le sacrement de pénitence : réparer le désordre causé par le péché. Le pardon remet la faute et la peine éternelle ; une peine temporelle demeure souvent, que la prière, le jeûne et l'aumône réparent, unis à l'unique satisfaction du Christ, et que le purgatoire achève s'il le faut.</p>
+    </a>
+    <a class="article-lien" data-theme="sacrements" href="../article/le-secret-de-la-confession/">
+      <div class="meta">Liturgie et sacrements</div>
+      <h3>Le secret de la confession</h3>
+      <p>L'obligation absolue, pour le prêtre, de ne jamais révéler ce qu'un pénitent lui confie : le sceau sacramentel. Parce que l'aveu est fait à Dieu par le ministère du prêtre, aucun motif ne peut le rompre ; ce silence inviolable protège le pénitent et la confiance sans laquelle nul n'oserait s'ouvrir.</p>
+    </a>
+    <a class="article-lien" data-theme="sacrements" href="../article/l-onction-des-malades/">
+      <div class="meta">Liturgie et sacrements</div>
+      <h3>L'onction des malades</h3>
+      <p>Le sacrement par lequel le Christ vient soutenir et sauver ceux que la maladie grave ou la vieillesse épuise. Par l'onction d'une huile bénite et la prière de l'Église, reçue des apôtres et décrite par saint Jacques, il unit la souffrance du malade à sa Passion, lui donne force et paix, remet ses péchés et, pour les mourants, prépare le passage vers le Père.</p>
+    </a>
+    <div class="cat-titre" data-theme="sacrements" style="display:none">Les sacrements au service de la communion</div>
+    <a class="article-lien" data-theme="sacrements" href="../article/l-ordre/">
+      <div class="meta">Liturgie et sacrements</div>
+      <h3>L'ordre</h3>
+      <p>Le sacrement par lequel la mission confiée par le Christ à ses apôtres se poursuit dans l'Église jusqu'à la fin des temps. Par l'imposition des mains de l'évêque, il établit des hommes pour enseigner, sanctifier et conduire le peuple de Dieu au nom du Christ. Reçu en trois degrés, évêque, prêtre et diacre, il imprime un sceau définitif et fait agir l'ordonné en la personne du Christ, au service du sacerdoce commun de tous les baptisés.</p>
+    </a>
+    <a class="article-lien" data-theme="sacrements" href="../article/le-mariage/">
+      <div class="meta">Liturgie et sacrements</div>
+      <h3>Le mariage</h3>
+      <p>L'alliance par laquelle un homme et une femme se donnent l'un à l'autre pour toute la vie, ordonnée à leur amour mutuel et à l'accueil des enfants. Inscrit par Dieu dans la création et élevé par le Christ au rang de sacrement, signe de son union avec l'Église, il est un et indissoluble ; les époux se le donnent par leur consentement et en reçoivent une grâce propre.</p>
+    </a>
+    <a class="article-lien" data-theme="saints" href="../article/marie/">
+      <div class="meta">Figures et saints</div>
+      <h3>Marie</h3>
+      <p>La Vierge choisie par Dieu pour être la Mère de son Fils : Mère de Dieu, toujours Vierge, élevée au ciel, et donnée pour mère à tous les croyants.</p>
+    </a>
+    <a class="article-lien" data-theme="saints" href="../article/les-reliques/">
+      <div class="meta">Figures et saints</div>
+      <h3>Les reliques</h3>
+      <p>Les restes des saints et les objets liés à eux, que l'Église vénère : pourquoi le corps d'un saint est digne d'honneur, comment Dieu agit à travers la matière, et ce que cette vénération honore vraiment.</p>
+    </a>
+    <a class="article-lien" data-theme="apologetique" href="../article/le-bapteme-des-petits-enfants/">
+      <div class="meta">Apologétique</div>
+      <h3>Le baptême des petits enfants</h3>
+      <p>Pourquoi l'Église baptise les nouveau-nés, qui ne peuvent pas encore croire : une pratique des origines, fondée sur la gratuité de la grâce, la promesse faite aux enfants et la foi de l'Église qui les porte.</p>
+    </a>
+    <a class="article-lien" data-theme="apologetique" href="../article/les-freres-de-jesus/">
+      <div class="meta">Apologétique</div>
+      <h3>Les frères de Jésus</h3>
+      <p>Pourquoi les « frères de Jésus » que nomment les Évangiles ne contredisent pas la virginité perpétuelle de Marie : un mot sémitique qui désigne la parenté large, et des « frères » qui sont en réalité les fils d'une autre Marie.</p>
+    </a>
+    <a class="article-lien" data-theme="apologetique" href="../article/marie-mere-de-dieu/">
+      <div class="meta">Apologétique</div>
+      <h3>Marie, Mère de Dieu</h3>
+      <p>Pourquoi l'Église confesse Marie « Mère de Dieu » alors que Dieu est éternel : la maternité regarde la personne, et la personne que Marie a enfantée est le Fils éternel fait homme. Un titre qui défend d'abord l'unité du Christ.</p>
+    </a>
+    <a class="article-lien" data-theme="apologetique" href="../article/l-intercession-des-saints/">
+      <div class="meta">Apologétique</div>
+      <h3>L'intercession des saints</h3>
+      <p>Prier un saint, c'est lui demander d'intercéder pour nous : réponse aux trois objections, l'interdit de consulter les morts, l'idolâtrie, et l'atteinte à l'unique médiateur.</p>
+    </a>
+    <a class="article-lien" data-theme="apologetique" href="../article/la-primaute-de-pierre/">
+      <div class="meta">Apologétique</div>
+      <h3>La primauté de Pierre</h3>
+      <p>La prééminence que le Christ a donnée à Pierre sur les apôtres et sur toute l'Église : nommé le roc sur lequel l'Église est bâtie, il reçoit les clés du Royaume et la charge de paître le troupeau. Cette primauté, qui fait de lui le fondement visible de l'unité, se transmet aux évêques de Rome, ses successeurs.</p>
     </a></section>
     <div style="height:60px"></div>
   </div>
@@ -447,14 +682,75 @@ nav.menu a.lien-langue:hover{opacity:1}
   <div class="copy" id="annee"></div>
 </footer>
 <script>
+window.LUMEN={base:"../",lang:"fr",hint:"Tapez un mot pour parcourir les articles.",empty:"Aucun résultat pour"};
 document.getElementById('burger').addEventListener('click',function(){document.getElementById('menu').classList.toggle('ouvert');});
 document.getElementById('annee').textContent='© '+new Date().getFullYear()+' Lumen';
 (function(){
+  var ouvrir=document.getElementById('rech-ouvrir'),overlay=document.getElementById('rech-overlay'),
+      champ=document.getElementById('rech-champ'),res=document.getElementById('rech-res'),fermer=document.getElementById('rech-fermer');
+  if(!ouvrir||!overlay) return;
+  var L=window.LUMEN||{base:'',lang:'fr',hint:'',empty:''};
+  var index=null,charge=false,enCours=false;
+  function norm(s){return s.toLowerCase().replace(/[àâä]/g,'a').replace(/[éèêë]/g,'e').replace(/[ïî]/g,'i').replace(/[ôö]/g,'o').replace(/[ùûü]/g,'u').replace(/ç/g,'c');}
+  function lien(s){return L.base+'article/'+s+'/';}
+  function surligne(texte,termes){
+    var nt=norm(texte),marks=[];
+    termes.forEach(function(t){var i=0,p;while((p=nt.indexOf(t,i))>=0){marks.push([p,p+t.length]);i=p+t.length;}});
+    if(!marks.length) return texte;
+    marks.sort(function(a,b){return a[0]-b[0];});
+    var out='',cur=0;
+    marks.forEach(function(m){if(m[0]<cur)return;out+=texte.slice(cur,m[0])+'<mark>'+texte.slice(m[0],m[1])+'</mark>';cur=m[1];});
+    return out+texte.slice(cur);
+  }
+  function extrait(a,termes){
+    var src=a.r+' '+a.x,n=norm(src),pos=-1;
+    termes.forEach(function(t){var p=n.indexOf(t);if(p>=0&&(pos<0||p<pos))pos=p;});
+    if(pos<0)pos=0;
+    var deb=Math.max(0,pos-60),fin=Math.min(src.length,pos+120);
+    return (deb>0?'… ':'')+surligne(src.slice(deb,fin),termes)+(fin<src.length?' …':'');
+  }
+  function chercher(q){
+    var termes=norm(q).split(/\s+/).filter(Boolean);
+    if(!termes.length){res.innerHTML='<div class="rech-msg">'+L.hint+'</div>';return;}
+    var out=[];
+    index.forEach(function(a){
+      if(!termes.every(function(t){return a._n.indexOf(t)>=0;}))return;
+      var sc=0;termes.forEach(function(t){if(a._t.indexOf(t)>=0)sc+=5;if(a._r.indexOf(t)>=0)sc+=2;sc+=1;});
+      out.push({a:a,sc:sc});
+    });
+    out.sort(function(x,y){return y.sc-x.sc;});
+    if(!out.length){res.innerHTML='<div class="rech-msg">'+L.empty+' « '+q+' ».</div>';return;}
+    res.innerHTML=out.slice(0,30).map(function(o){
+      return '<a class="rech-item" href="'+lien(o.a.s)+'"><div class="rech-meta">'+o.a.th+'</div><div class="rech-titre">'+o.a.t+'</div><div class="rech-extrait">'+extrait(o.a,termes)+'</div></a>';
+    }).join('');
+  }
+  function prep(){index=window.LUMEN_INDEX||[];index.forEach(function(a){a._n=norm(a.t+' '+a.r+' '+a.x);a._t=norm(a.t);a._r=norm(a.r);});charge=true;}
+  function chargerPuis(cb){
+    if(charge){cb();return;}
+    if(enCours)return; enCours=true;
+    var sc=document.createElement('script');sc.src=L.base+'recherche-'+L.lang+'.js';
+    sc.onload=function(){prep();enCours=false;cb();};
+    sc.onerror=function(){enCours=false;};
+    document.body.appendChild(sc);
+  }
+  function ouvre(){overlay.classList.add('ouvert');document.body.style.overflow='hidden';if(!charge)res.innerHTML='<div class="rech-msg">'+L.hint+'</div>';setTimeout(function(){champ.focus();},40);chargerPuis(function(){chercher(champ.value);});}
+  function ferme(){overlay.classList.remove('ouvert');document.body.style.overflow='';}
+  ouvrir.addEventListener('click',ouvre);
+  ouvrir.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();ouvre();}});
+  fermer.addEventListener('click',ferme);
+  fermer.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();ferme();}});
+  overlay.addEventListener('click',function(e){if(e.target===overlay)ferme();});
+  champ.addEventListener('input',function(){if(charge)chercher(champ.value);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('ouvert'))ferme();});
+})();
+(function(){
   var boutons=document.querySelectorAll('.filtre');
   var articles=document.querySelectorAll('.article-lien');
+  var titres=document.querySelectorAll('.cat-titre');
   function appliquer(theme){
     boutons.forEach(function(b){b.classList.toggle('actif', b.dataset.theme===theme);});
     articles.forEach(function(a){a.style.display=(theme==='tous'||a.dataset.theme===theme)?'':'none';});
+    titres.forEach(function(c){c.style.display=(theme!=='tous'&&c.dataset.theme===theme)?'':'none';});
   }
   boutons.forEach(function(b){b.addEventListener('click',function(){
     var t=b.dataset.theme;

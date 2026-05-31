@@ -41,7 +41,7 @@ body{
   background:var(--encre);
   color:var(--parchemin);
   font-family:'EB Garamond',Georgia,serif;
-  font-size:18px;
+  font-size:20px;
   line-height:1.75;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
@@ -60,10 +60,11 @@ header{
 .barre{
   max-width:1080px;margin:0 auto;
   padding:20px 32px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:24px;position:relative;
+  display:grid;grid-template-columns:auto auto 1fr;align-items:center;
+  gap:24px;
 }
 .logo{
+  grid-column:1;grid-row:1;
   font-family:'Cormorant Garamond',serif;
   font-weight:500;font-size:26px;
   letter-spacing:.34em;
@@ -72,7 +73,7 @@ header{
   padding-left:.34em;
 }
 .logo:hover{color:var(--or-pale)}
-nav.menu{display:flex;gap:30px}
+nav.menu{display:flex;gap:30px;grid-column:3;grid-row:1;justify-self:end}
 nav.menu a{
   font-family:'Cormorant Garamond',serif;
   font-size:16px;letter-spacing:.12em;
@@ -90,7 +91,8 @@ nav.menu a:hover,nav.menu a.actif{color:var(--parchemin);border-color:var(--or)}
 
 /* contexte d'article (thème · date) centré dans le bandeau */
 .contexte-bar{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  grid-column:2;grid-row:1;text-align:left;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;
   font-family:'Cormorant Garamond',serif;
   font-size:13px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--parchemin-att);white-space:nowrap;pointer-events:auto;
@@ -98,6 +100,30 @@ nav.menu a:hover,nav.menu a.actif{color:var(--parchemin);border-color:var(--or)}
 .contexte-bar:empty{display:none}
 .contexte-bar a{transition:color .3s}
 .contexte-bar a:hover{color:var(--or)}
+
+/* ---------- recherche ---------- */
+.rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:var(--parchemin-att);transition:color .3s;background:none;border:none;padding:0;outline:none}
+.rech-loupe:hover,.rech-loupe:focus{color:var(--or)}
+.rech-loupe svg{display:block}
+.rech-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);display:none}
+.rech-overlay.ouvert{display:block}
+.rech-boite{max-width:760px;margin:0 auto;padding:8vh 24px 40px;height:100%;display:flex;flex-direction:column;box-sizing:border-box}
+.rech-haut{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--filet-fort);padding-bottom:18px}
+.rech-haut svg{color:var(--or);flex:none}
+#rech-champ{flex:1;min-width:0;background:none;border:none;outline:none;color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:30px;letter-spacing:.01em}
+#rech-champ::placeholder{color:var(--parchemin-att);opacity:.5}
+.rech-fermer{cursor:pointer;color:var(--parchemin-att);font-size:24px;line-height:1;transition:color .3s;flex:none;outline:none}
+.rech-fermer:hover,.rech-fermer:focus{color:var(--parchemin)}
+.rech-res{margin-top:6px;overflow-y:auto;flex:1}
+.rech-msg{padding:38px 4px;color:var(--parchemin-att);font-style:italic;font-size:18px}
+.rech-item{display:block;padding:22px 4px;border-bottom:1px solid var(--filet);cursor:pointer;transition:padding-left .3s}
+.rech-item:hover{padding-left:14px}
+.rech-meta{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin-bottom:6px}
+.rech-titre{font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.15;transition:color .3s}
+.rech-item:hover .rech-titre{color:var(--or-pale)}
+.rech-extrait{margin-top:7px;font-size:16px;color:var(--parchemin-att);line-height:1.55}
+.rech-extrait mark{background:none;color:var(--or);font-weight:600}
+@media(max-width:720px){#rech-champ{font-size:24px}.rech-boite{padding-top:6vh}}
 
 /* ---------- conteneur de page ---------- */
 main{max-width:1080px;margin:0 auto;padding:0 32px;min-height:70vh}
@@ -176,7 +202,7 @@ main{max-width:1080px;margin:0 auto;padding:0 32px;min-height:70vh}
   transition:color .3s;
 }
 .domaine:hover h3{color:var(--or-pale)}
-.domaine p{font-size:16px;color:var(--parchemin-att);line-height:1.65}
+.domaine p{font-size:17px;color:var(--parchemin-att);line-height:1.65}
 .domaine .compte{
   margin-top:auto;font-size:13px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--parchemin-att);
@@ -233,8 +259,16 @@ main{max-width:1080px;margin:0 auto;padding:0 32px;min-height:70vh}
   transition:color .3s;line-height:1.15;
 }
 .article-lien:hover h3{color:var(--or-pale)}
-.article-lien p{margin-top:8px;font-size:17px;color:var(--parchemin-att)}
+.article-lien p{margin-top:8px;font-size:18px;color:var(--parchemin-att)}
 .vide{padding:60px 0;text-align:center;color:var(--parchemin-att);font-style:italic;font-size:19px}
+.cat-titre{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--or);
+  margin:46px 0 2px;padding-bottom:14px;
+  border-bottom:1px solid var(--filet-fort);
+}
+.liste > .cat-titre:first-child{margin-top:8px}
 
 /* ---------- article ---------- */
 article.lecture{max-width:720px;margin:0 auto;padding:64px 0 80px}
@@ -279,7 +313,7 @@ article.lecture blockquote{
 }
 
 /* ---------- à propos ---------- */
-.prose{max-width:680px;margin:0 auto;padding:8px 0 80px;font-size:19px}
+.prose{max-width:680px;margin:0 auto;padding:8px 0 80px;font-size:21px}
 .prose p{margin-bottom:22px}
 
 /* ---------- pied de page ---------- */
@@ -303,7 +337,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--par
 /* ---------- responsive ---------- */
 @media(max-width:720px){
   body{font-size:17px}
-  .barre{padding:16px 20px}
+  .barre{padding:16px 20px;display:flex;justify-content:space-between}
   main{padding:0 20px}
   nav.menu{
     position:fixed;inset:62px 0 auto 0;
@@ -335,10 +369,21 @@ nav.menu a.lien-langue:hover{opacity:1}
       <a href="../../library/">Library</a>
       <a href="../../about/">About</a>
       <a href="../../../article/marie/" class="lien-langue" hreflang="fr">FR</a>
+      <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="Search"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg></span>
     </nav>
     <div class="contexte-bar" id="contexte"><a href="../../library/?theme=saints">Figures and Saints</a></div>
   </div>
 </header>
+<div class="rech-overlay" id="rech-overlay">
+  <div class="rech-boite">
+    <div class="rech-haut">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg>
+      <input type="search" id="rech-champ" placeholder="Search Lumen…" autocomplete="off" spellcheck="false">
+      <span class="rech-fermer" id="rech-fermer" role="button" tabindex="0" aria-label="Close">✕</span>
+    </div>
+    <div class="rech-res" id="rech-res"></div>
+  </div>
+</div>
 <main id="app">
 <div class="vue">
     <article class="lecture">
@@ -346,9 +391,9 @@ nav.menu a.lien-langue:hover{opacity:1}
       
       <p>Mary is the Virgin whom God chose to be the mother of his <a href="../../article/the-son/">Son</a> made man. He prepared her for this mission by preserving her from sin from the first instant of her life, through the privilege of her <a href="../../article/the-immaculate-conception/">Immaculate Conception</a>. On the day of the Annunciation, she gave God a free and entire consent, and it is through her that the Saviour entered the world: <em>“When the fullness of time had come, God sent his Son, born of a woman.”</em> <span class="ref">Galatians 4:4</span></p>
       <h2>Mother of God</h2>
-      <p>Mary is truly Mother of God, for the one she conceived and bore is God, the eternal Son become man. Motherhood touches the person, and the person she carried in her womb is God himself. This is why the Church confesses her “Theotokos”, a Greek word that means “she who gives birth to God.” The child she brings into the world is God present among men: <em>“He will be called Emmanuel, which means: God with us.”</em> <span class="ref">Matthew 1:23</span></p>
+      <p>Mary is truly Mother of God, for the one she conceived and bore is God, the eternal Son become man. A mother brings into the world someone, a person, not a nature; and the person she carried in her womb is God himself. This is why the Church confesses her “<a href="../../article/mary-mother-of-god/">Theotokos</a>”, a Greek word that means “she who gives birth to God.” The child she brings into the world is God present among men: <em>“He will be called Emmanuel, which means: God with us.”</em> <span class="ref">Matthew 1:23</span></p>
       <h2>Ever Virgin</h2>
-      <p>Mary conceived her Son by the work of the <a href="../../article/the-holy-spirit/">Holy Spirit</a>, without the concurrence of any man, and she remained a virgin before, during and after the birth. Her virginity is the sign that this child comes wholly from God: <em>“The Holy Spirit will come upon you, and the power of the Most High will overshadow you.”</em> <span class="ref">Luke 1:35</span></p>
+      <p>Mary conceived her Son by the work of the <a href="../../article/the-holy-spirit/">Holy Spirit</a>, without the concurrence of any man, and she remained a <a href="../../article/the-perpetual-virginity-of-mary/">virgin before, during and after the birth</a>. Her virginity is the sign that this child comes wholly from God: <em>“The Holy Spirit will come upon you, and the power of the Most High will overshadow you.”</em> <span class="ref">Luke 1:35</span></p>
       <h2>The new Ark</h2>
       <p>Mary is the <a href="../../article/the-new-ark/">new Ark</a> of the covenant. The ark of old carried the signs of God's presence in the midst of his people; Mary carries in her womb this presence in person, the <a href="../../article/the-word/">Word</a> made flesh. Elizabeth welcomes her as David had welcomed the ark, with the same cry of wonder: <em>“How is it granted me that the mother of my Lord should come to me?”</em> <span class="ref">Luke 1:43</span></p>
       <h2>Taken up into heaven and Queen</h2>
@@ -367,8 +412,67 @@ nav.menu a.lien-langue:hover{opacity:1}
   <div class="copy" id="annee"></div>
 </footer>
 <script>
+window.LUMEN={base:"../../",lang:"en",hint:"Type a word to browse the articles.",empty:"No results for"};
 document.getElementById('burger').addEventListener('click',function(){document.getElementById('menu').classList.toggle('ouvert');});
 document.getElementById('annee').textContent='© '+new Date().getFullYear()+' Lumen';
+(function(){
+  var ouvrir=document.getElementById('rech-ouvrir'),overlay=document.getElementById('rech-overlay'),
+      champ=document.getElementById('rech-champ'),res=document.getElementById('rech-res'),fermer=document.getElementById('rech-fermer');
+  if(!ouvrir||!overlay) return;
+  var L=window.LUMEN||{base:'',lang:'fr',hint:'',empty:''};
+  var index=null,charge=false,enCours=false;
+  function norm(s){return s.toLowerCase().replace(/[àâä]/g,'a').replace(/[éèêë]/g,'e').replace(/[ïî]/g,'i').replace(/[ôö]/g,'o').replace(/[ùûü]/g,'u').replace(/ç/g,'c');}
+  function lien(s){return L.base+'article/'+s+'/';}
+  function surligne(texte,termes){
+    var nt=norm(texte),marks=[];
+    termes.forEach(function(t){var i=0,p;while((p=nt.indexOf(t,i))>=0){marks.push([p,p+t.length]);i=p+t.length;}});
+    if(!marks.length) return texte;
+    marks.sort(function(a,b){return a[0]-b[0];});
+    var out='',cur=0;
+    marks.forEach(function(m){if(m[0]<cur)return;out+=texte.slice(cur,m[0])+'<mark>'+texte.slice(m[0],m[1])+'</mark>';cur=m[1];});
+    return out+texte.slice(cur);
+  }
+  function extrait(a,termes){
+    var src=a.r+' '+a.x,n=norm(src),pos=-1;
+    termes.forEach(function(t){var p=n.indexOf(t);if(p>=0&&(pos<0||p<pos))pos=p;});
+    if(pos<0)pos=0;
+    var deb=Math.max(0,pos-60),fin=Math.min(src.length,pos+120);
+    return (deb>0?'… ':'')+surligne(src.slice(deb,fin),termes)+(fin<src.length?' …':'');
+  }
+  function chercher(q){
+    var termes=norm(q).split(/\s+/).filter(Boolean);
+    if(!termes.length){res.innerHTML='<div class="rech-msg">'+L.hint+'</div>';return;}
+    var out=[];
+    index.forEach(function(a){
+      if(!termes.every(function(t){return a._n.indexOf(t)>=0;}))return;
+      var sc=0;termes.forEach(function(t){if(a._t.indexOf(t)>=0)sc+=5;if(a._r.indexOf(t)>=0)sc+=2;sc+=1;});
+      out.push({a:a,sc:sc});
+    });
+    out.sort(function(x,y){return y.sc-x.sc;});
+    if(!out.length){res.innerHTML='<div class="rech-msg">'+L.empty+' « '+q+' ».</div>';return;}
+    res.innerHTML=out.slice(0,30).map(function(o){
+      return '<a class="rech-item" href="'+lien(o.a.s)+'"><div class="rech-meta">'+o.a.th+'</div><div class="rech-titre">'+o.a.t+'</div><div class="rech-extrait">'+extrait(o.a,termes)+'</div></a>';
+    }).join('');
+  }
+  function prep(){index=window.LUMEN_INDEX||[];index.forEach(function(a){a._n=norm(a.t+' '+a.r+' '+a.x);a._t=norm(a.t);a._r=norm(a.r);});charge=true;}
+  function chargerPuis(cb){
+    if(charge){cb();return;}
+    if(enCours)return; enCours=true;
+    var sc=document.createElement('script');sc.src=L.base+'recherche-'+L.lang+'.js';
+    sc.onload=function(){prep();enCours=false;cb();};
+    sc.onerror=function(){enCours=false;};
+    document.body.appendChild(sc);
+  }
+  function ouvre(){overlay.classList.add('ouvert');document.body.style.overflow='hidden';if(!charge)res.innerHTML='<div class="rech-msg">'+L.hint+'</div>';setTimeout(function(){champ.focus();},40);chargerPuis(function(){chercher(champ.value);});}
+  function ferme(){overlay.classList.remove('ouvert');document.body.style.overflow='';}
+  ouvrir.addEventListener('click',ouvre);
+  ouvrir.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();ouvre();}});
+  fermer.addEventListener('click',ferme);
+  fermer.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();ferme();}});
+  overlay.addEventListener('click',function(e){if(e.target===overlay)ferme();});
+  champ.addEventListener('input',function(){if(charge)chercher(champ.value);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('ouvert'))ferme();});
+})();
 
 </script>
 </body>
