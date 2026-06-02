@@ -7,7 +7,7 @@
    ============================================================ */
 const fs = require('fs');
 const path = require('path');
-const { SLUGS, THEMES_EN, UI_EN, ARTICLES_EN } = require('./data-en.js');
+const { SLUGS, THEMES_EN, UI_EN, ARTICLES_EN, NOUVEAUTES_EN } = require('./data-en.js');
 
 const SRC = process.argv[2] || 'index__48_.html';
 const OUT = process.argv[3] || 'site';
@@ -18,37 +18,45 @@ const css = src.slice(src.indexOf('<style>') + 7, src.indexOf('</style>')).repla
 
 const blockStart = src.indexOf('const THEMES');
 const blockEnd = src.indexOf('const app');
-const { THEMES, ARTICLES } = (new Function(src.slice(blockStart, blockEnd) + '; return {THEMES, ARTICLES};'))();
+const { THEMES, ARTICLES, NOUVEAUTES } = (new Function(src.slice(blockStart, blockEnd) + '; return {THEMES, ARTICLES, NOUVEAUTES};'))();
 
 /* ---- interface, par langue ---- */
 const UI = {
   fr: {
     html: 'fr', oglocale: 'fr_FR',
     menu_home: 'Accueil', menu_library: 'Bibliothèque', menu_about: 'À propos',
+    news_title: 'Nouveautés',
     home_intro: "Un lieu pour entrer dans l'intelligence de la foi catholique, des premiers pas jusqu'aux questions les plus profondes.",
     home_domains_label: 'Les domaines', home_explore: 'Explorer par thème',
     entry_one: 'entrée', entry_many: 'entrées',
     filter_all: 'Tout', context_library: 'La bibliothèque',
+    lib_surtitle: 'La bibliothèque', lib_title: 'Les domaines',
+    lib_expand: 'Tout déplier', lib_collapse: 'Tout replier',
+    lib_empty: "Ce domaine n'a pas encore d'entrée. Les contenus s'ajoutent au fil du temps.",
     footer_verse: '« La lumière luit dans les ténèbres » (Jean 1:5)',
     about_surtitle: 'Le projet', about_title: 'À propos de Lumen',
     about_p: [
-      "Lumen est un lieu d'étude et de méditation autour de la foi catholique. Son but est simple : rendre la théologie accessible, fidèle et vivante, pour le débutant qui découvre comme pour le croyant qui veut approfondir.",
-      "Chaque entrée s'appuie sur les Écritures, la tradition de l'Église et l'enseignement constant du Magistère. La forme cherche la sobriété : que les vérités parlent d'elles-mêmes, sans bruit ni surcharge. Tout y tend vers une seule fin : <em>« Vous connaîtrez la vérité, et la vérité vous rendra libres. »</em> <span class=\"ref\">Jean 8:32</span>",
-      "Le site grandit lentement, entrée après entrée. Ce qui s'y trouve n'épuise jamais son sujet : il ouvre une porte, et invite à aller plus loin."
+      "Lumen est un lieu d'étude et de méditation autour de la foi catholique. Son but est simple : rendre la théologie accessible et fidèle à l'enseignement de l'Église, pour le débutant qui découvre comme pour le croyant qui veut approfondir.",
+      "Chaque entrée s'appuie sur les Écritures, la tradition de l'Église et l'enseignement constant du Magistère. Tout y tend vers une seule fin : <em>« Vous connaîtrez la vérité, et la vérité vous rendra libres. »</em> <span class=\"ref\">Jean 8:32</span>",
+      "Le site est continuellement enrichi et mis à jour."
     ],
     notfound_title: 'Page introuvable', notfound_text: "Cette page n'existe pas.", notfound_back: "Revenir à l'accueil",
     site_desc_home: "Un lieu pour entrer dans l'intelligence de la foi catholique, des premiers pas jusqu'aux questions les plus profondes.",
     site_desc_library: "Toutes les entrées de Lumen, classées par domaine : doctrine, Écriture, sacrements, figures, histoire et philosophie.",
-    site_desc_about: "Lumen, un lieu d'étude et de méditation autour de la foi catholique : rendre la théologie accessible, fidèle et vivante.",
+    site_desc_about: "Lumen, un lieu d'étude et de méditation autour de la foi catholique : rendre la théologie accessible et fidèle à l'enseignement de l'Église.",
     t_home: 'Lumen · Théologie catholique', t_library: 'Bibliothèque · Lumen', t_about: 'À propos · Lumen', t_404: 'Page introuvable · Lumen',
     search_placeholder: 'Rechercher dans Lumen…', search_hint: 'Tapez un mot pour parcourir les articles.', search_empty: 'Aucun résultat pour',
     other_label: 'EN'
   },
   en: Object.assign({}, UI_EN, {
     oglocale: 'en', other_label: 'FR',
+    news_title: "What's New",
+    lib_surtitle: 'The library', lib_title: 'The domains',
+    lib_expand: 'Expand all', lib_collapse: 'Collapse all',
+    lib_empty: 'This domain has no entry yet. Content is added over time.',
     site_desc_home: UI_EN.home_intro,
     site_desc_library: 'All the entries of Lumen, arranged by domain: doctrine, Scripture, sacraments, figures, history and philosophy.',
-    site_desc_about: 'Lumen, a place of study and meditation on the Catholic faith: making theology accessible, faithful and alive.',
+    site_desc_about: 'Lumen, a place of study and meditation on the Catholic faith: making theology accessible and faithful to the teaching of the Church.',
     t_home: 'Lumen · Catholic Theology', t_library: 'Library · Lumen', t_about: 'About · Lumen', t_404: 'Page not found · Lumen'
   })
 };
@@ -104,6 +112,9 @@ nav.menu a.lien-langue:hover{opacity:1}
 
 function header(lang, type, base, otherRel, ctx) {
   const u = UI[lang];
+  const journal = (lang === 'fr' ? NOUVEAUTES : NOUVEAUTES_EN).map(function(g){return '<div class="nouv-groupe"><div class="nouv-date">'+g.d+'</div>'+g.items.map(function(t){return '<div class="nouv-ligne">'+t+'</div>';}).join('')+'</div>';}).join('');
+  const journSrc = (lang === 'fr' ? NOUVEAUTES : NOUVEAUTES_EN);
+  const nsig = journSrc[0].d + '|' + journSrc.reduce(function(a,g){return a+g.items.length;},0);
   const home = base === '' ? './' : base;
   const cl = t => type === t ? ' class="actif"' : '';
   const lib = lang === 'fr' ? 'bibliotheque/' : 'library/';
@@ -117,6 +128,7 @@ function header(lang, type, base, otherRel, ctx) {
       <a href="${base}${lib}"${cl('library')}>${u.menu_library}</a>
       <a href="${base}${abo}"${cl('about')}>${u.menu_about}</a>
       <a href="${otherRel}" class="lien-langue" hreflang="${lang === 'fr' ? 'en' : 'fr'}">${u.other_label}</a>
+      <span class="rech-loupe cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="${u.news_title}" data-sig="${nsig}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="cloche-point"></span></span>
       <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="${u.menu_home === 'Home' ? 'Search' : 'Rechercher'}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg></span>
     </nav>
     <div class="contexte-bar" id="contexte">${ctx || ''}</div>
@@ -131,6 +143,16 @@ function header(lang, type, base, otherRel, ctx) {
     </div>
     <div class="rech-res" id="rech-res"></div>
   </div>
+</div>
+<div class="rech-overlay" id="nouv-overlay">
+  <div class="rech-boite">
+    <div class="rech-haut">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg>
+      <div class="nouv-titre-panneau">${u.news_title}</div>
+      <span class="rech-fermer" id="nouv-fermer" role="button" tabindex="0" aria-label="${u.menu_home === 'Home' ? 'Close' : 'Fermer'}">✕</span>
+    </div>
+    <div class="nouv-liste" id="nouv-liste">${journal}</div>
+  </div>
 </div>`;
 }
 
@@ -143,24 +165,30 @@ function footer(lang) {
 }
 
 const COMMUN_JS = `document.getElementById('burger').addEventListener('click',function(){document.getElementById('menu').classList.toggle('ouvert');});
-document.getElementById('annee').textContent='© '+new Date().getFullYear()+' Lumen';`;
+document.getElementById('annee').textContent='© '+new Date().getFullYear()+' Lumen';\n(function(){var b=document.getElementById('cloche-ouvrir'),ov=document.getElementById('nouv-overlay'),fe=document.getElementById('nouv-fermer');if(!b||!ov)return;var pt=b.querySelector('.cloche-point'),sig=b.getAttribute('data-sig')||'';function vu(){try{return localStorage.getItem('lumen_nouv_vu');}catch(e){return null;}}function maj(){if(pt)pt.style.display=(vu()===sig?'none':'block');}maj();function o(){ov.classList.add('ouvert');document.body.style.overflow='hidden';try{localStorage.setItem('lumen_nouv_vu',sig);}catch(e){}maj();}function f(){ov.classList.remove('ouvert');document.body.style.overflow='';}b.addEventListener('click',o);b.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();o();}});fe.addEventListener('click',f);ov.addEventListener('click',function(e){if(e.target===ov)f();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('ouvert'))f();});})();`;
 
 const BIBLIO_JS = `(function(){
-  var boutons=document.querySelectorAll('.filtre');
-  var articles=document.querySelectorAll('.article-lien');
-  var titres=document.querySelectorAll('.cat-titre');
-  function appliquer(theme){
-    boutons.forEach(function(b){b.classList.toggle('actif', b.dataset.theme===theme);});
-    articles.forEach(function(a){a.style.display=(theme==='tous'||a.dataset.theme===theme)?'':'none';});
-    titres.forEach(function(c){c.style.display=(theme!=='tous'&&c.dataset.theme===theme)?'':'none';});
-  }
-  boutons.forEach(function(b){b.addEventListener('click',function(){
-    var t=b.dataset.theme;
-    appliquer(t);
-    history.replaceState(null,'', t==='tous'?'./':'./?theme='+t);
-  });});
-  var p=new URLSearchParams(location.search).get('theme');
-  if(p) appliquer(p);
+  function cascadeA(els){ els.forEach(function(el,i){ if(!el)return; var d=Math.min(i*40,640); el.style.animation='none'; void el.offsetHeight; el.style.animation='apparaitDom .45s cubic-bezier(.2,.7,.3,1) '+d+'ms both'; }); }
+  function cascadeF(els,fin){ els.forEach(function(el){ if(el)el.style.animation='apparaitDomFerme .25s ease forwards'; }); setTimeout(fin,240); }
+  function ouvrir(sec){ if(!sec||sec.classList.contains('ouvert'))return; sec.classList.add('ouvert'); var sep=sec.querySelector('.dom-sep'),corps=sec.querySelector('.dom-corps'); cascadeA([sep].concat([].slice.call(corps.children))); }
+  function fermer(sec){ if(!sec||!sec.classList.contains('ouvert'))return; var sep=sec.querySelector('.dom-sep'),corps=sec.querySelector('.dom-corps'); cascadeF([sep].concat([].slice.call(corps.children)),function(){ sec.classList.remove('ouvert'); maj(); }); }
+  function basculer(sec){ sec.classList.contains('ouvert')?fermer(sec):ouvrir(sec); maj(); }
+  function ouvrirSous(s){ if(!s||s.classList.contains('ouvert'))return; s.classList.add('ouvert'); var corps=s.querySelector('.sous-corps'); cascadeA([].slice.call(corps.children)); }
+  function fermerSous(s){ if(!s||!s.classList.contains('ouvert'))return; var corps=s.querySelector('.sous-corps'); cascadeF([].slice.call(corps.children),function(){ s.classList.remove('ouvert'); }); }
+  function basculerSous(s){ s.classList.contains('ouvert')?fermerSous(s):ouvrirSous(s); }
+  function tout(){ var secs=[].slice.call(document.querySelectorAll('.dom')); var ouverts=secs.filter(function(s){return s.classList.contains('ouvert');});
+    if(ouverts.length){ ouverts.forEach(fermer); } else { secs.forEach(function(s,i){ setTimeout(function(){ouvrir(s);}, i*110); }); }
+    setTimeout(maj,10); }
+  function maj(){ var b=document.getElementById('basculerTout'); if(!b)return;
+    var ouvert=[].slice.call(document.querySelectorAll('.dom')).some(function(s){return s.classList.contains('ouvert');});
+    b.classList.toggle('actif-tout',ouvert); var l=b.querySelector('.bt-label'); if(l)l.textContent=ouvert?b.dataset.collapse:b.dataset.expand; }
+  var b=document.getElementById('basculerTout');
+  if(b){ b.addEventListener('click',tout); b.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();tout();} }); }
+  document.querySelectorAll('.dom-tete').forEach(function(t){ t.addEventListener('click',function(){ basculer(t.closest('.dom')); }); });
+  document.querySelectorAll('.sous-tete').forEach(function(st){ st.addEventListener('click',function(){ basculerSous(st.closest('.sous')); }); });
+  var theme=new URLSearchParams(location.search).get('theme');
+  if(theme){ var sec=document.querySelector('.dom[data-theme="'+theme+'"]'); if(sec){ ouvrir(sec); sec.querySelectorAll('.sous').forEach(ouvrirSous); maj(); setTimeout(function(){ sec.scrollIntoView({behavior:'smooth',block:'start'}); },120); return; } }
+  maj();
 })();`;
 
 const RECH_JS = `(function(){
@@ -296,34 +324,62 @@ function mainAccueil(lang, base) {
 function mainBibliotheque(lang, base) {
   const u = UI[lang];
   const art = 'article/';
-  const filtres = `<button class="filtre actif" data-theme="tous">${u.filter_all}</button>` +
-    THEMES.map(t => `<button class="filtre" data-theme="${t.id}">${themeNom(lang, t.id)}</button>`).join('');
   const carte = a => `
-    <a class="article-lien" data-theme="${a.theme}" href="${base}${art}${slugOf(lang, a.id)}/">
-      <div class="meta">${themeNom(lang, a.theme)}</div>
-      <h3>${artTitre(lang, a)}</h3>
-      <p>${artResume(lang, a)}</p>
-    </a>`;
-  let corps = '';
-  for (const t of THEMES) {
+        <a class="article-lien" href="${base}${art}${slugOf(lang, a.id)}/">
+          <h3>${artTitre(lang, a)}</h3>
+          <p>${artResume(lang, a)}</p>
+        </a>`;
+  const corpsDomaine = t => {
     const at = ARTICLES.filter(a => a.theme === t.id);
-    if (t.categories) {
-      const vus = new Set();
-      for (const c of t.categories) {
-        const arts = c.arts.map(id => at.find(a => a.id === id)).filter(Boolean);
-        arts.forEach(a => vus.add(a.id));
-        if (!arts.length) continue;
-        if (c.nom) corps += `\n    <div class="cat-titre" data-theme="${t.id}" style="display:none">${catNom(lang, t.id, c.id)}</div>`;
-        corps += arts.map(carte).join('');
-      }
-      corps += at.filter(a => !vus.has(a.id)).map(carte).join('');
-    } else {
-      corps += at.map(carte).join('');
+    const vide = `<div class="vide">${u.lib_empty}</div>`;
+    if (!t.categories) {
+      return at.map(carte).join('') || vide;
     }
-  }
+    let html = '';
+    const vus = new Set();
+    for (const c of t.categories) {
+      const arts = c.arts.map(id => at.find(a => a.id === id)).filter(Boolean);
+      arts.forEach(a => vus.add(a.id));
+      if (!arts.length) continue;
+      if (c.nom) {
+        html += `
+      <div class="sous" data-cat="${c.id}">
+        <div class="sous-tete">
+          <span class="sous-puce" aria-hidden="true"></span>
+          <span class="sous-nom">${catNom(lang, t.id, c.id)}</span>
+          <span class="sous-chevron" aria-hidden="true">›</span>
+        </div>
+        <div class="sous-corps">${arts.map(carte).join('')}</div>
+      </div>`;
+      } else {
+        html += arts.map(carte).join('');
+      }
+    }
+    html += at.filter(a => !vus.has(a.id)).map(carte).join('');
+    return html || vide;
+  };
+  const sections = THEMES.map((t, i) => {
+    const n = compteParTheme(t.id);
+    const num = String(i + 1).padStart(2, '0');
+    const mot = lang === 'fr' ? (n <= 1 ? u.entry_one : u.entry_many) : (n === 1 ? u.entry_one : u.entry_many);
+    return `
+    <section class="dom" data-theme="${t.id}">
+      <div class="dom-tete">
+        <span class="dom-num">${num}</span>
+        <h2 class="dom-nom">${themeNom(lang, t.id)}</h2>
+        <span class="dom-compte">${n} ${mot}</span>
+        <span class="dom-chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="dom-sep"></div>
+      <div class="dom-corps">${corpsDomaine(t)}</div>
+    </section>`;
+  }).join('');
   return `<div class="vue">
-    <div class="filtres">${filtres}</div>
-    <section class="liste">${corps}</section>
+    <section class="bandeau-page">
+      <div class="sur-titre">${u.lib_surtitle}</div>
+      <h1>${u.lib_title}</h1>
+    </section>
+    <div class="domaines-liste">${sections}</div>
     <div style="height:60px"></div>
   </div>`;
 }
@@ -339,13 +395,15 @@ function mainArticle(lang, a, base) {
 
 function mainAPropos(lang) {
   const u = UI[lang];
-  return `<div class="vue">
+  return `<div class="vue apropos-vue">
     <section class="bandeau-page">
       <div class="sur-titre">${u.about_surtitle}</div>
       <h1>${u.about_title}</h1>
     </section>
+    <div class="apropos-corps">
     <div class="prose">
       ${u.about_p.map(p => `<p>${p}</p>`).join('\n      ')}
+    </div>
     </div>
   </div>`;
 }
@@ -460,6 +518,23 @@ ${sm}
 
 // robots.txt
 ecrire('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${DOMAINE}/sitemap.xml\n`);
+
+// redirections des articles fusionnés (ancien slug -> article d'accueil), FR et EN, 301
+const REDIRECTS = [
+  ['le-verbe', 'le-fils'],
+  ['les-freres-de-jesus', 'la-virginite-perpetuelle-de-marie'],
+  ['l-absolution', 'la-confession'],
+  ['la-satisfaction', 'la-confession'],
+  ['le-secret-de-la-confession', 'la-confession'],
+  ['la-grace-sanctifiante', 'la-grace'],
+  ['la-grace-actuelle', 'la-grace'],
+];
+const redLines = [];
+REDIRECTS.forEach(([from, to]) => {
+  redLines.push(`/article/${from}/  /article/${to}/  301`);
+  if (SLUGS[from] && SLUGS[to]) redLines.push(`/en/article/${SLUGS[from]}/  /en/article/${SLUGS[to]}/  301`);
+});
+ecrire('_redirects', redLines.join('\n') + '\n');
 
 // index de recherche (texte des articles), un par langue
 const idxFR = ARTICLES.map(a => ({ s: a.id, t: a.titre, th: themeNom('fr', a.theme), r: a.resume, x: depouiller(a.contenu) }));
