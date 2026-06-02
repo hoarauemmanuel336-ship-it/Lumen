@@ -70,7 +70,7 @@ const SLUGS = {
 };
 
 const THEMES_EN = {
-  doctrine:    { nom:'Doctrine and Dogma',    desc:'What the Church believes and teaches: God, Christ, salvation, the Church, the last things.', cats:{dieu:'God and the Trinity',peche:'Sin and the Fall',christ:'Christ and the Redemption',sacerdoce:'The Priesthood',marie:'The Virgin Mary',grace:'Grace and Salvation',vertus:'The Theological Virtues',eglise:'The Church',fins:'The Last Things'} },
+  doctrine:    { nom:'Doctrine and Dogma',    desc:'What the Church believes and teaches: God, Christ, salvation, the Church, the last things.', cats:{dieu:'God and the Trinity',anges:'The Angels',peche:'Sin and the Fall',christ:'Christ and the Redemption',sacerdoce:'The Priesthood',marie:'The Virgin Mary',grace:'Grace and Salvation',vertus:'The Theological Virtues',eglise:'The Church',fins:'The Last Things'} },
   ecriture:    { nom:'Scripture and Exegesis',desc:'The reading of the Scriptures in the faith of the Church, from the literal sense to the spiritual senses.' },
   sacrements:  { nom:'Liturgy and Sacraments',desc:'The efficacious signs of grace and the worship by which the Church gives glory to God.', cats:{initiation:'The Sacraments of Christian Initiation',guerison:'The Sacraments of Healing',service:'The Sacraments at the Service of Communion'} },
   saints:      { nom:'Figures and Saints',    desc:'Those who lived and thought the faith: Fathers, doctors, mystics, witnesses.' },
