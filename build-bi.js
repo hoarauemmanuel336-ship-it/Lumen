@@ -32,6 +32,7 @@ const UI = {
     filter_all: 'Tout', context_library: 'La bibliothèque',
     lib_surtitle: 'La bibliothèque', lib_title: 'Les domaines',
     lib_expand: 'Tout déplier', lib_collapse: 'Tout replier',
+    objections_label: 'Réponse aux objections',
     lib_empty: "Ce domaine n'a pas encore d'entrée. Les contenus s'ajoutent au fil du temps.",
     footer_verse: '« La lumière luit dans les ténèbres » (Jean 1:5)',
     about_surtitle: 'Le projet', about_title: 'À propos de Lumen',
@@ -53,6 +54,7 @@ const UI = {
     news_title: "What's New",
     lib_surtitle: 'The library', lib_title: 'The domains',
     lib_expand: 'Expand all', lib_collapse: 'Collapse all',
+    objections_label: 'Answering the objections',
     lib_empty: 'This domain has no entry yet. Content is added over time.',
     site_desc_home: UI_EN.home_intro,
     site_desc_library: 'All the entries of Lumen, arranged by domain: doctrine, Scripture, sacraments, figures, history and philosophy.',
@@ -63,6 +65,7 @@ const UI = {
 
 /* ---- helpers de données par langue ---- */
 const slugOf = (lang, frId) => lang === 'fr' ? frId : SLUGS[frId];
+const APOLOGIES = { 'la-communion-des-saints': 'l-intercession-des-saints', 'le-bapteme': 'le-bapteme-des-petits-enfants', 'marie': 'marie-mere-de-dieu' };
 const depouiller = h => (h || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 const themeNom = (lang, id) => lang === 'fr' ? (THEMES.find(x => x.id === id) || {}).nom : THEMES_EN[id].nom;
 const themeDesc = (lang, id) => lang === 'fr' ? (THEMES.find(x => x.id === id) || {}).desc : THEMES_EN[id].desc;
@@ -128,8 +131,8 @@ function header(lang, type, base, otherRel, ctx) {
       <a href="${base}${lib}"${cl('library')}>${u.menu_library}</a>
       <a href="${base}${abo}"${cl('about')}>${u.menu_about}</a>
       <a href="${otherRel}" class="lien-langue" hreflang="${lang === 'fr' ? 'en' : 'fr'}">${u.other_label}</a>
-      <span class="rech-loupe cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="${u.news_title}" data-sig="${nsig}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="cloche-point"></span></span>
-      <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="${u.menu_home === 'Home' ? 'Search' : 'Rechercher'}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg></span>
+      <span class="rech-loupe cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="${u.news_title}" data-sig="${nsig}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="ll-mob">${u.news_title}</span><span class="cloche-point"></span></span>
+      <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="${u.menu_home === 'Home' ? 'Search' : 'Rechercher'}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><span class="ll-mob">${u.menu_home === 'Home' ? 'Search' : 'Rechercher'}</span></span>
     </nav>
     <div class="contexte-bar" id="contexte">${ctx || ''}</div>
   </div>
@@ -385,11 +388,21 @@ function mainBibliotheque(lang, base) {
 }
 
 function mainArticle(lang, a, base) {
+  const apo = APOLOGIES[a.id];
+  let objBloc = '';
+  if (apo) {
+    const ap = ARTICLES.find(x => x.id === apo);
+    const href = `${base}article/${slugOf(lang, apo)}/`;
+    objBloc = `<aside class="apologie">
+      <div class="apologie-label">${UI[lang].objections_label}</div>
+      <a class="apologie-lien" href="${href}">${artTitre(lang, ap)} →</a>
+    </aside>`;
+  }
   return `<div class="vue">
     <article class="lecture">
       <h1>${artTitre(lang, a)}</h1>
       ${reLink(artContenu(lang, a), base, lang)}
-    </article>
+    </article>${objBloc}
   </div>`;
 }
 
