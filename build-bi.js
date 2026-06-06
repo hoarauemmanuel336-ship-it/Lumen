@@ -34,7 +34,7 @@ const UI = {
     lib_expand: 'Tout déplier', lib_collapse: 'Tout replier',
     objections_label: 'Réponse aux objections',
     lib_empty: "Ce domaine n'a pas encore d'entrée. Les contenus s'ajoutent au fil du temps.",
-    footer_verse: '« La lumière luit dans les ténèbres » (Jean 1:5)',
+    footer_verse: '« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l\'ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span>',
     about_surtitle: 'Le projet', about_title: 'À propos de Lumen',
     about_p: [
       "Lumen est un lieu d'étude et de méditation autour de la foi catholique. Son but est simple : rendre la théologie accessible et fidèle à l'enseignement de l'Église, pour le débutant qui découvre comme pour le croyant qui veut approfondir.",
@@ -190,7 +190,7 @@ const BIBLIO_JS = `(function(){
   document.querySelectorAll('.dom-tete').forEach(function(t){ t.addEventListener('click',function(){ basculer(t.closest('.dom')); }); });
   document.querySelectorAll('.sous-tete').forEach(function(st){ st.addEventListener('click',function(){ basculerSous(st.closest('.sous')); }); });
   var theme=new URLSearchParams(location.search).get('theme');
-  if(theme){ var sec=document.querySelector('.dom[data-theme="'+theme+'"]'); if(sec){ ouvrir(sec); sec.querySelectorAll('.sous').forEach(ouvrirSous); maj(); setTimeout(function(){ sec.scrollIntoView({behavior:'smooth',block:'start'}); },120); return; } }
+  if(theme){ var sec=document.querySelector('.dom[data-theme="'+theme+'"]'); if(sec){ ouvrir(sec); maj(); setTimeout(function(){ sec.scrollIntoView({behavior:'smooth',block:'start'}); },120); return; } }
   maj();
 })();`;
 

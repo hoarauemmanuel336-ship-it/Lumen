@@ -86,7 +86,7 @@ const UI_EN = {
   about_surtitle:'The project',
   about_title:'About Lumen',
   context_library:'The library',
-  footer_verse:'\u201CThe people who walked in darkness have seen a great light; on those who dwelt in the land of the shadow of death, a light has shone\u201D Isaiah 9:1',
+  footer_verse:'\u201CThe people who walked in darkness have seen a great light; on those who dwelt in the land of the shadow of death, a light has shone\u201D <span class="ref-pied">Isaiah 9:1</span>',
   notfound_title:'Page not found',
   notfound_text:'This page does not exist.',
   notfound_back:'Back to home',
