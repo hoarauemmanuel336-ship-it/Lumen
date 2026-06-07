@@ -33,6 +33,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .field{width:100%;background:transparent;border:none;border-bottom:1px solid var(--filet-f);color:var(--parchemin);font-family:var(--serif);font-size:17px;padding:10px 2px;outline:none;transition:border-color .3s}
 .field:focus{border-bottom-color:var(--or)}
 .field::placeholder{color:var(--pa2)}
+textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 
 /* ═══ AUTH ═══ */
 #auth-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
@@ -297,6 +298,41 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
   .burger{display:block}
 }
 
+
+
+/* ═══ NOUVEAUTÉS / NOTIFICATIONS ═══ */
+.ll-mob{display:none}
+.cloche{position:relative;display:inline-flex;align-items:center;cursor:pointer;color:var(--pa)}
+.cloche svg{display:block;flex:none}
+.cloche .cloche-point{position:absolute;top:0;right:-1px;width:6px;height:6px;border-radius:50%;background:var(--or);pointer-events:none;display:none}
+.user-btn{display:inline-flex;align-items:center;justify-content:center;min-width:19px;padding-bottom:3px}
+.user-btn svg{display:block;flex:none}
+.user-btn .user-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.user-btn:hover svg{stroke:var(--parchemin)}
+.rech-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);display:none}
+.rech-overlay.ouvert{display:block}
+.rech-boite{max-width:760px;margin:0 auto;padding:8vh 24px 40px;height:100%;display:flex;flex-direction:column;box-sizing:border-box}
+.rech-haut{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--filet-f);padding-bottom:18px}
+.rech-haut svg{color:var(--or);flex:none}
+.rech-fermer{cursor:pointer;color:var(--pa);font-size:24px;line-height:1;transition:color .3s;flex:none;outline:none}
+.rech-fermer:hover,.rech-fermer:focus{color:var(--parchemin)}
+.nouv-titre-panneau{flex:1;color:var(--parchemin);font-family:var(--display);font-size:30px;letter-spacing:.01em}
+.nouv-liste{margin-top:6px;overflow-y:auto;flex:1}
+.nouv-groupe{padding:20px 0;border-bottom:1px solid var(--filet)}
+.nouv-groupe:last-child{border-bottom:none}
+.nouv-date{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--or);margin-bottom:16px}
+.nouv-ligne{position:relative;padding-left:22px;color:var(--pa);font-size:18px;line-height:1.55}
+.nouv-ligne::before{content:"";position:absolute;left:0;top:.85em;width:12px;height:1px;border-radius:0;background:var(--or);opacity:.6}
+.nouv-ligne + .nouv-ligne{margin-top:16px}
+@media(max-width:720px){
+  .nouv-titre-panneau{font-size:24px}
+  nav.menu .cloche{display:flex;align-items:center;gap:14px}
+  nav.menu .cloche .ll-mob{display:inline}
+  nav.menu .cloche .cloche-point{top:22px;left:34px;right:auto}
+  nav.menu .user-btn{display:flex;align-items:center;justify-content:flex-start;min-height:58px}
+}
+@media(min-width:721px){nav.menu .user-btn{width:19px;height:24px;padding-left:0;padding-right:0}}
+
 /* ═══ LISTE DES VERSETS : AFFICHAGE MOBILE PLUS PROPRE ═══ */
 @media(max-width:720px){
   .wrap{padding:32px 20px 60px}
@@ -306,11 +342,11 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
   .cat-pct{min-width:34px;font-size:12px}
   .cat-mark{gap:7px}
   .cat-body{padding:2px 0 18px 0}
-  .vrow{gap:10px;padding:13px 0}
-  .vline{flex:1 1 auto;min-width:0}
-  .vref{width:auto;flex:1 1 auto;min-width:0;font-size:17px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--parchemin)}
-  .vtext{display:none}
-  .lvl{gap:9px;flex:0 0 auto}
+  .vrow{gap:10px;padding:13px 0;align-items:flex-start}
+  .vline{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+  .vref{width:auto;max-width:100%;min-width:0;font-size:17px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--parchemin)}
+  .vtext{display:-webkit-box;font-size:14px;line-height:1.35;color:var(--pa);white-space:normal;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .lvl{gap:9px;flex:0 0 auto;padding-top:4px}
   .dot{width:15px;height:15px}
   .del-v{font-size:19px;padding-left:3px;color:var(--pa2)}
 }
@@ -318,11 +354,27 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
   .wrap{padding-left:16px;padding-right:16px}
   .cat-dist{display:none}
   .cat-pct{display:none}
-  .cat-mark{display:none!important}
+  .cat.open .cat-mark{display:flex!important}
+  .cat:not(.open) .cat-mark{display:none!important}
+  .cat-name{font-size:19px}
   .vref{font-size:16px}
   .lvl{gap:8px}
   .dot{width:14px;height:14px}
 }
+
+/* ═══ MODALES : éviter les débordements sur mobile ═══ */
+.modal{max-height:calc(100vh - 48px);overflow-y:auto}
+.modal-btns{flex-wrap:wrap}
+.m-reset{white-space:normal;line-height:1.35;text-align:left}
+@media(max-width:600px){
+  .overlay{padding:18px 14px;align-items:flex-start;overflow:auto}
+  .modal{max-width:none;width:100%;padding:30px 22px;margin:28px 0;max-height:none}
+  .modal-title{font-size:22px;margin-bottom:22px}
+  .modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+  .modal-btns .m-reset{grid-column:1 / -1;margin:0;padding:0 0 2px;width:100%}
+  .modal-btns .m-cancel,.modal-btns .m-ok{width:100%;text-align:center;padding:11px 10px}
+}
+@media(max-width:380px){.modal-btns{grid-template-columns:1fr}}
 
 </style>
 </head>
@@ -362,9 +414,10 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
         <a id="nav-lib"></a>
         <a id="nav-mem" class="actif" href="/memoriser.html"></a>
         <a id="nav-about"></a>
+        <span class="menu-act cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="Nouveautés"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="ll-mob" id="nouv-link-label">Nouveautés</span><span class="cloche-point"></span></span>
         <button class="menu-act" id="lang-btn">EN</button>
         <span class="menu-mail" id="user-mail"></span>
-        <button class="menu-act" id="logout-btn">Déconnexion</button>
+        <button class="menu-act user-btn" id="logout-btn" aria-label="Déconnexion" title="Déconnexion"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7.5" r="3.5"></circle><path d="M5 21a7 7 0 0 1 14 0"></path></svg><span class="user-label" id="logout-label">Déconnexion</span></button>
       </nav>
     </div>
   </header>
@@ -426,6 +479,17 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
   </footer>
 </div>
 
+<div class="rech-overlay" id="nouv-overlay">
+  <div class="rech-boite">
+    <div class="rech-haut">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg>
+      <div class="nouv-titre-panneau" id="nouv-title">Nouveautés</div>
+      <span class="rech-fermer" id="nouv-fermer" role="button" tabindex="0" aria-label="Fermer">✕</span>
+    </div>
+    <div class="nouv-liste" id="nouv-liste"></div>
+  </div>
+</div>
+
 <!-- modals -->
 <div class="overlay" id="m-cat">
   <div class="modal">
@@ -438,9 +502,9 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
 <div class="overlay" id="m-verse">
   <div class="modal">
     <div class="modal-title" id="mv-title">Ajouter un verset</div>
-    <div class="auth-fieldrow"><label class="modal-flbl">Texte (français)</label><input type="text" class="field" id="i-vfr"></div>
+    <div class="auth-fieldrow"><label class="modal-flbl">Texte (français)</label><textarea class="field" id="i-vfr" rows="3"></textarea></div>
     <div class="auth-fieldrow"><label class="modal-flbl">Référence (ex : Jean 3:16)</label><input type="text" class="field" id="i-rfr"></div>
-    <div class="auth-fieldrow"><label class="modal-flbl">Texte (anglais)</label><input type="text" class="field" id="i-ven"></div>
+    <div class="auth-fieldrow"><label class="modal-flbl">Texte (anglais)</label><textarea class="field" id="i-ven" rows="3"></textarea></div>
     <div class="auth-fieldrow"><label class="modal-flbl">Référence (anglais)</label><input type="text" class="field" id="i-ren"></div>
     <div class="modal-btns"><button class="m-reset" id="mv-reset" style="display:none"></button><button class="m-cancel" id="mv-cancel">Annuler</button><button class="m-ok" id="mv-ok">Enregistrer</button></div>
   </div>
@@ -1060,7 +1124,9 @@ function applyLang(){
   $('nav-mem').textContent=_fr?'Mémoriser':'Memorise';
   $('nav-about').textContent=_fr?'À propos':'About'; $('nav-about').href=_fr?'/a-propos/':'/en/about/';
   $('foot-verse').innerHTML=_fr?FOOT_FR:FOOT_EN;
-  $('lang-btn').textContent=tl.lang; $('logout-btn').textContent=tl.logout;
+  $('nouv-fermer').setAttribute('aria-label',_fr?'Fermer':'Close');
+  renderNews();
+  $('lang-btn').textContent=tl.lang; $('logout-btn').setAttribute('aria-label',tl.logout); $('logout-btn').setAttribute('title',tl.logout); $('logout-label').textContent=tl.logout;
   $('lbl-cats').textContent=tl.cats; $('lbl-newcat').textContent=tl.newcat; $('lbl-mode').textContent=tl.mode;
   $('mode-0').textContent=tl.mode0; $('mode-1').textContent=tl.mode1; $('mode-2').textContent=tl.mode2;
   $('start-btn').textContent=tl.start; $('reset-btn').textContent=tl.reset; $('finish-btn').textContent=tl.finish;
@@ -1278,6 +1344,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('b-google').onclick=async()=>{try{await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());}catch(e){showMsg(e.message,'err');}};
   $('logout-btn').onclick=()=>auth.signOut();
   $('nav-burger').onclick=()=>document.getElementById('site-nav').classList.toggle('open');
+  initNews();
   $('lang-btn').onclick=()=>{S.lang=S.lang==='fr'?'en':'fr';localStorage.setItem('lm_lang',S.lang);applyLang();renderCats();if($('study').style.display==='block'&&S.cur&&!S.cur.done)renderQuestion();};
   $('modes').onclick=e=>{const b=e.target.closest('.mode');if(!b)return;S.mode=+b.dataset.m;document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',x===b));savePrefs();};
   $('start-btn').onclick=()=>{S.soloCat=null;startSession();};

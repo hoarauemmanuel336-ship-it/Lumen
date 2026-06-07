@@ -120,9 +120,14 @@ retiré du projet s'il reste dans le dépôt, puis laisser Netlify reconstruire.
 • La livraison actuelle comporte 6 fichiers : build-bi.js, data-en.js, index__48_.html,
   memoriser.html, netlify.toml, REPRISE-lumen.txt.
 • Mémoriser reprend maintenant la même structure d'en-tête que l'accueil
-  (logo Lumen, menu, burger mobile), avec langue et déconnexion intégrées au menu.
-• L'affichage mobile des lignes de versets dans Mémoriser a été corrigé : moins
-  d'indentation, références plus lisibles, pastilles de niveau et suppression mieux alignées.
+  (logo Lumen, menu, burger mobile), avec langue, cloche « Nouveautés »
+  et bouton de compte en forme de bonhomme pour la déconnexion, intégrés au menu
+  sur mobile comme sur PC.
+• L'affichage mobile des lignes de versets dans Mémoriser a été corrigé : les références
+  ET le texte du verset sont visibles, les pastilles de niveau et la suppression restent
+  alignées, et le marquage d'une catégorie entière reste accessible sur mobile.
+• Les modales de Mémoriser ont été corrigées sur mobile : le bouton « Réinitialiser ce
+  verset » ne sort plus du cadre et les champs de texte des versets sont multilignes.
 
 ────────────────────────────────────────────────────────────────────
 6. HISTORIQUE RÉCENT UTILE
@@ -139,8 +144,13 @@ retiré du projet s'il reste dans le dépôt, puis laisser Netlify reconstruire.
   catégorie, session limitée à cette seule catégorie sans modifier la sélection enregistrée.
 • Mémoriser — mobile et lisibilité : police de base portée à 20px ; menu déroulant mobile
   ajouté ; l'en-tête de Mémoriser est aligné sur celui de l'accueil, sur mobile et PC.
-• Mémoriser — lignes de versets sur mobile : indentation réduite, références affichées
-  sur toute la largeur disponible, pastilles et suppression mieux alignées.
+• Mémoriser — lignes de versets sur mobile : indentation réduite, références et textes
+  de versets affichés, pastilles et suppression mieux alignées, marquage par catégorie
+  visible même sur petits écrans.
+• Mémoriser — notifications : la cloche « Nouveautés » est disponible aussi dans
+  Mémoriser, sur PC et mobile, avec les mêmes annonces FR/EN que le site principal.
+• Mémoriser — compte : le texte visible « Déconnexion » a été remplacé par une
+  icône de bonhomme, comme bouton de déconnexion, avec libellé accessible uniquement.
 • Mémoriser — audit rétroactif « verset pas coupé » : Marc 16:16 complété ; Jean 5:28
   étendu à Jean 5:28-29.
 • Article « La nature de Dieu » (FR + EN) : résumé et introduction corrigés en « qu'il
