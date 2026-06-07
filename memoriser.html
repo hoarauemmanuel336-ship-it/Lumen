@@ -229,6 +229,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .mg-acts{display:flex;align-items:center;gap:16px}
 .m-reset{margin-right:auto;font-family:var(--display);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--pa);transition:color .3s}
 .m-reset:hover{color:var(--or)}
+.bh-cats{border-bottom:none;padding-bottom:0;margin-bottom:10px}
+.markglobal{padding-bottom:14px;margin-bottom:0}
+.reset-row{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin-top:36px}
+.reset-row .reset-link{margin:0}
+.reset-sep{color:var(--pa2)}
 </style>
 </head>
 <body>
@@ -276,7 +281,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   <main class="wrap">
     <section id="setup">
       <div class="block">
-        <div class="block-head" style="display:flex;align-items:center;justify-content:space-between;gap:14px"><span class="lbl" id="lbl-cats">Catégories &amp; mémoire</span><span class="mini-act" id="sel-all"></span></div>
+        <div class="block-head bh-cats" style="display:flex;align-items:center;justify-content:space-between;gap:14px"><span class="lbl" id="lbl-cats">Catégories &amp; mémoire</span><span class="mini-act" id="sel-all"></span></div>
         <div class="markglobal">
           <span id="lbl-markglobal">Marquer les catégories cochées</span>
           <span class="mg-acts"><span class="markall-dots"><span class="dot r" data-gall="r"></span><span class="dot a" data-gall="a"></span><span class="dot v" data-gall="v"></span></span><span class="mini-act" id="bulk-restore"></span></span>
@@ -295,8 +300,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
         </div>
       </div>
       <button class="start" id="start-btn">Commencer</button>
-      <button class="reset-link" id="restore-btn">Restaurer les catégories de base</button>
-      <button class="reset-link" id="reset-btn">Réinitialiser toute la mémoire</button>
+      <div class="reset-row">
+        <button class="reset-link" id="restore-btn">Restaurer les catégories de base</button>
+        <span class="reset-sep">·</span>
+        <button class="reset-link" id="reset-btn">Réinitialiser toute la mémoire</button>
+      </div>
     </section>
 
     <section id="study">

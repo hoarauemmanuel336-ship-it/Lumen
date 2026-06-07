@@ -275,7 +275,8 @@ L'état de connexion est partagé avec memoriser.html (même projet + domaine Fi
 • Mémoriser — marquage sécurisé : pastilles « tout marquer » déplacées dans le titre de
   catégorie (visibles seulement dépliée) ; barre globale « catégories cochées » avec
   confirmation + réinitialisation en lot des catégories de base ; bouton « Réinitialiser
-  ce verset » dans le modal d'édition (versets de base).
+  ce verset » dans le modal d'édition (versets de base). En-tête « Catégories &
+  mémoire » et rangée de marquage fusionnées sous un seul séparateur (plus de double bande).
 • Mémoriser — en-tête et pied alignés sur le site (nav Accueil/Bibliothèque/Mémoriser/
   À propos + verset de pied bilingue) ; catégories réordonnées (ordre théologique) ;
   bouton « Afficher tout » (6 catégories par défaut).
