@@ -76,6 +76,7 @@ const UI_EN = {
   menu_home:'Home',
   menu_library:'Library',
   menu_about:'About',
+  menu_memorise:'Memorise',
   home_intro:'A place to enter into the understanding of the Catholic faith, from the very first steps to the deepest questions.',
   home_domains_label:'The domains',
   home_explore:'Explore by theme',
@@ -201,9 +202,9 @@ const ARTICLES_EN = {
 },
 'la-nature-de-dieu': {
   titre:"The Nature of God",
-  resume:"What God is: being itself, which holds its existence from itself. From this single source flow his perfections, that he is one, simple, eternal, infinite, almighty, all-knowing, holy and good, and that his life is love; and he remains higher than all one can say of him.",
+  resume:"What God is: being itself, which holds its existence from itself. From this single source flow his perfections, that he is one, simple, eternal, infinite, almighty, all-knowing, holy and good, and that he is love; and he remains higher than all one can say of him.",
   contenu:`
-      <p>God named himself, and all that faith confesses of him is held in that name: he is the one who is, being itself. From this single source flows all the rest, that he is one, simple, eternal, without measure, almighty, and that his life is love. We know him by it, without ever exhausting him, for he remains higher than all one can say of him.</p>
+      <p>God named himself, and all that faith confesses of him is held in that name: he is the one who is, being itself. From this single source flows all the rest, that he is one, simple, eternal, without measure, almighty, and that he is love. We know him by it, without ever exhausting him, for he remains higher than all one can say of him.</p>
       <h2>He who is</h2>
       <p>At the burning bush, Moses asks God his name, and God answers by being: <em>“I am who I am.”</em> <span class="ref">Exodus 3:14</span> The Hebrew of this answer, rendered by “I am who I am”, <em>ehyeh asher ehyeh</em> (אֶהְיֶה אֲשֶׁר אֶהְיֶה), gives the very name of God, the one who is. All creatures receive their existence from another: they began, and they could fail to be. God alone is existence in person. He holds his being from nothing and from no one; he is, fully, by himself. There lies the root of all one can say of him: he does not have life, wisdom, power as goods received, he is them. To understand that God is being itself is to hold the key to all his perfections.</p>
       <h2>One God</h2>

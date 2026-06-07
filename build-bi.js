@@ -24,7 +24,7 @@ const { THEMES, ARTICLES, NOUVEAUTES } = (new Function(src.slice(blockStart, blo
 const UI = {
   fr: {
     html: 'fr', oglocale: 'fr_FR',
-    menu_home: 'Accueil', menu_library: 'Bibliothèque', menu_about: 'À propos',
+    menu_home: 'Accueil', menu_library: 'Bibliothèque', menu_about: 'À propos', menu_memorise: 'Mémoriser',
     news_title: 'Nouveautés',
     home_intro: "Un lieu pour entrer dans l'intelligence de la foi catholique, des premiers pas jusqu'aux questions les plus profondes.",
     home_domains_label: 'Les domaines', home_explore: 'Explorer par thème',
@@ -158,6 +158,7 @@ function header(lang, type, base, otherRel, ctx) {
     <nav class="menu" id="menu">
       <a href="${home}"${cl('home')}>${u.menu_home}</a>
       <a href="${base}${lib}"${cl('library')}>${u.menu_library}</a>
+      <a href="/memoriser.html">${u.menu_memorise}</a>
       <a href="${base}${abo}"${cl('about')}>${u.menu_about}</a>
       <a href="${otherRel}" class="lien-langue" hreflang="${lang === 'fr' ? 'en' : 'fr'}">${u.other_label}</a>
       <span class="rech-loupe cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="${u.news_title}" data-sig="${nsig}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="ll-mob">${u.news_title}</span><span class="cloche-point"></span></span>
@@ -291,7 +292,7 @@ const BIBLIO_JS = `(function(){
   document.querySelectorAll('.dom-tete').forEach(function(t){ t.addEventListener('click',function(){ basculer(t.closest('.dom')); }); });
   document.querySelectorAll('.sous-tete').forEach(function(st){ st.addEventListener('click',function(){ basculerSous(st.closest('.sous')); }); });
   var theme=new URLSearchParams(location.search).get('theme');
-  if(theme){ var sec=document.querySelector('.dom[data-theme="'+theme+'"]'); if(sec){ ouvrir(sec); sec.querySelectorAll('.sous').forEach(ouvrirSous); maj(); setTimeout(function(){ sec.scrollIntoView({behavior:'smooth',block:'start'}); },120); return; } }
+  if(theme){ var sec=document.querySelector('.dom[data-theme="'+theme+'"]'); if(sec){ ouvrir(sec); maj(); setTimeout(function(){ sec.scrollIntoView({behavior:'smooth',block:'start'}); },120); return; } }
   maj();
 })();`;
 

@@ -1,0 +1,298 @@
+════════════════════════════════════════════════════════════════════
+FICHIER DE REPRISE — LUMEN VERITATIS
+À coller en début de nouveau chat, puis téléverser les 6 fichiers du projet.
+Date : 7 juin 2026
+════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────
+0. COMMENT REPRENDRE (à lire en premier)
+────────────────────────────────────────────────────────────────────
+Le nouveau chat n'aura AUCUN fichier en mémoire. Au début du nouveau chat :
+1. Colle ce fichier entier.
+2. Téléverse les 6 fichiers du projet : build-bi.js, index__48_.html,
+   data-en.js, memoriser.html, netlify.toml, REPRISE-lumen.txt
+   (ceux de la dernière livraison).
+Sans ces fichiers, l'assistant ne peut rien modifier.
+
+INSTRUCTION PERMANENTE : à chaque livraison, redonner TOUJOURS les 6 fichiers
+en même temps (même ceux non modifiés), CE FICHIER DE REPRISE COMPRIS, pour ne
+jamais oublier l'existence ou la mise à jour d'un fichier. L'assistant tient ce
+fichier de reprise continuellement à jour et le relivre à chaque fois.
+
+────────────────────────────────────────────────────────────────────
+1. LE PROJET
+────────────────────────────────────────────────────────────────────
+Lumen Veritatis (lumenveritatis.net) : site de théologie catholique bilingue
+(français + anglais), destiné aux débutants comme à ceux qui veulent approfondir.
+Emmanuel (francophone réunionnais, catholique, non-codeur, Windows + iOS, UTC+4)
+écrit lui-même tout le contenu théologique ; l'assistant gère tout le code,
+les intégrations, les validations et les exports de fichiers.
+
+Théologie : doctrine catholique, niveau élevé mais accessible. L'assistant donne
+directement la lecture qu'il juge la plus juste (patristique, Tradition, cohérence
+interne), sans énumérer d'autres interprétations.
+
+────────────────────────────────────────────────────────────────────
+2. ARCHITECTURE DES FICHIERS (5 fichiers de site + ce fichier de reprise)
+────────────────────────────────────────────────────────────────────
+Le site est STATIQUE, hébergé sur Netlify, généré par un script Node.
+
+• build-bi.js — LE GÉNÉRATEUR. Lit les articles depuis index__48_.html, contient
+  les chaînes d'interface françaises (menu, pied de page, page « à propos »…),
+  le login du site, et produit le site multipage dans le dossier « site/ ».
+  Commande de build : node build-bi.js
+  Sortie attendue : « Paires de pages : 63 → 126 pages (FR + EN) … »
+  Il copie aussi memoriser.html dans site/ à la fin du build.
+
+• index__48_.html — SOURCE FRANÇAISE (le SPA). Fait AUTORITÉ pour tout le
+  contenu FR : articles, pied de page, page « à propos ». build-bi.js lit ses
+  articles. C'est un fichier unique (SPA, routage par hash, articles = objets JS).
+
+• data-en.js — DONNÉES ANGLAISES. Fait AUTORITÉ pour tout le contenu EN
+  (SLUGS, THEMES_EN, UI_EN, ARTICLES_EN, NOUVEAUTES_EN). Requis par build-bi.js.
+
+• memoriser.html — APP DE MÉMORISATION des versets (page autonome, bilingue),
+  servie à lumenveritatis.net/memoriser.html. (Fichier ~930 lignes ; garder sous ~1000 :
+les données PRE sont la principale source de croissance, rester sobre à l'ajout.)
+
+• netlify.toml — config de déploiement (voir §4).
+
+• REPRISE-lumen.txt — CE FICHIER. Tenu à jour à chaque session et livré avec les autres.
+
+POINT D'ATTENTION (cause d'un bug récent) : le pied de page, la page « à propos »
+ET le comportement JS de la bibliothèque (ouverture des domaines/sous-sections)
+sont définis À LA FOIS dans index__48_.html / data-en.js ET dans build-bi.js.
+Si build-bi.js prend du retard sur les deux autres, le site généré diverge du SPA.
+Toujours vérifier la cohérence FR (build-bi.js) ↔ FR (index__48_.html) ↔ EN (data-en.js).
+
+────────────────────────────────────────────────────────────────────
+3. CONVENTIONS DE CONTENU & STYLE (éditoriales)
+────────────────────────────────────────────────────────────────────
+• Apostrophes : DROITES dans index__48_.html ; COURBES (\u2019) dans build-bi.js
+  et memoriser.html (chaînes JS).
+• Références bibliques : forme standard, modèle « Genèse 44:2-3 ». Verset en
+  italique entre guillemets, référence en gras (dans les articles).
+• Mots grecs/hébreux : nommer la langue, le mot français/anglais traduit entre
+  guillemets, translittération en italique, puis l'alphabet d'origine entre
+  parenthèses. Ex. : le mot grec rendu par « chef », kephalē (κεφαλή).
+• Noms propres hébreux : translittération + caractères hébreux.
+• Mesures non françaises : convertir en métrique, donner les deux (mesure + (équiv.)).
+• Ouvertures affirmatives. Jamais « X n'est pas Y : c'est Z ». Pas de définition
+  par contraste. Pas de formules théâtrales (« tout bascule », « révolutionne »…).
+• Versets : portent un argument, jamais décoratifs ; usage sobre dans les récits.
+  Tout fait/événement/précepte biblique affirmé est appuyé par son verset.
+• Articles : profonds, complets, substantiels. Un article riche plutôt que
+  plusieurs minces. Nommer l'auteur/personnage biblique quand il est identifiable.
+• PAS de liens hypertexte dans le contenu des articles.
+• Sur un forum/réseau public : ne jamais citer de personnes (théologiens, papes,
+  auteurs) ni de sources (encycliques, livres). Seules les références bibliques
+  sont permises. (Dans les articles du site, conciles + dates sont permis ;
+  pas de CCC/papes/théologiens nommés.)
+• Quand Emmanuel se trompe (terme imprécis, point doctrinal), le corriger
+  explicitement en nommant l'erreur et en donnant la formulation juste. ET corriger
+  en conséquence les passages du site (articles, résumés, descriptions, diagrammes)
+  qui auraient déjà repris la formulation inexacte. Quand il demande « pourquoi »,
+  répondre par la seule raison, sans excuse ni correction.
+• Toujours relire le texte produit avant de l'envoyer.
+• L'italique est réservé aux ARTICLES. PAS d'italique dans Mémoriser (versets
+  et références), c'est trop dur à lire dans ce contexte.
+
+DIAGRAMMES INTERACTIFS : Emmanuel a un cahier des charges TRÈS détaillé pour des
+widgets HTML sombres (#0a0a0a), denses, à sections repliables, questions au clic,
+arbres tracés en JS, etc. Il est dans ses préférences utilisateur ; le ressortir
+intégralement quand il demande un diagramme. (Non reproduit ici pour rester bref.)
+
+────────────────────────────────────────────────────────────────────
+3 bis. PROFONDEUR, COMPLÉTUDE ET SOLIDITÉ DES ARTICLES (exigence centrale)
+────────────────────────────────────────────────────────────────────
+C'est un fil rouge de tout le travail, pas une consigne secondaire.
+• Tout article traite son sujet à fond : complet, substantiel, sans survol.
+  Un article qui effleure doit être retravaillé et approfondi.
+• Préférer UN article riche à plusieurs articles minces sur la même réalité.
+• Auditer la profondeur de chaque article ; renforcer ceux qui manquent de fond.
+• Sobriété absolue pour les textes contemplatifs/théologiques : aucun effet, aucune
+  dramatisation, aucune clausule poétique. Versets et idées parlent d'eux-mêmes.
+• HONNÊTETÉ INTELLECTUELLE : ne garder un article que s'il peut être traité avec
+  assurance. Emmanuel a préféré par le passé supprimer des entrées faibles plutôt
+  que de laisser du contenu insuffisant.
+
+────────────────────────────────────────────────────────────────────
+3 ter. ORGANISATION DU SITE ET DE MÉMORISER (carte blanche, mise à jour continue)
+────────────────────────────────────────────────────────────────────
+MANDAT PERMANENT. L'assistant est libre, ET DOIT, tenir le classement du site et
+de Mémoriser continuellement à jour, en se fondant sur le corpus réel des articles.
+
+• SITE — carte blanche sur la taxonomie : créer des domaines, en supprimer, les
+  fusionner ; de même pour les sections et sous-sections (catégories d'un domaine).
+  La structure suit le corpus : quand les articles le justifient, réorganiser.
+• MÉMORISER — carte blanche sur les catégories ET les versets (créer, fusionner,
+  supprimer, réordonner, enrichir). Les catégories et les versets se déterminent
+  À PARTIR des articles du site.
+• Les versets de Mémoriser ne se limitent PAS à ceux cités dans l'article : un
+  article ne peut pas tout énumérer. Compléter avec les versets que le sujet appelle
+  (attributs, institution, figures), en restant fidèle à la doctrine.
+• RÈGLE « VERSET PAS COUPÉ » : dans Mémoriser, un verset stocké est une unité
+  scripturaire complète et cohérente, jamais un fragment tronqué en milieu de phrase.
+  (L'aperçu de la liste peut être abrégé visuellement, mais le texte mémorisé reste entier.)
+• Appliquer ce mandat à chaque session : auditer, puis ajuster site + Mémoriser.
+
+────────────────────────────────────────────────────────────────────
+4. DÉPÔT & DÉPLOIEMENT
+────────────────────────────────────────────────────────────────────
+• GitHub : github.com/hoarauemmanuel336-ship-it/Lumen, branche main.
+• Netlify : projet « prismatic-fox-161266 ». Sert le dossier « site/ » (publish dir),
+  PAS la racine. Reconstruit automatiquement à chaque push GitHub.
+• Workflow : Emmanuel téléverse les fichiers modifiés sur GitHub → Netlify rebuild.
+  Tant qu'un ancien fichier reste sur GitHub, l'ancienne version reste en ligne.
+• netlify.toml actuel (scanner de secrets désactivé car la clé Firebase web est
+  publique par conception ; la sécurité passe par les règles Firestore et les
+  domaines autorisés) :
+
+  [build]
+    command   = "node build-bi.js"
+    publish   = "site"
+
+  [build.environment]
+    SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
+
+────────────────────────────────────────────────────────────────────
+5. FIREBASE (compte utilisateur, mémorisation, futures fonctions)
+────────────────────────────────────────────────────────────────────
+Projet « lumen-veritatis » déjà créé et configuré par Emmanuel.
+• Authentication : Google + E-mail/mot de passe activés.
+• Firestore : créé (mode production, europe-west1).
+• Domaines autorisés : lumenveritatis.net ajouté.
+• Règles Firestore publiées :
+  rules_version = '2';
+  service cloud.firestore { match /databases/{database}/documents {
+    match /users/{uid}/{doc=**} { allow read, write: if request.auth.uid == uid; } } }
+
+• Config Firebase (publique par conception, présente dans memoriser.html ET
+  build-bi.js) :
+  apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA"
+  authDomain:"lumen-veritatis.firebaseapp.com"
+  projectId:"lumen-veritatis"
+  storageBucket:"lumen-veritatis.firebasestorage.app"
+  messagingSenderId:"195902823875"
+  appId:"1:195902823875:web:a8be1f216a5ae1d945f176"
+• SDK : Firebase compat v10.7.1 via CDN gstatic (app + auth + firestore).
+
+Modèle Firestore (par utilisateur, sous users/{uid}/) :
+• meta/progress = {items:{itemId:{box,due}}, step}   → la mémoire (niveaux)
+• meta/prefs    = {selCats, mode}                    → sélection + mode (persistés)
+• meta/baseEdits= {cats:{baseCatId:{name,verses}}}   → modifs des catégories de BASE
+• meta/trash    = {items:[{vId,catId,catName,verse,origin,prog,ts}]} → corbeille
+                  (origin = 'base' si l'id existe dans PRE, sinon 'perso')
+• categories/{catId} = {name, verses}                → catégories PERSONNELLES (id en 'c')
+
+────────────────────────────────────────────────────────────────────
+6. L'APP MÉMORISER (memoriser.html) — état actuel
+────────────────────────────────────────────────────────────────────
+Page autonome bilingue (bascule FR/EN, localStorage 'lm_lang'). Esthétique du site
+(« manuscrit nocturne ») : --encre #000, --or #efe6cf, --pourpre #9a3b3b,
+EB Garamond (corps) + Cormorant Garamond (titres). Versets NON italiques.
+Écran de connexion : croix SVG identique à l'accueil + « Lumen » (aucune mention
+« Mémoriser » sur l'écran de connexion). En-tête de l'app : « Lumen · Mémoriser ».
+Une entrée de navigation « Mémoriser » (EN : « Memorise ») existe dans l'en-tête du
+site, entre Bibliothèque et À propos, vers /memoriser.html.
+
+Algorithme (Leitner, session infinie) :
+• Chaque verset a une box 0–5. Couleurs : rouge (0–1) / ambre (2–3) / vert (4–5).
+• IVLS = [0,4,8,16,32,64] (pas avant nouvelle échéance, par box).
+• isDue : box 0 toujours due ; sinon due <= step.
+• Bonne réponse : box +1 (max 5), due = step + IVLS[box].
+• Mauvaise réponse : box −2 (min 0), due = step + 2 → le verset raté revient vite.
+• setLevel (réglage manuel) : rouge→box0, ambre→box2, vert→box5.
+• Options : la bonne + 3 distracteurs résolus par id (pas par texte).
+• Délai après réponse : 0,75 s si correct, 4 s si erreur (le temps de lire la bonne
+  réponse). [Allongé sur retour d'Emmanuel : 1,45 s était trop court.]
+
+Pastilles de niveau (rouge/ambre/vert) — DYNAMIQUES :
+• La pastille active reflète TOUJOURS le niveau réel du verset, calculé par
+  l'algorithme à partir des réponses (levelOf <- boxOf). Étudier fait bouger les
+  niveaux tout seuls ; la liste se met à jour au retour sur l'écran d'accueil
+  (Terminer → renderCats). Cliquer une pastille FORCE le niveau (réglage manuel).
+
+Fonctionnalités :
+• Série infinie ; bouton « Terminer » → résumé. 3 modes (mixte / verset→réf /
+  réf→verset). Clavier 1–4 pour choisir une option.
+• Section « Catégories & mémoire » : case de sélection (ce qu'on étudie), barre de
+  distribution rouge/ambre/vert + POURCENTAGE PRÉCIS de progression (moyenne pondérée
+  des box : Σbox / (5·n), « 73 % » en FR, « 73% » en EN). Déplie pour montrer les
+  versets avec pastilles à 3 états.
+• Bouton « Tout sélectionner / Tout désélectionner » en haut du bloc Catégories.
+  La sélection est enregistrée sur le compte (meta/prefs) et conservée entre sessions.
+• Réglage du niveau à 3 échelles : un verset (clic pastille), une catégorie entière
+  (« Tout marquer »), toutes les catégories sélectionnées (barre du haut). Le rouge
+  sert de réinitialisation de mémoire à l'échelle voulue.
+• Catégories ET versets de BASE entièrement modifiables (renommer, ajouter/éditer/
+  supprimer ; clic sur une ligne = édition). Stockés en surcharges (meta/baseEdits).
+• Catégories PERSONNELLES : créer, renommer, éditer/supprimer versets, supprimer.
+• CORBEILLE : le × envoie le verset en corbeille (récupérable), pas en suppression
+  définitive. Deux sections : « Versets d'origine » (base) et « Versets personnels ».
+  Par verset : Restaurer (revient dans sa catégorie avec son niveau) / Supprimer
+  (définitif). Bouton « Vider la corbeille ». Bloc masqué quand vide, repliable.
+• RESTAURATION par catégorie : chaque catégorie de base a une action « Restaurer »
+  qui la ramène à son état d'origine (annule modifs/suppressions de SES versets).
+• Boutons globaux du bas : « Réinitialiser toute la mémoire » et « Restaurer les
+  catégories de base » (efface toutes les surcharges + purge la corbeille d'origine).
+
+Données de base (PRE) — 12 catégories, ~7 à 11 versets chacune, reliées aux
+articles du site (cf. §3 ter), versets complets (non coupés), non limitées aux
+versets cités dans l'article. 100 versets, identifiants tous uniques.
+• nature-dieu (11) · eucharistie (9) · marie (9) · salut (9) · foi « Foi et espérance » (9)
+• trinite (7) · incarnation (7) · croix-resurrection (8) · eglise (8) · bapteme (7)
+  · charite (8) · fins-dernieres (8)
+Tenir cette liste à jour à chaque ajout/refonte de catégorie.
+
+────────────────────────────────────────────────────────────────────
+7. LOGIN DU SITE (dans build-bi.js)
+────────────────────────────────────────────────────────────────────
+Sur chaque page générée : scripts Firebase (app + auth) dans <head>, icône
+« bonhomme » (compte) dans l'en-tête, et fenêtre de connexion (onglets Connexion /
+Inscription, e-mail + mot de passe, Google, mot de passe oublié).
+La vue « connecté » est GÉNÉRIQUE : « Mon compte » + e-mail + Déconnexion.
+L'état de connexion est partagé avec memoriser.html (même projet + domaine Firebase).
+
+────────────────────────────────────────────────────────────────────
+8. CE QUI A ÉTÉ FAIT ET VÉRIFIÉ (dernière session, 7 juin 2026)
+────────────────────────────────────────────────────────────────────
+• Navigation : entrée « Mémoriser » / « Memorise » ajoutée dans l'en-tête du site
+  (build-bi.js, data-en.js, index__48_.html), entre Bibliothèque et À propos.
+• Mémoriser — CORBEILLE (base/perso) + RESTAURER par catégorie de base ; délai
+  d'erreur porté à 4 s ; POURCENTAGE de progression par catégorie ; bouton
+  « Tout sélectionner / désélectionner » ; modèle Firestore meta/trash ajouté.
+• Mémoriser — EXTENSION : 7 catégories ajoutées, reliées au corpus (Trinité,
+  Incarnation, Croix et Résurrection, Église, baptême, charité, fins dernières) ;
+  12 catégories, 100 versets, tous complets, identifiants uniques.
+• Mémoriser — REVUE DE CONTENU : 5 catégories enrichies (cf. §6), dont immuabilité
+  (Malachie 3:6) et éternité/unicité/toute-puissance/omniprésence/sainteté pour la
+  nature de Dieu, et les paroles d'institution (Matthieu 26:26-28) pour l'Eucharistie.
+• Site — clic sur un domaine depuis l'accueil : le build dépliait aussi TOUTES les
+  sous-sections. Ligne retirée (build-bi.js) : le domaine s'ouvre, ses sous-sections
+  restent repliées, comme dans le SPA.
+• Article « La nature de Dieu » (FR + EN) : résumé et introduction disaient « que sa
+  vie est amour » → corrigé en « qu'il est amour » (Dieu EST amour, 1 Jean 4:8 ;
+  l'amour est son être même). La « vie intime » (vie trinitaire) reste, elle, juste
+  et inchangée dans la suite de l'article.
+• Build vérifié : 126 pages, aucune erreur ; plus aucune occurrence de « sa vie est
+  amour » / « his life is love » ; plus de dépliage automatique des sous-sections.
+
+IMPORTANT : ces changements sont dans les fichiers livrés. Pour qu'ils apparaissent
+EN LIGNE, téléverser les fichiers sur GitHub et laisser Netlify reconstruire.
+
+────────────────────────────────────────────────────────────────────
+9. EN ATTENTE / PROCHAINES ÉTAPES
+────────────────────────────────────────────────────────────────────
+• Téléverser les 6 fichiers sur GitHub → Netlify reconstruit.
+• Appliquer le mandat §3 ter à chaque session : audit + mise à jour du classement
+  du site (domaines/sections/sous-sections) et de Mémoriser (catégories/versets),
+  d'après le corpus d'articles.
+• Questions exégétiques ouvertes : conventions de numérotation des versets entre
+  traductions française/hébraïque et anglaises.
+• Dialogue catholique-protestant en cours (réponses pour un ami protestant, et posts
+  publics sans citation de personnes/sources). À reprendre selon ses demandes.
+
+════════════════════════════════════════════════════════════════════
+FIN DU FICHIER DE REPRISE
+════════════════════════════════════════════════════════════════════
