@@ -1549,8 +1549,8 @@ const ARTICLES_EN = {
 
 const NOUVEAUTES_EN = [
   { d: "June 2026", items: [
-    "New: the “Memorise” tool, to learn verses by heart with spaced repetition (menu “Memorise”).",
-    "New apologetic article: “The Real Presence,” a defence of the Eucharist answering the objections on the real presence, the memorial, the sacrifice of the Mass, and adoration.",
+    "New: the “Memorise” tool.",
+    "New article: “The Real Presence.”",
     "New article: “The four Servant Songs”.",
     "New article: “Trito-Isaiah”.",
     "New article: “Deutero-Isaiah”.",
