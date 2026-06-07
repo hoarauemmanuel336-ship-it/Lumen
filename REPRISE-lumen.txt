@@ -91,13 +91,14 @@ les données PRE sont la principale source de croissance, rester sobre à l'ajou
   assez solide pour fonder des questions doctrinales. Pas de catégories/questions
   personnelles, pas de corbeille, pas de modale d'édition (différés). Firestore propre,
   sans collision avec Mémoriser : users/{uid}/meta/quiz_progress {items,step} et
-  meta/quiz_prefs {selCats,mode,diff,niveau}. Données : QPRE=[{id,name:{fr,en},qs:[{id,d,a,
-  fr:{q,ref,exp}, en:{q,ref,exp}}]}] ; ids de questions uniques ; chaque question porte d (1=facile,
-  2=moyen, 3=difficile, 4=très difficile). DIFFICULTÉ ADAPTATIVE : S.diff = 'adapt' (défaut) ou un
-  niveau figé (1..4) ; en adaptatif S.niveau démarre à 2 (moyen), donc un utilisateur à zéro est en
-  moyen, et bouge par momentum (S.mo) : +1 par bonne réponse, -2 par erreur ; à +3 le niveau monte,
-  à -2 il descend (bornes 1..4). nextItem filtre la sélection Leitner sur le niveau actif (élargi
-  au voisinage si vide). Badge de niveau dans le bandeau d'étude, pastille F/M/D/TD par question.
+  meta/quiz_prefs {selCats,mode}. Données : QPRE=[{id,name:{fr,en},qs:[{id,a,
+  fr:{q,ref,exp}, en:{q,ref,exp}}]}] ; ids de questions uniques. AUCUNE notion de difficulté :
+  retirée le 7 juin 2026 (pas de champ d, pas de niveau, pas d'adaptatif, pas de pastille F/M/D/TD,
+  pas de bloc « Difficulté »). nextItem fait du Leitner pur (échéances d'abord, plus petite boîte).
+  VERDICT après réponse : les boutons VRAI/FAUX restent NEUTRES (aucun vert/rouge sur eux) ; sous les
+  boutons, le verdict affiche uniquement la bonne réponse (VRAI/FAUX en TF, le nom en QCM) en gras,
+  coloré en vert si l'utilisateur a juste, en rouge sinon (.reveal-verdict.good/.bad). Pas de
+  « Juste »/« À revoir ». En QCM, l'option correcte reste surlignée (vert) pour la repérer.
   Modes : « Réviser » (échéances) et « Tout revoir ». Typographie française sur les explications FR.
 
 • netlify.toml — config de déploiement (voir §4).
@@ -350,6 +351,23 @@ L'état de connexion est partagé avec memoriser.html (même projet + domaine Fi
 ────────────────────────────────────────────────────────────────────
 8. CE QUI A ÉTÉ FAIT ET VÉRIFIÉ (dernière session, 7 juin 2026)
 ────────────────────────────────────────────────────────────────────
+• Quiz — DIFFICULTÉ ENTIÈREMENT RETIRÉE. Suppression du champ d sur les 267 questions, de
+  l'algorithme adaptatif (activeNiveau/adapt/S.diff/S.niveau/S.mo), du bloc « Difficulté », du badge
+  de niveau, de la pastille F/M/D/TD, des clés i18n associées et des champs diff/niveau de quiz_prefs.
+  nextItem redevient du Leitner pur. node --check OK, build 126 pages.
+• Quiz — VERDICT REFAIT. Les boutons VRAI/FAUX ne sont plus colorés (neutres). Sous les boutons, le
+  verdict affiche seulement la bonne réponse (VRAI/FAUX, ou le nom en QCM) en gras, vert si juste,
+  rouge si faux. « Juste »/« À revoir » supprimés. QCM : l'option correcte reste surlignée.
+• Mémoriser — « La nature de Dieu » enrichie de 14 versets (16 → 30) : Exode 34:6, Marc 10:18,
+  Deutéronome 32:4, 1 Jean 1:5, Nombres 23:19, 1 Timothée 1:17, Psaume 115:3, Isaïe 40:28,
+  Jacques 1:17, Jérémie 17:10, Jérémie 10:10, Psaume 139:7, Psaume 139:4, Isaïe 55:8.
+• Mémoriser — CORRECTIF d'affichage (effectiveCats). Dès qu'une catégorie de base est éditée par
+  l'utilisateur (ajout/retrait/renommage), elle était figée dans meta/baseEdits et les nouveaux
+  versets du modèle (PRE) n'apparaissaient plus pour cet utilisateur. effectiveCats fusionne désormais
+  dans une catégorie de base éditée les versets du modèle apparus depuis (absents de l'édition ET non
+  mis à la corbeille, repérés par trash.vId), en conservant les éditions et versets personnels de
+  l'utilisateur (ex. Jean 14:6 ajouté manuellement reste). C'est pourquoi seuls 5 versets
+  s'affichaient sur le compte d'Emmanuel.
 • Bibliothèque — RÉSUMÉS COUPÉS. Dans les cartes de la bibliothèque (jamais dans l'article
   lui-même), un résumé trop long (> 195 caractères) est coupé vers 150 au mot près, suivi de
   « … » et d'un « voir plus » qui déplie la suite sur place (« voir moins » pour replier), sans
