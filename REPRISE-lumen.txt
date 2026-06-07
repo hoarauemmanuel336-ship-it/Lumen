@@ -152,6 +152,8 @@ retiré du projet s'il reste dans le dépôt, puis laisser Netlify reconstruire.
   visible même sur petits écrans.
 • Mémoriser — notifications : la cloche « Nouveautés » est disponible aussi dans
   Mémoriser, sur PC et mobile, avec les mêmes annonces FR/EN que le site principal.
+• Mémoriser — en-tête : l'intensité/couleur des liens, boutons et icônes de la barre
+  du haut est alignée sur celle de l'accueil, sur PC comme sur mobile.
 • Mémoriser — compte : le texte visible « Déconnexion » a été remplacé par une
   icône de bonhomme, comme bouton de déconnexion, avec libellé accessible uniquement.
 • Mémoriser — audit rétroactif « verset pas coupé » : Marc 16:16 complété ; Jean 5:28

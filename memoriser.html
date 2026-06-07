@@ -16,7 +16,7 @@
   --or:#efe6cf;--or-pale:#f8f3e6;
   --parchemin:#fff;--pa:rgba(255,255,255,.58);--pa2:rgba(255,255,255,.36);
   --filet:rgba(231,224,207,.12);--filet-f:rgba(231,224,207,.26);
-  --parchemin-att:var(--pa);--filet-fort:var(--filet-f);
+  --parchemin-att:#ffffff;--filet-fort:rgba(231,224,207,.28);
   --rouge:#c75d52;--ambre:#cfa24f;--vert:#7ba37e;--pourpre:#9a3b3b;
   --serif:'EB Garamond',Georgia,serif;--display:'Cormorant Garamond',serif;
 }
@@ -270,12 +270,14 @@ nav.menu a,nav.menu .menu-act{
   font-family:var(--display);
   font-size:16px;letter-spacing:.12em;
   text-transform:uppercase;
-  color:var(--pa);
+  color:var(--parchemin-att);
   padding-bottom:3px;
   border-bottom:1px solid transparent;
   transition:color .3s,border-color .3s;
 }
 nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin);border-color:var(--or)}
+.rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:var(--pa);transition:color .3s;background:none;border:none;padding:0;outline:none}
+.rech-loupe:hover,.rech-loupe:focus{color:var(--parchemin)}
 #logout-btn:hover{color:var(--pourpre);border-color:var(--pourpre)}
 .menu-mail{display:none}
 .burger{display:none;background:none;border:none;color:var(--parchemin);font-size:24px;cursor:pointer;line-height:1}
@@ -294,6 +296,12 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
     padding:18px 20px;
     border-bottom:1px solid var(--filet);
   }
+  nav.menu .rech-loupe{
+    width:auto;justify-content:flex-start;gap:14px;
+    padding:18px 20px;border-bottom:1px solid var(--filet);
+    font-family:var(--display);font-size:16px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--parchemin-att);
+  }
   nav.menu .menu-mail{display:none}
   .burger{display:block}
 }
@@ -302,8 +310,10 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
 
 /* ═══ NOUVEAUTÉS / NOTIFICATIONS ═══ */
 .ll-mob{display:none}
-.cloche{position:relative;display:inline-flex;align-items:center;cursor:pointer;color:var(--pa)}
-.cloche svg{display:block;flex:none}
+.rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:var(--parchemin-att);transition:color .3s;background:none;border:none;padding:0;outline:none}
+.rech-loupe:hover,.rech-loupe:focus{color:var(--or)}
+.rech-loupe svg{display:block}
+.cloche{position:relative}
 .cloche .cloche-point{position:absolute;top:0;right:-1px;width:6px;height:6px;border-radius:50%;background:var(--or);pointer-events:none;display:none}
 .user-btn{display:inline-flex;align-items:center;justify-content:center;min-width:19px;padding-bottom:3px}
 .user-btn svg{display:block;flex:none}
@@ -312,26 +322,43 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
 .rech-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);display:none}
 .rech-overlay.ouvert{display:block}
 .rech-boite{max-width:760px;margin:0 auto;padding:8vh 24px 40px;height:100%;display:flex;flex-direction:column;box-sizing:border-box}
-.rech-haut{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--filet-f);padding-bottom:18px}
+.rech-haut{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--filet-fort);padding-bottom:18px}
 .rech-haut svg{color:var(--or);flex:none}
-.rech-fermer{cursor:pointer;color:var(--pa);font-size:24px;line-height:1;transition:color .3s;flex:none;outline:none}
+.rech-fermer{cursor:pointer;color:var(--parchemin-att);font-size:24px;line-height:1;transition:color .3s;flex:none;outline:none}
 .rech-fermer:hover,.rech-fermer:focus{color:var(--parchemin)}
 .nouv-titre-panneau{flex:1;color:var(--parchemin);font-family:var(--display);font-size:30px;letter-spacing:.01em}
 .nouv-liste{margin-top:6px;overflow-y:auto;flex:1}
 .nouv-groupe{padding:20px 0;border-bottom:1px solid var(--filet)}
 .nouv-groupe:last-child{border-bottom:none}
 .nouv-date{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--or);margin-bottom:16px}
-.nouv-ligne{position:relative;padding-left:22px;color:var(--pa);font-size:18px;line-height:1.55}
+.nouv-ligne{position:relative;padding-left:22px;color:var(--parchemin-att);font-size:18px;line-height:1.55}
 .nouv-ligne::before{content:"";position:absolute;left:0;top:.85em;width:12px;height:1px;border-radius:0;background:var(--or);opacity:.6}
 .nouv-ligne + .nouv-ligne{margin-top:16px}
 @media(max-width:720px){
   .nouv-titre-panneau{font-size:24px}
-  nav.menu .cloche{display:flex;align-items:center;gap:14px}
-  nav.menu .cloche .ll-mob{display:inline}
+  nav.menu .rech-loupe{width:auto;justify-content:flex-start;gap:14px;padding:18px 20px;border-bottom:1px solid var(--filet);font-family:var(--display);font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--parchemin-att)}
+  nav.menu .rech-loupe .ll-mob{display:inline}
   nav.menu .cloche .cloche-point{top:22px;left:34px;right:auto}
   nav.menu .user-btn{display:flex;align-items:center;justify-content:flex-start;min-height:58px}
 }
 @media(min-width:721px){nav.menu .user-btn{width:19px;height:24px;padding-left:0;padding-right:0}}
+
+
+/* Correction : l'en-tête de Mémoriser reprend la même intensité de texte que l'accueil. */
+#app > header nav.menu a,
+#app > header nav.menu .menu-act,
+#app > header .rech-loupe{
+  color:var(--parchemin-att);
+}
+#app > header nav.menu a:hover,
+#app > header nav.menu a.actif,
+#app > header nav.menu .menu-act:hover{
+  color:var(--parchemin);
+}
+#app > header .rech-loupe:hover,
+#app > header .rech-loupe:focus{
+  color:var(--or);
+}
 
 /* ═══ LISTE DES VERSETS : AFFICHAGE MOBILE PLUS PROPRE ═══ */
 @media(max-width:720px){
@@ -455,7 +482,7 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
         <a id="nav-lib"></a>
         <a id="nav-mem" class="actif" href="/memoriser.html"></a>
         <a id="nav-about"></a>
-        <span class="menu-act cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="Nouveautés"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="ll-mob" id="nouv-link-label">Nouveautés</span><span class="cloche-point"></span></span>
+        <span class="rech-loupe cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="Nouveautés"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="ll-mob" id="nouv-link-label">Nouveautés</span><span class="cloche-point"></span></span>
         <button class="menu-act" id="lang-btn">EN</button>
         <span class="menu-mail" id="user-mail"></span>
         <button class="menu-act user-btn" id="logout-btn" aria-label="Déconnexion" title="Déconnexion"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7.5" r="3.5"></circle><path d="M5 21a7 7 0 0 1 14 0"></path></svg><span class="user-label" id="logout-label">Déconnexion</span></button>
