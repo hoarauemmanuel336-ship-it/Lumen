@@ -556,10 +556,10 @@ const idxEN = ARTICLES.map(a => ({ s: slugOf('en', a.id), t: artTitre('en', a), 
 ecrire('en/recherche-en.js', 'window.LUMEN_INDEX=' + JSON.stringify(idxEN) + ';');
 
 // copie des pages autonomes (hors pipeline bilingue)
-const fs = require('fs');
-['memoriser.html'].forEach(f => {
-  if (fs.existsSync(f)) { fs.copyFileSync(f, `${OUT}/${f}`); console.log('Copié :', f); }
-});
+if (fs.existsSync('memoriser.html')) {
+  fs.copyFileSync('memoriser.html', `${OUT}/memoriser.html`);
+  console.log('Copié : memoriser.html');
+}
 
 console.log('Site bilingue généré dans «', OUT, '»');
 console.log('Paires de pages :', pairs.length, '→', pairs.length * 2, 'pages (FR + EN) + 404 + sitemap + robots');
