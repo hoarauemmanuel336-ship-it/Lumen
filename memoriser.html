@@ -4,828 +4,733 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mémoriser · Lumen Veritatis</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <style>
 :root{
-  --encre:#000;--encre-2:#0b0b0b;--encre-3:#161616;
+  --encre:#000;--encre-2:#0a0a0a;--encre-3:#131313;
   --or:#efe6cf;--or-pale:#f8f3e6;
-  --parchemin:#fff;--pa:rgba(255,255,255,.62);
-  --pourpre:#9a3b3b;--filet:rgba(231,224,207,.14);--filet-f:rgba(231,224,207,.28);
-  --juste:#3a6b4a;--faux:#7a2c2c;--r:6px;
+  --parchemin:#fff;--pa:rgba(255,255,255,.58);--pa2:rgba(255,255,255,.36);
+  --filet:rgba(231,224,207,.12);--filet-f:rgba(231,224,207,.26);
+  --rouge:#c75d52;--ambre:#cfa24f;--vert:#7ba37e;--pourpre:#9a3b3b;
+  --serif:'EB Garamond',Georgia,serif;--display:'Cormorant Garamond',serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{height:100%}
-body{background:var(--encre);color:var(--parchemin);font-family:'EB Garamond',Georgia,serif;font-size:18px;line-height:1.65;min-height:100%}
+body{background:var(--encre);color:var(--parchemin);font-family:var(--serif);font-size:18px;line-height:1.6;min-height:100%;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:rgba(239,230,207,.22)}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-input{font-family:inherit;font-size:17px;background:var(--encre-3);border:1px solid var(--filet-f);border-radius:var(--r);color:var(--parchemin);padding:10px 14px;width:100%;outline:none;transition:border-color .2s}
-input:focus{border-color:var(--or)}
-input::placeholder{color:var(--pa)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
 
-/* AUTH */
+/* champ : style filet bas, pas de boîte */
+.field{width:100%;background:transparent;border:none;border-bottom:1px solid var(--filet-f);color:var(--parchemin);font-family:var(--serif);font-size:17px;padding:10px 2px;outline:none;transition:border-color .3s}
+.field:focus{border-bottom-color:var(--or)}
+.field::placeholder{color:var(--pa2)}
+
+/* ═══ AUTH ═══ */
 #auth-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
-.auth-card{width:100%;max-width:420px;padding:44px 38px;background:var(--encre-2);border:1px solid var(--filet);border-radius:12px}
-.auth-logo{font-family:'Cormorant Garamond',serif;font-size:21px;letter-spacing:.38em;text-transform:uppercase;text-align:center;margin-bottom:4px}
-.auth-sub{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa);text-align:center;margin-bottom:32px}
-.auth-tabs{display:flex;border-bottom:1px solid var(--filet-f);margin-bottom:24px}
-.auth-tab{flex:1;padding:10px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--pa);border-bottom:2px solid transparent;transition:color .2s,border-color .2s;text-align:center}
+.auth-panel{width:100%;max-width:392px;border:1px solid var(--filet);padding:52px 44px;animation:fade .6s ease both}
+.auth-cross{width:48px;height:88px;margin:0 auto 22px;background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2072%20132'%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,2%2031,2'%20fill='%23ffffff'/%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,130%2031,130'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%202,45%202,35'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%2070,45%2070,35'%20fill='%23ffffff'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:contain}
+.auth-logo{font-family:var(--display);font-size:23px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;text-align:center;padding-left:.42em;margin-bottom:34px}
+.auth-tabs{display:flex;margin-bottom:26px}
+.auth-tab{flex:1;padding:8px 0;font-family:var(--display);font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa2);border-bottom:1px solid var(--filet);transition:color .3s,border-color .3s}
 .auth-tab.on{color:var(--or);border-bottom-color:var(--or)}
-.auth-lbl{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--pa);margin-bottom:6px}
-.auth-field{margin-bottom:14px}
-.auth-primary{width:100%;padding:12px;background:var(--or);color:var(--encre);border-radius:var(--r);font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;transition:background .2s;margin-top:6px}
+.auth-fieldrow{margin-bottom:20px}
+.auth-primary{display:block;width:100%;text-align:center;padding:13px;margin-top:10px;background:var(--or);color:var(--encre);font-family:var(--display);font-size:15px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;transition:background .3s}
 .auth-primary:hover{background:var(--or-pale)}
-.auth-divider{text-align:center;color:var(--pa);font-size:12px;margin:18px 0;position:relative}
-.auth-divider::before,.auth-divider::after{content:'';position:absolute;top:50%;width:38%;height:1px;background:var(--filet-f)}
-.auth-divider::before{left:0}.auth-divider::after{right:0}
-.auth-google{width:100%;padding:10px;border:1px solid var(--filet-f);border-radius:var(--r);font-size:14px;display:flex;align-items:center;justify-content:center;gap:9px;transition:border-color .2s,background .2s}
+.auth-or{display:flex;align-items:center;gap:14px;color:var(--pa2);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin:22px 0}
+.auth-or::before,.auth-or::after{content:'';flex:1;height:1px;background:var(--filet)}
+.auth-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:11px;border:1px solid var(--filet-f);font-family:var(--serif);font-size:15px;color:var(--parchemin);transition:border-color .3s,background .3s}
 .auth-google:hover{border-color:var(--or);background:rgba(239,230,207,.04)}
-.auth-link{display:block;text-align:center;color:var(--pa);font-size:13px;margin-top:16px;cursor:pointer;transition:color .2s}
+.auth-link{display:block;width:100%;text-align:center;color:var(--pa);font-size:14px;margin-top:22px;transition:color .3s}
 .auth-link:hover{color:var(--or)}
-.auth-msg{padding:9px 13px;border-radius:var(--r);font-size:14px;margin-bottom:14px;display:none}
-.auth-err{background:rgba(154,59,59,.18);border:1px solid var(--pourpre);color:#eba0a0}
-.auth-ok{background:rgba(58,107,74,.18);border:1px solid var(--juste);color:#a0d4b2}
+.auth-msg{font-size:14px;line-height:1.5;padding:9px 13px;margin-bottom:18px;display:none}
+.auth-msg.err{display:block;background:rgba(154,59,59,.16);border:1px solid var(--pourpre);color:#eba5a5}
+.auth-msg.ok{display:block;background:rgba(123,163,126,.14);border:1px solid var(--vert);color:#a9cdab}
 
-/* APP */
-#app-screen{display:none;min-height:100vh;flex-direction:column}
-#app-screen.on{display:flex}
-.app-hdr{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--filet);padding:14px 24px;display:flex;align-items:center;gap:14px}
-.hdr-logo{font-family:'Cormorant Garamond',serif;font-size:19px;letter-spacing:.32em;text-transform:uppercase;flex-shrink:0}
+/* ═══ APP ═══ */
+#app{display:none;min-height:100vh;flex-direction:column}
+#app.on{display:flex}
+.hdr{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:12px;padding:18px 30px;background:rgba(0,0,0,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--filet)}
+.hdr-logo{font-family:var(--display);font-size:20px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;padding-left:.34em;transition:color .3s}
 .hdr-logo:hover{color:var(--or)}
-.hdr-title{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa);flex:1}
-.hdr-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.lang-btn{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa);border:1px solid var(--filet-f);border-radius:3px;padding:3px 9px;transition:all .2s}
-.lang-btn:hover{border-color:var(--or);color:var(--or)}
-.user-mail{font-size:12px;color:var(--pa);max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.logout-btn{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--pa);transition:color .2s}
-.logout-btn:hover{color:var(--pourpre)}
+.hdr-sep{color:var(--pa2)}
+.hdr-title{font-family:var(--display);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa);flex:1}
+.hdr-right{display:flex;align-items:center;gap:16px}
+.hdr-act{font-family:var(--display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa);transition:color .3s}
+.hdr-act:hover{color:var(--or)}
+#logout-btn:hover{color:var(--pourpre)}
+.hdr-mail{font-size:13px;color:var(--pa2);max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wrap{flex:1;width:100%;max-width:680px;margin:0 auto;padding:46px 26px 80px}
 
-.app-main{max-width:760px;width:100%;margin:0 auto;padding:32px 20px 56px}
-.sec-lbl{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa);margin-bottom:14px}
+.lbl{font-family:var(--display);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa)}
+.block{margin-bottom:42px}
+.block-head{margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--filet)}
 
-/* CATEGORIES */
-.cat-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:26px}
-.cat-chip{padding:6px 15px;border:1px solid var(--filet-f);border-radius:18px;font-size:14px;color:var(--pa);transition:all .2s;cursor:pointer}
-.cat-chip:hover{border-color:var(--or);color:var(--or)}
-.cat-chip.on{background:rgba(239,230,207,.1);border-color:var(--or);color:var(--or)}
-.cat-chip.custom{border-style:dashed}
-
-/* MODE */
-.mode-row{display:flex;gap:7px;margin-bottom:24px;flex-wrap:wrap}
-.mode-btn{flex:1;min-width:130px;padding:9px 14px;border:1px solid var(--filet-f);border-radius:var(--r);font-size:13px;letter-spacing:.06em;color:var(--pa);text-align:center;transition:all .2s}
-.mode-btn:hover{border-color:var(--or);color:var(--or)}
-.mode-btn.on{background:rgba(239,230,207,.1);border-color:var(--or);color:var(--or)}
-
-/* START */
-.start-btn{display:block;width:100%;padding:15px;background:var(--or);color:var(--encre);border-radius:var(--r);font-size:15px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;transition:background .2s;text-align:center;margin-bottom:32px}
-.start-btn:hover{background:var(--or-pale)}
-.start-btn:disabled{opacity:.38;cursor:default}
-
-/* GAME */
-#game-area{display:none}
-.pips-row{display:flex;align-items:center;gap:11px;margin-bottom:22px}
-.pips{display:flex;gap:5px}
-.pip{width:26px;height:3px;border-radius:2px;background:var(--filet-f);transition:background .3s}
-.pip.ok{background:var(--juste)}.pip.bad{background:var(--pourpre)}.pip.cur{background:var(--or)}
-.pip-lbl{font-size:12px;color:var(--pa);margin-left:auto}
-.q-type{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa);margin-bottom:10px}
-.prompt{background:var(--encre-2);border:1px solid var(--filet-f);border-radius:9px;padding:26px 28px;margin-bottom:20px;font-size:19px;line-height:1.6;font-style:italic}
-.prompt.ref{font-style:normal;font-family:'Cormorant Garamond',serif;font-size:21px;letter-spacing:.04em;color:var(--or)}
-.choices{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px}
-.choice{padding:13px 16px;background:var(--encre-2);border:1px solid var(--filet-f);border-radius:var(--r);font-size:15px;color:var(--pa);text-align:left;line-height:1.4;transition:all .2s}
-.choice:hover:not(:disabled){border-color:var(--or);color:var(--parchemin);background:rgba(239,230,207,.05)}
-.choice.ok{background:rgba(58,107,74,.2);border-color:var(--juste);color:#b4dfc4}
-.choice.bad{background:rgba(122,44,44,.2);border-color:var(--faux);color:#e8a0a0}
-.choice.show{border-color:var(--juste);color:#b4dfc4;background:rgba(58,107,74,.08)}
-.choice:disabled{cursor:default}
-
-/* SUMMARY */
-.summary{display:none;text-align:center;padding:36px 16px}
-.summary.on{display:block}
-.sum-score{font-family:'Cormorant Garamond',serif;font-size:60px;line-height:1;color:var(--or);margin-bottom:6px}
-.sum-lbl{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa);margin-bottom:28px}
-.sum-list{text-align:left;border-top:1px solid var(--filet);margin-bottom:28px}
-.sum-row{display:flex;align-items:flex-start;gap:11px;padding:12px 0;border-bottom:1px solid var(--filet);font-size:15px}
-.sum-icon{flex-shrink:0;margin-top:2px}
-.sum-v{color:var(--parchemin)}
-.sum-r{font-size:13px;color:var(--pa);font-family:'Cormorant Garamond',serif}
-.cont-btn{display:inline-block;padding:12px 36px;background:var(--or);color:var(--encre);border-radius:var(--r);font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;transition:background .2s}
-.cont-btn:hover{background:var(--or-pale)}
-
-/* STATS */
-.stats-sec{margin-top:40px;padding-top:32px;border-top:1px solid var(--filet)}
-.stats-grid{display:grid;gap:14px}
-.stat-row{display:flex;flex-direction:column;gap:5px}
-.stat-hdr{display:flex;justify-content:space-between;font-size:13px;color:var(--pa)}
-.bar-track{height:3px;background:var(--filet-f);border-radius:2px;overflow:hidden}
-.bar-fill{height:100%;background:var(--or);border-radius:2px;transition:width .6s}
-.bar-fill.full{background:var(--juste)}
-
-/* CUSTOM */
-.custom-sec{margin-top:40px;padding-top:32px;border-top:1px solid var(--filet)}
-.sec-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-.add-btn{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--or);border:1px solid var(--filet-f);border-radius:3px;padding:4px 12px;transition:all .2s}
-.add-btn:hover{border-color:var(--or);background:rgba(239,230,207,.06)}
-.ccat-list{display:grid;gap:14px}
-.ccat-card{background:var(--encre-2);border:1px solid var(--filet);border-radius:var(--r);padding:18px}
-.ccat-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.ccat-name{font-family:'Cormorant Garamond',serif;font-size:17px}
-.ccat-acts{display:flex;gap:10px}
-.act{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--pa);transition:color .2s}
-.act:hover{color:var(--or)}.act.del:hover{color:var(--pourpre)}
-.cv-list{display:grid;gap:6px;margin-bottom:10px}
-.cv-row{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--pa);padding:7px 10px;background:rgba(255,255,255,.03);border-radius:4px}
-.cv-text{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.cv-ref{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--or);flex-shrink:0}
-.del-v{color:var(--filet-f);font-size:15px;line-height:1;flex-shrink:0;transition:color .2s}
+/* catégories + mémoire */
+.cat{border-bottom:1px solid var(--filet)}
+.cat-row{display:flex;align-items:center;gap:14px;padding:15px 2px;cursor:pointer}
+.cat-check{flex-shrink:0;width:16px;height:16px;border:1px solid var(--filet-f);position:relative;transition:border-color .3s}
+.cat-check::after{content:'';position:absolute;inset:3px;background:var(--or);opacity:0;transition:opacity .2s}
+.cat.sel .cat-check{border-color:var(--or)}
+.cat.sel .cat-check::after{opacity:1}
+.cat-name{flex:1;font-family:var(--display);font-size:20px;color:var(--parchemin);transition:color .3s}
+.cat-row:hover .cat-name{color:var(--or-pale)}
+.cat-dist{display:flex;width:64px;height:3px;flex-shrink:0;overflow:hidden}
+.cat-dist i{display:block;height:100%}
+.cat-dist .r{background:var(--rouge)}.cat-dist .a{background:var(--ambre)}.cat-dist .v{background:var(--vert)}
+.cat-dist .e{background:var(--filet)}
+.cat-chev{flex-shrink:0;font-family:var(--display);font-size:20px;color:var(--pa2);transition:transform .3s,color .3s;line-height:1}
+.cat.open .cat-chev{transform:rotate(90deg);color:var(--or)}
+.cat-body{display:none;padding:4px 0 20px 30px}
+.cat.open .cat-body{display:block;animation:fade .35s ease both}
+.markall{display:flex;align-items:center;gap:12px;padding:8px 0 14px;font-size:13px;color:var(--pa2);letter-spacing:.04em}
+.markall-dots{display:flex;gap:8px}
+.markall-dots .dot,.markglobal .dot{opacity:.8}
+.markall-dots .dot:hover,.markglobal .dot:hover{opacity:1;box-shadow:0 0 0 1px var(--encre),0 0 0 2px currentColor}
+.markall-dots .dot.r,.markglobal .dot.r{color:var(--rouge)}
+.markall-dots .dot.a,.markglobal .dot.a{color:var(--ambre)}
+.markall-dots .dot.v,.markglobal .dot.v{color:var(--vert)}
+.vrow{display:flex;align-items:center;gap:14px;padding:11px 0;border-top:1px solid var(--filet)}
+.vline{display:flex;align-items:center;gap:14px;flex:1;min-width:0;cursor:pointer}
+.vline:hover .vref{color:var(--or-pale)}
+.vline:hover .vtext{color:var(--pa)}
+.vref{flex-shrink:0;font-family:var(--display);font-size:15px;color:var(--or);width:124px}
+.vtext{flex:1;font-size:15px;color:var(--pa);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .25s}
+.markglobal{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 2px 16px;margin-bottom:4px;border-bottom:1px solid var(--filet);font-size:13px;letter-spacing:.04em;color:var(--pa2)}
+.lvl{display:flex;gap:8px;flex-shrink:0}
+.dot{width:13px;height:13px;border-radius:50%;cursor:pointer;opacity:.26;transition:opacity .25s,box-shadow .25s;position:relative}
+.dot.r{background:var(--rouge)}.dot.a{background:var(--ambre)}.dot.v{background:var(--vert)}
+.dot:hover{opacity:.6}
+.dot.act{opacity:1;box-shadow:0 0 0 1px var(--encre),0 0 0 2px currentColor}
+.dot.r.act{color:var(--rouge)}.dot.a.act{color:var(--ambre)}.dot.v.act{color:var(--vert)}
+.cat-custom-acts{display:flex;gap:18px;padding:14px 0 4px;border-top:1px solid var(--filet);margin-top:6px}
+.mini-act{font-family:var(--display);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa);transition:color .3s}
+.mini-act:hover{color:var(--or)}
+.mini-act.del:hover{color:var(--pourpre)}
+.del-v{flex-shrink:0;color:var(--pa2);font-size:16px;line-height:1;transition:color .3s}
 .del-v:hover{color:var(--pourpre)}
 
-/* MODAL */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
-.overlay.on{display:flex}
-.modal{background:var(--encre-2);border:1px solid var(--filet-f);border-radius:10px;padding:32px;width:100%;max-width:480px}
-.modal-title{font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:20px}
-.m-field{margin-bottom:13px}
-.m-btns{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
-.m-cancel{padding:9px 18px;border:1px solid var(--filet-f);border-radius:var(--r);font-size:13px;color:var(--pa);transition:all .2s}
-.m-cancel:hover{border-color:var(--or);color:var(--or)}
-.m-save{padding:9px 22px;background:var(--or);color:var(--encre);border-radius:var(--r);font-size:13px;font-weight:600;transition:background .2s}
-.m-save:hover{background:var(--or-pale)}
+.ghost-btn{margin-top:18px;font-family:var(--display);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa);border:1px solid var(--filet-f);padding:9px 18px;transition:all .3s}
+.ghost-btn:hover{border-color:var(--or);color:var(--or)}
 
-@media(max-width:580px){
-  .auth-card{padding:28px 20px}
-  .choices{grid-template-columns:1fr}
-  .mode-row{flex-direction:column}
-  .mode-btn{min-width:unset}
-  .app-hdr{padding:10px 14px;flex-wrap:wrap}
-  .user-mail{display:none}
-  .app-main{padding:22px 14px 44px}
+.modes{display:flex;flex-direction:column;gap:0}
+.mode{text-align:left;padding:15px 2px;border-bottom:1px solid var(--filet);font-family:var(--display);font-size:18px;letter-spacing:.04em;color:var(--pa);display:flex;align-items:center;gap:14px;transition:color .3s}
+.mode::before{content:'';width:9px;height:9px;border:1px solid var(--filet-f);border-radius:50%;flex-shrink:0;transition:all .3s}
+.mode:hover{color:var(--or-pale)}
+.mode.on{color:var(--or)}
+.mode.on::before{border-color:var(--or);background:var(--or);box-shadow:inset 0 0 0 2px var(--encre)}
+
+.start{display:block;width:100%;text-align:center;padding:17px;margin-top:10px;background:var(--or);color:var(--encre);font-family:var(--display);font-size:16px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;transition:background .3s}
+.start:hover{background:var(--or-pale)}
+.start:disabled{opacity:.35;cursor:default}
+.reset-link{display:block;margin:36px auto 0;font-size:13px;letter-spacing:.06em;color:var(--pa2);transition:color .3s}
+.reset-link:hover{color:var(--pourpre)}
+
+/* ═══ STUDY ═══ */
+#study{display:none}
+.study-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:48px;padding-bottom:14px;border-bottom:1px solid var(--filet)}
+.study-stat{font-size:14px;letter-spacing:.04em;color:var(--pa)}
+.study-stat b{color:var(--or);font-weight:500}
+.finish{font-family:var(--display);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa);border:1px solid var(--filet-f);padding:8px 18px;transition:all .3s}
+.finish:hover{border-color:var(--or);color:var(--or)}
+.qbox{text-align:center;margin-bottom:42px;animation:rise .5s cubic-bezier(.2,.7,.3,1) both}
+.q-label{font-family:var(--display);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--pa2);margin-bottom:24px}
+.rule{width:38px;height:1px;background:var(--or);opacity:.5;margin:24px auto}
+.q-prompt{font-family:var(--serif);font-size:27px;line-height:1.62;color:var(--parchemin);max-width:30em;margin:0 auto}
+.q-prompt.ref{font-family:var(--display);font-style:normal;font-size:38px;letter-spacing:.03em;color:var(--or)}
+.opts{display:grid;gap:11px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opt{text-align:left;padding:16px 20px;border:1px solid var(--filet);background:var(--encre-2);font-family:var(--serif);font-size:16px;line-height:1.5;color:var(--pa);transition:border-color .25s,color .25s,background .25s;animation:rise .45s cubic-bezier(.2,.7,.3,1) both}
+.opt .num{font-family:var(--display);font-size:13px;color:var(--pa2);margin-right:10px}
+.opt.refopt{font-family:var(--display);font-size:19px;letter-spacing:.03em}
+.opt:hover:not(:disabled){border-color:var(--or);color:var(--parchemin);background:rgba(239,230,207,.04)}
+.opt.ok{border-color:var(--vert);color:#bcdcbe;background:rgba(123,163,126,.1)}
+.opt.ok .num{color:var(--vert)}
+.opt.bad{border-color:var(--pourpre);color:#e0a8a8;background:rgba(154,59,59,.12)}
+.opt.reveal{border-color:var(--vert);color:#bcdcbe}
+.opt:disabled{cursor:default}
+
+/* ═══ SUMMARY ═══ */
+#summary{display:none;text-align:center;padding-top:48px;animation:fade .5s ease both}
+.sum-num{font-family:var(--display);font-size:72px;line-height:1;color:var(--or)}
+.sum-sub{font-size:15px;letter-spacing:.04em;color:var(--pa);margin:14px 0 8px}
+.sum-detail{font-size:14px;color:var(--pa2);margin-bottom:40px}
+#sum-back{max-width:260px;margin:0 auto}
+
+/* ═══ MODAL ═══ */
+.overlay{position:fixed;inset:0;z-index:120;background:rgba(4,4,4,.9);display:none;align-items:center;justify-content:center;padding:24px}
+.overlay.on{display:flex}
+.modal{width:100%;max-width:460px;background:var(--encre-2);border:1px solid var(--filet-f);padding:38px 34px;animation:rise .35s ease both}
+.modal-title{font-family:var(--display);font-size:23px;margin-bottom:26px}
+.modal .auth-fieldrow{margin-bottom:18px}
+.modal-flbl{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa2);margin-bottom:5px}
+.modal-btns{display:flex;justify-content:flex-end;gap:14px;margin-top:28px}
+.m-cancel{font-family:var(--display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa);padding:9px 16px;transition:color .3s}
+.m-cancel:hover{color:var(--or)}
+.m-ok{font-family:var(--display);font-size:14px;letter-spacing:.1em;text-transform:uppercase;background:var(--or);color:var(--encre);padding:10px 22px;transition:background .3s}
+.m-ok:hover{background:var(--or-pale)}
+
+@media(max-width:600px){
+  .auth-panel{padding:40px 26px}
+  .hdr{padding:14px 16px;gap:9px}
+  .hdr-mail{display:none}
+  .wrap{padding:32px 16px 60px}
+  .opts.two{grid-template-columns:1fr}
+  .q-prompt{font-size:23px}
+  .q-prompt.ref{font-size:30px}
+  .vref{width:96px;font-size:14px}
+  .vtext{display:none}
 }
 </style>
 </head>
 <body>
 
-<!-- ══ AUTH ═════════════════════════════════════════ -->
+<!-- ════ AUTH ════ -->
 <div id="auth-screen">
-  <div class="auth-card">
-    <div class="auth-logo">LUMEN</div>
-    <div class="auth-sub" id="auth-sub">Mémoriser · Memorise</div>
-    <div class="auth-tabs" id="auth-tabs">
+  <div class="auth-panel">
+    <div class="auth-cross"></div>
+    <div class="auth-logo">Lumen</div>
+    <div class="auth-tabs">
       <button class="auth-tab on" id="tab-si">Connexion</button>
       <button class="auth-tab" id="tab-su">Inscription</button>
     </div>
-    <div id="auth-err" class="auth-msg auth-err"></div>
-    <div id="auth-ok"  class="auth-msg auth-ok"></div>
-    <div id="form-email">
-      <div class="auth-field"><label class="auth-lbl" id="lbl-email">Adresse e-mail</label><input type="email" id="inp-email" autocomplete="email"></div>
-      <div class="auth-field" id="field-pw"><label class="auth-lbl" id="lbl-pw">Mot de passe</label><input type="password" id="inp-pw" autocomplete="current-password"></div>
-      <div class="auth-field" id="field-cf" style="display:none"><label class="auth-lbl" id="lbl-cf">Confirmer</label><input type="password" id="inp-cf" autocomplete="new-password"></div>
-      <button class="auth-primary" id="btn-submit">Se connecter</button>
-    </div>
-    <div class="auth-divider" id="auth-div"><span>ou</span></div>
-    <button class="auth-google" id="btn-google">
+    <div class="auth-msg" id="auth-msg"></div>
+    <div class="auth-fieldrow"><input type="email" class="field" id="i-email" placeholder="Adresse e-mail" autocomplete="email"></div>
+    <div class="auth-fieldrow" id="row-pw"><input type="password" class="field" id="i-pw" placeholder="Mot de passe" autocomplete="current-password"></div>
+    <div class="auth-fieldrow" id="row-cf" style="display:none"><input type="password" class="field" id="i-cf" placeholder="Confirmer le mot de passe" autocomplete="new-password"></div>
+    <button class="auth-primary" id="b-submit">Se connecter</button>
+    <div class="auth-or" id="auth-or">ou</div>
+    <button class="auth-google" id="b-google">
       <svg width="17" height="17" viewBox="0 0 18 18"><path fill="#EA4335" d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.54C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z"/><path fill="#FBBC05" d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9 9 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z"/><path fill="#4A90D9" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.96 13.04C2.44 15.98 5.48 18 9 18z"/></svg>
       <span id="lbl-google">Continuer avec Google</span>
     </button>
-    <button class="auth-link" id="auth-link">Mot de passe oublié ?</button>
+    <button class="auth-link" id="b-forgot">Mot de passe oublié ?</button>
   </div>
 </div>
 
-<!-- ══ APP ══════════════════════════════════════════ -->
-<div id="app-screen">
-  <header class="app-hdr">
-    <a href="/" class="hdr-logo">LUMEN</a>
+<!-- ════ APP ════ -->
+<div id="app">
+  <header class="hdr">
+    <a href="/" class="hdr-logo">Lumen</a>
+    <span class="hdr-sep">·</span>
     <span class="hdr-title" id="hdr-title">Mémoriser</span>
     <div class="hdr-right">
-      <button class="lang-btn" id="lang-btn">EN</button>
-      <span class="user-mail" id="user-mail"></span>
-      <button class="logout-btn" id="logout-btn">Déconnexion</button>
+      <button class="hdr-act" id="lang-btn">EN</button>
+      <span class="hdr-mail" id="user-mail"></span>
+      <button class="hdr-act" id="logout-btn">Déconnexion</button>
     </div>
   </header>
 
-  <main class="app-main">
-    <div class="sec-lbl" id="lbl-cats">Catégories</div>
-    <div class="cat-chips" id="cat-chips"></div>
-
-    <div class="mode-row" id="mode-row">
-      <button class="mode-btn on" data-m="0" id="mode-0">Mixte (défaut)</button>
-      <button class="mode-btn" data-m="1" id="mode-1">Verset → Référence</button>
-      <button class="mode-btn" data-m="2" id="mode-2">Référence → Verset</button>
-    </div>
-
-    <button class="start-btn" id="start-btn">Commencer</button>
-
-    <div id="game-area">
-      <div class="pips-row"><div class="pips" id="pips"></div><span class="pip-lbl" id="pip-lbl">1 / 6</span></div>
-      <div id="q-wrap">
-        <div class="q-type" id="q-type"></div>
-        <div class="prompt" id="prompt"></div>
-        <div class="choices" id="choices"></div>
+  <main class="wrap">
+    <section id="setup">
+      <div class="block">
+        <div class="block-head"><span class="lbl" id="lbl-cats">Catégories &amp; mémoire</span></div>
+        <div class="markglobal">
+          <span id="lbl-markglobal">Marquer les catégories sélectionnées</span>
+          <span class="markall-dots"><span class="dot r" data-gall="r"></span><span class="dot a" data-gall="a"></span><span class="dot v" data-gall="v"></span></span>
+        </div>
+        <div id="cat-list"></div>
+        <button class="ghost-btn" id="add-cat">+ <span id="lbl-newcat">Nouvelle catégorie</span></button>
       </div>
-      <div class="summary" id="summary">
-        <div class="sum-score" id="sum-score"></div>
-        <div class="sum-lbl" id="sum-lbl"></div>
-        <div class="sum-list" id="sum-list"></div>
-        <button class="cont-btn" id="cont-btn">Continuer</button>
+      <div class="block">
+        <div class="block-head"><span class="lbl" id="lbl-mode">Mode</span></div>
+        <div class="modes" id="modes">
+          <button class="mode on" data-m="0" id="mode-0">Mixte</button>
+          <button class="mode" data-m="1" id="mode-1">Verset → Référence</button>
+          <button class="mode" data-m="2" id="mode-2">Référence → Verset</button>
+        </div>
       </div>
-    </div>
+      <button class="start" id="start-btn">Commencer</button>
+      <button class="reset-link" id="restore-btn">Restaurer les catégories de base</button>
+      <button class="reset-link" id="reset-btn">Réinitialiser toute la mémoire</button>
+    </section>
 
-    <div class="stats-sec" id="stats-sec">
-      <div class="sec-lbl" id="lbl-prog">Progression</div>
-      <div class="stats-grid" id="stats-grid"></div>
-    </div>
-
-    <div class="custom-sec">
-      <div class="sec-row">
-        <div class="sec-lbl" id="lbl-custom" style="margin-bottom:0">Mes catégories</div>
-        <button class="add-btn" id="add-cat-btn">+ Nouvelle</button>
+    <section id="study">
+      <div class="study-top">
+        <span class="study-stat" id="study-stat"></span>
+        <button class="finish" id="finish-btn">Terminer</button>
       </div>
-      <div class="ccat-list" id="ccat-list"></div>
-    </div>
+      <div class="qbox" id="qbox">
+        <div class="q-label" id="q-label"></div>
+        <div class="rule"></div>
+        <div class="q-prompt" id="q-prompt"></div>
+        <div class="rule"></div>
+      </div>
+      <div class="opts" id="opts"></div>
+    </section>
+
+    <section id="summary">
+      <div class="sum-num" id="sum-num"></div>
+      <div class="sum-sub" id="sum-sub"></div>
+      <div class="sum-detail" id="sum-detail"></div>
+      <button class="start" id="sum-back">Retour</button>
+    </section>
   </main>
 </div>
 
 <!-- modals -->
-<div class="overlay" id="modal-cat">
+<div class="overlay" id="m-cat">
   <div class="modal">
     <div class="modal-title" id="mcat-title">Nouvelle catégorie</div>
-    <div class="m-field"><label class="auth-lbl" id="lbl-cfr">Nom (français)</label><input type="text" id="inp-cfr"></div>
-    <div class="m-field"><label class="auth-lbl" id="lbl-cen">Name (English)</label><input type="text" id="inp-cen"></div>
-    <div class="m-btns"><button class="m-cancel" id="mcat-cancel">Annuler</button><button class="m-save" id="mcat-save">Enregistrer</button></div>
+    <div class="auth-fieldrow"><label class="modal-flbl" id="mcat-lfr">Nom (français)</label><input type="text" class="field" id="i-cfr"></div>
+    <div class="auth-fieldrow"><label class="modal-flbl" id="mcat-len">Nom (anglais)</label><input type="text" class="field" id="i-cen"></div>
+    <div class="modal-btns"><button class="m-cancel" id="mcat-cancel">Annuler</button><button class="m-ok" id="mcat-ok">Enregistrer</button></div>
   </div>
 </div>
-<div class="overlay" id="modal-verse">
+<div class="overlay" id="m-verse">
   <div class="modal">
     <div class="modal-title" id="mv-title">Ajouter un verset</div>
-    <div class="m-field"><label class="auth-lbl">Texte (français)</label><input type="text" id="vfr"></div>
-    <div class="m-field"><label class="auth-lbl">Référence (ex : Jean 3:16)</label><input type="text" id="rfr"></div>
-    <div class="m-field"><label class="auth-lbl">Text (English)</label><input type="text" id="ven"></div>
-    <div class="m-field"><label class="auth-lbl">Reference (e.g. John 3:16)</label><input type="text" id="ren"></div>
-    <div class="m-btns"><button class="m-cancel" id="mv-cancel">Annuler</button><button class="m-save" id="mv-save">Enregistrer</button></div>
+    <div class="auth-fieldrow"><label class="modal-flbl">Texte (français)</label><input type="text" class="field" id="i-vfr"></div>
+    <div class="auth-fieldrow"><label class="modal-flbl">Référence (ex : Jean 3:16)</label><input type="text" class="field" id="i-rfr"></div>
+    <div class="auth-fieldrow"><label class="modal-flbl">Texte (anglais)</label><input type="text" class="field" id="i-ven"></div>
+    <div class="auth-fieldrow"><label class="modal-flbl">Référence (anglais)</label><input type="text" class="field" id="i-ren"></div>
+    <div class="modal-btns"><button class="m-cancel" id="mv-cancel">Annuler</button><button class="m-ok" id="mv-ok">Enregistrer</button></div>
   </div>
 </div>
 
 <script>
-// ══════════════════════════════════════════════════════
-// FIREBASE — remplace par ton propre bloc firebaseConfig
-// ══════════════════════════════════════════════════════
-// ← COLLER ICI : const firebaseConfig = { apiKey: "…", … };
+// ════════ FIREBASE ════════
 const firebaseConfig = {
-  apiKey:            "AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",
-  authDomain:        "lumen-veritatis.firebaseapp.com",
-  projectId:         "lumen-veritatis",
-  storageBucket:     "lumen-veritatis.firebasestorage.app",
-  messagingSenderId: "195902823875",
-  appId:             "1:195902823875:web:a8be1f216a5ae1d945f176"
+  apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",
+  authDomain:"lumen-veritatis.firebaseapp.com",
+  projectId:"lumen-veritatis",
+  storageBucket:"lumen-veritatis.firebasestorage.app",
+  messagingSenderId:"195902823875",
+  appId:"1:195902823875:web:a8be1f216a5ae1d945f176"
 };
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db   = firebase.firestore();
+const auth=firebase.auth();
+const db=firebase.firestore();
 
-// ══════════════════════════════════════════════════════
-// i18n
-// ══════════════════════════════════════════════════════
-const T = {
+// ════════ i18n ════════
+const T={
   fr:{
-    hdr:'Mémoriser', lang_toggle:'EN',
+    hdr:'Mémoriser', tag:'Mémoriser', lang:'EN',
     tab_si:'Connexion', tab_su:'Inscription',
-    lbl_email:'Adresse e-mail', lbl_pw:'Mot de passe', lbl_cf:'Confirmer le mot de passe',
-    btn_si:'Se connecter', btn_su:'Créer le compte',
-    google:'Continuer avec Google', forgot:'Mot de passe oublié ?',
-    back:'← Retour', reset_ok:'Lien envoyé. Vérifiez votre boîte mail.',
-    logout:'Déconnexion', lbl_cats:'Catégories', lbl_prog:'Progression',
-    lbl_custom:'Mes catégories', add_cat:'+ Nouvelle',
-    mode_0:'Mixte (défaut)', mode_1:'Verset → Référence', mode_2:'Référence → Verset',
-    start:'Commencer', find_ref:'Quelle est la référence ?', find_verse:'Quel est le verset ?',
-    round_done:'Série terminée', correct_s:'bonnes réponses', cont:'Continuer',
-    mcat:'Nouvelle catégorie', lbl_cfr:'Nom (français)', lbl_cen:'Nom (anglais)',
+    ph_email:'Adresse e-mail', ph_pw:'Mot de passe', ph_cf:'Confirmer le mot de passe',
+    b_si:'Se connecter', b_su:'Créer le compte', b_reset:'Envoyer le lien',
+    google:'Continuer avec Google', forgot:'Mot de passe oublié ?', back:'← Retour',
+    reset_sent:'Lien envoyé. Vérifiez votre boîte mail.',
+    pw_mismatch:'Les mots de passe ne correspondent pas.',
+    logout:'Déconnexion',
+    cats:'Catégories & mémoire', newcat:'Nouvelle catégorie', mode:'Mode',
+    mode0:'Mixte', mode1:'Verset → Référence', mode2:'Référence → Verset',
+    start:'Commencer', reset:'Réinitialiser toute la mémoire',
+    reset_q:'Réinitialiser toute la mémoire ? Tous les niveaux reviennent au rouge. Action irréversible.',
+    restore:'Restaurer les catégories de base', restore_q:'Restaurer les catégories de base ? Tes modifications des versets de base seront perdues (tes catégories personnelles sont conservées).',
+    markall:'Tout marquer', markglobal:'Marquer les catégories sélectionnées',
+    find_ref:'Quelle est la référence ?', find_verse:'Quel est le verset ?',
+    answered:'répondues', correct:'justes', finish:'Terminer',
+    done:'Session terminée', of:'sur', acquired:'versets acquis',
+    backbtn:'Retour',
+    addverse:'Verset', edit:'Modifier', rename:'Renommer', del:'Supprimer',
+    mcat:'Nouvelle catégorie', mcat_edit:'Renommer la catégorie', mv_edit:'Modifier le verset',
+    lfr:'Nom (français)', len:'Nom (anglais)',
     mv:'Ajouter un verset', save:'Enregistrer', cancel:'Annuler',
-    no_ccat:'Aucune catégorie personnalisée.',
-    not_enough:'Pas assez de versets (minimum 2). Sélectionnez d\'autres catégories ou ajoutez des versets.',
-    vers:'Verset', mastered:'maîtrisé',
+    empty_sel:'Sélectionne au moins une catégorie pour commencer.',
+    not_enough:'Pas assez de versets. Sélectionne d\u2019autres catégories ou ajoute des versets.',
+    del_cat_q:'Supprimer cette catégorie et ses versets ?'
   },
   en:{
-    hdr:'Memorise', lang_toggle:'FR',
+    hdr:'Memorise', tag:'Memorise', lang:'FR',
     tab_si:'Sign in', tab_su:'Sign up',
-    lbl_email:'Email address', lbl_pw:'Password', lbl_cf:'Confirm password',
-    btn_si:'Sign in', btn_su:'Create account',
-    google:'Continue with Google', forgot:'Forgot password?',
-    back:'← Back', reset_ok:'Link sent. Check your inbox.',
-    logout:'Sign out', lbl_cats:'Categories', lbl_prog:'Progress',
-    lbl_custom:'My categories', add_cat:'+ New',
-    mode_0:'Mixed (default)', mode_1:'Verse → Reference', mode_2:'Reference → Verse',
-    start:'Start', find_ref:'What is the reference?', find_verse:'What is the verse?',
-    round_done:'Round complete', correct_s:'correct', cont:'Continue',
-    mcat:'New category', lbl_cfr:'Name (French)', lbl_cen:'Name (English)',
+    ph_email:'Email address', ph_pw:'Password', ph_cf:'Confirm password',
+    b_si:'Sign in', b_su:'Create account', b_reset:'Send link',
+    google:'Continue with Google', forgot:'Forgot password?', back:'← Back',
+    reset_sent:'Link sent. Check your inbox.',
+    pw_mismatch:'Passwords do not match.',
+    logout:'Sign out',
+    cats:'Categories & memory', newcat:'New category', mode:'Mode',
+    mode0:'Mixed', mode1:'Verse → Reference', mode2:'Reference → Verse',
+    start:'Start', reset:'Reset all memory',
+    reset_q:'Reset all memory? Every level returns to red. This cannot be undone.',
+    restore:'Restore base categories', restore_q:'Restore the base categories? Your edits to the base verses will be lost (your own categories are kept).',
+    markall:'Mark all', markglobal:'Mark selected categories',
+    find_ref:'What is the reference?', find_verse:'What is the verse?',
+    answered:'answered', correct:'correct', finish:'Finish',
+    done:'Session complete', of:'of', acquired:'verses acquired',
+    backbtn:'Back',
+    addverse:'Verse', edit:'Edit', rename:'Rename', del:'Delete',
+    mcat:'New category', mcat_edit:'Rename category', mv_edit:'Edit verse',
+    lfr:'Name (French)', len:'Name (English)',
     mv:'Add verse', save:'Save', cancel:'Cancel',
-    no_ccat:'No custom categories.',
-    not_enough:'Not enough verses (minimum 2). Select other categories or add verses.',
-    vers:'Verse', mastered:'mastered',
+    empty_sel:'Select at least one category to begin.',
+    not_enough:'Not enough verses. Select other categories or add verses.',
+    del_cat_q:'Delete this category and its verses?'
   }
 };
 
-// ══════════════════════════════════════════════════════
-// PREDEFINED VERSES
-// ══════════════════════════════════════════════════════
-const PRE = [
+// ════════ VERSETS PRÉDÉFINIS ════════
+const PRE=[
   {id:'nature-dieu', name:{fr:'La nature de Dieu', en:'The Nature of God'}, verses:[
     {id:'exo-3-14', fr:{text:'Je suis celui qui suis.', ref:'Exode 3:14'}, en:{text:'I am who I am.', ref:'Exodus 3:14'}},
-    {id:'jn-4-24', fr:{text:'Dieu est esprit, et ceux qui l\'adorent doivent l\'adorer en esprit et en vérité.', ref:'Jean 4:24'}, en:{text:'God is spirit, and those who worship him must worship in spirit and truth.', ref:'John 4:24'}},
-    {id:'1jn-4-8', fr:{text:'Celui qui n\'aime pas n\'a pas connu Dieu, car Dieu est amour.', ref:'1 Jean 4:8'}, en:{text:'He who does not love does not know God, for God is love.', ref:'1 John 4:8'}},
-    {id:'ps-90-2', fr:{text:'Avant que les montagnes soient nées, de l\'éternité à l\'éternité tu es Dieu.', ref:'Psaume 90:2'}, en:{text:'Before the mountains were born, from everlasting to everlasting you are God.', ref:'Psalm 90:2'}},
-    {id:'rom-11-33', fr:{text:'Ô profondeur des richesses, de la sagesse et de la science de Dieu ! Que ses jugements sont insondables.', ref:'Romains 11:33'}, en:{text:'O the depth of the riches and wisdom and knowledge of God! How unsearchable his judgements.', ref:'Romans 11:33'}},
-    {id:'jn-14-6', fr:{text:'Je suis le chemin, la vérité et la vie. Personne ne vient au Père que par moi.', ref:'Jean 14:6'}, en:{text:'I am the way, the truth, and the life. No one comes to the Father except through me.', ref:'John 14:6'}},
+    {id:'jn-4-24', fr:{text:'Dieu est esprit, et ceux qui l\u2019adorent doivent l\u2019adorer en esprit et en vérité.', ref:'Jean 4:24'}, en:{text:'God is spirit, and those who worship him must worship in spirit and truth.', ref:'John 4:24'}},
+    {id:'1jn-4-8', fr:{text:'Celui qui n\u2019aime pas n\u2019a pas connu Dieu, car Dieu est amour.', ref:'1 Jean 4:8'}, en:{text:'He who does not love does not know God, for God is love.', ref:'1 John 4:8'}},
+    {id:'ps-90-2', fr:{text:'Avant que les montagnes soient nées, que tu aies enfanté la terre et le monde, de l\u2019éternité à l\u2019éternité tu es Dieu.', ref:'Psaume 90:2'}, en:{text:'Before the mountains were born, before you had brought forth the earth and the world, from everlasting to everlasting you are God.', ref:'Psalm 90:2'}},
+    {id:'rom-11-33', fr:{text:'Ô profondeur des richesses, de la sagesse et de la science de Dieu ! Que ses jugements sont insondables et ses voies impénétrables !', ref:'Romains 11:33'}, en:{text:'O the depth of the riches and wisdom and knowledge of God! How unsearchable are his judgments and how inscrutable his ways!', ref:'Romans 11:33'}},
+    {id:'jn-14-6', fr:{text:'Je suis le chemin, la vérité et la vie. Personne ne vient au Père que par moi.', ref:'Jean 14:6'}, en:{text:'I am the way, the truth, and the life. No one comes to the Father except through me.', ref:'John 14:6'}}
   ]},
-  {id:'eucharistie', name:{fr:'L\'Eucharistie', en:'The Eucharist'}, verses:[
+  {id:'eucharistie', name:{fr:'L\u2019Eucharistie', en:'The Eucharist'}, verses:[
     {id:'jn-6-54', fr:{text:'Celui qui mange ma chair et boit mon sang a la vie éternelle, et je le ressusciterai au dernier jour.', ref:'Jean 6:54'}, en:{text:'He who eats my flesh and drinks my blood has eternal life, and I will raise him up at the last day.', ref:'John 6:54'}},
-    {id:'1co-11-26', fr:{text:'Chaque fois que vous mangez ce pain et que vous buvez cette coupe, vous annoncez la mort du Seigneur, jusqu\'à ce qu\'il vienne.', ref:'1 Corinthiens 11:26'}, en:{text:'As often as you eat this bread and drink this cup, you proclaim the Lord\'s death until he comes.', ref:'1 Corinthians 11:26'}},
-    {id:'jn-1-29', fr:{text:'Voici l\'Agneau de Dieu qui enlève le péché du monde.', ref:'Jean 1:29'}, en:{text:'Behold the Lamb of God who takes away the sin of the world.', ref:'John 1:29'}},
-    {id:'1co-10-16', fr:{text:'La coupe de bénédiction que nous bénissons n\'est-elle pas communion au sang du Christ ?', ref:'1 Corinthiens 10:16'}, en:{text:'The cup of blessing that we bless, is it not a participation in the blood of Christ?', ref:'1 Corinthians 10:16'}},
-    {id:'rom-6-9', fr:{text:'Ressuscité des morts, le Christ ne meurt plus ; la mort n\'a plus de pouvoir sur lui.', ref:'Romains 6:9'}, en:{text:'Raised from the dead, Christ dies no more; death no longer has power over him.', ref:'Romans 6:9'}},
-    {id:'lev-17-11', fr:{text:'La vie de la chair est dans le sang ; c\'est le sang qui expie pour une vie.', ref:'Lévitique 17:11'}, en:{text:'The life of the flesh is in the blood; it is the blood that makes atonement for a life.', ref:'Leviticus 17:11'}},
+    {id:'1co-11-26', fr:{text:'Chaque fois que vous mangez ce pain et que vous buvez cette coupe, vous annoncez la mort du Seigneur, jusqu\u2019à ce qu\u2019il vienne.', ref:'1 Corinthiens 11:26'}, en:{text:'As often as you eat this bread and drink this cup, you proclaim the Lord\u2019s death until he comes.', ref:'1 Corinthians 11:26'}},
+    {id:'jn-1-29', fr:{text:'Voici l\u2019Agneau de Dieu qui enlève le péché du monde.', ref:'Jean 1:29'}, en:{text:'Behold the Lamb of God who takes away the sin of the world.', ref:'John 1:29'}},
+    {id:'1co-10-16', fr:{text:'La coupe de bénédiction que nous bénissons n\u2019est-elle pas communion au sang du Christ ? Le pain que nous rompons n\u2019est-il pas communion au corps du Christ ?', ref:'1 Corinthiens 10:16'}, en:{text:'The cup of blessing which we bless, is it not a communion in the blood of Christ? The bread which we break, is it not a communion in the body of Christ?', ref:'1 Corinthians 10:16'}},
+    {id:'rom-6-9', fr:{text:'Ressuscité des morts, le Christ ne meurt plus ; la mort n\u2019a plus de pouvoir sur lui.', ref:'Romains 6:9'}, en:{text:'Raised from the dead, Christ dies no more; death no longer has power over him.', ref:'Romans 6:9'}},
+    {id:'lev-17-11', fr:{text:'La vie de la chair est dans le sang ; c\u2019est le sang qui expie pour une vie.', ref:'Lévitique 17:11'}, en:{text:'The life of the flesh is in the blood; it is the blood that makes atonement for a life.', ref:'Leviticus 17:11'}}
   ]},
   {id:'marie', name:{fr:'Marie', en:'Mary'}, verses:[
     {id:'lc-1-28', fr:{text:'Réjouis-toi, pleine de grâce, le Seigneur est avec toi.', ref:'Luc 1:28'}, en:{text:'Hail, full of grace, the Lord is with you.', ref:'Luke 1:28'}},
-    {id:'lc-1-38', fr:{text:'Je suis la servante du Seigneur ; qu\'il m\'advienne selon ta parole.', ref:'Luc 1:38'}, en:{text:'I am the servant of the Lord; let it be done to me according to your word.', ref:'Luke 1:38'}},
-    {id:'jn-2-5', fr:{text:'Faites tout ce qu\'il vous dira.', ref:'Jean 2:5'}, en:{text:'Do whatever he tells you.', ref:'John 2:5'}},
-    {id:'lc-1-43', fr:{text:'Comment m\'est-il donné que la mère de mon Seigneur vienne jusqu\'à moi ?', ref:'Luc 1:43'}, en:{text:'Why is this granted to me that the mother of my Lord should come to me?', ref:'Luke 1:43'}},
+    {id:'lc-1-38', fr:{text:'Je suis la servante du Seigneur ; qu\u2019il m\u2019advienne selon ta parole.', ref:'Luc 1:38'}, en:{text:'I am the servant of the Lord; let it be done to me according to your word.', ref:'Luke 1:38'}},
+    {id:'jn-2-5', fr:{text:'Faites tout ce qu\u2019il vous dira.', ref:'Jean 2:5'}, en:{text:'Do whatever he tells you.', ref:'John 2:5'}},
+    {id:'lc-1-43', fr:{text:'Comment m\u2019est-il donné que la mère de mon Seigneur vienne jusqu\u2019à moi ?', ref:'Luc 1:43'}, en:{text:'Why is this granted to me that the mother of my Lord should come to me?', ref:'Luke 1:43'}},
     {id:'lc-1-49', fr:{text:'Le Puissant a fait pour moi des merveilles ; saint est son nom.', ref:'Luc 1:49'}, en:{text:'He who is mighty has done great things for me, and holy is his name.', ref:'Luke 1:49'}},
-    {id:'jn-19-27', fr:{text:'Voici ta mère. Et à partir de cette heure-là, le disciple la prit chez lui.', ref:'Jean 19:27'}, en:{text:'Behold your mother. From that hour the disciple took her into his own home.', ref:'John 19:27'}},
+    {id:'jn-19-27', fr:{text:'Voici ta mère. Et à partir de cette heure-là, le disciple la prit chez lui.', ref:'Jean 19:27'}, en:{text:'Behold your mother. From that hour the disciple took her into his own home.', ref:'John 19:27'}}
   ]},
   {id:'salut', name:{fr:'Le salut', en:'Salvation'}, verses:[
-    {id:'jn-3-16', fr:{text:'Car Dieu a tellement aimé le monde qu\'il a donné son Fils unique, afin que quiconque croit en lui ait la vie éternelle.', ref:'Jean 3:16'}, en:{text:'For God so loved the world that he gave his only Son, that whoever believes in him should have eternal life.', ref:'John 3:16'}},
+    {id:'jn-3-16', fr:{text:'Car Dieu a tellement aimé le monde qu\u2019il a donné son Fils unique, afin que quiconque croit en lui ait la vie éternelle.', ref:'Jean 3:16'}, en:{text:'For God so loved the world that he gave his only Son, that whoever believes in him should have eternal life.', ref:'John 3:16'}},
     {id:'rom-5-8', fr:{text:'Dieu prouve son amour envers nous en ce que, alors que nous étions encore des pécheurs, le Christ est mort pour nous.', ref:'Romains 5:8'}, en:{text:'God proves his love for us in that while we were still sinners, Christ died for us.', ref:'Romans 5:8'}},
     {id:'heb-9-12', fr:{text:'Le Christ est entré une fois pour toutes dans le sanctuaire avec son propre sang, nous ayant obtenu une délivrance éternelle.', ref:'Hébreux 9:12'}, en:{text:'Christ entered once for all into the holy places with his own blood, having secured an eternal redemption.', ref:'Hebrews 9:12'}},
-    {id:'is-53-5', fr:{text:'Il a été blessé pour nos fautes, broyé pour nos iniquités ; c\'est par ses meurtrissures que nous sommes guéris.', ref:'Isaïe 53:5'}, en:{text:'He was wounded for our transgressions; by his bruises we are healed.', ref:'Isaiah 53:5'}},
-    {id:'rom-6-23', fr:{text:'Le salaire du péché, c\'est la mort ; mais le don gratuit de Dieu, c\'est la vie éternelle en Jésus-Christ notre Seigneur.', ref:'Romains 6:23'}, en:{text:'The wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.', ref:'Romans 6:23'}},
-    {id:'1pi-1-19', fr:{text:'Vous avez été rachetés par le sang précieux du Christ, comme d\'un agneau sans défaut et sans tache.', ref:'1 Pierre 1:19'}, en:{text:'You were ransomed with the precious blood of Christ, like that of a lamb without blemish or spot.', ref:'1 Peter 1:19'}},
+    {id:'is-53-5', fr:{text:'Il a été transpercé à cause de nos péchés, broyé à cause de nos fautes ; le châtiment qui nous donne la paix est sur lui, et par ses meurtrissures nous sommes guéris.', ref:'Isaïe 53:5'}, en:{text:'He was pierced because of our sins, crushed because of our faults; the chastisement that brings us peace is upon him, and by his wounds we are healed.', ref:'Isaiah 53:5'}},
+    {id:'rom-6-23', fr:{text:'Le salaire du péché, c\u2019est la mort ; mais le don gratuit de Dieu, c\u2019est la vie éternelle en Jésus-Christ notre Seigneur.', ref:'Romains 6:23'}, en:{text:'The wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.', ref:'Romans 6:23'}},
+    {id:'1pi-1-19', fr:{text:'Vous avez été rachetés par le sang précieux du Christ, comme d\u2019un agneau sans défaut et sans tache.', ref:'1 Pierre 1:19'}, en:{text:'You were ransomed with the precious blood of Christ, like that of a lamb without blemish or spot.', ref:'1 Peter 1:19'}}
   ]},
   {id:'foi', name:{fr:'Foi et espérance', en:'Faith and Hope'}, verses:[
-    {id:'heb-11-1', fr:{text:'La foi est la garantie des biens qu\'on espère, la preuve des réalités qu\'on ne voit pas.', ref:'Hébreux 11:1'}, en:{text:'Faith is the assurance of things hoped for, the conviction of things not seen.', ref:'Hebrews 11:1'}},
-    {id:'rom-10-17', fr:{text:'La foi vient de ce qu\'on entend, et ce qu\'on entend vient de la parole du Christ.', ref:'Romains 10:17'}, en:{text:'Faith comes from hearing, and hearing through the word of Christ.', ref:'Romans 10:17'}},
+    {id:'heb-11-1', fr:{text:'La foi est la garantie des biens qu\u2019on espère, la preuve des réalités qu\u2019on ne voit pas.', ref:'Hébreux 11:1'}, en:{text:'Faith is the assurance of things hoped for, the conviction of things not seen.', ref:'Hebrews 11:1'}},
+    {id:'rom-10-17', fr:{text:'La foi vient de ce qu\u2019on entend, et ce qu\u2019on entend vient de la parole du Christ.', ref:'Romains 10:17'}, en:{text:'Faith comes from hearing, and hearing through the word of Christ.', ref:'Romans 10:17'}},
     {id:'jc-2-26', fr:{text:'Comme le corps sans souffle est mort, de même la foi sans les œuvres est morte.', ref:'Jacques 2:26'}, en:{text:'As the body apart from the spirit is dead, so also faith apart from works is dead.', ref:'James 2:26'}},
     {id:'rom-8-28', fr:{text:'Nous savons que toutes choses concourent au bien de ceux qui aiment Dieu.', ref:'Romains 8:28'}, en:{text:'We know that all things work together for good for those who love God.', ref:'Romans 8:28'}},
-    {id:'jn-11-25', fr:{text:'Je suis la résurrection et la vie. Celui qui croit en moi, même s\'il meurt, vivra.', ref:'Jean 11:25'}, en:{text:'I am the resurrection and the life. Whoever believes in me, though he die, yet shall he live.', ref:'John 11:25'}},
-    {id:'rom-15-13', fr:{text:'Que le Dieu de l\'espérance vous remplisse de toute joie et paix dans la foi.', ref:'Romains 15:13'}, en:{text:'May the God of hope fill you with all joy and peace in believing.', ref:'Romans 15:13'}},
-  ]},
+    {id:'jn-11-25', fr:{text:'Je suis la résurrection et la vie. Celui qui croit en moi, même s\u2019il meurt, vivra.', ref:'Jean 11:25'}, en:{text:'I am the resurrection and the life. Whoever believes in me, though he die, yet shall he live.', ref:'John 11:25'}},
+    {id:'rom-15-13', fr:{text:'Que le Dieu de l\u2019espérance vous remplisse de toute joie et paix dans la foi.', ref:'Romains 15:13'}, en:{text:'May the God of hope fill you with all joy and peace in believing.', ref:'Romans 15:13'}}
+  ]}
 ];
 
-// ══════════════════════════════════════════════════════
-// STATE
-// ══════════════════════════════════════════════════════
-const S = {
-  lang: localStorage.getItem('lm_lang') || 'fr',
-  uid: null,
-  mode: 0,
-  selCats: [],
-  progress: {},    // {itemId:{box,dueRound}}
-  customCats: [],
-  roundN: 0,
-  round: [],       // [{item,qMode,answered,correct,choices}]
-  rIdx: 0,
-  rRes: [],
-  pendingCat: null,
+// ════════ ÉTAT ════════
+const S={
+  lang:localStorage.getItem('lm_lang')||'fr',
+  uid:null, mode:0,
+  selCats:[], progress:{}, step:0, customCats:[], baseEdits:{},
+  open:{},          // catId -> bool (déplié)
+  cur:null, lastId:null, answered:0, correct:0,
+  pendingCat:null, editCat:null, editVerse:null
 };
 
-// ══════════════════════════════════════════════════════
-// UTILS
-// ══════════════════════════════════════════════════════
-const $ = id => document.getElementById(id);
-const t = k => (T[S.lang]||T.fr)[k]||k;
-const shuffle = a => {for(let i=a.length-1;i>0;i--){const j=0|Math.random()*(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
-const trunc = (s,n) => s.length>n ? s.slice(0,n)+'…' : s;
+// ════════ OUTILS ════════
+const $=id=>document.getElementById(id);
+const t=k=>(T[S.lang]||T.fr)[k]||k;
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=0|Math.random()*(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
+const trunc=(s,n)=>s.length>n?s.slice(0,n)+'…':s;
+function effectiveCats(){
+  const base=PRE.map(c=>{const ov=S.baseEdits[c.id];return ov?{id:c.id,name:ov.name,verses:ov.verses,base:true}:{id:c.id,name:c.name,verses:c.verses,base:true};});
+  return [...base,...S.customCats.map(c=>({...c,base:false}))];
+}
+const allCats=effectiveCats;
+function allItems(){const out=[];effectiveCats().filter(c=>S.selCats.includes(c.id)).forEach(c=>c.verses.forEach(v=>out.push({...v,catId:c.id})));return out;}
+// clone profond de la version effective d'une catégorie de base, pour la rendre éditable
+function baseClone(catId){const e=effectiveCats().find(c=>c.id===catId);return{name:JSON.parse(JSON.stringify(e.name)),verses:JSON.parse(JSON.stringify(e.verses))};}
+function editBase(catId,fn){const c=S.baseEdits[catId]||baseClone(catId);fn(c);S.baseEdits[catId]=c;saveBaseEdits();}
+function isBase(catId){return PRE.some(c=>c.id===catId);}
 
-function allItems(){
-  const cats=[...PRE,...S.customCats].filter(c=>S.selCats.includes(c.id));
-  const items=[];
-  cats.forEach(c=>c.verses.forEach(v=>items.push({...v,catId:c.id})));
-  return items;
+// ════════ ALGORITHME (Leitner, infini) ════════
+const IVLS=[0,4,8,16,32,64];       // pas avant nouvelle échéance, par niveau
+const boxOf=id=>(S.progress[id]||{box:0}).box;
+const dueOf=id=>(S.progress[id]||{due:0}).due||0;
+function isDue(id){const p=S.progress[id];if(!p)return true;if(p.box===0)return true;return p.due<=S.step;}
+function levelOf(id){const b=boxOf(id);return b<=1?'r':b<=3?'a':'v';}     // rouge / ambre / vert
+function setLevel(id,lvl){const b=lvl==='r'?0:lvl==='a'?2:5;S.progress[id]={box:b,due:S.step+IVLS[b]};}
+function answer(id,ok){
+  const p=S.progress[id]||{box:0,due:0};
+  if(ok){ p.box=Math.min(5,p.box+1); p.due=S.step+IVLS[p.box]; }
+  else  { p.box=Math.max(0,p.box-2); p.due=S.step+2; }   // erreur : on redescend de 2 et on revoit vite
+  S.progress[id]=p; S.step++;
+}
+function nextItem(){
+  const items=allItems(); if(!items.length)return null;
+  let pool=items.filter(i=>i.id!==S.lastId); if(!pool.length)pool=items;
+  const due=pool.filter(i=>isDue(i.id));
+  const cand=due.length?due:pool;
+  cand.sort((a,b)=>{const ba=boxOf(a.id),bb=boxOf(b.id);if(ba!==bb)return ba-bb;return dueOf(a.id)-dueOf(b.id);});
+  const low=boxOf(cand[0].id);
+  const top=cand.filter(i=>boxOf(i.id)===low);
+  return top[0|Math.random()*top.length];
+}
+function getOptions(item){
+  const others=shuffle(allItems().filter(i=>i.id!==item.id)).slice(0,3);
+  return shuffle([item,...others]);
 }
 
-function showAuthMsg(msg,isErr){
-  const el=$(isErr?'auth-err':'auth-ok');
-  const other=$(isErr?'auth-ok':'auth-err');
-  el.textContent=msg; el.style.display='block'; other.style.display='none';
-}
-function clearAuthMsg(){$('auth-err').style.display='none';$('auth-ok').style.display='none';}
-
-// ══════════════════════════════════════════════════════
-// FIRESTORE
-// ══════════════════════════════════════════════════════
-function udoc(p){return db.doc(`users/${S.uid}/${p}`)}
-function ucol(p){return db.collection(`users/${S.uid}/${p}`)}
-
+// ════════ FIRESTORE ════════
+const udoc=p=>db.doc('users/'+S.uid+'/'+p);
+const ucol=p=>db.collection('users/'+S.uid+'/'+p);
 async function loadUser(){
   try{
-    const [meta,prog,prefs,snap]=await Promise.all([
-      udoc('meta/app').get(),
-      udoc('meta/progress').get(),
-      udoc('meta/prefs').get(),
-      ucol('categories').get()
-    ]);
-    S.roundN  = meta.exists  ? (meta.data().roundN||0)  : 0;
-    S.progress= prog.exists  ? (prog.data().items||{})  : {};
+    const [prog,prefs,snap,base]=await Promise.all([udoc('meta/progress').get(),udoc('meta/prefs').get(),ucol('categories').get(),udoc('meta/baseEdits').get()]);
+    if(prog.exists){S.progress=prog.data().items||{};S.step=prog.data().step||0;}else{S.progress={};S.step=0;}
     S.customCats=snap.docs.map(d=>({id:d.id,...d.data()}));
-    if(prefs.exists){
-      S.selCats=prefs.data().selCats||[];
-      S.mode   =prefs.data().mode||0;
-    } else {
-      S.selCats=PRE.map(c=>c.id);
-    }
-  }catch(e){console.error(e)}
+    S.baseEdits=base.exists?(base.data().cats||{}):{};
+    if(prefs.exists){S.selCats=prefs.data().selCats||[];S.mode=prefs.data().mode||0;}
+    else{S.selCats=PRE.map(c=>c.id);}
+  }catch(e){console.error(e);}
 }
+function saveProgress(){udoc('meta/progress').set({items:S.progress,step:S.step});}
+function savePrefs(){udoc('meta/prefs').set({selCats:S.selCats,mode:S.mode});}
+function saveCat(c){return ucol('categories').doc(c.id).set({name:c.name,verses:c.verses});}
+function saveBaseEdits(){udoc('meta/baseEdits').set({cats:S.baseEdits});}
 
-async function saveProgress(){
-  await Promise.all([
-    udoc('meta/progress').set({items:S.progress},{merge:true}),
-    udoc('meta/app').set({roundN:S.roundN},{merge:true})
-  ]);
-}
-
-async function savePrefs(){
-  udoc('meta/prefs').set({selCats:S.selCats,mode:S.mode});
-}
-
-async function saveCat(cat){
-  await ucol('categories').doc(cat.id).set({name:cat.name,verses:cat.verses});
-}
-
-async function delCat(id){await ucol('categories').doc(id).delete()}
-
-// ══════════════════════════════════════════════════════
-// LEITNER ALGORITHM
-// ══════════════════════════════════════════════════════
-const IVLS=[1,2,4,8,16,32];
-
-function isDue(id){
-  const p=S.progress[id];
-  if(!p) return true;
-  if(p.box===0) return true;
-  return p.dueRound<=S.roundN;
-}
-
-function selectItems(n=6){
-  const all=allItems();
-  const due=shuffle(all.filter(i=>isDue(i.id)));
-  const notDue=shuffle(all.filter(i=>!isDue(i.id)));
-  due.sort((a,b)=>{
-    const ba=(S.progress[a.id]||{box:-1}).box;
-    const bb=(S.progress[b.id]||{box:-1}).box;
-    return ba-bb;
+// ════════ UI : CATÉGORIES & MÉMOIRE ════════
+function renderCats(){
+  const host=$('cat-list'); host.innerHTML='';
+  allCats().forEach(cat=>{
+    const custom=!!S.customCats.find(c=>c.id===cat.id);
+    const sel=S.selCats.includes(cat.id);
+    const open=!!S.open[cat.id];
+    // distribution
+    let r=0,a=0,v=0;
+    cat.verses.forEach(vv=>{const l=levelOf(vv.id);if(l==='r')r++;else if(l==='a')a++;else v++;});
+    const tot=cat.verses.length||1;
+    const dist='<i class="r" style="width:'+(r/tot*100)+'%"></i><i class="a" style="width:'+(a/tot*100)+'%"></i><i class="v" style="width:'+(v/tot*100)+'%"></i>'+(cat.verses.length?'':'<i class="e" style="width:100%"></i>');
+    const div=document.createElement('div');
+    div.className='cat'+(sel?' sel':'')+(open?' open':'');
+    div.dataset.id=cat.id;
+    let body='<div class="cat-body"><div class="markall"><span>'+t('markall')+'</span><span class="markall-dots"><span class="dot r" data-all="r"></span><span class="dot a" data-all="a"></span><span class="dot v" data-all="v"></span></span></div>';
+    cat.verses.forEach(vv=>{
+      const l=levelOf(vv.id);
+      body+='<div class="vrow"><span class="vline" data-editv="'+vv.id+'"><span class="vref">'+vv[S.lang].ref+'</span><span class="vtext">'+trunc(vv[S.lang].text,58)+'</span></span><span class="lvl">'
+        +'<span class="dot r'+(l==='r'?' act':'')+'" data-set="r" data-v="'+vv.id+'"></span>'
+        +'<span class="dot a'+(l==='a'?' act':'')+'" data-set="a" data-v="'+vv.id+'"></span>'
+        +'<span class="dot v'+(l==='v'?' act':'')+'" data-set="v" data-v="'+vv.id+'"></span></span>'
+        +'<span class="del-v" data-delv="'+vv.id+'">×</span></div>';
+    });
+    body+='<div class="cat-custom-acts"><span class="mini-act" data-addv="1">+ '+t('addverse')+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span>'+(custom?'<span class="mini-act del" data-delc="1">'+t('del')+'</span>':'')+'</div>';
+    body+='</div>';
+    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp">'+cat.name[S.lang]+'</span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
+    host.appendChild(div);
   });
-  const sel=[...due.slice(0,n)];
-  if(sel.length<n) sel.push(...notDue.slice(0,n-sel.length));
-  return shuffle(sel.slice(0,n));
+  updateStart();
 }
+function updateStart(){$('start-btn').disabled=!(S.selCats.length&&allItems().length>=2);}
 
-function updateItem(id,correct){
-  const p=S.progress[id]||{box:0,dueRound:0};
-  p.box=correct?Math.min(5,p.box+1):Math.max(0,p.box-1);
-  p.dueRound=S.roundN+IVLS[p.box];
-  S.progress[id]=p;
-}
-
-function getChoices(item,qMode,roundItems){
-  const l=S.lang;
-  const correct=qMode==='vr'?item[l].ref:item[l].text;
-  let pool=roundItems.filter(i=>i.id!==item.id);
-  let distractors=shuffle(pool.map(i=>qMode==='vr'?i[l].ref:i[l].text)).slice(0,3);
-  if(distractors.length<3){
-    const extra=shuffle(allItems().filter(i=>i.id!==item.id)
-      .map(i=>qMode==='vr'?i[l].ref:i[l].text)
-      .filter(x=>!distractors.includes(x)));
-    distractors=[...distractors,...extra].slice(0,3);
-  }
-  return shuffle([correct,...distractors]);
-}
-
-// ══════════════════════════════════════════════════════
-// GAME ENGINE
-// ══════════════════════════════════════════════════════
-function startRound(){
-  const items=selectItems(6);
-  if(items.length<2){alert(t('not_enough'));return;}
-  S.round=items.map(item=>{
-    const qMode=S.mode===0?(Math.random()<.5?'vr':'rv'):S.mode===1?'vr':'rv';
-    return{item,qMode,answered:false,correct:null,choices:getChoices(item,qMode,items)};
-  });
-  S.rIdx=0; S.rRes=[];
-  $('start-btn').style.display='none';
-  $('game-area').style.display='block';
-  $('summary').classList.remove('on');
-  $('q-wrap').style.display='';
-  renderPips(); renderQuestion();
-}
-
-function renderPips(){
-  const c=$('pips'); c.innerHTML='';
-  S.round.forEach((q,i)=>{
-    const p=document.createElement('div');
-    p.className='pip'+(q.answered?(q.correct?' ok':' bad'):(i===S.rIdx?' cur':''));
-    c.appendChild(p);
-  });
-  $('pip-lbl').textContent=`${S.rIdx+1} / ${S.round.length}`;
-}
-
-function renderQuestion(){
-  const q=S.round[S.rIdx];
-  $('q-type').textContent=q.qMode==='vr'?t('find_ref'):t('find_verse');
-  const pr=$('prompt');
-  pr.textContent=q.qMode==='vr'?q.item[S.lang].text:q.item[S.lang].ref;
-  pr.className='prompt'+(q.qMode==='rv'?' ref':'');
-  const grid=$('choices'); grid.innerHTML='';
-  q.choices.forEach(ch=>{
-    const b=document.createElement('button');
-    b.className='choice'; b.textContent=ch;
-    b.addEventListener('click',()=>pick(ch,q));
-    grid.appendChild(b);
-  });
-}
-
-function pick(ch,q){
-  const correct=q.qMode==='vr'?q.item[S.lang].ref:q.item[S.lang].text;
-  const ok=ch===correct;
-  q.answered=true; q.correct=ok;
-  S.rRes.push({item:q.item,correct:ok});
-  updateItem(q.item.id,ok);
-  $('choices').querySelectorAll('.choice').forEach(b=>{
-    b.disabled=true;
-    if(b.textContent===correct) b.classList.add(ok?'ok':'show');
-    else if(b.textContent===ch&&!ok) b.classList.add('bad');
-  });
-  renderPips();
-  setTimeout(()=>{
-    S.rIdx++;
-    if(S.rIdx>=S.round.length) endRound();
-    else renderQuestion();
-  },ok?700:1300);
-}
-
-async function endRound(){
-  S.roundN++;
-  await saveProgress();
-  renderStats();
-  $('q-wrap').style.display='none';
-  const sc=S.rRes.filter(r=>r.correct).length;
-  $('sum-score').textContent=`${sc}/${S.round.length}`;
-  $('sum-lbl').textContent=t('round_done');
-  const list=$('sum-list'); list.innerHTML='';
-  S.rRes.forEach(r=>{
-    const d=document.createElement('div');
-    d.className='sum-row';
-    d.innerHTML=`<span class="sum-icon">${r.correct?'✓':'✗'}</span><div><div class="sum-v">${trunc(r.item[S.lang].text,90)}</div><div class="sum-r">${r.item[S.lang].ref}</div></div>`;
-    list.appendChild(d);
-  });
-  $('cont-btn').textContent=t('cont');
-  $('summary').classList.add('on');
-}
-
-// ══════════════════════════════════════════════════════
-// UI
-// ══════════════════════════════════════════════════════
-function renderAll(){applyLang();renderChips();renderModes();renderStats();renderCustom();updateStart()}
-
+// ════════ UI : STUDY ════════
 function applyLang(){
   const l=S.lang,tl=T[l];
-  document.documentElement.lang=l;
-  document.title=`${tl.hdr} · Lumen Veritatis`;
-  $('hdr-title').textContent=tl.hdr;
-  $('lang-btn').textContent=tl.lang_toggle;
-  $('logout-btn').textContent=tl.logout;
-  $('lbl-cats').textContent=tl.lbl_cats;
-  $('lbl-prog').textContent=tl.lbl_prog;
-  $('lbl-custom').textContent=tl.lbl_custom;
-  $('add-cat-btn').textContent=tl.add_cat;
-  $('start-btn').textContent=tl.start;
-  $('mode-0').textContent=tl.mode_0;
-  $('mode-1').textContent=tl.mode_1;
-  $('mode-2').textContent=tl.mode_2;
-  // auth
-  $('tab-si').textContent=tl.tab_si;
-  $('tab-su').textContent=tl.tab_su;
-  $('lbl-email').textContent=tl.lbl_email;
-  $('lbl-pw').textContent=tl.lbl_pw;
-  $('lbl-cf').textContent=tl.lbl_cf;
+  document.documentElement.lang=l; document.title=tl.hdr+' · Lumen Veritatis';
+  $('tab-si').textContent=tl.tab_si; $('tab-su').textContent=tl.tab_su;
+  $('i-email').placeholder=tl.ph_email; $('i-pw').placeholder=tl.ph_pw; $('i-cf').placeholder=tl.ph_cf;
   $('lbl-google').textContent=tl.google;
-  if(authMode==='forgot') $('auth-link').textContent=tl.back;
-  else $('auth-link').textContent=tl.forgot;
-  $('btn-submit').textContent=authMode==='si'?tl.btn_si:authMode==='su'?tl.btn_su:(S.lang==='fr'?'Envoyer le lien':'Send link');
+  $('auth-or').textContent=l==='fr'?'ou':'or';
+  $('b-forgot').textContent=authMode==='forgot'?tl.back:tl.forgot;
+  $('b-submit').textContent=authMode==='si'?tl.b_si:authMode==='su'?tl.b_su:tl.b_reset;
+  $('hdr-title').textContent=tl.hdr; $('lang-btn').textContent=tl.lang; $('logout-btn').textContent=tl.logout;
+  $('lbl-cats').textContent=tl.cats; $('lbl-newcat').textContent=tl.newcat; $('lbl-mode').textContent=tl.mode;
+  $('mode-0').textContent=tl.mode0; $('mode-1').textContent=tl.mode1; $('mode-2').textContent=tl.mode2;
+  $('start-btn').textContent=tl.start; $('reset-btn').textContent=tl.reset; $('finish-btn').textContent=tl.finish;
+  $('restore-btn').textContent=tl.restore; $('lbl-markglobal').textContent=tl.markglobal;
+  $('sum-back').textContent=tl.backbtn;
 }
-
-function renderChips(){
-  const c=$('cat-chips'); c.innerHTML='';
-  [...PRE,...S.customCats].forEach(cat=>{
+function showView(v){
+  $('setup').style.display=v==='setup'?'block':'none';
+  $('study').style.display=v==='study'?'block':'none';
+  $('summary').style.display=v==='summary'?'block':'none';
+}
+function startSession(){
+  if(!S.selCats.length){alert(t('empty_sel'));return;}
+  if(allItems().length<2){alert(t('not_enough'));return;}
+  S.answered=0; S.correct=0; S.lastId=null;
+  showView('study'); nextQuestion();
+}
+function nextQuestion(){
+  const item=nextItem(); if(!item){endSession();return;}
+  S.lastId=item.id;
+  const qMode=S.mode===0?(Math.random()<.5?'vr':'rv'):S.mode===1?'vr':'rv';
+  S.cur={item,qMode,options:getOptions(item),done:false};
+  renderQuestion();
+}
+function renderQuestion(){
+  const q=S.cur,l=S.lang;
+  $('study-stat').innerHTML='<b>'+S.answered+'</b> '+t('answered')+' · <b>'+S.correct+'</b> '+t('correct');
+  $('q-label').textContent=q.qMode==='vr'?t('find_ref'):t('find_verse');
+  const pr=$('q-prompt');
+  pr.textContent=q.qMode==='vr'?q.item[l].text:q.item[l].ref;
+  pr.className='q-prompt'+(q.qMode==='rv'?' ref':'');
+  // relancer l\u2019animation d\u2019entrée
+  const qb=$('qbox'); qb.style.animation='none'; void qb.offsetHeight; qb.style.animation='rise .5s cubic-bezier(.2,.7,.3,1) both';
+  const opts=$('opts'); opts.className='opts'+(q.qMode==='vr'?' two':''); opts.innerHTML='';
+  q.options.forEach((opt,i)=>{
     const b=document.createElement('button');
-    const isCust=!!S.customCats.find(x=>x.id===cat.id);
-    b.className='cat-chip'+(isCust?' custom':'')+(S.selCats.includes(cat.id)?' on':'');
-    b.textContent=cat.name[S.lang]||cat.name.fr;
-    b.addEventListener('click',()=>toggleCat(cat.id));
-    c.appendChild(b);
+    b.className='opt'+(q.qMode==='rv'?' refopt':'');
+    b.style.animationDelay=(60+i*55)+'ms';
+    b.dataset.oid=opt.id;
+    b.innerHTML='<span class="num">'+(i+1)+'</span>'+(q.qMode==='vr'?opt[l].ref:opt[l].text);
+    b.addEventListener('click',()=>pick(opt,b));
+    opts.appendChild(b);
   });
 }
-
-function toggleCat(id){
-  S.selCats.includes(id)?S.selCats=S.selCats.filter(x=>x!==id):S.selCats.push(id);
-  renderChips(); updateStart(); savePrefs();
-}
-
-function renderModes(){
-  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.toggle('on',+b.dataset.m===S.mode));
-}
-
-function updateStart(){
-  const ok=allItems().length>=2&&S.selCats.length>0;
-  $('start-btn').disabled=!ok;
-}
-
-function renderStats(){
-  const g=$('stats-grid'); g.innerHTML='';
-  [...PRE,...S.customCats].filter(c=>S.selCats.includes(c.id)).forEach(cat=>{
-    if(!cat.verses.length) return;
-    const mastered=cat.verses.filter(v=>(S.progress[v.id]||{box:0}).box>=4).length;
-    const pct=Math.round(mastered/cat.verses.length*100);
-    const r=document.createElement('div');
-    r.className='stat-row';
-    r.innerHTML=`<div class="stat-hdr"><span>${cat.name[S.lang]||cat.name.fr}</span><span>${mastered}/${cat.verses.length} ${t('mastered')}</span></div><div class="bar-track"><div class="bar-fill${pct>=80?' full':''}" style="width:${pct}%"></div></div>`;
-    g.appendChild(r);
+function pick(opt,btn){
+  if(S.cur.done)return; S.cur.done=true;
+  const q=S.cur, ok=opt.id===q.item.id;
+  S.answered++; if(ok)S.correct++;
+  answer(q.item.id,ok); saveProgress();
+  $('opts').querySelectorAll('.opt').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.oid===q.item.id)b.classList.add(ok?'ok':'reveal');
+    else if(b.dataset.oid===opt.id&&!ok)b.classList.add('bad');
   });
+  $('study-stat').innerHTML='<b>'+S.answered+'</b> '+t('answered')+' · <b>'+S.correct+'</b> '+t('correct');
+  setTimeout(nextQuestion, ok?650:1450);
+}
+function endSession(){
+  showView('summary');
+  $('sum-num').textContent=S.answered?Math.round(S.correct/S.answered*100)+'%':'—';
+  $('sum-sub').textContent=t('done');
+  let vCount=0; allItems().forEach(i=>{if(levelOf(i.id)==='v')vCount++;});
+  $('sum-detail').textContent=S.correct+' / '+S.answered+' '+t('correct')+'  ·  '+vCount+' '+t('acquired');
+  renderCats();
 }
 
-function renderCustom(){
-  const list=$('ccat-list'); list.innerHTML='';
-  if(!S.customCats.length){
-    list.innerHTML=`<p style="color:var(--pa);font-size:14px">${t('no_ccat')}</p>`;return;
-  }
-  S.customCats.forEach(cat=>{
-    const vl=cat.verses.map(v=>`
-      <div class="cv-row">
-        <span class="cv-text">${v[S.lang]?.text||v.fr?.text||''}</span>
-        <span class="cv-ref">${v[S.lang]?.ref||v.fr?.ref||''}</span>
-        <button class="del-v" data-c="${cat.id}" data-v="${v.id}">×</button>
-      </div>`).join('');
-    const card=document.createElement('div');
-    card.className='ccat-card';
-    card.innerHTML=`<div class="ccat-head"><div class="ccat-name">${cat.name[S.lang]||cat.name.fr}</div><div class="ccat-acts"><button class="act add-v" data-c="${cat.id}">+ ${t('vers')}</button><button class="act del" data-dc="${cat.id}">✕</button></div></div><div class="cv-list">${vl}</div>`;
-    list.appendChild(card);
-  });
-}
-
-// ══════════════════════════════════════════════════════
-// CUSTOM CRUD
-// ══════════════════════════════════════════════════════
+// ════════ CRUD CATÉGORIES ════════
 function openModal(id){$(id).classList.add('on')}
 function closeModal(id){$(id).classList.remove('on')}
-
-async function createCat(){
-  const fr=$('inp-cfr').value.trim(), en=$('inp-cen').value.trim();
-  if(!fr) return;
-  const cat={id:'c'+Date.now(),name:{fr,en:en||fr},verses:[]};
-  S.customCats.push(cat);
-  await saveCat(cat);
-  closeModal('modal-cat'); $('inp-cfr').value=''; $('inp-cen').value='';
-  renderChips(); renderCustom();
+function openNewCat(){S.editCat=null;$('mcat-title').textContent=t('mcat');$('i-cfr').value='';$('i-cen').value='';openModal('m-cat');}
+function openRenameCat(id){const c=effectiveCats().find(x=>x.id===id);if(!c)return;S.editCat=id;$('mcat-title').textContent=t('mcat_edit');$('i-cfr').value=c.name.fr;$('i-cen').value=c.name.en;openModal('m-cat');}
+async function saveCatModal(){
+  const fr=$('i-cfr').value.trim(),en=$('i-cen').value.trim(); if(!fr)return;
+  if(S.editCat){
+    if(isBase(S.editCat)) editBase(S.editCat,c=>{c.name={fr,en:en||fr};});
+    else{const c=S.customCats.find(x=>x.id===S.editCat);c.name={fr,en:en||fr};await saveCat(c);}
+  } else {
+    const c={id:'c'+Date.now(),name:{fr,en:en||fr},verses:[]};S.customCats.push(c);S.selCats.push(c.id);await saveCat(c);savePrefs();
+  }
+  closeModal('m-cat'); renderCats();
+}
+async function delCatById(id){
+  if(!confirm(t('del_cat_q')))return;
+  S.customCats=S.customCats.filter(c=>c.id!==id); S.selCats=S.selCats.filter(x=>x!==id);
+  await ucol('categories').doc(id).delete(); savePrefs(); renderCats();
+}
+function openAddVerse(catId){S.pendingCat=catId;S.editVerse=null;$('mv-title').textContent=t('mv');['i-vfr','i-rfr','i-ven','i-ren'].forEach(x=>$(x).value='');openModal('m-verse');}
+function openEditVerse(catId,vId){
+  const c=effectiveCats().find(x=>x.id===catId); if(!c)return;
+  const v=c.verses.find(x=>x.id===vId); if(!v)return;
+  S.pendingCat=catId; S.editVerse=vId; $('mv-title').textContent=t('mv_edit');
+  $('i-vfr').value=v.fr.text; $('i-rfr').value=v.fr.ref; $('i-ven').value=v.en.text; $('i-ren').value=v.en.ref;
+  openModal('m-verse');
+}
+async function saveVerseModal(){
+  const tfr=$('i-vfr').value.trim(),rfr=$('i-rfr').value.trim(),ten=$('i-ven').value.trim(),ren=$('i-ren').value.trim();
+  if(!tfr||!rfr)return;
+  const catId=S.pendingCat, base=isBase(catId);
+  if(S.editVerse){
+    const apply=c=>{const v=c.verses.find(x=>x.id===S.editVerse);if(v){v.fr={text:tfr,ref:rfr};v.en={text:ten||tfr,ref:ren||rfr};}};
+    if(base) editBase(catId,apply); else{const c=S.customCats.find(x=>x.id===catId);apply(c);await saveCat(c);}
+  } else {
+    const nv={id:'v'+Date.now(),fr:{text:tfr,ref:rfr},en:{text:ten||tfr,ref:ren||rfr}};
+    if(base) editBase(catId,c=>c.verses.push(nv)); else{const c=S.customCats.find(x=>x.id===catId);c.verses.push(nv);await saveCat(c);}
+  }
+  closeModal('m-verse'); renderCats();
+}
+async function delVerse(catId,vId){
+  if(isBase(catId)) editBase(catId,c=>{c.verses=c.verses.filter(v=>v.id!==vId);});
+  else{const c=S.customCats.find(x=>x.id===catId);if(!c)return;c.verses=c.verses.filter(v=>v.id!==vId);await saveCat(c);}
+  delete S.progress[vId]; saveProgress(); renderCats();
+}
+function restoreBase(){
+  if(!confirm(t('restore_q')))return;
+  S.baseEdits={}; udoc('meta/baseEdits').set({cats:{}}); renderCats();
 }
 
-async function deleteCat(id){
-  if(!confirm(S.lang==='fr'?'Supprimer cette catégorie ?':'Delete this category?'))return;
-  S.customCats=S.customCats.filter(c=>c.id!==id);
-  S.selCats=S.selCats.filter(x=>x!==id);
-  await delCat(id);
-  renderChips(); renderCustom(); updateStart();
-}
-
-function openAddVerse(catId){
-  S.pendingCat=catId;
-  ['vfr','rfr','ven','ren'].forEach(id=>$(id).value='');
-  openModal('modal-verse');
-}
-
-async function saveVerse(){
-  const tfr=$('vfr').value.trim(), rfr=$('rfr').value.trim();
-  const ten=$('ven').value.trim(), ren=$('ren').value.trim();
-  if(!tfr||!rfr) return;
-  const cat=S.customCats.find(c=>c.id===S.pendingCat);
-  if(!cat) return;
-  cat.verses.push({id:'v'+Date.now(),fr:{text:tfr,ref:rfr},en:{text:ten||tfr,ref:ren||rfr}});
-  await saveCat(cat);
-  closeModal('modal-verse'); renderCustom(); updateStart();
-}
-
-async function deleteVerse(catId,vId){
-  const cat=S.customCats.find(c=>c.id===catId); if(!cat)return;
-  cat.verses=cat.verses.filter(v=>v.id!==vId);
-  await saveCat(cat);
-  delete S.progress[vId];
-  renderCustom(); updateStart();
-}
-
-// ══════════════════════════════════════════════════════
-// AUTH UI
-// ══════════════════════════════════════════════════════
+// ════════ AUTH UI ════════
 let authMode='si';
-
-function setMode(m){
-  authMode=m; clearAuthMsg();
-  $('tab-si').classList.toggle('on',m==='si');
-  $('tab-su').classList.toggle('on',m==='su');
-  $('auth-tabs').style.display=m==='forgot'?'none':'';
-  $('field-cf').style.display=m==='su'?'':'none';
-  $('field-pw').style.display=m==='forgot'?'none':'';
-  $('auth-div').style.display=m==='forgot'?'none':'';
-  $('btn-google').style.display=m==='forgot'?'none':'';
+function setAuth(m){
+  authMode=m; clrMsg();
+  $('tab-si').classList.toggle('on',m==='si'); $('tab-su').classList.toggle('on',m==='su');
+  $('auth-tabs').style.display=m==='forgot'?'none':'flex';
+  $('row-pw').style.display=m==='forgot'?'none':'block';
+  $('row-cf').style.display=m==='su'?'block':'none';
+  $('auth-or').style.display=m==='forgot'?'none':'flex';
+  $('b-google').style.display=m==='forgot'?'none':'flex';
   applyLang();
 }
+function showMsg(txt,kind){const m=$('auth-msg');m.textContent=txt;m.className='auth-msg '+kind;}
+function clrMsg(){const m=$('auth-msg');m.className='auth-msg';m.textContent='';}
 
-// ══════════════════════════════════════════════════════
-// EVENTS
-// ══════════════════════════════════════════════════════
+// ════════ ÉVÉNEMENTS ════════
 document.addEventListener('DOMContentLoaded',()=>{
-  $('tab-si').onclick=()=>setMode('si');
-  $('tab-su').onclick=()=>setMode('su');
-  $('auth-link').onclick=()=>setMode(authMode==='forgot'?'si':'forgot');
-
-  $('btn-submit').onclick=async()=>{
-    const em=$('inp-email').value.trim(), pw=$('inp-pw').value, cf=$('inp-cf').value;
-    clearAuthMsg();
+  $('tab-si').onclick=()=>setAuth('si');
+  $('tab-su').onclick=()=>setAuth('su');
+  $('b-forgot').onclick=()=>setAuth(authMode==='forgot'?'si':'forgot');
+  $('b-submit').onclick=async()=>{
+    const em=$('i-email').value.trim(),pw=$('i-pw').value,cf=$('i-cf').value; clrMsg();
     try{
-      if(authMode==='forgot'){await auth.sendPasswordResetEmail(em);showAuthMsg(t('reset_ok'),false);}
-      else if(authMode==='su'){
-        if(pw!==cf){showAuthMsg(S.lang==='fr'?'Les mots de passe ne correspondent pas.':'Passwords do not match.',true);return;}
-        await auth.createUserWithEmailAndPassword(em,pw);
-      } else {
-        await auth.signInWithEmailAndPassword(em,pw);
-      }
-    }catch(e){showAuthMsg(e.message,true);}
+      if(authMode==='forgot'){await auth.sendPasswordResetEmail(em);showMsg(t('reset_sent'),'ok');}
+      else if(authMode==='su'){if(pw!==cf){showMsg(t('pw_mismatch'),'err');return;}await auth.createUserWithEmailAndPassword(em,pw);}
+      else{await auth.signInWithEmailAndPassword(em,pw);}
+    }catch(e){showMsg(e.message,'err');}
   };
-
-  ['inp-email','inp-pw','inp-cf'].forEach(id=>{
-    $(id).addEventListener('keydown',e=>{if(e.key==='Enter')$('btn-submit').click()});
-  });
-
-  $('btn-google').onclick=async()=>{
-    try{await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());}
-    catch(e){showAuthMsg(e.message,true);}
-  };
-
+  ['i-email','i-pw','i-cf'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')$('b-submit').click();}));
+  $('b-google').onclick=async()=>{try{await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());}catch(e){showMsg(e.message,'err');}};
   $('logout-btn').onclick=()=>auth.signOut();
-
-  $('lang-btn').onclick=()=>{
-    S.lang=S.lang==='fr'?'en':'fr';
-    localStorage.setItem('lm_lang',S.lang);
-    renderAll();
-    if($('game-area').style.display!=='none'&&S.rIdx<S.round.length&&!$('summary').classList.contains('on')) renderQuestion();
-  };
-
-  $('mode-row').onclick=e=>{
-    const b=e.target.closest('.mode-btn'); if(!b)return;
-    S.mode=+b.dataset.m; renderModes(); savePrefs();
-  };
-
-  $('start-btn').onclick=()=>startRound();
-
-  $('cont-btn').onclick=()=>{
-    $('summary').classList.remove('on');
-    $('q-wrap').style.display='';
-    startRound();
-  };
-
-  $('ccat-list').onclick=async e=>{
-    const av=e.target.closest('.add-v');
-    const dc=e.target.closest('[data-dc]');
-    const dv=e.target.closest('.del-v');
-    if(av) openAddVerse(av.dataset.c);
-    else if(dc) await deleteCat(dc.dataset.dc);
-    else if(dv) await deleteVerse(dv.dataset.c,dv.dataset.v);
-  };
-
-  $('add-cat-btn').onclick=()=>{$('mcat-title').textContent=t('mcat');openModal('modal-cat')};
-  $('mcat-cancel').onclick=()=>closeModal('modal-cat');
-  $('mcat-save').onclick=createCat;
-  $('mv-cancel').onclick=()=>closeModal('modal-verse');
-  $('mv-save').onclick=saveVerse;
-  ['modal-cat','modal-verse'].forEach(id=>{$(id).onclick=e=>{if(e.target===$(id))closeModal(id)}});
+  $('lang-btn').onclick=()=>{S.lang=S.lang==='fr'?'en':'fr';localStorage.setItem('lm_lang',S.lang);applyLang();renderCats();if($('study').style.display==='block'&&S.cur&&!S.cur.done)renderQuestion();};
+  $('modes').onclick=e=>{const b=e.target.closest('.mode');if(!b)return;S.mode=+b.dataset.m;document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',x===b));savePrefs();};
+  $('start-btn').onclick=startSession;
+  $('finish-btn').onclick=endSession;
+  $('sum-back').onclick=()=>showView('setup');
+  $('reset-btn').onclick=()=>{if(confirm(t('reset_q'))){S.progress={};S.step=0;saveProgress();renderCats();}};
+  $('restore-btn').onclick=restoreBase;
+  $('add-cat').onclick=openNewCat;
+  // marquage global : toutes les catégories sélectionnées
+  document.querySelector('.markglobal .markall-dots').addEventListener('click',e=>{
+    const d=e.target.closest('[data-gall]'); if(!d)return;
+    effectiveCats().filter(c=>S.selCats.includes(c.id)).forEach(c=>c.verses.forEach(v=>setLevel(v.id,d.dataset.gall)));
+    saveProgress(); renderCats();
+  });
+  // clavier 1-4 pendant l'étude
+  document.addEventListener('keydown',e=>{
+    if($('study').style.display!=='block'||!S.cur||S.cur.done)return;
+    const n=parseInt(e.key); if(n>=1&&n<=S.cur.options.length){const btns=$('opts').querySelectorAll('.opt');if(btns[n-1])btns[n-1].click();}
+  });
+  // délégation catégories
+  $('cat-list').addEventListener('click',async e=>{
+    const catEl=e.target.closest('.cat'); if(!catEl)return; const id=catEl.dataset.id;
+    const setDot=e.target.closest('[data-set]');
+    const allDot=e.target.closest('[data-all]');
+    const editv=e.target.closest('[data-editv]');
+    const delv=e.target.closest('[data-delv]');
+    const addv=e.target.closest('[data-addv]');
+    const editc=e.target.closest('[data-editc]');
+    const delc=e.target.closest('[data-delc]');
+    const act=e.target.closest('[data-act]');
+    if(setDot){setLevel(setDot.dataset.v,setDot.dataset.set);saveProgress();renderCats();return;}
+    if(allDot){const c=effectiveCats().find(x=>x.id===id);c.verses.forEach(v=>setLevel(v.id,allDot.dataset.all));saveProgress();renderCats();return;}
+    if(delv){await delVerse(id,delv.dataset.delv);return;}
+    if(editv){openEditVerse(id,editv.dataset.editv);return;}
+    if(addv){openAddVerse(id);return;}
+    if(editc){openRenameCat(id);return;}
+    if(delc){await delCatById(id);return;}
+    if(act&&act.dataset.act==='sel'){S.selCats.includes(id)?S.selCats=S.selCats.filter(x=>x!==id):S.selCats.push(id);savePrefs();renderCats();return;}
+    if(act){S.open[id]=!S.open[id];catEl.classList.toggle('open');return;}
+  });
+  $('mcat-cancel').onclick=()=>closeModal('m-cat'); $('mcat-ok').onclick=saveCatModal;
+  $('mv-cancel').onclick=()=>closeModal('m-verse'); $('mv-ok').onclick=saveVerseModal;
+  ['m-cat','m-verse'].forEach(id=>$(id).addEventListener('click',e=>{if(e.target===$(id))closeModal(id);}));
 });
 
-// ══════════════════════════════════════════════════════
-// AUTH STATE
-// ══════════════════════════════════════════════════════
-auth.onAuthStateChanged(async user=>{
-  if(user){
-    S.uid=user.uid;
-    $('user-mail').textContent=user.email||user.displayName||'';
-    $('auth-screen').style.display='none';
-    $('app-screen').classList.add('on');
-    await loadUser();
-    renderAll();
-  } else {
-    S.uid=null;
-    $('auth-screen').style.display='flex';
-    $('app-screen').classList.remove('on');
-    $('game-area').style.display='none';
-    $('start-btn').style.display='';
-    applyLang(); setMode('si');
+// ════════ OBSERVATEUR AUTH ════════
+auth.onAuthStateChanged(async u=>{
+  if(u){
+    S.uid=u.uid; $('user-mail').textContent=u.email||u.displayName||'';
+    $('auth-screen').style.display='none'; $('app').classList.add('on');
+    await loadUser(); applyLang(); renderCats();
+    document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',+x.dataset.m===S.mode));
+    showView('setup');
+  }else{
+    S.uid=null; $('app').classList.remove('on'); $('auth-screen').style.display='flex';
+    applyLang(); setAuth('si');
   }
 });
 </script>

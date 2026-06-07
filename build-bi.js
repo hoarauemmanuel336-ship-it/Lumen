@@ -34,11 +34,11 @@ const UI = {
     lib_expand: 'Tout déplier', lib_collapse: 'Tout replier',
     objections_label: 'Réponse aux objections',
     lib_empty: "Ce domaine n'a pas encore d'entrée. Les contenus s'ajoutent au fil du temps.",
-    footer_verse: '« La lumière luit dans les ténèbres » (Jean 1:5)',
+    footer_verse: '« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l\'ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span>',
     about_surtitle: 'Le projet', about_title: 'À propos de Lumen',
     about_p: [
       "Lumen est un lieu d'étude et de méditation autour de la foi catholique. Son but est simple : rendre la théologie accessible et fidèle à l'enseignement de l'Église, pour le débutant qui découvre comme pour le croyant qui veut approfondir.",
-      "Chaque entrée s'appuie sur les Écritures, la tradition de l'Église et l'enseignement constant du Magistère. Tout y tend vers une seule fin : <em>« Vous connaîtrez la vérité, et la vérité vous rendra libres. »</em> <span class=\"ref\">Jean 8:32</span>",
+      "Chaque entrée s'appuie sur les Écritures, la tradition de l'Église et l'enseignement constant du Magistère.",
       "Le site est continuellement enrichi et mis à jour."
     ],
     notfound_title: 'Page introuvable', notfound_text: "Cette page n'existe pas.", notfound_back: "Revenir à l'accueil",
@@ -107,10 +107,39 @@ const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">`;
 
+const FIREBASE_HEAD = `<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>`;
+
 const EXTRA_CSS = `
 nav.menu a.lien-langue{font-size:13px;letter-spacing:.2em;opacity:.65}
 nav.menu a.lien-langue:hover{opacity:1}
 @media(max-width:720px){nav.menu a.lien-langue{font-size:16px;letter-spacing:.12em;opacity:1}}
+.auth-icone{position:relative}
+.auth-point{position:absolute;top:0;right:-1px;width:6px;height:6px;border-radius:50%;background:var(--or);display:none}
+.auth-icone.connecte .auth-point{display:block}
+.auth-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);display:none;align-items:center;justify-content:center;padding:24px}
+.auth-overlay.ouvert{display:flex}
+.auth-modal{position:relative;width:100%;max-width:400px;background:var(--encre-2);border:1px solid var(--filet);padding:40px 34px}
+.auth-fermer{position:absolute;top:16px;right:18px;cursor:pointer;color:var(--parchemin-att);font-size:22px;line-height:1;transition:color .3s}
+.auth-fermer:hover{color:var(--parchemin)}
+.auth-m-title{font-family:'Cormorant Garamond',serif;font-size:24px;text-align:center;margin-bottom:24px;color:var(--parchemin)}
+.auth-m-tabs{display:flex;border-bottom:1px solid var(--filet-fort);margin-bottom:22px}
+.auth-m-tab{flex:1;padding:9px;background:none;border:none;border-bottom:2px solid transparent;color:var(--parchemin-att);font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:color .25s,border-color .25s}
+.auth-m-tab.on{color:var(--or);border-bottom-color:var(--or)}
+.auth-modal input{width:100%;background:#161616;border:1px solid var(--filet-fort);color:var(--parchemin);font-family:'EB Garamond',serif;font-size:16px;padding:10px 13px;margin-bottom:12px;outline:none;border-radius:0}
+.auth-modal input:focus{border-color:var(--or)}
+.auth-modal input::placeholder{color:var(--parchemin-att)}
+.auth-m-primary{display:block;width:100%;text-align:center;padding:12px;background:var(--or);color:var(--encre);border:none;font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-top:6px;transition:background .25s}
+.auth-m-primary:hover{background:var(--or-pale)}
+.auth-m-or{text-align:center;color:var(--parchemin-att);font-size:13px;margin:16px 0}
+.auth-m-google{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:10px;background:none;border:1px solid var(--filet-fort);color:var(--parchemin);font-family:'EB Garamond',serif;font-size:15px;cursor:pointer;transition:border-color .25s}
+.auth-m-google:hover{border-color:var(--or)}
+.auth-m-link{display:block;width:100%;text-align:center;background:none;border:none;color:var(--parchemin-att);font-size:14px;margin-top:16px;cursor:pointer;font-family:'EB Garamond',serif;transition:color .25s}
+.auth-m-link:hover{color:var(--or)}
+.auth-m-msg{font-size:14px;padding:8px 12px;margin-bottom:12px;display:none}
+.auth-m-msg.err{display:block;background:rgba(154,59,59,.18);border:1px solid var(--pourpre);color:#eba0a0}
+.auth-m-msg.ok{display:block;background:rgba(58,107,74,.18);border:1px solid #3a6b4a;color:#a0d4b2}
+.auth-m-email{text-align:center;color:var(--parchemin-att);font-size:15px;margin-bottom:22px;word-break:break-all}
 `;
 
 function header(lang, type, base, otherRel, ctx) {
@@ -133,6 +162,7 @@ function header(lang, type, base, otherRel, ctx) {
       <a href="${otherRel}" class="lien-langue" hreflang="${lang === 'fr' ? 'en' : 'fr'}">${u.other_label}</a>
       <span class="rech-loupe cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="${u.news_title}" data-sig="${nsig}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="ll-mob">${u.news_title}</span><span class="cloche-point"></span></span>
       <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="${u.menu_home === 'Home' ? 'Search' : 'Rechercher'}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><span class="ll-mob">${u.menu_home === 'Home' ? 'Search' : 'Rechercher'}</span></span>
+      <span class="rech-loupe auth-icone" id="auth-ouvrir" role="button" tabindex="0" aria-label="${lang === 'fr' ? 'Compte' : 'Account'}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg><span class="ll-mob">${lang === 'fr' ? 'Compte' : 'Account'}</span><span class="auth-point"></span></span>
     </nav>
     <div class="contexte-bar" id="contexte">${ctx || ''}</div>
   </div>
@@ -156,6 +186,31 @@ function header(lang, type, base, otherRel, ctx) {
     </div>
     <div class="nouv-liste" id="nouv-liste">${journal}</div>
   </div>
+</div>
+<div class="auth-overlay" id="auth-overlay">
+  <div class="auth-modal">
+    <span class="auth-fermer" id="auth-fermer" role="button" tabindex="0">✕</span>
+    <div id="auth-out">
+      <div class="auth-m-title">${lang === 'fr' ? 'Connexion' : 'Sign in'}</div>
+      <div class="auth-m-tabs">
+        <button class="auth-m-tab on" id="amt-si">${lang === 'fr' ? 'Connexion' : 'Sign in'}</button>
+        <button class="auth-m-tab" id="amt-su">${lang === 'fr' ? 'Inscription' : 'Sign up'}</button>
+      </div>
+      <div class="auth-m-msg" id="auth-m-msg"></div>
+      <input type="email" id="auth-email" placeholder="${lang === 'fr' ? 'Adresse e-mail' : 'Email address'}" autocomplete="email">
+      <input type="password" id="auth-pw" placeholder="${lang === 'fr' ? 'Mot de passe' : 'Password'}" autocomplete="current-password">
+      <input type="password" id="auth-cf" placeholder="${lang === 'fr' ? 'Confirmer le mot de passe' : 'Confirm password'}" autocomplete="new-password" style="display:none">
+      <button class="auth-m-primary" id="auth-submit">${lang === 'fr' ? 'Se connecter' : 'Sign in'}</button>
+      <div class="auth-m-or">${lang === 'fr' ? 'ou' : 'or'}</div>
+      <button class="auth-m-google" id="auth-google"><svg width="17" height="17" viewBox="0 0 18 18"><path fill="#EA4335" d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.54C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z"/><path fill="#FBBC05" d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9 9 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z"/><path fill="#4A90D9" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.96 13.04C2.44 15.98 5.48 18 9 18z"/></svg>${lang === 'fr' ? 'Continuer avec Google' : 'Continue with Google'}</button>
+      <button class="auth-m-link" id="auth-forgot">${lang === 'fr' ? 'Mot de passe oublié ?' : 'Forgot password?'}</button>
+    </div>
+    <div id="auth-in" style="display:none">
+      <div class="auth-m-title">${lang === 'fr' ? 'Mon compte' : 'My account'}</div>
+      <div class="auth-m-email" id="auth-in-email"></div>
+      <button class="auth-m-link" id="auth-logout">${lang === 'fr' ? 'Déconnexion' : 'Sign out'}</button>
+    </div>
+  </div>
 </div>`;
 }
 
@@ -169,6 +224,52 @@ function footer(lang) {
 
 const COMMUN_JS = `document.getElementById('burger').addEventListener('click',function(){document.getElementById('menu').classList.toggle('ouvert');});
 document.getElementById('annee').textContent='© '+new Date().getFullYear()+' Lumen';\n(function(){var b=document.getElementById('cloche-ouvrir'),ov=document.getElementById('nouv-overlay'),fe=document.getElementById('nouv-fermer');if(!b||!ov)return;var pt=b.querySelector('.cloche-point'),sig=b.getAttribute('data-sig')||'';function vu(){try{return localStorage.getItem('lumen_nouv_vu');}catch(e){return null;}}function maj(){if(pt)pt.style.display=(vu()===sig?'none':'block');}maj();function o(){ov.classList.add('ouvert');document.body.style.overflow='hidden';try{localStorage.setItem('lumen_nouv_vu',sig);}catch(e){}maj();}function f(){ov.classList.remove('ouvert');document.body.style.overflow='';}b.addEventListener('click',o);b.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();o();}});fe.addEventListener('click',f);ov.addEventListener('click',function(e){if(e.target===ov)f();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('ouvert'))f();});})();`;
+
+const AUTH_JS = `(function(){
+  var cfg={apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",authDomain:"lumen-veritatis.firebaseapp.com",projectId:"lumen-veritatis",storageBucket:"lumen-veritatis.firebasestorage.app",messagingSenderId:"195902823875",appId:"1:195902823875:web:a8be1f216a5ae1d945f176"};
+  if(typeof firebase==='undefined')return;
+  if(!firebase.apps.length)firebase.initializeApp(cfg);
+  var auth=firebase.auth();
+  var FR=!(window.LUMEN&&window.LUMEN.lang==='en');
+  function L(fr,en){return FR?fr:en;}
+  var icone=document.getElementById('auth-ouvrir'),ov=document.getElementById('auth-overlay'),fe=document.getElementById('auth-fermer');
+  if(!icone||!ov)return;
+  var vOut=document.getElementById('auth-out'),vIn=document.getElementById('auth-in'),mode='si';
+  function el(id){return document.getElementById(id);}
+  function msg(txt,kind){var m=el('auth-m-msg');m.textContent=txt;m.className='auth-m-msg '+kind;}
+  function clr(){var m=el('auth-m-msg');m.className='auth-m-msg';m.textContent='';}
+  function setMode(x){mode=x;clr();
+    el('amt-si').classList.toggle('on',x==='si');
+    el('amt-su').classList.toggle('on',x==='su');
+    el('auth-cf').style.display=(x==='su')?'block':'none';
+    el('auth-pw').style.display=(x==='forgot')?'none':'block';
+    el('auth-submit').textContent=(x==='si')?L('Se connecter','Sign in'):(x==='su')?L('Créer le compte','Create account'):L('Envoyer le lien','Send link');
+    el('auth-forgot').textContent=(x==='forgot')?L('← Retour','← Back'):L('Mot de passe oublié ?','Forgot password?');
+  }
+  function open(){clr();
+    if(auth.currentUser){vOut.style.display='none';vIn.style.display='block';el('auth-in-email').textContent=auth.currentUser.email||auth.currentUser.displayName||'';}
+    else{vOut.style.display='block';vIn.style.display='none';setMode('si');}
+    ov.classList.add('ouvert');document.body.style.overflow='hidden';}
+  function close(){ov.classList.remove('ouvert');document.body.style.overflow='';}
+  icone.addEventListener('click',open);
+  icone.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
+  fe.addEventListener('click',close);
+  ov.addEventListener('click',function(e){if(e.target===ov)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('ouvert'))close();});
+  el('amt-si').addEventListener('click',function(){setMode('si');});
+  el('amt-su').addEventListener('click',function(){setMode('su');});
+  el('auth-forgot').addEventListener('click',function(){setMode(mode==='forgot'?'si':'forgot');});
+  el('auth-submit').addEventListener('click',function(){
+    var em=el('auth-email').value.trim(),pw=el('auth-pw').value,cf=el('auth-cf').value;clr();
+    if(mode==='forgot'){auth.sendPasswordResetEmail(em).then(function(){msg(L('Lien envoyé. Vérifiez votre boîte mail.','Link sent. Check your inbox.'),'ok');}).catch(function(e){msg(e.message,'err');});return;}
+    if(mode==='su'){if(pw!==cf){msg(L('Les mots de passe ne correspondent pas.','Passwords do not match.'),'err');return;}auth.createUserWithEmailAndPassword(em,pw).catch(function(e){msg(e.message,'err');});return;}
+    auth.signInWithEmailAndPassword(em,pw).catch(function(e){msg(e.message,'err');});
+  });
+  ['auth-email','auth-pw','auth-cf'].forEach(function(id){var x=el(id);if(x)x.addEventListener('keydown',function(e){if(e.key==='Enter')el('auth-submit').click();});});
+  el('auth-google').addEventListener('click',function(){auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){msg(e.message,'err');});});
+  el('auth-logout').addEventListener('click',function(){auth.signOut().then(close);});
+  auth.onAuthStateChanged(function(u){icone.classList.toggle('connecte',!!u);if(ov.classList.contains('ouvert'))open();});
+})();`;
 
 const BIBLIO_JS = `(function(){
   function cascadeA(els){ els.forEach(function(el,i){ if(!el)return; var d=Math.min(i*40,640); el.style.animation='none'; void el.offsetHeight; el.style.animation='apparaitDom .45s cubic-bezier(.2,.7,.3,1) '+d+'ms both'; }); }
@@ -275,6 +376,7 @@ ${hreflang}
 <meta property="og:description" content="${description}">
 <meta property="og:url" content="${url}">
 ${FONTS}
+${FIREBASE_HEAD}
 <style>${css}${EXTRA_CSS}</style>
 </head>
 <body>
@@ -287,6 +389,7 @@ ${footer(lang)}
 window.LUMEN={base:${JSON.stringify(base)},lang:${JSON.stringify(lang)},hint:${JSON.stringify(u.search_hint)},empty:${JSON.stringify(u.search_empty)}};
 ${COMMUN_JS}
 ${RECH_JS}
+${AUTH_JS}
 ${extraJS || ''}
 </script>
 </body>
