@@ -52,7 +52,7 @@ Le site est STATIQUE, hébergé sur Netlify, généré par un script Node.
   (SLUGS, THEMES_EN, UI_EN, ARTICLES_EN, NOUVEAUTES_EN). Requis par build-bi.js.
 
 • memoriser.html — APP DE MÉMORISATION des versets (page autonome, bilingue),
-  servie à lumenveritatis.net/memoriser.html. (Fichier ~930 lignes ; garder sous ~1000 :
+  servie à lumenveritatis.net/memoriser.html. (Fichier ~1000 lignes ; rester raisonnable pour la lecture en un bloc :
 les données PRE sont la principale source de croissance, rester sobre à l'ajout.)
 
 • netlify.toml — config de déploiement (voir §4).
@@ -222,9 +222,14 @@ Fonctionnalités :
   versets avec pastilles à 3 états.
 • Bouton « Tout sélectionner / Tout désélectionner » en haut du bloc Catégories.
   La sélection est enregistrée sur le compte (meta/prefs) et conservée entre sessions.
-• Réglage du niveau à 3 échelles : un verset (clic pastille), une catégorie entière
-  (« Tout marquer »), toutes les catégories sélectionnées (barre du haut). Le rouge
-  sert de réinitialisation de mémoire à l'échelle voulue.
+• Réglage du niveau (rouge/ambre/vert) à 3 échelles. Un verset : clic sur sa pastille.
+  Une catégorie : pastilles dans son titre, visibles seulement quand elle est dépliée.
+  Plusieurs : barre « Marquer les catégories cochées » (agit sur les catégories cochées
+  pour l'étude), AVEC confirmation pour éviter toute catastrophe au misclick ; cette barre
+  porte aussi « Réinitialiser », qui restaure versets et références des catégories de base
+  cochées à leur état d'origine.
+• Édition d'un verset (clic sur sa ligne) : modal avec « Réinitialiser ce verset » pour
+  les versets de base (restaure texte + référence d'origine, FR + EN).
 • Catégories ET versets de BASE entièrement modifiables (renommer, ajouter/éditer/
   supprimer ; clic sur une ligne = édition). Stockés en surcharges (meta/baseEdits).
 • Catégories PERSONNELLES : créer, renommer, éditer/supprimer versets, supprimer.
@@ -234,15 +239,20 @@ Fonctionnalités :
   (définitif). Bouton « Vider la corbeille ». Bloc masqué quand vide, repliable.
 • RESTAURATION par catégorie : chaque catégorie de base a une action « Restaurer »
   qui la ramène à son état d'origine (annule modifs/suppressions de SES versets).
+• En-tête alignée sur le site : barre de navigation (Accueil, Bibliothèque, Mémoriser,
+  À propos), liens adaptés à la langue ; pied de page avec le verset du site (Isaïe 9:1
+  FR / Isaiah 9:1 EN), consts FOOT_FR / FOOT_EN.
+• Liste des catégories : 6 affichées par défaut, bouton « Afficher tout / Afficher moins »
+  (CATLIM=6). Catégories rangées en ordre théologique (cf. liste PRE).
 • Boutons globaux du bas : « Réinitialiser toute la mémoire » et « Restaurer les
   catégories de base » (efface toutes les surcharges + purge la corbeille d'origine).
 
 Données de base (PRE) — 12 catégories, ~7 à 11 versets chacune, reliées aux
 articles du site (cf. §3 ter), versets complets (non coupés), non limitées aux
 versets cités dans l'article. 100 versets, identifiants tous uniques.
-• nature-dieu (11) · eucharistie (9) · marie (9) · salut (9) · foi « Foi et espérance » (9)
-• trinite (7) · incarnation (7) · croix-resurrection (8) · eglise (8) · bapteme (7)
-  · charite (8) · fins-dernieres (8)
+Ordre théologique : nature-dieu (11) · trinite (7) · incarnation (7) · croix-resurrection (8)
+· marie (9) · salut (9) · foi « Foi et espérance » (9) · charite (8) · eglise (8)
+· bapteme (7) · eucharistie (9) · fins-dernieres (8).
 Tenir cette liste à jour à chaque ajout/refonte de catégorie.
 
 ────────────────────────────────────────────────────────────────────
@@ -262,6 +272,14 @@ L'état de connexion est partagé avec memoriser.html (même projet + domaine Fi
 • Mémoriser — CORBEILLE (base/perso) + RESTAURER par catégorie de base ; délai
   d'erreur porté à 4 s ; POURCENTAGE de progression par catégorie ; bouton
   « Tout sélectionner / désélectionner » ; modèle Firestore meta/trash ajouté.
+• Mémoriser — marquage sécurisé : pastilles « tout marquer » déplacées dans le titre de
+  catégorie (visibles seulement dépliée) ; barre globale « catégories cochées » avec
+  confirmation + réinitialisation en lot des catégories de base ; bouton « Réinitialiser
+  ce verset » dans le modal d'édition (versets de base).
+• Mémoriser — en-tête et pied alignés sur le site (nav Accueil/Bibliothèque/Mémoriser/
+  À propos + verset de pied bilingue) ; catégories réordonnées (ordre théologique) ;
+  bouton « Afficher tout » (6 catégories par défaut).
+• Site — point de notification sur l'icône compte retiré (span + règle CSS morte).
 • Mémoriser — EXTENSION : 7 catégories ajoutées, reliées au corpus (Trinité,
   Incarnation, Croix et Résurrection, Église, baptême, charité, fins dernières) ;
   12 catégories, 100 versets, tous complets, identifiants uniques.

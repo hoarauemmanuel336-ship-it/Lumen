@@ -211,6 +211,24 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 #sel-all{cursor:pointer}
 .mini-act{cursor:pointer}
 @media(max-width:600px){.cat-pct{min-width:38px;font-size:12px}}
+.site-nav{display:flex;align-items:center;gap:24px;flex:1;flex-wrap:wrap}
+.site-nav a{font-family:var(--display);font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa);transition:color .3s}
+.site-nav a:hover{color:var(--or-pale)}
+.site-nav a.actif{color:var(--or)}
+.site-foot{border-top:1px solid var(--filet);margin-top:40px;padding:48px 32px 56px;text-align:center}
+.site-foot .marque{font-family:var(--display);letter-spacing:.34em;text-transform:uppercase;font-size:18px;padding-left:.34em;color:var(--parchemin)}
+.site-foot .verset-pied{margin:18px auto 0;font-style:italic;color:var(--pa);font-size:17px;max-width:620px;line-height:1.6}
+.site-foot .verset-pied .ref-pied{font-style:normal;display:block;margin-top:10px;font-family:var(--display);font-size:13px;letter-spacing:.1em;color:var(--or)}
+.site-foot .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--pa2);font-family:var(--display)}
+@media(max-width:600px){.hdr{flex-wrap:wrap}.site-nav{gap:14px;width:100%;order:3}.site-nav a{font-size:12px;letter-spacing:.1em}}
+.cat-mark{display:none;align-items:center;gap:8px;flex-shrink:0}
+.cat.open .cat-mark{display:flex}
+.cat-mark .dot{opacity:.8}
+.cat-mark .dot:hover{opacity:1;box-shadow:0 0 0 1px var(--encre),0 0 0 2px currentColor}
+.cat-mark .dot.r{color:var(--rouge)}.cat-mark .dot.a{color:var(--ambre)}.cat-mark .dot.v{color:var(--vert)}
+.mg-acts{display:flex;align-items:center;gap:16px}
+.m-reset{margin-right:auto;font-family:var(--display);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--pa);transition:color .3s}
+.m-reset:hover{color:var(--or)}
 </style>
 </head>
 <body>
@@ -241,9 +259,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 <!-- ════ APP ════ -->
 <div id="app">
   <header class="hdr">
-    <a href="/" class="hdr-logo">Lumen</a>
-    <span class="hdr-sep">·</span>
-    <span class="hdr-title" id="hdr-title">Mémoriser</span>
+    <a href="/" class="hdr-logo" id="nav-logo">Lumen</a>
+    <nav class="site-nav">
+      <a id="nav-home"></a>
+      <a id="nav-lib"></a>
+      <a id="nav-mem" class="actif" href="/memoriser.html"></a>
+      <a id="nav-about"></a>
+    </nav>
     <div class="hdr-right">
       <button class="hdr-act" id="lang-btn">EN</button>
       <span class="hdr-mail" id="user-mail"></span>
@@ -256,10 +278,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
       <div class="block">
         <div class="block-head" style="display:flex;align-items:center;justify-content:space-between;gap:14px"><span class="lbl" id="lbl-cats">Catégories &amp; mémoire</span><span class="mini-act" id="sel-all"></span></div>
         <div class="markglobal">
-          <span id="lbl-markglobal">Marquer les catégories sélectionnées</span>
-          <span class="markall-dots"><span class="dot r" data-gall="r"></span><span class="dot a" data-gall="a"></span><span class="dot v" data-gall="v"></span></span>
+          <span id="lbl-markglobal">Marquer les catégories cochées</span>
+          <span class="mg-acts"><span class="markall-dots"><span class="dot r" data-gall="r"></span><span class="dot a" data-gall="a"></span><span class="dot v" data-gall="v"></span></span><span class="mini-act" id="bulk-restore"></span></span>
         </div>
         <div id="cat-list"></div>
+        <button class="ghost-btn" id="cat-more" style="display:none"></button>
         <button class="ghost-btn" id="add-cat">+ <span id="lbl-newcat">Nouvelle catégorie</span></button>
       </div>
       <div class="block" id="trash-block"></div>
@@ -297,6 +320,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
       <button class="start" id="sum-back">Retour</button>
     </section>
   </main>
+  <footer class="site-foot">
+    <div class="marque">Lumen</div>
+    <div class="verset-pied" id="foot-verse"></div>
+    <div class="copy" id="foot-copy"></div>
+  </footer>
 </div>
 
 <!-- modals -->
@@ -315,7 +343,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     <div class="auth-fieldrow"><label class="modal-flbl">Référence (ex : Jean 3:16)</label><input type="text" class="field" id="i-rfr"></div>
     <div class="auth-fieldrow"><label class="modal-flbl">Texte (anglais)</label><input type="text" class="field" id="i-ven"></div>
     <div class="auth-fieldrow"><label class="modal-flbl">Référence (anglais)</label><input type="text" class="field" id="i-ren"></div>
-    <div class="modal-btns"><button class="m-cancel" id="mv-cancel">Annuler</button><button class="m-ok" id="mv-ok">Enregistrer</button></div>
+    <div class="modal-btns"><button class="m-reset" id="mv-reset" style="display:none"></button><button class="m-cancel" id="mv-cancel">Annuler</button><button class="m-ok" id="mv-ok">Enregistrer</button></div>
   </div>
 </div>
 
@@ -349,7 +377,8 @@ const T={
     start:'Commencer', reset:'Réinitialiser toute la mémoire',
     reset_q:'Réinitialiser toute la mémoire ? Tous les niveaux reviennent au rouge. Action irréversible.',
     restore:'Restaurer les catégories de base', restore_q:'Restaurer les catégories de base ? Tes modifications des versets de base seront perdues (tes catégories personnelles sont conservées).',
-    markall:'Tout marquer', markglobal:'Marquer les catégories sélectionnées',
+    markall:'Tout marquer', markglobal:'Marquer les catégories cochées', bulk_restore:'Réinitialiser', reset_verse:'Réinitialiser ce verset',
+    bulk_mark_q:'Changer le niveau de tous les versets des %n% catégorie(s) cochée(s) ?', bulk_restore_q:'Réinitialiser les versets et références des %n% catégorie(s) de base cochée(s) à leur état d\u2019origine ? Tes modifications seront perdues.',
     find_ref:'Quelle est la référence ?', find_verse:'Quel est le verset ?',
     answered:'répondues', correct:'justes', finish:'Terminer',
     done:'Session terminée', of:'sur', acquired:'versets acquis',
@@ -361,7 +390,7 @@ const T={
     empty_sel:'Sélectionne au moins une catégorie pour commencer.',
     not_enough:'Pas assez de versets. Sélectionne d\u2019autres catégories ou ajoute des versets.',
     del_cat_q:'Supprimer cette catégorie et ses versets ?',
-    select_all:'Tout sélectionner', deselect_all:'Tout désélectionner',
+    select_all:'Tout sélectionner', deselect_all:'Tout désélectionner', show_all:'Afficher tout', show_less:'Afficher moins',
     trash:'Corbeille', trash_original:'Versets d\u2019origine', trash_perso:'Versets personnels',
     trash_section_empty:'Aucun', trash_restore:'Restaurer', trash_delperm:'Supprimer',
     trash_empty_btn:'Vider la corbeille', trash_empty_q:'Vider définitivement la corbeille ? Action irréversible.',
@@ -382,7 +411,8 @@ const T={
     start:'Start', reset:'Reset all memory',
     reset_q:'Reset all memory? Every level returns to red. This cannot be undone.',
     restore:'Restore base categories', restore_q:'Restore the base categories? Your edits to the base verses will be lost (your own categories are kept).',
-    markall:'Mark all', markglobal:'Mark selected categories',
+    markall:'Mark all', markglobal:'Mark checked categories', bulk_restore:'Reset', reset_verse:'Reset this verse',
+    bulk_mark_q:'Change the level of every verse in the %n% checked category(ies)?', bulk_restore_q:'Reset the verses and references of the %n% checked base category(ies) to their original state? Your edits will be lost.',
     find_ref:'What is the reference?', find_verse:'What is the verse?',
     answered:'answered', correct:'correct', finish:'Finish',
     done:'Session complete', of:'of', acquired:'verses acquired',
@@ -394,7 +424,7 @@ const T={
     empty_sel:'Select at least one category to begin.',
     not_enough:'Not enough verses. Select other categories or add verses.',
     del_cat_q:'Delete this category and its verses?',
-    select_all:'Select all', deselect_all:'Deselect all',
+    select_all:'Select all', deselect_all:'Deselect all', show_all:'Show all', show_less:'Show less',
     trash:'Trash', trash_original:'Original verses', trash_perso:'My verses',
     trash_section_empty:'None', trash_restore:'Restore', trash_delperm:'Delete',
     trash_empty_btn:'Empty the trash', trash_empty_q:'Permanently empty the trash? This cannot be undone.',
@@ -402,6 +432,10 @@ const T={
     cat_restore:'Restore', cat_restore_q:'Restore this base category? Your edits to its verses will be lost.'
   }
 };
+
+// pied de page (verset du site)
+const FOOT_FR='« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l\u2019ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span>';
+const FOOT_EN='\u201CThe people who walked in darkness have seen a great light; on those who dwelt in the land of the shadow of death, a light has shone\u201D <span class="ref-pied">Isaiah 9:1</span>';
 
 // ════════ VERSETS PRÉDÉFINIS ════════
 const PRE=[
@@ -418,16 +452,33 @@ const PRE=[
     {id:'1jn-4-8', fr:{text:'Celui qui n\u2019aime pas n\u2019a pas connu Dieu, car Dieu est amour.', ref:'1 Jean 4:8'}, en:{text:'He who does not love does not know God, for God is love.', ref:'1 John 4:8'}},
     {id:'rom-11-33', fr:{text:'\u00d4 profondeur des richesses, de la sagesse et de la science de Dieu ! Que ses jugements sont insondables et ses voies imp\u00e9n\u00e9trables !', ref:'Romains 11:33'}, en:{text:'O the depth of the riches and wisdom and knowledge of God! How unsearchable are his judgments and how inscrutable his ways!', ref:'Romans 11:33'}}
   ]},
-  {id:'eucharistie', name:{fr:'L\u2019Eucharistie', en:'The Eucharist'}, verses:[
-    {id:'jn-6-51', fr:{text:'Je suis le pain vivant descendu du ciel. Le pain que je donnerai, c\u2019est ma chair, pour la vie du monde.', ref:'Jean 6:51'}, en:{text:'I am the living bread that came down from heaven. The bread that I will give is my flesh, for the life of the world.', ref:'John 6:51'}},
-    {id:'jn-6-54', fr:{text:'Celui qui mange ma chair et boit mon sang a la vie \u00e9ternelle, et je le ressusciterai au dernier jour.', ref:'Jean 6:54'}, en:{text:'He who eats my flesh and drinks my blood has eternal life, and I will raise him up at the last day.', ref:'John 6:54'}},
-    {id:'jn-6-55', fr:{text:'Ma chair est vraiment une nourriture, et mon sang vraiment une boisson.', ref:'Jean 6:55'}, en:{text:'My flesh is true food, and my blood is true drink.', ref:'John 6:55'}},
-    {id:'mt-26-26', fr:{text:'Prenez, mangez : ceci est mon corps.', ref:'Matthieu 26:26'}, en:{text:'Take, eat; this is my body.', ref:'Matthew 26:26'}},
-    {id:'mt-26-28', fr:{text:'Ceci est mon sang, le sang de l\u2019alliance, r\u00e9pandu pour la multitude en r\u00e9mission des p\u00e9ch\u00e9s.', ref:'Matthieu 26:28'}, en:{text:'This is my blood of the covenant, poured out for many for the forgiveness of sins.', ref:'Matthew 26:28'}},
-    {id:'1co-11-26', fr:{text:'Chaque fois que vous mangez ce pain et que vous buvez cette coupe, vous annoncez la mort du Seigneur, jusqu\u2019\u00e0 ce qu\u2019il vienne.', ref:'1 Corinthiens 11:26'}, en:{text:'As often as you eat this bread and drink this cup, you proclaim the Lord\u2019s death until he comes.', ref:'1 Corinthians 11:26'}},
-    {id:'1co-11-27', fr:{text:'Quiconque mange ce pain ou boit la coupe du Seigneur indignement sera coupable envers le corps et le sang du Seigneur.', ref:'1 Corinthiens 11:27'}, en:{text:'Whoever eats this bread or drinks the cup of the Lord unworthily will be guilty of the body and blood of the Lord.', ref:'1 Corinthians 11:27'}},
-    {id:'1co-10-16', fr:{text:'La coupe de b\u00e9n\u00e9diction que nous b\u00e9nissons n\u2019est-elle pas communion au sang du Christ ? Le pain que nous rompons n\u2019est-il pas communion au corps du Christ ?', ref:'1 Corinthiens 10:16'}, en:{text:'The cup of blessing which we bless, is it not a communion in the blood of Christ? The bread which we break, is it not a communion in the body of Christ?', ref:'1 Corinthians 10:16'}},
-    {id:'jn-1-29', fr:{text:'Voici l\u2019Agneau de Dieu qui enl\u00e8ve le p\u00e9ch\u00e9 du monde.', ref:'Jean 1:29'}, en:{text:'Behold the Lamb of God who takes away the sin of the world.', ref:'John 1:29'}}
+  {id:'trinite', name:{fr:'La Trinit\u00e9', en:'The Trinity'}, verses:[
+    {id:'mt-28-19', fr:{text:'Allez, faites de toutes les nations des disciples, les baptisant au nom du P\u00e8re, et du Fils, et du Saint-Esprit.', ref:'Matthieu 28:19'}, en:{text:'Go, make disciples of all nations, baptising them in the name of the Father, and of the Son, and of the Holy Spirit.', ref:'Matthew 28:19'}},
+    {id:'jn-1-1', fr:{text:'Au commencement \u00e9tait le Verbe, et le Verbe \u00e9tait aupr\u00e8s de Dieu, et le Verbe \u00e9tait Dieu.', ref:'Jean 1:1'}, en:{text:'In the beginning was the Word, and the Word was with God, and the Word was God.', ref:'John 1:1'}},
+    {id:'jn-10-30', fr:{text:'Moi et le P\u00e8re, nous sommes un.', ref:'Jean 10:30'}, en:{text:'I and the Father are one.', ref:'John 10:30'}},
+    {id:'jn-14-9', fr:{text:'Qui m\u2019a vu a vu le P\u00e8re.', ref:'Jean 14:9'}, en:{text:'Whoever has seen me has seen the Father.', ref:'John 14:9'}},
+    {id:'jn-14-26', fr:{text:'Le D\u00e9fenseur, l\u2019Esprit Saint que le P\u00e8re enverra en mon nom, vous enseignera tout.', ref:'Jean 14:26'}, en:{text:'The Helper, the Holy Spirit whom the Father will send in my name, will teach you all things.', ref:'John 14:26'}},
+    {id:'jn-15-26', fr:{text:'Quand viendra le D\u00e9fenseur, l\u2019Esprit de v\u00e9rit\u00e9 qui proc\u00e8de du P\u00e8re, il rendra t\u00e9moignage de moi.', ref:'Jean 15:26'}, en:{text:'When the Helper comes, the Spirit of truth who proceeds from the Father, he will bear witness to me.', ref:'John 15:26'}},
+    {id:'2co-13-13', fr:{text:'La gr\u00e2ce du Seigneur J\u00e9sus-Christ, l\u2019amour de Dieu et la communion du Saint-Esprit soient avec vous tous.', ref:'2 Corinthiens 13:13'}, en:{text:'The grace of the Lord Jesus Christ, the love of God, and the communion of the Holy Spirit be with you all.', ref:'2 Corinthians 13:13'}}
+  ]},
+  {id:'incarnation', name:{fr:'L\u2019Incarnation', en:'The Incarnation'}, verses:[
+    {id:'jn-1-14', fr:{text:'Et le Verbe s\u2019est fait chair, et il a habit\u00e9 parmi nous, et nous avons vu sa gloire.', ref:'Jean 1:14'}, en:{text:'And the Word became flesh and dwelt among us, and we have seen his glory.', ref:'John 1:14'}},
+    {id:'lc-1-35', fr:{text:'L\u2019Esprit Saint viendra sur toi, et la puissance du Tr\u00e8s-Haut te prendra sous son ombre ; c\u2019est pourquoi celui qui va na\u00eetre sera saint, et il sera appel\u00e9 Fils de Dieu.', ref:'Luc 1:35'}, en:{text:'The Holy Spirit will come upon you, and the power of the Most High will overshadow you; therefore the child to be born will be holy, and will be called the Son of God.', ref:'Luke 1:35'}},
+    {id:'mt-1-23', fr:{text:'Voici, la vierge concevra et enfantera un fils, et on l\u2019appellera Emmanuel, ce qui se traduit : Dieu avec nous.', ref:'Matthieu 1:23'}, en:{text:'Behold, the virgin shall conceive and bear a son, and they shall call his name Emmanuel, which means: God with us.', ref:'Matthew 1:23'}},
+    {id:'ph-2-7', fr:{text:'Il s\u2019est d\u00e9pouill\u00e9 lui-m\u00eame, prenant la condition de serviteur, devenant semblable aux hommes.', ref:'Philippiens 2:7'}, en:{text:'He emptied himself, taking the form of a servant, being born in the likeness of men.', ref:'Philippians 2:7'}},
+    {id:'ga-4-4', fr:{text:'Quand est venue la pl\u00e9nitude des temps, Dieu a envoy\u00e9 son Fils, n\u00e9 d\u2019une femme, n\u00e9 sous la loi.', ref:'Galates 4:4'}, en:{text:'When the fullness of time had come, God sent forth his Son, born of a woman, born under the law.', ref:'Galatians 4:4'}},
+    {id:'col-2-9', fr:{text:'En lui habite corporellement toute la pl\u00e9nitude de la divinit\u00e9.', ref:'Colossiens 2:9'}, en:{text:'In him the whole fullness of deity dwells bodily.', ref:'Colossians 2:9'}},
+    {id:'jn-1-18', fr:{text:'Personne n\u2019a jamais vu Dieu ; le Fils unique, qui est dans le sein du P\u00e8re, l\u2019a fait conna\u00eetre.', ref:'Jean 1:18'}, en:{text:'No one has ever seen God; the only Son, who is in the bosom of the Father, has made him known.', ref:'John 1:18'}}
+  ]},
+  {id:'croix-resurrection', name:{fr:'La Croix et la R\u00e9surrection', en:'The Cross and the Resurrection'}, verses:[
+    {id:'jn-19-30', fr:{text:'Tout est accompli.', ref:'Jean 19:30'}, en:{text:'It is finished.', ref:'John 19:30'}},
+    {id:'lc-23-34', fr:{text:'P\u00e8re, pardonne-leur, car ils ne savent pas ce qu\u2019ils font.', ref:'Luc 23:34'}, en:{text:'Father, forgive them, for they know not what they do.', ref:'Luke 23:34'}},
+    {id:'jn-12-32', fr:{text:'Et moi, quand j\u2019aurai \u00e9t\u00e9 \u00e9lev\u00e9 de terre, j\u2019attirerai \u00e0 moi tous les hommes.', ref:'Jean 12:32'}, en:{text:'And I, when I am lifted up from the earth, will draw all men to myself.', ref:'John 12:32'}},
+    {id:'1co-15-3', fr:{text:'Le Christ est mort pour nos p\u00e9ch\u00e9s, selon les \u00c9critures.', ref:'1 Corinthiens 15:3'}, en:{text:'Christ died for our sins, according to the Scriptures.', ref:'1 Corinthians 15:3'}},
+    {id:'1co-15-4', fr:{text:'Il a \u00e9t\u00e9 enseveli, et il est ressuscit\u00e9 le troisi\u00e8me jour, selon les \u00c9critures.', ref:'1 Corinthiens 15:4'}, en:{text:'He was buried, and he rose on the third day, according to the Scriptures.', ref:'1 Corinthians 15:4'}},
+    {id:'mt-28-6', fr:{text:'Il n\u2019est pas ici, car il est ressuscit\u00e9, comme il l\u2019avait dit.', ref:'Matthieu 28:6'}, en:{text:'He is not here, for he has risen, as he said.', ref:'Matthew 28:6'}},
+    {id:'rom-6-9', fr:{text:'Ressuscit\u00e9 des morts, le Christ ne meurt plus ; la mort n\u2019a plus de pouvoir sur lui.', ref:'Romains 6:9'}, en:{text:'Raised from the dead, Christ dies no more; death no longer has power over him.', ref:'Romans 6:9'}},
+    {id:'1co-15-55', fr:{text:'\u00d4 mort, o\u00f9 est ta victoire ? \u00d4 mort, o\u00f9 est ton aiguillon ?', ref:'1 Corinthiens 15:55'}, en:{text:'O death, where is your victory? O death, where is your sting?', ref:'1 Corinthians 15:55'}}
   ]},
   {id:'marie', name:{fr:'Marie', en:'Mary'}, verses:[
     {id:'lc-1-28', fr:{text:'R\u00e9jouis-toi, pleine de gr\u00e2ce, le Seigneur est avec toi.', ref:'Luc 1:28'}, en:{text:'Hail, full of grace, the Lord is with you.', ref:'Luke 1:28'}},
@@ -462,33 +513,15 @@ const PRE=[
     {id:'rom-15-13', fr:{text:'Que le Dieu de l\u2019esp\u00e9rance vous remplisse de toute joie et paix dans la foi.', ref:'Romains 15:13'}, en:{text:'May the God of hope fill you with all joy and peace in believing.', ref:'Romans 15:13'}},
     {id:'heb-6-19', fr:{text:'Cette esp\u00e9rance, nous la tenons comme une ancre de l\u2019\u00e2me, s\u00fbre et solide.', ref:'H\u00e9breux 6:19'}, en:{text:'We have this hope as an anchor of the soul, sure and steadfast.', ref:'Hebrews 6:19'}}
   ]},
-  {id:'trinite', name:{fr:'La Trinit\u00e9', en:'The Trinity'}, verses:[
-    {id:'mt-28-19', fr:{text:'Allez, faites de toutes les nations des disciples, les baptisant au nom du P\u00e8re, et du Fils, et du Saint-Esprit.', ref:'Matthieu 28:19'}, en:{text:'Go, make disciples of all nations, baptising them in the name of the Father, and of the Son, and of the Holy Spirit.', ref:'Matthew 28:19'}},
-    {id:'jn-1-1', fr:{text:'Au commencement \u00e9tait le Verbe, et le Verbe \u00e9tait aupr\u00e8s de Dieu, et le Verbe \u00e9tait Dieu.', ref:'Jean 1:1'}, en:{text:'In the beginning was the Word, and the Word was with God, and the Word was God.', ref:'John 1:1'}},
-    {id:'jn-10-30', fr:{text:'Moi et le P\u00e8re, nous sommes un.', ref:'Jean 10:30'}, en:{text:'I and the Father are one.', ref:'John 10:30'}},
-    {id:'jn-14-9', fr:{text:'Qui m\u2019a vu a vu le P\u00e8re.', ref:'Jean 14:9'}, en:{text:'Whoever has seen me has seen the Father.', ref:'John 14:9'}},
-    {id:'jn-14-26', fr:{text:'Le D\u00e9fenseur, l\u2019Esprit Saint que le P\u00e8re enverra en mon nom, vous enseignera tout.', ref:'Jean 14:26'}, en:{text:'The Helper, the Holy Spirit whom the Father will send in my name, will teach you all things.', ref:'John 14:26'}},
-    {id:'jn-15-26', fr:{text:'Quand viendra le D\u00e9fenseur, l\u2019Esprit de v\u00e9rit\u00e9 qui proc\u00e8de du P\u00e8re, il rendra t\u00e9moignage de moi.', ref:'Jean 15:26'}, en:{text:'When the Helper comes, the Spirit of truth who proceeds from the Father, he will bear witness to me.', ref:'John 15:26'}},
-    {id:'2co-13-13', fr:{text:'La gr\u00e2ce du Seigneur J\u00e9sus-Christ, l\u2019amour de Dieu et la communion du Saint-Esprit soient avec vous tous.', ref:'2 Corinthiens 13:13'}, en:{text:'The grace of the Lord Jesus Christ, the love of God, and the communion of the Holy Spirit be with you all.', ref:'2 Corinthians 13:13'}}
-  ]},
-  {id:'incarnation', name:{fr:'L\u2019Incarnation', en:'The Incarnation'}, verses:[
-    {id:'jn-1-14', fr:{text:'Et le Verbe s\u2019est fait chair, et il a habit\u00e9 parmi nous, et nous avons vu sa gloire.', ref:'Jean 1:14'}, en:{text:'And the Word became flesh and dwelt among us, and we have seen his glory.', ref:'John 1:14'}},
-    {id:'lc-1-35', fr:{text:'L\u2019Esprit Saint viendra sur toi, et la puissance du Tr\u00e8s-Haut te prendra sous son ombre ; c\u2019est pourquoi celui qui va na\u00eetre sera saint, et il sera appel\u00e9 Fils de Dieu.', ref:'Luc 1:35'}, en:{text:'The Holy Spirit will come upon you, and the power of the Most High will overshadow you; therefore the child to be born will be holy, and will be called the Son of God.', ref:'Luke 1:35'}},
-    {id:'mt-1-23', fr:{text:'Voici, la vierge concevra et enfantera un fils, et on l\u2019appellera Emmanuel, ce qui se traduit : Dieu avec nous.', ref:'Matthieu 1:23'}, en:{text:'Behold, the virgin shall conceive and bear a son, and they shall call his name Emmanuel, which means: God with us.', ref:'Matthew 1:23'}},
-    {id:'ph-2-7', fr:{text:'Il s\u2019est d\u00e9pouill\u00e9 lui-m\u00eame, prenant la condition de serviteur, devenant semblable aux hommes.', ref:'Philippiens 2:7'}, en:{text:'He emptied himself, taking the form of a servant, being born in the likeness of men.', ref:'Philippians 2:7'}},
-    {id:'ga-4-4', fr:{text:'Quand est venue la pl\u00e9nitude des temps, Dieu a envoy\u00e9 son Fils, n\u00e9 d\u2019une femme, n\u00e9 sous la loi.', ref:'Galates 4:4'}, en:{text:'When the fullness of time had come, God sent forth his Son, born of a woman, born under the law.', ref:'Galatians 4:4'}},
-    {id:'col-2-9', fr:{text:'En lui habite corporellement toute la pl\u00e9nitude de la divinit\u00e9.', ref:'Colossiens 2:9'}, en:{text:'In him the whole fullness of deity dwells bodily.', ref:'Colossians 2:9'}},
-    {id:'jn-1-18', fr:{text:'Personne n\u2019a jamais vu Dieu ; le Fils unique, qui est dans le sein du P\u00e8re, l\u2019a fait conna\u00eetre.', ref:'Jean 1:18'}, en:{text:'No one has ever seen God; the only Son, who is in the bosom of the Father, has made him known.', ref:'John 1:18'}}
-  ]},
-  {id:'croix-resurrection', name:{fr:'La Croix et la R\u00e9surrection', en:'The Cross and the Resurrection'}, verses:[
-    {id:'jn-19-30', fr:{text:'Tout est accompli.', ref:'Jean 19:30'}, en:{text:'It is finished.', ref:'John 19:30'}},
-    {id:'lc-23-34', fr:{text:'P\u00e8re, pardonne-leur, car ils ne savent pas ce qu\u2019ils font.', ref:'Luc 23:34'}, en:{text:'Father, forgive them, for they know not what they do.', ref:'Luke 23:34'}},
-    {id:'jn-12-32', fr:{text:'Et moi, quand j\u2019aurai \u00e9t\u00e9 \u00e9lev\u00e9 de terre, j\u2019attirerai \u00e0 moi tous les hommes.', ref:'Jean 12:32'}, en:{text:'And I, when I am lifted up from the earth, will draw all men to myself.', ref:'John 12:32'}},
-    {id:'1co-15-3', fr:{text:'Le Christ est mort pour nos p\u00e9ch\u00e9s, selon les \u00c9critures.', ref:'1 Corinthiens 15:3'}, en:{text:'Christ died for our sins, according to the Scriptures.', ref:'1 Corinthians 15:3'}},
-    {id:'1co-15-4', fr:{text:'Il a \u00e9t\u00e9 enseveli, et il est ressuscit\u00e9 le troisi\u00e8me jour, selon les \u00c9critures.', ref:'1 Corinthiens 15:4'}, en:{text:'He was buried, and he rose on the third day, according to the Scriptures.', ref:'1 Corinthians 15:4'}},
-    {id:'mt-28-6', fr:{text:'Il n\u2019est pas ici, car il est ressuscit\u00e9, comme il l\u2019avait dit.', ref:'Matthieu 28:6'}, en:{text:'He is not here, for he has risen, as he said.', ref:'Matthew 28:6'}},
-    {id:'rom-6-9', fr:{text:'Ressuscit\u00e9 des morts, le Christ ne meurt plus ; la mort n\u2019a plus de pouvoir sur lui.', ref:'Romains 6:9'}, en:{text:'Raised from the dead, Christ dies no more; death no longer has power over him.', ref:'Romans 6:9'}},
-    {id:'1co-15-55', fr:{text:'\u00d4 mort, o\u00f9 est ta victoire ? \u00d4 mort, o\u00f9 est ton aiguillon ?', ref:'1 Corinthiens 15:55'}, en:{text:'O death, where is your victory? O death, where is your sting?', ref:'1 Corinthians 15:55'}}
+  {id:'charite', name:{fr:'La charit\u00e9', en:'Charity'}, verses:[
+    {id:'jn-13-34', fr:{text:'Je vous donne un commandement nouveau : aimez-vous les uns les autres ; comme je vous ai aim\u00e9s, aimez-vous les uns les autres.', ref:'Jean 13:34'}, en:{text:'A new commandment I give you: love one another; as I have loved you, love one another.', ref:'John 13:34'}},
+    {id:'mt-22-37', fr:{text:'Tu aimeras le Seigneur ton Dieu de tout ton c\u0153ur, de toute ton \u00e2me et de tout ton esprit.', ref:'Matthieu 22:37'}, en:{text:'You shall love the Lord your God with all your heart, with all your soul, and with all your mind.', ref:'Matthew 22:37'}},
+    {id:'mt-22-39', fr:{text:'Tu aimeras ton prochain comme toi-m\u00eame.', ref:'Matthieu 22:39'}, en:{text:'You shall love your neighbour as yourself.', ref:'Matthew 22:39'}},
+    {id:'jn-15-13', fr:{text:'Il n\u2019y a pas de plus grand amour que de donner sa vie pour ses amis.', ref:'Jean 15:13'}, en:{text:'There is no greater love than to lay down one\u2019s life for one\u2019s friends.', ref:'John 15:13'}},
+    {id:'1co-13-2', fr:{text:'Quand j\u2019aurais toute la foi jusqu\u2019\u00e0 transporter les montagnes, si je n\u2019ai pas la charit\u00e9, je ne suis rien.', ref:'1 Corinthiens 13:2'}, en:{text:'If I have all faith, so as to remove mountains, but have not charity, I am nothing.', ref:'1 Corinthians 13:2'}},
+    {id:'1co-13-4', fr:{text:'La charit\u00e9 est patiente, elle est pleine de bont\u00e9 ; la charit\u00e9 n\u2019est pas envieuse.', ref:'1 Corinthiens 13:4'}, en:{text:'Charity is patient, charity is kind; charity is not envious.', ref:'1 Corinthians 13:4'}},
+    {id:'1co-13-13', fr:{text:'Maintenant demeurent la foi, l\u2019esp\u00e9rance et la charit\u00e9 ; mais la plus grande des trois, c\u2019est la charit\u00e9.', ref:'1 Corinthiens 13:13'}, en:{text:'Now faith, hope, and charity abide, these three; but the greatest of these is charity.', ref:'1 Corinthians 13:13'}},
+    {id:'1jn-4-16', fr:{text:'Dieu est amour, et celui qui demeure dans l\u2019amour demeure en Dieu, et Dieu demeure en lui.', ref:'1 Jean 4:16'}, en:{text:'God is love, and whoever abides in love abides in God, and God in him.', ref:'1 John 4:16'}}
   ]},
   {id:'eglise', name:{fr:'L\u2019\u00c9glise', en:'The Church'}, verses:[
     {id:'mt-16-18', fr:{text:'Tu es Pierre, et sur cette pierre je b\u00e2tirai mon \u00c9glise, et les portes de l\u2019enfer ne pr\u00e9vaudront pas contre elle.', ref:'Matthieu 16:18'}, en:{text:'You are Peter, and on this rock I will build my Church, and the gates of hell shall not prevail against it.', ref:'Matthew 16:18'}},
@@ -509,15 +542,16 @@ const PRE=[
     {id:'1pi-3-21', fr:{text:'Cette eau, c\u2019est le bapt\u00eame qui vous sauve maintenant, non comme un nettoyage du corps, mais comme l\u2019engagement envers Dieu d\u2019une conscience droite.', ref:'1 Pierre 3:21'}, en:{text:'Baptism now saves you, not as a removal of dirt from the body, but as an appeal to God for a good conscience.', ref:'1 Peter 3:21'}},
     {id:'mc-16-16', fr:{text:'Celui qui croira et sera baptis\u00e9 sera sauv\u00e9.', ref:'Marc 16:16'}, en:{text:'Whoever believes and is baptised will be saved.', ref:'Mark 16:16'}}
   ]},
-  {id:'charite', name:{fr:'La charit\u00e9', en:'Charity'}, verses:[
-    {id:'jn-13-34', fr:{text:'Je vous donne un commandement nouveau : aimez-vous les uns les autres ; comme je vous ai aim\u00e9s, aimez-vous les uns les autres.', ref:'Jean 13:34'}, en:{text:'A new commandment I give you: love one another; as I have loved you, love one another.', ref:'John 13:34'}},
-    {id:'mt-22-37', fr:{text:'Tu aimeras le Seigneur ton Dieu de tout ton c\u0153ur, de toute ton \u00e2me et de tout ton esprit.', ref:'Matthieu 22:37'}, en:{text:'You shall love the Lord your God with all your heart, with all your soul, and with all your mind.', ref:'Matthew 22:37'}},
-    {id:'mt-22-39', fr:{text:'Tu aimeras ton prochain comme toi-m\u00eame.', ref:'Matthieu 22:39'}, en:{text:'You shall love your neighbour as yourself.', ref:'Matthew 22:39'}},
-    {id:'jn-15-13', fr:{text:'Il n\u2019y a pas de plus grand amour que de donner sa vie pour ses amis.', ref:'Jean 15:13'}, en:{text:'There is no greater love than to lay down one\u2019s life for one\u2019s friends.', ref:'John 15:13'}},
-    {id:'1co-13-2', fr:{text:'Quand j\u2019aurais toute la foi jusqu\u2019\u00e0 transporter les montagnes, si je n\u2019ai pas la charit\u00e9, je ne suis rien.', ref:'1 Corinthiens 13:2'}, en:{text:'If I have all faith, so as to remove mountains, but have not charity, I am nothing.', ref:'1 Corinthians 13:2'}},
-    {id:'1co-13-4', fr:{text:'La charit\u00e9 est patiente, elle est pleine de bont\u00e9 ; la charit\u00e9 n\u2019est pas envieuse.', ref:'1 Corinthiens 13:4'}, en:{text:'Charity is patient, charity is kind; charity is not envious.', ref:'1 Corinthians 13:4'}},
-    {id:'1co-13-13', fr:{text:'Maintenant demeurent la foi, l\u2019esp\u00e9rance et la charit\u00e9 ; mais la plus grande des trois, c\u2019est la charit\u00e9.', ref:'1 Corinthiens 13:13'}, en:{text:'Now faith, hope, and charity abide, these three; but the greatest of these is charity.', ref:'1 Corinthians 13:13'}},
-    {id:'1jn-4-16', fr:{text:'Dieu est amour, et celui qui demeure dans l\u2019amour demeure en Dieu, et Dieu demeure en lui.', ref:'1 Jean 4:16'}, en:{text:'God is love, and whoever abides in love abides in God, and God in him.', ref:'1 John 4:16'}}
+  {id:'eucharistie', name:{fr:'L\u2019Eucharistie', en:'The Eucharist'}, verses:[
+    {id:'jn-6-51', fr:{text:'Je suis le pain vivant descendu du ciel. Le pain que je donnerai, c\u2019est ma chair, pour la vie du monde.', ref:'Jean 6:51'}, en:{text:'I am the living bread that came down from heaven. The bread that I will give is my flesh, for the life of the world.', ref:'John 6:51'}},
+    {id:'jn-6-54', fr:{text:'Celui qui mange ma chair et boit mon sang a la vie \u00e9ternelle, et je le ressusciterai au dernier jour.', ref:'Jean 6:54'}, en:{text:'He who eats my flesh and drinks my blood has eternal life, and I will raise him up at the last day.', ref:'John 6:54'}},
+    {id:'jn-6-55', fr:{text:'Ma chair est vraiment une nourriture, et mon sang vraiment une boisson.', ref:'Jean 6:55'}, en:{text:'My flesh is true food, and my blood is true drink.', ref:'John 6:55'}},
+    {id:'mt-26-26', fr:{text:'Prenez, mangez : ceci est mon corps.', ref:'Matthieu 26:26'}, en:{text:'Take, eat; this is my body.', ref:'Matthew 26:26'}},
+    {id:'mt-26-28', fr:{text:'Ceci est mon sang, le sang de l\u2019alliance, r\u00e9pandu pour la multitude en r\u00e9mission des p\u00e9ch\u00e9s.', ref:'Matthieu 26:28'}, en:{text:'This is my blood of the covenant, poured out for many for the forgiveness of sins.', ref:'Matthew 26:28'}},
+    {id:'1co-11-26', fr:{text:'Chaque fois que vous mangez ce pain et que vous buvez cette coupe, vous annoncez la mort du Seigneur, jusqu\u2019\u00e0 ce qu\u2019il vienne.', ref:'1 Corinthiens 11:26'}, en:{text:'As often as you eat this bread and drink this cup, you proclaim the Lord\u2019s death until he comes.', ref:'1 Corinthians 11:26'}},
+    {id:'1co-11-27', fr:{text:'Quiconque mange ce pain ou boit la coupe du Seigneur indignement sera coupable envers le corps et le sang du Seigneur.', ref:'1 Corinthiens 11:27'}, en:{text:'Whoever eats this bread or drinks the cup of the Lord unworthily will be guilty of the body and blood of the Lord.', ref:'1 Corinthians 11:27'}},
+    {id:'1co-10-16', fr:{text:'La coupe de b\u00e9n\u00e9diction que nous b\u00e9nissons n\u2019est-elle pas communion au sang du Christ ? Le pain que nous rompons n\u2019est-il pas communion au corps du Christ ?', ref:'1 Corinthiens 10:16'}, en:{text:'The cup of blessing which we bless, is it not a communion in the blood of Christ? The bread which we break, is it not a communion in the body of Christ?', ref:'1 Corinthians 10:16'}},
+    {id:'jn-1-29', fr:{text:'Voici l\u2019Agneau de Dieu qui enl\u00e8ve le p\u00e9ch\u00e9 du monde.', ref:'Jean 1:29'}, en:{text:'Behold the Lamb of God who takes away the sin of the world.', ref:'John 1:29'}}
   ]},
   {id:'fins-dernieres', name:{fr:'Les fins derni\u00e8res', en:'The Last Things'}, verses:[
     {id:'heb-9-27', fr:{text:'Il est r\u00e9serv\u00e9 aux hommes de mourir une seule fois, apr\u00e8s quoi vient le jugement.', ref:'H\u00e9breux 9:27'}, en:{text:'It is appointed for men to die once, and after that comes judgment.', ref:'Hebrews 9:27'}},
@@ -535,7 +569,7 @@ const PRE=[
 const S={
   lang:localStorage.getItem('lm_lang')||'fr',
   uid:null, mode:0,
-  selCats:[], progress:{}, step:0, customCats:[], baseEdits:{}, trash:[], trashOpen:false,
+  selCats:[], progress:{}, step:0, customCats:[], baseEdits:{}, trash:[], trashOpen:false, showAllCats:false,
   open:{},          // catId -> bool (déplié)
   cur:null, lastId:null, answered:0, correct:0,
   pendingCat:null, editCat:null, editVerse:null
@@ -608,7 +642,9 @@ function saveTrash(){udoc('meta/trash').set({items:S.trash});}
 // ════════ UI : CATÉGORIES & MÉMOIRE ════════
 function renderCats(){
   const host=$('cat-list'); host.innerHTML='';
-  allCats().forEach(cat=>{
+  const CATLIM=6;
+  const _allc=allCats();
+  (S.showAllCats?_allc:_allc.slice(0,CATLIM)).forEach(cat=>{
     const custom=!!S.customCats.find(c=>c.id===cat.id);
     const sel=S.selCats.includes(cat.id);
     const open=!!S.open[cat.id];
@@ -623,7 +659,7 @@ function renderCats(){
     const div=document.createElement('div');
     div.className='cat'+(sel?' sel':'')+(open?' open':'');
     div.dataset.id=cat.id;
-    let body='<div class="cat-body"><div class="markall"><span>'+t('markall')+'</span><span class="markall-dots"><span class="dot r" data-all="r"></span><span class="dot a" data-all="a"></span><span class="dot v" data-all="v"></span></span></div>';
+    let body='<div class="cat-body">';
     cat.verses.forEach(vv=>{
       const l=levelOf(vv.id);
       body+='<div class="vrow"><span class="vline" data-editv="'+vv.id+'"><span class="vref">'+vv[S.lang].ref+'</span><span class="vtext">'+trunc(vv[S.lang].text,58)+'</span></span><span class="lvl">'
@@ -634,10 +670,11 @@ function renderCats(){
     });
     body+='<div class="cat-custom-acts"><span class="mini-act" data-addv="1">+ '+t('addverse')+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span>'+(cat.base?'<span class="mini-act" data-restorec="1">'+t('cat_restore')+'</span>':'')+(custom?'<span class="mini-act del" data-delc="1">'+t('del')+'</span>':'')+'</div>';
     body+='</div>';
-    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp">'+cat.name[S.lang]+'</span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
+    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp">'+cat.name[S.lang]+'</span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-mark"><span class="dot r" data-all="r"></span><span class="dot a" data-all="a"></span><span class="dot v" data-all="v"></span></span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
     host.appendChild(div);
   });
   const _cs=effectiveCats(),_all=_cs.length&&_cs.every(c=>S.selCats.includes(c.id));$('sel-all').textContent=_all?t('deselect_all'):t('select_all');
+  const _more=$('cat-more'); if(_allc.length>CATLIM){_more.style.display='';_more.textContent=S.showAllCats?t('show_less'):t('show_all')+' ('+_allc.length+')';}else{_more.style.display='none';}
   renderTrash();
   updateStart();
 }
@@ -654,11 +691,18 @@ function applyLang(){
   $('auth-or').textContent=l==='fr'?'ou':'or';
   $('b-forgot').textContent=authMode==='forgot'?tl.back:tl.forgot;
   $('b-submit').textContent=authMode==='si'?tl.b_si:authMode==='su'?tl.b_su:tl.b_reset;
-  $('hdr-title').textContent=tl.hdr; $('lang-btn').textContent=tl.lang; $('logout-btn').textContent=tl.logout;
+  const _fr=l==='fr';
+  $('nav-logo').href=_fr?'/':'/en/';
+  $('nav-home').textContent=_fr?'Accueil':'Home'; $('nav-home').href=_fr?'/':'/en/';
+  $('nav-lib').textContent=_fr?'Bibliothèque':'Library'; $('nav-lib').href=_fr?'/bibliotheque/':'/en/library/';
+  $('nav-mem').textContent=_fr?'Mémoriser':'Memorise';
+  $('nav-about').textContent=_fr?'À propos':'About'; $('nav-about').href=_fr?'/a-propos/':'/en/about/';
+  $('foot-verse').innerHTML=_fr?FOOT_FR:FOOT_EN;
+  $('lang-btn').textContent=tl.lang; $('logout-btn').textContent=tl.logout;
   $('lbl-cats').textContent=tl.cats; $('lbl-newcat').textContent=tl.newcat; $('lbl-mode').textContent=tl.mode;
   $('mode-0').textContent=tl.mode0; $('mode-1').textContent=tl.mode1; $('mode-2').textContent=tl.mode2;
   $('start-btn').textContent=tl.start; $('reset-btn').textContent=tl.reset; $('finish-btn').textContent=tl.finish;
-  $('restore-btn').textContent=tl.restore; $('lbl-markglobal').textContent=tl.markglobal;
+  $('restore-btn').textContent=tl.restore; $('lbl-markglobal').textContent=tl.markglobal; $('bulk-restore').textContent=tl.bulk_restore;
   $('sum-back').textContent=tl.backbtn;
 }
 function showView(v){
@@ -741,12 +785,13 @@ async function delCatById(id){
   S.customCats=S.customCats.filter(c=>c.id!==id); S.selCats=S.selCats.filter(x=>x!==id);
   await ucol('categories').doc(id).delete(); savePrefs(); renderCats();
 }
-function openAddVerse(catId){S.pendingCat=catId;S.editVerse=null;$('mv-title').textContent=t('mv');['i-vfr','i-rfr','i-ven','i-ren'].forEach(x=>$(x).value='');openModal('m-verse');}
+function openAddVerse(catId){S.pendingCat=catId;S.editVerse=null;$('mv-title').textContent=t('mv');['i-vfr','i-rfr','i-ven','i-ren'].forEach(x=>$(x).value='');$('mv-reset').style.display='none';openModal('m-verse');}
 function openEditVerse(catId,vId){
   const c=effectiveCats().find(x=>x.id===catId); if(!c)return;
   const v=c.verses.find(x=>x.id===vId); if(!v)return;
   S.pendingCat=catId; S.editVerse=vId; $('mv-title').textContent=t('mv_edit');
   $('i-vfr').value=v.fr.text; $('i-rfr').value=v.fr.ref; $('i-ven').value=v.en.text; $('i-ren').value=v.en.ref;
+  $('mv-reset').style.display=verseOrigin(vId)==='base'?'':'none'; $('mv-reset').textContent=t('reset_verse');
   openModal('m-verse');
 }
 async function saveVerseModal(){
@@ -764,6 +809,13 @@ async function saveVerseModal(){
 }
 const clone=o=>JSON.parse(JSON.stringify(o));
 function verseOrigin(vId){return PRE.some(c=>c.verses.some(v=>v.id===vId))?'base':'perso';}
+function resetVerseOrig(){
+  const catId=S.pendingCat, vId=S.editVerse; if(!catId||!vId)return;
+  let orig=null; PRE.forEach(c=>{const v=c.verses.find(x=>x.id===vId); if(v)orig=v;});
+  if(!orig){closeModal('m-verse');return;}
+  if(isBase(catId)) editBase(catId,c=>{const v=c.verses.find(x=>x.id===vId); if(v){v.fr=JSON.parse(JSON.stringify(orig.fr)); v.en=JSON.parse(JSON.stringify(orig.en));}});
+  closeModal('m-verse'); renderCats();
+}
 // suppression d'un verset = envoi en corbeille (récupérable)
 async function trashVerse(catId,vId){
   const c=effectiveCats().find(x=>x.id===catId); if(!c)return;
@@ -871,6 +923,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('restore-btn').onclick=restoreBase;
   $('add-cat').onclick=openNewCat;
   $('sel-all').onclick=toggleSelectAll;
+  $('cat-more').onclick=()=>{S.showAllCats=!S.showAllCats;renderCats();};
+  $('foot-copy').textContent='© '+new Date().getFullYear()+' Lumen';
   $('trash-block').addEventListener('click',e=>{
     if(e.target.closest('#trash-toggle')){S.trashOpen=!S.trashOpen;renderTrash();return;}
     const rst=e.target.closest('[data-trestore]'); if(rst){restoreTrash(rst.dataset.trestore);return;}
@@ -878,10 +932,23 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(e.target.closest('#trash-empty')){emptyTrash();return;}
   });
   // marquage global : toutes les catégories sélectionnées
-  document.querySelector('.markglobal .markall-dots').addEventListener('click',e=>{
-    const d=e.target.closest('[data-gall]'); if(!d)return;
-    effectiveCats().filter(c=>S.selCats.includes(c.id)).forEach(c=>c.verses.forEach(v=>setLevel(v.id,d.dataset.gall)));
-    saveProgress(); renderCats();
+  document.querySelector('.markglobal').addEventListener('click',e=>{
+    const d=e.target.closest('[data-gall]'), rb=e.target.closest('#bulk-restore');
+    const sel=effectiveCats().filter(c=>S.selCats.includes(c.id));
+    if(d){
+      if(!sel.length)return;
+      if(!confirm(t('bulk_mark_q').replace('%n%',sel.length)))return;
+      sel.forEach(c=>c.verses.forEach(v=>setLevel(v.id,d.dataset.gall)));
+      saveProgress(); renderCats(); return;
+    }
+    if(rb){
+      const baseSel=sel.filter(c=>isBase(c.id));
+      if(!baseSel.length)return;
+      if(!confirm(t('bulk_restore_q').replace('%n%',baseSel.length)))return;
+      baseSel.forEach(c=>{delete S.baseEdits[c.id];}); saveBaseEdits();
+      S.trash=S.trash.filter(x=>!(x.origin==='base'&&baseSel.some(c=>c.id===x.catId))); saveTrash();
+      renderCats(); return;
+    }
   });
   // clavier 1-4 pendant l'étude
   document.addEventListener('keydown',e=>{
@@ -912,7 +979,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(act){S.open[id]=!S.open[id];catEl.classList.toggle('open');return;}
   });
   $('mcat-cancel').onclick=()=>closeModal('m-cat'); $('mcat-ok').onclick=saveCatModal;
-  $('mv-cancel').onclick=()=>closeModal('m-verse'); $('mv-ok').onclick=saveVerseModal;
+  $('mv-cancel').onclick=()=>closeModal('m-verse'); $('mv-ok').onclick=saveVerseModal; $('mv-reset').onclick=resetVerseOrig;
   ['m-cat','m-verse'].forEach(id=>$(id).addEventListener('click',e=>{if(e.target===$(id))closeModal(id);}));
 });
 
