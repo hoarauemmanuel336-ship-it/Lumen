@@ -196,7 +196,7 @@ const ARTICLES_EN = {
       <p>Isaiah's gaze widens beyond Israel, to all the nations. He sees a day when the peoples will go up to Jerusalem to learn there the way of God, and when arms will become tools. <em>“From their swords they will forge ploughshares, and from their spears pruning hooks; one nation will no longer raise the sword against another.”</em> <span class="ref">Isaiah 2:4</span> The nations themselves are under the hand of God: a long series of oracles announces the judgment of Babylon, of Assyria, of Egypt and of the neighbouring kingdoms, for the Holy One of Israel is the master of the whole earth. At the end, a great vision goes beyond history: God prepares for all peoples a feast, wipes the tears from all faces and abolishes death itself. <em>“He will destroy death for ever; the Lord God will wipe away the tears from all faces.”</em> <span class="ref">Isaiah 25:8</span></p>
       <h2>The deliverance of Jerusalem</h2>
       <p>The last chapters recount the decisive trial of Isaiah's ministry. Sennacherib, king of Assyria, comes up against Judah, takes its cities and besieges Jerusalem; the chief cupbearer he sends mocks before the walls the God of Israel, denying that he can save the city. King Hezekiah carries the threat before God in the Temple and entrusts himself to him through the mouth of Isaiah, who announces that the Assyrian will not enter the city. That night, the Assyrian camp is struck, and Sennacherib lifts the siege and returns home. <em>“The angel of the Lord went out and struck down in the camp of the Assyrians a hundred and eighty-five thousand men.”</em> <span class="ref">Isaiah 37:36</span> The trust that Ahaz had refused, Hezekiah gave, and Jerusalem was saved.</p>
-      <p>Soon after, Hezekiah falls ill to the point of death. Isaiah announces his end; the king then turns to God and beseeches him in tears. God hears his prayer, adds fifteen years to his life, and gives him as a sign the shadow that retreats ten degrees on the dial. It is his recovery that brings to Jerusalem envoys from Babylon, come to congratulate him; Hezekiah shows them all his treasures with pride. Isaiah reproaches him for it and announces the judgment: these riches will one day be carried off to Babylon, and his own sons will be deported there. Thus already opens, on the threshold of Proto-Isaiah, the horizon of the exile that the rest of the book will sing.</p>
+      <p>Soon after, Hezekiah falls ill to the point of death. Isaiah announces his end; the king then turns to God and beseeches him in tears. God hears his prayer, and Isaiah comes back to bring him the answer: fifteen years added to his life. The king asks for a sign assuring him of his recovery, and God grants it: the shadow retreats ten degrees on the dial. Having heard of his illness and recovery, the king of Babylon sends him messengers bearing letters and a gift; Hezekiah then shows them all his treasures with pride. Isaiah reproaches him for it and announces the judgment: these riches will one day be carried off to Babylon, and his own sons will be deported there. Thus already opens, on the threshold of Proto-Isaiah, the horizon of the exile that the rest of the book will sing.</p>
       <div class="fin-article">✦</div>
     `
 },
@@ -1551,28 +1551,7 @@ const NOUVEAUTES_EN = [
   { d: "June 2026", items: [
     "New: the Bible Quiz, to practise with true/false and multiple-choice questions, each with the right answer, its reference and a short explanation (menu “Quiz”).",
     "New: the “Memorise” tool, to learn verses by heart with spaced repetition (menu “Memorise”).",
-    "The “Eucharist” article: the “Sacrifice” section deepened (the Old Covenant, the one sacrifice of the Cross, its identity with the Mass).",
-    "The “Confession” article fully reworked for clarity and completeness, and clarification of purgatory in “The Last Things”.",
-    "The “Mary” page deepened with a section “The Tabernacle of God”: the Word who pitches his tent in the flesh (John 1:14) and Mary's womb as the holy of holies of the new covenant.",
-    "The Communion of Saints deepened (how the saints know our prayers in God, the role of the angels), and “The Intercession of the Saints and Angels” refocused on the objections alone; a “See first” link now connects each apologetic article to the doctrine it defends.",
     "New apologetic article: “The Real Presence,” a defence of the Eucharist answering the objections on the real presence, the memorial, the sacrifice of the Mass, and adoration.",
-    "Reinforcement of two articles: “Sin” now treats the sin against the Spirit, and “The Canon and the Deuterocanonical Books” answers the objection that the New Testament never cites these books.",
-    "Reinforcement of three apologetic articles: “Sola Scriptura” answers the example of the Bereans, “Once Saved, Always Saved” the design of God and the seal of the Spirit, “Sola Fide” takes Genesis 15:6 head-on.",
-    "Recasting of “Mary, Mother of God” (apologetics): a comprehensive defence answering the objections on the divine motherhood, the Immaculate Conception, the perpetual virginity, the Assumption, and Marian devotion.",
-    "Deepening of “Relics”: a broadened scriptural foundation (Peter’s shadow, the body as instrument) and the latria/dulia distinction.",
-    "Deepening and expansion of “The Intercession of the Saints and Angels”: the scriptural foundation of intercession and the dimension of the angels.",
-    "Addition of the dimension of the angels to “The Communion of Saints”.",
-    "Deepening of “Trito-Isaiah”: the vision of the winepress of wrath receives its Christological reading.",
-    "Deepening of “Abraham saw my day”: the article now follows the whole Temple dispute up to “before Abraham was, I am”.",
-    "Merger: “Mary” now brings together the Immaculate Conception, the perpetual virginity, the Assumption, her queenship, and the new Ark.",
-    "Merger: “The Trinity” now brings together the Father, the Son and the Holy Spirit.",
-    "Merger: “The theological virtues” now brings together faith, hope and charity.",
-    "Merger: “The last things” now brings together the abode of the dead, the particular judgment, purgatory, paradise, hell, the resurrection of the flesh and the last judgment.",
-    "Merger: “The Pope” now incorporates papal infallibility.",
-    "Deepening of several articles: the Incarnation, Baptism, the communion of saints, the Angel of the Lord, the age of the martyrs.",
-    "Merger: “Original Sin” now brings together “Original Justice” and “The Passions and Concupiscence”, with two new developments, the transmission of sin and the state of innocence.",
-    "Library reorganised: the domain “Scripture and Exegesis” is now arranged in five categories.",
-    "Home page redesigned and presentation lightened.",
     "New article: “The four Servant Songs”.",
     "New article: “Trito-Isaiah”.",
     "New article: “Deutero-Isaiah”.",
@@ -1597,9 +1576,6 @@ const NOUVEAUTES_EN = [
     "New article: “Let the Dead Bury Their Dead”.",
     "New article: “Jesus before Pilate”.",
     "New article: “Jesus and Nicodemus”.",
-    "Deepening of several articles: salvation, the Church, the Eucharist, confirmation.",
-    "“Answering the objections”: doctrinal articles now point to their apologetic defence.",
-    "New Doctrine category: “Conscience and Responsibility”.",
     "New article: “Invincible Ignorance”."
   ] }
 ];

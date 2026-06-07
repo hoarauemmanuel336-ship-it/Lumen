@@ -261,6 +261,9 @@ main{max-width:1080px;margin:0 auto;padding:0 32px;min-height:70vh}
 }
 .article-lien:hover h3{color:var(--or-pale)}
 .article-lien p{margin-top:8px;font-size:20px;color:var(--parchemin-att)}
+.voir-plus{display:inline;cursor:pointer;color:var(--or);font-size:15px;letter-spacing:.02em;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.voir-plus:hover{color:var(--or-pale)}
+.r-court[hidden],.r-full[hidden]{display:none}
 .vide{padding:60px 0;text-align:center;color:var(--parchemin-att);font-style:italic;font-size:19px}
 .cat-titre{
   font-family:'Cormorant Garamond',serif;
@@ -667,7 +670,7 @@ const ARTICLES = [
       <p>Le regard d'Isaïe s'élargit au-delà d'Israël, jusqu'à toutes les nations. Il voit un jour où les peuples monteront vers Jérusalem pour y apprendre la voie de Dieu, et où les armes deviendront des outils. <em>« De leurs épées ils forgeront des socs, et de leurs lances des serpes ; une nation ne lèvera plus l'épée contre une autre. »</em> <span class="ref">Isaïe 2:4</span> Les nations elles-mêmes sont sous la main de Dieu : une longue suite d'oracles annonce le jugement de Babylone, de l'Assyrie, de l'Égypte et des royaumes voisins, car le Saint d'Israël est le maître de toute la terre. Au terme, une grande vision dépasse l'histoire : Dieu prépare pour tous les peuples un festin, essuie les larmes de tous les visages et abolit la mort elle-même. <em>« Il détruira la mort pour toujours ; le Seigneur Dieu essuiera les larmes de tous les visages. »</em> <span class="ref">Isaïe 25:8</span></p>
       <h2>La délivrance de Jérusalem</h2>
       <p>Les derniers chapitres racontent l'épreuve décisive du ministère d'Isaïe. Sennachérib, roi d'Assyrie, monte contre Juda, prend ses villes et assiège Jérusalem ; le grand échanson qu'il envoie raille devant les murs le Dieu d'Israël, niant qu'il puisse sauver la ville. Le roi Ézéchias porte la menace devant Dieu dans le Temple et s'en remet à lui par la bouche d'Isaïe, qui annonce que l'Assyrien n'entrera pas dans la ville. Cette nuit-là, le camp assyrien est frappé, et Sennachérib lève le siège et s'en retourne. <em>« L'ange du Seigneur sortit et frappa dans le camp des Assyriens cent quatre-vingt-cinq mille hommes. »</em> <span class="ref">Isaïe 37:36</span> La confiance qu'Achaz avait refusée, Ézéchias l'a donnée, et Jérusalem fut sauvée.</p>
-      <p>Peu après, Ézéchias tombe malade jusqu'à la mort. Isaïe lui annonce sa fin ; le roi se tourne alors vers Dieu et le supplie en pleurant. Dieu entend sa prière, ajoute quinze années à sa vie, et lui donne pour signe l'ombre qui recule de dix degrés sur le cadran. C'est sa guérison qui amène à Jérusalem des envoyés de Babylone, venus le féliciter ; Ézéchias leur montre avec orgueil tous ses trésors. Isaïe lui en fait reproche et lui annonce le jugement : ces richesses seront un jour emportées à Babylone, et ses propres fils y seront déportés. Ainsi s'ouvre déjà, au seuil du proto-Isaïe, l'horizon de l'exil que chantera la suite du livre.</p>
+      <p>Peu après, Ézéchias tombe malade jusqu'à la mort. Isaïe lui annonce sa fin ; le roi se tourne alors vers Dieu et le supplie en pleurant. Dieu entend sa prière, et Isaïe revient lui apporter la réponse : quinze années ajoutées à sa vie. Le roi demande un signe qui lui assure sa guérison, et Dieu le lui accorde : l'ombre recule de dix degrés sur le cadran. Ayant appris sa maladie et son rétablissement, le roi de Babylone lui envoie des messagers porteurs de lettres et d'un présent ; Ézéchias leur montre alors avec orgueil tous ses trésors. Isaïe lui en fait reproche et lui annonce le jugement : ces richesses seront un jour emportées à Babylone, et ses propres fils y seront déportés. Ainsi s'ouvre déjà, au seuil du proto-Isaïe, l'horizon de l'exil que chantera la suite du livre.</p>
       <div class="fin-article">✦</div>
     `
   },
@@ -2195,28 +2198,7 @@ const NOUVEAUTES = [
   { d: "Juin 2026", items: [
     "Nouveau : le Quiz biblique, pour s'exercer en vrai/faux et en choix multiple, avec la bonne réponse, sa référence et une explication à chaque question (menu « Quiz »).",
     "Nouveau : l'outil « Mémoriser », pour retenir les versets par cœur grâce à la révision espacée (menu « Mémoriser »).",
-    "Article « L'Eucharistie » : section « Le sacrifice » approfondie (ancienne alliance, unique sacrifice de la Croix, identité avec la messe).",
-    "Article « La confession » entièrement retravaillé pour plus de clarté et de complétude, et clarification du purgatoire dans « Les fins dernières ».",
-    "La page « Marie » approfondie d'une section « Le tabernacle de Dieu » : le Verbe qui plante sa tente dans la chair (Jean 1:14) et le sein de Marie comme saint des saints de la nouvelle alliance.",
-    "La communion des saints approfondie (comment les saints connaissent nos prières en Dieu, le rôle des anges), et « L'intercession des saints et des anges » recentré sur les seules objections ; un renvoi « Voir d'abord » relie désormais chaque article apologétique au doctrinal qu'il défend.",
     "Nouvel article apologétique : « La présence réelle », défense de l'Eucharistie répondant aux objections sur la présence réelle, le mémorial, le sacrifice de la messe et l'adoration.",
-    "Renforcement de deux articles : « Le péché » traite désormais le péché contre l'Esprit, et « Le canon et les deutérocanoniques » répond à l'objection que le Nouveau Testament ne cite jamais ces livres.",
-    "Renforcement de trois articles apologétiques : « Le sola scriptura » répond à l'exemple des Béréens, « Une fois sauvé, toujours sauvé » au dessein de Dieu et au sceau de l'Esprit, « Le sola fide » prend Genèse 15:6 de front.",
-    "Refonte de « Marie, Mère de Dieu » (apologétique) : défense d'ensemble répondant aux objections sur la maternité divine, l'Immaculée Conception, la virginité perpétuelle, l'Assomption et le culte marial.",
-    "Approfondissement de « Les reliques » : socle scripturaire élargi (l'ombre de Pierre, le corps comme instrument) et distinction latrie/dulie.",
-    "Approfondissement et élargissement de « L'intercession des saints et des anges » : fondement scripturaire de l'intercession et dimension des anges.",
-    "Ajout de la dimension des anges à « La communion des saints ».",
-    "Approfondissement du « trito-Isaïe » : la vision du pressoir de la colère reçoit sa lecture christologique.",
-    "Approfondissement de « Abraham a vu mon jour » : l'article suit désormais toute la dispute du Temple jusqu'à « avant qu'Abraham fût, je suis ».",
-    "Fusion : « Marie » réunit l'Immaculée Conception, la virginité perpétuelle, l'Assomption, la royauté et la nouvelle Arche.",
-    "Fusion : « La Trinité » réunit le Père, le Fils et l'Esprit Saint.",
-    "Fusion : « Les vertus théologales » réunit la foi, l'espérance et la charité.",
-    "Fusion : « Les fins dernières » réunit le séjour des morts, le jugement particulier, le purgatoire, le paradis, l'enfer, la résurrection de la chair et le jugement dernier.",
-    "Fusion : « Le pape » intègre l'infaillibilité pontificale.",
-    "Approfondissement de plusieurs articles : l'Incarnation, le Baptême, la communion des saints, l'Ange du Seigneur, l'âge des martyrs.",
-    "Fusion : « Le péché originel » réunit désormais « La justice originelle » et « Les passions et la concupiscence », avec deux développements neufs, la transmission du péché et l'état d'innocence.",
-    "Réorganisation de la bibliothèque : le domaine « Écriture et exégèse » se classe désormais en cinq catégories.",
-    "Refonte de la page d'accueil et allègement de la présentation.",
     "Nouvel article : « Les quatre chants du Serviteur ».",
     "Nouvel article : « Le trito-Isaïe ».",
     "Nouvel article : « Le deutéro-Isaïe ».",
@@ -2241,9 +2223,6 @@ const NOUVEAUTES = [
     "Nouvel article : « Laisse les morts enterrer leurs morts ».",
     "Nouvel article : « Jésus devant Pilate ».",
     "Nouvel article : « Jésus et Nicodème ».",
-    "Approfondissement de plusieurs articles : le salut, l'Église, l'Eucharistie, la confirmation.",
-    "« Réponse aux objections » : les articles doctrinaux renvoient à leur défense apologétique.",
-    "Nouvelle catégorie de Doctrine : « La conscience et la responsabilité ».",
     "Nouvel article : « L'ignorance invincible »."
   ] }
 ];
@@ -2292,10 +2271,27 @@ function articlesOrdonnes(){
   }
   return out;
 }
+function resumeHtml(txt){
+  if(txt.length<=195) return `<p>${txt}</p>`;
+  var cut=txt.lastIndexOf(' ',150); if(cut<100)cut=150;
+  var court=txt.slice(0,cut).replace(/[\s,;:–—-]+$/,'');
+  return '<p class="resume r-trunc"><span class="r-court">'+court+'…</span><span class="r-full" hidden>'+txt+'</span> <span class="voir-plus" role="button" tabindex="0" data-more="voir plus" data-less="voir moins">voir plus</span></p>';
+}
+document.addEventListener('click',function(e){
+  var vp=e.target.closest&&e.target.closest('.voir-plus'); if(!vp)return;
+  e.preventDefault(); e.stopPropagation();
+  var p=vp.closest('.r-trunc'); if(!p)return;
+  var court=p.querySelector('.r-court'), full=p.querySelector('.r-full');
+  if(full.hasAttribute('hidden')){court.setAttribute('hidden','');full.removeAttribute('hidden');vp.textContent=vp.dataset.less;}
+  else{full.setAttribute('hidden','');court.removeAttribute('hidden');vp.textContent=vp.dataset.more;}
+});
+document.addEventListener('keydown',function(e){
+  if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('voir-plus')){e.preventDefault();e.target.click();}
+});
 function carteArticle(a){
   return `<a class="article-lien" href="#/article/${a.id}">
       <h3>${a.titre}</h3>
-      <p>${a.resume}</p>
+      ${resumeHtml(a.resume)}
     </a>`;
 }
 function corpsDomaine(t){

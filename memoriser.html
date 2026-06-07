@@ -21,7 +21,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{height:100%}
-body{background:var(--encre);color:var(--parchemin);font-family:var(--serif);font-size:18px;line-height:1.6;min-height:100%;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{background:var(--encre);color:var(--parchemin);font-family:var(--serif);font-size:20px;line-height:1.6;min-height:100%;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 ::selection{background:rgba(239,230,207,.22)}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
@@ -59,6 +59,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 #app.on{display:flex}
 .hdr{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:12px;padding:18px 30px;background:rgba(0,0,0,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--filet)}
 .hdr-logo{font-family:var(--display);font-size:20px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;padding-left:.34em;transition:color .3s}
+.nav-burger{display:none;background:none;border:none;color:var(--pa);font-size:22px;line-height:1;cursor:pointer;padding:2px 6px;transition:color .3s}
+.nav-burger:hover{color:var(--or)}
 .hdr-logo:hover{color:var(--or)}
 .hdr-sep{color:var(--pa2)}
 .hdr-title{font-family:var(--display);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa);flex:1}
@@ -147,7 +149,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .q-prompt.ref{font-family:var(--display);font-style:normal;font-size:38px;letter-spacing:.03em;color:var(--or)}
 .opts{display:grid;gap:11px}
 .opts.two{grid-template-columns:1fr 1fr}
-.opt{text-align:left;padding:16px 20px;border:1px solid var(--filet);background:var(--encre-2);font-family:var(--serif);font-size:16px;line-height:1.5;color:var(--pa);transition:border-color .25s,color .25s,background .25s;animation:rise .45s cubic-bezier(.2,.7,.3,1) both}
+.opt{text-align:left;padding:16px 20px;border:1px solid var(--filet);background:var(--encre-2);font-family:var(--serif);font-size:17px;line-height:1.5;color:rgba(255,255,255,.9);transition:border-color .25s,color .25s,background .25s;animation:rise .45s cubic-bezier(.2,.7,.3,1) both}
 .opt .num{font-family:var(--display);font-size:13px;color:var(--pa2);margin-right:10px}
 .opt.refopt{font-family:var(--display);font-size:19px;letter-spacing:.03em}
 .opt:hover:not(:disabled){border-color:var(--or);color:var(--parchemin);background:rgba(239,230,207,.04)}
@@ -208,6 +210,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .trash-act.del:hover{color:var(--pourpre)}
 .cat-pct{flex-shrink:0;font-family:var(--display);font-size:13px;color:var(--pa2);min-width:42px;text-align:right;letter-spacing:.02em}
 .cat-row:hover .cat-pct{color:var(--pa)}
+.cat-go{flex-shrink:0;cursor:pointer;color:var(--pa2);font-size:13px;line-height:1;padding:0 4px;transition:color .3s}
+.cat-go:hover{color:var(--or)}
 #sel-all{cursor:pointer}
 .mini-act{cursor:pointer}
 @media(max-width:600px){.cat-pct{min-width:38px;font-size:12px}}
@@ -220,7 +224,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .site-foot .verset-pied{margin:18px auto 0;font-style:italic;color:var(--pa);font-size:17px;max-width:620px;line-height:1.6}
 .site-foot .verset-pied .ref-pied{font-style:normal;display:block;margin-top:10px;font-family:var(--display);font-size:13px;letter-spacing:.1em;color:var(--or)}
 .site-foot .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--pa2);font-family:var(--display)}
-@media(max-width:600px){.hdr{flex-wrap:wrap}.site-nav{gap:14px;width:100%;order:3}.site-nav a{font-size:12px;letter-spacing:.1em}}
+@media(max-width:600px){.hdr{flex-wrap:wrap}.nav-burger{display:block}.site-nav{display:none;order:10;width:100%;flex-direction:column;align-items:flex-start;gap:10px;padding-top:4px}.site-nav.open{display:flex}.site-nav a{font-size:14px;letter-spacing:.1em}.hdr-right{margin-left:auto}}
 .cat-mark{display:none;align-items:center;gap:8px;flex-shrink:0}
 .cat.open .cat-mark{display:flex}
 .cat-mark .dot{opacity:.8}
@@ -265,7 +269,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 <div id="app">
   <header class="hdr">
     <a href="/" class="hdr-logo" id="nav-logo">Lumen</a>
-    <nav class="site-nav">
+    <button class="nav-burger" id="nav-burger" aria-label="Menu">☰</button>
+    <nav class="site-nav" id="site-nav">
       <a id="nav-home"></a>
       <a id="nav-lib"></a>
       <a id="nav-mem" class="actif" href="/memoriser.html"></a>
@@ -459,7 +464,12 @@ const PRE=[
     {id:'jer-23-24', fr:{text:'Est-ce que je ne remplis pas le ciel et la terre ? dit le Seigneur.', ref:'J\u00e9r\u00e9mie 23:24'}, en:{text:'Do I not fill heaven and earth? says the Lord.', ref:'Jeremiah 23:24'}},
     {id:'is-6-3', fr:{text:'Saint, saint, saint est le Seigneur de l\u2019univers ; toute la terre est remplie de sa gloire.', ref:'Isa\u00efe 6:3'}, en:{text:'Holy, holy, holy is the Lord of hosts; the whole earth is full of his glory.', ref:'Isaiah 6:3'}},
     {id:'1jn-4-8', fr:{text:'Celui qui n\u2019aime pas n\u2019a pas connu Dieu, car Dieu est amour.', ref:'1 Jean 4:8'}, en:{text:'He who does not love does not know God, for God is love.', ref:'1 John 4:8'}},
-    {id:'rom-11-33', fr:{text:'\u00d4 profondeur des richesses, de la sagesse et de la science de Dieu ! Que ses jugements sont insondables et ses voies imp\u00e9n\u00e9trables !', ref:'Romains 11:33'}, en:{text:'O the depth of the riches and wisdom and knowledge of God! How unsearchable are his judgments and how inscrutable his ways!', ref:'Romans 11:33'}}
+    {id:'rom-11-33', fr:{text:'\u00d4 profondeur des richesses, de la sagesse et de la science de Dieu ! Que ses jugements sont insondables et ses voies imp\u00e9n\u00e9trables !', ref:'Romains 11:33'}, en:{text:'O the depth of the riches and wisdom and knowledge of God! How unsearchable are his judgments and how inscrutable his ways!', ref:'Romans 11:33'}},
+    {id:'is-44-6', fr:{text:'Je suis le premier et je suis le dernier, et hors moi il n\u2019y a point de Dieu.', ref:'Isa\u00efe 44:6'}, en:{text:'I am the first and I am the last, and besides me there is no God.', ref:'Isaiah 44:6'}},
+    {id:'2m-7-28', fr:{text:'Reconnais que Dieu a fait de rien le ciel et la terre, et qu\u2019il en est de m\u00eame de la race des hommes.', ref:'2 Maccab\u00e9es 7:28'}, en:{text:'Recognise that God made heaven and earth out of nothing, and that the race of men is the same.', ref:'2 Maccabees 7:28'}},
+    {id:'he-4-13', fr:{text:'Tout est nu et \u00e0 d\u00e9couvert \u00e0 ses yeux.', ref:'H\u00e9breux 4:13'}, en:{text:'All things are naked and laid bare to his eyes.', ref:'Hebrews 4:13'}},
+    {id:'rom-1-20', fr:{text:'Les perfections invisibles de Dieu se voient depuis la cr\u00e9ation du monde dans ses \u0153uvres.', ref:'Romains 1:20'}, en:{text:'The invisible perfections of God are seen since the creation of the world in his works.', ref:'Romans 1:20'}},
+    {id:'jb-11-7', fr:{text:'Pr\u00e9tends-tu sonder les profondeurs de Dieu, atteindre la perfection du Tout-Puissant ?', ref:'Job 11:7'}, en:{text:'Can you fathom the depths of God, attain the perfection of the Almighty?', ref:'Job 11:7'}}
   ]},
   {id:'trinite', name:{fr:'La Trinit\u00e9', en:'The Trinity'}, verses:[
     {id:'mt-28-19', fr:{text:'Allez, faites de toutes les nations des disciples, les baptisant au nom du P\u00e8re, et du Fils, et du Saint-Esprit.', ref:'Matthieu 28:19'}, en:{text:'Go, make disciples of all nations, baptising them in the name of the Father, and of the Son, and of the Holy Spirit.', ref:'Matthew 28:19'}},
@@ -468,7 +478,14 @@ const PRE=[
     {id:'jn-14-9', fr:{text:'Qui m\u2019a vu a vu le P\u00e8re.', ref:'Jean 14:9'}, en:{text:'Whoever has seen me has seen the Father.', ref:'John 14:9'}},
     {id:'jn-14-26', fr:{text:'Le D\u00e9fenseur, l\u2019Esprit Saint que le P\u00e8re enverra en mon nom, vous enseignera tout.', ref:'Jean 14:26'}, en:{text:'The Helper, the Holy Spirit whom the Father will send in my name, will teach you all things.', ref:'John 14:26'}},
     {id:'jn-15-26', fr:{text:'Quand viendra le D\u00e9fenseur, l\u2019Esprit de v\u00e9rit\u00e9 qui proc\u00e8de du P\u00e8re, il rendra t\u00e9moignage de moi.', ref:'Jean 15:26'}, en:{text:'When the Helper comes, the Spirit of truth who proceeds from the Father, he will bear witness to me.', ref:'John 15:26'}},
-    {id:'2co-13-13', fr:{text:'La gr\u00e2ce du Seigneur J\u00e9sus-Christ, l\u2019amour de Dieu et la communion du Saint-Esprit soient avec vous tous.', ref:'2 Corinthiens 13:13'}, en:{text:'The grace of the Lord Jesus Christ, the love of God, and the communion of the Holy Spirit be with you all.', ref:'2 Corinthians 13:13'}}
+    {id:'2co-13-13', fr:{text:'La gr\u00e2ce du Seigneur J\u00e9sus-Christ, l\u2019amour de Dieu et la communion du Saint-Esprit soient avec vous tous.', ref:'2 Corinthiens 13:13'}, en:{text:'The grace of the Lord Jesus Christ, the love of God, and the communion of the Holy Spirit be with you all.', ref:'2 Corinthians 13:13'}},
+    {id:'gn-1-26', fr:{text:'Faisons l\u2019homme \u00e0 notre image, selon notre ressemblance.', ref:'Gen\u00e8se 1:26'}, en:{text:'Let us make man in our image, after our likeness.', ref:'Genesis 1:26'}},
+    {id:'ga-4-6', fr:{text:'Dieu a envoy\u00e9 dans nos c\u0153urs l\u2019Esprit de son Fils.', ref:'Galates 4:6'}, en:{text:'God has sent into our hearts the Spirit of his Son.', ref:'Galatians 4:6'}},
+    {id:'jn-16-14-15', fr:{text:'Il prendra de ce qui est \u00e0 moi ; tout ce que le P\u00e8re poss\u00e8de est \u00e0 moi.', ref:'Jean 16:14-15'}, en:{text:'He will take what is mine; all that the Father has is mine.', ref:'John 16:14-15'}},
+    {id:'ep-3-14-15', fr:{text:'Je fl\u00e9chis les genoux devant le P\u00e8re, de qui toute paternit\u00e9, au ciel et sur la terre, tire son nom.', ref:'\u00c9ph\u00e9siens 3:14-15'}, en:{text:'I bow my knees before the Father, from whom all fatherhood in heaven and on earth takes its name.', ref:'Ephesians 3:14-15'}},
+    {id:'he-1-3', fr:{text:'Il est le rayonnement de sa gloire et l\u2019empreinte de son \u00eatre.', ref:'H\u00e9breux 1:3'}, en:{text:'He is the radiance of his glory and the imprint of his being.', ref:'Hebrews 1:3'}},
+    {id:'jn-1-3', fr:{text:'Tout a \u00e9t\u00e9 fait par lui, et rien de ce qui existe n\u2019a \u00e9t\u00e9 fait sans lui.', ref:'Jean 1:3'}, en:{text:'All things were made through him, and nothing that exists was made without him.', ref:'John 1:3'}},
+    {id:'2co-3-17', fr:{text:'Le Seigneur, c\u2019est l\u2019Esprit ; et l\u00e0 o\u00f9 est l\u2019Esprit du Seigneur, l\u00e0 est la libert\u00e9.', ref:'2 Corinthiens 3:17'}, en:{text:'The Lord is the Spirit; and where the Spirit of the Lord is, there is freedom.', ref:'2 Corinthians 3:17'}}
   ]},
   {id:'anges', name:{fr:'Les anges', en:'The Angels'}, verses:[
     {id:'he-1-14', fr:{text:'Ne sont-ils pas tous des esprits au service de Dieu, envoy\u00e9s pour ceux qui doivent h\u00e9riter du salut\u00a0?', ref:'H\u00e9breux 1:14'}, en:{text:'Are they not all ministering spirits sent to serve those who will inherit salvation?', ref:'Hebrews 1:14'}},
@@ -478,7 +495,10 @@ const PRE=[
     {id:'ap-12-7', fr:{text:'Il y eut une guerre dans le ciel\u00a0: Michel et ses anges combattirent contre le dragon.', ref:'Apocalypse 12:7'}, en:{text:'There was war in heaven: Michael and his angels fought against the dragon.', ref:'Revelation 12:7'}},
     {id:'tb-12-15', fr:{text:'Je suis Rapha\u00ebl, l\u2019un des sept anges qui se tiennent devant la gloire du Seigneur.', ref:'Tobie 12:15'}, en:{text:'I am Raphael, one of the seven angels who stand before the glory of the Lord.', ref:'Tobit 12:15'}},
     {id:'he-13-2', fr:{text:'N\u2019oubliez pas l\u2019hospitalit\u00e9\u00a0; car en l\u2019exer\u00e7ant, quelques-uns ont log\u00e9 des anges sans le savoir.', ref:'H\u00e9breux 13:2'}, en:{text:'Do not neglect hospitality, for by it some have entertained angels without knowing it.', ref:'Hebrews 13:2'}},
-    {id:'dn-7-10', fr:{text:'Mille milliers le servaient, et dix mille myriades se tenaient devant lui.', ref:'Daniel 7:10'}, en:{text:'A thousand thousands served him, and ten thousand times ten thousand stood before him.', ref:'Daniel 7:10'}}
+    {id:'dn-7-10', fr:{text:'Mille milliers le servaient, et dix mille myriades se tenaient devant lui.', ref:'Daniel 7:10'}, en:{text:'A thousand thousands served him, and ten thousand times ten thousand stood before him.', ref:'Daniel 7:10'}},
+    {id:'apo-12-4', fr:{text:'Sa queue entra\u00eenait le tiers des \u00e9toiles du ciel, et les jeta sur la terre.', ref:'Apocalypse 12:4'}, en:{text:'His tail swept down a third of the stars of heaven, and cast them to the earth.', ref:'Revelation 12:4'}},
+    {id:'lc-10-18', fr:{text:'Je voyais Satan tomber du ciel comme l\u2019\u00e9clair.', ref:'Luc 10:18'}, en:{text:'I saw Satan fall from heaven like lightning.', ref:'Luke 10:18'}},
+    {id:'mt-25-41', fr:{text:'Allez loin de moi, maudits, dans le feu \u00e9ternel pr\u00e9par\u00e9 pour le diable et ses anges.', ref:'Matthieu 25:41'}, en:{text:'Depart from me, you cursed, into the eternal fire prepared for the devil and his angels.', ref:'Matthew 25:41'}}
   ]},
   {id:'peche', name:{fr:'Le p\u00e9ch\u00e9', en:'Sin'}, verses:[
     {id:'rm-3-23', fr:{text:'Tous ont p\u00e9ch\u00e9 et sont priv\u00e9s de la gloire de Dieu.', ref:'Romains 3:23'}, en:{text:'All have sinned and fall short of the glory of God.', ref:'Romans 3:23'}},
@@ -488,7 +508,19 @@ const PRE=[
     {id:'rm-7-19', fr:{text:'Je ne fais pas le bien que je veux, mais je fais le mal que je ne veux pas.', ref:'Romains 7:19'}, en:{text:'I do not do the good I want, but the evil I do not want is what I do.', ref:'Romans 7:19'}},
     {id:'ps-51-7', fr:{text:'Voici, je suis n\u00e9 dans la faute, et ma m\u00e8re m\u2019a con\u00e7u dans le p\u00e9ch\u00e9.', ref:'Psaume 51:7'}, en:{text:'Behold, I was brought forth in iniquity, and in sin did my mother conceive me.', ref:'Psalm 51:5'}},
     {id:'rm-5-19', fr:{text:'Comme par la d\u00e9sob\u00e9issance d\u2019un seul beaucoup ont \u00e9t\u00e9 rendus p\u00e9cheurs, par l\u2019ob\u00e9issance d\u2019un seul beaucoup seront rendus justes.', ref:'Romains 5:19'}, en:{text:'As by one man\u2019s disobedience many were made sinners, so by one man\u2019s obedience many will be made righteous.', ref:'Romans 5:19'}},
-    {id:'ga-5-17', fr:{text:'La chair a des d\u00e9sirs contraires \u00e0 ceux de l\u2019Esprit, et l\u2019Esprit en a de contraires \u00e0 ceux de la chair.', ref:'Galates 5:17'}, en:{text:'The flesh desires what is against the Spirit, and the Spirit what is against the flesh.', ref:'Galatians 5:17'}}
+    {id:'ga-5-17', fr:{text:'La chair a des d\u00e9sirs contraires \u00e0 ceux de l\u2019Esprit, et l\u2019Esprit en a de contraires \u00e0 ceux de la chair.', ref:'Galates 5:17'}, en:{text:'The flesh desires what is against the Spirit, and the Spirit what is against the flesh.', ref:'Galatians 5:17'}},
+    {id:'1jn-3-4', fr:{text:'Le p\u00e9ch\u00e9 est la transgression de la loi.', ref:'1 Jean 3:4'}, en:{text:'Sin is the transgression of the law.', ref:'1 John 3:4'}},
+    {id:'jc-4-17', fr:{text:'Celui qui sait faire le bien et ne le fait pas commet un p\u00e9ch\u00e9.', ref:'Jacques 4:17'}, en:{text:'Whoever knows the right thing to do and fails to do it, for him it is sin.', ref:'James 4:17'}},
+    {id:'1jn-5-16-17', fr:{text:'Il y a tel p\u00e9ch\u00e9 qui m\u00e8ne \u00e0 la mort, et il y a tel p\u00e9ch\u00e9 qui ne m\u00e8ne pas \u00e0 la mort.', ref:'1 Jean 5:16-17'}, en:{text:'There is sin that leads to death, and there is sin that does not lead to death.', ref:'1 John 5:16-17'}},
+    {id:'jc-3-2', fr:{text:'Nous bronchons tous, et de bien des mani\u00e8res.', ref:'Jacques 3:2'}, en:{text:'We all stumble in many ways.', ref:'James 3:2'}},
+    {id:'mt-15-19', fr:{text:'Du c\u0153ur viennent les mauvaises pens\u00e9es, meurtres, adult\u00e8res, d\u00e9bauches, vols, faux t\u00e9moignages, blasph\u00e8mes.', ref:'Matthieu 15:19'}, en:{text:'Out of the heart come evil thoughts, murder, adultery, sexual immorality, theft, false witness, slander.', ref:'Matthew 15:19'}},
+    {id:'1jn-2-16', fr:{text:'la convoitise de la chair, la convoitise des yeux et l\u2019orgueil de la vie.', ref:'1 Jean 2:16'}, en:{text:'the desire of the flesh, the desire of the eyes, and the pride of life.', ref:'1 John 2:16'}},
+    {id:'mt-12-31', fr:{text:'Tout p\u00e9ch\u00e9 et tout blasph\u00e8me seront pardonn\u00e9s aux hommes, mais le blasph\u00e8me contre l\u2019Esprit ne sera pas pardonn\u00e9.', ref:'Matthieu 12:31'}, en:{text:'Every sin and blasphemy will be forgiven men, but the blasphemy against the Spirit will not be forgiven.', ref:'Matthew 12:31'}},
+    {id:'ec-7-29', fr:{text:'Dieu a fait l\u2019homme droit, mais ils ont cherch\u00e9 bien des d\u00e9tours.', ref:'Eccl\u00e9siaste 7:29'}, en:{text:'God made man upright, but they have sought out many devices.', ref:'Ecclesiastes 7:29'}},
+    {id:'gn-2-25', fr:{text:'Ils \u00e9taient tous deux nus, l\u2019homme et sa femme, et ils n\u2019en avaient point de honte.', ref:'Gen\u00e8se 2:25'}, en:{text:'They were both naked, the man and his wife, and were not ashamed.', ref:'Genesis 2:25'}},
+    {id:'gn-3-19', fr:{text:'Tu mangeras ton pain \u00e0 la sueur de ton front, jusqu\u2019\u00e0 ce que tu retournes \u00e0 la terre d\u2019o\u00f9 tu as \u00e9t\u00e9 tir\u00e9.', ref:'Gen\u00e8se 3:19'}, en:{text:'You will eat your bread by the sweat of your brow, until you return to the ground from which you were taken.', ref:'Genesis 3:19'}},
+    {id:'gn-4-7', fr:{text:'Le p\u00e9ch\u00e9 est tapi \u00e0 ta porte, mais \u00e0 toi de le dominer.', ref:'Gen\u00e8se 4:7'}, en:{text:'Sin is crouching at your door, but you must master it.', ref:'Genesis 4:7'}},
+    {id:'1co-15-22', fr:{text:'Comme tous meurent en Adam, de m\u00eame tous revivront dans le Christ.', ref:'1 Corinthiens 15:22'}, en:{text:'As all die in Adam, so all will be made alive in Christ.', ref:'1 Corinthians 15:22'}}
   ]},
   {id:'incarnation', name:{fr:'L\u2019Incarnation', en:'The Incarnation'}, verses:[
     {id:'jn-1-14', fr:{text:'Et le Verbe s\u2019est fait chair, et il a habit\u00e9 parmi nous, et nous avons vu sa gloire.', ref:'Jean 1:14'}, en:{text:'And the Word became flesh and dwelt among us, and we have seen his glory.', ref:'John 1:14'}},
@@ -497,7 +529,10 @@ const PRE=[
     {id:'ph-2-7', fr:{text:'Il s\u2019est d\u00e9pouill\u00e9 lui-m\u00eame, prenant la condition de serviteur, devenant semblable aux hommes.', ref:'Philippiens 2:7'}, en:{text:'He emptied himself, taking the form of a servant, being born in the likeness of men.', ref:'Philippians 2:7'}},
     {id:'ga-4-4', fr:{text:'Quand est venue la pl\u00e9nitude des temps, Dieu a envoy\u00e9 son Fils, n\u00e9 d\u2019une femme, n\u00e9 sous la loi.', ref:'Galates 4:4'}, en:{text:'When the fullness of time had come, God sent forth his Son, born of a woman, born under the law.', ref:'Galatians 4:4'}},
     {id:'col-2-9', fr:{text:'En lui habite corporellement toute la pl\u00e9nitude de la divinit\u00e9.', ref:'Colossiens 2:9'}, en:{text:'In him the whole fullness of deity dwells bodily.', ref:'Colossians 2:9'}},
-    {id:'jn-1-18', fr:{text:'Personne n\u2019a jamais vu Dieu ; le Fils unique, qui est dans le sein du P\u00e8re, l\u2019a fait conna\u00eetre.', ref:'Jean 1:18'}, en:{text:'No one has ever seen God; the only Son, who is in the bosom of the Father, has made him known.', ref:'John 1:18'}}
+    {id:'jn-1-18', fr:{text:'Personne n\u2019a jamais vu Dieu ; le Fils unique, qui est dans le sein du P\u00e8re, l\u2019a fait conna\u00eetre.', ref:'Jean 1:18'}, en:{text:'No one has ever seen God; the only Son, who is in the bosom of the Father, has made him known.', ref:'John 1:18'}},
+    {id:'he-4-15', fr:{text:'\u00e9prouv\u00e9 en tout, \u00e0 notre ressemblance, hormis le p\u00e9ch\u00e9.', ref:'H\u00e9breux 4:15'}, en:{text:'tried in all things, in our likeness, save sin.', ref:'Hebrews 4:15'}},
+    {id:'lc-22-42', fr:{text:'Non ma volont\u00e9, mais la tienne.', ref:'Luc 22:42'}, en:{text:'Not my will, but yours.', ref:'Luke 22:42'}},
+    {id:'he-2-17', fr:{text:'Il devait devenir en tout semblable \u00e0 ses fr\u00e8res, pour \u00eatre un grand pr\u00eatre mis\u00e9ricordieux et expier les p\u00e9ch\u00e9s du peuple.', ref:'H\u00e9breux 2:17'}, en:{text:'He had to become in every way like his brothers, to be a merciful high priest and to expiate the sins of the people.', ref:'Hebrews 2:17'}}
   ]},
   {id:'croix-resurrection', name:{fr:'La Croix et la R\u00e9surrection', en:'The Cross and the Resurrection'}, verses:[
     {id:'jn-19-30', fr:{text:'Tout est accompli.', ref:'Jean 19:30'}, en:{text:'It is finished.', ref:'John 19:30'}},
@@ -507,7 +542,12 @@ const PRE=[
     {id:'1co-15-4', fr:{text:'Il a \u00e9t\u00e9 enseveli, et il est ressuscit\u00e9 le troisi\u00e8me jour, selon les \u00c9critures.', ref:'1 Corinthiens 15:4'}, en:{text:'He was buried, and he rose on the third day, according to the Scriptures.', ref:'1 Corinthians 15:4'}},
     {id:'mt-28-6', fr:{text:'Il n\u2019est pas ici, car il est ressuscit\u00e9, comme il l\u2019avait dit.', ref:'Matthieu 28:6'}, en:{text:'He is not here, for he has risen, as he said.', ref:'Matthew 28:6'}},
     {id:'rom-6-9', fr:{text:'Ressuscit\u00e9 des morts, le Christ ne meurt plus ; la mort n\u2019a plus de pouvoir sur lui.', ref:'Romains 6:9'}, en:{text:'Raised from the dead, Christ dies no more; death no longer has power over him.', ref:'Romans 6:9'}},
-    {id:'1co-15-55', fr:{text:'\u00d4 mort, o\u00f9 est ta victoire ? \u00d4 mort, o\u00f9 est ton aiguillon ?', ref:'1 Corinthiens 15:55'}, en:{text:'O death, where is your victory? O death, where is your sting?', ref:'1 Corinthians 15:55'}}
+    {id:'1co-15-55', fr:{text:'\u00d4 mort, o\u00f9 est ta victoire ? \u00d4 mort, o\u00f9 est ton aiguillon ?', ref:'1 Corinthiens 15:55'}, en:{text:'O death, where is your victory? O death, where is your sting?', ref:'1 Corinthians 15:55'}},
+    {id:'jn-10-18', fr:{text:'Personne ne m\u2019\u00f4te la vie, mais je la donne de moi-m\u00eame.', ref:'Jean 10:18'}, en:{text:'No one takes my life from me, but I give it of myself.', ref:'John 10:18'}},
+    {id:'ps-85-11', fr:{text:'L\u2019amour et la v\u00e9rit\u00e9 se rencontrent, la justice et la paix s\u2019embrassent.', ref:'Psaume 85:11'}, en:{text:'Love and faithfulness meet together; justice and peace embrace.', ref:'Psalm 85:11'}},
+    {id:'1co-15-17', fr:{text:'Si le Christ n\u2019est pas ressuscit\u00e9, votre foi est vaine.', ref:'1 Corinthiens 15:17'}, en:{text:'If Christ has not been raised, your faith is vain.', ref:'1 Corinthians 15:17'}},
+    {id:'rom-4-25', fr:{text:'Il a \u00e9t\u00e9 livr\u00e9 pour nos fautes, et ressuscit\u00e9 pour notre justification.', ref:'Romains 4:25'}, en:{text:'He was handed over for our trespasses and raised for our justification.', ref:'Romans 4:25'}},
+    {id:'1co-15-20', fr:{text:'Christ est ressuscit\u00e9 des morts, pr\u00e9mices de ceux qui sont morts.', ref:'1 Corinthiens 15:20'}, en:{text:'Christ has been raised from the dead, the firstfruits of those who have died.', ref:'1 Corinthians 15:20'}}
   ]},
   {id:'marie', name:{fr:'Marie', en:'Mary'}, verses:[
     {id:'lc-1-28', fr:{text:'R\u00e9jouis-toi, pleine de gr\u00e2ce, le Seigneur est avec toi.', ref:'Luc 1:28'}, en:{text:'Hail, full of grace, the Lord is with you.', ref:'Luke 1:28'}},
@@ -518,7 +558,17 @@ const PRE=[
     {id:'lc-1-48', fr:{text:'D\u00e9sormais tous les \u00e2ges me diront bienheureuse.', ref:'Luc 1:48'}, en:{text:'From now on all generations will call me blessed.', ref:'Luke 1:48'}},
     {id:'lc-1-49', fr:{text:'Le Puissant a fait pour moi des merveilles ; saint est son nom.', ref:'Luc 1:49'}, en:{text:'He who is mighty has done great things for me, and holy is his name.', ref:'Luke 1:49'}},
     {id:'jn-2-5', fr:{text:'Faites tout ce qu\u2019il vous dira.', ref:'Jean 2:5'}, en:{text:'Do whatever he tells you.', ref:'John 2:5'}},
-    {id:'jn-19-27', fr:{text:'Voici ta m\u00e8re. Et \u00e0 partir de cette heure-l\u00e0, le disciple la prit chez lui.', ref:'Jean 19:27'}, en:{text:'Behold your mother. From that hour the disciple took her into his own home.', ref:'John 19:27'}}
+    {id:'jn-19-27', fr:{text:'Voici ta m\u00e8re. Et \u00e0 partir de cette heure-l\u00e0, le disciple la prit chez lui.', ref:'Jean 19:27'}, en:{text:'Behold your mother. From that hour the disciple took her into his own home.', ref:'John 19:27'}},
+    {id:'lc-1-47', fr:{text:'Mon esprit exulte en Dieu, mon Sauveur.', ref:'Luc 1:47'}, en:{text:'My spirit rejoices in God my Saviour.', ref:'Luke 1:47'}},
+    {id:'lc-1-34', fr:{text:'Comment cela se fera-t-il, puisque je ne connais point d\u2019homme ?', ref:'Luc 1:34'}, en:{text:'How shall this be, since I know not man?', ref:'Luke 1:34'}},
+    {id:'is-7-14', fr:{text:'Voici, la vierge concevra et enfantera un fils.', ref:'Isa\u00efe 7:14'}, en:{text:'Behold, the virgin shall conceive and bear a son.', ref:'Isaiah 7:14'}},
+    {id:'ez-44-2', fr:{text:'Cette porte restera ferm\u00e9e, elle ne s\u2019ouvrira pas ; nul n\u2019y passera, car le Seigneur, le Dieu d\u2019Isra\u00ebl, est entr\u00e9 par elle.', ref:'\u00c9z\u00e9chiel 44:2'}, en:{text:'This gate shall remain shut; it shall not be opened, and no one shall pass through it, for the Lord, the God of Israel, has entered by it.', ref:'Ezekiel 44:2'}},
+    {id:'apo-12-1', fr:{text:'Un grand signe parut dans le ciel : une femme envelopp\u00e9e de soleil, la lune sous ses pieds, et une couronne de douze \u00e9toiles sur la t\u00eate.', ref:'Apocalypse 12:1'}, en:{text:'A great sign appeared in heaven: a woman clothed with the sun, the moon under her feet, and a crown of twelve stars on her head.', ref:'Revelation 12:1'}},
+    {id:'lc-2-35', fr:{text:'Et toi-m\u00eame, un glaive te transpercera l\u2019\u00e2me.', ref:'Luc 2:35'}, en:{text:'And a sword will pierce your own soul.', ref:'Luke 2:35'}},
+    {id:'lc-1-45', fr:{text:'Bienheureuse celle qui a cru \u00e0 l\u2019accomplissement de ce qui lui a \u00e9t\u00e9 dit de la part du Seigneur.', ref:'Luc 1:45'}, en:{text:'Blessed is she who believed that what was spoken to her by the Lord would be fulfilled.', ref:'Luke 1:45'}},
+    {id:'lc-2-19', fr:{text:'Marie retenait tous ces \u00e9v\u00e9nements et les m\u00e9ditait dans son c\u0153ur.', ref:'Luc 2:19'}, en:{text:'Mary kept all these events and pondered them in her heart.', ref:'Luke 2:19'}},
+    {id:'jn-2-3', fr:{text:'Ils n\u2019ont pas de vin.', ref:'Jean 2:3'}, en:{text:'They have no wine.', ref:'John 2:3'}},
+    {id:'mt-1-25', fr:{text:'Il ne la connut point jusqu\u2019\u00e0 ce qu\u2019elle e\u00fbt enfant\u00e9 un fils.', ref:'Matthieu 1:25'}, en:{text:'He knew her not until she had borne a son.', ref:'Matthew 1:25'}}
   ]},
   {id:'grace', name:{fr:'La gr\u00e2ce', en:'Grace'}, verses:[
     {id:'2co-12-9', fr:{text:'Ma gr\u00e2ce te suffit, car ma puissance s\u2019accomplit dans la faiblesse.', ref:'2 Corinthiens 12:9'}, en:{text:'My grace is sufficient for you, for my power is made perfect in weakness.', ref:'2 Corinthians 12:9'}},
@@ -528,7 +578,15 @@ const PRE=[
     {id:'1co-15-10', fr:{text:'Par la gr\u00e2ce de Dieu, je suis ce que je suis.', ref:'1 Corinthiens 15:10'}, en:{text:'By the grace of God I am what I am.', ref:'1 Corinthians 15:10'}},
     {id:'rm-3-24', fr:{text:'Ils sont gratuitement justifi\u00e9s par sa gr\u00e2ce, par la r\u00e9demption qui est dans le Christ J\u00e9sus.', ref:'Romains 3:24'}, en:{text:'They are justified freely by his grace through the redemption that is in Christ Jesus.', ref:'Romans 3:24'}},
     {id:'ac-15-11', fr:{text:'C\u2019est par la gr\u00e2ce du Seigneur J\u00e9sus que nous croyons \u00eatre sauv\u00e9s.', ref:'Actes 15:11'}, en:{text:'We believe that we are saved through the grace of the Lord Jesus.', ref:'Acts 15:11'}},
-    {id:'rm-11-6', fr:{text:'Si c\u2019est par gr\u00e2ce, ce n\u2019est plus par les \u0153uvres\u00a0; autrement la gr\u00e2ce ne serait plus une gr\u00e2ce.', ref:'Romains 11:6'}, en:{text:'If it is by grace, it is no longer by works; otherwise grace would no longer be grace.', ref:'Romans 11:6'}}
+    {id:'rm-11-6', fr:{text:'Si c\u2019est par gr\u00e2ce, ce n\u2019est plus par les \u0153uvres\u00a0; autrement la gr\u00e2ce ne serait plus une gr\u00e2ce.', ref:'Romains 11:6'}, en:{text:'If it is by grace, it is no longer by works; otherwise grace would no longer be grace.', ref:'Romans 11:6'}},
+    {id:'jn-15-5', fr:{text:'Sans moi, vous ne pouvez rien faire.', ref:'Jean 15:5'}, en:{text:'Without me you can do nothing.', ref:'John 15:5'}},
+    {id:'2pi-1-4', fr:{text:'Il nous a accord\u00e9 de devenir participants de la nature divine.', ref:'2 Pierre 1:4'}, en:{text:'He has granted us to become partakers of the divine nature.', ref:'2 Peter 1:4'}},
+    {id:'jn-1-12', fr:{text:'\u00c0 tous ceux qui l\u2019ont re\u00e7u, il a donn\u00e9 le pouvoir de devenir enfants de Dieu.', ref:'Jean 1:12'}, en:{text:'To all who received him, he gave power to become children of God.', ref:'John 1:12'}},
+    {id:'jn-14-23', fr:{text:'Si quelqu\u2019un m\u2019aime, il gardera ma parole, et mon P\u00e8re l\u2019aimera ; nous viendrons \u00e0 lui et nous ferons chez lui notre demeure.', ref:'Jean 14:23'}, en:{text:'If anyone loves me, he will keep my word, and my Father will love him, and we will come to him and make our home with him.', ref:'John 14:23'}},
+    {id:'1co-12-3', fr:{text:'Nul ne peut dire : J\u00e9sus est Seigneur, si ce n\u2019est par l\u2019Esprit Saint.', ref:'1 Corinthiens 12:3'}, en:{text:'No one can say \u2018Jesus is Lord\u2019 except by the Holy Spirit.', ref:'1 Corinthians 12:3'}},
+    {id:'ph-1-6', fr:{text:'Celui qui a commenc\u00e9 en vous une \u0153uvre bonne en poursuivra l\u2019ach\u00e8vement jusqu\u2019au jour du Christ J\u00e9sus.', ref:'Philippiens 1:6'}, en:{text:'He who began a good work in you will bring it to completion at the day of Christ Jesus.', ref:'Philippians 1:6'}},
+    {id:'he-3-15', fr:{text:'Aujourd\u2019hui, si vous entendez sa voix, n\u2019endurcissez pas vos c\u0153urs.', ref:'H\u00e9breux 3:15'}, en:{text:'Today, if you hear his voice, do not harden your hearts.', ref:'Hebrews 3:15'}},
+    {id:'ps-84-12', fr:{text:'Le Seigneur donne la gr\u00e2ce et la gloire.', ref:'Psaume 84:12'}, en:{text:'The Lord bestows grace and glory.', ref:'Psalm 84:12'}}
   ]},
   {id:'predestination', name:{fr:'La pr\u00e9destination', en:'Predestination'}, verses:[
     {id:'rm-8-29-30', fr:{text:'Ceux qu\u2019il a connus d\u2019avance, il les a aussi pr\u00e9destin\u00e9s \u00e0 \u00eatre conformes \u00e0 l\u2019image de son Fils\u00a0; et ceux qu\u2019il a pr\u00e9destin\u00e9s, il les a aussi appel\u00e9s, justifi\u00e9s et glorifi\u00e9s.', ref:'Romains 8:29-30'}, en:{text:'Those whom he foreknew he also predestined to be conformed to the image of his Son; and those he predestined he also called, justified, and glorified.', ref:'Romans 8:29-30'}},
@@ -536,7 +594,15 @@ const PRE=[
     {id:'jn-6-44', fr:{text:'Nul ne peut venir \u00e0 moi si le P\u00e8re qui m\u2019a envoy\u00e9 ne l\u2019attire.', ref:'Jean 6:44'}, en:{text:'No one can come to me unless the Father who sent me draws him.', ref:'John 6:44'}},
     {id:'rm-9-16', fr:{text:'Cela ne d\u00e9pend ni de celui qui veut, ni de celui qui court, mais de Dieu qui fait mis\u00e9ricorde.', ref:'Romains 9:16'}, en:{text:'It depends not on human will or effort, but on God who has mercy.', ref:'Romans 9:16'}},
     {id:'1tm-2-4', fr:{text:'Dieu veut que tous les hommes soient sauv\u00e9s et parviennent \u00e0 la connaissance de la v\u00e9rit\u00e9.', ref:'1 Timoth\u00e9e 2:4'}, en:{text:'God desires all men to be saved and to come to the knowledge of the truth.', ref:'1 Timothy 2:4'}},
-    {id:'ph-2-13', fr:{text:'C\u2019est Dieu qui produit en vous le vouloir et le faire, selon son dessein bienveillant.', ref:'Philippiens 2:13'}, en:{text:'It is God who works in you, both to will and to act, according to his good purpose.', ref:'Philippians 2:13'}}
+    {id:'ph-2-13', fr:{text:'C\u2019est Dieu qui produit en vous le vouloir et le faire, selon son dessein bienveillant.', ref:'Philippiens 2:13'}, en:{text:'It is God who works in you, both to will and to act, according to his good purpose.', ref:'Philippians 2:13'}},
+    {id:'1jn-3-2', fr:{text:'nous le verrons tel qu\u2019il est', ref:'1 Jean 3:2'}, en:{text:'we shall see him as he is', ref:'1 John 3:2'}},
+    {id:'2tm-1-9', fr:{text:'Il nous a sauv\u00e9s et appel\u00e9s par un saint appel, non \u00e0 cause de nos \u0153uvres, mais en vertu de son propre dessein et de sa gr\u00e2ce.', ref:'2 Timoth\u00e9e 1:9'}, en:{text:'He saved us and called us with a holy calling, not because of our works, but in virtue of his own purpose and grace.', ref:'2 Timothy 1:9'}},
+    {id:'rom-9-21', fr:{text:'Le potier n\u2019est-il pas ma\u00eetre de son argile ?', ref:'Romains 9:21'}, en:{text:'Is the potter not master of his clay?', ref:'Romans 9:21'}},
+    {id:'ez-33-11', fr:{text:'Je ne prends pas plaisir \u00e0 la mort du m\u00e9chant, mais \u00e0 ce qu\u2019il se d\u00e9tourne de sa voie et qu\u2019il vive.', ref:'\u00c9z\u00e9chiel 33:11'}, en:{text:'I take no pleasure in the death of the wicked, but that he turn from his way and live.', ref:'Ezekiel 33:11'}},
+    {id:'jc-1-13', fr:{text:'Que nul, dans l\u2019\u00e9preuve, ne dise : C\u2019est Dieu qui me tente ; car Dieu ne tente personne.', ref:'Jacques 1:13'}, en:{text:'Let no one, when tempted, say: It is God who tempts me; for God tempts no one.', ref:'James 1:13'}},
+    {id:'2pi-1-10', fr:{text:'Efforcez-vous d\u2019affermir votre vocation et votre \u00e9lection.', ref:'2 Pierre 1:10'}, en:{text:'Strive to make your calling and election sure.', ref:'2 Peter 1:10'}},
+    {id:'1co-1-8', fr:{text:'Il vous affermira jusqu\u2019\u00e0 la fin, pour que vous soyez irr\u00e9prochables au jour de notre Seigneur J\u00e9sus-Christ.', ref:'1 Corinthiens 1:8'}, en:{text:'He will sustain you to the end, so that you may be blameless on the day of our Lord Jesus Christ.', ref:'1 Corinthians 1:8'}},
+    {id:'jn-15-16', fr:{text:'Ce n\u2019est pas vous qui m\u2019avez choisi, mais moi qui vous ai choisis.', ref:'Jean 15:16'}, en:{text:'It is not you who chose me, but I who chose you.', ref:'John 15:16'}}
   ]},
   {id:'salut', name:{fr:'Le salut', en:'Salvation'}, verses:[
     {id:'jn-3-16', fr:{text:'Car Dieu a tant aim\u00e9 le monde qu\u2019il a donn\u00e9 son Fils unique, afin que quiconque croit en lui ne p\u00e9risse point, mais qu\u2019il ait la vie \u00e9ternelle.', ref:'Jean 3:16'}, en:{text:'For God so loved the world that he gave his only Son, that whoever believes in him should not perish but have eternal life.', ref:'John 3:16'}},
@@ -547,7 +613,13 @@ const PRE=[
     {id:'is-53-5', fr:{text:'Il a \u00e9t\u00e9 transperc\u00e9 \u00e0 cause de nos p\u00e9ch\u00e9s, broy\u00e9 \u00e0 cause de nos fautes ; le ch\u00e2timent qui nous donne la paix est sur lui, et par ses meurtrissures nous sommes gu\u00e9ris.', ref:'Isa\u00efe 53:5'}, en:{text:'He was pierced because of our sins, crushed because of our faults; the chastisement that brings us peace is upon him, and by his wounds we are healed.', ref:'Isaiah 53:5'}},
     {id:'1pi-1-19', fr:{text:'Vous avez \u00e9t\u00e9 rachet\u00e9s par le sang pr\u00e9cieux du Christ, comme d\u2019un agneau sans d\u00e9faut et sans tache.', ref:'1 Pierre 1:19'}, en:{text:'You were ransomed with the precious blood of Christ, like that of a lamb without blemish or spot.', ref:'1 Peter 1:19'}},
     {id:'rom-6-23', fr:{text:'Le salaire du p\u00e9ch\u00e9, c\u2019est la mort ; mais le don gratuit de Dieu, c\u2019est la vie \u00e9ternelle en J\u00e9sus-Christ notre Seigneur.', ref:'Romains 6:23'}, en:{text:'The wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.', ref:'Romans 6:23'}},
-    {id:'ac-4-12', fr:{text:'Il n\u2019y a de salut en aucun autre ; aucun autre nom sous le ciel n\u2019est donn\u00e9 aux hommes, par lequel nous devions \u00eatre sauv\u00e9s.', ref:'Actes 4:12'}, en:{text:'There is salvation in no one else; there is no other name under heaven given among men by which we must be saved.', ref:'Acts 4:12'}}
+    {id:'ac-4-12', fr:{text:'Il n\u2019y a de salut en aucun autre ; aucun autre nom sous le ciel n\u2019est donn\u00e9 aux hommes, par lequel nous devions \u00eatre sauv\u00e9s.', ref:'Actes 4:12'}, en:{text:'There is salvation in no one else; there is no other name under heaven given among men by which we must be saved.', ref:'Acts 4:12'}},
+    {id:'lc-19-10', fr:{text:'Le Fils de l\u2019homme est venu chercher et sauver ce qui \u00e9tait perdu.', ref:'Luc 19:10'}, en:{text:'The Son of Man came to seek and to save what was lost.', ref:'Luke 19:10'}},
+    {id:'jn-8-34', fr:{text:'Quiconque commet le p\u00e9ch\u00e9 est esclave du p\u00e9ch\u00e9.', ref:'Jean 8:34'}, en:{text:'Whoever commits sin is a slave of sin.', ref:'John 8:34'}},
+    {id:'1jn-3-8', fr:{text:'Celui qui commet le p\u00e9ch\u00e9 est du diable, car le diable p\u00e8che d\u00e8s le commencement.', ref:'1 Jean 3:8'}, en:{text:'He who commits sin is of the devil, for the devil sins from the beginning.', ref:'1 John 3:8'}},
+    {id:'col-1-13', fr:{text:'Il nous a d\u00e9livr\u00e9s de la puissance des t\u00e9n\u00e8bres et nous a transport\u00e9s dans le royaume de son Fils bien-aim\u00e9.', ref:'Colossiens 1:13'}, en:{text:'He has delivered us from the power of darkness and brought us into the kingdom of his beloved Son.', ref:'Colossians 1:13'}},
+    {id:'mc-10-45', fr:{text:'Le Fils de l\u2019homme est venu donner sa vie en ran\u00e7on pour la multitude.', ref:'Marc 10:45'}, en:{text:'The Son of Man came to give his life as a ransom for the multitude.', ref:'Mark 10:45'}},
+    {id:'ga-5-6', fr:{text:'Ce qui vaut, c\u2019est la foi agissant par la charit\u00e9.', ref:'Galates 5:6'}, en:{text:'What counts is faith working through charity.', ref:'Galatians 5:6'}}
   ]},
   {id:'foi', name:{fr:'Foi et esp\u00e9rance', en:'Faith and Hope'}, verses:[
     {id:'heb-11-1', fr:{text:'La foi est la garantie des biens qu\u2019on esp\u00e8re, la preuve des r\u00e9alit\u00e9s qu\u2019on ne voit pas.', ref:'H\u00e9breux 11:1'}, en:{text:'Faith is the assurance of things hoped for, the conviction of things not seen.', ref:'Hebrews 11:1'}},
@@ -558,7 +630,14 @@ const PRE=[
     {id:'jn-20-29', fr:{text:'Heureux ceux qui n\u2019ont pas vu et qui ont cru.', ref:'Jean 20:29'}, en:{text:'Blessed are those who have not seen and yet have believed.', ref:'John 20:29'}},
     {id:'rom-5-5', fr:{text:'L\u2019esp\u00e9rance ne d\u00e9\u00e7oit pas, car l\u2019amour de Dieu a \u00e9t\u00e9 r\u00e9pandu dans nos c\u0153urs par l\u2019Esprit Saint qui nous a \u00e9t\u00e9 donn\u00e9.', ref:'Romains 5:5'}, en:{text:'Hope does not disappoint, because God\u2019s love has been poured into our hearts through the Holy Spirit who has been given to us.', ref:'Romans 5:5'}},
     {id:'rom-15-13', fr:{text:'Que le Dieu de l\u2019esp\u00e9rance vous remplisse de toute joie et paix dans la foi.', ref:'Romains 15:13'}, en:{text:'May the God of hope fill you with all joy and peace in believing.', ref:'Romans 15:13'}},
-    {id:'heb-6-19', fr:{text:'Cette esp\u00e9rance, nous la tenons comme une ancre de l\u2019\u00e2me, s\u00fbre et solide.', ref:'H\u00e9breux 6:19'}, en:{text:'We have this hope as an anchor of the soul, sure and steadfast.', ref:'Hebrews 6:19'}}
+    {id:'heb-6-19', fr:{text:'Cette esp\u00e9rance, nous la tenons comme une ancre de l\u2019\u00e2me, s\u00fbre et solide.', ref:'H\u00e9breux 6:19'}, en:{text:'We have this hope as an anchor of the soul, sure and steadfast.', ref:'Hebrews 6:19'}},
+    {id:'jn-14-11', fr:{text:'Croyez-moi : je suis dans le P\u00e8re et le P\u00e8re est en moi. Sinon, croyez \u00e0 cause des \u0153uvres elles-m\u00eames.', ref:'Jean 14:11'}, en:{text:'Believe me: I am in the Father and the Father is in me. Or else, believe because of the works themselves.', ref:'John 14:11'}},
+    {id:'rom-4-3', fr:{text:'Abraham eut foi en Dieu, et cela lui fut compt\u00e9 comme justice.', ref:'Romains 4:3'}, en:{text:'Abraham believed God, and it was counted to him as righteousness.', ref:'Romans 4:3'}},
+    {id:'2co-5-7', fr:{text:'Nous marchons par la foi, non par la vue.', ref:'2 Corinthiens 5:7'}, en:{text:'We walk by faith, not by sight.', ref:'2 Corinthians 5:7'}},
+    {id:'he-11-6', fr:{text:'Sans la foi, il est impossible de plaire \u00e0 Dieu.', ref:'H\u00e9breux 11:6'}, en:{text:'Without faith it is impossible to please God.', ref:'Hebrews 11:6'}},
+    {id:'1pi-1-3', fr:{text:'Il nous a r\u00e9g\u00e9n\u00e9r\u00e9s pour une esp\u00e9rance vivante par la r\u00e9surrection de J\u00e9sus-Christ d\u2019entre les morts.', ref:'1 Pierre 1:3'}, en:{text:'He has regenerated us unto a living hope by the resurrection of Jesus Christ from the dead.', ref:'1 Peter 1:3'}},
+    {id:'he-10-23', fr:{text:'Restons fermes dans la confession de notre esp\u00e9rance, car il est fid\u00e8le, celui qui a promis.', ref:'H\u00e9breux 10:23'}, en:{text:'Let us hold fast the confession of our hope, for he who promised is faithful.', ref:'Hebrews 10:23'}},
+    {id:'rom-8-24', fr:{text:'Car c\u2019est en esp\u00e9rance que nous sommes sauv\u00e9s. Or, une esp\u00e9rance que l\u2019on voit n\u2019est plus une esp\u00e9rance : ce que l\u2019on voit, peut-on l\u2019esp\u00e9rer encore ?', ref:'Romains 8:24'}, en:{text:'For in this hope we were saved. Now hope that is seen is no longer hope: for who hopes for what he sees?', ref:'Romans 8:24'}}
   ]},
   {id:'charite', name:{fr:'La charit\u00e9', en:'Charity'}, verses:[
     {id:'jn-13-34', fr:{text:'Je vous donne un commandement nouveau : aimez-vous les uns les autres ; comme je vous ai aim\u00e9s, aimez-vous les uns les autres.', ref:'Jean 13:34'}, en:{text:'A new commandment I give you: love one another; as I have loved you, love one another.', ref:'John 13:34'}},
@@ -568,7 +647,14 @@ const PRE=[
     {id:'1co-13-2', fr:{text:'Quand j\u2019aurais toute la foi jusqu\u2019\u00e0 transporter les montagnes, si je n\u2019ai pas la charit\u00e9, je ne suis rien.', ref:'1 Corinthiens 13:2'}, en:{text:'If I have all faith, so as to remove mountains, but have not charity, I am nothing.', ref:'1 Corinthians 13:2'}},
     {id:'1co-13-4', fr:{text:'La charit\u00e9 est patiente, elle est pleine de bont\u00e9 ; la charit\u00e9 n\u2019est pas envieuse.', ref:'1 Corinthiens 13:4'}, en:{text:'Charity is patient, charity is kind; charity is not envious.', ref:'1 Corinthians 13:4'}},
     {id:'1co-13-13', fr:{text:'Maintenant demeurent la foi, l\u2019esp\u00e9rance et la charit\u00e9 ; mais la plus grande des trois, c\u2019est la charit\u00e9.', ref:'1 Corinthiens 13:13'}, en:{text:'Now faith, hope, and charity abide, these three; but the greatest of these is charity.', ref:'1 Corinthians 13:13'}},
-    {id:'1jn-4-16', fr:{text:'Dieu est amour, et celui qui demeure dans l\u2019amour demeure en Dieu, et Dieu demeure en lui.', ref:'1 Jean 4:16'}, en:{text:'God is love, and whoever abides in love abides in God, and God in him.', ref:'1 John 4:16'}}
+    {id:'1jn-4-16', fr:{text:'Dieu est amour, et celui qui demeure dans l\u2019amour demeure en Dieu, et Dieu demeure en lui.', ref:'1 Jean 4:16'}, en:{text:'God is love, and whoever abides in love abides in God, and God in him.', ref:'1 John 4:16'}},
+    {id:'1jn-4-19', fr:{text:'Nous, aimons, puisque lui nous a aim\u00e9s le premier.', ref:'1 Jean 4:19'}, en:{text:'Let us love, because he first loved us.', ref:'1 John 4:19'}},
+    {id:'jn-15-15', fr:{text:'Je ne vous appelle plus serviteurs, je vous appelle amis, parce que je vous ai fait conna\u00eetre tout ce que j\u2019ai entendu de mon P\u00e8re.', ref:'Jean 15:15'}, en:{text:'I no longer call you servants, I call you friends, because I have made known to you all that I have heard from my Father.', ref:'John 15:15'}},
+    {id:'1jn-4-20', fr:{text:'Celui qui n\u2019aime pas son fr\u00e8re, qu\u2019il voit, ne peut aimer Dieu, qu\u2019il ne voit pas.', ref:'1 Jean 4:20'}, en:{text:'Whoever does not love his brother, whom he sees, cannot love God, whom he does not see.', ref:'1 John 4:20'}},
+    {id:'mt-5-44', fr:{text:'Aimez vos ennemis, et priez pour ceux qui vous pers\u00e9cutent.', ref:'Matthieu 5:44'}, en:{text:'Love your enemies, and pray for those who persecute you.', ref:'Matthew 5:44'}},
+    {id:'ph-1-9', fr:{text:'Que votre amour grandisse de plus en plus en connaissance et en pleine intelligence.', ref:'Philippiens 1:9'}, en:{text:'May your love grow ever richer in knowledge and full insight.', ref:'Philippians 1:9'}},
+    {id:'col-3-14', fr:{text:'Par-dessus tout, ayez l\u2019amour, qui est le lien de la perfection.', ref:'Colossiens 3:14'}, en:{text:'Above all, put on love, which is the bond of perfection.', ref:'Colossians 3:14'}},
+    {id:'1co-13-8', fr:{text:'L\u2019amour ne passe jamais.', ref:'1 Corinthiens 13:8'}, en:{text:'Love never ends.', ref:'1 Corinthians 13:8'}}
   ]},
   {id:'eglise', name:{fr:'L\u2019\u00c9glise', en:'The Church'}, verses:[
     {id:'mt-16-18', fr:{text:'Tu es Pierre, et sur cette pierre je b\u00e2tirai mon \u00c9glise, et les portes de l\u2019enfer ne pr\u00e9vaudront pas contre elle.', ref:'Matthieu 16:18'}, en:{text:'You are Peter, and on this rock I will build my Church, and the gates of hell shall not prevail against it.', ref:'Matthew 16:18'}},
@@ -578,7 +664,17 @@ const PRE=[
     {id:'jn-17-21', fr:{text:'Que tous soient un, comme toi, P\u00e8re, tu es en moi et moi en toi, afin que le monde croie que tu m\u2019as envoy\u00e9.', ref:'Jean 17:21'}, en:{text:'That they may all be one, as you, Father, are in me and I in you, so that the world may believe that you have sent me.', ref:'John 17:21'}},
     {id:'1tm-3-15', fr:{text:'L\u2019\u00c9glise du Dieu vivant, colonne et appui de la v\u00e9rit\u00e9.', ref:'1 Timoth\u00e9e 3:15'}, en:{text:'The Church of the living God, the pillar and support of the truth.', ref:'1 Timothy 3:15'}},
     {id:'mt-28-20', fr:{text:'Et voici, je suis avec vous tous les jours, jusqu\u2019\u00e0 la fin du monde.', ref:'Matthieu 28:20'}, en:{text:'And behold, I am with you always, to the end of the world.', ref:'Matthew 28:20'}},
-    {id:'ac-2-42', fr:{text:'Ils \u00e9taient assidus \u00e0 l\u2019enseignement des ap\u00f4tres, \u00e0 la communion fraternelle, \u00e0 la fraction du pain et aux pri\u00e8res.', ref:'Actes 2:42'}, en:{text:'They devoted themselves to the apostles\u2019 teaching, to fellowship, to the breaking of bread, and to the prayers.', ref:'Acts 2:42'}}
+    {id:'ac-2-42', fr:{text:'Ils \u00e9taient assidus \u00e0 l\u2019enseignement des ap\u00f4tres, \u00e0 la communion fraternelle, \u00e0 la fraction du pain et aux pri\u00e8res.', ref:'Actes 2:42'}, en:{text:'They devoted themselves to the apostles\u2019 teaching, to fellowship, to the breaking of bread, and to the prayers.', ref:'Acts 2:42'}},
+    {id:'ac-2-4', fr:{text:'Ils furent tous remplis du Saint-Esprit, et se mirent \u00e0 parler en d\u2019autres langues.', ref:'Actes 2:4'}, en:{text:'They were all filled with the Holy Spirit, and began to speak in other tongues.', ref:'Acts 2:4'}},
+    {id:'ac-2-41', fr:{text:'Ceux qui accept\u00e8rent sa parole furent baptis\u00e9s ; ce jour-l\u00e0, le nombre des disciples augmenta d\u2019environ trois mille \u00e2mes.', ref:'Actes 2:41'}, en:{text:'Those who accepted his word were baptised; that day, the number of disciples grew by about three thousand souls.', ref:'Acts 2:41'}},
+    {id:'col-1-18', fr:{text:'Il est la t\u00eate du corps, qui est l\u2019\u00c9glise.', ref:'Colossiens 1:18'}, en:{text:'He is the head of the body, the Church.', ref:'Colossians 1:18'}},
+    {id:'1pi-2-9-10', fr:{text:'Vous \u00eates une race choisie, un sacerdoce royal, une nation sainte, un peuple acquis, pour annoncer les louanges de celui qui vous a appel\u00e9s des t\u00e9n\u00e8bres \u00e0 son admirable lumi\u00e8re. Vous qui autrefois n\u2019\u00e9tiez pas un peuple, vous \u00eates maintenant le peuple de Dieu.', ref:'1 Pierre 2:9-10'}, en:{text:'You are a chosen race, a royal priesthood, a holy nation, a people for his own possession, to proclaim the praises of him who called you out of darkness into his marvellous light. You who once were not a people, you are now the people of God.', ref:'1 Peter 2:9-10'}},
+    {id:'1co-3-16', fr:{text:'Vous \u00eates le temple de Dieu, et l\u2019Esprit de Dieu habite en vous.', ref:'1 Corinthiens 3:16'}, en:{text:'You are God\u2019s temple, and God\u2019s Spirit dwells in you.', ref:'1 Corinthians 3:16'}},
+    {id:'2co-11-2', fr:{text:'Je vous ai unis \u00e0 un seul \u00e9poux, pour vous pr\u00e9senter au Christ comme une vierge pure.', ref:'2 Corinthiens 11:2'}, en:{text:'I betrothed you to one husband, to present you to Christ as a pure virgin.', ref:'2 Corinthians 11:2'}},
+    {id:'ac-20-28', fr:{text:'L\u2019Esprit Saint vous a \u00e9tablis gardiens, pour pa\u00eetre l\u2019\u00c9glise de Dieu.', ref:'Actes 20:28'}, en:{text:'The Holy Spirit has made you overseers, to shepherd the Church of God.', ref:'Acts 20:28'}},
+    {id:'ep-4-5', fr:{text:'Un seul Seigneur, une seule foi, un seul bapt\u00eame.', ref:'\u00c9ph\u00e9siens 4:5'}, en:{text:'One Lord, one faith, one baptism.', ref:'Ephesians 4:5'}},
+    {id:'ep-5-25-26', fr:{text:'Le Christ a aim\u00e9 l\u2019\u00c9glise : il s\u2019est livr\u00e9 lui-m\u00eame pour elle, afin de la sanctifier.', ref:'\u00c9ph\u00e9siens 5:25-26'}, en:{text:'Christ loved the Church: he gave himself up for her, in order to sanctify her.', ref:'Ephesians 5:25-26'}},
+    {id:'apo-21-2', fr:{text:'Je vis la ville sainte, la J\u00e9rusalem nouvelle, pr\u00eate comme une \u00e9pouse par\u00e9e pour son \u00e9poux.', ref:'Apocalypse 21:2'}, en:{text:'I saw the holy city, the new Jerusalem, prepared as a bride adorned for her husband.', ref:'Revelation 21:2'}}
   ]},
   {id:'bapteme', name:{fr:'Le bapt\u00eame', en:'Baptism'}, verses:[
     {id:'jn-3-5', fr:{text:'Si quelqu\u2019un ne na\u00eet d\u2019eau et d\u2019Esprit, il ne peut entrer dans le royaume de Dieu.', ref:'Jean 3:5'}, en:{text:'Unless one is born of water and the Spirit, he cannot enter the kingdom of God.', ref:'John 3:5'}},
@@ -587,7 +683,11 @@ const PRE=[
     {id:'ga-3-27', fr:{text:'Vous tous qui avez \u00e9t\u00e9 baptis\u00e9s dans le Christ, vous avez rev\u00eatu le Christ.', ref:'Galates 3:27'}, en:{text:'As many of you as were baptised into Christ have put on Christ.', ref:'Galatians 3:27'}},
     {id:'tit-3-5', fr:{text:'Il nous a sauv\u00e9s par le bain de la nouvelle naissance et le renouvellement de l\u2019Esprit Saint.', ref:'Tite 3:5'}, en:{text:'He saved us by the washing of regeneration and renewal of the Holy Spirit.', ref:'Titus 3:5'}},
     {id:'1pi-3-21', fr:{text:'Cette eau, c\u2019est le bapt\u00eame qui vous sauve maintenant, non comme un nettoyage du corps, mais comme l\u2019engagement envers Dieu d\u2019une conscience droite.', ref:'1 Pierre 3:21'}, en:{text:'Baptism now saves you, not as a removal of dirt from the body, but as an appeal to God for a good conscience.', ref:'1 Peter 3:21'}},
-    {id:'mc-16-16', fr:{text:'Celui qui croira et sera baptis\u00e9 sera sauv\u00e9, mais celui qui ne croira pas sera condamn\u00e9.', ref:'Marc 16:16'}, en:{text:'Whoever believes and is baptised will be saved, but whoever does not believe will be condemned.', ref:'Mark 16:16'}}
+    {id:'mc-16-16', fr:{text:'Celui qui croira et sera baptis\u00e9 sera sauv\u00e9, mais celui qui ne croira pas sera condamn\u00e9.', ref:'Marc 16:16'}, en:{text:'Whoever believes and is baptised will be saved, but whoever does not believe will be condemned.', ref:'Mark 16:16'}},
+    {id:'1pi-3-20-21', fr:{text:'Ce petit nombre fut sauv\u00e9 \u00e0 travers l\u2019eau. Cette eau \u00e9tait la figure du bapt\u00eame qui vous sauve aujourd\u2019hui.', ref:'1 Pierre 3:20-21'}, en:{text:'This small number was saved through water. This water was the figure of the baptism which now saves you.', ref:'1 Peter 3:20-21'}},
+    {id:'1co-10-1-2', fr:{text:'Nos p\u00e8res ont tous pass\u00e9 \u00e0 travers la mer, et tous ont \u00e9t\u00e9 baptis\u00e9s en Mo\u00efse dans la nu\u00e9e et dans la mer.', ref:'1 Corinthiens 10:1-2'}, en:{text:'Our fathers all passed through the sea, and all were baptised into Moses in the cloud and in the sea.', ref:'1 Corinthians 10:1-2'}},
+    {id:'mt-3-16-17', fr:{text:'D\u00e8s que J\u00e9sus eut \u00e9t\u00e9 baptis\u00e9, les cieux s\u2019ouvrirent, et il vit l\u2019Esprit de Dieu descendre comme une colombe ; et une voix dit : Celui-ci est mon Fils bien-aim\u00e9.', ref:'Matthieu 3:16-17'}, en:{text:'As soon as Jesus had been baptised, the heavens opened, and he saw the Spirit of God descending like a dove; and a voice said: This is my beloved Son.', ref:'Matthew 3:16-17'}},
+    {id:'1co-12-13', fr:{text:'C\u2019est dans un seul Esprit que nous avons tous \u00e9t\u00e9 baptis\u00e9s pour former un seul corps.', ref:'1 Corinthiens 12:13'}, en:{text:'In one Spirit we were all baptised to form one single body.', ref:'1 Corinthians 12:13'}}
   ]},
   {id:'confession', name:{fr:'La confession', en:'Confession'}, verses:[
     {id:'jn-20-23', fr:{text:'Ceux \u00e0 qui vous remettrez les p\u00e9ch\u00e9s, ils leur seront remis\u00a0; ceux \u00e0 qui vous les retiendrez, ils leur seront retenus.', ref:'Jean 20:23'}, en:{text:'If you forgive the sins of any, they are forgiven; if you retain the sins of any, they are retained.', ref:'John 20:23'}},
@@ -596,7 +696,14 @@ const PRE=[
     {id:'1jn-1-9', fr:{text:'Si nous confessons nos p\u00e9ch\u00e9s, il est fid\u00e8le et juste pour nous les pardonner, et pour nous purifier de toute iniquit\u00e9.', ref:'1 Jean 1:9'}, en:{text:'If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness.', ref:'1 John 1:9'}},
     {id:'2co-5-18', fr:{text:'Dieu nous a r\u00e9concili\u00e9s avec lui par le Christ, et nous a confi\u00e9 le minist\u00e8re de la r\u00e9conciliation.', ref:'2 Corinthiens 5:18'}, en:{text:'God reconciled us to himself through Christ and gave us the ministry of reconciliation.', ref:'2 Corinthians 5:18'}},
     {id:'lc-15-7', fr:{text:'Il y aura plus de joie dans le ciel pour un seul p\u00e9cheur qui se repent, que pour quatre-vingt-dix-neuf justes qui n\u2019ont pas besoin de repentir.', ref:'Luc 15:7'}, en:{text:'There will be more joy in heaven over one sinner who repents than over ninety-nine righteous who need no repentance.', ref:'Luke 15:7'}},
-    {id:'ps-32-5', fr:{text:'Je t\u2019ai avou\u00e9 mon p\u00e9ch\u00e9, je n\u2019ai pas cach\u00e9 ma faute\u00a0; et toi, tu as \u00f4t\u00e9 la faute de mon p\u00e9ch\u00e9.', ref:'Psaume 32:5'}, en:{text:'I acknowledged my sin to you, and I did not cover my iniquity; and you forgave the guilt of my sin.', ref:'Psalm 32:5'}}
+    {id:'ps-32-5', fr:{text:'Je t\u2019ai avou\u00e9 mon p\u00e9ch\u00e9, je n\u2019ai pas cach\u00e9 ma faute\u00a0; et toi, tu as \u00f4t\u00e9 la faute de mon p\u00e9ch\u00e9.', ref:'Psaume 32:5'}, en:{text:'I acknowledged my sin to you, and I did not cover my iniquity; and you forgave the guilt of my sin.', ref:'Psalm 32:5'}},
+    {id:'ps-19-13', fr:{text:'Qui discerne ses \u00e9garements ? Purifie-moi de ceux qui me sont cach\u00e9s.', ref:'Psaume 19:13'}, en:{text:'Who discerns his errors? Cleanse me from those that are hidden from me.', ref:'Psalm 19:13'}},
+    {id:'lc-7-47', fr:{text:'Ses p\u00e9ch\u00e9s, qui sont nombreux, lui sont pardonn\u00e9s, car elle a beaucoup aim\u00e9.', ref:'Luc 7:47'}, en:{text:'Her sins, which are many, are forgiven, for she has loved much.', ref:'Luke 7:47'}},
+    {id:'2co-5-20', fr:{text:'C\u2019est au nom du Christ que nous faisons fonction d\u2019ambassadeurs.', ref:'2 Corinthiens 5:20'}, en:{text:'It is in the name of Christ that we are ambassadors.', ref:'2 Corinthians 5:20'}},
+    {id:'2s-12-13', fr:{text:'Le Seigneur a pardonn\u00e9 ton p\u00e9ch\u00e9 ; tu ne mourras pas.', ref:'2 Samuel 12:13'}, en:{text:'The Lord has forgiven your sin; you shall not die.', ref:'2 Samuel 12:13'}},
+    {id:'lc-19-8', fr:{text:'Si j\u2019ai fait tort \u00e0 quelqu\u2019un, je lui rends le quadruple.', ref:'Luc 19:8'}, en:{text:'If I have wronged anyone, I restore it fourfold.', ref:'Luke 19:8'}},
+    {id:'is-43-25', fr:{text:'C\u2019est moi qui efface tes transgressions, et je ne me souviendrai plus de tes p\u00e9ch\u00e9s.', ref:'Isa\u00efe 43:25'}, en:{text:'It is I who blot out your transgressions, and I will remember your sins no more.', ref:'Isaiah 43:25'}},
+    {id:'pr-11-13', fr:{text:'Le m\u00e9disant r\u00e9v\u00e8le les secrets, mais l\u2019homme au c\u0153ur fid\u00e8le tient la chose cach\u00e9e.', ref:'Proverbes 11:13'}, en:{text:'The slanderer reveals secrets, but the faithful of heart keeps the matter hidden.', ref:'Proverbs 11:13'}}
   ]},
   {id:'eucharistie', name:{fr:'L\u2019Eucharistie', en:'The Eucharist'}, verses:[
     {id:'jn-6-51', fr:{text:'Je suis le pain vivant descendu du ciel. Le pain que je donnerai, c\u2019est ma chair, pour la vie du monde.', ref:'Jean 6:51'}, en:{text:'I am the living bread that came down from heaven. The bread that I will give is my flesh, for the life of the world.', ref:'John 6:51'}},
@@ -607,7 +714,21 @@ const PRE=[
     {id:'1co-11-26', fr:{text:'Chaque fois que vous mangez ce pain et que vous buvez cette coupe, vous annoncez la mort du Seigneur, jusqu\u2019\u00e0 ce qu\u2019il vienne.', ref:'1 Corinthiens 11:26'}, en:{text:'As often as you eat this bread and drink this cup, you proclaim the Lord\u2019s death until he comes.', ref:'1 Corinthians 11:26'}},
     {id:'1co-11-27', fr:{text:'Quiconque mange ce pain ou boit la coupe du Seigneur indignement sera coupable envers le corps et le sang du Seigneur.', ref:'1 Corinthiens 11:27'}, en:{text:'Whoever eats this bread or drinks the cup of the Lord unworthily will be guilty of the body and blood of the Lord.', ref:'1 Corinthians 11:27'}},
     {id:'1co-10-16', fr:{text:'La coupe de b\u00e9n\u00e9diction que nous b\u00e9nissons n\u2019est-elle pas communion au sang du Christ ? Le pain que nous rompons n\u2019est-il pas communion au corps du Christ ?', ref:'1 Corinthiens 10:16'}, en:{text:'The cup of blessing which we bless, is it not a communion in the blood of Christ? The bread which we break, is it not a communion in the body of Christ?', ref:'1 Corinthians 10:16'}},
-    {id:'jn-1-29', fr:{text:'Voici l\u2019Agneau de Dieu qui enl\u00e8ve le p\u00e9ch\u00e9 du monde.', ref:'Jean 1:29'}, en:{text:'Behold the Lamb of God who takes away the sin of the world.', ref:'John 1:29'}}
+    {id:'jn-1-29', fr:{text:'Voici l\u2019Agneau de Dieu qui enl\u00e8ve le p\u00e9ch\u00e9 du monde.', ref:'Jean 1:29'}, en:{text:'Behold the Lamb of God who takes away the sin of the world.', ref:'John 1:29'}},
+    {id:'gn-14-18', fr:{text:'Melchis\u00e9dech, roi de Salem, fit apporter du pain et du vin ; il \u00e9tait pr\u00eatre du Dieu Tr\u00e8s-Haut.', ref:'Gen\u00e8se 14:18'}, en:{text:'Melchizedek, king of Salem, brought out bread and wine; he was priest of God Most High.', ref:'Genesis 14:18'}},
+    {id:'ps-110-4', fr:{text:'Tu es pr\u00eatre pour l\u2019\u00e9ternit\u00e9 \u00e0 la mani\u00e8re de Melchis\u00e9dech.', ref:'Psaume 110:4'}, en:{text:'You are a priest for ever in the manner of Melchizedek.', ref:'Psalm 110:4'}},
+    {id:'exo-16-4', fr:{text:'Je vais faire pleuvoir sur vous du pain venu du ciel.', ref:'Exode 16:4'}, en:{text:'I will rain down upon you bread from heaven.', ref:'Exodus 16:4'}},
+    {id:'exo-12-13', fr:{text:'Le sang vous servira de signe : je verrai le sang, et je passerai par-dessus vous.', ref:'Exode 12:13'}, en:{text:'The blood will be a sign for you: I will see the blood, and I will pass over you.', ref:'Exodus 12:13'}},
+    {id:'1co-5-7', fr:{text:'Christ, notre P\u00e2que, a \u00e9t\u00e9 immol\u00e9.', ref:'1 Corinthiens 5:7'}, en:{text:'Christ, our Passover, has been sacrificed.', ref:'1 Corinthians 5:7'}},
+    {id:'lv-17-11', fr:{text:'La vie de la chair est dans le sang... c\u2019est le sang qui expie pour une vie.', ref:'L\u00e9vitique 17:11'}, en:{text:'The life of the flesh is in the blood... it is the blood that makes atonement for a life.', ref:'Leviticus 17:11'}},
+    {id:'exo-24-8', fr:{text:'Voici le sang de l\u2019alliance que le Seigneur a conclue avec vous.', ref:'Exode 24:8'}, en:{text:'This is the blood of the covenant that the Lord has made with you.', ref:'Exodus 24:8'}},
+    {id:'jn-6-56', fr:{text:'Celui qui mange ma chair et boit mon sang demeure en moi, et moi en lui.', ref:'Jean 6:56'}, en:{text:'Whoever eats my flesh and drinks my blood abides in me, and I in him.', ref:'John 6:56'}},
+    {id:'1co-10-17', fr:{text:'Puisqu\u2019il y a un seul pain, nous qui sommes plusieurs, nous formons un seul corps.', ref:'1 Corinthiens 10:17'}, en:{text:'Since there is one bread, we who are many form one body.', ref:'1 Corinthians 10:17'}},
+    {id:'1co-11-28', fr:{text:'Que chacun s\u2019\u00e9prouve soi-m\u00eame, et qu\u2019ainsi il mange de ce pain et boive de cette coupe.', ref:'1 Corinthiens 11:28'}, en:{text:'Let each examine himself, and so eat of this bread and drink of this cup.', ref:'1 Corinthians 11:28'}},
+    {id:'jn-6-53', fr:{text:'Si vous ne mangez la chair du Fils de l\u2019homme et ne buvez son sang, vous n\u2019avez pas la vie en vous.', ref:'Jean 6:53'}, en:{text:'Unless you eat the flesh of the Son of Man and drink his blood, you have no life in you.', ref:'John 6:53'}},
+    {id:'1co-11-29', fr:{text:'Celui qui mange et boit sans discerner le corps mange et boit sa propre condamnation.', ref:'1 Corinthiens 11:29'}, en:{text:'He who eats and drinks without discerning the body eats and drinks his own condemnation.', ref:'1 Corinthians 11:29'}},
+    {id:'mal-1-11', fr:{text:'En tout lieu, on pr\u00e9sente \u00e0 mon nom de l\u2019encens et une offrande pure.', ref:'Malachie 1:11'}, en:{text:'In every place incense and a pure offering are presented to my name.', ref:'Malachi 1:11'}},
+    {id:'he-13-10', fr:{text:'Nous avons un autel dont n\u2019ont pas le droit de manger ceux qui servent le tabernacle.', ref:'H\u00e9breux 13:10'}, en:{text:'We have an altar from which those who serve the tabernacle have no right to eat.', ref:'Hebrews 13:10'}}
   ]},
   {id:'sacrements', name:{fr:'Les sacrements', en:'The Sacraments'}, verses:[
     {id:'gn-2-24', fr:{text:'L\u2019homme quittera son p\u00e8re et sa m\u00e8re, s\u2019attachera \u00e0 sa femme, et ils ne feront plus qu\u2019une seule chair.', ref:'Gen\u00e8se 2:24'}, en:{text:'A man shall leave his father and mother and hold fast to his wife, and the two shall become one flesh.', ref:'Genesis 2:24'}},
@@ -618,7 +739,28 @@ const PRE=[
     {id:'mc-6-13', fr:{text:'Ils oignaient d\u2019huile beaucoup de malades, et ils les gu\u00e9rissaient.', ref:'Marc 6:13'}, en:{text:'They anointed with oil many who were sick, and healed them.', ref:'Mark 6:13'}},
     {id:'lc-22-19', fr:{text:'Faites ceci en m\u00e9moire de moi.', ref:'Luc 22:19'}, en:{text:'Do this in remembrance of me.', ref:'Luke 22:19'}},
     {id:'2tm-1-6', fr:{text:'Ravive le don de Dieu qui est en toi par l\u2019imposition de mes mains.', ref:'2 Timoth\u00e9e 1:6'}, en:{text:'Fan into flame the gift of God that is in you through the laying on of my hands.', ref:'2 Timothy 1:6'}},
-    {id:'he-5-1', fr:{text:'Tout grand pr\u00eatre, pris parmi les hommes, est \u00e9tabli pour les hommes dans leurs relations avec Dieu.', ref:'H\u00e9breux 5:1'}, en:{text:'Every high priest is chosen from among men and appointed to act for men in their relations with God.', ref:'Hebrews 5:1'}}
+    {id:'he-5-1', fr:{text:'Tout grand pr\u00eatre, pris parmi les hommes, est \u00e9tabli pour les hommes dans leurs relations avec Dieu.', ref:'H\u00e9breux 5:1'}, en:{text:'Every high priest is chosen from among men and appointed to act for men in their relations with God.', ref:'Hebrews 5:1'}},
+    {id:'jn-19-34', fr:{text:'Un des soldats lui transper\u00e7a le c\u00f4t\u00e9, et aussit\u00f4t il en sortit du sang et de l\u2019eau.', ref:'Jean 19:34'}, en:{text:'One of the soldiers pierced his side, and at once there flowed blood and water.', ref:'John 19:34'}},
+    {id:'1co-3-7', fr:{text:'Ni celui qui plante ni celui qui arrose n\u2019est quelque chose, mais Dieu seul, qui fait cro\u00eetre.', ref:'1 Corinthiens 3:7'}, en:{text:'Neither he who plants nor he who waters is anything, but only God, who gives the growth.', ref:'1 Corinthians 3:7'}},
+    {id:'2co-1-22', fr:{text:'Il nous a marqu\u00e9s de son sceau et a mis dans nos c\u0153urs les arrhes de l\u2019Esprit.', ref:'2 Corinthiens 1:22'}, en:{text:'He has marked us with his seal and put in our hearts the pledge of the Spirit.', ref:'2 Corinthians 1:22'}},
+    {id:'mt-9-6', fr:{text:'Afin que vous sachiez que le Fils de l\u2019homme a sur la terre le pouvoir de remettre les p\u00e9ch\u00e9s : L\u00e8ve-toi, prends ton lit et va dans ta maison.', ref:'Matthieu 9:6'}, en:{text:'That you may know that the Son of Man has authority on earth to forgive sins: Rise, take up your bed, and go home.', ref:'Matthew 9:6'}},
+    {id:'1tm-4-5', fr:{text:'Tout est sanctifi\u00e9 par la parole de Dieu et la pri\u00e8re.', ref:'1 Timoth\u00e9e 4:5'}, en:{text:'Everything is sanctified by the word of God and prayer.', ref:'1 Timothy 4:5'}},
+    {id:'gn-1-28', fr:{text:'Soyez f\u00e9conds et multipliez-vous.', ref:'Gen\u00e8se 1:28'}, en:{text:'Be fruitful and multiply.', ref:'Genesis 1:28'}},
+    {id:'gn-2-18', fr:{text:'Il n\u2019est pas bon que l\u2019homme soit seul ; je lui ferai une aide qui lui corresponde.', ref:'Gen\u00e8se 2:18'}, en:{text:'It is not good that man should be alone; I will make him a help that corresponds to him.', ref:'Genesis 2:18'}},
+    {id:'mt-19-8', fr:{text:'C\u2019est \u00e0 cause de la duret\u00e9 de votre c\u0153ur que Mo\u00efse vous a permis de r\u00e9pudier vos femmes ; mais au commencement il n\u2019en \u00e9tait pas ainsi.', ref:'Matthieu 19:8'}, en:{text:'It is because of the hardness of your heart that Moses permitted you to divorce your wives; but in the beginning it was not so.', ref:'Matthew 19:8'}},
+    {id:'is-11-2', fr:{text:'Sur lui reposera l\u2019Esprit du Seigneur, esprit de sagesse et d\u2019intelligence, esprit de conseil et de force, esprit de science et de crainte du Seigneur.', ref:'Isa\u00efe 11:2'}, en:{text:'Upon him will rest the Spirit of the Lord, a spirit of wisdom and understanding, a spirit of counsel and might, a spirit of knowledge and of fear of the Lord.', ref:'Isaiah 11:2'}},
+    {id:'rom-8-15', fr:{text:'Vous avez re\u00e7u un Esprit d\u2019adoption filiale, par lequel nous crions : Abba, P\u00e8re !', ref:'Romains 8:15'}, en:{text:'You received a Spirit of adoption, by which we cry: Abba, Father!', ref:'Romans 8:15'}},
+    {id:'ac-1-8', fr:{text:'Vous recevrez une force, celle de l\u2019Esprit Saint qui descendra sur vous, et vous serez mes t\u00e9moins.', ref:'Actes 1:8'}, en:{text:'You will receive a force, that of the Holy Spirit who will come upon you, and you will be my witnesses.', ref:'Acts 1:8'}},
+    {id:'lc-10-34', fr:{text:'Il banda ses plaies, en y versant de l\u2019huile et du vin.', ref:'Luc 10:34'}, en:{text:'He bound up his wounds, pouring on oil and wine.', ref:'Luke 10:34'}},
+    {id:'mt-8-17', fr:{text:'Il a pris nos infirmit\u00e9s et s\u2019est charg\u00e9 de nos maladies.', ref:'Matthieu 8:17'}, en:{text:'He took our infirmities and bore our diseases.', ref:'Matthew 8:17'}},
+    {id:'rom-8-17', fr:{text:'Si nous souffrons avec lui, c\u2019est pour \u00eatre glorifi\u00e9s avec lui.', ref:'Romains 8:17'}, en:{text:'If we suffer with him, it is to be glorified with him.', ref:'Romans 8:17'}},
+    {id:'jn-20-21', fr:{text:'Comme le P\u00e8re m\u2019a envoy\u00e9, moi aussi je vous envoie.', ref:'Jean 20:21'}, en:{text:'As the Father has sent me, I also send you.', ref:'John 20:21'}},
+    {id:'2tm-2-2', fr:{text:'Ce que tu as entendu de moi, confie-le \u00e0 des hommes fid\u00e8les, capables \u00e0 leur tour d\u2019en instruire d\u2019autres.', ref:'2 Timoth\u00e9e 2:2'}, en:{text:'What you have heard from me, entrust to faithful men, able in turn to teach others.', ref:'2 Timothy 2:2'}},
+    {id:'tt-1-5', fr:{text:'\u00c9tablis des anciens dans chaque ville, comme je te l\u2019ai prescrit.', ref:'Tite 1:5'}, en:{text:'Appoint elders in every town, as I directed you.', ref:'Titus 1:5'}},
+    {id:'ac-14-23', fr:{text:'Ils firent nommer des anciens dans chaque \u00c9glise.', ref:'Actes 14:23'}, en:{text:'They appointed elders in every Church.', ref:'Acts 14:23'}},
+    {id:'ac-6-6', fr:{text:'Ils les pr\u00e9sent\u00e8rent aux ap\u00f4tres, qui pri\u00e8rent et leur impos\u00e8rent les mains.', ref:'Actes 6:6'}, en:{text:'They presented them to the apostles, who prayed and laid their hands on them.', ref:'Acts 6:6'}},
+    {id:'2co-2-10', fr:{text:'Ce que j\u2019ai pardonn\u00e9, je l\u2019ai fait \u00e0 cause de vous, en la personne du Christ.', ref:'2 Corinthiens 2:10'}, en:{text:'What I have forgiven, I have done it for your sake, in the person of Christ.', ref:'2 Corinthians 2:10'}},
+    {id:'mt-19-12', fr:{text:'Il y a des eunuques qui se sont rendus tels eux-m\u00eames \u00e0 cause du royaume des cieux ; comprenne qui peut comprendre.', ref:'Matthieu 19:12'}, en:{text:'There are eunuchs who have made themselves so for the sake of the kingdom of heaven; let the one who can accept this accept it.', ref:'Matthew 19:12'}}
   ]},
   {id:'communion-saints', name:{fr:'La communion des saints', en:'The Communion of Saints'}, verses:[
     {id:'he-12-1', fr:{text:'Nous sommes environn\u00e9s d\u2019une si grande nu\u00e9e de t\u00e9moins.', ref:'H\u00e9breux 12:1'}, en:{text:'We are surrounded by so great a cloud of witnesses.', ref:'Hebrews 12:1'}},
@@ -628,7 +770,12 @@ const PRE=[
     {id:'1co-12-26', fr:{text:'Si un membre souffre, tous les membres souffrent avec lui\u00a0; si un membre est honor\u00e9, tous se r\u00e9jouissent avec lui.', ref:'1 Corinthiens 12:26'}, en:{text:'If one member suffers, all suffer together; if one member is honored, all rejoice together.', ref:'1 Corinthians 12:26'}},
     {id:'rm-12-5', fr:{text:'Nous formons un seul corps dans le Christ, et nous sommes tous membres les uns des autres.', ref:'Romains 12:5'}, en:{text:'We who are many form one body in Christ, and individually members one of another.', ref:'Romans 12:5'}},
     {id:'mt-22-32', fr:{text:'Dieu n\u2019est pas le Dieu des morts, mais des vivants.', ref:'Matthieu 22:32'}, en:{text:'He is not the God of the dead, but of the living.', ref:'Matthew 22:32'}},
-    {id:'2m-12-46', fr:{text:'C\u2019est une pens\u00e9e sainte et salutaire de prier pour les morts, afin qu\u2019ils soient d\u00e9livr\u00e9s de leurs p\u00e9ch\u00e9s.', ref:'2 Maccab\u00e9es 12:46'}, en:{text:'It is a holy and wholesome thought to pray for the dead, that they may be freed from their sin.', ref:'2 Maccabees 12:46'}}
+    {id:'2m-12-46', fr:{text:'C\u2019est une pens\u00e9e sainte et salutaire de prier pour les morts, afin qu\u2019ils soient d\u00e9livr\u00e9s de leurs p\u00e9ch\u00e9s.', ref:'2 Maccab\u00e9es 12:46'}, en:{text:'It is a holy and wholesome thought to pray for the dead, that they may be freed from their sin.', ref:'2 Maccabees 12:46'}},
+    {id:'col-1-24', fr:{text:'Je compl\u00e8te en ma chair ce qui manque aux \u00e9preuves du Christ, pour son corps qui est l\u2019\u00c9glise.', ref:'Colossiens 1:24'}, en:{text:'I complete in my flesh what is lacking in the trials of Christ, for his body which is the Church.', ref:'Colossians 1:24'}},
+    {id:'2m-15-14', fr:{text:'celui qui prie beaucoup pour le peuple et pour la ville sainte.', ref:'2 Maccab\u00e9es 15:14'}, en:{text:'the one who prays much for the people and for the holy city.', ref:'2 Maccabees 15:14'}},
+    {id:'tb-12-12', fr:{text:'C\u2019est moi qui pr\u00e9sentais le souvenir de vos pri\u00e8res devant la gloire du Seigneur.', ref:'Tobie 12:12'}, en:{text:'It was I who presented the record of your prayers before the glory of the Lord.', ref:'Tobit 12:12'}},
+    {id:'1tm-2-1', fr:{text:'J\u2019exhorte avant tout \u00e0 faire des pri\u00e8res, des supplications et des intercessions pour tous les hommes.', ref:'1 Timoth\u00e9e 2:1'}, en:{text:'I urge above all that prayers, supplications and intercessions be made for all men.', ref:'1 Timothy 2:1'}},
+    {id:'he-7-25', fr:{text:'Il est toujours vivant pour interc\u00e9der en leur faveur.', ref:'H\u00e9breux 7:25'}, en:{text:'He is always living to intercede on their behalf.', ref:'Hebrews 7:25'}}
   ]},
   {id:'fins-dernieres', name:{fr:'Les fins derni\u00e8res', en:'The Last Things'}, verses:[
     {id:'heb-9-27', fr:{text:'Il est r\u00e9serv\u00e9 aux hommes de mourir une seule fois, apr\u00e8s quoi vient le jugement.', ref:'H\u00e9breux 9:27'}, en:{text:'It is appointed for men to die once, and after that comes judgment.', ref:'Hebrews 9:27'}},
@@ -638,7 +785,37 @@ const PRE=[
     {id:'1th-4-17', fr:{text:'Nous serons emport\u00e9s avec eux \u00e0 la rencontre du Seigneur, et ainsi nous serons toujours avec le Seigneur.', ref:'1 Thessaloniciens 4:17'}, en:{text:'We shall be caught up together to meet the Lord, and so we shall always be with the Lord.', ref:'1 Thessalonians 4:17'}},
     {id:'1co-15-52', fr:{text:'En un instant, au son de la derni\u00e8re trompette, les morts ressusciteront incorruptibles, et nous, nous serons transform\u00e9s.', ref:'1 Corinthiens 15:52'}, en:{text:'In an instant, at the last trumpet, the dead will be raised incorruptible, and we shall be changed.', ref:'1 Corinthians 15:52'}},
     {id:'apo-21-1', fr:{text:'Je vis un ciel nouveau et une terre nouvelle.', ref:'Apocalypse 21:1'}, en:{text:'I saw a new heaven and a new earth.', ref:'Revelation 21:1'}},
-    {id:'apo-21-4', fr:{text:'Il essuiera toute larme de leurs yeux, et la mort ne sera plus, ni deuil, ni cri, ni douleur.', ref:'Apocalypse 21:4'}, en:{text:'He will wipe away every tear from their eyes, and death shall be no more, neither mourning, nor crying, nor pain.', ref:'Revelation 21:4'}}
+    {id:'apo-21-4', fr:{text:'Il essuiera toute larme de leurs yeux, et la mort ne sera plus, ni deuil, ni cri, ni douleur.', ref:'Apocalypse 21:4'}, en:{text:'He will wipe away every tear from their eyes, and death shall be no more, neither mourning, nor crying, nor pain.', ref:'Revelation 21:4'}},
+    {id:'gn-37-35', fr:{text:'Je descendrai vers mon fils, dans le s\u00e9jour des morts, en menant deuil.', ref:'Gen\u00e8se 37:35'}, en:{text:'I shall go down to my son, into the abode of the dead, mourning.', ref:'Genesis 37:35'}},
+    {id:'ps-6-6', fr:{text:'Dans la mort, nul souvenir de toi ; au s\u00e9jour des morts, qui te c\u00e9l\u00e8bre ?', ref:'Psaume 6:6'}, en:{text:'In death there is no remembrance of you; in the abode of the dead, who praises you?', ref:'Psalm 6:6'}},
+    {id:'lc-16-22', fr:{text:'Le pauvre mourut, et il fut port\u00e9 par les anges dans le sein d\u2019Abraham.', ref:'Luc 16:22'}, en:{text:'The poor man died, and was carried by the angels into the bosom of Abraham.', ref:'Luke 16:22'}},
+    {id:'1pi-3-19', fr:{text:'Il alla pr\u00eacher aux esprits en prison.', ref:'1 Pierre 3:19'}, en:{text:'He went and preached to the spirits in prison.', ref:'1 Peter 3:19'}},
+    {id:'apo-20-14', fr:{text:'La mort et le s\u00e9jour des morts furent jet\u00e9s dans l\u2019\u00e9tang de feu.', ref:'Apocalypse 20:14'}, en:{text:'Death and the abode of the dead were thrown into the lake of fire.', ref:'Revelation 20:14'}},
+    {id:'jn-5-22', fr:{text:'Le P\u00e8re ne juge personne, mais il a remis tout jugement au Fils.', ref:'Jean 5:22'}, en:{text:'The Father judges no one, but has given all judgment to the Son.', ref:'John 5:22'}},
+    {id:'2co-5-10', fr:{text:'Il nous faut tous compara\u00eetre devant le tribunal du Christ, afin que chacun re\u00e7oive selon ce qu\u2019il aura fait.', ref:'2 Corinthiens 5:10'}, en:{text:'We must all appear before the judgment seat of Christ, so that each may receive according to what he has done.', ref:'2 Corinthians 5:10'}},
+    {id:'lc-23-43', fr:{text:'Aujourd\u2019hui, tu seras avec moi dans le paradis.', ref:'Luc 23:43'}, en:{text:'Today you will be with me in paradise.', ref:'Luke 23:43'}},
+    {id:'mt-5-8', fr:{text:'Heureux les c\u0153urs purs, car ils verront Dieu.', ref:'Matthieu 5:8'}, en:{text:'Blessed are the pure in heart, for they shall see God.', ref:'Matthew 5:8'}},
+    {id:'1co-13-12', fr:{text:'Maintenant nous voyons dans un miroir, de fa\u00e7on confuse ; mais alors, ce sera face \u00e0 face.', ref:'1 Corinthiens 13:12'}, en:{text:'Now we see in a mirror, dimly; but then face to face.', ref:'1 Corinthians 13:12'}},
+    {id:'1co-2-9', fr:{text:'Ce que l\u2019\u0153il n\u2019a pas vu, ce que l\u2019oreille n\u2019a pas entendu, voil\u00e0 ce que Dieu a pr\u00e9par\u00e9 pour ceux qui l\u2019aiment.', ref:'1 Corinthiens 2:9'}, en:{text:'What no eye has seen, nor ear heard, this is what God has prepared for those who love him.', ref:'1 Corinthians 2:9'}},
+    {id:'jn-17-24', fr:{text:'P\u00e8re, je veux que l\u00e0 o\u00f9 je suis, ceux que tu m\u2019as donn\u00e9s soient aussi avec moi, pour qu\u2019ils contemplent ma gloire.', ref:'Jean 17:24'}, en:{text:'Father, I desire that those whom you have given me may be with me where I am, to behold my glory.', ref:'John 17:24'}},
+    {id:'1co-15-41', fr:{text:'Autre est l\u2019\u00e9clat du soleil, autre l\u2019\u00e9clat de la lune, et autre l\u2019\u00e9clat des \u00e9toiles ; une \u00e9toile m\u00eame diff\u00e8re en \u00e9clat d\u2019une autre \u00e9toile.', ref:'1 Corinthiens 15:41'}, en:{text:'There is one glory of the sun, another of the moon, and another of the stars; for star differs from star in glory.', ref:'1 Corinthians 15:41'}},
+    {id:'apo-21-3', fr:{text:'Voici la demeure de Dieu avec les hommes ; il demeurera avec eux, et ils seront son peuple.', ref:'Apocalypse 21:3'}, en:{text:'Behold, the dwelling of God is with men; he will dwell with them, and they shall be his people.', ref:'Revelation 21:3'}},
+    {id:'apo-21-27', fr:{text:'Il n\u2019entrera rien de souill\u00e9.', ref:'Apocalypse 21:27'}, en:{text:'Nothing unclean shall enter it.', ref:'Revelation 21:27'}},
+    {id:'1co-3-15', fr:{text:'Il subira une perte, mais lui sera sauv\u00e9, comme \u00e0 travers le feu.', ref:'1 Corinthiens 3:15'}, en:{text:'He will suffer loss, but he himself will be saved, as through fire.', ref:'1 Corinthians 3:15'}},
+    {id:'mt-12-32', fr:{text:'Il ne lui sera pardonn\u00e9 ni dans ce si\u00e8cle ni dans le si\u00e8cle \u00e0 venir.', ref:'Matthieu 12:32'}, en:{text:'It will not be forgiven him either in this age or in the age to come.', ref:'Matthew 12:32'}},
+    {id:'mt-10-28', fr:{text:'Craignez plut\u00f4t celui qui peut faire p\u00e9rir l\u2019\u00e2me et le corps dans la g\u00e9henne.', ref:'Matthieu 10:28'}, en:{text:'Fear rather him who can destroy both soul and body in Gehenna.', ref:'Matthew 10:28'}},
+    {id:'2th-1-9', fr:{text:'Ils subiront la peine d\u2019une perdition \u00e9ternelle, loin de la face du Seigneur.', ref:'2 Thessaloniciens 1:9'}, en:{text:'They will suffer the punishment of eternal destruction, away from the face of the Lord.', ref:'2 Thessalonians 1:9'}},
+    {id:'1co-15-36-38', fr:{text:'Ce que tu s\u00e8mes ne prend vie qu\u2019en mourant ; et tu ne s\u00e8mes pas le corps \u00e0 venir, mais un simple grain. Dieu lui donne un corps comme il l\u2019a voulu.', ref:'1 Corinthiens 15:36-38'}, en:{text:'What you sow does not come to life unless it dies; and what you sow is not the body that shall be, but a bare grain. God gives it a body as he has willed.', ref:'1 Corinthians 15:36-38'}},
+    {id:'1co-15-42-44', fr:{text:'On s\u00e8me dans la corruption, on ressuscite dans l\u2019incorruptibilit\u00e9 ; on s\u00e8me dans le d\u00e9shonneur, on ressuscite dans la gloire ; on s\u00e8me dans la faiblesse, on ressuscite dans la puissance ; on s\u00e8me un corps animal, on ressuscite un corps spirituel.', ref:'1 Corinthiens 15:42-44'}, en:{text:'It is sown in corruption, it is raised in incorruption; it is sown in dishonour, it is raised in glory; it is sown in weakness, it is raised in power; it is sown a natural body, it is raised a spiritual body.', ref:'1 Corinthians 15:42-44'}},
+    {id:'ph-3-21', fr:{text:'Il transformera notre corps de mis\u00e8re pour le rendre semblable \u00e0 son corps de gloire.', ref:'Philippiens 3:21'}, en:{text:'He will transform our lowly body to be like his glorious body.', ref:'Philippians 3:21'}},
+    {id:'jb-19-25-26', fr:{text:'Je sais que mon R\u00e9dempteur est vivant, et qu\u2019au dernier jour je me l\u00e8verai de la terre ; et de ma chair je verrai Dieu.', ref:'Job 19:25-26'}, en:{text:'I know that my Redeemer lives, and that at the last day I shall rise from the earth; and from my flesh I shall see God.', ref:'Job 19:25-26'}},
+    {id:'ac-1-11', fr:{text:'Ce J\u00e9sus qui a \u00e9t\u00e9 enlev\u00e9 au ciel reviendra de la m\u00eame mani\u00e8re que vous l\u2019avez vu s\u2019en aller.', ref:'Actes 1:11'}, en:{text:'This Jesus who was taken up into heaven will come back in the same way you saw him go.', ref:'Acts 1:11'}},
+    {id:'1co-4-5', fr:{text:'Il mettra en lumi\u00e8re ce qui est cach\u00e9 dans les t\u00e9n\u00e8bres et manifestera les desseins des c\u0153urs.', ref:'1 Corinthiens 4:5'}, en:{text:'He will bring to light what is hidden in darkness and manifest the purposes of hearts.', ref:'1 Corinthians 4:5'}},
+    {id:'mt-25-31-32', fr:{text:'Quand le Fils de l\u2019homme viendra dans sa gloire, il s\u00e9parera les hommes les uns des autres, comme le berger s\u00e9pare les brebis des boucs.', ref:'Matthieu 25:31-32'}, en:{text:'When the Son of Man comes in his glory, he will separate men one from another, as the shepherd separates the sheep from the goats.', ref:'Matthew 25:31-32'}},
+    {id:'mt-25-40', fr:{text:'Ce que vous avez fait \u00e0 l\u2019un de ces plus petits de mes fr\u00e8res, c\u2019est \u00e0 moi que vous l\u2019avez fait.', ref:'Matthieu 25:40'}, en:{text:'What you did to one of these least of my brothers, you did to me.', ref:'Matthew 25:40'}},
+    {id:'rom-2-5-6', fr:{text:'Au jour de la r\u00e9v\u00e9lation du juste jugement de Dieu, il rendra \u00e0 chacun selon ses \u0153uvres.', ref:'Romains 2:5-6'}, en:{text:'On the day of the revelation of God\u2019s righteous judgment, he will render to each according to his works.', ref:'Romans 2:5-6'}},
+    {id:'2pi-3-13', fr:{text:'Nous attendons des cieux nouveaux et une terre nouvelle o\u00f9 la justice habitera.', ref:'2 Pierre 3:13'}, en:{text:'We await new heavens and a new earth where righteousness dwells.', ref:'2 Peter 3:13'}},
+    {id:'1co-15-28', fr:{text:'Dieu sera tout en tous.', ref:'1 Corinthiens 15:28'}, en:{text:'God will be all in all.', ref:'1 Corinthians 15:28'}}
   ]}
 ];
 
@@ -662,7 +839,7 @@ function effectiveCats(){
   return [...base,...S.customCats.map(c=>({...c,base:false}))];
 }
 const allCats=effectiveCats;
-function allItems(){const out=[];effectiveCats().filter(c=>S.selCats.includes(c.id)).forEach(c=>c.verses.forEach(v=>out.push({...v,catId:c.id})));return out;}
+function allItems(){const out=[];effectiveCats().filter(c=>S.soloCat?c.id===S.soloCat:S.selCats.includes(c.id)).forEach(c=>c.verses.forEach(v=>out.push({...v,catId:c.id})));return out;}
 // clone profond de la version effective d'une catégorie de base, pour la rendre éditable
 function baseClone(catId){const e=effectiveCats().find(c=>c.id===catId);return{name:JSON.parse(JSON.stringify(e.name)),verses:JSON.parse(JSON.stringify(e.verses))};}
 function editBase(catId,fn){const c=S.baseEdits[catId]||baseClone(catId);fn(c);S.baseEdits[catId]=c;saveBaseEdits();}
@@ -747,7 +924,7 @@ function renderCats(){
     });
     body+='<div class="cat-custom-acts"><span class="mini-act" data-addv="1">+ '+t('addverse')+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span>'+(cat.base?'<span class="mini-act" data-restorec="1">'+t('cat_restore')+'</span>':'')+(custom?'<span class="mini-act del" data-delc="1">'+t('del')+'</span>':'')+'</div>';
     body+='</div>';
-    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp">'+cat.name[S.lang]+'</span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-mark"><span class="dot r" data-all="r"></span><span class="dot a" data-all="a"></span><span class="dot v" data-all="v"></span></span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
+    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp">'+cat.name[S.lang]+'</span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-mark"><span class="dot r" data-all="r"></span><span class="dot a" data-all="a"></span><span class="dot v" data-all="v"></span></span><span class="cat-go" data-act="solo" title="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'" aria-label="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
     host.appendChild(div);
   });
   const _cs=effectiveCats(),_all=_cs.length&&_cs.every(c=>S.selCats.includes(c.id));$('sel-all').textContent=_all?t('deselect_all'):t('select_all');
@@ -789,7 +966,7 @@ function showView(v){
   $('summary').style.display=v==='summary'?'block':'none';
 }
 function startSession(){
-  if(!S.selCats.length){alert(t('empty_sel'));return;}
+  if(!S.soloCat && !S.selCats.length){alert(t('empty_sel'));return;}
   if(allItems().length<2){alert(t('not_enough'));return;}
   S.answered=0; S.correct=0; S.lastId=null;
   showView('study'); nextQuestion();
@@ -840,6 +1017,7 @@ function endSession(){
   $('sum-sub').textContent=t('done');
   let vCount=0; allItems().forEach(i=>{if(levelOf(i.id)==='v')vCount++;});
   $('sum-detail').textContent=S.correct+' / '+S.answered+' '+t('correct')+'  ·  '+vCount+' '+t('acquired');
+  S.soloCat=null;
   renderCats();
 }
 
@@ -992,9 +1170,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   ['i-email','i-pw','i-cf'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')$('b-submit').click();}));
   $('b-google').onclick=async()=>{try{await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());}catch(e){showMsg(e.message,'err');}};
   $('logout-btn').onclick=()=>auth.signOut();
+  $('nav-burger').onclick=()=>document.getElementById('site-nav').classList.toggle('open');
   $('lang-btn').onclick=()=>{S.lang=S.lang==='fr'?'en':'fr';localStorage.setItem('lm_lang',S.lang);applyLang();renderCats();if($('study').style.display==='block'&&S.cur&&!S.cur.done)renderQuestion();};
   $('modes').onclick=e=>{const b=e.target.closest('.mode');if(!b)return;S.mode=+b.dataset.m;document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',x===b));savePrefs();};
-  $('start-btn').onclick=startSession;
+  $('start-btn').onclick=()=>{S.soloCat=null;startSession();};
   $('finish-btn').onclick=endSession;
   $('sum-back').onclick=()=>showView('setup');
   $('reset-btn').onclick=()=>{if(confirm(t('reset_q'))){S.progress={};S.step=0;saveProgress();renderCats();}};
@@ -1053,6 +1232,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(editc){openRenameCat(id);return;}
     if(delc){await delCatById(id);return;}
     if(restorec){restoreCatBase(id);return;}
+    if(act&&act.dataset.act==='solo'){S.soloCat=id;startSession();return;}
     if(act&&act.dataset.act==='sel'){S.selCats.includes(id)?S.selCats=S.selCats.filter(x=>x!==id):S.selCats.push(id);savePrefs();renderCats();return;}
     if(act){S.open[id]=!S.open[id];catEl.classList.toggle('open');return;}
   });
