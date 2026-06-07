@@ -16,6 +16,7 @@
   --or:#efe6cf;--or-pale:#f8f3e6;
   --parchemin:#fff;--pa:rgba(255,255,255,.58);--pa2:rgba(255,255,255,.36);
   --filet:rgba(231,224,207,.12);--filet-f:rgba(231,224,207,.26);
+  --parchemin-att:var(--pa);--filet-fort:var(--filet-f);
   --rouge:#c75d52;--ambre:#cfa24f;--vert:#7ba37e;--pourpre:#9a3b3b;
   --serif:'EB Garamond',Georgia,serif;--display:'Cormorant Garamond',serif;
 }
@@ -238,6 +239,91 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .reset-row{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin-top:36px}
 .reset-row .reset-link{margin:0}
 .reset-sep{color:var(--pa2)}
+
+
+/* ═══ EN-TÊTE ALIGNÉ SUR L'ACCUEIL ═══ */
+#app > header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--filet);
+}
+.barre{
+  max-width:1080px;margin:0 auto;
+  padding:20px 32px;
+  display:grid;grid-template-columns:auto 1fr;align-items:center;
+  gap:24px;
+}
+.logo{
+  grid-column:1;grid-row:1;
+  font-family:var(--display);
+  font-weight:500;font-size:26px;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--parchemin);
+  padding-left:.34em;
+}
+.logo:hover{color:var(--or-pale)}
+nav.menu{display:flex;gap:30px;grid-column:2;grid-row:1;justify-self:end;align-items:center}
+nav.menu a,nav.menu .menu-act{
+  font-family:var(--display);
+  font-size:16px;letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--pa);
+  padding-bottom:3px;
+  border-bottom:1px solid transparent;
+  transition:color .3s,border-color .3s;
+}
+nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin);border-color:var(--or)}
+#logout-btn:hover{color:var(--pourpre);border-color:var(--pourpre)}
+.menu-mail{display:none}
+.burger{display:none;background:none;border:none;color:var(--parchemin);font-size:24px;cursor:pointer;line-height:1}
+@media(max-width:720px){
+  .barre{padding:16px 20px;display:flex;justify-content:space-between}
+  nav.menu{
+    position:fixed;inset:62px 0 auto 0;
+    flex-direction:column;align-items:stretch;gap:0;
+    background:var(--encre-2);
+    border-bottom:1px solid var(--filet);
+    transform:translateY(-130%);transition:transform .35s;
+  }
+  nav.menu.open,nav.menu.ouvert{transform:none}
+  nav.menu a,nav.menu .menu-act,nav.menu .menu-mail{
+    width:100%;display:block;text-align:left;
+    padding:18px 20px;
+    border-bottom:1px solid var(--filet);
+  }
+  nav.menu .menu-mail{display:none}
+  .burger{display:block}
+}
+
+/* ═══ LISTE DES VERSETS : AFFICHAGE MOBILE PLUS PROPRE ═══ */
+@media(max-width:720px){
+  .wrap{padding:32px 20px 60px}
+  .cat-row{gap:10px}
+  .cat-name{min-width:0;font-size:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cat-dist{width:52px}
+  .cat-pct{min-width:34px;font-size:12px}
+  .cat-mark{gap:7px}
+  .cat-body{padding:2px 0 18px 0}
+  .vrow{gap:10px;padding:13px 0}
+  .vline{flex:1 1 auto;min-width:0}
+  .vref{width:auto;flex:1 1 auto;min-width:0;font-size:17px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--parchemin)}
+  .vtext{display:none}
+  .lvl{gap:9px;flex:0 0 auto}
+  .dot{width:15px;height:15px}
+  .del-v{font-size:19px;padding-left:3px;color:var(--pa2)}
+}
+@media(max-width:430px){
+  .wrap{padding-left:16px;padding-right:16px}
+  .cat-dist{display:none}
+  .cat-pct{display:none}
+  .cat-mark{display:none!important}
+  .vref{font-size:16px}
+  .lvl{gap:8px}
+  .dot{width:14px;height:14px}
+}
+
 </style>
 </head>
 <body>
@@ -267,20 +353,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 <!-- ════ APP ════ -->
 <div id="app">
-  <header class="hdr">
-    <a href="/" class="hdr-logo" id="nav-logo">Lumen</a>
-    <button class="nav-burger" id="nav-burger" aria-label="Menu">☰</button>
-    <nav class="site-nav" id="site-nav">
-      <a id="nav-home"></a>
-      <a id="nav-lib"></a>
-      <a id="nav-mem" class="actif" href="/memoriser.html"></a>
-      <a id="nav-quiz" href="/quiz.html">Quiz</a>
-      <a id="nav-about"></a>
-    </nav>
-    <div class="hdr-right">
-      <button class="hdr-act" id="lang-btn">EN</button>
-      <span class="hdr-mail" id="user-mail"></span>
-      <button class="hdr-act" id="logout-btn">Déconnexion</button>
+  <header>
+    <div class="barre">
+      <a href="/" class="logo" id="nav-logo">Lumen</a>
+      <button class="burger" id="nav-burger" aria-label="Menu">☰</button>
+      <nav class="menu" id="site-nav">
+        <a id="nav-home"></a>
+        <a id="nav-lib"></a>
+        <a id="nav-mem" class="actif" href="/memoriser.html"></a>
+        <a id="nav-about"></a>
+        <button class="menu-act" id="lang-btn">EN</button>
+        <span class="menu-mail" id="user-mail"></span>
+        <button class="menu-act" id="logout-btn">Déconnexion</button>
+      </nav>
     </div>
   </header>
 
@@ -973,7 +1058,6 @@ function applyLang(){
   $('nav-home').textContent=_fr?'Accueil':'Home'; $('nav-home').href=_fr?'/':'/en/';
   $('nav-lib').textContent=_fr?'Bibliothèque':'Library'; $('nav-lib').href=_fr?'/bibliotheque/':'/en/library/';
   $('nav-mem').textContent=_fr?'Mémoriser':'Memorise';
-  $('nav-quiz').textContent='Quiz';
   $('nav-about').textContent=_fr?'À propos':'About'; $('nav-about').href=_fr?'/a-propos/':'/en/about/';
   $('foot-verse').innerHTML=_fr?FOOT_FR:FOOT_EN;
   $('lang-btn').textContent=tl.lang; $('logout-btn').textContent=tl.logout;

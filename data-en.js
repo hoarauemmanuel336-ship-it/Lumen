@@ -1549,7 +1549,6 @@ const ARTICLES_EN = {
 
 const NOUVEAUTES_EN = [
   { d: "June 2026", items: [
-    "New: the Bible Quiz, to practise with true/false and multiple-choice questions, each with the right answer, its reference and a short explanation (menu “Quiz”).",
     "New: the “Memorise” tool, to learn verses by heart with spaced repetition (menu “Memorise”).",
     "New apologetic article: “The Real Presence,” a defence of the Eucharist answering the objections on the real presence, the memorial, the sacrifice of the Mass, and adoration.",
     "New article: “The four Servant Songs”.",
