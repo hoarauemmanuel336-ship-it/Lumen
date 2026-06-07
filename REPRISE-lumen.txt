@@ -368,6 +368,12 @@ L'état de connexion est partagé avec memoriser.html (même projet + domaine Fi
   identique partout (haut-droite de l'icône). build-bi réutilise ce CSS → toutes les pages
   statiques corrigées. Mémoriser inchangé (déjà centré). Le rendu cassé qu'Emmanuel voyait
   (barre large, point détaché) venait d'un déploiement périmé ; un redéploiement le corrige.
+  AJOUTS de robustesse : .cloche{align-self:center} (le point reste sur l'icône quel que soit
+  l'alignement du nav) et white-space:nowrap sur les liens (« À propos » ne se coupe plus).
+  IMPORTANT : la version en ligne observée par Emmanuel avait son CONTENU et sa barre plus larges
+  que 1080px, alors que les fichiers du projet limitent bien .barre et main à max-width:1080px.
+  Donc la version déployée sur GitHub ne correspondait pas aux fichiers livrés. Si le problème
+  persiste après déploiement : re-téléverser ces fichiers exacts et vider le cache (Ctrl+Shift+R).
   Note : la refonte de Mémoriser par ChatGPT (affichage des versets sur mobile, niveau par
   catégorie, modale « réinitialiser le verset » replacée) est conservée telle quelle.
 • Quiz — DIFFICULTÉ ENTIÈREMENT RETIRÉE. Suppression du champ d sur les 267 questions, de

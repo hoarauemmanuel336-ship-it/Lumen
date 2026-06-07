@@ -270,6 +270,7 @@ nav.menu a,nav.menu .menu-act{
   font-family:var(--display);
   font-size:16px;letter-spacing:.12em;
   text-transform:uppercase;
+  white-space:nowrap;
   color:var(--parchemin-att);
   padding-bottom:3px;
   border-bottom:1px solid transparent;
@@ -313,7 +314,7 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
 .rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:var(--parchemin-att);transition:color .3s;background:none;border:none;padding:0;outline:none}
 .rech-loupe:hover,.rech-loupe:focus{color:var(--or)}
 .rech-loupe svg{display:block}
-.cloche{position:relative}
+.cloche{position:relative;align-self:center}
 .cloche .cloche-point{position:absolute;top:0;right:-1px;width:6px;height:6px;border-radius:50%;background:var(--or);pointer-events:none;display:none}
 .user-btn{display:inline-flex;align-items:center;justify-content:center;min-width:19px;padding-bottom:3px}
 .user-btn svg{display:block;flex:none}

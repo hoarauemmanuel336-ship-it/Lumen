@@ -67,6 +67,7 @@ nav.menu a{
   font-family:'Cormorant Garamond',serif;
   font-size:16px;letter-spacing:.12em;
   text-transform:uppercase;
+  white-space:nowrap;
   color:var(--parchemin-att);
   padding-bottom:3px;
   border-bottom:1px solid transparent;
@@ -105,7 +106,7 @@ nav.menu a:hover,nav.menu a.actif{color:var(--parchemin);border-color:var(--or)}
 .rech-fermer{cursor:pointer;color:var(--parchemin-att);font-size:24px;line-height:1;transition:color .3s;flex:none;outline:none}
 .rech-fermer:hover,.rech-fermer:focus{color:var(--parchemin)}
 .rech-res{margin-top:6px;overflow-y:auto;flex:1}
-    .cloche{position:relative}
+.cloche{position:relative;align-self:center}
     .cloche .cloche-point{position:absolute;top:0;right:-1px;width:6px;height:6px;border-radius:50%;background:var(--or);pointer-events:none;display:none}
     .nouv-titre-panneau{flex:1;color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:30px;letter-spacing:.01em}
     .nouv-liste{margin-top:6px;overflow-y:auto;flex:1}
