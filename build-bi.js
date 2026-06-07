@@ -555,5 +555,11 @@ ecrire('recherche-fr.js', 'window.LUMEN_INDEX=' + JSON.stringify(idxFR) + ';');
 const idxEN = ARTICLES.map(a => ({ s: slugOf('en', a.id), t: artTitre('en', a), th: themeNom('en', a.theme), r: artResume('en', a), x: depouiller((ARTICLES_EN[a.id] || {}).contenu) }));
 ecrire('en/recherche-en.js', 'window.LUMEN_INDEX=' + JSON.stringify(idxEN) + ';');
 
+// copie des pages autonomes (hors pipeline bilingue)
+const fs = require('fs');
+['memoriser.html'].forEach(f => {
+  if (fs.existsSync(f)) { fs.copyFileSync(f, `${OUT}/${f}`); console.log('Copié :', f); }
+});
+
 console.log('Site bilingue généré dans «', OUT, '»');
 console.log('Paires de pages :', pairs.length, '→', pairs.length * 2, 'pages (FR + EN) + 404 + sitemap + robots');
