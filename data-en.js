@@ -1549,6 +1549,8 @@ const ARTICLES_EN = {
 
 const NOUVEAUTES_EN = [
   { d: "June 2026", items: [
+    "New: the Bible Quiz, to practise with true/false and multiple-choice questions, each with the right answer, its reference and a short explanation (menu “Quiz”).",
+    "New: the “Memorise” tool, to learn verses by heart with spaced repetition (menu “Memorise”).",
     "The “Eucharist” article: the “Sacrifice” section deepened (the Old Covenant, the one sacrifice of the Cross, its identity with the Mass).",
     "The “Confession” article fully reworked for clarity and completeness, and clarification of purgatory in “The Last Things”.",
     "The “Mary” page deepened with a section “The Tabernacle of God”: the Word who pitches his tent in the flesh (John 1:14) and Mary's womb as the holy of holies of the new covenant.",

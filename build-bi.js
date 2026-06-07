@@ -157,6 +157,7 @@ function header(lang, type, base, otherRel, ctx) {
       <a href="${home}"${cl('home')}>${u.menu_home}</a>
       <a href="${base}${lib}"${cl('library')}>${u.menu_library}</a>
       <a href="/memoriser.html">${u.menu_memorise}</a>
+      <a href="/quiz.html">Quiz</a>
       <a href="${base}${abo}"${cl('about')}>${u.menu_about}</a>
       <a href="${otherRel}" class="lien-langue" hreflang="${lang === 'fr' ? 'en' : 'fr'}">${u.other_label}</a>
       <span class="rech-loupe cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="${u.news_title}" data-sig="${nsig}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="ll-mob">${u.news_title}</span><span class="cloche-point"></span></span>
@@ -661,6 +662,10 @@ ecrire('en/recherche-en.js', 'window.LUMEN_INDEX=' + JSON.stringify(idxEN) + ';'
 if (fs.existsSync('memoriser.html')) {
   fs.copyFileSync('memoriser.html', `${OUT}/memoriser.html`);
   console.log('Copié : memoriser.html');
+}
+if (fs.existsSync('quiz.html')) {
+  fs.copyFileSync('quiz.html', `${OUT}/quiz.html`);
+  console.log('Copié : quiz.html');
 }
 
 console.log('Site bilingue généré dans «', OUT, '»');

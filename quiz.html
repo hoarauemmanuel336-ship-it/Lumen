@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quiz · Lumen Veritatis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<style>
+:root{
+  --encre:#000;--encre-2:#0a0a0a;--encre-3:#131313;
+  --or:#efe6cf;--or-pale:#f8f3e6;
+  --parchemin:#fff;--pa:rgba(255,255,255,.58);--pa2:rgba(255,255,255,.36);
+  --filet:rgba(231,224,207,.12);--filet-f:rgba(231,224,207,.26);
+  --rouge:#c75d52;--ambre:#cfa24f;--vert:#7ba37e;--pourpre:#9a3b3b;
+  --serif:'EB Garamond',Georgia,serif;--display:'Cormorant Garamond',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{height:100%}
+body{background:var(--encre);color:var(--parchemin);font-family:var(--serif);font-size:18px;line-height:1.6;min-height:100%;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:rgba(239,230,207,.22)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+/* champ : style filet bas, pas de boîte */
+.field{width:100%;background:transparent;border:none;border-bottom:1px solid var(--filet-f);color:var(--parchemin);font-family:var(--serif);font-size:17px;padding:10px 2px;outline:none;transition:border-color .3s}
+.field:focus{border-bottom-color:var(--or)}
+.field::placeholder{color:var(--pa2)}
+
+/* ═══ AUTH ═══ */
+#auth-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
+.auth-panel{width:100%;max-width:392px;border:1px solid var(--filet);padding:52px 44px;animation:fade .6s ease both}
+.auth-cross{width:48px;height:88px;margin:0 auto 22px;background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2072%20132'%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,2%2031,2'%20fill='%23ffffff'/%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,130%2031,130'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%202,45%202,35'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%2070,45%2070,35'%20fill='%23ffffff'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:contain}
+.auth-logo{font-family:var(--display);font-size:23px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;text-align:center;padding-left:.42em;margin-bottom:34px}
+.auth-tabs{display:flex;margin-bottom:26px}
+.auth-tab{flex:1;padding:8px 0;font-family:var(--display);font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa2);border-bottom:1px solid var(--filet);transition:color .3s,border-color .3s}
+.auth-tab.on{color:var(--or);border-bottom-color:var(--or)}
+.auth-fieldrow{margin-bottom:20px}
+.auth-primary{display:block;width:100%;text-align:center;padding:13px;margin-top:10px;background:var(--or);color:var(--encre);font-family:var(--display);font-size:15px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;transition:background .3s}
+.auth-primary:hover{background:var(--or-pale)}
+.auth-or{display:flex;align-items:center;gap:14px;color:var(--pa2);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin:22px 0}
+.auth-or::before,.auth-or::after{content:'';flex:1;height:1px;background:var(--filet)}
+.auth-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:11px;border:1px solid var(--filet-f);font-family:var(--serif);font-size:15px;color:var(--parchemin);transition:border-color .3s,background .3s}
+.auth-google:hover{border-color:var(--or);background:rgba(239,230,207,.04)}
+.auth-link{display:block;width:100%;text-align:center;color:var(--pa);font-size:14px;margin-top:22px;transition:color .3s}
+.auth-link:hover{color:var(--or)}
+.auth-msg{font-size:14px;line-height:1.5;padding:9px 13px;margin-bottom:18px;display:none}
+.auth-msg.err{display:block;background:rgba(154,59,59,.16);border:1px solid var(--pourpre);color:#eba5a5}
+.auth-msg.ok{display:block;background:rgba(123,163,126,.14);border:1px solid var(--vert);color:#a9cdab}
+
+/* ═══ APP ═══ */
+#app{display:none;min-height:100vh;flex-direction:column}
+#app.on{display:flex}
+.hdr{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:12px;padding:18px 30px;background:rgba(0,0,0,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--filet)}
+.hdr-logo{font-family:var(--display);font-size:20px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;padding-left:.34em;transition:color .3s}
+.hdr-logo:hover{color:var(--or)}
+.hdr-sep{color:var(--pa2)}
+.hdr-title{font-family:var(--display);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa);flex:1}
+.hdr-right{display:flex;align-items:center;gap:16px}
+.hdr-act{font-family:var(--display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa);transition:color .3s}
+.hdr-act:hover{color:var(--or)}
+#logout-btn:hover{color:var(--pourpre)}
+.hdr-mail{font-size:13px;color:var(--pa2);max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wrap{flex:1;width:100%;max-width:680px;margin:0 auto;padding:46px 26px 80px}
+
+.lbl{font-family:var(--display);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa)}
+.block{margin-bottom:42px}
+.block-head{margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--filet)}
+
+/* catégories + mémoire */
+.cat{border-bottom:1px solid var(--filet)}
+.cat-row{display:flex;align-items:center;gap:14px;padding:15px 2px;cursor:pointer}
+.cat-check{flex-shrink:0;width:16px;height:16px;border:1px solid var(--filet-f);position:relative;transition:border-color .3s}
+.cat-check::after{content:'';position:absolute;inset:3px;background:var(--or);opacity:0;transition:opacity .2s}
+.cat.sel .cat-check{border-color:var(--or)}
+.cat.sel .cat-check::after{opacity:1}
+.cat-name{flex:1;font-family:var(--display);font-size:20px;color:var(--parchemin);transition:color .3s}
+.cat-row:hover .cat-name{color:var(--or-pale)}
+.cat-dist{display:flex;width:64px;height:3px;flex-shrink:0;overflow:hidden}
+.cat-dist i{display:block;height:100%}
+.cat-dist .r{background:var(--rouge)}.cat-dist .a{background:var(--ambre)}.cat-dist .v{background:var(--vert)}
+.cat-dist .e{background:var(--filet)}
+.cat-chev{flex-shrink:0;font-family:var(--display);font-size:20px;color:var(--pa2);transition:transform .3s,color .3s;line-height:1}
+.cat.open .cat-chev{transform:rotate(90deg);color:var(--or)}
+.cat-body{display:none;padding:4px 0 20px 30px}
+.cat.open .cat-body{display:block;animation:fade .35s ease both}
+.markall{display:flex;align-items:center;gap:12px;padding:8px 0 14px;font-size:13px;color:var(--pa2);letter-spacing:.04em}
+.markall-dots{display:flex;gap:8px}
+.markall-dots .dot,.markglobal .dot{opacity:.8}
+.markall-dots .dot:hover,.markglobal .dot:hover{opacity:1;box-shadow:0 0 0 1px var(--encre),0 0 0 2px currentColor}
+.markall-dots .dot.r,.markglobal .dot.r{color:var(--rouge)}
+.markall-dots .dot.a,.markglobal .dot.a{color:var(--ambre)}
+.markall-dots .dot.v,.markglobal .dot.v{color:var(--vert)}
+.vrow{display:flex;align-items:center;gap:14px;padding:11px 0;border-top:1px solid var(--filet)}
+.vline{display:flex;align-items:center;gap:14px;flex:1;min-width:0;cursor:pointer}
+.vline:hover .vref{color:var(--or-pale)}
+.vline:hover .vtext{color:var(--pa)}
+.vref{flex-shrink:0;font-family:var(--display);font-size:15px;color:var(--or);width:124px}
+.vtext{flex:1;font-size:15px;color:var(--pa);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .25s}
+.markglobal{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 2px 16px;margin-bottom:4px;border-bottom:1px solid var(--filet);font-size:13px;letter-spacing:.04em;color:var(--pa2)}
+.lvl{display:flex;gap:8px;flex-shrink:0}
+.dot{width:13px;height:13px;border-radius:50%;cursor:pointer;opacity:.26;transition:opacity .25s,box-shadow .25s;position:relative}
+.dot.r{background:var(--rouge)}.dot.a{background:var(--ambre)}.dot.v{background:var(--vert)}
+.dot:hover{opacity:.6}
+.dot.act{opacity:1;box-shadow:0 0 0 1px var(--encre),0 0 0 2px currentColor}
+.dot.r.act{color:var(--rouge)}.dot.a.act{color:var(--ambre)}.dot.v.act{color:var(--vert)}
+.cat-custom-acts{display:flex;gap:18px;padding:14px 0 4px;border-top:1px solid var(--filet);margin-top:6px}
+.mini-act{font-family:var(--display);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa);transition:color .3s}
+.mini-act:hover{color:var(--or)}
+.mini-act.del:hover{color:var(--pourpre)}
+.del-v{flex-shrink:0;color:var(--pa2);font-size:16px;line-height:1;transition:color .3s}
+.del-v:hover{color:var(--pourpre)}
+
+.ghost-btn{margin-top:18px;font-family:var(--display);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa);border:1px solid var(--filet-f);padding:9px 18px;transition:all .3s}
+.ghost-btn:hover{border-color:var(--or);color:var(--or)}
+
+.modes{display:flex;flex-direction:column;gap:0}
+.mode{text-align:left;padding:15px 2px;border-bottom:1px solid var(--filet);font-family:var(--display);font-size:18px;letter-spacing:.04em;color:var(--pa);display:flex;align-items:center;gap:14px;transition:color .3s}
+.mode::before{content:'';width:9px;height:9px;border:1px solid var(--filet-f);border-radius:50%;flex-shrink:0;transition:all .3s}
+.mode:hover{color:var(--or-pale)}
+.mode.on{color:var(--or)}
+.mode.on::before{border-color:var(--or);background:var(--or);box-shadow:inset 0 0 0 2px var(--encre)}
+
+.start{display:block;width:100%;text-align:center;padding:17px;margin-top:10px;background:var(--or);color:var(--encre);font-family:var(--display);font-size:16px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;transition:background .3s}
+.start:hover{background:var(--or-pale)}
+.start:disabled{opacity:.35;cursor:default}
+.reset-link{display:block;margin:36px auto 0;font-size:13px;letter-spacing:.06em;color:var(--pa2);transition:color .3s}
+.reset-link:hover{color:var(--pourpre)}
+
+/* ═══ STUDY ═══ */
+#study{display:none}
+.study-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:48px;padding-bottom:14px;border-bottom:1px solid var(--filet)}
+.study-stat{font-size:14px;letter-spacing:.04em;color:var(--pa)}
+.study-stat b{color:var(--or);font-weight:500}
+.finish{font-family:var(--display);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa);border:1px solid var(--filet-f);padding:8px 18px;transition:all .3s}
+.finish:hover{border-color:var(--or);color:var(--or)}
+.qbox{text-align:center;margin-bottom:42px;animation:rise .5s cubic-bezier(.2,.7,.3,1) both}
+.q-label{font-family:var(--display);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--pa2);margin-bottom:24px}
+.rule{width:38px;height:1px;background:var(--or);opacity:.5;margin:24px auto}
+.q-prompt{font-family:var(--serif);font-size:27px;line-height:1.62;color:var(--parchemin);max-width:30em;margin:0 auto}
+.q-prompt.ref{font-family:var(--display);font-style:normal;font-size:38px;letter-spacing:.03em;color:var(--or)}
+.opts{display:grid;gap:11px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opt{text-align:left;padding:16px 20px;border:1px solid var(--filet);background:var(--encre-2);font-family:var(--serif);font-size:16px;line-height:1.5;color:var(--pa);transition:border-color .25s,color .25s,background .25s;animation:rise .45s cubic-bezier(.2,.7,.3,1) both}
+.opt .num{font-family:var(--display);font-size:13px;color:var(--pa2);margin-right:10px}
+.opt.refopt{font-family:var(--display);font-size:19px;letter-spacing:.03em}
+.opt:hover:not(:disabled){border-color:var(--or);color:var(--parchemin);background:rgba(239,230,207,.04)}
+.opt.ok{border-color:var(--vert);color:#bcdcbe;background:rgba(123,163,126,.1)}
+.opt.ok .num{color:var(--vert)}
+.opt.bad{border-color:var(--pourpre);color:#e0a8a8;background:rgba(154,59,59,.12)}
+.opt.reveal{border-color:var(--vert);color:#bcdcbe}
+.opt:disabled{cursor:default}
+
+/* ═══ SUMMARY ═══ */
+#summary{display:none;text-align:center;padding-top:48px;animation:fade .5s ease both}
+.sum-num{font-family:var(--display);font-size:72px;line-height:1;color:var(--or)}
+.sum-sub{font-size:15px;letter-spacing:.04em;color:var(--pa);margin:14px 0 8px}
+.sum-detail{font-size:14px;color:var(--pa2);margin-bottom:40px}
+#sum-back{max-width:260px;margin:0 auto}
+
+/* ═══ MODAL ═══ */
+.overlay{position:fixed;inset:0;z-index:120;background:rgba(4,4,4,.9);display:none;align-items:center;justify-content:center;padding:24px}
+.overlay.on{display:flex}
+.modal{width:100%;max-width:460px;background:var(--encre-2);border:1px solid var(--filet-f);padding:38px 34px;animation:rise .35s ease both}
+.modal-title{font-family:var(--display);font-size:23px;margin-bottom:26px}
+.modal .auth-fieldrow{margin-bottom:18px}
+.modal-flbl{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa2);margin-bottom:5px}
+.modal-btns{display:flex;justify-content:flex-end;gap:14px;margin-top:28px}
+.m-cancel{font-family:var(--display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa);padding:9px 16px;transition:color .3s}
+.m-cancel:hover{color:var(--or)}
+.m-ok{font-family:var(--display);font-size:14px;letter-spacing:.1em;text-transform:uppercase;background:var(--or);color:var(--encre);padding:10px 22px;transition:background .3s}
+.m-ok:hover{background:var(--or-pale)}
+
+@media(max-width:600px){
+  .auth-panel{padding:40px 26px}
+  .hdr{padding:14px 16px;gap:9px}
+  .hdr-mail{display:none}
+  .wrap{padding:32px 16px 60px}
+  .opts.two{grid-template-columns:1fr}
+  .q-prompt{font-size:23px}
+  .q-prompt.ref{font-size:30px}
+  .vref{width:96px;font-size:14px}
+  .vtext{display:none}
+}
+/* corbeille */
+.trash-head{display:flex;align-items:center;gap:12px;padding:6px 2px;cursor:pointer;border-bottom:1px solid var(--filet)}
+.trash-head .lbl{flex:1}
+.trash-head .cat-chev{transition:transform .3s,color .3s}
+.trash-head.open .cat-chev{transform:rotate(90deg);color:var(--or)}
+.trash-body{animation:fade .35s ease both;padding-top:6px}
+.trash-sub{margin-top:16px}
+.trash-sub-head{font-family:var(--display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa);margin-bottom:4px}
+.trash-count{color:var(--pa2)}
+.trash-none{font-size:14px;color:var(--pa2);padding:6px 0 2px}
+.trash-item{display:flex;align-items:center;gap:14px;padding:11px 0;border-top:1px solid var(--filet)}
+.trash-vmeta{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.trash-vref{font-family:var(--display);font-size:15px;color:var(--or)}
+.trash-vcat{font-size:12px;color:var(--pa2);letter-spacing:.04em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.trash-acts{display:flex;gap:16px;flex-shrink:0}
+.trash-act{font-family:var(--display);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--pa);transition:color .3s}
+.trash-act:hover{color:var(--or)}
+.trash-act.del:hover{color:var(--pourpre)}
+.cat-pct{flex-shrink:0;font-family:var(--display);font-size:13px;color:var(--pa2);min-width:42px;text-align:right;letter-spacing:.02em}
+.cat-row:hover .cat-pct{color:var(--pa)}
+#sel-all{cursor:pointer}
+.mini-act{cursor:pointer}
+@media(max-width:600px){.cat-pct{min-width:38px;font-size:12px}}
+.site-nav{display:flex;align-items:center;gap:24px;flex:1;flex-wrap:wrap}
+.site-nav a{font-family:var(--display);font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa);transition:color .3s}
+.site-nav a:hover{color:var(--or-pale)}
+.site-nav a.actif{color:var(--or)}
+.site-foot{border-top:1px solid var(--filet);margin-top:40px;padding:48px 32px 56px;text-align:center}
+.site-foot .marque{font-family:var(--display);letter-spacing:.34em;text-transform:uppercase;font-size:18px;padding-left:.34em;color:var(--parchemin)}
+.site-foot .verset-pied{margin:18px auto 0;font-style:italic;color:var(--pa);font-size:17px;max-width:620px;line-height:1.6}
+.site-foot .verset-pied .ref-pied{font-style:normal;display:block;margin-top:10px;font-family:var(--display);font-size:13px;letter-spacing:.1em;color:var(--or)}
+.site-foot .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--pa2);font-family:var(--display)}
+@media(max-width:600px){.hdr{flex-wrap:wrap}.site-nav{gap:14px;width:100%;order:3}.site-nav a{font-size:12px;letter-spacing:.1em}}
+.cat-mark{display:none;align-items:center;gap:8px;flex-shrink:0}
+.cat.open .cat-mark{display:flex}
+.cat-mark .dot{opacity:.8}
+.cat-mark .dot:hover{opacity:1;box-shadow:0 0 0 1px var(--encre),0 0 0 2px currentColor}
+.cat-mark .dot.r{color:var(--rouge)}.cat-mark .dot.a{color:var(--ambre)}.cat-mark .dot.v{color:var(--vert)}
+.mg-acts{display:flex;align-items:center;gap:16px}
+.m-reset{margin-right:auto;font-family:var(--display);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--pa);transition:color .3s}
+.m-reset:hover{color:var(--or)}
+.bh-cats{border-bottom:none;padding-bottom:0;margin-bottom:10px}
+.markglobal{padding-bottom:14px;margin-bottom:0}
+.reset-row{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin-top:36px}
+.reset-row .reset-link{margin:0}
+.reset-sep{color:var(--pa2)}
+
+/* ═══ QUIZ ═══ */
+.opt.tf{text-align:center;font-family:var(--display);font-size:21px;letter-spacing:.08em;text-transform:uppercase;padding:18px 20px}
+.qstmt{white-space:normal;color:var(--pa);font-size:14px}
+.reveal-box{margin-top:30px;border-top:1px solid var(--filet);padding-top:26px;text-align:center;animation:rise .4s cubic-bezier(.2,.7,.3,1) both}
+.reveal-verdict{font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2)}
+.reveal-verdict b{color:var(--or)}
+.reveal-ref{font-family:var(--display);font-size:21px;color:var(--or);letter-spacing:.03em;margin:12px 0 12px}
+.reveal-exp{font-size:17px;line-height:1.64;color:var(--pa);max-width:34em;margin:0 auto}
+.cont{max-width:240px;margin:30px auto 0}
+@media(max-width:600px){.reveal-exp{font-size:15px}.opt.tf{font-size:18px}}
+
+</style>
+</head>
+<body>
+
+<!-- ════ AUTH ════ -->
+<div id="auth-screen">
+  <div class="auth-panel">
+    <div class="auth-cross"></div>
+    <div class="auth-logo">Lumen</div>
+    <div class="auth-tabs">
+      <button class="auth-tab on" id="tab-si">Connexion</button>
+      <button class="auth-tab" id="tab-su">Inscription</button>
+    </div>
+    <div class="auth-msg" id="auth-msg"></div>
+    <div class="auth-fieldrow"><input type="email" class="field" id="i-email" placeholder="Adresse e-mail" autocomplete="email"></div>
+    <div class="auth-fieldrow" id="row-pw"><input type="password" class="field" id="i-pw" placeholder="Mot de passe" autocomplete="current-password"></div>
+    <div class="auth-fieldrow" id="row-cf" style="display:none"><input type="password" class="field" id="i-cf" placeholder="Confirmer le mot de passe" autocomplete="new-password"></div>
+    <button class="auth-primary" id="b-submit">Se connecter</button>
+    <div class="auth-or" id="auth-or">ou</div>
+    <button class="auth-google" id="b-google">
+      <svg width="17" height="17" viewBox="0 0 18 18"><path fill="#EA4335" d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.54C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z"/><path fill="#FBBC05" d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9 9 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z"/><path fill="#4A90D9" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.96 13.04C2.44 15.98 5.48 18 9 18z"/></svg>
+      <span id="lbl-google">Continuer avec Google</span>
+    </button>
+    <button class="auth-link" id="b-forgot">Mot de passe oublié ?</button>
+  </div>
+</div>
+
+<!-- ════ APP ════ -->
+<div id="app">
+  <header class="hdr">
+    <a href="/" class="hdr-logo" id="nav-logo">Lumen</a>
+    <nav class="site-nav">
+      <a id="nav-home"></a>
+      <a id="nav-lib"></a>
+      <a id="nav-mem" href="/memoriser.html"></a>
+      <a id="nav-quiz" class="actif" href="/quiz.html">Quiz</a>
+      <a id="nav-about"></a>
+    </nav>
+    <div class="hdr-right">
+      <button class="hdr-act" id="lang-btn">EN</button>
+      <span class="hdr-mail" id="user-mail"></span>
+      <button class="hdr-act" id="logout-btn">Déconnexion</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="setup">
+      <div class="block">
+        <div class="block-head bh-cats" style="display:flex;align-items:center;justify-content:space-between;gap:14px"><span class="lbl" id="lbl-cats">Catégories &amp; mémoire</span><span class="mini-act" id="sel-all"></span></div>
+        <div class="markglobal">
+          <span id="lbl-markglobal">Marquer les catégories cochées</span>
+          <span class="markall-dots"><span class="dot r" data-gall="r"></span><span class="dot a" data-gall="a"></span><span class="dot v" data-gall="v"></span></span>
+        </div>
+        <div id="cat-list"></div>
+        <button class="ghost-btn" id="cat-more" style="display:none"></button>
+      </div>
+      <div class="block">
+        <div class="block-head"><span class="lbl" id="lbl-mode">Mode</span></div>
+        <div class="modes" id="modes">
+          <button class="mode on" data-m="0" id="mode-0"></button>
+          <button class="mode" data-m="1" id="mode-1"></button>
+        </div>
+      </div>
+      <button class="start" id="start-btn">Commencer</button>
+      <div class="reset-row">
+        <button class="reset-link" id="reset-btn">Réinitialiser toute la mémoire</button>
+      </div>
+    </section>
+
+    <section id="study">
+      <div class="study-top">
+        <span class="study-stat" id="study-stat"></span>
+        <button class="finish" id="finish-btn">Terminer</button>
+      </div>
+      <div class="qbox" id="qbox">
+        <div class="q-label" id="q-label"></div>
+        <div class="rule"></div>
+        <div class="q-prompt" id="q-prompt"></div>
+        <div class="rule"></div>
+      </div>
+      <div class="opts" id="opts"></div>
+      <div class="reveal-box" id="reveal" style="display:none">
+        <div class="reveal-verdict" id="rv-verdict"></div>
+        <div class="reveal-ref" id="rv-ref"></div>
+        <div class="reveal-exp" id="rv-exp"></div>
+        <button class="start cont" id="cont-btn"></button>
+      </div>
+    </section>
+
+    <section id="summary">
+      <div class="sum-num" id="sum-num"></div>
+      <div class="sum-sub" id="sum-sub"></div>
+      <div class="sum-detail" id="sum-detail"></div>
+      <button class="start" id="sum-back">Retour</button>
+    </section>
+  </main>
+  <footer class="site-foot">
+    <div class="marque">Lumen</div>
+    <div class="verset-pied" id="foot-verse"></div>
+    <div class="copy" id="foot-copy"></div>
+  </footer>
+</div>
+
+<script>
+// ════════ FIREBASE ════════
+const firebaseConfig = {
+  apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",
+  authDomain:"lumen-veritatis.firebaseapp.com",
+  projectId:"lumen-veritatis",
+  storageBucket:"lumen-veritatis.firebasestorage.app",
+  messagingSenderId:"195902823875",
+  appId:"1:195902823875:web:a8be1f216a5ae1d945f176"
+};
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth();
+const db=firebase.firestore();
+
+// ════════ i18n ════════
+const T={
+  fr:{
+    hdr:'Quiz', lang:'EN',
+    tab_si:'Connexion', tab_su:'Inscription',
+    ph_email:'Adresse e-mail', ph_pw:'Mot de passe', ph_cf:'Confirmer le mot de passe',
+    b_si:'Se connecter', b_su:'Créer le compte', b_reset:'Envoyer le lien',
+    google:'Continuer avec Google', forgot:'Mot de passe oublié ?', back:'← Retour',
+    reset_sent:'Lien envoyé. Vérifiez votre boîte mail.',
+    pw_mismatch:'Les mots de passe ne correspondent pas.',
+    logout:'Déconnexion',
+    cats:'Catégories & mémoire', mode:'Mode',
+    mode0:'Réviser', mode1:'Tout revoir',
+    start:'Commencer', reset:'Réinitialiser toute la mémoire',
+    reset_q:'Réinitialiser toute la mémoire ? Tous les niveaux reviennent au rouge. Action irréversible.',
+    markglobal:'Marquer les catégories cochées',
+    markglobal_q:'Changer le niveau de toutes les questions des %n% catégorie(s) cochée(s) ?',
+    resetc:'Réinitialiser', resetc_q:'Réinitialiser la mémoire de cette catégorie ?',
+    select_all:'Tout sélectionner', deselect_all:'Tout désélectionner', show_all:'Afficher tout', show_less:'Afficher moins',
+    tf_label:'Vrai ou faux\u00a0?', tf_true:'Vrai', tf_false:'Faux',
+    q_name:'Que signifie ce nom\u00a0?', q_mean:'Quel nom a ce sens\u00a0?',
+    rv_right:'Juste', rv_wrong:'À revoir', cont:'Continuer',
+    answered:'répondues', correct:'justes', finish:'Terminer',
+    done:'Session terminée', acquired:'questions acquises', backbtn:'Retour',
+    empty_sel:'Sélectionne au moins une catégorie pour commencer.',
+    not_enough:'Pas assez de questions. Sélectionne d\u2019autres catégories.'
+  },
+  en:{
+    hdr:'Quiz', lang:'FR',
+    tab_si:'Sign in', tab_su:'Sign up',
+    ph_email:'Email address', ph_pw:'Password', ph_cf:'Confirm password',
+    b_si:'Sign in', b_su:'Create account', b_reset:'Send link',
+    google:'Continue with Google', forgot:'Forgot password?', back:'← Back',
+    reset_sent:'Link sent. Check your inbox.',
+    pw_mismatch:'Passwords do not match.',
+    logout:'Sign out',
+    cats:'Categories & memory', mode:'Mode',
+    mode0:'Review', mode1:'Go through all',
+    start:'Start', reset:'Reset all memory',
+    reset_q:'Reset all memory? Every level returns to red. This cannot be undone.',
+    markglobal:'Mark checked categories',
+    markglobal_q:'Change the level of every question in the %n% checked category(ies)?',
+    resetc:'Reset', resetc_q:'Reset the memory of this category?',
+    select_all:'Select all', deselect_all:'Deselect all', show_all:'Show all', show_less:'Show less',
+    tf_label:'True or false?', tf_true:'True', tf_false:'False',
+    q_name:'What does this name mean?', q_mean:'Which name has this meaning?',
+    rv_right:'Correct', rv_wrong:'Review', cont:'Continue',
+    answered:'answered', correct:'correct', finish:'Finish',
+    done:'Session complete', acquired:'questions mastered', backbtn:'Back',
+    empty_sel:'Select at least one category to begin.',
+    not_enough:'Not enough questions. Select other categories.'
+  }
+};
+
+// pied de page (verset du site)
+const FOOT_FR='« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l\u2019ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span>';
+const FOOT_EN='\u201CThe people who walked in darkness have seen a great light; on those who dwelt in the land of the shadow of death, a light has shone\u201D <span class="ref-pied">Isaiah 9:1</span>';
+
+// ════════ QUESTIONS PRÉDÉFINIES ════════
+const QPRE=[
+ {id:'creation', name:{fr:'La création et les origines', en:'Creation and Origins'}, qs:[
+  {id:'cr1', a:true,  fr:{q:'Dieu acheva la création en six jours et se reposa le septième.', ref:'Genèse 2:2', exp:'La création s’accomplit en six jours ; le septième jour Dieu se repose, le bénit et le sanctifie.'}, en:{q:'God finished creation in six days and rested on the seventh.', ref:'Genesis 2:2', exp:'Creation is accomplished in six days; on the seventh God rests, blesses it and makes it holy.'}},
+  {id:'cr2', a:true,  fr:{q:'L’homme fut façonné de la poussière du sol, et la femme fut formée à partir du côté de l’homme.', ref:'Genèse 2:7,22', exp:'L’homme est tiré de la poussière, et la femme est formée du côté de l’homme.'}, en:{q:'Man was formed from the dust of the ground, and woman was formed from the side of the man.', ref:'Genesis 2:7,22', exp:'Man is drawn from the dust, and the woman is formed from the side of the man.'}},
+  {id:'cr3', a:false, fr:{q:'Le fruit défendu du jardin d’Éden était une pomme.', ref:'Genèse 2:17', exp:'Le texte parle de « l’arbre de la connaissance du bien et du mal », sans nommer le fruit ; la pomme est une tradition postérieure.'}, en:{q:'The forbidden fruit in the garden of Eden was an apple.', ref:'Genesis 2:17', exp:'The text speaks of “the tree of the knowledge of good and evil” without naming the fruit; the apple is a later tradition.'}},
+  {id:'cr4', a:true,  fr:{q:'Caïn tua son frère Abel.', ref:'Genèse 4:8', exp:'Caïn, dont l’offrande n’avait pas été agréée, se dressa contre son frère et le tua.'}, en:{q:'Cain killed his brother Abel.', ref:'Genesis 4:8', exp:'Cain, whose offering had not been favoured, rose against his brother and killed him.'}},
+  {id:'cr5', a:true,  fr:{q:'La pluie du déluge tomba quarante jours et quarante nuits.', ref:'Genèse 7:12', exp:'La pluie tomba sur la terre quarante jours et quarante nuits.'}, en:{q:'The rain of the flood fell for forty days and forty nights.', ref:'Genesis 7:12', exp:'Rain fell upon the earth forty days and forty nights.'}},
+  {id:'cr6', a:false, fr:{q:'Noé fit entrer un seul couple de chaque espèce animale dans l’arche.', ref:'Genèse 7:2-3', exp:'Sept couples de chaque animal pur, un seul couple des animaux impurs.'}, en:{q:'Noah took only one pair of every kind of animal into the ark.', ref:'Genesis 7:2-3', exp:'Seven pairs of every clean animal, but only one pair of the unclean.'}},
+  {id:'cr7', a:true,  fr:{q:'Après le déluge, Dieu plaça l’arc-en-ciel comme signe de son alliance.', ref:'Genèse 9:13', exp:'L’arc dans la nuée est le signe de l’alliance entre Dieu et la terre.'}, en:{q:'After the flood, God set the rainbow as the sign of his covenant.', ref:'Genesis 9:13', exp:'The bow in the clouds is the sign of the covenant between God and the earth.'}},
+  {id:'cr8', a:false, fr:{q:'La tour de Babel fut détruite par le feu du ciel.', ref:'Genèse 11:8-9', exp:'Dieu confond le langage des hommes et les disperse sur la terre ; la tour n’est pas détruite par le feu.'}, en:{q:'The tower of Babel was destroyed by fire from heaven.', ref:'Genesis 11:8-9', exp:'God confuses human language and scatters them over the earth; the tower is not destroyed by fire.'}}
+ ]},
+ {id:'patriarches', name:{fr:'Les patriarches', en:'The Patriarchs'}, qs:[
+  {id:'pa1', a:true,  fr:{q:'Dieu appela Abram à quitter son pays pour une terre qu’il lui montrerait.', ref:'Genèse 12:1', exp:'« Va-t’en de ton pays… vers le pays que je te montrerai. »'}, en:{q:'God called Abram to leave his country for a land he would show him.', ref:'Genesis 12:1', exp:'“Go from your country… to the land that I will show you.”'}},
+  {id:'pa2', a:true,  fr:{q:'Le nom d’Abram fut changé en Abraham.', ref:'Genèse 17:5', exp:'« père d’une multitude de nations ».'}, en:{q:'Abram’s name was changed to Abraham.', ref:'Genesis 17:5', exp:'“father of a multitude of nations.”'}},
+  {id:'pa3', a:false, fr:{q:'Abraham offrit effectivement son fils Isaac en sacrifice.', ref:'Genèse 22:12-13', exp:'Un ange arrête son geste ; un bélier est offert à la place de l’enfant.'}, en:{q:'Abraham actually offered his son Isaac as a sacrifice.', ref:'Genesis 22:12-13', exp:'An angel halts his hand; a ram is offered in place of the child.'}},
+  {id:'pa4', a:true,  fr:{q:'Isaac eut deux fils jumeaux : Ésaü et Jacob.', ref:'Genèse 25:24-26', exp:'Ésaü naît le premier, Jacob tenant son talon.'}, en:{q:'Isaac had twin sons: Esau and Jacob.', ref:'Genesis 25:24-26', exp:'Esau is born first, Jacob gripping his heel.'}},
+  {id:'pa5', a:true,  fr:{q:'Ésaü vendit son droit d’aînesse pour un plat de lentilles.', ref:'Genèse 25:33-34', exp:'Il méprisa son droit d’aînesse pour un plat.'}, en:{q:'Esau sold his birthright for a dish of lentils.', ref:'Genesis 25:33-34', exp:'He despised his birthright for a meal.'}},
+  {id:'pa6', a:true,  fr:{q:'Jacob lutta toute une nuit avec un homme mystérieux et reçut le nom d’Israël.', ref:'Genèse 32:29', exp:'« car tu as lutté avec Dieu et avec les hommes, et tu l’as emporté ».'}, en:{q:'Jacob wrestled all night with a mysterious man and received the name Israel.', ref:'Genesis 32:29', exp:'“for you have striven with God and with men, and have prevailed.”'}},
+  {id:'pa7', a:true,  fr:{q:'Joseph fut vendu par ses frères et devint plus tard un haut dignitaire en Égypte.', ref:'Genèse 37:28; 41:41', exp:'Vendu à des marchands, il devint l’intendant de toute l’Égypte.'}, en:{q:'Joseph was sold by his brothers and later became a high official in Egypt.', ref:'Genesis 37:28; 41:41', exp:'Sold to merchants, he became steward over all Egypt.'}},
+  {id:'pa8', a:false, fr:{q:'Jacob eut dix fils, à l’origine des dix tribus d’Israël.', ref:'Genèse 35:22-26', exp:'Jacob eut douze fils, à l’origine des douze tribus d’Israël.'}, en:{q:'Jacob had ten sons, the origin of the ten tribes of Israel.', ref:'Genesis 35:22-26', exp:'Jacob had twelve sons, the origin of the twelve tribes of Israel.'}}
+ ]},
+ {id:'exode', name:{fr:'L’Exode et la Loi', en:'The Exodus and the Law'}, qs:[
+  {id:'ex1', a:true,  fr:{q:'Moïse fut sauvé des eaux du Nil par la fille du Pharaon.', ref:'Exode 2:5-10', exp:'Elle recueille l’enfant déposé sur le fleuve et l’adopte.'}, en:{q:'Moses was drawn from the waters of the Nile by Pharaoh’s daughter.', ref:'Exodus 2:5-10', exp:'She takes up the child set on the river and adopts him.'}},
+  {id:'ex2', a:true,  fr:{q:'Dieu se révéla à Moïse dans un buisson qui brûlait sans se consumer.', ref:'Exode 3:2', exp:'Le buisson est en feu mais ne se consume pas.'}, en:{q:'God revealed himself to Moses in a bush that burned without being consumed.', ref:'Exodus 3:2', exp:'The bush is on fire yet is not consumed.'}},
+  {id:'ex3', a:false, fr:{q:'Il y eut sept plaies d’Égypte.', ref:'Exode 7–12', exp:'Il y eut dix plaies, jusqu’à la mort des premiers-nés.'}, en:{q:'There were seven plagues of Egypt.', ref:'Exodus 7–12', exp:'There were ten plagues, up to the death of the firstborn.'}},
+  {id:'ex4', a:true,  fr:{q:'La dernière plaie fut la mort des premiers-nés d’Égypte.', ref:'Exode 12:29', exp:'Le Seigneur frappa tout premier-né au pays d’Égypte.'}, en:{q:'The last plague was the death of the firstborn of Egypt.', ref:'Exodus 12:29', exp:'The Lord struck down every firstborn in the land of Egypt.'}},
+  {id:'ex5', a:true,  fr:{q:'Les eaux de la mer se fendirent pour laisser passer le peuple à pied sec.', ref:'Exode 14:21-22', exp:'Les eaux se partagent et le peuple passe à sec au milieu de la mer.'}, en:{q:'The waters of the sea parted so the people could cross on dry ground.', ref:'Exodus 14:21-22', exp:'The waters divide and the people pass through the sea on dry ground.'}},
+  {id:'ex6', a:true,  fr:{q:'Au désert, Dieu nourrit le peuple avec la manne et les cailles.', ref:'Exode 16:13-15', exp:'Les cailles le soir, la manne le matin.'}, en:{q:'In the desert God fed the people with manna and quail.', ref:'Exodus 16:13-15', exp:'Quail in the evening, manna in the morning.'}},
+  {id:'ex7', a:true,  fr:{q:'Dieu donna à Moïse les commandements sur le mont Sinaï.', ref:'Exode 19:20; 20:1', exp:'C’est au Sinaï que la Loi est donnée à Moïse.'}, en:{q:'God gave Moses the commandments on Mount Sinai.', ref:'Exodus 19:20; 20:1', exp:'It is at Sinai that the Law is given to Moses.'}},
+  {id:'ex8', a:true,  fr:{q:'Pendant l’absence de Moïse, le peuple se fabriqua un veau d’or.', ref:'Exode 32:4', exp:'Aaron façonne un veau d’or que le peuple se met à adorer.'}, en:{q:'While Moses was away, the people made a golden calf.', ref:'Exodus 32:4', exp:'Aaron fashions a golden calf which the people begin to worship.'}}
+ ]},
+ {id:'terre-promise', name:{fr:'La conquête et les Juges', en:'Conquest and Judges'}, qs:[
+  {id:'tp1', a:false, fr:{q:'C’est Moïse qui fit entrer le peuple dans la Terre promise.', ref:'Deutéronome 34:4-5; Josué 1:2', exp:'Moïse meurt sans y entrer ; c’est Josué qui introduit le peuple dans le pays.'}, en:{q:'It was Moses who led the people into the Promised Land.', ref:'Deuteronomy 34:4-5; Joshua 1:2', exp:'Moses dies without entering; it is Joshua who brings the people into the land.'}},
+  {id:'tp2', a:true,  fr:{q:'Les murailles de Jéricho s’écroulèrent après que le peuple eut tourné autour de la ville.', ref:'Josué 6:20', exp:'Au son des trompettes et au cri du peuple, les murs s’effondrent.'}, en:{q:'The walls of Jericho fell after the people marched around the city.', ref:'Joshua 6:20', exp:'At the sound of the trumpets and the people’s shout, the walls collapse.'}},
+  {id:'tp3', a:true,  fr:{q:'À la demande de Josué, le soleil s’arrêta près d’un jour entier.', ref:'Josué 10:13', exp:'« Le soleil s’arrêta… environ un jour entier. »'}, en:{q:'At Joshua’s request, the sun stood still for about a whole day.', ref:'Joshua 10:13', exp:'“The sun stopped… about a full day.”'}},
+  {id:'tp4', a:true,  fr:{q:'Gédéon vainquit les Madianites avec une armée réduite à trois cents hommes.', ref:'Juges 7:7', exp:'Dieu réduit l’armée à trois cents hommes pour montrer que la victoire vient de lui.'}, en:{q:'Gideon defeated the Midianites with an army reduced to three hundred men.', ref:'Judges 7:7', exp:'God reduces the army to three hundred to show that the victory comes from him.'}},
+  {id:'tp5', a:true,  fr:{q:'La force de Samson tenait à sa chevelure non coupée.', ref:'Juges 16:17', exp:'Nazir depuis le sein de sa mère, sa force tient à ses cheveux non coupés.'}, en:{q:'Samson’s strength lay in his uncut hair.', ref:'Judges 16:17', exp:'A Nazirite from his mother’s womb, his strength lies in his uncut hair.'}},
+  {id:'tp6', a:true,  fr:{q:'Déborah fut à la fois juge et prophétesse en Israël.', ref:'Juges 4:4', exp:'Elle jugeait Israël et mena le peuple à la victoire.'}, en:{q:'Deborah was both a judge and a prophetess in Israel.', ref:'Judges 4:4', exp:'She judged Israel and led the people to victory.'}},
+  {id:'tp7', a:true,  fr:{q:'Samson fut trahi par Dalila, qui livra le secret de sa force aux Philistins.', ref:'Juges 16:18-19', exp:'Elle apprend que sa force tient à ses cheveux et le livre.'}, en:{q:'Samson was betrayed by Delilah, who gave the secret of his strength to the Philistines.', ref:'Judges 16:18-19', exp:'She learns his strength lies in his hair and betrays him.'}}
+ ]},
+ {id:'royaute', name:{fr:'La royauté', en:'The Kingdom'}, qs:[
+  {id:'ro1', a:true,  fr:{q:'Saül fut le premier roi d’Israël.', ref:'1 Samuel 10:1', exp:'Samuel l’oint comme premier roi du peuple.'}, en:{q:'Saul was the first king of Israel.', ref:'1 Samuel 10:1', exp:'Samuel anoints him as the people’s first king.'}},
+  {id:'ro2', a:true,  fr:{q:'David terrassa le géant Goliath avec une fronde et une pierre.', ref:'1 Samuel 17:49-50', exp:'Une pierre lancée à la fronde atteint le Philistin au front.'}, en:{q:'David struck down the giant Goliath with a sling and a stone.', ref:'1 Samuel 17:49-50', exp:'A stone from the sling strikes the Philistine on the forehead.'}},
+  {id:'ro3', a:false, fr:{q:'C’est David qui bâtit le Temple de Jérusalem.', ref:'2 Samuel 7:12-13; 1 Rois 6:1', exp:'David en forme le projet, mais c’est son fils Salomon qui bâtit le Temple.'}, en:{q:'It was David who built the Temple of Jerusalem.', ref:'2 Samuel 7:12-13; 1 Kings 6:1', exp:'David conceives the plan, but it is his son Solomon who builds the Temple.'}},
+  {id:'ro4', a:true,  fr:{q:'Salomon demanda à Dieu la sagesse plutôt que la richesse.', ref:'1 Rois 3:9-12', exp:'Il demande un cœur capable de discernement ; Dieu y ajoute la richesse.'}, en:{q:'Solomon asked God for wisdom rather than riches.', ref:'1 Kings 3:9-12', exp:'He asks for a discerning heart; God adds riches as well.'}},
+  {id:'ro5', a:true,  fr:{q:'David était berger avant d’être oint roi.', ref:'1 Samuel 16:11-13', exp:'Le plus jeune fils de Jessé, gardien des brebis, est oint par Samuel.'}, en:{q:'David was a shepherd before being anointed king.', ref:'1 Samuel 16:11-13', exp:'The youngest son of Jesse, keeping the sheep, is anointed by Samuel.'}},
+  {id:'ro6', a:true,  fr:{q:'Après Salomon, le royaume se divisa : Israël au nord, Juda au sud.', ref:'1 Rois 12:16-20', exp:'Dix tribus suivent Jéroboam ; Juda reste fidèle à la maison de David.'}, en:{q:'After Solomon, the kingdom split: Israel in the north, Judah in the south.', ref:'1 Kings 12:16-20', exp:'Ten tribes follow Jeroboam; Judah remains with the house of David.'}},
+  {id:'ro7', a:true,  fr:{q:'La tradition attribue à David la composition de nombreux psaumes.', ref:'2 Samuel 23:1', exp:'David est appelé le « doux chantre d’Israël ».'}, en:{q:'Tradition attributes the composition of many psalms to David.', ref:'2 Samuel 23:1', exp:'David is called the “sweet psalmist of Israel.”'}}
+ ]},
+ {id:'prophetes', name:{fr:'Les prophètes', en:'The Prophets'}, qs:[
+  {id:'pr1', a:true,  fr:{q:'Élie fut emporté au ciel dans un tourbillon, un char de feu le séparant d’Élisée.', ref:'2 Rois 2:11', exp:'Un char de feu paraît, et Élie monte au ciel dans un tourbillon.'}, en:{q:'Elijah was taken up to heaven in a whirlwind, a chariot of fire parting him from Elisha.', ref:'2 Kings 2:11', exp:'A chariot of fire appears, and Elijah goes up to heaven in a whirlwind.'}},
+  {id:'pr2', a:true,  fr:{q:'Jonas passa trois jours dans le ventre d’un grand poisson.', ref:'Jonas 2:1', exp:'Trois jours et trois nuits dans le ventre du poisson.'}, en:{q:'Jonah spent three days in the belly of a great fish.', ref:'Jonah 2:1', exp:'Three days and three nights in the belly of the fish.'}},
+  {id:'pr3', a:true,  fr:{q:'Isaïe annonça qu’une vierge enfanterait un fils appelé Emmanuel.', ref:'Isaïe 7:14', exp:'« la vierge concevra et enfantera un fils, et on l’appellera Emmanuel ».'}, en:{q:'Isaiah foretold that a virgin would bear a son called Emmanuel.', ref:'Isaiah 7:14', exp:'“the virgin shall conceive and bear a son, and shall call his name Emmanuel.”'}},
+  {id:'pr4', a:true,  fr:{q:'Daniel fut jeté dans une fosse aux lions et en sortit indemne.', ref:'Daniel 6:23', exp:'Dieu ferme la gueule des lions, et Daniel est trouvé sans blessure.'}, en:{q:'Daniel was thrown into a den of lions and came out unharmed.', ref:'Daniel 6:23', exp:'God shuts the lions’ mouths, and Daniel is found without injury.'}},
+  {id:'pr5', a:true,  fr:{q:'Jérémie annonça que Dieu conclurait une alliance nouvelle.', ref:'Jérémie 31:31', exp:'« Voici venir des jours… où je conclurai une alliance nouvelle. »'}, en:{q:'Jeremiah foretold that God would make a new covenant.', ref:'Jeremiah 31:31', exp:'“Behold, the days are coming… when I will make a new covenant.”'}},
+  {id:'pr6', a:true,  fr:{q:'Ézéchiel eut la vision d’ossements desséchés qui reprennent vie.', ref:'Ézéchiel 37:5', exp:'Le souffle de Dieu fait revivre les ossements de la vallée.'}, en:{q:'Ezekiel saw a vision of dry bones coming back to life.', ref:'Ezekiel 37:5', exp:'The breath of God brings the bones of the valley back to life.'}},
+  {id:'pr7', a:false, fr:{q:'Jonas accepta aussitôt et avec joie d’aller prêcher à Ninive.', ref:'Jonas 1:3', exp:'Il fuit d’abord vers Tarsis pour échapper à cette mission.'}, en:{q:'Jonah at once gladly agreed to go and preach at Nineveh.', ref:'Jonah 1:3', exp:'He first flees toward Tarshish to escape the mission.'}}
+ ]},
+ {id:'exil', name:{fr:'L’exil et le retour', en:'Exile and Return'}, qs:[
+  {id:'xl1', a:true,  fr:{q:'Le royaume de Juda fut emmené en exil à Babylone.', ref:'2 Rois 25:11', exp:'Nabuchodonosor déporte le peuple de Juda à Babylone.'}, en:{q:'The kingdom of Judah was carried into exile in Babylon.', ref:'2 Kings 25:11', exp:'Nebuchadnezzar deports the people of Judah to Babylon.'}},
+  {id:'xl2', a:true,  fr:{q:'Le Temple de Jérusalem fut détruit lors de la prise de la ville.', ref:'2 Rois 25:9', exp:'La maison du Seigneur est livrée aux flammes.'}, en:{q:'The Temple of Jerusalem was destroyed when the city was taken.', ref:'2 Kings 25:9', exp:'The house of the Lord is given over to the flames.'}},
+  {id:'xl3', a:true,  fr:{q:'Trois jeunes Hébreux sortirent indemnes de la fournaise ardente.', ref:'Daniel 3:27', exp:'Le feu n’a eu aucune prise sur eux.'}, en:{q:'Three young Hebrews came out unharmed from the fiery furnace.', ref:'Daniel 3:27', exp:'The fire had no power over them.'}},
+  {id:'xl4', a:true,  fr:{q:'Jérémie annonça que l’exil de Babylone durerait soixante-dix ans.', ref:'Jérémie 29:10', exp:'« Lorsque soixante-dix ans seront accomplis pour Babylone. »'}, en:{q:'Jeremiah foretold that the Babylonian exile would last seventy years.', ref:'Jeremiah 29:10', exp:'“When seventy years are completed for Babylon.”'}},
+  {id:'xl5', a:true,  fr:{q:'C’est le roi perse Cyrus qui autorisa le retour des exilés.', ref:'Esdras 1:1-3', exp:'L’édit de Cyrus permet de rentrer et de rebâtir le Temple.'}, en:{q:'It was the Persian king Cyrus who allowed the exiles to return.', ref:'Ezra 1:1-3', exp:'The edict of Cyrus permits the return and the rebuilding of the Temple.'}},
+  {id:'xl6', a:true,  fr:{q:'Néhémie dirigea la reconstruction des murailles de Jérusalem.', ref:'Néhémie 2:17; 6:15', exp:'Les murailles sont relevées en cinquante-deux jours.'}, en:{q:'Nehemiah led the rebuilding of the walls of Jerusalem.', ref:'Nehemiah 2:17; 6:15', exp:'The walls are raised again in fifty-two days.'}},
+  {id:'xl7', a:true,  fr:{q:'Esther, devenue reine, sauva son peuple d’un massacre programmé.', ref:'Esther 7:3-4', exp:'Elle intercède auprès du roi et obtient le salut de son peuple.'}, en:{q:'Esther, having become queen, saved her people from a planned massacre.', ref:'Esther 7:3-4', exp:'She intercedes before the king and obtains the deliverance of her people.'}}
+ ]},
+ {id:'nativite', name:{fr:'La naissance et l’enfance de Jésus', en:'The Birth and Childhood of Jesus'}, qs:[
+  {id:'na1', a:true,  fr:{q:'L’ange Gabriel annonça à Marie qu’elle enfanterait le Fils du Très-Haut.', ref:'Luc 1:30-32', exp:'« Tu concevras et tu enfanteras un fils… il sera appelé Fils du Très-Haut. »'}, en:{q:'The angel Gabriel told Mary she would bear the Son of the Most High.', ref:'Luke 1:30-32', exp:'“You will conceive and bear a son… he will be called Son of the Most High.”'}},
+  {id:'na2', a:false, fr:{q:'Jésus naquit à Nazareth.', ref:'Luc 2:4-7', exp:'Il naît à Bethléem ; Nazareth est la ville où il grandit.'}, en:{q:'Jesus was born in Nazareth.', ref:'Luke 2:4-7', exp:'He is born in Bethlehem; Nazareth is the town where he grows up.'}},
+  {id:'na3', a:true,  fr:{q:'Des bergers furent les premiers avertis de la naissance de Jésus.', ref:'Luc 2:8-11', exp:'L’ange annonce la nouvelle aux bergers qui veillaient la nuit.'}, en:{q:'Shepherds were the first to be told of Jesus’ birth.', ref:'Luke 2:8-11', exp:'The angel announces the news to the shepherds keeping watch at night.'}},
+  {id:'na4', a:true,  fr:{q:'Des mages venus d’Orient suivirent une étoile jusqu’à l’enfant.', ref:'Matthieu 2:1-2,9', exp:'L’étoile les précède et les conduit au lieu où était l’enfant.'}, en:{q:'Magi from the East followed a star to the child.', ref:'Matthew 2:1-2,9', exp:'The star goes before them to the place where the child was.'}},
+  {id:'na5', a:false, fr:{q:'L’Évangile précise que les mages étaient au nombre de trois.', ref:'Matthieu 2:11', exp:'Le texte ne dit pas leur nombre ; le chiffre trois vient des trois présents : or, encens et myrrhe.'}, en:{q:'The Gospel states that the magi were three in number.', ref:'Matthew 2:11', exp:'The text gives no number; three is inferred from the three gifts: gold, frankincense and myrrh.'}},
+  {id:'na6', a:true,  fr:{q:'La sainte Famille fuit en Égypte pour échapper à Hérode.', ref:'Matthieu 2:13-14', exp:'Averti en songe, Joseph emmène l’enfant et sa mère en Égypte.'}, en:{q:'The holy Family fled into Egypt to escape Herod.', ref:'Matthew 2:13-14', exp:'Warned in a dream, Joseph takes the child and his mother into Egypt.'}},
+  {id:'na7', a:true,  fr:{q:'Au Temple, le vieillard Syméon reconnut en Jésus le salut de Dieu.', ref:'Luc 2:28-30', exp:'« Mes yeux ont vu ton salut. »'}, en:{q:'In the Temple, the old man Simeon recognised in Jesus the salvation of God.', ref:'Luke 2:28-30', exp:'“My eyes have seen your salvation.”'}},
+  {id:'na8', a:true,  fr:{q:'À douze ans, Jésus fut retrouvé au Temple parmi les docteurs.', ref:'Luc 2:46', exp:'Assis au milieu des docteurs, il les écoutait et les interrogeait.'}, en:{q:'At twelve years old, Jesus was found in the Temple among the teachers.', ref:'Luke 2:46', exp:'Sitting among the teachers, he was listening to them and questioning them.'}}
+ ]},
+ {id:'ministere', name:{fr:'Le ministère de Jésus', en:'The Ministry of Jesus'}, qs:[
+  {id:'mi1', a:true,  fr:{q:'Jésus fut baptisé par Jean-Baptiste dans le Jourdain.', ref:'Marc 1:9', exp:'Il vient de Nazareth se faire baptiser dans le Jourdain.'}, en:{q:'Jesus was baptised by John the Baptist in the Jordan.', ref:'Mark 1:9', exp:'He comes from Nazareth to be baptised in the Jordan.'}},
+  {id:'mi2', a:true,  fr:{q:'Jésus jeûna quarante jours au désert où il fut tenté.', ref:'Matthieu 4:1-2', exp:'Quarante jours de jeûne, puis la triple tentation.'}, en:{q:'Jesus fasted forty days in the desert, where he was tempted.', ref:'Matthew 4:1-2', exp:'Forty days of fasting, then the threefold temptation.'}},
+  {id:'mi3', a:true,  fr:{q:'Jésus choisit douze apôtres.', ref:'Marc 3:14', exp:'Il en établit douze pour être avec lui et pour les envoyer prêcher.'}, en:{q:'Jesus chose twelve apostles.', ref:'Mark 3:14', exp:'He appoints twelve to be with him and to be sent out to preach.'}},
+  {id:'mi4', a:false, fr:{q:'Le premier miracle de Jésus fut la guérison d’un aveugle.', ref:'Jean 2:11', exp:'Son premier signe est l’eau changée en vin aux noces de Cana.'}, en:{q:'Jesus’ first miracle was the healing of a blind man.', ref:'John 2:11', exp:'His first sign is the water changed into wine at the wedding of Cana.'}},
+  {id:'mi5', a:true,  fr:{q:'Jésus marcha sur les eaux.', ref:'Matthieu 14:25', exp:'Il vient vers ses disciples en marchant sur la mer.'}, en:{q:'Jesus walked on the water.', ref:'Matthew 14:25', exp:'He comes to his disciples walking on the sea.'}},
+  {id:'mi6', a:true,  fr:{q:'Jésus multiplia les pains pour nourrir une grande foule.', ref:'Marc 6:41-44', exp:'Cinq pains et deux poissons rassasient des milliers de personnes.'}, en:{q:'Jesus multiplied the loaves to feed a great crowd.', ref:'Mark 6:41-44', exp:'Five loaves and two fish satisfy thousands of people.'}},
+  {id:'mi7', a:true,  fr:{q:'Jésus ressuscita son ami Lazare, mort depuis quatre jours.', ref:'Jean 11:43-44', exp:'« Lazare, viens dehors ! » : le mort sort du tombeau.'}, en:{q:'Jesus raised his friend Lazarus, dead for four days.', ref:'John 11:43-44', exp:'“Lazarus, come out!”: the dead man comes out of the tomb.'}},
+  {id:'mi8', a:true,  fr:{q:'La prière que Jésus enseigna à ses disciples est le Notre Père.', ref:'Matthieu 6:9', exp:'« Vous donc, priez ainsi : Notre Père qui es aux cieux… »'}, en:{q:'The prayer Jesus taught his disciples is the Our Father.', ref:'Matthew 6:9', exp:'“Pray then like this: Our Father who art in heaven…”'}}
+ ]},
+ {id:'passion', name:{fr:'La Passion et la Résurrection', en:'The Passion and Resurrection'}, qs:[
+  {id:'ps1', a:true,  fr:{q:'Jésus entra à Jérusalem acclamé par la foule agitant des rameaux.', ref:'Jean 12:13', exp:'« Hosanna ! Béni soit celui qui vient au nom du Seigneur ! »'}, en:{q:'Jesus entered Jerusalem acclaimed by the crowd waving palm branches.', ref:'John 12:13', exp:'“Hosanna! Blessed is he who comes in the name of the Lord!”'}},
+  {id:'ps2', a:true,  fr:{q:'Lors de la Cène, Jésus institua l’Eucharistie.', ref:'Luc 22:19', exp:'« Ceci est mon corps, donné pour vous ; faites cela en mémoire de moi. »'}, en:{q:'At the Last Supper, Jesus instituted the Eucharist.', ref:'Luke 22:19', exp:'“This is my body, given for you; do this in memory of me.”'}},
+  {id:'ps3', a:true,  fr:{q:'Judas livra Jésus pour trente pièces d’argent.', ref:'Matthieu 26:15', exp:'Ils lui comptent trente pièces d’argent.'}, en:{q:'Judas handed Jesus over for thirty pieces of silver.', ref:'Matthew 26:15', exp:'They count out to him thirty pieces of silver.'}},
+  {id:'ps4', a:true,  fr:{q:'Pierre renia Jésus trois fois avant le chant du coq.', ref:'Luc 22:61', exp:'Conformément à la parole que Jésus lui avait dite.'}, en:{q:'Peter denied Jesus three times before the cock crowed.', ref:'Luke 22:61', exp:'Just as Jesus had told him it would happen.'}},
+  {id:'ps5', a:false, fr:{q:'C’est le roi Hérode qui condamna Jésus à la crucifixion.', ref:'Marc 15:15', exp:'C’est le gouverneur romain Ponce Pilate qui le livre pour être crucifié.'}, en:{q:'It was King Herod who condemned Jesus to crucifixion.', ref:'Mark 15:15', exp:'It is the Roman governor Pontius Pilate who hands him over to be crucified.'}},
+  {id:'ps6', a:true,  fr:{q:'Jésus fut crucifié au lieu-dit Golgotha.', ref:'Marc 15:22', exp:'« Golgotha, ce qui veut dire lieu du Crâne. »'}, en:{q:'Jesus was crucified at the place called Golgotha.', ref:'Mark 15:22', exp:'“Golgotha, which means the place of the Skull.”'}},
+  {id:'ps7', a:true,  fr:{q:'Le corps de Jésus fut déposé dans un tombeau neuf taillé dans le roc.', ref:'Matthieu 27:59-60', exp:'Joseph d’Arimathie l’ensevelit dans son tombeau neuf.'}, en:{q:'Jesus’ body was laid in a new tomb cut in the rock.', ref:'Matthew 27:59-60', exp:'Joseph of Arimathea buries him in his own new tomb.'}},
+  {id:'ps8', a:true,  fr:{q:'Des femmes furent les premières à découvrir le tombeau vide.', ref:'Luc 24:1-3', exp:'Venues au matin, elles trouvent la pierre roulée et le tombeau vide.'}, en:{q:'Women were the first to find the empty tomb.', ref:'Luke 24:1-3', exp:'Coming in the morning, they find the stone rolled away and the tomb empty.'}}
+ ]},
+ {id:'eglise', name:{fr:'L’Église naissante', en:'The Early Church'}, qs:[
+  {id:'eg1', a:true,  fr:{q:'À la Pentecôte, l’Esprit Saint descendit sur les apôtres sous forme de langues de feu.', ref:'Actes 2:3-4', exp:'Des langues de feu se posent sur chacun, et tous sont remplis de l’Esprit Saint.'}, en:{q:'At Pentecost, the Holy Spirit came upon the apostles as tongues of fire.', ref:'Acts 2:3-4', exp:'Tongues of fire rest on each of them, and all are filled with the Holy Spirit.'}},
+  {id:'eg2', a:true,  fr:{q:'Saul de Tarse persécutait les chrétiens avant sa conversion.', ref:'Actes 8:3; 9:1', exp:'Il ravageait l’Église avant l’événement du chemin de Damas.'}, en:{q:'Saul of Tarsus persecuted Christians before his conversion.', ref:'Acts 8:3; 9:1', exp:'He was ravaging the Church before the event on the road to Damascus.'}},
+  {id:'eg3', a:true,  fr:{q:'Paul fut renversé par une lumière sur le chemin de Damas.', ref:'Actes 9:3-4', exp:'« Saul, Saul, pourquoi me persécutes-tu ? »'}, en:{q:'Paul was struck down by a light on the road to Damascus.', ref:'Acts 9:3-4', exp:'“Saul, Saul, why are you persecuting me?”'}},
+  {id:'eg4', a:true,  fr:{q:'Étienne fut le premier martyr chrétien, lapidé pour sa foi.', ref:'Actes 7:59', exp:'Lapidé, il meurt en priant pour ses bourreaux.'}, en:{q:'Stephen was the first Christian martyr, stoned for his faith.', ref:'Acts 7:59', exp:'Stoned, he dies praying for those who kill him.'}},
+  {id:'eg5', a:true,  fr:{q:'Pierre fut délivré de prison par un ange.', ref:'Actes 12:7', exp:'L’ange le réveille et ses chaînes tombent de ses mains.'}, en:{q:'Peter was freed from prison by an angel.', ref:'Acts 12:7', exp:'The angel wakes him and his chains fall from his hands.'}},
+  {id:'eg6', a:true,  fr:{q:'C’est à Antioche que les disciples furent pour la première fois appelés chrétiens.', ref:'Actes 11:26', exp:'Le nom de « chrétiens » est donné aux disciples à Antioche.'}, en:{q:'It was at Antioch that the disciples were first called Christians.', ref:'Acts 11:26', exp:'The name “Christians” is first given to the disciples at Antioch.'}},
+  {id:'eg7', a:false, fr:{q:'Paul ne quitta jamais la Judée pour annoncer l’Évangile.', ref:'Actes 13–14', exp:'Il accomplit plusieurs grands voyages missionnaires à travers l’Asie Mineure et la Grèce.'}, en:{q:'Paul never left Judea to preach the Gospel.', ref:'Acts 13–14', exp:'He undertakes several great missionary journeys across Asia Minor and Greece.'}}
+ ]},
+ {id:'lettres-apo', name:{fr:'Les lettres et l’Apocalypse', en:'The Letters and Revelation'}, qs:[
+  {id:'la1', a:true,  fr:{q:'Selon Paul, la plus grande des trois vertus, foi, espérance et charité, est la charité.', ref:'1 Corinthiens 13:13', exp:'« La plus grande des trois, c’est la charité. »'}, en:{q:'According to Paul, the greatest of the three virtues, faith, hope and love, is love.', ref:'1 Corinthians 13:13', exp:'“The greatest of these is love.”'}},
+  {id:'la2', a:true,  fr:{q:'Paul écrivit que c’est par la grâce que nous sommes sauvés, au moyen de la foi.', ref:'Éphésiens 2:8', exp:'« C’est par la grâce… au moyen de la foi ; cela ne vient pas de vous. »'}, en:{q:'Paul wrote that it is by grace we are saved, through faith.', ref:'Ephesians 2:8', exp:'“By grace… through faith; and this is not your own doing.”'}},
+  {id:'la3', a:false, fr:{q:'Selon la lettre de Jacques, la foi sans les œuvres suffit au salut.', ref:'Jacques 2:17', exp:'« La foi, si elle n’a pas les œuvres, est morte en elle-même. »'}, en:{q:'According to the letter of James, faith without works is enough for salvation.', ref:'James 2:17', exp:'“Faith, if it has no works, is dead in itself.”'}},
+  {id:'la4', a:true,  fr:{q:'L’Apocalypse fut écrite par Jean alors qu’il était dans l’île de Patmos.', ref:'Apocalypse 1:9', exp:'« Je me trouvais dans l’île appelée Patmos. »'}, en:{q:'Revelation was written by John while he was on the island of Patmos.', ref:'Revelation 1:9', exp:'“I was on the island called Patmos.”'}},
+  {id:'la5', a:true,  fr:{q:'L’Apocalypse s’achève sur la vision d’une Jérusalem nouvelle descendant du ciel.', ref:'Apocalypse 21:2', exp:'La cité sainte descend d’auprès de Dieu, parée comme une épouse.'}, en:{q:'Revelation ends with the vision of a new Jerusalem coming down from heaven.', ref:'Revelation 21:2', exp:'The holy city comes down from God, adorned as a bride.'}},
+  {id:'la6', a:true,  fr:{q:'Dans l’Apocalypse, le Christ se nomme l’alpha et l’oméga.', ref:'Apocalypse 22:13', exp:'« Je suis l’alpha et l’oméga, le premier et le dernier. »'}, en:{q:'In Revelation, Christ calls himself the alpha and the omega.', ref:'Revelation 22:13', exp:'“I am the alpha and the omega, the first and the last.”'}},
+  {id:'la7', a:true,  fr:{q:'Paul écrivit que l’amour de l’argent est une racine de tous les maux.', ref:'1 Timothée 6:10', exp:'« L’amour de l’argent est une racine de tous les maux. »'}, en:{q:'Paul wrote that the love of money is a root of all evils.', ref:'1 Timothy 6:10', exp:'“The love of money is a root of all kinds of evil.”'}}
+ ]},
+ {id:'qsaid', name:{fr:'Qui a dit cela ?', en:'Who Said This?'}, dir:'mn', ql:{nm:{fr:'Quelle parole est de cette personne ?', en:'Which words are this person’s?'}, mn:{fr:'Qui prononce cette parole ?', en:'Who speaks these words?'}}, qs:[
+  {id:'qs1', t:'qcm', fr:{name:'Caïn', mean:'Suis-je le gardien de mon frère ?', ref:'Genèse 4:9', exp:'Caïn répond ainsi à Dieu après le meurtre d’Abel.'}, en:{name:'Cain', mean:'Am I my brother’s keeper?', ref:'Genesis 4:9', exp:'Cain answers God thus after the murder of Abel.'}},
+  {id:'qs2', t:'qcm', fr:{name:'Isaïe', mean:'Me voici, envoie-moi', ref:'Isaïe 6:8', exp:'Réponse du prophète à l’appel de Dieu.'}, en:{name:'Isaiah', mean:'Here I am, send me', ref:'Isaiah 6:8', exp:'The prophet’s answer to God’s call.'}},
+  {id:'qs3', t:'qcm', fr:{name:'Samuel', mean:'Parle, ton serviteur écoute', ref:'1 Samuel 3:10', exp:'L’enfant répond à la voix de Dieu dans la nuit.'}, en:{name:'Samuel', mean:'Speak, your servant is listening', ref:'1 Samuel 3:10', exp:'The child answers God’s voice in the night.'}},
+  {id:'qs4', t:'qcm', fr:{name:'Job', mean:'Je sais que mon Rédempteur est vivant', ref:'Job 19:25', exp:'Cri d’espérance au cœur de l’épreuve.'}, en:{name:'Job', mean:'I know that my Redeemer lives', ref:'Job 19:25', exp:'A cry of hope in the midst of suffering.'}},
+  {id:'qs5', t:'qcm', fr:{name:'Marie', mean:'Qu’il me soit fait selon ta parole', ref:'Luc 1:38', exp:'Réponse de Marie à l’ange Gabriel.'}, en:{name:'Mary', mean:'Let it be done to me according to your word', ref:'Luke 1:38', exp:'Mary’s answer to the angel Gabriel.'}},
+  {id:'qs6', t:'qcm', fr:{name:'Élisabeth', mean:'Tu es bénie entre les femmes', ref:'Luc 1:42', exp:'Salutation à Marie lors de la Visitation.'}, en:{name:'Elizabeth', mean:'Blessed are you among women', ref:'Luke 1:42', exp:'A greeting to Mary at the Visitation.'}},
+  {id:'qs7', t:'qcm', fr:{name:'Jean-Baptiste', mean:'Voici l’Agneau de Dieu', ref:'Jean 1:29', exp:'Jean désigne Jésus qui vient vers lui.'}, en:{name:'John the Baptist', mean:'Behold the Lamb of God', ref:'John 1:29', exp:'John points to Jesus coming toward him.'}},
+  {id:'qs8', t:'qcm', fr:{name:'Pierre', mean:'Tu es le Christ, le Fils du Dieu vivant', ref:'Matthieu 16:16', exp:'La confession de Pierre à Césarée.'}, en:{name:'Peter', mean:'You are the Christ, the Son of the living God', ref:'Matthew 16:16', exp:'Peter’s confession at Caesarea.'}},
+  {id:'qs9', t:'qcm', fr:{name:'Thomas', mean:'Mon Seigneur et mon Dieu !', ref:'Jean 20:28', exp:'Devant le Ressuscité, le doute devient adoration.'}, en:{name:'Thomas', mean:'My Lord and my God!', ref:'John 20:28', exp:'Before the risen Lord, doubt becomes worship.'}},
+  {id:'qs10', t:'qcm', fr:{name:'le bon larron', mean:'Souviens-toi de moi quand tu viendras dans ton Royaume', ref:'Luc 23:42', exp:'Le malfaiteur crucifié à côté de Jésus.'}, en:{name:'the good thief', mean:'Remember me when you come into your kingdom', ref:'Luke 23:42', exp:'The wrongdoer crucified beside Jesus.'}},
+  {id:'qs11', t:'qcm', fr:{name:'le centurion', mean:'Vraiment, cet homme était Fils de Dieu', ref:'Marc 15:39', exp:'Le soldat romain au pied de la Croix.'}, en:{name:'the centurion', mean:'Truly this man was the Son of God', ref:'Mark 15:39', exp:'The Roman soldier at the foot of the Cross.'}},
+  {id:'qs12', t:'qcm', fr:{name:'Pilate', mean:'Qu’est-ce que la vérité ?', ref:'Jean 18:38', exp:'Question du gouverneur lors du procès de Jésus.'}, en:{name:'Pilate', mean:'What is truth?', ref:'John 18:38', exp:'The governor’s question at Jesus’ trial.'}},
+  {id:'qs13', t:'qcm', fr:{name:'Étienne', mean:'Seigneur, ne leur impute pas ce péché', ref:'Actes 7:60', exp:'Le premier martyr prie pour ceux qui le lapident.'}, en:{name:'Stephen', mean:'Lord, do not hold this sin against them', ref:'Acts 7:60', exp:'The first martyr prays for those who stone him.'}},
+  {id:'qs14', t:'qcm', fr:{name:'André', mean:'Nous avons trouvé le Messie', ref:'Jean 1:41', exp:'André l’annonce à son frère Simon.'}, en:{name:'Andrew', mean:'We have found the Messiah', ref:'John 1:41', exp:'Andrew announces it to his brother Simon.'}},
+  {id:'qs15', t:'qcm', fr:{name:'Jérémie', mean:'Tu m’as séduit, Seigneur, et je me suis laissé séduire', ref:'Jérémie 20:7', exp:'Plainte du prophète saisi par sa vocation.'}, en:{name:'Jeremiah', mean:'You have enticed me, Lord, and I let myself be enticed', ref:'Jeremiah 20:7', exp:'The prophet’s lament, gripped by his calling.'}}
+ ]},
+ {id:'miracles', name:{fr:'Les miracles de Jésus', en:'The Miracles of Jesus'}, qs:[
+  {id:'mir1', a:true, fr:{q:'Jésus changea l’eau en vin aux noces de Cana.', ref:'Jean 2:9', exp:'Premier signe de Jésus, à Cana de Galilée.'}, en:{q:'Jesus changed water into wine at the wedding of Cana.', ref:'John 2:9', exp:'Jesus’ first sign, at Cana in Galilee.'}},
+  {id:'mir2', a:true, fr:{q:'Jésus apaisa une tempête d’une seule parole.', ref:'Marc 4:39', exp:'« Silence ! Tais-toi ! » et le vent tombe.'}, en:{q:'Jesus calmed a storm with a single word.', ref:'Mark 4:39', exp:'“Peace! Be still!” and the wind drops.'}},
+  {id:'mir3', a:true, fr:{q:'Des dix lépreux guéris, un seul revint rendre grâce.', ref:'Luc 17:17', exp:'« Les dix n’ont-ils pas été purifiés ? »'}, en:{q:'Of the ten lepers healed, only one returned to give thanks.', ref:'Luke 17:17', exp:'“Were not ten cleansed?”'}},
+  {id:'mir4', a:false, fr:{q:'Jésus ressuscita Lazare après trois jours au tombeau.', ref:'Jean 11:39', exp:'Lazare était au tombeau depuis quatre jours, non trois.'}, en:{q:'Jesus raised Lazarus after three days in the tomb.', ref:'John 11:39', exp:'Lazarus had been in the tomb four days, not three.'}},
+  {id:'mir5', a:true, fr:{q:'Jésus rendit la vue à un aveugle de naissance.', ref:'Jean 9:7', exp:'Lavé à la piscine de Siloé, l’aveugle voit.'}, en:{q:'Jesus gave sight to a man born blind.', ref:'John 9:7', exp:'Washing at the pool of Siloam, the blind man sees.'}},
+  {id:'mir6', a:true, fr:{q:'Pierre marcha sur les eaux vers Jésus avant de douter et de s’enfoncer.', ref:'Matthieu 14:29-30', exp:'Pris de peur, il enfonce, et Jésus le saisit.'}, en:{q:'Peter walked on the water toward Jesus before doubting and sinking.', ref:'Matthew 14:29-30', exp:'Seized by fear he sinks, and Jesus takes hold of him.'}},
+  {id:'mir7', a:true, fr:{q:'Jésus nourrit cinq mille hommes avec cinq pains et deux poissons.', ref:'Jean 6:10-11', exp:'La foule est rassasiée, et l’on emporte douze paniers.'}, en:{q:'Jesus fed five thousand men with five loaves and two fish.', ref:'John 6:10-11', exp:'The crowd is satisfied, and twelve baskets are gathered.'}},
+  {id:'mir8', a:false, fr:{q:'Le premier miracle de Jésus fut la guérison de la belle-mère de Pierre.', ref:'Jean 2:11', exp:'Son premier signe fut l’eau changée en vin à Cana.'}, en:{q:'Jesus’ first miracle was the healing of Peter’s mother-in-law.', ref:'John 2:11', exp:'His first sign was the water changed into wine at Cana.'}},
+  {id:'mir9', a:true, fr:{q:'Une femme fut guérie en touchant la frange du vêtement de Jésus.', ref:'Marc 5:29', exp:'Sa perte de sang cesse à l’instant.'}, en:{q:'A woman was healed by touching the fringe of Jesus’ garment.', ref:'Mark 5:29', exp:'Her flow of blood stops at once.'}},
+  {id:'mir10', a:true, fr:{q:'Jésus chassa des démons qui entrèrent dans un troupeau de porcs.', ref:'Marc 5:13', exp:'Le troupeau se précipite dans le lac.'}, en:{q:'Jesus drove out demons that entered a herd of pigs.', ref:'Mark 5:13', exp:'The herd rushes down into the lake.'}}
+ ]},
+ {id:'paraboles', name:{fr:'Les paraboles de Jésus', en:'The Parables of Jesus'}, qs:[
+  {id:'par1', a:true, fr:{q:'Dans la parabole du fils prodigue, le père court à la rencontre de son fils revenu.', ref:'Luc 15:20', exp:'Le père l’aperçoit de loin, ému de compassion.'}, en:{q:'In the parable of the prodigal son, the father runs to meet his returning son.', ref:'Luke 15:20', exp:'The father sees him from afar, filled with compassion.'}},
+  {id:'par2', a:true, fr:{q:'Le bon Samaritain secourut un homme qu’un prêtre et un lévite avaient évité.', ref:'Luc 10:33', exp:'L’étranger méprisé se fait le prochain du blessé.'}, en:{q:'The good Samaritan helped a man whom a priest and a Levite had passed by.', ref:'Luke 10:33', exp:'The despised foreigner becomes neighbour to the wounded man.'}},
+  {id:'par3', a:true, fr:{q:'Dans la parabole du semeur, la semence tombe sur quatre sortes de terrains.', ref:'Marc 4:3-8', exp:'Le chemin, le sol pierreux, les épines, la bonne terre.'}, en:{q:'In the parable of the sower, the seed falls on four kinds of ground.', ref:'Mark 4:3-8', exp:'The path, the rocky ground, the thorns, the good soil.'}},
+  {id:'par4', a:false, fr:{q:'Dans la brebis perdue, le berger l’abandonne pour garder les autres.', ref:'Luc 15:4', exp:'Il laisse les quatre-vingt-dix-neuf et va chercher celle qui est perdue.'}, en:{q:'In the lost sheep, the shepherd abandons it to keep the others.', ref:'Luke 15:4', exp:'He leaves the ninety-nine and goes after the one that is lost.'}},
+  {id:'par5', a:true, fr:{q:'Le grain de moutarde, la plus petite des semences, devient un grand arbre.', ref:'Matthieu 13:31-32', exp:'Image du Royaume qui grandit à partir de presque rien.'}, en:{q:'The mustard seed, smallest of seeds, becomes a great tree.', ref:'Matthew 13:31-32', exp:'An image of the Kingdom growing from almost nothing.'}},
+  {id:'par6', a:true, fr:{q:'Les dix vierges : cinq étaient prévoyantes, cinq insouciantes.', ref:'Matthieu 25:2-3', exp:'Cinq avaient de l’huile pour leurs lampes, cinq en manquaient.'}, en:{q:'The ten virgins: five were wise, five were foolish.', ref:'Matthew 25:2-3', exp:'Five had oil for their lamps, five had none.'}},
+  {id:'par7', a:true, fr:{q:'Au jugement dernier, le Roi sépare les brebis des boucs.', ref:'Matthieu 25:32', exp:'Les unes à sa droite, les autres à sa gauche.'}, en:{q:'At the last judgment, the King separates the sheep from the goats.', ref:'Matthew 25:32', exp:'The one at his right hand, the other at his left.'}},
+  {id:'par8', a:false, fr:{q:'Dans la parabole des talents, le serviteur qui enfouit son talent est récompensé.', ref:'Matthieu 25:26-28', exp:'Il est blâmé, et son talent est donné à celui qui en a dix.'}, en:{q:'In the parable of the talents, the servant who buries his talent is rewarded.', ref:'Matthew 25:26-28', exp:'He is rebuked, and his talent is given to the one who has ten.'}},
+  {id:'par9', a:true, fr:{q:'Entre le riche et le pauvre Lazare, un grand abîme les sépare après la mort.', ref:'Luc 16:26', exp:'Nul ne peut passer d’un bord à l’autre.'}, en:{q:'Between the rich man and poor Lazarus, a great chasm separates them after death.', ref:'Luke 16:26', exp:'No one can cross from one side to the other.'}}
+ ]},
+ {id:'apotres', name:{fr:'Les douze apôtres', en:'The Twelve Apostles'}, qs:[
+  {id:'ap1', a:true, fr:{q:'Pierre s’appelait d’abord Simon.', ref:'Jean 1:42', exp:'« Tu seras appelé Céphas », c’est-à-dire Pierre.'}, en:{q:'Peter was first called Simon.', ref:'John 1:42', exp:'“You shall be called Cephas,” that is, Peter.'}},
+  {id:'ap2', a:true, fr:{q:'Jacques et Jean, fils de Zébédée, étaient surnommés « fils du tonnerre ».', ref:'Marc 3:17', exp:'Jésus leur donne le nom de Boanergès.'}, en:{q:'James and John, sons of Zebedee, were nicknamed “sons of thunder.”', ref:'Mark 3:17', exp:'Jesus gives them the name Boanerges.'}},
+  {id:'ap3', a:true, fr:{q:'Matthieu était collecteur d’impôts avant de suivre Jésus.', ref:'Matthieu 9:9', exp:'« Suis-moi », et il se leva pour le suivre.'}, en:{q:'Matthew was a tax collector before following Jesus.', ref:'Matthew 9:9', exp:'“Follow me,” and he rose and followed him.'}},
+  {id:'ap4', a:false, fr:{q:'Judas Iscariote remplaça Matthias parmi les Douze.', ref:'Actes 1:26', exp:'C’est l’inverse : Matthias fut choisi pour remplacer Judas.'}, en:{q:'Judas Iscariot replaced Matthias among the Twelve.', ref:'Acts 1:26', exp:'It is the reverse: Matthias was chosen to replace Judas.'}},
+  {id:'ap5', a:true, fr:{q:'Thomas refusa de croire à la résurrection sans voir les plaies.', ref:'Jean 20:25', exp:'« Si je ne vois pas… je ne croirai pas. »'}, en:{q:'Thomas refused to believe in the resurrection without seeing the wounds.', ref:'John 20:25', exp:'“Unless I see… I will not believe.”'}},
+  {id:'ap6', a:true, fr:{q:'André était le frère de Simon-Pierre.', ref:'Jean 1:40', exp:'Il amène d’abord son frère à Jésus.'}, en:{q:'Andrew was the brother of Simon Peter.', ref:'John 1:40', exp:'He first brings his brother to Jesus.'}},
+  {id:'ap7', a:true, fr:{q:'Avant leur appel, Pierre, André, Jacques et Jean étaient pêcheurs.', ref:'Marc 1:16-19', exp:'« Je ferai de vous des pêcheurs d’hommes. »'}, en:{q:'Before their call, Peter, Andrew, James and John were fishermen.', ref:'Mark 1:16-19', exp:'“I will make you fishers of men.”'}},
+  {id:'ap8', a:false, fr:{q:'Paul faisait partie des Douze choisis par Jésus durant son ministère.', ref:'Actes 9:15', exp:'Paul n’est pas l’un des Douze ; il est appelé plus tard, sur le chemin de Damas.'}, en:{q:'Paul was one of the Twelve chosen by Jesus during his ministry.', ref:'Acts 9:15', exp:'Paul is not one of the Twelve; he is called later, on the road to Damascus.'}},
+  {id:'ap9', a:true, fr:{q:'Le groupe des apôtres choisis par Jésus était au nombre de douze.', ref:'Marc 3:14', exp:'Il en établit douze pour être avec lui.'}, en:{q:'The group of apostles chosen by Jesus numbered twelve.', ref:'Mark 3:14', exp:'He appointed twelve to be with him.'}}
+ ]},
+ {id:'femmes', name:{fr:'Les femmes de la Bible', en:'Women of the Bible'}, qs:[
+  {id:'fe1', a:true, fr:{q:'Sara enfanta Isaac dans sa vieillesse.', ref:'Genèse 21:2', exp:'L’enfant de la promesse, né au temps fixé par Dieu.'}, en:{q:'Sarah gave birth to Isaac in her old age.', ref:'Genesis 21:2', exp:'The child of the promise, born at the time God appointed.'}},
+  {id:'fe2', a:true, fr:{q:'Ruth la Moabite est l’arrière-grand-mère du roi David.', ref:'Ruth 4:17', exp:'Mère d’Obed, père de Jessé, père de David.'}, en:{q:'Ruth the Moabite is the great-grandmother of King David.', ref:'Ruth 4:17', exp:'Mother of Obed, father of Jesse, father of David.'}},
+  {id:'fe3', a:true, fr:{q:'Marie-Madeleine fut parmi les premiers témoins du Ressuscité.', ref:'Jean 20:16', exp:'Jésus l’appelle par son nom au matin de Pâques.'}, en:{q:'Mary Magdalene was among the first witnesses of the risen Lord.', ref:'John 20:16', exp:'Jesus calls her by name on Easter morning.'}},
+  {id:'fe4', a:false, fr:{q:'Déborah était reine d’Israël.', ref:'Juges 4:4', exp:'Elle était juge et prophétesse, non reine.'}, en:{q:'Deborah was queen of Israel.', ref:'Judges 4:4', exp:'She was a judge and prophetess, not a queen.'}},
+  {id:'fe5', a:true, fr:{q:'Marthe et Marie étaient les sœurs de Lazare.', ref:'Jean 11:1-2', exp:'La famille de Béthanie aimée de Jésus.'}, en:{q:'Martha and Mary were the sisters of Lazarus.', ref:'John 11:1-2', exp:'The family of Bethany whom Jesus loved.'}},
+  {id:'fe6', a:true, fr:{q:'Anne, longtemps stérile, obtint Samuel par la prière.', ref:'1 Samuel 1:20', exp:'« je l’ai demandé au Seigneur ».'}, en:{q:'Hannah, long barren, obtained Samuel through prayer.', ref:'1 Samuel 1:20', exp:'“I asked the Lord for him.”'}},
+  {id:'fe7', a:true, fr:{q:'Rahab cacha les espions envoyés à Jéricho.', ref:'Josué 2:4', exp:'Elle les protège et sera épargnée à la prise de la ville.'}, en:{q:'Rahab hid the spies sent to Jericho.', ref:'Joshua 2:4', exp:'She shelters them and is spared when the city falls.'}},
+  {id:'fe8', a:false, fr:{q:'Marie, la mère de Jésus, était la sœur de Marthe et de Lazare.', ref:'Jean 11:1-2', exp:'Ce sont deux femmes différentes : Marie de Béthanie n’est pas la mère de Jésus.'}, en:{q:'Mary, the mother of Jesus, was the sister of Martha and Lazarus.', ref:'John 11:1-2', exp:'These are two different women: Mary of Bethany is not the mother of Jesus.'}},
+  {id:'fe9', a:true, fr:{q:'La reine de Saba vint éprouver la sagesse de Salomon.', ref:'1 Rois 10:1', exp:'Elle vient avec des énigmes et repart émerveillée.'}, en:{q:'The queen of Sheba came to test Solomon’s wisdom.', ref:'1 Kings 10:1', exp:'She comes with hard questions and leaves in wonder.'}}
+ ]},
+  {id:'noms', name:{fr:'Le sens des noms', en:'The Meaning of Names'}, qs:[
+  {id:'nm1', t:'qcm', fr:{name:'Moïse', mean:'tiré des eaux', ref:'Exode 2:10', exp:'« Je l’ai tiré des eaux », dit la fille du Pharaon.'}, en:{name:'Moses', mean:'drawn from the water', ref:'Exodus 2:10', exp:'“I drew him out of the water,” says Pharaoh’s daughter.'}},
+  {id:'nm2', t:'qcm', fr:{name:'Emmanuel', mean:'Dieu avec nous', ref:'Matthieu 1:23', exp:'« on lui donnera le nom d’Emmanuel : Dieu avec nous ».'}, en:{name:'Emmanuel', mean:'God with us', ref:'Matthew 1:23', exp:'“they shall call him Emmanuel: God with us.”'}},
+  {id:'nm3', t:'qcm', fr:{name:'Jésus', mean:'le Seigneur sauve', ref:'Matthieu 1:21', exp:'« c’est lui qui sauvera son peuple de ses péchés ».'}, en:{name:'Jesus', mean:'the Lord saves', ref:'Matthew 1:21', exp:'“he will save his people from their sins.”'}},
+  {id:'nm4', t:'qcm', fr:{name:'Israël', mean:'il a lutté avec Dieu', ref:'Genèse 32:29', exp:'« car tu as lutté avec Dieu et avec les hommes ».'}, en:{name:'Israel', mean:'he has striven with God', ref:'Genesis 32:29', exp:'“for you have striven with God and with men.”'}},
+  {id:'nm5', t:'qcm', fr:{name:'Pierre', mean:'le roc', ref:'Jean 1:42', exp:'« Tu seras appelé Céphas, c’est-à-dire Pierre ».'}, en:{name:'Peter', mean:'the rock', ref:'John 1:42', exp:'“You shall be called Cephas, that is, Peter.”'}},
+  {id:'nm6', t:'qcm', fr:{name:'Isaac', mean:'le rire', ref:'Genèse 21:6', exp:'Sara dit : « Dieu m’a donné de quoi rire ».'}, en:{name:'Isaac', mean:'laughter', ref:'Genesis 21:6', exp:'Sarah says: “God has given me cause to laugh.”'}},
+  {id:'nm7', t:'qcm', fr:{name:'Ève', mean:'mère des vivants', ref:'Genèse 3:20', exp:'« parce qu’elle a été la mère de tous les vivants ».'}, en:{name:'Eve', mean:'mother of the living', ref:'Genesis 3:20', exp:'“because she was the mother of all the living.”'}},
+  {id:'nm8', t:'qcm', fr:{name:'Samuel', mean:'demandé à Dieu', ref:'1 Samuel 1:20', exp:'« je l’ai demandé au Seigneur ».'}, en:{name:'Samuel', mean:'asked of God', ref:'1 Samuel 1:20', exp:'“I asked the Lord for him.”'}},
+  {id:'nm9', t:'qcm', fr:{name:'Élie', mean:'mon Dieu est le Seigneur', ref:'1 Rois 18:39', exp:'Au Carmel, le peuple s’écrie : « le Seigneur, c’est lui Dieu ».'}, en:{name:'Elijah', mean:'my God is the Lord', ref:'1 Kings 18:39', exp:'At Carmel the people cry: “the Lord, he is God.”'}},
+  {id:'nm10', t:'qcm', fr:{name:'Élisée', mean:'Dieu est salut', ref:'2 Rois 5:14', exp:'Par lui, Naaman est purifié de sa lèpre.'}, en:{name:'Elisha', mean:'God is salvation', ref:'2 Kings 5:14', exp:'Through him Naaman is cleansed of his leprosy.'}},
+  {id:'nm11', t:'qcm', fr:{name:'Satan', mean:'l’adversaire', ref:'Apocalypse 12:10', exp:'« l’accusateur de nos frères » ; le mot hébreu satan désigne l’adversaire.'}, en:{name:'Satan', mean:'the adversary', ref:'Revelation 12:10', exp:'“the accuser of our brothers”; the Hebrew word satan means the adversary.'}},
+  {id:'nm12', t:'qcm', fr:{name:'Michel', mean:'qui est comme Dieu ?', ref:'Apocalypse 12:7', exp:'L’archange qui combat le dragon.'}, en:{name:'Michael', mean:'who is like God?', ref:'Revelation 12:7', exp:'The archangel who fights the dragon.'}},
+  {id:'nm13', t:'qcm', fr:{name:'Gabriel', mean:'force de Dieu', ref:'Luc 1:26', exp:'L’ange envoyé annoncer à Marie.'}, en:{name:'Gabriel', mean:'strength of God', ref:'Luke 1:26', exp:'The angel sent to announce to Mary.'}},
+  {id:'nm14', t:'qcm', fr:{name:'Raphaël', mean:'Dieu guérit', ref:'Tobie 12:14', exp:'« J’ai été envoyé pour te guérir » : il rend la vue à Tobit.'}, en:{name:'Raphael', mean:'God heals', ref:'Tobit 12:14', exp:'“I was sent to heal you”: he restores Tobit’s sight.'}},
+  {id:'nm15', t:'qcm', fr:{name:'Jacob', mean:'il supplante', ref:'Genèse 27:36', exp:'« il m’a supplanté deux fois » ; à la naissance il tenait le talon d’Ésaü.'}, en:{name:'Jacob', mean:'he supplants', ref:'Genesis 27:36', exp:'“he has supplanted me twice”; at birth he held Esau’s heel.'}},
+  {id:'nm16', t:'qcm', fr:{name:'Noé', mean:'le repos', ref:'Genèse 5:29', exp:'« celui-ci nous consolera de notre travail ».'}, en:{name:'Noah', mean:'rest', ref:'Genesis 5:29', exp:'“this one shall bring us comfort from our labour.”'}},
+  {id:'nm17', t:'qcm', fr:{name:'Juda', mean:'loué', ref:'Genèse 29:35', exp:'« cette fois, je louerai le Seigneur ».'}, en:{name:'Judah', mean:'praised', ref:'Genesis 29:35', exp:'“this time I will praise the Lord.”'}},
+  {id:'nm18', t:'qcm', fr:{name:'Barnabé', mean:'fils de la consolation', ref:'Actes 4:36', exp:'Le texte traduit lui-même le surnom.'}, en:{name:'Barnabas', mean:'son of consolation', ref:'Acts 4:36', exp:'The text itself translates the surname.'}},
+  {id:'nm19', t:'qcm', fr:{name:'Adam', mean:'tiré du sol', ref:'Genèse 2:7', exp:'L’homme est façonné de la poussière du sol (adamah).'}, en:{name:'Adam', mean:'drawn from the ground', ref:'Genesis 2:7', exp:'Man is formed from the dust of the ground (adamah).'}},
+  {id:'nm20', t:'qcm', fr:{name:'Béthel', mean:'maison de Dieu', ref:'Genèse 28:19', exp:'Au réveil de son songe, Jacob nomme ainsi le lieu.'}, en:{name:'Bethel', mean:'house of God', ref:'Genesis 28:19', exp:'On waking from his dream, Jacob names the place so.'}},
+  {id:'nm21', t:'qcm', fr:{name:'Lévi', mean:'attaché, uni', ref:'Genèse 29:34', exp:'« cette fois mon mari s’attachera à moi ».'}, en:{name:'Levi', mean:'joined, attached', ref:'Genesis 29:34', exp:'“now my husband will be joined to me.”'}},
+  {id:'nm22', t:'qcm', fr:{name:'Jean', mean:'Dieu fait grâce', ref:'Luc 1:13', exp:'L’ange ordonne de l’appeler Jean ; le nom dit la grâce de Dieu.'}, en:{name:'John', mean:'God shows grace', ref:'Luke 1:13', exp:'The angel commands he be called John; the name speaks of God’s grace.'}},
+  {id:'nm23', t:'qcm', fr:{name:'Abraham', mean:'père d’une multitude', ref:'Genèse 17:5', exp:'« car je te fais père d’une multitude de nations ».'}, en:{name:'Abraham', mean:'father of a multitude', ref:'Genesis 17:5', exp:'“for I make you the father of a multitude of nations.”'}},
+  {id:'nm24', t:'qcm', fr:{name:'Daniel', mean:'Dieu est mon juge', ref:'Daniel 1:6', exp:'Le prophète exilé à Babylone porte ce nom.'}, en:{name:'Daniel', mean:'God is my judge', ref:'Daniel 1:6', exp:'The prophet exiled in Babylon bears this name.'}},
+  {id:'nm25', t:'qcm', fr:{name:'Nathanaël', mean:'don de Dieu', ref:'Jean 1:45', exp:'Disciple appelé par Philippe ; son nom dit le don de Dieu.'}, en:{name:'Nathanael', mean:'gift of God', ref:'John 1:45', exp:'A disciple called by Philip; his name means the gift of God.'}},
+  {id:'nm26', t:'qcm', fr:{name:'Thomas', mean:'le jumeau', ref:'Jean 11:16', exp:'« Thomas, appelé Didyme », c’est-à-dire le jumeau.'}, en:{name:'Thomas', mean:'the twin', ref:'John 11:16', exp:'“Thomas, called Didymus,” that is, the twin.'}},
+  {id:'nm27', t:'qcm', fr:{name:'Zacharie', mean:'le Seigneur se souvient', ref:'Luc 1:5', exp:'Le père de Jean-Baptiste porte ce nom.'}, en:{name:'Zechariah', mean:'the Lord remembers', ref:'Luke 1:5', exp:'The father of John the Baptist bears this name.'}},
+  {id:'nm28', t:'qcm', fr:{name:'Lazare', mean:'Dieu a secouru', ref:'Jean 11:1', exp:'L’ami de Jésus relevé du tombeau ; le nom dit le secours de Dieu.'}, en:{name:'Lazarus', mean:'God has helped', ref:'John 11:1', exp:'Jesus’ friend raised from the tomb; the name means God has helped.'}},
+  {id:'nm29', t:'qcm', fr:{name:'Béthléem', mean:'maison du pain', ref:'Luc 2:4', exp:'La ville où naît Jésus, le pain de vie.'}, en:{name:'Bethlehem', mean:'house of bread', ref:'Luke 2:4', exp:'The town where Jesus, the bread of life, is born.'}},
+  {id:'nm30', t:'qcm', fr:{name:'Seth', mean:'accordé, établi', ref:'Genèse 4:25', exp:'« Dieu m’a accordé une autre descendance ».'}, en:{name:'Seth', mean:'granted, appointed', ref:'Genesis 4:25', exp:'“God has granted me another offspring.”'}},
+  {id:'nm31', t:'qcm', fr:{name:'Benjamin', mean:'fils de la droite', ref:'Genèse 35:18', exp:'Rachel le nomme Ben-Oni ; son père le nomme Benjamin.'}, en:{name:'Benjamin', mean:'son of the right hand', ref:'Genesis 35:18', exp:'Rachel calls him Ben-Oni; his father names him Benjamin.'}},
+  {id:'nm32', t:'qcm', fr:{name:'Joseph', mean:'qu’il ajoute', ref:'Genèse 30:24', exp:'« Que le Seigneur m’ajoute un autre fils ».'}, en:{name:'Joseph', mean:'may he add', ref:'Genesis 30:24', exp:'“May the Lord add to me another son.”'}},
+  {id:'nm33', t:'qcm', fr:{name:'Siméon', mean:'Dieu a entendu', ref:'Genèse 29:33', exp:'« le Seigneur a entendu que j’étais mal-aimée ».'}, en:{name:'Simeon', mean:'God has heard', ref:'Genesis 29:33', exp:'“the Lord has heard that I was unloved.”'}}
+ ]}
+];
+
+// ════════ ÉTAT ════════
+const S={
+  lang:localStorage.getItem('lm_lang')||'fr',
+  uid:null, mode:0,
+  selCats:[], progress:{}, step:0, showAllCats:false,
+  open:{},
+  cur:null, lastId:null, answered:0, correct:0
+};
+
+// ════════ OUTILS ════════
+const $=id=>document.getElementById(id);
+const t=k=>(T[S.lang]||T.fr)[k]||k;
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=0|Math.random()*(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
+const trunc=(s,n)=>s.length>n?s.slice(0,n)+'…':s;
+const QCATS=QPRE;
+function allItems(){const out=[];QCATS.filter(c=>S.selCats.includes(c.id)).forEach(c=>c.qs.forEach(q=>out.push({...q,catId:c.id})));return out;}
+
+// ════════ ALGORITHME (Leitner, infini) ════════
+const IVLS=[0,4,8,16,32,64];
+const boxOf=id=>(S.progress[id]||{box:0}).box;
+const dueOf=id=>(S.progress[id]||{due:0}).due||0;
+function isDue(id){const p=S.progress[id];if(!p)return true;if(p.box===0)return true;return p.due<=S.step;}
+function levelOf(id){const b=boxOf(id);return b<=1?'r':b<=3?'a':'v';}
+function setLevel(id,lvl){const b=lvl==='r'?0:lvl==='a'?2:5;S.progress[id]={box:b,due:S.step+IVLS[b]};}
+function answer(id,ok){
+  const p=S.progress[id]||{box:0,due:0};
+  if(ok){ p.box=Math.min(5,p.box+1); p.due=S.step+IVLS[p.box]; }
+  else  { p.box=Math.max(0,p.box-2); p.due=S.step+2; }
+  S.progress[id]=p; S.step++;
+}
+function nextItem(){
+  const items=allItems(); if(!items.length)return null;
+  let pool=items.filter(i=>i.id!==S.lastId); if(!pool.length)pool=items;
+  let cand;
+  if(S.mode===1){ cand=pool; }
+  else { const due=pool.filter(i=>isDue(i.id)); cand=due.length?due:pool; }
+  cand.sort((a,b)=>{const ba=boxOf(a.id),bb=boxOf(b.id);if(ba!==bb)return ba-bb;return dueOf(a.id)-dueOf(b.id);});
+  const low=boxOf(cand[0].id);
+  const top=cand.filter(i=>boxOf(i.id)===low);
+  return top[0|Math.random()*top.length];
+}
+
+// ════════ FIRESTORE ════════
+const udoc=p=>db.doc('users/'+S.uid+'/'+p);
+async function loadUser(){
+  try{
+    const [prog,prefs]=await Promise.all([udoc('meta/quiz_progress').get(),udoc('meta/quiz_prefs').get()]);
+    if(prog.exists){S.progress=prog.data().items||{};S.step=prog.data().step||0;}else{S.progress={};S.step=0;}
+    if(prefs.exists){S.selCats=prefs.data().selCats||QCATS.map(c=>c.id);S.mode=prefs.data().mode||0;}
+    else{S.selCats=QCATS.map(c=>c.id);S.mode=0;}
+  }catch(e){console.error(e);}
+}
+function saveProgress(){udoc('meta/quiz_progress').set({items:S.progress,step:S.step});}
+function savePrefs(){udoc('meta/quiz_prefs').set({selCats:S.selCats,mode:S.mode});}
+
+// ════════ UI : CATÉGORIES & MÉMOIRE ════════
+function renderCats(){
+  const host=$('cat-list'); host.innerHTML='';
+  const CATLIM=6; const cats=QCATS;
+  (S.showAllCats?cats:cats.slice(0,CATLIM)).forEach(cat=>{
+    const sel=S.selCats.includes(cat.id), open=!!S.open[cat.id];
+    let r=0,a=0,v=0;
+    cat.qs.forEach(q=>{const l=levelOf(q.id);if(l==='r')r++;else if(l==='a')a++;else v++;});
+    const tot=cat.qs.length||1;
+    const dist='<i class="r" style="width:'+(r/tot*100)+'%"></i><i class="a" style="width:'+(a/tot*100)+'%"></i><i class="v" style="width:'+(v/tot*100)+'%"></i>'+(cat.qs.length?'':'<i class="e" style="width:100%"></i>');
+    let boxsum=0; cat.qs.forEach(q=>boxsum+=boxOf(q.id));
+    const pct=cat.qs.length?Math.round(boxsum/(5*cat.qs.length)*100):0;
+    const pctTxt=S.lang==='fr'?pct+'\u00a0%':pct+'%';
+    const div=document.createElement('div');
+    div.className='cat'+(sel?' sel':'')+(open?' open':'');
+    div.dataset.id=cat.id;
+    let body='<div class="cat-body">';
+    cat.qs.forEach(q=>{
+      const l=levelOf(q.id);
+      body+='<div class="vrow"><span class="vline"><span class="vtext qstmt">'+trunc(q.t==='qcm'?q[S.lang].name:q[S.lang].q,72)+'</span></span><span class="lvl">'
+        +'<span class="dot r'+(l==='r'?' act':'')+'" data-set="r" data-v="'+q.id+'"></span>'
+        +'<span class="dot a'+(l==='a'?' act':'')+'" data-set="a" data-v="'+q.id+'"></span>'
+        +'<span class="dot v'+(l==='v'?' act':'')+'" data-set="v" data-v="'+q.id+'"></span></span></div>';
+    });
+    body+='<div class="cat-custom-acts"><span class="mini-act" data-resetc="1">'+t('resetc')+'</span></div>';
+    body+='</div>';
+    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp">'+cat.name[S.lang]+'</span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-mark"><span class="dot r" data-all="r"></span><span class="dot a" data-all="a"></span><span class="dot v" data-all="v"></span></span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
+    host.appendChild(div);
+  });
+  const _all=cats.length&&cats.every(c=>S.selCats.includes(c.id)); $('sel-all').textContent=_all?t('deselect_all'):t('select_all');
+  const _more=$('cat-more'); if(cats.length>CATLIM){_more.style.display='';_more.textContent=S.showAllCats?t('show_less'):t('show_all')+' ('+cats.length+')';}else{_more.style.display='none';}
+  updateStart();
+}
+function updateStart(){$('start-btn').disabled=!(S.selCats.length&&allItems().length>=1);}
+function toggleSelectAll(){const all=QCATS.length&&QCATS.every(c=>S.selCats.includes(c.id));S.selCats=all?[]:QCATS.map(c=>c.id);savePrefs();renderCats();}
+
+// ════════ UI : LANGUE / VUES ════════
+function applyLang(){
+  const l=S.lang,tl=T[l];
+  document.documentElement.lang=l; document.title=tl.hdr+' · Lumen Veritatis';
+  $('tab-si').textContent=tl.tab_si; $('tab-su').textContent=tl.tab_su;
+  $('i-email').placeholder=tl.ph_email; $('i-pw').placeholder=tl.ph_pw; $('i-cf').placeholder=tl.ph_cf;
+  $('lbl-google').textContent=tl.google;
+  $('auth-or').textContent=l==='fr'?'ou':'or';
+  $('b-forgot').textContent=authMode==='forgot'?tl.back:tl.forgot;
+  $('b-submit').textContent=authMode==='si'?tl.b_si:authMode==='su'?tl.b_su:tl.b_reset;
+  const _fr=l==='fr';
+  $('nav-logo').href=_fr?'/':'/en/';
+  $('nav-home').textContent=_fr?'Accueil':'Home'; $('nav-home').href=_fr?'/':'/en/';
+  $('nav-lib').textContent=_fr?'Bibliothèque':'Library'; $('nav-lib').href=_fr?'/bibliotheque/':'/en/library/';
+  $('nav-mem').textContent=_fr?'Mémoriser':'Memorise';
+  $('nav-quiz').textContent='Quiz';
+  $('nav-about').textContent=_fr?'À propos':'About'; $('nav-about').href=_fr?'/a-propos/':'/en/about/';
+  $('foot-verse').innerHTML=_fr?FOOT_FR:FOOT_EN;
+  $('lang-btn').textContent=tl.lang; $('logout-btn').textContent=tl.logout;
+  $('lbl-cats').textContent=tl.cats; $('lbl-mode').textContent=tl.mode;
+  $('mode-0').textContent=tl.mode0; $('mode-1').textContent=tl.mode1;
+  $('start-btn').textContent=tl.start; $('reset-btn').textContent=tl.reset; $('finish-btn').textContent=tl.finish;
+  $('lbl-markglobal').textContent=tl.markglobal; $('sum-back').textContent=tl.backbtn;
+}
+function showView(v){
+  $('setup').style.display=v==='setup'?'block':'none';
+  $('study').style.display=v==='study'?'block':'none';
+  $('summary').style.display=v==='summary'?'block':'none';
+}
+function startSession(){
+  if(!S.selCats.length){alert(t('empty_sel'));return;}
+  if(allItems().length<1){alert(t('not_enough'));return;}
+  S.answered=0; S.correct=0; S.lastId=null;
+  showView('study'); nextQuestion();
+}
+function qcmOptions(item){
+  const cat=QCATS.find(c=>c.qs.some(x=>x.id===item.id));
+  const sibs=cat?cat.qs.filter(x=>x.id!==item.id&&x.t==='qcm'):[];
+  return shuffle([item,...shuffle(sibs.slice()).slice(0,3)]);
+}
+function commit(ok){ S.answered++; if(ok)S.correct++; answer(S.cur.item.id,ok); saveProgress(); }
+function nextQuestion(){
+  const item=nextItem(); if(!item){endSession();return;}
+  S.lastId=item.id;
+  if(item.t==='qcm'){
+    const cat=QCATS.find(c=>c.qs.some(x=>x.id===item.id));
+    const dir=(cat&&cat.dir)?cat.dir:(Math.random()<.5?'nm':'mn');
+    S.cur={item,type:'qcm',dir,cat,options:qcmOptions(item),done:false,pick:null};
+  } else {
+    S.cur={item,type:'tf',done:false,pick:null};
+  }
+  $('reveal').style.display='none';
+  renderQuestion();
+}
+function renderQuestion(){
+  const q=S.cur,l=S.lang;
+  $('study-stat').innerHTML='<b>'+S.answered+'</b> '+t('answered')+' · <b>'+S.correct+'</b> '+t('correct');
+  const pr=$('q-prompt'), opts=$('opts'); opts.innerHTML='';
+  if(q.type==='qcm'){
+    $('q-label').textContent=(q.cat&&q.cat.ql)?q.cat.ql[q.dir][l]:(q.dir==='nm'?t('q_name'):t('q_mean'));
+    pr.textContent=q.dir==='nm'?q.item[l].name:q.item[l].mean;
+    pr.className='q-prompt'+(q.dir==='nm'?' ref':'');
+    opts.className='opts';
+    q.options.forEach((opt,i)=>{
+      const b=document.createElement('button');
+      b.className='opt'+(q.dir==='mn'?' refopt':''); b.dataset.oid=opt.id;
+      b.innerHTML='<span class="num">'+(i+1)+'</span>'+(q.dir==='nm'?opt[l].mean:opt[l].name);
+      opts.appendChild(b);
+    });
+  } else {
+    $('q-label').textContent=t('tf_label');
+    pr.textContent=q.item[l].q; pr.className='q-prompt';
+    opts.className='opts two';
+    [['true',t('tf_true')],['false',t('tf_false')]].forEach(function(o){
+      const b=document.createElement('button'); b.className='opt tf'; b.dataset.tf=o[0]; b.textContent=o[1];
+      opts.appendChild(b);
+    });
+  }
+  const qb=$('qbox'); qb.style.animation='none'; void qb.offsetHeight; qb.style.animation='rise .5s cubic-bezier(.2,.7,.3,1) both';
+  if(q.done) paintAnswered();
+}
+function paintAnswered(){
+  const q=S.cur,l=S.lang,item=q.item;
+  const btns=$('opts').querySelectorAll('.opt'); btns.forEach(b=>b.disabled=true);
+  let ok;
+  if(q.type==='qcm'){
+    ok=q.pick===item.id;
+    btns.forEach(b=>{ if(b.dataset.oid===item.id)b.classList.add(ok?'ok':'reveal'); else if(b.dataset.oid===q.pick&&!ok)b.classList.add('bad'); });
+    $('rv-verdict').innerHTML=(ok?t('rv_right'):t('rv_wrong'));
+  } else {
+    ok=q.pick===item.a;
+    btns.forEach(b=>{ const v=b.dataset.tf==='true'; if(v===item.a)b.classList.add(ok?'ok':'reveal'); else if(v===q.pick&&!ok)b.classList.add('bad'); });
+    $('rv-verdict').innerHTML=(ok?t('rv_right'):t('rv_wrong'))+' · <b>'+(item.a?t('tf_true'):t('tf_false'))+'</b>';
+  }
+  $('rv-ref').textContent=item[l].ref;
+  $('rv-exp').textContent=item[l].exp;
+  $('cont-btn').textContent=t('cont');
+  $('reveal').style.display='block'; $('cont-btn').focus();
+}
+function pick(val){
+  if(!S.cur||S.cur.done)return; S.cur.done=true; S.cur.pick=val;
+  commit(val===S.cur.item.a); paintAnswered();
+}
+function pickQcm(oid){
+  if(!S.cur||S.cur.done)return; S.cur.done=true; S.cur.pick=oid;
+  commit(oid===S.cur.item.id); paintAnswered();
+}
+function endSession(){
+  showView('summary');
+  $('sum-num').textContent=S.answered?Math.round(S.correct/S.answered*100)+'%':'—';
+  $('sum-sub').textContent=t('done');
+  let vCount=0; allItems().forEach(i=>{if(levelOf(i.id)==='v')vCount++;});
+  $('sum-detail').textContent=S.correct+' / '+S.answered+' '+t('correct')+'  ·  '+vCount+' '+t('acquired');
+  renderCats();
+}
+
+// ════════ AUTH UI ════════
+let authMode='si';
+function setAuth(m){
+  authMode=m; clrMsg();
+  $('tab-si').classList.toggle('on',m==='si'); $('tab-su').classList.toggle('on',m==='su');
+  $('auth-tabs').style.display=m==='forgot'?'none':'flex';
+  $('row-pw').style.display=m==='forgot'?'none':'block';
+  $('row-cf').style.display=m==='su'?'block':'none';
+  $('auth-or').style.display=m==='forgot'?'none':'flex';
+  $('b-google').style.display=m==='forgot'?'none':'flex';
+  applyLang();
+}
+function showMsg(txt,kind){const m=$('auth-msg');m.textContent=txt;m.className='auth-msg '+kind;}
+function clrMsg(){const m=$('auth-msg');m.className='auth-msg';m.textContent='';}
+
+// ════════ ÉVÉNEMENTS ════════
+document.addEventListener('DOMContentLoaded',()=>{
+  $('tab-si').onclick=()=>setAuth('si');
+  $('tab-su').onclick=()=>setAuth('su');
+  $('b-forgot').onclick=()=>setAuth(authMode==='forgot'?'si':'forgot');
+  $('b-submit').onclick=async()=>{
+    const em=$('i-email').value.trim(),pw=$('i-pw').value,cf=$('i-cf').value; clrMsg();
+    try{
+      if(authMode==='forgot'){await auth.sendPasswordResetEmail(em);showMsg(t('reset_sent'),'ok');}
+      else if(authMode==='su'){if(pw!==cf){showMsg(t('pw_mismatch'),'err');return;}await auth.createUserWithEmailAndPassword(em,pw);}
+      else{await auth.signInWithEmailAndPassword(em,pw);}
+    }catch(e){showMsg(e.message,'err');}
+  };
+  ['i-email','i-pw','i-cf'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')$('b-submit').click();}));
+  $('b-google').onclick=async()=>{try{await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());}catch(e){showMsg(e.message,'err');}};
+  $('logout-btn').onclick=()=>auth.signOut();
+  $('lang-btn').onclick=()=>{S.lang=S.lang==='fr'?'en':'fr';localStorage.setItem('lm_lang',S.lang);applyLang();renderCats();if($('study').style.display==='block'&&S.cur)renderQuestion();};
+  $('modes').onclick=e=>{const b=e.target.closest('.mode');if(!b)return;S.mode=+b.dataset.m;document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',x===b));savePrefs();};
+  $('start-btn').onclick=startSession;
+  $('finish-btn').onclick=endSession;
+  $('sum-back').onclick=()=>showView('setup');
+  $('cont-btn').onclick=nextQuestion;
+  $('opts').addEventListener('click',e=>{
+    const b=e.target.closest('.opt'); if(!b||!S.cur||S.cur.done)return;
+    if(S.cur.type==='qcm')pickQcm(b.dataset.oid); else pick(b.dataset.tf==='true');
+  });
+  $('reset-btn').onclick=()=>{if(confirm(t('reset_q'))){S.progress={};S.step=0;saveProgress();renderCats();}};
+  $('sel-all').onclick=toggleSelectAll;
+  $('cat-more').onclick=()=>{S.showAllCats=!S.showAllCats;renderCats();};
+  $('foot-copy').textContent='© '+new Date().getFullYear()+' Lumen';
+  // marquage global : toutes les catégories cochées
+  document.querySelector('.markglobal').addEventListener('click',e=>{
+    const d=e.target.closest('[data-gall]'); if(!d)return;
+    const sel=QCATS.filter(c=>S.selCats.includes(c.id));
+    if(!sel.length)return;
+    if(!confirm(t('markglobal_q').replace('%n%',sel.length)))return;
+    sel.forEach(c=>c.qs.forEach(q=>setLevel(q.id,d.dataset.gall)));
+    saveProgress(); renderCats();
+  });
+  // clavier
+  document.addEventListener('keydown',e=>{
+    if($('study').style.display!=='block'||!S.cur)return;
+    if(!S.cur.done){
+      const btns=$('opts').querySelectorAll('.opt');
+      if(S.cur.type==='qcm'){const n=parseInt(e.key); if(n>=1&&n<=btns.length)btns[n-1].click();}
+      else{const k=e.key.toLowerCase();
+        if(k==='v'||k==='t'||k==='1'||e.key==='ArrowLeft'){const b=$('opts').querySelector('[data-tf="true"]'); if(b)b.click();}
+        else if(k==='f'||k==='2'||e.key==='ArrowRight'){const b=$('opts').querySelector('[data-tf="false"]'); if(b)b.click();}
+      }
+    } else if(e.key==='Enter'||e.key===' '){e.preventDefault();nextQuestion();}
+  });
+  // délégation catégories
+  $('cat-list').addEventListener('click',e=>{
+    const catEl=e.target.closest('.cat'); if(!catEl)return; const id=catEl.dataset.id;
+    const setDot=e.target.closest('[data-set]');
+    const allDot=e.target.closest('[data-all]');
+    const resetc=e.target.closest('[data-resetc]');
+    const act=e.target.closest('[data-act]');
+    if(setDot){setLevel(setDot.dataset.v,setDot.dataset.set);saveProgress();renderCats();return;}
+    if(allDot){const c=QCATS.find(x=>x.id===id);c.qs.forEach(q=>setLevel(q.id,allDot.dataset.all));saveProgress();renderCats();return;}
+    if(resetc){if(confirm(t('resetc_q'))){const c=QCATS.find(x=>x.id===id);c.qs.forEach(q=>{delete S.progress[q.id];});saveProgress();renderCats();}return;}
+    if(act&&act.dataset.act==='sel'){S.selCats.includes(id)?S.selCats=S.selCats.filter(x=>x!==id):S.selCats.push(id);savePrefs();renderCats();return;}
+    if(act){S.open[id]=!S.open[id];catEl.classList.toggle('open');return;}
+  });
+});
+
+// ════════ OBSERVATEUR AUTH ════════
+auth.onAuthStateChanged(async u=>{
+  if(u){
+    S.uid=u.uid; $('user-mail').textContent=u.email||u.displayName||'';
+    $('auth-screen').style.display='none'; $('app').classList.add('on');
+    await loadUser(); applyLang(); renderCats();
+    document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',+x.dataset.m===S.mode));
+    showView('setup');
+  }else{
+    S.uid=null; $('app').classList.remove('on'); $('auth-screen').style.display='flex';
+    applyLang(); setAuth('si');
+  }
+});
+</script>
+</body>
+</html>

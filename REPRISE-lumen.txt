@@ -1,6 +1,6 @@
 ════════════════════════════════════════════════════════════════════
 FICHIER DE REPRISE — LUMEN VERITATIS
-À coller en début de nouveau chat, puis téléverser les 6 fichiers du projet.
+À coller en début de nouveau chat, puis téléverser les 7 fichiers du projet.
 Date : 7 juin 2026
 ════════════════════════════════════════════════════════════════════
 
@@ -9,12 +9,12 @@ Date : 7 juin 2026
 ────────────────────────────────────────────────────────────────────
 Le nouveau chat n'aura AUCUN fichier en mémoire. Au début du nouveau chat :
 1. Colle ce fichier entier.
-2. Téléverse les 6 fichiers du projet : build-bi.js, index__48_.html,
-   data-en.js, memoriser.html, netlify.toml, REPRISE-lumen.txt
+2. Téléverse les 7 fichiers du projet : build-bi.js, index__48_.html,
+   data-en.js, memoriser.html, quiz.html, netlify.toml, REPRISE-lumen.txt
    (ceux de la dernière livraison).
 Sans ces fichiers, l'assistant ne peut rien modifier.
 
-INSTRUCTION PERMANENTE : à chaque livraison, redonner TOUJOURS les 6 fichiers
+INSTRUCTION PERMANENTE : à chaque livraison, redonner TOUJOURS les 7 fichiers
 en même temps (même ceux non modifiés), CE FICHIER DE REPRISE COMPRIS, pour ne
 jamais oublier l'existence ou la mise à jour d'un fichier. L'assistant tient ce
 fichier de reprise continuellement à jour et le relivre à chaque fois.
@@ -33,7 +33,7 @@ directement la lecture qu'il juge la plus juste (patristique, Tradition, cohére
 interne), sans énumérer d'autres interprétations.
 
 ────────────────────────────────────────────────────────────────────
-2. ARCHITECTURE DES FICHIERS (5 fichiers de site + ce fichier de reprise)
+2. ARCHITECTURE DES FICHIERS (6 fichiers de site + ce fichier de reprise)
 ────────────────────────────────────────────────────────────────────
 Le site est STATIQUE, hébergé sur Netlify, généré par un script Node.
 
@@ -42,7 +42,8 @@ Le site est STATIQUE, hébergé sur Netlify, généré par un script Node.
   le login du site, et produit le site multipage dans le dossier « site/ ».
   Commande de build : node build-bi.js
   Sortie attendue : « Paires de pages : 63 → 126 pages (FR + EN) … »
-  Il copie aussi memoriser.html dans site/ à la fin du build.
+  Il copie aussi memoriser.html ET quiz.html dans site/ à la fin du build.
+  La nav du site (header) contient les liens Mémoriser et Quiz.
 
 • index__48_.html — SOURCE FRANÇAISE (le SPA). Fait AUTORITÉ pour tout le
   contenu FR : articles, pied de page, page « à propos ». build-bi.js lit ses
@@ -54,6 +55,42 @@ Le site est STATIQUE, hébergé sur Netlify, généré par un script Node.
 • memoriser.html — APP DE MÉMORISATION des versets (page autonome, bilingue),
   servie à lumenveritatis.net/memoriser.html. (Fichier ~1000 lignes ; rester raisonnable pour la lecture en un bloc :
 les données PRE sont la principale source de croissance, rester sobre à l'ajout.)
+
+• quiz.html — APP DE QUIZ VRAI/FAUX (page autonome, bilingue), servie à
+  lumenveritatis.net/quiz.html. MÊME socle que memoriser.html : même style (extrait
+  du <style> de memoriser au build), même connexion Firebase, même nav + pied de page,
+  même moteur de révision espacée (Leitner, IVLS, boxOf/answer/nextItem, niveaux r/a/v).
+  DEUX FORMATS par question (la forme suit la question) :
+   - QCM (choix multiple) : prompt + plusieurs propositions, dont une correcte. Les
+     distractrices sont de VRAIES réponses tirées des AUTRES éléments de la MÊME catégorie,
+     mélangées au hasard (mécanisme identique à Mémoriser). Réservé aux catégories
+     homogènes (toutes les réponses de même nature). Item : t:'qcm', fr/en:{name,mean,ref,exp} ;
+     direction tirée au sort (nom→sens / sens→nom), sauf si la catégorie force une direction
+     via cat.dir. Une catégorie peut porter ses propres intitulés de question via cat.ql
+     ={nm:{fr,en},mn:{fr,en}} (sinon repli sur q_name/q_mean) : c'est ainsi que « Qui a dit
+     cela ? » affiche « Qui prononce cette parole ? ». Distractrices = champ affiché des items
+     frères de la catégorie (valeurs distinctes requises dans une catégorie pour éviter les doublons).
+   - Vrai/faux : pour les catégories hétérogènes (récits, événements). Item : a:true|false,
+     fr/en:{q,ref,exp}.
+  RÈGLE ABSOLUE : AUCUNE question piège, nulle part. On n'invente jamais une fausseté pour
+  tromper. En QCM les distractrices sont des faits vrais d'autres éléments ; en vrai/faux,
+  une affirmation « fausse » ne sert que si elle corrige une confusion réelle et courante
+  (ex. Pilate et non Hérode, Bethléem et non Nazareth), jamais un faux fabriqué. But : apprendre.
+  Après réponse : correction + référence + explication, puis « Continuer ». 18 catégories, 175
+  questions (dont 48 QCM) : 12 suivant l'histoire du salut (création, patriarches, Exode,
+  conquête/Juges, royauté, prophètes, exil, nativité, ministère, Passion, Église, lettres/
+  Apocalypse) ; quatre catégories thématiques en vrai/faux (miracles de Jésus 10, paraboles 9,
+  les douze apôtres 9, femmes de la Bible 9) ; et deux catégories transversales en QCM :
+  « Qui a dit cela ? » (15 paroles → leur auteur, dir 'mn') et « Le sens des noms » (33 noms,
+  toutes significations distinctes). Catégories à enrichir librement au fil du temps.
+  PÉRIMÈTRE v1 : DIMENSION BIBLIQUE SEULE (faits, événements, récits vérifiables par
+  l'Écriture) ; la théologie est volontairement écartée tant que le site n'est pas
+  assez solide pour fonder des questions doctrinales. Pas de catégories/questions
+  personnelles, pas de corbeille, pas de modale d'édition (différés). Firestore propre,
+  sans collision avec Mémoriser : users/{uid}/meta/quiz_progress {items,step} et
+  meta/quiz_prefs {selCats,mode}. Données : QPRE=[{id,name:{fr,en},qs:[{id,a,
+  fr:{q,ref,exp}, en:{q,ref,exp}}]}] ; ids de questions uniques. Modes : « Réviser »
+  (échéances) et « Tout revoir ». Typographie française (insécables) sur les explications FR.
 
 • netlify.toml — config de déploiement (voir §4).
 
@@ -68,6 +105,12 @@ Toujours vérifier la cohérence FR (build-bi.js) ↔ FR (index__48_.html) ↔ E
 ────────────────────────────────────────────────────────────────────
 3. CONVENTIONS DE CONTENU & STYLE (éditoriales)
 ────────────────────────────────────────────────────────────────────
+• Notifications (« Nouveautés », la cloche du menu) : elles annoncent TOUT ce qui
+  change sur le site, pas seulement les articles, mais aussi les applications, les
+  fonctionnalités et les corrections notables (ex. Mémoriser, Quiz). Source : NOUVEAUTES
+  dans index__48_.html (FR) et NOUVEAUTES_EN dans data-en.js (EN). Ajouter les nouveautés
+  en tête du groupe de date courant, dans les deux langues ; la cloche signale alors
+  automatiquement le changement aux visiteurs.
 • Apostrophes : DROITES dans index__48_.html ; COURBES (\u2019) dans build-bi.js
   et memoriser.html (chaînes JS).
 • Références bibliques : forme standard, modèle « Genèse 44:2-3 ». Verset en
@@ -131,9 +174,24 @@ de Mémoriser continuellement à jour, en se fondant sur le corpus réel des art
 • Les versets de Mémoriser ne se limitent PAS à ceux cités dans l'article : un
   article ne peut pas tout énumérer. Compléter avec les versets que le sujet appelle
   (attributs, institution, figures), en restant fidèle à la doctrine.
-• RÈGLE « VERSET PAS COUPÉ » : dans Mémoriser, un verset stocké est une unité
-  scripturaire complète et cohérente, jamais un fragment tronqué en milieu de phrase.
-  (L'aperçu de la liste peut être abrégé visuellement, mais le texte mémorisé reste entier.)
+• PÉRIMÈTRE : Mémoriser ne porte que sur des sujets DÉJÀ appris (= traités sur le site) ;
+  jamais un verset sur un sujet non encore appris. Le repère de ce qui est appris est
+  l'existence d'un article sur le sujet. Mémoriser suit donc les SUJETS, non la liste
+  des articles un à un.
+• ON NE DÉSAPPREND PAS : un sujet appris reste acquis. La disparition d'un article par
+  fusion, déplacement ou réorganisation NE retire PAS ses versets, le sujet demeurant
+  connu. Seul cas distinct, à surveiller : un article retiré parce que jugé INEXACT sur
+  le sujet ; le traitement étant alors fautif, ses versets sont à réexaminer.
+• Tous les versets d'une catégorie n'ont pas à coller étroitement au sujet de l'article :
+  un sujet en ouvre légitimement d'autres, voisins.
+• RÈGLE « VERSET PAS COUPÉ » : dans Mémoriser, une entrée est une unité scripturaire
+  complète et cohérente, jamais un fragment tronqué. Cette unité peut être UN verset ou
+  PLUSIEURS versets qui s'enchaînent ; dans ce cas la référence donne l'étendue
+  (ex. Jean 5:28-29) et le texte couvre tout le passage. (L'aperçu de liste peut être
+  abrégé visuellement ; le texte mémorisé reste entier.)
+• RÉTROACTIVITÉ : tout principe, règle ou correction établi s'applique à TOUT l'existant
+  (site + Mémoriser), pas seulement aux ajouts futurs. Auditer et corriger l'existant
+  dans la foulée, ne pas se contenter de l'énoncer pour la suite.
 • Appliquer ce mandat à chaque session : auditer, puis ajuster site + Mémoriser.
 
 ────────────────────────────────────────────────────────────────────
@@ -247,12 +305,13 @@ Fonctionnalités :
 • Boutons globaux du bas : « Réinitialiser toute la mémoire » et « Restaurer les
   catégories de base » (efface toutes les surcharges + purge la corbeille d'origine).
 
-Données de base (PRE) — 12 catégories, ~7 à 11 versets chacune, reliées aux
+Données de base (PRE) — 19 catégories, ~6 à 11 versets chacune, reliées aux
 articles du site (cf. §3 ter), versets complets (non coupés), non limitées aux
-versets cités dans l'article. 100 versets, identifiants tous uniques.
-Ordre théologique : nature-dieu (11) · trinite (7) · incarnation (7) · croix-resurrection (8)
-· marie (9) · salut (9) · foi « Foi et espérance » (9) · charite (8) · eglise (8)
-· bapteme (7) · eucharistie (9) · fins-dernieres (8).
+versets cités dans l'article. 154 versets, identifiants tous uniques.
+Ordre théologique : nature-dieu (11) · trinite (7) · anges (8) · peche (8) · incarnation (7)
+· croix-resurrection (8) · marie (9) · grace (8) · predestination (6) · salut (9)
+· foi « Foi et espérance » (9) · charite (8) · eglise (8) · bapteme (7) · confession (7)
+· eucharistie (9) · sacrements (9) · communion-saints (8) · fins-dernieres (8).
 Tenir cette liste à jour à chaque ajout/refonte de catégorie.
 
 ────────────────────────────────────────────────────────────────────
@@ -272,6 +331,16 @@ L'état de connexion est partagé avec memoriser.html (même projet + domaine Fi
 • Mémoriser — CORBEILLE (base/perso) + RESTAURER par catégorie de base ; délai
   d'erreur porté à 4 s ; POURCENTAGE de progression par catégorie ; bouton
   « Tout sélectionner / désélectionner » ; modèle Firestore meta/trash ajouté.
+• Quiz fortement enrichi : 13 → 18 catégories, 111 → 175 questions (48 QCM). Nouvelles
+  catégories : « Qui a dit cela ? » (QCM), miracles, paraboles, douze apôtres, femmes de la
+  Bible ; « Le sens des noms » porté à 33. Moteur QCM doté de libellés par catégorie (cat.ql)
+  et de direction forcée (cat.dir).
+• Notifications : Mémoriser et le Quiz ajoutés au journal des Nouveautés (FR + EN) ;
+  principe posé, les notifications couvrent tout le site, pas seulement les articles.
+• Mémoriser — audit rétroactif « verset pas coupé » : Marc 16:16 complété (seconde
+  proposition) ; Jean 5:28 étendu à Jean 5:28-29 (la phrase se prolonge).
+• Mémoriser — 1 Timothée 3:15 : « soutien » → « appui » (FR) et « foundation » → « support »
+  (EN), pour s'aligner sur l'article du site qui dit déjà « colonne et appui de la vérité ».
 • Mémoriser — marquage sécurisé : pastilles « tout marquer » déplacées dans le titre de
   catégorie (visibles seulement dépliée) ; barre globale « catégories cochées » avec
   confirmation + réinitialisation en lot des catégories de base ; bouton « Réinitialiser
@@ -280,6 +349,15 @@ L'état de connexion est partagé avec memoriser.html (même projet + domaine Fi
 • Mémoriser — en-tête et pied alignés sur le site (nav Accueil/Bibliothèque/Mémoriser/
   À propos + verset de pied bilingue) ; catégories réordonnées (ordre théologique) ;
   bouton « Afficher tout » (6 catégories par défaut).
+• Mémoriser — NOUVELLE EXTENSION (sujets désormais couverts par des articles) : 7 catégories
+  ajoutées, +54 versets → 19 catégories, 154 versets. La grâce, le péché (avec le péché originel),
+  les anges, la confession, la communion des saints, la prédestination (avec 1 Timothée 2:4, Dieu
+  veut le salut de tous, pour prévenir toute lecture déterministe), les sacrements (mariage,
+  confirmation, onction des malades, ordre). Numérotation propre à chaque langue (ex. Psaume 51:7
+  FR / Psalm 51:5 EN, 2 Maccabées et Tobie inclus). « Le pape » écarté (Matthieu 16:18-19 déjà
+  mémorisés sous l'Église) ; « le canon » écarté (peu adapté au par-cœur). Les 19 catégories
+  réordonnées dans l'ordre théologique (Dieu, création et chute, Christ, grâce et salut, Marie,
+  Église et sacrements, communion des saints, fins dernières).
 • Site — point de notification sur l'icône compte retiré (span + règle CSS morte).
 • Mémoriser — EXTENSION : 7 catégories ajoutées, reliées au corpus (Trinité,
   Incarnation, Croix et Résurrection, Église, baptême, charité, fins dernières) ;
@@ -303,7 +381,7 @@ EN LIGNE, téléverser les fichiers sur GitHub et laisser Netlify reconstruire.
 ────────────────────────────────────────────────────────────────────
 9. EN ATTENTE / PROCHAINES ÉTAPES
 ────────────────────────────────────────────────────────────────────
-• Téléverser les 6 fichiers sur GitHub → Netlify reconstruit.
+• Téléverser les 7 fichiers sur GitHub → Netlify reconstruit.
 • Appliquer le mandat §3 ter à chaque session : audit + mise à jour du classement
   du site (domaines/sections/sous-sections) et de Mémoriser (catégories/versets),
   d'après le corpus d'articles.
