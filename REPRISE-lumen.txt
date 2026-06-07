@@ -123,6 +123,9 @@ retiré du projet s'il reste dans le dépôt, puis laisser Netlify reconstruire.
   (logo Lumen, menu, burger mobile), avec langue, cloche « Nouveautés »
   et bouton de compte en forme de bonhomme pour la déconnexion, intégrés au menu
   sur mobile comme sur PC.
+• Correction critique : le moteur de notifications de Mémoriser est maintenant défini
+  dans la page autonome (initNews/renderNews), ce qui évite le blocage JavaScript qui
+  empêchait l'affichage des catégories.
 • L'affichage mobile des lignes de versets dans Mémoriser a été corrigé : les références
   ET le texte du verset sont visibles, les pastilles de niveau et la suppression restent
   alignées, et le marquage d'une catégorie entière reste accessible sur mobile.
