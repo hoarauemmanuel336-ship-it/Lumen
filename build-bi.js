@@ -68,6 +68,42 @@ for (const a of ARTICLES) {
   }
 }
 
+// Structure des thèmes éditable depuis content/themes.json (noms FR/EN, catégories, ordre des articles)
+if (fs.existsSync('content/themes.json')) {
+  const tj = JSON.parse(fs.readFileSync('content/themes.json', 'utf8')).themes;
+  if (Array.isArray(tj)) {
+    const refaits = tj.map(t => ({
+      id: t.id, nom: t.nom_fr, desc: t.desc_fr,
+      categories: (t.categories || []).map(c => ({
+        id: c.id, nom: c.nom_fr,
+        arts: (c.arts || []).map(x => typeof x === 'string' ? x : (x && x.slug) || '').filter(Boolean)
+      }))
+    }));
+    THEMES.length = 0; THEMES.push(...refaits);
+    for (const k of Object.keys(THEMES_EN)) delete THEMES_EN[k];
+    for (const t of tj) {
+      THEMES_EN[t.id] = {
+        nom: t.nom_en, desc: t.desc_en,
+        cats: Object.fromEntries((t.categories || []).map(c => [c.id, c.nom_en]))
+      };
+    }
+    console.log('Thèmes lus depuis content/themes.json :', THEMES.length);
+  }
+}
+
+// Apparence éditable : couleur d'accent (--or) depuis content/settings.json
+let APPEARANCE_CSS = '';
+if (fs.existsSync('content/settings.json')) {
+  try {
+    const st = JSON.parse(fs.readFileSync('content/settings.json', 'utf8'));
+    const a = String(st.accent || '').trim();
+    if (/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(a) && a.toLowerCase() !== '#efe6cf') {
+      APPEARANCE_CSS = `:root{--or:${a}}`;
+      console.log('Apparence : couleur d\'accent personnalisée', a);
+    }
+  } catch (e) { console.warn('settings.json illisible, accent par défaut'); }
+}
+
 /* ---- interface, par langue ---- */
 const UI = {
   fr: {
@@ -463,7 +499,7 @@ ${hreflang}
 <meta property="og:url" content="${url}">
 ${FONTS}
 ${FIREBASE_HEAD}
-<style>${css}${EXTRA_CSS}</style>
+<style>${css}${EXTRA_CSS}${APPEARANCE_CSS}</style>
 </head>
 <body>
 ${header(lang, type, base, otherRel, ctx)}
@@ -758,7 +794,30 @@ ecrire('en/recherche-en.js', 'window.LUMEN_INDEX=' + JSON.stringify(idxEN) + ';'
 
 // copie des pages autonomes (hors pipeline bilingue)
 if (fs.existsSync('memoriser.html')) {
-  fs.copyFileSync('memoriser.html', `${OUT}/memoriser.html`);
+  let mh = fs.readFileSync('memoriser.html', 'utf8');
+  if (fs.existsSync('content/memoriser.json')) {
+    const cats = JSON.parse(fs.readFileSync('content/memoriser.json', 'utf8')).categories || [];
+    const slug = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    const vusC = new Set();
+    for (const c of cats) {
+      if (!c.id) { let b = slug(c.name && c.name.fr) || 'cat', id = b, k = 2; while (vusC.has(id)) id = b + '-' + (k++); c.id = id; }
+      vusC.add(c.id);
+      const vusV = new Set();
+      for (const v of (c.verses || [])) {
+        if (!v.id) { let b = slug(v.fr && v.fr.ref) || 'v', id = b, k = 2; while (vusV.has(id)) id = b + '-' + (k++); v.id = id; }
+        vusV.add(v.id);
+      }
+    }
+    const reMarq = /\/\*PRE_START\*\/[\s\S]*?\/\*PRE_END\*\//;
+    if (reMarq.test(mh)) {
+      mh = mh.replace(reMarq, '/*PRE_START*/const PRE=' + JSON.stringify(cats) + ';/*PRE_END*/');
+      console.log('Mémoriser : versets de base injectés (' + cats.length + ' catégories)');
+    }
+  }
+  if (APPEARANCE_CSS && mh.indexOf('</head>') >= 0) {
+    mh = mh.replace('</head>', '<style>' + APPEARANCE_CSS + '</style></head>');
+  }
+  fs.writeFileSync(`${OUT}/memoriser.html`, mh);
   console.log('Copié : memoriser.html');
 }
 
