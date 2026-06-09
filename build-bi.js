@@ -33,7 +33,7 @@ if (fs.existsSync('content/nouveautes.json')) {
 if (fs.existsSync('content/articles')) {
   const parId = Object.create(null);
   for (const a of ARTICLES) parId[a.id] = a;
-  let n = 0;
+  let n = 0, crees = 0;
   for (const f of fs.readdirSync('content/articles').filter(f => f.endsWith('.json'))) {
     const d = JSON.parse(fs.readFileSync('content/articles/' + f, 'utf8'));
     const slug = d.slug || f.replace(/\.json$/, '');
@@ -48,10 +48,20 @@ if (fs.existsSync('content/articles')) {
       if (d.titre_en != null) e.titre = d.titre_en;
       if (d.resume_en != null) e.resume = d.resume_en;
       if (d.contenu_en != null) e.contenu = d.contenu_en;
+    } else if (d.titre_fr != null && d.contenu_fr != null) {
+      // Article nouveau : créé entièrement depuis content/articles/
+      const neuf = { id: slug, titre: d.titre_fr, resume: d.resume_fr || '', contenu: d.contenu_fr, theme: d.theme || 'doctrine', date: d.date || '' };
+      ARTICLES.push(neuf); parId[slug] = neuf;
+      ARTICLES_EN[slug] = {
+        titre: d.titre_en != null ? d.titre_en : d.titre_fr,
+        resume: d.resume_en != null ? d.resume_en : (d.resume_fr || ''),
+        contenu: d.contenu_en != null ? d.contenu_en : d.contenu_fr
+      };
+      crees++;
     }
     n++;
   }
-  console.log('Articles lus depuis content/articles/ :', n);
+  console.log('Articles lus depuis content/articles/ :', n, crees ? ('(dont ' + crees + ' créé(s))') : '');
 }
 
 // Filet de sécurité : tout article français doit avoir une entrée anglaise.
@@ -220,7 +230,7 @@ function buildIndex(lang) {
     id: t.id,
     nom: themeNom(lang, t.id),
     desc: lang === 'fr' ? (t.desc || '') : (((THEMES_EN[t.id] || {}).desc) || t.desc || ''),
-    cats: (t.categories || []).map(c => ({ id: c.id, nom: lang === 'fr' ? c.nom : ((((THEMES_EN[t.id] || {}).cats) || {})[c.id] || c.nom) }))
+    cats: (t.categories || []).map(c => ({ id: c.id, nom: lang === 'fr' ? c.nom : ((((THEMES_EN[t.id] || {}).cats) || {})[c.id] || c.nom), arts: c.arts || [] }))
   }));
   const u = UI[lang] || {};
   const acc = {};
