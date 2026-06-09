@@ -44,15 +44,28 @@ if (fs.existsSync('content/articles')) {
       if (d.contenu_fr != null) a.contenu = d.contenu_fr;
       if (d.theme) a.theme = d.theme;
       if (d.date) a.date = d.date;
-    }
-    if (ARTICLES_EN[slug]) {
-      if (d.titre_en != null) ARTICLES_EN[slug].titre = d.titre_en;
-      if (d.resume_en != null) ARTICLES_EN[slug].resume = d.resume_en;
-      if (d.contenu_en != null) ARTICLES_EN[slug].contenu = d.contenu_en;
+      const e = ARTICLES_EN[slug] || (ARTICLES_EN[slug] = {});
+      if (d.titre_en != null) e.titre = d.titre_en;
+      if (d.resume_en != null) e.resume = d.resume_en;
+      if (d.contenu_en != null) e.contenu = d.contenu_en;
     }
     n++;
   }
   console.log('Articles lus depuis content/articles/ :', n);
+}
+
+// Filet de sécurité : tout article français doit avoir une entrée anglaise.
+// Si une traduction manque, on retombe sur le texte français plutôt que de planter le build.
+for (const a of ARTICLES) {
+  if (!ARTICLES_EN[a.id]) {
+    ARTICLES_EN[a.id] = { titre: a.titre, resume: a.resume, contenu: a.contenu };
+    console.warn('EN manquant, repli FR pour :', a.id);
+  } else {
+    const e = ARTICLES_EN[a.id];
+    if (e.titre == null) e.titre = a.titre;
+    if (e.resume == null) e.resume = a.resume;
+    if (e.contenu == null) e.contenu = a.contenu;
+  }
 }
 
 /* ---- interface, par langue ---- */
@@ -101,7 +114,7 @@ const UI = {
 };
 
 /* ---- helpers de données par langue ---- */
-const slugOf = (lang, frId) => lang === 'fr' ? frId : SLUGS[frId];
+const slugOf = (lang, frId) => lang === 'fr' ? frId : (SLUGS[frId] || frId);
 const APOLOGIES = { 'la-communion-des-saints': 'l-intercession-des-saints', 'le-bapteme': 'le-bapteme-des-petits-enfants', 'marie': 'marie-mere-de-dieu', 'l-eucharistie': 'la-presence-reelle' };
 const depouiller = h => (h || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 const themeNom = (lang, id) => lang === 'fr' ? (THEMES.find(x => x.id === id) || {}).nom : THEMES_EN[id].nom;
