@@ -29,6 +29,32 @@ if (fs.existsSync('content/nouveautes.json')) {
   console.log('Journal lu depuis content/nouveautes.json');
 }
 
+// Contenu éditable via l'admin : chaque article est lu depuis content/articles/<slug>.json s'il existe
+if (fs.existsSync('content/articles')) {
+  const parId = Object.create(null);
+  for (const a of ARTICLES) parId[a.id] = a;
+  let n = 0;
+  for (const f of fs.readdirSync('content/articles').filter(f => f.endsWith('.json'))) {
+    const d = JSON.parse(fs.readFileSync('content/articles/' + f, 'utf8'));
+    const slug = d.slug || f.replace(/\.json$/, '');
+    const a = parId[slug];
+    if (a) {
+      if (d.titre_fr != null) a.titre = d.titre_fr;
+      if (d.resume_fr != null) a.resume = d.resume_fr;
+      if (d.contenu_fr != null) a.contenu = d.contenu_fr;
+      if (d.theme) a.theme = d.theme;
+      if (d.date) a.date = d.date;
+    }
+    if (ARTICLES_EN[slug]) {
+      if (d.titre_en != null) ARTICLES_EN[slug].titre = d.titre_en;
+      if (d.resume_en != null) ARTICLES_EN[slug].resume = d.resume_en;
+      if (d.contenu_en != null) ARTICLES_EN[slug].contenu = d.contenu_en;
+    }
+    n++;
+  }
+  console.log('Articles lus depuis content/articles/ :', n);
+}
+
 /* ---- interface, par langue ---- */
 const UI = {
   fr: {

@@ -8,6 +8,36 @@ media_folder: "media"
 public_folder: "/media"
 
 collections:
+  - name: articles
+    label: "Articles"
+    label_singular: "Article"
+    folder: "content/articles"
+    extension: json
+    format: json
+    slug: "{{fields.slug}}"
+    identifier_field: titre_fr
+    create: true
+    summary: "{{titre_fr}}"
+    sortable_fields: [titre_fr, theme, date]
+    fields:
+      - { name: slug, label: "Identifiant d'adresse (ne pas modifier sur un article existant)", widget: string, hint: "Apparaît dans l'URL. Pour un nouvel article : minuscules et tirets, sans accent ni espace." }
+      - name: theme
+        label: "Thème"
+        widget: select
+        options:
+          - { label: "Doctrine et dogmes", value: doctrine }
+          - { label: "Écriture et exégèse", value: ecriture }
+          - { label: "Liturgie et sacrements", value: sacrements }
+          - { label: "Histoire de l'Église", value: histoire }
+          - { label: "Apologétique", value: apologetique }
+      - { name: date, label: "Date (ex. 2026)", widget: string }
+      - { name: titre_fr, label: "Titre (français)", widget: string }
+      - { name: resume_fr, label: "Résumé (français)", widget: text }
+      - { name: contenu_fr, label: "Corps de l'article (français) — HTML", widget: text }
+      - { name: titre_en, label: "Titre (anglais)", widget: string }
+      - { name: resume_en, label: "Résumé (anglais)", widget: text }
+      - { name: contenu_en, label: "Corps de l'article (anglais) — HTML", widget: text }
+
   - name: nouveautes
     label: "Nouveautés (journal)"
     files:

@@ -1,7 +1,7 @@
 ════════════════════════════════════════════════════════════════════
 FICHIER DE REPRISE — LUMEN VERITATIS
 À coller en début de nouveau chat, puis téléverser les 6 fichiers du projet.
-Date : 7 juin 2026
+Date : 9 juin 2026
 ════════════════════════════════════════════════════════════════════
 
 ────────────────────────────────────────────────────────────────────
@@ -18,6 +18,167 @@ INSTRUCTION PERMANENTE : à chaque livraison, redonner TOUJOURS les 6 fichiers
 en même temps (même ceux non modifiés), CE FICHIER DE REPRISE COMPRIS, pour ne
 jamais oublier l'existence ou la mise à jour d'un fichier. L'assistant tient ce
 fichier de reprise continuellement à jour et le relivre à chaque fois.
+
+────────────────────────────────────────────────────────────────────
+0 bis. TRAVAIL EN COURS — SÉRIE « LA VIE DU CHRIST »
+────────────────────────────────────────────────────────────────────
+Nouvelle catégorie « La vie du Christ » (EN « The Life of Christ »), id
+'vie-du-christ', placée sous le thème ecriture, juste après la catégorie
+'evangiles'. Elle accueille une série de SEPT articles qui racontent la vie
+du Christ dans l'ordre, en harmonisant les quatre évangiles (modèle : les trois
+Isaïe forment une série dans leur catégorie). Plan tiré du diagramme
+evangiles_unifies.html fourni par Emmanuel (sections 01-07 ; la section 08
+« Lectures catholiques de l'unité » est propre au diagramme et N'EST PAS un
+article). Les sept, dans l'ordre :
+  1. Les prologues et la venue du Christ        [FAIT, en ligne]
+  2. La préparation au ministère                [FAIT, en ligne]
+  3. La première année : l'inauguration         [FAIT, en ligne]
+  4. La deuxième année : la popularité          [FAIT, en ligne]
+  5. La troisième année : l'opposition          [FAIT, en ligne]
+  6. La Semaine sainte                          [FAIT, en ligne]
+  7. La Résurrection et la glorification        [FAIT, en ligne]
+  >>> SÉRIE « LA VIE DU CHRIST » COMPLÈTE (7 articles en ligne, FR + EN).
+  >>> AUDIT des épisodes manquants (juin 2026). Après revue de la série, SEPT
+      épisodes absents ont été ajoutés comme NOUVELLES SECTIONS <h2> (FR + EN ;
+      ce sont des ajouts à des articles existants, NON journalisés, pas de
+      changement du compte de paires). Déjà fait avant l'audit : « Le maître du
+      sabbat » (art. 4) a reçu un 2e § sur l'homme à la main desséchée
+      (Matthieu 12). Ajouts de l'audit :
+        Art. 4 (2e année) : « La guérison du lépreux » (Marc 1, avant « Le pardon
+          des péchés ») ; « Le statère dans le poisson » (Matthieu 17, en fin
+          d'article, à Capharnaüm).
+        Art. 5 (3e année) : « Les traditions des anciens » (Marc 7, avant « La foi
+          des nations ») ; « La femme courbée » (Luc 13) puis « L'hydropique »
+          (Luc 14), entre « La meilleure part » et « Les paraboles de la
+          miséricorde » ; « Les fils de Zébédée » (Marc 10, entre « Les enfants
+          et le jeune homme riche » et « Bartimée et Zachée »).
+      Vérifié présent et donc NON re-créable : l'aveugle de Bethsaïde (guéri en
+      deux temps) est déjà dans « Tu es le Christ » (art. 5).
+  >>> Audit post-série (relecture des 7 articles vs trame source) : aucune erreur
+      chronologique (2 purifications, 2 onctions, 2 multiplications, Marie-Madeleine
+      premier témoin). Approfondissements ajoutés (NON journalisés, ce sont des
+      reprises) : art. 4 → 4 sections nouvelles (La piscine de Béthesda / Le reproche
+      aux villes / Béelzéboul et le péché contre l'Esprit / La vraie famille), 21
+      sections ; art. 3 → « Le Sauveur du monde » enrichi de la nourriture (Jean 4:34).
+  >>> Reprise art. 2 « Les premiers disciples » : dialogue de Nathanaël déployé en
+      entier (figuier, confession) et échelle de Jacob expliquée depuis la Genèse
+      (Genèse 28:17 ; le Christ médiateur, lien entre ciel et terre) ; glose kepha/
+      Petros retirée. Lecture sacerdotale du baptême réservée à un futur article à part.
+  >>> NOUVEL ARTICLE : « Le baptême du Christ » / « The baptism of Christ »
+      (thème ecriture, catégorie « Les évangiles » ; slugs le-bapteme-du-christ /
+      the-baptism-of-christ). Lecture sacerdotale : Jean (prêtre selon Aaron) lave et
+      consacre le prêtre selon Melchisédech, oint de l'Esprit (Isaïe 61:1, Actes 10:38) ;
+      fin du sacerdoce lévitique (Luc 16:16). Journalisé en NOUVEAUTÉS. Lien posé depuis
+      la série. 71 paires / 142 pages.
+  >>> Reprise art. 5 « La troisième année » : « Bartimée et Zachée » et « L'aveugle-né »
+      REPRIS dans le registre exégétique (sobre, démonstratif, sens dégagé APRÈS le récit,
+      sans mise en scène ni dialogue narré « X répond : »). Zachée : initiative de Jésus
+      (appel par le nom), « Zachée se convertit et prend un engagement » placé AVANT Luc 19:8,
+      clôture « Chez celui que tous tenaient pour perdu, Jésus accomplit sa mission » + Luc 19:9-10,
+      sans glose sur le quadruple. Aveugle-né : écho de la création (Genèse 2:7 cité), Siloé
+      = « envoyé », interrogatoire déroulé, orgueil qui aveugle, Jean 9:39 puis 9:38.
+      Approfondissements NON journalisés.
+  >>> NOUVEL ARTICLE : « Le doigt de Dieu » / « The finger of God » (thème ecriture,
+      catégorie « Les évangiles » ; slugs le-doigt-de-dieu / the-finger-of-god). Démonstration
+      (genre exégétique, PAS récit) suivant un transcript fourni : sous le piège (faux prophète /
+      sédition, Jean 18:31 ; hypocrisie, ils n'amènent que la femme, Lévitique 20:10), Jésus
+      écrit du doigt sur le sol = le doigt qui grava la Loi (Exode 31:18), donc le Dieu de Moïse ;
+      la fuite des accusateurs confondus accomplit Jérémie 17:13 (qui abandonne le Seigneur,
+      source d'eau vive, est inscrit sur la terre) : ce Seigneur, c'est Jésus ; clôture sur
+      l'Esprit, source d'eau vive (Jean 7:38-39). PAS de démonstration trinitaire explicite
+      (demande d'Emmanuel). Journalisé en NOUVEAUTÉS. Lien posé depuis la section « La femme
+      adultère » de l'art. 5 (sur « femme surprise en adultère »), à la demande d'Emmanuel.
+      72 paires / 144 pages. La section « La femme adultère » de l'art. 5 reste le texte de base
+      inchangé (le piège déjà corrigé) ; le nouvel article en est l'approfondissement séparé.
+  >>> CORRECTIONS doctrinales (art. « Les fins dernières » et « Les vertus théologales »,
+      FR + EN ; reprises, NON journalisées). Purgatoire : tension levée entre « la faute est
+      déjà pardonnée, reste la peine temporelle » et Matthieu 12:32 (« pardon dans le siècle à
+      venir »). Distinction rendue explicite : le purgatoire purifie DEUX choses, les fautes
+      VÉNIELLES encore présentes (ce sont elles que Matthieu 12:32 dit remises dans l'au-delà)
+      ET la peine temporelle des péchés déjà pardonnés ; la faute GRAVE se décide avant la mort
+      (pas de seconde chance). Espérance : « portant devant Dieu l'attente de ceux qu'on aime »
+      (ambigu) → « le salut qu'on attend de Dieu pour soi, on l'attend aussi pour ceux qu'on aime ».
+  >>> APPROFONDISSEMENT de la série « vie de Jésus » (juin 2026, FR + EN ; reprises,
+      NON journalisées). Après audit de densité des 7 articles, HUIT sections minces
+      ou tassées réécrites/scindées en ~11 sections :
+        Art. 4 (2e année) : « La foi et la compassion » SCINDÉE en 3 (« Le centurion
+          de Capharnaüm » Luc 7:7,9 ; « Le fils de la veuve de Naïm » Luc 7:13-16 ;
+          « La pécheresse pardonnée » Luc 7:47,50) ; « Les Douze » réécrite (nuit de
+          prière Luc 6:12, apostolos, 12 tribus, Marc 3:14-15, liste des noms ; la glose
+          Pierre/le roc reste réservée à « Tu es le Christ ») ; « Le pardon des péchés »
+          réécrite (paralytique, Marc 2:5/10/12, précision sur le raisonnement des scribes).
+        Art. 5 (3e année) : « L'action de grâce et l'humilité » SCINDÉE en 2 (« Les dix
+          lépreux » Luc 17:13,17,19 ; « Le pharisien et le publicain » Luc 18:13-14) ;
+          « La fête des Tentes » réécrite (rite de l'eau, Exode 17:6, pluie/saison, Jean
+          7:37/39, Zacharie 14:8).
+        Art. 6 (Semaine sainte) : « La dernière Cène » enrichie (Agneau de Dieu, lavement
+          Jean 13:14, Luc 22:19, Marc 14:24, alliance nouvelle Jérémie 31:31) ; « Le discours
+          sur la fin » réécrite en 2 § (double question Temple/fin, deux événements
+          entrelacés, Fils de l'homme sur les nuées « à la fin seulement », Marc 13:32 avec
+          précision, jugement dernier Matthieu 25:40 ; paraboles de vigilance retirées,
+          futurs articles à part) ; « Le discours d'adieu » SCINDÉE en 2 (« Le discours
+          d'adieu » développé : Jean 14:6, Paraclet envoyé d'auprès du Père, vigne Jean
+          15:4-5/13 ; + NOUVELLE « La prière sacerdotale » Jean 17:17,21). Compte inchangé,
+          72 paires / 144 pages.
+
+  >>> PRÉSENTATION (juin 2026, reprises NON journalisées). Page d'accueil : entre la barre du haut
+      et « Les domaines », on garde la grande croix blanche d'origine (.croix, 72x132,
+      fill #ffffff), SEULE et centrée, sans la phrase d'accroche ni le trait (border-bottom)
+      qui étaient dessous (.hero sans bordure ; .intro retirée). La phrase d'accroche reste
+      en meta (site_desc_home / home_intro), non affichée. Modifié au CSS (index__48_.html),
+      dans vueAccueil (SPA) ET dans mainAccueil de build-bi.js. Mémoriser : dans la barre du haut,
+      le bouton de langue (EN) et la cloche (Nouveautés) ont été permutés (EN avant cloche).
+      Accueil : ajout d'un encart « Mémoriser » sous « Les domaines », SANS cadre
+      (.memo-bloc, bloc libre ; pas de carte bordée) ; accès par le bouton « Commencer » repris à l'identique du bouton .start de
+      memoriser.html (.memo-start : display:block, width:100%, padding 17px, doré plein,
+      majuscules ; href /memoriser.html). Le bloc est centré (.memo-bloc max-width:628px,
+      = largeur du bouton dans memoriser, soit .wrap 680 moins padding) ; l'aperçu des scores
+      (% maîtrise, barre, compte) est conservé ET centré ; le sous-titre a été retiré. Il affiche un aperçu
+      des scores de l'utilisateur connecté : % de maîtrise (somme des boîtes / 5×total),
+      barre tri-couleur et compte acquis / en cours / à revoir (vert boîte 4-5, ambre 2-3,
+      rouge 0-1). Lu directement depuis Firestore users/{uid}/meta/progress (sans dupliquer
+      les catégories ; compte les versets travaillés). Déconnecté → invite « Connecte-toi ».
+      Ajouté dans mainAccueil (build-bi.js) + vueAccueil (SPA) + CSS (index) + script MEMO_JS
+      (build-bi.js, injecté dans le bloc de scripts, auto-garde si l'élément absent ;
+      Firebase déjà chargé sur chaque page). Libellés memo_* dans UI.fr et l'override en.
+      Notifications (cloche) à jour : « Le doigt de Dieu » et « Le baptême du Christ » présents.
+
+  >>> APPROFONDISSEMENT de la Passion (juin 2026, FR + EN ; reprises, NON journalisées).
+      Audit de densité de « La Semaine sainte » : « La mort du Christ » (1582) déjà solide,
+      mais « Gethsémani » (774) et « La crucifixion » (976) en dessous de leur importance.
+      Réécrites en registre exégétique : Gethsémani (774→~1790) = la coupe/calice, réalité de
+      la nature humaine, DEUX volontés (divine et humaine) accordées dans « non pas ma volonté
+      mais la tienne » (nouvel Adam renversant le premier dans un jardin), ange réconfortant +
+      sueur de sang (Luc 22:43-44), triple retour « veillez et priez » (Mt 26:41), baiser de
+      Judas (Luc 22:48), épée/oreille + « la coupe que le Père m'a donnée » (Jean 18:11).
+      Crucifixion (976→~1710) = Simon de Cyrène, filles de Jérusalem (Luc 23:31), compté parmi
+      les criminels (Isaïe 53:12), partage des vêtements (Psaume 22:19), titulus trilingue
+      (Jean 19:19), triple moquerie « qu'il se sauve lui-même » (Luc 23:35) + le sens (il ne
+      descend pas pour sauver les autres), les trois paroles (Luc 23:34 ; 23:43 ; Jean 19:26-27,
+      Marie mère de l'Église). EN miroir (Gethsemane / The Crucifixion). Gloss Hébreux 13:12
+      ÉCARTÉ (figure forcée, refusée par Emmanuel). RESTE À FAIRE : « L'apparition aux saintes
+      femmes » (mince, 325) et la glorification (Ascension) dans l'article Résurrection.
+
+MÉTHODE EXIGÉE par Emmanuel : UN article à la fois, sans précipitation. Ne
+jamais en produire plusieurs d'un coup. Tenue calée sur l'article 1 : narration
+continue suivant l'ordre des évangiles, un <h2> par épisode ou seuil, versets
+portant l'argument au format habituel, grec/hébreu intégrés, registre sobre.
+Slugs FR = titre normalisé ; slugs EN dans SLUGS de data-en.js. Chaque nouvel
+article ajoute : objet FR dans ARTICLES (index), entrée dans ARTICLES_EN +
+SLUGS (data-en), et son slug dans arts[] de la catégorie 'vie-du-christ'
+(index ET cats de THEMES_EN si besoin, déjà créée). NOUVEAUTÉS : articles 1 à 7
+journalisés (FR + EN). Règle (confirmée par Emmanuel, cf. §3) : le journal signale
+les NOUVEAUX articles ; il ne signale PAS les reprises ni les approfondissements.
+
+CONVENTION (posée cette session, à appliquer dans tous les articles de la série) :
+quand une prophétie accomplie ou une prescription est ÉVOQUÉE sans être citée,
+mettre sa source entre parenthèses à la fin, chapitre:verset SEULEMENT, sans le
+texte du verset. Ex. : « ... Emmanuel, "Dieu avec nous" (Isaïe 7:14). » ;
+« ... l'offrande des pauvres (Lévitique 12:8). » ; « ... doit naître à Bethléem
+(Michée 5:1). » Quand le verset EST cité, garder le format normal (em + « » +
+span.ref). Tenir compte du décalage de numérotation FR/EN (ex. Michée 5:1 FR =
+Micah 5:2 EN ; pour la source d'Osée citée par Matthieu, référencer Osée 11:1 /
+Hosea 11:1, les mots étant ceux d'Osée).
 
 ────────────────────────────────────────────────────────────────────
 1. LE PROJET
@@ -129,6 +290,9 @@ Toujours vérifier la cohérence FR (build-bi.js) ↔ FR (index__48_.html) ↔ E
   dans index__48_.html (FR) et NOUVEAUTES_EN dans data-en.js (EN), groupes parallèles
   (même ordre, mêmes éléments traduits). Ajouter les vraies nouveautés en tête du groupe
   de date courant, dans les deux langues ; la cloche signale alors le changement aux visiteurs.
+  FORMAT IMPÉRATIF d'un item : une simple CHAÎNE de texte (ex. "Nouvel article : « ... »."),
+  jamais un objet { t, s }. Le rendu fait '<div class="nouv-ligne">'+item+'</div>' ; un objet
+  y devient « [object Object] ». Les items ne sont pas cliquables (pas de lien vers l'article).
 • Apostrophes : DROITES dans index__48_.html ; COURBES (\u2019) dans build-bi.js
   et memoriser.html (chaînes JS).
 • Références bibliques : forme standard, modèle « Genèse 44:2-3 ». Verset en
@@ -140,11 +304,42 @@ Toujours vérifier la cohérence FR (build-bi.js) ↔ FR (index__48_.html) ↔ E
 • Mesures non françaises : convertir en métrique, donner les deux (mesure + (équiv.)).
 • Ouvertures affirmatives. Jamais « X n'est pas Y : c'est Z ». Pas de définition
   par contraste. Pas de formules théâtrales (« tout bascule », « révolutionne »…).
+
+  ┌─ RED FLAGS DE RÉDACTION (corrigés en boucle par Emmanuel — à appliquer DÈS LE 1er JET) ─┐
+  │ 1. AUCUNE phrase d'échafaudage / mise en scène / annonce. Entrer DIRECTEMENT dans   │
+  │    le contenu. Types bannis (exemples réels produits puis rejetés) :                 │
+  │      – « Le geste lui-même porte le sens. » / « le signe de qui il est »             │
+  │      – « Jérémie avait annoncé ce qui s'accomplit ici » / « ce qui s'accomplit ici » │
+  │      – « Alors Jésus prononce le jugement : » / « il pose son geste : »              │
+  │      – « ce passage trouble », « cette parole étonne », « à qui sait lire »          │
+  │      – « X est réel ; la manière dont c'est réel compte », « la preuve que X, c'est… »│
+  │    Dire la chose, pas annoncer qu'on va la dire.                                     │
+  │ 2. NARRATION D'ABORD, INTERPRÉTATION ENSUITE. Ne pas entrelacer le sens dans le      │
+  │    récit. Raconter ce qui se passe, PUIS déployer ce que cela signifie. Ne pas       │
+  │    glisser une dénégation interprétative (« le texte ne dit pas ce qu'il écrit, ni   │
+  │    les noms ni les fautes ») AVANT d'avoir posé le sens : « laisse ça pour après ».  │
+  │ 3. EXPLIQUER LE POURQUOI d'un fait narratif, ne pas le poser nu (ex. POURQUOI les    │
+  │    plus âgés se retirent les premiers : ils se savent en faute). Le pourquoi est     │
+  │    souvent déjà dans la source qu'Emmanuel fournit — le lire.                        │
+  │ 4. DIALOGUE SANS TIRET CADRATIN. Pas de « — » entre répliques. Attributions :        │
+  │    « Q ? » / Elle répond : « … » / Jésus reprend : « … ».                            │
+  │ 5. NE PAS DOUBLER un verset par un préambule qui le paraphrase (préambule = le sens, │
+  │    verset = les mots). Ne pas dire deux fois la même chose en décalé.                │
+  │ 6. AMORCE D'UN VERSET D'ACCOMPLISSEMENT : énoncer DIRECTEMENT le sujet du verset et  │
+  │    nommer l'auteur biblique (« Jérémie avait dit de ceux qui se détournent… : »),    │
+  │    jamais « ce que X annonçait s'accomplit ici ».                                    │
+  │ 7. RELIRE LE PASSAGE ENTIER avant d'envoyer. S'il « sonne mal formulé », le          │
+  │    RETRAVAILLER, pas le rapiécer.                                                    │
+  └──────────────────────────────────────────────────────────────────────────────────────┘
 • Versets : portent un argument, jamais décoratifs ; usage sobre dans les récits.
   Tout fait/événement/précepte biblique affirmé est appuyé par son verset.
 • Articles : profonds, complets, substantiels. Un article riche plutôt que
   plusieurs minces. Nommer l'auteur/personnage biblique quand il est identifiable.
-• PAS de liens hypertexte dans le contenu des articles.
+• PAS de liens hypertexte dans le contenu des articles, SAUF demande explicite
+  d'Emmanuel. Format source : <a href="#/article/SLUG"> (slug FR côté FR, slug EN
+  côté EN) ; le build le réécrit en chemin statique relatif. Exemple posé : lien de
+  « La préparation au ministère » (section « Le baptême de Jésus ») vers l'article
+  « Le baptême du Christ ».
 • Sur un forum/réseau public : ne jamais citer de personnes (théologiens, papes,
   auteurs) ni de sources (encycliques, livres). Seules les références bibliques
   sont permises. (Dans les articles du site, conciles + dates sont permis ;
@@ -357,6 +552,28 @@ L'état de connexion est partagé avec memoriser.html (même projet + domaine Fi
 ────────────────────────────────────────────────────────────────────
 8. CE QUI A ÉTÉ FAIT ET VÉRIFIÉ (dernière session, 7 juin 2026)
 ────────────────────────────────────────────────────────────────────
+• RÈGLE versets de prophétie (Mémoriser, et à étendre aux articles si demandé) : distinguer
+  l'ACCOMPLISSEMENT et la SOURCE. Un verset du NT qui cite une prophétie de l'AT est un
+  accomplissement : sa référence porte la mention « (accomplissement) » à la fin (EN : « (fulfillment) »).
+  Si un accomplissement figure dans la liste, le verset SOURCE (AT) doit TOUJOURS y figurer aussi,
+  sans parenthèse. Appliqué : Matthieu 1:23 (accomplissement) ← source Isaïe 7:14 (présent, Marie) ;
+  Matthieu 8:17 (accomplissement) ← source Isaïe 53:4 (AJOUTÉE dans « Le salut »).
+• Mémoriser — corrections de versets : Isaïe 7:14 complété (mention d'Emmanuel) ; Jean 10:18
+  complété (texte entier, pouvoir de donner et de reprendre sa vie) ; 1 Corinthiens 13:8 « charité »
+  (et EN « Charity ») au lieu de « amour/Love » ; retrait de 2 Corinthiens 5:20 (Paul ambassadeur) ;
+  retrait de Jacques 3:2. Pour info : « Lève-toi, prends ton lit » = Matthieu 9:6, catégorie « Les
+  sacrements » ; 1 Jean 3:2 est en « La prédestination » (pourrait aller en « Les fins dernières »,
+  vision béatifique, si Emmanuel le souhaite).
+• Mémoriser — MODALS MONO-LANGUE. Les modals « Modifier/Ajouter un verset » et « Nouvelle
+  catégorie/Renommer » n'affichent plus les deux langues à la fois : ils montrent uniquement les
+  champs de la langue de la page (FR ou EN selon S.lang), sans les mentions « (français)/(anglais) »
+  (libellés via t('f_text'), t('f_ref'), t('f_name')). Helpers modalVerseLang()/modalCatLang()
+  appelés à l'ouverture (affichent row-vfr/row-rfr en FR, row-ven/row-ren en EN ; row-cfr/row-cen
+  pour la catégorie). Sauvegarde : en édition on ne modifie que la langue courante (l'autre est
+  préservée) ; à l'ajout, le texte saisi est recopié dans les deux langues (pas de verset vide,
+  l'autre langue s'édite ensuite en changeant la langue de la page). node --check OK, build 126 pages.
+• Point de la cloche DÉTACHÉ (et non collé) : .cloche-point à top:-6px;right:-5px (au-dessus à
+  droite, écart net), identique sur toutes les pages. Ajustable au pixel sur demande.
 • QUIZ RETIRÉ du site (décision d'Emmanuel). Lien de nav, copie au build, et notifications
   « Nouveau : le Quiz » supprimés (build-bi.js, index, data-en). quiz.html n'est plus livré.
   Livraison désormais à 6 fichiers (sans quiz.html).
@@ -528,3 +745,32 @@ EN LIGNE, téléverser les fichiers sur GitHub et laisser Netlify reconstruire.
 ════════════════════════════════════════════════════════════════════
 FIN DU FICHIER DE REPRISE
 ════════════════════════════════════════════════════════════════════
+
+================================================================
+CMS AUTONOME (Decap, backend GitHub) — ÉTAPE 1 EN PLACE
+================================================================
+Objectif : Emmanuel (non-codeur) édite le site lui-même via /admin ; Decap
+commit dans le dépôt GitHub (hoarauemmanuel336-ship-it/Lumen, branche main),
+Netlify reconstruit. Auth : backend GitHub + OAuth courté par Netlify
+(Netlify Identity abandonné, non utilisé). Connexion /admin avec compte GitHub.
+
+NOUVEAUX FICHIERS DU DÉPÔT (à téléverser sur GitHub, à la racine) :
+  - admin/index.html      (chargeur Decap CMS, CDN unpkg decap-cms@^3)
+  - admin/config.yml      (backend github + collection « Nouveautés »)
+  - content/nouveautes.json  ({fr:[{d,items}], en:[{d,items}]})
+
+build-bi.js patché :
+  - après l'extraction THEMES/ARTICLES/NOUVEAUTES, lit content/nouveautes.json
+    si présent → NV_FR / NV_EN (fallback sur les données du fichier sinon) ;
+  - le journal (l.~154-155) rend (lang==='fr' ? NV_FR : NV_EN) ;
+  - copie admin/ → site/admin/ (à côté de la copie memoriser.html).
+Build vérifié : « Journal lu depuis content/nouveautes.json », 72→144, news FR+EN OK.
+
+ÉTAT : étape 1 livrée. EN ATTENTE de la config OAuth GitHub/Netlify par Emmanuel
+puis confirmation que /admin se connecte et édite le journal et republie.
+ÉTAPE 2 (à faire ensuite) : migrer les 72 articles (FR+EN) hors de index__48_.html
+vers des fichiers content/ éditables + réécrire build-bi.js pour les lire +
+collections Decap par article. Décision retenue : corps d'article édité en HTML
+brut (champ texte) pour préserver le balisage exact des versets/grec/hébreu.
+ÉTAPE 3 : THEMES/structure (catégories + ordre) éditables ; réglages de thème
+SÛRS seulement (couleur d'accent), pas d'édition CSS libre.
