@@ -38,6 +38,97 @@ collections:
       - { name: resume_en, label: "Résumé (anglais)", widget: text }
       - { name: contenu_en, label: "Corps de l'article (anglais) — HTML", widget: text }
 
+  - name: themes
+    label: "Thèmes et bibliothèque"
+    files:
+      - name: structure
+        label: "Organisation de la bibliothèque"
+        file: "content/themes.json"
+        format: json
+        fields:
+          - name: themes
+            label: "Thèmes"
+            widget: list
+            label_singular: "Thème"
+            summary: "{{fields.nom_fr}}"
+            fields:
+              - { name: id, label: "Identifiant (technique, ne pas modifier)", widget: string }
+              - { name: nom_fr, label: "Nom (FR)", widget: string }
+              - { name: nom_en, label: "Nom (EN)", widget: string }
+              - { name: desc_fr, label: "Description (FR)", widget: text }
+              - { name: desc_en, label: "Description (EN)", widget: text }
+              - name: categories
+                label: "Catégories"
+                widget: list
+                label_singular: "Catégorie"
+                summary: "{{fields.nom_fr}}"
+                fields:
+                  - { name: id, label: "Identifiant (technique, ne pas modifier)", widget: string }
+                  - { name: nom_fr, label: "Nom (FR)", widget: string }
+                  - { name: nom_en, label: "Nom (EN)", widget: string }
+                  - name: arts
+                    label: "Articles de la catégorie (dans l'ordre)"
+                    widget: list
+                    field:
+                      name: slug
+                      label: "Article"
+                      widget: relation
+                      collection: articles
+                      search_fields: [titre_fr]
+                      value_field: slug
+                      display_fields: [titre_fr]
+
+  - name: memoriser
+    label: "Mémoriser (versets de base)"
+    files:
+      - name: versets
+        label: "Catégories et versets de base"
+        file: "content/memoriser.json"
+        format: json
+        fields:
+          - name: categories
+            label: "Catégories"
+            widget: list
+            label_singular: "Catégorie"
+            summary: "{{fields.name.fr}}"
+            fields:
+              - { name: id, label: "Identifiant (technique ; laisser vide pour une nouvelle catégorie)", widget: string, required: false }
+              - name: name
+                label: "Nom de la catégorie"
+                widget: object
+                fields:
+                  - { name: fr, label: "Nom (FR)", widget: string }
+                  - { name: en, label: "Nom (EN)", widget: string }
+              - name: verses
+                label: "Versets"
+                widget: list
+                label_singular: "Verset"
+                summary: "{{fields.fr.ref}}"
+                fields:
+                  - { name: id, label: "Identifiant (technique ; laisser vide pour un nouveau verset)", widget: string, required: false }
+                  - name: fr
+                    label: "Français"
+                    widget: object
+                    fields:
+                      - { name: ref, label: "Référence (FR, ex. Jean 8:7)", widget: string }
+                      - { name: text, label: "Texte du verset (FR)", widget: text }
+                  - name: en
+                    label: "Anglais"
+                    widget: object
+                    fields:
+                      - { name: ref, label: "Référence (EN, ex. John 8:7)", widget: string }
+                      - { name: text, label: "Texte du verset (EN)", widget: text }
+
+  - name: apparence
+    label: "Apparence"
+    files:
+      - name: couleurs
+        label: "Couleurs du site"
+        file: "content/settings.json"
+        format: json
+        fields:
+          - { name: accent, label: "Couleur d'accent (par défaut #efe6cf)", widget: color, required: false }
+
   - name: nouveautes
     label: "Nouveautés (journal)"
     files:

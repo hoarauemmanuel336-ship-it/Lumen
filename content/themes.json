@@ -1,0 +1,255 @@
+{
+  "themes": [
+    {
+      "id": "doctrine",
+      "nom_fr": "Doctrine et dogmes",
+      "nom_en": "Doctrine and Dogma",
+      "desc_fr": "Ce que l'Église croit et enseigne : Dieu, le Christ, le salut, l'Église, les fins dernières.",
+      "desc_en": "What the Church believes and teaches: God, Christ, salvation, the Church, the last things.",
+      "categories": [
+        {
+          "id": "dieu",
+          "nom_fr": "Dieu et la Trinité",
+          "nom_en": "God and the Trinity",
+          "arts": [
+            "la-nature-de-dieu",
+            "la-trinite"
+          ]
+        },
+        {
+          "id": "anges",
+          "nom_fr": "Les anges",
+          "nom_en": "The Angels",
+          "arts": [
+            "les-anges"
+          ]
+        },
+        {
+          "id": "peche",
+          "nom_fr": "Le péché et la chute",
+          "nom_en": "Sin and the Fall",
+          "arts": [
+            "le-peche",
+            "les-peches-capitaux",
+            "le-peche-originel",
+            "le-nouvel-adam-et-la-nouvelle-eve"
+          ]
+        },
+        {
+          "id": "conscience",
+          "nom_fr": "La conscience et la responsabilité",
+          "nom_en": "Conscience and Responsibility",
+          "arts": [
+            "l-age-de-raison",
+            "l-ignorance-invincible"
+          ]
+        },
+        {
+          "id": "christ",
+          "nom_fr": "Le Christ et la Rédemption",
+          "nom_en": "Christ and the Redemption",
+          "arts": [
+            "l-incarnation",
+            "la-croix-et-la-resurrection"
+          ]
+        },
+        {
+          "id": "sacerdoce",
+          "nom_fr": "Le sacerdoce",
+          "nom_en": "The Priesthood",
+          "arts": [
+            "le-sacerdoce",
+            "le-sacerdoce-reserve-aux-hommes"
+          ]
+        },
+        {
+          "id": "marie",
+          "nom_fr": "La Vierge Marie",
+          "nom_en": "The Virgin Mary",
+          "arts": [
+            "marie"
+          ]
+        },
+        {
+          "id": "grace",
+          "nom_fr": "La grâce et le salut",
+          "nom_en": "Grace and Salvation",
+          "arts": [
+            "la-grace",
+            "la-predestination",
+            "le-salut",
+            "la-paix-du-christ",
+            "le-bapteme-de-desir"
+          ]
+        },
+        {
+          "id": "vertus",
+          "nom_fr": "Les vertus théologales",
+          "nom_en": "The Theological Virtues",
+          "arts": [
+            "les-vertus-theologales"
+          ]
+        },
+        {
+          "id": "eglise",
+          "nom_fr": "L'Église",
+          "nom_en": "The Church",
+          "arts": [
+            "l-eglise",
+            "le-pape",
+            "la-communion-des-saints",
+            "les-reliques"
+          ]
+        },
+        {
+          "id": "fins",
+          "nom_fr": "Les fins dernières",
+          "nom_en": "The Last Things",
+          "arts": [
+            "les-fins-dernieres"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ecriture",
+      "nom_fr": "Écriture et exégèse",
+      "nom_en": "Scripture and Exegesis",
+      "desc_fr": "La lecture des Écritures dans la foi de l'Église, du sens littéral aux sens spirituels.",
+      "desc_en": "The reading of the Scriptures in the faith of the Church, from the literal sense to the spiritual senses.",
+      "categories": [
+        {
+          "id": "at",
+          "nom_fr": "L'Ancien Testament",
+          "nom_en": "The Old Testament",
+          "arts": [
+            "la-lutte-de-jacob-avec-dieu",
+            "elie-a-l-horeb",
+            "l-ange-du-seigneur",
+            "un-temps-pour-tuer"
+          ]
+        },
+        {
+          "id": "isaie",
+          "nom_fr": "Le livre d'Isaïe",
+          "nom_en": "The Book of Isaiah",
+          "arts": [
+            "le-proto-isaie",
+            "le-deutero-isaie",
+            "le-trito-isaie",
+            "les-quatre-chants-du-serviteur"
+          ]
+        },
+        {
+          "id": "evangiles",
+          "nom_fr": "Les évangiles",
+          "nom_en": "The Gospels",
+          "arts": [
+            "jesus-et-nicodeme",
+            "jesus-devant-pilate",
+            "abraham-a-vu-mon-jour",
+            "laisse-les-morts-enterrer-leurs-morts",
+            "achetez-une-epee",
+            "tendre-l-autre-joue",
+            "le-bapteme-du-christ",
+            "le-doigt-de-dieu"
+          ]
+        },
+        {
+          "id": "vie-du-christ",
+          "nom_fr": "La vie du Christ",
+          "nom_en": "The Life of Christ",
+          "arts": [
+            "les-prologues-et-la-venue-du-christ",
+            "la-preparation-au-ministere",
+            "la-premiere-annee-l-inauguration",
+            "la-deuxieme-annee-la-popularite",
+            "la-troisieme-annee-l-opposition",
+            "la-semaine-sainte",
+            "la-resurrection-et-la-glorification"
+          ]
+        },
+        {
+          "id": "paul",
+          "nom_fr": "Les lettres de Paul",
+          "nom_en": "The Letters of Paul",
+          "arts": [
+            "la-femme-dans-l-assemblee",
+            "le-voile-et-la-chevelure"
+          ]
+        },
+        {
+          "id": "questions",
+          "nom_fr": "Questions sur les Écritures",
+          "nom_en": "Questions on the Scriptures",
+          "arts": [
+            "le-canon-et-les-deuterocanoniques",
+            "l-esclavage-dans-la-bible",
+            "les-guerres-d-extermination"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sacrements",
+      "nom_fr": "Liturgie et sacrements",
+      "nom_en": "Liturgy and Sacraments",
+      "desc_fr": "Les signes efficaces de la grâce et le culte par lequel l'Église rend gloire à Dieu.",
+      "desc_en": "The efficacious signs of grace and the worship by which the Church gives glory to God.",
+      "categories": [
+        {
+          "id": "intro",
+          "nom_fr": "",
+          "nom_en": "",
+          "arts": [
+            "les-sacrements"
+          ]
+        },
+        {
+          "id": "initiation",
+          "nom_fr": "Les sacrements de l'initiation chrétienne",
+          "nom_en": "The Sacraments of Christian Initiation",
+          "arts": [
+            "le-bapteme",
+            "la-confirmation",
+            "l-eucharistie"
+          ]
+        },
+        {
+          "id": "guerison",
+          "nom_fr": "Les sacrements de guérison",
+          "nom_en": "The Sacraments of Healing",
+          "arts": [
+            "la-confession",
+            "l-onction-des-malades"
+          ]
+        },
+        {
+          "id": "service",
+          "nom_fr": "Les sacrements au service de la communion",
+          "nom_en": "The Sacraments at the Service of Communion",
+          "arts": [
+            "l-ordre",
+            "le-mariage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "histoire",
+      "nom_fr": "Histoire de l'Église",
+      "nom_en": "History of the Church",
+      "desc_fr": "Le chemin de l'Église à travers les siècles, ses conciles et ses combats.",
+      "desc_en": "The path of the Church through the centuries, its councils and its struggles.",
+      "categories": []
+    },
+    {
+      "id": "apologetique",
+      "nom_fr": "Apologétique",
+      "nom_en": "Apologetics",
+      "desc_fr": "La défense raisonnée de la foi : répondre aux objections et montrer que croire est accordé à la raison.",
+      "desc_en": "The reasoned defence of the faith: answering objections and showing that belief accords with reason.",
+      "categories": []
+    }
+  ]
+}
