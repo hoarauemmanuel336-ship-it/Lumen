@@ -1,0 +1,40 @@
+backend:
+  name: github
+  repo: hoarauemmanuel336-ship-it/Lumen
+  branch: main
+
+locale: fr
+media_folder: "media"
+public_folder: "/media"
+
+collections:
+  - name: nouveautes
+    label: "Nouveautés (journal)"
+    files:
+      - name: journal
+        label: "Journal des nouveautés"
+        file: "content/nouveautes.json"
+        format: json
+        fields:
+          - name: fr
+            label: "Français"
+            widget: list
+            label_singular: "Groupe de date"
+            summary: "{{fields.d}}"
+            fields:
+              - { name: d, label: "Date (ex. Juin 2026)", widget: string }
+              - name: items
+                label: "Lignes"
+                widget: list
+                field: { name: ligne, label: "Ligne", widget: string }
+          - name: en
+            label: "Anglais"
+            widget: list
+            label_singular: "Date group"
+            summary: "{{fields.d}}"
+            fields:
+              - { name: d, label: "Date (ex. June 2026)", widget: string }
+              - name: items
+                label: "Lines"
+                widget: list
+                field: { name: ligne, label: "Line", widget: string }

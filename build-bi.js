@@ -20,6 +20,15 @@ const blockStart = src.indexOf('const THEMES');
 const blockEnd = src.indexOf('const app');
 const { THEMES, ARTICLES, NOUVEAUTES } = (new Function(src.slice(blockStart, blockEnd) + '; return {THEMES, ARTICLES, NOUVEAUTES};'))();
 
+// Contenu éditable via l'admin : le journal des nouveautés est lu depuis content/ s'il existe
+let NV_FR = NOUVEAUTES, NV_EN = NOUVEAUTES_EN;
+if (fs.existsSync('content/nouveautes.json')) {
+  const nv = JSON.parse(fs.readFileSync('content/nouveautes.json', 'utf8'));
+  if (Array.isArray(nv.fr)) NV_FR = nv.fr;
+  if (Array.isArray(nv.en)) NV_EN = nv.en;
+  console.log('Journal lu depuis content/nouveautes.json');
+}
+
 /* ---- interface, par langue ---- */
 const UI = {
   fr: {
@@ -47,6 +56,7 @@ const UI = {
     site_desc_about: "Lumen, un lieu d'étude et de méditation autour de la foi catholique : rendre la théologie accessible et fidèle à l'enseignement de l'Église.",
     t_home: 'Lumen · Théologie catholique', t_library: 'Bibliothèque · Lumen', t_about: 'À propos · Lumen', t_404: 'Page introuvable · Lumen',
     search_placeholder: 'Rechercher dans Lumen…', search_hint: 'Tapez un mot pour parcourir les articles.', search_empty: 'Aucun résultat pour',
+    memo_label:"L'outil", memo_title:'Mémoriser', memo_sub:'Apprends les versets par cœur et garde-les, à ton rythme.', memo_open:'Ouvrir Mémoriser', memo_start:'Commencer', memo_mastery:'de maîtrise', memo_acquired:'acquis', memo_learning:'en cours', memo_review:'à revoir', memo_signedout:'Connecte-toi pour suivre ta progression.',
     other_label: 'EN'
   },
   en: Object.assign({}, UI_EN, {
@@ -59,7 +69,8 @@ const UI = {
     site_desc_home: UI_EN.home_intro,
     site_desc_library: 'All the entries of Lumen, arranged by domain: doctrine, Scripture, sacraments, figures, history and philosophy.',
     site_desc_about: 'Lumen, a place of study and meditation on the Catholic faith: making theology accessible and faithful to the teaching of the Church.',
-    t_home: 'Lumen · Catholic Theology', t_library: 'Library · Lumen', t_about: 'About · Lumen', t_404: 'Page not found · Lumen'
+    t_home: 'Lumen · Catholic Theology', t_library: 'Library · Lumen', t_about: 'About · Lumen', t_404: 'Page not found · Lumen',
+    memo_label:'The tool', memo_title:'Memorise', memo_sub:'Learn the verses by heart and keep them, at your own pace.', memo_open:'Open Memorise', memo_start:'Start', memo_mastery:'mastery', memo_acquired:'learned', memo_learning:'in progress', memo_review:'to review', memo_signedout:'Sign in to track your progress.'
   })
 };
 
@@ -149,8 +160,8 @@ nav.menu a.lien-langue:hover{opacity:1}
 
 function header(lang, type, base, otherRel, ctx) {
   const u = UI[lang];
-  const journal = (lang === 'fr' ? NOUVEAUTES : NOUVEAUTES_EN).map(function(g){return '<div class="nouv-groupe"><div class="nouv-date">'+g.d+'</div>'+g.items.map(function(t){return '<div class="nouv-ligne">'+t+'</div>';}).join('')+'</div>';}).join('');
-  const journSrc = (lang === 'fr' ? NOUVEAUTES : NOUVEAUTES_EN);
+  const journal = (lang === 'fr' ? NV_FR : NV_EN).map(function(g){return '<div class="nouv-groupe"><div class="nouv-date">'+g.d+'</div>'+g.items.map(function(t){return '<div class="nouv-ligne">'+t+'</div>';}).join('')+'</div>';}).join('');
+  const journSrc = (lang === 'fr' ? NV_FR : NV_EN);
   const nsig = journSrc[0].d + '|' + journSrc.reduce(function(a,g){return a+g.items.length;},0);
   const home = base === '' ? './' : base;
   const cl = t => type === t ? ' class="actif"' : '';
@@ -232,6 +243,34 @@ const COMMUN_JS = `document.getElementById('burger').addEventListener('click',fu
 document.getElementById('annee').textContent='© '+new Date().getFullYear()+' Lumen';\n(function(){var b=document.getElementById('cloche-ouvrir'),ov=document.getElementById('nouv-overlay'),fe=document.getElementById('nouv-fermer');if(!b||!ov)return;var pt=b.querySelector('.cloche-point'),sig=b.getAttribute('data-sig')||'';function vu(){try{return localStorage.getItem('lumen_nouv_vu');}catch(e){return null;}}function maj(){if(pt)pt.style.display=(vu()===sig?'none':'block');}maj();function o(){ov.classList.add('ouvert');document.body.style.overflow='hidden';try{localStorage.setItem('lumen_nouv_vu',sig);}catch(e){}maj();}function f(){ov.classList.remove('ouvert');document.body.style.overflow='';}b.addEventListener('click',o);b.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();o();}});fe.addEventListener('click',f);ov.addEventListener('click',function(e){if(e.target===ov)f();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('ouvert'))f();});})();
 document.addEventListener('click',function(e){var vp=e.target.closest&&e.target.closest('.voir-plus');if(!vp)return;e.preventDefault();e.stopPropagation();var p=vp.closest('.r-trunc');if(!p)return;var c=p.querySelector('.r-court'),fl=p.querySelector('.r-full');if(fl.hasAttribute('hidden')){c.setAttribute('hidden','');fl.removeAttribute('hidden');vp.textContent=vp.dataset.less;}else{fl.setAttribute('hidden','');c.removeAttribute('hidden');vp.textContent=vp.dataset.more;}});
 document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('voir-plus')){e.preventDefault();e.target.click();}});`;
+
+const MEMO_JS = `(function(){
+  var box=document.getElementById('memo-scores'); if(!box)return;
+  if(typeof firebase==='undefined')return;
+  var cfg={apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",authDomain:"lumen-veritatis.firebaseapp.com",projectId:"lumen-veritatis",storageBucket:"lumen-veritatis.firebasestorage.app",messagingSenderId:"195902823875",appId:"1:195902823875:web:a8be1f216a5ae1d945f176"};
+  if(!firebase.apps.length)firebase.initializeApp(cfg);
+  var auth=firebase.auth(), db=firebase.firestore();
+  var FR=!(window.LUMEN&&window.LUMEN.lang==='en');
+  var L={out:FR?'Connecte-toi pour suivre ta progression.':'Sign in to track your progress.',empty:FR?'Commence à mémoriser tes premiers versets.':'Start memorising your first verses.'};
+  function note(t){var n=document.getElementById('memo-note');if(n)n.textContent=t;}
+  function bar(r,a,v){var t=(r+a+v)||1,e;e=box.querySelector('#memo-bar .r');if(e)e.style.width=(r/t*100)+'%';e=box.querySelector('#memo-bar .a');if(e)e.style.width=(a/t*100)+'%';e=box.querySelector('#memo-bar .v');if(e)e.style.width=(v/t*100)+'%';}
+  auth.onAuthStateChanged(function(u){
+    if(!u){note(L.out);box.setAttribute('data-state','out');return;}
+    db.doc('users/'+u.uid+'/meta/progress').get().then(function(s){
+      var items=(s.exists&&s.data().items)?s.data().items:{};
+      var r=0,a=0,v=0,sum=0,tot=0,id,b;
+      for(id in items){if(!Object.prototype.hasOwnProperty.call(items,id))continue;b=(items[id]&&items[id].box)||0;tot++;sum+=b;if(b<=1)r++;else if(b<=3)a++;else v++;}
+      if(!tot){note(L.empty);box.setAttribute('data-state','empty');return;}
+      var pct=Math.round(sum/(5*tot)*100);
+      var ep=document.getElementById('memo-pct');if(ep)ep.textContent=pct+(FR?String.fromCharCode(160)+'%':'%');
+      var ev=document.getElementById('memo-v');if(ev)ev.textContent=v;
+      var ea=document.getElementById('memo-a');if(ea)ea.textContent=a;
+      var er=document.getElementById('memo-r');if(er)er.textContent=r;
+      bar(r,a,v);
+      box.setAttribute('data-state','ok');
+    }).catch(function(){note(L.out);box.setAttribute('data-state','out');});
+  });
+})();`;
 
 const AUTH_JS = `(function(){
   var cfg={apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",authDomain:"lumen-veritatis.firebaseapp.com",projectId:"lumen-veritatis",storageBucket:"lumen-veritatis.firebasestorage.app",messagingSenderId:"195902823875",appId:"1:195902823875:web:a8be1f216a5ae1d945f176"};
@@ -398,6 +437,7 @@ window.LUMEN={base:${JSON.stringify(base)},lang:${JSON.stringify(lang)},hint:${J
 ${COMMUN_JS}
 ${RECH_JS}
 ${AUTH_JS}
+${MEMO_JS}
 ${extraJS || ''}
 </script>
 </body>
@@ -422,15 +462,26 @@ function mainAccueil(lang, base) {
     <section class="hero">
       <div class="croix" aria-hidden="true"></div>
     </section>
-    <section class="intro">
-      <p>${u.home_intro}</p>
-    </section>
     <div class="titre-section">
       <span class="num">${u.home_domains_label}</span>
       <h2>${u.home_explore}</h2>
       <span class="trait"></span>
     </div>
     <section class="domaines">${cartes}</section>
+    <div class="titre-section">
+      <span class="num">${u.memo_label}</span>
+      <h2>${u.memo_title}</h2>
+      <span class="trait"></span>
+    </div>
+    <div class="memo-bloc">
+      <div class="memo-droite" id="memo-scores" data-state="load">
+        <div class="memo-pct"><span id="memo-pct"></span><i>${u.memo_mastery}</i></div>
+        <div class="memo-bar" id="memo-bar"><i class="r"></i><i class="a"></i><i class="v"></i></div>
+        <div class="memo-leg"><span><b id="memo-v"></b> ${u.memo_acquired}</span><span><b id="memo-a"></b> ${u.memo_learning}</span><span><b id="memo-r"></b> ${u.memo_review}</span></div>
+        <p class="memo-note" id="memo-note">${u.memo_signedout}</p>
+      </div>
+      <a class="memo-start" href="/memoriser.html">${u.memo_start}</a>
+    </div>
     <div style="height:60px"></div>
   </div>`;
 }
@@ -670,6 +721,15 @@ ecrire('en/recherche-en.js', 'window.LUMEN_INDEX=' + JSON.stringify(idxEN) + ';'
 if (fs.existsSync('memoriser.html')) {
   fs.copyFileSync('memoriser.html', `${OUT}/memoriser.html`);
   console.log('Copié : memoriser.html');
+}
+
+// copie du panneau d'administration (Decap CMS)
+if (fs.existsSync('admin')) {
+  fs.mkdirSync(`${OUT}/admin`, { recursive: true });
+  for (const f of fs.readdirSync('admin')) {
+    fs.copyFileSync(`admin/${f}`, `${OUT}/admin/${f}`);
+  }
+  console.log('Copié : admin/');
 }
 
 console.log('Site bilingue généré dans «', OUT, '»');
