@@ -1,0 +1,3904 @@
+{
+  "categories": [
+    {
+      "id": "nature-dieu",
+      "name": {
+        "fr": "La nature de Dieu",
+        "en": "The Nature of God"
+      },
+      "verses": [
+        {
+          "id": "exo-3-14",
+          "fr": {
+            "text": "Je suis celui qui suis.",
+            "ref": "Exode 3:14"
+          },
+          "en": {
+            "text": "I am who I am.",
+            "ref": "Exodus 3:14"
+          }
+        },
+        {
+          "id": "dt-6-4",
+          "fr": {
+            "text": "Écoute, Israël : le Seigneur notre Dieu est l’unique Seigneur.",
+            "ref": "Deutéronome 6:4"
+          },
+          "en": {
+            "text": "Hear, O Israel: the Lord our God, the Lord is one.",
+            "ref": "Deuteronomy 6:4"
+          }
+        },
+        {
+          "id": "jn-4-24",
+          "fr": {
+            "text": "Dieu est esprit, et ceux qui l’adorent doivent l’adorer en esprit et en vérité.",
+            "ref": "Jean 4:24"
+          },
+          "en": {
+            "text": "God is spirit, and those who worship him must worship in spirit and truth.",
+            "ref": "John 4:24"
+          }
+        },
+        {
+          "id": "mal-3-6",
+          "fr": {
+            "text": "Moi, le Seigneur, je ne change pas.",
+            "ref": "Malachie 3:6"
+          },
+          "en": {
+            "text": "I the Lord do not change.",
+            "ref": "Malachi 3:6"
+          }
+        },
+        {
+          "id": "ps-90-2",
+          "fr": {
+            "text": "Avant que les montagnes soient nées, que tu aies enfanté la terre et le monde, de l’éternité à l’éternité tu es Dieu.",
+            "ref": "Psaume 90:2"
+          },
+          "en": {
+            "text": "Before the mountains were born, before you had brought forth the earth and the world, from everlasting to everlasting you are God.",
+            "ref": "Psalm 90:2"
+          }
+        },
+        {
+          "id": "apo-1-8",
+          "fr": {
+            "text": "Je suis l’alpha et l’oméga, dit le Seigneur Dieu, celui qui est, qui était et qui vient, le Tout-Puissant.",
+            "ref": "Apocalypse 1:8"
+          },
+          "en": {
+            "text": "I am the Alpha and the Omega, says the Lord God, who is and who was and who is to come, the Almighty.",
+            "ref": "Revelation 1:8"
+          }
+        },
+        {
+          "id": "lc-1-37",
+          "fr": {
+            "text": "Rien n’est impossible à Dieu.",
+            "ref": "Luc 1:37"
+          },
+          "en": {
+            "text": "Nothing is impossible with God.",
+            "ref": "Luke 1:37"
+          }
+        },
+        {
+          "id": "jer-23-24",
+          "fr": {
+            "text": "Est-ce que je ne remplis pas le ciel et la terre ? dit le Seigneur.",
+            "ref": "Jérémie 23:24"
+          },
+          "en": {
+            "text": "Do I not fill heaven and earth? says the Lord.",
+            "ref": "Jeremiah 23:24"
+          }
+        },
+        {
+          "id": "is-6-3",
+          "fr": {
+            "text": "Saint, saint, saint est le Seigneur de l’univers ; toute la terre est remplie de sa gloire.",
+            "ref": "Isaïe 6:3"
+          },
+          "en": {
+            "text": "Holy, holy, holy is the Lord of hosts; the whole earth is full of his glory.",
+            "ref": "Isaiah 6:3"
+          }
+        },
+        {
+          "id": "1jn-4-8",
+          "fr": {
+            "text": "Celui qui n’aime pas n’a pas connu Dieu, car Dieu est amour.",
+            "ref": "1 Jean 4:8"
+          },
+          "en": {
+            "text": "He who does not love does not know God, for God is love.",
+            "ref": "1 John 4:8"
+          }
+        },
+        {
+          "id": "rom-11-33",
+          "fr": {
+            "text": "Ô profondeur des richesses, de la sagesse et de la science de Dieu ! Que ses jugements sont insondables et ses voies impénétrables !",
+            "ref": "Romains 11:33"
+          },
+          "en": {
+            "text": "O the depth of the riches and wisdom and knowledge of God! How unsearchable are his judgments and how inscrutable his ways!",
+            "ref": "Romans 11:33"
+          }
+        },
+        {
+          "id": "is-44-6",
+          "fr": {
+            "text": "Je suis le premier et je suis le dernier, et hors moi il n’y a point de Dieu.",
+            "ref": "Isaïe 44:6"
+          },
+          "en": {
+            "text": "I am the first and I am the last, and besides me there is no God.",
+            "ref": "Isaiah 44:6"
+          }
+        },
+        {
+          "id": "2m-7-28",
+          "fr": {
+            "text": "Reconnais que Dieu a fait de rien le ciel et la terre, et qu’il en est de même de la race des hommes.",
+            "ref": "2 Maccabées 7:28"
+          },
+          "en": {
+            "text": "Recognise that God made heaven and earth out of nothing, and that the race of men is the same.",
+            "ref": "2 Maccabees 7:28"
+          }
+        },
+        {
+          "id": "he-4-13",
+          "fr": {
+            "text": "Tout est nu et à découvert à ses yeux.",
+            "ref": "Hébreux 4:13"
+          },
+          "en": {
+            "text": "All things are naked and laid bare to his eyes.",
+            "ref": "Hebrews 4:13"
+          }
+        },
+        {
+          "id": "rom-1-20",
+          "fr": {
+            "text": "Les perfections invisibles de Dieu se voient depuis la création du monde dans ses œuvres.",
+            "ref": "Romains 1:20"
+          },
+          "en": {
+            "text": "The invisible perfections of God are seen since the creation of the world in his works.",
+            "ref": "Romans 1:20"
+          }
+        },
+        {
+          "id": "jb-11-7",
+          "fr": {
+            "text": "Prétends-tu sonder les profondeurs de Dieu, atteindre la perfection du Tout-Puissant ?",
+            "ref": "Job 11:7"
+          },
+          "en": {
+            "text": "Can you fathom the depths of God, attain the perfection of the Almighty?",
+            "ref": "Job 11:7"
+          }
+        },
+        {
+          "id": "exo-34-6",
+          "fr": {
+            "text": "Le Seigneur, le Seigneur, Dieu de tendresse et de pitié, lent à la colère, riche en grâce et en fidélité.",
+            "ref": "Exode 34:6"
+          },
+          "en": {
+            "text": "The Lord, the Lord, a God merciful and gracious, slow to anger, abounding in grace and faithfulness.",
+            "ref": "Exodus 34:6"
+          }
+        },
+        {
+          "id": "mc-10-18",
+          "fr": {
+            "text": "Nul n’est bon que Dieu seul.",
+            "ref": "Marc 10:18"
+          },
+          "en": {
+            "text": "No one is good but God alone.",
+            "ref": "Mark 10:18"
+          }
+        },
+        {
+          "id": "dt-32-4",
+          "fr": {
+            "text": "Ses œuvres sont parfaites, toutes ses voies sont justice ; Dieu fidèle et sans iniquité, il est juste et droit.",
+            "ref": "Deutéronome 32:4"
+          },
+          "en": {
+            "text": "His works are perfect, all his ways are justice; a God faithful and without iniquity, just and upright is he.",
+            "ref": "Deuteronomy 32:4"
+          }
+        },
+        {
+          "id": "1jn-1-5",
+          "fr": {
+            "text": "Dieu est lumière, et il n’y a en lui aucune ténèbre.",
+            "ref": "1 Jean 1:5"
+          },
+          "en": {
+            "text": "God is light, and in him there is no darkness at all.",
+            "ref": "1 John 1:5"
+          }
+        },
+        {
+          "id": "nb-23-19",
+          "fr": {
+            "text": "Dieu n’est pas un homme pour mentir, ni un fils d’homme pour se repentir.",
+            "ref": "Nombres 23:19"
+          },
+          "en": {
+            "text": "God is not a man, that he should lie, nor a son of man, that he should repent.",
+            "ref": "Numbers 23:19"
+          }
+        },
+        {
+          "id": "1tm-1-17",
+          "fr": {
+            "text": "Au roi des siècles, immortel, invisible, seul Dieu, honneur et gloire.",
+            "ref": "1 Timothée 1:17"
+          },
+          "en": {
+            "text": "To the King of ages, immortal, invisible, the only God, be honour and glory.",
+            "ref": "1 Timothy 1:17"
+          }
+        },
+        {
+          "id": "ps-115-3",
+          "fr": {
+            "text": "Notre Dieu est au ciel ; tout ce qu’il veut, il le fait.",
+            "ref": "Psaume 115:3"
+          },
+          "en": {
+            "text": "Our God is in heaven; he does whatever he pleases.",
+            "ref": "Psalm 115:3"
+          }
+        },
+        {
+          "id": "is-40-28",
+          "fr": {
+            "text": "Le Seigneur est le Dieu d’éternité ; il ne se fatigue ni ne se lasse, et son intelligence est insondable.",
+            "ref": "Isaïe 40:28"
+          },
+          "en": {
+            "text": "The Lord is the everlasting God; he does not faint or grow weary, and his understanding is unsearchable.",
+            "ref": "Isaiah 40:28"
+          }
+        },
+        {
+          "id": "jc-1-17",
+          "fr": {
+            "text": "Tout don parfait vient du Père des lumières, chez qui il n’y a ni changement ni ombre de variation.",
+            "ref": "Jacques 1:17"
+          },
+          "en": {
+            "text": "Every perfect gift comes from the Father of lights, with whom there is no change nor shadow of variation.",
+            "ref": "James 1:17"
+          }
+        },
+        {
+          "id": "jer-17-10",
+          "fr": {
+            "text": "Moi, le Seigneur, je sonde les cœurs et j’éprouve les reins.",
+            "ref": "Jérémie 17:10"
+          },
+          "en": {
+            "text": "I the Lord search the heart and test the mind.",
+            "ref": "Jeremiah 17:10"
+          }
+        },
+        {
+          "id": "jer-10-10",
+          "fr": {
+            "text": "Le Seigneur est le Dieu véritable, il est le Dieu vivant et le roi éternel.",
+            "ref": "Jérémie 10:10"
+          },
+          "en": {
+            "text": "The Lord is the true God; he is the living God and the everlasting King.",
+            "ref": "Jeremiah 10:10"
+          }
+        },
+        {
+          "id": "ps-139-7",
+          "fr": {
+            "text": "Où aller loin de ton esprit ? où fuir loin de ta face ?",
+            "ref": "Psaume 139:7"
+          },
+          "en": {
+            "text": "Where can I go from your Spirit? where can I flee from your presence?",
+            "ref": "Psalm 139:7"
+          }
+        },
+        {
+          "id": "ps-139-4",
+          "fr": {
+            "text": "La parole n’est pas encore sur ma langue, que déjà, Seigneur, tu la connais tout entière.",
+            "ref": "Psaume 139:4"
+          },
+          "en": {
+            "text": "Before a word is on my tongue, you, Lord, know it completely.",
+            "ref": "Psalm 139:4"
+          }
+        },
+        {
+          "id": "is-55-8",
+          "fr": {
+            "text": "Vos pensées ne sont pas mes pensées, et vos voies ne sont pas mes voies, dit le Seigneur.",
+            "ref": "Isaïe 55:8"
+          },
+          "en": {
+            "text": "Your thoughts are not my thoughts, neither are your ways my ways, says the Lord.",
+            "ref": "Isaiah 55:8"
+          }
+        }
+      ]
+    },
+    {
+      "id": "trinite",
+      "name": {
+        "fr": "La Trinité",
+        "en": "The Trinity"
+      },
+      "verses": [
+        {
+          "id": "mt-28-19",
+          "fr": {
+            "text": "Allez, faites de toutes les nations des disciples, les baptisant au nom du Père, et du Fils, et du Saint-Esprit.",
+            "ref": "Matthieu 28:19"
+          },
+          "en": {
+            "text": "Go, make disciples of all nations, baptising them in the name of the Father, and of the Son, and of the Holy Spirit.",
+            "ref": "Matthew 28:19"
+          }
+        },
+        {
+          "id": "jn-1-1",
+          "fr": {
+            "text": "Au commencement était le Verbe, et le Verbe était auprès de Dieu, et le Verbe était Dieu.",
+            "ref": "Jean 1:1"
+          },
+          "en": {
+            "text": "In the beginning was the Word, and the Word was with God, and the Word was God.",
+            "ref": "John 1:1"
+          }
+        },
+        {
+          "id": "jn-10-30",
+          "fr": {
+            "text": "Moi et le Père, nous sommes un.",
+            "ref": "Jean 10:30"
+          },
+          "en": {
+            "text": "I and the Father are one.",
+            "ref": "John 10:30"
+          }
+        },
+        {
+          "id": "jn-14-9",
+          "fr": {
+            "text": "Qui m’a vu a vu le Père.",
+            "ref": "Jean 14:9"
+          },
+          "en": {
+            "text": "Whoever has seen me has seen the Father.",
+            "ref": "John 14:9"
+          }
+        },
+        {
+          "id": "jn-14-26",
+          "fr": {
+            "text": "Le Défenseur, l’Esprit Saint que le Père enverra en mon nom, vous enseignera tout.",
+            "ref": "Jean 14:26"
+          },
+          "en": {
+            "text": "The Helper, the Holy Spirit whom the Father will send in my name, will teach you all things.",
+            "ref": "John 14:26"
+          }
+        },
+        {
+          "id": "jn-15-26",
+          "fr": {
+            "text": "Quand viendra le Défenseur, l’Esprit de vérité qui procède du Père, il rendra témoignage de moi.",
+            "ref": "Jean 15:26"
+          },
+          "en": {
+            "text": "When the Helper comes, the Spirit of truth who proceeds from the Father, he will bear witness to me.",
+            "ref": "John 15:26"
+          }
+        },
+        {
+          "id": "2co-13-13",
+          "fr": {
+            "text": "La grâce du Seigneur Jésus-Christ, l’amour de Dieu et la communion du Saint-Esprit soient avec vous tous.",
+            "ref": "2 Corinthiens 13:13"
+          },
+          "en": {
+            "text": "The grace of the Lord Jesus Christ, the love of God, and the communion of the Holy Spirit be with you all.",
+            "ref": "2 Corinthians 13:13"
+          }
+        },
+        {
+          "id": "gn-1-26",
+          "fr": {
+            "text": "Faisons l’homme à notre image, selon notre ressemblance.",
+            "ref": "Genèse 1:26"
+          },
+          "en": {
+            "text": "Let us make man in our image, after our likeness.",
+            "ref": "Genesis 1:26"
+          }
+        },
+        {
+          "id": "ga-4-6",
+          "fr": {
+            "text": "Dieu a envoyé dans nos cœurs l’Esprit de son Fils.",
+            "ref": "Galates 4:6"
+          },
+          "en": {
+            "text": "God has sent into our hearts the Spirit of his Son.",
+            "ref": "Galatians 4:6"
+          }
+        },
+        {
+          "id": "jn-16-14-15",
+          "fr": {
+            "text": "Il prendra de ce qui est à moi ; tout ce que le Père possède est à moi.",
+            "ref": "Jean 16:14-15"
+          },
+          "en": {
+            "text": "He will take what is mine; all that the Father has is mine.",
+            "ref": "John 16:14-15"
+          }
+        },
+        {
+          "id": "ep-3-14-15",
+          "fr": {
+            "text": "Je fléchis les genoux devant le Père, de qui toute paternité, au ciel et sur la terre, tire son nom.",
+            "ref": "Éphésiens 3:14-15"
+          },
+          "en": {
+            "text": "I bow my knees before the Father, from whom all fatherhood in heaven and on earth takes its name.",
+            "ref": "Ephesians 3:14-15"
+          }
+        },
+        {
+          "id": "he-1-3",
+          "fr": {
+            "text": "Il est le rayonnement de sa gloire et l’empreinte de son être.",
+            "ref": "Hébreux 1:3"
+          },
+          "en": {
+            "text": "He is the radiance of his glory and the imprint of his being.",
+            "ref": "Hebrews 1:3"
+          }
+        },
+        {
+          "id": "jn-1-3",
+          "fr": {
+            "text": "Tout a été fait par lui, et rien de ce qui existe n’a été fait sans lui.",
+            "ref": "Jean 1:3"
+          },
+          "en": {
+            "text": "All things were made through him, and nothing that exists was made without him.",
+            "ref": "John 1:3"
+          }
+        },
+        {
+          "id": "2co-3-17",
+          "fr": {
+            "text": "Le Seigneur, c’est l’Esprit ; et là où est l’Esprit du Seigneur, là est la liberté.",
+            "ref": "2 Corinthiens 3:17"
+          },
+          "en": {
+            "text": "The Lord is the Spirit; and where the Spirit of the Lord is, there is freedom.",
+            "ref": "2 Corinthians 3:17"
+          }
+        }
+      ]
+    },
+    {
+      "id": "anges",
+      "name": {
+        "fr": "Les anges",
+        "en": "The Angels"
+      },
+      "verses": [
+        {
+          "id": "he-1-14",
+          "fr": {
+            "text": "Ne sont-ils pas tous des esprits au service de Dieu, envoyés pour ceux qui doivent hériter du salut ?",
+            "ref": "Hébreux 1:14"
+          },
+          "en": {
+            "text": "Are they not all ministering spirits sent to serve those who will inherit salvation?",
+            "ref": "Hebrews 1:14"
+          }
+        },
+        {
+          "id": "ps-91-11",
+          "fr": {
+            "text": "Il donnera pour toi des ordres à ses anges, pour te garder dans toutes tes voies.",
+            "ref": "Psaume 91:11"
+          },
+          "en": {
+            "text": "He will command his angels concerning you, to guard you in all your ways.",
+            "ref": "Psalm 91:11"
+          }
+        },
+        {
+          "id": "mt-18-10",
+          "fr": {
+            "text": "Gardez-vous de mépriser un seul de ces petits, car leurs anges dans les cieux voient sans cesse la face de mon Père.",
+            "ref": "Matthieu 18:10"
+          },
+          "en": {
+            "text": "See that you do not despise one of these little ones, for their angels in heaven always see the face of my Father.",
+            "ref": "Matthew 18:10"
+          }
+        },
+        {
+          "id": "col-1-16",
+          "fr": {
+            "text": "En lui ont été créées toutes choses, dans les cieux et sur la terre, les Trônes, les Dominations, les Principautés, les Puissances.",
+            "ref": "Colossiens 1:16"
+          },
+          "en": {
+            "text": "In him all things were created, in heaven and on earth, thrones and dominions, rulers and powers.",
+            "ref": "Colossians 1:16"
+          }
+        },
+        {
+          "id": "ap-12-7",
+          "fr": {
+            "text": "Il y eut une guerre dans le ciel : Michel et ses anges combattirent contre le dragon.",
+            "ref": "Apocalypse 12:7"
+          },
+          "en": {
+            "text": "There was war in heaven: Michael and his angels fought against the dragon.",
+            "ref": "Revelation 12:7"
+          }
+        },
+        {
+          "id": "tb-12-15",
+          "fr": {
+            "text": "Je suis Raphaël, l’un des sept anges qui se tiennent devant la gloire du Seigneur.",
+            "ref": "Tobie 12:15"
+          },
+          "en": {
+            "text": "I am Raphael, one of the seven angels who stand before the glory of the Lord.",
+            "ref": "Tobit 12:15"
+          }
+        },
+        {
+          "id": "he-13-2",
+          "fr": {
+            "text": "N’oubliez pas l’hospitalité ; car en l’exerçant, quelques-uns ont logé des anges sans le savoir.",
+            "ref": "Hébreux 13:2"
+          },
+          "en": {
+            "text": "Do not neglect hospitality, for by it some have entertained angels without knowing it.",
+            "ref": "Hebrews 13:2"
+          }
+        },
+        {
+          "id": "dn-7-10",
+          "fr": {
+            "text": "Mille milliers le servaient, et dix mille myriades se tenaient devant lui.",
+            "ref": "Daniel 7:10"
+          },
+          "en": {
+            "text": "A thousand thousands served him, and ten thousand times ten thousand stood before him.",
+            "ref": "Daniel 7:10"
+          }
+        },
+        {
+          "id": "apo-12-4",
+          "fr": {
+            "text": "Sa queue entraînait le tiers des étoiles du ciel, et les jeta sur la terre.",
+            "ref": "Apocalypse 12:4"
+          },
+          "en": {
+            "text": "His tail swept down a third of the stars of heaven, and cast them to the earth.",
+            "ref": "Revelation 12:4"
+          }
+        },
+        {
+          "id": "lc-10-18",
+          "fr": {
+            "text": "Je voyais Satan tomber du ciel comme l’éclair.",
+            "ref": "Luc 10:18"
+          },
+          "en": {
+            "text": "I saw Satan fall from heaven like lightning.",
+            "ref": "Luke 10:18"
+          }
+        },
+        {
+          "id": "mt-25-41",
+          "fr": {
+            "text": "Allez loin de moi, maudits, dans le feu éternel préparé pour le diable et ses anges.",
+            "ref": "Matthieu 25:41"
+          },
+          "en": {
+            "text": "Depart from me, you cursed, into the eternal fire prepared for the devil and his angels.",
+            "ref": "Matthew 25:41"
+          }
+        }
+      ]
+    },
+    {
+      "id": "peche",
+      "name": {
+        "fr": "Le péché",
+        "en": "Sin"
+      },
+      "verses": [
+        {
+          "id": "rm-3-23",
+          "fr": {
+            "text": "Tous ont péché et sont privés de la gloire de Dieu.",
+            "ref": "Romains 3:23"
+          },
+          "en": {
+            "text": "All have sinned and fall short of the glory of God.",
+            "ref": "Romans 3:23"
+          }
+        },
+        {
+          "id": "rm-5-12",
+          "fr": {
+            "text": "Par un seul homme le péché est entré dans le monde, et par le péché la mort.",
+            "ref": "Romains 5:12"
+          },
+          "en": {
+            "text": "Through one man sin entered the world, and death through sin.",
+            "ref": "Romans 5:12"
+          }
+        },
+        {
+          "id": "1jn-1-8",
+          "fr": {
+            "text": "Si nous disons que nous n’avons pas de péché, nous nous trompons nous-mêmes, et la vérité n’est pas en nous.",
+            "ref": "1 Jean 1:8"
+          },
+          "en": {
+            "text": "If we say we have no sin, we deceive ourselves, and the truth is not in us.",
+            "ref": "1 John 1:8"
+          }
+        },
+        {
+          "id": "jc-1-15",
+          "fr": {
+            "text": "La convoitise, ayant conçu, enfante le péché ; et le péché, parvenu à son terme, engendre la mort.",
+            "ref": "Jacques 1:15"
+          },
+          "en": {
+            "text": "Desire, when it has conceived, gives birth to sin; and sin, when fully grown, brings forth death.",
+            "ref": "James 1:15"
+          }
+        },
+        {
+          "id": "rm-7-19",
+          "fr": {
+            "text": "Je ne fais pas le bien que je veux, mais je fais le mal que je ne veux pas.",
+            "ref": "Romains 7:19"
+          },
+          "en": {
+            "text": "I do not do the good I want, but the evil I do not want is what I do.",
+            "ref": "Romans 7:19"
+          }
+        },
+        {
+          "id": "ps-51-7",
+          "fr": {
+            "text": "Voici, je suis né dans la faute, et ma mère m’a conçu dans le péché.",
+            "ref": "Psaume 51:7"
+          },
+          "en": {
+            "text": "Behold, I was brought forth in iniquity, and in sin did my mother conceive me.",
+            "ref": "Psalm 51:5"
+          }
+        },
+        {
+          "id": "rm-5-19",
+          "fr": {
+            "text": "Comme par la désobéissance d’un seul beaucoup ont été rendus pécheurs, par l’obéissance d’un seul beaucoup seront rendus justes.",
+            "ref": "Romains 5:19"
+          },
+          "en": {
+            "text": "As by one man’s disobedience many were made sinners, so by one man’s obedience many will be made righteous.",
+            "ref": "Romans 5:19"
+          }
+        },
+        {
+          "id": "ga-5-17",
+          "fr": {
+            "text": "La chair a des désirs contraires à ceux de l’Esprit, et l’Esprit en a de contraires à ceux de la chair.",
+            "ref": "Galates 5:17"
+          },
+          "en": {
+            "text": "The flesh desires what is against the Spirit, and the Spirit what is against the flesh.",
+            "ref": "Galatians 5:17"
+          }
+        },
+        {
+          "id": "1jn-3-4",
+          "fr": {
+            "text": "Le péché est la transgression de la loi.",
+            "ref": "1 Jean 3:4"
+          },
+          "en": {
+            "text": "Sin is the transgression of the law.",
+            "ref": "1 John 3:4"
+          }
+        },
+        {
+          "id": "jc-4-17",
+          "fr": {
+            "text": "Celui qui sait faire le bien et ne le fait pas commet un péché.",
+            "ref": "Jacques 4:17"
+          },
+          "en": {
+            "text": "Whoever knows the right thing to do and fails to do it, for him it is sin.",
+            "ref": "James 4:17"
+          }
+        },
+        {
+          "id": "1jn-5-16-17",
+          "fr": {
+            "text": "Il y a tel péché qui mène à la mort, et il y a tel péché qui ne mène pas à la mort.",
+            "ref": "1 Jean 5:16-17"
+          },
+          "en": {
+            "text": "There is sin that leads to death, and there is sin that does not lead to death.",
+            "ref": "1 John 5:16-17"
+          }
+        },
+        {
+          "id": "mt-15-19",
+          "fr": {
+            "text": "Du cœur viennent les mauvaises pensées, meurtres, adultères, débauches, vols, faux témoignages, blasphèmes.",
+            "ref": "Matthieu 15:19"
+          },
+          "en": {
+            "text": "Out of the heart come evil thoughts, murder, adultery, sexual immorality, theft, false witness, slander.",
+            "ref": "Matthew 15:19"
+          }
+        },
+        {
+          "id": "1jn-2-16",
+          "fr": {
+            "text": "la convoitise de la chair, la convoitise des yeux et l’orgueil de la vie.",
+            "ref": "1 Jean 2:16"
+          },
+          "en": {
+            "text": "the desire of the flesh, the desire of the eyes, and the pride of life.",
+            "ref": "1 John 2:16"
+          }
+        },
+        {
+          "id": "mt-12-31",
+          "fr": {
+            "text": "Tout péché et tout blasphème seront pardonnés aux hommes, mais le blasphème contre l’Esprit ne sera pas pardonné.",
+            "ref": "Matthieu 12:31"
+          },
+          "en": {
+            "text": "Every sin and blasphemy will be forgiven men, but the blasphemy against the Spirit will not be forgiven.",
+            "ref": "Matthew 12:31"
+          }
+        },
+        {
+          "id": "ec-7-29",
+          "fr": {
+            "text": "Dieu a fait l’homme droit, mais ils ont cherché bien des détours.",
+            "ref": "Ecclésiaste 7:29"
+          },
+          "en": {
+            "text": "God made man upright, but they have sought out many devices.",
+            "ref": "Ecclesiastes 7:29"
+          }
+        },
+        {
+          "id": "gn-2-25",
+          "fr": {
+            "text": "Ils étaient tous deux nus, l’homme et sa femme, et ils n’en avaient point de honte.",
+            "ref": "Genèse 2:25"
+          },
+          "en": {
+            "text": "They were both naked, the man and his wife, and were not ashamed.",
+            "ref": "Genesis 2:25"
+          }
+        },
+        {
+          "id": "gn-3-19",
+          "fr": {
+            "text": "Tu mangeras ton pain à la sueur de ton front, jusqu’à ce que tu retournes à la terre d’où tu as été tiré.",
+            "ref": "Genèse 3:19"
+          },
+          "en": {
+            "text": "You will eat your bread by the sweat of your brow, until you return to the ground from which you were taken.",
+            "ref": "Genesis 3:19"
+          }
+        },
+        {
+          "id": "gn-4-7",
+          "fr": {
+            "text": "Le péché est tapi à ta porte, mais à toi de le dominer.",
+            "ref": "Genèse 4:7"
+          },
+          "en": {
+            "text": "Sin is crouching at your door, but you must master it.",
+            "ref": "Genesis 4:7"
+          }
+        },
+        {
+          "id": "1co-15-22",
+          "fr": {
+            "text": "Comme tous meurent en Adam, de même tous revivront dans le Christ.",
+            "ref": "1 Corinthiens 15:22"
+          },
+          "en": {
+            "text": "As all die in Adam, so all will be made alive in Christ.",
+            "ref": "1 Corinthians 15:22"
+          }
+        }
+      ]
+    },
+    {
+      "id": "incarnation",
+      "name": {
+        "fr": "L’Incarnation",
+        "en": "The Incarnation"
+      },
+      "verses": [
+        {
+          "id": "jn-1-14",
+          "fr": {
+            "text": "Et le Verbe s’est fait chair, et il a habité parmi nous, et nous avons vu sa gloire.",
+            "ref": "Jean 1:14"
+          },
+          "en": {
+            "text": "And the Word became flesh and dwelt among us, and we have seen his glory.",
+            "ref": "John 1:14"
+          }
+        },
+        {
+          "id": "lc-1-35",
+          "fr": {
+            "text": "L’Esprit Saint viendra sur toi, et la puissance du Très-Haut te prendra sous son ombre ; c’est pourquoi celui qui va naître sera saint, et il sera appelé Fils de Dieu.",
+            "ref": "Luc 1:35"
+          },
+          "en": {
+            "text": "The Holy Spirit will come upon you, and the power of the Most High will overshadow you; therefore the child to be born will be holy, and will be called the Son of God.",
+            "ref": "Luke 1:35"
+          }
+        },
+        {
+          "id": "mt-1-23",
+          "fr": {
+            "text": "Voici, la vierge concevra et enfantera un fils, et on l’appellera Emmanuel, ce qui se traduit : Dieu avec nous.",
+            "ref": "Matthieu 1:23 (accomplissement)"
+          },
+          "en": {
+            "text": "Behold, the virgin shall conceive and bear a son, and they shall call his name Emmanuel, which means: God with us.",
+            "ref": "Matthew 1:23 (fulfillment)"
+          }
+        },
+        {
+          "id": "ph-2-7",
+          "fr": {
+            "text": "Il s’est dépouillé lui-même, prenant la condition de serviteur, devenant semblable aux hommes.",
+            "ref": "Philippiens 2:7"
+          },
+          "en": {
+            "text": "He emptied himself, taking the form of a servant, being born in the likeness of men.",
+            "ref": "Philippians 2:7"
+          }
+        },
+        {
+          "id": "ga-4-4",
+          "fr": {
+            "text": "Quand est venue la plénitude des temps, Dieu a envoyé son Fils, né d’une femme, né sous la loi.",
+            "ref": "Galates 4:4"
+          },
+          "en": {
+            "text": "When the fullness of time had come, God sent forth his Son, born of a woman, born under the law.",
+            "ref": "Galatians 4:4"
+          }
+        },
+        {
+          "id": "col-2-9",
+          "fr": {
+            "text": "En lui habite corporellement toute la plénitude de la divinité.",
+            "ref": "Colossiens 2:9"
+          },
+          "en": {
+            "text": "In him the whole fullness of deity dwells bodily.",
+            "ref": "Colossians 2:9"
+          }
+        },
+        {
+          "id": "jn-1-18",
+          "fr": {
+            "text": "Personne n’a jamais vu Dieu ; le Fils unique, qui est dans le sein du Père, l’a fait connaître.",
+            "ref": "Jean 1:18"
+          },
+          "en": {
+            "text": "No one has ever seen God; the only Son, who is in the bosom of the Father, has made him known.",
+            "ref": "John 1:18"
+          }
+        },
+        {
+          "id": "he-4-15",
+          "fr": {
+            "text": "éprouvé en tout, à notre ressemblance, hormis le péché.",
+            "ref": "Hébreux 4:15"
+          },
+          "en": {
+            "text": "tried in all things, in our likeness, save sin.",
+            "ref": "Hebrews 4:15"
+          }
+        },
+        {
+          "id": "lc-22-42",
+          "fr": {
+            "text": "Non ma volonté, mais la tienne.",
+            "ref": "Luc 22:42"
+          },
+          "en": {
+            "text": "Not my will, but yours.",
+            "ref": "Luke 22:42"
+          }
+        },
+        {
+          "id": "he-2-17",
+          "fr": {
+            "text": "Il devait devenir en tout semblable à ses frères, pour être un grand prêtre miséricordieux et expier les péchés du peuple.",
+            "ref": "Hébreux 2:17"
+          },
+          "en": {
+            "text": "He had to become in every way like his brothers, to be a merciful high priest and to expiate the sins of the people.",
+            "ref": "Hebrews 2:17"
+          }
+        }
+      ]
+    },
+    {
+      "id": "croix-resurrection",
+      "name": {
+        "fr": "La Croix et la Résurrection",
+        "en": "The Cross and the Resurrection"
+      },
+      "verses": [
+        {
+          "id": "jn-19-30",
+          "fr": {
+            "text": "Tout est accompli.",
+            "ref": "Jean 19:30"
+          },
+          "en": {
+            "text": "It is finished.",
+            "ref": "John 19:30"
+          }
+        },
+        {
+          "id": "lc-23-34",
+          "fr": {
+            "text": "Père, pardonne-leur, car ils ne savent pas ce qu’ils font.",
+            "ref": "Luc 23:34"
+          },
+          "en": {
+            "text": "Father, forgive them, for they know not what they do.",
+            "ref": "Luke 23:34"
+          }
+        },
+        {
+          "id": "jn-12-32",
+          "fr": {
+            "text": "Et moi, quand j’aurai été élevé de terre, j’attirerai à moi tous les hommes.",
+            "ref": "Jean 12:32"
+          },
+          "en": {
+            "text": "And I, when I am lifted up from the earth, will draw all men to myself.",
+            "ref": "John 12:32"
+          }
+        },
+        {
+          "id": "1co-15-3",
+          "fr": {
+            "text": "Le Christ est mort pour nos péchés, selon les Écritures.",
+            "ref": "1 Corinthiens 15:3"
+          },
+          "en": {
+            "text": "Christ died for our sins, according to the Scriptures.",
+            "ref": "1 Corinthians 15:3"
+          }
+        },
+        {
+          "id": "1co-15-4",
+          "fr": {
+            "text": "Il a été enseveli, et il est ressuscité le troisième jour, selon les Écritures.",
+            "ref": "1 Corinthiens 15:4"
+          },
+          "en": {
+            "text": "He was buried, and he rose on the third day, according to the Scriptures.",
+            "ref": "1 Corinthians 15:4"
+          }
+        },
+        {
+          "id": "mt-28-6",
+          "fr": {
+            "text": "Il n’est pas ici, car il est ressuscité, comme il l’avait dit.",
+            "ref": "Matthieu 28:6"
+          },
+          "en": {
+            "text": "He is not here, for he has risen, as he said.",
+            "ref": "Matthew 28:6"
+          }
+        },
+        {
+          "id": "rom-6-9",
+          "fr": {
+            "text": "Ressuscité des morts, le Christ ne meurt plus ; la mort n’a plus de pouvoir sur lui.",
+            "ref": "Romains 6:9"
+          },
+          "en": {
+            "text": "Raised from the dead, Christ dies no more; death no longer has power over him.",
+            "ref": "Romans 6:9"
+          }
+        },
+        {
+          "id": "1co-15-55",
+          "fr": {
+            "text": "Ô mort, où est ta victoire ? Ô mort, où est ton aiguillon ?",
+            "ref": "1 Corinthiens 15:55"
+          },
+          "en": {
+            "text": "O death, where is your victory? O death, where is your sting?",
+            "ref": "1 Corinthians 15:55"
+          }
+        },
+        {
+          "id": "jn-10-18",
+          "fr": {
+            "text": "Personne ne me l’enlève, mais je la donne de moi-même ; j’ai le pouvoir de la donner et j’ai le pouvoir de la recevoir à nouveau : tel est le commandement que j’ai reçu de mon Père.",
+            "ref": "Jean 10:18"
+          },
+          "en": {
+            "text": "No one takes it from me, but I give it of myself; I have the power to give it and the power to take it back again: such is the commandment I have received from my Father.",
+            "ref": "John 10:18"
+          }
+        },
+        {
+          "id": "ps-85-11",
+          "fr": {
+            "text": "L’amour et la vérité se rencontrent, la justice et la paix s’embrassent.",
+            "ref": "Psaume 85:11"
+          },
+          "en": {
+            "text": "Love and faithfulness meet together; justice and peace embrace.",
+            "ref": "Psalm 85:11"
+          }
+        },
+        {
+          "id": "1co-15-17",
+          "fr": {
+            "text": "Si le Christ n’est pas ressuscité, votre foi est vaine.",
+            "ref": "1 Corinthiens 15:17"
+          },
+          "en": {
+            "text": "If Christ has not been raised, your faith is vain.",
+            "ref": "1 Corinthians 15:17"
+          }
+        },
+        {
+          "id": "rom-4-25",
+          "fr": {
+            "text": "Il a été livré pour nos fautes, et ressuscité pour notre justification.",
+            "ref": "Romains 4:25"
+          },
+          "en": {
+            "text": "He was handed over for our trespasses and raised for our justification.",
+            "ref": "Romans 4:25"
+          }
+        },
+        {
+          "id": "1co-15-20",
+          "fr": {
+            "text": "Christ est ressuscité des morts, prémices de ceux qui sont morts.",
+            "ref": "1 Corinthiens 15:20"
+          },
+          "en": {
+            "text": "Christ has been raised from the dead, the firstfruits of those who have died.",
+            "ref": "1 Corinthians 15:20"
+          }
+        }
+      ]
+    },
+    {
+      "id": "marie",
+      "name": {
+        "fr": "Marie",
+        "en": "Mary"
+      },
+      "verses": [
+        {
+          "id": "lc-1-28",
+          "fr": {
+            "text": "Réjouis-toi, pleine de grâce, le Seigneur est avec toi.",
+            "ref": "Luc 1:28"
+          },
+          "en": {
+            "text": "Hail, full of grace, the Lord is with you.",
+            "ref": "Luke 1:28"
+          }
+        },
+        {
+          "id": "gn-3-15",
+          "fr": {
+            "text": "Je mettrai une inimitié entre toi et la femme, entre ta descendance et la sienne : elle t’écrasera la tête.",
+            "ref": "Genèse 3:15"
+          },
+          "en": {
+            "text": "I will put enmity between you and the woman, between your offspring and hers: she will crush your head.",
+            "ref": "Genesis 3:15"
+          }
+        },
+        {
+          "id": "lc-1-38",
+          "fr": {
+            "text": "Je suis la servante du Seigneur ; qu’il m’advienne selon ta parole.",
+            "ref": "Luc 1:38"
+          },
+          "en": {
+            "text": "I am the servant of the Lord; let it be done to me according to your word.",
+            "ref": "Luke 1:38"
+          }
+        },
+        {
+          "id": "lc-1-42",
+          "fr": {
+            "text": "Tu es bénie entre les femmes, et le fruit de tes entrailles est béni.",
+            "ref": "Luc 1:42"
+          },
+          "en": {
+            "text": "Blessed are you among women, and blessed is the fruit of your womb.",
+            "ref": "Luke 1:42"
+          }
+        },
+        {
+          "id": "lc-1-43",
+          "fr": {
+            "text": "Comment m’est-il donné que la mère de mon Seigneur vienne jusqu’à moi ?",
+            "ref": "Luc 1:43"
+          },
+          "en": {
+            "text": "Why is this granted to me that the mother of my Lord should come to me?",
+            "ref": "Luke 1:43"
+          }
+        },
+        {
+          "id": "lc-1-48",
+          "fr": {
+            "text": "Désormais tous les âges me diront bienheureuse.",
+            "ref": "Luc 1:48"
+          },
+          "en": {
+            "text": "From now on all generations will call me blessed.",
+            "ref": "Luke 1:48"
+          }
+        },
+        {
+          "id": "lc-1-49",
+          "fr": {
+            "text": "Le Puissant a fait pour moi des merveilles ; saint est son nom.",
+            "ref": "Luc 1:49"
+          },
+          "en": {
+            "text": "He who is mighty has done great things for me, and holy is his name.",
+            "ref": "Luke 1:49"
+          }
+        },
+        {
+          "id": "jn-2-5",
+          "fr": {
+            "text": "Faites tout ce qu’il vous dira.",
+            "ref": "Jean 2:5"
+          },
+          "en": {
+            "text": "Do whatever he tells you.",
+            "ref": "John 2:5"
+          }
+        },
+        {
+          "id": "jn-19-27",
+          "fr": {
+            "text": "Voici ta mère. Et à partir de cette heure-là, le disciple la prit chez lui.",
+            "ref": "Jean 19:27"
+          },
+          "en": {
+            "text": "Behold your mother. From that hour the disciple took her into his own home.",
+            "ref": "John 19:27"
+          }
+        },
+        {
+          "id": "lc-1-47",
+          "fr": {
+            "text": "Mon esprit exulte en Dieu, mon Sauveur.",
+            "ref": "Luc 1:47"
+          },
+          "en": {
+            "text": "My spirit rejoices in God my Saviour.",
+            "ref": "Luke 1:47"
+          }
+        },
+        {
+          "id": "lc-1-34",
+          "fr": {
+            "text": "Comment cela se fera-t-il, puisque je ne connais point d’homme ?",
+            "ref": "Luc 1:34"
+          },
+          "en": {
+            "text": "How shall this be, since I know not man?",
+            "ref": "Luke 1:34"
+          }
+        },
+        {
+          "id": "is-7-14",
+          "fr": {
+            "text": "Voici, la vierge concevra et enfantera un fils, et on lui donnera le nom d’Emmanuel.",
+            "ref": "Isaïe 7:14"
+          },
+          "en": {
+            "text": "Behold, the virgin shall conceive and bear a son, and shall call his name Emmanuel.",
+            "ref": "Isaiah 7:14"
+          }
+        },
+        {
+          "id": "ez-44-2",
+          "fr": {
+            "text": "Cette porte restera fermée, elle ne s’ouvrira pas ; nul n’y passera, car le Seigneur, le Dieu d’Israël, est entré par elle.",
+            "ref": "Ézéchiel 44:2"
+          },
+          "en": {
+            "text": "This gate shall remain shut; it shall not be opened, and no one shall pass through it, for the Lord, the God of Israel, has entered by it.",
+            "ref": "Ezekiel 44:2"
+          }
+        },
+        {
+          "id": "apo-12-1",
+          "fr": {
+            "text": "Un grand signe parut dans le ciel : une femme enveloppée de soleil, la lune sous ses pieds, et une couronne de douze étoiles sur la tête.",
+            "ref": "Apocalypse 12:1"
+          },
+          "en": {
+            "text": "A great sign appeared in heaven: a woman clothed with the sun, the moon under her feet, and a crown of twelve stars on her head.",
+            "ref": "Revelation 12:1"
+          }
+        },
+        {
+          "id": "lc-2-35",
+          "fr": {
+            "text": "Et toi-même, un glaive te transpercera l’âme.",
+            "ref": "Luc 2:35"
+          },
+          "en": {
+            "text": "And a sword will pierce your own soul.",
+            "ref": "Luke 2:35"
+          }
+        },
+        {
+          "id": "lc-1-45",
+          "fr": {
+            "text": "Bienheureuse celle qui a cru à l’accomplissement de ce qui lui a été dit de la part du Seigneur.",
+            "ref": "Luc 1:45"
+          },
+          "en": {
+            "text": "Blessed is she who believed that what was spoken to her by the Lord would be fulfilled.",
+            "ref": "Luke 1:45"
+          }
+        },
+        {
+          "id": "lc-2-19",
+          "fr": {
+            "text": "Marie retenait tous ces événements et les méditait dans son cœur.",
+            "ref": "Luc 2:19"
+          },
+          "en": {
+            "text": "Mary kept all these events and pondered them in her heart.",
+            "ref": "Luke 2:19"
+          }
+        },
+        {
+          "id": "jn-2-3",
+          "fr": {
+            "text": "Ils n’ont pas de vin.",
+            "ref": "Jean 2:3"
+          },
+          "en": {
+            "text": "They have no wine.",
+            "ref": "John 2:3"
+          }
+        },
+        {
+          "id": "mt-1-25",
+          "fr": {
+            "text": "Il ne la connut point jusqu’à ce qu’elle eût enfanté un fils.",
+            "ref": "Matthieu 1:25"
+          },
+          "en": {
+            "text": "He knew her not until she had borne a son.",
+            "ref": "Matthew 1:25"
+          }
+        }
+      ]
+    },
+    {
+      "id": "grace",
+      "name": {
+        "fr": "La grâce",
+        "en": "Grace"
+      },
+      "verses": [
+        {
+          "id": "2co-12-9",
+          "fr": {
+            "text": "Ma grâce te suffit, car ma puissance s’accomplit dans la faiblesse.",
+            "ref": "2 Corinthiens 12:9"
+          },
+          "en": {
+            "text": "My grace is sufficient for you, for my power is made perfect in weakness.",
+            "ref": "2 Corinthians 12:9"
+          }
+        },
+        {
+          "id": "jn-1-16",
+          "fr": {
+            "text": "De sa plénitude nous avons tous reçu, et grâce sur grâce.",
+            "ref": "Jean 1:16"
+          },
+          "en": {
+            "text": "From his fullness we have all received, grace upon grace.",
+            "ref": "John 1:16"
+          }
+        },
+        {
+          "id": "rm-5-20",
+          "fr": {
+            "text": "Là où le péché a abondé, la grâce a surabondé.",
+            "ref": "Romains 5:20"
+          },
+          "en": {
+            "text": "Where sin increased, grace abounded all the more.",
+            "ref": "Romans 5:20"
+          }
+        },
+        {
+          "id": "tt-2-11",
+          "fr": {
+            "text": "La grâce de Dieu, source de salut pour tous les hommes, s’est manifestée.",
+            "ref": "Tite 2:11"
+          },
+          "en": {
+            "text": "The grace of God has appeared, bringing salvation to all men.",
+            "ref": "Titus 2:11"
+          }
+        },
+        {
+          "id": "1co-15-10",
+          "fr": {
+            "text": "Par la grâce de Dieu, je suis ce que je suis.",
+            "ref": "1 Corinthiens 15:10"
+          },
+          "en": {
+            "text": "By the grace of God I am what I am.",
+            "ref": "1 Corinthians 15:10"
+          }
+        },
+        {
+          "id": "rm-3-24",
+          "fr": {
+            "text": "Ils sont gratuitement justifiés par sa grâce, par la rédemption qui est dans le Christ Jésus.",
+            "ref": "Romains 3:24"
+          },
+          "en": {
+            "text": "They are justified freely by his grace through the redemption that is in Christ Jesus.",
+            "ref": "Romans 3:24"
+          }
+        },
+        {
+          "id": "ac-15-11",
+          "fr": {
+            "text": "C’est par la grâce du Seigneur Jésus que nous croyons être sauvés.",
+            "ref": "Actes 15:11"
+          },
+          "en": {
+            "text": "We believe that we are saved through the grace of the Lord Jesus.",
+            "ref": "Acts 15:11"
+          }
+        },
+        {
+          "id": "rm-11-6",
+          "fr": {
+            "text": "Si c’est par grâce, ce n’est plus par les œuvres ; autrement la grâce ne serait plus une grâce.",
+            "ref": "Romains 11:6"
+          },
+          "en": {
+            "text": "If it is by grace, it is no longer by works; otherwise grace would no longer be grace.",
+            "ref": "Romans 11:6"
+          }
+        },
+        {
+          "id": "jn-15-5",
+          "fr": {
+            "text": "Sans moi, vous ne pouvez rien faire.",
+            "ref": "Jean 15:5"
+          },
+          "en": {
+            "text": "Without me you can do nothing.",
+            "ref": "John 15:5"
+          }
+        },
+        {
+          "id": "2pi-1-4",
+          "fr": {
+            "text": "Il nous a accordé de devenir participants de la nature divine.",
+            "ref": "2 Pierre 1:4"
+          },
+          "en": {
+            "text": "He has granted us to become partakers of the divine nature.",
+            "ref": "2 Peter 1:4"
+          }
+        },
+        {
+          "id": "jn-1-12",
+          "fr": {
+            "text": "À tous ceux qui l’ont reçu, il a donné le pouvoir de devenir enfants de Dieu.",
+            "ref": "Jean 1:12"
+          },
+          "en": {
+            "text": "To all who received him, he gave power to become children of God.",
+            "ref": "John 1:12"
+          }
+        },
+        {
+          "id": "jn-14-23",
+          "fr": {
+            "text": "Si quelqu’un m’aime, il gardera ma parole, et mon Père l’aimera ; nous viendrons à lui et nous ferons chez lui notre demeure.",
+            "ref": "Jean 14:23"
+          },
+          "en": {
+            "text": "If anyone loves me, he will keep my word, and my Father will love him, and we will come to him and make our home with him.",
+            "ref": "John 14:23"
+          }
+        },
+        {
+          "id": "1co-12-3",
+          "fr": {
+            "text": "Nul ne peut dire : Jésus est Seigneur, si ce n’est par l’Esprit Saint.",
+            "ref": "1 Corinthiens 12:3"
+          },
+          "en": {
+            "text": "No one can say ‘Jesus is Lord’ except by the Holy Spirit.",
+            "ref": "1 Corinthians 12:3"
+          }
+        },
+        {
+          "id": "ph-1-6",
+          "fr": {
+            "text": "Celui qui a commencé en vous une œuvre bonne en poursuivra l’achèvement jusqu’au jour du Christ Jésus.",
+            "ref": "Philippiens 1:6"
+          },
+          "en": {
+            "text": "He who began a good work in you will bring it to completion at the day of Christ Jesus.",
+            "ref": "Philippians 1:6"
+          }
+        },
+        {
+          "id": "he-3-15",
+          "fr": {
+            "text": "Aujourd’hui, si vous entendez sa voix, n’endurcissez pas vos cœurs.",
+            "ref": "Hébreux 3:15"
+          },
+          "en": {
+            "text": "Today, if you hear his voice, do not harden your hearts.",
+            "ref": "Hebrews 3:15"
+          }
+        },
+        {
+          "id": "ps-84-12",
+          "fr": {
+            "text": "Le Seigneur donne la grâce et la gloire.",
+            "ref": "Psaume 84:12"
+          },
+          "en": {
+            "text": "The Lord bestows grace and glory.",
+            "ref": "Psalm 84:12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "predestination",
+      "name": {
+        "fr": "La prédestination",
+        "en": "Predestination"
+      },
+      "verses": [
+        {
+          "id": "rm-8-29-30",
+          "fr": {
+            "text": "Ceux qu’il a connus d’avance, il les a aussi prédestinés à être conformes à l’image de son Fils ; et ceux qu’il a prédestinés, il les a aussi appelés, justifiés et glorifiés.",
+            "ref": "Romains 8:29-30"
+          },
+          "en": {
+            "text": "Those whom he foreknew he also predestined to be conformed to the image of his Son; and those he predestined he also called, justified, and glorified.",
+            "ref": "Romans 8:29-30"
+          }
+        },
+        {
+          "id": "ep-1-4-5",
+          "fr": {
+            "text": "Il nous a choisis en lui avant la fondation du monde, nous ayant prédestinés à être ses fils adoptifs par Jésus-Christ.",
+            "ref": "Éphésiens 1:4-5"
+          },
+          "en": {
+            "text": "He chose us in him before the foundation of the world, having predestined us for adoption as sons through Jesus Christ.",
+            "ref": "Ephesians 1:4-5"
+          }
+        },
+        {
+          "id": "jn-6-44",
+          "fr": {
+            "text": "Nul ne peut venir à moi si le Père qui m’a envoyé ne l’attire.",
+            "ref": "Jean 6:44"
+          },
+          "en": {
+            "text": "No one can come to me unless the Father who sent me draws him.",
+            "ref": "John 6:44"
+          }
+        },
+        {
+          "id": "rm-9-16",
+          "fr": {
+            "text": "Cela ne dépend ni de celui qui veut, ni de celui qui court, mais de Dieu qui fait miséricorde.",
+            "ref": "Romains 9:16"
+          },
+          "en": {
+            "text": "It depends not on human will or effort, but on God who has mercy.",
+            "ref": "Romans 9:16"
+          }
+        },
+        {
+          "id": "1tm-2-4",
+          "fr": {
+            "text": "Dieu veut que tous les hommes soient sauvés et parviennent à la connaissance de la vérité.",
+            "ref": "1 Timothée 2:4"
+          },
+          "en": {
+            "text": "God desires all men to be saved and to come to the knowledge of the truth.",
+            "ref": "1 Timothy 2:4"
+          }
+        },
+        {
+          "id": "ph-2-13",
+          "fr": {
+            "text": "C’est Dieu qui produit en vous le vouloir et le faire, selon son dessein bienveillant.",
+            "ref": "Philippiens 2:13"
+          },
+          "en": {
+            "text": "It is God who works in you, both to will and to act, according to his good purpose.",
+            "ref": "Philippians 2:13"
+          }
+        },
+        {
+          "id": "2tm-1-9",
+          "fr": {
+            "text": "Il nous a sauvés et appelés par un saint appel, non à cause de nos œuvres, mais en vertu de son propre dessein et de sa grâce.",
+            "ref": "2 Timothée 1:9"
+          },
+          "en": {
+            "text": "He saved us and called us with a holy calling, not because of our works, but in virtue of his own purpose and grace.",
+            "ref": "2 Timothy 1:9"
+          }
+        },
+        {
+          "id": "rom-9-21",
+          "fr": {
+            "text": "Le potier n’est-il pas maître de son argile ?",
+            "ref": "Romains 9:21"
+          },
+          "en": {
+            "text": "Is the potter not master of his clay?",
+            "ref": "Romans 9:21"
+          }
+        },
+        {
+          "id": "ez-33-11",
+          "fr": {
+            "text": "Je ne prends pas plaisir à la mort du méchant, mais à ce qu’il se détourne de sa voie et qu’il vive.",
+            "ref": "Ézéchiel 33:11"
+          },
+          "en": {
+            "text": "I take no pleasure in the death of the wicked, but that he turn from his way and live.",
+            "ref": "Ezekiel 33:11"
+          }
+        },
+        {
+          "id": "jc-1-13",
+          "fr": {
+            "text": "Que nul, dans l’épreuve, ne dise : C’est Dieu qui me tente ; car Dieu ne tente personne.",
+            "ref": "Jacques 1:13"
+          },
+          "en": {
+            "text": "Let no one, when tempted, say: It is God who tempts me; for God tempts no one.",
+            "ref": "James 1:13"
+          }
+        },
+        {
+          "id": "2pi-1-10",
+          "fr": {
+            "text": "Efforcez-vous d’affermir votre vocation et votre élection.",
+            "ref": "2 Pierre 1:10"
+          },
+          "en": {
+            "text": "Strive to make your calling and election sure.",
+            "ref": "2 Peter 1:10"
+          }
+        },
+        {
+          "id": "1co-1-8",
+          "fr": {
+            "text": "Il vous affermira jusqu’à la fin, pour que vous soyez irréprochables au jour de notre Seigneur Jésus-Christ.",
+            "ref": "1 Corinthiens 1:8"
+          },
+          "en": {
+            "text": "He will sustain you to the end, so that you may be blameless on the day of our Lord Jesus Christ.",
+            "ref": "1 Corinthians 1:8"
+          }
+        },
+        {
+          "id": "jn-15-16",
+          "fr": {
+            "text": "Ce n’est pas vous qui m’avez choisi, mais moi qui vous ai choisis.",
+            "ref": "Jean 15:16"
+          },
+          "en": {
+            "text": "It is not you who chose me, but I who chose you.",
+            "ref": "John 15:16"
+          }
+        }
+      ]
+    },
+    {
+      "id": "salut",
+      "name": {
+        "fr": "Le salut",
+        "en": "Salvation"
+      },
+      "verses": [
+        {
+          "id": "jn-3-16",
+          "fr": {
+            "text": "Car Dieu a tant aimé le monde qu’il a donné son Fils unique, afin que quiconque croit en lui ne périsse point, mais qu’il ait la vie éternelle.",
+            "ref": "Jean 3:16"
+          },
+          "en": {
+            "text": "For God so loved the world that he gave his only Son, that whoever believes in him should not perish but have eternal life.",
+            "ref": "John 3:16"
+          }
+        },
+        {
+          "id": "rom-5-8",
+          "fr": {
+            "text": "Dieu prouve son amour envers nous en ce que, alors que nous étions encore des pécheurs, le Christ est mort pour nous.",
+            "ref": "Romains 5:8"
+          },
+          "en": {
+            "text": "God proves his love for us in that while we were still sinners, Christ died for us.",
+            "ref": "Romans 5:8"
+          }
+        },
+        {
+          "id": "eph-2-8",
+          "fr": {
+            "text": "C’est par la grâce que vous êtes sauvés, au moyen de la foi ; et cela ne vient pas de vous, c’est le don de Dieu.",
+            "ref": "Éphésiens 2:8"
+          },
+          "en": {
+            "text": "By grace you have been saved through faith; and this is not your own doing, it is the gift of God.",
+            "ref": "Ephesians 2:8"
+          }
+        },
+        {
+          "id": "rom-10-9",
+          "fr": {
+            "text": "Si tu confesses de ta bouche que Jésus est Seigneur et si tu crois dans ton cœur que Dieu l’a ressuscité des morts, tu seras sauvé.",
+            "ref": "Romains 10:9"
+          },
+          "en": {
+            "text": "If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved.",
+            "ref": "Romans 10:9"
+          }
+        },
+        {
+          "id": "heb-9-12",
+          "fr": {
+            "text": "Le Christ est entré une fois pour toutes dans le sanctuaire avec son propre sang, nous ayant obtenu une délivrance éternelle.",
+            "ref": "Hébreux 9:12"
+          },
+          "en": {
+            "text": "Christ entered once for all into the holy places with his own blood, having secured an eternal redemption.",
+            "ref": "Hebrews 9:12"
+          }
+        },
+        {
+          "id": "is-53-4",
+          "fr": {
+            "text": "Ce sont nos maladies qu’il a portées, et nos douleurs dont il s’est chargé.",
+            "ref": "Isaïe 53:4"
+          },
+          "en": {
+            "text": "Surely he has borne our diseases and carried our sorrows.",
+            "ref": "Isaiah 53:4"
+          }
+        },
+        {
+          "id": "is-53-5",
+          "fr": {
+            "text": "Il a été transpercé à cause de nos péchés, broyé à cause de nos fautes ; le châtiment qui nous donne la paix est sur lui, et par ses meurtrissures nous sommes guéris.",
+            "ref": "Isaïe 53:5"
+          },
+          "en": {
+            "text": "He was pierced because of our sins, crushed because of our faults; the chastisement that brings us peace is upon him, and by his wounds we are healed.",
+            "ref": "Isaiah 53:5"
+          }
+        },
+        {
+          "id": "1pi-1-19",
+          "fr": {
+            "text": "Vous avez été rachetés par le sang précieux du Christ, comme d’un agneau sans défaut et sans tache.",
+            "ref": "1 Pierre 1:19"
+          },
+          "en": {
+            "text": "You were ransomed with the precious blood of Christ, like that of a lamb without blemish or spot.",
+            "ref": "1 Peter 1:19"
+          }
+        },
+        {
+          "id": "rom-6-23",
+          "fr": {
+            "text": "Le salaire du péché, c’est la mort ; mais le don gratuit de Dieu, c’est la vie éternelle en Jésus-Christ notre Seigneur.",
+            "ref": "Romains 6:23"
+          },
+          "en": {
+            "text": "The wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.",
+            "ref": "Romans 6:23"
+          }
+        },
+        {
+          "id": "ac-4-12",
+          "fr": {
+            "text": "Il n’y a de salut en aucun autre ; aucun autre nom sous le ciel n’est donné aux hommes, par lequel nous devions être sauvés.",
+            "ref": "Actes 4:12"
+          },
+          "en": {
+            "text": "There is salvation in no one else; there is no other name under heaven given among men by which we must be saved.",
+            "ref": "Acts 4:12"
+          }
+        },
+        {
+          "id": "lc-19-10",
+          "fr": {
+            "text": "Le Fils de l’homme est venu chercher et sauver ce qui était perdu.",
+            "ref": "Luc 19:10"
+          },
+          "en": {
+            "text": "The Son of Man came to seek and to save what was lost.",
+            "ref": "Luke 19:10"
+          }
+        },
+        {
+          "id": "jn-8-34",
+          "fr": {
+            "text": "Quiconque commet le péché est esclave du péché.",
+            "ref": "Jean 8:34"
+          },
+          "en": {
+            "text": "Whoever commits sin is a slave of sin.",
+            "ref": "John 8:34"
+          }
+        },
+        {
+          "id": "1jn-3-8",
+          "fr": {
+            "text": "Celui qui commet le péché est du diable, car le diable pèche dès le commencement.",
+            "ref": "1 Jean 3:8"
+          },
+          "en": {
+            "text": "He who commits sin is of the devil, for the devil sins from the beginning.",
+            "ref": "1 John 3:8"
+          }
+        },
+        {
+          "id": "col-1-13",
+          "fr": {
+            "text": "Il nous a délivrés de la puissance des ténèbres et nous a transportés dans le royaume de son Fils bien-aimé.",
+            "ref": "Colossiens 1:13"
+          },
+          "en": {
+            "text": "He has delivered us from the power of darkness and brought us into the kingdom of his beloved Son.",
+            "ref": "Colossians 1:13"
+          }
+        },
+        {
+          "id": "mc-10-45",
+          "fr": {
+            "text": "Le Fils de l’homme est venu donner sa vie en rançon pour la multitude.",
+            "ref": "Marc 10:45"
+          },
+          "en": {
+            "text": "The Son of Man came to give his life as a ransom for the multitude.",
+            "ref": "Mark 10:45"
+          }
+        },
+        {
+          "id": "ga-5-6",
+          "fr": {
+            "text": "Ce qui vaut, c’est la foi agissant par la charité.",
+            "ref": "Galates 5:6"
+          },
+          "en": {
+            "text": "What counts is faith working through charity.",
+            "ref": "Galatians 5:6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "foi",
+      "name": {
+        "fr": "Foi et espérance",
+        "en": "Faith and Hope"
+      },
+      "verses": [
+        {
+          "id": "heb-11-1",
+          "fr": {
+            "text": "La foi est la garantie des biens qu’on espère, la preuve des réalités qu’on ne voit pas.",
+            "ref": "Hébreux 11:1"
+          },
+          "en": {
+            "text": "Faith is the assurance of things hoped for, the conviction of things not seen.",
+            "ref": "Hebrews 11:1"
+          }
+        },
+        {
+          "id": "rom-10-17",
+          "fr": {
+            "text": "La foi vient de ce qu’on entend, et ce qu’on entend vient de la parole du Christ.",
+            "ref": "Romains 10:17"
+          },
+          "en": {
+            "text": "Faith comes from hearing, and hearing through the word of Christ.",
+            "ref": "Romans 10:17"
+          }
+        },
+        {
+          "id": "rom-8-28",
+          "fr": {
+            "text": "Nous savons que toutes choses concourent au bien de ceux qui aiment Dieu.",
+            "ref": "Romains 8:28"
+          },
+          "en": {
+            "text": "We know that all things work together for good for those who love God.",
+            "ref": "Romans 8:28"
+          }
+        },
+        {
+          "id": "jc-2-26",
+          "fr": {
+            "text": "Comme le corps sans souffle est mort, de même la foi sans les œuvres est morte.",
+            "ref": "Jacques 2:26"
+          },
+          "en": {
+            "text": "As the body apart from the spirit is dead, so also faith apart from works is dead.",
+            "ref": "James 2:26"
+          }
+        },
+        {
+          "id": "jn-11-25",
+          "fr": {
+            "text": "Je suis la résurrection et la vie. Celui qui croit en moi, même s’il meurt, vivra.",
+            "ref": "Jean 11:25"
+          },
+          "en": {
+            "text": "I am the resurrection and the life. Whoever believes in me, though he die, yet shall he live.",
+            "ref": "John 11:25"
+          }
+        },
+        {
+          "id": "jn-20-29",
+          "fr": {
+            "text": "Heureux ceux qui n’ont pas vu et qui ont cru.",
+            "ref": "Jean 20:29"
+          },
+          "en": {
+            "text": "Blessed are those who have not seen and yet have believed.",
+            "ref": "John 20:29"
+          }
+        },
+        {
+          "id": "rom-5-5",
+          "fr": {
+            "text": "L’espérance ne déçoit pas, car l’amour de Dieu a été répandu dans nos cœurs par l’Esprit Saint qui nous a été donné.",
+            "ref": "Romains 5:5"
+          },
+          "en": {
+            "text": "Hope does not disappoint, because God’s love has been poured into our hearts through the Holy Spirit who has been given to us.",
+            "ref": "Romans 5:5"
+          }
+        },
+        {
+          "id": "rom-15-13",
+          "fr": {
+            "text": "Que le Dieu de l’espérance vous remplisse de toute joie et paix dans la foi.",
+            "ref": "Romains 15:13"
+          },
+          "en": {
+            "text": "May the God of hope fill you with all joy and peace in believing.",
+            "ref": "Romans 15:13"
+          }
+        },
+        {
+          "id": "heb-6-19",
+          "fr": {
+            "text": "Cette espérance, nous la tenons comme une ancre de l’âme, sûre et solide.",
+            "ref": "Hébreux 6:19"
+          },
+          "en": {
+            "text": "We have this hope as an anchor of the soul, sure and steadfast.",
+            "ref": "Hebrews 6:19"
+          }
+        },
+        {
+          "id": "jn-14-11",
+          "fr": {
+            "text": "Croyez-moi : je suis dans le Père et le Père est en moi. Sinon, croyez à cause des œuvres elles-mêmes.",
+            "ref": "Jean 14:11"
+          },
+          "en": {
+            "text": "Believe me: I am in the Father and the Father is in me. Or else, believe because of the works themselves.",
+            "ref": "John 14:11"
+          }
+        },
+        {
+          "id": "rom-4-3",
+          "fr": {
+            "text": "Abraham eut foi en Dieu, et cela lui fut compté comme justice.",
+            "ref": "Romains 4:3"
+          },
+          "en": {
+            "text": "Abraham believed God, and it was counted to him as righteousness.",
+            "ref": "Romans 4:3"
+          }
+        },
+        {
+          "id": "2co-5-7",
+          "fr": {
+            "text": "Nous marchons par la foi, non par la vue.",
+            "ref": "2 Corinthiens 5:7"
+          },
+          "en": {
+            "text": "We walk by faith, not by sight.",
+            "ref": "2 Corinthians 5:7"
+          }
+        },
+        {
+          "id": "he-11-6",
+          "fr": {
+            "text": "Sans la foi, il est impossible de plaire à Dieu.",
+            "ref": "Hébreux 11:6"
+          },
+          "en": {
+            "text": "Without faith it is impossible to please God.",
+            "ref": "Hebrews 11:6"
+          }
+        },
+        {
+          "id": "1pi-1-3",
+          "fr": {
+            "text": "Il nous a régénérés pour une espérance vivante par la résurrection de Jésus-Christ d’entre les morts.",
+            "ref": "1 Pierre 1:3"
+          },
+          "en": {
+            "text": "He has regenerated us unto a living hope by the resurrection of Jesus Christ from the dead.",
+            "ref": "1 Peter 1:3"
+          }
+        },
+        {
+          "id": "he-10-23",
+          "fr": {
+            "text": "Restons fermes dans la confession de notre espérance, car il est fidèle, celui qui a promis.",
+            "ref": "Hébreux 10:23"
+          },
+          "en": {
+            "text": "Let us hold fast the confession of our hope, for he who promised is faithful.",
+            "ref": "Hebrews 10:23"
+          }
+        },
+        {
+          "id": "rom-8-24",
+          "fr": {
+            "text": "Car c’est en espérance que nous sommes sauvés. Or, une espérance que l’on voit n’est plus une espérance : ce que l’on voit, peut-on l’espérer encore ?",
+            "ref": "Romains 8:24"
+          },
+          "en": {
+            "text": "For in this hope we were saved. Now hope that is seen is no longer hope: for who hopes for what he sees?",
+            "ref": "Romans 8:24"
+          }
+        }
+      ]
+    },
+    {
+      "id": "charite",
+      "name": {
+        "fr": "La charité",
+        "en": "Charity"
+      },
+      "verses": [
+        {
+          "id": "jn-13-34",
+          "fr": {
+            "text": "Je vous donne un commandement nouveau : aimez-vous les uns les autres ; comme je vous ai aimés, aimez-vous les uns les autres.",
+            "ref": "Jean 13:34"
+          },
+          "en": {
+            "text": "A new commandment I give you: love one another; as I have loved you, love one another.",
+            "ref": "John 13:34"
+          }
+        },
+        {
+          "id": "mt-22-37",
+          "fr": {
+            "text": "Tu aimeras le Seigneur ton Dieu de tout ton cœur, de toute ton âme et de tout ton esprit.",
+            "ref": "Matthieu 22:37"
+          },
+          "en": {
+            "text": "You shall love the Lord your God with all your heart, with all your soul, and with all your mind.",
+            "ref": "Matthew 22:37"
+          }
+        },
+        {
+          "id": "mt-22-39",
+          "fr": {
+            "text": "Tu aimeras ton prochain comme toi-même.",
+            "ref": "Matthieu 22:39"
+          },
+          "en": {
+            "text": "You shall love your neighbour as yourself.",
+            "ref": "Matthew 22:39"
+          }
+        },
+        {
+          "id": "jn-15-13",
+          "fr": {
+            "text": "Il n’y a pas de plus grand amour que de donner sa vie pour ses amis.",
+            "ref": "Jean 15:13"
+          },
+          "en": {
+            "text": "There is no greater love than to lay down one’s life for one’s friends.",
+            "ref": "John 15:13"
+          }
+        },
+        {
+          "id": "1co-13-2",
+          "fr": {
+            "text": "Quand j’aurais toute la foi jusqu’à transporter les montagnes, si je n’ai pas la charité, je ne suis rien.",
+            "ref": "1 Corinthiens 13:2"
+          },
+          "en": {
+            "text": "If I have all faith, so as to remove mountains, but have not charity, I am nothing.",
+            "ref": "1 Corinthians 13:2"
+          }
+        },
+        {
+          "id": "1co-13-4",
+          "fr": {
+            "text": "La charité est patiente, elle est pleine de bonté ; la charité n’est pas envieuse.",
+            "ref": "1 Corinthiens 13:4"
+          },
+          "en": {
+            "text": "Charity is patient, charity is kind; charity is not envious.",
+            "ref": "1 Corinthians 13:4"
+          }
+        },
+        {
+          "id": "1co-13-13",
+          "fr": {
+            "text": "Maintenant demeurent la foi, l’espérance et la charité ; mais la plus grande des trois, c’est la charité.",
+            "ref": "1 Corinthiens 13:13"
+          },
+          "en": {
+            "text": "Now faith, hope, and charity abide, these three; but the greatest of these is charity.",
+            "ref": "1 Corinthians 13:13"
+          }
+        },
+        {
+          "id": "1jn-4-16",
+          "fr": {
+            "text": "Dieu est amour, et celui qui demeure dans l’amour demeure en Dieu, et Dieu demeure en lui.",
+            "ref": "1 Jean 4:16"
+          },
+          "en": {
+            "text": "God is love, and whoever abides in love abides in God, and God in him.",
+            "ref": "1 John 4:16"
+          }
+        },
+        {
+          "id": "1jn-4-19",
+          "fr": {
+            "text": "Nous, aimons, puisque lui nous a aimés le premier.",
+            "ref": "1 Jean 4:19"
+          },
+          "en": {
+            "text": "Let us love, because he first loved us.",
+            "ref": "1 John 4:19"
+          }
+        },
+        {
+          "id": "jn-15-15",
+          "fr": {
+            "text": "Je ne vous appelle plus serviteurs, je vous appelle amis, parce que je vous ai fait connaître tout ce que j’ai entendu de mon Père.",
+            "ref": "Jean 15:15"
+          },
+          "en": {
+            "text": "I no longer call you servants, I call you friends, because I have made known to you all that I have heard from my Father.",
+            "ref": "John 15:15"
+          }
+        },
+        {
+          "id": "1jn-4-20",
+          "fr": {
+            "text": "Celui qui n’aime pas son frère, qu’il voit, ne peut aimer Dieu, qu’il ne voit pas.",
+            "ref": "1 Jean 4:20"
+          },
+          "en": {
+            "text": "Whoever does not love his brother, whom he sees, cannot love God, whom he does not see.",
+            "ref": "1 John 4:20"
+          }
+        },
+        {
+          "id": "mt-5-44",
+          "fr": {
+            "text": "Aimez vos ennemis, et priez pour ceux qui vous persécutent.",
+            "ref": "Matthieu 5:44"
+          },
+          "en": {
+            "text": "Love your enemies, and pray for those who persecute you.",
+            "ref": "Matthew 5:44"
+          }
+        },
+        {
+          "id": "ph-1-9",
+          "fr": {
+            "text": "Que votre amour grandisse de plus en plus en connaissance et en pleine intelligence.",
+            "ref": "Philippiens 1:9"
+          },
+          "en": {
+            "text": "May your love grow ever richer in knowledge and full insight.",
+            "ref": "Philippians 1:9"
+          }
+        },
+        {
+          "id": "col-3-14",
+          "fr": {
+            "text": "Par-dessus tout, ayez l’amour, qui est le lien de la perfection.",
+            "ref": "Colossiens 3:14"
+          },
+          "en": {
+            "text": "Above all, put on love, which is the bond of perfection.",
+            "ref": "Colossians 3:14"
+          }
+        },
+        {
+          "id": "1co-13-8",
+          "fr": {
+            "text": "La charité ne passe jamais.",
+            "ref": "1 Corinthiens 13:8"
+          },
+          "en": {
+            "text": "Charity never ends.",
+            "ref": "1 Corinthians 13:8"
+          }
+        }
+      ]
+    },
+    {
+      "id": "eglise",
+      "name": {
+        "fr": "L’Église",
+        "en": "The Church"
+      },
+      "verses": [
+        {
+          "id": "mt-16-18",
+          "fr": {
+            "text": "Tu es Pierre, et sur cette pierre je bâtirai mon Église, et les portes de l’enfer ne prévaudront pas contre elle.",
+            "ref": "Matthieu 16:18"
+          },
+          "en": {
+            "text": "You are Peter, and on this rock I will build my Church, and the gates of hell shall not prevail against it.",
+            "ref": "Matthew 16:18"
+          }
+        },
+        {
+          "id": "mt-16-19",
+          "fr": {
+            "text": "Je te donnerai les clés du royaume des cieux : ce que tu lieras sur la terre sera lié dans les cieux.",
+            "ref": "Matthieu 16:19"
+          },
+          "en": {
+            "text": "I will give you the keys of the kingdom of heaven: whatever you bind on earth shall be bound in heaven.",
+            "ref": "Matthew 16:19"
+          }
+        },
+        {
+          "id": "1co-12-27",
+          "fr": {
+            "text": "Vous êtes le corps du Christ, et membres chacun pour sa part.",
+            "ref": "1 Corinthiens 12:27"
+          },
+          "en": {
+            "text": "You are the body of Christ, and individually members of it.",
+            "ref": "1 Corinthians 12:27"
+          }
+        },
+        {
+          "id": "eph-2-20",
+          "fr": {
+            "text": "Vous avez été construits sur le fondement des apôtres, le Christ Jésus lui-même étant la pierre d’angle.",
+            "ref": "Éphésiens 2:20"
+          },
+          "en": {
+            "text": "You are built upon the foundation of the apostles, Christ Jesus himself being the cornerstone.",
+            "ref": "Ephesians 2:20"
+          }
+        },
+        {
+          "id": "jn-17-21",
+          "fr": {
+            "text": "Que tous soient un, comme toi, Père, tu es en moi et moi en toi, afin que le monde croie que tu m’as envoyé.",
+            "ref": "Jean 17:21"
+          },
+          "en": {
+            "text": "That they may all be one, as you, Father, are in me and I in you, so that the world may believe that you have sent me.",
+            "ref": "John 17:21"
+          }
+        },
+        {
+          "id": "1tm-3-15",
+          "fr": {
+            "text": "L’Église du Dieu vivant, colonne et appui de la vérité.",
+            "ref": "1 Timothée 3:15"
+          },
+          "en": {
+            "text": "The Church of the living God, the pillar and support of the truth.",
+            "ref": "1 Timothy 3:15"
+          }
+        },
+        {
+          "id": "mt-28-20",
+          "fr": {
+            "text": "Et voici, je suis avec vous tous les jours, jusqu’à la fin du monde.",
+            "ref": "Matthieu 28:20"
+          },
+          "en": {
+            "text": "And behold, I am with you always, to the end of the world.",
+            "ref": "Matthew 28:20"
+          }
+        },
+        {
+          "id": "ac-2-42",
+          "fr": {
+            "text": "Ils étaient assidus à l’enseignement des apôtres, à la communion fraternelle, à la fraction du pain et aux prières.",
+            "ref": "Actes 2:42"
+          },
+          "en": {
+            "text": "They devoted themselves to the apostles’ teaching, to fellowship, to the breaking of bread, and to the prayers.",
+            "ref": "Acts 2:42"
+          }
+        },
+        {
+          "id": "ac-2-4",
+          "fr": {
+            "text": "Ils furent tous remplis du Saint-Esprit, et se mirent à parler en d’autres langues.",
+            "ref": "Actes 2:4"
+          },
+          "en": {
+            "text": "They were all filled with the Holy Spirit, and began to speak in other tongues.",
+            "ref": "Acts 2:4"
+          }
+        },
+        {
+          "id": "ac-2-41",
+          "fr": {
+            "text": "Ceux qui acceptèrent sa parole furent baptisés ; ce jour-là, le nombre des disciples augmenta d’environ trois mille âmes.",
+            "ref": "Actes 2:41"
+          },
+          "en": {
+            "text": "Those who accepted his word were baptised; that day, the number of disciples grew by about three thousand souls.",
+            "ref": "Acts 2:41"
+          }
+        },
+        {
+          "id": "col-1-18",
+          "fr": {
+            "text": "Il est la tête du corps, qui est l’Église.",
+            "ref": "Colossiens 1:18"
+          },
+          "en": {
+            "text": "He is the head of the body, the Church.",
+            "ref": "Colossians 1:18"
+          }
+        },
+        {
+          "id": "1pi-2-9-10",
+          "fr": {
+            "text": "Vous êtes une race choisie, un sacerdoce royal, une nation sainte, un peuple acquis, pour annoncer les louanges de celui qui vous a appelés des ténèbres à son admirable lumière. Vous qui autrefois n’étiez pas un peuple, vous êtes maintenant le peuple de Dieu.",
+            "ref": "1 Pierre 2:9-10"
+          },
+          "en": {
+            "text": "You are a chosen race, a royal priesthood, a holy nation, a people for his own possession, to proclaim the praises of him who called you out of darkness into his marvellous light. You who once were not a people, you are now the people of God.",
+            "ref": "1 Peter 2:9-10"
+          }
+        },
+        {
+          "id": "1co-3-16",
+          "fr": {
+            "text": "Vous êtes le temple de Dieu, et l’Esprit de Dieu habite en vous.",
+            "ref": "1 Corinthiens 3:16"
+          },
+          "en": {
+            "text": "You are God’s temple, and God’s Spirit dwells in you.",
+            "ref": "1 Corinthians 3:16"
+          }
+        },
+        {
+          "id": "2co-11-2",
+          "fr": {
+            "text": "Je vous ai unis à un seul époux, pour vous présenter au Christ comme une vierge pure.",
+            "ref": "2 Corinthiens 11:2"
+          },
+          "en": {
+            "text": "I betrothed you to one husband, to present you to Christ as a pure virgin.",
+            "ref": "2 Corinthians 11:2"
+          }
+        },
+        {
+          "id": "ac-20-28",
+          "fr": {
+            "text": "L’Esprit Saint vous a établis gardiens, pour paître l’Église de Dieu.",
+            "ref": "Actes 20:28"
+          },
+          "en": {
+            "text": "The Holy Spirit has made you overseers, to shepherd the Church of God.",
+            "ref": "Acts 20:28"
+          }
+        },
+        {
+          "id": "ep-4-5",
+          "fr": {
+            "text": "Un seul Seigneur, une seule foi, un seul baptême.",
+            "ref": "Éphésiens 4:5"
+          },
+          "en": {
+            "text": "One Lord, one faith, one baptism.",
+            "ref": "Ephesians 4:5"
+          }
+        },
+        {
+          "id": "ep-5-25-26",
+          "fr": {
+            "text": "Le Christ a aimé l’Église : il s’est livré lui-même pour elle, afin de la sanctifier.",
+            "ref": "Éphésiens 5:25-26"
+          },
+          "en": {
+            "text": "Christ loved the Church: he gave himself up for her, in order to sanctify her.",
+            "ref": "Ephesians 5:25-26"
+          }
+        },
+        {
+          "id": "apo-21-2",
+          "fr": {
+            "text": "Je vis la ville sainte, la Jérusalem nouvelle, prête comme une épouse parée pour son époux.",
+            "ref": "Apocalypse 21:2"
+          },
+          "en": {
+            "text": "I saw the holy city, the new Jerusalem, prepared as a bride adorned for her husband.",
+            "ref": "Revelation 21:2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bapteme",
+      "name": {
+        "fr": "Le baptême",
+        "en": "Baptism"
+      },
+      "verses": [
+        {
+          "id": "jn-3-5",
+          "fr": {
+            "text": "Si quelqu’un ne naît d’eau et d’Esprit, il ne peut entrer dans le royaume de Dieu.",
+            "ref": "Jean 3:5"
+          },
+          "en": {
+            "text": "Unless one is born of water and the Spirit, he cannot enter the kingdom of God.",
+            "ref": "John 3:5"
+          }
+        },
+        {
+          "id": "rom-6-4",
+          "fr": {
+            "text": "Nous avons été ensevelis avec lui par le baptême dans la mort, afin que, comme le Christ est ressuscité, nous menions une vie nouvelle.",
+            "ref": "Romains 6:4"
+          },
+          "en": {
+            "text": "We were buried with him by baptism into death, so that as Christ was raised, we too might walk in newness of life.",
+            "ref": "Romans 6:4"
+          }
+        },
+        {
+          "id": "ac-2-38",
+          "fr": {
+            "text": "Convertissez-vous, et que chacun de vous soit baptisé au nom de Jésus-Christ pour le pardon de ses péchés ; et vous recevrez le don de l’Esprit Saint.",
+            "ref": "Actes 2:38"
+          },
+          "en": {
+            "text": "Repent, and be baptised every one of you in the name of Jesus Christ for the forgiveness of your sins, and you will receive the gift of the Holy Spirit.",
+            "ref": "Acts 2:38"
+          }
+        },
+        {
+          "id": "ga-3-27",
+          "fr": {
+            "text": "Vous tous qui avez été baptisés dans le Christ, vous avez revêtu le Christ.",
+            "ref": "Galates 3:27"
+          },
+          "en": {
+            "text": "As many of you as were baptised into Christ have put on Christ.",
+            "ref": "Galatians 3:27"
+          }
+        },
+        {
+          "id": "tit-3-5",
+          "fr": {
+            "text": "Il nous a sauvés par le bain de la nouvelle naissance et le renouvellement de l’Esprit Saint.",
+            "ref": "Tite 3:5"
+          },
+          "en": {
+            "text": "He saved us by the washing of regeneration and renewal of the Holy Spirit.",
+            "ref": "Titus 3:5"
+          }
+        },
+        {
+          "id": "1pi-3-21",
+          "fr": {
+            "text": "Cette eau, c’est le baptême qui vous sauve maintenant, non comme un nettoyage du corps, mais comme l’engagement envers Dieu d’une conscience droite.",
+            "ref": "1 Pierre 3:21"
+          },
+          "en": {
+            "text": "Baptism now saves you, not as a removal of dirt from the body, but as an appeal to God for a good conscience.",
+            "ref": "1 Peter 3:21"
+          }
+        },
+        {
+          "id": "mc-16-16",
+          "fr": {
+            "text": "Celui qui croira et sera baptisé sera sauvé, mais celui qui ne croira pas sera condamné.",
+            "ref": "Marc 16:16"
+          },
+          "en": {
+            "text": "Whoever believes and is baptised will be saved, but whoever does not believe will be condemned.",
+            "ref": "Mark 16:16"
+          }
+        },
+        {
+          "id": "1pi-3-20-21",
+          "fr": {
+            "text": "Ce petit nombre fut sauvé à travers l’eau. Cette eau était la figure du baptême qui vous sauve aujourd’hui.",
+            "ref": "1 Pierre 3:20-21"
+          },
+          "en": {
+            "text": "This small number was saved through water. This water was the figure of the baptism which now saves you.",
+            "ref": "1 Peter 3:20-21"
+          }
+        },
+        {
+          "id": "1co-10-1-2",
+          "fr": {
+            "text": "Nos pères ont tous passé à travers la mer, et tous ont été baptisés en Moïse dans la nuée et dans la mer.",
+            "ref": "1 Corinthiens 10:1-2"
+          },
+          "en": {
+            "text": "Our fathers all passed through the sea, and all were baptised into Moses in the cloud and in the sea.",
+            "ref": "1 Corinthians 10:1-2"
+          }
+        },
+        {
+          "id": "mt-3-16-17",
+          "fr": {
+            "text": "Dès que Jésus eut été baptisé, les cieux s’ouvrirent, et il vit l’Esprit de Dieu descendre comme une colombe ; et une voix dit : Celui-ci est mon Fils bien-aimé.",
+            "ref": "Matthieu 3:16-17"
+          },
+          "en": {
+            "text": "As soon as Jesus had been baptised, the heavens opened, and he saw the Spirit of God descending like a dove; and a voice said: This is my beloved Son.",
+            "ref": "Matthew 3:16-17"
+          }
+        },
+        {
+          "id": "1co-12-13",
+          "fr": {
+            "text": "C’est dans un seul Esprit que nous avons tous été baptisés pour former un seul corps.",
+            "ref": "1 Corinthiens 12:13"
+          },
+          "en": {
+            "text": "In one Spirit we were all baptised to form one single body.",
+            "ref": "1 Corinthians 12:13"
+          }
+        }
+      ]
+    },
+    {
+      "id": "confession",
+      "name": {
+        "fr": "La confession",
+        "en": "Confession"
+      },
+      "verses": [
+        {
+          "id": "jn-20-23",
+          "fr": {
+            "text": "Ceux à qui vous remettrez les péchés, ils leur seront remis ; ceux à qui vous les retiendrez, ils leur seront retenus.",
+            "ref": "Jean 20:23"
+          },
+          "en": {
+            "text": "If you forgive the sins of any, they are forgiven; if you retain the sins of any, they are retained.",
+            "ref": "John 20:23"
+          }
+        },
+        {
+          "id": "mt-18-18",
+          "fr": {
+            "text": "Tout ce que vous lierez sur la terre sera lié dans le ciel, et tout ce que vous délierez sur la terre sera délié dans le ciel.",
+            "ref": "Matthieu 18:18"
+          },
+          "en": {
+            "text": "Whatever you bind on earth shall be bound in heaven, and whatever you loose on earth shall be loosed in heaven.",
+            "ref": "Matthew 18:18"
+          }
+        },
+        {
+          "id": "jc-5-16",
+          "fr": {
+            "text": "Confessez donc vos péchés les uns aux autres, et priez les uns pour les autres, afin que vous soyez guéris.",
+            "ref": "Jacques 5:16"
+          },
+          "en": {
+            "text": "Therefore confess your sins to one another and pray for one another, that you may be healed.",
+            "ref": "James 5:16"
+          }
+        },
+        {
+          "id": "1jn-1-9",
+          "fr": {
+            "text": "Si nous confessons nos péchés, il est fidèle et juste pour nous les pardonner, et pour nous purifier de toute iniquité.",
+            "ref": "1 Jean 1:9"
+          },
+          "en": {
+            "text": "If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness.",
+            "ref": "1 John 1:9"
+          }
+        },
+        {
+          "id": "2co-5-18",
+          "fr": {
+            "text": "Dieu nous a réconciliés avec lui par le Christ, et nous a confié le ministère de la réconciliation.",
+            "ref": "2 Corinthiens 5:18"
+          },
+          "en": {
+            "text": "God reconciled us to himself through Christ and gave us the ministry of reconciliation.",
+            "ref": "2 Corinthians 5:18"
+          }
+        },
+        {
+          "id": "lc-15-7",
+          "fr": {
+            "text": "Il y aura plus de joie dans le ciel pour un seul pécheur qui se repent, que pour quatre-vingt-dix-neuf justes qui n’ont pas besoin de repentir.",
+            "ref": "Luc 15:7"
+          },
+          "en": {
+            "text": "There will be more joy in heaven over one sinner who repents than over ninety-nine righteous who need no repentance.",
+            "ref": "Luke 15:7"
+          }
+        },
+        {
+          "id": "ps-32-5",
+          "fr": {
+            "text": "Je t’ai avoué mon péché, je n’ai pas caché ma faute ; et toi, tu as ôté la faute de mon péché.",
+            "ref": "Psaume 32:5"
+          },
+          "en": {
+            "text": "I acknowledged my sin to you, and I did not cover my iniquity; and you forgave the guilt of my sin.",
+            "ref": "Psalm 32:5"
+          }
+        },
+        {
+          "id": "ps-19-13",
+          "fr": {
+            "text": "Qui discerne ses égarements ? Purifie-moi de ceux qui me sont cachés.",
+            "ref": "Psaume 19:13"
+          },
+          "en": {
+            "text": "Who discerns his errors? Cleanse me from those that are hidden from me.",
+            "ref": "Psalm 19:13"
+          }
+        },
+        {
+          "id": "lc-7-47",
+          "fr": {
+            "text": "Ses péchés, qui sont nombreux, lui sont pardonnés, car elle a beaucoup aimé.",
+            "ref": "Luc 7:47"
+          },
+          "en": {
+            "text": "Her sins, which are many, are forgiven, for she has loved much.",
+            "ref": "Luke 7:47"
+          }
+        },
+        {
+          "id": "2s-12-13",
+          "fr": {
+            "text": "Le Seigneur a pardonné ton péché ; tu ne mourras pas.",
+            "ref": "2 Samuel 12:13"
+          },
+          "en": {
+            "text": "The Lord has forgiven your sin; you shall not die.",
+            "ref": "2 Samuel 12:13"
+          }
+        },
+        {
+          "id": "lc-19-8",
+          "fr": {
+            "text": "Si j’ai fait tort à quelqu’un, je lui rends le quadruple.",
+            "ref": "Luc 19:8"
+          },
+          "en": {
+            "text": "If I have wronged anyone, I restore it fourfold.",
+            "ref": "Luke 19:8"
+          }
+        },
+        {
+          "id": "is-43-25",
+          "fr": {
+            "text": "C’est moi qui efface tes transgressions, et je ne me souviendrai plus de tes péchés.",
+            "ref": "Isaïe 43:25"
+          },
+          "en": {
+            "text": "It is I who blot out your transgressions, and I will remember your sins no more.",
+            "ref": "Isaiah 43:25"
+          }
+        },
+        {
+          "id": "pr-11-13",
+          "fr": {
+            "text": "Le médisant révèle les secrets, mais l’homme au cœur fidèle tient la chose cachée.",
+            "ref": "Proverbes 11:13"
+          },
+          "en": {
+            "text": "The slanderer reveals secrets, but the faithful of heart keeps the matter hidden.",
+            "ref": "Proverbs 11:13"
+          }
+        }
+      ]
+    },
+    {
+      "id": "eucharistie",
+      "name": {
+        "fr": "L’Eucharistie",
+        "en": "The Eucharist"
+      },
+      "verses": [
+        {
+          "id": "jn-6-51",
+          "fr": {
+            "text": "Je suis le pain vivant descendu du ciel. Le pain que je donnerai, c’est ma chair, pour la vie du monde.",
+            "ref": "Jean 6:51"
+          },
+          "en": {
+            "text": "I am the living bread that came down from heaven. The bread that I will give is my flesh, for the life of the world.",
+            "ref": "John 6:51"
+          }
+        },
+        {
+          "id": "jn-6-54",
+          "fr": {
+            "text": "Celui qui mange ma chair et boit mon sang a la vie éternelle, et je le ressusciterai au dernier jour.",
+            "ref": "Jean 6:54"
+          },
+          "en": {
+            "text": "He who eats my flesh and drinks my blood has eternal life, and I will raise him up at the last day.",
+            "ref": "John 6:54"
+          }
+        },
+        {
+          "id": "jn-6-55",
+          "fr": {
+            "text": "Ma chair est vraiment une nourriture, et mon sang vraiment une boisson.",
+            "ref": "Jean 6:55"
+          },
+          "en": {
+            "text": "My flesh is true food, and my blood is true drink.",
+            "ref": "John 6:55"
+          }
+        },
+        {
+          "id": "mt-26-26",
+          "fr": {
+            "text": "Prenez, mangez : ceci est mon corps.",
+            "ref": "Matthieu 26:26"
+          },
+          "en": {
+            "text": "Take, eat; this is my body.",
+            "ref": "Matthew 26:26"
+          }
+        },
+        {
+          "id": "mt-26-28",
+          "fr": {
+            "text": "Ceci est mon sang, le sang de l’alliance, répandu pour la multitude en rémission des péchés.",
+            "ref": "Matthieu 26:28"
+          },
+          "en": {
+            "text": "This is my blood of the covenant, poured out for many for the forgiveness of sins.",
+            "ref": "Matthew 26:28"
+          }
+        },
+        {
+          "id": "1co-11-26",
+          "fr": {
+            "text": "Chaque fois que vous mangez ce pain et que vous buvez cette coupe, vous annoncez la mort du Seigneur, jusqu’à ce qu’il vienne.",
+            "ref": "1 Corinthiens 11:26"
+          },
+          "en": {
+            "text": "As often as you eat this bread and drink this cup, you proclaim the Lord’s death until he comes.",
+            "ref": "1 Corinthians 11:26"
+          }
+        },
+        {
+          "id": "1co-11-27",
+          "fr": {
+            "text": "Quiconque mange ce pain ou boit la coupe du Seigneur indignement sera coupable envers le corps et le sang du Seigneur.",
+            "ref": "1 Corinthiens 11:27"
+          },
+          "en": {
+            "text": "Whoever eats this bread or drinks the cup of the Lord unworthily will be guilty of the body and blood of the Lord.",
+            "ref": "1 Corinthians 11:27"
+          }
+        },
+        {
+          "id": "1co-10-16",
+          "fr": {
+            "text": "La coupe de bénédiction que nous bénissons n’est-elle pas communion au sang du Christ ? Le pain que nous rompons n’est-il pas communion au corps du Christ ?",
+            "ref": "1 Corinthiens 10:16"
+          },
+          "en": {
+            "text": "The cup of blessing which we bless, is it not a communion in the blood of Christ? The bread which we break, is it not a communion in the body of Christ?",
+            "ref": "1 Corinthians 10:16"
+          }
+        },
+        {
+          "id": "jn-1-29",
+          "fr": {
+            "text": "Voici l’Agneau de Dieu qui enlève le péché du monde.",
+            "ref": "Jean 1:29"
+          },
+          "en": {
+            "text": "Behold the Lamb of God who takes away the sin of the world.",
+            "ref": "John 1:29"
+          }
+        },
+        {
+          "id": "gn-14-18",
+          "fr": {
+            "text": "Melchisédech, roi de Salem, fit apporter du pain et du vin ; il était prêtre du Dieu Très-Haut.",
+            "ref": "Genèse 14:18"
+          },
+          "en": {
+            "text": "Melchizedek, king of Salem, brought out bread and wine; he was priest of God Most High.",
+            "ref": "Genesis 14:18"
+          }
+        },
+        {
+          "id": "ps-110-4",
+          "fr": {
+            "text": "Tu es prêtre pour l’éternité à la manière de Melchisédech.",
+            "ref": "Psaume 110:4"
+          },
+          "en": {
+            "text": "You are a priest for ever in the manner of Melchizedek.",
+            "ref": "Psalm 110:4"
+          }
+        },
+        {
+          "id": "exo-16-4",
+          "fr": {
+            "text": "Je vais faire pleuvoir sur vous du pain venu du ciel.",
+            "ref": "Exode 16:4"
+          },
+          "en": {
+            "text": "I will rain down upon you bread from heaven.",
+            "ref": "Exodus 16:4"
+          }
+        },
+        {
+          "id": "exo-12-13",
+          "fr": {
+            "text": "Le sang vous servira de signe : je verrai le sang, et je passerai par-dessus vous.",
+            "ref": "Exode 12:13"
+          },
+          "en": {
+            "text": "The blood will be a sign for you: I will see the blood, and I will pass over you.",
+            "ref": "Exodus 12:13"
+          }
+        },
+        {
+          "id": "1co-5-7",
+          "fr": {
+            "text": "Christ, notre Pâque, a été immolé.",
+            "ref": "1 Corinthiens 5:7"
+          },
+          "en": {
+            "text": "Christ, our Passover, has been sacrificed.",
+            "ref": "1 Corinthians 5:7"
+          }
+        },
+        {
+          "id": "lv-17-11",
+          "fr": {
+            "text": "La vie de la chair est dans le sang... c’est le sang qui expie pour une vie.",
+            "ref": "Lévitique 17:11"
+          },
+          "en": {
+            "text": "The life of the flesh is in the blood... it is the blood that makes atonement for a life.",
+            "ref": "Leviticus 17:11"
+          }
+        },
+        {
+          "id": "exo-24-8",
+          "fr": {
+            "text": "Voici le sang de l’alliance que le Seigneur a conclue avec vous.",
+            "ref": "Exode 24:8"
+          },
+          "en": {
+            "text": "This is the blood of the covenant that the Lord has made with you.",
+            "ref": "Exodus 24:8"
+          }
+        },
+        {
+          "id": "jn-6-56",
+          "fr": {
+            "text": "Celui qui mange ma chair et boit mon sang demeure en moi, et moi en lui.",
+            "ref": "Jean 6:56"
+          },
+          "en": {
+            "text": "Whoever eats my flesh and drinks my blood abides in me, and I in him.",
+            "ref": "John 6:56"
+          }
+        },
+        {
+          "id": "1co-10-17",
+          "fr": {
+            "text": "Puisqu’il y a un seul pain, nous qui sommes plusieurs, nous formons un seul corps.",
+            "ref": "1 Corinthiens 10:17"
+          },
+          "en": {
+            "text": "Since there is one bread, we who are many form one body.",
+            "ref": "1 Corinthians 10:17"
+          }
+        },
+        {
+          "id": "1co-11-28",
+          "fr": {
+            "text": "Que chacun s’éprouve soi-même, et qu’ainsi il mange de ce pain et boive de cette coupe.",
+            "ref": "1 Corinthiens 11:28"
+          },
+          "en": {
+            "text": "Let each examine himself, and so eat of this bread and drink of this cup.",
+            "ref": "1 Corinthians 11:28"
+          }
+        },
+        {
+          "id": "jn-6-53",
+          "fr": {
+            "text": "Si vous ne mangez la chair du Fils de l’homme et ne buvez son sang, vous n’avez pas la vie en vous.",
+            "ref": "Jean 6:53"
+          },
+          "en": {
+            "text": "Unless you eat the flesh of the Son of Man and drink his blood, you have no life in you.",
+            "ref": "John 6:53"
+          }
+        },
+        {
+          "id": "1co-11-29",
+          "fr": {
+            "text": "Celui qui mange et boit sans discerner le corps mange et boit sa propre condamnation.",
+            "ref": "1 Corinthiens 11:29"
+          },
+          "en": {
+            "text": "He who eats and drinks without discerning the body eats and drinks his own condemnation.",
+            "ref": "1 Corinthians 11:29"
+          }
+        },
+        {
+          "id": "mal-1-11",
+          "fr": {
+            "text": "En tout lieu, on présente à mon nom de l’encens et une offrande pure.",
+            "ref": "Malachie 1:11"
+          },
+          "en": {
+            "text": "In every place incense and a pure offering are presented to my name.",
+            "ref": "Malachi 1:11"
+          }
+        },
+        {
+          "id": "he-13-10",
+          "fr": {
+            "text": "Nous avons un autel dont n’ont pas le droit de manger ceux qui servent le tabernacle.",
+            "ref": "Hébreux 13:10"
+          },
+          "en": {
+            "text": "We have an altar from which those who serve the tabernacle have no right to eat.",
+            "ref": "Hebrews 13:10"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sacrements",
+      "name": {
+        "fr": "Les sacrements",
+        "en": "The Sacraments"
+      },
+      "verses": [
+        {
+          "id": "gn-2-24",
+          "fr": {
+            "text": "L’homme quittera son père et sa mère, s’attachera à sa femme, et ils ne feront plus qu’une seule chair.",
+            "ref": "Genèse 2:24"
+          },
+          "en": {
+            "text": "A man shall leave his father and mother and hold fast to his wife, and the two shall become one flesh.",
+            "ref": "Genesis 2:24"
+          }
+        },
+        {
+          "id": "mt-19-6",
+          "fr": {
+            "text": "Que l’homme ne sépare pas ce que Dieu a uni.",
+            "ref": "Matthieu 19:6"
+          },
+          "en": {
+            "text": "What God has joined together, let no man separate.",
+            "ref": "Matthew 19:6"
+          }
+        },
+        {
+          "id": "ep-5-32",
+          "fr": {
+            "text": "Ce mystère est grand ; je le dis par rapport au Christ et à l’Église.",
+            "ref": "Éphésiens 5:32"
+          },
+          "en": {
+            "text": "This mystery is profound, and I am saying that it refers to Christ and the Church.",
+            "ref": "Ephesians 5:32"
+          }
+        },
+        {
+          "id": "ac-8-17",
+          "fr": {
+            "text": "Alors les Apôtres leur imposèrent les mains, et ils reçurent l’Esprit Saint.",
+            "ref": "Actes 8:17"
+          },
+          "en": {
+            "text": "Then the apostles laid their hands on them, and they received the Holy Spirit.",
+            "ref": "Acts 8:17"
+          }
+        },
+        {
+          "id": "jc-5-14",
+          "fr": {
+            "text": "Quelqu’un parmi vous est-il malade ? Qu’il appelle les prêtres de l’Église, et qu’ils prient sur lui en l’oignant d’huile au nom du Seigneur.",
+            "ref": "Jacques 5:14"
+          },
+          "en": {
+            "text": "Is anyone among you sick? Let him call the elders of the Church, and let them pray over him, anointing him with oil in the name of the Lord.",
+            "ref": "James 5:14"
+          }
+        },
+        {
+          "id": "mc-6-13",
+          "fr": {
+            "text": "Ils oignaient d’huile beaucoup de malades, et ils les guérissaient.",
+            "ref": "Marc 6:13"
+          },
+          "en": {
+            "text": "They anointed with oil many who were sick, and healed them.",
+            "ref": "Mark 6:13"
+          }
+        },
+        {
+          "id": "lc-22-19",
+          "fr": {
+            "text": "Faites ceci en mémoire de moi.",
+            "ref": "Luc 22:19"
+          },
+          "en": {
+            "text": "Do this in remembrance of me.",
+            "ref": "Luke 22:19"
+          }
+        },
+        {
+          "id": "2tm-1-6",
+          "fr": {
+            "text": "Ravive le don de Dieu qui est en toi par l’imposition de mes mains.",
+            "ref": "2 Timothée 1:6"
+          },
+          "en": {
+            "text": "Fan into flame the gift of God that is in you through the laying on of my hands.",
+            "ref": "2 Timothy 1:6"
+          }
+        },
+        {
+          "id": "he-5-1",
+          "fr": {
+            "text": "Tout grand prêtre, pris parmi les hommes, est établi pour les hommes dans leurs relations avec Dieu.",
+            "ref": "Hébreux 5:1"
+          },
+          "en": {
+            "text": "Every high priest is chosen from among men and appointed to act for men in their relations with God.",
+            "ref": "Hebrews 5:1"
+          }
+        },
+        {
+          "id": "jn-19-34",
+          "fr": {
+            "text": "Un des soldats lui transperça le côté, et aussitôt il en sortit du sang et de l’eau.",
+            "ref": "Jean 19:34"
+          },
+          "en": {
+            "text": "One of the soldiers pierced his side, and at once there flowed blood and water.",
+            "ref": "John 19:34"
+          }
+        },
+        {
+          "id": "1co-3-7",
+          "fr": {
+            "text": "Ni celui qui plante ni celui qui arrose n’est quelque chose, mais Dieu seul, qui fait croître.",
+            "ref": "1 Corinthiens 3:7"
+          },
+          "en": {
+            "text": "Neither he who plants nor he who waters is anything, but only God, who gives the growth.",
+            "ref": "1 Corinthians 3:7"
+          }
+        },
+        {
+          "id": "2co-1-22",
+          "fr": {
+            "text": "Il nous a marqués de son sceau et a mis dans nos cœurs les arrhes de l’Esprit.",
+            "ref": "2 Corinthiens 1:22"
+          },
+          "en": {
+            "text": "He has marked us with his seal and put in our hearts the pledge of the Spirit.",
+            "ref": "2 Corinthians 1:22"
+          }
+        },
+        {
+          "id": "mt-9-6",
+          "fr": {
+            "text": "Afin que vous sachiez que le Fils de l’homme a sur la terre le pouvoir de remettre les péchés : Lève-toi, prends ton lit et va dans ta maison.",
+            "ref": "Matthieu 9:6"
+          },
+          "en": {
+            "text": "That you may know that the Son of Man has authority on earth to forgive sins: Rise, take up your bed, and go home.",
+            "ref": "Matthew 9:6"
+          }
+        },
+        {
+          "id": "1tm-4-5",
+          "fr": {
+            "text": "Tout est sanctifié par la parole de Dieu et la prière.",
+            "ref": "1 Timothée 4:5"
+          },
+          "en": {
+            "text": "Everything is sanctified by the word of God and prayer.",
+            "ref": "1 Timothy 4:5"
+          }
+        },
+        {
+          "id": "gn-1-28",
+          "fr": {
+            "text": "Soyez féconds et multipliez-vous.",
+            "ref": "Genèse 1:28"
+          },
+          "en": {
+            "text": "Be fruitful and multiply.",
+            "ref": "Genesis 1:28"
+          }
+        },
+        {
+          "id": "gn-2-18",
+          "fr": {
+            "text": "Il n’est pas bon que l’homme soit seul ; je lui ferai une aide qui lui corresponde.",
+            "ref": "Genèse 2:18"
+          },
+          "en": {
+            "text": "It is not good that man should be alone; I will make him a help that corresponds to him.",
+            "ref": "Genesis 2:18"
+          }
+        },
+        {
+          "id": "mt-19-8",
+          "fr": {
+            "text": "C’est à cause de la dureté de votre cœur que Moïse vous a permis de répudier vos femmes ; mais au commencement il n’en était pas ainsi.",
+            "ref": "Matthieu 19:8"
+          },
+          "en": {
+            "text": "It is because of the hardness of your heart that Moses permitted you to divorce your wives; but in the beginning it was not so.",
+            "ref": "Matthew 19:8"
+          }
+        },
+        {
+          "id": "is-11-2",
+          "fr": {
+            "text": "Sur lui reposera l’Esprit du Seigneur, esprit de sagesse et d’intelligence, esprit de conseil et de force, esprit de science et de crainte du Seigneur.",
+            "ref": "Isaïe 11:2"
+          },
+          "en": {
+            "text": "Upon him will rest the Spirit of the Lord, a spirit of wisdom and understanding, a spirit of counsel and might, a spirit of knowledge and of fear of the Lord.",
+            "ref": "Isaiah 11:2"
+          }
+        },
+        {
+          "id": "rom-8-15",
+          "fr": {
+            "text": "Vous avez reçu un Esprit d’adoption filiale, par lequel nous crions : Abba, Père !",
+            "ref": "Romains 8:15"
+          },
+          "en": {
+            "text": "You received a Spirit of adoption, by which we cry: Abba, Father!",
+            "ref": "Romans 8:15"
+          }
+        },
+        {
+          "id": "ac-1-8",
+          "fr": {
+            "text": "Vous recevrez une force, celle de l’Esprit Saint qui descendra sur vous, et vous serez mes témoins.",
+            "ref": "Actes 1:8"
+          },
+          "en": {
+            "text": "You will receive a force, that of the Holy Spirit who will come upon you, and you will be my witnesses.",
+            "ref": "Acts 1:8"
+          }
+        },
+        {
+          "id": "lc-10-34",
+          "fr": {
+            "text": "Il banda ses plaies, en y versant de l’huile et du vin.",
+            "ref": "Luc 10:34"
+          },
+          "en": {
+            "text": "He bound up his wounds, pouring on oil and wine.",
+            "ref": "Luke 10:34"
+          }
+        },
+        {
+          "id": "mt-8-17",
+          "fr": {
+            "text": "Il a pris nos infirmités et s’est chargé de nos maladies.",
+            "ref": "Matthieu 8:17 (accomplissement)"
+          },
+          "en": {
+            "text": "He took our infirmities and bore our diseases.",
+            "ref": "Matthew 8:17 (fulfillment)"
+          }
+        },
+        {
+          "id": "rom-8-17",
+          "fr": {
+            "text": "Si nous souffrons avec lui, c’est pour être glorifiés avec lui.",
+            "ref": "Romains 8:17"
+          },
+          "en": {
+            "text": "If we suffer with him, it is to be glorified with him.",
+            "ref": "Romans 8:17"
+          }
+        },
+        {
+          "id": "jn-20-21",
+          "fr": {
+            "text": "Comme le Père m’a envoyé, moi aussi je vous envoie.",
+            "ref": "Jean 20:21"
+          },
+          "en": {
+            "text": "As the Father has sent me, I also send you.",
+            "ref": "John 20:21"
+          }
+        },
+        {
+          "id": "2tm-2-2",
+          "fr": {
+            "text": "Ce que tu as entendu de moi, confie-le à des hommes fidèles, capables à leur tour d’en instruire d’autres.",
+            "ref": "2 Timothée 2:2"
+          },
+          "en": {
+            "text": "What you have heard from me, entrust to faithful men, able in turn to teach others.",
+            "ref": "2 Timothy 2:2"
+          }
+        },
+        {
+          "id": "tt-1-5",
+          "fr": {
+            "text": "Établis des anciens dans chaque ville, comme je te l’ai prescrit.",
+            "ref": "Tite 1:5"
+          },
+          "en": {
+            "text": "Appoint elders in every town, as I directed you.",
+            "ref": "Titus 1:5"
+          }
+        },
+        {
+          "id": "ac-14-23",
+          "fr": {
+            "text": "Ils firent nommer des anciens dans chaque Église.",
+            "ref": "Actes 14:23"
+          },
+          "en": {
+            "text": "They appointed elders in every Church.",
+            "ref": "Acts 14:23"
+          }
+        },
+        {
+          "id": "ac-6-6",
+          "fr": {
+            "text": "Ils les présentèrent aux apôtres, qui prièrent et leur imposèrent les mains.",
+            "ref": "Actes 6:6"
+          },
+          "en": {
+            "text": "They presented them to the apostles, who prayed and laid their hands on them.",
+            "ref": "Acts 6:6"
+          }
+        },
+        {
+          "id": "2co-2-10",
+          "fr": {
+            "text": "Ce que j’ai pardonné, je l’ai fait à cause de vous, en la personne du Christ.",
+            "ref": "2 Corinthiens 2:10"
+          },
+          "en": {
+            "text": "What I have forgiven, I have done it for your sake, in the person of Christ.",
+            "ref": "2 Corinthians 2:10"
+          }
+        },
+        {
+          "id": "mt-19-12",
+          "fr": {
+            "text": "Il y a des eunuques qui se sont rendus tels eux-mêmes à cause du royaume des cieux ; comprenne qui peut comprendre.",
+            "ref": "Matthieu 19:12"
+          },
+          "en": {
+            "text": "There are eunuchs who have made themselves so for the sake of the kingdom of heaven; let the one who can accept this accept it.",
+            "ref": "Matthew 19:12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "communion-saints",
+      "name": {
+        "fr": "La communion des saints",
+        "en": "The Communion of Saints"
+      },
+      "verses": [
+        {
+          "id": "he-12-1",
+          "fr": {
+            "text": "Nous sommes environnés d’une si grande nuée de témoins.",
+            "ref": "Hébreux 12:1"
+          },
+          "en": {
+            "text": "We are surrounded by so great a cloud of witnesses.",
+            "ref": "Hebrews 12:1"
+          }
+        },
+        {
+          "id": "he-12-23",
+          "fr": {
+            "text": "Vous vous êtes approchés de l’assemblée des premiers-nés, et des esprits des justes parvenus à la perfection.",
+            "ref": "Hébreux 12:23"
+          },
+          "en": {
+            "text": "You have come to the assembly of the firstborn and to the spirits of the righteous made perfect.",
+            "ref": "Hebrews 12:23"
+          }
+        },
+        {
+          "id": "ap-5-8",
+          "fr": {
+            "text": "Ils tenaient des coupes d’or pleines de parfums, qui sont les prières des saints.",
+            "ref": "Apocalypse 5:8"
+          },
+          "en": {
+            "text": "They held golden bowls full of incense, which are the prayers of the saints.",
+            "ref": "Revelation 5:8"
+          }
+        },
+        {
+          "id": "ap-8-3-4",
+          "fr": {
+            "text": "La fumée des parfums monta, avec les prières des saints, de la main de l’ange devant Dieu.",
+            "ref": "Apocalypse 8:3-4"
+          },
+          "en": {
+            "text": "The smoke of the incense, with the prayers of the saints, rose before God from the angel’s hand.",
+            "ref": "Revelation 8:3-4"
+          }
+        },
+        {
+          "id": "1co-12-26",
+          "fr": {
+            "text": "Si un membre souffre, tous les membres souffrent avec lui ; si un membre est honoré, tous se réjouissent avec lui.",
+            "ref": "1 Corinthiens 12:26"
+          },
+          "en": {
+            "text": "If one member suffers, all suffer together; if one member is honored, all rejoice together.",
+            "ref": "1 Corinthians 12:26"
+          }
+        },
+        {
+          "id": "rm-12-5",
+          "fr": {
+            "text": "Nous formons un seul corps dans le Christ, et nous sommes tous membres les uns des autres.",
+            "ref": "Romains 12:5"
+          },
+          "en": {
+            "text": "We who are many form one body in Christ, and individually members one of another.",
+            "ref": "Romans 12:5"
+          }
+        },
+        {
+          "id": "mt-22-32",
+          "fr": {
+            "text": "Dieu n’est pas le Dieu des morts, mais des vivants.",
+            "ref": "Matthieu 22:32"
+          },
+          "en": {
+            "text": "He is not the God of the dead, but of the living.",
+            "ref": "Matthew 22:32"
+          }
+        },
+        {
+          "id": "2m-12-46",
+          "fr": {
+            "text": "C’est une pensée sainte et salutaire de prier pour les morts, afin qu’ils soient délivrés de leurs péchés.",
+            "ref": "2 Maccabées 12:46"
+          },
+          "en": {
+            "text": "It is a holy and wholesome thought to pray for the dead, that they may be freed from their sin.",
+            "ref": "2 Maccabees 12:46"
+          }
+        },
+        {
+          "id": "col-1-24",
+          "fr": {
+            "text": "Je complète en ma chair ce qui manque aux épreuves du Christ, pour son corps qui est l’Église.",
+            "ref": "Colossiens 1:24"
+          },
+          "en": {
+            "text": "I complete in my flesh what is lacking in the trials of Christ, for his body which is the Church.",
+            "ref": "Colossians 1:24"
+          }
+        },
+        {
+          "id": "2m-15-14",
+          "fr": {
+            "text": "celui qui prie beaucoup pour le peuple et pour la ville sainte.",
+            "ref": "2 Maccabées 15:14"
+          },
+          "en": {
+            "text": "the one who prays much for the people and for the holy city.",
+            "ref": "2 Maccabees 15:14"
+          }
+        },
+        {
+          "id": "tb-12-12",
+          "fr": {
+            "text": "C’est moi qui présentais le souvenir de vos prières devant la gloire du Seigneur.",
+            "ref": "Tobie 12:12"
+          },
+          "en": {
+            "text": "It was I who presented the record of your prayers before the glory of the Lord.",
+            "ref": "Tobit 12:12"
+          }
+        },
+        {
+          "id": "1tm-2-1",
+          "fr": {
+            "text": "J’exhorte avant tout à faire des prières, des supplications et des intercessions pour tous les hommes.",
+            "ref": "1 Timothée 2:1"
+          },
+          "en": {
+            "text": "I urge above all that prayers, supplications and intercessions be made for all men.",
+            "ref": "1 Timothy 2:1"
+          }
+        },
+        {
+          "id": "he-7-25",
+          "fr": {
+            "text": "Il est toujours vivant pour intercéder en leur faveur.",
+            "ref": "Hébreux 7:25"
+          },
+          "en": {
+            "text": "He is always living to intercede on their behalf.",
+            "ref": "Hebrews 7:25"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fins-dernieres",
+      "name": {
+        "fr": "Les fins dernières",
+        "en": "The Last Things"
+      },
+      "verses": [
+        {
+          "id": "heb-9-27",
+          "fr": {
+            "text": "Il est réservé aux hommes de mourir une seule fois, après quoi vient le jugement.",
+            "ref": "Hébreux 9:27"
+          },
+          "en": {
+            "text": "It is appointed for men to die once, and after that comes judgment.",
+            "ref": "Hebrews 9:27"
+          }
+        },
+        {
+          "id": "jn-5-28-29",
+          "fr": {
+            "text": "L’heure vient où tous ceux qui sont dans les tombeaux entendront sa voix et en sortiront : ceux qui ont fait le bien pour une résurrection de vie, ceux qui ont fait le mal pour une résurrection de jugement.",
+            "ref": "Jean 5:28-29"
+          },
+          "en": {
+            "text": "The hour is coming when all who are in the tombs will hear his voice and come out: those who have done good to a resurrection of life, those who have done evil to a resurrection of judgment.",
+            "ref": "John 5:28-29"
+          }
+        },
+        {
+          "id": "mt-25-46",
+          "fr": {
+            "text": "Et ceux-ci iront au châtiment éternel, et les justes à la vie éternelle.",
+            "ref": "Matthieu 25:46"
+          },
+          "en": {
+            "text": "And these will go away into eternal punishment, but the righteous into eternal life.",
+            "ref": "Matthew 25:46"
+          }
+        },
+        {
+          "id": "mt-24-36",
+          "fr": {
+            "text": "Quant au jour et à l’heure, personne ne les connaît, ni les anges des cieux, ni le Fils, mais le Père seul.",
+            "ref": "Matthieu 24:36"
+          },
+          "en": {
+            "text": "Of that day and hour no one knows, not even the angels of heaven, nor the Son, but the Father only.",
+            "ref": "Matthew 24:36"
+          }
+        },
+        {
+          "id": "1th-4-17",
+          "fr": {
+            "text": "Nous serons emportés avec eux à la rencontre du Seigneur, et ainsi nous serons toujours avec le Seigneur.",
+            "ref": "1 Thessaloniciens 4:17"
+          },
+          "en": {
+            "text": "We shall be caught up together to meet the Lord, and so we shall always be with the Lord.",
+            "ref": "1 Thessalonians 4:17"
+          }
+        },
+        {
+          "id": "1co-15-52",
+          "fr": {
+            "text": "En un instant, au son de la dernière trompette, les morts ressusciteront incorruptibles, et nous, nous serons transformés.",
+            "ref": "1 Corinthiens 15:52"
+          },
+          "en": {
+            "text": "In an instant, at the last trumpet, the dead will be raised incorruptible, and we shall be changed.",
+            "ref": "1 Corinthians 15:52"
+          }
+        },
+        {
+          "id": "apo-21-1",
+          "fr": {
+            "text": "Je vis un ciel nouveau et une terre nouvelle.",
+            "ref": "Apocalypse 21:1"
+          },
+          "en": {
+            "text": "I saw a new heaven and a new earth.",
+            "ref": "Revelation 21:1"
+          }
+        },
+        {
+          "id": "apo-21-4",
+          "fr": {
+            "text": "Il essuiera toute larme de leurs yeux, et la mort ne sera plus, ni deuil, ni cri, ni douleur.",
+            "ref": "Apocalypse 21:4"
+          },
+          "en": {
+            "text": "He will wipe away every tear from their eyes, and death shall be no more, neither mourning, nor crying, nor pain.",
+            "ref": "Revelation 21:4"
+          }
+        },
+        {
+          "id": "gn-37-35",
+          "fr": {
+            "text": "Je descendrai vers mon fils, dans le séjour des morts, en menant deuil.",
+            "ref": "Genèse 37:35"
+          },
+          "en": {
+            "text": "I shall go down to my son, into the abode of the dead, mourning.",
+            "ref": "Genesis 37:35"
+          }
+        },
+        {
+          "id": "ps-6-6",
+          "fr": {
+            "text": "Dans la mort, nul souvenir de toi ; au séjour des morts, qui te célèbre ?",
+            "ref": "Psaume 6:6"
+          },
+          "en": {
+            "text": "In death there is no remembrance of you; in the abode of the dead, who praises you?",
+            "ref": "Psalm 6:6"
+          }
+        },
+        {
+          "id": "lc-16-22",
+          "fr": {
+            "text": "Le pauvre mourut, et il fut porté par les anges dans le sein d’Abraham.",
+            "ref": "Luc 16:22"
+          },
+          "en": {
+            "text": "The poor man died, and was carried by the angels into the bosom of Abraham.",
+            "ref": "Luke 16:22"
+          }
+        },
+        {
+          "id": "1pi-3-19",
+          "fr": {
+            "text": "Il alla prêcher aux esprits en prison.",
+            "ref": "1 Pierre 3:19"
+          },
+          "en": {
+            "text": "He went and preached to the spirits in prison.",
+            "ref": "1 Peter 3:19"
+          }
+        },
+        {
+          "id": "apo-20-14",
+          "fr": {
+            "text": "La mort et le séjour des morts furent jetés dans l’étang de feu.",
+            "ref": "Apocalypse 20:14"
+          },
+          "en": {
+            "text": "Death and the abode of the dead were thrown into the lake of fire.",
+            "ref": "Revelation 20:14"
+          }
+        },
+        {
+          "id": "jn-5-22",
+          "fr": {
+            "text": "Le Père ne juge personne, mais il a remis tout jugement au Fils.",
+            "ref": "Jean 5:22"
+          },
+          "en": {
+            "text": "The Father judges no one, but has given all judgment to the Son.",
+            "ref": "John 5:22"
+          }
+        },
+        {
+          "id": "2co-5-10",
+          "fr": {
+            "text": "Il nous faut tous comparaître devant le tribunal du Christ, afin que chacun reçoive selon ce qu’il aura fait.",
+            "ref": "2 Corinthiens 5:10"
+          },
+          "en": {
+            "text": "We must all appear before the judgment seat of Christ, so that each may receive according to what he has done.",
+            "ref": "2 Corinthians 5:10"
+          }
+        },
+        {
+          "id": "lc-23-43",
+          "fr": {
+            "text": "Aujourd’hui, tu seras avec moi dans le paradis.",
+            "ref": "Luc 23:43"
+          },
+          "en": {
+            "text": "Today you will be with me in paradise.",
+            "ref": "Luke 23:43"
+          }
+        },
+        {
+          "id": "mt-5-8",
+          "fr": {
+            "text": "Heureux les cœurs purs, car ils verront Dieu.",
+            "ref": "Matthieu 5:8"
+          },
+          "en": {
+            "text": "Blessed are the pure in heart, for they shall see God.",
+            "ref": "Matthew 5:8"
+          }
+        },
+        {
+          "id": "1co-13-12",
+          "fr": {
+            "text": "Maintenant nous voyons dans un miroir, de façon confuse ; mais alors, ce sera face à face.",
+            "ref": "1 Corinthiens 13:12"
+          },
+          "en": {
+            "text": "Now we see in a mirror, dimly; but then face to face.",
+            "ref": "1 Corinthians 13:12"
+          }
+        },
+        {
+          "id": "1co-2-9",
+          "fr": {
+            "text": "Ce que l’œil n’a pas vu, ce que l’oreille n’a pas entendu, voilà ce que Dieu a préparé pour ceux qui l’aiment.",
+            "ref": "1 Corinthiens 2:9"
+          },
+          "en": {
+            "text": "What no eye has seen, nor ear heard, this is what God has prepared for those who love him.",
+            "ref": "1 Corinthians 2:9"
+          }
+        },
+        {
+          "id": "jn-17-24",
+          "fr": {
+            "text": "Père, je veux que là où je suis, ceux que tu m’as donnés soient aussi avec moi, pour qu’ils contemplent ma gloire.",
+            "ref": "Jean 17:24"
+          },
+          "en": {
+            "text": "Father, I desire that those whom you have given me may be with me where I am, to behold my glory.",
+            "ref": "John 17:24"
+          }
+        },
+        {
+          "id": "1co-15-41",
+          "fr": {
+            "text": "Autre est l’éclat du soleil, autre l’éclat de la lune, et autre l’éclat des étoiles ; une étoile même diffère en éclat d’une autre étoile.",
+            "ref": "1 Corinthiens 15:41"
+          },
+          "en": {
+            "text": "There is one glory of the sun, another of the moon, and another of the stars; for star differs from star in glory.",
+            "ref": "1 Corinthians 15:41"
+          }
+        },
+        {
+          "id": "apo-21-3",
+          "fr": {
+            "text": "Voici la demeure de Dieu avec les hommes ; il demeurera avec eux, et ils seront son peuple.",
+            "ref": "Apocalypse 21:3"
+          },
+          "en": {
+            "text": "Behold, the dwelling of God is with men; he will dwell with them, and they shall be his people.",
+            "ref": "Revelation 21:3"
+          }
+        },
+        {
+          "id": "apo-21-27",
+          "fr": {
+            "text": "Il n’entrera rien de souillé.",
+            "ref": "Apocalypse 21:27"
+          },
+          "en": {
+            "text": "Nothing unclean shall enter it.",
+            "ref": "Revelation 21:27"
+          }
+        },
+        {
+          "id": "1co-3-15",
+          "fr": {
+            "text": "Il subira une perte, mais lui sera sauvé, comme à travers le feu.",
+            "ref": "1 Corinthiens 3:15"
+          },
+          "en": {
+            "text": "He will suffer loss, but he himself will be saved, as through fire.",
+            "ref": "1 Corinthians 3:15"
+          }
+        },
+        {
+          "id": "mt-12-32",
+          "fr": {
+            "text": "Il ne lui sera pardonné ni dans ce siècle ni dans le siècle à venir.",
+            "ref": "Matthieu 12:32"
+          },
+          "en": {
+            "text": "It will not be forgiven him either in this age or in the age to come.",
+            "ref": "Matthew 12:32"
+          }
+        },
+        {
+          "id": "mt-10-28",
+          "fr": {
+            "text": "Craignez plutôt celui qui peut faire périr l’âme et le corps dans la géhenne.",
+            "ref": "Matthieu 10:28"
+          },
+          "en": {
+            "text": "Fear rather him who can destroy both soul and body in Gehenna.",
+            "ref": "Matthew 10:28"
+          }
+        },
+        {
+          "id": "2th-1-9",
+          "fr": {
+            "text": "Ils subiront la peine d’une perdition éternelle, loin de la face du Seigneur.",
+            "ref": "2 Thessaloniciens 1:9"
+          },
+          "en": {
+            "text": "They will suffer the punishment of eternal destruction, away from the face of the Lord.",
+            "ref": "2 Thessalonians 1:9"
+          }
+        },
+        {
+          "id": "1co-15-36-38",
+          "fr": {
+            "text": "Ce que tu sèmes ne prend vie qu’en mourant ; et tu ne sèmes pas le corps à venir, mais un simple grain. Dieu lui donne un corps comme il l’a voulu.",
+            "ref": "1 Corinthiens 15:36-38"
+          },
+          "en": {
+            "text": "What you sow does not come to life unless it dies; and what you sow is not the body that shall be, but a bare grain. God gives it a body as he has willed.",
+            "ref": "1 Corinthians 15:36-38"
+          }
+        },
+        {
+          "id": "1co-15-42-44",
+          "fr": {
+            "text": "On sème dans la corruption, on ressuscite dans l’incorruptibilité ; on sème dans le déshonneur, on ressuscite dans la gloire ; on sème dans la faiblesse, on ressuscite dans la puissance ; on sème un corps animal, on ressuscite un corps spirituel.",
+            "ref": "1 Corinthiens 15:42-44"
+          },
+          "en": {
+            "text": "It is sown in corruption, it is raised in incorruption; it is sown in dishonour, it is raised in glory; it is sown in weakness, it is raised in power; it is sown a natural body, it is raised a spiritual body.",
+            "ref": "1 Corinthians 15:42-44"
+          }
+        },
+        {
+          "id": "ph-3-21",
+          "fr": {
+            "text": "Il transformera notre corps de misère pour le rendre semblable à son corps de gloire.",
+            "ref": "Philippiens 3:21"
+          },
+          "en": {
+            "text": "He will transform our lowly body to be like his glorious body.",
+            "ref": "Philippians 3:21"
+          }
+        },
+        {
+          "id": "jb-19-25-26",
+          "fr": {
+            "text": "Je sais que mon Rédempteur est vivant, et qu’au dernier jour je me lèverai de la terre ; et de ma chair je verrai Dieu.",
+            "ref": "Job 19:25-26"
+          },
+          "en": {
+            "text": "I know that my Redeemer lives, and that at the last day I shall rise from the earth; and from my flesh I shall see God.",
+            "ref": "Job 19:25-26"
+          }
+        },
+        {
+          "id": "ac-1-11",
+          "fr": {
+            "text": "Ce Jésus qui a été enlevé au ciel reviendra de la même manière que vous l’avez vu s’en aller.",
+            "ref": "Actes 1:11"
+          },
+          "en": {
+            "text": "This Jesus who was taken up into heaven will come back in the same way you saw him go.",
+            "ref": "Acts 1:11"
+          }
+        },
+        {
+          "id": "1co-4-5",
+          "fr": {
+            "text": "Il mettra en lumière ce qui est caché dans les ténèbres et manifestera les desseins des cœurs.",
+            "ref": "1 Corinthiens 4:5"
+          },
+          "en": {
+            "text": "He will bring to light what is hidden in darkness and manifest the purposes of hearts.",
+            "ref": "1 Corinthians 4:5"
+          }
+        },
+        {
+          "id": "mt-25-31-32",
+          "fr": {
+            "text": "Quand le Fils de l’homme viendra dans sa gloire, il séparera les hommes les uns des autres, comme le berger sépare les brebis des boucs.",
+            "ref": "Matthieu 25:31-32"
+          },
+          "en": {
+            "text": "When the Son of Man comes in his glory, he will separate men one from another, as the shepherd separates the sheep from the goats.",
+            "ref": "Matthew 25:31-32"
+          }
+        },
+        {
+          "id": "mt-25-40",
+          "fr": {
+            "text": "Ce que vous avez fait à l’un de ces plus petits de mes frères, c’est à moi que vous l’avez fait.",
+            "ref": "Matthieu 25:40"
+          },
+          "en": {
+            "text": "What you did to one of these least of my brothers, you did to me.",
+            "ref": "Matthew 25:40"
+          }
+        },
+        {
+          "id": "rom-2-5-6",
+          "fr": {
+            "text": "Au jour de la révélation du juste jugement de Dieu, il rendra à chacun selon ses œuvres.",
+            "ref": "Romains 2:5-6"
+          },
+          "en": {
+            "text": "On the day of the revelation of God’s righteous judgment, he will render to each according to his works.",
+            "ref": "Romans 2:5-6"
+          }
+        },
+        {
+          "id": "2pi-3-13",
+          "fr": {
+            "text": "Nous attendons des cieux nouveaux et une terre nouvelle où la justice habitera.",
+            "ref": "2 Pierre 3:13"
+          },
+          "en": {
+            "text": "We await new heavens and a new earth where righteousness dwells.",
+            "ref": "2 Peter 3:13"
+          }
+        },
+        {
+          "id": "1co-15-28",
+          "fr": {
+            "text": "Dieu sera tout en tous.",
+            "ref": "1 Corinthiens 15:28"
+          },
+          "en": {
+            "text": "God will be all in all.",
+            "ref": "1 Corinthians 15:28"
+          }
+        },
+        {
+          "id": "1jn-3-2",
+          "fr": {
+            "text": "Dès à présent nous sommes enfants de Dieu, mais ce que nous serons n’a pas encore été manifesté. Nous savons que, lorsqu’il paraîtra, nous lui serons semblables, puisque nous le verrons tel qu’il est.",
+            "ref": "1 Jean 3:2"
+          },
+          "en": {
+            "text": "We are God’s children now, and what we will be has not yet appeared; but we know that when he appears we shall be like him, because we shall see him as he is.",
+            "ref": "1 John 3:2"
+          }
+        }
+      ]
+    }
+  ]
+}
