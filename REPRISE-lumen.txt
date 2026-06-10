@@ -1,0 +1,2316 @@
+════════════════════════════════════════════════════════════════════
+FICHIER DE REPRISE — LUMEN VERITATIS
+À coller en début de nouveau chat, puis téléverser les 6 fichiers du projet.
+Date : 9 juin 2026
+════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────
+0. COMMENT REPRENDRE (à lire en premier)
+────────────────────────────────────────────────────────────────────
+Le nouveau chat n'aura AUCUN fichier en mémoire. Au début du nouveau chat :
+1. Colle ce fichier entier.
+2. Téléverse les 6 fichiers du projet : build-bi.js, index__48_.html,
+   data-en.js, memoriser.html, netlify.toml, REPRISE-lumen.txt
+   (ceux de la dernière livraison).
+Sans ces fichiers, l'assistant ne peut rien modifier.
+
+INSTRUCTION PERMANENTE : à chaque livraison, redonner TOUJOURS les 6 fichiers
+en même temps (même ceux non modifiés), CE FICHIER DE REPRISE COMPRIS, pour ne
+jamais oublier l'existence ou la mise à jour d'un fichier. L'assistant tient ce
+fichier de reprise continuellement à jour et le relivre à chaque fois.
+
+────────────────────────────────────────────────────────────────────
+0 bis. TRAVAIL EN COURS — SÉRIE « LA VIE DU CHRIST »
+────────────────────────────────────────────────────────────────────
+Nouvelle catégorie « La vie du Christ » (EN « The Life of Christ »), id
+'vie-du-christ', placée sous le thème ecriture, juste après la catégorie
+'evangiles'. Elle accueille une série de SEPT articles qui racontent la vie
+du Christ dans l'ordre, en harmonisant les quatre évangiles (modèle : les trois
+Isaïe forment une série dans leur catégorie). Plan tiré du diagramme
+evangiles_unifies.html fourni par Emmanuel (sections 01-07 ; la section 08
+« Lectures catholiques de l'unité » est propre au diagramme et N'EST PAS un
+article). Les sept, dans l'ordre :
+  1. Les prologues et la venue du Christ        [FAIT, en ligne]
+  2. La préparation au ministère                [FAIT, en ligne]
+  3. La première année : l'inauguration         [FAIT, en ligne]
+  4. La deuxième année : la popularité          [FAIT, en ligne]
+  5. La troisième année : l'opposition          [FAIT, en ligne]
+  6. La Semaine sainte                          [FAIT, en ligne]
+  7. La Résurrection et la glorification        [FAIT, en ligne]
+  >>> SÉRIE « LA VIE DU CHRIST » COMPLÈTE (7 articles en ligne, FR + EN).
+  >>> AUDIT des épisodes manquants (juin 2026). Après revue de la série, SEPT
+      épisodes absents ont été ajoutés comme NOUVELLES SECTIONS <h2> (FR + EN ;
+      ce sont des ajouts à des articles existants, NON journalisés, pas de
+      changement du compte de paires). Déjà fait avant l'audit : « Le maître du
+      sabbat » (art. 4) a reçu un 2e § sur l'homme à la main desséchée
+      (Matthieu 12). Ajouts de l'audit :
+        Art. 4 (2e année) : « La guérison du lépreux » (Marc 1, avant « Le pardon
+          des péchés ») ; « Le statère dans le poisson » (Matthieu 17, en fin
+          d'article, à Capharnaüm).
+        Art. 5 (3e année) : « Les traditions des anciens » (Marc 7, avant « La foi
+          des nations ») ; « La femme courbée » (Luc 13) puis « L'hydropique »
+          (Luc 14), entre « La meilleure part » et « Les paraboles de la
+          miséricorde » ; « Les fils de Zébédée » (Marc 10, entre « Les enfants
+          et le jeune homme riche » et « Bartimée et Zachée »).
+      Vérifié présent et donc NON re-créable : l'aveugle de Bethsaïde (guéri en
+      deux temps) est déjà dans « Tu es le Christ » (art. 5).
+  >>> Audit post-série (relecture des 7 articles vs trame source) : aucune erreur
+      chronologique (2 purifications, 2 onctions, 2 multiplications, Marie-Madeleine
+      premier témoin). Approfondissements ajoutés (NON journalisés, ce sont des
+      reprises) : art. 4 → 4 sections nouvelles (La piscine de Béthesda / Le reproche
+      aux villes / Béelzéboul et le péché contre l'Esprit / La vraie famille), 21
+      sections ; art. 3 → « Le Sauveur du monde » enrichi de la nourriture (Jean 4:34).
+  >>> Reprise art. 2 « Les premiers disciples » : dialogue de Nathanaël déployé en
+      entier (figuier, confession) et échelle de Jacob expliquée depuis la Genèse
+      (Genèse 28:17 ; le Christ médiateur, lien entre ciel et terre) ; glose kepha/
+      Petros retirée. Lecture sacerdotale du baptême réservée à un futur article à part.
+  >>> NOUVEL ARTICLE : « Le baptême du Christ » / « The baptism of Christ »
+      (thème ecriture, catégorie « Les évangiles » ; slugs le-bapteme-du-christ /
+      the-baptism-of-christ). Lecture sacerdotale : Jean (prêtre selon Aaron) lave et
+      consacre le prêtre selon Melchisédech, oint de l'Esprit (Isaïe 61:1, Actes 10:38) ;
+      fin du sacerdoce lévitique (Luc 16:16). Journalisé en NOUVEAUTÉS. Lien posé depuis
+      la série. 71 paires / 142 pages.
+  >>> Reprise art. 5 « La troisième année » : « Bartimée et Zachée » et « L'aveugle-né »
+      REPRIS dans le registre exégétique (sobre, démonstratif, sens dégagé APRÈS le récit,
+      sans mise en scène ni dialogue narré « X répond : »). Zachée : initiative de Jésus
+      (appel par le nom), « Zachée se convertit et prend un engagement » placé AVANT Luc 19:8,
+      clôture « Chez celui que tous tenaient pour perdu, Jésus accomplit sa mission » + Luc 19:9-10,
+      sans glose sur le quadruple. Aveugle-né : écho de la création (Genèse 2:7 cité), Siloé
+      = « envoyé », interrogatoire déroulé, orgueil qui aveugle, Jean 9:39 puis 9:38.
+      Approfondissements NON journalisés.
+  >>> NOUVEL ARTICLE : « Le doigt de Dieu » / « The finger of God » (thème ecriture,
+      catégorie « Les évangiles » ; slugs le-doigt-de-dieu / the-finger-of-god). Démonstration
+      (genre exégétique, PAS récit) suivant un transcript fourni : sous le piège (faux prophète /
+      sédition, Jean 18:31 ; hypocrisie, ils n'amènent que la femme, Lévitique 20:10), Jésus
+      écrit du doigt sur le sol = le doigt qui grava la Loi (Exode 31:18), donc le Dieu de Moïse ;
+      la fuite des accusateurs confondus accomplit Jérémie 17:13 (qui abandonne le Seigneur,
+      source d'eau vive, est inscrit sur la terre) : ce Seigneur, c'est Jésus ; clôture sur
+      l'Esprit, source d'eau vive (Jean 7:38-39). PAS de démonstration trinitaire explicite
+      (demande d'Emmanuel). Journalisé en NOUVEAUTÉS. Lien posé depuis la section « La femme
+      adultère » de l'art. 5 (sur « femme surprise en adultère »), à la demande d'Emmanuel.
+      72 paires / 144 pages. La section « La femme adultère » de l'art. 5 reste le texte de base
+      inchangé (le piège déjà corrigé) ; le nouvel article en est l'approfondissement séparé.
+  >>> CORRECTIONS doctrinales (art. « Les fins dernières » et « Les vertus théologales »,
+      FR + EN ; reprises, NON journalisées). Purgatoire : tension levée entre « la faute est
+      déjà pardonnée, reste la peine temporelle » et Matthieu 12:32 (« pardon dans le siècle à
+      venir »). Distinction rendue explicite : le purgatoire purifie DEUX choses, les fautes
+      VÉNIELLES encore présentes (ce sont elles que Matthieu 12:32 dit remises dans l'au-delà)
+      ET la peine temporelle des péchés déjà pardonnés ; la faute GRAVE se décide avant la mort
+      (pas de seconde chance). Espérance : « portant devant Dieu l'attente de ceux qu'on aime »
+      (ambigu) → « le salut qu'on attend de Dieu pour soi, on l'attend aussi pour ceux qu'on aime ».
+  >>> APPROFONDISSEMENT de la série « vie de Jésus » (juin 2026, FR + EN ; reprises,
+      NON journalisées). Après audit de densité des 7 articles, HUIT sections minces
+      ou tassées réécrites/scindées en ~11 sections :
+        Art. 4 (2e année) : « La foi et la compassion » SCINDÉE en 3 (« Le centurion
+          de Capharnaüm » Luc 7:7,9 ; « Le fils de la veuve de Naïm » Luc 7:13-16 ;
+          « La pécheresse pardonnée » Luc 7:47,50) ; « Les Douze » réécrite (nuit de
+          prière Luc 6:12, apostolos, 12 tribus, Marc 3:14-15, liste des noms ; la glose
+          Pierre/le roc reste réservée à « Tu es le Christ ») ; « Le pardon des péchés »
+          réécrite (paralytique, Marc 2:5/10/12, précision sur le raisonnement des scribes).
+        Art. 5 (3e année) : « L'action de grâce et l'humilité » SCINDÉE en 2 (« Les dix
+          lépreux » Luc 17:13,17,19 ; « Le pharisien et le publicain » Luc 18:13-14) ;
+          « La fête des Tentes » réécrite (rite de l'eau, Exode 17:6, pluie/saison, Jean
+          7:37/39, Zacharie 14:8).
+        Art. 6 (Semaine sainte) : « La dernière Cène » enrichie (Agneau de Dieu, lavement
+          Jean 13:14, Luc 22:19, Marc 14:24, alliance nouvelle Jérémie 31:31) ; « Le discours
+          sur la fin » réécrite en 2 § (double question Temple/fin, deux événements
+          entrelacés, Fils de l'homme sur les nuées « à la fin seulement », Marc 13:32 avec
+          précision, jugement dernier Matthieu 25:40 ; paraboles de vigilance retirées,
+          futurs articles à part) ; « Le discours d'adieu » SCINDÉE en 2 (« Le discours
+          d'adieu » développé : Jean 14:6, Paraclet envoyé d'auprès du Père, vigne Jean
+          15:4-5/13 ; + NOUVELLE « La prière sacerdotale » Jean 17:17,21). Compte inchangé,
+          72 paires / 144 pages.
+
+  >>> PRÉSENTATION (juin 2026, reprises NON journalisées). Page d'accueil : entre la barre du haut
+      et « Les domaines », on garde la grande croix blanche d'origine (.croix, 72x132,
+      fill #ffffff), SEULE et centrée, sans la phrase d'accroche ni le trait (border-bottom)
+      qui étaient dessous (.hero sans bordure ; .intro retirée). La phrase d'accroche reste
+      en meta (site_desc_home / home_intro), non affichée. Modifié au CSS (index__48_.html),
+      dans vueAccueil (SPA) ET dans mainAccueil de build-bi.js. Mémoriser : dans la barre du haut,
+      le bouton de langue (EN) et la cloche (Nouveautés) ont été permutés (EN avant cloche).
+      Accueil : ajout d'un encart « Mémoriser » sous « Les domaines », SANS cadre
+      (.memo-bloc, bloc libre ; pas de carte bordée) ; accès par le bouton « Commencer » repris à l'identique du bouton .start de
+      memoriser.html (.memo-start : display:block, width:100%, padding 17px, doré plein,
+      majuscules ; href /memoriser.html). Le bloc est centré (.memo-bloc max-width:628px,
+      = largeur du bouton dans memoriser, soit .wrap 680 moins padding) ; l'aperçu des scores
+      (% maîtrise, barre, compte) est conservé ET centré ; le sous-titre a été retiré. Il affiche un aperçu
+      des scores de l'utilisateur connecté : % de maîtrise (somme des boîtes / 5×total),
+      barre tri-couleur et compte acquis / en cours / à revoir (vert boîte 4-5, ambre 2-3,
+      rouge 0-1). Lu directement depuis Firestore users/{uid}/meta/progress (sans dupliquer
+      les catégories ; compte les versets travaillés). Déconnecté → invite « Connecte-toi ».
+      Ajouté dans mainAccueil (build-bi.js) + vueAccueil (SPA) + CSS (index) + script MEMO_JS
+      (build-bi.js, injecté dans le bloc de scripts, auto-garde si l'élément absent ;
+      Firebase déjà chargé sur chaque page). Libellés memo_* dans UI.fr et l'override en.
+      Notifications (cloche) à jour : « Le doigt de Dieu » et « Le baptême du Christ » présents.
+
+  >>> APPROFONDISSEMENT de la Passion (juin 2026, FR + EN ; reprises, NON journalisées).
+      Audit de densité de « La Semaine sainte » : « La mort du Christ » (1582) déjà solide,
+      mais « Gethsémani » (774) et « La crucifixion » (976) en dessous de leur importance.
+      Réécrites en registre exégétique : Gethsémani (774→~1790) = la coupe/calice, réalité de
+      la nature humaine, DEUX volontés (divine et humaine) accordées dans « non pas ma volonté
+      mais la tienne » (nouvel Adam renversant le premier dans un jardin), ange réconfortant +
+      sueur de sang (Luc 22:43-44), triple retour « veillez et priez » (Mt 26:41), baiser de
+      Judas (Luc 22:48), épée/oreille + « la coupe que le Père m'a donnée » (Jean 18:11).
+      Crucifixion (976→~1710) = Simon de Cyrène, filles de Jérusalem (Luc 23:31), compté parmi
+      les criminels (Isaïe 53:12), partage des vêtements (Psaume 22:19), titulus trilingue
+      (Jean 19:19), triple moquerie « qu'il se sauve lui-même » (Luc 23:35) + le sens (il ne
+      descend pas pour sauver les autres), les trois paroles (Luc 23:34 ; 23:43 ; Jean 19:26-27,
+      Marie mère de l'Église). EN miroir (Gethsemane / The Crucifixion). Gloss Hébreux 13:12
+      ÉCARTÉ (figure forcée, refusée par Emmanuel). RESTE À FAIRE : « L'apparition aux saintes
+      femmes » (mince, 325) et la glorification (Ascension) dans l'article Résurrection.
+
+MÉTHODE EXIGÉE par Emmanuel : UN article à la fois, sans précipitation. Ne
+jamais en produire plusieurs d'un coup. Tenue calée sur l'article 1 : narration
+continue suivant l'ordre des évangiles, un <h2> par épisode ou seuil, versets
+portant l'argument au format habituel, grec/hébreu intégrés, registre sobre.
+Slugs FR = titre normalisé ; slugs EN dans SLUGS de data-en.js. Chaque nouvel
+article ajoute : objet FR dans ARTICLES (index), entrée dans ARTICLES_EN +
+SLUGS (data-en), et son slug dans arts[] de la catégorie 'vie-du-christ'
+(index ET cats de THEMES_EN si besoin, déjà créée). NOUVEAUTÉS : articles 1 à 7
+journalisés (FR + EN). Règle (confirmée par Emmanuel, cf. §3) : le journal signale
+les NOUVEAUX articles ; il ne signale PAS les reprises ni les approfondissements.
+
+CONVENTION (posée cette session, à appliquer dans tous les articles de la série) :
+quand une prophétie accomplie ou une prescription est ÉVOQUÉE sans être citée,
+mettre sa source entre parenthèses à la fin, chapitre:verset SEULEMENT, sans le
+texte du verset. Ex. : « ... Emmanuel, "Dieu avec nous" (Isaïe 7:14). » ;
+« ... l'offrande des pauvres (Lévitique 12:8). » ; « ... doit naître à Bethléem
+(Michée 5:1). » Quand le verset EST cité, garder le format normal (em + « » +
+span.ref). Tenir compte du décalage de numérotation FR/EN (ex. Michée 5:1 FR =
+Micah 5:2 EN ; pour la source d'Osée citée par Matthieu, référencer Osée 11:1 /
+Hosea 11:1, les mots étant ceux d'Osée).
+
+────────────────────────────────────────────────────────────────────
+1. LE PROJET
+────────────────────────────────────────────────────────────────────
+Lumen Veritatis (lumenveritatis.net) : site de théologie catholique bilingue
+(français + anglais), destiné aux débutants comme à ceux qui veulent approfondir.
+Emmanuel (francophone réunionnais, catholique, non-codeur, Windows + iOS, UTC+4)
+écrit lui-même tout le contenu théologique ; l'assistant gère tout le code,
+les intégrations, les validations et les exports de fichiers.
+
+Théologie : doctrine catholique, niveau élevé mais accessible. L'assistant donne
+directement la lecture qu'il juge la plus juste (patristique, Tradition, cohérence
+interne), sans énumérer d'autres interprétations.
+
+────────────────────────────────────────────────────────────────────
+2. ARCHITECTURE DES FICHIERS (6 fichiers de site + ce fichier de reprise)
+────────────────────────────────────────────────────────────────────
+Le site est STATIQUE, hébergé sur Netlify, généré par un script Node.
+
+• build-bi.js — LE GÉNÉRATEUR. Lit les articles depuis index__48_.html, contient
+  les chaînes d'interface françaises (menu, pied de page, page « à propos »…),
+  le login du site, et produit le site multipage dans le dossier « site/ ».
+  Commande de build : node build-bi.js
+  Sortie attendue : « Paires de pages : 63 → 126 pages (FR + EN) … »
+  Il copie aussi memoriser.html dans site/ à la fin du build. (Le QUIZ a été RETIRÉ du
+  site le 7 juin 2026 sur décision d'Emmanuel : plus de lien de nav, plus de copie au build,
+  plus de notification, et quiz.html n'est plus livré. Ne pas le réintroduire.)
+  La nav du site (header) contient les liens Mémoriser et Quiz.
+
+• index__48_.html — SOURCE FRANÇAISE (le SPA). Fait AUTORITÉ pour tout le
+  contenu FR : articles, pied de page, page « à propos ». build-bi.js lit ses
+  articles. C'est un fichier unique (SPA, routage par hash, articles = objets JS).
+
+• data-en.js — DONNÉES ANGLAISES. Fait AUTORITÉ pour tout le contenu EN
+  (SLUGS, THEMES_EN, UI_EN, ARTICLES_EN, NOUVEAUTES_EN). Requis par build-bi.js.
+
+• memoriser.html — APP DE MÉMORISATION des versets (page autonome, bilingue),
+  servie à lumenveritatis.net/memoriser.html. (Fichier ~1000 lignes ; rester raisonnable pour la lecture en un bloc :
+les données PRE sont la principale source de croissance, rester sobre à l'ajout.)
+
+• quiz.html — RETIRÉ DU SITE le 7 juin 2026 (décision d'Emmanuel : « je ne veux plus de quiz »).
+  Le fichier n'est plus livré, plus lié dans la nav, plus copié au build, plus annoncé en
+  notification. La description ci-dessous est conservée pour mémoire au cas où il faudrait le
+  réintroduire un jour, mais ne pas le remettre sans demande explicite.
+  [ancien] APP DE QUIZ VRAI/FAUX (page autonome, bilingue), servie à
+  lumenveritatis.net/quiz.html. MÊME socle que memoriser.html : même style (extrait
+  du <style> de memoriser au build), même connexion Firebase, même nav + pied de page,
+  même moteur de révision espacée (Leitner, IVLS, boxOf/answer/nextItem, niveaux r/a/v).
+  DEUX FORMATS par question (la forme suit la question) :
+   - QCM (choix multiple) : prompt + plusieurs propositions, dont une correcte. Les
+     distractrices sont de VRAIES réponses tirées des AUTRES éléments de la MÊME catégorie,
+     mélangées au hasard (mécanisme identique à Mémoriser). Réservé aux catégories
+     homogènes (toutes les réponses de même nature). Item : t:'qcm', fr/en:{name,mean,ref,exp} ;
+     direction tirée au sort (nom→sens / sens→nom), sauf si la catégorie force une direction
+     via cat.dir. Une catégorie peut porter ses propres intitulés de question via cat.ql
+     ={nm:{fr,en},mn:{fr,en}} (sinon repli sur q_name/q_mean) : c'est ainsi que « Qui a dit
+     cela ? » affiche « Qui prononce cette parole ? ». Distractrices = champ affiché des items
+     frères de la catégorie (valeurs distinctes requises dans une catégorie pour éviter les doublons).
+   - Vrai/faux : pour les catégories hétérogènes (récits, événements). Item : a:true|false,
+     fr/en:{q,ref,exp}.
+  RÈGLE DES PIÈGES (vrai/faux) : on n'invente JAMAIS une fausseté gratuite pour seulement
+  tromper. Une affirmation fausse n'est légitime que si elle corrige une confusion RÉELLE et
+  courante (ex. Pilate et non Hérode ; Salomon et non David bâtit le Temple ; Cyrus et non
+  Nabuchodonosor), l'explication rétablissant aussitôt la vérité. Ces « pièges » (au sens
+  d'Emmanuel) sont VOULUS mais ÉQUILIBRÉS : environ un énoncé vrai/faux sur quatre est faux,
+  répartis sur les quatre niveaux, et portant sur la matière DÉJÀ couverte (un fait connu
+  présenté de travers), non sur des obscurités isolées. En QCM, les distractrices restent de
+  VRAIS faits d'autres éléments. But : apprendre, jamais piéger pour piéger.
+  Après réponse : correction + référence + explication, puis « Continuer ». 18 catégories,
+  267 questions (dont 55 QCM) : 12 suivant l'histoire du salut (création, patriarches, Exode,
+  conquête/Juges, royauté, prophètes, exil, nativité, ministère, Passion, Église, lettres/
+  Apocalypse) ; quatre catégories thématiques en vrai/faux (miracles, paraboles, douze apôtres,
+  femmes de la Bible) ; deux catégories transversales en QCM : « Qui a dit cela ? » (22) et
+  « Le sens des noms » (33). Catégories et questions à enrichir librement au fil du temps.
+  PÉRIMÈTRE v1 : DIMENSION BIBLIQUE SEULE (faits, événements, récits vérifiables par
+  l'Écriture) ; la théologie est volontairement écartée tant que le site n'est pas
+  assez solide pour fonder des questions doctrinales. Pas de catégories/questions
+  personnelles, pas de corbeille, pas de modale d'édition (différés). Firestore propre,
+  sans collision avec Mémoriser : users/{uid}/meta/quiz_progress {items,step} et
+  meta/quiz_prefs {selCats,mode}. Données : QPRE=[{id,name:{fr,en},qs:[{id,a,
+  fr:{q,ref,exp}, en:{q,ref,exp}}]}] ; ids de questions uniques. AUCUNE notion de difficulté :
+  retirée le 7 juin 2026 (pas de champ d, pas de niveau, pas d'adaptatif, pas de pastille F/M/D/TD,
+  pas de bloc « Difficulté »). nextItem fait du Leitner pur (échéances d'abord, plus petite boîte).
+  VERDICT après réponse : les boutons VRAI/FAUX restent NEUTRES (aucun vert/rouge sur eux) ; sous les
+  boutons, le verdict affiche uniquement la bonne réponse (VRAI/FAUX en TF, le nom en QCM) en gras,
+  coloré en vert si l'utilisateur a juste, en rouge sinon (.reveal-verdict.good/.bad). Pas de
+  « Juste »/« À revoir ». En QCM, l'option correcte reste surlignée (vert) pour la repérer.
+  Modes : « Réviser » (échéances) et « Tout revoir ». Typographie française sur les explications FR.
+
+• netlify.toml — config de déploiement (voir §4).
+
+• REPRISE-lumen.txt — CE FICHIER. Tenu à jour à chaque session et livré avec les autres.
+
+POINT D'ATTENTION (cause d'un bug récent) : le pied de page, la page « à propos »,
+le comportement JS de la bibliothèque (ouverture des domaines/sous-sections) ET la
+coupe des résumés trop longs dans les cartes de la bibliothèque (« voir plus »)
+sont définis À LA FOIS dans index__48_.html / data-en.js ET dans build-bi.js.
+Si build-bi.js prend du retard sur les deux autres, le site généré diverge du SPA.
+Toujours vérifier la cohérence FR (build-bi.js) ↔ FR (index__48_.html) ↔ EN (data-en.js).
+
+────────────────────────────────────────────────────────────────────
+3. CONVENTIONS DE CONTENU & STYLE (éditoriales)
+────────────────────────────────────────────────────────────────────
+• Notifications (« Nouveautés », la cloche du menu) : elles annoncent SEULEMENT les
+  VRAIES nouveautés, c'est-à-dire le contenu réellement nouveau qu'un lecteur peut aller
+  lire ou utiliser : nouveaux articles, nouveaux outils ou fonctionnalités (ex. Quiz,
+  Mémoriser). PAS le superflu : ni approfondissement, refonte, renforcement, fusion,
+  réorganisation, renvoi ou correction d'un contenu existant. Source : NOUVEAUTES
+  dans index__48_.html (FR) et NOUVEAUTES_EN dans data-en.js (EN), groupes parallèles
+  (même ordre, mêmes éléments traduits). Ajouter les vraies nouveautés en tête du groupe
+  de date courant, dans les deux langues ; la cloche signale alors le changement aux visiteurs.
+  FORMAT IMPÉRATIF d'un item : une simple CHAÎNE de texte (ex. "Nouvel article : « ... »."),
+  jamais un objet { t, s }. Le rendu fait '<div class="nouv-ligne">'+item+'</div>' ; un objet
+  y devient « [object Object] ». Les items ne sont pas cliquables (pas de lien vers l'article).
+• Apostrophes : DROITES dans index__48_.html ; COURBES (\u2019) dans build-bi.js
+  et memoriser.html (chaînes JS).
+• Références bibliques : forme standard, modèle « Genèse 44:2-3 ». Verset en
+  italique entre guillemets, référence en gras (dans les articles).
+• Mots grecs/hébreux : nommer la langue, le mot français/anglais traduit entre
+  guillemets, translittération en italique, puis l'alphabet d'origine entre
+  parenthèses. Ex. : le mot grec rendu par « chef », kephalē (κεφαλή).
+• Noms propres hébreux : translittération + caractères hébreux.
+• Mesures non françaises : convertir en métrique, donner les deux (mesure + (équiv.)).
+• Ouvertures affirmatives. Jamais « X n'est pas Y : c'est Z ». Pas de définition
+  par contraste. Pas de formules théâtrales (« tout bascule », « révolutionne »…).
+
+  ┌─ RED FLAGS DE RÉDACTION (corrigés en boucle par Emmanuel — à appliquer DÈS LE 1er JET) ─┐
+  │ 1. AUCUNE phrase d'échafaudage / mise en scène / annonce. Entrer DIRECTEMENT dans   │
+  │    le contenu. Types bannis (exemples réels produits puis rejetés) :                 │
+  │      – « Le geste lui-même porte le sens. » / « le signe de qui il est »             │
+  │      – « Jérémie avait annoncé ce qui s'accomplit ici » / « ce qui s'accomplit ici » │
+  │      – « Alors Jésus prononce le jugement : » / « il pose son geste : »              │
+  │      – « ce passage trouble », « cette parole étonne », « à qui sait lire »          │
+  │      – « X est réel ; la manière dont c'est réel compte », « la preuve que X, c'est… »│
+  │    Dire la chose, pas annoncer qu'on va la dire.                                     │
+  │ 2. NARRATION D'ABORD, INTERPRÉTATION ENSUITE. Ne pas entrelacer le sens dans le      │
+  │    récit. Raconter ce qui se passe, PUIS déployer ce que cela signifie. Ne pas       │
+  │    glisser une dénégation interprétative (« le texte ne dit pas ce qu'il écrit, ni   │
+  │    les noms ni les fautes ») AVANT d'avoir posé le sens : « laisse ça pour après ».  │
+  │ 3. EXPLIQUER LE POURQUOI d'un fait narratif, ne pas le poser nu (ex. POURQUOI les    │
+  │    plus âgés se retirent les premiers : ils se savent en faute). Le pourquoi est     │
+  │    souvent déjà dans la source qu'Emmanuel fournit — le lire.                        │
+  │ 4. DIALOGUE SANS TIRET CADRATIN. Pas de « — » entre répliques. Attributions :        │
+  │    « Q ? » / Elle répond : « … » / Jésus reprend : « … ».                            │
+  │ 5. NE PAS DOUBLER un verset par un préambule qui le paraphrase (préambule = le sens, │
+  │    verset = les mots). Ne pas dire deux fois la même chose en décalé.                │
+  │ 6. AMORCE D'UN VERSET D'ACCOMPLISSEMENT : énoncer DIRECTEMENT le sujet du verset et  │
+  │    nommer l'auteur biblique (« Jérémie avait dit de ceux qui se détournent… : »),    │
+  │    jamais « ce que X annonçait s'accomplit ici ».                                    │
+  │ 7. RELIRE LE PASSAGE ENTIER avant d'envoyer. S'il « sonne mal formulé », le          │
+  │    RETRAVAILLER, pas le rapiécer.                                                    │
+  └──────────────────────────────────────────────────────────────────────────────────────┘
+• Versets : portent un argument, jamais décoratifs ; usage sobre dans les récits.
+  Tout fait/événement/précepte biblique affirmé est appuyé par son verset.
+• Articles : profonds, complets, substantiels. Un article riche plutôt que
+  plusieurs minces. Nommer l'auteur/personnage biblique quand il est identifiable.
+• PAS de liens hypertexte dans le contenu des articles, SAUF demande explicite
+  d'Emmanuel. Format source : <a href="#/article/SLUG"> (slug FR côté FR, slug EN
+  côté EN) ; le build le réécrit en chemin statique relatif. Exemple posé : lien de
+  « La préparation au ministère » (section « Le baptême de Jésus ») vers l'article
+  « Le baptême du Christ ».
+• Sur un forum/réseau public : ne jamais citer de personnes (théologiens, papes,
+  auteurs) ni de sources (encycliques, livres). Seules les références bibliques
+  sont permises. (Dans les articles du site, conciles + dates sont permis ;
+  pas de CCC/papes/théologiens nommés.)
+• Quand Emmanuel se trompe (terme imprécis, point doctrinal), le corriger
+  explicitement en nommant l'erreur et en donnant la formulation juste. ET corriger
+  en conséquence les passages du site (articles, résumés, descriptions, diagrammes)
+  qui auraient déjà repris la formulation inexacte. Quand il demande « pourquoi »,
+  répondre par la seule raison, sans excuse ni correction.
+• Toujours relire le texte produit avant de l'envoyer.
+• L'italique est réservé aux ARTICLES. PAS d'italique dans Mémoriser (versets
+  et références), c'est trop dur à lire dans ce contexte.
+
+DIAGRAMMES INTERACTIFS : Emmanuel a un cahier des charges TRÈS détaillé pour des
+widgets HTML sombres (#0a0a0a), denses, à sections repliables, questions au clic,
+arbres tracés en JS, etc. Il est dans ses préférences utilisateur ; le ressortir
+intégralement quand il demande un diagramme. (Non reproduit ici pour rester bref.)
+
+────────────────────────────────────────────────────────────────────
+3 bis. PROFONDEUR, COMPLÉTUDE ET SOLIDITÉ DES ARTICLES (exigence centrale)
+────────────────────────────────────────────────────────────────────
+C'est un fil rouge de tout le travail, pas une consigne secondaire.
+• Tout article traite son sujet à fond : complet, substantiel, sans survol.
+  Un article qui effleure doit être retravaillé et approfondi.
+• Préférer UN article riche à plusieurs articles minces sur la même réalité.
+• Auditer la profondeur de chaque article ; renforcer ceux qui manquent de fond.
+• Sobriété absolue pour les textes contemplatifs/théologiques : aucun effet, aucune
+  dramatisation, aucune clausule poétique. Versets et idées parlent d'eux-mêmes.
+• HONNÊTETÉ INTELLECTUELLE : ne garder un article que s'il peut être traité avec
+  assurance. Emmanuel a préféré par le passé supprimer des entrées faibles plutôt
+  que de laisser du contenu insuffisant.
+
+────────────────────────────────────────────────────────────────────
+3 ter. ORGANISATION DU SITE ET DE MÉMORISER (carte blanche, mise à jour continue)
+────────────────────────────────────────────────────────────────────
+MANDAT PERMANENT. L'assistant est libre, ET DOIT, tenir le classement du site et
+de Mémoriser continuellement à jour, en se fondant sur le corpus réel des articles.
+
+• SITE — carte blanche sur la taxonomie : créer des domaines, en supprimer, les
+  fusionner ; de même pour les sections et sous-sections (catégories d'un domaine).
+  La structure suit le corpus : quand les articles le justifient, réorganiser.
+• MÉMORISER — carte blanche sur les catégories ET les versets (créer, fusionner,
+  supprimer, réordonner, enrichir). Les catégories et les versets se déterminent
+  À PARTIR des articles du site.
+• Les versets de Mémoriser ne se limitent PAS à ceux cités dans l'article : un
+  article ne peut pas tout énumérer. Compléter avec les versets que le sujet appelle
+  (attributs, institution, figures), en restant fidèle à la doctrine.
+• LECTURE DU CONTENU (impératif) : pour compléter ou auditer Mémoriser (et le Quiz),
+  LIRE le CONTENU INTÉGRAL des articles (le champ « contenu », côté FR dans
+  index__48_.html, côté EN dans data-en.js), jamais les seuls titres. Reprendre
+  les versets qu'Emmanuel a EFFECTIVEMENT cités dans l'article, en appliquant la
+  PERTINENCE : garder ceux qui PORTENT le sujet ; écarter ceux qui ne servent qu'au
+  contraste, à l'objection, à la transition narrative ou d'échafaudage typologique
+  (ex. un verset-objection réfuté, un récit-type de l'arche, un pur détail narratif).
+  Le volume n'est jamais un frein (l'algorithme de Leitner l'absorbe) ; seule la
+  pertinence commande. Un verset « manquant » = absent de TOUTE catégorie : ne pas
+  redupliquer un verset déjà mémorisé ailleurs ; le placer dans la catégorie la plus
+  juste. Pour apparier FR/EN, les versets d'un même article se correspondent dans
+  l'ordre (n-ième verset FR = n-ième verset EN), la numérotation des chapitres/versets
+  pouvant différer d'une langue à l'autre.
+• PÉRIMÈTRE : Mémoriser ne porte que sur des sujets DÉJÀ appris (= traités sur le site) ;
+  jamais un verset sur un sujet non encore appris. Le repère de ce qui est appris est
+  l'existence d'un article sur le sujet. Mémoriser suit donc les SUJETS, non la liste
+  des articles un à un.
+• ON NE DÉSAPPREND PAS : un sujet appris reste acquis. La disparition d'un article par
+  fusion, déplacement ou réorganisation NE retire PAS ses versets, le sujet demeurant
+  connu. Seul cas distinct, à surveiller : un article retiré parce que jugé INEXACT sur
+  le sujet ; le traitement étant alors fautif, ses versets sont à réexaminer.
+• Tous les versets d'une catégorie n'ont pas à coller étroitement au sujet de l'article :
+  un sujet en ouvre légitimement d'autres, voisins.
+• RÈGLE « VERSET PAS COUPÉ » : dans Mémoriser, une entrée est une unité scripturaire
+  complète et cohérente, jamais un fragment tronqué. Cette unité peut être UN verset ou
+  PLUSIEURS versets qui s'enchaînent ; dans ce cas la référence donne l'étendue
+  (ex. Jean 5:28-29) et le texte couvre tout le passage. (L'aperçu de liste peut être
+  abrégé visuellement ; le texte mémorisé reste entier.)
+• RÉTROACTIVITÉ : tout principe, règle ou correction établi s'applique à TOUT l'existant
+  (site + Mémoriser), pas seulement aux ajouts futurs. Auditer et corriger l'existant
+  dans la foulée, ne pas se contenter de l'énoncer pour la suite.
+• Appliquer ce mandat à chaque session : auditer, puis ajuster site + Mémoriser.
+
+────────────────────────────────────────────────────────────────────
+4. DÉPÔT & DÉPLOIEMENT
+────────────────────────────────────────────────────────────────────
+• GitHub : github.com/hoarauemmanuel336-ship-it/Lumen, branche main.
+• Netlify : projet « prismatic-fox-161266 ». Sert le dossier « site/ » (publish dir),
+  PAS la racine. Reconstruit automatiquement à chaque push GitHub.
+• Workflow : Emmanuel téléverse les fichiers modifiés sur GitHub → Netlify rebuild.
+  Tant qu'un ancien fichier reste sur GitHub, l'ancienne version reste en ligne.
+• netlify.toml actuel (scanner de secrets désactivé car la clé Firebase web est
+  publique par conception ; la sécurité passe par les règles Firestore et les
+  domaines autorisés) :
+
+  [build]
+    command   = "node build-bi.js"
+    publish   = "site"
+
+  [build.environment]
+    SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
+
+────────────────────────────────────────────────────────────────────
+5. FIREBASE (compte utilisateur, mémorisation, futures fonctions)
+────────────────────────────────────────────────────────────────────
+Projet « lumen-veritatis » déjà créé et configuré par Emmanuel.
+• Authentication : Google + E-mail/mot de passe activés.
+• Firestore : créé (mode production, europe-west1).
+• Domaines autorisés : lumenveritatis.net ajouté.
+• Règles Firestore publiées :
+  rules_version = '2';
+  service cloud.firestore { match /databases/{database}/documents {
+    match /users/{uid}/{doc=**} { allow read, write: if request.auth.uid == uid; } } }
+
+• Config Firebase (publique par conception, présente dans memoriser.html ET
+  build-bi.js) :
+  apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA"
+  authDomain:"lumen-veritatis.firebaseapp.com"
+  projectId:"lumen-veritatis"
+  storageBucket:"lumen-veritatis.firebasestorage.app"
+  messagingSenderId:"195902823875"
+  appId:"1:195902823875:web:a8be1f216a5ae1d945f176"
+• SDK : Firebase compat v10.7.1 via CDN gstatic (app + auth + firestore).
+
+Modèle Firestore (par utilisateur, sous users/{uid}/) :
+• meta/progress = {items:{itemId:{box,due}}, step}   → la mémoire (niveaux)
+• meta/prefs    = {selCats, mode}                    → sélection + mode (persistés)
+• meta/baseEdits= {cats:{baseCatId:{name,verses}}}   → modifs des catégories de BASE
+• meta/trash    = {items:[{vId,catId,catName,verse,origin,prog,ts}]} → corbeille
+                  (origin = 'base' si l'id existe dans PRE, sinon 'perso')
+• categories/{catId} = {name, verses}                → catégories PERSONNELLES (id en 'c')
+
+────────────────────────────────────────────────────────────────────
+6. L'APP MÉMORISER (memoriser.html) — état actuel
+────────────────────────────────────────────────────────────────────
+Page autonome bilingue (bascule FR/EN, localStorage 'lm_lang'). Esthétique du site
+(« manuscrit nocturne ») : --encre #000, --or #efe6cf, --pourpre #9a3b3b,
+EB Garamond (corps) + Cormorant Garamond (titres). Versets NON italiques.
+Écran de connexion : croix SVG identique à l'accueil + « Lumen » (aucune mention
+« Mémoriser » sur l'écran de connexion). En-tête de l'app : « Lumen · Mémoriser ».
+Une entrée de navigation « Mémoriser » (EN : « Memorise ») existe dans l'en-tête du
+site, entre Bibliothèque et À propos, vers /memoriser.html.
+
+Algorithme (Leitner, session infinie) :
+• Chaque verset a une box 0–5. Couleurs : rouge (0–1) / ambre (2–3) / vert (4–5).
+• IVLS = [0,4,8,16,32,64] (pas avant nouvelle échéance, par box).
+• isDue : box 0 toujours due ; sinon due <= step.
+• Bonne réponse : box +1 (max 5), due = step + IVLS[box].
+• Mauvaise réponse : box −2 (min 0), due = step + 2 → le verset raté revient vite.
+• setLevel (réglage manuel) : rouge→box0, ambre→box2, vert→box5.
+• Options : la bonne + 3 distracteurs résolus par id (pas par texte).
+• Délai après réponse : 0,75 s si correct, 4 s si erreur (le temps de lire la bonne
+  réponse). [Allongé sur retour d'Emmanuel : 1,45 s était trop court.]
+
+Pastilles de niveau (rouge/ambre/vert) — DYNAMIQUES :
+• La pastille active reflète TOUJOURS le niveau réel du verset, calculé par
+  l'algorithme à partir des réponses (levelOf <- boxOf). Étudier fait bouger les
+  niveaux tout seuls ; la liste se met à jour au retour sur l'écran d'accueil
+  (Terminer → renderCats). Cliquer une pastille FORCE le niveau (réglage manuel).
+
+Fonctionnalités :
+• Série infinie ; bouton « Terminer » → résumé. 3 modes (mixte / verset→réf /
+  réf→verset). Clavier 1–4 pour choisir une option.
+• Section « Catégories & mémoire » : case de sélection (ce qu'on étudie), barre de
+  distribution rouge/ambre/vert + POURCENTAGE PRÉCIS de progression (moyenne pondérée
+  des box : Σbox / (5·n), « 73 % » en FR, « 73% » en EN). Déplie pour montrer les
+  versets avec pastilles à 3 états.
+• Bouton « Tout sélectionner / Tout désélectionner » en haut du bloc Catégories.
+  La sélection est enregistrée sur le compte (meta/prefs) et conservée entre sessions.
+• Réglage du niveau (rouge/ambre/vert) à 3 échelles. Un verset : clic sur sa pastille.
+  Une catégorie : pastilles dans son titre, visibles seulement quand elle est dépliée.
+  Plusieurs : barre « Marquer les catégories cochées » (agit sur les catégories cochées
+  pour l'étude), AVEC confirmation pour éviter toute catastrophe au misclick ; cette barre
+  porte aussi « Réinitialiser », qui restaure versets et références des catégories de base
+  cochées à leur état d'origine.
+• Édition d'un verset (clic sur sa ligne) : modal avec « Réinitialiser ce verset » pour
+  les versets de base (restaure texte + référence d'origine, FR + EN).
+• Catégories ET versets de BASE entièrement modifiables (renommer, ajouter/éditer/
+  supprimer ; clic sur une ligne = édition). Stockés en surcharges (meta/baseEdits).
+• Catégories PERSONNELLES : créer, renommer, éditer/supprimer versets, supprimer.
+• CORBEILLE : le × envoie le verset en corbeille (récupérable), pas en suppression
+  définitive. Deux sections : « Versets d'origine » (base) et « Versets personnels ».
+  Par verset : Restaurer (revient dans sa catégorie avec son niveau) / Supprimer
+  (définitif). Bouton « Vider la corbeille ». Bloc masqué quand vide, repliable.
+• RESTAURATION par catégorie : chaque catégorie de base a une action « Restaurer »
+  qui la ramène à son état d'origine (annule modifs/suppressions de SES versets).
+• En-tête alignée sur le site : barre de navigation (Accueil, Bibliothèque, Mémoriser,
+  À propos), liens adaptés à la langue ; pied de page avec le verset du site (Isaïe 9:1
+  FR / Isaiah 9:1 EN), consts FOOT_FR / FOOT_EN.
+• Liste des catégories : 6 affichées par défaut, bouton « Afficher tout / Afficher moins »
+  (CATLIM=6). Catégories rangées en ordre théologique (cf. liste PRE).
+• Boutons globaux du bas : « Réinitialiser toute la mémoire » et « Restaurer les
+  catégories de base » (efface toutes les surcharges + purge la corbeille d'origine).
+
+Données de base (PRE) — 19 catégories, reliées aux articles du site (cf. §3 ter),
+versets complets (non coupés), non limitées aux versets cités dans l'article mais
+fondées sur le contenu réel des articles. 326 versets, identifiants tous uniques.
+Ordre théologique : nature-dieu (16) · trinite (14) · anges (11) · peche (20) · incarnation (10)
+· croix-resurrection (13) · marie (19) · grace (16) · predestination (14) · salut (15)
+· foi « Foi et espérance » (16) · charite (15) · eglise (18) · bapteme (11) · confession (14)
+· eucharistie (23) · sacrements (30) · communion-saints (13) · fins-dernieres (38).
+Tenir cette liste à jour à chaque ajout/refonte de catégorie.
+
+────────────────────────────────────────────────────────────────────
+7. LOGIN DU SITE (dans build-bi.js)
+────────────────────────────────────────────────────────────────────
+Sur chaque page générée : scripts Firebase (app + auth) dans <head>, icône
+« bonhomme » (compte) dans l'en-tête, et fenêtre de connexion (onglets Connexion /
+Inscription, e-mail + mot de passe, Google, mot de passe oublié).
+La vue « connecté » est GÉNÉRIQUE : « Mon compte » + e-mail + Déconnexion.
+L'état de connexion est partagé avec memoriser.html (même projet + domaine Firebase).
+
+────────────────────────────────────────────────────────────────────
+8. CE QUI A ÉTÉ FAIT ET VÉRIFIÉ (dernière session, 7 juin 2026)
+────────────────────────────────────────────────────────────────────
+• RÈGLE versets de prophétie (Mémoriser, et à étendre aux articles si demandé) : distinguer
+  l'ACCOMPLISSEMENT et la SOURCE. Un verset du NT qui cite une prophétie de l'AT est un
+  accomplissement : sa référence porte la mention « (accomplissement) » à la fin (EN : « (fulfillment) »).
+  Si un accomplissement figure dans la liste, le verset SOURCE (AT) doit TOUJOURS y figurer aussi,
+  sans parenthèse. Appliqué : Matthieu 1:23 (accomplissement) ← source Isaïe 7:14 (présent, Marie) ;
+  Matthieu 8:17 (accomplissement) ← source Isaïe 53:4 (AJOUTÉE dans « Le salut »).
+• Mémoriser — corrections de versets : Isaïe 7:14 complété (mention d'Emmanuel) ; Jean 10:18
+  complété (texte entier, pouvoir de donner et de reprendre sa vie) ; 1 Corinthiens 13:8 « charité »
+  (et EN « Charity ») au lieu de « amour/Love » ; retrait de 2 Corinthiens 5:20 (Paul ambassadeur) ;
+  retrait de Jacques 3:2. Pour info : « Lève-toi, prends ton lit » = Matthieu 9:6, catégorie « Les
+  sacrements » ; 1 Jean 3:2 est en « La prédestination » (pourrait aller en « Les fins dernières »,
+  vision béatifique, si Emmanuel le souhaite).
+• Mémoriser — MODALS MONO-LANGUE. Les modals « Modifier/Ajouter un verset » et « Nouvelle
+  catégorie/Renommer » n'affichent plus les deux langues à la fois : ils montrent uniquement les
+  champs de la langue de la page (FR ou EN selon S.lang), sans les mentions « (français)/(anglais) »
+  (libellés via t('f_text'), t('f_ref'), t('f_name')). Helpers modalVerseLang()/modalCatLang()
+  appelés à l'ouverture (affichent row-vfr/row-rfr en FR, row-ven/row-ren en EN ; row-cfr/row-cen
+  pour la catégorie). Sauvegarde : en édition on ne modifie que la langue courante (l'autre est
+  préservée) ; à l'ajout, le texte saisi est recopié dans les deux langues (pas de verset vide,
+  l'autre langue s'édite ensuite en changeant la langue de la page). node --check OK, build 126 pages.
+• Point de la cloche DÉTACHÉ (et non collé) : .cloche-point à top:-6px;right:-5px (au-dessus à
+  droite, écart net), identique sur toutes les pages. Ajustable au pixel sur demande.
+• QUIZ RETIRÉ du site (décision d'Emmanuel). Lien de nav, copie au build, et notifications
+  « Nouveau : le Quiz » supprimés (build-bi.js, index, data-en). quiz.html n'est plus livré.
+  Livraison désormais à 6 fichiers (sans quiz.html).
+• EN-TÊTE — correctif de cohérence de la cloche. Le point de notification était ancré
+  différemment selon les pages : sur l'accueil/bibliothèque, nav.menu n'avait pas
+  align-items:center, donc la cloche s'étirait et le point flottait au-dessus de l'icône ; sur
+  Mémoriser (align-items:center), le point était sur l'icône. Ajout de align-items:center au
+  nav.menu d'index (desktop) + align-items:stretch au nav.menu mobile, pour que le point soit
+  identique partout (haut-droite de l'icône). build-bi réutilise ce CSS → toutes les pages
+  statiques corrigées. Mémoriser inchangé (déjà centré). Le rendu cassé qu'Emmanuel voyait
+  (barre large, point détaché) venait d'un déploiement périmé ; un redéploiement le corrige.
+  AJOUTS de robustesse : .cloche{align-self:center} (le point reste sur l'icône quel que soit
+  l'alignement du nav) et white-space:nowrap sur les liens (« À propos » ne se coupe plus).
+  IMPORTANT : la version en ligne observée par Emmanuel avait son CONTENU et sa barre plus larges
+  que 1080px, alors que les fichiers du projet limitent bien .barre et main à max-width:1080px.
+  Donc la version déployée sur GitHub ne correspondait pas aux fichiers livrés. Si le problème
+  persiste après déploiement : re-téléverser ces fichiers exacts et vider le cache (Ctrl+Shift+R).
+  Note : la refonte de Mémoriser par ChatGPT (affichage des versets sur mobile, niveau par
+  catégorie, modale « réinitialiser le verset » replacée) est conservée telle quelle.
+• Quiz — DIFFICULTÉ ENTIÈREMENT RETIRÉE. Suppression du champ d sur les 267 questions, de
+  l'algorithme adaptatif (activeNiveau/adapt/S.diff/S.niveau/S.mo), du bloc « Difficulté », du badge
+  de niveau, de la pastille F/M/D/TD, des clés i18n associées et des champs diff/niveau de quiz_prefs.
+  nextItem redevient du Leitner pur. node --check OK, build 126 pages.
+• Quiz — VERDICT REFAIT. Les boutons VRAI/FAUX ne sont plus colorés (neutres). Sous les boutons, le
+  verdict affiche seulement la bonne réponse (VRAI/FAUX, ou le nom en QCM) en gras, vert si juste,
+  rouge si faux. « Juste »/« À revoir » supprimés. QCM : l'option correcte reste surlignée.
+• Mémoriser — « La nature de Dieu » enrichie de 14 versets (16 → 30) : Exode 34:6, Marc 10:18,
+  Deutéronome 32:4, 1 Jean 1:5, Nombres 23:19, 1 Timothée 1:17, Psaume 115:3, Isaïe 40:28,
+  Jacques 1:17, Jérémie 17:10, Jérémie 10:10, Psaume 139:7, Psaume 139:4, Isaïe 55:8.
+• Mémoriser — CORRECTIF d'affichage (effectiveCats). Dès qu'une catégorie de base est éditée par
+  l'utilisateur (ajout/retrait/renommage), elle était figée dans meta/baseEdits et les nouveaux
+  versets du modèle (PRE) n'apparaissaient plus pour cet utilisateur. effectiveCats fusionne désormais
+  dans une catégorie de base éditée les versets du modèle apparus depuis (absents de l'édition ET non
+  mis à la corbeille, repérés par trash.vId), en conservant les éditions et versets personnels de
+  l'utilisateur (ex. Jean 14:6 ajouté manuellement reste). C'est pourquoi seuls 5 versets
+  s'affichaient sur le compte d'Emmanuel.
+• Bibliothèque — RÉSUMÉS COUPÉS. Dans les cartes de la bibliothèque (jamais dans l'article
+  lui-même), un résumé trop long (> 195 caractères) est coupé vers 150 au mot près, suivi de
+  « … » et d'un « voir plus » qui déplie la suite sur place (« voir moins » pour replier), sans
+  suivre le lien de la carte (preventDefault + stopPropagation). Implémenté dans les DEUX rendus :
+  carteArticle/resumeHtml + délégation dans index__48_.html (SPA, FR), et resumeHtmlBI + délégation
+  dans COMMUN_JS de build-bi.js (pages statiques, libellés FR « voir plus/moins » et EN « see
+  more/less »). CSS .voir-plus ajouté au <style> d'index (repris par build-bi). Build 126 pages.
+• Proto-Isaïe — épisode d'Ézéchias (index ligne ~673, data-en ligne ~199). Précisions :
+  le signe (ombre reculant de dix degrés) est donné parce que le roi le DEMANDE en garantie de sa
+  guérison (2 Rois 20:8-11) → « Le roi demande un signe qui lui assure sa guérison, et Dieu le lui
+  accorde » ; c'est Isaïe qui transmet la réponse de Dieu (il avait annoncé la fin, Dieu le renvoie,
+  2 Rois 20:4-6) → « Dieu entend sa prière, et Isaïe revient lui apporter la réponse : quinze années
+  ajoutées à sa vie » ; « venus le féliciter » corrigé : l'ambassade de Babylone vient à cause de sa
+  maladie et de son rétablissement (Isaïe 39:1, lettres et présent) → « Ayant appris sa maladie et
+  son rétablissement, le roi de Babylone lui envoie des messagers porteurs de lettres et d'un
+  présent ; Ézéchias leur montre alors avec orgueil tous ses trésors ». PRÉSENT au SINGULIER, fidèle
+  à Isaïe 39:1 (hébreu minchah, singulier ; pluriel = menachot) : ne pas pluraliser. Paragraphe de
+  synthèse gardé sans références inline (style du paragraphe). FR + EN.
+• Nouveautés — RECENTRAGE sur les vraies nouveautés (cf. règle §3). Le journal annonçait
+  tout (approfondissements, refontes, renforcements, fusions, réorganisations, renvois) ;
+  ne restent que les annonces de contenu réellement nouveau : le Quiz, Mémoriser, et chaque
+  nouvel article (52 → 28 entrées, FR et EN filtrés à l'identique par index). La « nouvelle
+  catégorie de Doctrine », simple organisation, est retirée ; son article « L'ignorance
+  invincible » demeure. Build 126 pages.
+• Quiz — QUATRE NIVEAUX DE DIFFICULTÉ + ADAPTATIF. Chaque question porte d (1 facile, 2 moyen,
+  3 difficile, 4 très difficile) ; les 175 questions existantes ont été taguées, et 92 nouvelles
+  ajoutées (175 → 267, dont 55 QCM ; répartition 41/129/78/19). L'algorithme adapte le niveau :
+  départ à moyen pour qui est à zéro, montée/descente par momentum ; un sélecteur permet aussi de
+  figer un niveau (ou « Adaptatif »). Pièges vrai/faux ÉQUILIBRÉS (≈ 1 sur 4) et portant sur la
+  matière déjà couverte (cf. règle §2). Préférences quiz_prefs étendues (diff, niveau). node --check
+  OK, build 126 pages.
+• Mémoriser — COMPLÉTION PAR LE CONTENU DES ARTICLES (relecture intégrale) : les
+  60 articles ont été relus dans leur CONTENU (FR + EN), et les versets qu'Emmanuel
+  emploie effectivement ont été ajoutés aux catégories correspondantes, avec filtre
+  de PERTINENCE (versets de contraste, d'objection, narratifs ou d'échafaudage
+  typologique écartés ; doublons inter-catégories évités). +172 versets → de 154 à
+  326 versets sur 19 catégories (ex. fins dernières 8 → 38, sacrements 9 → 30,
+  Eucharistie 9 → 23, Marie 9 → 19, péché 8 → 20). Texte FR repris de l'article,
+  texte EN apparié depuis data-en.js (ordre identique, numérotation propre à chaque
+  langue). 326 identifiants uniques vérifiés, node --check OK, build 126 pages.
+  Règle permanente ajoutée en §3 ter (lire le contenu, pas les titres ; pertinence
+  avant volume). À NOTER : Jean 14:6 n'est présent dans AUCUN article ni dans
+  Mémoriser ; il n'a donc PAS été ajouté (Mémoriser suit les sujets traités). À
+  ajouter sur demande, avec « nul ne vient au Père que par moi ».
+• Navigation : entrée « Mémoriser » / « Memorise » ajoutée dans l'en-tête du site
+  (build-bi.js, data-en.js, index__48_.html), entre Bibliothèque et À propos.
+• Mémoriser — CORBEILLE (base/perso) + RESTAURER par catégorie de base ; délai
+  d'erreur porté à 4 s ; POURCENTAGE de progression par catégorie ; bouton
+  « Tout sélectionner / désélectionner » ; modèle Firestore meta/trash ajouté.
+• Apps (Mémoriser + Quiz) — lancement direct d'une catégorie : petite icône ▷ (data-act='solo')
+  sur chaque ligne de catégorie ; elle démarre une session limitée à cette seule catégorie via un
+  mode éphémère S.soloCat (allItems le respecte), SANS modifier la sélection enregistrée S.selCats.
+  S.soloCat est remis à null à la fin de session et au lancement normal (bouton « Commencer »).
+• Apps (Mémoriser + Quiz) — mobile et lisibilité : police de base portée à 20px ;
+  propositions (.opt) éclaircies (couleur rgba(255,255,255,.9)) et un peu agrandies ;
+  menu déroulant mobile ajouté (bouton burger qui replie les liens de nav), le logo, le
+  bouton de langue et le compte restant visibles dans la barre.
+• Quiz — corrections d'affichage et d'exactitude : libellé de question éclairci (lisibilité),
+  « Vrai » en vert / « Faux » en rouge, verdict « Juste » en vert / « À revoir » en rouge ;
+  réponses du « sens des noms » avec majuscule initiale ; « le centurion » et « le bon larron »
+  capitalisés. RÈGLE quiz : l'explication n'est pas forcément un verset ; quand le verset ne
+  porte pas réellement le sens (étymologie d'un nom, etc.), donner l'explication directement,
+  champ ref laissé vide et masqué à l'affichage. Audit des noms : Béthel complété (Genèse 28:19
+  en entier) ; versets non pertinents retirés sur 10 noms étymologiques (dont Élisée).
+• Quiz fortement enrichi : 13 → 18 catégories, 111 → 175 questions (48 QCM). Nouvelles
+  catégories : « Qui a dit cela ? » (QCM), miracles, paraboles, douze apôtres, femmes de la
+  Bible ; « Le sens des noms » porté à 33. Moteur QCM doté de libellés par catégorie (cat.ql)
+  et de direction forcée (cat.dir).
+• Notifications : Mémoriser et le Quiz ajoutés au journal des Nouveautés (FR + EN).
+• Mémoriser — audit rétroactif « verset pas coupé » : Marc 16:16 complété (seconde
+  proposition) ; Jean 5:28 étendu à Jean 5:28-29 (la phrase se prolonge).
+• Mémoriser — 1 Timothée 3:15 : « soutien » → « appui » (FR) et « foundation » → « support »
+  (EN), pour s'aligner sur l'article du site qui dit déjà « colonne et appui de la vérité ».
+• Mémoriser — marquage sécurisé : pastilles « tout marquer » déplacées dans le titre de
+  catégorie (visibles seulement dépliée) ; barre globale « catégories cochées » avec
+  confirmation + réinitialisation en lot des catégories de base ; bouton « Réinitialiser
+  ce verset » dans le modal d'édition (versets de base). En-tête « Catégories &
+  mémoire » et rangée de marquage fusionnées sous un seul séparateur (plus de double bande).
+• Mémoriser — en-tête et pied alignés sur le site (nav Accueil/Bibliothèque/Mémoriser/
+  À propos + verset de pied bilingue) ; catégories réordonnées (ordre théologique) ;
+  bouton « Afficher tout » (6 catégories par défaut).
+• Mémoriser — NOUVELLE EXTENSION (sujets désormais couverts par des articles) : 7 catégories
+  ajoutées, +54 versets → 19 catégories, 154 versets. La grâce, le péché (avec le péché originel),
+  les anges, la confession, la communion des saints, la prédestination (avec 1 Timothée 2:4, Dieu
+  veut le salut de tous, pour prévenir toute lecture déterministe), les sacrements (mariage,
+  confirmation, onction des malades, ordre). Numérotation propre à chaque langue (ex. Psaume 51:7
+  FR / Psalm 51:5 EN, 2 Maccabées et Tobie inclus). « Le pape » écarté (Matthieu 16:18-19 déjà
+  mémorisés sous l'Église) ; « le canon » écarté (peu adapté au par-cœur). Les 19 catégories
+  réordonnées dans l'ordre théologique (Dieu, création et chute, Christ, grâce et salut, Marie,
+  Église et sacrements, communion des saints, fins dernières).
+• Site — point de notification sur l'icône compte retiré (span + règle CSS morte).
+• Mémoriser — EXTENSION : 7 catégories ajoutées, reliées au corpus (Trinité,
+  Incarnation, Croix et Résurrection, Église, baptême, charité, fins dernières) ;
+  12 catégories, 100 versets, tous complets, identifiants uniques.
+• Mémoriser — REVUE DE CONTENU : 5 catégories enrichies (cf. §6), dont immuabilité
+  (Malachie 3:6) et éternité/unicité/toute-puissance/omniprésence/sainteté pour la
+  nature de Dieu, et les paroles d'institution (Matthieu 26:26-28) pour l'Eucharistie.
+• Site — clic sur un domaine depuis l'accueil : le build dépliait aussi TOUTES les
+  sous-sections. Ligne retirée (build-bi.js) : le domaine s'ouvre, ses sous-sections
+  restent repliées, comme dans le SPA.
+• Article « La nature de Dieu » (FR + EN) : résumé et introduction disaient « que sa
+  vie est amour » → corrigé en « qu'il est amour » (Dieu EST amour, 1 Jean 4:8 ;
+  l'amour est son être même). La « vie intime » (vie trinitaire) reste, elle, juste
+  et inchangée dans la suite de l'article.
+• Build vérifié : 126 pages, aucune erreur ; plus aucune occurrence de « sa vie est
+  amour » / « his life is love » ; plus de dépliage automatique des sous-sections.
+
+IMPORTANT : ces changements sont dans les fichiers livrés. Pour qu'ils apparaissent
+EN LIGNE, téléverser les fichiers sur GitHub et laisser Netlify reconstruire.
+
+────────────────────────────────────────────────────────────────────
+9. EN ATTENTE / PROCHAINES ÉTAPES
+────────────────────────────────────────────────────────────────────
+• À FAIRE (demandé) — Catégories en sections / sous-sections dans Mémoriser ET Quiz :
+  regrouper les catégories apparentées (ex. « Les sacrements » comme section contenant
+  baptême, eucharistie, confession, et les autres). Refonte de renderCats + structure de
+  regroupement, sélection/répartition/pastilles par section. À faire pour les deux apps.
+• À FAIRE (demandé) — En-tête du SITE PRINCIPAL (build-bi.js) sur mobile : sortir la cloche,
+  la recherche et le compte du menu burger pour les poser directement dans la barre (place
+  disponible) ; ne laisser que les liens de nav dans le burger. Augmenter aussi la police
+  du site principal. NB : le CSS de l'en-tête (.barre/.menu/.burger) n'est pas dans build-bi.js,
+  le localiser d'abord.
+────────────────────────────────────────────────────────────────────
+• Téléverser les 6 fichiers sur GitHub → Netlify reconstruit.
+• Appliquer le mandat §3 ter à chaque session : audit + mise à jour du classement
+  du site (domaines/sections/sous-sections) et de Mémoriser (catégories/versets),
+  d'après le corpus d'articles.
+• Questions exégétiques ouvertes : conventions de numérotation des versets entre
+  traductions française/hébraïque et anglaises.
+• Dialogue catholique-protestant en cours (réponses pour un ami protestant, et posts
+  publics sans citation de personnes/sources). À reprendre selon ses demandes.
+
+════════════════════════════════════════════════════════════════════
+FIN DU FICHIER DE REPRISE
+════════════════════════════════════════════════════════════════════
+
+================================================================
+CMS AUTONOME (Decap, backend GitHub) — ÉTAPE 1 EN PLACE
+================================================================
+Objectif : Emmanuel (non-codeur) édite le site lui-même via /admin ; Decap
+commit dans le dépôt GitHub (hoarauemmanuel336-ship-it/Lumen, branche main),
+Netlify reconstruit. Auth : backend GitHub + OAuth courté par Netlify
+(Netlify Identity abandonné, non utilisé). Connexion /admin avec compte GitHub.
+
+NOUVEAUX FICHIERS DU DÉPÔT (à téléverser sur GitHub, à la racine) :
+  - admin/index.html      (chargeur Decap CMS, CDN unpkg decap-cms@^3)
+  - admin/config.yml      (backend github + collection « Nouveautés »)
+  - content/nouveautes.json  ({fr:[{d,items}], en:[{d,items}]})
+
+build-bi.js patché :
+  - après l'extraction THEMES/ARTICLES/NOUVEAUTES, lit content/nouveautes.json
+    si présent → NV_FR / NV_EN (fallback sur les données du fichier sinon) ;
+  - le journal (l.~154-155) rend (lang==='fr' ? NV_FR : NV_EN) ;
+  - copie admin/ → site/admin/ (à côté de la copie memoriser.html).
+Build vérifié : « Journal lu depuis content/nouveautes.json », 72→144, news FR+EN OK.
+
+ÉTAT : étape 1 livrée. EN ATTENTE de la config OAuth GitHub/Netlify par Emmanuel
+puis confirmation que /admin se connecte et édite le journal et republie.
+ÉTAPE 2 (à faire ensuite) : migrer les 72 articles (FR+EN) hors de index__48_.html
+vers des fichiers content/ éditables + réécrire build-bi.js pour les lire +
+collections Decap par article. Décision retenue : corps d'article édité en HTML
+brut (champ texte) pour préserver le balisage exact des versets/grec/hébreu.
+ÉTAPE 3 : THEMES/structure (catégories + ordre) éditables ; réglages de thème
+SÛRS seulement (couleur d'accent), pas d'édition CSS libre.
+
+================================================================
+CMS — ÉTAPE 2 EN PLACE : LES 69 ARTICLES SONT ÉDITABLES
+================================================================
+Migration faite : chaque article (FR+EN réunis) est sorti dans
+content/articles/<slug>.json {slug, theme, date, titre_fr, resume_fr,
+contenu_fr, titre_en, resume_en, contenu_en}. 69 fichiers.
+
+build-bi.js patché (après le bloc nouveautes) : si content/articles/ existe,
+pour chaque .json il MUTE EN PLACE l'entrée ARTICLES (FR: titre/resume/contenu/
+theme/date) et ARTICLES_EN[slug] (titre/resume/contenu). Tout le downstream
+(artTitre/artResume/artContenu l.88-97, THEMES.arts find, ARTICLES.forEach index)
+lit ces mêmes objets, donc aucune autre ligne touchée. ARTICLES (index__48_.html)
+et ARTICLES_EN (data-en.js) restent en place comme fallback + pour le SPA non
+déployé. APOLOGIES reste codé en dur dans build-bi.js (non concerné).
+
+admin/config.yml : 2 collections désormais — « articles » (folder content/articles,
+format json, slug {{fields.slug}}, summary titre_fr, theme en select des 5 thèmes,
+corps FR/EN en widget text = HTML brut) et « nouveautes ». YAML validé.
+
+VÉRIF : build neuf vs baseline (stage-1) = sortie STRICTEMENT IDENTIQUE (diff -rq,
+seul admin/config.yml diffère, voulu). Preuve source : marqueur injecté dans un
+fichier article → apparaît dans la page ; retiré → disparaît. 72→144 OK.
+
+LIVRÉ : build-bi.js (maj), admin/config.yml (maj), content/articles/*.json (69 neufs),
++ zip lumen-cms-articles.zip (arbo admin/ + content/articles/ + build-bi.js) à
+téléverser. admin/index.html et content/nouveautes.json inchangés (déjà sur GitHub).
+Upload : glisser le dossier content (ajoute articles/ sans toucher nouveautes.json),
+le dossier admin (remplace config.yml sans toucher index.html), build-bi.js (remplace).
+
+RESTE — ÉTAPE 3 : THEMES éditables (catégories + ordre des arts), via un fichier
+themes.json + lecture build, collection Decap dédiée ; puis réglages d'apparence
+SÛRS (couleur d'accent) — pas d'édition CSS libre.
+
+----------------------------------------------------------------
+CORRECTIF (déploiement étape 2 en échec) — RÉSOLU
+----------------------------------------------------------------
+Symptôme : deploy Netlify main@5baee75 FAILED, « build script non-zero exit 2 ».
+Diagnostic Netlify : TypeError: Cannot read properties of undefined (reading 'titre')
+dans artTitre (build-bi.js), ARTICLES_EN[a.id] undefined pour au moins un article
+→ le data-en.js du DÉPÔT GitHub a un trou (entrée EN absente) que mon data-en.js
+canonique n'a pas (dérive d'un handoff passé). Le site EN LIGNE n'a pas été touché
+(Netlify garde le dernier deploy publié, main@94bce89 18:11).
+
+CORRECTIONS build-bi.js (toutes vérifiées) :
+1. Override articles : crée l'entrée ARTICLES_EN[slug] depuis le fichier si absente
+   (les content/articles/*.json contiennent l'EN), au lieu de seulement la mettre à
+   jour quand elle existe → l'anglais est restauré même si data-en.js est incomplet.
+2. slugOf('en', id) → SLUGS[id] || id (repli sur le slug FR si le slug EN manque ;
+   plus de /en/article/undefined/).
+3. Backfill final : tout ARTICLES sans ARTICLES_EN → repli FR + console.warn
+   « EN manquant, repli FR pour : <id> ».
+Tests : (a) données complètes → sortie identique au baseline (hors config.yml) ;
+(b) data-en.js privé de l'entrée EN + du slug d'un article → build réussit, page EN
+générée (URL repli = slug FR), titre EN restauré depuis le fichier d'article.
+
+LIVRÉ : lumen-correctif.zip = build-bi.js (corrigé) + data-en.js (canonique complet,
+69 EN / 69 SLUGS). Emmanuel remplace ces 2 fichiers à la racine du dépôt. Le build
+repassera. (data-en.js canonique resynchronise aussi les slugs EN au cas où.)
+
+================================================================
+CMS — ÉTAPE 3 : THÈMES + MÉMORISER ÉDITABLES
+================================================================
+THÈMES (organisation de la bibliothèque) :
+- content/themes.json = {themes:[{id,nom_fr,nom_en,desc_fr,desc_en,
+  categories:[{id,nom_fr,nom_en,arts:[slug...]}]}]} (fusion FR THEMES +
+  EN THEMES_EN, 5 thèmes / 21 catégories).
+- build-bi.js : si content/themes.json existe, RECONSTRUIT THEMES (FR) et
+  THEMES_EN (objet) depuis le fichier (THEMES.length=0;push ; delete+réassign
+  THEMES_EN). arts normalisés en chaînes (tolère string ou {slug} du widget relation).
+- Decap : collection « themes » (file content/themes.json) ; arts = list de widget
+  RELATION vers la collection articles (value_field slug) → choix par titre, pas de
+  faute de frappe. id thème/catégorie marqués « ne pas modifier ».
+
+MÉMORISER (versets de base) :
+- content/memoriser.json = {categories:[{id,name:{fr,en},verses:[{id,fr:{text,ref},
+  en:{text,ref}}]}]} (19 catégories, 339 versets).
+- memoriser.html : tableau PRE borné par /*PRE_START*/ ... /*PRE_END*/.
+- build-bi.js : à la copie de memoriser.html, si content/memoriser.json existe,
+  remplace entre marqueurs par const PRE=<json>; — AUTO-ID stable pour cat/verset
+  sans id (slug de name.fr / fr.ref, dédoublonné) → un nouveau verset peut être
+  ajouté sans saisir d'id. Pas de réécriture du fichier (ids regénérés à l'identique
+  tant que la référence ne change pas, donc progression Firestore préservée).
+- Decap : collection « memoriser » (file content/memoriser.json), listes imbriquées
+  catégories→versets, FR/EN ; id en required:false (« laisser vide pour un nouveau »).
+- ATTENTION : ne pas modifier un id existant (clé de progression Firestore).
+
+VÉRIFS : build 72→144 ; pages IDENTIQUES au baseline (hors admin/config.yml voulu) ;
+memoriser.html : données PRE injectées STRICTEMENT identiques à l'origine + reste du
+fichier inchangé ; preuves de source (renommage thème visible en biblio ; verset sans
+id → auto-id test-1-1). YAML config validé (4 collections : articles, themes,
+memoriser, nouveautes).
+
+LIVRÉ : lumen-themes-memoriser.zip = build-bi.js, memoriser.html, admin/config.yml,
+content/themes.json, content/memoriser.json. Upload : glisser dossier content
+(ajoute themes.json+memoriser.json, ne touche pas articles/ ni nouveautes.json),
+dossier admin (remplace config.yml, garde index.html), build-bi.js, memoriser.html.
+
+RESTE : réglage d'apparence SÛR = couleur d'accent --or (actuel #efe6cf, crème).
+À faire = content/settings.json {accent} + build append :root{--or:...} après
+EXTRA_CSS + collection Decap « apparence ». NON encore fait (gardé pour livraison
+séparée afin de conserver la parité de sortie vérifiable).
+
+----------------------------------------------------------------
+ÉTAPE 3 — AJOUT APPARENCE (couleur d'accent) + bundle complet
+----------------------------------------------------------------
+- content/settings.json = {"accent":"#efe6cf"} (défaut = valeur actuelle).
+- build-bi.js : APPEARANCE_CSS calculé depuis settings.json (regex hex strict
+  #rgb/#rrggbb/#rrggbbaa ; ignoré si == #efe6cf → sortie identique au défaut).
+  Injecté dans le <style> des pages (`${css}${EXTRA_CSS}${APPEARANCE_CSS}`) ET
+  dans memoriser.html (avant </head>) pour cohérence.
+- Decap : collection « apparence » (file content/settings.json, widget color).
+  5 collections : articles, themes, memoriser, apparence, nouveautes.
+- VÉRIF : accent défaut → pages STRICTEMENT identiques au baseline ; accent
+  personnalisé (#c8102e testé) → :root{--or:...} présent dans page article ET
+  memoriser.html. build 72→144.
+
+LIVRAISON UNIQUE étape 3 = lumen-etape3-complet.zip :
+  build-bi.js, memoriser.html, admin/config.yml,
+  content/themes.json, content/memoriser.json, content/settings.json.
+(remplace l'ancien lumen-themes-memoriser.zip, supprimé.)
+Upload : glisser dossier content (ajoute themes/memoriser/settings, ne touche pas
+articles/ ni nouveautes.json), dossier admin (remplace config.yml, garde index.html),
+build-bi.js, memoriser.html.
+
+================================================================
+VIRAGE : SUPPRESSION DECAP → ÉDITEUR D'APPARENCE EN DIRECT (Firestore)
+================================================================
+Décision Emmanuel : abandonner l'admin Decap, passer à l'édition en direct sur les
+pages, réservée à son compte. Le référencement n'est plus une contrainte. Le CONTENU
+ne bouge pas (reste dans content/, à jour ; vérifié : 69 articles, la-semaine-sainte
+contient l'approfondissement Gethsémani+crucifixion, etc.). Admin email :
+hoarauemmanuel336@gmail.com.
+
+NOUVEAU FICHIER : apparence.js (éditeur d'apparence). À l'exécution :
+- lit le doc Firestore config/apparence et applique l'apparence à TOUS les visiteurs
+  (variables --encre/--encre-2 = fond, --parchemin/--parchemin-att = texte,
+  --or/--or-pale = accent ; body background/color/font-family/font-size ; image de
+  fond ; CSS libre) via un <style id="lv-apparence"> ajouté en fin de head ;
+- si l'utilisateur connecté a l'email ADMIN, affiche un bouton « Apparence » (bas-droite)
+  ouvrant un panneau : couleurs fond/texte/accent, police, taille, image de fond,
+  CSS avancé, Enregistrer (DOC.set) / Réinitialiser (DOC.delete). Aperçu en direct.
+  La sécurité réelle = règle Firestore (write si email == ADMIN) ; le gate client ne
+  fait qu'afficher/masquer.
+
+build-bi.js :
+- FIREBASE_HEAD : ajout de firebase-firestore-compat (Firestore désormais dispo
+  partout ; corrige aussi le score Mémoriser de l'accueil qui en dépendait).
+- const APPARENCE_JS = lit apparence.js ; injecté dans le <script> de chaque page
+  (après MEMO_JS) ET dans memoriser.html (avant </body> ; memoriser charge déjà
+  les 3 compat firebase).
+- SUPPRIMÉ : le bloc de copie du dossier admin/ (Decap n'est plus déployé).
+- content/settings.json + APPEARANCE_CSS subsistent (inoffensifs, défaut #efe6cf) ;
+  l'apparence est désormais pilotée en direct par Firestore, qui prime (style ajouté
+  après dans le head).
+
+RÈGLE FIRESTORE à ajouter (console Firebase → Firestore → Règles), DANS les accolades
+existantes, sans retirer les règles users/ :
+  match /config/apparence {
+    allow read: if true;
+    allow write: if request.auth != null
+      && request.auth.token.email == "hoarauemmanuel336@gmail.com";
+  }
+
+À FAIRE PAR EMMANUEL :
+1. Téléverser lumen-site-complet.zip (met le dépôt à jour + ajoute apparence.js +
+   éditeur). 2. SUPPRIMER le dossier admin/ du dépôt (upload ne supprime pas ;
+   effacer admin/index.html et admin/config.yml). 3. Ajouter la règle Firestore.
+   Puis : se connecter sur le site avec son compte Google → bouton « Apparence ».
+
+VÉRIFS : build 72→144 ; /admin absent ; firestore-compat + apparence.js présents
+sur pages article et memoriser ; PRE memoriser intact ; email admin présent.
+
+RESTE (prochaine étape) : édition du TEXTE en direct sur la page (titres, résumés,
+corps d'article) via Firestore, pour remplacer complètement l'édition de contenu de
+Decap. Pour l'instant le contenu reste édité via les fichiers content/.
+
+----------------------------------------------------------------
+ÉDITEUR DE CONTENU EN DIRECT — ARTICLES (titre + corps)
+----------------------------------------------------------------
+NOUVEAU FICHIER contenu.js (injecté comme apparence.js, après APPARENCE_JS) :
+- ne s'active que sur une page d'article (article.lecture[data-article]).
+- applique la version enregistrée (override) à TOUS : doc Firestore
+  collection('contenu').doc(slug), champs titre_<lang> / contenu_<lang> ;
+  poserTitre = h1.textContent ; poserCorps = retire les enfants sauf h1 puis
+  h1.insertAdjacentHTML('afterend', html) → préserve la lettrine .lecture h1+p.
+- admin (email) : bouton « Éditer le texte » → overlay avec Titre + Corps (HTML),
+  Aperçu (applique sans enregistrer), Enregistrer (DOC.set merge:true → édite la
+  langue de la page) ; le corps est pré-rempli depuis le DOM (= source, car règle
+  « pas de liens dans le contenu » ⇒ reLink no-op).
+build-bi.js : <article class="lecture" data-article="${a.id}"> ; const CONTENU_JS
+lit contenu.js ; injecté ${CONTENU_JS} après ${APPARENCE_JS}. (memoriser.html ne le
+reçoit pas : pas d'article, contenu.js return tôt — non injecté de toute façon.)
+IMPORTANT chemin Firestore : doc à 2 segments → collection('contenu').doc(slug)
+(et non 'content/articles/'+slug qui est à 3 segments = invalide).
+
+RÈGLE FIRESTORE COMPLÈTE à appliquer À LA FIN (console) :
+  rules_version = '2';
+  service cloud.firestore {
+    match /databases/{database}/documents {
+      match /users/{uid}/{doc=**} { allow read, write: if request.auth.uid == uid; }
+      match /config/apparence {
+        allow read: if true;
+        allow write: if request.auth != null && request.auth.token.email == "hoarauemmanuel336@gmail.com";
+      }
+      match /contenu/{slug} {
+        allow read: if true;
+        allow write: if request.auth != null && request.auth.token.email == "hoarauemmanuel336@gmail.com";
+      }
+    }
+  }
+
+Snapshot lumen-site-complet.zip mis à jour (apparence.js + contenu.js + build + content).
+Emmanuel téléverse TOUT À LA FIN (un seul envoi) + applique la règle ci-dessus.
+
+RESTE / file d'attente : (a) refléter titre/résumé édités sur les vignettes
+biblio+accueil (data-card + lecture de la collection contenu) ; (b) éditer la
+structure des thèmes en direct ; (c) éditer le contenu Mémoriser en direct ;
+(d) éditer les textes de la page d'accueil. À prioriser avec Emmanuel.
+
+----------------------------------------------------------------
+VIGNETTES reliées aux éditions + RÉSUMÉ éditable (priorité #1 faite)
+----------------------------------------------------------------
+contenu.js réécrit (gère 2 cas, plus de return précoce global) :
+- VIGNETTES : sur toute page avec a.article-lien[data-card] (= bibliothèque),
+  lit la collection 'contenu' une fois et applique titre_<lang> (h3.textContent)
+  et resume_<lang> (remplace le <p> via resumeHtml() = port JS de resumeHtmlBI,
+  même troncature/voir-plus ; le toggle marche via la délégation existante).
+- ARTICLE : éditeur gagne un champ RÉSUMÉ (resume_<lang>) en plus de titre/corps.
+  Résumé pré-rempli depuis <script id="lv-art-src">{resume} (artResume embarqué,
+  '<' échappé en \u003c) ou depuis l'override s'il existe.
+build-bi.js : vignette biblio reçoit data-card="${a.id}" ; mainArticle ajoute le
+script lv-art-src. (Accueil = cartes de THÈMES, pas d'articles → traité avec #2.)
+Snapshot + REPRISE à jour. Reste #2 thèmes, #3 Mémoriser, #4 textes accueil.
+
+----------------------------------------------------------------
+ÉDITEUR DE THÈMES EN DIRECT (priorité #2 faite)
+----------------------------------------------------------------
+NOUVEAU FICHIER themes.js (injecté après CONTENU_JS) :
+- applique l'override config/themes : noms de thèmes (biblio .dom-nom + accueil h3),
+  desc (accueil .domaine p), noms de catégories (.sous-nom), ordre des articles
+  (réordonne .sous-corps via la liste de slugs).
+- admin : bouton « Éditer les thèmes » → mode édition : noms/desc en contentEditable
+  (outline pointillé ; mousedown stopPropagation pour ne pas déclencher le repli des
+  sections), ↑↓ sur chaque carte de .sous-corps pour réordonner ; « Enregistrer »
+  collecte tout (noms_<lang>, desc_<lang>, ordre) et DOC.set(merge).
+- Override doc config/themes = {noms:{th:{nom_fr,nom_en,desc_fr,desc_en}},
+  cats:{"th::cat":{nom_fr,nom_en}}, ordre:{"th::cat":[slug...]}}. Noms par langue
+  (édite la langue de la page) ; ordre partagé.
+build-bi.js : accueil <a class="domaine" data-theme="${t.id}"> ; const THEMES_JS ;
+injecté ${THEMES_JS} après ${CONTENU_JS}. (biblio avait déjà data-theme/data-cat.)
+
+RÈGLE FIRESTORE COMPLÈTE FINALE (couvre apparence+themes via config/{doc}) :
+  rules_version = '2';
+  service cloud.firestore {
+    match /databases/{database}/documents {
+      match /users/{uid}/{doc=**} { allow read, write: if request.auth.uid == uid; }
+      match /config/{doc} {
+        allow read: if true;
+        allow write: if request.auth != null && request.auth.token.email == "hoarauemmanuel336@gmail.com";
+      }
+      match /contenu/{slug} {
+        allow read: if true;
+        allow write: if request.auth != null && request.auth.token.email == "hoarauemmanuel336@gmail.com";
+      }
+    }
+  }
+
+Boutons flottants empilés (bas-droite) : Apparence 18px, Éditer le texte 64px
+(article uniquement), Éditer les thèmes 110px. Snapshot inclut apparence.js,
+contenu.js, themes.js. Reste #3 Mémoriser, #4 textes accueil.
+
+----------------------------------------------------------------
+ÉDITEUR DES VERSETS DE BASE DE MÉMORISER EN DIRECT (priorité #3 faite)
+----------------------------------------------------------------
+PRINCIPE : la base PRE (19 cat. / 339 versets, injectée au build depuis
+content/memoriser.json entre /*PRE_START*/.../*PRE_END*/) devient surchargée
+en direct par config/memoriser. PRE est un const mais son CONTENU est remplacé
+en place (PRE.length=0; push), donc pas de réassignation.
+
+memoriser.html (boot) : ajout de
+  async function chargerBaseLV(){...db.doc('config/memoriser').get(); si
+  categories[] => PRE.length=0; push} et appel `await chargerBaseLV();` AVANT
+  `await loadUser()` dans la branche connectée de onAuthStateChanged. Tout
+  utilisateur connecté part donc de la base commune éditée (lecture publique).
+
+NOUVEAU FICHIER memoriser-admin.js (injecté avant </body> de memoriser.html,
+après apparence.js, via const MEMOADMIN_JS dans build-bi.js) :
+- admin seulement : bouton « Éditer les versets de base » (bas-droite 64px).
+- éditeur structuré sur copie de travail W (clone de PRE) : catégories
+  repliables (nom FR/EN), versets (réf+texte FR/EN, ✕ suppr, + ajouter),
+  + ajouter/supprimer catégorie.
+- Enregistrer : ensureIds(W) (slug nom.fr / réf.fr, dédup) -> DOC.set(
+  'config/memoriser',{categories:W}) -> remplace PRE en place -> renderCats().
+  Accès à PRE et renderCats via la portée lexicale globale partagée des
+  <script> (l'éditeur est injecté après le script de l'app).
+- config/memoriser couvert par la règle config/{doc} (aucun changement de règle).
+
+Boutons memoriser : Apparence 18px + Éditer les versets de base 64px.
+Snapshot inclut memoriser-admin.js. Reste #4 : textes de la page d'accueil.
+
+----------------------------------------------------------------
+ÉDITEUR DES TEXTES DE LA PAGE D'ACCUEIL (priorité #4 faite) — TOUT FAIT
+----------------------------------------------------------------
+NOUVEAU FICHIER accueil.js (injecté après THEMES_JS) :
+- applique config/accueil {clé:{t_fr,t_en}} sur les éléments [data-lv-txt].
+- admin : bouton « Éditer les textes » (accueil, bas 64px) -> mode édition :
+  textes en contentEditable (outline ; click preventDefault pour le bouton
+  Commencer qui est un <a>) ; Enregistrer -> DOC.set(merge) par langue (t_<lang>).
+build-bi.js (mainAccueil) : data-lv-txt sur home_domains_label, home_explore,
+memo_label, memo_title, memo_mastery, et labels de légende memo_acquired/
+learning/review (enveloppés dans des <span>), + memo_start. (héros = pas de
+texte ; memo-note laissée car pilotée dynamiquement par le JS du score.)
+const ACCUEIL_JS ; ${ACCUEIL_JS} injecté après ${THEMES_JS}.
+
+BOUTONS ADMIN PAR PAGE (bas-droite) :
+- Accueil : Apparence 18 / Éditer les textes 64 / Éditer les thèmes 110
+- Bibliothèque : Apparence 18 / Éditer les thèmes 110
+- Article : Apparence 18 / Éditer le texte 64
+- Mémoriser : Apparence 18 / Éditer les versets de base 64
+
+==================  ÉTAT : LES 4 PRIORITÉS FAITES  ==================
+Fichiers du dépôt (snapshot = lumen-site-complet.zip, sans admin/) :
+build-bi.js, data-en.js, index__48_.html, memoriser.html, netlify.toml,
+apparence.js, contenu.js, themes.js, memoriser-admin.js, accueil.js, content/
+ENVOI : supprimer le dossier admin/ sur GitHub (vestige Decap), puis déposer
+tous les fichiers ci-dessus. RÈGLES FIRESTORE : appliquer le bloc complet
+(config/{doc} + contenu/{slug} + users) déjà consigné plus haut. config/accueil
+et config/memoriser sont couverts par config/{doc}.
+
+----------------------------------------------------------------
+ÉDITEUR DE THÈMES v2 : GESTION COMPLÈTE DES CATÉGORIES
+----------------------------------------------------------------
+themes.js réécrit. Modèle d'override config/themes :
+  { noms:{th:{nom_fr,nom_en,desc_fr,desc_en}},
+    struct:{ th:{ order:[catId...], names:{catId:{nom_fr|nom_en}},
+                  arts:{catId:[slug...], "__autres":[slug...]} } } }
+  (compat ascendante : si pas de struct, ancien {cats,ordre} encore appliqué.)
+APPLY rendreStruct(dom,st) : DÉPLACE les blocs .sous et les cartes existants
+(préserve leurs écouteurs), crée un .sous neuf pour une catégorie ajoutée
+(repli par simple toggle de la classe 'ouvert', câblé à la main car la lib
+attache les écouteurs par élément au load), supprime les .sous absents de order,
+rend les articles "__autres" en cartes nues après les catégories, dédoublonne
+les cartes (un article listé dans 2 catégories de themes.json est ramené à 1).
+ÉDITION admin (bouton « Éditer les thèmes », biblio + accueil, bas 110px) :
+- noms de thèmes/catégories + desc (accueil) en contentEditable ;
+- par catégorie : ↑↓ (réordonner la catégorie), ✕ (supprimer → articles vers
+  « Sans catégorie ») ;
+- « + Nouvelle catégorie » (prompt nom, id = slug dédupliqué) ;
+- par carte : ↑↓ (réordonner dans la catégorie) + menu déroulant « Déplacer → »
+  vers une autre catégorie ou « Sans catégorie » ;
+- en entrant en édition : wrapAutres() emballe les cartes nues dans un bloc
+  pseudo « Sans catégorie » (.lv-autres, non supprimable, épinglé en dernier)
+  pour une manipulation uniforme ; en quittant : unwrapAutres() les remet nues.
+- Enregistrer -> serialiser() (order/names/arts depuis le DOM, .lv-autres -> __autres)
+  -> DOC.set(merge). Structure (order/arts) partagée entre langues ; noms par langue.
+LIMITES connues : déplacer un article vers un AUTRE THÈME n'est pas dans cet
+éditeur (les catégories appartiennent à un thème ; changer de thème = changer
+a.theme de l'article, à faire via un futur sélecteur de thème dans l'éditeur
+d'article). Le cross-listing d'un article dans 2 catégories n'est pas conservé
+après réorganisation (un article = une catégorie dans le modèle struct).
+
+----------------------------------------------------------------
+ÉDITEUR MÉMORISER : PARITÉ AVEC LES THÈMES (réordonner + déplacer)
+----------------------------------------------------------------
+memoriser-admin.js étendu (travaille sur la copie W, ré-rendu depuis W) :
+- catégories : ↑↓ (réordonner dans W), Suppr., + Ajouter, nom FR/EN.
+- versets : ↑↓ (réordonner dans c.verses), ✕, + Ajouter, réf/texte FR/EN,
+  menu « Déplacer → » qui sort le verset de c.verses et le pousse dans la
+  catégorie choisie (rendre() ; source et cible rouvertes via c.__open).
+- état ouvert/fermé conservé entre ré-rendus via c.__open (transitoire).
+- save : ensureIds(W) -> nettoie(W) (retire __open, normalise la forme) ->
+  DOC.set('config/memoriser',{categories:clean}) -> remplace PRE -> renderCats().
+Tout passe par config/memoriser (déjà couvert par la règle config/{doc}).
+
+----------------------------------------------------------------
+SÉLECTEUR DE THÈME DANS L'ÉDITEUR D'ARTICLE (changer de domaine)
+----------------------------------------------------------------
+build-bi.js : lv-art-src embarque desormais {resume, theme:a.theme,
+themes:[{id,nom:themeNom}]}.
+contenu.js : l'editeur d'article gagne un <select> « Thème (domaine) »
+(options = src.themes ; valeur = override d.theme sinon src.theme). save ->
+data.theme dans contenu/<slug>. (titre/resume/corps inchanges.)
+themes.js : l'apply lit aussi collection('contenu') ; relocaliser(ov) deplace
+chaque carte dont le theme override differe vers le .dom-corps du theme cible
+(en non classe), AVANT la boucle struct. Donc : changer le theme d'un article
+fait passer sa vignette dans le domaine choisi (non classe), prete a etre rangee
+en categorie via l'editeur de themes. Lien/URL de l'article inchanges (par slug).
+Tout via contenu/<slug> (regle contenu/{slug} deja en place).
+
+MEMORISER : pas de niveau au-dessus des categories ; le deplacement equivalent
+(verset -> autre categorie) est le menu « Deplacer → » par verset, deja livre.
+
+==== RECAP REORGANISATION SUR PAGE ====
+Articles : titre/resume/corps + THEME (editeur d'article) ; categories +
+ordre + repartition (editeur de themes, biblio). Memoriser : categories +
+versets + ordre + deplacement (editeur de base). Tout en direct via Firestore.
+
+----------------------------------------------------------------
+EXPORT DES MODIFICATIONS EN LIGNE (réconciliation + traduction)
+----------------------------------------------------------------
+NOUVEAU FICHIER export.js (injecté après ACCUEIL_JS sur les pages principales
+ET avant </body> de memoriser.html ; const EXPORT_JS).
+Admin seulement : bouton « Exporter mes modifications » (bas-droite 156px,
+présent sur toutes les pages). Au clic : Promise.all lit config/apparence,
+config/themes, config/accueil, config/memoriser et toute la collection contenu,
+assemble un JSON { exporte_le, apparence, themes, accueil, memoriser, contenu:{slug:data} }
+affiché dans un textarea, avec « Copier », « Télécharger » (Blob .json) et
+« Effacer en ligne… » (batch delete de tous les overrides, double-confirm, à
+n'utiliser qu'APRÈS intégration dans les fichiers + redeploy).
+FLUX prévu : Emmanuel édite en direct (FR ou EN) -> Exporter -> me donne le JSON
+-> je reporte ses champs dans content/ (articles JSON, themes.json, memoriser.json,
+nouveautes/settings) ET je traduis FR->EN (data-en.js / champs en) -> nouveaux
+fichiers -> il réuploade -> « Effacer en ligne » pour que les fichiers
+redeviennent canoniques (plus d'override résiduel).
+
+SOUS-SECTIONS : la hiérarchie biblio est domaine -> catégorie -> articles ; les
+catégories SONT les sous-sections (déjà créables/organisables). Un 3e niveau
+(sous-catégories) n'est pas implémenté ; faisable sur demande (rendu + éditeur +
+mise en forme du niveau). EN ATTENTE de confirmation d'Emmanuel.
+
+LISTE FICHIERS À ENVOYER (maj) : build-bi.js, data-en.js, index__48_.html,
+memoriser.html, netlify.toml, apparence.js, contenu.js, themes.js,
+memoriser-admin.js, accueil.js, export.js, content/. (+ supprimer admin/,
++ publier les règles Firestore config/{doc} + contenu/{slug} + users.)
+
+----------------------------------------------------------------
+CONSIGNE ÉDITORIALE (registre exégétique des articles) — À RESPECTER
+----------------------------------------------------------------
+Traiter le passage comme une exégèse qui en dégage le sens, non comme un récit à
+raconter. Énoncer le fait ou la parole, puis tirer ce qu'il signifie : la
+doctrine, la figure, la leçon qu'il porte ; chaque épisode appelle un sens, ne
+jamais le laisser au seul niveau du récit. Expliquer le pourquoi des faits
+(mobile d'un personnage, contexte, enjeu d'un geste) au lieu de les poser nus.
+Ton sobre et direct, sans aucune phrase de mise en scène, d'annonce ni de
+transition ; entrer dans la matière dès le premier mot, par une affirmation. Les
+versets portent l'argument et se suffisent, cités au format habituel, sans amorce
+qui les paraphrase ; nommer les personnages bibliques. Les versets et les idées
+parlent d'eux-mêmes.
+
+----------------------------------------------------------------
+NOTIFICATIONS SYNCHRONISÉES (site ↔ Mémoriser, FR ↔ EN)
+----------------------------------------------------------------
+Cause de la désynchro : signatures différentes (site nsig = date|nombre ;
+memoriser newsSignature = langue|date|nombre). Corrigé :
+- build-bi.js : nsig = NV_FR.length + '|' + total items (indépendant de la langue ;
+  identique sur pages FR et EN).
+- memoriser.html : newsSignature() = NEWS.fr.length + '|' + total items (même
+  formule) ; marqueurs /*NEWS_START*/.../*NEWS_END*/ autour de const NEWS.
+- build-bi.js : injecte dans memoriser la MÊME liste que le site
+  (const NEWS={fr:NV_FR,en:NV_EN}) via les marqueurs NEWS.
+Résultat : clé localStorage commune 'lumen_nouv_vu' + signature identique partout
+(vérifié : accueil FR = accueil EN = Mémoriser = "1|36"). Lire les nouveautés
+sur une page les marque lues sur toutes.
+
+----------------------------------------------------------------
+VOCABULAIRE D'EMMANUEL : « article correct » = AUDIT DE FOND
+----------------------------------------------------------------
+Quand Emmanuel demande si un article est « correct », il ne parle pas de
+correction linguistique : il demande si l'article est assez COMPLET,
+APPROFONDI et SOLIDE (au sens du standard de fond du site). Répondre par un
+audit de fond (couverture, profondeur, solidité, manques, objections traitées),
+pas par une relecture orthographique.
+
+----------------------------------------------------------------
+OUTILS D'ÉDITION : MASQUAGE, GLISSER-DÉPOSER, ANNULATION, CHEVAUCHEMENT
+----------------------------------------------------------------
+1) NOUVEAU admin-ui.js (injecté après EXPORT_JS, pages + memoriser) : ajoute
+   dans le menu du compte (#auth-in, avant #auth-logout ; sur memoriser, près de
+   #logout-btn) un bouton « Masquer / Afficher les outils d'édition ». Stocke
+   localStorage 'lv_outils_off'; quand actif, body.lv-no-tools masque tous les
+   boutons d'admin (#lv-app-btn,#lv-ed-btn,#lv-th-btn,#lv-acc-btn,#lv-mem-btn,
+   #lv-exp-btn) via une règle CSS. const ADMIN_UI_JS dans build-bi.js.
+2) CHEVAUCHEMENT : apparence.js, panneau lv-app-panel passé en z-index 100002
+   (au-dessus des boutons 99999) : il recouvre les autres boutons quand il est
+   ouvert, donc son « Enregistrer » n'est plus masqué.
+3) GLISSER-DÉPOSER + Ctrl+Z dans themes.js (éditeur de thèmes / bibliothèque) :
+   - les cartes sont draggable (HTML5 DnD natif, sans lib) ; on les glisse pour
+     réordonner dans une catégorie ET pour les déplacer d'une catégorie à l'autre
+     (drop sur n'importe quel .sous-corps, y compris « Sans catégorie »).
+     Remplace les flèches ↑↓ et le menu « Déplacer → » des cartes. Déplacement
+     live au dragover (posApres via getBoundingClientRect), nav du lien neutralisée
+     en édition.
+   - undo : pile undo[] ; chaque opération (glisser une carte, ↑↓ catégorie,
+     supprimer/ajouter catégorie) empile sa fonction inverse ; Ctrl+Z (ou Cmd+Z)
+     en mode édition dépile et restaure. Réinitialisée à chaque entrée/sortie.
+   - catégories : toujours ↑↓ / ✕ / + Nouvelle catégorie (avec undo). Le glisser
+     pour les catégories elles-mêmes n'est pas encore fait (faisable ensuite).
+   - Mémoriser : l'éditeur de base garde ses flèches + « Déplacer → » (le
+     glisser-déposer n'y est pas encore ; à ajouter si demandé).
+
+LISTE FICHIERS À ENVOYER (maj) : ... + admin-ui.js. (build-bi.js, data-en.js,
+index__48_.html, memoriser.html, netlify.toml, apparence.js, contenu.js,
+themes.js, memoriser-admin.js, accueil.js, export.js, admin-ui.js, content/.)
+
+----------------------------------------------------------------
+HABILLAGE DES OUTILS D'ADMIN (refonte visuelle, accord avec le site)
+----------------------------------------------------------------
+admin-ui.js injecte #lv-admin-style : restyle cohérent des outils (pas du site
+public). Boutons flottants -> pierre sombre translucide (blur), filet doré
+rgba(239,230,207,.28), capitales sérif 'Cormorant Garamond', hover doré.
+Panneaux/fenêtres (#lv-app-panel,#lv-th-bar,#lv-acc-bar,#lv-ed-ov>div,
+#lv-mem-ov>div,#lv-exp-ov>div) -> fond #0c0b09, filet doré, ombre. Champs
+(inputs/select/textarea des panneaux) -> fond noir, filet doré, focus doré.
+Voile des modales adouci + léger blur. Pour cela : ids ajoutés lv-exp-ov
+(export), lv-th-bar (themes), lv-acc-bar (accueil) ; apparence avait déjà
+lv-app-panel, contenu lv-ed-ov, memoriser lv-mem-ov.
+
+RAPPEL CRÉATION EN DIRECT : catégories (biblio + Mémoriser) OUI ; versets
+(Mémoriser) OUI ; ARTICLE neuf NON (éditeur d'article = modifier un existant ;
+création d'article à ajouter si demandé). Sous-section = catégorie (pas de
+niveau plus fin). Export = bouton « Exporter mes modifications » (présent).
+
+----------------------------------------------------------------
+APPARENCE COMPLÈTE + EXPORT PAR SECTION + GLISSER DANS MÉMORISER
+----------------------------------------------------------------
+1) apparence.js refait : pilote TOUS les tokens. config/apparence =
+   {vars:{encre,encre2,parchemin,parchemin_att,or,or_pale,pourpre,filet,filet_fort},
+    police_corps, police_titres, taille, image, css}. Applique via
+   documentElement.style.setProperty('--encre'...), body font/size, image de fond,
+   et injecte la police des titres sur un large sélecteur (h1..h6,.dom-nom,.sous-nom,
+   .titre-section h2,.domaine h3,.lecture h1,.marque,...). Panneau : 7 couleurs
+   (color pickers), 2 filets (texte rgba), police corps, police titres, taille,
+   image, CSS avancé. Aperçu live (input), Enregistrer (set), Réinitialiser
+   (delete + removeProperty). Compat ancienne clé fond/texte/accent.
+2) export.js refait : chips de portée [Tout][Apparence][Thèmes][Accueil][Mémoriser]
+   [Articles] ; le textarea affiche la portée choisie ; Copier/Télécharger agissent
+   dessus ; nom de fichier lumen-<portée>-date.json. « Effacer en ligne » conservé.
+3) memoriser-admin.js : versets en glisser-déposer (réordonner dans une catégorie
+   ET déplacer vers une autre) ; suppression des flèches ↑↓ et du menu « Déplacer → »
+   des versets ; poignée ⠿. Catégories : flèches ↑↓ conservées. Sur drop/dragend :
+   syncFromDOM() reconstruit W.verses depuis l'ordre DOM des .lv-mem-vrow puis rendre().
+Fichiers maj : apparence.js, export.js, memoriser-admin.js.
+
+================================================================
+REFONTE COMPLÈTE DE L'ADMINISTRATION (admin.js — remplace tout)
+================================================================
+Les 7 anciens fichiers (apparence.js, contenu.js, themes.js, accueil.js,
+export.js, admin-ui.js, memoriser-admin.js) sont SUPPRIMÉS. Un seul fichier :
+**admin.js** (~1080 lignes), injecté par build-bi.js sur toutes les pages
+(${ADMIN_JS} dans le script de page, précédé de window.LV_INDEX) et dans
+memoriser.html avant </body> (LV_INDEX bilingue {fr,en} + ADMIN_JS).
+
+build-bi.js : const ADMIN_JS ; function buildIndex(lang) -> {articles:[{id,
+titre,resume,theme,u}], themes:[{id,nom,desc,cats}], accueil:{9 clés UI},
+urls:{biblio,accueil,memoriser}} (routes extraites du vrai code : EN lib =
+/en/library/). Plus aucun autre const *_JS ni injection multiple.
+
+ARCHITECTURE admin.js :
+1. COUCHE D'APPLICATION (tous les visiteurs, mêmes schémas Firestore qu'avant,
+   donc les données déjà enregistrées continuent de marcher) : apparence (vars
+   + polices corps/titres + taille + image + css), article (contenu/<slug>),
+   vignettes (titre/résumé, port resumeHtml), thèmes (noms + struct + compat
+   legacy cats/ordre + relocalisation par override theme), accueil (data-lv-txt).
+2. DOCK : un seul bouton ✦ (46px, bas-droite) -> menu : « <action de la page> »
+   (Modifier cet article / Organiser la bibliothèque / Modifier les textes de
+   l'accueil / Modifier les versets de base), « Panneau d'administration »,
+   « Masquer les outils ». Masquage via localStorage lv_outils_off ; retour par
+   « Mon compte » (section Administration ajoutée dans #auth-in avec séparateur
+   doré : Panneau + Masquer/Afficher) ou par ?outils=1 dans l'URL.
+3. ÉDITION SUR PAGE (WYSIWYG, AUCUN code visible) :
+   - Article : tout le corps en contentEditable directement sur la page mise en
+     forme ; bandeau méta sous le titre (Résumé éditable + sélecteur Domaine) ;
+     barre du bas : ¶ T I G † (formatBlock p/h2, italic, bold, span.ref sur la
+     sélection) + Enregistrer + Quitter. Save = h1.textContent + résumé +
+     innerHTML nettoyé (clone sans h1/.lva-meta/attrs contenteditable) + theme.
+   - Bibliothèque : glisser AU POINTEUR (pointerdown/move/up + setPointerCapture,
+     clone fixed qui suit le doigt, seuil 7px, auto-scroll fenêtre, insertion au
+     point médian) — PAS le drag HTML5 natif (c'était lui qui accrochait).
+     Cartes glissables entre toutes les catégories (zone « Sans catégorie »
+     pseudo-bloc .lva-autres par thème) ; catégories glissables par poignée ☰
+     (y compris d'un thème à l'autre), ✕ suppression (articles -> Sans catégorie),
+     + Nouvelle catégorie ; noms (thèmes+catégories) en contentEditable.
+     Ctrl+Z + bouton Annuler (pile UNDO d'inverses). Quitter sans save = reload.
+   - Accueil : tous les textes + cartes de thèmes en contentEditable ; save ->
+     config/accueil + config/themes.noms.
+   - Mémoriser : éditeur PLEINE PAGE (.lva-page, pas une petite fenêtre) :
+     recherche, catégories repliables glissables (☰), versets glissables (⋮⋮)
+     entre catégories ouvertes, champs FR/EN, +verset/+catégorie, save ->
+     config/memoriser + remplacement de PRE + renderCats(). memSync() relit
+     l'ordre du DOM avant save.
+4. PANNEAU CENTRAL (plein écran, onglets) : LE point d'entrée global —
+   - Articles : liste des 69 (recherche, pastille ● si modifié en ligne) ;
+     clic -> Titre/Résumé/Domaine éditables ICI pour n'importe quel article sans
+     aller sur sa page + « Modifier le texte sur la page → » (ouvre l'article
+     avec ?edition=1 qui lance l'édition automatiquement).
+   - Thèmes : noms + descriptions des 5 domaines ; bouton vers la biblio en mode
+     édition. — Apparence : panneau complet (7 couleurs pickers, 2 filets, police
+     corps, police titres, taille, image, CSS avancé replié dans <details>),
+     aperçu live, Enregistrer, Réinitialiser (delete doc + removeProperty).
+   - Accueil : les 9 textes en champs (placeholders = valeurs d'origine via
+     LV_INDEX.accueil). — Mémoriser : ouvre l'éditeur (ou redirige
+     /memoriser.html?edition=1). — Exporter : puces Tout/Apparence/Thèmes/
+     Accueil/Mémoriser/Articles, Copier/Télécharger/Effacer en ligne.
+5. ?edition=1 : entre automatiquement en édition de la page après connexion
+   (history.replaceState nettoie l'URL). ?outils=1 : réaffiche les outils.
+6. Panneau du compte restylé pour tous (filet doré, coins en L, ombre) via CSS
+   injecté ; section Administration seulement pour l'admin.
+UI : langage du site (Cormorant/EB Garamond, or #efe6cf, filets
+rgba(231,224,207,.22), fonds #0b0a08), préfixe de classes lva-.
+
+FICHIERS À ENVOYER (liste réduite) : build-bi.js, data-en.js, index__48_.html,
+memoriser.html, netlify.toml, admin.js, content/. SUPPRIMER sur GitHub les 7
+anciens .js d'éditeurs + le dossier admin/ (wipe-and-upload conseillé).
+Règles Firestore : inchangées (bloc users + config/{doc} + contenu/{slug}).
+
+----------------------------------------------------------------
+PAGE À PROPOS SUPPRIMÉE + « COMMENCER » LANCE LA SÉRIE
+----------------------------------------------------------------
+1) À propos retirée : genPaire 'about' supprimé de build-bi.js (71 paires ->
+   142 pages), lien retiré du menu (const abo supprimée), plus d'entrée
+   sitemap. mainAPropos + chaînes UI about_* restent définies mais inutilisées
+   (sans effet). Le wipe-and-upload + rebuild Netlify élimine /a-propos/ et
+   /en/about/ du site en ligne.
+2) Accueil : <a class="memo-start" href="/memoriser.html?demarrer=1">.
+   memoriser.html : function demarrerAuto() définie avant chargerBaseLV ;
+   appelée dans le boot connecté après renderCats(). Si ?demarrer=1 :
+   history.replaceState nettoie l'URL puis, sous la même garde que le bouton
+   de la page (S.selCats non vide et allItems()>=2), S.soloCat=null;
+   startSession(). Si l'utilisateur n'est pas connecté, il se connecte d'abord
+   et la série se lance aussitôt après (le boot s'exécute à la connexion).
+
+================================================================
+ADMINISTRATION v2 : TOUT DANS LE PANNEAU, PLUS RIEN SUR LA PAGE
+================================================================
+Décision d'Emmanuel : abandon de l'édition sur page (le glisser y était cassé
+et il préfère l'interface du panneau). admin.js réécrit en conséquence.
+- CAUSE DU BUG DE GLISSER (corrigée) : (a) setPointerCapture se perd quand
+  l'élément déplacé change de parent dans le DOM ; (b) les cartes étaient des
+  <a>, dont le drag NATIF du navigateur court-circuitait les pointer events.
+  Nouveau moteur dragify : écouteurs pointermove/up/cancel sur WINDOW (jamais
+  de capture), draggable=false + dragstart preventDefault sur l'item, clone
+  fixed qui suit le pointeur, seuil 6px, défilement automatique CONTINU
+  (setInterval 50ms sur lastEv, fenêtre OU conteneur .lva-page via o.scroller),
+  insertion au point médian, UNDO de l'inverse, onMoved.
+- PLUS AUCUNE édition sur page : enterArticle/enterBiblio/enterAccueil, barre
+  #lva-bar, body.lva-editing, .lva-meta SUPPRIMÉS. Les pages = lecture pure ;
+  la couche d'application visiteurs est INCHANGÉE (mêmes schémas Firestore).
+- PANNEAU (onglets) : Articles | Bibliothèque | Apparence | Accueil |
+  Mémoriser | Exporter. Garde anti-perte : dirty + confirm sur Fermer/changer
+  d'onglet/ouvrir un autre article. Ctrl+Z global (ignoré dans les champs).
+  - ARTICLES : pour chaque article (recherche, pastille ● si override),
+    Titre/Résumé/Domaine + ÉDITEUR DE TEXTE VISUEL (.lva-doc contentEditable
+    stylé lecture : h2 Cormorant, .ref doré ; barre ¶ T I G † avec mousedown
+    preventDefault pour garder la sélection). Texte initial = override
+    contenu_<lang> sinon FETCH de la page publiée (a.u) + DOMParser ->
+    article.lecture sans h1. Lien « Voir l'article ↗ ». Save -> contenu/<slug>.
+  - BIBLIOTHÈQUE (remplace l'onglet Thèmes) : reconstruction COMPLÈTE de la
+    structure dans le panneau à partir de LV_INDEX.themes[].cats[].arts
+    (AJOUTÉ au buildIndex) + overrides (struct, contenu.theme, titres).
+    Par domaine : Nom + Description, catégories (.lva-cat, glisser ☰ y compris
+    vers un AUTRE domaine, renommage, ✕ -> Sans catégorie, + Nouvelle), rangées
+    d'articles (.lva-art, glisser ⋮⋮ entre toutes les catégories ouvertes de
+    tous les domaines), bloc « Sans catégorie » fixe par domaine. Save (barre
+    sticky avec ↶ Annuler) : UN batch = config/themes {noms(nom+desc),struct}
+    + contenu/<slug>{theme} pour chaque article dont le domaine a changé
+    (assigneInitial vs finals) — la relocalisation visiteur suit.
+  - APPARENCE/ACCUEIL/EXPORTER : comme avant (panneau). MÉMORISER : éditeur
+    pleine page conservé, glisser corrigé, barre sticky Enregistrer + Annuler.
+- DOCK : action de page = OUVRE LE PANNEAU contextuel (article -> onglet
+  Articles avec CET article déplié et défilé (hubOpt.slug) ; biblio -> onglet
+  Bibliothèque ; accueil -> onglet Accueil ; memoriser -> éditeur versets).
+  ?edition=1 -> pageEnter après connexion. ?outils=1 réaffiche. « Mon compte »
+  garde Panneau + Masquer/Afficher.
+LIVRAISON inchangée : build-bi.js, data-en.js, index__48_.html, memoriser.html,
+netlify.toml, admin.js, content/. (buildIndex : cats portent désormais arts.)
+
+----------------------------------------------------------------
+NOUVEL ARTICLE : « Mon Dieu, mon Dieu, pourquoi m'as-tu abandonné ? »
+----------------------------------------------------------------
+- content/articles/mon-dieu-mon-dieu-pourquoi-m-as-tu-abandonne.json
+  (FR + EN complets, theme ecriture, date 2026). EN ATTENTE DE VALIDATION
+  par Emmanuel (présenté intégralement en chat).
+- data-en.js : SLUGS += 'mon-dieu-mon-dieu-pourquoi-m-as-tu-abandonne':
+  'my-god-my-god-why-have-you-forsaken-me'.
+- content/themes.json : ajouté en fin de catégorie ecriture/evangiles.
+- content/nouveautes.json : annonce FR+EN en tête de Juin 2026 (signature
+  des nouveautés resynchronisée automatiquement site<->memoriser au build).
+- build-bi.js PATCHÉ : le chargeur content/articles/ CRÉE désormais les
+  articles dont le slug n'existe pas dans index__48_.html (push dans
+  ARTICLES + ARTICLES_EN), au lieu de seulement écraser les existants.
+  Log : « Articles lus depuis content/articles/ : N (dont X créé(s)) ».
+  => Tout nouvel article futur = un seul fichier JSON dans content/articles/
+  + SLUGS dans data-en.js + arts dans themes.json (+ nouveautés).
+- Build vérifié : 72 paires -> 144 pages ; pages FR et EN présentes ;
+  carte dans les deux bibliothèques ; LV_INDEX à 70 articles.
+Structure de l'article : intro (Marc 15:34, araméen/hébreu, incipit = psaume
+entier ; méprise Élie) ; h2 Le psaume que la croix accomplit ; h2 Aucune
+rupture en Dieu (Rm 8:32 = sens de l'abandon) ; h2 Devenu péché pour nous
+(+ précision : le Père ne maudit pas le Fils) ; h2 La fin du psaume déjà
+présente dans le cri (Héb 2:12, centurion, Lc 23:46) ; clôture sobre.
+
+----------------------------------------------------------------
+ADMIN v3 + CORRECTIFS MEMORISER (session suivante)
+----------------------------------------------------------------
+ARTICLE « Mon Dieu, mon Dieu » : Emmanuel le veut SOUS FORME APOLOGETIQUE.
+Le fichier actuel (forme exégétique) reste intégré mais NON VALIDÉ ;
+réécriture apologétique à faire plus tard, à sa demande.
+
+ADMIN.JS v3 (1293 lignes) — nouveautés :
+- Le panneau, le dock, les champs, les boutons suivent l'APPARENCE :
+  variables lva dérivées des variables du site (--encre, --encre-2, --or,
+  --or-pale, --parchemin, --filet, --filet-fort, avec valeurs de secours).
+  applyApparence pose aussi --filet-f (=filet_fort) et --encre-3 (=encre2)
+  pour les dialogues de memoriser (mêmes noms de variables que le site,
+  donc le carré de connexion et les modales suivent déjà l'apparence).
+- CRÉATION D'ARTICLES : onglet Articles → « + Nouvel article »
+  (titre, résumé, domaine, éditeur). Slug généré du titre (dédoublonné).
+  Doc contenu/<slug> avec flag cree:true et titre/resume/contenu posés
+  dans LES DEUX langues (même texte ; traduction EN à l'intégration).
+  La couche d'application crée la carte dans la bibliothèque
+  (cartesCreees, avant relocaliser/applyThemes pour que la structure
+  puisse la ranger) et la carte ouvre une LISEUSE en surimpression
+  (ouvrirLecture, ?lire=<slug> géré au chargement). Visible de TOUS les
+  visiteurs. À l'intégration : transformer ces docs en vrais articles
+  (content/articles/ + SLUGS + themes.json) puis retirer le flag.
+- BIBLIOTHÈQUE (panneau) : tout REPLIÉ par défaut ; bouton ⇄
+  « Déplacer dans… » sur chaque article (menu domaines→catégories via
+  sélecteur central .lva-pick), le glisser reste ; « + Nouvelle
+  catégorie » devient INLINE (bloc vide ouvert, focus sur le nom, id
+  généré à l'enregistrement depuis le nom, dédoublonné via idsPris) ;
+  les articles créés en ligne apparaissent aussi dans cet onglet.
+- MÉMORISER (panneau) : bouton ⇄ sur chaque verset (menu de catégories,
+  memDeplacer : remplit la catégorie cible si vide via block.__fill avant
+  d'y insérer, compteurs via block.__majCnt).
+- EXPORTER = HISTORIQUE : mode « Depuis le dernier envoi » (défaut) /
+  « Tout l'état en ligne » + filtres de portée. Empreintes djb2 par doc
+  comparées à config/transmis {hashes,date}. « Marquer comme transmis »
+  écrit les empreintes actuelles : l'historique repart de zéro SANS RIEN
+  EFFACER. « Tout effacer en ligne… » relégué dans <details> Avancé
+  (commun accord seulement). config/transmis est couvert par la règle
+  config/{doc} (lecture publique, écriture admin) : rien à changer.
+  NOTE FLUX : après intégration des changements dans les fichiers, les
+  overrides restent en ligne (inoffensifs car identiques) ; si un fichier
+  doit diverger plus tard d'un override existant, l'override masquera le
+  fichier → à purger ensemble à ce moment-là.
+
+MEMORISER.HTML — correctifs :
+- CAUSE de la « reconnexion en boucle » : le bonhomme était un bouton de
+  DÉCONNEXION immédiate (auth.signOut au clic). Remplacé par un POPOVER
+  compte (#acct-pop : e-mail + bouton Déconnexion), libellé « Compte /
+  Account ». Les deux côtés utilisent le même Firebase 10.7.1 compat,
+  même clé, signInWithPopup : la session est partagée par construction.
+- Bouton de langue #lang-btn restylé comme le lien de langue du site
+  (.lien-langue : sans cadre, 13px, letter-spacing .2em, opacité .65→1).
+- demarrerAuto v2 : pose sessionStorage lm_dem=1 (survit à une connexion
+  intermédiaire), sélectionne toutes les catégories si la sélection est
+  vide, puis lance la série si ≥2 versets.
+RAPPEL : Emmanuel teste le site EN LIGNE ; tant que les fichiers ne sont
+pas déployés (wipe-and-upload du zip sur GitHub → Netlify), il voit
+l'ancienne version et ses bugs.
+
+----------------------------------------------------------------
+ÉDITEUR : RÉFÉRENCE EN BASCULE + LIENS / RAFFINEMENTS UI
+----------------------------------------------------------------
+- Bouton † de l'éditeur : devient une bascule. Curseur dans un span.ref
+  → le span est défait (contenu conservé) ; sinon comportement d'origine.
+- NOUVEAU bouton ↗ « Lien (poser / retirer) » : même bascule (curseur
+  dans un <a> → lien retiré) ; sinon sélection + prompt d'adresse
+  (relative /article/slug/ ou absolue) + execCommand createLink.
+  NOTE : ceci LÈVE la directive permanente « aucun lien hypertexte dans
+  le contenu des articles » — décision explicite d'Emmanuel (liens entre
+  articles voulus). Style éditeur : .lva-doc a doré souligné.
+- RAFFINEMENTS UI (EXTRA_CSS du site + bloc équivalent dans memoriser) :
+  scroll-behavior smooth (+reduced-motion), antialiasing, ::selection
+  dorée, text-wrap balance (titres) / pretty (paragraphes de .lecture),
+  .lecture a doré souligné fin (sous-lignage à 3px, transition),
+  scrollbars fines sombres (webkit+firefox), :focus-visible discret,
+  cartes .article-lien : transition + translateY(-2px) au survol.
+
+----------------------------------------------------------------
+PUBLICATION AUTOMATIQUE (articles + Mémoriser) DEPUIS LE PANNEAU
+----------------------------------------------------------------
+- build-bi.js lit désormais FIRESTORE AU BUILD (lecture publique, via
+  curl + décodeur REST fsValeur/fsChamps/fsLireDoc/fsLireCollection) :
+  (a) collection contenu : tout doc cree:true dont le slug n'existe pas
+      devient une VRAIE page FR+EN (EN = texte FR tant que non traduit,
+      slug EN = slug FR faute d'entrée SLUGS) ;
+  (b) config/memoriser : si categories non vide, devient la base PRE
+      injectée dans memoriser.html (PRIORITAIRE sur content/memoriser.json
+      qui reste la voie de secours hors ligne). stringify échappé \u003c.
+  Hors réseau (mon bac à sable), tout est ignoré proprement avec un log.
+- admin.js, onglet Exporter : bouton « PUBLIER LE SITE » → POST no-cors
+  sur un build hook Netlify. L'adresse est demandée à la première
+  utilisation (préfixe https://api.netlify.com/build_hooks/ exigé) et
+  retenue en localStorage lv_hook (Maj+clic pour la changer).
+  EMMANUEL DOIT créer le hook : Netlify → Site configuration → Build &
+  deploy → Build hooks → Add build hook (branche main) → copier l'URL.
+- Flux résultant : créer article/verset → bouton Publier → 2-3 min →
+  vraies pages en ligne. Les uploads GitHub ne restent nécessaires que
+  pour le CODE et pour les traductions EN faites par Claude.
+- Risque assumé : l'URL du hook ne déclenche que des builds (pas de
+  données) ; elle reste sur l'appareil d'Emmanuel, pas dans le code.
+
+----------------------------------------------------------------
+ARTICLE « MON DIEU, MON DIEU » : VERSION APOLOGÉTIQUE INTÉGRÉE
+----------------------------------------------------------------
+- contenu_fr/contenu_en + resumes RÉÉCRITS en forme apologétique :
+  objection posée d'entrée (désespoir / rupture trinitaire / colère
+  pénale), puis : 1) parole conservée par ceux-là mêmes qui confessent
+  sa divinité (Marc 1:1 ; méprise Élie = authenticité) ; 2) incipit =
+  tout le psaume + scène saturée du Ps 22 ; 3) aucune rupture en Dieu
+  (Jn 10:30 ; 16:32 ; « mon Dieu » = adresse) ; 4) abandon = livré
+  (Rm 8:32 ; précision catholique contre la lecture pénale : Jn 10:17,
+  Ép 5:2) ; 5) la réponse dans le psaume (22:25 ; Héb 5:7 ; 2:12 ;
+  centurion ; Lc 23:46/Ps 31:6) ; clôture.
+- DÉCISION APPLIQUÉE (réversible) : la version EN utilise la
+  numérotation anglaise des Psaumes (22:8/16/18/24/22/27 ; 31:5),
+  la FR garde la numérotation française. Placement inchangé
+  (écriture/évangiles) ; déplaçable d'un clic via « Déplacer dans… ».
+- EN ATTENTE DE VALIDATION par Emmanuel (texte FR présenté en chat).
+
+----------------------------------------------------------------
+CORRECTIFS PANNEAU (ordre, déplacer, domaines) + CARRÉ MÉMORISER
+----------------------------------------------------------------
+- BUG « Déplacer dans » réparé : deplacerArticle était définie DANS
+  blocCat (portée fermée) alors que rowArt l'appelait depuis la portée
+  de tabBiblio → ReferenceError silencieuse, bouton inerte. Hissée au
+  niveau de tabBiblio (juste avant rowArt), parcourt qsa('.lva-bth',host),
+  nom de domaine via sec.__nom.value, ignore la catégorie courante,
+  toast si aucune cible. Le glisser reste.
+- ORDRE des onglets : Accueil → Bibliothèque → Articles → Mémoriser →
+  Apparence → Exporter. openHub défaut = 'accueil' (le contexte
+  article force toujours 'articles' via openHub('articles',{slug})).
+  ATTENTION REPRISE : lors de l'édition, la 1re passe Python s'était
+  interrompue après ces 2 remplacements mais AVANT io.write → perdus ;
+  réappliqués dans une passe dédiée. Toujours vérifier dans le SOURCE
+  après un assert qui casse en milieu de passe.
+- DOMAINES repliés par défaut dans l'onglet Bibliothèque : chaque
+  .lva-bth masque .lva-row2/.lva-bth-cats/.lva-addcat tant que la classe
+  dom-open n'est pas posée ; chevron › dans .lva-sec-t (rotate 90° à
+  l'ouverture), clic sur le titre = bascule.
+- CARRÉ DE CONNEXION Mémoriser aligné sur la modale du site (impossible
+  de fusionner : page plein écran #auth-screen d'un côté, modale overlay
+  de l'autre — deux mécaniques distinctes). Champs désormais encadrés
+  (#161616 + bordure filet-f, focus or) au lieu de soulignés ; panneau
+  max-width 400px + fond encre-2 ; onglets avec trait sous la rangée et
+  actif doré ; croix décorative .auth-cross masquée. Le bonhomme/popover
+  compte et le bouton de langue avaient déjà été synchronisés (popover
+  #acct-pop + #lang-btn style .lien-langue) à la session précédente.
+
+----------------------------------------------------------------
+« COMMENCER » (accueil) — VRAIE CAUSE TROUVÉE
+----------------------------------------------------------------
+demarrerAuto() lançait bien startSession() (vue 'study'), MAIS la ligne
+suivante du boot, showView('setup'), s'exécutait toujours et recouvrait
+immédiatement la série par la page de réglages. Déployer seul n'aurait
+rien changé : le bug est dans le fichier.
+Correctif : demarrerAuto() renvoie true si elle a démarré (return true
+après startSession ; return false sinon) et le boot ne force 'setup'
+que « if(!demarrerAuto()) showView('setup'); ». Le lien d'accueil
+(/memoriser.html?demarrer=1) et le sessionStorage lm_dem (survie à une
+connexion intermédiaire) restent en place.
+
+----------------------------------------------------------------
+CHEVRON DOMAINES (réparé) + CARRÉ MÉMORISER = VRAIE MODALE
+----------------------------------------------------------------
+- CHEVRON DOMAINES : le remplacement du titre de domaine avait encore
+  échoué (ligne 780 gardait el('div','lva-sec-t',esc(t.nom)), sans
+  chevron ni clic → domaines bloqués fermés). Refait proprement :
+  .lva-dom-t (flex, cursor pointer) contenant .lva-sec-chev (›) +
+  libellé, clic = toggle dom-open. CSS chevron mis à jour. Le titre
+  .lva-sec-t de l'onglet Apparence reste intact (chevron ciblé via
+  .lva-bth > .lva-sec-t uniquement).
+  LEÇON RÉCURRENTE : vérifier dans le SOURCE après chaque passe ; un
+  assert qui casse en milieu de passe annule l'écriture.
+- CARRÉ MÉMORISER (compte) : remplacé le mini-popover #acct-pop (coin
+  haut-droite) par une VRAIE MODALE CENTRÉE .auth-ov/.auth-box,
+  réplique de la fenêtre « Mon compte » du site (overlay plein écran
+  rgba(8,8,8,.98), boîte 400px encre-2 + filet, croix ✕, titre Mon
+  compte, e-mail, bouton Déconnexion bordé hover pourpre). Mêmes
+  variables que le site → suit l'apparence. Le carré de CONNEXION
+  (auth-screen plein écran) reste distinct par nature, déjà aligné en
+  style à la session précédente.
+
+----------------------------------------------------------------
+DÉPLACER DANS (vraie réparation) + CONNEXION MÉMORISER = FENÊTRE
+----------------------------------------------------------------
+- « Déplacer dans » : la def de deplacerArticle était RESTÉE imbriquée
+  dans blocCat (les corrections précédentes avaient échoué sur des
+  asserts à motif inexact — le SOURCE contient les littéraux \u2019/\u2026,
+  pas les vrais caractères). Réparé par manipulation LIGNE À LIGNE :
+  retrait du bloc (repérage par 'function deplacerArticle(row) {' à 6
+  espaces + fin à '      }'), réinsertion à 4 espaces juste après
+  'var host = el('div')…', donc au niveau de tabBiblio, AVANT rowArt.
+  Une seule def, indentation 4. Nouvelle version : qsa('.lva-bth',host),
+  nom de domaine via sec.__nom.value (sinon texte du titre sans le ›),
+  ignore la catégorie courante (b.contains(row)), ouvre dom-open+on à
+  l'arrivée, toast si aucune cible. Logique testée par DOM simulé : OK.
+  LEÇON : pour ces éditions, préférer la manipulation par lignes aux
+  gros remplacements de blocs contenant \u… ; toujours relire le SOURCE.
+- CONNEXION Mémoriser : la page plein écran est devenue une VRAIE
+  FENÊTRE comme le site. #auth-screen = overlay fixed plein écran
+  rgba(8,8,8,.98) (au lieu de min-height:100vh) ; .auth-panel = boîte
+  400px encre-2 centrée ; logo « Lumen » et croix décorative retirés ;
+  titre « Connexion/Sign in » (#auth-paneltitle, traduit dans applyLang)
+  au-dessus des onglets, comme la modale du site. Toute la logique
+  d'auth (onglets, Google, mot de passe oublié, Firebase) est inchangée.
+  La fenêtre « Mon compte » (connecté) avait déjà été refaite en modale
+  centrée à la session précédente. Les deux pages présentent maintenant
+  la connexion de façon identique.
+
+================================================================
+GRANDE LISTE EMMANUEL (10/06) — TOUT FAIRE, en fournées
+================================================================
+F1 (admin/site) :
+ 1. Articles « Sans catégorie » librement déplaçables (drag + ⇄) et
+    réordonnables ; exemple : « Les sacrements » hors catégorie en haut.
+ 2. Apparence : bouton ANNULER ; sortir sans enregistrer ne doit RIEN
+    appliquer (retour à l'état enregistré) ; à la réouverture les carrés
+    de couleur doivent montrer les couleurs actuelles.
+ 3. Gestion des NOTIFICATIONS (cloche) depuis le panneau (synchro
+    accueil/bibliothèque + memoriser).
+ 4. Recherche de versets (admin, onglet Mémoriser) : n'afficher QUE le
+    verset trouvé dans sa catégorie, pas tous les versets.
+ 5. Couleur des textes atténués (« marron ») pilotable par l'Apparence
+    (panneau + partout sur le site → variable parchemin_att / --lvaM).
+ 6. Réorganiser les DOMAINES eux-mêmes (ordre), répercuté sur l'accueil.
+ 7. Page article : bouton copier ⧉ + bouton partager (ICÔNE, pas emoji,
+    copie du lien) avec ✓ 1,5 s ; boutons article précédent / suivant
+    dans la même catégorie (forme libre : flèches ok).
+ 8. Images dans les articles (éditeur + rendu esthétique, emplacement
+    à ma discrétion) — pour futurs articles sur les saints.
+F2 (Mémoriser public) :
+ 9. Recherche PUBLIQUE dans Mémoriser (comme la loupe bibliothèque),
+    résultat = catégorie + SEULEMENT le(s) verset(s) trouvé(s).
+ 10. Déplacer un verset (public) : bouton « déplacer dans » par verset
+    (le glisser ne marche pas sur la page).
+ 11. Supprimer la section « À propos » encore présente sur memoriser.
+ 12. Ordre des icônes de la barre : loupe → cloche → bonhomme, sur
+    TOUTES les pages (site + memoriser).
+F3 (LE PLUS IMPORTANT) :
+ 13. REFONTE TOTALE de l'UI du site, de zéro, selon MA base (pas celle
+    d'Opus) ; particules de poussière lumineuse en suspension, ambiance
+    mélancolique/nostalgique, discrètes (lecture confortable). Peut
+    prendre plusieurs prompts. CONTRAINTE : préserver ou adapter les
+    accroches fonctionnelles (data-lv-txt, .dom[data-theme], .dom-corps,
+    a.article-lien[data-card], article.lecture, data-article, ids auth,
+    LV_INDEX, ADMIN_JS) ou adapter admin.js en conséquence.
+NOTE : le site EN LIGNE a maintenant le panneau v3 (capture) ; le
+dernier zip (déplacer dans réparé, connexion memoriser fenêtre) restait
+à déployer au moment de cette liste.
+
+----------------------------------------------------------------
+FOURNÉE 1 (F1) APPLIQUÉE — après restauration post-reset conteneur
+----------------------------------------------------------------
+Le conteneur s'était ENCORE réinitialisé avec un vieux /home/claude
+(admin.js périmé : ancienne deplacerArticle imbriquée, pas de chevrons,
+pas de bouton lien). Restauré depuis le zip outputs, marqueurs vérifiés,
+puis F1 rejouée intégralement avec succès :
+1. Apparence : bouton Annuler (lva-btn2 entre Enregistrer et
+   Réinitialiser) ; aperçu non enregistré RETIRÉ à la sortie de l'onglet
+   ou du panneau (apQuitte/apDirty/apSauve, accroché dans selectTab et
+   closeHub) ; carrés de couleur préremplis avec la couleur RÉELLEMENT
+   appliquée (cssVarHex lit getComputedStyle, rgb→hex, AP_MAP).
+2. Texte atténué pilotable : --lvaM:var(--parchemin-att,#9a958a) dans
+   le panneau ; applyApparence pose aussi --pa/--pa2 (memoriser) depuis
+   vars.parchemin_att. Le réglage « Texte atténué » touche donc site,
+   panneau et memoriser.
+3. Recherche admin Mémoriser : n'affiche QUE les versets correspondants
+   (réf+texte FR/EN) dans leur catégorie ouverte (b.__fill au besoin) ;
+   si le NOM de catégorie correspond, tous ses versets restent visibles ;
+   restauration complète quand le champ se vide.
+4. Domaines réordonnables : poignée ☰ (secG) au début du titre, dragify
+   containers [host], items .lva-bth ; save écrit d.domOrdre (liste des
+   __th) dans config/themes ; applyThemes regroupe tous les [data-theme]
+   par parent et les ré-append dans l'ordre — agit sur bibliothèque ET
+   accueil (applyThemes y est déjà appelé, ligne ~298).
+5. Barre d'outils d'article (TOUS les visiteurs) : outilsArticle()
+   appelée si PAGE==='article' (définie juste avant gdoc). Boutons ⧉
+   copier l'article (innerText) et partager (SVG flèche+boîte, copie
+   location.href), feedback ✓ 1,5 s (classe .ok). En bas : navigation
+   précédent/suivant dans le MÊME domaine (séquence = cats.arts aplatis
+   + articles du thème hors catégories, ordre IDX), liens via a.u,
+   classes .art-nav/.art-nav-l/.art-nav-n/.art-nav-k/.art-nav-t.
+6. Éditeur : bouton ▣ Image (lien) → prompt URL + légende facultative →
+   <figure><img loading=lazy><figcaption>. CSS éditeur .lva-doc img/
+   figcaption ajouté.
+7. Notifications : section « Notifications (cloche) » dans l'onglet
+   Accueil. Blocs mois (input date + textarea une-annonce-par-ligne + ✕),
+   bouton + Nouveau mois (insère en tête), Enregistrer → config/
+   nouveautes { fr:[{d,items[]}], en:[…] } (fusion par langue, l'admin
+   édite la langue de la page courante). Préremplissage : doc en ligne,
+   sinon lecture du DOM (.nouv-groupe/.nouv-date/.nouv-ligne).
+   BUILD : après les helpers Firestore, lit config/nouveautes et
+   remplace NV_FR/NV_EN si non vides → prend effet à la publication
+   (signature de la cloche recalculée automatiquement, synchro site +
+   memoriser garantie par le build).
+8. build-bi.js : icônes réordonnées loupe→cloche→bonhomme sur le site ;
+   EXTRA_CSS enrichi (.art-bar/.art-btn/.art-nav…, figures .lecture).
+9. « Sans catégorie » : RIEN à coder — rowArt met déjà ⇄ et le drag sur
+   toutes les lignes, et les containers de drag incluent la catégorie
+   « Sans catégorie » ouverte ; le blocage venait de deplacerArticle
+   cassée sur le site déployé. Fonctionnel au prochain déploiement.
+RESTE : F2 (memoriser public : recherche, déplacer versets, À propos,
+icônes) puis F3 (refonte totale UI + particules de poussière lumineuse).
+
+----------------------------------------------------------------
+FOURNÉE 2 (F2) APPLIQUÉE — Mémoriser public
+----------------------------------------------------------------
+9. RECHERCHE PUBLIQUE : loupe id=rech-ouvrir insérée AVANT la cloche
+   (ordre loupe→cloche→bonhomme ✓), même SVG/classes que le site.
+   Modale #m-search (overlay/modal/field existants) : input i-srch +
+   #srch-results. renderSearch() : pour chaque catégorie effective,
+   n'affiche QUE les versets correspondants (ref+texte FR/EN), groupés
+   sous le nom de la catégorie (.srch-cat/.srch-v) ; clic sur un
+   résultat → ferme, S.showAllCats=true, S.open[cat]=true, renderCats,
+   scrollIntoView sur .cat[data-id]. Libellés FR/EN selon S.lang,
+   aria + ll-mob mis à jour dans applyLang (rech-link-label).
+10. DÉPLACER UN VERSET (public) : bouton ⇄ (.mov-v data-movev) dans
+   chaque .vrow avant la ×, attrapé dans la délégation cat-list.
+   openMoveVerse → modale #m-move listant les autres catégories
+   (.move-row) → moveVerse(src,vId,dst) : retire de la source
+   (editBase si base, sinon mutation S.customCats+saveCat), ajoute à
+   la cible (idem, anti-doublon), ouvre la cible, renderCats. PIÈGE
+   DÉSAMORCÉ : effectiveCats réinjecte les versets du modèle absents
+   de l'édition (mécanisme des nouveautés) → champ ov.moved ajouté
+   (liste d'ids exclus), filtré dans extra, rempli au départ d'une
+   base, nettoyé à l'arrivée dans une base. Persisté par saveBaseEdits
+   tel quel. Le progrès suit le verset (id inchangé). « Restaurer la
+   catégorie » de base efface l'édition → le verset réapparaît dans la
+   source (retour au modèle, attendu) tout en restant dans la cible.
+11. « À PROPOS » : retiré du markup (nav-about) et d'applyLang.
+12. ORDRE DES ICÔNES : fait sur le site (F1) et memoriser (ci-dessus).
+RESTE : F3 — refonte totale UI (base Claude, pas Opus) + particules de
+poussière lumineuse discrètes, ambiance mélancolique/nostalgique, sur
+plusieurs prompts ; préserver/adapter les accroches fonctionnelles
+(data-lv-txt, .dom[data-theme], .dom-corps, .sous[data-cat], a.article-
+lien[data-card], article.lecture[data-article], a.domaine[data-theme],
+.nouv-*, ids auth-*, rech-ouvrir/cloche-ouvrir/auth-ouvrir, LV_INDEX,
+ADMIN_JS, .resume/.r-trunc/.ref/.fin-article, .art-bar/.art-nav) ou
+adapter admin.js en conséquence.
+
+----------------------------------------------------------------
+F3 PHASE 1 — REFONTE « LA NEF OBSCURE » + POUSSIÈRE LUMINEUSE
+----------------------------------------------------------------
+DÉCOUVERTE STRUCTURELLE : le CSS du site vit dans index__48_.html
+(<style> lignes 10-482) ; build-bi.js l'extrait (const css = src.slice).
+La refonte s'écrit donc DANS index__48_.html.
+FAIT :
+- <style> intégralement REMPLACÉ (~290 lignes) par mon système « la
+  nef obscure » : la lumière dessine les lignes. Palette : encre
+  #0a0908 (+ lueur radiale dorée en haut de page et vignette basse,
+  background-attachment:fixed), parchemin #f2ecdd, atténué #a39b87,
+  or chandelle #d3b97e, or-pale #efe2c0, pourpre #8e3a36, FILETS DORÉS
+  rgba(211,185,126,.13/.32) (signature : plus de gris). Mêmes NOMS de
+  variables (contrat avec l'onglet Apparence et admin.js).
+- Typo : Cormorant Garamond display poids 400/500 à grande échelle
+  (hero clamp 46-86px, bandeaux 38-62, lecture h1 35-52), EB Garamond
+  corps 19.5/1.85, mesure de lecture 34em, labels en capitales
+  espacées dorées (.sur-titre/.num/.dom-num/.d-num : .3-.4em).
+- Composants : header sticky voilé (blur 12) filet doré bas ; logo
+  précédé d'une croix ✛ dorée (::before) ; croix du hero dessinée en
+  CSS (trait vertical dégradé + barre ::after) ; .titre-section avec
+  tag numéroté encadré + trait dégradé ; cartes domaine avec COIN
+  LUMINEUX haut-gauche (::before 13px) qui passe à l'or au hover ;
+  .dom = panneau bordé, dom-sep en dégradé doré visible seulement
+  ouvert, chevron rotatif ; .sous avec puce losange or + bordure
+  gauche ; article-lien fond rgba(17,15,12,.45), halo 34px au hover ;
+  apologie-lien encadré fort centré ; LECTURE : lettrine dorée
+  (.lecture > p:first-of-type::first-letter 3.6em), h1::after trait
+  dégradé, h2 précédé d'un § doré, blockquote filet or, justification
+  + hyphens (désactivés mobile), .fin-article = filets dégradés de
+  part et d'autre ; voiles rech/nouv/auth : boîtes encre-2 à COINS
+  LUMINEUX (::before/::after 15px or), entrées voile+venue ; footer
+  colophon centré. Responsive : burger <920px = menu plein écran
+  voilé (classe .ouvert, contrat JS conservé), ll-mob visibles ;
+  <720px compactages. prefers-reduced-motion neutralise tout.
+- POUSSIÈRE LUMINEUSE INTERACTIVE : const PARTICULES_JS dans
+  build-bi.js (avant let APPEARANCE_CSS), <canvas id="poussiere">
+  injecté après <body>, <script>${PARTICULES_JS}</script> avant
+  </body> (gabarit unique vérifié). CSS : #poussiere fixed z-index:0
+  pointer-events:none + body>*{position:relative;z-index:1} (la
+  poussière vit DERRIÈRE le contenu, dans les vides). 18-64 particules
+  selon la surface (aire/30000, plafond 64), rayon .5-1.65px, opacité
+  .05-.17 avec scintillement lent sinusoïdal (périodes 7-18 s, jamais
+  de clignotement), dérive brownienne très lente avec biais ascendant
+  (-.013), recyclage hors écran, DPR plafonné à 2, pause si onglet
+  caché, re-seed au resize. INTERACTIVITÉ (demande explicite) :
+  pointermove + touchmove (passifs) ; rayon d'influence 120px,
+  répulsion douce (force 1.5·(1-d/R), amortie ×.86 → les grains se
+  réinstallent), ÉCLAT au passage (alpha +.2·f, rayon +.8·f, plafond
+  .42) comme une poussière remuée qui accroche la lumière ; fenêtre
+  d'activité 900 ms après le dernier mouvement. Couleur lue depuis
+  --or (relue toutes les 5 s → suit l'onglet Apparence).
+  prefers-reduced-motion → aucun rendu.
+- Vérifié dans le build : signature CSS, canvas+script sur toutes les
+  pages, lettrine, accroches admin (data-theme etc.) intactes.
+RESTE F3 : phase 2 = memoriser.html au même langage (palette/typo/
+composants + poussière) ; phase 3 = ajustements d'après les captures
+d'Emmanuel après déploiement (inévitable : refonte faite sans
+navigateur). EXTRA_CSS (raffinements+art-bar+figures) reste actif
+après le nouveau css : compatible (translateY(-2px) cartes conservé).
+CORRECTION : l'injection des particules avait échoué sur l'assert body multiple (3 </body> dans build-bi.js : gabarit ligne 640 + 2 chaînes du traitement memoriser lignes 943/945) ; rejouée avec l'ancre exacte de fin de gabarit — vérifiée présente sur toutes les pages FR+EN.
+
+----------------------------------------------------------------
+F3 PHASE 1bis — RETOUCHES D'APRÈS LES CAPTURES (10/06 après-midi)
+----------------------------------------------------------------
+ÉNIÈME RESET CONTENEUR (3e) détecté : /home/claude était redevenu une
+version pré-refonte (CSS d'Opus, build sans particules). Les captures
+d'Emmanuel prouvaient que le zip outputs déployé était le bon →
+restauration depuis le zip, marqueurs vérifiés, puis retouches.
+RÈGLE ABSOLUE : à CHAQUE début de session/tour, vérifier les marqueurs
+(LA NEF OBSCURE dans index, PARTICULES_JS dans build, apQuitte dans
+admin, openMoveVerse dans memoriser) AVANT toute édition ; restaurer du
+zip au moindre doute.
+RETOUCHES APPLIQUÉES (toutes vérifiées dans le build) :
+1. Palette : --or #d3b97e→#e6d3a3 (beige doré clair), --or-pale
+   #f5edd6, TOUTES les teintes dérivées 211,185,126→230,211,163
+   (Emmanuel n'aime pas le marron ; le beige oui).
+2. Bibliothèque : .dom{grid-column:1/-1} → domaines empilés
+   verticalement dans la grille .domaines-liste (le clic n'affecte
+   plus la mise en page des voisins) ; .dom-nom{min-width:0}.
+3. Bandeau « La bibliothèque / Les domaines » SUPPRIMÉ du gabarit
+   (remplacé par un espace de 38px) — FR et EN partagent le gabarit.
+4. Bloc Mémoriser de l'accueil RÉPARÉ : grand chiffre 44px + libellé
+   « de maîtrise » en petites caps dorées espacées (gap 12px, fini le
+   collage) ; couleurs de la barre restaurées (.r #c75d52, .a #cfa24f,
+   .v #7ba37e, transitions de largeur) ; ÉTATS restaurés (mécanique de
+   l'ancien design retrouvée) : note visible seulement si
+   data-state out/empty, pct/bar/leg seulement si ok → « Connecte-toi… »
+   disparaît une fois connecté.
+5. Pied de page : fond voilé identique à la barre du haut
+   (rgba(10,9,8,.82)+blur 12).
+6. Croix de l'accueil : BLANCHE (#f2ecdd), hauteur 70px, hero resserré
+   (padding 62px 0 84px au lieu de 120px).
+7. Viseur ✛ du logo SUPPRIMÉ (rien à la place).
+8. § des intertitres d'articles SUPPRIMÉ.
+9. Icône compte (bonhomme) : règle .auth-icone.connecte{color:or}
+   SUPPRIMÉE → blanche comme les autres, connecté ou non.
+10. Navigation d'article REFAITE : .art-nav en grille 2 colonnes,
+    liens en CARTES bordées (fond rgba(17,15,12,.45), halo au hover),
+    label doré en petites caps, « suivant » seul occupe la colonne
+    droite (grid-column:2), mobile 1 colonne. (Dans EXTRA_CSS.)
+11. PARTICULES réécrites : poussière de rayon de soleil — couleur
+    mélangée 50/50 entre --or et un or solaire (216,178,88) pour rester
+    dorée même si --or pâlit ; FLÂNERIE : chaque grain a un cap th et
+    une vitesse propre (.05-.17 px/f), le cap tourne lentement
+    (vr ±.025 max, bruité) → trajectoires sinueuses de poussière de
+    chambre au matin, léger biais ascendant ; opacité .07-.22 avec
+    respiration lente. PHYSIQUE D'INTERACTION refaite (l'ancienne
+    répulsion accumulée faisait « aimant ») : ENTRAÎNEMENT par le
+    geste — vitesse du pointeur lissée (P.vx/vy), appliquée aux grains
+    dans 130px avec falloff (×.20) + très légère poussée radiale
+    (×.22), amortissement .90 ; l'ÉCLAT est proportionnel à la vitesse
+    du geste (lum=f·min(1,v/16)) → immobile, rien ne se passe ; un
+    geste remue et illumine la poussière qui suit le courant d'air.
+ADDENDUM : le bandeau biblio existait AUSSI dans le gabarit statique de build-bi.js (en plus du SPA d'index) ; retiré des deux, vérifié 0 occurrence FR et EN.
+
+----------------------------------------------------------------
+RETOUCHES 10/06 (2) — SANS CATÉGORIE REPOSITIONNABLE + NAV BLANCHE
+----------------------------------------------------------------
+1. « SANS CATÉGORIE » DÉPLAÇABLE parmi les catégories (au-dessus ou en
+   dessous, au choix), position MÉMORISÉE et répercutée sur le site :
+   - blocCat : grip visible pour aut + dragify limité à SON domaine
+     (containers = sa propre .lva-bth-cats ; déplacer « le reste » vers
+     un autre domaine n'aurait pas de sens).
+   - Construction : si st.order contient '__autres', un SLOT (div vide)
+     est posé à sa place pendant la boucle, puis remplacé par le vrai
+     bloc une fois la liste « autres » calculée (le calcul dépend de
+     place{} rempli par la boucle) ; sinon aut va en dernier (rétrocompat).
+   - Sauvegarde : stt.order.push('__autres') à sa position réelle.
+   - applyThemes : dans la boucle d'ordre, cid '__autres' → les CARTES
+     non catégorisées sont appendChild à ce point du corps (entre les
+     blocs .sous), used[] posé ; le bloc après-boucle existant (avec
+     !used) reste pour les anciens docs sans '__autres' dans l'ordre.
+     Logique validée par simulation : sous-cat1 → cartes → sous-cat2 ✓.
+   - NOTE : le beforeRef des catégories (qui visait à garder aut en
+     dernier) n'a finalement PAS été retiré — vérifier au besoin si
+     Emmanuel signale qu'une catégorie refuse de descendre SOUS
+     « Sans catégorie » (beforeRef ne s'applique qu'en zone vide sous
+     le dernier item ; le placement par moitiés de hauteur fonctionne).
+2. NAV : lien actif en BLANC (--parchemin), seul le trait souligné est
+   doré (--or). Demande explicite : le texte ne change plus de couleur.
+ADDENDUM : verrou beforeRef/:not(.lva-aut) du drag des catégories LEVÉ — les catégories passent librement au-dessus ou au-dessous de Sans catégorie, dans tous les sens.
+
+----------------------------------------------------------------
+RETOUCHES 10/06 (3) — ANTI-MARRON, PIED LÉGER, OR SOLAIRE
+----------------------------------------------------------------
+Diagnostic du « marron » : beige à faible alpha SUR noir = brun.
+1. Voiles INTÉRIEURS des cadres (a.domaine, .dom, .memo-bloc,
+   .apologie-lien) passés en lumière NEUTRE rgba(255,255,255,.012-.03) ;
+   veilleuse du haut adoucie rgba(242,231,205,.04).
+2. TRAITS dorés : teinte 230,211,163 → 241,228,194 (champagne clair)
+   partout + alphas relevés (--filet .17, --filet-fort .42, trait .62,
+   dom-sep .62, bandeau::after .68, h1::after .72, fin-article .55).
+3. Pied de page ALLÉGÉ : padding 32/26 (mobile 24/20), marque 14.5px
+   mb12, verset 15.5px mb13, ref 13px — bande compacte, même fond voilé.
+4. « de maîtrise » : italique, EB Garamond, blanc (--parchemin),
+   16.5px, plus de majuscules ni d'or.
+5. PARTICULES : or solaire (référence image Project Zomboid envoyée
+   par Emmanuel — lumière chaude de fenêtre) : couleur = 30 % --or +
+   70 % (243,186,97) ; base (240,193,110) ; opacité .10-.27, plancher
+   de respiration .5, plafond .55 ; rayon .7-1.95 ; HALO : second
+   disque ×2.7 à 20 % de l'alpha sous le cœur → grains qui luisent.
+   EXTRA_CSS halos alignés sur la teinte champagne.
+
+----------------------------------------------------------------
+RETOUCHES 10/06 (4) — ACCENT CRÈME DU BOUTON + OR SOLAIRE FRANC
+----------------------------------------------------------------
+1. ACCENT : Emmanuel a désigné la couleur du bouton « Commencer »
+   comme LA couleur d'accent voulue partout. --or:#e6d3a3 → #efe3c0
+   (crème lumineux), --or-pale → #faf4e3. Tout ce qui lit var(--or)
+   (tags, labels, .ref, traits via teinte champagne déjà posée, etc.)
+   bascule d'un coup. Fini l'oscillation marron/beige.
+2. PARTICULES : « de quoi tu as peur ? » → audace. Couleur FIXE or de
+   soleil rgba(255, 182-216, 104) (légère variation de g par grain),
+   plus de mélange avec --or. Opacité .16-.36, plafond .75. RENDU :
+   un seul disque en DÉGRADÉ RADIAL (createRadialGradient : cœur
+   plein → .35 à 50 % → bord transparent, rayon ×3) = vraie lueur de
+   poussière au soleil ; supprime l'effet « œuf de poisson » des deux
+   disques concentriques. lireOr/setInterval retirés (couleur fixe).
+   Flânerie et entraînement par le geste inchangés.
+
+----------------------------------------------------------------
+RETOUCHES 10/06 (5) — LUMINOSITÉ (le vrai diagnostic) + ESPACE HERO
+----------------------------------------------------------------
+Emmanuel a identifié la cause : OPACITÉ/LUMINOSITÉ, pas la teinte.
+1. HERO : padding 62/84 → 36px 0 14px (média 720 : 42/12) ;
+   .titre-section margin 86px → 54px 0 38px. Croix → « Les domaines »
+   passe d'environ 170px à environ 68px.
+2. TRAITS : alphas montés fort (--filet .22, --filet-fort .55, trait
+   et dom-sep départ .85, bandeau .9, h1 .9, fin-article .72).
+3. PARTICULES : globalCompositeOperation='lighter' (fusion ADDITIVE,
+   posée après chaque clearRect) — la lumière s'ajoute au noir au lieu
+   d'être multipliée vers lui ; opacité de base .3-.58, plafond .95.
+   C'était la clé du rendu « or de soleil » : sans additif, tout alpha
+   partiel sur noir tire vers le brun.
+
+RETOUCHES 10/06 (6) — PLEIN RÉGIME (« arrête d'avoir peur »)
+Particules : densité aire/23000 (max 84), rayon .85-2.45, opacité .5-.9
+plafond 1, respiration plancher .6, dégradé radial 4 stops (.25 à 70 %,
+.6 à 25 %). Traits : départs à alpha 1 (trait, dom-sep, bandeau, h1),
+fin-article .9, --filet .28, --filet-fort .7.
+
+RETOUCHES 10/06 (7) — CORRECTION DE PÉRIMÈTRE
+Emmanuel parlait couleur/luminosité/opacité, PAS taille/nombre.
+Densité aire/30000 (18-64) et rayon .7-1.95 RESTAURÉS. Conservé :
+opacité .5-.9 plafond 1, plancher .6, dégradé 4 stops, additif, traits
+à 1. Couleur APPROFONDIE : rgba(255, 168-198, 86) — or plus saturé.
+
+RETOUCHES 10/06 (8) — LE RAI DE LUMIÈRE
+Réponse à « qu'est-ce qui manque ? » : la SOURCE. La poussière dorée
+n'est visible que dans un rai. Ajout : <div id="rai"></div> injecté
+à côté du canvas dans le gabarit du build ; CSS dans index (avant
+#poussiere) : bande fixe oblique (rotate 19°, top:-28vh, left:55 %,
+34vw × 175vh), dégradé vertical or rgba(255,193,102,.11→transparent),
+bords adoucis par mask-image horizontal, z-index:0 (l'id bat body>*),
+pointer-events:none. Mobile : left:34 %, 64vw, 14°.
+CORRECTIF (8) : la chaîne du canvas dans le gabarit porte des guillemets échappés ; injection refaite par regex tolérante, élément rai présent sur toutes les pages.
+
+RETOUCHES 10/06 (9) — LE BEIGE AU REPOS, PAS SEULEMENT AU SURVOL
+Diagnostic d'Emmanuel : les éléments ne deviennent beiges qu'au hover ;
+au repos (barre du haut, pied, bordures) ils restent bruns. Cause :
+filets de repos à faible alpha. --filet .28 → .5, --filet-fort .7 →
+.92 (toutes les bordures de repos, header/footer inclus, en dépendent).
+Un survol qui posait une bordure à .22 (désormais PLUS sombre que le
+repos) remonté à .7. Les autres littéraux bas = effets de survol ou
+lueurs, légitimes, inchangés.
+
+----------------------------------------------------------------
+RETOUCHES 10/06 (10) — LE RAI VIVANT, AU CANVAS, AVEC INTERACTION
+----------------------------------------------------------------
+Le rai CSS rendait brun (alpha multiplié vers le noir), figé, ignoré
+des grains. REFONTE : div #rai et son CSS SUPPRIMÉS ; le rai est peint
+chaque frame sur le canvas #poussiere, AVANT les grains :
+- bande oblique (translate/rotate ; desktop x=62 % de W, angle .33 rad ;
+  <720px x=50 %, .24 rad), gradient TRANSVERSAL (transparent → pic →
+  transparent, couleur 255,200,96 — plus jaune, réf. image PZ, pic .17)
+  puis fondu VERTICAL par destination-out (noir .35 à 45 %, .85 à 80 %,
+  1 en bas) — ne découpe que le rai car peint en premier.
+- VIE : alpha ×(.8+.2·sin .00022t), largeur ×(1+.05·sin .00017t),
+  angle ±.012·sin .00009t. Lent, jamais clignotant.
+- INTERACTION : distance perpendiculaire du grain à l'axe (dRai) ;
+  si dRai<bw → lum += (1-dRai/bw)·.5·prof (prof = fondu vertical) :
+  les grains BRILLENT en traversant le rai, s'éteignent en sortant.
+- Grains plus jaunes : g 184-210 (au lieu de 168-198), b 86.
+PIÈGE D'ANCRAGE BANAL : le canvas du gabarit s'écrit
+<canvas id="poussiere" aria-hidden="true"></canvas> (avec aria-hidden).
+
+RETOUCHES 10/06 (11) — CARTES AU FOND DES BARRES
+a.domaine, .dom, .memo-bloc, .apologie-lien : voiles neutres remplacés
+par le fond du header/footer rgba(10,9,8,.82)+blur(12px) (le rai et la
+poussière passent floutés derrière) ; survol a.domaine rgba(17,15,12,.85).
+
+RETOUCHES 10/06 (12) — GRAINS AU PLEIN, RAI SCINTILLANT
+Grains : le « traitement du beige » appliqué à la poussière : opacité
+de repos .78-1 (plancher de respiration .72), cœur du dégradé densifié
+(plateau .85 à 30 %, .32 à 62 %), bonus de rai .45. Rai : base .22 et
+SCINTILLEMENT organique par trois sinusoïdes superposées (.00022 /
+.0011 / .0027 avec déphasages) — tremble comme une lumière vivante,
+amplitude bornée, jamais un clignotement.
+
+RETOUCHES 10/06 (13) — LA SOURCE DOMINE
+Le rai était moins brillant que la poussière (hiérarchie inversée).
+Intensité .22 → .4 (scintillement conservé) + CŒUR : seconde bande
+centrale (38 % de la largeur, alpha ai×.85) peinte par-dessus la bande
+large avant le fondu vertical → axe brillant, bords diffus.
+
+RETOUCHES 10/06 (14) — PROFONDEUR DES GRAINS + SOURCE À .55
+Chaque grain naît avec z=pow(rand,1.4) (biais vers le lointain) :
+rayon .45+1.7z, opacité (.22+.78z)·(.8-1) (les lointains quasi
+disparaissent), vitesse .035+.12z. Le geste agit ×(.3+.7z), l'éclat du
+geste ×(.4+.6z), l'illumination par le rai ×(.45+.55z) (montée à .55) :
+les proches vivent, les lointains scintillent à peine. Source ai=.55.
+
+RETOUCHES 10/06 (15) — RAI SANS COUTURE, POUSSIÈRE FINE
+Les deux bandes superposées du rai laissaient voir leurs bords →
+remplacées par UN dégradé transversal en cloche (9 paliers, pic
+pk=min(.95, ai×1.8) au centre, pentes .8/.3/.08) : aucune couture,
+luminosité du cœur préservée. Poussière : validation de l'intuition
+d'Emmanuel — plus PETITS (r .3+1.05z) et plus NOMBREUX (aire/15000,
+30-130) ; profondeur, interactions et couleurs inchangées.
+
+----------------------------------------------------------------
+RETOUCHES 10/06 (16) — RAI AU MAXIMUM + F3 PHASE 2 LANCÉE (MEMORISER)
+----------------------------------------------------------------
+1. RAI : ai .55 → .72, plafond du pic .95 → 1, et CŒUR CHAUD : les
+   trois paliers centraux (.47/.5/.53) passent à colC=255,224,156
+   (plus clair et plus chaud que le corps 255,200,96) → le centre
+   blanchit comme une vraie source.
+2. F3 PHASE 2 — MEMORISER À LA NEF OBSCURE (début) :
+   - Palette : :root aligné sur le site : encre #0a0908/#110f0c/#161310,
+     or #efe3c0 / pale #faf4e3, parchemin #f2ecdd (pa/pa2 en rgba de
+     cette teinte .62/.4), parchemin-att #a39b87, pourpre #8e3a36.
+   - TRAITEMENT BEIGE : filets champagne 241,228,194 à .5 / -f .7 /
+     fort .92 (mêmes niveaux que le site).
+   - POUSSIÈRE + RAI sur Mémoriser : injection par le BUILD (bloc
+     memoriser ~l.999) : canvas après <body>, <script>PARTICULES_JS
+     </script> avant </body>, CSS #poussiere+body>* après <style>.
+     PARTICULES_JS est défini avant ce bloc ✓.
+   RESTE pour la phase 2 : passer en revue les composants de memoriser
+   (boutons, cartes de catégories, modales, barres de progression,
+   en-tête) sur captures d'Emmanuel — la palette fait déjà l'essentiel,
+   les ajustements fins se feront au rendu.
+
+----------------------------------------------------------------
+RETOUCHES 10/06 (17) — RAI GAUSSIEN SEUL + ÉCOUTE DES ARTICLES (TTS)
+----------------------------------------------------------------
+1. POUSSIÈRE SUPPRIMÉE (demande explicite). Le moteur PARTICULES_JS
+   ne dessine plus QUE LE RAI : dégradé transversal GAUSSIEN continu
+   (29 stops, f=exp(-x²·5.5), couleur interpolée corps 255,200,96 →
+   cœur 255,224,156, alpha pk·f) — plus aucune couche visible ; fondu
+   vertical lisse en courbe pow(u,1.6) sur 21 stops (destination-out).
+   Scintillement trois ondes et oscillations angle/largeur conservés.
+   prefers-reduced-motion → UNE frame statique du rai (peint(12000)).
+   Pointeur/touch retirés (plus de grains à entraîner). L'injection
+   memoriser sert toujours (même constante → rai sur memoriser).
+2. ÉTAPE SUIVANTE LANCÉE : ÉCOUTER LES ARTICLES (Web Speech API,
+   piste identifiée de longue date). Dans admin.js/outilsArticle :
+   bouton haut-parleur (premier de la barre : écouter, copier,
+   partager) ; lecture du h1 puis des p/h2/h3/li/blockquote/figcaption
+   de l'article (hors .art-bar/.art-nav), DÉCOUPE PAR PHRASES ≤240
+   caractères (contournement du bug Chrome des longs énoncés, coupe
+   à la virgule sinon), file via onend ; voix fr-FR ou en-GB selon
+   document.documentElement.lang ; rate .95 ; second clic = stop
+   (icône carrée + .ok pendant la lecture) ; pagehide → cancel.
+   ANCRE MODIFIÉE : « bar.appendChild(bc); bar.appendChild(bs); » est
+   devenu « bar.appendChild(be); ... » — ne plus chercher l'ancienne.
+
+----------------------------------------------------------------
+RETOUCHES 10/06 (18) — RÈGLE DE SUPERPOSITION + SCROLLBARS BEIGES
+----------------------------------------------------------------
+RÈGLE POSÉE (anti-empilement des cadres) : UNE SEULE NAPPE VOILÉE PAR
+SURFACE. Les conteneurs de premier niveau portent le voile des barres
+rgba(10,9,8,.82)+blur(12) ; tout cadre INTÉRIEUR reçoit un remplissage
+sombre UNI sans blur.
+- .lecture (corps d'article) : voile + border 1px filet + padding
+  70px 56px 56px, max-width calc(34em + 112px) pour préserver la
+  mesure du texte (box-sizing:border-box) ; mobile 48px 18px 40px
+  sans bordures latérales.
+- .art-nav-l (préc./suiv., DANS l'article) : rgba(17,15,12,.45) → .88
+  uni. .apologie-lien (objections, DANS l'article) : voile remplacé
+  par rgba(20,17,13,.88) uni.
+- SCROLLBARS BEIGES partout : thumb rgba(241,228,194,.55), hover .8
+  (index, EXTRA_CSS du build, memoriser) + scrollbar-color Firefox.
+VÉRIFICATION SANS CRÉDITS NETLIFY : l'archive lumen-site-construit.zip
+(le dossier site/ déjà construit) se dépose sur https://app.netlify.com/drop
+→ déploiement instantané SANS minutes de build (aucun build exécuté).
+ÉTAPE 3 PROPOSÉE : la Bible Crampon 1904 (génération programmatique,
+piste validée de longue date) — gros chantier, session dédiée ;
+restent aussi : finitions memoriser sur captures, hub admin en nef
+obscure, et côté Emmanuel : build hook Netlify, validation Psaume 22.
+
+RETOUCHES 10/06 (19) — AUDIT GLOBAL DU CRÈME (suite à la fenêtre compte)
+Inventaire systématique des 4 fichiers. Index : sain (valeurs basses
+restantes = queues de dégradés/lueurs, légitimes). build-bi.js,
+admin.js (18 occurrences ! il habille la fenêtre Mon compte),
+memoriser.html : re-teinte 231,224,207 et 239,230,207 → 241,228,194 ;
+hex #efe6cf→#efe3c0, #f8f3e6→#faf4e3 ; REMONTÉE D'OPACITÉ raisonnée
+par propriété porteuse : border/outline/color sous .45 → .55 (si <.2)
+ou .7 ; backgrounds/box-shadows re-teintés à alpha inchangé (les
+voiles doivent rester doux). Script property-aware (regarde 52 car.
+avant chaque rgba). Zéro ancienne teinte dans le site construit.
+
+CORRECTIF (19) : le reliquat venait de content/settings.json
+(accent:#efe6cf, réglage Apparence PUBLIÉ) qui injecte :root{--or:...}
+EN DERNIER dans chaque page, écrasant l'accent du CSS. Corrigé →
+#efe3c0. ⚠ MÊME MÉCANISME CÔTÉ FIRESTORE : config/apparence (runtime,
+applyApparence) peut encore porter l'ancien accent et l'appliquer au
+chargement chez les visiteurs connectés au doc en ligne — Emmanuel
+doit ouvrir l'onglet Apparence de l'admin et re-poser l'accent crème
+(#efe3c0) puis Enregistrer, ou utiliser Annuler/réinitialiser.
+
+
+=== BIBLE CRAMPON — EXTRACTION TERMINÉE ET VALIDÉE (10 juin) ===
+Source actée par Emmanuel : mission-web.com / Jean-Marie Weber, éd. numérique 3 juin 2016,
+via dépôt GitHub JanotSamuz/bcctodb (branche master, 77 XHTML).
+LICENCE CC BY-NC-SA 3.0 : crédit mission-web.com OBLIGATOIRE sur le site.
+Résultat : 73/73 livres au compte exact du canon catholique, 1 334 chapitres, 35 568 versets, 0 écart.
+Esther = 16 ch (Vulgate, additions grecques 11-16, conclusion grecque rattachée au ch10).
+Daniel = 14 ch (13 Susanne 65 v, 14 Bel), titres de sections conservés en champ 'titre'.
+Psaumes = 150, mention (Vulg. N) stockée en champ 'vulg', titres de psaumes en 'titre'.
+Réparations : 18 sections rattachées, 1 scission (Na 2:12), 1 titre Ps 101.
+Structure JSON : [{nom, chapitres:[{n, titre, vulg?, versets:[{v,t}]}]}]
+Fichier : /mnt/user-data/outputs/bible-crampon.zip (crampon.json, 5,6 Mo).
+PROCHAINES ÉTAPES : 1) intégration au site (découpage par livre, pages /bible/, langage nef
+obscure, crédit licence visible) 2) liens auto des références dans les articles 3) alimentation
+de Mémoriser 4) validation théologique par Emmanuel.
+
+=== BIBLE EN LIGNE — PAGE DE LECTURE LIVRÉE (10 juin, suite) ===
+Architecture actée par Claude sur mandat d'Emmanuel : UNE page bible.html + 73 JSON par livre
+chargés à la demande (+ index.json), build quasi gratuit, un chapitre affiché à la fois.
+NOUVEAUX FICHIERS : bible.html (lecteur autonome nef obscure, routage #livre/chapitre/verset,
+surlignage de verset cible via #slug/n/v, double numérotation Vulgate des Psaumes, titres de
+sections, crédit licence mission-web CC BY-NC-SA en pied de page) ; content/bible/ (74 JSON).
+MODIFIÉS : build-bi.js (lien nav « Bible » dans header() avant Mémoriser, ancre
+  `<a href="/memoriser.html">${u.menu_memorise}</a>` ; bloc de copie bible.html avec injection
+  canvas+PARTICULES_JS+APPEARANCE_CSS après le bloc memoriser ; copie content/bible → OUT/bible-data) ;
+  memoriser.html (lien Bible dans sa nav embarquée, ancre `<a id="nav-mem"`).
+⚠ NOUVEAU MARQUEUR ANTI-RESET : `bible-data` dans build-bi.js.
+RESTE : liens auto des références bibliques dans les articles → bible.html#slug/ch/v ;
+alimentation de Mémoriser depuis bible-data ; validation théologique d'Emmanuel.
+
+=== BIBLE — RÉFÉRENCES, SÉLECTION MULTIPLE, NOTES (10 juin, suite 2) ===
+bible.html RÉÉCRIT (36 Ko), seul fichier modifié de cette salve. Nouveautés :
+• Barre de référence sticky sous le header (sticky top:62px) : champ + « Aller » + « Mes notes (N) ».
+  parseRef comprend noms complets, abréviations (ALIAS par slug : mt, 1co, ps, si, qo, ct…),
+  séparateurs : , . , tirets de plage, « Jude 5 » = verset 5 des livres à chapitre unique,
+  préfixe unique accepté (« matth »), bornes inversées corrigées. Testé sur 32 cas ✓.
+  Une référence avec versets navigue ET sélectionne la plage (pendingSel appliqué après rendu).
+• Sélection de versets : clic sur un verset = bascule (hover doux, .sel doré .11), persistante
+  en localStorage lv_bible_sel, multi-chapitres et multi-livres. Plateau fixe en bas
+  (#sel-barre, voile .92+blur) : puces groupées en plages contiguës (tri ordre canonique),
+  clic puce = navigation, ✕ = retrait du groupe, Copier (texte+réfs via clipboard, charge les
+  livres manquants à la volée), Prendre une note, Tout effacer. body.sel-active gère le padding.
+• Notes : localStorage lv_bible_notes [{id,d,t,refs}]. Modale (note-voile, Échap/clic-voile ferme),
+  refs de la sélection attachées en puces. Vue #notes : recherche plein-texte+réfs, Nouvelle note
+  libre, Modifier (modale avec Supprimer), clic sur puce = va au verset. Datée en français.
+⚠ Notes et sélection sont PAR APPAREIL (localStorage). Question posée à Emmanuel : synchronisation
+par compte Firebase (modèle memoriser) en étape suivante ?
+Marqueurs anti-reset bible.html : parseRef, lv_bible_sel, lv_bible_notes.
+
+=== BIBLE — SYNCHRONISATION DES NOTES PAR COMPTE (10 juin, suite 3) ===
+bible.html, seul fichier modifié (46 Ko). Firebase 10.7.1 compat (app+auth+firestore), même
+config que memoriser. Notes dans users/{uid}/bibleNotes/{id} ({d,m,t,refs}) — couvertes par les
+règles existantes du chemin users/{uid}. Lecture de la Bible toujours PUBLIQUE, compte facultatif.
+• onAuthStateChanged → syncInitiale() : fusion local/nuage par id, la plus récente (champ m,
+  repli d) gagne ; notes locales inédites envoyées au nuage ; NOTES triées par date décroissante.
+• Enregistrer/Supprimer écrivent local (lv_bible_notes, cache) ET nuage si connecté (cloudSet/cloudDel).
+• Vue Mes notes : ligne d'état sous la recherche — connecté : « Synchronisées (email) ·
+  Se déconnecter » ; sinon : « Sur cet appareil · Se connecter pour les retrouver partout ».
+• Modale de compte #auth-voile (classes ab-*) : onglets Connexion/Inscription, e-mail+mdp,
+  confirmation, Google (popup), mot de passe oublié, erreurs Firebase traduites en français.
+  Échap et clic-voile ferment. Connexion réussie → fermeture auto + sync.
+• Garde FB : si le SDK ne charge pas, tout fonctionne en local sans erreur.
+La sélection de versets (lv_bible_sel) reste locale par choix : état de travail éphémère.
+Marqueur anti-reset supplémentaire : bibleNotes dans bible.html.
+
+=== NOIR ABSOLU — SUPPRESSION DU RAI ET DE TOUS LES CADRES (10 juin, suite 4) ===
+Décision d'Emmanuel : plus de rayon de lumière, arrière-plan totalement noir, plus de cadre
+derrière les articles, autres cadres retravaillés en conséquence. Nouveau langage : structure
+portée par les filets, la typographie et les lueurs au survol (esthétique des diagrammes).
+MODIFIÉS (4) : index__48_.html, build-bi.js, memoriser.html, bible.html.
+• build-bi.js : const PARTICULES_JS SUPPRIMÉE ; canvas+script retirés du gabarit ; les trois
+  lignes d'injection retirées des blocs memoriser ET bible. .art-nav-l sans remplissage.
+• index__48_.html : --encre #000000 ; règles #poussiere supprimées ; header/footer noir plein
+  sans flou ; a.domaine, .memo-bloc, .dom, a.article-lien, .apologie-lien sans fond (filet seul,
+  survol = filet-fort + lueur) ; .lecture SANS bordure NI fond (mesure 34em conservée par le
+  padding) ; overlays sur assise rgba(0,0,0,.94/.96) ; menu mobile rgba(0,0,0,.97).
+• memoriser.html : --encre #000000 ; .hdr et le panneau aligné en noir plein sans flou.
+  Les champs (#161616), messages et overlays gardent leur assise (élévations, pas des cadres).
+• bible.html : --encre #000000 ; header/ref-barre/sel-barre noir plein ; .lecture-col sans fond
+  ni bordure ; .note-item filet seul ; voiles de modales rgba(0,0,0,.72).
+⚠ MARQUEURS ANTI-RESET MIS À JOUR (l'ancien marqueur du rai Math.exp N'EXISTE PLUS) :
+  index__48_.html → « --encre:#000000 » et « LA NEF OBSCURE » ; build-bi.js → « bible-data » ;
+  admin.js → « speechSynthesis », « autSlot » ; bible.html → « bibleNotes », « parseRef ».
+⚠ PENDING EMMANUEL : si après déploiement le fond n'est pas noir pur, ouvrir l'onglet Apparence
+de l'admin et ré-enregistrer (le doc Firestore config/apparence peut porter l'ancien fond).
+
+=== PANNEAU BIBLIQUE LATÉRAL (10 juin, suite 5) ===
+NOUVEAU FICHIER : bible-panneau.js (19 Ko, module autonome, classes/ids préfixés bp-).
+Onglet vertical « Bible » fixé au bord gauche (writing-mode:vertical-rl, filet, noir), présent sur
+TOUTES les pages générées (FR+EN, 404 inclus) et memoriser ; il se désactive de lui-même sur
+/bible.html. Clic → panneau coulissant gauche min(520px,100vw) par-dessus la page (translateX,
+voile rgba(0,0,0,.55)), avec : en-tête (titre, lien « Ouvrir la page » vers /bible.html, ✕),
+champ de référence avec le MÊME parseRef/ALIAS que bible.html (une plage surligne v1..v2 et y
+défile), navigation livres (2 colonnes) → chapitres → lecture compacte (17px), précédent/suivant.
+Dernière position retenue (localStorage lv_bp_etat) et restaurée à l'ouverture. Fermeture : onglet,
+✕, clic sur le voile, Échap. Données : /bible-data/ en chemins absolus (fonctionne sous /en/).
+MODIFIÉ : build-bi.js (3 branchements : <script src="/bible-panneau.js" defer> dans le gabarit
+après le bloc script principal ; même injection dans le bloc memoriser ; copie du module dans
+le bloc bible). z-index : onglet 105, voile 108, panneau 110 (sous rech-overlay 120 / auth 130).
+⚠ DOUBLON ASSUMÉ : ALIAS/parseRef existent dans bible.html ET bible-panneau.js ; toute correction
+de l'analyseur doit être portée AUX DEUX.
+Marqueur anti-reset : « bp-pan » dans bible-panneau.js.
+
+=== SOURCE ALLÉGÉE — FICHIERS UNIQUES BIBLE + ARTICLES (10 juin, suite 6) ===
+Motif : limite de 100 fichiers du glisser-déposer web GitHub. Source ramenée de 157 à 13 fichiers.
+• content/bible.json (5,4 Mo, {groupes,livres,data}) remplace content/bible/ (74 fichiers, SUPPRIMÉ).
+  build redécoupe en OUT/bible-data/{index.json + 73 livres}. Repli sur l'ancien dossier conservé.
+• content/articles.json (1,1 Mo, tableau de 70 objets, chacun avec 'slug') remplace
+  content/articles/ (70 fichiers, SUPPRIMÉ). build lit docsArticles depuis le fichier unique,
+  repli sur l'ancien dossier. Le flux d'édition admin (Firestore 'contenu') est INCHANGÉ : ces
+  fichiers ne sont que le socle figé lu au build et complété par Firestore. Pour graver une
+  création récente dans le socle : régénérer content/articles.json (script de fusion au transcript).
+MODIFIÉ : build-bi.js (deux blocs : lecture articles + découpage bible). Sortie construite identique
+(144 pages, 74 fichiers bible-data). Marqueurs : 'content/articles.json' et 'content/bible.json' dans build-bi.js.
+FICHIERS SOURCE RESTANTS (13) : admin.js, bible-panneau.js, bible.html, build-bi.js, data-en.js,
+index__48_.html, memoriser.html, netlify.toml, content/{articles.json, bible.json, memoriser.json,
+nouveautes.json, settings.json, themes.json}.
+⚠ SUR GITHUB : déposer les nouveaux fichiers NE SUFFIT PAS à enlever les anciens dossiers
+content/articles/ et content/bible/ ; il faut les SUPPRIMER sur GitHub pour réellement passer
+sous 100 (sinon le repli les relit, dépôt toujours à 157).
+
+=== À RETENIR POUR EMMANUEL — RIEN À FAIRE, CLAUDE PRÉVIENDRA (10 juin) ===
+Emmanuel n'a RIEN à gérer concernant le « socle » des articles. Pour PUBLIER, le build récupère
+tout seul ses éditions faites dans l'admin (Firestore). Le fichier content/articles.json est une
+simple archive figée ; elle peut être « en retard » sur Firestore sans aucune conséquence pour le
+site public. La seule occasion où il faudra la régénérer depuis Firestore (= « graver dans le
+socle ») : AVANT une grosse refonte/reprise du site par Claude, pour que Claude parte d'une source
+à jour. CONSIGNE : c'est CLAUDE qui surveille ce besoin et qui dira explicitement à Emmanuel quoi
+faire et quand, le moment venu (lui demander l'export Firestore ou régénérer au build). Tant que
+Claude n'a rien dit, Emmanuel publie et édite normalement, sans y penser. Ne PAS réexpliquer ce
+mécanisme à Emmanuel sauf s'il le demande ; agir à sa place.
+
+=== CONSIGNE DE LIVRAISON (10 juin) ===
+Emmanuel ne veut PLUS recevoir le zip « construit » (lumen-site-construit.zip / Netlify drop).
+À chaque tour, ne présenter QUE : lumen-site-complet.zip (source, avec REPRISE-lumen.txt dedans)
+et REPRISE-lumen.txt seul. Ne plus régénérer ni présenter le zip construit sauf demande explicite.
