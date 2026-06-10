@@ -46,7 +46,6 @@ img{max-width:100%;height:auto}
 a{color:inherit}
 
 /* — poussière lumineuse — */
-#rai{position:fixed;top:-28vh;left:55%;width:34vw;height:175vh;z-index:0;pointer-events:none;transform:rotate(19deg);transform-origin:top center;background:linear-gradient(to bottom,rgba(255,193,102,.11),rgba(255,193,102,.05) 40%,rgba(255,193,102,.018) 65%,transparent 80%);-webkit-mask-image:linear-gradient(to right,transparent,#000 30%,#000 70%,transparent);mask-image:linear-gradient(to right,transparent,#000 30%,#000 70%,transparent)}
 #poussiere{position:fixed;inset:0;z-index:0;pointer-events:none}
 body > *{position:relative;z-index:1}
 
@@ -95,9 +94,9 @@ main{max-width:1180px;margin:0 auto;padding:0 28px 110px}
 
 /* domaines (accueil) */
 .domaines-liste,.domaines > div:not(.titre-section){display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
-a.domaine{display:block;text-decoration:none;padding:30px 28px 26px;background:linear-gradient(180deg,rgba(255,255,255,.016),transparent 55%);border:1px solid var(--filet);position:relative;transition:border-color .4s,background .4s}
+a.domaine{display:block;text-decoration:none;padding:30px 28px 26px;background:rgba(10,9,8,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--filet);position:relative;transition:border-color .4s,background .4s}
 a.domaine::before{content:'';position:absolute;top:-1px;left:-1px;width:13px;height:13px;border-top:1px solid var(--filet-fort);border-left:1px solid var(--filet-fort);transition:border-color .4s}
-a.domaine:hover{border-color:var(--filet-fort);background:linear-gradient(180deg,rgba(255,255,255,.03),transparent 60%)}
+a.domaine:hover{border-color:var(--filet-fort);background:rgba(17,15,12,.85)}
 a.domaine:hover::before{border-color:var(--or)}
 .d-num{display:block;font-family:var(--display);font-size:13px;letter-spacing:.3em;color:var(--or);margin-bottom:12px}
 a.domaine h3{font-family:var(--display);font-weight:500;font-size:24px;letter-spacing:.04em;color:var(--parchemin);margin-bottom:8px;transition:color .35s}
@@ -106,7 +105,7 @@ a.domaine p,.desc{font-size:16.5px;line-height:1.7;color:var(--parchemin-att)}
 .compte{display:inline-block;margin-top:14px;font-size:13.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchemin-att);opacity:.75}
 
 /* bloc Mémoriser (accueil) */
-.memo-bloc{margin-top:86px;border:1px solid var(--filet);padding:42px 40px;display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:space-between;background:linear-gradient(135deg,rgba(255,255,255,.02),transparent 45%)}
+.memo-bloc{margin-top:86px;border:1px solid var(--filet);padding:42px 40px;display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:space-between;background:rgba(10,9,8,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .memo-bloc h2,.memo-bloc h3{font-family:var(--display);font-weight:500;font-size:30px;letter-spacing:.05em;color:var(--parchemin)}
 .memo-note{font-size:16px;color:var(--parchemin-att);font-style:italic;max-width:430px;margin-top:12px;display:none}
 .memo-droite{min-width:280px;flex:1;max-width:430px}
@@ -133,7 +132,7 @@ a.domaine p,.desc{font-size:16.5px;line-height:1.7;color:var(--parchemin-att)}
 .bandeau-page::after{content:'';display:block;width:220px;height:1px;margin:46px auto 0;background:linear-gradient(to right,transparent,rgba(241,228,194,1) 30%,rgba(241,228,194,1) 70%,transparent)}
 
 /* ════ BIBLIOTHÈQUE ════ */
-.dom{grid-column:1/-1;margin:0 0 18px;border:1px solid var(--filet);background:linear-gradient(180deg,rgba(255,255,255,.012),transparent 45%);transition:border-color .4s}
+.dom{grid-column:1/-1;margin:0 0 18px;border:1px solid var(--filet);background:rgba(10,9,8,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .4s}
 .dom:hover{border-color:rgba(241,228,194,.7)}
 .dom-tete{display:flex;align-items:center;gap:20px;padding:26px 30px;cursor:pointer;user-select:none}
 .dom-num{font-family:var(--display);font-size:13px;letter-spacing:.3em;color:var(--or);border:1px solid var(--filet-fort);padding:4px 11px 3px;white-space:nowrap}
@@ -172,7 +171,7 @@ a.article-lien:hover h3{color:var(--or-pale)}
 
 /* apologie (encadré bibliothèque) */
 .apologie-label{font-family:var(--display);font-size:13.5px;letter-spacing:.4em;text-transform:uppercase;color:var(--or);margin:64px 0 16px;text-align:center}
-.apologie-lien{display:block;max-width:760px;margin:0 auto;text-decoration:none;text-align:center;padding:34px 34px 30px;border:1px solid var(--filet-fort);font-family:var(--display);font-size:24px;letter-spacing:.04em;color:var(--parchemin);background:linear-gradient(180deg,rgba(255,255,255,.022),transparent);transition:color .35s,border-color .35s,box-shadow .4s}
+.apologie-lien{display:block;max-width:760px;margin:0 auto;text-decoration:none;text-align:center;padding:34px 34px 30px;border:1px solid var(--filet-fort);font-family:var(--display);font-size:24px;letter-spacing:.04em;color:var(--parchemin);background:rgba(10,9,8,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:color .35s,border-color .35s,box-shadow .4s}
 .apologie-lien:hover{color:var(--or-pale);border-color:var(--or);box-shadow:0 0 40px rgba(241,228,194,.08)}
 
 /* ════ LECTURE ════ */
@@ -301,7 +300,6 @@ footer{border-top:1px solid var(--filet);padding:32px 28px 26px;text-align:cente
   .lecture p{text-align:left;hyphens:none}
   .rech-boite{padding:26px 20px 22px}
   footer{padding:24px 20px 20px}
-  #rai{left:34%;width:64vw;transform:rotate(14deg)}
 }
 </style>
 </head>

@@ -163,7 +163,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 var cv=document.getElementById('poussiere');if(!cv)return;
 var cx=cv.getContext('2d'),W,H,parts=[];
 var P={x:-1e4,y:-1e4,vx:0,vy:0,t:-1e4};
-function nee(init){return{x:Math.random()*W,y:init?Math.random()*H:(Math.random()<.5?H+8:-8),r:.7+Math.random()*1.25,o:.5+Math.random()*.4,g:168+Math.round(Math.random()*30),ph:Math.random()*6.283,vs:.00035+Math.random()*.0006,th:Math.random()*6.283,sp:.05+Math.random()*.12,vr:(Math.random()-.5)*.016,px:0,py:0};}
+function nee(init){return{x:Math.random()*W,y:init?Math.random()*H:(Math.random()<.5?H+8:-8),r:.7+Math.random()*1.25,o:.5+Math.random()*.4,g:184+Math.round(Math.random()*26),ph:Math.random()*6.283,vs:.00035+Math.random()*.0006,th:Math.random()*6.283,sp:.05+Math.random()*.12,vr:(Math.random()-.5)*.016,px:0,py:0};}
 function taille(){var d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;cv.style.width=W+'px';cv.style.height=H+'px';cx.setTransform(d,0,0,d,0,0);
 var n=Math.min(64,Math.max(18,Math.round(W*H/30000)));parts=[];for(var i=0;i<n;i++)parts.push(nee(true));}
 function bouge(x,y){var t=performance.now();if(P.t>0&&t-P.t<200){P.vx=P.vx*.65+(x-P.x)*.35;P.vy=P.vy*.65+(y-P.y)*.35;}P.x=x;P.y=y;P.t=t;}
@@ -173,6 +173,31 @@ function pas(t){
 requestAnimationFrame(pas);
 if(document.hidden)return;
 cx.clearRect(0,0,W,H);
+/* ── le rai : même lumière que les grains, peint en additif, vivant ── */
+var etroit=W<720;
+var rx=W*(etroit?.5:.62),ry0=-60,L=H*1.6;
+var ang=(etroit?.24:.33)+Math.sin(t*.00009)*.012;
+var ca=Math.cos(ang),sa=Math.sin(ang);
+var bw=Math.max(110,W*(etroit?.26:.15))*(1+.05*Math.sin(t*.00017+1.3));
+var ai=.17*(.8+.2*Math.sin(t*.00022));
+var colR='255,200,96';
+cx.save();
+cx.globalCompositeOperation='source-over';
+cx.translate(rx,ry0);cx.rotate(ang);
+var gT=cx.createLinearGradient(-bw,0,bw,0);
+gT.addColorStop(0,'rgba('+colR+',0)');
+gT.addColorStop(.5,'rgba('+colR+','+ai.toFixed(3)+')');
+gT.addColorStop(1,'rgba('+colR+',0)');
+cx.fillStyle=gT;cx.fillRect(-bw,0,bw*2,L);
+cx.globalCompositeOperation='destination-out';
+var gV=cx.createLinearGradient(0,0,0,L);
+gV.addColorStop(0,'rgba(0,0,0,0)');
+gV.addColorStop(.45,'rgba(0,0,0,.35)');
+gV.addColorStop(.8,'rgba(0,0,0,.85)');
+gV.addColorStop(1,'rgba(0,0,0,1)');
+cx.fillStyle=gV;cx.fillRect(-bw-2,0,bw*2+4,L);
+cx.restore();
+/* ── les grains, qui s'illuminent en traversant le rai ── */
 cx.globalCompositeOperation='lighter';
 var age=t-P.t,actif=age<700,R=130;
 var vP=Math.min(Math.sqrt(P.vx*P.vx+P.vy*P.vy),40);
@@ -187,21 +212,24 @@ if(d2<R*R&&d2>.01){var d=Math.sqrt(d2),f=1-d/R;
 p.px+=P.vx*f*.20;p.py+=P.vy*f*.20;
 p.px+=(ex/d)*f*.22;p.py+=(ey/d)*f*.22;
 lum=f*Math.min(1,vP/16);}}
+var dRai=Math.abs((p.x-rx)*ca-(p.y-ry0)*sa);
+var prof=1-Math.min(1,Math.max(0,(p.y-ry0))/L);
+if(dRai<bw)lum+=(1-dRai/bw)*.5*prof;
 p.px*=.90;p.py*=.90;
 p.x+=dx+p.px;p.y+=dy+p.py;
 if(p.x<-10)p.x=W+10;else if(p.x>W+10)p.x=-10;
 if(p.y<-12||p.y>H+12){parts[i]=nee(false);continue;}
 var sc=.6+.4*(Math.sin(t*p.vs+p.ph)*.5+.5);
 var a=p.o*sc+lum*.4;if(a>1)a=1;
-var ry=(p.r+lum*.9)*3;
+var ryn=(p.r+lum*.9)*3;
 var col='255,'+p.g+',86';
-var gr=cx.createRadialGradient(p.x,p.y,0,p.x,p.y,ry);
+var gr=cx.createRadialGradient(p.x,p.y,0,p.x,p.y,ryn);
 gr.addColorStop(0,'rgba('+col+','+a.toFixed(3)+')');
 gr.addColorStop(.25,'rgba('+col+','+(a*.7).toFixed(3)+')');
 gr.addColorStop(.6,'rgba('+col+','+(a*.25).toFixed(3)+')');
 gr.addColorStop(1,'rgba('+col+',0)');
 cx.fillStyle=gr;
-cx.beginPath();cx.arc(p.x,p.y,ry,0,6.283);cx.fill();
+cx.beginPath();cx.arc(p.x,p.y,ryn,0,6.283);cx.fill();
 }}
 taille();addEventListener('resize',taille);
 requestAnimationFrame(pas);
@@ -675,7 +703,7 @@ ${FIREBASE_HEAD}
 <style>${css}${EXTRA_CSS}${APPEARANCE_CSS}</style>
 </head>
 <body>
-<canvas id="poussiere" aria-hidden="true"></canvas><div id="rai" aria-hidden="true"></div>
+<canvas id="poussiere" aria-hidden="true"></canvas>
 ${header(lang, type, base, otherRel, ctx)}
 <main id="app">
 ${main}
