@@ -163,7 +163,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 var cv=document.getElementById('poussiere');if(!cv)return;
 var cx=cv.getContext('2d'),W,H,parts=[];
 var P={x:-1e4,y:-1e4,vx:0,vy:0,t:-1e4};
-function nee(init){return{x:Math.random()*W,y:init?Math.random()*H:(Math.random()<.5?H+8:-8),r:.7+Math.random()*1.25,o:.3+Math.random()*.28,g:182+Math.round(Math.random()*34),ph:Math.random()*6.283,vs:.00035+Math.random()*.0006,th:Math.random()*6.283,sp:.05+Math.random()*.12,vr:(Math.random()-.5)*.016,px:0,py:0};}
+function nee(init){return{x:Math.random()*W,y:init?Math.random()*H:(Math.random()<.5?H+8:-8),r:.7+Math.random()*1.25,o:.5+Math.random()*.4,g:168+Math.round(Math.random()*30),ph:Math.random()*6.283,vs:.00035+Math.random()*.0006,th:Math.random()*6.283,sp:.05+Math.random()*.12,vr:(Math.random()-.5)*.016,px:0,py:0};}
 function taille(){var d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;cv.style.width=W+'px';cv.style.height=H+'px';cx.setTransform(d,0,0,d,0,0);
 var n=Math.min(64,Math.max(18,Math.round(W*H/30000)));parts=[];for(var i=0;i<n;i++)parts.push(nee(true));}
 function bouge(x,y){var t=performance.now();if(P.t>0&&t-P.t<200){P.vx=P.vx*.65+(x-P.x)*.35;P.vy=P.vy*.65+(y-P.y)*.35;}P.x=x;P.y=y;P.t=t;}
@@ -191,13 +191,14 @@ p.px*=.90;p.py*=.90;
 p.x+=dx+p.px;p.y+=dy+p.py;
 if(p.x<-10)p.x=W+10;else if(p.x>W+10)p.x=-10;
 if(p.y<-12||p.y>H+12){parts[i]=nee(false);continue;}
-var sc=.5+.5*(Math.sin(t*p.vs+p.ph)*.5+.5);
-var a=p.o*sc+lum*.35;if(a>.95)a=.95;
+var sc=.6+.4*(Math.sin(t*p.vs+p.ph)*.5+.5);
+var a=p.o*sc+lum*.4;if(a>1)a=1;
 var ry=(p.r+lum*.9)*3;
-var col='255,'+p.g+',104';
+var col='255,'+p.g+',86';
 var gr=cx.createRadialGradient(p.x,p.y,0,p.x,p.y,ry);
 gr.addColorStop(0,'rgba('+col+','+a.toFixed(3)+')');
-gr.addColorStop(.35,'rgba('+col+','+(a*.5).toFixed(3)+')');
+gr.addColorStop(.25,'rgba('+col+','+(a*.7).toFixed(3)+')');
+gr.addColorStop(.6,'rgba('+col+','+(a*.25).toFixed(3)+')');
 gr.addColorStop(1,'rgba('+col+',0)');
 cx.fillStyle=gr;
 cx.beginPath();cx.arc(p.x,p.y,ry,0,6.283);cx.fill();
