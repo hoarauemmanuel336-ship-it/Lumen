@@ -307,7 +307,7 @@ function buildIndex(lang) {
 const EXTRA_CSS = `
 nav.menu a.lien-langue{font-size:13px;letter-spacing:.2em;opacity:.65}
 nav.menu a.lien-langue:hover{opacity:1}
-@media(max-width:720px){nav.menu a.lien-langue{font-size:16px;letter-spacing:.12em;opacity:1}}
+@media(max-width:720px){nav.menu a.lien-langue{opacity:1}}
 .auth-icone{position:relative}
 .auth-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);display:none;align-items:center;justify-content:center;padding:24px}
 .auth-overlay.ouvert{display:flex}
@@ -593,6 +593,7 @@ const RECH_JS = `(function(){
     if(!termes.length){res.innerHTML='<div class="rech-msg">'+L.hint+'</div>';return;}
     var out=[];
     index.forEach(function(a){
+      if(window.LV_SUPP&&window.LV_SUPP.indexOf(a.s)>=0)return;
       if(!termes.every(function(t){return a._n.indexOf(t)>=0;}))return;
       var sc=0;termes.forEach(function(t){if(a._t.indexOf(t)>=0)sc+=5;if(a._r.indexOf(t)>=0)sc+=2;sc+=1;});
       out.push({a:a,sc:sc});

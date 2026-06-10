@@ -300,16 +300,18 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
   .barre{padding:16px 20px;display:flex;justify-content:space-between}
   nav.menu{
     position:fixed;inset:62px 0 auto 0;
-    flex-direction:column;align-items:stretch;gap:0;
-    background:var(--encre-2);
+    flex-direction:column;align-items:flex-start;gap:0;
+    background:rgba(0,0,0,.97);
+    padding:10px 28px 18px;
     border-bottom:1px solid var(--filet);
     transform:translateY(-130%);transition:transform .35s;
   }
   nav.menu.open,nav.menu.ouvert{transform:none}
   nav.menu a,nav.menu .menu-act,nav.menu .menu-mail{
     width:100%;display:block;text-align:left;
-    padding:18px 20px;
-    border-bottom:1px solid var(--filet);
+    font-family:inherit;font-size:15px;
+    padding:12px 0;
+    border-bottom:none;
   }
   nav.menu .rech-loupe{
     width:auto;justify-content:flex-start;gap:14px;
@@ -351,10 +353,11 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
 .nouv-ligne + .nouv-ligne{margin-top:16px}
 @media(max-width:720px){
   .nouv-titre-panneau{font-size:24px}
-  nav.menu .rech-loupe{width:auto;justify-content:flex-start;gap:14px;padding:18px 20px;border-bottom:1px solid var(--filet);font-family:var(--display);font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--parchemin-att)}
+  nav.menu .rech-loupe{width:100%;justify-content:flex-start;gap:14px;padding:12px 0;border-bottom:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-att)}
   nav.menu .rech-loupe .ll-mob{display:inline}
-  nav.menu .cloche .cloche-point{top:22px;left:34px;right:auto}
-  nav.menu .user-btn{display:flex;align-items:center;justify-content:flex-start;min-height:58px}
+  nav.menu .cloche .cloche-point{top:8px;left:14px;right:auto}
+  nav.menu .user-btn{display:flex;align-items:center;justify-content:flex-start;gap:14px;padding:12px 0;min-height:0;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-att)}
+  nav.menu .user-btn .user-label{position:static;width:auto;height:auto;padding:0;margin:0;overflow:visible;clip:auto;white-space:nowrap}
 }
 @media(min-width:721px){nav.menu .user-btn{width:19px;height:24px;padding-left:0;padding-right:0}}
 
@@ -466,7 +469,7 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
 <style>
 nav.menu .menu-act#lang-btn{background:none;border:none;font-size:13px;letter-spacing:.2em;opacity:.65;text-transform:uppercase;padding:6px 4px}
 nav.menu .menu-act#lang-btn:hover{opacity:1;color:var(--parchemin);border:none}
-@media(max-width:720px){nav.menu .menu-act#lang-btn{font-size:16px;letter-spacing:.12em;opacity:1}}
+@media(max-width:720px){nav.menu .menu-act#lang-btn{opacity:1}}
 .auth-ov{position:fixed;inset:0;z-index:4000;background:rgba(8,8,8,.98);display:none;align-items:center;justify-content:center;padding:24px}
 .auth-ov.on{display:flex}#auth-overlay.ouvert{display:flex}
 .auth-box{position:relative;width:100%;max-width:400px;background:var(--encre-2);border:1px solid var(--filet);padding:40px 34px}

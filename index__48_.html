@@ -433,13 +433,14 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--par
   main{padding:0 20px}
   nav.menu{
     position:fixed;inset:62px 0 auto 0;
-    flex-direction:column;gap:0;align-items:stretch;
-    background:var(--encre-2);
+    flex-direction:column;gap:0;align-items:flex-start;
+    background:rgba(0,0,0,.97);
+    padding:10px 28px 18px;
     border-bottom:1px solid var(--filet);
     transform:translateY(-130%);transition:transform .35s;
   }
   nav.menu.ouvert{transform:none}
-  nav.menu a{padding:18px 20px;border-bottom:1px solid var(--filet)}
+  nav.menu a{font-size:15px;padding:12px 0;width:100%;border-bottom:none}
   .burger{display:block}
   .contexte-bar{display:none}
   .titre-section h2{font-size:26px;white-space:normal}
@@ -461,9 +462,9 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--par
 .vue:has(.domaines-liste) .bandeau-page{border-bottom:none}
 .ll-mob{display:none}
 @media(max-width:720px){
-nav.menu .rech-loupe{width:auto;justify-content:flex-start;gap:14px;padding:18px 20px;border-bottom:1px solid var(--filet);font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--parchemin-att)}
+nav.menu .rech-loupe{width:100%;justify-content:flex-start;gap:14px;padding:12px 0;border-bottom:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-att)}
 nav.menu .rech-loupe .ll-mob{display:inline}
-nav.menu .cloche .cloche-point{top:22px;left:34px;right:auto}
+nav.menu .cloche .cloche-point{top:8px;left:14px;right:auto}
 }
 
 /* ---------- bloc Mémoriser (accueil) ---------- */

@@ -2675,3 +2675,66 @@ Fichiers modifiés : bible-panneau.js, bible.html.
    Plusieurs passages restent séparés par une ligne vide.
 3. Au passage : libelle() disait « Psaume » même sur la page anglaise →
    'Psalm' via NVL.
+
+
+──────────────────────────────────────────────
+SUITE 21 — Les articles supprimés sortent aussi de la barre de recherche
+──────────────────────────────────────────────
+Fichiers modifiés : build-bi.js, admin.js.
+
+Symptôme : un article supprimé disparaissait de la bibliothèque mais restait
+trouvable par la loupe. Cause : la recherche du site a son propre index
+(recherche-fr.js / recherche-en.js, global LUMEN_INDEX, chargé à l'ouverture
+de la loupe), distinct de LV_INDEX ; la purge de la salve 17 ne le touchait
+pas et ne tournait que sur la page bibliothèque.
+Correctif : admin.js interroge sur TOUTES les pages les seuls documents
+supprimés (where supprime == true, requête ciblée) et publie window.LV_SUPP,
+en purgeant aussi LV_INDEX au passage ; le moteur du gabarit écarte ces
+slugs à chaque frappe dans chercher() (robuste même si Firestore répond
+après l'ouverture de la loupe). À l'intégration des fichiers, les articles
+supprimés sortent de recherche-XX.js d'eux-mêmes (générés depuis les
+sources).
+
+
+──────────────────────────────────────────────
+SUITE 22 — Pastille de la cloche : la Bible s'aligne sur l'accent
+──────────────────────────────────────────────
+Fichier modifié : bible.html.
+La pastille des pages Bible (.cloche-pt, #bnouv-pt) était en var(--pourpre)
+(rouge), seule du site : partout ailleurs (.cloche-point du gabarit et de
+Mémoriser) elle est en var(--or), l'accent piloté par l'onglet Apparence du
+panneau. Passée à var(--or) ; la page EN, générée depuis bible.html, suit.
+Visible côté EN parce que les nouveautés n'y avaient pas encore été vues
+(signature locale par navigateur).
+
+
+──────────────────────────────────────────────
+SUITE 23 — Surbrillance de sélection : nettoyage à la désélection totale
+──────────────────────────────────────────────
+Fichier modifié : bible.html.
+Dans majPlateau(), le cas « sélection vide » sortait avant l'appel à
+marqueSelection() (qui synchronise la classe .sel des .vst avec SEL) : en
+retirant le dernier groupe par sa croix ou via « Tout désélectionner », la
+surbrillance restait sur les versets. marqueSelection() est désormais appelé
+aussi dans ce cas (SEL vide → toutes les classes retirées). Page EN générée
+depuis la même source.
+
+
+──────────────────────────────────────────────
+SUITE 24 — Menu mobile : la Bible devient la référence partout
+──────────────────────────────────────────────
+Fichiers modifiés : index__48_.html, memoriser.html, build-bi.js.
+Demande d'Emmanuel (captures mobiles) : le menu mobile de la page Bible est
+le bon ; Mémoriser (EN rabougri, compte sans libellé) et les pages générées
+(rangées cloisonnées) doivent s'y aligner.
+Référence Bible : colonne fond rgba(0,0,0,.97), padding 10px 28px 18px,
+border-bottom sur le conteneur seul ; entrées 15px, padding 12px 0, sans
+bordure par rangée ; icônes en rangées identiques avec libellés 13px,
+letter-spacing .18em, majuscules, gap 14px ; EN = entrée normale.
+Appliqué : gabarit (conteneur, nav.menu a, .rech-loupe, pastille de cloche
+repositionnée top:8px;left:14px, règle build du lien EN réduite à opacity:1)
+et Mémoriser (idem + font-family:inherit sur les boutons du menu, règle
+#lang-btn réduite à opacity:1, .user-label dévoilé sur mobile : le JS y
+écrivait déjà « Compte/Account », il était masqué en style lecteur d'écran).
+Les mécanismes d'ouverture (glissement) sont conservés ; seule l'apparence
+est harmonisée. Bible intouchée.

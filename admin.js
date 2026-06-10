@@ -431,6 +431,13 @@
   }
   function gdoc(p) { return db.doc(p).get().then(function (s) { return s.exists ? s.data() : null; }).catch(function () { return null; }); }
   gdoc('config/apparence').then(function (d) { if (d) applyApparence(d); });
+  db.collection('contenu').where('supprime', '==', true).get().then(function (qs) {
+    var l = []; qs.forEach(function (d2) { l.push(d2.id); });
+    if (!l.length) return;
+    window.LV_SUPP = l;
+    var LX = window.LV_INDEX || {};
+    ['fr', 'en'].forEach(function (ll) { if (LX[ll] && LX[ll].articles) LX[ll].articles = LX[ll].articles.filter(function (a2) { return l.indexOf(a2.id) < 0; }); });
+  }).catch(function () {});
   gdoc('config/nouveautes').then(function (d) {
     if (!d) return;
     window.LV_NEWS = d;
