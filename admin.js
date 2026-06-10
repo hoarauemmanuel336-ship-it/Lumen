@@ -677,6 +677,31 @@
     if (!IDX || !IDX.themes) { hubBody.appendChild(el('div', 'lva-note', T('Index indisponible.', 'Index unavailable.'))); return; }
     hubBody.appendChild(el('div', 'lva-note', T('Toute l\u2019organisation de la bibliothèque : noms et descriptions des domaines, catégories (glisser ☰ pour les ranger, même d\u2019un domaine à l\u2019autre), articles (glisser ⋮⋮ entre les catégories). Rien n\u2019est public avant Enregistrer.', 'The whole library organisation: domain names, categories (drag ☰), articles (drag ⋮⋮ between categories). Nothing is public before you save.')));
     var host = el('div'); hubBody.appendChild(host);
+    function deplacerArticle(row) {
+      var secs = qsa('.lva-bth', host);
+      var groupes = [];
+      secs.forEach(function (sec) {
+        var tNom = (sec.__nom && sec.__nom.value.trim()) || (sec.querySelector('.lva-sec-t') ? sec.querySelector('.lva-sec-t').textContent.replace(/^\u203A\s*/, '') : '');
+        var items = [];
+        qsa('.lva-cat', sec).forEach(function (b) {
+          if (b.contains(row)) return;
+          var nEl = b.querySelector('.lva-cat-nom');
+          var label = b.__aut ? T('Sans cat\u00e9gorie', 'Uncategorized') : ((((nEl && nEl.value) || '').trim()) || T('(cat\u00e9gorie sans nom)', '(unnamed category)'));
+          items.push({ label: label, fn: function () {
+            var par = row.parentNode, nx = row.nextSibling;
+            sec.classList.add('dom-open'); b.classList.add('on');
+            var corps = b.querySelector('.lva-cat-b'); if (!corps) return;
+            corps.appendChild(row);
+            UNDO.push(function () { if (nx && nx.parentNode === par) par.insertBefore(row, nx); else if (par) par.appendChild(row); majCnts(); });
+            markDirty(); majCnts();
+            row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } });
+        });
+        if (items.length) groupes.push({ g: tNom, items: items });
+      });
+      if (!groupes.length) { toast(T('Aucune autre cat\u00e9gorie o\u00f9 d\u00e9placer.', 'No other category to move to.')); return; }
+      choisir(T('D\u00e9placer l\u2019article dans\u2026', 'Move the article to\u2026'), groupes);
+    }
     var titreById = {};
     (IDX.articles || []).forEach(function (a) { titreById[a.id] = a.titre; });
 
@@ -752,30 +777,6 @@
       creesB.forEach(function (id) { if (!connusB[id]) { tousArts.push({ id: id, theme: ovTheme[id] || 'doctrine' }); if (!titreById[id]) titreById[id] = ovTitres[id] || id; } });
       var assigne = {}; tousArts.forEach(function (a) { assigne[a.id] = ovTheme[a.id] || a.theme; });
       var assigneInitial = Object.assign({}, assigne);
-      function deplacerArticle(row) {
-        var secs = qsa(':scope > *', host).filter(function (x) { return x.querySelector && x.querySelector('.lva-cat'); });
-        var groupes = [];
-        secs.forEach(function (sec, ix) {
-          var tNom = (IDX.themes && IDX.themes[ix]) ? IDX.themes[ix].nom : '';
-          var items = [];
-          qsa('.lva-cat', sec).forEach(function (b) {
-            if (row.parentNode && b.contains(row)) return;
-            var nEl = b.querySelector('.lva-cat-nom');
-            var label = b.__aut ? T('Sans catégorie', 'Uncategorized') : ((((nEl && nEl.value) || '').trim()) || T('(sans nom)', '(unnamed)'));
-            items.push({ label: label, fn: function () {
-              var par = row.parentNode, nx = row.nextSibling;
-              b.classList.add('on');
-              var corps = b.querySelector('.lva-cat-b'); if (!corps) return;
-              corps.appendChild(row);
-              UNDO.push(function () { if (nx && nx.parentNode === par) par.insertBefore(row, nx); else if (par) par.appendChild(row); majCnts(); });
-              markDirty(); majCnts();
-              row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } });
-          });
-          if (items.length) groupes.push({ g: tNom, items: items });
-        });
-        choisir(T('Déplacer l\u2019article dans…', 'Move the article to…'), groupes);
-      }
 
       IDX.themes.forEach(function (t) {
         var sec = el('div', 'lva-bth'); sec.__th = t.id;

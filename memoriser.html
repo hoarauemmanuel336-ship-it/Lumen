@@ -38,8 +38,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 
 /* ═══ AUTH ═══ */
-#auth-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
-.auth-panel{width:100%;max-width:400px;border:1px solid var(--filet);background:var(--encre-2);padding:44px 34px;animation:fade .6s ease both}
+#auth-screen{display:none;align-items:center;justify-content:center;position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);padding:24px}
+.auth-panel{position:relative;width:100%;max-width:400px;border:1px solid var(--filet);background:var(--encre-2);padding:40px 34px;animation:fade .35s ease both}
+.auth-paneltitle{font-family:var(--display);font-size:24px;text-align:center;margin-bottom:24px;color:var(--parchemin)}
 .auth-cross{width:48px;height:88px;margin:0 auto 22px;background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2072%20132'%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,2%2031,2'%20fill='%23ffffff'/%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,130%2031,130'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%202,45%202,35'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%2070,45%2070,35'%20fill='%23ffffff'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:contain}
 .auth-logo{font-family:var(--display);font-size:23px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;text-align:center;padding-left:.42em;margin-bottom:34px}
 .auth-tabs{display:flex;border-bottom:1px solid var(--filet-f);margin-bottom:22px}
@@ -478,8 +479,7 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 <!-- ════ AUTH ════ -->
 <div id="auth-screen">
   <div class="auth-panel">
-    <div class="auth-cross"></div>
-    <div class="auth-logo">Lumen</div>
+    <div class="auth-paneltitle" id="auth-paneltitle">Connexion</div>
     <div class="auth-tabs">
       <button class="auth-tab on" id="tab-si">Connexion</button>
       <button class="auth-tab" id="tab-su">Inscription</button>
@@ -1303,7 +1303,7 @@ function toggleSelectAll(){const cs=effectiveCats();const allSel=cs.length&&cs.e
 function applyLang(){
   const l=S.lang,tl=T[l];
   document.documentElement.lang=l; document.title=tl.hdr+' · Lumen Veritatis';
-  $('tab-si').textContent=tl.tab_si; $('tab-su').textContent=tl.tab_su;
+  $('tab-si').textContent=tl.tab_si; $('tab-su').textContent=tl.tab_su; if($('auth-paneltitle'))$('auth-paneltitle').textContent=(S.lang==='fr'?'Connexion':'Sign in');
   $('i-email').placeholder=tl.ph_email; $('i-pw').placeholder=tl.ph_pw; $('i-cf').placeholder=tl.ph_cf;
   $('lbl-google').textContent=tl.google;
   $('auth-or').textContent=l==='fr'?'ou':'or';
