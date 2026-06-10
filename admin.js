@@ -17,7 +17,10 @@
     || (location.pathname === '/bible.html' || location.pathname === '/bible' ? 'fr' : null)
     || localStorage.getItem('lv_lang') || localStorage.getItem('lm_lang') || 'fr';
   var FR = lang !== 'en';
-  var IDX = (function () { var x = window.LV_INDEX; if (!x) return null; return x.articles ? x : (x[lang] || x.fr || null); })();
+  var ADM = 'fr';
+  try { ADM = localStorage.getItem('lva_adm') === 'en' ? 'en' : 'fr'; } catch (_) {}
+  function calcIdx(l) { var x = window.LV_INDEX; if (!x) return null; return x.articles ? x : (x[l] || x.fr || null); }
+  var IDX = calcIdx(lang);
 
   function qsa(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
@@ -94,6 +97,9 @@
     '.lva-color{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(255,255,255,.55);padding:9px 2px}',
     '.lva-color span{font-size:15px}',
     '.lva-color input[type=color]{width:52px;height:30px;background:var(--lvaBG2);border:1px solid var(--lvaL);padding:1px;cursor:pointer}',
+    '.lva-langsw{display:flex;align-items:center;gap:10px;margin-left:auto;margin-right:18px}',
+    '.lva-langsw-lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--lvaM)}',
+    '.lva-langsw .lva-chip{margin:0}',
     '.lva-chip{display:inline-block;background:none;border:1px solid var(--lvaL);color:var(--lvaM);font-family:"Cormorant Garamond",serif;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;padding:8px 15px;cursor:pointer;margin:0 6px 8px 0;transition:all .2s}',
     '.lva-chip.on{background:var(--lvaG);color:var(--lvaBG);border-color:var(--lvaG)}',
     '.lva-chip:hover{border-color:var(--lvaL2)}',
@@ -202,6 +208,7 @@
   function applyCards() {
     qsa('a.article-lien[data-card]').forEach(function (card) {
       var d = contMap && contMap[card.getAttribute('data-card')]; if (!d) return;
+      if (d.supprime) { card.remove(); return; }
       var t = d['titre_' + lang]; if (typeof t === 'string' && t) { var h = card.querySelector('h3'); if (h) h.textContent = t; }
       var r = d['resume_' + lang]; if (typeof r === 'string' && r) { var p = card.querySelector('p'); if (p) p.outerHTML = resumeHtml(r); }
     });
@@ -214,6 +221,25 @@
     if (typeof b === 'string' && b) {
       Array.prototype.slice.call(artEl.children).forEach(function (k) { if (k !== h1) k.remove(); });
       if (h1) h1.insertAdjacentHTML('afterend', b); else artEl.innerHTML = b;
+    }
+    if (typeof d.apologie === 'string') {
+      var vue = artEl.parentNode;
+      var aside = vue ? vue.querySelector('aside.apologie') : null;
+      if (!d.apologie) { if (aside) aside.remove(); }
+      else if (vue) {
+        var cible = null, ix = calcIdx(lang);
+        if (ix) (ix.articles || []).forEach(function (x) { if (x.id === d.apologie) cible = x; });
+        if (cible) {
+          if (!aside) {
+            aside = el('aside', 'apologie');
+            aside.innerHTML = '<div class="apologie-label"></div><a class="apologie-lien"></a>';
+            if (artEl.nextSibling) vue.insertBefore(aside, artEl.nextSibling); else vue.appendChild(aside);
+          }
+          aside.querySelector('.apologie-label').textContent = lang === 'en' ? 'Answering the objections' : 'R\u00e9ponse aux objections';
+          var lnA = aside.querySelector('.apologie-lien');
+          lnA.href = cible.u; lnA.textContent = cible.titre + ' \u2192';
+        }
+      }
     }
   }
   function relocaliser() {
@@ -236,6 +262,7 @@
   }
   function applyThemes(d) {
     d = d || {}; var noms = d.noms || {}, struct = d.struct || {}, cats = d.cats || {}, ordre = d.ordre || {};
+    (d.domSupprimes || []).forEach(function (th) { qsa('[data-theme="' + th + '"]').forEach(function (n) { n.remove(); }); });
     var dor = d.domOrdre;
     if (Array.isArray(dor) && dor.length) {
       var pgs = [];
@@ -404,11 +431,30 @@
   }
   function gdoc(p) { return db.doc(p).get().then(function (s) { return s.exists ? s.data() : null; }).catch(function () { return null; }); }
   gdoc('config/apparence').then(function (d) { if (d) applyApparence(d); });
+  gdoc('config/nouveautes').then(function (d) {
+    if (!d) return;
+    window.LV_NEWS = d;
+    var L = d[lang];
+    if (L && L.length) {
+      var h = document.getElementById('nouv-liste');
+      if (h) h.innerHTML = L.map(function (g) {
+        return '<div class="nouv-groupe"><div class="nouv-date">' + esc(g.d) + '</div>' + (g.items || []).map(function (t) { return '<div class="nouv-ligne">' + esc(t) + '</div>'; }).join('') + '</div>';
+      }).join('');
+    }
+  });
   if (PAGE === 'article') outilsArticle();
-  if (PAGE === 'article') db.collection('contenu').doc(artEl.getAttribute('data-article')).get().then(function (s) { if (s.exists) applyArticle(s.data()); }).catch(function () {});
+  if (PAGE === 'article') db.collection('contenu').doc(artEl.getAttribute('data-article')).get().then(function (s) {
+    if (!s.exists) return;
+    var dd = s.data();
+    if (dd.supprime) { location.replace(lang === 'en' ? '/en/library/' : '/bibliotheque/'); return; }
+    applyArticle(dd);
+  }).catch(function () {});
   if (PAGE === 'biblio') {
     Promise.all([gdoc('config/themes'), db.collection('contenu').get().catch(function () { return null; })]).then(function (r) {
       contMap = {}; if (r[1]) r[1].forEach(function (d) { contMap[d.id] = d.data(); });
+      var suppIdx = {}; Object.keys(contMap).forEach(function (k) { if (contMap[k] && contMap[k].supprime) suppIdx[k] = 1; });
+      var LX = window.LV_INDEX || {};
+      ['fr', 'en'].forEach(function (l) { if (LX[l] && LX[l].articles) LX[l].articles = LX[l].articles.filter(function (a) { return !suppIdx[a.id]; }); });
       cartesCreees(); relocaliser(); applyThemes(r[0]); applyCards();
       var mL = location.search.match(/[?&]lire=([a-z0-9-]+)/); if (mL && contMap[mL[1]]) ouvrirLecture(mL[1]);
     });
@@ -608,6 +654,21 @@
       if (dirty && !confirm(T('Des modifications ne sont pas enregistrées. Fermer quand même ?', 'Unsaved changes. Close anyway?'))) return;
       dirty = false; closeHub();
     });
+    var lsw = el('div', 'lva-langsw');
+    lsw.appendChild(el('span', 'lva-langsw-lab', T('Contenu \u00e9dit\u00e9', 'Edited content')));
+    ['fr', 'en'].forEach(function (l) {
+      var c = el('button', 'lva-chip' + (ADM === l ? ' on' : '')); c.type = 'button'; c.textContent = l.toUpperCase();
+      c.addEventListener('click', function () {
+        if (ADM === l) return;
+        if (dirty && !confirm(T('Des modifications ne sont pas enregistr\u00e9es. Changer de langue quand m\u00eame ?', 'Unsaved changes. Switch language anyway?'))) return;
+        dirty = false; ADM = l;
+        try { localStorage.setItem('lva_adm', l); } catch (_) {}
+        qsa('.lva-chip', lsw).forEach(function (x) { x.classList.toggle('on', x.textContent.toLowerCase() === l); });
+        selectTab(curTab || 'accueil');
+      });
+      lsw.appendChild(c);
+    });
+    head.appendChild(lsw);
     head.appendChild(close);
     w.appendChild(head);
     var tabs = el('div', 'lva-tabs'); w.appendChild(tabs);
@@ -622,7 +683,10 @@
     });
     document.body.appendChild(hub);
   }
+  var curTab = null;
   function selectTab(id) {
+    curTab = id;
+    IDX = calcIdx(ADM);
     if (apQuitte) { apQuitte(); apQuitte = null; }
     Object.keys(hubTabs).forEach(function (k) { hubTabs[k].classList.toggle('on', k === id); });
     hubBody.innerHTML = ''; UNDO = [];
@@ -695,12 +759,13 @@
       var connus = {}; IDX.articles.forEach(function (a) { connus[a.id] = 1; });
       var tous = IDX.articles.slice();
       Object.keys(ov).forEach(function (id) {
-        var dd = ov[id]; if (!dd || !dd.cree || connus[id]) return;
-        tous.push({ id: id, titre: dd['titre_' + lang] || dd.titre_fr || id, resume: dd['resume_' + lang] || '', theme: dd.theme || 'doctrine', u: ((IDX.urls && IDX.urls.biblio) || '/bibliotheque/') + '?lire=' + id, cree: true });
+        var dd = ov[id]; if (!dd || !dd.cree || dd.supprime || connus[id]) return;
+        tous.push({ id: id, titre: dd['titre_' + ADM] || dd.titre_fr || id, resume: dd['resume_' + ADM] || '', theme: dd.theme || 'doctrine', u: ((IDX.urls && IDX.urls.biblio) || '/bibliotheque/') + '?lire=' + id, cree: true });
       });
       tous.forEach(function (a) {
         var o = ov[a.id] || {};
-        var titre = o['titre_' + lang] || a.titre;
+        if (o.supprime) return;
+        var titre = o['titre_' + ADM] || a.titre;
         if (q && (titre + ' ' + a.id).toLowerCase().indexOf(q) < 0) return;
         var li = el('div', 'lva-li'); li.__slug = a.id;
         var h = el('div', 'lva-li-h');
@@ -722,6 +787,24 @@
         list.appendChild(li);
       });
       if (!list.children.length) list.appendChild(el('div', 'lva-note', T('Aucun article ne correspond.', 'No article matches.')));
+      var sup = Object.keys(ov).filter(function (id2) { return ov[id2] && ov[id2].supprime; });
+      if (sup.length) {
+        var bloc = el('div', 'lva-note'); bloc.style.marginTop = '18px';
+        bloc.appendChild(document.createTextNode(T('Supprim\u00e9s (cliquer pour restaurer) : ', 'Deleted (click to restore): ')));
+        sup.forEach(function (id2, i2) {
+          if (i2) bloc.appendChild(document.createTextNode(' \u00b7 '));
+          var lien = el('span', 'lva-link');
+          lien.style.cursor = 'pointer';
+          lien.textContent = (ov[id2]['titre_' + ADM] || ov[id2].titre_fr || id2) + ' \u21ba';
+          lien.addEventListener('click', function () {
+            db.collection('contenu').doc(id2).set({ supprime: false }, { merge: true }).then(function () {
+              ov[id2].supprime = false; rendre(); toast(T('Article restaur\u00e9', 'Article restored'));
+            });
+          });
+          bloc.appendChild(lien);
+        });
+        list.appendChild(bloc);
+      }
       if (voulu) {
         var cible = null; qsa('.lva-li', list).forEach(function (x) { if (x.__slug === voulu) cible = x; });
         voulu = null;
@@ -742,6 +825,19 @@
       var voir = el('a', 'lva-link'); voir.textContent = T('Voir l\u2019article \u2197', 'View the article \u2197'); voir.href = a.u; voir.target = '_blank';
       cV.appendChild(voir); rowMeta.appendChild(cV);
       body.appendChild(rowMeta);
+      body.appendChild(el('label', 'lva-lab', T('R\u00e9ponse aux objections (article apolog\u00e9tique li\u00e9, encadr\u00e9 en fin de page)', 'Answering the objections (linked apologetics article, framed at the end of the page)')));
+      var selApo = el('select', 'lva-in'); selApo.style.cursor = 'pointer';
+      var opG = el('option'); opG.value = '*'; opG.textContent = T('(inchang\u00e9)', '(unchanged)'); selApo.appendChild(opG);
+      var op0 = el('option'); op0.value = ''; op0.textContent = T('\u2014 Aucune \u2014', '\u2014 None \u2014'); selApo.appendChild(op0);
+      var dejaApo = {};
+      (IDX.articles || []).forEach(function (x) { if (x.id === a.id) return; var op = el('option'); op.value = x.id; op.textContent = x.titre; selApo.appendChild(op); dejaApo[x.id] = 1; });
+      Object.keys(hubCache.contenu || {}).forEach(function (id2) {
+        var dd2 = hubCache.contenu[id2];
+        if (!dd2 || !dd2.cree || dd2.supprime || dejaApo[id2] || id2 === a.id) return;
+        var op = el('option'); op.value = id2; op.textContent = dd2['titre_' + ADM] || dd2.titre_fr || id2; selApo.appendChild(op);
+      });
+      body.appendChild(selApo);
+      selApo.addEventListener('change', markDirty);
       body.appendChild(el('label', 'lva-lab', T('Texte de l\u2019article', 'Article body')));
       var ed = editeurTexte(); var doc = ed.doc;
       doc.innerHTML = '<p style="color:rgba(255,255,255,.45)">' + T('Chargement du texte…', 'Loading the text…') + '</p>';
@@ -749,18 +845,36 @@
       var act = el('div', 'lva-actions');
       var sv = el('button', 'lva-btn'); sv.type = 'button'; sv.textContent = T('Enregistrer', 'Save');
       var st = el('span', 'lva-stat');
-      act.appendChild(sv); act.appendChild(st); body.appendChild(act);
+      var del = el('button', 'lva-btn2'); del.type = 'button';
+      del.textContent = T('Supprimer l\u2019article', 'Delete the article');
+      del.style.cssText = 'margin-left:auto;border-color:rgba(199,93,82,.55);color:#c75d52';
+      act.appendChild(sv); act.appendChild(st); act.appendChild(del); body.appendChild(act);
+      del.addEventListener('click', function () {
+        if (!confirm(T('Supprimer cet article ? Il dispara\u00eet du site imm\u00e9diatement, dans les deux langues. (Restaurable en bas de la liste.)', 'Delete this article? It disappears immediately, in both languages. (Restorable at the bottom of the list.)'))) return;
+        st.textContent = T('Suppression\u2026', 'Deleting\u2026');
+        var enLigne = a.cree && hubCache.contenu && hubCache.contenu[a.id] && hubCache.contenu[a.id].cree;
+        var pDel = enLigne ? db.collection('contenu').doc(a.id).delete() : db.collection('contenu').doc(a.id).set({ supprime: true }, { merge: true });
+        pDel.then(function () {
+          hubCache.contenu = hubCache.contenu || {};
+          if (enLigne) delete hubCache.contenu[a.id];
+          else hubCache.contenu[a.id] = Object.assign(hubCache.contenu[a.id] || {}, { supprime: true });
+          dirty = false; rendre(); toast(T('Article supprim\u00e9', 'Article deleted'));
+        }).catch(function (e2) { st.textContent = T('Erreur : ', 'Error: ') + e2.message; });
+      });
       iT.addEventListener('input', markDirty); iR.addEventListener('input', markDirty);
       sel.addEventListener('change', markDirty); doc.addEventListener('input', markDirty);
       /* préremplissage : override Firestore, sinon page publiée */
       db.collection('contenu').doc(a.id).get().then(function (s) {
         var o = s.exists ? s.data() : {};
-        iT.value = o['titre_' + lang] || a.titre;
-        iR.value = (typeof o['resume_' + lang] === 'string') ? o['resume_' + lang] : (a.resume || '');
+        iT.value = o['titre_' + ADM] || a.titre;
+        iR.value = (typeof o['resume_' + ADM] === 'string') ? o['resume_' + ADM] : (a.resume || '');
         sel.value = o.theme || a.theme;
-        var b = o['contenu_' + lang];
+        if (typeof o.apologie === 'string') selApo.value = o.apologie;
+        var b = o['contenu_' + ADM];
         if (typeof b === 'string' && b) { doc.innerHTML = b; return; }
-        return fetch(a.u).then(function (r) { return r.text(); }).then(function (html) {
+        var uSrc = a.u;
+        if (ADM === 'en' && uSrc.indexOf('/en/') !== 0) { var ix = calcIdx('en'), m2 = null; if (ix) (ix.articles || []).forEach(function (x) { if (x.id === a.id) m2 = x; }); if (m2 && m2.u) uSrc = m2.u; }
+        return fetch(uSrc).then(function (r) { return r.text(); }).then(function (html) {
           var d = new DOMParser().parseFromString(html, 'text/html');
           var art = d.querySelector('article.lecture');
           if (!art) { doc.innerHTML = '<p></p>'; return; }
@@ -770,15 +884,16 @@
       }).catch(function () { doc.innerHTML = '<p></p>'; });
       sv.addEventListener('click', function () {
         var d = {};
-        d['titre_' + lang] = iT.value.trim();
-        d['resume_' + lang] = iR.value.trim();
-        d['contenu_' + lang] = doc.innerHTML.trim();
+        d['titre_' + ADM] = iT.value.trim();
+        d['resume_' + ADM] = iR.value.trim();
+        d['contenu_' + ADM] = doc.innerHTML.trim();
+        if (selApo.value !== '*') d.apologie = selApo.value;
         d.theme = sel.value;
         st.textContent = T('Enregistrement…', 'Saving…');
         db.collection('contenu').doc(a.id).set(d, { merge: true }).then(function () {
           hubCache.contenu = hubCache.contenu || {};
           hubCache.contenu[a.id] = Object.assign(hubCache.contenu[a.id] || {}, d);
-          tEl.textContent = d['titre_' + lang] || a.titre;
+          tEl.textContent = d['titre_' + ADM] || a.titre;
           badge.textContent = thById[d.theme] || d.theme;
           dirty = false;
           st.textContent = T('Enregistré — visible par tous.', 'Saved — visible to everyone.');
@@ -895,14 +1010,17 @@
     Promise.all([gdoc('config/themes'), db.collection('contenu').get().catch(function () { return null; })]).then(function (r) {
       var ov = r[0] || {}, noms = ov.noms || {}, struct = ov.struct || {};
       var ovTheme = {}, ovTitres = {}, creesB = [];
-      if (r[1]) r[1].forEach(function (d) { var x = d.data(); if (x.theme) ovTheme[d.id] = x.theme; if (x['titre_' + lang]) ovTitres[d.id] = x['titre_' + lang]; if (x.cree) creesB.push(d.id); });
+      var suppB = {};
+      if (r[1]) r[1].forEach(function (d) { var x = d.data(); if (x.supprime) { suppB[d.id] = 1; return; } if (x.theme) ovTheme[d.id] = x.theme; if (x['titre_' + ADM]) ovTitres[d.id] = x['titre_' + ADM]; if (x.cree) creesB.push(d.id); });
       var connusB = {}; (IDX.articles || []).forEach(function (a) { connusB[a.id] = 1; });
-      var tousArts = (IDX.articles || []).slice();
+      var tousArts = (IDX.articles || []).filter(function (a) { return !suppB[a.id]; });
       creesB.forEach(function (id) { if (!connusB[id]) { tousArts.push({ id: id, theme: ovTheme[id] || 'doctrine' }); if (!titreById[id]) titreById[id] = ovTitres[id] || id; } });
       var assigne = {}; tousArts.forEach(function (a) { assigne[a.id] = ovTheme[a.id] || a.theme; });
       var assigneInitial = Object.assign({}, assigne);
 
-      IDX.themes.forEach(function (t) {
+      var domSupp = {};
+      (ov.domSupprimes || []).forEach(function (x) { domSupp[x] = 1; });
+      IDX.themes.filter(function (t) { return !domSupp[t.id]; }).forEach(function (t) {
         var sec = el('div', 'lva-bth'); sec.__th = t.id;
         var secT = el('div', 'lva-sec-t lva-dom-t');
         var secChev = el('span', 'lva-sec-chev'); secChev.textContent = '\u203A'; secT.appendChild(secChev);
@@ -911,13 +1029,32 @@
         var secG = el('span', 'lva-grip'); secG.textContent = '\u2630'; secG.style.cssText = 'font-size:13px;cursor:grab';
         secG.addEventListener('click', function (e) { e.stopPropagation(); });
         secT.insertBefore(secG, secT.firstChild);
+        var dx = el('span', 'lva-x'); dx.textContent = '\u2715'; dx.title = T('Supprimer le domaine', 'Delete the domain'); dx.style.marginLeft = 'auto';
+        dx.addEventListener('click', function (e) {
+          e.stopPropagation();
+          if (qsa(':scope > .lva-bth', host).length < 2) { toast(T('Impossible : il faut au moins un domaine.', 'Impossible: at least one domain is required.')); return; }
+          if (!confirm(T('Supprimer le domaine \u00ab ' + ((sec.__nom && sec.__nom.value) || t.nom) + ' \u00bb ? Ses articles passent dans \u00ab Sans cat\u00e9gorie \u00bb du premier domaine restant, dans les deux langues. Effectif apr\u00e8s Enregistrer.', 'Delete this domain? Its articles move to the first remaining domain, in both languages. Effective after Save.'))) return;
+          var par = sec.parentNode, nx = sec.nextSibling;
+          var rows = qsa('.lva-art', sec);
+          sec.remove();
+          var dest = host.querySelector('.lva-bth .lva-aut > .lva-cat-b');
+          rows.forEach(function (r2) { if (dest) dest.appendChild(r2); });
+          markDirty(); majCnts();
+          UNDO.push(function () {
+            if (nx && nx.parentNode === par) par.insertBefore(sec, nx); else if (par) par.appendChild(sec);
+            var cb = sec.querySelector('.lva-aut > .lva-cat-b');
+            rows.forEach(function (r2) { if (cb) cb.appendChild(r2); });
+            majCnts();
+          });
+        });
+        secT.appendChild(dx);
         sec.appendChild(secT);
         dragify(secG, sec, { containers: function () { return [host]; }, items: function (c) { return qsa(':scope > .lva-bth', c); }, scroller: function () { return hub; }, onMoved: markDirty });
         var rN = el('div', 'lva-row2');
         var c1 = el('div'); c1.appendChild(el('label', 'lva-lab', T('Nom du domaine', 'Domain name')));
-        var iN = el('input', 'lva-in lva-bth-nom'); iN.value = (noms[t.id] && noms[t.id]['nom_' + lang]) || t.nom; iN.addEventListener('input', markDirty); c1.appendChild(iN);
+        var iN = el('input', 'lva-in lva-bth-nom'); iN.value = (noms[t.id] && noms[t.id]['nom_' + ADM]) || t.nom; iN.addEventListener('input', markDirty); c1.appendChild(iN);
         var c2 = el('div'); c2.appendChild(el('label', 'lva-lab', T('Description (accueil)', 'Description (home)')));
-        var iD = el('textarea', 'lva-ta lva-bth-desc'); iD.rows = 2; iD.value = (noms[t.id] && noms[t.id]['desc_' + lang]) || t.desc || ''; iD.addEventListener('input', markDirty); c2.appendChild(iD);
+        var iD = el('textarea', 'lva-ta lva-bth-desc'); iD.rows = 2; iD.value = (noms[t.id] && noms[t.id]['desc_' + ADM]) || t.desc || ''; iD.addEventListener('input', markDirty); c2.appendChild(iD);
         rN.appendChild(c1); rN.appendChild(c2); sec.appendChild(rN);
         sec.__nom = iN; sec.__desc = iD;
 
@@ -929,7 +1066,7 @@
         if (st && st.order) {
           st.order.forEach(function (cid) {
             if (cid === '__autres') { if (!autSlot) { autSlot = el('div'); liste.appendChild(autSlot); } return; }
-            var nm = ((st.names || {})[cid] || {})['nom_' + lang] || cid;
+            var nm = ((st.names || {})[cid] || {})['nom_' + ADM] || cid;
             var slugs = (((st.arts || {})[cid]) || []).filter(garde);
             liste.appendChild(blocCat(sec, cid, nm, slugs, ovTitres, false));
           });
@@ -956,6 +1093,24 @@
         host.appendChild(sec);
       });
       majCnts();
+      if (ov.domSupprimes && ov.domSupprimes.length) {
+        var blocD = el('div', 'lva-note');
+        blocD.appendChild(document.createTextNode(T('Domaines supprim\u00e9s (cliquer pour restaurer) : ', 'Deleted domains (click to restore): ')));
+        ov.domSupprimes.forEach(function (id2, i2) {
+          if (i2) blocD.appendChild(document.createTextNode(' \u00b7 '));
+          var nmD = id2; IDX.themes.forEach(function (t2) { if (t2.id === id2) nmD = t2.nom; });
+          var lien = el('span', 'lva-link'); lien.style.cursor = 'pointer';
+          lien.textContent = nmD + ' \u21ba';
+          lien.addEventListener('click', function () {
+            var reste = ov.domSupprimes.filter(function (x) { return x !== id2; });
+            db.doc('config/themes').set({ domSupprimes: reste, domOrdre: (ov.domOrdre || []).concat([id2]) }, { merge: true }).then(function () {
+              toast(T('Domaine restaur\u00e9', 'Domain restored')); selectTab('biblio');
+            });
+          });
+          blocD.appendChild(lien);
+        });
+        hubBody.appendChild(blocD);
+      }
 
       var stick = el('div', 'lva-stick');
       var sv = el('button', 'lva-btn'); sv.type = 'button'; sv.textContent = T('Enregistrer', 'Save');
@@ -967,9 +1122,10 @@
       sv.addEventListener('click', function () {
         var d = { noms: {}, struct: {} }, finals = {}, idsPris = {};
         d.domOrdre = qsa(':scope > .lva-bth', host).map(function (sec) { return sec.__th; });
+        d.domSupprimes = IDX.themes.map(function (t2) { return t2.id; }).filter(function (id2) { return d.domOrdre.indexOf(id2) < 0; });
         qsa('.lva-bth', host).forEach(function (sec) {
           var th = sec.__th;
-          d.noms[th] = {}; d.noms[th]['nom_' + lang] = sec.__nom.value.trim(); d.noms[th]['desc_' + lang] = sec.__desc.value.trim();
+          d.noms[th] = {}; d.noms[th]['nom_' + ADM] = sec.__nom.value.trim(); d.noms[th]['desc_' + ADM] = sec.__desc.value.trim();
           var stt = { order: [], names: {}, arts: {} };
           qsa(':scope .lva-cat', sec).forEach(function (b) {
             var slugs = qsa('.lva-art', b).map(function (r) { finals[r.__slug] = th; return r.__slug; });
@@ -978,7 +1134,7 @@
             idsPris[b.__cid] = 1;
             stt.order.push(b.__cid);
             var nEl = b.querySelector('.lva-cat-nom');
-            var o = {}; o['nom_' + lang] = nEl ? nEl.value.trim() : b.__cid; stt.names[b.__cid] = o;
+            var o = {}; o['nom_' + ADM] = nEl ? nEl.value.trim() : b.__cid; stt.names[b.__cid] = o;
             stt.arts[b.__cid] = slugs;
           });
           d.struct[th] = stt;
@@ -1105,17 +1261,17 @@
     act.appendChild(sv); act.appendChild(st); hubBody.appendChild(act);
     gdoc('config/accueil').then(function (d) {
       d = d || {};
-      KEYS.forEach(function (k) { var o = d[k[0]]; if (o && typeof o['t_' + lang] === 'string') fields[k[0]].value = o['t_' + lang]; });
+      KEYS.forEach(function (k) { var o = d[k[0]]; if (o && typeof o['t_' + ADM] === 'string') fields[k[0]].value = o['t_' + ADM]; });
     });
     sv.addEventListener('click', function () {
       var d = {};
-      KEYS.forEach(function (k) { var val = fields[k[0]].value.trim(); if (val) { d[k[0]] = {}; d[k[0]]['t_' + lang] = val; } });
+      KEYS.forEach(function (k) { var val = fields[k[0]].value.trim(); if (val) { d[k[0]] = {}; d[k[0]]['t_' + ADM] = val; } });
       st.textContent = T('Enregistrement…', 'Saving…');
       db.doc('config/accueil').set(d, { merge: true }).then(function () { dirty = false; st.textContent = T('Enregistré.', 'Saved.'); applyAccueil(d); })
         .catch(function (e) { st.textContent = T('Erreur : ', 'Error: ') + e.message; });
     });
     hubBody.appendChild(el('div', 'lva-sec-t', T('Notifications (cloche)', 'Notifications (bell)')));
-    hubBody.appendChild(el('div', 'lva-note', T('Le journal des nouveautés, mois par mois, une annonce par ligne. Les changements deviennent publics à la prochaine publication du site (onglet Exporter, bouton \u00AB Publier le site \u00BB).', 'The news journal, month by month, one item per line. Changes go public at the next site publication (Export tab, \u201CPublish the site\u201D button).')));
+    hubBody.appendChild(el('div', 'lva-note', T('Le journal des nouveaut\u00e9s, mois par mois, une annonce par ligne, dans la langue choisie en haut du panneau. \u00c0 l\u2019enregistrement, le journal devient imm\u00e9diatement celui que voient tous les visiteurs.', 'The news journal, month by month, one item per line, in the language chosen at the top of the panel. On save, it immediately becomes what every visitor sees.')));
     var nvHost = el('div'); hubBody.appendChild(nvHost);
     var nvDoc = {};
     function nvBloc(g) {
@@ -1142,12 +1298,20 @@
     function nvDom() { return qsa('.nouv-groupe').map(function (g) { var dEl = g.querySelector('.nouv-date'); return { d: dEl ? dEl.textContent : '', items: qsa('.nouv-ligne', g).map(function (x) { return x.textContent; }) }; }); }
     gdoc('config/nouveautes').then(function (d) {
       nvDoc = d || {};
-      nvRemplir((nvDoc[lang] && nvDoc[lang].length) ? nvDoc[lang] : nvDom());
+      nvRemplir((nvDoc[ADM] && nvDoc[ADM].length) ? nvDoc[ADM] : (ADM === lang ? nvDom() : []));
     });
     nvSv.addEventListener('click', function () {
-      nvDoc[lang] = qsa(':scope > .lva-li', nvHost).map(function (b) { return b.__lire(); }).filter(function (g) { return g.d || g.items.length; });
+      nvDoc[ADM] = qsa(':scope > .lva-li', nvHost).map(function (b) { return b.__lire(); }).filter(function (g) { return g.d || g.items.length; });
       nvSt.textContent = T('Enregistrement\u2026', 'Saving\u2026');
-      db.doc('config/nouveautes').set(nvDoc).then(function () { dirty = false; nvSt.textContent = T('Enregistré — public à la prochaine publication.', 'Saved — public at next publication.'); })
+      db.doc('config/nouveautes').set(nvDoc).then(function () {
+        dirty = false;
+        window.LV_NEWS = nvDoc;
+        if (ADM === lang && nvDoc[lang] && nvDoc[lang].length) {
+          var h2 = document.getElementById('nouv-liste');
+          if (h2) h2.innerHTML = nvDoc[lang].map(function (g) { return '<div class="nouv-groupe"><div class="nouv-date">' + esc(g.d) + '</div>' + (g.items || []).map(function (t2) { return '<div class="nouv-ligne">' + esc(t2) + '</div>'; }).join('') + '</div>'; }).join('');
+        }
+        nvSt.textContent = T('Enregistr\u00e9 \u2014 visible par tous.', 'Saved \u2014 visible to everyone.');
+      })
         .catch(function (e2) { nvSt.textContent = T('Erreur : ', 'Error: ') + e2.message; });
     });
 
@@ -1165,7 +1329,7 @@
   function tabExport() {
     hubBody.appendChild(el('div', 'lva-note', T('L\u2019historique de tes modifications en ligne. Par défaut, seules les nouveautés depuis ton dernier envoi s\u2019affichent : copie-les ou télécharge-les pour me les transmettre, puis « Marquer comme transmis » fait repartir l\u2019historique de zéro. Rien n\u2019est effacé du site : toutes tes modifications restent en place.', 'The history of your online changes. By default, only what changed since your last handoff is shown: copy or download it, then \u201cMark as handed off\u201d resets the history. Nothing is erased from the site.')));
     var modes = [['depuis', T('Depuis le dernier envoi', 'Since last handoff')], ['tout', T('Tout l\u2019état en ligne', 'Everything online')]];
-    var scopes = [['tout', T('Tout', 'All')], ['apparence', T('Apparence', 'Appearance')], ['themes', T('Bibliothèque', 'Library')], ['accueil', T('Accueil', 'Home')], ['memoriser', 'Mémoriser'], ['contenu', T('Articles', 'Articles')]];
+    var scopes = [['tout', T('Tout', 'All')], ['apparence', T('Apparence', 'Appearance')], ['themes', T('Bibliothèque', 'Library')], ['accueil', T('Accueil', 'Home')], ['nouveautes', T('Nouveautés', 'News')], ['memoriser', 'Mémoriser'], ['contenu', T('Articles', 'Articles')]];
     var mode = 'depuis', scope = 'tout', data = null, prevH = {}, curH = {};
     var rowM = el('div'); rowM.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px'; hubBody.appendChild(rowM);
     var rowS = el('div'); rowS.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px'; hubBody.appendChild(rowS);
@@ -1206,13 +1370,13 @@
     det.appendChild(clr); hubBody.appendChild(det);
     function hash(x) { var h = 5381, i; for (i = 0; i < x.length; i++) { h = ((h << 5) + h + x.charCodeAt(i)) | 0; } return (h >>> 0).toString(36); }
     function rassembler() {
-      return Promise.all([gdoc('config/apparence'), gdoc('config/themes'), gdoc('config/accueil'), gdoc('config/memoriser'), db.collection('contenu').get().catch(function () { return null; }), gdoc('config/transmis')])
+      return Promise.all([gdoc('config/apparence'), gdoc('config/themes'), gdoc('config/accueil'), gdoc('config/memoriser'), db.collection('contenu').get().catch(function () { return null; }), gdoc('config/transmis'), gdoc('config/nouveautes')])
         .then(function (r) {
-          var o = { apparence: r[0], themes: r[1], accueil: r[2], memoriser: r[3], contenu: {} };
+          var o = { apparence: r[0], themes: r[1], accueil: r[2], memoriser: r[3], nouveautes: r[6], contenu: {} };
           if (r[4]) r[4].forEach(function (d) { o.contenu[d.id] = d.data(); });
           prevH = (r[5] && r[5].hashes) || {};
           curH = {};
-          ['apparence', 'themes', 'accueil', 'memoriser'].forEach(function (k) { if (o[k]) curH['config/' + k] = hash(JSON.stringify(o[k])); });
+          ['apparence', 'themes', 'accueil', 'memoriser', 'nouveautes'].forEach(function (k) { if (o[k]) curH['config/' + k] = hash(JSON.stringify(o[k])); });
           Object.keys(o.contenu).forEach(function (sl) { curH['contenu/' + sl] = hash(JSON.stringify(o.contenu[sl])); });
           return o;
         });
@@ -1221,7 +1385,7 @@
     function payload() {
       if (!data) return null;
       var o = {}, vide = true;
-      ['apparence', 'themes', 'accueil', 'memoriser'].forEach(function (k) {
+      ['apparence', 'themes', 'accueil', 'memoriser', 'nouveautes'].forEach(function (k) {
         if (scope !== 'tout' && scope !== k) return;
         if (!data[k]) return;
         if (mode === 'depuis' && !change('config/' + k)) return;
@@ -1269,7 +1433,7 @@
       st.textContent = T('Effacement…', 'Clearing…');
       rassembler().then(function (o) {
         var b = db.batch();
-        ['apparence', 'themes', 'accueil', 'memoriser'].forEach(function (k) { if (o[k]) b.delete(db.doc('config/' + k)); });
+        ['apparence', 'themes', 'accueil', 'memoriser', 'nouveautes'].forEach(function (k) { if (o[k]) b.delete(db.doc('config/' + k)); });
         Object.keys(o.contenu || {}).forEach(function (sl) { b.delete(db.collection('contenu').doc(sl)); });
         b.delete(db.doc('config/transmis'));
         return b.commit();

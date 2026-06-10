@@ -2560,3 +2560,67 @@ Réponse aux objections est entièrement cliquable (.apologie-lien::after
 inset:0 sur conteneur position:relative). .art-nav garde sa grille 1fr 1fr
 (une colonne sous 640px). Règles .art-nav dans build-bi.js, .apologie dans
 index__48_.html (CSS repris pour les pages d'articles).
+
+
+──────────────────────────────────────────────
+SUITE 17 — Panneau d'admin : langue propre, suppressions, nouveautés immédiates
+──────────────────────────────────────────────
+Fichiers modifiés : admin.js, bible.html, memoriser.html, build-bi.js.
+
+1. LANGUE DU PANNEAU (ADM, clé lva_adm). Le hub a sa bascule « Contenu édité :
+   FR / EN » dans son en-tête, indépendante de la langue du site. Tous les
+   contenus du hub la suivent : Articles (titre_/resume_/contenu_+ADM, liste
+   depuis LV_INDEX[ADM], préremplissage du texte EN depuis la page /en/),
+   Bibliothèque (nom_/desc_+ADM), Accueil (t_+ADM), Nouveautés (nvDoc[ADM]).
+   Les fonctions apply* (visiteurs) restent sur la langue de la page. IDX est
+   recalculé par selectTab (calcIdx(ADM)).
+2. SUPPRESSION D'ARTICLES. Bouton rouge dans la fiche : flag {supprime:true}
+   (langue-global, doc partagé) ; un article créé en ligne est réellement
+   effacé. Application immédiate pour tous : carte retirée (applyCards),
+   page article → redirection bibliothèque, LV_INDEX purgé sur la page
+   bibliothèque (recherche). Liste « Supprimés (cliquer pour restaurer) »
+   en bas de l'onglet Articles. À l'intégration des fichiers : retirer
+   physiquement les articles porteurs du flag.
+3. SUPPRESSION DE DOMAINES. Croix sur l'en-tête de domaine (Bibliothèque) :
+   ses articles passent dans « Sans catégorie » du premier domaine restant
+   (réassignation theme dans les deux langues), effectif après Enregistrer ;
+   config/themes porte domSupprimes + domOrdre. applyThemes retire du DOM
+   tout [data-theme] supprimé (sections bibliothèque + cartes accueil).
+   Garde : impossible de supprimer le dernier domaine. Note de restauration
+   sous la liste. À l'intégration : retirer le domaine des fichiers.
+4. NOUVEAUTÉS IMMÉDIATES ET BILINGUES. admin.js charge config/nouveautes au
+   boot pour TOUS : window.LV_NEWS + réécriture de #nouv-liste (pages
+   générées). bible.html : NVL + nvSrc() (surcouche puis NEWS), la paire TR
+   du build devient ["var NVL = 'fr';" → 'en']. memoriser : newsGroups lit
+   LV_NEWS d'abord. L'enregistrement met à jour la page sur-le-champ ;
+   messages et notes du hub réécrits (« visible par tous »).
+5. EXPORTER : périmètre « Nouveautés » ajouté partout (rassembler, hashes,
+   payload, effacement) — config/nouveautes ne sortait jamais dans l'export.
+Pièges notés : ne JAMAIS basculer les apply* sur ADM ; l'injection d'admin.js
+dans les pages Bible reste postérieure à la passe TR (intégrité vérifiée).
+
+
+──────────────────────────────────────────────
+SUITE 18 — Espacement de l'encadré apologie + champ d'admin
+──────────────────────────────────────────────
+Fichiers modifiés : index__48_.html, admin.js.
+
+1. ESPACEMENT. L'encadré « Réponse aux objections » est désormais à 18 px de
+   la navigation précédent/suivant, soit exactement le gap interne de
+   .art-nav : .vue:has(.apologie) .lecture passe à padding-bottom:0 et
+   .apologie à margin:18px auto 96px (les deux règles dans index__48_.html,
+   source du CSS des pages).
+2. CHAMP D'ADMIN. La fiche de chaque article (onglet Articles) a un sélecteur
+   « Réponse aux objections » : (inchangé) = ne rien écrire ; — Aucune — = '' ;
+   sinon le slug de l'article apologétique choisi (articles des fichiers via
+   IDX + articles créés en ligne du cache, supprimés exclus, lui-même exclu).
+   Réglage langue-global (d.apologie sur le doc partagé), comme le domaine.
+3. APPLICATION EN DIRECT. applyArticle gère d.apologie pour tous les
+   visiteurs : '' retire l'aside ; un slug crée ou met à jour l'encadré
+   (aside.apologie inséré juste après article.lecture, markup du build,
+   libellé FR « Réponse aux objections » / EN « Answering the objections »,
+   cible résolue par calcIdx(lang) → titre + URL de la bonne langue).
+   Cible créée en ligne : l'URL ?lire= de la bibliothèque fonctionne aussi.
+4. EXPORT. Rien à ajouter : les docs de la collection contenu sortent
+   entiers, d.apologie suit. À l'intégration des fichiers : reporter le champ
+   dans APOLOGIES (build-bi.js).

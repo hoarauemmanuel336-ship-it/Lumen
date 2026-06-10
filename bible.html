@@ -557,18 +557,23 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
   document.getElementById('brech-champ').addEventListener('input', function(){ rendRecherche(this.value); });
   document.getElementById('brech-champ').addEventListener('keydown', function(e){ if (e.key === 'Enter') brechVa(); });
   document.getElementById('brech-res').addEventListener('click', function(e){ if (e.target.closest && e.target.closest('#brech-go')) brechVa(); });
+  var NVL = 'fr';
+  function nvSrc(){
+    var w = window.LV_NEWS;
+    return (w && w[NVL] && w[NVL].length) ? w[NVL] : (NEWS[NVL] || []);
+  }
   function sigNouv(){
-    var n = (NEWS.fr || []);
+    var n = nvSrc();
     return n.length + '|' + n.reduce(function(a, g){ return a + (g.items || []).length; }, 0);
   }
   function majPoint(){
     var pt = document.getElementById('bnouv-pt');
     var vu = null; try { vu = localStorage.getItem('lumen_nouv_vu'); } catch(e){}
-    pt.style.display = (vu === sigNouv() || !(NEWS.fr || []).length) ? 'none' : 'block';
+    pt.style.display = (vu === sigNouv() || !nvSrc().length) ? 'none' : 'block';
   }
   document.getElementById('bnouv-ouvrir').addEventListener('click', function(){
     var z = document.getElementById('bnouv-liste');
-    z.innerHTML = (NEWS.fr || []).map(function(g){
+    z.innerHTML = nvSrc().map(function(g){
       return '<div class="nv-d">' + esc(g.d) + '</div>' +
              (g.items || []).map(function(t){ return '<div class="nv-l">' + esc(t) + '</div>'; }).join('');
     }).join('') || '<div class="b-vide">Rien de nouveau pour le moment.</div>';

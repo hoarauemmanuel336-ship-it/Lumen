@@ -1073,7 +1073,7 @@ if (fs.existsSync('bible.html')) {
       ['Le texte n\\u2019a pas pu \\u00eatre charg\\u00e9.', 'The text could not be loaded.'],
       ['L\\u2019index de la Bible n\\u2019a pas pu \\u00eatre charg\\u00e9.', 'The Bible index could not be loaded.'],
       ["'fr-FR'", "'en-GB'"],
-      ['NEWS.fr', 'NEWS.en'],
+      ["var NVL = 'fr';", "var NVL = 'en';"],
       ['window.LV_INDEX.fr', 'window.LV_INDEX.en'],
       ['bible-data/', 'bible-data-en/'],
     ];

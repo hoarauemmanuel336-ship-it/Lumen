@@ -1239,7 +1239,7 @@ function getOptions(item){
 
 
 // ════════ UI : NOUVEAUTÉS / NOTIFICATIONS ════════
-function newsGroups(){return NEWS[S.lang]||NEWS.fr;}
+function newsGroups(){var w=window.LV_NEWS;if(w&&w[S.lang]&&w[S.lang].length)return w[S.lang];return NEWS[S.lang]||NEWS.fr;}
 function newsSignature(){var gs=(typeof NEWS!=='undefined'&&NEWS.fr)?NEWS.fr:[];return gs.length+'|'+gs.reduce((n,g)=>n+(g.items?g.items.length:0),0);}
 function newsSeen(){try{return localStorage.getItem('lumen_nouv_vu');}catch(e){return null;}}
 function updateNewsDot(){const b=$('cloche-ouvrir'); if(!b)return; const pt=b.querySelector('.cloche-point'); if(pt)pt.style.display=(newsSeen()===newsSignature()?'none':'block');}
