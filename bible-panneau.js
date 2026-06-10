@@ -4,7 +4,19 @@
 (function(){
   'use strict';
   if (document.getElementById('bp-tab')) return;
-  if (location.pathname === '/bible.html') return;
+  if (location.pathname === '/bible.html' || location.pathname === '/en/bible.html') return;
+  var BP_EN = location.pathname.indexOf('/en/') === 0;
+  var BP_DATA = BP_EN ? '/bible-data-en/' : BP_DATA;
+  var BP_PAGE = BP_EN ? '/en/bible.html' : '/bible.html';
+  var BP_T = BP_EN ? {
+    bible: 'The Holy Bible', ouvrir: 'Open the Bible', page: 'Open the page',
+    ph: 'Reference: Matthew 7:6-8', chs: 'Chapters', charge: 'Loading\u2026',
+    errTxt: 'The text could not be loaded.', errBible: 'The Bible could not be loaded.'
+  } : {
+    bible: 'La Sainte Bible', ouvrir: BP_T.ouvrir, page: 'Ouvrir la page',
+    ph: 'R\u00e9f\u00e9rence : Matthieu 7:6-8', chs: BP_T.chs, charge: 'Chargement\u2026',
+    errTxt: 'Le texte n\u2019a pas pu \u00eatre charg\u00e9.', errBible: 'La Bible n\u2019a pas pu \u00eatre charg\u00e9e.'
+  };
 
   /* ───────── Styles ───────── */
   var css = ''
@@ -80,7 +92,7 @@
   tab.id = 'bp-tab';
   tab.setAttribute('role', 'button');
   tab.setAttribute('tabindex', '0');
-  tab.setAttribute('aria-label', 'Ouvrir la Bible');
+  tab.setAttribute('aria-label', BP_T.ouvrir);
   tab.textContent = 'Bible';
   var voile = document.createElement('div');
   voile.id = 'bp-voile';
@@ -88,16 +100,16 @@
   pan.id = 'bp-pan';
   pan.innerHTML = ''
     + '<div class="bp-tete">'
-    + '  <span class="bp-titre">La Sainte Bible</span>'
-    + '  <a class="bp-page" href="/bible.html">Ouvrir la page</a>'
+    + '  <span class="bp-titre">' + BP_T.bible + '</span>'
+    + '  <a class="bp-page" href="' + BP_PAGE + '">' + BP_T.page + '</a>'
     + '  <span class="bp-fermer" id="bp-fermer" role="button" tabindex="0" aria-label="Fermer">\u2715</span>'
     + '</div>'
     + '<div class="bp-refrow">'
-    + '  <input class="bp-ref" id="bp-ref" type="text" placeholder="R\u00e9f\u00e9rence : Matthieu 7:6-8" autocomplete="off" spellcheck="false">'
+    + '  <input class="bp-ref" id="bp-ref" type="text" placeholder="' + BP_T.ph + '" autocomplete="off" spellcheck="false">'
     + '  <span class="bp-aller" id="bp-aller" role="button" tabindex="0">Aller</span>'
     + '  <span class="bp-err" id="bp-err"></span>'
     + '</div>'
-    + '<div class="bp-corps" id="bp-corps"><div class="bp-charge">Chargement\u2026</div></div>';
+    + '<div class="bp-corps" id="bp-corps"><div class="bp-charge">' + BP_T.charge + '</div></div>';
   document.body.appendChild(tab);
   document.body.appendChild(voile);
   document.body.appendChild(pan);
@@ -110,7 +122,7 @@
   }
   function livreData(slug){
     if (CACHE[slug]) return Promise.resolve(CACHE[slug]);
-    return charge('/bible-data/' + slug + '.json').then(function(d){ CACHE[slug] = d; return d; });
+    return charge(BP_DATA + slug + '.json').then(function(d){ CACHE[slug] = d; return d; });
   }
   function infoLivre(slug){
     for (var i = 0; i < IDX.livres.length; i++) if (IDX.livres[i].slug === slug) return IDX.livres[i];
@@ -138,6 +150,35 @@
     'jacques':['jc','jac'],'1-pierre':['1p','1pi'],'2-pierre':['2p','2pi'],'1-jean':['1jn'],'2-jean':['2jn'],'3-jean':['3jn'],
     'jude':['jud'],'apocalypse':['ap','apc','apoc']
   };
+  /* noms alternatifs selon les traditions et noms anglais, additifs */
+  (function(){
+    var X = {
+      'josue':['joshua','josh'],'juges':['judg','jdg'],
+      '1-samuel':['1samuel'],'2-samuel':['2samuel'],
+      '1-rois':['3rois','3r','3kings'],'2-rois':['4rois','4r','4kings'],
+      '1-chroniques':['1chronicles','1chron','1paralipomenes'],'2-chroniques':['2chronicles','2chron','2paralipomenes'],
+      'esdras':['ezra','1esdras'],'nehemie':['nehemiah','nehemias','2esdras','neemie'],'tobie':['tobit'],
+      'psaumes':['psalm','pss'],
+      'ecclesiaste':['qoheleth','coheleth','eccles'],
+      'cantique-des-cantiques':['songofsongs','songofsolomon','canticles','canticleofcanticles'],
+      'ecclesiastique':['sirach','bensira','sirac','ecclus'],
+      'sagesse':['wisdom','wis','sagessedesalomon','wisdomofsolomon'],
+      'isaie':['isaiah'],'jeremie':['jeremiah'],
+      'lamentations':['threnes','lamentationsdejeremie'],
+      'ezechiel':['ezekiel','ezek'],
+      'osee':['hosea','hos'],'abdias':['obadiah','obad'],'jonas':['jonah'],'michee':['micah','mic'],
+      'habacuc':['habakkuk'],'sophonie':['zephaniah','zeph'],'aggee':['haggai','hag'],
+      'zacharie':['zechariah','zech'],'malachie':['malachi'],
+      '1-maccabees':['1maccabees'],'2-maccabees':['2maccabees'],
+      'matthieu':['matthew'],'marc':['mk'],'luc':['lk'],'actes':['actsoftheapostles','actesdesapotres'],
+      '1-thessaloniciens':['1thessalonians'],'2-thessaloniciens':['2thessalonians'],
+      '1-timothee':['1timothy'],'2-timothee':['2timothy'],
+      'jacques':['jas'],'1-pierre':['1peter','1pet'],'2-pierre':['2peter','2pet'],
+      '1-jean':['1john'],'2-jean':['2john'],'3-jean':['3john'],
+      'apocalypse':['revelation','rev','revelations','apocalypsedejean']
+    };
+    Object.keys(X).forEach(function(k){ ALIAS[k] = (ALIAS[k] || []).concat(X[k]); });
+  })();
   var DICO = null;
   function norm(s){
     return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '');
@@ -154,6 +195,13 @@
     var t = norm(token);
     if (!t) return null;
     if (DICO[t]) return DICO[t];
+    var arts = ['les','le','la','l','the'];
+    for (var ai = 0; ai < arts.length; ai++) {
+      if (t.indexOf(arts[ai]) === 0) {
+        var t2 = t.slice(arts[ai].length);
+        if (t2.length >= 2 && DICO[t2]) return DICO[t2];
+      }
+    }
     var cands = [];
     IDX.livres.forEach(function(l){ if (norm(l.nom).indexOf(t) === 0) cands.push(l.slug); });
     return (cands.length === 1 && t.length >= 2) ? cands[0] : null;
@@ -162,7 +210,7 @@
     var s = String(txt || '').trim().toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim();
     if (!s) return null;
-    var m = s.match(/^([1-3]?\s*[a-z']+(?:[ -][a-z']+)*)(?:\s+(\d{1,3})(?:\s*[:,.]\s*(\d{1,3})(?:\s*[-\u2013a]\s*(\d{1,3}))?)?)?$/);
+    var m = s.match(/^([1-4]?\s*[a-z']+(?:[ -][a-z']+)*)(?:\s+(\d{1,3})(?:\s*[:,.]\s*(\d{1,3})(?:\s*[-\u2013a]\s*(\d{1,3}))?)?)?$/);
     if (!m) return null;
     var slug = trouveLivre(m[1]);
     if (!slug) return null;
@@ -207,7 +255,7 @@
     if (!inf) return rendLivres();
     if (inf.nch === 1) return rendLect(slug, 1, 0);
     sauveEtat({ v: 'chap', slug: slug });
-    var h = '<div class="bp-fil"><span data-bp="livres">La Sainte Bible</span></div>'
+    var h = '<div class="bp-fil"><span data-bp="livres">' + BP_T.bible + '</span></div>'
           + '<div class="bp-livre-titre">' + esc(inf.nom) + '</div><div class="bp-chaps">';
     for (var i = 1; i <= inf.nch; i++) h += '<div class="bp-chap" data-bp="chap" data-slug="' + slug + '" data-n="' + i + '">' + i + '</div>';
     h += '</div>';
@@ -218,14 +266,14 @@
     var inf = infoLivre(slug);
     if (!inf) return rendLivres();
     sauveEtat({ v: 'lect', slug: slug, n: n });
-    corps.innerHTML = '<div class="bp-charge">Chargement\u2026</div>';
+    corps.innerHTML = '<div class="bp-charge">' + BP_T.charge + '</div>';
     livreData(slug).then(function(d){
       var ch = null;
       for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === n) { ch = d.chapitres[i]; break; }
       if (!ch) return rendChaps(slug);
       var ps = (slug === 'psaumes');
       var nomCh = ps ? 'Psaume ' + n : esc(inf.nom) + (inf.nch > 1 ? ' ' + n : '');
-      var h = '<div class="bp-fil"><span data-bp="livres">La Sainte Bible</span> \u00b7 '
+      var h = '<div class="bp-fil"><span data-bp="livres">' + BP_T.bible + '</span> \u00b7 '
             + '<span data-bp="livre" data-slug="' + slug + '">' + esc(inf.nom) + '</span></div>'
             + '<div class="bp-ch-titre">' + nomCh + '</div>';
       if (ch.vulg) h += '<div class="bp-vulg">Vulgate : ' + esc(ch.vulg) + '</div>';
@@ -237,7 +285,7 @@
       });
       h += '</div><div class="bp-nav">';
       h += (n > 1) ? '<span data-bp="chap" data-slug="' + slug + '" data-n="' + (n - 1) + '">\u2190 ' + (ps ? 'Ps ' + (n - 1) : 'Ch. ' + (n - 1)) + '</span>' : '<span class="vide">\u00b7</span>';
-      h += '<span data-bp="livre" data-slug="' + slug + '">' + (inf.nch > 1 ? 'Chapitres' : esc(inf.nom)) + '</span>';
+      h += '<span data-bp="livre" data-slug="' + slug + '">' + (inf.nch > 1 ? BP_T.chs : esc(inf.nom)) + '</span>';
       h += (n < inf.nch) ? '<span data-bp="chap" data-slug="' + slug + '" data-n="' + (n + 1) + '">' + (ps ? 'Ps ' + (n + 1) : 'Ch. ' + (n + 1)) + ' \u2192</span>' : '<span class="vide">\u00b7</span>';
       h += '</div>';
       corps.innerHTML = h;
@@ -256,7 +304,7 @@
         if (premier) premier.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }).catch(function(){
-      corps.innerHTML = '<div class="bp-charge">Le texte n\u2019a pas pu \u00eatre charg\u00e9.</div>';
+      corps.innerHTML = '<div class="bp-charge">' + BP_T.errTxt + '</div>';
     });
   }
 
@@ -295,7 +343,7 @@
   /* ───────── Ouverture / fermeture ───────── */
   function assureIdx(){
     if (IDX) return Promise.resolve();
-    return charge('/bible-data/index.json').then(function(d){
+    return charge(BP_DATA + 'index.json').then(function(d){
       IDX = d;
       construitDico();
     });
@@ -313,7 +361,7 @@
     assureIdx().then(function(){
       if (!dejaRendu) { restaure(); dejaRendu = true; }
     }).catch(function(){
-      corps.innerHTML = '<div class="bp-charge">La Bible n\u2019a pas pu \u00eatre charg\u00e9e.</div>';
+      corps.innerHTML = '<div class="bp-charge">' + BP_T.errBible + '</div>';
     });
   }
   function ferme(){

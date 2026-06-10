@@ -40,36 +40,36 @@ header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filt
 .logo{font-family:var(--display);font-size:21px;letter-spacing:.26em;text-transform:uppercase;color:var(--parchemin)}
 .burger{display:none;margin-left:auto;font-size:22px;color:var(--pa)}
 nav.menu{margin-left:auto;display:flex;align-items:center;gap:30px}
-nav.menu a{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);transition:color .3s;position:relative;padding:4px 0}
-nav.menu a:hover{color:var(--or-pale)}
+nav.menu a{font-family:var(--display);font-size:16px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:#ffffff;transition:color .3s,border-color .3s;position:relative;padding:4px 0 3px;border-bottom:1px solid transparent}
+nav.menu a:hover,nav.menu a.actif{color:#ffffff;border-color:var(--or)}
 nav.menu a.actif{color:var(--parchemin)}
-nav.menu a.actif::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--or)}
+
 nav.menu a.lien-langue{font-size:13px;letter-spacing:.2em;opacity:.65}
 nav.menu a.lien-langue:hover{opacity:1}
-.ic-btn{position:relative;display:flex;align-items:center;gap:8px;color:var(--pa);cursor:pointer;transition:color .3s}
-.ic-btn:hover{color:var(--or-pale)}
+.ic-btn{position:relative;display:flex;align-items:center;gap:8px;color:#ffffff;cursor:pointer;transition:color .3s}
+.ic-btn:hover{color:var(--or)}
 .ic-btn .ll-mob{display:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase}
 .cloche-pt{position:absolute;top:-2px;right:-4px;width:6px;height:6px;border-radius:50%;background:var(--pourpre);display:none}
-.ctx{margin-left:26px;font-family:var(--display);font-style:italic;font-size:15px;color:var(--pa);white-space:nowrap}
-.b-ov{position:fixed;inset:0;z-index:62;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:9vh 20px 30px;overflow-y:auto}
-.b-ov.ouvert{display:flex}
-.b-boite{width:100%;max-width:640px;background:var(--encre-2);border:1px solid var(--filet);padding:24px 28px;animation:rise .4s ease both}
-.b-tete{display:flex;align-items:center;gap:14px;color:var(--pa)}
-.b-titre{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--or);flex:1}
-.b-champ{flex:1;min-width:0;background:none;border:none;border-bottom:1px solid rgba(231,224,207,.18);padding:6px 2px;font-size:17px;font-family:inherit;color:var(--parchemin);outline:none;transition:border-color .3s}
-.b-champ::placeholder{color:var(--parchemin-att);font-style:italic}
-.b-champ:focus{border-color:var(--filet-f)}
-.b-fermer{font-size:15px;color:var(--pa);cursor:pointer;padding:2px 6px;transition:color .3s}
-.b-fermer:hover{color:var(--or-pale)}
-.b-res{max-height:58vh;overflow-y:auto;margin-top:14px;scrollbar-color:rgba(231,224,207,.35) var(--encre-2)}
-a.b-r{display:block;padding:12px 2px;border-bottom:1px solid var(--filet);transition:border-color .3s}
-a.b-r b{display:block;font-weight:500;font-size:17.5px;color:var(--parchemin);transition:color .3s}
-a.b-r span{font-size:13.5px;color:var(--pa2);line-height:1.5}
-a.b-r:hover{border-color:var(--filet-f)}
-a.b-r:hover b{color:var(--or-pale)}
-.b-vide{text-align:center;font-style:italic;color:var(--parchemin-att);padding:26px 0}
-.nv-d{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin:16px 0 6px}
-.nv-l{font-size:15.5px;color:var(--pa);padding:4px 0;line-height:1.55}
+.ctx{margin-left:26px;font-family:var(--display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);white-space:nowrap}
+.b-ov{position:fixed;inset:0;z-index:62;background:rgba(8,8,8,.98);display:none}
+.b-ov.ouvert{display:block}
+.b-boite{max-width:760px;margin:0 auto;padding:8vh 24px 40px;height:100%;display:flex;flex-direction:column;box-sizing:border-box}
+.b-tete{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--filet-f);padding-bottom:18px;color:#fff}
+.b-titre{font-family:var(--display);font-size:22px;color:#fff;flex:1}
+.b-champ{flex:1;min-width:0;background:none;border:none;padding:2px;font-size:26px;font-family:var(--display);color:#fff;outline:none}
+.b-champ::placeholder{color:rgba(255,255,255,.35);font-style:italic}
+.b-fermer{cursor:pointer;color:rgba(255,255,255,.6);font-size:24px;line-height:1;flex:none;transition:color .3s;padding:2px 6px}
+.b-fermer:hover{color:#fff}
+.b-res{margin-top:6px;overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:rgba(231,224,207,.35) transparent}
+a.b-r,.b-r{display:block;padding:16px 2px;border-bottom:1px solid var(--filet);cursor:pointer}
+a.b-r b,.b-r b{display:block;font-family:var(--display);font-weight:500;font-size:21px;color:#fff;transition:color .3s}
+a.b-r span,.b-r span{font-size:14.5px;color:rgba(255,255,255,.45);line-height:1.5}
+a.b-r:hover b,.b-r:hover b{color:var(--or-pale)}
+.b-vide{text-align:center;font-style:italic;color:rgba(255,255,255,.45);padding:26px 0}
+.nv-d{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--or);margin:20px 0 16px}
+.nv-l{position:relative;padding-left:22px;color:rgba(255,255,255,.62);font-size:18px;line-height:1.55}
+.nv-l::before{content:"";position:absolute;left:0;top:.85em;width:12px;height:1px;background:var(--or);opacity:.6}
+.nv-l + .nv-l{margin-top:16px}
 @media(max-width:720px){
   .ctx{display:none}
   nav.menu .ic-btn{padding:12px 0;width:100%}
@@ -82,16 +82,6 @@ a.b-r:hover b{color:var(--or-pale)}
 }
 
 /* — Barre de référence — */
-.ref-barre{position:sticky;top:62px;z-index:49;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.ref-int{max-width:1180px;margin:0 auto;padding:9px 28px;display:flex;align-items:center;gap:18px}
-.ref-champ{flex:1;max-width:340px;background:none;border:none;border-bottom:1px solid rgba(231,224,207,.18);padding:5px 2px;font-size:16px;color:var(--parchemin);outline:none;transition:border-color .3s}
-.ref-champ::placeholder{color:var(--parchemin-att);font-style:italic}
-.ref-champ:focus{border-color:var(--filet-fort)}
-.ref-aller{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:color .3s;padding:6px 2px}
-.ref-aller:hover{color:var(--or-pale)}
-.ref-erreur{font-size:13.5px;font-style:italic;color:var(--parchemin-att)}
-.ref-notes{margin-left:auto;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:color .3s;padding:6px 2px;white-space:nowrap}
-.ref-notes:hover{color:var(--or-pale)}
 @media(max-width:720px){.ref-int{padding:8px 18px;gap:12px}.ref-champ{font-size:15px;min-width:0}.ref-erreur{display:none}}
 
 /* — Cadre général — */
@@ -135,8 +125,8 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .ch-texte sup.vn{font-family:var(--serif);font-size:12.5px;color:var(--or);line-height:0;margin-right:5px;letter-spacing:0}
 .vst{scroll-margin-top:160px;cursor:pointer;transition:background .3s,box-shadow .3s}
 .vst:hover{background:rgba(231,224,207,.04);box-shadow:0 0 0 5px rgba(231,224,207,.04)}
-.vst.sel{background:rgba(231,224,207,.10);box-shadow:0 0 0 5px rgba(231,224,207,.10)}
-.vst.cible{background:rgba(231,224,207,.08);box-shadow:0 0 0 5px rgba(231,224,207,.08)}
+.vst.sel{background:rgba(231,224,207,.18);box-shadow:0 0 0 5px rgba(231,224,207,.18)}
+.vst.cible{background:rgba(231,224,207,.14);box-shadow:0 0 0 5px rgba(231,224,207,.14)}
 .ch-nav{display:flex;justify-content:space-between;gap:18px;margin-top:54px;padding-top:26px;border-top:1px solid rgba(231,224,207,.14)}
 .ch-nav a{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa);transition:color .3s;padding:6px 0}
 .ch-nav a:hover{color:var(--or-pale)}
@@ -197,6 +187,36 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
 .sync-act:hover{color:var(--or-pale);border-color:var(--filet-f)}
 #auth-voile{position:fixed;inset:0;z-index:61;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:100px 20px 40px;overflow-y:auto}
 #auth-voile.ouvert{display:flex}
+#bacct-voile,#cat-voile{position:fixed;inset:0;z-index:63;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px}
+#bacct-voile.ouvert,#cat-voile.ouvert{display:flex}
+.bacct{position:relative;width:100%;max-width:380px;background:var(--encre-2);border:1px solid var(--filet);padding:36px 32px;animation:rise .4s ease both}
+.bacct-x{position:absolute;top:12px;right:14px;cursor:pointer;color:rgba(255,255,255,.55);font-size:18px;padding:4px 8px;transition:color .3s}
+.bacct-x:hover{color:#fff}
+.bacct-t{font-family:var(--display);font-size:24px;text-align:center;margin-bottom:22px;color:#fff}
+.bacct-mail{text-align:center;color:rgba(255,255,255,.55);font-size:15px;margin-bottom:22px;word-break:break-all}
+.bacct-btn{display:block;width:100%;box-sizing:border-box;text-align:center;padding:13px 10px;border:1px solid var(--filet-f);color:#fff;font-family:var(--display);font-size:14px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:border-color .3s,color .3s}
+.bacct-btn:hover{border-color:var(--or);color:var(--or-pale)}
+.bacct-deco{display:block;text-align:center;margin-top:18px;color:rgba(255,255,255,.55);font-size:14px;cursor:pointer;transition:color .3s}
+.bacct-deco:hover{color:#fff}
+footer{border-top:1px solid var(--filet);margin-top:64px;padding:48px 32px 56px;text-align:center}
+footer .marque{font-family:var(--display);letter-spacing:.34em;text-transform:uppercase;font-size:18px;padding-left:.34em;color:#fff}
+footer .verset-pied{margin-top:18px;font-style:italic;color:rgba(255,255,255,.6);font-size:17px;max-width:620px;margin-left:auto;margin-right:auto;line-height:1.6}
+footer .verset-pied .ref-pied{font-style:normal;display:block;margin-top:10px;font-family:var(--display);font-size:13px;letter-spacing:.1em;color:var(--or)}
+footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,255,255,.45);font-family:var(--display)}
+.cat-input{width:100%;box-sizing:border-box;background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:15px;padding:11px 12px;outline:none;margin-bottom:18px}
+.cat-input:focus{border-color:var(--or)}
+.notes-actions{display:flex;gap:20px;align-items:baseline}
+.notes-cat{display:flex;align-items:baseline;gap:12px;margin:36px 0 6px;padding-bottom:8px;border-bottom:1px solid var(--filet)}
+.notes-cat-nom{font-family:var(--display);font-size:21px;color:#fff;flex:none}
+.notes-scat{display:flex;align-items:baseline;gap:12px;margin:24px 0 2px 18px;padding-bottom:6px;border-bottom:1px solid rgba(231,224,207,.08)}
+.notes-scat-nom{font-family:var(--display);font-size:17px;color:rgba(255,255,255,.85);flex:none}
+.notes-sgroupe{margin-left:18px}
+.cat-actes{display:flex;gap:14px;flex:1;justify-content:flex-end}
+.cat-act{font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.4);cursor:pointer;transition:color .3s;white-space:nowrap}
+.cat-act:hover{color:var(--or)}
+.note-depl{background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:13px;padding:5px 8px;outline:none;max-width:230px}
+.nb-cat-ligne{display:flex;align-items:center;gap:12px;margin:0 0 16px}
+.nb-cat-lab{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
 .ab-boite{width:100%;max-width:400px;background:var(--encre-2);border:1px solid var(--filet);padding:32px 34px;animation:rise .4s ease both}
 .ab-titre{font-family:var(--display);font-weight:400;font-size:27px;margin-bottom:18px;text-align:center}
 .ab-tabs{display:flex;gap:24px;justify-content:center;margin-bottom:20px}
@@ -233,7 +253,7 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
         <a href="/bibliotheque/">Bibliothèque</a>
         <a href="/bible.html" class="actif">Bible</a>
         <a href="/memoriser.html">Mémoriser</a>
-        <a href="/en/" class="lien-langue" hreflang="en">EN</a>
+        <a href="/en/bible.html" class="lien-langue" hreflang="en">EN</a>
         <span class="ic-btn" id="brech-ouvrir" role="button" tabindex="0" aria-label="Rechercher"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><span class="ll-mob">Rechercher</span></span>
         <span class="ic-btn" id="bnouv-ouvrir" role="button" tabindex="0" aria-label="Nouveautés"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="ll-mob">Nouveautés</span><span class="cloche-pt" id="bnouv-pt"></span></span>
         <span class="ic-btn" id="bcompte-ouvrir" role="button" tabindex="0" aria-label="Compte"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg><span class="ll-mob">Compte</span></span>
@@ -242,14 +262,6 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
     </div>
   </header>
 
-  <div class="ref-barre">
-    <div class="ref-int">
-      <input class="ref-champ" id="ref-champ" type="text" placeholder="Référence : Matthieu 7:6-8" autocomplete="off" spellcheck="false">
-      <span class="ref-aller" id="ref-aller" role="button" tabindex="0">Aller</span>
-      <span class="ref-erreur" id="ref-erreur"></span>
-      <span class="ref-notes" id="lien-notes" role="button" tabindex="0">Mes notes</span>
-    </div>
-  </div>
 
   <main class="wrap">
     <div class="hero" id="hero">
@@ -271,7 +283,6 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
     <div class="sb-int">
       <div class="sb-refs" id="sb-refs"></div>
       <div class="sb-act">
-        <span class="sb-btn" id="sb-suiv" role="button" tabindex="0">Suivante →</span>
         <span class="sb-btn" id="sb-copier" role="button" tabindex="0">Copier</span>
         <span class="sb-btn" id="sb-note" role="button" tabindex="0">Prendre une note</span>
         <span class="sb-btn" id="sb-vider" role="button" tabindex="0">Tout effacer</span>
@@ -279,9 +290,14 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
     </div>
   </div>
 
+  <footer>
+    <div class="marque">Lumen</div>
+    <div class="verset-pied">« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l'ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span></div>
+    <div class="copy" id="bf-annee"></div>
+  </footer>
   <div class="b-ov" id="brech-voile">
     <div class="b-boite">
-      <div class="b-tete"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><input class="b-champ" id="brech-champ" type="search" placeholder="Rechercher un article…" autocomplete="off" spellcheck="false"><span class="b-fermer" id="brech-fermer" role="button" tabindex="0">✕</span></div>
+      <div class="b-tete"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><input class="b-champ" id="brech-champ" type="search" placeholder="Référence ou article…" autocomplete="off" spellcheck="false"><span class="b-fermer" id="brech-fermer" role="button" tabindex="0">✕</span></div>
       <div class="b-res" id="brech-res"></div>
     </div>
   </div>
@@ -291,11 +307,29 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
       <div class="b-res" id="bnouv-liste"></div>
     </div>
   </div>
+  <div id="bacct-voile">
+    <div class="bacct">
+      <span class="bacct-x" id="bacct-x" role="button" tabindex="0">✕</span>
+      <div class="bacct-t">Mon compte</div>
+      <div class="bacct-mail" id="bacct-mail"></div>
+      <span class="bacct-btn" id="bacct-notes" role="button" tabindex="0">Mes notes</span>
+      <span class="bacct-deco" id="bacct-deco" role="button" tabindex="0">Déconnexion</span>
+    </div>
+  </div>
+  <div id="cat-voile">
+    <div class="bacct">
+      <div class="bacct-t" id="cat-titre">Nouvelle catégorie</div>
+      <input class="cat-input" id="cat-nom" type="text" placeholder="Nom…" autocomplete="off">
+      <span class="bacct-btn" id="cat-enr" role="button" tabindex="0">Enregistrer</span>
+      <span class="bacct-deco" id="cat-ann" role="button" tabindex="0">Annuler</span>
+    </div>
+  </div>
   <div id="note-voile">
     <div class="note-boite">
       <div class="nb-titre" id="nb-titre">Note</div>
       <div class="nb-refs" id="nb-refs"></div>
       <textarea class="nb-zone" id="nb-zone" placeholder="Écrire la note…"></textarea>
+      <div class="nb-cat-ligne"><span class="nb-cat-lab">Catégorie</span><select class="note-depl" id="nb-cat"></select></div>
       <div class="nb-actes">
         <span class="nb-btn principal" id="nb-enregistrer" role="button" tabindex="0">Enregistrer</span>
         <span class="nb-btn" id="nb-annuler" role="button" tabindex="0">Annuler</span>
@@ -354,7 +388,7 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
   function cloudDoc(id){ return db.doc('users/' + UID + '/bibleNotes/' + id); }
   function cloudSet(n){
     if (!UID || !db) return;
-    cloudDoc(n.id).set({ d: n.d, m: n.m || n.d, t: n.t, refs: n.refs || [] })
+    cloudDoc(n.id).set({ d: n.d, m: n.m || n.d, t: n.t, refs: n.refs || [], c: n.c || '' })
       .catch(function(e){ console.warn('sync note', e); });
   }
   function cloudDel(id){
@@ -363,8 +397,20 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
   }
   function syncInitiale(){
     db.collection('users/' + UID + '/bibleNotes').get().then(function(snap){
-      var nuage = {};
-      snap.forEach(function(dc){ var x = dc.data(); x.id = dc.id; nuage[x.id] = x; });
+      var nuage = {}, meta = null;
+      snap.forEach(function(dc){
+        if (dc.id === '__meta__') { meta = dc.data(); return; }
+        var x = dc.data(); x.id = dc.id; nuage[x.id] = x;
+      });
+      if (meta && (meta.m || 0) > CATS_M) {
+        CATS = meta.cats || []; CATS_M = meta.m || 0;
+        try {
+          localStorage.setItem('lv_bible_cats', JSON.stringify(CATS));
+          localStorage.setItem('lv_bible_cats_m', String(CATS_M));
+        } catch(e){}
+      } else if (CATS_M > (meta ? (meta.m || 0) : 0) && CATS.length) {
+        db.doc('users/' + UID + '/bibleNotes/__meta__').set({ meta: true, m: CATS_M, cats: CATS }).catch(function(){});
+      }
       var aEnvoyer = [];
       NOTES.forEach(function(n){
         var c = nuage[n.id];
@@ -465,23 +511,39 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
   /* — Barre du haut : recherche, nouveautés, compte (mêmes organes que le site) — */
   function ouvreOv(id){ document.getElementById(id).classList.add('ouvert'); }
   function fermeOv(id){ document.getElementById(id).classList.remove('ouvert'); }
+  var DERNIERES_REFS = null;
   function rendRecherche(q){
     var z = document.getElementById('brech-res');
-    var IX = (window.LV_INDEX && window.LV_INDEX.fr) || null;
-    if (!IX) { z.innerHTML = '<div class="b-vide">Index indisponible.</div>'; return; }
+    DERNIERES_REFS = null;
     var nq = norm(q);
-    if (!nq) { z.innerHTML = ''; return; }
-    var out = [];
-    (IX.articles || []).forEach(function(a){
-      if (out.length >= 14) return;
-      if (norm(a.titre).indexOf(nq) >= 0 || norm(a.resume || '').indexOf(nq) >= 0) out.push(a);
-    });
-    z.innerHTML = out.length
-      ? out.map(function(a){
-          var r = (a.resume || '').slice(0, 120);
-          return '<a class="b-r" href="' + a.u + '"><b>' + esc(a.titre) + '</b><span>' + esc(r) + (a.resume && a.resume.length > 120 ? '…' : '') + '</span></a>';
-        }).join('')
-      : '<div class="b-vide">Aucun résultat.</div>';
+    var h = '';
+    if (String(q).trim()) {
+      var an = refsDepuis(q);
+      if (an.refs.length && !an.mauvais.length) {
+        DERNIERES_REFS = an.refs;
+        var avecSel = an.refs.some(function(r){ return r.v1; });
+        h += '<span class="b-r b-ref" id="brech-go" role="button" tabindex="0"><b>Aller à : ' + esc(an.refs.map(etiquetteRef).join(', ')) + '</b><span>Référence biblique — Entrée pour ouvrir' + (avecSel ? ' et sélectionner' : '') + '</span></span>';
+      }
+    }
+    var IX = (window.LV_INDEX && window.LV_INDEX.fr) || null;
+    if (IX && nq) {
+      var out = [];
+      (IX.articles || []).forEach(function(a){
+        if (out.length >= 14) return;
+        if (norm(a.titre).indexOf(nq) >= 0 || norm(a.resume || '').indexOf(nq) >= 0) out.push(a);
+      });
+      h += out.map(function(a){
+        var r = (a.resume || '').slice(0, 120);
+        return '<a class="b-r" href="' + a.u + '"><b>' + esc(a.titre) + '</b><span>' + esc(r) + (a.resume && a.resume.length > 120 ? '…' : '') + '</span></a>';
+      }).join('');
+    }
+    z.innerHTML = h || (nq ? '<div class="b-vide">Aucun résultat.</div>' : '');
+  }
+  function brechVa(){
+    if (!DERNIERES_REFS) return;
+    var refs = DERNIERES_REFS;
+    fermeOv('brech-voile');
+    allerRefs(refs).catch(function(){});
   }
   document.getElementById('brech-ouvrir').addEventListener('click', function(){
     ouvreOv('brech-voile');
@@ -490,6 +552,8 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
   });
   document.getElementById('brech-fermer').addEventListener('click', function(){ fermeOv('brech-voile'); });
   document.getElementById('brech-champ').addEventListener('input', function(){ rendRecherche(this.value); });
+  document.getElementById('brech-champ').addEventListener('keydown', function(e){ if (e.key === 'Enter') brechVa(); });
+  document.getElementById('brech-res').addEventListener('click', function(e){ if (e.target.closest && e.target.closest('#brech-go')) brechVa(); });
   function sigNouv(){
     var n = (NEWS.fr || []);
     return n.length + '|' + n.reduce(function(a, g){ return a + (g.items || []).length; }, 0);
@@ -513,8 +577,22 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
   ['brech-voile','bnouv-voile'].forEach(function(id){
     document.getElementById(id).addEventListener('click', function(e){ if (e.target === this) fermeOv(id); });
   });
+  function ouvreCompte(){
+    var u = firebase.auth().currentUser || null;
+    document.getElementById('bacct-mail').textContent = u ? (u.email || u.displayName || '') : '';
+    document.getElementById('bacct-voile').classList.add('ouvert');
+  }
   document.getElementById('bcompte-ouvrir').addEventListener('click', function(){
-    if (UID) location.hash = '#notes'; else ouvreAuth();
+    if (UID) ouvreCompte(); else ouvreAuth();
+  });
+  document.getElementById('bacct-x').addEventListener('click', function(){ document.getElementById('bacct-voile').classList.remove('ouvert'); });
+  document.getElementById('bacct-voile').addEventListener('click', function(e){ if (e.target === this) this.classList.remove('ouvert'); });
+  document.getElementById('bacct-notes').addEventListener('click', function(){ document.getElementById('bacct-voile').classList.remove('ouvert'); location.hash = '#notes'; });
+  var bfA = document.getElementById('bf-annee');
+  if (bfA) bfA.textContent = '\u00a9 ' + new Date().getFullYear() + ' Lumen';
+  document.getElementById('bacct-deco').addEventListener('click', function(){
+    try { firebase.auth().signOut(); } catch(e) {}
+    document.getElementById('bacct-voile').classList.remove('ouvert');
   });
   majPoint();
 
@@ -551,6 +629,35 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
     'jacques':['jc','jac'],'1-pierre':['1p','1pi'],'2-pierre':['2p','2pi'],'1-jean':['1jn'],'2-jean':['2jn'],'3-jean':['3jn'],
     'jude':['jud'],'apocalypse':['ap','apc','apoc']
   };
+  /* noms alternatifs selon les traditions et noms anglais, additifs */
+  (function(){
+    var X = {
+      'josue':['joshua','josh'],'juges':['judg','jdg'],
+      '1-samuel':['1samuel'],'2-samuel':['2samuel'],
+      '1-rois':['3rois','3r','3kings'],'2-rois':['4rois','4r','4kings'],
+      '1-chroniques':['1chronicles','1chron','1paralipomenes'],'2-chroniques':['2chronicles','2chron','2paralipomenes'],
+      'esdras':['ezra','1esdras'],'nehemie':['nehemiah','nehemias','2esdras','neemie'],'tobie':['tobit'],
+      'psaumes':['psalm','pss'],
+      'ecclesiaste':['qoheleth','coheleth','eccles'],
+      'cantique-des-cantiques':['songofsongs','songofsolomon','canticles','canticleofcanticles'],
+      'ecclesiastique':['sirach','bensira','sirac','ecclus'],
+      'sagesse':['wisdom','wis','sagessedesalomon','wisdomofsolomon'],
+      'isaie':['isaiah'],'jeremie':['jeremiah'],
+      'lamentations':['threnes','lamentationsdejeremie'],
+      'ezechiel':['ezekiel','ezek'],
+      'osee':['hosea','hos'],'abdias':['obadiah','obad'],'jonas':['jonah'],'michee':['micah','mic'],
+      'habacuc':['habakkuk'],'sophonie':['zephaniah','zeph'],'aggee':['haggai','hag'],
+      'zacharie':['zechariah','zech'],'malachie':['malachi'],
+      '1-maccabees':['1maccabees'],'2-maccabees':['2maccabees'],
+      'matthieu':['matthew'],'marc':['mk'],'luc':['lk'],'actes':['actsoftheapostles','actesdesapotres'],
+      '1-thessaloniciens':['1thessalonians'],'2-thessaloniciens':['2thessalonians'],
+      '1-timothee':['1timothy'],'2-timothee':['2timothy'],
+      'jacques':['jas'],'1-pierre':['1peter','1pet'],'2-pierre':['2peter','2pet'],
+      '1-jean':['1john'],'2-jean':['2john'],'3-jean':['3john'],
+      'apocalypse':['revelation','rev','revelations','apocalypsedejean']
+    };
+    Object.keys(X).forEach(function(k){ ALIAS[k] = (ALIAS[k] || []).concat(X[k]); });
+  })();
   var DICO = null;
   function norm(s){
     return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'');
@@ -567,6 +674,13 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
     var t = norm(token);
     if (!t) return null;
     if (DICO[t]) return DICO[t];
+    var arts = ['les','le','la','l','the'];
+    for (var ai = 0; ai < arts.length; ai++) {
+      if (t.indexOf(arts[ai]) === 0) {
+        var t2 = t.slice(arts[ai].length);
+        if (t2.length >= 2 && DICO[t2]) return DICO[t2];
+      }
+    }
     var cands = [];
     IDX.livres.forEach(function(l){ if (norm(l.nom).indexOf(t) === 0) cands.push(l.slug); });
     return (cands.length === 1 && t.length >= 2) ? cands[0] : null;
@@ -576,7 +690,7 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
       .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
       .replace(/\s+/g,' ').trim();
     if (!s) return null;
-    var m = s.match(/^([1-3]?\s*[a-z']+(?:[ -][a-z']+)*)(?:\s+(\d{1,3})(?:\s*[:,.]\s*(\d{1,3})(?:\s*[-\u2013a]\s*(\d{1,3}))?)?)?$/);
+    var m = s.match(/^([1-4]?\s*[a-z']+(?:[ -][a-z']+)*)(?:\s+(\d{1,3})(?:\s*[:,.]\s*(\d{1,3})(?:\s*[-\u2013a]\s*(\d{1,3}))?)?)?$/);
     if (!m) return null;
     var slug = trouveLivre(m[1]);
     if (!slug) return null;
@@ -631,8 +745,6 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
       h += '<span class="sb-chip" data-g="' + i + '">' + esc(libelle(g)) + '<span class="sb-x" data-x="' + i + '">\u2715</span></span>';
     });
     z.innerHTML = h;
-    var sv = document.getElementById('sb-suiv');
-    if (sv) sv.style.display = (groupes().length > 1) ? '' : 'none';
     marqueSelection();
   }
   function marqueSelection(){
@@ -662,17 +774,6 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
   document.getElementById('sb-vider').addEventListener('click', function(){
     SEL = []; sauveSel(); majPlateau();
   });
-  document.getElementById('sb-suiv').addEventListener('click', function(){
-    var gs = groupes();
-    if (!gs.length) return;
-    var p = location.hash.replace(/^#/, '').split('/');
-    var idx = -1;
-    for (var i = 0; i < gs.length; i++) {
-      if (gs[i].slug === p[0] && String(gs[i].ch) === p[1]) { idx = i; break; }
-    }
-    var g = gs[(idx + 1) % gs.length];
-    location.hash = '#' + g.slug + '/' + g.ch + '/' + g.v1;
-  });
   document.getElementById('sb-copier').addEventListener('click', function(){
     var gs = groupes();
     var besoins = {};
@@ -697,7 +798,30 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
   var NOTES = [];
   try { NOTES = JSON.parse(localStorage.getItem('lv_bible_notes') || '[]'); } catch(e) { NOTES = []; }
   function sauveNotes(){ try { localStorage.setItem('lv_bible_notes', JSON.stringify(NOTES)); } catch(e){} }
-  function majLienNotes(){
+  var CATS = [];
+  try { CATS = JSON.parse(localStorage.getItem('lv_bible_cats') || '[]'); } catch(e) { CATS = []; }
+  var CATS_M = 0;
+  try { CATS_M = parseInt(localStorage.getItem('lv_bible_cats_m') || '0', 10) || 0; } catch(e) {}
+  function sauveCats(){
+    CATS_M = Date.now();
+    try {
+      localStorage.setItem('lv_bible_cats', JSON.stringify(CATS));
+      localStorage.setItem('lv_bible_cats_m', String(CATS_M));
+    } catch(e){}
+    if (UID && db) db.doc('users/' + UID + '/bibleNotes/__meta__').set({ meta: true, m: CATS_M, cats: CATS }).catch(function(e){ console.warn('sync cats', e); });
+  }
+  function catParId(id){ for (var i = 0; i < CATS.length; i++) if (CATS[i].id === id) return CATS[i]; return null; }
+  function optionsCats(actuel){
+    var o = '<option value=""' + (!actuel ? ' selected' : '') + '>Non class\u00e9e</option>';
+    CATS.filter(function(c){ return !c.parent; }).forEach(function(c){
+      o += '<option value="' + c.id + '"' + (actuel === c.id ? ' selected' : '') + '>' + esc(c.nom) + '</option>';
+      CATS.filter(function(x){ return x.parent === c.id; }).forEach(function(x){
+        o += '<option value="' + x.id + '"' + (actuel === x.id ? ' selected' : '') + '>\u2014 ' + esc(x.nom) + '</option>';
+      });
+    });
+    return o;
+  }
+  function majLienNotes(){ if(!document.getElementById('lien-notes')) return;
     document.getElementById('lien-notes').textContent = 'Mes notes' + (NOTES.length ? ' (' + NOTES.length + ')' : '');
   }
   var noteEnCours = null;
@@ -708,17 +832,47 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
       return '<span class="sb-chip">' + esc(libelle(g)) + '</span>';
     }).join('');
     document.getElementById('nb-zone').value = note.t || '';
+    document.getElementById('nb-cat').innerHTML = optionsCats(note.c || '');
     document.getElementById('nb-supprimer').style.display = note.id ? '' : 'none';
     document.getElementById('note-voile').classList.add('ouvert');
     document.getElementById('nb-zone').focus();
   }
   function fermeNote(){ document.getElementById('note-voile').classList.remove('ouvert'); noteEnCours = null; }
+  var catEnCours = null;
+  function ouvreCat(o){
+    catEnCours = o;
+    var t = o.mode === 'ren' ? 'Renommer' : (o.mode === 'sub' ? 'Nouvelle sous-section' : 'Nouvelle cat\u00e9gorie');
+    if (o.mode === 'sub') { var pa = catParId(o.parent); if (pa) t += ' \u2014 ' + pa.nom; }
+    document.getElementById('cat-titre').textContent = t;
+    var ch = document.getElementById('cat-nom');
+    var c0 = o.mode === 'ren' ? catParId(o.id) : null;
+    ch.value = c0 ? c0.nom : '';
+    document.getElementById('cat-voile').classList.add('ouvert');
+    ch.focus();
+  }
+  function fermeCat(){ document.getElementById('cat-voile').classList.remove('ouvert'); catEnCours = null; }
+  document.getElementById('cat-ann').addEventListener('click', fermeCat);
+  document.getElementById('cat-voile').addEventListener('click', function(e){ if (e.target === this) fermeCat(); });
+  document.getElementById('cat-nom').addEventListener('keydown', function(e){ if (e.key === 'Enter') document.getElementById('cat-enr').click(); });
+  document.getElementById('cat-enr').addEventListener('click', function(){
+    if (!catEnCours) return;
+    var nom = document.getElementById('cat-nom').value.trim();
+    if (!nom) { fermeCat(); return; }
+    if (catEnCours.mode === 'ren') {
+      var c = catParId(catEnCours.id);
+      if (c) c.nom = nom;
+    } else {
+      CATS.push({ id: 'c' + Date.now(), nom: nom, parent: catEnCours.mode === 'sub' ? catEnCours.parent : '' });
+    }
+    sauveCats(); fermeCat();
+    if (location.hash === '#notes') vueNotes();
+  });
   document.getElementById('sb-note').addEventListener('click', function(){
     ouvreNote({ refs: groupes(), t: '' });
   });
   document.getElementById('nb-annuler').addEventListener('click', fermeNote);
   document.getElementById('note-voile').addEventListener('click', function(e){ if (e.target === this) fermeNote(); });
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { fermeNote(); fermeAuth(); fermeOv('brech-voile'); fermeOv('bnouv-voile'); } });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { fermeNote(); fermeCat(); fermeAuth(); fermeOv('brech-voile'); fermeOv('bnouv-voile'); document.getElementById('bacct-voile').classList.remove('ouvert'); } });
   document.getElementById('nb-enregistrer').addEventListener('click', function(){
     if (!noteEnCours) return;
     var t = document.getElementById('nb-zone').value.trim();
@@ -726,10 +880,10 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
     var maintenant = new Date().toISOString();
     if (noteEnCours.id) {
       for (var i = 0; i < NOTES.length; i++) if (NOTES[i].id === noteEnCours.id) {
-        NOTES[i].t = t; NOTES[i].m = maintenant; cloudSet(NOTES[i]);
+        NOTES[i].t = t; NOTES[i].m = maintenant; NOTES[i].c = document.getElementById('nb-cat').value; cloudSet(NOTES[i]);
       }
     } else {
-      var n = { id: String(Date.now()), d: maintenant, m: maintenant, t: t, refs: noteEnCours.refs || [] };
+      var n = { id: String(Date.now()), d: maintenant, m: maintenant, t: t, refs: noteEnCours.refs || [], c: document.getElementById('nb-cat').value };
       NOTES.unshift(n); cloudSet(n);
     }
     sauveNotes(); majLienNotes(); fermeNote();
@@ -742,7 +896,6 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
     sauveNotes(); majLienNotes(); fermeNote();
     if (location.hash === '#notes') vueNotes();
   });
-  document.getElementById('lien-notes').addEventListener('click', function(){ location.hash = '#notes'; });
 
   function vueNotes(filtre){
     document.title = 'Mes notes · La Sainte Bible · Lumen Veritatis';
@@ -754,27 +907,59 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
       return (n.refs || []).some(function(g){ return norm(libelle(g)).indexOf(f) >= 0; });
     });
     var h = '<div class="notes-tete"><h2 class="notes-titre">Mes notes</h2>' +
-            '<span class="notes-nouvelle" id="note-libre" role="button" tabindex="0">Nouvelle note</span></div>' +
+            '<span class="notes-actions">' +
+            '<span class="notes-nouvelle" id="cat-nouvelle" role="button" tabindex="0">Nouvelle cat\u00e9gorie</span>' +
+            '<span class="notes-nouvelle" id="note-libre" role="button" tabindex="0">Nouvelle note</span></span></div>' +
             '<input class="notes-rech" id="notes-rech" type="search" placeholder="Rechercher dans les notes\u2026" value="' + esc(filtre || '') + '">';
-    if (FB) {
-      h += UID
-        ? '<div class="sync-ligne">Notes synchronis\u00e9es avec votre compte (' + esc(MAIL) + ') \u00b7 <span class="sync-act" id="sync-out" role="button" tabindex="0">Se d\u00e9connecter</span></div>'
-        : '<div class="sync-ligne">Notes enregistr\u00e9es sur cet appareil \u00b7 <span class="sync-act" id="sync-in" role="button" tabindex="0">Se connecter pour les retrouver partout</span></div>';
+    if (FB && !UID) {
+      h += '<div class="sync-ligne">Notes enregistr\u00e9es sur cet appareil \u00b7 <span class="sync-act" id="sync-in" role="button" tabindex="0">Se connecter pour les retrouver partout</span></div>';
+    }
+    function carteNote(n){
+      var date = new Date(n.d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+      var x = '<div class="note-item" data-id="' + n.id + '">' +
+              '<div class="note-date"><span>' + date + '</span>' +
+              '<span class="note-actions">' +
+              '<span class="note-act" data-depl="' + n.id + '" role="button" tabindex="0">D\u00e9placer</span>' +
+              '<span class="note-act" data-mod="' + n.id + '" role="button" tabindex="0">Modifier</span></span></div>';
+      if ((n.refs || []).length) {
+        x += '<div class="note-refs">' + n.refs.map(function(g, i){
+          return '<span class="sb-chip" data-nav="' + n.id + ':' + i + '">' + esc(libelle(g)) + '</span>';
+        }).join('') + '</div>';
+      }
+      return x + '<div class="note-texte">' + esc(n.t) + '</div></div>';
     }
     if (!liste.length) {
       h += '<div class="notes-vide">' + (NOTES.length ? 'Aucune note ne correspond.' : 'Aucune note pour le moment. S\u00e9lectionnez des versets puis \u00ab Prendre une note \u00bb.') + '</div>';
     } else {
-      liste.forEach(function(n){
-        var date = new Date(n.d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-        h += '<div class="note-item" data-id="' + n.id + '">' +
-             '<div class="note-date"><span>' + date + '</span>' +
-             '<span class="note-actions"><span class="note-act" data-mod="' + n.id + '" role="button" tabindex="0">Modifier</span></span></div>';
-        if ((n.refs || []).length) {
-          h += '<div class="note-refs">' + n.refs.map(function(g, i){
-            return '<span class="sb-chip" data-nav="' + n.id + ':' + i + '">' + esc(libelle(g)) + '</span>';
-          }).join('') + '</div>';
-        }
-        h += '<div class="note-texte">' + esc(n.t) + '</div></div>';
+      var valides = {};
+      CATS.forEach(function(c){ valides[c.id] = 1; });
+      var libres = liste.filter(function(n){ return !n.c || !valides[n.c]; });
+      if (libres.length) {
+        if (CATS.length) h += '<div class="notes-cat"><span class="notes-cat-nom">Non class\u00e9es</span></div>';
+        libres.forEach(function(n){ h += carteNote(n); });
+      }
+      CATS.filter(function(c){ return !c.parent; }).forEach(function(c){
+        var directes = liste.filter(function(n){ return n.c === c.id; });
+        var sous = CATS.filter(function(x){ return x.parent === c.id; });
+        var notesSous = sous.some(function(sc){ return liste.some(function(n){ return n.c === sc.id; }); });
+        if (f && !directes.length && !notesSous) return;
+        h += '<div class="notes-cat"><span class="notes-cat-nom">' + esc(c.nom) + '</span>' +
+             '<span class="cat-actes">' +
+             '<span class="cat-act" data-cren="' + c.id + '" role="button" tabindex="0">Renommer</span>' +
+             '<span class="cat-act" data-csub="' + c.id + '" role="button" tabindex="0">Sous-section</span>' +
+             '<span class="cat-act" data-csup="' + c.id + '" role="button" tabindex="0">Supprimer</span></span></div>';
+        directes.forEach(function(n){ h += carteNote(n); });
+        sous.forEach(function(sc){
+          var dn = liste.filter(function(n){ return n.c === sc.id; });
+          if (f && !dn.length) return;
+          h += '<div class="notes-scat"><span class="notes-scat-nom">' + esc(sc.nom) + '</span>' +
+               '<span class="cat-actes">' +
+               '<span class="cat-act" data-cren="' + sc.id + '" role="button" tabindex="0">Renommer</span>' +
+               '<span class="cat-act" data-csup="' + sc.id + '" role="button" tabindex="0">Supprimer</span></span></div>';
+          h += '<div class="notes-sgroupe">';
+          dn.forEach(function(n){ h += carteNote(n); });
+          h += '</div>';
+        });
       });
     }
     vue.innerHTML = h;
@@ -782,10 +967,46 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
     champ.addEventListener('input', function(){ vueNotes(champ.value); });
     if (filtre) { champ.focus(); champ.setSelectionRange(champ.value.length, champ.value.length); }
     document.getElementById('note-libre').addEventListener('click', function(){ ouvreNote({ refs: [], t: '' }); });
+    var cn = document.getElementById('cat-nouvelle');
+    if (cn) cn.addEventListener('click', function(){ ouvreCat({ mode: 'new' }); });
+    vue.querySelectorAll('[data-cren]').forEach(function(b){
+      b.addEventListener('click', function(){ ouvreCat({ mode: 'ren', id: b.getAttribute('data-cren') }); });
+    });
+    vue.querySelectorAll('[data-csub]').forEach(function(b){
+      b.addEventListener('click', function(){ ouvreCat({ mode: 'sub', parent: b.getAttribute('data-csub') }); });
+    });
+    vue.querySelectorAll('[data-csup]').forEach(function(b){
+      b.addEventListener('click', function(){
+        var id = b.getAttribute('data-csup'), c = catParId(id);
+        if (!c) return;
+        if (!confirm('Supprimer \u00ab ' + c.nom + ' \u00bb ? Les notes redeviennent non class\u00e9es.')) return;
+        var mortes = {};
+        mortes[id] = 1;
+        CATS.filter(function(x){ return x.parent === id; }).forEach(function(x){ mortes[x.id] = 1; });
+        CATS = CATS.filter(function(x){ return !mortes[x.id]; });
+        var quand = new Date().toISOString();
+        NOTES.forEach(function(n){ if (n.c && mortes[n.c]) { n.c = ''; n.m = quand; cloudSet(n); } });
+        sauveCats(); sauveNotes(); vueNotes(filtre);
+      });
+    });
+    vue.querySelectorAll('[data-depl]').forEach(function(b){
+      b.addEventListener('click', function(){
+        var id = b.getAttribute('data-depl'), n = null;
+        NOTES.forEach(function(x){ if (x.id === id) n = x; });
+        if (!n) return;
+        var sel = document.createElement('select');
+        sel.className = 'note-depl';
+        sel.innerHTML = optionsCats(n.c || '');
+        b.parentNode.replaceChild(sel, b);
+        sel.focus();
+        sel.addEventListener('change', function(){
+          n.c = sel.value; n.m = new Date().toISOString();
+          sauveNotes(); cloudSet(n); vueNotes(filtre);
+        });
+      });
+    });
     var sIn = document.getElementById('sync-in');
     if (sIn) sIn.addEventListener('click', ouvreAuth);
-    var sOut = document.getElementById('sync-out');
-    if (sOut) sOut.addEventListener('click', function(){ auth.signOut(); });
     vue.querySelectorAll('[data-mod]').forEach(function(b){
       b.addEventListener('click', function(){
         var n = NOTES.filter(function(x){ return x.id === b.dataset.mod; })[0];
@@ -802,28 +1023,32 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
     });
   }
 
-  /* ───────── Champ de référence (accepte une liste : Mt 16:18, Jn 14:2, Ap 3:5) ───────── */
+  /* ───────── Références : analyse et navigation (depuis la loupe) ───────── */
   function decoupeRefs(txt){
-    return String(txt || '').split(/\s*;\s*|,(?=\s*[1-3]?\s*[a-zA-Z\u00c0-\u024f])/)
+    return String(txt || '').split(/\s*;\s*|,(?=\s*[1-4]?\s*[a-zA-Z\u00c0-\u024f])/)
       .map(function(x){ return x.trim(); }).filter(Boolean);
   }
-  function vaRef(){
-    var champ = document.getElementById('ref-champ');
-    var err = document.getElementById('ref-erreur');
-    var morceaux = decoupeRefs(champ.value);
-    if (!morceaux.length) { err.textContent = ''; return; }
+  function refsDepuis(valeur){
+    var morceaux = decoupeRefs(valeur);
     var refs = [], mauvais = [];
     morceaux.forEach(function(m){
       var r = parseRef(m);
       if (r) refs.push(r); else mauvais.push(m);
     });
-    if (mauvais.length) { err.textContent = 'Non reconnu : ' + mauvais.join(' \u00b7 '); return; }
-    err.textContent = '';
-    champ.value = '';
+    return { refs: refs, mauvais: mauvais };
+  }
+  function etiquetteRef(r){
+    var inf = infoLivre(r.slug);
+    var t = inf ? inf.nom : r.slug;
+    if (r.ch) t += ' ' + r.ch;
+    if (r.v1) { t += ':' + r.v1; if (r.v2 > r.v1) t += '-' + r.v2; }
+    return t;
+  }
+  function allerRefs(refs){
     var avecV = refs.filter(function(r){ return r.ch && r.v1; });
     var besoins = {};
     avecV.forEach(function(r){ besoins[r.slug] = 1; });
-    Promise.all(Object.keys(besoins).map(livreData)).then(function(){
+    return Promise.all(Object.keys(besoins).map(livreData)).then(function(){
       avecV.forEach(function(r){
         var d = CACHE[r.slug], ch = null;
         for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === r.ch) { ch = d.chapitres[i]; break; }
@@ -833,17 +1058,11 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
         for (var v = r.v1; v <= r.v2; v++) if (ok[v] && selIdx(r.slug, r.ch, v) < 0) SEL.push({ s: r.slug, c: r.ch, v: v });
       });
       if (avecV.length) { sauveSel(); majPlateau(); }
-      var p = refs[0];
-      var cible = !p.ch ? ('#' + p.slug) : ('#' + p.slug + '/' + p.ch + (p.v1 ? '/' + p.v1 : ''));
+      var p0 = refs[0];
+      var cible = !p0.ch ? ('#' + p0.slug) : ('#' + p0.slug + '/' + p0.ch + (p0.v1 ? '/' + p0.v1 : ''));
       if (location.hash === cible) route(); else location.hash = cible;
-    }).catch(function(){
-      err.textContent = 'Le texte n\u2019a pas pu \u00eatre charg\u00e9.';
     });
   }
-  document.getElementById('ref-aller').addEventListener('click', vaRef);
-  document.getElementById('ref-champ').addEventListener('keydown', function(e){
-    if (e.key === 'Enter') vaRef();
-  });
 
   /* ───────── Vues ───────── */
   function vueLivres(){

@@ -332,35 +332,36 @@ nav.menu a.lien-langue:hover{opacity:1}
 .auth-m-msg.err{display:block;background:rgba(154,59,59,.18);border:1px solid var(--pourpre);color:#eba0a0}
 .auth-m-msg.ok{display:block;background:rgba(58,107,74,.18);border:1px solid #3a6b4a;color:#a0d4b2}
 .auth-m-email{text-align:center;color:var(--parchemin-att);font-size:15px;margin-bottom:22px;word-break:break-all}
+.auth-m-btn{display:block;width:100%;box-sizing:border-box;text-align:center;padding:13px 10px;border:1px solid var(--filet-fort);color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:border-color .3s,color .3s}
+.auth-m-btn:hover{border-color:var(--or);color:var(--or-pale)}
 
 /* ── Raffinements d'interface ── */
 html{scroll-behavior:smooth}
 body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-::selection{background:rgba(241,228,194,.25);color:#fff}
+::selection{background:rgba(231,224,207,.14);color:#fff}
 h1,h2,h3{text-wrap:balance}
 .lecture p{text-wrap:pretty}
-.lecture a{color:var(--or,#efe3c0);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(241,228,194,.7);text-underline-offset:3px;transition:text-decoration-color .25s ease}
+.lecture a{color:var(--or,#efe3c0);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(231,224,207,.34);text-underline-offset:3px;transition:text-decoration-color .25s ease}
 .lecture a:hover{text-decoration-color:var(--or,#efe3c0)}
-*{scrollbar-width:thin;scrollbar-color:rgba(241,228,194,.55) transparent}
+*{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.55) transparent}
 ::-webkit-scrollbar{width:10px;height:10px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:rgba(241,228,194,.55);background-clip:content-box;border:3px solid transparent;border-radius:99px}
-::-webkit-scrollbar-thumb:hover{background:rgba(241,228,194,.8);background-clip:content-box;border:3px solid transparent}
-:focus-visible{outline:1px solid rgba(241,228,194,.5);outline-offset:3px}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.55);background-clip:content-box;border:3px solid transparent;border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:rgba(231,224,207,.6);background-clip:content-box;border:3px solid transparent}
+:focus-visible{outline:1px solid rgba(231,224,207,.28);outline-offset:3px}
 .article-lien{transition:transform .35s ease,border-color .35s ease,background .35s ease}
 .article-lien:hover{transform:translateY(-2px)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.article-lien:hover{transform:none}}
 
 /* — Outils d'article : copier, partager, navigation — */
-.art-bar{display:flex;gap:10px;justify-content:flex-end;margin:-8px 0 28px}
-.art-btn{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;background:none;border:1px solid var(--filet-fort);color:var(--parchemin-att);font-size:15px;cursor:pointer;padding:0;transition:color .25s,border-color .25s}
-.art-btn:hover,.art-btn.ok{color:var(--or);border-color:var(--or)}
-.art-nav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:62px}
-.lecture .art-nav-l{text-decoration:none;border:1px solid var(--filet);border-bottom:1px solid var(--filet);padding:20px 22px;transition:border-color .35s,box-shadow .4s}
-.lecture .art-nav-l:hover{border-color:var(--filet-fort);box-shadow:0 0 30px rgba(241,228,194,.08)}
+.art-bar{display:flex;gap:26px;justify-content:center;margin:-10px 0 36px}
+.art-btn{background:none;border:none;padding:4px 2px;display:inline-flex;align-items:center;justify-content:center;color:var(--parchemin);opacity:.4;font-size:15px;cursor:pointer;transition:opacity .3s,color .3s}
+.art-btn:hover,.art-btn.ok{opacity:1;color:var(--or)}
+.art-nav{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:72px;border-top:1px solid var(--filet);padding-top:10px}
+.lecture .art-nav-l{text-decoration:none;border:none;padding:24px 8px}
 .art-nav-n{grid-column:2;text-align:right}
 .art-nav-k{display:block;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:8px}
-.art-nav-t{font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.3;color:var(--parchemin);transition:color .3s}
+.art-nav-t{font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.3;color:var(--parchemin);transition:color .3s}
 .lecture .art-nav-l:hover .art-nav-t{color:var(--or-pale)}
 @media(max-width:640px){.art-nav{grid-template-columns:1fr}.art-nav-n{grid-column:1;text-align:left}}
 /* — Figures dans les articles — */
@@ -435,6 +436,7 @@ function header(lang, type, base, otherRel, ctx) {
     <div id="auth-in" style="display:none">
       <div class="auth-m-title">${lang === 'fr' ? 'Mon compte' : 'My account'}</div>
       <div class="auth-m-email" id="auth-in-email"></div>
+      <a class="auth-m-btn" href="/bible.html#notes">${lang === 'fr' ? 'Mes notes' : 'My notes'}</a>
       <button class="auth-m-link" id="auth-logout">${lang === 'fr' ? 'Déconnexion' : 'Sign out'}</button>
     </div>
   </div>
@@ -978,23 +980,122 @@ if (fs.existsSync('bible.html')) {
   }
   fs.writeFileSync(`${OUT}/bible.html`, bh);
   console.log('Copié : bible.html');
+
+  // ── Version anglaise : mêmes slugs, texte Douay-Rheims, interface traduite ──
+  {
+    const TR = [
+      ['<a href="/">Accueil</a>', '<a href="/en/">Home</a>'],
+      ['<a href="/bibliotheque/">Bibliothèque</a>', '<a href="/en/library/">Library</a>'],
+      ['<a href="/bible.html" class="actif">Bible</a>', '<a href="/en/bible.html" class="actif">Bible</a>'],
+      ['<a href="/memoriser.html">Mémoriser</a>', '<a href="/memoriser.html">Memorise</a>'],
+      ['<a href="/en/bible.html" class="lien-langue" hreflang="en">EN</a>', '<a href="/bible.html" class="lien-langue" hreflang="fr">FR</a>'],
+      ['aria-label="Rechercher"', 'aria-label="Search"'],
+      ['>Rechercher<', '>Search<'],
+      ['aria-label="Nouveautés"', 'aria-label="News"'],
+      ['>Nouveautés<', '>News<'],
+      ['aria-label="Compte"', 'aria-label="Account"'],
+      ['>Compte<', '>Account<'],
+      ['Traduction du chanoine Augustin Crampon · Édition 1923', 'Douay-Rheims translation · Challoner revision · 1899 edition'],
+      ['La Sainte Bible', 'The Holy Bible'],
+      ['>Chargement…<', '>Loading…<'],
+      ['>Copier<', '>Copy<'],
+      ['Aucune note pour le moment. S\\u00e9lectionnez des versets puis \\u00ab Prendre une note \\u00bb.', 'No notes yet. Select verses, then \\u201cTake a note\\u201d.'],
+      ['>Prendre une note<', '>Take a note<'],
+      ['>Tout effacer<', '>Clear all<'],
+      ['>Mon compte<', '>My account<'],
+      ['Mes notes ·', 'My notes ·'],
+      ['>Mes notes<', '>My notes<'],
+      ['>Déconnexion<', '>Sign out<'],
+      ['Nouvelle catégorie', 'New category'],
+      ['Nouvelle cat\\u00e9gorie', 'New category'],
+      ['Nouvelle sous-section', 'New subsection'],
+      ['>Enregistrer<', '>Save<'],
+      ['>Annuler<', '>Cancel<'],
+      ['>Catégorie<', '>Category<'],
+      ['>Supprimer<', '>Delete<'],
+      ['placeholder="Nom…"', 'placeholder="Name…"'],
+      ['placeholder="Écrire la note…"', 'placeholder="Write the note…"'],
+      ['placeholder="Référence ou article…"', 'placeholder="Reference or article…"'],
+      ['placeholder="Adresse e-mail"', 'placeholder="Email address"'],
+      ['placeholder="Confirmer le mot de passe"', 'placeholder="Confirm the password"'],
+      ['placeholder="Mot de passe"', 'placeholder="Password"'],
+      ['>Connexion<', '>Sign in<'],
+      ['>Inscription<', '>Sign up<'],
+      ['>Se connecter pour les retrouver partout<', '>Sign in to find them everywhere<'],
+      ['>Se connecter<', '>Sign in<'],
+      ['>ou<', '>or<'],
+      ['>Continuer avec Google<', '>Continue with Google<'],
+      ['>Mot de passe oublié ?<', '>Forgot password?<'],
+      ["'Cr\\u00e9er le compte'", "'Create the account'"],
+      ["'Envoyer le lien'", "'Send the link'"],
+      ["'Cette adresse est d\\u00e9j\\u00e0 utilis\\u00e9e.'", "'This address is already in use.'"],
+      ["'Mot de passe trop court (6 caract\\u00e8res minimum).'", "'Password too short (6 characters minimum).'"],
+      ["'\\u00c9chec de la connexion.'", "'Sign-in failed.'"],
+      ["'Lien de r\\u00e9initialisation envoy\\u00e9.'", "'Reset link sent.'"],
+      ["'Les mots de passe ne correspondent pas.'", "'The passwords do not match.'"],
+      ['Aller à : ', 'Go to: '],
+      ['Référence biblique — Entrée pour ouvrir', 'Bible reference — Enter to open'],
+      [' et sélectionner', ' and select'],
+      ['Aucun résultat.', 'No results.'],
+      ['Rien de nouveau pour le moment.', 'Nothing new for now.'],
+      ['Copié \\u2713', 'Copied \\u2713'],
+      ['>Non class\\u00e9e</option>', '>Uncategorised</option>'],
+      ["'Modifier la note'", "'Edit the note'"],
+      ["'Nouvelle note'", "'New note'"],
+      ['>Nouvelle note<', '>New note<'],
+      ['>Renommer<', '>Rename<'],
+      ["'Renommer'", "'Rename'"],
+      ['>Sous-section<', '>Subsection<'],
+      ['>D\\u00e9placer<', '>Move<'],
+      ['>Modifier<', '>Edit<'],
+      ['placeholder="Rechercher dans les notes\\u2026"', 'placeholder="Search the notes\\u2026"'],
+      ['Notes enregistr\\u00e9es sur cet appareil \\u00b7', 'Notes stored on this device \\u00b7'],
+      ['Aucune note ne correspond.', 'No note matches.'],
+      ['Non class\\u00e9es', 'Uncategorised'],
+      ["'Supprimer \\u00ab '", "'Delete \\u201c'"],
+      ["' \\u00bb ? Les notes redeviennent non class\\u00e9es.'", "'\\u201d? The notes become uncategorised.'"],
+      ["'Ancien Testament'", "'Old Testament'"],
+      ["'Nouveau Testament'", "'New Testament'"],
+      ['Chargement\\u2026', 'Loading\\u2026'],
+      ['Le texte n\\u2019a pas pu \\u00eatre charg\\u00e9.', 'The text could not be loaded.'],
+      ['L\\u2019index de la Bible n\\u2019a pas pu \\u00eatre charg\\u00e9.', 'The Bible index could not be loaded.'],
+      ["'fr-FR'", "'en-GB'"],
+      ['NEWS.fr', 'NEWS.en'],
+      ['window.LV_INDEX.fr', 'window.LV_INDEX.en'],
+      ['bible-data/', 'bible-data-en/'],
+    ];
+    let bhEn = bh;
+    for (const pr of TR) bhEn = bhEn.split(pr[0]).join(pr[1]);
+    if (UI.fr.footer_verse && UI.en.footer_verse) bhEn = bhEn.split(UI.fr.footer_verse).join(UI.en.footer_verse);
+    bhEn = bhEn.replace(/Texte biblique :[\s\S]*?CC BY-NC-SA 3\.0<\/a>[^<]*/,
+      'Biblical text: The Holy Bible, Douay-Rheims version (Challoner revision), 1899 American edition. The text is in the public domain.');
+    bhEn = bhEn.replace(/<meta name="description" content="[^"]*">/,
+      '<meta name="description" content="The Holy Bible, Douay-Rheims translation (Challoner revision). Online reading, Old and New Testament.">');
+    fs.mkdirSync(`${OUT}/en`, { recursive: true });
+    fs.writeFileSync(`${OUT}/en/bible.html`, bhEn);
+    console.log('Bible : version anglaise générée (en/bible.html)');
+  }
   if (fs.existsSync('bible-panneau.js')) {
     fs.copyFileSync('bible-panneau.js', `${OUT}/bible-panneau.js`);
     console.log('Copié : bible-panneau.js');
   }
-  // La Bible est stockée en UN fichier source (content/bible.json) que le build
-  // redécoupe en un fichier par livre + un index, servis sous /bible-data/.
-  if (fs.existsSync('content/bible.json')) {
-    fs.mkdirSync(`${OUT}/bible-data`, { recursive: true });
-    const bible = JSON.parse(fs.readFileSync('content/bible.json', 'utf8'));
-    fs.writeFileSync(`${OUT}/bible-data/index.json`, JSON.stringify({ livres: bible.livres, groupes: bible.groupes }));
+  // Chaque Bible est UN fichier source que le build redécoupe en un fichier
+  // par livre + un index : FR (Crampon) → /bible-data/, EN (Douay-Rheims) → /bible-data-en/.
+  const decoupeBible = (src, dossier) => {
+    if (!fs.existsSync(src)) return false;
+    fs.mkdirSync(`${OUT}/${dossier}`, { recursive: true });
+    const bible = JSON.parse(fs.readFileSync(src, 'utf8'));
+    fs.writeFileSync(`${OUT}/${dossier}/index.json`, JSON.stringify({ livres: bible.livres, groupes: bible.groupes }));
     let nb = 0;
     for (const livre of bible.data) {
-      fs.writeFileSync(`${OUT}/bible-data/${livre.slug}.json`, JSON.stringify(livre));
+      fs.writeFileSync(`${OUT}/${dossier}/${livre.slug}.json`, JSON.stringify(livre));
       nb++;
     }
-    console.log('Bible : 1 fichier source redécoupé en ' + nb + ' livres + index');
-  } else if (fs.existsSync('content/bible')) {
+    console.log('Bible (' + dossier + ') : ' + nb + ' livres + index');
+    return true;
+  };
+  decoupeBible('content/bible-en.json', 'bible-data-en');
+  if (!decoupeBible('content/bible.json', 'bible-data')) if (fs.existsSync('content/bible')) {
     // repli : ancien format (un fichier par livre déjà découpé)
     fs.mkdirSync(`${OUT}/bible-data`, { recursive: true });
     let nb = 0;
