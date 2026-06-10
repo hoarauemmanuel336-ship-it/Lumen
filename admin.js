@@ -30,7 +30,7 @@
 
   /* ════════ FEUILLE DE STYLE ════════ */
   var CSS = [
-    ':root{--lvaL:var(--filet, rgba(231,224,207,.18));--lvaL2:var(--filet-fort, rgba(231,224,207,.5));--lvaG:var(--or,#efe6cf);--lvaT:var(--parchemin,#efeada);--lvaM:#9a958a;--lvaBG:var(--encre,#0a0908);--lvaBG2:var(--encre-2,#0d0c0a)}',
+    ':root{--lvaL:var(--filet, rgba(231,224,207,.18));--lvaL2:var(--filet-fort, rgba(231,224,207,.5));--lvaG:var(--or,#efe6cf);--lvaT:var(--parchemin,#efeada);--lvaM:var(--parchemin-att,#9a958a);--lvaBG:var(--encre,#0a0908);--lvaBG2:var(--encre-2,#0d0c0a)}',
     '.auth-modal{border:1px solid var(--lvaL)!important;box-shadow:0 32px 90px rgba(0,0,0,.8)!important;position:relative}',
     '.auth-modal::before,.auth-modal::after{content:"";position:absolute;width:14px;height:14px;pointer-events:none}',
     '.auth-modal::before{top:-1px;left:-1px;border-top:1px solid var(--lvaL2);border-left:1px solid var(--lvaL2)}',
@@ -142,6 +142,8 @@
     '.lva-pick-i{display:block;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid rgba(231,224,207,.07);color:var(--lvaT);font-family:"EB Garamond",serif;font-size:15px;padding:10px 16px;cursor:pointer;transition:background .2s}',
     '.lva-pick-i:hover{background:rgba(231,224,207,.06)}',
     '.lva-doc a{color:var(--lvaG);text-decoration:underline;text-underline-offset:3px}',
+    '.lva-doc img{max-width:100%;height:auto;display:block;margin:14px auto}',
+    '.lva-doc figcaption{text-align:center;font-size:13px;color:var(--lvaM)}',
     '.lva-dom-t{cursor:pointer;display:flex;align-items:center;gap:10px;user-select:none;transition:color .2s}',
     '.lva-dom-t:hover{color:var(--lvaT)}',
     '.lva-sec-chev{display:inline-block;color:var(--lvaM);font-size:16px;line-height:1;transition:transform .25s ease}',
@@ -156,12 +158,24 @@
   var apNode = null;
   function apStyle() { if (!apNode) { apNode = el('style'); apNode.id = 'lv-apparence'; document.head.appendChild(apNode); } return apNode; }
   var AP_VARS = [['encre', '--encre'], ['encre2', '--encre-2'], ['parchemin', '--parchemin'], ['parchemin_att', '--parchemin-att'], ['or', '--or'], ['or_pale', '--or-pale'], ['pourpre', '--pourpre'], ['filet', '--filet'], ['filet_fort', '--filet-fort']];
+  var AP_MAP = {}; AP_VARS.forEach(function (x) { AP_MAP[x[0]] = x[1]; });
+  function cssVarHex(nomVar, secours) {
+    try {
+      var v = getComputedStyle(document.documentElement).getPropertyValue(nomVar).trim();
+      if (/^#[0-9a-f]{6}$/i.test(v)) return v;
+      var m = v.match(/^rgba?\((\d+)[,\s]+(\d+)[,\s]+(\d+)/);
+      if (m) return '#' + [1, 2, 3].map(function (i) { return ('0' + (+m[i]).toString(16)).slice(-2); }).join('');
+    } catch (_) {}
+    return secours;
+  }
   var TITRES_SEL = 'h1,h2,h3,h4,h5,h6,.marque,.dom-nom,.sous-nom,.titre-section h2,.domaine h3,.bandeau-page h1,.auth-m-title,.lecture h1';
   function applyApparence(d) {
     d = d || {}; var v = d.vars || {};
     AP_VARS.forEach(function (x) { if (v[x[0]]) document.documentElement.style.setProperty(x[1], v[x[0]]); else document.documentElement.style.removeProperty(x[1]); });
     if (v.filet_fort) document.documentElement.style.setProperty('--filet-f', v.filet_fort); else document.documentElement.style.removeProperty('--filet-f');
     if (v.encre2) document.documentElement.style.setProperty('--encre-3', v.encre2); else document.documentElement.style.removeProperty('--encre-3');
+    if (v.parchemin_att) { document.documentElement.style.setProperty('--pa', v.parchemin_att); document.documentElement.style.setProperty('--pa2', v.parchemin_att); }
+    else { document.documentElement.style.removeProperty('--pa'); document.documentElement.style.removeProperty('--pa2'); }
     if (d.fond) document.documentElement.style.setProperty('--encre', d.fond);
     if (d.texte) document.documentElement.style.setProperty('--parchemin', d.texte);
     if (d.accent) document.documentElement.style.setProperty('--or', d.accent);
@@ -219,6 +233,20 @@
   }
   function applyThemes(d) {
     d = d || {}; var noms = d.noms || {}, struct = d.struct || {}, cats = d.cats || {}, ordre = d.ordre || {};
+    var dor = d.domOrdre;
+    if (Array.isArray(dor) && dor.length) {
+      var pgs = [];
+      qsa('[data-theme]').forEach(function (n) {
+        var pp = n.parentNode; if (!pp) return;
+        var e = null; for (var i = 0; i < pgs.length; i++) if (pgs[i].p === pp) e = pgs[i];
+        if (!e) { e = { p: pp, ns: [] }; pgs.push(e); }
+        e.ns.push(n);
+      });
+      pgs.forEach(function (e) {
+        if (e.ns.length < 2) return;
+        dor.forEach(function (th) { e.ns.forEach(function (n) { if (n.getAttribute('data-theme') === th) e.p.appendChild(n); }); });
+      });
+    }
     qsa('.dom[data-theme]').forEach(function (dom) {
       var th = dom.getAttribute('data-theme');
       var nm = noms[th]; if (nm && nm['nom_' + lang]) { var h = dom.querySelector('.dom-nom'); if (h) h.textContent = nm['nom_' + lang]; }
@@ -292,8 +320,47 @@
       corps.appendChild(a);
     });
   }
+  function outilsArticle() {
+    var art = document.querySelector('article.lecture'); if (!art || document.querySelector('.art-bar')) return;
+    var slug = artEl ? artEl.getAttribute('data-article') : null;
+    function fb(btn) { var old = btn.innerHTML; btn.innerHTML = '\u2713'; btn.classList.add('ok'); setTimeout(function () { btn.innerHTML = old; btn.classList.remove('ok'); }, 1500); }
+    var bar = el('div', 'art-bar');
+    var bc = el('button', 'art-btn'); bc.type = 'button'; bc.title = T('Copier l\u2019article', 'Copy the article'); bc.textContent = '\u29C9';
+    bc.addEventListener('click', function () { if (!navigator.clipboard) return; navigator.clipboard.writeText(art.innerText).then(function () { fb(bc); }).catch(function () {}); });
+    var bs = el('button', 'art-btn'); bs.type = 'button'; bs.title = T('Copier le lien de l\u2019article', 'Copy the article link');
+    bs.innerHTML = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5v11.5" stroke-linecap="round"/><path d="M8 7l4-4 4 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 11.5v8h14v-8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    bs.addEventListener('click', function () { if (!navigator.clipboard) return; navigator.clipboard.writeText(location.href).then(function () { fb(bs); }).catch(function () {}); });
+    bar.appendChild(bc); bar.appendChild(bs);
+    var h1 = art.querySelector('h1');
+    if (h1) h1.insertAdjacentElement('afterend', bar); else art.insertBefore(bar, art.firstChild);
+    if (slug && IDX && IDX.themes) {
+      var seq = null;
+      IDX.themes.forEach(function (t) {
+        var flat = []; (t.cats || []).forEach(function (c) { (c.arts || []).forEach(function (a) { if (flat.indexOf(a) < 0) flat.push(a); }); });
+        (IDX.articles || []).forEach(function (a) { if (a.theme === t.id && flat.indexOf(a.id) < 0) flat.push(a.id); });
+        if (!seq && flat.indexOf(slug) >= 0) seq = flat;
+      });
+      if (seq) {
+        var i = seq.indexOf(slug), byId = {}; (IDX.articles || []).forEach(function (a) { byId[a.id] = a; });
+        var pv = i > 0 ? byId[seq[i - 1]] : null, nx = (i >= 0 && i < seq.length - 1) ? byId[seq[i + 1]] : null;
+        if (pv || nx) {
+          var nav = el('div', 'art-nav');
+          function lien(a, sens) {
+            var x = el('a', 'art-nav-l' + (sens > 0 ? ' art-nav-n' : '')); x.href = a.u;
+            var k = el('span', 'art-nav-k'); k.textContent = sens > 0 ? (T('Article suivant', 'Next article') + ' \u2192') : ('\u2190 ' + T('Article précédent', 'Previous article'));
+            var tt = el('span', 'art-nav-t'); tt.textContent = a.titre;
+            x.appendChild(k); x.appendChild(tt); return x;
+          }
+          if (pv) nav.appendChild(lien(pv, -1));
+          if (nx) nav.appendChild(lien(nx, 1));
+          art.appendChild(nav);
+        }
+      }
+    }
+  }
   function gdoc(p) { return db.doc(p).get().then(function (s) { return s.exists ? s.data() : null; }).catch(function () { return null; }); }
   gdoc('config/apparence').then(function (d) { if (d) applyApparence(d); });
+  if (PAGE === 'article') outilsArticle();
   if (PAGE === 'article') db.collection('contenu').doc(artEl.getAttribute('data-article')).get().then(function (s) { if (s.exists) applyArticle(s.data()); }).catch(function () {});
   if (PAGE === 'biblio') {
     Promise.all([gdoc('config/themes'), db.collection('contenu').get().catch(function () { return null; })]).then(function (r) {
@@ -450,6 +517,11 @@
       if (!url || !url.trim()) return;
       ex('createLink', url.trim());
     });
+    fmtBtn('\u25A3', T('Image (lien)', 'Image (URL)'), function () {
+      var url2 = prompt(T('Adresse de l\u2019image (https://\u2026)', 'Image URL (https://\u2026)'), ''); if (!url2 || !url2.trim()) return;
+      var cap = prompt(T('Légende (facultatif)', 'Caption (optional)'), '') || '';
+      ex('insertHTML', '<figure><img src="' + esc(url2.trim()) + '" alt="' + esc(cap) + '" loading="lazy">' + (cap ? '<figcaption>' + esc(cap) + '</figcaption>' : '') + '</figure><p></p>');
+    });
     return { bar: bar, doc: doc };
   }
   function memDeplacer(row) {
@@ -479,8 +551,9 @@
 
   /* ════════ PANNEAU CENTRAL ════════ */
   var hub = null, hubBody = null, hubTabs = {}, hubCache = {}, hubOpt = null;
+  var apQuitte = null, apDirty = false, apSauve = null;
   function openHub(tab, opt) { if (!hub) buildHub(); hubOpt = opt || null; hub.style.display = 'block'; selectTab(tab || 'accueil'); }
-  function closeHub() { if (hub) hub.style.display = 'none'; UNDO = []; }
+  function closeHub() { if (apQuitte) { apQuitte(); apQuitte = null; } if (hub) hub.style.display = 'none'; UNDO = []; }
   function buildHub() {
     hub = el('div', 'lva-page'); hub.style.display = 'none';
     var w = el('div', 'lva-wrap'); hub.appendChild(w);
@@ -506,6 +579,7 @@
     document.body.appendChild(hub);
   }
   function selectTab(id) {
+    if (apQuitte) { apQuitte(); apQuitte = null; }
     Object.keys(hubTabs).forEach(function (k) { hubTabs[k].classList.toggle('on', k === id); });
     hubBody.innerHTML = ''; UNDO = [];
     var fns = { articles: tabArticles, biblio: tabBiblio, apparence: tabApparence, accueil: tabAccueil, memoriser: tabMemoriser, exporter: tabExport };
@@ -784,7 +858,11 @@
         var secChev = el('span', 'lva-sec-chev'); secChev.textContent = '\u203A'; secT.appendChild(secChev);
         var secLbl = el('span'); secLbl.textContent = t.nom; secT.appendChild(secLbl);
         secT.addEventListener('click', function () { sec.classList.toggle('dom-open'); });
+        var secG = el('span', 'lva-grip'); secG.textContent = '\u2630'; secG.style.cssText = 'font-size:13px;cursor:grab';
+        secG.addEventListener('click', function (e) { e.stopPropagation(); });
+        secT.insertBefore(secG, secT.firstChild);
         sec.appendChild(secT);
+        dragify(secG, sec, { containers: function () { return [host]; }, items: function (c) { return qsa(':scope > .lva-bth', c); }, scroller: function () { return hub; }, onMoved: markDirty });
         var rN = el('div', 'lva-row2');
         var c1 = el('div'); c1.appendChild(el('label', 'lva-lab', T('Nom du domaine', 'Domain name')));
         var iN = el('input', 'lva-in lva-bth-nom'); iN.value = (noms[t.id] && noms[t.id]['nom_' + lang]) || t.nom; iN.addEventListener('input', markDirty); c1.appendChild(iN);
@@ -835,6 +913,7 @@
       hubBody.appendChild(stick);
       sv.addEventListener('click', function () {
         var d = { noms: {}, struct: {} }, finals = {}, idsPris = {};
+        d.domOrdre = qsa(':scope > .lva-bth', host).map(function (sec) { return sec.__th; });
         qsa('.lva-bth', host).forEach(function (sec) {
           var th = sec.__th;
           d.noms[th] = {}; d.noms[th]['nom_' + lang] = sec.__nom.value.trim(); d.noms[th]['desc_' + lang] = sec.__desc.value.trim();
@@ -909,9 +988,10 @@
     hubBody.appendChild(det);
     var act = el('div', 'lva-actions');
     var sv = el('button', 'lva-btn'); sv.type = 'button'; sv.textContent = T('Enregistrer', 'Save');
+    var an = el('button', 'lva-btn2'); an.type = 'button'; an.textContent = T('Annuler', 'Cancel');
     var rs = el('button', 'lva-btn3'); rs.type = 'button'; rs.textContent = T('Réinitialiser', 'Reset');
     var st = el('span', 'lva-stat');
-    act.appendChild(sv); act.appendChild(rs); act.appendChild(st); hubBody.appendChild(act);
+    act.appendChild(sv); act.appendChild(an); act.appendChild(rs); act.appendChild(st); hubBody.appendChild(act);
     function valeurs() {
       var v = {}; COUL.forEach(function (x) { v[x[0]] = champs[x[0]].value; });
       if (iF1.value.trim()) v.filet = iF1.value.trim();
@@ -921,25 +1001,28 @@
     function prefill(d) {
       d = d || {}; var v = d.vars || {};
       COUL.forEach(function (x) {
-        var val = v[x[0]] || (x[0] === 'encre' && d.fond) || (x[0] === 'parchemin' && d.texte) || (x[0] === 'or' && d.accent) || x[2];
-        champs[x[0]].value = /^#[0-9a-f]{6}$/i.test(val) ? val : x[2];
+        var defaut = cssVarHex(AP_MAP[x[0]], x[2]);
+        var val = v[x[0]] || (x[0] === 'encre' && d.fond) || (x[0] === 'parchemin' && d.texte) || (x[0] === 'or' && d.accent) || defaut;
+        champs[x[0]].value = /^#[0-9a-f]{6}$/i.test(val) ? val : defaut;
       });
       iF1.value = v.filet || ''; iF2.value = v.filet_fort || '';
       iPC.value = d.police_corps || d.police || ''; iPT.value = d.police_titres || '';
       iTa.value = d.taille || ''; iIm.value = d.image || ''; iCss.value = d.css || '';
     }
-    hubBody.addEventListener('input', function (e) { if (e.target === iCss || e.target.type === 'color' || e.target.tagName === 'INPUT') applyApparence(valeurs()); });
+    hubBody.addEventListener('input', function (e) { if (e.target === iCss || e.target.type === 'color' || e.target.tagName === 'INPUT') { apDirty = true; applyApparence(valeurs()); } });
     sv.addEventListener('click', function () {
       var d = valeurs(); st.textContent = T('Enregistrement…', 'Saving…');
-      db.doc('config/apparence').set(d).then(function () { applyApparence(d); dirty = false; st.textContent = T('Enregistré. Visible par tous, sur tout le site.', 'Saved. Visible to everyone, site-wide.'); })
+      db.doc('config/apparence').set(d).then(function () { applyApparence(d); apSauve = d; apDirty = false; dirty = false; st.textContent = T('Enregistré. Visible par tous, sur tout le site.', 'Saved. Visible to everyone, site-wide.'); })
         .catch(function (e) { st.textContent = T('Erreur : ', 'Error: ') + e.message; });
     });
     rs.addEventListener('click', function () {
       if (!confirm(T('Revenir à l\u2019apparence d\u2019origine du site ?', 'Reset the site to its original appearance?'))) return;
-      db.doc('config/apparence').delete().then(function () { applyApparence({}); prefill({}); dirty = false; st.textContent = T('Réinitialisé.', 'Reset.'); })
+      db.doc('config/apparence').delete().then(function () { applyApparence({}); prefill({}); apSauve = null; apDirty = false; dirty = false; st.textContent = T('Réinitialisé.', 'Reset.'); })
         .catch(function (e) { st.textContent = T('Erreur : ', 'Error: ') + e.message; });
     });
-    gdoc('config/apparence').then(prefill);
+    gdoc('config/apparence').then(function (d) { apSauve = d; prefill(d); });
+    apQuitte = function () { if (apDirty) applyApparence(apSauve || {}); apDirty = false; };
+    an.addEventListener('click', function () { applyApparence(apSauve || {}); prefill(apSauve || {}); apDirty = false; dirty = false; st.textContent = T('Annulé — aperçu retiré.', 'Cancelled — preview removed.'); });
   }
 
   /* — onglet Accueil — */
@@ -978,6 +1061,43 @@
       db.doc('config/accueil').set(d, { merge: true }).then(function () { dirty = false; st.textContent = T('Enregistré.', 'Saved.'); applyAccueil(d); })
         .catch(function (e) { st.textContent = T('Erreur : ', 'Error: ') + e.message; });
     });
+    hubBody.appendChild(el('div', 'lva-sec-t', T('Notifications (cloche)', 'Notifications (bell)')));
+    hubBody.appendChild(el('div', 'lva-note', T('Le journal des nouveautés, mois par mois, une annonce par ligne. Les changements deviennent publics à la prochaine publication du site (onglet Exporter, bouton \u00AB Publier le site \u00BB).', 'The news journal, month by month, one item per line. Changes go public at the next site publication (Export tab, \u201CPublish the site\u201D button).')));
+    var nvHost = el('div'); hubBody.appendChild(nvHost);
+    var nvDoc = {};
+    function nvBloc(g) {
+      var b = el('div', 'lva-li on');
+      var hh = el('div', 'lva-li-h');
+      var iD2 = el('input', 'lva-in'); iD2.placeholder = T('Juin 2026', 'June 2026'); iD2.value = g.d || ''; iD2.style.maxWidth = '220px'; iD2.addEventListener('input', markDirty);
+      var xx = el('span', 'lva-x'); xx.textContent = '\u2715'; xx.style.marginLeft = 'auto';
+      xx.addEventListener('click', function () { b.remove(); markDirty(); });
+      hh.appendChild(iD2); hh.appendChild(xx); b.appendChild(hh);
+      var bd = el('div', 'lva-li-body');
+      var ta2 = el('textarea', 'lva-ta'); ta2.rows = 4; ta2.placeholder = T('Une annonce par ligne\u2026', 'One item per line\u2026'); ta2.value = (g.items || []).join('\n'); ta2.addEventListener('input', markDirty);
+      bd.appendChild(ta2); b.appendChild(bd);
+      b.__lire = function () { return { d: iD2.value.trim(), items: ta2.value.split('\n').map(function (x) { return x.trim(); }).filter(Boolean) }; };
+      return b;
+    }
+    function nvRemplir(list) { nvHost.innerHTML = ''; (list || []).forEach(function (g) { nvHost.appendChild(nvBloc(g)); }); }
+    var nvAdd = el('button', 'lva-btn2'); nvAdd.type = 'button'; nvAdd.textContent = T('+ Nouveau mois', '+ New month'); nvAdd.style.margin = '10px 0 0';
+    nvAdd.addEventListener('click', function () { nvHost.insertBefore(nvBloc({ d: '', items: [] }), nvHost.firstChild); markDirty(); });
+    hubBody.appendChild(nvAdd);
+    var nvAct = el('div', 'lva-actions');
+    var nvSv = el('button', 'lva-btn'); nvSv.type = 'button'; nvSv.textContent = T('Enregistrer les notifications', 'Save the notifications');
+    var nvSt = el('span', 'lva-stat');
+    nvAct.appendChild(nvSv); nvAct.appendChild(nvSt); hubBody.appendChild(nvAct);
+    function nvDom() { return qsa('.nouv-groupe').map(function (g) { var dEl = g.querySelector('.nouv-date'); return { d: dEl ? dEl.textContent : '', items: qsa('.nouv-ligne', g).map(function (x) { return x.textContent; }) }; }); }
+    gdoc('config/nouveautes').then(function (d) {
+      nvDoc = d || {};
+      nvRemplir((nvDoc[lang] && nvDoc[lang].length) ? nvDoc[lang] : nvDom());
+    });
+    nvSv.addEventListener('click', function () {
+      nvDoc[lang] = qsa(':scope > .lva-li', nvHost).map(function (b) { return b.__lire(); }).filter(function (g) { return g.d || g.items.length; });
+      nvSt.textContent = T('Enregistrement\u2026', 'Saving\u2026');
+      db.doc('config/nouveautes').set(nvDoc).then(function () { dirty = false; nvSt.textContent = T('Enregistré — public à la prochaine publication.', 'Saved — public at next publication.'); })
+        .catch(function (e2) { nvSt.textContent = T('Erreur : ', 'Error: ') + e2.message; });
+    });
+
   }
 
   /* — onglet Mémoriser — */
@@ -1159,12 +1279,20 @@
       }).catch(function (e) { stat.textContent = T('Erreur : ', 'Error: ') + e.message; });
     });
     search.addEventListener('input', function () {
-      var q = search.value.toLowerCase();
+      var q = search.value.toLowerCase().trim();
+      function vHit(v) { return (((v.fr || {}).ref || '') + ' ' + ((v.en || {}).ref || '') + ' ' + ((v.fr || {}).text || '') + ' ' + ((v.en || {}).text || '')).toLowerCase().indexOf(q) >= 0; }
       qsa('.lva-cat', host).forEach(function (b) {
-        if (!q) { b.style.display = ''; return; }
-        var c = b.__c, hit = ((c.name.fr || '') + ' ' + (c.name.en || '')).toLowerCase().indexOf(q) >= 0
-          || (c.verses || []).some(function (v) { return (((v.fr || {}).ref || '') + ' ' + ((v.en || {}).ref || '')).toLowerCase().indexOf(q) >= 0; });
-        b.style.display = hit ? '' : 'none';
+        var c = b.__c, body = b.querySelector('.lva-cat-b');
+        if (!q) { b.style.display = ''; if (body) qsa('.lva-v', body).forEach(function (r) { r.style.display = ''; }); return; }
+        var nomHit = ((c.name.fr || '') + ' ' + (c.name.en || '')).toLowerCase().indexOf(q) >= 0;
+        var aV = (c.verses || []).some(vHit);
+        if (!nomHit && !aV) { b.style.display = 'none'; return; }
+        b.style.display = '';
+        if (aV && !nomHit) {
+          if (body && !body.children.length && b.__fill) b.__fill();
+          b.classList.add('on');
+          if (body) qsa('.lva-v', body).forEach(function (r) { r.style.display = vHit(r.__v) ? '' : 'none'; });
+        } else if (body) { qsa('.lva-v', body).forEach(function (r) { r.style.display = ''; }); }
       });
     });
     memW.forEach(function (c) { host.appendChild(memCatBlock(c, host)); });

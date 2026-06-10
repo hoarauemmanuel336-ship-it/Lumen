@@ -58,6 +58,12 @@ function fsLireDoc(chemin) {
 function fsLireCollection(nom) {
   try { const r = fsCurl(FS_BASE + nom + '?pageSize=300'); if (!r || r.error) return null; return (r.documents || []).map(d => ({ id: d.name.split('/').pop(), data: fsChamps(d.fields) })); } catch (e) { return null; }
 }
+const NV_LIGNE = fsLireDoc('config/nouveautes');
+if (NV_LIGNE) {
+  if (Array.isArray(NV_LIGNE.fr) && NV_LIGNE.fr.length) NV_FR = NV_LIGNE.fr;
+  if (Array.isArray(NV_LIGNE.en) && NV_LIGNE.en.length) NV_EN = NV_LIGNE.en;
+  if ((NV_LIGNE.fr && NV_LIGNE.fr.length) || (NV_LIGNE.en && NV_LIGNE.en.length)) console.log('Nouveautés : version en ligne (Firestore) utilisée');
+}
   const parId = Object.create(null);
   for (const a of ARTICLES) parId[a.id] = a;
   let n = 0, crees = 0;
@@ -150,6 +156,45 @@ if (fs.existsSync('content/themes.json')) {
 }
 
 // Apparence éditable : couleur d'accent (--or) depuis content/settings.json
+
+/* — Poussière lumineuse en suspension (interactive) — */
+const PARTICULES_JS = `(function(){
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var cv=document.getElementById('poussiere');if(!cv)return;
+var cx=cv.getContext('2d'),W,H,parts=[],P={x:-1e4,y:-1e4,t:-1e4};
+var C={r:211,g:185,b:126};
+function lireOr(){try{var v=getComputedStyle(document.documentElement).getPropertyValue('--or').trim();var m=v.match(/^#([0-9a-f]{6})$/i);if(m){C.r=parseInt(m[1].slice(0,2),16);C.g=parseInt(m[1].slice(2,4),16);C.b=parseInt(m[1].slice(4,6),16);}}catch(e){}}
+function nee(init){return{x:Math.random()*W,y:init?Math.random()*H:(Math.random()<.5?H+6:-6),r:.5+Math.random()*1.15,o:.05+Math.random()*.12,ph:Math.random()*6.283,vs:.00035+Math.random()*.0006,dx:(Math.random()-.5)*.05,dy:(Math.random()-.5)*.04-.013,px:0,py:0};}
+function taille(){var d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;cv.style.width=W+'px';cv.style.height=H+'px';cx.setTransform(d,0,0,d,0,0);
+var n=Math.min(64,Math.max(18,Math.round(W*H/30000)));parts=[];for(var i=0;i<n;i++)parts.push(nee(true));}
+addEventListener('pointermove',function(e){P.x=e.clientX;P.y=e.clientY;P.t=performance.now();},{passive:true});
+addEventListener('touchmove',function(e){var t=e.touches&&e.touches[0];if(t){P.x=t.clientX;P.y=t.clientY;P.t=performance.now();}},{passive:true});
+function pas(t){
+requestAnimationFrame(pas);
+if(document.hidden)return;
+cx.clearRect(0,0,W,H);
+var actif=(t-P.t)<900,R=120;
+for(var i=0;i<parts.length;i++){
+var p=parts[i];
+p.dx+=(Math.random()-.5)*.005;p.dy+=(Math.random()-.5)*.005;
+p.dx*=.985;p.dy*=.985;
+var lum=0;
+if(actif){var ex=p.x-P.x,ey=p.y-P.y,d2=ex*ex+ey*ey;
+if(d2<R*R&&d2>.01){var d=Math.sqrt(d2),f=1-d/R;p.px+=(ex/d)*f*1.5;p.py+=(ey/d)*f*1.5;lum=f;}}
+p.px*=.86;p.py*=.86;
+p.x+=p.dx+p.px;p.y+=p.dy+p.py;
+if(p.x<-8)p.x=W+8;else if(p.x>W+8)p.x=-8;
+if(p.y<-10||p.y>H+10){parts[i]=nee(false);continue;}
+var sc=.45+.55*(Math.sin(t*p.vs+p.ph)*.5+.5);
+var a=p.o*sc+lum*.2;if(a>.42)a=.42;
+cx.beginPath();cx.arc(p.x,p.y,p.r+lum*.8,0,6.283);
+cx.fillStyle='rgba('+C.r+','+C.g+','+C.b+','+a.toFixed(3)+')';cx.fill();
+}}
+lireOr();setInterval(lireOr,5000);
+taille();addEventListener('resize',taille);
+requestAnimationFrame(pas);
+})();`;
+
 let APPEARANCE_CSS = '';
 if (fs.existsSync('content/settings.json')) {
   try {
@@ -332,6 +377,21 @@ h1,h2,h3{text-wrap:balance}
 .article-lien{transition:transform .35s ease,border-color .35s ease,background .35s ease}
 .article-lien:hover{transform:translateY(-2px)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.article-lien:hover{transform:none}}
+
+/* — Outils d'article : copier, partager, navigation — */
+.art-bar{display:flex;gap:10px;justify-content:flex-end;margin:-8px 0 28px}
+.art-btn{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;background:none;border:1px solid var(--filet-fort);color:var(--parchemin-att);font-size:15px;cursor:pointer;padding:0;transition:color .25s,border-color .25s}
+.art-btn:hover,.art-btn.ok{color:var(--or);border-color:var(--or)}
+.art-nav{display:flex;justify-content:space-between;gap:18px;margin-top:56px;border-top:1px solid var(--filet);padding-top:26px}
+.lecture .art-nav-l{text-decoration:none;border-bottom:none;max-width:46%}
+.art-nav-n{margin-left:auto;text-align:right}
+.art-nav-k{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--parchemin-att);margin-bottom:7px}
+.art-nav-t{font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.35;color:var(--parchemin);transition:color .25s}
+.lecture .art-nav-l:hover .art-nav-t{color:var(--or)}
+/* — Figures dans les articles — */
+.lecture figure{margin:38px auto;text-align:center;max-width:100%}
+.lecture figure img{max-width:100%;height:auto;border:1px solid var(--filet)}
+.lecture figcaption{margin-top:12px;font-size:14.5px;font-style:italic;color:var(--parchemin-att)}
 `;
 
 function header(lang, type, base, otherRel, ctx) {
@@ -351,8 +411,8 @@ function header(lang, type, base, otherRel, ctx) {
       <a href="${base}${lib}"${cl('library')}>${u.menu_library}</a>
       <a href="/memoriser.html">${u.menu_memorise}</a>
       <a href="${otherRel}" class="lien-langue" hreflang="${lang === 'fr' ? 'en' : 'fr'}">${u.other_label}</a>
-      <span class="rech-loupe cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="${u.news_title}" data-sig="${nsig}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="ll-mob">${u.news_title}</span><span class="cloche-point"></span></span>
       <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="${u.menu_home === 'Home' ? 'Search' : 'Rechercher'}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><span class="ll-mob">${u.menu_home === 'Home' ? 'Search' : 'Rechercher'}</span></span>
+      <span class="rech-loupe cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="${u.news_title}" data-sig="${nsig}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="ll-mob">${u.news_title}</span><span class="cloche-point"></span></span>
       <span class="rech-loupe auth-icone" id="auth-ouvrir" role="button" tabindex="0" aria-label="${lang === 'fr' ? 'Compte' : 'Account'}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg><span class="ll-mob">${lang === 'fr' ? 'Compte' : 'Account'}</span></span>
     </nav>
     <div class="contexte-bar" id="contexte">${ctx || ''}</div>
@@ -601,6 +661,7 @@ ${FIREBASE_HEAD}
 <style>${css}${EXTRA_CSS}${APPEARANCE_CSS}</style>
 </head>
 <body>
+<canvas id="poussiere" aria-hidden="true"></canvas>
 ${header(lang, type, base, otherRel, ctx)}
 <main id="app">
 ${main}
@@ -616,6 +677,7 @@ window.LV_INDEX=${JSON.stringify(buildIndex(lang)).replace(/</g, '\\u003c')};
 ${ADMIN_JS}
 ${extraJS || ''}
 </script>
+<script>${PARTICULES_JS}</script>
 </body>
 </html>`;
 }

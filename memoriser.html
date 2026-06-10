@@ -38,6 +38,17 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 
 /* ═══ AUTH ═══ */
+.mov-v{flex-shrink:0;color:var(--pa2);font-size:14px;line-height:1;cursor:pointer;opacity:.6;transition:color .3s,opacity .3s;padding:0 4px}
+.mov-v:hover{opacity:1;color:var(--or)}
+.srch-cat{font-family:var(--display);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa);margin:16px 0 8px}
+.srch-v{padding:9px 11px;border:1px solid var(--filet);margin-bottom:7px;cursor:pointer;transition:border-color .2s}
+.srch-v:hover{border-color:var(--or)}
+.srch-v .vref{color:var(--or);margin-right:8px}
+.srch-v .vtext{color:var(--pa);font-size:14px}
+.srch-vide{color:var(--pa);font-size:14px;padding:8px 0}
+.move-row{padding:10px 12px;border:1px solid var(--filet);margin-bottom:8px;cursor:pointer;transition:border-color .2s,color .2s}
+.move-row:hover{border-color:var(--or);color:var(--or)}
+#m-search .modal,#m-move .modal{max-height:82vh;overflow:auto}
 #auth-screen{display:none;align-items:center;justify-content:center;position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);padding:24px}
 .auth-panel{position:relative;width:100%;max-width:400px;border:1px solid var(--filet);background:var(--encre-2);padding:40px 34px;animation:fade .35s ease both}
 .auth-paneltitle{font-family:var(--display);font-size:24px;text-align:center;margin-bottom:24px;color:var(--parchemin)}
@@ -508,8 +519,8 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
         <a id="nav-home"></a>
         <a id="nav-lib"></a>
         <a id="nav-mem" class="actif" href="/memoriser.html"></a>
-        <a id="nav-about"></a>
         <button class="menu-act" id="lang-btn">EN</button>
+        <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="Rechercher"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><span class="ll-mob" id="rech-link-label">Rechercher</span></span>
         <span class="rech-loupe cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="Nouveautés"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="ll-mob" id="nouv-link-label">Nouveautés</span><span class="cloche-point"></span></span>
         <span class="menu-mail" id="user-mail"></span>
         <button class="menu-act user-btn" id="logout-btn" aria-label="Déconnexion" title="Déconnexion"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7.5" r="3.5"></circle><path d="M5 21a7 7 0 0 1 14 0"></path></svg><span class="user-label" id="logout-label">Déconnexion</span></button>
@@ -586,6 +597,21 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 </div>
 
 <!-- modals -->
+<div class="overlay" id="m-search">
+  <div class="modal">
+    <div class="modal-title" id="msrch-title">Rechercher un verset</div>
+    <div class="auth-fieldrow"><input type="text" class="field" id="i-srch" placeholder="Référence ou texte…" autocomplete="off"></div>
+    <div id="srch-results"></div>
+    <div class="modal-btns"><button class="m-cancel" id="msrch-close">Fermer</button></div>
+  </div>
+</div>
+<div class="overlay" id="m-move">
+  <div class="modal">
+    <div class="modal-title" id="mmove-title">Déplacer le verset dans…</div>
+    <div id="move-list"></div>
+    <div class="modal-btns"><button class="m-cancel" id="mmove-cancel">Annuler</button></div>
+  </div>
+</div>
 <div class="overlay" id="m-cat">
   <div class="modal">
     <div class="modal-title" id="mcat-title">Nouvelle catégorie</div>
@@ -1168,7 +1194,7 @@ function effectiveCats(){
     // catégorie de base éditée : on conserve l'édition de l'utilisateur, mais on y ajoute
     // les versets du modèle apparus depuis (absents de l'édition ET non mis à la corbeille)
     const have=new Set(ov.verses.map(v=>v.id));
-    const extra=c.verses.filter(v=>!have.has(v.id)&&!trashIds.has(v.id));
+    const extra=c.verses.filter(v=>!have.has(v.id)&&!trashIds.has(v.id)&&!((ov.moved||[]).includes(v.id)));
     return {id:c.id,name:ov.name,verses:ov.verses.concat(extra),base:true};
   });
   return [...base,...S.customCats.map(c=>({...c,base:false}))];
@@ -1284,6 +1310,7 @@ function renderCats(){
         +'<span class="dot r'+(l==='r'?' act':'')+'" data-set="r" data-v="'+vv.id+'"></span>'
         +'<span class="dot a'+(l==='a'?' act':'')+'" data-set="a" data-v="'+vv.id+'"></span>'
         +'<span class="dot v'+(l==='v'?' act':'')+'" data-set="v" data-v="'+vv.id+'"></span></span>'
+        +'<span class="mov-v" data-movev="'+vv.id+'" title="'+(S.lang==='fr'?'Déplacer dans…':'Move to…')+'">\u21C4</span>'
         +'<span class="del-v" data-delv="'+vv.id+'">×</span></div>';
     });
     body+='<div class="cat-custom-acts"><span class="mini-act" data-addv="1">+ '+t('addverse')+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span>'+(cat.base?'<span class="mini-act" data-restorec="1">'+t('cat_restore')+'</span>':'')+(custom?'<span class="mini-act del" data-delc="1">'+t('del')+'</span>':'')+'</div>';
@@ -1314,9 +1341,9 @@ function applyLang(){
   $('nav-home').textContent=_fr?'Accueil':'Home'; $('nav-home').href=_fr?'/':'/en/';
   $('nav-lib').textContent=_fr?'Bibliothèque':'Library'; $('nav-lib').href=_fr?'/bibliotheque/':'/en/library/';
   $('nav-mem').textContent=_fr?'Mémoriser':'Memorise';
-  $('nav-about').textContent=_fr?'À propos':'About'; $('nav-about').href=_fr?'/a-propos/':'/en/about/';
   $('foot-verse').innerHTML=_fr?FOOT_FR:FOOT_EN;
   $('nouv-fermer').setAttribute('aria-label',_fr?'Fermer':'Close');
+  $('rech-ouvrir').setAttribute('aria-label',_fr?'Rechercher':'Search'); $('rech-link-label').textContent=_fr?'Rechercher':'Search';
   renderNews();
   $('lang-btn').textContent=tl.lang; var lblC=(S.lang==='fr')?'Compte':'Account'; $('logout-btn').setAttribute('aria-label',lblC); $('logout-btn').setAttribute('title',lblC); $('logout-label').textContent=lblC;
   $('lbl-cats').textContent=tl.cats; $('lbl-newcat').textContent=tl.newcat; $('lbl-mode').textContent=tl.mode;
@@ -1387,6 +1414,56 @@ function endSession(){
 }
 
 // ════════ CRUD CATÉGORIES ════════
+function moveVerse(srcId,vId,dstId){
+  const src=effectiveCats().find(c=>c.id===srcId); if(!src)return;
+  const v=src.verses.find(x=>x.id===vId); if(!v)return;
+  const vc=JSON.parse(JSON.stringify(v));
+  if(isBase(srcId)) editBase(srcId,c=>{c.verses=c.verses.filter(x=>x.id!==vId);c.moved=(c.moved||[]).concat(vId);});
+  else { const c=S.customCats.find(x=>x.id===srcId); if(c){c.verses=c.verses.filter(x=>x.id!==vId); saveCat(c);} }
+  if(isBase(dstId)) editBase(dstId,c=>{if(!c.verses.some(x=>x.id===vId))c.verses.push(vc);c.moved=(c.moved||[]).filter(x=>x!==vId);});
+  else { const c=S.customCats.find(x=>x.id===dstId); if(c&&!c.verses.some(x=>x.id===vId)){c.verses.push(vc); saveCat(c);} }
+  S.open[dstId]=true; renderCats();
+}
+function openMoveVerse(srcId,vId){
+  const host=$('move-list'); host.innerHTML='';
+  $('mmove-title').textContent=S.lang==='fr'?'Déplacer le verset dans…':'Move the verse to…';
+  $('mmove-cancel').textContent=S.lang==='fr'?'Annuler':'Cancel';
+  effectiveCats().filter(c=>c.id!==srcId).forEach(c=>{
+    const r=document.createElement('div'); r.className='move-row'; r.textContent=c.name[S.lang]||c.name.fr||c.name.en;
+    r.onclick=()=>{closeModal('m-move');moveVerse(srcId,vId,c.id);};
+    host.appendChild(r);
+  });
+  if(!host.children.length){const e=document.createElement('div');e.className='srch-vide';e.textContent=S.lang==='fr'?'Aucune autre catégorie.':'No other category.';host.appendChild(e);}
+  openModal('m-move');
+}
+function renderSearch(){
+  const q=($('i-srch').value||'').toLowerCase().trim();
+  const host=$('srch-results'); host.innerHTML='';
+  if(!q)return;
+  let total=0;
+  effectiveCats().forEach(c=>{
+    const hits=c.verses.filter(v=>(((v.fr||{}).ref||'')+' '+((v.en||{}).ref||'')+' '+((v.fr||{}).text||'')+' '+((v.en||{}).text||'')).toLowerCase().includes(q));
+    if(!hits.length)return;
+    const h=document.createElement('div'); h.className='srch-cat'; h.textContent=c.name[S.lang]||c.name.fr||c.name.en; host.appendChild(h);
+    hits.forEach(v=>{
+      total++;
+      const r=document.createElement('div'); r.className='srch-v';
+      r.innerHTML='<span class="vref"></span><span class="vtext"></span>';
+      r.querySelector('.vref').textContent=(v[S.lang]||{}).ref||'';
+      r.querySelector('.vtext').textContent=trunc(((v[S.lang]||{}).text||''),90);
+      r.onclick=()=>{closeModal('m-search');S.showAllCats=true;S.open[c.id]=true;renderCats();const el=document.querySelector('.cat[data-id="'+c.id+'"]');if(el)el.scrollIntoView({behavior:'smooth',block:'center'});};
+      host.appendChild(r);
+    });
+  });
+  if(!total){const e=document.createElement('div');e.className='srch-vide';e.textContent=S.lang==='fr'?'Aucun verset trouvé.':'No verse found.';host.appendChild(e);}
+}
+function openSearch(){
+  $('msrch-title').textContent=S.lang==='fr'?'Rechercher un verset':'Search a verse';
+  $('i-srch').placeholder=S.lang==='fr'?'Référence ou texte…':'Reference or text…';
+  $('msrch-close').textContent=S.lang==='fr'?'Fermer':'Close';
+  $('i-srch').value=''; $('srch-results').innerHTML='';
+  openModal('m-search'); setTimeout(()=>$('i-srch').focus(),60);
+}
 function openModal(id){$(id).classList.add('on')}
 function closeModal(id){$(id).classList.remove('on')}
 function openNewCat(){S.editCat=null;$('mcat-title').textContent=t('mcat');$('i-cfr').value='';$('i-cen').value='';modalCatLang();openModal('m-cat');}
@@ -1617,6 +1694,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const setDot=e.target.closest('[data-set]');
     const allDot=e.target.closest('[data-all]');
     const editv=e.target.closest('[data-editv]');
+    const movv=e.target.closest('[data-movev]');
     const delv=e.target.closest('[data-delv]');
     const addv=e.target.closest('[data-addv]');
     const editc=e.target.closest('[data-editc]');
@@ -1625,6 +1703,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const act=e.target.closest('[data-act]');
     if(setDot){setLevel(setDot.dataset.v,setDot.dataset.set);saveProgress();renderCats();return;}
     if(allDot){const c=effectiveCats().find(x=>x.id===id);c.verses.forEach(v=>setLevel(v.id,allDot.dataset.all));saveProgress();renderCats();return;}
+    if(movv){openMoveVerse(id,movv.dataset.movev);return;}
     if(delv){await trashVerse(id,delv.dataset.delv);return;}
     if(editv){openEditVerse(id,editv.dataset.editv);return;}
     if(addv){openAddVerse(id);return;}
@@ -1636,8 +1715,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(act){S.open[id]=!S.open[id];catEl.classList.toggle('open');return;}
   });
   $('mcat-cancel').onclick=()=>closeModal('m-cat'); $('mcat-ok').onclick=saveCatModal;
+  $('rech-ouvrir').addEventListener('click',openSearch);
+  $('rech-ouvrir').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openSearch();}});
+  $('i-srch').addEventListener('input',renderSearch);
+  $('msrch-close').onclick=()=>closeModal('m-search');
+  $('mmove-cancel').onclick=()=>closeModal('m-move');
   $('mv-cancel').onclick=()=>closeModal('m-verse'); $('mv-ok').onclick=saveVerseModal; $('mv-reset').onclick=resetVerseOrig;
-  ['m-cat','m-verse'].forEach(id=>$(id).addEventListener('click',e=>{if(e.target===$(id))closeModal(id);}));
+  ['m-cat','m-verse','m-search','m-move'].forEach(id=>$(id).addEventListener('click',e=>{if(e.target===$(id))closeModal(id);}));
 });
 
 // ════════ OBSERVATEUR AUTH ════════
