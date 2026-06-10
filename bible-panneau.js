@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La Sainte Bible · Lumen Veritatis</title>
+<meta name="description" content="La Sainte Bible, traduction du chanoine Augustin Crampon, édition 1923. Lecture en ligne, Ancien et Nouveau Testament.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<style>
+:root{
+  --encre:#000000;--encre-2:#110f0c;--encre-3:#161310;
+  --or:#efe3c0;--or-pale:#faf4e3;
+  --parchemin:#f2ecdd;--pa:rgba(242,236,221,.62);--pa2:rgba(242,236,221,.4);
+  --filet:rgba(241,228,194,.5);--filet-f:rgba(241,228,194,.7);
+  --parchemin-att:#a39b87;--filet-fort:rgba(241,228,194,.92);
+  --serif:'EB Garamond',Georgia,serif;--display:'Cormorant Garamond',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{height:100%}
+body{background:var(--encre);color:var(--parchemin);font-family:var(--serif);font-size:20px;line-height:1.6;min-height:100%;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:rgba(241,228,194,.22)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea{font-family:inherit;color:inherit}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--encre)}
+::-webkit-scrollbar-thumb{background:rgba(241,228,194,.55)}
+::-webkit-scrollbar-thumb:hover{background:rgba(241,228,194,.8)}
+html{scrollbar-color:rgba(241,228,194,.55) var(--encre)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* — Header — */
+header{position:sticky;top:0;z-index:50;background:#000;border-bottom:1px solid var(--filet)}
+.barre{max-width:1180px;margin:0 auto;padding:0 28px;height:62px;display:flex;align-items:center;gap:34px}
+.logo{font-family:var(--display);font-size:21px;letter-spacing:.26em;text-transform:uppercase;color:var(--parchemin)}
+.burger{display:none;margin-left:auto;font-size:22px;color:var(--pa)}
+nav.menu{margin-left:auto;display:flex;align-items:center;gap:30px}
+nav.menu a{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);transition:color .3s;position:relative;padding:4px 0}
+nav.menu a:hover{color:var(--or-pale)}
+nav.menu a.actif{color:var(--parchemin)}
+nav.menu a.actif::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--or)}
+@media(max-width:720px){
+  .burger{display:block}
+  nav.menu{display:none;position:absolute;top:62px;left:0;right:0;background:rgba(0,0,0,.97);flex-direction:column;align-items:flex-start;gap:0;padding:10px 28px 18px;border-bottom:1px solid var(--filet)}
+  nav.menu.ouvert{display:flex}
+  nav.menu a{font-size:15px;padding:12px 0;width:100%}
+}
+
+/* — Barre de référence — */
+.ref-barre{position:sticky;top:62px;z-index:49;background:#000;border-bottom:1px solid var(--filet)}
+.ref-int{max-width:1180px;margin:0 auto;padding:9px 28px;display:flex;align-items:center;gap:18px}
+.ref-champ{flex:1;max-width:340px;background:none;border:none;border-bottom:1px solid rgba(241,228,194,.3);padding:5px 2px;font-size:16px;color:var(--parchemin);outline:none;transition:border-color .3s}
+.ref-champ::placeholder{color:var(--parchemin-att);font-style:italic}
+.ref-champ:focus{border-color:var(--filet-fort)}
+.ref-aller{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:color .3s;padding:6px 2px}
+.ref-aller:hover{color:var(--or-pale)}
+.ref-erreur{font-size:13.5px;font-style:italic;color:var(--parchemin-att)}
+.ref-notes{margin-left:auto;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:color .3s;padding:6px 2px;white-space:nowrap}
+.ref-notes:hover{color:var(--or-pale)}
+@media(max-width:720px){.ref-int{padding:8px 18px;gap:12px}.ref-champ{font-size:15px;min-width:0}.ref-erreur{display:none}}
+
+/* — Cadre général — */
+.wrap{max-width:1100px;margin:0 auto;padding:0 28px 90px}
+body.sel-active .wrap{padding-bottom:190px}
+.hero{text-align:center;padding:74px 0 26px;animation:rise .7s ease both}
+.sur-titre{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--or);margin-bottom:18px}
+h1.titre{font-family:var(--display);font-weight:400;font-size:48px;line-height:1.1;letter-spacing:.04em}
+.hero .souligne{width:54px;height:1px;background:linear-gradient(90deg,transparent,var(--filet-f),transparent);margin:26px auto 0}
+@media(max-width:720px){h1.titre{font-size:36px}.hero{padding:52px 0 18px}}
+
+/* — Vue : livres — */
+.testament{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--or);text-align:center;margin:58px 0 8px}
+.groupe-nom{font-family:var(--display);font-style:italic;font-weight:400;font-size:25px;color:var(--pa);text-align:center;margin:40px 0 20px}
+.livres-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:0 44px;max-width:920px;margin:0 auto}
+@media(max-width:900px){.livres-grille{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.livres-grille{grid-template-columns:1fr}}
+a.livre{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:11px 4px;border-bottom:1px solid rgba(241,228,194,.18);transition:border-color .35s,color .3s}
+a.livre .ln{font-size:19px;transition:color .3s}
+a.livre .lc{font-size:12.5px;color:var(--parchemin-att);letter-spacing:.06em;white-space:nowrap;transition:color .3s}
+a.livre:hover{border-color:var(--filet-fort)}
+a.livre:hover .ln{color:var(--or-pale)}
+a.livre:hover .lc{color:var(--pa)}
+
+/* — Vue : chapitres — */
+.fil{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--parchemin-att);text-align:center;margin:48px 0 10px}
+.fil a{color:var(--pa);transition:color .3s}
+.fil a:hover{color:var(--or-pale)}
+h2.livre-titre{font-family:var(--display);font-weight:400;font-size:40px;text-align:center;margin:0 0 8px}
+.livre-sous{font-size:14px;color:var(--parchemin-att);text-align:center;font-style:italic;margin-bottom:40px}
+.chap-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(56px,1fr));gap:10px;max-width:760px;margin:0 auto}
+a.chap{display:flex;align-items:center;justify-content:center;height:52px;border:1px solid var(--filet);font-size:17px;color:var(--pa);transition:border-color .35s,color .3s,box-shadow .4s}
+a.chap:hover{border-color:var(--filet-fort);color:var(--or-pale);box-shadow:0 0 24px rgba(241,228,194,.08)}
+
+/* — Vue : lecture — */
+.lecture-col{max-width:calc(34em + 112px);margin:46px auto 0;padding:64px 56px 56px;animation:rise .6s ease both}
+@media(max-width:720px){.lecture-col{padding:44px 18px 40px;margin-top:30px}}
+.ch-fil{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--parchemin-att);text-align:center;margin-bottom:16px}
+.ch-fil a{color:var(--pa);transition:color .3s}
+.ch-fil a:hover{color:var(--or-pale)}
+h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align:center;margin:0}
+.ch-vulg{font-size:13.5px;color:var(--parchemin-att);text-align:center;font-style:italic;margin-top:6px}
+.ch-section{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);text-align:center;margin-top:22px}
+.ch-psaume-titre{font-style:italic;color:var(--pa);text-align:center;margin-top:22px;font-size:19px}
+.ch-sep{width:44px;height:1px;background:linear-gradient(90deg,transparent,var(--filet-f),transparent);margin:30px auto 34px}
+.ch-texte{text-align:justify;hyphens:auto;font-size:20.5px;line-height:1.74}
+.ch-texte sup.vn{font-family:var(--serif);font-size:12.5px;color:var(--or);line-height:0;margin-right:5px;letter-spacing:0}
+.vst{scroll-margin-top:160px;cursor:pointer;transition:background .3s,box-shadow .3s}
+.vst:hover{background:rgba(241,228,194,.05);box-shadow:0 0 0 5px rgba(241,228,194,.05)}
+.vst.sel{background:rgba(241,228,194,.11);box-shadow:0 0 0 5px rgba(241,228,194,.11)}
+.vst.cible{background:rgba(241,228,194,.09);box-shadow:0 0 0 5px rgba(241,228,194,.09)}
+.ch-nav{display:flex;justify-content:space-between;gap:18px;margin-top:54px;padding-top:26px;border-top:1px solid rgba(241,228,194,.25)}
+.ch-nav a{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa);transition:color .3s;padding:6px 0}
+.ch-nav a:hover{color:var(--or-pale)}
+.ch-nav .vide{visibility:hidden}
+
+/* — Plateau de sélection — */
+#sel-barre{position:fixed;left:0;right:0;bottom:0;z-index:48;background:#000;border-top:1px solid var(--filet);display:none}
+body.sel-active #sel-barre{display:block}
+.sb-int{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.sb-refs{display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex:1;min-width:200px}
+.sb-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--filet);padding:5px 11px;font-size:14.5px;color:var(--parchemin);cursor:pointer;transition:border-color .35s,box-shadow .4s}
+.sb-chip:hover{border-color:var(--filet-fort);box-shadow:0 0 18px rgba(241,228,194,.08)}
+.sb-x{font-size:12px;color:var(--parchemin-att);transition:color .3s;padding:0 1px}
+.sb-x:hover{color:var(--or-pale)}
+.sb-act{display:flex;align-items:center;gap:22px;margin-left:auto}
+.sb-btn{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:color .3s;white-space:nowrap;padding:6px 0}
+.sb-btn:hover{color:var(--or-pale)}
+@media(max-width:720px){.sb-int{padding:12px 18px;gap:12px}.sb-act{gap:16px;margin-left:0}}
+
+/* — Vue : notes — */
+.notes-tete{display:flex;align-items:baseline;justify-content:space-between;gap:20px;max-width:760px;margin:48px auto 8px;flex-wrap:wrap}
+h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
+.notes-nouvelle{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:color .3s;padding:6px 0}
+.notes-nouvelle:hover{color:var(--or-pale)}
+.notes-rech{display:block;width:100%;max-width:760px;margin:18px auto 36px;background:none;border:none;border-bottom:1px solid rgba(241,228,194,.3);padding:7px 2px;font-size:17px;outline:none;transition:border-color .3s}
+.notes-rech::placeholder{color:var(--parchemin-att);font-style:italic}
+.notes-rech:focus{border-color:var(--filet-fort)}
+.note-item{max-width:760px;margin:0 auto 16px;border:1px solid var(--filet);padding:22px 26px;transition:border-color .35s,box-shadow .4s}
+.note-item:hover{border-color:var(--filet-f);box-shadow:0 0 26px rgba(241,228,194,.06)}
+.note-date{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-att);margin-bottom:10px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.note-actions{display:flex;gap:16px}
+.note-act{cursor:pointer;color:var(--parchemin-att);transition:color .3s}
+.note-act:hover{color:var(--or-pale)}
+.note-refs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.note-refs .sb-chip{font-size:13.5px;padding:4px 10px}
+.note-texte{font-size:18px;line-height:1.65;color:var(--parchemin);white-space:pre-wrap}
+.notes-vide{text-align:center;color:var(--parchemin-att);font-style:italic;padding:50px 0}
+
+/* — Modale de note — */
+#note-voile{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:90px 20px 40px;overflow-y:auto}
+#note-voile.ouvert{display:flex}
+.note-boite{width:100%;max-width:620px;background:var(--encre-2);border:1px solid var(--filet);padding:34px 36px;animation:rise .4s ease both}
+.nb-titre{font-family:var(--display);font-weight:400;font-size:27px;margin-bottom:16px}
+.nb-refs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.nb-zone{width:100%;min-height:170px;background:rgba(241,228,194,.03);border:1px solid rgba(241,228,194,.25);padding:14px 16px;font-size:17.5px;line-height:1.6;outline:none;resize:vertical;transition:border-color .3s}
+.nb-zone:focus{border-color:var(--filet-f)}
+.nb-actes{display:flex;align-items:center;gap:24px;margin-top:20px}
+.nb-btn{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:color .3s;padding:6px 0}
+.nb-btn:hover{color:var(--or-pale)}
+.nb-btn.principal{color:var(--or)}
+.nb-btn.principal:hover{color:var(--or-pale)}
+.nb-suppr{margin-left:auto;color:var(--parchemin-att)}
+@media(max-width:720px){.note-boite{padding:26px 20px}}
+
+/* — Compte / synchronisation — */
+.sync-ligne{max-width:760px;margin:-22px auto 32px;font-size:14px;font-style:italic;color:var(--parchemin-att)}
+.sync-act{font-style:normal;color:var(--pa);cursor:pointer;transition:color .3s;border-bottom:1px solid rgba(241,228,194,.3)}
+.sync-act:hover{color:var(--or-pale);border-color:var(--filet-f)}
+#auth-voile{position:fixed;inset:0;z-index:61;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:100px 20px 40px;overflow-y:auto}
+#auth-voile.ouvert{display:flex}
+.ab-boite{width:100%;max-width:400px;background:var(--encre-2);border:1px solid var(--filet);padding:32px 34px;animation:rise .4s ease both}
+.ab-titre{font-family:var(--display);font-weight:400;font-size:27px;margin-bottom:18px;text-align:center}
+.ab-tabs{display:flex;gap:24px;justify-content:center;margin-bottom:20px}
+.ab-tab{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-att);padding:6px 2px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+.ab-tab.on{color:var(--parchemin);border-color:var(--or)}
+.ab-tab:hover{color:var(--or-pale)}
+.ab-msg{font-size:14px;line-height:1.5;margin-bottom:12px;min-height:0;text-align:center}
+.ab-msg.err{color:#c75d52}
+.ab-msg.ok{color:#7ba37e}
+.ab-champ{display:block;width:100%;background:rgba(241,228,194,.03);border:1px solid rgba(241,228,194,.25);padding:11px 14px;font-size:16.5px;outline:none;margin-bottom:12px;transition:border-color .3s}
+.ab-champ:focus{border-color:var(--filet-f)}
+.ab-principal{display:block;width:100%;border:1px solid var(--filet-f);padding:11px 14px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);text-align:center;cursor:pointer;transition:border-color .35s,color .3s,box-shadow .4s;margin-top:4px}
+.ab-principal:hover{border-color:var(--filet-fort);color:var(--or-pale);box-shadow:0 0 24px rgba(241,228,194,.08)}
+.ab-ou{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--parchemin-att);text-align:center;margin:16px 0}
+.ab-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:1px solid var(--filet);padding:10px 14px;font-size:15px;color:var(--parchemin);cursor:pointer;transition:border-color .35s,box-shadow .4s}
+.ab-google:hover{border-color:var(--filet-fort);box-shadow:0 0 24px rgba(241,228,194,.08)}
+.ab-oubli{display:block;margin:16px auto 0;font-size:13.5px;font-style:italic;color:var(--parchemin-att);cursor:pointer;transition:color .3s}
+.ab-oubli:hover{color:var(--or-pale)}
+
+/* — Pied / crédit — */
+.credit{max-width:640px;margin:90px auto 0;text-align:center;font-size:13.5px;line-height:1.8;color:var(--pa2)}
+.credit a{border-bottom:1px solid rgba(241,228,194,.3);transition:color .3s,border-color .3s}
+.credit a:hover{color:var(--pa);border-color:var(--filet-f)}
+.chargement{text-align:center;color:var(--parchemin-att);font-style:italic;padding:80px 0}
+</style>
+</head>
+<body>
+  <header>
+    <div class="barre">
+      <a href="/" class="logo">Lumen</a>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+      <nav class="menu" id="menu">
+        <a href="/">Accueil</a>
+        <a href="/bibliotheque/">Bibliothèque</a>
+        <a href="/bible.html" class="actif">Bible</a>
+        <a href="/memoriser.html">Mémoriser</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="ref-barre">
+    <div class="ref-int">
+      <input class="ref-champ" id="ref-champ" type="text" placeholder="Référence : Matthieu 7:6-8" autocomplete="off" spellcheck="false">
+      <span class="ref-aller" id="ref-aller" role="button" tabindex="0">Aller</span>
+      <span class="ref-erreur" id="ref-erreur"></span>
+      <span class="ref-notes" id="lien-notes" role="button" tabindex="0">Mes notes</span>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <div class="hero" id="hero">
+      <div class="sur-titre">Traduction du chanoine Augustin Crampon · Édition 1923</div>
+      <h1 class="titre">La Sainte Bible</h1>
+      <div class="souligne"></div>
+    </div>
+    <div id="vue"><div class="chargement">Chargement…</div></div>
+    <div class="credit">
+      Texte biblique : La Sainte Bible, traduction du chanoine Augustin Crampon, édition de 1923.
+      Transcription numérique de Jean-Marie Weber pour
+      <a href="https://www.mission-web.com" rel="noopener">mission-web.com</a>,
+      sous licence
+      <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/deed.fr" rel="noopener">CC BY-NC-SA 3.0</a>.
+    </div>
+  </main>
+
+  <div id="sel-barre">
+    <div class="sb-int">
+      <div class="sb-refs" id="sb-refs"></div>
+      <div class="sb-act">
+        <span class="sb-btn" id="sb-copier" role="button" tabindex="0">Copier</span>
+        <span class="sb-btn" id="sb-note" role="button" tabindex="0">Prendre une note</span>
+        <span class="sb-btn" id="sb-vider" role="button" tabindex="0">Tout effacer</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="note-voile">
+    <div class="note-boite">
+      <div class="nb-titre" id="nb-titre">Note</div>
+      <div class="nb-refs" id="nb-refs"></div>
+      <textarea class="nb-zone" id="nb-zone" placeholder="Écrire la note…"></textarea>
+      <div class="nb-actes">
+        <span class="nb-btn principal" id="nb-enregistrer" role="button" tabindex="0">Enregistrer</span>
+        <span class="nb-btn" id="nb-annuler" role="button" tabindex="0">Annuler</span>
+        <span class="nb-btn nb-suppr" id="nb-supprimer" role="button" tabindex="0">Supprimer</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="auth-voile">
+    <div class="ab-boite">
+      <div class="ab-titre">Compte</div>
+      <div class="ab-tabs">
+        <button class="ab-tab on" id="ab-tab-si">Connexion</button>
+        <button class="ab-tab" id="ab-tab-su">Inscription</button>
+      </div>
+      <div class="ab-msg" id="ab-msg"></div>
+      <input type="email" class="ab-champ" id="ab-email" placeholder="Adresse e-mail" autocomplete="email">
+      <input type="password" class="ab-champ" id="ab-pw" placeholder="Mot de passe" autocomplete="current-password">
+      <input type="password" class="ab-champ" id="ab-cf" placeholder="Confirmer le mot de passe" autocomplete="new-password" style="display:none">
+      <button class="ab-principal" id="ab-valider">Se connecter</button>
+      <div class="ab-ou">ou</div>
+      <button class="ab-google" id="ab-google">
+        <svg width="17" height="17" viewBox="0 0 18 18"><path fill="#EA4335" d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.54C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z"/><path fill="#FBBC05" d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9 9 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z"/><path fill="#4A90D9" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.96 13.04C2.44 15.98 5.48 18 9 18z"/></svg>
+        Continuer avec Google
+      </button>
+      <span class="ab-oubli" id="ab-oubli" role="button" tabindex="0">Mot de passe oublié ?</span>
+    </div>
+  </div>
+
+<script>
+(function(){
+  'use strict';
+  var vue = document.getElementById('vue');
+  var hero = document.getElementById('hero');
+  var IDX = null, CACHE = {}, ORDRE = {};
+  var pendingSel = null;
+
+  /* ───────── Firebase : compte et synchronisation des notes ───────── */
+  var FB = (typeof firebase !== 'undefined');
+  var auth = null, db = null, UID = null, MAIL = '';
+  if (FB) {
+    try {
+      firebase.initializeApp({
+        apiKey: 'AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA',
+        authDomain: 'lumen-veritatis.firebaseapp.com',
+        projectId: 'lumen-veritatis',
+        storageBucket: 'lumen-veritatis.firebasestorage.app',
+        messagingSenderId: '195902823875',
+        appId: '1:195902823875:web:a8be1f216a5ae1d945f176'
+      });
+      auth = firebase.auth();
+      db = firebase.firestore();
+    } catch(e) { FB = false; }
+  }
+  function cloudDoc(id){ return db.doc('users/' + UID + '/bibleNotes/' + id); }
+  function cloudSet(n){
+    if (!UID || !db) return;
+    cloudDoc(n.id).set({ d: n.d, m: n.m || n.d, t: n.t, refs: n.refs || [] })
+      .catch(function(e){ console.warn('sync note', e); });
+  }
+  function cloudDel(id){
+    if (!UID || !db) return;
+    cloudDoc(id).delete().catch(function(e){ console.warn('sync note', e); });
+  }
+  function syncInitiale(){
+    db.collection('users/' + UID + '/bibleNotes').get().then(function(snap){
+      var nuage = {};
+      snap.forEach(function(dc){ var x = dc.data(); x.id = dc.id; nuage[x.id] = x; });
+      var aEnvoyer = [];
+      NOTES.forEach(function(n){
+        var c = nuage[n.id];
+        if (!c || (n.m || n.d) > (c.m || c.d)) { aEnvoyer.push(n); nuage[n.id] = n; }
+      });
+      NOTES = Object.keys(nuage).map(function(k){ return nuage[k]; })
+        .sort(function(a, b){ return a.d < b.d ? 1 : -1; });
+      sauveNotes(); majLienNotes();
+      aEnvoyer.forEach(cloudSet);
+      if (location.hash === '#notes') vueNotes();
+    }).catch(function(e){ console.warn('sync initiale', e); });
+  }
+  function initAuth(){
+    if (!FB) return;
+    auth.onAuthStateChanged(function(u){
+      UID = u ? u.uid : null;
+      MAIL = u ? (u.email || u.displayName || '') : '';
+      if (UID) { fermeAuth(); syncInitiale(); }
+      else if (location.hash === '#notes') vueNotes();
+    });
+  }
+
+  /* — Modale de compte — */
+  var abMode = 'si';
+  function abMsg(t, cls){
+    var m = document.getElementById('ab-msg');
+    m.textContent = t || '';
+    m.className = 'ab-msg' + (cls ? ' ' + cls : '');
+  }
+  function abModeSet(m){
+    abMode = m;
+    document.getElementById('ab-tab-si').classList.toggle('on', m === 'si');
+    document.getElementById('ab-tab-su').classList.toggle('on', m === 'su');
+    document.getElementById('ab-pw').style.display = (m === 'forgot') ? 'none' : '';
+    document.getElementById('ab-cf').style.display = (m === 'su') ? '' : 'none';
+    document.getElementById('ab-valider').textContent =
+      m === 'su' ? 'Cr\u00e9er le compte' : m === 'forgot' ? 'Envoyer le lien' : 'Se connecter';
+    abMsg('');
+  }
+  function ouvreAuth(){
+    if (!FB) return;
+    abModeSet('si');
+    document.getElementById('auth-voile').classList.add('ouvert');
+    document.getElementById('ab-email').focus();
+  }
+  function fermeAuth(){
+    var v = document.getElementById('auth-voile');
+    if (v) v.classList.remove('ouvert');
+  }
+  function abErreur(e){
+    var c = (e && e.code) || '';
+    var t = c === 'auth/invalid-credential' || c === 'auth/wrong-password' || c === 'auth/user-not-found'
+        ? 'Identifiants incorrects.'
+      : c === 'auth/email-already-in-use' ? 'Cette adresse est d\u00e9j\u00e0 utilis\u00e9e.'
+      : c === 'auth/weak-password' ? 'Mot de passe trop court (6 caract\u00e8res minimum).'
+      : c === 'auth/invalid-email' ? 'Adresse e-mail invalide.'
+      : c === 'auth/popup-closed-by-user' ? ''
+      : '\u00c9chec de la connexion.';
+    if (t) abMsg(t, 'err');
+  }
+  if (FB) {
+    document.getElementById('ab-tab-si').addEventListener('click', function(){ abModeSet('si'); });
+    document.getElementById('ab-tab-su').addEventListener('click', function(){ abModeSet('su'); });
+    document.getElementById('ab-oubli').addEventListener('click', function(){ abModeSet(abMode === 'forgot' ? 'si' : 'forgot'); });
+    document.getElementById('ab-valider').addEventListener('click', function(){
+      var em = document.getElementById('ab-email').value.trim();
+      var pw = document.getElementById('ab-pw').value;
+      var cf = document.getElementById('ab-cf').value;
+      abMsg('');
+      if (abMode === 'forgot') {
+        auth.sendPasswordResetEmail(em)
+          .then(function(){ abMsg('Lien de r\u00e9initialisation envoy\u00e9.', 'ok'); })
+          .catch(abErreur);
+      } else if (abMode === 'su') {
+        if (pw !== cf) { abMsg('Les mots de passe ne correspondent pas.', 'err'); return; }
+        auth.createUserWithEmailAndPassword(em, pw).catch(abErreur);
+      } else {
+        auth.signInWithEmailAndPassword(em, pw).catch(abErreur);
+      }
+    });
+    ['ab-email','ab-pw','ab-cf'].forEach(function(id){
+      document.getElementById(id).addEventListener('keydown', function(e){
+        if (e.key === 'Enter') document.getElementById('ab-valider').click();
+      });
+    });
+    document.getElementById('ab-google').addEventListener('click', function(){
+      auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(abErreur);
+    });
+    document.getElementById('auth-voile').addEventListener('click', function(e){
+      if (e.target === this) fermeAuth();
+    });
+  }
+
+  document.getElementById('burger').addEventListener('click', function(){
+    document.getElementById('menu').classList.toggle('ouvert');
+  });
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+  function charge(url){
+    return fetch(url).then(function(r){ if (!r.ok) throw new Error(url); return r.json(); });
+  }
+  function livreData(slug){
+    if (CACHE[slug]) return Promise.resolve(CACHE[slug]);
+    return charge('bible-data/' + slug + '.json').then(function(d){ CACHE[slug] = d; return d; });
+  }
+  function infoLivre(slug){
+    for (var i = 0; i < IDX.livres.length; i++) if (IDX.livres[i].slug === slug) return IDX.livres[i];
+    return null;
+  }
+
+  /* ───────── Références : analyse de « Matthieu 7:6-8 » ───────── */
+  var ALIAS = {
+    'genese':['gn','gen'],'exode':['ex','exo'],'levitique':['lv','lev'],'nombres':['nb','nbr','num'],'deuteronome':['dt','deut'],
+    'josue':['jos'],'juges':['jg','jug'],'ruth':['rt'],
+    '1-samuel':['1s','1sam','1sm'],'2-samuel':['2s','2sam','2sm'],'1-rois':['1r','1roi'],'2-rois':['2r','2roi'],
+    '1-chroniques':['1ch','1chr','1par'],'2-chroniques':['2ch','2chr','2par'],'esdras':['esd'],'nehemie':['ne','neh'],
+    'tobie':['tb','tob'],'judith':['jdt'],'esther':['est'],'1-maccabees':['1m','1ma','1mac','1macc'],'2-maccabees':['2m','2ma','2mac','2macc'],
+    'job':['jb'],'psaumes':['ps','psaume'],'proverbes':['pr','prv','prov'],'ecclesiaste':['qo','eccl','qohelet'],
+    'cantique-des-cantiques':['ct','cant','cantique','cantiques'],'sagesse':['sg','sag'],'ecclesiastique':['si','sir','siracide','eccli'],
+    'isaie':['is','isa','esaie'],'jeremie':['jr','jer'],'lamentations':['lm','lam'],'baruch':['ba','bar'],'ezechiel':['ez','eze'],'daniel':['dn','dan'],
+    'osee':['os'],'joel':['jl'],'amos':['am'],'abdias':['ab','abd'],'jonas':['jon'],'michee':['mi','mich'],'nahum':['na','nah'],
+    'habacuc':['ha','hab'],'sophonie':['so','soph'],'aggee':['ag','agg'],'zacharie':['za','zac'],'malachie':['ml','mal'],
+    'matthieu':['mt','mat','matt'],'marc':['mc'],'luc':['lc'],'jean':['jn'],'actes':['ac','act'],
+    'romains':['rm','rom'],'1-corinthiens':['1co','1cor'],'2-corinthiens':['2co','2cor'],'galates':['ga','gal'],
+    'ephesiens':['ep','eph'],'philippiens':['ph','phil','php'],'colossiens':['col'],
+    '1-thessaloniciens':['1th','1thes','1thess'],'2-thessaloniciens':['2th','2thes','2thess'],
+    '1-timothee':['1tm','1tim'],'2-timothee':['2tm','2tim'],'tite':['tt','tit'],'philemon':['phm','phlm'],'hebreux':['he','heb'],
+    'jacques':['jc','jac'],'1-pierre':['1p','1pi'],'2-pierre':['2p','2pi'],'1-jean':['1jn'],'2-jean':['2jn'],'3-jean':['3jn'],
+    'jude':['jud'],'apocalypse':['ap','apc','apoc']
+  };
+  var DICO = null;
+  function norm(s){
+    return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'');
+  }
+  function construitDico(){
+    DICO = {};
+    IDX.livres.forEach(function(l){
+      DICO[norm(l.nom)] = l.slug;
+      DICO[norm(l.slug)] = l.slug;
+      (ALIAS[l.slug] || []).forEach(function(a){ DICO[norm(a)] = l.slug; });
+    });
+  }
+  function trouveLivre(token){
+    var t = norm(token);
+    if (!t) return null;
+    if (DICO[t]) return DICO[t];
+    var cands = [];
+    IDX.livres.forEach(function(l){ if (norm(l.nom).indexOf(t) === 0) cands.push(l.slug); });
+    return (cands.length === 1 && t.length >= 2) ? cands[0] : null;
+  }
+  function parseRef(txt){
+    var s = String(txt || '').trim().toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/\s+/g,' ').trim();
+    if (!s) return null;
+    var m = s.match(/^([1-3]?\s*[a-z']+(?:[ -][a-z']+)*)(?:\s+(\d{1,3})(?:\s*[:,.]\s*(\d{1,3})(?:\s*[-\u2013a]\s*(\d{1,3}))?)?)?$/);
+    if (!m) return null;
+    var slug = trouveLivre(m[1]);
+    if (!slug) return null;
+    var inf = infoLivre(slug);
+    var ch = m[2] ? parseInt(m[2], 10) : 0;
+    var v1 = m[3] ? parseInt(m[3], 10) : 0;
+    var v2 = m[4] ? parseInt(m[4], 10) : v1;
+    if (ch && inf.nch === 1 && !v1) { v1 = ch; v2 = ch; ch = 1; }
+    if (ch && ch > inf.nch) return null;
+    if (v2 < v1) { var t2 = v1; v1 = v2; v2 = t2; }
+    return { slug: slug, ch: ch, v1: v1, v2: v2 };
+  }
+
+  /* ───────── Sélection de versets (multi-livres, persistante) ───────── */
+  var SEL = [];
+  try { SEL = JSON.parse(localStorage.getItem('lv_bible_sel') || '[]'); } catch(e) { SEL = []; }
+  function sauveSel(){ try { localStorage.setItem('lv_bible_sel', JSON.stringify(SEL)); } catch(e){} }
+  function selIdx(slug, ch, v){
+    for (var i = 0; i < SEL.length; i++) if (SEL[i].s === slug && SEL[i].c === ch && SEL[i].v === v) return i;
+    return -1;
+  }
+  function basculeSel(slug, ch, v){
+    var i = selIdx(slug, ch, v);
+    if (i >= 0) SEL.splice(i, 1); else SEL.push({ s: slug, c: ch, v: v });
+    sauveSel(); majPlateau();
+  }
+  function groupes(liste){
+    var l = (liste || SEL).slice().sort(function(a, b){
+      return (ORDRE[a.s] - ORDRE[b.s]) || (a.c - b.c) || (a.v - b.v);
+    });
+    var gs = [];
+    l.forEach(function(x){
+      var d = gs[gs.length - 1];
+      if (d && d.slug === x.s && d.ch === x.c && x.v === d.v2 + 1) d.v2 = x.v;
+      else gs.push({ slug: x.s, ch: x.c, v1: x.v, v2: x.v });
+    });
+    return gs;
+  }
+  function libelle(g){
+    var inf = infoLivre(g.slug);
+    var ps = (g.slug === 'psaumes');
+    var nom = ps ? 'Psaume' : inf.nom;
+    var base = (inf.nch === 1) ? nom + ' ' : nom + ' ' + g.ch + ':';
+    return base + g.v1 + (g.v2 > g.v1 ? '-' + g.v2 : '');
+  }
+  function majPlateau(){
+    var z = document.getElementById('sb-refs');
+    document.body.classList.toggle('sel-active', SEL.length > 0);
+    if (!SEL.length) { z.innerHTML = ''; return; }
+    var h = '';
+    groupes().forEach(function(g, i){
+      h += '<span class="sb-chip" data-g="' + i + '">' + esc(libelle(g)) + '<span class="sb-x" data-x="' + i + '">\u2715</span></span>';
+    });
+    z.innerHTML = h;
+    marqueSelection();
+  }
+  function marqueSelection(){
+    var spans = document.querySelectorAll('.ch-texte .vst');
+    if (!spans.length) return;
+    var ctx = vue._ctx;
+    if (!ctx) return;
+    spans.forEach(function(sp){
+      var v = parseInt(sp.id.replace('va-', ''), 10);
+      sp.classList.toggle('sel', selIdx(ctx.slug, ctx.ch, v) >= 0);
+    });
+  }
+  document.getElementById('sb-refs').addEventListener('click', function(e){
+    var x = e.target.closest('.sb-x');
+    var gs = groupes();
+    if (x) {
+      var g = gs[parseInt(x.dataset.x, 10)];
+      SEL = SEL.filter(function(s){ return !(s.s === g.slug && s.c === g.ch && s.v >= g.v1 && s.v <= g.v2); });
+      sauveSel(); majPlateau(); return;
+    }
+    var chip = e.target.closest('.sb-chip');
+    if (chip) {
+      var g2 = gs[parseInt(chip.dataset.g, 10)];
+      location.hash = '#' + g2.slug + '/' + g2.ch + '/' + g2.v1;
+    }
+  });
+  document.getElementById('sb-vider').addEventListener('click', function(){
+    SEL = []; sauveSel(); majPlateau();
+  });
+  document.getElementById('sb-copier').addEventListener('click', function(){
+    var gs = groupes();
+    var besoins = {};
+    gs.forEach(function(g){ besoins[g.slug] = 1; });
+    Promise.all(Object.keys(besoins).map(livreData)).then(function(){
+      var morceaux = gs.map(function(g){
+        var d = CACHE[g.slug], ch = null;
+        for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === g.ch) { ch = d.chapitres[i]; break; }
+        var txt = ch.versets.filter(function(v){ return v.v >= g.v1 && v.v <= g.v2; })
+                            .map(function(v){ return v.v + ' ' + v.t; }).join(' ');
+        return libelle(g) + '\n' + txt;
+      });
+      return navigator.clipboard.writeText(morceaux.join('\n\n'));
+    }).then(function(){
+      var b = document.getElementById('sb-copier');
+      b.textContent = 'Copié \u2713';
+      setTimeout(function(){ b.textContent = 'Copier'; }, 1500);
+    });
+  });
+
+  /* ───────── Notes ───────── */
+  var NOTES = [];
+  try { NOTES = JSON.parse(localStorage.getItem('lv_bible_notes') || '[]'); } catch(e) { NOTES = []; }
+  function sauveNotes(){ try { localStorage.setItem('lv_bible_notes', JSON.stringify(NOTES)); } catch(e){} }
+  function majLienNotes(){
+    document.getElementById('lien-notes').textContent = 'Mes notes' + (NOTES.length ? ' (' + NOTES.length + ')' : '');
+  }
+  var noteEnCours = null;
+  function ouvreNote(note){
+    noteEnCours = note;
+    document.getElementById('nb-titre').textContent = note.id ? 'Modifier la note' : 'Nouvelle note';
+    document.getElementById('nb-refs').innerHTML = (note.refs || []).map(function(g){
+      return '<span class="sb-chip">' + esc(libelle(g)) + '</span>';
+    }).join('');
+    document.getElementById('nb-zone').value = note.t || '';
+    document.getElementById('nb-supprimer').style.display = note.id ? '' : 'none';
+    document.getElementById('note-voile').classList.add('ouvert');
+    document.getElementById('nb-zone').focus();
+  }
+  function fermeNote(){ document.getElementById('note-voile').classList.remove('ouvert'); noteEnCours = null; }
+  document.getElementById('sb-note').addEventListener('click', function(){
+    ouvreNote({ refs: groupes(), t: '' });
+  });
+  document.getElementById('nb-annuler').addEventListener('click', fermeNote);
+  document.getElementById('note-voile').addEventListener('click', function(e){ if (e.target === this) fermeNote(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { fermeNote(); fermeAuth(); } });
+  document.getElementById('nb-enregistrer').addEventListener('click', function(){
+    if (!noteEnCours) return;
+    var t = document.getElementById('nb-zone').value.trim();
+    if (!t && !(noteEnCours.refs || []).length) { fermeNote(); return; }
+    var maintenant = new Date().toISOString();
+    if (noteEnCours.id) {
+      for (var i = 0; i < NOTES.length; i++) if (NOTES[i].id === noteEnCours.id) {
+        NOTES[i].t = t; NOTES[i].m = maintenant; cloudSet(NOTES[i]);
+      }
+    } else {
+      var n = { id: String(Date.now()), d: maintenant, m: maintenant, t: t, refs: noteEnCours.refs || [] };
+      NOTES.unshift(n); cloudSet(n);
+    }
+    sauveNotes(); majLienNotes(); fermeNote();
+    if (location.hash === '#notes') vueNotes();
+  });
+  document.getElementById('nb-supprimer').addEventListener('click', function(){
+    if (!noteEnCours || !noteEnCours.id) return;
+    cloudDel(noteEnCours.id);
+    NOTES = NOTES.filter(function(n){ return n.id !== noteEnCours.id; });
+    sauveNotes(); majLienNotes(); fermeNote();
+    if (location.hash === '#notes') vueNotes();
+  });
+  document.getElementById('lien-notes').addEventListener('click', function(){ location.hash = '#notes'; });
+
+  function vueNotes(filtre){
+    document.title = 'Mes notes · La Sainte Bible · Lumen Veritatis';
+    hero.style.display = 'none';
+    var f = norm(filtre || '');
+    var liste = NOTES.filter(function(n){
+      if (!f) return true;
+      if (norm(n.t).indexOf(f) >= 0) return true;
+      return (n.refs || []).some(function(g){ return norm(libelle(g)).indexOf(f) >= 0; });
+    });
+    var h = '<div class="notes-tete"><h2 class="notes-titre">Mes notes</h2>' +
+            '<span class="notes-nouvelle" id="note-libre" role="button" tabindex="0">Nouvelle note</span></div>' +
+            '<input class="notes-rech" id="notes-rech" type="search" placeholder="Rechercher dans les notes\u2026" value="' + esc(filtre || '') + '">';
+    if (FB) {
+      h += UID
+        ? '<div class="sync-ligne">Notes synchronis\u00e9es avec votre compte (' + esc(MAIL) + ') \u00b7 <span class="sync-act" id="sync-out" role="button" tabindex="0">Se d\u00e9connecter</span></div>'
+        : '<div class="sync-ligne">Notes enregistr\u00e9es sur cet appareil \u00b7 <span class="sync-act" id="sync-in" role="button" tabindex="0">Se connecter pour les retrouver partout</span></div>';
+    }
+    if (!liste.length) {
+      h += '<div class="notes-vide">' + (NOTES.length ? 'Aucune note ne correspond.' : 'Aucune note pour le moment. S\u00e9lectionnez des versets puis \u00ab Prendre une note \u00bb.') + '</div>';
+    } else {
+      liste.forEach(function(n){
+        var date = new Date(n.d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+        h += '<div class="note-item" data-id="' + n.id + '">' +
+             '<div class="note-date"><span>' + date + '</span>' +
+             '<span class="note-actions"><span class="note-act" data-mod="' + n.id + '" role="button" tabindex="0">Modifier</span></span></div>';
+        if ((n.refs || []).length) {
+          h += '<div class="note-refs">' + n.refs.map(function(g, i){
+            return '<span class="sb-chip" data-nav="' + n.id + ':' + i + '">' + esc(libelle(g)) + '</span>';
+          }).join('') + '</div>';
+        }
+        h += '<div class="note-texte">' + esc(n.t) + '</div></div>';
+      });
+    }
+    vue.innerHTML = h;
+    var champ = document.getElementById('notes-rech');
+    champ.addEventListener('input', function(){ vueNotes(champ.value); });
+    if (filtre) { champ.focus(); champ.setSelectionRange(champ.value.length, champ.value.length); }
+    document.getElementById('note-libre').addEventListener('click', function(){ ouvreNote({ refs: [], t: '' }); });
+    var sIn = document.getElementById('sync-in');
+    if (sIn) sIn.addEventListener('click', ouvreAuth);
+    var sOut = document.getElementById('sync-out');
+    if (sOut) sOut.addEventListener('click', function(){ auth.signOut(); });
+    vue.querySelectorAll('[data-mod]').forEach(function(b){
+      b.addEventListener('click', function(){
+        var n = NOTES.filter(function(x){ return x.id === b.dataset.mod; })[0];
+        if (n) ouvreNote({ id: n.id, refs: n.refs, t: n.t });
+      });
+    });
+    vue.querySelectorAll('[data-nav]').forEach(function(c){
+      c.addEventListener('click', function(){
+        var p = c.dataset.nav.split(':');
+        var n = NOTES.filter(function(x){ return x.id === p[0]; })[0];
+        var g = n && n.refs[parseInt(p[1], 10)];
+        if (g) location.hash = '#' + g.slug + '/' + g.ch + '/' + g.v1;
+      });
+    });
+  }
+
+  /* ───────── Champ de référence ───────── */
+  function vaRef(){
+    var champ = document.getElementById('ref-champ');
+    var err = document.getElementById('ref-erreur');
+    var r = parseRef(champ.value);
+    if (!r) { err.textContent = champ.value.trim() ? 'R\u00e9f\u00e9rence non reconnue.' : ''; return; }
+    err.textContent = '';
+    champ.value = '';
+    if (!r.ch) { location.hash = '#' + r.slug; return; }
+    if (r.v1) {
+      pendingSel = r;
+      var cible = '#' + r.slug + '/' + r.ch + '/' + r.v1;
+      if (location.hash === cible) route(); else location.hash = cible;
+    } else {
+      var c2 = '#' + r.slug + '/' + r.ch;
+      if (location.hash === c2) route(); else location.hash = c2;
+    }
+  }
+  document.getElementById('ref-aller').addEventListener('click', vaRef);
+  document.getElementById('ref-champ').addEventListener('keydown', function(e){
+    if (e.key === 'Enter') vaRef();
+  });
+
+  /* ───────── Vues ───────── */
+  function vueLivres(){
+    document.title = 'La Sainte Bible · Lumen Veritatis';
+    hero.style.display = '';
+    vue._ctx = null;
+    var h = '', testCourant = '';
+    IDX.groupes.forEach(function(g){
+      if (g.test !== testCourant) {
+        testCourant = g.test;
+        h += '<div class="testament">' + (g.test === 'AT' ? 'Ancien Testament' : 'Nouveau Testament') + '</div>';
+      }
+      h += '<div class="groupe-nom">' + esc(g.nom) + '</div><div class="livres-grille">';
+      IDX.livres.forEach(function(l){
+        if (l.groupe !== g.nom) return;
+        h += '<a class="livre" href="#' + l.slug + '"><span class="ln">' + esc(l.nom) + '</span>' +
+             '<span class="lc">' + l.nch + (l.nch > 1 ? ' chapitres' : ' chapitre') + '</span></a>';
+      });
+      h += '</div>';
+    });
+    vue.innerHTML = h;
+  }
+
+  function vueChapitres(slug){
+    var inf = infoLivre(slug);
+    if (!inf) return vueLivres();
+    document.title = inf.nom + ' · La Sainte Bible · Lumen Veritatis';
+    hero.style.display = 'none';
+    vue._ctx = null;
+    if (inf.nch === 1) { location.replace('#' + slug + '/1'); return; }
+    var h = '<div class="fil"><a href="#">La Sainte Bible</a></div>' +
+            '<h2 class="livre-titre">' + esc(inf.nom) + '</h2>' +
+            '<div class="livre-sous">' + esc(inf.groupe) + '</div><div class="chap-grille">';
+    for (var i = 1; i <= inf.nch; i++) h += '<a class="chap" href="#' + slug + '/' + i + '">' + i + '</a>';
+    h += '</div>';
+    vue.innerHTML = h;
+  }
+
+  function vueLecture(slug, n, vCible){
+    var inf = infoLivre(slug);
+    if (!inf) return vueLivres();
+    hero.style.display = 'none';
+    vue.innerHTML = '<div class="chargement">Chargement…</div>';
+    livreData(slug).then(function(d){
+      var ch = null;
+      for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === n) { ch = d.chapitres[i]; break; }
+      if (!ch) return vueChapitres(slug);
+      var ps = (slug === 'psaumes');
+      var nomCh = ps ? 'Psaume ' + n : esc(inf.nom) + (inf.nch > 1 ? ' ' + n : '');
+      document.title = nomCh + ' · La Sainte Bible · Lumen Veritatis';
+      var h = '<div class="lecture-col">' +
+              '<div class="ch-fil"><a href="#">La Sainte Bible</a> · <a href="#' + slug + '">' + esc(inf.nom) + '</a></div>' +
+              '<h2 class="ch-titre">' + nomCh + '</h2>';
+      if (ch.vulg) h += '<div class="ch-vulg">Vulgate : ' + esc(ch.vulg) + '</div>';
+      if (ch.titre) h += ps ? '<div class="ch-psaume-titre">' + esc(ch.titre) + '</div>'
+                            : '<div class="ch-section">' + esc(ch.titre) + '</div>';
+      h += '<div class="ch-sep"></div><div class="ch-texte">';
+      ch.versets.forEach(function(v){
+        h += '<span class="vst" id="va-' + v.v + '"><sup class="vn">' + v.v + '</sup>' + esc(v.t) + '</span> ';
+      });
+      h += '</div><div class="ch-nav">';
+      h += (n > 1)
+        ? '<a href="#' + slug + '/' + (n - 1) + '">\u2190 ' + (ps ? 'Psaume ' + (n - 1) : 'Chapitre ' + (n - 1)) + '</a>'
+        : '<a class="vide">·</a>';
+      h += '<a href="#' + slug + '">' + (inf.nch > 1 ? 'Chapitres' : esc(inf.nom)) + '</a>';
+      h += (n < inf.nch)
+        ? '<a href="#' + slug + '/' + (n + 1) + '">' + (ps ? 'Psaume ' + (n + 1) : 'Chapitre ' + (n + 1)) + ' \u2192</a>'
+        : '<a class="vide">·</a>';
+      h += '</div></div>';
+      vue.innerHTML = h;
+      vue._ctx = { slug: slug, ch: n };
+      if (pendingSel && pendingSel.slug === slug && pendingSel.ch === n) {
+        for (var v = pendingSel.v1; v <= pendingSel.v2; v++) {
+          if (document.getElementById('va-' + v) && selIdx(slug, n, v) < 0) SEL.push({ s: slug, c: n, v: v });
+        }
+        pendingSel = null;
+        sauveSel(); majPlateau();
+      } else {
+        marqueSelection();
+      }
+      vue.querySelector('.ch-texte').addEventListener('click', function(e){
+        var sp = e.target.closest('.vst');
+        if (!sp) return;
+        basculeSel(slug, n, parseInt(sp.id.replace('va-', ''), 10));
+      });
+      if (vCible) {
+        var el = document.getElementById('va-' + vCible);
+        if (el) { el.classList.add('cible'); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      }
+    }).catch(function(){
+      vue.innerHTML = '<div class="chargement">Le texte n\u2019a pas pu \u00eatre charg\u00e9.</div>';
+    });
+  }
+
+  /* ───────── Routage : #livre, #livre/ch, #livre/ch/v, #notes ───────── */
+  function route(){
+    var p = location.hash.replace(/^#/, '').split('/');
+    var slug = p[0] || '';
+    if (slug === 'notes') { vueNotes(); window.scrollTo(0, 0); return; }
+    if (!slug) { vueLivres(); window.scrollTo(0, 0); return; }
+    var n = parseInt(p[1], 10), v = parseInt(p[2], 10);
+    if (n > 0) { vueLecture(slug, n, v > 0 ? v : 0); if (!(v > 0)) window.scrollTo(0, 0); }
+    else { vueChapitres(slug); window.scrollTo(0, 0); }
+  }
+
+  charge('bible-data/index.json').then(function(d){
+    IDX = d;
+    IDX.livres.forEach(function(l, i){ ORDRE[l.slug] = i; });
+    construitDico();
+    majLienNotes();
+    majPlateau();
+    initAuth();
+    route();
+    window.addEventListener('hashchange', route);
+  }).catch(function(){
+    vue.innerHTML = '<div class="chargement">L\u2019index de la Bible n\u2019a pas pu \u00eatre charg\u00e9.</div>';
+  });
+})();
+</script>
+</body>
+</html>

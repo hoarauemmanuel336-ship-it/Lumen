@@ -1,0 +1,6 @@
+[build]
+  command   = "node build-bi.js"
+  publish   = "site"
+
+[build.environment]
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
