@@ -142,7 +142,9 @@
     '.lva-pick-i{display:block;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid rgba(231,224,207,.07);color:var(--lvaT);font-family:"EB Garamond",serif;font-size:15px;padding:10px 16px;cursor:pointer;transition:background .2s}',
     '.lva-pick-i:hover{background:rgba(231,224,207,.06)}',
     '.lva-doc a{color:var(--lvaG);text-decoration:underline;text-underline-offset:3px}',
-    '.lva-sec-chev{display:inline-block;margin-right:10px;color:var(--lvaM);font-size:15px;transition:transform .25s ease;vertical-align:middle}',
+    '.lva-dom-t{cursor:pointer;display:flex;align-items:center;gap:10px;user-select:none;transition:color .2s}',
+    '.lva-dom-t:hover{color:var(--lvaT)}',
+    '.lva-sec-chev{display:inline-block;color:var(--lvaM);font-size:16px;line-height:1;transition:transform .25s ease}',
     '.lva-bth.dom-open > .lva-sec-t .lva-sec-chev{transform:rotate(90deg)}',
     '.lva-bth > .lva-row2,.lva-bth > .lva-bth-cats,.lva-bth > .lva-addcat{display:none}',
     '.lva-bth.dom-open > .lva-row2,.lva-bth.dom-open > .lva-bth-cats,.lva-bth.dom-open > .lva-addcat{display:block}'
@@ -777,7 +779,11 @@
 
       IDX.themes.forEach(function (t) {
         var sec = el('div', 'lva-bth'); sec.__th = t.id;
-        sec.appendChild(el('div', 'lva-sec-t', esc(t.nom)));
+        var secT = el('div', 'lva-sec-t lva-dom-t');
+        var secChev = el('span', 'lva-sec-chev'); secChev.textContent = '\u203A'; secT.appendChild(secChev);
+        var secLbl = el('span'); secLbl.textContent = t.nom; secT.appendChild(secLbl);
+        secT.addEventListener('click', function () { sec.classList.toggle('dom-open'); });
+        sec.appendChild(secT);
         var rN = el('div', 'lva-row2');
         var c1 = el('div'); c1.appendChild(el('label', 'lva-lab', T('Nom du domaine', 'Domain name')));
         var iN = el('input', 'lva-in lva-bth-nom'); iN.value = (noms[t.id] && noms[t.id]['nom_' + lang]) || t.nom; iN.addEventListener('input', markDirty); c1.appendChild(iN);

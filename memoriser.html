@@ -453,11 +453,15 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
 nav.menu .menu-act#lang-btn{background:none;border:none;font-size:13px;letter-spacing:.2em;opacity:.65;text-transform:uppercase;padding:6px 4px}
 nav.menu .menu-act#lang-btn:hover{opacity:1;color:var(--parchemin);border:none}
 @media(max-width:720px){nav.menu .menu-act#lang-btn{font-size:16px;letter-spacing:.12em;opacity:1}}
-#acct-pop{position:fixed;z-index:4000;display:none;flex-direction:column;gap:12px;background:var(--encre-2);border:1px solid var(--filet-f);padding:16px 18px;min-width:200px;box-shadow:0 18px 50px rgba(0,0,0,.6)}
-#acct-pop.on{display:flex}
-#acct-pop .acct-mail{font-size:13px;color:var(--pa);word-break:break-all}
-#acct-pop .acct-out{background:none;border:1px solid var(--filet-f);color:var(--parchemin);font-family:inherit;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:8px 12px;cursor:pointer}
-#acct-pop .acct-out:hover{border-color:var(--pourpre);color:var(--pourpre)}
+.auth-ov{position:fixed;inset:0;z-index:4000;background:rgba(8,8,8,.98);display:none;align-items:center;justify-content:center;padding:24px}
+.auth-ov.on{display:flex}
+.auth-box{position:relative;width:100%;max-width:400px;background:var(--encre-2);border:1px solid var(--filet);padding:40px 34px}
+.auth-x{position:absolute;top:16px;right:18px;cursor:pointer;color:var(--pa);font-size:22px;line-height:1;transition:color .3s}
+.auth-x:hover{color:var(--parchemin)}
+.auth-t{font-family:var(--display);font-size:24px;text-align:center;margin-bottom:24px;color:var(--parchemin)}
+.auth-mail{text-align:center;color:var(--pa);font-size:15px;margin-bottom:22px;word-break:break-all}
+.auth-out{display:block;width:100%;text-align:center;background:none;border:1px solid var(--filet-f);color:var(--parchemin);font-family:var(--display);font-size:15px;letter-spacing:.1em;text-transform:uppercase;padding:11px;cursor:pointer;transition:border-color .3s,color .3s}
+.auth-out:hover{border-color:var(--pourpre);color:var(--pourpre)}
 html{scroll-behavior:smooth}
 body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 ::selection{background:rgba(239,230,207,.25);color:#fff}
@@ -1548,18 +1552,21 @@ document.addEventListener('DOMContentLoaded',()=>{
   ['i-email','i-pw','i-cf'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')$('b-submit').click();}));
   $('b-google').onclick=async()=>{try{await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());}catch(e){showMsg(e.message,'err');}};
   $('logout-btn').onclick=(e)=>{e.stopPropagation();
-    var p=document.getElementById('acct-pop');
-    if(!p){p=document.createElement('div');p.id='acct-pop';
-      p.innerHTML='<div class="acct-mail"></div><button type="button" class="acct-out"></button>';
-      document.body.appendChild(p);
-      p.querySelector('.acct-out').onclick=()=>auth.signOut();
-      document.addEventListener('click',(ev)=>{if(!p.contains(ev.target)&&!ev.target.closest('#logout-btn'))p.classList.remove('on');});
+    var ov=document.getElementById('acct-ov');
+    if(!ov){ov=document.createElement('div');ov.id='acct-ov';ov.className='auth-ov';
+      ov.innerHTML='<div class="auth-box"><span class="auth-x" role="button" tabindex="0">\u2715</span>'+
+        '<div class="auth-t"></div><div class="auth-mail"></div>'+
+        '<button type="button" class="auth-out"></button></div>';
+      document.body.appendChild(ov);
+      var box=ov.querySelector('.auth-box');
+      ov.querySelector('.auth-x').onclick=()=>ov.classList.remove('on');
+      ov.querySelector('.auth-out').onclick=()=>auth.signOut();
+      ov.addEventListener('click',(ev)=>{if(ev.target===ov)ov.classList.remove('on');});
     }
-    p.querySelector('.acct-mail').textContent=(auth.currentUser&&auth.currentUser.email)||'';
-    p.querySelector('.acct-out').textContent=(S.lang==='fr')?'Déconnexion':'Sign out';
-    var rc=$('logout-btn').getBoundingClientRect();
-    p.style.top=(rc.bottom+8)+'px';p.style.right=Math.max(10,window.innerWidth-rc.right)+'px';
-    p.classList.toggle('on');
+    ov.querySelector('.auth-t').textContent=(S.lang==='fr')?'Mon compte':'My account';
+    ov.querySelector('.auth-mail').textContent=(auth.currentUser&&auth.currentUser.email)||'';
+    ov.querySelector('.auth-out').textContent=(S.lang==='fr')?'Déconnexion':'Sign out';
+    ov.classList.add('on');
   };
   $('nav-burger').onclick=()=>document.getElementById('site-nav').classList.toggle('open');
   initNews();
