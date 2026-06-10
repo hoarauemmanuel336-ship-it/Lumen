@@ -748,7 +748,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
   function libelle(g){
     var inf = infoLivre(g.slug);
     var ps = (g.slug === 'psaumes');
-    var nom = ps ? 'Psaume' : inf.nom;
+    var nom = ps ? (NVL === 'en' ? 'Psalm' : 'Psaume') : inf.nom;
     var base = (inf.nch === 1) ? nom + ' ' : nom + ' ' + g.ch + ':';
     return base + g.v1 + (g.v2 > g.v1 ? '-' + g.v2 : '');
   }
@@ -799,8 +799,8 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
         var d = CACHE[g.slug], ch = null;
         for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === g.ch) { ch = d.chapitres[i]; break; }
         var txt = ch.versets.filter(function(v){ return v.v >= g.v1 && v.v <= g.v2; })
-                            .map(function(v){ return v.v + ' ' + v.t; }).join(' ');
-        return libelle(g) + '\n' + txt;
+                            .map(function(v){ return v.t; }).join(' ');
+        return (NVL === 'en' ? '\u201c' + txt + '\u201d' : '\u00ab\u00a0' + txt + '\u00a0\u00bb') + ' ' + libelle(g);
       });
       return navigator.clipboard.writeText(morceaux.join('\n\n'));
     }).then(function(){

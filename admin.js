@@ -1298,7 +1298,7 @@
     function nvDom() { return qsa('.nouv-groupe').map(function (g) { var dEl = g.querySelector('.nouv-date'); return { d: dEl ? dEl.textContent : '', items: qsa('.nouv-ligne', g).map(function (x) { return x.textContent; }) }; }); }
     gdoc('config/nouveautes').then(function (d) {
       nvDoc = d || {};
-      nvRemplir((nvDoc[ADM] && nvDoc[ADM].length) ? nvDoc[ADM] : (ADM === lang ? nvDom() : []));
+      nvRemplir((nvDoc[ADM] && nvDoc[ADM].length) ? nvDoc[ADM] : ((window.LV_NV && window.LV_NV[ADM] && window.LV_NV[ADM].length) ? window.LV_NV[ADM] : (ADM === lang ? nvDom() : [])));
     });
     nvSv.addEventListener('click', function () {
       nvDoc[ADM] = qsa(':scope > .lva-li', nvHost).map(function (b) { return b.__lire(); }).filter(function (g) { return g.d || g.items.length; });

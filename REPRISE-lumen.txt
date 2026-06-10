@@ -2624,3 +2624,54 @@ Fichiers modifiés : index__48_.html, admin.js.
 4. EXPORT. Rien à ajouter : les docs de la collection contenu sortent
    entiers, d.apologie suit. À l'intégration des fichiers : reporter le champ
    dans APOLOGIES (build-bi.js).
+
+
+──────────────────────────────────────────────
+SUITE 19 — Correctif : la bascule de langue du hub avait la mécanique mais
+pas la matière
+──────────────────────────────────────────────
+Fichiers modifiés : build-bi.js, admin.js.
+
+Symptôme (captures d'Emmanuel) : avec EN sélectionné dans le panneau, la
+liste des articles, les fiches et les badges de domaines restaient français,
+et les nouveautés étaient vides.
+Cause : les pages générées n'embarquaient que l'index de leur propre langue
+(window.LV_INDEX = buildIndex(lang), forme plate) → calcIdx('en') retombait
+sur le français. Et aucune page n'embarquait le journal des nouveautés de
+l'autre langue.
+Correctif :
+1. Les pages générées embarquent désormais l'index bilingue
+   window.LV_INDEX = {fr: buildIndex('fr'), en: buildIndex('en')} (calcIdx
+   gérait déjà cette forme ; Mémoriser et la Bible l'avaient déjà). Effet :
+   en mode EN, le hub affiche titres, résumés, domaines et liens « Voir
+   l'article » anglais ; le préremplissage du texte EN (fetch /en/) trouve
+   enfin son URL ; la purge de l'index après suppression vaut partout.
+2. Toutes les pages (générées + Mémoriser + Bible FR/EN) embarquent
+   window.LV_NV = {fr: NV_FR, en: NV_EN}, les journaux des fichiers. Le hub
+   replie les nouveautés dessus : nvDoc[ADM] (Firestore) → LV_NV[ADM]
+   (fichiers) → nvDom() si ADM = langue de la page → sinon vide.
+
+
+──────────────────────────────────────────────
+SUITE 20 — Panneau biblique réparé + format de copie des versets
+──────────────────────────────────────────────
+Fichiers modifiés : bible-panneau.js, bible.html.
+
+1. PANNEAU BIBLIQUE (onglet au bord gauche des pages). Trois lignes de
+   l'en-tête s'auto-référençaient (mauvais patch de la salve 12) :
+   BP_DATA = BP_EN ? '/bible-data-en/' : BP_DATA → undefined côté FR ;
+   ouvrir: BP_T.ouvrir et chs: BP_T.chs dans la branche FR → TypeError au
+   chargement, donc aucun panneau sur tout chargement frais (mobile FR,
+   pages EN) ; le poste d'Emmanuel ne l'affichait que par une ancienne
+   version en cache. Réparé avec les littéraux corrects ('/bible-data/',
+   'Ouvrir la Bible', 'Chapitres'). Les usages légitimes de BP_T.* en aval
+   (aria-label l.95, fil d'Ariane l.288) sont sains.
+2. COPIE DE VERSETS (plateau de sélection de la page Bible, sb-copier).
+   Avant : « Job 15:4-5 » puis le texte avec numéros de versets. Désormais :
+   texte seul, sans numéros, entre guillemets de la langue, référence après.
+   FR : « texte » Job 15:4-5 (guillemets français + espaces insécables
+   \u00ab\u00a0…\u00a0\u00bb) ; EN : \u201ctext\u201d Job 15:4-5 (guillemets anglais
+   courbes), via NVL (la paire TR du build couvre déjà la page EN).
+   Plusieurs passages restent séparés par une ligne vide.
+3. Au passage : libelle() disait « Psaume » même sur la page anglaise →
+   'Psalm' via NVL.

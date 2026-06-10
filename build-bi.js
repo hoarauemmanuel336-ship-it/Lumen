@@ -660,7 +660,8 @@ ${COMMUN_JS}
 ${RECH_JS}
 ${AUTH_JS}
 ${MEMO_JS}
-window.LV_INDEX=${JSON.stringify(buildIndex(lang)).replace(/</g, '\\u003c')};
+window.LV_INDEX=${JSON.stringify({fr: buildIndex('fr'), en: buildIndex('en')}).replace(/</g, '\\u003c')};
+window.LV_NV=${JSON.stringify({fr: NV_FR, en: NV_EN}).replace(/</g, '\\u003c')};
 ${ADMIN_JS}
 ${extraJS || ''}
 </script>
@@ -967,7 +968,8 @@ if (fs.existsSync('memoriser.html')) {
   }
   if (ADMIN_JS && mh.indexOf('</body>') >= 0) {
     const lvIdxAll = JSON.stringify({ fr: buildIndex('fr'), en: buildIndex('en') }).replace(/</g, '\\u003c');
-    mh = mh.replace('</body>', '<script>window.LV_INDEX=' + lvIdxAll + ';</script><script>' + ADMIN_JS + '</script></body>');
+    const lvNvAll = JSON.stringify({ fr: NV_FR, en: NV_EN }).replace(/</g, '\\u003c');
+    mh = mh.replace('</body>', '<script>window.LV_INDEX=' + lvIdxAll + ';window.LV_NV=' + lvNvAll + ';</script><script>' + ADMIN_JS + '</script></body>');
   }
   mh = mh.replace('</body>', '<script src="/bible-panneau.js" defer><' + '/script></body>');
   fs.writeFileSync(`${OUT}/memoriser.html`, mh);
@@ -983,7 +985,8 @@ if (fs.existsSync('bible.html')) {
   }
   if (bh.indexOf('</body>') >= 0) {
     const lvIdxB = JSON.stringify({ fr: buildIndex('fr'), en: buildIndex('en') }).replace(/</g, '\\u003c');
-    bh = bh.replace('</body>', '<script>window.LV_INDEX=' + lvIdxB + ';</script></body>');
+    const lvNvB = JSON.stringify({ fr: NV_FR, en: NV_EN }).replace(/</g, '\\u003c');
+    bh = bh.replace('</body>', '<script>window.LV_INDEX=' + lvIdxB + ';window.LV_NV=' + lvNvB + ';</script></body>');
   }
   if (APPEARANCE_CSS && bh.indexOf('</head>') >= 0) {
     bh = bh.replace('</head>', '<style>' + APPEARANCE_CSS + '</style></head>');

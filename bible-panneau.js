@@ -6,15 +6,15 @@
   if (document.getElementById('bp-tab')) return;
   if (location.pathname === '/bible.html' || location.pathname === '/en/bible.html') return;
   var BP_EN = location.pathname.indexOf('/en/') === 0;
-  var BP_DATA = BP_EN ? '/bible-data-en/' : BP_DATA;
+  var BP_DATA = BP_EN ? '/bible-data-en/' : '/bible-data/';
   var BP_PAGE = BP_EN ? '/en/bible.html' : '/bible.html';
   var BP_T = BP_EN ? {
     bible: 'The Holy Bible', ouvrir: 'Open the Bible', page: 'Open the page',
     ph: 'Reference: Matthew 7:6-8', chs: 'Chapters', charge: 'Loading\u2026',
     errTxt: 'The text could not be loaded.', errBible: 'The Bible could not be loaded.'
   } : {
-    bible: 'La Sainte Bible', ouvrir: BP_T.ouvrir, page: 'Ouvrir la page',
-    ph: 'R\u00e9f\u00e9rence : Matthieu 7:6-8', chs: BP_T.chs, charge: 'Chargement\u2026',
+    bible: 'La Sainte Bible', ouvrir: 'Ouvrir la Bible', page: 'Ouvrir la page',
+    ph: 'R\u00e9f\u00e9rence : Matthieu 7:6-8', chs: 'Chapitres', charge: 'Chargement\u2026',
     errTxt: 'Le texte n\u2019a pas pu \u00eatre charg\u00e9.', errBible: 'La Bible n\u2019a pas pu \u00eatre charg\u00e9e.'
   };
 
