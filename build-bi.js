@@ -31,6 +31,33 @@ if (fs.existsSync('content/nouveautes.json')) {
 
 // Contenu éditable via l'admin : chaque article est lu depuis content/articles/<slug>.json s'il existe
 if (fs.existsSync('content/articles')) {
+
+/* ── Lecture Firestore au build (publication des créations en ligne) ── */
+const FS_BASE = 'https://firestore.googleapis.com/v1/projects/lumen-veritatis/databases/(default)/documents/';
+function fsValeur(v) {
+  if (v == null) return null;
+  if (v.stringValue !== undefined) return v.stringValue;
+  if (v.booleanValue !== undefined) return v.booleanValue;
+  if (v.integerValue !== undefined) return Number(v.integerValue);
+  if (v.doubleValue !== undefined) return v.doubleValue;
+  if (v.nullValue !== undefined) return null;
+  if (v.timestampValue !== undefined) return v.timestampValue;
+  if (v.mapValue !== undefined) { const o = {}; const f = v.mapValue.fields || {}; for (const k in f) o[k] = fsValeur(f[k]); return o; }
+  if (v.arrayValue !== undefined) return (v.arrayValue.values || []).map(fsValeur);
+  return null;
+}
+function fsChamps(fields) { const o = {}; const f = fields || {}; for (const k in f) o[k] = fsValeur(f[k]); return o; }
+function fsCurl(url) {
+  const { execSync } = require('child_process');
+  const brut = execSync('curl -s --max-time 12 "' + url + '"', { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+  return JSON.parse(brut);
+}
+function fsLireDoc(chemin) {
+  try { const r = fsCurl(FS_BASE + chemin); return (r && r.fields) ? fsChamps(r.fields) : null; } catch (e) { return null; }
+}
+function fsLireCollection(nom) {
+  try { const r = fsCurl(FS_BASE + nom + '?pageSize=300'); if (!r || r.error) return null; return (r.documents || []).map(d => ({ id: d.name.split('/').pop(), data: fsChamps(d.fields) })); } catch (e) { return null; }
+}
   const parId = Object.create(null);
   for (const a of ARTICLES) parId[a.id] = a;
   let n = 0, crees = 0;
@@ -62,6 +89,27 @@ if (fs.existsSync('content/articles')) {
     n++;
   }
   console.log('Articles lus depuis content/articles/ :', n, crees ? ('(dont ' + crees + ' créé(s))') : '');
+
+  /* ── Publication en ligne : le build lit Firestore (lecture publique) ── */
+  const enLigne = fsLireCollection('contenu');
+  if (enLigne === null) console.log('Firestore non joignable au build : publication en ligne ignorée (normal hors Netlify).');
+  else {
+    let pubs = 0;
+    for (const docX of enLigne) {
+      const d = docX.data, slugX = docX.id;
+      if (!d.cree || parId[slugX]) continue;
+      if (d.titre_fr == null || d.contenu_fr == null) continue;
+      const neuf = { id: slugX, titre: d.titre_fr, resume: d.resume_fr || '', contenu: d.contenu_fr, theme: d.theme || 'doctrine', date: d.date || '' };
+      ARTICLES.push(neuf); parId[slugX] = neuf;
+      ARTICLES_EN[slugX] = {
+        titre: d.titre_en != null ? d.titre_en : d.titre_fr,
+        resume: d.resume_en != null ? d.resume_en : (d.resume_fr || ''),
+        contenu: d.contenu_en != null ? d.contenu_en : d.contenu_fr
+      };
+      pubs++;
+    }
+    if (pubs) console.log('Articles créés en ligne publiés en pages :', pubs);
+  }
 }
 
 // Filet de sécurité : tout article français doit avoir une entrée anglaise.
@@ -266,6 +314,24 @@ nav.menu a.lien-langue:hover{opacity:1}
 .auth-m-msg.err{display:block;background:rgba(154,59,59,.18);border:1px solid var(--pourpre);color:#eba0a0}
 .auth-m-msg.ok{display:block;background:rgba(58,107,74,.18);border:1px solid #3a6b4a;color:#a0d4b2}
 .auth-m-email{text-align:center;color:var(--parchemin-att);font-size:15px;margin-bottom:22px;word-break:break-all}
+
+/* ── Raffinements d'interface ── */
+html{scroll-behavior:smooth}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:rgba(239,230,207,.25);color:#fff}
+h1,h2,h3{text-wrap:balance}
+.lecture p{text-wrap:pretty}
+.lecture a{color:var(--or,#efe6cf);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(239,230,207,.35);text-underline-offset:3px;transition:text-decoration-color .25s ease}
+.lecture a:hover{text-decoration-color:var(--or,#efe6cf)}
+*{scrollbar-width:thin;scrollbar-color:rgba(231,224,207,.18) transparent}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(231,224,207,.16);background-clip:content-box;border:3px solid transparent;border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:rgba(231,224,207,.32);background-clip:content-box;border:3px solid transparent}
+:focus-visible{outline:1px solid rgba(239,230,207,.5);outline-offset:3px}
+.article-lien{transition:transform .35s ease,border-color .35s ease,background .35s ease}
+.article-lien:hover{transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.article-lien:hover{transform:none}}
 `;
 
 function header(lang, type, base, otherRel, ctx) {
@@ -823,25 +889,31 @@ ecrire('en/recherche-en.js', 'window.LUMEN_INDEX=' + JSON.stringify(idxEN) + ';'
 // copie des pages autonomes (hors pipeline bilingue)
 if (fs.existsSync('memoriser.html')) {
   let mh = fs.readFileSync('memoriser.html', 'utf8');
-  if (fs.existsSync('content/memoriser.json')) {
-    const cats = JSON.parse(fs.readFileSync('content/memoriser.json', 'utf8')).categories || [];
-    const slug = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-    const vusC = new Set();
-    for (const c of cats) {
-      if (!c.id) { let b = slug(c.name && c.name.fr) || 'cat', id = b, k = 2; while (vusC.has(id)) id = b + '-' + (k++); c.id = id; }
-      vusC.add(c.id);
-      const vusV = new Set();
-      for (const v of (c.verses || [])) {
-        if (!v.id) { let b = slug(v.fr && v.fr.ref) || 'v', id = b, k = 2; while (vusV.has(id)) id = b + '-' + (k++); v.id = id; }
-        vusV.add(v.id);
-      }
-    }
+  {
     const reNews = /\/\*NEWS_START\*\/[\s\S]*?\/\*NEWS_END\*\//;
     if (reNews.test(mh)) { mh = mh.replace(reNews, '/*NEWS_START*/const NEWS={fr:' + JSON.stringify(NV_FR) + ',en:' + JSON.stringify(NV_EN) + '};/*NEWS_END*/'); console.log('Mémoriser : nouveautés synchronisées avec le site'); }
-    const reMarq = /\/\*PRE_START\*\/[\s\S]*?\/\*PRE_END\*\//;
-    if (reMarq.test(mh)) {
-      mh = mh.replace(reMarq, '/*PRE_START*/const PRE=' + JSON.stringify(cats) + ';/*PRE_END*/');
-      console.log('Mémoriser : versets de base injectés (' + cats.length + ' catégories)');
+    let catsSrc = null, origineCats = '';
+    const memLigne = fsLireDoc('config/memoriser');
+    if (memLigne && Array.isArray(memLigne.categories) && memLigne.categories.length) { catsSrc = memLigne.categories; origineCats = 'en ligne'; }
+    else if (fs.existsSync('content/memoriser.json')) { catsSrc = JSON.parse(fs.readFileSync('content/memoriser.json', 'utf8')).categories || []; origineCats = 'fichier'; }
+    if (catsSrc) {
+      const cats = catsSrc;
+      const slug = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      const vusC = new Set();
+      for (const c of cats) {
+        if (!c.id) { let b = slug(c.name && c.name.fr) || 'cat', id = b, k = 2; while (vusC.has(id)) id = b + '-' + (k++); c.id = id; }
+        vusC.add(c.id);
+        const vusV = new Set();
+        for (const v of (c.verses || [])) {
+          if (!v.id) { let b = slug(v.fr && v.fr.ref) || 'v', id = b, k = 2; while (vusV.has(id)) id = b + '-' + (k++); v.id = id; }
+          vusV.add(v.id);
+        }
+      }
+      const reMarq = /\/\*PRE_START\*\/[\s\S]*?\/\*PRE_END\*\//;
+      if (reMarq.test(mh)) {
+        mh = mh.replace(reMarq, '/*PRE_START*/const PRE=' + JSON.stringify(cats).replace(/</g, '\\u003c') + ';/*PRE_END*/');
+        console.log('Mémoriser : versets de base injectés (' + cats.length + ' catégories, source ' + origineCats + ')');
+      }
     }
   }
   if (APPEARANCE_CSS && mh.indexOf('</head>') >= 0) {

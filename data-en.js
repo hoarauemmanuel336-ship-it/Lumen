@@ -1,6 +1,7 @@
 /* Traductions anglaises : correspondances de slugs, thèmes, interface, articles. */
 
 const SLUGS = {
+'mon-dieu-mon-dieu-pourquoi-m-as-tu-abandonne':'my-god-my-god-why-have-you-forsaken-me',
   'le-doigt-de-dieu':'the-finger-of-god',
   'le-bapteme-du-christ':'the-baptism-of-christ',
   'la-resurrection-et-la-glorification':'the-resurrection-and-the-glorification',
