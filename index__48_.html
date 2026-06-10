@@ -22,8 +22,8 @@
   --or:#efe3c0;
   --or-pale:#faf4e3;
   --pourpre:#8e3a36;
-  --filet:rgba(241,228,194,.17);
-  --filet-fort:rgba(241,228,194,.42);
+  --filet:rgba(241,228,194,.22);
+  --filet-fort:rgba(241,228,194,.55);
   --display:'Cormorant Garamond',Georgia,serif;
   --texte:'EB Garamond',Georgia,serif;
 }
@@ -78,7 +78,7 @@ main{max-width:1180px;margin:0 auto;padding:0 28px 110px}
 @keyframes venue{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
 /* ════ ACCUEIL : SEUIL ════ */
-.hero{padding:62px 0 84px;text-align:center}
+.hero{padding:36px 0 14px;text-align:center}
 .croix{width:1px;height:70px;margin:0 auto 30px;background:linear-gradient(to bottom,transparent,#f2ecdd 30%,#f2ecdd 70%,transparent);position:relative}
 .croix::after{content:'';position:absolute;top:21px;left:50%;transform:translateX(-50%);width:40px;height:1px;background:linear-gradient(to right,transparent,#f2ecdd 30%,#f2ecdd 70%,transparent)}
 .hero h1{font-family:var(--display);font-weight:400;font-size:clamp(46px,7.4vw,86px);line-height:1.04;letter-spacing:.045em;color:var(--parchemin);text-wrap:balance}
@@ -87,10 +87,10 @@ main{max-width:1180px;margin:0 auto;padding:0 28px 110px}
 .hero .ref{color:var(--or);font-style:italic}
 
 /* titres de sections (accueil) */
-.titre-section{display:flex;align-items:baseline;gap:18px;margin:86px 0 40px}
+.titre-section{display:flex;align-items:baseline;gap:18px;margin:54px 0 38px}
 .titre-section .num{font-family:var(--display);font-size:14px;letter-spacing:.3em;color:var(--or);border:1px solid var(--filet-fort);padding:4px 11px 3px;white-space:nowrap}
 .titre-section h2{font-family:var(--display);font-weight:500;font-size:clamp(26px,3.4vw,36px);letter-spacing:.06em;color:var(--parchemin)}
-.titre-section .trait{flex:1;height:1px;align-self:center;background:linear-gradient(to right,rgba(241,228,194,.62),rgba(241,228,194,.26) 35%,rgba(241,228,194,.08) 70%,transparent)}
+.titre-section .trait{flex:1;height:1px;align-self:center;background:linear-gradient(to right,rgba(241,228,194,.85),rgba(241,228,194,.4) 35%,rgba(241,228,194,.14) 70%,transparent)}
 
 /* domaines (accueil) */
 .domaines-liste,.domaines > div:not(.titre-section){display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
@@ -129,7 +129,7 @@ a.domaine p,.desc{font-size:16.5px;line-height:1.7;color:var(--parchemin-att)}
 .sur-titre{font-family:var(--display);font-size:13.5px;letter-spacing:.4em;text-transform:uppercase;color:var(--or);margin-bottom:20px}
 .bandeau-page h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,5.4vw,62px);line-height:1.08;letter-spacing:.04em;color:var(--parchemin);text-wrap:balance}
 .bandeau-page p{max-width:600px;margin:22px auto 0;font-size:18.5px;color:var(--parchemin-att);font-style:italic}
-.bandeau-page::after{content:'';display:block;width:220px;height:1px;margin:46px auto 0;background:linear-gradient(to right,transparent,rgba(241,228,194,.68) 30%,rgba(241,228,194,.68) 70%,transparent)}
+.bandeau-page::after{content:'';display:block;width:220px;height:1px;margin:46px auto 0;background:linear-gradient(to right,transparent,rgba(241,228,194,.9) 30%,rgba(241,228,194,.9) 70%,transparent)}
 
 /* ════ BIBLIOTHÈQUE ════ */
 .dom{grid-column:1/-1;margin:0 0 18px;border:1px solid var(--filet);background:linear-gradient(180deg,rgba(255,255,255,.012),transparent 45%);transition:border-color .4s}
@@ -141,7 +141,7 @@ a.domaine p,.desc{font-size:16.5px;line-height:1.7;color:var(--parchemin-att)}
 .dom-compte{font-size:13.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--parchemin-att);white-space:nowrap}
 .dom-chevron{font-family:var(--texte);font-size:21px;color:var(--parchemin-att);transition:transform .4s cubic-bezier(.22,.7,.3,1),color .3s;line-height:1}
 .dom.ouvert .dom-chevron{transform:rotate(90deg);color:var(--or)}
-.dom-sep{height:1px;margin:0 30px;background:linear-gradient(to right,rgba(241,228,194,.62),rgba(241,228,194,.28) 30%,rgba(241,228,194,.09) 65%,transparent);opacity:0;transition:opacity .45s}
+.dom-sep{height:1px;margin:0 30px;background:linear-gradient(to right,rgba(241,228,194,.85),rgba(241,228,194,.4) 30%,rgba(241,228,194,.14) 65%,transparent);opacity:0;transition:opacity .45s}
 .dom.ouvert .dom-sep{opacity:1}
 .dom-corps{display:none;padding:26px 30px 34px}
 .dom.ouvert .dom-corps{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;animation:venue .5s cubic-bezier(.22,.7,.3,1) both}
@@ -177,7 +177,7 @@ a.article-lien:hover h3{color:var(--or-pale)}
 /* ════ LECTURE ════ */
 .lecture{max-width:34em;margin:0 auto;padding-top:70px}
 .lecture h1{font-family:var(--display);font-weight:400;font-size:clamp(35px,4.8vw,52px);line-height:1.12;letter-spacing:.03em;color:var(--parchemin);margin-bottom:14px;text-wrap:balance}
-.lecture h1::after{content:'';display:block;width:120px;height:1px;margin-top:30px;background:linear-gradient(to right,rgba(241,228,194,.72),rgba(241,228,194,.26) 60%,transparent)}
+.lecture h1::after{content:'';display:block;width:120px;height:1px;margin-top:30px;background:linear-gradient(to right,rgba(241,228,194,.9),rgba(241,228,194,.38) 60%,transparent)}
 .lecture h2{font-family:var(--display);font-weight:500;font-size:clamp(25px,3vw,31px);line-height:1.25;letter-spacing:.04em;color:var(--parchemin);margin:58px 0 22px;text-wrap:balance}
 .lecture h3{font-family:var(--display);font-weight:500;font-size:23px;letter-spacing:.04em;margin:44px 0 16px}
 .lecture p{margin:0 0 24px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
@@ -188,8 +188,8 @@ a.article-lien:hover h3{color:var(--or-pale)}
 .lecture a:hover{color:var(--or-pale);border-bottom-color:var(--or)}
 .ref{color:var(--or);font-style:italic}
 .fin-article{margin:64px auto 0;display:flex;align-items:center;gap:22px;max-width:340px}
-.fin-article::before,.fin-article::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(241,228,194,.55));}
-.fin-article::after{background:linear-gradient(to left,transparent,rgba(241,228,194,.55))}
+.fin-article::before,.fin-article::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(241,228,194,.72));}
+.fin-article::after{background:linear-gradient(to left,transparent,rgba(241,228,194,.72))}
 .fin-article{justify-content:center;color:var(--or);font-size:13px}
 .fin-article:empty::before{content:''}
 .fin-article > *{color:var(--or)}
@@ -288,7 +288,7 @@ footer{border-top:1px solid var(--filet);padding:32px 28px 26px;text-align:cente
   body{font-size:18.5px}
   .barre{height:64px;padding:0 20px}
   main{padding:0 20px 90px}
-  .hero{padding:78px 0 64px}
+  .hero{padding:42px 0 12px}
   .croix{height:64px;margin-bottom:28px}
   .titre-section{margin:64px 0 30px}
   .dom-tete{padding:20px 18px;gap:13px}
