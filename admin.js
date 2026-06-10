@@ -257,6 +257,10 @@
         var used = {}, exist = {};
         qsa('.sous[data-cat]', corps).forEach(function (s) { exist[s.getAttribute('data-cat')] = s; });
         (st.order || []).forEach(function (cid) {
+          if (cid === '__autres') {
+            (((st.arts || {})['__autres']) || []).forEach(function (sl) { if (m[sl] && !used[sl]) { corps.appendChild(m[sl]); used[sl] = 1; } });
+            return;
+          }
           var sous = exist[cid]; delete exist[cid];
           var nmS = (st.names || {})[cid];
           if (!sous) sous = creerSous(cid, nmS && nmS['nom_' + lang]);
@@ -806,7 +810,6 @@
       var chev = el('span', 'lva-chev'); chev.textContent = '\u203A'; h.appendChild(chev);
       if (aut) {
         var lab = el('span', 'lva-aut-lab'); lab.textContent = T('Sans catégorie', 'Uncategorized'); h.appendChild(lab);
-        grip.style.visibility = 'hidden';
       } else {
         var iN = el('input', 'lva-in lva-cat-nom'); iN.value = nom || ''; iN.placeholder = T('Nom de la catégorie', 'Category name');
         iN.style.flex = '1'; iN.style.minWidth = '160px'; iN.style.width = 'auto';
@@ -830,11 +833,18 @@
       var body = el('div', 'lva-cat-b'); b.appendChild(body);
       slugs.forEach(function (sl) { body.appendChild(rowArt(sl, ovTitres)); });
       chev.addEventListener('click', function () { b.classList.toggle('on'); });
+      if (aut) {
+        dragify(grip, b, {
+          containers: function () { var l = sec.querySelector('.lva-bth-cats'); return l ? [l] : []; },
+          items: function (c) { return qsa(':scope > .lva-cat', c); },
+          scroller: function () { return hub; },
+          onMoved: majCnts
+        });
+      }
       if (!aut) {
         dragify(grip, b, {
           containers: function () { return qsa('.lva-bth-cats', host); },
-          items: function (c) { return qsa(':scope > .lva-cat:not(.lva-aut)', c); },
-          beforeRef: function (c) { return c.querySelector(':scope > .lva-aut'); },
+          items: function (c) { return qsa(':scope > .lva-cat', c); },
           scroller: function () { return hub; },
           onMoved: majCnts
         });
@@ -875,8 +885,10 @@
         var st = struct[t.id];
         var place = {}; /* slugs déjà rangés dans ce domaine */
         function garde(sl) { return assigne[sl] === t.id && !place[sl] && (place[sl] = 1); }
+        var autSlot = null;
         if (st && st.order) {
           st.order.forEach(function (cid) {
+            if (cid === '__autres') { if (!autSlot) { autSlot = el('div'); liste.appendChild(autSlot); } return; }
             var nm = ((st.names || {})[cid] || {})['nom_' + lang] || cid;
             var slugs = (((st.arts || {})[cid]) || []).filter(garde);
             liste.appendChild(blocCat(sec, cid, nm, slugs, ovTitres, false));
@@ -888,7 +900,8 @@
         }
         var autres = ((st && st.arts && st.arts['__autres']) || []).filter(garde);
         tousArts.forEach(function (a) { if (assigne[a.id] === t.id && !place[a.id]) { place[a.id] = 1; autres.push(a.id); } });
-        liste.appendChild(blocCat(sec, '__autres', '', autres, ovTitres, true));
+        var autBloc = blocCat(sec, '__autres', '', autres, ovTitres, true);
+        if (autSlot) liste.replaceChild(autBloc, autSlot); else liste.appendChild(autBloc);
 
         var add = el('span', 'lva-addcat'); add.textContent = T('+ Nouvelle catégorie', '+ New category');
         add.addEventListener('click', function () {
@@ -920,7 +933,7 @@
           var stt = { order: [], names: {}, arts: {} };
           qsa(':scope .lva-cat', sec).forEach(function (b) {
             var slugs = qsa('.lva-art', b).map(function (r) { finals[r.__slug] = th; return r.__slug; });
-            if (b.__aut) { stt.arts['__autres'] = slugs; return; }
+            if (b.__aut) { stt.arts['__autres'] = slugs; stt.order.push('__autres'); return; }
             if (!b.__cid) { var nEl0 = b.querySelector('.lva-cat-nom'); var basC = slugifie(nEl0 ? nEl0.value : '') || 'cat', idC = basC, kC = 2; while (idsPris[idC]) idC = basC + '-' + (kC++); b.__cid = idC; }
             idsPris[b.__cid] = 1;
             stt.order.push(b.__cid);

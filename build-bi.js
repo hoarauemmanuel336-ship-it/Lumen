@@ -161,33 +161,40 @@ if (fs.existsSync('content/themes.json')) {
 const PARTICULES_JS = `(function(){
 if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 var cv=document.getElementById('poussiere');if(!cv)return;
-var cx=cv.getContext('2d'),W,H,parts=[],P={x:-1e4,y:-1e4,t:-1e4};
-var C={r:211,g:185,b:126};
-function lireOr(){try{var v=getComputedStyle(document.documentElement).getPropertyValue('--or').trim();var m=v.match(/^#([0-9a-f]{6})$/i);if(m){C.r=parseInt(m[1].slice(0,2),16);C.g=parseInt(m[1].slice(2,4),16);C.b=parseInt(m[1].slice(4,6),16);}}catch(e){}}
-function nee(init){return{x:Math.random()*W,y:init?Math.random()*H:(Math.random()<.5?H+6:-6),r:.5+Math.random()*1.15,o:.05+Math.random()*.12,ph:Math.random()*6.283,vs:.00035+Math.random()*.0006,dx:(Math.random()-.5)*.05,dy:(Math.random()-.5)*.04-.013,px:0,py:0};}
+var cx=cv.getContext('2d'),W,H,parts=[];
+var P={x:-1e4,y:-1e4,vx:0,vy:0,t:-1e4};
+var C={r:226,g:196,b:122};
+function lireOr(){try{var v=getComputedStyle(document.documentElement).getPropertyValue('--or').trim();var m=v.match(/^#([0-9a-f]{6})$/i);if(m){var R=parseInt(m[1].slice(0,2),16),G=parseInt(m[1].slice(2,4),16),B=parseInt(m[1].slice(4,6),16);C.r=Math.round((R+216)/2);C.g=Math.round((G+178)/2);C.b=Math.round((B+88)/2);}}catch(e){}}
+function nee(init){return{x:Math.random()*W,y:init?Math.random()*H:(Math.random()<.5?H+8:-8),r:.6+Math.random()*1.2,o:.07+Math.random()*.15,ph:Math.random()*6.283,vs:.00035+Math.random()*.0006,th:Math.random()*6.283,sp:.05+Math.random()*.12,vr:(Math.random()-.5)*.016,px:0,py:0};}
 function taille(){var d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;cv.style.width=W+'px';cv.style.height=H+'px';cx.setTransform(d,0,0,d,0,0);
 var n=Math.min(64,Math.max(18,Math.round(W*H/30000)));parts=[];for(var i=0;i<n;i++)parts.push(nee(true));}
-addEventListener('pointermove',function(e){P.x=e.clientX;P.y=e.clientY;P.t=performance.now();},{passive:true});
-addEventListener('touchmove',function(e){var t=e.touches&&e.touches[0];if(t){P.x=t.clientX;P.y=t.clientY;P.t=performance.now();}},{passive:true});
+function bouge(x,y){var t=performance.now();if(P.t>0&&t-P.t<200){P.vx=P.vx*.65+(x-P.x)*.35;P.vy=P.vy*.65+(y-P.y)*.35;}P.x=x;P.y=y;P.t=t;}
+addEventListener('pointermove',function(e){bouge(e.clientX,e.clientY);},{passive:true});
+addEventListener('touchmove',function(e){var t=e.touches&&e.touches[0];if(t)bouge(t.clientX,t.clientY);},{passive:true});
 function pas(t){
 requestAnimationFrame(pas);
 if(document.hidden)return;
 cx.clearRect(0,0,W,H);
-var actif=(t-P.t)<900,R=120;
+var age=t-P.t,actif=age<700,R=130;
+var vP=Math.min(Math.sqrt(P.vx*P.vx+P.vy*P.vy),40);
 for(var i=0;i<parts.length;i++){
 var p=parts[i];
-p.dx+=(Math.random()-.5)*.005;p.dy+=(Math.random()-.5)*.005;
-p.dx*=.985;p.dy*=.985;
+p.vr+=(Math.random()-.5)*.0025;if(p.vr>.025)p.vr=.025;if(p.vr<-.025)p.vr=-.025;
+p.th+=p.vr;
+var dx=Math.cos(p.th)*p.sp,dy=Math.sin(p.th)*p.sp*.6-.012;
 var lum=0;
 if(actif){var ex=p.x-P.x,ey=p.y-P.y,d2=ex*ex+ey*ey;
-if(d2<R*R&&d2>.01){var d=Math.sqrt(d2),f=1-d/R;p.px+=(ex/d)*f*1.5;p.py+=(ey/d)*f*1.5;lum=f;}}
-p.px*=.86;p.py*=.86;
-p.x+=p.dx+p.px;p.y+=p.dy+p.py;
-if(p.x<-8)p.x=W+8;else if(p.x>W+8)p.x=-8;
-if(p.y<-10||p.y>H+10){parts[i]=nee(false);continue;}
-var sc=.45+.55*(Math.sin(t*p.vs+p.ph)*.5+.5);
-var a=p.o*sc+lum*.2;if(a>.42)a=.42;
-cx.beginPath();cx.arc(p.x,p.y,p.r+lum*.8,0,6.283);
+if(d2<R*R&&d2>.01){var d=Math.sqrt(d2),f=1-d/R;
+p.px+=P.vx*f*.20;p.py+=P.vy*f*.20;
+p.px+=(ex/d)*f*.22;p.py+=(ey/d)*f*.22;
+lum=f*Math.min(1,vP/16);}}
+p.px*=.90;p.py*=.90;
+p.x+=dx+p.px;p.y+=dy+p.py;
+if(p.x<-10)p.x=W+10;else if(p.x>W+10)p.x=-10;
+if(p.y<-12||p.y>H+12){parts[i]=nee(false);continue;}
+var sc=.4+.6*(Math.sin(t*p.vs+p.ph)*.5+.5);
+var a=p.o*sc+lum*.22;if(a>.45)a=.45;
+cx.beginPath();cx.arc(p.x,p.y,p.r+lum*.9,0,6.283);
 cx.fillStyle='rgba('+C.r+','+C.g+','+C.b+','+a.toFixed(3)+')';cx.fill();
 }}
 lireOr();setInterval(lireOr,5000);
@@ -382,12 +389,14 @@ h1,h2,h3{text-wrap:balance}
 .art-bar{display:flex;gap:10px;justify-content:flex-end;margin:-8px 0 28px}
 .art-btn{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;background:none;border:1px solid var(--filet-fort);color:var(--parchemin-att);font-size:15px;cursor:pointer;padding:0;transition:color .25s,border-color .25s}
 .art-btn:hover,.art-btn.ok{color:var(--or);border-color:var(--or)}
-.art-nav{display:flex;justify-content:space-between;gap:18px;margin-top:56px;border-top:1px solid var(--filet);padding-top:26px}
-.lecture .art-nav-l{text-decoration:none;border-bottom:none;max-width:46%}
-.art-nav-n{margin-left:auto;text-align:right}
-.art-nav-k{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--parchemin-att);margin-bottom:7px}
-.art-nav-t{font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.35;color:var(--parchemin);transition:color .25s}
-.lecture .art-nav-l:hover .art-nav-t{color:var(--or)}
+.art-nav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:62px}
+.lecture .art-nav-l{text-decoration:none;border:1px solid var(--filet);border-bottom:1px solid var(--filet);padding:20px 22px;background:rgba(17,15,12,.45);transition:border-color .35s,box-shadow .4s,background .35s}
+.lecture .art-nav-l:hover{border-color:var(--filet-fort);background:rgba(20,18,14,.7);box-shadow:0 0 30px rgba(230,211,163,.07)}
+.art-nav-n{grid-column:2;text-align:right}
+.art-nav-k{display:block;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:8px}
+.art-nav-t{font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.3;color:var(--parchemin);transition:color .3s}
+.lecture .art-nav-l:hover .art-nav-t{color:var(--or-pale)}
+@media(max-width:640px){.art-nav{grid-template-columns:1fr}.art-nav-n{grid-column:1;text-align:left}}
 /* — Figures dans les articles — */
 .lecture figure{margin:38px auto;text-align:center;max-width:100%}
 .lecture figure img{max-width:100%;height:auto;border:1px solid var(--filet)}
@@ -778,10 +787,7 @@ function mainBibliotheque(lang, base) {
     </section>`;
   }).join('');
   return `<div class="vue">
-    <section class="bandeau-page">
-      <div class="sur-titre">${u.lib_surtitle}</div>
-      <h1>${u.lib_title}</h1>
-    </section>
+    <div style="height:38px"></div>
     <div class="domaines-liste">${sections}</div>
     <div style="height:60px"></div>
   </div>`;
