@@ -12,7 +12,10 @@
   if (typeof firebase.firestore !== 'function') return;
   var db = firebase.firestore(), auth = firebase.auth();
   var ADMIN = 'hoarauemmanuel336@gmail.com';
-  var lang = (window.LUMEN && window.LUMEN.lang) || localStorage.getItem('lm_lang') || 'fr';
+  var lang = (window.LUMEN && window.LUMEN.lang)
+    || (location.pathname.indexOf('/en/') === 0 ? 'en' : null)
+    || (location.pathname === '/bible.html' || location.pathname === '/bible' ? 'fr' : null)
+    || localStorage.getItem('lv_lang') || localStorage.getItem('lm_lang') || 'fr';
   var FR = lang !== 'en';
   var IDX = (function () { var x = window.LV_INDEX; if (!x) return null; return x.articles ? x : (x[lang] || x.fr || null); })();
 
@@ -1485,6 +1488,8 @@
       b1.addEventListener('click', function () {
         var ov = document.getElementById('auth-overlay');
         if (ov) ov.classList.remove('ouvert');
+        var bv = document.getElementById('bacct-voile');
+        if (bv) bv.classList.remove('ouvert');
         document.body.style.overflow = '';
         openHub();
       });

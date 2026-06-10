@@ -2493,3 +2493,70 @@ Fichiers modifiés : bible.html, bible-panneau.js.
    étaient refusés au niveau du motif avant même le dictionnaire.
 Contrôle : banc d'essai sur le code réel extrait de la page contre les deux
 index construits — 35/35 saisies FR et 43/43 saisies EN résolues.
+
+
+ADDENDUM SUITE 13 — Chemins de données ancrés à la racine (bible.html).
+Les chemins 'bible-data/index.json' et 'bible-data/' étaient relatifs : depuis
+/en/bible (URL propre Netlify), le navigateur résolvait /en/bible-data-en/…,
+inexistant → « The Bible index could not be loaded ». Corrigé en '/bible-data/…'
+(absolu) ; la table de remplacement EN produit '/bible-data-en/…'. Le panneau
+utilisait déjà des chemins absolus (BP_DATA).
+
+
+──────────────────────────────────────────────
+SUITE 14 — Préférence de langue globale
+──────────────────────────────────────────────
+Fichiers modifiés : build-bi.js, bible.html, memoriser.html.
+1. Préférence lv_lang (localStorage) posée à chaque clic du bouton de langue,
+   sur toutes les pages (extrait ajouté à COMMUN_JS du build et à bible.html).
+2. Au chargement de chaque page : si la préférence diffère de la langue de la
+   page (détectée par le préfixe /en/), redirection immédiate vers l'équivalent
+   (le href du bouton de langue de la page). Posée uniquement par clic
+   explicite : aucun effet à la première visite.
+3. Barre de navigation du build : le lien « Bible » devient sensible à la
+   langue (/en/bible.html sur les pages anglaises ; il était en dur).
+4. Mémoriser (page unique bilingue, sans bouton de langue de barre) : sa
+   langue initiale lit lv_lang en priorité (lm_lang en repli), et sa bascule
+   interne écrit aussi lv_lang : le choix fait dans Mémoriser se répercute
+   sur le site, et réciproquement.
+
+
+──────────────────────────────────────────────
+SUITE 15 — Panneau Mon compte unifié, croix native supprimée
+──────────────────────────────────────────────
+Fichiers modifiés : memoriser.html, bible.html, admin.js, build-bi.js.
+1. Structure unique du panneau partout : email → MES NOTES (encadré) →
+   [Administration : Panneau d'administration, Masquer les outils — admin
+   seulement] → Déconnexion en lien discret en bas. admin.js insère sa
+   section avant l'élément #auth-logout du conteneur #auth-in.
+2. Mémoriser : déconnexion renommée #auth-logout (3 refs JS) et restylée en
+   lien discret (sans cadre, rgba .55, hover or) ; l'admin s'insère donc
+   avant elle, comme sur le site.
+3. Bible : conteneur #auth-in ajouté à la modale, déconnexion renommée
+   #auth-logout ; le build injecte admin.js dans les deux pages Bible
+   (APRÈS la passe de traduction EN, vérifié intact octet pour octet :
+   les remplacements FR→EN ne doivent jamais toucher son code). admin.js
+   ferme aussi #bacct-voile à l'ouverture du panneau d'administration ;
+   ses styles lva-* sont embarqués, rien à copier.
+4. Page EN : <html lang="en"> (paire ajoutée à la table TR).
+5. admin.js : détection de langue robuste (LUMEN.lang → préfixe /en/ →
+   /bible.html=fr → lv_lang → lm_lang → fr) ; il suivait à tort la clé de
+   Mémoriser sur les pages Bible.
+6. Croix native des champs de recherche supprimée partout (règle globale
+   ::-webkit-search-cancel-button/decoration dans le gabarit du build et
+   bible.html ; l'accueil l'avait déjà pour son champ).
+
+
+──────────────────────────────────────────────
+SUITE 16 — Cadres art-nav et Réponse aux objections
+──────────────────────────────────────────────
+Fichiers modifiés : build-bi.js, index__48_.html.
+Les blocs « Article précédent / suivant » et « Réponse aux objections » des
+pages d'articles reprennent le langage des cartes .domaine de l'accueil :
+border 1px var(--filet), padding 28px 30px, hover background var(--encre-2)
++ border var(--filet-fort), titre var(--or-pale). Les filets horizontaux
+(border-top de .art-nav et de .apologie) sont supprimés. La carte
+Réponse aux objections est entièrement cliquable (.apologie-lien::after
+inset:0 sur conteneur position:relative). .art-nav garde sa grille 1fr 1fr
+(une colonne sous 640px). Règles .art-nav dans build-bi.js, .apologie dans
+index__48_.html (CSS repris pour les pages d'articles).

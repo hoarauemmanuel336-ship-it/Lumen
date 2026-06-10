@@ -198,6 +198,7 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
 .bacct-btn:hover{border-color:var(--or);color:var(--or-pale)}
 .bacct-deco{display:block;text-align:center;margin-top:18px;color:rgba(255,255,255,.55);font-size:14px;cursor:pointer;transition:color .3s}
 .bacct-deco:hover{color:#fff}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
 footer{border-top:1px solid var(--filet);margin-top:64px;padding:48px 32px 56px;text-align:center}
 footer .marque{font-family:var(--display);letter-spacing:.34em;text-transform:uppercase;font-size:18px;padding-left:.34em;color:#fff}
 footer .verset-pied{margin-top:18px;font-style:italic;color:rgba(255,255,255,.6);font-size:17px;max-width:620px;margin-left:auto;margin-right:auto;line-height:1.6}
@@ -310,10 +311,12 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
   <div id="bacct-voile">
     <div class="bacct">
       <span class="bacct-x" id="bacct-x" role="button" tabindex="0">✕</span>
+      <div id="auth-in">
       <div class="bacct-t">Mon compte</div>
       <div class="bacct-mail" id="bacct-mail"></div>
       <span class="bacct-btn" id="bacct-notes" role="button" tabindex="0">Mes notes</span>
-      <span class="bacct-deco" id="bacct-deco" role="button" tabindex="0">Déconnexion</span>
+      <span class="bacct-deco" id="auth-logout" role="button" tabindex="0">Déconnexion</span>
+      </div>
     </div>
   </div>
   <div id="cat-voile">
@@ -588,9 +591,17 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
   document.getElementById('bacct-x').addEventListener('click', function(){ document.getElementById('bacct-voile').classList.remove('ouvert'); });
   document.getElementById('bacct-voile').addEventListener('click', function(e){ if (e.target === this) this.classList.remove('ouvert'); });
   document.getElementById('bacct-notes').addEventListener('click', function(){ document.getElementById('bacct-voile').classList.remove('ouvert'); location.hash = '#notes'; });
+  (function(){
+    var L = document.querySelector('a.lien-langue');
+    var cur = location.pathname.indexOf('/en/') === 0 ? 'en' : 'fr';
+    var pref = null;
+    try { pref = localStorage.getItem('lv_lang'); } catch(e) {}
+    if (L && pref && pref !== cur) { location.replace(L.getAttribute('href')); return; }
+    if (L) L.addEventListener('click', function(){ try { localStorage.setItem('lv_lang', cur === 'fr' ? 'en' : 'fr'); } catch(e) {} });
+  })();
   var bfA = document.getElementById('bf-annee');
   if (bfA) bfA.textContent = '\u00a9 ' + new Date().getFullYear() + ' Lumen';
-  document.getElementById('bacct-deco').addEventListener('click', function(){
+  document.getElementById('auth-logout').addEventListener('click', function(){
     try { firebase.auth().signOut(); } catch(e) {}
     document.getElementById('bacct-voile').classList.remove('ouvert');
   });
@@ -602,7 +613,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
   }
   function livreData(slug){
     if (CACHE[slug]) return Promise.resolve(CACHE[slug]);
-    return charge('bible-data/' + slug + '.json').then(function(d){ CACHE[slug] = d; return d; });
+    return charge('/bible-data/' + slug + '.json').then(function(d){ CACHE[slug] = d; return d; });
   }
   function infoLivre(slug){
     for (var i = 0; i < IDX.livres.length; i++) if (IDX.livres[i].slug === slug) return IDX.livres[i];
@@ -1166,7 +1177,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
     else { vueChapitres(slug); window.scrollTo(0, 0); }
   }
 
-  charge('bible-data/index.json').then(function(d){
+  charge('/bible-data/index.json').then(function(d){
     IDX = d;
     IDX.livres.forEach(function(l, i){ ORDRE[l.slug] = i; });
     construitDico();

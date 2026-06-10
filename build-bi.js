@@ -332,6 +332,7 @@ nav.menu a.lien-langue:hover{opacity:1}
 .auth-m-msg.err{display:block;background:rgba(154,59,59,.18);border:1px solid var(--pourpre);color:#eba0a0}
 .auth-m-msg.ok{display:block;background:rgba(58,107,74,.18);border:1px solid #3a6b4a;color:#a0d4b2}
 .auth-m-email{text-align:center;color:var(--parchemin-att);font-size:15px;margin-bottom:22px;word-break:break-all}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
 .auth-m-btn{display:block;width:100%;box-sizing:border-box;text-align:center;padding:13px 10px;border:1px solid var(--filet-fort);color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:border-color .3s,color .3s}
 .auth-m-btn:hover{border-color:var(--or);color:var(--or-pale)}
 
@@ -357,8 +358,9 @@ h1,h2,h3{text-wrap:balance}
 .art-bar{display:flex;gap:26px;justify-content:center;margin:-10px 0 36px}
 .art-btn{background:none;border:none;padding:4px 2px;display:inline-flex;align-items:center;justify-content:center;color:var(--parchemin);opacity:.4;font-size:15px;cursor:pointer;transition:opacity .3s,color .3s}
 .art-btn:hover,.art-btn.ok{opacity:1;color:var(--or)}
-.art-nav{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:72px;border-top:1px solid var(--filet);padding-top:10px}
-.lecture .art-nav-l{text-decoration:none;border:none;padding:24px 8px}
+.art-nav{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:72px}
+.lecture .art-nav-l{text-decoration:none;display:block;border:1px solid var(--filet);padding:28px 30px;transition:background .35s,border-color .35s}
+.lecture .art-nav-l:hover{background:var(--encre-2);border-color:var(--filet-fort)}
 .art-nav-n{grid-column:2;text-align:right}
 .art-nav-k{display:block;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:8px}
 .art-nav-t{font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.3;color:var(--parchemin);transition:color .3s}
@@ -385,7 +387,7 @@ function header(lang, type, base, otherRel, ctx) {
     <nav class="menu" id="menu">
       <a href="${home}"${cl('home')}>${u.menu_home}</a>
       <a href="${base}${lib}"${cl('library')}>${u.menu_library}</a>
-      <a href="/bible.html">Bible</a>
+      <a href="${lang === 'en' ? '/en/bible.html' : '/bible.html'}">Bible</a>
       <a href="/memoriser.html">${u.menu_memorise}</a>
       <a href="${otherRel}" class="lien-langue" hreflang="${lang === 'fr' ? 'en' : 'fr'}">${u.other_label}</a>
       <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="${u.menu_home === 'Home' ? 'Search' : 'Rechercher'}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><span class="ll-mob">${u.menu_home === 'Home' ? 'Search' : 'Rechercher'}</span></span>
@@ -454,7 +456,15 @@ function footer(lang) {
 const COMMUN_JS = `document.getElementById('burger').addEventListener('click',function(){document.getElementById('menu').classList.toggle('ouvert');});
 document.getElementById('annee').textContent='© '+new Date().getFullYear()+' Lumen';\n(function(){var b=document.getElementById('cloche-ouvrir'),ov=document.getElementById('nouv-overlay'),fe=document.getElementById('nouv-fermer');if(!b||!ov)return;var pt=b.querySelector('.cloche-point'),sig=b.getAttribute('data-sig')||'';function vu(){try{return localStorage.getItem('lumen_nouv_vu');}catch(e){return null;}}function maj(){if(pt)pt.style.display=(vu()===sig?'none':'block');}maj();function o(){ov.classList.add('ouvert');document.body.style.overflow='hidden';try{localStorage.setItem('lumen_nouv_vu',sig);}catch(e){}maj();}function f(){ov.classList.remove('ouvert');document.body.style.overflow='';}b.addEventListener('click',o);b.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();o();}});fe.addEventListener('click',f);ov.addEventListener('click',function(e){if(e.target===ov)f();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('ouvert'))f();});})();
 document.addEventListener('click',function(e){var vp=e.target.closest&&e.target.closest('.voir-plus');if(!vp)return;e.preventDefault();e.stopPropagation();var p=vp.closest('.r-trunc');if(!p)return;var c=p.querySelector('.r-court'),fl=p.querySelector('.r-full');if(fl.hasAttribute('hidden')){c.setAttribute('hidden','');fl.removeAttribute('hidden');vp.textContent=vp.dataset.less;}else{fl.setAttribute('hidden','');c.removeAttribute('hidden');vp.textContent=vp.dataset.more;}});
-document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('voir-plus')){e.preventDefault();e.target.click();}});`;
+document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('voir-plus')){e.preventDefault();e.target.click();}});
+(function(){
+  var L = document.querySelector('a.lien-langue');
+  var cur = location.pathname.indexOf('/en/') === 0 ? 'en' : 'fr';
+  var pref = null;
+  try { pref = localStorage.getItem('lv_lang'); } catch(e) {}
+  if (L && pref && pref !== cur) { location.replace(L.getAttribute('href')); return; }
+  if (L) L.addEventListener('click', function(){ try { localStorage.setItem('lv_lang', cur === 'fr' ? 'en' : 'fr'); } catch(e) {} });
+})();`;
 
 const MEMO_JS = `(function(){
   var box=document.getElementById('memo-scores'); if(!box)return;
@@ -978,12 +988,15 @@ if (fs.existsSync('bible.html')) {
   if (APPEARANCE_CSS && bh.indexOf('</head>') >= 0) {
     bh = bh.replace('</head>', '<style>' + APPEARANCE_CSS + '</style></head>');
   }
-  fs.writeFileSync(`${OUT}/bible.html`, bh);
+  let bhFr = bh;
+  if (ADMIN_JS && bhFr.indexOf('</body>') >= 0) bhFr = bhFr.replace('</body>', '<script>' + ADMIN_JS + '</script></body>');
+  fs.writeFileSync(`${OUT}/bible.html`, bhFr);
   console.log('Copié : bible.html');
 
   // ── Version anglaise : mêmes slugs, texte Douay-Rheims, interface traduite ──
   {
     const TR = [
+      ['<html lang="fr"', '<html lang="en"'],
       ['<a href="/">Accueil</a>', '<a href="/en/">Home</a>'],
       ['<a href="/bibliotheque/">Bibliothèque</a>', '<a href="/en/library/">Library</a>'],
       ['<a href="/bible.html" class="actif">Bible</a>', '<a href="/en/bible.html" class="actif">Bible</a>'],
@@ -1071,6 +1084,7 @@ if (fs.existsSync('bible.html')) {
       'Biblical text: The Holy Bible, Douay-Rheims version (Challoner revision), 1899 American edition. The text is in the public domain.');
     bhEn = bhEn.replace(/<meta name="description" content="[^"]*">/,
       '<meta name="description" content="The Holy Bible, Douay-Rheims translation (Challoner revision). Online reading, Old and New Testament.">');
+    if (ADMIN_JS && bhEn.indexOf('</body>') >= 0) bhEn = bhEn.replace('</body>', '<script>' + ADMIN_JS + '</script></body>');
     fs.mkdirSync(`${OUT}/en`, { recursive: true });
     fs.writeFileSync(`${OUT}/en/bible.html`, bhEn);
     console.log('Bible : version anglaise générée (en/bible.html)');

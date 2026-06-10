@@ -474,8 +474,8 @@ nav.menu .menu-act#lang-btn:hover{opacity:1;color:var(--parchemin);border:none}
 .auth-x:hover{color:var(--parchemin)}
 .auth-t{font-family:var(--display);font-size:24px;text-align:center;margin-bottom:24px;color:var(--parchemin)}
 .auth-mail{text-align:center;color:var(--pa);font-size:15px;margin-bottom:22px;word-break:break-all}
-.auth-out{display:block;width:100%;text-align:center;background:none;border:1px solid var(--filet-f);color:var(--parchemin);font-family:var(--display);font-size:15px;letter-spacing:.1em;text-transform:uppercase;padding:11px;cursor:pointer;transition:border-color .3s,color .3s}
-.auth-out:hover{border-color:var(--pourpre);color:var(--pourpre)}
+.auth-out{display:block;width:100%;text-align:center;background:none;border:none;color:rgba(255,255,255,.55);font-family:var(--display);font-size:14px;letter-spacing:.04em;margin-top:16px;padding:0;cursor:pointer;transition:color .25s}
+.auth-out:hover{color:var(--or)}
 html{scroll-behavior:smooth}
 body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 ::selection{background:rgba(231,224,207,.14);color:#fff}
@@ -1176,7 +1176,7 @@ const FOOT_EN='\u201CThe people who walked in darkness have seen a great light; 
 
 // ════════ ÉTAT ════════
 const S={
-  lang:localStorage.getItem('lm_lang')||'fr',
+  lang:localStorage.getItem('lv_lang')||localStorage.getItem('lm_lang')||'fr',
   uid:null, mode:0,
   selCats:[], progress:{}, step:0, customCats:[], baseEdits:{}, trash:[], trashOpen:false, showAllCats:false,
   open:{},          // catId -> bool (déplié)
@@ -1635,16 +1635,16 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.getElementById('macct-t').textContent=(S.lang==='fr')?'Mon compte':'My account';
     document.getElementById('macct-mail').textContent=(auth.currentUser&&auth.currentUser.email)||'';
     document.getElementById('macct-notes').textContent=(S.lang==='fr')?'Mes notes':'My notes';
-    document.getElementById('macct-deco').textContent=(S.lang==='fr')?'Déconnexion':'Sign out';
+    document.getElementById('auth-logout').textContent=(S.lang==='fr')?'Déconnexion':'Sign out';
     document.getElementById('auth-overlay').classList.add('ouvert');
   };
   document.getElementById('macct-x').onclick=()=>document.getElementById('auth-overlay').classList.remove('ouvert');
   document.getElementById('auth-overlay').addEventListener('click',(ev)=>{if(ev.target===ev.currentTarget)ev.currentTarget.classList.remove('ouvert');});
-  document.getElementById('macct-deco').onclick=()=>{auth.signOut();document.getElementById('auth-overlay').classList.remove('ouvert');};
+  document.getElementById('auth-logout').onclick=()=>{auth.signOut();document.getElementById('auth-overlay').classList.remove('ouvert');};
   document.addEventListener('keydown',(ev)=>{if(ev.key==='Escape'){var o=document.getElementById('auth-overlay');if(o)o.classList.remove('ouvert');}});
   $('nav-burger').onclick=()=>document.getElementById('site-nav').classList.toggle('open');
   initNews();
-  $('lang-btn').onclick=()=>{S.lang=S.lang==='fr'?'en':'fr';localStorage.setItem('lm_lang',S.lang);applyLang();renderCats();if($('study').style.display==='block'&&S.cur&&!S.cur.done)renderQuestion();};
+  $('lang-btn').onclick=()=>{S.lang=S.lang==='fr'?'en':'fr';localStorage.setItem('lm_lang',S.lang);localStorage.setItem('lv_lang',S.lang);applyLang();renderCats();if($('study').style.display==='block'&&S.cur&&!S.cur.done)renderQuestion();};
   $('modes').onclick=e=>{const b=e.target.closest('.mode');if(!b)return;S.mode=+b.dataset.m;document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',x===b));savePrefs();};
   $('start-btn').onclick=()=>{S.soloCat=null;startSession();};
   $('finish-btn').onclick=endSession;
@@ -1745,7 +1745,7 @@ auth.onAuthStateChanged(async u=>{
       <div class="auth-t" id="macct-t">Mon compte</div>
       <div class="auth-mail" id="macct-mail"></div>
       <a class="macct-btn" id="macct-notes" href="/bible.html#notes">Mes notes</a>
-      <button type="button" class="auth-out" id="macct-deco">Déconnexion</button>
+      <button type="button" class="auth-out" id="auth-logout">Déconnexion</button>
     </div>
   </div>
 </div>
