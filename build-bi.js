@@ -675,7 +675,7 @@ ${FIREBASE_HEAD}
 <style>${css}${EXTRA_CSS}${APPEARANCE_CSS}</style>
 </head>
 <body>
-<canvas id="poussiere" aria-hidden="true"></canvas>
+<canvas id="poussiere" aria-hidden="true"></canvas><div id="rai" aria-hidden="true"></div>
 ${header(lang, type, base, otherRel, ctx)}
 <main id="app">
 ${main}
