@@ -141,7 +141,11 @@
     '.lva-pick-g{font-family:"Cormorant Garamond",serif;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--lvaM);padding:12px 16px 4px}',
     '.lva-pick-i{display:block;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid rgba(231,224,207,.07);color:var(--lvaT);font-family:"EB Garamond",serif;font-size:15px;padding:10px 16px;cursor:pointer;transition:background .2s}',
     '.lva-pick-i:hover{background:rgba(231,224,207,.06)}',
-    '.lva-doc a{color:var(--lvaG);text-decoration:underline;text-underline-offset:3px}'
+    '.lva-doc a{color:var(--lvaG);text-decoration:underline;text-underline-offset:3px}',
+    '.lva-sec-chev{display:inline-block;margin-right:10px;color:var(--lvaM);font-size:15px;transition:transform .25s ease;vertical-align:middle}',
+    '.lva-bth.dom-open > .lva-sec-t .lva-sec-chev{transform:rotate(90deg)}',
+    '.lva-bth > .lva-row2,.lva-bth > .lva-bth-cats,.lva-bth > .lva-addcat{display:none}',
+    '.lva-bth.dom-open > .lva-row2,.lva-bth.dom-open > .lva-bth-cats,.lva-bth.dom-open > .lva-addcat{display:block}'
   ].join('\n');
   var styleTag = el('style'); styleTag.id = 'lva-style'; styleTag.textContent = CSS;
   (document.head || document.documentElement).appendChild(styleTag);
@@ -473,7 +477,7 @@
 
   /* ════════ PANNEAU CENTRAL ════════ */
   var hub = null, hubBody = null, hubTabs = {}, hubCache = {}, hubOpt = null;
-  function openHub(tab, opt) { if (!hub) buildHub(); hubOpt = opt || null; hub.style.display = 'block'; selectTab(tab || 'articles'); }
+  function openHub(tab, opt) { if (!hub) buildHub(); hubOpt = opt || null; hub.style.display = 'block'; selectTab(tab || 'accueil'); }
   function closeHub() { if (hub) hub.style.display = 'none'; UNDO = []; }
   function buildHub() {
     hub = el('div', 'lva-page'); hub.style.display = 'none';
@@ -489,7 +493,7 @@
     w.appendChild(head);
     var tabs = el('div', 'lva-tabs'); w.appendChild(tabs);
     hubBody = el('div'); w.appendChild(hubBody);
-    [['articles', T('Articles', 'Articles')], ['biblio', T('Bibliothèque', 'Library')], ['apparence', T('Apparence', 'Appearance')], ['accueil', T('Accueil', 'Home')], ['memoriser', 'Mémoriser'], ['exporter', T('Exporter', 'Export')]].forEach(function (t) {
+    [['accueil', T('Accueil', 'Home')], ['biblio', T('Bibliothèque', 'Library')], ['articles', T('Articles', 'Articles')], ['memoriser', 'Mémoriser'], ['apparence', T('Apparence', 'Appearance')], ['exporter', T('Exporter', 'Export')]].forEach(function (t) {
       var b = el('button', 'lva-tab'); b.type = 'button'; b.textContent = t[1];
       b.addEventListener('click', function () {
         if (dirty && !confirm(T('Des modifications ne sont pas enregistrées. Changer d\u2019onglet quand même ?', 'Unsaved changes. Switch tab anyway?'))) return;

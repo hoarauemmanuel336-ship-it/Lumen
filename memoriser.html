@@ -30,19 +30,22 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
 /* champ : style filet bas, pas de boîte */
-.field{width:100%;background:transparent;border:none;border-bottom:1px solid var(--filet-f);color:var(--parchemin);font-family:var(--serif);font-size:17px;padding:10px 2px;outline:none;transition:border-color .3s}
+.field{width:100%;background:#161616;border:1px solid var(--filet-f);color:var(--parchemin);font-family:var(--serif);font-size:16px;padding:10px 13px;outline:none;border-radius:0;transition:border-color .3s}
+.field:focus{border-color:var(--or)}
+.field::placeholder{color:var(--pa2)}
 .field:focus{border-bottom-color:var(--or)}
 .field::placeholder{color:var(--pa2)}
 textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 
 /* ═══ AUTH ═══ */
 #auth-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
-.auth-panel{width:100%;max-width:392px;border:1px solid var(--filet);padding:52px 44px;animation:fade .6s ease both}
+.auth-panel{width:100%;max-width:400px;border:1px solid var(--filet);background:var(--encre-2);padding:44px 34px;animation:fade .6s ease both}
 .auth-cross{width:48px;height:88px;margin:0 auto 22px;background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2072%20132'%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,2%2031,2'%20fill='%23ffffff'/%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,130%2031,130'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%202,45%202,35'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%2070,45%2070,35'%20fill='%23ffffff'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:contain}
 .auth-logo{font-family:var(--display);font-size:23px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;text-align:center;padding-left:.42em;margin-bottom:34px}
-.auth-tabs{display:flex;margin-bottom:26px}
-.auth-tab{flex:1;padding:8px 0;font-family:var(--display);font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa2);border-bottom:1px solid var(--filet);transition:color .3s,border-color .3s}
+.auth-tabs{display:flex;border-bottom:1px solid var(--filet-f);margin-bottom:22px}
+.auth-tab{flex:1;padding:9px 0;background:none;border:none;border-bottom:2px solid transparent;font-family:var(--display);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:color .3s,border-color .3s}
 .auth-tab.on{color:var(--or);border-bottom-color:var(--or)}
+.auth-cross{display:none}
 .auth-fieldrow{margin-bottom:20px}
 .auth-primary{display:block;width:100%;text-align:center;padding:13px;margin-top:10px;background:var(--or);color:var(--encre);font-family:var(--display);font-size:15px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;transition:background .3s}
 .auth-primary:hover{background:var(--or-pale)}
@@ -1631,15 +1634,15 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 // ════════ OBSERVATEUR AUTH ════════
-function demarrerAuto(){try{if(/[?&]demarrer=1/.test(location.search)){try{sessionStorage.setItem('lm_dem','1')}catch(_){}history.replaceState(null,'','/memoriser.html');}var go=false;try{go=sessionStorage.getItem('lm_dem')==='1';if(go)sessionStorage.removeItem('lm_dem');}catch(_){}if(!go)return;if(!S.selCats.length)S.selCats=PRE.map(function(c){return c.id;});if(allItems().length>=2){S.soloCat=null;startSession();}}catch(e){}}
+function demarrerAuto(){try{if(/[?&]demarrer=1/.test(location.search)){try{sessionStorage.setItem('lm_dem','1')}catch(_){}history.replaceState(null,'','/memoriser.html');}var go=false;try{go=sessionStorage.getItem('lm_dem')==='1';if(go)sessionStorage.removeItem('lm_dem');}catch(_){}if(!go)return;if(!S.selCats.length)S.selCats=PRE.map(function(c){return c.id;});if(allItems().length>=2){S.soloCat=null;startSession();return true;}}catch(e){}return false;}
 async function chargerBaseLV(){try{const s=await db.doc('config/memoriser').get();if(s.exists){const c=s.data().categories;if(Array.isArray(c)&&c.length){PRE.length=0;c.forEach(x=>PRE.push(x));}}}catch(e){}}
 auth.onAuthStateChanged(async u=>{
   if(u){
     S.uid=u.uid; $('user-mail').textContent=u.email||u.displayName||'';
     $('auth-screen').style.display='none'; $('app').classList.add('on');
-    await chargerBaseLV(); await loadUser(); applyLang(); renderCats(); demarrerAuto();
+    await chargerBaseLV(); await loadUser(); applyLang(); renderCats();
     document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',+x.dataset.m===S.mode));
-    showView('setup');
+    if(!demarrerAuto()) showView('setup');
   }else{
     S.uid=null; $('app').classList.remove('on'); $('auth-screen').style.display='flex';
     applyLang(); setAuth('si');
