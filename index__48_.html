@@ -8,296 +8,483 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <style>
-/* ════════════════════════════════════════════════════════════
-   LUMEN VERITATIS — LA NEF OBSCURE
-   Refonte intégrale. La lumière dessine les lignes : filets
-   dorés, veilleuse haute, poussière en suspension.
-   ════════════════════════════════════════════════════════════ */
+/* ============================================================
+   LUMEN — feuille de style
+   Palette « manuscrit nocturne » : encre profonde, parchemin, or ancien.
+   ============================================================ */
 :root{
-  --encre:#000000;
-  --encre-2:#110f0c;
-  --encre-3:#161310;
-  --parchemin:#f2ecdd;
-  --parchemin-att:#a39b87;
-  --or:#efe3c0;
-  --or-pale:#faf4e3;
-  --pourpre:#8e3a36;
-  --filet:rgba(241,228,194,.5);
-  --filet-fort:rgba(241,228,194,.92);
-  --display:'Cormorant Garamond',Georgia,serif;
-  --texte:'EB Garamond',Georgia,serif;
+  --encre:#000000;          /* fond global, noir total */
+  --encre-2:#0b0b0b;        /* fond des surfaces légèrement levées */
+  --parchemin:#ffffff;      /* texte principal, blanc franc */
+  --parchemin-att:#ffffff;  /* texte secondaire, blanc lui aussi */
+  --or:#efe6cf;             /* accent principal, crème clair */
+  --or-pale:#f8f3e6;        /* crème éclairci, hover */
+  --pourpre:#9a3b3b;        /* accent rare, rouge liturgique */
+  --filet:rgba(231,224,207,.14); /* filets fins */
+  --filet-fort:rgba(231,224,207,.28);
 }
+
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  font-family:var(--texte);
-  font-size:19.5px;line-height:1.85;
+  background:var(--encre);
   color:var(--parchemin);
-  background:
-    radial-gradient(1100px 480px at 50% -180px, rgba(242,231,205,.04), transparent 70%),
-    radial-gradient(900px 600px at 50% 115%, rgba(0,0,0,.5), transparent 70%),
-    var(--encre);
-  background-attachment:fixed;
-  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-  min-height:100vh;
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:23px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
 }
-::selection{background:var(--or);color:var(--encre)}
-img{max-width:100%;height:auto}
-a{color:inherit}
+::selection{background:rgba(198,164,92,.25)}
 
-/* ════ EN-TÊTE ════ */
-header{position:sticky;top:0;z-index:80;background:#000;border-bottom:1px solid var(--filet)}
-.barre{max-width:1180px;margin:0 auto;padding:0 28px;height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.logo{font-family:var(--display);font-weight:500;font-size:21px;letter-spacing:.34em;text-transform:uppercase;text-decoration:none;color:var(--parchemin);padding-left:.34em;white-space:nowrap;transition:color .35s}
+a{color:inherit;text-decoration:none}
+
+/* ---------- bandeau d'en-tête ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--filet);
+}
+.barre{
+  max-width:1080px;margin:0 auto;
+  padding:20px 32px;
+  display:grid;grid-template-columns:auto auto 1fr;align-items:center;
+  gap:24px;
+}
+.logo{
+  grid-column:1;grid-row:1;
+  font-family:'Cormorant Garamond',serif;
+  font-weight:500;font-size:26px;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--parchemin);
+  padding-left:.34em;
+}
 .logo:hover{color:var(--or-pale)}
-nav.menu{display:flex;align-items:center;gap:30px}
-nav.menu a{font-family:var(--display);font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;color:var(--parchemin-att);padding:6px 0;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;white-space:nowrap}
-nav.menu a:hover{color:var(--parchemin)}
-nav.menu a.actif{color:var(--parchemin);border-bottom-color:var(--or)}
-.lien-langue{background:none;border:none;cursor:pointer;font-family:var(--display);font-size:13px;letter-spacing:.22em;color:var(--parchemin-att);text-transform:uppercase;padding:6px 2px;transition:color .3s}
-.lien-langue:hover{color:var(--or)}
-.rech-loupe{display:inline-flex;align-items:center;gap:0;cursor:pointer;color:var(--parchemin-att);padding:7px;transition:color .3s}
-.rech-loupe:hover,.rech-loupe:focus-visible{color:var(--or);outline:none}
-.rech-loupe .ll-mob{display:none}
-.cloche{position:relative}
-.cloche-point{position:absolute;top:2px;right:2px;width:6px;height:6px;border-radius:50%;background:var(--or);box-shadow:0 0 8px rgba(241,228,194,.8);display:none}
-.burger{display:none;background:none;border:none;color:var(--parchemin);font-size:24px;cursor:pointer;padding:6px 10px}
+nav.menu{display:flex;gap:30px;grid-column:3;grid-row:1;justify-self:end;align-items:center}
+nav.menu a{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;letter-spacing:.12em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  color:var(--parchemin-att);
+  padding-bottom:3px;
+  border-bottom:1px solid transparent;
+  transition:color .3s,border-color .3s;
+}
+nav.menu a:hover,nav.menu a.actif{color:var(--parchemin);border-color:var(--or)}
 
-/* contexte (fil contextuel sous l'en-tête) */
-.contexte-bar{max-width:1180px;margin:0 auto;padding:10px 28px 0;font-size:14.5px;color:var(--parchemin-att);font-style:italic;display:none}
-.contexte-bar:not(:empty){display:block}
-.contexte-bar a{color:var(--or);text-decoration:none}
+/* bouton menu mobile */
+.burger{display:none;background:none;border:none;color:var(--parchemin);
+  font-size:24px;cursor:pointer;line-height:1}
 
-/* ════ STRUCTURE ════ */
-main{max-width:1180px;margin:0 auto;padding:0 28px 110px}
-.vue{animation:venue .65s cubic-bezier(.22,.7,.3,1) both}
-@keyframes venue{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* contexte d'article (thème · date) centré dans le bandeau */
+.contexte-bar{
+  grid-column:2;grid-row:1;text-align:left;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--parchemin-att);white-space:nowrap;pointer-events:auto;
+}
+.contexte-bar:empty{display:none}
+.contexte-bar a{transition:color .3s}
+.contexte-bar a:hover{color:var(--or)}
 
-/* ════ ACCUEIL : SEUIL ════ */
-.hero{padding:36px 0 14px;text-align:center}
-.croix{width:1px;height:70px;margin:0 auto 30px;background:linear-gradient(to bottom,transparent,#f2ecdd 30%,#f2ecdd 70%,transparent);position:relative}
-.croix::after{content:'';position:absolute;top:21px;left:50%;transform:translateX(-50%);width:40px;height:1px;background:linear-gradient(to right,transparent,#f2ecdd 30%,#f2ecdd 70%,transparent)}
-.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(46px,7.4vw,86px);line-height:1.04;letter-spacing:.045em;color:var(--parchemin);text-wrap:balance}
-.hero h1 em,.hero h1 i{font-style:italic;color:var(--or-pale)}
-.hero p{max-width:620px;margin:30px auto 0;font-size:20.5px;line-height:1.8;color:var(--parchemin-att);font-style:italic}
-.hero .ref{color:var(--or);font-style:italic}
+/* ---------- recherche ---------- */
+.rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:var(--parchemin-att);transition:color .3s;background:none;border:none;padding:0;outline:none}
+.rech-loupe:hover,.rech-loupe:focus{color:var(--or)}
+.rech-loupe svg{display:block}
+.rech-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);display:none}
+.rech-overlay.ouvert{display:block}
+.rech-boite{max-width:760px;margin:0 auto;padding:8vh 24px 40px;height:100%;display:flex;flex-direction:column;box-sizing:border-box}
+.rech-haut{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--filet-fort);padding-bottom:18px}
+.rech-haut svg{color:var(--or);flex:none}
+#rech-champ{flex:1;min-width:0;background:none;border:none;outline:none;color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:30px;letter-spacing:.01em}
+#rech-champ::-webkit-search-cancel-button,#rech-champ::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
+#rech-champ::placeholder{color:var(--parchemin-att);opacity:.5}
+.rech-fermer{cursor:pointer;color:var(--parchemin-att);font-size:24px;line-height:1;transition:color .3s;flex:none;outline:none}
+.rech-fermer:hover,.rech-fermer:focus{color:var(--parchemin)}
+.rech-res{margin-top:6px;overflow-y:auto;flex:1}
+.cloche{position:relative;align-self:center}
+    .cloche .cloche-point{position:absolute;top:-8px;right:-7px;width:6px;height:6px;border-radius:50%;background:var(--or);pointer-events:none;display:none}
+    .nouv-titre-panneau{flex:1;color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:30px;letter-spacing:.01em}
+    .nouv-liste{margin-top:6px;overflow-y:auto;flex:1}
+    .nouv-groupe{padding:20px 0;border-bottom:1px solid var(--filet)}
+    .nouv-groupe:last-child{border-bottom:none}
+    .nouv-date{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--or);margin-bottom:16px}
+    .nouv-ligne{position:relative;padding-left:22px;color:var(--parchemin-att);font-size:18px;line-height:1.55}
+    .nouv-ligne::before{content:"";position:absolute;left:0;top:.85em;width:12px;height:1px;border-radius:0;background:var(--or);opacity:.6}
+    .nouv-ligne + .nouv-ligne{margin-top:16px}
+    @media(max-width:720px){.nouv-titre-panneau{font-size:24px}}
+.rech-msg{padding:38px 4px;color:var(--parchemin-att);font-style:italic;font-size:18px}
+.rech-item{display:block;padding:22px 4px;border-bottom:1px solid var(--filet);cursor:pointer;transition:padding-left .3s}
+.rech-item:hover{padding-left:14px}
+.rech-meta{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin-bottom:6px}
+.rech-titre{font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.15;transition:color .3s}
+.rech-item:hover .rech-titre{color:var(--or-pale)}
+.rech-extrait{margin-top:7px;font-size:16px;color:var(--parchemin-att);line-height:1.55}
+.rech-extrait mark{background:none;color:var(--or);font-weight:600}
+@media(max-width:720px){#rech-champ{font-size:24px}.rech-boite{padding-top:6vh}}
 
-/* titres de sections (accueil) */
-.titre-section{display:flex;align-items:baseline;gap:18px;margin:54px 0 38px}
-.titre-section .num{font-family:var(--display);font-size:14px;letter-spacing:.3em;color:var(--or);border:1px solid var(--filet-fort);padding:4px 11px 3px;white-space:nowrap}
-.titre-section h2{font-family:var(--display);font-weight:500;font-size:clamp(26px,3.4vw,36px);letter-spacing:.06em;color:var(--parchemin)}
-.titre-section .trait{flex:1;height:1px;align-self:center;background:linear-gradient(to right,rgba(241,228,194,1),rgba(241,228,194,.5) 35%,rgba(241,228,194,.18) 70%,transparent)}
+/* ---------- conteneur de page ---------- */
+main{max-width:1080px;margin:0 auto;padding:0 32px;min-height:70vh}
+.vue{animation:apparait .6s ease both}
+@keyframes apparait{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-/* domaines (accueil) */
-.domaines-liste,.domaines > div:not(.titre-section){display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
-a.domaine{display:block;text-decoration:none;padding:30px 28px 26px;border:1px solid var(--filet);position:relative;transition:border-color .4s,box-shadow .4s}
-a.domaine::before{content:'';position:absolute;top:-1px;left:-1px;width:13px;height:13px;border-top:1px solid var(--filet-fort);border-left:1px solid var(--filet-fort);transition:border-color .4s}
-a.domaine:hover{border-color:var(--filet-fort);box-shadow:0 0 30px rgba(241,228,194,.08)}
-a.domaine:hover::before{border-color:var(--or)}
-.d-num{display:block;font-family:var(--display);font-size:13px;letter-spacing:.3em;color:var(--or);margin-bottom:12px}
-a.domaine h3{font-family:var(--display);font-weight:500;font-size:24px;letter-spacing:.04em;color:var(--parchemin);margin-bottom:8px;transition:color .35s}
-a.domaine:hover h3{color:var(--or-pale)}
-a.domaine p,.desc{font-size:16.5px;line-height:1.7;color:var(--parchemin-att)}
-.compte{display:inline-block;margin-top:14px;font-size:13.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchemin-att);opacity:.75}
+/* ---------- accueil ---------- */
+.hero{
+  padding:112px 0 76px;
+  text-align:center;
+}
+.croix{
+  width:72px;height:132px;
+  margin:0 auto;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2072%20132'%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,2%2031,2'%20fill='%23ffffff'/%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,130%2031,130'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%202,45%202,35'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%2070,45%2070,35'%20fill='%23ffffff'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:center;background-size:contain;
+}
 
-/* bloc Mémoriser (accueil) */
-.memo-bloc{margin-top:86px;border:1px solid var(--filet);padding:42px 40px;display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:space-between}
-.memo-bloc h2,.memo-bloc h3{font-family:var(--display);font-weight:500;font-size:30px;letter-spacing:.05em;color:var(--parchemin)}
-.memo-note{font-size:16px;color:var(--parchemin-att);font-style:italic;max-width:430px;margin-top:12px;display:none}
-.memo-droite{min-width:280px;flex:1;max-width:430px}
-.memo-pct{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
-.memo-pct #memo-pct{font-family:var(--display);font-weight:300;font-size:44px;line-height:1;color:var(--parchemin)}
-.memo-pct i{font-style:italic;font-family:var(--texte);font-size:16.5px;color:var(--parchemin)}
-.memo-bar{display:flex;height:4px;background:rgba(255,255,255,.06);overflow:hidden;margin-bottom:13px}
+.intro{
+  max-width:680px;margin:64px auto;
+  text-align:center;
+  font-size:23px;color:var(--parchemin-att);
+}
+.intro p+p{margin-top:18px}
+
+/* titres de section internes */
+.titre-section{
+  display:flex;align-items:baseline;gap:18px;
+  margin:72px 0 36px;
+}
+.titre-section .num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;letter-spacing:.2em;color:var(--or);
+  white-space:nowrap;
+}
+.titre-section h2{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;font-size:34px;letter-spacing:.02em;
+  white-space:nowrap;
+}
+.titre-section .trait{flex:1;height:1px;background:var(--filet)}
+
+/* grille des domaines */
+.domaines{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:18px;background:transparent;
+}
+.domaine{
+  background:transparent;
+  border:1px solid var(--filet);
+  padding:34px 30px;
+  cursor:pointer;
+  transition:background .35s,border-color .35s;
+  display:flex;flex-direction:column;gap:12px;
+}
+.domaine:hover{background:var(--encre-2);border-color:var(--filet-fort)}
+.domaine:last-child:nth-child(3n+1){grid-column:1 / -1}
+.domaine:last-child:nth-child(3n+2){grid-column:2 / -1}
+@media(max-width:900px){
+  .domaines{grid-template-columns:repeat(2,1fr)}
+  .domaine:last-child:nth-child(3n+1),.domaine:last-child:nth-child(3n+2){grid-column:auto}
+  .domaine:last-child:nth-child(2n+1){grid-column:1 / -1}
+}
+@media(max-width:560px){
+  .domaines{grid-template-columns:1fr}
+  .domaine:last-child:nth-child(2n+1){grid-column:auto}
+}
+.domaine .d-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;letter-spacing:.18em;color:var(--or);
+}
+.domaine h3{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:500;font-size:25px;letter-spacing:.01em;
+  transition:color .3s;
+}
+.domaine:hover h3{color:var(--or-pale)}
+.domaine p{font-size:19px;color:var(--parchemin-att);line-height:1.65}
+.domaine .compte{
+  margin-top:auto;font-size:13px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--parchemin-att);
+  font-family:'Cormorant Garamond',serif;
+}
+
+/* ---------- bibliothèque : liste d'articles ---------- */
+.bandeau-page{
+  padding:80px 0 40px;border-bottom:1px solid var(--filet);margin-bottom:8px;
+}
+.bandeau-page .sur-titre{
+  font-family:'Cormorant Garamond',serif;
+  text-transform:uppercase;letter-spacing:.36em;
+  font-size:12px;color:var(--or);margin-bottom:22px;
+}
+.bandeau-page h1{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(40px,6vw,68px);letter-spacing:.02em;line-height:1.05;
+}
+.bandeau-page .desc{
+  margin-top:20px;max-width:620px;font-size:19px;color:var(--parchemin-att);
+}
+
+/* filtres de thèmes */
+.filtres{display:flex;flex-wrap:wrap;gap:10px;margin:72px 0 16px}
+.filtre{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--parchemin-att);
+  padding:7px 16px;border:1px solid var(--filet);
+  cursor:pointer;transition:all .3s;
+  background:none;
+}
+.filtre:hover{color:var(--parchemin);border-color:var(--filet-fort)}
+.filtre.actif{color:var(--encre);background:var(--or);border-color:var(--or)}
+
+/* liste */
+.liste{margin-top:24px}
+.article-lien{
+  display:block;padding:30px 4px;
+  border-bottom:1px solid var(--filet);
+  transition:padding-left .35s;
+  cursor:pointer;
+}
+.article-lien:hover{padding-left:18px}
+.article-lien .meta{
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--or);margin-bottom:8px;
+}
+.article-lien h3{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;font-size:30px;letter-spacing:.01em;
+  transition:color .3s;line-height:1.15;
+}
+.article-lien:hover h3{color:var(--or-pale)}
+.article-lien p{margin-top:8px;font-size:20px;color:var(--parchemin-att)}
+.voir-plus{display:inline;cursor:pointer;color:var(--or);font-size:15px;letter-spacing:.02em;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.voir-plus:hover{color:var(--or-pale)}
+.r-court[hidden],.r-full[hidden]{display:none}
+.vide{padding:60px 0;text-align:center;color:var(--parchemin-att);font-style:italic;font-size:19px}
+.cat-titre{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--or);
+  margin:46px 0 2px;padding-bottom:14px;
+  border-bottom:1px solid var(--filet-fort);
+}
+.liste > .cat-titre:first-child{margin-top:8px}
+
+/* ---------- bibliothèque : domaines repliables ---------- */
+.biblio-barre{display:flex;justify-content:flex-end;margin:30px 0 6px}
+.bt{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--parchemin-att);cursor:pointer;
+  display:inline-flex;align-items:center;gap:11px;
+  padding:6px 2px;transition:color .3s;
+  user-select:none;-webkit-tap-highlight-color:transparent;
+}
+.bt:hover{color:var(--or-pale)}
+.bt .bt-fleche{display:inline-block;color:var(--or);transition:transform .35s ease;transform:rotate(90deg)}
+.bt.actif-tout .bt-fleche{transform:rotate(-90deg)}
+.domaines-liste{margin-top:30px}
+.dom{border-bottom:1px solid var(--filet)}
+.dom-tete{
+  display:flex;align-items:baseline;gap:20px;
+  padding:26px 6px;cursor:pointer;transition:background .3s;
+  user-select:none;
+}
+.dom-tete:hover{background:var(--encre-2)}
+.dom-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;letter-spacing:.2em;color:var(--or);
+  font-variant-numeric:tabular-nums;flex:none;
+}
+.dom-nom{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;font-size:29px;letter-spacing:.02em;line-height:1.1;
+  flex:1;transition:color .3s;
+}
+.dom-tete:hover .dom-nom{color:var(--or-pale)}
+.dom-compte{
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--parchemin-att);white-space:nowrap;flex:none;
+}
+.dom-chevron{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;line-height:1;color:var(--parchemin-att);flex:none;
+  transform:rotate(0);transition:transform .3s ease,color .25s;
+}
+.dom-tete:hover .dom-chevron{color:var(--or-pale)}
+.dom.ouvert .dom-chevron{transform:rotate(90deg)}
+.dom.ouvert .dom-tete{
+  position:sticky;top:73px;z-index:40;
+  background:rgba(0,0,0,.9);backdrop-filter:blur(8px);
+}
+.dom-sep{
+  height:1px;opacity:0;
+  background:linear-gradient(90deg,rgba(231,224,207,.5),rgba(231,224,207,.22),rgba(231,224,207,.06),transparent);
+}
+.dom-corps{display:none;padding:6px 0 22px}
+.dom.ouvert .dom-corps{display:block}
+.dom-corps > .article-lien:last-child{border-bottom:none}
+/* sous-sections (catégories) repliables */
+.sous{margin-top:6px}
+.sous:first-child{margin-top:0}
+.sous-tete{
+  display:flex;align-items:center;gap:14px;
+  cursor:pointer;user-select:none;padding:16px 6px;
+  transition:background .3s;
+}
+.sous-tete:hover{background:var(--encre-2)}
+.sous-puce{width:16px;height:1px;border-radius:0;background:var(--or);flex:none;opacity:.55}
+.sous-nom{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;letter-spacing:.26em;text-transform:uppercase;color:var(--or);
+  flex:1;transition:color .3s;
+}
+.sous-tete:hover .sous-nom{color:var(--or-pale)}
+.sous-chevron{
+  font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1;
+  color:var(--parchemin-att);flex:none;transform:rotate(0);
+  transition:transform .3s ease,color .25s;
+}
+.sous-tete:hover .sous-chevron{color:var(--or-pale)}
+.sous.ouvert .sous-chevron{transform:rotate(90deg)}
+.sous-corps{display:none;margin-left:9px;padding-left:24px;border-left:1px solid var(--filet)}
+.sous.ouvert .sous-corps{display:block}
+.sous-corps .article-lien:last-child{border-bottom:none}
+@keyframes apparaitDom{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes apparaitDomFerme{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-6px)}}
+
+/* ---------- article ---------- */
+article.lecture{max-width:720px;margin:0 auto;padding:64px 0 80px}
+article.lecture h1{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(38px,6vw,60px);line-height:1.08;letter-spacing:.01em;
+  margin:0 0 56px;text-align:center;
+}
+article.lecture h1+p::first-letter{
+  font-family:'Cormorant Garamond',serif;
+  float:left;font-size:78px;line-height:.78;
+  font-weight:500;color:var(--or);
+  margin:8px 14px 0 0;
+}
+article.lecture p{margin-bottom:22px}
+article.lecture h2{
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-size:30px;letter-spacing:.01em;
+  margin:48px 0 18px;
+}
+article.lecture h3{
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-size:23px;margin:34px 0 14px;color:var(--parchemin)
+}
+/* référence biblique en ligne */
+.ref{font-weight:600;font-family:'Cormorant Garamond',serif;
+  letter-spacing:.04em;color:var(--or);white-space:nowrap}
+/* renvois internes entre articles */
+article.lecture a,.prose a{
+  color:var(--or);
+  border-bottom:1px solid rgba(239,230,207,.35);
+  transition:color .3s,border-color .3s;
+}
+article.lecture a:hover,.prose a:hover{color:var(--or-pale);border-color:var(--or-pale)}
+article.lecture blockquote{
+  margin:30px 0;padding-left:26px;border-left:2px solid var(--filet-fort);
+  font-style:italic;color:var(--parchemin-att);
+}
+.fin-article{
+  text-align:center;margin:60px 0 0;
+  font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--or);letter-spacing:.4em;
+}
+
+/* ---------- à propos ---------- */
+.prose{max-width:680px;margin:0 auto;padding:8px 0 80px;font-size:25px;text-align:center}
+.prose p{margin-bottom:22px}
+.apropos-vue{min-height:70vh;display:flex;flex-direction:column}
+.apropos-corps{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 0}
+.apropos-vue .prose{padding:0;text-align:left}
+
+/* ---------- pied de page ---------- */
+footer{
+  border-top:1px solid var(--filet);
+  margin-top:40px;
+  padding:48px 32px 56px;
+  text-align:center;
+}
+footer .marque{
+  font-family:'Cormorant Garamond',serif;
+  letter-spacing:.34em;text-transform:uppercase;font-size:18px;
+  padding-left:.34em;color:var(--parchemin);
+}
+footer .verset-pied{
+  margin-top:18px;font-style:italic;color:var(--parchemin-att);font-size:17px;
+}
+footer .verset-pied .ref-pied{font-style:normal}
+footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--parchemin-att);
+  font-family:'Cormorant Garamond',serif}
+
+/* ---------- responsive ---------- */
+@media(max-width:720px){
+  body{font-size:20px}
+  .barre{padding:16px 20px;display:flex;justify-content:space-between}
+  main{padding:0 20px}
+  nav.menu{
+    position:fixed;inset:62px 0 auto 0;
+    flex-direction:column;gap:0;align-items:stretch;
+    background:var(--encre-2);
+    border-bottom:1px solid var(--filet);
+    transform:translateY(-130%);transition:transform .35s;
+  }
+  nav.menu.ouvert{transform:none}
+  nav.menu a{padding:18px 20px;border-bottom:1px solid var(--filet)}
+  .burger{display:block}
+  .contexte-bar{display:none}
+  .titre-section h2{font-size:26px;white-space:normal}
+  .titre-section{flex-wrap:wrap}
+  .dom-tete{gap:13px;padding:22px 2px}
+  .dom-nom{font-size:23px}
+  .dom-chevron{font-size:22px}
+  .dom.ouvert .dom-tete{top:61px}
+  .sous-tete{padding:14px 2px;gap:11px}
+  .sous-corps{padding-left:18px}
+}
+.vue:has(.apologie) .lecture{padding-bottom:56px}
+.apologie{max-width:720px;margin:0 auto;padding:40px 0 96px;border-top:1px solid rgba(255,255,255,.12)}
+.apologie-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--or);margin-bottom:14px}
+.apologie-lien{display:inline-block;font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--parchemin);text-decoration:none;transition:color .2s}
+.apologie-lien:hover{color:var(--or)}
+.vue:has(.domaines-liste) .bandeau-page{border-bottom:none}
+.ll-mob{display:none}
+@media(max-width:720px){
+nav.menu .rech-loupe{width:auto;justify-content:flex-start;gap:14px;padding:18px 20px;border-bottom:1px solid var(--filet);font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--parchemin-att)}
+nav.menu .rech-loupe .ll-mob{display:inline}
+nav.menu .cloche .cloche-point{top:22px;left:34px;right:auto}
+}
+
+/* ---------- bloc Mémoriser (accueil) ---------- */
+.memo-bloc{max-width:628px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:30px}
+.memo-droite{width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+.memo-pct{display:flex;align-items:baseline;justify-content:center;gap:11px}
+.memo-pct span{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:48px;line-height:1;color:var(--parchemin)}
+.memo-pct i{font-style:normal;font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--or)}
+.memo-bar{display:flex;width:100%;height:4px;overflow:hidden;background:var(--filet)}
 .memo-bar i{display:block;height:100%;width:0;transition:width .6s cubic-bezier(.2,.7,.3,1)}
 .memo-bar .r{background:#c75d52}
 .memo-bar .a{background:#cfa24f}
 .memo-bar .v{background:#7ba37e}
-.memo-leg{display:flex;gap:20px;flex-wrap:wrap;font-family:var(--display);font-size:13.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--parchemin-att)}
+.memo-leg{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--parchemin-att)}
 .memo-leg b{color:var(--parchemin);font-weight:600;font-variant-numeric:tabular-nums}
-.memo-droite[data-state="out"] .memo-note,.memo-droite[data-state="empty"] .memo-note{display:block}
-.memo-droite:not([data-state="ok"]) .memo-pct,.memo-droite:not([data-state="ok"]) .memo-bar,.memo-droite:not([data-state="ok"]) .memo-leg{display:none}
-.memo-start{display:inline-block;margin-top:18px;font-family:var(--display);font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;color:var(--encre);background:var(--or);padding:13px 28px 11px;transition:background .3s,transform .3s}
+.memo-note{font-size:16px;color:var(--parchemin-att);font-style:italic;margin:0;display:none;text-align:center}
+.memo-droite[data-state="out"] .memo-note,
+.memo-droite[data-state="empty"] .memo-note{display:block}
+.memo-droite:not([data-state="ok"]) .memo-pct,
+.memo-droite:not([data-state="ok"]) .memo-bar,
+.memo-droite:not([data-state="ok"]) .memo-leg{display:none}
+.memo-start{display:block;width:100%;text-align:center;padding:17px;background:var(--or);color:var(--encre);font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;transition:background .3s}
 .memo-start:hover{background:var(--or-pale)}
-
-/* ════ BANDEAUX DE PAGE ════ */
-.bandeau-page{padding:84px 0 56px;text-align:center}
-.sur-titre{font-family:var(--display);font-size:13.5px;letter-spacing:.4em;text-transform:uppercase;color:var(--or);margin-bottom:20px}
-.bandeau-page h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,5.4vw,62px);line-height:1.08;letter-spacing:.04em;color:var(--parchemin);text-wrap:balance}
-.bandeau-page p{max-width:600px;margin:22px auto 0;font-size:18.5px;color:var(--parchemin-att);font-style:italic}
-.bandeau-page::after{content:'';display:block;width:220px;height:1px;margin:46px auto 0;background:linear-gradient(to right,transparent,rgba(241,228,194,1) 30%,rgba(241,228,194,1) 70%,transparent)}
-
-/* ════ BIBLIOTHÈQUE ════ */
-.dom{grid-column:1/-1;margin:0 0 18px;border:1px solid var(--filet);transition:border-color .4s}
-.dom:hover{border-color:rgba(241,228,194,.7)}
-.dom-tete{display:flex;align-items:center;gap:20px;padding:26px 30px;cursor:pointer;user-select:none}
-.dom-num{font-family:var(--display);font-size:13px;letter-spacing:.3em;color:var(--or);border:1px solid var(--filet-fort);padding:4px 11px 3px;white-space:nowrap}
-.dom-nom{min-width:0;font-family:var(--display);font-weight:500;font-size:clamp(23px,3vw,30px);letter-spacing:.05em;color:var(--parchemin);flex:1;transition:color .35s}
-.dom-tete:hover .dom-nom{color:var(--or-pale)}
-.dom-compte{font-size:13.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--parchemin-att);white-space:nowrap}
-.dom-chevron{font-family:var(--texte);font-size:21px;color:var(--parchemin-att);transition:transform .4s cubic-bezier(.22,.7,.3,1),color .3s;line-height:1}
-.dom.ouvert .dom-chevron{transform:rotate(90deg);color:var(--or)}
-.dom-sep{height:1px;margin:0 30px;background:linear-gradient(to right,rgba(241,228,194,1),rgba(241,228,194,.5) 30%,rgba(241,228,194,.18) 65%,transparent);opacity:0;transition:opacity .45s}
-.dom.ouvert .dom-sep{opacity:1}
-.dom-corps{display:none;padding:26px 30px 34px}
-.dom.ouvert .dom-corps{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;animation:venue .5s cubic-bezier(.22,.7,.3,1) both}
-.dom > p,.dom-desc{padding:0 30px 8px;color:var(--parchemin-att);font-size:16.5px}
-
-/* sous-catégories */
-.sous{grid-column:1 / -1;margin-top:14px}
-.sous:first-child{margin-top:0}
-.sous-tete{display:flex;align-items:center;gap:13px;padding:10px 2px;cursor:pointer;user-select:none}
-.sous-puce{width:7px;height:7px;background:var(--or);transform:rotate(45deg);flex:none;opacity:.85}
-.sous-nom{font-family:var(--display);font-weight:500;font-size:20px;letter-spacing:.07em;color:var(--parchemin);transition:color .3s}
-.sous-tete:hover .sous-nom{color:var(--or-pale)}
-.sous-chevron{font-size:17px;color:var(--parchemin-att);transition:transform .35s;line-height:1}
-.sous.ouvert .sous-chevron{transform:rotate(90deg)}
-.sous-corps{display:none;padding:12px 0 4px 19px;border-left:1px solid var(--filet)}
-.sous.ouvert .sous-corps{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:13px;animation:venue .45s cubic-bezier(.22,.7,.3,1) both}
-
-/* cartes d'articles */
-a.article-lien{display:block;text-decoration:none;padding:22px 22px 20px;border:1px solid var(--filet);position:relative;transition:border-color .4s,box-shadow .4s}
-a.article-lien:hover{border-color:var(--filet-fort);box-shadow:0 0 34px rgba(241,228,194,.06)}
-a.article-lien h3{font-family:var(--display);font-weight:500;font-size:21.5px;line-height:1.3;letter-spacing:.03em;color:var(--parchemin);margin-bottom:8px;transition:color .35s}
-a.article-lien:hover h3{color:var(--or-pale)}
-.resume{font-size:16px;line-height:1.7;color:var(--parchemin-att)}
-.voir-plus{color:var(--or);cursor:pointer;font-style:italic;margin-left:6px;white-space:nowrap}
-.voir-plus:hover{color:var(--or-pale)}
-.vide{color:var(--parchemin-att);font-style:italic;padding:8px 2px}
-
-/* apologie (encadré bibliothèque) */
-.apologie-label{font-family:var(--display);font-size:13.5px;letter-spacing:.4em;text-transform:uppercase;color:var(--or);margin:64px 0 16px;text-align:center}
-.apologie-lien{display:block;max-width:760px;margin:0 auto;text-decoration:none;text-align:center;padding:34px 34px 30px;border:1px solid var(--filet-fort);font-family:var(--display);font-size:24px;letter-spacing:.04em;color:var(--parchemin);transition:color .35s,border-color .35s,box-shadow .4s}
-.apologie-lien:hover{color:var(--or-pale);border-color:var(--or);box-shadow:0 0 40px rgba(241,228,194,.08)}
-
-/* ════ LECTURE ════ */
-.lecture{max-width:calc(34em + 112px);margin:0 auto;padding:70px 56px 56px}
-.lecture h1{font-family:var(--display);font-weight:400;font-size:clamp(35px,4.8vw,52px);line-height:1.12;letter-spacing:.03em;color:var(--parchemin);margin-bottom:14px;text-wrap:balance}
-.lecture h1::after{content:'';display:block;width:120px;height:1px;margin-top:30px;background:linear-gradient(to right,rgba(241,228,194,1),rgba(241,228,194,.45) 60%,transparent)}
-.lecture h2{font-family:var(--display);font-weight:500;font-size:clamp(25px,3vw,31px);line-height:1.25;letter-spacing:.04em;color:var(--parchemin);margin:58px 0 22px;text-wrap:balance}
-.lecture h3{font-family:var(--display);font-weight:500;font-size:23px;letter-spacing:.04em;margin:44px 0 16px}
-.lecture p{margin:0 0 24px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
-.lecture > p:first-of-type::first-letter{font-family:var(--display);font-size:3.6em;line-height:.82;float:left;padding:6px 12px 0 0;color:var(--or);font-weight:400}
-.lecture blockquote{margin:34px 0;padding:4px 0 4px 26px;border-left:1px solid var(--or);font-style:italic;color:var(--parchemin-att)}
-.lecture blockquote p{text-align:left}
-.lecture a{color:var(--or);text-decoration:none;border-bottom:1px solid var(--filet-fort);transition:color .3s,border-color .3s}
-.lecture a:hover{color:var(--or-pale);border-bottom-color:var(--or)}
-.ref{color:var(--or);font-style:italic}
-.fin-article{margin:64px auto 0;display:flex;align-items:center;gap:22px;max-width:340px}
-.fin-article::before,.fin-article::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(241,228,194,.9));}
-.fin-article::after{background:linear-gradient(to left,transparent,rgba(241,228,194,.9))}
-.fin-article{justify-content:center;color:var(--or);font-size:13px}
-.fin-article:empty::before{content:''}
-.fin-article > *{color:var(--or)}
-
-/* ════ À PROPOS / PROSE ════ */
-.apropos-corps,.prose{max-width:34em;margin:0 auto}
-.prose p{margin:0 0 22px;color:var(--parchemin)}
-.prose h2{font-family:var(--display);font-weight:500;font-size:28px;margin:48px 0 18px}
-
-/* ════ RECHERCHE / NOUVEAUTÉS (voiles) ════ */
-.rech-overlay{position:fixed;inset:0;z-index:120;background:rgba(0,0,0,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding:9vh 24px 24px;overflow-y:auto}
-.rech-overlay.ouvert{display:flex;animation:voile .35s ease both}
-@keyframes voile{from{opacity:0}to{opacity:1}}
-.rech-boite{width:100%;max-width:660px;background:var(--encre-2);border:1px solid var(--filet-fort);padding:34px 34px 28px;animation:venue .45s cubic-bezier(.22,.7,.3,1) both;position:relative}
-.rech-boite::before{content:'';position:absolute;top:-1px;left:-1px;width:15px;height:15px;border-top:1px solid var(--or);border-left:1px solid var(--or)}
-.rech-boite::after{content:'';position:absolute;bottom:-1px;right:-1px;width:15px;height:15px;border-bottom:1px solid var(--or);border-right:1px solid var(--or)}
-.rech-haut{display:flex;align-items:center;gap:16px;margin-bottom:20px}
-.nouv-titre-panneau,.rech-titre{font-family:var(--display);font-weight:500;font-size:24px;letter-spacing:.06em;color:var(--parchemin);flex:1}
-#rech-champ{flex:1;background:var(--encre);border:1px solid var(--filet);color:var(--parchemin);font-family:var(--texte);font-size:18px;padding:13px 16px;outline:none;transition:border-color .3s}
-#rech-champ:focus{border-color:var(--filet-fort)}
-#rech-champ::placeholder{color:var(--parchemin-att);opacity:.6}
-.rech-fermer{cursor:pointer;color:var(--parchemin-att);font-size:21px;line-height:1;padding:6px 10px;transition:color .3s}
-.rech-fermer:hover{color:var(--or)}
-.rech-res{max-height:58vh;overflow-y:auto;scrollbar-width:thin}
-.rech-item{display:block;text-decoration:none;padding:15px 16px;border:1px solid transparent;border-top-color:var(--filet);transition:border-color .3s,background .3s}
-.rech-item:hover{background:rgba(241,228,194,.04);border-color:var(--filet)}
-.rech-meta{font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:5px}
-.rech-titre{font-size:19px}
-.rech-item .rech-titre{font-family:var(--display);font-weight:500;font-size:20px;color:var(--parchemin);margin-bottom:4px}
-.rech-extrait{font-size:15.5px;color:var(--parchemin-att);line-height:1.6}
-.rech-extrait mark{background:none;color:var(--or-pale);font-style:italic}
-.rech-msg{color:var(--parchemin-att);font-style:italic;padding:14px 4px}
-.nouv-liste{max-height:62vh;overflow-y:auto;scrollbar-width:thin}
-.nouv-groupe{padding:18px 4px 6px;border-top:1px solid var(--filet)}
-.nouv-groupe:first-child{border-top:none;padding-top:4px}
-.nouv-date{font-family:var(--display);font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-bottom:12px}
-.nouv-ligne{position:relative;padding:0 0 12px 22px;color:var(--parchemin);font-size:17px;line-height:1.65}
-.nouv-ligne::before{content:'';position:absolute;left:2px;top:11px;width:6px;height:6px;background:var(--or);transform:rotate(45deg);opacity:.8}
-
-/* ════ COMPTE (voile) ════ */
-.auth-overlay{position:fixed;inset:0;z-index:130;background:rgba(0,0,0,.96);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px}
-.auth-overlay.ouvert{display:flex;animation:voile .3s ease both}
-.auth-modal{width:100%;max-width:400px;background:var(--encre-2);border:1px solid var(--filet-fort);padding:40px 34px;animation:venue .4s cubic-bezier(.22,.7,.3,1) both;position:relative}
-.auth-fermer{position:absolute;top:10px;right:14px;cursor:pointer;color:var(--parchemin-att);font-size:20px;padding:6px;transition:color .3s;background:none;border:none}
-.auth-fermer:hover{color:var(--or)}
-.auth-m-title{font-family:var(--display);font-weight:500;font-size:26px;letter-spacing:.05em;text-align:center;color:var(--parchemin);margin-bottom:24px}
-.auth-m-tabs{display:flex;border-bottom:1px solid var(--filet);margin-bottom:22px}
-.auth-m-tab{flex:1;background:none;border:none;border-bottom:1px solid transparent;margin-bottom:-1px;cursor:pointer;font-family:var(--display);font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--parchemin-att);padding:11px 4px;transition:color .3s,border-color .3s}
-.auth-m-tab.on{color:var(--or);border-bottom-color:var(--or)}
-.auth-m-tab:hover{color:var(--parchemin)}
-.auth-overlay input{width:100%;background:var(--encre);border:1px solid var(--filet);color:var(--parchemin);font-family:var(--texte);font-size:17px;padding:12px 14px;margin-bottom:12px;outline:none;transition:border-color .3s}
-.auth-overlay input:focus{border-color:var(--filet-fort)}
-.auth-overlay input::placeholder{color:var(--parchemin-att);opacity:.6}
-.auth-m-primary{width:100%;background:var(--or);border:none;color:var(--encre);font-family:var(--display);font-size:15px;letter-spacing:.22em;text-transform:uppercase;padding:14px 10px 12px;cursor:pointer;transition:background .3s;margin-top:4px}
-.auth-m-primary:hover{background:var(--or-pale)}
-.auth-m-or{text-align:center;color:var(--parchemin-att);font-size:14px;margin:14px 0;display:flex;align-items:center;gap:14px}
-.auth-m-or::before,.auth-m-or::after{content:'';flex:1;height:1px;background:var(--filet)}
-.auth-m-google{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:none;border:1px solid var(--filet-fort);color:var(--parchemin);font-family:var(--texte);font-size:16px;padding:12px 10px;cursor:pointer;transition:border-color .3s,color .3s}
-.auth-m-google:hover{border-color:var(--or);color:var(--or-pale)}
-.auth-m-link{display:block;width:100%;text-align:center;background:none;border:none;color:var(--parchemin-att);font-family:var(--texte);font-size:15px;font-style:italic;cursor:pointer;margin-top:16px;transition:color .3s}
-.auth-m-link:hover{color:var(--or)}
-.auth-m-msg{font-size:14.5px;line-height:1.5;padding:9px 13px;margin-bottom:14px;display:none}
-.auth-m-msg.err{display:block;border:1px solid var(--pourpre);background:rgba(142,58,54,.14);color:#e8a9a4}
-.auth-m-msg.ok{display:block;border:1px solid rgba(241,228,194,.5);background:rgba(241,228,194,.08);color:var(--or-pale)}
-.auth-m-email{text-align:center;color:var(--parchemin-att);font-size:16px;margin-bottom:18px;word-break:break-all}
-.auth-m-email b,.auth-m-email span{color:var(--parchemin)}
-
-/* ════ PIED : COLOPHON ════ */
-footer{border-top:1px solid var(--filet);padding:32px 28px 26px;text-align:center}
-.marque{font-family:var(--display);font-weight:500;font-size:14.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--parchemin);padding-left:.42em;margin-bottom:12px}
-.verset-pied{max-width:560px;margin:0 auto 13px;font-style:italic;font-size:15.5px;line-height:1.65;color:var(--parchemin-att)}
-.ref-pied{display:block;margin-top:4px;font-size:13px;color:var(--or);letter-spacing:.06em}
-.copy{font-size:13.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-att);opacity:.6}
-
-/* ════ ACCESSIBILITÉ / DIVERS ════ */
-:focus-visible{outline:1px solid var(--or);outline-offset:3px}
-html{scrollbar-color:rgba(241,228,194,.55) #0a0908}
-::-webkit-scrollbar{width:9px;height:9px}
-::-webkit-scrollbar-track{background:var(--encre)}
-::-webkit-scrollbar-thumb{background:rgba(241,228,194,.55)}
-::-webkit-scrollbar-thumb:hover{background:rgba(241,228,194,.8)}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
-
-/* ════ RESPONSIVE ════ */
-@media(max-width:920px){
-  .burger{display:block}
-  nav.menu{position:fixed;inset:0;z-index:95;background:rgba(0,0,0,.97);backdrop-filter:blur(10px);display:none;flex-direction:column;align-items:stretch;padding:96px 30px 30px;gap:0;overflow-y:auto}
-  nav.menu.ouvert{display:flex;animation:voile .3s ease both}
-  nav.menu a{font-size:18px;padding:17px 4px;border-bottom:1px solid var(--filet);letter-spacing:.18em}
-  nav.menu a.actif{border-bottom-color:var(--filet)}
-  .lien-langue{align-self:flex-start;font-size:16px;padding:17px 4px}
-  .rech-loupe{padding:17px 4px;gap:13px;color:var(--parchemin-att);border-bottom:1px solid var(--filet)}
-  .rech-loupe .ll-mob{display:inline;font-family:var(--display);font-size:16px;letter-spacing:.18em;text-transform:uppercase}
-  .cloche-point{position:static;margin-left:8px}
-}
-@media(max-width:720px){
-  body{font-size:18.5px}
-  .barre{height:64px;padding:0 20px}
-  main{padding:0 20px 90px}
-  .hero{padding:42px 0 12px}
-  .croix{height:64px;margin-bottom:28px}
-  .titre-section{margin:64px 0 30px}
-  .dom-tete{padding:20px 18px;gap:13px}
-  .dom-sep{margin:0 18px}
-  .dom-corps{padding:20px 18px 26px}
-  .memo-bloc{padding:30px 24px}
-  .bandeau-page{padding:60px 0 44px}
-  .lecture{padding:48px 18px 40px;border-left:none;border-right:none}
-  .lecture p{text-align:left;hyphens:none}
-  .rech-boite{padding:26px 20px 22px}
-  footer{padding:24px 20px 20px}
-}
 </style>
 </head>
 <body>
@@ -376,7 +563,7 @@ const THEMES = [
   { id:'ecriture',    nom:'Écriture et exégèse',             desc:"La lecture des Écritures dans la foi de l'Église, du sens littéral aux sens spirituels.", categories:[
     { id:'at',        nom:"L'Ancien Testament",          arts:['la-lutte-de-jacob-avec-dieu','elie-a-l-horeb','l-ange-du-seigneur','un-temps-pour-tuer'] },
     { id:'isaie',     nom:"Le livre d'Isaïe",            arts:['le-proto-isaie','le-deutero-isaie','le-trito-isaie','les-quatre-chants-du-serviteur'] },
-    { id:'evangiles', nom:'Les évangiles',               arts:['jesus-et-nicodeme','jesus-devant-pilate','abraham-a-vu-mon-jour','laisse-les-morts-enterrer-leurs-morts','achetez-une-epee','tendre-l-autre-joue','le-bapteme-du-christ','le-doigt-de-dieu'] },
+    { id:'evangiles', nom:'Les évangiles',               arts:['jesus-et-nicodeme','jesus-devant-pilate','abraham-a-vu-mon-jour','laisse-les-morts-enterrer-leurs-morts','achetez-une-epee','tendre-l-autre-joue'] },
     { id:'vie-du-christ', nom:'La vie du Christ',          arts:['les-prologues-et-la-venue-du-christ','la-preparation-au-ministere','la-premiere-annee-l-inauguration','la-deuxieme-annee-la-popularite','la-troisieme-annee-l-opposition','la-semaine-sainte','la-resurrection-et-la-glorification'] },
     { id:'paul',      nom:'Les lettres de Paul',         arts:['la-femme-dans-l-assemblee','le-voile-et-la-chevelure'] },
     { id:'questions', nom:'Questions sur les Écritures', arts:['le-canon-et-les-deuterocanoniques','l-esclavage-dans-la-bible','les-guerres-d-extermination'] },
@@ -399,58 +586,6 @@ const THEMES = [
    ... la nécessité du baptême : <em>« ... »</em> <span class="ref">Jean 3:5</span>
 */
 const ARTICLES = [
-  {
-    id: "le-doigt-de-dieu",
-    titre: "Le doigt de Dieu",
-    theme: "ecriture",
-    resume: "Sous le piège que lui tendent les scribes et les pharisiens, Jésus se révèle. En écrivant du doigt sur le sol, il se montre l'auteur de la Loi gravée du doigt de Dieu, le Dieu de Moïse. Et tandis que ses accusateurs se retirent confondus, s'accomplit ce que Jérémie disait de ceux qui abandonnent le Seigneur, la source d'eau vive : ce Seigneur, c'est Jésus.",
-    date: "2026",
-    contenu: `
-      <p>Au Temple, un matin, les scribes et les pharisiens amènent à Jésus une femme surprise en adultère et la placent au milieu de tous. Ils rappellent que Moïse a prescrit de lapider une telle femme, et lui demandent son avis : <em>« et toi, que dis-tu ? »</em> <span class="ref">Jean 8:5</span>. Ils tendent un piège. Sous ce piège, Jésus se révèle pour ce qu'il est : le Dieu qui donna la Loi à Moïse, et le Seigneur que nommait Jérémie.</p>
-
-      <h2>Ils n'ont pas amené l'homme</h2>
-      <p>La femme a été surprise en flagrant délit : l'homme avec qui elle a péché est donc connu, pris avec elle. Or la Loi qu'ils invoquent condamne les deux : <em>« L'homme qui commet l'adultère avec la femme de son prochain sera mis à mort, lui et la femme adultère. »</em> <span class="ref">Lévitique 20:10</span>. En n'amenant que la femme, ils transgressent eux-mêmes la Loi de Moïse. Leur zèle est un prétexte : ils ne cherchent pas la justice, mais un motif d'accuser Jésus.</p>
-
-      <h2>Le piège</h2>
-      <p>Quoi qu'il réponde, ils croient le tenir. S'il défend de lapider la femme, il se dresse contre Moïse, et un prophète qui contredit Moïse se démasque comme faux. S'il ordonne de la lapider, il appelle à une mise à mort que Rome a retirée aux Juifs, et ils le livreront comme un séditieux. Cette interdiction, ils l'avoueront eux-mêmes devant Pilate : <em>« Il ne nous est pas permis de mettre à mort qui que ce soit. »</em> <span class="ref">Jean 18:31</span>.</p>
-
-      <h2>Le doigt de Dieu</h2>
-      <p>Jésus se baisse et, du doigt, écrit sur le sol. La Loi qu'ils brandissent, Dieu l'a écrite lui-même au Sinaï : <em>« Il donna à Moïse les deux tables du témoignage, tables de pierre écrites du doigt de Dieu. »</em> <span class="ref">Exode 31:18</span>. Le doigt qui grava la Loi est celui qui écrit ici, sur la terre. Ils opposent à Jésus une Loi qu'il a lui-même donnée ; le législateur se tient devant eux, et ils ne le reconnaissent pas.</p>
-
-      <h2>Inscrits sur la terre</h2>
-      <p>Comme ils le pressent, Jésus se relève : <em>« Que celui d'entre vous qui est sans péché lui jette le premier la pierre. »</em> <span class="ref">Jean 8:7</span>. Puis il se baisse de nouveau et continue d'écrire. Les accusateurs se retirent un à un, à commencer par les plus âgés. Aucun ne peut se dire sans péché, et eux moins que tous, qui viennent d'enfreindre la Loi en n'amenant que la femme ; les plus âgés, ayant le plus de fautes derrière eux, se savent pris les premiers. Ils se détournent de Jésus et s'en vont confondus, tandis qu'il écrit sur le sol. Jérémie avait prophétisé sur eux : <em>« Espérance d'Israël, Seigneur, tous ceux qui t'abandonnent seront confondus ; ceux qui se détournent de toi seront inscrits sur la terre, car ils ont abandonné la source d'eau vive. »</em> <span class="ref">Jérémie 17:13</span>. Le Seigneur qu'ils abandonnent, la source d'eau vive, c'est Jésus. <em>« Celui qui croit en moi, des fleuves d'eau vive couleront de son sein. Il disait cela de l'Esprit que devaient recevoir ceux qui croiraient en lui. »</em> <span class="ref">Jean 7:38-39</span>.</p>
-      <div class="fin-article">✦</div>
-    `
-  },
-  {
-    id: "le-bapteme-du-christ",
-    titre: "Le baptême du Christ",
-    theme: "ecriture",
-    resume: "Le baptême de Jésus au Jourdain est sa consécration comme prêtre. Jean, prêtre selon Aaron, le lave dans l'eau, et l'Esprit descend sur lui comme l'onction promise au Messie : le dernier prêtre de l'ancienne alliance consacre le prêtre selon Melchisédech, et l'ancien sacerdoce passe le relais au nouveau.",
-    date: "2026",
-    contenu: `
-      <p>Au commencement de sa vie publique, Jésus vient au Jourdain se faire baptiser par Jean. Le baptême que Jean donnait était un baptême de pénitence, reçu par ceux qui confessaient leurs péchés et attendaient le pardon. Jean s'y refuse d'abord : <em>« C'est moi qui ai besoin d'être baptisé par toi, et c'est toi qui viens à moi ! »</em> <span class="ref">Matthieu 3:14</span>. Jésus lève l'objection : <em>« Laisse faire pour le moment, car il convient que nous accomplissions ainsi toute justice. »</em> <span class="ref">Matthieu 3:15</span>. Cette justice à accomplir est une exigence de la Loi : la venue de Jésus dans l'eau est sa consécration comme prêtre.</p>
-
-      <h2>Jean, prêtre selon Aaron</h2>
-      <p>Sous l'ancienne alliance, le sacerdoce était réservé à une seule famille. Seuls les descendants d'Aaron, le frère de Moïse, pouvaient offrir les sacrifices et servir dans le Temple, et cette charge se transmettait de père en fils dans la tribu de Lévi. Jean appartient à ce sacerdoce par ses deux parents : <em>« Il y eut, au temps d'Hérode, roi de Judée, un prêtre nommé Zacharie, de la classe d'Abia ; sa femme était des filles d'Aaron, et son nom était Élisabeth. »</em> <span class="ref">Luc 1:5</span>.</p>
-
-      <h2>Le prêtre selon Melchisédech</h2>
-      <p>Jésus est prêtre selon un autre ordre, celui de Melchisédech. Ce personnage paraît brièvement dans la Genèse, à la rencontre d'Abraham qu'il bénit : <em>« Melchisédech, roi de Salem, apporta du pain et du vin ; il était prêtre du Dieu très-haut. »</em> <span class="ref">Genèse 14:18</span>. L'Écriture ne lui donne ni père ni généalogie : son sacerdoce ne vient pas d'une lignée et ne se transmet pas par le sang. C'est de cet ordre qu'un psaume annonce le Messie : <em>« Tu es prêtre pour toujours selon l'ordre de Melchisédech. »</em> <span class="ref">Psaume 110:4</span>. Le sacerdoce du Christ est ainsi plus ancien et plus haut que celui d'Aaron.</p>
-
-      <h2>L'âge du prêtre</h2>
-      <p>La Loi fixait l'âge auquel un homme entrait dans le service sacré : <em>« depuis l'âge de trente ans et au-dessus jusqu'à cinquante ans, tous ceux qui ont à faire le service dans la tente de réunion. »</em> <span class="ref">Nombres 4:3</span>. Jésus commence son ministère au sortir du baptême, ayant environ trente ans (Luc 3:23). L'âge où le prêtre prenait sa charge est celui où le Christ prend la sienne.</p>
-
-      <h2>L'eau et l'huile</h2>
-      <p>Pour entrer en fonction, le prêtre recevait deux gestes, l'eau puis l'huile : <em>« Tu feras approcher Aaron et ses fils à l'entrée de la tente de réunion, et tu les laveras avec de l'eau... tu prendras l'huile d'onction, tu en répandras sur sa tête, et tu l'oindras. »</em> <span class="ref">Exode 29:4-7</span>. Répandre l'huile, c'était consacrer, mettre à part pour Dieu : on oignait ainsi les rois, les prêtres et les prophètes. De là vient le nom du Christ : le mot grec rendu par « oint », <em>christos</em> (Χριστός), traduit l'hébreu « messie », <em>mashiah</em> (<span dir="rtl">מָשִׁיחַ</span>). Aaron, le premier des prêtres, fut consacré par Moïse, qui exerçait alors le sacerdoce : <em>« Moïse et Aaron étaient parmi ses prêtres. »</em> <span class="ref">Psaume 99:6</span>. Un prêtre établit le prêtre.</p>
-
-      <h2>L'onction de l'Esprit</h2>
-      <p>Au Jourdain, ces deux gestes se retrouvent sur le Christ. Jean, le prêtre lévitique, le lave dans l'eau. Et l'onction, il la reçoit non par l'huile, mais par l'Esprit de Dieu lui-même, qui descend sur lui comme une colombe. C'est l'onction qu'Isaïe avait annoncée pour le Messie : <em>« L'Esprit du Seigneur est sur moi, parce qu'il m'a oint ; il m'a envoyé porter la bonne nouvelle aux pauvres. »</em> <span class="ref">Isaïe 61:1</span>. Et Pierre le redira : <em>« Dieu a oint Jésus de Nazareth d'Esprit Saint et de puissance. »</em> <span class="ref">Actes 10:38</span>. Jean, dernier prêtre selon Aaron, consacre le prêtre selon Melchisédech.</p>
-
-      <h2>La fin de l'ancien sacerdoce</h2>
-      <p>Ce geste est aussi un adieu. En consacrant le Christ, Jean clôt le sacerdoce dont il est né : <em>« La Loi et les Prophètes vont jusqu'à Jean. »</em> <span class="ref">Luc 16:16</span>. Avec lui s'achève l'ancienne alliance. Le sacerdoce d'Aaron passait d'un homme à l'autre et mourait avec chacun ; celui du Christ ne meurt pas, car il est prêtre pour toujours. Le baptême du Jourdain est le seuil où l'ancien sacerdoce remet sa charge au nouveau, et le grand prêtre, oint de l'Esprit, commence l'œuvre du salut.</p>
-      <div class="fin-article">✦</div>
-    `
-  },
   {
     id: "la-resurrection-et-la-glorification",
     titre: "La Résurrection et la glorification",
@@ -516,24 +651,19 @@ const ARTICLES = [
       <p>Assis devant le trésor du Temple, Jésus regarde la foule y déposer ses offrandes. Des riches donnent beaucoup de leur superflu ; une pauvre veuve y met deux petites pièces, tout ce qu'elle possède. Il appelle ses disciples et leur déclare qu'elle a donné plus que tous les autres : <em>« Eux ont mis de leur superflu, mais elle, de son indigence, a mis tout ce qu'elle avait pour vivre. »</em> <span class="ref">Marc 12:44</span>. Devant Dieu, le don ne vaut pas par sa grandeur, mais par l'amour et le sacrifice de celui qui donne : <em>« Si tu as peu, ne crains pas de faire l'aumône selon ce peu. »</em> <span class="ref">Tobie 4:8</span>.</p>
 
       <h2>Le discours sur la fin</h2>
-      <p>En sortant du Temple, comme ses disciples en admirent les pierres, Jésus annonce qu'il n'en restera pas pierre sur pierre. Sur le mont des Oliviers, ils l'interrogent : quand cela arrivera-t-il, et quel sera le signe de sa venue et de la fin du monde ? Sa réponse vise deux événements distincts, qu'elle entrelace : la ruine prochaine de Jérusalem, dont le Temple sera renversé du vivant de cette génération, et son retour à la fin du monde, par-delà les siècles. Il met d'abord en garde contre l'illusion : de faux messies viendront, on entendra des guerres, des famines, des tremblements de terre, et les siens seront persécutés ; tout cela n'est que le commencement des douleurs, et l'Évangile doit d'abord être annoncé à toutes les nations. À la fin seulement paraîtra le signe du Fils de l'homme : il viendra sur les nuées, avec puissance et gloire, et rassemblera ses élus des quatre vents. Nul n'en connaît le jour, ni les anges, ni le Fils, mais le Père seul : comme Dieu, le Fils le connaît, mais selon sa nature humaine il ne l'a pas reçu pour le faire connaître. Il ajoute : <em>« Le ciel et la terre passeront, mais mes paroles ne passeront pas. »</em> <span class="ref">Matthieu 24:35</span>. Aussi appelle-t-il à veiller : <em>« Veillez, car vous ne savez ni le jour ni l'heure. »</em> <span class="ref">Matthieu 25:13</span>.</p>
-
-      <p>Il achève sur le jugement dernier : le Fils de l'homme, sur son trône de gloire, sépare les hommes comme le berger sépare les brebis des boucs. Il met à part ceux qui l'ont servi sans le savoir, dans l'affamé, l'étranger, le prisonnier : <em>« Ce que vous avez fait à l'un de ces plus petits de mes frères, c'est à moi que vous l'avez fait. »</em> <span class="ref">Matthieu 25:40</span>. Les uns entrent dans la vie éternelle, les autres dans le châtiment éternel, selon l'amour qu'ils auront porté ou refusé.</p>
+      <p>Sortant du Temple, comme ses disciples en admirent les belles pierres, Jésus annonce qu'il n'en restera pas pierre sur pierre. Sur le mont des Oliviers, il parle des temps qui viennent : la ruine de Jérusalem, les épreuves de l'Église, et son propre retour dans la gloire, quand le Fils de l'homme viendra sur les nuées rassembler ses élus. Nul n'en connaît le jour : <em>« Veillez donc, car vous ne savez ni le jour ni l'heure. »</em> <span class="ref">Matthieu 25:13</span>. Il achève sur le jugement dernier, où le Roi séparera les hommes selon l'amour qu'ils auront eu, car ce qu'on a fait au plus petit, c'est à lui qu'on l'a fait.</p>
 
       <h2>La trahison de Judas</h2>
       <p>Les chefs cherchent à le faire périr sans soulever le peuple. L'un des Douze, Judas, vient à eux et offre de le livrer ; ils conviennent d'un prix, trente pièces d'argent, accomplissant la prophétie de Zacharie (Zacharie 11:12-13). Dès lors il guette le moment favorable. Celui qui partageait sa table et son intimité prépare en secret de le vendre.</p>
 
       <h2>La dernière Cène</h2>
-      <p>Le soir venu, Jésus mange la Pâque avec les Douze, et porte cette Pâque à son terme : l'agneau pascal immolé pour la délivrance d'Israël laisse place à l'Agneau de Dieu. Il se lève, ceint un linge et lave les pieds de ses disciples, l'office d'un esclave, puis leur en donne le sens : <em>« Si je vous ai lavé les pieds, moi le Seigneur et le Maître, vous devez vous aussi vous laver les pieds les uns aux autres. »</em> <span class="ref">Jean 13:14</span>. Il leur laisse son commandement : <em>« Aimez-vous les uns les autres comme je vous ai aimés. »</em> <span class="ref">Jean 13:34</span>. Puis, prenant le pain, il le bénit, le rompt et le donne : <em>« Ceci est mon corps, livré pour vous. »</em> <span class="ref">Luc 22:19</span> ; et de même la coupe : <em>« Ceci est mon sang, le sang de l'alliance, versé pour la multitude. »</em> <span class="ref">Marc 14:24</span>. Sous le pain et le vin, il se donne lui-même en nourriture et scelle dans son sang l'alliance nouvelle annoncée par Jérémie (Jérémie 31:31). Par les mots <em>« Faites ceci en mémoire de moi »</em> <span class="ref">Luc 22:19</span>, il confie aux siens de refaire ce qu'il vient d'accomplir, instituant le mémorial qui rend présent son unique sacrifice. Il annonce que l'un d'eux le livrera ; Judas sort dans la nuit. Et il prédit à Pierre, qui jure de ne jamais l'abandonner, qu'avant le chant du coq il l'aura renié trois fois.</p>
+      <p>Le soir venu, Jésus mange la Pâque avec les Douze. Il se lève, ceint un linge et lave les pieds de ses disciples, l'office d'un esclave, puis leur en donne le sens : <em>« Si je vous ai lavé les pieds, moi le Seigneur et le Maître, vous devez vous aussi vous laver les pieds les uns aux autres. »</em> <span class="ref">Jean 13:14</span>. Il leur laisse son commandement : <em>« Aimez-vous les uns les autres comme je vous ai aimés. »</em> <span class="ref">Jean 13:34</span>. Puis, prenant le pain, il le bénit, le rompt et le donne : <em>« Ceci est mon corps, livré pour vous. »</em> <span class="ref">Luc 22:19</span> ; et de même la coupe : <em>« Ceci est mon sang, le sang de l'alliance, versé pour la multitude. »</em> <span class="ref">Marc 14:24</span>. Sous le pain et le vin, il se donne lui-même en nourriture, et institue le mémorial de son sacrifice : <em>« Faites ceci en mémoire de moi. »</em> <span class="ref">Luc 22:19</span>. Il annonce que l'un d'eux le livrera ; Judas sort dans la nuit. Et Jésus prédit à Pierre, qui jure de ne jamais l'abandonner, qu'avant le chant du coq il l'aura renié trois fois.</p>
 
       <h2>Le discours d'adieu</h2>
-      <p>Après le départ de Judas, Jésus parle longuement aux siens, comme un testament. Il les console de son départ : il va leur préparer une place dans la maison de son Père, et il est lui-même la route pour l'y rejoindre, <em>« Je suis le chemin, la vérité et la vie ; nul ne vient au Père que par moi. »</em> <span class="ref">Jean 14:6</span>. Il promet de ne pas les laisser orphelins : il leur enverra d'auprès du Père le Paraclet, le mot grec rendu par « défenseur » et « consolateur », <em>paraklētos</em> (παράκλητος), l'Esprit de vérité qui demeurera en eux et les conduira vers la vérité tout entière. Il se dit la vraie vigne dont ils sont les sarments : <em>« Demeurez en moi, et moi en vous ; sans moi, vous ne pouvez rien faire. »</em> <span class="ref">Jean 15:4-5</span>, et il montre jusqu'où va l'amour qu'il leur commande : <em>« Nul n'a de plus grand amour que de donner sa vie pour ses amis. »</em> <span class="ref">Jean 15:13</span>. Il les prévient enfin que le monde les haïra comme il l'a haï, mais que leur tristesse se changera en joie, et que tout ce qu'ils demanderont au Père en son nom leur sera donné.</p>
-
-      <h2>La prière sacerdotale</h2>
-      <p>Au terme de ce discours, Jésus lève les yeux au ciel et prie : c'est la prière qu'on nomme sacerdotale, car il s'y offre lui-même pour les siens, en grand prêtre. Il demande d'abord sa propre glorification, celle qu'il avait auprès du Père avant que le monde fût, afin que par lui le Père soit glorifié. Il prie pour ses disciples, que le Père les garde du mal et les sanctifie : <em>« Consacre-les dans la vérité ; ta parole est vérité. »</em> <span class="ref">Jean 17:17</span>. Il prie enfin pour tous ceux qui croiront par leur parole, demandant qu'ils soient un : <em>« Que tous soient un, comme toi, Père, tu es en moi et moi en toi, afin que le monde croie que tu m'as envoyé. »</em> <span class="ref">Jean 17:21</span>. L'unité des siens, fondée sur celle du Père et du Fils, devient le signe par lequel le monde reconnaîtra l'envoyé de Dieu.</p>
+      <p>Avant de sortir, Jésus parle longuement aux siens. Il les console de son départ et leur ouvre le chemin : <em>« Je suis le chemin, la vérité et la vie ; nul ne vient au Père que par moi. »</em> <span class="ref">Jean 14:6</span>. Il promet de ne pas les laisser seuls : le Père leur enverra le Paraclet, le mot grec rendu par « défenseur » et « consolateur », <em>paraklētos</em> (παράκλητος), l'Esprit de vérité qui demeurera en eux. Il se dit la vraie vigne dont ils sont les sarments : <em>« Demeurez en moi, et moi en vous ; sans moi, vous ne pouvez rien faire. »</em> <span class="ref">Jean 15:4-5</span>. Enfin, levant les yeux au ciel, il prie pour eux et pour tous ceux qui croiront, demandant qu'ils soient un : <em>« Que tous soient un, comme toi, Père, tu es en moi et moi en toi. »</em> <span class="ref">Jean 17:21</span>.</p>
 
       <h2>Gethsémani</h2>
-      <p>Sorti au jardin de Gethsémani, au pied du mont des Oliviers, Jésus prend avec lui Pierre, Jacques et Jean, les mêmes qui l'avaient vu transfiguré, et l'angoisse le saisit : <em>« Mon âme est triste à en mourir. »</em> <span class="ref">Marc 14:34</span>. Il s'écarte, tombe la face contre terre et prie : <em>« Père, s'il est possible, que cette coupe s'éloigne de moi ; cependant, non pas ma volonté, mais la tienne. »</em> <span class="ref">Matthieu 26:39</span>. La coupe est celle de la Passion qu'il va boire, le calice de la souffrance et de la mort. Vrai homme, il redoute la mort comme tout homme la redoute, et rien de sa divinité ne lui épargne cette épreuve. En lui se tiennent deux volontés, l'une divine, l'autre humaine ; sa volonté d'homme recule devant la mort, et librement il la remet à la volonté du Père. Dans ce <em>« non pas ma volonté, mais la tienne »</em>, l'obéissance du nouvel Adam renverse la désobéissance du premier : ce qu'Adam avait perdu dans un jardin en préférant sa volonté à celle de Dieu, le Christ le redresse dans un jardin en livrant la sienne. Un ange du ciel vient le réconforter, et sa sueur devient comme des gouttes de sang qui tombent à terre (Luc 22:43-44). Par trois fois il revient vers ses disciples et les trouve endormis : <em>« Veillez et priez, pour ne pas entrer en tentation : l'esprit est ardent, mais la chair est faible. »</em> <span class="ref">Matthieu 26:41</span>. Judas survient avec une troupe armée et le désigne d'un baiser ; Jésus lui répond : <em>« Judas, c'est par un baiser que tu livres le Fils de l'homme ? »</em> <span class="ref">Luc 22:48</span>. Pierre tire l'épée et tranche l'oreille d'un serviteur ; Jésus la guérit et lui ordonne de rengainer, car il pourrait demander au Père des légions d'anges ; il choisit d'accomplir les Écritures : <em>« Ne boirai-je pas la coupe que le Père m'a donnée ? »</em> <span class="ref">Jean 18:11</span>. Tous les disciples l'abandonnent alors et fuient.</p>
+      <p>Sorti au jardin de Gethsémani, Jésus prend avec lui Pierre, Jacques et Jean, et l'angoisse le saisit : <em>« Mon âme est triste à en mourir. »</em> <span class="ref">Marc 14:34</span>. Il tombe la face contre terre et prie : <em>« Père, s'il est possible, que cette coupe s'éloigne de moi ; cependant, non pas ma volonté, mais la tienne. »</em> <span class="ref">Matthieu 26:39</span>. Sa sueur devient comme des gouttes de sang qui tombent à terre. Les disciples, eux, s'endorment. Judas survient avec une troupe armée et le désigne d'un baiser ; Jésus lui répond : <em>« Judas, c'est par un baiser que tu livres le Fils de l'homme ? »</em> <span class="ref">Luc 22:48</span>. Pierre tire l'épée et tranche l'oreille d'un serviteur ; Jésus la guérit et lui ordonne de la rengainer, car il doit boire la coupe que le Père lui donne. Tous les disciples l'abandonnent et fuient.</p>
 
       <h2>Le procès juif</h2>
       <p>On le conduit chez le grand prêtre Caïphe, où s'assemblent les chefs. Des témoins se contredisent. Le grand prêtre le somme enfin : <em>« Es-tu le Christ, le Fils du Béni ? »</em> <span class="ref">Marc 14:61</span>. Jésus répond : <em>« Je le suis ; et vous verrez le Fils de l'homme siéger à la droite du Tout-Puissant et venir sur les nuées du ciel. »</em> <span class="ref">Marc 14:62</span>. Il reprend la figure annoncée par Daniel, le Fils de l'homme qui vient sur les nuées recevoir la domination sur toutes les nations (Daniel 7:13-14). À ses juges, Jésus annonce qu'ils le verront revenir dans cette gloire, et qu'ils comparaîtront à leur tour devant lui.</p>
@@ -546,7 +676,7 @@ const ARTICLES = [
       <p>Voyant Jésus condamné, Judas est pris de remords. Il rapporte les trente pièces aux chefs : <em>« J'ai péché en livrant un sang innocent. »</em> <span class="ref">Matthieu 27:4</span>. Eux le repoussent : cela le regarde, non eux. Il jette l'argent dans le Temple, se retire et se pend. De cette somme, les chefs achètent le champ d'un potier pour la sépulture des étrangers, qu'on appelle depuis le Champ du Sang.</p>
 
       <h2>La crucifixion</h2>
-      <p>On le mène hors des murs de la ville, portant sa croix ; comme il défaille, on contraint un passant, Simon de Cyrène, à la porter derrière lui. Aux femmes qui se lamentent sur lui, il dit de pleurer plutôt sur elles-mêmes et sur leurs enfants : <em>« Si l'on traite ainsi le bois vert, qu'adviendra-t-il du bois sec ? »</em> <span class="ref">Luc 23:31</span>, annonçant le malheur qui fondra sur Jérusalem. Au lieu dit Golgotha, <em>« lieu du Crâne »</em>, on le crucifie entre deux malfaiteurs : ainsi s'accomplit ce qu'Isaïe avait dit du Serviteur, <em>« il a été compté parmi les criminels. »</em> <span class="ref">Isaïe 53:12</span>. Les soldats se partagent ses vêtements et tirent au sort sa tunique, sans le savoir fidèles au psaume du juste souffrant (Psaume 22:19). Au-dessus de sa tête, un écriteau porte le motif de sa condamnation, en hébreu, en latin et en grec, pour que tous le lisent : <em>« Jésus de Nazareth, roi des Juifs. »</em> <span class="ref">Jean 19:19</span>. Les chefs, les soldats et les passants le raillent : <em>« Il a sauvé les autres ; qu'il se sauve lui-même, s'il est le Christ, l'élu de Dieu. »</em> <span class="ref">Luc 23:35</span>. Ils disent vrai sans le comprendre : il ne descend pas de la croix précisément parce qu'il sauve les autres, et c'est en n'épargnant pas sa vie qu'il la donne. Il prie pour ses bourreaux : <em>« Père, pardonne-leur, car ils ne savent pas ce qu'ils font. »</em> <span class="ref">Luc 23:34</span>. L'un des crucifiés l'insulte ; l'autre reconnaît sa faute et l'implore, et Jésus lui promet : <em>« Aujourd'hui, tu seras avec moi dans le paradis. »</em> <span class="ref">Luc 23:43</span>. Voyant sa mère et le disciple qu'il aimait, il les donne l'un à l'autre : <em>« Femme, voici ton fils »</em>, <em>« Voici ta mère. »</em> <span class="ref">Jean 19:26-27</span>. Ce disciple tient la place de tous les croyants : en le confiant à Marie, le Christ donne sa mère pour mère à toute l'Église.</p>
+      <p>On le mène hors des murs, portant sa croix ; comme il défaille, on contraint un passant, Simon de Cyrène, à la porter derrière lui. Aux femmes qui se lamentent, il dit de pleurer plutôt sur elles-mêmes et sur leurs enfants. Au lieu dit Golgotha, « lieu du Crâne », on le crucifie entre deux malfaiteurs. Au-dessus de sa tête, un écriteau porte le motif de sa condamnation, en hébreu, en latin et en grec : <em>« Jésus de Nazareth, roi des Juifs. »</em> <span class="ref">Jean 19:19</span>. Il prie pour ses bourreaux : <em>« Père, pardonne-leur, car ils ne savent pas ce qu'ils font. »</em> <span class="ref">Luc 23:34</span>. L'un des crucifiés l'insulte ; l'autre reconnaît sa faute et l'implore, et Jésus lui promet : <em>« Aujourd'hui, tu seras avec moi dans le paradis. »</em> <span class="ref">Luc 23:43</span>. Voyant sa mère et le disciple qu'il aimait, il les donne l'un à l'autre : <em>« Femme, voici ton fils », « Voici ta mère. »</em> <span class="ref">Jean 19:26-27</span>. Ce disciple tient la place de tous les croyants : en le confiant à Marie, le Christ donne sa mère pour mère à toute l'Église.</p>
 
       <h2>La mort du Christ</h2>
       <p>De midi à trois heures, les ténèbres couvrent toute la terre. Celui qui meurt sur la Croix est la lumière du monde (Jean 8:12), et la création s'obscurcit avec lui : signe du jugement et de l'heure où le pouvoir des ténèbres semble l'emporter, comme le prophète avait annoncé un jour où le soleil se coucherait à midi (Amos 8:9). Jésus pousse alors un grand cri, priant l'ouverture du psaume 22 : <em>« Mon Dieu, mon Dieu, pourquoi m'as-tu abandonné ? »</em> <span class="ref">Matthieu 27:46</span>. Ce psaume du juste souffrant s'achève dans la délivrance et la louange : en le faisant sien, Jésus porte jusqu'au bout la détresse des pécheurs, sans que jamais soit rompue son union au Père. Il dit : <em>« J'ai soif »</em> <span class="ref">Jean 19:28</span> ; à la soif de son corps épuisé, on répond par du vinaigre, accomplissant l'Écriture (Psaume 69:22). Il déclare alors son œuvre achevée : <em>« Tout est accompli. »</em> <span class="ref">Jean 19:30</span> ; le salut pour lequel il était venu est désormais acquis. Il remet librement sa vie au Père : <em>« Père, entre tes mains je remets mon esprit. »</em> <span class="ref">Luc 23:46</span>. À cet instant, le voile du Temple se déchire en deux du haut en bas. Ce voile fermait le lieu très saint, où se manifestait la présence de Dieu ; déchiré d'en haut, il signifie que la mort du Christ ouvre à tous l'accès de Dieu, désormais sans barrière. Le centurion qui le gardait s'écrie : <em>« Vraiment, cet homme était Fils de Dieu. »</em> <span class="ref">Marc 15:39</span>. Un soldat lui perce le côté d'un coup de lance, et il en sort aussitôt du sang et de l'eau, où l'Église reconnaît la source de ses sacrements, l'eau du baptême et le sang de l'eucharistie, jaillis de son côté ouvert.</p>
@@ -563,9 +693,6 @@ const ARTICLES = [
     date: "2026",
     contenu: `
       <p>Après la défection du Pain de vie, Jésus quitte la Galilée et se retire vers les régions païennes. L'année qui vient révèle peu à peu qui il est : le Messie qui doit souffrir, mourir et ressusciter. Elle s'ouvre sur la confession de Pierre et la Transfiguration, se déploie dans la longue montée vers Jérusalem que rapporte Luc, traverse les grandes fêtes où Jean situe les controverses, et s'achève à Béthanie, au seuil de la Passion. À mesure que sa gloire se dévoile, l'opposition des chefs se durcit jusqu'à la décision de le faire mourir.</p>
-
-      <h2>Les traditions des anciens</h2>
-      <p>Des pharisiens et des scribes venus de Jérusalem reprochent aux disciples de manger sans s'être lavé les mains, négligeant la tradition des anciens, ces règles de pureté rituelle ajoutées à la Loi au fil des générations. Jésus leur applique la parole d'Isaïe (Isaïe 29:13) : <em>« Ce peuple m'honore des lèvres, mais son cœur est loin de moi ; c'est en vain qu'ils me rendent un culte, enseignant des préceptes qui sont des commandements d'hommes. »</em> Ils tiennent à leur tradition au point d'annuler le commandement de Dieu. Il le montre par un usage qu'ils autorisent : un homme peut déclarer « corban », un mot hébreu, <em>qorbân</em> (קָרְבָּן), qui signifie « offrande consacrée à Dieu », les biens dont son père et sa mère auraient besoin, et se croire dès lors dispensé de les secourir. Leur règle humaine défait ainsi le commandement <em>« Honore ton père et ta mère »</em> <span class="ref">Exode 20:12</span>. Puis Jésus appelle la foule et lui déclare : <em>« Rien de ce qui entre dans l'homme du dehors ne peut le souiller ; mais ce qui sort de l'homme, voilà ce qui le souille. »</em> <span class="ref">Marc 7:15</span>. La nourriture passe par le ventre et s'évacue, elle ne touche pas le cœur ; du cœur, lui, sortent les pensées mauvaises, les meurtres, les vols, les convoitises, et c'est là ce qui souille l'homme. Leur tradition veillait sur une pureté de surface, quand Dieu regarde le cœur.</p>
 
       <h2>La foi des nations</h2>
       <p>Jésus se retire vers Tyr et Sidon, en terre païenne. Une femme cananéenne le supplie pour sa fille tourmentée par un démon. Il lui oppose d'abord une image prise de la table : les enfants de la maison sont nourris avant les petits chiens qui attendent dessous. Les enfants, c'est Israël, le peuple de l'alliance, à qui le salut est promis et envoyé d'abord ; les nations, figurées par les petits chiens, ne viennent qu'ensuite. La femme accepte cette place et retourne l'image avec foi : <em>« Les petits chiens mangent les miettes qui tombent de la table de leurs maîtres. »</em> <span class="ref">Matthieu 15:27</span>. Pour cette confiance humble et tenace, Jésus exauce sa prière. Revenu vers la Décapole, terre en grande partie païenne, il ouvre les oreilles d'un sourd-muet d'un seul mot, <em>« Ephphatha »</em>, c'est-à-dire « Ouvre-toi » <span class="ref">Marc 7:34</span>, puis y nourrit une foule de quatre mille hommes avec sept pains, et l'on emporte sept corbeilles. Hors d'Israël, le don commence à s'étendre.</p>
@@ -589,12 +716,6 @@ const ARTICLES = [
       <h2>La meilleure part</h2>
       <p>Reçu chez deux sœurs, Jésus voit Marthe s'affairer au service tandis que Marie se tient à ses pieds pour l'écouter. Marthe se plaint d'être seule à servir ; Jésus lui répond qu'une seule chose est nécessaire : <em>« Marie a choisi la bonne part, qui ne lui sera pas enlevée. »</em> <span class="ref">Luc 10:42</span>. Écouter le Seigneur passe avant l'agitation. Il enseigne aussi la prière persévérante : il faut prier sans se lasser et demander avec confiance, car le Père donne à ses enfants plus que tout père de la terre, jusqu'à l'Esprit Saint (Luc 11:13).</p>
 
-      <h2>La femme courbée</h2>
-      <p>Un jour de sabbat, Jésus enseigne dans une synagogue. Là se tient une femme qu'un esprit rend infirme depuis dix-huit ans : elle est toute courbée et ne peut se redresser. Jésus l'appelle et lui impose les mains : <em>« Femme, tu es délivrée de ton infirmité. »</em> <span class="ref">Luc 13:12</span>. À l'instant elle se redresse et rend gloire à Dieu. Le chef de la synagogue s'indigne qu'on guérisse le jour du sabbat et dit à la foule de venir se faire guérir l'un des six jours de travail. Jésus lui répond : <em>« Hypocrites ! Est-ce que chacun de vous, le jour du sabbat, ne détache pas de la crèche son bœuf ou son âne pour le mener boire ? Et cette fille d'Abraham, que Satan tenait liée depuis dix-huit ans, ne fallait-il pas la délivrer de ce lien le jour du sabbat ? »</em> <span class="ref">Luc 13:15-16</span>. Le chef met l'animal au-dessus d'une fille d'Abraham.</p>
-
-      <h2>L'hydropique</h2>
-      <p>Un autre sabbat, Jésus est reçu à la table d'un chef des pharisiens, et tous l'observent. Devant lui se trouve un homme atteint d'hydropisie, une accumulation d'eau qui enfle et alourdit le corps. Jésus interroge les docteurs de la Loi et les pharisiens : <em>« Est-il permis, ou non, de guérir le jour du sabbat ? »</em> <span class="ref">Luc 14:3</span>. Ils se taisent. Il prend l'homme, le guérit et le renvoie, puis revient à eux : <em>« Qui de vous, si son fils ou son bœuf tombe dans un puits, ne l'en retire aussitôt le jour du sabbat ? »</em> <span class="ref">Luc 14:5</span>. Personne ne laisserait son fils au fond d'un puits jusqu'au lendemain ; secourir un homme presse autant. <em>« Et ils ne purent rien répondre à cela. »</em> <span class="ref">Luc 14:6</span>.</p>
-
       <h2>Les paraboles de la miséricorde</h2>
       <p>Aux pharisiens qui lui reprochent d'accueillir les pécheurs, Jésus répond par trois récits qui disent tous le même cœur de Dieu. Un berger qui a cent brebis en perd une : il laisse les autres et court après l'égarée jusqu'à la retrouver, puis se réjouit. Une femme qui perd une pièce balaie toute la maison jusqu'à la retrouver et appelle ses voisines pour partager sa joie. Dieu agit ainsi : il cherche le pécheur perdu et se réjouit de le retrouver. Le troisième récit va plus loin. Un fils réclame sa part d'héritage, part au loin, dilapide tout et tombe dans une misère telle qu'il envie la nourriture des porcs. Réduit à rien, il reconnaît sa faute et revient vers son père, prêt à n'être qu'un serviteur. Mais le père l'aperçoit de loin, court à lui, le couvre de baisers, le revêt de la plus belle robe, lui met l'anneau au doigt et fait tuer le veau gras : il le rétablit non comme un domestique, mais comme son fils. <em>« Mon fils que voici était mort, et il est revenu à la vie ; il était perdu, et il est retrouvé. »</em> <span class="ref">Luc 15:24</span>. Le fils aîné, resté fidèle, s'indigne de cette fête : il figure ceux qui servent Dieu mais lui reprochent sa miséricorde envers les pécheurs. Le père l'appelle à se réjouir avec lui, car telle est la joie du ciel pour un seul pécheur qui revient.</p>
 
@@ -604,23 +725,20 @@ const ARTICLES = [
       <h2>L'indissolubilité du mariage</h2>
       <p>Interrogé sur le divorce, Jésus renvoie au commencement : Dieu fit l'homme et la femme et dit que les deux ne seraient qu'une seule chair (Genèse 2:24). <em>« Que l'homme ne sépare pas ce que Dieu a uni. »</em> <span class="ref">Marc 10:9</span>. Si Moïse a permis l'acte de divorce, c'est à cause de la dureté des cœurs, mais il n'en était pas ainsi à l'origine. Le Christ rend au mariage son unité première et indissoluble : l'union des époux tient de Dieu lui-même, et aucune volonté humaine ne peut la rompre.</p>
 
-      <h2>Les dix lépreux</h2>
-      <p>Sur la route de Jérusalem, dix lépreux se tiennent à distance, comme la Loi l'exigeait, et crient : <em>« Jésus, Maître, aie pitié de nous. »</em> <span class="ref">Luc 17:13</span>. Il les envoie se montrer aux prêtres, et c'est en chemin, dans l'acte d'obéir, qu'ils se trouvent purifiés. Un seul, voyant qu'il est guéri, revient sur ses pas en glorifiant Dieu et tombe aux pieds de Jésus pour le remercier ; et c'est un Samaritain, un étranger. Jésus relève l'absence des autres : <em>« Les dix n'ont-ils pas été purifiés ? Les neuf, où sont-ils ? »</em> <span class="ref">Luc 17:17</span>. Les neuf ont reçu le don sans revenir vers celui qui le donne. À celui qui revient, Jésus accorde plus que la guérison du corps : <em>« Relève-toi, ta foi t'a sauvé. »</em> <span class="ref">Luc 17:19</span>.</p>
-
-      <h2>Le pharisien et le publicain</h2>
-      <p>Jésus oppose, dans une parabole, deux hommes montés prier au Temple. Le pharisien se tient debout et prie sur lui-même : il remercie Dieu de n'être pas comme les autres, voleurs, injustes, adultères, ni comme ce publicain ; il jeûne deux fois la semaine et paie la dîme de tout. Le publicain, à distance, n'ose lever les yeux ; il se frappe la poitrine : <em>« Mon Dieu, prends pitié du pécheur que je suis. »</em> <span class="ref">Luc 18:13</span>. Le premier compte ses mérites devant Dieu, le second n'apporte que son péché et sa demande. C'est le publicain qui redescend justifié : <em>« Quiconque s'élève sera abaissé, et qui s'abaisse sera élevé. »</em> <span class="ref">Luc 18:14</span>.</p>
+      <h2>L'action de grâce et l'humilité</h2>
+      <p>Dix lépreux sont guéris en chemin, mais un seul revient se jeter aux pieds de Jésus pour rendre grâce, et c'est un Samaritain : <em>« Ta foi t'a sauvé. »</em> <span class="ref">Luc 17:19</span>. Jésus oppose encore deux hommes montés prier au Temple. Le pharisien énumère ses mérites ; le publicain, sans oser lever les yeux, se frappe la poitrine : <em>« Mon Dieu, prends pitié du pécheur que je suis. »</em> <span class="ref">Luc 18:13</span>. C'est lui qui redescend justifié, car <em>« quiconque s'élève sera abaissé, et qui s'abaisse sera élevé »</em> <span class="ref">Luc 18:14</span>.</p>
 
       <h2>La fête des Tentes</h2>
-      <p>Jésus monte à Jérusalem pour la fête des Tentes, qui rappelait les quarante ans passés sous la tente au désert. Chaque jour de la fête, les prêtres puisaient de l'eau à la piscine de Siloé et la versaient sur l'autel, en mémoire de l'eau jaillie du rocher au désert, lorsque Moïse, sur l'ordre de Dieu, frappa le rocher et que l'eau en sortit pour le peuple assoiffé (Exode 17:6), et pour demander la pluie, car la fête tombait au seuil de la saison des pluies dont dépendaient les récoltes de l'année. Au dernier jour, le plus solennel, comme ce rite de l'eau atteint son sommet, Jésus se lève et s'écrie : <em>« Si quelqu'un a soif, qu'il vienne à moi et qu'il boive. »</em> <span class="ref">Jean 7:37</span>. De celui qui croit en lui, ajoute-t-il, couleront des fleuves d'eau vive, selon ce qu'avait annoncé Zacharie : <em>« En ce jour-là, des eaux vives sortiront de Jérusalem. »</em> <span class="ref">Zacharie 14:8</span>. Il se donne pour la source que le rocher et le rite annonçaient, et cette eau vive, l'évangéliste le précise, c'est l'Esprit que recevront les croyants : <em>« Cela, il le dit de l'Esprit que devaient recevoir ceux qui croient en lui. »</em> <span class="ref">Jean 7:39</span>. La foule se divise à son sujet. Les gardes envoyés pour l'arrêter reviennent sans lui, et s'en expliquent à ceux qui les avaient envoyés : <em>« Jamais homme n'a parlé comme cet homme. »</em> <span class="ref">Jean 7:46</span>.</p>
+      <p>Jésus monte à Jérusalem pour la fête des Tentes et enseigne au Temple. Au dernier jour, le plus solennel, il s'écrie : <em>« Si quelqu'un a soif, qu'il vienne à moi et qu'il boive. »</em> <span class="ref">Jean 7:37</span>. De celui qui croit en lui couleront des fleuves d'eau vive : il annonce l'Esprit qu'il donnera. La foule se divise à son sujet, et les gardes envoyés pour l'arrêter reviennent sans lui, expliquant à ceux qui les avaient envoyés : <em>« Jamais homme n'a parlé comme cet homme. »</em> <span class="ref">Jean 7:46</span>.</p>
 
       <h2>La femme adultère</h2>
-      <p>On lui amène une <a href="#/article/le-doigt-de-dieu">femme surprise en adultère</a>, pour le prendre au piège entre la Loi, qui réclame la lapidation, et la miséricorde, qui appelle au pardon. Jésus se baisse et écrit sur le sol, puis se relève : <em>« Que celui d'entre vous qui est sans péché lui jette le premier la pierre. »</em> <span class="ref">Jean 8:7</span>. Les accusateurs se retirent un à un. Resté seul avec elle, il ne la condamne pas, mais ne tait pas la faute : <em>« Va, et désormais ne pèche plus. »</em> <span class="ref">Jean 8:11</span>. La miséricorde relève sans abolir l'exigence : elle pardonne le péché et appelle à le quitter.</p>
+      <p>On lui amène une femme surprise en adultère, pour le prendre au piège entre la Loi qui la condamne à la lapidation et la miséricorde. Jésus se baisse et écrit sur le sol, puis se relève : <em>« Que celui d'entre vous qui est sans péché lui jette le premier la pierre. »</em> <span class="ref">Jean 8:7</span>. Les accusateurs se retirent un à un. Resté seul avec elle, il ne la condamne pas, mais ne tait pas la faute : <em>« Va, et désormais ne pèche plus. »</em> <span class="ref">Jean 8:11</span>. La miséricorde relève sans abolir l'exigence : elle pardonne le péché et appelle à le quitter.</p>
 
       <h2>« Avant qu'Abraham fût, Je Suis »</h2>
       <p>Au Temple, Jésus déclare que celui qui garde sa parole ne verra jamais la mort, et qu'Abraham a tressailli de voir son jour. On s'étonne : il n'a pas cinquante ans, et il aurait vu Abraham ? Il répond : <em>« Avant qu'Abraham fût, Je Suis. »</em> <span class="ref">Jean 8:58</span>. Il reprend pour lui le nom que Dieu révéla à Moïse, <em>egō eimi</em> (ἐγώ εἰμι), « Je suis » (Exode 3:14) : il s'attribue l'existence éternelle de Dieu. On ramasse des pierres pour le lapider comme un blasphémateur, mais il se dérobe.</p>
 
       <h2>L'aveugle-né</h2>
-      <p>Jésus rencontre un homme aveugle de naissance. Les disciples demandent qui a péché, lui ou ses parents ; Jésus écarte les deux : <em>« Ni lui ni ses parents n'ont péché, mais c'est afin que les œuvres de Dieu se manifestent en lui. »</em> <span class="ref">Jean 9:3</span>. Puis Jésus <em>« cracha à terre, fit de la boue avec sa salive, et oignit de cette boue les yeux de l'aveugle. »</em> <span class="ref">Jean 9:6</span>. La même terre servit au commencement : <em>« Dieu forma l'homme de la poussière du sol. »</em> <span class="ref">Genèse 2:7</span>. Cet homme était né privé de la vue, et le Créateur reprend la poussière pour achever en lui ce qui manquait depuis l'origine. Jésus l'envoie se laver à la piscine de Siloé, dont le nom, en hébreu <em>Shiloach</em> (שִׁלֹחַ), signifie « envoyé ». Ce nom désigne le Christ, l'Envoyé du Père : l'Envoyé envoie l'aveugle aux eaux qui portent son nom. L'homme s'y lave et revient voyant ; l'eau de Siloé figure le baptême, où l'eau unie au Christ ouvre les yeux à la lumière de la foi. Conduit devant les pharisiens, il est interrogé, car Jésus avait fait la boue un jour de sabbat. Les avis se partagent : pour les uns, un homme qui ne garde pas le sabbat ne vient pas de Dieu ; pour les autres, un pécheur ne saurait accomplir de tels signes. Ils demandent à l'aveugle guéri ce qu'il en pense : <em>« C'est un prophète. »</em> <span class="ref">Jean 9:17</span>. Doutant qu'il soit né aveugle, ils convoquent ses parents, qui, par peur d'être exclus de la synagogue, se bornent à confirmer qu'il est leur fils et qu'il est né aveugle. On rappelle alors l'homme pour qu'il reconnaisse en Jésus un pécheur ; il s'en tient à ce qu'il sait : <em>« Je ne sais s'il est un pécheur ; je sais une chose : j'étais aveugle, et maintenant je vois. »</em> <span class="ref">Jean 9:25</span>. Comme ils insistent, il raisonne : Dieu n'exauce pas les pécheurs, jamais on n'a ouvert les yeux d'un aveugle-né, et si cet homme ne venait pas de Dieu, il ne pourrait rien faire. Ils répliquent : <em>« Tu es né tout entier dans le péché, et tu nous fais la leçon ! »</em> <span class="ref">Jean 9:34</span>, et ils le chassent. L'aveugle, qui savait son besoin, a reçu la vue du corps et la lumière de la foi ; les pharisiens, sûrs de voir et de savoir, refusent celui que le miracle leur montre et demeurent aveugles : <em>« Je suis venu en ce monde pour un jugement : que ceux qui ne voient pas voient, et que ceux qui voient deviennent aveugles. »</em> <span class="ref">Jean 9:39</span>. Jésus retrouve l'homme chassé et se révèle à lui comme le Fils de l'homme, celui en qui il faut croire ; l'homme se prosterne : <em>« Je crois, Seigneur. »</em> <span class="ref">Jean 9:38</span>.</p>
+      <p>Jésus rencontre un homme aveugle de naissance. Ni lui ni ses parents n'ont péché : il est ainsi <em>« pour que les œuvres de Dieu se manifestent en lui »</em> <span class="ref">Jean 9:3</span>. Jésus fait de la boue, l'applique sur ses yeux et l'envoie se laver à la piscine de Siloé, dont le nom, <em>Shiloach</em> (שִׁלֹחַ), signifie « envoyé ». Ce nom désigne le Christ lui-même, l'Envoyé du Père : l'Envoyé envoie l'aveugle aux eaux qui portent son nom. L'eau où l'aveugle se lave figure le baptême, où l'eau, unie au Christ envoyé, ouvre les yeux à la lumière de la foi. L'homme revient voyant, et sa guérison du corps est le signe d'une guérison de l'âme. Interrogé par les pharisiens, il tient bon : celui qui l'a guéri vient de Dieu ; pour cette confession, on le chasse de la synagogue. Jésus alors le retrouve et se révèle à lui comme le Fils de l'homme, celui en qui il faut croire ; et l'homme se prosterne : <em>« Je crois, Seigneur. »</em> <span class="ref">Jean 9:38</span>. À mesure que l'aveugle voit, ceux qui se disaient clairvoyants s'enfoncent dans l'aveuglement : <em>« Je suis venu en ce monde pour un jugement : que ceux qui ne voient pas voient, et que ceux qui voient deviennent aveugles. »</em> <span class="ref">Jean 9:39</span>.</p>
 
       <h2>Le bon Pasteur</h2>
       <p>Jésus se donne lui-même pour la porte et le pasteur des brebis : <em>« Je suis le bon pasteur. Le bon pasteur donne sa vie pour ses brebis. »</em> <span class="ref">Jean 10:11</span>. Le mercenaire fuit devant le loup, mais lui connaît les siennes et les siennes le connaissent. Il a d'autres brebis qui ne sont pas de cet enclos, les nations, et il les conduira aussi : il y aura un seul troupeau et un seul pasteur. Sa mort est un don libre : <em>« Personne ne me prend ma vie, je la donne de moi-même. »</em> <span class="ref">Jean 10:18</span>. À la fête de la Dédicace, il affirme son unité avec le Père : <em>« Moi et le Père, nous sommes un. »</em> <span class="ref">Jean 10:30</span>. On reprend des pierres ; il se retire au-delà du Jourdain.</p>
@@ -631,11 +749,8 @@ const ARTICLES = [
       <h2>Les enfants et le jeune homme riche</h2>
       <p>On présente à Jésus des enfants, que les disciples écartent ; il s'en indigne : <em>« Laissez les enfants venir à moi, car le Royaume de Dieu est à ceux qui leur ressemblent. »</em> <span class="ref">Marc 10:14</span>. On reçoit le Royaume non comme un dû, mais comme un don, à la manière d'un petit enfant. Un homme riche, qui garde les commandements depuis sa jeunesse, demande ce qui lui manque ; Jésus le regarda et l'aima, puis lui répondit de vendre ses biens, de les donner aux pauvres et de le suivre. L'homme s'en va triste, car il avait de grands biens. Jésus mesure alors la difficulté pour le riche d'entrer dans le Royaume, plus malaisée que pour un chameau de passer par le chas d'une aiguille ; aux disciples effrayés il assure : <em>« Ce qui est impossible aux hommes est possible à Dieu. »</em> <span class="ref">Luc 18:27</span>.</p>
 
-      <h2>Les fils de Zébédée</h2>
-      <p>Jacques et Jean, les fils de Zébédée, s'approchent et demandent à siéger l'un à sa droite, l'autre à sa gauche, dans sa gloire. Jésus répond qu'ils ne savent pas ce qu'ils demandent : <em>« Pouvez-vous boire la coupe que je vais boire ? »</em> <span class="ref">Marc 10:38</span>. La coupe, c'est sa Passion. Il leur annonce qu'ils la boiront en effet : Jacques périra par l'épée (Actes 12:2), Jean connaîtra la persécution et l'exil (Apocalypse 1:9). Ils ont ainsi part à sa Passion : <em>« Si nous souffrons avec lui, c'est pour être aussi glorifiés avec lui. »</em> <span class="ref">Romains 8:17</span>. Quant à siéger à sa droite ou à sa gauche, ce n'est pas à lui de l'accorder, mais au Père, pour ceux qu'il y a préparés. Les dix autres s'indignent contre les deux frères. Jésus les appelle tous. Chez les nations, dit-il, les chefs dominent et font sentir leur pouvoir ; parmi eux, ce sera l'inverse : <em>« Quiconque veut être grand parmi vous, qu'il se fasse votre serviteur ; et quiconque veut être le premier, qu'il se fasse l'esclave de tous. »</em> <span class="ref">Marc 10:43-44</span>. Lui-même en donne la mesure : <em>« Le Fils de l'homme est venu non pour être servi, mais pour servir, et donner sa vie en rançon pour la multitude. »</em> <span class="ref">Marc 10:45</span>. La grandeur du Royaume se mesure au service, et Jésus l'a portée jusqu'à donner sa vie.</p>
-
       <h2>Bartimée et Zachée</h2>
-      <p>À la sortie de Jéricho, l'aveugle Bartimée mendie au bord du chemin. Apprenant que Jésus passe, il crie : <em>« Fils de David, prends pitié de moi ! »</em> <span class="ref">Marc 10:47</span>. Jésus l'appelle et lui rend la vue : <em>« Va, ta foi t'a sauvé. »</em> <span class="ref">Marc 10:52</span>. L'homme le suit sur le chemin. Dans la ville vit Zachée, chef des collecteurs d'impôts et fort riche. Au service de Rome, il lève l'impôt sur les siens et s'enrichit de ce qu'il prélève : on le tient pour un traître. Cet homme cherche à voir qui est Jésus ; trop petit pour percer la foule, il court devant et monte sur un sycomore. Jésus s'arrête sous l'arbre, l'appelle par son nom et s'invite chez lui : <em>« Zachée, descends vite, car il me faut aujourd'hui demeurer dans ta maison. »</em> <span class="ref">Luc 19:5</span>. Zachée le reçoit avec joie, tandis que la foule murmure de le voir entrer chez un pécheur. Zachée se convertit et prend un engagement : <em>« Voici, Seigneur, je donne la moitié de mes biens aux pauvres, et si j'ai fait tort à quelqu'un, je lui rends le quadruple. »</em> <span class="ref">Luc 19:8</span>. Chez celui que tous tenaient pour perdu, Jésus accomplit sa mission : <em>« Aujourd'hui le salut est entré dans cette maison, parce que lui aussi est un fils d'Abraham. Car le Fils de l'homme est venu chercher et sauver ce qui était perdu. »</em> <span class="ref">Luc 19:9-10</span>.</p>
+      <p>À l'approche de Jéricho, l'aveugle Bartimée crie sans se laisser faire taire : <em>« Fils de David, prends pitié de moi ! »</em> <span class="ref">Marc 10:47</span>. Jésus l'appelle et lui rend la vue : sa foi l'a sauvé. Dans la ville, Zachée, chef des collecteurs d'impôts, petit de taille, monte sur un sycomore pour voir Jésus, qui s'invite chez lui. La foule murmure de le voir entrer chez un pécheur ; Zachée donne la moitié de ses biens aux pauvres et rend au quadruple ce qu'il a extorqué. Jésus déclare : <em>« Aujourd'hui le salut est entré dans cette maison. Le Fils de l'homme est venu chercher et sauver ce qui était perdu. »</em> <span class="ref">Luc 19:9-10</span>.</p>
 
       <h2>L'onction de Béthanie</h2>
       <p>Six jours avant la Pâque, à Béthanie, Marie répand sur Jésus un parfum de grand prix et lui essuie les pieds de ses cheveux ; la maison s'emplit de l'odeur. Judas proteste qu'on aurait pu vendre ce parfum pour les pauvres ; mais il ne parlait pas par souci des pauvres : tenant la bourse commune, il était un voleur et y puisait pour lui (Jean 12:6). Jésus défend la femme : <em>« Laisse-la : elle a gardé ce parfum pour le jour de ma sépulture. »</em> <span class="ref">Jean 12:7</span>. L'onction qui honore le Roi prépare déjà l'ensevelissement du crucifié. La table de Béthanie ouvre sur la semaine où tout va s'accomplir.</p>
@@ -659,16 +774,11 @@ const ARTICLES = [
       <h2>L'appel de Matthieu</h2>
       <p>Passant devant le bureau des impôts, Jésus appelle Matthieu le publicain : <em>« Suis-moi. »</em> <span class="ref">Matthieu 9:9</span>. L'homme laisse tout et le suit, puis l'accueille à sa table avec d'autres collecteurs et des pécheurs. Aux pharisiens scandalisés de le voir manger avec eux, Jésus répond : <em>« Ce ne sont pas les bien portants qui ont besoin du médecin, mais les malades ; je ne suis pas venu appeler les justes, mais les pécheurs. »</em> <span class="ref">Marc 2:17</span>.</p>
 
-      <h2>La guérison du lépreux</h2>
-      <p>Un lépreux s'approche de Jésus, tombe à genoux et le supplie : <em>« Si tu le veux, tu peux me purifier. »</em> <span class="ref">Marc 1:40</span>. La lèpre retranchait alors du peuple : déclaré impur, le malade vivait à l'écart, et quiconque le touchait contractait sa souillure (Lévitique 13:45-46). Pris de compassion, Jésus étend la main et touche le lépreux, ce que nul ne faisait : <em>« Je le veux, sois purifié. »</em> <span class="ref">Marc 1:41</span>. À l'instant la lèpre le quitte. Le contact qui aurait dû rendre Jésus impur rend le lépreux pur : la pureté passe de lui au malade. Il lui ordonne de n'en rien dire et d'aller se montrer au prêtre pour offrir ce que Moïse a prescrit (Lévitique 14:2-4), afin que sa guérison soit constatée selon la Loi. L'homme proclame partout ce qui lui est arrivé, si bien que Jésus ne peut plus entrer ouvertement dans les villes.</p>
-
       <h2>Le pardon des péchés</h2>
-      <p>À Capharnaüm, la maison où il enseigne est si pleine qu'on n'en approche plus. Quatre hommes, portant un paralytique, montent sur le toit, l'ouvrent et descendent le malade devant Jésus. Voyant leur foi, il s'adresse d'abord à l'âme : <em>« Mon enfant, tes péchés te sont pardonnés. »</em> <span class="ref">Marc 2:5</span>. Les scribes s'indignent en eux-mêmes : Dieu seul peut pardonner les péchés, et cet homme blasphème. Leur raisonnement est juste sur un point, Dieu seul pardonne, et faux sur l'autre, car celui qui parle est Dieu. Jésus connaît leur pensée et leur pose la question : qu'est-il plus facile, de dire que les péchés sont remis, ou d'ordonner à un paralytique de marcher ? L'un et l'autre dépassent l'homme ; mais le second se vérifie aux yeux de tous. <em>« Or, afin que vous sachiez que le Fils de l'homme a sur la terre le pouvoir de pardonner les péchés »</em> <span class="ref">Marc 2:10</span>, il commande au malade de se lever, de prendre son brancard et de rentrer chez lui. L'homme se lève à l'instant, et la foule, saisie, rend gloire à Dieu : <em>« Jamais nous n'avons rien vu de pareil. »</em> <span class="ref">Marc 2:12</span>. La guérison visible atteste le pardon invisible : Jésus revendique, et exerce, ce qui revient à Dieu seul.</p>
+      <p>À Capharnaüm, quatre hommes, ne pouvant approcher à cause de la foule, descendent un paralytique par le toit. Jésus dit d'abord : <em>« Mon enfant, tes péchés te sont pardonnés. »</em> <span class="ref">Marc 2:5</span>. Les scribes s'indignent : Dieu seul pardonne les péchés. Pour montrer qu'il détient ce pouvoir, Jésus guérit l'homme : <em>« Lève-toi, prends ton grabat et marche. »</em> <span class="ref">Marc 2:11</span>. La guérison visible atteste le pardon invisible, et Jésus revendique ce qui revient à Dieu seul.</p>
 
       <h2>Le maître du sabbat</h2>
       <p>Les controverses se multiplient autour du sabbat. Comme ses disciples, un jour de sabbat, arrachent des épis pour les manger, les pharisiens y voient une transgression : ce jour-là, toute œuvre était interdite. Jésus rappelle que David, affamé, mangea les pains de l'offrande réservés aux prêtres, et que les prêtres eux-mêmes accomplissent au Temple leur service ce jour-là sans être en faute (1 Samuel 21:2-7). Le sabbat est donné pour le bien de l'homme : <em>« Le sabbat a été fait pour l'homme, et non l'homme pour le sabbat. »</em> <span class="ref">Marc 2:27</span>. Jésus s'attribue alors sur ce jour une autorité que Dieu seul possède : <em>« Le Fils de l'homme est maître du sabbat. »</em> <span class="ref">Marc 2:28</span>. Mémorial de la création et de l'alliance, le sabbat vient de Dieu lui-même ; s'en dire le maître, c'est se placer au rang de celui qui l'a établi.</p>
-
-      <p>Un autre jour de sabbat, Jésus entre dans la synagogue, où se trouve un homme dont la main droite est desséchée. Les pharisiens l'observent pour voir s'il va le guérir ce jour-là, cherchant de quoi l'accuser. Jésus appelle l'homme au milieu de l'assemblée et leur dit : <em>« Quel est celui d'entre vous qui, n'ayant qu'une brebis, si elle tombe dans une fosse le jour du sabbat, ne la prend et ne l'en retire ? Or, combien un homme ne vaut-il pas plus qu'une brebis ! Il est donc permis de faire du bien le jour du sabbat. »</em> <span class="ref">Matthieu 12:11-12</span>. Puis il ordonne à l'homme : <em>« Étends ta main. »</em> <span class="ref">Matthieu 12:13</span>. L'homme l'étend, et elle redevient saine. Le jour du sabbat fait pour le bien de l'homme, Jésus rend à un homme l'usage de sa main : celui qui s'est dit maître du sabbat l'exerce en accomplissant ce pour quoi ce jour fut donné. Les gardiens de la Loi préfèrent la règle à l'homme ; ils sortent décider la mort de Jésus (Matthieu 12:14).</p>
 
       <h2>La piscine de Béthesda</h2>
       <p>À l'occasion d'une fête, Jésus monte à Jérusalem. Là se trouve une piscine, Béthesda, où gît une foule d'infirmes. On croyait qu'à certains moments l'eau s'agitait, et que le premier à y descendre alors était guéri ; aussi les malades guettaient-ils ce moment. Un homme est là, paralysé depuis trente-huit ans, sans personne pour le plonger dans l'eau à temps : un autre le devance toujours. Jésus lui demande s'il veut être guéri, puis lui dit : <em>« Lève-toi, prends ton grabat et marche. »</em> <span class="ref">Jean 5:8</span>. Aussitôt l'homme est guéri. Or c'était un jour de sabbat. Au lieu de s'émerveiller qu'un infirme de trente-huit ans soit debout, les autorités ne retiennent qu'une infraction : il porte son grabat un jour de sabbat. Leur incrédulité les aveugle à l'œuvre de Dieu accomplie sous leurs yeux ; ce refus de la grâce évidente est le ressort du péché contre l'Esprit, qui les conduira bientôt à attribuer au démon les œuvres mêmes de Dieu. Jésus leur répond : <em>« Mon Père est à l'œuvre jusqu'à présent, et moi aussi je suis à l'œuvre. »</em> <span class="ref">Jean 5:17</span>. Dès lors elles cherchent d'autant plus à le faire mourir, car non seulement il violait le sabbat, mais il appelait Dieu son propre Père, se faisant l'égal de Dieu. Jésus déploie alors le mystère de son union au Père : <em>« Le Fils ne peut rien faire de lui-même, sinon ce qu'il voit faire au Père. »</em> <span class="ref">Jean 5:19</span>. Cette parole exprime leur agir commun : engendré du Père de toute éternité, le Fils reçoit tout de lui et agit avec lui, d'une seule et même puissance ; et c'est par le Fils que le Père opère toute son œuvre. Le Père aime le Fils et lui montre tout ce qu'il fait : il lui communique sa vie tout entière. Comme le Père relève les morts et donne la vie, le Fils donne la vie à qui il veut ; et le Père a remis tout jugement au Fils, <em>« afin que tous honorent le Fils comme ils honorent le Père »</em> <span class="ref">Jean 5:23</span>. Il annonce l'heure où les morts entendront la voix du Fils de Dieu et vivront, car le Fils a la vie en lui-même comme le Père a la vie en lui-même. À l'appui, il convoque quatre témoins. Jean le Baptiste d'abord : Jésus le nomme <em>« la lampe qui brûle et qui brille »</em> <span class="ref">Jean 5:35</span>, flambeau allumé pour mener à la lumière et rendre témoignage à la vérité. Ses œuvres ensuite : les miracles que le Père lui donne d'accomplir attestent, plus encore que Jean, que le Père l'a envoyé. Le Père lui-même témoigne pour son Fils. Les Écritures enfin, que ces hommes scrutent pour y trouver la vie : <em>« Ce sont elles qui rendent témoignage de moi. »</em> <span class="ref">Jean 5:39</span>. Moïse, dont ils se réclament, a écrit à son sujet : il avait annoncé qu'un prophète semblable à lui serait suscité, et que le peuple devrait l'écouter (Deutéronome 18:15-19) ; en refusant le Fils, ils renient leurs propres Écritures.</p>
@@ -679,16 +789,10 @@ const ARTICLES = [
       <p>Il enseigne une piété qui se cache : l'aumône, la prière et le jeûne se font dans le secret, sous le regard du seul Père. Au cœur du Sermon, il donne le Notre Père, la prière des fils. Il met en garde contre l'argent, qu'on ne peut servir en même temps que Dieu, et contre l'inquiétude : le Père qui nourrit les oiseaux et revêt les lis sait ce dont ses enfants ont besoin ; qu'ils cherchent d'abord le Royaume, et le reste leur sera donné. Il achève sur deux images. Par la porte étroite, il enseigne que le chemin de la vie est resserré et que peu le trouvent, tandis que la voie large mène à la perdition. Par la maison bâtie sur le roc, il montre que seul tient, quand viennent les pluies, celui qui écoute ses paroles et les met en pratique, à la différence de celui qui les écoute sans agir, dont la maison, posée sur le sable, s'effondre.</p>
 
       <h2>Les Douze</h2>
-      <p>Avant de choisir les siens, Jésus gravit la montagne et passe la nuit entière en prière (Luc 6:12). Au jour, il appelle ses disciples et en choisit douze, qu'il nomme apôtres, du grec <em>apostolos</em> (ἀπόστολος), « envoyé ». Le nombre reprend celui des douze tribus d'Israël : les Douze sont le fondement du peuple renouvelé, comme les patriarches le furent de l'ancien. Il les institue pour une double charge, <em>« afin qu'ils soient avec lui, et afin de les envoyer prêcher, avec le pouvoir de chasser les démons »</em> <span class="ref">Marc 3:14-15</span> : d'abord vivre auprès de lui, puis prolonger son œuvre en son nom. Il les nomme un à un : Simon, appelé Pierre, en tête ; puis André son frère, Jacques et Jean les fils de Zébédée, Philippe et Barthélemy, Matthieu et Thomas, Jacques fils d'Alphée et Simon le Zélote, Jude et Judas Iscariote, celui qui le livrera.</p>
+      <p>Parmi ses disciples, Jésus en choisit douze, pour qu'ils soient avec lui et qu'il les envoie prêcher avec le pouvoir de chasser les démons. Le nombre reprend celui des douze tribus : les Douze sont le fondement du peuple renouvelé. Il les nomme un à un, Simon en tête <span class="ref">Marc 3:14-19</span>.</p>
 
-      <h2>Le centurion de Capharnaüm</h2>
-      <p>Un centurion, officier romain à la tête d'une centaine d'hommes, a un serviteur malade, près de mourir. Il fait dire à Jésus de ne pas se déranger jusque chez lui : il ne s'en juge pas digne. Habitué à commander, il dit à l'un « va » et il va, à l'autre « viens » et il vient ; il reconnaît à la parole de Jésus la même autorité sur le mal : <em>« Dis seulement une parole, et mon serviteur sera guéri. »</em> <span class="ref">Luc 7:7</span>. Jésus s'en étonne et, se tournant vers la foule qui le suit, le donne en exemple : <em>« Je n'ai pas trouvé une si grande foi en Israël. »</em> <span class="ref">Luc 7:9</span>. Le serviteur est guéri à l'heure même. Ce païen croit à la parole seule, sans prodige sous les yeux, et précède Israël dans la foi : déjà se montrent les nations qui entreront dans le Royaume.</p>
-
-      <h2>Le fils de la veuve de Naïm</h2>
-      <p>À l'entrée de la ville de Naïm, Jésus croise un convoi funèbre : on porte en terre le fils unique d'une veuve. En ce temps-là, une veuve dépendait de ses fils pour vivre ; en perdant son unique enfant, cette femme perdait son seul soutien et se trouvait sans ressource. Pris de compassion, il lui dit : <em>« Ne pleure pas. »</em> <span class="ref">Luc 7:13</span>. Il touche le brancard, les porteurs s'arrêtent, et il commande au mort : <em>« Jeune homme, je te le dis, lève-toi. »</em> <span class="ref">Luc 7:14</span>. Le mort se redresse, se met à parler, et Jésus le rend à sa mère. C'est le premier qu'il rappelle de la mort. Le contact d'un cadavre rendait impur, et la mort ne se commande pas ; ici la vie passe de lui au mort, comme la pureté passait au lépreux. La foule, saisie de crainte, reconnaît : <em>« Un grand prophète s'est levé parmi nous, et Dieu a visité son peuple. »</em> <span class="ref">Luc 7:16</span>.</p>
-
-      <h2>La pécheresse pardonnée</h2>
-      <p>Un pharisien, Simon, reçoit Jésus à sa table. Une femme de la ville, connue pour ses péchés, entre, se tient en pleurs derrière lui, baigne ses pieds de ses larmes, les essuie de ses cheveux et les couvre de parfum. Simon se dit en lui-même que, s'il était prophète, Jésus saurait quelle femme le touche. Jésus répond à sa pensée par une parabole : de deux débiteurs, à qui l'on remet l'un une grosse dette, l'autre une petite, celui qui aimera le plus est celui à qui l'on a le plus remis. Simon ne lui a offert ni eau pour ses pieds ni baiser ; cette femme n'a cessé de les baigner et de les oindre. <em>« Ses péchés, qui sont nombreux, lui sont pardonnés, parce qu'elle a beaucoup aimé. »</em> <span class="ref">Luc 7:47</span>. Les convives s'interrogent : quel est celui-ci qui pardonne même les péchés ? Et Jésus à la femme : <em>« Ta foi t'a sauvée ; va en paix. »</em> <span class="ref">Luc 7:50</span>.</p>
+      <h2>La foi et la compassion</h2>
+      <p>Plusieurs rencontres montrent la foi qu'il rencontre et la pitié qui le meut. Un centurion romain le prie de guérir son serviteur sans entrer chez lui : <em>« Dis seulement une parole, et mon serviteur sera guéri. »</em> <span class="ref">Matthieu 8:8</span>. Jésus admire une foi qu'il n'a pas trouvée si grande en Israël. À Naïm, pris de compassion, il rend à une veuve son fils unique que l'on portait en terre. Et chez un pharisien, une femme de mauvaise vie baigne ses pieds de ses larmes ; Jésus lui pardonne, <em>« parce qu'elle a beaucoup aimé »</em> <span class="ref">Luc 7:47</span>.</p>
 
       <h2>La question de Jean</h2>
       <p>Jean, dans sa prison, entend parler des œuvres du Christ. Lui qui l'avait désigné envoie alors deux de ses disciples demander : <em>« Es-tu celui qui doit venir, ou devons-nous en attendre un autre ? »</em> <span class="ref">Matthieu 11:3</span>. Jésus guérit à cette heure-là un grand nombre de malades, puis renvoie les messagers avec une réponse qui reprend les paroles par lesquelles Isaïe annonçait que Dieu lui-même viendrait sauver son peuple (Isaïe 35:4-6) : les aveugles voient, les boiteux marchent, les lépreux sont purifiés, les sourds entendent, les morts ressuscitent, et la bonne nouvelle est annoncée aux pauvres.</p>
@@ -731,9 +835,6 @@ const ARTICLES = [
       <p>Le lendemain, la foule rejoint Jésus à Capharnaüm, cherchant encore du pain. Il l'avertit de ne pas travailler pour la nourriture qui se perd, mais pour celle qui demeure en vie éternelle. Comme ils réclament un signe pour croire et rappellent que leurs pères ont mangé la manne au désert, Jésus corrige : ce n'est pas Moïse, mais son Père qui donne le vrai pain du ciel, celui qui descend du ciel et donne la vie au monde. Puis il révèle quel est ce pain : <em>« Je suis le pain de vie ; celui qui vient à moi n'aura plus jamais faim. »</em> <span class="ref">Jean 6:35</span>.</p>
       <p>Il précise alors quel pain il donnera : <em>« Le pain que je donnerai, c'est ma chair, pour la vie du monde. »</em> <span class="ref">Jean 6:51</span>. Les Juifs se récrient : comment peut-il donner sa chair à manger ? Loin d'adoucir, Jésus appuie : <em>« Si vous ne mangez la chair du Fils de l'homme et ne buvez son sang, vous n'avez pas la vie en vous. »</em> <span class="ref">Jean 6:53</span>. Il emploie alors un verbe grec plus cru que « manger », <em>trōgō</em> (τρώγω), qui désigne l'acte de mâcher : <em>« Celui qui mange ma chair et boit mon sang a la vie éternelle. »</em> <span class="ref">Jean 6:54</span>. <em>« Ma chair est vraiment une nourriture, et mon sang vraiment une boisson. »</em> <span class="ref">Jean 6:55</span>. Il annonce ici l'Eucharistie, où ce don se réalisera.</p>
       <p>La parole est trop dure pour beaucoup : <em>« Cette parole est rude, qui peut l'écouter ? »</em> <span class="ref">Jean 6:60</span>. Nombre de ses disciples, jusque-là attachés à lui, se retirent et cessent de marcher avec lui. Jésus les laisse partir sans rien retrancher de ses paroles, et se tourne vers les Douze : <em>« Voulez-vous partir, vous aussi ? »</em> <span class="ref">Jean 6:67</span>. Simon Pierre répond pour eux : <em>« Seigneur, à qui irions-nous ? Tu as les paroles de la vie éternelle. »</em> <span class="ref">Jean 6:68</span>. L'année de la popularité s'achève sur cette division : au sommet des foules succède la première grande défection, et les Douze demeurent, attachés à celui qui seul a les paroles de la vie éternelle.</p>
-
-      <h2>Le statère dans le poisson</h2>
-      <p>À Capharnaüm, les percepteurs de l'impôt du Temple demandent à Pierre si son maître acquitte la didrachme, cette taxe que tout homme d'Israël verse chaque année pour le service du sanctuaire. Pierre répond que oui. Quand il rentre, Jésus parle le premier et l'interroge : les rois de la terre lèvent-ils l'impôt sur leurs fils ou sur les étrangers ? Sur les étrangers, répond Pierre. <em>« Les fils en sont donc exempts. »</em> <span class="ref">Matthieu 17:26</span>. Le Temple est la maison de son Père, et lui, le Fils, n'y doit rien. Pour ne scandaliser personne, il l'acquitte pourtant : il envoie Pierre jeter l'hameçon, ouvrir la bouche du premier poisson pris, et y prendre un statère, pièce de quatre drachmes valant deux didrachmes, de quoi payer pour Jésus et pour Pierre. <em>« À lui la mer, c'est lui qui l'a faite. »</em> <span class="ref">Psaume 95:5</span>.</p>
     `
   },
   {
@@ -789,7 +890,7 @@ const ARTICLES = [
       <p>Les foules descendent vers le Jourdain et reçoivent de Jean un baptême d'eau, en confessant leurs péchés. Ce baptême ne remet pas encore le péché : il dispose à la venue de celui qui le remettra. Jean lui-même marque la distance entre son geste et le don à venir : <em>« Moi, je vous baptise dans l'eau ; lui vous baptisera dans l'Esprit Saint et le feu. »</em> <span class="ref">Matthieu 3:11</span>. Il s'estime indigne de dénouer la courroie de ses sandales.</p>
 
       <h2>Le baptême de Jésus</h2>
-      <p><a href="#/article/le-bapteme-du-christ">Jésus vient lui aussi au Jourdain pour être baptisé.</a> Jean s'y refuse, se jugeant le moindre des deux, mais Jésus l'y oblige : <em>« Laisse faire pour le moment, car il convient que nous accomplissions ainsi toute justice. »</em> <span class="ref">Matthieu 3:15</span>. Celui qui n'a pas de péché entre dans l'eau des pécheurs et la sanctifie. À sa sortie, les cieux s'ouvrent.</p>
+      <p>Jésus vient lui aussi au Jourdain pour être baptisé. Jean s'y refuse, se jugeant le moindre des deux, mais Jésus l'y oblige : <em>« Laisse faire pour le moment, car il convient que nous accomplissions ainsi toute justice. »</em> <span class="ref">Matthieu 3:15</span>. Celui qui n'a pas de péché entre dans l'eau des pécheurs et la sanctifie. À sa sortie, les cieux s'ouvrent.</p>
       <p><em>« Il vit l'Esprit de Dieu descendre comme une colombe et venir sur lui. Et voici qu'une voix venue des cieux disait : Celui-ci est mon Fils bien-aimé, en qui j'ai mis tout mon amour. »</em> <span class="ref">Matthieu 3:16-17</span></p>
       <p>Les trois Personnes paraissent ensemble : le Père qui parle, le Fils dans l'eau, l'Esprit qui descend. Le baptême du Christ ouvre la révélation de la Trinité au seuil de sa vie publique.</p>
 
@@ -800,17 +901,7 @@ const ARTICLES = [
       <p>De retour près du Jourdain, Jean voit Jésus venir vers lui et le désigne enfin ouvertement : <em>« Voici l'Agneau de Dieu, qui enlève le péché du monde. »</em> <span class="ref">Jean 1:29</span>. Le mot rassemble deux figures : l'agneau immolé à la Pâque, dont le sang écartait la mort d'Israël, et le Serviteur annoncé par Isaïe, qui porte les péchés de la multitude (Isaïe 53:12). Jean atteste avoir vu l'Esprit demeurer sur lui et rend témoignage qu'il est le Fils de Dieu.</p>
 
       <h2>Les premiers disciples</h2>
-      <p>Le lendemain, deux disciples de Jean suivent Jésus sur sa parole. À leur question, il répond : <em>« Venez et voyez. »</em> <span class="ref">Jean 1:39</span>. André, l'un des deux, va chercher son frère Simon et l'amène à Jésus, qui le regarde et lui annonce le nom qu'il portera : <em>« Tu es Simon, fils de Jean ; tu seras appelé Céphas. »</em> <span class="ref">Jean 1:42</span>.</p>
-
-      <p>Le jour suivant, Jésus appelle Philippe, qui trouve Nathanaël et lui annonce avoir rencontré celui dont Moïse et les prophètes ont écrit, Jésus de Nazareth. Nathanaël objecte : <em>« De Nazareth peut-il sortir quelque chose de bon ? »</em> <span class="ref">Jean 1:46</span>. Philippe répond simplement : <em>« Viens et vois. »</em></p>
-
-      <p>Jésus voit Nathanaël s'avancer : <em>« Voici un véritable Israélite, en qui il n'y a point de fraude. »</em> <span class="ref">Jean 1:47</span>. Nathanaël demande d'où il le connaît ; Jésus répond : <em>« Avant que Philippe t'appelât, quand tu étais sous le figuier, je t'ai vu. »</em> <span class="ref">Jean 1:48</span>. Nathanaël y reconnaît une connaissance plus qu'humaine et confesse : <em>« Rabbi, tu es le Fils de Dieu, tu es le roi d'Israël. »</em> <span class="ref">Jean 1:49</span>.</p>
-
-      <p>Jésus reprend : <em>« Parce que je t'ai dit que je t'ai vu sous le figuier, tu crois ? Tu verras de plus grandes choses. En vérité, en vérité, je vous le dis, vous verrez le ciel ouvert et les anges de Dieu monter et descendre sur le Fils de l'homme. »</em> <span class="ref">Jean 1:50-51</span>.</p>
-
-      <p>Ces mots reprennent un récit de la Genèse. Des générations plus tôt, le patriarche Jacob s'était endormi au cours d'un voyage. Il vit en songe une échelle dressée de la terre jusqu'au ciel, sur laquelle les anges de Dieu montaient et descendaient, et le Seigneur se tenait au sommet. À son réveil, il reconnut la présence de Dieu en ce lieu : <em>« C'est ici la maison de Dieu, c'est ici la porte du ciel. »</em> <span class="ref">Genèse 28:17</span>. Cette échelle reliait la terre au ciel, et par elle passait toute communication entre Dieu et les hommes.</p>
-
-      <p>En disant que les anges montent et descendent sur le Fils de l'homme, Jésus se met à la place de l'échelle : il est lui-même le lien entre le ciel et la terre. Dieu et l'homme sont unis dans sa personne, et c'est par lui que le ciel s'ouvre aux hommes et que les hommes accèdent à Dieu. Ce que Jacob avait entrevu en songe, les disciples le verront accompli dans le Christ.</p>
+      <p>Le lendemain, deux disciples de Jean suivent Jésus sur cette parole. À leur question, il répond : <em>« Venez et voyez. »</em> <span class="ref">Jean 1:39</span>. André, l'un des deux, va chercher son frère Simon et l'amène à Jésus, qui le regarde et lui annonce le nom qu'il portera : <em>« Tu es Simon, fils de Jean ; tu seras appelé Céphas. »</em> <span class="ref">Jean 1:42</span>. Ce nom, en araméen <em>kepha</em> (<span dir="rtl">כֵּיפָא</span>), veut dire « rocher », et le grec le rend par <em>Petros</em> (Πέτρος). Puis Philippe est appelé, qui amène Nathanaël ; ce dernier, d'abord sceptique, reconnaît en le voyant : <em>« Rabbi, tu es le Fils de Dieu, tu es le roi d'Israël. »</em> <span class="ref">Jean 1:49</span>. Autour de Jésus se forme déjà le premier cercle.</p>
 
       <h2>Les noces de Cana</h2>
       <p>Trois jours plus tard, Jésus, sa mère et ses disciples sont conviés à des noces à Cana de Galilée. Le vin vient à manquer, et Marie le signale à son fils : <em>« Ils n'ont plus de vin. »</em> <span class="ref">Jean 2:3</span>. Il répond que son heure n'est pas encore venue, mais elle s'adresse aux serviteurs avec une confiance entière : <em>« Faites tout ce qu'il vous dira. »</em> <span class="ref">Jean 2:5</span>. Six jarres de pierre destinées aux purifications attendent là, contenant chacune deux ou trois mesures (environ 80 à 120 litres). Jésus les fait remplir d'eau, et l'eau puisée se trouve devenue du vin, meilleur que le premier. Jean nomme le sens de l'épisode.</p>
@@ -1411,7 +1502,7 @@ const ARTICLES = [
       <h2>Une espérance des biens invisibles</h2>
       <p>L'espérance s'attache à des biens encore à venir, que l'on ne voit pas : c'est dans cette attente qu'elle déploie sa force, et le salut lui-même nous est donné sous ce mode. <em>« Car c'est en espérance que nous sommes sauvés. Or, une espérance que l'on voit n'est plus une espérance : ce que l'on voit, peut-on l'espérer encore ? »</em> <span class="ref">Romains 8:24</span> Elle soutient ainsi la marche du croyant à travers le temps, les yeux fixés sur ce qui lui est promis.</p>
       <h2>Un appui sur la grâce de Dieu</h2>
-      <p>L'homme n'atteint pas la vie éternelle par ses seules forces. L'espérance place sa confiance dans le secours de l'Esprit Saint, qui soutient le désir et donne d'avancer vers le but. Elle attend tout de la bonté de Dieu : le pardon, la persévérance et le bonheur promis. <em>« Que le Dieu de l'espérance vous remplisse de toute joie et de toute paix dans la foi, afin que vous abondiez en espérance par la puissance de l'Esprit Saint. »</em> <span class="ref">Romains 15:13</span> Cette espérance s'étend aussi aux autres : le salut qu'on attend de Dieu pour soi, on l'attend aussi pour ceux qu'on aime.</p>
+      <p>L'homme n'atteint pas la vie éternelle par ses seules forces. L'espérance place sa confiance dans le secours de l'Esprit Saint, qui soutient le désir et donne d'avancer vers le but. Elle attend tout de la bonté de Dieu : le pardon, la persévérance et le bonheur promis. <em>« Que le Dieu de l'espérance vous remplisse de toute joie et de toute paix dans la foi, afin que vous abondiez en espérance par la puissance de l'Esprit Saint. »</em> <span class="ref">Romains 15:13</span> Cette espérance s'étend aussi aux autres : on espère pour le salut de tous, portant devant Dieu l'attente de ceux qu'on aime.</p>
       <h2>Une ancre dans l'épreuve</h2>
       <p>L'espérance tient l'âme ferme au milieu des épreuves, car elle est fixée en Dieu lui-même, que rien n'ébranle. Elle est pour l'âme ce que l'ancre est pour le navire. <em>« Nous la tenons comme une ancre de l'âme, sûre et solide. »</em> <span class="ref">Hébreux 6:19</span> Dans la souffrance même, elle s'affermit. <em>« L'épreuve produit la persévérance, la persévérance une vertu éprouvée, et cette vertu l'espérance ; et l'espérance ne déçoit pas. »</em> <span class="ref">Romains 5:3-5</span></p>
       <h2>Le péché contre l'espérance</h2>
@@ -2123,8 +2214,8 @@ const ARTICLES = [
       <p>Le bonheur du paradis est une communion : les bienheureux vivent dans la joie de Dieu et les uns des autres, la communion des saints parvenue à son terme. <em>« Voici la demeure de Dieu avec les hommes ; il demeurera avec eux, et ils seront son peuple. »</em> <span class="ref">Apocalypse 21:3</span> Les âmes des justes goûtent ce bonheur aussitôt après le jugement particulier ; quand les corps ressusciteront, leur joie rejaillira sur la chair glorifiée, et l'homme tout entier vivra de Dieu.</p>
       <h2>Le purgatoire</h2>
       <p>Le purgatoire est l'état de purification que traversent, après la mort, ceux qui meurent dans l'amitié de Dieu sans être encore pleinement purifiés. Leur salut est acquis ; il leur reste à achever de se purifier de ce qui, en eux, tient encore à autre chose qu'à Dieu, car la pleine lumière du ciel n'accueille que des cœurs purs. <em>« Il n'entrera rien de souillé. »</em> <span class="ref">Apocalypse 21:27</span></p>
-      <p>Deux choses peuvent retenir cette âme loin de la pleine lumière. D'abord les fautes légères, ces péchés véniels qui blessent l'amitié de Dieu sans la rompre, et que la mort a trouvés encore en elle. Ensuite la peine temporelle : tout péché, même pardonné, laisse un attachement désordonné aux choses créées ; l'offense est remise, et avec elle la peine éternelle ; ce désordre, lui, demeure souvent à guérir. Le pécheur y coopère ici-bas par la pénitence et les œuvres de charité ; ce qui reste à purifier au sortir de cette vie s'achève au purgatoire.</p>
-      <p>L'Écriture montre qu'on peut prier pour les morts et que cette prière leur profite. Au temps des Maccabées, on fait offrir un sacrifice pour les soldats tombés. <em>« C'est une pensée sainte et salutaire de prier pour les morts, afin qu'ils soient délivrés de leurs péchés. »</em> <span class="ref">2 Maccabées 12:46</span> Une telle prière serait vaine pour les bienheureux, qui n'en ont pas besoin, et pour les damnés, que nul ne peut secourir : elle suppose un troisième état, où l'âme se purifie. L'Écriture l'évoque comme un passage par le feu. <em>« Il subira une perte, mais lui sera sauvé, comme à travers le feu. »</em> <span class="ref">1 Corinthiens 3:15</span> Le Christ laisse entendre qu'un pardon reste possible au-delà de la mort. <em>« Il ne lui sera pardonné ni dans ce siècle ni dans le siècle à venir. »</em> <span class="ref">Matthieu 12:32</span> Si une certaine faute ne se remet ni en ce monde ni dans l'autre, c'est que d'autres peuvent l'être dans le siècle à venir : non la faute grave, qui se décide avant la mort, mais ces fautes légères que le purgatoire achève d'effacer. L'Église l'a confessé dès le concile de Lyon, en 1274.</p>
+      <p>Tout péché a deux dimensions : il offense Dieu, et il laisse en l'homme un attachement désordonné aux choses créées. Quand le péché est pardonné, l'offense est remise, et avec elle la peine éternelle ; demeure souvent une peine temporelle, ce désordre encore à guérir. La grâce du Christ achève dans l'âme cette guérison, ouverte par sa victoire. Le pécheur y coopère ici-bas par la pénitence et les œuvres de charité ; ce qui demeure à purifier au sortir de cette vie s'achève au purgatoire.</p>
+      <p>L'Écriture montre qu'on peut prier pour les morts et que cette prière leur profite. Au temps des Maccabées, on fait offrir un sacrifice pour les soldats tombés. <em>« C'est une pensée sainte et salutaire de prier pour les morts, afin qu'ils soient délivrés de leurs péchés. »</em> <span class="ref">2 Maccabées 12:46</span> Une telle prière serait vaine pour les bienheureux, qui n'en ont pas besoin, et pour les damnés, que nul ne peut secourir : elle suppose un troisième état, où l'âme se purifie. L'Écriture l'évoque comme un passage par le feu. <em>« Il subira une perte, mais lui sera sauvé, comme à travers le feu. »</em> <span class="ref">1 Corinthiens 3:15</span> Le Christ laisse entendre qu'un pardon reste possible au-delà de la mort. <em>« Il ne lui sera pardonné ni dans ce siècle ni dans le siècle à venir. »</em> <span class="ref">Matthieu 12:32</span> Si une certaine faute ne se remet ni en ce monde ni dans l'autre, c'est que d'autres peuvent l'être dans le siècle à venir. L'Église l'a confessé dès le concile de Lyon, en 1274.</p>
       <p>La purification du purgatoire est profonde et douloureuse : l'âme y souffre d'être encore retenue loin du Dieu qu'elle aime et désire de toute sa force. Cette souffrance est tout entière habitée par l'espérance, car ces âmes savent qu'elles sont sauvées et que leur attente a un terme. Ce feu purifie comme l'or au creuset : il consume ce qui reste d'impur pour rendre l'âme digne de la pleine lumière.</p>
       <p>Les âmes du purgatoire ne peuvent plus mériter pour elles-mêmes ; les vivants le peuvent pour elles et peuvent hâter leur délivrance. On nomme suffrages les secours qu'on leur porte, du latin <em>suffragium</em>, le soutien apporté en faveur de quelqu'un : la prière, l'aumône, la pénitence offertes à leur intention, et par-dessus tout le sacrifice de la messe, où la Croix du Christ est rendue présente pour eux. En cela se vit la communion des saints : l'Église de la terre vient en aide à l'Église qui se purifie, dans l'unique charité qui relie tous les membres du Christ.</p>
       <h2>L'enfer</h2>
@@ -2515,10 +2606,8 @@ const ARTICLES = [
    ============================================================ */
 const NOUVEAUTES = [
   { d: "Juin 2026", items: [
-    "Nouvel article : « Le doigt de Dieu ».",
-    "Nouvel article : « Le baptême du Christ ».",
-    "Nouvel article : « La Résurrection et la glorification ».",
-    "Nouvel article : « La Semaine sainte ».",
+    { t: "Nouvel article : « La Résurrection et la glorification ».", s: "la-resurrection-et-la-glorification" },
+    { t: "Nouvel article : « La Semaine sainte ».", s: "la-semaine-sainte" },
     "Nouvel article : « La troisième année : l'opposition ».",
     "Nouvel article : « La deuxième année : la popularité ».",
     "Nouvel article : « La première année : l'inauguration ».",
@@ -2572,26 +2661,15 @@ function vueAccueil(){
     <section class="hero">
       <div class="croix" aria-hidden="true"></div>
     </section>
+    <section class="intro">
+      <p>Un lieu pour entrer dans l'intelligence de la foi catholique, des premiers pas jusqu'aux questions les plus profondes.</p>
+    </section>
     <div class="titre-section">
       <span class="num">Les domaines</span>
       <h2>Explorer par thème</h2>
       <span class="trait"></span>
     </div>
     <section class="domaines">${cartes}</section>
-    <div class="titre-section">
-      <span class="num">L'outil</span>
-      <h2>Mémoriser</h2>
-      <span class="trait"></span>
-    </div>
-    <div class="memo-bloc">
-      <div class="memo-droite" id="memo-scores" data-state="load">
-        <div class="memo-pct"><span id="memo-pct"></span><i>de maîtrise</i></div>
-        <div class="memo-bar" id="memo-bar"><i class="r"></i><i class="a"></i><i class="v"></i></div>
-        <div class="memo-leg"><span><b id="memo-v"></b> acquis</span><span><b id="memo-a"></b> en cours</span><span><b id="memo-r"></b> à revoir</span></div>
-        <p class="memo-note" id="memo-note">Connecte-toi pour suivre ta progression.</p>
-      </div>
-      <a class="memo-start" href="/memoriser.html">Commencer</a>
-    </div>
     <div style="height:60px"></div>
   </div>`;
 }
@@ -2676,7 +2754,10 @@ function vueBibliotheque(params){
     </section>`;
   }).join('');
   return `<div class="vue">
-    <div style="height:38px"></div>
+    <section class="bandeau-page">
+      <div class="sur-titre">La bibliothèque</div>
+      <h1>Les domaines</h1>
+    </section>
     <div class="domaines-liste">${sections}</div>
     <div style="height:60px"></div>
   </div>`;

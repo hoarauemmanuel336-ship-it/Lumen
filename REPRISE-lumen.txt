@@ -2314,3 +2314,58 @@ mécanisme à Emmanuel sauf s'il le demande ; agir à sa place.
 Emmanuel ne veut PLUS recevoir le zip « construit » (lumen-site-construit.zip / Netlify drop).
 À chaque tour, ne présenter QUE : lumen-site-complet.zip (source, avec REPRISE-lumen.txt dedans)
 et REPRISE-lumen.txt seul. Ne plus régénérer ni présenter le zip construit sauf demande explicite.
+
+=== RETOUR AU DESIGN D'ORIGINE + BIBLE ASSORTIE + MULTI-RÉFÉRENCES (10 juin, suite 7) ===
+⚠ INCIDENT : reset PARTIEL du conteneur en cours de conversation (bible.html/panneau disparus de
+/home/claude/snap, index remplacé par une version ancienne). Récupéré depuis outputs/lumen-site-
+complet.zip (source de vérité, règle confirmée efficace). TOUJOURS revérifier les marqueurs avant
+d'éditer, et reconstruire snap depuis le zip au moindre doute.
+DÉCISION D'EMMANUEL (captures à l'appui) : le design « nef obscure / noir absolu » déployé ne lui
+convient pas ; il préfère le design D'ORIGINE (son fichier index uploadé) : carrés adaptatifs,
+filets très doux rgba(231,224,207,.14/.28), crème #efe6cf, header voilé rgba(0,0,0,.82)+blur(10),
+articles nus 720px. Il GARDE du nouveau : le tri dépliable de la bibliothèque (vit dans build-bi.js,
+intact) et la disposition du titre d'article (identique dans les deux, rien à faire).
+FAIT :
+• index__48_.html = fichier d'origine d'Emmanuel + bloc CSS .memo-* porté (accueil Mémoriser).
+  Le CSS du site est extrait du PREMIER bloc <style> de ce fichier ; le bloc de données
+  (const THEMES … const app) doit y rester. NOUVEAU MARQUEUR : « memo-start:hover » + « noir total ».
+• content/settings.json accent = #efe6cf (= défaut du build → aucune surcharge injectée).
+  ⚠ PENDING EMMANUEL : si les couleurs dévient en ligne, ouvrir Apparence (admin) → accent #efe6cf
+  → Enregistrer (le doc Firestore config/apparence peut porter l'ancien #efe3c0).
+• bible.html : palette d'origine (:root retonalisé), header/ref-barre/plateau en voile
+  rgba(0,0,0,.82-.92)+blur SANS trait sur la barre de référence (UNE seule ligne en haut au lieu
+  de trois), colonne de lecture NUE 720px comme les articles, tous les littéraux 241,228,194
+  remappés vers 231,224,207 adoucis. MULTI-RÉFÉRENCES : decoupeRefs() scinde sur « ; » et sur les
+  virgules suivies d'un nom de livre (préserve « Mt 7, 6-8 ») ; chaque plage est chargée, bornée
+  aux versets existants, ajoutée à la sélection multi-livres ; navigation vers la première.
+• bible-panneau.js : mêmes tons (fallbacks var() retonalisés), multi-réf tolérée (va à la première).
+⚠ DOUBLON parseRef/ALIAS/decoupeRefs : bible.html ET bible-panneau.js — corriger toujours les deux.
+FICHIERS DE CETTE SALVE pour GitHub : index__48_.html, bible.html, bible-panneau.js,
+content/settings.json. (build-bi.js, memoriser.html : inchangés.)
+
+=== BARRE UNIFIÉE + RETOUCHES ACCUEIL + SUIVANTE (10 juin, suite 8) ===
+Demandes d'Emmanuel : barre du haut au MÊME contenu et MÊME ordre sur toutes les pages ; retirer
+« À propos » ; retirer le trait sous la croix blanche ; retirer la phrase d'accueil « Un lieu pour
+entrer dans l'intelligence… » ; soigner l'espace croix↔domaines ; un bouton pour passer d'une
+référence sélectionnée à l'autre.
+CONSTATS : aucun article ressuscité par l'ancienne base (67 ⊂ 70 ✓). « À propos » n'est NI généré
+NI lié nulle part (mainAPropos = code mort dans build, laissé tel quel). La phrase n'existe que en
+DESCRIPTION MÉTA (site_desc_home, invisible, bonne pour les moteurs : CONSERVÉE en méta seulement).
+FAIT :
+• index__48_.html : .hero sans border-bottom, padding 112px 0 76px (espace croix↔domaines).
+• bible.html : barre identique aux pages générées, même ordre — Accueil, Bibliothèque, Bible(actif),
+  Mémoriser, EN(→/en/), Recherche (overlay sur window.LV_INDEX.fr.articles, 14 résultats max),
+  Nouveautés (overlay depuis NEWS, point pourpre lié à localStorage lumen_nouv_vu, même clé que le
+  site), Compte (connecté → #notes ; sinon → modale de connexion), contexte « La Sainte Bible »
+  à droite (masqué mobile). Marqueur /*NEWS_START*/…/*NEWS_END*/ dans le script.
+  Plateau : bouton « Suivante → » (visible dès 2 références) qui circule en boucle dans les
+  groupes sélectionnés, ordre canonique.
+• build-bi.js : bloc bible injecte NEWS (remplacement du marqueur) + window.LV_INDEX avant </body>.
+FICHIERS DE CETTE SALVE : index__48_.html, bible.html, build-bi.js (+ ceux de la salve précédente
+si pas encore poussés : bible-panneau.js, content/settings.json).
+
+=== FIL D'ARIANE RETIRÉ DE LA BIBLE (10 juin, suite 9) ===
+Demande d'Emmanuel : retirer « La Sainte Bible · Genèse » (vue lecture) et « La Sainte Bible »
+(vue chapitres). FAIT dans bible.html : les deux fils supprimés des vues, .livre-titre reprend la
+marge haute (52px), règles CSS .fil/.ch-fil purgées. Retour en arrière : lien Bible de la barre
+(accueil de la Bible) ou champ de référence. FICHIER DE CETTE SALVE : bible.html.

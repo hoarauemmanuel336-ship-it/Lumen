@@ -965,6 +965,14 @@ if (fs.existsSync('memoriser.html')) {
 // ── La Sainte Bible (Crampon 1923) : page de lecture + données par livre ──
 if (fs.existsSync('bible.html')) {
   let bh = fs.readFileSync('bible.html', 'utf8');
+  {
+    const reNews = /\/\*NEWS_START\*\/[\s\S]*?\/\*NEWS_END\*\//;
+    if (reNews.test(bh)) { bh = bh.replace(reNews, '/*NEWS_START*/const NEWS={fr:' + JSON.stringify(NV_FR) + ',en:' + JSON.stringify(NV_EN) + '};/*NEWS_END*/'); console.log('Bible : nouveautés synchronisées'); }
+  }
+  if (bh.indexOf('</body>') >= 0) {
+    const lvIdxB = JSON.stringify({ fr: buildIndex('fr'), en: buildIndex('en') }).replace(/</g, '\\u003c');
+    bh = bh.replace('</body>', '<script>window.LV_INDEX=' + lvIdxB + ';</script></body>');
+  }
   if (APPEARANCE_CSS && bh.indexOf('</head>') >= 0) {
     bh = bh.replace('</head>', '<style>' + APPEARANCE_CSS + '</style></head>');
   }
