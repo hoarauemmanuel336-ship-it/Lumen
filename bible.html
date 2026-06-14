@@ -8,9 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+/* Firebase à la demande : chargé après le rendu (ou à la première interaction). */
+window.lvFB=function(){if(window.__lvFBP)return window.__lvFBP;window.__lvFBP=new Promise(function(res){var u=['app','auth','firestore'].map(function(n){return 'https://www.gstatic.com/firebasejs/10.7.1/firebase-'+n+'-compat.js';});(function next(i){if(i>=u.length){try{document.dispatchEvent(new Event('lv-fb-ready'));}catch(_){}res();return;}var s=document.createElement('script');s.src=u[i];s.onload=function(){next(i+1);};s.onerror=function(){res();};document.head.appendChild(s);})(0);});return window.__lvFBP;};
+(function(){var go=function(){window.lvFB();};window.addEventListener('load',function(){setTimeout(go,600);});['pointerdown','keydown'].forEach(function(ev){window.addEventListener(ev,go,{once:true,passive:true});});})();
+</script>
 <style>
 :root{
   --encre:#000000;--encre-2:#0b0b0b;--encre-3:#111111;
@@ -23,7 +25,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{height:100%}
 body{background:var(--encre);color:var(--parchemin);font-family:var(--serif);font-size:20px;line-height:1.6;min-height:100%;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-::selection{background:rgba(231,224,207,.16)}
+::selection{background:rgba(198,164,92,.25)}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input,textarea{font-family:inherit;color:inherit}
@@ -72,13 +74,35 @@ a.b-r:hover b,.b-r:hover b{color:var(--or-pale)}
 .nv-l + .nv-l{margin-top:16px}
 @media(max-width:720px){
   .ctx{display:none}
-  nav.menu .ic-btn{padding:12px 0;width:100%}
+  nav.menu .ic-btn{padding:12px 0;width:100%;justify-content:flex-start;gap:14px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-att)}
+  nav.menu .ic-btn .cloche-pt{top:8px;left:14px;right:auto}
   .ic-btn .ll-mob{display:inline}
   nav.menu a.lien-langue{opacity:1}
   .burger{display:block}
   nav.menu{display:none;position:absolute;top:62px;left:0;right:0;background:rgba(0,0,0,.97);flex-direction:column;align-items:flex-start;gap:0;padding:10px 28px 18px;border-bottom:1px solid var(--filet)}
   nav.menu.ouvert{display:flex}
   nav.menu a{font-size:15px;padding:12px 0;width:100%}
+}
+
+/* ---------- taille de lecture (réglée depuis Mon compte) ---------- */
+.ch-texte{font-size:calc(20.5px*var(--lvz,1))}
+.ttx-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:18px 0 6px;padding-top:18px;border-top:1px solid var(--filet)}
+.ttx-lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.ttx-btns{display:flex;gap:8px}
+.ttx-b{background:none;border:1px solid var(--filet);color:#fff;font-family:var(--display);font-size:14px;min-width:38px;padding:7px 8px;cursor:pointer;transition:border-color .25s,color .25s}
+.ttx-b:hover{border-color:var(--or)}
+/* ---------- focus clavier ---------- */
+:focus{outline:none}
+:focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}
+/* ---------- impression ---------- */
+@media print{
+  body{background:#fff;color:#000}
+  .barre,nav.menu,.burger,.ctx,.hero,.ref-barre,#sel-barre,.b-ov,#note-voile,#auth-voile,
+  #bacct-voile,#cat-voile,footer,.ch-nav,#lva-dock,.lva-page{display:none!important}
+  .wrap{padding-bottom:0!important}
+  .vst,.vn,.ch-titre,.livre-titre,h1,h2{color:#000}
+  .vst sup{color:#000}
+  a{color:#000;text-decoration:none}
 }
 
 /* — Barre de référence — */
@@ -121,7 +145,7 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .ch-section{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);text-align:center;margin-top:22px}
 .ch-psaume-titre{font-style:italic;color:var(--pa);text-align:center;margin-top:22px;font-size:19px}
 .ch-sep{width:44px;height:1px;background:linear-gradient(90deg,transparent,var(--filet-f),transparent);margin:30px auto 34px}
-.ch-texte{text-align:justify;hyphens:auto;font-size:20.5px;line-height:1.74}
+.ch-texte{text-align:justify;hyphens:auto;line-height:1.74}
 .ch-texte sup.vn{font-family:var(--serif);font-size:12.5px;color:var(--or);line-height:0;margin-right:5px;letter-spacing:0}
 .vst{scroll-margin-top:160px;cursor:pointer;transition:background .3s,box-shadow .3s}
 .vst:hover{background:rgba(231,224,207,.04);box-shadow:0 0 0 5px rgba(231,224,207,.04)}
@@ -315,6 +339,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
       <div class="bacct-t">Mon compte</div>
       <div class="bacct-mail" id="bacct-mail"></div>
       <span class="bacct-btn" id="bacct-notes" role="button" tabindex="0">Mes notes</span>
+      <div class="ttx-row"><span class="ttx-lab">Taille du texte</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
       <span class="bacct-deco" id="auth-logout" role="button" tabindex="0">Déconnexion</span>
       </div>
     </div>
@@ -372,11 +397,12 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
   var pendingSel = null;
 
   /* ───────── Firebase : compte et synchronisation des notes ───────── */
-  var FB = (typeof firebase !== 'undefined');
+  var FB = false;
   var auth = null, db = null, UID = null, MAIL = '';
-  if (FB) {
+  function lvInitFB(){
+    if (FB || typeof firebase === 'undefined') return;
     try {
-      firebase.initializeApp({
+      if (!firebase.apps.length) firebase.initializeApp({
         apiKey: 'AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA',
         authDomain: 'lumen-veritatis.firebaseapp.com',
         projectId: 'lumen-veritatis',
@@ -386,8 +412,12 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
       });
       auth = firebase.auth();
       db = firebase.firestore();
+      FB = true;
+      initAuth();
     } catch(e) { FB = false; }
   }
+  document.addEventListener('lv-fb-ready', lvInitFB);
+  lvInitFB();
   function cloudDoc(id){ return db.doc('users/' + UID + '/bibleNotes/' + id); }
   function cloudSet(n){
     if (!UID || !db) return;
@@ -557,6 +587,22 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
   document.getElementById('brech-champ').addEventListener('input', function(){ rendRecherche(this.value); });
   document.getElementById('brech-champ').addEventListener('keydown', function(e){ if (e.key === 'Enter') brechVa(); });
   document.getElementById('brech-res').addEventListener('click', function(e){ if (e.target.closest && e.target.closest('#brech-go')) brechVa(); });
+  (function(){
+    var TZ=[0.85,0.925,1,1.08,1.16,1.25];
+    function tzCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_taille_mobile':'lv_taille_pc';}catch(e){return 'lv_taille_pc';}}
+    function tzLit(){var v=1;try{v=parseFloat(localStorage.getItem(tzCle())||localStorage.getItem('lv_taille'))||1;}catch(e){}return v;}
+    function tzApplique(v){document.documentElement.style.setProperty('--lvz',v);}
+    tzApplique(tzLit());
+    document.addEventListener('click',function(e){
+      var b=e.target.closest?e.target.closest('.ttx-b'):null;
+      if(!b)return;
+      var d=b.getAttribute('data-ttx'),v=tzLit();
+      if(d==='0')v=1;
+      else{var i=TZ.indexOf(v);if(i<0){i=2;}i+=(d==='1'?1:-1);i=Math.max(0,Math.min(TZ.length-1,i));v=TZ[i];}
+      try{localStorage.setItem(tzCle(),String(v));}catch(e2){}
+      tzApplique(v);
+    });
+  })();
   var NVL = 'fr';
   function nvSrc(){
     var w = window.LV_NEWS;
@@ -586,7 +632,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
     document.getElementById(id).addEventListener('click', function(e){ if (e.target === this) fermeOv(id); });
   });
   function ouvreCompte(){
-    var u = firebase.auth().currentUser || null;
+    var u = (FB && firebase.auth().currentUser) || null;
     document.getElementById('bacct-mail').textContent = u ? (u.email || u.displayName || '') : '';
     document.getElementById('bacct-voile').classList.add('ouvert');
   }
@@ -770,7 +816,9 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
     if (!ctx) return;
     spans.forEach(function(sp){
       var v = parseInt(sp.id.replace('va-', ''), 10);
-      sp.classList.toggle('sel', selIdx(ctx.slug, ctx.ch, v) >= 0);
+      var on = selIdx(ctx.slug, ctx.ch, v) >= 0;
+      sp.classList.toggle('sel', on);
+      if (!on) sp.classList.remove('cible');
     });
   }
   document.getElementById('sb-refs').addEventListener('click', function(e){

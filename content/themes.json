@@ -91,6 +91,15 @@
           ]
         },
         {
+          "id": "vertus-cardinales",
+          "nom_fr": "Les vertus cardinales",
+          "nom_en": "The Cardinal Virtues",
+          "arts": [
+            "la-justice",
+            "la-force"
+          ]
+        },
+        {
           "id": "eglise",
           "nom_fr": "L'Église",
           "nom_en": "The Church",
@@ -137,7 +146,18 @@
             "le-proto-isaie",
             "le-deutero-isaie",
             "le-trito-isaie",
-            "les-quatre-chants-du-serviteur"
+            "les-quatre-chants-du-serviteur",
+            "les-oracles-contre-les-nations"
+          ]
+        },
+        {
+          "id": "moise",
+          "nom_fr": "Moïse et la sortie d’Égypte",
+          "nom_en": "Moses and the Exodus",
+          "arts": [
+            "la-servitude-et-l-appel",
+            "la-delivrance",
+            "le-sinai-et-l-alliance"
           ]
         },
         {
@@ -232,6 +252,25 @@
           "arts": [
             "l-ordre",
             "le-mariage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vie-spirituelle",
+      "nom_fr": "Vie spirituelle",
+      "nom_en": "The Spiritual Life",
+      "desc_fr": "La vie de l'âme avec Dieu : la prière, le combat contre les passions, les chemins de la confiance et de la paix, le progrès vers l'union à lui.",
+      "desc_en": "The life of the soul with God: prayer, the struggle against the passions, the paths of trust and peace, the progress toward union with him.",
+      "categories": [
+        {
+          "id": "combat",
+          "nom_fr": "Le combat intérieur",
+          "nom_en": "The Inner Struggle",
+          "arts": [
+            "la-peur",
+            "la-tristesse",
+            "l-orgueil-et-l-humilite"
           ]
         }
       ]

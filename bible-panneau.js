@@ -51,6 +51,16 @@
   + '.bp-corps::-webkit-scrollbar-track{background:#000}'
   + '.bp-corps::-webkit-scrollbar-thumb{background:rgba(231,224,207,.35)}'
   + '.bp-corps::-webkit-scrollbar-thumb:hover{background:rgba(231,224,207,.6)}'
+  + '#bp-pan ::selection{background:rgba(198,164,92,.25)}'
+  + '#bp-pan :focus{outline:none}#bp-tab:focus{outline:none}'
+  + '#bp-pan :focus-visible,#bp-tab:focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}'
+  + 'span.ref{cursor:pointer}'
+  + 'span.ref:hover{text-decoration:underline;text-underline-offset:3px}'
+  + '@media print{#bp-tab,#bp-pan,#bp-voile{display:none!important}}'
+  + '.bp-carte{border:1px solid var(--filet,rgba(231,224,207,.14));padding:14px 16px;margin:0 0 14px;cursor:pointer;transition:border-color .3s,background .3s}'
+  + '.bp-carte:hover{border-color:var(--filet-fort,rgba(231,224,207,.3));background:rgba(231,224,207,.03)}'
+  + '.bp-carte-ref{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--or,#efe6cf);margin-bottom:8px}'
+  + '.bp-carte .bp-v{cursor:inherit}'
   + '.bp-test{font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--or,#efe6cf);text-align:center;margin:26px 0 2px}'
   + '.bp-test:first-child{margin-top:4px}'
   + '.bp-grp{font-family:var(--display,serif);font-style:italic;font-size:19px;color:var(--pa,rgba(255,255,255,.6));text-align:center;margin:18px 0 10px}'
@@ -315,22 +325,71 @@
     if (a === 'livres') rendLivres();
     else if (a === 'livre') rendChaps(el.dataset.slug);
     else if (a === 'chap') rendLect(el.dataset.slug, parseInt(el.dataset.n, 10), 0);
+    else if (a === 'carte') {
+      var ch = parseInt(el.dataset.ch, 10), v1 = parseInt(el.dataset.v1, 10), v2 = parseInt(el.dataset.v2, 10);
+      if (!ch) { rendChaps(el.dataset.slug); return; }
+      if (v1) pend = { slug: el.dataset.slug, ch: ch, v1: v1, v2: v2 || v1 };
+      rendLect(el.dataset.slug, ch, 0);
+    }
   });
 
   /* ───────── Champ de référence ───────── */
   function decoupeRefs(txt){
-    return String(txt || '').split(/\s*;\s*|,(?=\s*[1-3]?\s*[a-zA-Z\u00c0-\u024f])/)
+    return String(txt || '').split(/\s*;\s*|,(?=\s*[1-4]?\s*[a-zA-Z\u00c0-\u024f])/)
       .map(function(x){ return x.trim(); }).filter(Boolean);
+  }
+  function etiquetteRef(r){
+    var inf = infoLivre(r.slug);
+    var t = inf ? inf.nom : r.slug;
+    if (r.slug === 'psaumes' && r.ch) t = (BP_EN ? 'Psalm' : 'Psaume');
+    if (r.ch) t += ' ' + r.ch;
+    if (r.v1) { t += ':' + r.v1; if (r.v2 > r.v1) t += '-' + r.v2; }
+    return t;
+  }
+  function rendMulti(refs){
+    sauveEtat({ v: 'livres' });
+    corps.innerHTML = '<div class="bp-charge">' + BP_T.charge + '</div>';
+    var besoins = {};
+    refs.forEach(function(r){ if (r.ch) besoins[r.slug] = 1; });
+    Promise.all(Object.keys(besoins).map(livreData)).then(function(){
+      var h = '';
+      refs.forEach(function(r){
+        var inf = infoLivre(r.slug);
+        h += '<div class="bp-carte" data-bp="carte" data-slug="' + r.slug + '" data-ch="' + (r.ch || 0) + '" data-v1="' + (r.v1 || 0) + '" data-v2="' + (r.v2 || 0) + '">'
+           + '<div class="bp-carte-ref">' + esc(etiquetteRef(r)) + '</div>';
+        if (r.ch) {
+          var d = CACHE[r.slug], ch = null;
+          for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === r.ch) { ch = d.chapitres[i]; break; }
+          if (ch) {
+            var v1 = r.v1 || 1;
+            var v2 = r.v1 ? r.v2 : Math.min(ch.versets.length ? ch.versets[ch.versets.length - 1].v : v1, v1 + 2);
+            ch.versets.forEach(function(v){
+              if (v.v >= v1 && v.v <= v2) h += '<span class="bp-v"><sup>' + v.v + '</sup>' + esc(v.t) + '</span> ';
+            });
+            if (!r.v1) h += '\u2026';
+          }
+        } else {
+          h += '<span class="bp-v">' + (BP_EN ? 'Open the book' : 'Ouvrir le livre') + ' \u2192</span>';
+        }
+        h += '</div>';
+      });
+      corps.innerHTML = h;
+      corps.scrollTop = 0;
+    }).catch(function(){
+      corps.innerHTML = '<div class="bp-charge">' + BP_T.errTxt + '</div>';
+    });
   }
   function vaRef(){
     var champ = document.getElementById('bp-ref');
     var err = document.getElementById('bp-err');
     var morceaux = decoupeRefs(champ.value);
-    var r = null;
-    for (var i = 0; i < morceaux.length && !r; i++) r = parseRef(morceaux[i]);
-    if (!r) { err.textContent = champ.value.trim() ? 'Non reconnue.' : ''; return; }
+    var refs = [];
+    for (var i = 0; i < morceaux.length; i++) { var p = parseRef(morceaux[i]); if (p) refs.push(p); }
+    if (!refs.length) { err.textContent = champ.value.trim() ? 'Non reconnue.' : ''; return; }
     err.textContent = '';
     champ.value = '';
+    if (refs.length > 1) { rendMulti(refs); return; }
+    var r = refs[0];
     if (!r.ch) { rendChaps(r.slug); return; }
     if (r.v1) pend = r;
     rendLect(r.slug, r.ch, 0);
@@ -368,6 +427,28 @@
     voile.classList.remove('on');
     pan.classList.remove('on');
   }
+  function ouvreSurRef(txt){
+    var propre = String(txt || '').replace(/\u00a0/g, ' ').trim();
+    voile.classList.add('on');
+    pan.classList.add('on');
+    assureIdx().then(function(){
+      var refs = decoupeRefs(propre).map(parseRef).filter(Boolean);
+      if (!refs.length) { if (!dejaRendu) { restaure(); dejaRendu = true; } return; }
+      dejaRendu = true;
+      if (refs.length > 1) { rendMulti(refs); return; }
+      var r = refs[0];
+      if (!r.ch) { rendChaps(r.slug); return; }
+      if (r.v1) pend = r;
+      rendLect(r.slug, r.ch, 0);
+    }).catch(function(){
+      corps.innerHTML = '<div class="bp-charge">' + BP_T.errBible + '</div>';
+    });
+  }
+  document.addEventListener('click', function(e){
+    var ref = e.target.closest ? e.target.closest('span.ref') : null;
+    if (!ref || pan.contains(ref)) return;
+    ouvreSurRef(ref.textContent);
+  });
   tab.addEventListener('click', function(){
     if (pan.classList.contains('on')) ferme(); else ouvre();
   });

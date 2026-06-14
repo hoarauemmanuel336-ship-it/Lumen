@@ -1,6 +1,15 @@
 /* Traductions anglaises : correspondances de slugs, thèmes, interface, articles. */
 
 const SLUGS = {
+  'la-force':'fortitude',
+  'l-orgueil-et-l-humilite':'pride-and-humility',
+  'la-justice':'justice',
+  'les-oracles-contre-les-nations':'the-oracles-against-the-nations',
+  'la-tristesse':'sadness',
+  'la-servitude-et-l-appel':'the-bondage-and-the-call',
+  'la-delivrance':'the-deliverance',
+  'le-sinai-et-l-alliance':'sinai-and-the-covenant',
+  'la-peur':'fear',
 'mon-dieu-mon-dieu-pourquoi-m-as-tu-abandonne':'my-god-my-god-why-have-you-forsaken-me',
   'le-doigt-de-dieu':'the-finger-of-god',
   'le-bapteme-du-christ':'the-baptism-of-christ',
@@ -74,7 +83,7 @@ const SLUGS = {
 };
 
 const THEMES_EN = {
-  doctrine:    { nom:'Doctrine and Dogma',    desc:'What the Church believes and teaches: God, Christ, salvation, the Church, the last things.', cats:{dieu:'God and the Trinity',anges:'The Angels',peche:'Sin and the Fall',conscience:'Conscience and Responsibility',christ:'Christ and the Redemption',sacerdoce:'The Priesthood',marie:'The Virgin Mary',grace:'Grace and Salvation',vertus:'The Theological Virtues',eglise:'The Church',fins:'The Last Things'} },
+  doctrine:    { nom:'Doctrine and Dogma',    desc:'What the Church believes and teaches: God, Christ, salvation, the Church, the last things.', cats:{dieu:'God and the Trinity',anges:'The Angels',peche:'Sin and the Fall',conscience:'Conscience and Responsibility',christ:'Christ and the Redemption',sacerdoce:'The Priesthood',marie:'The Virgin Mary',grace:'Grace and Salvation',vertus:'The Theological Virtues','vertus-cardinales':'The Cardinal Virtues',eglise:'The Church',fins:'The Last Things'} },
   ecriture:    { nom:'Scripture and Exegesis',desc:'The reading of the Scriptures in the faith of the Church, from the literal sense to the spiritual senses.', cats:{at:'The Old Testament',isaie:'The Book of Isaiah',evangiles:'The Gospels','vie-du-christ':'The Life of Christ',paul:'The Letters of Paul',questions:'Questions on the Scriptures'} },
   sacrements:  { nom:'Liturgy and Sacraments',desc:'The efficacious signs of grace and the worship by which the Church gives glory to God.', cats:{initiation:'The Sacraments of Christian Initiation',guerison:'The Sacraments of Healing',service:'The Sacraments at the Service of Communion'} },
   histoire:    { nom:'History of the Church', desc:'The path of the Church through the centuries, its councils and its struggles.' },

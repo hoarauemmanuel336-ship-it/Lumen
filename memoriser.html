@@ -7,6 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="manifest" href="/memoriser-manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icones/memoriser-180.png">
+<meta name="theme-color" content="#000000">
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
@@ -23,7 +26,15 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{height:100%}
 body{background:var(--encre);color:var(--parchemin);font-family:var(--serif);font-size:20px;line-height:1.6;min-height:100%;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-::selection{background:rgba(231,224,207,.16)}
+::selection{background:rgba(198,164,92,.25)}
+:focus{outline:none}
+:focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--encre)}
+::-webkit-scrollbar-thumb{background:rgba(231,224,207,.35)}
+::-webkit-scrollbar-thumb:hover{background:rgba(231,224,207,.6)}
+html{scrollbar-color:rgba(231,224,207,.35) var(--encre)}
+
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -481,7 +492,7 @@ nav.menu .menu-act#lang-btn:hover{opacity:1;color:var(--parchemin);border:none}
 .auth-out:hover{color:var(--or)}
 html{scroll-behavior:smooth}
 body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-::selection{background:rgba(231,224,207,.14);color:#fff}
+::selection{background:rgba(198,164,92,.25);color:#fff}
 *{scrollbar-width:thin;scrollbar-color:rgba(231,224,207,.35) transparent}
 ::-webkit-scrollbar{width:10px;height:10px}
 ::-webkit-scrollbar-track{background:transparent}
@@ -650,6 +661,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth=firebase.auth();
 const db=firebase.firestore();
+try{db.enablePersistence({synchronizeTabs:true}).catch(function(){});}catch(_){}
 
 // ════════ i18n ════════
 const T={
@@ -1174,6 +1186,97 @@ const FOOT_EN='\u201CThe people who walked in darkness have seen a great light; 
     {id:'1co-15-28', fr:{text:'Dieu sera tout en tous.', ref:'1 Corinthiens 15:28'}, en:{text:'God will be all in all.', ref:'1 Corinthians 15:28'}}
   ,
     {id:'1jn-3-2', fr:{text:'D\u00e8s \u00e0 pr\u00e9sent nous sommes enfants de Dieu, mais ce que nous serons n\u2019a pas encore \u00e9t\u00e9 manifest\u00e9. Nous savons que, lorsqu\u2019il para\u00eetra, nous lui serons semblables, puisque nous le verrons tel qu\u2019il est.', ref:'1 Jean 3:2'}, en:{text:'We are God\u2019s children now, and what we will be has not yet appeared; but we know that when he appears we shall be like him, because we shall see him as he is.', ref:'1 John 3:2'}}
+  ]},
+  {id:'peur-confiance', name:{fr:'La peur et la confiance', en:'Fear and Trust'}, verses:[
+    {id:'mc-5-36', fr:{text:'Ne crains rien, crois seulement.', ref:'Marc 5:36'}, en:{text:'Fear nothing, only believe.', ref:'Mark 5:36'}},
+    {id:'is-41-10', fr:{text:'Ne crains point, car je suis avec toi ; ne regarde pas avec inqui\u00e9tude, car je suis ton Dieu.', ref:'Isa\u00efe 41:10'}, en:{text:'Fear not, for I am with you; do not look about in dismay, for I am your God.', ref:'Isaiah 41:10'}},
+    {id:'ps-23-4', fr:{text:'M\u00eame quand je marche dans la vall\u00e9e de l\u2019ombre de la mort, je ne crains aucun mal, car tu es avec moi.', ref:'Psaume 23:4'}, en:{text:'Even when I walk through the valley of the shadow of death, I fear no evil, for you are with me.', ref:'Psalm 23:4'}},
+    {id:'ps-56-4', fr:{text:'Quand je suis dans la crainte, je me confie en toi.', ref:'Psaume 56:4'}, en:{text:'When I am afraid, I put my trust in you.', ref:'Psalm 56:4'}},
+    {id:'pr-3-5', fr:{text:'Confie-toi de tout ton c\u0153ur dans le Seigneur, et ne t\u2019appuie pas sur ta propre intelligence.', ref:'Proverbes 3:5'}, en:{text:'Trust in the Lord with all your heart, and do not lean on your own understanding.', ref:'Proverbs 3:5'}},
+    {id:'ps-55-23', fr:{text:'Remets ton sort au Seigneur, et il te soutiendra.', ref:'Psaume 55:23'}, en:{text:'Cast your lot upon the Lord, and he will sustain you.', ref:'Psalm 55:23'}},
+    {id:'1pi-5-7', fr:{text:'D\u00e9chargez-vous sur lui de tous vos soucis, car lui-m\u00eame prend soin de vous.', ref:'1 Pierre 5:7'}, en:{text:'Cast upon him all your cares, for he himself takes care of you.', ref:'1 Peter 5:7'}},
+    {id:'mt-6-34', fr:{text:'N\u2019ayez point de souci du lendemain : le lendemain aura souci de lui-m\u00eame.', ref:'Matthieu 6:34'}, en:{text:'Have no care for the morrow: the morrow will care for itself.', ref:'Matthew 6:34'}},
+    {id:'ph-4-6', fr:{text:'Ne vous inqui\u00e9tez de rien ; mais en toute circonstance faites conna\u00eetre vos besoins \u00e0 Dieu.', ref:'Philippiens 4:6'}, en:{text:'Be anxious about nothing; but in everything make your needs known to God.', ref:'Philippians 4:6'}},
+    {id:'ph-4-7', fr:{text:'La paix de Dieu, qui surpasse toute intelligence, gardera vos c\u0153urs et vos pens\u00e9es dans le Christ J\u00e9sus.', ref:'Philippiens 4:7'}, en:{text:'The peace of God, which surpasses all understanding, will guard your hearts and your thoughts in Christ Jesus.', ref:'Philippians 4:7'}},
+    {id:'pr-9-10', fr:{text:'Le commencement de la sagesse, c\u2019est la crainte du Seigneur.', ref:'Proverbes 9:10'}, en:{text:'The beginning of wisdom is the fear of the Lord.', ref:'Proverbs 9:10'}},
+    {id:'mt-10-28-peur', fr:{text:'Ne craignez pas ceux qui tuent le corps et ne peuvent tuer l\u2019\u00e2me.', ref:'Matthieu 10:28'}, en:{text:'Do not fear those who kill the body and cannot kill the soul.', ref:'Matthew 10:28'}},
+    {id:'mt-10-31', fr:{text:'Ne craignez point : vous valez plus que beaucoup de passereaux.', ref:'Matthieu 10:31'}, en:{text:'Do not be afraid: you are worth more than many sparrows.', ref:'Matthew 10:31'}},
+    {id:'1jn-4-18', fr:{text:'L\u2019amour parfait bannit la crainte.', ref:'1 Jean 4:18'}, en:{text:'Perfect love casts out fear.', ref:'1 John 4:18'}},
+    {id:'2tm-1-7', fr:{text:'Dieu ne nous a pas donn\u00e9 un esprit de peur, mais un esprit de force, d\u2019amour et de sagesse.', ref:'2 Timoth\u00e9e 1:7'}, en:{text:'God has not given us a spirit of fear, but a spirit of strength, of love and of wisdom.', ref:'2 Timothy 1:7'}},
+    {id:'jn-14-27', fr:{text:'Je vous laisse la paix, je vous donne ma paix ; que votre c\u0153ur ne se trouble point et ne s\u2019effraie point.', ref:'Jean 14:27'}, en:{text:'Peace I leave you, my peace I give you; let not your heart be troubled, neither let it be afraid.', ref:'John 14:27'}}
+  ]},
+  {id:'tristesse-consolation', name:{fr:'La tristesse et la consolation', en:'Sadness and Consolation'}, verses:[
+    {id:'jn-11-35', fr:{text:'Et J\u00e9sus pleura.', ref:'Jean 11:35'}, en:{text:'And Jesus wept.', ref:'John 11:35'}},
+    {id:'lc-7-13', fr:{text:'Le Seigneur, l\u2019ayant vue, fut touch\u00e9 de compassion pour elle, et lui dit : Ne pleure pas.', ref:'Luc 7:13'}, en:{text:'The Lord, seeing her, was moved with compassion for her, and said to her: Do not weep.', ref:'Luke 7:13'}},
+    {id:'2co-1-3-4', fr:{text:'B\u00e9ni soit le P\u00e8re des mis\u00e9ricordes et le Dieu de toute consolation, qui nous console dans toutes nos tribulations.', ref:'2 Corinthiens 1:3-4'}, en:{text:'Blessed be the Father of mercies and the God of all consolation, who consoles us in all our tribulations.', ref:'2 Corinthians 1:3-4'}},
+    {id:'ps-56-9', fr:{text:'Tu as recueilli mes larmes dans ton outre : ne sont-elles pas inscrites dans ton livre ?', ref:'Psaume 56:9'}, en:{text:'You have gathered my tears in your flask: are they not written in your book?', ref:'Psalm 56:9'}},
+    {id:'ps-42-6', fr:{text:'Pourquoi es-tu abattue, \u00f4 mon \u00e2me ? Esp\u00e8re en Dieu, car je le louerai encore.', ref:'Psaume 42:6'}, en:{text:'Why are you cast down, O my soul? Hope in God, for I will praise him still.', ref:'Psalm 42:6'}},
+    {id:'2co-7-10', fr:{text:'La tristesse selon Dieu produit un repentir salutaire ; la tristesse du monde produit la mort.', ref:'2 Corinthiens 7:10'}, en:{text:'Godly sadness produces a saving repentance; the sadness of the world produces death.', ref:'2 Corinthians 7:10'}},
+    {id:'ps-34-19', fr:{text:'Le Seigneur est pr\u00e8s de ceux qui ont le c\u0153ur bris\u00e9, il sauve ceux dont l\u2019esprit est abattu.', ref:'Psaume 34:19'}, en:{text:'The Lord is near to those whose heart is broken, he saves those whose spirit is crushed.', ref:'Psalm 34:19'}},
+    {id:'ps-51-19', fr:{text:'Les sacrifices de Dieu, c\u2019est un esprit bris\u00e9 ; \u00f4 Dieu, tu ne d\u00e9daignes pas un c\u0153ur bris\u00e9 et contrit.', ref:'Psaume 51:19'}, en:{text:'The sacrifice of God is a broken spirit; O God, you will not despise a broken and contrite heart.', ref:'Psalm 51:17'}},
+    {id:'mt-5-5', fr:{text:'Heureux ceux qui pleurent, car ils seront consol\u00e9s !', ref:'Matthieu 5:5'}, en:{text:'Blessed are those who mourn, for they shall be comforted!', ref:'Matthew 5:4'}},
+    {id:'pr-17-22', fr:{text:'Un c\u0153ur joyeux est un excellent rem\u00e8de ; un esprit abattu dess\u00e8che les os.', ref:'Proverbes 17:22'}, en:{text:'A joyful heart is an excellent remedy; a downcast spirit dries up the bones.', ref:'Proverbs 17:22'}},
+    {id:'ps-30-6', fr:{text:'Le soir viennent les pleurs, et le matin l\u2019all\u00e9gresse.', ref:'Psaume 30:6'}, en:{text:'Weeping may come at evening, but joy in the morning.', ref:'Psalm 30:5'}},
+    {id:'ps-126-5', fr:{text:'Ceux qui s\u00e8ment dans les larmes moissonneront dans l\u2019all\u00e9gresse.', ref:'Psaume 126:5'}, en:{text:'Those who sow in tears shall reap in joy.', ref:'Psalm 126:5'}},
+    {id:'jn-16-20', fr:{text:'Votre affliction se changera en joie.', ref:'Jean 16:20'}, en:{text:'Your grief will be changed into joy.', ref:'John 16:20'}},
+    {id:'jn-16-22', fr:{text:'Je vous reverrai, et votre c\u0153ur se r\u00e9jouira, et nul ne vous ravira votre joie.', ref:'Jean 16:22'}, en:{text:'I will see you again, and your heart will rejoice, and no one will take your joy from you.', ref:'John 16:22'}},
+    {id:'1th-4-13', fr:{text:'Que vous ne vous affligiez pas, comme les autres hommes qui n\u2019ont pas d\u2019esp\u00e9rance.', ref:'1 Thessaloniciens 4:13'}, en:{text:'That you may not grieve, like the others who have no hope.', ref:'1 Thessalonians 4:13'}},
+    {id:'apo-21-4-tr', fr:{text:'Dieu essuiera toute larme de leurs yeux, et la mort ne sera plus.', ref:'Apocalypse 21:4'}, en:{text:'God will wipe away every tear from their eyes, and death shall be no more.', ref:'Revelation 21:4'}}
+  ]},
+  {id:'justice', name:{fr:'La justice', en:'Justice'}, verses:[
+    {id:'dt-32-4-just', fr:{text:'Le Rocher, son \u0153uvre est parfaite, car toutes ses voies sont justes ; il est juste et droit.', ref:'Deut\u00e9ronome 32:4'}, en:{text:'The Rock, his work is perfect, for all his ways are just; he is just and upright.', ref:'Deuteronomy 32:4'}},
+    {id:'gn-18-25', fr:{text:'Celui qui juge toute la terre ne rendrait-il pas justice ?', ref:'Gen\u00e8se 18:25'}, en:{text:'Shall the Judge of all the earth not do justice?', ref:'Genesis 18:25'}},
+    {id:'ps-11-7', fr:{text:'Le Seigneur est juste, il aime la justice ; les hommes droits contempleront sa face.', ref:'Psaume 11:7'}, en:{text:'The Lord is just, he loves justice; the upright will behold his face.', ref:'Psalm 11:7'}},
+    {id:'pr-11-1', fr:{text:'La balance fausse est en horreur au Seigneur, mais le poids juste lui est agr\u00e9able.', ref:'Proverbes 11:1'}, en:{text:'A false balance is an abomination to the Lord, but a just weight is his delight.', ref:'Proverbs 11:1'}},
+    {id:'is-1-17', fr:{text:'Recherchez la justice, redressez l\u2019oppresseur, faites droit \u00e0 l\u2019orphelin, d\u00e9fendez la veuve.', ref:'Isa\u00efe 1:17'}, en:{text:'Seek justice, set right the oppressor, do justice to the orphan, defend the widow.', ref:'Isaiah 1:17'}},
+    {id:'am-5-24', fr:{text:'Que le jugement coule comme l\u2019eau, et la justice comme un torrent qui ne tarit pas !', ref:'Amos 5:24'}, en:{text:'Let judgment flow like water, and justice like a torrent that never runs dry!', ref:'Amos 5:24'}},
+    {id:'mi-6-8', fr:{text:'Pratiquer la justice, aimer la mis\u00e9ricorde, et marcher humblement avec ton Dieu.', ref:'Mich\u00e9e 6:8'}, en:{text:'To practise justice, to love mercy, and to walk humbly with your God.', ref:'Micah 6:8'}},
+    {id:'ps-1-6', fr:{text:'Le Seigneur conna\u00eet la voie du juste, mais la voie des p\u00e9cheurs m\u00e8ne \u00e0 la ruine.', ref:'Psaume 1:6'}, en:{text:'The Lord knows the way of the just, but the way of sinners leads to ruin.', ref:'Psalm 1:6'}},
+    {id:'ha-2-4', fr:{text:'Le juste vivra par sa foi.', ref:'Habacuc 2:4'}, en:{text:'The just will live by his faith.', ref:'Habakkuk 2:4'}},
+    {id:'mt-5-6', fr:{text:'Heureux ceux qui ont faim et soif de la justice, car ils seront rassasi\u00e9s !', ref:'Matthieu 5:6'}, en:{text:'Blessed are those who hunger and thirst for justice, for they shall be satisfied!', ref:'Matthew 5:6'}},
+    {id:'mt-5-20', fr:{text:'Si votre justice ne surpasse celle des scribes et des pharisiens, vous n\u2019entrerez point dans le Royaume des cieux.', ref:'Matthieu 5:20'}, en:{text:'If your justice does not surpass that of the scribes and Pharisees, you will not enter the Kingdom of heaven.', ref:'Matthew 5:20'}},
+    {id:'rom-3-24', fr:{text:'Ils sont justifi\u00e9s gratuitement par sa gr\u00e2ce, par la r\u00e9demption qui est dans le Christ J\u00e9sus.', ref:'Romains 3:24'}, en:{text:'They are justified freely by his grace, through the redemption that is in Christ Jesus.', ref:'Romans 3:24'}},
+    {id:'rom-5-19', fr:{text:'Par l\u2019ob\u00e9issance d\u2019un seul, tous seront constitu\u00e9s justes.', ref:'Romains 5:19'}, en:{text:'By the obedience of one, all will be constituted just.', ref:'Romans 5:19'}},
+    {id:'jc-2-24', fr:{text:'L\u2019homme est justifi\u00e9 par les \u0153uvres, et non par la foi seulement.', ref:'Jacques 2:24'}, en:{text:'Man is justified by works, and not by faith alone.', ref:'James 2:24'}},
+    {id:'rom-3-26', fr:{text:'Pour manifester sa justice, de mani\u00e8re \u00e0 \u00eatre reconnu juste et justifiant celui qui croit en J\u00e9sus-Christ.', ref:'Romains 3:26'}, en:{text:'To manifest his justice, so as to be recognised as just and justifying the one who believes in Jesus Christ.', ref:'Romans 3:26'}},
+    {id:'2tm-4-8', fr:{text:'Il ne me reste plus qu\u2019\u00e0 recevoir la couronne de justice, que me donnera le juste Juge.', ref:'2 Timoth\u00e9e 4:8'}, en:{text:'There remains for me only to receive the crown of justice, which the just Judge will give me.', ref:'2 Timothy 4:8'}}
+  ]},
+  {id:'orgueil-humilite', name:{fr:'L\u2019orgueil et l\u2019humilit\u00e9', en:'Pride and Humility'}, verses:[
+    {id:'jc-4-6', fr:{text:'Dieu r\u00e9siste aux orgueilleux, et il accorde sa gr\u00e2ce aux humbles.', ref:'Jacques 4:6'}, en:{text:'God resists the proud, and gives his grace to the humble.', ref:'James 4:6'}},
+    {id:'pr-16-18', fr:{text:'L\u2019orgueil pr\u00e9c\u00e8de la ruine, et la fiert\u00e9 pr\u00e9c\u00e8de la chute.', ref:'Proverbes 16:18'}, en:{text:'Pride precedes ruin, and haughtiness precedes the fall.', ref:'Proverbs 16:18'}},
+    {id:'pr-11-2', fr:{text:'Si l\u2019orgueil vient, viendra aussi l\u2019ignominie ; mais la sagesse est avec les humbles.', ref:'Proverbes 11:2'}, en:{text:'If pride comes, ignominy will come too; but wisdom is with the humble.', ref:'Proverbs 11:2'}},
+    {id:'si-10-12', fr:{text:'L\u2019orgueil commence quand l\u2019homme se s\u00e9pare du Seigneur, et quand le c\u0153ur s\u2019\u00e9loigne de Celui qui l\u2019a fait.', ref:'Eccl\u00e9siastique 10:12'}, en:{text:'Pride begins when man separates himself from the Lord, and when the heart turns away from the One who made it.', ref:'Sirach 10:12'}},
+    {id:'si-3-18', fr:{text:'Humilie-toi d\u2019autant plus que tu es plus grand, et tu trouveras gr\u00e2ce devant le Seigneur.', ref:'Eccl\u00e9siastique 3:18'}, en:{text:'Humble yourself the more, the greater you are, and you will find grace before the Lord.', ref:'Sirach 3:18'}},
+    {id:'ps-131-1', fr:{text:'Mon c\u0153ur ne s\u2019est pas enfl\u00e9 d\u2019orgueil, et mes regards n\u2019ont pas \u00e9t\u00e9 hautains.', ref:'Psaume 131:1'}, en:{text:'My heart has not been puffed up with pride, and my eyes have not been haughty.', ref:'Psalm 131:1'}},
+    {id:'is-57-15', fr:{text:'J\u2019habite dans un lieu haut et saint, et en m\u00eame temps avec l\u2019homme contrit et humble d\u2019esprit.', ref:'Isa\u00efe 57:15'}, en:{text:'I dwell in a high and holy place, and at the same time with the contrite and humble of spirit.', ref:'Isaiah 57:15'}},
+    {id:'mt-11-29', fr:{text:'Recevez mes le\u00e7ons, car je suis doux et humble de c\u0153ur.', ref:'Matthieu 11:29'}, en:{text:'Learn from me, for I am gentle and humble of heart.', ref:'Matthew 11:29'}},
+    {id:'mt-18-4', fr:{text:'Celui qui se fera humble comme ce petit enfant, est le plus grand dans le Royaume des cieux.', ref:'Matthieu 18:4'}, en:{text:'Whoever makes himself humble like this little child is the greatest in the Kingdom of heaven.', ref:'Matthew 18:4'}},
+    {id:'lc-14-11', fr:{text:'Quiconque s\u2019\u00e9l\u00e8ve sera abaiss\u00e9, et quiconque s\u2019abaisse sera \u00e9lev\u00e9.', ref:'Luc 14:11'}, en:{text:'Whoever exalts himself will be humbled, and whoever humbles himself will be exalted.', ref:'Luke 14:11'}},
+    {id:'jn-13-14', fr:{text:'Si donc moi, le Seigneur et le Ma\u00eetre, je vous ai lav\u00e9 les pieds, vous devez aussi vous laver les pieds les uns aux autres.', ref:'Jean 13:14'}, en:{text:'If then I, the Lord and the Master, have washed your feet, you also ought to wash one another\u2019s feet.', ref:'John 13:14'}},
+    {id:'php-2-8', fr:{text:'Il s\u2019est abaiss\u00e9 lui-m\u00eame, se faisant ob\u00e9issant jusqu\u2019\u00e0 la mort, et \u00e0 la mort de la croix.', ref:'Philippiens 2:8'}, en:{text:'He humbled himself, becoming obedient unto death, and to death on a cross.', ref:'Philippians 2:8'}},
+    {id:'1co-4-7', fr:{text:'Qu\u2019as-tu que tu ne l\u2019aies re\u00e7u ? Et si tu l\u2019as re\u00e7u, pourquoi te glorifies-tu comme si tu ne l\u2019avais pas re\u00e7u ?', ref:'1 Corinthiens 4:7'}, en:{text:'What do you have that you have not received? And if you have received it, why do you boast as if you had not received it?', ref:'1 Corinthians 4:7'}},
+    {id:'1co-10-12', fr:{text:'Que celui qui croit \u00eatre debout prenne garde de tomber.', ref:'1 Corinthiens 10:12'}, en:{text:'Let him who thinks he stands take care lest he fall.', ref:'1 Corinthians 10:12'}},
+    {id:'1p-5-6', fr:{text:'Humiliez-vous donc sous la puissante main de Dieu, afin qu\u2019il vous \u00e9l\u00e8ve au temps marqu\u00e9.', ref:'1 Pierre 5:6'}, en:{text:'Humble yourselves therefore under the mighty hand of God, that he may exalt you at the appointed time.', ref:'1 Peter 5:6'}},
+    {id:'php-2-9', fr:{text:'C\u2019est pourquoi Dieu l\u2019a souverainement \u00e9lev\u00e9, et lui a donn\u00e9 le nom qui est au-dessus de tout nom.', ref:'Philippiens 2:9'}, en:{text:'Therefore God has sovereignly exalted him, and given him the name that is above every name.', ref:'Philippians 2:9'}}
+  ]},
+  {id:'force-courage', name:{fr:'La force', en:'Fortitude'}, verses:[
+    {id:'sg-8-7', fr:{text:'Elle enseigne la temp\u00e9rance et la prudence, la justice et la force, ce qu\u2019il y a de plus utile aux hommes pendant la vie.', ref:'Sagesse 8:7'}, en:{text:'She teaches temperance and prudence, justice and fortitude, than which nothing is more useful to men in life.', ref:'Wisdom 8:7'}},
+    {id:'ex-15-2', fr:{text:'Le Seigneur est ma force et l\u2019objet de mes chants ; c\u2019est lui qui m\u2019a sauv\u00e9.', ref:'Exode 15:2'}, en:{text:'The Lord is my strength and the object of my songs; it is he who saved me.', ref:'Exodus 15:2'}},
+    {id:'jos-1-6', fr:{text:'Fortifie-toi et prends courage ; car c\u2019est toi qui mettras ce peuple en possession du pays.', ref:'Josu\u00e9 1:6'}, en:{text:'Be strong and take courage; for it is you who will put this people in possession of the land.', ref:'Joshua 1:6'}},
+    {id:'1s-17-45', fr:{text:'Tu viens \u00e0 moi avec l\u2019\u00e9p\u00e9e, la lance et le javelot ; et moi je viens \u00e0 toi au nom du Seigneur des arm\u00e9es.', ref:'1 Samuel 17:45'}, en:{text:'You come to me with the sword, the spear and the javelin; and I come to you in the name of the Lord of hosts.', ref:'1 Samuel 17:45'}},
+    {id:'ps-27-1', fr:{text:'Le Seigneur est ma lumi\u00e8re et mon salut : qui craindrais-je ? Le Seigneur est le rempart de ma vie : de qui aurais-je peur ?', ref:'Psaume 27:1'}, en:{text:'The Lord is my light and my salvation: whom shall I fear? The Lord is the stronghold of my life: of whom shall I be afraid?', ref:'Psalm 27:1'}},
+    {id:'pr-16-32', fr:{text:'Celui qui est lent \u00e0 la col\u00e8re vaut mieux qu\u2019un h\u00e9ros ; et celui qui domine son esprit, que le guerrier qui prend les villes.', ref:'Proverbes 16:32'}, en:{text:'He who is slow to anger is better than a hero; and he who masters his spirit, than the warrior who takes cities.', ref:'Proverbs 16:32'}},
+    {id:'pr-28-1', fr:{text:'Les m\u00e9chants fuient sans qu\u2019on les poursuive, mais les justes ont de l\u2019assurance comme un lion.', ref:'Proverbes 28:1'}, en:{text:'The wicked flee when no one pursues, but the just have assurance like a lion.', ref:'Proverbs 28:1'}},
+    {id:'is-40-31', fr:{text:'Ceux qui se confient dans le Seigneur renouvellent leurs forces ; ils \u00e9l\u00e8veront leur vol comme les aigles.', ref:'Isa\u00efe 40:31'}, en:{text:'Those who trust in the Lord renew their strength; they will lift their flight like eagles.', ref:'Isaiah 40:31'}},
+    {id:'2co-12-9', fr:{text:'Ma gr\u00e2ce te suffit, car c\u2019est dans la faiblesse que ma puissance se montre tout enti\u00e8re.', ref:'2 Corinthiens 12:9'}, en:{text:'My grace is enough for you, for it is in weakness that my power shows itself whole.', ref:'2 Corinthians 12:9'}},
+    {id:'2co-12-10', fr:{text:'Lorsque je suis faible, c\u2019est alors que je suis fort.', ref:'2 Corinthiens 12:10'}, en:{text:'When I am weak, it is then that I am strong.', ref:'2 Corinthians 12:10'}},
+    {id:'php-4-13', fr:{text:'Je puis tout en celui qui me fortifie.', ref:'Philippiens 4:13'}, en:{text:'I can do all things in him who strengthens me.', ref:'Philippians 4:13'}},
+    {id:'jn-16-33', fr:{text:'Vous avez des tribulations dans le monde ; mais prenez confiance, j\u2019ai vaincu le monde.', ref:'Jean 16:33'}, en:{text:'You have tribulations in the world; but take confidence, I have overcome the world.', ref:'John 16:33'}},
+    {id:'he-12-3', fr:{text:'Consid\u00e9rez celui qui a support\u00e9 une si grande contradiction de la part des p\u00e9cheurs, afin de ne pas vous laisser abattre par le d\u00e9couragement.', ref:'H\u00e9breux 12:3'}, en:{text:'Consider him who endured so great a contradiction from sinners, so as not to let yourselves be worn down by discouragement.', ref:'Hebrews 12:3'}},
+    {id:'is-11-2', fr:{text:'Sur lui reposera l\u2019Esprit du Seigneur, esprit de sagesse et d\u2019intelligence, esprit de conseil et de force.', ref:'Isa\u00efe 11:2'}, en:{text:'On him will rest the Spirit of the Lord, a spirit of wisdom and understanding, a spirit of counsel and of fortitude.', ref:'Isaiah 11:2'}},
+    {id:'ep-6-10', fr:{text:'Fortifiez-vous dans le Seigneur et dans sa vertu toute-puissante.', ref:'\u00c9ph\u00e9siens 6:10'}, en:{text:'Be strong in the Lord and in his all-powerful might.', ref:'Ephesians 6:10'}},
+    {id:'1co-16-13', fr:{text:'Veillez, demeurez fermes dans la foi, soyez des hommes, fortifiez-vous.', ref:'1 Corinthiens 16:13'}, en:{text:'Watch, stand firm in the faith, be men, be strong.', ref:'1 Corinthians 16:13'}},
+    {id:'ap-2-10', fr:{text:'Sois fid\u00e8le jusqu\u2019\u00e0 la mort et je te donnerai la couronne de la vie.', ref:'Apocalypse 2:10'}, en:{text:'Be faithful unto death and I will give you the crown of life.', ref:'Revelation 2:10'}}
   ]}
 ];/*PRE_END*/
 
@@ -1727,6 +1830,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 // ════════ OBSERVATEUR AUTH ════════
 function demarrerAuto(){try{if(/[?&]demarrer=1/.test(location.search)){try{sessionStorage.setItem('lm_dem','1')}catch(_){}history.replaceState(null,'','/memoriser.html');}var go=false;try{go=sessionStorage.getItem('lm_dem')==='1';if(go)sessionStorage.removeItem('lm_dem');}catch(_){}if(!go)return;if(!S.selCats.length)S.selCats=PRE.map(function(c){return c.id;});if(allItems().length>=2){S.soloCat=null;startSession();return true;}}catch(e){}return false;}
 async function chargerBaseLV(){try{const s=await db.doc('config/memoriser').get();if(s.exists){const c=s.data().categories;if(Array.isArray(c)&&c.length){PRE.length=0;c.forEach(x=>PRE.push(x));}}}catch(e){}}
+if('serviceWorker' in navigator){try{navigator.serviceWorker.register('/memoriser-sw.js');}catch(_){}}
 auth.onAuthStateChanged(async u=>{
   if(u){
     S.uid=u.uid; $('user-mail').textContent=u.email||u.displayName||'';

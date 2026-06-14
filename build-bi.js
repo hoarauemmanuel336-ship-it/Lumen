@@ -276,9 +276,11 @@ const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">`;
 
-const FIREBASE_HEAD = `<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>`;
+const FIREBASE_HEAD = `<script>
+/* Firebase à la demande : chargé après le rendu (ou à la première interaction). */
+window.lvFB=function(){if(window.__lvFBP)return window.__lvFBP;window.__lvFBP=new Promise(function(res){var u=['app','auth','firestore'].map(function(n){return 'https://www.gstatic.com/firebasejs/10.7.1/firebase-'+n+'-compat.js';});(function next(i){if(i>=u.length){try{document.dispatchEvent(new Event('lv-fb-ready'));}catch(_){}res();return;}var s=document.createElement('script');s.src=u[i];s.onload=function(){next(i+1);};s.onerror=function(){res();};document.head.appendChild(s);})(0);});return window.__lvFBP;};
+(function(){var go=function(){window.lvFB();};window.addEventListener('load',function(){setTimeout(go,600);});['pointerdown','keydown'].forEach(function(ev){window.addEventListener(ev,go,{once:true,passive:true});});})();
+</scr`+`ipt>`;
 
 
 const ADMIN_JS = fs.existsSync('admin.js') ? fs.readFileSync('admin.js', 'utf8') : '';
@@ -439,6 +441,7 @@ function header(lang, type, base, otherRel, ctx) {
       <div class="auth-m-title">${lang === 'fr' ? 'Mon compte' : 'My account'}</div>
       <div class="auth-m-email" id="auth-in-email"></div>
       <a class="auth-m-btn" href="/bible.html#notes">${lang === 'fr' ? 'Mes notes' : 'My notes'}</a>
+      <div class="ttx-row"><span class="ttx-lab">${lang === 'fr' ? 'Taille du texte' : 'Text size'}</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
       <button class="auth-m-link" id="auth-logout">${lang === 'fr' ? 'Déconnexion' : 'Sign out'}</button>
     </div>
   </div>
@@ -466,9 +469,9 @@ document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' '
   if (L) L.addEventListener('click', function(){ try { localStorage.setItem('lv_lang', cur === 'fr' ? 'en' : 'fr'); } catch(e) {} });
 })();`;
 
-const MEMO_JS = `(function(){
+const MEMO_JS = `(function lvMemoBoot(){
   var box=document.getElementById('memo-scores'); if(!box)return;
-  if(typeof firebase==='undefined')return;
+  if(typeof firebase==='undefined'){document.addEventListener('lv-fb-ready',lvMemoBoot,{once:true});return;}
   var cfg={apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",authDomain:"lumen-veritatis.firebaseapp.com",projectId:"lumen-veritatis",storageBucket:"lumen-veritatis.firebasestorage.app",messagingSenderId:"195902823875",appId:"1:195902823875:web:a8be1f216a5ae1d945f176"};
   if(!firebase.apps.length)firebase.initializeApp(cfg);
   var auth=firebase.auth(), db=firebase.firestore();
@@ -494,9 +497,83 @@ const MEMO_JS = `(function(){
   });
 })();`;
 
+const SOMMAIRE_JS = `(function(){
+  function init(){
+    var art=document.querySelector('article.lecture');
+    if(!art)return;
+    var h2s=Array.prototype.slice.call(art.querySelectorAll('h2'));
+    if(h2s.length<3)return;
+    var FR=!(window.LUMEN&&window.LUMEN.lang==='en');
+    var pris={};
+    function slug(s){
+      s=String(s).toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')||'section';
+      var b=s,i=2;while(pris[s]){s=b+'-'+(i++);}pris[s]=1;return s;
+    }
+    h2s.forEach(function(h){ if(!h.id) h.id=slug(h.textContent); });
+    function liens(){
+      return h2s.map(function(h){
+        return '<span class="smr-lien" data-cible="'+h.id+'">'+h.textContent.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</span>';
+      }).join('');
+    }
+    var titre=FR?'Sommaire':'Contents';
+    var cote=document.createElement('nav');
+    cote.className='smr-cote';
+    cote.innerHTML='<div class="smr-titre">'+titre+'</div><div class="smr-liste">'+liens()+'</div>';
+    document.body.appendChild(cote);
+    var mob=document.createElement('nav');
+    mob.className='smr-mob';
+    mob.innerHTML='<div class="smr-mob-tete" role="button" tabindex="0"><span>'+titre+'</span><span class="smr-mob-chev">\\u203a</span></div><div class="smr-mob-corps">'+liens()+'</div>';
+    var h1=art.querySelector('h1');
+    if(h1&&h1.nextSibling)art.insertBefore(mob,h1.nextSibling);else art.insertBefore(mob,art.firstChild);
+    var tete=mob.querySelector('.smr-mob-tete');
+    function bascule(){mob.classList.toggle('ouvert');}
+    tete.addEventListener('click',bascule);
+    tete.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();bascule();}});
+    document.addEventListener('click',function(e){
+      var l=e.target.closest?e.target.closest('.smr-lien'):null;
+      if(!l)return;
+      var h=document.getElementById(l.getAttribute('data-cible'));
+      if(!h)return;
+      h.scrollIntoView({behavior:'smooth',block:'start'});
+      mob.classList.remove('ouvert');
+    });
+    function maj(){
+      var y=window.scrollY+110,actif=h2s[0];
+      for(var i=0;i<h2s.length;i++){if(h2s[i].offsetTop<=y)actif=h2s[i];else break;}
+      cote.querySelectorAll('.smr-lien').forEach(function(l){
+        l.classList.toggle('actif',l.getAttribute('data-cible')===actif.id);
+      });
+    }
+    var att=false;
+    window.addEventListener('scroll',function(){
+      if(att)return;att=true;
+      requestAnimationFrame(function(){maj();att=false;});
+    },{passive:true});
+    maj();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();`;
+
 const AUTH_JS = `(function(){
+  /* taille de lecture : appliquée au chargement, réglée depuis « Mon compte », sans dépendance */
+  var TZ=[0.85,0.925,1,1.08,1.16,1.25];
+  function tzCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_taille_mobile':'lv_taille_pc';}catch(e){return 'lv_taille_pc';}}
+  function tzLit(){var v=1;try{v=parseFloat(localStorage.getItem(tzCle())||localStorage.getItem('lv_taille'))||1;}catch(e){}return v;}
+  function tzApplique(v){document.documentElement.style.setProperty('--lvz',v);}
+  tzApplique(tzLit());
+  document.addEventListener('click',function(e){
+    var b=e.target.closest?e.target.closest('.ttx-b'):null;
+    if(!b)return;
+    var d=b.getAttribute('data-ttx'),v=tzLit();
+    if(d==='0')v=1;
+    else{var i=TZ.indexOf(v);if(i<0){i=2;}i+=(d==='1'?1:-1);i=Math.max(0,Math.min(TZ.length-1,i));v=TZ[i];}
+    try{localStorage.setItem(tzCle(),String(v));}catch(e2){}
+    tzApplique(v);
+  });
+})();
+(function lvAuthBoot(){
   var cfg={apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",authDomain:"lumen-veritatis.firebaseapp.com",projectId:"lumen-veritatis",storageBucket:"lumen-veritatis.firebasestorage.app",messagingSenderId:"195902823875",appId:"1:195902823875:web:a8be1f216a5ae1d945f176"};
-  if(typeof firebase==='undefined')return;
+  if(typeof firebase==='undefined'){document.addEventListener('lv-fb-ready',lvAuthBoot,{once:true});return;}
   if(!firebase.apps.length)firebase.initializeApp(cfg);
   var auth=firebase.auth();
   var FR=!(window.LUMEN&&window.LUMEN.lang==='en');
@@ -661,6 +738,7 @@ ${COMMUN_JS}
 ${RECH_JS}
 ${AUTH_JS}
 ${MEMO_JS}
+${SOMMAIRE_JS}
 window.LV_INDEX=${JSON.stringify({fr: buildIndex('fr'), en: buildIndex('en')}).replace(/</g, '\\u003c')};
 window.LV_NV=${JSON.stringify({fr: NV_FR, en: NV_EN}).replace(/</g, '\\u003c')};
 ${ADMIN_JS}
@@ -1056,6 +1134,7 @@ if (fs.existsSync('bible.html')) {
       ['Aucun résultat.', 'No results.'],
       ['Rien de nouveau pour le moment.', 'Nothing new for now.'],
       ['Copié \\u2713', 'Copied \\u2713'],
+      ['>Taille du texte<', '>Text size<'],
       ['>Non class\\u00e9e</option>', '>Uncategorised</option>'],
       ["'Modifier la note'", "'Edit the note'"],
       ["'Nouvelle note'", "'New note'"],
@@ -1096,6 +1175,11 @@ if (fs.existsSync('bible.html')) {
   if (fs.existsSync('bible-panneau.js')) {
     fs.copyFileSync('bible-panneau.js', `${OUT}/bible-panneau.js`);
     console.log('Copié : bible-panneau.js');
+    fs.copyFileSync('memoriser-sw.js', `${OUT}/memoriser-sw.js`);
+    fs.copyFileSync('memoriser-manifest.webmanifest', `${OUT}/memoriser-manifest.webmanifest`);
+    fs.mkdirSync(`${OUT}/icones`, { recursive: true });
+    for (const ic of fs.readdirSync('icones')) fs.copyFileSync(`icones/${ic}`, `${OUT}/icones/${ic}`);
+    console.log('Copié : memoriser-sw.js + manifest + icônes');
   }
   // Chaque Bible est UN fichier source que le build redécoupe en un fichier
   // par livre + un index : FR (Crampon) → /bible-data/, EN (Douay-Rheims) → /bible-data-en/.
