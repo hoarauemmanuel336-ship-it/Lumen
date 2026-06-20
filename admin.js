@@ -326,6 +326,13 @@
       if (nm['nom_' + lang]) { var h = a.querySelector('h3'); if (h) h.textContent = nm['nom_' + lang]; }
       if (nm['desc_' + lang]) { var p = a.querySelector('p'); if (p) p.textContent = nm['desc_' + lang]; }
     });
+    /* renuméroter les domaines selon leur position réelle après réordonnancement,
+       pour que le numéro suive l'ordre affiché et non l'ordre figé au build */
+    var dnum = 0;
+    qsa('.domaine[data-theme]').forEach(function (a) {
+      var s = a.querySelector('.d-num'); if (!s) return;
+      dnum++; s.textContent = (dnum < 10 ? '0' : '') + dnum;
+    });
   }
   function applyAccueil(d) {
     d = d || {};
@@ -374,6 +381,9 @@
     var bs = el('button', 'art-btn'); bs.type = 'button'; bs.title = T('Copier le lien de l\u2019article', 'Copy the article link');
     bs.innerHTML = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5v11.5" stroke-linecap="round"/><path d="M8 7l4-4 4 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 11.5v8h14v-8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     bs.addEventListener('click', function () { if (!navigator.clipboard) return; navigator.clipboard.writeText(location.href).then(function () { fb(bs); }).catch(function () {}); });
+    var bp = el('button', 'art-btn'); bp.type = 'button'; bp.title = T('Imprimer l\u2019article', 'Print the article');
+    bp.innerHTML = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9V3h12v6" stroke-linejoin="round"/><rect x="6" y="13" width="12" height="8" stroke-linejoin="round"/><path d="M6 17H3v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6h-3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    bp.addEventListener('click', function () { window.print(); });
     var svgHP = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9.5v5h3.5L12 18V6L7.5 9.5H4z" stroke-linejoin="round"/><path d="M15.5 9a4 4 0 0 1 0 6" stroke-linecap="round"/><path d="M18 6.8a7.5 7.5 0 0 1 0 10.4" stroke-linecap="round"/></svg>';
     var svgStop = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" stroke-linejoin="round"/></svg>';
     var be = el('button', 'art-btn'); be.type = 'button'; be.title = T('\u00C9couter l\u2019article', 'Listen to the article'); be.innerHTML = svgHP;
@@ -411,7 +421,7 @@
       lireSuivant();
     });
     window.addEventListener('pagehide', arretLecture);
-    bar.appendChild(be); bar.appendChild(bc); bar.appendChild(bs);
+    bar.appendChild(be); bar.appendChild(bc); bar.appendChild(bs); bar.appendChild(bp);
     var h1 = art.querySelector('h1');
     if (h1) h1.insertAdjacentElement('afterend', bar); else art.insertBefore(bar, art.firstChild);
     if (slug && IDX && IDX.themes) {

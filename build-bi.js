@@ -227,7 +227,7 @@ const UI = {
 
 /* ---- helpers de données par langue ---- */
 const slugOf = (lang, frId) => lang === 'fr' ? frId : (SLUGS[frId] || frId);
-const APOLOGIES = { 'la-communion-des-saints': 'l-intercession-des-saints', 'le-bapteme': 'le-bapteme-des-petits-enfants', 'marie': 'marie-mere-de-dieu', 'l-eucharistie': 'la-presence-reelle' };
+const APOLOGIES = { 'la-communion-des-saints': 'l-intercession-des-saints', 'le-bapteme': 'le-bapteme-des-petits-enfants', 'marie': 'marie-mere-de-dieu', 'l-eucharistie': 'la-presence-reelle', 'l-adoration-et-la-louange': 'pourquoi-dieu-demande-l-adoration' };
 const depouiller = h => (h || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 const themeNom = (lang, id) => lang === 'fr' ? (THEMES.find(x => x.id === id) || {}).nom : THEMES_EN[id].nom;
 const themeDesc = (lang, id) => lang === 'fr' ? (THEMES.find(x => x.id === id) || {}).desc : THEMES_EN[id].desc;
@@ -1135,6 +1135,7 @@ if (fs.existsSync('bible.html')) {
       ['Rien de nouveau pour le moment.', 'Nothing new for now.'],
       ['Copié \\u2713', 'Copied \\u2713'],
       ['>Taille du texte<', '>Text size<'],
+      ['>Onglet Bible à gauche<', '>Bible tab on the left<'],
       ['>Non class\\u00e9e</option>', '>Uncategorised</option>'],
       ["'Modifier la note'", "'Edit the note'"],
       ["'Nouvelle note'", "'New note'"],

@@ -3745,17 +3745,6 @@
           }
         },
         {
-          "id": "mt-10-28",
-          "fr": {
-            "text": "Craignez plutôt celui qui peut faire périr l’âme et le corps dans la géhenne.",
-            "ref": "Matthieu 10:28"
-          },
-          "en": {
-            "text": "Fear rather him who can destroy both soul and body in Gehenna.",
-            "ref": "Matthew 10:28"
-          }
-        },
-        {
           "id": "2th-1-9",
           "fr": {
             "text": "Ils subiront la peine d’une perdition éternelle, loin de la face du Seigneur.",
@@ -3901,21 +3890,43 @@
       ]
     },
     {
-      "id": "peur-confiance",
+      "id": "peur",
       "name": {
-        "fr": "La peur et la confiance",
-        "en": "Fear and Trust"
+        "fr": "La peur",
+        "en": "Fear"
       },
       "verses": [
         {
-          "id": "mc-5-36",
+          "id": "gn-3-10",
           "fr": {
-            "text": "Ne crains rien, crois seulement.",
-            "ref": "Marc 5:36"
+            "text": "J’ai eu peur parce que je suis nu, et je me suis caché.",
+            "ref": "Genèse 3:10"
           },
           "en": {
-            "text": "Fear nothing, only believe.",
-            "ref": "Mark 5:36"
+            "text": "I was afraid because I was naked, and I hid myself.",
+            "ref": "Genesis 3:10"
+          }
+        },
+        {
+          "id": "gn-15-1",
+          "fr": {
+            "text": "Ne crains point, Abram : je suis ton bouclier.",
+            "ref": "Genèse 15:1"
+          },
+          "en": {
+            "text": "Fear not, Abram: I am your shield.",
+            "ref": "Genesis 15:1"
+          }
+        },
+        {
+          "id": "jos-1-9",
+          "fr": {
+            "text": "Sois sans crainte et sans peur, car le Seigneur ton Dieu est avec toi partout où tu iras.",
+            "ref": "Josué 1:9"
+          },
+          "en": {
+            "text": "Be without fear and without dread, for the Lord your God is with you wherever you go.",
+            "ref": "Joshua 1:9"
           }
         },
         {
@@ -3927,6 +3938,39 @@
           "en": {
             "text": "Fear not, for I am with you; do not look about in dismay, for I am your God.",
             "ref": "Isaiah 41:10"
+          }
+        },
+        {
+          "id": "lc-1-30",
+          "fr": {
+            "text": "Ne crains point, Marie, car tu as trouvé grâce auprès de Dieu.",
+            "ref": "Luc 1:30"
+          },
+          "en": {
+            "text": "Fear not, Mary, for you have found favour with God.",
+            "ref": "Luke 1:30"
+          }
+        },
+        {
+          "id": "lc-2-10",
+          "fr": {
+            "text": "Ne craignez point, car je vous annonce une grande joie.",
+            "ref": "Luc 2:10"
+          },
+          "en": {
+            "text": "Fear not, for I bring you news of a great joy.",
+            "ref": "Luke 2:10"
+          }
+        },
+        {
+          "id": "mt-14-27",
+          "fr": {
+            "text": "Confiance, c’est moi, ne craignez point.",
+            "ref": "Matthieu 14:27"
+          },
+          "en": {
+            "text": "Take heart, it is I, do not be afraid.",
+            "ref": "Matthew 14:27"
           }
         },
         {
@@ -3952,69 +3996,14 @@
           }
         },
         {
-          "id": "pr-3-5",
+          "id": "mt-8-26",
           "fr": {
-            "text": "Confie-toi de tout ton cœur dans le Seigneur, et ne t’appuie pas sur ta propre intelligence.",
-            "ref": "Proverbes 3:5"
+            "text": "Pourquoi craignez-vous, hommes de peu de foi ?",
+            "ref": "Matthieu 8:26"
           },
           "en": {
-            "text": "Trust in the Lord with all your heart, and do not lean on your own understanding.",
-            "ref": "Proverbs 3:5"
-          }
-        },
-        {
-          "id": "ps-55-23",
-          "fr": {
-            "text": "Remets ton sort au Seigneur, et il te soutiendra.",
-            "ref": "Psaume 55:23"
-          },
-          "en": {
-            "text": "Cast your lot upon the Lord, and he will sustain you.",
-            "ref": "Psalm 55:23"
-          }
-        },
-        {
-          "id": "1pi-5-7",
-          "fr": {
-            "text": "Déchargez-vous sur lui de tous vos soucis, car lui-même prend soin de vous.",
-            "ref": "1 Pierre 5:7"
-          },
-          "en": {
-            "text": "Cast upon him all your cares, for he himself takes care of you.",
-            "ref": "1 Peter 5:7"
-          }
-        },
-        {
-          "id": "mt-6-34",
-          "fr": {
-            "text": "N’ayez point de souci du lendemain : le lendemain aura souci de lui-même.",
-            "ref": "Matthieu 6:34"
-          },
-          "en": {
-            "text": "Have no care for the morrow: the morrow will care for itself.",
-            "ref": "Matthew 6:34"
-          }
-        },
-        {
-          "id": "ph-4-6",
-          "fr": {
-            "text": "Ne vous inquiétez de rien ; mais en toute circonstance faites connaître vos besoins à Dieu.",
-            "ref": "Philippiens 4:6"
-          },
-          "en": {
-            "text": "Be anxious about nothing; but in everything make your needs known to God.",
-            "ref": "Philippians 4:6"
-          }
-        },
-        {
-          "id": "ph-4-7",
-          "fr": {
-            "text": "La paix de Dieu, qui surpasse toute intelligence, gardera vos cœurs et vos pensées dans le Christ Jésus.",
-            "ref": "Philippiens 4:7"
-          },
-          "en": {
-            "text": "The peace of God, which surpasses all understanding, will guard your hearts and your thoughts in Christ Jesus.",
-            "ref": "Philippians 4:7"
+            "text": "Why are you afraid, men of little faith?",
+            "ref": "Matthew 8:26"
           }
         },
         {
@@ -4029,14 +4018,14 @@
           }
         },
         {
-          "id": "mt-10-28-peur",
+          "id": "ps-19-10",
           "fr": {
-            "text": "Ne craignez pas ceux qui tuent le corps et ne peuvent tuer l’âme.",
-            "ref": "Matthieu 10:28"
+            "text": "La crainte du Seigneur est sainte : elle subsiste à jamais.",
+            "ref": "Psaume 19:10"
           },
           "en": {
-            "text": "Do not fear those who kill the body and cannot kill the soul.",
-            "ref": "Matthew 10:28"
+            "text": "The fear of the Lord is holy: it endures for ever.",
+            "ref": "Psalm 19:10"
           }
         },
         {
@@ -4046,7 +4035,7 @@
             "ref": "Matthieu 10:31"
           },
           "en": {
-            "text": "Do not be afraid: you are worth more than many sparrows.",
+            "text": "Fear not: you are worth more than many sparrows.",
             "ref": "Matthew 10:31"
           }
         },
@@ -4068,7 +4057,7 @@
             "ref": "2 Timothée 1:7"
           },
           "en": {
-            "text": "God has not given us a spirit of fear, but a spirit of strength, of love and of wisdom.",
+            "text": "God has not given us a spirit of fear, but a spirit of power, of love, and of self-control.",
             "ref": "2 Timothy 1:7"
           }
         },
@@ -4079,17 +4068,193 @@
             "ref": "Jean 14:27"
           },
           "en": {
-            "text": "Peace I leave you, my peace I give you; let not your heart be troubled, neither let it be afraid.",
+            "text": "I leave you peace, I give you my peace; let not your heart be troubled, nor let it be afraid.",
             "ref": "John 14:27"
+          }
+        },
+        {
+          "id": "dt-31-6",
+          "fr": {
+            "text": "Soyez forts et courageux ; n’ayez ni crainte ni frayeur, car c’est le Seigneur ton Dieu qui marche avec toi.",
+            "ref": "Deutéronome 31:6"
+          },
+          "en": {
+            "text": "Be strong and courageous; have no fear and no dread, for it is the Lord your God who marches with you.",
+            "ref": "Deuteronomy 31:6"
+          }
+        },
+        {
+          "id": "ps-27-1",
+          "fr": {
+            "text": "Le Seigneur est ma lumière et mon salut : qui craindrais-je ?",
+            "ref": "Psaume 27:1"
+          },
+          "en": {
+            "text": "The Lord is my light and my salvation: whom shall I fear?",
+            "ref": "Psalm 27:1"
+          }
+        },
+        {
+          "id": "ps-34-5",
+          "fr": {
+            "text": "J’ai cherché le Seigneur, et il m’a exaucé, et il m’a délivré de toutes mes frayeurs.",
+            "ref": "Psaume 34:5"
+          },
+          "en": {
+            "text": "I sought the Lord, and he answered me, and delivered me from all my fears.",
+            "ref": "Psalm 34:5"
+          }
+        },
+        {
+          "id": "ps-46-2",
+          "fr": {
+            "text": "Dieu est notre refuge et notre force, un secours toujours offert dans la détresse.",
+            "ref": "Psaume 46:2"
+          },
+          "en": {
+            "text": "God is our refuge and our strength, a help always at hand in distress.",
+            "ref": "Psalm 46:2"
+          }
+        },
+        {
+          "id": "ps-118-6",
+          "fr": {
+            "text": "Le Seigneur est pour moi, je ne crains rien : que peuvent me faire les hommes ?",
+            "ref": "Psaume 118:6"
+          },
+          "en": {
+            "text": "The Lord is for me, I fear nothing: what can men do to me?",
+            "ref": "Psalm 118:6"
+          }
+        },
+        {
+          "id": "is-43-1",
+          "fr": {
+            "text": "Ne crains point, car je t’ai racheté ; je t’ai appelé par ton nom, tu es à moi.",
+            "ref": "Isaïe 43:1"
+          },
+          "en": {
+            "text": "Fear not, for I have redeemed you; I have called you by your name, you are mine.",
+            "ref": "Isaiah 43:1"
+          }
+        },
+        {
+          "id": "jr-1-8",
+          "fr": {
+            "text": "Sois sans crainte devant eux, car je suis avec toi pour te délivrer.",
+            "ref": "Jérémie 1:8"
+          },
+          "en": {
+            "text": "Be without fear before them, for I am with you to deliver you.",
+            "ref": "Jeremiah 1:8"
+          }
+        },
+        {
+          "id": "mt-6-34",
+          "fr": {
+            "text": "Ne vous inquiétez pas du lendemain : à chaque jour suffit sa peine.",
+            "ref": "Matthieu 6:34"
+          },
+          "en": {
+            "text": "Do not be anxious about tomorrow: each day has trouble enough of its own.",
+            "ref": "Matthew 6:34"
+          }
+        },
+        {
+          "id": "lc-12-32",
+          "fr": {
+            "text": "Ne crains point, petit troupeau, car il a plu à votre Père de vous donner le royaume.",
+            "ref": "Luc 12:32"
+          },
+          "en": {
+            "text": "Fear not, little flock, for it has pleased your Father to give you the kingdom.",
+            "ref": "Luke 12:32"
+          }
+        },
+        {
+          "id": "jn-16-33",
+          "fr": {
+            "text": "Prenez confiance : j’ai vaincu le monde.",
+            "ref": "Jean 16:33"
+          },
+          "en": {
+            "text": "Take courage: I have overcome the world.",
+            "ref": "John 16:33"
+          }
+        },
+        {
+          "id": "rm-8-15",
+          "fr": {
+            "text": "Vous n’avez pas reçu un esprit de servitude pour retomber dans la crainte, mais un esprit d’adoption.",
+            "ref": "Romains 8:15"
+          },
+          "en": {
+            "text": "You have not received a spirit of slavery to fall back into fear, but a spirit of adoption.",
+            "ref": "Romans 8:15"
+          }
+        },
+        {
+          "id": "ph-4-6",
+          "fr": {
+            "text": "Ne vous inquiétez de rien ; en toute chose, faites connaître vos demandes à Dieu.",
+            "ref": "Philippiens 4:6"
+          },
+          "en": {
+            "text": "Be anxious for nothing; in everything, make your requests known to God.",
+            "ref": "Philippians 4:6"
+          }
+        },
+        {
+          "id": "1p-5-7",
+          "fr": {
+            "text": "Déchargez-vous sur lui de tous vos soucis, car il prend soin de vous.",
+            "ref": "1 Pierre 5:7"
+          },
+          "en": {
+            "text": "Cast all your cares upon him, for he takes care of you.",
+            "ref": "1 Peter 5:7"
+          }
+        },
+        {
+          "id": "ap-1-17",
+          "fr": {
+            "text": "Ne crains point : je suis le premier et le dernier.",
+            "ref": "Apocalypse 1:17"
+          },
+          "en": {
+            "text": "Fear not: I am the first and the last.",
+            "ref": "Revelation 1:17"
+          }
+        },
+        {
+          "id": "is-35-4",
+          "fr": {
+            "text": "Dites à ceux qui ont le cœur troublé : Prenez courage, ne craignez point ; voici votre Dieu.",
+            "ref": "Isaïe 35:4"
+          },
+          "en": {
+            "text": "Say to those whose heart is troubled: Take courage, fear not; behold your God.",
+            "ref": "Isaiah 35:4"
+          }
+        },
+        {
+          "id": "mt-10-28",
+          "fr": {
+            "text": "Craignez plutôt celui qui peut faire périr l’âme et le corps dans la géhenne.",
+            "ref": "Matthieu 10:28"
+          },
+          "en": {
+            "text": "Fear rather him who can destroy both soul and body in Gehenna.",
+            "ref": "Matthew 10:28"
           }
         }
       ]
     },
     {
-      "id": "tristesse-consolation",
+      "id": "tristesse",
       "name": {
-        "fr": "La tristesse et la consolation",
-        "en": "Sadness and Consolation"
+        "fr": "La tristesse",
+        "en": "Sadness"
       },
       "verses": [
         {
@@ -4104,25 +4269,25 @@
           }
         },
         {
-          "id": "lc-7-13",
+          "id": "mc-14-34",
           "fr": {
-            "text": "Le Seigneur, l’ayant vue, fut touché de compassion pour elle, et lui dit : Ne pleure pas.",
-            "ref": "Luc 7:13"
+            "text": "Mon âme est triste jusqu’à la mort.",
+            "ref": "Marc 14:34"
           },
           "en": {
-            "text": "The Lord, seeing her, was moved with compassion for her, and said to her: Do not weep.",
-            "ref": "Luke 7:13"
+            "text": "My soul is sorrowful unto death.",
+            "ref": "Mark 14:34"
           }
         },
         {
-          "id": "2co-1-3-4",
+          "id": "ps-6-7",
           "fr": {
-            "text": "Béni soit le Père des miséricordes et le Dieu de toute consolation, qui nous console dans toutes nos tribulations.",
-            "ref": "2 Corinthiens 1:3-4"
+            "text": "Chaque nuit ma couche est baignée de mes larmes, mon lit est arrosé de mes pleurs.",
+            "ref": "Psaume 6:7"
           },
           "en": {
-            "text": "Blessed be the Father of mercies and the God of all consolation, who consoles us in all our tribulations.",
-            "ref": "2 Corinthians 1:3-4"
+            "text": "Every night I drench my bed with weeping, I water my couch with my tears.",
+            "ref": "Psalm 6:7"
           }
         },
         {
@@ -4159,36 +4324,36 @@
           }
         },
         {
-          "id": "ps-34-19",
+          "id": "lc-22-62",
           "fr": {
-            "text": "Le Seigneur est près de ceux qui ont le cœur brisé, il sauve ceux dont l’esprit est abattu.",
-            "ref": "Psaume 34:19"
+            "text": "Étant sorti, Pierre pleura amèrement.",
+            "ref": "Luc 22:62"
           },
           "en": {
-            "text": "The Lord is near to those whose heart is broken, he saves those whose spirit is crushed.",
-            "ref": "Psalm 34:19"
+            "text": "And going out, Peter wept bitterly.",
+            "ref": "Luke 22:62"
           }
         },
         {
-          "id": "ps-51-19",
+          "id": "mt-19-22",
           "fr": {
-            "text": "Les sacrifices de Dieu, c’est un esprit brisé ; ô Dieu, tu ne dédaignes pas un cœur brisé et contrit.",
-            "ref": "Psaume 51:19"
+            "text": "Il s’en alla triste, car il avait de grands biens.",
+            "ref": "Matthieu 19:22"
           },
           "en": {
-            "text": "The sacrifice of God is a broken spirit; O God, you will not despise a broken and contrite heart.",
-            "ref": "Psalm 51:17"
+            "text": "He went away sad, for he had great possessions.",
+            "ref": "Matthew 19:22"
           }
         },
         {
-          "id": "mt-5-5",
+          "id": "si-30-23",
           "fr": {
-            "text": "Heureux ceux qui pleurent, car ils seront consolés !",
-            "ref": "Matthieu 5:5"
+            "text": "Chasse loin de toi la tristesse, car le chagrin en a tué beaucoup.",
+            "ref": "Ecclésiastique 30:23"
           },
           "en": {
-            "text": "Blessed are those who mourn, for they shall be comforted!",
-            "ref": "Matthew 5:4"
+            "text": "Drive sadness far from you, for grief has killed many.",
+            "ref": "Sirach 30:23"
           }
         },
         {
@@ -4203,6 +4368,50 @@
           }
         },
         {
+          "id": "mt-5-5",
+          "fr": {
+            "text": "Heureux ceux qui pleurent, car ils seront consolés !",
+            "ref": "Matthieu 5:5"
+          },
+          "en": {
+            "text": "Blessed are those who mourn, for they shall be comforted!",
+            "ref": "Matthew 5:5"
+          }
+        },
+        {
+          "id": "ps-34-19",
+          "fr": {
+            "text": "Le Seigneur est près de ceux qui ont le cœur brisé, il sauve ceux dont l’esprit est abattu.",
+            "ref": "Psaume 34:19"
+          },
+          "en": {
+            "text": "The Lord is near to those whose heart is broken, he saves those whose spirit is crushed.",
+            "ref": "Psalm 34:19"
+          }
+        },
+        {
+          "id": "ps-51-19",
+          "fr": {
+            "text": "Les sacrifices de Dieu, c’est un esprit brisé ; tu ne dédaignes pas un cœur brisé et contrit.",
+            "ref": "Psaume 51:19"
+          },
+          "en": {
+            "text": "The sacrifice of God is a broken spirit; you will not despise a broken and contrite heart.",
+            "ref": "Psalm 51:19"
+          }
+        },
+        {
+          "id": "jn-16-20",
+          "fr": {
+            "text": "Vous serez affligés, mais votre affliction se changera en joie.",
+            "ref": "Jean 16:20"
+          },
+          "en": {
+            "text": "You will be grieved, but your grief will be changed into joy.",
+            "ref": "John 16:20"
+          }
+        },
+        {
           "id": "ps-30-6",
           "fr": {
             "text": "Le soir viennent les pleurs, et le matin l’allégresse.",
@@ -4210,7 +4419,7 @@
           },
           "en": {
             "text": "Weeping may come at evening, but joy in the morning.",
-            "ref": "Psalm 30:5"
+            "ref": "Psalm 30:6"
           }
         },
         {
@@ -4225,17 +4434,6 @@
           }
         },
         {
-          "id": "jn-16-20",
-          "fr": {
-            "text": "Votre affliction se changera en joie.",
-            "ref": "Jean 16:20"
-          },
-          "en": {
-            "text": "Your grief will be changed into joy.",
-            "ref": "John 16:20"
-          }
-        },
-        {
           "id": "jn-16-22",
           "fr": {
             "text": "Je vous reverrai, et votre cœur se réjouira, et nul ne vous ravira votre joie.",
@@ -4247,18 +4445,7 @@
           }
         },
         {
-          "id": "1th-4-13",
-          "fr": {
-            "text": "Que vous ne vous affligiez pas, comme les autres hommes qui n’ont pas d’espérance.",
-            "ref": "1 Thessaloniciens 4:13"
-          },
-          "en": {
-            "text": "That you may not grieve, like the others who have no hope.",
-            "ref": "1 Thessalonians 4:13"
-          }
-        },
-        {
-          "id": "apo-21-4-tr",
+          "id": "ap-21-4",
           "fr": {
             "text": "Dieu essuiera toute larme de leurs yeux, et la mort ne sera plus.",
             "ref": "Apocalypse 21:4"
@@ -4267,571 +4454,465 @@
             "text": "God will wipe away every tear from their eyes, and death shall be no more.",
             "ref": "Revelation 21:4"
           }
-        }
-      ]
-    },
-    {
-      "id": "justice",
-      "name": {
-        "fr": "La justice",
-        "en": "Justice"
-      },
-      "verses": [
+        },
         {
-          "id": "dt-32-4-just",
+          "id": "is-25-8",
           "fr": {
-            "text": "Le Rocher, son œuvre est parfaite, car toutes ses voies sont justes ; il est juste et droit.",
-            "ref": "Deutéronome 32:4"
+            "text": "Le Seigneur essuiera les larmes sur tous les visages.",
+            "ref": "Isaïe 25:8"
           },
           "en": {
-            "text": "The Rock, his work is perfect, for all his ways are just; he is just and upright.",
-            "ref": "Deuteronomy 32:4"
+            "text": "The Lord will wipe away the tears from every face.",
+            "ref": "Isaiah 25:8"
           }
         },
         {
-          "id": "gn-18-25",
+          "id": "ps-31-10",
           "fr": {
-            "text": "Celui qui juge toute la terre ne rendrait-il pas justice ?",
-            "ref": "Genèse 18:25"
+            "text": "Aie pitié de moi, Seigneur, car je suis dans la détresse ; mon œil est usé par le chagrin.",
+            "ref": "Psaume 31:10"
           },
           "en": {
-            "text": "Shall the Judge of all the earth not do justice?",
-            "ref": "Genesis 18:25"
+            "text": "Have mercy on me, Lord, for I am in distress; my eye is worn out with grief.",
+            "ref": "Psalm 31:10"
           }
         },
         {
-          "id": "ps-11-7",
+          "id": "ps-147-3",
           "fr": {
-            "text": "Le Seigneur est juste, il aime la justice ; les hommes droits contempleront sa face.",
-            "ref": "Psaume 11:7"
+            "text": "Il guérit ceux qui ont le cœur brisé, et il panse leurs blessures.",
+            "ref": "Psaume 147:3"
           },
           "en": {
-            "text": "The Lord is just, he loves justice; the upright will behold his face.",
-            "ref": "Psalm 11:7"
+            "text": "He heals the broken-hearted and binds up their wounds.",
+            "ref": "Psalm 147:3"
           }
         },
         {
-          "id": "pr-11-1",
+          "id": "ps-116-8",
           "fr": {
-            "text": "La balance fausse est en horreur au Seigneur, mais le poids juste lui est agréable.",
-            "ref": "Proverbes 11:1"
+            "text": "Tu as sauvé mon âme de la mort, mon œil des larmes, mes pieds de la chute.",
+            "ref": "Psaume 116:8"
           },
           "en": {
-            "text": "A false balance is an abomination to the Lord, but a just weight is his delight.",
-            "ref": "Proverbs 11:1"
+            "text": "You have saved my soul from death, my eye from tears, my feet from falling.",
+            "ref": "Psalm 116:8"
           }
         },
         {
-          "id": "is-1-17",
+          "id": "lm-3-32",
           "fr": {
-            "text": "Recherchez la justice, redressez l’oppresseur, faites droit à l’orphelin, défendez la veuve.",
-            "ref": "Isaïe 1:17"
+            "text": "S’il afflige, il a compassion, selon sa grande miséricorde.",
+            "ref": "Lamentations 3:32"
           },
           "en": {
-            "text": "Seek justice, set right the oppressor, do justice to the orphan, defend the widow.",
-            "ref": "Isaiah 1:17"
+            "text": "Though he afflicts, he has compassion, according to his great mercy.",
+            "ref": "Lamentations 3:32"
           }
         },
         {
-          "id": "am-5-24",
+          "id": "is-61-3",
           "fr": {
-            "text": "Que le jugement coule comme l’eau, et la justice comme un torrent qui ne tarit pas !",
-            "ref": "Amos 5:24"
+            "text": "Donner aux affligés l’huile de joie au lieu du deuil, un manteau de fête au lieu d’un esprit abattu.",
+            "ref": "Isaïe 61:3"
           },
           "en": {
-            "text": "Let judgment flow like water, and justice like a torrent that never runs dry!",
-            "ref": "Amos 5:24"
+            "text": "To give the afflicted the oil of joy instead of mourning, a festive cloak instead of a downcast spirit.",
+            "ref": "Isaiah 61:3"
           }
         },
         {
-          "id": "mi-6-8",
+          "id": "jr-31-13",
           "fr": {
-            "text": "Pratiquer la justice, aimer la miséricorde, et marcher humblement avec ton Dieu.",
-            "ref": "Michée 6:8"
+            "text": "Je changerai leur deuil en joie, je les consolerai et les réjouirai après leur douleur.",
+            "ref": "Jérémie 31:13"
           },
           "en": {
-            "text": "To practise justice, to love mercy, and to walk humbly with your God.",
-            "ref": "Micah 6:8"
+            "text": "I will change their mourning into joy, I will comfort them and gladden them after their sorrow.",
+            "ref": "Jeremiah 31:13"
           }
         },
         {
-          "id": "ps-1-6",
+          "id": "jb-16-20",
           "fr": {
-            "text": "Le Seigneur connaît la voie du juste, mais la voie des pécheurs mène à la ruine.",
-            "ref": "Psaume 1:6"
+            "text": "Mes amis se moquent de moi, c’est vers Dieu que pleurent mes yeux.",
+            "ref": "Job 16:20"
           },
           "en": {
-            "text": "The Lord knows the way of the just, but the way of sinners leads to ruin.",
-            "ref": "Psalm 1:6"
+            "text": "My friends mock me, it is toward God that my eyes weep.",
+            "ref": "Job 16:20"
           }
         },
         {
-          "id": "ha-2-4",
+          "id": "mt-11-28",
           "fr": {
-            "text": "Le juste vivra par sa foi.",
-            "ref": "Habacuc 2:4"
+            "text": "Venez à moi, vous tous qui êtes fatigués et ployez sous le fardeau, et je vous soulagerai.",
+            "ref": "Matthieu 11:28"
           },
           "en": {
-            "text": "The just will live by his faith.",
-            "ref": "Habakkuk 2:4"
+            "text": "Come to me, all you who are weary and bowed down under the burden, and I will give you rest.",
+            "ref": "Matthew 11:28"
           }
         },
         {
-          "id": "mt-5-6",
+          "id": "1th-4-13",
           "fr": {
-            "text": "Heureux ceux qui ont faim et soif de la justice, car ils seront rassasiés !",
-            "ref": "Matthieu 5:6"
+            "text": "Que vous ne vous affligiez pas comme les autres, qui n’ont pas d’espérance.",
+            "ref": "1 Thessaloniciens 4:13"
           },
           "en": {
-            "text": "Blessed are those who hunger and thirst for justice, for they shall be satisfied!",
-            "ref": "Matthew 5:6"
+            "text": "That you may not grieve as the others do, who have no hope.",
+            "ref": "1 Thessalonians 4:13"
           }
         },
         {
-          "id": "mt-5-20",
+          "id": "rm-12-15",
           "fr": {
-            "text": "Si votre justice ne surpasse celle des scribes et des pharisiens, vous n’entrerez point dans le Royaume des cieux.",
-            "ref": "Matthieu 5:20"
+            "text": "Réjouissez-vous avec ceux qui sont dans la joie ; pleurez avec ceux qui pleurent.",
+            "ref": "Romains 12:15"
           },
           "en": {
-            "text": "If your justice does not surpass that of the scribes and Pharisees, you will not enter the Kingdom of heaven.",
-            "ref": "Matthew 5:20"
+            "text": "Rejoice with those who rejoice; weep with those who weep.",
+            "ref": "Romans 12:15"
           }
         },
         {
-          "id": "rom-3-24",
+          "id": "jn-14-1",
           "fr": {
-            "text": "Ils sont justifiés gratuitement par sa grâce, par la rédemption qui est dans le Christ Jésus.",
-            "ref": "Romains 3:24"
+            "text": "Que votre cœur ne se trouble point. Vous croyez en Dieu, croyez aussi en moi.",
+            "ref": "Jean 14:1"
           },
           "en": {
-            "text": "They are justified freely by his grace, through the redemption that is in Christ Jesus.",
-            "ref": "Romans 3:24"
+            "text": "Let not your heart be troubled. You believe in God, believe also in me.",
+            "ref": "John 14:1"
           }
         },
         {
-          "id": "rom-5-19",
+          "id": "2co-1-4",
           "fr": {
-            "text": "Par l’obéissance d’un seul, tous seront constitués justes.",
-            "ref": "Romains 5:19"
+            "text": "Il nous console dans toutes nos tribulations, afin que nous puissions consoler les autres.",
+            "ref": "2 Corinthiens 1:4"
           },
           "en": {
-            "text": "By the obedience of one, all will be constituted just.",
-            "ref": "Romans 5:19"
-          }
-        },
-        {
-          "id": "jc-2-24",
-          "fr": {
-            "text": "L’homme est justifié par les œuvres, et non par la foi seulement.",
-            "ref": "Jacques 2:24"
-          },
-          "en": {
-            "text": "Man is justified by works, and not by faith alone.",
-            "ref": "James 2:24"
-          }
-        },
-        {
-          "id": "rom-3-26",
-          "fr": {
-            "text": "Pour manifester sa justice, de manière à être reconnu juste et justifiant celui qui croit en Jésus-Christ.",
-            "ref": "Romains 3:26"
-          },
-          "en": {
-            "text": "To manifest his justice, so as to be recognised as just and justifying the one who believes in Jesus Christ.",
-            "ref": "Romans 3:26"
-          }
-        },
-        {
-          "id": "2tm-4-8",
-          "fr": {
-            "text": "Il ne me reste plus qu’à recevoir la couronne de justice, que me donnera le juste Juge.",
-            "ref": "2 Timothée 4:8"
-          },
-          "en": {
-            "text": "There remains for me only to receive the crown of justice, which the just Judge will give me.",
-            "ref": "2 Timothy 4:8"
+            "text": "He comforts us in all our troubles, so that we may comfort others.",
+            "ref": "2 Corinthians 1:4"
           }
         }
       ]
     },
     {
-      "id": "orgueil-humilite",
+      "id": "nations",
       "name": {
-        "fr": "L’orgueil et l’humilité",
-        "en": "Pride and Humility"
+        "fr": "Les oracles contre les nations",
+        "en": "The Oracles against the Nations"
       },
       "verses": [
         {
-          "id": "jc-4-6",
+          "id": "is-14-24",
           "fr": {
-            "text": "Dieu résiste aux orgueilleux, et il accorde sa grâce aux humbles.",
-            "ref": "Jacques 4:6"
+            "text": "Le dessein qui est arrêté s’accomplira, et ce que j’ai décidé se réalisera.",
+            "ref": "Isaïe 14:24"
           },
           "en": {
-            "text": "God resists the proud, and gives his grace to the humble.",
-            "ref": "James 4:6"
+            "text": "The purpose that is fixed will be accomplished, and what I have decided will come to pass.",
+            "ref": "Isaiah 14:24"
           }
         },
         {
-          "id": "pr-16-18",
+          "id": "is-14-27",
           "fr": {
-            "text": "L’orgueil précède la ruine, et la fierté précède la chute.",
-            "ref": "Proverbes 16:18"
+            "text": "Le Seigneur des armées a décidé : qui l’empêcherait ?",
+            "ref": "Isaïe 14:27"
           },
           "en": {
-            "text": "Pride precedes ruin, and haughtiness precedes the fall.",
-            "ref": "Proverbs 16:18"
+            "text": "The Lord of hosts has decided: who would prevent it?",
+            "ref": "Isaiah 14:27"
           }
         },
         {
-          "id": "pr-11-2",
+          "id": "is-13-11",
           "fr": {
-            "text": "Si l’orgueil vient, viendra aussi l’ignominie ; mais la sagesse est avec les humbles.",
-            "ref": "Proverbes 11:2"
+            "text": "Je ferai cesser l’arrogance des superbes, et j’abaisserai l’orgueil des tyrans.",
+            "ref": "Isaïe 13:11"
           },
           "en": {
-            "text": "If pride comes, ignominy will come too; but wisdom is with the humble.",
-            "ref": "Proverbs 11:2"
+            "text": "I will put an end to the arrogance of the proud, and I will lay low the pride of tyrants.",
+            "ref": "Isaiah 13:11"
           }
         },
         {
-          "id": "si-10-12",
+          "id": "is-23-9",
           "fr": {
-            "text": "L’orgueil commence quand l’homme se sépare du Seigneur, et quand le cœur s’éloigne de Celui qui l’a fait.",
-            "ref": "Ecclésiastique 10:12"
+            "text": "Pour flétrir l’orgueil de tout ce qui brille, pour humilier tous les grands de la terre.",
+            "ref": "Isaïe 23:9"
           },
           "en": {
-            "text": "Pride begins when man separates himself from the Lord, and when the heart turns away from the One who made it.",
-            "ref": "Sirach 10:12"
+            "text": "To tarnish the pride of all that glitters, to humble all the great of the earth.",
+            "ref": "Isaiah 23:9"
           }
         },
         {
-          "id": "si-3-18",
+          "id": "is-14-12",
           "fr": {
-            "text": "Humilie-toi d’autant plus que tu es plus grand, et tu trouveras grâce devant le Seigneur.",
-            "ref": "Ecclésiastique 3:18"
+            "text": "Comment es-tu tombé du ciel, astre brillant, fils de l’aurore ?",
+            "ref": "Isaïe 14:12"
           },
           "en": {
-            "text": "Humble yourself the more, the greater you are, and you will find grace before the Lord.",
-            "ref": "Sirach 3:18"
+            "text": "How are you fallen from heaven, shining star, son of the dawn?",
+            "ref": "Isaiah 14:12"
           }
         },
         {
-          "id": "ps-131-1",
+          "id": "is-14-13",
           "fr": {
-            "text": "Mon cœur ne s’est pas enflé d’orgueil, et mes regards n’ont pas été hautains.",
-            "ref": "Psaume 131:1"
+            "text": "Je monterai dans les cieux, au-dessus des étoiles de Dieu j’élèverai mon trône, je serai semblable au Très-Haut.",
+            "ref": "Isaïe 14:13"
           },
           "en": {
-            "text": "My heart has not been puffed up with pride, and my eyes have not been haughty.",
-            "ref": "Psalm 131:1"
+            "text": "I will ascend into the heavens, above the stars of God I will raise my throne, I will be like the Most High.",
+            "ref": "Isaiah 14:13"
           }
         },
         {
-          "id": "is-57-15",
+          "id": "is-15-5",
           "fr": {
-            "text": "J’habite dans un lieu haut et saint, et en même temps avec l’homme contrit et humble d’esprit.",
-            "ref": "Isaïe 57:15"
+            "text": "Mon cœur gémit sur Moab.",
+            "ref": "Isaïe 15:5"
           },
           "en": {
-            "text": "I dwell in a high and holy place, and at the same time with the contrite and humble of spirit.",
-            "ref": "Isaiah 57:15"
+            "text": "My heart groans over Moab.",
+            "ref": "Isaiah 15:5"
           }
         },
         {
-          "id": "mt-11-29",
+          "id": "is-16-5",
           "fr": {
-            "text": "Recevez mes leçons, car je suis doux et humble de cœur.",
-            "ref": "Matthieu 11:29"
+            "text": "Le trône est affermi par la miséricorde, et sur ce trône s’assiéra, dans la tente de David, un juge poursuivant le droit.",
+            "ref": "Isaïe 16:5"
           },
           "en": {
-            "text": "Learn from me, for I am gentle and humble of heart.",
-            "ref": "Matthew 11:29"
+            "text": "The throne is established by mercy, and upon it will sit, in the tent of David, a judge pursuing right.",
+            "ref": "Isaiah 16:5"
           }
         },
         {
-          "id": "mt-18-4",
+          "id": "is-19-22",
           "fr": {
-            "text": "Celui qui se fera humble comme ce petit enfant, est le plus grand dans le Royaume des cieux.",
-            "ref": "Matthieu 18:4"
+            "text": "Le Seigneur frappera l’Égypte, frappant et guérissant ; ils se convertiront au Seigneur.",
+            "ref": "Isaïe 19:22"
           },
           "en": {
-            "text": "Whoever makes himself humble like this little child is the greatest in the Kingdom of heaven.",
-            "ref": "Matthew 18:4"
+            "text": "The Lord will strike Egypt, striking and healing; they will turn to the Lord.",
+            "ref": "Isaiah 19:22"
           }
         },
         {
-          "id": "lc-14-11",
+          "id": "is-19-25",
           "fr": {
-            "text": "Quiconque s’élève sera abaissé, et quiconque s’abaisse sera élevé.",
-            "ref": "Luc 14:11"
+            "text": "Béni soient l’Égypte, mon peuple, et Assur, l’ouvrage de mes mains, et Israël, mon héritage !",
+            "ref": "Isaïe 19:25"
           },
           "en": {
-            "text": "Whoever exalts himself will be humbled, and whoever humbles himself will be exalted.",
-            "ref": "Luke 14:11"
+            "text": "Blessed be Egypt, my people, and Assyria, the work of my hands, and Israel, my inheritance!",
+            "ref": "Isaiah 19:25"
           }
         },
         {
-          "id": "jn-13-14",
+          "id": "is-22-22",
           "fr": {
-            "text": "Si donc moi, le Seigneur et le Maître, je vous ai lavé les pieds, vous devez aussi vous laver les pieds les uns aux autres.",
-            "ref": "Jean 13:14"
+            "text": "Je mettrai sur son épaule la clef de la maison de David : il ouvrira, et personne ne fermera.",
+            "ref": "Isaïe 22:22"
           },
           "en": {
-            "text": "If then I, the Lord and the Master, have washed your feet, you also ought to wash one another’s feet.",
-            "ref": "John 13:14"
+            "text": "I will set upon his shoulder the key of the house of David: he will open, and none will shut.",
+            "ref": "Isaiah 22:22"
           }
         },
         {
-          "id": "php-2-8",
+          "id": "ap-3-7",
           "fr": {
-            "text": "Il s’est abaissé lui-même, se faisant obéissant jusqu’à la mort, et à la mort de la croix.",
-            "ref": "Philippiens 2:8"
+            "text": "Voici le saint, le Véritable, celui qui a la clef de David, qui ouvre et personne ne ferme.",
+            "ref": "Apocalypse 3:7"
           },
           "en": {
-            "text": "He humbled himself, becoming obedient unto death, and to death on a cross.",
-            "ref": "Philippians 2:8"
+            "text": "Behold the holy one, the True one, who has the key of David, who opens and none shuts.",
+            "ref": "Revelation 3:7"
           }
         },
         {
-          "id": "1co-4-7",
+          "id": "is-24-1",
           "fr": {
-            "text": "Qu’as-tu que tu ne l’aies reçu ? Et si tu l’as reçu, pourquoi te glorifies-tu comme si tu ne l’avais pas reçu ?",
-            "ref": "1 Corinthiens 4:7"
+            "text": "Voici que le Seigneur va dévaster la terre entière et la dépeupler.",
+            "ref": "Isaïe 24:1"
           },
           "en": {
-            "text": "What do you have that you have not received? And if you have received it, why do you boast as if you had not received it?",
-            "ref": "1 Corinthians 4:7"
+            "text": "Behold, the Lord will lay waste the whole earth and depopulate it.",
+            "ref": "Isaiah 24:1"
           }
         },
         {
-          "id": "1co-10-12",
+          "id": "is-25-6",
           "fr": {
-            "text": "Que celui qui croit être debout prenne garde de tomber.",
-            "ref": "1 Corinthiens 10:12"
+            "text": "Le Seigneur des armées préparera, pour tous les peuples, sur cette montagne, un festin de viandes grasses.",
+            "ref": "Isaïe 25:6"
           },
           "en": {
-            "text": "Let him who thinks he stands take care lest he fall.",
-            "ref": "1 Corinthians 10:12"
+            "text": "The Lord of hosts will prepare, for all peoples, on this mountain, a feast of rich food.",
+            "ref": "Isaiah 25:6"
           }
         },
         {
-          "id": "1p-5-6",
+          "id": "is-26-19",
           "fr": {
-            "text": "Humiliez-vous donc sous la puissante main de Dieu, afin qu’il vous élève au temps marqué.",
-            "ref": "1 Pierre 5:6"
+            "text": "Tes morts vivront, mes cadavres ressusciteront. Réveillez-vous et chantez, vous qui êtes couchés dans la poussière.",
+            "ref": "Isaïe 26:19"
           },
           "en": {
-            "text": "Humble yourselves therefore under the mighty hand of God, that he may exalt you at the appointed time.",
-            "ref": "1 Peter 5:6"
+            "text": "Your dead will live, my corpses will rise. Awake and sing, you who lie in the dust.",
+            "ref": "Isaiah 26:19"
           }
         },
         {
-          "id": "php-2-9",
+          "id": "ap-19-9",
           "fr": {
-            "text": "C’est pourquoi Dieu l’a souverainement élevé, et lui a donné le nom qui est au-dessus de tout nom.",
-            "ref": "Philippiens 2:9"
+            "text": "Heureux ceux qui sont invités au festin des noces de l’Agneau !",
+            "ref": "Apocalypse 19:9"
           },
           "en": {
-            "text": "Therefore God has sovereignly exalted him, and given him the name that is above every name.",
-            "ref": "Philippians 2:9"
-          }
-        }
-      ]
-    },
-    {
-      "id": "force-courage",
-      "name": {
-        "fr": "La force",
-        "en": "Fortitude"
-      },
-      "verses": [
-        {
-          "id": "sg-8-7",
-          "fr": {
-            "text": "Elle enseigne la tempérance et la prudence, la justice et la force, ce qu’il y a de plus utile aux hommes pendant la vie.",
-            "ref": "Sagesse 8:7"
-          },
-          "en": {
-            "text": "She teaches temperance and prudence, justice and fortitude, than which nothing is more useful to men in life.",
-            "ref": "Wisdom 8:7"
+            "text": "Blessed are those who are invited to the wedding feast of the Lamb!",
+            "ref": "Revelation 19:9"
           }
         },
         {
-          "id": "ex-15-2",
+          "id": "is-2-11",
           "fr": {
-            "text": "Le Seigneur est ma force et l’objet de mes chants ; c’est lui qui m’a sauvé.",
-            "ref": "Exode 15:2"
+            "text": "L’orgueil de l’homme sera humilié, et le Seigneur sera exalté, lui seul, en ce jour-là.",
+            "ref": "Isaïe 2:11"
           },
           "en": {
-            "text": "The Lord is my strength and the object of my songs; it is he who saved me.",
-            "ref": "Exodus 15:2"
+            "text": "The pride of man will be humbled, and the Lord alone will be exalted on that day.",
+            "ref": "Isaiah 2:11"
           }
         },
         {
-          "id": "jos-1-6",
+          "id": "is-21-9",
           "fr": {
-            "text": "Fortifie-toi et prends courage ; car c’est toi qui mettras ce peuple en possession du pays.",
-            "ref": "Josué 1:6"
+            "text": "Elle est tombée, elle est tombée, Babylone !",
+            "ref": "Isaïe 21:9"
           },
           "en": {
-            "text": "Be strong and take courage; for it is you who will put this people in possession of the land.",
-            "ref": "Joshua 1:6"
+            "text": "She is fallen, she is fallen, Babylon!",
+            "ref": "Isaiah 21:9"
           }
         },
         {
-          "id": "1s-17-45",
+          "id": "is-25-9",
           "fr": {
-            "text": "Tu viens à moi avec l’épée, la lance et le javelot ; et moi je viens à toi au nom du Seigneur des armées.",
-            "ref": "1 Samuel 17:45"
+            "text": "Voici notre Dieu, en qui nous espérions pour être sauvés ; réjouissons-nous dans son salut.",
+            "ref": "Isaïe 25:9"
           },
           "en": {
-            "text": "You come to me with the sword, the spear and the javelin; and I come to you in the name of the Lord of hosts.",
-            "ref": "1 Samuel 17:45"
+            "text": "Behold our God, in whom we hoped for salvation; let us rejoice in his salvation.",
+            "ref": "Isaiah 25:9"
           }
         },
         {
-          "id": "ps-27-1",
+          "id": "is-26-3",
           "fr": {
-            "text": "Le Seigneur est ma lumière et mon salut : qui craindrais-je ? Le Seigneur est le rempart de ma vie : de qui aurais-je peur ?",
-            "ref": "Psaume 27:1"
+            "text": "Au cœur constant vous assurez la paix, parce qu’il se confie en vous.",
+            "ref": "Isaïe 26:3"
           },
           "en": {
-            "text": "The Lord is my light and my salvation: whom shall I fear? The Lord is the stronghold of my life: of whom shall I be afraid?",
-            "ref": "Psalm 27:1"
+            "text": "To the steadfast heart you grant peace, because it trusts in you.",
+            "ref": "Isaiah 26:3"
           }
         },
         {
-          "id": "pr-16-32",
+          "id": "is-40-15",
           "fr": {
-            "text": "Celui qui est lent à la colère vaut mieux qu’un héros ; et celui qui domine son esprit, que le guerrier qui prend les villes.",
-            "ref": "Proverbes 16:32"
+            "text": "Les nations sont comme la goutte suspendue à un seau, comme la poussière dans la balance.",
+            "ref": "Isaïe 40:15"
           },
           "en": {
-            "text": "He who is slow to anger is better than a hero; and he who masters his spirit, than the warrior who takes cities.",
-            "ref": "Proverbs 16:32"
+            "text": "The nations are like a drop hanging from a bucket, like the dust on the scales.",
+            "ref": "Isaiah 40:15"
           }
         },
         {
-          "id": "pr-28-1",
+          "id": "ps-46-11",
           "fr": {
-            "text": "Les méchants fuient sans qu’on les poursuive, mais les justes ont de l’assurance comme un lion.",
-            "ref": "Proverbes 28:1"
+            "text": "Arrêtez et reconnaissez que je suis Dieu ; je domine sur les nations, je domine sur la terre.",
+            "ref": "Psaume 46:11"
           },
           "en": {
-            "text": "The wicked flee when no one pursues, but the just have assurance like a lion.",
-            "ref": "Proverbs 28:1"
+            "text": "Be still and know that I am God; I rule over the nations, I rule over the earth.",
+            "ref": "Psalm 46:11"
           }
         },
         {
-          "id": "is-40-31",
+          "id": "ps-47-8",
           "fr": {
-            "text": "Ceux qui se confient dans le Seigneur renouvellent leurs forces ; ils élèveront leur vol comme les aigles.",
-            "ref": "Isaïe 40:31"
+            "text": "Dieu est roi de toute la terre ; chantez un cantique de louange.",
+            "ref": "Psaume 47:8"
           },
           "en": {
-            "text": "Those who trust in the Lord renew their strength; they will lift their flight like eagles.",
-            "ref": "Isaiah 40:31"
+            "text": "God is king of all the earth; sing a song of praise.",
+            "ref": "Psalm 47:8"
           }
         },
         {
-          "id": "2co-12-9",
+          "id": "ps-86-9",
           "fr": {
-            "text": "Ma grâce te suffit, car c’est dans la faiblesse que ma puissance se montre tout entière.",
-            "ref": "2 Corinthiens 12:9"
+            "text": "Toutes les nations que tu as faites viendront se prosterner devant toi, Seigneur.",
+            "ref": "Psaume 86:9"
           },
           "en": {
-            "text": "My grace is enough for you, for it is in weakness that my power shows itself whole.",
-            "ref": "2 Corinthians 12:9"
+            "text": "All the nations you have made will come and bow down before you, Lord.",
+            "ref": "Psalm 86:9"
           }
         },
         {
-          "id": "2co-12-10",
+          "id": "ps-22-28",
           "fr": {
-            "text": "Lorsque je suis faible, c’est alors que je suis fort.",
-            "ref": "2 Corinthiens 12:10"
+            "text": "Toutes les familles des nations se prosterneront devant le Seigneur.",
+            "ref": "Psaume 22:28"
           },
           "en": {
-            "text": "When I am weak, it is then that I am strong.",
-            "ref": "2 Corinthians 12:10"
+            "text": "All the families of the nations will bow down before the Lord.",
+            "ref": "Psalm 22:28"
           }
         },
         {
-          "id": "php-4-13",
+          "id": "pr-21-1",
           "fr": {
-            "text": "Je puis tout en celui qui me fortifie.",
-            "ref": "Philippiens 4:13"
+            "text": "Le cœur du roi est un cours d’eau dans la main du Seigneur, il l’incline où il veut.",
+            "ref": "Proverbes 21:1"
           },
           "en": {
-            "text": "I can do all things in him who strengthens me.",
-            "ref": "Philippians 4:13"
+            "text": "The king’s heart is a stream of water in the hand of the Lord, he turns it wherever he wills.",
+            "ref": "Proverbs 21:1"
           }
         },
         {
-          "id": "jn-16-33",
+          "id": "dn-2-21",
           "fr": {
-            "text": "Vous avez des tribulations dans le monde ; mais prenez confiance, j’ai vaincu le monde.",
-            "ref": "Jean 16:33"
+            "text": "C’est lui qui change les temps, qui renverse les rois et qui élève les rois.",
+            "ref": "Daniel 2:21"
           },
           "en": {
-            "text": "You have tribulations in the world; but take confidence, I have overcome the world.",
-            "ref": "John 16:33"
+            "text": "It is he who changes the times, who deposes kings and raises up kings.",
+            "ref": "Daniel 2:21"
           }
         },
         {
-          "id": "he-12-3",
+          "id": "ml-1-11",
           "fr": {
-            "text": "Considérez celui qui a supporté une si grande contradiction de la part des pécheurs, afin de ne pas vous laisser abattre par le découragement.",
-            "ref": "Hébreux 12:3"
+            "text": "Du lever du soleil à son coucher, mon nom est grand parmi les nations.",
+            "ref": "Malachie 1:11"
           },
           "en": {
-            "text": "Consider him who endured so great a contradiction from sinners, so as not to let yourselves be worn down by discouragement.",
-            "ref": "Hebrews 12:3"
-          }
-        },
-        {
-          "id": "is-11-2",
-          "fr": {
-            "text": "Sur lui reposera l’Esprit du Seigneur, esprit de sagesse et d’intelligence, esprit de conseil et de force.",
-            "ref": "Isaïe 11:2"
-          },
-          "en": {
-            "text": "On him will rest the Spirit of the Lord, a spirit of wisdom and understanding, a spirit of counsel and of fortitude.",
-            "ref": "Isaiah 11:2"
-          }
-        },
-        {
-          "id": "ep-6-10",
-          "fr": {
-            "text": "Fortifiez-vous dans le Seigneur et dans sa vertu toute-puissante.",
-            "ref": "Éphésiens 6:10"
-          },
-          "en": {
-            "text": "Be strong in the Lord and in his all-powerful might.",
-            "ref": "Ephesians 6:10"
-          }
-        },
-        {
-          "id": "1co-16-13",
-          "fr": {
-            "text": "Veillez, demeurez fermes dans la foi, soyez des hommes, fortifiez-vous.",
-            "ref": "1 Corinthiens 16:13"
-          },
-          "en": {
-            "text": "Watch, stand firm in the faith, be men, be strong.",
-            "ref": "1 Corinthians 16:13"
-          }
-        },
-        {
-          "id": "ap-2-10",
-          "fr": {
-            "text": "Sois fidèle jusqu’à la mort et je te donnerai la couronne de la vie.",
-            "ref": "Apocalypse 2:10"
-          },
-          "en": {
-            "text": "Be faithful unto death and I will give you the crown of life.",
-            "ref": "Revelation 2:10"
+            "text": "From the rising of the sun to its setting, my name is great among the nations.",
+            "ref": "Malachi 1:11"
           }
         }
       ]

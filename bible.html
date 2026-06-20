@@ -91,9 +91,18 @@ a.b-r:hover b,.b-r:hover b{color:var(--or-pale)}
 .ttx-btns{display:flex;gap:8px}
 .ttx-b{background:none;border:1px solid var(--filet);color:#fff;font-family:var(--display);font-size:14px;min-width:38px;padding:7px 8px;cursor:pointer;transition:border-color .25s,color .25s}
 .ttx-b:hover{border-color:var(--or)}
+.tog-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:14px 0 6px;padding-top:16px;border-top:1px solid var(--filet)}
+.tog-lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.tog-sw{position:relative;width:46px;height:24px;border:1px solid var(--filet-f);background:none;cursor:pointer;flex:none;transition:border-color .25s}
+.tog-sw:hover{border-color:var(--or)}
+.tog-sw::after{content:'';position:absolute;top:50%;left:3px;width:16px;height:16px;background:rgba(255,255,255,.55);transform:translateY(-50%);transition:left .25s,background .25s}
+.tog-sw.on{border-color:var(--or)}
+.tog-sw.on::after{left:25px;background:var(--or)}
+#bp-tab.bp-tab-masque{display:none!important}
 /* ---------- focus clavier ---------- */
 :focus{outline:none}
 :focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}
+.ic-btn:focus,.ic-btn:focus-visible{outline:none}
 /* ---------- impression ---------- */
 @media print{
   body{background:#fff;color:#000}
@@ -192,7 +201,7 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
 /* — Modale de note — */
 #note-voile{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:90px 20px 40px;overflow-y:auto}
 #note-voile.ouvert{display:flex}
-.note-boite{width:100%;max-width:620px;background:var(--encre-2);border:1px solid var(--filet);padding:34px 36px;animation:rise .4s ease both}
+.note-boite{width:100%;max-width:620px;background:var(--encre);border:1px solid var(--filet);padding:34px 36px;animation:rise .4s ease both}
 .nb-titre{font-family:var(--display);font-weight:400;font-size:27px;margin-bottom:16px}
 .nb-refs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
 .nb-zone{width:100%;min-height:170px;background:rgba(231,224,207,.03);border:1px solid rgba(231,224,207,.14);padding:14px 16px;font-size:17.5px;line-height:1.6;outline:none;resize:vertical;transition:border-color .3s}
@@ -213,7 +222,7 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
 #auth-voile.ouvert{display:flex}
 #bacct-voile,#cat-voile{position:fixed;inset:0;z-index:63;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px}
 #bacct-voile.ouvert,#cat-voile.ouvert{display:flex}
-.bacct{position:relative;width:100%;max-width:380px;background:var(--encre-2);border:1px solid var(--filet);padding:36px 32px;animation:rise .4s ease both}
+.bacct{position:relative;width:100%;max-width:380px;background:var(--encre);border:1px solid var(--filet);padding:36px 32px;animation:rise .4s ease both}
 .bacct-x{position:absolute;top:12px;right:14px;cursor:pointer;color:rgba(255,255,255,.55);font-size:18px;padding:4px 8px;transition:color .3s}
 .bacct-x:hover{color:#fff}
 .bacct-t{font-family:var(--display);font-size:24px;text-align:center;margin-bottom:22px;color:#fff}
@@ -223,11 +232,11 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
 .bacct-deco{display:block;text-align:center;margin-top:18px;color:rgba(255,255,255,.55);font-size:14px;cursor:pointer;transition:color .3s}
 .bacct-deco:hover{color:#fff}
 input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
-footer{border-top:1px solid var(--filet);margin-top:64px;padding:48px 32px 56px;text-align:center}
+footer{border-top:1px solid var(--filet);margin-top:44px;padding:30px 32px 34px;text-align:center}
 footer .marque{font-family:var(--display);letter-spacing:.34em;text-transform:uppercase;font-size:18px;padding-left:.34em;color:#fff}
-footer .verset-pied{margin-top:18px;font-style:italic;color:rgba(255,255,255,.6);font-size:17px;max-width:620px;margin-left:auto;margin-right:auto;line-height:1.6}
-footer .verset-pied .ref-pied{font-style:normal;display:block;margin-top:10px;font-family:var(--display);font-size:13px;letter-spacing:.1em;color:var(--or)}
-footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,255,255,.45);font-family:var(--display)}
+footer .verset-pied{margin-top:14px;font-style:italic;color:rgba(255,255,255,.6);font-size:15px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.55}
+footer .verset-pied .ref-pied{font-style:normal;display:block;margin-top:8px;font-family:var(--display);font-size:12px;letter-spacing:.1em;color:var(--or)}
+footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,255,255,.45);font-family:var(--display)}
 .cat-input{width:100%;box-sizing:border-box;background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:15px;padding:11px 12px;outline:none;margin-bottom:18px}
 .cat-input:focus{border-color:var(--or)}
 .notes-actions{display:flex;gap:20px;align-items:baseline}
@@ -242,7 +251,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
 .note-depl{background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:13px;padding:5px 8px;outline:none;max-width:230px}
 .nb-cat-ligne{display:flex;align-items:center;gap:12px;margin:0 0 16px}
 .nb-cat-lab{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
-.ab-boite{width:100%;max-width:400px;background:var(--encre-2);border:1px solid var(--filet);padding:32px 34px;animation:rise .4s ease both}
+.ab-boite{width:100%;max-width:400px;background:var(--encre);border:1px solid var(--filet);padding:32px 34px;animation:rise .4s ease both}
 .ab-titre{font-family:var(--display);font-weight:400;font-size:27px;margin-bottom:18px;text-align:center}
 .ab-tabs{display:flex;gap:24px;justify-content:center;margin-bottom:20px}
 .ab-tab{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-att);padding:6px 2px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
@@ -340,6 +349,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
       <div class="bacct-mail" id="bacct-mail"></div>
       <span class="bacct-btn" id="bacct-notes" role="button" tabindex="0">Mes notes</span>
       <div class="ttx-row"><span class="ttx-lab">Taille du texte</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
+      <div class="tog-row"><span class="tog-lab">Onglet Bible à gauche</span><span class="tog-sw" id="tog-bible" role="button" tabindex="0" aria-label="Afficher ou masquer l'onglet Bible"></span></div>
       <span class="bacct-deco" id="auth-logout" role="button" tabindex="0">Déconnexion</span>
       </div>
     </div>
@@ -602,6 +612,20 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
       try{localStorage.setItem(tzCle(),String(v));}catch(e2){}
       tzApplique(v);
     });
+  })();
+  (function(){
+    /* interrupteur « Onglet Bible à gauche » dans Mon compte : écrit la préférence par appareil.
+       L'application réelle sur l'onglet se fait dans bible-panneau.js (présent sur les pages à onglet). */
+    function obCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_onglet_bible_mobile':'lv_onglet_bible_pc';}catch(e){return 'lv_onglet_bible_pc';}}
+    function obMasque(){try{return localStorage.getItem(obCle())==='0';}catch(e){return false;}}
+    var sw=document.getElementById('tog-bible');
+    function etat(){if(sw)sw.classList.toggle('on',!obMasque());}
+    etat();
+    if(sw){
+      function bascule(){var m=obMasque();try{localStorage.setItem(obCle(),m?'1':'0');}catch(e){}etat();}
+      sw.addEventListener('click',bascule);
+      sw.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();bascule();}});
+    }
   })();
   var NVL = 'fr';
   function nvSrc(){

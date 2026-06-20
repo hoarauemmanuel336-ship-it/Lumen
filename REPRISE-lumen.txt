@@ -257,13 +257,7 @@ ne se rapièce pas.
   même sujet hors article, tous vérifiés sur content/bible.json, EN en
   traduction propre, unités scripturaires complètes (jamais de verset
   coupé), pas de doublon inter-catégories (un verset = une seule
-  catégorie, la plus juste). SOURCE DE VÉRITÉ (rappel ferme, 14/06) : la
-  catégorie se crée TOUJOURS dans content/memoriser.json, JAMAIS en
-  éditant à la main le bloc PRE de memoriser.html. Le build réécrit ce
-  PRE à chaque passe depuis Firestore (config/memoriser) sinon depuis
-  content/memoriser.json ; toute édition directe du PRE est donc perdue
-  au build suivant. Schéma d'une catégorie : {id, name:{fr,en},
-  verses:[{id, fr:{text,ref}, en:{text,ref}}]}.
+  catégorie, la plus juste).
 • Le journal des Nouveautés annonce les VRAIES nouveautés (articles,
   outils), jamais les reprises ou approfondissements.
 • Pas de liens hypertexte dans les articles SAUF décision explicite
@@ -310,10 +304,8 @@ ne se rapièce pas.
 • Bible en ligne : Crampon 1904 FR (crédit mission-web.com CC BY-NC-SA
   obligatoire) + Douay-Rheims EN, lecteur + panneau latéral + notes par
   compte avec catégories.
-• Mémoriser : 24 catégories, 420 versets de base (dédoublonnage du
-  11/06 : un verset = une catégorie ; mt-10-28-peur placé en « La peur et
-  la confiance »). content/memoriser.json resynchronisé le 14/06 sur le
-  PRE de memoriser.html (voir entrée datée en fin de fichier).
+• Mémoriser : 22 catégories, 429 versets de base (dédoublonnage du
+  11/06 : un verset = une catégorie ; mt-10-28 placé en « La peur »).
 • Quiz : RETIRÉ (7 juin, décision d'Emmanuel) ; ne pas réintroduire.
 • Page À propos : supprimée. Le bouton « Commencer » de l'accueil lance
   une série Mémoriser (?demarrer=1).
@@ -728,38 +720,974 @@ scroll-margin-top:90px sur les h2, libellé Sommaire/Contents selon la
 langue, masqué en print. Préfixe de classes smr-. Vérifié jsdom :
 7 entrées sur la-force, ids slugifiés, toggle mobile, fermeture après
 clic, aucun sommaire sur l'accueil.
-RESYNCHRONISATION content/memoriser.json (14/06). Le fichier était périmé
-(22 catégories : ...peur, tristesse, nations) alors que le PRE de
-memoriser.html et l'état réel du Mémoriseur comptaient 24 catégories. Comme
-le build injecte ce json (ou Firestore config/memoriser) dans le PRE en
-écrasant l'édition manuelle, une reconstruction sans override Firestore
-aurait régressé le Mémoriseur (perte de peur-confiance, tristesse-consolation,
-justice, orgueil-humilite, force-courage ; retour de peur, tristesse,
-nations). content/memoriser.json régénéré depuis le PRE : 24 catégories,
-420 versets, schéma {id, name:{fr,en}, verses:[{id, fr:{text,ref},
-en:{text,ref}}]} identique. La catégorie « nations » (Les oracles contre
-les nations) disparaît à dessein : article narratif, exclu de Mémoriser par
-la règle du 11/06. Build vérifié : « versets de base injectés (24 catégories,
-source fichier) », 5 récentes présentes, 3 périmées retirées. EN ATTENTE DE
-DÉCISION D'EMMANUEL : deux versets en doublon inter-catégories, hérités de
-la création de « La force » (force-courage) — 2 Corinthiens 12:9 (dans grace
-ET force-courage) et Isaïe 11:2 (dans sacrements ET force-courage). La règle
-« un verset = une seule catégorie » demande d'en retirer un de chaque paire ;
-placement le plus juste à trancher.
 
-AUDIT D'ÉTAT (14/06, sans modification hors le resync ci-dessus) :
-intégrité vérifiée. 11 fichiers JS/HTML et 8 JSON valides ; 6 marqueurs
-anti-reset présents ; build complet OK (81 paires → 162 pages + 404 +
-sitemap + robots + bible-data FR/EN 73 livres + memoriser + bible + panneau
-+ PWA). 79 articles, tous avec page FR+EN et slug EN. Points relevés, non
-corrigés (en attente) : (a) l-age-des-martyrs et les 7 articles
-d'apologétique non rangés en sous-catégorie car les thèmes histoire et
-apologetique ont 0 catégorie dans themes.json (à confirmer si voulu) ;
-(b) la-justice porte theme:'' dans articles.json — sans effet (le build ne
-surcharge le thème que s'il est non vide, l'article garde son thème de base
-doctrine et se range bien sous « Les vertus cardinales »), à mettre à
-'doctrine' pour la propreté ; (c) fragilité latente : fsLireDoc/
-fsLireCollection sont déclarées dans le bloc if(exists content/articles.json)
-ouvert ligne 33 ; si ce fichier manquait au build, le build planterait à
-l'étape Mémoriser (ligne 1022, Annex B) au lieu de dégrader — jamais le cas
-sur Netlify, donc latent.
+NOUVELLE SÉRIE « LE LIVRE DE ZACHARIE » (12/06). Diagramme produit
+(zacharie-diagramme.html : 8 sections en 3 blocs colorés, or = ch. 1-8,
+bleu = ch. 9-14, rouge = lecture chrétienne en grille comparative ;
+68 éléments cliquables). Le plan du diagramme sert de structure à la
+catégorie et à ses articles, comme pour Moïse. NOUVELLE CATÉGORIE
+créée : id zacharie, « Le livre de Zacharie » / « The Book of Zechariah »,
+thème ecriture, insérée juste après la catégorie isaie.
+ARTICLE 1 INTÉGRÉ « Le prophète et son temps » (slug
+le-prophete-et-son-temps, EN the-prophet-and-his-time), 5 sections, ✦,
+FR+EN, apostrophes courbes. Article d'introduction (contexte historique,
+peu de versets décoratifs) : retour de l'exil (Esdras 1:1, 3:10, 4:24),
+Aggée et Zacharie (Aggée 1:1, 1:14, Esdras 5:1), « Revenez à moi »
+(Zacharie 1:1, 1:3-5), les deux parties du livre (Esdras 6:15). Nom
+Zekaryah (זְכַרְיָה) « le Seigneur se souvient ». Versets vérifiés
+Crampon. CORRECTION Emmanuel intégrée : « réveille l'esprit » conservé
+mais explicité (« Dieu ranime en eux la force intérieure, la volonté et
+l'ardeur »), sans phrase de glose finale ; « ressort » → « force
+intérieure ». Le site passe à 80 articles (82 paires). RESTE DE LA
+PARTIE 1 à écrire : « Les huit visions nocturnes », « Josué, le Germe
+et la couronne », « Le jeûne et la restauration ».
+
+ZACHARIE ARTICLE 2 INTÉGRÉ « Les huit visions nocturnes » (slug
+les-huit-visions-nocturnes, EN the-eight-night-visions), 8 sections
+(une par vision) + intro, ✦, FR+EN. Versets vérifiés Crampon. NOTE de
+numérotation : la Crampon suit l'hébreu, donc les quatre cornes sont en
+Zacharie 2:1-4 et l'homme au cordeau en 2:5-17 (pas 1:18-21). Le grand
+prêtre est « Jésus » dans Crampon (Yeshoua) → rendu « Josué » partout
+pour éviter la confusion avec le Christ. Visions : cavalier/myrtes
+(1:8-17, le cordeau, retour de Dieu), quatre cornes/forgerons (2:2-4),
+homme au cordeau (2:5,8-9,15, muraille de feu, nations qui entrent),
+Josué (3:1-4, satan שָׂטָן accusateur, habits sales ôtés ; l'oracle du
+Germe 3:8-10 EST DANS cette 4e vision mais RÉSERVÉ à l'article 3),
+chandelier/oliviers (4:2-3,6,14, « ni par la force mais par mon
+Esprit », deux fils de l'onction = Zorobabel + Josué), rouleau (5:2-3,
+20 coudées sur 10 = environ 10 m sur 5), femme/épha (5:6-8,11, Sennaar =
+plaine de Babylone), quatre chars (6:1,5,8, quatre vents = 4 directions,
+expliqué). CORRECTIONS Emmanuel : intro sans négation (« Ces visions ne
+sont pas un assemblage » supprimé), fin section Josué resserrée sans
+méta ni annonce du Germe, explication des « quatre vents » ajoutée.
+Le site passe à 81 articles (83 paires). PARTIE 1 : reste « Josué, le
+Germe et la couronne » (Zacharie 3:8-10 + 6:9-15) et « Le jeûne et la
+restauration » (ch. 7-8).
+
+ZACHARIE ARTICLE 3 INTÉGRÉ « Josué, le Germe et la couronne » (slug
+josue-le-germe-et-la-couronne, EN joshua-the-branch-and-the-crown),
+5 sections, ✦, FR+EN. Article doctrinal (le Germe porte un argument
+théologique, versets argumentatifs). Versets vérifiés Crampon : l'oracle
+du Germe (Zacharie 3:8, mon serviteur Germe ; Jérémie 23:5 germe juste
+fils de David), la pierre aux sept yeux (3:9-10, yeux = ceux de Dieu via
+4:10 les sept lampes = yeux du Seigneur ; ôter l'iniquité en un seul
+jour ; vigne et figuier), le couronnement (6:11, or de Babylone ;
+royauté de Juda/David vs sacerdoce de Lévi/Aaron strictement séparés),
+le prêtre sur son trône (6:12-13, Germe bâtit le Temple, roi ET prêtre,
+conseil de paix), accomplissement dans le Christ (Jean 2:19 le Temple de
+son corps ; Hébreux 7:17 prêtre selon Melchisédech ; iniquité ôtée « en
+un seul jour » → jour unique de la Croix). CORRECTIONS Emmanuel : section
+« pierre aux sept yeux » entièrement retravaillée plusieurs fois (retirer
+l'hébreu tsemah, retirer le chiffre sept comme commentaire, ne pas
+répéter ce que le verset dit déjà, donner l'interprétation des yeux via
+Zacharie 4:10) ; suppressions de méta et de phrases redondantes ;
+« non en figure » reformulé en positif (« en vérité la double dignité »).
+TRADUCTION EN RETRAVAILLÉE POUR ELLE-MÊME (et non au fil de l'écriture) :
+Emmanuel a rappelé que la consigne est de faire une vraie traduction
+réfléchie. Désormais, traiter la version anglaise de chaque article
+comme une tâche de traduction à part entière : fidélité au sens et à la
+doctrine, registre sobre, naturel de l'anglais, pas un calque du
+français. Le site passe à 82 articles (84 paires). PARTIE 1 : reste
+« Le jeûne et la restauration » (ch. 7-8) pour la clore.
+
+COHÉRENCE INTER-ARTICLES ZACHARIE (12/06) : l'article 3 renvoyait au
+chandelier (« comme la vision du chandelier le dira de ses sept lampes »,
+Zacharie 4:10) mais l'article 2 « Les huit visions » ne citait pas 4:10.
+Ajout dans la section du chandelier de l'article 2 (après 4:6) : les sept
+lampes = les yeux du Seigneur (4:10), « Son regard veille sur l'œuvre
+qu'il accomplit par son Esprit ». FR+EN, traduction EN travaillée. Le
+renvoi de l'article 3 est désormais cohérent.
+
+ZACHARIE ARTICLE 4 INTÉGRÉ « Le jeûne et la restauration » (slug
+le-jeune-et-la-restauration, EN fasting-and-restoration), 5 sections, ✦,
+FR+EN (traduction travaillée pour elle-même). Clôt la PARTIE 1 (ch. 1-8).
+Versets vérifiés Crampon : question des envoyés de Béthel (7:1,3, jeûne
+du 5e mois = destruction du Temple), vrai jeûne (7:5-6, « est-ce pour moi
+que vous jeûniez ? » ; 7:9-10 justice/miséricorde/veuve-orphelin-
+étranger-pauvre ; 7:11-12 cœur dur comme le diamant → cause de l'exil),
+Jérusalem restaurée (8:3 ville de vérité ; 8:4-5 vieillards et enfants ;
+8:7-8 retour d'orient et d'occident ; formule d'alliance « mon peuple /
+leur Dieu » appuyée sur Lévitique 26:12 du Sinaï), jeûnes changés en
+fêtes (8:19, 4 jeûnes = étapes de la chute ; « Aimez la vérité et la
+paix »), nations qui montent (8:20-23, saisir le pan de la robe d'un Juif
+« car Dieu est avec vous »). CORRECTIONS Emmanuel : « enfermé dans celui
+qui l'accomplit » reformulé sans ambiguïté ; alliance appuyée sur sa
+source (Lévitique 26:12) et mieux expliquée ; « de façon saisissante »
+retiré (pas de dramatisation) ; reprise finale « image même de la vie
+rendue » retirée.
+RÈGLE AFFINÉE « dans la Bible » : ne préciser « dans la Bible » QUE pour
+une formule ou image proprement scripturaire (ex. « s'asseoir sous sa
+vigne et son figuier », tableau biblique de la paix), JAMAIS pour un
+fait d'expérience commune (ex. vieillesse paisible + enfants qui jouent =
+signe de paix, fait humain → pas de mention « dans la Bible »).
+BUG d'intégration rencontré : l'ancre du slug EN dans data-en.js avait
+changé d'ordre (les insertions successives décalent les premières
+lignes) → l'assert a interrompu le bloc avant d'écrire le slug ET de
+rattacher l'article à la catégorie. Corrigé en deux temps. LEÇON : pour
+data-en.js et themes.json, faire les ajouts en étapes séparées et
+re-vérifier, car les ancres « début de table » bougent à chaque article.
+La PARTIE 1 de Zacharie est COMPLÈTE (4 articles). Le site passe à
+83 articles (85 paires). Reste PARTIE 2 (ch. 9-14 : premier oracle,
+second oracle, Jour du Seigneur) et la lecture chrétienne (grille
+comparative du diagramme).
+
+ZACHARIE PARTIE 2 — ARTICLE 5 INTÉGRÉ « Premier oracle : le roi qui
+vient » (slug premier-oracle-le-roi-qui-vient, EN
+first-oracle-the-king-who-comes), 5 sections, ✦, FR+EN (traduction
+travaillée). Ouvre la PARTIE 2 (ch. 9-14, oracles non datés). Versets
+vérifiés Crampon : oracle contre les nations (9:1 Hadrach/Damas, 9:8
+« je camperai autour de ma maison »), roi humble sur l'âne (9:9-10,
+sommet messianique : juste, sauvé, humble, sur l'âne et non le cheval
+de guerre ; désarme Éphraïm ; paix aux nations, d'une mer à l'autre),
+retour des captifs (9:11 « à cause du sang de ton alliance », 9:12
+« captifs d'espérance », 9:16 pierres de diadème), contre les mauvais
+bergers (10:2 théraphim = idoles domestiques + devins, 10:3 colère
+contre les bergers/boucs, cheval d'honneur), le berger et les trente
+pièces (11:4 troupeau de carnage, 11:7 deux houlettes Grâce et Lien,
+11:10 brise Grâce, 11:12 trente sicles = ~300 g = prix d'un esclave tué
+par mégarde selon la Loi, 11:13 « jette-le au potier », 11:14 brise Lien
+= rompt l'unité Juda/Israël). CORRECTIONS Emmanuel : houlette Lien
+explicitée (unité Juda au sud / Israël au nord, pas « les frères » sans
+antécédent) ; « le berger » précisé (le prophète-berger) ; potier
+expliqué (artisan des vases d'argile, métier modeste ; geste de rebut) ;
+incise ambiguë reformulée ; phrase finale « L'argent du mépris est ainsi
+jeté... » supprimée. Le berger vendu pour 30 pièces reste « suspendu
+comme une énigme » que la lecture chrétienne reconnaîtra accomplie.
+data-en.js + themes.json modifiés EN DEUX ÉTAPES SÉPARÉES VÉRIFIÉES
+(ancre slug sur la première entrée dynamique, pas figée). Le site passe
+à 84 articles (86 paires). Catégorie zacharie = 5 articles. PARTIE 2
+reste : « Second oracle : le transpercé » (ch. 12-13), « Le Jour du
+Seigneur » (ch. 14), puis lecture chrétienne (grille comparative).
+
+NOUVEL ARTICLE « Le livre d'Abdias » (12/06) — demandé par Emmanuel en
+pause de Zacharie. NOUVELLE CATÉGORIE id abdias, « Le livre d'Abdias » /
+« The Book of Obadiah », thème ecriture, insérée après isaie (donc avant
+zacharie). Slug le-livre-d-abdias / EN the-book-of-obadiah. UN SEUL
+ARTICLE couvrant tout le livre (le plus court de l'AT : 1 chapitre,
+21 versets), 6 sections, ✦, FR+EN (traduction travaillée). Livre vérifié
+intégralement sur Crampon. Sujet unique : jugement d'Édom (peuple
+descendant d'Ésaü, frère de Jacob) pour s'être réjoui et avoir pillé au
+jour de la chute de Jérusalem. Sections : le prophète et son oracle
+(1:1-2, Abdias = « serviteur du Seigneur »), l'orgueil d'Édom (1:3-7,
+hauteurs rocheuses, aigle/étoiles, pillage total, trahi par ses alliés),
+la faute contre le frère (1:10-14, « ton frère Jacob » ; série de
+défenses décrivant en creux ce qu'Édom a fait), le Jour du Seigneur
+(1:15-16, « comme tu as fait il te sera fait » ; la coupe), la
+restauration de Jacob (1:17-20, Sion sainte, feu/chaume, Négéb/Sépharad
+expliqués), le règne appartient à Dieu (1:21, « au Seigneur sera
+l'empire »). CORRECTIONS Emmanuel : « jusqu'à la lie » → « le châtiment
+tout entier, sans en rien laisser » ; « des sauveurs monteront... pour
+juger Édom » explicité (libérateurs suscités par Dieu, exécuter la
+sentence). data-en.js + themes.json en deux étapes vérifiées séparées.
+Références cliquables OK même pour livre à 1 chapitre (titre « Abdias »
+sans numéro). Le site passe à 85 articles (87 paires).
+
+EN PAUSE (à reprendre) : « Second oracle : le transpercé » (Zacharie
+ch. 12-13) — article RÉDIGÉ et soumis, versets vérifiés Crampon, MAIS
+mis de côté par Emmanuel avant toute correction/intégration. Rien
+d'intégré. À reprendre : Jérusalem assiégée/délivrée (12:2-3,8-9), le
+transpercé (12:10-12, Dieu parle à la 1re pers. « vers moi qu'ils ont
+transpercé »), la source (13:1), fin des idoles/faux prophètes
+(13:2-4,6), « frappe le berger » (13:7-9, « mon pasteur, l'homme qui est
+mon compagnon » ; tiers épuré). Puis « Le Jour du Seigneur » (ch. 14) et
+lecture chrétienne (grille comparative).
+
+ZACHARIE ARTICLE 6 INTÉGRÉ « Second oracle : le transpercé » (slug
+second-oracle-le-transperce, EN second-oracle-the-pierced-one),
+5 sections, ✦, FR+EN (traduction travaillée). REPRIS de la pause :
+l'article avait été rédigé/soumis puis mis de côté ; maintenant corrigé
+et intégré. Versets vérifiés Crampon. Sections : Jérusalem assiégée et
+délivrée (12:2-3 seuil d'ébranlement / pierre à soulever, 12:8 le
+chancelant comme David, 12:9), « celui qu'ils ont transpercé » (12:10,
+Dieu parle à la 1re pers. « vers moi qu'ils ont transpercé » puis « le
+deuil sur lui » ; deuil de conversion ; 12:11 deuil d'Adadremmon),
+la source ouverte (13:1, eau vive qui lave le péché ; le regard vers le
+transpercé ouvre la source), fin des idoles/faux prophètes (13:2,4,
+manteau de poil), « frappe le berger » (13:7 « mon pasteur, l'homme qui
+est mon compagnon » ; 13:9 le tiers épuré au feu, alliance renouée
+« mon peuple » / « mon Dieu »). CORRECTIONS Emmanuel : « il reconnaît
+dans le transpercé celui qu'il a frappé » reformulé ; « et ce regard se
+change en deuil » → « tombe dans le deuil » ; vallée de Mageddo EXPLIQUÉE
+ET SOURCÉE (mort du roi Josias au combat, deuil national, Jérémie composa
+une lamentation → 2 Chroniques 35:24, vérifié Crampon) ; « la parole la
+plus dure du livre » (mise en scène) retiré ; « sa mort disperse le
+troupeau » corrigé en « le troupeau privé de son berger se disperse »
+(la dispersion = les apôtres qui fuient, accomplissement réservé à la
+lecture chrétienne, Matthieu 26:31 — NE PAS l'anticiper ici). Le site
+passe à 86 articles (88 paires). Catégorie zacharie = 6 articles.
+PARTIE 2 reste : « Le Jour du Seigneur » (ch. 14), puis la lecture
+chrétienne (grille comparative du diagramme : Germe, Rameaux 9:9, trente
+pièces/Judas, transpercé/Jean 19:37, berger frappé/Gethsémani Mt 26:31,
+source/sang et eau, roi universel).
+
+ZACHARIE ARTICLE 7 INTÉGRÉ « Le Jour du Seigneur » (slug
+le-jour-du-seigneur, EN the-day-of-the-lord), ch. 14, 5 sections + une
+intro développée, ✦, FR+EN (traduction travaillée). Versets vérifiés
+Crampon. Intro contient une EXPLICATION DU « JOUR DU SEIGNEUR »
+(expression prophétique : Dieu intervient lui-même pour juger ;
+châtiment des méchants + délivrance du reste fidèle ; annonce le
+jugement dernier « où Dieu sera tout en tous », 1 Corinthiens 15:28 cité
+ENTRE PARENTHÈSES dans le texte, vérifié Crampon). Sections : combat
+final (14:2 ville à demi captive, ancrée dans l'exil de Babylone de 587
+av. J.-C. comme fait historique réel ; 14:3-5 mont des Oliviers fendu —
+PROPHÉTIE du Jour à venir, PAS un événement historique ; la fente ouvre
+une vallée par où le peuple gagne le salut, lecture POSITIVE = délivrance
+car Dieu combat POUR son peuple et vient avec ses saints ; séisme sous
+le roi Osias = seul fait réel, cité comme repère, cf. Amos 1:1),
+jour unique (14:7 ni jour ni nuit, lumière au soir ; 14:8 eaux vives
+vers mer Morte et Méditerranée), le Seigneur roi (14:9 sommet du livre ;
+14:11 anathème ; 14:12 plaie dans la chair, traitée normalement à la
+demande d'Emmanuel ; 14:13 désarroi), fête des Tentes (14:16-17,
+Tabernacles = fête de joie, huttes de branchages, nations converties),
+« Sainteté au Seigneur » (14:20-21, diadème du grand prêtre expliqué =
+lame d'or au front portant l'inscription ; sainteté gagne tout).
+CORRECTIONS Emmanuel nombreuses : négations supprimées (« non sur un
+triomphe immédiat », « la scène n'est pas une image abstraite »,
+« ne désigne pas une journée ») ; pas d'assertion de réalité (« le mont
+est une colline réelle » retiré) ; ancrage HISTORIQUE distingué du sens
+spirituel (exil 587 réel / fente du mont = prophétie à venir) ; verset 5
+relu pour confirmer le caractère POSITIF (vallée = chemin de salut, Dieu
+combat pour le peuple). Le site passe à 87 articles (89 paires).
+Catégorie zacharie = 7 articles. RESTE LE DERNIER ARTICLE DE ZACHARIE :
+la LECTURE CHRÉTIENNE (section 08 du diagramme, grille comparative :
+Germe → prêtre-roi ; roi sur l'âne 9:9 → Rameaux Mt 21:5/Jn 12:15 ;
+30 pièces 11:12-13 → Judas Mt 27:9-10 ; transpercé 12:10 → côté ouvert
+Jn 19:37 ; berger frappé 13:7 → Gethsémani Mt 26:31 ; source 13:1 → sang
+et eau ; roi universel 14:9 → royauté du Christ). Après quoi la série
+Zacharie sera COMPLÈTE.
+
+CLOCHE « NOUVEAUTÉS » — RATTRAPAGE (12/06) : Emmanuel a fait remarquer
+que les 8 articles écrits cette session n'avaient PAS été ajoutés à la
+cloche Nouveautés. IMPORTANT : la cloche est alimentée MANUELLEMENT par
+content/nouveautes.json (prioritaire sur la constante NOUVEAUTES de
+build-bi.js), elle n'est PAS générée automatiquement depuis les articles.
+Format : groupe {d:'Juin 2026', items:[...]}, le plus récent en fin de
+liste ; FR « Nouvel article : « Titre ». », EN « New article: "Title". ».
+Ajout des 8 manquants FR+EN dans l'ordre d'écriture : Le prophète et son
+temps, Les huit visions nocturnes, Josué le Germe et la couronne, Le
+jeûne et la restauration, Premier oracle le roi qui vient, Le livre
+d'Abdias, Second oracle le transpercé, Le Jour du Seigneur. Liste passée
+à 51 items. data-sig = 1|51 (le point rouge « non lu » se réaffiche).
+Synchronisé sur les 3 surfaces au build (accueil, bible, memoriser).
+RÈGLE À RETENIR : après CHAQUE nouvel article intégré, ajouter aussi son
+titre à content/nouveautes.json (FR+EN), sinon il n'apparaît pas dans la
+cloche.
+
+DEUX BUGS PANNEAU BIBLE CORRIGÉS (bible-panneau.js, 12/06) :
+1. CLIC SUR UNE RÉFÉRENCE DANS UN ARTICLE n'allait pas au verset précis :
+le chapitre s'ouvrait mais restait en haut. Cause : premier.scrollIntoView
+({block:'center'}) faisait défiler la page/overlay, pas le corps du
+panneau. Corrigé : on défile le conteneur #bp-corps lui-même, top calculé
+= premier.offsetTop - corps.clientHeight/2 + premier.offsetHeight/2, via
+corps.scrollTo si dispo sinon corps.scrollTop (repli défensif, car jsdom
+n'a pas Element.scrollTo).
+2. MULTI-RÉFÉRENCES (plusieurs refs sélectionnées/saisies) affichait des
+cartes .bp-carte d'extraits au lieu de la lecture normale. Demande
+Emmanuel : se comporter comme un clic sur une section de Bible. rendMulti
+réécrit : ouvre désormais la lecture du PREMIER passage (rendLect avec
+pend pour le verset ciblé), comme une ref simple. Vérifié jsdom : ref
+simple cible le verset + défile ; multi « Zac 14:9 ; Jean 2:19 » ouvre
+Zacharie 14 v.9 ciblé, 0 carte, nav présente ; multi avec plage
+« Zac 12:10-14 ; … » surligne 10-14. NOTE : le CSS .bp-carte, le handler
+data-bp='carte' et etiquetteRef() deviennent inutilisés mais laissés en
+place (inoffensifs). Aucun nouvel article ; build OK, livré.
+
+COHÉRENCE FOND NOIR DES CADRES BIBLE (bible.html, 12/06) : Emmanuel a
+demandé que les cadres du compte et de la prise de note aient un fond
+noir cohérent avec le reste du site. Les boîtes .bacct (Mon compte),
+.note-boite (prise de note) et .ab-boite (authentification) avaient un
+fond var(--encre-2) = #0b0b0b (noir légèrement gris) alors que le site
+est en var(--encre) = #000000 (noir pur). Corrigé : les 3 boîtes passées
+à background:var(--encre). Voiles de fond (rgba(0,0,0,.72)) et bordures
+(--filet) inchangés, restent visibles sur noir pur. Champs internes
+laissés tels quels volontairement : .nb-zone (zone de texte note,
+rgba(231,224,207,.03)) et .cat-input/.note-depl (#0b0b0b) marquent les
+zones éditables, cohérent sur fond noir. L'overlay compte n'existe pas en
+boîte côté index (pages d'articles), donc rien à changer là. Aucun
+nouvel article ; build OK, livré.
+
+DEUX RÉGLAGES UI (12/06) :
+1. MASQUER L'ONGLET « BIBLE » à gauche depuis Mon compte, PAR APPAREIL.
+Ajout dans le compte (bible.html, les 3 surfaces ont le compte) d'une
+ligne interrupteur « Onglet Bible à gauche » (classes .tog-row/.tog-lab/
+.tog-sw, switch CSS pur, id tog-bible). Clés par appareil sur le modèle
+de la taille de lecture : lv_onglet_bible_mobile (pointer:coarse OU
+max-width:720px) / lv_onglet_bible_pc. Valeur '0' = masqué, sinon
+visible (défaut visible). L'INTERRUPTEUR (bible.html) écrit seulement la
+préférence + reflète l'état du switch. L'APPLICATION réelle est dans
+bible-panneau.js (le seul présent sur les pages où l'onglet existe ;
+rappel : le panneau fait return sur /bible.html, donc pas d'onglet là) :
+après appendChild(tab), obApplique() ajoute la classe .bp-tab-masque
+selon obCle() ; réappliqué sur events storage et resize. CSS
+#bp-tab.bp-tab-masque{display:none!important} ajouté dans le panneau ET
+dans bible.html. Traduction EN « Bible tab on the left » ajoutée à la
+table de build-bi.js. Testé jsdom : pref PC=0 -> onglet masqué ;
+interrupteur bascule 0/1 et n'affecte pas la clé mobile.
+2. SOMMAIRE PC COMME MOBILE. Avant : sur PC (>=1280px) le sommaire
+s'affichait en panneau latéral fixe à droite (.smr-cote) avec scroll-spy,
+jugé dérangeant ; sur mobile (<1280px) en panneau replié sous le titre
+(.smr-mob). Correctif (CSS dans index__48_.html, shell des articles) :
+.smr-cote{display:none!important} (jamais affiché) ; .smr-mob{display:
+block...} (affiché à toutes largeurs), les 2 media-queries opposées
+retirées. Le scroll-spy (maj() sur .smr-cote) devient inactif, sans
+effet visible. Désormais PC et mobile ont le même sommaire replié sous
+le titre. Aucun nouvel article ; build OK, livré.
+
+DEUX RETOUCHES UI (12/06) :
+1. CADRE JAUNE (contour de focus doré) RETIRÉ sur la loupe de recherche,
+la cloche et l'onglet Bible. C'était l'outline :focus-visible global
+(1px solid rgba(198,164,92,.8)) qui apparaissait au clic sur ces
+boutons-icône. Neutralisé de façon CIBLÉE (accessibilité clavier
+conservée ailleurs : champs, liens, sommaire) : bible.html
+.ic-btn:focus,.ic-btn:focus-visible{outline:none} ; index__48_.html
+.rech-loupe:focus,.rech-loupe:focus-visible{outline:none} ;
+bible-panneau.js #bp-tab:focus,#bp-tab:focus-visible{outline:none}
+(le #bp-pan :focus-visible interne du panneau reste, lui).
+2. BOUTON « IMPRIMER » sur les pages d'articles. Ajouté dans mainArticle
+(build-bi.js) juste après le <h1>, avant le contenu :
+<button class="art-imprimer" onclick="window.print()">. Libellé UI
+bilingue : imprimer 'Imprimer' / 'Print'. CSS .art-imprimer dans
+index__48_.html (bordure --filet, doré au hover, icône imprimante en
+mask SVG inline, monospace display). Masqué à l'impression (ajouté à la
+liste @media print). Ordre dans l'article : h1, sommaire replié (.smr-mob),
+bouton imprimer, texte. Testé jsdom : window.print() appelé au clic ;
+n'apparaît que sur les articles (pas l'accueil) ; cohabite avec le
+sommaire. Aucun nouvel article ; build OK, livré.
+
+CORRECTION BOUTON IMPRIMER (12/06) : Emmanuel voulait une ICÔNE dans la
+barre d'outils d'article existante, pas un bouton autonome sous le titre.
+La barre .art-bar (boutons .art-btn) est construite dynamiquement dans
+admin.js > outilsArticle() et insérée après le <h1> ; elle contient
+écouter (be, haut-parleur), copier l'article (bc, ⧉), copier le lien
+(bs). Ajout d'un 4e bouton bp : titre T('Imprimer l'article','Print the
+article'), SVG imprimante, listener window.print(), puis
+bar.appendChild(bp) en dernier. RETIRÉ l'ancien bouton autonome
+.art-imprimer (du build mainArticle), son CSS (3 règles après
+.fin-article dans index__48_.html) et les libellés UI imprimer devenus
+inutiles. Ajouté .art-bar et .art-nav à la liste @media print
+display:none (les icônes et la nav inter-articles ne s'impriment pas).
+Vérifs page générée : titre bilingue, SVG, window.print(),
+bar.appendChild(bp) présents ; EN « Print the article » OK. NB :
+outilsArticle() ne s'exécute que si PAGE==='article' (admin.js), d'où un
+test jsdom isolé non concluant, mais le code injecté est correct.
+Aucun nouvel article ; build OK, livré.
+
+CORRECTION NUMÉROTATION DES DOMAINES SUR L'ACCUEIL (12/06) : Emmanuel a
+remarqué que « Vie spirituelle » s'affichait en 1er sur l'accueil tout
+en portant le numéro 04. CAUSE : le build (mainAccueil, build-bi.js)
+numérote les cartes .domaine via String(i+1) selon l'ordre de
+themes.json (vie-spirituelle = 04, correct). MAIS applyThemes() dans
+admin.js réordonne les domaines côté client selon d.domOrdre (stocké
+dans Firestore config/themes), qui place vie-spirituelle en tête, SANS
+toucher au numéro figé dans le HTML → décalage numéro/position.
+SOLUTION (option 2 choisie par Emmanuel) : renuméroter côté client après
+réordonnancement. Ajout en fin de applyThemes : un compteur dnum
+reparcourt qsa('.domaine[data-theme]') dans l'ordre DOM final et réécrit
+chaque .d-num ((dnum<10?'0':'')+dnum). Ainsi le numéro suit toujours la
+position affichée, quel que soit l'ordre Firestore. Toutes les cartes
+comptent (l'accueil affiche les 6 domaines, vides compris). Testé : après
+un domOrdre mettant vie-spirituelle en tête, elle porte bien 01 et les
+autres suivent. NB : test jsdom du flux complet bloqué par lvAuthBoot
+(mock Firebase incomplet), mais la logique de renumérotation isolée est
+vérifiée OK. Aucun nouvel article ; build OK, livré.
+
+PIED DE PAGE ALLÉGÉ (Bible + Mémoriser, 12/06) : Emmanuel trouvait la
+barre du bas (le pied avec le verset « Isaïe 9:1 ») trop massive. Il
+s'agit du footer (bible.html : footer ; memoriser.html : .site-foot),
+pas de #sel-barre (barre de sélection fixe). Allégé sur les deux pages
+FR+EN : padding 48px 32px 56px -> 30px 32px 34px ; bible margin-top
+64 -> 44px ; verset .verset-pied 17 -> 15px, max-width 620 -> 600px,
+line-height 1.6 -> 1.55, margin-top 18 -> 14px ; .ref-pied 13 -> 12px,
+margin-top 10 -> 8px ; .copy 13 -> 12px, margin-top 22 -> 16px. Le pied
+reste élégant mais nettement moins haut. Aucun nouvel article ; build OK,
+livré.
+
+LECTURE CHRÉTIENNE INTÉGRÉE AUX ARTICLES (12/06) : la section 08 du
+diagramme Zacharie (« La lecture chrétienne », grille comparative
+prophétie/accomplissement) n'est PAS un article séparé ; elle devait
+être traitée naturellement DANS les articles, à la fin de chacun, là où
+chaque figure paraît. Audit fait des 7 correspondances du diagramme vs
+les articles : Le Germe -> déjà traité dans « Josué, le Germe et la
+couronne » (Jean 2:19, Hébreux 7:17, Melchisédech). Les 6 autres étaient
+absentes (réservées exprès à la lecture chrétienne). AJOUT d'une section
+finale « L'accomplissement dans le Christ » (h2 + 1 paragraphe), FR+EN,
+avant le ✦, dans 3 articles. Versets NT vérifiés Crampon :
+- Premier oracle : roi sur l'âne -> Rameaux (Matthieu 21:5) ; trente
+  pièces -> trahison de Judas / champ du potier (Matthieu 27:9, qui
+  attribue la citation à « Jérémie », rendu sobrement « l'évangile
+  rapporte »). CORRECTION Emmanuel : phrase finale « L'énigme du berger
+  méprisé reçoit ainsi son sens... » SUPPRIMÉE.
+- Second oracle : berger frappé -> Gethsémani (Matthieu 26:31) ;
+  transpercé -> côté ouvert (Jean 19:37) ; source -> sang et eau du côté
+  (Jean 19:34, baptême + eucharistie). CORRECTION Emmanuel : préciser
+  « La parole “celui qu'ils ont transpercé” s'accomplit... » (pas
+  « Celui qu'ils ont transpercé s'accomplit »).
+- Le Jour du Seigneur : roi de toute la terre (14:9) -> royauté du Christ
+  ressuscité (Matthieu 28:18), achèvement quand Dieu sera tout en tous.
+Chaque article passe à 6 h2. Refs cliquables NT testées OK (Jean 19:37
+cible v.37). La SÉRIE ZACHARIE EST DÉSORMAIS COMPLÈTE (7 articles, la
+lecture chrétienne répartie dans les 3 derniers + Germe déjà dans le 3e).
+Le site reste à 87 articles (89 paires) ; pas de nouvel article, contenu
+enrichi. Build OK, livré.
+
+DIAGRAMME JOËL CRÉÉ (12/06) : /mnt/user-data/outputs/joel-diagramme.html
+(et /home/claude/snap/joel-diagramme.html). Widget HTML interactif
+autonome bâti sur le MÊME socle que zacharie-diagramme.html (CSS +
+moteur JS identiques, conformes aux specs : interface sombre #0a0a0a,
+sections repliables, cartes #000, system fonts, barre de sélection,
+flèche globale, copie ⧉, animations). Livre de Joël vérifié
+intégralement sur Crampon (4 chapitres en numérotation hébraïque :
+ch1 fléau, ch2 Jour+conversion, ch3 effusion de l'Esprit, ch4 jugement
+des nations + salut de Sion). 7 sections en 3 blocs colorés : ROUGE
+(#FF5C5C : 01 le prophète et le fléau, 02 le Jour du Seigneur approche),
+OR (#E0A82E : 03 revenez à moi/conversion, 04 l'Esprit répandu sur toute
+chair), BLEU (#4DA3FF : 05 le jugement des nations/vallée de Josaphat,
+06 le salut de Sion), puis 07 LA LECTURE CHRÉTIENNE en ROUGE (grille
+comparative, 3 correspondances : Esprit répandu 3:1-2 -> Pentecôte
+Actes 2:16-17 ; quiconque invoquera 3:5 -> salut universel Actes 2:21 /
+Romains 10:13 ; Jour du Seigneur -> retour du Christ). 42 éléments
+cliquables, chacun avec data-q (germe d'article). Testé jsdom : 7
+sections, cartes, grille 6 cellules/3 lignes, sélection, flèche globale
+ouvre tout. Pas de cadratin, « le Seigneur » (pas Yahweh). Le plan
+pourra servir de structure à une future catégorie « Le livre de Joël »
+comme pour Zacharie et Moïse. Aucun changement au site lui-même.
+
+COHÉRENCE FOND NOIR DES MODALES MÉMORISER (memoriser.html, 12/06) :
+même problème que les cadres Bible. Le cadre « Modifier le verset » (et
+toutes les modales de Mémoriser) utilise la classe .modal, qui avait un
+fond var(--encre-2) = #0b0b0b au lieu du noir pur var(--encre) = #000000.
+Corrigé : .modal (ligne 200), .auth-panel et .auth-box passés à
+background:var(--encre). Laissé volontairement .opt (options de réponse
+du quiz) en var(--encre-2) : ce léger gris marque les boutons cliquables,
+cohérent sur fond noir. Aucun nouvel article ; build OK, livré.
+
+CATÉGORIE « LE LIVRE DE JOËL » LANCÉE — ARTICLE 1 (12/06). Découpage
+choisi (le plus juste, validé par Emmanuel « ce que tu juges le plus
+juste ») : 3 articles substantiels au lieu de 6 sections du diagramme,
+fidèles à la respiration du livre, lecture chrétienne INTÉGRÉE dans les
+articles (pas d'article séparé). Plan : (1) Le fléau et le Jour du
+Seigneur [ch. 1 + 2:1-11] ; (2) La conversion et l'Esprit répandu
+[2:12-3:5, avec accomplissement Pentecôte] ; (3) Le jugement des nations
+et le salut de Sion [ch. 4]. NOUVELLE CATÉGORIE id joel « Le livre de
+Joël » / « The Book of Joel », thème ecriture, insérée après abdias
+(donc ['at','isaie','abdias','joel','zacharie',...]). NB numérotation
+Crampon = hébraïque : Joël a 4 chapitres (ch3 hébreu = effusion de
+l'Esprit ; ch4 = jugement des nations).
+ARTICLE 1 INTÉGRÉ « Le fléau et le Jour du Seigneur » (slug
+le-fleau-et-le-jour-du-seigneur, EN the-plague-and-the-day-of-the-lord),
+5 sections, ✦, FR+EN. Versets vérifiés Crampon : prophète (1:1 Joël fils
+de Phatuel = « le Seigneur est Dieu » ; 1:2-3 mémoire transmise),
+invasion (1:4 gazam/yéleq/chasil = stades de sauterelles ; 1:6 armée aux
+dents de lion ; 1:7 vigne et figuier mis à nu), deuil (1:9 offrandes
+cessent, prêtres en deuil ; 1:10 blé/vin/huile ; 1:18,20 bêtes qui
+crient), Jour du Seigneur approche (1:15 « le jour du Seigneur est
+proche » ; 2:1 sonnez du cor en Sion ; 2:2 jour de ténèbres, armée comme
+l'aurore ; 2:3 jardin d'Éden -> désert), voix de Dieu (2:10 astres
+obscurcis ; 2:11 « qui pourrait le soutenir ? », question suspendue qui
+ouvre la suite = revenir à Dieu). data-en.js + themes.json en 2 étapes
+séparées. Cloche nouveautés mise à jour (52 items). Le site passe à 88
+articles (90 paires). RESTE 2 articles Joël (conversion+Esprit, jugement
+des nations+salut de Sion). Diagramme source :
+/mnt/user-data/outputs/joel-diagramme.html.
+
+JOËL ARTICLE 2 INTÉGRÉ « La conversion et l'Esprit répandu » (slug
+la-conversion-et-l-esprit-repandu, EN conversion-and-the-spirit-poured-
+out), 5 sections, ✦, FR+EN. Couvre 2:12-3:5 + accomplissement Pentecôte.
+Versets vérifiés Crampon : déchirez vos cœurs (2:12 revenez de tout
+votre cœur ; 2:13 « déchirez vos cœurs et non vos vêtements », Dieu lent
+à la colère et riche en bonté), assemblée (2:15-16 jeûne, tous sans
+exception, même les jeunes mariés ; 2:17 prêtres entre le portique et
+l'autel), pitié (2:18 ému de jalousie/pitié ; 2:19 blé/vin/huile rendus ;
+2:21 terre dans l'allégresse ; 2:25 « je vous compenserai les années
+dévorées » ; 2:27 Dieu au milieu d'Israël), Esprit répandu (3:1 « sur
+toute chair », fils/filles/vieillards/jeunes gens ; 3:2 même serviteurs
+et servantes ; 3:4 soleil en ténèbres/lune en sang ; 3:5 « quiconque
+invoquera le nom du Seigneur sera sauvé »), accomplissement Pentecôte
+(Actes 2:16 « annoncé par le prophète Joël » ; 2:17 Pierre cite Joël ;
+2:21 salut ; Romains 10:13 Paul reprend, salut Juifs+païens). Lecture
+chrétienne intégrée dans l'article comme prévu. data-en.js + themes.json
+2 étapes. Cloche maj (53 items). Le site passe à 89 articles (91 paires).
+Catégorie joel = 2 articles. RESTE 1 article Joël : le jugement des
+nations et le salut de Sion (ch. 4).
+
+JOËL ARTICLE 3 INTÉGRÉ « Le jugement des nations et le salut de Sion »
+(slug le-jugement-des-nations-et-le-salut-de-sion, EN
+the-judgment-of-the-nations-and-the-salvation-of-zion), ch. 4,
+5 sections, ✦, FR+EN. Versets vérifiés Crampon : vallée de Josaphat
+(4:2 « j'assemblerai toutes les nations... vallée de Josaphat » = « le
+Seigneur juge » ; 4:3 jeté le sort, vendu garçon/fille), grief de Dieu
+(4:5 Tyr, Sidon, Philistie pillent le sanctuaire ; 4:6 vendus aux fils
+de Javan = les Grecs ; 4:7 mal rendu, vendeurs vendus), moisson de la
+colère (4:10 « de vos socs forgez des épées » = renversement de l'image
+de paix d'Isaïe, convocation ironique ; 4:12 Dieu siège pour juger ;
+4:13 faucille/pressoir, méchanceté mûre ; 4:14 « vallée de la
+décision »), le Seigneur refuge (4:16 « de Sion le Seigneur rugira...
+mais sera un refuge » = double visage du Jour ; 4:17 Jérusalem
+sanctuaire), source du Temple (4:18 montagnes de vin/collines de lait,
+source de la maison du Seigneur vers la vallée des Acacias ;
+4:19-20 Égypte/Édom dévastés, Juda éternel ; 4:21 « je laverai leur
+sang... le Seigneur habitera en Sion » = dernier mot du livre).
+data-en.js + themes.json 2 étapes. Cloche maj (54 items). Le site passe
+à 90 articles (92 paires). *** LA SÉRIE JOËL EST COMPLÈTE *** : catégorie
+joel = 3 articles couvrant tout le livre (ch1-2 fléau+Jour ; 2:12-3:5
+conversion+Esprit+Pentecôte ; ch4 jugement+salut). Lecture chrétienne
+intégrée (Pentecôte dans l'art. 2). Diagramme source disponible :
+/mnt/user-data/outputs/joel-diagramme.html.
+
+DOMAINE « VIE SPIRITUELLE » ENRICHI — NOUVELLE CATÉGORIE « Le chemin
+vers Dieu » (12/06). Le domaine vie-spirituelle n'avait qu'une catégorie
+(« Le combat intérieur » : La peur, La tristesse, L'orgueil et
+l'humilité). Emmanuel veut l'étoffer ; pistes proposées : compléter le
+combat intérieur (autres passions/vices capitaux), « La prière », « Les
+vertus » (théologales + cardinales), « La confiance et la paix », « Le
+chemin vers Dieu ». Il a choisi de commencer par « Le chemin vers Dieu »
+(progrès de la vie spirituelle). Plan prévu pour cette catégorie :
+(1) Les trois voies de la vie intérieure [FAIT], (2) La conversion et le
+premier pas, (3) Le silence et le recueillement, (4) La croix et la
+souffrance offerte, (5) L'union à Dieu.
+NOUVELLE CATÉGORIE id chemin « Le chemin vers Dieu » / « The Path to
+God », domaine vie-spirituelle, ajoutée après combat.
+ARTICLE 1 INTÉGRÉ « Les trois voies de la vie intérieure » (slug
+les-trois-voies-de-la-vie-interieure, EN
+the-three-ways-of-the-interior-life), 4 sections, ✦, FR+EN. Article de
+FOND donnant la structure de toute la catégorie : voie purgative (se
+purifier du péché — Matthieu 5:8 cœur pur, 1 Jean 1:9 confession), voie
+illuminative (grandir dans la lumière — Jean 8:12, Philippiens 1:9,
+2 Corinthiens 3:18 transformés de gloire en gloire), voie unitive
+(s'unir à Dieu — Galates 2:20 le Christ vit en moi, Jean 15:5 vigne/
+sarments, 1 Jean 4:16 Dieu est amour, Jean 17:21 qu'ils soient un), puis
+« un même chemin, trois moments » (les voies se recouvrent, Dieu conduit,
+les nuits = purifications). Versets vérifiés Crampon. ATTENTION : le
+Miserere « cœur pur » N'EST PAS au Psaume 50 dans Crampon (Ps 50 = psaume
+du jugement) — NE PAS le citer de mémoire, vérifier au Ps 51 si besoin
+un jour. CORRECTIONS Emmanuel : 2 négations d'intro reformulées en
+affirmatif (« La vie spirituelle est un chemin » ; « Ces trois voies
+sont trois moments d'un même mouvement »), « ne pas se décourager » ->
+« garder courage ». data-en.js + themes.json 2 étapes. Cloche maj
+(55 items). Le site passe à 91 articles (93 paires). RESTE 4 articles
+prévus pour « Le chemin vers Dieu ».
+
+NOUVEAU DOMAINE « PHILOSOPHIE ET RAISON » CRÉÉ (12/06) — PREMIER nouveau
+domaine (thème) créé cette session (jusqu'ici seulement des catégories).
+Distinct d'« Apologétique » (défense face aux objections) et « Doctrine » :
+centré sur la recherche RATIONNELLE positive, ce que la raison établit
+par elle-même sur Dieu, l'homme, le vrai et le bien, en amont de la
+Révélation. id philosophie, nom_fr « Philosophie et raison » / nom_en
+« Philosophy and Reason », desc fournie, ajouté en FIN de t['themes']
+(7e domaine, numéro 07 ; ordre d'affichage géré par Firestore +
+renumérotation dynamique). Catégories envisagées : Dieu et la raison,
+La nature de l'homme, Le vrai et la connaissance, Le bien et l'agir,
+Foi et raison. Emmanuel a choisi de commencer par « Le bien et l'agir »,
+puis dans cette catégorie par « La liberté et la responsabilité ».
+Plan prévu pour « Le bien et l'agir » : La loi naturelle, La fin de
+l'homme et le bonheur, La conscience morale, La liberté et la
+responsabilité [FAIT], Les vertus et le caractère.
+NOUVELLE CATÉGORIE id bien-agir « Le bien et l'agir » / « The Good and
+Human Action » dans le domaine philosophie.
+ARTICLE 1 INTÉGRÉ « La liberté et la responsabilité » (slug
+la-liberte-et-la-responsabilite, EN freedom-and-responsibility),
+4 sections, ✦, FR+EN. Article PHILOSOPHIQUE (la raison parle d'abord,
+versets rares) : ce qu'est la liberté (intelligence + volonté, acte
+libre vs contraint/instinctif), liberté et responsabilité (répondre de
+ses actes ; degrés : ignorance, contrainte, passion), réponse au
+déterminisme (se contredit, expérience de la délibération, vie humaine
+suppose la responsabilité), vraie liberté = choix du bien (pouvoir
+choisir le mal = faiblesse, le mal asservit ; Jean 8:34 esclave du
+péché, Jean 8:36 le Fils vous affranchit, vérifiés Crampon). CORRECTIONS
+Emmanuel : « Le mot le dit : être responsable... » supprimé ; l'exemple
+de la PIERRE supprimé partout (intro, §responsabilité, §déterminisme),
+reformulé sans lui. theme de l'article = 'philosophie'. data-en.js +
+themes.json 2 étapes. Cloche maj (56 items). Le site passe à 92 articles
+(94 paires). RESTE 4 articles prévus pour « Le bien et l'agir » ; et
+4 autres catégories possibles dans le domaine philosophie.
+
+PHILOSOPHIE / BIEN ET AGIR — ARTICLE 2 INTÉGRÉ « La conscience morale »
+(slug la-conscience-morale, EN the-moral-conscience), theme philosophie,
+4 sections, ✦, FR+EN. Article PHILOSOPHIQUE (raison d'abord, foi en
+appui). Double principe catholique respecté : on doit TOUJOURS suivre sa
+conscience, MAIS on a le devoir de la former dans la vérité (car elle
+peut errer). Sections : ce qu'est la conscience (jugement de la raison
+appliqué à l'acte concret, distinct de la connaissance générale du bien ;
+Romains 2:15 loi écrite dans les cœurs, conscience qui accuse/défend),
+devoir de la suivre (agir contre = faute ; Romains 14:23 « tout ce qui
+ne procède pas d'une conviction est péché » ; nul forcé contre sa
+conscience ; mais « suivre sa conscience » n'est pas faire ce qu'on
+sent), la conscience peut se tromper (1 Corinthiens 8:7 conscience
+faible ; ignorance invincible non coupable vs négligence coupable),
+devoir de la former (chercher le vrai ; pour le croyant, loi de Dieu +
+Église ; vraie liberté de conscience = chercher le vrai pour bien juger ;
+1 Timothée 1:5 charité d'un cœur pur et d'une bonne conscience). Versets
+vérifiés Crampon. CORRECTIONS Emmanuel : « La conscience n'est ni une
+émotion ni une vague intuition » -> affirmatif « La conscience est un
+jugement de la raison » ; « le bien n'est pas une invention humaine »
+-> « inscrite par Dieu... le bien est une vérité que la raison reconnaît,
+antérieure à toute convention humaine ». data-en.js + themes.json
+2 étapes. Cloche maj (57 items). Le site passe à 93 articles (95 paires).
+Catégorie bien-agir = 2 articles. RESTE pour « Le bien et l'agir » : La
+loi naturelle, La fin de l'homme et le bonheur, Les vertus et le
+caractère.
+
+PHILOSOPHIE / BIEN ET AGIR — ARTICLE 3 INTÉGRÉ « Le doute et les
+systèmes moraux » (slug le-doute-et-les-systemes-moraux, EN
+doubt-and-the-moral-systems), theme philosophie, 4 sections, ✦, FR+EN.
+Sujet demandé par Emmanuel : comment agir quand on n'est pas sûr qu'un
+acte est un péché, et sur quelle probabilité se baser. Sections :
+problème du doute moral (on ne peut agir dans le doute, devoir de le
+lever, certitude morale suffit ; Romains 14:23), principe « une loi
+douteuse n'oblige pas » (+ limite : si un bien précieux comme le salut
+ou la vie est en jeu, on prend le moyen sûr — ex. baptême valide,
+secourir un accidenté), les systèmes moraux (à chaque doute 2 opinions :
+loi vs liberté ; tutiorisme = trop rigoriste écarté ; laxisme = trop
+relâché condamné ; probabilisme / probabiliorisme / équiprobabilisme),
+position de l'Église (probabilisme modéré proche de l'équiprobabilisme,
+libère du scrupule sans relâchement ; Romains 14:5). NOMBREUSES
+CORRECTIONS Emmanuel sur la clarté : retrait méta « L'article précédent
+a montré » ; retrait de toute comparaison aux mathématiques ;
+reformulation simple des passages sur la limite du principe (biens à
+garantir = salut/vie, exemples concrets sacrements + accidenté) ; retrait
+de la MENTION NOMINATIVE de saint Alphonse de Liguori (cohérent avec la
+règle de discrétion sur les noms ; les noms des systèmes restent car
+termes techniques) ; « ce qui est en jeu ne souffre aucun risque » ->
+« on ne peut pas prendre le moindre risque sur un bien aussi grave » ;
+suppression de la négation « ne vise pas à fournir des échappatoires ».
+data-en.js + themes.json 2 étapes. Cloche maj (58 items). Le site passe
+à 94 articles (96 paires). Catégorie bien-agir = 3 articles (liberté/
+responsabilité, conscience morale, doute/systèmes moraux). RESTE pour
+« Le bien et l'agir » : La loi naturelle, La fin de l'homme et le
+bonheur, Les vertus et le caractère.
+
+PHILOSOPHIE / BIEN ET AGIR — ARTICLE 4 INTÉGRÉ « Faire le mal pour un
+bien » (slug faire-le-mal-pour-un-bien, EN doing-evil-for-a-good), theme
+philosophie, 4 sections, ✦, FR+EN. Sujet demandé par Emmanuel : sur quoi
+porte réellement le principe « on ne peut faire le mal pour un bien ».
+Réponse de l'article : il porte sur l'OBJET de l'acte. Sections :
+structure de l'acte moral (objet = ce qu'on fait, fin = intention,
+circonstances ; les 3 doivent être bons, un seul mauvais suffit à rendre
+l'acte mauvais), une bonne intention ne rachète pas un objet mauvais
+(l'objet est premier ; relation à sens unique ; Romains 3:8 « pourquoi
+ne ferions-nous pas le mal... leur condamnation est juste », Matthieu
+7:18 bon arbre/bon fruit), actes intrinsèquement mauvais (mauvais par
+leur objet, qu'aucune fin ne justifie ; Isaïe 5:20 « malheur à ceux qui
+appellent le mal bien »), ce que le principe NE dit PAS (distinction
+d'avec la tolérance d'un mal qu'on ne peut empêcher, et d'avec le DOUBLE
+EFFET — acte bon avec effet mauvais non voulu, ex. médecin/antidouleur).
+Versets vérifiés Crampon. CORRECTIONS Emmanuel : image « œuvre achevée »
+reformulée ; « le prophète » -> « le prophète Isaïe » ; passage sur la
+tolérance reformulé avec exemple concret (gouvernant) pour lever
+l'ambiguïté. data-en.js + themes.json 2 étapes. Cloche maj (59 items).
+Le site passe à 95 articles (97 paires). Catégorie bien-agir = 4
+articles. RESTE pistes pour bien-agir : La loi naturelle, La fin de
+l'homme et le bonheur, Les vertus et le caractère. Et série « bien/mal »
+évoquée : « Le bien et le mal » (mal = privation, art de fond possible),
+« Le problème du mal » (pourquoi Dieu le permet — philo ou apologétique).
+
+DOCTRINE — NOUVELLE CATÉGORIE « Le culte de Dieu » + ARTICLE
+« L'adoration et la louange » (12/06). Emmanuel a demandé un article sur
+l'adoration/la louange, choisi DOCTRINAL (vs spirituel). NOUVELLE
+CATÉGORIE id culte « Le culte de Dieu » / « The Worship of God » dans le
+domaine doctrine, insérée après « Dieu et la Trinité » (position 1).
+Pourra accueillir d'autres articles (prière publique, sacrifice, fêtes).
+ARTICLE INTÉGRÉ « L'adoration et la louange » (slug
+l-adoration-et-la-louange, EN adoration-and-praise), theme doctrine,
+4 sections, ✦, FR+EN. Sections : ce qu'est l'adoration (reconnaître Dieu
+comme Dieu, 1er acte de la vertu de religion ; Psaumes 95:6 prosternons-
+nous), ce qu'est la louange (célébrer Dieu, DÉSINTÉRESSÉE = pour Dieu
+lui-même ; Psaumes 150:6, Apocalypse 4:11 « vous êtes digne »), à Dieu
+seul (adoration réservée à Dieu, idolâtrie sinon ; Matthieu 4:10 « tu
+adoreras le Seigneur... lui seul », Apocalypse 22:9 l'ange refuse ;
+DISTINCTION latrie [adoration, Dieu seul] / dulie [vénération des
+saints] / hyperdulie [Marie] — différence de NATURE et non de degré),
+adoration en esprit et en vérité (Jean 4:23 ; culte intérieur qui fonde
+l'extérieur ; sommet = Eucharistie). Versets vérifiés Crampon.
+CORRECTIONS Emmanuel : 2 négations reformulées (« Elle n'est pas d'abord
+un sentiment » -> « d'abord la reconnaissance d'une vérité, plus qu'un
+sentiment » ; « L'adoration que Dieu demande n'est donc pas d'abord » ->
+« tient donc d'abord au cœur, plus qu'aux gestes »). data-en.js +
+themes.json 2 étapes. Cloche maj (60 items). Le site passe à 96 articles
+(98 paires).
+
+APOLOGÉTIQUE — NOUVELLE CATÉGORIE « Dieu en question » + ARTICLE
+« Pourquoi Dieu demande l'adoration » (12/06). Emmanuel a demandé un
+article sur pourquoi Dieu demande l'adoration ; APOLOGÉTIQUE (pas
+doctrine). Exigence apologétique : arguments qui tiennent devant un
+objecteur, partir du constatable, raison avant Écriture. Article
+beaucoup retravaillé tour par tour. NOUVELLE CATÉGORIE id dieu-question
+« Dieu en question » / « God in Question » dans le domaine apologetique
+(qui n'avait AUCUNE catégorie jusqu'ici). Pourra accueillir d'autres
+objections sur Dieu (mal, science...).
+ARTICLE INTÉGRÉ « Pourquoi Dieu demande l'adoration » (slug
+pourquoi-dieu-demande-l-adoration, EN why-god-asks-for-adoration), theme
+apologetique, 5 sections, ✦, FR+EN. Thèse : Dieu ne gagne rien à être
+adoré (il ne manque de rien), donc s'il le demande c'est pour le bien de
+l'HOMME. Sections : l'objection (Dieu avide d'hommages ?), Dieu ne gagne
+rien (Psaumes 50:12 « si j'avais faim... », Actes 17:25, Job 35:7), si
+Dieu ne gagne rien (l'ordre vient de l'amour comme un père ; Isaïe 48:17
+« je t'enseigne pour ton bien », Deutéronome 10:13 « afin que tu sois
+heureux »), l'adoration est le bien de l'homme (3 points partant du
+constatable : vérité de la condition de créature ; libération des idoles/
+absolus ; ouverture à ce qui comble, via le constat que rien de fini ne
+rassasie — formulations RENFORCÉES pour résister à la réfutation, pas de
+postulat « cœur fait pour adorer » ni « désir infini » asséné ; Isaïe
+43:21), adorer c'est déjà être comblé (Matthieu 22:37, Psaumes 73:25
+« quel autre que toi ai-je au ciel »).
+
+LIEN CROISÉ AVEC « L'adoration et la louange » via le mécanisme APOLOGIES
+(build-bi.js) — c'est LE modèle des encadrés « objection » du site (cf.
+marie->marie-mere-de-dieu, l-eucharistie->la-presence-reelle, etc.). Le
+build génère <aside class="apologie"> « Réponse aux objections → [titre] »
+automatiquement sur l'article de base. AJOUTÉ à APOLOGIES :
+'l-adoration-et-la-louange': 'pourquoi-dieu-demande-l-adoration'.
+L'encadré apparaît donc sur l'article doctrinal de l'adoration, FR+EN.
+(NB : d'abord essayé à tort un lien en milieu de phrase puis un renvoi
+« Voir d'abord » — ni l'un ni l'autre n'était le bon modèle ; le bon est
+APOLOGIES.)
+
+IMPORTANT — LEÇON CRAMPON/NUMÉROTATION : Emmanuel a rappelé de NE PAS se
+fier à 100% à la numérotation Crampon et de NE JAMAIS écarter un verset
+juste parce que le numéro attendu ne correspond pas — il faut le CHERCHER
+par son texte. 2 versets retrouvés ainsi cette fois : « qui ai-je au ciel
+sinon toi » = Psaumes 73:25 (pas 72), « si j'avais faim » = Psaumes 50:12.
+Et signalé pour rattrapage futur : « Crée en moi un cœur pur » = Psaumes
+51:12 (que j'avais omis dans « Les trois voies de la vie intérieure » —
+on pourra l'y ajouter dans la voie purgative si Emmanuel le souhaite).
+
+data-en.js + themes.json 2 étapes. Cloche maj (61 items). Le site passe à
+97 articles (99 paires).
+
+PHILOSOPHIE — NOUVELLE CATÉGORIE « Foi et raison » + ARTICLE DE FOND
+« La foi et la science » (12/06). CONTEXTE : Emmanuel avait demandé un
+article sur la théorie de l'évolution ; à mi-lecture il a décidé de
+SCINDER en deux — (1) un article de FOND sur le rapport général foi/
+science, (2) « La théorie de l'évolution » allégé qui renverra au premier.
+Article de fond classé en PHILOSOPHIE (jugé le plus juste : principe de
+raison en amont, que l'apologétique applique ensuite). NOUVELLE CATÉGORIE
+id foi-raison « Foi et raison » / « Faith and Reason » dans le domaine
+philosophie (2e catégorie, après bien-agir).
+ARTICLE INTÉGRÉ « La foi et la science » (slug la-foi-et-la-science, EN
+faith-and-science), theme philosophie, 4 sections, ✦, FR+EN. Sections :
+une fausse guerre (caricature du « Dieu bouche-trou » démontée ; Dieu =
+cause de l'existence du monde, pas explication d'un phénomène obscur),
+deux ordres de questions (science = comment/mécanisme, foi = pourquoi/
+qui donne l'être ; créer = donner l'être ; Jean 1:3 « tout par lui a été
+fait », Actes 17:28 « en lui nous avons l'être » — dépendance continue),
+l'erreur du matérialisme (prémisse non prouvée que seule la matière
+existe ; méthode confondue avec le réel ; l'ordre du monde pointe vers
+Dieu ; Sagesse 11:20 « tout réglé avec mesure, nombre, poids », Romains
+1:20), une seule vérité (science et foi ne se contredisent pas car même
+Auteur ; Sagesse 7:17 « il m'a donné la science des êtres... structure de
+l'univers » ; lire la Genèse = vérités du salut, pas un traité de
+physique). Versets vérifiés Crampon. Cet article a demandé d'AJOUTER une
+section entière (fausse guerre), d'approfondir « une seule vérité », et
+2 versets nouveaux (Actes 17:28, Sagesse 7:17) par rapport au matériau
+évolution. CORRECTIONS Emmanuel : « Sous un seul mot on réunit trois
+choses » -> à préciser (vaut surtout pour l'article évolution) ; « la
+science demeure incertaine et prend pour acquis ce qui sera corrigé »
+-> « ce que la science avance reste incertain, et tient pour acquis ce
+qui plus tard sera corrigé ». data-en.js + themes.json 2 étapes. Cloche
+maj (62 items). Le site passe à 98 articles (100 paires).
+
+RESTE À FAIRE (suite immédiate) : « La théorie de l'évolution » allégé,
+en APOLOGÉTIQUE catégorie « Dieu en question » (après pourquoi-dieu-
+demande-l-adoration). Plan : 3 sens du mot évolution (fait/théorie/
+idéologie), ce que la foi admet du développement des corps, création
+DIRECTE de l'âme spirituelle (Genèse 2:7 corps de poussière + souffle de
+Dieu ; argument de l'immatériel de la pensée ; réponse au « Dieu bouche-
+trou » par différence de NATURE), erreur de conclure « donc pas de Dieu »
+(le hasard ne donne pas l'être), position de l'Église (corps peut évoluer,
+âme créée, Genèse 1:27 image de Dieu). RENVOYER à « La foi et la science »
+pour le principe général au lieu de tout réexpliquer (via un renvoi —
+attention : le « Voir d'abord » est un simple <p> en tête ; l'encadré
+« Réponse aux objections » est réservé au mécanisme APOLOGIES base->
+objection, qui ne s'applique pas ici car les deux ne sont pas base/
+objection l'un de l'autre). Versets évolution déjà vérifiés Crampon :
+Genèse 1:1, 1:27, 2:7 ; Jean 1:3 ; Romains 1:20 ; Sagesse 11:20 ; Actes
+17:28. Texte évolution complet déjà rédigé (5 sections) dans le
+transcript, à alléger en retirant ce qui est passé dans l'article de fond.
+
+APOLOGÉTIQUE / DIEU EN QUESTION — ARTICLE 2 INTÉGRÉ « La théorie de
+l'évolution » (slug la-theorie-de-l-evolution, EN the-theory-of-evolution),
+theme apologetique, 4 sections, ✦, FR+EN. Version ALLÉGÉE issue du
+scindage (le général est passé dans « La foi et la science »). Commence
+par un renvoi « Voir d'abord : La foi et la science ». Sections : trois
+sens du mot évolution (fait / théorie scientifique / philosophie
+matérialiste ; l'Église admet les 2 premiers, refuse le 3e), ce que la
+foi admet (développement des corps, y compris le corps de l'homme, laissé
+à la science), la création de l'âme (l'âme spirituelle créée DIRECTEMENT
+par Dieu ; Genèse 2:7 corps de poussière + souffle de Dieu, deux gestes
+distincts ; argument de l'immatériel : penser saisit l'universel — ex. la
+justice — qui n'a ni forme ni dimension, la matière ne produit que du
+matériel ; réponse au « Dieu bouche-trou » par différence de NATURE),
+l'erreur de conclure « donc pas de Dieu » (matière seule = prémisse non
+prouvée ; le hasard suppose un monde déjà là et ne donne pas l'être ;
+l'ordre que l'évolution emploie sans le créer s'explique mieux par une
+intelligence ; Genèse 1:27 image de Dieu). Versets vérifiés Crampon.
+NOMBREUSES CORRECTIONS Emmanuel sur clarté ET solidité apologétique :
+arguments « différence de nature » et « ordre du monde » jugés d'abord
+trop fragiles/abstraits -> reformulés concrètement (ex. de la justice
+pour l'immatériel ; « un ordre aussi vaste s'explique mieux par une
+intelligence qui l'a voulu que par une matière qui se serait réglée toute
+seule ») ; retrait méta « comme le montre l'article » ; « la foi ne le
+craint pas » -> « l'accueille sans trouble » ; Genèse en « deux gestes
+distincts » ; passage pensée/matière simplifié ; fin gardée avec la
+négation (version préférée d'Emmanuel : « la limite tient à la nature
+même des choses, et non à une ignorance que le temps lèverait »).
+
+LIEN VERS « La foi et la science » via renvoi « Voir d'abord » (simple
+<p> en tête, PAS le mécanisme APOLOGIES). *** LEÇON TECHNIQUE : le href
+du « Voir d'abord » N'EST PAS traduit automatiquement par le build —
+contrairement aux liens du corps de texte. Il faut écrire le href EN EN
+DUR avec préfixe /en/ et slug anglais dans contenu_en (ex.
+'/en/article/faith-and-science/'), le FR pointant vers '/article/slug-fr/'.
+Vérifié sur le modèle l-intercession-des-saints. data-en.js + themes.json
+2 étapes. Cloche maj (63 items). Le site passe à 99 articles (101 paires).
+Catégorie dieu-question = 2 articles. La série évolution (foi/science +
+évolution) est COMPLÈTE.
+
+ARTICLE EXISTANT ENRICHI « Les oracles contre les nations » (Isaïe, thème
+ecriture) — Emmanuel a demandé d'approfondir des oracles mal traités.
+1) Au départ il a signalé 2 phrases ambiguës (Sobna/Éliacim, « la clef de
+la maison de David ») mais a finalement dit de les GARDER telles quelles.
+2) SECTION BABYLONE enrichie (elle se limitait au chant sur le roi / astre
+tombé / lucifer / Satan) : ajouté le Jour du Seigneur (Isaïe 13:9-10,
+images cosmiques), la chute de la ville rendue au désert comme Sodome
+(Isaïe 13:19-20), et Babylone la grande de l'Apocalypse (Apocalypse 18:2,
+figure de la cité orgueilleuse de tous les temps). Phrase « Sous le
+jugement d'une nation se laisse voir le jugement de toute la terre »
+reformulée (clarifiée) en « En décrivant la chute de Babylone, le prophète
+Isaïe emploie les images du jugement universel... dont Babylone est la
+figure ».
+3) DEUX SECTIONS AJOUTÉES (lacunes réelles : l'intro annonçait ces nations
+sans les traiter) :
+- « Tyr : l'orgueil du marchand » (Isaïe 23) : cité marchande, orgueil de
+la richesse, Isaïe 23:1 « navires de Tarsis », 23:3 « marché des nations »,
+23:8-9 « qui a décidé cela contre Tyr... pour flétrir l'orgueil », 23:18
+le gain consacré au Seigneur (retournement, la richesse purifiée). Corr. :
+« comptoirs » -> « ses vaisseaux trafiquaient sur tous les rivages » ;
+négation « ne détruit pas pour détruire » -> affirmatif « Ce jugement
+purifie : il rend à sa fin véritable... ».
+- « Édom : le frère ennemi » (Isaïe 34) : Édom = descendant d'Ésaü, frère
+de Jacob devenu ennemi (s'est réjoui de la chute de Jérusalem) ; 34:1
+convocation de toute la terre, 34:4 « cieux roulés comme un livre », 34:5
+l'épée descend sur Édom, 34:8 « jour de vengeance... cause de Sion ».
+*** GROSSE DISCUSSION EXÉGÉTIQUE sur « les cieux roulés comme un livre »
+(34:4) : NE PAS faire dire au verset le sort final du cosmos. Ce n'est ni
+anéantissement (« cessent d'exister » = faux) ni renouvellement/ciel
+nouveau (« monde renouvelé » = importé d'ailleurs, absent d'Isaïe 34). Le
+sens propre : image du Jour du Seigneur, le jugement ébranle jusqu'aux
+cieux, rien ne tient devant Dieu. Note doctrinale séparée : à la fin, le
+monde est TRANSFORMÉ et non anéanti (mais ça vient d'autres textes : fin
+d'Isaïe, NT). Explication finale retenue : « le ciel visible... enroulé et
+retiré... le jugement de Dieu ébranle jusqu'aux cieux : devant lui, la
+création la plus haute tremble, et aucune puissance ne subsiste. » Aussi :
+structure du ch. 34 = UNIVERSEL (nations, vv.1-4) PUIS particulier (Édom,
+v.5) ; donc une phrase finale rattachant l'image cosmique à Édom seul a
+été SUPPRIMÉE (redondante + inversait la logique). Corr. fin : « est tenue
+par Dieu pour la sienne propre » -> « Dieu défend la cause de son peuple
+comme si elle était la sienne ».
+Sections insérées après Égypte, avant Jérusalem (ordre : Dieu de toute la
+terre, Babylone, Moab, Égypte, Tyr, Édom, Jérusalem, festin). Refs FR=EN=34.
+Pas de nouvel article -> cloche inchangée. Site toujours 99 articles.
+
+ÉCRITURE / ISAÏE — NOUVEL ARTICLE « Les malheurs d'Isaïe » (slug
+les-malheurs-d-isaie, EN the-woes-of-isaiah), theme ecriture, 5 sections,
+✦, FR+EN. CONTEXTE : en vérifiant si Jérusalem (ch. 22) était bien traité
+dans « Les oracles contre les nations », Emmanuel a demandé le passage sur
+ARIEL. Constat : « Ariel » (Isaïe 29) n'était traité NULLE PART (le ch. 29
+n'était cité que pour 29:13 dans un article sur la vie du Christ). Ariel
+est hors du bloc des oracles contre les nations (ch. 13-23) ; il relève des
+« malheurs » (ch. 28-33), série sans article. D'où ce nouvel article.
+Couvre les 6 « Malheur ! » (hébreu hoï) des ch. 28-33, structurés autour
+du thème : Juda met sa confiance dans de fausses sécurités au lieu de Dieu,
+et les promesses qui répondent. Sections : intro (le cri hoï, contexte =
+menace assyrienne + tentation de l'alliance avec l'Égypte) ; Éphraïm la
+couronne fanée (28:1 buveurs d'Éphraïm ; 28:16 pierre angulaire en Sion ->
+lecture christique 1 Pierre 2:6) ; ARIEL la cité assiégée (29:1 double sens
+lion de Dieu / foyer de l'autel ; 29:8 délivrance soudaine ; 29:13 « honore
+des lèvres » repris par le Christ Matthieu 15:8 ; 29:18 sourds entendent,
+aveugles voient) ; l'alliance avec l'Égypte (30:1 enfants rebelles, 31:1,
+31:3 « l'Égyptien est un homme et non un Dieu », 30:15 « par la conversion
+et une paisible attente », 30:21 « voici le chemin ») ; le Roi de justice
+(32:1, 32:15 Esprit répandu, 32:17 fruit = paix, 33:17 « le roi dans sa
+beauté », 33:22 « le Seigneur est notre roi » -> le Christ, Roi de justice
+et pierre angulaire). Versets vérifiés Crampon (recherche des « Malheur »
+par texte). CORRECTIONS Emmanuel : « n'est pas d'abord une menace » ->
+affirmatif « est d'abord la plainte... plus qu'une simple menace » ; « un
+mot qui oppose la chair et l'esprit » (lequel ?) -> « le prophète Isaïe
+oppose alors la chair à l'esprit ». Rangé dans la catégorie isaie « Le
+livre d'Isaïe » juste après les-oracles-contre-les-nations. data-en.js +
+themes.json. Cloche maj (64 items). Le site atteint 100 ARTICLES (102
+paires).
+
+NB : la section « Jérusalem parmi les nations » (ch. 22) de l'article des
+oracles reste perfectible (elle survole le reproche des vv.1-14 : agitation
+sans Dieu, « mangeons et buvons » 22:13 repris par 1 Corinthiens 15:32, et
+ne développe que Sobna/Éliacim). J'avais proposé un paragraphe d'enrichis-
+sement (NON intégré) ; Emmanuel a bifurqué vers Ariel. À reproposer s'il le
+souhaite.
+
+ORACLES CONTRE LES NATIONS — VÉRIF DES SECTIONS RESTANTES + AJOUT (suite).
+Emmanuel a demandé de vérifier les autres sections (après Babylone et
+Jérusalem). Verdict : Moab, Égypte et le festin (ch. 24-27) sont bien
+traités et complets. Une seule correction : négation de Moab « il n'est
+pas la haine des peuples » -> « il garde de l'amour pour les peuples qu'il
+condamne » (FR+EN). AJOUT d'une section « Les autres nations » (« The other
+nations ») pour honorer l'intro qui annonçait des nations restées sans
+section (oracles courts) : Damas (17:7 « l'homme regardera vers celui qui
+l'a fait »), Philistie (14:32 « le Seigneur a fondé Sion... refuge »),
+Éthiopie/Cush (18:7 offrande apportée au Seigneur à Sion), Arabie (21:13-17,
+paraphrasée : délai d'un an jour pour jour), Assyrie (14:25 « je briserai
+Assur... sur mes montagnes »). Fil commun : chaque oracle, même bref, ramène
+le regard vers Dieu et Sion. Corr. : « leur gloire passera en une année
+comptée comme celle d'un mercenaire » (ambigu) -> « le prophète leur fixe
+un délai bref et certain : dans un an jour pour jour, leur gloire aura
+disparu ». Section placée après Égypte, avant Tyr. Ordre final : Dieu de
+toute la terre, Babylone, Moab, Égypte, Les autres nations, Tyr, Édom,
+Jérusalem, Le festin. Refs FR=EN=38. Versets vérifiés Crampon. Pas de
+nouvel article -> cloche inchangée, toujours 100 articles. (La section
+Jérusalem ch.22 reste perfectible — enrichissement « mangeons et buvons »
+22:13 / 1 Co 15:32 toujours en réserve, non intégré.)
+
+CORRECTION « Les quatre chants du Serviteur » (Isaïe, ecriture). Intro
+retravaillée (FR+EN) : la phrase « Dieu présente d'abord son élu, puis la
+mission s'élargit aux nations... avant d'être relevé » résumait d'avance
+les 4 chants (ambigu : suppose de les avoir déjà lus) -> remplacée par
+« forment une suite où la figure du Serviteur se dévoile peu à peu, d'un
+chant à l'autre. ». Et SUPPRESSION de la phrase de mise en scène « Une
+question les traverse, à laquelle ils répondent peu à peu : qui est ce
+Serviteur ? ». Pas de nouvel article, cloche inchangée, toujours 100.
+
+CORRECTION « Les fins dernières » (doctrine) : mise en scène « La
+purification du purgatoire est profonde et douloureuse : l'âme y souffre... »
+-> « Au purgatoire, l'âme souffre d'être encore retenue loin du Dieu
+qu'elle aime... » (FR+EN). Pas de nouvel article, cloche inchangée,
+toujours 100.
+
+VIE DU CHRIST — AUDIT DE 4 PASSAGES ÉVANGÉLIQUES (demande d'Emmanuel) +
+3 AJOUTS. Série vie du Christ : les-prologues-et-la-venue-du-christ,
+la-preparation-au-ministere, la-premiere-annee-l-inauguration,
+la-deuxieme-annee-la-popularite, la-troisieme-annee-l-opposition,
+la-semaine-sainte, la-resurrection-et-la-glorification. Vérif : (1) parabole
+de la TOUR / coût du disciple (Luc 14:25-33) = ABSENTE (l'art. troisième
+année couvrait Luc 14 jusqu'au grand festin v.24 puis sautait à Luc 15) ;
+(2) la DÎME (Mt 23:23, menthe/aneth/cumin) = DÉJÀ PRÉSENTE et bien traitée
+dans la-semaine-sainte (rien à ajouter) ; (3) proches le croient HORS DE
+SENS (Marc 3:20-21) = ABSENT (l'art. deuxième année avait Béelzéboul 3:22-30
+et la vraie famille 3:31-35 mais sautait 3:20-21) ; (4) frères veulent qu'il
+SE MONTRE au monde (Jean 7:1-9) = ABSENT (la section Fête des Tentes
+démarrait à Jean 7:10).
+3 PASSAGES RÉDIGÉS ET INTÉGRÉS (FR+EN), articles existants donc pas de
+cloche :
+- « Le prix du disciple » : NOUVELLE section dans la-troisieme-annee, après
+le grand festin, avant Les paraboles de la miséricorde. Luc 14:26 (haïr =
+aimer moins, expliqué simplement SANS recourir à Matthieu — Emmanuel l'a
+fait retirer), 14:27 (porter sa croix), 14:28 (bâtir une tour, calculer la
+dépense), 14:31 (roi qui part en guerre), 14:33 (renoncer à tout).
+- Marc 3:21 (« il est hors de sens ») : paragraphe en tête de la section
+« Béelzéboul » de la-deuxieme-annee. Précisions : « ses parents » = parenté
+au sens large, PAS Marie (qui a cru dès l'Annonciation) ; raison de la
+réaction = incompréhension de sa mission (PAS l'oubli du repas, corrigé).
+- Jean 7:3-6 (les frères : « montre-toi au monde ») : paragraphe en tête de
+la section « La fête des Tentes » de la-troisieme-annee. « votre temps à
+vous est toujours prêt » explicité (ses frères peuvent monter quand ils
+veulent, lui attend l'heure du Père). Refs vérifiées Crampon (Luc 14:25-33,
+Marc 3:20-21, Jean 7:1-9, Mt 10:37). Site toujours 100 articles.

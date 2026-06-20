@@ -17,6 +17,14 @@
           ]
         },
         {
+          "id": "culte",
+          "nom_fr": "Le culte de Dieu",
+          "nom_en": "The Worship of God",
+          "arts": [
+            "l-adoration-et-la-louange"
+          ]
+        },
+        {
           "id": "anges",
           "nom_fr": "Les anges",
           "nom_en": "The Angels",
@@ -147,7 +155,40 @@
             "le-deutero-isaie",
             "le-trito-isaie",
             "les-quatre-chants-du-serviteur",
-            "les-oracles-contre-les-nations"
+            "les-oracles-contre-les-nations",
+            "les-malheurs-d-isaie"
+          ]
+        },
+        {
+          "id": "abdias",
+          "nom_fr": "Le livre d'Abdias",
+          "nom_en": "The Book of Obadiah",
+          "arts": [
+            "le-livre-d-abdias"
+          ]
+        },
+        {
+          "id": "joel",
+          "nom_fr": "Le livre de Joël",
+          "nom_en": "The Book of Joel",
+          "arts": [
+            "le-fleau-et-le-jour-du-seigneur",
+            "la-conversion-et-l-esprit-repandu",
+            "le-jugement-des-nations-et-le-salut-de-sion"
+          ]
+        },
+        {
+          "id": "zacharie",
+          "nom_fr": "Le livre de Zacharie",
+          "nom_en": "The Book of Zechariah",
+          "arts": [
+            "le-prophete-et-son-temps",
+            "les-huit-visions-nocturnes",
+            "josue-le-germe-et-la-couronne",
+            "le-jeune-et-la-restauration",
+            "premier-oracle-le-roi-qui-vient",
+            "second-oracle-le-transperce",
+            "le-jour-du-seigneur"
           ]
         },
         {
@@ -272,6 +313,14 @@
             "la-tristesse",
             "l-orgueil-et-l-humilite"
           ]
+        },
+        {
+          "id": "chemin",
+          "nom_fr": "Le chemin vers Dieu",
+          "nom_en": "The Path to God",
+          "arts": [
+            "les-trois-voies-de-la-vie-interieure"
+          ]
         }
       ]
     },
@@ -289,7 +338,45 @@
       "nom_en": "Apologetics",
       "desc_fr": "La défense raisonnée de la foi : répondre aux objections et montrer que croire est accordé à la raison.",
       "desc_en": "The reasoned defence of the faith: answering objections and showing that belief accords with reason.",
-      "categories": []
+      "categories": [
+        {
+          "id": "dieu-question",
+          "nom_fr": "Dieu en question",
+          "nom_en": "God in Question",
+          "arts": [
+            "pourquoi-dieu-demande-l-adoration",
+            "la-theorie-de-l-evolution"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "philosophie",
+      "nom_fr": "Philosophie et raison",
+      "nom_en": "Philosophy and Reason",
+      "desc_fr": "Ce que la raison humaine peut chercher et atteindre par elle-même sur Dieu, l'homme, le vrai et le bien, et comment elle s'accomplit dans sa rencontre avec la foi.",
+      "desc_en": "What human reason can seek and attain by itself concerning God, man, the true and the good, and how it is fulfilled in its meeting with faith.",
+      "categories": [
+        {
+          "id": "bien-agir",
+          "nom_fr": "Le bien et l'agir",
+          "nom_en": "The Good and Human Action",
+          "arts": [
+            "la-liberte-et-la-responsabilite",
+            "la-conscience-morale",
+            "le-doute-et-les-systemes-moraux",
+            "faire-le-mal-pour-un-bien"
+          ]
+        },
+        {
+          "id": "foi-raison",
+          "nom_fr": "Foi et raison",
+          "nom_en": "Faith and Reason",
+          "arts": [
+            "la-foi-et-la-science"
+          ]
+        }
+      ]
     }
   ]
 }

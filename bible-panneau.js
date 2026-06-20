@@ -25,6 +25,7 @@
   + 'color:var(--pa,rgba(255,255,255,.6));background:#000;border:1px solid var(--filet,rgba(231,224,207,.14));border-left:none;'
   + 'padding:16px 7px;cursor:pointer;user-select:none;transition:color .3s,border-color .35s,box-shadow .4s}'
   + '#bp-tab:hover{color:var(--or-pale,#f8f3e6);border-color:var(--filet-fort,rgba(231,224,207,.3));box-shadow:0 0 22px rgba(231,224,207,.09)}'
+  + '#bp-tab.bp-tab-masque{display:none!important}'
   + '#bp-voile{position:fixed;inset:0;z-index:108;background:rgba(0,0,0,.55);display:none}'
   + '#bp-voile.on{display:block}'
   + '#bp-pan{position:fixed;left:0;top:0;bottom:0;width:min(520px,100vw);z-index:110;background:#000;'
@@ -53,7 +54,8 @@
   + '.bp-corps::-webkit-scrollbar-thumb:hover{background:rgba(231,224,207,.6)}'
   + '#bp-pan ::selection{background:rgba(198,164,92,.25)}'
   + '#bp-pan :focus{outline:none}#bp-tab:focus{outline:none}'
-  + '#bp-pan :focus-visible,#bp-tab:focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}'
+  + '#bp-pan :focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}'
+  + '#bp-tab:focus,#bp-tab:focus-visible{outline:none}'
   + 'span.ref{cursor:pointer}'
   + 'span.ref:hover{text-decoration:underline;text-underline-offset:3px}'
   + '@media print{#bp-tab,#bp-pan,#bp-voile{display:none!important}}'
@@ -123,6 +125,12 @@
   document.body.appendChild(tab);
   document.body.appendChild(voile);
   document.body.appendChild(pan);
+  /* masquage de l'onglet, réglé depuis « Mon compte », par appareil */
+  function obCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_onglet_bible_mobile':'lv_onglet_bible_pc';}catch(e){return 'lv_onglet_bible_pc';}}
+  function obApplique(){try{tab.classList.toggle('bp-tab-masque',localStorage.getItem(obCle())==='0');}catch(e){}}
+  obApplique();
+  window.addEventListener('storage',obApplique);
+  window.addEventListener('resize',obApplique);
   var corps = document.getElementById('bp-corps');
 
   /* ───────── Données ───────── */
@@ -311,7 +319,11 @@
             if (!premier) premier = sp;
           }
         });
-        if (premier) premier.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (premier) {
+          var dec = Math.max(0, premier.offsetTop - corps.clientHeight / 2 + premier.offsetHeight / 2);
+          if (typeof corps.scrollTo === 'function') corps.scrollTo({ top: dec, behavior: 'smooth' });
+          else corps.scrollTop = dec;
+        }
       }
     }).catch(function(){
       corps.innerHTML = '<div class="bp-charge">' + BP_T.errTxt + '</div>';
@@ -347,37 +359,13 @@
     return t;
   }
   function rendMulti(refs){
-    sauveEtat({ v: 'livres' });
-    corps.innerHTML = '<div class="bp-charge">' + BP_T.charge + '</div>';
-    var besoins = {};
-    refs.forEach(function(r){ if (r.ch) besoins[r.slug] = 1; });
-    Promise.all(Object.keys(besoins).map(livreData)).then(function(){
-      var h = '';
-      refs.forEach(function(r){
-        var inf = infoLivre(r.slug);
-        h += '<div class="bp-carte" data-bp="carte" data-slug="' + r.slug + '" data-ch="' + (r.ch || 0) + '" data-v1="' + (r.v1 || 0) + '" data-v2="' + (r.v2 || 0) + '">'
-           + '<div class="bp-carte-ref">' + esc(etiquetteRef(r)) + '</div>';
-        if (r.ch) {
-          var d = CACHE[r.slug], ch = null;
-          for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === r.ch) { ch = d.chapitres[i]; break; }
-          if (ch) {
-            var v1 = r.v1 || 1;
-            var v2 = r.v1 ? r.v2 : Math.min(ch.versets.length ? ch.versets[ch.versets.length - 1].v : v1, v1 + 2);
-            ch.versets.forEach(function(v){
-              if (v.v >= v1 && v.v <= v2) h += '<span class="bp-v"><sup>' + v.v + '</sup>' + esc(v.t) + '</span> ';
-            });
-            if (!r.v1) h += '\u2026';
-          }
-        } else {
-          h += '<span class="bp-v">' + (BP_EN ? 'Open the book' : 'Ouvrir le livre') + ' \u2192</span>';
-        }
-        h += '</div>';
-      });
-      corps.innerHTML = h;
-      corps.scrollTop = 0;
-    }).catch(function(){
-      corps.innerHTML = '<div class="bp-charge">' + BP_T.errTxt + '</div>';
-    });
+    /* plusieurs références : ouvrir la lecture normale du premier passage,
+       comme un clic sur une section de la Bible, avec le verset ciblé. */
+    var r = refs[0];
+    if (!r) return rendLivres();
+    if (!r.ch) { rendChaps(r.slug); return; }
+    if (r.v1) pend = { slug: r.slug, ch: r.ch, v1: r.v1, v2: r.v2 || r.v1 };
+    rendLect(r.slug, r.ch, 0);
   }
   function vaRef(){
     var champ = document.getElementById('bp-ref');

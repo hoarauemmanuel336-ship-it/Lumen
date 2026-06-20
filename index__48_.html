@@ -473,15 +473,13 @@ nav.menu .cloche .cloche-point{top:8px;left:14px;right:auto}
 }
 
 /* ---------- sommaire des articles ---------- */
-.smr-cote{position:fixed;top:150px;right:24px;width:212px;display:none;z-index:5}
-@media(min-width:1280px){.smr-cote{display:block}}
+.smr-cote{display:none!important}
 .smr-titre{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--or);margin-bottom:14px}
 .smr-liste{border-left:1px solid var(--filet)}
 .smr-lien{display:block;padding:6px 0 6px 14px;margin-left:-1px;border-left:1px solid transparent;font-size:13.5px;line-height:1.4;color:var(--parchemin-att);cursor:pointer;transition:color .25s,border-color .25s}
 .smr-lien:hover{color:var(--parchemin)}
 .smr-lien.actif{color:var(--or);border-left-color:var(--or)}
-.smr-mob{display:none;margin:0 0 26px;border:1px solid var(--filet)}
-@media(max-width:1279px){.smr-mob{display:block}}
+.smr-mob{display:block;margin:0 0 26px;border:1px solid var(--filet)}
 .smr-mob-tete{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;cursor:pointer;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--parchemin-att);transition:color .25s}
 .smr-mob-tete:hover{color:var(--parchemin)}
 .smr-mob-chev{font-family:ui-monospace,monospace;font-size:16px;transition:transform .3s;color:rgba(255,255,255,.45)}
@@ -500,11 +498,12 @@ article.lecture p,article.lecture li,article.lecture blockquote{font-size:calc(2
 /* ---------- focus clavier ---------- */
 :focus{outline:none}
 :focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}
+.rech-loupe:focus,.rech-loupe:focus-visible{outline:none}
 /* ---------- impression ---------- */
 @media print{
   body{background:#fff;color:#000;font-size:12pt}
   .barre,nav.menu,.burger,.contexte-bar,footer,.rech-overlay,#nouv-overlay,
-  .apologie,#lva-dock,.lva-page,#bp-tab,#bp-pan,#bp-voile,.memo-accueil,.smr-cote,.smr-mob{display:none!important}
+  .apologie,#lva-dock,.lva-page,#bp-tab,#bp-pan,#bp-voile,.memo-accueil,.smr-cote,.smr-mob,.art-bar,.art-nav{display:none!important}
   main{padding:0}
   .lecture,.vue{max-width:none}
   h1,h2,h3,.titre-section h2{color:#000}
