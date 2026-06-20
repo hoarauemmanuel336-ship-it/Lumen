@@ -1691,3 +1691,28 @@ la section « La fête des Tentes » de la-troisieme-annee. « votre temps à
 vous est toujours prêt » explicité (ses frères peuvent monter quand ils
 veulent, lui attend l'heure du Père). Refs vérifiées Crampon (Luc 14:25-33,
 Marc 3:20-21, Jean 7:1-9, Mt 10:37). Site toujours 100 articles.
+
+*** LEÇON ARCHITECTURE — COUCHE FIRESTORE QUI ÉCRASE LES FICHIERS ***
+Le site a une couche en ligne (Firestore, projet lumen-veritatis) lue par
+admin.js à l'exécution sur TOUTES les pages publiques (pas seulement pour
+l'admin connecté) : gdoc('config/nouveautes') réécrit la cloche, et sur la
+bibliothèque gdoc('config/themes') -> applyThemes() RÉORGANISE le classement
+par-dessus le HTML statique. De plus, AU BUILD, build-bi.js lit
+fsLireDoc('config/nouveautes') (NV_LIGNE) qui ÉCRASE content/nouveautes.json
+si présent. Conséquence observée : quand ces 2 documents Firestore existent
+et sont périmés, ils l'emportent sur mes éditions de content/themes.json et
+content/nouveautes.json. Symptômes : nouveaux articles poussés en bas du
+domaine (sous la dernière catégorie, p.ex. « Questions sur les Écritures »
+pour ecriture) ; cloche figée sur l'ancienne liste.
+RÉSOLUTION (faite avec Emmanuel) : supprimer les documents Firestore
+config/themes et config/nouveautes (console Firebase > Firestore > collection
+config). Le classement se corrige IMMÉDIATEMENT (recomposé à l'exécution).
+La CLOCHE, elle, est gravée dans les pages AU BUILD : il faut RECONSTRUIRE
+ET REDÉPLOYER après suppression pour qu'elle reprenne content/nouveautes.json.
+Pastille « nouveau » = data-sig sur le bouton cloche = (nb groupes)|(nb items
+total) ; change à chaque ajout, donc la pastille réapparaît après rebuild.
+Le service worker (memoriser-sw.js) ne cache QUE /memoriser.html (pas le
+reste du site), donc pas de cache parasite sur les pages principales.
+Pour la suite : si Emmanuel garde le workflow par fichiers, laisser ces 2
+documents Firestore supprimés (sinon ils réécraseront à nouveau). Option
+proposée : adapter le build/admin pour que la version fichiers l'emporte.
