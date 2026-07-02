@@ -56,6 +56,7 @@
   + '#bp-pan :focus{outline:none}#bp-tab:focus{outline:none}'
   + '#bp-pan :focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}'
   + '#bp-tab:focus,#bp-tab:focus-visible{outline:none}'
+  + '#bp-pan .bp-refrow :focus,#bp-pan .bp-refrow :focus-visible{outline:none}'
   + 'span.ref{cursor:pointer}'
   + 'span.ref:hover{text-decoration:underline;text-underline-offset:3px}'
   + '@media print{#bp-tab,#bp-pan,#bp-voile{display:none!important}}'
@@ -89,7 +90,7 @@
   + '.bp-texte{text-align:justify;hyphens:auto;font-size:17px;line-height:1.72;color:var(--parchemin,#ffffff)}'
   + '.bp-texte sup{font-size:11px;color:var(--or,#efe6cf);line-height:0;margin-right:4px}'
   + '.bp-v{scroll-margin-top:30px}'
-  + '.bp-v.cible{background:rgba(231,224,207,.09);box-shadow:0 0 0 4px rgba(231,224,207,.09)}'
+  + '.bp-v.cible{background:rgba(231,224,207,.14);box-shadow:0 0 0 5px rgba(231,224,207,.14)}'
   + '.bp-nav{display:flex;justify-content:space-between;gap:10px;margin-top:26px;padding-top:16px;border-top:1px solid rgba(231,224,207,.14)}'
   + '.bp-nav span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa,rgba(255,255,255,.6));cursor:pointer;transition:color .3s}'
   + '.bp-nav span:hover{color:var(--or-pale,#f8f3e6)}'
@@ -308,13 +309,19 @@
       h += '</div>';
       corps.innerHTML = h;
       corps.scrollTop = 0;
-      var aSurligner = (pend && pend.slug === slug && pend.ch === n) ? pend : (vCible ? { v1: vCible, v2: vCible } : null);
+      var plages = null;
+      if (pend && pend.slug === slug && pend.ch === n) {
+        plages = pend.plages ? pend.plages : (pend.v1 ? [{ v1: pend.v1, v2: pend.v2 || pend.v1 }] : null);
+      } else if (vCible) {
+        plages = [{ v1: vCible, v2: vCible }];
+      }
       pend = null;
-      if (aSurligner && aSurligner.v1) {
+      if (plages) {
         var premier = null;
         corps.querySelectorAll('.bp-v').forEach(function(sp){
           var v = parseInt(sp.dataset.v, 10);
-          if (v >= aSurligner.v1 && v <= aSurligner.v2) {
+          var dans = plages.some(function(p){ return v >= p.v1 && v <= p.v2; });
+          if (dans) {
             sp.classList.add('cible');
             if (!premier) premier = sp;
           }
@@ -359,13 +366,18 @@
     return t;
   }
   function rendMulti(refs){
-    /* plusieurs références : ouvrir la lecture normale du premier passage,
-       comme un clic sur une section de la Bible, avec le verset ciblé. */
-    var r = refs[0];
-    if (!r) return rendLivres();
-    if (!r.ch) { rendChaps(r.slug); return; }
-    if (r.v1) pend = { slug: r.slug, ch: r.ch, v1: r.v1, v2: r.v2 || r.v1 };
-    rendLect(r.slug, r.ch, 0);
+    /* plusieurs références : ouvrir le chapitre du premier passage et surligner
+       tous les versets des références qui tombent dans ce même chapitre,
+       comme la sélection multi-versets de la section Bible (allerRefs). */
+    var r0 = refs[0];
+    if (!r0) return rendLivres();
+    if (!r0.ch) { rendChaps(r0.slug); return; }
+    var plages = [];
+    refs.forEach(function(r){
+      if (r.slug === r0.slug && r.ch === r0.ch && r.v1) plages.push({ v1: r.v1, v2: r.v2 || r.v1 });
+    });
+    pend = { slug: r0.slug, ch: r0.ch, plages: plages.length ? plages : null };
+    rendLect(r0.slug, r0.ch, 0);
   }
   function vaRef(){
     var champ = document.getElementById('bp-ref');

@@ -178,6 +178,37 @@
           ]
         },
         {
+          "id": "amos",
+          "nom_fr": "Le livre d’Amos",
+          "nom_en": "The Book of Amos",
+          "arts": [
+            "amos-le-berger-prophete",
+            "le-jugement-des-nations-et-d-israel",
+            "les-visions-et-le-culte-rejete",
+            "la-justice-le-jour-du-seigneur-et-l-esperance"
+          ]
+        },
+        {
+          "id": "nahum",
+          "nom_fr": "Le livre de Nahum",
+          "nom_en": "The Book of Nahum",
+          "arts": [
+            "nahum-et-l-empire-assyrien",
+            "le-dieu-qui-juge-et-qui-sauve",
+            "la-chute-de-ninive"
+          ]
+        },
+        {
+          "id": "aggee",
+          "nom_fr": "Le livre d’Aggée",
+          "nom_en": "The Book of Haggai",
+          "arts": [
+            "aggee-et-la-reconstruction-du-temple",
+            "les-quatre-oracles",
+            "la-gloire-du-second-temple"
+          ]
+        },
+        {
           "id": "zacharie",
           "nom_fr": "Le livre de Zacharie",
           "nom_en": "The Book of Zechariah",
@@ -198,7 +229,11 @@
           "arts": [
             "la-servitude-et-l-appel",
             "la-delivrance",
-            "le-sinai-et-l-alliance"
+            "le-sinai-et-l-alliance",
+            "la-demeure-le-sacerdoce-et-les-sacrifices",
+            "les-quarante-ans-au-desert",
+            "les-discours-de-moise",
+            "la-mort-de-moise"
           ]
         },
         {
@@ -213,8 +248,7 @@
             "achetez-une-epee",
             "tendre-l-autre-joue",
             "le-bapteme-du-christ",
-            "le-doigt-de-dieu",
-            "mon-dieu-mon-dieu-pourquoi-m-as-tu-abandonne"
+            "le-doigt-de-dieu"
           ]
         },
         {
@@ -238,6 +272,15 @@
           "arts": [
             "la-femme-dans-l-assemblee",
             "le-voile-et-la-chevelure"
+          ]
+        },
+        {
+          "id": "romains",
+          "nom_fr": "L’épître aux Romains",
+          "nom_en": "The Epistle to the Romans",
+          "arts": [
+            "l-epitre-aux-romains",
+            "tous-sous-le-peche"
           ]
         },
         {
@@ -320,6 +363,15 @@
           "nom_en": "The Path to God",
           "arts": [
             "les-trois-voies-de-la-vie-interieure"
+          ]
+        },
+        {
+          "id": "discernement",
+          "nom_fr": "Le discernement",
+          "nom_en": "Discernment",
+          "arts": [
+            "discerner-les-mouvements-du-coeur",
+            "la-consolation-et-la-desolation"
           ]
         }
       ]

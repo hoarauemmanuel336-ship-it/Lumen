@@ -271,7 +271,9 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 /* ═══ EN-TÊTE ALIGNÉ SUR L'ACCUEIL ═══ */
 #app > header{
   position:sticky;top:0;z-index:50;
-  background:#000;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
   border-bottom:1px solid var(--filet);
 }
 .barre{
@@ -492,7 +494,7 @@ nav.menu .menu-act#lang-btn:hover{opacity:1;color:var(--parchemin);border:none}
 .auth-out:hover{color:var(--or)}
 html{scroll-behavior:smooth}
 body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-::selection{background:rgba(198,164,92,.25);color:#fff}
+::selection{background:rgba(198,164,92,.25)}
 *{scrollbar-width:thin;scrollbar-color:rgba(231,224,207,.35) transparent}
 ::-webkit-scrollbar{width:10px;height:10px}
 ::-webkit-scrollbar-track{background:transparent}

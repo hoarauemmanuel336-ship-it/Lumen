@@ -208,6 +208,7 @@ const UI = {
     t_home: 'Lumen · Théologie catholique', t_library: 'Bibliothèque · Lumen', t_about: 'À propos · Lumen', t_404: 'Page introuvable · Lumen',
     search_placeholder: 'Rechercher dans Lumen…', search_hint: 'Tapez un mot pour parcourir les articles.', search_empty: 'Aucun résultat pour',
     memo_label:"L'outil", memo_title:'Mémoriser', memo_sub:'Apprends les versets par cœur et garde-les, à ton rythme.', memo_open:'Ouvrir Mémoriser', memo_start:'Commencer', memo_mastery:'de maîtrise', memo_acquired:'acquis', memo_learning:'en cours', memo_review:'à revoir', memo_signedout:'Connecte-toi pour suivre ta progression.',
+    lect_label:"Le parcours", lect_title:'La lecture suivie', lect_lu:'articles lus', lect_signedout:'Connecte-toi pour suivre ta lecture.', lect_start:'Commencer la lecture',
     other_label: 'EN'
   },
   en: Object.assign({}, UI_EN, {
@@ -221,7 +222,8 @@ const UI = {
     site_desc_library: 'All the entries of Lumen, arranged by domain: doctrine, Scripture, sacraments, figures, history and philosophy.',
     site_desc_about: 'Lumen, a place of study and meditation on the Catholic faith: making theology accessible and faithful to the teaching of the Church.',
     t_home: 'Lumen · Catholic Theology', t_library: 'Library · Lumen', t_about: 'About · Lumen', t_404: 'Page not found · Lumen',
-    memo_label:'The tool', memo_title:'Memorise', memo_sub:'Learn the verses by heart and keep them, at your own pace.', memo_open:'Open Memorise', memo_start:'Start', memo_mastery:'mastery', memo_acquired:'learned', memo_learning:'in progress', memo_review:'to review', memo_signedout:'Sign in to track your progress.'
+    memo_label:'The tool', memo_title:'Memorise', memo_sub:'Learn the verses by heart and keep them, at your own pace.', memo_open:'Open Memorise', memo_start:'Start', memo_mastery:'mastery', memo_acquired:'learned', memo_learning:'in progress', memo_review:'to review', memo_signedout:'Sign in to track your progress.',
+    lect_label:'The path', lect_title:'Guided Reading', lect_lu:'articles read', lect_signedout:'Sign in to track your reading.', lect_start:'Start reading'
   })
 };
 
@@ -442,6 +444,7 @@ function header(lang, type, base, otherRel, ctx) {
       <div class="auth-m-email" id="auth-in-email"></div>
       <a class="auth-m-btn" href="/bible.html#notes">${lang === 'fr' ? 'Mes notes' : 'My notes'}</a>
       <div class="ttx-row"><span class="ttx-lab">${lang === 'fr' ? 'Taille du texte' : 'Text size'}</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
+      <div class="tog-row"><span class="tog-lab">${lang === 'fr' ? 'Onglet Bible à gauche' : 'Bible tab on the left'}</span><span class="tog-sw" id="tog-bible" role="button" tabindex="0" aria-label="${lang === 'fr' ? 'Afficher ou masquer l’onglet Bible' : 'Show or hide the Bible tab'}"></span></div>
       <button class="auth-m-link" id="auth-logout">${lang === 'fr' ? 'Déconnexion' : 'Sign out'}</button>
     </div>
   </div>
@@ -494,6 +497,101 @@ const MEMO_JS = `(function lvMemoBoot(){
       bar(r,a,v);
       box.setAttribute('data-state','ok');
     }).catch(function(){note(L.out);box.setAttribute('data-state','out');});
+  });
+})();`;
+
+const LECT_JS = `(function lvLectBoot(){
+  /* Lecture suivie : cycle INFINI et ALEATOIRE. Unite = la categorie (bloc
+     d'articles gardant leur ordre propre) ; les blocs sont melanges au debut
+     de chaque cycle. Doc users/{uid}/meta/lecture : { ordre:[ids], lus:[ids] }.
+     L'article courant = premier de l'ordre non lu ; sa visite l'enregistre.
+     Cycle complet -> nouveau melange, lus vides, sans intervention. */
+  var box=document.getElementById('lect-etat');
+  var estArticle=location.pathname.indexOf('/article/')>=0;
+  if(!box&&!estArticle)return;
+  if(typeof firebase==='undefined'){document.addEventListener('lv-fb-ready',lvLectBoot,{once:true});return;}
+  var cfg={apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",authDomain:"lumen-veritatis.firebaseapp.com",projectId:"lumen-veritatis",storageBucket:"lumen-veritatis.firebasestorage.app",messagingSenderId:"195902823875",appId:"1:195902823875:web:a8be1f216a5ae1d945f176"};
+  if(!firebase.apps.length)firebase.initializeApp(cfg);
+  var auth=firebase.auth(), db=firebase.firestore();
+  var lang=(window.LUMEN&&window.LUMEN.lang)||'fr', FR=lang!=='en';
+  function idx(){var I=window.LV_INDEX;if(!I)return null;return I[lang]||I.fr;}
+  function blocs(){
+    /* liste de blocs canoniques : chaque categorie = un bloc ordonne ;
+       les articles hors categorie d'un theme forment un bloc par theme */
+    var I=idx(); if(!I)return {bl:[],urls:{}};
+    var parTheme={}, urls={}, bl=[], vus={};
+    I.articles.forEach(function(a){(parTheme[a.theme]=parTheme[a.theme]||[]).push(a.id);urls[a.id]=a.u;});
+    I.themes.forEach(function(t){
+      (t.cats||[]).forEach(function(c){
+        var b=[];(c.arts||[]).forEach(function(id){if(urls[id]&&!vus[id]){vus[id]=1;b.push(id);}});
+        if(b.length)bl.push(b);
+      });
+      var r=[];(parTheme[t.id]||[]).forEach(function(id){if(!vus[id]){vus[id]=1;r.push(id);}});
+      if(r.length)bl.push(r);
+    });
+    var reste=[];I.articles.forEach(function(a){if(!vus[a.id]){vus[a.id]=1;reste.push(a.id);}});
+    if(reste.length)bl.push(reste);
+    return {bl:bl,urls:urls};
+  }
+  function melange(){
+    var b=blocs().bl.slice(),i,j,t;
+    for(i=b.length-1;i>0;i--){j=Math.floor(Math.random()*(i+1));t=b[i];b[i]=b[j];b[j]=t;}
+    var ordre=[];b.forEach(function(x){ordre=ordre.concat(x);});
+    return ordre;
+  }
+  function complete(ordre){
+    /* articles publies apres le tirage : ajoutes en fin de cycle, ordre canonique */
+    var d={};ordre.forEach(function(id){d[id]=1;});
+    blocs().bl.forEach(function(b){b.forEach(function(id){if(!d[id]){d[id]=1;ordre.push(id);}});});
+    return ordre;
+  }
+  function ref(u){return db.doc('users/'+u.uid+'/meta/lecture');}
+  function etat(snap){
+    var d=(snap.exists&&snap.data())||{};
+    var lus=d.lus||[], ordre=d.ordre||[];
+    var neuf=false;
+    if(!ordre.length){ordre=melange();neuf=true;}
+    var avant=ordre.length; ordre=complete(ordre); if(ordre.length!==avant)neuf=true;
+    var map={};lus.forEach(function(id){map[id]=1;});
+    var n=0,cur=null,i;
+    for(i=0;i<ordre.length;i++){if(map[ordre[i]])n++;else if(cur===null)cur=ordre[i];}
+    if(cur===null){ordre=melange();lus=[];map={};n=0;cur=ordre[0]||null;neuf=true;}
+    return {ordre:ordre,lus:lus,n:n,cur:cur,neuf:neuf};
+  }
+  function peint(u){
+    var btn=document.getElementById('lect-start');
+    if(!u){box.setAttribute('data-state','out');if(btn)btn.style.display='none';return;}
+    ref(u).get().then(function(snap){
+      var e=etat(snap);
+      if(e.neuf)ref(u).set({ordre:e.ordre,lus:e.lus});
+      var p=blocs();
+      var ex=document.getElementById('lect-x'); if(ex)ex.textContent=e.n+' / '+e.ordre.length;
+      var seg=box.querySelector('#lect-bar .l'); if(seg)seg.style.width=(e.ordre.length?(e.n/e.ordre.length*100):0)+'%';
+      if(btn&&e.cur!==null){
+        btn.textContent=e.n?(FR?'Continuer la lecture':'Continue reading'):(FR?'Commencer la lecture':'Start reading');
+        btn.href=p.urls[e.cur]||btn.getAttribute('href');
+        btn.style.display='';
+      }
+      box.setAttribute('data-state','ok');
+    }).catch(function(){box.setAttribute('data-state','out');if(btn)btn.style.display='none';});
+  }
+  function marque(u){
+    var I=idx(); if(!I)return;
+    var art=null,i;
+    for(i=0;i<I.articles.length;i++){if(I.articles[i].u===location.pathname){art=I.articles[i];break;}}
+    if(!art)return;
+    ref(u).get().then(function(snap){
+      var e=etat(snap);
+      if(e.cur===art.id){
+        e.lus.push(art.id);
+        if(e.lus.length>=e.ordre.length){ref(u).set({ordre:melange(),lus:[]});}
+        else{ref(u).set({ordre:e.ordre,lus:e.lus});}
+      }else if(e.neuf){ref(u).set({ordre:e.ordre,lus:e.lus});}
+    }).catch(function(){});
+  }
+  auth.onAuthStateChanged(function(u){
+    if(box)peint(u);
+    else if(u&&estArticle)marque(u);
   });
 })();`;
 
@@ -570,6 +668,21 @@ const AUTH_JS = `(function(){
     try{localStorage.setItem(tzCle(),String(v));}catch(e2){}
     tzApplique(v);
   });
+})();
+(function(){
+  /* onglet Bible à gauche : préférence enregistrée par appareil (pc / mobile),
+     appliquée par bible-panneau.js ; le resize déclenche l'application immédiate */
+  function obCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_onglet_bible_mobile':'lv_onglet_bible_pc';}catch(e){return 'lv_onglet_bible_pc';}}
+  function obMasque(){try{return localStorage.getItem(obCle())==='0';}catch(e){return false;}}
+  var sw=document.getElementById('tog-bible');
+  function etat(){if(sw)sw.classList.toggle('on',!obMasque());}
+  etat();
+  window.addEventListener('resize',etat);
+  if(sw){
+    var bascule=function(){var m=obMasque();try{localStorage.setItem(obCle(),m?'1':'0');}catch(e){}etat();try{window.dispatchEvent(new Event('resize'));}catch(e2){}};
+    sw.addEventListener('click',bascule);
+    sw.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();bascule();}});
+  }
 })();
 (function lvAuthBoot(){
   var cfg={apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",authDomain:"lumen-veritatis.firebaseapp.com",projectId:"lumen-veritatis",storageBucket:"lumen-veritatis.firebasestorage.app",messagingSenderId:"195902823875",appId:"1:195902823875:web:a8be1f216a5ae1d945f176"};
@@ -738,6 +851,7 @@ ${COMMUN_JS}
 ${RECH_JS}
 ${AUTH_JS}
 ${MEMO_JS}
+${LECT_JS}
 ${SOMMAIRE_JS}
 window.LV_INDEX=${JSON.stringify({fr: buildIndex('fr'), en: buildIndex('en')}).replace(/</g, '\\u003c')};
 window.LV_NV=${JSON.stringify({fr: NV_FR, en: NV_EN}).replace(/</g, '\\u003c')};
@@ -786,6 +900,19 @@ function mainAccueil(lang, base) {
         <p class="memo-note" id="memo-note">${u.memo_signedout}</p>
       </div>
       <a class="memo-start" href="/memoriser.html?demarrer=1" data-lv-txt="memo_start">${u.memo_start}</a>
+    </div>
+    <div class="titre-section">
+      <span class="num" data-lv-txt="lect_label">${u.lect_label}</span>
+      <h2 data-lv-txt="lect_title">${u.lect_title}</h2>
+      <span class="trait"></span>
+    </div>
+    <div class="memo-bloc">
+      <div class="memo-droite" id="lect-etat" data-state="load">
+        <div class="memo-pct"><span id="lect-x"></span><i data-lv-txt="lect_lu">${u.lect_lu}</i></div>
+        <div class="memo-bar" id="lect-bar"><i class="l"></i></div>
+        <p class="memo-note" id="lect-note">${u.lect_signedout}</p>
+      </div>
+      <a class="memo-start" id="lect-start" href="${lang === 'fr' ? '/bibliotheque/' : '/en/library/'}" data-lv-txt="lect_start">${u.lect_start}</a>
     </div>
     <div style="height:60px"></div>
   </div>`;

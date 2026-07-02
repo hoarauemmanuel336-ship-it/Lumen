@@ -370,7 +370,7 @@ article.lecture h1{
   font-size:clamp(38px,6vw,60px);line-height:1.08;letter-spacing:.01em;
   margin:0 0 56px;text-align:center;
 }
-article.lecture h1+p::first-letter{
+article.lecture>p:first-of-type::first-letter{
   font-family:'Cormorant Garamond',serif;
   float:left;font-size:78px;line-height:.78;
   font-weight:500;color:var(--or);
@@ -495,6 +495,14 @@ article.lecture p,article.lecture li,article.lecture blockquote{font-size:calc(2
 .ttx-btns{display:flex;gap:8px}
 .ttx-b{background:none;border:1px solid var(--filet);color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:14px;min-width:38px;padding:7px 8px;cursor:pointer;transition:border-color .25s,color .25s}
 .ttx-b:hover{border-color:var(--or);color:#fff}
+.tog-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:14px 0 6px;padding-top:16px;border-top:1px solid var(--filet)}
+.tog-lab{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--parchemin-att)}
+.tog-sw{position:relative;width:46px;height:24px;border:1px solid var(--filet-fort);background:none;cursor:pointer;flex:none;transition:border-color .25s}
+.tog-sw:hover{border-color:var(--or)}
+.tog-sw:focus,.tog-sw:focus-visible{outline:none}
+.tog-sw::after{content:'';position:absolute;top:50%;left:3px;width:16px;height:16px;background:rgba(255,255,255,.55);transform:translateY(-50%);transition:left .25s,background .25s}
+.tog-sw.on{border-color:var(--or)}
+.tog-sw.on::after{left:25px;background:var(--or)}
 /* ---------- focus clavier ---------- */
 :focus{outline:none}
 :focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}
@@ -524,6 +532,7 @@ article.lecture p,article.lecture li,article.lecture blockquote{font-size:calc(2
 .memo-bar .r{background:#c75d52}
 .memo-bar .a{background:#cfa24f}
 .memo-bar .v{background:#7ba37e}
+.memo-bar .l{background:var(--or)}
 .memo-leg{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--parchemin-att)}
 .memo-leg b{color:var(--parchemin);font-weight:600;font-variant-numeric:tabular-nums}
 .memo-note{font-size:16px;color:var(--parchemin-att);font-style:italic;margin:0;display:none;text-align:center}

@@ -79,9 +79,9 @@ a.b-r:hover b,.b-r:hover b{color:var(--or-pale)}
   .ic-btn .ll-mob{display:inline}
   nav.menu a.lien-langue{opacity:1}
   .burger{display:block}
-  nav.menu{display:none;position:absolute;top:62px;left:0;right:0;background:rgba(0,0,0,.97);flex-direction:column;align-items:flex-start;gap:0;padding:10px 28px 18px;border-bottom:1px solid var(--filet)}
-  nav.menu.ouvert{display:flex}
-  nav.menu a{font-size:15px;padding:12px 0;width:100%}
+  nav.menu{position:fixed;inset:62px 0 auto 0;flex-direction:column;gap:0;align-items:flex-start;background:rgba(0,0,0,.97);padding:10px 28px 18px;border-bottom:1px solid var(--filet);transform:translateY(-130%);transition:transform .35s}
+  nav.menu.ouvert{transform:none}
+  nav.menu a{font-size:15px;padding:12px 0;width:100%;border-bottom:none}
 }
 
 /* ---------- taille de lecture (réglée depuis Mon compte) ---------- */
@@ -103,6 +103,7 @@ a.b-r:hover b,.b-r:hover b{color:var(--or-pale)}
 :focus{outline:none}
 :focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}
 .ic-btn:focus,.ic-btn:focus-visible{outline:none}
+#brech-voile :focus,#brech-voile :focus-visible{outline:none}
 /* ---------- impression ---------- */
 @media print{
   body{background:#fff;color:#000}
