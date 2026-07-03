@@ -315,6 +315,11 @@ function buildIndex(lang) {
 
 /* ==== BARRE ET PIED CANONIQUES (source unique, toutes surfaces) ==== */
 const BARRE_CSS = `
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto!important}
+}
+
 header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(231,224,207,.14)}
 .barre{max-width:1080px;margin:0 auto;padding:20px 32px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:24px;height:auto}
 .barre .logo{grid-column:1;grid-row:1;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px;letter-spacing:.34em;text-transform:uppercase;color:#ffffff;padding-left:.34em;border-bottom:none;text-decoration:none}
@@ -399,15 +404,21 @@ function piedCanon(o) {
 }
 
 const EXTRA_CSS = `${BARRE_CSS}
-.art-fil{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--parchemin-att,rgba(255,255,255,.5));margin:0 0 20px}
-.art-fil a{color:inherit;border-bottom:none;transition:color .3s}
-.art-fil a:hover{color:var(--or,#efe6cf)}
-.ctx-sep{margin:0 6px;opacity:.55}
+@keyframes lvVoile{from{opacity:0}to{opacity:1}}
+@keyframes lvRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.rech-overlay{animation:lvVoile .25s ease both}
+.rech-boite{animation:lvRise .4s ease both}
+.auth-overlay{animation:lvVoile .25s ease both}
+.auth-modal{animation:lvRise .4s ease both}
+#lect-suivant{animation:apparait .45s ease both}
+
+body.mode-suivi .art-nav{display:none!important}
+.lecture #lect-suivant{color:var(--encre,#000000)}
 
 @page{margin:0}
 @media print{
   body{padding:15mm 17mm}
-  header,#lect-suivant,.prog-lect,.haut-page,.art-fil{display:none!important}
+  header,#lect-suivant,.prog-lect,.haut-page{display:none!important}
   article.lecture{padding-top:0}
   article.lecture::after{content:'lumenveritatis.net';display:block;text-align:center;margin-top:14mm;font-size:11pt;letter-spacing:.08em;color:#000}
 }
@@ -622,6 +633,8 @@ const LECT_JS = `(function lvLectBoot(){
      Cycle complet -> nouveau melange, lus vides, sans intervention. */
   var box=document.getElementById('lect-etat');
   var estArticle=location.pathname.indexOf('/article/')>=0;
+  var SUIVI=/[?&]suivi=1/.test(location.search);
+  if(SUIVI&&estArticle)document.body.classList.add('mode-suivi');
   if(!box&&!estArticle)return;
   if(typeof firebase==='undefined'){document.addEventListener('lv-fb-ready',lvLectBoot,{once:true});return;}
   var cfg={apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",authDomain:"lumen-veritatis.firebaseapp.com",projectId:"lumen-veritatis",storageBucket:"lumen-veritatis.firebasestorage.app",messagingSenderId:"195902823875",appId:"1:195902823875:web:a8be1f216a5ae1d945f176"};
@@ -699,7 +712,7 @@ const LECT_JS = `(function lvLectBoot(){
       var seg=box.querySelector('#lect-bar .l'); if(seg)seg.style.width=(e.ordre.length?(e.n/e.ordre.length*100):0)+'%';
       if(btn&&e.cur!==null){
         btn.textContent=e.n?(FR?'Continuer la lecture':'Continue reading'):(FR?'Commencer la lecture':'Start reading');
-        btn.href=p.urls[e.cur]||btn.getAttribute('href');
+        btn.href=p.urls[e.cur]?p.urls[e.cur]+'?suivi=1':btn.getAttribute('href');
         btn.style.display='';
       }
       box.setAttribute('data-state','ok');
@@ -710,7 +723,7 @@ const LECT_JS = `(function lvLectBoot(){
     var zone=document.querySelector('article.lecture'); if(!zone)return;
     if(document.getElementById('lect-suivant'))return;
     var a=document.createElement('a');
-    a.id='lect-suivant';a.className='memo-start';a.href=url;
+    a.id='lect-suivant';a.className='memo-start';a.href=url+'?suivi=1';
     a.textContent=FR?'Continuer la lecture':'Continue reading';
     a.style.marginTop='44px';
     zone.appendChild(a);
@@ -738,7 +751,7 @@ const LECT_JS = `(function lvLectBoot(){
         if(e.neuf)ref(u).set({ordre:e.ordre,lus:e.lus},{merge:true});
         suivant=e.cur;
       }
-      if(suivant)boutonSuivant(p.urls[suivant]);
+      if(suivant&&SUIVI)boutonSuivant(p.urls[suivant]);
     }).catch(function(){});
   }
   /* gestion : selectionner/deselectionner categories et articles du cycle,
@@ -1287,13 +1300,8 @@ function mainArticle(lang, a, base) {
     </aside>`;
   }
   const prep = prepAncres(reLink(artContenu(lang, a), base, lang).replace(/<span class="ref">/g, '<span class="ref" role="button" tabindex="0">'));
-  const lib = lang === 'fr' ? 'bibliotheque/' : 'library/';
-  const nv = NAV_CAT[a.id];
-  const nc = nv ? catNom(lang, a.theme, nv.catId) : '';
-  const fil = `<nav class="art-fil" aria-label="${lang === 'fr' ? 'Fil d\u2019ariane' : 'Breadcrumb'}"><a href="${base}${lib}?theme=${a.theme}">${themeNom(lang, a.theme)}</a>${nc ? `<span class="ctx-sep">\u203a</span><a href="${base}${lib}?theme=${a.theme}&cat=${nv.catId}">${nc}</a>` : ''}</nav>`;
   return `<div class="vue">
     <article class="lecture" data-article="${a.id}">
-      ${fil}
       <h1>${artTitre(lang, a)}</h1>
       ${prep.html}
     </article>${objBloc}

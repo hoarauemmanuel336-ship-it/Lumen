@@ -425,12 +425,14 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   outilsArticle(), qui reste LA navigation précédent/suivant : cadres en
   fin d'article, séquence des catégories du thème). Le fil d'ariane du
   header (ctx : Thème › Catégorie -> bibliotheque/?theme=X&cat=Y, dépli
-  BIBLIO_JS) est CONSERVÉ, ainsi que NAV_CAT qui le nourrit. Le fil est
-  DISCRET AU-DESSUS DU TITRE de l'article depuis le 2026-07-04 (.art-fil
-  généré par mainArticle, 12px atténué uppercase, masqué à l'impression) :
-  la contexte-bar a été RETIRÉE du header, la barre du haut des pages
-  générées est désormais STRUCTURELLEMENT IDENTIQUE sur toutes les pages
-  (les règles .contexte-bar du CSS d'index__48_.html restent, mortes). Dans
+  BIBLIO_JS) : le fil d'ariane a été SUPPRIMÉ ENTIÈREMENT le 2026-07-04 à
+  la demande d'Emmanuel (il avait d'abord été déplacé de la barre vers le
+  haut de l'article, puis retiré tout court). Ne pas le réintroduire sans
+  son accord. La contexte-bar reste RETIRÉE du header (barre identique
+  partout ; règles .contexte-bar et .art-fil mortes ou supprimées).
+  NAV_CAT reste construit dans build-bi.js (2 occurrences, sans usage
+  actuel : disponible si un lien thème/catégorie redevient nécessaire) et
+  le deep-link bibliotheque/?theme=X&cat=Y de BIBLIO_JS reste fonctionnel. Dans
   admin.js : l'icône du bouton « Copier le lien de l'article » est une
   CHAÎNE (le glyphe de partage iOS a été retiré le 2026-07-04 : le bouton
   ne fait que copier le lien, l'icône ne doit pas promettre un partage
@@ -533,6 +535,35 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   reset-link) sous la gestion dans memoriser.html : confirm puis
   set({ordre:melange(),lus:[]},{merge:true}) en relisant d'abord les
   exclusions du doc (elles sont conservées), puis peint()+rendGestion().
+  PARCOURS SUIVI (2026-07-04, demandé par Emmanuel : le bouton doré
+  « Continuer la lecture » apparaissait sur TOUS les articles pour un
+  utilisateur connecté, et en carré crème VIDE car son texte héritait de
+  la couleur or-pâle des liens d'article, crème sur crème). Désormais :
+  le parcours de lecture suivie est marqué par ?suivi=1 dans l'URL (posé
+  par le lien Commencer/Continuer de memoriser/accueil et propagé par le
+  bouton de fin d'article) ; var SUIVI dans LECT_JS ; le bouton
+  #lect-suivant n'est créé QUE si SUIVI ; en mode suivi, body.mode-suivi
+  masque .art-nav (les cadres précédent/suivant, superflus dans le
+  parcours) ; hors mode, l'article se marque toujours lu silencieusement
+  si c'est le courant du cycle (progression conservée). Lisibilité :
+  .lecture #lect-suivant{color:var(--encre)} force l'encre sur or.
+• AUDIT ANIMATIONS (2026-07-04, tour demandé par Emmanuel). Inventaire :
+  site = apparait .6s ease (entrée .vue) + cascades bibliothèque
+  (apparaitDom/Ferme, verrouillées) ; bible = rise .4/.6/.7s ease ;
+  memoriser = fade/rise .35-.5s (le quiz garde son cubic-bezier propre,
+  délibéré, NE PAS harmoniser) ; aucun pulse/blink nulle part (interdits).
+  Corrections apportées : (1) les fenêtres des pages générées (recherche,
+  nouveautés via le même overlay, compte) ont désormais une entrée douce
+  alignée sur la Bible : lvVoile .25s (fondu du voile) + lvRise .4s
+  (montée de la boîte) dans EXTRA_CSS : les animations CSS redémarrent
+  naturellement au passage display:none->flex (mécanisme déjà utilisé
+  par bible) ; (2) #lect-suivant apparaît en apparait .45s ; (3)
+  @media (prefers-reduced-motion:reduce) GLOBAL dans BARRE_CSS (donc sur
+  TOUTES les surfaces) : durées d'animation et de transition réduites à
+  .01ms et scroll-behavior:auto pour qui a activé la réduction de
+  mouvement. La signature du site est ease ; .prog-lect reste SANS
+  transition de width (voulu : une barre liée au scroll ne doit pas
+  traîner) ; .haut-page a déjà son fondu (.on opacity).
 • SANDBOX VOLATIL : le système de fichiers peut être réinitialisé en cours
   de session. Le snapshot /home/claude/snap se restaure SANS PERTE depuis
   la source de vérité (le zip de sortie) :
