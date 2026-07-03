@@ -314,39 +314,21 @@ function buildIndex(lang) {
 }
 
 const EXTRA_CSS = `
+.dom.fermant .dom-chevron{transform:rotate(0)}
+.sous.fermant .sous-chevron{transform:rotate(0)}
+.dom.fermant .dom-tete{position:static}
+
 .lecture span.ref{cursor:pointer;padding:9px 5px;margin:-9px -5px}
 :focus-visible{outline:1px solid var(--or,#efe6cf);outline-offset:3px}
 
 html{scroll-behavior:smooth}
 .lecture h2{scroll-margin-top:84px}
-.art-duree{margin:-42px 0 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchemin-att,rgba(255,255,255,.45))}
-.lecture .sommaire{margin:28px 0 44px;border:1px solid var(--filet,rgba(231,224,207,.14))}
-.lecture .sommaire summary{list-style:none;display:flex;align-items:center;padding:12px 16px;cursor:pointer;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchemin-att,rgba(255,255,255,.55));transition:color .3s}
-.lecture .sommaire summary:hover{color:var(--parchemin,#ffffff)}
-.lecture .sommaire summary::-webkit-details-marker{display:none}
-.lecture .som-chev{margin-left:auto;font-family:monospace;font-size:17px;color:var(--parchemin-att,rgba(255,255,255,.45));transition:transform .3s}
-.lecture .sommaire[open] .som-chev{transform:rotate(90deg)}
-.lecture .sommaire ol{margin:0;padding:2px 16px 14px;list-style:none}
-.lecture .sommaire li{margin:0;padding:0}
-.lecture .sommaire a{display:block;padding:7px 8px;border-left:2px solid transparent;font-size:16px;color:var(--parchemin,#ffffff);text-decoration:none;border-bottom:none;transition:color .25s,background .25s,border-color .25s,padding-left .3s}
-.lecture .sommaire a:hover{color:var(--or,#efe6cf);background:rgba(231,224,207,.05);border-left-color:var(--or,#efe6cf);padding-left:16px}
 .prog-lect{position:fixed;top:0;left:0;height:2px;width:0;background:var(--or,#efe6cf);z-index:1400;pointer-events:none}
 .haut-page{position:fixed;right:18px;bottom:18px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--filet,rgba(231,224,207,.25));color:var(--or,#efe6cf);font-size:17px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .35s,border-color .3s;z-index:1100}
 .haut-page.on{opacity:1;pointer-events:auto}
 .haut-page:hover{border-color:var(--or,#efe6cf)}
 
 .ctx-sep{opacity:.5;margin:0 7px}
-.navcat{margin-top:54px;border-top:1px solid var(--filet,rgba(231,224,207,.14));padding-top:20px}
-.navcat-cat{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchemin-att,rgba(255,255,255,.45));margin-bottom:16px}
-.navcat-liens{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.navcat-lien{display:flex;flex-direction:column;gap:7px;text-decoration:none;max-width:46%}
-.navcat-suiv{margin-left:auto;text-align:right}
-.navcat-vide{flex:0 0 0}
-.navcat-sens{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--or,#efe6cf);opacity:.75;transition:opacity .3s}
-.navcat-titre{font-size:16.5px;color:var(--parchemin,#ffffff);line-height:1.4;transition:color .3s}
-.navcat-lien:hover .navcat-sens{opacity:1}
-.navcat-lien:hover .navcat-titre{color:var(--or-pale,#f8f3e6)}
-@media(max-width:560px){.navcat-lien{max-width:100%}.navcat-suiv{margin-left:0;text-align:left}}
 
 nav.menu a.lien-langue{font-size:13px;letter-spacing:.2em;opacity:.65}
 nav.menu a.lien-langue:hover{opacity:1}
@@ -354,7 +336,7 @@ nav.menu a.lien-langue:hover{opacity:1}
 .auth-icone{position:relative}
 .auth-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);display:none;align-items:center;justify-content:center;padding:24px}
 .auth-overlay.ouvert{display:flex}
-.auth-modal{position:relative;width:100%;max-width:400px;background:var(--encre-2);border:1px solid var(--filet);padding:40px 34px}
+.auth-modal{position:relative;width:100%;max-width:400px;background:var(--encre);border:1px solid var(--filet);padding:40px 34px}
 .auth-fermer{position:absolute;top:16px;right:18px;cursor:pointer;color:var(--parchemin-att);font-size:22px;line-height:1;transition:color .3s}
 .auth-fermer:hover{color:var(--parchemin)}
 .auth-m-title{font-family:'Cormorant Garamond',serif;font-size:24px;text-align:center;margin-bottom:24px;color:var(--parchemin)}
@@ -554,7 +536,7 @@ const LECT_JS = `(function lvLectBoot(){
   var auth=firebase.auth(), db=firebase.firestore();
   var lang=(window.LUMEN&&window.LUMEN.lang)||(function(){try{return localStorage.getItem('lv_lang')||'fr';}catch(e){return 'fr';}})(), FR=lang!=='en';
   function idx(){var I=window.LV_INDEX;if(!I)return null;return I[lang]||I.fr;}
-  var EXCL={cats:{},arts:{}}, UCUR=null, openG={};
+  var EXCL={cats:{},arts:{}}, UCUR=null, openG={}, toutG=false;
   function blocs(){
     /* liste de blocs canoniques identifies : chaque categorie = un bloc ordonne
        {id:'theme:cat', nom, arts} ; les articles hors categorie d'un theme
@@ -677,7 +659,9 @@ const LECT_JS = `(function lvLectBoot(){
     var titres={}; if(I)I.articles.forEach(function(a){titres[a.id]=a.titre;});
     var tousOff=p.bl.length&&p.bl.every(function(b){return EXCL.cats[b.id];});
     var h='<div class="lect-g-acts"><span class="mini-act" data-lg="tout">'+(tousOff?(FR?'Tout s\u00e9lectionner':'Select all'):(FR?'Tout d\u00e9s\u00e9lectionner':'Deselect all'))+'</span></div>';
-    p.bl.forEach(function(b){
+    var LIMG=6;
+    var listeG=toutG?p.bl:p.bl.slice(0,LIMG);
+    listeG.forEach(function(b){
       var offC=!!EXCL.cats[b.id];
       var actifs=b.arts.filter(function(id){return !EXCL.arts[id];}).length;
       var open=!!openG[b.id];
@@ -691,6 +675,11 @@ const LECT_JS = `(function lvLectBoot(){
           return '<div class="vrow'+(offA?' voff':'')+'"><span class="v-check'+(offA?'':' on')+'" data-lgv="'+id+'"></span><span class="vline"><span class="vtext">'+(titres[id]||id)+'</span></span></div>';
         }).join('')+'</div></div>';
     });
+    if(p.bl.length>LIMG){
+      h+='<div style="margin-top:14px;text-align:center"><button type="button" class="ghost-btn" data-lg="plus">'
+        +(toutG?(FR?'Afficher moins':'Show less'):((FR?'Afficher tout':'Show all')+' ('+p.bl.length+')'))
+        +'</button></div>';
+    }
     gHost.innerHTML=h;
   }
   function sauveExcl(){
@@ -703,6 +692,8 @@ const LECT_JS = `(function lvLectBoot(){
   if(gHost){
     gHost.addEventListener('click',function(e){
       if(!UCUR)return;
+      var pl=e.target.closest?e.target.closest('[data-lg="plus"]'):null;
+      if(pl){toutG=!toutG;rendGestion();return;}
       var tt=e.target.closest?e.target.closest('[data-lg="tout"]'):null;
       if(tt){
         var p=blocs(), tousOff=p.bl.length&&p.bl.every(function(b){return EXCL.cats[b.id];});
@@ -731,6 +722,21 @@ const LECT_JS = `(function lvLectBoot(){
       (d.offArts||[]).forEach(function(id){EXCL.arts[id]=1;});
       rendGestion();
     }).catch(function(){});
+  }
+  var rz=document.getElementById('lect-reset');
+  if(rz){
+    rz.textContent=FR?'Réinitialiser la lecture suivie':'Reset continuous reading';
+    rz.addEventListener('click',function(){
+      if(!UCUR)return;
+      if(!confirm(FR?'Réinitialiser la lecture suivie ? La progression du cycle sera remise à zéro (les catégories désélectionnées le restent).':'Reset continuous reading? Cycle progress will be cleared (deselected categories stay deselected).'))return;
+      ref(UCUR).get().then(function(snap){
+        var d=(snap.exists&&snap.data())||{};
+        EXCL={cats:{},arts:{}};
+        (d.offCats||[]).forEach(function(id){EXCL.cats[id]=1;});
+        (d.offArts||[]).forEach(function(id){EXCL.arts[id]=1;});
+        return ref(UCUR).set({ordre:melange(),lus:[]},{merge:true});
+      }).then(function(){ if(box)peint(UCUR); rendGestion(); }).catch(function(){});
+    });
   }
   auth.onAuthStateChanged(function(u){
     UCUR=u||null;
@@ -878,14 +884,40 @@ const AUTH_JS = `(function(){
 const BIBLIO_JS = `(function(){
   function cascadeA(els){ els.forEach(function(el,i){ if(!el)return; var d=Math.min(i*40,640); el.style.animation='none'; void el.offsetHeight; el.style.animation='apparaitDom .45s cubic-bezier(.2,.7,.3,1) '+d+'ms both'; }); }
   function cascadeF(els,fin){ els.forEach(function(el){ if(el)el.style.animation='apparaitDomFerme .25s ease forwards'; }); setTimeout(fin,240); }
-  function ouvrir(sec){ if(!sec||sec.classList.contains('ouvert'))return; sec.classList.add('ouvert'); var sep=sec.querySelector('.dom-sep'),corps=sec.querySelector('.dom-corps'); cascadeA([sep].concat([].slice.call(corps.children))); }
-  function fermer(sec){ if(!sec||!sec.classList.contains('ouvert'))return; var sep=sec.querySelector('.dom-sep'),corps=sec.querySelector('.dom-corps'); cascadeF([sep].concat([].slice.call(corps.children)),function(){ sec.classList.remove('ouvert'); maj(); }); }
-  function basculer(sec){ sec.classList.contains('ouvert')?fermer(sec):ouvrir(sec); maj(); }
-  function ouvrirSous(s){ if(!s||s.classList.contains('ouvert'))return; s.classList.add('ouvert'); var corps=s.querySelector('.sous-corps'); cascadeA([].slice.call(corps.children)); }
-  function fermerSous(s){ if(!s||!s.classList.contains('ouvert'))return; var corps=s.querySelector('.sous-corps'); cascadeF([].slice.call(corps.children),function(){ s.classList.remove('ouvert'); }); }
-  function basculerSous(s){ s.classList.contains('ouvert')?fermerSous(s):ouvrirSous(s); }
-  function tout(){ var secs=[].slice.call(document.querySelectorAll('.dom')); var ouverts=secs.filter(function(s){return s.classList.contains('ouvert');});
-    if(ouverts.length){ ouverts.forEach(fermer); } else { secs.forEach(function(s,i){ setTimeout(function(){ouvrir(s);}, i*110); }); }
+  /* verrous anti-course : la fermeture est differee par le fondu (240ms) ;
+     sans verrou, un second clic pendant ou juste apres le fondu rouvre ou
+     laisse la section dans un etat incoherent */
+  var toutTimers=[];
+  function annuleTout(){ toutTimers.forEach(clearTimeout); toutTimers=[]; }
+  function annuleFermeture(sec){ if(sec._ft){ clearTimeout(sec._ft); sec._ft=null; } sec.classList.remove('fermant'); }
+  function ouvrir(sec){ if(!sec)return;
+    if(sec.classList.contains('fermant')){ annuleFermeture(sec); }
+    else if(sec.classList.contains('ouvert'))return;
+    sec.classList.add('ouvert');
+    var sep=sec.querySelector('.dom-sep'),corps=sec.querySelector('.dom-corps');
+    cascadeA([sep].concat([].slice.call(corps.children))); }
+  function fermer(sec){ if(!sec||!sec.classList.contains('ouvert')||sec.classList.contains('fermant'))return;
+    sec.classList.add('fermant');
+    var sep=sec.querySelector('.dom-sep'),corps=sec.querySelector('.dom-corps');
+    cascadeF([sep].concat([].slice.call(corps.children)),function(){});
+    sec._ft=setTimeout(function(){ sec._ft=null; sec.classList.remove('ouvert'); sec.classList.remove('fermant'); maj(); },240); }
+  function basculer(sec){ annuleTout(); if(sec.classList.contains('fermant')||!sec.classList.contains('ouvert')) ouvrir(sec); else fermer(sec); maj(); }
+  function ouvrirSous(s){ if(!s)return;
+    if(s.classList.contains('fermant')){ annuleFermeture(s); }
+    else if(s.classList.contains('ouvert'))return;
+    s.classList.add('ouvert');
+    var corps=s.querySelector('.sous-corps'); cascadeA([].slice.call(corps.children)); }
+  function fermerSous(s){ if(!s||!s.classList.contains('ouvert')||s.classList.contains('fermant'))return;
+    s.classList.add('fermant');
+    var corps=s.querySelector('.sous-corps');
+    cascadeF([].slice.call(corps.children),function(){});
+    s._ft=setTimeout(function(){ s._ft=null; s.classList.remove('ouvert'); s.classList.remove('fermant'); },240); }
+  function basculerSous(s){ annuleTout(); if(s.classList.contains('fermant')||!s.classList.contains('ouvert')) ouvrirSous(s); else fermerSous(s); }
+  function tout(){ annuleTout();
+    var secs=[].slice.call(document.querySelectorAll('.dom'));
+    var ouverts=secs.filter(function(s){return s.classList.contains('ouvert')&&!s.classList.contains('fermant');});
+    if(ouverts.length){ ouverts.forEach(fermer); }
+    else { secs.forEach(function(s,i){ toutTimers.push(setTimeout(function(){ouvrir(s);}, i*110)); }); }
     setTimeout(maj,10); }
   function maj(){ var b=document.getElementById('basculerTout'); if(!b)return;
     var ouvert=[].slice.call(document.querySelectorAll('.dom')).some(function(s){return s.classList.contains('ouvert');});
@@ -1150,32 +1182,6 @@ function prepAncres(html) {
   });
   return { html: out, secs };
 }
-function tempsLecture(html, lang) {
-  const mots = (html.replace(/<[^>]+>/g, ' ').trim().match(/\S+/g) || []).length;
-  return Math.max(1, Math.round(mots / (lang === 'fr' ? 200 : 220)));
-}
-
-function navCatBloc(lang, a, base) {
-  const nv = NAV_CAT[a.id];
-  if (!nv || (!nv.prev && !nv.next)) return '';
-  const nom = catNom(lang, nv.theme, nv.catId);
-  const cell = (id, sens) => {
-    if (!id) return '<span class="navcat-vide" aria-hidden="true"></span>';
-    const art = ARTICLES.find(x => x.id === id);
-    if (!art) return '<span class="navcat-vide" aria-hidden="true"></span>';
-    const lab = lang === 'fr' ? (sens < 0 ? 'Article précédent' : 'Article suivant')
-                              : (sens < 0 ? 'Previous article' : 'Next article');
-    return `<a class="navcat-lien ${sens < 0 ? 'navcat-prec' : 'navcat-suiv'}" href="${base}article/${slugOf(lang, id)}/">
-      <span class="navcat-sens">${sens < 0 ? '← ' : ''}${lab}${sens > 0 ? ' →' : ''}</span>
-      <span class="navcat-titre">${artTitre(lang, art)}</span>
-    </a>`;
-  };
-  return `<nav class="navcat" aria-label="${lang === 'fr' ? 'Dans la même catégorie' : 'In the same category'}">
-    ${nom ? `<div class="navcat-cat">${nom}</div>` : ''}
-    <div class="navcat-liens">${cell(nv.prev, -1)}${cell(nv.next, 1)}</div>
-  </nav>`;
-}
-
 function mainArticle(lang, a, base) {
   const apo = APOLOGIES[a.id];
   let objBloc = '';
@@ -1188,16 +1194,10 @@ function mainArticle(lang, a, base) {
     </aside>`;
   }
   const prep = prepAncres(reLink(artContenu(lang, a), base, lang).replace(/<span class="ref">/g, '<span class="ref" role="button" tabindex="0">'));
-  const mins = tempsLecture(artContenu(lang, a), lang);
-  const duree = `<div class="art-duree">${mins} ${lang === 'fr' ? 'min de lecture' : 'min read'}</div>`;
-  const som = prep.secs.length >= 3 ? `<details class="sommaire"><summary>${lang === 'fr' ? 'Sommaire' : 'Contents'}<span class="som-chev" aria-hidden="true">›</span></summary><ol>${prep.secs.map(x => `<li><a href="#${x.id}">${x.titre}</a></li>`).join('')}</ol></details>` : '';
   return `<div class="vue">
     <article class="lecture" data-article="${a.id}">
       <h1>${artTitre(lang, a)}</h1>
-      ${duree}
-      ${som}
       ${prep.html}
-      ${navCatBloc(lang, a, base)}
     </article>${objBloc}
     <script type="application/json" id="lv-art-src">${JSON.stringify({resume: artResume(lang, a), theme: a.theme, themes: THEMES.map(t => ({id: t.id, nom: themeNom(lang, t.id)}))}).replace(/</g, "\\u003c")}</script>
   </div>`;

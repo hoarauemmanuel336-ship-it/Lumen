@@ -417,25 +417,37 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   gabarit (toutes pages) et dans memoriser.html/bible.html. Le bouton
   « Partager cet article » en fin d'article a été AJOUTÉ PUIS RETIRÉ à la
   demande d'Emmanuel : ne pas le réintroduire sans son accord.
-• CIRCULATION ENTRE ARTICLES (2026-07-03) : navigation générée statiquement
-  par build-bi.js depuis l'ordre des catégories de themes.json (c.arts).
-  NAV_CAT (id -> theme/catId/prev/next) ; navCatBloc() insère en fin
-  d'article (dans <article class="lecture">, après le ✦) un <nav class=
-  "navcat"> : nom de la catégorie + « Article précédent / suivant » avec
-  titres (classes navcat-*, CSS dans EXTRA_CSS, mobile en colonne). Les 9
-  articles hors catégorie n'ont pas de bloc. Fil d'ariane du header (ctx)
-  enrichi : Thème › Catégorie, la catégorie pointant vers
-  bibliotheque/?theme=X&cat=Y ; BIBLIO_JS déplie alors le thème PUIS la
-  sous-catégorie (ouvrirSous) et défile sur elle. Le bouton « Continuer la
-  lecture » (lecture suivie) s'ajoute par JS APRÈS le navcat.
+• CIRCULATION ENTRE ARTICLES : le bloc navcat du build (2026-07-03) a été
+  SUPPRIMÉ le 2026-07-04 (doublon avec l'art-nav préexistant d'admin.js,
+  outilsArticle(), qui reste LA navigation précédent/suivant : cadres en
+  fin d'article, séquence des catégories du thème). Le fil d'ariane du
+  header (ctx : Thème › Catégorie -> bibliotheque/?theme=X&cat=Y, dépli
+  BIBLIO_JS) est CONSERVÉ, ainsi que NAV_CAT qui le nourrit. Dans
+  admin.js : l'icône du bouton « Copier le lien de l'article » est une
+  CHAÎNE (le glyphe de partage iOS a été retiré le 2026-07-04 : le bouton
+  ne fait que copier le lien, l'icône ne doit pas promettre un partage
+  réseaux).
+• ANTI-COURSE BIBLIOTHÈQUE (2026-07-04, bug signalé par Emmanuel : une
+  section refusait parfois de se replier). Cause : le repli différait le
+  retrait de .ouvert de 240ms (fondu) sans verrou ni retour visuel : un
+  second clic pendant/juste après le fondu rouvrait la section ou créait
+  un état incohérent ; et « Tout déplier » programmait des ouvertures
+  (setTimeout i*110) qu'aucun clic n'annulait. Correctifs dans BIBLIO_JS :
+  classe .fermant + timer sec._ft posés au repli (dom ET sous) ; ouvrir()
+  annule proprement une fermeture en cours (annuleFermeture) ; basculer
+  traite .fermant comme fermé ; toutTimers[] + annuleTout() appelé par
+  tout() et par chaque bascule individuelle. CSS (EXTRA_CSS) : le chevron
+  revient à 0 dès le clic (.dom.fermant .dom-chevron, .sous.fermant
+  .sous-chevron) et le sticky se relâche (.dom.fermant .dom-tete
+  {position:static}). RÈGLE GÉNÉRALE : toute classe d'état retirée en
+  différé par un timer doit être verrouillée ainsi (le seul autre timer
+  du genre, le toast d'admin.js, est déjà protégé par clearTimeout).
 • CONFORT DE LECTURE (2026-07-03) : quatre pièces générées par build-bi.js
-  et lumen-app.js (bloc UX_JS). (1) Durée de lecture sous le h1
-  (.art-duree, mots/200 FR ou /220 EN, arrondi, min 1). (2) Sommaire
-  dépliable <details class="sommaire"> sous la durée quand l'article a >=3
-  h2 (tous en ont) : prepAncres() pose des id slugifiés uniques sur les h2
-  (sec-<slug>, suffixe -2 si doublon), scroll-margin-top:84px +
-  html{scroll-behavior:smooth}, replié par défaut, libellé
-  Sommaire/Contents. (3) Barre de progression .prog-lect (2px, var(--or),
+  et lumen-app.js (bloc UX_JS). (1) Durée de lecture et sommaire <details> du build : AJOUTÉS PUIS RETIRÉS
+  le 2026-07-04 à la demande d'Emmanuel (doublon avec le sommaire
+  préexistant SOMMAIRE_JS : .smr-cote latéral + .smr-mob mobile, qui reste
+  LE sommaire du site) ; les ancres id des h2 (prepAncres, sec-<slug>)
+  sont CONSERVÉES et réutilisées par SOMMAIRE_JS. (3) Barre de progression .prog-lect (2px, var(--or),
   fixed top, z-index:1400), pages article seulement, largeur = avancement
   dans l'article (rAF + scroll passif). (4) Retour en haut .haut-page
   (span role=button, 42px, bas droite, fond noir flouté, bordure filet),
@@ -483,6 +495,10 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   sélectionner/désélectionner ; compteur x/y et bouton de lecture suivent
   la sélection (peint() rappelé après chaque sauvegarde). Réactiver une
   catégorie/article = ajout en FIN de cycle (via complete()).
+  Bouton « Réinitialiser la lecture suivie » (#lect-reset, classe
+  reset-link) sous la gestion dans memoriser.html : confirm puis
+  set({ordre:melange(),lus:[]},{merge:true}) en relisant d'abord les
+  exclusions du doc (elles sont conservées), puis peint()+rendGestion().
 • SANDBOX VOLATIL : le système de fichiers peut être réinitialisé en cours
   de session. Le snapshot /home/claude/snap se restaure SANS PERTE depuis
   la source de vérité (le zip de sortie) :
