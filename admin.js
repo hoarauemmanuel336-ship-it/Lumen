@@ -377,7 +377,16 @@
     function fb(btn) { var old = btn.innerHTML; btn.innerHTML = '\u2713'; btn.classList.add('ok'); setTimeout(function () { btn.innerHTML = old; btn.classList.remove('ok'); }, 1500); }
     var bar = el('div', 'art-bar');
     var bc = el('button', 'art-btn'); bc.type = 'button'; bc.title = T('Copier l\u2019article', 'Copy the article'); bc.textContent = '\u29C9';
-    bc.addEventListener('click', function () { if (!navigator.clipboard) return; navigator.clipboard.writeText(art.innerText).then(function () { fb(bc); }).catch(function () {}); });
+    function texteArticle() {
+      var out = [];
+      var h1c = art.querySelector('h1'); if (h1c) out.push(h1c.innerText.trim());
+      art.querySelectorAll('p,h2,h3,li,blockquote,figcaption').forEach(function (n) {
+        if (n.closest('.art-bar') || n.closest('.art-nav') || n.closest('.smr-mob') || n.closest('.smr-cote')) return;
+        var t = (n.innerText || '').trim(); if (t) out.push(t);
+      });
+      return out.join('\n\n');
+    }
+    bc.addEventListener('click', function () { if (!navigator.clipboard) return; navigator.clipboard.writeText(texteArticle()).then(function () { fb(bc); }).catch(function () {}); });
     var bs = el('button', 'art-btn'); bs.type = 'button'; bs.title = T('Copier le lien de l\u2019article', 'Copy the article link');
     bs.innerHTML = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     bs.addEventListener('click', function () { if (!navigator.clipboard) return; navigator.clipboard.writeText(location.href).then(function () { fb(bs); }).catch(function () {}); });

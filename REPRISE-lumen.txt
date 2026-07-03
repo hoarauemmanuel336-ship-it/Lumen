@@ -393,11 +393,14 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   2+ -> -1). Toute nouvelle bible ajoutée plus tard = sa propre fonction
   dans LV_VERSIF.
   (3) TEXTES DES CITATIONS : FR = extraits exacts du Crampon (inchangé) ;
-  EN = TRADUCTION PROPRE de l'assistant (registre de l'article, jamais
-  calquée sur le Douay). CHANTIER RESTANT : ~539 citations EN passées en
-  texte Douay archaïque lors du chantier annulé doivent être RETRADUITES
-  en traduction propre (repérables : tournures thou/hath/doth). Les autres
-  citations EN (traductions maison) sont conformes à la politique.
+  EN = TRADUCTION PROPRE de l'assistant, calée sur l'extrait FR (même
+  étendue, registre moderne sobre, jamais calquée sur le Douay). CHANTIER
+  DE RETRADUCTION en cours : inventaire réel 262 citations archaïques
+  (détecteur : thou/hath/doth/unto/-eth...) ; LOT 1 de 133 appliqué le
+  2026-07-04 (appariement positionnel slug+réf avec asserts) ; RESTE 129
+  citations dans 40 articles (reprendre le même procédé : extraire réf +
+  FR apparié, traduire le FR, appliquer, revérifier le compte et
+  l'appariement 1:1).
 • PERFORMANCE (architecture depuis le 2026-07-02) : les données communes
   (window.LV_INDEX + LV_NV) et le code commun (COMMUN/RECH/AUTH/MEMO/LECT/
   SOMMAIRE/ADMIN_JS) ne sont plus inlinés dans chaque page : build-bi.js
@@ -422,11 +425,42 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   outilsArticle(), qui reste LA navigation précédent/suivant : cadres en
   fin d'article, séquence des catégories du thème). Le fil d'ariane du
   header (ctx : Thème › Catégorie -> bibliotheque/?theme=X&cat=Y, dépli
-  BIBLIO_JS) est CONSERVÉ, ainsi que NAV_CAT qui le nourrit. Dans
+  BIBLIO_JS) est CONSERVÉ, ainsi que NAV_CAT qui le nourrit. Le fil est
+  DISCRET AU-DESSUS DU TITRE de l'article depuis le 2026-07-04 (.art-fil
+  généré par mainArticle, 12px atténué uppercase, masqué à l'impression) :
+  la contexte-bar a été RETIRÉE du header, la barre du haut des pages
+  générées est désormais STRUCTURELLEMENT IDENTIQUE sur toutes les pages
+  (les règles .contexte-bar du CSS d'index__48_.html restent, mortes). Dans
   admin.js : l'icône du bouton « Copier le lien de l'article » est une
   CHAÎNE (le glyphe de partage iOS a été retiré le 2026-07-04 : le bouton
   ne fait que copier le lien, l'icône ne doit pas promettre un partage
   réseaux).
+• BARRE UNIQUE (2026-07-04, demandé par Emmanuel : « la même barre du haut
+  et du bas pour toutes les pages »). SOURCE UNIQUE dans build-bi.js :
+  barreCanon(o) et piedCanon(o) génèrent le header et le footer de TOUTES
+  les surfaces ; BARRE_CSS (styles complets barre+footer, desktop+mobile,
+  valeurs figées sur le rendu du site, lien-langue discret style bible
+  promu partout, .menu-act/.menu-mail/.user-btn pour les organes
+  memoriser) vit en tête d'EXTRA_CSS pour les 240 pages générées ET est
+  injecté en <style> avant </head> de bible.html et memoriser.html au
+  build (après leur style local : l'ordre gagne, leurs règles de barre
+  locales deviennent mortes). Le header() et le footer des pages générées
+  sont branchés sur barreCanon/piedCanon (ids inchangés : burger, menu,
+  rech-ouvrir, cloche-ouvrir data-sig, auth-ouvrir, annee). bible.html :
+  header remplacé au build (ids locaux préservés : burger, menu,
+  brech-ouvrir, bnouv-ouvrir, bnouv-pt, bcompte-ouvrir ; libellés FR
+  exacts pour la table TR qui traduit la page EN ; le div ctx « La Sainte
+  Bible » de la barre est SUPPRIMÉ), footer remplacé (verse=UI.fr.
+  footer_verse traduit par la passe TR, copy id=bf-annee). memoriser.html:
+  header remplacé (ids locaux : nav-logo, nav-burger, site-nav, nav-home/
+  nav-lib/nav-mem vides remplis par applyLang, lang-btn bouton bascule,
+  rech-ouvrir+rech-link-label, cloche-ouvrir+nouv-link-label+cloche-point,
+  user-mail, logout-btn+logout-label), footer remplacé (foot-verse,
+  foot-copy, sans classe site-foot). Les sources bible.html/memoriser.html
+  gardent leurs anciennes barres : elles sont RÉÉCRITES à chaque build ;
+  toute évolution de barre se fait UNIQUEMENT dans barreCanon/piedCanon/
+  BARRE_CSS. Si l'ancre <header>/<footer> devient introuvable le build
+  ÉCHOUE volontairement (throw).
 • ANTI-COURSE BIBLIOTHÈQUE (2026-07-04, bug signalé par Emmanuel : une
   section refusait parfois de se replier). Cause : le repli différait le
   retrait de .ouvert de 240ms (fondu) sans verrou ni retour visuel : un

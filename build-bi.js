@@ -313,7 +313,108 @@ function buildIndex(lang) {
   return { articles: arts, themes: ths, accueil: acc, urls: { biblio: baseI + libI, accueil: baseI, memoriser: '/memoriser.html' } };
 }
 
-const EXTRA_CSS = `
+/* ==== BARRE ET PIED CANONIQUES (source unique, toutes surfaces) ==== */
+const BARRE_CSS = `
+header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(231,224,207,.14)}
+.barre{max-width:1080px;margin:0 auto;padding:20px 32px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:24px;height:auto}
+.barre .logo{grid-column:1;grid-row:1;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px;letter-spacing:.34em;text-transform:uppercase;color:#ffffff;padding-left:.34em;border-bottom:none;text-decoration:none}
+.burger{display:none;background:none;border:none;padding:0;margin:0;color:#ffffff;font-size:24px;cursor:pointer;line-height:1;-webkit-appearance:none;appearance:none}
+nav.menu{display:flex;gap:30px;grid-column:3;grid-row:1;justify-self:end;align-items:center;margin-left:0}
+nav.menu a{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:#ffffff;padding:0 0 3px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;text-decoration:none;position:static}
+nav.menu a:hover,nav.menu a.actif{color:#ffffff;border-color:#efe6cf}
+nav.menu a.lien-langue{font-size:13px;letter-spacing:.2em;opacity:.65}
+nav.menu a.lien-langue:hover{opacity:1}
+.menu-act{background:none;border:none;padding:0 0 3px;margin:0;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#ffffff;opacity:.65;border-bottom:1px solid transparent;transition:opacity .3s,border-color .3s;-webkit-appearance:none;appearance:none}
+.menu-act:hover{opacity:1;border-color:#efe6cf}
+.rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:#ffffff;transition:color .3s;background:none;border:none;padding:0;outline:none}
+.rech-loupe:hover{color:#efe6cf}
+.rech-loupe:focus,.rech-loupe:focus-visible{outline:none}
+.rech-loupe svg{display:block}
+.ll-mob{display:none}
+.cloche{position:relative;align-self:center}
+.cloche-point{position:absolute;top:-8px;right:-7px;width:6px;height:6px;border-radius:50%;background:#efe6cf;pointer-events:none;display:none}
+.menu-mail{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.06em;color:rgba(255,255,255,.55);white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+.menu-mail:empty{display:none}
+.user-btn{display:inline-flex;align-items:center;gap:8px;opacity:1;color:#ffffff}
+.user-btn .user-label{display:none}
+footer{border-top:1px solid rgba(231,224,207,.14);margin-top:40px;padding:48px 32px 56px;text-align:center;background:none}
+footer .marque{font-family:'Cormorant Garamond',serif;letter-spacing:.34em;text-transform:uppercase;font-size:18px;padding-left:.34em;color:#ffffff}
+footer .verset-pied{margin-top:18px;font-style:italic;color:rgba(255,255,255,.55);font-size:17px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.7}
+footer .verset-pied .ref-pied{font-style:normal;font-weight:600;color:rgba(255,255,255,.55)}
+footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,255,255,.45);font-family:'Cormorant Garamond',serif}
+@media(max-width:720px){
+  .barre{padding:16px 20px;display:flex;justify-content:space-between}
+  nav.menu{position:fixed;inset:62px 0 auto 0;flex-direction:column;gap:0;align-items:flex-start;background:rgba(0,0,0,.97);padding:10px 28px 18px;border-bottom:1px solid rgba(231,224,207,.14);transform:translateY(-130%);transition:transform .35s}
+  nav.menu.ouvert{transform:none}
+  nav.menu a{font-size:15px;padding:12px 0;width:100%;border-bottom:none}
+  .burger{display:block}
+  .rech-loupe{width:100%;justify-content:flex-start;gap:14px;padding:12px 0;border-bottom:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#ffffff}
+  .rech-loupe .ll-mob{display:inline}
+  .cloche-point{top:8px;left:14px;right:auto}
+  .menu-act{padding:12px 0;width:100%;text-align:left;font-size:15px;letter-spacing:.12em;opacity:1}
+  .menu-mail{max-width:none;padding:12px 0 2px}
+  .user-btn{padding:12px 0;width:100%;justify-content:flex-start}
+}
+`;
+const SVG_LOUPE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg>';
+const SVG_CLOCHE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg>';
+const SVG_COMPTE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg>';
+function barreCanon(o) {
+  const liens = o.liens.map(l => {
+    const at = [];
+    if (l.id) at.push(`id="${l.id}"`);
+    if (l.href) at.push(`href="${l.href}"`);
+    if (l.actif) at.push('class="actif"');
+    return `<a ${at.join(' ')}>${l.label || ''}</a>`;
+  }).join('\n      ');
+  const langue = o.langue.type === 'bouton'
+    ? `<button class="menu-act" id="${o.langue.id}">${o.langue.label}</button>`
+    : `<a href="${o.langue.href}" class="lien-langue" hreflang="${o.langue.hreflang}">${o.langue.label}</a>`;
+  const lab = (txt, id) => `<span class="ll-mob"${id ? ` id="${id}"` : ''}>${txt}</span>`;
+  const loupe = `<span class="rech-loupe" id="${o.loupe.id}" role="button" tabindex="0" aria-label="${o.loupe.label}">${SVG_LOUPE}${lab(o.loupe.label, o.loupe.labelId)}</span>`;
+  const cloche = `<span class="rech-loupe cloche" id="${o.cloche.id}" role="button" tabindex="0" aria-label="${o.cloche.label}"${o.cloche.sig ? ` data-sig="${o.cloche.sig}"` : ''}>${SVG_CLOCHE}${lab(o.cloche.label, o.cloche.labelId)}<span class="cloche-point"${o.cloche.pointId ? ` id="${o.cloche.pointId}"` : ''}></span></span>`;
+  const compte = o.compte.type === 'user'
+    ? `<span class="menu-mail" id="${o.compte.mailId}"></span>\n      <button class="menu-act user-btn" id="${o.compte.btnId}" aria-label="${o.compte.label}" title="${o.compte.label}">${SVG_COMPTE}<span class="user-label" id="${o.compte.labelId}">${o.compte.label}</span></button>`
+    : `<span class="rech-loupe auth-icone" id="${o.compte.id}" role="button" tabindex="0" aria-label="${o.compte.label}">${SVG_COMPTE}${lab(o.compte.label)}</span>`;
+  return `<header>
+  <div class="barre">
+    <a href="${o.home}" class="logo"${o.logoId ? ` id="${o.logoId}"` : ''}>Lumen</a>
+    <button class="burger" id="${o.burgerId}" aria-label="Menu">\u2630</button>
+    <nav class="menu" id="${o.menuId}">
+      ${liens}
+      ${langue}
+      ${loupe}
+      ${cloche}
+      ${compte}
+    </nav>
+  </div>
+</header>`;
+}
+function piedCanon(o) {
+  return `<footer${o.cls ? ` class="${o.cls}"` : ''}>
+  <div class="marque">Lumen</div>
+  <div class="verset-pied"${o.verseId ? ` id="${o.verseId}"` : ''}>${o.verse || ''}</div>
+  <div class="copy" id="${o.copyId}"></div>
+</footer>`;
+}
+
+const EXTRA_CSS = `${BARRE_CSS}
+.art-fil{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--parchemin-att,rgba(255,255,255,.5));margin:0 0 20px}
+.art-fil a{color:inherit;border-bottom:none;transition:color .3s}
+.art-fil a:hover{color:var(--or,#efe6cf)}
+.ctx-sep{margin:0 6px;opacity:.55}
+
+@page{margin:0}
+@media print{
+  body{padding:15mm 17mm}
+  header,#lect-suivant,.prog-lect,.haut-page,.art-fil{display:none!important}
+  article.lecture{padding-top:0}
+  article.lecture::after{content:'lumenveritatis.net';display:block;text-align:center;margin-top:14mm;font-size:11pt;letter-spacing:.08em;color:#000}
+}
+
+.smr-lien{transition:color .25s,border-color .25s,background .25s,padding-left .3s}
+.smr-lien:hover{color:var(--or,#efe6cf);background:rgba(231,224,207,.05);border-left-color:var(--or,#efe6cf);padding-left:22px}
+
 .dom.fermant .dom-chevron{transform:rotate(0)}
 .sous.fermant .sous-chevron{transform:rotate(0)}
 .dom.fermant .dom-tete{position:static}
@@ -405,23 +506,19 @@ function header(lang, type, base, otherRel, ctx) {
   const home = base === '' ? './' : base;
   const cl = t => type === t ? ' class="actif"' : '';
   const lib = lang === 'fr' ? 'bibliotheque/' : 'library/';
-  return `<header>
-  <div class="barre">
-    <a href="${home}" class="logo">Lumen</a>
-    <button class="burger" id="burger" aria-label="Menu">☰</button>
-    <nav class="menu" id="menu">
-      <a href="${home}"${cl('home')}>${u.menu_home}</a>
-      <a href="${base}${lib}"${cl('library')}>${u.menu_library}</a>
-      <a href="${lang === 'en' ? '/en/bible.html' : '/bible.html'}">Bible</a>
-      <a href="/memoriser.html">${u.menu_memorise}</a>
-      <a href="${otherRel}" class="lien-langue" hreflang="${lang === 'fr' ? 'en' : 'fr'}">${u.other_label}</a>
-      <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="${u.menu_home === 'Home' ? 'Search' : 'Rechercher'}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><span class="ll-mob">${u.menu_home === 'Home' ? 'Search' : 'Rechercher'}</span></span>
-      <span class="rech-loupe cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="${u.news_title}" data-sig="${nsig}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="ll-mob">${u.news_title}</span><span class="cloche-point"></span></span>
-      <span class="rech-loupe auth-icone" id="auth-ouvrir" role="button" tabindex="0" aria-label="${lang === 'fr' ? 'Compte' : 'Account'}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg><span class="ll-mob">${lang === 'fr' ? 'Compte' : 'Account'}</span></span>
-    </nav>
-    <div class="contexte-bar" id="contexte">${ctx || ''}</div>
-  </div>
-</header>
+  return `${barreCanon({
+    home, logoId: null, burgerId: 'burger', menuId: 'menu',
+    liens: [
+      { href: home, actif: type === 'home', label: u.menu_home },
+      { href: base + lib, actif: type === 'library', label: u.menu_library },
+      { href: lang === 'en' ? '/en/bible.html' : '/bible.html', label: 'Bible' },
+      { href: '/memoriser.html', label: u.menu_memorise }
+    ],
+    langue: { type: 'lien', href: otherRel, hreflang: lang === 'fr' ? 'en' : 'fr', label: u.other_label },
+    loupe: { id: 'rech-ouvrir', label: lang === 'en' ? 'Search' : 'Rechercher' },
+    cloche: { id: 'cloche-ouvrir', label: u.news_title, sig: nsig },
+    compte: { type: 'icone', id: 'auth-ouvrir', label: lang === 'fr' ? 'Compte' : 'Account' }
+  })}
 <div class="rech-overlay" id="rech-overlay">
   <div class="rech-boite">
     <div class="rech-haut">
@@ -473,11 +570,7 @@ function header(lang, type, base, otherRel, ctx) {
 }
 
 function footer(lang) {
-  return `<footer>
-  <div class="marque">Lumen</div>
-  <div class="verset-pied">${UI[lang].footer_verse}</div>
-  <div class="copy" id="annee"></div>
-</footer>`;
+  return `${piedCanon({ verse: UI[lang].footer_verse, copyId: 'annee' })}`;
 }
 
 const COMMUN_JS = `document.getElementById('burger').addEventListener('click',function(){document.getElementById('menu').classList.toggle('ouvert');});
@@ -1194,8 +1287,13 @@ function mainArticle(lang, a, base) {
     </aside>`;
   }
   const prep = prepAncres(reLink(artContenu(lang, a), base, lang).replace(/<span class="ref">/g, '<span class="ref" role="button" tabindex="0">'));
+  const lib = lang === 'fr' ? 'bibliotheque/' : 'library/';
+  const nv = NAV_CAT[a.id];
+  const nc = nv ? catNom(lang, a.theme, nv.catId) : '';
+  const fil = `<nav class="art-fil" aria-label="${lang === 'fr' ? 'Fil d\u2019ariane' : 'Breadcrumb'}"><a href="${base}${lib}?theme=${a.theme}">${themeNom(lang, a.theme)}</a>${nc ? `<span class="ctx-sep">\u203a</span><a href="${base}${lib}?theme=${a.theme}&cat=${nv.catId}">${nc}</a>` : ''}</nav>`;
   return `<div class="vue">
     <article class="lecture" data-article="${a.id}">
+      ${fil}
       <h1>${artTitre(lang, a)}</h1>
       ${prep.html}
     </article>${objBloc}
@@ -1368,14 +1466,7 @@ ARTICLES.forEach(a => {
     frFile: `article/${a.id}/index.html`, enFile: `en/article/${en}/index.html`,
     title: l => `${artTitre(l, a)} · Lumen`,
     desc: l => artResume(l, a),
-    ctx: (l, b) => {
-      const lib = l === 'fr' ? 'bibliotheque/' : 'library/';
-      let h = `<a href="${b}${lib}?theme=${a.theme}">${themeNom(l, a.theme)}</a>`;
-      const nv = NAV_CAT[a.id];
-      const nc = nv ? catNom(l, a.theme, nv.catId) : '';
-      if (nc) h += `<span class="ctx-sep">›</span><a href="${b}${lib}?theme=${a.theme}&cat=${nv.catId}">${nc}</a>`;
-      return h;
-    },
+
     main: (l, b) => mainArticle(l, a, b)
   });
 });
@@ -1465,6 +1556,27 @@ if (fs.existsSync('memoriser.html')) {
   if (APPEARANCE_CSS && mh.indexOf('</head>') >= 0) {
     mh = mh.replace('</head>', '<style>' + APPEARANCE_CSS + '</style></head>');
   }
+  {
+    const hOld = mh.match(/<header>[\s\S]*?<\/header>/);
+    const fOld = mh.match(/<footer[^>]*>[\s\S]*?<\/footer>/);
+    if (!hOld || !fOld) throw new Error('memoriser.html : header ou footer introuvable');
+    mh = mh.replace(hOld[0], barreCanon({
+      home: '/', logoId: 'nav-logo', burgerId: 'nav-burger', menuId: 'site-nav',
+      liens: [
+        { id: 'nav-home', label: '' },
+        { id: 'nav-lib', label: '' },
+        { href: '/bible.html', label: 'Bible' },
+        { id: 'nav-mem', href: '/memoriser.html', actif: true, label: '' }
+      ],
+      langue: { type: 'bouton', id: 'lang-btn', label: 'EN' },
+      loupe: { id: 'rech-ouvrir', label: 'Rechercher', labelId: 'rech-link-label' },
+      cloche: { id: 'cloche-ouvrir', label: 'Nouveautés', labelId: 'nouv-link-label' },
+      compte: { type: 'user', mailId: 'user-mail', btnId: 'logout-btn', labelId: 'logout-label', label: 'Déconnexion' }
+    }));
+    mh = mh.replace(fOld[0], piedCanon({ verseId: 'foot-verse', copyId: 'foot-copy' }));
+    mh = mh.replace('</head>', '<style>' + BARRE_CSS + '</style></head>');
+    console.log('Mémoriser : barre et pied canoniques injectés');
+  }
   if (ADMIN_JS && mh.indexOf('</body>') >= 0) {
     mh = mh.replace('</body>', '<script src="/lumen-data.js?v=' + DATA_V + '"></script><script>' + ADMIN_JS + '</script><script>' + LECT_JS + '</script></body>');
   }
@@ -1485,6 +1597,27 @@ if (fs.existsSync('bible.html')) {
   }
   if (APPEARANCE_CSS && bh.indexOf('</head>') >= 0) {
     bh = bh.replace('</head>', '<style>' + APPEARANCE_CSS + '</style></head>');
+  }
+  {
+    const hOld = bh.match(/<header>[\s\S]*?<\/header>/);
+    const fOld = bh.match(/<footer[^>]*>[\s\S]*?<\/footer>/);
+    if (!hOld || !fOld) throw new Error('bible.html : header ou footer introuvable');
+    bh = bh.replace(hOld[0], barreCanon({
+      home: '/', logoId: null, burgerId: 'burger', menuId: 'menu',
+      liens: [
+        { href: '/', label: 'Accueil' },
+        { href: '/bibliotheque/', label: 'Bibliothèque' },
+        { href: '/bible.html', actif: true, label: 'Bible' },
+        { href: '/memoriser.html', label: 'Mémoriser' }
+      ],
+      langue: { type: 'lien', href: '/en/bible.html', hreflang: 'en', label: 'EN' },
+      loupe: { id: 'brech-ouvrir', label: 'Rechercher' },
+      cloche: { id: 'bnouv-ouvrir', label: 'Nouveautés', pointId: 'bnouv-pt' },
+      compte: { type: 'icone', id: 'bcompte-ouvrir', label: 'Compte' }
+    }));
+    bh = bh.replace(fOld[0], piedCanon({ verse: UI.fr.footer_verse, copyId: 'bf-annee' }));
+    bh = bh.replace('</head>', '<style>' + BARRE_CSS + '</style></head>');
+    console.log('Bible : barre et pied canoniques injectés');
   }
   let bhFr = bh;
   if (ADMIN_JS && bhFr.indexOf('</body>') >= 0) bhFr = bhFr.replace('</body>', '<script>' + ADMIN_JS + '</script></body>');
