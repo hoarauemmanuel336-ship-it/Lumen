@@ -1222,7 +1222,7 @@
       ['parchemin_att', T('Texte atténué', 'Muted text'), '#ffffff'],
       ['or', T('Accent', 'Accent'), '#efe6cf'],
       ['or_pale', T('Accent clair', 'Light accent'), '#f8f3e6'],
-      ['pourpre', T('Accent liturgique', 'Liturgical accent'), '#9a3b3b']
+      ['pourpre', T('Rouge d\u2019alerte (erreurs, suppressions)', 'Alert red (errors, deletions)'), '#9a3b3b']
     ];
     var champs = {};
     hubBody.appendChild(el('div', 'lva-sec-t', T('Couleurs', 'Colours')));

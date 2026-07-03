@@ -237,6 +237,11 @@ const catNom = (lang, themeId, catId) => {
   if (lang === 'fr') { const t = THEMES.find(x => x.id === themeId); const c = ((t || {}).categories || []).find(c => c.id === catId); return c ? c.nom : ''; }
   return (((THEMES_EN[themeId] || {}).cats) || {})[catId] || '';
 };
+/* navigation au sein d'une catégorie : ordre donné par themes.json (c.arts) */
+const NAV_CAT = {};
+THEMES.forEach(t => (t.categories || []).forEach(c => (c.arts || []).forEach((id, i) => {
+  NAV_CAT[id] = { theme: t.id, catId: c.id, prev: c.arts[i - 1] || null, next: c.arts[i + 1] || null };
+})));
 const compteParTheme = id => ARTICLES.filter(a => a.theme === id).length;
 const artTitre = (lang, a) => lang === 'fr' ? a.titre : ARTICLES_EN[a.id].titre;
 const artResume = (lang, a) => lang === 'fr' ? a.resume : ARTICLES_EN[a.id].resume;
@@ -309,6 +314,40 @@ function buildIndex(lang) {
 }
 
 const EXTRA_CSS = `
+.lecture span.ref{cursor:pointer;padding:9px 5px;margin:-9px -5px}
+:focus-visible{outline:1px solid var(--or,#efe6cf);outline-offset:3px}
+
+html{scroll-behavior:smooth}
+.lecture h2{scroll-margin-top:84px}
+.art-duree{margin:-42px 0 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchemin-att,rgba(255,255,255,.45))}
+.lecture .sommaire{margin:28px 0 44px;border:1px solid var(--filet,rgba(231,224,207,.14))}
+.lecture .sommaire summary{list-style:none;display:flex;align-items:center;padding:12px 16px;cursor:pointer;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchemin-att,rgba(255,255,255,.55));transition:color .3s}
+.lecture .sommaire summary:hover{color:var(--parchemin,#ffffff)}
+.lecture .sommaire summary::-webkit-details-marker{display:none}
+.lecture .som-chev{margin-left:auto;font-family:monospace;font-size:17px;color:var(--parchemin-att,rgba(255,255,255,.45));transition:transform .3s}
+.lecture .sommaire[open] .som-chev{transform:rotate(90deg)}
+.lecture .sommaire ol{margin:0;padding:2px 16px 14px;list-style:none}
+.lecture .sommaire li{margin:0;padding:0}
+.lecture .sommaire a{display:block;padding:7px 8px;border-left:2px solid transparent;font-size:16px;color:var(--parchemin,#ffffff);text-decoration:none;border-bottom:none;transition:color .25s,background .25s,border-color .25s,padding-left .3s}
+.lecture .sommaire a:hover{color:var(--or,#efe6cf);background:rgba(231,224,207,.05);border-left-color:var(--or,#efe6cf);padding-left:16px}
+.prog-lect{position:fixed;top:0;left:0;height:2px;width:0;background:var(--or,#efe6cf);z-index:1400;pointer-events:none}
+.haut-page{position:fixed;right:18px;bottom:18px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--filet,rgba(231,224,207,.25));color:var(--or,#efe6cf);font-size:17px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .35s,border-color .3s;z-index:1100}
+.haut-page.on{opacity:1;pointer-events:auto}
+.haut-page:hover{border-color:var(--or,#efe6cf)}
+
+.ctx-sep{opacity:.5;margin:0 7px}
+.navcat{margin-top:54px;border-top:1px solid var(--filet,rgba(231,224,207,.14));padding-top:20px}
+.navcat-cat{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchemin-att,rgba(255,255,255,.45));margin-bottom:16px}
+.navcat-liens{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.navcat-lien{display:flex;flex-direction:column;gap:7px;text-decoration:none;max-width:46%}
+.navcat-suiv{margin-left:auto;text-align:right}
+.navcat-vide{flex:0 0 0}
+.navcat-sens{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--or,#efe6cf);opacity:.75;transition:opacity .3s}
+.navcat-titre{font-size:16.5px;color:var(--parchemin,#ffffff);line-height:1.4;transition:color .3s}
+.navcat-lien:hover .navcat-sens{opacity:1}
+.navcat-lien:hover .navcat-titre{color:var(--or-pale,#f8f3e6)}
+@media(max-width:560px){.navcat-lien{max-width:100%}.navcat-suiv{margin-left:0;text-align:left}}
+
 nav.menu a.lien-langue{font-size:13px;letter-spacing:.2em;opacity:.65}
 nav.menu a.lien-langue:hover{opacity:1}
 @media(max-width:720px){nav.menu a.lien-langue{opacity:1}}
@@ -513,42 +552,57 @@ const LECT_JS = `(function lvLectBoot(){
   var cfg={apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",authDomain:"lumen-veritatis.firebaseapp.com",projectId:"lumen-veritatis",storageBucket:"lumen-veritatis.firebasestorage.app",messagingSenderId:"195902823875",appId:"1:195902823875:web:a8be1f216a5ae1d945f176"};
   if(!firebase.apps.length)firebase.initializeApp(cfg);
   var auth=firebase.auth(), db=firebase.firestore();
-  var lang=(window.LUMEN&&window.LUMEN.lang)||'fr', FR=lang!=='en';
+  var lang=(window.LUMEN&&window.LUMEN.lang)||(function(){try{return localStorage.getItem('lv_lang')||'fr';}catch(e){return 'fr';}})(), FR=lang!=='en';
   function idx(){var I=window.LV_INDEX;if(!I)return null;return I[lang]||I.fr;}
+  var EXCL={cats:{},arts:{}}, UCUR=null, openG={};
   function blocs(){
-    /* liste de blocs canoniques : chaque categorie = un bloc ordonne ;
-       les articles hors categorie d'un theme forment un bloc par theme */
+    /* liste de blocs canoniques identifies : chaque categorie = un bloc ordonne
+       {id:'theme:cat', nom, arts} ; les articles hors categorie d'un theme
+       forment un bloc par theme ('th:<theme>'), le reste un bloc 'autres'. */
     var I=idx(); if(!I)return {bl:[],urls:{}};
     var parTheme={}, urls={}, bl=[], vus={};
     I.articles.forEach(function(a){(parTheme[a.theme]=parTheme[a.theme]||[]).push(a.id);urls[a.id]=a.u;});
     I.themes.forEach(function(t){
       (t.cats||[]).forEach(function(c){
         var b=[];(c.arts||[]).forEach(function(id){if(urls[id]&&!vus[id]){vus[id]=1;b.push(id);}});
-        if(b.length)bl.push(b);
+        if(b.length)bl.push({id:t.id+':'+c.id,nom:c.nom||t.nom,arts:b});
       });
       var r=[];(parTheme[t.id]||[]).forEach(function(id){if(!vus[id]){vus[id]=1;r.push(id);}});
-      if(r.length)bl.push(r);
+      if(r.length)bl.push({id:'th:'+t.id,nom:t.nom,arts:r});
     });
     var reste=[];I.articles.forEach(function(a){if(!vus[a.id]){vus[a.id]=1;reste.push(a.id);}});
-    if(reste.length)bl.push(reste);
+    if(reste.length)bl.push({id:'autres',nom:FR?'Autres articles':'Other articles',arts:reste});
     return {bl:bl,urls:urls};
   }
+  function blocsActifs(){
+    /* exclusions par id : tout ce qui est nouveau (article ou categorie)
+       entre dans le cycle par defaut */
+    return blocs().bl.filter(function(b){return !EXCL.cats[b.id];}).map(function(b){
+      return {id:b.id,nom:b.nom,arts:b.arts.filter(function(id){return !EXCL.arts[id];})};
+    }).filter(function(b){return b.arts.length;});
+  }
   function melange(){
-    var b=blocs().bl.slice(),i,j,t;
+    var b=blocsActifs(),i,j,t;
     for(i=b.length-1;i>0;i--){j=Math.floor(Math.random()*(i+1));t=b[i];b[i]=b[j];b[j]=t;}
-    var ordre=[];b.forEach(function(x){ordre=ordre.concat(x);});
+    var ordre=[];b.forEach(function(x){ordre=ordre.concat(x.arts);});
     return ordre;
   }
   function complete(ordre){
-    /* articles publies apres le tirage : ajoutes en fin de cycle, ordre canonique */
+    /* articles publies ou reactives apres le tirage : fin de cycle, ordre canonique */
     var d={};ordre.forEach(function(id){d[id]=1;});
-    blocs().bl.forEach(function(b){b.forEach(function(id){if(!d[id]){d[id]=1;ordre.push(id);}});});
+    blocsActifs().forEach(function(b){b.arts.forEach(function(id){if(!d[id]){d[id]=1;ordre.push(id);}});});
     return ordre;
   }
   function ref(u){return db.doc('users/'+u.uid+'/meta/lecture');}
   function etat(snap){
     var d=(snap.exists&&snap.data())||{};
+    EXCL={cats:{},arts:{}};
+    (d.offCats||[]).forEach(function(id){EXCL.cats[id]=1;});
+    (d.offArts||[]).forEach(function(id){EXCL.arts[id]=1;});
     var lus=d.lus||[], ordre=d.ordre||[];
+    var permis={};blocsActifs().forEach(function(b){b.arts.forEach(function(id){permis[id]=1;});});
+    if(!Object.keys(permis).length)return {ordre:[],lus:lus,n:0,cur:null,neuf:false,vide:true};
+    ordre=ordre.filter(function(id){return permis[id];});
     var neuf=false;
     if(!ordre.length){ordre=melange();neuf=true;}
     var avant=ordre.length; ordre=complete(ordre); if(ordre.length!==avant)neuf=true;
@@ -563,7 +617,8 @@ const LECT_JS = `(function lvLectBoot(){
     if(!u){box.setAttribute('data-state','out');if(btn)btn.style.display='none';return;}
     ref(u).get().then(function(snap){
       var e=etat(snap);
-      if(e.neuf)ref(u).set({ordre:e.ordre,lus:e.lus});
+      if(e.vide){var x0=document.getElementById('lect-x');if(x0)x0.textContent='0 / 0';var s0=box.querySelector('#lect-bar .l');if(s0)s0.style.width='0%';if(btn)btn.style.display='none';box.setAttribute('data-state','ok');return;}
+      if(e.neuf)ref(u).set({ordre:e.ordre,lus:e.lus},{merge:true});
       var p=blocs();
       var ex=document.getElementById('lect-x'); if(ex)ex.textContent=e.n+' / '+e.ordre.length;
       var seg=box.querySelector('#lect-bar .l'); if(seg)seg.style.width=(e.ordre.length?(e.n/e.ordre.length*100):0)+'%';
@@ -575,23 +630,113 @@ const LECT_JS = `(function lvLectBoot(){
       box.setAttribute('data-state','ok');
     }).catch(function(){box.setAttribute('data-state','out');if(btn)btn.style.display='none';});
   }
+  function boutonSuivant(url){
+    if(!url)return;
+    var zone=document.querySelector('article.lecture'); if(!zone)return;
+    if(document.getElementById('lect-suivant'))return;
+    var a=document.createElement('a');
+    a.id='lect-suivant';a.className='memo-start';a.href=url;
+    a.textContent=FR?'Continuer la lecture':'Continue reading';
+    a.style.marginTop='44px';
+    zone.appendChild(a);
+  }
   function marque(u){
     var I=idx(); if(!I)return;
     var art=null,i;
     for(i=0;i<I.articles.length;i++){if(I.articles[i].u===location.pathname){art=I.articles[i];break;}}
     if(!art)return;
     ref(u).get().then(function(snap){
-      var e=etat(snap);
+      var e=etat(snap), p=blocs(), suivant=null, j;
+      if(e.vide)return;
       if(e.cur===art.id){
         e.lus.push(art.id);
-        if(e.lus.length>=e.ordre.length){ref(u).set({ordre:melange(),lus:[]});}
-        else{ref(u).set({ordre:e.ordre,lus:e.lus});}
-      }else if(e.neuf){ref(u).set({ordre:e.ordre,lus:e.lus});}
+        if(e.lus.length>=e.ordre.length){
+          var neuf=melange();
+          ref(u).set({ordre:neuf,lus:[]},{merge:true});
+          suivant=neuf[0]||null;
+        }else{
+          ref(u).set({ordre:e.ordre,lus:e.lus},{merge:true});
+          var map={};e.lus.forEach(function(id){map[id]=1;});
+          for(j=0;j<e.ordre.length;j++){if(!map[e.ordre[j]]){suivant=e.ordre[j];break;}}
+        }
+      }else{
+        if(e.neuf)ref(u).set({ordre:e.ordre,lus:e.lus},{merge:true});
+        suivant=e.cur;
+      }
+      if(suivant)boutonSuivant(p.urls[suivant]);
+    }).catch(function(){});
+  }
+  /* gestion : selectionner/deselectionner categories et articles du cycle,
+     rendue dans #lect-gestion (page Memoriser), classes visuelles de la
+     liste des versets reutilisees pour l'harmonie */
+  var gHost=document.getElementById('lect-gestion');
+  function rendGestion(){
+    if(!gHost)return;
+    if(!UCUR){gHost.innerHTML='';return;}
+    var p=blocs(), I=idx();
+    var titres={}; if(I)I.articles.forEach(function(a){titres[a.id]=a.titre;});
+    var tousOff=p.bl.length&&p.bl.every(function(b){return EXCL.cats[b.id];});
+    var h='<div class="lect-g-acts"><span class="mini-act" data-lg="tout">'+(tousOff?(FR?'Tout s\u00e9lectionner':'Select all'):(FR?'Tout d\u00e9s\u00e9lectionner':'Deselect all'))+'</span></div>';
+    p.bl.forEach(function(b){
+      var offC=!!EXCL.cats[b.id];
+      var actifs=b.arts.filter(function(id){return !EXCL.arts[id];}).length;
+      var open=!!openG[b.id];
+      h+='<div class="cat'+(offC?'':' sel')+(open?' open':'')+'" data-lgc="'+b.id+'">'
+        +'<div class="cat-row"><span class="cat-check" data-lga="sel"></span>'
+        +'<span class="cat-name" data-lga="exp">'+b.nom+'</span>'
+        +'<span class="cat-pct" data-lga="exp">'+(offC?0:actifs)+' / '+b.arts.length+'</span>'
+        +'<span class="cat-chev" data-lga="exp">\u203A</span></div>'
+        +'<div class="cat-body">'+b.arts.map(function(id){
+          var offA=!!EXCL.arts[id];
+          return '<div class="vrow'+(offA?' voff':'')+'"><span class="v-check'+(offA?'':' on')+'" data-lgv="'+id+'"></span><span class="vline"><span class="vtext">'+(titres[id]||id)+'</span></span></div>';
+        }).join('')+'</div></div>';
+    });
+    gHost.innerHTML=h;
+  }
+  function sauveExcl(){
+    if(!UCUR)return;
+    ref(UCUR).set({offCats:Object.keys(EXCL.cats),offArts:Object.keys(EXCL.arts)},{merge:true}).then(function(){
+      rendGestion();
+      if(box)peint(UCUR);
+    }).catch(function(){});
+  }
+  if(gHost){
+    gHost.addEventListener('click',function(e){
+      if(!UCUR)return;
+      var tt=e.target.closest?e.target.closest('[data-lg="tout"]'):null;
+      if(tt){
+        var p=blocs(), tousOff=p.bl.length&&p.bl.every(function(b){return EXCL.cats[b.id];});
+        EXCL.cats={};
+        if(!tousOff)p.bl.forEach(function(b){EXCL.cats[b.id]=1;});
+        sauveExcl(); return;
+      }
+      var c=e.target.closest?e.target.closest('[data-lgc]'):null; if(!c)return;
+      var cid=c.getAttribute('data-lgc');
+      var av=e.target.closest('[data-lgv]');
+      if(av){var aid=av.getAttribute('data-lgv');EXCL.arts[aid]?delete EXCL.arts[aid]:EXCL.arts[aid]=1;sauveExcl();return;}
+      var ac=e.target.closest('[data-lga]');
+      if(ac){
+        if(ac.getAttribute('data-lga')==='sel'){EXCL.cats[cid]?delete EXCL.cats[cid]:EXCL.cats[cid]=1;sauveExcl();}
+        else{openG[cid]=!openG[cid];c.classList.toggle('open');}
+      }
+    });
+  }
+  function gestion(u){
+    if(!gHost)return;
+    if(!u){gHost.innerHTML='';return;}
+    ref(u).get().then(function(snap){
+      var d=(snap.exists&&snap.data())||{};
+      EXCL={cats:{},arts:{}};
+      (d.offCats||[]).forEach(function(id){EXCL.cats[id]=1;});
+      (d.offArts||[]).forEach(function(id){EXCL.arts[id]=1;});
+      rendGestion();
     }).catch(function(){});
   }
   auth.onAuthStateChanged(function(u){
+    UCUR=u||null;
     if(box)peint(u);
     else if(u&&estArticle)marque(u);
+    gestion(u);
   });
 })();`;
 
@@ -747,10 +892,20 @@ const BIBLIO_JS = `(function(){
     b.classList.toggle('actif-tout',ouvert); var l=b.querySelector('.bt-label'); if(l)l.textContent=ouvert?b.dataset.collapse:b.dataset.expand; }
   var b=document.getElementById('basculerTout');
   if(b){ b.addEventListener('click',tout); b.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();tout();} }); }
-  document.querySelectorAll('.dom-tete').forEach(function(t){ t.addEventListener('click',function(){ basculer(t.closest('.dom')); }); });
-  document.querySelectorAll('.sous-tete').forEach(function(st){ st.addEventListener('click',function(){ basculerSous(st.closest('.sous')); }); });
+  function majAria(){ document.querySelectorAll('.dom-tete,.sous-tete').forEach(function(t){ var c=t.closest('.dom,.sous'); t.setAttribute('aria-expanded', c && c.classList.contains('ouvert') ? 'true':'false'); }); }
+  document.querySelectorAll('.dom-tete').forEach(function(t){
+    t.addEventListener('click',function(){ basculer(t.closest('.dom')); setTimeout(majAria,10); });
+    t.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); t.click(); } });
+  });
+  document.querySelectorAll('.sous-tete').forEach(function(st){
+    st.addEventListener('click',function(){ basculerSous(st.closest('.sous')); setTimeout(majAria,10); });
+    st.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); st.click(); } });
+  });
   var theme=new URLSearchParams(location.search).get('theme');
-  if(theme){ var sec=document.querySelector('.dom[data-theme="'+theme+'"]'); if(sec){ ouvrir(sec); maj(); setTimeout(function(){ sec.scrollIntoView({behavior:'smooth',block:'start'}); },120); return; } }
+  if(theme){ var sec=document.querySelector('.dom[data-theme="'+theme+'"]'); if(sec){ ouvrir(sec); maj();
+    var cat=new URLSearchParams(location.search).get('cat'), cible=sec;
+    if(cat){ var sc=sec.querySelector('.sous[data-cat="'+cat+'"]'); if(sc){ ouvrirSous(sc); cible=sc; } }
+    setTimeout(function(){ cible.scrollIntoView({behavior:'smooth',block:'start'}); },140); return; } }
   maj();
 })();`;
 
@@ -835,6 +990,15 @@ ${hreflang}
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${description}">
 <meta property="og:url" content="${url}">
+<meta property="og:image" content="${DOMAINE}/icones/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="${lang === 'fr' ? '/manifest.webmanifest' : '/manifest-en.webmanifest'}">
+<link rel="apple-touch-icon" href="/icones/lumen-180.png">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 ${FONTS}
 ${FIREBASE_HEAD}
 <style>${css}${EXTRA_CSS}${APPEARANCE_CSS}</style>
@@ -847,18 +1011,11 @@ ${main}
 ${footer(lang)}
 <script>
 window.LUMEN={base:${JSON.stringify(base)},lang:${JSON.stringify(lang)},hint:${JSON.stringify(u.search_hint)},empty:${JSON.stringify(u.search_empty)}};
-${COMMUN_JS}
-${RECH_JS}
-${AUTH_JS}
-${MEMO_JS}
-${LECT_JS}
-${SOMMAIRE_JS}
-window.LV_INDEX=${JSON.stringify({fr: buildIndex('fr'), en: buildIndex('en')}).replace(/</g, '\\u003c')};
-window.LV_NV=${JSON.stringify({fr: NV_FR, en: NV_EN}).replace(/</g, '\\u003c')};
-${ADMIN_JS}
-${extraJS || ''}
 </script>
-<script src="/bible-panneau.js" defer></script>
+<script src="/lumen-data.js?v=${DATA_V}"></script>
+<script src="/lumen-app.js?v=${APP_V}"></script>${extraJS ? `
+<script>${extraJS}</script>` : ''}
+<script src="/bible-panneau.js?v=${PAN_V}" defer></script>
 </body>
 </html>`;
 }
@@ -941,7 +1098,7 @@ function mainBibliotheque(lang, base) {
       if (c.nom) {
         html += `
       <div class="sous" data-cat="${c.id}">
-        <div class="sous-tete">
+        <div class="sous-tete" role="button" tabindex="0" aria-expanded="false">
           <span class="sous-puce" aria-hidden="true"></span>
           <span class="sous-nom">${catNom(lang, t.id, c.id)}</span>
           <span class="sous-chevron" aria-hidden="true">›</span>
@@ -961,7 +1118,7 @@ function mainBibliotheque(lang, base) {
     const mot = lang === 'fr' ? (n <= 1 ? u.entry_one : u.entry_many) : (n === 1 ? u.entry_one : u.entry_many);
     return `
     <section class="dom" data-theme="${t.id}">
-      <div class="dom-tete">
+      <div class="dom-tete" role="button" tabindex="0" aria-expanded="false">
         <span class="dom-num">${num}</span>
         <h2 class="dom-nom">${themeNom(lang, t.id)}</h2>
         <span class="dom-compte">${n} ${mot}</span>
@@ -978,6 +1135,47 @@ function mainBibliotheque(lang, base) {
   </div>`;
 }
 
+function slugAncre(t) {
+  return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 's';
+}
+function prepAncres(html) {
+  const secs = []; const vus = new Set();
+  const out = html.replace(/<h2>([\s\S]*?)<\/h2>/g, (m, t) => {
+    const txt = t.replace(/<[^>]+>/g, '').trim();
+    let id = 'sec-' + slugAncre(txt); let k = 2;
+    while (vus.has(id)) id = 'sec-' + slugAncre(txt) + '-' + (k++);
+    vus.add(id); secs.push({ id, titre: txt });
+    return `<h2 id="${id}">${t}</h2>`;
+  });
+  return { html: out, secs };
+}
+function tempsLecture(html, lang) {
+  const mots = (html.replace(/<[^>]+>/g, ' ').trim().match(/\S+/g) || []).length;
+  return Math.max(1, Math.round(mots / (lang === 'fr' ? 200 : 220)));
+}
+
+function navCatBloc(lang, a, base) {
+  const nv = NAV_CAT[a.id];
+  if (!nv || (!nv.prev && !nv.next)) return '';
+  const nom = catNom(lang, nv.theme, nv.catId);
+  const cell = (id, sens) => {
+    if (!id) return '<span class="navcat-vide" aria-hidden="true"></span>';
+    const art = ARTICLES.find(x => x.id === id);
+    if (!art) return '<span class="navcat-vide" aria-hidden="true"></span>';
+    const lab = lang === 'fr' ? (sens < 0 ? 'Article précédent' : 'Article suivant')
+                              : (sens < 0 ? 'Previous article' : 'Next article');
+    return `<a class="navcat-lien ${sens < 0 ? 'navcat-prec' : 'navcat-suiv'}" href="${base}article/${slugOf(lang, id)}/">
+      <span class="navcat-sens">${sens < 0 ? '← ' : ''}${lab}${sens > 0 ? ' →' : ''}</span>
+      <span class="navcat-titre">${artTitre(lang, art)}</span>
+    </a>`;
+  };
+  return `<nav class="navcat" aria-label="${lang === 'fr' ? 'Dans la même catégorie' : 'In the same category'}">
+    ${nom ? `<div class="navcat-cat">${nom}</div>` : ''}
+    <div class="navcat-liens">${cell(nv.prev, -1)}${cell(nv.next, 1)}</div>
+  </nav>`;
+}
+
 function mainArticle(lang, a, base) {
   const apo = APOLOGIES[a.id];
   let objBloc = '';
@@ -989,10 +1187,17 @@ function mainArticle(lang, a, base) {
       <a class="apologie-lien" href="${href}">${artTitre(lang, ap)} →</a>
     </aside>`;
   }
+  const prep = prepAncres(reLink(artContenu(lang, a), base, lang).replace(/<span class="ref">/g, '<span class="ref" role="button" tabindex="0">'));
+  const mins = tempsLecture(artContenu(lang, a), lang);
+  const duree = `<div class="art-duree">${mins} ${lang === 'fr' ? 'min de lecture' : 'min read'}</div>`;
+  const som = prep.secs.length >= 3 ? `<details class="sommaire"><summary>${lang === 'fr' ? 'Sommaire' : 'Contents'}<span class="som-chev" aria-hidden="true">›</span></summary><ol>${prep.secs.map(x => `<li><a href="#${x.id}">${x.titre}</a></li>`).join('')}</ol></details>` : '';
   return `<div class="vue">
     <article class="lecture" data-article="${a.id}">
       <h1>${artTitre(lang, a)}</h1>
-      ${reLink(artContenu(lang, a), base, lang)}
+      ${duree}
+      ${som}
+      ${prep.html}
+      ${navCatBloc(lang, a, base)}
     </article>${objBloc}
     <script type="application/json" id="lv-art-src">${JSON.stringify({resume: artResume(lang, a), theme: a.theme, themes: THEMES.map(t => ({id: t.id, nom: themeNom(lang, t.id)}))}).replace(/</g, "\\u003c")}</script>
   </div>`;
@@ -1028,6 +1233,90 @@ function ecrire(rel, contenu) {
 fs.rmSync(OUT, { recursive: true, force: true });
 
 const pairs = [];
+
+/* ── Fichiers communs mis en cache : données et code partagés par toutes les pages.
+   Versionnés par empreinte de contenu (?v=hash) pour un cache navigateur long :
+   l'URL change quand le contenu change, sinon zéro re-téléchargement. ── */
+const crypto = require('crypto');
+/* ── Versification : les articles portent la numérotation catholique moderne
+   (hébraïque, celle du Crampon) ; cette fonction convertit une référence
+   vers les coordonnées du fichier Douay (bible-en.json). Une table par
+   bible ajoutée plus tard. ── */
+function versifDouay(bk, ch, v) {
+  if (bk === 'Psalm' || bk === 'Psalms') {
+    if (ch <= 8) return { ch: ch, v: v };
+    if (ch === 9) return { ch: 9, v: v };
+    if (ch === 10) return { ch: 9, v: v + 21 };
+    if (ch <= 113) return { ch: ch - 1, v: v };
+    if (ch === 114) return { ch: 113, v: v };
+    if (ch === 115) return { ch: 113, v: v + 8 };
+    if (ch === 116) return v <= 9 ? { ch: 114, v: v } : { ch: 115, v: v };
+    if (ch <= 146) return { ch: ch - 1, v: v };
+    if (ch === 147) return v <= 11 ? { ch: 146, v: v } : { ch: 147, v: v };
+    if (ch === 150 && v === 6) return { ch: 150, v: 5 };
+    return { ch: ch, v: v };
+  }
+  if (bk === 'Joel') {
+    if (ch === 3) return { ch: 2, v: v + 27 };
+    if (ch === 4) return { ch: 3, v: v };
+  }
+  if (bk === 'Isaiah') {
+    if (ch === 8 && v === 23) return { ch: 9, v: 1 };
+    if (ch === 9) return { ch: 9, v: v + 1 };
+  }
+  if (bk === 'Zechariah' && ch === 2) {
+    return v <= 4 ? { ch: 1, v: v + 17 } : { ch: 2, v: v - 4 };
+  }
+  if (bk === 'Malachi' && ch === 3 && v >= 19) return { ch: 4, v: v - 18 };
+  if (bk === 'Numbers' && ch === 17) {
+    return v <= 15 ? { ch: 16, v: v + 35 } : { ch: 17, v: v - 15 };
+  }
+  if (bk === 'John' && ch === 6 && v >= 52) return { ch: 6, v: v + 1 };
+  if (bk === 'Hosea' && ch === 12) return v === 1 ? { ch: 11, v: 12 } : { ch: 12, v: v - 1 };
+  if (bk === 'Haggai' && ch === 2) return { ch: 2, v: v + 1 };
+  if (bk === 'Nahum' && ch === 2) return v === 1 ? { ch: 1, v: 15 } : { ch: 2, v: v - 1 };
+  return { ch: ch, v: v };
+}
+
+const DATA_JS = 'window.LV_INDEX=' + JSON.stringify({ fr: buildIndex('fr'), en: buildIndex('en') }).replace(/</g, '\\u003c')
+  + ';window.LV_NV=' + JSON.stringify({ fr: NV_FR, en: NV_EN }).replace(/</g, '\\u003c') + ';window.LV_VERSIF={douay:' + versifDouay.toString() + '};';
+const UX_JS = `
+(function(){
+  var FR=!(window.LUMEN&&window.LUMEN.lang==='en');
+  /* progression de lecture, pages article seulement */
+  var art=document.querySelector('article.lecture');
+  if(art){
+    var bar=document.createElement('div'); bar.className='prog-lect'; document.body.appendChild(bar);
+    var tick=false;
+    function majBar(){ tick=false; var r=art.getBoundingClientRect();
+      var total=r.height-window.innerHeight;
+      var fait=Math.min(Math.max(-r.top,0), Math.max(total,0));
+      bar.style.width=(total>40 ? (fait/total*100) : 0)+'%'; }
+    window.addEventListener('scroll',function(){ if(!tick){tick=true;requestAnimationFrame(majBar);} },{passive:true});
+    window.addEventListener('resize',function(){ if(!tick){tick=true;requestAnimationFrame(majBar);} },{passive:true});
+    majBar();
+  }
+  /* retour en haut, toutes pages */
+  var h=document.createElement('span');
+  h.className='haut-page'; h.setAttribute('role','button'); h.setAttribute('tabindex','0');
+  h.setAttribute('aria-label',FR?'Revenir en haut de la page':'Back to top');
+  h.textContent='\u2191';
+  h.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+  h.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});} });
+  document.body.appendChild(h);
+  var t2=false;
+  function majHaut(){ t2=false; h.classList.toggle('on', window.scrollY>700); }
+  window.addEventListener('scroll',function(){ if(!t2){t2=true;requestAnimationFrame(majHaut);} },{passive:true});
+  majHaut();
+})();`;
+const APP_JS = [COMMUN_JS, RECH_JS, AUTH_JS, MEMO_JS, LECT_JS, SOMMAIRE_JS, ADMIN_JS, UX_JS].join('\n');
+const DATA_V = crypto.createHash('md5').update(DATA_JS).digest('hex').slice(0, 8);
+const APP_V = crypto.createHash('md5').update(APP_JS).digest('hex').slice(0, 8);
+const PAN_V = fs.existsSync('bible-panneau.js') ? crypto.createHash('md5').update(fs.readFileSync('bible-panneau.js')).digest('hex').slice(0, 8) : '1';
+fs.mkdirSync(OUT, { recursive: true });
+fs.writeFileSync(`${OUT}/lumen-data.js`, DATA_JS);
+fs.writeFileSync(`${OUT}/lumen-app.js`, APP_JS);
+console.log(`Communs : lumen-data.js (${Math.round(DATA_JS.length / 1024)} Ko, v=${DATA_V}), lumen-app.js (${Math.round(APP_JS.length / 1024)} Ko, v=${APP_V})`);
 
 function genPaire(spec) {
   // spec: type, frPath, enPath, frFile, enFile, titleKey, descKey, mainFn, ctxFn, extraJS
@@ -1081,7 +1370,11 @@ ARTICLES.forEach(a => {
     desc: l => artResume(l, a),
     ctx: (l, b) => {
       const lib = l === 'fr' ? 'bibliotheque/' : 'library/';
-      return `<a href="${b}${lib}?theme=${a.theme}">${themeNom(l, a.theme)}</a>`;
+      let h = `<a href="${b}${lib}?theme=${a.theme}">${themeNom(l, a.theme)}</a>`;
+      const nv = NAV_CAT[a.id];
+      const nc = nv ? catNom(l, a.theme, nv.catId) : '';
+      if (nc) h += `<span class="ctx-sep">›</span><a href="${b}${lib}?theme=${a.theme}&cat=${nv.catId}">${nc}</a>`;
+      return h;
     },
     main: (l, b) => mainArticle(l, a, b)
   });
@@ -1173,11 +1466,9 @@ if (fs.existsSync('memoriser.html')) {
     mh = mh.replace('</head>', '<style>' + APPEARANCE_CSS + '</style></head>');
   }
   if (ADMIN_JS && mh.indexOf('</body>') >= 0) {
-    const lvIdxAll = JSON.stringify({ fr: buildIndex('fr'), en: buildIndex('en') }).replace(/</g, '\\u003c');
-    const lvNvAll = JSON.stringify({ fr: NV_FR, en: NV_EN }).replace(/</g, '\\u003c');
-    mh = mh.replace('</body>', '<script>window.LV_INDEX=' + lvIdxAll + ';window.LV_NV=' + lvNvAll + ';</script><script>' + ADMIN_JS + '</script></body>');
+    mh = mh.replace('</body>', '<script src="/lumen-data.js?v=' + DATA_V + '"></script><script>' + ADMIN_JS + '</script><script>' + LECT_JS + '</script></body>');
   }
-  mh = mh.replace('</body>', '<script src="/bible-panneau.js" defer><' + '/script></body>');
+  mh = mh.replace('</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script></body>');
   fs.writeFileSync(`${OUT}/memoriser.html`, mh);
   console.log('Copié : memoriser.html');
 }
@@ -1190,9 +1481,7 @@ if (fs.existsSync('bible.html')) {
     if (reNews.test(bh)) { bh = bh.replace(reNews, '/*NEWS_START*/const NEWS={fr:' + JSON.stringify(NV_FR) + ',en:' + JSON.stringify(NV_EN) + '};/*NEWS_END*/'); console.log('Bible : nouveautés synchronisées'); }
   }
   if (bh.indexOf('</body>') >= 0) {
-    const lvIdxB = JSON.stringify({ fr: buildIndex('fr'), en: buildIndex('en') }).replace(/</g, '\\u003c');
-    const lvNvB = JSON.stringify({ fr: NV_FR, en: NV_EN }).replace(/</g, '\\u003c');
-    bh = bh.replace('</body>', '<script>window.LV_INDEX=' + lvIdxB + ';window.LV_NV=' + lvNvB + ';</script></body>');
+    bh = bh.replace('</body>', '<script src="/lumen-data.js?v=' + DATA_V + '"></script></body>');
   }
   if (APPEARANCE_CSS && bh.indexOf('</head>') >= 0) {
     bh = bh.replace('</head>', '<style>' + APPEARANCE_CSS + '</style></head>');
@@ -1305,6 +1594,9 @@ if (fs.existsSync('bible.html')) {
     console.log('Copié : bible-panneau.js');
     fs.copyFileSync('memoriser-sw.js', `${OUT}/memoriser-sw.js`);
     fs.copyFileSync('memoriser-manifest.webmanifest', `${OUT}/memoriser-manifest.webmanifest`);
+  }
+  for (const mf of ['manifest.webmanifest', 'manifest-en.webmanifest']) {
+    if (fs.existsSync(mf)) fs.copyFileSync(mf, `${OUT}/${mf}`);
     fs.mkdirSync(`${OUT}/icones`, { recursive: true });
     for (const ic of fs.readdirSync('icones')) fs.copyFileSync(`icones/${ic}`, `${OUT}/icones/${ic}`);
     console.log('Copié : memoriser-sw.js + manifest + icônes');

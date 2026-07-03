@@ -108,6 +108,15 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .cat-row{display:flex;align-items:center;gap:14px;padding:15px 2px;cursor:pointer}
 .cat-check{flex-shrink:0;width:16px;height:16px;border:1px solid var(--filet-f);position:relative;transition:border-color .3s}
 .cat-check::after{content:'';position:absolute;inset:3px;background:var(--or);opacity:0;transition:opacity .2s}
+.v-check{flex-shrink:0;width:13px;height:13px;margin-top:3px;border:1px solid var(--filet-f);position:relative;cursor:pointer;transition:border-color .3s}
+.v-check::after{content:'';position:absolute;inset:3px;background:var(--or);opacity:0;transition:opacity .2s}
+.v-check.on{border-color:var(--or)}
+.v-check.on::after{opacity:1}
+.vrow.voff .vline,.vrow.voff .lvl,.vrow.voff .mov-v{opacity:.35}
+#lect-gestion{margin-top:28px}
+#lect-gestion .lect-g-acts{display:flex;justify-content:flex-end;margin-bottom:8px}
+#lect-gestion .vrow{cursor:default}
+#lect-gestion .cat-pct{margin-left:auto}
 .cat.sel .cat-check{border-color:var(--or)}
 .cat.sel .cat-check::after{opacity:1}
 .cat-name{flex:1;font-family:var(--display);font-size:20px;color:var(--parchemin);transition:color .3s}
@@ -361,15 +370,42 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
 .nouv-groupe{padding:20px 0;border-bottom:1px solid var(--filet)}
 .nouv-groupe:last-child{border-bottom:none}
 .nouv-date{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--or);margin-bottom:16px}
-.nouv-ligne{position:relative;padding-left:22px;color:var(--parchemin-att);font-size:18px;line-height:1.55}
+.nouv-ligne{position:relative;padding-left:22px;color:#ffffff;font-size:18px;line-height:1.55}
 .nouv-ligne::before{content:"";position:absolute;left:0;top:.85em;width:12px;height:1px;border-radius:0;background:var(--or);opacity:.6}
 .nouv-ligne + .nouv-ligne{margin-top:16px}
+/* — réglages du menu compte (identiques aux autres pages) — */
+.ttx-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:18px 0 6px;padding-top:18px;border-top:1px solid var(--filet)}
+.ttx-lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.ttx-btns{display:flex;gap:8px}
+.ttx-b{background:none;border:1px solid var(--filet);color:var(--parchemin);font-family:var(--display);font-size:14px;min-width:38px;padding:7px 8px;cursor:pointer;transition:border-color .25s,color .25s}
+.ttx-b:hover{border-color:var(--or);color:#fff}
+.ttx-b:focus,.ttx-b:focus-visible{outline:none}
+.tog-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:14px 0 6px;padding-top:16px;border-top:1px solid var(--filet)}
+.tog-lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.tog-sw{position:relative;width:46px;height:24px;border:1px solid var(--filet-f);background:none;cursor:pointer;flex:none;transition:border-color .25s}
+.tog-sw:hover{border-color:var(--or)}
+.tog-sw:focus,.tog-sw:focus-visible{outline:none}
+.tog-sw::after{content:'';position:absolute;top:50%;left:3px;width:16px;height:16px;background:rgba(255,255,255,.55);transform:translateY(-50%);transition:left .25s,background .25s}
+.tog-sw.on{border-color:var(--or)}
+.tog-sw.on::after{left:25px;background:var(--or)}
+/* — lecture suivie — */
+#lect-etat{margin:0 0 16px}
+#lect-etat .lect-cptr{display:none;align-items:baseline;gap:10px}
+#lect-etat .lect-cptr span{font-family:var(--display);font-weight:300;font-size:34px;line-height:1;color:var(--parchemin)}
+#lect-etat .lect-cptr i{font-style:italic;font-family:var(--display);font-size:14px;color:#fff}
+#lect-etat .lect-barre{display:none;width:100%;height:4px;overflow:hidden;background:var(--filet);margin-top:12px}
+#lect-etat .lect-barre .l{display:block;height:100%;width:0;background:var(--or);transition:width .6s cubic-bezier(.2,.7,.3,1)}
+#lect-etat[data-state="ok"] .lect-cptr{display:flex}
+#lect-etat[data-state="ok"] .lect-barre{display:block}
+#lect-etat .lect-note{display:none;font-size:15px;color:rgba(255,255,255,.6);font-style:italic;margin:0}
+#lect-etat[data-state="out"] .lect-note{display:block}
+a.start{text-decoration:none}
 @media(max-width:720px){
   .nouv-titre-panneau{font-size:24px}
-  nav.menu .rech-loupe{width:100%;justify-content:flex-start;gap:14px;padding:12px 0;border-bottom:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-att)}
+  nav.menu .rech-loupe{width:100%;justify-content:flex-start;gap:14px;padding:12px 0;border-bottom:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#ffffff}
   nav.menu .rech-loupe .ll-mob{display:inline}
   nav.menu .cloche .cloche-point{top:8px;left:14px;right:auto}
-  nav.menu .user-btn{display:flex;align-items:center;justify-content:flex-start;gap:14px;padding:12px 0;min-height:0;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-att)}
+  nav.menu .user-btn{display:flex;align-items:center;justify-content:flex-start;gap:14px;padding:12px 0;min-height:0;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#ffffff}
   nav.menu .user-btn .user-label{position:static;width:auto;height:auto;padding:0;margin:0;overflow:visible;clip:auto;white-space:nowrap}
 }
 @media(min-width:721px){nav.menu .user-btn{width:19px;height:24px;padding-left:0;padding-right:0}}
@@ -379,7 +415,7 @@ nav.menu a:hover,nav.menu a.actif,nav.menu .menu-act:hover{color:var(--parchemin
 #app > header nav.menu a,
 #app > header nav.menu .menu-act,
 #app > header .rech-loupe{
-  color:var(--parchemin-att);
+  color:#ffffff;
 }
 #app > header nav.menu a:hover,
 #app > header nav.menu a.actif,
@@ -502,6 +538,10 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 ::-webkit-scrollbar-thumb:hover{background:rgba(231,224,207,.6);background-clip:content-box;border:3px solid transparent}
 :focus-visible{outline:1px solid rgba(231,224,207,.14);outline-offset:3px}
 </style>
+<meta property="og:image" content="https://lumenveritatis.net/icones/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 
@@ -573,6 +613,16 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
         <button class="reset-link" id="restore-btn">Restaurer les catégories de base</button>
         <span class="reset-sep">·</span>
         <button class="reset-link" id="reset-btn">Réinitialiser toute la mémoire</button>
+      </div>
+      <div class="block" style="margin-top:42px;margin-bottom:0">
+        <div class="block-head"><span class="lbl" id="lbl-lecture">La lecture suivie</span></div>
+        <div id="lect-etat" data-state="load">
+          <div class="lect-cptr"><span id="lect-x"></span> <i id="lect-lib">articles lus</i></div>
+          <div class="lect-barre" id="lect-bar"><i class="l"></i></div>
+          <p class="lect-note" id="lect-note">Connecte-toi pour suivre ta lecture.</p>
+        </div>
+        <a class="start" id="lect-start" href="/bibliotheque/">Commencer la lecture</a>
+        <div id="lect-gestion"></div>
       </div>
     </section>
 
@@ -1286,7 +1336,7 @@ const FOOT_EN='\u201CThe people who walked in darkness have seen a great light; 
 const S={
   lang:localStorage.getItem('lv_lang')||localStorage.getItem('lm_lang')||'fr',
   uid:null, mode:0,
-  selCats:[], progress:{}, step:0, customCats:[], baseEdits:{}, trash:[], trashOpen:false, showAllCats:false,
+  selCats:[], offV:{}, progress:{}, step:0, customCats:[], baseEdits:{}, trash:[], trashOpen:false, showAllCats:false,
   open:{},          // catId -> bool (déplié)
   cur:null, lastId:null, answered:0, correct:0,
   pendingCat:null, editCat:null, editVerse:null
@@ -1311,7 +1361,7 @@ function effectiveCats(){
   return [...base,...S.customCats.map(c=>({...c,base:false}))];
 }
 const allCats=effectiveCats;
-function allItems(){const out=[];effectiveCats().filter(c=>S.soloCat?c.id===S.soloCat:S.selCats.includes(c.id)).forEach(c=>c.verses.forEach(v=>out.push({...v,catId:c.id})));return out;}
+function allItems(){const out=[];effectiveCats().filter(c=>S.soloCat?c.id===S.soloCat:S.selCats.includes(c.id)).forEach(c=>c.verses.forEach(v=>{if(!S.offV[v.id])out.push({...v,catId:c.id});}));return out;}
 // clone profond de la version effective d'une catégorie de base, pour la rendre éditable
 function baseClone(catId){const e=effectiveCats().find(c=>c.id===catId);return{name:JSON.parse(JSON.stringify(e.name)),verses:JSON.parse(JSON.stringify(e.verses))};}
 function editBase(catId,fn){const c=S.baseEdits[catId]||baseClone(catId);fn(c);S.baseEdits[catId]=c;saveBaseEdits();}
@@ -1384,12 +1434,12 @@ async function loadUser(){
     S.customCats=snap.docs.map(d=>({id:d.id,...d.data()}));
     S.baseEdits=base.exists?(base.data().cats||{}):{};
     S.trash=trash.exists?(trash.data().items||[]):[];
-    if(prefs.exists){S.selCats=prefs.data().selCats||[];S.mode=prefs.data().mode||0;}
+    if(prefs.exists){S.selCats=prefs.data().selCats||[];S.mode=prefs.data().mode||0;S.offV={};(prefs.data().offV||[]).forEach(id=>S.offV[id]=1);}
     else{S.selCats=PRE.map(c=>c.id);}
   }catch(e){console.error(e);}
 }
 function saveProgress(){udoc('meta/progress').set({items:S.progress,step:S.step});}
-function savePrefs(){udoc('meta/prefs').set({selCats:S.selCats,mode:S.mode});}
+function savePrefs(){udoc('meta/prefs').set({selCats:S.selCats,mode:S.mode,offV:Object.keys(S.offV)});}
 function saveCat(c){return ucol('categories').doc(c.id).set({name:c.name,verses:c.verses});}
 function saveBaseEdits(){udoc('meta/baseEdits').set({cats:S.baseEdits});}
 function saveTrash(){udoc('meta/trash').set({items:S.trash});}
@@ -1404,12 +1454,13 @@ function renderCats(){
     const sel=S.selCats.includes(cat.id);
     const open=!!S.open[cat.id];
     // distribution
+    const actifs=cat.verses.filter(vv=>!S.offV[vv.id]);
     let r=0,a=0,v=0;
-    cat.verses.forEach(vv=>{const l=levelOf(vv.id);if(l==='r')r++;else if(l==='a')a++;else v++;});
-    const tot=cat.verses.length||1;
-    const dist='<i class="r" style="width:'+(r/tot*100)+'%"></i><i class="a" style="width:'+(a/tot*100)+'%"></i><i class="v" style="width:'+(v/tot*100)+'%"></i>'+(cat.verses.length?'':'<i class="e" style="width:100%"></i>');
-    let boxsum=0; cat.verses.forEach(vv=>boxsum+=boxOf(vv.id));
-    const pct=cat.verses.length?Math.round(boxsum/(5*cat.verses.length)*100):0;
+    actifs.forEach(vv=>{const l=levelOf(vv.id);if(l==='r')r++;else if(l==='a')a++;else v++;});
+    const tot=actifs.length||1;
+    const dist='<i class="r" style="width:'+(r/tot*100)+'%"></i><i class="a" style="width:'+(a/tot*100)+'%"></i><i class="v" style="width:'+(v/tot*100)+'%"></i>'+(actifs.length?'':'<i class="e" style="width:100%"></i>');
+    let boxsum=0; actifs.forEach(vv=>boxsum+=boxOf(vv.id));
+    const pct=actifs.length?Math.round(boxsum/(5*actifs.length)*100):0;
     const pctTxt=S.lang==='fr'?pct+'\u00a0%':pct+'%';
     const div=document.createElement('div');
     div.className='cat'+(sel?' sel':'')+(open?' open':'');
@@ -1417,7 +1468,8 @@ function renderCats(){
     let body='<div class="cat-body">';
     cat.verses.forEach(vv=>{
       const l=levelOf(vv.id);
-      body+='<div class="vrow"><span class="vline" data-editv="'+vv.id+'"><span class="vref">'+vv[S.lang].ref+'</span><span class="vtext">'+trunc(vv[S.lang].text,58)+'</span></span><span class="lvl">'
+      const voff=!!S.offV[vv.id];
+      body+='<div class="vrow'+(voff?' voff':'')+'"><span class="v-check'+(voff?'':' on')+'" data-togv="'+vv.id+'" title="'+(S.lang==='fr'?'Inclure ou exclure des révisions':'Include or exclude from reviews')+'"></span><span class="vline" data-editv="'+vv.id+'"><span class="vref">'+vv[S.lang].ref+'</span><span class="vtext">'+trunc(vv[S.lang].text,58)+'</span></span><span class="lvl">'
         +'<span class="dot r'+(l==='r'?' act':'')+'" data-set="r" data-v="'+vv.id+'"></span>'
         +'<span class="dot a'+(l==='a'?' act':'')+'" data-set="a" data-v="'+vv.id+'"></span>'
         +'<span class="dot v'+(l==='v'?' act':'')+'" data-set="v" data-v="'+vv.id+'"></span></span>'
@@ -1457,6 +1509,11 @@ function applyLang(){
   $('rech-ouvrir').setAttribute('aria-label',_fr?'Rechercher':'Search'); $('rech-link-label').textContent=_fr?'Rechercher':'Search';
   renderNews();
   $('lang-btn').textContent=tl.lang; var lblC=(S.lang==='fr')?'Compte':'Account'; $('logout-btn').setAttribute('aria-label',lblC); $('logout-btn').setAttribute('title',lblC); $('logout-label').textContent=lblC;
+  if($('macct-ttx'))$('macct-ttx').textContent=(S.lang==='fr')?'Taille du texte':'Text size';
+  if($('macct-tog'))$('macct-tog').textContent=(S.lang==='fr')?'Onglet Bible \u00e0 gauche':'Bible tab on the left';
+  if($('lbl-lecture'))$('lbl-lecture').textContent=(S.lang==='fr')?'La lecture suivie':'Guided Reading';
+  if($('lect-lib'))$('lect-lib').textContent=(S.lang==='fr')?'articles lus':'articles read';
+  if($('lect-note'))$('lect-note').textContent=(S.lang==='fr')?'Connecte-toi pour suivre ta lecture.':'Sign in to track your reading.';
   $('lbl-cats').textContent=tl.cats; $('lbl-newcat').textContent=tl.newcat; $('lbl-mode').textContent=tl.mode;
   $('mode-0').textContent=tl.mode0; $('mode-1').textContent=tl.mode1; $('mode-2').textContent=tl.mode2;
   $('start-btn').textContent=tl.start; $('reset-btn').textContent=tl.reset; $('finish-btn').textContent=tl.finish;
@@ -1776,7 +1833,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(d){
       if(!sel.length)return;
       if(!confirm(t('bulk_mark_q').replace('%n%',sel.length)))return;
-      sel.forEach(c=>c.verses.forEach(v=>setLevel(v.id,d.dataset.gall)));
+      sel.forEach(c=>c.verses.forEach(v=>{if(!S.offV[v.id])setLevel(v.id,d.dataset.gall);}));
       saveProgress(); renderCats(); return;
     }
     if(rb){
@@ -1796,6 +1853,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   // délégation catégories
   $('cat-list').addEventListener('click',async e=>{
     const catEl=e.target.closest('.cat'); if(!catEl)return; const id=catEl.dataset.id;
+    const togv=e.target.closest('[data-togv]');
+    if(togv){const vid=togv.dataset.togv;S.offV[vid]?delete S.offV[vid]:S.offV[vid]=1;savePrefs();renderCats();return;}
     const setDot=e.target.closest('[data-set]');
     const allDot=e.target.closest('[data-all]');
     const editv=e.target.closest('[data-editv]');
@@ -1807,7 +1866,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const restorec=e.target.closest('[data-restorec]');
     const act=e.target.closest('[data-act]');
     if(setDot){setLevel(setDot.dataset.v,setDot.dataset.set);saveProgress();renderCats();return;}
-    if(allDot){const c=effectiveCats().find(x=>x.id===id);c.verses.forEach(v=>setLevel(v.id,allDot.dataset.all));saveProgress();renderCats();return;}
+    if(allDot){const c=effectiveCats().find(x=>x.id===id);c.verses.forEach(v=>{if(!S.offV[v.id])setLevel(v.id,allDot.dataset.all);});saveProgress();renderCats();return;}
     if(movv){openMoveVerse(id,movv.dataset.movev);return;}
     if(delv){await trashVerse(id,delv.dataset.delv);return;}
     if(editv){openEditVerse(id,editv.dataset.editv);return;}
@@ -1854,9 +1913,40 @@ auth.onAuthStateChanged(async u=>{
       <div class="auth-t" id="macct-t">Mon compte</div>
       <div class="auth-mail" id="macct-mail"></div>
       <a class="macct-btn" id="macct-notes" href="/bible.html#notes">Mes notes</a>
+      <div class="ttx-row"><span class="ttx-lab" id="macct-ttx">Taille du texte</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
+      <div class="tog-row"><span class="tog-lab" id="macct-tog">Onglet Bible à gauche</span><span class="tog-sw" id="tog-bible" role="button" tabindex="0" aria-label="Afficher ou masquer l’onglet Bible"></span></div>
       <button type="button" class="auth-out" id="auth-logout">Déconnexion</button>
     </div>
   </div>
 </div>
+<script>
+(function(){
+  var TZ=[0.85,0.925,1,1.08,1.16,1.25];
+  function tzCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_taille_mobile':'lv_taille_pc';}catch(e){return 'lv_taille_pc';}}
+  function tzLit(){var v=1;try{v=parseFloat(localStorage.getItem(tzCle())||localStorage.getItem('lv_taille'))||1;}catch(e){}return v;}
+  document.addEventListener('click',function(e){
+    var b=e.target.closest?e.target.closest('.ttx-b'):null;
+    if(!b)return;
+    var d=b.getAttribute('data-ttx'),v=tzLit();
+    if(d==='0')v=1;
+    else{var i=TZ.indexOf(v);if(i<0){i=2;}i+=(d==='1'?1:-1);i=Math.max(0,Math.min(TZ.length-1,i));v=TZ[i];}
+    try{localStorage.setItem(tzCle(),String(v));}catch(e2){}
+    document.documentElement.style.setProperty('--lvz',v);
+  });
+})();
+(function(){
+  function obCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_onglet_bible_mobile':'lv_onglet_bible_pc';}catch(e){return 'lv_onglet_bible_pc';}}
+  function obMasque(){try{return localStorage.getItem(obCle())==='0';}catch(e){return false;}}
+  var sw=document.getElementById('tog-bible');
+  function etat(){if(sw)sw.classList.toggle('on',!obMasque());}
+  etat();
+  window.addEventListener('resize',etat);
+  if(sw){
+    var bascule=function(){var m=obMasque();try{localStorage.setItem(obCle(),m?'1':'0');}catch(e){}etat();try{window.dispatchEvent(new Event('resize'));}catch(e2){}};
+    sw.addEventListener('click',bascule);
+    sw.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();bascule();}});
+  }
+})();
+</script>
 </body>
 </html>

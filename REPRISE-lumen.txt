@@ -98,9 +98,21 @@ ARCHITECTURE DU CODE :
   confirmation. Nouveaux articles publiés en cours de cycle : ajoutés en fin
   de cycle (ordre canonique). Bouton lect-start : Commencer/Continuer, ouvre
   l'article courant. Déconnecté : note « Connecte-toi... », bouton masqué.
-  Code : LECT_JS dans build-bi.js (injecté sur toutes les pages), HTML dans le
-  bloc accueil (ids lect-etat/lect-x/lect-bar/lect-start, classes memo-*
-  réutilisées, segment .memo-bar .l doré dans index__48_.html).
+  Code : LECT_JS dans build-bi.js (injecté sur toutes les pages générées ET
+  dans memoriser.html au build), HTML dans le bloc accueil (ids lect-etat/
+  lect-x/lect-bar/lect-start, classes memo-* réutilisées, segment .memo-bar .l
+  doré dans index__48_.html) + bloc « La lecture suivie » dans #setup de
+  memoriser.html (mêmes ids, CSS local lect-*). Sur chaque page d'article,
+  LECT_JS ajoute en fin d'article un bouton « Continuer la lecture »
+  (#lect-suivant, classe memo-start) vers l'article suivant du parcours ;
+  langue via window.LUMEN.lang, repli localStorage lv_lang (memoriser).
+• MENU COMPTE (consistance) : mêmes rangées partout — Mes notes, Taille du
+  texte (ttx-row), Onglet Bible à gauche (tog-row, id tog-bible), Déconnexion.
+  Présent sur pages générées (build-bi.js), bible.html et memoriser.html
+  (rangées + CSS + JS tz/ob ajoutés, libellés traduits dans applyLang).
+• NOTIFICATIONS (panneau nouveautés) : lignes en BLANC PLEIN #ffffff partout
+  (l'accueil l'était ; bible.html .nv-l et memoriser.html .nouv-ligne étaient
+  à ~45-62% d'alpha, corrigés — dates restent en var(--or)).
 
 FIREBASE (projet lumen-veritatis, config publique par conception) :
 auth Google + e-mail ; admin = hoarauemmanuel336@gmail.com ; Firestore :
@@ -354,9 +366,123 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   elles peuvent contenir des coquilles (accents manquants, OCR, p.ex.
   « rode » pour « rôde »). Au moindre doute sur un mot, rétablir la forme
   correcte du vrai texte Crampon/Douay (au besoin recherche web), ne pas
-  recopier la coquille. Choisir les versets sur leur justesse, jamais pour
-  fuir un décalage de numérotation (qui se gère, cf. psaumes Crampon
-  hébraïque = Douay grec -1).
+  recopier la coquille. Les décalages de numérotation entre la convention
+  du site (hébraïque unifiée) et le fichier Douay sont gérés par
+  LV_VERSIF, jamais en changeant les réfs des articles.
+• POLITIQUE DES RÉFÉRENCES ET CITATIONS (définitive, décidée par Emmanuel
+  le 2026-07-03, remplace toute règle antérieure « Douay strict ») :
+  (1) NUMÉROTATION CATHOLIQUE UNIFIÉE : les références des articles portent
+  la numérotation hébraïque moderne (celle du Crampon, de la Jérusalem, de
+  la NABRE), IDENTIQUE en FR et en EN. Le FR est la référence maîtresse :
+  toute réf EN = nom EN standard du livre + les numéros exacts du FR
+  (méthode canonique : appariement positionnel des réfs FR/EN de chaque
+  article, appliqué le 2026-07-03 : 43 réfs EN réalignées, citation Nahum
+  3:8 rétablie côté EN, « Psaumes »->« Psaume » uniformisé côté FR).
+  (2) LA BIBLE DU SITE EST UN OUTIL : le clic sur une réf ouvre le bon
+  verset via une COUCHE DE CONVERSION. versifDouay(bk,ch,v) est définie
+  dans build-bi.js (source unique), sérialisée dans lumen-data.js
+  (window.LV_VERSIF={douay:fn}), et appliquée dans parseRef de
+  bible-panneau.js (si BP_EN) et de bible.html (si /en/), AVANT le
+  garde-fou ch>nch. Règles validées par harnais (1860/1860 réfs converties
+  existent + spot-check textuel de chaque règle) : Psaumes (9/10 fusion,
+  11-113 ch-1, 114/115 -> 113, 116 -> 114/115, 117-146 ch-1, 147 ->
+  146/147, 150:6 -> 150:5), Joël (3 -> 2:+27, 4 -> 3), Isaïe (8:23 -> 9:1,
+  9:v -> 9:v+1), Zacharie 2 (1-4 -> 1:17+v, 5+ -> 2:v-4), Malachie 3:19+
+  -> 4:v-18, Nombres 17 (<=15 -> 16:v+35, >=16 -> 17:v-15), Jean 6 (52+ ->
+  +1), Osée 12 (1 -> 11:12, 2+ -> -1), Aggée 2 (+1), Nahum 2 (1 -> 1:15,
+  2+ -> -1). Toute nouvelle bible ajoutée plus tard = sa propre fonction
+  dans LV_VERSIF.
+  (3) TEXTES DES CITATIONS : FR = extraits exacts du Crampon (inchangé) ;
+  EN = TRADUCTION PROPRE de l'assistant (registre de l'article, jamais
+  calquée sur le Douay). CHANTIER RESTANT : ~539 citations EN passées en
+  texte Douay archaïque lors du chantier annulé doivent être RETRADUITES
+  en traduction propre (repérables : tournures thou/hath/doth). Les autres
+  citations EN (traductions maison) sont conformes à la politique.
+• PERFORMANCE (architecture depuis le 2026-07-02) : les données communes
+  (window.LV_INDEX + LV_NV) et le code commun (COMMUN/RECH/AUTH/MEMO/LECT/
+  SOMMAIRE/ADMIN_JS) ne sont plus inlinés dans chaque page : build-bi.js
+  écrit site/lumen-data.js et site/lumen-app.js, référencés par
+  <script src="/lumen-....js?v=<hash8>"> (hash md5 du contenu, recalculé à
+  chaque build : l'URL change quand le contenu change). bible-panneau.js
+  est versionné pareil (?v=PAN_V). netlify.toml sert ces trois fichiers en
+  Cache-Control immutable 1 an. Pages articles ~56 Ko (au lieu de ~320) ;
+  memoriser et bible chargent lumen-data.js aussi (la version EN de bible
+  continue de transformer son code inline .fr -> .en, les données externes
+  sont bilingues). Ne JAMAIS réinliner ces blocs dans le gabarit.
+• PARTAGE (2026-07-02) : vignette og:image commune icones/partage.png
+  (1200x630, générée en PIL : fond #0a0a0a, titre doré ajusté à la largeur,
+  étoile à quatre branches dessinée en polygone — jamais de glyphe ✦, absent
+  de DejaVu —, coins en L ; cadrage contrôlé au pixel : marges 56 px), déclarée
+  avec og:image:width/height + twitter:card summary_large_image dans le
+  gabarit (toutes pages) et dans memoriser.html/bible.html. Le bouton
+  « Partager cet article » en fin d'article a été AJOUTÉ PUIS RETIRÉ à la
+  demande d'Emmanuel : ne pas le réintroduire sans son accord.
+• CIRCULATION ENTRE ARTICLES (2026-07-03) : navigation générée statiquement
+  par build-bi.js depuis l'ordre des catégories de themes.json (c.arts).
+  NAV_CAT (id -> theme/catId/prev/next) ; navCatBloc() insère en fin
+  d'article (dans <article class="lecture">, après le ✦) un <nav class=
+  "navcat"> : nom de la catégorie + « Article précédent / suivant » avec
+  titres (classes navcat-*, CSS dans EXTRA_CSS, mobile en colonne). Les 9
+  articles hors catégorie n'ont pas de bloc. Fil d'ariane du header (ctx)
+  enrichi : Thème › Catégorie, la catégorie pointant vers
+  bibliotheque/?theme=X&cat=Y ; BIBLIO_JS déplie alors le thème PUIS la
+  sous-catégorie (ouvrirSous) et défile sur elle. Le bouton « Continuer la
+  lecture » (lecture suivie) s'ajoute par JS APRÈS le navcat.
+• CONFORT DE LECTURE (2026-07-03) : quatre pièces générées par build-bi.js
+  et lumen-app.js (bloc UX_JS). (1) Durée de lecture sous le h1
+  (.art-duree, mots/200 FR ou /220 EN, arrondi, min 1). (2) Sommaire
+  dépliable <details class="sommaire"> sous la durée quand l'article a >=3
+  h2 (tous en ont) : prepAncres() pose des id slugifiés uniques sur les h2
+  (sec-<slug>, suffixe -2 si doublon), scroll-margin-top:84px +
+  html{scroll-behavior:smooth}, replié par défaut, libellé
+  Sommaire/Contents. (3) Barre de progression .prog-lect (2px, var(--or),
+  fixed top, z-index:1400), pages article seulement, largeur = avancement
+  dans l'article (rAF + scroll passif). (4) Retour en haut .haut-page
+  (span role=button, 42px, bas droite, fond noir flouté, bordure filet),
+  toutes pages générées, visible après 700px, scroll doux. Rien de tout
+  cela sur memoriser/bible qui gardent leur UI propre.
+• FINITIONS ACCESSIBILITÉ (2026-07-03) : (1) zones tactiles des références
+  bibliques agrandies sans changer le rendu (.lecture span.ref : padding
+  9px 5px + marges négatives équivalentes, le padding vertical d'un inline
+  n'affecte pas la ligne). (2) Références focusables : le rendu des articles
+  ajoute role="button" tabindex="0" aux span.ref ; bible-panneau.js ouvre
+  aussi sur Enter/espace (délégation keydown, miroir du click). (3)
+  :focus-visible{outline:1px solid var(--or)} dans EXTRA_CSS (bible.html et
+  memoriser.html avaient déjà leurs styles de focus). (4) Bibliothèque :
+  .dom-tete et .sous-tete en role="button" tabindex="0" avec aria-expanded
+  synchronisé (majAria) et bascule Enter/espace dans BIBLIO_JS. Le panneau
+  Bible mémorisait déjà son dernier passage (lv_bp_etat, restaure()) : rien
+  n'a été changé à ce mécanisme.
+• INSTALLATION PWA DU SITE (2026-07-03) : manifest.webmanifest (fr,
+  start_url /) et manifest-en.webmanifest (en, start_url /en/), liés par le
+  gabarit selon la langue de la page + apple-touch-icon /icones/
+  lumen-180.png + theme-color #0a0a0a + metas apple standalone ; bible.html
+  reçoit les mêmes balises (manifest fr). Icônes du site lumen-180/192/512
+  + lumen-512-maskable (étoile dorée à quatre branches sur #0a0a0a,
+  rendu 4x réduit Lanczos, maskable à 22% de rayon pour la zone de
+  sécurité). memoriser.html GARDE son propre manifest (app distincte, ne
+  pas toucher). Le build copie les deux manifests ; ils font partie de la
+  liste du zip de livraison. Le HORS LIGNE (service worker du site) n'est
+  PAS implémenté : proposé à Emmanuel, en attente de décision.
+• SÉLECTION FINE (2026-07-03, demande d'Emmanuel). (1) MÉMORISER : chaque
+  verset a une case (.v-check, data-togv) pour l'inclure/exclure des
+  révisions SANS le supprimer ; état S.offV (map id->1) persisté dans
+  meta/prefs (offV:[ids]) ; exclus = atténués (.vrow.voff), retirés de
+  allItems(), des distributions/pourcentages de catégorie et des marquages
+  globaux (par catégorie et bulk). (2) LECTURE SUIVIE : blocs identifiés
+  {id:'theme:cat' | 'th:<theme>' | 'autres', nom, arts} ; exclusions
+  offCats/offArts stockées dans users/{uid}/meta/lecture (PAR ID D'EXCLU :
+  tout article ou catégorie NOUVEAU entre au cycle par défaut, robuste aux
+  évolutions du site) ; blocsActifs() filtre, etat() filtre l'ordre existant
+  et gère le cycle vide (e.vide) ; TOUTES les écritures du doc lecture sont
+  en {merge:true} pour ne jamais écraser les exclusions. UI de gestion dans
+  memoriser.html #setup (#lect-gestion, rendue par LECT_JS : rendGestion/
+  sauveExcl/gestion, délégation data-lg/lgc/lga/lgv), réutilisant les
+  classes cat/cat-row/cat-check/v-check/vrow pour l'harmonie ; case de
+  catégorie = tout le bloc, cases d'articles = individuel, bouton Tout
+  sélectionner/désélectionner ; compteur x/y et bouton de lecture suivent
+  la sélection (peint() rappelé après chaque sauvegarde). Réactiver une
+  catégorie/article = ajout en FIN de cycle (via complete()).
 • SANDBOX VOLATIL : le système de fichiers peut être réinitialisé en cours
   de session. Le snapshot /home/claude/snap se restaure SANS PERTE depuis
   la source de vérité (le zip de sortie) :

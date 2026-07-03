@@ -46,6 +46,12 @@
   + '.bp-aller{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa,rgba(255,255,255,.6));cursor:pointer;padding:4px 2px;transition:color .3s}'
   + '.bp-aller:hover{color:var(--or-pale,#f8f3e6)}'
   + '.bp-err{font-size:12px;font-style:italic;color:var(--parchemin-att,rgba(255,255,255,.45))}'
+  + '.bp-chips{display:none;flex-wrap:wrap;gap:8px;padding:10px 18px;border-bottom:1px solid var(--filet,rgba(231,224,207,.14))}'
+  + '.bp-chips.on{display:flex}'
+  + '.bp-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--filet,rgba(231,224,207,.14));padding:4px 10px;font-size:13.5px;color:var(--parchemin,#ffffff);cursor:pointer;transition:border-color .35s,box-shadow .4s}'
+  + '.bp-chip:hover{border-color:var(--filet-fort,rgba(231,224,207,.3));box-shadow:0 0 18px rgba(231,224,207,.06)}'
+  + '.bp-chip .bp-x{font-size:12px;color:var(--pa,rgba(255,255,255,.6));transition:color .3s;padding:0 1px}'
+  + '.bp-chip .bp-x:hover{color:var(--or-pale,#f8f3e6)}'
   + '.bp-corps{flex:1;overflow-y:auto;padding:18px 18px 34px;font-family:var(--serif,Georgia,serif);'
   + 'scrollbar-color:rgba(231,224,207,.35) #000}'
   + '.bp-corps::-webkit-scrollbar{width:8px}'
@@ -122,6 +128,7 @@
     + '  <span class="bp-aller" id="bp-aller" role="button" tabindex="0">Aller</span>'
     + '  <span class="bp-err" id="bp-err"></span>'
     + '</div>'
+    + '<div class="bp-chips" id="bp-chips"></div>'
     + '<div class="bp-corps" id="bp-corps"><div class="bp-charge">' + BP_T.charge + '</div></div>';
   document.body.appendChild(tab);
   document.body.appendChild(voile);
@@ -238,6 +245,14 @@
     var v1 = m[3] ? parseInt(m[3], 10) : 0;
     var v2 = m[4] ? parseInt(m[4], 10) : v1;
     if (ch && inf.nch === 1 && !v1) { v1 = ch; v2 = ch; ch = 1; }
+    /* les références des articles portent la numérotation catholique moderne ;
+       la bible EN du site (Douay) a la sienne : conversion vers le fichier */
+    if (ch && BP_EN && window.LV_VERSIF && window.LV_VERSIF.douay) {
+      var cv1 = window.LV_VERSIF.douay(inf.nom, ch, v1 || 1);
+      var cv2 = v2 ? window.LV_VERSIF.douay(inf.nom, ch, v2) : cv1;
+      ch = cv1.ch;
+      if (v1) { v1 = cv1.v; v2 = cv2.v; }
+    }
     if (ch && ch > inf.nch) return null;
     if (v2 < v1) { var t2 = v1; v1 = v2; v2 = t2; }
     return { slug: slug, ch: ch, v1: v1, v2: v2 };
@@ -365,10 +380,34 @@
     if (r.v1) { t += ':' + r.v1; if (r.v2 > r.v1) t += '-' + r.v2; }
     return t;
   }
+  var MULTI = [];
+  function majChips(){
+    var z = document.getElementById('bp-chips');
+    if (!z) return;
+    if (!MULTI.length) { z.classList.remove('on'); z.innerHTML = ''; return; }
+    var h = '';
+    MULTI.forEach(function(r, i){
+      h += '<span class="bp-chip" data-bi="' + i + '">' + esc(etiquetteRef(r)) + '<span class="bp-x" data-bx="' + i + '">\u2715</span></span>';
+    });
+    z.innerHTML = h;
+    z.classList.add('on');
+  }
+  function ouvreRef(r){
+    if (!r) return;
+    if (!r.ch) { rendChaps(r.slug); return; }
+    if (r.v1) pend = { slug: r.slug, ch: r.ch, plages: [{ v1: r.v1, v2: r.v2 || r.v1 }] };
+    rendLect(r.slug, r.ch, 0);
+  }
   function rendMulti(refs){
-    /* plusieurs références : ouvrir le chapitre du premier passage et surligner
-       tous les versets des références qui tombent dans ce même chapitre,
-       comme la sélection multi-versets de la section Bible (allerRefs). */
+    /* plusieurs références : une puce par référence (comme la barre de
+       sélection de la page Bible), chacune ouvrant son passage au clic ;
+       la première s'ouvre immédiatement, avec toutes les plages des
+       références tombant dans le même chapitre. */
+    refs.forEach(function(r){
+      var deja = MULTI.some(function(m){ return m.slug === r.slug && m.ch === r.ch && m.v1 === r.v1 && m.v2 === r.v2; });
+      if (!deja) MULTI.push(r);
+    });
+    majChips();
     var r0 = refs[0];
     if (!r0) return rendLivres();
     if (!r0.ch) { rendChaps(r0.slug); return; }
@@ -379,6 +418,12 @@
     pend = { slug: r0.slug, ch: r0.ch, plages: plages.length ? plages : null };
     rendLect(r0.slug, r0.ch, 0);
   }
+  document.addEventListener('click', function(e){
+    var x = e.target.closest ? e.target.closest('#bp-chips .bp-x') : null;
+    if (x) { MULTI.splice(parseInt(x.getAttribute('data-bx'), 10), 1); majChips(); return; }
+    var c = e.target.closest ? e.target.closest('#bp-chips .bp-chip') : null;
+    if (c) ouvreRef(MULTI[parseInt(c.getAttribute('data-bi'), 10)]);
+  });
   function vaRef(){
     var champ = document.getElementById('bp-ref');
     var err = document.getElementById('bp-err');
@@ -447,6 +492,13 @@
   document.addEventListener('click', function(e){
     var ref = e.target.closest ? e.target.closest('span.ref') : null;
     if (!ref || pan.contains(ref)) return;
+    ouvreSurRef(ref.textContent);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var ref = e.target.closest ? e.target.closest('span.ref') : null;
+    if (!ref || pan.contains(ref)) return;
+    e.preventDefault();
     ouvreSurRef(ref.textContent);
   });
   tab.addEventListener('click', function(){

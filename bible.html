@@ -40,7 +40,7 @@ html{scrollbar-color:rgba(231,224,207,.35) var(--encre)}
 header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--filet)}
 .barre{max-width:1180px;margin:0 auto;padding:0 28px;height:62px;display:flex;align-items:center;gap:34px}
 .logo{font-family:var(--display);font-size:21px;letter-spacing:.26em;text-transform:uppercase;color:var(--parchemin)}
-.burger{display:none;margin-left:auto;font-size:22px;color:var(--pa)}
+.burger{display:none;margin-left:auto;background:none;border:none;padding:0;font-size:24px;color:var(--parchemin);cursor:pointer;line-height:1;-webkit-appearance:none;appearance:none}
 nav.menu{margin-left:auto;display:flex;align-items:center;gap:30px}
 nav.menu a{font-family:var(--display);font-size:16px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:#ffffff;transition:color .3s,border-color .3s;position:relative;padding:4px 0 3px;border-bottom:1px solid transparent}
 nav.menu a:hover,nav.menu a.actif{color:#ffffff;border-color:var(--or)}
@@ -69,12 +69,12 @@ a.b-r span,.b-r span{font-size:14.5px;color:rgba(255,255,255,.45);line-height:1.
 a.b-r:hover b,.b-r:hover b{color:var(--or-pale)}
 .b-vide{text-align:center;font-style:italic;color:rgba(255,255,255,.45);padding:26px 0}
 .nv-d{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--or);margin:20px 0 16px}
-.nv-l{position:relative;padding-left:22px;color:rgba(255,255,255,.62);font-size:18px;line-height:1.55}
+.nv-l{position:relative;padding-left:22px;color:#ffffff;font-size:18px;line-height:1.55}
 .nv-l::before{content:"";position:absolute;left:0;top:.85em;width:12px;height:1px;background:var(--or);opacity:.6}
 .nv-l + .nv-l{margin-top:16px}
 @media(max-width:720px){
   .ctx{display:none}
-  nav.menu .ic-btn{padding:12px 0;width:100%;justify-content:flex-start;gap:14px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-att)}
+  nav.menu .ic-btn{padding:12px 0;width:100%;justify-content:flex-start;gap:14px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#ffffff}
   nav.menu .ic-btn .cloche-pt{top:8px;left:14px;right:auto}
   .ic-btn .ll-mob{display:inline}
   nav.menu a.lien-langue{opacity:1}
@@ -277,6 +277,13 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
 .credit a:hover{color:var(--pa);border-color:var(--filet-f)}
 .chargement{text-align:center;color:var(--parchemin-att);font-style:italic;padding:80px 0}
 </style>
+<meta property="og:image" content="https://lumenveritatis.net/icones/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icones/lumen-180.png">
+<meta name="theme-color" content="#0a0a0a">
 </head>
 <body>
   <header>
@@ -786,6 +793,12 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
     var v1 = m[3] ? parseInt(m[3], 10) : 0;
     var v2 = m[4] ? parseInt(m[4], 10) : v1;
     if (ch && inf.nch === 1 && !v1) { v1 = ch; v2 = ch; ch = 1; }
+    if (ch && location.pathname.indexOf('/en/') === 0 && window.LV_VERSIF && window.LV_VERSIF.douay) {
+      var cv1 = window.LV_VERSIF.douay(inf.nom, ch, v1 || 1);
+      var cv2 = v2 ? window.LV_VERSIF.douay(inf.nom, ch, v2) : cv1;
+      ch = cv1.ch;
+      if (v1) { v1 = cv1.v; v2 = cv2.v; }
+    }
     if (ch && ch > inf.nch) return null;
     if (v2 < v1) { var t2 = v1; v1 = v2; v2 = t2; }
     return { slug: slug, ch: ch, v1: v1, v2: v2 };
