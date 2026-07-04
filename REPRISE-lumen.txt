@@ -698,6 +698,56 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   le cache d'un article force une régénération avec les voix du
   moment. Note de la modale reformulée en conséquence (plus de mention
   de l'appui long comme seul accès).
+• SYNTHÈSE VOCALE — REFONTE DE LA MODALE + VERSIONS DU CACHE
+  (2026-07-04, retours d'Emmanuel après déploiement). (1) « Charger mes
+  voix » disait « clé invalide » à tort : une clé RESTREINTE au
+  Text-to-Speech (conseillée) n'a pas la permission de lister les voix
+  du compte (GET /v1/voices → 401/403) alors qu'elle génère très bien.
+  Réponse : liste de 11 voix « premade » INTÉGRÉE au select (George
+  défaut, Daniel, Brian, Bill, Callum, Charlie, Charlotte, Alice,
+  Sarah, Matilda, Lily — IDs publics communs à tous les comptes,
+  aucune permission requise) ; « Charger les voix de mon compte »
+  reste pour les clés complètes, avec message explicite si la
+  permission manque. (2) Appui long / clic droit SUPPRIMÉS (le bouton
+  réglages est l'accès unique) ; ttsErreurMsg 401/403 pointe vers le
+  bouton réglages. (3) Cache par VERSIONS : à chaque génération,
+  session11 écrit une méta m:{artId}:{sig} = {v,vn,m,r,n,t} ; la
+  modale liste les versions de l'article (voix · qualité · morceaux ·
+  références lues) avec Écouter (rejoue depuis le cache, zéro fetch,
+  via le rappel opts.jouer → jouerVersion qui lance session11 avec la
+  config de la version) et Supprimer (purge a:{artId}:{sig}:* +
+  la méta, sans toucher les autres versions/articles) ; état global
+  (« N morceaux, dont M pour cet article ») + « Vider tout ».
+  (4) Modale REFONDUE sur le canon des modales du site (auth-panel /
+  .modal du Mémoriseur) : voile rgba(4,4,4,.9), boîte fond #000 bordure
+  rgba(231,224,207,.14) padding 36/32, titres Cormorant, labels
+  uppercase or #efe6cf, champs #161616 bordure crème, bouton principal
+  DORÉ texte noir uppercase (canon .m-ok), secondaire ghost, filet de
+  séparation avant la section cache. ttsModale(opts) prend
+  {apres, jouer}.
+• AUDIT DE PROPRETÉ DU CODE (2026-07-04, demandé par Emmanuel).
+  Vérifié sain : syntaxe des 5 JS sources et 6 JS générés ; 7 JSON de
+  content/ valides ; build 246 pages sans erreur ; aucun doublon d'ID
+  par page générée ; zéro console.log dans le code client ; zéro reste
+  de l'appui long ; zéro lien interne cassé sur tout le site généré ;
+  zéro remplacement EN raté dans la génération de en/bible.html ;
+  aucune collision de classes CSS entre le module TTS et le CSS
+  global ; redéfinitions body/html toutes justifiées (media 720,
+  print) ; balisage HTML équilibré ; lint no-undef/no-redeclare/
+  no-dupe-keys/no-unreachable : 4 signalements, tous faux positifs
+  (PRE et renderCats sont des globales de memoriser.html, protégées
+  par typeof avant usage). UN défaut corrigé dans build-bi.js : le
+  bloc de copie finale recopiait les icônes et loggait à chaque
+  itération de la boucle des manifests, et couplait la copie de
+  memoriser-sw.js à l'existence de bible-panneau.js — désormais :
+  copies décorrélées avec garde fs.existsSync (y compris sur le
+  dossier icones/), icônes copiées une seule fois, log unique.
+  Bancs de non-régression relancés : test_tts (12 parcours),
+  test_lecture3, test_ref (FR+EN), test_barre — le cas 6 de
+  test_barre était PÉRIMÉ (liste de thèmes en dur ignorant ecriture,
+  sacrements, apologetique et citant un th:bible inexistant) :
+  corrigé en construction dynamique depuis LV_INDEX ; tout est vert
+  (0/0, bouton caché).
 • AUDIT ANIMATIONS (2026-07-04, tour demandé par Emmanuel). Inventaire :
   site = apparait .6s ease (entrée .vue) + cascades bibliothèque
   (apparaitDom/Ferme, verrouillées) ; bible = rise .4/.6/.7s ease ;

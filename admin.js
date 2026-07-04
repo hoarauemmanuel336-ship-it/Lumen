@@ -379,6 +379,22 @@
      réécoute gratuitement tant que le texte, la voix et le modèle n'ont
      pas changé. */
   var TTS_DEF = { mode: '', key: '', voice: 'JBFqnCBsd6RMkjVDRZzb', model: 'eleven_flash_v2_5', refs: false };
+  /* voix « premade » d'ElevenLabs, communes à tous les comptes : le choix
+     fonctionne même avec une clé restreinte au Text-to-Speech (qui n'a pas
+     la permission de lister les voix du compte) */
+  var TTS_VOIX = [
+    ['JBFqnCBsd6RMkjVDRZzb', 'George'], ['onwK4e9ZLuTAKqWW03F9', 'Daniel'],
+    ['nPczCjzI2devNBz1zQrb', 'Brian'], ['pqHfZKP75CvOlQylNhV4', 'Bill'],
+    ['N2lVS1w4EtoT3dr4eOWO', 'Callum'], ['IKne3meq5aSn9XLyUdCD', 'Charlie'],
+    ['XB0fDUnXU5powFXDhCwa', 'Charlotte'], ['Xb7hH8MSUJpSbSDYk0k2', 'Alice'],
+    ['EXAVITQu4vr4xnSDxMaL', 'Sarah'], ['XrExE9yKIg1WjnnlVkGX', 'Matilda'],
+    ['pFZP5JQG7iQjIQuC4Bku', 'Lily']
+  ];
+  function ttsNomVoix(id, prefere) {
+    if (prefere) return prefere;
+    for (var i = 0; i < TTS_VOIX.length; i++) if (TTS_VOIX[i][0] === id) return TTS_VOIX[i][1];
+    return id;
+  }
   var ttsCfg = null;
   function ttsLire() {
     if (ttsCfg) return ttsCfg;
@@ -484,54 +500,64 @@
     t._tm = setTimeout(function () { t.classList.remove('vu'); }, 4200);
   }
   function ttsErreurMsg(code) {
-    if (code === 401) return T('Clé ElevenLabs invalide. Appui long sur le bouton d\u2019écoute pour corriger.', 'Invalid ElevenLabs key. Long-press the listen button to fix it.');
+    if (code === 401 || code === 403) return T('Clé ElevenLabs invalide. Ouvrez les réglages de la voix (le bouton à côté du bouton d\u2019écoute).', 'Invalid ElevenLabs key. Open the voice settings (the button next to the listen button).');
     if (code === 402) return T('Crédits ElevenLabs épuisés pour ce mois.', 'ElevenLabs credits exhausted for this month.');
     if (code === 429) return T('Trop de demandes à la fois. Réessayez dans un instant.', 'Too many requests. Try again in a moment.');
     return T('La synthèse vocale a échoué.', 'Speech synthesis failed.');
   }
   function ttsStyles() {
     if (document.getElementById('tts-css')) return;
-    var s = document.createElement('style'); s.id = 'tts-css';
-    s.textContent = '.tts-voile{position:fixed;inset:0;background:rgba(0,0,0,.74);z-index:220;display:flex;align-items:center;justify-content:center;padding:20px}'
-      + '.tts-boite{background:#0b0b0b;border:1px solid rgba(255,255,255,.14);max-width:430px;width:100%;padding:26px 28px;position:relative;max-height:86vh;overflow:auto}'
-      + '.tts-x{position:absolute;top:10px;right:14px;background:none;border:none;color:rgba(255,255,255,.5);font-size:18px;cursor:pointer;padding:4px}'
+    var st = document.createElement('style'); st.id = 'tts-css';
+    st.textContent = '.tts-voile{position:fixed;inset:0;background:rgba(4,4,4,.9);z-index:220;display:flex;align-items:center;justify-content:center;padding:20px}'
+      + '.tts-boite{background:#000;border:1px solid rgba(231,224,207,.14);max-width:470px;width:100%;padding:36px 32px;position:relative;max-height:88vh;overflow:auto;box-sizing:border-box}'
+      + '.tts-x{position:absolute;top:12px;right:14px;background:none;border:none;color:rgba(255,255,255,.5);font-size:20px;cursor:pointer;padding:4px 8px;transition:color .3s}'
       + '.tts-x:hover{color:#fff}'
-      + '.tts-t{font-family:"Cormorant Garamond",serif;font-size:22px;color:var(--parchemin,#e8e2d5);margin:0 0 6px}'
-      + '.tts-p{font-size:13px;line-height:1.55;color:rgba(255,255,255,.6);margin:0 0 16px}'
-      + '.tts-l{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--or,#c9a469);margin:16px 0 6px}'
-      + '.tts-in{width:100%;box-sizing:border-box;background:#000;border:1px solid rgba(255,255,255,.16);color:var(--parchemin,#e8e2d5);padding:9px 11px;font-size:13.5px;font-family:inherit}'
-      + '.tts-in:focus{outline:none;border-color:var(--or,#c9a469)}'
-      + 'select.tts-in{appearance:none;-webkit-appearance:none}'
-      + '.tts-row{display:flex;gap:10px;align-items:center}'
-      + '.tts-chk{display:flex;gap:9px;align-items:center;margin-top:16px;font-size:13.5px;color:rgba(255,255,255,.75);cursor:pointer}'
-      + '.tts-chk input{accent-color:var(--or,#c9a469)}'
-      + '.tts-btn{background:none;border:1px solid var(--or,#c9a469);color:var(--or,#c9a469);padding:10px 16px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s}'
-      + '.tts-btn:hover{background:var(--or,#c9a469);color:#000}'
-      + '.tts-btn2{background:none;border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.65);padding:10px 16px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .25s,color .25s}'
-      + '.tts-btn2:hover{border-color:rgba(255,255,255,.5);color:#fff}'
-      + '.tts-mini{background:none;border:none;color:rgba(255,255,255,.45);font-size:12px;cursor:pointer;padding:0;text-decoration:underline}'
-      + '.tts-mini:hover{color:#fff}'
-      + '.tts-note{font-size:11.5px;line-height:1.5;color:rgba(255,255,255,.4);margin-top:18px}'
-      + '.tts-acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}'
-      + '.tts-a{color:var(--or,#c9a469);text-decoration:none}.tts-a:hover{text-decoration:underline}'
-      + '.tts-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);background:#000;border:1px solid rgba(255,255,255,.2);color:var(--parchemin,#e8e2d5);padding:11px 18px;font-size:13px;z-index:240;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;max-width:86vw;text-align:center}'
+      + '.tts-t{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:24px;color:#fff;margin:0 0 8px}'
+      + '.tts-p{font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.55);margin:0 0 6px}'
+      + '.tts-l{display:block;font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#efe6cf;margin:22px 0 8px}'
+      + '.tts-in{width:100%;box-sizing:border-box;background:#161616;border:1px solid rgba(231,224,207,.28);color:#fff;padding:10px 13px;font-size:15px;font-family:inherit;border-radius:0;transition:border-color .3s}'
+      + '.tts-in:focus{outline:none;border-color:#efe6cf}'
+      + 'select.tts-in{appearance:none;-webkit-appearance:none;cursor:pointer}'
+      + '.tts-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}'
+      + '.tts-chk{display:flex;gap:10px;align-items:center;margin-top:20px;font-size:14px;color:rgba(255,255,255,.75);cursor:pointer}'
+      + '.tts-chk input{accent-color:#efe6cf}'
+      + '.tts-acts{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:26px}'
+      + '.tts-btn{font-family:"Cormorant Garamond",serif;font-size:14px;letter-spacing:.1em;text-transform:uppercase;background:#efe6cf;color:#000;border:none;padding:11px 22px;cursor:pointer;transition:background .3s}'
+      + '.tts-btn:hover{background:#f8f3e6}'
+      + '.tts-btn2{font-family:"Cormorant Garamond",serif;font-size:14px;letter-spacing:.08em;text-transform:uppercase;background:none;border:1px solid rgba(231,224,207,.28);color:rgba(255,255,255,.6);padding:10px 18px;cursor:pointer;transition:border-color .3s,color .3s}'
+      + '.tts-btn2:hover{border-color:#efe6cf;color:#f8f3e6}'
+      + '.tts-mini{background:none;border:none;font-family:"Cormorant Garamond",serif;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55);cursor:pointer;padding:0;transition:color .3s}'
+      + '.tts-mini:hover{color:#efe6cf}'
+      + '.tts-sep{height:1px;background:rgba(231,224,207,.14);margin:28px 0 0}'
+      + '.tts-etat{font-size:13px;color:rgba(255,255,255,.55);margin:8px 0 0}'
+      + '.tts-ver{display:flex;align-items:baseline;gap:14px;padding:12px 0;border-bottom:1px solid rgba(231,224,207,.10)}'
+      + '.tts-ver:last-child{border-bottom:none}'
+      + '.tts-ver-n{font-family:"Cormorant Garamond",serif;font-size:17px;color:#fff;white-space:nowrap}'
+      + '.tts-ver-m{flex:1;min-width:0;font-size:12.5px;color:rgba(255,255,255,.5)}'
+      + '.tts-ver-a{display:flex;gap:14px;flex-shrink:0}'
+      + '.tts-note{font-size:12px;line-height:1.55;color:rgba(255,255,255,.4);margin-top:22px}'
+      + '.tts-a{color:#efe6cf;text-decoration:none}.tts-a:hover{text-decoration:underline}'
+      + '.tts-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);background:#000;border:1px solid rgba(231,224,207,.28);color:#fff;padding:11px 18px;font-size:13.5px;z-index:240;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;max-width:86vw;text-align:center}'
       + '.tts-toast.vu{opacity:1;transform:translateX(-50%) translateY(0)}';
-    document.head.appendChild(s);
+    document.head.appendChild(st);
   }
-  function ttsModale(apres) {
+  function ttsModale(opts) {
+    opts = opts || {};
     ttsStyles();
     var c = ttsLire();
+    var artId = artEl ? artEl.getAttribute('data-article') : null;
     var voile = el('div', 'tts-voile');
     var b = el('div', 'tts-boite');
+    var optVoix = TTS_VOIX.map(function (v) { return '<option value="' + v[0] + '">' + v[1] + '</option>'; }).join('');
     b.innerHTML = '<button type="button" class="tts-x" aria-label="' + T('Fermer', 'Close') + '">\u2715</button>'
       + '<h3 class="tts-t">' + T('Écoute de l\u2019article', 'Listen to the article') + '</h3>'
-      + '<p class="tts-p">' + T('Deux voix possibles : la voix de votre navigateur, gratuite, ou une voix de qualité supérieure via ElevenLabs, générée en direct avec votre propre clé (chacun paie sa propre écoute ; compte gratuit disponible sur ', 'Two possible voices: your browser\u2019s built-in voice, free, or a higher-quality voice through ElevenLabs, generated live with your own key (each listener pays for his own listening; free tier available at ')
+      + '<p class="tts-p">' + T('Voix du navigateur, gratuite, ou voix ElevenLabs de qualité supérieure, générée en direct avec votre propre clé (compte gratuit sur ', 'Your browser\u2019s free voice, or a higher-quality ElevenLabs voice, generated live with your own key (free tier at ')
       + '<a class="tts-a" href="https://elevenlabs.io" target="_blank" rel="noopener">elevenlabs.io</a>).</p>'
       + '<label class="tts-l">' + T('Clé API ElevenLabs', 'ElevenLabs API key') + '</label>'
       + '<input type="password" class="tts-in" id="tts-key" autocomplete="off" placeholder="xi-\u2026" value="' + (c.key ? String(c.key).replace(/"/g, '&quot;') : '') + '">'
       + '<label class="tts-l">' + T('Voix', 'Voice') + '</label>'
-      + '<div class="tts-row"><select class="tts-in" id="tts-voice"><option value="' + TTS_DEF.voice + '">' + T('Voix par défaut (George)', 'Default voice (George)') + '</option></select>'
-      + '<button type="button" class="tts-mini" id="tts-lv" style="white-space:nowrap">' + T('Charger mes voix', 'Load my voices') + '</button></div>'
+      + '<select class="tts-in" id="tts-voice">' + optVoix + '</select>'
+      + '<div style="margin-top:8px"><button type="button" class="tts-mini" id="tts-lv">' + T('Charger les voix de mon compte', 'Load my account\u2019s voices') + '</button></div>'
       + '<label class="tts-l">' + T('Qualité', 'Quality') + '</label>'
       + '<select class="tts-in" id="tts-model">'
       + '<option value="eleven_flash_v2_5">' + T('Flash — recommandé (0,5 crédit / caractère)', 'Flash — recommended (0.5 credit / character)') + '</option>'
@@ -542,25 +568,81 @@
       + '<button type="button" class="tts-btn" id="tts-ok">' + T('Utiliser ElevenLabs', 'Use ElevenLabs') + '</button>'
       + '<button type="button" class="tts-btn2" id="tts-nav">' + T('Voix du navigateur', 'Browser voice') + '</button>'
       + '</div>'
+      + '<div class="tts-sep"></div>'
       + '<label class="tts-l">' + T('Cache audio', 'Audio cache') + '</label>'
-      + '<p class="tts-p" id="tts-etat-cache" style="margin-bottom:10px">\u2026</p>'
-      + '<div class="tts-row" style="gap:16px;flex-wrap:wrap">'
-      + (artEl ? '<button type="button" class="tts-mini" id="tts-vide-art">' + T('Vider le cache de cet article', 'Clear this article\u2019s cache') + '</button>' : '')
-      + '<button type="button" class="tts-mini" id="tts-vide">' + T('Vider tout le cache audio', 'Clear the whole audio cache') + '</button>'
-      + '</div>'
-      + '<p class="tts-note">' + T('Un article déjà écouté sur cet appareil se réécoute sans consommer de crédits ; vider son cache force une nouvelle génération (utile quand les voix s\u2019améliorent ou que l\u2019article a changé). Conseil : sur ElevenLabs, créez une clé limitée au Text-to-Speech, avec un plafond de crédits.', 'An article already listened to on this device replays without spending credits; clearing its cache forces a fresh generation (useful when voices improve or the article has changed). Tip: on ElevenLabs, create a key restricted to Text-to-Speech, with a credit cap.') + '</p>';
+      + '<p class="tts-etat" id="tts-etat-cache">\u2026</p>'
+      + (artId ? '<div id="tts-versions"></div>' : '')
+      + '<div style="margin-top:14px"><button type="button" class="tts-mini" id="tts-vide">' + T('Vider tout le cache audio', 'Clear the whole audio cache') + '</button></div>'
+      + '<p class="tts-note">' + T('Un article déjà écouté sur cet appareil se réécoute sans consommer de crédits ; supprimer une version force une nouvelle génération (utile quand les voix s\u2019améliorent ou que l\u2019article a changé). Conseil : sur ElevenLabs, créez une clé limitée au Text-to-Speech, avec un plafond de crédits.', 'An article already listened to on this device replays without spending credits; deleting a version forces a fresh generation (useful when voices improve or the article has changed). Tip: on ElevenLabs, create a key restricted to Text-to-Speech, with a credit cap.') + '</p>';
     voile.appendChild(b);
     document.body.appendChild(voile);
     var $ = function (id) { return b.querySelector('#' + id); };
     $('tts-model').value = c.model || TTS_DEF.model;
     $('tts-refs').checked = !!c.refs;
-    if (c.voice && c.voice !== TTS_DEF.voice) {
-      var o = document.createElement('option'); o.value = c.voice; o.textContent = c.voiceName || c.voice;
-      $('tts-voice').appendChild(o); $('tts-voice').value = c.voice;
+    var sel = $('tts-voice');
+    if (c.voice) {
+      sel.value = c.voice;
+      if (sel.value !== c.voice) { /* voix hors liste (compte personnel) */
+        var o = document.createElement('option'); o.value = c.voice; o.textContent = ttsNomVoix(c.voice, c.voiceName);
+        sel.appendChild(o); sel.value = c.voice;
+      }
     }
     function fermer() { voile.remove(); }
     voile.addEventListener('click', function (e) { if (e.target === voile) fermer(); });
     b.querySelector('.tts-x').addEventListener('click', fermer);
+    /* ── état + versions en cache ── */
+    var MODNOM = { eleven_flash_v2_5: T('Flash', 'Flash'), eleven_multilingual_v2: T('Qualité maximale', 'Maximum quality') };
+    function majCache() {
+      ttsCacheKeys().then(function (ks) {
+        var e = $('tts-etat-cache'); if (!e) return;
+        var tot = 0, art = 0, metas = [];
+        ks.forEach(function (k) {
+          k = String(k);
+          if (k.indexOf('a:') === 0) { tot++; if (artId && k.indexOf('a:' + artId + ':') === 0) art++; }
+          if (artId && k.indexOf('m:' + artId + ':') === 0) metas.push(k);
+        });
+        e.textContent = tot
+          ? (T(tot + ' morceau' + (tot > 1 ? 'x' : '') + ' en cache au total', tot + ' chunk' + (tot > 1 ? 's' : '') + ' cached in total')
+            + (artId ? T(', dont ' + art + ' pour cet article.', ', of which ' + art + ' for this article.') : '.'))
+          : T('Aucun audio en cache sur cet appareil.', 'No audio cached on this device.');
+        var host = $('tts-versions'); if (!host) return;
+        if (!metas.length) { host.innerHTML = ''; return; }
+        Promise.all(metas.map(function (k) { return ttsCacheGet(k).then(function (m) { return { k: k, m: m }; }); })).then(function (rs) {
+          host.innerHTML = rs.filter(function (r) { return r.m; }).map(function (r) {
+            var sig = String(r.k).split(':')[2] || '';
+            var m = r.m;
+            return '<div class="tts-ver">'
+              + '<span class="tts-ver-n">' + ttsNomVoix(m.v, m.vn) + '</span>'
+              + '<span class="tts-ver-m">' + (MODNOM[m.m] || m.m) + ' \u00B7 ' + m.n + T(' morceau' + (m.n > 1 ? 'x' : ''), ' chunk' + (m.n > 1 ? 's' : '')) + (m.r ? T(' \u00B7 références lues', ' \u00B7 references read') : '') + '</span>'
+              + '<span class="tts-ver-a">'
+              + '<button type="button" class="tts-mini" data-tv-play="' + sig + '">' + T('Écouter', 'Play') + '</button>'
+              + '<button type="button" class="tts-mini" data-tv-del="' + sig + '">' + T('Supprimer', 'Delete') + '</button>'
+              + '</span></div>';
+          }).join('');
+        });
+      });
+    }
+    majCache();
+    if ($('tts-versions')) $('tts-versions').addEventListener('click', function (e) {
+      var pl = e.target.closest ? e.target.closest('[data-tv-play]') : null;
+      var dl = e.target.closest ? e.target.closest('[data-tv-del]') : null;
+      var sig = pl ? pl.getAttribute('data-tv-play') : (dl ? dl.getAttribute('data-tv-del') : null);
+      if (!sig) return;
+      ttsCacheGet('m:' + artId + ':' + sig).then(function (m) {
+        if (!m) return;
+        if (pl) { fermer(); if (opts.jouer) opts.jouer(m); return; }
+        ttsCacheDelPrefix('a:' + artId + ':' + sig + ':').then(function (n) {
+          return ttsCacheDelPrefix('m:' + artId + ':' + sig).then(function () { return n; });
+        }).then(function (n) {
+          ttsToast(T('Version supprimée (' + n + ' morceau' + (n > 1 ? 'x' : '') + ').', 'Version deleted (' + n + ' chunk' + (n > 1 ? 's' : '') + ').'));
+          majCache();
+        });
+      });
+    });
+    $('tts-vide').addEventListener('click', function () {
+      ttsCacheClear().then(function () { ttsToast(T('Cache audio vidé.', 'Audio cache cleared.')); majCache(); });
+    });
+    /* ── voix du compte (nécessite une clé avec la permission Voices) ── */
     $('tts-lv').addEventListener('click', function () {
       var k = $('tts-key').value.trim();
       if (!k) { ttsToast(T('Saisissez d\u2019abord votre clé.', 'Enter your key first.')); return; }
@@ -568,48 +650,29 @@
       fetch('https://api.elevenlabs.io/v1/voices', { headers: { 'xi-api-key': k } })
         .then(function (r) { if (!r.ok) { var e = new Error('http'); e.code = r.status; throw e; } return r.json(); })
         .then(function (j) {
-          var sel = $('tts-voice'), cur = sel.value;
-          sel.innerHTML = '<option value="' + TTS_DEF.voice + '">' + T('Voix par défaut (George)', 'Default voice (George)') + '</option>';
+          var cur = sel.value;
+          sel.innerHTML = optVoix;
           (j.voices || []).forEach(function (v) {
             var o = document.createElement('option'); o.value = v.voice_id; o.textContent = v.name; sel.appendChild(o);
           });
           sel.value = cur; if (!sel.value) sel.value = TTS_DEF.voice;
-          $('tts-lv').textContent = '\u2713';
+          $('tts-lv').textContent = '\u2713 ' + T('Voix chargées', 'Voices loaded');
         })
-        .catch(function (e) { $('tts-lv').textContent = T('Charger mes voix', 'Load my voices'); ttsToast(ttsErreurMsg(e && e.code)); });
-    });
-    var artId = artEl ? artEl.getAttribute('data-article') : null;
-    function majEtatCache() {
-      ttsCacheKeys().then(function (ks) {
-        var e = $('tts-etat-cache'); if (!e) return;
-        var tot = ks.length, art = 0;
-        if (artId) ks.forEach(function (k) { if (String(k).indexOf('a:' + artId + ':') === 0) art++; });
-        e.textContent = tot
-          ? (T(tot + ' morceau' + (tot > 1 ? 'x' : '') + ' en cache au total', tot + ' chunk' + (tot > 1 ? 's' : '') + ' cached in total')
-            + (artId ? T(', dont ' + art + ' pour cet article.', ', of which ' + art + ' for this article.') : '.'))
-          : T('Aucun audio en cache sur cet appareil.', 'No audio cached on this device.');
-      });
-    }
-    majEtatCache();
-    if ($('tts-vide-art')) $('tts-vide-art').addEventListener('click', function () {
-      ttsCacheDelPrefix('a:' + artId + ':').then(function (n) {
-        ttsToast(n ? T('Cache de cet article vidé (' + n + ' morceau' + (n > 1 ? 'x' : '') + ').', 'This article\u2019s cache cleared (' + n + ' chunk' + (n > 1 ? 's' : '') + ').') : T('Aucun audio en cache pour cet article.', 'No cached audio for this article.'));
-        majEtatCache();
-      });
-    });
-    $('tts-vide').addEventListener('click', function () {
-      ttsCacheClear().then(function () { ttsToast(T('Cache audio vidé.', 'Audio cache cleared.')); majEtatCache(); });
+        .catch(function (e) {
+          $('tts-lv').textContent = T('Charger les voix de mon compte', 'Load my account\u2019s voices');
+          if (e && (e.code === 401 || e.code === 403)) ttsToast(T('Votre clé ne permet pas de lister les voix du compte (permission absente sur une clé restreinte). Les voix proposées dans la liste fonctionnent, elles.', 'Your key cannot list the account\u2019s voices (permission missing on a restricted key). The voices offered in the list still work.'));
+          else ttsToast(ttsErreurMsg(e && e.code));
+        });
     });
     $('tts-ok').addEventListener('click', function () {
       var k = $('tts-key').value.trim();
       if (!k) { ttsToast(T('Saisissez votre clé ElevenLabs.', 'Enter your ElevenLabs key.')); return; }
-      var sel = $('tts-voice');
       ttsSauver({ mode: '11', key: k, voice: sel.value, voiceName: sel.options[sel.selectedIndex] ? sel.options[sel.selectedIndex].textContent : '', model: $('tts-model').value, refs: $('tts-refs').checked });
-      fermer(); if (apres) apres();
+      fermer(); if (opts.apres) opts.apres();
     });
     $('tts-nav').addEventListener('click', function () {
       ttsSauver({ mode: 'nav', refs: $('tts-refs').checked });
-      fermer(); if (apres) apres();
+      fermer(); if (opts.apres) opts.apres();
     });
   }
   function outilsArticle() {
@@ -673,6 +736,7 @@
       if (!groupes.length) { uiRepos(); return null; }
       var artId = slug || location.pathname;
       var sig = ttsHash(groupes.join('|') + '|' + cfg.voice + '|' + cfg.model);
+      ttsCacheSet('m:' + artId + ':' + sig, { v: cfg.voice, vn: ttsNomVoix(cfg.voice, cfg.voiceName), m: cfg.model, r: !!cfg.refs, n: groupes.length, t: Date.now() });
       var audio = ttsAudio();
       var stop = false, tampons = {};
       var url = 'https://api.elevenlabs.io/v1/text-to-speech/' + encodeURIComponent(cfg.voice) + '?output_format=mp3_44100_128';
@@ -751,17 +815,22 @@
       lireSuivant();
       return s;
     }
+    function jouerVersion(m) {
+      if (session) session.arreter();
+      var c = Object.assign({}, ttsLire(), { voice: m.v, voiceName: m.vn, model: m.m, refs: !!m.r });
+      if (!c.key) { ttsModale({ jouer: jouerVersion }); return; }
+      try { var a = ttsAudio(); a.src = TTS_SILENCE; a.play().catch(function () {}); } catch (e) {}
+      session = session11(c);
+    }
     function lancer() {
       ttsDistant().then(function (cfg) {
         if (session) return;
         if (cfg.mode === '11' && cfg.key) { session = session11(cfg); }
         else if (cfg.mode === 'nav') { session = sessionNav(cfg); }
-        else { ttsModale(function () { be.click(); }); }
+        else { ttsModale({ apres: function () { be.click(); }, jouer: jouerVersion }); }
       });
     }
-    var longTm = null, longFait = false;
     be.addEventListener('click', function () {
-      if (longFait) { longFait = false; return; }
       if (session) {
         if (session.enPause) session.reprendre(); else session.pause();
         return;
@@ -770,27 +839,12 @@
       try { var a = ttsAudio(); a.src = TTS_SILENCE; a.play().catch(function () {}); } catch (e) {}
       lancer();
     });
-    be.addEventListener('contextmenu', function (e) {
-      e.preventDefault();
-      if (session) session.arreter();
-      ttsModale();
-    });
-    be.addEventListener('touchstart', function () {
-      longTm = setTimeout(function () {
-        longFait = true;
-        if (session) session.arreter();
-        ttsModale();
-      }, 600);
-    }, { passive: true });
-    ['touchend', 'touchmove', 'touchcancel'].forEach(function (ev) {
-      be.addEventListener(ev, function () { if (longTm) { clearTimeout(longTm); longTm = null; } }, { passive: true });
-    });
     bx.addEventListener('click', function () { if (session) session.arreter(); });
     var bg = el('button', 'art-btn'); bg.type = 'button'; bg.title = T('R\u00E9glages de la voix', 'Voice settings');
     bg.innerHTML = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h8M18.5 7H20M4 12h2.5M12.5 12H20M4 17h8M18.5 17H20" stroke-linecap="round"/><circle cx="15.5" cy="7" r="2.1"/><circle cx="9.5" cy="12" r="2.1"/><circle cx="15.5" cy="17" r="2.1"/></svg>';
     bg.addEventListener('click', function () {
       if (session) session.arreter();
-      ttsModale();
+      ttsModale({ jouer: jouerVersion });
     });
     function arretLecture() { if (session) session.arreter(); }
     window.addEventListener('pagehide', arretLecture);

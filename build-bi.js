@@ -1868,15 +1868,15 @@ if (fs.existsSync('bible.html')) {
   if (fs.existsSync('bible-panneau.js')) {
     fs.copyFileSync('bible-panneau.js', `${OUT}/bible-panneau.js`);
     console.log('Copié : bible-panneau.js');
-    fs.copyFileSync('memoriser-sw.js', `${OUT}/memoriser-sw.js`);
-    fs.copyFileSync('memoriser-manifest.webmanifest', `${OUT}/memoriser-manifest.webmanifest`);
   }
-  for (const mf of ['manifest.webmanifest', 'manifest-en.webmanifest']) {
-    if (fs.existsSync(mf)) fs.copyFileSync(mf, `${OUT}/${mf}`);
+  for (const f of ['memoriser-sw.js', 'memoriser-manifest.webmanifest', 'manifest.webmanifest', 'manifest-en.webmanifest']) {
+    if (fs.existsSync(f)) fs.copyFileSync(f, `${OUT}/${f}`);
+  }
+  if (fs.existsSync('icones')) {
     fs.mkdirSync(`${OUT}/icones`, { recursive: true });
     for (const ic of fs.readdirSync('icones')) fs.copyFileSync(`icones/${ic}`, `${OUT}/icones/${ic}`);
-    console.log('Copié : memoriser-sw.js + manifest + icônes');
   }
+  console.log('Copié : memoriser-sw.js + manifests + icônes');
   // Chaque Bible est UN fichier source que le build redécoupe en un fichier
   // par livre + un index : FR (Crampon) → /bible-data/, EN (Douay-Rheims) → /bible-data-en/.
   const decoupeBible = (src, dossier) => {
