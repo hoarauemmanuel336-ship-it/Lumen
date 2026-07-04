@@ -682,6 +682,22 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   apparaît, le cache était bien la cause. RÈGLE DURABLE : tout bump
   futur de la coquille du Mémoriseur passe par l'incrément du nom de
   cache dans memoriser-sw.js.
+• SYNTHÈSE VOCALE — ACCÈS AUX RÉGLAGES + CACHE À DEUX NIVEAUX
+  (2026-07-04, signalé par Emmanuel : une fois configuré, le clic
+  rejoue directement et on ne peut plus revenir aux options).
+  (1) Nouveau bouton PERMANENT « Réglages de la voix » dans la barre
+  d'outils d'article (icône égaliseur trois curseurs), juste après
+  écouter/stop : il arrête la session en cours et ouvre la modale.
+  L'appui long / clic droit sur le bouton d'écoute reste actif en
+  complément. (2) Gestion du cache à deux niveaux dans la modale :
+  ligne d'état « N morceaux en cache au total, dont M pour cet
+  article » (ttsCacheKeys), bouton « Vider le cache de cet article »
+  (ttsCacheDelPrefix('a:'+artId+':'), présent seulement sur les pages
+  article) et bouton « Vider tout le cache audio » ; les toasts
+  confirment avec le compte, l'état se rafraîchit après purge. Vider
+  le cache d'un article force une régénération avec les voix du
+  moment. Note de la modale reformulée en conséquence (plus de mention
+  de l'appui long comme seul accès).
 • AUDIT ANIMATIONS (2026-07-04, tour demandé par Emmanuel). Inventaire :
   site = apparait .6s ease (entrée .vue) + cascades bibliothèque
   (apparaitDom/Ferme, verrouillées) ; bible = rise .4/.6/.7s ease ;

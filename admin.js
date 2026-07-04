@@ -439,6 +439,33 @@
       });
     }).catch(function () { return 0; });
   }
+  function ttsCacheKeys() {
+    return ttsIdb().then(function (d) {
+      return new Promise(function (res) {
+        var t = d.transaction('a').objectStore('a').getAllKeys();
+        t.onsuccess = function () { res(t.result || []); };
+        t.onerror = function () { res([]); };
+      });
+    }).catch(function () { return []; });
+  }
+  function ttsCacheDelPrefix(pfx) {
+    return ttsIdb().then(function (d) {
+      return new Promise(function (res) {
+        var st = d.transaction('a', 'readwrite').objectStore('a');
+        var rq = st.getAllKeys();
+        rq.onsuccess = function () {
+          var ks = (rq.result || []).filter(function (k) { return String(k).indexOf(pfx) === 0; });
+          if (!ks.length) { res(0); return; }
+          var n = ks.length;
+          ks.forEach(function (k) {
+            var dl = st.delete(k);
+            dl.onsuccess = dl.onerror = function () { if (--n === 0) res(ks.length); };
+          });
+        };
+        rq.onerror = function () { res(0); };
+      });
+    }).catch(function () { return 0; });
+  }
   var ttsAudioEl = null;
   function ttsAudio() {
     if (!ttsAudioEl) { ttsAudioEl = document.createElement('audio'); ttsAudioEl.preload = 'auto'; }
@@ -515,8 +542,13 @@
       + '<button type="button" class="tts-btn" id="tts-ok">' + T('Utiliser ElevenLabs', 'Use ElevenLabs') + '</button>'
       + '<button type="button" class="tts-btn2" id="tts-nav">' + T('Voix du navigateur', 'Browser voice') + '</button>'
       + '</div>'
-      + '<p class="tts-note">' + T('Conseil : sur ElevenLabs, créez une clé limitée au Text-to-Speech, avec un plafond de crédits. Un article déjà écouté sur cet appareil se réécoute sans consommer de crédits. Appui long sur le bouton d\u2019écoute pour rouvrir ces réglages. ', 'Tip: on ElevenLabs, create a key restricted to Text-to-Speech, with a credit cap. An article already listened to on this device replays without spending credits. Long-press the listen button to reopen these settings. ')
-      + '<button type="button" class="tts-mini" id="tts-vide">' + T('Vider le cache audio', 'Clear audio cache') + '</button></p>';
+      + '<label class="tts-l">' + T('Cache audio', 'Audio cache') + '</label>'
+      + '<p class="tts-p" id="tts-etat-cache" style="margin-bottom:10px">\u2026</p>'
+      + '<div class="tts-row" style="gap:16px;flex-wrap:wrap">'
+      + (artEl ? '<button type="button" class="tts-mini" id="tts-vide-art">' + T('Vider le cache de cet article', 'Clear this article\u2019s cache') + '</button>' : '')
+      + '<button type="button" class="tts-mini" id="tts-vide">' + T('Vider tout le cache audio', 'Clear the whole audio cache') + '</button>'
+      + '</div>'
+      + '<p class="tts-note">' + T('Un article déjà écouté sur cet appareil se réécoute sans consommer de crédits ; vider son cache force une nouvelle génération (utile quand les voix s\u2019améliorent ou que l\u2019article a changé). Conseil : sur ElevenLabs, créez une clé limitée au Text-to-Speech, avec un plafond de crédits.', 'An article already listened to on this device replays without spending credits; clearing its cache forces a fresh generation (useful when voices improve or the article has changed). Tip: on ElevenLabs, create a key restricted to Text-to-Speech, with a credit cap.') + '</p>';
     voile.appendChild(b);
     document.body.appendChild(voile);
     var $ = function (id) { return b.querySelector('#' + id); };
@@ -546,8 +578,27 @@
         })
         .catch(function (e) { $('tts-lv').textContent = T('Charger mes voix', 'Load my voices'); ttsToast(ttsErreurMsg(e && e.code)); });
     });
+    var artId = artEl ? artEl.getAttribute('data-article') : null;
+    function majEtatCache() {
+      ttsCacheKeys().then(function (ks) {
+        var e = $('tts-etat-cache'); if (!e) return;
+        var tot = ks.length, art = 0;
+        if (artId) ks.forEach(function (k) { if (String(k).indexOf('a:' + artId + ':') === 0) art++; });
+        e.textContent = tot
+          ? (T(tot + ' morceau' + (tot > 1 ? 'x' : '') + ' en cache au total', tot + ' chunk' + (tot > 1 ? 's' : '') + ' cached in total')
+            + (artId ? T(', dont ' + art + ' pour cet article.', ', of which ' + art + ' for this article.') : '.'))
+          : T('Aucun audio en cache sur cet appareil.', 'No audio cached on this device.');
+      });
+    }
+    majEtatCache();
+    if ($('tts-vide-art')) $('tts-vide-art').addEventListener('click', function () {
+      ttsCacheDelPrefix('a:' + artId + ':').then(function (n) {
+        ttsToast(n ? T('Cache de cet article vidé (' + n + ' morceau' + (n > 1 ? 'x' : '') + ').', 'This article\u2019s cache cleared (' + n + ' chunk' + (n > 1 ? 's' : '') + ').') : T('Aucun audio en cache pour cet article.', 'No cached audio for this article.'));
+        majEtatCache();
+      });
+    });
     $('tts-vide').addEventListener('click', function () {
-      ttsCacheClear().then(function () { ttsToast(T('Cache audio vidé.', 'Audio cache cleared.')); });
+      ttsCacheClear().then(function () { ttsToast(T('Cache audio vidé.', 'Audio cache cleared.')); majEtatCache(); });
     });
     $('tts-ok').addEventListener('click', function () {
       var k = $('tts-key').value.trim();
@@ -735,9 +786,15 @@
       be.addEventListener(ev, function () { if (longTm) { clearTimeout(longTm); longTm = null; } }, { passive: true });
     });
     bx.addEventListener('click', function () { if (session) session.arreter(); });
+    var bg = el('button', 'art-btn'); bg.type = 'button'; bg.title = T('R\u00E9glages de la voix', 'Voice settings');
+    bg.innerHTML = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h8M18.5 7H20M4 12h2.5M12.5 12H20M4 17h8M18.5 17H20" stroke-linecap="round"/><circle cx="15.5" cy="7" r="2.1"/><circle cx="9.5" cy="12" r="2.1"/><circle cx="15.5" cy="17" r="2.1"/></svg>';
+    bg.addEventListener('click', function () {
+      if (session) session.arreter();
+      ttsModale();
+    });
     function arretLecture() { if (session) session.arreter(); }
     window.addEventListener('pagehide', arretLecture);
-    bar.appendChild(be); bar.appendChild(bx); bar.appendChild(bc); bar.appendChild(bs); bar.appendChild(bp);
+    bar.appendChild(be); bar.appendChild(bx); bar.appendChild(bg); bar.appendChild(bc); bar.appendChild(bs); bar.appendChild(bp);
     var h1 = art.querySelector('h1');
     if (h1) h1.insertAdjacentElement('afterend', bar); else art.insertBefore(bar, art.firstChild);
     if (slug && IDX && IDX.themes) {
