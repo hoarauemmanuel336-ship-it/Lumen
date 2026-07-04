@@ -1,6 +1,9 @@
 /* Traductions anglaises : correspondances de slugs, thèmes, interface, articles. */
 
 const SLUGS = {
+  'l-amour':'love',
+  'le-desir-de-sentir-l-esprit':'the-desire-to-feel-the-spirit',
+  'la-nuit-noire-de-l-ame':'the-dark-night-of-the-soul',
   'discerner-les-mouvements-du-coeur':'discerning-the-movements-of-the-heart',
   'la-consolation-et-la-desolation':'consolation-and-desolation',
   'nahum-et-l-empire-assyrien':'nahum-and-the-assyrian-empire',
@@ -141,7 +144,7 @@ const UI_EN = {
   entry_one:'entry',
   entry_many:'entries',
   filter_all:'All',
-  search_placeholder:'Search Lumen\u2026', search_hint:'Type a word to browse the articles.', search_empty:'No results for',
+  search_placeholder:'Search Lumen\u2026', search_hint:'Type a word to browse the articles, or a reference (John 3:16) to open the Bible.', search_empty:'No results for',
   empty:'This domain has no entry yet. Content is added over time.',
   about_surtitle:'The project',
   about_title:'About Lumen',

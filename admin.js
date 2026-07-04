@@ -371,6 +371,196 @@
       corps.appendChild(a);
     });
   }
+  /* ═══ Synthèse vocale — ElevenLabs (clé personnelle de l'utilisateur) ═══
+     Chacun paie pour soi : la clé API saisie par l'utilisateur reste chez
+     lui (localStorage + son doc Firestore privé) ; le site n'expose aucune
+     clé. Repli : voix du navigateur (speechSynthesis), comportement
+     historique. Cache audio local (IndexedDB) : une écoute payée se
+     réécoute gratuitement tant que le texte, la voix et le modèle n'ont
+     pas changé. */
+  var TTS_DEF = { mode: '', key: '', voice: 'JBFqnCBsd6RMkjVDRZzb', model: 'eleven_flash_v2_5', refs: false };
+  var ttsCfg = null;
+  function ttsLire() {
+    if (ttsCfg) return ttsCfg;
+    var d = {};
+    try { d = JSON.parse(localStorage.getItem('lv_tts') || '{}'); } catch (e) {}
+    ttsCfg = Object.assign({}, TTS_DEF, d);
+    return ttsCfg;
+  }
+  function ttsSauver(part) {
+    ttsCfg = Object.assign(ttsLire(), part);
+    try { localStorage.setItem('lv_tts', JSON.stringify(ttsCfg)); } catch (e) {}
+    try { var u = auth.currentUser; if (u) db.doc('users/' + u.uid + '/meta/tts').set(ttsCfg, { merge: true }).catch(function () {}); } catch (e) {}
+  }
+  function ttsDistant() {
+    var u = auth.currentUser;
+    if (!u) return Promise.resolve(ttsLire());
+    return db.doc('users/' + u.uid + '/meta/tts').get().then(function (s) {
+      if (s.exists) {
+        ttsCfg = Object.assign({}, TTS_DEF, ttsLire(), s.data());
+        try { localStorage.setItem('lv_tts', JSON.stringify(ttsCfg)); } catch (e) {}
+      }
+      return ttsLire();
+    }).catch(function () { return ttsLire(); });
+  }
+  function ttsHash(s) { var h = 5381, i; for (i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return (h >>> 0).toString(36); }
+  function ttsIdb() {
+    return new Promise(function (res, rej) {
+      var r = indexedDB.open('lv-tts', 1);
+      r.onupgradeneeded = function () { r.result.createObjectStore('a'); };
+      r.onsuccess = function () { res(r.result); };
+      r.onerror = function () { rej(r.error); };
+    });
+  }
+  function ttsCacheGet(k) {
+    return ttsIdb().then(function (d) {
+      return new Promise(function (res) {
+        var t = d.transaction('a').objectStore('a').get(k);
+        t.onsuccess = function () { res(t.result || null); };
+        t.onerror = function () { res(null); };
+      });
+    }).catch(function () { return null; });
+  }
+  function ttsCacheSet(k, v) {
+    return ttsIdb().then(function (d) {
+      return new Promise(function (res) {
+        var t = d.transaction('a', 'readwrite').objectStore('a').put(v, k);
+        t.onsuccess = function () { res(1); };
+        t.onerror = function () { res(0); };
+      });
+    }).catch(function () { return 0; });
+  }
+  function ttsCacheClear() {
+    return ttsIdb().then(function (d) {
+      return new Promise(function (res) {
+        var t = d.transaction('a', 'readwrite').objectStore('a').clear();
+        t.onsuccess = function () { res(1); };
+        t.onerror = function () { res(0); };
+      });
+    }).catch(function () { return 0; });
+  }
+  var ttsAudioEl = null;
+  function ttsAudio() {
+    if (!ttsAudioEl) { ttsAudioEl = document.createElement('audio'); ttsAudioEl.preload = 'auto'; }
+    return ttsAudioEl;
+  }
+  /* wav silencieux : déverrouille la lecture sur iOS dans le geste utilisateur */
+  var TTS_SILENCE = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+  function ttsToast(msg) {
+    var t = document.getElementById('tts-toast');
+    if (!t) {
+      t = el('div', 'tts-toast'); t.id = 'tts-toast';
+      document.body.appendChild(t);
+    }
+    t.textContent = msg; t.classList.add('vu');
+    clearTimeout(t._tm);
+    t._tm = setTimeout(function () { t.classList.remove('vu'); }, 4200);
+  }
+  function ttsErreurMsg(code) {
+    if (code === 401) return T('Clé ElevenLabs invalide. Appui long sur le bouton d\u2019écoute pour corriger.', 'Invalid ElevenLabs key. Long-press the listen button to fix it.');
+    if (code === 402) return T('Crédits ElevenLabs épuisés pour ce mois.', 'ElevenLabs credits exhausted for this month.');
+    if (code === 429) return T('Trop de demandes à la fois. Réessayez dans un instant.', 'Too many requests. Try again in a moment.');
+    return T('La synthèse vocale a échoué.', 'Speech synthesis failed.');
+  }
+  function ttsStyles() {
+    if (document.getElementById('tts-css')) return;
+    var s = document.createElement('style'); s.id = 'tts-css';
+    s.textContent = '.tts-voile{position:fixed;inset:0;background:rgba(0,0,0,.74);z-index:220;display:flex;align-items:center;justify-content:center;padding:20px}'
+      + '.tts-boite{background:#0b0b0b;border:1px solid rgba(255,255,255,.14);max-width:430px;width:100%;padding:26px 28px;position:relative;max-height:86vh;overflow:auto}'
+      + '.tts-x{position:absolute;top:10px;right:14px;background:none;border:none;color:rgba(255,255,255,.5);font-size:18px;cursor:pointer;padding:4px}'
+      + '.tts-x:hover{color:#fff}'
+      + '.tts-t{font-family:"Cormorant Garamond",serif;font-size:22px;color:var(--parchemin,#e8e2d5);margin:0 0 6px}'
+      + '.tts-p{font-size:13px;line-height:1.55;color:rgba(255,255,255,.6);margin:0 0 16px}'
+      + '.tts-l{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--or,#c9a469);margin:16px 0 6px}'
+      + '.tts-in{width:100%;box-sizing:border-box;background:#000;border:1px solid rgba(255,255,255,.16);color:var(--parchemin,#e8e2d5);padding:9px 11px;font-size:13.5px;font-family:inherit}'
+      + '.tts-in:focus{outline:none;border-color:var(--or,#c9a469)}'
+      + 'select.tts-in{appearance:none;-webkit-appearance:none}'
+      + '.tts-row{display:flex;gap:10px;align-items:center}'
+      + '.tts-chk{display:flex;gap:9px;align-items:center;margin-top:16px;font-size:13.5px;color:rgba(255,255,255,.75);cursor:pointer}'
+      + '.tts-chk input{accent-color:var(--or,#c9a469)}'
+      + '.tts-btn{background:none;border:1px solid var(--or,#c9a469);color:var(--or,#c9a469);padding:10px 16px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s}'
+      + '.tts-btn:hover{background:var(--or,#c9a469);color:#000}'
+      + '.tts-btn2{background:none;border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.65);padding:10px 16px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .25s,color .25s}'
+      + '.tts-btn2:hover{border-color:rgba(255,255,255,.5);color:#fff}'
+      + '.tts-mini{background:none;border:none;color:rgba(255,255,255,.45);font-size:12px;cursor:pointer;padding:0;text-decoration:underline}'
+      + '.tts-mini:hover{color:#fff}'
+      + '.tts-note{font-size:11.5px;line-height:1.5;color:rgba(255,255,255,.4);margin-top:18px}'
+      + '.tts-acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}'
+      + '.tts-a{color:var(--or,#c9a469);text-decoration:none}.tts-a:hover{text-decoration:underline}'
+      + '.tts-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);background:#000;border:1px solid rgba(255,255,255,.2);color:var(--parchemin,#e8e2d5);padding:11px 18px;font-size:13px;z-index:240;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;max-width:86vw;text-align:center}'
+      + '.tts-toast.vu{opacity:1;transform:translateX(-50%) translateY(0)}';
+    document.head.appendChild(s);
+  }
+  function ttsModale(apres) {
+    ttsStyles();
+    var c = ttsLire();
+    var voile = el('div', 'tts-voile');
+    var b = el('div', 'tts-boite');
+    b.innerHTML = '<button type="button" class="tts-x" aria-label="' + T('Fermer', 'Close') + '">\u2715</button>'
+      + '<h3 class="tts-t">' + T('Écoute de l\u2019article', 'Listen to the article') + '</h3>'
+      + '<p class="tts-p">' + T('Deux voix possibles : la voix de votre navigateur, gratuite, ou une voix de qualité supérieure via ElevenLabs, générée en direct avec votre propre clé (chacun paie sa propre écoute ; compte gratuit disponible sur ', 'Two possible voices: your browser\u2019s built-in voice, free, or a higher-quality voice through ElevenLabs, generated live with your own key (each listener pays for his own listening; free tier available at ')
+      + '<a class="tts-a" href="https://elevenlabs.io" target="_blank" rel="noopener">elevenlabs.io</a>).</p>'
+      + '<label class="tts-l">' + T('Clé API ElevenLabs', 'ElevenLabs API key') + '</label>'
+      + '<input type="password" class="tts-in" id="tts-key" autocomplete="off" placeholder="xi-\u2026" value="' + (c.key ? String(c.key).replace(/"/g, '&quot;') : '') + '">'
+      + '<label class="tts-l">' + T('Voix', 'Voice') + '</label>'
+      + '<div class="tts-row"><select class="tts-in" id="tts-voice"><option value="' + TTS_DEF.voice + '">' + T('Voix par défaut (George)', 'Default voice (George)') + '</option></select>'
+      + '<button type="button" class="tts-mini" id="tts-lv" style="white-space:nowrap">' + T('Charger mes voix', 'Load my voices') + '</button></div>'
+      + '<label class="tts-l">' + T('Qualité', 'Quality') + '</label>'
+      + '<select class="tts-in" id="tts-model">'
+      + '<option value="eleven_flash_v2_5">' + T('Flash — recommandé (0,5 crédit / caractère)', 'Flash — recommended (0.5 credit / character)') + '</option>'
+      + '<option value="eleven_multilingual_v2">' + T('Qualité maximale (1 crédit / caractère)', 'Maximum quality (1 credit / character)') + '</option>'
+      + '</select>'
+      + '<label class="tts-chk"><input type="checkbox" id="tts-refs">' + T('Lire les références des versets (« Jean 3:16 »)', 'Read verse references aloud (\u201CJohn 3:16\u201D)') + '</label>'
+      + '<div class="tts-acts">'
+      + '<button type="button" class="tts-btn" id="tts-ok">' + T('Utiliser ElevenLabs', 'Use ElevenLabs') + '</button>'
+      + '<button type="button" class="tts-btn2" id="tts-nav">' + T('Voix du navigateur', 'Browser voice') + '</button>'
+      + '</div>'
+      + '<p class="tts-note">' + T('Conseil : sur ElevenLabs, créez une clé limitée au Text-to-Speech, avec un plafond de crédits. Un article déjà écouté sur cet appareil se réécoute sans consommer de crédits. Appui long sur le bouton d\u2019écoute pour rouvrir ces réglages. ', 'Tip: on ElevenLabs, create a key restricted to Text-to-Speech, with a credit cap. An article already listened to on this device replays without spending credits. Long-press the listen button to reopen these settings. ')
+      + '<button type="button" class="tts-mini" id="tts-vide">' + T('Vider le cache audio', 'Clear audio cache') + '</button></p>';
+    voile.appendChild(b);
+    document.body.appendChild(voile);
+    var $ = function (id) { return b.querySelector('#' + id); };
+    $('tts-model').value = c.model || TTS_DEF.model;
+    $('tts-refs').checked = !!c.refs;
+    if (c.voice && c.voice !== TTS_DEF.voice) {
+      var o = document.createElement('option'); o.value = c.voice; o.textContent = c.voiceName || c.voice;
+      $('tts-voice').appendChild(o); $('tts-voice').value = c.voice;
+    }
+    function fermer() { voile.remove(); }
+    voile.addEventListener('click', function (e) { if (e.target === voile) fermer(); });
+    b.querySelector('.tts-x').addEventListener('click', fermer);
+    $('tts-lv').addEventListener('click', function () {
+      var k = $('tts-key').value.trim();
+      if (!k) { ttsToast(T('Saisissez d\u2019abord votre clé.', 'Enter your key first.')); return; }
+      $('tts-lv').textContent = '\u2026';
+      fetch('https://api.elevenlabs.io/v1/voices', { headers: { 'xi-api-key': k } })
+        .then(function (r) { if (!r.ok) { var e = new Error('http'); e.code = r.status; throw e; } return r.json(); })
+        .then(function (j) {
+          var sel = $('tts-voice'), cur = sel.value;
+          sel.innerHTML = '<option value="' + TTS_DEF.voice + '">' + T('Voix par défaut (George)', 'Default voice (George)') + '</option>';
+          (j.voices || []).forEach(function (v) {
+            var o = document.createElement('option'); o.value = v.voice_id; o.textContent = v.name; sel.appendChild(o);
+          });
+          sel.value = cur; if (!sel.value) sel.value = TTS_DEF.voice;
+          $('tts-lv').textContent = '\u2713';
+        })
+        .catch(function (e) { $('tts-lv').textContent = T('Charger mes voix', 'Load my voices'); ttsToast(ttsErreurMsg(e && e.code)); });
+    });
+    $('tts-vide').addEventListener('click', function () {
+      ttsCacheClear().then(function () { ttsToast(T('Cache audio vidé.', 'Audio cache cleared.')); });
+    });
+    $('tts-ok').addEventListener('click', function () {
+      var k = $('tts-key').value.trim();
+      if (!k) { ttsToast(T('Saisissez votre clé ElevenLabs.', 'Enter your ElevenLabs key.')); return; }
+      var sel = $('tts-voice');
+      ttsSauver({ mode: '11', key: k, voice: sel.value, voiceName: sel.options[sel.selectedIndex] ? sel.options[sel.selectedIndex].textContent : '', model: $('tts-model').value, refs: $('tts-refs').checked });
+      fermer(); if (apres) apres();
+    });
+    $('tts-nav').addEventListener('click', function () {
+      ttsSauver({ mode: 'nav', refs: $('tts-refs').checked });
+      fermer(); if (apres) apres();
+    });
+  }
   function outilsArticle() {
     var art = document.querySelector('article.lecture'); if (!art || document.querySelector('.art-bar')) return;
     var slug = artEl ? artEl.getAttribute('data-article') : null;
@@ -395,9 +585,87 @@
     bp.addEventListener('click', function () { window.print(); });
     var svgHP = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9.5v5h3.5L12 18V6L7.5 9.5H4z" stroke-linejoin="round"/><path d="M15.5 9a4 4 0 0 1 0 6" stroke-linecap="round"/><path d="M18 6.8a7.5 7.5 0 0 1 0 10.4" stroke-linecap="round"/></svg>';
     var svgStop = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" stroke-linejoin="round"/></svg>';
+    var svgPause = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6v12M15 6v12" stroke-linecap="round"/></svg>';
+    var svgPlay = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8.5 5.8v12.4L18.5 12 8.5 5.8z" stroke-linejoin="round"/></svg>';
     var be = el('button', 'art-btn'); be.type = 'button'; be.title = T('\u00C9couter l\u2019article', 'Listen to the article'); be.innerHTML = svgHP;
-    var lectureEnCours = false;
-    function arretLecture() { lectureEnCours = false; try { speechSynthesis.cancel(); } catch (e) {} be.innerHTML = svgHP; be.classList.remove('ok'); }
+    var bx = el('button', 'art-btn'); bx.type = 'button'; bx.title = T('Arr\u00EAter la lecture', 'Stop reading'); bx.innerHTML = svgStop; bx.style.display = 'none';
+    var session = null; /* { pause(), reprendre(), arreter(), enPause } */
+    function uiRepos() { session = null; be.innerHTML = svgHP; be.classList.remove('ok'); bx.style.display = 'none'; }
+    function uiJoue() { be.innerHTML = svgPause; be.classList.add('ok'); bx.style.display = ''; }
+    function uiPause() { be.innerHTML = svgPlay; }
+    function texteBlocs(sansRefs) {
+      var out = [];
+      var h1c = art.querySelector('h1'); if (h1c) out.push((h1c.textContent || '').replace(/\s+/g, ' ').trim());
+      art.querySelectorAll('p,h2,h3,li,blockquote,figcaption').forEach(function (n) {
+        if (n.closest('.art-bar') || n.closest('.art-nav') || n.closest('.smr-mob') || n.closest('.smr-cote')) return;
+        var src = n;
+        if (sansRefs && n.querySelector('.ref')) {
+          src = n.cloneNode(true);
+          qsa('.ref', src).forEach(function (r) { r.remove(); });
+        }
+        var t = (src.textContent || '').replace(/\s+/g, ' ').trim();
+        if (t) out.push(t);
+      });
+      return out;
+    }
+    function grouper(blocs, max) {
+      var g = [], cur = '';
+      blocs.forEach(function (b) {
+        if (cur && (cur.length + b.length + 2) > max) { g.push(cur); cur = b; }
+        else cur = cur ? cur + '\n\n' + b : b;
+      });
+      if (cur) g.push(cur);
+      return g;
+    }
+    function session11(cfg) {
+      var groupes = grouper(texteBlocs(!cfg.refs), 1800);
+      if (!groupes.length) { uiRepos(); return null; }
+      var artId = slug || location.pathname;
+      var sig = ttsHash(groupes.join('|') + '|' + cfg.voice + '|' + cfg.model);
+      var audio = ttsAudio();
+      var stop = false, tampons = {};
+      var url = 'https://api.elevenlabs.io/v1/text-to-speech/' + encodeURIComponent(cfg.voice) + '?output_format=mp3_44100_128';
+      function morceau(i) {
+        if (tampons[i]) return tampons[i];
+        var cle = 'a:' + artId + ':' + sig + ':' + i;
+        tampons[i] = ttsCacheGet(cle).then(function (b) {
+          if (b) return b;
+          var corps = { text: groupes[i], model_id: cfg.model };
+          if (i > 0) corps.previous_text = groupes[i - 1].slice(-500);
+          if (i < groupes.length - 1) corps.next_text = groupes[i + 1].slice(0, 500);
+          return fetch(url, { method: 'POST', headers: { 'xi-api-key': cfg.key, 'Content-Type': 'application/json' }, body: JSON.stringify(corps) })
+            .then(function (r) { if (!r.ok) { var e = new Error('http'); e.code = r.status; throw e; } return r.blob(); })
+            .then(function (b2) { ttsCacheSet(cle, b2); return b2; });
+        });
+        return tampons[i];
+      }
+      function jouer(i) {
+        if (stop) return;
+        if (i >= groupes.length) { s.arreter(); return; }
+        morceau(i).then(function (b) {
+          if (stop) return;
+          if (audio.src && audio.src.indexOf('blob:') === 0) { try { URL.revokeObjectURL(audio.src); } catch (e) {} }
+          audio.src = URL.createObjectURL(b);
+          audio.onended = function () { jouer(i + 1); };
+          audio.onerror = function () { if (!stop) { ttsToast(ttsErreurMsg()); s.arreter(); } };
+          audio.play().catch(function () { if (!stop) { ttsToast(ttsErreurMsg()); s.arreter(); } });
+          if (i + 1 < groupes.length) morceau(i + 1); /* préchargement du suivant */
+        }).catch(function (e) { if (!stop) { ttsToast(ttsErreurMsg(e && e.code)); s.arreter(); } });
+      }
+      var s = {
+        enPause: false,
+        pause: function () { this.enPause = true; try { audio.pause(); } catch (e) {} uiPause(); },
+        reprendre: function () { this.enPause = false; try { audio.play(); } catch (e) {} uiJoue(); },
+        arreter: function () {
+          stop = true;
+          try { audio.pause(); audio.onended = null; audio.onerror = null; if (audio.src && audio.src.indexOf('blob:') === 0) URL.revokeObjectURL(audio.src); audio.removeAttribute('src'); } catch (e) {}
+          uiRepos();
+        }
+      };
+      uiJoue();
+      jouer(0);
+      return s;
+    }
     function decoupePhrases(t) {
       var out = [];
       (t.match(/[^.!?\u2026]+[.!?\u2026]*\s*/g) || [t]).forEach(function (ph) {
@@ -407,30 +675,69 @@
       });
       return out;
     }
-    be.addEventListener('click', function () {
-      if (!('speechSynthesis' in window)) return;
-      if (lectureEnCours) { arretLecture(); return; }
+    function sessionNav(cfg) {
+      if (!('speechSynthesis' in window)) { ttsToast(ttsErreurMsg()); uiRepos(); return null; }
       var morceaux = [];
-      var h1t = art.querySelector('h1'); if (h1t) morceaux = morceaux.concat(decoupePhrases(h1t.innerText));
-      art.querySelectorAll('p,h2,h3,li,blockquote,figcaption').forEach(function (n) {
-        if (n.closest('.art-bar') || n.closest('.art-nav')) return;
-        var t = (n.innerText || '').trim(); if (t) morceaux = morceaux.concat(decoupePhrases(t));
-      });
-      if (!morceaux.length) return;
-      lectureEnCours = true; be.innerHTML = svgStop; be.classList.add('ok');
+      texteBlocs(!cfg.refs).forEach(function (t) { morceaux = morceaux.concat(decoupePhrases(t)); });
+      if (!morceaux.length) { uiRepos(); return null; }
+      var fini = false;
       var voix = ((document.documentElement.lang || 'fr').indexOf('en') === 0) ? 'en-GB' : 'fr-FR';
       var i = 0;
       function lireSuivant() {
-        if (!lectureEnCours || i >= morceaux.length) { arretLecture(); return; }
+        if (fini || i >= morceaux.length) { s.arreter(); return; }
         var u = new SpeechSynthesisUtterance(morceaux[i++]); u.lang = voix; u.rate = .95;
-        u.onend = lireSuivant; u.onerror = arretLecture;
+        u.onend = lireSuivant; u.onerror = function () { s.arreter(); };
         speechSynthesis.speak(u);
       }
+      var s = {
+        enPause: false,
+        pause: function () { this.enPause = true; try { speechSynthesis.pause(); } catch (e) { this.arreter(); return; } uiPause(); },
+        reprendre: function () { this.enPause = false; try { speechSynthesis.resume(); } catch (e) {} uiJoue(); },
+        arreter: function () { fini = true; try { speechSynthesis.cancel(); } catch (e) {} uiRepos(); }
+      };
+      uiJoue();
       try { speechSynthesis.cancel(); } catch (e) {}
       lireSuivant();
+      return s;
+    }
+    function lancer() {
+      ttsDistant().then(function (cfg) {
+        if (session) return;
+        if (cfg.mode === '11' && cfg.key) { session = session11(cfg); }
+        else if (cfg.mode === 'nav') { session = sessionNav(cfg); }
+        else { ttsModale(function () { be.click(); }); }
+      });
+    }
+    var longTm = null, longFait = false;
+    be.addEventListener('click', function () {
+      if (longFait) { longFait = false; return; }
+      if (session) {
+        if (session.enPause) session.reprendre(); else session.pause();
+        return;
+      }
+      /* déverrouillage audio iOS dans le geste utilisateur */
+      try { var a = ttsAudio(); a.src = TTS_SILENCE; a.play().catch(function () {}); } catch (e) {}
+      lancer();
     });
+    be.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+      if (session) session.arreter();
+      ttsModale();
+    });
+    be.addEventListener('touchstart', function () {
+      longTm = setTimeout(function () {
+        longFait = true;
+        if (session) session.arreter();
+        ttsModale();
+      }, 600);
+    }, { passive: true });
+    ['touchend', 'touchmove', 'touchcancel'].forEach(function (ev) {
+      be.addEventListener(ev, function () { if (longTm) { clearTimeout(longTm); longTm = null; } }, { passive: true });
+    });
+    bx.addEventListener('click', function () { if (session) session.arreter(); });
+    function arretLecture() { if (session) session.arreter(); }
     window.addEventListener('pagehide', arretLecture);
-    bar.appendChild(be); bar.appendChild(bc); bar.appendChild(bs); bar.appendChild(bp);
+    bar.appendChild(be); bar.appendChild(bx); bar.appendChild(bc); bar.appendChild(bs); bar.appendChild(bp);
     var h1 = art.querySelector('h1');
     if (h1) h1.insertAdjacentElement('afterend', bar); else art.insertBefore(bar, art.firstChild);
     if (slug && IDX && IDX.themes) {

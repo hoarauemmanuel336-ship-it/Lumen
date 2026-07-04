@@ -58,7 +58,7 @@ nav.menu a.lien-langue:hover{opacity:1}
 .b-boite{max-width:760px;margin:0 auto;padding:8vh 24px 40px;height:100%;display:flex;flex-direction:column;box-sizing:border-box}
 .b-tete{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--filet-f);padding-bottom:18px;color:#fff}
 .b-titre{font-family:var(--display);font-size:22px;color:#fff;flex:1}
-.b-champ{flex:1;min-width:0;background:none;border:none;padding:2px;font-size:26px;font-family:var(--display);color:#fff;outline:none}
+.b-champ{flex:1;min-width:0;background:none;border:none;padding:0;font-size:30px;letter-spacing:.01em;font-family:var(--display);color:#fff;outline:none}
 .b-champ::placeholder{color:rgba(255,255,255,.35);font-style:italic}
 .b-fermer{cursor:pointer;color:rgba(255,255,255,.6);font-size:24px;line-height:1;flex:none;transition:color .3s;padding:2px 6px}
 .b-fermer:hover{color:#fff}
@@ -129,15 +129,15 @@ h1.titre{font-family:var(--display);font-weight:400;font-size:48px;line-height:1
 
 /* — Vue : livres — */
 .testament{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--or);text-align:center;margin:58px 0 8px}
-.groupe-nom{font-family:var(--display);font-style:italic;font-weight:400;font-size:25px;color:var(--pa);text-align:center;margin:40px 0 20px}
+.groupe-nom{font-family:var(--display);font-style:italic;font-weight:400;font-size:25px;color:#fff;text-align:center;margin:40px 0 20px}
 .livres-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:0 44px;max-width:920px;margin:0 auto}
 @media(max-width:900px){.livres-grille{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.livres-grille{grid-template-columns:1fr}}
 a.livre{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:11px 4px;border-bottom:1px solid rgba(231,224,207,.10);transition:border-color .35s,color .3s}
 a.livre .ln{font-size:19px;transition:color .3s}
 a.livre .lc{font-size:12.5px;color:var(--parchemin-att);letter-spacing:.06em;white-space:nowrap;transition:color .3s}
-a.livre:hover{border-color:var(--filet-fort)}
-a.livre:hover .ln{color:var(--or-pale)}
+a.livre:hover{border-color:var(--or)}
+a.livre:hover .ln{color:#fff}
 a.livre:hover .lc{color:var(--pa)}
 
 /* — Vue : chapitres — */
@@ -339,13 +339,13 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
   </footer>
   <div class="b-ov" id="brech-voile">
     <div class="b-boite">
-      <div class="b-tete"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><input class="b-champ" id="brech-champ" type="search" placeholder="Référence ou article…" autocomplete="off" spellcheck="false"><span class="b-fermer" id="brech-fermer" role="button" tabindex="0">✕</span></div>
+      <div class="b-tete"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><input class="b-champ" id="brech-champ" type="search" placeholder="Référence ou article…" autocomplete="off" spellcheck="false"><span class="b-fermer" id="brech-fermer" role="button" tabindex="0">✕</span></div>
       <div class="b-res" id="brech-res"></div>
     </div>
   </div>
   <div class="b-ov" id="bnouv-voile">
     <div class="b-boite">
-      <div class="b-tete"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><div class="b-titre">Nouveautés</div><span class="b-fermer" id="bnouv-fermer" role="button" tabindex="0">✕</span></div>
+      <div class="b-tete"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><div class="b-titre">Nouveautés</div><span class="b-fermer" id="bnouv-fermer" role="button" tabindex="0">✕</span></div>
       <div class="b-res" id="bnouv-liste"></div>
     </div>
   </div>

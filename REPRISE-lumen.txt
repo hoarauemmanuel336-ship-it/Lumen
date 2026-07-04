@@ -1,21 +1,23 @@
 ════════════════════════════════════════════════════════════════════
 FICHIER DE REPRISE — LUMEN VERITATIS
 À coller en début de nouveau chat, avec les fichiers du projet.
-Mis à jour : 27 juin 2026
+Mis à jour : 4 juillet 2026
 ════════════════════════════════════════════════════════════════════
 
 NATURE DE CE FICHIER. C'est un CONDENSÉ vivant, jamais une archive.
-Il garde : le contexte général, les préférences d'Emmanuel, la façon de
-fonctionner de l'assistant, les règles permanentes, l'état du site et le
-travail en cours. À chaque session, l'assistant le MET À JOUR en fusionnant
-et en modifiant (les règles nouvelles entrent dans la bonne section, les
-règles précisées remplacent l'ancienne version, le terminé sort du « en
-cours ») — il n'empile JAMAIS l'historique en fin de fichier. Il reste
-COURT et va à l'essentiel : son seul but est de reprendre correctement
-d'un chat à l'autre. Chaque session est FONDUE dans la bonne section ; si
-le fichier s'allonge, on le condense. Toute correction d'Emmanuel sur un
-texte ou un comportement est immédiatement traduite en règle et enregistrée
-ici. Le fichier est relivré à chaque livraison, dans le zip et seul.
+Il garde le DURABLE : le contexte général, les préférences d'Emmanuel, la
+façon de fonctionner de l'assistant, les règles permanentes, l'état du site.
+LE TRAVAIL EN COURS N'EST PAS CONSIGNÉ ICI (série d'articles en cours,
+chantiers ouverts, pistes en attente) : il est suivi par la mémoire de
+l'assistant, d'un chat à l'autre. À chaque session, l'assistant MET À JOUR
+ce fichier en fusionnant et en modifiant (les règles nouvelles entrent dans
+la bonne section, les règles précisées remplacent l'ancienne version) ; il
+n'empile JAMAIS l'historique en fin de fichier. Il reste COURT et va à
+l'essentiel : son seul but est de reprendre correctement d'un chat à l'autre.
+Chaque session est FONDUE dans la bonne section ; si le fichier s'allonge, on
+le condense. Toute correction d'Emmanuel sur un texte ou un comportement est
+immédiatement traduite en règle et enregistrée ici. Le fichier est relivré à
+chaque livraison, dans le zip et seul.
 
 ────────────────────────────────────────────────────────────────────
 1. LE PROJET ET LES RÔLES
@@ -39,7 +41,7 @@ SOURCE (dépôt GitHub hoarauemmanuel336-ship-it/Lumen, branche main) :
   (domaines+catégories+rangement), memoriser.json (catégories+versets de
   base), nouveautes.json (journal FR+EN), settings.json (accent #efe6cf).
 
-BUILD : node build-bi.js → dossier site/ (120 paires → 240 pages FR+EN +
+BUILD : node build-bi.js → dossier site/ (123 paires → 246 pages FR+EN +
 404 + sitemap + bible-data/ + bible-data-en/). Netlify (projet
 prismatic-fox-161266) publie site/ à chaque push GitHub. Le build lit
 AUSSI Firestore (lecture publique via curl REST) : articles créés en ligne
@@ -301,8 +303,13 @@ ne se rapièce pas.
   texte</a> ; le CSS du site stylise déjà .lecture a (or, soulignement).
   Cibler la bonne langue (/article/ en FR, /en/article/ en EN).
 • Forum/réseaux publics : aucune personne ni source nommée (théologiens,
-  papes, encycliques) ; références bibliques seules. Sur le site :
-  conciles + dates permis ; pas de CCC/papes/théologiens nommés.
+  papes, encycliques) ; références bibliques seules. Sur le site : nommer un
+  auteur, une école ou une source n'est PAS interdit, mais on évite de
+  créditer systématiquement (cela alourdit) — par défaut énoncer la chose
+  directement, sans caution d'auteur, et ne nommer que si c'est vraiment
+  utile. Éviter aussi les périphrases-crédit floues (« les anciens », « la
+  tradition mystique »...). Conciles + dates permis ; référence biblique
+  toujours permise.
 • Quand Emmanuel se trompe (terme, point doctrinal) : le corriger
   explicitement et corriger l'existant du site en conséquence. Quand il
   demande « pourquoi » : répondre par la seule raison, sans excuse.
@@ -390,17 +397,16 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   9:v -> 9:v+1), Zacharie 2 (1-4 -> 1:17+v, 5+ -> 2:v-4), Malachie 3:19+
   -> 4:v-18, Nombres 17 (<=15 -> 16:v+35, >=16 -> 17:v-15), Jean 6 (52+ ->
   +1), Osée 12 (1 -> 11:12, 2+ -> -1), Aggée 2 (+1), Nahum 2 (1 -> 1:15,
-  2+ -> -1). Toute nouvelle bible ajoutée plus tard = sa propre fonction
+  2+ -> -1), Deutéronome 29 (+1). Toute nouvelle bible ajoutée plus tard = sa propre fonction
   dans LV_VERSIF.
-  (3) TEXTES DES CITATIONS : FR = extraits exacts du Crampon (inchangé) ;
-  EN = TRADUCTION PROPRE de l'assistant, calée sur l'extrait FR (même
-  étendue, registre moderne sobre, jamais calquée sur le Douay). CHANTIER
-  DE RETRADUCTION en cours : inventaire réel 262 citations archaïques
-  (détecteur : thou/hath/doth/unto/-eth...) ; LOT 1 de 133 appliqué le
-  2026-07-04 (appariement positionnel slug+réf avec asserts) ; RESTE 129
-  citations dans 40 articles (reprendre le même procédé : extraire réf +
-  FR apparié, traduire le FR, appliquer, revérifier le compte et
-  l'appariement 1:1).
+  (3) TEXTES DES CITATIONS : FR ET EN = TRADUCTION PROPRE de l'assistant,
+  faite à partir du sens, sans se référer au Crampon ni au Douay (ni pour
+  les copier, ni pour s'en écarter volontairement), registre sobre du site.
+  Décision d'Emmanuel du 2026-07-04 : remplace la règle antérieure « FR =
+  extraits exacts du Crampon ». Vaut pour toute citation NOUVELLE ou
+  modifiée ; PAS de refonte rétroactive du corpus existant (largement en
+  Crampon côté FR, parfois en Douay archaïque côté EN), qui reste tel quel
+  jusqu'à décision contraire. Cohérent avec la règle de rédaction §3.
 • PERFORMANCE (architecture depuis le 2026-07-02) : les données communes
   (window.LV_INDEX + LV_NV) et le code commun (COMMUN/RECH/AUTH/MEMO/LECT/
   SOMMAIRE/ADMIN_JS) ne sont plus inlinés dans chaque page : build-bi.js
@@ -569,7 +575,113 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   instantané (behavior:'auto', offsetTop-90 pour le header sticky).
   Effacement (FieldValue.delete) : quand l'article est accompli (les
   deux chemins du marquage, posFini=true stoppe les sauvegardes) et au
-  reset de la lecture suivie (#lect-reset).
+  reset de la lecture suivie (#lect-reset). GARDE estCourant (correctif
+  2026-07-04) : la position n'est enregistrée QUE si l'article est le
+  courant du cycle (etat(snap).cur===art.id, calculé au chargement) ;
+  sans cette garde, revenir (bouton retour) sur un article déjà lu avec
+  ?suivi=1 dans l'URL écrasait la position de l'article en cours au
+  moindre défilement, et la reprise était perdue.
+  COMPTEUR — RÈGLES ANTI-RÉINITIALISATION (correctif 2026-07-04, bug
+  constaté par Emmanuel : compteur remis à zéro tout seul). Deux causes
+  corrigées : (1) etat() — quand tous les articles SÉLECTIONNÉS sont lus
+  (y compris suite à une désélection de catégories), le nouveau tirage ne
+  purge de lus QUE les articles du cycle (permis) ; la progression des
+  articles désélectionnés est conservée et revient à la resélection.
+  (2) accomplir() — la fin de cycle est testée EXACTEMENT (tous les ids
+  de l'ordre présents dans lus), jamais par lus.length>=ordre.length :
+  des ids orphelins dans lus (articles désélectionnés après lecture)
+  gonflaient le compte et déclenchaient un reset prématuré. Au reset de
+  fin de cycle, les lus hors ordre survivent.
+• SYNTHÈSE VOCALE (2026-07-04, décidé par Emmanuel : option A « chacun sa
+  clé »). Le bouton d'écoute de la barre d'article (admin.js,
+  outilsArticle) offre deux voix : ElevenLabs (qualité, clé API
+  PERSONNELLE de l'utilisateur, jamais celle du site — chacun paie sa
+  propre écoute chez ElevenLabs) ou la voix du navigateur
+  (speechSynthesis, gratuite, comportement historique). Génération EN
+  DIRECT (jamais de fichiers pré-générés) : texte découpé en morceaux
+  ~1800 caractères, POST api.elevenlabs.io/v1/text-to-speech/{voice}
+  (xi-api-key, previous_text/next_text pour la prosodie), lecture en file
+  sur un <audio> unique (déverrouillé au clic par un wav silencieux pour
+  iOS), préchargement du morceau suivant. Cache local IndexedDB
+  (base lv-tts) : clé a:{artId}:{hash(texte|voix|modèle)}:{i} ; une
+  écoute payée se réécoute gratuitement ; régénérée si l'article, la
+  voix ou le modèle change ; bouton « Vider le cache audio ». Réglages
+  (modale : 1er clic sans config, puis appui long / clic droit sur le
+  bouton) : clé, voix (défaut George JBFqnCBsd6RMkjVDRZzb, liste
+  chargeable via GET /v1/voices), modèle (défaut eleven_flash_v2_5 à
+  0,5 crédit/car ; option eleven_multilingual_v2 à 1 crédit/car), case
+  « lire les références des versets » (défaut NON : les span.ref sont
+  retirés du texte lu). Config dans localStorage lv_tts + doc Firestore
+  users/{uid}/meta/tts (synchro appareils, prime au chargement).
+  Boutons : écouter = lecture/pause/reprise ; stop (carré) visible
+  pendant la session. Erreurs par toast (401 clé invalide, 402 crédits
+  épuisés, 429). Prix vérifiés 2026-07 : gratuit 10k crédits/mois,
+  Starter 6$/30k, Creator 22$/121k ; article médian du site ≈ 6300
+  caractères.
+• RECHERCHE DE RÉFÉRENCES PARTOUT + HARMONISATIONS UI (2026-07-04,
+  demandé par Emmanuel). (1) La recherche du site (overlay « Rechercher
+  dans Lumen… ») reconnaît désormais les références bibliques (« Jean
+  3:16 », « 1 cor 13 », « ps 23 », « abdias 10 »…) et affiche en tête
+  des résultats une entrée « Bible » qui ouvre /bible.html#slug/ch/v
+  (ou /en/bible.html côté EN, avec conversion LV_VERSIF.douay des
+  numérotations — les slugs de bible-en.json sont les slugs FRANÇAIS,
+  partagés entre les deux bibles). Mécanique dans RECH_JS (build-bi.js) :
+  BALIAS (copie des alias de bible.html), bnorm, btrouve (articles
+  les/le/la/l/the + préfixe unique), brefParse, brefItem ; table des
+  livres window.LUMEN_BIBLE={base,livres:[[nom,slug,nch]]} injectée au
+  build dans recherche-fr.js / en/recherche-en.js (fonction tableBible).
+  Hints mis à jour FR (build-bi.js) et EN (data-en.js search_hint) pour
+  mentionner les références. (2) memoriser.html : .q-label (« Quel est
+  le verset ? ») passé de var(--pa2) à var(--or) — canon des libellés
+  majuscules du site. (3) bible.html : .groupe-nom (« Le Pentateuque »…)
+  passé de var(--pa) à #fff (contraste demandé). (4) Barres de recherche
+  harmonisées sur le gabarit du site : bible .b-champ 26px→30px +
+  letter-spacing .01em + padding 0, loupes 19→22 (recherche ET cloche
+  nouveautés) ; site .rech-fermer aligné sur la bible
+  (rgba(255,255,255,.6) au repos, hover blanc, padding 2px 6px). Les
+  conteneurs étaient déjà identiques (760px, 8vh).
+• HOVER DES LIVRES + AUDIT MOBILE (2026-07-04, demandé par Emmanuel).
+  (1) bible.html : le survol d'un nom de livre est aligné sur la barre
+  de navigation du haut — texte BLANC constant (.ln reste #fff) et
+  soulignement DORÉ (border-color:var(--or)) — au lieu du texte or-pâle
+  et du trait beige terne (var(--filet-fort)). (2) memoriser.html,
+  bug mobile majeur : les grilles .vrow des blocs @media 720px et 420px
+  ne comptaient que 3 colonnes (minmax(0,1fr) auto 18px) pour des lignes
+  à 5 enfants (v-check, vline, lvl, mov-v, del-v) — la case de sélection
+  s'étirait sur 1fr et les boutons passaient à la ligne : sélection
+  impossible au doigt. Corrigé en 5 colonnes : 18px minmax(0,1fr) auto
+  auto 18px (16px aux bords à 420px) + .vrow .v-check{margin-top:0}.
+  (3) #lect-gestion (gestion lecture suivie, mêmes classes) : le
+  compteur .cat-pct était masqué en mobile — rétabli via
+  #lect-gestion .cat-pct{display:block!important} (spécificité id gagne
+  sur les display:none!important génériques). Ses vrow à 2 enfants
+  tombent juste dans la grille 5 colonnes (check 18px + titre 1fr).
+  (4) Cibles tactiles : .cat-check (16px) et .v-check (13px) reçoivent
+  en ≤720px un ::before{inset:-12px} qui porte la zone de frappe à
+  ~40px sans changer le visuel (::after déjà pris par le remplissage
+  doré ; le hit-test des pseudos remonte au parent, donc data-act /
+  data-togv / data-lga fonctionnent). (5) build-bi.js : .art-btn
+  (barre d'outils article) padding 11px 12px et .art-bar gap 14px en
+  ≤720px pour des boutons touchables. Audit du reste : bible.html ne
+  cache que .ref-erreur en mobile (normal), .chap fait 52px (bonne
+  cible), aucun élément hover-only invisible au tactile ailleurs.
+• LECTURE SUIVIE INVISIBLE SUR MOBILE (2026-07-04, signalé par
+  Emmanuel : le bloc ne s'affiche pas du tout sur iPhone alors qu'il
+  s'affiche sur PC). Diagnostic : le code est identique PC/mobile,
+  aucune media query ne cache la lecture suivie, et ses titres sont
+  statiques — donc l'iPhone sert une VERSION PÉRIMÉE de la page
+  (service worker du Mémoriseur / cache iOS). Blindage triple :
+  (1) memoriser-sw.js : CACHE 'lv-memoriser-v1' → 'lv-memoriser-v2'
+  (réinstallation + purge de l'ancien cache à l'activation) ;
+  (2) memoriser.html : register('/memoriser-sw.js',
+  {updateViaCache:'none'}) — le fichier SW est revérifié au réseau à
+  chaque visite ; (3) netlify.toml : Cache-Control no-cache,
+  must-revalidate sur /memoriser-sw.js ET /memoriser.html. Test
+  discriminant côté utilisateur : ouvrir la page en navigation privée
+  sur iPhone (les SW y sont désactivés) — si la lecture suivie
+  apparaît, le cache était bien la cause. RÈGLE DURABLE : tout bump
+  futur de la coquille du Mémoriseur passe par l'incrément du nom de
+  cache dans memoriser-sw.js.
 • AUDIT ANIMATIONS (2026-07-04, tour demandé par Emmanuel). Inventaire :
   site = apparait .6s ease (entrée .vue) + cascades bibliothèque
   (apparaitDom/Ferme, verrouillées) ; bible = rise .4/.6/.7s ease ;
@@ -601,23 +713,22 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   ouvert (comme allerRefs de bible.html), pas seulement la première.
 
 ────────────────────────────────────────────────────────────────────
-5. ÉTAT DU SITE (28 juin 2026)
+5. ÉTAT DU SITE (4 juillet 2026)
 ────────────────────────────────────────────────────────────────────
-• 118 articles dans content/articles.json ; build : 120 paires → 240 pages
+• 121 articles dans content/articles.json ; build : 123 paires → 246 pages
   (FR+EN) + 404 + sitemap + bible-data.
 • 7 domaines : doctrine, ecriture, sacrements, vie-spirituelle, histoire,
   apologetique, philosophie (philosophie = recherche rationnelle positive,
   distincte de l'apologétique).
 • Séries d'Écriture complètes : Isaïe (auditée), Zacharie (7), Joël (3),
-  Abdias (1), La vie du Christ (7, évangiles fondus). Série MOÏSE en cours
-  (voir §6) : 7 articles intégrés.
+  Abdias (1), La vie du Christ (7, évangiles fondus), Moïse (7 ; la lecture
+  christologique est fondue dans les articles, pas de capstone séparé).
 • Catégorie écriture « L’épître aux Romains » : 2 articles intégrés le
   28/06 (intro « L’épître aux Romains » + exégèse « Tous sous le péché »,
-  sur Romains 1–3). Série à poursuivre depuis le diagramme HTML fourni par
-  Emmanuel (clic → question → article).
+  sur Romains 1–3).
 • Catégories ajoutées au fil des mois : vie-spirituelle = « Le combat
   intérieur » (la peur, la tristesse, l'orgueil et l'humilité) + « Le chemin
-  vers Dieu » (à compléter) ; doctrine = vertus théologales, vertus
+  vers Dieu » ; doctrine = vertus théologales, vertus
   cardinales (justice, force…), « Le culte de Dieu » (adoration) ;
   apologetique = « Dieu en question » (pourquoi l'adoration, l'évolution) ;
   philosophie = « Le bien et l'agir » (liberté, conscience, doute/systèmes,
@@ -626,8 +737,11 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   obligatoire) + Douay EN renommé en nomenclature catholique moderne
   (RSV-CE) ; lecteur, panneau latéral, références cliquables, notes par
   compte.
-• Mémoriser : ~24 catégories de base (memoriser.json = unique source des
-  catégories de base ; ne jamais éditer un id existant, clé de progression).
+• Mémoriser : 22 catégories de base, 429 versets (état du fichier livré ;
+  memoriser.json = unique source des catégories de base ; ne jamais éditer
+  un id existant, clé de progression). Si une version à 24 catégories existe
+  en Firestore (config/memoriser) ou dans le dépôt, la transmettre : elle
+  ferait alors foi et remplacerait le fichier du zip.
   Articles AT narratifs NON inclus (Mémoriser réservé à la doctrine et à la
   vie spirituelle).
 • UI en place (acquis) : sommaire replié sous le titre (PC et mobile),
@@ -637,63 +751,6 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   focus harmonisés, fonds noirs cohérents. Quiz RETIRÉ (ne pas
   réintroduire). Page À propos supprimée. Admin v3 (panneau complet,
   publication par build hook).
-
-────────────────────────────────────────────────────────────────────
-6. TRAVAIL EN COURS — SÉRIE « MOÏSE ET LA SORTIE D'ÉGYPTE »
-────────────────────────────────────────────────────────────────────
-Catégorie moise (domaine ecriture, après isaie), 8 articles prévus,
-découpage validé. Méthode : écrire → soumettre dans le chat → corriger
-avec Emmanuel (souvent plusieurs tours) → intégrer FR+EN (articles.json +
-slug EN data-en.js + rangement themes.json + cloche nouveautes.json), un
-seul à la fois. Articles NARRATIFS → PAS de catégorie Mémoriser.
-  1. La servitude et l'appel                      [INTÉGRÉ, audité]
-  2. La délivrance                                [INTÉGRÉ, audité]
-  3. Le Sinaï et l'alliance                       [INTÉGRÉ]
-  4. La Demeure, le sacerdoce et les sacrifices   [INTÉGRÉ]
-  5. Les quarante ans au désert                   [INTÉGRÉ]
-  6. Les discours de Moïse (Deutéronome 1-30)     [INTÉGRÉ le 27/06]
-  7. La mort de Moïse (Deutéronome 31-34)         [INTÉGRÉ le 27/06]
-  8. Moïse, figure du Christ (capstone)           [À FAIRE]
-Slugs moise (ordre themes.json) : la-servitude-et-l-appel, la-delivrance,
-le-sinai-et-l-alliance, la-demeure-le-sacerdoce-et-les-sacrifices,
-les-quarante-ans-au-desert, les-discours-de-moise, la-mort-de-moise.
-AUDIT COMPLET du cycle Exode-Lévitique-Nombres déjà fait (balayage
-chapitre par chapitre, au-delà du diagramme) : code de l'alliance,
-inauguration du culte (Nadab et Abihou), sainteté scindée (sainteté de la
-vie / temps sacrés, jubilé), six sections ajoutées aux quarante ans (camp
-ordonné + bénédiction sacerdotale + naziréat, Tabéera, les 70 anciens et
-l'Esprit, la génisse rousse, premières victoires, apostasie de Péor,
-dispositions pour la terre promise). Cycle jugé complet.
-Article 6 « Les discours de Moïse » couvre Deutéronome 1-30, 7 sections :
-rappel du chemin (+ credo Dt 26) ; le Dieu sans image (Dt 4) ; le Shema
-(Dt 6) ; l'élection gratuite (Dt 7 + 9) ; ne pas oublier dans l'abondance
-(Dt 8) ; ce que Dieu demande (Dt 10/15, le roi soumis à la Loi Dt 17, le
-prophète comme Moïse Dt 18) ; choisis la vie (Dt 30 : parole proche, cœur
-circoncis). Christologie : le Verbe donne un visage au Dieu invisible, le
-prophète appelle le Christ, le cœur circoncis annonce la nouvelle naissance.
-Article 7 « La mort de Moïse » couvre Deutéronome 31-34 : Josué institué et
-la Loi confiée, le cantique (Dieu le Rocher), la bénédiction des tribus, la
-mort au Nébo (nul prophète comme Moïse), et vers le Christ (Josué/Yehoshua →
-Jésus, le prophète promis → le Christ, Moïse à la Transfiguration).
-PROCHAINE ÉTAPE : article 8, le capstone (Moïse figure du Christ, lecture
-catholique), dernier de la série.
-
-────────────────────────────────────────────────────────────────────
-7. EN ATTENTE / PISTES
-────────────────────────────────────────────────────────────────────
-• Côté Emmanuel : build hook Netlify (s'il n'existe pas) ; garder
-  supprimés les documents Firestore config/themes et config/nouveautes
-  tant qu'on travaille par fichiers ; ré-enregistrer l'accent #efe6cf
-  (onglet Apparence) si les couleurs dévient en ligne.
-• Isaïe : section « Jérusalem parmi les nations » (ch. 22) perfectible
-  (enrichissement « mangeons et buvons » 22:13 / 1 Corinthiens 15:32 en
-  réserve, non intégré).
-• Candidat en attente d'accord : déplacer la-paix-du-christ vers
-  vie-spirituelle.
-• Harmonisation éventuelle des apostrophes d'anciens articles restés en
-  droites (passe séparée non faite).
-• Trames suivantes du plan des 20 (diagrammes bibliques) quand Emmanuel
-  les lance ; document des prompts dans son Drive.
 
 ════════════════════════════════════════════════════════════════════
 FIN DU FICHIER DE REPRISE

@@ -206,7 +206,7 @@ const UI = {
     site_desc_library: "Toutes les entrées de Lumen, classées par domaine : doctrine, Écriture, sacrements, figures, histoire et philosophie.",
     site_desc_about: "Lumen, un lieu d'étude et de méditation autour de la foi catholique : rendre la théologie accessible et fidèle à l'enseignement de l'Église.",
     t_home: 'Lumen · Théologie catholique', t_library: 'Bibliothèque · Lumen', t_about: 'À propos · Lumen', t_404: 'Page introuvable · Lumen',
-    search_placeholder: 'Rechercher dans Lumen…', search_hint: 'Tapez un mot pour parcourir les articles.', search_empty: 'Aucun résultat pour',
+    search_placeholder: 'Rechercher dans Lumen…', search_hint: 'Tapez un mot pour parcourir les articles, ou une référence (Jean 3:16) pour ouvrir la Bible.', search_empty: 'Aucun résultat pour',
     memo_label:"L'outil", memo_title:'Mémoriser', memo_sub:'Apprends les versets par cœur et garde-les, à ton rythme.', memo_open:'Ouvrir Mémoriser', memo_start:'Commencer', memo_mastery:'de maîtrise', memo_acquired:'acquis', memo_learning:'en cours', memo_review:'à revoir', memo_signedout:'Connecte-toi pour suivre ta progression.',
     lect_label:"Le parcours", lect_title:'La lecture suivie', lect_lu:'articles lus', lect_signedout:'Connecte-toi pour suivre ta lecture.', lect_start:'Commencer la lecture',
     other_label: 'EN'
@@ -492,6 +492,7 @@ h1,h2,h3{text-wrap:balance}
 /* — Outils d'article : copier, partager, navigation — */
 .art-bar{display:flex;gap:26px;justify-content:center;margin:-10px 0 36px}
 .art-btn{background:none;border:none;padding:4px 2px;display:inline-flex;align-items:center;justify-content:center;color:var(--parchemin);opacity:.4;font-size:15px;cursor:pointer;transition:opacity .3s,color .3s}
+@media(max-width:720px){.art-bar{gap:14px}.art-btn{padding:11px 12px}}
 .art-btn:hover,.art-btn.ok{opacity:1;color:var(--or)}
 .art-nav{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:72px}
 .lecture .art-nav-l{text-decoration:none;display:block;border:1px solid var(--filet);padding:28px 30px;transition:background .35s,border-color .35s}
@@ -695,7 +696,10 @@ const LECT_JS = `(function lvLectBoot(){
     var map={};lus.forEach(function(id){map[id]=1;});
     var n=0,cur=null,i;
     for(i=0;i<ordre.length;i++){if(map[ordre[i]])n++;else if(cur===null)cur=ordre[i];}
-    if(cur===null){ordre=melange();lus=[];map={};n=0;cur=ordre[0]||null;neuf=true;}
+    /* fin du cycle des articles selectionnes : nouveau tirage, mais on ne
+       purge de lus QUE les articles du cycle (permis) ; la progression des
+       articles deselectionnes est conservee et revient si on les recoche */
+    if(cur===null){ordre=melange();lus=lus.filter(function(id){return !permis[id];});map={};n=0;cur=ordre[0]||null;neuf=true;}
     return {ordre:ordre,lus:lus,n:n,cur:cur,neuf:neuf};
   }
   function peint(u){
@@ -744,8 +748,14 @@ const LECT_JS = `(function lvLectBoot(){
     }
     var posFini=false;
     if(SUIVI){
+      /* la position n'est memorisee QUE pour l'article courant du cycle :
+         revenir (bouton retour) sur un article deja lu garde ?suivi=1 dans
+         l'URL, et sans ce garde le defilement y ecraserait la position de
+         l'article en cours */
+      var estCourant=false;
       ref(u).get().then(function(snap){
         var d=(snap.exists&&snap.data())||{};
+        estCourant=(etat(snap).cur===art.id);
         if(d.pos&&d.pos.a===art.id&&d.pos.b>2){
           var bs=blocsTexte(), el=bs[Math.min(d.pos.b,bs.length-1)];
           if(el)window.scrollTo({top:Math.max(0,el.offsetTop-90),behavior:'auto'});
@@ -758,7 +768,7 @@ const LECT_JS = `(function lvLectBoot(){
         return bs.length?bs.length-1:0;
       }
       function sauvePos(force){
-        if(posFini)return;
+        if(posFini||!estCourant)return;
         var b=blocCourant();
         if(!force&&b===dernierB)return;
         dernierB=b;
@@ -787,9 +797,18 @@ const LECT_JS = `(function lvLectBoot(){
         if(e.cur===art.id){
           e.lus.push(art.id);
           posFini=true;
-          if(e.lus.length>=e.ordre.length){
+          /* fin de cycle testee EXACTEMENT (tous les articles de l'ordre
+             sont lus), jamais par comparaison de longueurs : lus peut
+             contenir des ids hors cycle (articles deselectionnes apres
+             lecture) qui gonfleraient le compte et declencheraient un
+             reset premature */
+          var mp={};e.lus.forEach(function(id){mp[id]=1;});
+          var fini=true;
+          for(j=0;j<e.ordre.length;j++){if(!mp[e.ordre[j]]){fini=false;break;}}
+          if(fini){
             var neuf=melange();
-            ref(u).set({ordre:neuf,lus:[],pos:firebase.firestore.FieldValue.delete()},{merge:true});
+            var dansOrdre={};e.ordre.forEach(function(id){dansOrdre[id]=1;});
+            ref(u).set({ordre:neuf,lus:e.lus.filter(function(id){return !dansOrdre[id];}),pos:firebase.firestore.FieldValue.delete()},{merge:true});
             suivant=neuf[0]||null;
           }else{
             ref(u).set({ordre:e.ordre,lus:e.lus,pos:firebase.firestore.FieldValue.delete()},{merge:true});
@@ -1115,6 +1134,51 @@ const RECH_JS = `(function(){
   var index=null,charge=false,enCours=false;
   function norm(s){return s.toLowerCase().replace(/[àâä]/g,'a').replace(/[éèêë]/g,'e').replace(/[ïî]/g,'i').replace(/[ôö]/g,'o').replace(/[ùûü]/g,'u').replace(/ç/g,'c');}
   function lien(s){return L.base+'article/'+s+'/';}
+  /* références bibliques : « Jean 3:16 » ouvre la Bible depuis n'importe où.
+     Même logique que la recherche de la page Bible (dico + alias + préfixe
+     unique), sur la table LUMEN_BIBLE injectée dans recherche-<lang>.js */
+  var BALIAS={'genese':['gn','gen'],'exode':['ex','exo'],'levitique':['lv','lev'],'nombres':['nb','nbr','num'],'deuteronome':['dt','deut'],'josue':['jos'],'juges':['jg','jug'],'ruth':['rt'],'1-samuel':['1s','1sam','1sm'],'2-samuel':['2s','2sam','2sm'],'1-rois':['1r','1roi'],'2-rois':['2r','2roi'],'1-chroniques':['1ch','1chr','1par'],'2-chroniques':['2ch','2chr','2par'],'esdras':['esd'],'nehemie':['ne','neh'],'tobie':['tb','tob'],'judith':['jdt'],'esther':['est'],'1-maccabees':['1m','1ma','1mac','1macc'],'2-maccabees':['2m','2ma','2mac','2macc'],'job':['jb'],'psaumes':['ps','psaume'],'proverbes':['pr','prv','prov'],'ecclesiaste':['qo','eccl','qohelet'],'cantique-des-cantiques':['ct','cant','cantique','cantiques'],'sagesse':['sg','sag'],'ecclesiastique':['si','sir','siracide','eccli'],'isaie':['is','isa','esaie'],'jeremie':['jr','jer'],'lamentations':['lm','lam'],'baruch':['ba','bar'],'ezechiel':['ez','eze'],'daniel':['dn','dan'],'osee':['os'],'joel':['jl'],'amos':['am'],'abdias':['ab','abd'],'jonas':['jon'],'michee':['mi','mich'],'nahum':['na','nah'],'habacuc':['ha','hab'],'sophonie':['so','soph'],'aggee':['ag','agg'],'zacharie':['za','zac'],'malachie':['ml','mal'],'matthieu':['mt','mat','matt'],'marc':['mc'],'luc':['lc'],'jean':['jn'],'actes':['ac','act'],'romains':['rm','rom'],'1-corinthiens':['1co','1cor'],'2-corinthiens':['2co','2cor'],'galates':['ga','gal'],'ephesiens':['ep','eph'],'philippiens':['ph','phil','php'],'colossiens':['col'],'1-thessaloniciens':['1th','1thes','1thess'],'2-thessaloniciens':['2th','2thes','2thess'],'1-timothee':['1tm','1tim'],'2-timothee':['2tm','2tim'],'tite':['tt','tit'],'philemon':['phm','phlm'],'hebreux':['he','heb'],'jacques':['jc','jac'],'1-pierre':['1p','1pi'],'2-pierre':['2p','2pi'],'1-jean':['1jn'],'2-jean':['2jn'],'3-jean':['3jn'],'jude':['jud'],'apocalypse':['ap','apc','apoc']};
+  var BDICO=null;
+  function bnorm(s){return String(s).toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/[^a-z0-9]+/g,'');}
+  function bdico(){
+    var B=window.LUMEN_BIBLE;
+    if(BDICO||!B)return BDICO;
+    BDICO={};
+    var parSlug={};
+    B.livres.forEach(function(l){BDICO[bnorm(l[0])]=l;BDICO[bnorm(l[1])]=l;parSlug[l[1]]=l;});
+    Object.keys(BALIAS).forEach(function(sl){var l=parSlug[sl];if(l)BALIAS[sl].forEach(function(a){BDICO[bnorm(a)]=l;});});
+    return BDICO;
+  }
+  function btrouve(tok){
+    var D=bdico(); if(!D)return null;
+    var t=bnorm(tok); if(!t)return null;
+    if(D[t])return D[t];
+    var arts=['les','le','la','l','the'];
+    for(var i=0;i<arts.length;i++){if(t.indexOf(arts[i])===0){var t2=t.slice(arts[i].length);if(t2.length>=2&&D[t2])return D[t2];}}
+    var c=[];window.LUMEN_BIBLE.livres.forEach(function(l){if(bnorm(l[0]).indexOf(t)===0)c.push(l);});
+    return (c.length===1&&t.length>=2)?c[0]:null;
+  }
+  function brefParse(q){
+    var B=window.LUMEN_BIBLE; if(!B)return null;
+    var s=String(q||'').trim().toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/\\s+/g,' ').trim();
+    var m=s.match(/^([1-4]?\\s*[a-z']+(?:[ -][a-z']+)*)(?:\\s+(\\d{1,3})(?:\\s*[:,.]\\s*(\\d{1,3})(?:\\s*[-\\u2013a]\\s*(\\d{1,3}))?)?)?$/);
+    if(!m)return null;
+    var l=btrouve(m[1]); if(!l)return null;
+    var nch=l[2],ch=m[2]?parseInt(m[2],10):0,v1=m[3]?parseInt(m[3],10):0,v2=m[4]?parseInt(m[4],10):v1;
+    if(ch&&nch===1&&!v1){v1=ch;v2=ch;ch=1;}
+    if(ch&&ch>nch)return null;
+    if(v2<v1){var tv=v1;v1=v2;v2=tv;}
+    var lab=l[0]+(ch?' '+ch+(v1?':'+v1+(v2>v1?'-'+v2:''):''):'');
+    var hch=ch,hv=v1;
+    if(ch&&L.lang==='en'&&window.LV_VERSIF&&window.LV_VERSIF.douay){var c1=window.LV_VERSIF.douay(l[0],ch,v1||1);hch=c1.ch;if(v1)hv=c1.v;}
+    var hash=l[1]+(hch?'/'+hch+(hv?'/'+hv:''):'');
+    return {lab:lab,href:B.base+'#'+hash};
+  }
+  function brefItem(q){
+    var br=brefParse(q);
+    if(!br)return '';
+    return '<a class="rech-item" href="'+br.href+'"><div class="rech-meta">Bible</div><div class="rech-titre">'+br.lab+'</div><div class="rech-extrait">'+(L.lang==='en'?'Open in the Bible':'Ouvrir dans la Bible')+'</div></a>';
+  }
   function surligne(texte,termes){
     var nt=norm(texte),marks=[];
     termes.forEach(function(t){var i=0,p;while((p=nt.indexOf(t,i))>=0){marks.push([p,p+t.length]);i=p+t.length;}});
@@ -1134,6 +1198,7 @@ const RECH_JS = `(function(){
   function chercher(q){
     var termes=norm(q).split(/\\s+/).filter(Boolean);
     if(!termes.length){res.innerHTML='<div class="rech-msg">'+L.hint+'</div>';return;}
+    var bib=brefItem(q);
     var out=[];
     index.forEach(function(a){
       if(window.LV_SUPP&&window.LV_SUPP.indexOf(a.s)>=0)return;
@@ -1142,8 +1207,8 @@ const RECH_JS = `(function(){
       out.push({a:a,sc:sc});
     });
     out.sort(function(x,y){return y.sc-x.sc;});
-    if(!out.length){res.innerHTML='<div class="rech-msg">'+L.empty+' « '+q+' ».</div>';return;}
-    res.innerHTML=out.slice(0,30).map(function(o){
+    if(!out.length){res.innerHTML=bib||('<div class="rech-msg">'+L.empty+' « '+q+' ».</div>');return;}
+    res.innerHTML=bib+out.slice(0,30).map(function(o){
       return '<a class="rech-item" href="'+lien(o.a.s)+'"><div class="rech-meta">'+o.a.th+'</div><div class="rech-titre">'+o.a.t+'</div><div class="rech-extrait">'+extrait(o.a,termes)+'</div></a>';
     }).join('');
   }
@@ -1440,6 +1505,7 @@ function versifDouay(bk, ch, v) {
   if (bk === 'John' && ch === 6 && v >= 52) return { ch: 6, v: v + 1 };
   if (bk === 'Hosea' && ch === 12) return v === 1 ? { ch: 11, v: 12 } : { ch: 12, v: v - 1 };
   if (bk === 'Haggai' && ch === 2) return { ch: 2, v: v + 1 };
+  if (bk === 'Deuteronomy' && ch === 29) return { ch: 29, v: v + 1 };
   if (bk === 'Nahum' && ch === 2) return v === 1 ? { ch: 1, v: 15 } : { ch: 2, v: v - 1 };
   return { ch: ch, v: v };
 }
@@ -1586,10 +1652,19 @@ REDIRECTS.forEach(([from, to]) => {
 ecrire('_redirects', redLines.join('\n') + '\n');
 
 // index de recherche (texte des articles), un par langue
+// + table des livres bibliques pour la recherche de références (Jean 3:16)
+const tableBible = (src, base) => {
+  try {
+    const b = JSON.parse(fs.readFileSync(src, 'utf8'));
+    return { base, livres: b.livres.map(l => [l.nom, l.slug, l.nch]) };
+  } catch (e) { return null; }
+};
+const bibFR = tableBible('content/bible.json', '/bible.html');
+const bibEN = tableBible('content/bible-en.json', '/en/bible.html');
 const idxFR = ARTICLES.map(a => ({ s: a.id, t: a.titre, th: themeNom('fr', a.theme), r: a.resume, x: depouiller(a.contenu) }));
-ecrire('recherche-fr.js', 'window.LUMEN_INDEX=' + JSON.stringify(idxFR) + ';');
+ecrire('recherche-fr.js', 'window.LUMEN_INDEX=' + JSON.stringify(idxFR) + ';' + (bibFR ? 'window.LUMEN_BIBLE=' + JSON.stringify(bibFR) + ';' : ''));
 const idxEN = ARTICLES.map(a => ({ s: slugOf('en', a.id), t: artTitre('en', a), th: themeNom('en', a.theme), r: artResume('en', a), x: depouiller((ARTICLES_EN[a.id] || {}).contenu) }));
-ecrire('en/recherche-en.js', 'window.LUMEN_INDEX=' + JSON.stringify(idxEN) + ';');
+ecrire('en/recherche-en.js', 'window.LUMEN_INDEX=' + JSON.stringify(idxEN) + ';' + (bibEN ? 'window.LUMEN_BIBLE=' + JSON.stringify(bibEN) + ';' : ''));
 
 // copie des pages autonomes (hors pipeline bilingue)
 if (fs.existsSync('memoriser.html')) {

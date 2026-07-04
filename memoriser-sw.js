@@ -3,7 +3,7 @@
    scripts Firebase, polices) pour un usage hors ligne. Ne touche à
    AUCUNE autre partie du site, ni aux API Firebase (auth, Firestore). */
 'use strict';
-var CACHE = 'lv-memoriser-v1';
+var CACHE = 'lv-memoriser-v2';
 var COQUILLE = [
   '/memoriser.html',
   '/memoriser-manifest.webmanifest',
