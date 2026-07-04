@@ -207,8 +207,8 @@ const UI = {
     site_desc_about: "Lumen, un lieu d'étude et de méditation autour de la foi catholique : rendre la théologie accessible et fidèle à l'enseignement de l'Église.",
     t_home: 'Lumen · Théologie catholique', t_library: 'Bibliothèque · Lumen', t_about: 'À propos · Lumen', t_404: 'Page introuvable · Lumen',
     search_placeholder: 'Rechercher dans Lumen…', search_hint: 'Tapez un mot pour parcourir les articles, ou une référence (Jean 3:16) pour ouvrir la Bible.', search_empty: 'Aucun résultat pour',
-    memo_label:"L'outil", memo_title:'Mémoriser', memo_sub:'Apprends les versets par cœur et garde-les, à ton rythme.', memo_open:'Ouvrir Mémoriser', memo_start:'Commencer', memo_mastery:'de maîtrise', memo_acquired:'acquis', memo_learning:'en cours', memo_review:'à revoir', memo_signedout:'Connecte-toi pour suivre ta progression.',
-    lect_label:"Le parcours", lect_title:'La lecture suivie', lect_lu:'articles lus', lect_signedout:'Connecte-toi pour suivre ta lecture.', lect_start:'Commencer la lecture',
+    memo_label:"L'outil", memo_title:'Mémoriser', memo_sub:'Apprenez les versets par cœur et gardez-les, à votre rythme.', memo_open:'Ouvrir Mémoriser', memo_start:'Commencer', memo_mastery:'de maîtrise', memo_acquired:'acquis', memo_learning:'en cours', memo_review:'à revoir', memo_signedout:'Connectez-vous pour suivre votre progression.',
+    lect_label:"Le parcours", lect_title:'La lecture suivie', lect_lu:'articles lus', lect_signedout:'Connectez-vous pour suivre votre lecture.', lect_start:'Commencer la lecture',
     other_label: 'EN'
   },
   en: Object.assign({}, UI_EN, {
@@ -322,17 +322,17 @@ const BARRE_CSS = `
 
 header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(231,224,207,.14)}
 .barre{max-width:1080px;margin:0 auto;padding:20px 32px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:24px;height:auto}
-.barre .logo{grid-column:1;grid-row:1;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px;letter-spacing:.34em;text-transform:uppercase;color:#ffffff;padding-left:.34em;border-bottom:none;text-decoration:none}
-.burger{display:none;background:none;border:none;padding:0;margin:0;color:#ffffff;font-size:24px;cursor:pointer;line-height:1;-webkit-appearance:none;appearance:none}
+.barre .logo{grid-column:1;grid-row:1;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px;letter-spacing:.34em;text-transform:uppercase;color:var(--parchemin,#ffffff);padding-left:.34em;border-bottom:none;text-decoration:none}
+.burger{display:none;background:none;border:none;padding:0;margin:0;color:var(--parchemin,#ffffff);font-size:24px;cursor:pointer;line-height:1;-webkit-appearance:none;appearance:none}
 nav.menu{display:flex;gap:30px;grid-column:3;grid-row:1;justify-self:end;align-items:center;margin-left:0}
-nav.menu a{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:#ffffff;padding:0 0 3px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;text-decoration:none;position:static}
-nav.menu a:hover,nav.menu a.actif{color:#ffffff;border-color:#efe6cf}
+nav.menu a{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:var(--parchemin,#ffffff);padding:0 0 3px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;text-decoration:none;position:static}
+nav.menu a:hover,nav.menu a.actif{color:var(--parchemin,#ffffff);border-color:var(--or,#efe6cf)}
 nav.menu a.lien-langue{font-size:13px;letter-spacing:.2em;opacity:.65}
 nav.menu a.lien-langue:hover{opacity:1}
-.menu-act{background:none;border:none;padding:0 0 3px;margin:0;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#ffffff;opacity:.65;border-bottom:1px solid transparent;transition:opacity .3s,border-color .3s;-webkit-appearance:none;appearance:none}
-.menu-act:hover{opacity:1;border-color:#efe6cf}
-.rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:#ffffff;transition:color .3s;background:none;border:none;padding:0;outline:none}
-.rech-loupe:hover{color:#efe6cf}
+.menu-act{background:none;border:none;padding:0 0 3px;margin:0;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--parchemin,#ffffff);opacity:.65;border-bottom:1px solid transparent;transition:opacity .3s,border-color .3s;-webkit-appearance:none;appearance:none}
+.menu-act:hover{opacity:1;border-color:var(--or,#efe6cf)}
+.rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:var(--parchemin,#ffffff);transition:color .3s;background:none;border:none;padding:0;outline:none}
+.rech-loupe:hover{color:var(--or,#efe6cf)}
 .rech-loupe:focus,.rech-loupe:focus-visible{outline:none}
 .rech-loupe svg{display:block}
 .ll-mob{display:none}
@@ -340,10 +340,10 @@ nav.menu a.lien-langue:hover{opacity:1}
 .cloche-point{position:absolute;top:-8px;right:-7px;width:6px;height:6px;border-radius:50%;background:#efe6cf;pointer-events:none;display:none}
 .menu-mail{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.06em;color:rgba(255,255,255,.55);white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis}
 .menu-mail:empty{display:none}
-.user-btn{display:inline-flex;align-items:center;gap:8px;opacity:1;color:#ffffff}
+.user-btn{display:inline-flex;align-items:center;gap:8px;opacity:1;color:var(--parchemin,#ffffff)}
 .user-btn .user-label{display:none}
 footer{border-top:1px solid rgba(231,224,207,.14);margin-top:40px;padding:48px 32px 56px;text-align:center;background:none}
-footer .marque{font-family:'Cormorant Garamond',serif;letter-spacing:.34em;text-transform:uppercase;font-size:18px;padding-left:.34em;color:#ffffff}
+footer .marque{font-family:'Cormorant Garamond',serif;letter-spacing:.34em;text-transform:uppercase;font-size:18px;padding-left:.34em;color:var(--parchemin,#ffffff)}
 footer .verset-pied{margin-top:18px;font-style:italic;color:rgba(255,255,255,.55);font-size:17px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.7}
 footer .verset-pied .ref-pied{font-style:normal;font-weight:600;color:rgba(255,255,255,.55)}
 footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,255,255,.45);font-family:'Cormorant Garamond',serif}
@@ -353,7 +353,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
   nav.menu.ouvert{transform:none}
   nav.menu a{font-size:15px;padding:12px 0;width:100%;border-bottom:none}
   .burger{display:block}
-  .rech-loupe{width:100%;justify-content:flex-start;gap:14px;padding:12px 0;border-bottom:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#ffffff}
+  .rech-loupe{width:100%;justify-content:flex-start;gap:14px;padding:12px 0;border-bottom:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin,#ffffff)}
   .rech-loupe .ll-mob{display:inline}
   .cloche-point{top:8px;left:14px;right:auto}
   .menu-act{padding:12px 0;width:100%;text-align:left;font-size:15px;letter-spacing:.12em;opacity:1}
@@ -704,7 +704,7 @@ const LECT_JS = `(function lvLectBoot(){
   }
   function peint(u){
     var btn=document.getElementById('lect-start');
-    if(!u){box.setAttribute('data-state','out');if(btn)btn.style.display='none';return;}
+    if(!u){box.setAttribute('data-state','out');if(btn)btn.style.display='';return;}
     ref(u).get().then(function(snap){
       var e=etat(snap);
       if(e.vide){var x0=document.getElementById('lect-x');if(x0)x0.textContent='0 / 0';var s0=box.querySelector('#lect-bar .l');if(s0)s0.style.width='0%';if(btn)btn.style.display='none';box.setAttribute('data-state','ok');return;}
@@ -1195,7 +1195,11 @@ const RECH_JS = `(function(){
     var deb=Math.max(0,pos-60),fin=Math.min(src.length,pos+120);
     return (deb>0?'… ':'')+surligne(src.slice(deb,fin),termes)+(fin<src.length?' …':'');
   }
+  var kidx=-1;
+  function kitems(){return res.querySelectorAll('.rech-item');}
+  function kmaj(){var its=kitems();for(var i=0;i<its.length;i++)its[i].classList.toggle('kact',i===kidx);if(kidx>=0&&its[kidx]&&its[kidx].scrollIntoView)its[kidx].scrollIntoView({block:'nearest'});}
   function chercher(q){
+    kidx=-1;
     var termes=norm(q).split(/\\s+/).filter(Boolean);
     if(!termes.length){res.innerHTML='<div class="rech-msg">'+L.hint+'</div>';return;}
     var bib=brefItem(q);
@@ -1229,6 +1233,12 @@ const RECH_JS = `(function(){
   fermer.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();ferme();}});
   overlay.addEventListener('click',function(e){if(e.target===overlay)ferme();});
   champ.addEventListener('input',function(){if(charge)chercher(champ.value);});
+  champ.addEventListener('keydown',function(e){
+    var its=kitems();
+    if(e.key==='ArrowDown'){e.preventDefault();if(!its.length)return;kidx=Math.min(its.length-1,kidx+1);kmaj();}
+    else if(e.key==='ArrowUp'){e.preventDefault();if(!its.length)return;kidx=Math.max(-1,kidx-1);kmaj();}
+    else if(e.key==='Enter'){var c=its[kidx>=0?kidx:0];if(c&&c.getAttribute('href')){e.preventDefault();location.href=c.getAttribute('href');}}
+  });
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('ouvert'))ferme();});
 })();`;
 
@@ -1300,6 +1310,8 @@ function mainAccueil(lang, base) {
   return `<div class="vue">
     <section class="hero">
       <div class="croix" aria-hidden="true"></div>
+      <div class="liturgie" id="lv-liturgie" aria-live="off"></div>
+      ${scriptLiturgie(lang)}
     </section>
     <div class="titre-section">
       <span class="num" data-lv-txt="home_domains_label">${u.home_domains_label}</span>
@@ -1449,10 +1461,107 @@ function mainAPropos(lang) {
   </div>`;
 }
 
+/* ── Temps liturgique et sanctoral (calculés chez le visiteur, jour local) ── */
+const SANCTORAL = fs.existsSync('content/sanctoral.json')
+  ? JSON.parse(fs.readFileSync('content/sanctoral.json', 'utf8')) : {};
+function scriptLiturgie(lang) {
+  const en = lang === 'en';
+  const table = {};
+  for (const k of Object.keys(SANCTORAL)) table[k] = [SANCTORAL[k][en ? 'en' : 'fr'], SANCTORAL[k].d || 'm'];
+  const TEMPS = en
+    ? { av: 'Advent', no: 'Christmas Time', to: 'Ordinary Time', ca: 'Lent', ss: 'Holy Week', tr: 'Paschal Triduum', pa: 'Eastertide' }
+    : { av: 'Temps de l’Avent', no: 'Temps de Noël', to: 'Temps ordinaire', ca: 'Temps du Carême', ss: 'Semaine sainte', tr: 'Triduum pascal', pa: 'Temps pascal' };
+  const MOB = en ? {
+    m46: 'Ash Wednesday', m7: 'Palm Sunday', m3: 'Holy Thursday', m2: 'Good Friday', m1: 'Holy Saturday',
+    p0: 'The Resurrection of the Lord', p1: 'Easter Monday', p7: 'Divine Mercy Sunday', p39: 'The Ascension of the Lord',
+    p49: 'Pentecost', p50: 'Mary, Mother of the Church', p56: 'The Most Holy Trinity', p63: 'Corpus Christi',
+    p68: 'The Sacred Heart of Jesus', p69: 'The Immaculate Heart of Mary',
+    roi: 'Christ the King', fam: 'The Holy Family', epi: 'The Epiphany of the Lord', bap: 'The Baptism of the Lord'
+  } : {
+    m46: 'Mercredi des Cendres', m7: 'Dimanche des Rameaux', m3: 'Jeudi saint', m2: 'Vendredi saint', m1: 'Samedi saint',
+    p0: 'Résurrection du Seigneur', p1: 'Lundi de Pâques', p7: 'Dimanche de la Miséricorde', p39: 'Ascension du Seigneur',
+    p49: 'Pentecôte', p50: "Marie, Mère de l'Église", p56: 'Sainte Trinité', p63: 'Saint-Sacrement du Corps et du Sang du Christ',
+    p68: 'Sacré-Cœur de Jésus', p69: 'Cœur immaculé de Marie',
+    roi: 'Christ, Roi de l\u2019univers', fam: 'Sainte Famille', epi: 'Épiphanie du Seigneur', bap: 'Baptême du Seigneur'
+  };
+  return `<script>(function(){
+var SAN=${JSON.stringify(table)},TP=${JSON.stringify(TEMPS)},MB=${JSON.stringify(MOB)};
+function jj(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;}
+function meme(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();}
+function dJour(a,b){return Math.round((Date.UTC(a.getFullYear(),a.getMonth(),a.getDate())-Date.UTC(b.getFullYear(),b.getMonth(),b.getDate()))/864e5);}
+function paques(a){var b=a%19,c=Math.floor(a/100),d=a%100,e=Math.floor(c/4),f=c%4,g=Math.floor((c+8)/25),h=Math.floor((c-g+1)/3),i=(19*b+c-e-h+15)%30,k=Math.floor(d/4),l=d%4,m=(32+2*f+2*k-i-l)%7,n=Math.floor((b+11*i+22*m)/451);return new Date(a,Math.floor((i+m-7*n+114)/31)-1,((i+m-7*n+114)%31)+1);}
+function avent1(a){var noel=new Date(a,11,25),js=noel.getDay();return new Date(a,11,25-(js===0?7:js)-21);}
+function epiph(a){var d2=new Date(a,0,2);return new Date(a,0,2+((7-d2.getDay())%7));}
+function bapteme(a){var e=epiph(a);return (e.getDate()>=7)?jj(e,1):jj(e,7);}
+function famille(a){var noel=new Date(a,11,25),js=noel.getDay();return js===0?new Date(a,11,30):new Date(a,11,25+(7-js));}
+function calc(d){
+  var an=d.getFullYear(),P=paques(an),dif=dJour(d,P);
+  var av=avent1(an),bp=bapteme(an),dim=d.getDay()===0;
+  var temps;
+  if(d>=new Date(an,11,25)) temps=TP.no;
+  else if(d>=av) temps=TP.av;
+  else if(d<=bp) temps=TP.no;
+  else if(dif<-46) temps=TP.to;
+  else if(dif<-7) temps=TP.ca;
+  else if(dif<-2) temps=TP.ss;
+  else if(dif<0) temps=TP.tr;
+  else if(dif<=49) temps=TP.pa;
+  else temps=TP.to;
+  var cel=null;
+  var mob={'-46':MB.m46,'-7':MB.m7,'-3':MB.m3,'-2':MB.m2,'-1':MB.m1,'0':MB.p0,'1':MB.p1,'7':MB.p7,'39':MB.p39,'49':MB.p49,'50':MB.p50,'56':MB.p56,'68':MB.p68,'69':MB.p69}[String(dif)]||null;
+  if(dif===63&&dim) mob=MB.p63; /* Fête-Dieu transférée au dimanche (France) */
+  if(!mob){
+    if(meme(d,jj(av,-7))) mob=MB.roi;
+    else if(meme(d,famille(an))) mob=MB.fam;
+    else if(meme(d,epiph(an))){mob=MB.epi;temps=TP.no;}
+    else if(meme(d,bp)){mob=MB.bap;temps=TP.no;}
+  }
+  if(mob) cel=mob;
+  else{
+    var cle=('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+    var s=SAN[cle];
+    if(s){
+      var deg=s[1];
+      if(deg==='s') cel=s[0];
+      else if(deg==='fS') cel=s[0]; /* fête du Seigneur : prime même le dimanche du temps ordinaire */
+      else if(!dim) cel=s[0]; /* fêtes et mémoires : cèdent le dimanche */
+    }
+  }
+  return {temps:temps,cel:cel};
+}
+window.LV_LITURGIE=calc; /* exposé pour vérification */
+var e=document.getElementById('lv-liturgie');
+if(e){var r=calc(new Date());e.textContent=r.temps+(r.cel?' \u00b7 '+r.cel:'');}
+})();</` + `script>`;
+}
 function main404() {
-  return `<div class="vue"><section class="bandeau-page"><h1>Page introuvable · Page not found</h1>
-    <p class="desc">Cette page n'existe pas. <a href="/" style="color:var(--or)">Revenir à l'accueil</a>.<br>
-    This page does not exist. <a href="/en/" style="color:var(--or)">Back to home</a>.</p></section></div>`;
+  return `<style>
+    .quatre{text-align:center;padding:88px 24px 120px;max-width:640px;margin:0 auto}
+    .quatre .croix{opacity:.55;width:58px;height:106px;margin-bottom:46px}
+    .q-sur{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-bottom:24px}
+    .quatre h1{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:46px;letter-spacing:.02em;color:var(--parchemin);margin:0 0 6px}
+    .q-en{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:rgba(255,255,255,.5);margin:0 0 32px}
+    .quatre .q-desc{font-size:16px;line-height:1.75;color:rgba(255,255,255,.6);margin:0 auto 44px;max-width:520px}
+    .q-acts{display:flex;gap:28px;justify-content:center;align-items:center;flex-wrap:wrap}
+    .q-btn{font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.12em;text-transform:uppercase;background:var(--or);color:var(--encre,#000);padding:13px 28px;text-decoration:none;transition:background .3s}
+    .q-btn:hover{background:var(--or-pale)}
+    .q-lien{font-family:'Cormorant Garamond',serif;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;padding-bottom:3px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+    .q-lien:hover{color:#fff;border-color:var(--or)}
+    @media(max-width:720px){.quatre{padding-top:56px}.quatre h1{font-size:36px}}
+  </style>
+  <div class="vue"><section class="quatre">
+    <div class="croix" aria-hidden="true"></div>
+    <div class="q-sur">Lumen Veritatis</div>
+    <h1>Page introuvable</h1>
+    <p class="q-en">Page not found</p>
+    <p class="q-desc">Cette page n'existe pas. Cherchez un article ou une référence (Jean 3:16), ou revenez à l'accueil.<br>This page does not exist. Search for an article or a reference (John 3:16), or go back home.</p>
+    <div class="q-acts">
+      <a href="#" id="r404" class="q-btn">Rechercher · Search</a>
+      <a href="/" class="q-lien">Revenir à l'accueil</a>
+      <a href="/en/" class="q-lien">Back to home</a>
+    </div>
+    <script>document.addEventListener('click',function(e){var a=e.target.closest?e.target.closest('#r404'):null;if(a){e.preventDefault();var b=document.getElementById('rech-ouvrir');if(b)b.click();}});</script>
+  </section></div>`;
 }
 
 /* ---- écriture ---- */
@@ -1802,7 +1911,8 @@ if (fs.existsSync('bible.html')) {
       ['>Supprimer<', '>Delete<'],
       ['placeholder="Nom…"', 'placeholder="Name…"'],
       ['placeholder="Écrire la note…"', 'placeholder="Write the note…"'],
-      ['placeholder="Référence ou article…"', 'placeholder="Reference or article…"'],
+      ['placeholder="Rechercher dans Lumen…"', 'placeholder="Search Lumen…"'],
+      ['Tapez un mot pour parcourir les articles, ou une référence (Jean 3:16) pour ouvrir la Bible.', 'Type a word to browse the articles, or a reference (John 3:16) to open the Bible.'],
       ['placeholder="Adresse e-mail"', 'placeholder="Email address"'],
       ['placeholder="Confirmer le mot de passe"', 'placeholder="Confirm the password"'],
       ['placeholder="Mot de passe"', 'placeholder="Password"'],
@@ -1823,7 +1933,7 @@ if (fs.existsSync('bible.html')) {
       ['Aller à : ', 'Go to: '],
       ['Référence biblique — Entrée pour ouvrir', 'Bible reference — Enter to open'],
       [' et sélectionner', ' and select'],
-      ['Aucun résultat.', 'No results.'],
+      ['Aucun résultat pour « ', 'No results for « '],
       ['Rien de nouveau pour le moment.', 'Nothing new for now.'],
       ['Copié \\u2713', 'Copied \\u2713'],
       ['>Taille du texte<', '>Text size<'],

@@ -519,39 +519,43 @@
     if (document.getElementById('tts-css')) return;
     var st = document.createElement('style'); st.id = 'tts-css';
     st.textContent = '.tts-voile{position:fixed;inset:0;background:rgba(4,4,4,.9);z-index:220;display:flex;align-items:center;justify-content:center;padding:20px}'
-      + '.tts-boite{background:#000;border:1px solid rgba(231,224,207,.14);max-width:470px;width:100%;padding:32px 30px 28px;position:relative;max-height:90vh;overflow-y:auto;overflow-x:hidden;box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgba(231,224,207,.35) #000}'
+      + '.tts-boite{background:#000;box-shadow:inset 0 0 0 1px var(--filet-f,rgba(231,224,207,.16));max-width:480px;width:100%;padding:34px 32px 26px;position:relative;max-height:90vh;overflow-y:auto;overflow-x:hidden;box-sizing:border-box;scrollbar-width:thin;scrollbar-color:var(--filet-f,rgba(231,224,207,.35)) #000}'
       + '.tts-boite::-webkit-scrollbar{width:10px}'
       + '.tts-boite::-webkit-scrollbar-track{background:#000}'
-      + '.tts-boite::-webkit-scrollbar-thumb{background:rgba(231,224,207,.35)}'
-      + '.tts-boite::-webkit-scrollbar-thumb:hover{background:rgba(231,224,207,.6)}'
-      + '.tts-x{position:absolute;top:12px;right:14px;background:none;border:none;color:rgba(255,255,255,.5);font-size:20px;cursor:pointer;padding:4px 8px;transition:color .3s}'
+      + '.tts-boite::-webkit-scrollbar-thumb{background:var(--filet-f,rgba(231,224,207,.35))}'
+      + '.tts-boite::-webkit-scrollbar-thumb:hover{background:var(--filet-f,rgba(231,224,207,.6))}'
+      + '.tts-x{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(255,255,255,.45);font-size:19px;cursor:pointer;padding:6px 9px;transition:color .3s}'
       + '.tts-x:hover{color:#fff}'
-      + '.tts-t{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:24px;color:#fff;margin:0 0 8px}'
-      + '.tts-p{font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.55);margin:0 0 6px}'
-      + '.tts-l{display:block;font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#efe6cf;margin:18px 0 7px}'
-      + '.tts-in{width:100%;box-sizing:border-box;background:#161616;border:1px solid rgba(231,224,207,.28);color:#fff;padding:10px 13px;font-size:15px;font-family:inherit;border-radius:0;transition:border-color .3s}'
-      + '.tts-in:focus{outline:none;border-color:#efe6cf}'
-      + 'select.tts-in{appearance:none;-webkit-appearance:none;cursor:pointer}'
-      + '.tts-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}'
-      + '.tts-chk{display:flex;gap:10px;align-items:center;margin-top:20px;font-size:14px;color:rgba(255,255,255,.75);cursor:pointer}'
-      + '.tts-chk input{accent-color:#efe6cf}'
-      + '.tts-acts{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:26px}'
-      + '.tts-btn{font-family:"Cormorant Garamond",serif;font-size:14px;letter-spacing:.1em;text-transform:uppercase;background:#efe6cf;color:#000;border:none;padding:11px 22px;cursor:pointer;transition:background .3s}'
-      + '.tts-btn:hover{background:#f8f3e6}'
-      + '.tts-btn2{font-family:"Cormorant Garamond",serif;font-size:14px;letter-spacing:.08em;text-transform:uppercase;background:none;border:1px solid rgba(231,224,207,.28);color:rgba(255,255,255,.6);padding:10px 18px;cursor:pointer;transition:border-color .3s,color .3s}'
-      + '.tts-btn2:hover{border-color:#efe6cf;color:#f8f3e6}'
-      + '.tts-mini{background:none;border:none;font-family:"Cormorant Garamond",serif;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55);cursor:pointer;padding:0;transition:color .3s}'
-      + '.tts-mini:hover{color:#efe6cf}'
-      + '.tts-sep{height:1px;background:rgba(231,224,207,.14);margin:24px 0 0}'
-      + '.tts-etat{font-size:13px;color:rgba(255,255,255,.55);margin:8px 0 0}'
-      + '.tts-ver{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 16px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(231,224,207,.10)}'
-      + '.tts-ver:last-child{border-bottom:none}'
-      + '.tts-ver-n{grid-column:1;font-family:"Cormorant Garamond",serif;font-size:17px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
-      + '.tts-ver-m{grid-column:1;font-size:12.5px;line-height:1.45;color:rgba(255,255,255,.5)}'
-      + '.tts-ver-a{grid-column:2;grid-row:1/span 2;display:flex;flex-direction:column;align-items:flex-end;gap:8px}'
-      + '.tts-note{font-size:12px;line-height:1.55;color:rgba(255,255,255,.4);margin-top:22px}'
-      + '.tts-a{color:#efe6cf;text-decoration:none}.tts-a:hover{text-decoration:underline}'
-      + '.tts-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);background:#000;border:1px solid rgba(231,224,207,.28);color:#fff;padding:11px 18px;font-size:13.5px;z-index:240;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;max-width:86vw;text-align:center}'
+      + '.tts-t{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:27px;letter-spacing:.02em;color:#fff;margin:0 0 7px}'
+      + '.tts-p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.5);margin:0}'
+      + '.tts-sec{margin-top:30px}'
+      + '.tts-sec-t{font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--or,#efe6cf)}'
+      + '.tts-filet{height:1px;background:linear-gradient(90deg,var(--filet-f,rgba(231,224,207,.55)),var(--filet-f,rgba(231,224,207,.22)) 38%,rgba(231,224,207,.07) 72%,transparent);margin:9px 0 18px}'
+      + '.tts-l{display:block;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(231,224,207,.72);margin:16px 0 7px;font-family:"Cormorant Garamond",serif}'
+      + '.tts-sec .tts-l:first-of-type{margin-top:0}'
+      + '.tts-in{width:100%;box-sizing:border-box;background:#131313;border:none;box-shadow:inset 0 0 0 1px var(--filet-f,rgba(231,224,207,.2));color:#fff;padding:11px 14px;font-size:15px;font-family:inherit;border-radius:0;transition:box-shadow .3s}'
+      + '.tts-in:focus{outline:none;box-shadow:inset 0 0 0 1px var(--or,#efe6cf)}'
+      + '.tts-sel{position:relative}'
+      + '.tts-sel::after{content:"\u203A";position:absolute;right:14px;top:50%;transform:translateY(-50%) rotate(90deg);color:var(--filet-f,rgba(231,224,207,.6));pointer-events:none;font-size:16px;line-height:1}'
+      + 'select.tts-in{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:36px}'
+      + '.tts-chk{display:flex;gap:10px;align-items:center;margin-top:18px;font-size:13.5px;color:rgba(255,255,255,.7);cursor:pointer}'
+      + '.tts-chk input{accent-color:var(--or,#efe6cf)}'
+      + '.tts-acts{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:24px}'
+      + '.tts-btn{font-family:"Cormorant Garamond",serif;font-size:14px;letter-spacing:.12em;text-transform:uppercase;background:var(--or,#efe6cf);color:var(--encre,#000);border:none;padding:12px 24px;cursor:pointer;transition:background .3s}'
+      + '.tts-btn:hover{background:var(--or-pale,#f8f3e6)}'
+      + '.tts-btn2{font-family:"Cormorant Garamond",serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:none;border:none;box-shadow:inset 0 0 0 1px var(--filet-f,rgba(231,224,207,.25));color:rgba(255,255,255,.6);padding:12px 18px;cursor:pointer;transition:box-shadow .3s,color .3s}'
+      + '.tts-btn2:hover{box-shadow:inset 0 0 0 1px var(--filet-f,rgba(231,224,207,.7));color:var(--or-pale,#f8f3e6)}'
+      + '.tts-mini{background:none;border:none;font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);cursor:pointer;padding:0;transition:color .3s}'
+      + '.tts-mini:hover{color:var(--or,#efe6cf)}'
+      + '.tts-etat{font-size:12.5px;color:rgba(255,255,255,.5);margin:0 0 12px}'
+      + '.tts-ver{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 16px;align-items:center;padding:13px 16px;margin-bottom:10px;background:#0d0d0d;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.14),inset 0 1px 0 rgba(255,255,255,.04);clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);transition:box-shadow .3s}'
+      + '.tts-ver:hover{box-shadow:inset 0 0 0 .5px rgba(255,255,255,.3),inset 0 1px 0 rgba(255,255,255,.05)}'
+      + '.tts-ver-n{grid-column:1;font-family:"Cormorant Garamond",serif;font-size:17.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
+      + '.tts-ver-m{grid-column:1;font-size:12px;line-height:1.5;color:rgba(255,255,255,.5)}'
+      + '.tts-ver-a{grid-column:2;grid-row:1/span 2;display:flex;flex-direction:column;align-items:flex-end;gap:9px}'
+      + '.tts-note{font-size:11.5px;line-height:1.6;color:rgba(255,255,255,.38);margin:24px 0 0}'
+      + '.tts-a{color:var(--or,#efe6cf);text-decoration:none}.tts-a:hover{text-decoration:underline}'
+      + '.tts-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);background:#000;box-shadow:inset 0 0 0 1px var(--filet-f,rgba(231,224,207,.3));color:#fff;padding:11px 18px;font-size:13.5px;z-index:240;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;max-width:86vw;text-align:center}'
       + '.tts-toast.vu{opacity:1;transform:translateX(-50%) translateY(0)}';
     document.head.appendChild(st);
   }
@@ -562,31 +566,42 @@
     var artId = artEl ? artEl.getAttribute('data-article') : null;
     var voile = el('div', 'tts-voile');
     var b = el('div', 'tts-boite');
-    var optVoix = TTS_VOIX.map(function (v) { return '<option value="' + v[0] + '">' + v[1] + '</option>'; }).join('');
+    function escV(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+    function optionsVoix(compte) {
+      var prop = TTS_VOIX.map(function (v) { return '<option value="' + v[0] + '">' + escV(v[1]) + '</option>'; }).join('');
+      if (!compte || !compte.length) return prop;
+      var deja = {}; TTS_VOIX.forEach(function (v) { deja[v[0]] = 1; });
+      var perso = compte.filter(function (v) { return v && v[0] && !deja[v[0]]; })
+        .map(function (v) { return '<option value="' + escV(v[0]) + '">' + escV(v[1] || v[0]) + '</option>'; }).join('');
+      if (!perso) return prop;
+      return '<optgroup label="' + T('Mes voix', 'My voices') + '">' + perso + '</optgroup>'
+        + '<optgroup label="' + T('Voix proposées', 'Suggested voices') + '">' + prop + '</optgroup>';
+    }
+    var optVoix = optionsVoix(c.voix);
     b.innerHTML = '<button type="button" class="tts-x" aria-label="' + T('Fermer', 'Close') + '">\u2715</button>'
       + '<h3 class="tts-t">' + T('Écoute de l\u2019article', 'Listen to the article') + '</h3>'
       + '<p class="tts-p">' + T('Voix du navigateur, gratuite, ou voix ElevenLabs de qualité supérieure, générée en direct avec votre propre clé (compte gratuit sur ', 'Your browser\u2019s free voice, or a higher-quality ElevenLabs voice, generated live with your own key (free tier at ')
       + '<a class="tts-a" href="https://elevenlabs.io" target="_blank" rel="noopener">elevenlabs.io</a>).</p>'
+      + '<div class="tts-sec"><div class="tts-sec-t">' + T('La voix', 'The voice') + '</div><div class="tts-filet"></div>'
       + '<label class="tts-l">' + T('Clé API ElevenLabs', 'ElevenLabs API key') + '</label>'
       + '<input type="password" class="tts-in" id="tts-key" autocomplete="off" placeholder="xi-\u2026" value="' + (c.key ? String(c.key).replace(/"/g, '&quot;') : '') + '">'
       + '<label class="tts-l">' + T('Voix', 'Voice') + '</label>'
-      + '<select class="tts-in" id="tts-voice">' + optVoix + '</select>'
+      + '<div class="tts-sel"><select class="tts-in" id="tts-voice">' + optVoix + '</select></div>'
       + '<div style="margin-top:8px"><button type="button" class="tts-mini" id="tts-lv">' + T('Charger les voix de mon compte', 'Load my account\u2019s voices') + '</button></div>'
       + '<label class="tts-l">' + T('Qualité', 'Quality') + '</label>'
-      + '<select class="tts-in" id="tts-model">'
+      + '<div class="tts-sel"><select class="tts-in" id="tts-model">'
       + '<option value="eleven_flash_v2_5">' + T('Flash — recommandé (0,5 crédit / caractère)', 'Flash — recommended (0.5 credit / character)') + '</option>'
       + '<option value="eleven_multilingual_v2">' + T('Qualité maximale (1 crédit / caractère)', 'Maximum quality (1 credit / character)') + '</option>'
-      + '</select>'
+      + '</select></div>'
       + '<label class="tts-chk"><input type="checkbox" id="tts-refs">' + T('Lire les références des versets (« Jean 3:16 »)', 'Read verse references aloud (\u201CJohn 3:16\u201D)') + '</label>'
       + '<div class="tts-acts">'
       + '<button type="button" class="tts-btn" id="tts-ok">' + T('Utiliser ElevenLabs', 'Use ElevenLabs') + '</button>'
       + '<button type="button" class="tts-btn2" id="tts-nav">' + T('Voix du navigateur', 'Browser voice') + '</button>'
-      + '</div>'
-      + '<div class="tts-sep"></div>'
-      + '<label class="tts-l">' + T('Cache audio', 'Audio cache') + '</label>'
+      + '</div></div>'
+      + '<div class="tts-sec"><div class="tts-sec-t">' + T('Le cache audio', 'The audio cache') + '</div><div class="tts-filet"></div>'
       + '<p class="tts-etat" id="tts-etat-cache">\u2026</p>'
       + (artId ? '<div id="tts-versions"></div>' : '')
-      + '<div style="margin-top:14px"><button type="button" class="tts-mini" id="tts-vide">' + T('Vider tout le cache audio', 'Clear the whole audio cache') + '</button></div>'
+      + '<div style="margin-top:12px"><button type="button" class="tts-mini" id="tts-vide">' + T('Vider tout le cache audio', 'Clear the whole audio cache') + '</button></div></div>'
       + '<p class="tts-note">' + T('Un article déjà écouté sur cet appareil se réécoute sans consommer de crédits ; supprimer une version force une nouvelle génération (utile quand les voix s\u2019améliorent ou que l\u2019article a changé). Conseil : sur ElevenLabs, créez une clé limitée au Text-to-Speech, avec un plafond de crédits.', 'An article already listened to on this device replays without spending credits; deleting a version forces a fresh generation (useful when voices improve or the article has changed). Tip: on ElevenLabs, create a key restricted to Text-to-Speech, with a credit cap.') + '</p>';
     voile.appendChild(b);
     document.body.appendChild(voile);
@@ -668,13 +683,12 @@
       fetch('https://api.elevenlabs.io/v1/voices', { headers: { 'xi-api-key': k } })
         .then(function (r) { if (!r.ok) { var e = new Error('http'); e.code = r.status; throw e; } return r.json(); })
         .then(function (j) {
+          var compte = (j.voices || []).map(function (v) { return [v.voice_id, v.name || v.voice_id]; });
+          ttsSauver({ voix: compte }); /* persistée : locale + compte, plus besoin de recharger */
           var cur = sel.value;
-          sel.innerHTML = optVoix;
-          (j.voices || []).forEach(function (v) {
-            var o = document.createElement('option'); o.value = v.voice_id; o.textContent = v.name; sel.appendChild(o);
-          });
+          sel.innerHTML = optionsVoix(compte);
           sel.value = cur; if (!sel.value) sel.value = TTS_DEF.voice;
-          $('tts-lv').textContent = '\u2713 ' + T('Voix chargées', 'Voices loaded');
+          $('tts-lv').textContent = '\u2713 ' + T('Voix chargées et enregistrées', 'Voices loaded and saved');
         })
         .catch(function (e) {
           $('tts-lv').textContent = T('Charger les voix de mon compte', 'Load my account\u2019s voices');
@@ -1276,7 +1290,7 @@
           lien.addEventListener('click', function () {
             db.collection('contenu').doc(id2).set({ supprime: false }, { merge: true }).then(function () {
               ov[id2].supprime = false; rendre(); toast(T('Article restaur\u00e9', 'Article restored'));
-            });
+            }).catch(function (e2) { toast(T('Erreur : ', 'Error: ') + e2.message); });
           });
           bloc.appendChild(lien);
         });
@@ -1612,7 +1626,7 @@
             var reste = ov.domSupprimes.filter(function (x) { return x !== id2; });
             db.doc('config/themes').set({ domSupprimes: reste, domOrdre: (ov.domOrdre || []).concat([id2]) }, { merge: true }).then(function () {
               toast(T('Domaine restaur\u00e9', 'Domain restored')); selectTab('biblio');
-            });
+            }).catch(function (e2) { toast(T('Erreur : ', 'Error: ') + e2.message); });
           });
           blocD.appendChild(lien);
         });

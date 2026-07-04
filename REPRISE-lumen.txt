@@ -776,6 +776,287 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   versions sans références restent valables. Harnais test_tts corrigé
   (clone DOM fidèle : textContent de la ref modifiable répercuté sur
   le parent) ; T4 vérifie la forme parlée et l'absence du brut.
+• VOIX DU COMPTE PERSISTÉES (2026-07-04, signalé par Emmanuel : il
+  fallait recliquer « Charger les voix » à chaque ouverture). La liste
+  chargée depuis GET /v1/voices est désormais enregistrée dans la
+  config TTS via ttsSauver({voix:[[id,nom],…]}) — donc localStorage
+  lv_tts ET Firestore users/{uid}/meta/tts (merge) : elle suit
+  l'utilisateur entre appareils. À l'ouverture de la modale,
+  optionsVoix(c.voix) construit le select en deux optgroups : « Mes
+  voix » (voix du compte absentes de la liste intégrée, dédupliquées
+  par id, noms échappés via escV) puis « Voix proposées » (TTS_VOIX).
+  Le bouton confirme « ✓ Voix chargées et enregistrées ». Banc T13 :
+  persistance vérifiée + réouverture avec « Bruno » présent sans
+  recharger.
+• BARRES DE RECHERCHE — HARMONISATION DU TEXTE (2026-07-04, captures
+  d'Emmanuel : les placeholders différaient encore). Trois écarts
+  résiduels unifiés : (1) italique — la bible le déclarait
+  (font-style:italic), le site non → le site le reçoit aussi ;
+  (2) opacité — bible à 35 % vs site à 50 % → bible passée à
+  rgba(255,255,255,.5) ; (3) mobile — le site réduit à 24px sous
+  720px, la bible restait à 30px → même règle ajoutée à bible.html
+  (24px + padding-top 6vh sur .b-boite). Canon unique désormais :
+  Cormorant 30px (24px mobile), letter-spacing .01em, placeholder
+  italique blanc 50 %. IMPORTANT DÉPLOIEMENT : ces harmonisations
+  vivent dans bible.html et index__48_.html — si seuls admin.js /
+  build-bi.js ont été poussés lors des derniers déploiements, la
+  barre bible en production reste l'ancienne (26px) : pousser
+  bible.html ET index__48_.html puis laisser Netlify reconstruire.
+• BARRES DE RECHERCHE — MÊME TEXTE PARTOUT (2026-07-04, précision
+  d'Emmanuel : le libellé changeait selon la page). La barre de la
+  Bible portait « Référence ou article… » quand le site affichait
+  « Rechercher dans Lumen… » — injustifié depuis que les deux moteurs
+  couvrent le même périmètre (articles + références). Unifié :
+  (1) bible.html placeholder → « Rechercher dans Lumen… » ;
+  (2) indice à vide ajouté à la recherche Bible (même texte que le
+  site : « Tapez un mot pour parcourir les articles, ou une référence
+  (Jean 3:16) pour ouvrir la Bible. »), affiché dès l'ouverture
+  (rendRecherche('') appelé par brech-ouvrir au lieu de vider
+  brech-res) et stylé .b-hint calqué sur .rech-msg (38px 4px,
+  italique, 18px, blanc 50 %) ; (3) paires EN dans build-bi.js :
+  placeholder → « Search Lumen… », indice → « Type a word to browse
+  the articles, or a reference (John 3:16) to open the Bible. ».
+  Les recherches SPÉCIALISÉES gardent leur libellé descriptif propre :
+  « Rechercher dans les notes… » (notes de la Bible) et « Référence ou
+  texte… » (recherche de versets du Mémoriseur) — outils internes,
+  pas la barre du site. Fichiers concernés : bible.html + build-bi.js
+  (+ index__48_.html du point précédent).
+• NAVIGATION CLAVIER DANS LES RECHERCHES + 404 AVEC RECHERCHE
+  (2026-07-04, choisi par Emmanuel dans les idées proposées ; vérifié
+  au préalable : rien de tel n'existait). (1) Recherche du SITE
+  (RECH_JS, build-bi.js) : ↓/↑ déplacent une surbrillance .kact sur
+  les .rech-item (bandeau gris + titre or-pâle, mêmes règles que le
+  hover, scrollIntoView nearest), ↑ au-delà du premier revient au
+  champ (kidx=-1), Entrée ouvre l'élément surligné ou, sans
+  sélection, le PREMIER résultat ; kidx réinitialisé à chaque saisie
+  (début de chercher()). CSS dans index__48_.html (sélecteurs .kact
+  ajoutés aux règles hover). (2) Recherche de la BIBLE (bible.html) :
+  même mécanique sur les .b-r (BKIDX/bkItems/bkMaj, reset dans
+  rendRecherche) ; Entrée sur l'élément surligné (brech-go → brechVa,
+  lien → navigation) ; sans sélection : priorité à la référence tapée
+  (brechVa si DERNIERES_REFS, comportement historique), sinon premier
+  article. CSS .b-r.kact aligné. (3) 404 (main404, build-bi.js) :
+  propose désormais « Rechercher dans Lumen · Search Lumen » (lien
+  #r404 qui déclenche rech-ouvrir.click() via un script inline —
+  l'overlay du header est présent sur la 404) + les liens accueil
+  FR/EN. Banc /tmp/test_clavier.js : ↓↓ surligne le 2e, Entrée
+  l'ouvre, ↑×3 revient au champ, Entrée sans sélection ouvre le
+  premier — tout vert. Fichiers : build-bi.js, index__48_.html,
+  bible.html.
+• CONSISTANCE DU CLAVIER SUR TOUTES LES RECHERCHES (2026-07-04,
+  question d'Emmanuel « c'est consistant partout ? »). Vérifié :
+  (a) site FR/EN → OK (même lumen-app.js, Entrée sur référence testé
+  bout en bout : « jean 3:16 » + Entrée → /bible.html#jean/3/16) ;
+  (b) bible EN → OK (clavier hérité de bible.html, textes traduits,
+  « No results. ») ; (c) recherche des NOTES de la Bible → hors
+  périmètre par nature (filtre en direct de la liste, pas un panneau
+  de résultats) ; (d) recherche de VERSETS du Mémoriseur → MANQUAIT :
+  ajouté (SKIDX/skItems/skMaj avant renderSearch qui reset SKIDX,
+  keydown sur i-srch : ↓/↑ surbrillance .kact — bordure dorée + fond
+  gris, aligné sur le hover .srch-v — Entrée déclenche le click() du
+  résultat surligné ou du premier, ce qui ferme la modale et ouvre la
+  catégorie au bon endroit). Fichier : memoriser.html.
+• SCROLLBAR CLAIRE À CÔTÉ DE LA RECHERCHE BIBLE (2026-07-04, signalé
+  par Emmanuel : couleur de barre incorrecte sur l'overlay). Cause :
+  contrairement au site (ouvre() du RECH_JS pose
+  document.body.style.overflow='hidden'), ouvreOv() de bible.html ne
+  verrouillait pas la page : elle continuait de défiler derrière le
+  voile et sa scrollbar restait affichée, rendue par Brave dans le
+  style système clair. Correctif : ouvreOv pose overflow='hidden',
+  fermeOv le restaure ; vérifié qu'AUCUNE fermeture de brech-voile ou
+  bnouv-voile ne contourne fermeOv (Escape, ✕, clic hors boîte,
+  brechVa passent tous par lui) — pas de verrou fantôme possible. Les
+  autres panneaux de la Bible (compte, note, catégorie, auth) restent
+  volontairement non verrouillants, comme les modales du site.
+  Fichier : bible.html.
+• PREUVE « ENTRÉE SUR RÉFÉRENCE » (2026-07-04, Emmanuel demandait
+  confirmation). Harnais /tmp/test_bible_entree.js : évalue TOUS les
+  scripts de bible.html dans un bac (DOM permissif, fetch servi depuis
+  content/bible.json, firebase simulé) et déroule le geste réel.
+  Trois verts : « jean 3:16 » + Entrée directe → location.hash
+  #jean/3/16 ; « amour » + Entrée → premier article ouvert ; ↓ puis
+  Entrée sur « Aller à » → même hash. Côté SITE, test_entree_ref.js
+  prouvait déjà « jean 3:16 » + Entrée → /bible.html#jean/3/16 et
+  « psaumes 23 » → #psaumes/23. Leçon de harnais : l'échec initial
+  venait du stub (document.body.classList sans toggle), démasqué en
+  remplaçant le catch muet de brechVa par un piège — le
+  .catch(function(){}) de brechVa avale toute exception d'allerRefs,
+  à garder en tête pour de futurs diagnostics.
+• MODALE TTS — SECONDE REFONTE VISUELLE (2026-07-04, Emmanuel la
+  trouvait toujours laide). Défauts objectifs corrigés : les SELECTS
+  n'avaient AUCUNE flèche (appearance:none sans indicateur → champs
+  morts) → wrapper .tts-sel avec chevron › pivoté 90° en ::after,
+  doré atténué ; formulaire monolithique → DEUX sections titrées
+  (« La voix » / « Le cache audio ») : titre Cormorant uppercase
+  .22em doré + FILET DÉGRADÉ or à quatre paliers (.55→.22→.07→
+  transparent) ; bordures pleines → HAIRLINES via box-shadow inset
+  (boîte .16, champs .2 → focus or plein, bouton ghost .25→.7) ;
+  versions du cache → CARTES : fond #0d0d0d, hairline .5px blanche
+  .14 + ligne de lumière intérieure en haut, COIN COUPÉ 10px en haut
+  à droite (clip-path), hover hairline .3 ; note réduite (11.5px,
+  alpha .38) ; titre 27px ; toast en hairline. Logique STRICTEMENT
+  inchangée (mêmes ids, mêmes handlers) : banc test_tts intégral
+  revert (T1-T13). Fichier : admin.js.
+• INVENTAIRE DE REFONTE (2026-07-04, Emmanuel demandait ce qui
+  méritait encore une refonte). Audit du code : les modales de la
+  Bible (note-boite…), le panneau bible-panneau.js (#000), les focus
+  clavier (focus-visible partout) et les boutons burger/menu sont AU
+  CANON, rien à reprendre. Deux inconsistances corrigées dans la
+  foulée : (1) l'état vide de la recherche Bible disait « Aucun
+  résultat. » quand le site dit « Aucun résultat pour « X ». » →
+  aligné (esc(q) affiché ; paire EN 'No results for « ') ;
+  (2) le select des catégories de notes (nb-cat) était le DERNIER
+  menu déroulant à flèche système du site → appearance:none +
+  wrapper .note-sel avec chevron › doré pivoté, comme la modale
+  TTS. Candidate restante proposée mais non faite : HABILLER LA 404
+  (fonctionnelle depuis peu — recherche + retours accueil — mais
+  visuellement nue : un titre et deux liens sur fond noir ; elle
+  mériterait la composition du site : croix en filigrane, libellé
+  uppercase doré, mise en page). Fichiers : bible.html, build-bi.js.
+• 404 HABILLÉE (2026-07-04, validée par « fais ce qu'il y a à
+  faire »). main404 (build-bi.js) refondue au canon complet, styles
+  locaux dans un <style> embarqué (classes q-*) : croix en filigrane
+  (.croix du CSS commun, opacité .55, 58×106), surtitre « Lumen
+  Veritatis » uppercase doré letter-spacing .3em (canon .testament),
+  titre Cormorant 46px, « Page not found » en italique atténué,
+  paragraphe bilingue, puis trois actions : bouton doré « Rechercher
+  · Search » (ouvre l'overlay via #r404 → rech-ouvrir.click()) et
+  deux liens uppercase à soulignement doré au hover (accueil FR/EN).
+  Mobile ≤720px : titre 36px, padding réduit.
+• ADMIN — AUDIT COMPLET DU CIRCUIT ET PILOTAGE DES COULEURS
+  (2026-07-04, demandé par Emmanuel : « si quand je modifie ça
+  modifie bien »). ARCHITECTURE vérifiée, à trois étages :
+  (1) l'admin écrit en Firestore (collection contenu par article +
+  config/accueil, apparence, memoriser, nouveautes, themes, transmis
+  — transmis = registre interne des hashes reportés au dépôt) ;
+  (2) la couche d'application (tous visiteurs) lit et applique en
+  direct : applyApparence pose les variables CSS sur documentElement
+  (--encre, --parchemin, --or, --or-pale, --filet, --filet-fort,
+  --filet-f, --pa/--pa2), applyArticle remplace h1 + corps
+  (champs titre_fr/contenu_fr) sur la page article, les articles
+  supprimés sont filtrés de LV_INDEX et redirigent leur page,
+  chargerBaseLV (memoriser.html) remplace PRE par config/memoriser ;
+  (3) LE BUILD LIT FIRESTORE EN REST (fsCurl → fsLireDoc/
+  fsLireCollection : config/nouveautes, collection contenu,
+  config/memoriser) et recuit les modifications dans le statique à
+  chaque déploiement — en local sans réseau les appels échouent
+  proprement (fallback JSON). Banc /tmp/test_admin_circuit.js :
+  C1 apparence {or:#ff0000, texte:#eeeeee} → variables posées ;
+  C2 contenu/mon-article {titre_fr, contenu_fr} → h1 remplacé + corps
+  inséré ; C3 article supprimé → filtré de l'index. DÉFAUT CORRIGÉ :
+  le pilotage marche PAR VARIABLES, or le header canonique et les
+  harmonisations récentes étaient EN DUR (échappaient au panneau
+  Apparence) → passés en var() avec repli identique au rendu actuel :
+  BARRE_CSS (13 occurrences #ffffff/#efe6cf → --parchemin/--or),
+  bible.html (groupe-nom, hover livres → --parchemin), modale TTS
+  (21 couleurs : or→--or, or-pâle→--or-pale, texte sur bouton doré →
+  --encre, filet .14→--filet, autres liserés crème→--filet-f avec
+  repli exact), bouton de la 404 (texte → --encre). Rendu par défaut
+  strictement inchangé ; banc test_tts intégral revert. RAS par
+  ailleurs : variables :root présentes partout (les replis brunâtres
+  #0a0908 ne sortent jamais), EB Garamond chargée, aucun select ni
+  placeholder dans l'admin, scrollbar .lva-page stylée.
+• ADMIN — AUDIT PROFOND, SUITE (2026-07-04). Cohérences VÉRIFIÉES
+  champ à champ : éditeur d'article écrit titre_fr/resume_fr/
+  contenu_fr (+ _en) = exactement ce que lisent applyArticle et le
+  build ; accueil écrit d[cle]['t_'+ADM] = ce que lit applyAccueil
+  (o['t_'+lang]) ; le build publie en PAGES les articles CRÉÉS en
+  ligne (cree:true, repli FR→EN propre) mais PAS les modifications
+  d'articles EXISTANTS ni les suppressions — c'est le WORKFLOW VOULU :
+  le panneau « Transmettre » produit le paquet JSON des surcharges
+  (modes tout/depuis-le-dernier-envoi via hashes djb2, scopes,
+  copier + télécharger lumen-{mode}-{scope}-{date}.json), destiné à
+  être transmis à l'assistant pour intégration dans content/*.json ;
+  « Marquer comme transmis » fige les hashes (config/transmis) ;
+  « Tout effacer en ligne » purge les surcharges après intégration.
+  CONSÉQUENCE à retenir : une modification d'article existant reste
+  une surcharge client (le HTML statique garde l'ancien texte pour le
+  SEO) tant qu'elle n'a pas été transmise et intégrée au dépôt.
+  DÉFAUT CORRIGÉ : 2 écritures muettes en échec (restauration
+  d'article supprimé, restauration de domaine) → .catch ajouté avec
+  toast d'erreur, 12/12 écritures remontent désormais leurs échecs.
+  POINT DE SÉCURITÉ signalé (invérifiable d'ici) : isAdmin n'est
+  qu'un contrôle d'AFFICHAGE côté client (email en clair) ; la vraie
+  barrière est dans les RÈGLES FIRESTORE — vérifier dans la console
+  Firebase que l'écriture de config/* et de la collection contenu est
+  réservée au compte admin (sinon tout utilisateur connecté pourrait
+  modifier le site), et que users/{uid}/** reste limité à son
+  propriétaire. Fichier : admin.js.
+• RÈGLES FIRESTORE VALIDÉES (2026-07-04, capture d'Emmanuel).
+  users/{uid}/{doc=**} : read/write si auth.uid == uid (progression,
+  notes, meta/tts protégés) ; config/{doc} et contenu/{slug} :
+  read public (requis par la couche d'application ET le build REST
+  non authentifié), write réservé à l'email admin — la faille
+  théorique « tout connecté peut écrire » est fermée ; deny par
+  défaut ailleurs ; write couvre delete (corbeille/restaurations OK).
+  Correspondance chemins règles ↔ chemins du code : complète.
+  AMÉLIORATION RECOMMANDÉE (une ligne, non appliquée par Emmanuel à
+  ce stade) : ajouter && request.auth.token.email_verified == true
+  aux deux blocs d'écriture admin ; PRÉREQUIS : le compte admin doit
+  avoir l'adresse vérifiée (automatique via Google), tester une
+  écriture depuis le panneau après publication.
+• TEMPS LITURGIQUE + SANCTORAL SUR L'ACCUEIL (2026-07-04, validés par
+  Emmanuel parmi les idées « site vivant » ; changement de couleur
+  liturgique explicitement REFUSÉ). Une ligne dorée sous la croix du
+  hero (.liturgie, canon surtitre : Cormorant uppercase .24em
+  var(--or)), calculée CHEZ LE VISITEUR au jour local :
+  « Temps ordinaire · Sainte Élisabeth de Portugal ».
+  (1) content/sanctoral.json : ~160 célébrations du calendrier romain
+  général + propres de France notables (Jeanne d'Arc, Thérèse
+  patronne secondaire f, saint Denis, saint Louis), bilingue, degrés
+  d: s (solennité) / fS (fête du Seigneur, prime le dimanche du TO :
+  02-02, 08-06, 09-14, 11-09) / f / m — f et m CÈDENT le dimanche.
+  (2) build-bi.js scriptLiturgie(lang) : injecté dans le hero FR/EN,
+  computus de Meeus, différences en JOURS CIVILS via Date.UTC (piège
+  corrigé : comparer 12h à minuit décalait tout d'un jour), fêtes
+  mobiles par écart à Pâques (-46 Cendres, -7 Rameaux, -3/-2/-1
+  Triduum, 0/+1/+7/+39/+49/+50/+56/+68/+69), Fête-Dieu transférée au
+  DIMANCHE +63 (usage français), Christ-Roi = avent1-7, Sainte
+  Famille (30 déc si Noël tombe un dimanche), Épiphanie France =
+  dimanche du 2-8 janv, Baptême = +7 ou lundi si Épiphanie les 7-8 ;
+  temps : Avent, Noël (jusqu'au Baptême), TO, Carême, Semaine sainte,
+  Triduum, Temps pascal. window.LV_LITURGIE exposé pour vérification.
+  Banc : 19 dates sur 2025-2027 + EN, tout vert (piège instructif :
+  Pâques 2027 = 28 mars, mon attendu était faux, pas le calcul).
+  Fichiers : content/sanctoral.json (NOUVEAU), build-bi.js,
+  index__48_.html. Restent proposés non faits : verset du jour,
+  accueil personnalisé, « à relire aujourd'hui ».
+• SANCTORAL ENRICHI À 202 CÉLÉBRATIONS (2026-07-04, Emmanuel a
+  délégué l'enrichissement). 47 ajouts : les mémoires du calendrier
+  romain général laissées de côté au premier passage (Fabien et
+  Sébastien, Sept Fondateurs des Servites, Grégoire de Narek, Martin
+  Ier, Fidèle de Sigmaringen, Nérée et Achillée, Jean Ier, Magallanès,
+  Bède, Paul VI, Marcellin et Pierre, Romuald, Cyrille d'Alexandrie,
+  Zaccaria, Zhao Rong, Henri, Apollinaire, Laurent de Brindisi,
+  Pierre Chrysologue, Eymard, Sixte II, Chantal, Pontien et Hippolyte,
+  Étienne de Hongrie, Jean Eudes, Rose de Lima, Pierre Claver,
+  Bellarmin, Janvier, Côme et Damien, Venceslas, Jean XXIII, Calliste,
+  Brébeuf et Jogues, Capistran, Claret, Martin de Porrès, Gertrude,
+  Clément Ier, Jean de Damas, N.-D. de Lorette, Damase, Canisius,
+  Jean de Kenty) + 2 propres de France (saint Rémi 15 janv, saint
+  Charles de Foucauld 1er déc) + Césaire d'Arles. Une entrée par date :
+  quand deux mémoires facultatives partagent un jour, la plus notable
+  est retenue. CORRECTION : 11-02 (Défunts) passé au degré fS — la
+  Commémoration prime le dimanche. Vérifié : le dimanche les mémoires
+  cèdent (5 juil → temps seul), Foucauld s'affiche dans l'Avent.
+• ACCUEIL DÉCONNECTÉ — MÉMORISER ET LECTURE SUIVIE (2026-07-05,
+  capture d'Emmanuel : esthétique des deux blocs hors connexion).
+  Trois défauts corrigés : (1) .memo-start était un pavé doré PLEINE
+  LARGEUR (628px) disproportionné face à une ligne de texte →
+  inline-block, padding 15px 52px, centré par le flex du bloc (canon
+  des boutons dorés : 404, m-ok) ; vaut connecté comme déconnecté,
+  pour les deux blocs. (2) ASYMÉTRIE : déconnecté, Mémoriser gardait
+  son bouton mais peint(u) CACHAIT « Commencer la lecture » → le
+  bouton reste visible à l'état out (lire ne demande pas de compte,
+  seul le suivi en demande) ; le cas connecté-tout-désélectionné
+  garde son bouton caché (comportement validé, banc test_barre [6]
+  revert). (3) REGISTRE : « Connecte-toi… », « Apprends… à ton
+  rythme » étaient un îlot de tutoiement (5 occurrences) dans un site
+  qui vouvoie partout (Tapez, Saisissez, Cherchez) → harmonisé au
+  vouvoiement : « Connectez-vous pour suivre votre progression /
+  votre lecture », « Apprenez les versets par cœur et gardez-les, à
+  votre rythme » (build-bi.js ×3 + memoriser.html ×2 ; EN neutre
+  inchangé). Fichiers : index__48_.html, build-bi.js, memoriser.html.
 • AUDIT ANIMATIONS (2026-07-04, tour demandé par Emmanuel). Inventaire :
   site = apparait .6s ease (entrée .vue) + cascades bibliothèque
   (apparaitDom/Ferme, verrouillées) ; bible = rise .4/.6/.7s ease ;

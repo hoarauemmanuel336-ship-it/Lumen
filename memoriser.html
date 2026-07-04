@@ -53,7 +53,7 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .mov-v:hover{opacity:1;color:var(--or)}
 .srch-cat{font-family:var(--display);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa);margin:16px 0 8px}
 .srch-v{padding:9px 11px;border:1px solid var(--filet);margin-bottom:7px;cursor:pointer;transition:border-color .2s}
-.srch-v:hover{border-color:var(--or)}
+.srch-v:hover,.srch-v.kact{border-color:var(--or);background:rgba(20,20,20,.92)}
 .srch-v .vref{color:var(--or);margin-right:8px}
 .srch-v .vtext{color:var(--pa);font-size:14px}
 .srch-vide{color:var(--pa);font-size:14px;padding:8px 0}
@@ -622,7 +622,7 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
         <div id="lect-etat" data-state="load">
           <div class="lect-cptr"><span id="lect-x"></span> <i id="lect-lib">articles lus</i></div>
           <div class="lect-barre" id="lect-bar"><i class="l"></i></div>
-          <p class="lect-note" id="lect-note">Connecte-toi pour suivre ta lecture.</p>
+          <p class="lect-note" id="lect-note">Connectez-vous pour suivre votre lecture.</p>
         </div>
         <a class="start" id="lect-start" href="/bibliotheque/">Commencer la lecture</a>
         <div id="lect-gestion"></div>
@@ -1517,7 +1517,7 @@ function applyLang(){
   if($('macct-tog'))$('macct-tog').textContent=(S.lang==='fr')?'Onglet Bible \u00e0 gauche':'Bible tab on the left';
   if($('lbl-lecture'))$('lbl-lecture').textContent=(S.lang==='fr')?'La lecture suivie':'Guided Reading';
   if($('lect-lib'))$('lect-lib').textContent=(S.lang==='fr')?'articles lus':'articles read';
-  if($('lect-note'))$('lect-note').textContent=(S.lang==='fr')?'Connecte-toi pour suivre ta lecture.':'Sign in to track your reading.';
+  if($('lect-note'))$('lect-note').textContent=(S.lang==='fr')?'Connectez-vous pour suivre votre lecture.':'Sign in to track your reading.';
   $('lbl-cats').textContent=tl.cats; $('lbl-newcat').textContent=tl.newcat; $('lbl-mode').textContent=tl.mode;
   $('mode-0').textContent=tl.mode0; $('mode-1').textContent=tl.mode1; $('mode-2').textContent=tl.mode2;
   $('start-btn').textContent=tl.start; $('reset-btn').textContent=tl.reset; $('finish-btn').textContent=tl.finish;
@@ -1608,7 +1608,11 @@ function openMoveVerse(srcId,vId){
   if(!host.children.length){const e=document.createElement('div');e.className='srch-vide';e.textContent=S.lang==='fr'?'Aucune autre catégorie.':'No other category.';host.appendChild(e);}
   openModal('m-move');
 }
+let SKIDX=-1;
+function skItems(){return Array.from(document.querySelectorAll('#srch-results .srch-v'));}
+function skMaj(){const its=skItems();its.forEach((x,j)=>x.classList.toggle('kact',j===SKIDX));if(SKIDX>=0&&its[SKIDX]&&its[SKIDX].scrollIntoView)its[SKIDX].scrollIntoView({block:'nearest'});}
 function renderSearch(){
+  SKIDX=-1;
   const q=($('i-srch').value||'').toLowerCase().trim();
   const host=$('srch-results'); host.innerHTML='';
   if(!q)return;
@@ -1886,6 +1890,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('rech-ouvrir').addEventListener('click',openSearch);
   $('rech-ouvrir').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openSearch();}});
   $('i-srch').addEventListener('input',renderSearch);
+  $('i-srch').addEventListener('keydown',e=>{
+    const its=skItems();
+    if(e.key==='ArrowDown'){e.preventDefault();if(!its.length)return;SKIDX=Math.min(its.length-1,SKIDX+1);skMaj();}
+    else if(e.key==='ArrowUp'){e.preventDefault();if(!its.length)return;SKIDX=Math.max(-1,SKIDX-1);skMaj();}
+    else if(e.key==='Enter'){const c=its[SKIDX>=0?SKIDX:0];if(c){e.preventDefault();c.click();}}
+  });
   $('msrch-close').onclick=()=>closeModal('m-search');
   $('mmove-cancel').onclick=()=>closeModal('m-move');
   $('mv-cancel').onclick=()=>closeModal('m-verse'); $('mv-ok').onclick=saveVerseModal; $('mv-reset').onclick=resetVerseOrig;

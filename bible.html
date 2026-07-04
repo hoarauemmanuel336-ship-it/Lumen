@@ -59,14 +59,17 @@ nav.menu a.lien-langue:hover{opacity:1}
 .b-tete{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--filet-f);padding-bottom:18px;color:#fff}
 .b-titre{font-family:var(--display);font-size:22px;color:#fff;flex:1}
 .b-champ{flex:1;min-width:0;background:none;border:none;padding:0;font-size:30px;letter-spacing:.01em;font-family:var(--display);color:#fff;outline:none}
-.b-champ::placeholder{color:rgba(255,255,255,.35);font-style:italic}
+.b-champ::placeholder{color:rgba(255,255,255,.5);font-style:italic}
+.b-hint{padding:38px 4px;color:rgba(255,255,255,.5);font-style:italic;font-size:18px}
+@media(max-width:720px){.b-champ{font-size:24px}.b-boite{padding-top:6vh}}
 .b-fermer{cursor:pointer;color:rgba(255,255,255,.6);font-size:24px;line-height:1;flex:none;transition:color .3s;padding:2px 6px}
 .b-fermer:hover{color:#fff}
 .b-res{margin-top:6px;overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:rgba(231,224,207,.35) transparent}
 a.b-r,.b-r{display:block;padding:16px 2px;border-bottom:1px solid var(--filet);cursor:pointer}
 a.b-r b,.b-r b{display:block;font-family:var(--display);font-weight:500;font-size:21px;color:#fff;transition:color .3s}
 a.b-r span,.b-r span{font-size:14.5px;color:rgba(255,255,255,.45);line-height:1.5}
-a.b-r:hover b,.b-r:hover b{color:var(--or-pale)}
+a.b-r:hover b,.b-r:hover b,.b-r.kact b{color:var(--or-pale)}
+.b-r.kact{background:rgba(20,20,20,.92)}
 .b-vide{text-align:center;font-style:italic;color:rgba(255,255,255,.45);padding:26px 0}
 .nv-d{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--or);margin:20px 0 16px}
 .nv-l{position:relative;padding-left:22px;color:#ffffff;font-size:18px;line-height:1.55}
@@ -129,7 +132,7 @@ h1.titre{font-family:var(--display);font-weight:400;font-size:48px;line-height:1
 
 /* — Vue : livres — */
 .testament{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--or);text-align:center;margin:58px 0 8px}
-.groupe-nom{font-family:var(--display);font-style:italic;font-weight:400;font-size:25px;color:#fff;text-align:center;margin:40px 0 20px}
+.groupe-nom{font-family:var(--display);font-style:italic;font-weight:400;font-size:25px;color:var(--parchemin,#fff);text-align:center;margin:40px 0 20px}
 .livres-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:0 44px;max-width:920px;margin:0 auto}
 @media(max-width:900px){.livres-grille{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.livres-grille{grid-template-columns:1fr}}
@@ -137,7 +140,7 @@ a.livre{display:flex;align-items:baseline;justify-content:space-between;gap:14px
 a.livre .ln{font-size:19px;transition:color .3s}
 a.livre .lc{font-size:12.5px;color:var(--parchemin-att);letter-spacing:.06em;white-space:nowrap;transition:color .3s}
 a.livre:hover{border-color:var(--or)}
-a.livre:hover .ln{color:#fff}
+a.livre:hover .ln{color:var(--parchemin,#fff)}
 a.livre:hover .lc{color:var(--pa)}
 
 /* — Vue : chapitres — */
@@ -249,7 +252,9 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
 .cat-actes{display:flex;gap:14px;flex:1;justify-content:flex-end}
 .cat-act{font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.4);cursor:pointer;transition:color .3s;white-space:nowrap}
 .cat-act:hover{color:var(--or)}
-.note-depl{background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:13px;padding:5px 8px;outline:none;max-width:230px}
+.note-depl{background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:13px;padding:5px 26px 5px 8px;outline:none;max-width:230px;appearance:none;-webkit-appearance:none;cursor:pointer}
+.note-sel{position:relative;display:inline-block}
+.note-sel::after{content:"\u203A";position:absolute;right:9px;top:50%;transform:translateY(-50%) rotate(90deg);color:rgba(231,224,207,.6);pointer-events:none;font-size:14px;line-height:1}
 .nb-cat-ligne{display:flex;align-items:center;gap:12px;margin:0 0 16px}
 .nb-cat-lab{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
 .ab-boite{width:100%;max-width:400px;background:var(--encre);border:1px solid var(--filet);padding:32px 34px;animation:rise .4s ease both}
@@ -339,7 +344,7 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
   </footer>
   <div class="b-ov" id="brech-voile">
     <div class="b-boite">
-      <div class="b-tete"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><input class="b-champ" id="brech-champ" type="search" placeholder="Référence ou article…" autocomplete="off" spellcheck="false"><span class="b-fermer" id="brech-fermer" role="button" tabindex="0">✕</span></div>
+      <div class="b-tete"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><input class="b-champ" id="brech-champ" type="search" placeholder="Rechercher dans Lumen…" autocomplete="off" spellcheck="false"><span class="b-fermer" id="brech-fermer" role="button" tabindex="0">✕</span></div>
       <div class="b-res" id="brech-res"></div>
     </div>
   </div>
@@ -375,7 +380,7 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
       <div class="nb-titre" id="nb-titre">Note</div>
       <div class="nb-refs" id="nb-refs"></div>
       <textarea class="nb-zone" id="nb-zone" placeholder="Écrire la note…"></textarea>
-      <div class="nb-cat-ligne"><span class="nb-cat-lab">Catégorie</span><select class="note-depl" id="nb-cat"></select></div>
+      <div class="nb-cat-ligne"><span class="nb-cat-lab">Catégorie</span><span class="note-sel"><select class="note-depl" id="nb-cat"></select></span></div>
       <div class="nb-actes">
         <span class="nb-btn principal" id="nb-enregistrer" role="button" tabindex="0">Enregistrer</span>
         <span class="nb-btn" id="nb-annuler" role="button" tabindex="0">Annuler</span>
@@ -560,14 +565,19 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
   });
 
   /* — Barre du haut : recherche, nouveautés, compte (mêmes organes que le site) — */
-  function ouvreOv(id){ document.getElementById(id).classList.add('ouvert'); }
-  function fermeOv(id){ document.getElementById(id).classList.remove('ouvert'); }
+  function ouvreOv(id){ document.getElementById(id).classList.add('ouvert'); document.body.style.overflow='hidden'; }
+  function fermeOv(id){ document.getElementById(id).classList.remove('ouvert'); document.body.style.overflow=''; }
   var DERNIERES_REFS = null;
   function rendRecherche(q){
     var z = document.getElementById('brech-res');
     DERNIERES_REFS = null;
+    BKIDX = -1;
     var nq = norm(q);
     var h = '';
+    if (!String(q).trim()) {
+      z.innerHTML = '<div class="b-hint">Tapez un mot pour parcourir les articles, ou une référence (Jean 3:16) pour ouvrir la Bible.</div>';
+      return;
+    }
     if (String(q).trim()) {
       var an = refsDepuis(q);
       if (an.refs.length && !an.mauvais.length) {
@@ -588,7 +598,7 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
         return '<a class="b-r" href="' + a.u + '"><b>' + esc(a.titre) + '</b><span>' + esc(r) + (a.resume && a.resume.length > 120 ? '…' : '') + '</span></a>';
       }).join('');
     }
-    z.innerHTML = h || (nq ? '<div class="b-vide">Aucun résultat.</div>' : '');
+    z.innerHTML = h || (nq ? '<div class="b-vide">Aucun résultat pour « ' + esc(q) + ' ».</div>' : '');
   }
   function brechVa(){
     if (!DERNIERES_REFS) return;
@@ -599,11 +609,24 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
   document.getElementById('brech-ouvrir').addEventListener('click', function(){
     ouvreOv('brech-voile');
     var c = document.getElementById('brech-champ');
-    c.value = ''; document.getElementById('brech-res').innerHTML = ''; c.focus();
+    c.value = ''; rendRecherche(''); c.focus();
   });
   document.getElementById('brech-fermer').addEventListener('click', function(){ fermeOv('brech-voile'); });
   document.getElementById('brech-champ').addEventListener('input', function(){ rendRecherche(this.value); });
-  document.getElementById('brech-champ').addEventListener('keydown', function(e){ if (e.key === 'Enter') brechVa(); });
+  var BKIDX = -1;
+  function bkItems(){ return document.getElementById('brech-res').querySelectorAll('.b-r'); }
+  function bkMaj(){ var its = bkItems(); for (var i = 0; i < its.length; i++) its[i].classList.toggle('kact', i === BKIDX); if (BKIDX >= 0 && its[BKIDX] && its[BKIDX].scrollIntoView) its[BKIDX].scrollIntoView({ block: 'nearest' }); }
+  document.getElementById('brech-champ').addEventListener('keydown', function(e){
+    var its = bkItems();
+    if (e.key === 'ArrowDown') { e.preventDefault(); if (!its.length) return; BKIDX = Math.min(its.length - 1, BKIDX + 1); bkMaj(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); if (!its.length) return; BKIDX = Math.max(-1, BKIDX - 1); bkMaj(); }
+    else if (e.key === 'Enter') {
+      var c = BKIDX >= 0 ? its[BKIDX] : null;
+      if (c) { e.preventDefault(); if (c.id === 'brech-go') { brechVa(); } else if (c.getAttribute('href')) { location.href = c.getAttribute('href'); } return; }
+      if (DERNIERES_REFS) { brechVa(); return; }
+      if (its[0] && its[0].getAttribute('href')) { e.preventDefault(); location.href = its[0].getAttribute('href'); }
+    }
+  });
   document.getElementById('brech-res').addEventListener('click', function(e){ if (e.target.closest && e.target.closest('#brech-go')) brechVa(); });
   (function(){
     var TZ=[0.85,0.925,1,1.08,1.16,1.25];
