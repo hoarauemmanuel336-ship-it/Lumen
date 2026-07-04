@@ -547,6 +547,29 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   parcours) ; hors mode, l'article se marque toujours lu silencieusement
   si c'est le courant du cycle (progression conservée). Lisibilité :
   .lecture #lect-suivant{color:var(--encre)} force l'encre sur or.
+  MARQUAGE À LA FIN RÉELLE (2026-07-04, vérification demandée par
+  Emmanuel : quitter un article en cours de lecture suivie NE DOIT PAS
+  faire passer au suivant). Avant : marque(u) s'exécutait au chargement,
+  l'article courant était compté lu dès l'ouverture. Désormais : tout le
+  corps de marque() est différé dans accomplir(), déclenché par un
+  IntersectionObserver (threshold 0) sur l'étoile de fin .fin-article
+  (présente dans le contenu de chaque article, articles.json) ; quitter
+  au milieu ne marque rien, la prochaine session ramène au même article ;
+  atteindre la fin marque lu ET fait apparaître le bouton « Continuer la
+  lecture » (mode suivi). Articles courts : l'étoile est visible dès le
+  chargement, l'observer déclenche aussitôt (correct). Fallback sans
+  IntersectionObserver : comportement immédiat d'avant.
+  REPRISE DE POSITION (2026-07-04, validée par Emmanuel) : en mode suivi
+  (SUIVI), la position de lecture est mémorisée dans meta/lecture sous
+  pos:{a:artId,b:indexBloc} : le bloc = index dans blocsTexte() (p, h2,
+  h3, li, blockquote hors interface), repère INDÉPENDANT de l'appareil
+  (reprise Windows<->iOS). Écritures parcimonieuses : throttle 30s au
+  scroll + visibilitychange(hidden) + pagehide forcés. Restauration au
+  chargement (get) si pos.a===article courant et b>2 : scrollTo
+  instantané (behavior:'auto', offsetTop-90 pour le header sticky).
+  Effacement (FieldValue.delete) : quand l'article est accompli (les
+  deux chemins du marquage, posFini=true stoppe les sauvegardes) et au
+  reset de la lecture suivie (#lect-reset).
 • AUDIT ANIMATIONS (2026-07-04, tour demandé par Emmanuel). Inventaire :
   site = apparait .6s ease (entrée .vue) + cascades bibliothèque
   (apparaitDom/Ferme, verrouillées) ; bible = rise .4/.6/.7s ease ;
