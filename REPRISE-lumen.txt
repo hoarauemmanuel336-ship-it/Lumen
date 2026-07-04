@@ -748,6 +748,34 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   sacrements, apologetique et citant un th:bible inexistant) :
   corrigé en construction dynamique depuis LV_INDEX ; tout est vert
   (0/0, bouton caché).
+• SYNTHÈSE VOCALE — MODALE : CHEVAUCHEMENT, SCROLL, COMPTES, RÉFÉRENCES
+  PARLÉES (2026-07-04, capture d'Emmanuel sur le-livre-d-abdias).
+  (1) La ligne de version chevauchait tout (nom long en nowrap qui
+  écrasait métadonnées et boutons) : .tts-ver refait en GRILLE
+  minmax(0,1fr)/auto sur deux rangées — nom ellipsé rangée 1, méta
+  rangée 2, actions (Écouter/Supprimer) empilées à droite sur les
+  deux rangées. Plus aucun chevauchement possible. (2) Modale :
+  overflow-x:hidden (plus de scroll horizontal), max-height:90vh,
+  padding et marges compactés, et SCROLLBAR AUX COULEURS DU SITE
+  (webkit width 10px, track #000, thumb rgba(231,224,207,.35), hover
+  .6 + scrollbar-width/color Firefox) au lieu de la barre système
+  claire. (3) Le « 6 morceaux » de la version était le PRÉVU (écrit au
+  lancement) alors que 5 étaient réellement en cache (lecture
+  interrompue) : la liste compte désormais les morceaux RÉELS par
+  préfixe a:{artId}:{sig}: et affiche « 5 / 6 morceaux (lecture
+  incomplète) » le cas échéant ; à la réécoute, seuls les morceaux
+  manquants sont générés (le cache par morceau fait le reste).
+  (4) RÉFÉRENCES PARLÉES : ttsRefParlee transforme les refs avant
+  envoi à la voix (ElevenLabs ET navigateur, dans texteBlocs) :
+  « Jean 3:16 » → « Jean chapitre 3, verset 16 » ; « Ésaïe 9:14-17 » →
+  « Ésaïe chapitre 9, versets 14 à 17 » ; gère les tirets courts et
+  demi-cadratins, les refs multiples (« ; 5:24 »), EN : chapter/verse.
+  « Abdias 10 » (sans deux-points) reste tel quel. CONSÉQUENCE : le
+  texte changeant, les anciennes versions en cache AVEC références
+  lues ont une signature périmée (réécoute = régénération) ; les
+  versions sans références restent valables. Harnais test_tts corrigé
+  (clone DOM fidèle : textContent de la ref modifiable répercuté sur
+  le parent) ; T4 vérifie la forme parlée et l'absence du brut.
 • AUDIT ANIMATIONS (2026-07-04, tour demandé par Emmanuel). Inventaire :
   site = apparait .6s ease (entrée .vue) + cascades bibliothèque
   (apparaitDom/Ferme, verrouillées) ; bible = rise .4/.6/.7s ease ;

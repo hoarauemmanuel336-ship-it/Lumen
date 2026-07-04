@@ -395,6 +395,16 @@
     for (var i = 0; i < TTS_VOIX.length; i++) if (TTS_VOIX[i][0] === id) return TTS_VOIX[i][1];
     return id;
   }
+  /* « Jean 3:16 » → « Jean chapitre 3, verset 16 » ; « Ésaïe 9:14-17 » →
+     « Ésaïe chapitre 9, versets 14 à 17 » — pour que la voix prononce les
+     références naturellement au lieu d'épeler la ponctuation */
+  function ttsRefParlee(t) {
+    var en = lang === 'en';
+    return String(t).replace(/(\d+)\s*:\s*(\d+)(?:\s*[\-\u2013]\s*(\d+))?/g, function (_, ch, v1, v2) {
+      if (v2) return en ? 'chapter ' + ch + ', verses ' + v1 + ' to ' + v2 : 'chapitre ' + ch + ', versets ' + v1 + ' \u00E0 ' + v2;
+      return en ? 'chapter ' + ch + ', verse ' + v1 : 'chapitre ' + ch + ', verset ' + v1;
+    });
+  }
   var ttsCfg = null;
   function ttsLire() {
     if (ttsCfg) return ttsCfg;
@@ -509,12 +519,16 @@
     if (document.getElementById('tts-css')) return;
     var st = document.createElement('style'); st.id = 'tts-css';
     st.textContent = '.tts-voile{position:fixed;inset:0;background:rgba(4,4,4,.9);z-index:220;display:flex;align-items:center;justify-content:center;padding:20px}'
-      + '.tts-boite{background:#000;border:1px solid rgba(231,224,207,.14);max-width:470px;width:100%;padding:36px 32px;position:relative;max-height:88vh;overflow:auto;box-sizing:border-box}'
+      + '.tts-boite{background:#000;border:1px solid rgba(231,224,207,.14);max-width:470px;width:100%;padding:32px 30px 28px;position:relative;max-height:90vh;overflow-y:auto;overflow-x:hidden;box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgba(231,224,207,.35) #000}'
+      + '.tts-boite::-webkit-scrollbar{width:10px}'
+      + '.tts-boite::-webkit-scrollbar-track{background:#000}'
+      + '.tts-boite::-webkit-scrollbar-thumb{background:rgba(231,224,207,.35)}'
+      + '.tts-boite::-webkit-scrollbar-thumb:hover{background:rgba(231,224,207,.6)}'
       + '.tts-x{position:absolute;top:12px;right:14px;background:none;border:none;color:rgba(255,255,255,.5);font-size:20px;cursor:pointer;padding:4px 8px;transition:color .3s}'
       + '.tts-x:hover{color:#fff}'
       + '.tts-t{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:24px;color:#fff;margin:0 0 8px}'
       + '.tts-p{font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.55);margin:0 0 6px}'
-      + '.tts-l{display:block;font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#efe6cf;margin:22px 0 8px}'
+      + '.tts-l{display:block;font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#efe6cf;margin:18px 0 7px}'
       + '.tts-in{width:100%;box-sizing:border-box;background:#161616;border:1px solid rgba(231,224,207,.28);color:#fff;padding:10px 13px;font-size:15px;font-family:inherit;border-radius:0;transition:border-color .3s}'
       + '.tts-in:focus{outline:none;border-color:#efe6cf}'
       + 'select.tts-in{appearance:none;-webkit-appearance:none;cursor:pointer}'
@@ -528,13 +542,13 @@
       + '.tts-btn2:hover{border-color:#efe6cf;color:#f8f3e6}'
       + '.tts-mini{background:none;border:none;font-family:"Cormorant Garamond",serif;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55);cursor:pointer;padding:0;transition:color .3s}'
       + '.tts-mini:hover{color:#efe6cf}'
-      + '.tts-sep{height:1px;background:rgba(231,224,207,.14);margin:28px 0 0}'
+      + '.tts-sep{height:1px;background:rgba(231,224,207,.14);margin:24px 0 0}'
       + '.tts-etat{font-size:13px;color:rgba(255,255,255,.55);margin:8px 0 0}'
-      + '.tts-ver{display:flex;align-items:baseline;gap:14px;padding:12px 0;border-bottom:1px solid rgba(231,224,207,.10)}'
+      + '.tts-ver{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 16px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(231,224,207,.10)}'
       + '.tts-ver:last-child{border-bottom:none}'
-      + '.tts-ver-n{font-family:"Cormorant Garamond",serif;font-size:17px;color:#fff;white-space:nowrap}'
-      + '.tts-ver-m{flex:1;min-width:0;font-size:12.5px;color:rgba(255,255,255,.5)}'
-      + '.tts-ver-a{display:flex;gap:14px;flex-shrink:0}'
+      + '.tts-ver-n{grid-column:1;font-family:"Cormorant Garamond",serif;font-size:17px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
+      + '.tts-ver-m{grid-column:1;font-size:12.5px;line-height:1.45;color:rgba(255,255,255,.5)}'
+      + '.tts-ver-a{grid-column:2;grid-row:1/span 2;display:flex;flex-direction:column;align-items:flex-end;gap:8px}'
       + '.tts-note{font-size:12px;line-height:1.55;color:rgba(255,255,255,.4);margin-top:22px}'
       + '.tts-a{color:#efe6cf;text-decoration:none}.tts-a:hover{text-decoration:underline}'
       + '.tts-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);background:#000;border:1px solid rgba(231,224,207,.28);color:#fff;padding:11px 18px;font-size:13.5px;z-index:240;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;max-width:86vw;text-align:center}'
@@ -611,9 +625,13 @@
           host.innerHTML = rs.filter(function (r) { return r.m; }).map(function (r) {
             var sig = String(r.k).split(':')[2] || '';
             var m = r.m;
+            var reel = 0; ks.forEach(function (k2) { if (String(k2).indexOf('a:' + artId + ':' + sig + ':') === 0) reel++; });
+            var nTxt = (reel < m.n)
+              ? (reel + ' / ' + m.n + T(' morceaux (lecture incomplète)', ' chunks (incomplete listen)'))
+              : (m.n + T(' morceau' + (m.n > 1 ? 'x' : ''), ' chunk' + (m.n > 1 ? 's' : '')));
             return '<div class="tts-ver">'
               + '<span class="tts-ver-n">' + ttsNomVoix(m.v, m.vn) + '</span>'
-              + '<span class="tts-ver-m">' + (MODNOM[m.m] || m.m) + ' \u00B7 ' + m.n + T(' morceau' + (m.n > 1 ? 'x' : ''), ' chunk' + (m.n > 1 ? 's' : '')) + (m.r ? T(' \u00B7 références lues', ' \u00B7 references read') : '') + '</span>'
+              + '<span class="tts-ver-m">' + (MODNOM[m.m] || m.m) + ' \u00B7 ' + nTxt + (m.r ? T(' \u00B7 références lues', ' \u00B7 references read') : '') + '</span>'
               + '<span class="tts-ver-a">'
               + '<button type="button" class="tts-mini" data-tv-play="' + sig + '">' + T('Écouter', 'Play') + '</button>'
               + '<button type="button" class="tts-mini" data-tv-del="' + sig + '">' + T('Supprimer', 'Delete') + '</button>'
@@ -713,9 +731,10 @@
       art.querySelectorAll('p,h2,h3,li,blockquote,figcaption').forEach(function (n) {
         if (n.closest('.art-bar') || n.closest('.art-nav') || n.closest('.smr-mob') || n.closest('.smr-cote')) return;
         var src = n;
-        if (sansRefs && n.querySelector('.ref')) {
+        if (n.querySelector('.ref')) {
           src = n.cloneNode(true);
-          qsa('.ref', src).forEach(function (r) { r.remove(); });
+          if (sansRefs) qsa('.ref', src).forEach(function (r) { r.remove(); });
+          else qsa('.ref', src).forEach(function (r) { r.textContent = ttsRefParlee(r.textContent || ''); });
         }
         var t = (src.textContent || '').replace(/\s+/g, ' ').trim();
         if (t) out.push(t);
