@@ -1631,6 +1631,70 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   data-state, ne pas la réutiliser hors de ce mécanisme. Fichier :
   build-bi.js.
 
+• CARNET — REFONTE DE L'ÉDITEUR (2026-07-05, retours d'Emmanuel
+  après test en ligne). Bloc mainCarnet+CARNET_JS entièrement
+  RÉÉCRIT d'un tenant (bornes repérées, plus de patchs en chaîne).
+  (1) PAGE FIXE : la feuille n'est plus infinie : width max 760px,
+  aspect-ratio 1/1.414 (format feuille), overflow:hidden ; on
+  continue en passant à la page suivante. (2) PAGES INTERNES : un
+  document = {t, pages:[{h,il}], maj} ; bouton « + Page » ajoute en
+  fin ; le feuilletage « ‹ Page n / N › » navigue entre pages
+  internes (documents) ou entre docs (journal, chaque entrée = un
+  doc à une page) : même UI, deux navigations (majNav). MIGRATION
+  pagesDe(d) : ancien {h,fond,voile} → une page, le fond converti
+  en image flottante pleine page (opacity = 1−voile), champs h/fond/
+  voile supprimés à la 1re sauvegarde (FieldValue.delete). (3) UNE
+  SEULE NOTION D'IMAGE (plus de bouton fond ni voile global) :
+  img.c-flot en position:absolute z-index:-1 dans la feuille
+  (position:relative;z-index:0 → l'image vit au-dessus du fond,
+  SOUS le texte : on écrit par-dessus) ; mousedown = sélection +
+  DRAG (left/top px) ; poignée dorée coin bas-droit = RESIZE
+  (width px) ; panneau flottant #c-outils-img = opacité (range
+  10-100) + suppression ✕ ; contrôles HORS de la feuille
+  (positionnés par placeOutils sur getBoundingClientRect) donc
+  jamais sérialisés ; contenteditable=false + draggable=false sur
+  les images. (4) MISE EN FORME : selects police (EB Garamond /
+  Cormorant / sans-serif système / monospace, execCommand fontName),
+  taille (fontSize 2/3/5/7), couleur (foreColor : blanc, or #efe6cf,
+  rouge #9a3b3b, bleu, vert, gris), INTERLIGNE PAR PAGE (pages[k].il,
+  select 1,2 / 1,35 / 1,5 / 1,8, défaut 1,5 au lieu de 1,85 jugé
+  trop large) ; styleWithCSS true au boot. (5) BOUTON ENREGISTRER
+  explicite (en plus de l'autosave 2 s). (6) PLEIN ÉCRAN
+  CONTEMPLATIF : bouton ⛶ → requestFullscreen sur #c-page-wrap
+  (fond noir, feuille centrée hauteur 100vh ratio conservé, édition
+  active, Échap pour sortir). (7) TEXTES raccourcis : accueil
+  carnet_sub = « Votre espace d'écriture personnel. » / « Your
+  personal writing space. » ; sous-titre de la page carnet SUPPRIMÉ.
+  Purge des orphelines recalculée sur TOUTES les pages
+  (refsActuelles(pages)). VALIDÉ : JS extrait de la page construite
+  → node --check OK ; ids JS↔HTML complets FR+EN ; banc
+  /tmp/test_pages2.js TOUT VERT (migration fond→flottante opacité,
+  multi-pages, purge multi-pages, +Page borné). Fichier :
+  build-bi.js.
+
+• BIBLE — SURLIGNAGE DES VERSETS (2026-07-05, demandé par Emmanuel :
+  plusieurs couleurs, enregistré par utilisateur, reliable aux
+  notes). S'appuie sur la SÉLECTION de versets existante (SEL, barre
+  #sel-barre) : nouveau bouton « Surligner » entre Copier et Prendre
+  une note → déplie une rangée .sb-surl de SIX pastilles (or, rouge,
+  bleu, vert, violet, orange ; classes .vst.su0..su5, background +
+  box-shadow rgba .16, déclarées AVANT .vst.sel pour que la
+  sélection prime visuellement) + « Retirer le surlignage ». Le
+  surlignage n'efface PAS la sélection : on peut enchaîner « Prendre
+  une note » sur les mêmes versets = le lien aux notes demandé.
+  DONNÉES : SURL = map "slug|ch|v" → idx couleur ; localStorage
+  lv_bible_surl + lv_bible_surl_m ; nuage : doc __surl__ {surl,m,s}
+  DANS users/{uid}/bibleNotes (règles existantes) ; syncInitiale le
+  traite À PART comme __meta__ (sinon fausse note) : le plus récent
+  (m) gagne en bloc, sinon le local est poussé ; chaque action écrit
+  immédiatement (sauveSurl). RENDU : marqueSurl() (jumelle de
+  marqueSelection) appliquée au rendu du chapitre et à la sync ;
+  fermeture de la rangée quand la sélection se vide. EN : table TR
+  (Highlight, Remove highlighting, aria couleurs), 0 reste FR.
+  Scripts inline validés (new Function). Banc /tmp/test_surl.js TOUT
+  VERT (application, remplacement, retrait, sync bidirectionnelle).
+  Fichiers : bible.html + build-bi.js.
+
 ════════════════════════════════════════════════════════════════════
 FIN DU FICHIER DE REPRISE
 ════════════════════════════════════════════════════════════════════

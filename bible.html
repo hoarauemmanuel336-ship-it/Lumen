@@ -162,6 +162,20 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .ch-texte sup.vn{font-family:var(--serif);font-size:12.5px;color:var(--or);line-height:0;margin-right:5px;letter-spacing:0}
 .vst{scroll-margin-top:160px;cursor:pointer;transition:background .3s,box-shadow .3s}
 .vst:hover{background:rgba(231,224,207,.04);box-shadow:0 0 0 5px rgba(231,224,207,.04)}
+.vst.su0{background:rgba(231,224,207,.16);box-shadow:0 0 0 5px rgba(231,224,207,.16)}
+.vst.su1{background:rgba(201,106,106,.16);box-shadow:0 0 0 5px rgba(201,106,106,.16)}
+.vst.su2{background:rgba(106,143,180,.16);box-shadow:0 0 0 5px rgba(106,143,180,.16)}
+.vst.su3{background:rgba(123,160,123,.16);box-shadow:0 0 0 5px rgba(123,160,123,.16)}
+.vst.su4{background:rgba(169,140,205,.16);box-shadow:0 0 0 5px rgba(169,140,205,.16)}
+.vst.su5{background:rgba(217,160,95,.16);box-shadow:0 0 0 5px rgba(217,160,95,.16)}
+.sb-surl{display:none;align-items:center;gap:10px;padding:8px 0 2px;flex-wrap:wrap}
+.sb-surl.ouvert{display:flex}
+.sb-past{width:18px;height:18px;border-radius:50%;cursor:pointer;border:1px solid rgba(255,255,255,.25);transition:transform .15s,border-color .2s}
+.sb-past:hover{transform:scale(1.18);border-color:#fff}
+.sb-past.p0{background:rgba(231,224,207,.85)}.sb-past.p1{background:rgba(201,106,106,.85)}.sb-past.p2{background:rgba(106,143,180,.85)}
+.sb-past.p3{background:rgba(123,160,123,.85)}.sb-past.p4{background:rgba(169,140,205,.85)}.sb-past.p5{background:rgba(217,160,95,.85)}
+.sb-oter{font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.55);cursor:pointer;padding:2px 6px}
+.sb-oter:hover{color:#fff}
 .vst.sel{background:rgba(231,224,207,.18);box-shadow:0 0 0 5px rgba(231,224,207,.18)}
 .vst.cible{background:rgba(231,224,207,.14);box-shadow:0 0 0 5px rgba(231,224,207,.14)}
 .ch-nav{display:flex;justify-content:space-between;gap:18px;margin-top:54px;padding-top:26px;border-top:1px solid rgba(231,224,207,.14)}
@@ -333,8 +347,18 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
       <div class="sb-refs" id="sb-refs"></div>
       <div class="sb-act">
         <span class="sb-btn" id="sb-copier" role="button" tabindex="0">Copier</span>
+        <span class="sb-btn" id="sb-surligner" role="button" tabindex="0">Surligner</span>
         <span class="sb-btn" id="sb-note" role="button" tabindex="0">Prendre une note</span>
         <span class="sb-btn" id="sb-vider" role="button" tabindex="0">Tout effacer</span>
+      </div>
+      <div class="sb-surl" id="sb-surl">
+        <span class="sb-past p0" data-su="0" role="button" tabindex="0" aria-label="Or"></span>
+        <span class="sb-past p1" data-su="1" role="button" tabindex="0" aria-label="Rouge"></span>
+        <span class="sb-past p2" data-su="2" role="button" tabindex="0" aria-label="Bleu"></span>
+        <span class="sb-past p3" data-su="3" role="button" tabindex="0" aria-label="Vert"></span>
+        <span class="sb-past p4" data-su="4" role="button" tabindex="0" aria-label="Violet"></span>
+        <span class="sb-past p5" data-su="5" role="button" tabindex="0" aria-label="Orange"></span>
+        <span class="sb-oter" id="sb-oter" role="button" tabindex="0">Retirer le surlignage</span>
       </div>
     </div>
   </div>
@@ -455,11 +479,23 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
   }
   function syncInitiale(){
     db.collection('users/' + UID + '/bibleNotes').get().then(function(snap){
-      var nuage = {}, meta = null;
+      var nuage = {}, meta = null, surlN = null;
       snap.forEach(function(dc){
         if (dc.id === '__meta__') { meta = dc.data(); return; }
+        if (dc.id === '__surl__') { surlN = dc.data(); return; }
         var x = dc.data(); x.id = dc.id; nuage[x.id] = x;
       });
+      /* surlignage : le plus recent (local ou nuage) gagne en bloc */
+      if (surlN && (surlN.m || 0) > SURL_M) {
+        SURL = surlN.s || {}; SURL_M = surlN.m || 0;
+        try {
+          localStorage.setItem('lv_bible_surl', JSON.stringify(SURL));
+          localStorage.setItem('lv_bible_surl_m', String(SURL_M));
+        } catch(e){}
+        marqueSurl();
+      } else if (SURL_M > (surlN ? (surlN.m || 0) : 0) && Object.keys(SURL).length) {
+        db.doc('users/' + UID + '/bibleNotes/__surl__').set({ surl: true, m: SURL_M, s: SURL }).catch(function(){});
+      }
       if (meta && (meta.m || 0) > CATS_M) {
         CATS = meta.cats || []; CATS_M = meta.m || 0;
         try {
@@ -864,7 +900,7 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
   function majPlateau(){
     var z = document.getElementById('sb-refs');
     document.body.classList.toggle('sel-active', SEL.length > 0);
-    if (!SEL.length) { z.innerHTML = ''; marqueSelection(); return; }
+    if (!SEL.length) { z.innerHTML = ''; marqueSelection(); document.getElementById('sb-surl').classList.remove('ouvert'); return; }
     var h = '';
     groupes().forEach(function(g, i){
       h += '<span class="sb-chip" data-g="' + i + '">' + esc(libelle(g)) + '<span class="sb-x" data-x="' + i + '">\u2715</span></span>';
@@ -996,6 +1032,22 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
   });
   document.getElementById('sb-note').addEventListener('click', function(){
     ouvreNote({ refs: groupes(), t: '' });
+  });
+  document.getElementById('sb-surligner').addEventListener('click', function(){
+    document.getElementById('sb-surl').classList.toggle('ouvert');
+  });
+  document.getElementById('sb-surl').addEventListener('click', function(e){
+    var pa = e.target.closest ? e.target.closest('.sb-past') : null;
+    if (pa) {
+      var idx = parseInt(pa.getAttribute('data-su'), 10);
+      SEL.forEach(function(x){ SURL[x.s + '|' + x.c + '|' + x.v] = idx; });
+      sauveSurl(); marqueSurl();
+      return;
+    }
+    if (e.target.closest && e.target.closest('#sb-oter')) {
+      SEL.forEach(function(x){ delete SURL[x.s + '|' + x.c + '|' + x.v]; });
+      sauveSurl(); marqueSurl();
+    }
   });
   document.getElementById('nb-annuler').addEventListener('click', fermeNote);
   document.getElementById('note-voile').addEventListener('click', function(e){ if (e.target === this) fermeNote(); });
@@ -1298,6 +1350,7 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
         sauveSel(); majPlateau();
       } else {
         marqueSelection();
+        marqueSurl();
       }
       vue.querySelector('.ch-texte').addEventListener('click', function(e){
         var sp = e.target.closest('.vst');

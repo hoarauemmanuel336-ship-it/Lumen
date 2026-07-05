@@ -207,7 +207,7 @@ const UI = {
     site_desc_about: "Lumen, un lieu d'étude et de méditation autour de la foi catholique : rendre la théologie accessible et fidèle à l'enseignement de l'Église.",
     t_home: 'Lumen · Théologie catholique', t_library: 'Bibliothèque · Lumen', t_about: 'À propos · Lumen', t_404: 'Page introuvable · Lumen',
     search_placeholder: 'Rechercher dans Lumen…', search_hint: 'Tapez un mot pour parcourir les articles, ou une référence (Jean 3:16) pour ouvrir la Bible.', search_empty: 'Aucun résultat pour',
-    menu_carnet:'Carnet', carnet_label:"L'espace", carnet_title:'Le carnet', carnet_sub:'\u00c9crivez vos textes, ins\u00e9rez des images, posez une image en fond de page et \u00e9crivez par-dessus. Tout s\u2019enregistre dans votre compte.', carnet_open:'Ouvrir le carnet',
+    menu_carnet:'Carnet', carnet_label:"L'espace", carnet_title:'Le carnet', carnet_sub:'Votre espace d\u2019\u00e9criture personnel.', carnet_open:'Ouvrir le carnet',
     memo_label:"L'outil", memo_title:'Mémoriser', memo_sub:'Apprenez les versets par cœur et gardez-les, à votre rythme.', memo_open:'Ouvrir Mémoriser', memo_start:'Commencer', memo_mastery:'de maîtrise', memo_acquired:'acquis', memo_learning:'en cours', memo_review:'à revoir', memo_signedout:'Connectez-vous pour suivre votre progression.',
     lect_label:"Le parcours", lect_title:'La lecture suivie', lect_lu:'articles lus', lect_signedout:'Connectez-vous pour suivre votre lecture.', lect_start:'Commencer la lecture',
     other_label: 'EN'
@@ -223,7 +223,7 @@ const UI = {
     site_desc_library: 'All the entries of Lumen, arranged by domain: doctrine, Scripture, sacraments, figures, history and philosophy.',
     site_desc_about: 'Lumen, a place of study and meditation on the Catholic faith: making theology accessible and faithful to the teaching of the Church.',
     t_home: 'Lumen · Catholic Theology', t_library: 'Library · Lumen', t_about: 'About · Lumen', t_404: 'Page not found · Lumen',
-    menu_carnet:'Notebook', carnet_label:'The space', carnet_title:'The notebook', carnet_sub:'Write your texts, insert images, set an image as the page background and write over it. Everything is saved to your account.', carnet_open:'Open the notebook',
+    menu_carnet:'Notebook', carnet_label:'The space', carnet_title:'The notebook', carnet_sub:'Your personal writing space.', carnet_open:'Open the notebook',
     memo_label:'The tool', memo_title:'Memorise', memo_sub:'Learn the verses by heart and keep them, at your own pace.', memo_open:'Open Memorise', memo_start:'Start', memo_mastery:'mastery', memo_acquired:'learned', memo_learning:'in progress', memo_review:'to review', memo_signedout:'Sign in to track your progress.',
     lect_label:'The path', lect_title:'Guided Reading', lect_lu:'articles read', lect_signedout:'Sign in to track your reading.', lect_start:'Start reading'
   })
@@ -1481,73 +1481,73 @@ function mainCarnet(lang) {
   const F = lang === 'fr';
   const T = {
     titre: F ? 'Le carnet' : 'The notebook',
-    sous: F ? '\u00c9crire, illustrer, garder. Vos documents sont enregistr\u00e9s dans votre compte.' : 'Write, illustrate, keep. Your documents are saved to your account.',
     nouveau: F ? 'Nouveau document' : 'New document',
     auj: F ? 'Nouvelle page' : 'New page',
     ongDocs: F ? 'Documents' : 'Documents',
     ongJour: F ? 'Journal' : 'Journal',
-    vide: F ? 'Aucun document pour le moment. Cr\u00e9ez le premier.' : 'No documents yet. Create the first one.',
-    connexion: F ? 'Connectez-vous pour utiliser le carnet.' : 'Sign in to use the notebook.',
     retour: F ? '\u2039 Documents' : '\u2039 Documents',
-    sansTitre: F ? 'Sans titre' : 'Untitled',
     titrePh: F ? 'Titre du document\u2026' : 'Document title\u2026',
     gras: F ? 'Gras' : 'Bold', ital: F ? 'Italique' : 'Italic', soul: F ? 'Soulign\u00e9' : 'Underline',
     titreB: F ? 'Titre' : 'Heading', liste: F ? 'Liste' : 'List',
-    img: F ? 'Ins\u00e9rer une image' : 'Insert an image',
-    fond: F ? 'Image de fond' : 'Background image',
-    fondOff: F ? 'Retirer le fond' : 'Remove background',
-    voile: F ? 'Assombrir le fond' : 'Darken background',
+    img: F ? 'Image' : 'Image',
+    enrB: F ? 'Enregistrer' : 'Save',
+    plein: F ? 'Plein \u00e9cran' : 'Full screen',
     suppr: F ? 'Supprimer' : 'Delete',
-    confirme: F ? 'Supprimer ce document ? Cette action est d\u00e9finitive.' : 'Delete this document? This cannot be undone.',
     enr: F ? 'Enregistr\u00e9' : 'Saved',
-    enrC: F ? 'Enregistrement\u2026' : 'Saving\u2026',
-    aide: F ? 'Cliquez sur une image ins\u00e9r\u00e9e pour changer sa taille. Le fond couvre toute la page : \u00e9crivez simplement par-dessus.' : 'Click an inserted image to change its size. The background covers the whole page: simply write over it.'
+    ajPage: F ? '+ Page' : '+ Page',
+    aide: F ? 'Cliquez sur une image pour la d\u00e9placer, la redimensionner ou r\u00e9gler sa transparence. Le texte s\u2019\u00e9crit par-dessus.' : 'Click an image to move it, resize it or adjust its transparency. Text is written over it.',
+    fPol: F ? 'Police' : 'Font', fTai: F ? 'Taille' : 'Size', fCou: F ? 'Couleur' : 'Colour', fInt: F ? 'Interligne' : 'Line height'
   };
+  const SEL = 'background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid var(--filet);padding:5px 6px;font-size:13px;outline:none;max-width:118px';
   return `<style>
 #carnet{max-width:1000px;margin:0 auto;padding:0 20px 80px}
-#carnet .cah-titre{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--parchemin);margin:34px 0 6px}
-#carnet .cah-sous{color:rgba(255,255,255,.55);font-size:15px;margin:0 0 30px}
-.c-onglets{display:flex;gap:26px;border-bottom:1px solid var(--filet);margin-bottom:8px}
-.c-ong{cursor:pointer;color:rgba(255,255,255,.55);letter-spacing:.1em;font-size:14px;text-transform:uppercase;padding:10px 2px 12px;border-bottom:1px solid transparent;margin-bottom:-1px;transition:color .3s,border-color .3s}
-.c-ong:hover{color:var(--parchemin)}
-.c-ong.actif{color:var(--parchemin);border-color:var(--or)}
-#c-jour{display:none;font-family:ui-monospace,monospace;font-size:12px;letter-spacing:.08em;color:rgba(255,255,255,.55);margin:2px 2px 6px}
+#carnet .cah-titre{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--parchemin);margin:34px 0 26px}
 #c-liste .cdoc{display:flex;align-items:baseline;gap:16px;padding:17px 4px;border-bottom:1px solid var(--filet);cursor:pointer}
 #c-liste .cdoc:hover .cdoc-t{color:var(--or-pale)}
 #c-liste .cdoc-t{flex:1;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--parchemin);transition:color .3s}
 #c-liste .cdoc-d{font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.06em}
-#c-nouveau{display:inline-block;margin:26px 0 8px;cursor:pointer}
+#c-nouveau{display:inline-block;margin:6px 0 8px;cursor:pointer}
 #c-msg{color:rgba(255,255,255,.55);padding:26px 0}
 #c-edit{display:none}
 #c-edit .ce-haut{display:flex;align-items:center;gap:18px;margin:26px 0 14px;flex-wrap:wrap}
 #c-retour{cursor:pointer;color:rgba(255,255,255,.55);letter-spacing:.08em;font-size:14px;transition:color .3s}
 #c-retour:hover{color:var(--or-pale)}
+#c-jour{display:none;font-family:ui-monospace,monospace;font-size:13px;letter-spacing:.06em;color:rgba(255,255,255,.6);align-items:center;gap:2px}
 #c-etat{margin-left:auto;font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.06em;opacity:0;transition:opacity .4s}
 #c-etat.on{opacity:1}
 #c-titre{width:100%;background:none;border:none;border-bottom:1px solid var(--filet);color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:28px;padding:8px 2px;outline:none;margin-bottom:14px}
 #c-titre:focus{border-color:var(--or-pale)}
-.ce-barre{display:flex;align-items:center;gap:6px;flex-wrap:wrap;border:1px solid var(--filet);padding:8px 10px;margin-bottom:0;position:sticky;top:0;background:rgba(10,10,10,.95);z-index:5}
-.ce-btn{cursor:pointer;color:rgba(255,255,255,.55);border:1px solid transparent;padding:5px 11px;font-size:14px;letter-spacing:.03em;transition:color .25s,border-color .25s;user-select:none}
+.ce-barre{display:flex;align-items:center;gap:6px;flex-wrap:wrap;border:1px solid var(--filet);padding:8px 10px;background:rgba(10,10,10,.95);z-index:5}
+.ce-btn{cursor:pointer;color:rgba(255,255,255,.55);border:1px solid transparent;padding:5px 11px;font-size:14px;letter-spacing:.03em;transition:color .25s,border-color .25s;user-select:none;white-space:nowrap}
 .ce-btn:hover{color:var(--parchemin);border-color:var(--filet-fort)}
 .ce-btn.b{font-weight:700}.ce-btn.i{font-style:italic}.ce-btn.u{text-decoration:underline}
 .ce-sep{width:1px;height:20px;background:var(--filet);margin:0 4px}
-.ce-voile{display:none;align-items:center;gap:8px;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:.05em}
-.ce-voile input{accent-color:#cbb87e;width:110px}
-#c-feuille{min-height:68vh;border:1px solid var(--filet);border-top:none;padding:54px 58px;color:var(--parchemin);font-size:17px;line-height:1.85;outline:none;background-color:#0d0d0c;background-size:cover;background-position:center;overflow-wrap:break-word}
+#c-page-wrap{display:flex;justify-content:center;background:transparent}
+#c-page-wrap:fullscreen{background:#000;align-items:center}
+#c-page-wrap:fullscreen #c-feuille{max-width:none;width:calc(100vh / 1.414);height:100vh}
+#c-feuille{position:relative;z-index:0;width:100%;max-width:760px;aspect-ratio:1/1.414;border:1px solid var(--filet);padding:54px 58px;color:var(--parchemin);font-size:17px;line-height:1.5;outline:none;background-color:#0d0d0c;overflow:hidden;overflow-wrap:break-word}
 #c-feuille:focus{border-color:var(--filet-fort)}
-#c-feuille h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--parchemin);margin:26px 0 10px}
-#c-feuille p{margin:0 0 14px}
-#c-feuille ul{margin:0 0 14px 22px}
-#c-feuille img{max-width:100%;height:auto;display:block;margin:18px auto;cursor:pointer}
-#c-feuille img.l75{width:75%}#c-feuille img.l50{width:50%}#c-feuille img.l25{width:25%}
-.ce-aide{font-size:12px;color:rgba(255,255,255,.55);margin:12px 2px 0;line-height:1.6}
+#c-feuille h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--parchemin);margin:0 0 10px}
+#c-feuille p{margin:0 0 .55em}
+#c-feuille ul{margin:0 0 .55em 22px}
+#c-feuille img.c-flot{position:absolute;z-index:-1;max-width:none;cursor:grab;user-select:none}
+#c-outils-img{display:none;position:absolute;z-index:8;background:rgba(10,10,10,.95);border:1px solid var(--filet-fort);padding:6px 10px;align-items:center;gap:10px;font-size:12px;color:rgba(255,255,255,.7)}
+#c-outils-img input{accent-color:#cbb87e;width:90px}
+#c-outils-img .coi-x{cursor:pointer;color:#b46a6a;font-size:15px;padding:0 4px}
+#c-outils-img .coi-x:hover{color:#d98f8f}
+#c-poignee{display:none;position:absolute;z-index:8;width:14px;height:14px;border-right:2px solid var(--or);border-bottom:2px solid var(--or);cursor:nwse-resize}
+.ce-aide{font-size:12px;color:rgba(255,255,255,.45);margin:12px 2px 0;line-height:1.6}
 #c-suppr{color:#b46a6a}
 #c-suppr:hover{color:#d98f8f;border-color:rgba(217,143,143,.4)}
-@media(max-width:720px){#c-feuille{padding:30px 20px}}
+.c-onglets{display:flex;gap:26px;border-bottom:1px solid var(--filet);margin-bottom:18px}
+.c-ong{cursor:pointer;color:rgba(255,255,255,.55);letter-spacing:.1em;font-size:14px;text-transform:uppercase;padding:10px 2px 12px;border-bottom:1px solid transparent;margin-bottom:-1px;transition:color .3s,border-color .3s}
+.c-ong:hover{color:var(--parchemin)}
+.c-ong.actif{color:var(--parchemin);border-color:var(--or)}
+select.ce-sel{background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid var(--filet);padding:5px 6px;font-size:13px;outline:none;max-width:130px}
+@media(max-width:720px){#c-feuille{padding:26px 20px}}
 </style>
 <div id="carnet">
   <h1 class="cah-titre">${T.titre}</h1>
-  <p class="cah-sous">${T.sous}</p>
   <div id="c-liste">
     <div class="c-onglets">
       <span class="c-ong actif" id="c-ong-docs" role="button" tabindex="0">${T.ongDocs}</span>
@@ -1560,29 +1560,63 @@ function mainCarnet(lang) {
   <div id="c-edit">
     <div class="ce-haut">
       <span id="c-retour" role="button" tabindex="0">${T.retour}</span>
+      <span id="c-jour"></span>
       <span id="c-etat">${T.enr}</span>
     </div>
-    <div id="c-jour"></div>
     <input id="c-titre" type="text" placeholder="${T.titrePh}" maxlength="140">
     <div class="ce-barre">
       <span class="ce-btn b" data-cmd="bold" title="${T.gras}">G</span>
       <span class="ce-btn i" data-cmd="italic" title="${T.ital}">I</span>
       <span class="ce-btn u" data-cmd="underline" title="${T.soul}">S</span>
       <span class="ce-sep"></span>
-      <span class="ce-btn" data-cmd="h3" title="${T.titreB}">${T.titreB}</span>
-      <span class="ce-btn" data-cmd="ul" title="${T.liste}">${T.liste}</span>
+      <span class="ce-btn" data-cmd="h3">${T.titreB}</span>
+      <span class="ce-btn" data-cmd="ul">${T.liste}</span>
+      <span class="ce-sep"></span>
+      <select class="ce-sel" id="c-pol" title="${T.fPol}">
+        <option value="">${T.fPol}</option>
+        <option value="EB Garamond">EB Garamond</option>
+        <option value="Cormorant Garamond">Cormorant</option>
+        <option value="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif">Sans-serif</option>
+        <option value="ui-monospace,monospace">Monospace</option>
+      </select>
+      <select class="ce-sel" id="c-tai" title="${T.fTai}">
+        <option value="">${T.fTai}</option>
+        <option value="2">${F?'Petite':'Small'}</option>
+        <option value="3">${F?'Normale':'Normal'}</option>
+        <option value="5">${F?'Grande':'Large'}</option>
+        <option value="7">${F?'Tr\u00e8s grande':'Very large'}</option>
+      </select>
+      <select class="ce-sel" id="c-cou" title="${T.fCou}">
+        <option value="">${T.fCou}</option>
+        <option value="#ffffff">${F?'Blanc':'White'}</option>
+        <option value="#efe6cf">${F?'Or':'Gold'}</option>
+        <option value="#9a3b3b">${F?'Rouge':'Red'}</option>
+        <option value="#6a8fb4">${F?'Bleu':'Blue'}</option>
+        <option value="#7ba07b">${F?'Vert':'Green'}</option>
+        <option value="#9a9a9a">${F?'Gris':'Grey'}</option>
+      </select>
+      <select class="ce-sel" id="c-int" title="${T.fInt}">
+        <option value="">${T.fInt}</option>
+        <option value="1.2">1,2</option>
+        <option value="1.35">1,35</option>
+        <option value="1.5">1,5</option>
+        <option value="1.8">1,8</option>
+      </select>
       <span class="ce-sep"></span>
       <span class="ce-btn" id="c-img">${T.img}</span>
-      <span class="ce-btn" id="c-fond">${T.fond}</span>
-      <span class="ce-voile" id="c-voile-z"><span>${T.voile}</span><input type="range" id="c-voile" min="0" max="85" step="5"></span>
-      <span class="ce-btn" id="c-fond-off" style="display:none">${T.fondOff}</span>
+      <span class="ce-btn" id="c-ajpage">${T.ajPage}</span>
       <span class="ce-sep"></span>
+      <span class="ce-btn" id="c-enr">${T.enrB}</span>
+      <span class="ce-btn" id="c-plein" title="${T.plein}">\u26f6</span>
       <span class="ce-btn" id="c-suppr">${T.suppr}</span>
     </div>
-    <div id="c-feuille" contenteditable="true" spellcheck="true"></div>
+    <div id="c-page-wrap">
+      <div id="c-feuille" contenteditable="true" spellcheck="true"></div>
+    </div>
+    <div id="c-outils-img"><span class="coi-x" id="coi-x" title="${T.suppr}">\u2715</span><input type="range" id="coi-op" min="10" max="100" step="5"></div>
+    <div id="c-poignee"></div>
     <p class="ce-aide">${T.aide}</p>
     <input type="file" id="c-file-img" accept="image/*" style="display:none">
-    <input type="file" id="c-file-fond" accept="image/*" style="display:none">
   </div>
 </div>`;
 }
@@ -1591,12 +1625,11 @@ const CARNET_JS = function(lang){
   const TXT = JSON.stringify({
     sansTitre: F ? 'Sans titre' : 'Untitled',
     vide: F ? 'Aucun document pour le moment. Cr\u00e9ez le premier.' : 'No documents yet. Create the first one.',
+    videJ: F ? 'Aucune page pour le moment. \u00c9crivez la premi\u00e8re.' : 'No pages yet. Write the first one.',
     connexion: F ? 'Connectez-vous pour utiliser le carnet.' : 'Sign in to use the notebook.',
     confirme: F ? 'Supprimer ce document ? Cette action est d\u00e9finitive.' : 'Delete this document? This cannot be undone.',
     enr: F ? 'Enregistr\u00e9' : 'Saved',
     enrC: F ? 'Enregistrement\u2026' : 'Saving\u2026',
-    videJ: F ? 'Aucune page pour le moment. \u00c9crivez la premi\u00e8re.' : 'No pages yet. Write the first one.',
-    titreJ: F ? 'Titre ou date (facultatif)\u2026' : 'Title or date (optional)\u2026',
     pageMot: F ? 'Page' : 'Page',
     trop: F ? 'Image trop lourde m\u00eame compress\u00e9e. Choisissez une image plus petite.' : 'Image too large even compressed. Choose a smaller one.'
   });
@@ -1607,11 +1640,12 @@ const CARNET_JS = function(lang){
   if(!elL)return;
   var docs=document.getElementById('c-docs'),msg=document.getElementById('c-msg');
   var feuille=document.getElementById('c-feuille'),titre=document.getElementById('c-titre'),etat=document.getElementById('c-etat');
-  var U=null,CUR=null,CURD=null,tmr=null,sale=false,MODE='doc',PAGES=[];
+  var U=null,CUR=null,CURD=null,tmr=null,sale=false,MODE='doc',PAGES=[],PIDX=0;
   var PH0=titre?titre.placeholder:'';
   function col(){return firebase.firestore().collection('users').doc(U.uid).collection('carnet');}
   function colI(){return firebase.firestore().collection('users').doc(U.uid).collection('carnetImg');}
-  /* compression : canvas -> JPEG, boucle jusqu'a passer sous ~880 Ko */
+  try{document.execCommand('styleWithCSS',false,true);}catch(e){}
+  /* ── images : compression puis stockage hors du doc texte ── */
   function compresse(file,maxDim){
     return new Promise(function(res,rej){
       var img=new Image(),url=URL.createObjectURL(file);
@@ -1640,21 +1674,36 @@ const CARNET_JS = function(lang){
   function chargeImage(id){
     return colI().doc(id).get().then(function(s){var d=s.exists&&s.data();return d?d.d:null;});
   }
-  /* serialisation : jamais de base64 dans le doc texte */
-  function htmlPropre(){
-    var c=feuille.cloneNode(true);
-    c.querySelectorAll('img[data-lvimg]').forEach(function(im){im.removeAttribute('src');});
-    return c.innerHTML;
+  /* ── pages : chaque document est une suite de pages fixes ── */
+  function pagesDe(d){
+    if(Array.isArray(d.pages)&&d.pages.length)return d.pages;
+    /* migration de l'ancien modele : h unique + eventuel fond/voile
+       convertis en image flottante pleine page */
+    var h=d.h||'<p><br></p>';
+    if(d.fond){
+      var op=Math.max(10,Math.round(100-(d.voile||0)));
+      h='<img class="c-flot" data-lvimg="'+d.fond+'" style="left:0;top:0;width:100%;opacity:'+(op/100)+'" contenteditable="false" draggable="false">'+h;
+    }
+    return [{h:h,il:1.5}];
   }
-  /* images orphelines : chaque sauvegarde compare les images referencees
-     (inserees + fond) avec celles d'avant ; les disparues (image effacee du
-     texte, fond remplace ou retire) sont supprimees de la base, et la
-     suppression d'un document supprime toutes les siennes */
+  function htmlProprePage(html){
+    var t=document.createElement('div');t.innerHTML=html;
+    t.querySelectorAll('img[data-lvimg]').forEach(function(im){im.removeAttribute('src');});
+    return t.innerHTML;
+  }
+  function syncPage(){
+    if(!CURD)return;
+    imgDesel();
+    CURD.pages[PIDX].h=feuille.innerHTML;
+  }
+  /* ── images orphelines : comparees sur TOUTES les pages ── */
   var REFS={};
-  function refsActuelles(html,fond){
-    var r={},m,re=/data-lvimg="([^"]+)"/g;
-    while((m=re.exec(html||'')))r[m[1]]=1;
-    if(fond)r[fond]=1;
+  function refsActuelles(pages){
+    var r={},m,re;
+    (pages||[]).forEach(function(pg){
+      re=/data-lvimg="([^"]+)"/g;
+      while((m=re.exec(pg.h||'')))r[m[1]]=1;
+    });
     return r;
   }
   function purgeOrphelines(refs2){
@@ -1665,68 +1714,69 @@ const CARNET_JS = function(lang){
   function sauve(){
     if(!CUR||!U)return Promise.resolve();
     sale=false;
+    syncPage();
     marqueEtat(TXT.enrC,true);
-    var d={t:(titre.value||'').trim(),h:htmlPropre(),maj:Date.now()};
-    d.fond=CURD.fond||null;d.voile=CURD.voile||0;
-    var refs2=refsActuelles(d.h,d.fond);
+    var pages2=CURD.pages.map(function(pg){return {h:htmlProprePage(pg.h),il:pg.il||1.5};});
+    var d={t:(titre.value||'').trim(),pages:pages2,maj:Date.now(),h:firebase.firestore.FieldValue.delete(),fond:firebase.firestore.FieldValue.delete(),voile:firebase.firestore.FieldValue.delete()};
+    var refs2=refsActuelles(pages2);
     return col().doc(CUR).set(d,{merge:true}).then(function(){purgeOrphelines(refs2);marqueEtat(TXT.enr);}).catch(function(){etat.classList.remove('on');});
   }
   function planifie(){sale=true;clearTimeout(tmr);tmr=setTimeout(sauve,2000);}
-  function appliqueFond(dataURL){
-    var v=(CURD.voile||0)/100;
-    if(dataURL){
-      feuille.style.backgroundImage='linear-gradient(rgba(10,10,10,'+v+'),rgba(10,10,10,'+v+')),url('+dataURL+')';
-      document.getElementById('c-fond-off').style.display='';
-      document.getElementById('c-voile-z').style.display='flex';
-    }else{
-      feuille.style.backgroundImage='';
-      document.getElementById('c-fond-off').style.display='none';
-      document.getElementById('c-voile-z').style.display='none';
-    }
+  /* ── rendu d'une page dans la feuille ── */
+  function montrePage(){
+    var pg=CURD.pages[PIDX];
+    feuille.innerHTML=pg.h||'<p><br></p>';
+    feuille.style.lineHeight=pg.il||1.5;
+    var si=document.getElementById('c-int');si.value=String(pg.il||1.5);
+    feuille.querySelectorAll('img[data-lvimg]').forEach(function(im){
+      im.setAttribute('contenteditable','false');im.setAttribute('draggable','false');
+      chargeImage(im.getAttribute('data-lvimg')).then(function(d){if(d)im.src=d;});
+    });
+    majNav();
   }
-  var fondData=null;
+  function majNav(){
+    var jz=document.getElementById('c-jour');
+    jz.innerHTML='';jz.style.display='flex';
+    var enJournal=(CURD.mode==='journal');
+    var total=enJournal?PAGES.length:CURD.pages.length;
+    var pos=enJournal?PAGES.indexOf(CUR):PIDX;
+    function fle(txt,va){
+      var f=document.createElement('span');f.textContent=txt;
+      f.style.cssText='cursor:pointer;padding:2px 10px;color:rgba(255,255,255,.5);transition:color .25s';
+      f.onmouseenter=function(){f.style.color='#fff';};f.onmouseleave=function(){f.style.color='rgba(255,255,255,.5)';};
+      f.addEventListener('click',function(){
+        if(pos+va<0||pos+va>=total)return;
+        (sale?sauve():Promise.resolve()).then(function(){
+          if(enJournal)ouvreDoc(PAGES[pos+va]);
+          else{PIDX=pos+va;montrePage();}
+        });
+      });
+      if(pos+va<0||pos+va>=total)f.style.visibility='hidden';
+      return f;
+    }
+    var lab=document.createElement('span');
+    lab.textContent=TXT.pageMot+' '+(pos+1)+' / '+total;
+    jz.appendChild(fle('\\u2039',-1));jz.appendChild(lab);jz.appendChild(fle('\\u203a',1));
+  }
   function ouvreDoc(id){
     col().doc(id).get().then(function(s){
       if(!s.exists)return;
       clearTimeout(tmr);tmr=null;
       CUR=id;CURD=s.data()||{};fondData=null;
-      REFS=refsActuelles(CURD.h||'',CURD.fond||null);
-      var jz=document.getElementById('c-jour');
-      if(CURD.mode==='journal'){
-        titre.placeholder=TXT.titreJ;
-        var pos=-1,k2;for(k2=0;k2<PAGES.length;k2++){if(PAGES[k2]===id){pos=k2;break;}}
-        jz.innerHTML='';
-        function fle(txt,va){
-          var f=document.createElement('span');f.textContent=txt;
-          f.style.cssText='cursor:pointer;padding:2px 10px;color:rgba(255,255,255,.5);transition:color .25s';
-          f.onmouseenter=function(){f.style.color='#fff';};f.onmouseleave=function(){f.style.color='rgba(255,255,255,.5)';};
-          f.addEventListener('click',function(){
-            var cible=PAGES[pos+va];if(!cible)return;
-            (sale?sauve():Promise.resolve()).then(function(){ouvreDoc(cible);});
-          });
-          if(!PAGES[pos+va])f.style.visibility='hidden';
-          return f;
-        }
-        var lab=document.createElement('span');
-        lab.textContent=TXT.pageMot+' '+(pos+1)+' / '+PAGES.length;
-        jz.appendChild(fle('\u2039',-1));jz.appendChild(lab);jz.appendChild(fle('\u203a',1));
-        jz.style.display='block';
-      }else{jz.style.display='none';titre.placeholder=PH0;}
+      CURD.pages=pagesDe(CURD);
+      PIDX=0;
+      REFS=refsActuelles(CURD.pages);
+      titre.placeholder=(CURD.mode==='journal')?PH0:PH0;
       titre.value=CURD.t||'';
-      feuille.innerHTML=CURD.h||'<p><br></p>';
-      document.getElementById('c-voile').value=CURD.voile||0;
-      appliqueFond(null);
-      /* resoudre les images inserees */
-      feuille.querySelectorAll('img[data-lvimg]').forEach(function(im){
-        chargeImage(im.getAttribute('data-lvimg')).then(function(d){if(d)im.src=d;});
-      });
-      if(CURD.fond){chargeImage(CURD.fond).then(function(d){if(d){fondData=d;appliqueFond(d);}});}
+      montrePage();
       elL.style.display='none';elE.style.display='block';
       window.scrollTo({top:0,behavior:'auto'});
     });
   }
+  var fondData=null;
   function fermeDoc(){
     clearTimeout(tmr);tmr=null;
+    imgDesel();
     var fin=sale?sauve():Promise.resolve();
     fin.then(function(){CUR=null;CURD=null;elE.style.display='none';elL.style.display='block';rendListe();});
   }
@@ -1743,7 +1793,6 @@ const CARNET_JS = function(lang){
         lignes.sort(function(a,b){return (b.d.maj||0)-(a.d.maj||0);});
       }
       if(MODE==='journal'){
-        /* un journal reel : les pages se suivent, de la premiere a la derniere */
         lignes.sort(function(a,b){return (a.d.num||0)-(b.d.num||0);});
         PAGES=lignes.map(function(x){return x.id;});
       }
@@ -1752,7 +1801,7 @@ const CARNET_JS = function(lang){
         var d=x.d;
         var r=document.createElement('div');r.className='cdoc';
         var t=document.createElement('span');t.className='cdoc-t';
-        if(MODE==='journal'){t.textContent=TXT.pageMot+' '+(ix+1)+(d.t?' \u00b7 '+d.t:'');}
+        if(MODE==='journal'){t.textContent=TXT.pageMot+' '+(ix+1)+(d.t?' \\u00b7 '+d.t:'');}
         else{t.textContent=(d.t||TXT.sansTitre);}
         var dt=document.createElement('span');dt.className='cdoc-d';
         if(MODE!=='journal'){try{dt.textContent=new Date(d.maj||Date.now()).toLocaleDateString('${LOC}',{day:'numeric',month:'long',year:'numeric'});}catch(e){}}
@@ -1762,7 +1811,7 @@ const CARNET_JS = function(lang){
       });
     }).catch(function(){msg.textContent=(MODE==='journal'?TXT.videJ:TXT.vide);});
   }
-  /* barre d'outils */
+  /* ── barre d'outils : mise en forme ── */
   document.querySelectorAll('.ce-btn[data-cmd]').forEach(function(b){
     b.addEventListener('click',function(){
       feuille.focus();
@@ -1773,47 +1822,139 @@ const CARNET_JS = function(lang){
       planifie();
     });
   });
+  function selCmd(id,cmd){
+    var el=document.getElementById(id);
+    el.addEventListener('change',function(){
+      if(!this.value)return;
+      feuille.focus();
+      document.execCommand(cmd,false,this.value);
+      this.selectedIndex=0;
+      planifie();
+    });
+  }
+  selCmd('c-pol','fontName');
+  selCmd('c-tai','fontSize');
+  selCmd('c-cou','foreColor');
+  document.getElementById('c-int').addEventListener('change',function(){
+    if(!this.value)return;
+    CURD.pages[PIDX].il=parseFloat(this.value);
+    feuille.style.lineHeight=this.value;
+    planifie();
+  });
+  /* ── images flottantes : poser, selectionner, deplacer, redimensionner, opacite, supprimer ── */
+  var IMG=null;
+  var outils=document.getElementById('c-outils-img'),poignee=document.getElementById('c-poignee'),opRange=document.getElementById('coi-op');
+  function imgDesel(){
+    if(IMG)IMG.style.cursor='grab';
+    IMG=null;outils.style.display='none';poignee.style.display='none';
+  }
+  function placeOutils(){
+    if(!IMG)return;
+    var fr=feuille.getBoundingClientRect(),ir=IMG.getBoundingClientRect();
+    var host=document.getElementById('c-edit').getBoundingClientRect();
+    outils.style.display='flex';
+    outils.style.left=(ir.left-host.left)+'px';
+    outils.style.top=(ir.top-host.top-40)+'px';
+    poignee.style.display='block';
+    poignee.style.left=(ir.right-host.left-16)+'px';
+    poignee.style.top=(ir.bottom-host.top-16)+'px';
+  }
+  function imgSel(im){
+    imgDesel();
+    IMG=im;
+    opRange.value=Math.round((parseFloat(im.style.opacity||'1'))*100);
+    placeOutils();
+  }
+  feuille.addEventListener('mousedown',function(e){
+    var im=e.target.closest&&e.target.closest('img.c-flot');
+    if(!im){if(!e.target.closest('#c-outils-img'))imgDesel();return;}
+    e.preventDefault();
+    imgSel(im);
+    var fr=feuille.getBoundingClientRect();
+    var x0=e.clientX,y0=e.clientY,l0=parseFloat(im.style.left)||0,t0=parseFloat(im.style.top)||0;
+    if(String(im.style.left).indexOf('%')>=0)l0=fr.width*l0/100;
+    function mv(ev){
+      im.style.left=Math.round(l0+ev.clientX-x0)+'px';
+      im.style.top=Math.round(t0+ev.clientY-y0)+'px';
+      placeOutils();
+    }
+    function fin(){document.removeEventListener('mousemove',mv);document.removeEventListener('mouseup',fin);planifie();}
+    document.addEventListener('mousemove',mv);document.addEventListener('mouseup',fin);
+  });
+  poignee.addEventListener('mousedown',function(e){
+    if(!IMG)return;
+    e.preventDefault();e.stopPropagation();
+    var x0=e.clientX,w0=IMG.getBoundingClientRect().width;
+    function mv(ev){
+      IMG.style.width=Math.max(40,Math.round(w0+ev.clientX-x0))+'px';
+      placeOutils();
+    }
+    function fin(){document.removeEventListener('mousemove',mv);document.removeEventListener('mouseup',fin);planifie();}
+    document.addEventListener('mousemove',mv);document.addEventListener('mouseup',fin);
+  });
+  opRange.addEventListener('input',function(){
+    if(!IMG)return;
+    IMG.style.opacity=(parseInt(this.value,10)||100)/100;
+    planifie();
+  });
+  document.getElementById('coi-x').addEventListener('click',function(){
+    if(!IMG)return;
+    var im=IMG;imgDesel();im.remove();planifie();
+  });
   document.getElementById('c-img').addEventListener('click',function(){document.getElementById('c-file-img').click();});
   document.getElementById('c-file-img').addEventListener('change',function(){
     var f=this.files&&this.files[0];this.value='';if(!f)return;
     marqueEtat(TXT.enrC,true);
-    compresse(f,1400).then(sauveImage).then(function(id){
+    compresse(f,1700).then(sauveImage).then(function(id){
       return chargeImage(id).then(function(d){
-        feuille.focus();
-        document.execCommand('insertHTML',false,'<img data-lvimg="'+id+'" src="'+d+'"><p><br></p>');
+        var im=document.createElement('img');
+        im.className='c-flot';im.setAttribute('data-lvimg',id);
+        im.setAttribute('contenteditable','false');im.setAttribute('draggable','false');
+        im.style.left='40px';im.style.top='60px';im.style.width='45%';
+        im.src=d;
+        feuille.appendChild(im);
+        imgSel(im);
         planifie();marqueEtat(TXT.enr);
       });
     }).catch(function(){etat.classList.remove('on');alert(TXT.trop);});
   });
-  /* clic sur une image inseree : cycle de tailles */
-  feuille.addEventListener('click',function(e){
-    var im=e.target.closest&&e.target.closest('img');if(!im)return;
-    var cyc=['','l75','l50','l25'];
-    var cur=cyc.indexOf((im.className.match(/l\d+/)||[''])[0]);
-    im.className=cyc[(cur+1)%cyc.length];
+  /* ── pages, plein ecran, boutons ── */
+  document.getElementById('c-ajpage').addEventListener('click',function(){
+    if(!CURD)return;
+    if(CURD.mode==='journal'){
+      (sale?sauve():Promise.resolve()).then(function(){
+        col().get().then(function(q){
+          var mx=0;
+          q.forEach(function(s){var d=s.data()||{};if(d.mode==='journal'&&(d.num||0)>mx)mx=d.num;});
+          var r=col().doc();
+          return r.set({mode:'journal',num:mx+1,t:'',pages:[{h:'<p><br></p>',il:1.5}],maj:Date.now()}).then(function(){
+            PAGES.push(r.id);ouvreDoc(r.id);
+          });
+        });
+      });
+      return;
+    }
+    syncPage();
+    CURD.pages.push({h:'<p><br></p>',il:1.5});
+    PIDX=CURD.pages.length-1;
+    montrePage();
     planifie();
   });
-  /* fond de page */
-  document.getElementById('c-fond').addEventListener('click',function(){document.getElementById('c-file-fond').click();});
-  document.getElementById('c-file-fond').addEventListener('change',function(){
-    var f=this.files&&this.files[0];this.value='';if(!f)return;
-    marqueEtat(TXT.enrC,true);
-    compresse(f,1700).then(sauveImage).then(function(id){
-      CURD.fond=id;if(CURD.voile==null)CURD.voile=25;
-      document.getElementById('c-voile').value=CURD.voile;
-      return chargeImage(id).then(function(d){fondData=d;appliqueFond(d);planifie();marqueEtat(TXT.enr);});
-    }).catch(function(){etat.classList.remove('on');alert(TXT.trop);});
+  document.getElementById('c-enr').addEventListener('click',function(){sauve();});
+  document.getElementById('c-plein').addEventListener('click',function(){
+    var w=document.getElementById('c-page-wrap');
+    if(document.fullscreenElement){document.exitFullscreen();}
+    else if(w.requestFullscreen){w.requestFullscreen().catch(function(){});}
+    else if(w.webkitRequestFullscreen){w.webkitRequestFullscreen();}
   });
-  document.getElementById('c-fond-off').addEventListener('click',function(){CURD.fond=null;fondData=null;appliqueFond(null);planifie();});
-  document.getElementById('c-voile').addEventListener('input',function(){CURD.voile=parseInt(this.value,10)||0;appliqueFond(fondData);planifie();});
-  /* saisie */
   feuille.addEventListener('input',planifie);
   titre.addEventListener('input',planifie);
   document.getElementById('c-retour').addEventListener('click',fermeDoc);
   document.getElementById('c-suppr').addEventListener('click',function(){
     if(!CUR)return;
     if(!confirm(TXT.confirme))return;
-    var refsDel=refsActuelles(htmlPropre(),CURD&&CURD.fond);
+    syncPage();
+    var refsDel=refsActuelles(CURD.pages);
     Object.keys(refsDel).forEach(function(id){colI().doc(id).delete().catch(function(){});});
     REFS={};
     col().doc(CUR).delete().then(function(){sale=false;CUR=null;elE.style.display='none';elL.style.display='block';rendListe();});
@@ -1821,19 +1962,18 @@ const CARNET_JS = function(lang){
   document.getElementById('c-nouveau').addEventListener('click',function(){
     if(!U)return;
     if(MODE==='journal'){
-      /* la nouvelle page s'ajoute a la suite, comme dans un journal reel */
       col().get().then(function(q){
         var mx=0;
         q.forEach(function(s){var d=s.data()||{};if(d.mode==='journal'&&(d.num||0)>mx)mx=d.num;});
         var r=col().doc();
-        return r.set({mode:'journal',num:mx+1,t:'',h:'<p><br></p>',maj:Date.now(),fond:null,voile:0}).then(function(){
+        return r.set({mode:'journal',num:mx+1,t:'',pages:[{h:'<p><br></p>',il:1.5}],maj:Date.now()}).then(function(){
           PAGES.push(r.id);ouvreDoc(r.id);
         });
       });
       return;
     }
     var r2=col().doc();
-    r2.set({mode:'doc',t:'',h:'<p><br></p>',maj:Date.now(),fond:null,voile:0}).then(function(){ouvreDoc(r2.id);});
+    r2.set({mode:'doc',t:'',pages:[{h:'<p><br></p>',il:1.5}],maj:Date.now()}).then(function(){ouvreDoc(r2.id);});
   });
   function ongle(m){
     MODE=m;
@@ -1846,7 +1986,8 @@ const CARNET_JS = function(lang){
   document.getElementById('c-ong-docs').addEventListener('click',function(){ongle('doc');});
   document.getElementById('c-ong-jour').addEventListener('click',function(){ongle('journal');});
   window.addEventListener('pagehide',function(){if(sale)sauve();});
-  /* auth */
+  window.addEventListener('resize',function(){if(IMG)placeOutils();});
+  /* ── auth ── */
   (window.lvFB?window.lvFB():Promise.resolve()).then(function(){
     if(!window.firebase||!firebase.auth){msg.textContent=TXT.connexion;return;}
     firebase.auth().onAuthStateChanged(function(u){
@@ -2419,6 +2560,14 @@ if (fs.existsSync('bible.html')) {
       ['>Copier<', '>Copy<'],
       ['Aucune note pour le moment. S\\u00e9lectionnez des versets puis \\u00ab Prendre une note \\u00bb.', 'No notes yet. Select verses, then \\u201cTake a note\\u201d.'],
       ['>Prendre une note<', '>Take a note<'],
+      ['>Surligner<', '>Highlight<'],
+      ['>Retirer le surlignage<', '>Remove highlighting<'],
+      ['aria-label="Or"', 'aria-label="Gold"'],
+      ['aria-label="Rouge"', 'aria-label="Red"'],
+      ['aria-label="Bleu"', 'aria-label="Blue"'],
+      ['aria-label="Vert"', 'aria-label="Green"'],
+      ['aria-label="Violet"', 'aria-label="Purple"'],
+      ['aria-label="Orange"', 'aria-label="Orange"'],
       ['>Tout effacer<', '>Clear all<'],
       ['>Mon compte<', '>My account<'],
       ['Mes notes ·', 'My notes ·'],
