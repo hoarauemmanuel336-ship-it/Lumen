@@ -1453,6 +1453,184 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   vérifié : 0 libellé FR restant dans site/en/bible.html. Fichiers :
   bible.html + build-bi.js.
 
+• GESTION LECTURE SUIVIE PAR DOMAINES (2026-07-05, demandé par
+  Emmanuel : « comme dans la bibliothèque », domaine → sections →
+  articles, au lieu de la liste plate des 39 catégories).
+  rendGestion (LECT_JS) regroupe les blocs par thème (parT/ordreT,
+  ordre de I.themes, bloc 'autres' en fin) : en-tête de domaine
+  data-lgt (case + nom + compteur agrégé actifs/total + chevron,
+  état openT, replié par défaut), catégories en .cat.lg-sous
+  (data-lgc, style existant de memoriser.html : margin-left 18px,
+  cat-name 17px) ; thème dont l'unique bloc est le résiduel
+  (th:<theme>) ou 'autres' seul → articles rendus directement sous
+  le domaine. La DÉLÉGATION de clic a été complétée (elle manquait :
+  le niveau domaine était INERTE, chantier interrompu avant
+  compaction) : ordre de résolution data-lgv (article) AVANT
+  data-lgc (catégorie) AVANT data-lgt (domaine), car un article
+  peut vivre directement sous un domaine sans catégorie ; case de
+  domaine = bascule TOUTES les catégories du domaine (tidDe(bid)
+  pour l'appartenance) ; chevron/nom = dépli openT. Pagination
+  « Afficher tout » (LIMG/toutG) SUPPRIMÉE (obsolète avec les
+  domaines repliés). Banc /tmp/test_gestion.js : rendGestion réel
+  évalué sur stubs → 3 domaines, sections dedans, compteurs
+  agrégés, ×n, repliés par défaut, TOUT VERT. NOTE : les captures
+  d'Emmanuel montraient l'ANCIENNE version en ligne (liste plate +
+  Afficher tout (39)) : le regroupement n'apparaît qu'après
+  déploiement de build-bi.js. Fichier : build-bi.js.
+
+• COMPTEURS DE LECTURE — ENREGISTREMENT FIABLE (2026-07-05, signalé
+  par Emmanuel : « 8 articles lus, 2 comptés », après déploiement du
+  modèle à compteurs qui, lui, ne se réinitialise plus). CAUSE
+  PROUVÉE AU BANC (/tmp/test_pend.js : mêmes pertes → ancien 1/8,
+  nouveau 8/8) : l'écriture Firestore de la lecture accomplie part à
+  l'ÉTOILE de fin, quelques secondes avant le clic « Continuer la
+  lecture » ; ce clic DÉCHARGE la page et tue l'écriture en vol (pas
+  de latency compensation entre pages, chaque page = nouvelle
+  instance SDK). Seules comptaient les lectures où l'écriture avait
+  eu le temps de partir. CORRECTIF (LECT_JS, build-bi.js), trois
+  pièces : (a) JOURNAL LOCAL lv_lect_pend {a:artId} posé en
+  localStorage AVANT l'écriture, effacé à sa confirmation (.then) ;
+  (b) REJEU IDEMPOTENT rejouePending(u) au chargement de chaque page
+  (début de marque() et de peint(), promesse REJPROM attendue par
+  accomplir et par la lecture d'état de peint) : l'article du journal
+  n'est recompté QUE s'il est encore dû (compteLecture : tête de file
+  ou strate minimale d'un tour non ancré) → un pending orphelin d'une
+  écriture finalement partie ne double JAMAIS le compte ; (c) le
+  bouton « Continuer la lecture » (boutonSuivant) intercepte le clic
+  et ATTEND la confirmation d'écriture (Promise.race avec garde-fou
+  4 s) avant location.href. La logique d'écriture est factorisée en
+  enregistreLecture(u,e,artId) (fois2/file2/tour suivant), utilisée
+  par accomplir() et par le rejeu. Banc TOUT VERT : 8 lectures dont
+  6 écritures tuées → 8/8 comptés, zéro double, idempotence du
+  pending orphelin. Fichier : build-bi.js.
+
+• LE CARNET — NOUVEL ESPACE D'ÉCRITURE (2026-07-05, demandé par
+  Emmanuel : « comme Word/Google Doc » mais SIMPLE, avec images dans
+  le texte et image de FOND facile à poser, sur laquelle on écrit
+  directement, sans les marges de Word). PAGES : /carnet/ (FR) et
+  /en/notebook/ (EN), générées par genPaire via le gabarit page()
+  (héritent barre canonique, recherche, cloche, auth, panneau Bible ;
+  genPaire accepte désormais extraJS en FONCTION de la langue).
+  NAV : lien Carnet/Notebook ajouté PARTOUT : header() des pages
+  générées (u.menu_carnet, actif sur type carnet), barre de
+  memoriser (id nav-carnet rempli bilingue dans memoriser.html), et
+  bible FR + table TR EN. ACCUEIL : bloc « L'espace / Le carnet »
+  (titre-section + memo-bloc + bouton carnet_open) après la lecture
+  suivie, clés UI carnet_label/title/sub/open FR+EN. DONNÉES
+  Firestore (sous users/{uid}/, règles existantes suffisent) :
+  carnet/{id} = {t:titre, h:html SANS base64, fond:imgId|null,
+  voile:0..85, maj:ts} ; carnetImg/{id} = {d:dataURL} : chaque image
+  vit dans SON doc (limite 1 Mo respectée), le HTML référence
+  <img data-lvimg=id> dont le src est retiré à la sauvegarde
+  (htmlPropre) et résolu au chargement. IMAGES : compression canvas
+  → JPEG en boucle (1400px q0.82 → 900px q0.55) jusqu'à <880 Ko,
+  alerte sinon ; clic sur une image insérée = cycle de tailles
+  100→75→50→25% (classes l75/l50/l25). FOND DE PAGE : bouton →
+  compression (1700px) → background-size:cover center sur la feuille
+  contenteditable (on écrit naturellement PAR-DESSUS, zéro marge à
+  gérer) + curseur « Assombrir le fond » (voile 0..85 en
+  linear-gradient au-dessus de l'image) + bouton retirer. ÉDITEUR :
+  input titre, barre sticky (Gras/Italique/Souligné/Titre h3/Liste/
+  Image/Fond/Supprimer), execCommand, autosave debounce 2 s +
+  pagehide + sauvegarde ATTENDUE au retour à la liste (pas de
+  navigation de page : vue interne, donc pas de perte type
+  « écriture tuée »). Liste des documents triée par maj desc,
+  bouton Nouveau document, date localisée. Auth via lvFB() ;
+  déconnecté → message. STYLE : variables réelles des pages
+  générées (--parchemin, --filet, --filet-fort, Cormorant
+  Garamond ; PAS de --pa2/--filet-f/--display qui n'existent pas
+  sur ces pages). Vérifié : 124 paires (nouvelle page), nav
+  présente sur accueil/articles/memoriser/bible FR+EN, ids JS↔HTML
+  cohérents dans les deux langues, sitemap. Fichiers : build-bi.js
+  + memoriser.html.
+
+• CARNET — ONGLET JOURNAL EN PAGES (2026-07-05, refonte demandée
+  par Emmanuel : PAS d'entrée-du-jour automatique ; « comme un
+  journal réel », des pages qui se suivent, feuilletables, datées
+  par lui-même dans le titre si besoin). Le carnet a deux onglets
+  (.c-onglets : Documents | Journal). JOURNAL : chaque page est un
+  doc {mode:'journal', num:n} où num est la clé d'ORDRE interne
+  (max+1 à la création, jamais réutilisé ni renuméroté) ;
+  l'ÉTIQUETTE affichée est la POSITION dans la liste ordonnée
+  (« Page 1 », « Page 2 »… + « · titre » si titre saisi), si bien
+  qu'arracher une page au milieu resserre la numérotation affichée
+  sans toucher aux données. Liste du journal triée par num
+  CROISSANT (les pages se suivent) ; documents libres inchangés
+  (maj desc, filtre (d.mode||'doc')). Bouton de l'onglet : « Nouvelle
+  page »/« New page » (data-doc/data-jour sur #c-nouveau, bascule
+  par ongle(m)) : ajoute EN FIN de journal. ÉDITEUR : en mode
+  journal, #c-jour affiche « ‹ Page n / N › » : feuilletage
+  précédent/suivant SANS repasser par la liste (sauvegarde attendue
+  avant de tourner la page, flèches masquées aux extrémités),
+  placeholder du titre « Titre ou date (facultatif)… ». Tableau
+  PAGES=[] (ids ordonnés) alimenté par rendListe et à la création.
+  Aucune donnée à migrer (le modèle jour précédent n'avait jamais
+  fonctionné : JS jamais écrit, constaté au diagnostic). PIÈGE
+  RE-CONFIRMÉ : les ancres de remplacement dans CARNET_JS/mainCarnet
+  peuvent exister en DOUBLE (mêmes libellés dans T et TXT) et les
+  échappements diffèrent (\u vs \\u) : toujours compter l'ancre
+  avant, blocs séparés. Banc /tmp/test_pages.js TOUT VERT (ordre,
+  feuilletage, filtre, suppression au milieu, ajout après
+  suppression). Fichier : build-bi.js.
+
+• CARNET — AUDIT DE COMPLÉTUDE ET COHÉRENCE (2026-07-05, demandé
+  par Emmanuel). Trois défauts réels trouvés et corrigés :
+  (1) placeholder du titre non restauré (ouvrir un document après
+  une page de journal gardait « Titre ou date… ») → PH0 mémorisé au
+  boot, restauré en mode doc ; (2) timer d'autosave orphelin au
+  changement de page/fermeture (écriture superflue sans danger) →
+  clearTimeout dans ouvreDoc et fermeDoc (3 clearTimeout au total
+  avec planifie) ; (3) message « Connectez-vous pour utiliser le
+  carnet » inerte → rendu cliquable (souligné, ouvre le panneau
+  compte de la barre via #auth-ouvrir), cohérent avec le reste du
+  site. COHÉRENCE VÉRIFIÉE : nav 5 liens dans le MÊME ordre partout
+  (Accueil | Bibliothèque | Bible | Mémoriser | Carnet) sur accueil,
+  bibliothèque, articles, carnet, bible FR/EN, memoriser
+  (nav-home/lib/mem/carnet) ; circuit complet contrôlé geste par
+  geste dans le livré FR et EN (16 points : création doc/page,
+  filtre onglets, feuilletage, autosave, mise en forme, image
+  compressée + redimension au clic, fond + voile + retrait,
+  suppression, sauvegardes retour/pagehide, images hors doc texte
+  et résolues au chargement). Restes assumés v1 : images orphelines
+  non nettoyées à la suppression d'un doc, liste limitée aux 400
+  docs les plus récents, bouton visible pendant le chargement de
+  l'auth (clic sans effet). Fichier : build-bi.js.
+
+• CARNET — LES TROIS LIMITES V1 CORRIGÉES (2026-07-05, demandé par
+  Emmanuel). (1) IMAGES ORPHELINES : suivi REFS (map des images
+  référencées, insérées + fond, initialisée à l'ouverture par
+  refsActuelles(html,fond) qui parse data-lvimg) ; chaque sauvegarde
+  compare et purgeOrphelines supprime de carnetImg les ids disparus
+  → couvre l'image effacée du texte, le fond REMPLACÉ (l'ancien id
+  sort des refs) et le fond retiré ; la suppression d'un document
+  supprime toutes ses images (refs recalculées au moment T). Banc
+  /tmp/test_purge.js TOUT VERT (5 cas dont « rien ne doit partir »).
+  (2) LIMITE 400 SUPPRIMÉE : rendListe fait col().get() complet,
+  filtre par mode et trie CÔTÉ CLIENT (docs par maj desc, journal
+  par num asc) → numérotation et feuilletage du journal toujours
+  exacts, aucun index Firestore requis ; charge acceptable pour un
+  usage personnel, à revoir seulement si des milliers de documents.
+  (3) BOUTON AVANT AUTH : #c-nouveau porte display:none dans le
+  HTML, montré par onAuthStateChanged connecté (le masquage
+  déconnecté existait déjà). Vérifié dans le livré FR et EN.
+  Fichier : build-bi.js.
+
+• ACCUEIL — BLOC CARNET INVISIBLE (2026-07-05, attrapé par la
+  question d'Emmanuel sur le rendu déconnecté). La description du
+  bloc Carnet utilisait la classe .memo-note, qui est MASQUÉE par
+  défaut (display:none) et ne s'affiche que si .memo-droite porte
+  data-state="out"/"empty" : mécanisme propre aux blocs Mémoriser et
+  lecture suivie (chiffres masqués déconnecté, note affichée). Sans
+  data-state, la description du Carnet était invisible dans TOUS les
+  états : titre de section, trou vide, bouton. Corrigé : paragraphe
+  en style inline toujours visible (italique, centré, parchemin-att,
+  max-width 520px, line-height 1.7), même esthétique que les notes
+  des autres blocs, cohérent connecté comme déconnecté (le carnet
+  n'a rien de personnel à masquer sur l'accueil). Vérifié dans le
+  rendu FR et EN. LEÇON : .memo-note est liée au mécanisme
+  data-state, ne pas la réutiliser hors de ce mécanisme. Fichier :
+  build-bi.js.
+
 ════════════════════════════════════════════════════════════════════
 FIN DU FICHIER DE REPRISE
 ════════════════════════════════════════════════════════════════════

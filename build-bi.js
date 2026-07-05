@@ -207,6 +207,7 @@ const UI = {
     site_desc_about: "Lumen, un lieu d'étude et de méditation autour de la foi catholique : rendre la théologie accessible et fidèle à l'enseignement de l'Église.",
     t_home: 'Lumen · Théologie catholique', t_library: 'Bibliothèque · Lumen', t_about: 'À propos · Lumen', t_404: 'Page introuvable · Lumen',
     search_placeholder: 'Rechercher dans Lumen…', search_hint: 'Tapez un mot pour parcourir les articles, ou une référence (Jean 3:16) pour ouvrir la Bible.', search_empty: 'Aucun résultat pour',
+    menu_carnet:'Carnet', carnet_label:"L'espace", carnet_title:'Le carnet', carnet_sub:'\u00c9crivez vos textes, ins\u00e9rez des images, posez une image en fond de page et \u00e9crivez par-dessus. Tout s\u2019enregistre dans votre compte.', carnet_open:'Ouvrir le carnet',
     memo_label:"L'outil", memo_title:'Mémoriser', memo_sub:'Apprenez les versets par cœur et gardez-les, à votre rythme.', memo_open:'Ouvrir Mémoriser', memo_start:'Commencer', memo_mastery:'de maîtrise', memo_acquired:'acquis', memo_learning:'en cours', memo_review:'à revoir', memo_signedout:'Connectez-vous pour suivre votre progression.',
     lect_label:"Le parcours", lect_title:'La lecture suivie', lect_lu:'articles lus', lect_signedout:'Connectez-vous pour suivre votre lecture.', lect_start:'Commencer la lecture',
     other_label: 'EN'
@@ -222,6 +223,7 @@ const UI = {
     site_desc_library: 'All the entries of Lumen, arranged by domain: doctrine, Scripture, sacraments, figures, history and philosophy.',
     site_desc_about: 'Lumen, a place of study and meditation on the Catholic faith: making theology accessible and faithful to the teaching of the Church.',
     t_home: 'Lumen · Catholic Theology', t_library: 'Library · Lumen', t_about: 'About · Lumen', t_404: 'Page not found · Lumen',
+    menu_carnet:'Notebook', carnet_label:'The space', carnet_title:'The notebook', carnet_sub:'Write your texts, insert images, set an image as the page background and write over it. Everything is saved to your account.', carnet_open:'Open the notebook',
     memo_label:'The tool', memo_title:'Memorise', memo_sub:'Learn the verses by heart and keep them, at your own pace.', memo_open:'Open Memorise', memo_start:'Start', memo_mastery:'mastery', memo_acquired:'learned', memo_learning:'in progress', memo_review:'to review', memo_signedout:'Sign in to track your progress.',
     lect_label:'The path', lect_title:'Guided Reading', lect_lu:'articles read', lect_signedout:'Sign in to track your reading.', lect_start:'Start reading'
   })
@@ -522,7 +524,8 @@ function header(lang, type, base, otherRel, ctx) {
       { href: home, actif: type === 'home', label: u.menu_home },
       { href: base + lib, actif: type === 'library', label: u.menu_library },
       { href: lang === 'en' ? '/en/bible.html' : '/bible.html', label: 'Bible' },
-      { href: '/memoriser.html', label: u.menu_memorise }
+      { href: '/memoriser.html', label: u.menu_memorise },
+      { href: lang === 'en' ? '/en/notebook/' : '/carnet/', actif: type === 'carnet', label: u.menu_carnet }
     ],
     langue: { type: 'lien', href: otherRel, hreflang: lang === 'fr' ? 'en' : 'fr', label: u.other_label },
     loupe: { id: 'rech-ouvrir', label: lang === 'en' ? 'Search' : 'Rechercher' },
@@ -641,7 +644,7 @@ const LECT_JS = `(function lvLectBoot(){
   var auth=firebase.auth(), db=firebase.firestore();
   var lang=(window.LUMEN&&window.LUMEN.lang)||(function(){try{return localStorage.getItem('lv_lang')||'fr';}catch(e){return 'fr';}})(), FR=lang!=='en';
   function idx(){var I=window.LV_INDEX;if(!I)return null;return I[lang]||I.fr;}
-  var EXCL={cats:{},arts:{}}, UCUR=null, openG={}, toutG=false, FOISG={};
+  var EXCL={cats:{},arts:{}}, UCUR=null, openG={}, openT={}, FOISG={};
   function blocs(){
     /* liste de blocs canoniques identifies : chaque categorie = un bloc ordonne
        {id:'theme:cat', nom, arts} ; les articles hors categorie d'un theme
@@ -683,6 +686,60 @@ const LECT_JS = `(function lvLectBoot(){
     for(i=b.length-1;i>0;i--){j=Math.floor(Math.random()*(i+1));t=b[i];b[i]=b[j];b[j]=t;}
     var ordre=[];b.forEach(function(x){ordre=ordre.concat(x.arts);});
     return ordre;
+  }
+  /* ENREGISTREMENT FIABLE D'UNE LECTURE (correctif 2026-07-05 : des
+     lectures se perdaient car l'ecriture Firestore, lancee a l'etoile de
+     fin, mourait avec la page quand on cliquait « Continuer la lecture »).
+     Trois pieces : (a) un journal local pose AVANT l'ecriture et efface a
+     sa confirmation ; (b) un REJEU idempotent au chargement de la page
+     suivante : l'article n'est recompte que s'il est ENCORE du au compteur
+     (tete de file ou strate minimale), donc jamais de double comptage si
+     l'ecriture etait finalement partie ; (c) le bouton suivant attend la
+     confirmation d'ecriture avant de naviguer (garde-fou 4 s). */
+  var PENDK='lv_lect_pend', ecrEnCours=null, REJPROM=null;
+  function pendPose(id){try{localStorage.setItem(PENDK,JSON.stringify({a:id}));}catch(e){}}
+  function pendLit(){try{return JSON.parse(localStorage.getItem(PENDK)||'null');}catch(e){return null;}}
+  function pendEfface(){try{localStorage.removeItem(PENDK);}catch(e){}}
+  function compteLecture(e,artId){
+    return (e.cur===artId)||(e.tourNeuf&&!!e.permis[artId]&&(e.fois[artId]||0)===e.minG);
+  }
+  function enregistreLecture(u,e,artId){
+    var fois2={},k;for(k in e.fois)fois2[k]=e.fois[k];
+    fois2[artId]=(fois2[artId]||0)+1;
+    var file2;
+    if(e.tourNeuf||e.migration){
+      file2=e.file.filter(function(id){return id!==artId;});
+    }else{
+      var t={};e.ajTete.forEach(function(id){t[id]=1;});
+      var q={};e.ajQueue.forEach(function(id){q[id]=1;});
+      file2=e.ajTete.filter(function(id){return id!==artId;})
+        .concat(e.docOrdre.filter(function(id){return id!==artId&&!t[id]&&!q[id];}))
+        .concat(e.ajQueue.filter(function(id){return id!==artId;}));
+    }
+    var tourN2=e.tourN;
+    if(!file2.length){
+      var minG2=null;
+      Object.keys(e.permis).forEach(function(id){var f=fois2[id]||0;if(minG2===null||f<minG2)minG2=f;});
+      var cands={};Object.keys(e.permis).forEach(function(id){if((fois2[id]||0)===minG2)cands[id]=1;});
+      file2=melangeParmi(cands);
+      tourN2=file2.length;
+    }
+    pendPose(artId);
+    var prom=ref(u).set({fois:fois2,ordre:file2,tourN:tourN2,lus:firebase.firestore.FieldValue.delete(),pos:firebase.firestore.FieldValue.delete()},{merge:true})
+      .then(function(){pendEfface();});
+    ecrEnCours=prom.catch(function(){});
+    return {prom:ecrEnCours,suivant:file2[0]||null};
+  }
+  var pendFait=false;
+  function rejouePending(u){
+    if(pendFait||!u)return; pendFait=true;
+    var pd=pendLit(); if(!pd||!pd.a)return;
+    REJPROM=ref(u).get().then(function(snap){
+      var e=etat(snap);
+      if(e.vide)return;
+      if(compteLecture(e,pd.a)){return enregistreLecture(u,e,pd.a).prom;}
+      pendEfface();
+    }).catch(function(){});
   }
   function foisDe(d){
     /* compteur infini par article ; migration transparente de l'ancien
@@ -752,7 +809,8 @@ const LECT_JS = `(function lvLectBoot(){
   function peint(u){
     var btn=document.getElementById('lect-start');
     if(!u){box.setAttribute('data-state','out');if(btn)btn.style.display='';return;}
-    ref(u).get().then(function(snap){
+    rejouePending(u);
+    Promise.resolve(REJPROM).then(function(){return ref(u).get();}).then(function(snap){
       var e=etat(snap);
       if(e.vide){var x0=document.getElementById('lect-x');if(x0)x0.textContent='0 / 0';var s0=box.querySelector('#lect-bar .l');if(s0)s0.style.width='0%';if(btn)btn.style.display='none';box.setAttribute('data-state','ok');return;}
       /* la consultation n'ecrit jamais ; le tirage aleatoire d'un tour
@@ -790,10 +848,19 @@ const LECT_JS = `(function lvLectBoot(){
     a.id='lect-suivant';a.className='memo-start';a.href=url+'?suivi=1';
     a.textContent=FR?'Continuer la lecture':'Continue reading';
     a.style.display='block';a.style.width='max-content';a.style.margin='44px auto 0';
+    a.addEventListener('click',function(ev){
+      /* ne pas tuer la page pendant que l'enregistrement de la lecture est
+         en vol : on attend sa confirmation (au plus 4 s), puis on navigue */
+      if(!ecrEnCours)return;
+      ev.preventDefault();
+      var dest=a.href;
+      Promise.race([ecrEnCours,new Promise(function(r){setTimeout(r,4000);})]).then(function(){location.href=dest;});
+    });
     zone.appendChild(a);
   }
   function marque(u){
     var I=idx(); if(!I)return;
+    rejouePending(u);
     var art=null,i;
     for(i=0;i<I.articles.length;i++){if(I.articles[i].u===location.pathname){art=I.articles[i];break;}}
     if(!art)return;
@@ -869,51 +936,17 @@ const LECT_JS = `(function lvLectBoot(){
     var fait=false;
     function accomplir(){
       if(fait)return; fait=true;
-      ref(u).get().then(function(snap){
+      /* attendre l'eventuel rejeu du journal local, puis lire l'etat frais */
+      Promise.resolve(REJPROM).then(function(){return ref(u).get();}).then(function(snap){
         var e=etat(snap), p=blocs(), suivant=null;
         if(e.vide)return;
         /* l'article compte s'il est l'article courant du parcours, ou si un
            tour non encore ancre (tirage local) contient un article de la
            meme strate minimale : la lecture reelle prime sur le tirage */
-        var compte=(e.cur===art.id)||(e.tourNeuf&&e.permis[art.id]&&(e.fois[art.id]||0)===e.minG);
-        if(compte){
+        if(compteLecture(e,art.id)){
           posFini=true;
           if(marque._lsEfface)marque._lsEfface();
-          var fois2={},k;for(k in e.fois)fois2[k]=e.fois[k];
-          fois2[art.id]=(fois2[art.id]||0)+1;
-          /* file suivante SANS PERTE : le doc reste la reference (une page
-             en cache ne connait pas les nouveaux articles, mais elle ne
-             peut pas les faire disparaitre de la file) ; les ajouts locaux
-             (tete = moins lus, queue = meme strate) s'y greffent */
-          var file2;
-          if(e.tourNeuf){
-            file2=e.file.filter(function(id){return id!==art.id;});
-          }else{
-            var base;
-            if(e.migration){
-              base=e.file.filter(function(id){return id!==art.id;});
-            }else{
-              var t={};e.ajTete.forEach(function(id){t[id]=1;});
-              var q={};e.ajQueue.forEach(function(id){q[id]=1;});
-              base=e.ajTete.filter(function(id){return id!==art.id;})
-                .concat(e.docOrdre.filter(function(id){return id!==art.id&&!t[id]&&!q[id];}))
-                .concat(e.ajQueue.filter(function(id){return id!==art.id;}));
-            }
-            file2=base;
-          }
-          var tourN2=e.tourN;
-          if(!file2.length){
-            /* tour epuise : le tour suivant s'enchaine immediatement sur la
-               nouvelle strate des moins lus (compteurs conserves, rien ne
-               s'efface jamais) */
-            var minG2=null;
-            Object.keys(e.permis).forEach(function(id){var f=fois2[id]||0;if(minG2===null||f<minG2)minG2=f;});
-            var cands={};Object.keys(e.permis).forEach(function(id){if((fois2[id]||0)===minG2)cands[id]=1;});
-            file2=melangeParmi(cands);
-            tourN2=file2.length;
-          }
-          ref(u).set({fois:fois2,ordre:file2,tourN:tourN2,lus:firebase.firestore.FieldValue.delete(),pos:firebase.firestore.FieldValue.delete()},{merge:true});
-          suivant=file2[0]||null;
+          suivant=enregistreLecture(u,e,art.id).suivant;
         }else{
           if(e.premier)ref(u).set({ordre:e.file,tourN:e.file.length,fois:e.fois},{merge:true});
           suivant=e.cur;
@@ -941,31 +974,59 @@ const LECT_JS = `(function lvLectBoot(){
     if(!gHost)return;
     if(!UCUR){gHost.innerHTML='';return;}
     var p=blocs(), I=idx();
-    var titres={}; if(I)I.articles.forEach(function(a){titres[a.id]=a.titre;});
+    if(!I){gHost.innerHTML='';return;}
+    var titres={}; I.articles.forEach(function(a){titres[a.id]=a.titre;});
+    var nomsT={}; I.themes.forEach(function(t){nomsT[t.id]=t.nom;});
+    /* regroupement par domaine, comme la bibliotheque : theme -> ses blocs
+       (categories + eventuel bloc residuel du theme), 'autres' a la fin */
+    var parT={}, bId;
+    p.bl.forEach(function(b){
+      var tid = b.id==='autres' ? 'autres' : (b.id.indexOf('th:')===0 ? b.id.slice(3) : b.id.split(':')[0]);
+      (parT[tid]=parT[tid]||[]).push(b);
+    });
+    var ordreT=[]; I.themes.forEach(function(t){if(parT[t.id])ordreT.push(t.id);}); if(parT['autres'])ordreT.push('autres');
     var tousOff=p.bl.length&&p.bl.every(function(b){return EXCL.cats[b.id];});
     var h='<div class="lect-g-acts"><span class="mini-act" data-lg="tout">'+(tousOff?(FR?'Tout s\u00e9lectionner':'Select all'):(FR?'Tout d\u00e9s\u00e9lectionner':'Deselect all'))+'</span></div>';
-    var LIMG=6;
-    var listeG=toutG?p.bl:p.bl.slice(0,LIMG);
-    listeG.forEach(function(b){
-      var offC=!!EXCL.cats[b.id];
-      var actifs=b.arts.filter(function(id){return !EXCL.arts[id];}).length;
-      var open=!!openG[b.id];
-      h+='<div class="cat'+(offC?'':' sel')+(open?' open':'')+'" data-lgc="'+b.id+'">'
-        +'<div class="cat-row"><span class="cat-check" data-lga="sel"></span>'
-        +'<span class="cat-name" data-lga="exp">'+b.nom+'</span>'
-        +'<span class="cat-pct" data-lga="exp">'+(offC?0:actifs)+' / '+b.arts.length+'</span>'
-        +'<span class="cat-chev" data-lga="exp">\u203A</span></div>'
-        +'<div class="cat-body">'+b.arts.map(function(id){
-          var offA=!!EXCL.arts[id];
-          var nf=FOISG[id]||0;
-          return '<div class="vrow'+(offA?' voff':'')+'"><span class="v-check'+(offA?'':' on')+'" data-lgv="'+id+'"></span><span class="vline"><span class="vtext">'+(titres[id]||id)+'</span>'+(nf?'<span style="font-family:ui-monospace,monospace;font-size:11px;color:rgba(255,255,255,.4);margin-left:8px">\u00d7'+nf+'</span>':'')+'</span></div>';
-        }).join('')+'</div></div>';
-    });
-    if(p.bl.length>LIMG){
-      h+='<div style="margin-top:14px;text-align:center"><button type="button" class="ghost-btn" data-lg="plus">'
-        +(toutG?(FR?'Afficher moins':'Show less'):((FR?'Afficher tout':'Show all')+' ('+p.bl.length+')'))
-        +'</button></div>';
+    function nFois(id){var nf=FOISG[id]||0;return nf?'<span style="font-family:ui-monospace,monospace;font-size:11px;color:rgba(255,255,255,.4);margin-left:8px">\u00d7'+nf+'</span>':'';}
+    function ligneArt(id){
+      var offA=!!EXCL.arts[id];
+      return '<div class="vrow'+(offA?' voff':'')+'"><span class="v-check'+(offA?'':' on')+'" data-lgv="'+id+'"></span><span class="vline"><span class="vtext">'+(titres[id]||id)+'</span>'+nFois(id)+'</span></div>';
     }
+    ordreT.forEach(function(tid){
+      var bls=parT[tid];
+      var nomT= tid==='autres' ? (FR?'Autres articles':'Other articles') : (nomsT[tid]||tid);
+      var totT=0, actT=0;
+      bls.forEach(function(b){
+        totT+=b.arts.length;
+        if(!EXCL.cats[b.id])actT+=b.arts.filter(function(id){return !EXCL.arts[id];}).length;
+      });
+      var onT=bls.some(function(b){return !EXCL.cats[b.id];});
+      var oT=!!openT[tid];
+      h+='<div class="cat'+(onT?' sel':'')+(oT?' open':'')+'" data-lgt="'+tid+'">'
+        +'<div class="cat-row"><span class="cat-check" data-lga="sel"></span>'
+        +'<span class="cat-name" data-lga="exp">'+nomT+'</span>'
+        +'<span class="cat-pct" data-lga="exp">'+actT+' / '+totT+'</span>'
+        +'<span class="cat-chev" data-lga="exp">\u203a</span></div>'
+        +'<div class="cat-body">';
+      /* theme dont l'unique bloc est le residuel : articles directs */
+      if(bls.length===1&&bls[0].id==='th:'+tid||tid==='autres'&&bls.length===1){
+        h+=bls[0].arts.map(ligneArt).join('');
+      }else{
+        bls.forEach(function(b){
+          var offC=!!EXCL.cats[b.id];
+          var actifs=b.arts.filter(function(id){return !EXCL.arts[id];}).length;
+          var open=!!openG[b.id];
+          var nomB=(b.id==='th:'+tid)?(FR?'Autres articles':'Other articles'):b.nom;
+          h+='<div class="cat lg-sous'+(offC?'':' sel')+(open?' open':'')+'" data-lgc="'+b.id+'">'
+            +'<div class="cat-row"><span class="cat-check" data-lga="sel"></span>'
+            +'<span class="cat-name" data-lga="exp">'+nomB+'</span>'
+            +'<span class="cat-pct" data-lga="exp">'+(offC?0:actifs)+' / '+b.arts.length+'</span>'
+            +'<span class="cat-chev" data-lga="exp">\u203a</span></div>'
+            +'<div class="cat-body">'+b.arts.map(ligneArt).join('')+'</div></div>';
+        });
+      }
+      h+='</div></div>';
+    });
     gHost.innerHTML=h;
   }
   function sauveExcl(){
@@ -978,8 +1039,6 @@ const LECT_JS = `(function lvLectBoot(){
   if(gHost){
     gHost.addEventListener('click',function(e){
       if(!UCUR)return;
-      var pl=e.target.closest?e.target.closest('[data-lg="plus"]'):null;
-      if(pl){toutG=!toutG;rendGestion();return;}
       var tt=e.target.closest?e.target.closest('[data-lg="tout"]'):null;
       if(tt){
         var p=blocs(), tousOff=p.bl.length&&p.bl.every(function(b){return EXCL.cats[b.id];});
@@ -987,14 +1046,34 @@ const LECT_JS = `(function lvLectBoot(){
         if(!tousOff)p.bl.forEach(function(b){EXCL.cats[b.id]=1;});
         sauveExcl(); return;
       }
-      var c=e.target.closest?e.target.closest('[data-lgc]'):null; if(!c)return;
-      var cid=c.getAttribute('data-lgc');
-      var av=e.target.closest('[data-lgv]');
+      /* l'article d'abord : il peut vivre directement sous un domaine
+         (theme sans categories), sans data-lgc au-dessus */
+      var av=e.target.closest?e.target.closest('[data-lgv]'):null;
       if(av){var aid=av.getAttribute('data-lgv');EXCL.arts[aid]?delete EXCL.arts[aid]:EXCL.arts[aid]=1;sauveExcl();return;}
-      var ac=e.target.closest('[data-lga]');
-      if(ac){
-        if(ac.getAttribute('data-lga')==='sel'){EXCL.cats[cid]?delete EXCL.cats[cid]:EXCL.cats[cid]=1;sauveExcl();}
-        else{openG[cid]=!openG[cid];c.classList.toggle('open');}
+      var c=e.target.closest?e.target.closest('[data-lgc]'):null;
+      if(c){
+        var cid=c.getAttribute('data-lgc');
+        var ac=e.target.closest('[data-lga]');
+        if(ac){
+          if(ac.getAttribute('data-lga')==='sel'){EXCL.cats[cid]?delete EXCL.cats[cid]:EXCL.cats[cid]=1;sauveExcl();}
+          else{openG[cid]=!openG[cid];c.classList.toggle('open');}
+        }
+        return;
+      }
+      /* niveau domaine : case = tout le domaine, chevron/nom = depli */
+      var t=e.target.closest?e.target.closest('[data-lgt]'):null;
+      if(t){
+        var tid=t.getAttribute('data-lgt');
+        function tidDe(bid){return bid==='autres'?'autres':(bid.indexOf('th:')===0?bid.slice(3):bid.split(':')[0]);}
+        var at=e.target.closest('[data-lga]');
+        if(at){
+          if(at.getAttribute('data-lga')==='sel'){
+            var bls=blocs().bl.filter(function(b){return tidDe(b.id)===tid;});
+            var onT=bls.some(function(b){return !EXCL.cats[b.id];});
+            bls.forEach(function(b){ if(onT)EXCL.cats[b.id]=1; else delete EXCL.cats[b.id]; });
+            sauveExcl();
+          }else{openT[tid]=!openT[tid];t.classList.toggle('open');}
+        }
       }
     });
   }
@@ -1398,6 +1477,397 @@ window.LUMEN={base:${JSON.stringify(base)},lang:${JSON.stringify(lang)},hint:${J
 }
 
 /* ---- vues ---- */
+function mainCarnet(lang) {
+  const F = lang === 'fr';
+  const T = {
+    titre: F ? 'Le carnet' : 'The notebook',
+    sous: F ? '\u00c9crire, illustrer, garder. Vos documents sont enregistr\u00e9s dans votre compte.' : 'Write, illustrate, keep. Your documents are saved to your account.',
+    nouveau: F ? 'Nouveau document' : 'New document',
+    auj: F ? 'Nouvelle page' : 'New page',
+    ongDocs: F ? 'Documents' : 'Documents',
+    ongJour: F ? 'Journal' : 'Journal',
+    vide: F ? 'Aucun document pour le moment. Cr\u00e9ez le premier.' : 'No documents yet. Create the first one.',
+    connexion: F ? 'Connectez-vous pour utiliser le carnet.' : 'Sign in to use the notebook.',
+    retour: F ? '\u2039 Documents' : '\u2039 Documents',
+    sansTitre: F ? 'Sans titre' : 'Untitled',
+    titrePh: F ? 'Titre du document\u2026' : 'Document title\u2026',
+    gras: F ? 'Gras' : 'Bold', ital: F ? 'Italique' : 'Italic', soul: F ? 'Soulign\u00e9' : 'Underline',
+    titreB: F ? 'Titre' : 'Heading', liste: F ? 'Liste' : 'List',
+    img: F ? 'Ins\u00e9rer une image' : 'Insert an image',
+    fond: F ? 'Image de fond' : 'Background image',
+    fondOff: F ? 'Retirer le fond' : 'Remove background',
+    voile: F ? 'Assombrir le fond' : 'Darken background',
+    suppr: F ? 'Supprimer' : 'Delete',
+    confirme: F ? 'Supprimer ce document ? Cette action est d\u00e9finitive.' : 'Delete this document? This cannot be undone.',
+    enr: F ? 'Enregistr\u00e9' : 'Saved',
+    enrC: F ? 'Enregistrement\u2026' : 'Saving\u2026',
+    aide: F ? 'Cliquez sur une image ins\u00e9r\u00e9e pour changer sa taille. Le fond couvre toute la page : \u00e9crivez simplement par-dessus.' : 'Click an inserted image to change its size. The background covers the whole page: simply write over it.'
+  };
+  return `<style>
+#carnet{max-width:1000px;margin:0 auto;padding:0 20px 80px}
+#carnet .cah-titre{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--parchemin);margin:34px 0 6px}
+#carnet .cah-sous{color:rgba(255,255,255,.55);font-size:15px;margin:0 0 30px}
+.c-onglets{display:flex;gap:26px;border-bottom:1px solid var(--filet);margin-bottom:8px}
+.c-ong{cursor:pointer;color:rgba(255,255,255,.55);letter-spacing:.1em;font-size:14px;text-transform:uppercase;padding:10px 2px 12px;border-bottom:1px solid transparent;margin-bottom:-1px;transition:color .3s,border-color .3s}
+.c-ong:hover{color:var(--parchemin)}
+.c-ong.actif{color:var(--parchemin);border-color:var(--or)}
+#c-jour{display:none;font-family:ui-monospace,monospace;font-size:12px;letter-spacing:.08em;color:rgba(255,255,255,.55);margin:2px 2px 6px}
+#c-liste .cdoc{display:flex;align-items:baseline;gap:16px;padding:17px 4px;border-bottom:1px solid var(--filet);cursor:pointer}
+#c-liste .cdoc:hover .cdoc-t{color:var(--or-pale)}
+#c-liste .cdoc-t{flex:1;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--parchemin);transition:color .3s}
+#c-liste .cdoc-d{font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.06em}
+#c-nouveau{display:inline-block;margin:26px 0 8px;cursor:pointer}
+#c-msg{color:rgba(255,255,255,.55);padding:26px 0}
+#c-edit{display:none}
+#c-edit .ce-haut{display:flex;align-items:center;gap:18px;margin:26px 0 14px;flex-wrap:wrap}
+#c-retour{cursor:pointer;color:rgba(255,255,255,.55);letter-spacing:.08em;font-size:14px;transition:color .3s}
+#c-retour:hover{color:var(--or-pale)}
+#c-etat{margin-left:auto;font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.06em;opacity:0;transition:opacity .4s}
+#c-etat.on{opacity:1}
+#c-titre{width:100%;background:none;border:none;border-bottom:1px solid var(--filet);color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:28px;padding:8px 2px;outline:none;margin-bottom:14px}
+#c-titre:focus{border-color:var(--or-pale)}
+.ce-barre{display:flex;align-items:center;gap:6px;flex-wrap:wrap;border:1px solid var(--filet);padding:8px 10px;margin-bottom:0;position:sticky;top:0;background:rgba(10,10,10,.95);z-index:5}
+.ce-btn{cursor:pointer;color:rgba(255,255,255,.55);border:1px solid transparent;padding:5px 11px;font-size:14px;letter-spacing:.03em;transition:color .25s,border-color .25s;user-select:none}
+.ce-btn:hover{color:var(--parchemin);border-color:var(--filet-fort)}
+.ce-btn.b{font-weight:700}.ce-btn.i{font-style:italic}.ce-btn.u{text-decoration:underline}
+.ce-sep{width:1px;height:20px;background:var(--filet);margin:0 4px}
+.ce-voile{display:none;align-items:center;gap:8px;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:.05em}
+.ce-voile input{accent-color:#cbb87e;width:110px}
+#c-feuille{min-height:68vh;border:1px solid var(--filet);border-top:none;padding:54px 58px;color:var(--parchemin);font-size:17px;line-height:1.85;outline:none;background-color:#0d0d0c;background-size:cover;background-position:center;overflow-wrap:break-word}
+#c-feuille:focus{border-color:var(--filet-fort)}
+#c-feuille h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--parchemin);margin:26px 0 10px}
+#c-feuille p{margin:0 0 14px}
+#c-feuille ul{margin:0 0 14px 22px}
+#c-feuille img{max-width:100%;height:auto;display:block;margin:18px auto;cursor:pointer}
+#c-feuille img.l75{width:75%}#c-feuille img.l50{width:50%}#c-feuille img.l25{width:25%}
+.ce-aide{font-size:12px;color:rgba(255,255,255,.55);margin:12px 2px 0;line-height:1.6}
+#c-suppr{color:#b46a6a}
+#c-suppr:hover{color:#d98f8f;border-color:rgba(217,143,143,.4)}
+@media(max-width:720px){#c-feuille{padding:30px 20px}}
+</style>
+<div id="carnet">
+  <h1 class="cah-titre">${T.titre}</h1>
+  <p class="cah-sous">${T.sous}</p>
+  <div id="c-liste">
+    <div class="c-onglets">
+      <span class="c-ong actif" id="c-ong-docs" role="button" tabindex="0">${T.ongDocs}</span>
+      <span class="c-ong" id="c-ong-jour" role="button" tabindex="0">${T.ongJour}</span>
+    </div>
+    <span class="memo-start" id="c-nouveau" role="button" tabindex="0" style="display:none" data-doc="${T.nouveau}" data-jour="${T.auj}">${T.nouveau}</span>
+    <div id="c-docs"></div>
+    <div id="c-msg"></div>
+  </div>
+  <div id="c-edit">
+    <div class="ce-haut">
+      <span id="c-retour" role="button" tabindex="0">${T.retour}</span>
+      <span id="c-etat">${T.enr}</span>
+    </div>
+    <div id="c-jour"></div>
+    <input id="c-titre" type="text" placeholder="${T.titrePh}" maxlength="140">
+    <div class="ce-barre">
+      <span class="ce-btn b" data-cmd="bold" title="${T.gras}">G</span>
+      <span class="ce-btn i" data-cmd="italic" title="${T.ital}">I</span>
+      <span class="ce-btn u" data-cmd="underline" title="${T.soul}">S</span>
+      <span class="ce-sep"></span>
+      <span class="ce-btn" data-cmd="h3" title="${T.titreB}">${T.titreB}</span>
+      <span class="ce-btn" data-cmd="ul" title="${T.liste}">${T.liste}</span>
+      <span class="ce-sep"></span>
+      <span class="ce-btn" id="c-img">${T.img}</span>
+      <span class="ce-btn" id="c-fond">${T.fond}</span>
+      <span class="ce-voile" id="c-voile-z"><span>${T.voile}</span><input type="range" id="c-voile" min="0" max="85" step="5"></span>
+      <span class="ce-btn" id="c-fond-off" style="display:none">${T.fondOff}</span>
+      <span class="ce-sep"></span>
+      <span class="ce-btn" id="c-suppr">${T.suppr}</span>
+    </div>
+    <div id="c-feuille" contenteditable="true" spellcheck="true"></div>
+    <p class="ce-aide">${T.aide}</p>
+    <input type="file" id="c-file-img" accept="image/*" style="display:none">
+    <input type="file" id="c-file-fond" accept="image/*" style="display:none">
+  </div>
+</div>`;
+}
+const CARNET_JS = function(lang){
+  const F = lang === 'fr';
+  const TXT = JSON.stringify({
+    sansTitre: F ? 'Sans titre' : 'Untitled',
+    vide: F ? 'Aucun document pour le moment. Cr\u00e9ez le premier.' : 'No documents yet. Create the first one.',
+    connexion: F ? 'Connectez-vous pour utiliser le carnet.' : 'Sign in to use the notebook.',
+    confirme: F ? 'Supprimer ce document ? Cette action est d\u00e9finitive.' : 'Delete this document? This cannot be undone.',
+    enr: F ? 'Enregistr\u00e9' : 'Saved',
+    enrC: F ? 'Enregistrement\u2026' : 'Saving\u2026',
+    videJ: F ? 'Aucune page pour le moment. \u00c9crivez la premi\u00e8re.' : 'No pages yet. Write the first one.',
+    titreJ: F ? 'Titre ou date (facultatif)\u2026' : 'Title or date (optional)\u2026',
+    pageMot: F ? 'Page' : 'Page',
+    trop: F ? 'Image trop lourde m\u00eame compress\u00e9e. Choisissez une image plus petite.' : 'Image too large even compressed. Choose a smaller one.'
+  });
+  const LOC = F ? 'fr-FR' : 'en-GB';
+  return `(function(){
+  var TXT=${TXT};
+  var elL=document.getElementById('c-liste'),elE=document.getElementById('c-edit');
+  if(!elL)return;
+  var docs=document.getElementById('c-docs'),msg=document.getElementById('c-msg');
+  var feuille=document.getElementById('c-feuille'),titre=document.getElementById('c-titre'),etat=document.getElementById('c-etat');
+  var U=null,CUR=null,CURD=null,tmr=null,sale=false,MODE='doc',PAGES=[];
+  var PH0=titre?titre.placeholder:'';
+  function col(){return firebase.firestore().collection('users').doc(U.uid).collection('carnet');}
+  function colI(){return firebase.firestore().collection('users').doc(U.uid).collection('carnetImg');}
+  /* compression : canvas -> JPEG, boucle jusqu'a passer sous ~880 Ko */
+  function compresse(file,maxDim){
+    return new Promise(function(res,rej){
+      var img=new Image(),url=URL.createObjectURL(file);
+      img.onload=function(){
+        URL.revokeObjectURL(url);
+        var essais=[[maxDim,0.82],[Math.round(maxDim*0.8),0.72],[Math.round(maxDim*0.6),0.62],[900,0.55]];
+        for(var k=0;k<essais.length;k++){
+          var m=essais[k][0],q=essais[k][1];
+          var r=Math.min(1,m/Math.max(img.width,img.height));
+          var c=document.createElement('canvas');
+          c.width=Math.max(1,Math.round(img.width*r));c.height=Math.max(1,Math.round(img.height*r));
+          c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+          var d=c.toDataURL('image/jpeg',q);
+          if(d.length<880*1024){res(d);return;}
+        }
+        rej(new Error('trop'));
+      };
+      img.onerror=function(){rej(new Error('lecture'));};
+      img.src=url;
+    });
+  }
+  function sauveImage(dataURL){
+    var id=col().doc().id;
+    return colI().doc(id).set({d:dataURL}).then(function(){return id;});
+  }
+  function chargeImage(id){
+    return colI().doc(id).get().then(function(s){var d=s.exists&&s.data();return d?d.d:null;});
+  }
+  /* serialisation : jamais de base64 dans le doc texte */
+  function htmlPropre(){
+    var c=feuille.cloneNode(true);
+    c.querySelectorAll('img[data-lvimg]').forEach(function(im){im.removeAttribute('src');});
+    return c.innerHTML;
+  }
+  /* images orphelines : chaque sauvegarde compare les images referencees
+     (inserees + fond) avec celles d'avant ; les disparues (image effacee du
+     texte, fond remplace ou retire) sont supprimees de la base, et la
+     suppression d'un document supprime toutes les siennes */
+  var REFS={};
+  function refsActuelles(html,fond){
+    var r={},m,re=/data-lvimg="([^"]+)"/g;
+    while((m=re.exec(html||'')))r[m[1]]=1;
+    if(fond)r[fond]=1;
+    return r;
+  }
+  function purgeOrphelines(refs2){
+    Object.keys(REFS).forEach(function(id){ if(!refs2[id])colI().doc(id).delete().catch(function(){}); });
+    REFS=refs2;
+  }
+  function marqueEtat(t,garde){etat.textContent=t;etat.classList.add('on');if(!garde)setTimeout(function(){etat.classList.remove('on');},1800);}
+  function sauve(){
+    if(!CUR||!U)return Promise.resolve();
+    sale=false;
+    marqueEtat(TXT.enrC,true);
+    var d={t:(titre.value||'').trim(),h:htmlPropre(),maj:Date.now()};
+    d.fond=CURD.fond||null;d.voile=CURD.voile||0;
+    var refs2=refsActuelles(d.h,d.fond);
+    return col().doc(CUR).set(d,{merge:true}).then(function(){purgeOrphelines(refs2);marqueEtat(TXT.enr);}).catch(function(){etat.classList.remove('on');});
+  }
+  function planifie(){sale=true;clearTimeout(tmr);tmr=setTimeout(sauve,2000);}
+  function appliqueFond(dataURL){
+    var v=(CURD.voile||0)/100;
+    if(dataURL){
+      feuille.style.backgroundImage='linear-gradient(rgba(10,10,10,'+v+'),rgba(10,10,10,'+v+')),url('+dataURL+')';
+      document.getElementById('c-fond-off').style.display='';
+      document.getElementById('c-voile-z').style.display='flex';
+    }else{
+      feuille.style.backgroundImage='';
+      document.getElementById('c-fond-off').style.display='none';
+      document.getElementById('c-voile-z').style.display='none';
+    }
+  }
+  var fondData=null;
+  function ouvreDoc(id){
+    col().doc(id).get().then(function(s){
+      if(!s.exists)return;
+      clearTimeout(tmr);tmr=null;
+      CUR=id;CURD=s.data()||{};fondData=null;
+      REFS=refsActuelles(CURD.h||'',CURD.fond||null);
+      var jz=document.getElementById('c-jour');
+      if(CURD.mode==='journal'){
+        titre.placeholder=TXT.titreJ;
+        var pos=-1,k2;for(k2=0;k2<PAGES.length;k2++){if(PAGES[k2]===id){pos=k2;break;}}
+        jz.innerHTML='';
+        function fle(txt,va){
+          var f=document.createElement('span');f.textContent=txt;
+          f.style.cssText='cursor:pointer;padding:2px 10px;color:rgba(255,255,255,.5);transition:color .25s';
+          f.onmouseenter=function(){f.style.color='#fff';};f.onmouseleave=function(){f.style.color='rgba(255,255,255,.5)';};
+          f.addEventListener('click',function(){
+            var cible=PAGES[pos+va];if(!cible)return;
+            (sale?sauve():Promise.resolve()).then(function(){ouvreDoc(cible);});
+          });
+          if(!PAGES[pos+va])f.style.visibility='hidden';
+          return f;
+        }
+        var lab=document.createElement('span');
+        lab.textContent=TXT.pageMot+' '+(pos+1)+' / '+PAGES.length;
+        jz.appendChild(fle('\u2039',-1));jz.appendChild(lab);jz.appendChild(fle('\u203a',1));
+        jz.style.display='block';
+      }else{jz.style.display='none';titre.placeholder=PH0;}
+      titre.value=CURD.t||'';
+      feuille.innerHTML=CURD.h||'<p><br></p>';
+      document.getElementById('c-voile').value=CURD.voile||0;
+      appliqueFond(null);
+      /* resoudre les images inserees */
+      feuille.querySelectorAll('img[data-lvimg]').forEach(function(im){
+        chargeImage(im.getAttribute('data-lvimg')).then(function(d){if(d)im.src=d;});
+      });
+      if(CURD.fond){chargeImage(CURD.fond).then(function(d){if(d){fondData=d;appliqueFond(d);}});}
+      elL.style.display='none';elE.style.display='block';
+      window.scrollTo({top:0,behavior:'auto'});
+    });
+  }
+  function fermeDoc(){
+    clearTimeout(tmr);tmr=null;
+    var fin=sale?sauve():Promise.resolve();
+    fin.then(function(){CUR=null;CURD=null;elE.style.display='none';elL.style.display='block';rendListe();});
+  }
+  function rendListe(){
+    docs.innerHTML='';msg.textContent='';
+    col().get().then(function(q){
+      var lignes=[];
+      q.forEach(function(s){
+        var d=s.data()||{};
+        if((d.mode||'doc')!==MODE)return;
+        lignes.push({id:s.id,d:d});
+      });
+      if(MODE!=='journal'){
+        lignes.sort(function(a,b){return (b.d.maj||0)-(a.d.maj||0);});
+      }
+      if(MODE==='journal'){
+        /* un journal reel : les pages se suivent, de la premiere a la derniere */
+        lignes.sort(function(a,b){return (a.d.num||0)-(b.d.num||0);});
+        PAGES=lignes.map(function(x){return x.id;});
+      }
+      if(!lignes.length){msg.textContent=(MODE==='journal'?TXT.videJ:TXT.vide);return;}
+      lignes.forEach(function(x,ix){
+        var d=x.d;
+        var r=document.createElement('div');r.className='cdoc';
+        var t=document.createElement('span');t.className='cdoc-t';
+        if(MODE==='journal'){t.textContent=TXT.pageMot+' '+(ix+1)+(d.t?' \u00b7 '+d.t:'');}
+        else{t.textContent=(d.t||TXT.sansTitre);}
+        var dt=document.createElement('span');dt.className='cdoc-d';
+        if(MODE!=='journal'){try{dt.textContent=new Date(d.maj||Date.now()).toLocaleDateString('${LOC}',{day:'numeric',month:'long',year:'numeric'});}catch(e){}}
+        r.appendChild(t);r.appendChild(dt);
+        r.addEventListener('click',function(){ouvreDoc(x.id);});
+        docs.appendChild(r);
+      });
+    }).catch(function(){msg.textContent=(MODE==='journal'?TXT.videJ:TXT.vide);});
+  }
+  /* barre d'outils */
+  document.querySelectorAll('.ce-btn[data-cmd]').forEach(function(b){
+    b.addEventListener('click',function(){
+      feuille.focus();
+      var c=b.getAttribute('data-cmd');
+      if(c==='h3')document.execCommand('formatBlock',false,'<h3>');
+      else if(c==='ul')document.execCommand('insertUnorderedList');
+      else document.execCommand(c);
+      planifie();
+    });
+  });
+  document.getElementById('c-img').addEventListener('click',function(){document.getElementById('c-file-img').click();});
+  document.getElementById('c-file-img').addEventListener('change',function(){
+    var f=this.files&&this.files[0];this.value='';if(!f)return;
+    marqueEtat(TXT.enrC,true);
+    compresse(f,1400).then(sauveImage).then(function(id){
+      return chargeImage(id).then(function(d){
+        feuille.focus();
+        document.execCommand('insertHTML',false,'<img data-lvimg="'+id+'" src="'+d+'"><p><br></p>');
+        planifie();marqueEtat(TXT.enr);
+      });
+    }).catch(function(){etat.classList.remove('on');alert(TXT.trop);});
+  });
+  /* clic sur une image inseree : cycle de tailles */
+  feuille.addEventListener('click',function(e){
+    var im=e.target.closest&&e.target.closest('img');if(!im)return;
+    var cyc=['','l75','l50','l25'];
+    var cur=cyc.indexOf((im.className.match(/l\d+/)||[''])[0]);
+    im.className=cyc[(cur+1)%cyc.length];
+    planifie();
+  });
+  /* fond de page */
+  document.getElementById('c-fond').addEventListener('click',function(){document.getElementById('c-file-fond').click();});
+  document.getElementById('c-file-fond').addEventListener('change',function(){
+    var f=this.files&&this.files[0];this.value='';if(!f)return;
+    marqueEtat(TXT.enrC,true);
+    compresse(f,1700).then(sauveImage).then(function(id){
+      CURD.fond=id;if(CURD.voile==null)CURD.voile=25;
+      document.getElementById('c-voile').value=CURD.voile;
+      return chargeImage(id).then(function(d){fondData=d;appliqueFond(d);planifie();marqueEtat(TXT.enr);});
+    }).catch(function(){etat.classList.remove('on');alert(TXT.trop);});
+  });
+  document.getElementById('c-fond-off').addEventListener('click',function(){CURD.fond=null;fondData=null;appliqueFond(null);planifie();});
+  document.getElementById('c-voile').addEventListener('input',function(){CURD.voile=parseInt(this.value,10)||0;appliqueFond(fondData);planifie();});
+  /* saisie */
+  feuille.addEventListener('input',planifie);
+  titre.addEventListener('input',planifie);
+  document.getElementById('c-retour').addEventListener('click',fermeDoc);
+  document.getElementById('c-suppr').addEventListener('click',function(){
+    if(!CUR)return;
+    if(!confirm(TXT.confirme))return;
+    var refsDel=refsActuelles(htmlPropre(),CURD&&CURD.fond);
+    Object.keys(refsDel).forEach(function(id){colI().doc(id).delete().catch(function(){});});
+    REFS={};
+    col().doc(CUR).delete().then(function(){sale=false;CUR=null;elE.style.display='none';elL.style.display='block';rendListe();});
+  });
+  document.getElementById('c-nouveau').addEventListener('click',function(){
+    if(!U)return;
+    if(MODE==='journal'){
+      /* la nouvelle page s'ajoute a la suite, comme dans un journal reel */
+      col().get().then(function(q){
+        var mx=0;
+        q.forEach(function(s){var d=s.data()||{};if(d.mode==='journal'&&(d.num||0)>mx)mx=d.num;});
+        var r=col().doc();
+        return r.set({mode:'journal',num:mx+1,t:'',h:'<p><br></p>',maj:Date.now(),fond:null,voile:0}).then(function(){
+          PAGES.push(r.id);ouvreDoc(r.id);
+        });
+      });
+      return;
+    }
+    var r2=col().doc();
+    r2.set({mode:'doc',t:'',h:'<p><br></p>',maj:Date.now(),fond:null,voile:0}).then(function(){ouvreDoc(r2.id);});
+  });
+  function ongle(m){
+    MODE=m;
+    document.getElementById('c-ong-docs').classList.toggle('actif',m==='doc');
+    document.getElementById('c-ong-jour').classList.toggle('actif',m==='journal');
+    var nb=document.getElementById('c-nouveau');
+    nb.textContent=nb.getAttribute(m==='journal'?'data-jour':'data-doc');
+    if(U)rendListe();
+  }
+  document.getElementById('c-ong-docs').addEventListener('click',function(){ongle('doc');});
+  document.getElementById('c-ong-jour').addEventListener('click',function(){ongle('journal');});
+  window.addEventListener('pagehide',function(){if(sale)sauve();});
+  /* auth */
+  (window.lvFB?window.lvFB():Promise.resolve()).then(function(){
+    if(!window.firebase||!firebase.auth){msg.textContent=TXT.connexion;return;}
+    firebase.auth().onAuthStateChanged(function(u){
+      U=u;
+      if(!u){
+        docs.innerHTML='';document.getElementById('c-nouveau').style.display='none';
+        msg.textContent='';
+        var lk=document.createElement('span');
+        lk.textContent=TXT.connexion;
+        lk.style.cssText='cursor:pointer;text-decoration:underline;text-underline-offset:3px';
+        lk.addEventListener('click',function(){var a=document.getElementById('auth-ouvrir');if(a)a.click();});
+        msg.appendChild(lk);
+        return;
+      }
+      document.getElementById('c-nouveau').style.display='';
+      rendListe();
+    });
+  });
+})();`;
+};
+
 function mainAccueil(lang, base) {
   const u = UI[lang];
   const lib = lang === 'fr' ? 'bibliotheque/' : 'library/';
@@ -1447,6 +1917,15 @@ function mainAccueil(lang, base) {
         <p class="memo-note" id="lect-note">${u.lect_signedout}</p>
       </div>
       <a class="memo-start" id="lect-start" href="${lang === 'fr' ? '/bibliotheque/' : '/en/library/'}" data-lv-txt="lect_start">${u.lect_start}</a>
+    </div>
+    <div class="titre-section">
+      <span class="num" data-lv-txt="carnet_label">${u.carnet_label}</span>
+      <h2 data-lv-txt="carnet_title">${u.carnet_title}</h2>
+      <span class="trait"></span>
+    </div>
+    <div class="memo-bloc">
+      <p style="font-size:16px;color:var(--parchemin-att);font-style:italic;margin:0;text-align:center;max-width:520px;line-height:1.7" data-lv-txt="carnet_sub">${u.carnet_sub}</p>
+      <a class="memo-start" href="${lang === 'fr' ? '/carnet/' : '/en/notebook/'}" data-lv-txt="carnet_open">${u.carnet_open}</a>
     </div>
     <div style="height:60px"></div>
   </div>`;
@@ -1706,7 +2185,7 @@ function genPaire(spec) {
       frPath: spec.frPath, enPath: spec.enPath, base, otherRel,
       ctx: spec.ctx ? spec.ctx(lang, base) : '',
       main: spec.main(lang, base),
-      extraJS: spec.extraJS
+      extraJS: typeof spec.extraJS === 'function' ? spec.extraJS(lang) : spec.extraJS
     }));
   });
 }
@@ -1718,6 +2197,17 @@ genPaire({
   title: l => UI[l].t_home, desc: l => UI[l].site_desc_home,
   main: (l, b) => mainAccueil(l, b)
 });
+
+// carnet
+genPaire({
+  type: 'carnet', frPath: '/carnet/', enPath: '/en/notebook/',
+  frFile: 'carnet/index.html', enFile: 'en/notebook/index.html',
+  title: l => (l === 'fr' ? 'Le carnet \u00b7 Lumen Veritatis' : 'The notebook \u00b7 Lumen Veritatis'),
+  desc: l => (l === 'fr' ? '\u00c9crire, illustrer, garder : votre espace d\u2019\u00e9criture personnel.' : 'Write, illustrate, keep: your personal writing space.'),
+  main: (l) => mainCarnet(l),
+  extraJS: l => CARNET_JS(l)
+});
+
 
 // bibliothèque
 genPaire({
@@ -1847,7 +2337,8 @@ if (fs.existsSync('memoriser.html')) {
         { id: 'nav-home', label: '' },
         { id: 'nav-lib', label: '' },
         { href: '/bible.html', label: 'Bible' },
-        { id: 'nav-mem', href: '/memoriser.html', actif: true, label: '' }
+        { id: 'nav-mem', href: '/memoriser.html', actif: true, label: '' },
+        { id: 'nav-carnet', href: '/carnet/', label: '' }
       ],
       langue: { type: 'bouton', id: 'lang-btn', label: 'EN' },
       loupe: { id: 'rech-ouvrir', label: 'Rechercher', labelId: 'rech-link-label' },
@@ -1889,7 +2380,8 @@ if (fs.existsSync('bible.html')) {
         { href: '/', label: 'Accueil' },
         { href: '/bibliotheque/', label: 'Bibliothèque' },
         { href: '/bible.html', actif: true, label: 'Bible' },
-        { href: '/memoriser.html', label: 'Mémoriser' }
+        { href: '/memoriser.html', label: 'Mémoriser' },
+        { href: '/carnet/', label: 'Carnet' }
       ],
       langue: { type: 'lien', href: '/en/bible.html', hreflang: 'en', label: 'EN' },
       loupe: { id: 'brech-ouvrir', label: 'Rechercher' },
@@ -1913,6 +2405,7 @@ if (fs.existsSync('bible.html')) {
       ['<a href="/bibliotheque/">Bibliothèque</a>', '<a href="/en/library/">Library</a>'],
       ['<a href="/bible.html" class="actif">Bible</a>', '<a href="/en/bible.html" class="actif">Bible</a>'],
       ['<a href="/memoriser.html">Mémoriser</a>', '<a href="/memoriser.html">Memorise</a>'],
+      ['<a href="/carnet/">Carnet</a>', '<a href="/en/notebook/">Notebook</a>'],
       ['<a href="/en/bible.html" class="lien-langue" hreflang="en">EN</a>', '<a href="/bible.html" class="lien-langue" hreflang="fr">FR</a>'],
       ['aria-label="Rechercher"', 'aria-label="Search"'],
       ['>Rechercher<', '>Search<'],
