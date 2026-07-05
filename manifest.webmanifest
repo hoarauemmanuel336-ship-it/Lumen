@@ -1,0 +1,16 @@
+{
+  "name": "Lumen Veritatis",
+  "short_name": "Lumen",
+  "description": "Théologie catholique : articles, Bible, mémorisation.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "lang": "fr",
+  "icons": [
+    { "src": "/icones/lumen-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icones/lumen-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icones/lumen-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
