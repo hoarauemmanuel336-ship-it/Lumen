@@ -1308,10 +1308,10 @@ function mainAccueil(lang, base) {
     </a>`;
   }).join('');
   return `<div class="vue">
+    <div class="liturgie" id="lv-liturgie" aria-live="off"></div>
+    ${scriptLiturgie(lang)}
     <section class="hero">
       <div class="croix" aria-hidden="true"></div>
-      <div class="liturgie" id="lv-liturgie" aria-live="off"></div>
-      ${scriptLiturgie(lang)}
     </section>
     <div class="titre-section">
       <span class="num" data-lv-txt="home_domains_label">${u.home_domains_label}</span>
@@ -1484,7 +1484,11 @@ function scriptLiturgie(lang) {
     p68: 'Sacré-Cœur de Jésus', p69: 'Cœur immaculé de Marie',
     roi: 'Christ, Roi de l\u2019univers', fam: 'Sainte Famille', epi: 'Épiphanie du Seigneur', bap: 'Baptême du Seigneur'
   };
+  const DIMS_SRC = en
+    ? "function DIMS(n,q){var o=(n%10===1&&n!==11)?'st':(n%10===2&&n!==12)?'nd':(n%10===3&&n!==13)?'rd':'th';var t={av:'Sunday of Advent',ca:'Sunday of Lent',pa:'Sunday of Easter',to:'Sunday in Ordinary Time'}[q];return n+o+' '+t;}"
+    : "function DIMS(n,q){var o=(n===1)?'1er':n+'e';var t={av:'dimanche de l\u2019Avent',ca:'dimanche de Car\u00EAme',pa:'dimanche de P\u00E2ques',to:'dimanche du temps ordinaire'}[q];return o+' '+t;}";
   return `<script>(function(){
+${DIMS_SRC}
 var SAN=${JSON.stringify(table)},TP=${JSON.stringify(TEMPS)},MB=${JSON.stringify(MOB)};
 function jj(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;}
 function meme(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();}
@@ -1509,6 +1513,19 @@ function calc(d){
   else temps=TP.to;
   var cel=null;
   var mob={'-46':MB.m46,'-7':MB.m7,'-3':MB.m3,'-2':MB.m2,'-1':MB.m1,'0':MB.p0,'1':MB.p1,'7':MB.p7,'39':MB.p39,'49':MB.p49,'50':MB.p50,'56':MB.p56,'68':MB.p68,'69':MB.p69}[String(dif)]||null;
+  var dimNom=null;
+  if(dim&&!mob){
+    var n=0,quel='';
+    if(temps===TP.av){n=Math.round(dJour(d,av)/7)+1;quel='av';}
+    else if(temps===TP.ca){n=Math.round(dJour(d,jj(P,-42))/7)+1;quel='ca';}
+    else if(temps===TP.pa){n=Math.round(dif/7)+1;quel='pa';}
+    else if(temps===TP.to){
+      if(dif<0){n=Math.floor((dJour(d,bp)+1)/7)+1;}
+      else{n=34-Math.round(dJour(jj(av,-7),d)/7);}
+      quel='to';
+    }
+    if(n>0)dimNom=DIMS(n,quel);
+  }
   if(dif===63&&dim) mob=MB.p63; /* Fête-Dieu transférée au dimanche (France) */
   if(!mob){
     if(meme(d,jj(av,-7))) mob=MB.roi;
@@ -1516,22 +1533,17 @@ function calc(d){
     else if(meme(d,epiph(an))){mob=MB.epi;temps=TP.no;}
     else if(meme(d,bp)){mob=MB.bap;temps=TP.no;}
   }
+  var cle=('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+  var s=SAN[cle],deg=s?s[1]:null;
   if(mob) cel=mob;
-  else{
-    var cle=('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
-    var s=SAN[cle];
-    if(s){
-      var deg=s[1];
-      if(deg==='s') cel=s[0];
-      else if(deg==='fS') cel=s[0]; /* fête du Seigneur : prime même le dimanche du temps ordinaire */
-      else if(!dim) cel=s[0]; /* fêtes et mémoires : cèdent le dimanche */
-    }
-  }
+  else if(s&&(deg==='s'||deg==='fS')) cel=s[0]; /* solennités et fêtes du Seigneur priment le dimanche */
+  else if(dimNom) return {temps:temps,cel:null,seul:dimNom}; /* le dimanche porte son nom */
+  else if(s&&!dim) cel=s[0]; /* fêtes et mémoires cèdent le dimanche */
   return {temps:temps,cel:cel};
 }
 window.LV_LITURGIE=calc; /* exposé pour vérification */
 var e=document.getElementById('lv-liturgie');
-if(e){var r=calc(new Date());e.textContent=r.temps+(r.cel?' \u00b7 '+r.cel:'');}
+if(e){var r=calc(new Date());e.textContent=r.seul?r.seul:(r.temps+(r.cel?' \u00b7 '+r.cel:''));}
 })();</` + `script>`;
 }
 function main404() {

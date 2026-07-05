@@ -1057,6 +1057,30 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   votre lecture », « Apprenez les versets par cœur et gardez-les, à
   votre rythme » (build-bi.js ×3 + memoriser.html ×2 ; EN neutre
   inchangé). Fichiers : index__48_.html, build-bi.js, memoriser.html.
+• LITURGIE : CROIX SEULE + NOM DES DIMANCHES (2026-07-05, deux
+  remarques d'Emmanuel sur capture du dimanche à 00h15 : « c'était
+  pas censé avoir la fête ? » — c'était la préséance du dimanche,
+  Zaccaria m cède, comportement voulu MAIS le dimanche mérite son nom
+  propre ; « la croix doit rester seule »). (1) POSITION : la ligne
+  .liturgie est SORTIE du hero, placée avant lui en datation de tête
+  de page (margin:26px 0 -14px) ; le hero ne contient plus que la
+  croix. (2) NOM DES DIMANCHES : quand un dimanche n'a ni fête mobile
+  ni solennité/fS, la ligne affiche son nom liturgique complet, seul :
+  « 14e dimanche du temps ordinaire », « 1er dimanche de l'Avent »,
+  « 3e dimanche de Carême / de Pâques » (EN : 14th Sunday in Ordinary
+  Time, 1st Sunday of Advent…). Numérotation : Avent/Carême/Pâques
+  par écart au 1er dimanche (av, P-42, P) ; TO avant Carême
+  floor((dJour(d,baptême)+1)/7)+1 (couvre le Baptême transféré au
+  lundi) ; TO après Pentecôte À REBOURS depuis le Christ-Roi = 34e
+  (n = 34 - semaines jusqu'à christRoi), la seule méthode juste.
+  PRÉSÉANCE réordonnée après un banc rouge sur la Toussaint-dimanche :
+  mobiles > solennités s et fêtes du Seigneur fS > NOM DU DIMANCHE >
+  f/m (cèdent). Banc 16 cas FR+EN sur 2026-2027 : tout vert. PIÈGE
+  d'édition consigné : un bloc python à double remplacement a planté
+  sur l'assert du 2e AVANT d'écrire le 1er, et le && après un grep -c
+  à zéro a sauté le correctif — préférer des blocs d'écriture séparés
+  et vérifier l'état réel du fichier avant de re-remplacer.
+  Fichiers : build-bi.js, index__48_.html.
 • AUDIT ANIMATIONS (2026-07-04, tour demandé par Emmanuel). Inventaire :
   site = apparait .6s ease (entrée .vue) + cascades bibliothèque
   (apparaitDom/Ferme, verrouillées) ; bible = rise .4/.6/.7s ease ;
