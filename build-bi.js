@@ -1499,38 +1499,49 @@ function mainCarnet(lang) {
     fPol: F ? 'Police' : 'Font', fTai: F ? 'Taille' : 'Size', fCou: F ? 'Couleur' : 'Colour', fInt: F ? 'Interligne' : 'Line height'
   };
   const SEL = 'background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid var(--filet);padding:5px 6px;font-size:13px;outline:none;max-width:118px';
-  return `<style>
+  return `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital@0;1&family=Merriweather:ital@0;1&family=Playfair+Display:ital@0;1&family=Caveat&family=Dancing+Script&family=Shadows+Into+Light&family=Great+Vibes&family=Montserrat:ital@0;1&family=Special+Elite&family=IM+Fell+English:ital@0;1&display=swap">
+<style>
 #carnet{max-width:1000px;margin:0 auto;padding:0 20px 80px}
 #carnet .cah-titre{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--parchemin);margin:34px 0 26px}
 #c-liste .cdoc{display:flex;align-items:baseline;gap:16px;padding:17px 4px;border-bottom:1px solid var(--filet);cursor:pointer}
 #c-liste .cdoc:hover .cdoc-t{color:var(--or-pale)}
 #c-liste .cdoc-t{flex:1;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--parchemin);transition:color .3s}
 #c-liste .cdoc-d{font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.06em}
-#c-nouveau{display:inline-block;margin:6px 0 8px;cursor:pointer}
+#c-nouveau{display:block;width:max-content;margin:6px auto 18px;cursor:pointer}
 #c-msg{color:rgba(255,255,255,.55);padding:26px 0}
 #c-edit{display:none}
-#c-edit .ce-haut{display:flex;align-items:center;gap:18px;margin:26px 0 14px;flex-wrap:wrap}
+#c-edit .ce-haut{display:flex;align-items:center;gap:18px;margin:26px auto 14px;max-width:760px;flex-wrap:wrap}
 #c-retour{cursor:pointer;color:rgba(255,255,255,.55);letter-spacing:.08em;font-size:14px;transition:color .3s}
 #c-retour:hover{color:var(--or-pale)}
 #c-jour{display:none;font-family:ui-monospace,monospace;font-size:13px;letter-spacing:.06em;color:rgba(255,255,255,.6);align-items:center;gap:2px}
 #c-etat{margin-left:auto;font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.06em;opacity:0;transition:opacity .4s}
 #c-etat.on{opacity:1}
-#c-titre{width:100%;background:none;border:none;border-bottom:1px solid var(--filet);color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:28px;padding:8px 2px;outline:none;margin-bottom:14px}
+#c-titre{display:block;max-width:760px;margin:0 auto;width:100%;background:none;border:none;border-bottom:1px solid var(--filet);color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:28px;padding:8px 2px;outline:none;margin-bottom:14px}
 #c-titre:focus{border-color:var(--or-pale)}
-.ce-barre{display:flex;align-items:center;gap:6px;flex-wrap:wrap;border:1px solid var(--filet);padding:8px 10px;background:rgba(10,10,10,.95);z-index:5}
+.ce-barre{display:flex;align-items:center;gap:6px;flex-wrap:wrap;border:1px solid var(--filet);padding:8px 10px;background:rgba(10,10,10,.95);z-index:5;max-width:760px;margin:14px auto 0}
+#c-zone{position:relative}
+#c-zone.c-pfs{position:fixed;inset:0;z-index:2000;background:#000;overflow:auto;padding:10px 0 30px}
+#c-zone:fullscreen{background:#000;overflow:auto;padding:10px 0 30px}
+#c-zone.sans-barre .ce-barre{display:none}
+#c-fsbar{display:none;position:absolute;top:6px;right:10px;z-index:2100;cursor:pointer;color:rgba(255,255,255,.5);font-size:13px;letter-spacing:.06em;padding:6px 10px;background:rgba(10,10,10,.8);border:1px solid var(--filet)}
+#c-fsbar:hover{color:#fff}
+#c-zone:fullscreen #c-fsbar,#c-zone.c-pfs #c-fsbar{display:block}
 .ce-btn{cursor:pointer;color:rgba(255,255,255,.55);border:1px solid transparent;padding:5px 11px;font-size:14px;letter-spacing:.03em;transition:color .25s,border-color .25s;user-select:none;white-space:nowrap}
 .ce-btn:hover{color:var(--parchemin);border-color:var(--filet-fort)}
 .ce-btn.b{font-weight:700}.ce-btn.i{font-style:italic}.ce-btn.u{text-decoration:underline}
 .ce-sep{width:1px;height:20px;background:var(--filet);margin:0 4px}
-#c-page-wrap{display:flex;justify-content:center;background:transparent}
-#c-page-wrap:fullscreen{background:#000;align-items:center}
-#c-page-wrap:fullscreen #c-feuille{max-width:none;width:calc(100vh / 1.414);height:100vh}
+#c-page-wrap{display:flex;justify-content:center;background:transparent;margin-top:0}
+#c-zone:fullscreen #c-feuille,#c-zone.c-pfs #c-feuille{width:min(100%,calc((100vh - 80px) / 1.414))}
 #c-feuille{position:relative;z-index:0;width:100%;max-width:760px;aspect-ratio:1/1.414;border:1px solid var(--filet);padding:54px 58px;color:var(--parchemin);font-size:17px;line-height:1.5;outline:none;background-color:#0d0d0c;overflow:hidden;overflow-wrap:break-word}
 #c-feuille:focus{border-color:var(--filet-fort)}
 #c-feuille h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--parchemin);margin:0 0 10px}
 #c-feuille p{margin:0 0 .55em}
 #c-feuille ul{margin:0 0 .55em 22px}
-#c-feuille img.c-flot{position:absolute;z-index:-1;max-width:none;cursor:grab;user-select:none}
+#c-feuille.claire{background-color:#ffffff;color:#111111}
+#c-feuille.claire h3{color:#111111}
+#c-feuille.claire:focus{border-color:rgba(0,0,0,.3)}
+#c-feuille img.c-flot{position:absolute;z-index:-1;max-width:none;cursor:grab;user-select:none;touch-action:none}
+#c-poignee{touch-action:none}
 #c-outils-img{display:none;position:absolute;z-index:8;background:rgba(10,10,10,.95);border:1px solid var(--filet-fort);padding:6px 10px;align-items:center;gap:10px;font-size:12px;color:rgba(255,255,255,.7)}
 #c-outils-img input{accent-color:#cbb87e;width:90px}
 #c-outils-img .coi-x{cursor:pointer;color:#b46a6a;font-size:15px;padding:0 4px}
@@ -1564,6 +1575,8 @@ select.ce-sel{background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid va
       <span id="c-etat">${T.enr}</span>
     </div>
     <input id="c-titre" type="text" placeholder="${T.titrePh}" maxlength="140">
+    <div id="c-zone">
+    <span id="c-fsbar" role="button" tabindex="0">${F?'Barre':'Bar'}</span>
     <div class="ce-barre">
       <span class="ce-btn b" data-cmd="bold" title="${T.gras}">G</span>
       <span class="ce-btn i" data-cmd="italic" title="${T.ital}">I</span>
@@ -1574,10 +1587,38 @@ select.ce-sel{background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid va
       <span class="ce-sep"></span>
       <select class="ce-sel" id="c-pol" title="${T.fPol}">
         <option value="">${T.fPol}</option>
-        <option value="EB Garamond">EB Garamond</option>
-        <option value="Cormorant Garamond">Cormorant</option>
-        <option value="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif">Sans-serif</option>
-        <option value="ui-monospace,monospace">Monospace</option>
+        <optgroup label="Serif">
+          <option value="EB Garamond">EB Garamond</option>
+          <option value="Cormorant Garamond">Cormorant Garamond</option>
+          <option value="Lora">Lora</option>
+          <option value="Merriweather">Merriweather</option>
+          <option value="Playfair Display">Playfair Display</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Times New Roman">Times New Roman</option>
+          <option value="Palatino Linotype">Palatino</option>
+          <option value="Book Antiqua">Book Antiqua</option>
+        </optgroup>
+        <optgroup label="${F?'Manuscrites':'Handwriting'}">
+          <option value="Caveat">Caveat</option>
+          <option value="Dancing Script">Dancing Script</option>
+          <option value="Shadows Into Light">Shadows Into Light</option>
+          <option value="Great Vibes">Great Vibes</option>
+        </optgroup>
+        <optgroup label="Sans-serif">
+          <option value="Arial">Arial</option>
+          <option value="Helvetica">Helvetica</option>
+          <option value="Verdana">Verdana</option>
+          <option value="Tahoma">Tahoma</option>
+          <option value="Trebuchet MS">Trebuchet MS</option>
+          <option value="Montserrat">Montserrat</option>
+        </optgroup>
+        <optgroup label="${F?'Autres':'Other'}">
+          <option value="Special Elite">Special Elite (${F?'machine':'typewriter'})</option>
+          <option value="IM Fell English">IM Fell English (${F?'ancien':'antique'})</option>
+          <option value="Courier New">Courier New</option>
+          <option value="ui-monospace,monospace">Monospace</option>
+          <option value="Impact">Impact</option>
+        </optgroup>
       </select>
       <select class="ce-sel" id="c-tai" title="${T.fTai}">
         <option value="">${T.fTai}</option>
@@ -1586,21 +1627,18 @@ select.ce-sel{background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid va
         <option value="5">${F?'Grande':'Large'}</option>
         <option value="7">${F?'Tr\u00e8s grande':'Very large'}</option>
       </select>
-      <select class="ce-sel" id="c-cou" title="${T.fCou}">
-        <option value="">${T.fCou}</option>
-        <option value="#ffffff">${F?'Blanc':'White'}</option>
-        <option value="#efe6cf">${F?'Or':'Gold'}</option>
-        <option value="#9a3b3b">${F?'Rouge':'Red'}</option>
-        <option value="#6a8fb4">${F?'Bleu':'Blue'}</option>
-        <option value="#7ba07b">${F?'Vert':'Green'}</option>
-        <option value="#9a9a9a">${F?'Gris':'Grey'}</option>
-      </select>
+      <input type="color" id="c-cou" title="${T.fCou}" value="#efe6cf" style="width:34px;height:27px;padding:2px;background:#0a0a0a;border:1px solid var(--filet);cursor:pointer">
       <select class="ce-sel" id="c-int" title="${T.fInt}">
         <option value="">${T.fInt}</option>
         <option value="1.2">1,2</option>
         <option value="1.35">1,35</option>
         <option value="1.5">1,5</option>
         <option value="1.8">1,8</option>
+      </select>
+      <select class="ce-sel" id="c-bg" title="${F?'Fond de page':'Page background'}">
+        <option value="">${F?'Fond':'Page'}</option>
+        <option value="n">${F?'Page noire':'Black page'}</option>
+        <option value="b">${F?'Page blanche':'White page'}</option>
       </select>
       <span class="ce-sep"></span>
       <span class="ce-btn" id="c-img">${T.img}</span>
@@ -1612,6 +1650,7 @@ select.ce-sel{background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid va
     </div>
     <div id="c-page-wrap">
       <div id="c-feuille" contenteditable="true" spellcheck="true"></div>
+    </div>
     </div>
     <div id="c-outils-img"><span class="coi-x" id="coi-x" title="${T.suppr}">\u2715</span><input type="range" id="coi-op" min="10" max="100" step="5"></div>
     <div id="c-poignee"></div>
@@ -1631,6 +1670,8 @@ const CARNET_JS = function(lang){
     enr: F ? 'Enregistr\u00e9' : 'Saved',
     enrC: F ? 'Enregistrement\u2026' : 'Saving\u2026',
     pageMot: F ? 'Page' : 'Page',
+    ouvrirJ: F ? 'Ouvrir le journal' : 'Open the journal',
+    premiereJ: F ? '\u00c9crire la premi\u00e8re page' : 'Write the first page',
     trop: F ? 'Image trop lourde m\u00eame compress\u00e9e. Choisissez une image plus petite.' : 'Image too large even compressed. Choose a smaller one.'
   });
   const LOC = F ? 'fr-FR' : 'en-GB';
@@ -1640,7 +1681,7 @@ const CARNET_JS = function(lang){
   if(!elL)return;
   var docs=document.getElementById('c-docs'),msg=document.getElementById('c-msg');
   var feuille=document.getElementById('c-feuille'),titre=document.getElementById('c-titre'),etat=document.getElementById('c-etat');
-  var U=null,CUR=null,CURD=null,tmr=null,sale=false,MODE='doc',PAGES=[],PIDX=0;
+  var U=null,CUR=null,CURD=null,tmr=null,sale=false,MODE='doc',PAGES=[],PAGES_T=[],PIDX=0;
   var PH0=titre?titre.placeholder:'';
   function col(){return firebase.firestore().collection('users').doc(U.uid).collection('carnet');}
   function colI(){return firebase.firestore().collection('users').doc(U.uid).collection('carnetImg');}
@@ -1716,7 +1757,7 @@ const CARNET_JS = function(lang){
     sale=false;
     syncPage();
     marqueEtat(TXT.enrC,true);
-    var pages2=CURD.pages.map(function(pg){return {h:htmlProprePage(pg.h),il:pg.il||1.5};});
+    var pages2=CURD.pages.map(function(pg){return {h:htmlProprePage(pg.h),il:pg.il||1.5,bg:pg.bg||'n'};});
     var d={t:(titre.value||'').trim(),pages:pages2,maj:Date.now(),h:firebase.firestore.FieldValue.delete(),fond:firebase.firestore.FieldValue.delete(),voile:firebase.firestore.FieldValue.delete()};
     var refs2=refsActuelles(pages2);
     return col().doc(CUR).set(d,{merge:true}).then(function(){purgeOrphelines(refs2);marqueEtat(TXT.enr);}).catch(function(){etat.classList.remove('on');});
@@ -1727,6 +1768,7 @@ const CARNET_JS = function(lang){
     var pg=CURD.pages[PIDX];
     feuille.innerHTML=pg.h||'<p><br></p>';
     feuille.style.lineHeight=pg.il||1.5;
+    feuille.classList.toggle('claire',pg.bg==='b');
     var si=document.getElementById('c-int');si.value=String(pg.il||1.5);
     feuille.querySelectorAll('img[data-lvimg]').forEach(function(im){
       im.setAttribute('contenteditable','false');im.setAttribute('draggable','false');
@@ -1754,8 +1796,28 @@ const CARNET_JS = function(lang){
       if(pos+va<0||pos+va>=total)f.style.visibility='hidden';
       return f;
     }
-    var lab=document.createElement('span');
-    lab.textContent=TXT.pageMot+' '+(pos+1)+' / '+total;
+    /* selecteur simple : « Page n / N » est un petit menu natif qui liste
+       les pages pour y sauter directement */
+    var lab=document.createElement('select');
+    lab.className='ce-sel';
+    lab.style.cssText='max-width:170px;font-family:ui-monospace,monospace;font-size:13px';
+    var i2;
+    for(i2=0;i2<total;i2++){
+      var o=document.createElement('option');
+      o.value=String(i2);
+      var dd=(enJournal&&PAGES_T&&PAGES_T[i2])||'';
+      o.textContent=TXT.pageMot+' '+(i2+1)+(dd?' \\u00b7 '+dd:'')+(i2===pos?' / '+total:'');
+      if(i2===pos)o.selected=true;
+      lab.appendChild(o);
+    }
+    lab.addEventListener('change',function(){
+      var vers=parseInt(this.value,10);
+      if(vers===pos)return;
+      (sale?sauve():Promise.resolve()).then(function(){
+        if(enJournal)ouvreDoc(PAGES[vers]);
+        else{PIDX=vers;montrePage();}
+      });
+    });
     jz.appendChild(fle('\\u2039',-1));jz.appendChild(lab);jz.appendChild(fle('\\u203a',1));
   }
   function ouvreDoc(id){
@@ -1795,8 +1857,17 @@ const CARNET_JS = function(lang){
       if(MODE==='journal'){
         lignes.sort(function(a,b){return (a.d.num||0)-(b.d.num||0);});
         PAGES=lignes.map(function(x){return x.id;});
+        PAGES_T=lignes.map(function(x){return x.d.t||'';});
       }
-      if(!lignes.length){msg.textContent=(MODE==='journal'?TXT.videJ:TXT.vide);return;}
+      var nb=document.getElementById('c-nouveau');
+      if(MODE==='journal'){
+        /* un journal reel : on ouvre le cahier et on tourne les pages,
+           on ne choisit pas dans une liste */
+        nb.textContent=PAGES.length?TXT.ouvrirJ:TXT.premiereJ;
+        msg.textContent='';
+        return;
+      }
+      if(!lignes.length){msg.textContent=TXT.vide;return;}
       lignes.forEach(function(x,ix){
         var d=x.d;
         var r=document.createElement('div');r.className='cdoc';
@@ -1834,7 +1905,18 @@ const CARNET_JS = function(lang){
   }
   selCmd('c-pol','fontName');
   selCmd('c-tai','fontSize');
-  selCmd('c-cou','foreColor');
+  document.getElementById('c-cou').addEventListener('input',function(){
+    feuille.focus();
+    document.execCommand('foreColor',false,this.value);
+    planifie();
+  });
+  document.getElementById('c-bg').addEventListener('change',function(){
+    if(!this.value||!CURD)return;
+    CURD.pages[PIDX].bg=this.value;
+    feuille.classList.toggle('claire',this.value==='b');
+    this.selectedIndex=0;
+    planifie();
+  });
   document.getElementById('c-int').addEventListener('change',function(){
     if(!this.value)return;
     CURD.pages[PIDX].il=parseFloat(this.value);
@@ -1865,7 +1947,8 @@ const CARNET_JS = function(lang){
     opRange.value=Math.round((parseFloat(im.style.opacity||'1'))*100);
     placeOutils();
   }
-  feuille.addEventListener('mousedown',function(e){
+  /* pointer events : un seul code pour la souris ET le doigt (iOS/Android) */
+  feuille.addEventListener('pointerdown',function(e){
     var im=e.target.closest&&e.target.closest('img.c-flot');
     if(!im){if(!e.target.closest('#c-outils-img'))imgDesel();return;}
     e.preventDefault();
@@ -1873,24 +1956,38 @@ const CARNET_JS = function(lang){
     var fr=feuille.getBoundingClientRect();
     var x0=e.clientX,y0=e.clientY,l0=parseFloat(im.style.left)||0,t0=parseFloat(im.style.top)||0;
     if(String(im.style.left).indexOf('%')>=0)l0=fr.width*l0/100;
+    var pid=e.pointerId;
+    try{im.setPointerCapture(pid);}catch(_){}
     function mv(ev){
+      if(ev.pointerId!==pid)return;
       im.style.left=Math.round(l0+ev.clientX-x0)+'px';
       im.style.top=Math.round(t0+ev.clientY-y0)+'px';
       placeOutils();
     }
-    function fin(){document.removeEventListener('mousemove',mv);document.removeEventListener('mouseup',fin);planifie();}
-    document.addEventListener('mousemove',mv);document.addEventListener('mouseup',fin);
+    function fin(ev){
+      if(ev.pointerId!==pid)return;
+      im.removeEventListener('pointermove',mv);im.removeEventListener('pointerup',fin);im.removeEventListener('pointercancel',fin);
+      planifie();
+    }
+    im.addEventListener('pointermove',mv);im.addEventListener('pointerup',fin);im.addEventListener('pointercancel',fin);
   });
-  poignee.addEventListener('mousedown',function(e){
+  poignee.addEventListener('pointerdown',function(e){
     if(!IMG)return;
     e.preventDefault();e.stopPropagation();
     var x0=e.clientX,w0=IMG.getBoundingClientRect().width;
+    var pid=e.pointerId;
+    try{poignee.setPointerCapture(pid);}catch(_){}
     function mv(ev){
+      if(ev.pointerId!==pid)return;
       IMG.style.width=Math.max(40,Math.round(w0+ev.clientX-x0))+'px';
       placeOutils();
     }
-    function fin(){document.removeEventListener('mousemove',mv);document.removeEventListener('mouseup',fin);planifie();}
-    document.addEventListener('mousemove',mv);document.addEventListener('mouseup',fin);
+    function fin(ev){
+      if(ev.pointerId!==pid)return;
+      poignee.removeEventListener('pointermove',mv);poignee.removeEventListener('pointerup',fin);poignee.removeEventListener('pointercancel',fin);
+      planifie();
+    }
+    poignee.addEventListener('pointermove',mv);poignee.addEventListener('pointerup',fin);poignee.addEventListener('pointercancel',fin);
   });
   opRange.addEventListener('input',function(){
     if(!IMG)return;
@@ -1928,7 +2025,7 @@ const CARNET_JS = function(lang){
           q.forEach(function(s){var d=s.data()||{};if(d.mode==='journal'&&(d.num||0)>mx)mx=d.num;});
           var r=col().doc();
           return r.set({mode:'journal',num:mx+1,t:'',pages:[{h:'<p><br></p>',il:1.5}],maj:Date.now()}).then(function(){
-            PAGES.push(r.id);ouvreDoc(r.id);
+            PAGES.push(r.id);PAGES_T.push('');ouvreDoc(r.id);
           });
         });
       });
@@ -1942,10 +2039,17 @@ const CARNET_JS = function(lang){
   });
   document.getElementById('c-enr').addEventListener('click',function(){sauve();});
   document.getElementById('c-plein').addEventListener('click',function(){
-    var w=document.getElementById('c-page-wrap');
-    if(document.fullscreenElement){document.exitFullscreen();}
-    else if(w.requestFullscreen){w.requestFullscreen().catch(function(){});}
-    else if(w.webkitRequestFullscreen){w.webkitRequestFullscreen();}
+    var w=document.getElementById('c-zone');
+    if(document.fullscreenElement){document.exitFullscreen();return;}
+    if(w.classList.contains('c-pfs')){w.classList.remove('c-pfs');return;}
+    if(w.requestFullscreen){w.requestFullscreen().catch(function(){w.classList.add('c-pfs');});}
+    else{w.classList.add('c-pfs');} /* iOS Safari : pas de fullscreen sur les div -> mode equivalent */
+  });
+  document.getElementById('c-fsbar').addEventListener('click',function(){
+    document.getElementById('c-zone').classList.toggle('sans-barre');
+  });
+  document.addEventListener('fullscreenchange',function(){
+    if(!document.fullscreenElement)document.getElementById('c-zone').classList.remove('sans-barre');
   });
   feuille.addEventListener('input',planifie);
   titre.addEventListener('input',planifie);
@@ -1962,12 +2066,13 @@ const CARNET_JS = function(lang){
   document.getElementById('c-nouveau').addEventListener('click',function(){
     if(!U)return;
     if(MODE==='journal'){
+      if(PAGES.length){ouvreDoc(PAGES[PAGES.length-1]);return;}
       col().get().then(function(q){
         var mx=0;
         q.forEach(function(s){var d=s.data()||{};if(d.mode==='journal'&&(d.num||0)>mx)mx=d.num;});
         var r=col().doc();
         return r.set({mode:'journal',num:mx+1,t:'',pages:[{h:'<p><br></p>',il:1.5}],maj:Date.now()}).then(function(){
-          PAGES.push(r.id);ouvreDoc(r.id);
+          PAGES.push(r.id);PAGES_T.push('');ouvreDoc(r.id);
         });
       });
       return;

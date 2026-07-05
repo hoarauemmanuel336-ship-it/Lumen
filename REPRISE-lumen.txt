@@ -1695,6 +1695,75 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   VERT (application, remplacement, retrait, sync bidirectionnelle).
   Fichiers : bible.html + build-bi.js.
 
+• CARNET — SECONDE VAGUE DE RETOURS D'EMMANUEL (2026-07-05, huit
+  points, tous traités). (1) La barre d'outils DÉBORDAIT de la page :
+  elle suivait la largeur du conteneur (1000px) et non de la feuille
+  (760px) → .ce-barre, #c-titre, .ce-haut alignés max-width:760px
+  margin auto. (2) PLEIN ÉCRAN : la barre disparaissait → le
+  fullscreen cible désormais #c-zone (barre + feuille) ; bouton
+  « Barre »/« Bar » (#c-fsbar, visible seulement en plein écran, coin
+  haut droit) qui masque/affiche la barre (.sans-barre) ; retour à
+  l'état normal à la sortie (fullscreenchange). (3) MOBILE : iOS
+  Safari n'autorise pas requestFullscreen sur les div → REPLI
+  .c-pfs (position:fixed inset:0 z-index:2000 fond noir), activé si
+  l'API échoue ou n'existe pas ; le bouton ⛶ bascule les deux modes.
+  (4) POLICES : ~24 au lieu de 4, en optgroups (Serif : EB Garamond,
+  Cormorant, Lora, Merriweather, Playfair, Georgia, Times, Palatino,
+  Book Antiqua ; Manuscrites : Caveat, Dancing Script, Shadows Into
+  Light, Great Vibes ; Sans : Arial, Helvetica, Verdana, Tahoma,
+  Trebuchet, Montserrat ; Autres : Special Elite machine, IM Fell
+  English ancien, Courier, Monospace, Impact) ; Google Fonts chargées
+  par <link> display=swap en tête du fragment carnet. (5) COULEUR :
+  select 6 couleurs remplacé par <input type=color> natif = TOUTES
+  les couleurs (execCommand foreColor sur input). (6) JOURNAL COMME
+  UN VRAI CAHIER : la liste « Page 1/2/3 » SUPPRIMÉE (contraire à
+  l'objet même d'un journal) ; l'onglet Journal affiche UN bouton :
+  « Ouvrir le journal » → ouvre la DERNIÈRE page (on continue
+  d'écrire), feuilletage ‹ › pour revenir ; journal vide → « Écrire
+  la première page » (crée + ouvre) ; « + Page » dans l'éditeur
+  ajoute à la suite. (7) FOND DE PAGE noir/blanc PAR PAGE : select
+  #c-bg (Page noire / Page blanche), pages[k].bg ('n'|'b'), classe
+  .claire (fond #ffffff, texte #111), conservé à la sauvegarde.
+  (8) BOUTONS CENTRÉS : #c-nouveau display:block width:max-content
+  margin auto. TACTILE : les handlers souris du drag/resize d'images
+  réécrits en POINTER EVENTS (pointerdown/move/up + setPointerCapture
+  + touch-action:none) : un seul code souris ET doigt (iOS/Android).
+  VALIDÉ : JS extrait → node --check OK, ids complets FR+EN, banc
+  /tmp/test_cahier.js TOUT VERT. NON TESTÉ RÉELLEMENT : rendu tactile
+  effectif sur iPhone (à vérifier par Emmanuel après déploiement).
+  Fichier : build-bi.js.
+
+• BIBLE CASSÉE EN LIGNE — CAUSE ET RÉPARATION (2026-07-05, signalé
+  par Emmanuel : « le texte de la Bible ne s'affiche plus depuis que
+  tu y as touché »). CAUSE : lors de la passe surlignage, le bloc
+  python qui insérait les DÉCLARATIONS (var SURL/SURL_M, sauveSurl,
+  marqueSurl) a calculé le remplacement en mémoire mais NE CONTENAIT
+  PAS l'instruction d'écriture (open().write oublié) : le fichier
+  livré avait l'APPEL marqueSurl() au rendu du chapitre et les
+  handlers, mais pas la fonction → ReferenceError au rendu → le
+  texte biblique ne s'affichait plus. Les validations n'attrapaient
+  pas ce cas : node --check et new Function valident la syntaxe,
+  pas les identifiants (résolus à l'exécution) ; le premier harnais
+  jsdom n'écoutait pas unhandledrejection et n'atteignait pas le
+  rendu. RÉPARÉ : déclarations insérées, écrites et RELUES ;
+  PREUVE PAR EXÉCUTION (jsdom + fetch servi depuis site/) : clic
+  Genèse → chap. 1 → 31 versets .vst rendus, « créa le ciel et la
+  terre » présent, aucun rejet de promesse. DEUX PIÈGES CONSIGNÉS,
+  RÈGLE DURCIE : (1) tout bloc de modification se termine par write
+  PUIS RELECTURE du fichier avec assert sur les marqueurs insérés
+  (un bloc sans write échoue en silence) ; (2) pour toute page à
+  rendu JS, la validation inclut une EXÉCUTION du chemin réel
+  (harnais jsdom : navigation + unhandledrejection), pas seulement
+  la syntaxe. — CARNET : SÉLECTEUR DE PAGE SIMPLE (demande
+  d'Emmanuel : choisir une page sans liste verticale) : la mention
+  « Page n / N » de l'éditeur devient un petit <select> natif
+  monospace (option par page, titre du jour affiché pour le journal
+  via PAGES_T, saut direct avec sauvegarde préalable), flèches ‹ ›
+  conservées ; natif donc parfait sur mobile. Écrit en trois blocs
+  séparés relus (l'ancre à antislashs doubles a encore frappé : la
+  forme réelle a été lue avant chaque remplacement). Fichiers :
+  bible.html + build-bi.js.
+
 ════════════════════════════════════════════════════════════════════
 FIN DU FICHIER DE REPRISE
 ════════════════════════════════════════════════════════════════════

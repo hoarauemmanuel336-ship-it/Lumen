@@ -869,6 +869,30 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
   var SEL = [];
   try { SEL = JSON.parse(localStorage.getItem('lv_bible_sel') || '[]'); } catch(e) { SEL = []; }
   function sauveSel(){ try { localStorage.setItem('lv_bible_sel', JSON.stringify(SEL)); } catch(e){} }
+  /* — surlignage : par verset, six couleurs, synchronise au compte — */
+  var SURL = {}, SURL_M = 0;
+  try { SURL = JSON.parse(localStorage.getItem('lv_bible_surl') || '{}'); } catch(e) { SURL = {}; }
+  try { SURL_M = parseInt(localStorage.getItem('lv_bible_surl_m') || '0', 10) || 0; } catch(e) { SURL_M = 0; }
+  function sauveSurl(){
+    SURL_M = Date.now();
+    try {
+      localStorage.setItem('lv_bible_surl', JSON.stringify(SURL));
+      localStorage.setItem('lv_bible_surl_m', String(SURL_M));
+    } catch(e){}
+    if (UID && db) db.doc('users/' + UID + '/bibleNotes/__surl__').set({ surl: true, m: SURL_M, s: SURL }).catch(function(){});
+  }
+  function marqueSurl(){
+    var spans = document.querySelectorAll('.ch-texte .vst');
+    if (!spans.length) return;
+    var ctx = vue._ctx;
+    if (!ctx) return;
+    spans.forEach(function(sp){
+      var v = parseInt(sp.id.replace('va-', ''), 10);
+      var k = ctx.slug + '|' + ctx.ch + '|' + v;
+      for (var i = 0; i < 6; i++) sp.classList.remove('su' + i);
+      if (SURL[k] != null) sp.classList.add('su' + SURL[k]);
+    });
+  }
   function selIdx(slug, ch, v){
     for (var i = 0; i < SEL.length; i++) if (SEL[i].s === slug && SEL[i].c === ch && SEL[i].v === v) return i;
     return -1;
