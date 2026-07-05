@@ -208,7 +208,7 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px}
 .note-boite{width:100%;max-width:620px;background:var(--encre);border:1px solid var(--filet);padding:34px 36px;animation:rise .4s ease both}
 .nb-titre{font-family:var(--display);font-weight:400;font-size:27px;margin-bottom:16px}
 .nb-refs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.nb-zone{width:100%;min-height:170px;background:rgba(231,224,207,.03);border:1px solid rgba(231,224,207,.14);padding:14px 16px;font-size:17.5px;line-height:1.6;outline:none;resize:vertical;transition:border-color .3s}
+.nb-zone{width:100%;min-height:300px;background:rgba(231,224,207,.03);border:1px solid rgba(231,224,207,.14);padding:14px 16px;font-size:17.5px;line-height:1.6;outline:none;resize:vertical;transition:border-color .3s}
 .nb-zone:focus{border-color:var(--filet-f)}
 .nb-actes{display:flex;align-items:center;gap:24px;margin-top:20px}
 .nb-btn{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:color .3s;padding:6px 0}
@@ -254,7 +254,9 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
 .cat-act:hover{color:var(--or)}
 .note-depl{background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:13px;padding:5px 26px 5px 8px;outline:none;max-width:230px;appearance:none;-webkit-appearance:none;cursor:pointer}
 .note-sel{position:relative;display:inline-block}
-.note-sel::after{content:"\u203A";position:absolute;right:9px;top:50%;transform:translateY(-50%) rotate(90deg);color:rgba(231,224,207,.6);pointer-events:none;font-size:14px;line-height:1}
+.note-sel::after{content:"›";position:absolute;right:9px;top:50%;transform:translateY(-50%) rotate(90deg);color:rgba(231,224,207,.6);pointer-events:none;font-size:14px;line-height:1}
+.nt-plus{color:var(--or-pale,#cbb87e);font-size:13px;letter-spacing:.06em;cursor:pointer;white-space:nowrap}
+.nt-plus:hover{color:var(--or,#e7d9a8)}
 .nb-cat-ligne{display:flex;align-items:center;gap:12px;margin:0 0 16px}
 .nb-cat-lab{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
 .ab-boite{width:100%;max-width:400px;background:var(--encre);border:1px solid var(--filet);padding:32px 34px;animation:rise .4s ease both}
@@ -1044,12 +1046,25 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
       var x = '<div class="note-item" data-id="' + n.id + '">' +
               '<div class="note-date"><span>' + date + '</span>' +
               '<span class="note-actions">' +
+              '<span class="note-act" data-cop="' + n.id + '" role="button" tabindex="0">Copier</span>' +
               '<span class="note-act" data-depl="' + n.id + '" role="button" tabindex="0">D\u00e9placer</span>' +
               '<span class="note-act" data-mod="' + n.id + '" role="button" tabindex="0">Modifier</span></span></div>';
       if ((n.refs || []).length) {
         x += '<div class="note-refs">' + n.refs.map(function(g, i){
           return '<span class="sb-chip" data-nav="' + n.id + ':' + i + '">' + esc(libelle(g)) + '</span>';
         }).join('') + '</div>';
+      }
+      /* note longue : apercu tronque tant qu'on n'a pas depli\u00e9 */
+      var LIM = 420;
+      if ((n.t || '').length > LIM) {
+        var coupe = n.t.slice(0, LIM);
+        var sp = coupe.lastIndexOf(' ');
+        if (sp > LIM - 80) coupe = coupe.slice(0, sp);
+        x += '<div class="note-texte nt-trunc">' +
+             '<span class="nt-court">' + esc(coupe) + '\u2026</span>' +
+             '<span class="nt-full" hidden>' + esc(n.t) + '</span> ' +
+             '<span class="nt-plus" role="button" tabindex="0" data-more="Voir plus" data-less="Voir moins">Voir plus</span></div>';
+        return x + '</div>';
       }
       return x + '<div class="note-texte">' + esc(n.t) + '</div></div>';
     }
@@ -1135,7 +1150,25 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
     vue.querySelectorAll('[data-mod]').forEach(function(b){
       b.addEventListener('click', function(){
         var n = NOTES.filter(function(x){ return x.id === b.dataset.mod; })[0];
-        if (n) ouvreNote({ id: n.id, refs: n.refs, t: n.t });
+        if (n) ouvreNote({ id: n.id, refs: n.refs, t: n.t, c: n.c });
+      });
+    });
+    vue.querySelectorAll('[data-cop]').forEach(function(b){
+      b.addEventListener('click', function(){
+        var n = NOTES.filter(function(x){ return x.id === b.dataset.cop; })[0];
+        if (!n) return;
+        var fini = function(){ var t0 = b.textContent; b.textContent = 'Copi\u00e9 \u2713'; setTimeout(function(){ b.textContent = t0 === 'Copi\u00e9 \u2713' ? 'Copier' : t0; }, 1500); };
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(n.t).then(fini).catch(function(){}); }
+        else { var ta = document.createElement('textarea'); ta.value = n.t; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); fini(); } catch(e){} document.body.removeChild(ta); }
+      });
+    });
+    vue.querySelectorAll('.nt-plus').forEach(function(b){
+      b.addEventListener('click', function(){
+        var z = b.closest('.nt-trunc'); if (!z) return;
+        var c = z.querySelector('.nt-court'), fl = z.querySelector('.nt-full');
+        var ouvert = !fl.hasAttribute('hidden');
+        if (ouvert) { fl.setAttribute('hidden',''); c.removeAttribute('hidden'); b.textContent = b.getAttribute('data-more'); }
+        else { c.setAttribute('hidden',''); fl.removeAttribute('hidden'); b.textContent = b.getAttribute('data-less'); }
       });
     });
     vue.querySelectorAll('[data-nav]').forEach(function(c){

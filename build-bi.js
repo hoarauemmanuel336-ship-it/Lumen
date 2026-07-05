@@ -641,7 +641,7 @@ const LECT_JS = `(function lvLectBoot(){
   var auth=firebase.auth(), db=firebase.firestore();
   var lang=(window.LUMEN&&window.LUMEN.lang)||(function(){try{return localStorage.getItem('lv_lang')||'fr';}catch(e){return 'fr';}})(), FR=lang!=='en';
   function idx(){var I=window.LV_INDEX;if(!I)return null;return I[lang]||I.fr;}
-  var EXCL={cats:{},arts:{}}, UCUR=null, openG={}, toutG=false;
+  var EXCL={cats:{},arts:{}}, UCUR=null, openG={}, toutG=false, FOISG={};
   function blocs(){
     /* liste de blocs canoniques identifies : chaque categorie = un bloc ordonne
        {id:'theme:cat', nom, arts} ; les articles hors categorie d'un theme
@@ -674,33 +674,80 @@ const LECT_JS = `(function lvLectBoot(){
     var ordre=[];b.forEach(function(x){ordre=ordre.concat(x.arts);});
     return ordre;
   }
-  function complete(ordre){
-    /* articles publies ou reactives apres le tirage : fin de cycle, ordre canonique */
-    var d={};ordre.forEach(function(id){d[id]=1;});
-    blocsActifs().forEach(function(b){b.arts.forEach(function(id){if(!d[id]){d[id]=1;ordre.push(id);}});});
+  function melangeParmi(cands){
+    /* tirage restreint : memes blocs de categories, seuls les articles de la
+       strate candidate (map id->1) participent ; blocs melanges, articles en
+       ordre canonique au sein du bloc */
+    var b=blocsActifs().map(function(x){return {id:x.id,arts:x.arts.filter(function(id){return cands[id];})};}).filter(function(x){return x.arts.length;});
+    var i,j,t;
+    for(i=b.length-1;i>0;i--){j=Math.floor(Math.random()*(i+1));t=b[i];b[i]=b[j];b[j]=t;}
+    var ordre=[];b.forEach(function(x){ordre=ordre.concat(x.arts);});
     return ordre;
+  }
+  function foisDe(d){
+    /* compteur infini par article ; migration transparente de l'ancien
+       modele (lus:[ids] -> fois[id]=1) */
+    if(d.fois)return d.fois;
+    var f={};(d.lus||[]).forEach(function(id){f[id]=1;});
+    return f;
   }
   function ref(u){return db.doc('users/'+u.uid+'/meta/lecture');}
   function etat(snap){
+    /* CONSULTATION PURE (regle etablie 2026-07-05) : aucun remelange ni
+       purge ici, jamais. MODELE A COMPTEURS (2026-07-05, demande
+       d'Emmanuel, sur le modele du Memoriseur) : fois[id] compte les
+       lectures de chaque article, sans jamais s'effacer ; ordre est la
+       FILE du tour courant (les restants a lire) ; chaque tour se tire
+       parmi les articles au compteur MINIMAL, si bien qu'un article
+       nouveau ou longtemps deselectionne passe toujours devant ceux
+       deja lus davantage. */
     var d=(snap.exists&&snap.data())||{};
     EXCL={cats:{},arts:{}};
     (d.offCats||[]).forEach(function(id){EXCL.cats[id]=1;});
     (d.offArts||[]).forEach(function(id){EXCL.arts[id]=1;});
-    var lus=d.lus||[], ordre=d.ordre||[];
+    var fois=foisDe(d), docOrdre=d.ordre||[];
+    var migration=!d.fois&&!!(d.lus&&d.lus.length);
+    var premier=!docOrdre.length&&!d.fois&&!(d.lus&&d.lus.length);
     var permis={};blocsActifs().forEach(function(b){b.arts.forEach(function(id){permis[id]=1;});});
-    if(!Object.keys(permis).length)return {ordre:[],lus:lus,n:0,cur:null,neuf:false,vide:true};
-    ordre=ordre.filter(function(id){return permis[id];});
-    var neuf=false;
-    if(!ordre.length){ordre=melange();neuf=true;}
-    var avant=ordre.length; ordre=complete(ordre); if(ordre.length!==avant)neuf=true;
-    var map={};lus.forEach(function(id){map[id]=1;});
-    var n=0,cur=null,i;
-    for(i=0;i<ordre.length;i++){if(map[ordre[i]])n++;else if(cur===null)cur=ordre[i];}
-    /* fin du cycle des articles selectionnes : nouveau tirage, mais on ne
-       purge de lus QUE les articles du cycle (permis) ; la progression des
-       articles deselectionnes est conservee et revient si on les recoche */
-    if(cur===null){ordre=melange();lus=lus.filter(function(id){return !permis[id];});map={};n=0;cur=ordre[0]||null;neuf=true;}
-    return {ordre:ordre,lus:lus,n:n,cur:cur,neuf:neuf};
+    if(!Object.keys(permis).length)return {file:[],fois:fois,n:0,tourN:0,cur:null,vide:true,docOrdre:docOrdre,premier:premier,migration:migration,ajTete:[],ajQueue:[],tourNeuf:false,minG:0,permis:permis};
+    /* file de base : ce que le doc dit, filtre aux permis ; en migration,
+       l'ancien ordre contenait aussi les lus : on les retire */
+    var fileBase;
+    if(migration){
+      var luM={};(d.lus||[]).forEach(function(id){luM[id]=1;});
+      fileBase=docOrdre.filter(function(id){return permis[id]&&!luM[id];});
+    }else{
+      fileBase=docOrdre.filter(function(id){return permis[id];});
+    }
+    /* ajouts deterministes (ordre canonique des blocs) : un article permis
+       hors file MOINS lu que la file passe en TETE ; au meme niveau, en
+       queue (il integre le tour en cours) */
+    var minFile=null,k;
+    for(k=0;k<fileBase.length;k++){var f0=fois[fileBase[k]]||0;if(minFile===null||f0<minFile)minFile=f0;}
+    var dansFile={};fileBase.forEach(function(id){dansFile[id]=1;});
+    var ajTete=[],ajQueue=[];
+    if(minFile!==null){
+      blocsActifs().forEach(function(b){b.arts.forEach(function(id){
+        if(dansFile[id])return;
+        var f1=fois[id]||0;
+        if(f1<minFile)ajTete.push(id); else if(f1===minFile)ajQueue.push(id);
+      });});
+    }
+    var file=ajTete.concat(fileBase).concat(ajQueue);
+    /* tour epuise (ou jamais commence) : le tour suivant se calcule
+       LOCALEMENT (sans ecriture) sur la strate des moins lus */
+    var minG=null;
+    Object.keys(permis).forEach(function(id){var f2=fois[id]||0;if(minG===null||f2<minG)minG=f2;});
+    var tourNeuf=false;
+    if(!file.length){
+      var cands={};Object.keys(permis).forEach(function(id){if((fois[id]||0)===minG)cands[id]=1;});
+      file=melangeParmi(cands);
+      tourNeuf=true;
+    }
+    var tourN=tourNeuf?file.length:(migration?docOrdre.filter(function(id){return permis[id];}).length:((d.tourN||fileBase.length)+ajTete.length+ajQueue.length));
+    if(tourN<file.length)tourN=file.length;
+    var n=tourN-file.length; if(n<0)n=0;
+    return {file:file,fois:fois,n:n,tourN:tourN,cur:file[0]||null,vide:false,docOrdre:docOrdre,premier:premier,migration:migration,ajTete:ajTete,ajQueue:ajQueue,tourNeuf:tourNeuf,minG:minG||0,permis:permis};
   }
   function peint(u){
     var btn=document.getElementById('lect-start');
@@ -708,18 +755,33 @@ const LECT_JS = `(function lvLectBoot(){
     ref(u).get().then(function(snap){
       var e=etat(snap);
       if(e.vide){var x0=document.getElementById('lect-x');if(x0)x0.textContent='0 / 0';var s0=box.querySelector('#lect-bar .l');if(s0)s0.style.width='0%';if(btn)btn.style.display='none';box.setAttribute('data-state','ok');return;}
-      if(e.neuf)ref(u).set({ordre:e.ordre,lus:e.lus},{merge:true});
+      /* la consultation n'ecrit jamais ; le tirage aleatoire d'un tour
+         (premier demarrage ou tour epuise) est ANCRE au clic du bouton,
+         pour que la page d'arrivee calcule le meme parcours */
       var p=blocs();
-      var ex=document.getElementById('lect-x'); if(ex)ex.textContent=e.n+' / '+e.ordre.length;
-      var seg=box.querySelector('#lect-bar .l'); if(seg)seg.style.width=(e.ordre.length?(e.n/e.ordre.length*100):0)+'%';
+      var ex=document.getElementById('lect-x'); if(ex)ex.textContent=e.n+' / '+e.tourN;
+      var seg=box.querySelector('#lect-bar .l'); if(seg)seg.style.width=(e.tourN?(e.n/e.tourN*100):0)+'%';
       if(btn&&e.cur!==null){
-        btn.textContent=e.n?(FR?'Continuer la lecture':'Continue reading'):(FR?'Commencer la lecture':'Start reading');
+        var jamais=!Object.keys(e.fois).length;
+        btn.textContent=jamais?(FR?'Commencer la lecture':'Start reading'):(FR?'Continuer la lecture':'Continue reading');
         btn.href=p.urls[e.cur]?p.urls[e.cur]+'?suivi=1':btn.getAttribute('href');
+        if(e.premier||e.tourNeuf){
+          btn.onclick=function(ev){
+            ev.preventDefault();
+            ref(u).set({ordre:e.file,tourN:e.file.length,fois:e.fois},{merge:true}).then(function(){
+              var url=blocs().urls[e.cur];
+              if(url)location.href=url+'?suivi=1'; else peint(u);
+            }).catch(function(){});
+          };
+        }else{
+          btn.onclick=null;
+        }
         btn.style.display='';
       }
       box.setAttribute('data-state','ok');
     }).catch(function(){box.setAttribute('data-state','out');if(btn)btn.style.display='none';});
   }
+
   function boutonSuivant(url){
     if(!url)return;
     var zone=document.querySelector('article.lecture'); if(!zone)return;
@@ -727,7 +789,7 @@ const LECT_JS = `(function lvLectBoot(){
     var a=document.createElement('a');
     a.id='lect-suivant';a.className='memo-start';a.href=url+'?suivi=1';
     a.textContent=FR?'Continuer la lecture':'Continue reading';
-    a.style.marginTop='44px';
+    a.style.display='block';a.style.width='max-content';a.style.margin='44px auto 0';
     zone.appendChild(a);
   }
   function marque(u){
@@ -751,38 +813,54 @@ const LECT_JS = `(function lvLectBoot(){
       /* la position n'est memorisee QUE pour l'article courant du cycle :
          revenir (bouton retour) sur un article deja lu garde ?suivi=1 dans
          l'URL, et sans ce garde le defilement y ecraserait la position de
-         l'article en cours */
+         l'article en cours.
+         DOUBLE MEMOIRE (correctif reinitialisation) : Firestore porte la
+         reprise inter-appareils, localStorage la survie a une fermeture
+         brutale (l'ecriture reseau de pagehide n'a souvent pas le temps de
+         partir, surtout sur iOS). L'ecriture Firestore est a echantillonnage
+         TRAILING : c'est la DERNIERE position connue qui part toutes les 10s,
+         jamais seulement la premiere d'une fenetre. Restauration : la plus
+         avancee des deux memoires. */
+      var LSK='lv_pos';
+      function lsLit(){try{var v=JSON.parse(localStorage.getItem(LSK)||'null');return (v&&v.a===art.id)?v:null;}catch(e){return null;}}
+      function lsEcrit(b){try{localStorage.setItem(LSK,JSON.stringify({a:art.id,b:b}));}catch(e){}}
+      function lsEfface(){try{var v=JSON.parse(localStorage.getItem(LSK)||'null');if(v&&v.a===art.id)localStorage.removeItem(LSK);}catch(e){}}
       var estCourant=false;
       ref(u).get().then(function(snap){
         var d=(snap.exists&&snap.data())||{};
         estCourant=(etat(snap).cur===art.id);
-        if(d.pos&&d.pos.a===art.id&&d.pos.b>2){
-          var bs=blocsTexte(), el=bs[Math.min(d.pos.b,bs.length-1)];
+        var b=-1;
+        if(d.pos&&d.pos.a===art.id)b=d.pos.b;
+        var loc=lsLit(); if(loc&&loc.b>b)b=loc.b;
+        if(b>2){
+          var bs=blocsTexte(), el=bs[Math.min(b,bs.length-1)];
           if(el)window.scrollTo({top:Math.max(0,el.offsetTop-90),behavior:'auto'});
         }
       }).catch(function(){});
-      var dernierB=-1, posTmr=null;
+      var dernierB=-1, dernierEcrit=-1, posTmr=null;
       function blocCourant(){
         var bs=blocsTexte(), y=window.scrollY+100, i;
         for(i=0;i<bs.length;i++){ if(bs[i].offsetTop+bs[i].offsetHeight>y) return i; }
         return bs.length?bs.length-1:0;
       }
+      function fsEcrit(){
+        if(posFini||!estCourant||dernierB<0||dernierB===dernierEcrit)return;
+        dernierEcrit=dernierB;
+        ref(u).set({pos:{a:art.id,b:dernierB}},{merge:true}).catch(function(){});
+      }
       function sauvePos(force){
         if(posFini||!estCourant)return;
-        var b=blocCourant();
-        if(!force&&b===dernierB)return;
-        dernierB=b;
-        ref(u).set({pos:{a:art.id,b:b}},{merge:true}).catch(function(){});
+        dernierB=blocCourant();
+        lsEcrit(dernierB);
+        if(force){fsEcrit();return;}
+        if(!posTmr)posTmr=setTimeout(function(){posTmr=null;fsEcrit();},10000);
       }
-      window.addEventListener('scroll',function(){
-        if(posTmr)return;
-        posTmr=setTimeout(function(){posTmr=null;},30000);
-        sauvePos(false);
-      },{passive:true});
+      window.addEventListener('scroll',function(){sauvePos(false);},{passive:true});
       document.addEventListener('visibilitychange',function(){
         if(document.visibilityState==='hidden')sauvePos(true);
       });
       window.addEventListener('pagehide',function(){sauvePos(true);});
+      marque._lsEfface=lsEfface;
     }
     /* la lecture ne compte que menee a son terme : le marquage attend que
        la fin de l'article (etoile .fin-article) entre dans l'ecran ;
@@ -792,36 +870,58 @@ const LECT_JS = `(function lvLectBoot(){
     function accomplir(){
       if(fait)return; fait=true;
       ref(u).get().then(function(snap){
-        var e=etat(snap), p=blocs(), suivant=null, j;
+        var e=etat(snap), p=blocs(), suivant=null;
         if(e.vide)return;
-        if(e.cur===art.id){
-          e.lus.push(art.id);
+        /* l'article compte s'il est l'article courant du parcours, ou si un
+           tour non encore ancre (tirage local) contient un article de la
+           meme strate minimale : la lecture reelle prime sur le tirage */
+        var compte=(e.cur===art.id)||(e.tourNeuf&&e.permis[art.id]&&(e.fois[art.id]||0)===e.minG);
+        if(compte){
           posFini=true;
-          /* fin de cycle testee EXACTEMENT (tous les articles de l'ordre
-             sont lus), jamais par comparaison de longueurs : lus peut
-             contenir des ids hors cycle (articles deselectionnes apres
-             lecture) qui gonfleraient le compte et declencheraient un
-             reset premature */
-          var mp={};e.lus.forEach(function(id){mp[id]=1;});
-          var fini=true;
-          for(j=0;j<e.ordre.length;j++){if(!mp[e.ordre[j]]){fini=false;break;}}
-          if(fini){
-            var neuf=melange();
-            var dansOrdre={};e.ordre.forEach(function(id){dansOrdre[id]=1;});
-            ref(u).set({ordre:neuf,lus:e.lus.filter(function(id){return !dansOrdre[id];}),pos:firebase.firestore.FieldValue.delete()},{merge:true});
-            suivant=neuf[0]||null;
+          if(marque._lsEfface)marque._lsEfface();
+          var fois2={},k;for(k in e.fois)fois2[k]=e.fois[k];
+          fois2[art.id]=(fois2[art.id]||0)+1;
+          /* file suivante SANS PERTE : le doc reste la reference (une page
+             en cache ne connait pas les nouveaux articles, mais elle ne
+             peut pas les faire disparaitre de la file) ; les ajouts locaux
+             (tete = moins lus, queue = meme strate) s'y greffent */
+          var file2;
+          if(e.tourNeuf){
+            file2=e.file.filter(function(id){return id!==art.id;});
           }else{
-            ref(u).set({ordre:e.ordre,lus:e.lus,pos:firebase.firestore.FieldValue.delete()},{merge:true});
-            var map={};e.lus.forEach(function(id){map[id]=1;});
-            for(j=0;j<e.ordre.length;j++){if(!map[e.ordre[j]]){suivant=e.ordre[j];break;}}
+            var base;
+            if(e.migration){
+              base=e.file.filter(function(id){return id!==art.id;});
+            }else{
+              var t={};e.ajTete.forEach(function(id){t[id]=1;});
+              var q={};e.ajQueue.forEach(function(id){q[id]=1;});
+              base=e.ajTete.filter(function(id){return id!==art.id;})
+                .concat(e.docOrdre.filter(function(id){return id!==art.id&&!t[id]&&!q[id];}))
+                .concat(e.ajQueue.filter(function(id){return id!==art.id;}));
+            }
+            file2=base;
           }
+          var tourN2=e.tourN;
+          if(!file2.length){
+            /* tour epuise : le tour suivant s'enchaine immediatement sur la
+               nouvelle strate des moins lus (compteurs conserves, rien ne
+               s'efface jamais) */
+            var minG2=null;
+            Object.keys(e.permis).forEach(function(id){var f=fois2[id]||0;if(minG2===null||f<minG2)minG2=f;});
+            var cands={};Object.keys(e.permis).forEach(function(id){if((fois2[id]||0)===minG2)cands[id]=1;});
+            file2=melangeParmi(cands);
+            tourN2=file2.length;
+          }
+          ref(u).set({fois:fois2,ordre:file2,tourN:tourN2,lus:firebase.firestore.FieldValue.delete(),pos:firebase.firestore.FieldValue.delete()},{merge:true});
+          suivant=file2[0]||null;
         }else{
-          if(e.neuf)ref(u).set({ordre:e.ordre,lus:e.lus},{merge:true});
+          if(e.premier)ref(u).set({ordre:e.file,tourN:e.file.length,fois:e.fois},{merge:true});
           suivant=e.cur;
         }
         if(suivant&&SUIVI)boutonSuivant(p.urls[suivant]);
       }).catch(function(){});
     }
+
     var cible=document.querySelector('article.lecture .fin-article');
     if(cible&&'IntersectionObserver' in window){
       var io=new IntersectionObserver(function(es,ob){
@@ -857,7 +957,8 @@ const LECT_JS = `(function lvLectBoot(){
         +'<span class="cat-chev" data-lga="exp">\u203A</span></div>'
         +'<div class="cat-body">'+b.arts.map(function(id){
           var offA=!!EXCL.arts[id];
-          return '<div class="vrow'+(offA?' voff':'')+'"><span class="v-check'+(offA?'':' on')+'" data-lgv="'+id+'"></span><span class="vline"><span class="vtext">'+(titres[id]||id)+'</span></span></div>';
+          var nf=FOISG[id]||0;
+          return '<div class="vrow'+(offA?' voff':'')+'"><span class="v-check'+(offA?'':' on')+'" data-lgv="'+id+'"></span><span class="vline"><span class="vtext">'+(titres[id]||id)+'</span>'+(nf?'<span style="font-family:ui-monospace,monospace;font-size:11px;color:rgba(255,255,255,.4);margin-left:8px">\u00d7'+nf+'</span>':'')+'</span></div>';
         }).join('')+'</div></div>';
     });
     if(p.bl.length>LIMG){
@@ -905,6 +1006,7 @@ const LECT_JS = `(function lvLectBoot(){
       EXCL={cats:{},arts:{}};
       (d.offCats||[]).forEach(function(id){EXCL.cats[id]=1;});
       (d.offArts||[]).forEach(function(id){EXCL.arts[id]=1;});
+      FOISG=foisDe(d);
       rendGestion();
     }).catch(function(){});
   }
@@ -913,13 +1015,15 @@ const LECT_JS = `(function lvLectBoot(){
     rz.textContent=FR?'Réinitialiser la lecture suivie':'Reset continuous reading';
     rz.addEventListener('click',function(){
       if(!UCUR)return;
-      if(!confirm(FR?'Réinitialiser la lecture suivie ? La progression du cycle sera remise à zéro (les catégories désélectionnées le restent).':'Reset continuous reading? Cycle progress will be cleared (deselected categories stay deselected).'))return;
+      if(!confirm(FR?'Réinitialiser la lecture suivie ? Tous les compteurs de lecture seront remis à zéro (les catégories désélectionnées le restent).':'Reset continuous reading? All reading counters will be cleared (deselected categories stay deselected).'))return;
       ref(UCUR).get().then(function(snap){
         var d=(snap.exists&&snap.data())||{};
         EXCL={cats:{},arts:{}};
         (d.offCats||[]).forEach(function(id){EXCL.cats[id]=1;});
         (d.offArts||[]).forEach(function(id){EXCL.arts[id]=1;});
-        return ref(UCUR).set({ordre:melange(),lus:[],pos:firebase.firestore.FieldValue.delete()},{merge:true});
+        FOISG={};
+        var tirage=melange();
+        return ref(UCUR).set({fois:{},ordre:tirage,tourN:tirage.length,lus:firebase.firestore.FieldValue.delete(),pos:firebase.firestore.FieldValue.delete()},{merge:true});
       }).then(function(){ if(box)peint(UCUR); rendGestion(); }).catch(function(){});
     });
   }
@@ -1872,6 +1976,12 @@ if (fs.existsSync('bible.html')) {
       ['>Sous-section<', '>Subsection<'],
       ['>D\\u00e9placer<', '>Move<'],
       ['>Modifier<', '>Edit<'],
+      ['>Copier<', '>Copy<'],
+      ["'Copier'", "'Copy'"],
+      ["'Copi\\u00e9 \\u2713'", "'Copied \\u2713'"],
+      ['data-more="Voir plus"', 'data-more="Show more"'],
+      ['data-less="Voir moins"', 'data-less="Show less"'],
+      ['>Voir plus<', '>Show more<'],
       ['placeholder="Rechercher dans les notes\\u2026"', 'placeholder="Search the notes\\u2026"'],
       ['Notes enregistr\\u00e9es sur cet appareil \\u00b7', 'Notes stored on this device \\u00b7'],
       ['Aucune note ne correspond.', 'No note matches.'],

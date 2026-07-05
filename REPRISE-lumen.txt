@@ -1102,7 +1102,17 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   jour, tout le travail (calendrier 202 célébrations bilingue avec
   degrés, computus, préséances, noms des dimanches, bancs 16 cas)
   est reconstituable depuis cette REPRISE et l'historique.
-• AUDIT ANIMATIONS (2026-07-04, tour demandé par Emmanuel). Inventaire :
+• SCROLLBAR DU PANNEAU DES NOTIFICATIONS (2026-07-05, signalé par
+  Emmanuel : mauvaise couleur de barre sur la cloche/nouveautés).
+  Cause : le site ne pose scrollbar-color (la propriété que lisent
+  Firefox/Brave, ::-webkit-scrollbar ne suffit pas) que sur html ;
+  les conteneurs défilants INTERNES retombent donc sur la barre
+  système claire. .nouv-liste (liste des nouveautés, ouverte par la
+  cloche) et .rech-res (résultats de la recherche du site) n'avaient
+  que overflow-y:auto → ajout de scrollbar-width:thin + scrollbar-
+  color:rgba(231,224,207,.35) var(--encre), la barre du site. Même
+  famille que le correctif de la recherche Bible (verrou de page) et
+  du select des notes. Fichier : index__48_.html.• AUDIT ANIMATIONS (2026-07-04, tour demandé par Emmanuel). Inventaire :
   site = apparait .6s ease (entrée .vue) + cascades bibliothèque
   (apparaitDom/Ferme, verrouillées) ; bible = rise .4/.6/.7s ease ;
   memoriser = fade/rise .35-.5s (le quiz garde son cubic-bezier propre,
@@ -1171,6 +1181,277 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   focus harmonisés, fonds noirs cohérents. Quiz RETIRÉ (ne pas
   réintroduire). Page À propos supprimée. Admin v3 (panneau complet,
   publication par build hook).
+
+• ARTICLE « L'AMOUR » — RETRAVAIL DE LA SECTION FINALE (2026-07-05,
+  échanges de validation avec Emmanuel, FR + EN). Trois modifications
+  dans articles.json (index 120, slugs l-amour / love) : (1) « L'amour
+  tend à l'union » : la dernière phrase relie l'union au vouloir-le-
+  bien déjà défini plus haut — « parce qu'il tend à ne faire qu'un
+  avec l'aimé, l'amour fait sien le bien de l'autre » (EN : love makes
+  the good of the other its own) ; formulation « faire sien » choisie
+  par Emmanuel. (2) « Dieu est amour » : le verset Romains 5:5 y était
+  décoratif → RETIRÉ, l'affirmation reste (« versée en nous par
+  l'Esprit »). (3) « Le sommet : se donner » : la charité nommée
+  comme vertu théologale, agapē conservée, phrases fondues pour ne
+  pas nommer « charité » deux fois, LIEN interne sur « vertu
+  théologale » → /article/les-vertus-theologales/ (EN :
+  /en/article/the-theological-virtues/, pages cibles vérifiées
+  présentes), et Romains 5:5 RAPATRIÉ ici où il porte l'argument
+  (une seule occurrence par langue). La définition finale reprend mot
+  pour mot celle de l'article des vertus théologales (« aime Dieu
+  par-dessus tout et son prochain comme lui-même pour l'amour de
+  Dieu »), corrigeant l'ancienne formule inexacte « comme Dieu
+  l'aime ». Premier lien interne dans un contenu_en du corpus.
+  Fichier : content/articles.json.
+• BOUTON « CONTINUER LA LECTURE » CENTRÉ (2026-07-05, capture
+  d'Emmanuel en mode suivi ?suivi=1). Effet de bord du recalibrage
+  des .memo-start (inline-block auto au lieu de block 100%) : le
+  bouton de fin d'article créé par boutonSuivant (LECT_JS) restait
+  calé à gauche de la colonne, l'article n'ayant pas de centrage.
+  Correctif à la création : display:block, width:max-content,
+  margin:44px auto 0 (styles inline dans boutonSuivant).
+  Fichier : build-bi.js.
+
+
+• ARTICLES ZACHARIE — CORRECTIONS ET ENRICHISSEMENTS TYPOLOGIQUES
+  (2026-07-05, échanges de validation avec Emmanuel, FR + EN).
+  ARTICLE 78 « Le prophète et son temps » (slugs le-prophete-et-son-
+  temps / the-prophet-and-his-time), 4 corrections de formulation :
+  (a) « le retrouve présent » → « retrouve sa présence » ; (b) « la
+  parole a tenu : elle les a rejoints » (ambigu) → nommée « les
+  avertissements que Dieu leur avait adressés se sont accomplis »
+  (sens réel de Zacharie 1:6, l'exil annoncé s'est réalisé), suppr.
+  « elle les a rejoints » ; (c) « celui qui viendra l'accomplir »
+  (accomplir quoi ?) → « le Messie, en qui Dieu vient lui-même
+  demeurer parmi les siens » ; (d) « vers celui qu'ils préparent »
+  (mauvais sujet) → « vers le Messie qu'ils préfiguraient ».
+  ARTICLE 79 « Les huit visions nocturnes » (les-huit-visions-
+  nocturnes / the-eight-night-visions), 5 ajouts : (1) MYRTES : sens
+  du décor (arbuste toujours vert dans un bas-fond = Israël humilié
+  mais vivant, Dieu au plus près) ; (2) CHEVAUX : phrase de RETENUE
+  (le texte ne donne aucun sens aux couleurs, contrairement à
+  l'Apocalypse — évite une analogie forcée) ; (3) ROULEAU : dénoue-
+  ment dans le Christ, parallèle EXACT trouvé dans Galates 3:10
+  (Paul cite le livre écrit qui maudit, comme le rouleau) puis 3:13 ;
+  Hébreux 4:12 d'abord proposé puis RETIRÉ car analogie de surface
+  (le verset parle du jugement des pensées, pas de la malédiction de
+  la Loi) ; (4) FEMME DANS L'ÉPHA : Jean 1:29 (l'Agneau qui ôte le
+  péché) + Apocalypse 21:27 (rien d'impur n'entre dans la Jérusalem
+  céleste) ; (5) HOMME AU CORDEAU : ville sans murs → Jérusalem
+  céleste, Apocalypse 21:22 (Dieu et l'Agneau seul temple) + 21:24
+  (les nations y entrent). Méthode de travail retenue par Emmanuel :
+  chaque reformulation VALIDÉE avant écriture, vérification du sens
+  réel du verset avant tout rapprochement typologique. Fichier :
+  content/articles.json.
+
+• ARTICLE 80 « Josué, le Germe et la couronne » — SENS REDÉPLOYÉ
+  DANS LE FIL (2026-07-05, Emmanuel : tout l'accomplissement était
+  regroupé en une 5e section finale « Le Germe accompli dans le
+  Christ », il le voulait déroulé fluidement). Section finale
+  DISSOUTE ; sa matière répartie section par section, chaque vision
+  livrant son accomplissement dans la foulée : (1) L'annonce du Germe
+  → le fils de David reconnu dans le Christ (pousse de la souche
+  coupée, Jérémie) ; (2) La pierre aux sept yeux → l'iniquité ôtée
+  « en un seul jour » = le jour de la Croix ; (3) La couronne pour
+  Josué → la couronne d'or de l'exil annonçait la double dignité ;
+  (4) Le prêtre sur son trône → l'accomplissement devient la
+  conclusion naturelle (Jean 2:19 Temple-corps, Hébreux 7:17
+  Melchisédech, conseil de paix trône/autel). Aucun verset perdu,
+  aucun ajouté ; FR + EN (slug EN joshua-the-branch-and-the-crown).
+  Fichier : content/articles.json.
+
+• ARTICLES 82 « Premier oracle : le roi qui vient » ET 84 « Second
+  oracle : le transpercé » — RETRAVAIL (2026-07-05, validation ligne
+  à ligne avec Emmanuel, FR + EN). Même principe que Josué : la
+  section finale « L'accomplissement dans le Christ » DISSOUTE dans
+  les deux articles, chaque accomplissement remonté au fil du texte.
+  ORACLE 1 (premier-oracle-le-roi-qui-vient / first-oracle-the-king-
+  who-comes) : intro (berger-roi = une seule figure sous deux faces,
+  plus « contraste qui porte le mystère ») ; garde de la maison
+  (Zacharie 9:8) mise en regard de l'histoire — Alexandre épargne
+  Jérusalem mais d'autres oppresseurs suivent, donc la promesse vise
+  l'Église que le roi bâtit, Matthieu 16:18 ; « juste et il est sauvé
+  … mais humble » → « juste et humble » (fausse opposition) ; retour
+  des captifs → sang de l'alliance accompli à la Cène, Matthieu
+  26:28 ; suppr. mise en scène « le plus étrange et le plus lourd de
+  sens » ; « troupeau de carnage » expliqué par Zacharie 11:5 ; glose
+  des 30 sicles corrigée (Exode 21:32, prix d'un esclave, non « mort
+  par mégarde ») ; fin en suspens → accomplissement Judas/Matthieu
+  27:9 dans le fil ; Rameaux (Matthieu 21:5) remonté en clôture de
+  « Le roi humble sur l'âne ». ORACLE 2 (second-oracle-le-transperce
+  / second-oracle-the-pierced-one) : intro (berger déjà expliqué,
+  suppr. « verset bouleversant ») ; Jérusalem assiégée → Apocalypse
+  20:9 (assaut final contre l'Église) ; suppr. « l'un des versets les
+  plus saisissants » ; transpercé simplifié (Dieu et homme pleuré) +
+  Jean 19:37 remonté ; fin des idoles → 1 Thessaloniciens 1:9 ;
+  alliance renouée explicitée (double reconnaissance) ; conclusion
+  vague → Matthieu 26:31 (berger frappé, Gethsémani) ; source ouverte
+  → Jean 19:34 (sang et eau, baptême et eucharistie) remonté en
+  clôture. Fichier : content/articles.json.
+
+• ARTICLE 85 « Le Jour du Seigneur » (Zacharie 14) — RETRAVAIL
+  (2026-07-05, validation avec Emmanuel, FR + EN). Même principe :
+  section finale « L'accomplissement dans le Christ » DISSOUTE,
+  chaque image reçoit son accomplissement au fil du texte. Point de
+  méthode clé : Zacharie 14 est APOCALYPTIQUE, l'accomplissement est
+  eschatologique et non un événement daté — ajout explicite le
+  précisant (« Zacharie ne prédit pas ici un nouvel épisode de
+  l'histoire… le chapitre décrit le combat de la fin des temps »),
+  répondant à la question d'Emmanuel « quand est-ce que ça s'est
+  produit ? ». Accomplissements ajoutés : combat final → Apocalypse
+  20:9 (assaut dernier) + Actes 1:11 (mont des Oliviers, Ascension
+  et retour) ; jour unique → Apocalypse 21:23 (Dieu seule lumière) +
+  22:1 (fleuve de vie) ; royauté → Matthieu 28:18 + 1 Corinthiens
+  15:28 (remonté depuis la section finale) ; nations à la fête des
+  Tentes → Jean 4:23 (adoration en esprit et vérité) + Apocalypse
+  7:9 (foule de toute nation), en remplacement de la phrase « le
+  rassemblement… s'accomplit dans l'adoration commune » supprimée ;
+  Sainteté au Seigneur → Apocalypse 21:3 (demeure de Dieu, sacré/
+  profane aboli) + 1 Corinthiens 10:31 (toute la vie du chrétien
+  offrande). Slug EN the-day-of-the-lord. Fichier :
+  content/articles.json.
+
+• REPRISE DE POSITION — CORRECTIF « LA MÉMOIRE SE RÉINITIALISE SEULE »
+  (2026-07-05, bug signalé une 2e fois par Emmanuel). CAUSE PROUVÉE AU
+  BANC (/tmp/test_pos.js, machine à états fidèle + horloge virtuelle) :
+  trois défauts combinés. (1) Le throttle du scroll était LEADING-ONLY
+  (sauvait le PREMIER scroll puis ignorait 30s) : la position en base
+  datait du début de la lecture. (2) La sauvegarde de dernière chance
+  (pagehide/visibilitychange) est une écriture réseau lancée quand la
+  page meurt : souvent perdue, surtout iOS (pas de persistance
+  Firestore). (3) La restauration exige b>2 : la seule position ayant
+  survécu était justement b≈2 → aucune restauration → lecture reprise
+  du début = « réinitialisée ». Banc : ancien code → pos=2 en base
+  après lecture jusqu'au bloc 38 et fermeture brutale, restauration
+  AUCUNE ; nouveau code → bloc 38 restauré. CORRECTIF (LECT_JS,
+  build-bi.js) : DOUBLE MÉMOIRE. (a) localStorage clé lv_pos {a,b}
+  écrit SYNCHRONE à chaque scroll (survit à toute fermeture, couvre le
+  même appareil) ; (b) Firestore en échantillonnage TRAILING : la
+  DERNIÈRE position connue part toutes les 10s (timer qui écrit
+  dernierB à expiration, jamais seulement la première d'une fenêtre) ;
+  (c) restauration = MAX(pos Firestore, pos localStorage du même
+  article) si >2 ; (d) effacement des DEUX mémoires à l'accomplissement
+  (posFini + marque._lsEfface dans accomplir()) ; pagehide/hidden
+  forcent l'écriture immédiate en plus du localStorage déjà à jour.
+  Firestore reste la reprise inter-appareils (Windows<->iOS), le
+  localStorage la survie locale. Fichier : build-bi.js.
+
+• PROGRESSION DU CYCLE — CORRECTIF DÉFINITIF « LA MÉMOIRE SE
+  RÉINITIALISE SEULE » (2026-07-05, précision d'Emmanuel : c'est la
+  PROGRESSION, pas la position, qui retombait). CAUSE STRUCTURELLE
+  PROUVÉE AU BANC (/tmp/test_cycle.js, ancien vs nouveau sur faux
+  Firestore) : la CONSULTATION pouvait détruire. etat() contenait le
+  reset de fin de cycle (remélange + purge des lus si cur===null) et
+  peint() (simple AFFICHAGE de l'accueil/memoriser) écrivait le
+  résultat quand e.neuf. Déclencheur concret : une page en cache avec
+  un index réduit (les pages HTML gardent l'ancien lumen-data.js
+  ?v=hash immutable ; Emmanuel déploie très souvent) → permis amputé →
+  l'ordre filtré ne contient que des articles déjà lus → cur===null →
+  purge écrite en base par le seul affichage. Banc : ancien → 30 lus
+  DÉTRUITS par une consultation (index amputé) et 5 lus PURGÉS à
+  l'affichage d'un cycle tout-lu ; nouveau → intacts partout, vie
+  normale identique. CORRECTIF (LECT_JS, build-bi.js), trois pièces :
+  (1) etat() = CONSULTATION PURE : ne remélange ni ne purge plus
+  jamais ; expose docOrdre, premier, acheve, permis. (2) peint()
+  n'écrit plus JAMAIS sauf la création du tout premier tirage
+  (e.premier&&e.neuf) ; cycle achevé → bouton « Recommencer la
+  lecture » (Start a new cycle) dont l'écriture (nouveauCycle : purge
+  ciblée aux permis + nouveau tirage + delete pos) n'a lieu qu'AU
+  CLIC. (3) accomplir() écrit l'ordre en FUSION (fusionOrdre : tout id
+  du doc y reste, les ajouts locaux en fin) → une vieille page en
+  cache ne peut plus amputer le parcours ; la fin de cycle RÉELLE
+  (dernier article accompli) garde sa purge ciblée légitime. RÈGLE
+  GÉNÉRALE consignée : une consultation ne doit jamais produire
+  d'écriture destructrice ; seuls les événements réels (lecture
+  accomplie, clic explicite) le peuvent. Fichier : build-bi.js.
+
+• LECTURE SUIVIE — MODÈLE À COMPTEURS INFINIS (2026-07-05, demandé
+  par Emmanuel « comme Mémoriser » : plus de boucle qui purge ; un
+  article resélectionné ou nouvellement publié ne doit jamais être
+  noyé parmi ceux lus 10 000 fois). REMPLACE le modèle en cycles.
+  DOC users/{uid}/meta/lecture : fois:{id:n} compteur par article
+  (ne s'efface JAMAIS), ordre:[ids] = FILE du tour courant (les
+  restants ; un article accompli en est retiré), tourN = taille du
+  tirage (pour l'affichage n/N), offCats/offArts/pos inchangés ;
+  lus (ancien modèle) MIGRÉ automatiquement (fois[id]=1) et supprimé
+  à la première écriture. LOGIQUE (LECT_JS) : chaque tour se tire
+  parmi les articles au compteur MINIMAL (melangeParmi : blocs de
+  catégories mélangés, articles en ordre canonique dans le bloc) ;
+  un article permis hors file MOINS lu que la file passe en TÊTE
+  (ajTete), au même niveau il intègre le tour en QUEUE (ajQueue),
+  ajouts DÉTERMINISTES (ordre canonique des blocs, identiques sur
+  toute page fraîche) ; tour épuisé → tour suivant enchaîné
+  IMMÉDIATEMENT dans accomplir() sur la nouvelle strate min ;
+  complete()/fusionOrdre/nouveauCycle SUPPRIMÉS (remplacés). Règles
+  de sûreté conservées : etat() consultation PURE (n'écrit jamais) ;
+  le tirage aléatoire (premier démarrage, tour épuisé constaté à
+  l'accueil) est ANCRÉ au CLIC du bouton (sinon la page d'arrivée
+  tirerait un autre ordre) ; accomplir() écrit la file depuis le
+  DOC comme référence (une page en cache ne perd jamais les articles
+  qu'elle ne connaît pas) ; si un tour non ancré est en cours, un
+  article de la strate min lu directement COMPTE quand même. UI :
+  bouton « Commencer » seulement si aucune lecture jamais (fois
+  vide), sinon « Continuer » ; gestion (#lect-gestion, memoriser) :
+  compteur ×n monospace atténué à côté de chaque article lu ;
+  #lect-reset remet TOUS les compteurs à zéro (confirm reformulé).
+  BANC /tmp/test_fois.js TOUT VERT (7 scénarios) : premier démarrage,
+  nouvel article même strate intègre le tour, resélectionné ×1 parmi
+  ×3 passe DEVANT, nouvel article 0 parmi ×10000 passe PREMIER,
+  migration lus→fois, tour suivant automatique, page en cache sans
+  perte. Fichier : build-bi.js.
+
+• ARTICLES ROMAINS + GRÂCE — CORRECTIONS (2026-07-05, validation
+  ligne à ligne avec Emmanuel, FR + EN). ART 103 « L'épître aux
+  Romains » : « la plus mesurée » (ambigu) → « la plus ordonnée »
+  (+ retrait de « dans l'ordre » devenu redondant). ART 104 « Tous
+  sous le péché » : interprétation de Romains 3:19 VÉRIFIÉE correcte
+  (le Juif est le dernier maillon de la démonstration universelle,
+  non une cible exclusive) ; nuance resserrée « Ce verset vise le
+  Juif » → « Ce verset atteint le Juif lui-même » + « l'Écriture
+  s'adresse d'abord à ceux qui la reçoivent » → « puisque la Loi
+  s'adresse à ceux qui la reçoivent » ; phrase de liaison « Cette
+  démonstration prépare l'annonce qui la suit » supprimée. ART 118
+  « La nuit noire » : « se rattrape sur les créatures » VÉRIFIÉ juste
+  (Jean de la Croix : le tiède se rabat sur tout le créé, pas
+  seulement la chair) → gardé tel quel sur décision d'Emmanuel. ART
+  22 « La grâce », 7 corrections : (1) définition d'ouverture
+  décrivait la grâce SANCTIFIANTE (part à la vie divine, adoption)
+  au lieu de la grâce en général → « le secours gratuit que Dieu
+  donne à l'homme pour le sauver et le conduire à lui » ; (2) « les
+  grâces attachées à une vocation » (elliptique) → « les grâces
+  d'état, secours propres à la vocation de chacun (époux, prêtre,
+  parent) » ; (3) ordre des versets de la grâce sanctifiante INVERSÉ
+  (adoption Jean 1:12 AVANT participation 2 Pierre 1:4, l'adoption
+  précédant logiquement la participation) ; (4) lien interne sur
+  « vertus théologales » → /article/les-vertus-theologales/ (EN
+  /en/article/the-theological-virtues/) ; (5) « l'œuvre commencée »
+  (sans antécédent) → « l'œuvre de sanctification qu'il a commencée
+  dans l'homme » ; (6+7) « Sans la grâce… car nul ne s'approche par
+  ses seules forces » (deux affirmations synonymes autour du verset)
+  → nécessité DÉDUITE (fin surnaturelle > nature → une nature
+  n'atteint pas seule ce qui la dépasse → donc la grâce), le verset
+  Jean 15:5 scellant la conclusion. Fichier : content/articles.json.
+
+• NOTES DE LA BIBLE — CINQ CORRECTIFS (2026-07-05, capture
+  d'Emmanuel). (1) Le « numéro » u203A affiché en texte sur le cadre
+  de catégorie : le chevron du select (.note-sel::after) utilisait
+  la syntaxe JavaScript \u203A au lieu de la syntaxe CSS \203A →
+  remplacé par le caractère littéral › (PIÈGE consigné : dans un
+  content CSS, jamais d'échappement \uXXXX). (2) Catégorie perdue à
+  la modification : le handler data-mod appelait ouvreNote sans le
+  champ c (ouvreNote({id,refs,t}) → +c:n.c) ; la note rouvrait sur
+  « Non classée » et l'enregistrement la DÉCLASSAIT. (3) Zone de
+  saisie .nb-zone : min-height 170px → 300px (le resize vertical
+  reste). (4) Notes longues tronquées dans la liste : carteNote coupe
+  à ~420 caractères (au dernier espace au-delà de 340) avec
+  « Voir plus »/« Voir moins » (.nt-plus doré, structure
+  .nt-trunc/.nt-court/.nt-full[hidden], handlers au rendu de
+  vueNotes). (5) Action « Copier » par note (data-cop, entre la date
+  et Déplacer) : clipboard.writeText avec repli execCommand, retour
+  « Copié ✓ » 1,5 s. Table TR (build-bi.js) enrichie pour la page EN :
+  >Copy<, Show more/less (data-more/data-less), 'Copy'/'Copied ✓' ;
+  vérifié : 0 libellé FR restant dans site/en/bible.html. Fichiers :
+  bible.html + build-bi.js.
 
 ════════════════════════════════════════════════════════════════════
 FIN DU FICHIER DE REPRISE
