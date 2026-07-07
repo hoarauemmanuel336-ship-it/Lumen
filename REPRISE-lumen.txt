@@ -2171,6 +2171,39 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   Exode 3:14 vérifiés FR+EN. Build 125 paires. Fichier :
   content/articles.json.
 
+• ARTICLE « La colère » — TITRE ET SLUG ALIGNÉS SUR LA SÉRIE
+  (2026-07-07, demandé par Emmanuel). Dans la catégorie « Le combat
+  intérieur » (vie-spirituelle), les titres opposent le vice à la
+  vertu qui le guérit : « La peur et la confiance », « La tristesse
+  et la consolation », « L'orgueil et l'humilité ». « La colère et
+  son remède » détonnait (nommait le mal + « son remède » abstrait
+  sans nommer la vertu). Renommé « La colère et la douceur » /
+  « Anger and Meekness » (la douceur = vertu contraire propre de la
+  colère). SLUG AUSSI CHANGÉ : la-colere-et-son-remede →
+  la-colere-et-la-douceur (FR), anger-and-its-remedy →
+  anger-and-meekness (EN). TROIS FICHIERS touchés de façon cohérente :
+  content/articles.json (slug + titre_fr + titre_en),
+  content/themes.json (slug dans arts), data-en.js (mapping FR→EN).
+  Note : changer un slug d'article rompt la progression de lecture
+  Firestore de cet article (acceptable pour un article de contenu ;
+  ne JAMAIS faire pour un id memoriser.json). Build 125 paires, pages
+  la-colere-et-la-douceur + anger-and-meekness OK, ancien slug
+  absent. Fichiers : content/articles.json, content/themes.json,
+  data-en.js.
+
+• NOTIF NOUVEAUTÉS — TITRE « colère » MIS À JOUR FR+EN
+  (2026-07-07, suite du renommage). L'entrée cloche de
+  content/nouveautes.json portait encore l'ancien titre : fr[0].
+  items[0] « Nouvel article : « La colère et son remède ». » et
+  en[0].items[0] « New article: "Anger and Its Remedy". » →
+  corrigées en « La colère et la douceur » / « Anger and Meekness ».
+  (Rappel : lors d'un renommage d'article, penser aussi à
+  nouveautes.json, en plus d'articles.json/themes.json/data-en.js.)
+  Vérif : 0 reste de l'ancien titre au build ; les « son remède »
+  restants dans le site appartiennent au résumé de « La peur et la
+  confiance » (légitimes). Build 125 paires. Fichier :
+  content/nouveautes.json.
+
 ════════════════════════════════════════════════════════════════════
 FIN DU FICHIER DE REPRISE
 ════════════════════════════════════════════════════════════════════
