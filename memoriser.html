@@ -559,7 +559,7 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 <div id="auth-screen">
   <div class="auth-panel">
     <div class="auth-paneltitle" id="auth-paneltitle">Connexion</div>
-    <div class="auth-tabs">
+    <div class="auth-tabs" id="auth-tabs">
       <button class="auth-tab on" id="tab-si">Connexion</button>
       <button class="auth-tab" id="tab-su">Inscription</button>
     </div>
@@ -1387,19 +1387,27 @@ function levelOf(id){const b=boxOf(id);return b<=1?'r':b<=3?'a':'v';}     // rou
 function setLevel(id,lvl){const b=lvl==='r'?0:lvl==='a'?2:5;S.progress[id]={box:b,due:S.step+IVLS[b]};}
 function answer(id,ok){
   const p=S.progress[id]||{box:0,due:0};
+  p.v=(p.v||0)+1;   // compteur d'expositions : ne s'efface jamais, sert au tirage equitable
   if(ok){ p.box=Math.min(5,p.box+1); p.due=S.step+IVLS[p.box]; }
   else  { p.box=Math.max(0,p.box-2); p.due=S.step+2; }   // erreur : on redescend de 2 et on revoit vite
   S.progress[id]=p; S.step++;
 }
+const vuesOf=id=>(S.progress[id]||{}).v||0;
 function nextItem(){
   const items=allItems(); if(!items.length)return null;
   let pool=items.filter(i=>i.id!==S.lastId); if(!pool.length)pool=items;
   const due=pool.filter(i=>isDue(i.id));
   const cand=due.length?due:pool;
-  cand.sort((a,b)=>{const ba=boxOf(a.id),bb=boxOf(b.id);if(ba!==bb)return ba-bb;return dueOf(a.id)-dueOf(b.id);});
+  cand.sort((a,b)=>{
+    const ba=boxOf(a.id),bb=boxOf(b.id);if(ba!==bb)return ba-bb;
+    const va=vuesOf(a.id),vb=vuesOf(b.id);if(va!==vb)return va-vb;   // a niveau egal, le moins vu passe d'abord
+    return dueOf(a.id)-dueOf(b.id);
+  });
   const low=boxOf(cand[0].id);
   const top=cand.filter(i=>boxOf(i.id)===low);
-  return top[0|Math.random()*top.length];
+  const vmin=vuesOf(top[0].id);
+  const moinsVus=top.filter(i=>vuesOf(i.id)===vmin);
+  return moinsVus[0|Math.random()*moinsVus.length];
 }
 function getOptions(item){
   const others=shuffle(allItems().filter(i=>i.id!==item.id)).slice(0,3);
@@ -1480,7 +1488,7 @@ function renderCats(){
     cat.verses.forEach(vv=>{
       const l=levelOf(vv.id);
       const voff=!!S.offV[vv.id];
-      body+='<div class="vrow'+(voff?' voff':'')+'"><span class="v-check'+(voff?'':' on')+'" data-togv="'+vv.id+'" title="'+(S.lang==='fr'?'Inclure ou exclure des révisions':'Include or exclude from reviews')+'"></span><span class="vline" data-editv="'+vv.id+'"><span class="vref">'+vv[S.lang].ref+'</span><span class="vtext">'+trunc(vv[S.lang].text,58)+'</span></span><span class="lvl">'
+      body+='<div class="vrow'+(voff?' voff':'')+'"><span class="v-check'+(voff?'':' on')+'" data-togv="'+vv.id+'" title="'+(S.lang==='fr'?'Inclure ou exclure des révisions':'Include or exclude from reviews')+'"></span><span class="vline" data-editv="'+vv.id+'"><span class="vref">'+vv[S.lang].ref+'</span><span class="vtext">'+trunc(vv[S.lang].text,58)+'</span></span>'+(vuesOf(vv.id)?'<span style="font-family:ui-monospace,monospace;font-size:11px;color:rgba(255,255,255,.4);flex-shrink:0;margin-right:8px">\u00d7'+vuesOf(vv.id)+'</span>':'')+'<span class="lvl">'
         +'<span class="dot r'+(l==='r'?' act':'')+'" data-set="r" data-v="'+vv.id+'"></span>'
         +'<span class="dot a'+(l==='a'?' act':'')+'" data-set="a" data-v="'+vv.id+'"></span>'
         +'<span class="dot v'+(l==='v'?' act':'')+'" data-set="v" data-v="'+vv.id+'"></span></span>'

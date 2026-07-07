@@ -1,6 +1,7 @@
 /* Traductions anglaises : correspondances de slugs, thèmes, interface, articles. */
 
 const SLUGS = {
+  'la-colere-et-son-remede':'anger-and-its-remedy',
   'l-amour':'love',
   'le-desir-de-sentir-l-esprit':'the-desire-to-feel-the-spirit',
   'la-nuit-noire-de-l-ame':'the-dark-night-of-the-soul',

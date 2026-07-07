@@ -1764,6 +1764,413 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   forme réelle a été lue avant chaque remplacement). Fichiers :
   bible.html + build-bi.js.
 
+• CARNET + BIBLE — TROISIÈME VAGUE DE RETOURS (2026-07-06). CARNET :
+  (1) barre qui débordait EN PLEIN ÉCRAN → en fullscreen/pseudo-fs la
+  barre reçoit width:min(100%,calc((100vh − 120px)/1.414)) : elle
+  épouse exactement la feuille ; (2) impossible de tourner les pages
+  en plein écran → le feuilletage #c-jour (‹ select › ) DÉMÉNAGÉ de
+  .ce-haut vers la barre d'outils (premier groupe), donc présent en
+  plein écran ; (3) couleurs texte : le rond (input color) gardé +
+  rangée #c-vives de 9 pastilles TRÈS vives (#ffe600 #ff7a00 #ff2b2b
+  #ff4da6 #b04dff #2979ff #00cfff #35ff6a #ffffff, .c-viv 14px,
+  délégation foreColor) ; (4) fond de page : le noir devient NOIR PUR
+  #000000 (était #0d0d0c jugé gris) ; (5) POIGNÉE DE REDIMENSIONNEMENT
+  AU MILIEU : les coordonnées de #c-outils-img/#c-poignee étaient
+  calculées relativement à #c-edit qui n'est PAS positionné → le
+  repère réel était ailleurs, d'où le décalage ; correctif : les deux
+  éléments DÉPLACÉS DANS #c-zone (position:relative) et host =
+  c-zone.getBoundingClientRect() ; bonus : ils sont désormais
+  visibles en plein écran (avant : hors de la zone fullscreen).
+  BIBLE, SURLIGNAGE REFAIT : stockage de la COULEUR HEX elle-même
+  (plus d'index 0..5) ; rendu par STYLE INLINE (surlRgba(hex,.30)
+  background + box-shadow) ; compat legacy surlCouleur() (anciens
+  index numériques → SURL_HEX_LEGACY) ; .vst.sel passe en !important
+  (rgba .28) pour primer sur le style inline ; barre : rond
+  #sb-cercle (input color, toutes les couleurs) + ONZE pastilles
+  TRÈS vives (#ffe600 #ffb700 #ff7a00 #ff2b2b #ff4da6 #b04dff
+  #2979ff #00cfff #00ffb3 #35ff6a #b8ff00, data-suc, background
+  plein), appliqueSurl(hex) commun ; classes p0..p5/su0..su5
+  SUPPRIMÉES ; TR : title Couleur libre → Free colour (les
+  aria-labels des anciennes pastilles n'existent plus, entrées TR
+  correspondantes inertes). PIÈGE RE-CONFIRMÉ deux fois : ancres
+  python avec \uXXXX (heredoc non-raw les interprète) et asserts de
+  relecture trop stricts (data-suc==11 alors que le handler en
+  ajoute un 12e) : compter large, ancrer sans échappements. VALIDÉ
+  PAR EXÉCUTION (jsdom) : Genèse 1 rendue (31 versets), clic
+  pastille #ff2b2b → style inline rgba(255,43,43,.3) posé sur le
+  verset, 11 pastilles + rond présents, aucun rejet. Fichiers :
+  build-bi.js + bible.html.
+
+• CARNET — BOUTON DE BARRE EN PLEIN ÉCRAN CLARIFIÉ (2026-07-06,
+  Emmanuel demandait le masquage de la barre + sélecteur de page en
+  plein écran : la fonction existait (#c-fsbar, coin haut droit,
+  toggle .sans-barre ; le sélecteur de page vit dans la barre donc
+  masqué avec) mais le libellé « Barre » était opaque → libellé
+  DYNAMIQUE « Masquer la barre » ↔ « Afficher la barre » (data-off/
+  data-on, remis à l'état initial au fullscreenchange), EN « Hide
+  the bar »/« Show the bar ». Circuit vérifié dans le construit :
+  bouton présent dans les deux modes (fullscreen et .c-pfs mobile),
+  la barre entière disparaît, sélecteur de page compris. Fichier :
+  build-bi.js.
+
+• MÉMORISEUR — COMPTEUR D'EXPOSITIONS (2026-07-06, demandé par
+  Emmanuel : « comme la lecture suivie », crainte que la sélection/
+  désélection rende l'apprentissage inégal ; il laissait la porte à
+  un refus si mauvaise idée). ANALYSE : le Mémoriseur fonctionne par
+  RÉPÉTITION ESPACÉE (boîtes 0..5, échéances IVLS, answer monte/
+  descend) : supérieure à un simple compteur pour mémoriser, donc
+  PAS remplacée. Angle mort réel confirmé : à niveau égal, le tirage
+  final était un pur hasard (top[Math.random()]) sans mémoire des
+  expositions : c'est là que l'inégalité s'installait. AJOUT (en
+  plus, comme demandé) : (1) p.v incrémenté dans answer() : le
+  compteur vit DANS S.progress[id] donc voyage avec meta/progress
+  (aucune persistance nouvelle), effacé par le reset global comme le
+  reste (« toute la mémoire ») ; (2) nextItem() : tri box ASC puis
+  VUES ASC (nouveau départage) puis due ASC, et le tirage final se
+  fait parmi les MOINS VUS de la boîte minimale (hasard conservé
+  entre égaux stricts) ; (3) ×n monospace atténué affiché sur
+  chaque ligne de verset dans la sélection (entre le texte et les
+  pastilles de niveau). Banc /tmp/test_memo.js TOUT VERT : le
+  niveau prime toujours (box 0 ×50 avant box 2 ×1), à niveau égal
+  le resélectionné ×3 passe TOUJOURS avant les ×40, hasard conservé
+  entre égaux. Scripts validés (new Function). Fichier :
+  memoriser.html.
+
+• AUDIT GÉNÉRAL COMPLET (2026-07-07, « regarde s'il y a des
+  problèmes où que ce soit »). MÉTHODE : build, syntaxe de tous les
+  scripts, puis EXÉCUTION jsdom de toutes les pages critiques
+  (accueil FR/EN, bibliothèque, carnet FR/EN, memoriser, bible
+  FR/EN) avec harnais /tmp/harnais.js (fetch servi depuis site/,
+  firebase stubé, unhandledrejection écouté). BUG RÉEL TROUVÉ ET
+  CORRIGÉ : setAuth() de memoriser.html faisait $('auth-tabs') mais
+  l'élément n'avait qu'une CLASSE auth-tabs, aucun id → TypeError
+  SYSTÉMATIQUE à chaque initialisation du panneau de connexion
+  (déconnecté), tuant le code suivant du handler (onglets
+  Connexion/Inscription, bascule mot de passe oublié) : réel en
+  ligne, corrigé en posant id="auth-tabs" sur la div (écrit, relu,
+  rebuildé, harnais re-passé). ARTEFACTS IDENTIFIÉS (pas des bugs) :
+  les erreurs « reading 'length' » du harnais sur memoriser/bible
+  pointent les lignes des <script src> du SDK Firebase CDN que jsdom
+  ne peut pas télécharger hors ligne ; en ligne ces scripts se
+  chargent : À SAVOIR pour les prochains audits (filtrer les erreurs
+  dont lineno pointe une balise script src). VÉRIFIÉ SAIN : zéro
+  rejet de promesse partout ; bible FR rendue de bout en bout
+  (Genèse 1, 31 versets, surlignage vif posé) ; carnet FR/EN et
+  accueil sans erreur ; aucune page à-propos n'existe MAIS aucun
+  lien n'y pointe (non-problème) ; ADMIN_JS est intégré au build
+  (ligne 295), pas de fichier séparé dans site/ (normal). PENDINGS
+  CONNUS INCHANGÉS : memoriser.json 22 vs 24 catégories ; règles
+  Firestore email_verified à publier ; article « La solitude » en
+  attente de validation ; tactile iPhone du carnet à vérifier par
+  Emmanuel après déploiement. Fichier modifié : memoriser.html.
+
+• ARTICLE « La colère et son remède » INTÉGRÉ (2026-07-07, validé
+  par Emmanuel après plusieurs rondes de révision éditoriale). Rangé
+  vie-spirituelle / catégorie combat (Le combat intérieur), aux
+  côtés de la peur, la tristesse, l'orgueil et l'humilité. Slug FR
+  la-colere-et-son-remede, EN anger-and-its-remedy. Quatre gestes
+  faits, chacun écrit PUIS RELU : (1) content/articles.json (FR+EN,
+  14 versets de part et d'autre, forme <em>« … »</em> <span
+  class="ref">Réf</span>, sous-titres <h2>, fin
+  <div class="fin-article">✦</div>) ; (2) data-en.js slug en tête de
+  SLUGS ; (3) themes.json en tête de combat ; (4) nouveautes.json
+  FR+EN en tête de Juillet/July 2026. Build : 124 → 125 paires (250
+  pages). Rendu vérifié par exécution jsdom : les deux pages
+  affichent titre, 5 h2, 14 versets, ✦, zéro erreur. RÉVISIONS
+  ÉDITORIALES ACTÉES sur ce texte (rétroactives comme règles) :
+  « passion » préféré à « appétit » pour nommer le mouvement subi
+  (appétit irascible gardé une fois comme terme technique de la
+  faculté) ; deux-points (non virgule) pour annoncer une
+  énumération de mots grecs après « rejeter » ; noms d'auteurs
+  (Thomas d'Aquin, Grégoire le Grand) retirés d'un article de
+  spiritualité — la doctrine est donnée comme enseignement de
+  l'Église sans attribution ; éviter les mots rares/ambigus dans
+  une énumération (« clameur », « rixe » supprimés) ; expliciter
+  toute image linguistique (hébreu « long de narines » développé) ;
+  vérifier la cohérence des métaphores (l'humilité DÉSARME, n'arme
+  jamais). Fichiers : content/articles.json, data-en.js,
+  content/themes.json, content/nouveautes.json.
+
+• ARTICLE « La Trinité » RÉVISÉ (2026-07-07, sept reprises validées
+  par Emmanuel, appliquées FR ET EN avec relecture par assertions).
+  (1) « et leurs actes, le concept que l'on forme, l'amour que l'on
+  ressent » (imprécis) → « l'idée que l'intelligence conçoit et
+  l'amour que la volonté porte, états passagers qui nous traversent
+  sans être nous-mêmes ». (2) REDONDANCE VERBE supprimée dans la
+  section « Le Fils » : la ré-explication du mécanisme (« une parole
+  exprime tout entière la pensée… le Père s'énonce en un seul
+  Verbe ») faisait doublon avec « Connaître et aimer en Dieu » qui
+  l'établit déjà ; ne reste que « Image parfaite du Père, il est
+  celui en qui le Père se connaît et se donne pleinement » puis
+  Hébreux 1:3, la section enchaîne sur le Logos (sa place propre).
+  L'ordre de l'article (vie intime → relations → révélation →
+  chaque Personne) jugé bon, inchangé ; le paragraphe « création
+  par le Verbe » gardé (application, pas redite). (3) « par-delà la
+  distinction des sexes » retiré, ET toute la phrase « Ce nom dit
+  l'origine et l'amour… » + verset Isaïe 49:15 supprimés (formule
+  creuse qui juxtaposait deux mots) : la section Père s'arrête
+  désormais à Éphésiens 3:14-15. (4) « le Fils a pris notre nature »
+  → « notre nature humaine… vrai homme sans cesser d'être vrai Dieu,
+  unissant en sa Personne les deux natures, divine et humaine »
+  (précision christologique). (5) « à son baptême » → « à son
+  baptême au Jourdain ». (6) VERSET FINAL : Jean 14:23 (inhabitation,
+  qui illustrait le moyen) remplacé par Jean 17:26 (l'amour du Père
+  pour le Fils partagé aux fidèles, qui illustre la FIN de l'homme,
+  la béatitude). Versets FR==EN (26). Rendu vérifié par exécution
+  jsdom des deux pages : 26 versets, 9 h2, 17:26 présent, Isaïe 49:15
+  et Jean 14:23 absents, Jourdain présent, zéro erreur. RÈGLES
+  ÉDITORIALES CONFIRMÉES : traquer la redite d'un même mécanisme
+  entre sections (garder l'énoncé à sa place propre) ; un verset doit
+  illustrer exactement l'affirmation qu'il porte (fin vs moyen) ;
+  supprimer les formules qui posent des mots sans les relier.
+  Fichier : content/articles.json.
+
+• ARTICLE « Le sacerdoce » (le-sacerdoce) — RÉVISION FR+EN
+  (2026-07-07, demandée et validée par Emmanuel). Quatre points :
+  (1) « Chaque mot éclaire. » / « Every word enlightens. » supprimé.
+  (2) Section « Le prêtre, un médiateur » simplifiée (Hébreux 5:1
+  décomposé une idée par phrase, dernière phrase allégée). (3)
+  Paragraphe « Du temple à la Croix » (début) réécrit et ÉTOFFÉ
+  théologiquement en réponse aux questions d'Emmanuel : ce que les
+  sacrifices FAISAIENT (pureté rituelle, accès au sanctuaire, avec
+  l'impureté lévitique expliquée : contact mort/corruption, état et
+  non faute, Lévitique 15:31) ; ce qu'ils NE POUVAIENT pas (le péché
+  engage la volonté libre, seule une réparation offerte librement y
+  répond ; une bête subit et n'offre ni obéissance ni amour) ;
+  POURQUOI Dieu les commandait (rappel annuel qui tient la conscience
+  éveillée, Hébreux 10:3 ; annonce de la victime véritable). Versets
+  ajoutés : Lévitique 15:31, Hébreux 9:13, 10:3. Hébreux 10:4
+  recité « enlève » (le calque « ôte » retiré). (4) « le Christ,
+  unique Prêtre » → « unique grand prêtre », scellé par Hébreux 4:14.
+  RÈGLE RAPPELÉE (par relecture de la reprise) : citations = TRADUCTION
+  PROPRE, jamais calque Crampon/Douay ; le bible.json ne sert qu'à
+  vérifier référence et numérotation. Toutes références vérifiées FR
+  (bible.json) et EN (bible-en.json). Build 125 paires. Fichier :
+  content/articles.json.
+
+• ARTICLES « Les anges » et « Élie à l'Horeb » — RÉVISION FR+EN
+  (2026-07-07, demandée et validée par Emmanuel). LES ANGES : (1)
+  « ce service s'étend jusqu'à nous » → « se déploie aussi pour
+  nous » (l'ancien tour laissait croire que le service était à notre
+  charge ; sens rendu clairement passif, en notre faveur). (2) Satan
+  rapproché du dragon : le nom Satan (שָׂטָן) et sa glose
+  « l'adversaire » sont désormais posés DANS la citation d'Apocalypse
+  12:7-9 elle-même (qui nomme déjà « le diable et Satan »), levant
+  l'ambiguïté de deux entités ; l'ancienne phrase « Ces esprits
+  déchus sont les démons ; leur chef est Satan… » + Luc 10:18
+  SUPPRIMÉE (contenu absorbé, et Emmanuel a écarté une phrase
+  appositive « un seul et même esprit » jugée « tache » puis la
+  reprise de Luc 10:18). (3) « les déchus, dans leur refus, et ce
+  sont les démons » → « les déchus, eux, sont fixés dans leur
+  refus : ce sont les démons » (fluidité). (4) La fin annonçait deux
+  choses (empire brisé PAR LA CROIX + fin dernière) mais Matthieu
+  25:41 n'illustre que la seconde : scindé en deux, empire brisé
+  scellé par Jean 12:31 (« le prince de ce monde va être jeté
+  dehors »), puis « leur fin est scellée » (au lieu d'« arrêtée »,
+  mot choisi par Emmanuel) + Matthieu 25:41. ÉLIE À L'HOREB : « Un
+  pain donné par le ciel porte un homme bien au-delà de ce qu'aucune
+  nourriture ne peut faire » se contredisait (un pain du ciel EST une
+  nourriture) → « Ce pain venu de Dieu… au-delà de ce qu'aucune
+  nourriture terrestre ne pourrait faire » (l'opposition porte sur le
+  terrestre). Toutes références vérifiées FR+EN (dont Jean 12:31
+  ajouté). Build 125 paires. Fichier : content/articles.json.
+
+• ARTICLE « Le sacerdoce ministériel réservé aux hommes »
+  (le-sacerdoce-reserve-aux-hommes) — RÉVISION FR+EN (2026-07-07,
+  demandée et validée par Emmanuel, questions de clarté). (1) « seuls
+  des hommes reçoivent le sacerdoce » → « le sacerdoce ministériel,
+  celui du prêtre ordonné » (l'article distingue plus loin sacerdoce
+  commun / ministériel : sans la précision, on croirait les femmes
+  exclues de tout sacerdoce). (2) « d'eux vient, de proche en proche,
+  le sacerdoce » (ambigu) → « transmis par l'ordination depuis les
+  apôtres jusqu'à aujourd'hui » (dit la transmission apostolique).
+  (3) « une intention, libre des usages du moment » (ambigu) → « une
+  intention voulue, et non le simple reflet des habitudes de son
+  temps » (le choix du Christ ne s'explique pas par la culture de
+  l'époque, lui qui traitait les femmes tout autrement). (4) « que
+  l'Écriture scelle comme un grand mystère » explicité : le mot
+  mystère reçoit son sens théologique (réalité cachée en Dieu et
+  dévoilée par lui, qui passe toute attente ; dans le Christ épousant
+  l'Église se découvre le dessein caché d'unir les hommes à Dieu
+  comme une épouse à son époux), avant Éphésiens 5:32. Aucune
+  nouvelle référence. Build 125 paires. Fichier :
+  content/articles.json.
+
+• ARTICLE « Un temps pour tuer, un temps pour guérir »
+  (un-temps-pour-tuer) — RÉVISION FR+EN (2026-07-07, demandée et
+  validée par Emmanuel : retirer les tournures qui mettent en scène
+  la difficulté du texte au lieu d'entrer dans le sens). RÉSUMÉ :
+  « range une parole difficile, le temps de tuer » → « range le
+  temps de tuer » (FR et EN). CONTENU, cinq mises en scène retirées :
+  (1) « Au milieu d'elles vient la parole la plus rude » → « Au
+  centre du poème vient celle-ci ». (2) question rhétorique
+  « L'Écriture accorderait-elle alors un temps pour tuer ? » →
+  « Reste à comprendre comment l'Écriture peut nommer un temps pour
+  tuer sans se contredire ». (3) titre « Le sens d'une parole
+  difficile » → « Le meurtre et le sang de l'innocent ». (4) « le
+  sage en découvre la source » → « en nomme la source » (léger
+  suspens retiré). (5) « mettent à mort l'Innocent, sans qu'aucune
+  parole ne l'excuse » (tournure par négation qui met en scène) →
+  « un meurtre véritable, Dieu tire pourtant… ». Aucune nouvelle
+  référence. Build 125 paires. Fichier : content/articles.json.
+  RÈGLE (déjà en reprise, re-confirmée) : ne pas mettre en scène la
+  difficulté du sujet ni la réaction du lecteur avant d'entrer dans
+  la matière ; définir par ce qui est, non par l'effet produit.
+
+• AUDIT ACCOMPLISSEMENT DES PROPHÉTIES — ARTICLES ZACHARIE
+  (2026-07-07, demandé par Emmanuel : « regarde si on a bien traité
+  l'accomplissement dans les articles Zacharie »). Vérifié SUR LE
+  SITE (content/articles.json), pas dans les chats. Sept articles
+  Zacharie (le-prophete-et-son-temps, les-huit-visions-nocturnes,
+  josue-le-germe-et-la-couronne, le-jeune-et-la-restauration,
+  premier-oracle-le-roi-qui-vient, second-oracle-le-transperce,
+  le-jour-du-seigneur). Les correspondances figure/accomplissement
+  de l'ancienne section « lecture chrétienne » du diagramme (dissoute
+  dans les articles le 04/07) sont TOUTES présentes, chacune là où sa
+  figure paraît : Germe → Christ prêtre-roi, vrai Temple (Josué) ;
+  roi sur l'âne → Rameaux, trente pièces → Judas, berger frappé →
+  troupeau dispersé (premier oracle) ; transpercé → côté ouvert Jean
+  19:34-37, source → baptême + eucharistie (second oracle) ; Jour du
+  Seigneur → mont des Oliviers + retour glorieux Actes 1:11.
+  UN SEUL MANQUE trouvé et corrigé : « Le jeûne et la restauration »
+  (Zacharie 7-8) s'arrêtait dans l'AT, sans nommer le Christ, alors
+  que sa fin (montée des nations vers Jérusalem, Zacharie 8:20-23)
+  appelait son accomplissement. Ajout d'une section finale « La
+  Jérusalem où montent les nations » FR+EN : rassemblement des
+  nations dans le Christ (Jean 12:32), Juifs et païens en un seul
+  corps dans l'Église (Éphésiens 2:14), Jérusalem d'en haut sans
+  temple car Dieu et l'Agneau en sont le sanctuaire (Apocalypse
+  21:22). Trois références vérifiées FR+EN. Piège rencontré :
+  indentation de <div class="fin-article"> différente FR (6 espaces)
+  vs EN (2) → ancres par langue. Build 125 paires. Fichier :
+  content/articles.json.
+
+• AUDIT ACCOMPLISSEMENT — TOUS LES ARTICLES DE PROPHÈTES
+  (2026-07-07, demandé par Emmanuel après Zacharie). Recensement sur
+  content/articles.json : livres prophétiques traités = Isaïe (6
+  art.), Zacharie (7), Abdias (1), Joël (3), Aggée (2), Amos (4),
+  Nahum (3). Méthode : marqueurs NT/Christ par article, PUIS lecture
+  pour distinguer vrai manque d'article intermédiaire dont
+  l'accomplissement est légitimement porté par un autre article du
+  même livre. RÉSULTAT : Isaïe et Zacharie complets. Amos (« jugement
+  des nations », « visions et culte rejeté ») et Nahum (« chute de
+  Ninive ») et Joël (« fléau et Jour du Seigneur ») = sections
+  intermédiaires, accomplissement porté ailleurs dans le livre (Amos
+  → « la justice, le Jour du Seigneur et l'espérance » cite Actes 15
+  tente de David ; Nahum → « le Dieu qui juge et qui sauve » ; Joël →
+  « la conversion et l'Esprit répandu » cite Pentecôte/Actes 2) :
+  LAISSÉS TELS QUELS à dessein. TROIS AJOUTS (section finale «
+  accomplissement dans le Christ », FR+EN), là où la prophétie
+  FINALE de l'article appelait son accomplissement non traité
+  ailleurs : (1) Abdias « au Seigneur sera l'empire » (1:21) →
+  règne du Christ (Luc 1:33, Matthieu 25:31). (2) Joël dernier
+  chapitre, source du Temple + Dieu habitant Sion (4:18-21) → eau
+  vive du côté ouvert (Jean 7:38), corps-Temple (Jean 2:21),
+  Jérusalem céleste (Apocalypse 21:3). (3) Aggée « les quatre
+  oracles », gloire du nouveau Temple (2:9) + Zorobabel cachet
+  (2:23) → le Seigneur venant dans son temple (Malachie 3:1),
+  Zorobabel dans la généalogie (Matthieu 1:12). 7 références
+  vérifiées FR+EN. Piège ré-confirmé : indentation <div
+  fin-article> variable (FR 6 esp., EN 2 esp., parfois 6) → ancres
+  par langue et par article. Build 125 paires. Fichier :
+  content/articles.json.
+
+• ARTICLE « La préparation au ministère » (la-preparation-au-
+  ministere) — SECTION « Les noces de Cana » ÉTOFFÉE, l'échange
+  Jésus-Marie (2026-07-07, demandé par Emmanuel). La réponse de Jésus,
+  auparavant seulement rapportée (« Il répond que son heure n'est pas
+  encore venue »), est désormais CITÉE : « Femme, qu'y a-t-il entre
+  moi et toi ? Mon heure n'est pas encore venue. » Jean 2:4 (ajouté),
+  avec sa glose (« Femme » non « mère » = la femme que la Genèse
+  annonçait face au serpent ; l'heure johannique = la Passion). Puis
+  « Faites tout ce qu'il vous dira » Jean 2:5, puis les jarres et le
+  signe Jean 2:11 inchangés, et la conclusion mariale/eucharistique
+  d'ORIGINE conservée. FR+EN. Nombreux allers-retours de style :
+  Emmanuel a écarté toute mise en scène (« la réponse surprend »,
+  « ce qui étonne davantage »), toute paraphrase pré-verset, les
+  double-affirmations, et fait garder la fin originale ; version
+  finale sobre, narration puis sens. Jean 2:3-5, 2:11 vérifiés FR+EN.
+  Build 125 paires. Fichier : content/articles.json.
+
+• ARTICLE « La deuxième année : la popularité » (la-deuxieme-annee-
+  la-popularite) — CORRECTION FR+EN (2026-07-07). Le passage sur le
+  neuf et le vieux ÉNONÇAIT le sens des deux images (étoffe, outres)
+  sans les citer, et ne donnait que Marc 2:22 partiel : amorce
+  paraphrasante interdite + verset de l'étoffe (Marc 2:21) absent.
+  Corrigé : amorce qui SITUE seulement (« Aux pharisiens qui lui
+  opposent leurs observances, Jésus répond par deux images »), puis
+  les DEUX images citées d'un tenant en Marc 2:21-22 (unité
+  scripturaire complète), puis la conclusion d'ORIGINE conservée
+  (« Le Royaume ne rapièce pas l'ancien régime des observances… »).
+  Piège de méthode noté : au 1er essai j'avais reproduit le même
+  défaut avec une autre amorce paraphrasante (« deux images du neuf
+  qui ne s'ajuste pas au vieux ») — une amorce doit poser la scène,
+  jamais le sens du verset. Marc 2:21-22 vérifiés FR+EN. Build 125
+  paires. Fichier : content/articles.json.
+
+• ARTICLE « Le mariage » (le-mariage) — DEUX AJOUTS FR+EN
+  (2026-07-07, demandés par Emmanuel). (1) Section « Institué par
+  Dieu dès l'origine » : explication de « une seule chair » (mot
+  hébreu basar (בָּשָׂר) = l'être tout entier, pas seulement le
+  corps ; deux êtres, une seule vie ; scellé par le Christ Matthieu
+  19:6 ; unité qui prend chair dans l'enfant). Emmanuel a fait
+  retirer « c'est le fondement de l'unité du mariage ». (2) Section
+  « Élevé par le Christ au rang de sacrement » : maillon reliant le
+  sens conjugal au sacrement, Paul citant « une seule chair » pour
+  le Christ et l'Église (Éphésiens 5:31-32), le mariage préfigurant
+  l'union du Christ nouvel Adam et de l'Église née de son côté
+  ouvert (Ève tirée du côté d'Adam). Corrections de style
+  d'Emmanuel : « annonçait » → « préfigurait », suppression de « sans
+  le savoir », « Cette union portait dès l'origine une signification
+  qu'elle ignorait » supprimée, négation « n'a pas ajouté un sens
+  étranger » reformulée en affirmatif, « peut reproduire » → «
+  reproduit ». Références Genèse 2:24, Matthieu 19:6, Éphésiens
+  5:31-32, Genèse 1:28 vérifiées FR+EN ; citations en traduction
+  propre. Format langue ancienne respecté. Build 125 paires.
+  Fichier : content/articles.json.
+
+• ARTICLE « La grâce » (la-grace) — RÉSUMÉ ALIGNÉ SUR LE 1er §
+  FR+EN (2026-07-07). Le résumé définissait la grâce comme « la
+  faveur par laquelle Dieu donne part à sa propre vie et fait de
+  l'homme son enfant » = définition de la grâce SANCTIFIANTE (une des
+  deux formes) présentée comme la grâce tout court, et incohérente
+  (elle se donnait comme source d'elle-même). Or le 1er paragraphe,
+  fixé lors d'un travail antérieur, définit la grâce au sens GÉNÉRAL
+  = « le secours gratuit que Dieu donne à l'homme pour le sauver et
+  le conduire à lui ». Résumé réécrit sur cette définition large,
+  puis nommant les deux formes sans confondre le tout avec l'une :
+  « …la source dont découlent la grâce sanctifiante, qui donne part à
+  la vie divine, et la grâce actuelle, qui soutient chaque pas vers
+  Dieu. » Propagé partout (carte biblio, page article, lumen-data.js,
+  recherche FR/EN, méta), 0 reste de l'ancien. Build 125 paires.
+  Fichier : content/articles.json.
+
+• ARTICLE « La troisième année : l'opposition » (la-troisieme-
+  annee-l-opposition) — PHRASE DE L'ONCTION REFORMULÉE FR+EN
+  (2026-07-07). « L'onction qui honore le Roi prépare déjà
+  l'ensevelissement du crucifié » était elliptique (« le Roi » et
+  « le crucifié » = même personne sans lien dit ; « crucifié »
+  anticipe un état pas encore advenu). Reformulé pour dire le double
+  sens du geste : « Répandre un tel parfum était un honneur royal ;
+  Jésus y lit l'annonce de sa mort, car on oignait aussi les corps
+  pour la sépulture. Le même geste honore le roi et prépare son
+  ensevelissement. » Jean 12:7 vérifié FR+EN. Build 125 paires.
+  Fichier : content/articles.json.
+
+• ARTICLE « La Semaine sainte » (la-semaine-sainte) — AJOUT DU
+  « JE SUIS » À GETHSÉMANI FR+EN (2026-07-07, demandé par Emmanuel).
+  Le récit de l'arrestation passait du baiser de Judas à l'épée de
+  Pierre sans l'épisode johannique : Jésus s'avance, se nomme « Je
+  suis » (Jean 18:5), la troupe recule et tombe à terre (Jean 18:6) ;
+  ces mots reprennent le Nom révélé à Moïse au buisson ardent (Exode
+  3:14), Jésus laissant paraître un instant sa divinité. Inséré entre
+  le baiser et l'épée. Emmanuel a fait retirer la phrase finale « Nul
+  ne le prend de force… ». Note : le Crampon rend egō eimi par « c'est
+  moi » ; traduction propre « Je suis » retenue pour faire paraître le
+  lien au Nom divin (lecture chrétienne du passage). Jean 18:5-6,
+  Exode 3:14 vérifiés FR+EN. Build 125 paires. Fichier :
+  content/articles.json.
+
 ════════════════════════════════════════════════════════════════════
 FIN DU FICHIER DE REPRISE
 ════════════════════════════════════════════════════════════════════

@@ -1530,9 +1530,12 @@ function mainCarnet(lang) {
 .ce-btn:hover{color:var(--parchemin);border-color:var(--filet-fort)}
 .ce-btn.b{font-weight:700}.ce-btn.i{font-style:italic}.ce-btn.u{text-decoration:underline}
 .ce-sep{width:1px;height:20px;background:var(--filet);margin:0 4px}
+.c-viv{width:14px;height:14px;border-radius:50%;cursor:pointer;border:1px solid rgba(255,255,255,.3);transition:transform .15s}
+.c-viv:hover{transform:scale(1.25);border-color:#fff}
 #c-page-wrap{display:flex;justify-content:center;background:transparent;margin-top:0}
-#c-zone:fullscreen #c-feuille,#c-zone.c-pfs #c-feuille{width:min(100%,calc((100vh - 80px) / 1.414))}
-#c-feuille{position:relative;z-index:0;width:100%;max-width:760px;aspect-ratio:1/1.414;border:1px solid var(--filet);padding:54px 58px;color:var(--parchemin);font-size:17px;line-height:1.5;outline:none;background-color:#0d0d0c;overflow:hidden;overflow-wrap:break-word}
+#c-zone:fullscreen #c-feuille,#c-zone.c-pfs #c-feuille{width:min(100%,calc((100vh - 120px) / 1.414))}
+#c-zone:fullscreen .ce-barre,#c-zone.c-pfs .ce-barre{width:min(100%,calc((100vh - 120px) / 1.414));max-width:none;margin:8px auto}
+#c-feuille{position:relative;z-index:0;width:100%;max-width:760px;aspect-ratio:1/1.414;border:1px solid var(--filet);padding:54px 58px;color:var(--parchemin);font-size:17px;line-height:1.5;outline:none;background-color:#000000;overflow:hidden;overflow-wrap:break-word}
 #c-feuille:focus{border-color:var(--filet-fort)}
 #c-feuille h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--parchemin);margin:0 0 10px}
 #c-feuille p{margin:0 0 .55em}
@@ -1571,13 +1574,14 @@ select.ce-sel{background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid va
   <div id="c-edit">
     <div class="ce-haut">
       <span id="c-retour" role="button" tabindex="0">${T.retour}</span>
-      <span id="c-jour"></span>
       <span id="c-etat">${T.enr}</span>
     </div>
     <input id="c-titre" type="text" placeholder="${T.titrePh}" maxlength="140">
     <div id="c-zone">
-    <span id="c-fsbar" role="button" tabindex="0">${F?'Barre':'Bar'}</span>
+    <span id="c-fsbar" role="button" tabindex="0" data-off="${F?'Masquer la barre':'Hide the bar'}" data-on="${F?'Afficher la barre':'Show the bar'}">${F?'Masquer la barre':'Hide the bar'}</span>
     <div class="ce-barre">
+      <span id="c-jour"></span>
+      <span class="ce-sep"></span>
       <span class="ce-btn b" data-cmd="bold" title="${T.gras}">G</span>
       <span class="ce-btn i" data-cmd="italic" title="${T.ital}">I</span>
       <span class="ce-btn u" data-cmd="underline" title="${T.soul}">S</span>
@@ -1628,6 +1632,17 @@ select.ce-sel{background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid va
         <option value="7">${F?'Tr\u00e8s grande':'Very large'}</option>
       </select>
       <input type="color" id="c-cou" title="${T.fCou}" value="#efe6cf" style="width:34px;height:27px;padding:2px;background:#0a0a0a;border:1px solid var(--filet);cursor:pointer">
+      <span id="c-vives" style="display:flex;align-items:center;gap:4px">
+        <span class="c-viv" data-cc="#ffe600" style="background:#ffe600"></span>
+        <span class="c-viv" data-cc="#ff7a00" style="background:#ff7a00"></span>
+        <span class="c-viv" data-cc="#ff2b2b" style="background:#ff2b2b"></span>
+        <span class="c-viv" data-cc="#ff4da6" style="background:#ff4da6"></span>
+        <span class="c-viv" data-cc="#b04dff" style="background:#b04dff"></span>
+        <span class="c-viv" data-cc="#2979ff" style="background:#2979ff"></span>
+        <span class="c-viv" data-cc="#00cfff" style="background:#00cfff"></span>
+        <span class="c-viv" data-cc="#35ff6a" style="background:#35ff6a"></span>
+        <span class="c-viv" data-cc="#ffffff" style="background:#ffffff"></span>
+      </span>
       <select class="ce-sel" id="c-int" title="${T.fInt}">
         <option value="">${T.fInt}</option>
         <option value="1.2">1,2</option>
@@ -1651,9 +1666,9 @@ select.ce-sel{background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid va
     <div id="c-page-wrap">
       <div id="c-feuille" contenteditable="true" spellcheck="true"></div>
     </div>
-    </div>
     <div id="c-outils-img"><span class="coi-x" id="coi-x" title="${T.suppr}">\u2715</span><input type="range" id="coi-op" min="10" max="100" step="5"></div>
     <div id="c-poignee"></div>
+    </div>
     <p class="ce-aide">${T.aide}</p>
     <input type="file" id="c-file-img" accept="image/*" style="display:none">
   </div>
@@ -1910,6 +1925,13 @@ const CARNET_JS = function(lang){
     document.execCommand('foreColor',false,this.value);
     planifie();
   });
+  document.getElementById('c-vives').addEventListener('click',function(e){
+    var v=e.target.closest?e.target.closest('.c-viv'):null;
+    if(!v)return;
+    feuille.focus();
+    document.execCommand('foreColor',false,v.getAttribute('data-cc'));
+    planifie();
+  });
   document.getElementById('c-bg').addEventListener('change',function(){
     if(!this.value||!CURD)return;
     CURD.pages[PIDX].bg=this.value;
@@ -1932,8 +1954,8 @@ const CARNET_JS = function(lang){
   }
   function placeOutils(){
     if(!IMG)return;
-    var fr=feuille.getBoundingClientRect(),ir=IMG.getBoundingClientRect();
-    var host=document.getElementById('c-edit').getBoundingClientRect();
+    var ir=IMG.getBoundingClientRect();
+    var host=document.getElementById('c-zone').getBoundingClientRect();
     outils.style.display='flex';
     outils.style.left=(ir.left-host.left)+'px';
     outils.style.top=(ir.top-host.top-40)+'px';
@@ -2046,7 +2068,13 @@ const CARNET_JS = function(lang){
     else{w.classList.add('c-pfs');} /* iOS Safari : pas de fullscreen sur les div -> mode equivalent */
   });
   document.getElementById('c-fsbar').addEventListener('click',function(){
-    document.getElementById('c-zone').classList.toggle('sans-barre');
+    var z=document.getElementById('c-zone');
+    z.classList.toggle('sans-barre');
+    this.textContent=this.getAttribute(z.classList.contains('sans-barre')?'data-on':'data-off');
+  });
+  document.addEventListener('fullscreenchange',function(){
+    var b=document.getElementById('c-fsbar');
+    if(b)b.textContent=b.getAttribute('data-off');
   });
   document.addEventListener('fullscreenchange',function(){
     if(!document.fullscreenElement)document.getElementById('c-zone').classList.remove('sans-barre');
@@ -2667,6 +2695,7 @@ if (fs.existsSync('bible.html')) {
       ['>Prendre une note<', '>Take a note<'],
       ['>Surligner<', '>Highlight<'],
       ['>Retirer le surlignage<', '>Remove highlighting<'],
+      ['title="Couleur libre"', 'title="Free colour"'],
       ['aria-label="Or"', 'aria-label="Gold"'],
       ['aria-label="Rouge"', 'aria-label="Red"'],
       ['aria-label="Bleu"', 'aria-label="Blue"'],
