@@ -1586,9 +1586,6 @@ select.ce-sel{background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid va
       <span class="ce-btn i" data-cmd="italic" title="${T.ital}">I</span>
       <span class="ce-btn u" data-cmd="underline" title="${T.soul}">S</span>
       <span class="ce-sep"></span>
-      <span class="ce-btn" data-cmd="h3">${T.titreB}</span>
-      <span class="ce-btn" data-cmd="ul">${T.liste}</span>
-      <span class="ce-sep"></span>
       <select class="ce-sel" id="c-pol" title="${T.fPol}">
         <option value="">${T.fPol}</option>
         <optgroup label="Serif">
@@ -1625,11 +1622,12 @@ select.ce-sel{background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid va
         </optgroup>
       </select>
       <select class="ce-sel" id="c-tai" title="${T.fTai}">
-        <option value="">${T.fTai}</option>
-        <option value="2">${F?'Petite':'Small'}</option>
-        <option value="3">${F?'Normale':'Normal'}</option>
-        <option value="5">${F?'Grande':'Large'}</option>
-        <option value="7">${F?'Tr\u00e8s grande':'Very large'}</option>
+        <option value="" disabled selected hidden>${T.fTai}</option>
+        <option value="12">12</option><option value="13">13</option><option value="14">14</option>
+        <option value="15">15</option><option value="16">16</option><option value="17">17</option>
+        <option value="18">18</option><option value="20">20</option><option value="22">22</option>
+        <option value="24">24</option><option value="28">28</option><option value="32">32</option>
+        <option value="36">36</option><option value="42">42</option><option value="48">48</option>
       </select>
       <input type="color" id="c-cou" title="${T.fCou}" value="#efe6cf" style="width:34px;height:27px;padding:2px;background:#0a0a0a;border:1px solid var(--filet);cursor:pointer">
       <span id="c-vives" style="display:flex;align-items:center;gap:4px">
@@ -1651,7 +1649,6 @@ select.ce-sel{background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid va
         <option value="1.8">1,8</option>
       </select>
       <select class="ce-sel" id="c-bg" title="${F?'Fond de page':'Page background'}">
-        <option value="">${F?'Fond':'Page'}</option>
         <option value="n">${F?'Page noire':'Black page'}</option>
         <option value="b">${F?'Page blanche':'White page'}</option>
       </select>
@@ -1785,6 +1782,7 @@ const CARNET_JS = function(lang){
     feuille.style.lineHeight=pg.il||1.5;
     feuille.classList.toggle('claire',pg.bg==='b');
     var si=document.getElementById('c-int');si.value=String(pg.il||1.5);
+    var sb=document.getElementById('c-bg');if(sb)sb.value=(pg.bg==='b'?'b':'n');
     feuille.querySelectorAll('img[data-lvimg]').forEach(function(im){
       im.setAttribute('contenteditable','false');im.setAttribute('draggable','false');
       chargeImage(im.getAttribute('data-lvimg')).then(function(d){if(d)im.src=d;});
@@ -1919,7 +1917,20 @@ const CARNET_JS = function(lang){
     });
   }
   selCmd('c-pol','fontName');
-  selCmd('c-tai','fontSize');
+  document.getElementById('c-tai').addEventListener('change',function(){
+    if(!this.value)return;
+    var px=this.value;
+    feuille.focus();
+    document.execCommand('fontSize',false,'7');
+    feuille.querySelectorAll('font[size="7"]').forEach(function(f){
+      var sp=document.createElement('span');
+      sp.style.fontSize=px+'px';
+      while(f.firstChild)sp.appendChild(f.firstChild);
+      f.parentNode.replaceChild(sp,f);
+    });
+    this.selectedIndex=0;
+    planifie();
+  });
   document.getElementById('c-cou').addEventListener('input',function(){
     feuille.focus();
     document.execCommand('foreColor',false,this.value);
@@ -1936,7 +1947,6 @@ const CARNET_JS = function(lang){
     if(!this.value||!CURD)return;
     CURD.pages[PIDX].bg=this.value;
     feuille.classList.toggle('claire',this.value==='b');
-    this.selectedIndex=0;
     planifie();
   });
   document.getElementById('c-int').addEventListener('change',function(){
@@ -1978,38 +1988,43 @@ const CARNET_JS = function(lang){
     var fr=feuille.getBoundingClientRect();
     var x0=e.clientX,y0=e.clientY,l0=parseFloat(im.style.left)||0,t0=parseFloat(im.style.top)||0;
     if(String(im.style.left).indexOf('%')>=0)l0=fr.width*l0/100;
+    if(String(im.style.top).indexOf('%')>=0)t0=fr.height*t0/100;
     var pid=e.pointerId;
     try{im.setPointerCapture(pid);}catch(_){}
     function mv(ev){
       if(ev.pointerId!==pid)return;
+      ev.preventDefault();
       im.style.left=Math.round(l0+ev.clientX-x0)+'px';
       im.style.top=Math.round(t0+ev.clientY-y0)+'px';
       placeOutils();
     }
     function fin(ev){
       if(ev.pointerId!==pid)return;
-      im.removeEventListener('pointermove',mv);im.removeEventListener('pointerup',fin);im.removeEventListener('pointercancel',fin);
+      document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',fin);document.removeEventListener('pointercancel',fin);
       planifie();
     }
-    im.addEventListener('pointermove',mv);im.addEventListener('pointerup',fin);im.addEventListener('pointercancel',fin);
+    document.addEventListener('pointermove',mv);document.addEventListener('pointerup',fin);document.addEventListener('pointercancel',fin);
   });
   poignee.addEventListener('pointerdown',function(e){
     if(!IMG)return;
     e.preventDefault();e.stopPropagation();
-    var x0=e.clientX,w0=IMG.getBoundingClientRect().width;
+    var x0=e.clientX,y0=e.clientY,w0=IMG.getBoundingClientRect().width;
     var pid=e.pointerId;
     try{poignee.setPointerCapture(pid);}catch(_){}
     function mv(ev){
       if(ev.pointerId!==pid)return;
-      IMG.style.width=Math.max(40,Math.round(w0+ev.clientX-x0))+'px';
+      ev.preventDefault();
+      var dx=ev.clientX-x0,dy=ev.clientY-y0;
+      var d=Math.abs(dx)>=Math.abs(dy)?dx:dy;
+      IMG.style.width=Math.max(40,Math.round(w0+d))+'px';
       placeOutils();
     }
     function fin(ev){
       if(ev.pointerId!==pid)return;
-      poignee.removeEventListener('pointermove',mv);poignee.removeEventListener('pointerup',fin);poignee.removeEventListener('pointercancel',fin);
+      document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',fin);document.removeEventListener('pointercancel',fin);
       planifie();
     }
-    poignee.addEventListener('pointermove',mv);poignee.addEventListener('pointerup',fin);poignee.addEventListener('pointercancel',fin);
+    document.addEventListener('pointermove',mv);document.addEventListener('pointerup',fin);document.addEventListener('pointercancel',fin);
   });
   opRange.addEventListener('input',function(){
     if(!IMG)return;
@@ -2060,24 +2075,25 @@ const CARNET_JS = function(lang){
     planifie();
   });
   document.getElementById('c-enr').addEventListener('click',function(){sauve();});
+  function quittePfs(){
+    var z=document.getElementById('c-zone');
+    z.classList.remove('c-pfs');
+    z.classList.remove('sans-barre');
+    var b=document.getElementById('c-fsbar');
+    if(b)b.textContent=b.getAttribute('data-off');
+  }
   document.getElementById('c-plein').addEventListener('click',function(){
-    var w=document.getElementById('c-zone');
-    if(document.fullscreenElement){document.exitFullscreen();return;}
-    if(w.classList.contains('c-pfs')){w.classList.remove('c-pfs');return;}
-    if(w.requestFullscreen){w.requestFullscreen().catch(function(){w.classList.add('c-pfs');});}
-    else{w.classList.add('c-pfs');} /* iOS Safari : pas de fullscreen sur les div -> mode equivalent */
+    var z=document.getElementById('c-zone');
+    if(z.classList.contains('c-pfs'))quittePfs();
+    else z.classList.add('c-pfs');
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape')quittePfs();
   });
   document.getElementById('c-fsbar').addEventListener('click',function(){
     var z=document.getElementById('c-zone');
     z.classList.toggle('sans-barre');
     this.textContent=this.getAttribute(z.classList.contains('sans-barre')?'data-on':'data-off');
-  });
-  document.addEventListener('fullscreenchange',function(){
-    var b=document.getElementById('c-fsbar');
-    if(b)b.textContent=b.getAttribute('data-off');
-  });
-  document.addEventListener('fullscreenchange',function(){
-    if(!document.fullscreenElement)document.getElementById('c-zone').classList.remove('sans-barre');
   });
   feuille.addEventListener('input',planifie);
   titre.addEventListener('input',planifie);

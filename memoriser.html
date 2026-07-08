@@ -1506,7 +1506,10 @@ function renderCats(){
   updateStart();
 }
 function updateStart(){$('start-btn').disabled=!(S.selCats.length&&allItems().length>=2);}
-function toggleSelectAll(){const cs=effectiveCats();const allSel=cs.length&&cs.every(c=>S.selCats.includes(c.id));S.selCats=allSel?[]:cs.map(c=>c.id);savePrefs();renderCats();}
+function toggleSelectAll(){const cs=effectiveCats();const allSel=cs.length&&cs.every(c=>S.selCats.includes(c.id));
+  if(allSel){S.selCats=[];S.offV={};cs.forEach(c=>c.verses.forEach(v=>S.offV[v.id]=1));}
+  else{S.selCats=cs.map(c=>c.id);S.offV={};}
+  savePrefs();renderCats();}
 
 // ════════ UI : STUDY ════════
 function applyLang(){
@@ -1899,7 +1902,14 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(delc){await delCatById(id);return;}
     if(restorec){restoreCatBase(id);return;}
     if(act&&act.dataset.act==='solo'){S.soloCat=id;startSession();return;}
-    if(act&&act.dataset.act==='sel'){S.selCats.includes(id)?S.selCats=S.selCats.filter(x=>x!==id):S.selCats.push(id);savePrefs();renderCats();return;}
+    if(act&&act.dataset.act==='sel'){
+      if(S.selCats.includes(id)){S.selCats=S.selCats.filter(x=>x!==id);}
+      else{
+        S.selCats.push(id);
+        const c=effectiveCats().find(x=>x.id===id);
+        if(c&&c.verses.length&&c.verses.every(v=>S.offV[v.id])){c.verses.forEach(v=>{delete S.offV[v.id];});}
+      }
+      savePrefs();renderCats();return;}
     if(act){S.open[id]=!S.open[id];catEl.classList.toggle('open');return;}
   });
   $('mcat-cancel').onclick=()=>closeModal('m-cat'); $('mcat-ok').onclick=saveCatModal;

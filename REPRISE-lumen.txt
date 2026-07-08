@@ -2204,6 +2204,64 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   confiance » (légitimes). Build 125 paires. Fichier :
   content/nouveautes.json.
 
+• MÉMORISEUR : SÉLECTION PROPAGÉE + CATÉGORIE SUPPRIMÉE ; CARNET :
+  DRAG/RESIZE DURCIS (2026-07-07, trois demandes d'Emmanuel).
+  (1) memoriser.html : « Tout sélectionner/désélectionner » ne
+  touchait que S.selCats, pas S.offV (versets décochés un à un) →
+  toggleSelectAll propage désormais : tout sélectionner = selCats
+  pleins + offV={} ; tout désélectionner = selCats=[] + offV=TOUS
+  les versets. Et au recochage d'une catégorie individuelle
+  ENTIÈREMENT vidée (cas post tout-désélectionner), ses versets sont
+  restaurés ; un réglage fin partiel (quelques versets décochés) est
+  CONSERVÉ. Banc /tmp/test_selall.js TOUT VERT (4 cas).
+  (2) content/memoriser.json : catégorie id « nations » (« Les
+  oracles contre les nations », 28 versets) SUPPRIMÉE : 22→21
+  catégories, 429→401 versets. PRE construit vérifié : 21, nations
+  absent, « source fichier ». ATTENTION PROD : le build lit en
+  PRIORITÉ fsLireDoc('config/memoriser') (doc Firestore alimenté par
+  l'admin) : si ce doc existe en ligne, il PRIME sur le fichier → si
+  la catégorie réapparaît après déploiement (log Netlify « source en
+  ligne »), la supprimer via l'admin. L'occurrence restante « Les
+  oracles contre les nations » dans la page = entrée NOUVEAUTÉS de
+  l'ARTICLE Isaïe du même nom (légitime).
+  (3) build-bi.js (CARNET_JS) : le drag d'image et la poignée de
+  resize écoutaient pointermove/up SUR L'ÉLÉMENT (img/poignée) en
+  dépendant de setPointerCapture : si la capture manque/lâche, le
+  geste décroche dès que le curseur sort de l'élément (= « bien dans
+  les coins mais ça marche mal »). → Écouteurs déplacés au niveau
+  DOCUMENT (fiables partout), capture gardée en renfort,
+  ev.preventDefault() dans mv, top en % converti comme left, et le
+  RESIZE suit désormais l'AXE DOMINANT (|dx|>=|dy| ? dx : dy) :
+  tirer vers le bas agrandit aussi. Poignée agrandie 14→22px
+  (tactile). Vérifié FR+EN. Build 125 paires. Fichiers :
+  memoriser.html, content/memoriser.json, build-bi.js.
+
+• CARNET — QUATRE RETOUCHES DE BARRE (2026-07-07, demandées par
+  Emmanuel). (1) Boutons « Titre » (h3) et « Liste » (ul) SUPPRIMÉS
+  de la barre (le handler générique data-cmd reste, branches mortes
+  inoffensives). (2) TAILLE DE POLICE EN NOMBRES : select 12→48 px
+  (12,13,14,15,16,17,18,20,22,24,28,32,36,42,48), placeholder
+  « Taille » en disabled selected hidden (affiché comme étiquette,
+  jamais proposé dans la liste) ; mécanisme : execCommand
+  fontSize=7 puis conversion des font[size=7] en span
+  style=font-size:Npx (hack standard, les 1-7 natifs ne donnent pas
+  de px). selCmd('c-tai') retiré. (3) PLEIN ÉCRAN SANS MESSAGE : le
+  bandeau « Échap pour quitter » était le TOAST NATIF du navigateur
+  (inévitable avec requestFullscreen) → le bouton ⛶ bascule
+  désormais UNIQUEMENT le mode .c-pfs (fixed inset:0, fenêtre
+  remplie, zéro message) ; Échap géré par NOUS (keydown → quittePfs)
+  ; quittePfs retire aussi sans-barre et remet le texte de #c-fsbar
+  (l'ancien reset au fullscreenchange, supprimé, faisait ce ménage) ;
+  les deux listeners fullscreenchange morts retirés. #c-fsbar est
+  enfant direct de #c-zone (hors barre), visible seulement en c-pfs :
+  pas de piège d'accessibilité barre masquée. (4) SÉLECTEUR DE FOND :
+  l'option placeholder « Fond »/« Page » apparaissait dans la liste →
+  SUPPRIMÉE ; le select ne propose que Page noire / Page blanche,
+  reflète l'état réel de la page (montrePage pose sb.value n/b) et ne
+  se reset plus après choix. Vérifié FR+EN (Titre/Liste absents,
+  nombres présents, requestFullscreen absent, quittePfs+Escape,
+  valeur fond posée). Build 125 paires. Fichier : build-bi.js.
+
 ════════════════════════════════════════════════════════════════════
 FIN DU FICHIER DE REPRISE
 ════════════════════════════════════════════════════════════════════
