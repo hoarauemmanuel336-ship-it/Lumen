@@ -1,6 +1,13 @@
 /* Traductions anglaises : correspondances de slugs, thèmes, interface, articles. */
 
 const SLUGS = {
+  'la-rancune-et-le-pardon':'resentment-and-forgiveness',
+  'le-jugement-du-prochain':'judging-ones-neighbour',
+  'ezechiel-le-nouveau-temple-et-le-fleuve':'the-new-temple-and-the-river-of-life',
+  'ezechiel-la-restauration-d-israel':'the-restoration-of-israel',
+  'ezechiel-les-oracles-contre-les-nations':'the-oracles-against-the-nations-ezekiel',
+  'ezechiel-les-actions-symboliques':'the-symbolic-actions-and-the-judgment-of-jerusalem',
+  'ezechiel-le-prophete-de-l-exil':'ezekiel-the-prophet-of-the-exile',
   'la-colere-et-la-douceur':'anger-and-meekness',
   'l-amour':'love',
   'le-desir-de-sentir-l-esprit':'the-desire-to-feel-the-spirit',

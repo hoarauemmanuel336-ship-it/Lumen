@@ -325,6 +325,9 @@ const BARRE_CSS = `
 header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(231,224,207,.14)}
 .barre{max-width:1080px;margin:0 auto;padding:20px 32px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:24px;height:auto}
 .barre .logo{grid-column:1;grid-row:1;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px;letter-spacing:.34em;text-transform:uppercase;color:var(--parchemin,#ffffff);padding-left:.34em;border-bottom:none;text-decoration:none}
+.logo-h1{display:contents}
+a:focus-visible,button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible,summary:focus-visible{outline:1px solid var(--or,#efe6cf);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}
 .burger{display:none;background:none;border:none;padding:0;margin:0;color:var(--parchemin,#ffffff);font-size:24px;cursor:pointer;line-height:1;-webkit-appearance:none;appearance:none}
 nav.menu{display:flex;gap:30px;grid-column:3;grid-row:1;justify-self:end;align-items:center;margin-left:0}
 nav.menu a{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:var(--parchemin,#ffffff);padding:0 0 3px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;text-decoration:none;position:static}
@@ -385,7 +388,7 @@ function barreCanon(o) {
     : `<span class="rech-loupe auth-icone" id="${o.compte.id}" role="button" tabindex="0" aria-label="${o.compte.label}">${SVG_COMPTE}${lab(o.compte.label)}</span>`;
   return `<header>
   <div class="barre">
-    <a href="${o.home}" class="logo"${o.logoId ? ` id="${o.logoId}"` : ''}>Lumen</a>
+    ${o.h1 ? '<h1 class="logo-h1">' : ''}<a href="${o.home}" class="logo"${o.logoId ? ` id="${o.logoId}"` : ''}>Lumen</a>${o.h1 ? '</h1>' : ''}
     <button class="burger" id="${o.burgerId}" aria-label="Menu">\u2630</button>
     <nav class="menu" id="${o.menuId}">
       ${liens}
@@ -519,7 +522,7 @@ function header(lang, type, base, otherRel, ctx) {
   const cl = t => type === t ? ' class="actif"' : '';
   const lib = lang === 'fr' ? 'bibliotheque/' : 'library/';
   return `${barreCanon({
-    home, logoId: null, burgerId: 'burger', menuId: 'menu',
+    home, logoId: null, h1: type === 'home', burgerId: 'burger', menuId: 'menu',
     liens: [
       { href: home, actif: type === 'home', label: u.menu_home },
       { href: base + lib, actif: type === 'library', label: u.menu_library },
@@ -1358,9 +1361,13 @@ const RECH_JS = `(function(){
     return {lab:lab,href:B.base+'#'+hash};
   }
   function brefItem(q){
-    var br=brefParse(q);
-    if(!br)return '';
-    return '<a class="rech-item" href="'+br.href+'"><div class="rech-meta">Bible</div><div class="rech-titre">'+br.lab+'</div><div class="rech-extrait">'+(L.lang==='en'?'Open in the Bible':'Ouvrir dans la Bible')+'</div></a>';
+    var parts=String(q||'').split(/\\s*;\\s*|,(?=\\s*[1-4]?\\s*[a-zA-Z\\u00c0-\\u024f])/).map(function(x){return x.trim();}).filter(Boolean);
+    var out='';
+    parts.forEach(function(p){
+      var br=brefParse(p);
+      if(br)out+='<a class="rech-item" href="'+br.href+'"><div class="rech-meta">Bible</div><div class="rech-titre">'+br.lab+'</div><div class="rech-extrait">'+(L.lang==='en'?'Open in the Bible':'Ouvrir dans la Bible')+'</div></a>';
+    });
+    return out;
   }
   function surligne(texte,termes){
     var nt=norm(texte),marks=[];
@@ -1507,7 +1514,7 @@ function mainCarnet(lang) {
 #c-liste .cdoc:hover .cdoc-t{color:var(--or-pale)}
 #c-liste .cdoc-t{flex:1;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--parchemin);transition:color .3s}
 #c-liste .cdoc-d{font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.06em}
-#c-nouveau{display:block;width:max-content;margin:6px auto 18px;cursor:pointer}
+#c-nouveau{display:block;width:max-content;margin:24px auto 26px;cursor:pointer}
 #c-msg{color:rgba(255,255,255,.55);padding:26px 0}
 #c-edit{display:none}
 #c-edit .ce-haut{display:flex;align-items:center;gap:18px;margin:26px auto 14px;max-width:760px;flex-wrap:wrap}
@@ -1532,7 +1539,7 @@ function mainCarnet(lang) {
 .ce-sep{width:1px;height:20px;background:var(--filet);margin:0 4px}
 .c-viv{width:14px;height:14px;border-radius:50%;cursor:pointer;border:1px solid rgba(255,255,255,.3);transition:transform .15s}
 .c-viv:hover{transform:scale(1.25);border-color:#fff}
-#c-page-wrap{display:flex;justify-content:center;background:transparent;margin-top:0}
+#c-page-wrap{display:flex;justify-content:center;background:transparent;margin-top:0;position:relative}
 #c-zone:fullscreen #c-feuille,#c-zone.c-pfs #c-feuille{width:min(100%,calc((100vh - 120px) / 1.414))}
 #c-zone:fullscreen .ce-barre,#c-zone.c-pfs .ce-barre{width:min(100%,calc((100vh - 120px) / 1.414));max-width:none;margin:8px auto}
 #c-feuille{position:relative;z-index:0;width:100%;max-width:760px;aspect-ratio:1/1.414;border:1px solid var(--filet);padding:54px 58px;color:var(--parchemin);font-size:17px;line-height:1.5;outline:none;background-color:#000000;overflow:hidden;overflow-wrap:break-word}
@@ -1549,7 +1556,7 @@ function mainCarnet(lang) {
 #c-outils-img input{accent-color:#cbb87e;width:90px}
 #c-outils-img .coi-x{cursor:pointer;color:#b46a6a;font-size:15px;padding:0 4px}
 #c-outils-img .coi-x:hover{color:#d98f8f}
-#c-poignee{display:none;position:absolute;z-index:8;width:14px;height:14px;border-right:2px solid var(--or);border-bottom:2px solid var(--or);cursor:nwse-resize}
+#c-poignee{display:none;position:absolute;z-index:8;width:20px;height:20px;border-right:3px solid var(--or);border-bottom:3px solid var(--or);cursor:nwse-resize}
 .ce-aide{font-size:12px;color:rgba(255,255,255,.45);margin:12px 2px 0;line-height:1.6}
 #c-suppr{color:#b46a6a}
 #c-suppr:hover{color:#d98f8f;border-color:rgba(217,143,143,.4)}
@@ -1662,9 +1669,9 @@ select.ce-sel{background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid va
     </div>
     <div id="c-page-wrap">
       <div id="c-feuille" contenteditable="true" spellcheck="true"></div>
+      <div id="c-outils-img"><span class="coi-x" id="coi-x" title="${T.suppr}">\u2715</span><input type="range" id="coi-op" min="10" max="100" step="5"></div>
+      <div id="c-poignee"></div>
     </div>
-    <div id="c-outils-img"><span class="coi-x" id="coi-x" title="${T.suppr}">\u2715</span><input type="range" id="coi-op" min="10" max="100" step="5"></div>
-    <div id="c-poignee"></div>
     </div>
     <p class="ce-aide">${T.aide}</p>
     <input type="file" id="c-file-img" accept="image/*" style="display:none">
@@ -1964,14 +1971,19 @@ const CARNET_JS = function(lang){
   }
   function placeOutils(){
     if(!IMG)return;
-    var ir=IMG.getBoundingClientRect();
-    var host=document.getElementById('c-zone').getBoundingClientRect();
+    /* offsets natifs : IMG est absolue dans la feuille (son offsetParent),
+       la feuille est enfant du page-wrap (referentiel des controles).
+       Aucun getBoundingClientRect : insensible au defilement, au centrage
+       et au mode plein ecran. */
+    var fx=feuille.offsetLeft, fy=feuille.offsetTop;
+    var ix=fx+IMG.offsetLeft, iy=fy+IMG.offsetTop;
+    var iw=IMG.offsetWidth, ih=IMG.offsetHeight;
     outils.style.display='flex';
-    outils.style.left=(ir.left-host.left)+'px';
-    outils.style.top=(ir.top-host.top-40)+'px';
+    outils.style.left=Math.max(0,ix)+'px';
+    outils.style.top=Math.max(4,iy-40)+'px';
     poignee.style.display='block';
-    poignee.style.left=(ir.right-host.left-16)+'px';
-    poignee.style.top=(ir.bottom-host.top-16)+'px';
+    poignee.style.left=(ix+iw-12)+'px';
+    poignee.style.top=(iy+ih-12)+'px';
   }
   function imgSel(im){
     imgDesel();
@@ -2207,15 +2219,6 @@ function mainAccueil(lang, base) {
         <p class="memo-note" id="lect-note">${u.lect_signedout}</p>
       </div>
       <a class="memo-start" id="lect-start" href="${lang === 'fr' ? '/bibliotheque/' : '/en/library/'}" data-lv-txt="lect_start">${u.lect_start}</a>
-    </div>
-    <div class="titre-section">
-      <span class="num" data-lv-txt="carnet_label">${u.carnet_label}</span>
-      <h2 data-lv-txt="carnet_title">${u.carnet_title}</h2>
-      <span class="trait"></span>
-    </div>
-    <div class="memo-bloc">
-      <p style="font-size:16px;color:var(--parchemin-att);font-style:italic;margin:0;text-align:center;max-width:520px;line-height:1.7" data-lv-txt="carnet_sub">${u.carnet_sub}</p>
-      <a class="memo-start" href="${lang === 'fr' ? '/carnet/' : '/en/notebook/'}" data-lv-txt="carnet_open">${u.carnet_open}</a>
     </div>
     <div style="height:60px"></div>
   </div>`;

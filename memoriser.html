@@ -126,6 +126,8 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 #lect-gestion .lg-sous .cat-row{padding:12px 2px}
 .cat.sel .cat-check{border-color:var(--or)}
 .cat.sel .cat-check::after{opacity:1}
+.cat.part .cat-check{border-color:var(--or)}
+.cat.part .cat-check::after{opacity:1;inset:7px 3px}
 .cat-name{flex:1;font-family:var(--display);font-size:20px;color:var(--parchemin);transition:color .3s}
 .cat-row:hover .cat-name{color:var(--or-pale)}
 .cat-dist{display:flex;width:64px;height:3px;flex-shrink:0;overflow:hidden}
@@ -1372,7 +1374,8 @@ function effectiveCats(){
   return [...base,...S.customCats.map(c=>({...c,base:false}))];
 }
 const allCats=effectiveCats;
-function allItems(){const out=[];effectiveCats().filter(c=>S.soloCat?c.id===S.soloCat:S.selCats.includes(c.id)).forEach(c=>c.verses.forEach(v=>{if(!S.offV[v.id])out.push({...v,catId:c.id});}));return out;}
+function allItems(){const out=[];effectiveCats().filter(c=>S.soloCat?c.id===S.soloCat:true).forEach(c=>c.verses.forEach(v=>{if(!S.offV[v.id])out.push({...v,catId:c.id});}));return out;}
+function syncSelCats(){S.selCats=effectiveCats().filter(c=>c.verses.length&&c.verses.every(v=>!S.offV[v.id])).map(c=>c.id);}
 // clone profond de la version effective d'une catégorie de base, pour la rendre éditable
 function baseClone(catId){const e=effectiveCats().find(c=>c.id===catId);return{name:JSON.parse(JSON.stringify(e.name)),verses:JSON.parse(JSON.stringify(e.verses))};}
 function editBase(catId,fn){const c=S.baseEdits[catId]||baseClone(catId);fn(c);S.baseEdits[catId]=c;saveBaseEdits();}
@@ -1453,12 +1456,14 @@ async function loadUser(){
     S.customCats=snap.docs.map(d=>({id:d.id,...d.data()}));
     S.baseEdits=base.exists?(base.data().cats||{}):{};
     S.trash=trash.exists?(trash.data().items||[]):[];
-    if(prefs.exists){S.selCats=prefs.data().selCats||[];S.mode=prefs.data().mode||0;S.offV={};(prefs.data().offV||[]).forEach(id=>S.offV[id]=1);}
+    if(prefs.exists){S.selCats=prefs.data().selCats||[];S.mode=prefs.data().mode||0;S.offV={};(prefs.data().offV||[]).forEach(id=>S.offV[id]=1);
+      effectiveCats().forEach(c=>{if(c.verses.length&&!S.selCats.includes(c.id)&&c.verses.every(v=>!S.offV[v.id])){c.verses.forEach(v=>S.offV[v.id]=1);}});
+      syncSelCats();}
     else{S.selCats=PRE.map(c=>c.id);}
   }catch(e){console.error(e);}
 }
 function saveProgress(){udoc('meta/progress').set({items:S.progress,step:S.step});}
-function savePrefs(){udoc('meta/prefs').set({selCats:S.selCats,mode:S.mode,offV:Object.keys(S.offV)});}
+function savePrefs(){syncSelCats();udoc('meta/prefs').set({selCats:S.selCats,mode:S.mode,offV:Object.keys(S.offV)});}
 function saveCat(c){return ucol('categories').doc(c.id).set({name:c.name,verses:c.verses});}
 function saveBaseEdits(){udoc('meta/baseEdits').set({cats:S.baseEdits});}
 function saveTrash(){udoc('meta/trash').set({items:S.trash});}
@@ -1470,7 +1475,9 @@ function renderCats(){
   const _allc=allCats();
   (S.showAllCats?_allc:_allc.slice(0,CATLIM)).forEach(cat=>{
     const custom=!!S.customCats.find(c=>c.id===cat.id);
-    const sel=S.selCats.includes(cat.id);
+    const _act=cat.verses.filter(vv=>!S.offV[vv.id]).length;
+    const sel=cat.verses.length&&_act===cat.verses.length;
+    const part=!sel&&_act>0;
     const open=!!S.open[cat.id];
     // distribution
     const actifs=cat.verses.filter(vv=>!S.offV[vv.id]);
@@ -1482,7 +1489,7 @@ function renderCats(){
     const pct=actifs.length?Math.round(boxsum/(5*actifs.length)*100):0;
     const pctTxt=S.lang==='fr'?pct+'\u00a0%':pct+'%';
     const div=document.createElement('div');
-    div.className='cat'+(sel?' sel':'')+(open?' open':'');
+    div.className='cat'+(sel?' sel':part?' part':'')+(open?' open':'');
     div.dataset.id=cat.id;
     let body='<div class="cat-body">';
     cat.verses.forEach(vv=>{
@@ -1500,13 +1507,13 @@ function renderCats(){
     div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp">'+cat.name[S.lang]+'</span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-mark"><span class="dot r" data-all="r"></span><span class="dot a" data-all="a"></span><span class="dot v" data-all="v"></span></span><span class="cat-go" data-act="solo" title="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'" aria-label="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
     host.appendChild(div);
   });
-  const _cs=effectiveCats(),_all=_cs.length&&_cs.every(c=>S.selCats.includes(c.id));$('sel-all').textContent=_all?t('deselect_all'):t('select_all');
+  const _cs=effectiveCats(),_all=_cs.length&&_cs.every(c=>c.verses.every(v=>!S.offV[v.id]));$('sel-all').textContent=_all?t('deselect_all'):t('select_all');
   const _more=$('cat-more'); if(_allc.length>CATLIM){_more.style.display='';_more.textContent=S.showAllCats?t('show_less'):t('show_all')+' ('+_allc.length+')';}else{_more.style.display='none';}
   renderTrash();
   updateStart();
 }
-function updateStart(){$('start-btn').disabled=!(S.selCats.length&&allItems().length>=2);}
-function toggleSelectAll(){const cs=effectiveCats();const allSel=cs.length&&cs.every(c=>S.selCats.includes(c.id));
+function updateStart(){$('start-btn').disabled=!(allItems().length>=2);}
+function toggleSelectAll(){const cs=effectiveCats();const allSel=cs.length&&cs.every(c=>c.verses.every(v=>!S.offV[v.id]));
   if(allSel){S.selCats=[];S.offV={};cs.forEach(c=>c.verses.forEach(v=>S.offV[v.id]=1));}
   else{S.selCats=cs.map(c=>c.id);S.offV={};}
   savePrefs();renderCats();}
@@ -1549,7 +1556,7 @@ function showView(v){
   $('summary').style.display=v==='summary'?'block':'none';
 }
 function startSession(){
-  if(!S.soloCat && !S.selCats.length){alert(t('empty_sel'));return;}
+  if(!S.soloCat && !allItems().length){alert(t('empty_sel'));return;}
   if(allItems().length<2){alert(t('not_enough'));return;}
   S.answered=0; S.correct=0; S.lastId=null;
   showView('study'); nextQuestion();
@@ -1856,7 +1863,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   // marquage global : toutes les catégories sélectionnées
   document.querySelector('.markglobal').addEventListener('click',e=>{
     const d=e.target.closest('[data-gall]'), rb=e.target.closest('#bulk-restore');
-    const sel=effectiveCats().filter(c=>S.selCats.includes(c.id));
+    const sel=effectiveCats();
     if(d){
       if(!sel.length)return;
       if(!confirm(t('bulk_mark_q').replace('%n%',sel.length)))return;
@@ -1903,11 +1910,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(restorec){restoreCatBase(id);return;}
     if(act&&act.dataset.act==='solo'){S.soloCat=id;startSession();return;}
     if(act&&act.dataset.act==='sel'){
-      if(S.selCats.includes(id)){S.selCats=S.selCats.filter(x=>x!==id);}
-      else{
-        S.selCats.push(id);
-        const c=effectiveCats().find(x=>x.id===id);
-        if(c&&c.verses.length&&c.verses.every(v=>S.offV[v.id])){c.verses.forEach(v=>{delete S.offV[v.id];});}
+      const c=effectiveCats().find(x=>x.id===id);
+      if(c&&c.verses.length){
+        const allOn=c.verses.every(v=>!S.offV[v.id]);
+        if(allOn){c.verses.forEach(v=>S.offV[v.id]=1);}
+        else{c.verses.forEach(v=>{delete S.offV[v.id];});}
       }
       savePrefs();renderCats();return;}
     if(act){S.open[id]=!S.open[id];catEl.classList.toggle('open');return;}
@@ -1929,7 +1936,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 // ════════ OBSERVATEUR AUTH ════════
-function demarrerAuto(){try{if(/[?&]demarrer=1/.test(location.search)){try{sessionStorage.setItem('lm_dem','1')}catch(_){}history.replaceState(null,'','/memoriser.html');}var go=false;try{go=sessionStorage.getItem('lm_dem')==='1';if(go)sessionStorage.removeItem('lm_dem');}catch(_){}if(!go)return;if(!S.selCats.length)S.selCats=PRE.map(function(c){return c.id;});if(allItems().length>=2){S.soloCat=null;startSession();return true;}}catch(e){}return false;}
+function demarrerAuto(){try{if(/[?&]demarrer=1/.test(location.search)){try{sessionStorage.setItem('lm_dem','1')}catch(_){}history.replaceState(null,'','/memoriser.html');}var go=false;try{go=sessionStorage.getItem('lm_dem')==='1';if(go)sessionStorage.removeItem('lm_dem');}catch(_){}if(!go)return;if(!allItems().length){S.offV={};S.selCats=PRE.map(function(c){return c.id;});}if(allItems().length>=2){S.soloCat=null;startSession();return true;}}catch(e){}return false;}
 async function chargerBaseLV(){try{const s=await db.doc('config/memoriser').get();if(s.exists){const c=s.data().categories;if(Array.isArray(c)&&c.length){PRE.length=0;c.forEach(x=>PRE.push(x));}}}catch(e){}}
 if('serviceWorker' in navigator){try{navigator.serviceWorker.register('/memoriser-sw.js',{updateViaCache:'none'});}catch(_){}}
 auth.onAuthStateChanged(async u=>{

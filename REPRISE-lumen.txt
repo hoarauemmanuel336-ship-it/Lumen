@@ -201,6 +201,11 @@ AFFIRMATIF, PRÉCIS, SANS EFFETS.
   terre étrangère », « tout bascule », « ce passage trouble »...).
 • Aucune phrase d'échafaudage ou d'annonce (« le geste lui-même porte le
   sens », « ce qui s'accomplit ici ») : dire la chose.
+• Aucune méta qui désigne l'article lui-même (« cet article sépare »,
+  « nous verrons ») : le texte ne se commente pas, il énonce.
+• Aucun préambule qui annonce un verset ou sa qualité avant de le citer
+  (« la parole du Christ est nette : », « le texte dit clairement ») :
+  entrer directement dans le verset.
 • Mots précis, sans ambiguïté (« ne détruit pas ce qu'elle saisit » :
   « saisit » est ambigu, choisir le terme exact).
 • Syntaxe des énumérations soignée (« qui suis-je... ET ils ne me croiront
@@ -292,8 +297,9 @@ ne se rapièce pas.
   Quand une catégorie se crée : versets cités par l'article ET versets du
   même sujet hors article, tous vérifiés sur content/bible.json, EN en
   traduction propre, unités scripturaires complètes (jamais de verset
-  coupé), pas de doublon inter-catégories (un verset = une seule
-  catégorie, la plus juste).
+  coupé). Un même verset PEUT figurer dans plusieurs catégories quand
+  chacune l'éclaire sous un angle propre (id distinct par catégorie,
+  ex. 1co-4-5 / 1co-4-5-jug ; texte possiblement adapté au contexte).
 • Le journal des Nouveautés annonce les VRAIES nouveautés (articles,
   outils), jamais les reprises ou approfondissements.
 • Pas de liens hypertexte dans les articles SAUF décision explicite
@@ -2261,6 +2267,527 @@ RAPPELS TECHNIQUES DURABLES (acquis, à ne pas réapprendre)
   se reset plus après choix. Vérifié FR+EN (Titre/Liste absents,
   nombres présents, requestFullscreen absent, quittePfs+Escape,
   valeur fond posée). Build 125 paires. Fichier : build-bi.js.
+
+• CARNET — PLACEMENT DES CONTRÔLES D'IMAGE REFONDU EN OFFSETS
+  (2026-07-07, « un des trucs pour redimensionner est mal placé, et
+  ça ne fonctionne toujours pas correctement »). Cause de classe :
+  placeOutils positionnait panneau (#c-outils-img) et poignée
+  (#c-poignee) via getBoundingClientRect (écran) relatif à #c-zone,
+  fragile par nature (barre au-dessus, centrage de la feuille, mode
+  .c-pfs fixed avec overflow:auto interne, moment du calcul) ; le
+  panneau à ir.top−40 pouvait notamment RECOUVRIR la barre (z-index 8
+  > 5) pour une image en haut de page (fond pleine page). REFONTE :
+  les deux contrôles DÉMÉNAGENT dans #c-page-wrap (parent direct de
+  la feuille, désormais position:relative) et placeOutils n'utilise
+  QUE les offsets natifs : ix=feuille.offsetLeft+IMG.offsetLeft (IMG
+  absolue dans la feuille → offsetParent=feuille ; feuille →
+  offsetParent=page-wrap), iy idem ; panneau à max(4, iy−40) (borné :
+  ne recouvre plus jamais la barre, qui est HORS page-wrap) ; poignée
+  à (ix+iw−12, iy+ih−12), agrandie 14→20px bordure 3px (doigt).
+  Insensible au défilement, au centrage et au plein écran. Zéro
+  rectangle écran dans placeOutils (le mot dans le commentaire du
+  code a piégé mon premier contrôle grep : compter le CODE, pas les
+  commentaires). Les gestes (document-level + axe dominant) du tour
+  précédent inchangés. Vérifié FR+EN. Build 125 paires. Fichier :
+  build-bi.js.
+
+• SÉRIE ÉZÉCHIEL — CATÉGORIE CRÉÉE, ARTICLE 1/5 (2026-07-07,
+  d'après diagramme uploadé ezechiel-diagramme.html). Plan 5 articles
+  pour 48 ch. : (1) Ézéchiel prophète de l'exil (ch. 1-3) ; (2)
+  actions symboliques + jugement de Jérusalem (4-24) ; (3) oracles
+  contre les nations (25-32) ; (4) restauration d'Israël (33-39:
+  berger, cœur nouveau, ossements, Gog) ; (5) nouveau Temple + fleuve
+  (40-48). LECTURE CATHOLIQUE du diagramme (section 10) NON traitée à
+  part : dissoute dans les articles 1/4/5 (quatre vivants→évangélistes
+  en art.1 ; berger→bon Pasteur, cœur→baptême/Esprit, ossements→
+  résurrection en art.4 ; fleuve→côté du Christ, ville→Emmanuel/
+  Jérusalem céleste en art.5). ARTICLE 1 écrit FR+EN (5 sections :
+  prêtre déporté au Kébar, vision du char, quatre vivants +
+  Apocalypse 4:7 + 4 évangélistes, rouleau mangé, sentinelle). Refs
+  Ézéchiel 1:1/1:28/1:10/3:3/3:17 + Apocalypse 4:7 vérifiées FR+EN.
+  Nombreux passages retravaillés avec Emmanuel : « esprit de l'être
+  vivant » = rouah/souffle, PAS l'Esprit Saint (préciser qu'il est
+  dans les vivants) ; rouleau doux = douceur de communier à la
+  volonté de Dieu, non du contenu ; sentinelle « se tait » = n'avertit
+  pas (Ez 3:18) ; pas de mise en scène, pas de négation ; feu « avec
+  un éclat tout autour » (ne pas inventer « lumière »). QUATRE GESTES
+  faits, mais PIÈGE : mapping SLUGS de data-en.js = « const SLUGS = {»
+  (avec espaces), pas « const SLUGS={ » ; et un assert planté groupe
+  tout le bloc python → geste nouveautes.json d'abord oublié, ajouté
+  ensuite (toujours SÉPARER les 4 gestes en blocs indépendants).
+  Catégorie « Le livre d'Ézéchiel »/« The Book of Ezekiel » insérée
+  après Isaïe (ordre canonique). Build 126 paires, harnais article
+  OK. Fichiers : content/articles.json, data-en.js,
+  content/themes.json, content/nouveautes.json.
+
+• SÉRIE ÉZÉCHIEL — ARTICLE 2/5 (2026-07-07). « Les actions
+  symboliques et le jugement de Jérusalem » (slug ezechiel-les-
+  actions-symboliques / the-symbolic-actions-and-the-judgment-of-
+  jerusalem), ch. 4-24. 4 sections : (1) actions symboliques — brique/
+  siège Ez 4:1, cheveux en 3 sorts Ez 5:1 (tiers peste-famine, tiers
+  épée, tiers dispersé à tout vent chassé parmi les nations), départ
+  des exilés Ez 12:6 ; CADRAGE ajouté en tête à la demande d'Emmanuel
+  (ambiguïté des 2 déportations) : « Ézéchiel prophétise depuis
+  Babylone, déporté en 597 ; Jérusalem tient encore ; ruine annoncée
+  10 ans avant » — lève la confusion 597 (1re, celle d'Ézéchiel) /
+  587 (chute du Temple). (2) abominations du Temple Ez 8:6. (3) départ
+  de la gloire Ez 11:23 — par étapes = patience de Dieu (s'éloigne à
+  regret, porte ouverte au retour) ; ACCOMPLISSEMENT dissous ici :
+  gloire partie vers l'orient/porte orientale → Christ entre par
+  l'orient au mont des Oliviers + Ascension, présence ramenée. (4)
+  mort de la femme sans deuil Ez 24:16 : femme = figure du Temple
+  Ez 24:21 (« les délices de vos yeux »), deuil impossible = peuple
+  muet devant la ruine. Corrections de style d'Emmanuel : « y grave »→
+  « y dessine », pas de négation (« ne se contente pas »→« devient
+  lui-même la parole » ; « Dieu ne détruit pas, il quitte » retiré),
+  pas de mise en scène (« l'événement le plus grave » retiré),
+  « chasse Dieu de chez lui »→« Dieu ne peut demeurer là où… », « au
+  vent des nations » ambigu →« à tout vent, chassé parmi les nations ».
+  Refs Ez 4:1/5:1/12:6/8:6/11:23/24:16/24:21 vérifiées FR+EN. QUATRE
+  GESTES en blocs SÉPARÉS. PIÈGE MAJEUR rencontré : la catégorie
+  « livre-ezechiel » créée à l'article 1 avait DISPARU de themes.json
+  (id non conforme au motif du fichier — les autres livres ont des
+  ids courts : isaie, joel… ; probable écrasement) → recréée avec id
+  « ezechiel » (motif conforme), après Isaïe, contenant LES DEUX
+  articles. LEÇON : après un build, RE-VÉRIFIER que la catégorie
+  d'une nouvelle série est toujours dans themes.json ; utiliser un id
+  court conforme aux existants. Build 127 paires, harnais OK. Fichiers :
+  content/articles.json, data-en.js, content/themes.json,
+  content/nouveautes.json.
+
+• ÉZÉCHIEL ART. 2 — RETOUCHE « profaner » FR+EN (2026-07-07). Dans
+  la section « mort sans deuil », « le Temple… que Dieu va profaner »
+  suggérait un sacrilège direct de Dieu. Précisé : « que Dieu va
+  livrer à la profanation en se retirant » (Ez 24:21 met le verbe à
+  la 1re personne car le prophète attribue à Dieu ce qu'il permet en
+  se retirant ; ce sont les païens qui souillent, Dieu abandonne).
+  Fichier : content/articles.json.
+
+• SÉRIE ÉZÉCHIEL — ARTICLE 3/5 (2026-07-07). « Les oracles contre
+  les nations » (slug ezechiel-les-oracles-contre-les-nations), ch.
+  25-32. 4 sections : (1) jugement des 4 voisins du ch.25 (Ammon,
+  Moab, Édom, Philistins) — recueil GROUPÉ PAR THÈME NON PAR DATE
+  (dates internes 10e-27e année, avant ET après la chute) ; Ammon se
+  réjouit de la ruine ACCOMPLIE (587). (2) Tyr cité marchande,
+  accomplissement précis : siège de Nabuchodonosor 13 ans sans butin
+  (ville insulaire résiste) → Dieu lui donne l'Égypte en salaire
+  (Ez 29:18-19) ; rasée par Alexandre en 332. (3) roi de Tyr Ez 28:2
+  + être d'Éden Ez 28:15 → SATAN nommé explicitement (Emmanuel a
+  refusé le vague « l'ange déchu »/« un être parfait »), image de la
+  chute de l'orgueil. (4) Sidon (peste/épée, PAS d'accomplissement
+  historique précis → ne rien inventer) + Égypte longuement (Pharaon
+  grand crocodile Ez 29:3, cèdre abattu, lamentation au séjour des
+  morts ; accomplissement : Nabuchodonosor ravage l'Égypte, puissance
+  brisée). PAS de conclusion finale (Emmanuel), pas de négation, pas
+  de mise en scène. CONTEXTE HISTORIQUE ÉTOFFÉ RÉTROACTIVEMENT dans
+  ART.1 à la demande d'Emmanuel (les 2 déportations n'étaient pas
+  claires) : 597 Nabuchodonosor prend la ville, déporte Joakin + cour
+  + Ézéchiel, laisse le Temple debout, met Sédécias roi vassal ; 587
+  révolte de Sédécias → 2e siège, ville prise, Temple brûlé,
+  déportation massive ; Ézéchiel prophétise entre les deux. PIÈGE
+  COLLISION SLUG EN : « the-oracles-against-the-nations » existait
+  DÉJÀ pour l'article ISAÏE du même titre → 2 pages EN au même chemin.
+  Résolu : slug EN Ézéchiel = « the-oracles-against-the-nations-
+  ezekiel ». Nouveauté FR/EN suffixée « (Ézéchiel) » pour distinguer
+  d'Isaïe. LEÇON : avant d'ajouter un mapping data-en.js, vérifier
+  que le slug EN n'est pas déjà pris (grep). Refs Ez 25:3/28:2/28:15/
+  29:3 vérifiées FR+EN. 4 gestes séparés. Build 128 paires, harnais
+  OK. Fichiers : content/articles.json (art.3 + art.1 étoffé),
+  data-en.js, content/themes.json, content/nouveautes.json.
+
+• SÉRIE ÉZÉCHIEL — ARTICLE 4/5 (2026-07-07). « La restauration
+  d'Israël » (slug ezechiel-la-restauration-d-israel / the-
+  restoration-of-israel), ch. 33-39. 5 sections, cœur de l'espérance
+  du livre, 3 accomplissements christologiques dissous : (1) berger —
+  mauvais bergers Ez 34:2, Dieu berger Ez 34:11, David = descendant
+  Ez 34:23 → le Christ bon BERGER, citation Jean 10:11 rendue avec
+  « berger » (pas « pasteur ») pour cohérence, à la demande d'Emmanuel.
+  (2) cœur nouveau Ez 36:26 + Esprit Ez 36:27 → accompli dans le
+  BAPTÊME (eau lave le péché + don de l'Esprit). (3) ossements
+  desséchés Ez 37:3, sens 1er = retour d'exil Ez 37:12, puis
+  RÉSURRECTION DE LA CHAIR (formule de foi demandée par Emmanuel ;
+  Christ ressuscite le premier). (4) deux bois Juda/Joseph = 2
+  royaumes (Sud/Nord) réunis Ez 37:22, alliance Ez 37:27 → l'Église.
+  (5) Gog/Magog Ez 38:8 = prophétie ESCHATOLOGIQUE (pas d'accompli
+  historique), ancrée dans Apocalypse 20:8 (dernier assaut de Satan,
+  fin des temps). « septentrion » remplacé par « nord » (accessible).
+  Refs Ez 34:2/34:11/34:23/36:26/36:27/37:3/37:12/37:22/37:27/38:8 +
+  Jean 10:11 vérifiées FR+EN. 4 gestes séparés, slug EN sans collision.
+  Build 129 paires, harnais OK. Fichiers : content/articles.json,
+  data-en.js, content/themes.json, content/nouveautes.json. RESTE :
+  article 5/5 (nouveau Temple + fleuve, ch. 40-48).
+
+• SÉRIE ÉZÉCHIEL — ARTICLE 5/5, SÉRIE COMPLÈTE (2026-07-07). « Le
+  nouveau Temple et le fleuve de vie » (slug ezechiel-le-nouveau-
+  temple-et-le-fleuve / the-new-temple-and-the-river-of-life), ch.
+  40-48. 4 sections : (1) vision du Temple parfait mesuré (cordeau de
+  lin + canne Ez 40:3) ; sens des mesures = Israël voit l'écart entre
+  la sainteté appelée et ses péchés → repentir Ez 43:10 (Emmanuel a
+  demandé d'expliquer POURQUOI les mesures font honte). (2) retour de
+  la gloire par l'orient Ez 43:2 (répond au départ de l'art.2),
+  demeure à jamais Ez 43:7. (3) fleuve du seuil du Temple Ez 47:9 →
+  eau du côté transpercé du Christ + Apocalypse 22:1 (fleuve du trône,
+  vie divine aux nations). (4) « Le Seigneur est là » : partage aux 12
+  tribus, ville carrée aux 12 portes (noms des 12 tribus), nom final
+  Ez 48:35 ; accomplissement = Christ Emmanuel puis Jérusalem céleste
+  reprise trait pour trait dans Apocalypse 21:14 (12 portes tribus +
+  12 fondements APÔTRES = Israël+Église), portes ouvertes aux nations,
+  plus de temple car Dieu en est le sanctuaire Apocalypse 21:22.
+  ÉNORME va-et-vient de style avec Emmanuel : converti coudées→mètres
+  puis mètres SEULS (pas de coudée) ; « septentrion/midi/occident »→
+  « nord/est/sud/ouest » ; nommer Satan pas « l'ange déchu » ; nommer
+  « berger » et « résurrection de la chair » ; supprimé mises en
+  scène, négations, redondances ; corrigé une CONTRADICTION que
+  j'avais introduite (portes ouvertes aux nations DANS Ézéchiel →
+  faux, ce sont les 12 tribus ; l'ouverture aux nations est
+  l'accomplissement dans l'Apocalypse). Refs Ez 43:10/43:2/43:7/47:9/
+  48:35 + Apoc 22:1/21:14/21:22 vérifiées FR+EN. 4 gestes séparés,
+  slug EN sans collision. CATÉGORIE ÉZÉCHIEL = 5 articles complets.
+  Build 130 paires, harnais OK. SÉRIE ÉZÉCHIEL TERMINÉE. Fichiers :
+  content/articles.json, data-en.js, content/themes.json,
+  content/nouveautes.json.
+
+• ÉZÉCHIEL ART. 5 — SECTION MARIALE « La porte fermée » AJOUTÉE
+  FR+EN (2026-07-07, demandée par Emmanuel). Nouvelle sous-section
+  entre « Le retour de la gloire » et « Le fleuve de vie », sur
+  Ézéchiel 44:2-3 (la porta clausa). Lecture catholique établie : LA
+  PORTE = LE SEIN DE MARIE (point clé qu'Emmanuel a dû me faire
+  corriger — je la traitais d'abord comme image extérieure). Le
+  Seigneur entré par la porte close = le Fils conçu de l'Esprit Saint,
+  entré dans le ventre de la Vierge pour y prendre chair ; porte
+  fermée à jamais = virginité (nul autre n'y entre). Verset 3 : le
+  prince assis dans la porte = le Christ enfant demeurant dans le sein
+  de sa mère. PIÈGES de raisonnement traversés : ne PAS faire du
+  prince un « autre » que celui qui est entré (le prince EST le
+  Christ, le même Seigneur) ; ne pas spéculer sur la SORTIE/naissance
+  que le texte ne porte pas (le verset parle de l'entrée) ; s'en tenir
+  à l'entrée virginale. Ez 44:2-3 vérifiés FR+EN. Build 130 paires,
+  harnais OK. Fichier : content/articles.json.
+
+• ARTICLES JOËL — CINQ CORRECTIONS FR+EN (2026-07-07, audit
+  d'Emmanuel). (1) « Le fléau et le Jour du Seigneur » : Joël 1:20
+  vouvoyait Dieu (« brament après vous ») → tutoiement « brament vers
+  toi » (convention tutoiement de Dieu). (2-5) « La conversion et
+  l'Esprit répandu » : « à l'appel à la conversion répond la pitié »
+  → « À l'homme qui revient, Dieu répond par la pitié » ; jalousie de
+  Dieu précisée = celle de l'ÉPOUX pour l'épouse, liée à l'idolâtrie
+  (peuple tourné vers les idoles) et à sa détresse ; « le salut n'est
+  plus réservé » → précisé : d'abord réservé à ISRAËL, ouvert à
+  toutes les NATIONS ; accomplissement de Joël 3:4 (soleil ténèbres,
+  lune sang) ajouté = 2 temps, ténèbres à la Croix + retour glorieux
+  (Matthieu 24:29 cité). IMPORTANT — RÈGLE RÉAFFIRMÉE : la section
+  titrée « L'accomplissement à la Pentecôte » VIOLAIT la règle « la
+  lecture catholique se dissout au fil, jamais en section/article à
+  part » → titre SUPPRIMÉ, contenu resserré (une seule citation Actes
+  2:21 au lieu du bloc Actes 2:16-17 + Romains 10:13) et fondu dans
+  la section « L'Esprit répandu sur toute chair ». Vérif : plus de
+  section Pentecôte, Actes 2:16/17 et Romains 10:13 retirés. Note :
+  la section « La moisson de la colère » (jugement/justice) ne fait
+  PAS de lien à la Croix ; Emmanuel a demandé de vérifier, laissé tel
+  quel (pas de lien christologique forcé). Refs Joël 1:20/2:18/3:4/
+  3:5 + Matthieu 24:29 + Actes 2:21 vérifiées FR+EN. Build 130 paires,
+  harnais OK. Fichier : content/articles.json.
+
+• ARTICLE « La justice » (la-justice) — SECTION « La justice et la
+  miséricorde s'embrassent » CLARIFIÉE POUR DÉBUTANT FR+EN
+  (2026-07-07, Emmanuel : ambiguë pour un débutant). L'ancienne
+  version allait trop vite : « la croix tient ensemble ce que l'homme
+  sépare » sans dire quoi ; « juste et justifiant » posé sans nommer
+  la difficulté ; « expie » employé sans définition. Réécrite en 3
+  temps : (1) POSER la difficulté — justice de Dieu exige punir le
+  péché / miséricorde veut sauver le pécheur : comment les deux à la
+  fois ? (2) la Croix résout : le Christ prend la peine due à notre
+  péché et l'EXPIE (défini : la porte à notre place pour réparer
+  l'offense), péché puni en lui + pécheur pardonné, un seul acte,
+  verset « juste et justifiant » Romains 3:26 GARDÉ intact à la
+  demande d'Emmanuel. (3) Psaume 85:11 (justice et paix s'embrassent)
+  = les 2 perfections réunies. Phrase finale d'origine « il ne ferme
+  pas les yeux… » SUPPRIMÉE (redondante avec le mécanisme déjà
+  exposé). Versets déjà présents dans l'article, non revérifiés.
+  Build 130 paires, harnais OK. Fichier : content/articles.json.
+
+• MÉMORISEUR — SÉLECTION PARTIELLE PAR VERSETS + Matthieu 6:34
+  (2026-07-08, demande d'Emmanuel : versets cochés dans une catégorie
+  décochée → série bloquée, et aucun indicateur). REFONTE DU MODÈLE :
+  la vérité de la sélection est désormais offV SEUL (les versets) ;
+  selCats devient DÉRIVÉ via syncSelCats() (= catégories dont tous les
+  versets sont actifs), recalculé au début de savePrefs(). Changements
+  dans memoriser.html : allItems() ne filtre plus par selCats (un
+  verset actif compte, où qu'il soit) ; updateStart et la garde de
+  startSession basés sur allItems().length>=2 seul ; case de catégorie
+  TRI-STATE — pleine (.sel, tous actifs), PARTIELLE (.part, trait
+  horizontal doré, CSS .cat.part .cat-check::after{inset:7px 3px}),
+  vide ; clic sur la case : tout actif → tout décocher, sinon → tout
+  cocher (standard case indéterminée ; l'ancien « réglage fin conservé
+  au recochage » est remplacé par ce comportement, assumé) ; marquage
+  global et toggleSelectAll basés sur l'état réel des versets ;
+  demarrerAuto réactive tout si aucun verset actif. MIGRATION au
+  chargement des prefs : toute catégorie hors selCats dont TOUS les
+  versets sont actifs (ambiguïté de l'ancien modèle) → versets mis en
+  offV (préserve « décochée = exclue ») ; les partielles explicites
+  sont CONSERVÉES (intention utilisateur). Banc /tmp/test_partsel.js :
+  6 cas VERTS (partiel démarre, tri-state, migration, dérivation).
+  Syntaxe du script vérifiée (node --check sur extrait). — Matthieu
+  6:34 dans content/memoriser.json était TRONQUÉ (il manquait « le
+  lendemain s'inquiétera de lui-même ») → complété FR+EN. RAPPEL
+  PIÈGE : en prod le build lit en PRIORITÉ le doc Firestore
+  config/memoriser qui PRIME sur le fichier → si le verset reste
+  tronqué après déploiement, corriger via l'admin. Build 130 paires.
+  Fichiers : memoriser.html, content/memoriser.json.
+
+• MÉMORISEUR — Isaïe 55:8 TRONQUÉ complété FR+EN (2026-07-08). Le
+  verset (catégorie « La nature de Dieu ») ne portait que 55:8 (« Vos
+  pensées ne sont pas mes pensées… ») sans 55:9 (l'image des cieux
+  élevés au-dessus de la terre, cœur du passage). Réf passée à
+  « Isaïe 55:8-9 » / « Isaiah 55:8-9 », texte complété. RAPPEL même
+  piège prod : config/memoriser (Firestore admin) prime sur le
+  fichier → corriger via l'admin si tronqué après déploiement.
+  Fichier : content/memoriser.json.
+
+• NOUVEL ARTICLE « Le jugement du prochain » (le-jugement-du-prochain
+  / judging-ones-neighbour), thème vie-spirituelle, catégorie « Le
+  combat intérieur » (2026-07-08). SUJET : le jugement au sens moral
+  (juger autrui), PAS le jugement dernier/particulier. 3 sections + intro,
+  format resserré (Emmanuel a refusé 5 sections puis un 2e article ;
+  un seul article riche). (1) « Ne jugez pas » : interdit de condamner
+  le prochain = usurper la place de Dieu seul juge des cœurs (Matthieu
+  7:1, Jacques 4:12, Romains 14:10) + poutre/paille = celui qui juge en
+  oubliant ses fautes (Matthieu 7:3-5). (2) « Juger l'acte, non le
+  cœur » : distinction anti-relativisme, on discerne le mal des ACTES
+  (Jean 7:24) mais on ne juge pas la PERSONNE/le cœur (1 Corinthiens
+  4:5). (3) « Le regard de la miséricorde » : remède intégré ici (pas
+  de section à part) = 4 moyens concrets (se juger soi d'abord,
+  interpréter en bien/bénéfice du doute, remettre l'homme à Dieu, prier
+  pour lui) + Luc 6:37. CINQ gestes (sujet spirituel → catégorie
+  Mémoriseur « Le jugement du prochain », 8 versets Mt 7:1/7:3/7:5,
+  Lc 6:37, Jn 7:24, Rm 14:10, Jc 4:12, 1 Co 4:5 — 1 Co 4:5 DÉLIBÉRÉMENT
+  DUPLIQUÉ avec « Les fins dernières » (Emmanuel a levé la règle un
+  verset = une seule catégorie), id distinct 1co-4-5-jug).
+  Refs vérifiées FR+EN, harnais OK, build 131 paires. Fichiers :
+  content/articles.json, data-en.js, content/themes.json,
+  content/nouveautes.json, content/memoriser.json.
+
+• NOUVEL ARTICLE « La rancune et le pardon » (la-rancune-et-le-pardon
+  / resentment-and-forgiveness), thème vie-spirituelle, catégorie « Le
+  combat intérieur » (2026-07-08). Schéma vice+vertu de la catégorie
+  (comme « La colère et la douceur »). 3 sections + intro : (1) « La
+  rancune » — ressentiment gardé qui blesse d'abord celui qui le porte
+  et usurpe la justice de Dieu (Lévitique 19:18, Éphésiens 4:31,
+  Romains 12:19). (2) « Pardonner comme Dieu pardonne » — pardon =
+  condition du pardon divin (Matthieu 6:14-15), sans mesure (18:22),
+  du fond du cœur (18:35), sur le modèle du pardon reçu dans le Christ
+  (Éphésiens 4:32) et du Christ en croix (Luc 23:34). (3) « Le remède
+  au quotidien » — remède intégré, SANS numérotation des moyens (« le
+  premier/deuxième moyen » proscrit par Emmanuel) : vouloir pardonner,
+  pardon accompli dès le renoncement à la vengeance (indépendant du
+  sentiment), remettre le souvenir à Dieu, prier pour l'offenseur ;
+  DIFFICULTÉ DU PARDON traitée à la demande d'Emmanuel (une offense
+  profonde peut sembler au-dessus des forces → œuvre du temps, désirer
+  pardonner et demander la grâce = déjà un commencement, pardon achevé
+  = grâce reçue par la prière, peiner à pardonner n'est pas une faute
+  sauf refus installé) ; distinctions doctrinales (pardonner n'est ni
+  nier l'offense, ni renoncer à la justice, ni s'exposer de nouveau au
+  mal). CINQ gestes ; catégorie Mémoriseur « La rancune et le pardon »
+  7 versets (Luc 23:34 NON repris — laissé à « La Croix et la
+  Résurrection », plus lié à la Passion qu'au pardon-disposition ;
+  choix éditorial, pas la règle levée). Refs vérifiées FR+EN, harnais
+  OK, build 132 paires. Fichiers : content/articles.json, data-en.js,
+  content/themes.json, content/nouveautes.json, content/memoriser.json.
+
+• ARTICLE « Les prologues et la venue du Christ » — AUDIT FOND/STYLE
+  FR+EN (2026-07-08, 17 corrections). Article récit naissance+enfance
+  (15 sections). Corrections d'Emmanuel : généalogie de Matthieu, les
+  4 femmes « union irrégulière/étrangeté » → nommer (étrangère : Rahab,
+  Ruth ; union scandaleuse : Tamar, femme d'Urie). Généalogie de Luc :
+  « remonter en sens inverse vers l'origine » → « remonter la lignée
+  humaine jusqu'à Adam, puis jusqu'à Dieu » (NE PAS dire que Jésus
+  tient sa vie de Dieu — il EST la Vie ; le « fils de Dieu » final vaut
+  d'Adam créé, pas de la divinité du Christ). Annonciation : kecharitōmenē
+  « pleinement établie dans la grâce » → « avant même de concevoir,
+  déjà tout entière comblée » (prépare l'Immaculée) ; expliciter la
+  question de Marie (« comment, puisqu'elle ne connaît pas d'homme »).
+  Bethléem : refait d'un tenant (maison du pain → couché dans la
+  mangeoire/auge → pain de vie), sans forcer. Bergers : « leur dit la
+  joie » supprimé ; le signe = enfant qu'ils vont trouver et adorer.
+  Présentation : Siméon = l'Esprit lui avait révélé qu'il ne mourrait
+  pas avant de voir le Messie ; « signe rejeté » → « rejeté » (retirer
+  « signe ») ; « Puis » Anne. Mages : astre → CITER Nombres 24:17
+  (Balaam) + Matthieu 2:2 ; or/encens/myrrhe explicités (roi/Dieu/
+  embaumement des morts = ensevelissement) ; « avertis en songe de ne
+  pas retourner vers Hérode ». Fuite : « Hérode joué par les mages » →
+  « voyant que les mages ne sont pas revenus lui indiquer l'enfant ».
+  Jésus au Temple : « années cachées » → « toute l'enfance » ; donner
+  le contexte (retrouvé au bout de 3 jours, angoisse de Marie et
+  Joseph) ; « premières paroles rapportées » → « que l'Évangile met
+  dans sa bouche » ; « Dès l'enfance il nomme Dieu son Père » supprimé.
+  Nouvelles refs Nombres 24:17 + Matthieu 2:2 vérifiées FR+EN. Harnais
+  OK, build 132 paires. Fichier : content/articles.json.
+
+• ARTICLE « La première année : l'inauguration » — AUDIT FOND/STYLE
+  FR+EN (2026-07-08, 11 corrections). Récit de la 1re année (Jean).
+  Intro : « pose un geste qui désigne déjà sa mort et sa résurrection »
+  (énigme annoncée à l'avance) → « chasse les marchands » ; « Jean » →
+  « Jean-Baptiste » (milieu) et « l'évangile de Jean » (fin, lever
+  l'ambiguïté apôtre/évangéliste). Nicodème : « le porte aussitôt plus
+  loin » → « va aussitôt au-delà de ce qu'il dit ». D'EAU ET D'ESPRIT
+  (bloc refait) : négation retirée ; nommer l'ESPRIT SAINT et la GRÂCE
+  SANCTIFIANTE (vie divine, participation à la vie de Dieu — 2 P 1:4 ;
+  « participe » est le mot juste doctrinal) ; expliciter le sens du
+  vent = la nouvelle naissance est CACHÉE aux yeux (on voit la vie
+  changée sans observer l'action de Dieu), PAS « on ne peut produire
+  l'Esprit ». Serpent : « il en donne la raison » (Jn 3:16 n'est pas
+  la raison) → « Cette élévation a sa source dans l'amour de Dieu ».
+  Jean-Baptiste : « on s'inquiète » → « les disciples de Jean » ;
+  fiançailles → CITER Osée 2:21. Samaritaine ÉTOFFÉE : ajout des CINQ
+  MARIS (Jean 4:18), cœur du dialogue qui manquait. Sauveur : « et
+  cette œuvre est le salut des hommes » (mal inséré) → fondu ; moisson
+  complétée AVEC Jean 4:38 (envoyés moissonner ce qu'ils n'ont pas
+  travaillé ; prophètes ont semé/annoncé le Messie, disciples
+  moissonnent) — s'en TENIR à Jean 4, NE PAS importer Matthieu 9:37-38
+  (« ouvriers peu nombreux » est ailleurs) ; « recueillir » →
+  « rassembler ». Refs Osée 2:21, Jean 4:18/4:38 vérifiées FR+EN.
+  Harnais OK, build 132 paires. Fichier : content/articles.json.
+
+• ARTICLE « La deuxième année : la popularité » — AUDIT FOND/STYLE
+  COMPLET FR+EN (2026-07-08). Long récit galiléen, 25 sections, le plus
+  dense de la série « La vie du Christ ». Traité par blocs validés un à
+  un. Principales corrections d'Emmanuel : intro (Sermon SUR LA MONTAGNE,
+  choisit les 12 Apôtres, MULTIPLIE LES PAINS, année qui se retourne au
+  Pain de vie). Pêcheurs : Simon « gagné » (pas « pris »), « rappelle la
+  nuit » (pas « objecte »), « fils de Zébédée » retiré, « s'enfoncer ».
+  Matthieu : « collecteur d'impôts » (pas « publicain »), « se ferme à la
+  grâce », « pratiques de jeûne ». Lépreux : « désobéissant proclame »,
+  prêtre constate/déclare pur/réintègre. Pardon : « FILS DE L'HOMME »
+  expliqué à sa 1re occurrence (Daniel 7:13-14, vrai homme + figure
+  céleste investie par Dieu). Sabbat : « transgression de l'interdit du
+  sabbat », réf 1 Samuel replacée après David seul ; GARDÉ « Les gardiens
+  de la Loi préfèrent la règle à l'homme » (Emmanuel). Béthesda : « homme
+  infirme depuis 38 ans », « le Père n'agit jamais sans le Fils, avec lui
+  et par lui », « le Père témoigne par les œuvres qu'il donne d'accomplir ».
+  SERMENT (refait) : interdit de jurer car rien de ce par quoi on jure ne
+  nous appartient (ciel=trône, sa tête) ; le serment sert à tromper (jurer
+  qu'on tiendra sans l'intention) ; oui=oui non=non, le reste vient du
+  Malin. Douze : « Avant de choisir les siens » supprimé ; patriarches =
+  12 fils de Jacob (tribus d'Israël) entre parenthèses ; « vivre auprès de
+  lui pour le connaître » ; « Jude aussi appelé Thaddée ». Question de
+  Jean : Jean a MONTRÉ le Messie présent (Jn 1:29 « Voici l'Agneau ») ;
+  Élie = Jean non revenu en personne mais dans l'esprit et la puissance
+  d'Élie, prêche avec la même hardiesse (Luc 1:17). Reproche : « Devant ce
+  refus des villes » ; joug « pour les conduire ». Béelzéboul : « maison où
+  il logeait » ; parenté au sens large + Jn 7:5 ; « seule grâce qui pourrait
+  le relever ». Vraie famille : « parenté qui dépasse ». PARABOLES (section
+  entière déployée) : semeur avec explication complète Mt 13:19-23 citée ;
+  moutarde+levain = l'ÉGLISE ; ivraie expliquée (Mt 13:38-39) ; trésor/perle
+  développés ; « tri final ». Tempête : abîme = prison des esprits mauvais.
+  Jaïre : « ce seul contact la guérira », « elle avoue que c'est elle ».
+  Baptiste : « Hérode le tétrarque » (un seul homme), « poussée par sa
+  mère ». Pain de vie : raison de l'avertissement (suivi pour le pain) ;
+  trōgō — glissement phagein→trōgō expliqué, verset Jn 6:54 rendu « mâche »
+  pour accorder prose et citation. Nouvelles refs Jn 1:29, Jn 7:5, Luc 1:17,
+  Daniel 7:13-14, Mt 13:19-23 vérifiées FR+EN. Harnais FR+EN OK, build 132
+  paires. Fichier : content/articles.json.
+
+• AUDIT NAHUM (2 articles distincts, 2026-07-08). « La chute de Ninive »
+  (la-chute-de-ninive) : « nul ne parvient à les arrêter » (ambigu) →
+  « fuient dans la panique, sans que rien n'arrête la déroute » ;
+  suppression de l'amorce « La blessure est mortelle : » qui paraphrasait
+  Nahum 3:19 avant de le citer. Nahum 3:4 (Ninive « prostituée ») : image
+  non charnelle, vérifiée conforme — la ville vendait/asservissait les
+  nations en les séduisant (alliances, tribut, déportation) ; explication
+  de l'article jugée suffisante. « Nahum et l'Empire assyrien »
+  (nahum-et-l-empire-assyrien) : « l'Empire assyrien déclina vite »
+  supprimé (fondu dans la phrase suivante). FR+EN, harnais OK, build 132.
+  Fichier : content/articles.json. RAPPEL : deux articles Nahum existent ;
+  ne pas confondre. NB Firestore inaccessible depuis l'environnement
+  (host bloqué) : auditer sur content/articles.json, pas sur la version
+  en ligne.
+
+• PAGE D'ACCUEIL : section « Le carnet » SUPPRIMÉE de l'accueil FR+EN
+  (2026-07-10, build-bi.js, fonction mainAccueil — bloc titre-section
+  carnet_label/carnet_title + memo-bloc carnet_sub/carnet_open retiré).
+  La page /carnet/ (/en/notebook/) et son entrée de MENU restent
+  intactes ; seule la vitrine d'accueil est enlevée. Les clés UI
+  carnet_* subsistent dans build-bi.js (utilisées par le menu et la
+  page carnet). Fichier : build-bi.js.
+
+• RECHERCHE — RÉFÉRENCES MULTIPLES CORRIGÉES (2026-07-10). Le bug
+  d'Emmanuel : chercher PLUSIEURS références (« Jean 3:16, Luc 2:1 »)
+  dans la recherche globale ne donnait rien et Entrée était inerte,
+  car brefParse est mono-référence. CORRIGÉ dans brefItem (RECH_JS,
+  build-bi.js) : découpe de la requête comme le panneau (split sur ;
+  ou sur virgule suivie d'un début de nom de livre, ce qui PRÉSERVE
+  « Jean 3:16,18 ») et UN item par référence valide — Entrée ouvre la
+  première. Rappel échappement : RECH_JS est une template literal dans
+  build-bi.js → \\s dans le source pour \s final. Panorama vérifié :
+  recherche globale (accueil/articles/bibliothèque/carnet/404) OK ;
+  page Bible (brech, « Aller à », multi via DERNIERES_REFS) OK ;
+  MEMORISER : sa recherche interne (m-search) ne cherche QUE dans les
+  versets des catégories, c'est VOULU — un ajout d'item « Ouvrir dans
+  la Bible » y avait été fait puis RESTAURÉ à la demande d'Emmanuel
+  (memoriser.html et bible-panneau.js remis à l'état d'origine, pas de
+  window.LV_BP). Fichier modifié final : build-bi.js UNIQUEMENT.
+
+• MODALE D'ÉCOUTE TTS (« Écoute de l'article », admin.js) — UI mise
+  en cohérence avec la palette du site (2026-07-10). (1) Boutons
+  « Charger les voix de mon compte » (#tts-lv) et « Vider tout le cache
+  audio » (#tts-vide) CENTRÉS (text-align:center sur leurs wrappers
+  inline dans ttsModale). (2) Couleurs de ttsStyles alignées sur :root
+  du site : var(--filet-f,…) (variable INEXISTANTE, seuls --filet et
+  --filet-fort existent) → var(--filet-fort,…) partout ; toutes les
+  teintes rgba(255,255,255,.x) → parchemin rgba(231,224,207,.x)
+  équivalentes ; cadres du cache .tts-ver et inputs .tts-in : fonds
+  #0d0d0d/#131313 → var(--encre-2,#0b0b0b), filets blancs →
+  var(--filet)/var(--filet-fort). Le #fff des titres reste (=
+  --parchemin). admin.js est lu par le build (ADMIN_JS) et inliné dans
+  APP_JS. Fichier : admin.js.
+  RAFFINEMENTS UI (même jour, à l'initiative de Claude validée par
+  Emmanuel) : apparition animée (voile fondu ttsV .25s + boîte levée
+  ttsB .3s cubic-bezier, désactivées via prefers-reduced-motion) ;
+  léger blur(2px) du voile ; la boîte reçoit le coin coupé 14px
+  (clip-path) + ligne de lumière haute, même langage que les cartes
+  .tts-ver du cache ; croix décalée (12/16) hors du coin coupé, hover
+  or pâle au lieu de blanc ; boutons d'action équilibrés (flex:1 1
+  170px/150px) ; focus-visible or sur tous les boutons.
+
+• AUDIT UI/UX GLOBAL — 3 CORRECTIONS SITE ENTIER (2026-07-10, tout
+  dans BARRE_CSS/barreCanon/page() de build-bi.js). (1) H1 ACCUEIL :
+  l'accueil n'avait aucun h1 ; le logo de la barre est enveloppé d'un
+  <h1 class="logo-h1"> UNIQUEMENT quand type==='home' (option o.h1 de
+  barreCanon), avec .logo-h1{display:contents} → zéro changement
+  visuel, l'<a class="logo"> garde son style grid ; les articles
+  gardent leur unique h1 ; memoriser/bible inchangés. (2) NAVIGATION
+  CLAVIER : règle globale a/button/[role=button]/[tabindex]/summary
+  :focus-visible → liseré or 1px offset 3px. STRICTEMENT :focus-visible
+  (JAMAIS :focus) : invisible en temps normal et au clic souris —
+  exigence expresse d'Emmanuel (un ancien problème d'indicateurs
+  visibles hors clavier). Inputs/selects non inclus (déjà stylés au
+  :focus par liseré inset). (3) PREFERS-REDUCED-MOTION : media query
+  globale coupant animations/transitions (durées .01ms) + scroll-
+  behavior:auto. BARRE_CSS étant injecté aussi dans memoriser.html et
+  bible.html au build, les 3 règles couvrent tout le site. Constats
+  sains de l'audit (rien à faire) : meta description/OG/canonical/
+  hreflang présents, fonts display=swap+preconnect OK, variables
+  --lva* du panneau admin = alias propres des variables du site.
+  Fichier : build-bi.js.
+
+• CARNET — bouton « Nouveau document » / « Ouvrir le journal »
+  (#c-nouveau, un seul span qui change de libellé selon l'onglet)
+  aéré : margin 6px auto 18px → 24px auto 26px, il était trop collé
+  à la ligne des onglets Documents/Journal (2026-07-10). Fichier :
+  build-bi.js (CSS carnet, ~l.1517).
+
+• VUE « MES NOTES » (bible.html, FR+EN) — audit couleurs + UI
+  (2026-07-10). Couleurs : SAINES — bible.html définit proprement ses
+  propres variables (:root local avec --pa, --filet-f, etc., rien de
+  fantôme, contrairement à la modale TTS). Améliorations UI dans le
+  langage établi : cartes .note-item passées en surface levée
+  (background var(--encre-2), box-shadow inset filet + ligne de
+  lumière au lieu de border, coin coupé 12px via clip-path, hover =
+  filet-f renforcé — le glow externe 26px supprimé car clippé par le
+  clip-path) ; modale .note-boite : coin coupé 14px + inset comme la
+  boîte TTS ; focus des champs alignés sur l'or du site
+  (.notes-rech:focus et .nb-zone:focus → var(--or), comme cat-input).
+  Fichier : bible.html.
 
 ════════════════════════════════════════════════════════════════════
 FIN DU FICHIER DE REPRISE
