@@ -145,20 +145,30 @@ for (const a of ARTICLES) {
 if (fs.existsSync('content/themes.json')) {
   const tj = JSON.parse(fs.readFileSync('content/themes.json', 'utf8')).themes;
   if (Array.isArray(tj)) {
-    const refaits = tj.map(t => ({
-      id: t.id, nom: t.nom_fr, desc: t.desc_fr,
-      categories: (t.categories || []).map(c => ({
-        id: c.id, nom: c.nom_fr,
-        arts: (c.arts || []).map(x => typeof x === 'string' ? x : (x && x.slug) || '').filter(Boolean)
-      }))
-    }));
+    // Un nœud est une CATÉGORIE (feuille) s'il porte « arts », sinon un GROUPE
+    // (niveau intermédiaire, porte « noeuds »). Un thème utilise « groupes »
+    // (arbre imbriqué) ou « categories » (liste plate, legacy) indifféremment.
+    const enfants = n => n.noeuds || n.groupes || n.categories || [];
+    const walkFR = (nodes, acc) => (nodes || []).map(n => {
+      if (Array.isArray(n.arts)) {
+        const c = { kind: 'cat', id: n.id, nom: n.nom_fr,
+          arts: (n.arts || []).map(x => typeof x === 'string' ? x : (x && x.slug) || '').filter(Boolean) };
+        acc.push({ id: c.id, nom: c.nom, arts: c.arts });
+        return c;
+      }
+      return { kind: 'grp', id: n.id, nom: n.nom_fr, noeuds: walkFR(enfants(n), acc) };
+    });
+    const refaits = tj.map(t => {
+      const acc = [];
+      const tree = walkFR(t.groupes || t.categories || [], acc);
+      return { id: t.id, nom: t.nom_fr, desc: t.desc_fr, categories: acc, tree };
+    });
     THEMES.length = 0; THEMES.push(...refaits);
     for (const k of Object.keys(THEMES_EN)) delete THEMES_EN[k];
     for (const t of tj) {
-      THEMES_EN[t.id] = {
-        nom: t.nom_en, desc: t.desc_en,
-        cats: Object.fromEntries((t.categories || []).map(c => [c.id, c.nom_en]))
-      };
+      const cats = {};
+      (function walkEN(nodes) { (nodes || []).forEach(n => { cats[n.id] = n.nom_en; walkEN(enfants(n)); }); })(t.groupes || t.categories || []);
+      THEMES_EN[t.id] = { nom: t.nom_en, desc: t.desc_en, cats };
     }
     console.log('Thèmes lus depuis content/themes.json :', THEMES.length);
   }
@@ -432,6 +442,7 @@ body.mode-suivi .art-nav{display:none!important}
 .smr-lien:hover{color:var(--or,#efe6cf);background:rgba(231,224,207,.05);border-left-color:var(--or,#efe6cf);padding-left:22px}
 
 .dom.fermant .dom-chevron{transform:rotate(0)}
+.grp.fermant .grp-chevron{transform:rotate(0)}
 .sous.fermant .sous-chevron{transform:rotate(0)}
 .dom.fermant .dom-tete{position:static}
 
@@ -1284,6 +1295,17 @@ const BIBLIO_JS = `(function(){
     cascadeF([].slice.call(corps.children),function(){});
     s._ft=setTimeout(function(){ s._ft=null; s.classList.remove('ouvert'); s.classList.remove('fermant'); },240); }
   function basculerSous(s){ annuleTout(); if(s.classList.contains('fermant')||!s.classList.contains('ouvert')) ouvrirSous(s); else fermerSous(s); }
+  function corpsGrp(g){ return g.querySelector(':scope > .grp-corps'); }
+  function ouvrirGrp(g){ if(!g)return;
+    if(g.classList.contains('fermant')){ annuleFermeture(g); }
+    else if(g.classList.contains('ouvert'))return;
+    g.classList.add('ouvert');
+    var corps=corpsGrp(g); if(corps) cascadeA([].slice.call(corps.children)); }
+  function fermerGrp(g){ if(!g||!g.classList.contains('ouvert')||g.classList.contains('fermant'))return;
+    g.classList.add('fermant');
+    var corps=corpsGrp(g); if(corps) cascadeF([].slice.call(corps.children),function(){});
+    g._ft=setTimeout(function(){ g._ft=null; g.classList.remove('ouvert'); g.classList.remove('fermant'); },240); }
+  function basculerGrp(g){ annuleTout(); if(g.classList.contains('fermant')||!g.classList.contains('ouvert')) ouvrirGrp(g); else fermerGrp(g); }
   function tout(){ annuleTout();
     var secs=[].slice.call(document.querySelectorAll('.dom'));
     var ouverts=secs.filter(function(s){return s.classList.contains('ouvert')&&!s.classList.contains('fermant');});
@@ -1295,19 +1317,26 @@ const BIBLIO_JS = `(function(){
     b.classList.toggle('actif-tout',ouvert); var l=b.querySelector('.bt-label'); if(l)l.textContent=ouvert?b.dataset.collapse:b.dataset.expand; }
   var b=document.getElementById('basculerTout');
   if(b){ b.addEventListener('click',tout); b.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();tout();} }); }
-  function majAria(){ document.querySelectorAll('.dom-tete,.sous-tete').forEach(function(t){ var c=t.closest('.dom,.sous'); t.setAttribute('aria-expanded', c && c.classList.contains('ouvert') ? 'true':'false'); }); }
+  function majAria(){ document.querySelectorAll('.dom-tete,.grp-tete,.sous-tete').forEach(function(t){ var c=t.closest('.dom,.grp,.sous'); t.setAttribute('aria-expanded', c && c.classList.contains('ouvert') ? 'true':'false'); }); }
   document.querySelectorAll('.dom-tete').forEach(function(t){
     t.addEventListener('click',function(){ basculer(t.closest('.dom')); setTimeout(majAria,10); });
     t.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); t.click(); } });
+  });
+  document.querySelectorAll('.grp-tete').forEach(function(gt){
+    gt.addEventListener('click',function(){ basculerGrp(gt.closest('.grp')); setTimeout(majAria,10); });
+    gt.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); gt.click(); } });
   });
   document.querySelectorAll('.sous-tete').forEach(function(st){
     st.addEventListener('click',function(){ basculerSous(st.closest('.sous')); setTimeout(majAria,10); });
     st.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); st.click(); } });
   });
+  function ouvrirAncetres(el,sec){ var a=el.parentNode; while(a&&a!==sec){ if(a.classList&&a.classList.contains('grp')) ouvrirGrp(a); a=a.parentNode; } }
   var theme=new URLSearchParams(location.search).get('theme');
   if(theme){ var sec=document.querySelector('.dom[data-theme="'+theme+'"]'); if(sec){ ouvrir(sec); maj();
-    var cat=new URLSearchParams(location.search).get('cat'), cible=sec;
-    if(cat){ var sc=sec.querySelector('.sous[data-cat="'+cat+'"]'); if(sc){ ouvrirSous(sc); cible=sc; } }
+    var cat=new URLSearchParams(location.search).get('cat'),
+        grp=new URLSearchParams(location.search).get('grp'), cible=sec;
+    if(cat){ var sc=sec.querySelector('.sous[data-cat="'+cat+'"]'); if(sc){ ouvrirAncetres(sc,sec); ouvrirSous(sc); cible=sc; } }
+    else if(grp){ var gc=sec.querySelector('.grp[data-grp="'+grp+'"]'); if(gc){ ouvrirAncetres(gc,sec); ouvrirGrp(gc); cible=gc; } }
     setTimeout(function(){ cible.scrollIntoView({behavior:'smooth',block:'start'}); },140); return; } }
   maj();
 })();`;
@@ -1323,7 +1352,7 @@ const RECH_JS = `(function(){
   /* références bibliques : « Jean 3:16 » ouvre la Bible depuis n'importe où.
      Même logique que la recherche de la page Bible (dico + alias + préfixe
      unique), sur la table LUMEN_BIBLE injectée dans recherche-<lang>.js */
-  var BALIAS={'genese':['gn','gen'],'exode':['ex','exo'],'levitique':['lv','lev'],'nombres':['nb','nbr','num'],'deuteronome':['dt','deut'],'josue':['jos'],'juges':['jg','jug'],'ruth':['rt'],'1-samuel':['1s','1sam','1sm'],'2-samuel':['2s','2sam','2sm'],'1-rois':['1r','1roi'],'2-rois':['2r','2roi'],'1-chroniques':['1ch','1chr','1par'],'2-chroniques':['2ch','2chr','2par'],'esdras':['esd'],'nehemie':['ne','neh'],'tobie':['tb','tob'],'judith':['jdt'],'esther':['est'],'1-maccabees':['1m','1ma','1mac','1macc'],'2-maccabees':['2m','2ma','2mac','2macc'],'job':['jb'],'psaumes':['ps','psaume'],'proverbes':['pr','prv','prov'],'ecclesiaste':['qo','eccl','qohelet'],'cantique-des-cantiques':['ct','cant','cantique','cantiques'],'sagesse':['sg','sag'],'ecclesiastique':['si','sir','siracide','eccli'],'isaie':['is','isa','esaie'],'jeremie':['jr','jer'],'lamentations':['lm','lam'],'baruch':['ba','bar'],'ezechiel':['ez','eze'],'daniel':['dn','dan'],'osee':['os'],'joel':['jl'],'amos':['am'],'abdias':['ab','abd'],'jonas':['jon'],'michee':['mi','mich'],'nahum':['na','nah'],'habacuc':['ha','hab'],'sophonie':['so','soph'],'aggee':['ag','agg'],'zacharie':['za','zac'],'malachie':['ml','mal'],'matthieu':['mt','mat','matt'],'marc':['mc'],'luc':['lc'],'jean':['jn'],'actes':['ac','act'],'romains':['rm','rom'],'1-corinthiens':['1co','1cor'],'2-corinthiens':['2co','2cor'],'galates':['ga','gal'],'ephesiens':['ep','eph'],'philippiens':['ph','phil','php'],'colossiens':['col'],'1-thessaloniciens':['1th','1thes','1thess'],'2-thessaloniciens':['2th','2thes','2thess'],'1-timothee':['1tm','1tim'],'2-timothee':['2tm','2tim'],'tite':['tt','tit'],'philemon':['phm','phlm'],'hebreux':['he','heb'],'jacques':['jc','jac'],'1-pierre':['1p','1pi'],'2-pierre':['2p','2pi'],'1-jean':['1jn'],'2-jean':['2jn'],'3-jean':['3jn'],'jude':['jud'],'apocalypse':['ap','apc','apoc']};
+  var BALIAS={'genese':['gn','gen'],'exode':['ex','exo'],'levitique':['lv','lev'],'nombres':['nb','nbr','num'],'deuteronome':['dt','deut'],'josue':['jos'],'juges':['jg','jug'],'ruth':['rt'],'1-samuel':['1s','1sam','1sm'],'2-samuel':['2s','2sam','2sm'],'1-rois':['1r','1roi'],'2-rois':['2r','2roi'],'1-chroniques':['1ch','1chr','1par'],'2-chroniques':['2ch','2chr','2par'],'esdras':['esd'],'nehemie':['ne','neh'],'tobie':['tb','tob'],'judith':['jdt'],'esther':['est'],'1-maccabees':['1m','1ma','1mac','1macc'],'2-maccabees':['2m','2ma','2mac','2macc'],'job':['jb'],'psaumes':['ps','psaume'],'proverbes':['pr','prv','prov'],'ecclesiaste':['qo','eccl','qohelet'],'cantique-des-cantiques':['ct','cant','cantique','cantiques'],'sagesse':['sg','sag'],'ecclesiastique':['si','sir','siracide','eccli','ecclesiastique'],'isaie':['is','isa','esaie'],'jeremie':['jr','jer'],'lamentations':['lm','lam'],'baruch':['ba','bar'],'ezechiel':['ez','eze'],'daniel':['dn','dan'],'osee':['os'],'joel':['jl'],'amos':['am'],'abdias':['ab','abd'],'jonas':['jon'],'michee':['mi','mich'],'nahum':['na','nah'],'habacuc':['ha','hab'],'sophonie':['so','soph'],'aggee':['ag','agg'],'zacharie':['za','zac'],'malachie':['ml','mal'],'matthieu':['mt','mat','matt'],'marc':['mc'],'luc':['lc'],'jean':['jn'],'actes':['ac','act'],'romains':['rm','rom'],'1-corinthiens':['1co','1cor'],'2-corinthiens':['2co','2cor'],'galates':['ga','gal'],'ephesiens':['ep','eph'],'philippiens':['ph','phil','php'],'colossiens':['col'],'1-thessaloniciens':['1th','1thes','1thess'],'2-thessaloniciens':['2th','2thes','2thess'],'1-timothee':['1tm','1tim'],'2-timothee':['2tm','2tim'],'tite':['tt','tit'],'philemon':['phm','phlm'],'hebreux':['he','heb'],'jacques':['jc','jac'],'1-pierre':['1p','1pi'],'2-pierre':['2p','2pi'],'1-jean':['1jn'],'2-jean':['2jn'],'3-jean':['3jn'],'jude':['jud'],'apocalypse':['ap','apc','apoc']};
   var BDICO=null;
   function bnorm(s){return String(s).toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/[^a-z0-9]+/g,'');}
   function bdico(){
@@ -2232,32 +2261,50 @@ function mainBibliotheque(lang, base) {
           <h3>${artTitre(lang, a)}</h3>
           ${resumeHtmlBI(artResume(lang, a), lang)}
         </a>`;
-  const corpsDomaine = t => {
-    const at = ARTICLES.filter(a => a.theme === t.id);
-    const vide = `<div class="vide">${u.lib_empty}</div>`;
-    if (!t.categories) {
-      return at.map(carte).join('') || vide;
-    }
+  const grpNom = (t, node) => lang === 'fr' ? node.nom : ((((THEMES_EN[t.id] || {}).cats) || {})[node.id] || node.nom);
+  const renderNoeuds = (nodes, at, vus, t) => {
     let html = '';
-    const vus = new Set();
-    for (const c of t.categories) {
-      const arts = c.arts.map(id => at.find(a => a.id === id)).filter(Boolean);
-      arts.forEach(a => vus.add(a.id));
-      if (!arts.length) continue;
-      if (c.nom) {
+    for (const node of nodes) {
+      if (node.kind === 'grp') {
+        const inner = renderNoeuds(node.noeuds || [], at, vus, t);
+        if (!inner.trim()) continue; // pas de groupe vide
         html += `
-      <div class="sous" data-cat="${c.id}">
+      <div class="grp" data-grp="${node.id}">
+        <div class="grp-tete" role="button" tabindex="0" aria-expanded="false">
+          <span class="grp-marque" aria-hidden="true"></span>
+          <span class="grp-nom">${grpNom(t, node)}</span>
+          <span class="grp-chevron" aria-hidden="true">›</span>
+        </div>
+        <div class="grp-corps">${inner}</div>
+      </div>`;
+      } else {
+        const arts = node.arts.map(id => at.find(a => a.id === id)).filter(Boolean);
+        arts.forEach(a => vus.add(a.id));
+        if (!arts.length) continue;
+        if (node.nom) {
+          html += `
+      <div class="sous" data-cat="${node.id}">
         <div class="sous-tete" role="button" tabindex="0" aria-expanded="false">
           <span class="sous-puce" aria-hidden="true"></span>
-          <span class="sous-nom">${catNom(lang, t.id, c.id)}</span>
+          <span class="sous-nom">${catNom(lang, t.id, node.id)}</span>
           <span class="sous-chevron" aria-hidden="true">›</span>
         </div>
         <div class="sous-corps">${arts.map(carte).join('')}</div>
       </div>`;
-      } else {
-        html += arts.map(carte).join('');
+        } else {
+          html += arts.map(carte).join('');
+        }
       }
     }
+    return html;
+  };
+  const corpsDomaine = t => {
+    const at = ARTICLES.filter(a => a.theme === t.id);
+    const vide = `<div class="vide">${u.lib_empty}</div>`;
+    const tree = t.tree || (t.categories ? t.categories.map(c => ({ kind: 'cat', id: c.id, nom: c.nom, arts: c.arts })) : null);
+    if (!tree) return at.map(carte).join('') || vide;
+    const vus = new Set();
+    let html = renderNoeuds(tree, at, vus, t);
     html += at.filter(a => !vus.has(a.id)).map(carte).join('');
     return html || vide;
   };
@@ -2388,6 +2435,7 @@ function versifDouay(bk, ch, v) {
     if (ch <= 8) return { ch: ch, v: v };
     if (ch === 9) return { ch: 9, v: v };
     if (ch === 10) return { ch: 9, v: v + 21 };
+    if (ch === 11) return { ch: 10, v: v + 1 };
     if (ch <= 113) return { ch: ch - 1, v: v };
     if (ch === 114) return { ch: 113, v: v };
     if (ch === 115) return { ch: 113, v: v + 8 };
@@ -2404,6 +2452,8 @@ function versifDouay(bk, ch, v) {
   if (bk === 'Isaiah') {
     if (ch === 8 && v === 23) return { ch: 9, v: 1 };
     if (ch === 9) return { ch: 9, v: v + 1 };
+    if (ch === 63 && v === 19) return { ch: 64, v: 1 };
+    if (ch === 64) return { ch: 64, v: v + 1 };
   }
   if (bk === 'Zechariah' && ch === 2) {
     return v <= 4 ? { ch: 1, v: v + 17 } : { ch: 2, v: v - 4 };
@@ -2412,11 +2462,29 @@ function versifDouay(bk, ch, v) {
   if (bk === 'Numbers' && ch === 17) {
     return v <= 15 ? { ch: 16, v: v + 35 } : { ch: 17, v: v - 15 };
   }
-  if (bk === 'John' && ch === 6 && v >= 52) return { ch: 6, v: v + 1 };
+  if (bk === 'John' && ch === 6 && v >= 51) return { ch: 6, v: v + 1 };
+  if (bk === 'John' && ch === 11 && v === 57) return { ch: 11, v: 56 };
+  if (bk === 'Hosea' && ch === 2) return v <= 2 ? { ch: 1, v: v + 9 } : { ch: 2, v: v - 2 };
   if (bk === 'Hosea' && ch === 12) return v === 1 ? { ch: 11, v: 12 } : { ch: 12, v: v - 1 };
   if (bk === 'Haggai' && ch === 2) return { ch: 2, v: v + 1 };
   if (bk === 'Deuteronomy' && ch === 29) return { ch: 29, v: v + 1 };
+  if (bk === 'Deuteronomy' && ch === 5 && v >= 18) return { ch: 5, v: v + 3 };
   if (bk === 'Nahum' && ch === 2) return v === 1 ? { ch: 1, v: 15 } : { ch: 2, v: v - 1 };
+  if (bk === 'Micah') {
+    if (ch === 4 && v === 14) return { ch: 5, v: 1 };
+    if (ch === 5) return { ch: 5, v: v + 1 };
+  }
+  if (bk === 'Matthew' && ch === 17 && v >= 15) return { ch: 17, v: v - 1 };
+  if (bk === 'Mark' && ch === 9) return v === 1 ? { ch: 8, v: 39 } : { ch: 9, v: v - 1 };
+  if (bk === 'Ecclesiastes') {
+    if (ch === 6 && v === 12) return { ch: 7, v: 1 };
+    if (ch === 7) return { ch: 7, v: v + 1 };
+  }
+  if (bk === 'Sirach' || bk === 'Ecclesiasticus') {
+    if (ch === 10 && (v === 12 || v === 13)) return { ch: 10, v: v + 2 };
+  }
+  if (bk === '3 John' && v === 15) return { ch: ch, v: 14 };
+  if (bk === 'Judges' && ch === 21 && v === 25) return { ch: 21, v: 24 };
   return { ch: ch, v: v };
 }
 
@@ -2650,7 +2718,7 @@ if (fs.existsSync('memoriser.html')) {
   console.log('Copié : memoriser.html');
 }
 
-// ── La Sainte Bible (Crampon 1923) : page de lecture + données par livre ──
+// ── La Sainte Bible (traduction Chérubin) : page de lecture + données par livre ──
 if (fs.existsSync('bible.html')) {
   let bh = fs.readFileSync('bible.html', 'utf8');
   {
@@ -2706,7 +2774,7 @@ if (fs.existsSync('bible.html')) {
       ['>Nouveautés<', '>News<'],
       ['aria-label="Compte"', 'aria-label="Account"'],
       ['>Compte<', '>Account<'],
-      ['Traduction du chanoine Augustin Crampon · Édition 1923', 'Douay-Rheims translation · Challoner revision · 1899 edition'],
+      ['Traduction Chérubin', 'Douay-Rheims translation · Challoner revision · 1899 edition'],
       ['La Sainte Bible', 'The Holy Bible'],
       ['>Chargement…<', '>Loading…<'],
       ['>Copier<', '>Copy<'],
@@ -2796,7 +2864,7 @@ if (fs.existsSync('bible.html')) {
     let bhEn = bh;
     for (const pr of TR) bhEn = bhEn.split(pr[0]).join(pr[1]);
     if (UI.fr.footer_verse && UI.en.footer_verse) bhEn = bhEn.split(UI.fr.footer_verse).join(UI.en.footer_verse);
-    bhEn = bhEn.replace(/Texte biblique :[\s\S]*?CC BY-NC-SA 3\.0<\/a>[^<]*/,
+    bhEn = bhEn.replace(/Texte biblique :[^<]*/,
       'Biblical text: The Holy Bible, Douay-Rheims version (Challoner revision), 1899 American edition. The text is in the public domain.');
     bhEn = bhEn.replace(/<meta name="description" content="[^"]*">/,
       '<meta name="description" content="The Holy Bible, Douay-Rheims translation (Challoner revision). Online reading, Old and New Testament.">');

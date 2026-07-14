@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>La Sainte Bible · Lumen Veritatis</title>
-<meta name="description" content="La Sainte Bible, traduction du chanoine Augustin Crampon, édition 1923. Lecture en ligne, Ancien et Nouveau Testament.">
+<meta name="description" content="La Sainte Bible, traduction Chérubin. Lecture en ligne, Ancien et Nouveau Testament.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
@@ -156,6 +156,8 @@ a.chap:hover{border-color:var(--filet-fort);color:var(--or-pale);box-shadow:0 0 
 h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align:center;margin:0}
 .ch-vulg{font-size:13.5px;color:var(--parchemin-att);text-align:center;font-style:italic;margin-top:6px}
 .ch-section{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);text-align:center;margin-top:22px}
+.ch-sect{font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin:30px 0 12px;text-align:left}
+.ch-sect:first-child{margin-top:4px}
 .ch-psaume-titre{font-style:italic;color:var(--pa);text-align:center;margin-top:22px;font-size:19px}
 .ch-sep{width:44px;height:1px;background:linear-gradient(90deg,transparent,var(--filet-f),transparent);margin:30px auto 34px}
 .ch-texte{text-align:justify;hyphens:auto;line-height:1.74}
@@ -321,17 +323,13 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
 
   <main class="wrap">
     <div class="hero" id="hero">
-      <div class="sur-titre">Traduction du chanoine Augustin Crampon · Édition 1923</div>
+      <div class="sur-titre">Traduction Chérubin</div>
       <h1 class="titre">La Sainte Bible</h1>
       <div class="souligne"></div>
     </div>
     <div id="vue"><div class="chargement">Chargement…</div></div>
     <div class="credit">
-      Texte biblique : La Sainte Bible, traduction du chanoine Augustin Crampon, édition de 1923.
-      Transcription numérique de Jean-Marie Weber pour
-      <a href="https://www.mission-web.com" rel="noopener">mission-web.com</a>,
-      sous licence
-      <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/deed.fr" rel="noopener">CC BY-NC-SA 3.0</a>.
+      Texte biblique : La Sainte Bible, traduction Chérubin, réalisée pour Lumen Veritatis.
     </div>
   </main>
 
@@ -771,7 +769,7 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
     '1-chroniques':['1ch','1chr','1par'],'2-chroniques':['2ch','2chr','2par'],'esdras':['esd'],'nehemie':['ne','neh'],
     'tobie':['tb','tob'],'judith':['jdt'],'esther':['est'],'1-maccabees':['1m','1ma','1mac','1macc'],'2-maccabees':['2m','2ma','2mac','2macc'],
     'job':['jb'],'psaumes':['ps','psaume'],'proverbes':['pr','prv','prov'],'ecclesiaste':['qo','eccl','qohelet'],
-    'cantique-des-cantiques':['ct','cant','cantique','cantiques'],'sagesse':['sg','sag'],'ecclesiastique':['si','sir','siracide','eccli'],
+    'cantique-des-cantiques':['ct','cant','cantique','cantiques'],'sagesse':['sg','sag'],'ecclesiastique':['si','sir','siracide','eccli','ecclesiastique'],
     'isaie':['is','isa','esaie'],'jeremie':['jr','jer'],'lamentations':['lm','lam'],'baruch':['ba','bar'],'ezechiel':['ez','eze'],'daniel':['dn','dan'],
     'osee':['os'],'joel':['jl'],'amos':['am'],'abdias':['ab','abd'],'jonas':['jon'],'michee':['mi','mich'],'nahum':['na','nah'],
     'habacuc':['ha','hab'],'sophonie':['so','soph'],'aggee':['ag','agg'],'zacharie':['za','zac'],'malachie':['ml','mal'],
@@ -1369,7 +1367,10 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
       if (ch.titre) h += ps ? '<div class="ch-psaume-titre">' + esc(ch.titre) + '</div>'
                             : '<div class="ch-section">' + esc(ch.titre) + '</div>';
       h += '<div class="ch-sep"></div><div class="ch-texte">';
+      var secT = {};
+      if (ch.titres) ch.titres.forEach(function(t){ if (t && t.titre) secT[t.v] = t.titre; });
       ch.versets.forEach(function(v){
+        if (secT[v.v]) h += '<div class="ch-sect">' + esc(secT[v.v]) + '</div>';
         h += '<span class="vst" id="va-' + v.v + '"><sup class="vn">' + v.v + '</sup>' + esc(v.t) + '</span> ';
       });
       h += '</div><div class="ch-nav">';

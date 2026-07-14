@@ -360,6 +360,18 @@ main{max-width:1080px;margin:0 auto;padding:0 32px;min-height:70vh}
 .sous-corps{display:none;margin-left:9px;padding-left:24px;border-left:1px solid var(--filet)}
 .sous.ouvert .sous-corps{display:block}
 .sous-corps .article-lien:last-child{border-bottom:none}
+.grp{margin-top:6px}
+.grp:first-child{margin-top:0}
+.grp-tete{display:flex;align-items:center;gap:14px;cursor:pointer;user-select:none;padding:15px 6px;transition:background .3s}
+.grp-tete:hover{background:var(--encre-2)}
+.grp-marque{width:7px;height:7px;background:var(--or);flex:none;opacity:.7}
+.grp-nom{font-family:'Cormorant Garamond',serif;font-size:19px;letter-spacing:.04em;color:var(--parchemin);flex:1;transition:color .3s}
+.grp-tete:hover .grp-nom{color:var(--or-pale)}
+.grp-chevron{font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1;color:var(--parchemin-att);flex:none;transform:rotate(0);transition:transform .3s ease,color .25s}
+.grp-tete:hover .grp-chevron{color:var(--or-pale)}
+.grp.ouvert .grp-chevron{transform:rotate(90deg)}
+.grp-corps{display:none;padding-left:22px}
+.grp.ouvert .grp-corps{display:block}
 @keyframes apparaitDom{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes apparaitDomFerme{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-6px)}}
 
@@ -456,6 +468,9 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--par
   .dom.ouvert .dom-tete{top:61px}
   .sous-tete{padding:14px 2px;gap:11px}
   .sous-corps{padding-left:18px}
+  .grp-tete{padding:13px 2px;gap:11px}
+  .grp-nom{font-size:18px}
+  .grp-corps{padding-left:18px}
 }
 .vue:has(.apologie) .lecture{padding-bottom:0}
 .apologie{position:relative;max-width:720px;margin:18px auto 96px;padding:28px 30px;border:1px solid var(--filet);transition:background .35s,border-color .35s}

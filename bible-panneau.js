@@ -1,4 +1,4 @@
-/* Lumen Veritatis — panneau biblique latéral (Crampon 1923).
+/* Lumen Veritatis — panneau biblique latéral (traduction Chérubin).
    Module autonome : onglet discret au bord gauche, panneau coulissant
    par-dessus la page, lecture sans quitter la page. */
 (function(){
@@ -91,6 +91,8 @@
   + '.bp-ch-titre{font-family:var(--display,serif);font-weight:400;font-size:24px;color:var(--parchemin,#ffffff);text-align:center;margin:0}'
   + '.bp-vulg{font-size:12px;font-style:italic;color:var(--parchemin-att,rgba(255,255,255,.45));text-align:center;margin-top:4px}'
   + '.bp-section{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--or,#efe6cf);text-align:center;margin-top:14px}'
+  + '.bp-sect{font-family:\'Cormorant Garamond\',serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--or,#efe6cf);margin:20px 0 8px;text-align:left}'
+  + '.bp-sect:first-child{margin-top:2px}'
   + '.bp-ps-titre{font-style:italic;font-size:15.5px;color:var(--pa,rgba(255,255,255,.6));text-align:center;margin-top:14px}'
   + '.bp-sep{width:38px;height:1px;background:linear-gradient(90deg,transparent,var(--filet-f,rgba(231,224,207,.28)),transparent);margin:18px auto 20px}'
   + '.bp-texte{text-align:justify;hyphens:auto;font-size:17px;line-height:1.72;color:var(--parchemin,#ffffff)}'
@@ -164,7 +166,7 @@
     '1-chroniques':['1ch','1chr','1par'],'2-chroniques':['2ch','2chr','2par'],'esdras':['esd'],'nehemie':['ne','neh'],
     'tobie':['tb','tob'],'judith':['jdt'],'esther':['est'],'1-maccabees':['1m','1ma','1mac','1macc'],'2-maccabees':['2m','2ma','2mac','2macc'],
     'job':['jb'],'psaumes':['ps','psaume'],'proverbes':['pr','prv','prov'],'ecclesiaste':['qo','eccl','qohelet'],
-    'cantique-des-cantiques':['ct','cant','cantique','cantiques'],'sagesse':['sg','sag'],'ecclesiastique':['si','sir','siracide','eccli'],
+    'cantique-des-cantiques':['ct','cant','cantique','cantiques'],'sagesse':['sg','sag'],'ecclesiastique':['si','sir','siracide','eccli','ecclesiastique'],
     'isaie':['is','isa','esaie'],'jeremie':['jr','jer'],'lamentations':['lm','lam'],'baruch':['ba','bar'],'ezechiel':['ez','eze'],'daniel':['dn','dan'],
     'osee':['os'],'joel':['jl'],'amos':['am'],'abdias':['ab','abd'],'jonas':['jon'],'michee':['mi','mich'],'nahum':['na','nah'],
     'habacuc':['ha','hab'],'sophonie':['so','soph'],'aggee':['ag','agg'],'zacharie':['za','zac'],'malachie':['ml','mal'],
@@ -314,7 +316,10 @@
       if (ch.titre) h += ps ? '<div class="bp-ps-titre">' + esc(ch.titre) + '</div>'
                             : '<div class="bp-section">' + esc(ch.titre) + '</div>';
       h += '<div class="bp-sep"></div><div class="bp-texte">';
+      var secT = {};
+      if (ch.titres) ch.titres.forEach(function(t){ if (t && t.titre) secT[t.v] = t.titre; });
       ch.versets.forEach(function(v){
+        if (secT[v.v]) h += '<div class="bp-sect">' + esc(secT[v.v]) + '</div>';
         h += '<span class="bp-v" data-v="' + v.v + '"><sup>' + v.v + '</sup>' + esc(v.t) + '</span> ';
       });
       h += '</div><div class="bp-nav">';
