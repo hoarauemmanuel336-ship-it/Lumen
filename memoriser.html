@@ -60,7 +60,7 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .move-row{padding:10px 12px;border:1px solid var(--filet);margin-bottom:8px;cursor:pointer;transition:border-color .2s,color .2s}
 .move-row:hover{border-color:var(--or);color:var(--or)}
 #m-search .modal,#m-move .modal{max-height:82vh;overflow:auto}
-#auth-screen{display:none;align-items:center;justify-content:center;position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);padding:24px}
+#auth-screen{display:none;align-items:center;justify-content:center;min-height:calc(100vh - 160px);background:rgba(8,8,8,.98);padding:24px}
 .auth-panel{position:relative;width:100%;max-width:400px;border:1px solid var(--filet);background:var(--encre);padding:40px 34px;animation:fade .35s ease both}
 .auth-paneltitle{font-family:var(--display);font-size:24px;text-align:center;margin-bottom:24px;color:var(--parchemin)}
 .auth-cross{width:48px;height:88px;margin:0 auto 22px;background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2072%20132'%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,2%2031,2'%20fill='%23ffffff'/%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,130%2031,130'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%202,45%202,35'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%2070,45%2070,35'%20fill='%23ffffff'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:contain}
@@ -83,7 +83,7 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .auth-msg.ok{display:block;background:rgba(123,163,126,.14);border:1px solid var(--vert);color:#a9cdab}
 
 /* ═══ APP ═══ */
-#app{display:none;min-height:100vh;flex-direction:column}
+#app{display:none;min-height:calc(100vh - 86px);flex-direction:column}
 #app.on{display:flex}
 .hdr{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:12px;padding:18px 30px;background:#000;border-bottom:1px solid var(--filet)}
 .hdr-logo{font-family:var(--display);font-size:20px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;padding-left:.34em;transition:color .3s}
@@ -530,7 +530,7 @@ a.start{text-decoration:none}
 <style>
 nav.menu .menu-act#lang-btn{background:none;border:none;font-size:13px;letter-spacing:.2em;opacity:.65;text-transform:uppercase;padding:6px 4px}
 nav.menu .menu-act#lang-btn:hover{opacity:1;color:var(--parchemin);border:none}
-@media(max-width:720px){nav.menu .menu-act#lang-btn{opacity:1}}
+@media(max-width:720px){nav.menu .menu-act#lang-btn{opacity:1;width:100%;display:block;text-align:left;font-size:15px;line-height:1.75;padding:12px 0;letter-spacing:.12em}}
 .auth-ov{position:fixed;inset:0;z-index:4000;background:rgba(8,8,8,.98);display:none;align-items:center;justify-content:center;padding:24px}
 .auth-ov.on{display:flex}#auth-overlay.ouvert{display:flex}
 .auth-box{position:relative;width:100%;max-width:400px;background:var(--encre);border:1px solid var(--filet);padding:40px 34px}
@@ -557,6 +557,37 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 </head>
 <body>
 
+<header>
+    <div class="barre">
+      <a href="/" class="logo" id="nav-logo">Lumen</a>
+      <button class="burger" id="nav-burger" aria-label="Menu">☰</button>
+      <nav class="menu" id="site-nav">
+        <a id="nav-home"></a>
+        <a id="nav-lib"></a>
+        <a href="/bible.html">Bible</a>
+        <a id="nav-mem" class="actif" href="/memoriser.html"></a>
+        <button class="menu-act" id="lang-btn">EN</button>
+        <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="Rechercher"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><span class="ll-mob" id="rech-link-label">Rechercher</span></span>
+        <span class="rech-loupe cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="Nouveautés"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="ll-mob" id="nouv-link-label">Nouveautés</span><span class="cloche-point"></span></span>
+        <span class="menu-mail" id="user-mail"></span>
+        <button class="menu-act user-btn" id="logout-btn" aria-label="Déconnexion" title="Déconnexion"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7.5" r="3.5"></circle><path d="M5 21a7 7 0 0 1 14 0"></path></svg><span class="user-label" id="logout-label">Déconnexion</span></button>
+      </nav>
+    </div>
+  </header>
+<script>/* Barre autonome : la nav de base vit sans le boot de l'app (visiteur non connecté, Firebase lent ou absent). */
+(function(){function $(i){return document.getElementById(i);}
+var fr=true;try{fr=((localStorage.getItem('lm_lang')||localStorage.getItem('lv_lang')||'fr')!=='en');}catch(e){}
+if($('nav-home')){$('nav-home').textContent=fr?'Accueil':'Home';$('nav-home').href=fr?'/':'/en/';}
+if($('nav-lib')){$('nav-lib').textContent=fr?'Bibliothèque':'Library';$('nav-lib').href=fr?'/bibliotheque/':'/en/library/';}
+if($('nav-mem')){$('nav-mem').textContent=fr?'Mémoriser':'Memorise';}
+if($('lang-btn')){$('lang-btn').textContent=fr?'EN':'FR';}
+if($('logout-btn')){$('logout-btn').style.display='none';}
+if($('nav-burger')){$('nav-burger').onclick=function(){var n=document.getElementById('site-nav');if(n)n.classList.toggle('open');};}
+setTimeout(function(){var app=document.getElementById('app'),sc=document.getElementById('auth-screen');
+if(app&&sc&&!app.classList.contains('on')&&getComputedStyle(sc).display==='none'){sc.style.display='flex';}},2500);
+})();</script>
+
+
 <!-- ════ AUTH ════ -->
 <div id="auth-screen">
   <div class="auth-panel">
@@ -581,23 +612,6 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 
 <!-- ════ APP ════ -->
 <div id="app">
-  <header>
-    <div class="barre">
-      <a href="/" class="logo" id="nav-logo">Lumen</a>
-      <button class="burger" id="nav-burger" aria-label="Menu">☰</button>
-      <nav class="menu" id="site-nav">
-        <a id="nav-home"></a>
-        <a id="nav-lib"></a>
-        <a href="/bible.html">Bible</a>
-        <a id="nav-mem" class="actif" href="/memoriser.html"></a>
-        <button class="menu-act" id="lang-btn">EN</button>
-        <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="Rechercher"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><span class="ll-mob" id="rech-link-label">Rechercher</span></span>
-        <span class="rech-loupe cloche" id="cloche-ouvrir" role="button" tabindex="0" aria-label="Nouveautés"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg><span class="ll-mob" id="nouv-link-label">Nouveautés</span><span class="cloche-point"></span></span>
-        <span class="menu-mail" id="user-mail"></span>
-        <button class="menu-act user-btn" id="logout-btn" aria-label="Déconnexion" title="Déconnexion"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7.5" r="3.5"></circle><path d="M5 21a7 7 0 0 1 14 0"></path></svg><span class="user-label" id="logout-label">Déconnexion</span></button>
-      </nav>
-    </div>
-  </header>
 
   <main class="wrap">
     <section id="setup">
@@ -1532,7 +1546,6 @@ function applyLang(){
   $('nav-logo').href=_fr?'/':'/en/';
   $('nav-home').textContent=_fr?'Accueil':'Home'; $('nav-home').href=_fr?'/':'/en/';
   $('nav-lib').textContent=_fr?'Bibliothèque':'Library'; $('nav-lib').href=_fr?'/bibliotheque/':'/en/library/';
-  if($('nav-carnet')){$('nav-carnet').textContent=_fr?'Carnet':'Notebook';$('nav-carnet').href=_fr?'/carnet/':'/en/notebook/';}
   $('nav-mem').textContent=_fr?'Mémoriser':'Memorise';
   $('foot-verse').innerHTML=_fr?FOOT_FR:FOOT_EN;
   $('nouv-fermer').setAttribute('aria-label',_fr?'Fermer':'Close');
@@ -1841,6 +1854,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('auth-overlay').addEventListener('click',(ev)=>{if(ev.target===ev.currentTarget)ev.currentTarget.classList.remove('ouvert');});
   document.getElementById('auth-logout').onclick=()=>{auth.signOut();document.getElementById('auth-overlay').classList.remove('ouvert');};
   document.addEventListener('keydown',(ev)=>{if(ev.key==='Escape'){var o=document.getElementById('auth-overlay');if(o)o.classList.remove('ouvert');}});
+  (function(){var fr=(S.lang==='fr');$('nav-home').textContent=fr?'Accueil':'Home';$('nav-home').href=fr?'/':'/en/';$('nav-lib').textContent=fr?'Bibliothèque':'Library';$('nav-lib').href=fr?'/bibliotheque/':'/en/library/';$('nav-mem').textContent=fr?'Mémoriser':'Memorise';$('logout-btn').style.display='none';})();
   $('nav-burger').onclick=()=>document.getElementById('site-nav').classList.toggle('open');
   initNews();
   $('lang-btn').onclick=()=>{S.lang=S.lang==='fr'?'en':'fr';localStorage.setItem('lm_lang',S.lang);localStorage.setItem('lv_lang',S.lang);applyLang();renderCats();if($('study').style.display==='block'&&S.cur&&!S.cur.done)renderQuestion();};
@@ -1941,13 +1955,13 @@ async function chargerBaseLV(){try{const s=await db.doc('config/memoriser').get(
 if('serviceWorker' in navigator){try{navigator.serviceWorker.register('/memoriser-sw.js',{updateViaCache:'none'});}catch(_){}}
 auth.onAuthStateChanged(async u=>{
   if(u){
-    S.uid=u.uid; $('user-mail').textContent=u.email||u.displayName||'';
+    S.uid=u.uid; $('user-mail').textContent=u.email||u.displayName||''; $('logout-btn').style.display='';
     $('auth-screen').style.display='none'; $('app').classList.add('on');
     await chargerBaseLV(); await loadUser(); applyLang(); renderCats();
     document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',+x.dataset.m===S.mode));
     if(!demarrerAuto()) showView('setup');
   }else{
-    S.uid=null; $('app').classList.remove('on'); $('auth-screen').style.display='flex';
+    S.uid=null; $('app').classList.remove('on'); $('auth-screen').style.display='flex'; $('user-mail').textContent=''; $('logout-btn').style.display='none';
     applyLang(); setAuth('si');
   }
 });

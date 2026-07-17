@@ -217,7 +217,6 @@ const UI = {
     site_desc_about: "Lumen, un lieu d'étude et de méditation autour de la foi catholique : rendre la théologie accessible et fidèle à l'enseignement de l'Église.",
     t_home: 'Lumen · Théologie catholique', t_library: 'Bibliothèque · Lumen', t_about: 'À propos · Lumen', t_404: 'Page introuvable · Lumen',
     search_placeholder: 'Rechercher dans Lumen…', search_hint: 'Tapez un mot pour parcourir les articles, ou une référence (Jean 3:16) pour ouvrir la Bible.', search_empty: 'Aucun résultat pour',
-    menu_carnet:'Carnet', carnet_label:"L'espace", carnet_title:'Le carnet', carnet_sub:'Votre espace d\u2019\u00e9criture personnel.', carnet_open:'Ouvrir le carnet',
     memo_label:"L'outil", memo_title:'Mémoriser', memo_sub:'Apprenez les versets par cœur et gardez-les, à votre rythme.', memo_open:'Ouvrir Mémoriser', memo_start:'Commencer', memo_mastery:'de maîtrise', memo_acquired:'acquis', memo_learning:'en cours', memo_review:'à revoir', memo_signedout:'Connectez-vous pour suivre votre progression.',
     lect_label:"Le parcours", lect_title:'La lecture suivie', lect_lu:'articles lus', lect_signedout:'Connectez-vous pour suivre votre lecture.', lect_start:'Commencer la lecture',
     other_label: 'EN'
@@ -233,7 +232,6 @@ const UI = {
     site_desc_library: 'All the entries of Lumen, arranged by domain: doctrine, Scripture, sacraments, figures, history and philosophy.',
     site_desc_about: 'Lumen, a place of study and meditation on the Catholic faith: making theology accessible and faithful to the teaching of the Church.',
     t_home: 'Lumen · Catholic Theology', t_library: 'Library · Lumen', t_about: 'About · Lumen', t_404: 'Page not found · Lumen',
-    menu_carnet:'Notebook', carnet_label:'The space', carnet_title:'The notebook', carnet_sub:'Your personal writing space.', carnet_open:'Open the notebook',
     memo_label:'The tool', memo_title:'Memorise', memo_sub:'Learn the verses by heart and keep them, at your own pace.', memo_open:'Open Memorise', memo_start:'Start', memo_mastery:'mastery', memo_acquired:'learned', memo_learning:'in progress', memo_review:'to review', memo_signedout:'Sign in to track your progress.',
     lect_label:'The path', lect_title:'Guided Reading', lect_lu:'articles read', lect_signedout:'Sign in to track your reading.', lect_start:'Start reading'
   })
@@ -333,7 +331,7 @@ const BARRE_CSS = `
 }
 
 header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(231,224,207,.14)}
-.barre{max-width:1080px;margin:0 auto;padding:20px 32px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:24px;height:auto}
+.barre{max-width:1080px;margin:0 auto;padding:20px 32px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:24px;height:auto;line-height:1.75}
 .barre .logo{grid-column:1;grid-row:1;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px;letter-spacing:.34em;text-transform:uppercase;color:var(--parchemin,#ffffff);padding-left:.34em;border-bottom:none;text-decoration:none}
 .logo-h1{display:contents}
 a:focus-visible,button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible,summary:focus-visible{outline:1px solid var(--or,#efe6cf);outline-offset:3px}
@@ -538,8 +536,7 @@ function header(lang, type, base, otherRel, ctx) {
       { href: home, actif: type === 'home', label: u.menu_home },
       { href: base + lib, actif: type === 'library', label: u.menu_library },
       { href: lang === 'en' ? '/en/bible.html' : '/bible.html', label: 'Bible' },
-      { href: '/memoriser.html', label: u.menu_memorise },
-      { href: lang === 'en' ? '/en/notebook/' : '/carnet/', actif: type === 'carnet', label: u.menu_carnet }
+      { href: '/memoriser.html', label: u.menu_memorise }
     ],
     langue: { type: 'lien', href: otherRel, hreflang: lang === 'fr' ? 'en' : 'fr', label: u.other_label },
     loupe: { id: 'rech-ouvrir', label: lang === 'en' ? 'Search' : 'Rechercher' },
@@ -1264,8 +1261,8 @@ const AUTH_JS = `(function(){
 })();`;
 
 const BIBLIO_JS = `(function(){
-  function cascadeA(els){ els.forEach(function(el,i){ if(!el)return; var d=Math.min(i*40,640); el.style.animation='none'; void el.offsetHeight; el.style.animation='apparaitDom .45s cubic-bezier(.2,.7,.3,1) '+d+'ms both'; }); }
-  function cascadeF(els,fin){ els.forEach(function(el){ if(el)el.style.animation='apparaitDomFerme .25s ease forwards'; }); setTimeout(fin,240); }
+  function cascadeA(els){ els.forEach(function(el,i){ if(!el)return; var d=Math.min(i*32,240); el.style.animation='none'; void el.offsetHeight; el.style.animation='apparaitDom .4s cubic-bezier(.2,.7,.3,1) '+d+'ms both'; var done=function(){ el.style.animation=''; el.removeEventListener('animationend',done); }; el.addEventListener('animationend',done); setTimeout(function(){ if(el.style.animation) el.style.animation=''; }, 900+d); }); }
+  function cascadeF(els,fin){ els.forEach(function(el){ if(el)el.style.animation='apparaitDomFerme .2s ease forwards'; }); setTimeout(fin,190); }
   /* verrous anti-course : la fermeture est differee par le fondu (240ms) ;
      sans verrou, un second clic pendant ou juste apres le fondu rouvre ou
      laisse la section dans un etat incoherent */
@@ -1281,8 +1278,9 @@ const BIBLIO_JS = `(function(){
   function fermer(sec){ if(!sec||!sec.classList.contains('ouvert')||sec.classList.contains('fermant'))return;
     sec.classList.add('fermant');
     var sep=sec.querySelector('.dom-sep'),corps=sec.querySelector('.dom-corps');
-    cascadeF([sep].concat([].slice.call(corps.children)),function(){});
-    sec._ft=setTimeout(function(){ sec._ft=null; sec.classList.remove('ouvert'); sec.classList.remove('fermant'); maj(); },240); }
+    var kids=[sep].concat([].slice.call(corps.children));
+    cascadeF(kids,function(){});
+    sec._ft=setTimeout(function(){ sec._ft=null; sec.classList.remove('ouvert'); sec.classList.remove('fermant'); kids.forEach(function(k){ if(k)k.style.animation=''; }); maj(); },190); }
   function basculer(sec){ annuleTout(); if(sec.classList.contains('fermant')||!sec.classList.contains('ouvert')) ouvrir(sec); else fermer(sec); maj(); }
   function ouvrirSous(s){ if(!s)return;
     if(s.classList.contains('fermant')){ annuleFermeture(s); }
@@ -1291,9 +1289,9 @@ const BIBLIO_JS = `(function(){
     var corps=s.querySelector('.sous-corps'); cascadeA([].slice.call(corps.children)); }
   function fermerSous(s){ if(!s||!s.classList.contains('ouvert')||s.classList.contains('fermant'))return;
     s.classList.add('fermant');
-    var corps=s.querySelector('.sous-corps');
-    cascadeF([].slice.call(corps.children),function(){});
-    s._ft=setTimeout(function(){ s._ft=null; s.classList.remove('ouvert'); s.classList.remove('fermant'); },240); }
+    var corps=s.querySelector('.sous-corps'); var kids=[].slice.call(corps.children);
+    cascadeF(kids,function(){});
+    s._ft=setTimeout(function(){ s._ft=null; s.classList.remove('ouvert'); s.classList.remove('fermant'); kids.forEach(function(k){ if(k)k.style.animation=''; }); },190); }
   function basculerSous(s){ annuleTout(); if(s.classList.contains('fermant')||!s.classList.contains('ouvert')) ouvrirSous(s); else fermerSous(s); }
   function corpsGrp(g){ return g.querySelector(':scope > .grp-corps'); }
   function ouvrirGrp(g){ if(!g)return;
@@ -1303,8 +1301,8 @@ const BIBLIO_JS = `(function(){
     var corps=corpsGrp(g); if(corps) cascadeA([].slice.call(corps.children)); }
   function fermerGrp(g){ if(!g||!g.classList.contains('ouvert')||g.classList.contains('fermant'))return;
     g.classList.add('fermant');
-    var corps=corpsGrp(g); if(corps) cascadeF([].slice.call(corps.children),function(){});
-    g._ft=setTimeout(function(){ g._ft=null; g.classList.remove('ouvert'); g.classList.remove('fermant'); },240); }
+    var corps=corpsGrp(g); var kids=corps?[].slice.call(corps.children):[]; if(corps) cascadeF(kids,function(){});
+    g._ft=setTimeout(function(){ g._ft=null; g.classList.remove('ouvert'); g.classList.remove('fermant'); kids.forEach(function(k){ if(k)k.style.animation=''; }); },190); }
   function basculerGrp(g){ annuleTout(); if(g.classList.contains('fermant')||!g.classList.contains('ouvert')) ouvrirGrp(g); else fermerGrp(g); }
   function tout(){ annuleTout();
     var secs=[].slice.call(document.querySelectorAll('.dom'));
@@ -1513,692 +1511,6 @@ window.LUMEN={base:${JSON.stringify(base)},lang:${JSON.stringify(lang)},hint:${J
 }
 
 /* ---- vues ---- */
-function mainCarnet(lang) {
-  const F = lang === 'fr';
-  const T = {
-    titre: F ? 'Le carnet' : 'The notebook',
-    nouveau: F ? 'Nouveau document' : 'New document',
-    auj: F ? 'Nouvelle page' : 'New page',
-    ongDocs: F ? 'Documents' : 'Documents',
-    ongJour: F ? 'Journal' : 'Journal',
-    retour: F ? '\u2039 Documents' : '\u2039 Documents',
-    titrePh: F ? 'Titre du document\u2026' : 'Document title\u2026',
-    gras: F ? 'Gras' : 'Bold', ital: F ? 'Italique' : 'Italic', soul: F ? 'Soulign\u00e9' : 'Underline',
-    titreB: F ? 'Titre' : 'Heading', liste: F ? 'Liste' : 'List',
-    img: F ? 'Image' : 'Image',
-    enrB: F ? 'Enregistrer' : 'Save',
-    plein: F ? 'Plein \u00e9cran' : 'Full screen',
-    suppr: F ? 'Supprimer' : 'Delete',
-    enr: F ? 'Enregistr\u00e9' : 'Saved',
-    ajPage: F ? '+ Page' : '+ Page',
-    aide: F ? 'Cliquez sur une image pour la d\u00e9placer, la redimensionner ou r\u00e9gler sa transparence. Le texte s\u2019\u00e9crit par-dessus.' : 'Click an image to move it, resize it or adjust its transparency. Text is written over it.',
-    fPol: F ? 'Police' : 'Font', fTai: F ? 'Taille' : 'Size', fCou: F ? 'Couleur' : 'Colour', fInt: F ? 'Interligne' : 'Line height'
-  };
-  const SEL = 'background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid var(--filet);padding:5px 6px;font-size:13px;outline:none;max-width:118px';
-  return `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital@0;1&family=Merriweather:ital@0;1&family=Playfair+Display:ital@0;1&family=Caveat&family=Dancing+Script&family=Shadows+Into+Light&family=Great+Vibes&family=Montserrat:ital@0;1&family=Special+Elite&family=IM+Fell+English:ital@0;1&display=swap">
-<style>
-#carnet{max-width:1000px;margin:0 auto;padding:0 20px 80px}
-#carnet .cah-titre{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--parchemin);margin:34px 0 26px}
-#c-liste .cdoc{display:flex;align-items:baseline;gap:16px;padding:17px 4px;border-bottom:1px solid var(--filet);cursor:pointer}
-#c-liste .cdoc:hover .cdoc-t{color:var(--or-pale)}
-#c-liste .cdoc-t{flex:1;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--parchemin);transition:color .3s}
-#c-liste .cdoc-d{font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.06em}
-#c-nouveau{display:block;width:max-content;margin:24px auto 26px;cursor:pointer}
-#c-msg{color:rgba(255,255,255,.55);padding:26px 0}
-#c-edit{display:none}
-#c-edit .ce-haut{display:flex;align-items:center;gap:18px;margin:26px auto 14px;max-width:760px;flex-wrap:wrap}
-#c-retour{cursor:pointer;color:rgba(255,255,255,.55);letter-spacing:.08em;font-size:14px;transition:color .3s}
-#c-retour:hover{color:var(--or-pale)}
-#c-jour{display:none;font-family:ui-monospace,monospace;font-size:13px;letter-spacing:.06em;color:rgba(255,255,255,.6);align-items:center;gap:2px}
-#c-etat{margin-left:auto;font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.06em;opacity:0;transition:opacity .4s}
-#c-etat.on{opacity:1}
-#c-titre{display:block;max-width:760px;margin:0 auto;width:100%;background:none;border:none;border-bottom:1px solid var(--filet);color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:28px;padding:8px 2px;outline:none;margin-bottom:14px}
-#c-titre:focus{border-color:var(--or-pale)}
-.ce-barre{display:flex;align-items:center;gap:6px;flex-wrap:wrap;border:1px solid var(--filet);padding:8px 10px;background:rgba(10,10,10,.95);z-index:5;max-width:760px;margin:14px auto 0}
-#c-zone{position:relative}
-#c-zone.c-pfs{position:fixed;inset:0;z-index:2000;background:#000;overflow:auto;padding:10px 0 30px}
-#c-zone:fullscreen{background:#000;overflow:auto;padding:10px 0 30px}
-#c-zone.sans-barre .ce-barre{display:none}
-#c-fsbar{display:none;position:absolute;top:6px;right:10px;z-index:2100;cursor:pointer;color:rgba(255,255,255,.5);font-size:13px;letter-spacing:.06em;padding:6px 10px;background:rgba(10,10,10,.8);border:1px solid var(--filet)}
-#c-fsbar:hover{color:#fff}
-#c-zone:fullscreen #c-fsbar,#c-zone.c-pfs #c-fsbar{display:block}
-.ce-btn{cursor:pointer;color:rgba(255,255,255,.55);border:1px solid transparent;padding:5px 11px;font-size:14px;letter-spacing:.03em;transition:color .25s,border-color .25s;user-select:none;white-space:nowrap}
-.ce-btn:hover{color:var(--parchemin);border-color:var(--filet-fort)}
-.ce-btn.b{font-weight:700}.ce-btn.i{font-style:italic}.ce-btn.u{text-decoration:underline}
-.ce-sep{width:1px;height:20px;background:var(--filet);margin:0 4px}
-.c-viv{width:14px;height:14px;border-radius:50%;cursor:pointer;border:1px solid rgba(255,255,255,.3);transition:transform .15s}
-.c-viv:hover{transform:scale(1.25);border-color:#fff}
-#c-page-wrap{display:flex;justify-content:center;background:transparent;margin-top:0;position:relative}
-#c-zone:fullscreen #c-feuille,#c-zone.c-pfs #c-feuille{width:min(100%,calc((100vh - 120px) / 1.414))}
-#c-zone:fullscreen .ce-barre,#c-zone.c-pfs .ce-barre{width:min(100%,calc((100vh - 120px) / 1.414));max-width:none;margin:8px auto}
-#c-feuille{position:relative;z-index:0;width:100%;max-width:760px;aspect-ratio:1/1.414;border:1px solid var(--filet);padding:54px 58px;color:var(--parchemin);font-size:17px;line-height:1.5;outline:none;background-color:#000000;overflow:hidden;overflow-wrap:break-word}
-#c-feuille:focus{border-color:var(--filet-fort)}
-#c-feuille h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--parchemin);margin:0 0 10px}
-#c-feuille p{margin:0 0 .55em}
-#c-feuille ul{margin:0 0 .55em 22px}
-#c-feuille.claire{background-color:#ffffff;color:#111111}
-#c-feuille.claire h3{color:#111111}
-#c-feuille.claire:focus{border-color:rgba(0,0,0,.3)}
-#c-feuille img.c-flot{position:absolute;z-index:-1;max-width:none;cursor:grab;user-select:none;touch-action:none}
-#c-poignee{touch-action:none}
-#c-outils-img{display:none;position:absolute;z-index:8;background:rgba(10,10,10,.95);border:1px solid var(--filet-fort);padding:6px 10px;align-items:center;gap:10px;font-size:12px;color:rgba(255,255,255,.7)}
-#c-outils-img input{accent-color:#cbb87e;width:90px}
-#c-outils-img .coi-x{cursor:pointer;color:#b46a6a;font-size:15px;padding:0 4px}
-#c-outils-img .coi-x:hover{color:#d98f8f}
-#c-poignee{display:none;position:absolute;z-index:8;width:20px;height:20px;border-right:3px solid var(--or);border-bottom:3px solid var(--or);cursor:nwse-resize}
-.ce-aide{font-size:12px;color:rgba(255,255,255,.45);margin:12px 2px 0;line-height:1.6}
-#c-suppr{color:#b46a6a}
-#c-suppr:hover{color:#d98f8f;border-color:rgba(217,143,143,.4)}
-.c-onglets{display:flex;gap:26px;border-bottom:1px solid var(--filet);margin-bottom:18px}
-.c-ong{cursor:pointer;color:rgba(255,255,255,.55);letter-spacing:.1em;font-size:14px;text-transform:uppercase;padding:10px 2px 12px;border-bottom:1px solid transparent;margin-bottom:-1px;transition:color .3s,border-color .3s}
-.c-ong:hover{color:var(--parchemin)}
-.c-ong.actif{color:var(--parchemin);border-color:var(--or)}
-select.ce-sel{background:#0a0a0a;color:rgba(255,255,255,.75);border:1px solid var(--filet);padding:5px 6px;font-size:13px;outline:none;max-width:130px}
-@media(max-width:720px){#c-feuille{padding:26px 20px}}
-</style>
-<div id="carnet">
-  <h1 class="cah-titre">${T.titre}</h1>
-  <div id="c-liste">
-    <div class="c-onglets">
-      <span class="c-ong actif" id="c-ong-docs" role="button" tabindex="0">${T.ongDocs}</span>
-      <span class="c-ong" id="c-ong-jour" role="button" tabindex="0">${T.ongJour}</span>
-    </div>
-    <span class="memo-start" id="c-nouveau" role="button" tabindex="0" style="display:none" data-doc="${T.nouveau}" data-jour="${T.auj}">${T.nouveau}</span>
-    <div id="c-docs"></div>
-    <div id="c-msg"></div>
-  </div>
-  <div id="c-edit">
-    <div class="ce-haut">
-      <span id="c-retour" role="button" tabindex="0">${T.retour}</span>
-      <span id="c-etat">${T.enr}</span>
-    </div>
-    <input id="c-titre" type="text" placeholder="${T.titrePh}" maxlength="140">
-    <div id="c-zone">
-    <span id="c-fsbar" role="button" tabindex="0" data-off="${F?'Masquer la barre':'Hide the bar'}" data-on="${F?'Afficher la barre':'Show the bar'}">${F?'Masquer la barre':'Hide the bar'}</span>
-    <div class="ce-barre">
-      <span id="c-jour"></span>
-      <span class="ce-sep"></span>
-      <span class="ce-btn b" data-cmd="bold" title="${T.gras}">G</span>
-      <span class="ce-btn i" data-cmd="italic" title="${T.ital}">I</span>
-      <span class="ce-btn u" data-cmd="underline" title="${T.soul}">S</span>
-      <span class="ce-sep"></span>
-      <select class="ce-sel" id="c-pol" title="${T.fPol}">
-        <option value="">${T.fPol}</option>
-        <optgroup label="Serif">
-          <option value="EB Garamond">EB Garamond</option>
-          <option value="Cormorant Garamond">Cormorant Garamond</option>
-          <option value="Lora">Lora</option>
-          <option value="Merriweather">Merriweather</option>
-          <option value="Playfair Display">Playfair Display</option>
-          <option value="Georgia">Georgia</option>
-          <option value="Times New Roman">Times New Roman</option>
-          <option value="Palatino Linotype">Palatino</option>
-          <option value="Book Antiqua">Book Antiqua</option>
-        </optgroup>
-        <optgroup label="${F?'Manuscrites':'Handwriting'}">
-          <option value="Caveat">Caveat</option>
-          <option value="Dancing Script">Dancing Script</option>
-          <option value="Shadows Into Light">Shadows Into Light</option>
-          <option value="Great Vibes">Great Vibes</option>
-        </optgroup>
-        <optgroup label="Sans-serif">
-          <option value="Arial">Arial</option>
-          <option value="Helvetica">Helvetica</option>
-          <option value="Verdana">Verdana</option>
-          <option value="Tahoma">Tahoma</option>
-          <option value="Trebuchet MS">Trebuchet MS</option>
-          <option value="Montserrat">Montserrat</option>
-        </optgroup>
-        <optgroup label="${F?'Autres':'Other'}">
-          <option value="Special Elite">Special Elite (${F?'machine':'typewriter'})</option>
-          <option value="IM Fell English">IM Fell English (${F?'ancien':'antique'})</option>
-          <option value="Courier New">Courier New</option>
-          <option value="ui-monospace,monospace">Monospace</option>
-          <option value="Impact">Impact</option>
-        </optgroup>
-      </select>
-      <select class="ce-sel" id="c-tai" title="${T.fTai}">
-        <option value="" disabled selected hidden>${T.fTai}</option>
-        <option value="12">12</option><option value="13">13</option><option value="14">14</option>
-        <option value="15">15</option><option value="16">16</option><option value="17">17</option>
-        <option value="18">18</option><option value="20">20</option><option value="22">22</option>
-        <option value="24">24</option><option value="28">28</option><option value="32">32</option>
-        <option value="36">36</option><option value="42">42</option><option value="48">48</option>
-      </select>
-      <input type="color" id="c-cou" title="${T.fCou}" value="#efe6cf" style="width:34px;height:27px;padding:2px;background:#0a0a0a;border:1px solid var(--filet);cursor:pointer">
-      <span id="c-vives" style="display:flex;align-items:center;gap:4px">
-        <span class="c-viv" data-cc="#ffe600" style="background:#ffe600"></span>
-        <span class="c-viv" data-cc="#ff7a00" style="background:#ff7a00"></span>
-        <span class="c-viv" data-cc="#ff2b2b" style="background:#ff2b2b"></span>
-        <span class="c-viv" data-cc="#ff4da6" style="background:#ff4da6"></span>
-        <span class="c-viv" data-cc="#b04dff" style="background:#b04dff"></span>
-        <span class="c-viv" data-cc="#2979ff" style="background:#2979ff"></span>
-        <span class="c-viv" data-cc="#00cfff" style="background:#00cfff"></span>
-        <span class="c-viv" data-cc="#35ff6a" style="background:#35ff6a"></span>
-        <span class="c-viv" data-cc="#ffffff" style="background:#ffffff"></span>
-      </span>
-      <select class="ce-sel" id="c-int" title="${T.fInt}">
-        <option value="">${T.fInt}</option>
-        <option value="1.2">1,2</option>
-        <option value="1.35">1,35</option>
-        <option value="1.5">1,5</option>
-        <option value="1.8">1,8</option>
-      </select>
-      <select class="ce-sel" id="c-bg" title="${F?'Fond de page':'Page background'}">
-        <option value="n">${F?'Page noire':'Black page'}</option>
-        <option value="b">${F?'Page blanche':'White page'}</option>
-      </select>
-      <span class="ce-sep"></span>
-      <span class="ce-btn" id="c-img">${T.img}</span>
-      <span class="ce-btn" id="c-ajpage">${T.ajPage}</span>
-      <span class="ce-sep"></span>
-      <span class="ce-btn" id="c-enr">${T.enrB}</span>
-      <span class="ce-btn" id="c-plein" title="${T.plein}">\u26f6</span>
-      <span class="ce-btn" id="c-suppr">${T.suppr}</span>
-    </div>
-    <div id="c-page-wrap">
-      <div id="c-feuille" contenteditable="true" spellcheck="true"></div>
-      <div id="c-outils-img"><span class="coi-x" id="coi-x" title="${T.suppr}">\u2715</span><input type="range" id="coi-op" min="10" max="100" step="5"></div>
-      <div id="c-poignee"></div>
-    </div>
-    </div>
-    <p class="ce-aide">${T.aide}</p>
-    <input type="file" id="c-file-img" accept="image/*" style="display:none">
-  </div>
-</div>`;
-}
-const CARNET_JS = function(lang){
-  const F = lang === 'fr';
-  const TXT = JSON.stringify({
-    sansTitre: F ? 'Sans titre' : 'Untitled',
-    vide: F ? 'Aucun document pour le moment. Cr\u00e9ez le premier.' : 'No documents yet. Create the first one.',
-    videJ: F ? 'Aucune page pour le moment. \u00c9crivez la premi\u00e8re.' : 'No pages yet. Write the first one.',
-    connexion: F ? 'Connectez-vous pour utiliser le carnet.' : 'Sign in to use the notebook.',
-    confirme: F ? 'Supprimer ce document ? Cette action est d\u00e9finitive.' : 'Delete this document? This cannot be undone.',
-    enr: F ? 'Enregistr\u00e9' : 'Saved',
-    enrC: F ? 'Enregistrement\u2026' : 'Saving\u2026',
-    pageMot: F ? 'Page' : 'Page',
-    ouvrirJ: F ? 'Ouvrir le journal' : 'Open the journal',
-    premiereJ: F ? '\u00c9crire la premi\u00e8re page' : 'Write the first page',
-    trop: F ? 'Image trop lourde m\u00eame compress\u00e9e. Choisissez une image plus petite.' : 'Image too large even compressed. Choose a smaller one.'
-  });
-  const LOC = F ? 'fr-FR' : 'en-GB';
-  return `(function(){
-  var TXT=${TXT};
-  var elL=document.getElementById('c-liste'),elE=document.getElementById('c-edit');
-  if(!elL)return;
-  var docs=document.getElementById('c-docs'),msg=document.getElementById('c-msg');
-  var feuille=document.getElementById('c-feuille'),titre=document.getElementById('c-titre'),etat=document.getElementById('c-etat');
-  var U=null,CUR=null,CURD=null,tmr=null,sale=false,MODE='doc',PAGES=[],PAGES_T=[],PIDX=0;
-  var PH0=titre?titre.placeholder:'';
-  function col(){return firebase.firestore().collection('users').doc(U.uid).collection('carnet');}
-  function colI(){return firebase.firestore().collection('users').doc(U.uid).collection('carnetImg');}
-  try{document.execCommand('styleWithCSS',false,true);}catch(e){}
-  /* ── images : compression puis stockage hors du doc texte ── */
-  function compresse(file,maxDim){
-    return new Promise(function(res,rej){
-      var img=new Image(),url=URL.createObjectURL(file);
-      img.onload=function(){
-        URL.revokeObjectURL(url);
-        var essais=[[maxDim,0.82],[Math.round(maxDim*0.8),0.72],[Math.round(maxDim*0.6),0.62],[900,0.55]];
-        for(var k=0;k<essais.length;k++){
-          var m=essais[k][0],q=essais[k][1];
-          var r=Math.min(1,m/Math.max(img.width,img.height));
-          var c=document.createElement('canvas');
-          c.width=Math.max(1,Math.round(img.width*r));c.height=Math.max(1,Math.round(img.height*r));
-          c.getContext('2d').drawImage(img,0,0,c.width,c.height);
-          var d=c.toDataURL('image/jpeg',q);
-          if(d.length<880*1024){res(d);return;}
-        }
-        rej(new Error('trop'));
-      };
-      img.onerror=function(){rej(new Error('lecture'));};
-      img.src=url;
-    });
-  }
-  function sauveImage(dataURL){
-    var id=col().doc().id;
-    return colI().doc(id).set({d:dataURL}).then(function(){return id;});
-  }
-  function chargeImage(id){
-    return colI().doc(id).get().then(function(s){var d=s.exists&&s.data();return d?d.d:null;});
-  }
-  /* ── pages : chaque document est une suite de pages fixes ── */
-  function pagesDe(d){
-    if(Array.isArray(d.pages)&&d.pages.length)return d.pages;
-    /* migration de l'ancien modele : h unique + eventuel fond/voile
-       convertis en image flottante pleine page */
-    var h=d.h||'<p><br></p>';
-    if(d.fond){
-      var op=Math.max(10,Math.round(100-(d.voile||0)));
-      h='<img class="c-flot" data-lvimg="'+d.fond+'" style="left:0;top:0;width:100%;opacity:'+(op/100)+'" contenteditable="false" draggable="false">'+h;
-    }
-    return [{h:h,il:1.5}];
-  }
-  function htmlProprePage(html){
-    var t=document.createElement('div');t.innerHTML=html;
-    t.querySelectorAll('img[data-lvimg]').forEach(function(im){im.removeAttribute('src');});
-    return t.innerHTML;
-  }
-  function syncPage(){
-    if(!CURD)return;
-    imgDesel();
-    CURD.pages[PIDX].h=feuille.innerHTML;
-  }
-  /* ── images orphelines : comparees sur TOUTES les pages ── */
-  var REFS={};
-  function refsActuelles(pages){
-    var r={},m,re;
-    (pages||[]).forEach(function(pg){
-      re=/data-lvimg="([^"]+)"/g;
-      while((m=re.exec(pg.h||'')))r[m[1]]=1;
-    });
-    return r;
-  }
-  function purgeOrphelines(refs2){
-    Object.keys(REFS).forEach(function(id){ if(!refs2[id])colI().doc(id).delete().catch(function(){}); });
-    REFS=refs2;
-  }
-  function marqueEtat(t,garde){etat.textContent=t;etat.classList.add('on');if(!garde)setTimeout(function(){etat.classList.remove('on');},1800);}
-  function sauve(){
-    if(!CUR||!U)return Promise.resolve();
-    sale=false;
-    syncPage();
-    marqueEtat(TXT.enrC,true);
-    var pages2=CURD.pages.map(function(pg){return {h:htmlProprePage(pg.h),il:pg.il||1.5,bg:pg.bg||'n'};});
-    var d={t:(titre.value||'').trim(),pages:pages2,maj:Date.now(),h:firebase.firestore.FieldValue.delete(),fond:firebase.firestore.FieldValue.delete(),voile:firebase.firestore.FieldValue.delete()};
-    var refs2=refsActuelles(pages2);
-    return col().doc(CUR).set(d,{merge:true}).then(function(){purgeOrphelines(refs2);marqueEtat(TXT.enr);}).catch(function(){etat.classList.remove('on');});
-  }
-  function planifie(){sale=true;clearTimeout(tmr);tmr=setTimeout(sauve,2000);}
-  /* ── rendu d'une page dans la feuille ── */
-  function montrePage(){
-    var pg=CURD.pages[PIDX];
-    feuille.innerHTML=pg.h||'<p><br></p>';
-    feuille.style.lineHeight=pg.il||1.5;
-    feuille.classList.toggle('claire',pg.bg==='b');
-    var si=document.getElementById('c-int');si.value=String(pg.il||1.5);
-    var sb=document.getElementById('c-bg');if(sb)sb.value=(pg.bg==='b'?'b':'n');
-    feuille.querySelectorAll('img[data-lvimg]').forEach(function(im){
-      im.setAttribute('contenteditable','false');im.setAttribute('draggable','false');
-      chargeImage(im.getAttribute('data-lvimg')).then(function(d){if(d)im.src=d;});
-    });
-    majNav();
-  }
-  function majNav(){
-    var jz=document.getElementById('c-jour');
-    jz.innerHTML='';jz.style.display='flex';
-    var enJournal=(CURD.mode==='journal');
-    var total=enJournal?PAGES.length:CURD.pages.length;
-    var pos=enJournal?PAGES.indexOf(CUR):PIDX;
-    function fle(txt,va){
-      var f=document.createElement('span');f.textContent=txt;
-      f.style.cssText='cursor:pointer;padding:2px 10px;color:rgba(255,255,255,.5);transition:color .25s';
-      f.onmouseenter=function(){f.style.color='#fff';};f.onmouseleave=function(){f.style.color='rgba(255,255,255,.5)';};
-      f.addEventListener('click',function(){
-        if(pos+va<0||pos+va>=total)return;
-        (sale?sauve():Promise.resolve()).then(function(){
-          if(enJournal)ouvreDoc(PAGES[pos+va]);
-          else{PIDX=pos+va;montrePage();}
-        });
-      });
-      if(pos+va<0||pos+va>=total)f.style.visibility='hidden';
-      return f;
-    }
-    /* selecteur simple : « Page n / N » est un petit menu natif qui liste
-       les pages pour y sauter directement */
-    var lab=document.createElement('select');
-    lab.className='ce-sel';
-    lab.style.cssText='max-width:170px;font-family:ui-monospace,monospace;font-size:13px';
-    var i2;
-    for(i2=0;i2<total;i2++){
-      var o=document.createElement('option');
-      o.value=String(i2);
-      var dd=(enJournal&&PAGES_T&&PAGES_T[i2])||'';
-      o.textContent=TXT.pageMot+' '+(i2+1)+(dd?' \\u00b7 '+dd:'')+(i2===pos?' / '+total:'');
-      if(i2===pos)o.selected=true;
-      lab.appendChild(o);
-    }
-    lab.addEventListener('change',function(){
-      var vers=parseInt(this.value,10);
-      if(vers===pos)return;
-      (sale?sauve():Promise.resolve()).then(function(){
-        if(enJournal)ouvreDoc(PAGES[vers]);
-        else{PIDX=vers;montrePage();}
-      });
-    });
-    jz.appendChild(fle('\\u2039',-1));jz.appendChild(lab);jz.appendChild(fle('\\u203a',1));
-  }
-  function ouvreDoc(id){
-    col().doc(id).get().then(function(s){
-      if(!s.exists)return;
-      clearTimeout(tmr);tmr=null;
-      CUR=id;CURD=s.data()||{};fondData=null;
-      CURD.pages=pagesDe(CURD);
-      PIDX=0;
-      REFS=refsActuelles(CURD.pages);
-      titre.placeholder=(CURD.mode==='journal')?PH0:PH0;
-      titre.value=CURD.t||'';
-      montrePage();
-      elL.style.display='none';elE.style.display='block';
-      window.scrollTo({top:0,behavior:'auto'});
-    });
-  }
-  var fondData=null;
-  function fermeDoc(){
-    clearTimeout(tmr);tmr=null;
-    imgDesel();
-    var fin=sale?sauve():Promise.resolve();
-    fin.then(function(){CUR=null;CURD=null;elE.style.display='none';elL.style.display='block';rendListe();});
-  }
-  function rendListe(){
-    docs.innerHTML='';msg.textContent='';
-    col().get().then(function(q){
-      var lignes=[];
-      q.forEach(function(s){
-        var d=s.data()||{};
-        if((d.mode||'doc')!==MODE)return;
-        lignes.push({id:s.id,d:d});
-      });
-      if(MODE!=='journal'){
-        lignes.sort(function(a,b){return (b.d.maj||0)-(a.d.maj||0);});
-      }
-      if(MODE==='journal'){
-        lignes.sort(function(a,b){return (a.d.num||0)-(b.d.num||0);});
-        PAGES=lignes.map(function(x){return x.id;});
-        PAGES_T=lignes.map(function(x){return x.d.t||'';});
-      }
-      var nb=document.getElementById('c-nouveau');
-      if(MODE==='journal'){
-        /* un journal reel : on ouvre le cahier et on tourne les pages,
-           on ne choisit pas dans une liste */
-        nb.textContent=PAGES.length?TXT.ouvrirJ:TXT.premiereJ;
-        msg.textContent='';
-        return;
-      }
-      if(!lignes.length){msg.textContent=TXT.vide;return;}
-      lignes.forEach(function(x,ix){
-        var d=x.d;
-        var r=document.createElement('div');r.className='cdoc';
-        var t=document.createElement('span');t.className='cdoc-t';
-        if(MODE==='journal'){t.textContent=TXT.pageMot+' '+(ix+1)+(d.t?' \\u00b7 '+d.t:'');}
-        else{t.textContent=(d.t||TXT.sansTitre);}
-        var dt=document.createElement('span');dt.className='cdoc-d';
-        if(MODE!=='journal'){try{dt.textContent=new Date(d.maj||Date.now()).toLocaleDateString('${LOC}',{day:'numeric',month:'long',year:'numeric'});}catch(e){}}
-        r.appendChild(t);r.appendChild(dt);
-        r.addEventListener('click',function(){ouvreDoc(x.id);});
-        docs.appendChild(r);
-      });
-    }).catch(function(){msg.textContent=(MODE==='journal'?TXT.videJ:TXT.vide);});
-  }
-  /* ── barre d'outils : mise en forme ── */
-  document.querySelectorAll('.ce-btn[data-cmd]').forEach(function(b){
-    b.addEventListener('click',function(){
-      feuille.focus();
-      var c=b.getAttribute('data-cmd');
-      if(c==='h3')document.execCommand('formatBlock',false,'<h3>');
-      else if(c==='ul')document.execCommand('insertUnorderedList');
-      else document.execCommand(c);
-      planifie();
-    });
-  });
-  function selCmd(id,cmd){
-    var el=document.getElementById(id);
-    el.addEventListener('change',function(){
-      if(!this.value)return;
-      feuille.focus();
-      document.execCommand(cmd,false,this.value);
-      this.selectedIndex=0;
-      planifie();
-    });
-  }
-  selCmd('c-pol','fontName');
-  document.getElementById('c-tai').addEventListener('change',function(){
-    if(!this.value)return;
-    var px=this.value;
-    feuille.focus();
-    document.execCommand('fontSize',false,'7');
-    feuille.querySelectorAll('font[size="7"]').forEach(function(f){
-      var sp=document.createElement('span');
-      sp.style.fontSize=px+'px';
-      while(f.firstChild)sp.appendChild(f.firstChild);
-      f.parentNode.replaceChild(sp,f);
-    });
-    this.selectedIndex=0;
-    planifie();
-  });
-  document.getElementById('c-cou').addEventListener('input',function(){
-    feuille.focus();
-    document.execCommand('foreColor',false,this.value);
-    planifie();
-  });
-  document.getElementById('c-vives').addEventListener('click',function(e){
-    var v=e.target.closest?e.target.closest('.c-viv'):null;
-    if(!v)return;
-    feuille.focus();
-    document.execCommand('foreColor',false,v.getAttribute('data-cc'));
-    planifie();
-  });
-  document.getElementById('c-bg').addEventListener('change',function(){
-    if(!this.value||!CURD)return;
-    CURD.pages[PIDX].bg=this.value;
-    feuille.classList.toggle('claire',this.value==='b');
-    planifie();
-  });
-  document.getElementById('c-int').addEventListener('change',function(){
-    if(!this.value)return;
-    CURD.pages[PIDX].il=parseFloat(this.value);
-    feuille.style.lineHeight=this.value;
-    planifie();
-  });
-  /* ── images flottantes : poser, selectionner, deplacer, redimensionner, opacite, supprimer ── */
-  var IMG=null;
-  var outils=document.getElementById('c-outils-img'),poignee=document.getElementById('c-poignee'),opRange=document.getElementById('coi-op');
-  function imgDesel(){
-    if(IMG)IMG.style.cursor='grab';
-    IMG=null;outils.style.display='none';poignee.style.display='none';
-  }
-  function placeOutils(){
-    if(!IMG)return;
-    /* offsets natifs : IMG est absolue dans la feuille (son offsetParent),
-       la feuille est enfant du page-wrap (referentiel des controles).
-       Aucun getBoundingClientRect : insensible au defilement, au centrage
-       et au mode plein ecran. */
-    var fx=feuille.offsetLeft, fy=feuille.offsetTop;
-    var ix=fx+IMG.offsetLeft, iy=fy+IMG.offsetTop;
-    var iw=IMG.offsetWidth, ih=IMG.offsetHeight;
-    outils.style.display='flex';
-    outils.style.left=Math.max(0,ix)+'px';
-    outils.style.top=Math.max(4,iy-40)+'px';
-    poignee.style.display='block';
-    poignee.style.left=(ix+iw-12)+'px';
-    poignee.style.top=(iy+ih-12)+'px';
-  }
-  function imgSel(im){
-    imgDesel();
-    IMG=im;
-    opRange.value=Math.round((parseFloat(im.style.opacity||'1'))*100);
-    placeOutils();
-  }
-  /* pointer events : un seul code pour la souris ET le doigt (iOS/Android) */
-  feuille.addEventListener('pointerdown',function(e){
-    var im=e.target.closest&&e.target.closest('img.c-flot');
-    if(!im){if(!e.target.closest('#c-outils-img'))imgDesel();return;}
-    e.preventDefault();
-    imgSel(im);
-    var fr=feuille.getBoundingClientRect();
-    var x0=e.clientX,y0=e.clientY,l0=parseFloat(im.style.left)||0,t0=parseFloat(im.style.top)||0;
-    if(String(im.style.left).indexOf('%')>=0)l0=fr.width*l0/100;
-    if(String(im.style.top).indexOf('%')>=0)t0=fr.height*t0/100;
-    var pid=e.pointerId;
-    try{im.setPointerCapture(pid);}catch(_){}
-    function mv(ev){
-      if(ev.pointerId!==pid)return;
-      ev.preventDefault();
-      im.style.left=Math.round(l0+ev.clientX-x0)+'px';
-      im.style.top=Math.round(t0+ev.clientY-y0)+'px';
-      placeOutils();
-    }
-    function fin(ev){
-      if(ev.pointerId!==pid)return;
-      document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',fin);document.removeEventListener('pointercancel',fin);
-      planifie();
-    }
-    document.addEventListener('pointermove',mv);document.addEventListener('pointerup',fin);document.addEventListener('pointercancel',fin);
-  });
-  poignee.addEventListener('pointerdown',function(e){
-    if(!IMG)return;
-    e.preventDefault();e.stopPropagation();
-    var x0=e.clientX,y0=e.clientY,w0=IMG.getBoundingClientRect().width;
-    var pid=e.pointerId;
-    try{poignee.setPointerCapture(pid);}catch(_){}
-    function mv(ev){
-      if(ev.pointerId!==pid)return;
-      ev.preventDefault();
-      var dx=ev.clientX-x0,dy=ev.clientY-y0;
-      var d=Math.abs(dx)>=Math.abs(dy)?dx:dy;
-      IMG.style.width=Math.max(40,Math.round(w0+d))+'px';
-      placeOutils();
-    }
-    function fin(ev){
-      if(ev.pointerId!==pid)return;
-      document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',fin);document.removeEventListener('pointercancel',fin);
-      planifie();
-    }
-    document.addEventListener('pointermove',mv);document.addEventListener('pointerup',fin);document.addEventListener('pointercancel',fin);
-  });
-  opRange.addEventListener('input',function(){
-    if(!IMG)return;
-    IMG.style.opacity=(parseInt(this.value,10)||100)/100;
-    planifie();
-  });
-  document.getElementById('coi-x').addEventListener('click',function(){
-    if(!IMG)return;
-    var im=IMG;imgDesel();im.remove();planifie();
-  });
-  document.getElementById('c-img').addEventListener('click',function(){document.getElementById('c-file-img').click();});
-  document.getElementById('c-file-img').addEventListener('change',function(){
-    var f=this.files&&this.files[0];this.value='';if(!f)return;
-    marqueEtat(TXT.enrC,true);
-    compresse(f,1700).then(sauveImage).then(function(id){
-      return chargeImage(id).then(function(d){
-        var im=document.createElement('img');
-        im.className='c-flot';im.setAttribute('data-lvimg',id);
-        im.setAttribute('contenteditable','false');im.setAttribute('draggable','false');
-        im.style.left='40px';im.style.top='60px';im.style.width='45%';
-        im.src=d;
-        feuille.appendChild(im);
-        imgSel(im);
-        planifie();marqueEtat(TXT.enr);
-      });
-    }).catch(function(){etat.classList.remove('on');alert(TXT.trop);});
-  });
-  /* ── pages, plein ecran, boutons ── */
-  document.getElementById('c-ajpage').addEventListener('click',function(){
-    if(!CURD)return;
-    if(CURD.mode==='journal'){
-      (sale?sauve():Promise.resolve()).then(function(){
-        col().get().then(function(q){
-          var mx=0;
-          q.forEach(function(s){var d=s.data()||{};if(d.mode==='journal'&&(d.num||0)>mx)mx=d.num;});
-          var r=col().doc();
-          return r.set({mode:'journal',num:mx+1,t:'',pages:[{h:'<p><br></p>',il:1.5}],maj:Date.now()}).then(function(){
-            PAGES.push(r.id);PAGES_T.push('');ouvreDoc(r.id);
-          });
-        });
-      });
-      return;
-    }
-    syncPage();
-    CURD.pages.push({h:'<p><br></p>',il:1.5});
-    PIDX=CURD.pages.length-1;
-    montrePage();
-    planifie();
-  });
-  document.getElementById('c-enr').addEventListener('click',function(){sauve();});
-  function quittePfs(){
-    var z=document.getElementById('c-zone');
-    z.classList.remove('c-pfs');
-    z.classList.remove('sans-barre');
-    var b=document.getElementById('c-fsbar');
-    if(b)b.textContent=b.getAttribute('data-off');
-  }
-  document.getElementById('c-plein').addEventListener('click',function(){
-    var z=document.getElementById('c-zone');
-    if(z.classList.contains('c-pfs'))quittePfs();
-    else z.classList.add('c-pfs');
-  });
-  document.addEventListener('keydown',function(e){
-    if(e.key==='Escape')quittePfs();
-  });
-  document.getElementById('c-fsbar').addEventListener('click',function(){
-    var z=document.getElementById('c-zone');
-    z.classList.toggle('sans-barre');
-    this.textContent=this.getAttribute(z.classList.contains('sans-barre')?'data-on':'data-off');
-  });
-  feuille.addEventListener('input',planifie);
-  titre.addEventListener('input',planifie);
-  document.getElementById('c-retour').addEventListener('click',fermeDoc);
-  document.getElementById('c-suppr').addEventListener('click',function(){
-    if(!CUR)return;
-    if(!confirm(TXT.confirme))return;
-    syncPage();
-    var refsDel=refsActuelles(CURD.pages);
-    Object.keys(refsDel).forEach(function(id){colI().doc(id).delete().catch(function(){});});
-    REFS={};
-    col().doc(CUR).delete().then(function(){sale=false;CUR=null;elE.style.display='none';elL.style.display='block';rendListe();});
-  });
-  document.getElementById('c-nouveau').addEventListener('click',function(){
-    if(!U)return;
-    if(MODE==='journal'){
-      if(PAGES.length){ouvreDoc(PAGES[PAGES.length-1]);return;}
-      col().get().then(function(q){
-        var mx=0;
-        q.forEach(function(s){var d=s.data()||{};if(d.mode==='journal'&&(d.num||0)>mx)mx=d.num;});
-        var r=col().doc();
-        return r.set({mode:'journal',num:mx+1,t:'',pages:[{h:'<p><br></p>',il:1.5}],maj:Date.now()}).then(function(){
-          PAGES.push(r.id);PAGES_T.push('');ouvreDoc(r.id);
-        });
-      });
-      return;
-    }
-    var r2=col().doc();
-    r2.set({mode:'doc',t:'',pages:[{h:'<p><br></p>',il:1.5}],maj:Date.now()}).then(function(){ouvreDoc(r2.id);});
-  });
-  function ongle(m){
-    MODE=m;
-    document.getElementById('c-ong-docs').classList.toggle('actif',m==='doc');
-    document.getElementById('c-ong-jour').classList.toggle('actif',m==='journal');
-    var nb=document.getElementById('c-nouveau');
-    nb.textContent=nb.getAttribute(m==='journal'?'data-jour':'data-doc');
-    if(U)rendListe();
-  }
-  document.getElementById('c-ong-docs').addEventListener('click',function(){ongle('doc');});
-  document.getElementById('c-ong-jour').addEventListener('click',function(){ongle('journal');});
-  window.addEventListener('pagehide',function(){if(sale)sauve();});
-  window.addEventListener('resize',function(){if(IMG)placeOutils();});
-  /* ── auth ── */
-  (window.lvFB?window.lvFB():Promise.resolve()).then(function(){
-    if(!window.firebase||!firebase.auth){msg.textContent=TXT.connexion;return;}
-    firebase.auth().onAuthStateChanged(function(u){
-      U=u;
-      if(!u){
-        docs.innerHTML='';document.getElementById('c-nouveau').style.display='none';
-        msg.textContent='';
-        var lk=document.createElement('span');
-        lk.textContent=TXT.connexion;
-        lk.style.cssText='cursor:pointer;text-decoration:underline;text-underline-offset:3px';
-        lk.addEventListener('click',function(){var a=document.getElementById('auth-ouvrir');if(a)a.click();});
-        msg.appendChild(lk);
-        return;
-      }
-      document.getElementById('c-nouveau').style.display='';
-      rendListe();
-    });
-  });
-})();`;
-};
-
 function mainAccueil(lang, base) {
   const u = UI[lang];
   const lib = lang === 'fr' ? 'bibliotheque/' : 'library/';
@@ -2431,6 +1743,7 @@ const crypto = require('crypto');
    vers les coordonnées du fichier Douay (bible-en.json). Une table par
    bible ajoutée plus tard. ── */
 function versifDouay(bk, ch, v) {
+  return { ch: ch, v: v }; // Bible EN = Chérubin (versification identique au FR) : plus aucune conversion. Douay retirée du site.
   if (bk === 'Psalm' || bk === 'Psalms') {
     if (ch <= 8) return { ch: ch, v: v };
     if (ch === 9) return { ch: 9, v: v };
@@ -2559,15 +1872,6 @@ genPaire({
   main: (l, b) => mainAccueil(l, b)
 });
 
-// carnet
-genPaire({
-  type: 'carnet', frPath: '/carnet/', enPath: '/en/notebook/',
-  frFile: 'carnet/index.html', enFile: 'en/notebook/index.html',
-  title: l => (l === 'fr' ? 'Le carnet \u00b7 Lumen Veritatis' : 'The notebook \u00b7 Lumen Veritatis'),
-  desc: l => (l === 'fr' ? '\u00c9crire, illustrer, garder : votre espace d\u2019\u00e9criture personnel.' : 'Write, illustrate, keep: your personal writing space.'),
-  main: (l) => mainCarnet(l),
-  extraJS: l => CARNET_JS(l)
-});
 
 
 // bibliothèque
@@ -2597,7 +1901,7 @@ ARTICLES.forEach(a => {
 // 404 (racine, bilingue) — sans paire ni hreflang
 ecrire('404.html', page({
   lang: 'fr', type: '', title: UI.fr.t_404, description: UI.fr.notfound_text,
-  frPath: '/404.html', enPath: '/404.html', base: '', otherRel: '/en/',
+  frPath: '/404.html', enPath: '/404.html', base: '/', otherRel: '/en/',
   main: main404()
 }));
 
@@ -2649,7 +1953,7 @@ const tableBible = (src, base) => {
   } catch (e) { return null; }
 };
 const bibFR = tableBible('content/bible.json', '/bible.html');
-const bibEN = tableBible('content/bible-en.json', '/en/bible.html');
+const bibEN = tableBible('content/bible-en-cherubin.json', '/en/bible.html');
 const idxFR = ARTICLES.map(a => ({ s: a.id, t: a.titre, th: themeNom('fr', a.theme), r: a.resume, x: depouiller(a.contenu) }));
 ecrire('recherche-fr.js', 'window.LUMEN_INDEX=' + JSON.stringify(idxFR) + ';' + (bibFR ? 'window.LUMEN_BIBLE=' + JSON.stringify(bibFR) + ';' : ''));
 const idxEN = ARTICLES.map(a => ({ s: slugOf('en', a.id), t: artTitre('en', a), th: themeNom('en', a.theme), r: artResume('en', a), x: depouiller((ARTICLES_EN[a.id] || {}).contenu) }));
@@ -2698,8 +2002,7 @@ if (fs.existsSync('memoriser.html')) {
         { id: 'nav-home', label: '' },
         { id: 'nav-lib', label: '' },
         { href: '/bible.html', label: 'Bible' },
-        { id: 'nav-mem', href: '/memoriser.html', actif: true, label: '' },
-        { id: 'nav-carnet', href: '/carnet/', label: '' }
+        { id: 'nav-mem', href: '/memoriser.html', actif: true, label: '' }
       ],
       langue: { type: 'bouton', id: 'lang-btn', label: 'EN' },
       loupe: { id: 'rech-ouvrir', label: 'Rechercher', labelId: 'rech-link-label' },
@@ -2741,8 +2044,7 @@ if (fs.existsSync('bible.html')) {
         { href: '/', label: 'Accueil' },
         { href: '/bibliotheque/', label: 'Bibliothèque' },
         { href: '/bible.html', actif: true, label: 'Bible' },
-        { href: '/memoriser.html', label: 'Mémoriser' },
-        { href: '/carnet/', label: 'Carnet' }
+        { href: '/memoriser.html', label: 'Mémoriser' }
       ],
       langue: { type: 'lien', href: '/en/bible.html', hreflang: 'en', label: 'EN' },
       loupe: { id: 'brech-ouvrir', label: 'Rechercher' },
@@ -2758,7 +2060,7 @@ if (fs.existsSync('bible.html')) {
   fs.writeFileSync(`${OUT}/bible.html`, bhFr);
   console.log('Copié : bible.html');
 
-  // ── Version anglaise : mêmes slugs, texte Douay-Rheims, interface traduite ──
+  // ── Version anglaise : mêmes slugs, texte Chérubin (anglais), interface traduite ──
   {
     const TR = [
       ['<html lang="fr"', '<html lang="en"'],
@@ -2766,15 +2068,14 @@ if (fs.existsSync('bible.html')) {
       ['<a href="/bibliotheque/">Bibliothèque</a>', '<a href="/en/library/">Library</a>'],
       ['<a href="/bible.html" class="actif">Bible</a>', '<a href="/en/bible.html" class="actif">Bible</a>'],
       ['<a href="/memoriser.html">Mémoriser</a>', '<a href="/memoriser.html">Memorise</a>'],
-      ['<a href="/carnet/">Carnet</a>', '<a href="/en/notebook/">Notebook</a>'],
       ['<a href="/en/bible.html" class="lien-langue" hreflang="en">EN</a>', '<a href="/bible.html" class="lien-langue" hreflang="fr">FR</a>'],
       ['aria-label="Rechercher"', 'aria-label="Search"'],
       ['>Rechercher<', '>Search<'],
-      ['aria-label="Nouveautés"', 'aria-label="News"'],
-      ['>Nouveautés<', '>News<'],
+      ['aria-label="Nouveautés"', `aria-label="What's New"`],
+      ['>Nouveautés<', `>What's New<`],
       ['aria-label="Compte"', 'aria-label="Account"'],
       ['>Compte<', '>Account<'],
-      ['Traduction Chérubin', 'Douay-Rheims translation · Challoner revision · 1899 edition'],
+      ['Traduction Chérubin', 'Chérubin translation'],
       ['La Sainte Bible', 'The Holy Bible'],
       ['>Chargement…<', '>Loading…<'],
       ['>Copier<', '>Copy<'],
@@ -2865,9 +2166,9 @@ if (fs.existsSync('bible.html')) {
     for (const pr of TR) bhEn = bhEn.split(pr[0]).join(pr[1]);
     if (UI.fr.footer_verse && UI.en.footer_verse) bhEn = bhEn.split(UI.fr.footer_verse).join(UI.en.footer_verse);
     bhEn = bhEn.replace(/Texte biblique :[^<]*/,
-      'Biblical text: The Holy Bible, Douay-Rheims version (Challoner revision), 1899 American edition. The text is in the public domain.');
+      'Biblical text: The Holy Bible, Chérubin translation, made for Lumen Veritatis.');
     bhEn = bhEn.replace(/<meta name="description" content="[^"]*">/,
-      '<meta name="description" content="The Holy Bible, Douay-Rheims translation (Challoner revision). Online reading, Old and New Testament.">');
+      '<meta name="description" content="The Holy Bible, Chérubin translation. Online reading, Old and New Testament.">');
     if (ADMIN_JS && bhEn.indexOf('</body>') >= 0) bhEn = bhEn.replace('</body>', '<script>' + ADMIN_JS + '</script></body>');
     fs.mkdirSync(`${OUT}/en`, { recursive: true });
     fs.writeFileSync(`${OUT}/en/bible.html`, bhEn);
@@ -2900,7 +2201,7 @@ if (fs.existsSync('bible.html')) {
     console.log('Bible (' + dossier + ') : ' + nb + ' livres + index');
     return true;
   };
-  decoupeBible('content/bible-en.json', 'bible-data-en');
+  decoupeBible('content/bible-en-cherubin.json', 'bible-data-en');
   if (!decoupeBible('content/bible.json', 'bible-data')) if (fs.existsSync('content/bible')) {
     // repli : ancien format (un fichier par livre déjà découpé)
     fs.mkdirSync(`${OUT}/bible-data`, { recursive: true });

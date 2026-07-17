@@ -1,529 +1,661 @@
 {
- "themes": [
-  {
-   "id": "doctrine",
-   "nom_fr": "Doctrine et dogmes",
-   "nom_en": "Doctrine and Dogma",
-   "desc_fr": "Ce que l'Église croit et enseigne : Dieu, le Christ, le salut, l'Église, les fins dernières.",
-   "desc_en": "What the Church believes and teaches: God, Christ, salvation, the Church, the last things.",
-   "groupes": [
+  "themes": [
     {
-     "id": "g-dieu",
-     "nom_fr": "Dieu et les anges",
-     "nom_en": "God and the Angels",
-     "noeuds": [
-      {
-       "id": "dieu",
-       "nom_fr": "Dieu et la Trinité",
-       "nom_en": "God and the Trinity",
-       "arts": [
-        "la-nature-de-dieu",
-        "la-trinite"
-       ]
-      },
-      {
-       "id": "culte",
-       "nom_fr": "Le culte de Dieu",
-       "nom_en": "The Worship of God",
-       "arts": [
-        "l-adoration-et-la-louange"
-       ]
-      },
-      {
-       "id": "anges",
-       "nom_fr": "Les anges",
-       "nom_en": "The Angels",
-       "arts": [
-        "les-anges"
-       ]
-      }
-     ]
-    },
-    {
-     "id": "g-peche",
-     "nom_fr": "Le péché, la grâce et le salut",
-     "nom_en": "Sin, Grace and Salvation",
-     "noeuds": [
-      {
-       "id": "peche",
-       "nom_fr": "Le péché et la chute",
-       "nom_en": "Sin and the Fall",
-       "arts": [
-        "le-peche",
-        "les-peches-capitaux",
-        "le-peche-originel",
-        "le-nouvel-adam-et-la-nouvelle-eve"
-       ]
-      },
-      {
-       "id": "conscience",
-       "nom_fr": "La conscience et la responsabilité",
-       "nom_en": "Conscience and Responsibility",
-       "arts": [
-        "l-age-de-raison",
-        "l-ignorance-invincible"
-       ]
-      },
-      {
-       "id": "grace",
-       "nom_fr": "La grâce et le salut",
-       "nom_en": "Grace and Salvation",
-       "arts": [
-        "la-grace",
-        "la-predestination",
-        "le-salut",
-        "la-paix-du-christ",
-        "le-bapteme-de-desir"
-       ]
-      }
-     ]
-    },
-    {
-     "id": "g-christ",
-     "nom_fr": "Le Christ et la Vierge Marie",
-     "nom_en": "Christ and the Virgin Mary",
-     "noeuds": [
-      {
-       "id": "christ",
-       "nom_fr": "Le Christ et la Rédemption",
-       "nom_en": "Christ and the Redemption",
-       "arts": [
-        "l-incarnation",
-        "la-croix-et-la-resurrection"
-       ]
-      },
-      {
-       "id": "marie",
-       "nom_fr": "La Vierge Marie",
-       "nom_en": "The Virgin Mary",
-       "arts": [
-        "marie"
-       ]
-      }
-     ]
-    },
-    {
-     "id": "g-vertus",
-     "nom_fr": "La vie morale et les vertus",
-     "nom_en": "The Moral Life and the Virtues",
-     "noeuds": [
-      {
-       "id": "vertus",
-       "nom_fr": "Les vertus théologales",
-       "nom_en": "The Theological Virtues",
-       "arts": [
-        "les-vertus-theologales"
-       ]
-      },
-      {
-       "id": "vertus-cardinales",
-       "nom_fr": "Les vertus cardinales",
-       "nom_en": "The Cardinal Virtues",
-       "arts": [
-        "la-justice",
-        "la-force"
-       ]
-      }
-     ]
-    },
-    {
-     "id": "g-eglise",
-     "nom_fr": "L'Église, le sacerdoce et les fins dernières",
-     "nom_en": "The Church, the Priesthood and the Last Things",
-     "noeuds": [
-      {
-       "id": "eglise",
-       "nom_fr": "L'Église",
-       "nom_en": "The Church",
-       "arts": [
-        "l-eglise",
-        "le-pape",
-        "la-communion-des-saints",
-        "les-reliques"
-       ]
-      },
-      {
-       "id": "sacerdoce",
-       "nom_fr": "Le sacerdoce",
-       "nom_en": "The Priesthood",
-       "arts": [
-        "le-sacerdoce",
-        "le-sacerdoce-reserve-aux-hommes"
-       ]
-      },
-      {
-       "id": "fins",
-       "nom_fr": "Les fins dernières",
-       "nom_en": "The Last Things",
-       "arts": [
-        "les-fins-dernieres"
-       ]
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "ecriture",
-   "nom_fr": "Écriture et exégèse",
-   "nom_en": "Scripture and Exegesis",
-   "desc_fr": "La lecture des Écritures dans la foi de l'Église, du sens littéral aux sens spirituels.",
-   "desc_en": "The reading of the Scriptures in the faith of the Church, from the literal sense to the spiritual senses.",
-   "groupes": [
-    {
-     "id": "g-at",
-     "nom_fr": "Ancien Testament",
-     "nom_en": "The Old Testament",
-     "noeuds": [
-      {
-       "id": "g-pentateuque",
-       "nom_fr": "Le Pentateuque",
-       "nom_en": "The Pentateuch",
-       "noeuds": [
+      "id": "doctrine",
+      "nom_fr": "Doctrine et dogmes",
+      "nom_en": "Doctrine and Dogma",
+      "desc_fr": "Ce que l'Église croit et enseigne : Dieu, le Christ, le salut, l'Église, les fins dernières.",
+      "desc_en": "What the Church believes and teaches: God, Christ, salvation, the Church, the last things.",
+      "groupes": [
         {
-         "id": "moise",
-         "nom_fr": "Moïse et la sortie d’Égypte",
-         "nom_en": "Moses and the Exodus",
-         "arts": [
-          "la-servitude-et-l-appel",
-          "la-delivrance",
-          "le-sinai-et-l-alliance",
-          "la-demeure-le-sacerdoce-et-les-sacrifices",
-          "les-quarante-ans-au-desert",
-          "les-discours-de-moise",
-          "la-mort-de-moise"
-         ]
+          "id": "g-dieu",
+          "nom_fr": "Dieu et les anges",
+          "nom_en": "God and the Angels",
+          "noeuds": [
+            {
+              "id": "dieu",
+              "nom_fr": "Dieu et la Trinité",
+              "nom_en": "God and the Trinity",
+              "arts": [
+                "la-nature-de-dieu",
+                "la-trinite"
+              ]
+            },
+            {
+              "id": "culte",
+              "nom_fr": "Le culte de Dieu",
+              "nom_en": "The Worship of God",
+              "arts": [
+                "l-adoration-et-la-louange"
+              ]
+            },
+            {
+              "id": "anges",
+              "nom_fr": "Les anges",
+              "nom_en": "The Angels",
+              "arts": [
+                "les-anges"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "g-peche",
+          "nom_fr": "Le péché, la grâce et le salut",
+          "nom_en": "Sin, Grace and Salvation",
+          "noeuds": [
+            {
+              "id": "peche",
+              "nom_fr": "Le péché et la chute",
+              "nom_en": "Sin and the Fall",
+              "arts": [
+                "le-peche",
+                "les-peches-capitaux",
+                "le-peche-originel",
+                "le-nouvel-adam-et-la-nouvelle-eve"
+              ]
+            },
+            {
+              "id": "conscience",
+              "nom_fr": "La conscience et la responsabilité",
+              "nom_en": "Conscience and Responsibility",
+              "arts": [
+                "l-age-de-raison",
+                "l-ignorance-invincible"
+              ]
+            },
+            {
+              "id": "grace",
+              "nom_fr": "La grâce et le salut",
+              "nom_en": "Grace and Salvation",
+              "arts": [
+                "la-grace",
+                "la-predestination",
+                "le-salut",
+                "la-paix-du-christ",
+                "le-bapteme-de-desir"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "g-christ",
+          "nom_fr": "Le Christ et la Vierge Marie",
+          "nom_en": "Christ and the Virgin Mary",
+          "noeuds": [
+            {
+              "id": "christ",
+              "nom_fr": "Le Christ et la Rédemption",
+              "nom_en": "Christ and the Redemption",
+              "arts": [
+                "l-incarnation",
+                "la-croix-et-la-resurrection"
+              ]
+            },
+            {
+              "id": "marie",
+              "nom_fr": "La Vierge Marie",
+              "nom_en": "The Virgin Mary",
+              "arts": [
+                "marie"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "g-vertus",
+          "nom_fr": "La vie morale et les vertus",
+          "nom_en": "The Moral Life and the Virtues",
+          "noeuds": [
+            {
+              "id": "vertus",
+              "nom_fr": "Les vertus théologales",
+              "nom_en": "The Theological Virtues",
+              "arts": [
+                "les-vertus-theologales"
+              ]
+            },
+            {
+              "id": "vertus-cardinales",
+              "nom_fr": "Les vertus cardinales",
+              "nom_en": "The Cardinal Virtues",
+              "arts": [
+                "les-vertus-cardinales",
+                "la-prudence",
+                "la-justice",
+                "la-force",
+                "la-temperance"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "g-eglise",
+          "nom_fr": "L'Église, le sacerdoce et les fins dernières",
+          "nom_en": "The Church, the Priesthood and the Last Things",
+          "noeuds": [
+            {
+              "id": "eglise",
+              "nom_fr": "L'Église",
+              "nom_en": "The Church",
+              "arts": [
+                "l-eglise",
+                "le-pape",
+                "la-communion-des-saints",
+                "les-reliques"
+              ]
+            },
+            {
+              "id": "sacerdoce",
+              "nom_fr": "Le sacerdoce",
+              "nom_en": "The Priesthood",
+              "arts": [
+                "le-sacerdoce",
+                "le-sacerdoce-reserve-aux-hommes"
+              ]
+            },
+            {
+              "id": "fins",
+              "nom_fr": "Les fins dernières",
+              "nom_en": "The Last Things",
+              "arts": [
+                "les-fins-dernieres"
+              ]
+            }
+          ]
         }
-       ]
-      },
-      {
-       "id": "g-prophetes",
-       "nom_fr": "Les Prophètes",
-       "nom_en": "The Prophets",
-       "noeuds": [
+      ]
+    },
+    {
+      "id": "ecriture",
+      "nom_fr": "Écriture et exégèse",
+      "nom_en": "Scripture and Exegesis",
+      "desc_fr": "La lecture des Écritures dans la foi de l'Église, du sens littéral aux sens spirituels.",
+      "desc_en": "The reading of the Scriptures in the faith of the Church, from the literal sense to the spiritual senses.",
+      "groupes": [
         {
-         "id": "isaie",
-         "nom_fr": "Isaïe",
-         "nom_en": "Isaiah",
-         "arts": [
-          "le-proto-isaie",
-          "le-deutero-isaie",
-          "le-trito-isaie",
-          "les-quatre-chants-du-serviteur",
-          "les-oracles-contre-les-nations",
-          "les-malheurs-d-isaie"
-         ]
+          "id": "g-at",
+          "nom_fr": "Ancien Testament",
+          "nom_en": "The Old Testament",
+          "noeuds": [
+            {
+              "id": "g-pentateuque",
+              "nom_fr": "Le Pentateuque",
+              "nom_en": "The Pentateuch",
+              "noeuds": [
+                {
+                  "id": "moise",
+                  "nom_fr": "Moïse et la sortie d’Égypte",
+                  "nom_en": "Moses and the Exodus",
+                  "arts": [
+                    "la-servitude-et-l-appel",
+                    "la-delivrance",
+                    "le-sinai-et-l-alliance",
+                    "la-demeure-le-sacerdoce-et-les-sacrifices",
+                    "les-quarante-ans-au-desert",
+                    "les-discours-de-moise",
+                    "la-mort-de-moise"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "g-prophetes",
+              "nom_fr": "Les Prophètes",
+              "nom_en": "The Prophets",
+              "noeuds": [
+                {
+                  "id": "isaie",
+                  "nom_fr": "Isaïe",
+                  "nom_en": "Isaiah",
+                  "arts": [
+                    "le-proto-isaie",
+                    "le-deutero-isaie",
+                    "le-trito-isaie",
+                    "les-quatre-chants-du-serviteur",
+                    "les-oracles-contre-les-nations",
+                    "les-malheurs-d-isaie"
+                  ]
+                },
+                {
+                  "id": "ezechiel",
+                  "nom_fr": "Ézéchiel",
+                  "nom_en": "Ezekiel",
+                  "arts": [
+                    "ezechiel-le-prophete-de-l-exil",
+                    "ezechiel-les-actions-symboliques",
+                    "ezechiel-les-oracles-contre-les-nations",
+                    "ezechiel-la-restauration-d-israel",
+                    "ezechiel-le-nouveau-temple-et-le-fleuve"
+                  ]
+                },
+                {
+                  "id": "joel",
+                  "nom_fr": "Joël",
+                  "nom_en": "Joel",
+                  "arts": [
+                    "le-fleau-et-le-jour-du-seigneur",
+                    "la-conversion-et-l-esprit-repandu",
+                    "le-jugement-des-nations-et-le-salut-de-sion"
+                  ]
+                },
+                {
+                  "id": "amos",
+                  "nom_fr": "Amos",
+                  "nom_en": "Amos",
+                  "arts": [
+                    "amos-le-berger-prophete",
+                    "le-jugement-des-nations-et-d-israel",
+                    "les-visions-et-le-culte-rejete",
+                    "la-justice-le-jour-du-seigneur-et-l-esperance"
+                  ]
+                },
+                {
+                  "id": "abdias",
+                  "nom_fr": "Abdias",
+                  "nom_en": "Obadiah",
+                  "arts": [
+                    "le-livre-d-abdias"
+                  ]
+                },
+                {
+                  "id": "nahum",
+                  "nom_fr": "Nahum",
+                  "nom_en": "Nahum",
+                  "arts": [
+                    "nahum-et-l-empire-assyrien",
+                    "le-dieu-qui-juge-et-qui-sauve",
+                    "la-chute-de-ninive"
+                  ]
+                },
+                {
+                  "id": "aggee",
+                  "nom_fr": "Aggée",
+                  "nom_en": "Haggai",
+                  "arts": [
+                    "aggee-et-la-reconstruction-du-temple",
+                    "les-quatre-oracles",
+                    "la-gloire-du-second-temple"
+                  ]
+                },
+                {
+                  "id": "zacharie",
+                  "nom_fr": "Zacharie",
+                  "nom_en": "Zechariah",
+                  "arts": [
+                    "le-prophete-et-son-temps",
+                    "les-huit-visions-nocturnes",
+                    "josue-le-germe-et-la-couronne",
+                    "le-jeune-et-la-restauration",
+                    "premier-oracle-le-roi-qui-vient",
+                    "second-oracle-le-transperce",
+                    "le-jour-du-seigneur"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "at",
+              "nom_fr": "L'Ancien Testament",
+              "nom_en": "The Old Testament",
+              "arts": [
+                "la-lutte-de-jacob-avec-dieu",
+                "elie-a-l-horeb",
+                "l-ange-du-seigneur",
+                "un-temps-pour-tuer"
+              ]
+            }
+          ]
         },
         {
-         "id": "ezechiel",
-         "nom_fr": "Ézéchiel",
-         "nom_en": "Ezekiel",
-         "arts": [
-          "ezechiel-le-prophete-de-l-exil",
-          "ezechiel-les-actions-symboliques",
-          "ezechiel-les-oracles-contre-les-nations",
-          "ezechiel-la-restauration-d-israel",
-          "ezechiel-le-nouveau-temple-et-le-fleuve"
-         ]
+          "id": "g-nt",
+          "nom_fr": "Nouveau Testament",
+          "nom_en": "The New Testament",
+          "noeuds": [
+            {
+              "id": "g-evangiles",
+              "nom_fr": "Les évangiles et la vie du Christ",
+              "nom_en": "The Gospels and the Life of Christ",
+              "noeuds": [
+                {
+                  "id": "evangiles",
+                  "nom_fr": "Les évangiles",
+                  "nom_en": "The Gospels",
+                  "arts": [
+                    "jesus-et-nicodeme",
+                    "jesus-devant-pilate",
+                    "abraham-a-vu-mon-jour",
+                    "laisse-les-morts-enterrer-leurs-morts",
+                    "achetez-une-epee",
+                    "la-mort-de-judas",
+                    "tendre-l-autre-joue",
+                    "le-bapteme-du-christ",
+                    "le-doigt-de-dieu"
+                  ]
+                },
+                {
+                  "id": "vie-du-christ",
+                  "nom_fr": "La vie du Christ",
+                  "nom_en": "The Life of Christ",
+                  "arts": [
+                    "les-prologues-et-la-venue-du-christ",
+                    "la-preparation-au-ministere",
+                    "la-premiere-annee-l-inauguration",
+                    "la-deuxieme-annee-la-popularite",
+                    "la-troisieme-annee-l-opposition",
+                    "la-semaine-sainte",
+                    "la-resurrection-et-la-glorification"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "g-paul",
+              "nom_fr": "Les lettres de Paul",
+              "nom_en": "The Letters of Paul",
+              "noeuds": [
+                {
+                  "id": "intro-paul",
+                  "nom_fr": "L’apôtre Paul",
+                  "nom_en": "The Apostle Paul",
+                  "arts": [
+                    "l-apotre-paul"
+                  ]
+                },
+                {
+                  "id": "romains",
+                  "nom_fr": "L’épître aux Romains",
+                  "nom_en": "The Epistle to the Romans",
+                  "arts": [
+                    "l-epitre-aux-romains",
+                    "tous-sous-le-peche",
+                    "la-justification-par-la-foi",
+                    "la-vie-dans-l-esprit",
+                    "le-mystere-d-israel",
+                    "le-culte-spirituel"
+                  ]
+                },
+                {
+                  "id": "corinthiens",
+                  "nom_fr": "Les épîtres aux Corinthiens",
+                  "nom_en": "The Epistles to the Corinthians",
+                  "arts": [
+                    "les-epitres-aux-corinthiens",
+                    "la-sagesse-de-la-croix",
+                    "la-cene-du-seigneur",
+                    "le-voile-et-la-chevelure",
+                    "l-hymne-a-la-charite",
+                    "la-resurrection-des-morts",
+                    "la-seconde-epitre-aux-corinthiens"
+                  ]
+                },
+                {
+                  "id": "galates",
+                  "nom_fr": "L’épître aux Galates",
+                  "nom_en": "The Epistle to the Galatians",
+                  "arts": [
+                    "l-epitre-aux-galates"
+                  ]
+                },
+                {
+                  "id": "captivite",
+                  "nom_fr": "Les épîtres de la captivité",
+                  "nom_en": "The Captivity Epistles",
+                  "arts": [
+                    "l-epitre-aux-ephesiens",
+                    "l-epitre-aux-philippiens",
+                    "l-epitre-aux-colossiens",
+                    "l-epitre-a-philemon"
+                  ]
+                },
+                {
+                  "id": "thessaloniciens",
+                  "nom_fr": "Les épîtres aux Thessaloniciens",
+                  "nom_en": "The Epistles to the Thessalonians",
+                  "arts": [
+                    "les-epitres-aux-thessaloniciens",
+                    "le-retour-du-christ",
+                    "l-homme-de-peche"
+                  ]
+                },
+                {
+                  "id": "pastorales",
+                  "nom_fr": "Les épîtres pastorales",
+                  "nom_en": "The Pastoral Epistles",
+                  "arts": [
+                    "les-epitres-pastorales",
+                    "l-ordre-de-l-eglise",
+                    "le-salut-offert-a-tous",
+                    "la-femme-dans-l-assemblee",
+                    "le-testament-de-paul"
+                  ]
+                },
+                {
+                  "id": "hebreux",
+                  "nom_fr": "L’épître aux Hébreux",
+                  "nom_en": "The Epistle to the Hebrews",
+                  "arts": [
+                    "l-epitre-aux-hebreux",
+                    "le-grand-pretre",
+                    "l-unique-sacrifice",
+                    "la-foi-et-la-perseverance"
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
-         "id": "joel",
-         "nom_fr": "Joël",
-         "nom_en": "Joel",
-         "arts": [
-          "le-fleau-et-le-jour-du-seigneur",
-          "la-conversion-et-l-esprit-repandu",
-          "le-jugement-des-nations-et-le-salut-de-sion"
-         ]
-        },
-        {
-         "id": "amos",
-         "nom_fr": "Amos",
-         "nom_en": "Amos",
-         "arts": [
-          "amos-le-berger-prophete",
-          "le-jugement-des-nations-et-d-israel",
-          "les-visions-et-le-culte-rejete",
-          "la-justice-le-jour-du-seigneur-et-l-esperance"
-         ]
-        },
-        {
-         "id": "abdias",
-         "nom_fr": "Abdias",
-         "nom_en": "Obadiah",
-         "arts": [
-          "le-livre-d-abdias"
-         ]
-        },
-        {
-         "id": "nahum",
-         "nom_fr": "Nahum",
-         "nom_en": "Nahum",
-         "arts": [
-          "nahum-et-l-empire-assyrien",
-          "le-dieu-qui-juge-et-qui-sauve",
-          "la-chute-de-ninive"
-         ]
-        },
-        {
-         "id": "aggee",
-         "nom_fr": "Aggée",
-         "nom_en": "Haggai",
-         "arts": [
-          "aggee-et-la-reconstruction-du-temple",
-          "les-quatre-oracles",
-          "la-gloire-du-second-temple"
-         ]
-        },
-        {
-         "id": "zacharie",
-         "nom_fr": "Zacharie",
-         "nom_en": "Zechariah",
-         "arts": [
-          "le-prophete-et-son-temps",
-          "les-huit-visions-nocturnes",
-          "josue-le-germe-et-la-couronne",
-          "le-jeune-et-la-restauration",
-          "premier-oracle-le-roi-qui-vient",
-          "second-oracle-le-transperce",
-          "le-jour-du-seigneur"
-         ]
+          "id": "questions",
+          "nom_fr": "Questions sur les Écritures",
+          "nom_en": "Questions on the Scriptures",
+          "arts": [
+            "le-canon-et-les-deuterocanoniques",
+            "l-esclavage-dans-la-bible",
+            "les-guerres-d-extermination"
+          ]
         }
-       ]
-      },
-      {
-       "id": "at",
-       "nom_fr": "L'Ancien Testament",
-       "nom_en": "The Old Testament",
-       "arts": [
-        "la-lutte-de-jacob-avec-dieu",
-        "elie-a-l-horeb",
-        "l-ange-du-seigneur",
-        "un-temps-pour-tuer"
-       ]
-      }
-     ]
+      ]
     },
     {
-     "id": "g-nt",
-     "nom_fr": "Nouveau Testament",
-     "nom_en": "The New Testament",
-     "noeuds": [
-      {
-       "id": "g-evangiles",
-       "nom_fr": "Les évangiles et la vie du Christ",
-       "nom_en": "The Gospels and the Life of Christ",
-       "noeuds": [
+      "id": "sacrements",
+      "nom_fr": "Liturgie et sacrements",
+      "nom_en": "Liturgy and Sacraments",
+      "desc_fr": "Les signes efficaces de la grâce et le culte par lequel l'Église rend gloire à Dieu.",
+      "desc_en": "The efficacious signs of grace and the worship by which the Church gives glory to God.",
+      "categories": [
         {
-         "id": "evangiles",
-         "nom_fr": "Les évangiles",
-         "nom_en": "The Gospels",
-         "arts": [
-          "jesus-et-nicodeme",
-          "jesus-devant-pilate",
-          "abraham-a-vu-mon-jour",
-          "laisse-les-morts-enterrer-leurs-morts",
-          "achetez-une-epee",
-          "tendre-l-autre-joue",
-          "le-bapteme-du-christ",
-          "le-doigt-de-dieu"
-         ]
+          "id": "intro",
+          "nom_fr": "",
+          "nom_en": "",
+          "arts": [
+            "les-sacrements"
+          ]
         },
         {
-         "id": "vie-du-christ",
-         "nom_fr": "La vie du Christ",
-         "nom_en": "The Life of Christ",
-         "arts": [
-          "les-prologues-et-la-venue-du-christ",
-          "la-preparation-au-ministere",
-          "la-premiere-annee-l-inauguration",
-          "la-deuxieme-annee-la-popularite",
-          "la-troisieme-annee-l-opposition",
-          "la-semaine-sainte",
-          "la-resurrection-et-la-glorification"
-         ]
-        }
-       ]
-      },
-      {
-       "id": "g-paul",
-       "nom_fr": "Les lettres de Paul",
-       "nom_en": "The Letters of Paul",
-       "noeuds": [
-        {
-         "id": "paul",
-         "nom_fr": "Les lettres de Paul",
-         "nom_en": "The Letters of Paul",
-         "arts": [
-          "la-femme-dans-l-assemblee",
-          "le-voile-et-la-chevelure"
-         ]
+          "id": "initiation",
+          "nom_fr": "Les sacrements de l'initiation chrétienne",
+          "nom_en": "The Sacraments of Christian Initiation",
+          "arts": [
+            "le-bapteme",
+            "la-confirmation",
+            "l-eucharistie"
+          ]
         },
         {
-         "id": "romains",
-         "nom_fr": "L’épître aux Romains",
-         "nom_en": "The Epistle to the Romans",
-         "arts": [
-          "l-epitre-aux-romains",
-          "tous-sous-le-peche"
-         ]
+          "id": "guerison",
+          "nom_fr": "Les sacrements de guérison",
+          "nom_en": "The Sacraments of Healing",
+          "arts": [
+            "la-confession",
+            "l-onction-des-malades"
+          ]
+        },
+        {
+          "id": "service",
+          "nom_fr": "Les sacrements au service de la communion",
+          "nom_en": "The Sacraments at the Service of Communion",
+          "arts": [
+            "l-ordre",
+            "le-mariage"
+          ]
         }
-       ]
-      }
-     ]
+      ]
     },
     {
-     "id": "questions",
-     "nom_fr": "Questions sur les Écritures",
-     "nom_en": "Questions on the Scriptures",
-     "arts": [
-      "le-canon-et-les-deuterocanoniques",
-      "l-esclavage-dans-la-bible",
-      "les-guerres-d-extermination"
-     ]
+      "id": "vie-spirituelle",
+      "nom_fr": "Vie spirituelle",
+      "nom_en": "The Spiritual Life",
+      "desc_fr": "La vie de l'âme avec Dieu : la prière, le combat contre les passions, les chemins de la confiance et de la paix, le progrès vers l'union à lui.",
+      "desc_en": "The life of the soul with God: prayer, the struggle against the passions, the paths of trust and peace, the progress toward union with him.",
+      "categories": [
+        {
+          "id": "combat",
+          "nom_fr": "Le combat intérieur",
+          "nom_en": "The Inner Struggle",
+          "arts": [
+            "la-colere-et-la-douceur",
+            "la-peur",
+            "la-tristesse",
+            "l-orgueil-et-l-humilite",
+            "le-jugement-du-prochain",
+            "la-rancune-et-le-pardon"
+          ]
+        },
+        {
+          "id": "chemin",
+          "nom_fr": "Le chemin vers Dieu",
+          "nom_en": "The Path to God",
+          "arts": [
+            "les-trois-voies-de-la-vie-interieure",
+            "la-nuit-noire-de-l-ame",
+            "le-desir-de-sentir-l-esprit"
+          ]
+        },
+        {
+          "id": "discernement",
+          "nom_fr": "Le discernement",
+          "nom_en": "Discernment",
+          "arts": [
+            "discerner-les-mouvements-du-coeur",
+            "la-consolation-et-la-desolation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "histoire",
+      "nom_fr": "Histoire de l'Église",
+      "nom_en": "History of the Church",
+      "desc_fr": "Le chemin de l'Église à travers les siècles, ses conciles et ses combats.",
+      "desc_en": "The path of the Church through the centuries, its councils and its struggles.",
+      "categories": [
+        {
+          "id": "origines",
+          "nom_fr": "L'Église des origines",
+          "nom_en": "The Early Church",
+          "arts": [
+            "l-eglise-apostolique",
+            "l-age-des-martyrs"
+          ]
+        },
+        {
+          "id": "peres-conciles",
+          "nom_fr": "Les Pères et les conciles",
+          "nom_en": "The Fathers and the Councils",
+          "arts": [
+            "les-peres-de-l-eglise",
+            "nicee-et-la-divinite-du-christ",
+            "ephese-et-chalcedoine",
+            "augustin-et-la-grace"
+          ]
+        },
+        {
+          "id": "chretiente",
+          "nom_fr": "La chrétienté se bâtit",
+          "nom_en": "Christendom Takes Shape",
+          "arts": [
+            "constantin-et-l-empire-chretien",
+            "le-monachisme"
+          ]
+        },
+        {
+          "id": "moyen-age",
+          "nom_fr": "Le Moyen Âge",
+          "nom_en": "The Middle Ages",
+          "arts": [
+            "la-conversion-des-peuples",
+            "le-schisme-de-1054",
+            "les-croisades",
+            "la-scolastique"
+          ]
+        },
+        {
+          "id": "rupture",
+          "nom_fr": "Rupture et renouveau",
+          "nom_en": "Rupture and Renewal",
+          "arts": [
+            "la-reforme-protestante",
+            "le-concile-de-trente"
+          ]
+        },
+        {
+          "id": "temps-modernes",
+          "nom_fr": "Les temps modernes",
+          "nom_en": "The Modern Age",
+          "arts": [
+            "l-expansion-du-christianisme",
+            "l-eglise-et-le-monde-moderne"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "apologetique",
+      "nom_fr": "Apologétique",
+      "nom_en": "Apologetics",
+      "desc_fr": "La défense raisonnée de la foi : répondre aux objections et montrer que croire est accordé à la raison.",
+      "desc_en": "The reasoned defence of the faith: answering objections and showing that belief accords with reason.",
+      "categories": [
+        {
+          "id": "dieu-question",
+          "nom_fr": "Dieu en question",
+          "nom_en": "God in Question",
+          "arts": [
+            "pourquoi-dieu-demande-l-adoration",
+            "la-theorie-de-l-evolution"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "philosophie",
+      "nom_fr": "Philosophie et raison",
+      "nom_en": "Philosophy and Reason",
+      "desc_fr": "Ce que la raison humaine peut chercher et atteindre par elle-même sur Dieu, l'homme, le vrai et le bien, et comment elle s'accomplit dans sa rencontre avec la foi.",
+      "desc_en": "What human reason can seek and attain by itself concerning God, man, the true and the good, and how it is fulfilled in its meeting with faith.",
+      "categories": [
+        {
+          "id": "bien-agir",
+          "nom_fr": "Le bien et l'agir",
+          "nom_en": "The Good and Human Action",
+          "arts": [
+            "la-liberte-et-la-responsabilite",
+            "la-conscience-morale",
+            "le-doute-et-les-systemes-moraux",
+            "faire-le-mal-pour-un-bien",
+            "l-amour"
+          ]
+        },
+        {
+          "id": "foi-raison",
+          "nom_fr": "Foi et raison",
+          "nom_en": "Faith and Reason",
+          "arts": [
+            "la-foi-et-la-science"
+          ]
+        }
+      ]
     }
-   ]
-  },
-  {
-   "id": "sacrements",
-   "nom_fr": "Liturgie et sacrements",
-   "nom_en": "Liturgy and Sacraments",
-   "desc_fr": "Les signes efficaces de la grâce et le culte par lequel l'Église rend gloire à Dieu.",
-   "desc_en": "The efficacious signs of grace and the worship by which the Church gives glory to God.",
-   "categories": [
-    {
-     "id": "intro",
-     "nom_fr": "",
-     "nom_en": "",
-     "arts": [
-      "les-sacrements"
-     ]
-    },
-    {
-     "id": "initiation",
-     "nom_fr": "Les sacrements de l'initiation chrétienne",
-     "nom_en": "The Sacraments of Christian Initiation",
-     "arts": [
-      "le-bapteme",
-      "la-confirmation",
-      "l-eucharistie"
-     ]
-    },
-    {
-     "id": "guerison",
-     "nom_fr": "Les sacrements de guérison",
-     "nom_en": "The Sacraments of Healing",
-     "arts": [
-      "la-confession",
-      "l-onction-des-malades"
-     ]
-    },
-    {
-     "id": "service",
-     "nom_fr": "Les sacrements au service de la communion",
-     "nom_en": "The Sacraments at the Service of Communion",
-     "arts": [
-      "l-ordre",
-      "le-mariage"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "vie-spirituelle",
-   "nom_fr": "Vie spirituelle",
-   "nom_en": "The Spiritual Life",
-   "desc_fr": "La vie de l'âme avec Dieu : la prière, le combat contre les passions, les chemins de la confiance et de la paix, le progrès vers l'union à lui.",
-   "desc_en": "The life of the soul with God: prayer, the struggle against the passions, the paths of trust and peace, the progress toward union with him.",
-   "categories": [
-    {
-     "id": "combat",
-     "nom_fr": "Le combat intérieur",
-     "nom_en": "The Inner Struggle",
-     "arts": [
-      "la-colere-et-la-douceur",
-      "la-peur",
-      "la-tristesse",
-      "l-orgueil-et-l-humilite",
-      "le-jugement-du-prochain",
-      "la-rancune-et-le-pardon"
-     ]
-    },
-    {
-     "id": "chemin",
-     "nom_fr": "Le chemin vers Dieu",
-     "nom_en": "The Path to God",
-     "arts": [
-      "les-trois-voies-de-la-vie-interieure",
-      "la-nuit-noire-de-l-ame",
-      "le-desir-de-sentir-l-esprit"
-     ]
-    },
-    {
-     "id": "discernement",
-     "nom_fr": "Le discernement",
-     "nom_en": "Discernment",
-     "arts": [
-      "discerner-les-mouvements-du-coeur",
-      "la-consolation-et-la-desolation"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "histoire",
-   "nom_fr": "Histoire de l'Église",
-   "nom_en": "History of the Church",
-   "desc_fr": "Le chemin de l'Église à travers les siècles, ses conciles et ses combats.",
-   "desc_en": "The path of the Church through the centuries, its councils and its struggles.",
-   "categories": []
-  },
-  {
-   "id": "apologetique",
-   "nom_fr": "Apologétique",
-   "nom_en": "Apologetics",
-   "desc_fr": "La défense raisonnée de la foi : répondre aux objections et montrer que croire est accordé à la raison.",
-   "desc_en": "The reasoned defence of the faith: answering objections and showing that belief accords with reason.",
-   "categories": [
-    {
-     "id": "dieu-question",
-     "nom_fr": "Dieu en question",
-     "nom_en": "God in Question",
-     "arts": [
-      "pourquoi-dieu-demande-l-adoration",
-      "la-theorie-de-l-evolution"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "philosophie",
-   "nom_fr": "Philosophie et raison",
-   "nom_en": "Philosophy and Reason",
-   "desc_fr": "Ce que la raison humaine peut chercher et atteindre par elle-même sur Dieu, l'homme, le vrai et le bien, et comment elle s'accomplit dans sa rencontre avec la foi.",
-   "desc_en": "What human reason can seek and attain by itself concerning God, man, the true and the good, and how it is fulfilled in its meeting with faith.",
-   "categories": [
-    {
-     "id": "bien-agir",
-     "nom_fr": "Le bien et l'agir",
-     "nom_en": "The Good and Human Action",
-     "arts": [
-      "la-liberte-et-la-responsabilite",
-      "la-conscience-morale",
-      "le-doute-et-les-systemes-moraux",
-      "faire-le-mal-pour-un-bien",
-      "l-amour"
-     ]
-    },
-    {
-     "id": "foi-raison",
-     "nom_fr": "Foi et raison",
-     "nom_en": "Faith and Reason",
-     "arts": [
-      "la-foi-et-la-science"
-     ]
-    }
-   ]
-  }
- ]
+  ]
 }

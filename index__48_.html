@@ -2906,15 +2906,18 @@ function router(){
 function cascadeApparition(els){
   els.forEach((el,i)=>{
     if(!el) return;
-    const d=Math.min(i*40,640);
+    const d=Math.min(i*32,240);
     el.style.animation='none';
     void el.offsetHeight;
-    el.style.animation='apparaitDom .45s cubic-bezier(.2,.7,.3,1) '+d+'ms both';
+    el.style.animation='apparaitDom .4s cubic-bezier(.2,.7,.3,1) '+d+'ms both';
+    const done=()=>{ el.style.animation=''; el.removeEventListener('animationend',done); };
+    el.addEventListener('animationend',done);
+    setTimeout(()=>{ if(el.style.animation) el.style.animation=''; }, 900+d);
   });
 }
 function cascadeFermeture(els,fin){
-  els.forEach(el=>{ if(el) el.style.animation='apparaitDomFerme .25s ease forwards'; });
-  setTimeout(fin,240);
+  els.forEach(el=>{ if(el) el.style.animation='apparaitDomFerme .2s ease forwards'; });
+  setTimeout(fin,190);
 }
 function ouvrirDomaine(sec){
   if(!sec||sec.classList.contains('ouvert')) return;

@@ -1,12 +1,16 @@
 ════════════════════════════════════════════════════════════════════
 FICHIER DE REPRISE : LUMEN VERITATIS
 Mémoire de travail du projet, en mode Cowork automatique.
-Mis à jour : 13 juillet 2026
+Mis à jour : 17 juillet 2026
 ════════════════════════════════════════════════════════════════════
 
 NATURE DE CE FICHIER. Condensé vivant, jamais une archive. Il vit dans le
-projet Cowork « Lumen » : il est RELU avant chaque grande étape (nouvel
-article, série, audit, gros correctif) et MIS À JOUR juste après. Depuis
+projet Cowork « Lumen » : il est RELU EN ENTIER avant chaque grande étape
+(nouvel article, série, audit, gros correctif) et MIS À JOUR juste après.
+RÈGLE PREMIÈRE, rappelée avec insistance par Emmanuel le 14/07 : NE JAMAIS
+entamer une grande étape sans avoir relu ce fichier ; au moindre oubli
+constaté, le relire aussitôt. C'est la mémoire qui garantit la cohérence de
+tout le reste ; l'oublier, c'est retravailler à l'aveugle. Depuis
 le passage du chat à Cowork, c'est le SEUL support de mémoire qui traverse
 les sessions ; ce qui n'y est pas écrit est perdu. Il garde le DURABLE
 (esprit du site, règles de rédaction et de fonctionnement, architecture,
@@ -31,6 +35,17 @@ directement (voir §4). CARTE BLANCHE TOTALE (confirmée par Emmanuel le
 NATURE : supprimer, ajouter, reformuler, scinder ou FUSIONNER des articles,
 toucher structure, navigation, code, design. Le seul juge est la justesse ;
 Emmanuel vérifie derrière et dit ce qui lui plaît ou non.
+RIEN N'EST UNE LISTE À COCHER (principe qui GOUVERNE tous les autres, Emmanuel
+14/07, « prends ça en compte pour tout »). Toutes les règles, tous les critères,
+toutes les énumérations de ce fichier (les trois critères, les lentilles de
+vérification, les leviers du genre, les défauts-types…) sont des EXEMPLES et des
+REPÈRES qui cristallisent un esprit, JAMAIS une liste fermée à plaquer. Selon la
+nature de ce qu'on traite, il peut y avoir PLUS de ces aspects, MOINS, ou
+D'AUTRES non listés ; Emmanuel lui-même peut en oublier ou en ignorer. Donc :
+apporter son propre jugement à chaque cas, repérer ce qui n'est sur aucune liste,
+écarter ce qui ne s'applique pas, ne jamais tenir une énumération pour
+exhaustive. Le maître, c'est le BUT (complet, approfondi, solide, un seul corps) ;
+le seul juge, la JUSTESSE. Vaut pour tout, l'article comme le site.
 Le corpus a d'abord été écrit À LA MAIN par Emmanuel : la première tâche du
 mode automatique est donc d'AUDITER, CORRIGER et APPROFONDIR l'existant selon
 les règles de rédaction ci-dessous, avant et en plus d'écrire du neuf.
@@ -41,6 +56,24 @@ donnée directement, fondée sur la patristique, la Tradition et la cohérence
 interne du texte, sans énumérer d'autres interprétations. Niveau élevé et
 approfondi, formulation accessible à un débutant, jargon défini là où il
 apparaît.
+
+LE SITE EST UN SEUL CORPS : COHÉRENCE ET FLUIDITÉ GLOBALES (principe
+directeur d'Emmanuel, 14/07). Toute décision se prend au niveau du site
+entier, jamais article par article, et POUR TOUTES CHOSES, pas seulement les
+crédits. Concrètement : un même terme se définit et se nomme de façon
+identique partout ; un concept se traite à fond à son article-foyer et ne
+s'effleure qu'ailleurs, sans réexpliquer ni recréditer (voir §credits) ;
+une même image, métaphore ou formule ne se répète pas d'un article à
+l'autre (chaque bonne trouvaille appartient à une seule page) ; aucune
+contradiction, aucun tuilage, aucun doublon d'explication entre deux pages ;
+ton, densité et registre constants d'un bout à l'autre ; les renvois entre
+articles sont cohérents et pointent vers le vrai foyer du sujet. Le lecteur
+qui traverse le site doit sentir une seule voix continue, jamais des redites,
+des définitions flottantes ou des variations de traitement. Avant d'écrire
+ou de corriger, se demander : est-ce déjà dit, et mieux, ailleurs ? où est
+le foyer ? ma formulation s'accorde-t-elle au reste du site ? Ce principe
+prime sur la complétude locale d'un article : mieux vaut renvoyer au foyer
+que répéter. Il gouverne toute passe d'audit et toute rédaction neuve.
 
 ────────────────────────────────────────────────────────────────────
 2. SOCLE : STYLE, TON ET COMPORTEMENT (préférences d'Emmanuel)
@@ -58,12 +91,14 @@ Ne pas ajouter de qualificatif méta précisant le statut d'une affirmation (« 
 Rédaction : formulations à éviter
 Définir les choses par ce qu'elles sont, jamais par contraste ou négation stylistique : proscrire « X n'est pas Y », « ce n'est pas X », « X, non Y », les constructions « X mais Y » (ex. « réelle mais relationnelle » → « relationnelle »), et ne jamais ouvrir un texte par « X n'est pas Y : c'est Z ». Une négation ou un contraste qui porte un contenu doctrinal ou explicatif propre reste légitime et peut être conservé (ex. « Dieu n'est pas enchaîné à ses signes ») ; ne retirer la négation que lorsqu'elle ne fait que tourner autour de l'affirmation positive.
 Éviter les formules théâtrales et dramatisantes (« tout bascule », « révolutionne », « chamboule tout »).
+Pas d'épithète subjective qui colore émotionnellement un texte biblique ou son auteur (règle d'Emmanuel, 14/07) : proscrire « l'une des lettres les plus ardentes », « Paul écrit dans le feu », « une lettre brûlante / vibrante / bouleversante », « un cri du cœur », « avec passion », et les superlatifs d'ambiance du même ordre. On énonce ce que le texte EST, son occasion et son enjeu, directement (ex. « L'épître aux Galates est une lettre que Paul adresse aux Églises de Galatie… L'enjeu touchait le cœur de l'Évangile, et Paul écrit pour défendre… »). Une caractérisation factuelle et vérifiable reste permise (ex. situer l'importance historique d'un auteur), mais jamais le qualificatif d'ambiance qui dramatise.
 Éviter les phrases de validation flatteuses qui complimentent l'interlocuteur au lieu d'entrer dans le contenu (« your intuition is correct », « bonne question », « c'est juste de remarquer que »).
 Éviter les formules qui annoncent une précision au lieu d'y entrer directement (« X est réel, la manière dont c'est réel compte »), et celles qui assertent qu'une chose est « réelle », « bien réelle », « véritable » ou « authentique » comme précision en soi. Entrer directement dans le contenu.
 Ne jamais ouvrir un texte par un diagnostic ou une reformulation de la situation vécue par l'intéressé. Entrer directement dans le propos, le conseil ou la matière.
 Éviter les formules d'échafaudage argumentatif qui mettent en scène le raisonnement au lieu d'énoncer directement la matière (« la preuve que X, c'est que… », « on ne gagne rien à adoucir ces paroles »).
 Ne pas mettre en scène la réaction du lecteur ni la difficulté du sujet avant d'entrer dans la matière (« ces récits heurtent », « ce passage trouble »).
 Éviter d'affirmer deux fois la même chose dans une même section en décalé (une affirmation, puis une reformulation quasi identique plus loin). Énoncer le point une seule fois, là où il porte le mieux.
+Proscrire les raccourcis au référent flou : chaque expression a un référent unique et évident pour un débutant. Un complément de temps ou de lieu bref doit être daté ou situé sans équivoque (ex. « le corps attend le matin » → « le matin de Pâques » ; « ce jour-là » se rattache clairement à l'événement visé). À la relecture, traquer toute formule qu'un lecteur pourrait rattacher à deux choses.
 Mesures anciennes
 Toujours convertir les mesures non françaises (coudées, baths, talents, stades, mesures bibliques ou antiques) en équivalents métriques, en donnant les deux : la mesure originale suivie de sa traduction entre parenthèses.
 Corrections doctrinales, exégétiques ou factuelles
@@ -91,6 +126,72 @@ l'histoire, la géographie, l'archéologie, le sens des mots originaux, les
 usages et les réalités matérielles anciennes, dès que cela sert vraiment le
 sujet. Ces apports entrent au service de la compréhension et de la lecture
 catholique du texte, jamais comme érudition décorative.
+
+VERSETS DANS L'HISTOIRE : JAMAIS DÉCORATIFS (Emmanuel, 14/07, précisé trois
+fois : « ce n'est pas interdit, ça ne doit juste pas être décoratif »). Dans le
+domaine « Histoire de l'Église », le verset biblique n'est PAS interdit ; il ne
+doit jamais être décoratif. Décoratif = un verset accolé (souvent en fin de
+phrase) pour orner un point que la prose a déjà dit en entier, avec son amorce
+toute faite (« Le Christ avait averti… », « À qui tiendrait jusqu'à la fin… »,
+« Selon le mot de… »). On récrit alors le fait et sa logique en prose narrative
+et on retire verset ET amorce. Un verset est en revanche LÉGITIME quand il
+PORTE le propos, quand il EST le point : la parole qui fonde le fait raconté
+(ex. l'ordre de mission « De toutes les nations faites des disciples », sur
+lequel repose toute l'expansion ; la formule du premier concile « il a paru bon
+à l'Esprit Saint et à nous », qui devient le modèle de tous les conciles).
+TEST : si l'on peut retirer le verset sans rien perdre du sens, il était
+décoratif → retirer ; s'il porte l'argument, le garder. Le genre EXPOSITION PAR
+CONNEXION (ci-dessous) reste pleinement valable pour l'histoire, mais ses
+leviers sont ici historiques (causes, enjeux, enchaînements, liens vers la
+doctrine) plus que l'exégèse verset par verset. Appliqué : sweep du domaine
+histoire, versets décoratifs retirés (5 dans l-age-des-martyrs ; réductions
+dans l-expansion et l-eglise-apostolique), versets porteurs conservés (ordre de
+mission dans l-expansion ; formule conciliaire dans l-eglise-apostolique).
+
+EXPOSITION PAR CONNEXION (genre voulu par Emmanuel, 14/07, à partir de deux
+vidéos-modèles sur le Tabernacle et sur la mort de Judas). Le site pratique
+une exégèse qui part d'un détail concret et frappant du texte (treize
+chapitres pour une tente ; trente pièces d'argent) et en déploie la
+profondeur en reliant tout à travers le canon : la racine hébraïque ou
+grecque et son sens (mishkan/shakan « demeurer », Shekina forgé par les
+rabbins, tabnit « modèle » que Hébreux relit en « ombre », caporet/kaphar
+« couvrir », eskēnōsen « il a dressé sa tente », metamelomai le remords
+distinct de metanoeo la conversion, apēnxato le verbe rare qui relie Judas
+à Achitophel), la typologie (l'Éden premier sanctuaire, les chérubins de la
+porte du jardin brodés sur le voile, le prix de l'esclave d'Exode 21:32),
+la prophétie et son accomplissement (Zacharie 11 : le chiffre, le temple,
+le potier ; le voile déchiré de haut en bas), la tradition juive et
+l'histoire (Flavius Josèphe lisant le Tabernacle comme une maquette du
+cosmos, l'ordre des livres prophétiques, la mémoire ancienne d'Akeldama et
+de la vallée de la Géhenne, les auteurs chrétiens anciens), la comparaison
+avec le Proche-Orient (le temple païen abrite une statue, le Saint des
+saints un espace vide). CES LEVIERS SONT DES EXEMPLES, PAS UNE LISTE À
+COCHER (précision d'Emmanuel, 14/07). On ne plaque pas sur chaque article
+« une racine + une typologie + un fait juif + un fait historique » : on
+mobilise ce qui éclaire vraiment CE texte-ci, plus ou moins selon sa nature.
+Tel passage appelle une racine hébraïque, tel autre une typologie ou un
+accomplissement, tel autre un arrière-plan historique, géographique ou
+liturgique ; certains se suffisent d'un seul levier, d'autres en croisent
+plusieurs, d'autres encore sont déjà complets et n'appellent rien. Le juge
+est la compréhension du texte, jamais le remplissage : aucune érudition
+plaquée, aucun levier ajouté pour faire nombre. Tout converge vers le Christ
+et vers l'unité de l'Écriture, et tout est ordonné à la lecture catholique,
+qui AJOUTE ce que le modèle profane ignore (ex. la réserve de l'Église, qui
+ne prononce la damnation de personne, pas même de Judas). RÈGLES DE VOIX, impératives : ce
+genre s'écrit dans le registre sobre du site, JAMAIS dans la mise en scène
+de la vidéo. Proscrire absolument les questions rhétoriques comme procédé
+(« pourquoi tant de détails ? », « et que fait le remords en lui ? »), les
+accroches de suspense (« gardez ce détail, il va revenir », « on y
+reviendra », « gardez cela en tête »), l'adresse au lecteur, la
+dramatisation (« un mot qui glace le sang », « donne des frissons ») et la
+négation de style. Ce sont les informations elles-mêmes qui portent,
+énoncées directement, en affirmations. HYPERTEXTE : un fil qui mérite son
+propre traitement devient un article dédié et relié (ex. la mort de Judas,
+plutôt que d'alourdir « La Semaine sainte »), afin de ne pas casser le
+rythme de l'article porteur. EXACTITUDE : une harmonisation traditionnelle
+(les deux morts de Judas concordées par la pendaison puis la chute d'un
+corps gonflé) se donne comme la lecture que la tradition propose, sans la
+durcir en certitude que le texte n'affirme pas.
 
 REGISTRE. Les articles sont des exégèses, jamais de simples récits : énoncer
 le fait ou la parole, puis tirer ce qu'il signifie (doctrine, figure, leçon).
@@ -170,6 +271,21 @@ premier jet ET à l'audit de l'existant (repérer les phrases surchargées de
 particulièrement dans les ajouts récents, où plusieurs contrastes en « non pas…
 mais » pourraient s'affirmer directement.
 
+NE PAS DIRE CE QUE L'ÉCRITURE NE FAIT PAS (Emmanuel, 14/07). Cas particulier,
+strict, de la règle ci-dessus. Ne jamais décrire l'Écriture (ni « le texte »,
+ni un évangéliste) par ce qu'elle NE fait pas : proscrire « l'Écriture ne
+recoud pas les deux récits », « le texte ne dit pas », « ne précise pas »,
+« ne les adoucit pas », « ne referme pas le dossier », « ne s'attarde pas ».
+Énoncer positivement ce que l'Écriture fait, dit ou montre, et attribuer à la
+LECTURE ou à la TRADITION ce qui relève d'elles (ex. « la lecture rejoint les
+deux bords », au lieu de « l'Écriture ne recoud pas les deux bords » ;
+« l'Écriture les laisse peser », au lieu de « l'Écriture ne les adoucit
+pas »). L'honnêteté d'une harmonisation se garde ainsi, en la portant au
+compte de la lecture, sans jamais formuler une carence de l'Écriture. Reste
+permise la négation à contenu doctrinal qui porte sur autre chose que l'acte
+de l'Écriture (ex. « l'Église n'a jamais déclaré personne en enfer », qui
+énonce la réserve réelle de l'Église).
+
 AGENTS SANS AMBIGUÏTÉ. Toujours clair qui fait et qui parle.
 
 NUANCER SELON LA SUITE DU RÉCIT. Une affirmation que la suite immédiate du
@@ -178,6 +294,15 @@ Exode 5:21).
 
 EXACTITUDE FACTUELLE STRICTE. Aucun raccourci faux. Un accomplissement
 partiel se dit partiel. Répondre aux questions que le texte soulève.
+ACCOMPLISSEMENT SUR LE BON ÉVÉNEMENT. Quand une prophétie de l'AT est
+rattachée au Christ, faire tomber l'accomplissement sur l'acte PRÉCIS qui la
+réalise, et ne jamais laisser la simple proximité d'une phrase suggérer un
+accomplissement faux. Distinguer nettement première venue, Ascension et
+retour glorieux. Ex. Zacharie 14:4 (le mont des Oliviers se fend) s'accomplit
+à la Seconde Venue, non à l'Ascension : celle-ci ne fait que désigner le lieu
+du rendez-vous (Actes 1:11, « il reviendra de la même manière qu'il est
+parti »). Pour chaque figure ou prophétie christologique, se demander quel
+acte l'accomplit vraiment avant de l'écrire.
 
 AFFIRMATIF, PRÉCIS, SANS EFFETS.
 • Ouvertures affirmatives ; pas de définition par contraste, pas de « X mais
@@ -251,7 +376,57 @@ ce qui manque (aspect non traité), ce qui survole (à approfondir), ce qui est
 fragile (à étayer ou à retirer). Un article riche plutôt que plusieurs minces ;
 ne garder que ce qui peut être traité avec assurance. « Cet article est-il
 correct ? » = demande d'AUDIT DE FOND sur ces trois critères, pas de simple
-relecture. RÉTROACTIVITÉ : toute règle nouvelle s'applique à tout l'existant.
+relecture.
+PRÉCISIONS APPUYÉES D'EMMANUEL (14/07, à retenir pour TOUS les domaines et
+articles du site). (a) La LONGUEUR / le nombre de caractères n'est JAMAIS un
+critère : un article court peut être complet, un long rester lacunaire ; on
+juge la substance, jamais la taille. (b) « VÉRIFIER un article » = le confronter à
+TOUT CE FICHIER REPRISE, relu en entier au préalable, jamais à un sous-ensemble
+mémorisé (Emmanuel, 14/07 : « quand je te dis de vérifier, c'est par rapport à
+tout ce qu'il y a dans reprise »). On passe l'article au crible de l'ensemble des
+règles : style et ton (§2), rédaction (§3 : versets non décoratifs, négations
+justifiées, formulations ambiguës, ne pas survoler, fluidité, foyer et
+crédit-une-fois, maillage), doctrine juste et solide, structure et forme, et les
+trois critères ci-dessous. C'est donc produire
+l'audit de fond EXHAUSTIF qui fait remonter TOUT ce qui manque vraiment :
+aspects non traités, distinctions, nuances, précisions, cas particuliers,
+dimensions pastorale et spirituelle, et crédits dus. Étalon concret : l'audit
+du domaine sacrements du 14/07, où presque chaque article appelait plusieurs
+manques de fond (baptême : la concupiscence qui demeure, le parrain, un seul
+baptême reconnu entre confessions ; confirmation : le parrain, le pourquoi du
+décalage Orient/Occident, le saint chrême ; onction : les quatre effets
+déployés un à un, le sens de la souffrance offerte, la dimension d'Église ;
+mariage : l'ouverture à la vie et les deux sens de l'acte, le privilège paulin,
+le mariage avec un non-baptisé ; confession : l'histoire pénitence
+publique→privée, les formes de célébration et l'absolution générale, la faculté
+du prêtre, le confesseur juge-et-médecin ; les-sacrements : la nécessité et Dieu
+non lié, sacrements de la foi). C'est CE niveau que « complet et approfondi »
+exige, à chaque vérification. (c) AUCUN article n'est présumé acquis : ne jamais
+déclarer un article « complet » sans l'avoir audité (erreur commise le 14/07 en
+donnant la confession pour complète alors qu'elle a elle aussi des manques). (d)
+La complétude inclut de CRÉDITER personnes, conciles, auteurs quand c'est
+nécessaire, au foyer (principe crédit-une-fois, §2). (e) VÉRIFIER inclut aussi
+la FORME : la structure (ordre logique des sections, une idée par section,
+progression naturelle du sujet), la fluidité et les transitions (pas de
+coq-à-l'âne, pas de rupture brutale d'un paragraphe à l'autre), la clarté
+d'ensemble. CARTE BLANCHE : on RETRAVAILLE librement l'article, on déplace,
+fusionne, réordonne, on récrit les charnières, on ne fait pas qu'ajouter.
+Ex. 14/07 : le-mariage, section « L'amour ouvert à la vie » remontée juste après
+« Les fins du mariage » pour la continuité ; étymologie mystērion→sacramentum
+ajoutée à « Élevé au rang de sacrement » ; citation EN d'Éphésiens 5:31-32
+réalignée sur la Douay (qui porte littéralement « sacrament »). (f) CARTE
+BLANCHE ARCHITECTURALE (Emmanuel, 14/07 : « tu peux tout faire »). La
+vérification va jusqu'au niveau du DOMAINE et de la BIBLIOTHÈQUE, pas seulement
+de l'article : je peux SCINDER un article en plusieurs (créer un nouveau foyer
+quand un sujet le mérite), FUSIONNER plusieurs articles minces ou redondants,
+DÉPLACER un article ou un contenu vers une autre catégorie ou un autre thème
+(ex. la narration d'un concile qui doit passer au foyer d'histoire), et
+RÉORGANISER la bibliothèque (groupes, catégories, ordre, themes.json). Vaut pour
+l'EXISTANT autant que pour le neuf. Le critère unique : le site doit faire UN
+SEUL CORPS, cohérent et fluide (principe du foyer unique + hypertexte + doctrines
+globales qui circulent). Toute refonte structurelle passe par les mêmes contrôles
+(themes.json valide, slugs+SLUGS EN, liens résolus, validate/verify, build).
+RÉTROACTIVITÉ : toute règle nouvelle s'applique à tout l'existant.
 
 RELIRE le texte entier avant de l'intégrer ; ce qui sonne mal se retravaille,
 ne se rapièce pas.
@@ -282,14 +457,20 @@ ne se rapièce pas.
   re-vérification (les ancres se décalent à chaque article).
 • Le journal des Nouveautés annonce les VRAIES nouveautés (articles, outils),
   jamais les reprises ou approfondissements.
-• Liens internes dans les articles : PERMIS avec sobriété, quand la mention
-  renvoie à l'article dédié d'une réalité (modèle des existants). Existants :
-  « ange du Seigneur » → /article/l-ange-du-seigneur/ ; « vertu théologale »
-  → /article/les-vertus-theologales/ ; « un seul Dieu en trois Personnes »
-  (la-nature-de-dieu) → /article/la-trinite/ (chaque fois avec l'équivalent
-  /en/article/…). Format <a href="/article/SLUG/">texte</a> ; href écrit EN
-  DUR, langue ciblée (/article/ en FR, /en/article/ en EN), jamais traduit
-  par le build ; vérifier que la page cible existe. Le CSS stylise .lecture a.
+• LIENS INTERNES DANS LA PROSE DES ARTICLES : INTERDITS (revirement d'Emmanuel,
+  17/07 : « ça crée trop de confusion et ça fait surcharger » ; annule la
+  permission antérieure). Le 17/07, les 1122 liens <a> du corpus (169 articles,
+  FR+EN, tous internes) ont été DÉFAITS en gardant leur texte intact (égalité
+  du texte vérifiée avant/après, verify_ch ALL OK, 0 <a> résiduel dans les 348
+  pages générées). Ne plus JAMAIS tisser d'hyperlien dans contenu_fr/en ni
+  dans les résumés. Le principe du FOYER demeure ENTIÈREMENT pour le contenu
+  (un sujet se traite à fond à son foyer, ailleurs on le mentionne sans le
+  redéployer) ; simplement, le renvoi reste implicite, sans lien. Les mentions
+  de « maillage » dans les entrées de campagne ci-dessous sont de l'HISTORIQUE.
+  SEULE EXCEPTION : l'encadré « Réponse aux objections » (aside.apologie,
+  mécanisme APOLOGIES de build-bi.js, 5 paires actives), bloc séparé hors
+  prose, conservé sauf ordre contraire d'Emmanuel. Le CSS .lecture a devient
+  dormant, laissé en place.
 • Encadrés « objection » = mécanisme APOLOGIES de build-bi.js (clé base →
   objection ; ex. l-adoration-et-la-louange → pourquoi-dieu-demande-l-
   adoration) : le build pose <aside class="apologie"> sur l'article de base.
@@ -301,6 +482,28 @@ ne se rapièce pas.
   d'Aquin…) ; on ne crédite pas systématiquement (pas de caution d'auteur
   pour ce qui s'énonce directement), et on évite les périphrases-crédit
   floues (« les anciens », « la tradition mystique »).
+• CRÉDIT UNE SEULE FOIS, À L'ARTICLE-FOYER (règle d'Emmanuel du 14/07). Le
+  crédit d'un concept, d'une doctrine ou d'une formule signée se pose UNE
+  fois, à l'article qui EST le foyer du sujet (la nuit obscure → la-nuit-
+  noire-de-l-ame → saint Jean de la Croix ; le titre Mère de Dieu → marie-
+  mere-de-dieu → Éphèse 431 / Nestorius ; l'être subsistant → la-nature-de-
+  dieu → Thomas d'Aquin ; les trois voies → Denys l'Aréopagite ; le
+  caractère sacramentel → les-sacrements → Augustin ; l'Ange = le Verbe →
+  l-ange-du-seigneur → Justin ; structures de péché → Jean-Paul II ; « le
+  Désiré des nations » Ag 2:7 → la Vulgate de Jérôme ; symboles des
+  évangélistes → Jérôme ; les saints voient nos prières en Dieu → Thomas).
+  On NE re-crédite PAS une doctrine globale chaque fois qu'elle est
+  mentionnée en passant : les deux natures, le consubstantiel, Theotokos,
+  la divinisation traversent tout le site comme patrimoine fluide et ne
+  portent leur crédit qu'à leur foyer. Avant d'ajouter un crédit, vérifier
+  qu'il n'est pas DÉJÀ donné ailleurs à son foyer (Athanase / « Dieu s'est
+  fait homme… » est à l-incarnation ; Vatican I / infaillibilité est à
+  le-pape ; transsubstantiation-le-mot coule comme vocabulaire courant) :
+  si oui, laisser couler sans répéter. Le crédit se fait en INCISE LÉGÈRE
+  dans la phrase existante (« selon le mot de… », « ce que X a nommé… »),
+  jamais en nouvelle section ni en apparat lourd : la fluidité et la
+  cohérence de tout le site priment. Un concile ou un auteur ne va JAMAIS
+  dans <span class="ref"> (réservé aux renvois bibliques cliquables).
 • DIAGRAMMES : cahier des charges complet dans les préférences d'Emmanuel ;
   le suivre intégralement à chaque demande explicite (jamais spontanément).
 • MÉTHODE DES SÉRIES BIBLIQUES (couvrir les 73 livres en ~20 trames) : le
@@ -315,6 +518,20 @@ ne se rapièce pas.
   rédiger. Ne pas le réafficher.
 • L'assistant surveille seul le besoin de « graver » les éditions Firestore
   dans articles.json avant une grosse refonte, et le fait le moment venu.
+• LIVRAISON DES FICHIERS (correction d'Emmanuel, 17/07 : « c'est pas bon, je
+  m'y connais pas en code, donne-moi tout au complet »). Emmanuel ne code pas :
+  toute livraison destinée à GitHub est le DÉPÔT COMPLET, arborescence
+  préservée (jamais zip -j qui aplatit, jamais un zip partiel des seuls
+  fichiers modifiés). Contenu canonique du paquet (41 fichiers) : racine
+  (build-bi.js, index__48_.html, data-en.js, memoriser.html, bible.html,
+  bible-panneau.js, admin.js, memoriser-sw.js, les 3 manifests, netlify.toml,
+  package.json, package-lock.json, test_biblio.js, REPRISE-lumen.txt) +
+  content/ (les 8 json) + tools/ + icones/. NI site/ NI node_modules (Netlify
+  exécute node build-bi.js et publie site/ lui-même). Avant chaque livraison,
+  TESTER le build autonome depuis le paquet seul (copie propre → node
+  build-bi.js → 352 pages). Mode d'emploi à redonner : dézipper → GitHub →
+  dépôt → Add file → Upload files → glisser TOUT le contenu → Commit changes ;
+  GitHub remplace les fichiers de même nom, Netlify reconstruit seul.
 
 ────────────────────────────────────────────────────────────────────
 5. FICHIERS, BUILD, DÉPLOIEMENT
@@ -325,7 +542,9 @@ SOURCE (dépôt GitHub hoarauemmanuel336-ship-it/Lumen, branche main) :
   content/ : articles.json (corpus entier, 1 objet par article ; champs
   slug, theme, date, titre_fr, resume_fr, contenu_fr, titre_en, resume_en,
   contenu_en), bible.json (CHÉRUBIN FR, traduction propre d'Emmanuel, avec
-  titres de sections), bible-en.json (Douay EN), themes.json
+  titres de sections), bible-en-cherubin.json (CHÉRUBIN EN, servi par le lecteur
+  du site depuis le 14/07), bible-en.json (Douay EN, RETIRÉE du site, gardée
+  hors-ligne pour les outils tant que des citations EN restent Douay), themes.json
   (domaines + catégories + rangement), memoriser.json (catégories + versets),
   nouveautes.json (journal FR+EN), settings.json (accent #efe6cf).
 
@@ -372,11 +591,59 @@ BARRE UNIQUE : barreCanon(o) et piedCanon(o) (build-bi.js) génèrent le header
 et le footer de TOUTES les surfaces ; BARRE_CSS vit en tête d'EXTRA_CSS et
 est injecté aussi dans bible.html et memoriser.html au build. Toute évolution
 de barre se fait UNIQUEMENT là. Si l'ancre <header>/<footer> devient
-introuvable, le build ÉCHOUE volontairement (throw). NAV = 5 liens, même
-ordre partout : Accueil | Bibliothèque | Bible | Mémoriser | Carnet.
+introuvable, le build ÉCHOUE volontairement (throw). NAV = 4 liens, même
+ordre partout : Accueil | Bibliothèque | Bible | Mémoriser (le Carnet a été
+SUPPRIMÉ du site le 17/07, cf. §8 ; il ne reste aucun lien ni page Carnet).
 Menu compte identique partout : Mes notes, Taille du texte (ttx-row), Onglet
 Bible à gauche (tog-bible, préférence PAR APPAREIL, localStorage
 lv_onglet_bible_pc / _mobile), Déconnexion.
+✦ AUDIT DE CONSISTANCE DE LA BARRE (17/07, demande d'Emmanuel, y compris « connexion ») : les 356
+pages comparées (structures normalisées : 8 variantes, toutes légitimes) + matrice Playwright 9 pages
+× 2 formats (1280/390). CONSTAT SAIN : 4 liens même ordre partout, burger et items du menu mobile
+identiques, formulaires de connexion et menus compte alignés sur les 3 surfaces (standard/bible/
+memoriser : Connexion/Inscription, e-mail+mdp, Google, mot de passe oublié ; puis Mes notes, ttx,
+tog-bible, Déconnexion). 5 CORRECTIFS APPLIQUÉS :
+(1) 404 : liens du header RELATIFS (./, bibliotheque/) cassés dès que Netlify sert la 404 à une URL
+profonde → base:'/' au ecrire('404.html') de build-bi.js, tout absolu désormais.
+(2) Hauteur de barre : bible.html faisait 82/74 contre 86/78 ailleurs, cause = line-height hérité du
+body de chaque page (1.6 vs 1.75) → BARRE_CSS fixe désormais line-height:1.75 SUR .barre, la barre ne
+dépend plus de la typo de la page ; 86/78 partout.
+(3) en/bible.html : cloche « News » → « What's New » (table TR alignée sur news_title canon).
+(4) MEMORISER NON CONNECTÉ : le <header> vivait DANS #app (masqué avant login) et #auth-screen était
+un voile fixed inset:0 z-200 → aucun moyen de naviguer hors connexion. CORRIGÉ : header déplacé en
+tête de <body> (le regex de remplacement du build le retrouve, position-indépendant) ; #auth-screen
+passé en FLUX normal sous la barre (min-height:calc(100vh - 160px), plus de fixed/z-index) ; #app
+min-height:calc(100vh - 86px) ; zone user (menu-mail + logout-btn) masquée hors connexion et
+restaurée à la connexion (les deux branches d'onAuthStateChanged) ; SCRIPT AUTONOME inséré juste
+après </header> qui remplit les libellés de nav (Accueil/Bibliothèque/Mémoriser + href FR/EN via
+lm_lang/lv_lang), masque logout-btn et bind le burger (assignation onclick idempotente, le boot de
+l'app la réassigne sans conflit) → la barre marche AVANT Firebase et même si le boot échoue.
+(5) Menu mobile memoriser : la ligne EN (#lang-btn) faisait 28px contre 50 pour les autres (styles
+desktop persistants par spécificité d'id + un <button> N'HÉRITE PAS du line-height) → règle mobile
+élargie (width:100%, 15px, line-height:1.75, padding:12px 0) ; toutes les lignes à 50px, icônes 47
+comme le canon. NB : un « fantôme » du panneau Connexion vu sous la ligne EN sur une capture était un
+état de peinture transitoire (animation en cours), vérifié disparu par re-capture + mesure pixel.
+LEÇON DE MÉTHODE : pour tout audit visuel, matrice Playwright (pages × formats) + styles CALCULÉS
+(getComputedStyle/getBoundingClientRect) plutôt que lecture de cascade ; hit-test elementFromPoint et
+mesure pixel pour trancher les artefacts de capture.
+✦ AUDIT GLOBAL MOBILE DU SITE (17/07, demande d'Emmanuel « vérifie que tout fonctionne/s'affiche bien
+sur mobile »). PASSE STATIQUE sur les 356 pages : 0 défaut (header/footer/viewport/title/lang partout,
+aucun placeholder non résolu, aucun undefined/null visible, les 11 ressources locales référencées
+existent toutes). PASSE NAVIGATEUR 390×844 sur 23 pages types (accueil, bibliothèque, 404, 12 articles
+dont les plus lourds semaine-sainte/troisième-année/Sinaï, bible FR+EN, memoriser, 3 EN) : aucun
+débordement horizontal, aucune erreur JS, aucune image cassée. INTERACTIONS mobiles toutes vérifiées
+fonctionnelles : sommaire d'article, réf biblique→panneau latéral (texte servi, pleine largeur mobile),
+retour en haut, barre de progression, recherche globale (résultats + reconnaissance de référence
+« Jean 3:16 »→entrée Bible), cloche, lecteur Bible (rendu chapitre, sélection de verset→barre,
+palette+roue 40×32 dans l'écran, navigation, recherche), memoriser pré-auth. 2 CORRECTIFS : (a)
+MEMORISER SANS FIREBASE restait un vide noir sous la barre (ni app ni écran de connexion tant que
+l'auth n'a pas résolu) → repli dans le script autonome : après 2,5 s sans #app.on ni auth-screen
+visible, l'écran de connexion s'affiche de lui-même (réseau lent/bloqué couvert ; connexion rapide =
+aucun flash) ; (b) bible-panneau.js : bouton « Aller » codé en dur en FR sur les pages EN → BP_T
+enrichi (aller: Go/Aller, fermer: Close/Fermer pour l'aria-label), vérifié en direct FR et EN.
+NON TESTABLE HORS LIGNE (Firebase absent en sandbox ; fonctionne en prod, structures DOM vérifiées
+cohérentes) : aboutissement des connexions, notes, progression Mémoriser/lecture suivie, overrides
+admin, TTS.
 
 PERFORMANCE : les données communes (window.LV_INDEX + LV_NV) et le code
 commun ne sont PAS inlinés dans chaque page : build-bi.js écrit
@@ -494,27 +761,57 @@ v-1), Qo (6:12 → 7:1 ; ch7 → v+1), Dt 5 (v≥18 → v+3), Jn 11 (57 → 56),
 3 Jn (15 → 14), Jg 21 (25 → 24) ; les règles antérieures restent valides
 (vérifié : aucun de leurs chapitres ne diffère entre Crampon et Chérubin).
 Banc : 2095 réfs FR du corpus validées contre la Chérubin, 0 défaut.
+CHÉRUBIN ANGLAIS REÇU (14/07, fichier d'Emmanuel) : content/bible-en-cherubin.json,
+même structure {groupes,livres,data}, mêmes 73 livres, MÊMES SLUGS que le FR,
+noms anglais standard (Sirach, Obadiah, Revelation, Psalms, 1 Samuel, Acts of
+the Apostles…). POINT MAJEUR : sa versification est IDENTIQUE au Chérubin FR
+(35 588 versets des deux côtés, 0 différence de structure) — donc, côté EN,
+PLUS DE versifDouay, plus de décalages, plus d'« oddités Douay » : la réf EN =
+la réf FR (identité). Outils dédiés : tools/verse_en_ch.py (tire le texte
+EN-Chérubin) et tools/verify_ch.py (valide FR-Chérubin + EN-Chérubin en
+identité + parité h2 + balise, remplace validate+textcheck pour l'ère Chérubin
+EN). Alias de nom à connaître dans ces outils : « Acts » → actes,
+« Psalm » → psaumes. POUR TOUT NOUVEL ARTICLE/CORRECTION : citer l'EN depuis
+verse_en_ch.py et vérifier avec verify_ch.py (0 défaut).
+CORRECTIONS DE LA CHÉRUBIN (au fil de l'eau, Emmanuel 17/07). Le texte Chérubin
+FR/EN n'est pas figé : il peut être corrigé ponctuellement. RÈGLE : toute
+correction du texte biblique est (1) JOURNALISÉE dans le doc projet
+claude/corrections-cherubin.md (réf, avant→après FR+EN, raison), et (2) PROPAGÉE
+à tout ce qui cite le verset verbatim — articles (contenu_fr/en) ET Mémoriser
+(fr.text/en.text, SANS jamais toucher l'id de progression) — puis verify_ch +
+build. NE JAMAIS faire de remplacement global aveugle du vocabulaire d'éternité :
+« pour toujours », « à jamais », « d'âge en âge », « des siècles » sont des rendus
+JUSTES de עוֹלָם/αἰώνιος en contexte (surtout au sens futur) ; corriger seulement
+cas par cas, là où le sens est réellement « éternel/éternité » et où le rendu
+actuel est sous-traduit. Fait 17/07 : Ps 25:6 (« elles sont de toujours » → « ils
+sont de toute éternité ») et Ha 3:6 (« routes de toujours » → « routes
+d'éternité ») ; les 3 autres « de toujours » examinés et laissés (rendus justes).
 
 BIBLE (fonctions) : surlignage versets par COULEUR HEX (map "slug|ch|v" → hex),
 localStorage lv_bible_surl (+ _m), cloud = doc __surl__ dans
 users/{uid}/bibleNotes (traité à part comme __meta__). Rendu par STYLE INLINE
 (surlRgba(hex,.30)) ; .vst.sel en !important. Barre de sélection : input
 color + pastilles vives ; le surlignage n'efface pas la sélection
-(enchaînable avec « Prendre une note »). Notes : catégorie transmise via le
+(enchaînable avec « Prendre une note »). ✦ BARRE #sel-barre SUR MOBILE FIABILISÉE
+(17/07, bug Emmanuel : barre du bas rognée + roue de couleur non sélectionnable). Ajouté dans bible.html :
+padding-bottom:env(safe-area-inset-bottom) (plus rognée par la barre d'accueil iOS) ; en @media
+max-width:720px, max-height:80vh + overflow-y:auto (la palette qui s'enroule ne dépasse plus, tout reste
+atteignable) et input color #sb-cercle agrandi 26×22 → 40×32 + pastilles 18→24 (cible tactile). Vérifié
+Chromium 390×844 : barre dans le viewport, roue visible et tappable (32px), palette non coupée. Se
+répercute sur en/bible.html au build (table TR). Notes : catégorie transmise via le
 champ c (l'omettre déclasse la note) ; recherche multi-références surligne
 toutes les plages du chapitre ouvert.
 
-CARNET : pages /carnet/ (FR) + /en/notebook/ (EN). Données Firestore
-users/{uid}/ : carnet/{id} = {t, pages:[{h, il, bg 'n'|'b'}], maj} ; chaque
-image dans son propre doc carnetImg/{id}={d:dataURL} (limite 1 Mo), le HTML
-référence <img data-lvimg=id> dont le src est retiré à la sauvegarde
-(htmlPropre) et résolu au chargement. Deux onglets Documents | Journal.
-Feuille FIXE format page (max 760px, aspect 1/1.414, overflow hidden). Images
-flottantes : drag + resize en POINTER EVENTS au niveau document, contrôles
-positionnés par offsets natifs (jamais getBoundingClientRect écran, jamais
-sérialisés). Interligne et fond (noir #000 / blanc) par page. Plein écran
-maison .c-pfs ; autosave debounce 2 s + pagehide ; purge des images
-orphelines sur toutes les pages.
+CARNET : FONCTIONNALITÉ SUPPRIMÉE DU SITE (17/07, demande d'Emmanuel « supprime
+carnet du site »). Retiré de build-bi.js : les 3 liens de nav Carnet (barreCanon,
+nav memoriser.html, nav bible.html), l'entrée de la table TR (en/bible.html), le
+genPaire qui générait /carnet/ + /en/notebook/, et le code mort mainCarnet +
+CARNET_JS + les clés d'UI menu_carnet/carnet_*. Ligne de localisation nav-carnet
+retirée aussi de memoriser.html. Résultat : plus aucune page ni lien Carnet
+(build 176 paires → 352 pages ; grep site/ carnet|notebook = 0 ; jsdom OK). Les
+DONNÉES Firestore users/{uid}/carnet + carnetImg ne sont PAS effacées (orphelines,
+inoffensives). Pour restaurer un jour : build-bi.backup dans l'historique, ou
+reconstituer depuis lumen-site-complet.zip.
 
 TTS : modale « Écoute de l'article » (admin.js) : deux voix, ElevenLabs (clé
 API PERSONNELLE de l'utilisateur, jamais celle du site) ou voix du navigateur
@@ -543,6 +840,20 @@ dans les RÈGLES FIRESTORE (write config/* et contenu réservé à l'email admin
 users/{uid}/** limité au propriétaire). Amélioration recommandée non
 appliquée : && request.auth.token.email_verified == true sur les blocs
 d'écriture admin.
+✦ MENU D'ADMINISTRATION RETIRÉ DU SITE (17/07, Emmanuel : « je vais administrer avec l'IA »). Dans
+admin.js, le handler auth.onAuthStateChanged force désormais isAdmin=false (au lieu du test sur l'email
+ADMIN) : plus de dock flottant ✦, plus d'entrée « Administration »/« Panneau d'administration » au menu
+compte, plus d'ouverture auto du panneau (autoOuvrir/?edition=1/?outils=1 inertes), plus de contrôles
+d'édition d'article. Le reste d'admin.js est INTACT et non conditionné par isAdmin : la couche
+d'application des overrides (tous visiteurs : applique Firestore config/contenu) et les outils publics
+d'article (écouter/TTS, copier le lien, précédent/suivant) fonctionnent normalement ; l'utilisateur peut
+toujours se connecter (notes, taille du texte, onglet Bible, déconnexion). Le code du panneau (buildDock/
+openHub/éditeur) reste dans le bundle mais n'est JAMAIS invoqué (isAdmin=false le verrouille). La vraie
+barrière d'écriture demeure les règles Firestore. Vérifié : build OK, isAdmin=false propagé aux 4
+surfaces (lumen-app.js, bible.html, memoriser.html, en/bible.html), Playwright 0 erreur JS, aucun
+lva-dock/lva-acc/lva-hub rendu, article rendu, outils visiteurs préservés. Administration 100 % par
+fichiers + IA désormais (édition content/*.json → push GitHub → build Netlify). Pour rétablir un jour :
+remettre isAdmin = !!(u && email===ADMIN) + buildDock()/autoOuvrir() dans le handler.
 
 UI / BARRE / PWA : Lettrine = .lecture > p:first-of-type::first-letter (jamais
 h1+p). :focus-visible GLOBAL (liseré or 1px offset 3px), STRICTEMENT
@@ -586,13 +897,71 @@ Paul ; Questions) ; les autres domaines restent à plat. Les catégories de
 livres bibliques sont nommées par le seul nom du livre (Isaïe, Ézéchiel…), pas
 « Le livre de X » (demande d'Emmanuel). Vérifié au banc jsdom (test_biblio.js) :
 repli à tous les niveaux et deep-links, 0 article perdu (129 cartes FR et EN).
+✦ ANIMATION REPLI/DÉPLI FIABILISÉE (17/07, bug Emmanuel « ça ne s'affiche pas ou c'est delayé »). La
+cascade posait sur chaque enfant une animation inline en fill both/forwards et comptait sur le
+redémarrage animation='none'+reflow ; sur iOS Safari et machines lentes ce redémarrage échoue parfois
+et l'enfant reste bloqué à l'opacité 0 du fill arrière (invisible). CORRECTIF dans BIBLIO_JS (build-bi.js)
+et miroir dans index__48_.html : cascadeA NETTOIE l'animation inline à animationend ET via un setTimeout
+de secours (900+d ms) → l'état de repos redevient l'opacité 1 du CSS, donc le pire cas est « visible sans
+animation », jamais « invisible » ; fermer/fermerGrp/fermerSous purgent aussi l'animation des enfants après
+display:none. Cascade accélérée (plafond 640→240 ms, durée .45→.4 s, fermeture 240→190 ms) contre le
+« delayé ». Vérifié en Chromium (ouvrir/fermer/rouvrir domaine+groupe : opacité 0→1, inline vidé au repos).
 
 ────────────────────────────────────────────────────────────────────
-7. ÉTAT DU SITE ET DU CORPUS (13 juillet 2026)
+7. ÉTAT DU SITE ET DU CORPUS (14 juillet 2026)
 ────────────────────────────────────────────────────────────────────
-• Corpus : ~132 paires FR+EN → ~264 pages + 404 + sitemap + bible-data
-  (content/articles.json contient les objets ; certains articles de base
-  vivent aussi dans index__48_.html / data-en.js).
+• Corpus : 174 articles, 177 paires FR+EN → 354 pages + 404 + sitemap +
+  bible-data (content/articles.json contient les objets ; certains articles
+  de base vivent aussi dans index__48_.html / data-en.js). +3 le 14/07 :
+  les-vertus-cardinales, la-prudence, la-temperance (carré des cardinales).
+• HISTOIRE DE L'ÉGLISE bâtie en série chronologique (14/07), 16 articles en
+  6 catégories nav (themes.json → histoire.categories) : origines (l-eglise-
+  apostolique, l-age-des-martyrs) ; peres-conciles (les-peres-de-l-eglise,
+  nicee-et-la-divinite-du-christ, ephese-et-chalcedoine, augustin-et-la-grace) ;
+  chretiente (constantin-et-l-empire-chretien, le-monachisme) ; moyen-age
+  (la-conversion-des-peuples, le-schisme-de-1054, les-croisades, la-scolastique) ;
+  rupture (la-reforme-protestante, le-concile-de-trente) ; temps-modernes
+  (l-expansion-du-christianisme, l-eglise-et-le-monde-moderne). Les deux
+  articles préexistants (martyrs, expansion) sont des SYNTHÈSES TRANSVERSALES
+  gardées ; le reste est la colonne chronologique. Doublon du passage « courage
+  des martyrs convertit la foule » retiré de l-expansion (renvoyé par lien à
+  l-age-des-martyrs). Domaine sans versets décoratifs (voir règle §3) : seuls
+  versets porteurs = Mt 28:19 (ordre de mission, dans l-expansion), Ac 15:28
+  (formule conciliaire, dans l-eglise-apostolique), 2 Th 2:15 (Tradition, dans
+  les-peres), Jn 15:5 (grâce, dans augustin), Mt 19:21 (appel, dans le-monachisme).
+  Les conciles/Pères/personnes restent en prose, jamais en span.ref. Tout
+  valide (0 defect, issues=0).
+• SACREMENTS AUDITÉS ET ENRICHIS AU FOND (14/07, étalon de la vérification, cf
+  §3). Manques de fond comblés sur les 8 : les-sacrements (nécessité + Dieu non
+  lié + sacrements de la foi ; verset 2 Co 1:22 réaligné sur la Chérubin, il
+  était en « les arrhes de l'Esprit ») ; le-bapteme (la concupiscence qui
+  demeure ; parrain, rites, unique baptême reconnu entre confessions) ;
+  la-confirmation (parrain, raison du décalage Orient/Occident, saint chrême) ;
+  l-eucharistie (précepte/devoir pascal, fréquence, deux espèces, noms) ;
+  la-confession (histoire pénitence publique→privée + lien l-age-des-martyrs ;
+  ministre, faculté d'absoudre, formes et absolution générale) ; l-onction
+  (4 effets déployés, souffrance offerte reliée à la communion des saints,
+  dimension d'Église + nom extrême-onction) ; l-ordre (grâce propre de
+  l'ordonné et sainteté appelée) ; le-mariage (ouverture à la vie et deux sens
+  de l'acte conjugal ; privilège paulin explicite). Tout revalide (0/0).
+  ✦ RE-VÉRIFIÉ « AU CAS OÙ » AU NIVEAU ÉTALON (17/07, ordre d'Emmanuel « vérifie quand même le
+  domaine sacrement et liturgie »). Bien que ce domaine SOIT l'étalon, une re-passe rigoureuse (2
+  sous-agents lisant tout REPRISE, sans redoubler le 14/07) a trouvé de vrais manques restants :
+  0 solide / 8 à enrichir, ~27 manques de fond appliqués FR+EN + 19 forme, et surtout un MAILLAGE
+  quasi nul depuis ces foyers/hubs, désormais tissé (30 côtés de liens ; les-sacrements et
+  l-eucharistie rayonnent enfin). Fond ajouté : intention du ministre « faire ce que fait l'Église »
+  + Florence 1439/Trente 1547 (les sept) + étymologie sacramentum/mystērion + sacrements des
+  morts/des vivants (les-sacrements) ; rémission de toute peine + nom patristique « illumination »
+  He 6:4 (baptême) ; étymologie confirmatio/chrismation myron + soldat du Christ 2 Tm 2:3
+  (confirmation) ; matière froment/raisin + azyme/pain levé (grief de 1054) + « source et sommet »
+  Vatican II + forme/épiclèse (eucharistie) ; précepte Latran IV 1215 + sceau/excommunication et
+  Jean Népomucène + exomologèse (confession) ; Trente 1551/Vatican II + huile bénite à la messe
+  chrismale (onction) ; matière/forme tranchées par Pie XII Sacramentum Ordinis 1947 + plénitude
+  épiscopale/collégialité Vatican II (ordre) ; arrière-plan nuptial de l'AT Osée 2:21/Isaïe 54:5 +
+  trois biens d'Augustin + mariage rato non consommé dissoluble + Cana + ministre Orient/Occident
+  (mariage). Forme : 4 titres EN Title Case→casse-phrase, « l'apôtre Jacques/Paul »→nom seul,
+  Luc 22:19 + Actes 14:22 + Gn 1:28 EN alignés sur le FR, mystērion/sacramentum balisés <em>.
+  verify_ch 0 défaut, build OK, 0 lien cassé. Domaine sacrements/liturgie re-clos à l'étalon.
 • 7 domaines : doctrine, ecriture, sacrements, vie-spirituelle, histoire,
   apologetique, philosophie (philosophie = recherche rationnelle positive,
   distincte de l'apologétique qui répond aux objections).
@@ -610,15 +979,16 @@ repli à tous les niveaux et deep-links, 0 article perdu (129 cartes FR et EN).
   vertus théologales, vertus cardinales, « Le culte de Dieu » ; apologetique
   = « Dieu en question » ; philosophie = « Le bien et l'agir » + « Foi et
   raison ».
-• Bible en ligne : traduction CHÉRUBIN FR (traduction propre d'Emmanuel,
-  titres de sections dans le lecteur et le panneau) + Douay EN en
-  nomenclature catholique moderne ; lecteur, panneau latéral, références
-  cliquables, surlignage, notes par compte. À VENIR (annoncé par Emmanuel
-  le 13/07) : la Chérubin sera traduite en anglais et remplacera la Douay ;
-  la Douay et la couche versifDouay sont donc PROVISOIRES (le jour venu,
-  numérotations FR/EN identiques → couche de conversion à retirer).
-• Mémoriser : 23 catégories (source fichier au dernier build), ~401 versets (réservé doctrine + vie
-  spirituelle ; articles AT narratifs exclus).
+• Bible en ligne : traduction CHÉRUBIN des DEUX côtés depuis le 14/07 — FR
+  (traduction propre d'Emmanuel) ET EN (Chérubin anglais, bible-en-cherubin.json),
+  titres de sections dans le lecteur et le panneau, numérotation identique FR/EN ;
+  lecteur, panneau latéral, références cliquables, surlignage, notes par compte.
+  La Douay a été RETIRÉE du site (crédit, sur-titre, texte, recherche) ; versifDouay
+  neutralisée en identité. Reste (au fil de l'eau) : convertir les citations EN des
+  articles et de Mémoriser du Douay au Chérubin (détail §9).
+• Mémoriser : 23 catégories, 416 versets, INTÉGRALEMENT alignés au Chérubin FR+EN depuis le 17/07
+  (réservé doctrine/dogmes + sacrements + vie spirituelle ; aucun domaine narratif/historique).
+  Détail et chantiers ouverts (complétude fine, couverture, garde anti-doublon) en §9.
 • UI en place : sommaire replié sous le titre (PC + mobile), taille A−/A/A+
   par appareil, impression, Carnet (documents + journal), lecture suivie,
   TTS, PWA Mémoriseur, admin v3.
@@ -628,8 +998,9 @@ repli à tous les niveaux et deep-links, 0 article perdu (129 cartes FR et EN).
 ────────────────────────────────────────────────────────────────────
 • Quiz. Page « À propos ». Temps liturgique + sanctoral (calendrier des 202
   célébrations, supprimé le 05/07 ; reconstituable depuis l'historique si
-  l'idée revient). Bloc/vitrine « Le carnet » de la page d'accueil (la page
-  /carnet/ et l'entrée de menu RESTENT). Bouton « Partager cet article » en
+  l'idée revient). LE CARNET EN ENTIER (17/07) : vitrine d'accueil, page /carnet/
+  + /en/notebook/, lien de nav, code mainCarnet/CARNET_JS — tout retiré (cf. §6,
+  entrée CARNET) ; données Firestore laissées orphelines. Bouton « Partager cet article » en
   fin d'article. Fil d'ariane du header et bloc navcat. Catégorie Mémoriser
   « nations » (28 versets). Ancien modèle de lecture suivie en cycles
   (complete/fusionOrdre/nouveauCycle). Sur le Carnet : bouton Fond + voile
@@ -639,532 +1010,665 @@ repli à tous les niveaux et deep-links, 0 article perdu (129 cartes FR et EN).
 ────────────────────────────────────────────────────────────────────
 9. CHANTIERS EN COURS
 ────────────────────────────────────────────────────────────────────
-• AUDIT DU CORPUS (tâche de fond du mode automatique) : auditer, corriger et
-  approfondir le corpus existant (écrit à la main par Emmanuel) selon les
-  règles de rédaction, domaine par domaine, article par article. LENTILLE
-  PREMIÈRE = les trois critères (§3) : COMPLET, APPROFONDI, SOLIDE, avant la
-  forme.
-  ⚠ RE-PASSE À FAIRE (Emmanuel, 13/07) : le premier passage sur DOCTRINE et
-  ÉCRITURE a surtout traité forme/versets/équilibre, PAS ASSEZ la complétude
-  et la solidité de fond ; ces deux domaines sont à REPASSER sous l'angle des
-  trois critères (que manque-t-il, qu'est-ce qui survole, qu'est-ce qui est
-  fragile). Fait à partir des sacrements avec la bonne lentille.
-  RE-PASSE DOCTRINE, VAGUE 1 FAITE (13/07, lentille fond, 7 articles
-  porteurs audités un par un par agents, chaque constat vérifié — versets et
-  TEXTE contre Chérubin — puis appliqué et mirroré EN ; 59 corr. FR + 37 EN,
-  0 défaut réf, parité h2 FR/EN). la-nature-de-dieu (8 citations Crampon
-  réalignées sur Chérubin ; ajouts : justice+miséricorde Dt 32:4/Ex 34:6,
-  providence Sg 8:1/Mt 10:29, Nom divin YHWH/ho ôn Ex 3:15, analogie et
-  trois voies Latran IV/Is 55:9, simplicité par Vatican I) ; la-trinite
-  (10 citations réalignées dont Jn 15:26 « Paraclet », « sépare » →
-  « distingue » ; ajouts : Nicée 325/homoousios, ousia-hypostase et
-  Cappadociens, Constantinople 381, périchorèse Jn 14:11, missions
-  immanente/économique Ga 4:4, appropriation) ; le-salut (ajouts : « On
-  peut encore se perdre » péché mortel/persévérance/Trente, foi ET œuvres
-  Jc 2:24/Mt 7:21, l'Esprit dans le salut Ga 4:6/Tt 3:5, satisfaction
-  d'Anselme 2 Co 5:21/Is 53:5/1 Jn 2:2, suffisance/efficacité) ;
-  le-peche-originel (ajouts : orgueil racine Gn 3:5, originant/originé,
-  Pélage-Augustin-Trente « propagation non imitation », corruption totale
-  réfutée, Immaculée Conception Lc 1:28, concupiscence pas un péché selon
-  Trente) ; l-eglise (Ep 2:20 déjà à parité EN ; ajouts : étymologie
-  ekklêsia/qahal, images bercail/vigne/champ Jn 10:16/Jn 15:5/1 Co 3:9,
-  Magistère et infaillibilité Lc 10:16/Jn 16:13/1 Tm 3:15, trois états et
-  communion des saints 2 M 12:46/He 12:22-23) ; les-fins-dernieres (ajouts :
-  mort conséquence du péché Rm 5:12/Sg 2:24/Ph 1:21, Benoît XII Benedictus
-  Deus 1336, indulgences aux défunts, enfants sans baptême Mc 10:14,
-  Antéchrist 2 Th 2:4/2:8) ; marie (Gn 3:15 « il » (le Christ) écrase, non
-  « elle », prose christologique refaite ; Justin/Irénée sur la nouvelle
-  Ève ; Nestorius/Cyrille et l'unité de la personne à Éphèse ; virginité
-  in partu recentrée sur l'intégrité (dogme) sans l'absence de douleur
-  (opinion) ; ajouts : Magnificat Lc 1:46-48/1 S 2:8/Lc 1:52, latrie/dulie/
-  hyperdulie Mt 4:10/Lc 1:49).
-  RE-PASSE DOCTRINE, VAGUE 2 EN COURS (13/07). FAIT (3 articles, FR+EN
-  mirroré, 0 défaut réf) : l-incarnation (Chalcédoine « sans confusion, sans
-  changement, sans division, sans séparation » + monophysisme/nestorianisme
-  + Tome de Léon ; docétisme et apollinarisme, Grégoire de Nazianze « ce qui
-  n'a pas été assumé n'a pas été guéri », 1 Jn 4:2 ; Cyrille à Éphèse ;
-  révéler le Père Jn 14:9/Jn 1:18 ; impeccabilité ; 5 citations réalignées
-  Chérubin dont Jn 1:14/Ph 2:6-7/He 2:17/Lc 22:42) ; la-croix-et-la-
-  resurrection (typologie Isaac/serpent/Jonas Gn 22:8/Jn 3:14 ; prêtre et
-  victime He 9:12 + obéissance Ph 2:8 ; Résurrection corporelle tombeau
-  vide/apparitions 1 Co 15:3-5 ; descente aux enfers 1 P 3:18-19 ; Ascension
-  Jn 14:2 ; « porte la peine des coupables » corrigé (pas de substitution
-  pénale) ; Serviteur souffrant Is 53:12 ; Is 53:5 et Ps 85:11 réalignés) ;
-  la-grace (grâce et liberté Pélage/Augustin/Orange 529/Trente, Ez 36:26-27,
-  suffisante/efficace ; mérite lui-même don de Dieu Rm 2:6/2 Tm 4:8 ;
-  justification renouvellement réel contre justice imputée, Trente, 1 Co 6:11 ;
-  divinisation par Irénée).
-  VAGUE 2, LOT 2 FAIT (13/07, FR+EN, 0 défaut, négations allégées) : le-peche
-  (étymologie hamartia ; orgueil refondé + Siracide 10:12 ; « pourquoi » de la
-  gravité mortelle ; peine temporelle généralisée + lien purgatoire ;
-  contrition parfaite ; nouvelle section « Ses blessures » Jn 8:34/Rm
-  14:7/1 Co 12:26, structures de péché) ; le-nouvel-adam-et-la-nouvelle-eve
-  (entrée du péché attribuée à Adam seul ; récapitulation d'Irénée Ep
-  1:10/Col 1:18 ; surabondance Rm 5:20 ; typologie du côté ouvert Gn
-  2:21/Jn 19:34 ; Marie vraiment mortelle et passible, non « renoncement » ;
-  7 citations réalignées Chérubin) ; le-pape (juridiction, non simple honneur,
-  Vatican I ; conciliarisme écarté + clause ex sese ; triple pastorat Jn
-  21:15-17 sur le triple reniement ; « titre le plus ancien » corrigé
-  (Grégoire le Grand) ; Linus nuancé ; 10 citations réalignées Chérubin dont
-  Mt 16:17-19/Is 22:22/Lc 22:32/1 P 5:2-3). le-pape : section patristique
-  (Irénée/Cyprien/Clément) DIFFÉRÉE.
-  les-vertus-theologales FAIT (13/07, FR+EN, 0 défaut) : 26 citations
-  réalignées sur Chérubin (dont les 2 montages Mt 22:37+39 et 1 Co 13:4-7
-  démontés avec ellipses, et 1 Jn 4:19 corrigé) ; ajouts : perte des vertus
-  (foi/espérance peuvent demeurer après un péché mortel, charité toujours
-  perdue, 1 Co 13:2, Trente), nouvelle section « Les vertus et les dons du
-  Saint-Esprit » (Is 11:2), charité = amitié attribuée à Thomas d'Aquin,
-  Hébreux 11:8 (foi d'Abraham). L'agent EN a aussi nettoyé des scories
-  (« Holy Ghost » → « Holy Spirit », parenthèses parasites).
-  VAGUE 2, LOT 3 : le-sacerdoce et le-bapteme-de-desir FAITS (13/07, FR+EN,
-  0 défaut). le-sacerdoce : ERREUR DOCTRINALE corrigée (« une seule réalité
-  partagée à plusieurs degrés » → sacerdoce commun et ministériel diffèrent
-  PAR NATURE, non par degré, LG 10) ; in persona Christi + trois degrés +
-  lien ordre ; étymologies hiereus/presbyteros ; Aaron/Lévi nommés ;
-  Melchisédech → Melchisédek partout ; Melchisédek approfondi (Ps 110:4, He
-  7:3/7:7/7:12) ; 6 citations réalignées Chérubin. le-bapteme-de-desir :
-  distinction grâce/caractère (nouvelle section), foi + contrition parfaite,
-  Trente in re aut in voto, saint Ambroise/Valentinien, correction du
-  glissement naturaliste, 3 citations réalignées.
-  LOT 3 (SUITE) FAIT (13/07, FR+EN, 0 défaut réf + 0 défaut texte-conformité) :
-  les-peches-capitaux (intro refondue Évagre/Cassien/Grégoire, Paul ≠ liste des
-  sept, 1 Jn 2:16 trois convoitises, orgueil racine et reine, envie/jalousie
-  distinguées, acédie/démon de midi Ps 91:6, 1 Tm 6:10 « une racine », 9 citations
-  réalignées) ; les-anges (mal'ak/angelos + Augustin nomen officii, Latran IV,
-  neuf chœurs/trois hiérarchies Pseudo-Denys, vénération ≠ adoration Ap 22:9/Col
-  2:18, Sanctus Ps 103:20, orgueil du péché angélique Si 10:13, choix définitif =
-  Thomas d'Aquin, PAS de Lucifer, 10 citations réalignées) ; la-communion-des-saints
-  (1 Co 12:27 + He 12:1 nuée de témoins, trésor/indulgences Mt 16:19 + Trente,
-  appuis purgatoire Ap 21:27/1 Co 3:15, Cyrille de Jér./Augustin Conf. IX, joie du
-  ciel Lc 15:10, dulie/latrie Mt 4:10, médiation unique 1 Tm 2:5 + 2:1 + Rm 15:30,
-  12 citations réalignées) ; la-predestination (double prédestination écartée +
-  Orange 529 + réprobation post praevisa demerita, Ép 1:4-5 locus classicus,
-  Augustin contre Pélage, De auxiliis 1607 laissé ouvert, Trente 1547 présomption/
-  désespoir, volonté antécédente/conséquente, 10 citations réalignées) ;
-  le-sacerdoce-reserve-aux-hommes (nouvelle section « Une même dignité » Gn 1:27/
-  Ga 3:28, service ≠ rang Mt 20:26, femmes docteurs, Inter insigniores 1976 +
-  Ordinatio sacerdotalis 1994 nommés, in persona Christi, reformulations
-  affirmatives, 6 citations réalignées). AJOUT BUILD : règle versifDouay pour
-  Sirach 10:12/10:13 → Douay 10:14/10:15 (offset +2, vérifié au build). Nouvel
-  outil : /home/claude/textcheck.py compare CHAQUE citation à son verset (FR
-  Chérubin + EN Douay via versifDouay), en plus de validate.py (existence réf +
-  parité h2 + balance).
-  VAGUE 2, LES 7 DERNIERS ARTICLES DOCTRINE FAITS (13/07, FR+EN, 0 défaut réf +
-  0 défaut texte-conformité, audités par 7 sous-agents parallèles puis versets
-  vérifiés et appliqués par moi). l-age-de-raison (can. 97 sept ans, premier acte
-  moral de Thomas d'Aquin, lien ignorance invincible, Ez 18:20/Jon 4:11 ajoutés,
-  3 citations réalignées). l-ignorance-invincible (LG 16 nommé, baptême de désir,
-  Pie IX contre l'indifférentisme, Christ unique médiateur 1 Tm 2:5, foi requise
-  He 11:6, devoir missionnaire Rm 10:14-15, Corneille Ac 10:34-35, Jn 1:9/14:6 ;
-  LES 8 citations étaient en Crampon, toutes réalignées). la-paix-du-christ
-  (nouvelle section « L'épée et la paix » Mt 10:34 + Is 48:22, dimension
-  horizontale Ep 2, Augustin Cité de Dieu XIX.13, œuvre de justice ET effet de
-  charité, Pax Christi in regno Christi, Col 3:15/Rm 14:17/Lc 2:14/Ps 85:11 ;
-  6 citations réalignées). les-reliques (Nicée II 787, Trente XXV, interdiction
-  du trafic, Polycarpe/Jérôme, vénération relative, corps promis à la résurrection
-  Ph 3:21 ; 6 citations réalignées ; réf 2 Rois 13:21 vérifiée juste). la-justice
-  (nouvelle section « Une vertu cardinale » CCC 1807 + commutative/distributive/
-  légale/sociale + vertu de religion, Trente VI imputée vs infuse, Paul/Jacques
-  conciliés Rm 3:28, Christ le Juste 1 P 3:18 + Jr 23:6, Croix reformulée en
-  SATISFACTION et non châtiment pénal, mérite/Augustin, commentaire Ps 1:6
-  réécrit « veille sur » ; 20 citations Crampon toutes réalignées). la-force
-  (« acte premier » → « acte principal » + Thomas nommé, nouvelle section « Entre
-  témérité et lâcheté » 2 Tm 1:7/Mt 10:28/Ap 21:8, distinction vertu/don approfondie,
-  patience/persévérance Rm 5:3-4/He 10:36, MARTYRE acte suprême Mt 10:22 ; 2 versets
-  soudés séparés par « … » Is 40:29-31 et Ep 6:10-13 ; 21 citations Crampon toutes
-  réalignées). l-adoration-et-la-louange (étymologie ad-orare, quatre fins de la
-  prière, liturgie céleste Sanctus Is 6:3 + Ap 5:12, sacrifice acte suprême de
-  latrie + adoration eucharistique, Nicée II, Ph 2:10-11 ; Ap 4:11 remis au
-  TUTOIEMENT, 7 citations réalignées). AJOUT BUILD 2 : règle versifDouay pour
-  Psaume 11 (hébreu 11:v → Douay 10:v+1 ; 11:7 → 10:8, vérifié). Compléments différés vague 1 (le-salut :
-  Église/sacrements et Pâque/Exode ; l-eglise : Marie, Pères Cyprien/Augustin
-  cités, sacerdoce commun/ministériel ; le-peche-originel : monogénisme ;
-  la-trinite : arbitrage Ep 3:14-15 « paternité » vs Chérubin « famille »).
-  ⚠ CONFORMITÉ CHÉRUBIN, TRIAGE CORPUS COMPLET FAIT (13/07). textcheck.py a été
-  passé sur les 129 articles. RÉSULTAT dans le projet : claude/chantier-conformite-
-  cherubin-triage.md (liste par thème, nombre de citations divergentes par article).
-  BILAN : écriture 1127 flags/64 art., doctrine 250/16, vie-spirituelle 159/11,
-  apologétique 90/8, sacrements 82/8, philosophie 19/6, histoire 5/2. CONSTAT CLÉ :
-  des articles marqués « faits » avant l'existence de textcheck (sacrements,
-  doctrine vagues 1-2) gardent des citations Crampon car on ne vérifiait alors que
-  l'EXISTENCE de la réf, pas le TEXTE (ex. les-fins-dernieres 42 flags, marie 32,
-  les-vertus-theologales 26, la-trinite 15, le-salut 18, l-eucharistie 16). Les 12
-  articles doctrine du 13/07 sont, eux, à 0 flag. Le comptage est fiable (regex de
-  pairing durcie : capture [^<]*? pour ne pas franchir les balises).
-  OUTILS DÉSORMAIS DANS LE DÉPÔT : tools/verse.py, tools/verse_en.py, tools/
-  validate.py, tools/textcheck.py (les copier vers /home/claude/ au besoin, ou les
-  appeler depuis tools/). Méthode par article : `python3 tools/textcheck.py <slug>`
-  liste chaque quote divergente AVEC le texte Chérubin exact → réaligner (fragment
-  fidèle, « … » pour les coupes) → valider validate.py + textcheck.py (0/0) → build.
-  Le chantier de conformité texte-Chérubin
-  est donc prioritaire et à mener sur tout le corpus, article par article. Puis RE-PASSE ÉCRITURE ET EXÉGÈSE, sous les trois critères
-  (complet, approfondi, solide) : TOUT le domaine écriture/exégèse qui n'a
-  pas encore reçu cette vérification DE FOND, sans exception (Emmanuel,
-  13/07). Le 1er passage écriture (voir plus bas) a surtout traité
-  forme/versets/fluidité, PAS le fond. Sont donc à revérifier au fond, même
-  « validés » en sessions antérieures : la série VIE-DU-CHRIST (les-prologues,
-  préparation, 1re/2e/3e année, semaine sainte, résurrection) et les séries
-  de PROPHÈTES (moïse, isaïe, ézéchiel, joël, amos, abdias, nahum, aggée,
-  zacharie), plus tous les autres articles d'écriture. Rien n'est tenu pour
-  acquis sur la complétude, la profondeur et la solidité tant que la lentille
-  fond n'y est pas passée.
-  ÉCRITURE, RE-PASSE COMMENCÉE (13/07, série vie-du-christ). MÉTHODE retenue :
-  conformité Chérubin d'abord (rapide, guarded replace guidé par textcheck), puis
-  enrichissement de FOND ciblé via un sous-agent d'audit par article (les vrais
-  manques, intégrés chirurgicalement, pas de réécriture complète). FAITS :
-  les-prologues-et-la-venue-du-christ (conformité 5 FR + 7 EN À 0, PUIS fond :
-  Ga 4:4 plénitude des temps, Logos = dabar + consubstantialité « engendré non
-  créé » + Jn 1:3, deux natures sans confusion + Jn 1:18 + Jn 1:16, prologue
-  historique de Luc Lc 1:4, Lc 1:43 « mère de mon Seigneur » = Theotokos ;
-  h2 15/15). la-preparation-au-ministere (conformité 16 À 0). la-premiere-annee-
-  l-inauguration (conformité 21 À 0, EN très paraphrasé remis en Douay). AJOUT
-  BUILD 3 : règle versifDouay pour Osée 2 (hébreu 2:v → Douay 2:v-2 pour v>=3 ;
-  2:21 fiançailles → Douay 2:19, vérifié).
-  la-deuxieme-annee-la-popularite (le gros morceau, 61 flags À 0 ; audit de fond =
-  substance déjà quasi complète, donc conformité seule ; 16 FR + 45 EN réalignés,
-  Mt 13:19-23 remis en Douay avec « … »). AJOUT BUILD 4, IMPORTANT : Chérubin FUSIONNE
-  Jean 6:51 = Douay 6:51+6:52 (le verset « le pain vivant » + « le pain que je
-  donnerai c'est ma chair »). La règle versifDouay Jean 6 est passée de v>=52 à
-  v>=51 (FR 6:51 → Douay 6:52) pour que le contenu eucharistique « ma chair »
-  tombe juste ; COUPLAGE corrigé dans l-eucharistie (sa citation Jn 6:51 EN passée
-  au texte Douay 6:52, FR au verset Chérubin complet) et vérifié sur la-presence-
-  reelle. Les 3 seuls articles citant Jn 6:51 sont désormais cohérents. NB : les
-  autres flags résiduels de l-eucharistie (17) et la-presence-reelle (7) sont leur
-  propre dette de conformité, à traiter à leur tour.
-  SÉRIE VIE-DU-CHRIST TERMINÉE EN CONFORMITÉ (13/07, les 7 articles À 0) :
-  les-prologues (+ fond), la-preparation-au-ministere, la-premiere-annee-l-inauguration,
-  la-deuxieme-annee-la-popularite, la-troisieme-annee-l-opposition (89 flags, le plus
-  gros), la-semaine-sainte (49), la-resurrection-et-la-glorification. AJOUT BUILD 5 :
-  Chérubin fusionne aussi Jean 12:24 (= Douay 12:24+25) ; réf EN élargie à Jean
-  12:24-25 dans la-semaine-sainte (cas ponctuel, pas de règle globale). Méthode
-  éprouvée pour les gros articles narratifs : extraire les citations (regex par réf),
-  récupérer Chérubin + Douay mappé (tools/verse_en_mapped.py applique versifDouay),
-  remplacer par réplacement ANCRÉ SUR LA RÉF (car un même logion, ex. « qui s'élève
-  sera abaissé », apparaît à deux réfs différentes). PROCHAINES CIBLES : séries de
-  PROPHÈTES (isaïe : proto/deutéro/trito + chants du serviteur + oracles ; ézéchiel ;
-  moïse/exode : sinaï, servitude, délivrance, désert, discours ; joël, amos, abdias,
-  nahum, aggée, zacharie) et le reste du domaine écriture (voir triage projet).
-  ISAÏE COMPLET (14/07, tous À 0/0) : les-quatre-chants-du-serviteur, le-proto-
-  isaie (Is 7:14 « la Vierge » conforme Chérubin), le-deutero-isaie, le-trito-
-  isaie (règle versifDouay Is 63:19→64:1 / 64:v→64:v+1), les-malheurs-d-isaie.
-  ORACLES ZACHARIE/AGGÉE/MALACHIE COMPLETS (14/07, tous À 0/0) : premier-oracle-
-  le-roi-qui-vient, second-oracle-le-transperce, les-quatre-oracles. Points
-  notables : houlettes Grâce/Lien → Chérubin « Faveur/Union », Douay
-  « Beauty/Cord » (aligné dans citations ET prose) ; « sicles » → Chérubin
-  « pièces » ; « théraphim » → « idoles domestiques » ; « pasteur » → Chérubin
-  « berger » (Za 13:7, Mt 26:31) ; « cachet » → Chérubin « sceau » (Ag 2:23) ;
-  Apocalypse 20:9 = fusion Chérubin de Douay 20:8+20:9a → réf EN élargie à
-  « Revelation 20:8-9 » (pas de règle versifDouay, comme Jn 12:24).
-  Rappel numérotation Isaïe : hébreu 8:23 → Douay 9:1, hébreu 9:v → Douay 9:v+1.
-  ÉZÉCHIEL COMPLET (14/07, tous À 0/0) : ezechiel-le-prophete-de-l-exil,
-  ezechiel-les-actions-symboliques, ezechiel-les-oracles-contre-les-nations,
-  ezechiel-la-restauration-d-israel, ezechiel-le-nouveau-temple-et-le-fleuve.
-  MOÏSE/EXODE COMPLET (14/07, tous À 0/0) : la-servitude-et-l-appel,
-  la-delivrance, le-sinai-et-l-alliance, les-quarante-ans-au-desert,
-  les-discours-de-moise, la-mort-de-moise.
-  DÉCALAGES DE VERSIFICATION RÉSOLUS (localisés, réf EN modifiée ou fusion) :
-  Éz 1:28 (Chérubin) = Douay 1:28+2:1 → réf EN « Ezekiel 2:1 » ; Gn 50:25
-  (Chérubin) = Douay 50:24 → réf EN « Genesis 50:24 » ; Nb 13:33 → réf EN
-  « Numbers 13:34 » ; Nb 27:7 → réf EN « Numbers 27:6 » ; Ap 20:9 = Douay
-  20:8+20:9a → réf EN « Revelation 20:8-9 ». (Psaumes déjà gérés par
-  versifDouay : Ps hébreu 106 → Douay 105, 135 → 134.)
-  NOM DIVIN (la-servitude) : les citations rendent le tétragramme « le
-  Seigneur » (Chérubin) / « the Lord » ou « ADONAI » (Douay 6:3) ; la prose
-  garde « Yahweh (יהוה) » comme explication étymologique. « pasteur » →
-  Chérubin « berger » (Éz 34) répercuté prose+citations.
-  RESTE ÉCRITURE (prophètes + AT thématique, non fait) : Zacharie 1-8
-  (le-prophete-et-son-temps, les-huit-visions-nocturnes, josue-le-germe-et-la-
-  couronne, le-jeune-et-la-restauration) ; Joël (le-jour-du-seigneur,
-  le-fleau-et-le-jour-du-seigneur, la-conversion-et-l-esprit-repandu,
-  le-jugement-des-nations-et-le-salut-de-sion) ; Amos (4), Abdias, Nahum,
-  Aggée (aggee-et-la-reconstruction-du-temple, la-gloire-du-second-temple) ;
-  thématiques AT (l-ange-du-seigneur, le-doigt-de-dieu, la-lutte-de-jacob,
-  abraham-a-vu-mon-jour, elie-a-l-horeb, la-demeure-le-sacerdoce-et-les-
-  sacrifices, les-guerres-d-extermination, l-esclavage-dans-la-bible, etc.).
-  Puis doctrine/sacrements/vie-spi/apologetique/morale (voir scan textcheck).
-  TOUS LES PROPHÈTES FAITS (14/07, 0/0) : Zacharie complet (1-14, y c.
-  le-jour-du-seigneur = Za 14), Joël (4), Amos (4), Abdias, Nahum (2),
-  Aggée (2). Décalages gérés par versifDouay (Joël 3-4→Douay 2-3, Nahum 2,
-  Zacharie 2) ou réf localisée (Ap 20:9→20:8-9, Luc 1:33→1:32-33).
-  ODDITÉS DOUAY À REVOIR (quand Chérubin EN existera) : « ORIENT » pour le
-  Germe/Branch (Za 3:8, 6:12), « Jesus » pour Josué le grand prêtre (Za 3,
-  6 ; Ag 1:14), « Alexandria » pour No-Amon/Thèbes (Na 3:8), « ADONAI »
-  (Ex 6:3), « Abdias » pour Obadiah, « Phase » pour Passover. La prose EN
-  garde le bon terme (Branch, Joshua, Thebes…) ; seule la citation suit Douay.
-  ★★★ CORPUS ENTIER CONFORME (14/07) : les 132 articles sont à
-  textcheck 0/0 et validate ALL OK. Toutes les citations bibliques en
-  ligne suivent Chérubin (FR) / Douay (EN, provisoire). Réf Philémon
-  mono-chapitre corrigée en « Philémon 1:15-16 » (le seul défaut validate
-  restant est levé). Décalages de versification résolus au fil de l'eau,
-  soit par versifDouay (Psaumes, Joël, Nahum 2, Zacharie 2, Hosea, Sirach
-  10, John 6, Isaïe 9), soit par réf EN localisée : Éz 1:28→Ezekiel 2:1,
+ÉTAT D'AVANCEMENT (14/07). L'état du corpus est en §7. En bref : conformité
+Chérubin FR / Douay EN sur TOUT le corpus (validate ALL OK + textcheck 0/0) ;
+passes de fond HAUTE et MOYENNE passées sur l'ensemble des domaines (audits par
+sous-agents, corrections appliquées et mirrorées EN) ; corpus paulinien complet
+(g-paul, 8 nœuds) ; domaine HISTOIRE bâti en série chronologique (16 art.) ;
+domaine SACREMENTS audité et enrichi au fond (8 art.).
+CAMPAGNE 16-17/07 — TERMINÉE (ordre d'Emmanuel : « vérifie tous ces domaines,
+poursuis sans t'arrêter ») : re-vérification RIGOUREUSE, domaine par domaine, à la
+méthode validée sur l'écriture (sous-agents lisant TOUT REPRISE + diagnostic au
+niveau étalon-sacrements ; moi je juge/écris/applique) ET conversion Chérubin EN.
+FAIT sur les cinq domaines demandés — apologétique (9, ~30 manques), doctrine (31,
+~84), vie-spirituelle (11, ~33), histoire (16, ~60), philosophie (6, 12) — chacun
+avec son bullet dédié dans les CHANTIERS ci-dessous. Puis, pour clore le corpus
+entier, conversion des 8 SACREMENTS EN→Chérubin (dernier îlot Douay). RÉSULTAT
+GLOBAL : les 174 articles sont Chérubin FR+EN, verify_ch 0 défaut sur TOUT le
+corpus, 1092 liens internes 0 cassé, build OK. ~220 manques de fond appliqués
+FR+EN au total, forme et maillage passés. Le corpus fait enfin UN SEUL CORPS
+Chérubin, du premier au dernier article. Reste (nettoyage, au fil de l'eau) :
+Mémoriser EN → Chérubin et suppression de bible-en.json/outils Douay (cf. §9 bas).
+
+CHANTIERS OUVERTS (les seuls encore en attente)
+• DOCTRINE ET DOGMES — VÉRIFICATION ET EXÉCUTION TERMINÉES (14/07). Les 5 groupes
+  faits (détail en fin de section). Audit de
+  fond des 28 articles rendu et consigné : doc projet claude/audit-doctrine-fond.md
+  (findings systémiques + par article + plan). Constat : 0 erreur doctrinale ;
+  le vrai chantier est la COHÉRENCE (maillage interne quasi nul, foyers qui se
+  chevauchent, quelques incohérences) + des enrichissements de fond. DÉCISIONS
+  prises (jugement, Emmanuel s'en remet à moi) : la-croix-et-la-resurrection à
+  ALLÉGER (pas scinder : mystère pascal un ; retirer/renvoyer la justification,
+  rééquilibrer la Croix, Ascension concise) ; VERTUS CARDINALES à COMPLÉTER
+  (créer foyer « Les vertus cardinales » + la-prudence + la-temperance, neufs
+  donc en Chérubin EN). Vagues : (1) cohérence/incohérences [FAIT : Latran IV
+  daté dans la-nature-de-dieu ; 1 Jn 2:16 de le-peche remis en Chérubin « orgueil
+  de la richesse »], (2) arbitrage des foyers, (3) structure, (4) fond par
+  article. AVANCEMENT : la-nature-de-dieu (impassibilité, crédit Denys/Pères, section
+  Providence, liens fins-dernieres/Pères) et la-trinite (garde-fou modalisme+trithéisme,
+  crédits Thomas/Florence/pneumatomaques, Filioque+lien schisme, prière trinitaire+signe
+  de croix, liens Nicée/Incarnation/grâce/Pères) FAITS et vérifiés. ✦ GROUPE
+  g-dieu (Dieu et les anges) TERMINÉ : + l-adoration-et-la-louange (adoration de
+  l'humanité du Christ/union hypostatique fondant l'adoration eucharistique,
+  gratuité de l'adoration, clarif. adoration/louange, crédits Thomas/Basile,
+  liens justice/pourquoi-dieu/Incarnation/saints/Marie/Eucharistie/présence
+  réelle) + les-anges (vision béatifique des bons anges, note pastorale démons,
+  synode de Rome 745 daté, nuance Ap 12:4, liens Pères/adoration/péché/
+  fins-dernieres). ✦ GROUPE g-peche — SOUS-GROUPE « LA CHUTE » TERMINÉ : le-peche
+  (foi/espérance qui subsistent après le péché mortel ; peine éternelle/temporelle ;
+  liens grâce/conscience-morale/péché-originel/confession) ; les-peches-capitaux
+  (réduction de Grégoire 8→7 : vaine gloire→orgueil, tristesse→acédie, envie
+  ajoutée, orgueil racine/reine ; liens le-peche/vertus-théologales/grâce) ;
+  le-peche-originel (enfants morts sans baptême + limbes = hypothèse jamais
+  définie ; monogénisme/Humani generis + unité d'origine du genre humain ; liens
+  grâce/Augustin/nouvel-Adam/baptême/Marie/résurrection) ; le-nouvel-adam-et-la-
+  nouvelle-eve (maillage péché-originel/Incarnation/Marie/baptême/Église). ✦
+  GROUPE g-peche TERMINÉ EN ENTIER. Grâce/salut : la-grace (liens baptême/péché/
+  confession/Trinité/Augustin) ; la-predestination (DOUBLON RETIRÉ — la formule
+  d'Augustin « Dieu couronne ses propres dons » laissée à son foyer la-grace,
+  remplacée par le primat du don ; liens providence/croix/grâce/Augustin) ;
+  le-salut (hub : liens péché/croix/grâce/baptême/baptême-de-désir/fins-dernieres) ;
+  le-bapteme-de-desir (liens baptême/grâce/Église) ; la-paix-du-christ (liens
+  justice/charité/croix/Église/eucharistie). Responsabilité : l-age-de-raison
+  (renvoi enfants-sans-baptême→le-peche-originel pour lever le doublon ; liens
+  conscience/ignorance-invincible/confession/eucharistie) ; l-ignorance-invincible
+  (liens conscience/Église/baptême-de-désir/grâce). ✦ GROUPE g-christ TERMINÉ.
+  la-croix-et-la-resurrection ALLÉGÉE : la satisfaction (Anselme, offense infinie,
+  3 §→1) renvoyée à son foyer le-salut ; la section finale « La justification »
+  refondue en « Appliqué à chacun » (renvoi justification→la-grace ; application
+  sacramentelle baptême/eucharistie/fins-dernieres) ; mystère pascal gardé un.
+  l-incarnation : crédit Theotokos (Cyrille/Nestorius/Éphèse) ALLÉGÉ et renvoyé au
+  foyer marial marie (le titre Mère de Dieu s'y crédite) ; liens Chalcédoine→
+  ephese-et-chalcedoine, salut, grâce. marie : maillage vers ses foyers
+  (l-incarnation, ephese-et-chalcedoine, le-nouvel-adam, le-peche-originel,
+  fins-dernieres, communion-des-saints, adoration). NB marie ↔ marie-mere-de-dieu :
+  complémentaires (doctrine + apologétique « on objecte que… »), pas un doublon ;
+  marie-mere-de-dieu (thème apologetique) répond aux objections et renvoie déjà à
+  marie. ✦ GROUPE g-vertus TERMINÉ. Carré des cardinales complété : CRÉÉS neufs en
+  Chérubin FR+EN (verify_ch 0 défaut) les-vertus-cardinales (foyer : cardo/gond,
+  chaque vertu ordonne une puissance de l'âme, prudence 1re, acquises→infuses,
+  charité forme des vertus), la-prudence (droite raison ; délibérer/juger/commander ;
+  auriga virtutum ; fausse prudence/ruse ; prudents comme les serpents ; appui sur
+  Dieu + don de conseil ; ordonnée à la fin dernière) et la-temperance (ville sans
+  remparts ; ses domaines ; entre excès et mépris du corps ; maîtrise de soi fruit de
+  l'Esprit ; ascèse ; Christ tempérant ; liberté). Catégorie vertus-cardinales
+  (themes.json) = les-vertus-cardinales, la-prudence, la-justice, la-force,
+  la-temperance. Existants maillés au foyer + DOUBLON RETIRÉ : la formule d'Augustin
+  « couronne ses propres dons » ôtée aussi de la-justice (reste à son foyer la-grace,
+  comme pour la-predestination) ; la-justice liée croix/grâce ; les-vertus-theologales
+  liée au foyer cardinal. ✦ GROUPE g-eglise TERMINÉ — et avec lui TOUTE LA DOCTRINE.
+  l-eglise : section « communion des saints » ALLÉGÉE (le §2 qui redoublait le foyer
+  retiré, 2 Mac 12:46 + He 12:22-23 laissés au foyer ; lien la-communion-des-saints) ;
+  maillage le-pape/l-ignorance-invincible/le-bapteme. le-pape : SECTION PATRISTIQUE
+  AJOUTÉE (chantier différé levé) « Le témoignage des premiers siècles » (Clément à
+  Corinthe ~96, Ignace « préside à la charité », Irénée l'accord avec Rome, Cyprien la
+  chaire de Pierre) ; liens l-eglise/marie. les-fins-dernieres : sort des enfants sans
+  baptême DÉDOUBLONNÉ (Marc 10:14 laissé au foyer le-peche-originel, lien vers lui) ;
+  liens la-communion-des-saints. la-communion-des-saints (liens eucharistie/fins/anges),
+  les-reliques (fins/eucharistie/adoration), le-sacerdoce (croix/eucharistie),
+  le-sacerdoce-reserve-aux-hommes (sacerdoce/mariage/marie). DOCTRINE : les 5 groupes
+  (g-dieu, g-peche, g-christ, g-vertus, g-eglise) VÉRIFIÉS ET ENRICHIS, maillage interne
+  tissé, doublons de crédit/formule retirés aux foyers. Domaine doctrine clos.
+  ✦ RE-VÉRIFIÉ AU NIVEAU ÉTALON + CONVERTI CHÉRUBIN EN (16/07, campagne). Les 31 articles
+  convertis EN→Chérubin (8 sous-agents, mask-diff + verify_ch 0 défaut) puis audités au fond
+  article par article (9 sous-agents lisant TOUT REPRISE, étalon sacrements) : 0 solide / 31 à
+  enrichir, ~84 vrais manques de fond appliqués FR+EN, ~53 défauts de forme, 46 côtés de liens.
+  Fond marquant : providence par causes secondes Gn 50:20 + acte pur (nature-de-dieu) ; Ps 33:6 +
+  Filioque grec/latin équivalents (trinité) ; ange du Seigneur distingué + démon personne 1 P 5:8
+  (anges) ; ḥaṭaʾ + scandale/coopération Mt 18:6 (péché) ; quatre blessures + felix culpa
+  (péché-originel) ; Gn 3:15 complété + « nouvel Adam » rendu à Paul + Rm 6:6 (nouvel-adam) ;
+  gratia sanans + grâce achève la nature (grâce) ; élection d'Israël Dt 7 + éternité/prescience
+  (prédestination) ; Résurrection cause du salut Rm 4:25 + médiation ecclésiale (salut) ; nécessité
+  de moyen + votum + Pie IX/LG 16 (baptême-de-désir) ; Réconciliation Jn 20:21-23 + fausse paix Jr 6:14
+  + Nb 6:26 + Pie XI (paix) ; Pie X Quam singulari (âge-de-raison) ; extra Ecclesiam nulla salus dissous
+  + Corneille Ac 11:14 (ignorance) ; reliques de la Passion + communion des saints (reliques) ; Christus
+  victor Col 2:15/He 2:14/1 Jn 3:8 + Résurrection par sa propre puissance Jn 10:18 + union hypostatique
+  dans la mort Ac 2:31 (croix) ; permanence de l'Incarnation He 7:25 + humanité passible Rm 8:3
+  (incarnation) ; Marie au Cénacle Ac 1:14/Ap 12:17 + toute-sainte + Pie IX/Pie XII (marie) ; six/sept
+  dons Is 11:2-3 + fides quae/qua (théologales) ; acception des personnes Dt 16 + Ha 2:4 ×3 (justice) ;
+  magnanimité/appétit irascible Mt 25:25 (force) ; Platon/Cicéron/Ambroise + Sg 8:7 grec (cardinales) ;
+  prudentia carnis Rm 8:6 + précipitation + gouvernement d'autrui (prudence) ; chasteté 1 Co 6:19 +
+  Carême + studiosité (tempérance) ; subsistit in + côté transpercé Jn 19:34 + ecclesia semper
+  purificanda Mt 13:47 (Église) ; papa « père » + magistère ordinaire universel + clés à Pierre Mt 18:18
+  (pape) ; conversion d'Israël Rm 11 + rejet millénarisme + jour inconnu Mc 13:32 + Florence/Trente
+  (fins-dernières) ; communio sanctorum + koinōnia 1 Jn 1:3 (communion) ; in persona Ecclesiae +
+  sacerdoce commun 1 P 2:5 (sacerdoce) ; jambe Tradition/Pères + note magistérielle 1995 + contre-objection
+  du signe + Phœbé Rm 16:1 (sacerdoce réservé). Domaine doctrine INTÉGRALEMENT Chérubin EN, clos pour de vrai.
+• VIE SPIRITUELLE — VÉRIFIÉE (14/07). Les 11 articles (combat intérieur : colère/
+  douceur, peur, tristesse, orgueil/humilité, jugement du prochain, rancune/pardon ;
+  chemin : trois voies, nuit noire, désir de sentir l'Esprit ; discernement : discerner
+  les mouvements, consolation/désolation) relus contre TOUT REPRISE. Constat : fond
+  solide et sobre partout, distinctions pastorales exemplaires (dépression et anxiété
+  traitées comme MALADIES, non péchés — à préserver), 0 dramatisation, négations toutes
+  porteuses. Le seul manque était le MAILLAGE, presque absent : tissé en FR+EN, interne
+  (colère↔orgueil, tristesse↔peur, jugement↔rancune, trois-voies↔nuit-noire,
+  nuit-noire↔consolation↔discernement, désir↔nuit) et vers la doctrine (passions→
+  péché-originel, capitaux, vertus cardinales/théologales, grâce, providence→nature-de-
+  dieu, confession, baptême, croix/Gethsémani, fins-dernieres, marie, anges pour le
+  tentateur). Foyers respectés (Denys→trois-voies, Jean de la Croix→nuit-noire,
+  Ignace→discerner). Domaine vie-spirituelle clos.
+  ✦ RE-VÉRIFIÉ AU NIVEAU ÉTALON + CONVERTI CHÉRUBIN EN (16/07, campagne). 11 articles convertis
+  EN→Chérubin (3 sous-agents ; ATTENTION : ils avaient STRIPPÉ 6 liens <a> existants en recopiant
+  le HTML — restaurés après mask-diff : croix/Gethsémani→nuit-noire, providence→nature-de-dieu,
+  justice+prudence→rancune, peur→tristesse). Puis fond audité à l'étalon (3 sous-agents) : 0 solide /
+  11 à enrichir, ~33 vrais manques appliqués FR+EN (nouveaux paragraphes), forme (5 titres EN
+  Title Case→casse-phrase, « le prophète Osée »→Osée, lien EN cassé les-peches-capitaux corrigé),
+  maillage embarqué dans les drafts. Fond marquant : discernement don de l'Esprit 1 Co 12:10 +
+  diakrisis des Pères + règle ignatienne de la pente (discerner) ; humilité ≠ mépris de soi +
+  magnanimité + orgueil racine des capitaux (orgueil) ; colère par défaut Chrysostome + Béatitude
+  des doux Mt 5:5 + colère de Dieu = justice non passion (colère) ; désolation ordinaire vs nuit
+  passive + cri d'abandon Mt 27:46 + distinction dépression (consolation) ; deux nuits sens/esprit +
+  méditation→contemplation infuse + nuit vs dépression (nuit-noire) ; crainte servile Trente + don de
+  crainte + He 2:14-15 délivrance de la peur de la mort + vertu de force (peur) ; serviteur impitoyable
+  Mt 18:23-35 + aimer ses ennemis Mt 5:44 + Notre Père Mt 6:12 (rancune) ; contrition→confession +
+  désespoir/Judas + joie fruit de l'Esprit Ga 5:22/Ph 4:4 (tristesse) ; charismes vs grâce sanctifiante
+  1 Co 12:7 + danger d'illusion 2 Co 11:14 + inhabitation Jn 14:23/Rm 5:5 + confirmation (désir-esprit) ;
+  devoir de l'autorité de juger 1 Co 5:12-13 + correction fraternelle Mt 18:15/Ga 6:1 + jugement
+  téméraire = injustice (jugement-prochain) ; appel universel à la sainteté Mt 5:48 + trois degrés de
+  la charité (Thomas) + assise eucharistique Jn 6:56 (trois-voies). Domaine vie-spirituelle
+  INTÉGRALEMENT Chérubin EN. ⚠ LEÇON PIPELINE : après conversion par sous-agent, vérifier que les
+  LIENS <a> existants n'ont pas été perdus (comparer l'ensemble des <a href> avant/après, pas seulement
+  mask-diff des citations qui masque aussi <a>).
+• HISTOIRE DE L'ÉGLISE — VÉRIFIÉE, PASSE 1 FAITE (14/07). Les 16 articles audités
+  (3 sous-agents en parallèle, tranches chronologiques). Constat : versets déjà non
+  décoratifs partout (balayage antérieur OK) ; fond globalement solide et sobre ; le
+  gros manque était le MAILLAGE, quasi nul. PASSE 1 APPLIQUÉE (FR+EN, 58 édits) :
+  ~50 liens tissés — chaîne chronologique (apostolique↔martyrs↔constantin↔monachisme↔
+  conversion↔schisme↔croisades↔scolastique↔réforme↔trente↔expansion↔moderne) et vers
+  la doctrine (baptême, eucharistie, reliques, baptême-de-désir, confession, pape,
+  trinité/Filioque, l-eglise, incarnation, grâce, salut, sacrements, nature-de-dieu,
+  fins-dernieres, marie, justice, foi-et-science, apôtre-Paul, Pères) — plus 5 scories
+  de sobriété retirées (« bouleversé » augustin, « maître du monde » constantin,
+  « siècles les plus sombres » monachisme, « clarté inégalée » + « penser grandement »
+  scolastique). NB : la réf EN « 2 Thessalonians 2:14 » (les-peres) N'EST PAS une erreur,
+  c'est la localisation Douay délibérée (2:15 Chérubin) — ne pas « corriger ».
+  PASSE 2 FAITE (14/07) — approfondissements de fond appliqués, FR+EN, DOMAINE HISTOIRE CLOS.
+  constantin : Maxence + pont Milvius 312 + « par ce signe tu vaincras » / chrisme (chi-rho)
+  + Athanase (chassé 5 fois, « Athanase contre le monde entier »). schisme-1054 : schisme
+  photien 867 + Léon IX mort avant l'excommunication de ses légats + levée réciproque 1965
+  (Paul VI/Athénagoras). monde-moderne : nommé Pie IX (Vatican I) + accords du Latran 1929/
+  Pie XI (Cité du Vatican) + Syllabus 1864 & Pie X contre le modernisme + nommé Jean XXIII/
+  Paul VI (Vatican II). scolastique : nommé Abélard (Sic et non)/Lombard (Sentences)/Albert
+  le Grand + connaissance naturelle de Dieu de Thomas (cinq voies, effets→cause première,
+  être subsistant). trente : nommé Paul III + canon des Écritures & Vulgate (session IV) +
+  Pie V catéchisme romain & missel unifié. réforme : Diète de Worms 1521/Charles Quint +
+  nommé Henri VIII + Augsbourg 1555/Westphalie 1648 + 2 scories de sobriété adoucies
+  (« remède pire que le mal » et « terrain prêt pour la révolte »). apostolique : Jacques le
+  Juste (frère du Seigneur) prononçant la sentence au concile de Jérusalem + chute de Jérusalem
+  70 (fin du culte de l'ancienne Alliance) + VERSET EN Actes 15:28 passé au Chérubin (verify_ch,
+  seul verset EN de tout le domaine histoire). conversion : Clotilde + baptême à Reims par Rémi
+  + conversion par contrainte (guerres saxonnes de Charlemagne, massacre de Verden 782,
+  « convertir par le glaive trahissait l'Évangile »). croisades : ordres militaires
+  (Templiers/Hospitaliers) + 2e croisade prêchée par Bernard de Clairvaux (échec ~1149) +
+  3e croisade (Richard Cœur de Lion, accès des pèlerins obtenu). Zwingli jugé non nécessaire
+  (Calvin/Genève + Angleterre couvrent déjà les branches) ; question Galilée toujours hors
+  corpus, non traitée (hors périmètre d'un approfondissement). Doublon connu, laissé tel quel :
+  l-expansion recoupe la-conversion/apostolique (synthèse assumée, atténuée par les liens).
+  NB EN : pour les
+  articles doctrine EXISTANTS (EN encore en Douay), les
+  sections neuves sont mirrorées en Douay pour garder l'article cohérent et
+  vert (validate/textcheck) ; l'harmonisation Douay→Chérubin de tout l'existant
+  reste le chantier séparé qu'Emmanuel déclenchera. Les articles NEUFS naissent
+  en Chérubin EN (verify_ch).
+  ✦ RE-VÉRIFIÉ AU NIVEAU ÉTALON + CONVERTI CHÉRUBIN EN (16/07, campagne). 16 articles convertis
+  EN→Chérubin (4 sous-agents ; domaine narratif, ~5 citations bibliques seulement — Ac 15:28, 2 Th 2:15
+  renumérotée depuis Douay 2:14, Jn 15:5, Mt 19:21, Mt 28:19 ; tous les <a href> préservés). Puis fond
+  audité à l'étalon (4 sous-agents, critères histoire : verset porteur seulement, jamais décoratif ;
+  pas de typologie forcée ; événements/figures/conciles/dates/causes manquants) : 0 solide / 16 à
+  enrichir, ~60 vrais manques appliqués FR+EN (nouveaux paragraphes), ~19 forme (titres EN Title
+  Case→casse-phrase sur apostolique/les-peres/nicee, ouvertures par négation, « ne cesse de »→« sans
+  cesse », dramatisation « bouleversement », mots grecs formatés). Fond marquant : dimanche Ac 20:7 +
+  ministère à 3 degrés + Marie au Cénacle (apostolique) ; Novatien/lapsi + confesseur + Pline-Trajan
+  (martyrs) ; Tertullien/Origène + écoles Alexandrie/Antioche + Jean Damascène (Pères) ; homoousios/
+  homoiousios l'iota + Ulfila + Pâques/canons + textes ariens Jn 14:28 (Nicée) ; Acte d'union 433 +
+  brigandage 449/Flavien/Marcien + orthodoxes orientales miaphysites (Éphèse-Chalcédoine) ; manichéisme
+  + délectation victorieuse « donne ce que tu ordonnes » + semipélagianisme/Orange 529 (cohérence
+  la-predestination) + Confessions (Augustin) ; Thessalonique 390/7000 + Constance II césaropape +
+  péril spirituel→monachisme (Constantin) ; trois conseils/chasteté Mt 19:12 + Office divin Ps 119:164 +
+  Macrine/Scholastique + désert/Vie d'Antoine→capitaux (monachisme) ; Reccared/Tolède 589 + vœu de
+  Tolbiac (Clovis↔Constantin) + Alcuin contre le baptême forcé + Whitby 664 + paganus (conversion) ;
+  anathèmes de 1054 sur des personnes + Lyon/Florence signées puis rejetées + patriarcat latin 1204-1261
+  + Jn 17:21 (schisme) ; saint Louis IX + Reconquista 1492 + Innocent III contre le sac de 1204 + pogroms
+  rhénans 1096 + Mt 26:52 (croisades) ; interdits d'Aristote/averroïsme/condamnation 1277 + Bonaventure
+  et les franciscains + canonisation 1323/Trente/Æterni Patris 1879 + Augustin racine du credo ut
+  intelligam (scolastique) ; Tetzel 1517 + Exsurge Domine/excommunication + « protestant » Spire 1529 +
+  Henri VIII/Acte de suprématie + Jn 17:21 (Réforme) ; sacrifice de la messe session 22 + doctrine des
+  indulgences maintenue + trois périodes/Pie IV (Trente) ; 1 Tm 2:4 reformaté en citation + Église
+  d'Orient jusqu'à la Chine des Tang/stèle 781 (expansion) ; Rerum Novarum 1891 + Dei Filius + Vatican II
+  liberté religieuse/œcuménisme + Constitution civile du clergé 1790 (monde moderne). Domaine histoire
+  INTÉGRALEMENT Chérubin EN. NB : reste un doublon mineur toléré, « Athanase contre le monde » à la fois
+  à nicee (foyer) et en incise à constantin (sert le césaropapisme) — laissé, chaque emploi portant.
+• PHILOSOPHIE ET RAISON — VÉRIFIÉE, DOMAINE CLOS (15/07). Les 6 articles relus
+  contre TOUT REPRISE (bien-agir : la-liberte-et-la-responsabilite, la-conscience-
+  morale, le-doute-et-les-systemes-moraux, faire-le-mal-pour-un-bien, l-amour ;
+  foi-raison : la-foi-et-la-science). Constat : fond complet/approfondi/solide
+  partout, style sobre exemplaire, doctrine sûre, négations toutes porteuses
+  (vrais contrastes, ex. « être libre, ce n'est pas faire ce qu'on veut… »). Deux
+  manques : MAILLAGE quasi nul (1 seul lien) et citations EN encore Douay.
+  APPLIQUÉ (FR+EN) : 15 liens tissés vers les foyers — internes (liberté↔conscience
+  ↔doute ; conscience→ignorance-invincible ; conscience/faire-le-mal/amour/liberté→
+  péché) et vers doctrine/histoire (l-ignorance-invincible, le-peche, la-grace,
+  le-bapteme, la-trinite, la-croix-et-la-resurrection, la-nature-de-dieu,
+  la-scolastique, l-age-des-martyrs « renier Dieu pour avoir la vie sauve ») ; l-amour
+  gardait déjà les-vertus-theologales. CITATIONS EN → CHÉRUBIN sur les 6 (règle
+  permanente), 20 versets, verify_ch 0 défaut ; Wisdom 11:21→11:20 (identité
+  retrouvée). Nombreux ALIGNEMENTS FR VERBATIM au Chérubin que le corpus portait
+  encore en formulation propre : Jn 8:34 « commet le péché » (était « se livre au »),
+  Jn 8:36 « vous rend libres » (« affranchit »), Is 5:20 ordre « appellent bien le
+  mal, et mal le bien », Mt 7:18 « ne peut pas donner » + « arbre malade », Ct 8:6-7
+  « Pose-moi… » verbatim (était une compression « Mets-moi »), Jn 15:13 « ceux qu'on
+  aime » (« ses amis »), Jn 3:16 « tellement » (« tant »), Rm 5:5 « a été répandu…
+  qui nous fut donné », Jn 1:3 ordre « Tout a été fait par lui », Sg 11:20 « Tu as
+  tout réglé » (« Vous avez »), 1 Co 8:7 « s'en trouve », 1 Tm 1:5 « La charité qui
+  vient », Rm 3:8 « qui nous calomnient ». RAPPEL de méthode confirmé : le seuil 80 %
+  de verify_ch ignore les mots ≤3 lettres, donc « pas/ne/not » NON contrôlés par
+  l'outil → négations relues à la main sur chaque verset. 1 scorie de style :
+  « Le prophète Isaïe » → « Isaïe » (règle : nommer, pas « le prophète »). FOYERS
+  respectés : l-amour = traitement philosophique de l'amour (les quatre amours,
+  ordo amoris d'Augustin, don de soi), COMPLÉMENTAIRE de les-vertus-theologales
+  (charité, foyer théologal), pas un doublon ; faire-le-mal-pour-un-bien = foyer
+  objet/fin/circonstances + actes intrinsèquement mauvais + double effet ;
+  la-foi-et-la-science = foyer foi/raison/science (réciproque avec la-scolastique).
+  Domaine philosophie clos.
+  ✦ RE-VÉRIFIÉ AU NIVEAU ÉTALON (17/07, campagne ; EN déjà Chérubin depuis le 15/07). 6 articles
+  audités au fond à l'étalon (2 sous-agents) : 0 solide / 6 à enrichir, 12 vrais manques appliqués
+  FR+EN (nouveaux paragraphes, tous sans verset neuf : ancrages magistériels/doctrinaux en prose),
+  2 forme. Fond : passion antécédente/conséquente + volonté ordonnée à la béatitude (liberté) ;
+  syndérèse/conscience + ignorance invincible excuse la personne sans rendre l'acte bon (conscience) ;
+  crédit Alphonse de Liguori + Innocent XI 1679/Provinciales + tutior (doute/systèmes) ;
+  conséquentialisme/proportionnalisme réfutés par Veritatis splendor + cas du meurtrier à la porte
+  (faire-le-mal) ; eros/agapè Deus caritas est + amor concupiscentiae/amicitiae Aristote-Thomas
+  (l-amour) ; Dei Filius foi/raison + création chrétienne berceau de la science (foi-et-science).
+  Domaine philosophie re-clos.
+• APOLOGÉTIQUE — VÉRIFIÉE, ENRICHIE ET CONVERTIE CHÉRUBIN, DOMAINE CLOS (16/07).
+  Les 9 articles (« Dieu en question ») audités au niveau étalon-sacrements par la
+  méthode validée. Constat : 0 solide / 9 à enrichir, 30 vrais manques de fond, 16
+  défauts de forme. Cœur du manque : objection pas toujours posée dans sa forme la
+  plus forte, versets adverses non désamorcés, jambe Tradition/Pères/Magistère
+  absente, distinction dissolvante manquante. APPLIQUÉ FR+EN (verify_ch 0 défaut,
+  build OK, 0 lien cassé) : marie-mere-de-dieu (Rm 3:23 « tous ont péché » excepté ;
+  Lc 1:43 « la mère de mon Seigneur » ; anepsios Col 4:10 ; virginité perpétuelle
+  Latran 649 + Réformateurs) ; la-presence-reelle (He 10:14/18 « une fois pour
+  toutes » qui FONDE la messe + Agneau immolé-vivant Ap 5:6 ; Ignace d'Antioche
+  ~107 ; anamnēsis/zikkaron Lc 22:19) ; le-sola-fide (Trente session 6
+  justification-passage + foi « fondement et racine » ; bon larron Lc 23:41-42
+  retourné ; œuvres = don de grâce → la-grace) ; le-sola-scriptura (Marc 7:13
+  paradosis des hommes vs apostolique Col 2:8/2 Th 2:15 ; Trente IV + Dei Verbum
+  crédités ; Irénée/Basile/Vincent ; 2 P 1:21 ; ouverture désnégativée) ; une-fois-
+  sauve (Trente VI certitude ; mortel/véniel → le-peche ; Ph 1:6 ; He 6 = pas de
+  second baptême, retour par la pénitence Ez 18:23/1 Jn 2:1 → confession ;
+  présomption/désespoir/espérance ; Ap 22:19 recadré « part de l'arbre de vie / vie
+  éternelle », pas « livre de vie ») ; l-intercession (hyperdulie ajoutée à
+  latria/dulia ; Trente XXV invocation) ; le-bapteme-des-petits-enfants
+  (Origène/Cyprien-Carthage 253/Augustin + Carthage 418/Trente ; Marc 16:16 &
+  Actes 2:38 désamorcés ; « maison » = foyer entier) ; pourquoi-dieu-demande-l-
+  adoration (Dieu jaloux Ex 20:5 = zèle d'amour ; Ps 115:8 mimèsis idolâtrique) ;
+  la-theorie-de-l-evolution (Genèse récit théologique + Augustin ; cause
+  première/causes secondes ; Rm 1:20 + Vatican I ; âme créée directement, Humani
+  generis). Maillage tissé (34 côtés de liens vers les foyers). Domaine
+  apologétique clos ; intégralement Chérubin EN.
+• TABERNACLE dans le genre « exposition par connexion » : le foyer existe
+  (la-demeure-le-sacerdoce-et-les-sacrifices), à enrichir (Éden 1er sanctuaire,
+  mishkan/Shekina, tabnit→ombre d'Hébreux, chérubins Éden→voile, voile
+  déchiré→la-semaine-sainte, Apocalypse 21), foyer unique + hypertexte.
+• ÉCRITURE ET EXÉGÈSE — VÉRIFICATION INTÉGRALE EN COURS (15/07, ordre exprès
+  d'Emmanuel : « TOUS les articles d'écriture et exégèse sont concernés, vérifie
+  par rapport à TOUT REPRISE »). Les 93 articles du domaine passent au crible complet
+  (fond/profondeur, voix, négations, maillage, foyers) ET, DÉCISION D'EMMANUEL QUI
+  LÈVE LE REPORT POUR CE DOMAINE, conversion de TOUTES leurs citations EN au Chérubin
+  (verify_ch 0 défaut, réf EN redevenue identique au FR). Méthode par article : aligner
+  chaque citation FR verbatim au Chérubin (le corpus portait encore des formulations
+  propres : « toute chose »→« chaque chose », « des temps »→« du temps », « par l'homme
+  son sang sera versé »→« aura son sang versé », etc.), convertir chaque citation EN
+  Douay→Chérubin en gardant la portion citée et TOUTES les négations (relire à la main,
+  le seuil 80 % de verify_ch ignore « pas/ne/not »), exécuter les approfondissements du
+  doc de suivi claude/ecriture-passe-genre-en-cours.md, tisser le maillage vers les foyers,
+  valider verify_ch + build. Travail par vagues, livré au fil de l'eau.
+  VAGUE 1 FAITE : la-lutte-de-jacob-avec-dieu (EN Chérubin + section neuve « Le combat de
+  la prière » : la lutte nocturne lue comme prière de persévérance, Catéchisme + Luc 18:1 ;
+  lien homme-nouveau→baptême), laisse-les-morts-enterrer-leurs-morts (EN Chérubin + §
+  neuf sur l'appel d'Élisée à la charrue 1 Rois 19:20 que le Christ dépasse ; lien vie-de-
+  la-grâce→grâce), un-temps-pour-tuer (EN Chérubin + racines hébraïques ratsach/harag qui
+  fondent la distinction tuer/meurtre ; lien mort-et-résurrection→la-croix).
+  VAGUE 2 FAITE (conversion EN par 3 sous-agents en parallèle — chacun réaligne FR verbatim
+  + convertit EN + renumérote les réf localisées, écrit son article dans /tmp ; JE vérifie
+  l'intégrité de la prose par mask-diff, applique, verify_ch 0 défaut ; puis fond + maillage
+  par moi) : le-proto-isaie (chant de la vigne Is 5 → parabole des vignerons Mt 21:43 ; Is 25:8
+  → 1 Co 15:54 + Ap 21:4 ; liens incarnation, fins-dernieres), la-demeure-le-sacerdoce-et-les-
+  sacrifices (propitiatoire kapporet/hilastērion → Christ « propitiation » Rm 3:25 ; lien Agneau
+  →la-croix), elie-a-l-horeb (théophanie de Moïse au creux du rocher Ex 33:22 ↔ « il va passer » ;
+  reste des sept mille → Rm 11:5 ; lien pain→eucharistie). PIPELINE VALIDÉ pour la suite :
+  sous-agents pour la conversion mécanique (retour /tmp + mask-diff prose + verify_ch), moi
+  pour le fond/maillage.
+  VAGUE 3 FAITE (6 sous-agents de conversion en parallèle, mask-diff + verify_ch, puis fond
+  par moi) : le-deutero-isaie (Is 45:23 « tout genou fléchira » → Php 2:10, adoration réservée
+  à Dieu rendue au Christ ; liens incarnation, croix), le-trito-isaie (Is 66:1-2 « le ciel est
+  mon trône » → Étienne Ac 7:49-50 ; liens fins-dernieres, l-eglise), jesus-devant-pilate
+  (silence du Serviteur Is 53:7 ; « pas d'autre roi que César » Jn 19:15 ↔ Israël rejetant Dieu
+  1 S 8:7 ; liens nouvel-adam, croix, conscience-morale), premier-oracle-le-roi-qui-vient
+  (berger insensé Za 11 ↔ bergers qui se paissent Ez 34:2), les-oracles-contre-les-nations et
+  les-malheurs-d-isaie (CONVERSION EN faite + verify_ch ; MAILLAGE encore à faire — à reprendre
+  au sweep de maillage). Bloc Isaïe désormais clos côté conversion (proto/deutero/trito/oracles/
+  malheurs + quatre-chants restant). Reste 81 articles.
+  VAGUE 4 FAITE (8 sous-agents de conversion en parallèle) : ezechiel-le-prophete-de-l-exil
+  (+ fond « fils d'homme » / ben adam : Dieu adresse Ézéchiel comme créature tirée de la terre,
+  titre repris par le Christ, « Fils de l'homme », avec la hauteur de Daniel), ezechiel-les-actions-
+  symboliques, ezechiel-les-oracles-contre-les-nations, ezechiel-la-restauration-d-israel,
+  ezechiel-le-nouveau-temple-et-le-fleuve, les-quatre-chants-du-serviteur (clôt Isaïe), la-chute-de-
+  ninive, le-livre-d-abdias — TOUS convertis EN Chérubin + verify_ch 0 défaut. Reste 73 articles.
+  MOYENNE fond ENCORE À FAIRE sur les convertis de la vague 4 (actions-symboliques : Gloire 11:23→43:1-5
+  + porte fermée 44:1-2 ; oracles-nations : roi de Tyr « chérubin oint » 28:14,16 ; restauration :
+  cœur nouveau 36:26 ↔ Jr 31:31-34 ; ninive : Ninive prostituée → Ap 17-18 ; abdias : Jacob/Ésaü Gn 25:23,
+  Ps 137:7) + maillage — à reprendre au sweep fond/maillage.
+  ⚠ LEÇON DE PIPELINE (typographie) : les sous-agents produisent parfois des APOSTROPHES DROITES (')
+  et des ESPACES INSÉCABLES (nbsp) DANS LES CITATIONS, en recopiant bible.json/bible-en-cherubin.json.
+  Or le corpus est 100 % apostrophe COURBE ’ et 0 nbsp (regular space). APRÈS CHAQUE conversion par
+  sous-agent, NORMALISER : remplacer ' → ’ et nbsp → espace normale sur contenu_fr ET contenu_en
+  (mask-diff ne l'attrape pas, il masque les citations). Fait pour deutero-isaie, actions-symboliques,
+  quatre-chants (straight/nbsp retirés).
+  VAGUE 5 FAITE (8 sous-agents, bloc paulinien, consigne typo passée dans le prompt → 0 straight/nbsp) :
+  l-apotre-paul, l-epitre-aux-romains (+ fond : Rm 1:17 « le juste vivra par la foi » = Habacuc 2:4,
+  devise de la justification ; lien justification-par-la-foi), tous-sous-le-peche (+ fond : circoncision
+  du cœur Rm 2:29 déjà dans Dt 30:6 et Jr 4:4), la-justification-par-la-foi, la-vie-dans-l-esprit,
+  le-mystere-d-israel, le-culte-spirituel, l-epitre-aux-galates. TOUS Chérubin EN + verify_ch 0 défaut.
+  Reste 65 articles avant la vague 6.
+  VAGUE 6 FAITE (12 sous-agents, épîtres restantes de Paul + Hébreux) : l-epitre-aux-philippiens,
+  l-epitre-aux-ephesiens, l-epitre-aux-colossiens, l-epitre-a-philemon, les-epitres-aux-thessaloniciens,
+  le-retour-du-christ (réf localisées 1 Th 4 remises en Chérubin : 4:16/4:17), l-homme-de-peche,
+  les-epitres-pastorales, l-ordre-de-l-eglise, le-salut-offert-a-tous, le-testament-de-paul,
+  l-epitre-aux-hebreux. TOUS Chérubin EN + verify_ch 0 défaut, 0 straight/nbsp. Reste 53 articles
+  (restent : Corinthiens ×6, Hébreux sous-articles grand-pretre/unique-sacrifice/foi-perseverance,
+  et surtout les ÉVANGILES — vie du Christ + scènes). Ces 12 épîtres = conversion seule, maillage
+  au sweep. Restent MOYENNE fond + maillage sur les convertis sans item posé → sweep dédié.
+  VAGUE 7 FAITE (12 sous-agents : Corinthiens + Hébreux sous-articles + 3 scènes évangéliques) :
+  les-epitres-aux-corinthiens, la-sagesse-de-la-croix, l-hymne-a-la-charite, la-resurrection-des-morts,
+  la-cene-du-seigneur, la-seconde-epitre-aux-corinthiens, le-grand-pretre, l-unique-sacrifice,
+  la-foi-et-la-perseverance, le-bapteme-du-christ, le-doigt-de-dieu, jesus-et-nicodeme. TOUS Chérubin EN
+  + verify_ch 0 défaut. Reste 41 articles. (jesus-et-nicodeme : reste le fond MOYEN Ez 36:25 « eau » en
+  plus de 36:26 → sweep.)
+  ⚠ 2 LEÇONS DE PIPELINE de la vague 7 :
+  (a) « Psaume » (SINGULIER) est la convention du corpus (43 occurrences) et un ALIAS valide du site
+  (build-bi.js BALIAS : 'psaumes':['ps','psaume']). verify_ch ne le connaissait pas → faux positif
+  « FR-ref-absente ». CORRIGÉ : ajouté 'psaume':'psaumes' à l'ALIAS de tools/verify_ch.py. Ne PAS
+  « corriger » les « Psaume X:Y » en « Psaumes » : le singulier est correct et cliquable.
+  (b) Le mask-diff d'intégrité de prose MASQUE le contenu des <span class="ref"> → il n'attrape PAS un
+  changement de NUMÉRO ou de NOM de réf par un sous-agent. C'est verify_ch (existence réf + conformité
+  citation ≥80 %) qui garde ce flanc : TOUJOURS lancer verify_ch après merge, ne jamais s'en passer.
+  VAGUE 8 FAITE (12 sous-agents : scènes évangéliques + série de Moïse + l-ange-du-seigneur) :
+  abraham-a-vu-mon-jour, achetez-une-epee, tendre-l-autre-joue, la-mort-de-judas,
+  la-resurrection-et-la-glorification, les-discours-de-moise, la-mort-de-moise, la-servitude-et-l-appel,
+  la-delivrance (réf EN Gn 50:25 remise), les-quarante-ans-au-desert (réf Nb 13:33/27:7 remises),
+  le-sinai-et-l-alliance (56 citations !), l-ange-du-seigneur (réf Jos 5:13-15 remise). TOUS Chérubin EN
+  + verify_ch 0 défaut. Reste 29 articles.
+  ⚠ LEÇON DE PIPELINE (vague 8) — PROSE QUI COMMENTE LE MOT DOUAY : convertir une citation peut laisser
+  la PROSE EN commenter un terme propre à la Douay qui n'est plus dans la citation Chérubin. Ex.
+  la-mort-de-judas : Jn 17:12, la prose EN disait « : a title… » en s'appuyant sur le « son of perdition »
+  de la Douay ; le Chérubin dit « the one destined to be lost », d'où « a title » orphelin. CORRIGÉ en
+  ajoutant la glose grecque comme en FR (« the Greek reads the son of perdition, a title… »). À
+  SURVEILLER lors du sweep sur tous les convertis : partout où la prose GLOSE un mot cité (fils de
+  perdition, statuary/potier, corban, Phase, ORIENT, etc.), vérifier qu'elle tient encore avec le
+  libellé Chérubin. (Les gloses de VARIANTE de traduction — « l'hébreu dit potier là où le latin lisait
+  fondeur », « le corban » — restent justes et se gardent.)
+  VAGUE 9 FAITE (12 sous-agents : Zacharie 5 + Joël 3 + Amos 4) : le-prophete-et-son-temps,
+  les-huit-visions-nocturnes, josue-le-germe-et-la-couronne, second-oracle-le-transperce (réf Ap 20:9
+  remise), le-jour-du-seigneur (Ap 20:9 remise), le-fleau-et-le-jour-du-seigneur, la-conversion-et-l-
+  esprit-repandu, le-jugement-des-nations-et-le-salut-de-sion, amos-le-berger-prophete,
+  le-jugement-des-nations-et-d-israel, les-visions-et-le-culte-rejete, la-justice-le-jour-du-seigneur-et-
+  l-esperance. TOUS Chérubin EN + verify_ch 0 défaut. Autre dangler du type vague-8 corrigé :
+  le-jugement-des-nations-et-le-salut-de-sion, Joël 4:6, la glose « les fils de Javan désignent les Grecs »
+  orpheline (Chérubin dit « aux Grecs ») → refondue en note de traduction « Les Grecs, que l'hébreu nomme
+  fils de Yavan… ». Reste 17 articles : Aggée ×3 (aggee-et-la-reconstruction-du-temple, les-quatre-oracles,
+  la-gloire-du-second-temple), Nahum ×2 (nahum-et-l-empire-assyrien, le-dieu-qui-juge-et-qui-sauve),
+  Zacharie le-jeune-et-la-restauration, 4 isolés (l-esclavage-dans-la-bible, la-femme-dans-l-assemblee,
+  le-voile-et-la-chevelure, le-canon-et-les-deuterocanoniques), les-guerres-d-extermination (fond HAUTE :
+  Mésha/Amalec/Origène), et les 6 GRANDS ÉVANGILES (la-preparation-au-ministere, la-premiere-annee,
+  la-deuxieme-annee, la-troisieme-annee [96 versets], les-prologues, la-semaine-sainte [72]).
+  VAGUE 10 FAITE (11 sous-agents : Aggée ×3 + Nahum ×2 + Zacharie + 4 isolés + guerres) :
+  aggee-et-la-reconstruction-du-temple, les-quatre-oracles, la-gloire-du-second-temple,
+  nahum-et-l-empire-assyrien, le-dieu-qui-juge-et-qui-sauve, le-jeune-et-la-restauration,
+  l-esclavage-dans-la-bible, la-femme-dans-l-assemblee, le-voile-et-la-chevelure,
+  le-canon-et-les-deuterocanoniques, les-guerres-d-extermination. TOUS Chérubin EN + verify_ch 0 défaut.
+  2 danglers prose vague-8 corrigés : les-quatre-oracles (prose EN « Zorobabel »→« Zerubbabel »,
+  « Jechonias »→« Jeconiah » pour coller aux citations Chérubin ; FR inchangé, « Zorobabel »/« Jékonias »
+  cohérents) ; l-esclavage (prose EN « Because it is his money »→« The slave is his own property »,
+  la citation Ex 21:20-21 Chérubin ne disant plus « his money »).
+  VAGUE 11 FAITE — LES 6 GRANDS ÉVANGILES, CLÔT LE DOMAINE (6 sous-agents ; la-troisieme = 96 citations,
+  la-deuxieme = 68, la-semaine-sainte = 72) : la-preparation-au-ministere, la-premiere-annee-l-inauguration,
+  la-deuxieme-annee-la-popularite, la-troisieme-annee-l-opposition, les-prologues-et-la-venue-du-christ,
+  la-semaine-sainte. TOUS Chérubin EN + verify_ch 0 défaut, 0 straight/nbsp, mask-diff prose intacte.
+  FOND posé sur la-semaine-sainte : Hosanna = hébreu hoshia-na « sauve, de grâce » (Psaume 118:25, cri du
+  pèlerin devenu acclamation) ; Gethsémani = araméen gat shemanim « pressoir à huile » (le lieu où l'olive
+  est écrasée, où le Christ est pressé jusqu'à suer le sang) ; Marc 11:17 = soudure de deux prophètes,
+  Isaïe 56:7 (maison de prière pour tous les peuples) + Jérémie 7:11 (caverne de brigands).
+  ⚠ LEÇON DE PIPELINE (vague 11) — DANGLER « rendered as MOT-DOUAY » : sous-cas fréquent du dangler prose.
+  La prose dit « le mot grec/araméen rendu par “X” signifie… » où X est l'ancien libellé Douay que la
+  citation Chérubin n'affiche plus (dwelt→pitched his tent Jn 1:14 ; Gospel→Good News Mc 1:1 ; hate→without
+  loving me more than Lc 14:26 ; Mammon→Money Lc 16:13). Le lecteur voit la citation neuve puis lit « rendu
+  par X » qui la contredit. CORRIGÉ à chaque fois FR+EN : soit supprimer « rendu par X » (« le verbe grec
+  ici, eskēnōsen… »), soit reformuler en terme traditionnel/lettre du texte (« euangelion, qui nous a donné
+  le mot Évangile » ; « mamona, traditionnellement laissé sous la forme Mammon » ; « littéralement l'Évangile
+  dit haïr »). Gloses de variante encore justes = gardées (potier, corban). À balayer au sweep.
+  ✦ DOMAINE ÉCRITURE ET EXÉGÈSE — CONVERSION CHÉRUBIN CLOSE : 93/93 articles, verify_ch 0 défaut sur tout
+  le domaine. Reste UNIQUEMENT le SWEEP DE MAILLAGE + FOND-MOYEN (ci-dessous), pas de conversion en attente.
+  SWEEP FOND-MOYEN + HAUTE — FAIT (16/07) :
+  • les-guerres-d-extermination (HAUTE) : stèle de Mésha (le ḥerem, institution partagée de tout l'Orient
+    ancien, attestée hors d'Israël) ; identité d'Amalec (Dt 25:18 : le peuple qui frappait par-derrière les
+    traînards épuisés, sans crainte de Dieu ; Ex 17:16 guerre d'âge en âge) ; SECTION NEUVE « La lecture
+    spirituelle des Pères » (Origène sur Josué : les nations de Canaan = les vices, aucune paix avec le
+    péché ; 1 Co 10:11 « écrit pour nous », Col 3:5 « faites mourir ce qui en vous appartient à la terre »).
+    Maillage : le-mariage, l-esclavage, tendre-l-autre-joue, la-croix-et-la-resurrection.
+  • ezechiel-les-actions-symboliques : retour de la gloire par la porte de l'orient (Ez 43:2-4) + porte
+    fermée (Ez 44:2), lue par les Pères comme figure de la Vierge Marie (porta clausa).
+  • ezechiel-les-oracles-contre-les-nations : le « chérubin protecteur » consacré puis banni (Ez 28:14,16),
+    ajouté à la lecture du roi de Tyr comme figure de Satan.
+  • ezechiel-la-restauration-d-israel : Jérémie 31:31-33 (l'alliance nouvelle écrite sur le cœur), jumelle
+    du cœur nouveau d'Ez 36, scellée à la Cène.
+  • la-chute-de-ninive : la ville-prostituée (Nahum 3:4) reprise en Babylone la grande (Ap 18:2-3).
+  • le-livre-d-abdias : oracle de la naissance (Gn 25:23, l'aîné servira le cadet) + cri d'Édom au jour de
+    Jérusalem (Ps 137:7).
+  • jesus-et-nicodeme : la racine d'« eau et Esprit » (Ez 36:25-26) que Nicodème, maître en Israël, devait
+    reconnaître ; maillage le-bapteme + la-croix-et-la-resurrection.
+  • l-esclavage-dans-la-bible : jubilé (Lv 25:10) + Onésime (Philémon) ÉTAIENT DÉJÀ traités → maillage seul
+    ajouté (l-epitre-a-philemon, la-delivrance).
+  • la-femme-dans-l-assemblee : glose de authentein (αὐθεντεῖν, verbe rare et fort = autorité de tête /
+    gouvernement de l'assemblée, non la simple parole, cohérent avec la réserve du ministère) ; maillage
+    le-sacerdoce-reserve-aux-hommes.
+  SWEEP DE MAILLAGE — FAIT (16/07) : les 69 articles d'écriture restés sans lien ont été tissés vers les
+  foyers (doctrine/sacrements/apologétique/vie-spirituelle/philosophie). Méthode : 6 sous-agents proposent,
+  pour chaque article, 1 à 4 liens vers des foyers RÉELLEMENT engagés (ancre = phrase de prose brève,
+  unique, hors <em>/<span ref>/<h2>/<a>, même phrase FR et EN) ; JE valide (ancre count==1 dans l'état
+  courant, hors balise, foyer non déjà lié, cible existante) et applique le wrapping <a> moi-même à partir
+  de la carte FR→EN extraite du site. 149 liens posés, 0 rejeté, 0 lien cassé, 0 ancre imbriquée, build OK.
+  5 articles laissés à 0 lien à dessein (narratifs/intro sans foyer fort : le-prophete-et-son-temps,
+  le-fleau-et-le-jour-du-seigneur, aggee-et-la-reconstruction-du-temple, l-epitre-aux-hebreux [intro auteur],
+  ezechiel-le-prophete-de-l-exil). Catalogue des foyers (slugs FR|EN) figé dans /tmp/foyers.txt.
+  BALAYAGE PROSE-DANGLER « rendered as X » — FAIT : un seul vrai résidu trouvé et corrigé, la-demeure-le-
+  sacerdoce-et-les-sacrifices (glose eskēnōsen « rendu par il a demeuré / made his dwelling » alors que la
+  citation Jn 1:14 dit désormais « planté sa tente / pitched his tent » ; converti en vague 2, avant que la
+  leçon dangler ne soit posée). Reste des gloses « rendu par X » = toutes légitimes (X = traduction standard
+  du mot translittéré glosé : ḥerem→interdit, shalom→paix, agapē→charité, etc.), pas des danglers. NB :
+  marie/marie-mere-de-dieu gardent une citation EN Douay (« dwelt ») cohérente avec leur glose : normal,
+  ces articles de doctrine ne sont pas encore convertis (état transitoire), à traiter au domaine doctrine.
+  ⚠ CORRECTIF DE PORTÉE (16/07, sur question d'Emmanuel « as-tu vérifié le FOND de tous les articles ? ») :
+  la formule « intégralement vérifié » ci-dessus valait pour la CONVERSION Chérubin (93/93, verify_ch 0
+  défaut), les NÉGATIONS, le MAILLAGE, et les FONDS que REPRISE avait EXPLICITEMENT signalés (HAUTE + MOYENNE)
+  — PAS pour un audit de fond systématique article par article. Beaucoup d'articles « conversion seule » ont
+  eu citations réalignées + maillage mais PAS de réévaluation de leur substance (complet/approfondi/solide,
+  manques de compréhension, typologies/accomplissement en Christ absents, section d'interprétation catholique
+  pour les livres bibliques). LEÇON (16/07, Emmanuel : « tu donnes des instructions de merde qui effleurent
+  REPRISE ») : un audit de fond délégué à des sous-agents avec une grille MAISON résumée (« complet/approfondi/
+  solide » en une ligne, biaisée vers « solide ») EFFLEURE REPRISE et rend un faux audit (1er essai : 23/24
+  « solides »). LE PROBLÈME N'EST PAS LES SOUS-AGENTS, C'EST LA CONSIGNE. Consigne juste : le sous-agent LIT
+  REPRISE EN ENTIER lui-même et confronte l'article à TOUT le fichier, au niveau de sévérité de l'étalon
+  sacrements (« presque chaque article appelle plusieurs manques »), sans se rabattre sur « solide ». Consigne
+  figée dans /tmp/fond_audit_instructions.txt. Résultat réel : 6 solides / 87 à enrichir, 158 manques de fond,
+  57 défauts de forme. DIAGNOSTIC DES 93 CONSIGNÉ dans le doc projet claude/audit-ecriture-fond.md (brouillons
+  vérifiés Chérubin dans /tmp/fond2_B*.json). ENRICHISSEMENT EN COURS : article par article, au jugement de
+  l'éditeur (justesse doctrinale, foyer + crédit-une-fois, pas de doublon, verset verbatim + négations,
+  réécriture dans la voix du site, verify_ch + build). Erreurs de contenu à corriger repérées : les-visions-et-
+  le-culte-rejete (prose EN 3e/4e vision truelle/crochet, contredit ses propres citations Chérubin fil à plomb/
+  corbeille de fruits) ; la-conversion-et-l-esprit-repandu (EN tronqué, manque Joël 2:19/21/25/27) ; les-
+  quarante-ans-au-desert (mesure fausse Nb 11:32 « dix gomors » → dix homers ≈ 2200 L).
+  ✦ ENRICHISSEMENT DE FOND DES 93 — APPLIQUÉ (16/07). Les ~150 manques de fond retenus (les faibles écartés
+  au jugement) écrits et appliqués FR+EN, article par article, verify_ch 0 défaut sur tout le domaine, 0 lien
+  cassé. Exemples marquants : contraste grec genesthai/eimi (Abraham), heure pascale + « Voici votre roi »
+  (Pilate), serpent/malédiction Ga 3:13 (Nicodème), jubilé accompli Lc 4 (esclavage), 600 L de Cana → « Femme »
+  de la Croix (1re année), Sinaï↔Pentecôte 3000/3000 (Sinaï), bras de Moïse = Croix, El Gibbor Is 10:21
+  (proto-Isaïe), doigt de Dieu Lc 11:20, Caïphe vs Lv 21:10 (semaine sainte), clés Is 22:22 (3e année),
+  Tabernacle mishkan/shakan/Shekina + tabnit→He 8:5 + chérubins Éden→voile + voile déchiré (la-demeure),
+  Rm 9 potier/élection (mystère d'Israël), logikē latreia, kénose ekenōsen, apantēsis contre l'« enlèvement »,
+  katechon, imposition des mains = matière de l'Ordre, Melchisédek/He 7, unique sacrifice He 9:12/10:5-10,
+  refrain « vous saurez que je suis le Seigneur » (Ézéchiel). 3 erreurs de contenu corrigées : les-visions
+  (EN 3e/4e vision), la-conversion (EN Joël 2:19-27 ajouté), les-quarante (mesure). Doublon foyer résolu :
+  la porte close→Marie (Ez 44) laissée à son foyer ezechiel-le-nouveau-temple, actions-symboliques réduit à
+  un renvoi. MÉTHODE VALIDÉE (à réutiliser pour tout audit de fond) : sous-agents lisent REPRISE en entier +
+  diagnostiquent au niveau étalon-sacrements → moi je juge/écris/applique (ancre = phrase de prose finissant
+  la citation ou insertion après le span de réf ; réf-source sans citation entre parenthèses ; mesures au
+  métrique ; verify_ch après chaque lot). PASSE DE FORME/MAILLAGE — FAITE (16/07). Négations de style tournées à l'affirmatif (le-culte-spirituel,
+  l-apotre-paul, l-epitre-aux-ephesiens, les-epitres-pastorales, l-ordre-de-l-eglise, le-salut-offert-a-tous
+  ×2, l-epitre-aux-hebreux double négation fondue) ; « l'apôtre/le prophète X » → nom seul (Romains, seconde-
+  Corinthiens, oracles-Isaïe ×4, malheurs-Isaïe ×4, jugement-nations-Sion, mort-de-Judas) ; 10 titres EN en
+  Title Case → casse-phrase (les-discours-de-moise, la-mort-de-moise) ; He 12:2 complété jusqu'à la croix ;
+  Rm 8:23 FR élargi pour égaler l'EN ; orthographe Melchisédek (le-grand-pretre) ; réf-source Daniel 7:13-14
+  en parenthèse (ezechiel-le-prophete) ; apposition/doublon la-servitude, recaps le-sinai, titre « X non Y »
+  le-sinai, Yeshua/format josue, titre le-jeune + Guedalya, Sépharad abdias, obole semaine-sainte, haptomai/
+  Emmaüs la-resurrection — corrigés. Maillage de foyer ajouté : l-ange→la-lutte-de-jacob, la-troisieme→le-pape,
+  le-grand-pretre→l-eucharistie, les-quatre-oracles→la-gloire-du-second-temple. DOUBLONS Amos/Haggée jugés NON
+  supprimables : chaque article traite légitimement sa matière et RENVOIE déjà à son foyer (la-justice pour
+  Amos 5:24) → cross-link plutôt que coupe. Restent OPTIONNELS quelques liens mineurs demandant une clause
+  ajoutée (la-delivrance→le-doigt-de-dieu, l-unique-sacrifice→l-eucharistie, le-bapteme-du-christ→le-bapteme).
+  ✦✦✦ DOMAINE ÉCRITURE ET EXÉGÈSE — INTÉGRALEMENT VÉRIFIÉ ET ENRICHI CONTRE TOUT REPRISE, article par article :
+  93/93 Chérubin FR+EN (verify_ch 0 défaut), fond audité au niveau étalon-sacrements et enrichi, forme et
+  maillage passés, 0 lien cassé. Domaine CLOS pour de vrai.
+  RÈGLE CONFIRMÉE : sur ce domaine, un article vérifié = intégralement Chérubin EN.
+• le-pape : section patristique (Irénée/Cyprien/Clément) différée.
+• EN CHÉRUBIN — LECTEUR DU SITE MIGRÉ (14/07, Emmanuel : « la Douay doit être
+  supprimée du site, remplacée par la Chérubin ; NE fais PAS encore le grand
+  remplacement des versets, sauf pour les articles que je vérifie/corrige et les
+  neufs »). ÉTAPE 1 FAITE : le LECTEUR biblique anglais du site sert désormais la
+  CHÉRUBIN. Dans build-bi.js : bibEN et decoupeBible lisent content/bible-en-cherubin.json
+  (au lieu de bible-en.json) ; versifDouay NEUTRALISÉE en identité (return {ch,v} ;
+  Chérubin EN = versification FR, plus aucune conversion — le corps Douay reste en code
+  mort après le return, l'identifiant versifDouay/LV_VERSIF.douay est gardé pour ne pas
+  toucher parseRef, mais c'est un no-op) ; sur-titre EN « Chérubin translation », crédit
+  EN « Biblical text: The Holy Bible, Chérubin translation, made for Lumen Veritatis. »,
+  méta EN réécrite. Aucune « Douay » visible ne subsiste sur le site (vérifié : grep
+  site/ → seuls les identifiants de code versifDouay/douay). le-mariage EN : mention
+  orpheline « which the Douay keeps as sacrament » retirée (le point tient par la Vulgate,
+  comme en FR). content/bible-en.json (Douay) CONSERVÉ hors-site : les outils
+  validate.py/textcheck.py/verse_en.py le lisent encore pour valider les citations EN
+  restées Douay ; à supprimer quand tout le corpus sera converti.
+  ✦✦✦ GRAND REMPLACEMENT (2) ACHEVÉ (17/07, campagne de vérification des domaines) : les 174
+  articles du corpus sont désormais INTÉGRALEMENT en Chérubin EN (verify_ch 0 défaut sur TOUT
+  le corpus, 1092 liens internes 0 cassé, build OK). Écriture (93) faite les 15-16/07 ; puis la
+  campagne « vérifie tous ces domaines » a converti + fond-audité apologétique (9), doctrine (31),
+  vie-spirituelle (11), histoire (16), re-vérifié philosophie (6, déjà Chérubin) ; enfin, pour clore
+  le corpus, les 8 SACREMENTS (dernier îlot Douay) ont été convertis EN→Chérubin le 17/07 (leur fond
+  restait l'étalon du 14/07, inchangé ; seules les citations EN sont passées au Chérubin, liens
+  préservés). Plus AUCUNE citation Douay dans le corpus d'articles ; les « oddités Douay » et les réfs
+  « localisées Douay » n'ont plus d'objet côté articles.
+  RESTE (nettoyage, au fil de l'eau) : (4) supprimer bible-en.json (Douay) et migrer
+  validate.py/textcheck.py/verse_en.py vers le Chérubin (verify_ch les remplace déjà pour les
+  articles). Depuis le 17/07 la Douay ne sert PLUS À RIEN (Mémoriser est passé au Chérubin), donc
+  bible-en.json est supprimable et ces trois outils sont à retirer ou migrer.
+• ✦✦✦ MÉMORISER — ALIGNÉ INTÉGRALEMENT AU CHÉRUBIN FR+EN (17/07, chantier #3 CLOS). Les 416 versets
+  des 23 catégories réécrits dans les mots EXACTS de la Chérubin, FR (verbatim bible.json) et EN
+  (converti bible-en-cherubin.json). Méthode (validée, réutilisable) : script prépare pour chaque
+  verset le texte Chérubin FR+EN de la réf + versets voisins (/tmp/mem_cher_data.json) ; sous-agents
+  (1 par catégorie, 5 vagues) produisent fr_text/en_text = portion CONTIGUË copiée verbatim, unité
+  mémorisable (cadre narratif « Jésus dit : » retiré, parole nue sans « »), complète (étendue au
+  verset voisin si le sens était tronqué), négations préservées ; MOI je vérifie chaque fragment
+  comme sous-chaîne contiguë de tokens du Chérubin (0 invention), NORMALISE la typo (apostrophe
+  COURBE ’, espace normale, PAS de nbsp, PAS de « » — convention de memoriser.json), et merge sans
+  jamais toucher l'id. Résultat : 0 problème verbatim, ids 416/416 intacts, 0 apostrophe droite / 0
+  nbsp / 0 guillemet, build OK, memos présents dans site/memoriser.html.
+  RÈGLE D'IDENTITÉ MÉMORISER (comme les articles) : réf EN = réf FR (numérotation Chérubin identique).
+  3 incohérences réf↔texte corrigées (id inchangé, seule la réf affichée bouge) : ps-51-7 (en_ref
+  51:5→51:7 + en_text = Chérubin 51:7 « See: I was born in guilt… ») ; ac-14-23 (le contenu « ils
+  désignèrent des anciens » est en Chérubin à Actes 14:22, pas 14:23 → réf 14:22) ; mt-5-5 (« Heureux
+  ceux qui pleurent » est en Chérubin à Mt 5:4, pas 5:5 → réf 5:4). Complétude : quelques réfs élargies
+  pour ne rien tronquer (1 Tm 2:3-4, 1 P 1:18-19, Jb 16:20-21 ; Is 55:8-9 couvrait déjà v.9).
+  ⚠ FIRESTORE config/memoriser PRIME sur le fichier : si ce doc existe (alimenté par l'admin), les
+  changements de content/memoriser.json n'apparaissent PAS en ligne tant qu'il n'est pas vidé (console
+  Firebase) ou réécrasé via l'admin. À signaler à Emmanuel à chaque édition de Mémoriser par fichier.
+  CHANTIERS MÉMORISER ENCORE OUVERTS (demande d'Emmanuel 17/07) : (A) COMPLÉTUDE fine — repasser les
+  versets pour vérifier qu'aucun ne coupe une pensée importante (« ni trop ni pas assez », modèle
+  Is 55:8-9), au-delà des extensions déjà faites. (B) COUVERTURE — Mémoriser réservé à doctrine/dogmes,
+  sacrements, vie spirituelle (aucun domaine narratif/historique, déjà respecté) ; y faire figurer les
+  versets qui servent VRAIMENT les articles de ces 3 domaines + d'autres versets en plus ; envisager de
+  NOUVELLES catégories pour les thèmes non couverts (mariage, confirmation, ordre, orgueil/humilité,
+  colère/douceur, justice, force, prudence, tempérance, trois voies, discernement, consolation/désolation,
+  nuit noire, paix du Christ, etc.). Diagnostic figé : 410 réfs d'articles des 3 domaines absentes de
+  Mémoriser (liste régénérable). (C) GARDE ANTI-DOUBLON — un même passage peut vivre dans plusieurs
+  catégories sous un id distinct (règle §4/§6 maintenue) ; ajouter dans memoriser.html une garde NON
+  destructive pour qu'une SÉRIE lancée ne présente jamais deux fois le même passage (dédupliquer le pool
+  de nextItem par clé scripturaire, sans toucher les ids ni la progression Firestore). 3 doublons
+  actuels inter-catégories : 1 Co 4:5 (fins-dernieres/jugement-prochain), Ap 21:4 (fins-dernieres/
+  tristesse), Rm 8:15 (sacrements/peur).
+  RÈGLE PERMANENTE : tout article que je vérifie/corrige OU que j'écris → ses citations
+  EN passent au Chérubin (verse_en_ch.py + verify_ch.py, 0 défaut).
+• Technique en attente : règles Firestore email_verified à publier ; hors-ligne
+  (service worker) du site non implémenté ; l'admin « Bibliothèque (glisser) »
+  écrit config/themes au schéma PLAT (il écraserait les groupes s'il était
+  réactivé — inoffensif tant que config/themes reste supprimé) ; format des réfs
+  de livres mono-chapitre (Jude, Abdias, 2/3 Jean) à gérer au parse de
+  validate.py (Philémon déjà corrigé en « Philémon 1:15-16 »).
+• Nouveaux sujets du genre « connexion » et nouveaux audits : à la demande.
+
+NOTES DURABLES DE VERSIFICATION EN (Douay) — à réutiliser
+• versifDouay corrige déjà : Psaumes (héb→Douay), Joël (3-4→2-3), Nahum 2,
+  Zacharie 2, Osée 2 (v≥3 → v-2), Sirach 10 (10:12/13→10:14/15), Michée
+  (4:14→5:1 ; ch5 v+1), Jean 6 (FR 6:51→Douay 6:52), Isaïe 9 (héb 8:23→9:1 ;
+  9:v→9:v+1) + les enrichissements listés en §6 (Mt17, Mc9, Qo, Dt5, Jn11,
+  3Jn, Jg21).
+• versifDouay NE corrige PAS les Thessaloniciens (identité) : décalage géré par
+  réf localisée, chaque langue vérifiée dans SA version — 1 Th 4 : Douay =
+  Chérubin −1 (archange Ch 4:16/Douay 4:15) ; 2 Th 2:15 → EN 2:14.
+• Réfs EN localisées (Chérubin = fusion ou décalage ponctuel) : Éz 1:28→2:1,
   Éz 40:34→40:32, Gn 32:25/27/29/31→32:24/26/28/30, Gn 50:25→50:24,
   Nb 13:33→13:34, Nb 27:7→27:6, Ex 40:34→40:32, Ap 20:9→20:8-9,
-  Luc 1:33→1:32-33, 2 Th 2:15→2:14, Sirach 3:18→3:20, Sirach 30:23→30:24,
-  1 Th 4:13→4:12, Deut 29:28→29:29, Mt 5:5→5:4 (béatitude « qui pleurent »,
-  côté FR), Wisdom 11:20→11:21. Merges Chérubin (Jn 6:51, Jn 12:24, Ap 20:9,
-  Éz 1:28) gérés.
-  ODDITÉS DOUAY (EN provisoire) laissées telles quelles, à revoir avec le
-  Chérubin anglais : « ORIENT » (Germe, Za 3/6), « Jesus » (Josué grand
-  prêtre), « Alexandria » (No-Amon/Thèbes, Na 3:8), « ADONAI » (Ex 6:3),
-  « Abdias » (Obadiah), « Elias/Eliseus » (Élie/Élisée), « Phase » (Pâque),
-  « Salphaad » (Celophhad), « Idumea » (Édom), « God is charity » (God is
-  love). La prose EN garde le bon terme ; seule la citation suit Douay.
-  ★★★ PASSE DE FOND — LOT HAUTE FAIT (14/07). Audit de fond en 11 sous-
-  agents (COMPLET/APPROFONDI/SOLIDE), puis exécution des 16 corrections de
-  priorité HAUTE, FR+EN, chacune vérifiée (validate ALL OK + textcheck 0/0)
-  et reconstruite (264 pages). Corpus global : 129 art., 0 fail validate,
-  0 fail textcheck. Fait :
-   1. la-colere-et-la-douceur : ERREUR doctrinale corrigée, la colère
-      relève de l'appétit IRASCIBLE (pas concupiscible) ; « cette seconde
-      force » → « cette force irascible » (FR+EN).
-   2. la-tristesse : + garde-fou dépression (maladie ≠ faute/manque de foi)
-      + section ACÉDIE (démon de midi, Thomas, remède = demeurer).
-   3. la-peur : + garde-fou anxiété pathologique (maladie, pas péché).
-   4. l-amour : + section ORDO AMORIS (Augustin, ordre de la charité).
-   5. l-eucharistie : + CONCOMITANCE (Christ entier sous chaque espèce/
-      parcelle ; communion sous une espèce).
-   6. l-ange-du-seigneur : + réserve augustinienne (lecture Ange=Verbe
-      vénérable mais non définie ; Dieu invisible, présence par signe).
-   7. la-presence-reelle : transsubstantiation nommée en contexte.
-   8. l-intercession-des-saints : + Ap 5:8 & 8:3-4 (parfums = prières des
-      saints) + objection « comment les saints nous entendent » (1 Co 13:12,
-      vision de Dieu).
-   9. la-theorie-de-l-evolution : + MONOGÉNISME/Humani generis (Rm 5:12,
-      un seul Adam, lien au péché originel).
-  10. le-bapteme-du-christ : + voix du Père & Trinité manifestée (Mt 3:17)
-      + garde anti-adoptianiste (le Christ ne DEVIENT pas Fils au Jourdain).
-  11. jesus-devant-pilate : + BARABBAS (Jn 18:39-40, Ac 3:14, « fils du
-      père ») + ECCE HOMO (Jn 19:5, nouvel Adam couronné d'épines).
-  12. les-guerres-d-extermination : + section « Et les enfants ? » (1 S 15:3
-      cité en entier avec « enfants et nourrissons » ; Dt 32:39 maître de la
-      vie, 2 S 12:23 espérance pour l'enfant mort ; ordre unique de Dieu).
-  13. l-esclavage-dans-la-bible : + Exode 21:20-21 (le maître qui tue son
-      esclave est puni ; distinction selon l'intention).
-  14. la-consolation-et-la-desolation : + FAUSSE CONSOLATION (2 Co 11:14 ;
-      règles de S. Ignace, examiner début/milieu/terme, queue du serpent).
-  15. discerner-les-mouvements-du-coeur : + section S. Ignace, suivre tout
-      le cours d'un mouvement, lien vers la-consolation-et-la-desolation.
-  16. premier-oracle-le-roi-qui-vient : + BERGER INSENSÉ (Za 11:15-17 ;
-      Jn 5:43, qui refuse le vrai berger s'ouvre au faux).
-  MÉTHODE fond validée : lire l'article entier et juger SOI-MÊME s'il y a un
-  vrai manque avant d'éditer (le seul juge = la justesse). Articles jugés
-  DÉJÀ SOLIDES et laissés intacts malgré signalement : le-sola-fide,
-  le-sola-scriptura, une-fois-sauve-toujours-sauve, le-bapteme-des-petits-
-  enfants. Toute citation ajoutée passe par verse.py (Chérubin FR) +
-  verse_en.py (Douay EN, par slug — PAS verse_en_mapped.py pour Samuel :
-  Douay nomme 1/2 Samuel « 1/2 Kings ») puis textcheck/validate.
-  ★★★ PASSE DE FOND — LOT MOYENNE FAIT (14/07). Ré-audit du corpus entier
-  en 13 sous-agents (par thème), puis exécution de 18 compléments MOYENNE/
-  BASSE (FR+EN, chacun validé + reconstruit). Corpus : 129 art., 0/0.
-   - l-esclavage : + objection NT « esclaves, obéissez » (Ep 6:5-9).
-   - la-premiere-annee-l-inauguration : + Noces de Cana, 1er signe (Jn 2:4-5,
-     2:11) + intro corrigée (bug EN « goes up to the Temple » doublé réparé).
-   - la-semaine-sainte : + Descente aux enfers (Samedi saint, 1 P 3:18-19).
-   - ezechiel-les-actions-symboliques : + marque du Tau au front (Éz 9:4,
-     Ap 7:3), garde-fou jugement non aveugle.
-   - le-jugement-des-nations-et-d-israel (Amos) : + culte rejeté sans justice
-     (Am 5:21-24) + jour du Seigneur = ténèbres (Am 5:18).
-   - discerner-les-mouvements-du-coeur : + règle objective de la foi et de
-     l'Église + guide spirituel (1 Jn 4:2-3).
-   - le-salut : + garde-fou rançon PAS versée au démon (He 2:14).
-   - le-bapteme : + enfants morts sans baptême remis à la miséricorde
-     (Mc 10:14, CEC 1261).
-   - marie-mere-de-dieu : + objection « premier-né » (Ex 13:2, Lc 2:7).
-   - le-doute-et-les-systemes-moraux : + distinction doute de droit / de fait.
-   - faire-le-mal-pour-un-bien : + 4e condition du double effet (raison
-     proportionnée).
-   - l-amour : correction « le grec du NT connaît quatre » → « le grec »
-     (erōs absent du NT).
-   - l-expansion-du-christianisme : + reculs (conquête musulmane, Églises
-     d'Afrique du Nord et d'Orient), « ininterrompue » nuancé.
-   - le-sinai-et-l-alliance : + idole interdite ≠ image sacrée (chérubins
-     Ex 25:18-20, serpent d'airain Nb 21:8-9, Nicée II 787).
-   - un-temps-pour-tuer : + note peine de mort inadmissible aujourd'hui
-     (CEC 2267, rév. 2018).
-   - les-oracles-contre-les-nations : Édom précisé (pleine sentence en Is 34,
-     hors recueil 13-23).
-   - josue-le-germe-et-la-couronne : + nom Josué = Yeshua = Jésus (Mt 1:21).
-   - la-troisieme-annee-l-opposition : + clause porneia (Mt 19:9) n'ouvre pas
-     le divorce.
-  ABRAHAM-A-VU-MON-JOUR : signalé (trois hôtes de Mambré = Trinité) mais
-  laissé tel quel, déjà formulé « la tradition reconnaît » (pas d'assertion
-  littérale ; respect de la règle no-hedge).
-  RESTE : audit BASSE résiduel possible ; sinon fond globalement traité.
-  Puis Chérubin EN quand il existera (remplacera Douay et lèvera les oddités
-  ci-dessus). Outils de vérif dans tools/ (textcheck, validate, verse,
-  verse_en) + /home/claude/prep.py (dump flags + versets côte à côte).
-  LEÇON MÉTHODE : textcheck à 80 % peut laisser passer un écart d'1-2 mots
-  (noms propres : Grâce/Lien passaient à 90 %). Sur l'article qu'on traite,
-  aligner CHAQUE citation au texte Chérubin verbatim (pas seulement les flags),
-  et répercuter dans la prose tout terme cité que la prose commente.
-  PRÉEXISTANT À CORRIGER : l-esclavage-dans-la-bible réf « Philémon 15-16 »
-  (livre à chapitre unique, sans « C: ») → validate.py échoue au parse ; à
-  gérer un jour (format réf des livres mono-chapitre : Philémon, Jude, Abdias,
-  2/3 Jean).
-  L'audit de fond de les-prologues (garde
-  contre subordinatianisme, croissance en sagesse = nature humaine, purification
-  vs présentation, Mc 1:2-3, formules d'accomplissement de Matthieu) sert de
-  modèle pour les articles suivants. RESTENT vie-du-christ : la-deuxieme-annee (61
-  flags), la-troisieme-annee (89), la-semaine-sainte (49), la-resurrection-et-la-
-  glorification (13). Puis les séries de prophètes. Triage complet : projet
-  claude/chantier-conformite-cherubin-triage.md.
-  DOMAINE DOCTRINE : 1er passage (forme) FAIT
-  (13/07, 28 articles, ordre de themes.json). Retouches par article :
-  la-nature-de-dieu (unicité dépliée pas à pas, Augustin « il est ce qu'il
-  a », éternité de Boèce, objections contre la toute-puissance + 2 Timothée
-  2:13, lien vers la-trinite) ; la-trinite (redite d'ouverture ôtée,
-  Augustin pour la voie psychologique, Matthieu 28:19 « un seul nom, trois
-  qui le portent », Isaïe 11:2-3 → 11:2) ; l-adoration-et-la-louange (méta
-  et échafaudages ôtés, scène de Jean devant l'ange racontée, sacrifice de
-  louange Hébreux 13:15 sans attribution à Paul) ; les-anges (étymologies
-  hébraïques des trois noms + renvois, service du Christ Mt 4:11 / Lc
-  22:43, gloss satan/diabolos sorti de la citation) ; le-peche (définition
-  de saint Augustin) ; les-peches-capitaux (intro refondue : sujet nommé,
-  redite ôtée, Évagre → Grégoire le Grand, précision capital ≠ mortel) ;
-  le-nouvel-adam (Irénée et le nœud, Gn 3:20 et 2 Co 5:21 en renvois, arc
-  « Femme » Cana → Apocalypse 12, Immaculée Conception nommée, syntaxe des
-  dons, « impassibilité ») ; l-age-de-raison (anacoluthe + 1 Tm 2:4) ;
-  l-incarnation (italique d'incarnatio, formule d'Athanase avec la
-  précision anti-contresens) ; la-croix-et-la-resurrection (Anselme) ;
-  le-sacerdoce (deux-points manquant) ; le-sacerdoce-reserve-aux-hommes
-  (thèse d'ouverture directe, Jean-Paul II 1994 « en aucune manière ») ;
-  la-grace (échafaudage ôté) ; le-salut (Yeshoua + Matthieu 1:21 ; formule
-  d'Athanase présente ici ET dans l-incarnation, doublon justifié) ;
-  la-paix-du-christ (Augustin, tranquillité de l'ordre) ; l-eglise
-  (saint Cyprien pour « hors de l'Église ») ; le-pape (jeu de mots kepha
-  araméen déployé, réponse à l'objection petros/petra, h2 nettoyé).
-  RAS : le-peche-originel, l-ignorance-invincible, marie, la-predestination,
-  le-bapteme-de-desir, les-vertus-theologales, la-communion-des-saints,
-  les-reliques, les-fins-dernieres, la-justice, la-force (ces deux derniers :
-  seule la ponctuation). CORPUS ENTIER : 789 doubles ponctuations après
-  span.ref normalisées (garde : seulement quand la citation porte déjà sa
-  ponctuation finale) ; versifDouay + règle Michée (4:14 → 5:1 ; ch5 v+1) ;
-  réf EN Micah 5:2 → 5:1 (les-prologues, numérotation FR maîtresse).
-  DOMAINE ÉCRITURE, EN COURS (13/07). Fait : catégorie « L'Ancien
-  Testament » (la-lutte-de-jacob : boiterie de Genèse 32:32 ajoutée en
-  clôture ; elie-a-l-horeb RAS ; l-ange-du-seigneur : les renvois narratifs
-  qui étaient en span.ref nus passés en parenthèses, convention du corpus,
-  12 renvois, prose reprise autour de Marc 1:2/Malachie 3:1 ;
-  un-temps-pour-tuer : méta d'ouverture ôtée). Catégorie « Les évangiles »,
-  fait : jesus-et-nicodeme RAS ; laisse-les-morts RAS ; achetez-une-epee
-  RAS ; le-bapteme-du-christ RAS ; le-doigt-de-dieu : scène finale ajoutée
-  (« Moi non plus, je ne te condamne pas », Jean 8:10-11, la miséricorde
-  qui manquait au dénouement). CORPUS : seconde passe de normalisation des
-  doubles ponctuations, 789 cas côté guillemets anglais ” (la première ne
-  couvrait que les » français). Fait aussi :
-  jesus-devant-pilate RAS ; abraham-a-vu-mon-jour (méta d'ouverture
-  ôtée) ; tendre-l-autre-joue (gloss des charbons ardents de Proverbes
-  25:22, contre la lecture « revanche ») ; la-femme-dans-l-assemblee et
-  le-voile-et-la-chevelure (Paul nommé à l'ouverture, règle de l'auteur
-  identifiable) ; l-epitre-aux-romains, tous-sous-le-peche, le-canon,
-  l-esclavage, les-guerres-d-extermination : RAS. RESTE dans écriture :
-  les séries moise (7), isaie (6), ezechiel (5), joel (3), amos (4),
-  abdias (1), nahum (3), aggee (3), zacharie (7), déjà validées avec
-  Emmanuel en sessions antérieures, à survoler plutôt qu'à refondre ;
-  et la série vie-du-christ : AUDIT INTÉGRAL FAIT (13/07,
-  toutes règles ; 3 gros articles audités par agents sur le référentiel de
-  la reprise, chaque constat vérifié puis appliqué par l'assistant, EN
-  mirroré). les-prologues (renvoi Luc 2:21 en parenthèses, Yeshoua pointé) ;
-  la-preparation (lien article dédié du baptême au modèle canonique, phrase
-  du van refaite) ; la-premiere-annee (appel de jesus-et-nicodeme, phrase
-  des trois Pâques johanniques démêlée) ; la-deuxieme-annee (23 corr. :
-  fureur de Nazareth expliquée par Élie/Élisée, Légion et « Fils de
-  l'homme » remis en ordre narratif, tirets cadratins ôtés, amorces-
-  paraphrases et redites purgées, témoignage du Père distinct en Jean 5,
-  tension parabole/verset de la pécheresse résolue, femmes galiléennes
-  Luc 8:1-3 ajoutées, Baptiste et Sermon clarifiés, Matthieu 12:49-50) ;
-  la-troisieme-annee (26 corr. : 2e annonce de la Passion ajoutée
-  Marc 9:31-32, scène des frères des Tentes condensée en une citation
-  propre, tour/roi condensés, « Je Suis » précisé hébreu/grec + lien vers
-  abraham-a-vu-mon-jour, 3 épisodes ajoutés : économe infidèle et Mammon
-  Luc 16, appel à la conversion et figuier Luc 13:1-9, mines Luc 19,
-  corban/pluie/chameau/Jéricho/Lazare/Dédicace réparés, formats hébreux
-  complétés) ; la-semaine-sainte (24 corr. : datation des Rameaux par
-  Béthanie Jean 11:18, doublon Matthieu 23:37 ôté, coup de lance avec ses
-  deux accomplissements Exode 12:46 / Zacharie 12:10, sadducéens déployés
-  Exode 3:6 + Marc 12:27, agents nommés, talents et piécettes convertis,
-  Tobie décoratif ôté, Golgotha au format araméen, liens vers
-  jesus-devant-pilate et achetez-une-epee) ; la-resurrection (12 corr. :
-  promesse de l'Esprit Actes 1:8 ajoutée avant l'Ascension, gardes du
-  tombeau introduits Matthieu 27:66, Pierre et sa mort annoncée Jean
-  21:18-19, Emmaüs remis dans l'ordre de Luc, haptomai au format).
-  STRUCTUREL : la section « Le statère dans le poisson » DÉPLACÉE de la
-  2e à la 3e année (Matthieu 17:24-27 suit la Transfiguration), avec la
-  2e annonce de la Passion insérée avant elle. RÉFÉRENCES : 4 refs cassées
-  par le réalignement matinal réparées (Marc 9:7/9:23/9:24, Matthieu
-  17:26 : l'article mêlait déjà les numérotations, leçon consignée) ; EN
-  Malachi 4:5-6 → 3:23-24 (numérotation FR maîtresse) ; la VALIDATION DES
-  REFS COUVRE DÉSORMAIS AUSSI L'EN (2080 refs EN validées, 0 défaut).
-  LEÇON DURABLE : ne jamais décaler des références en bloc sans vérifier
-  chaque citation contre le texte du verset cité.
-  DOMAINE SACREMENTS : AUDIT DE FOND FAIT (13/07, lentille complet/
-  approfondi/solide, 8 articles, FR+EN mirroré ; refs vérifiées contre
-  Chérubin FR et Douay EN via versifDouay, 0 défaut). Retouches par article :
-  les-sacrements (énumération des sept par institution du Christ complétée :
-  confirmation + sacerdoce à la Cène + onction des malades ajoutés ;
-  affirmation du nombre sept « ni plus ni moins » ; distinction rites de
-  l'Ancienne Loi qui annonçaient / sacrements du Christ qui contiennent la
-  grâce) ; le-bapteme (mot baptizein remis dans « vie nouvelle », « fils
-  adoptif du Père » précisé, dispositions de l'adulte foi/conversion,
-  baptême de désir et de sang déployés + lien article dédié) ;
-  la-confirmation (citation Isaïe 11:2 alignée sur Chérubin ; gloss six dons
-  nommés par le prophète / sept comptés par la tradition grecque puis latine
-  qui distingue piété et crainte ; sujet du sacrement ajouté : tout baptisé,
-  âge de raison en Occident / après le baptême en Orient) ; l-eucharistie
-  (nom eucharistia = action de grâce ajouté + institution paulinienne
-  1 Corinthiens 11:24) ; la-confession (formule d'absolution unifiée
-  « Je t'absous », doublon fautif « Je te pardonne tous tes péchés » ôté ;
-  indulgence définie + lien purgatoire → les-fins-dernieres ; ministre =
-  évêque et prêtre seuls) ; l-onction-des-malades (institution par le Christ
-  que Jacques ne fait que promulguer ; ordre des derniers sacrements
-  pénitence → onction → viatique) ; le-mariage (section « Divorce et
-  remariage » ajoutée : lien indissoluble, divorce civil qui ne rompt rien,
-  Luc 16:18 / Marc 10:11-12 sans exception, clause « union illégitime » de
-  Matthieu 19:9 = nullité ≠ divorce, remariage après veuvage
-  1 Corinthiens 7:39 ; doublon Éphésiens 5:32 ôté ; ambiguïtés « pour elle »
-  et « en son nom » levées) ; l-ordre (réserve aux hommes ajoutée + lien
-  le-sacerdoce-reserve-aux-hommes ; surinterprétation de 2 Corinthiens 2:10
-  « en la personne du Christ » ôtée — le grec en prosōpō, que Chérubin rend
-  « sous le regard du Christ » ; in persona Christi refondé sur la mission
-  apostolique, Luc 10:16 ; confirmation n'est pas un pouvoir exclusif de
-  l'évêque, « ministre originaire » précisé ; réf Actes 14:23 → 14:22
-  alignée sur Chérubin ET Douay, texte de citation aligné).
-  LEÇON (conformité Chérubin) : la citation en ligne d'un article doit
-  correspondre au texte de Chérubin (FR) ; plusieurs versets sont encore
-  rédigés selon Crampon (repéré sur Isaïe 11:2) → chantier de conformité
-  texte-Chérubin à mener sur tout le corpus (au-delà du seul numéro de
-  verset, déjà validé).
-  À FAIRE EN
-  PRIORITÉ dans écriture (tâche héritée de l'ancienne reprise, posée le
-  11/06) : RÉVISER LA SÉRIE « LA VIE DU CHRIST » : audit INTÉGRAL, toutes
-  les règles (précision d'Emmanuel du 13/07 : « pas que l'équilibre
-  narratif mais le tout en général »), dont l'équilibre
-  narratif : les articles de série tiennent le registre intermédiaire
-  (trame complète avec son sens, sans paraphraser l'Évangile, une citation
-  par scène suffit souvent ; la profondeur d'un épisode va aux articles
-  dédiés). Le besoin de resserrement se juge à la LECTURE seule, contre
-  ces règles, jamais au volume.
-  Sacrements FAIT (fond, cf. bloc ci-dessus). Puis
-  vie-spirituelle, histoire, apologetique, philosophie.
-  Méthode éprouvée : lecture intégrale, versets vérifiés sur bible.json,
-  remplacements à ancres exactes avec assert, FR+EN en parallèle, contrôle
-  HTML équilibré sur tout le corpus + revalidation des 2110 refs par lot.
-• CONFORMITÉ TEXTE-CHÉRUBIN (nouveau, 13/07) : depuis le passage à Chérubin,
-  le numéro de chaque réf est validé, mais le TEXTE cité en ligne dans les
-  articles (le <em>«…»</em>) peut encore suivre Crampon et non Chérubin
-  (repéré sur Isaïe 11:2 : « intelligence/science » vs Chérubin
-  « discernement/connaissance »). À mener sur tout le corpus : comparer
-  chaque citation FR au verset Chérubin et aligner. L'EN suivra à la
-  traduction Chérubin anglaise (Douay provisoire).
-• En attente de décision : règles Firestore email_verified à publier ;
-  hors ligne (service worker) du site.
-• Le panneau d'admin « Bibliothèque (organisation par glisser) » écrit encore
-  config/themes au schéma PLAT (sans groupes) : réactivé, il écraserait les
-  groupes. Tant que config/themes reste supprimé (travail par fichiers), pas
-  de risque ; à reprendre le jour où l'admin devra gérer les groupes.
-• (Tenir cette liste à jour : y consigner la série ou l'article en cours, les
-  pistes ouvertes, ce qui reste à reprendre.)
+  Luc 1:33→1:32-33, Sirach 3:18→3:20, 30:23→30:24, 1 Th 4:13→4:12,
+  Deut 29:28→29:29, Mt 5:5→5:4, Wisdom 11:20→11:21. Merges Chérubin :
+  Jn 6:51, Jn 12:24 (EN élargi 12:24-25), Ap 20:9 (EN 20:8-9), Éz 1:28.
+• Douay nomme 1/2 Samuel « 1/2 Kings » → pour Samuel, utiliser verse_en.py par
+  slug, PAS un mapping « Kings ».
+• Romans 5:8 : la Douay du site est tronquée (« according to the time », sans
+  « Christ died for us ») → citation EN alignée sur la donnée du site.
+• ODDITÉS DOUAY (EN provisoire ; la prose EN garde le bon terme, seule la
+  citation suit Douay ; à revoir avec le Chérubin EN) : « ORIENT » (le Germe,
+  Za 3/6), « Jesus » (Josué grand prêtre), « Alexandria » (No-Amon/Thèbes,
+  Na 3:8), « ADONAI » (Ex 6:3), « Abdias » (Obadiah), « Elias/Eliseus »,
+  « Phase » (Pâque), « Salphaad » (Celophhad), « Idumea » (Édom),
+  « God is charity » (God is love).
+
+LEÇONS DE MÉTHODE DURABLES
+• Ne JAMAIS décaler des références en bloc sans vérifier chaque citation contre
+  le texte du verset cité (une même parole peut vivre à deux réfs).
+• textcheck à 80 % peut laisser passer 1-2 mots (noms propres) : sur l'article
+  qu'on traite, aligner CHAQUE citation au Chérubin verbatim, et répercuter en
+  prose tout terme cité que la prose commente.
+• VÉRIFIER LES NÉGATIONS ET LE SENS (Emmanuel, 14/07, « n'oublie pas les
+  négations… ainsi que tout ce qui touche au manque de compréhension »). Le
+  seuil de 80 % peut aussi valider une citation dont une NÉGATION a sauté ou
+  s'est inversée (« ne… pas », « non », « sans », « nul », « point »,
+  « jamais ») : or une négation retournée RETOURNE le sens. Après chaque
+  textcheck, relire chaque citation mot à mot contre le verset source et
+  confirmer que toute négation y est présente, au bon endroit et avec la bonne
+  portée. Étendre le contrôle à tout ce qui trahit un MANQUE DE COMPRÉHENSION :
+  contresens sur le texte ou la doctrine, antécédent mal rattaché, nuance
+  inversée, cause et effet permutés, accomplissement mal placé, sujet flottant.
+  La vérification ne porte pas que sur les références et l'équilibrage HTML : elle
+  porte D'ABORD sur le SENS de ce qu'on affirme.
+• Audit de fond : lire l'article ENTIER et juger soi-même le vrai manque avant
+  d'éditer (seul juge = la justesse) ; éditer par ancres exactes avec assert,
+  FR+EN en parallèle ; toute citation ajoutée passe par verse.py / verse_en.py
+  puis validate + textcheck (0/0) avant build.
+• Docs projet de référence : claude/chantier-conformite-cherubin-triage.md
+  (triage conformité par thème) ; claude/ecriture-passe-genre-en-cours.md
+  (connexions restantes) ; claude/audits-doctrine-vague2-*.md (audits doctrine).
+
+(Tenir cette section COURTE : le durable monte en §3/§6/§7, ici seulement les
+chantiers réellement ouverts. Ne jamais la laisser redevenir un journal.)
 
 ════════════════════════════════════════════════════════════════════
 FIN DU FICHIER DE REPRISE

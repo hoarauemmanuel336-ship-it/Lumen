@@ -2196,8 +2196,12 @@
   }
 
   auth.onAuthStateChanged(function (u) {
-    isAdmin = !!(u && ((u.email || '').toLowerCase() === ADMIN));
-    if (isAdmin) { buildDock(); autoOuvrir(); }
+    // Menu d'administration RETIRE du site (17/07 : Emmanuel administre desormais via l'IA + fichiers).
+    // isAdmin force a false => plus de dock flottant, plus d'entree « Administration » au menu compte,
+    // plus d'ouverture auto du panneau, plus de controles d'edition d'article. La couche d'application
+    // des overrides (tous visiteurs) et les outils publics d'article (ecouter, copier, precedent/suivant)
+    // ne dependent PAS de isAdmin et restent actifs. La vraie barriere d'ecriture reste les regles Firestore.
+    isAdmin = false;
     majCompte(); majDock();
   });
 

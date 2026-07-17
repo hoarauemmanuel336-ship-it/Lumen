@@ -11,10 +11,12 @@
   var BP_T = BP_EN ? {
     bible: 'The Holy Bible', ouvrir: 'Open the Bible', page: 'Open the page',
     ph: 'Reference: Matthew 7:6-8', chs: 'Chapters', charge: 'Loading\u2026',
+    aller: 'Go', fermer: 'Close',
     errTxt: 'The text could not be loaded.', errBible: 'The Bible could not be loaded.'
   } : {
     bible: 'La Sainte Bible', ouvrir: 'Ouvrir la Bible', page: 'Ouvrir la page',
     ph: 'R\u00e9f\u00e9rence : Matthieu 7:6-8', chs: 'Chapitres', charge: 'Chargement\u2026',
+    aller: 'Aller', fermer: 'Fermer',
     errTxt: 'Le texte n\u2019a pas pu \u00eatre charg\u00e9.', errBible: 'La Bible n\u2019a pas pu \u00eatre charg\u00e9e.'
   };
 
@@ -123,11 +125,11 @@
     + '<div class="bp-tete">'
     + '  <span class="bp-titre">' + BP_T.bible + '</span>'
     + '  <a class="bp-page" href="' + BP_PAGE + '">' + BP_T.page + '</a>'
-    + '  <span class="bp-fermer" id="bp-fermer" role="button" tabindex="0" aria-label="Fermer">\u2715</span>'
+    + '  <span class="bp-fermer" id="bp-fermer" role="button" tabindex="0" aria-label="' + BP_T.fermer + '">\u2715</span>'
     + '</div>'
     + '<div class="bp-refrow">'
     + '  <input class="bp-ref" id="bp-ref" type="text" placeholder="' + BP_T.ph + '" autocomplete="off" spellcheck="false">'
-    + '  <span class="bp-aller" id="bp-aller" role="button" tabindex="0">Aller</span>'
+    + '  <span class="bp-aller" id="bp-aller" role="button" tabindex="0">' + BP_T.aller + '</span>'
     + '  <span class="bp-err" id="bp-err"></span>'
     + '</div>'
     + '<div class="bp-chips" id="bp-chips"></div>'
