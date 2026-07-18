@@ -1,7 +1,7 @@
 ════════════════════════════════════════════════════════════════════
 FICHIER DE REPRISE : LUMEN VERITATIS
 Mémoire de travail du projet, en mode Cowork automatique.
-Mis à jour : 17 juillet 2026
+Mis à jour : 18 juillet 2026
 ════════════════════════════════════════════════════════════════════
 
 NATURE DE CE FICHIER. Condensé vivant, jamais une archive. Il vit dans le
@@ -91,7 +91,7 @@ Ne pas ajouter de qualificatif méta précisant le statut d'une affirmation (« 
 Rédaction : formulations à éviter
 Définir les choses par ce qu'elles sont, jamais par contraste ou négation stylistique : proscrire « X n'est pas Y », « ce n'est pas X », « X, non Y », les constructions « X mais Y » (ex. « réelle mais relationnelle » → « relationnelle »), et ne jamais ouvrir un texte par « X n'est pas Y : c'est Z ». Une négation ou un contraste qui porte un contenu doctrinal ou explicatif propre reste légitime et peut être conservé (ex. « Dieu n'est pas enchaîné à ses signes ») ; ne retirer la négation que lorsqu'elle ne fait que tourner autour de l'affirmation positive.
 Éviter les formules théâtrales et dramatisantes (« tout bascule », « révolutionne », « chamboule tout »).
-Pas d'épithète subjective qui colore émotionnellement un texte biblique ou son auteur (règle d'Emmanuel, 14/07) : proscrire « l'une des lettres les plus ardentes », « Paul écrit dans le feu », « une lettre brûlante / vibrante / bouleversante », « un cri du cœur », « avec passion », et les superlatifs d'ambiance du même ordre. On énonce ce que le texte EST, son occasion et son enjeu, directement (ex. « L'épître aux Galates est une lettre que Paul adresse aux Églises de Galatie… L'enjeu touchait le cœur de l'Évangile, et Paul écrit pour défendre… »). Une caractérisation factuelle et vérifiable reste permise (ex. situer l'importance historique d'un auteur), mais jamais le qualificatif d'ambiance qui dramatise.
+Pas d'épithète subjective qui colore émotionnellement un texte biblique ou son auteur (règle d'Emmanuel, 14/07) : proscrire « l'une des lettres les plus ardentes », « Paul écrit dans le feu », « une lettre brûlante / vibrante / bouleversante », « un cri du cœur », « avec passion », et les superlatifs d'ambiance du même ordre. On énonce ce que le texte EST, son occasion et son enjeu, directement (ex. « L'épître aux Galates est une lettre que Paul adresse aux Églises de Galatie… L'enjeu touchait le cœur de l'Évangile, et Paul écrit pour défendre… »). Une caractérisation factuelle et vérifiable reste permise (ex. situer l'importance historique d'un auteur), mais jamais le qualificatif d'ambiance qui dramatise. Cette règle vaut AUSSI pour les résumés et accroches, pas seulement le corps : à chaque audit, y balayer les mêmes épithètes (« Paul défend dans le feu », « l'une des plus bouleversantes de tout Paul », « brûlante », « vibrante »…). Vérifié 18/07 sur l-epitre-aux-galates (résumé « défend dans le feu » corrigé) et la-force-dans-la-faiblesse (« l'une des plus bouleversantes » corrigé).
 Éviter les phrases de validation flatteuses qui complimentent l'interlocuteur au lieu d'entrer dans le contenu (« your intuition is correct », « bonne question », « c'est juste de remarquer que »).
 Éviter les formules qui annoncent une précision au lieu d'y entrer directement (« X est réel, la manière dont c'est réel compte »), et celles qui assertent qu'une chose est « réelle », « bien réelle », « véritable » ou « authentique » comme précision en soi. Entrer directement dans le contenu.
 Ne jamais ouvrir un texte par un diagnostic ou une reformulation de la situation vécue par l'intéressé. Entrer directement dans le propos, le conseil ou la matière.
@@ -269,13 +269,98 @@ l'affirmatif perdrait). Sinon, tourner à l'affirmatif : « ne cesse de » →
 premier jet ET à l'audit de l'existant (repérer les phrases surchargées de
 « ne », « pas », « non », « sans », « nul » et les alléger). À surveiller
 particulièrement dans les ajouts récents, où plusieurs contrastes en « non pas…
-mais » pourraient s'affirmer directement.
+mais » pourraient s'affirmer directement. Cas-type relevé par Emmanuel (17/07,
+la-peur) : l'échafaudage « X ne demande pas A ; elle demande seulement B » se
+tourne en affirmant ce que la négation voulait dire (« la foi ne demande pas
+de s'évanouir d'un coup ; elle demande seulement de se tourner… » → « la foi
+laisse le temps de s'apaiser ; elle demande seulement que l'âme se tourne… »),
+en profitant du passage pour fixer tout sujet flottant (qui se tourne : l'âme).
+
+✦ TON DÉFENSIF / « JOUER LES VICTIMES » (Emmanuel, 18/07, les-guerres-d-extermination :
+« beaucoup de ce genre de ton et de négation vient du fait que tu cherches trop à justifier,
+arrête de jouer les victimes »). RACINE de beaucoup de négations : l'écriture se met en posture
+d'avocat qui plaide et qui pare l'objection AVANT qu'elle soit posée, au lieu d'énoncer la vérité
+avec l'assurance de l'Église. Signes de ce ton, à proscrire : les CONCESSIONS PRÉ-EMPTIVES et
+l'auto-défense du texte lui-même — « X est un mal réel, MAIS trois vérités l'entourent, qui en
+changent le sens SANS L'ADOUCIR FAUSSEMENT » ; « cette lecture N'INVENTE RIEN » ; « la part de la
+rhétorique N'ÔTE PAS toute la difficulté » ; « ceci ne cherche pas à [objection redoutée] » ; tout
+« sans … faussement / vraiment / à tort », tout « rien de forcé / d'artificiel / d'arbitraire ».
+Ces formules TRAHISSENT une inquiétude (le texte a peur d'être accusé de tricher) et l'inquiétude
+se voit. REMÈDE : dire la chose de front, en positif, et laisser la vérité porter. Ex. corrigés
+(FR+EN) : « Mais trois vérités l'entourent, qui en changent le sens sans l'adoucir faussement » →
+« Trois vérités en donnent la vraie mesure » ; « La mort … n'est pas dans sa main un tort qu'il
+inflige, mais le terme qu'il fixe » → « La mort … est, dans sa main, le terme qu'il fixe à une vie
+qu'il avait donnée » ; « la mort du corps n'est pas la ruine de l'âme » (+ « ruine de l'âme »
+AMBIGU, laisse croire l'âme perdue) → « la mort du corps laisse l'âme sauve » ; « ces enfants n'en
+portent pas le châtiment … au lieu de les perdre » → « ces enfants en sont innocents, et le Dieu
+qui les a faits les accueille auprès de lui » ; « jamais remis à l'homme … nul ne peut s'en
+réclamer » → « Dieu … l'a tenu dans sa seule main ; ce jugement appartient au seul Maître de la
+vie, qui l'exerce comme juge de toute la terre » ; « Cette lecture n'invente rien ; elle suit
+Paul » → « Cette lecture vient de Paul » ; drop du tic « lui-même » (« Et Paul applique lui-même »
+→ « Et Paul applique »). NB « l'Apôtre » de ce même article était DÉJÀ corrigé en « Paul » (balayage
+17/07) : si Emmanuel le re-signale, c'est qu'il lit le SITE EN LIGNE, en retard sur le paquet local
+non encore poussé sur GitHub. BALAYAGE CORPUS fait (18/07) : le tic était CONCENTRÉ dans cet
+article ; ailleurs, restent 2-3 négations à contenu doctrinal réel, laissées car légitimes (cf.
+NÉGATIONS JUSTIFIÉES) mais À REVOIR si Emmanuel les signale : la-confession (« cette réparation ne
+cherche pas à fléchir un Dieu exigeant »), le-sacerdoce-reserve-aux-hommes (« il ne s'agit pas
+d'une loi nouvelle, mais d'une vérité du dépôt »), la-confession (« le pardon n'efface pas toute
+conséquence », doctrinal, gardé). RÈGLE PERMANENTE : dès le premier jet ET à l'audit, traquer la
+posture défensive et la retourner en énoncé de front.
 
 NE PAS DIRE CE QUE L'ÉCRITURE NE FAIT PAS (Emmanuel, 14/07). Cas particulier,
 strict, de la règle ci-dessus. Ne jamais décrire l'Écriture (ni « le texte »,
 ni un évangéliste) par ce qu'elle NE fait pas : proscrire « l'Écriture ne
 recoud pas les deux récits », « le texte ne dit pas », « ne précise pas »,
-« ne les adoucit pas », « ne referme pas le dossier », « ne s'attarde pas ».
+« ne les adoucit pas », « ne referme pas le dossier », « ne s'attarde pas »,
+« ne se borne pas à » (relevé par Emmanuel 17/07, l-intercession-des-saints :
+« L'Écriture ne se borne pas à permettre l'intercession : elle montre… » →
+« L'Écriture va plus loin : elle montre… », la progression se dit en positif).
+✦ BALAYAGE « L'APÔTRE » / « LE PROPHÈTE » (17/07, Emmanuel sur la-force + « voir si c'est pas pareil
+ailleurs » ; + « Nicée n'a rien ajouté » retourné). Corpus entier balayé (prose seule, citations
+exclues). CRITÈRES DE JUGEMENT confirmés : les PLURIELS (« les apôtres ») = vocabulaire normal,
+gardés ; les REPRISES ANAPHORIQUES dans l'article consacré au personnage (Élie, Nahum, Ézéchiel…) =
+exception prévue par la règle, gardées (~30 cas) ; les TITRES CONSACRÉS avec nom (« l'apôtre des
+nations », « Boniface, l'apôtre de la Germanie ») = gardés ; « l'apôtre Jean » gardé chez les-peres
+(lève l'ambiguïté entre les Jean) ; « le prophète (Zacharie 9:9) » gardé quand la réf parenthétique
+porte déjà le nom (évite « Zacharie (Zacharie 9:9) ») ; « le prophète Zacharie / le grand prêtre
+Josué » gardé (parallélisme des offices voulu, vision de Za 3). CORRIGÉ (12+3) : « l'Apôtre » seul →
+Paul (l-eglise, l-esclavage, le-peche-originel, les-guerres, la-force ×2) ; « l'apôtre X » → nom seul
+(le-pape Pierre, galates Pierre, le-dieu-qui-juge Paul, apostolique Jacques-frère-de-Jean) ;
+« l'apôtre Jacques » du concile → « Jacques, frère du Seigneur » (la-justice-le-jour, cohérent avec
+l-eglise-apostolique) ; « le prophète Osée/Isaïe/Jérémie » → nom seul (première-année, philippiens,
+gloire-du-second-temple). NICÉE : « Nicée n'a rien ajouté à la foi : il a nommé ce que l'Église
+croyait » → « Nicée a seulement nommé ce que l'Église croyait depuis les apôtres » (pattern
+« seulement » validé ; le contenu anti-« invention de Nicée » demeure, dit en positif). Tout FR+EN,
+verify_ch 0 défaut.
+✦ BALAYAGE « [L'ÉCRITURE / DIEU / UN APÔTRE] NE DIT PAS » (17/07, Emmanuel sur le-mariage : « Devenir
+"une seule chair" ne dit pas seulement l'union des corps », relevé comme négation + mise en garde
+qu'aucune union des corps n'est jamais littérale, une fusion en un seul corps ; le sens visé est
+l'union totale de la personne, corps-cœur-vie, dont le rapport conjugal est la part réelle mais non
+totale). Corpus entier balayé pour le même échafaudage (« ne dit pas », « ne dit pas seulement ») dès
+que le sujet grammatical est l'énoncé scripturaire lui-même (une phrase citée, Dieu comme locuteur
+d'un oracle qu'on vient de citer, Paul comme auteur d'un verset qu'on vient de citer) : cas strict de
+la règle ci-dessous, sans exception même quand la phrase a la forme d'un contraste réel (précédent
+l-intercession-des-saints, déjà tourné en positif malgré le contraste qu'il portait). CORRIGÉ (6, FR+EN) :
+le-mariage (« ne dit pas seulement l'union des corps » → « dit bien davantage que l'union des corps ») ;
+l-esclavage-dans-la-bible (« "c'est son propre bien" ne dit pas que sa vie ne compte pas, mais » →
+« affirme sa valeur : » ) ; le-jeune-et-la-restauration (« Dieu ne dit pas seulement que les jeûnes
+peuvent cesser : il annonce » → « Dieu va plus loin que la simple cessation des jeûnes : il annonce ») ;
+la-justification-par-la-foi, deux occurrences (« Paul ne dit pas que la conduite est sans valeur, mais »
+→ « Paul affirme que…, sans que la conduite perde pour autant sa valeur » ; « Dieu ne se contente pas de
+déclarer l'homme innocent » → « Dieu va plus loin que déclarer l'homme innocent : ») ; une-fois-sauve-
+toujours-sauve (« il ne dit pas que l'homme appelé ne puisse s'y dérober » → « cette fidélité laisse
+ouverte la possibilité que l'homme appelé s'y dérobe ») ; la-peur (« Dieu ne dit pas que le danger
+n'existe pas ; il dit qu'il est là » → « Dieu reconnaît le danger ; il dit qu'il est là »). En prime (règle
+générale, sujet non scripturaire mais négation facilement affirmable) : le-sola-fide (« la justification
+ne se réduit pas à » → « dépasse » ) et le-doute-et-les-systemes-moraux (« on ne se contente pas de ce
+qui est probable, on prend » → « la certitude prime sur la simple probabilité : on prend »). Restent EN
+PLACE, jugées négations doctrinales légitimes hors du champ strict (sujet = une réalité théologique,
+pas l'acte scripturaire lui-même) : le-sola-fide et la-justification-par-la-foi conservaient par ailleurs
+d'autres négations doctrinales non touchées ici (contrastes réels contre une erreur historique précise,
+cf. règle des NÉGATIONS JUSTIFIÉES). Profitant du même passage : 66 espaces insécables (nbsp) trouvés
+épars dans 10 articles (hors citations, jamais repérés par les vagues Chérubin qui ne portaient que sur
+les citations) normalisés en espace normale, conformément à la convention « 0 nbsp » déjà en vigueur
+dans tout le corpus. Tout FR+EN, verify_ch 0 défaut, 0 straight/nbsp corpus entier confirmé après coup.
 Énoncer positivement ce que l'Écriture fait, dit ou montre, et attribuer à la
 LECTURE ou à la TRADITION ce qui relève d'elles (ex. « la lecture rejoint les
 deux bords », au lieu de « l'Écriture ne recoud pas les deux bords » ;
@@ -377,6 +462,40 @@ fragile (à étayer ou à retirer). Un article riche plutôt que plusieurs mince
 ne garder que ce qui peut être traité avec assurance. « Cet article est-il
 correct ? » = demande d'AUDIT DE FOND sur ces trois critères, pas de simple
 relecture.
+✦ LA CHAIR PARTOUT, DANS TOUS LES DOMAINES (Emmanuel, 18/07, à partir de l'histoire,
+mais exigence ÉTENDUE EXPRESSÉMENT À TOUT LE SITE).
+⛔ RÈGLE ABSOLUE, RAPPELÉE AVEC COLÈRE PAR EMMANUEL LE 18/07 (« je t'ai pas dit que tout doit avoir de
+la chair ? pourquoi je m'emmerde avec REPRISE »). DEUX INTERDITS FERMES, nés d'un vrai échec de
+l'assistant : (1) NE JAMAIS livrer un article de contenu COMPACT/SERRÉ. Tout article neuf ou repris
+naît AVEC sa chair, du premier jet, point. Un article de ~400-700 mots qui « couvre » sans déployer
+est un ÉCHEC, à refaire, pas à livrer. (2) NE JAMAIS REDEMANDER à Emmanuel s'il veut plus de chair,
+ni signaler qu'un article « reste compact, à approfondir si tu veux » : la réponse est OUI par
+DÉFAUT, définitivement, c'est POURQUOI la règle est dans REPRISE. Reposer la question, c'est trahir
+la règle et forcer Emmanuel à se répéter. La chair est le comportement par défaut, jamais une option
+à proposer. Repère de niveau concret : viser la densité des fresques (croisades ~2000, Trente ~1350),
+PAS les articles serrés de la 1re version de « la Loi » / 2 Co (~400-700 = À REFAIRE, chantier ouvert
+ci-dessous). CHANTIER DE REPRISE SOLDÉ (18/07) : « la Loi » 4 articles de contenu RÉÉCRITS
+avec chair (Décalogue 721→1290, prochain 606→899, culte 687→998, Christ 559→791) ; PUIS Ézéchiel 18
+(602→837, versets de conversion 18:21/24/30 déployés) et les 4 articles 2 Co réécrits (entrée 447→583,
+ministère 557→745 +4:8-9/5:14, collecte 391→558 +8:2/9:8, faiblesse 414→621 +11:24-27/12:7/13:4).
+Tous FR+EN, verify_ch 0 défaut. LEÇON RETENUE : la chair est le défaut, jamais une option à proposer. Défaut nommé : les articles peuvent être
+COMPRIMÉS — « chaque événement important reçoit une phrase là où il appellerait un paragraphe. Le
+lecteur reçoit le bon squelette, mais pas la chair. » C'est un manquement à APPROFONDI, distinct de
+la complétude : un article peut nommer tous les faits (squelette complet) et rester maigre faute de
+les DÉPLOYER. La chair, c'est quatre choses, à donner à chaque point qui le mérite : les CAUSES
+creusées (pourquoi, d'où cela vient) ; les FIGURES rendues vivantes (un nom devient une personne,
+avec son geste et son sort) ; les CONSÉQUENCES déroulées (ce que cela produit, ensuite et ailleurs) ;
+le SENS THÉOLOGIQUE dégagé (ce que l'événement dit de Dieu, du salut, de l'Église). NE CONTREDIT PAS
+la règle « la longueur n'est jamais un critère » : on ne rallonge pas pour rallonger, on donne à
+chaque point sa juste étendue ; un point qui pèse veut un paragraphe, un point mineur reste une
+ligne. Le repère de niveau, c'est les grandes fresques de la vie du Christ (la-deuxieme-annee,
+la-troisieme-annee, la-semaine-sainte) : on y ENTRE, on ne les survole pas. Tout article, dans
+n'importe quel domaine, qui donne le squelette sans la chair est à approfondir. DÉMONSTRATION FAITE
+sur les-croisades (18/07) : 934 mots → fresque complète (voir entrée domaine HISTOIRE). L'histoire
+est le domaine où le site écrivait le plus SOUS son propre meilleur niveau (16 articles quasi tous
+~1000 mots, longueur uniforme = signe qu'ils ont été écrits à une taille, pas à la mesure du sujet ;
+Trente, l'un des événements les plus décisifs, était le PLUS court, 657 mots : à l'envers). À
+reprendre en priorité : Trente, la Réforme, le schisme, l'Église et le monde moderne.
 PRÉCISIONS APPUYÉES D'EMMANUEL (14/07, à retenir pour TOUS les domaines et
 articles du site). (a) La LONGUEUR / le nombre de caractères n'est JAMAIS un
 critère : un article court peut être complet, un long rester lacunaire ; on
@@ -512,6 +631,619 @@ ne se rapièce pas.
   diagramme se fond dans la prose des articles, jamais en article autonome.
   Modèles : Isaïe (5), La vie du Christ (7, évangiles fondus), Moïse (7). Le
   document des 20 prompts de diagrammes est dans le Drive d'Emmanuel.
+  ✦ PRINCIPE D'ORGANISATION (Emmanuel, 18/07, « faire les choses de façon méthodique et optimale ») :
+  L'UNITÉ D'UNE SÉRIE EST LE SUJET THÉOLOGIQUE/LITTÉRAIRE, PAS LE LIVRE. Trois mouvements possibles.
+  (a) UNIR plusieurs livres quand ils racontent une même chose : les 4 évangiles → « La vie du Christ » ;
+  1 + 2 MACCABÉES → une seule série (récit unique de la résistance et des martyrs, malgré deux livres).
+  (b) SÉPARER PAR GENRE un même livre/corpus : le Pentateuque se scinde en RÉCIT (« Moïse et la sortie
+  d'Égypte », narratif) et LOI (« La Loi », série À PART, encore à construire) — c'est VOULU, et cela
+  EXPLIQUE les « trous » Lévitique/Nombres relevés à l'audit couverture : ce ne sont pas des lacunes de
+  la série Moïse, c'est la matière législative RÉSERVÉE à la série Loi non encore faite. Ne jamais
+  « combler » le Lévitique dans Moïse : le garder pour la Loi. (c) RE-LIRE : 1 + 2 CHRONIQUES ne
+  REDISENT pas platement Samuel-Rois ; elles relisent la même histoire avec des détails propres et un
+  SENS THÉOLOGIQUE (culte, Temple, sacerdoce lévitique, David idéalisé, dynastie davidique, fidélité et
+  rétribution) — la série Chroniques doit porter ce POURQUOI de la reprise, pas les seuls faits déjà
+  contés ailleurs. Conséquence pour l'audit couverture : un livre « sous-couvert » en citations n'est un
+  vrai trou que si sa matière n'est pas RÉSERVÉE à une autre série par genre ; vérifier ce partage avant
+  de combler.
+  ✦ DOCUMENT MAÎTRE LU (18/07). Le Drive d'Emmanuel contient « Prompts diagrammes bibliques — Lumen
+  Veritatis » (Google Doc, version 21/06 = id 19FxBCAmJHtbRBjwDYEKXcR1fl5mS8wZk8hB4OTzyVHc ; aussi en
+  .docx/html). C'EST LA FEUILLE DE ROUTE COMPLÈTE des ~20 trames couvrant les 73 livres, chaque entrée =
+  un prompt de diagramme prêt, dont le plan devient la série d'articles. À RELIRE avant toute
+  construction de série. Les 20 trames : AT — (1) Genèse origines+patriarches ; (2) Moïse = Exode+
+  Lévitique+Nombres+Deutéronome FONDUS ; (3) Josué+Juges+Ruth ; (4) 1-2 Samuel+1-2 Rois+1-2 Chroniques
+  (Chroniques = profondeur cultuelle, pas répétition) ; (5) Esdras+Néhémie ; (6) Tobie+Judith+Esther ;
+  (7) 1-2 Maccabées (2 M = profondeur martyre/résurrection, façon Chroniques) ; (8) Psaumes ; (9)
+  Proverbes+Qohélet+Siracide+Sagesse ; (10) Job ; (11) Cantique ; (12) Jérémie+Lamentations+Baruch ;
+  (13) Ézéchiel ; (14) Daniel ; (15) les Douze petits prophètes. NT — (16) Actes ; (17) les 13 lettres
+  de Paul en blocs ; (18) Hébreux ; (19) lettres catholiques (Jacques,1-2 Pierre,1-3 Jean,Jude) ;
+  (20) Apocalypse. DÉJÀ BÂTIS : Isaïe (5), La vie du Christ (7). ⚠ DISCORDANCE À TRANCHER PAR EMMANUEL :
+  le doc (juin) FOND la Loi (Lv/Nb/Dt) dans la trame Moïse ; le 18/07 il dit « je voulais faire la loi
+  à PART ». Sa pensée a peut-être évolué → lui demander avant de traiter le Pentateuque. ⚠ VRAI TROU
+  CONCRET (croisement plan × site) : la série Ézéchiel bâtie N'A PAS l'article « responsabilité
+  personnelle » (ch 18, « l'âme qui pèche mourra ») que le prompt #13 PRESCRIT ; manque réel à ajouter.
+  RÉCONCILIATION AUDIT COUVERTURE : la plupart des livres « absents » (Genèse, historiques, sagesse,
+  Jérémie, Daniel, Actes, lettres cathol., Apocalypse) ne sont pas des lacunes mais des TRAMES NON
+  ENCORE BÂTIES, déjà planifiées. Reste à compléter dans l'existant : Ézéchiel (ch 18 + section
+  jugement), 2 Corinthiens (mince dans le bloc Paul). ORDRE : petits comblements d'abord (Ézéchiel 18,
+  2 Co), puis bâtir les trames manquantes dans l'ordre du canon en suivant le doc maître.
+  ✦ NOUVELLE SÉRIE « LA LOI » (décidée avec Emmanuel 18/07, ÉCART VOLONTAIRE au doc maître de juin qui
+  fondait la Loi dans Moïse). Emmanuel veut la Loi traitée À PART ET « je veux TOUT, judiciaire, culte,
+  etc. » : pas seulement la théologie de la Loi, mais CE QU'ELLE CONTIENT EN ELLE-MÊME, déployé. Placée
+  dans Écriture > AT > Le Pentateuque, nœud « la-loi » JUSTE APRÈS « moise ». RÈGLE DE NON-REDITE avec
+  la série Moïse (comme Chroniques/Rois) : Moïse RACONTE la Loi donnée épisode par épisode ; « la Loi »
+  DÉPLIE son contenu et son sens, matière par matière. PLAN (5 articles) : (1) La Loi, don de l'alliance
+  [FAIT] ; (2) Le Décalogue (les 10 paroles une à une, deux tables) ; (3) La loi du prochain (social/
+  judiciaire : justice, pauvre, étranger, restitution, année sabbatique, jubilé, Lv 19:18) ; (4) La loi
+  du culte et de la sainteté (sacrifices, sacerdoce, pur/impur, fêtes, sabbat) ; (5) La Loi et le Christ
+  (but : révéler le péché, pédagogue Ga 3:24 ; accomplissement : culte accompli, morale approfondie au
+  Sermon, judiciaire caduc, tout dans l'amour). ART. 1 BÂTI (la-loi-don-de-l-alliance / the-law-gift-of-
+  the-covenant, ~1500 mots FR+EN, verify_ch 0 défaut) : torah=instruction (positif), grâce AVANT le
+  commandement (Ex 20:2 avant le 1er précepte), les TROIS SORTES de préceptes (moral/cérémoniel/
+  judiciaire, clé thomiste), Loi sainte (Rm 7:12) qui prépare au Christ (Ga 3:24), toute la Loi dans
+  l'amour (Dt 6:5 + Lv 19:18 + Mt 22:37-40, Mt 5:17). ⚠ CORRECTION EMMANUEL : « une instruction, PAS un
+  fardeau » = négation → titre affirmatif « une instruction qui fait vivre ». INTÉGRATION (4 points) :
+  articles.json (177), themes.json (nœud la-loi sous g-pentateuque — ⚠ g-pentateuque est un NŒUD sous
+  g-at, PAS un groupe direct, bien descendre), data-en.js SLUGS, nouveautes.json FR+EN.
+  ✦ SÉRIE « LA LOI » COMPLÈTE (18/07, « poursuis sans t'arrêter »). Les 5 articles bâtis, FR+EN,
+  verify_ch 0 défaut, 0 lien, 0 tiret, 0 straight/nbsp, h2 FR=EN, build 183 paires → 366 pages.
+  (1) la-loi-don-de-l-alliance (973 mots) ; (2) le-decalogue (721 : 2 tables, les 10 commandements,
+  loi naturelle/Jr 31:33, Christ approfondit Mt 5:27-28 + Rm 13:9) ; (3) la-loi-du-prochain (606 :
+  justice Dt 16:20, étranger Ex 23:9, glanage Lv 19:9-10, salaire Dt 24:14-15, sabbatique+jubilé
+  Lv 25:10, amour Lv 19:18) ; (4) la-loi-du-culte-et-de-la-saintete (687 : sanctuaire Ex 25:8, sang
+  Lv 17:11, pur/impur + Lv 19:2, sabbat Ex 31:13, ombre Hé 10:1/Col 2:16-17, Agneau Jn 1:29) ;
+  (5) la-loi-et-le-christ (559 : Rm 3:20, Rm 13:10, ce qui demeure/passe par les 3 sortes, loi nouvelle
+  Ez 36:26-27/Rm 8:3, joug léger Mt 11:29-30). Intégration 4 points OK, nœud la-loi = 5 arts. NB : les
+  4 articles de CONTENU sont COMPLETS en COUVERTURE (tout le judiciaire/culte/moral demandé) mais
+  écrits SERRÉS (~600-720 mots) ; si Emmanuel veut plus de chair, les approfondir sans changer le plan.
+  ✦ DEUX MANQUES CONFIRMÉS COMBLÉS (18/07, « continue »). FR+EN, verify_ch 0 défaut, 0 lien/tiret/
+  straight/nbsp, h2 FR=EN, build 187 paires → 374 pages. (A) ÉZÉCHIEL 18 : nouvel article
+  « ezechiel-la-responsabilite-personnelle » (that prompt #13 prescrivait), inséré dans la série
+  ezechiel APRÈS actions-symboliques : proverbe des pères (18:2), chacun répond de soi (18:4, 20),
+  le méchant converti vit, Dieu ne veut pas la mort (18:23, 32) → Évangile. (B) 2 CORINTHIENS : passe
+  de 1 article mince (62 %) à COUVERTURE COMPLÈTE 13/13 ch. Entrée « la-seconde-epitre-aux-corinthiens »
+  RÉÉCRITE en vue d'ensemble (occasion : visite pénible, lettre des larmes 2:4, réconciliation par
+  Tite, Dieu de toute consolation 1:3-4, tristesse selon Dieu 7:10 ; annonce les 3 mouvements) +
+  3 articles de contenu NEUFS dans la catégorie corinthiens : « le-ministere-de-la-nouvelle-alliance »
+  (ch 3-6 : lettre/Esprit 3:6, voile→gloire 3:18, trésor/vases 4:7, poids de gloire 4:17, créature
+  nouvelle 5:17, réconciliation 5:19-20, fait péché 5:21, temps du salut 6:2) ; « la-collecte-pour-les-
+  saints » (ch 8-9 : Macédoine, Christ riche fait pauvre 8:9, semer 9:6, donner avec joie 9:7) ;
+  « la-force-dans-la-faiblesse » (ch 10-13 : super-apôtres, se glorifier dans le Seigneur 10:17, de sa
+  faiblesse 11:30, écharde, ma grâce te suffit 12:9, faible donc fort 12:10, bénédiction trinitaire
+  13:13). NON-REDITE tenue (entrée = récit/occasion, contenus = matière). Ces articles restent COMPACTS
+  (~400-600 mots) : couverture complète, à approfondir si Emmanuel le demande. RESTE : bâtir les trames
+  neuves du doc maître (Genèse, historiques, sagesse, Jérémie, Daniel, Actes, cathol., Apocalypse).
+  ✦ SÉRIE GENÈSE — HISTOIRE DES ORIGINES (Gn 1-11) BÂTIE (18/07, « poursuis » ; REPRISE relu EN ENTIER
+  au préalable à la demande d'Emmanuel). Trame #1 du doc maître. Catégorie neuve « genese » (nom_fr
+  « La Genèse ») sous Écriture > AT > g-pentateuque, EN TÊTE (avant moise, la-loi). 3 articles, FR+EN,
+  verify_ch 0 défaut, 0 lien/tiret/straight/nbsp, h2 FR=EN, build 190 paires → 380 pages. ⚠ LEÇON
+  APPLIQUÉE EN DIRECT : 1er jet à ~850 mots = COMPACT → REFUSÉ AVANT LIVRAISON et RÉÉCRIT à ~1030-1050
+  (la chair est le défaut, jamais une option ; ne jamais livrer le compact). (1) la-creation-et-le-repos
+  (1050 : bara, chaos/Esprit 1:2, parole créatrice/Verbe Jn 1:3+Col 1:16, image 1:26-27 + vocation 1:28
+  + adam/adamah 2:7, sabbat → repos éternel/Résurrection ; récit théologique, comment scientifique
+  laissé à la raison — foyer la-theorie-de-l-evolution respecté). (2) le-jardin-et-la-chute (1021 :
+  Éden 2:17, aide 2:18, ruse 3:4-5, triple convoitise 3:6, rejet de faute 3:12, mort 3:19, expulsion/
+  chérubins 3:23, Rm 5:12 — foyer le-peche-originel respecté ; protoévangile 3:15 nommé, nouvel Adam
+  RENVOYÉ au foyer le-nouvel-adam). (3) de-cain-a-babel (1035 : Caïn 4:7-10, signe 4:15, Abel figure
+  martyrs/Christ ; déluge, Noé 6:9, colombe 8:11, alliance/arc 9:13 + 8:21 ; Babel 11:4/7 + balal →
+  Pentecôte → Abraham). GESTES : articles.json (188), themes.json (nœud genese en tête g-pentateuque),
+  data-en.js SLUGS, nouveautes.json FR+EN.
+  ✦ SÉRIE GENÈSE — PATRIARCHES (Gn 12-50) BÂTIS (18/07, « poursuis »). 3 articles neufs FR+EN dans la
+  catégorie genese, verify_ch 0 défaut, 0 lien/tiret/straight/nbsp, h2 FR=EN, build 193 paires → 386
+  pages. ⚠ MÊME LEÇON : 1ers jets ~700-770 mots = COMPACT → REFUSÉS et RÉÉCRITS à ~820-940 (chair
+  déployée : épisodes non sautés, figures vivantes, sens dégagé). (1) abraham-pere-des-croyants (923 :
+  appel/Ur 12:1, triple promesse 12:2-3, étoiles 15:5, foi=justice 15:6 [foyer justification respecté],
+  alliance 15:18 + circoncision 17:10, Mambré/rire 18:14, intercession pour Sodome 18:25, Isaac né en
+  grâce, ligature 22:2/8/12/14 → Isaac porte le bois = Christ, Moriah annonce le Calvaire). (2) isaac-
+  et-jacob (821 : Rébecca, oracle du cadet 25:23, droit d'aînesse, promesse redite à Isaac 26:24,
+  bénédiction dérobée + fuite, échelle de Béthel 28:12/15, Laban le rusé rusé, Yabboq/renommé Israël
+  32:29 [depth au foyer la-lutte-de-jacob], retrouvailles Ésaü 33:4, les 12 fils = 12 tribus). (3)
+  joseph (834 : tunique/songes, vendu 37:20, Potiphar/pécher contre Dieu 39:9, prison→gouverneur,
+  7 ans, retrouvailles + Juda, pardon 45:5, « vous vouliez le mal, Dieu l'a changé en bien » 50:20
+  [natif ici ; providence a son foyer la-nature-de-dieu], Joseph figure du Christ, Jacob 46:30, Israël
+  en Égypte, 50:24 → seuil de l'Exode). ✦ ARCHITECTURE : la-lutte-de-jacob-avec-dieu (Gn 32, foyer
+  profond) DÉPLACÉE du nœud fourre-tout « at » vers la catégorie « genese », juste après isaac-et-jacob
+  (nœud at réduit à elie-a-l-horeb, l-ange-du-seigneur, un-temps-pour-tuer). SÉRIE GENÈSE COMPLÈTE :
+  6 articles neufs (origines ×3 + patriarches ×3) + la-lutte réintégrée = 7 entrées. RESTE : trames
+  suivantes du canon (Josué+Juges+Ruth, puis les Rois, etc.).
+  ✦ SÉRIE JOSUÉ+JUGES+RUTH — LA CONQUÊTE ET LES JUGES BÂTIE (18/07, « poursuis ce que tu as à poursuivre » ;
+  REPRISE relu EN ENTIER + prompt #3 du doc maître relu au préalable). Trame #3 du doc maître (les 3 livres
+  fondus). NOUVEAU GROUPE « g-historiques » (nom_fr « Les livres historiques ») créé sous Écriture > AT,
+  ENTRE g-pentateuque et g-prophetes ; il accueillera aussi les Rois, Esdras-Néhémie, etc. Catégorie neuve
+  « conquete-juges » (nom_fr « La conquête et les juges »). 5 articles, FR+EN, verify_ch 0 défaut, 0 lien/
+  tiret/straight/nbsp, h2 FR=EN, build 198 paires → 396 pages. ⚠ LEÇON APPLIQUÉE EN DIRECT : 3 des 5 (partage,
+  pas-de-roi, ruth) sont sortis COMPACTS au 1er jet (~540-700 mots) → REFUSÉS AVANT LIVRAISON et RÉÉCRITS à
+  ~820-930 (chair : causes creusées, figures vivantes, épisodes non sautés, sens dégagé). (1) l-entree-dans-la-
+  terre-promise (945 : Josué=Yeshua/Jésus « le Seigneur sauve », Jos 1:9 ; Rahab foi de l'étrangère→généalogie
+  du Christ + Jos 2:11 ; passage du Jourdain figure baptême [foyer le-bapteme respecté] + Jos 4:7 ; Guilgal
+  circoncision+Pâque, chef de l'armée du Seigneur Jos 5:14 [holy ground comme Moïse, PAS de redéploiement du
+  foyer l-ange-du-seigneur] ; Jéricho donnée non conquise Jos 6:20, Acan péché du corps, Gabaon+soleil Jos 10:13 ;
+  l'anathème/herem RENVOYÉ au foyer les-guerres-d-extermination, non redéployé). (2) le-partage-du-pays-et-l-
+  alliance-de-sichem (927 : sort à Silo, Juda/double part Joseph, Lévi=48 villes, 6 villes de refuge [mort du
+  grand prêtre libère], Caleb Jos 14:12 ; terre=repos [figure Hé 4 en incise], nations non chassées=piège→Juges,
+  autel-témoin de Ruben-Gad unité du culte ; Sichem récit du salut + Jos 23:14 « aucune parole n'a manqué » +
+  Jos 24:15 choix libre + Jos 24:19 Dieu saint et jaloux, ossements de Joseph Gn 50 accompli). (3) le-temps-des-
+  juges (880 : cycle infidélité/oppression/cri/délivrance Jg 2:16+2:19 ; Otoniel/Éhoud/Débora-Jaël ; Gédéon
+  l'Ange Jg 6:12, les 300 Jg 7:2 « que nul ne se glorifie », refus de la royauté Jg 8:23 « c'est le Seigneur qui
+  régnera », éphod-piège ; Jephté vœu Jg 11:35 ; Samson nazir Jg 13:5, Esprit Jg 14:6, Dalila, Dagon Jg 16:30 ;
+  synthèse : sauveurs imparfaits qui appellent le Sauveur, Esprit par accès→repose sur le Christ, fidélité de
+  Dieu porte tout). (4) il-n-y-avait-pas-de-roi-en-israel (819 : idole de Mika+lévite acheté, tribu de Dan
+  emporte le culte, refrain Jg 17:6 ; concubine de Guibéa = Sodom au-dedans, guerre contre Benjamin presque
+  exterminé ; Jg 21:25 refrain-diagnostic → il faut un roi ; roi de chair faillira, comblé par le Fils de David
+  qui écrit la loi au-dedans). (5) ruth-la-moabite (922 : famine/Moab exclu de l'assemblée, fidélité Rt 1:16,
+  Mara Rt 1:20 ; glanage, Booz bénit Rt 2:12 « sous ses ailes » ; goël, Rt 3:9 « l'aile de ton manteau » [reprend
+  2:12], soulier, anciens Rt 4:11 Rachel/Léa/Tamar ; Obed Rt 4:14/4:17→Jessé→David→Christ ; Rahab+Ruth+Tamar dans
+  la généalogie = universalité, Booz figure du Rédempteur, Église épouse des nations). GESTES : articles.json
+  (196), g-historiques+conquete-juges dans themes.json, data-en.js SLUGS ×5, nouveautes.json FR+EN ×5. RESTE :
+  trame #4 les Rois (1-2 Samuel+Rois+Chroniques, Chroniques = profondeur cultuelle), puis Esdras-Néhémie, etc.
+  ✦ SÉRIE LES ROIS D’ISRAËL BÂTIE (18/07, « Ok poursuis » ; REPRISE relu EN ENTIER, 2041 lignes, + prompt #4
+  relu). Trame #4 du doc maître : 1-2 Samuel + 1-2 Rois + 1-2 Chroniques FONDUS, Chroniques = profondeur
+  cultuelle intégrée à chaque étape (David fondateur de la liturgie, aire d’Ornan = site du Temple, Manassé
+  repenti, clôture sur Cyrus), JAMAIS une série à part. Nouvelle catégorie « les-rois » (nom_fr « Les rois
+  d’Israël ») sous g-historiques (après conquete-juges). 6 articles, FR+EN, verify_ch 0 défaut, 0 lien/tiret/
+  straight/nbsp, h2 4/4 chacun, build 204 paires → 408 pages. ⚠ MÊME LEÇON QUE JOSUÉ, ENCORE : 1ers jets
+  COMPACTS (~628-753 mots) → REFUSÉS AVANT LIVRAISON et RÉÉCRITS à ~800-980 (chair : épisodes non sautés,
+  causes/figures/conséquences/sens). Repère : viser d’emblée ~900+ pour un article de série narrative, ne
+  jamais s’arrêter au squelette. (1) samuel-et-l-avenement-de-la-royaute (Anne→Magnificat 1 S 2:1, appel
+  1 S 3:10, arche talisman/Ikabod, Ében-Ézer 1 S 7:12, « c’est moi qu’ils rejettent » 1 S 8:7, Saül oint ;
+  clé : derrière le roi, le vrai Roi). (2) saul-et-la-montee-de-david (désobéissance/Agag, obéir>sacrifier
+  1 S 15:22, onction David « le Seigneur regarde le cœur » 1 S 16:7, Goliath 1 S 17:45, jalousie/Endor/
+  Guilboa ; David épargne l’oint). (3) david-l-alliance-et-la-promesse [CENTRAL, 978] (Sion/arche/danse,
+  ALLIANCE DAVIDIQUE 2 S 7:14 père-fils [→ Hébreux/Christ] + 7:16 trône à jamais [foyer messianique DÉPLOYÉ
+  ici], Bethsabée/Natan/« j’ai péché » 2 S 12:13 + Ps 51:12, Absalom, aire d’Ornan→Temple ; David pécheur
+  mais repentant ≠ Saül). (4) salomon-et-le-temple (Gabaon cœur attentif 1 R 3:9, Temple reprend la tente
+  [foyer la-demeure respecté], gloire-nuée, dédicace « les cieux ne peuvent te contenir » 1 R 8:27 → au-delà
+  du Temple de pierre, femmes étrangères 1 R 11:4, Ahias 12 morceaux). (5) le-schisme-et-le-royaume-du-nord
+  (Roboam/Sichem « à tes tentes » 1 R 12:16, veaux d’or « voici tes dieux » 1 R 12:28 = péché de Jéroboam,
+  Élie Carmel 1 R 18:21 [Horeb RÉFÉRÉ sans redéployer le foyer elie-a-l-horeb : pas de « souffle léger »],
+  Élisée, chute de Samarie 722). (6) juda-jusqu-a-l-exil (Athalie/Joas, Ézéchias ange frappe Sennachérib
+  2 R 19:35 [foyer l-ange référé], Manassé repenti [Chroniques], Josias/livre de la Loi 2 R 23:25, moqueurs
+  des prophètes 2 Ch 36:16, chute 587/Temple brûlé, lueur Joiakin + édit de Cyrus 2 Ch 36:23 → racine sous
+  l’hiver jusqu’au Fils de David). GESTES : articles.json (202), les-rois sous g-historiques, data-en.js
+  SLUGS ×6, nouveautes.json FR+EN ×6. RESTE : trame #5 Esdras+Néhémie, #6 Tobie/Judith/Esther, #7 Maccabées,
+  puis sagesse (#8 Psaumes, #9 Proverbes/Qohélet/Siracide/Sagesse, #10 Job, #11 Cantique), prophètes
+  (#12 Jérémie/Lamentations/Baruch, #14 Daniel, #15 les Douze — Osée/Michée/Jonas/Habacuc/Sophonie/Malachie
+  manquants), NT (#16 Actes, #19 lettres cathol., #20 Apocalypse).
+  ✦ SÉRIE LE RETOUR D’EXIL BÂTIE (18/07, « poursuis » ; REPRISE relu, chair-rule regroundée, prompt #5 relu).
+  Trame #5 : Esdras+Néhémie FONDUS (une seule œuvre), organisés PAR SUJET THÉOLOGIQUE (méthode « unir ») en
+  3 piliers : Temple / Loi / Ville. Nouvelle catégorie « retour-d-exil » (nom_fr « Le retour d’exil ») sous
+  g-historiques (après les-rois). FR+EN, verify_ch 0 défaut, 0 lien/tiret/straight/nbsp, h2 4/4, build 207
+  paires → 414 pages. ⚠ MÊME LEÇON, TROISIÈME FOIS : 1ers jets COMPACTS (~667-744) malgré l’intention → RÉÉCRITS
+  à ~908-930 (déployer les épisodes dès le 1er jet, viser 900+ d’emblée). (1) le-retour-et-la-maison-de-dieu
+  (Esd 1-6 : édit de Cyrus NON re-cité [déjà 2 Ch 36:23 dans juda-jusqu-a-l-exil], 70 ans de Jérémie accomplis,
+  Zorobabel petit-fils du roi déporté = David prolongé + Josué grand prêtre, autel avant les murs, fondations
+  joie+larmes Esd 3:12, Darius retrouve l’édit aux archives, Aggée+Zacharie RÉFÉRÉS sans redéployer [foyers
+  aggee/zacharie/la-gloire-du-second-temple], achèvement Esd 6:14 + Pâque Esd 6:22 ; 2d Temple humble → gloire
+  par Celui qui vient, sans redéployer Ag 2:9). (2) esdras-et-le-retour-a-la-loi (Esd 7-10 + Né 8-10 réunis :
+  Esdras scribe « avait mis tout son cœur » Esd 7:10, jeûne au fleuve, mariages mixtes = péril de foi non de
+  sang [le Christ ouvrira aux nations, foyer Ruth référé], grande lecture Né 8:8 + « la joie du Seigneur est
+  votre force » Né 8:10, confession Né 9, peuple du Livre → liturgie de la Parole). (3) nehemie-et-la-ville-
+  relevee (Né 1-7,11-13 : échanson, prière-flèche, inspection de nuit, « rebâtissons la muraille » Né 2:17,
+  répartition par familles, Sanballat/Tobias, une main à l’ouvrage l’autre sur l’arme, 52 jours Né 6:15, « grâce
+  à notre Dieu » Né 6:16 ; justice = remise des dettes + 12 ans sans revenus de gouverneur ; dédicace 2 chœurs,
+  réformes finales ; Jérusalem relevée = figure de l’Église, foyer l-eglise référé). GESTES : articles.json
+  (205), retour-d-exil sous g-historiques, data-en.js SLUGS ×3, nouveautes.json FR+EN ×3. RESTE : #6 Tobie/
+  Judith/Esther, #7 Maccabées, puis sagesse/prophètes/NT.
+  ✦ SÉRIE LES RÉCITS DE DÉLIVRANCE BÂTIE (18/07, « poursuis »). Trame #6 : Tobie+Judith+Esther, 3 récits
+  DISTINCTS sur un même thème (Dieu sauve par un instrument humble, souvent une femme, par la prière), donc
+  3 articles autonomes (pas une chronologie). Nouvelle catégorie « recits-de-delivrance » sous g-historiques
+  (après retour-d-exil). FR+EN, verify_ch 0 défaut (noms EN Tobit/Judith/Esther OK), 0 lien/tiret/straight/
+  nbsp, h2 4/4, build 210 paires → 420 pages. ⚠ MÊME LEÇON : Judith 758 + Esther 823 sortis compacts → REFUSÉS
+  et RÉÉCRITS à ~933/958 (Tobie 887 gardé, dans la fourchette). (1) tobie (deutérocanonique : Tobit juste/
+  aveugle façon Job + aumône/prière/jeûne Tb 12:8, Sara+démon Asmodée, 2 prières le même jour, voyage avec
+  Raphaël=« Dieu guérit », mariage prière-pas-passion Tb 8:9 [foyer le-mariage référé, Adam-Ève], guérison au
+  fiel, révélation Raphaël présente la prière Tb 12:12 + « un des sept » Tb 12:15 [foyer les-anges +
+  l-intercession référés]). (2) judith (deutérocanonique : cadre stylisé expliqué [Nabuchodonosor roi
+  d’Assyrie = tableau non chronique], siège de Béthulie/délai de 5 jours à Dieu = mettre Dieu à l’épreuve,
+  Judith reprend les anciens Jdt 8:17 + prière Jdt 9:14, décapitation « par la main d’une femme » Jdt 13:19,
+  « gloire de Jérusalem » Jdt 15:10 → figure mariale, Gn 3:15 RÉFÉRÉ sans redéployer [foyers marie/
+  le-peche-originel]). (3) esther (deutéros = additions grecques référées ; providence CACHÉE [Dieu jamais
+  nommé en hébreu], Vasthi/Esther reine, complot d’Aman/pur, Mardochée, « pour un temps comme celui-ci »
+  Est 4:14 + « si je dois périr, je périrai » Est 4:16, renversement/gibet, Pourim Est 9:1 → Magnificat/
+  renversement + Esther figure de Marie reine-intercesseur [foyer marie référé]). GESTES : articles.json
+  (208), recits-de-delivrance sous g-historiques, data-en.js SLUGS ×3, nouveautes.json FR+EN ×3. RESTE : #7
+  Maccabées (1-2 M, 2 M = profondeur martyre/résurrection/purgatoire, façon Chroniques), puis sagesse/
+  prophètes/NT.
+  ✦ SÉRIE LES MACCABÉES BÂTIE (18/07, « poursuis »). Trame #7 (celle « à refaire ») : 1-2 M FONDUS, 2 M =
+  profondeur martyre/résurrection/purgatoire greffée sur la trame de 1 M (JAMAIS empilés). Nouvelle catégorie
+  « les-maccabees » sous g-historiques (après recits-de-delivrance) — G-HISTORIQUES DÉSORMAIS COMPLET (5 séries :
+  conquete-juges, les-rois, retour-d-exil, recits-de-delivrance, les-maccabees). FR+EN, verify_ch 0 défaut
+  (noms EN 1/2 Maccabees OK), 0 lien/tiret/straight/nbsp, build 214 paires → 428 pages. ⚠ LEÇON RÉCURRENTE,
+  MARQUÉE : 1ers jets TRÈS compacts (541-729), DEUX passes de deepening nécessaires (crise + indépendance
+  ont demandé une 2e passe) → 758-916. Le récit deutéro/hellénistique demande BEAUCOUP de déploiement pour
+  atteindre la fresque ; viser explicitement ~950 dès le départ et déployer chaque épisode. NB indépendance
+  (758) laissé au plancher : matière Jonathan/Simon intrinsèquement plus mince que l’épopée de Judas, pas de
+  bourrage. (1) la-crise-et-la-profanation-du-temple (Alexandre/Diadoques, hellénisation Jason/Ménélas,
+  Antiochos IV Épiphane rebroussé d’Égypte par Rome, Akra, abomination de la désolation 1 M 1:57 [Daniel→
+  Mt 24 référé], persécution/mères circoncision 1 M 1:63, sabbatistes des cavernes, premiers martyrs).
+  (2) eleazar-et-les-sept-freres [2 M, cœur doctrinal] (Éléazar 90 ans refuse la feinte 2 M 6:24 ; mère+7 fils,
+  RÉSURRECTION 2 M 7:9 + 7:14 [vie/jugement], ex nihilo 2 M 7:28 [foyer la-creation référé] ; martyrs =
+  avant-coureurs des martyrs chrétiens). (3) judas-maccabee-et-la-dedicace-du-temple (Mattathias/Modîn zèle de
+  Phinéès + « nous n’obéirons pas » 1 M 2:22 + décision sabbat, Judas « la force vient du ciel » 1 M 3:19
+  [Gédéon/David], purification/dédicace = Hanoucca 1 M 4:59 [Jn 10 référé], OFFRANDE POUR LES MORTS 2 M 12:46
+  = fondement purgatoire/prière pour les morts [foyers fins-dernieres/communion-des-saints référés ; rejet
+  Réforme→canon référé]). (4) l-independance-juive (Jonathan diplomate/grand prêtre/Rome, Simon prend l’Akra +
+  indépendance 142, « chacun sous sa vigne » 1 M 14:12, Simon chef/prêtre « jusqu’à un prophète » 1 M 14:41
+  → Hasmonéens prêtres NON fils de David = pas le roi promis ; synthèse : deutéros/Septante des apôtres, 400
+  ans de silence, partis, Rome/Hérode → attente du Christ vrai Prophète/Prêtre/Roi). GESTES : articles.json
+  (212), les-maccabees sous g-historiques, data-en.js SLUGS ×4, nouveautes.json FR+EN ×4. RESTE : LIVRES DE
+  SAGESSE #8 Psaumes, #9 Proverbes/Qohélet/Siracide/Sagesse, #10 Job, #11 Cantique ; prophètes #12 Jérémie/
+  Lamentations/Baruch, #14 Daniel, #15 les Douze (Osée/Michée/Jonas/Habacuc/Sophonie/Malachie) ; NT #16 Actes,
+  #19 lettres cathol., #20 Apocalypse.
+  ✦ SÉRIE LES PSAUMES BÂTIE (18/07, échange préalable avec Emmanuel « comment tu vas gérer ça » → j’ai
+  exposé le plan, il a dit « continue »). Trame #8, PREMIER LIVRE NON NARRATIF : PAS de timeline. Organisé
+  PAR GENRE ET USAGE (typologie), comme le prescrit le doc maître (« ne tente pas une chronologie »). NOUVEAU
+  GROUPE « g-sagesse » (nom_fr « Les livres de sagesse ») créé sous Écriture > AT, ENTRE g-historiques et
+  g-prophetes ; il accueillera Proverbes/Qohélet/Siracide/Sagesse, Job, Cantique. Catégorie « les-psaumes ».
+  6 articles, FR+EN, verify_ch 0 défaut, 0 lien/tiret/straight/nbsp, h2 3/3, build 220 paires → 440 pages.
+  ⚠ NUMÉROTATION : Chérubin = numérotation MODERNE/hébraïque (Ps 22 = « Mon Dieu pourquoi », Ps 23 berger,
+  Ps 51 Miserere, Ps 110 Melchisédek, Ps 137 imprécatoire) ; chaque citation vérifiée. Les TITRES de psaume
+  (« De David. », « Chant des montées. ») sont hors citation : quoter le seul texte du verset.
+  ⚠ DENSITÉ : articles EXPOSITIFS (non narratifs) plus durs à étoffer sans bourrage ; 1ers jets ~510-590 →
+  DEUX passes → ~700-772, cluster homogène, déployés (forme du genre + psaumes-exemples + sens). Jugé
+  expositif-complet à ce niveau ; NE PAS bourrer un article de genre comme une fresque narrative. (1) le-
+  psautier-priere-d-israel (5 livres, Tehillim/Psalmoi, parallélisme 3 formes Ps 19:2, Athanase le miroir de
+  l’âme, doxologie finale Ps 150:6). (2) les-psaumes-de-louange-et-d-action-de-grace (hymnes Ps 103:1 + « qu’est-
+  ce que l’homme » Ps 8:5 ; action de grâce Ps 118:1 « son amour éternel »/hesed, grand Hallel Ps 136, Hallel
+  chanté à la Cène → Eucharistie). (3) les-psaumes-de-supplication-et-de-confiance (supplication Ps 130:1 De
+  profundis + laments collectifs/Ps 42 biche ; pénitentiels Ps 51:3 Miserere [foyer david référé] ; confiance
+  Ps 23:1+23:4 berger/vallée). (4) les-psaumes-royaux-et-messianiques (Ps 72:8 déborde le roi, Ps 45 noces→
+  Christ-Église, Ps 2:7 « tu es mon Fils » [baptême/Ap], Ps 110:1 « mon Seigneur »/Jésus, Ps 110:4 Melchisédek
+  [foyer hebreux/grand-pretre référé]). (5) les-psaumes-des-montees-et-de-sagesse (montées Ps 122:1/121:2, 15
+  degrés ; sagesse 2 voies Ps 1:2 arbre, Ps 73 sanctuaire ; acrostiche Ps 119:105 lampe, Loi=joie→Christ Verbe).
+  (6) les-psaumes-dans-la-bouche-du-christ [cœur lecture cath.] (Ps 22:2 en croix + détails accomplis, Ps 31:6
+  dernier souffle, Ps 118:22 pierre d’angle ; Augustin le Christ total ; Liturgie des Heures ; IMPRÉCATOIRES
+  Ps 137:1/137:9 traités honnêtement : cri remis à Dieu + lecture patristique [petits de Babylone = germes du
+  mal, rocher = Christ 1 Co 10:4], versets durs écartés de la prière publique). GESTES : articles.json (218),
+  g-sagesse+les-psaumes dans themes.json, data-en.js SLUGS ×6, nouveautes.json FR+EN ×6. RESTE sagesse : #9
+  Proverbes/Qohélet/Siracide/Sagesse, #10 Job, #11 Cantique ; puis prophètes et NT.
+  ⚠ CHANGEMENT DE PLAN EMMANUEL (18/07) : les 4 livres de sagesse (#9) NE sont PAS traités en une série
+  comparative unique (mon plan proposé), mais CHACUN SÉPARÉMENT, comme livre à part entière. Et Emmanuel
+  ENVOIE DÉSORMAIS SES PROPRES DIAGRAMMES comme plan de travail (1er reçu : Proverbes). RÈGLE (déjà en §4)
+  RAPPELÉE : le diagramme est le PLAN (sections → articles, data-q → angles), JAMAIS affiché ni reconstruit ;
+  la section « lecture catholique » du diagramme SE FOND dans la prose, jamais article autonome. « prendre en
+  compte le diagramme ET reprise ».
+  ✦ SÉRIE LES PROVERBES BÂTIE (18/07, d'après le diagramme d'Emmanuel « Le livre des Proverbes / Mishlei »,
+  9 sections). Catégorie « les-proverbes » sous g-sagesse (après les-psaumes). 5 articles (sections du diagramme
+  GROUPÉES pour la richesse, lecture cath. section 09 fondue) : (1) le-livre-des-proverbes (01+02 : mashal,
+  hokma=habileté, Salomon+recueils/Ézékias 25:1/Agur/Lemuel, père→fils, ch 1-9 exhortations puis sentences ;
+  Pr 1:2). (2) la-crainte-du-seigneur-et-les-deux-voies (03+04 : crainte=commencement Pr 1:7 [+ don de l'Esprit
+  référé], confiance Pr 3:5, insensé/naïf/moqueur, orgueil Pr 16:18, deux voies Pr 4:18 → Éden/Dt 30/Ps 1/Mt 7
+  narrow-wide). (3) la-sagesse-personnifiee [FOYER Sagesse→Christ, 05+06] (Sagesse crie, présente à la création
+  Pr 8:22 + maître d'œuvre/joue Pr 8:30 ; deux festins : Dame Sagesse maison 7 colonnes Pr 9:1 + « mangez mon
+  pain » Pr 9:5 vs Dame Folie « eaux volées » Pr 9:17 ; LECTURE CATH : Sagesse=Verbe Jn 1/Col 1, Christ Sagesse
+  de Dieu 1 Co 1:24, table→Eucharistie, maison 7 colonnes→Église ; ARIENS et Pr 8:22 « m'a produite » →
+  engendré non créé [foyer trinite/nicee référé]). ⚠ CE FOYER Sagesse-personnifiée→Christ VIT DÉSORMAIS ICI ;
+  Siracide (Sir 24) et Sagesse (Sg 7) devront RÉFÉRER, non redéployer. (4) la-sagesse-au-quotidien (07 : langue
+  Pr 18:21 + réponse douce/pommes d'or/balance juste, travail fourmi, argent/pauvre, éducation, ami Pr 17:17 +
+  fer aiguise fer, colère/patience Pr 16:32 → sainteté de l'ordinaire, Christ approfondit au cœur). (5) la-femme-
+  vaillante (08 : poème acrostiche Pr 31:10 + portrait, vraie beauté = crainte Pr 31:30 boucle le livre ; LECTURE
+  CATH : figure de la Sagesse/de l'Église/de Marie sedes sapientiae [foyers marie/l-eglise référés]).
+  ⚠ DENSITÉ : articles de sagesse EXPOSITIFS, comme les Psaumes, durs à étoffer ; 1ers jets ~500-630 → DEUX
+  passes → cluster ~660-770, expositif-complet (ne pas bourrer). GESTES : articles.json (223), les-proverbes
+  sous g-sagesse, data-en.js SLUGS ×5, nouveautes.json FR+EN ×5, build 225 paires → 450 pages, verify_ch 0
+  défaut. RESTE : attendre les diagrammes d'Emmanuel pour Qohélet, Siracide, Sagesse (ou les bâtir seuls s'il
+  le demande), puis Job, Cantique ; prophètes ; NT.
+  ✦ SÉRIE LE SIRACIDE BÂTIE (18/07, d'après le diagramme d'Emmanuel « Le livre du Siracide / l'Ecclésiastique »,
+  8 sections). Catégorie « le-siracide » (nom_fr « Le Siracide », nom_en « Sirach ») sous g-sagesse (après
+  les-proverbes). 5 articles (sections GROUPÉES, lecture cath. section 08 FONDUE dans la prose). FR+EN, verify_ch
+  0 défaut, 0 lien/tiret/straight/nbsp, h2 FR=EN, build 230 paires → 460 pages. ⚠ NUMÉROTATION CHÉRUBIN : « La
+  Sagesse, c'est la Loi » = Sir 24:22 (pas 24:23 du diagramme) ; tous les versets vérifiés verbatim FR+EN (identité).
+  ⚠ DENSITÉ : bonne DÈS LE 1er JET (751/761/861/1037/1056 mots), aucune passe de deepening nécessaire (au-dessus du
+  cluster expositif 660-770 ; les 2 plus narratifs, choix-de-vie et éloge, à ~1050 = fresque). (1) le-livre-du-
+  siracide (01+02 : Ecclésiastique=ecclesiasticus « livre de l'Église », deutérocanonique [canon référé], 51 ch,
+  Ben Sira scribe de Jérusalem ~180 av. J.-C. avant la crise Maccabées, école Sir 51:23, signature Sir 50:27
+  [auteur nommé, rare], petit-fils traduit en grec ~132 en Égypte + prologue ; ORIGINALITÉ = sagesse unie à la
+  Loi). (2) la-crainte-du-seigneur-source-de-la-sagesse (03 : commencement/plénitude/couronne/racine Sir 1:14/16/18/
+  20 [foyer crainte des Proverbes référé], épreuve/or au feu Sir 2:1/2:5 [martyrs Macc. référés], confiance
+  Sir 2:6/2:18, ne pas tarder Sir 5:7 → appel du Christ à la conversion). (3) la-sagesse-et-la-loi (04 : Sir 24 ;
+  sortie de la bouche Sir 24:3, avant les siècles Sir 24:9, habite en Jacob Sir 24:8, venez à moi Sir 24:18/20,
+  LA SAGESSE = LA LOI Sir 24:22 ; LECTURE CATH FONDUE : Sagesse=Verbe RÉFÉRÉE au foyer la-sagesse-personnifiee
+  [Proverbes], PROPRE à Sir 24 déployé ici = tente/Incarnation Jn 1:14 « planté sa tente » + Loi accomplie dans le
+  Christ Mt 5:17 + Marie siège de la Sagesse [foyer marie référé]). (4) le-choix-de-la-vie-et-la-sagesse-au-
+  quotidien (05+06 : LIBRE ARBITRE Sir 15:11/14/16/17 [Dieu non auteur du péché ; Dt 30:19 « choisis la vie » ;
+  contre le fatalisme ; liberté/responsabilité de la section 08 fondue ici ; foyers le-peche/la-grace référés],
+  parents Sir 3:2-3, ami fidèle Sir 6:14/16, langue Sir 28:18, aumône Sir 3:28, MÉDECIN don de Dieu Sir 38:1/2/4
+  [causes secondes, natif/notable], mesure + souvenir de la fin Sir 7:36). (5) l-eloge-des-peres (07 : Sir 44-50 ;
+  « louons les hommes illustres » Sir 44:1-2, Hénoch/Noé/Abraham Sir 44:16/17/20, Moïse/Aaron/Pinhas Sir 45:1/7/23
+  [sacerdoce appuyé], David chantre Sir 47:8 / Salomon Sir 47:13 / Élie Sir 48:1 / grands prophètes, SOMMET grand
+  prêtre Simon Sir 50:1/6/20 = culte du Temple ; LECTURE CATH FONDUE : nuée de témoins Hé 11 référée, 1re forme de
+  la communion des saints [foyer référé], Christ vrai Prêtre/Prophète/Fils de David). GESTES : articles.json (228),
+  le-siracide sous g-sagesse, data-en.js SLUGS ×5, nouveautes.json FR+EN ×5. ⚠ FOYER Sagesse-personnifiée→Christ
+  reste à la-sagesse-personnifiee (Proverbes) ; Sg 7 le RÉFÈRE, ne le redéploie pas. RESTE sagesse : Qohélet, Job,
+  Cantique ; puis prophètes ; NT.
+  ✦ SÉRIE LE LIVRE DE LA SAGESSE BÂTIE (18/07, d'après le diagramme d'Emmanuel « Le livre de la Sagesse / Sagesse
+  de Salomon », 8 sections). Catégorie « sagesse » (nom_fr « La Sagesse », nom_en « Wisdom ») sous g-sagesse (après
+  le-siracide → g-sagesse = Psaumes, Proverbes, Siracide, Sagesse). 5 articles (sections GROUPÉES, lecture cath.
+  section 08 FONDUE). FR+EN, verify_ch 0 défaut, 0 lien/tiret/straight/nbsp, h2 FR=EN, build 235 paires → 470 pages.
+  ⚠ DENSITÉ : 2 articles sortis compacts (guide-histoire 545, idoles 629) → APPROFONDIS dès la vérif (bronze serpent
+  Sg 16:7/Jn 3:14, manne Sg 16:20 → Eucharistie, degrés de culpabilité Sg 13:6, Sg 14:27) → 734/753 ; les 3 autres
+  bons dès le 1er jet (667/805/761). (1) le-livre-de-la-sagesse (01+02 : dernier livre de sagesse, ÉCRIT EN GREC
+  [rare], deutérocanonique, Alexandrie ~1er s. av. J.-C., pseudépigraphe salomonien Sg 1:1/8:2, but pastoral contre
+  le doute et l'idolâtrie ; pont vers le NT). (2) le-juste-l-impie-et-l-immortalite (03+04 : deux visions ; COMPLOT
+  contre le juste Sg 2:12/16/20 = PROPHÉTIE DE LA PASSION [liturgie de la Passion] ; Dieu n'a pas fait la mort
+  Sg 1:13, créé pour l'incorruptibilité Sg 2:23, mort par la jalousie du diable Sg 2:24 + Rm 5:12 [péché originel
+  référé] ; âmes des justes dans la main de Dieu Sg 3:1-4 → résurrection). (3) la-sagesse-souffle-de-dieu (05 :
+  Sg 7 ; reçue par la prière Sg 7:7/9:17 ; souffle/émanation Sg 7:24-25, reflet/miroir/image Sg 7:26-27, gouverne
+  Sg 8:1 ; LECTURE CATH FONDUE : Sagesse=Fils Hé 1:3 [rayonnement/empreinte] RÉFÉRÉE au foyer la-sagesse-
+  personnifiee ; Jn 1:9 ; MARIE toute-pure Sg 7:25 siège de la Sagesse [foyer marie référé] ; don de l'Esprit
+  Sg 9:17). (4) la-sagesse-guide-de-l-histoire (06 : Sg 10-19 ; Sagesse=providence, Adam Sg 10:1 / Jacob Sg 10:10 /
+  Noé-Abraham-Loth-Joseph ; Exode, mêmes éléments jugent et sauvent ; serpent de bronze Sg 16:7 + Jn 3:14, manne
+  aliment d'anges Sg 16:20 → Eucharistie ; mesure/nombre/poids Sg 11:20 + « tu aimes tout ce qui existe » Sg 11:24
+  [providence, foyer la-nature-de-dieu référé]). (5) connaitre-dieu-et-la-folie-des-idoles (07 : Sg 13-15 ;
+  CONNAISSANCE NATURELLE DE DIEU Sg 13:1/13:5 + Rm 1:20 [foyer foi-et-raison référé, doctrine Vatican I dite en
+  positif] + degrés Sg 13:6 ; folie des idoles = bois taillé, origine deuil/flatterie/vanité, Sg 14:27 « commencement
+  de tout mal » ; Dieu vivant patient Sg 11:23 « pour qu'ils se convertissent »). GESTES : articles.json (233),
+  sagesse sous g-sagesse, data-en.js SLUGS ×5, nouveautes.json FR+EN ×5. RESTE sagesse : Qohélet, Job, Cantique
+  (attendre les diagrammes d'Emmanuel) ; puis prophètes (#12 Jérémie/Lamentations/Baruch, #14 Daniel, #15 les Douze
+  manquants : Osée/Michée/Jonas/Habacuc/Sophonie/Malachie) ; NT (#16 Actes, #19 lettres cathol., #20 Apocalypse).
+  ✦ SÉRIE L'ECCLÉSIASTE (QOHÉLET) BÂTIE (18/07, d'après le diagramme d'Emmanuel « Le livre de l'Ecclésiaste /
+  Qohélet », 8 sections ; « n'oublie pas diagramme ET reprise »). Catégorie « ecclesiaste » (nom_fr « L'Ecclésiaste »,
+  nom_en « Ecclesiastes ») sous g-sagesse (après sagesse → g-sagesse = Psaumes, Proverbes, Siracide, Sagesse,
+  Ecclésiaste). ⚠ NE PAS CONFONDRE : ecclesiaste (Qohélet) ≠ ecclesiastique (Siracide), deux slugs bibliques
+  distincts. 5 articles (sections GROUPÉES, lecture cath. section 08 FONDUE). FR+EN, verify_ch 0 défaut, 0 lien/tiret/
+  straight/nbsp, h2 FR=EN, build 240 paires → 480 pages. ⚠ CHÉRUBIN : hével rendu « vapeur » (pas « vanité » ; EN
+  « breath ») ; Qo 12:1 « tes Créateurs » (pluriel de majesté). ⚠ DENSITÉ : 2 sortis compacts (quête 598, joie 503)
+  → APPROFONDIS (Qo 2:16/2:18 ; Qo 3:22/5:18/9:9) → 739/650 ; les autres 694/763/883. (1) le-livre-de-l-ecclesiaste
+  (01+02 : Qohélet=qahal « assemblée » → ekklēsiastēs, salomonien, 12 ch de réflexion, hével « vapeur » Qo 1:2,
+  sous le soleil / rien de nouveau Qo 1:9, « quel profit ? » Qo 1:3). (2) la-quete-du-bonheur (03 : expérience du roi ;
+  sagesse Qo 1:18 + meurt comme l'insensé Qo 2:16 ; plaisir ; œuvres/richesse Qo 2:11 + laisse à un autre Qo 2:18 ;
+  poursuite du vent → désir déplacé vers Dieu). (3) un-temps-pour-tout (04+05 : poème Qo 3:1 ; ÉTERNITÉ DANS LE CŒUR
+  Qo 3:11 [désir de Dieu, Augustin « cœur sans repos » crédité en incise] ; énigmes injustice / même sort
+  Qo 3:19-20 / argent Qo 5:9 / limites Qo 8:17 / imprévu Qo 9:11 ; mieux vaut être deux Qo 4:9-10). (4) la-joie-don-
+  de-dieu (06 : refrain Qo 2:24 [≠ carpe diem impie] + Qo 3:22/5:18, mange ton pain Qo 9:7 + la femme aimée Qo 9:9 ;
+  joie reçue non saisie → eucharistia/Eucharistie référée). (5) souviens-toi-de-ton-createur (07 + 08 fondue :
+  Qo 12:1 ; poème de la vieillesse Qo 12:6 ; poussière/souffle Qo 12:7 [soulève l'horizon « sous le soleil »] ; CLÉ
+  « crains Dieu et garde ses commandements » Qo 12:13 + JUGEMENT Qo 12:14 [foyer fins-dernieres référé] ; LECTURE
+  CATH : éternité=désir de Dieu, vanité=Rm 8:20-21 création soumise au néant mais dans l'espérance, mort vaincue par
+  la Résurrection, crainte accomplie dans l'amour du Christ). GESTES : articles.json (238), ecclesiaste sous
+  g-sagesse, data-en.js SLUGS ×5, nouveautes.json FR+EN ×5. RESTE sagesse : Job, Cantique (attendre les diagrammes
+  d'Emmanuel) ; puis prophètes ; NT.
+  ✦ SÉRIE LE LIVRE DE JOB BÂTIE (18/07, d'après le diagramme d'Emmanuel « Le livre de Job », 8 sections). Catégorie
+  « job » (nom_fr « Job », nom_en « Job ») sous g-sagesse (après ecclesiaste → g-sagesse = Psaumes, Proverbes,
+  Siracide, Sagesse, Ecclésiaste, Job). 5 articles (sections GROUPÉES, lecture cath. section 08 FONDUE). FR+EN,
+  verify_ch 0 défaut, 0 lien/tiret/straight/nbsp, h2 FR=EN, build 245 paires → 490 pages. ⚠ CHÉRUBIN : ha-satan rendu
+  « l'Accusateur » (pas « Satan »). ⚠ DENSITÉ : intro + prologue sortis compacts (623/614) → APPROFONDIS (cadre
+  patriarcal intemporel, deux Job prose/poème, pas d'au-delà encore à l'époque, mal permis-et-borné, 7 jours de
+  silence) → 837/749 ; les 3 autres 771/741/760. (1) le-livre-de-job (01 : chef-d'œuvre sur la souffrance de
+  l'innocent ; Job d'Ouç JUSTE PARMI LES NATIONS [portée universelle] Jb 1:1 ; prose+poème+prose ; doctrine de la
+  rétribution mise en crise). (2) le-prologue-et-l-epreuve (02 : Job comblé/fidèle ; DÉFI DU CIEL, l'Accusateur
+  « est-ce pour rien que Job craint Dieu ? » Jb 1:9 [gratuité de la foi ; mal permis et borné ; Satan référé foyer
+  les-anges] ; perte de tout + « le Seigneur a donné... » Jb 1:21 ; ulcères + Jb 2:10 ; 7 jours de silence). (3) job-
+  et-ses-amis (03+04 : rétribution des amis vs innocence de Job ; méchants prospèrent ; cri Jb 3:3 + « même s'il me
+  tue, j'espérerai en lui » Jb 13:15 ; désir d'arbitre Jb 9:33 → médiateur/Christ ; « JE SAIS QUE MON RÉDEMPTEUR EST
+  VIVANT » Jb 19:25-26, goël → résurrection [foyer fins-dernieres référé]). (4) la-reponse-de-dieu (05+06 : Sagesse
+  cachée + crainte du Seigneur Jb 28:28 [foyer crainte référé] ; Élihu = souffrance qui instruit ; DIEU DANS LA
+  TEMPÊTE, non-explication mais présence Jb 38:2/38:4, mer bornée Jb 38:11, bêtes/Béhémoth/Léviathan, « je mets la
+  main sur ma bouche » Jb 40:4). (5) mes-yeux-t-ont-vu (07 + 08 fondue : « mes yeux t'ont vu » Jb 42:5-6,
+  rencontre > explication ; Dieu BLÂME LES AMIS Jb 42:7, Job INTERCÈDE Jb 42:10, restauration = gratuité justifiée,
+  pas un marché ; LECTURE CATH : Job figure du Christ souffrant [foyer croix référé], Rédempteur → résurrection,
+  souffrance ≠ châtiment Jn 9:3, Job médiateur → Christ, constance de Job Jc 5:11). GESTES : articles.json (243), job
+  sous g-sagesse, data-en.js SLUGS ×5, nouveautes.json FR+EN ×5. RESTE sagesse : Cantique.
+  ✦ SÉRIE LE CANTIQUE DES CANTIQUES BÂTIE (18/07, d'après le diagramme d'Emmanuel « Le Cantique des Cantiques »,
+  8 sections). Catégorie « cantique-des-cantiques » (nom_fr « Le Cantique des Cantiques », nom_en « Song of Songs »)
+  sous g-sagesse (après job) → g-sagesse COMPLET : Psaumes, Proverbes, Siracide, Sagesse, Ecclésiaste, Job, Cantique
+  (trames sagesse #8-11 TOUTES FAITES). 5 articles (sections GROUPÉES, lecture cath. section 08 FONDUE dans le sens
+  spirituel). FR+EN, verify_ch 0 défaut, 0 lien/tiret/straight/nbsp, h2 FR=EN, build 250 paires → 500 pages. ⚠ REFS :
+  livre « Cantique des cantiques » FR / « Song of Songs » EN. ⚠ REGISTRE : sobre et chaste, l'amour humain comme œuvre
+  bonne de Dieu, sans pruderie ni crudeté. ⚠ DENSITÉ : jardin sorti compact (495) → APPROFONDI (Ct 2:1/4:11/2:4/5:16)
+  → 642 ; cantique + mouvement remontés (Aqiba « saint des saints », Ct 8:4 « n'éveillez pas l'amour ») → 688/668.
+  (1) le-cantique-des-cantiques (01+02 : titre superlatif Ct 1:1, salomonien, DIEU JAMAIS NOMMÉ [Aqiba], lu à la Pâque,
+  voix épouse/époux/filles de Jérusalem, dialogue non récit). (2) le-mouvement-de-l-amour (03 : désir + « n'éveillez
+  pas l'amour avant qu'il le veuille » Ct 8:4 ; printemps Ct 2:10-12 ; nuit Ct 3:1 ; appartenance Ct 2:16). (3) le-
+  jardin-des-symboles (04 : narcisse/lis Ct 2:1, jardin fermé/source scellée Ct 4:12, miel/lait Ct 4:11, maison du
+  vin Ct 2:4, louange réciproque Ct 5:16). (4) l-amour-fort-comme-la-mort (05+06 : sceau Ct 8:6, fort comme la mort +
+  FLAMME DU SEIGNEUR Ct 8:6 [seul affleurement de Dieu], grandes eaux/ne s'achète pas Ct 8:7 ; amour humain œuvre
+  bonne, une seule chair, désir ordonné à la fidélité [foyer le-mariage référé]). (5) les-sens-du-cantique (07+08
+  fondue : LITTÉRAL socle > allégorique juif [alliance/Osée] > Christ-Église Ep 5:31-32 [foyer l-eglise référé] >
+  mystique Origène/Bernard/Jean de la Croix [nuit-noire référé] > MARIAL « toute belle, sans défaut » Ct 4:7 tota
+  pulchra/Immaculée [foyer marie référé]). GESTES : articles.json (248), cantique-des-cantiques sous g-sagesse,
+  data-en.js SLUGS ×5, nouveautes.json FR+EN ×5.
+  ✦ PIVOT EMMANUEL (18/07, EN COURS) : « poursuis les livres qui manquent (pas de diagramme) » → bâtir SANS diagramme,
+  d'après la feuille de route (doc maître), les trames restantes DANS L'ORDRE DU CANON : #12 Jérémie+Lamentations+
+  Baruch, #14 Daniel, #15 les Douze manquants (Osée/Michée/Jonas/Habacuc/Sophonie/Malachie), #16 Actes, #19 lettres
+  catholiques (Jacques/1-2 Pierre/1-3 Jean/Jude), #20 Apocalypse. Même méthode que les séries à diagramme (plan = trame
+  réelle, lecture cath. fondue dans la prose, foyers référés, chair partout, verify_ch 0 défaut, 4 gestes).
+  ✦ #12 JÉRÉMIE + LAMENTATIONS + BARUCH BÂTIE (18/07, SANS diagramme). Catégorie « jeremie » (nom_fr « Jérémie »)
+  sous g-prophetes (append). 5 articles, FR+EN, verify_ch 0 défaut, h2 FR=EN, build 255 paires → 510 pages. ⚠ DENSITÉ :
+  1ers jets ~480 (TROP COMPACT) → APPROFONDIS (+1 h2 chacun) → ~665. (1) le-livre-de-jeremie (prophète de la chute,
+  source d'eau vive/citernes Jr 2:13, consacré avant de naître Jr 1:5, « je suis avec toi » Jr 1:8, homme de larmes
+  Jr 9:1 → Christ pleure sur Jérusalem). (2) jeremie-le-prophete-eprouve (sermon du Temple Jr 7:4, potier Jr 18:6,
+  Confessions « tu m'as séduit » Jr 20:7 + « feu dévorant » Jr 20:9, fosse → juste rejeté figure du Christ).
+  (3) la-nouvelle-alliance [FOYER nouvelle alliance] (Jr 31:31/33/34 loi sur le cœur + pardon ; germe juste de David
+  Jr 23:5 ; accomplie à la Cène Lc 22:20 → Eucharistie). (4) la-chute-de-jerusalem-et-les-lamentations (587, Temple
+  brûlé ; lettre aux exilés Jr 29:7 + « projets de paix » Jr 29:11 ; Lam 1:12 « vous tous qui passez » → Christ,
+  Lam 3:22-23 fidélité chaque matin ; Rachel Jr 31:15 → Innocents ; Lam → Passion/Ténèbres). (5) baruch-et-l-esperance-
+  de-l-exil (deutéro ; rouleau brûlé par Joïaqim ; prière + Sagesse=Loi ; « elle a paru sur la terre » Ba 3:38 →
+  Incarnation [foyer sagesse-personnifiee référé]). GESTES : articles.json (253), jeremie sous g-prophetes, data-en.js
+  ×5, nouveautes ×5. RESTE : #14 Daniel, #15 les Douze manquants (Osée/Michée/Jonas/Habacuc/Sophonie/Malachie),
+  #16 Actes, #19 lettres cathol., #20 Apocalypse.
+  ✦ #14 DANIEL BÂTIE (18/07, SANS diagramme). Catégorie « daniel » sous g-prophetes. 5 articles, FR+EN, verify_ch 0
+  défaut, h2 FR=EN, build 260 paires → 520 pages. ⚠ DENSITÉ : intro sortie 3 h2/421 (oubli d'1 h2) → 4 h2/634.
+  (1) le-livre-de-daniel (exil/persécution Macc., Daniel « Dieu est mon juge », sage Dn 1:17/2:21, récits+visions,
+  apocalyptique → Apocalypse). (2) la-foi-dans-l-epreuve (table du roi, fournaise « même s'il ne le fait pas » Dn 3:18
+  + 4e homme Dn 3:92, fosse aux lions Dn 6:23 ; foi pure des martyrs → Christ). (3) les-royaumes-qui-passent (statue/
+  pierre → montagne Dn 2:44 royaume qui ne passe pas → règne du Christ ; orgueil abaissé ch 4 ; thécel Dn 5:27).
+  (4) le-fils-de-l-homme-et-la-resurrection [christologique majeur] (4 bêtes vs FILS DE L'HOMME sur les nuées
+  Dn 7:13-14 domination éternelle ; titre du Christ cité au procès Mc 14:62 ; RÉSURRECTION Dn 12:2-3, le plus clair
+  de l'AT [foyer fins-dernieres référé]). (5) suzanne-et-la-sagesse-de-dieu (deutéros : Benedicite dans la fournaise ;
+  Suzanne innocente Dn 13:23 → juste faussement accusé/Christ ; Bel et le dragon, dérision des idoles). GESTES :
+  articles.json (258), daniel sous g-prophetes, data-en.js ×5, nouveautes ×5. RESTE : #15 les Douze manquants,
+  #16 Actes, #19 cathol., #20 Apocalypse.
+  ✦ #15 LES DOUZE MANQUANTS BÂTIS (18/07, SANS diagramme) : Osée, Michée, Jonas, Habacuc, Sophonie, Malachie → LES
+  DOUZE PETITS PROPHÈTES COMPLETS, et DÈS LORS TOUS LES PROPHÈTES (Isaïe, Jérémie, Ézéchiel, Daniel + les Douze).
+  1 article riche par livre (catégorie par prophète sous g-prophetes), FR+EN, verify_ch 0 défaut, build 266 paires →
+  532 pages. ⚠ DENSITÉ : Sophonie/Malachie sortis ~525 → approfondis ~660 ; autres ~570-610 (juste étendue d'un livre
+  court, 1 article). Osée (épouse infidèle Gomer, Os 2:21 fiançailles éternelles, Os 6:6 miséricorde>sacrifice, Os 11:1
+  « d'Égypte j'ai appelé mon fils » → Christ). Michée (Bethléem Mi 5:1 → Christ, Mi 6:8 justice/bonté/humilité, berger).
+  Jonas (fuite, poisson 3 jours Jon 2:3 → Résurrection/signe de Jonas, conversion de Ninive, Jon 4:2/4:11 miséricorde
+  universelle). Habacuc (« le juste vivra par sa foi » Ha 2:4 → Paul/justification, joie dans le dénuement Ha 3:17-18).
+  Sophonie (jour du Seigneur, reste humble/anavim So 3:12 → Béatitudes/Marie, « le Seigneur au milieu de toi » So 3:17
+  → Emmanuel/Avent). Malachie [dernier prophète de l'AT] (offrande pure des nations Mal 1:11 → Eucharistie, messager
+  Mal 3:1 → Jean Baptiste, Élie Mal 3:23 → Jean ; l'AT s'ouvre sur celui qui vient). GESTES : articles.json (264),
+  6 catégories sous g-prophetes, data-en.js ×6, nouveautes ×6. ⚠ ORDRE g-prophetes NON canonique (append successif) :
+  à canoniser plus tard si voulu. RESTE : #16 Actes, #19 lettres cathol., #20 Apocalypse.
+  ✦ #16 ACTES DES APÔTRES BÂTIS (18/07, SANS diagramme) : 5 articles riches, catégorie « actes » insérée sous g-nt
+  ENTRE g-evangiles et g-paul (ordre NT canonique respecté cette fois), FR+EN, verify_ch 0 défaut, build 271 paires →
+  542 pages. ⚠ DENSITÉ : 1res versions sorties ~538-577 (compact pour du narratif) → TOUTES approfondies ~662-710 FR
+  (ajout d'un développement en fin de 2 §/article : Luc compagnon de Paul + sections « nous » ; catholicité de la
+  Pentecôte ; Ananie/Saphire + Gamaliel ; Antioche = 1ers « chrétiens » ; les 3 récits de la conversion de Saul ;
+  lettres nées des voyages ; Pierre+Paul martyrs à Rome). ARTICLES : (1) le-livre-des-actes (intro : suite de Lc,
+  livre de l'Esprit, Ac 1:8 témoins jusqu'aux extrémités → carte du livre, Ascension→Pentecôte). (2) la-pentecote
+  (Ac 2:4 langues de feu, renversement de Babel/catholicité, Ac 2:38 convertissez-vous et soyez baptisés = kérygme,
+  don qui demeure baptême/confirmation). (3) l-eglise-des-premiers-jours (Ac 4:32 un seul cœur/partage → vie
+  religieuse, Ac 2:42 les 4 piliers doctrine/communion/fraction du pain=Eucharistie/prières, croissance+épreuve
+  Gamaliel, Étienne 1er martyr Ac 7:59-60 calqué sur le Christ, Saul à ses pieds). (4) l-evangile-aux-nations
+  (hors Jérusalem/Antioche, conversion de Saul Ac 9:4 « pourquoi me persécutes-tu » = Christ un avec les siens,
+  Pierre+Corneille Ac 10:34 Dieu sans partialité, concile de Jérusalem Ac 15:28 « l'Esprit Saint et nous-mêmes » =
+  modèle des conciles, salut par grâce non par la Loi). (5) jusqu-aux-extremites-de-la-terre (voyages de Paul +
+  lettres, Dieu inconnu d'Athènes = annoncer aux païens cultivés, prisonnier pour le Christ/naufrage, Ac 28:31
+  « en toute liberté et sans obstacle » = Évangile à Rome, fin ouverte → mission continue, Pierre+Paul martyrs).
+  LECTURE CATHOLIQUE DISSOUTE EN PROSE : fraction du pain = Eucharistie ; concile de Jérusalem = modèle du magistère
+  conciliaire ; primauté/rôle de Pierre (1er sermon, ouverture aux païens) ; martyre d'Étienne configuré au Christ ;
+  Église de Rome fondée sur le double témoignage Pierre-Paul. GESTES : articles.json (269), catégorie actes sous
+  g-nt (ordre évangiles→actes→paul), data-en.js ×5, nouveautes ×5. RESTE : #19 lettres cathol., #20 Apocalypse.
+  ✦ #19 ÉPÎTRES CATHOLIQUES BÂTIES (18/07, SANS diagramme) : les 7 lettres non pauliniennes (Jacques, 1-2 Pierre,
+  1-3 Jean, Jude) traitées en 5 articles riches, catégorie « epitres-catholiques » sous g-nt APRÈS g-paul (ordre NT :
+  évangiles→actes→paul→cathol.), FR+EN, verify_ch 0 défaut, build 276 paires → 552 pages. DENSITÉ FR 648-690 sauf
+  l'intro sortie 589 → approfondie 677 (canon reçu tardivement pour 2 P/Jude ; foi≠œuvres = fruits d'un arbre).
+  ARTICLES : (1) les-epitres-catholiques (intro : « catholique »=universel, destinataire = toute l'Église ; colonnes
+  Jacques/Pierre/Jean/Jude ; garder la foi Jude 1:3 ; appel à la sainteté Jc 1:22). (2) la-lettre-de-jacques (foi et
+  œuvres Jc 2:17 « la foi sans les œuvres est morte » = complète Paul, non l'oppose ; Jc 1:22 mettre en pratique +
+  Jc 1:27 religion pure=orphelins/veuves ; la langue Jc 3:8 ; onction des malades Jc 5:14 → sacrement + Jc 5:16 aveu
+  → réconciliation). (3) les-lettres-de-pierre (1 P 1:3 espérance vivante/résurrection, souffrance unie au Christ ;
+  1 P 2:9 sacerdoce royal → sacerdoce commun des baptisés ; 1 P 3:15 rendre compte + 1 P 5:8 le diable rôde ;
+  2 P 1:4 participants de la nature divine → divinisation/théosis « Dieu s'est fait homme pour que l'homme devienne
+  dieu par grâce » ; 2 P 3:9 patience de Dieu/Parousie). (4) les-lettres-de-jean (1 Jn 4:16 « Dieu est amour » →
+  Trinité=communion ; 1 Jn 4:10 il nous a aimés le premier, victime d'expiation ; 1 Jn 4:2 Jésus venu dans la chair
+  → contre le docétisme + 1 Jn 1:9 aveu des péchés ; 1 Jn 3:2 « nous lui serons semblables » → vision bienheureuse ;
+  2-3 Jn = vérité+charité, hospitalité). (5) la-lettre-de-jude (Jude 1:3 « combattre pour la foi transmise une fois
+  pour toutes » → dépôt de la foi/Tradition ; avertissement faux docteurs, anges déchus/Sodome ; Jude 1:20 bâtir sur
+  la foi très sainte, prier dans l'Esprit, pitié des hésitants ; doxologie Jude 1:24 « celui qui peut vous garder de
+  toute chute » = abandon confiant). ⚠ SINGLE-CHAPTER : Jude cité « Jude 1:3 » (chap. 1 explicite, comme Abdias),
+  verify_ch exige C:V. ⚠ verify_ch DOIT être lancé AVEC les slugs en args (sans args → « ALL OK » vide, trompeur).
+  GESTES : articles.json (274), catégorie epitres-catholiques sous g-nt, data-en.js ×5, nouveautes ×5.
+  RESTE : #20 Apocalypse (dernier livre manquant → clôt la campagne « poursuis les livres qui manquent »).
+  ✦✦✦ #20 APOCALYPSE BÂTIE — CAMPAGNE « POURSUIS LES LIVRES QUI MANQUENT » CLOSE (18/07, SANS diagramme) : le
+  dernier livre de la Bible traité en 6 articles riches, catégorie « apocalypse » ajoutée en fin de g-nt (ordre NT
+  complet : évangiles→actes→paul→cathol.→apocalypse), FR+EN, verify_ch 0 défaut, build 282 paires → 564 pages.
+  DENSITÉ FR 642-701, EN 622-698, toutes bonnes dès la 1re version. ARTICLES : (1) le-livre-de-l-apocalypse (intro :
+  apokalypsis=dévoilement, Jean à Patmos, livre d'images/symboles-nombres 7/12/1000, Ap 1:8 Alpha et Oméga, livre
+  d'espérance Ap 1:17-18 « j'étais mort et voici je suis vivant » = le Christ maître de l'histoire). (2)
+  les-lettres-aux-sept-eglises (Christ parmi les 7 lampes, les 7 lettres louent/reprennent, Ap 2:10 « sois fidèle
+  jusqu'à la mort », Ap 3:20 « je me tiens à la porte et je frappe » → liberté/Eucharistie, 7=totalité=toute
+  l'Église). (3) la-liturgie-du-ciel (Ap 4:8 « Saint saint saint » = le Sanctus ; Ap 5:6 « un Agneau debout comme
+  immolé » = crucifié+vivant ; Ap 5:12 « il est digne l'Agneau immolé » ; LECTURE : la liturgie céleste = modèle de
+  la messe, autel/encens/robes/Agneau). (4) la-femme-le-dragon-et-l-agneau (sceaux/fléaux+martyrs sous l'autel ;
+  Ap 7:14 lavé leurs robes dans le sang de l'Agneau ; Ap 12:1 « femme enveloppée du soleil » = Israël/Église/MARIE
+  nouvelle Ève, enfant=Christ ; Ap 12:9 dragon=serpent ancien=Satan vaincu ; la bête/666=pouvoir persécuteur →
+  persévérance des saints). (5) babylone-et-le-jugement (Babylone la prostituée=Rome/tout pouvoir idolâtre, sa chute ;
+  Ap 19:7 « noces de l'Agneau » = Épouse/Église vs prostituée ; le mille ans = temps présent du règne du Christ par
+  grâce, NON millénarisme terrestre ; jugement dernier Ap 20:12 « jugés selon leurs œuvres », livre de vie). (6)
+  la-jerusalem-nouvelle (Ap 21:1 ciel/terre nouveaux ; Ap 21:3 « la Demeure de Dieu avec les hommes » = Dieu habite
+  son peuple ; Ap 21:4 « il essuiera toute larme » ; Ap 21:5 « je fais toutes choses nouvelles » ; cité sans temple
+  car Dieu+Agneau=temple → vision bienheureuse ; Ap 22:17/22:20 « Viens Seigneur Jésus »/Maranatha, la Bible se ferme
+  sur le désir du retour). LECTURE CATHOLIQUE DISSOUTE : Sanctus/messe=liturgie céleste ; Agneau immolé-debout ;
+  la femme d'Ap 12 = Marie/Église ; mille ans = règne présent (anti-millénariste) ; vision bienheureuse ; Maranatha.
+  GESTES : articles.json (280), catégorie apocalypse en fin de g-nt, data-en.js ×6, nouveautes ×6.
+  ✦✦✦ BILAN CAMPAGNE : TOUS LES LIVRES MANQUANTS SONT BÂTIS. NT complet (évangiles, Actes, Paul, cathol.,
+  Apocalypse) ; AT sagesse complet ; TOUS les prophètes complets. Le canon biblique du site est intégralement couvert
+  en trames. 282 paires / 564 pages. RESTE (optionnel, non demandé) : canoniser l'ordre de g-prophetes (append) ;
+  enrichir « la chair partout » les trames sorties compactes puis approfondies si Emmanuel le souhaite.
+  ✦✦ CHAIR PARTOUT — 15 TRAMES PROPHÉTIQUES RE-APPROFONDIES (18/07, Emmanuel : « quelques trames sorties courtes
+  puis approfondies pourraient encore gagner en chair. fais ça d'abord »). Toutes les trames prophétiques bâties sans
+  diagramme, qui plafonnaient à ~567-679 FR, portées à 781-907 FR (min 781), verify_ch 0 défaut, build inchangé
+  (282 paires, aucun nouvel article, contenu densifié seulement). MÉTHODE : ajout de vraie chair (contexte historique,
+  figures, conséquences, sens théologique, renvois bibliques), JAMAIS de remplissage, AUCUNE nouvelle citation (pour
+  ne pas toucher verify_ch), 2-3 § étendus par article via .replace() ancré (scripts /tmp/deepen_twelve.py,
+  deepen_daniel.py, deepen_jeremie.py ; pattern add(slug,lang,anchor,repl) + nc/ne au match). LES DOUZE (#15) : Osée
+  824 (noms des enfants Yizréel/Lo-Rouhama/Lo-Ammi retournés ; connaissance de Dieu=amour), Michée 809 (Moréshet,
+  contemporain d'Isaïe ; parole citée sauve Jérémie ; épées→socs), Jonas 843 (marins païens plus pieux ; reproche à
+  Israël ; lu à Yom Kippour), Habacuc 813 (veille de l'invasion ; théodicée/Job/psaumes ; emouna=fidélité), Sophonie
+  781 (Dies irae ; Dieu qui danse de joie), Malachie 848 (4 siècles de silence intertestamentaire). DANIEL (#14) :
+  le-livre-de-daniel 865 (Antiochus/Maccabées ; hébreu+araméen), les-royaumes 901 (4 empires Babylone/Perse/Grèce/
+  Rome ; Magnificat ; Mené Teqel Parsin), le-fils-de-l-homme 907 (petite corne ; pourquoi Jésus choisit ce titre ;
+  résurrection la plus claire de l'AT + Maccabées), suzanne 865 (deutéros=Septante ; catacombes ; moquerie des idoles
+  prolonge Isaïe/Jérémie). JÉRÉMIE (#12) : le-livre 853 (Josias→déclin ; amandier/marmite), eprouve 852 (Urie tué
+  vs Jérémie épargné ; mort en Égypte), nouvelle-alliance 836 (Livre de la Consolation ch 30-33 ; « Nouveau
+  Testament »=nouvelle alliance), chute 843 (Dieu non enfermé dans un lieu ; 70 ans), baruch 850 (rouleau brûlé/
+  réécrit = naissance de l'Écriture ; clôture de la trame). la-foi-dans-l-epreuve (703) laissée telle quelle (déjà
+  bonne). ⚠ LEÇON : approfondir = ajouter de la matière réelle sans citation neuve ; scripts à liste plate via
+  add(), fermer chaque bracket (bug initial de blocs R+=[ non refermés).
+  ✦✦ CHAIR PARTOUT — 16 TRAMES NT RE-APPROFONDIES + FIL DE L'ACCOMPLISSEMENT DES PROPHÉTIES (18/07, Emmanuel : « fais
+  le tout de suite [Actes, cathol., Apocalypse] et j'espère que tu n'as pas oublié de mettre l'accomplissement des
+  prophéties des prophètes »). Actes (#16), épîtres catholiques (#19), Apocalypse (#20) : les 16 articles, qui
+  plafonnaient à ~642-710 FR, portés à 837-926 FR (min 837), verify_ch 0 défaut, build inchangé (282 paires).
+  MÉTHODE identique (add(slug,lang,anchor,repl), matière réelle, AUCUNE citation <em> guillemets +ref neuve — les
+  prophéties sont PARAPHRASÉES EN PROSE en nommant le prophète, non contrôlé par verify_ch, tisse l'accomplissement
+  sans risque). scripts /tmp/deepen_actes.py, deepen_cath.py, deepen_apo.py.
+  ⇒ FIL « ACCOMPLISSEMENT DES PROPHÈTES » AJOUTÉ PARTOUT : ACTES — Pentecôte accomplit Joël (Esprit répandu) + psaume
+  de David (Messie non abandonné à la mort) ; Pentecôte juive = don de la Loi au Sinaï → accomplit la nouvelle
+  alliance de Jérémie (Loi dans les cœurs) ; discours d'Étienne (prophètes toujours persécutés) ; Corneille/mission =
+  Isaïe (lumière des nations) ; concile = Jacques cite Amos (tente de David relevée) ; « jusqu'aux extrémités » =
+  Isaïe (Serviteur) ; Matthias → les Douze = 12 tribus. CATHOL — Jacques : Abraham (foi agissante) + Proverbes/
+  Siracide (langue) ; Pierre : Isaïe 53 (Serviteur souffrant) + Exode (royaume de prêtres, Sinaï) + psaume de la
+  pierre rejetée ; Jean : les 2 commandements (Loi+prophètes) + anti-docétisme (Incarnation) ; Jude : Hénoch/corps
+  de Moïse (traditions juives, non canonisées). APOC — images de Daniel (bêtes)/Ézéchiel (trône, fleuve)/Zacharie
+  (chandelier)/Isaïe (femme, cité) ; Fils de l'homme Dn 7 + traits de l'Ancien des jours = divinité du Christ ;
+  Sanctus = Isaïe 6 (séraphins) + trône d'Ézéchiel ; Agneau = agneau pascal (Exode) + Serviteur Isaïe 53 + « voici
+  l'Agneau de Dieu » (Baptiste) ; femme+dragon = Genèse 3:15 (protévangile) + enfant/sceptre = Psaume 2 ; bête = 4
+  bêtes de Daniel récapitulées ; Babylone = Isaïe/Jérémie (Babylone) + Ézéchiel (Tyr) ; jugement = Dn 12 (réveil des
+  dormants) ; Jérusalem nouvelle = Isaïe 65 (cieux nouveaux) + Ézéchiel (ma demeure) + Isaïe 60 (cité de lumière) +
+  fleuve d'Ézéchiel + arbre de vie ; Apocalypse répond à la Genèse (paradis perdu → rouvert), clé de voûte de la
+  Bible. ⇒ RAPPEL : l'accomplissement est déjà présent dans TOUTES les trames prophétiques d'origine (Bethléem/
+  Michée, signe de Jonas, juste vivra par sa foi/Habacuc, Fils de l'homme/Daniel, nouvelle alliance/Jérémie, offrande
+  pure et messager/Malachie) — vérifié. BILAN : TOUTES les trames bibliques sans diagramme (prophètes #12/#14/#15 +
+  NT #16/#19/#20) sont au niveau « chair partout » (min ~781, plupart 820-926), fil christologique de
+  l'accomplissement partout.
+  ✦ CORRECTIONS DE RÉDACTION (18/07, relecture Emmanuel de 3 articles Écriture/Paul) : (1) l-epitre-a-philemon —
+  section « Un esclave devenu frère » réorganisée (le jeu de mots sur « utile », Ph 1:11, était MAL PLACÉ tout en fin
+  de paragraphe → remonté au début, juste après l'introduction) ET développé « en quoi Onésime est utile » : jadis
+  perte/serviteur improductif/peut-être voleur → devenu chrétien, utile non comme un bien exploité mais comme un
+  frère (a servi Paul en prison, ouvrier de l'Évangile, service donné par amour). (2) l-epitre-aux-galates — DEUX
+  négations : (a) [précisé par Emmanuel après coup, la vraie visée] « La foi qui sauve n'est donc pas une adhésion
+  morte » (définition par la négation + « adhésion morte » lourd) → REFORMULÉE POSITIVEMENT « La foi qui sauve est
+  donc vivante : elle agit par la charité » ; (b) au passage « ce qui compte n'est ni d'être circoncis ni de ne pas
+  l'être » (double négation « ni de ne pas ») → « n'est ni la circoncision ni l'incirconcision ». (3)
+  l-esclavage-dans-la-bible — deux retouches : ambiguïté
+  « posséder un homme, être libre et fait à l'image de Dieu » (« être libre » lu comme infinitif) → « posséder un
+  homme, lui qui est libre et fait à l'image de Dieu » ; négation confuse « Paul ne lance pas une révolte qui n'eût
+  rien changé » (négation nichée + subjonctif archaïque n'eût) → « Paul n'appelle pas à une révolte, qui aurait été
+  aussitôt écrasée sans rien changer au sort des esclaves ». verify_ch 0 défaut, build inchangé (282 paires).
+  ⚠ RÈGLE : proscrire les négations nichées « ne...pas [un X] qui ne...rien » et le subjonctif « n'eût/n'eussent » ;
+  proscrire les appositions à infinitif ambigu (« un homme, être libre ») → préférer une relative « lui qui est... ».
+  ✦ CORRECTION SUITE (18/07, précision d'Emmanuel) : la négation Galates qu'il visait était « La foi qui sauve n'est
+  donc PAS une adhésion morte » → REFORMULÉE « La foi qui sauve est donc VIVANTE : elle agit par la charité » (garde
+  l'écho de Jacques sur la foi morte, mais en positif). La correction circoncision (a) est conservée (amélioration).
+  ✦✦ BIBLIOTHÈQUE — ORDRE CANONIQUE RÉTABLI (18/07, Emmanuel « réorganiser la bibliothèque ») : dans themes.json,
+  ecriture>g-at>g-sagesse réordonné Job, Psaumes, Proverbes, Ecclésiaste, Cantique, Sagesse, Siracide (Vulgate) ;
+  g-prophetes réordonné Isaïe, Jérémie, Ézéchiel, Daniel, puis les Douze DANS L'ORDRE (Osée, Joël, Amos, Abdias,
+  Jonas, Michée, Nahum, Habacuc, Sophonie, Aggée, Zacharie, Malachie). g-nt était déjà canonique (évangiles→actes→
+  paul→cathol→apocalypse). Réordonnancement = simple permutation de la liste 'noeuds' (aucun art perdu, contrôle
+  set-égalité). La bibliothèque HTML suit l'ordre de 'noeuds' (data-cat vérifié).
+  ✦✦✦ BIBLE DU SITE — SURLIGNAGE DE FRAGMENTS + REPORT DANS « MES NOTES » (18/07, Emmanuel « surligner des fragments,
+  pas uniquement les versets entiers ; et quand on surligne ça doit apparaître dans mes notes »). Ajouté dans
+  bible.html (source ; EN régénéré par build-bi.js via TR). NOUVEAU : sélection de texte (souris/tactile) dans
+  .ch-texte → petit menu flottant #lv-frag-pop (11 pastilles + couleur libre + « Retirer ») positionné sur la
+  sélection → applique un surlignage sur la PORTION choisie. Données SURLF = { 'slug|ch|v': [{a,b,hex,t}] } (offsets
+  caractères dans le texte du verset hors n°), localStorage lv_bible_surlf(+_m), sync Firestore doc __surlf__ (même
+  logique « plus récent gagne en bloc » que __surl__). Offsets calculés via Range.toString().length (robuste au DOM
+  déjà fragmenté). Rendu marqueSurlF() = reconstruit l'innerHTML du verset (sup + spans .lv-frag). poseFrag() =
+  fusion/effacement par tableau de couleurs par caractère (nouvelle couleur prioritaire, réextraction des runs).
+  Sélection multi-versets gérée (portion de chaque verset intersecté). Re-cliquer un .lv-frag rouvre le popover
+  (changer couleur / retirer). Tap simple sur verset = toujours sélection de verset (inchangé ; skip si sélection de
+  texte active). MES NOTES : section « Surlignages » (#surl-zone) listant fragments (texte stocké) ET versets entiers
+  (SURL, texte chargé async via livreData) — pastille couleur, référence cliquable (nav), « Retirer ». TR ajoutés :
+  >Retirer< →>Remove<, LVF_TXT surl/oter →Highlights/Remove. TESTÉ Playwright (Chromium) : fragment simple + multi-
+  versets + reopen/retrait popover + verset entier dans notes + tap verset intact = tout OK.
+  ✦ CORRECTIONS DE RÉDACTION (18/07, relecture Emmanuel) : (1) les-peres-de-l-eglise — 2 négations retirées
+  (reformulées en positif) : « Les Pères NE SONT PAS des auteurs dépassés que l'érudition seule irait exhumer » →
+  « Les Pères demeurent des maîtres vivants, dont la voix garde toute son actualité » ; « Ce que les Pères
+  transmettent, ils NE L'ONT PAS inventé » → « ils l'ont d'abord reçu ». (2) pourquoi-dieu-demande-l-adoration —
+  « point flottant » : paragraphe malformé « ...rendent captif <p>C'est... nous.</p>.</p> » (un </p> MANQUANT après
+  « captif » + un .</p> EN TROP après « nous ») → « ...rendent captif.</p> <p>C'est... nous.</p> ». verify_ch 0
+  défaut, tags équilibrés. ⚠ RÈGLE (rappel) : bannir les définitions par négation « X n'est pas... » → tourner en
+  positif ; vérifier les fins de § (pas de </p> orphelin ni de point flottant .</p>.</p>).
 • DIAGRAMME ENVOYÉ PAR EMMANUEL = AIDE, JAMAIS À AFFICHER : c'est la vue
   d'ensemble d'un livre, un plan de travail (sections → articles, questions
   data-q → angles). Le lire en silence, s'en servir pour le découpage, puis
@@ -1200,7 +1932,63 @@ CHANTIERS OUVERTS (les seuls encore en attente)
   + conversion par contrainte (guerres saxonnes de Charlemagne, massacre de Verden 782,
   « convertir par le glaive trahissait l'Évangile »). croisades : ordres militaires
   (Templiers/Hospitaliers) + 2e croisade prêchée par Bernard de Clairvaux (échec ~1149) +
-  3e croisade (Richard Cœur de Lion, accès des pèlerins obtenu). Zwingli jugé non nécessaire
+  3e croisade (Richard Cœur de Lion, accès des pèlerins obtenu).
+  ✦ CROISADES PORTÉ AU NIVEAU FRESQUE (18/07, 1re démonstration de la règle « LA CHAIR PARTOUT »,
+  Emmanuel). 934 → 2071 mots FR (EN 2096), 5 → 9 sections, FR+EN, verify_ch 0 défaut, 0 lien,
+  0 straight/nbsp, 0 tiret cadratin. Le squelette exact (déjà juste) est CONSERVÉ et DÉPLOYÉ,
+  rien retiré. Sections neuves : causes creusées (conquête depuis le 7e s. + Mantzikert 1071 +
+  Alexis Comnène) ; Clermont avec l'indulgence EXPLIQUÉE (rémission des peines temporelles,
+  pénitence, danger de bénir la violence) ; croisade du peuple (Pierre l'Ermite, dispersée 1096) +
+  pogroms rhénans déployés + allusion Jacques/Jean (Luc 9, zèle sans charité) ; 1204 en section
+  propre (Venise, dette, sac, Innocent III condamne, blessure du schisme aggravée) ; Saint Louis en
+  figure vivante (2 croisades, captif 1250, mort à Tunis 1270, canonisé ; leçon : la sainteté d'un
+  homme ne justifie pas l'entreprise) ; croisades intérieures (Albigeois, Baltique) + Reconquista
+  qui porte fruit (Grenade 1492) ; « Comment les juger » approfondi (motifs réels vs fautes graves ;
+  la foi ne se répand pas par la conquête ; Jean-Paul II, demande de pardon de l'an 2000). VERSETS
+  AJOUTÉS (verbatim Chérubin FR+EN, non décoratifs, aux charnières) : Jean 18:36, 2 Corinthiens 10:4,
+  Matthieu 5:9, Matthieu 26:52 (gardé). MODÈLE de ce qu'« approfondir » veut dire ; Trente/Réforme/
+  schisme/monde-moderne à reprendre de même. « le premier des apôtres » (Pierre) → « le premier des
+  disciples » (évite la périphrase, cohérent balayage 17/07).
+  ✦ TRENTE PORTÉ AU NIVEAU FRESQUE (18/07, 2e application « chair partout », Emmanuel « continue »).
+  657 → 1367 mots FR (EN 1346), 5 → 8 sections, FR+EN, verify_ch 0 défaut, 0 lien, 0 straight/nbsp,
+  0 tiret. Faute corrigée : « réponse catholique au rupture » → « à la rupture ». Squelette conservé,
+  déployé. Sections neuves/étoffées : concile né dans la tourmente (Paul III 1545 ; Trente terre
+  d'Empire au seuil de l'Italie ; 3 périodes, suspensions ; TENSION Charles Quint [discipline
+  d'abord, sauf-conduit aux protestants] vs papes [vérité d'abord] ; Pie IV achève 1563) ; réforme
+  des mœurs (résidence/prédication des évêques, fin du cumul, réforme des indulgences, SÉMINAIRES
+  expliqués : clergé jusque-là non formé) ; Écriture ET Tradition (contre sola scriptura, canon,
+  Vulgate) ; JUSTIFICATION en section propre = cœur (décret session VI ; grâce première ET
+  coopération, contre sola fide ; grâce perdue par péché grave, recouvrée par pénitence) ;
+  sacrements + messe (7 sacrements, présence réelle/transsubstantiation, messe = sacrifice de la
+  Croix rendu présent, pénitence) ; purgatoire/saints/reliques/images/indulgences (doctrine gardée,
+  abus purgés) ; renouveau catholique (catéchisme romain + missel unifié Pie V + Index ; jésuites
+  d'Ignace + François Xavier Indes/Japon ; Borromée évêque modèle ; Thérèse d'Avila/Jean de la Croix ;
+  François de Sales ; missions) ; sens théologique final (RÉFORMER LA VIE oui, REFAIRE LA FOI non ;
+  jusqu'à Vatican II). VERSETS AJOUTÉS (verbatim Chérubin FR+EN) : 2 Thessaloniciens 2:15, Éphésiens
+  2:8, Philippiens 2:12-13 (la synthèse tridentine même).
+  ✦ RÉFORME + SCHISME 1054 + MONDE MODERNE PORTÉS AU NIVEAU FRESQUE (18/07, « poursuis sans t'arrêter »,
+  3e vague « chair partout », FR+EN, verify_ch 0 défaut, 0 lien, 0 straight/nbsp, 0 tiret). Squelettes
+  conservés + danglers de la PASSE 2 (qui pendaient APRÈS le verset de clôture) RÉINTÉGRÉS à leur
+  place dans le flux, clôture-verset remise en dernier partout. la-reforme-protestante (835→1122 mots,
+  5 sect.) : Luther étoffé (angoisse du salut, « découverte » de la justice-don, 95 thèses, Exsurge
+  Domine 1520, Worms 1521, Wartburg + NT en allemand), Calvin/Genève + Henri VIII intégrés, branches
+  expliquées (Écriture seule sans juge → lectures opposées) ; +Jacques 2:24 (contre sola fide) ;
+  garde Jean 17:21 (clôture). le-schisme-de-1054 (960→1141, 7 sect.) : danglers 1204 (empire latin
+  1204-1261) et unions Lyon 1274/Florence 1439/chute 1453 promus en 2 SECTIONS PROPRES (« 1204, la
+  blessure gravée », « Les tentatives d'union ») ; +Matthieu 16:18-19 (autorité/Pierre), +Jean 15:26
+  (Filioque, l'Esprit procède du Père) ; garde Jean 17:21. l-eglise-et-le-monde-moderne (1050→1351,
+  6 sect., d'abord sous-étoffé puis RÉ-ÉTOFFÉ car aucun sous-article ne le relaie) : Révolution
+  fleurie (carmélites de Compiègne, noyades de Nantes, culte de la Raison, Concordat), 1870 Rome/
+  prisonnier du Vatican, infaillibilité précisée (ni impeccable ni sans erreur en tout), Rerum
+  Novarum étoffée (3e voie, associations), martyrs élargis (Mexique/Espagne/Russie/goulags, Kolbe
+  détaillé, Édith Stein), Vatican II (langues vernaculaires, laïcs à la sainteté) ; +Romains 1:20
+  (Dei Filius, raison), +Matthieu 5:10 (martyrs), +Matthieu 28:20 (clôture missionnaire). LEÇON DE
+  DOSAGE : un article déjà dense (danglers inclus) croît peu mais gagne en STRUCTURE ; un article à
+  large empan sans sous-articles mérite une vraie expansion. DOMAINE HISTOIRE : les 5 plus gros sujets
+  désormais au niveau fresque (croisades, Trente, Réforme, schisme, monde moderne). RESTENT à porter
+  les ~11 autres (apostolique, martyrs, Pères, Nicée, Éphèse-Chalcédoine, Augustin, Constantin,
+  monachisme, conversion, scolastique, expansion) si Emmanuel veut poursuivre.
+  Zwingli jugé non nécessaire
   (Calvin/Genève + Angleterre couvrent déjà les branches) ; question Galilée toujours hors
   corpus, non traitée (hors périmètre d'un approfondissement). Doublon connu, laissé tel quel :
   l-expansion recoupe la-conversion/apostolique (synthèse assumée, atténuée par les liens).
@@ -1614,6 +2402,52 @@ CHANTIERS OUVERTS (les seuls encore en attente)
   de livres mono-chapitre (Jude, Abdias, 2/3 Jean) à gérer au parse de
   validate.py (Philémon déjà corrigé en « Philémon 1:15-16 »).
 • Nouveaux sujets du genre « connexion » et nouveaux audits : à la demande.
+• ✦ CARTE DE COUVERTURE DU DOMAINE ÉCRITURE (17/07, question d'Emmanuel sur les Corinthiens :
+  « faut-il revoir tout ? » → NON). Les audits qualité (fond/forme/citations) des 93 articles restent
+  ACQUIS ; l'axe jamais mesuré était la COUVERTURE (quelle part de chaque livre entamé est racontée).
+  Carte produite (script : chapitres cités par livre ; ATTENTION, métrique partielle : une série
+  raconte aussi des chapitres sans les citer, et certains chapitres sont légitimement sautables —
+  Exode 35-39 répètent les plans du tabernacle, Ézéchiel 40-42/45-46 = mesures, Nombres = recensements).
+  19 livres sans rien (Ruth, Daniel, Jonas, Cantique, Tobie, Judith, Esther, Jacques, 1-3 Jean,
+  2 Pierre, Sophonie, Lamentations, Baruch, 1 Ch, Néhémie, 1 M, Siracide, Esdras partiel…) = le plan
+  des ~20 séries À CONSTRUIRE (§4).
+  ✦ RÉ-AUDIT COUVERTURE PLUS FIN (18/07, Emmanuel : « tu es sûr que ça s'est passé JUSTE pour deux
+  corinthiens ? il ne manque rien dans les livres traités ? les articles ne sont pas censés prendre
+  que les sommets »). La conclusion antérieure « trous internes rares » ÉTAIT TROP OPTIMISTE. Mesure
+  par livre (chapitres cités / nch, prose FR) : COMPLETS ou quasi (100 % ou trou sautable) = les
+  petits prophètes Joël/Amos/Abdias/Nahum/Aggée/Zacharie, + Galates/Philippiens/Colossiens/Philémon/
+  Tite/2 Timothée, + 1 Corinthiens 94 % (après comblement du 17/07). VRAIS SOUS-TRAITÉS, pire d'abord :
+  (1) 2 CORINTHIENS 62 %, UN SEUL article pour 13 chapitres (ch 1,6,9,10,11 absents) — la 2e lettre
+  reste bien plus mince que la 1re ; c'est le « truc des corinthiens » PAS fini. (2) ÉZÉCHIEL : la
+  série de 5 suit tout l'arc du livre (appel 1-3 → actes symboliques/jugement 4-24 → nations 25-32 →
+  restauration 34-39 → temple 40-48), donc PAS des pics décousus ; mais elle s'amincit fort dans la
+  longue section de jugement, laissant de vrais contenus : ch 18 (responsabilité personnelle, « l'âme
+  qui pèche mourra », théologiquement majeur), 16 et 23 (allégories de Jérusalem/Samarie infidèles),
+  17/19/20/21/22. (3) ISAÏE 82 %, 12 ch absents (traitement thématique d'un livre de 66 : correct mais
+  pas complet). (4) PENTATEUQUE hors Genèse : Lévitique ~52 %, Nombres ~53 %, fondus dans la trame de
+  Moïse → minces par construction. (5) GENÈSE 42 % ET SANS SÉRIE dédiée (le grand trou structurel déjà
+  connu). LEÇON : la métrique de citation SURESTIME le trou (chapitres sautables, couverture thématique
+  non citée) mais RÉVÈLE de vrais manques ; il faut VÉRIFIER (lire la série) avant de combler. PRINCIPE
+  POSÉ PAR EMMANUEL, désormais durable : un livre présenté comme traité doit être couvert
+  SUBSTANTIELLEMENT, pas réduit à ses sommets. PLAN DE COMBLEMENT proposé, pire d'abord : 2 Corinthiens,
+  puis section de jugement d'Ézéchiel (ch 13-23, surtout 18), puis Isaïe, puis le Pentateuque, puis
+  Genèse (série neuve). À exécuter selon l'ambition qu'Emmanuel fixera (article plus profond vs série).
+• ✦ CORINTHIENS COMPLÉTÉS (17/07). La catégorie corinthiens passe de 7 à 9 articles, ordre calé sur les
+  chapitres : entrée, sagesse (1-4), LA-LIBERTE-ET-LES-IDOLES (NEUF, 1 Co 8-10 : science/amour, faible,
+  renoncement de Paul + couronne de l'Isthme, typologie du désert 10:1-13 rocher=Christ, table du
+  Seigneur vs table des démons + argument eucharistique, tout pour la gloire de Dieu), cène (11), voile
+  (11), LES-CHARISMES-ET-L-ASSEMBLEE (NEUF, 1 Co 12+14 : charisma/charis glosé, cadence trinitaire
+  12:4-6, corps et membres, voie qui dépasse tout → renvoi implicite hymne, prophétie/langues 14:19,
+  Dieu de paix 14:33 + ordre 14:40, charismes distincts de la grâce sanctifiante — foyer
+  désir-de-sentir-l'esprit respecté, sans redéployer), hymne (13), résurrection (15), seconde. L'ENTRÉE
+  récrite pour porter la TRAME COMPLÈTE des deux lettres (registre série) : gens de Chloé, incestueux +
+  levain pascal 5:6 + but médicinal de la sanction, procès, corps-temple 6:19-20, lettre de questions
+  (mariage ch 7 → foyer le-mariage, implicite), collecte, Marana tha 16:22 glosé ; 2 Co : visite
+  douloureuse, lettre des larmes 2:4, Tite en Macédoine, super-apôtres, écharde (12:9 en source),
+  salutation trinitaire 13:13. 4 gestes faits (articles.json 176, SLUGS freedom-and-idols /
+  the-charisms-and-the-assembly, themes.json réordonné, nouveautés FR+EN). verify_ch 0 défaut, build
+  178 paires → 356 pages, 0 débordement mobile, 0 erreur JS, typo propre. RAPPEL : plus AUCUN lien
+  <a> dans la prose (règle du 17/07), les renvois des articles neufs sont implicites.
 
 NOTES DURABLES DE VERSIFICATION EN (Douay) — à réutiliser
 • versifDouay corrige déjà : Psaumes (héb→Douay), Joël (3-4→2-3), Nahum 2,

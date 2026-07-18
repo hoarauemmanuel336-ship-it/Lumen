@@ -2083,6 +2083,8 @@ if (fs.existsSync('bible.html')) {
       ['>Prendre une note<', '>Take a note<'],
       ['>Surligner<', '>Highlight<'],
       ['>Retirer le surlignage<', '>Remove highlighting<'],
+      ['>Retirer<', '>Remove<'],
+      ["var LVF_TXT = { surl: 'Surlignages', oter: 'Retirer' }", "var LVF_TXT = { surl: 'Highlights', oter: 'Remove' }"],
       ['title="Couleur libre"', 'title="Free colour"'],
       ['aria-label="Or"', 'aria-label="Gold"'],
       ['aria-label="Rouge"', 'aria-label="Red"'],

@@ -173,6 +173,25 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .sb-oter:hover{color:#fff}
 .vst.sel{background:rgba(231,224,207,.28)!important;box-shadow:0 0 0 5px rgba(231,224,207,.28)!important}
 .vst.cible{background:rgba(231,224,207,.14);box-shadow:0 0 0 5px rgba(231,224,207,.14)}
+.lv-frag{border-radius:2px;padding:.02em 0;box-decoration-break:clone;-webkit-box-decoration-break:clone;cursor:pointer}
+/* petit menu flottant de surlignage de fragment */
+#lv-frag-pop{position:absolute;z-index:120;display:none;align-items:center;gap:8px;padding:8px 10px;background:rgba(12,12,12,.97);border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 30px rgba(0,0,0,.55);backdrop-filter:blur(8px);flex-wrap:wrap;max-width:min(92vw,340px)}
+#lv-frag-pop.ouvert{display:flex}
+#lv-frag-pop .lvp-past{width:19px;height:19px;border-radius:50%;cursor:pointer;border:1px solid rgba(255,255,255,.25);transition:transform .15s,border-color .2s}
+#lv-frag-pop .lvp-past:hover{transform:scale(1.18);border-color:#fff}
+#lv-frag-pop .lvp-libre{width:26px;height:22px;padding:1px;background:#0a0a0a;border:1px solid rgba(255,255,255,.25);cursor:pointer}
+#lv-frag-pop .lvp-oter{font-size:12px;letter-spacing:.05em;color:rgba(255,255,255,.6);cursor:pointer;padding:2px 4px;white-space:nowrap}
+#lv-frag-pop .lvp-oter:hover{color:#fff}
+#lv-frag-pop .lvp-sep{width:1px;height:18px;background:rgba(255,255,255,.14)}
+/* section surlignages dans « Mes notes » */
+.surl-item{border:1px solid rgba(231,224,207,.12);padding:12px 14px;margin:10px 0;display:block}
+.surl-item .surl-tete{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+.surl-pastille{width:13px;height:13px;border-radius:50%;flex:0 0 auto;border:1px solid rgba(255,255,255,.25)}
+.surl-item .surl-ref{font-family:var(--serif);font-size:13.5px;color:var(--or);cursor:pointer}
+.surl-item .surl-ref:hover{text-decoration:underline}
+.surl-item .surl-oter{margin-left:auto;font-size:12px;color:rgba(255,255,255,.5);cursor:pointer}
+.surl-item .surl-oter:hover{color:#fff}
+.surl-item .surl-txt{line-height:1.6;font-size:15.5px}
 .ch-nav{display:flex;justify-content:space-between;gap:18px;margin-top:54px;padding-top:26px;border-top:1px solid rgba(231,224,207,.14)}
 .ch-nav a{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa);transition:color .3s;padding:6px 0}
 .ch-nav a:hover{color:var(--or-pale)}
@@ -360,6 +379,23 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
     </div>
   </div>
 
+  <div id="lv-frag-pop" aria-hidden="true">
+    <input type="color" class="lvp-libre" id="lvp-cercle" value="#ffe600" title="Couleur libre">
+    <span class="lvp-past" data-suc="#ffe600" style="background:#ffe600" role="button" tabindex="0"></span>
+    <span class="lvp-past" data-suc="#ffb700" style="background:#ffb700" role="button" tabindex="0"></span>
+    <span class="lvp-past" data-suc="#ff7a00" style="background:#ff7a00" role="button" tabindex="0"></span>
+    <span class="lvp-past" data-suc="#ff2b2b" style="background:#ff2b2b" role="button" tabindex="0"></span>
+    <span class="lvp-past" data-suc="#ff4da6" style="background:#ff4da6" role="button" tabindex="0"></span>
+    <span class="lvp-past" data-suc="#b04dff" style="background:#b04dff" role="button" tabindex="0"></span>
+    <span class="lvp-past" data-suc="#2979ff" style="background:#2979ff" role="button" tabindex="0"></span>
+    <span class="lvp-past" data-suc="#00cfff" style="background:#00cfff" role="button" tabindex="0"></span>
+    <span class="lvp-past" data-suc="#00ffb3" style="background:#00ffb3" role="button" tabindex="0"></span>
+    <span class="lvp-past" data-suc="#35ff6a" style="background:#35ff6a" role="button" tabindex="0"></span>
+    <span class="lvp-past" data-suc="#b8ff00" style="background:#b8ff00" role="button" tabindex="0"></span>
+    <span class="lvp-sep" aria-hidden="true"></span>
+    <span class="lvp-oter" id="lvp-oter" role="button" tabindex="0">Retirer</span>
+  </div>
+
   <footer>
     <div class="marque">Lumen</div>
     <div class="verset-pied">« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l'ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span></div>
@@ -476,10 +512,11 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
   }
   function syncInitiale(){
     db.collection('users/' + UID + '/bibleNotes').get().then(function(snap){
-      var nuage = {}, meta = null, surlN = null;
+      var nuage = {}, meta = null, surlN = null, surlfN = null;
       snap.forEach(function(dc){
         if (dc.id === '__meta__') { meta = dc.data(); return; }
         if (dc.id === '__surl__') { surlN = dc.data(); return; }
+        if (dc.id === '__surlf__') { surlfN = dc.data(); return; }
         var x = dc.data(); x.id = dc.id; nuage[x.id] = x;
       });
       /* surlignage : le plus recent (local ou nuage) gagne en bloc */
@@ -492,6 +529,17 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
         marqueSurl();
       } else if (SURL_M > (surlN ? (surlN.m || 0) : 0) && Object.keys(SURL).length) {
         db.doc('users/' + UID + '/bibleNotes/__surl__').set({ surl: true, m: SURL_M, s: SURL }).catch(function(){});
+      }
+      /* surlignage de fragments : idem, le plus recent gagne en bloc */
+      if (surlfN && (surlfN.m || 0) > SURLF_M) {
+        SURLF = surlfN.s || {}; SURLF_M = surlfN.m || 0;
+        try {
+          localStorage.setItem('lv_bible_surlf', JSON.stringify(SURLF));
+          localStorage.setItem('lv_bible_surlf_m', String(SURLF_M));
+        } catch(e){}
+        marqueSurlF();
+      } else if (SURLF_M > (surlfN ? (surlfN.m || 0) : 0) && Object.keys(SURLF).length) {
+        db.doc('users/' + UID + '/bibleNotes/__surlf__').set({ surlf: true, m: SURLF_M, s: SURLF }).catch(function(){});
       }
       if (meta && (meta.m || 0) > CATS_M) {
         CATS = meta.cats || []; CATS_M = meta.m || 0;
@@ -1088,6 +1136,207 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
   document.getElementById('sb-cercle').addEventListener('input', function(){
     appliqueSurl(this.value);
   });
+
+  /* ───────── Surlignage de FRAGMENTS (portions de verset) ───────── */
+  var SURLF = {}, SURLF_M = 0;
+  try { SURLF = JSON.parse(localStorage.getItem('lv_bible_surlf') || '{}'); } catch(e) { SURLF = {}; }
+  try { SURLF_M = parseInt(localStorage.getItem('lv_bible_surlf_m') || '0', 10) || 0; } catch(e) { SURLF_M = 0; }
+  function sauveSurlF(){
+    SURLF_M = Date.now();
+    try {
+      localStorage.setItem('lv_bible_surlf', JSON.stringify(SURLF));
+      localStorage.setItem('lv_bible_surlf_m', String(SURLF_M));
+    } catch(e){}
+    if (UID && db) db.doc('users/' + UID + '/bibleNotes/__surlf__').set({ surlf: true, m: SURLF_M, s: SURLF }).catch(function(){});
+  }
+  var pendingFrag = null;
+  function verseTextMap(){
+    var ctx = vue._ctx; if (!ctx) return null;
+    var d = CACHE[ctx.slug]; if (!d) return null;
+    var ch = null;
+    for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === ctx.ch) { ch = d.chapitres[i]; break; }
+    if (!ch) return null;
+    var m = {}; ch.versets.forEach(function(v){ m[v.v] = v.t; }); return m;
+  }
+  function fragStyle(hex){
+    return 'background:' + surlRgba(hex, .42) + ';box-shadow:inset 0 -0.5px 0 ' + surlRgba(hex, .7);
+  }
+  function fragHTML(text, frags, meta){
+    var l = frags.slice().sort(function(a, b){ return a.a - b.a; });
+    var out = '', pos = 0;
+    l.forEach(function(f){
+      if (f.a > pos) out += esc(text.slice(pos, f.a));
+      out += '<span class="lv-frag" data-fa="' + f.a + '" data-fb="' + f.b + '" style="' + fragStyle(f.hex) + '">' + esc(text.slice(f.a, f.b)) + '</span>';
+      pos = f.b;
+    });
+    out += esc(text.slice(pos));
+    return out;
+  }
+  function marqueSurlF(){
+    var ctx = vue._ctx; if (!ctx) return;
+    var vm = verseTextMap(); if (!vm) return;
+    document.querySelectorAll('.ch-texte .vst').forEach(function(sp){
+      var v = parseInt(sp.id.replace('va-', ''), 10);
+      var txt = vm[v]; if (txt == null) return;
+      var key = ctx.slug + '|' + ctx.ch + '|' + v;
+      var frags = SURLF[key];
+      var inner = '<sup class="vn">' + v + '</sup>' + ((frags && frags.length) ? fragHTML(txt, frags) : esc(txt));
+      if (sp.innerHTML !== inner) sp.innerHTML = inner;
+    });
+  }
+  function poseFrag(key, a, b, hex, text){
+    var len = text.length, arr = new Array(len), i;
+    (SURLF[key] || []).forEach(function(f){ for (i = f.a; i < Math.min(f.b, len); i++) arr[i] = f.hex; });
+    for (i = Math.max(0, a); i < Math.min(b, len); i++) arr[i] = hex || null;
+    var out = []; i = 0;
+    while (i < len) {
+      if (arr[i]) { var j = i; while (j < len && arr[j] === arr[i]) j++; out.push({ a: i, b: j, hex: arr[i], t: text.slice(i, j) }); i = j; }
+      else i++;
+    }
+    if (out.length) SURLF[key] = out; else delete SURLF[key];
+  }
+  function vOffset(sp, node, off){
+    var sup = sp.querySelector('.vn');
+    var rr = document.createRange();
+    try { if (sup) rr.setStartAfter(sup); else rr.setStart(sp, 0); rr.setEnd(node, off); }
+    catch(e){ return 0; }
+    return rr.toString().length;
+  }
+  function clearNativeSel(){ var s = window.getSelection(); if (s && s.removeAllRanges) s.removeAllRanges(); }
+  function fermeFragPop(){ var p = document.getElementById('lv-frag-pop'); if (!p) return; p.classList.remove('ouvert'); p.setAttribute('aria-hidden', 'true'); pendingFrag = null; }
+  function ouvreFragPop(rect){
+    var pop = document.getElementById('lv-frag-pop');
+    pop.classList.add('ouvert'); pop.setAttribute('aria-hidden', 'false');
+    var rc = rect.getBoundingClientRect ? rect.getBoundingClientRect() : rect;
+    var pw = pop.offsetWidth, ph = pop.offsetHeight;
+    var cw = document.documentElement.clientWidth;
+    var left = window.scrollX + rc.left + rc.width / 2 - pw / 2;
+    left = Math.max(8, Math.min(left, window.scrollX + cw - pw - 8));
+    var top = (rc.top - ph - 10 < 0) ? (window.scrollY + rc.bottom + 10) : (window.scrollY + rc.top - ph - 10);
+    pop.style.left = left + 'px'; pop.style.top = top + 'px';
+  }
+  function capterSelection(){
+    var ctx = vue._ctx; if (!ctx) { fermeFragPop(); return; }
+    var sel = window.getSelection();
+    if (!sel || sel.isCollapsed || !sel.rangeCount) { fermeFragPop(); return; }
+    var r = sel.getRangeAt(0);
+    var cont = document.querySelector('.ch-texte');
+    if (!cont || !cont.contains(r.commonAncestorContainer)) { fermeFragPop(); return; }
+    var vm = verseTextMap(); if (!vm) { fermeFragPop(); return; }
+    var frags = [];
+    document.querySelectorAll('.ch-texte .vst').forEach(function(sp){
+      if (!r.intersectsNode(sp)) return;
+      var v = parseInt(sp.id.replace('va-', ''), 10);
+      var txt = vm[v]; if (txt == null) return;
+      var len = txt.length, a = 0, b = len;
+      if (sp.contains(r.startContainer)) a = vOffset(sp, r.startContainer, r.startOffset);
+      if (sp.contains(r.endContainer)) b = vOffset(sp, r.endContainer, r.endOffset);
+      a = Math.max(0, Math.min(a, len)); b = Math.max(0, Math.min(b, len));
+      if (b > a) frags.push({ key: ctx.slug + '|' + ctx.ch + '|' + v, slug: ctx.slug, ch: ctx.ch, v: v, a: a, b: b, t: txt.slice(a, b) });
+    });
+    if (!frags.length) { fermeFragPop(); return; }
+    pendingFrag = frags;
+    ouvreFragPop(r);
+  }
+  function appliqueFrag(hex){
+    if (!pendingFrag || !pendingFrag.length) { fermeFragPop(); return; }
+    var vm = verseTextMap();
+    pendingFrag.forEach(function(pf){
+      var txt = (vm && vm[pf.v] != null) ? vm[pf.v] : (pf.t || '');
+      poseFrag(pf.key, pf.a, pf.b, hex, txt);
+    });
+    sauveSurlF(); clearNativeSel(); fermeFragPop(); marqueSurlF();
+    if (location.hash === '#notes') vueNotes();
+  }
+  document.addEventListener('mouseup', function(e){
+    if (e.target.closest && e.target.closest('#lv-frag-pop')) return;
+    setTimeout(capterSelection, 0);
+  });
+  document.addEventListener('touchend', function(e){
+    if (e.target.closest && e.target.closest('#lv-frag-pop')) return;
+    setTimeout(capterSelection, 10);
+  });
+  document.addEventListener('mousedown', function(e){
+    if (!(e.target.closest && e.target.closest('#lv-frag-pop'))) fermeFragPop();
+  });
+  document.getElementById('lv-frag-pop').addEventListener('click', function(e){
+    var pa = e.target.closest ? e.target.closest('.lvp-past') : null;
+    if (pa) { appliqueFrag(pa.getAttribute('data-suc')); return; }
+    if (e.target.closest && e.target.closest('#lvp-oter')) { appliqueFrag(null); return; }
+  });
+  document.getElementById('lvp-cercle').addEventListener('input', function(){ appliqueFrag(this.value); });
+
+  /* ── Surlignages dans « Mes notes » ── */
+  var LVF_TXT = { surl: 'Surlignages', oter: 'Retirer' };
+  function remplirSurlignages(filtre){
+    var zone = document.getElementById('surl-zone');
+    if (!zone) return;
+    var f = norm(filtre || '');
+    var items = [];
+    Object.keys(SURLF).forEach(function(k){
+      var p = k.split('|'); var slug = p[0], ch = parseInt(p[1], 10), v = parseInt(p[2], 10);
+      (SURLF[k] || []).forEach(function(fr){
+        items.push({ slug: slug, ch: ch, v: v, hex: fr.hex, text: fr.t, frag: true, a: fr.a, b: fr.b });
+      });
+    });
+    Object.keys(SURL).forEach(function(k){
+      var c = surlCouleur(SURL[k]); if (!c) return;
+      var p = k.split('|'); items.push({ slug: p[0], ch: parseInt(p[1], 10), v: parseInt(p[2], 10), hex: c, text: null, frag: false });
+    });
+    if (!items.length) { zone.innerHTML = ''; return; }
+    items.sort(function(a, b){ return (ORDRE[a.slug] - ORDRE[b.slug]) || (a.ch - b.ch) || (a.v - b.v) || ((a.a || 0) - (b.a || 0)); });
+    var besoins = {}; items.forEach(function(it){ if (it.text == null) besoins[it.slug] = 1; });
+    Promise.all(Object.keys(besoins).map(livreData)).then(function(){
+      items.forEach(function(it){
+        if (it.text == null) {
+          var d = CACHE[it.slug]; if (!d) { it.text = ''; return; }
+          var ch = null;
+          for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === it.ch) { ch = d.chapitres[i]; break; }
+          var vt = ''; if (ch) ch.versets.forEach(function(v){ if (v.v === it.v) vt = v.t; });
+          it.text = vt;
+        }
+      });
+      var vis = items.filter(function(it){
+        if (!f) return true;
+        return norm(it.text).indexOf(f) >= 0 || norm(libelle({ slug: it.slug, ch: it.ch, v1: it.v, v2: it.v })).indexOf(f) >= 0;
+      });
+      if (!vis.length) { zone.innerHTML = ''; return; }
+      var h = '<div class="notes-cat"><span class="notes-cat-nom">' + LVF_TXT.surl + ' (' + vis.length + ')</span></div>';
+      vis.forEach(function(it){
+        var ref = libelle({ slug: it.slug, ch: it.ch, v1: it.v, v2: it.v });
+        var off = it.slug + '|' + it.ch + '|' + it.v + (it.frag ? ('|' + it.a + '|' + it.b) : '');
+        var corps = it.frag
+          ? '<span style="' + fragStyle(it.hex) + ';border-radius:2px;padding:.02em 2px">' + esc(it.text) + '</span>'
+          : esc(it.text);
+        h += '<div class="surl-item">'
+           + '<div class="surl-tete"><span class="surl-pastille" style="background:' + it.hex + '"></span>'
+           + '<span class="surl-ref" data-snav="' + it.slug + '/' + it.ch + '/' + it.v + '">' + esc(ref) + '</span>'
+           + '<span class="surl-oter" data-soff="' + off + '" role="button" tabindex="0">' + LVF_TXT.oter + '</span></div>'
+           + '<div class="surl-txt">' + corps + '</div></div>';
+      });
+      zone.innerHTML = h;
+      zone.querySelectorAll('[data-snav]').forEach(function(el){
+        el.addEventListener('click', function(){ location.hash = '#' + el.getAttribute('data-snav'); });
+      });
+      zone.querySelectorAll('[data-soff]').forEach(function(el){
+        el.addEventListener('click', function(){
+          var parts = el.getAttribute('data-soff').split('|');
+          var slug = parts[0], ch = parseInt(parts[1], 10), v = parseInt(parts[2], 10);
+          var key = slug + '|' + ch + '|' + v;
+          if (parts.length >= 5) {
+            var d = CACHE[slug], cho = null;
+            if (d) for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === ch) { cho = d.chapitres[i]; break; }
+            var vt = ''; if (cho) cho.versets.forEach(function(x){ if (x.v === v) vt = x.t; });
+            poseFrag(key, parseInt(parts[3], 10), parseInt(parts[4], 10), null, vt);
+            sauveSurlF(); marqueSurlF();
+          } else {
+            delete SURL[key]; sauveSurl(); marqueSurl();
+          }
+          remplirSurlignages(filtre);
+        });
+      });
+    });
+  }
   document.getElementById('nb-annuler').addEventListener('click', fermeNote);
   document.getElementById('note-voile').addEventListener('click', function(e){ if (e.target === this) fermeNote(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { fermeNote(); fermeCat(); fermeAuth(); fermeOv('brech-voile'); fermeOv('bnouv-voile'); document.getElementById('bacct-voile').classList.remove('ouvert'); } });
@@ -1193,7 +1442,9 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
         });
       });
     }
+    h += '<div id="surl-zone"></div>';
     vue.innerHTML = h;
+    remplirSurlignages(filtre);
     var champ = document.getElementById('notes-rech');
     champ.addEventListener('input', function(){ vueNotes(champ.value); });
     if (filtre) { champ.focus(); champ.setSelectionRange(champ.value.length, champ.value.length); }
@@ -1394,9 +1645,23 @@ footer .copy{margin-top:16px;font-size:12px;letter-spacing:.08em;color:rgba(255,
         marqueSelection();
         marqueSurl();
       }
+      marqueSurlF();
       vue.querySelector('.ch-texte').addEventListener('click', function(e){
         var sp = e.target.closest('.vst');
         if (!sp) return;
+        var fr = e.target.closest('.lv-frag');
+        if (fr) {
+          var v0 = parseInt(sp.id.replace('va-', ''), 10);
+          var vm = verseTextMap();
+          var t0 = (vm && vm[v0] != null) ? vm[v0] : '';
+          var a0 = parseInt(fr.getAttribute('data-fa'), 10), b0 = parseInt(fr.getAttribute('data-fb'), 10);
+          pendingFrag = [{ key: slug + '|' + n + '|' + v0, slug: slug, ch: n, v: v0, a: a0, b: b0, t: t0.slice(a0, b0) }];
+          var rng = document.createRange(); rng.selectNode(fr); ouvreFragPop(rng);
+          e.stopPropagation();
+          return;
+        }
+        var s = window.getSelection();
+        if (s && !s.isCollapsed) return;
         basculeSel(slug, n, parseInt(sp.id.replace('va-', ''), 10));
       });
       if (vCible) {
