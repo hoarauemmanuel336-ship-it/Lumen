@@ -1,0 +1,308 @@
+{
+ "themes": [
+  {
+   "id": "doctrine",
+   "nom_fr": "Doctrine et dogmes",
+   "nom_en": "Doctrine and Dogma",
+   "desc_fr": "Ce que l'Église croit et enseigne : Dieu, le Christ, le salut, l'Église, les fins dernières.",
+   "desc_en": "What the Church believes and teaches: God, Christ, salvation, the Church, the last things.",
+   "groupes": [
+    {
+     "id": "g-dieu",
+     "nom_fr": "Dieu et les anges",
+     "nom_en": "God and the Angels",
+     "noeuds": [
+      {
+       "id": "culte",
+       "nom_fr": "Le culte de Dieu",
+       "nom_en": "The Worship of God",
+       "arts": [
+        "l-adoration-et-la-louange"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "g-peche",
+     "nom_fr": "Le péché, la grâce et le salut",
+     "nom_en": "Sin, Grace and Salvation",
+     "noeuds": [
+      {
+       "id": "conscience",
+       "nom_fr": "La conscience et la responsabilité",
+       "nom_en": "Conscience and Responsibility",
+       "arts": [
+        "l-age-de-raison"
+       ]
+      },
+      {
+       "id": "grace",
+       "nom_fr": "La grâce et le salut",
+       "nom_en": "Grace and Salvation",
+       "arts": [
+        "la-grace",
+        "le-salut"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "g-christ",
+     "nom_fr": "Le Christ et la Vierge Marie",
+     "nom_en": "Christ and the Virgin Mary",
+     "noeuds": [
+      {
+       "id": "marie",
+       "nom_fr": "La Vierge Marie",
+       "nom_en": "The Virgin Mary",
+       "arts": [
+        "marie"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "g-vertus",
+     "nom_fr": "La vie morale et les vertus",
+     "nom_en": "The Moral Life and the Virtues",
+     "noeuds": [
+      {
+       "id": "vertus",
+       "nom_fr": "Les vertus théologales",
+       "nom_en": "The Theological Virtues",
+       "arts": [
+        "les-vertus-theologales"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "g-eglise",
+     "nom_fr": "L'Église, le sacerdoce et les fins dernières",
+     "nom_en": "The Church, the Priesthood and the Last Things",
+     "noeuds": [
+      {
+       "id": "eglise",
+       "nom_fr": "L'Église",
+       "nom_en": "The Church",
+       "arts": [
+        "l-eglise",
+        "la-communion-des-saints"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ecriture",
+   "nom_fr": "Écriture et exégèse",
+   "nom_en": "Scripture and Exegesis",
+   "desc_fr": "La lecture des Écritures dans la foi de l'Église, du sens littéral aux sens spirituels.",
+   "desc_en": "The reading of the Scriptures in the faith of the Church, from the literal sense to the spiritual senses.",
+   "groupes": [
+    {
+     "id": "g-at",
+     "nom_fr": "Ancien Testament",
+     "nom_en": "The Old Testament",
+     "noeuds": [
+      {
+       "id": "g-pentateuque",
+       "nom_fr": "Le Pentateuque",
+       "nom_en": "The Pentateuch",
+       "noeuds": [
+        {
+         "id": "genese",
+         "nom_fr": "La Genèse",
+         "nom_en": "Genesis",
+         "arts": [
+          "la-lutte-de-jacob-avec-dieu"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "at",
+       "nom_fr": "L'Ancien Testament",
+       "nom_en": "The Old Testament",
+       "arts": [
+        "l-ange-du-seigneur"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "g-nt",
+     "nom_fr": "Nouveau Testament",
+     "nom_en": "The New Testament",
+     "noeuds": [
+      {
+       "id": "g-evangiles",
+       "nom_fr": "Les évangiles et la vie du Christ",
+       "nom_en": "The Gospels and the Life of Christ",
+       "noeuds": [
+        {
+         "id": "evangiles",
+         "nom_fr": "Les évangiles",
+         "nom_en": "The Gospels",
+         "arts": [
+          "jesus-devant-pilate",
+          "laisse-les-morts-enterrer-leurs-morts",
+          "achetez-une-epee",
+          "la-mort-de-judas",
+          "tendre-l-autre-joue",
+          "le-bapteme-du-christ",
+          "le-doigt-de-dieu"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "questions",
+     "nom_fr": "Questions sur les Écritures",
+     "nom_en": "Questions on the Scriptures",
+     "arts": [
+      "l-esclavage-dans-la-bible",
+      "les-guerres-d-extermination"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sacrements",
+   "nom_fr": "Liturgie et sacrements",
+   "nom_en": "Liturgy and Sacraments",
+   "desc_fr": "Les signes efficaces de la grâce et le culte par lequel l'Église rend gloire à Dieu.",
+   "desc_en": "The efficacious signs of grace and the worship by which the Church gives glory to God.",
+   "categories": [
+    {
+     "id": "initiation",
+     "nom_fr": "Les sacrements de l'initiation chrétienne",
+     "nom_en": "The Sacraments of Christian Initiation",
+     "arts": [
+      "le-bapteme"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vie-spirituelle",
+   "nom_fr": "Vie spirituelle",
+   "nom_en": "The Spiritual Life",
+   "desc_fr": "La vie de l'âme avec Dieu : la prière, le combat contre les passions, les chemins de la confiance et de la paix, le progrès vers l'union à lui.",
+   "desc_en": "The life of the soul with God: prayer, the struggle against the passions, the paths of trust and peace, the progress toward union with him.",
+   "categories": [
+    {
+     "id": "combat",
+     "nom_fr": "Le combat intérieur",
+     "nom_en": "The Inner Struggle",
+     "arts": [
+      "la-colere-et-la-douceur",
+      "la-peur",
+      "la-tristesse",
+      "l-orgueil-et-l-humilite",
+      "le-jugement-du-prochain",
+      "la-rancune-et-le-pardon"
+     ]
+    },
+    {
+     "id": "chemin",
+     "nom_fr": "Le chemin vers Dieu",
+     "nom_en": "The Path to God",
+     "arts": [
+      "les-trois-voies-de-la-vie-interieure",
+      "la-nuit-noire-de-l-ame",
+      "le-desir-de-sentir-l-esprit"
+     ]
+    },
+    {
+     "id": "discernement",
+     "nom_fr": "Le discernement",
+     "nom_en": "Discernment",
+     "arts": [
+      "discerner-les-mouvements-du-coeur",
+      "la-consolation-et-la-desolation"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "histoire",
+   "nom_fr": "Histoire de l'Église",
+   "nom_en": "History of the Church",
+   "desc_fr": "Le chemin de l'Église à travers les siècles, ses conciles et ses combats.",
+   "desc_en": "The path of the Church through the centuries, its councils and its struggles.",
+   "categories": []
+  },
+  {
+   "id": "apologetique",
+   "nom_fr": "Apologétique",
+   "nom_en": "Apologetics",
+   "desc_fr": "La défense raisonnée de la foi : répondre aux objections et montrer que croire est accordé à la raison.",
+   "desc_en": "The reasoned defence of the faith: answering objections and showing that belief accords with reason.",
+   "categories": [
+    {
+     "id": "dieu-question",
+     "nom_fr": "Dieu en question",
+     "nom_en": "God in Question",
+     "arts": [
+      "pourquoi-dieu-demande-l-adoration",
+      "la-theorie-de-l-evolution"
+     ]
+    },
+    {
+     "id": "objections-protestantes",
+     "nom_fr": "Face aux objections protestantes",
+     "nom_en": "Answering Protestant Objections",
+     "arts": [
+      "le-sola-scriptura",
+      "le-sola-fide",
+      "une-fois-sauve-toujours-sauve",
+      "la-presence-reelle",
+      "le-bapteme-des-petits-enfants"
+     ]
+    },
+    {
+     "id": "marie-et-les-saints",
+     "nom_fr": "Marie et les saints",
+     "nom_en": "Mary and the Saints",
+     "arts": [
+      "marie-mere-de-dieu",
+      "l-intercession-des-saints"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "philosophie",
+   "nom_fr": "Philosophie et raison",
+   "nom_en": "Philosophy and Reason",
+   "desc_fr": "Ce que la raison humaine peut chercher et atteindre par elle-même sur Dieu, l'homme, le vrai et le bien, et comment elle s'accomplit dans sa rencontre avec la foi.",
+   "desc_en": "What human reason can seek and attain by itself concerning God, man, the true and the good, and how it is fulfilled in its meeting with faith.",
+   "categories": [
+    {
+     "id": "bien-agir",
+     "nom_fr": "Le bien et l'agir",
+     "nom_en": "The Good and Human Action",
+     "arts": [
+      "la-liberte-et-la-responsabilite",
+      "la-conscience-morale",
+      "le-doute-et-les-systemes-moraux",
+      "faire-le-mal-pour-un-bien",
+      "l-amour"
+     ]
+    },
+    {
+     "id": "foi-raison",
+     "nom_fr": "Foi et raison",
+     "nom_en": "Faith and Reason",
+     "arts": [
+      "la-foi-et-la-science"
+     ]
+    }
+   ]
+  }
+ ]
+}
