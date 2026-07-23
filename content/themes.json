@@ -1,0 +1,60 @@
+{
+ "themes": [
+  {
+   "id": "doctrine",
+   "nom_fr": "Doctrine et dogmes",
+   "nom_en": "Doctrine and Dogma",
+   "desc_fr": "Ce que l'Église croit et enseigne : Dieu, le Christ, le salut, l'Église, les fins dernières.",
+   "desc_en": "What the Church believes and teaches: God, Christ, salvation, the Church, the last things.",
+   "groupes": []
+  },
+  {
+   "id": "ecriture",
+   "nom_fr": "Écriture et exégèse",
+   "nom_en": "Scripture and Exegesis",
+   "desc_fr": "La lecture des Écritures dans la foi de l'Église, du sens littéral aux sens spirituels.",
+   "desc_en": "The reading of the Scriptures in the faith of the Church, from the literal sense to the spiritual senses.",
+   "groupes": []
+  },
+  {
+   "id": "sacrements",
+   "nom_fr": "Liturgie et sacrements",
+   "nom_en": "Liturgy and Sacraments",
+   "desc_fr": "Les signes efficaces de la grâce et le culte par lequel l'Église rend gloire à Dieu.",
+   "desc_en": "The efficacious signs of grace and the worship by which the Church gives glory to God.",
+   "categories": []
+  },
+  {
+   "id": "vie-spirituelle",
+   "nom_fr": "Vie spirituelle",
+   "nom_en": "The Spiritual Life",
+   "desc_fr": "La vie de l'âme avec Dieu : la prière, le combat contre les passions, les chemins de la confiance et de la paix, le progrès vers l'union à lui.",
+   "desc_en": "The life of the soul with God: prayer, the struggle against the passions, the paths of trust and peace, the progress toward union with him.",
+   "categories": []
+  },
+  {
+   "id": "histoire",
+   "nom_fr": "Histoire de l'Église",
+   "nom_en": "History of the Church",
+   "desc_fr": "Le chemin de l'Église à travers les siècles, ses conciles et ses combats.",
+   "desc_en": "The path of the Church through the centuries, its councils and its struggles.",
+   "categories": []
+  },
+  {
+   "id": "apologetique",
+   "nom_fr": "Apologétique",
+   "nom_en": "Apologetics",
+   "desc_fr": "La défense raisonnée de la foi : répondre aux objections et montrer que croire est accordé à la raison.",
+   "desc_en": "The reasoned defence of the faith: answering objections and showing that belief accords with reason.",
+   "categories": []
+  },
+  {
+   "id": "philosophie",
+   "nom_fr": "Philosophie et raison",
+   "nom_en": "Philosophy and Reason",
+   "desc_fr": "Ce que la raison humaine peut chercher et atteindre par elle-même sur Dieu, l'homme, le vrai et le bien, et comment elle s'accomplit dans sa rencontre avec la foi.",
+   "desc_en": "What human reason can seek and attain by itself concerning God, man, the true and the good, and how it is fulfilled in its meeting with faith.",
+   "categories": []
+  }
+ ]
+}
