@@ -345,9 +345,9 @@ main{max-width:1080px;margin:0 auto;padding:0 32px;min-height:70vh}
   transition:transform .3s ease,color .25s;
 }
 .sous-tete:hover .sous-chevron{color:var(--or-pale)}
-.sous.ouvert .sous-chevron{transform:rotate(90deg)}
+.sous.ouvert > .sous-tete .sous-chevron{transform:rotate(90deg)}
 .sous-corps{display:none;margin-left:9px;padding-left:24px;border-left:1px solid var(--filet)}
-.sous.ouvert .sous-corps{display:block}
+.sous.ouvert > .sous-corps{display:block}
 .sous-corps .article-lien:last-child{border-bottom:none}
 .grp{margin-top:6px}
 .grp:first-child{margin-top:0}

@@ -368,7 +368,7 @@ body.mode-suivi .art-nav{display:none!important}
 
 .dom.fermant .dom-chevron{transform:rotate(0)}
 .grp.fermant > .grp-tete .grp-chevron{transform:rotate(0)}
-.sous.fermant .sous-chevron{transform:rotate(0)}
+.sous.fermant > .sous-tete .sous-chevron{transform:rotate(0)}
 .dom.fermant .dom-tete{position:static}
 
 .lecture span.ref{cursor:pointer;padding:9px 5px;margin:-9px -5px}
@@ -1222,17 +1222,21 @@ const BIBLIO_JS = `(function(){
   var b=document.getElementById('basculerTout');
   if(b){ b.addEventListener('click',tout); b.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();tout();} }); }
   function majAria(){ document.querySelectorAll('.dom-tete,.grp-tete,.sous-tete').forEach(function(t){ var c=t.closest('.dom,.grp,.sous'); t.setAttribute('aria-expanded', c && c.classList.contains('ouvert') ? 'true':'false'); }); }
-  document.querySelectorAll('.dom-tete').forEach(function(t){
-    t.addEventListener('click',function(){ basculer(t.closest('.dom')); setTimeout(majAria,10); });
-    t.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); t.click(); } });
+  /* Délégation : une seule écoute pour les têtes statiques ET créées à la volée
+     (overrides admin) — évite la double liaison qui rouvrait/refermait (23/07). */
+  document.addEventListener('click', function(e){
+    var t = e.target.closest ? e.target.closest('.dom-tete,.grp-tete,.sous-tete') : null;
+    if(!t) return;
+    if(t.classList.contains('dom-tete')) basculer(t.closest('.dom'));
+    else if(t.classList.contains('grp-tete')) basculerGrp(t.closest('.grp'));
+    else basculerSous(t.closest('.sous'));
+    setTimeout(majAria,10);
   });
-  document.querySelectorAll('.grp-tete').forEach(function(gt){
-    gt.addEventListener('click',function(){ basculerGrp(gt.closest('.grp')); setTimeout(majAria,10); });
-    gt.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); gt.click(); } });
-  });
-  document.querySelectorAll('.sous-tete').forEach(function(st){
-    st.addEventListener('click',function(){ basculerSous(st.closest('.sous')); setTimeout(majAria,10); });
-    st.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); st.click(); } });
+  document.addEventListener('keydown', function(e){
+    if(e.key!=='Enter'&&e.key!==' ') return;
+    var t = e.target && e.target.closest ? e.target.closest('.dom-tete,.grp-tete,.sous-tete') : null;
+    if(!t) return;
+    e.preventDefault(); t.click();
   });
   function ouvrirAncetres(el,sec){ var a=el.parentNode; while(a&&a!==sec){ if(a.classList&&a.classList.contains('grp')) ouvrirGrp(a); a=a.parentNode; } }
   var theme=new URLSearchParams(location.search).get('theme');

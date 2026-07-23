@@ -145,9 +145,13 @@
     '.lva-cat-n{font-size:13px;color:var(--lvaM);white-space:nowrap;font-family:"Cormorant Garamond",serif;letter-spacing:.06em}',
     '.lva-chev{width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;color:var(--lvaM);cursor:pointer;font-family:ui-monospace,monospace;flex:none;transition:transform .25s,color .2s}',
     '.lva-chev:hover{color:var(--lvaG)}',
-    '.lva-cat.on .lva-chev{transform:rotate(90deg)}',
+    '.lva-cat.on > .lva-cat-h .lva-chev{transform:rotate(90deg)}',
     '.lva-cat-b{display:none;padding:4px 14px 16px;min-height:24px}',
-    '.lva-cat.on .lva-cat-b{display:block}',
+    '.lva-cat.on > .lva-cat-b{display:block}',
+    '.lva-subcats{margin:6px 0 2px}',
+    '.lva-cat.lva-sub{margin:10px 0;border-color:rgba(255,255,255,.3)}',
+    '.lva-cat.lva-p2{border-color:rgba(255,255,255,.2)}',
+    '.lva-addsub{font-size:12px;padding:7px 14px;margin:8px 0 2px}',
     '.lva-aut > .lva-cat-h .lva-aut-lab{font-family:"Cormorant Garamond",serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--lvaM);flex:1}',
     '.lva-art{display:flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.55);background:rgba(0,0,0,.3);padding:7px 10px;margin:6px 0;font-size:15.5px}',
     '.lva-art-t{flex:1;color:var(--lvaT)}',
@@ -280,9 +284,10 @@
   }
   function creerSous(cid, nm) {
     var s = el('div', 'sous'); s.setAttribute('data-cat', cid);
-    s.innerHTML = '<div class="sous-tete"><span class="sous-puce" aria-hidden="true"></span><span class="sous-nom"></span><span class="sous-chevron" aria-hidden="true">\u203A</span></div><div class="sous-corps"></div>';
+    s.innerHTML = '<div class="sous-tete" role="button" tabindex="0" aria-expanded="false"><span class="sous-puce" aria-hidden="true"></span><span class="sous-nom"></span><span class="sous-chevron" aria-hidden="true">\u203A</span></div><div class="sous-corps"></div>';
     s.querySelector('.sous-nom').textContent = nm || '';
-    s.querySelector('.sous-tete').addEventListener('click', function () { s.classList.toggle('ouvert'); });
+    /* pas de gestionnaire propre : la délégation de BIBLIO_JS gère le pli/dépli
+       (un gestionnaire local créerait une DOUBLE liaison → ouvre puis referme) */
     return s;
   }
   function applyThemes(d) {
@@ -327,6 +332,13 @@
         Object.keys(exist).forEach(function (cid) { exist[cid].remove(); });
         (((st.arts || {})['__autres']) || []).forEach(function (sl) { if (m[sl] && !used[sl]) { corps.appendChild(m[sl]); used[sl] = 1; } });
         Object.keys(m).forEach(function (sl) { if (!used[sl]) corps.appendChild(m[sl]); });
+        var parMap2 = st.parents || {};
+        (st.order || []).forEach(function (cid) {
+          var pid = parMap2[cid]; if (!pid) return;
+          var sEl = null, pEl = null;
+          qsa('.sous[data-cat]', corps).forEach(function (x) { var dc = x.getAttribute('data-cat'); if (dc === cid) sEl = x; if (dc === pid) pEl = x; });
+          if (sEl && pEl && !pEl.contains(sEl)) { var pc = pEl.querySelector(':scope > .sous-corps'); if (pc) pc.appendChild(sEl); }
+        });
       } else {
         qsa('.sous[data-cat]', dom).forEach(function (sous) {
           var k = th + '::' + sous.getAttribute('data-cat');
@@ -1166,7 +1178,7 @@
   /* — onglet Bibliothèque : domaines, catégories et rangement, tout en glisser — */
   function tabBiblio() {
     if (!IDX || !IDX.themes) { hubBody.appendChild(el('div', 'lva-note', T('Index indisponible.', 'Index unavailable.'))); return; }
-    hubBody.appendChild(el('div', 'lva-note', T('Toute l\u2019organisation de la bibliothèque : noms et descriptions des domaines, catégories (glisser ☰ pour les ranger, même d\u2019un domaine à l\u2019autre), articles (glisser ⋮⋮ entre les catégories). Rien n\u2019est public avant Enregistrer.', 'The whole library organisation: domain names, categories (drag ☰), articles (drag ⋮⋮ between categories). Nothing is public before you save.')));
+    hubBody.appendChild(el('div', 'lva-note', T('Toute l\u2019organisation de la bibliothèque : domaines, catégories (glisser ☰ pour les ranger, même d\u2019un domaine à l\u2019autre), sections dans les catégories (+ Section), sous-sections dans les sections (+ Sous-section), articles glissables (⋮⋮) à chaque niveau. Rien n\u2019est public avant Enregistrer.', 'The whole library organisation: domain names, categories (drag ☰), articles (drag ⋮⋮ between categories). Nothing is public before you save.')));
     var host = el('div'); hubBody.appendChild(host);
     function deplacerArticle(row) {
       var secs = qsa('.lva-bth', host);
@@ -1177,7 +1189,7 @@
         qsa('.lva-cat', sec).forEach(function (b) {
           if (b.contains(row)) return;
           var nEl = b.querySelector('.lva-cat-nom');
-          var label = b.__aut ? T('Sans cat\u00e9gorie', 'Uncategorized') : ((((nEl && nEl.value) || '').trim()) || T('(cat\u00e9gorie sans nom)', '(unnamed category)'));
+          var label = b.__aut ? T('Sans cat\u00e9gorie', 'Uncategorized') : ((((nEl && nEl.value) || '').trim()) || T('(sans nom)', '(unnamed)'));
           items.push({ label: label, fn: function () {
             var par = row.parentNode, nx = row.nextSibling;
             sec.classList.add('dom-open'); b.classList.add('on');
@@ -1216,15 +1228,16 @@
         var n = b.querySelector('.lva-cat-n'); if (n) n.textContent = qsa('.lva-art', b).length + T(' articles', ' articles');
       });
     }
-    function blocCat(sec, cid, nom, slugs, ovTitres, aut) {
-      var b = el('div', 'lva-cat' + (aut ? ' lva-aut' : '')); b.__cid = cid; b.__aut = !!aut;
+    function blocCat(sec, cid, nom, slugs, ovTitres, aut, prof) {
+      prof = prof || 0;
+      var b = el('div', 'lva-cat' + (aut ? ' lva-aut' : '') + (prof ? ' lva-sub lva-p' + prof : '')); b.__cid = cid; b.__aut = !!aut; b.__prof = prof;
       var h = el('div', 'lva-cat-h');
       var grip = el('span', 'lva-grip'); grip.textContent = '\u2630'; h.appendChild(grip);
       var chev = el('span', 'lva-chev'); chev.textContent = '\u203A'; h.appendChild(chev);
       if (aut) {
         var lab = el('span', 'lva-aut-lab'); lab.textContent = T('Sans catégorie', 'Uncategorized'); h.appendChild(lab);
       } else {
-        var iN = el('input', 'lva-in lva-cat-nom'); iN.value = nom || ''; iN.placeholder = T('Nom de la catégorie', 'Category name');
+        var iN = el('input', 'lva-in lva-cat-nom'); iN.value = nom || ''; iN.placeholder = prof === 2 ? T('Nom de la sous-section', 'Sub-section name') : (prof === 1 ? T('Nom de la section', 'Section name') : T('Nom de la catégorie', 'Category name'));
         iN.style.flex = '1'; iN.style.minWidth = '160px'; iN.style.width = 'auto';
         iN.addEventListener('input', markDirty); h.appendChild(iN);
       }
@@ -1232,7 +1245,7 @@
       if (!aut) {
         var x = el('span', 'lva-x'); x.textContent = '\u2715'; x.title = T('Supprimer (articles \u2192 Sans catégorie)', 'Delete (articles \u2192 Uncategorized)');
         x.addEventListener('click', function () {
-          if (!confirm(T('Supprimer cette catégorie ? Ses articles passent en « Sans catégorie ».', 'Delete this category? Its articles move to Uncategorized.'))) return;
+          if (!confirm(T('Supprimer ce bloc ? Ses articles (et ceux de ses niveaux imbriqués) passent en « Sans catégorie ».', 'Delete this block? Its articles (including nested levels) move to Uncategorized.'))) return;
           var auto = sec.querySelector('.lva-aut > .lva-cat-b');
           var par = b.parentNode, nx = b.nextSibling;
           var rows = qsa('.lva-art', b);
@@ -1245,6 +1258,20 @@
       b.appendChild(h);
       var body = el('div', 'lva-cat-b'); b.appendChild(body);
       slugs.forEach(function (sl) { body.appendChild(rowArt(sl, ovTitres)); });
+      if (!aut && prof < 2) {
+        var subsWrap = el('div', 'lva-subcats'); body.appendChild(subsWrap); b.__subs = subsWrap;
+        var addSub = el('span', 'lva-addcat lva-addsub');
+        addSub.textContent = prof === 1 ? T('+ Sous-section', '+ Sub-section') : T('+ Section', '+ Section');
+        addSub.addEventListener('click', function () {
+          var bS = blocCat(sec, '', '', [], ovTitres, false, prof + 1);
+          bS.classList.add('on');
+          subsWrap.appendChild(bS);
+          var iS = bS.querySelector('.lva-cat-nom'); if (iS) iS.focus();
+          markDirty(); majCnts();
+          UNDO.push(function () { bS.remove(); });
+        });
+        body.appendChild(addSub);
+      }
       chev.addEventListener('click', function () { b.classList.toggle('on'); });
       if (aut) {
         dragify(grip, b, {
@@ -1256,7 +1283,7 @@
       }
       if (!aut) {
         dragify(grip, b, {
-          containers: function () { return qsa('.lva-bth-cats', host); },
+          containers: function () { return prof ? qsa('.lva-subcats', host) : qsa('.lva-bth-cats', host); },
           items: function (c) { return qsa(':scope > .lva-cat', c); },
           scroller: function () { return hub; },
           onMoved: majCnts
@@ -1322,11 +1349,35 @@
         function garde(sl) { return assigne[sl] === t.id && !place[sl] && (place[sl] = 1); }
         var autSlot = null;
         if (st && st.order) {
+          var parMap = st.parents || {}, blocsCid = {};
           st.order.forEach(function (cid) {
             if (cid === '__autres') { if (!autSlot) { autSlot = el('div'); liste.appendChild(autSlot); } return; }
+            if (parMap[cid]) return; /* sous-section : posée au second passage */
             var nm = ((st.names || {})[cid] || {})['nom_' + ADM] || cid;
             var slugs = (((st.arts || {})[cid]) || []).filter(garde);
-            liste.appendChild(blocCat(sec, cid, nm, slugs, ovTitres, false));
+            var bT = blocCat(sec, cid, nm, slugs, ovTitres, false);
+            blocsCid[cid] = bT; liste.appendChild(bT);
+          });
+          var reste = st.order.filter(function (cid) { return cid !== '__autres' && parMap[cid]; });
+          var garde2 = 0;
+          while (reste.length && garde2++ < 5) {
+            reste = reste.filter(function (cid) {
+              var pere = blocsCid[parMap[cid]];
+              if (!pere) return true; /* parent pas encore posé : passe suivante */
+              var prof = Math.min((pere.__prof || 0) + 1, 2);
+              var nm = ((st.names || {})[cid] || {})['nom_' + ADM] || cid;
+              var slugs = (((st.arts || {})[cid]) || []).filter(garde);
+              var bS = blocCat(sec, cid, nm, slugs, ovTitres, false, prof);
+              if (pere.__subs) pere.__subs.appendChild(bS); else liste.appendChild(bS);
+              blocsCid[cid] = bS;
+              return false;
+            });
+          }
+          reste.forEach(function (cid) { /* parent introuvable : remonte en section */
+            var nm = ((st.names || {})[cid] || {})['nom_' + ADM] || cid;
+            var slugs = (((st.arts || {})[cid]) || []).filter(garde);
+            var bO = blocCat(sec, cid, nm, slugs, ovTitres, false);
+            blocsCid[cid] = bO; liste.appendChild(bO);
           });
         } else {
           (t.cats || []).forEach(function (c) {
@@ -1384,9 +1435,9 @@
         qsa('.lva-bth', host).forEach(function (sec) {
           var th = sec.__th;
           d.noms[th] = {}; d.noms[th]['nom_' + ADM] = sec.__nom.value.trim(); d.noms[th]['desc_' + ADM] = sec.__desc.value.trim();
-          var stt = { order: [], names: {}, arts: {} };
+          var stt = { order: [], names: {}, arts: {}, parents: {} };
           qsa(':scope .lva-cat', sec).forEach(function (b) {
-            var slugs = qsa('.lva-art', b).map(function (r) { finals[r.__slug] = th; return r.__slug; });
+            var slugs = qsa(':scope > .lva-cat-b > .lva-art', b).map(function (r) { finals[r.__slug] = th; return r.__slug; });
             if (b.__aut) { stt.arts['__autres'] = slugs; stt.order.push('__autres'); return; }
             if (!b.__cid) { var nEl0 = b.querySelector('.lva-cat-nom'); var basC = slugifie(nEl0 ? nEl0.value : '') || 'cat', idC = basC, kC = 2; while (idsPris[idC]) idC = basC + '-' + (kC++); b.__cid = idC; }
             idsPris[b.__cid] = 1;
@@ -1394,6 +1445,8 @@
             var nEl = b.querySelector('.lva-cat-nom');
             var o = {}; o['nom_' + ADM] = nEl ? nEl.value.trim() : b.__cid; stt.names[b.__cid] = o;
             stt.arts[b.__cid] = slugs;
+            var pcat = b.parentNode && b.parentNode.closest ? b.parentNode.closest('.lva-cat') : null;
+            if (pcat && pcat.__cid && !pcat.__aut) stt.parents[b.__cid] = pcat.__cid;
           });
           d.struct[th] = stt;
         });

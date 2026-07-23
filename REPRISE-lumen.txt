@@ -1,7 +1,7 @@
 ════════════════════════════════════════════════════════════════════
 FICHIER DE REPRISE : LUMEN VERITATIS
 Mémoire de travail du projet, en mode Cowork automatique.
-Mis à jour : 22 juillet 2026
+Mis à jour : 23 juillet 2026
 ════════════════════════════════════════════════════════════════════
 
 NATURE DE CE FICHIER. Condensé vivant, jamais une archive. Il vit dans le
@@ -173,6 +173,43 @@ du haut. FAIT le 18/07 :
   objections », absent avant) — d.apologie écrit si choisi. CSS : aperçu de la
   lettrine dans .lva-doc, .lva-combo*. Tests Playwright complets verts
   (auto-format, lettrine, §, combo, création avec apologie, régression admin).
+• HIÉRARCHIE COMPLÈTE DANS L'ONGLET BIBLIOTHÈQUE DU PANNEAU (23/07, demande
+  d'Emmanuel « je ne peux pas créer de sous-sous-section », précisée par lui en
+  DOMAINE → CATÉGORIE → SECTION → SOUS-SECTION ; c'est la profondeur réelle du
+  site plein : Écriture → Ancien Testament → Le Pentateuque → La Genèse ; le
+  rendu du site (renderNoeuds) est récursif SANS limite, seul le panneau était
+  à plat). AJOUTÉ :
+  (1) PANNEAU (tabBiblio) : blocCat(...,prof) avec prof 0=catégorie,
+  1=section (bouton « + Section »), 2=sous-section (bouton « + Sous-section »).
+  Ajout possible aux profondeurs 0 et 1, limite au niveau 2 (= la profondeur du
+  site plein) ; classes .lva-sub/.lva-p1/.lva-p2 indentées ; articles
+  glissables à chaque niveau ; blocs imbriqués glissables entre zones
+  .lva-subcats ; l'enregistrement écrit struct[th].parents {cid_enfant:
+  cid_parent} en PLUS de order/names/arts (order reste plat, en ordre du
+  document, rétro-compatible) ; les arts d'un bloc ne comptent QUE ses articles
+  directs (:scope > .lva-cat-b > .lva-art) ; au chargement, reconstruction par
+  passes successives (parent posé avant l'enfant, orphelin remonté en
+  catégorie). CSS du panneau passé en combinateurs ENFANTS (.lva-cat.on > …),
+  même leçon que .grp. ⚠ VOCABULAIRE (correction d'Emmanuel, 23/07) : niveau 1
+  sous le domaine = CATÉGORIE (nom d'origine conservé), puis SECTION, puis
+  SOUS-SECTION — ne jamais renommer le premier niveau en « section ».
+  (2) RENDU SITE (applyThemes) : après placement, chaque .sous dont le cid a un
+  parent est déplacé dans le .sous-corps du parent (chaîne à profondeur
+  quelconque : l'ordre du document garantit parent avant enfant). CSS .sous
+  passé en combinateurs enfants (index__48_ : .sous.ouvert > .sous-corps,
+  chevron ; build : .sous.fermant >) pour que l'imbrication se replie.
+  (3) ⚠ COURSE CORRIGÉE — DOUBLE LIAISON DES TÊTES : BIBLIO_JS liait les
+  .dom/.grp/.sous-tete par forEach au chargement ; quand Firestore répondait
+  VITE, applyThemes créait les .sous AVANT cette liaison et l'élément recevait
+  DEUX gestionnaires (toggle de creerSous + basculerSous de BIBLIO_JS) → le
+  clic ouvrait puis refermait aussitôt. REMÈDE : BIBLIO_JS passe en DÉLÉGATION
+  (une seule écoute document pour click et clavier, couvrant statique + créé à
+  la volée) et creerSous n'attache PLUS de gestionnaire propre. LEÇON : tout
+  élément interactif créé à la volée doit être couvert par délégation, jamais
+  par une double liaison locale+globale. Tests Playwright verts : panneau
+  (création, repli du bloc imbriqué, enregistrement parents), site (rendu
+  imbriqué, pli/dépli des 2 niveaux), régressions (grp imbriqué du site plein,
+  suite admin complète).
 • PANNEAU ADMIN RESTAURÉ ET AMÉLIORÉ + PURGE TOTALE EN/NOTIFICATIONS + ROUGE DU
   COMPTE CORRIGÉ (18/07, demandes d'Emmanuel « remet le panneau admin, mais
   améliore-le, cherche les bugs » puis « supprime les résidus anglais, l'option
@@ -1771,6 +1808,23 @@ Isaïe 7:14 / Matthieu 1:23. Scan d'intégrité de bible.json (19/07) : 73 livre
 données saines. Ne corriger QUE l'erreur réelle (texte tronqué, caractère corrompu,
 vraie faute de traduction du MÊME texte source), jamais un écart LXX/adaptation.
 
+⚠ BUG « MES NOTES » SANS SURLIGNAGES CORRIGÉ (23/07, signalé par Emmanuel
+« quand je surligne un verset, ça n'apparaît toujours pas dans mes notes »).
+CAUSE : dans remplirSurlignages (bible.html), Promise.all(...map(livreData))
+SANS catch — une SEULE clé de surlignage ancienne au slug de livre disparu ou
+corrompu (données synchronisées par le compte à travers les versions) faisait
+404 → tout le Promise.all rejetait en silence → la section « Surlignages »
+entière restait vide, y compris les surlignages VALIDES, sur tous les appareils
+et malgré chaque déploiement. Reproduit en headless (1 clé morte + 1 valide →
+zone vide). CORRIGÉ (4 gardes) : livreDataSur() = livreData().catch(→null) ;
+les 3 Promise.all de bible.html (remplirSurlignages, sb-copier, allerRefs)
+passent à livreDataSur ; filtre des items aux slugs connus (ORDRE) + ch/v > 0 ;
+gardes if(!d) dans allerRefs et sb-copier. Les données mortes ne sont PAS
+purgées du nuage (juste ignorées à l'affichage). LEÇON DURABLE : tout
+Promise.all sur des données UTILISATEUR accumulées (vieilles versions) doit
+tolérer l'échec d'un élément, sinon une donnée morte tue toute la section.
+Vérifié : parcours complet surligner→Mes notes OK (verset entier + fragment,
+anonyme + connecté avec 3 états de nuage, données empoisonnées incluses).
 BIBLE (fonctions) : surlignage versets par COULEUR HEX (map "slug|ch|v" → hex),
 localStorage lv_bible_surl (+ _m), cloud = doc __surl__ dans
 users/{uid}/bibleNotes (traité à part comme __meta__). Rendu par STYLE INLINE
