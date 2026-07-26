@@ -219,8 +219,28 @@ ARCHITECTURE DU CODE :
   JAMAIS réinliner ces blocs dans les pages.
 • index__48_.html : source du CSS du site (crème #efe6cf, filets doux, header
   voilé). Garde les règles .ttx-* et .tog-* : la variable --lvz (taille du
-  texte) est posée depuis la modale de compte et partagée par localStorage
-  avec bible.html et memoriser.html.
+  texte) est posée depuis la modale de compte (boutons .ttx-b, data-ttx
+  -1/0/1), stockée par appareil dans localStorage (lv_taille_pc et
+  lv_taille_mobile, ancienne clé lv_taille en repli) et lue par bible.html et
+  memoriser.html.
+  ⚠ TROIS PIÈGES sur --lvz, vérifiés le 26/07 :
+  1) lumen-app.js n'est chargé QUE par l'accueil. bible.html et
+     memoriser.html portent chacune leur propre copie inline de la logique
+     tz. Cette copie doit appeler tzApplique(tzLit()) AU CHARGEMENT, pas
+     seulement dans le gestionnaire de clic : sans cet appel, la taille
+     choisie ne fait rien tant qu'on n'a pas retouché A+ ou A- sur la page
+     (bug réel corrigé le 26/07 dans memoriser.html).
+  2) Toute règle font-size d'une surface de lecture s'écrit
+     calc(<base>px*var(--lvz,1)), Y COMPRIS dans les @media : une valeur nue
+     dans une media query écrase silencieusement le calcul de la règle de
+     base, à spécificité égale.
+  3) Consommateurs actuels, à tenir à jour si on en ajoute :
+     bible.html → .ch-texte (20,5), .note-texte (17,5 · 16,5 mobile),
+     .surl-item .surl-txt (16,5 · 16 mobile) ;
+     memoriser.html → .q-prompt (27 · 23 mobile), .q-prompt.ref (38 · 30
+     mobile), .opt (17), .opt.refopt (19).
+  Le libellé « taille du texte » doit rester vrai : toute surface de lecture
+  qui apparaît passe par --lvz.
 • bible.html : lecteur (73 livres, routage #livre/ch/v, recherche unique
   comprenant les références, sélection multi-versets, surlignage, notes par
   compte). bible-panneau.js : panneau latéral sur toutes les pages.
@@ -576,6 +596,24 @@ du site NON implémenté. Partage : og:image commune icones/partage.png
   Nouveautés et sa cloche (content/nouveautes.json). Les 46 articles retenus
   par Emmanuel sont conservés HORS DU SITE dans le doc projet
   claude/lumen-articles-conserves.html.
+• LE BLOC « LA LECTURE SUIVIE » DE MÉMORISER (26/07, Emmanuel : « la lecture
+  suivie est toujours dans memoriser, supprime ça »). Retirés de
+  memoriser.html : le bloc HTML entier (lbl-lecture, lect-etat, lect-x,
+  lect-lib, lect-bar, lect-note, lect-start, lect-gestion, lect-reset), les
+  deux blocs CSS associés (#lect-gestion et « — lecture suivie — », dont la
+  règle a.start qui n'existait que pour ce bouton), la surcharge mobile
+  #lect-gestion .cat-pct et les trois lignes JS de libellés. Le bloc était
+  déjà inerte : aucun de ses identifiants n'était câblé au JS et son seul
+  bouton pointait vers /bibliotheque/, supprimée la veille. Au passage, la
+  barre de progression de lecture morte de UX_JS (build-bi.js) est retirée :
+  son sélecteur article.lecture ne matchait plus rien et son id prog-lect
+  n'avait de CSS nulle part. La redirection /bibliotheque/* → / reste en
+  place dans _redirects, volontairement.
+  Conséquence de mise en page à ne pas défaire : la rangée de
+  réinitialisation étant devenue le dernier élément de la page, elle passe en
+  colonne sous 560 px et son point médian resterait orphelin en fin de
+  première ligne → @media(max-width:560px){.reset-row{flex-direction:column;
+  gap:18px}.reset-sep{display:none}}.
 • LA VERSION ANGLAISE ET LE BILINGUISME : data-en.js, SLUGS, pages /en/, Douay
   (bible-en.json), bible-en-cherubin.json, sélecteur de langue, tables de
   remplacement TR, versifDouay. Le site est FRANÇAIS uniquement.

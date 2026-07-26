@@ -602,19 +602,6 @@ const crypto = require('crypto');
 const UX_JS = `
 (function(){
   var FR=!(window.LUMEN&&window.LUMEN.lang==='en');
-  /* progression de lecture, pages article seulement */
-  var art=document.querySelector('article.lecture');
-  if(art){
-    var bar=document.createElement('div'); bar.className='prog-lect'; document.body.appendChild(bar);
-    var tick=false;
-    function majBar(){ tick=false; var r=art.getBoundingClientRect();
-      var total=r.height-window.innerHeight;
-      var fait=Math.min(Math.max(-r.top,0), Math.max(total,0));
-      bar.style.width=(total>40 ? (fait/total*100) : 0)+'%'; }
-    window.addEventListener('scroll',function(){ if(!tick){tick=true;requestAnimationFrame(majBar);} },{passive:true});
-    window.addEventListener('resize',function(){ if(!tick){tick=true;requestAnimationFrame(majBar);} },{passive:true});
-    majBar();
-  }
   /* retour en haut, toutes pages */
   var h=document.createElement('span');
   h.className='haut-page'; h.setAttribute('role','button'); h.setAttribute('tabindex','0');

@@ -110,17 +110,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .v-check.on{border-color:var(--or)}
 .v-check.on::after{opacity:1}
 .vrow.voff .vline,.vrow.voff .lvl,.vrow.voff .mov-v{opacity:.35}
-#lect-gestion{margin-top:28px}
-#lect-gestion .lect-g-acts{display:flex;justify-content:flex-end;margin-bottom:8px}
-#lect-gestion .vrow{cursor:default}
-#lect-gestion .cat-pct{margin-left:auto}
-#lect-gestion .cat .cat-body{display:none}
-#lect-gestion .cat.open>.cat-body{display:block;animation:fade .35s ease both}
-#lect-gestion .cat .cat-chev{transform:none;color:var(--pa2)}
-#lect-gestion .cat.open>.cat-row .cat-chev{transform:rotate(90deg);color:var(--or)}
-#lect-gestion .lg-sous{margin-left:18px}
-#lect-gestion .lg-sous .cat-name{font-size:17px}
-#lect-gestion .lg-sous .cat-row{padding:12px 2px}
 .cat.sel .cat-check{border-color:var(--or)}
 .cat.sel .cat-check::after{opacity:1}
 .cat.part .cat-check{border-color:var(--or)}
@@ -188,13 +177,13 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .qbox{text-align:center;margin-bottom:42px;animation:rise .5s cubic-bezier(.2,.7,.3,1) both}
 .q-label{font-family:var(--display);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:24px}
 .rule{width:38px;height:1px;background:var(--or);opacity:.5;margin:24px auto}
-.q-prompt{font-family:var(--serif);font-size:27px;line-height:1.62;color:var(--parchemin);max-width:30em;margin:0 auto}
-.q-prompt.ref{font-family:var(--display);font-style:normal;font-size:38px;letter-spacing:.03em;color:var(--or)}
+.q-prompt{font-family:var(--serif);font-size:calc(27px*var(--lvz,1));line-height:1.62;color:var(--parchemin);max-width:30em;margin:0 auto}
+.q-prompt.ref{font-family:var(--display);font-style:normal;font-size:calc(38px*var(--lvz,1));letter-spacing:.03em;color:var(--or)}
 .opts{display:grid;gap:11px}
 .opts.two{grid-template-columns:1fr 1fr}
-.opt{text-align:left;padding:16px 20px;border:1px solid var(--filet);background:var(--encre-2);font-family:var(--serif);font-size:17px;line-height:1.5;color:rgba(255,255,255,.9);transition:border-color .25s,color .25s,background .25s;animation:rise .45s cubic-bezier(.2,.7,.3,1) both}
+.opt{text-align:left;padding:16px 20px;border:1px solid var(--filet);background:var(--encre-2);font-family:var(--serif);font-size:calc(17px*var(--lvz,1));line-height:1.5;color:rgba(255,255,255,.9);transition:border-color .25s,color .25s,background .25s;animation:rise .45s cubic-bezier(.2,.7,.3,1) both}
 .opt .num{font-family:var(--display);font-size:13px;color:var(--pa2);margin-right:10px}
-.opt.refopt{font-family:var(--display);font-size:19px;letter-spacing:.03em}
+.opt.refopt{font-family:var(--display);font-size:calc(19px*var(--lvz,1));letter-spacing:.03em}
 .opt:hover:not(:disabled){border-color:var(--or);color:var(--parchemin);background:rgba(231,224,207,.03)}
 .opt.ok{border-color:var(--vert);color:#bcdcbe;background:rgba(123,163,126,.1)}
 .opt.ok .num{color:var(--vert)}
@@ -228,8 +217,8 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
   .hdr-mail{display:none}
   .wrap{padding:32px 16px 60px}
   .opts.two{grid-template-columns:1fr}
-  .q-prompt{font-size:23px}
-  .q-prompt.ref{font-size:30px}
+  .q-prompt{font-size:calc(23px*var(--lvz,1))}
+  .q-prompt.ref{font-size:calc(30px*var(--lvz,1))}
   .vref{width:96px;font-size:14px}
   .vtext{display:none}
 }
@@ -271,6 +260,12 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .reset-row{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin-top:36px}
 .reset-row .reset-link{margin:0}
 .reset-sep{color:var(--pa2)}
+/* Sur un écran étroit, la rangée passe en colonne : le point médian resterait
+   orphelin en fin de première ligne. On empile et on le retire. */
+@media(max-width:560px){
+  .reset-row{flex-direction:column;gap:18px}
+  .reset-sep{display:none}
+}
 
 
 /* ═══ EN-TÊTE ALIGNÉ SUR L'ACCUEIL ═══ */
@@ -305,18 +300,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .tog-sw::after{content:'';position:absolute;top:50%;left:3px;width:16px;height:16px;background:rgba(255,255,255,.55);transform:translateY(-50%);transition:left .25s,background .25s}
 .tog-sw.on{border-color:var(--or)}
 .tog-sw.on::after{left:25px;background:var(--or)}
-/* — lecture suivie — */
-#lect-etat{margin:0 0 16px}
-#lect-etat .lect-cptr{display:none;align-items:baseline;gap:10px}
-#lect-etat .lect-cptr span{font-family:var(--display);font-weight:300;font-size:34px;line-height:1;color:var(--parchemin)}
-#lect-etat .lect-cptr i{font-style:italic;font-family:var(--display);font-size:14px;color:#fff}
-#lect-etat .lect-barre{display:none;width:100%;height:4px;overflow:hidden;background:var(--filet);margin-top:12px}
-#lect-etat .lect-barre .l{display:block;height:100%;width:0;background:var(--or);transition:width .6s cubic-bezier(.2,.7,.3,1)}
-#lect-etat[data-state="ok"] .lect-cptr{display:flex}
-#lect-etat[data-state="ok"] .lect-barre{display:block}
-#lect-etat .lect-note{display:none;font-size:15px;color:rgba(255,255,255,.6);font-style:italic;margin:0}
-#lect-etat[data-state="out"] .lect-note{display:block}
-a.start{text-decoration:none}
 @media(max-width:720px){
   nav.menu .rech-loupe{width:100%;justify-content:flex-start;gap:14px;padding:12px 0;border-bottom:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#ffffff}
   nav.menu .rech-loupe .ll-mob{display:inline}
@@ -394,7 +377,6 @@ a.start{text-decoration:none}
   .markglobal #bulk-restore{white-space:nowrap}
   .cat-row{display:grid;grid-template-columns:18px minmax(0,1fr) auto auto auto;align-items:center;gap:10px;padding:17px 2px}
   .cat-dist,.cat-pct{display:none!important}
-  #lect-gestion .cat-pct{display:block!important}
   .cat-check::before,.v-check::before{content:'';position:absolute;inset:-12px}
   .cat-mark{display:flex!important;align-items:center;gap:8px;justify-content:flex-end}
   .cat-mark .dot{width:14px;height:14px;opacity:.85}
@@ -586,17 +568,6 @@ if(app&&sc&&!app.classList.contains('on')&&getComputedStyle(sc).display==='none'
         <button class="reset-link" id="restore-btn">Restaurer les catégories de base</button>
         <span class="reset-sep">·</span>
         <button class="reset-link" id="reset-btn">Réinitialiser toute la mémoire</button>
-      </div>
-      <div class="block" style="margin-top:42px;margin-bottom:0">
-        <div class="block-head"><span class="lbl" id="lbl-lecture">La lecture suivie</span></div>
-        <div id="lect-etat" data-state="load">
-          <div class="lect-cptr"><span id="lect-x"></span> <i id="lect-lib">articles lus</i></div>
-          <div class="lect-barre" id="lect-bar"><i class="l"></i></div>
-          <p class="lect-note" id="lect-note">Connectez-vous pour suivre votre lecture.</p>
-        </div>
-        <a class="start" id="lect-start" href="/bibliotheque/">Commencer la lecture</a>
-        <div id="lect-gestion"></div>
-        <div style="margin-top:20px"><button class="reset-link" id="lect-reset">Réinitialiser la lecture suivie</button></div>
       </div>
     </section>
 
@@ -889,9 +860,6 @@ function applyLang(){
   const _fr=l==='fr';
   if($('macct-ttx'))$('macct-ttx').textContent=(S.lang==='fr')?'Taille du texte':'Text size';
   if($('macct-tog'))$('macct-tog').textContent=(S.lang==='fr')?'Onglet Bible \u00e0 gauche':'Bible tab on the left';
-  if($('lbl-lecture'))$('lbl-lecture').textContent=(S.lang==='fr')?'La lecture suivie':'Guided Reading';
-  if($('lect-lib'))$('lect-lib').textContent=(S.lang==='fr')?'articles lus':'articles read';
-  if($('lect-note'))$('lect-note').textContent=(S.lang==='fr')?'Connectez-vous pour suivre votre lecture.':'Sign in to track your reading.';
   $('lbl-cats').textContent=tl.cats; $('lbl-newcat').textContent=tl.newcat; $('lbl-mode').textContent=tl.mode;
   $('mode-0').textContent=tl.mode0; $('mode-1').textContent=tl.mode1; $('mode-2').textContent=tl.mode2;
   $('start-btn').textContent=tl.start; $('reset-btn').textContent=tl.reset; $('finish-btn').textContent=tl.finish;
@@ -1465,6 +1433,10 @@ auth.onAuthStateChanged(async u=>{
   var TZ=[0.85,0.925,1,1.08,1.16,1.25];
   function tzCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_taille_mobile':'lv_taille_pc';}catch(e){return 'lv_taille_pc';}}
   function tzLit(){var v=1;try{v=parseFloat(localStorage.getItem(tzCle())||localStorage.getItem('lv_taille'))||1;}catch(e){}return v;}
+  function tzApplique(v){document.documentElement.style.setProperty('--lvz',v);}
+  /* application au chargement : sans elle, la taille choisie restait sans effet
+     sur cette page tant qu'on n'avait pas retouché A+ ou A−. */
+  tzApplique(tzLit());
   document.addEventListener('click',function(e){
     var b=e.target.closest?e.target.closest('.ttx-b'):null;
     if(!b)return;
@@ -1472,7 +1444,7 @@ auth.onAuthStateChanged(async u=>{
     if(d==='0')v=1;
     else{var i=TZ.indexOf(v);if(i<0){i=2;}i+=(d==='1'?1:-1);i=Math.max(0,Math.min(TZ.length-1,i));v=TZ[i];}
     try{localStorage.setItem(tzCle(),String(v));}catch(e2){}
-    document.documentElement.style.setProperty('--lvz',v);
+    tzApplique(v);
   });
 })();
 (function(){
