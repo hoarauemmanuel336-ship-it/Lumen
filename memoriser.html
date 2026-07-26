@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mémoriser · Lumen Veritatis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="manifest" href="/memoriser-manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icones/memoriser-180.png">
+<meta name="theme-color" content="#000000">
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<style>
+:root{
+  --encre:#000000;--encre-2:#0b0b0b;--encre-3:#111111;
+  --or:#efe6cf;--or-pale:#f8f3e6;
+  --parchemin:#ffffff;--pa:rgba(255,255,255,.6);--pa2:rgba(255,255,255,.38);
+  --filet:rgba(231,224,207,.14);--filet-f:rgba(231,224,207,.28);
+  --parchemin-att:rgba(255,255,255,.45);--filet-fort:rgba(231,224,207,.34);
+  --rouge:#c75d52;--ambre:#cfa24f;--vert:#7ba37e;--pourpre:#8e3a36;
+  --serif:'EB Garamond',Georgia,serif;--display:'Cormorant Garamond',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{height:100%}
+body{background:var(--encre);color:var(--parchemin);font-family:var(--serif);font-size:20px;line-height:1.6;min-height:100%;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:rgba(198,164,92,.25)}
+:focus{outline:none}
+:focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--encre)}
+::-webkit-scrollbar-thumb{background:rgba(231,224,207,.35)}
+::-webkit-scrollbar-thumb:hover{background:rgba(231,224,207,.6)}
+html{scrollbar-color:rgba(231,224,207,.35) var(--encre)}
+
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+/* champ : style filet bas, pas de boîte */
+.field{width:100%;background:#161616;border:1px solid var(--filet-f);color:var(--parchemin);font-family:var(--serif);font-size:16px;padding:10px 13px;outline:none;border-radius:0;transition:border-color .3s}
+.field:focus{border-color:var(--or)}
+.field::placeholder{color:var(--pa2)}
+.field:focus{border-bottom-color:var(--or)}
+.field::placeholder{color:var(--pa2)}
+textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
+
+/* ═══ AUTH ═══ */
+.mov-v{flex-shrink:0;color:var(--pa2);font-size:14px;line-height:1;cursor:pointer;opacity:.6;transition:color .3s,opacity .3s;padding:0 4px}
+.mov-v:hover{opacity:1;color:var(--or)}
+.srch-cat{font-family:var(--display);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa);margin:16px 0 8px}
+.srch-v{padding:9px 11px;border:1px solid var(--filet);margin-bottom:7px;cursor:pointer;transition:border-color .2s}
+.srch-v:hover,.srch-v.kact{border-color:var(--or);background:rgba(20,20,20,.92)}
+.srch-v .vref{color:var(--or);margin-right:8px}
+.srch-v .vtext{color:var(--pa);font-size:14px}
+.srch-vide{color:var(--pa);font-size:14px;padding:8px 0}
+.move-row{padding:10px 12px;border:1px solid var(--filet);margin-bottom:8px;cursor:pointer;transition:border-color .2s,color .2s}
+.move-row:hover{border-color:var(--or);color:var(--or)}
+#m-search .modal,#m-move .modal{max-height:82vh;overflow:auto}
+#auth-screen{display:none;align-items:center;justify-content:center;min-height:calc(100vh - 160px);background:rgba(8,8,8,.98);padding:24px}
+.auth-panel{position:relative;width:100%;max-width:400px;border:1px solid var(--filet);background:var(--encre);padding:40px 34px;animation:fade .35s ease both}
+.auth-paneltitle{font-family:var(--display);font-size:24px;text-align:center;margin-bottom:24px;color:var(--parchemin)}
+.auth-cross{width:48px;height:88px;margin:0 auto 22px;background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2072%20132'%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,2%2031,2'%20fill='%23ffffff'/%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,130%2031,130'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%202,45%202,35'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%2070,45%2070,35'%20fill='%23ffffff'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:contain}
+.auth-logo{font-family:var(--display);font-size:23px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;text-align:center;padding-left:.42em;margin-bottom:34px}
+.auth-tabs{display:flex;border-bottom:1px solid var(--filet-f);margin-bottom:22px}
+.auth-tab{flex:1;padding:9px 0;background:none;border:none;border-bottom:2px solid transparent;font-family:var(--display);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:color .3s,border-color .3s}
+.auth-tab.on{color:var(--or);border-bottom-color:var(--or)}
+.auth-cross{display:none}
+.auth-fieldrow{margin-bottom:20px}
+.auth-primary{display:block;width:100%;text-align:center;padding:13px;margin-top:10px;background:var(--or);color:var(--encre);font-family:var(--display);font-size:15px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;transition:background .3s}
+.auth-primary:hover{background:var(--or-pale)}
+.auth-or{display:flex;align-items:center;gap:14px;color:var(--pa2);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin:22px 0}
+.auth-or::before,.auth-or::after{content:'';flex:1;height:1px;background:var(--filet)}
+.auth-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:11px;border:1px solid var(--filet-f);font-family:var(--serif);font-size:15px;color:var(--parchemin);transition:border-color .3s,background .3s}
+.auth-google:hover{border-color:var(--or);background:rgba(231,224,207,.35)}
+.auth-link{display:block;width:100%;text-align:center;color:var(--pa);font-size:14px;margin-top:22px;transition:color .3s}
+.auth-link:hover{color:var(--or)}
+.auth-msg{font-size:14px;line-height:1.5;padding:9px 13px;margin-bottom:18px;display:none}
+.auth-msg.err{display:block;background:rgba(154,59,59,.16);border:1px solid var(--pourpre);color:#eba5a5}
+.auth-msg.ok{display:block;background:rgba(123,163,126,.14);border:1px solid var(--vert);color:#a9cdab}
+
+/* ═══ APP ═══ */
+#app{display:none;min-height:calc(100vh - 86px);flex-direction:column}
+#app.on{display:flex}
+.hdr{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:12px;padding:18px 30px;background:#000;border-bottom:1px solid var(--filet)}
+.hdr-logo{font-family:var(--display);font-size:20px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;padding-left:.34em;transition:color .3s}
+.hdr-logo:hover{color:var(--or)}
+.hdr-sep{color:var(--pa2)}
+.hdr-title{font-family:var(--display);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa);flex:1}
+.hdr-right{display:flex;align-items:center;gap:16px}
+.hdr-act{font-family:var(--display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa);transition:color .3s}
+.hdr-act:hover{color:var(--or)}
+.hdr-mail{font-size:13px;color:var(--pa2);max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wrap{flex:1;width:100%;max-width:680px;margin:0 auto;padding:46px 26px 80px}
+
+.lbl{font-family:var(--display);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa)}
+.block{margin-bottom:42px}
+.block-head{margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--filet)}
+
+/* catégories + mémoire */
+.cat{border-bottom:1px solid var(--filet)}
+.cat-row{display:flex;align-items:center;gap:14px;padding:15px 2px;cursor:pointer}
+.cat-check{flex-shrink:0;width:16px;height:16px;border:1px solid var(--filet-f);position:relative;transition:border-color .3s}
+.cat-check::after{content:'';position:absolute;inset:3px;background:var(--or);opacity:0;transition:opacity .2s}
+.v-check{flex-shrink:0;width:13px;height:13px;margin-top:3px;border:1px solid var(--filet-f);position:relative;cursor:pointer;transition:border-color .3s}
+.v-check::after{content:'';position:absolute;inset:3px;background:var(--or);opacity:0;transition:opacity .2s}
+.v-check.on{border-color:var(--or)}
+.v-check.on::after{opacity:1}
+.vrow.voff .vline,.vrow.voff .lvl,.vrow.voff .mov-v{opacity:.35}
+#lect-gestion{margin-top:28px}
+#lect-gestion .lect-g-acts{display:flex;justify-content:flex-end;margin-bottom:8px}
+#lect-gestion .vrow{cursor:default}
+#lect-gestion .cat-pct{margin-left:auto}
+#lect-gestion .cat .cat-body{display:none}
+#lect-gestion .cat.open>.cat-body{display:block;animation:fade .35s ease both}
+#lect-gestion .cat .cat-chev{transform:none;color:var(--pa2)}
+#lect-gestion .cat.open>.cat-row .cat-chev{transform:rotate(90deg);color:var(--or)}
+#lect-gestion .lg-sous{margin-left:18px}
+#lect-gestion .lg-sous .cat-name{font-size:17px}
+#lect-gestion .lg-sous .cat-row{padding:12px 2px}
+.cat.sel .cat-check{border-color:var(--or)}
+.cat.sel .cat-check::after{opacity:1}
+.cat.part .cat-check{border-color:var(--or)}
+.cat.part .cat-check::after{opacity:1;inset:7px 3px}
+.cat-name{flex:1;font-family:var(--display);font-size:20px;color:var(--parchemin);transition:color .3s}
+.cat-row:hover .cat-name{color:var(--or-pale)}
+.cat-dist{display:flex;width:64px;height:3px;flex-shrink:0;overflow:hidden}
+.cat-dist i{display:block;height:100%}
+.cat-dist .r{background:var(--rouge)}.cat-dist .a{background:var(--ambre)}.cat-dist .v{background:var(--vert)}
+.cat-dist .e{background:var(--filet)}
+.cat-chev{flex-shrink:0;font-family:var(--display);font-size:20px;color:var(--pa2);transition:transform .3s,color .3s;line-height:1}
+.cat.open .cat-chev{transform:rotate(90deg);color:var(--or)}
+.cat-body{display:none;padding:4px 0 20px 30px}
+.cat.open .cat-body{display:block;animation:fade .35s ease both}
+.markall{display:flex;align-items:center;gap:12px;padding:8px 0 14px;font-size:13px;color:var(--pa2);letter-spacing:.04em}
+.markall-dots{display:flex;gap:8px}
+.markall-dots .dot,.markglobal .dot{opacity:.8}
+.markall-dots .dot:hover,.markglobal .dot:hover{opacity:1;box-shadow:0 0 0 1px var(--encre),0 0 0 2px currentColor}
+.markall-dots .dot.r,.markglobal .dot.r{color:var(--rouge)}
+.markall-dots .dot.a,.markglobal .dot.a{color:var(--ambre)}
+.markall-dots .dot.v,.markglobal .dot.v{color:var(--vert)}
+.vrow{display:flex;align-items:center;gap:14px;padding:11px 0;border-top:1px solid var(--filet)}
+.vline{display:flex;align-items:center;gap:14px;flex:1;min-width:0;cursor:pointer}
+.vline:hover .vref{color:var(--or-pale)}
+.vline:hover .vtext{color:var(--pa)}
+.vref{flex-shrink:0;font-family:var(--display);font-size:15px;color:var(--or);width:124px}
+.vtext{flex:1;font-size:15px;color:var(--pa);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .25s}
+.markglobal{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 2px 16px;margin-bottom:4px;border-bottom:1px solid var(--filet);font-size:13px;letter-spacing:.04em;color:var(--pa2)}
+.lvl{display:flex;gap:8px;flex-shrink:0}
+.dot{width:13px;height:13px;border-radius:50%;cursor:pointer;opacity:.26;transition:opacity .25s,box-shadow .25s;position:relative}
+.dot.r{background:var(--rouge)}.dot.a{background:var(--ambre)}.dot.v{background:var(--vert)}
+.dot:hover{opacity:.6}
+.dot.act{opacity:1;box-shadow:0 0 0 1px var(--encre),0 0 0 2px currentColor}
+.dot.r.act{color:var(--rouge)}.dot.a.act{color:var(--ambre)}.dot.v.act{color:var(--vert)}
+.cat-custom-acts{display:flex;gap:18px;padding:14px 0 4px;border-top:1px solid var(--filet);margin-top:6px}
+.mini-act{font-family:var(--display);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa);transition:color .3s}
+.mini-act:hover{color:var(--or)}
+.mini-act.del:hover{color:var(--pourpre)}
+.del-v{flex-shrink:0;color:var(--pa2);font-size:16px;line-height:1;transition:color .3s}
+.del-v:hover{color:var(--pourpre)}
+
+.ghost-btn{margin-top:18px;font-family:var(--display);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa);border:1px solid var(--filet-f);padding:9px 18px;transition:all .3s}
+.ghost-btn:hover{border-color:var(--or);color:var(--or)}
+
+.modes{display:flex;flex-direction:column;gap:0}
+.mode{text-align:left;padding:15px 2px;border-bottom:1px solid var(--filet);font-family:var(--display);font-size:18px;letter-spacing:.04em;color:var(--pa);display:flex;align-items:center;gap:14px;transition:color .3s}
+.mode::before{content:'';width:9px;height:9px;border:1px solid var(--filet-f);border-radius:50%;flex-shrink:0;transition:all .3s}
+.mode:hover{color:var(--or-pale)}
+.mode.on{color:var(--or)}
+.mode.on::before{border-color:var(--or);background:var(--or);box-shadow:inset 0 0 0 2px var(--encre)}
+
+.start{display:block;width:100%;text-align:center;padding:17px;margin-top:10px;background:var(--or);color:var(--encre);font-family:var(--display);font-size:16px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;transition:background .3s}
+.start:hover{background:var(--or-pale)}
+.start:disabled{opacity:.35;cursor:default}
+.reset-link{display:block;margin:36px auto 0;font-size:13px;letter-spacing:.06em;color:var(--pa2);transition:color .3s}
+.reset-link:hover{color:var(--pourpre)}
+
+/* ═══ STUDY ═══ */
+#study{display:none}
+.study-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:48px;padding-bottom:14px;border-bottom:1px solid var(--filet)}
+.study-stat{font-size:14px;letter-spacing:.04em;color:var(--pa)}
+.study-stat b{color:var(--or);font-weight:500}
+.finish{font-family:var(--display);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa);border:1px solid var(--filet-f);padding:8px 18px;transition:all .3s}
+.finish:hover{border-color:var(--or);color:var(--or)}
+.qbox{text-align:center;margin-bottom:42px;animation:rise .5s cubic-bezier(.2,.7,.3,1) both}
+.q-label{font-family:var(--display);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:24px}
+.rule{width:38px;height:1px;background:var(--or);opacity:.5;margin:24px auto}
+.q-prompt{font-family:var(--serif);font-size:27px;line-height:1.62;color:var(--parchemin);max-width:30em;margin:0 auto}
+.q-prompt.ref{font-family:var(--display);font-style:normal;font-size:38px;letter-spacing:.03em;color:var(--or)}
+.opts{display:grid;gap:11px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opt{text-align:left;padding:16px 20px;border:1px solid var(--filet);background:var(--encre-2);font-family:var(--serif);font-size:17px;line-height:1.5;color:rgba(255,255,255,.9);transition:border-color .25s,color .25s,background .25s;animation:rise .45s cubic-bezier(.2,.7,.3,1) both}
+.opt .num{font-family:var(--display);font-size:13px;color:var(--pa2);margin-right:10px}
+.opt.refopt{font-family:var(--display);font-size:19px;letter-spacing:.03em}
+.opt:hover:not(:disabled){border-color:var(--or);color:var(--parchemin);background:rgba(231,224,207,.03)}
+.opt.ok{border-color:var(--vert);color:#bcdcbe;background:rgba(123,163,126,.1)}
+.opt.ok .num{color:var(--vert)}
+.opt.bad{border-color:var(--pourpre);color:#e0a8a8;background:rgba(154,59,59,.12)}
+.opt.reveal{border-color:var(--vert);color:#bcdcbe}
+.opt:disabled{cursor:default}
+
+/* ═══ SUMMARY ═══ */
+#summary{display:none;text-align:center;padding-top:48px;animation:fade .5s ease both}
+.sum-num{font-family:var(--display);font-size:72px;line-height:1;color:var(--or)}
+.sum-sub{font-size:15px;letter-spacing:.04em;color:var(--pa);margin:14px 0 8px}
+.sum-detail{font-size:14px;color:var(--pa2);margin-bottom:40px}
+#sum-back{max-width:260px;margin:0 auto}
+
+/* ═══ MODAL ═══ */
+.overlay{position:fixed;inset:0;z-index:120;background:rgba(4,4,4,.9);display:none;align-items:center;justify-content:center;padding:24px}
+.overlay.on{display:flex}
+.modal{width:100%;max-width:460px;background:var(--encre);border:1px solid var(--filet-f);padding:38px 34px;animation:rise .35s ease both}
+.modal-title{font-family:var(--display);font-size:23px;margin-bottom:26px}
+.modal .auth-fieldrow{margin-bottom:18px}
+.modal-flbl{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa2);margin-bottom:5px}
+.modal-btns{display:flex;justify-content:flex-end;gap:14px;margin-top:28px}
+.m-cancel{font-family:var(--display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa);padding:9px 16px;transition:color .3s}
+.m-cancel:hover{color:var(--or)}
+.m-ok{font-family:var(--display);font-size:14px;letter-spacing:.1em;text-transform:uppercase;background:var(--or);color:var(--encre);padding:10px 22px;transition:background .3s}
+.m-ok:hover{background:var(--or-pale)}
+
+@media(max-width:600px){
+  .auth-panel{padding:40px 26px}
+  .hdr{padding:14px 16px;gap:9px}
+  .hdr-mail{display:none}
+  .wrap{padding:32px 16px 60px}
+  .opts.two{grid-template-columns:1fr}
+  .q-prompt{font-size:23px}
+  .q-prompt.ref{font-size:30px}
+  .vref{width:96px;font-size:14px}
+  .vtext{display:none}
+}
+/* corbeille */
+.trash-head{display:flex;align-items:center;gap:12px;padding:6px 2px;cursor:pointer;border-bottom:1px solid var(--filet)}
+.trash-head .lbl{flex:1}
+.trash-head .cat-chev{transition:transform .3s,color .3s}
+.trash-head.open .cat-chev{transform:rotate(90deg);color:var(--or)}
+.trash-body{animation:fade .35s ease both;padding-top:6px}
+.trash-sub{margin-top:16px}
+.trash-sub-head{font-family:var(--display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa);margin-bottom:4px}
+.trash-count{color:var(--pa2)}
+.trash-none{font-size:14px;color:var(--pa2);padding:6px 0 2px}
+.trash-item{display:flex;align-items:center;gap:14px;padding:11px 0;border-top:1px solid var(--filet)}
+.trash-vmeta{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.trash-vref{font-family:var(--display);font-size:15px;color:var(--or)}
+.trash-vcat{font-size:12px;color:var(--pa2);letter-spacing:.04em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.trash-acts{display:flex;gap:16px;flex-shrink:0}
+.trash-act{font-family:var(--display);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--pa);transition:color .3s}
+.trash-act:hover{color:var(--or)}
+.trash-act.del:hover{color:var(--pourpre)}
+.cat-pct{flex-shrink:0;font-family:var(--display);font-size:13px;color:var(--pa2);min-width:42px;text-align:right;letter-spacing:.02em}
+.cat-row:hover .cat-pct{color:var(--pa)}
+.cat-go{flex-shrink:0;cursor:pointer;color:var(--pa2);font-size:13px;line-height:1;padding:0 4px;transition:color .3s}
+.cat-go:hover{color:var(--or)}
+#sel-all{cursor:pointer}
+.mini-act{cursor:pointer}
+@media(max-width:600px){.cat-pct{min-width:38px;font-size:12px}}
+.cat-mark{display:none;align-items:center;gap:8px;flex-shrink:0}
+.cat.open .cat-mark{display:flex}
+.cat-mark .dot{opacity:.8}
+.cat-mark .dot:hover{opacity:1;box-shadow:0 0 0 1px var(--encre),0 0 0 2px currentColor}
+.cat-mark .dot.r{color:var(--rouge)}.cat-mark .dot.a{color:var(--ambre)}.cat-mark .dot.v{color:var(--vert)}
+.mg-acts{display:flex;align-items:center;gap:16px}
+.m-reset{margin-right:auto;font-family:var(--display);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--pa);transition:color .3s}
+.m-reset:hover{color:var(--or)}
+.bh-cats{border-bottom:none;padding-bottom:0;margin-bottom:10px}
+.markglobal{padding-bottom:14px;margin-bottom:0}
+.reset-row{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin-top:36px}
+.reset-row .reset-link{margin:0}
+.reset-sep{color:var(--pa2)}
+
+
+/* ═══ EN-TÊTE ALIGNÉ SUR L'ACCUEIL ═══ */
+/* ═══ NOUVEAUTÉS / NOTIFICATIONS ═══ */
+.ll-mob{display:none}
+.rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:var(--parchemin-att);transition:color .3s;background:none;border:none;padding:0;outline:none}
+.rech-loupe:hover,.rech-loupe:focus{color:var(--or)}
+.rech-loupe svg{display:block}
+.user-btn{display:inline-flex;align-items:center;justify-content:center;min-width:19px;padding-bottom:3px}
+.user-btn svg{display:block;flex:none}
+.user-btn .user-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.user-btn:hover svg{stroke:var(--parchemin)}
+.rech-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);display:none}
+.rech-overlay.ouvert{display:block}
+.rech-boite{max-width:760px;margin:0 auto;padding:8vh 24px 40px;height:100%;display:flex;flex-direction:column;box-sizing:border-box}
+.rech-haut{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--filet-fort);padding-bottom:18px}
+.rech-haut svg{color:var(--or);flex:none}
+.rech-fermer{cursor:pointer;color:var(--parchemin-att);font-size:24px;line-height:1;transition:color .3s;flex:none;outline:none}
+.rech-fermer:hover,.rech-fermer:focus{color:var(--parchemin)}
+/* — réglages du menu compte (identiques aux autres pages) — */
+.ttx-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:18px 0 6px;padding-top:18px;border-top:1px solid var(--filet)}
+.ttx-lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.ttx-btns{display:flex;gap:8px}
+.ttx-b{background:none;border:1px solid var(--filet);color:var(--parchemin);font-family:var(--display);font-size:14px;min-width:38px;padding:7px 8px;cursor:pointer;transition:border-color .25s,color .25s}
+.ttx-b:hover{border-color:var(--or);color:#fff}
+.ttx-b:focus,.ttx-b:focus-visible{outline:none}
+.tog-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:14px 0 6px;padding-top:16px;border-top:1px solid var(--filet)}
+.tog-lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.tog-sw{position:relative;width:46px;height:24px;border:1px solid var(--filet-f);background:none;cursor:pointer;flex:none;transition:border-color .25s}
+.tog-sw:hover{border-color:var(--or)}
+.tog-sw:focus,.tog-sw:focus-visible{outline:none}
+.tog-sw::after{content:'';position:absolute;top:50%;left:3px;width:16px;height:16px;background:rgba(255,255,255,.55);transform:translateY(-50%);transition:left .25s,background .25s}
+.tog-sw.on{border-color:var(--or)}
+.tog-sw.on::after{left:25px;background:var(--or)}
+/* — lecture suivie — */
+#lect-etat{margin:0 0 16px}
+#lect-etat .lect-cptr{display:none;align-items:baseline;gap:10px}
+#lect-etat .lect-cptr span{font-family:var(--display);font-weight:300;font-size:34px;line-height:1;color:var(--parchemin)}
+#lect-etat .lect-cptr i{font-style:italic;font-family:var(--display);font-size:14px;color:#fff}
+#lect-etat .lect-barre{display:none;width:100%;height:4px;overflow:hidden;background:var(--filet);margin-top:12px}
+#lect-etat .lect-barre .l{display:block;height:100%;width:0;background:var(--or);transition:width .6s cubic-bezier(.2,.7,.3,1)}
+#lect-etat[data-state="ok"] .lect-cptr{display:flex}
+#lect-etat[data-state="ok"] .lect-barre{display:block}
+#lect-etat .lect-note{display:none;font-size:15px;color:rgba(255,255,255,.6);font-style:italic;margin:0}
+#lect-etat[data-state="out"] .lect-note{display:block}
+a.start{text-decoration:none}
+@media(max-width:720px){
+  nav.menu .rech-loupe{width:100%;justify-content:flex-start;gap:14px;padding:12px 0;border-bottom:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#ffffff}
+  nav.menu .rech-loupe .ll-mob{display:inline}
+  nav.menu .user-btn{display:flex;align-items:center;justify-content:flex-start;gap:14px;padding:12px 0;min-height:0;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#ffffff}
+  nav.menu .user-btn .user-label{position:static;width:auto;height:auto;padding:0;margin:0;overflow:visible;clip:auto;white-space:nowrap}
+}
+@media(min-width:721px){nav.menu .user-btn{width:19px;height:24px;padding-left:0;padding-right:0}}
+
+
+/* Correction : l'en-tête de Mémoriser reprend la même intensité de texte que l'accueil. */
+#app > header nav.menu a,
+#app > header nav.menu .menu-act,
+#app > header .rech-loupe{
+  color:#ffffff;
+}
+#app > header nav.menu a:hover,
+#app > header nav.menu a.actif,
+#app > header nav.menu .menu-act:hover{
+  color:var(--parchemin);
+}
+#app > header .rech-loupe:hover,
+#app > header .rech-loupe:focus{
+  color:var(--or);
+}
+
+/* ═══ LISTE DES VERSETS : AFFICHAGE MOBILE PLUS PROPRE ═══ */
+@media(max-width:720px){
+  .wrap{padding:32px 20px 60px}
+  .cat-row{gap:10px}
+  .cat-name{min-width:0;font-size:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cat-dist{width:52px}
+  .cat-pct{min-width:34px;font-size:12px}
+  .cat-mark{gap:7px}
+  .cat-body{padding:2px 0 18px 0}
+  .vrow{gap:10px;padding:13px 0;align-items:flex-start}
+  .vline{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+  .vref{width:auto;max-width:100%;min-width:0;font-size:17px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--parchemin)}
+  .vtext{display:-webkit-box;font-size:14px;line-height:1.35;color:var(--pa);white-space:normal;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .lvl{gap:9px;flex:0 0 auto;padding-top:4px}
+  .dot{width:15px;height:15px}
+  .del-v{font-size:19px;padding-left:3px;color:var(--pa2)}
+}
+@media(max-width:430px){
+  .wrap{padding-left:16px;padding-right:16px}
+  .cat-dist{display:none}
+  .cat-pct{display:none}
+  .cat.open .cat-mark{display:flex!important}
+  .cat:not(.open) .cat-mark{display:none!important}
+  .cat-name{font-size:19px}
+  .vref{font-size:16px}
+  .lvl{gap:8px}
+  .dot{width:14px;height:14px}
+}
+
+/* ═══ MODALES : éviter les débordements sur mobile ═══ */
+.modal{max-height:calc(100vh - 48px);overflow-y:auto}
+.modal-btns{flex-wrap:wrap}
+.m-reset{white-space:normal;line-height:1.35;text-align:left}
+@media(max-width:600px){
+  .overlay{padding:18px 14px;align-items:flex-start;overflow:auto}
+  .modal{max-width:none;width:100%;padding:30px 22px;margin:28px 0;max-height:none}
+  .modal-title{font-size:22px;margin-bottom:22px}
+  .modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+  .modal-btns .m-reset{grid-column:1 / -1;margin:0;padding:0 0 2px;width:100%}
+  .modal-btns .m-cancel,.modal-btns .m-ok{width:100%;text-align:center;padding:11px 10px}
+}
+@media(max-width:380px){.modal-btns{grid-template-columns:1fr}}
+
+
+/* ═══ CORRECTION MOBILE CATÉGORIES / VERSETS / MODALES ═══ */
+@media(max-width:720px){
+  .markglobal{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px 12px;font-size:13px;line-height:1.35}
+  .markglobal .mg-acts{display:flex;align-items:center;gap:14px;justify-content:flex-end;min-width:0}
+  .markglobal .markall-dots{display:flex;gap:10px;flex-shrink:0}
+  .markglobal #bulk-restore{white-space:nowrap}
+  .cat-row{display:grid;grid-template-columns:18px minmax(0,1fr) auto auto auto;align-items:center;gap:10px;padding:17px 2px}
+  .cat-dist,.cat-pct{display:none!important}
+  #lect-gestion .cat-pct{display:block!important}
+  .cat-check::before,.v-check::before{content:'';position:absolute;inset:-12px}
+  .cat-mark{display:flex!important;align-items:center;gap:8px;justify-content:flex-end}
+  .cat-mark .dot{width:14px;height:14px;opacity:.85}
+  .cat-go{font-size:14px;padding:0 2px}
+  .cat-chev{font-size:22px}
+  .cat-body{padding-left:0!important;padding-right:0!important}
+  .vrow{display:grid;grid-template-columns:18px minmax(0,1fr) auto auto 18px;align-items:center;gap:10px;padding:13px 0}
+  .vrow .v-check{margin-top:0}
+  .vline{display:flex!important;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
+  .vref{display:block;width:auto!important;max-width:100%;font-size:17px;color:var(--parchemin);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vtext{display:-webkit-box!important;font-size:14px;line-height:1.35;color:var(--pa);white-space:normal;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .lvl{display:flex;align-items:center;gap:9px;flex-shrink:0}
+  .lvl .dot{width:15px;height:15px}
+  .del-v{font-size:20px;text-align:right;padding-left:0}
+}
+@media(max-width:420px){
+  .wrap{padding-left:16px!important;padding-right:16px!important}
+  .cat-row{grid-template-columns:18px minmax(0,1fr) auto auto auto;gap:8px}
+  .cat-name{font-size:19px}
+  .cat-mark{gap:7px}
+  .cat-mark .dot{width:13px;height:13px}
+  .vrow{grid-template-columns:16px minmax(0,1fr) auto auto 16px;gap:8px}
+  .lvl{gap:7px}
+  .lvl .dot{width:14px;height:14px}
+}
+@media(max-width:600px){
+  .overlay{padding:14px!important;align-items:flex-start!important;overflow-y:auto!important}
+  .modal{box-sizing:border-box;width:100%!important;max-width:100%!important;max-height:none!important;margin:24px 0!important;padding:30px 22px!important;overflow:visible!important}
+  .modal-btns{display:grid!important;grid-template-columns:1fr 1fr;gap:12px!important;align-items:stretch!important;justify-content:stretch!important}
+  .modal-btns .m-reset{grid-column:1 / -1;width:100%;margin:0!important;white-space:normal;text-align:center;line-height:1.35;padding:0 0 4px!important}
+  .modal-btns .m-cancel,.modal-btns .m-ok{width:100%;text-align:center;min-width:0;padding:12px 8px!important}
+}
+@media(max-width:380px){.modal-btns{grid-template-columns:1fr!important}}
+
+
+.macct-btn{display:block;width:100%;box-sizing:border-box;text-align:center;padding:13px 10px;margin-bottom:4px;border:1px solid var(--filet-fort);color:var(--parchemin);font-family:var(--display);font-size:14px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:border-color .3s,color .3s}
+.macct-btn:hover{border-color:var(--or);color:var(--or-pale)}
+
+/* — Choisir un verset dans la Bible — */
+.mv-src{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin:2px 0 20px}
+.mv-bible{font-family:var(--display);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa);border:none;border-bottom:1px solid rgba(231,224,207,.18);padding:11px 2px 5px;cursor:pointer;background:none;transition:color .3s,border-color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.mv-bible:hover,.mv-bible:active{color:var(--or-pale);border-color:var(--filet-f)}
+#m-bib{z-index:4200;background:rgba(4,4,4,.94)}
+#m-bib .modal{max-width:660px;display:flex;flex-direction:column;height:min(760px,calc(100vh - 48px));max-height:calc(100vh - 48px);overflow:hidden}
+#m-bib .modal-title,#m-bib .modal-btns,.mbib-fil,.mbib-rech{flex:0 0 auto}
+#m-bib .modal-btns{margin-top:18px}
+.mbib-fil{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa2);margin-bottom:14px;min-height:15px}
+.mbib-fil span{cursor:pointer;transition:color .3s}
+.mbib-fil span:hover{color:var(--or-pale)}
+.mbib-rech{display:flex;gap:10px;margin-bottom:16px}
+.mbib-rech .field{flex:1;min-width:0}
+.mbib-go{font-family:var(--display);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa);border:1px solid var(--filet-f);background:none;padding:0 15px;cursor:pointer;white-space:nowrap;transition:border-color .3s,color .3s}
+.mbib-go:hover{border-color:var(--or);color:var(--or-pale)}
+.mbib-corps{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;border-top:1px solid var(--filet-f);padding-top:14px}
+.mbib-charge{text-align:center;font-style:italic;color:var(--pa2);padding:40px 0}
+.mbib-test{font-family:var(--display);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin:16px 0 8px}
+.mbib-test:first-child{margin-top:0}
+.mbib-grp{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2);margin:12px 0 5px}
+.mbib-livre,.mbib-chap{cursor:pointer;transition:color .25s,border-color .3s}
+.mbib-livre{display:flex;justify-content:space-between;gap:12px;padding:8px 2px;border-bottom:1px solid rgba(231,224,207,.07);font-size:15.5px;color:var(--parchemin)}
+.mbib-livre:hover{color:var(--or-pale)}
+.mbib-n{font-size:12px;color:var(--pa2)}
+.mbib-chaps{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:7px}
+.mbib-chap{border:1px solid var(--filet-f);padding:9px 0;text-align:center;font-size:14px;color:var(--pa)}
+.mbib-chap:hover{border-color:var(--or);color:var(--or-pale)}
+.mbib-v{display:flex;gap:10px;padding:9px 8px;cursor:pointer;line-height:1.55;font-size:15.5px;border-bottom:1px solid rgba(231,224,207,.06);transition:background .25s;-webkit-tap-highlight-color:transparent}
+.mbib-v:hover{background:rgba(231,224,207,.04)}
+.mbib-v.on{background:rgba(231,224,207,.15)}
+.mbib-vn{flex:0 0 auto;font-size:12px;color:var(--or);padding-top:3px;min-width:20px}
+.mbib-apercu{border-top:1px solid var(--filet-f);margin-top:14px;padding-top:14px;flex:0 1 auto;min-height:152px;display:flex;flex-direction:column;overflow:hidden}
+.mbib-tete{flex:0 0 auto}
+.mbib-apercu.vide{min-height:0;margin-top:0;padding-top:0;border-top:none}
+.mbib-tete{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:9px}
+.mbib-ref{font-family:var(--display);font-size:15px;color:var(--or)}
+.mbib-tout{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa2);cursor:pointer;transition:color .3s}
+.mbib-tout:hover{color:var(--or-pale)}
+.mbib-mots{flex:1 1 auto;min-height:52px;max-height:26vh;overflow-y:auto;line-height:1.85;font-size:15.5px}
+.mbib-mot{cursor:pointer;padding:1px 2px;color:var(--pa2);transition:color .2s,background .2s;-webkit-tap-highlight-color:transparent}
+.mbib-mot.on{color:var(--parchemin);background:rgba(231,224,207,.16)}
+.mbib-mot.bout{box-shadow:inset 0 -1.5px 0 var(--or)}
+.mbib-mots.tout .mbib-mot{color:var(--parchemin);background:none;box-shadow:none}
+.mbib-mots.tout .mbib-mot:hover{background:rgba(231,224,207,.1)}
+@media(max-width:720px){
+  #m-bib{padding:0!important;align-items:stretch!important;overflow:hidden!important}
+  #m-bib .modal{box-sizing:border-box;width:100%!important;max-width:none!important;margin:0!important;border:none;height:100vh!important;max-height:100vh!important;padding:20px 16px 16px!important;overflow:hidden!important}
+  #m-bib .modal-title{font-size:20px;margin-bottom:12px}
+  #m-bib .modal-btns{margin-top:14px;grid-template-columns:1fr 1fr!important}
+  #m-bib .modal-btns .m-cancel,#m-bib .modal-btns .m-ok{padding:11px 6px!important}
+  .mbib-v{font-size:16px;padding:11px 6px}
+  .mbib-mot{padding:3px 2px}
+}
+@supports(height:100dvh){@media(max-width:720px){#m-bib .modal{height:100dvh!important;max-height:100dvh!important}}}
+</style>
+<style>
+.auth-ov{position:fixed;inset:0;z-index:4000;background:rgba(8,8,8,.98);display:none;align-items:center;justify-content:center;padding:24px}
+.auth-ov.on{display:flex}#auth-overlay.ouvert{display:flex}
+.auth-box{position:relative;width:100%;max-width:400px;background:var(--encre);border:1px solid var(--filet);padding:40px 34px}
+.auth-x{position:absolute;top:16px;right:18px;cursor:pointer;color:var(--pa);font-size:22px;line-height:1;transition:color .3s}
+.auth-x:hover{color:var(--parchemin)}
+.auth-t{font-family:var(--display);font-size:24px;text-align:center;margin-bottom:24px;color:var(--parchemin)}
+.auth-mail{text-align:center;color:var(--pa);font-size:15px;margin-bottom:22px;word-break:break-all}
+.auth-out{display:block;width:100%;text-align:center;background:none;border:none;color:rgba(255,255,255,.55);font-family:var(--display);font-size:14px;letter-spacing:.04em;margin-top:16px;padding:0;cursor:pointer;transition:color .25s}
+.auth-out:hover{color:var(--or)}
+html{scroll-behavior:smooth}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:rgba(198,164,92,.25)}
+*{scrollbar-width:thin;scrollbar-color:rgba(231,224,207,.35) transparent}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(231,224,207,.35);background-clip:content-box;border:3px solid transparent;border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:rgba(231,224,207,.6);background-clip:content-box;border:3px solid transparent}
+:focus-visible{outline:1px solid rgba(231,224,207,.14);outline-offset:3px}
+</style>
+<meta property="og:image" content="https://lumenveritatis.net/icones/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<header>
+    <div class="barre">
+      <a href="/" class="logo">Lumen</a>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+      <nav class="menu" id="menu">
+        <a href="/">Accueil</a>
+        <a href="/bible.html">Bible</a>
+        <a href="/memoriser.html">Mémoriser</a>
+        <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="Rechercher"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><span class="ll-mob">Rechercher</span></span>
+        <span class="rech-loupe auth-icone" id="auth-ouvrir" role="button" tabindex="0" aria-label="Compte"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg><span class="ll-mob">Compte</span></span>
+      </nav>
+    </div>
+  </header>
+<script>/* Repli : si Firebase ne répond pas, on montre quand même l'écran de connexion. */
+(function(){
+setTimeout(function(){var app=document.getElementById('app'),sc=document.getElementById('auth-screen');
+if(app&&sc&&!app.classList.contains('on')&&getComputedStyle(sc).display==='none'){sc.style.display='flex';}},2500);
+})();</script>
+
+
+<!-- ════ AUTH ════ -->
+<div id="auth-screen">
+  <div class="auth-panel">
+    <div class="auth-paneltitle" id="auth-paneltitle">Connexion</div>
+    <div class="auth-tabs" id="auth-tabs">
+      <button class="auth-tab on" id="tab-si">Connexion</button>
+      <button class="auth-tab" id="tab-su">Inscription</button>
+    </div>
+    <div class="auth-msg" id="auth-msg"></div>
+    <div class="auth-fieldrow"><input type="email" class="field" id="i-email" placeholder="Adresse e-mail" autocomplete="email"></div>
+    <div class="auth-fieldrow" id="row-pw"><input type="password" class="field" id="i-pw" placeholder="Mot de passe" autocomplete="current-password"></div>
+    <div class="auth-fieldrow" id="row-cf" style="display:none"><input type="password" class="field" id="i-cf" placeholder="Confirmer le mot de passe" autocomplete="new-password"></div>
+    <button class="auth-primary" id="b-submit">Se connecter</button>
+    <div class="auth-or" id="auth-or">ou</div>
+    <button class="auth-google" id="b-google">
+      <svg width="17" height="17" viewBox="0 0 18 18"><path fill="#EA4335" d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.54C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z"/><path fill="#FBBC05" d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9 9 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z"/><path fill="#4A90D9" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.96 13.04C2.44 15.98 5.48 18 9 18z"/></svg>
+      <span id="lbl-google">Continuer avec Google</span>
+    </button>
+    <button class="auth-link" id="b-forgot">Mot de passe oublié ?</button>
+  </div>
+</div>
+
+<!-- ════ APP ════ -->
+<div id="app">
+
+  <main class="wrap">
+    <section id="setup">
+      <div class="block">
+        <div class="block-head bh-cats" style="display:flex;align-items:center;justify-content:space-between;gap:14px"><span class="lbl" id="lbl-cats">Catégories &amp; mémoire</span><span class="mini-act" id="sel-all"></span></div>
+        <div class="markglobal">
+          <span id="lbl-markglobal">Marquer les catégories cochées</span>
+          <span class="mg-acts"><span class="markall-dots"><span class="dot r" data-gall="r"></span><span class="dot a" data-gall="a"></span><span class="dot v" data-gall="v"></span></span><span class="mini-act" id="bulk-restore"></span></span>
+        </div>
+        <div id="cat-list"></div>
+        <button class="ghost-btn" id="cat-more" style="display:none"></button>
+        <button class="ghost-btn" id="add-cat">+ <span id="lbl-newcat">Nouvelle catégorie</span></button>
+      </div>
+      <div class="block" id="trash-block"></div>
+      <div class="block">
+        <div class="block-head"><span class="lbl" id="lbl-mode">Mode</span></div>
+        <div class="modes" id="modes">
+          <button class="mode on" data-m="0" id="mode-0">Mixte</button>
+          <button class="mode" data-m="1" id="mode-1">Verset → Référence</button>
+          <button class="mode" data-m="2" id="mode-2">Référence → Verset</button>
+        </div>
+      </div>
+      <button class="start" id="start-btn">Commencer</button>
+      <div class="reset-row">
+        <button class="reset-link" id="restore-btn">Restaurer les catégories de base</button>
+        <span class="reset-sep">·</span>
+        <button class="reset-link" id="reset-btn">Réinitialiser toute la mémoire</button>
+      </div>
+      <div class="block" style="margin-top:42px;margin-bottom:0">
+        <div class="block-head"><span class="lbl" id="lbl-lecture">La lecture suivie</span></div>
+        <div id="lect-etat" data-state="load">
+          <div class="lect-cptr"><span id="lect-x"></span> <i id="lect-lib">articles lus</i></div>
+          <div class="lect-barre" id="lect-bar"><i class="l"></i></div>
+          <p class="lect-note" id="lect-note">Connectez-vous pour suivre votre lecture.</p>
+        </div>
+        <a class="start" id="lect-start" href="/bibliotheque/">Commencer la lecture</a>
+        <div id="lect-gestion"></div>
+        <div style="margin-top:20px"><button class="reset-link" id="lect-reset">Réinitialiser la lecture suivie</button></div>
+      </div>
+    </section>
+
+    <section id="study">
+      <div class="study-top">
+        <span class="study-stat" id="study-stat"></span>
+        <button class="finish" id="finish-btn">Terminer</button>
+      </div>
+      <div class="qbox" id="qbox">
+        <div class="q-label" id="q-label"></div>
+        <div class="rule"></div>
+        <div class="q-prompt" id="q-prompt"></div>
+        <div class="rule"></div>
+      </div>
+      <div class="opts" id="opts"></div>
+    </section>
+
+    <section id="summary">
+      <div class="sum-num" id="sum-num"></div>
+      <div class="sum-sub" id="sum-sub"></div>
+      <div class="sum-detail" id="sum-detail"></div>
+      <button class="start" id="sum-back">Retour</button>
+    </section>
+  </main>
+  <footer>
+    <div class="marque">Lumen</div>
+    <div class="verset-pied">« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l’ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span></div>
+    <div class="copy" id="annee"></div>
+  </footer>
+</div>
+
+<!-- modals -->
+<div class="overlay" id="m-search">
+  <div class="modal">
+    <div class="modal-title" id="msrch-title">Rechercher un verset</div>
+    <div class="auth-fieldrow"><input type="text" class="field" id="i-srch" placeholder="Référence ou texte…" autocomplete="off"></div>
+    <div id="srch-results"></div>
+    <div class="modal-btns"><button class="m-cancel" id="msrch-close">Fermer</button></div>
+  </div>
+</div>
+<div class="overlay" id="m-move">
+  <div class="modal">
+    <div class="modal-title" id="mmove-title">Déplacer le verset dans…</div>
+    <div id="move-list"></div>
+    <div class="modal-btns"><button class="m-cancel" id="mmove-cancel">Annuler</button></div>
+  </div>
+</div>
+<div class="overlay" id="m-cat">
+  <div class="modal">
+    <div class="modal-title" id="mcat-title">Nouvelle catégorie</div>
+    <div class="auth-fieldrow" id="row-cfr"><label class="modal-flbl" id="mcat-lfr">Nom</label><input type="text" class="field" id="i-cfr"></div>
+    <div class="auth-fieldrow" id="row-cen"><label class="modal-flbl" id="mcat-len">Name</label><input type="text" class="field" id="i-cen"></div>
+    <div class="modal-btns"><button class="m-cancel" id="mcat-cancel">Annuler</button><button class="m-ok" id="mcat-ok">Enregistrer</button></div>
+  </div>
+</div>
+<div class="overlay" id="m-verse">
+  <div class="modal">
+    <div class="modal-title" id="mv-title">Ajouter un verset</div>
+    <div class="auth-fieldrow" id="row-vfr"><label class="modal-flbl" id="lbl-vfr">Texte</label><textarea class="field" id="i-vfr" rows="3"></textarea></div>
+    <div class="auth-fieldrow" id="row-rfr"><label class="modal-flbl" id="lbl-rfr">Référence (ex : Jean 3:16)</label><input type="text" class="field" id="i-rfr"></div>
+    <div class="mv-src" id="row-vsrc"><button type="button" class="mv-bible" id="mv-bible">Choisir dans la Bible</button></div>
+    <div class="auth-fieldrow" id="row-ven"><label class="modal-flbl" id="lbl-ven">Text</label><textarea class="field" id="i-ven" rows="3"></textarea></div>
+    <div class="auth-fieldrow" id="row-ren"><label class="modal-flbl" id="lbl-ren">Reference</label><input type="text" class="field" id="i-ren"></div>
+    <div class="modal-btns"><button class="m-reset" id="mv-reset" style="display:none"></button><button class="m-cancel" id="mv-cancel">Annuler</button><button class="m-ok" id="mv-ok">Enregistrer</button></div>
+  </div>
+</div>
+
+<div class="overlay" id="m-bib">
+  <div class="modal">
+    <div class="modal-title">Choisir un verset</div>
+    <div class="mbib-fil" id="mbib-fil"></div>
+    <div class="mbib-rech"><input type="text" class="field" id="i-mbib" placeholder="Référence : Jean 3:16" autocomplete="off"><button type="button" class="mbib-go" id="mbib-go">Aller</button></div>
+    <div class="mbib-corps" id="mbib-corps"></div>
+    <div class="mbib-apercu" id="mbib-apercu"></div>
+    <div class="modal-btns"><button class="m-cancel" id="mbib-cancel">Annuler</button><button class="m-ok" id="mbib-ok">Utiliser</button></div>
+  </div>
+</div>
+
+<script>
+// ════════ FIREBASE ════════
+const firebaseConfig = {
+  apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",
+  authDomain:"lumen-veritatis.firebaseapp.com",
+  projectId:"lumen-veritatis",
+  storageBucket:"lumen-veritatis.firebasestorage.app",
+  messagingSenderId:"195902823875",
+  appId:"1:195902823875:web:a8be1f216a5ae1d945f176"
+};
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth();
+const db=firebase.firestore();
+try{db.enablePersistence({synchronizeTabs:true}).catch(function(){});}catch(_){}
+
+// ════════ i18n ════════
+const T={
+  fr:{
+    hdr:'Mémoriser', tag:'Mémoriser', close:'Fermer',
+    tab_si:'Connexion', tab_su:'Inscription',
+    ph_email:'Adresse e-mail', ph_pw:'Mot de passe', ph_cf:'Confirmer le mot de passe',
+    b_si:'Se connecter', b_su:'Créer le compte', b_reset:'Envoyer le lien',
+    google:'Continuer avec Google', forgot:'Mot de passe oublié ?', back:'← Retour',
+    reset_sent:'Lien envoyé. Vérifiez votre boîte mail.',
+    pw_mismatch:'Les mots de passe ne correspondent pas.',
+    logout:'Déconnexion',
+    cats:'Catégories & mémoire', newcat:'Nouvelle catégorie', mode:'Mode',
+    mode0:'Mixte', mode1:'Verset → Référence', mode2:'Référence → Verset',
+    start:'Commencer', reset:'Réinitialiser toute la mémoire',
+    reset_q:'Réinitialiser toute la mémoire ? Tous les niveaux reviennent au rouge. Action irréversible.',
+    restore:'Restaurer les catégories de base', restore_q:'Restaurer les catégories de base ? Tes modifications des versets de base seront perdues (tes catégories personnelles sont conservées).',
+    markall:'Tout marquer', markglobal:'Marquer les catégories cochées', bulk_restore:'Réinitialiser', reset_verse:'Réinitialiser ce verset',
+    bulk_mark_q:'Changer le niveau de tous les versets des %n% catégorie(s) cochée(s) ?', bulk_restore_q:'Réinitialiser les versets et références des %n% catégorie(s) de base cochée(s) à leur état d\u2019origine ? Tes modifications seront perdues.',
+    find_ref:'Quelle est la référence ?', find_verse:'Quel est le verset ?',
+    answered:'répondues', correct:'justes', finish:'Terminer',
+    done:'Session terminée', of:'sur', acquired:'versets acquis',
+    backbtn:'Retour',
+    addverse:'Verset', edit:'Modifier', rename:'Renommer', del:'Supprimer',
+    mcat:'Nouvelle catégorie', mcat_edit:'Renommer la catégorie', mv_edit:'Modifier le verset',
+    f_text:'Texte', f_ref:'Référence (ex : Jean 3:16)', f_name:'Nom',
+    mv:'Ajouter un verset', save:'Enregistrer', cancel:'Annuler',
+    empty_sel:'Sélectionne au moins une catégorie pour commencer.',
+    not_enough:'Pas assez de versets. Sélectionne d\u2019autres catégories ou ajoute des versets.',
+    del_cat_q:'Supprimer cette catégorie et ses versets ?',
+    select_all:'Tout sélectionner', deselect_all:'Tout désélectionner', show_all:'Afficher tout', show_less:'Afficher moins',
+    trash:'Corbeille', trash_original:'Versets d\u2019origine', trash_perso:'Versets personnels',
+    trash_section_empty:'Aucun', trash_restore:'Restaurer', trash_delperm:'Supprimer',
+    trash_empty_btn:'Vider la corbeille', trash_empty_q:'Vider définitivement la corbeille ? Action irréversible.',
+    trash_cat_gone:'La catégorie de ce verset n\u2019existe plus.',
+    cat_restore:'Restaurer', cat_restore_q:'Restaurer cette catégorie de base ? Tes modifications de ses versets seront perdues.'
+  }
+};
+
+// ════════ VERSETS PRÉDÉFINIS ════════
+/*PRE_START*/const PRE=[];/*PRE_END*/
+
+// ════════ ÉTAT ════════
+const S={
+  lang:'fr',
+  uid:null, mode:0,
+  selCats:[], offV:{}, progress:{}, step:0, customCats:[], baseEdits:{}, trash:[], trashOpen:false, showAllCats:false,
+  open:{},          // catId -> bool (déplié)
+  cur:null, lastId:null, answered:0, correct:0,
+  pendingCat:null, editCat:null, editVerse:null
+};
+
+// ════════ OUTILS ════════
+const $=id=>document.getElementById(id);
+const t=k=>(T[S.lang]||T.fr)[k]||k;
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=0|Math.random()*(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
+const trunc=(s,n)=>s.length>n?s.slice(0,n)+'…':s;
+function effectiveCats(){
+  const trashIds=new Set((S.trash||[]).map(t=>t.vId));
+  const base=PRE.map(c=>{
+    const ov=S.baseEdits[c.id];
+    if(!ov) return {id:c.id,name:c.name,verses:c.verses,base:true};
+    // catégorie de base éditée : on conserve l'édition de l'utilisateur, mais on y ajoute
+    // les versets du modèle apparus depuis (absents de l'édition ET non mis à la corbeille)
+    const have=new Set(ov.verses.map(v=>v.id));
+    const extra=c.verses.filter(v=>!have.has(v.id)&&!trashIds.has(v.id)&&!((ov.moved||[]).includes(v.id)));
+    return {id:c.id,name:ov.name,verses:ov.verses.concat(extra),base:true};
+  });
+  return [...base,...S.customCats.map(c=>({...c,base:false}))];
+}
+const allCats=effectiveCats;
+function allItems(){const out=[];effectiveCats().filter(c=>S.soloCat?c.id===S.soloCat:true).forEach(c=>c.verses.forEach(v=>{if(!S.offV[v.id])out.push({...v,catId:c.id});}));return out;}
+function syncSelCats(){S.selCats=effectiveCats().filter(c=>c.verses.length&&c.verses.every(v=>!S.offV[v.id])).map(c=>c.id);}
+// clone profond de la version effective d'une catégorie de base, pour la rendre éditable
+function baseClone(catId){const e=effectiveCats().find(c=>c.id===catId);return{name:JSON.parse(JSON.stringify(e.name)),verses:JSON.parse(JSON.stringify(e.verses))};}
+function editBase(catId,fn){const c=S.baseEdits[catId]||baseClone(catId);fn(c);S.baseEdits[catId]=c;saveBaseEdits();}
+function isBase(catId){return PRE.some(c=>c.id===catId);}
+
+// ════════ ALGORITHME (Leitner, infini) ════════
+const IVLS=[0,4,8,16,32,64];       // pas avant nouvelle échéance, par niveau
+const boxOf=id=>(S.progress[id]||{box:0}).box;
+const dueOf=id=>(S.progress[id]||{due:0}).due||0;
+function isDue(id){const p=S.progress[id];if(!p)return true;if(p.box===0)return true;return p.due<=S.step;}
+function levelOf(id){const b=boxOf(id);return b<=1?'r':b<=3?'a':'v';}     // rouge / ambre / vert
+function setLevel(id,lvl){const b=lvl==='r'?0:lvl==='a'?2:5;S.progress[id]={box:b,due:S.step+IVLS[b]};}
+function answer(id,ok){
+  const p=S.progress[id]||{box:0,due:0};
+  p.v=(p.v||0)+1;   // compteur d'expositions : ne s'efface jamais, sert au tirage equitable
+  if(ok){ p.box=Math.min(5,p.box+1); p.due=S.step+IVLS[p.box]; }
+  else  { p.box=Math.max(0,p.box-2); p.due=S.step+2; }   // erreur : on redescend de 2 et on revoit vite
+  S.progress[id]=p; S.step++;
+}
+const vuesOf=id=>(S.progress[id]||{}).v||0;
+function nextItem(){
+  const items=allItems(); if(!items.length)return null;
+  let pool=items.filter(i=>i.id!==S.lastId); if(!pool.length)pool=items;
+  const due=pool.filter(i=>isDue(i.id));
+  const cand=due.length?due:pool;
+  cand.sort((a,b)=>{
+    const ba=boxOf(a.id),bb=boxOf(b.id);if(ba!==bb)return ba-bb;
+    const va=vuesOf(a.id),vb=vuesOf(b.id);if(va!==vb)return va-vb;   // a niveau egal, le moins vu passe d'abord
+    return dueOf(a.id)-dueOf(b.id);
+  });
+  const low=boxOf(cand[0].id);
+  const top=cand.filter(i=>boxOf(i.id)===low);
+  const vmin=vuesOf(top[0].id);
+  const moinsVus=top.filter(i=>vuesOf(i.id)===vmin);
+  return moinsVus[0|Math.random()*moinsVus.length];
+}
+function getOptions(item){
+  const others=shuffle(allItems().filter(i=>i.id!==item.id)).slice(0,3);
+  return shuffle([item,...others]);
+}
+
+
+// ════════ FIRESTORE ════════
+const udoc=p=>db.doc('users/'+S.uid+'/'+p);
+const ucol=p=>db.collection('users/'+S.uid+'/'+p);
+async function loadUser(){
+  try{
+    const [prog,prefs,snap,base,trash]=await Promise.all([udoc('meta/progress').get(),udoc('meta/prefs').get(),ucol('categories').get(),udoc('meta/baseEdits').get(),udoc('meta/trash').get()]);
+    if(prog.exists){S.progress=prog.data().items||{};S.step=prog.data().step||0;}else{S.progress={};S.step=0;}
+    S.customCats=snap.docs.map(d=>({id:d.id,...d.data()}));
+    S.baseEdits=base.exists?(base.data().cats||{}):{};
+    S.trash=trash.exists?(trash.data().items||[]):[];
+    if(prefs.exists){S.selCats=prefs.data().selCats||[];S.mode=prefs.data().mode||0;S.offV={};(prefs.data().offV||[]).forEach(id=>S.offV[id]=1);
+      effectiveCats().forEach(c=>{if(c.verses.length&&!S.selCats.includes(c.id)&&c.verses.every(v=>!S.offV[v.id])){c.verses.forEach(v=>S.offV[v.id]=1);}});
+      syncSelCats();}
+    else{S.selCats=PRE.map(c=>c.id);}
+  }catch(e){console.error(e);}
+}
+function saveProgress(){udoc('meta/progress').set({items:S.progress,step:S.step});}
+function savePrefs(){syncSelCats();udoc('meta/prefs').set({selCats:S.selCats,mode:S.mode,offV:Object.keys(S.offV)});}
+function saveCat(c){return ucol('categories').doc(c.id).set({name:c.name,verses:c.verses});}
+function saveBaseEdits(){udoc('meta/baseEdits').set({cats:S.baseEdits});}
+function saveTrash(){udoc('meta/trash').set({items:S.trash});}
+
+// ════════ UI : CATÉGORIES & MÉMOIRE ════════
+function renderCats(){
+  const host=$('cat-list'); host.innerHTML='';
+  const CATLIM=6;
+  const _allc=allCats();
+  (S.showAllCats?_allc:_allc.slice(0,CATLIM)).forEach(cat=>{
+    const custom=!!S.customCats.find(c=>c.id===cat.id);
+    const _act=cat.verses.filter(vv=>!S.offV[vv.id]).length;
+    const sel=cat.verses.length&&_act===cat.verses.length;
+    const part=!sel&&_act>0;
+    const open=!!S.open[cat.id];
+    // distribution
+    const actifs=cat.verses.filter(vv=>!S.offV[vv.id]);
+    let r=0,a=0,v=0;
+    actifs.forEach(vv=>{const l=levelOf(vv.id);if(l==='r')r++;else if(l==='a')a++;else v++;});
+    const tot=actifs.length||1;
+    const dist='<i class="r" style="width:'+(r/tot*100)+'%"></i><i class="a" style="width:'+(a/tot*100)+'%"></i><i class="v" style="width:'+(v/tot*100)+'%"></i>'+(actifs.length?'':'<i class="e" style="width:100%"></i>');
+    let boxsum=0; actifs.forEach(vv=>boxsum+=boxOf(vv.id));
+    const pct=actifs.length?Math.round(boxsum/(5*actifs.length)*100):0;
+    const pctTxt=S.lang==='fr'?pct+'\u00a0%':pct+'%';
+    const div=document.createElement('div');
+    div.className='cat'+(sel?' sel':part?' part':'')+(open?' open':'');
+    div.dataset.id=cat.id;
+    let body='<div class="cat-body">';
+    cat.verses.forEach(vv=>{
+      const l=levelOf(vv.id);
+      const voff=!!S.offV[vv.id];
+      body+='<div class="vrow'+(voff?' voff':'')+'"><span class="v-check'+(voff?'':' on')+'" data-togv="'+vv.id+'" title="'+(S.lang==='fr'?'Inclure ou exclure des révisions':'Include or exclude from reviews')+'"></span><span class="vline" data-editv="'+vv.id+'"><span class="vref">'+vv[S.lang].ref+'</span><span class="vtext">'+trunc(vv[S.lang].text,58)+'</span></span>'+(vuesOf(vv.id)?'<span style="font-family:ui-monospace,monospace;font-size:11px;color:rgba(255,255,255,.4);flex-shrink:0;margin-right:8px">\u00d7'+vuesOf(vv.id)+'</span>':'')+'<span class="lvl">'
+        +'<span class="dot r'+(l==='r'?' act':'')+'" data-set="r" data-v="'+vv.id+'"></span>'
+        +'<span class="dot a'+(l==='a'?' act':'')+'" data-set="a" data-v="'+vv.id+'"></span>'
+        +'<span class="dot v'+(l==='v'?' act':'')+'" data-set="v" data-v="'+vv.id+'"></span></span>'
+        +'<span class="mov-v" data-movev="'+vv.id+'" title="'+(S.lang==='fr'?'Déplacer dans…':'Move to…')+'">\u21C4</span>'
+        +'<span class="del-v" data-delv="'+vv.id+'">×</span></div>';
+    });
+    body+='<div class="cat-custom-acts"><span class="mini-act" data-addv="1">+ '+t('addverse')+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span>'+(cat.base?'<span class="mini-act" data-restorec="1">'+t('cat_restore')+'</span>':'')+(custom?'<span class="mini-act del" data-delc="1">'+t('del')+'</span>':'')+'</div>';
+    body+='</div>';
+    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp">'+cat.name[S.lang]+'</span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-mark"><span class="dot r" data-all="r"></span><span class="dot a" data-all="a"></span><span class="dot v" data-all="v"></span></span><span class="cat-go" data-act="solo" title="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'" aria-label="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
+    host.appendChild(div);
+  });
+  const _cs=effectiveCats(),_all=_cs.length&&_cs.every(c=>c.verses.every(v=>!S.offV[v.id]));$('sel-all').textContent=_all?t('deselect_all'):t('select_all');
+  const _more=$('cat-more'); if(_allc.length>CATLIM){_more.style.display='';_more.textContent=S.showAllCats?t('show_less'):t('show_all')+' ('+_allc.length+')';}else{_more.style.display='none';}
+  renderTrash();
+  updateStart();
+}
+function updateStart(){$('start-btn').disabled=!(allItems().length>=2);}
+function toggleSelectAll(){const cs=effectiveCats();const allSel=cs.length&&cs.every(c=>c.verses.every(v=>!S.offV[v.id]));
+  if(allSel){S.selCats=[];S.offV={};cs.forEach(c=>c.verses.forEach(v=>S.offV[v.id]=1));}
+  else{S.selCats=cs.map(c=>c.id);S.offV={};}
+  savePrefs();renderCats();}
+
+// ════════ UI : STUDY ════════
+function applyLang(){
+  const l=S.lang,tl=T[l];
+  document.documentElement.lang=l; document.title=tl.hdr+' · Lumen Veritatis';
+  $('tab-si').textContent=tl.tab_si; $('tab-su').textContent=tl.tab_su; if($('auth-paneltitle'))$('auth-paneltitle').textContent=(S.lang==='fr'?'Connexion':'Sign in');
+  $('i-email').placeholder=tl.ph_email; $('i-pw').placeholder=tl.ph_pw; $('i-cf').placeholder=tl.ph_cf;
+  $('lbl-google').textContent=tl.google;
+  $('auth-or').textContent=l==='fr'?'ou':'or';
+  $('b-forgot').textContent=authMode==='forgot'?tl.back:tl.forgot;
+  $('b-submit').textContent=authMode==='si'?tl.b_si:authMode==='su'?tl.b_su:tl.b_reset;
+  const _fr=l==='fr';
+  if($('macct-ttx'))$('macct-ttx').textContent=(S.lang==='fr')?'Taille du texte':'Text size';
+  if($('macct-tog'))$('macct-tog').textContent=(S.lang==='fr')?'Onglet Bible \u00e0 gauche':'Bible tab on the left';
+  if($('lbl-lecture'))$('lbl-lecture').textContent=(S.lang==='fr')?'La lecture suivie':'Guided Reading';
+  if($('lect-lib'))$('lect-lib').textContent=(S.lang==='fr')?'articles lus':'articles read';
+  if($('lect-note'))$('lect-note').textContent=(S.lang==='fr')?'Connectez-vous pour suivre votre lecture.':'Sign in to track your reading.';
+  $('lbl-cats').textContent=tl.cats; $('lbl-newcat').textContent=tl.newcat; $('lbl-mode').textContent=tl.mode;
+  $('mode-0').textContent=tl.mode0; $('mode-1').textContent=tl.mode1; $('mode-2').textContent=tl.mode2;
+  $('start-btn').textContent=tl.start; $('reset-btn').textContent=tl.reset; $('finish-btn').textContent=tl.finish;
+  $('restore-btn').textContent=tl.restore; $('lbl-markglobal').textContent=tl.markglobal; $('bulk-restore').textContent=tl.bulk_restore;
+  $('sum-back').textContent=tl.backbtn;
+}
+function showView(v){
+  $('setup').style.display=v==='setup'?'block':'none';
+  $('study').style.display=v==='study'?'block':'none';
+  $('summary').style.display=v==='summary'?'block':'none';
+}
+function startSession(){
+  if(!S.soloCat && !allItems().length){alert(t('empty_sel'));return;}
+  if(allItems().length<2){alert(t('not_enough'));return;}
+  S.answered=0; S.correct=0; S.lastId=null;
+  showView('study'); nextQuestion();
+}
+function nextQuestion(){
+  const item=nextItem(); if(!item){endSession();return;}
+  S.lastId=item.id;
+  const qMode=S.mode===0?(Math.random()<.5?'vr':'rv'):S.mode===1?'vr':'rv';
+  S.cur={item,qMode,options:getOptions(item),done:false};
+  renderQuestion();
+}
+function renderQuestion(){
+  const q=S.cur,l=S.lang;
+  $('study-stat').innerHTML='<b>'+S.answered+'</b> '+t('answered')+' · <b>'+S.correct+'</b> '+t('correct');
+  $('q-label').textContent=q.qMode==='vr'?t('find_ref'):t('find_verse');
+  const pr=$('q-prompt');
+  pr.textContent=q.qMode==='vr'?q.item[l].text:q.item[l].ref;
+  pr.className='q-prompt'+(q.qMode==='rv'?' ref':'');
+  // relancer l\u2019animation d\u2019entrée
+  const qb=$('qbox'); qb.style.animation='none'; void qb.offsetHeight; qb.style.animation='rise .5s cubic-bezier(.2,.7,.3,1) both';
+  const opts=$('opts'); opts.className='opts'+(q.qMode==='vr'?' two':''); opts.innerHTML='';
+  q.options.forEach((opt,i)=>{
+    const b=document.createElement('button');
+    b.className='opt'+(q.qMode==='rv'?' refopt':'');
+    b.style.animationDelay=(60+i*55)+'ms';
+    b.dataset.oid=opt.id;
+    b.innerHTML='<span class="num">'+(i+1)+'</span>'+(q.qMode==='vr'?opt[l].ref:opt[l].text);
+    b.addEventListener('click',()=>pick(opt,b));
+    opts.appendChild(b);
+  });
+}
+function pick(opt,btn){
+  if(S.cur.done)return; S.cur.done=true;
+  const q=S.cur, ok=opt.id===q.item.id;
+  S.answered++; if(ok)S.correct++;
+  answer(q.item.id,ok); saveProgress();
+  $('opts').querySelectorAll('.opt').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.oid===q.item.id)b.classList.add(ok?'ok':'reveal');
+    else if(b.dataset.oid===opt.id&&!ok)b.classList.add('bad');
+  });
+  $('study-stat').innerHTML='<b>'+S.answered+'</b> '+t('answered')+' · <b>'+S.correct+'</b> '+t('correct');
+  setTimeout(nextQuestion, ok?750:4000);
+}
+function endSession(){
+  showView('summary');
+  $('sum-num').textContent=S.answered?Math.round(S.correct/S.answered*100)+'%':'—';
+  $('sum-sub').textContent=t('done');
+  let vCount=0; allItems().forEach(i=>{if(levelOf(i.id)==='v')vCount++;});
+  $('sum-detail').textContent=S.correct+' / '+S.answered+' '+t('correct')+'  ·  '+vCount+' '+t('acquired');
+  S.soloCat=null;
+  renderCats();
+}
+
+// ════════ CRUD CATÉGORIES ════════
+function moveVerse(srcId,vId,dstId){
+  const src=effectiveCats().find(c=>c.id===srcId); if(!src)return;
+  const v=src.verses.find(x=>x.id===vId); if(!v)return;
+  const vc=JSON.parse(JSON.stringify(v));
+  if(isBase(srcId)) editBase(srcId,c=>{c.verses=c.verses.filter(x=>x.id!==vId);c.moved=(c.moved||[]).concat(vId);});
+  else { const c=S.customCats.find(x=>x.id===srcId); if(c){c.verses=c.verses.filter(x=>x.id!==vId); saveCat(c);} }
+  if(isBase(dstId)) editBase(dstId,c=>{if(!c.verses.some(x=>x.id===vId))c.verses.push(vc);c.moved=(c.moved||[]).filter(x=>x!==vId);});
+  else { const c=S.customCats.find(x=>x.id===dstId); if(c&&!c.verses.some(x=>x.id===vId)){c.verses.push(vc); saveCat(c);} }
+  S.open[dstId]=true; renderCats();
+}
+function openMoveVerse(srcId,vId){
+  const host=$('move-list'); host.innerHTML='';
+  $('mmove-title').textContent=S.lang==='fr'?'Déplacer le verset dans…':'Move the verse to…';
+  $('mmove-cancel').textContent=S.lang==='fr'?'Annuler':'Cancel';
+  effectiveCats().filter(c=>c.id!==srcId).forEach(c=>{
+    const r=document.createElement('div'); r.className='move-row'; r.textContent=c.name[S.lang]||c.name.fr||c.name.en;
+    r.onclick=()=>{closeModal('m-move');moveVerse(srcId,vId,c.id);};
+    host.appendChild(r);
+  });
+  if(!host.children.length){const e=document.createElement('div');e.className='srch-vide';e.textContent=S.lang==='fr'?'Aucune autre catégorie.':'No other category.';host.appendChild(e);}
+  openModal('m-move');
+}
+let SKIDX=-1;
+function skItems(){return Array.from(document.querySelectorAll('#srch-results .srch-v'));}
+function skMaj(){const its=skItems();its.forEach((x,j)=>x.classList.toggle('kact',j===SKIDX));if(SKIDX>=0&&its[SKIDX]&&its[SKIDX].scrollIntoView)its[SKIDX].scrollIntoView({block:'nearest'});}
+function renderSearch(){
+  SKIDX=-1;
+  const q=($('i-srch').value||'').toLowerCase().trim();
+  const host=$('srch-results'); host.innerHTML='';
+  if(!q)return;
+  let total=0;
+  effectiveCats().forEach(c=>{
+    const hits=c.verses.filter(v=>(((v.fr||{}).ref||'')+' '+((v.en||{}).ref||'')+' '+((v.fr||{}).text||'')+' '+((v.en||{}).text||'')).toLowerCase().includes(q));
+    if(!hits.length)return;
+    const h=document.createElement('div'); h.className='srch-cat'; h.textContent=c.name[S.lang]||c.name.fr||c.name.en; host.appendChild(h);
+    hits.forEach(v=>{
+      total++;
+      const r=document.createElement('div'); r.className='srch-v';
+      r.innerHTML='<span class="vref"></span><span class="vtext"></span>';
+      r.querySelector('.vref').textContent=(v[S.lang]||{}).ref||'';
+      r.querySelector('.vtext').textContent=trunc(((v[S.lang]||{}).text||''),90);
+      r.onclick=()=>{closeModal('m-search');S.showAllCats=true;S.open[c.id]=true;renderCats();const el=document.querySelector('.cat[data-id="'+c.id+'"]');if(el)el.scrollIntoView({behavior:'smooth',block:'center'});};
+      host.appendChild(r);
+    });
+  });
+  if(!total){const e=document.createElement('div');e.className='srch-vide';e.textContent=S.lang==='fr'?'Aucun verset trouvé.':'No verse found.';host.appendChild(e);}
+}
+function openSearch(){
+  $('msrch-title').textContent=S.lang==='fr'?'Rechercher un verset':'Search a verse';
+  $('i-srch').placeholder=S.lang==='fr'?'Référence ou texte…':'Reference or text…';
+  $('msrch-close').textContent=S.lang==='fr'?'Fermer':'Close';
+  $('i-srch').value=''; $('srch-results').innerHTML='';
+  openModal('m-search'); setTimeout(()=>$('i-srch').focus(),60);
+}
+// ════════ CHOISIR UN VERSET DANS LA BIBLE CHÉRUBIN ════════
+// Le panneau biblique (bible-panneau.js) sait déjà lire les livres et
+// analyser une référence : on lui emprunte tout par window.LVBible.
+const B={slug:null,ch:0,v1:0,v2:0,versets:[],mots:[],wa:null,wb:null};
+const besc=x=>String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+function bibApi(){return window.LVBible||null;}
+function bibRaz(){B.v1=0;B.v2=0;B.wa=null;B.wb=null;B.mots=[];}
+function bibOuvre(){
+  const api=bibApi();
+  if(!api){alert('La Bible n’est pas encore prête. Réessayez dans un instant.');return;}
+  openModal('m-bib');
+  $('mbib-corps').innerHTML='<div class="mbib-charge">Chargement…</div>';
+  $('mbib-apercu').innerHTML='';
+  api.pret().then(()=>{ if(B.slug&&B.ch) bibVersets(B.slug,B.ch); else bibLivres(); })
+    .catch(()=>{$('mbib-corps').innerHTML='<div class="mbib-charge">La Bible n’a pas pu être chargée. Fermez et réessayez.</div>';});
+}
+function bibFil(){
+  const api=bibApi(); let h='<span data-b="livres">La Sainte Bible</span>';
+  if(B.slug){const i=api.info(B.slug); if(i){h+=' · <span data-b="livre" data-slug="'+B.slug+'">'+besc(i.nom)+'</span>'; if(B.ch)h+=' · <span>'+(B.slug==='psaumes'?'Psaume ':'Ch. ')+B.ch+'</span>';}}
+  $('mbib-fil').innerHTML=h;
+}
+function bibLivres(){
+  const IDX=bibApi().index(); B.slug=null;B.ch=0;B.versets=[];bibRaz();
+  let h='',tc='';
+  IDX.groupes.forEach(g=>{
+    if(g.test!==tc){tc=g.test;h+='<div class="mbib-test">'+(g.test==='AT'?'Ancien Testament':'Nouveau Testament')+'</div>';}
+    h+='<div class="mbib-grp">'+besc(g.nom)+'</div>';
+    IDX.livres.forEach(l=>{if(l.groupe!==g.nom)return;
+      h+='<div class="mbib-livre" data-b="livre" data-slug="'+l.slug+'"><span>'+besc(l.nom)+'</span><span class="mbib-n">'+l.nch+'</span></div>';});
+  });
+  $('mbib-corps').innerHTML=h; $('mbib-corps').scrollTop=0; bibFil(); bibApercu();
+}
+function bibChaps(slug){
+  const api=bibApi(), inf=api.info(slug); if(!inf)return bibLivres();
+  if(inf.nch===1)return bibVersets(slug,1);
+  B.slug=slug;B.ch=0;B.versets=[];bibRaz();
+  let h='<div class="mbib-chaps">';
+  for(let i=1;i<=inf.nch;i++)h+='<div class="mbib-chap" data-b="chap" data-slug="'+slug+'" data-n="'+i+'">'+i+'</div>';
+  $('mbib-corps').innerHTML=h+'</div>'; $('mbib-corps').scrollTop=0; bibFil(); bibApercu();
+}
+function bibVersets(slug,ch,v1,v2){
+  const api=bibApi(); B.slug=slug;B.ch=ch;bibRaz();
+  $('mbib-corps').innerHTML='<div class="mbib-charge">Chargement…</div>'; bibFil();
+  api.livre(slug).then(d=>{
+    let c=null; for(let i=0;i<d.chapitres.length;i++)if(d.chapitres[i].n===ch){c=d.chapitres[i];break;}
+    if(!c)return bibChaps(slug);
+    B.versets=c.versets;
+    if(v1){B.v1=v1;B.v2=v2||v1;}
+    let h='';
+    c.versets.forEach(v=>{h+='<div class="mbib-v" data-b="v" data-v="'+v.v+'"><span class="mbib-vn">'+v.v+'</span><span>'+besc(v.t)+'</span></div>';});
+    $('mbib-corps').innerHTML=h; bibMarque();
+    bibAmene(B.v1);
+    bibApercu();
+  }).catch(()=>{$('mbib-corps').innerHTML='<div class="mbib-charge">Le texte n’a pas pu être chargé.</div>';});
+}
+function bibAmene(v){
+  const z=$('mbib-corps');
+  if(!v){z.scrollTop=0;return;}
+  const el=z.querySelector('.mbib-v[data-v="'+v+'"]');
+  if(!el){z.scrollTop=0;return;}
+  z.scrollTop=Math.max(0,z.scrollTop+el.getBoundingClientRect().top-z.getBoundingClientRect().top-14);
+}
+function bibMarque(){
+  $('mbib-corps').querySelectorAll('.mbib-v').forEach(el=>{
+    const v=+el.dataset.v; el.classList.toggle('on',B.v1>0&&v>=B.v1&&v<=B.v2);
+  });
+}
+function bibTapVerset(v){
+  if(!B.v1){B.v1=B.v2=v;}
+  else if(v===B.v1&&v===B.v2){B.v1=B.v2=0;}
+  else if(v<B.v1){B.v1=v;}
+  else if(v>B.v2){B.v2=v;}
+  else {B.v1=B.v2=v;}
+  B.wa=null;B.wb=null; bibMarque(); bibApercu();
+}
+function bibMots(){
+  B.mots=[];
+  if(!B.v1)return;
+  B.versets.forEach(v=>{ if(v.v<B.v1||v.v>B.v2)return;
+    String(v.t).split(/\s+/).forEach(m=>{ if(m)B.mots.push({m:m,v:v.v}); }); });
+}
+function bibResultat(){
+  bibMots();
+  if(!B.mots.length)return null;
+  let a=0,b=B.mots.length-1;
+  if(B.wa!==null){a=B.wa;b=(B.wb===null?B.wa:B.wb);}
+  const part=B.mots.slice(a,b+1);
+  if(!part.length)return null;
+  const api=bibApi(), inf=api.info(B.slug);
+  let nom=inf?inf.nom:B.slug;
+  if(B.slug==='psaumes')nom='Psaume';
+  const va=part[0].v, vb=part[part.length-1].v;
+  return {texte:part.map(x=>x.m).join(' '),ref:nom+' '+B.ch+':'+va+(vb>va?'-'+vb:''),a:a,b:b};
+}
+function bibApercu(){
+  const z=$('mbib-apercu'), r=bibResultat();
+  if(!r){z.innerHTML='';z.classList.add('vide');return;}
+  z.classList.remove('vide');
+  let h='<div class="mbib-tete"><span class="mbib-ref">'+besc(r.ref)+'</span>';
+  if(B.wa!==null)h+='<span class="mbib-tout" id="mbib-tout">Tout le passage</span>';
+  h+='</div><div class="mbib-mots'+(B.wa===null?' tout':'')+'" id="mbib-mots">';
+  B.mots.forEach((x,i)=>{
+    const on=i>=r.a&&i<=r.b, bout=(i===r.a||i===r.b)&&B.wa!==null;
+    h+='<span class="mbib-mot'+(on?' on':'')+(bout?' bout':'')+'" data-m="'+i+'">'+besc(x.m)+'</span> ';
+  });
+  h+='</div>';
+  z.innerHTML=h;
+}
+function bibTapMot(i){
+  if(B.wa===null||B.wb!==null){B.wa=i;B.wb=null;}
+  else {B.wb=i; if(B.wb<B.wa){const t=B.wa;B.wa=B.wb;B.wb=t;}}
+  bibApercu();
+}
+function bibVaRef(){
+  const api=bibApi(), champ=$('i-mbib'), v=champ.value.trim();
+  if(!v)return;
+  const r=api.ref(v);
+  if(!r){champ.value='';champ.placeholder='Référence non reconnue';return;}
+  champ.value='';champ.placeholder='Référence : Jean 3:16';
+  if(!r.ch)return bibChaps(r.slug);
+  bibVersets(r.slug,r.ch,r.v1,r.v2);
+}
+function bibUtilise(){
+  const r=bibResultat();
+  if(!r)return;
+  const fr=S.lang!=='en';
+  $(fr?'i-vfr':'i-ven').value=r.texte;
+  $(fr?'i-rfr':'i-ren').value=r.ref;
+  closeModal('m-bib');
+}
+function openModal(id){$(id).classList.add('on')}
+function closeModal(id){$(id).classList.remove('on')}
+function openNewCat(){S.editCat=null;$('mcat-title').textContent=t('mcat');$('i-cfr').value='';$('i-cen').value='';modalCatLang();openModal('m-cat');}
+function openRenameCat(id){const c=effectiveCats().find(x=>x.id===id);if(!c)return;S.editCat=id;$('mcat-title').textContent=t('mcat_edit');$('i-cfr').value=c.name.fr;$('i-cen').value=c.name.en;modalCatLang();openModal('m-cat');}
+async function saveCatModal(){
+  const fr=S.lang==='fr';
+  const name=(fr?$('i-cfr'):$('i-cen')).value.trim(); if(!name)return;
+  if(S.editCat){
+    const setn=c=>{if(fr){c.name={fr:name,en:c.name.en};}else{c.name={fr:c.name.fr,en:name};}};
+    if(isBase(S.editCat)) editBase(S.editCat,setn);
+    else{const c=S.customCats.find(x=>x.id===S.editCat);setn(c);await saveCat(c);}
+  } else {
+    const c={id:'c'+Date.now(),name:{fr:name,en:name},verses:[]};S.customCats.push(c);S.selCats.push(c.id);await saveCat(c);savePrefs();
+  }
+  closeModal('m-cat'); renderCats();
+}
+async function delCatById(id){
+  if(!confirm(t('del_cat_q')))return;
+  S.customCats=S.customCats.filter(c=>c.id!==id); S.selCats=S.selCats.filter(x=>x!==id);
+  await ucol('categories').doc(id).delete(); savePrefs(); renderCats();
+}
+function modalVerseLang(){
+  const fr=S.lang==='fr';
+  $('row-vfr').style.display=fr?'':'none'; $('row-rfr').style.display=fr?'':'none';
+  $('row-ven').style.display=fr?'none':''; $('row-ren').style.display=fr?'none':'';
+  $('lbl-vfr').textContent=t('f_text'); $('lbl-ven').textContent=t('f_text');
+  $('lbl-rfr').textContent=t('f_ref'); $('lbl-ren').textContent=t('f_ref');
+}
+function modalCatLang(){
+  const fr=S.lang==='fr';
+  $('row-cfr').style.display=fr?'':'none'; $('row-cen').style.display=fr?'none':'';
+  $('mcat-lfr').textContent=t('f_name'); $('mcat-len').textContent=t('f_name');
+}
+function openAddVerse(catId){S.pendingCat=catId;S.editVerse=null;$('mv-title').textContent=t('mv');['i-vfr','i-rfr','i-ven','i-ren'].forEach(x=>$(x).value='');$('mv-reset').style.display='none';bibRaz();modalVerseLang();openModal('m-verse');}
+function openEditVerse(catId,vId){
+  const c=effectiveCats().find(x=>x.id===catId); if(!c)return;
+  const v=c.verses.find(x=>x.id===vId); if(!v)return;
+  S.pendingCat=catId; S.editVerse=vId; $('mv-title').textContent=t('mv_edit');
+  $('i-vfr').value=v.fr.text; $('i-rfr').value=v.fr.ref; $('i-ven').value=v.en.text; $('i-ren').value=v.en.ref;
+  $('mv-reset').style.display=verseOrigin(vId)==='base'?'':'none'; $('mv-reset').textContent=t('reset_verse');
+  modalVerseLang();
+  openModal('m-verse');
+}
+async function saveVerseModal(){
+  const fr=S.lang==='fr';
+  const txt=(fr?$('i-vfr'):$('i-ven')).value.trim();
+  const ref=(fr?$('i-rfr'):$('i-ren')).value.trim();
+  if(!txt||!ref)return;
+  const catId=S.pendingCat, base=isBase(catId);
+  if(S.editVerse){
+    const apply=c=>{const v=c.verses.find(x=>x.id===S.editVerse);if(v){if(fr){v.fr={text:txt,ref:ref};}else{v.en={text:txt,ref:ref};}}};
+    if(base) editBase(catId,apply); else{const c=S.customCats.find(x=>x.id===catId);apply(c);await saveCat(c);}
+  } else {
+    const nv={id:'v'+Date.now(),fr:{text:txt,ref:ref},en:{text:txt,ref:ref}};
+    if(base) editBase(catId,c=>c.verses.push(nv)); else{const c=S.customCats.find(x=>x.id===catId);c.verses.push(nv);await saveCat(c);}
+  }
+  closeModal('m-verse'); renderCats();
+}
+const clone=o=>JSON.parse(JSON.stringify(o));
+function verseOrigin(vId){return PRE.some(c=>c.verses.some(v=>v.id===vId))?'base':'perso';}
+function resetVerseOrig(){
+  const catId=S.pendingCat, vId=S.editVerse; if(!catId||!vId)return;
+  let orig=null; PRE.forEach(c=>{const v=c.verses.find(x=>x.id===vId); if(v)orig=v;});
+  if(!orig){closeModal('m-verse');return;}
+  if(isBase(catId)) editBase(catId,c=>{const v=c.verses.find(x=>x.id===vId); if(v){v.fr=JSON.parse(JSON.stringify(orig.fr)); v.en=JSON.parse(JSON.stringify(orig.en));}});
+  closeModal('m-verse'); renderCats();
+}
+// suppression d'un verset = envoi en corbeille (récupérable)
+async function trashVerse(catId,vId){
+  const c=effectiveCats().find(x=>x.id===catId); if(!c)return;
+  const v=c.verses.find(x=>x.id===vId); if(!v)return;
+  const rec={vId, catId, catName:clone(c.name), verse:clone(v), origin:verseOrigin(vId), prog:S.progress[vId]?clone(S.progress[vId]):null, ts:Date.now()};
+  if(isBase(catId)) editBase(catId,cc=>{cc.verses=cc.verses.filter(x=>x.id!==vId);});
+  else{const cu=S.customCats.find(x=>x.id===catId);if(!cu)return;cu.verses=cu.verses.filter(x=>x.id!==vId);await saveCat(cu);}
+  delete S.progress[vId]; saveProgress();
+  S.trash.push(rec); saveTrash(); renderCats();
+}
+async function restoreTrash(vId){
+  const idx=S.trash.findIndex(x=>x.vId===vId); if(idx<0)return;
+  const rec=S.trash[idx];
+  if(!effectiveCats().some(c=>c.id===rec.catId)){alert(t('trash_cat_gone'));return;}
+  if(isBase(rec.catId)){ editBase(rec.catId,cc=>{if(!cc.verses.some(x=>x.id===rec.vId))cc.verses.push(rec.verse);}); }
+  else{const cu=S.customCats.find(x=>x.id===rec.catId);if(cu&&!cu.verses.some(x=>x.id===rec.vId)){cu.verses.push(rec.verse);await saveCat(cu);}}
+  if(rec.prog){S.progress[rec.vId]=rec.prog; saveProgress();}
+  S.trash.splice(idx,1); saveTrash(); renderCats();
+}
+function deleteTrashPerm(vId){
+  S.trash=S.trash.filter(x=>x.vId!==vId); delete S.progress[vId];
+  saveProgress(); saveTrash(); renderTrash();
+}
+function emptyTrash(){
+  if(!S.trash.length)return; if(!confirm(t('trash_empty_q')))return;
+  S.trash.forEach(x=>{delete S.progress[x.vId];});
+  S.trash=[]; saveProgress(); saveTrash(); renderTrash();
+}
+// restaurer UNE catégorie de base à son état d'origine
+function restoreCatBase(catId){
+  if(!isBase(catId))return; if(!confirm(t('cat_restore_q')))return;
+  delete S.baseEdits[catId]; saveBaseEdits();
+  S.trash=S.trash.filter(x=>!(x.origin==='base'&&x.catId===catId)); saveTrash();
+  renderCats();
+}
+// restaurer TOUTES les catégories de base
+function restoreBase(){
+  if(!confirm(t('restore_q')))return;
+  S.baseEdits={}; udoc('meta/baseEdits').set({cats:{}});
+  S.trash=S.trash.filter(x=>x.origin!=='base'); saveTrash();
+  renderCats();
+}
+// ════════ UI : CORBEILLE ════════
+function trashSection(title,items){
+  let h='<div class="trash-sub"><div class="trash-sub-head">'+title+' <span class="trash-count">'+items.length+'</span></div>';
+  if(!items.length){ h+='<div class="trash-none">'+t('trash_section_empty')+'</div>'; }
+  else items.forEach(it=>{
+    h+='<div class="trash-item"><span class="trash-vmeta"><span class="trash-vref">'+it.verse[S.lang].ref
+      +'</span><span class="trash-vcat">'+(it.catName?it.catName[S.lang]:'')+'</span></span>'
+      +'<span class="trash-acts"><span class="trash-act" data-trestore="'+it.vId+'">'+t('trash_restore')
+      +'</span><span class="trash-act del" data-tdel="'+it.vId+'">'+t('trash_delperm')+'</span></span></div>';
+  });
+  return h+'</div>';
+}
+function renderTrash(){
+  const host=$('trash-block'); if(!host)return;
+  if(!S.trash.length){host.style.display='none';host.innerHTML='';return;}
+  host.style.display='';
+  const base=S.trash.filter(x=>x.origin==='base'), perso=S.trash.filter(x=>x.origin!=='base');
+  let h='<div class="trash-head'+(S.trashOpen?' open':'')+'" id="trash-toggle"><span class="lbl">'+t('trash')+' ('+S.trash.length+')</span><span class="cat-chev">\u203A</span></div>';
+  if(S.trashOpen){
+    h+='<div class="trash-body">'+trashSection(t('trash_original'),base)+trashSection(t('trash_perso'),perso)
+      +'<button class="reset-link" id="trash-empty" style="margin:20px 0 0">'+t('trash_empty_btn')+'</button></div>';
+  }
+  host.innerHTML=h;
+}
+
+// ════════ AUTH UI ════════
+let authMode='si';
+function setAuth(m){
+  authMode=m; clrMsg();
+  $('tab-si').classList.toggle('on',m==='si'); $('tab-su').classList.toggle('on',m==='su');
+  $('auth-tabs').style.display=m==='forgot'?'none':'flex';
+  $('row-pw').style.display=m==='forgot'?'none':'block';
+  $('row-cf').style.display=m==='su'?'block':'none';
+  $('auth-or').style.display=m==='forgot'?'none':'flex';
+  $('b-google').style.display=m==='forgot'?'none':'flex';
+  applyLang();
+}
+function showMsg(txt,kind){const m=$('auth-msg');m.textContent=txt;m.className='auth-msg '+kind;}
+function clrMsg(){const m=$('auth-msg');m.className='auth-msg';m.textContent='';}
+
+// ════════ ÉVÉNEMENTS ════════
+document.addEventListener('DOMContentLoaded',()=>{
+  $('tab-si').onclick=()=>setAuth('si');
+  $('tab-su').onclick=()=>setAuth('su');
+  $('b-forgot').onclick=()=>setAuth(authMode==='forgot'?'si':'forgot');
+  $('b-submit').onclick=async()=>{
+    const em=$('i-email').value.trim(),pw=$('i-pw').value,cf=$('i-cf').value; clrMsg();
+    try{
+      if(authMode==='forgot'){await auth.sendPasswordResetEmail(em);showMsg(t('reset_sent'),'ok');}
+      else if(authMode==='su'){if(pw!==cf){showMsg(t('pw_mismatch'),'err');return;}await auth.createUserWithEmailAndPassword(em,pw);}
+      else{await auth.signInWithEmailAndPassword(em,pw);}
+    }catch(e){showMsg(e.message,'err');}
+  };
+  ['i-email','i-pw','i-cf'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')$('b-submit').click();}));
+  $('b-google').onclick=async()=>{try{await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());}catch(e){showMsg(e.message,'err');}};
+  $('auth-ouvrir').onclick=(e)=>{e.stopPropagation();
+    if(!(auth.currentUser)) return;
+    document.getElementById('macct-t').textContent=(S.lang==='fr')?'Mon compte':'My account';
+    document.getElementById('macct-mail').textContent=(auth.currentUser&&auth.currentUser.email)||'';
+    document.getElementById('macct-notes').textContent=(S.lang==='fr')?'Mes notes':'My notes';
+    document.getElementById('auth-logout').textContent=(S.lang==='fr')?'Déconnexion':'Sign out';
+    document.getElementById('auth-overlay').classList.add('ouvert');
+  };
+  document.getElementById('macct-x').onclick=()=>document.getElementById('auth-overlay').classList.remove('ouvert');
+  document.getElementById('auth-overlay').addEventListener('click',(ev)=>{if(ev.target===ev.currentTarget)ev.currentTarget.classList.remove('ouvert');});
+  document.getElementById('auth-logout').onclick=()=>{auth.signOut();document.getElementById('auth-overlay').classList.remove('ouvert');};
+  document.addEventListener('keydown',(ev)=>{if(ev.key==='Escape'){var o=document.getElementById('auth-overlay');if(o)o.classList.remove('ouvert');}});
+  $('modes').onclick=e=>{const b=e.target.closest('.mode');if(!b)return;S.mode=+b.dataset.m;document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',x===b));savePrefs();};
+  $('start-btn').onclick=()=>{S.soloCat=null;startSession();};
+  $('finish-btn').onclick=endSession;
+  $('sum-back').onclick=()=>showView('setup');
+  $('reset-btn').onclick=()=>{if(confirm(t('reset_q'))){S.progress={};S.step=0;saveProgress();renderCats();}};
+  $('restore-btn').onclick=restoreBase;
+  $('add-cat').onclick=openNewCat;
+  $('sel-all').onclick=toggleSelectAll;
+  $('cat-more').onclick=()=>{S.showAllCats=!S.showAllCats;renderCats();};
+  $('trash-block').addEventListener('click',e=>{
+    if(e.target.closest('#trash-toggle')){S.trashOpen=!S.trashOpen;renderTrash();return;}
+    const rst=e.target.closest('[data-trestore]'); if(rst){restoreTrash(rst.dataset.trestore);return;}
+    const tdl=e.target.closest('[data-tdel]'); if(tdl){deleteTrashPerm(tdl.dataset.tdel);return;}
+    if(e.target.closest('#trash-empty')){emptyTrash();return;}
+  });
+  // marquage global : toutes les catégories sélectionnées
+  document.querySelector('.markglobal').addEventListener('click',e=>{
+    const d=e.target.closest('[data-gall]'), rb=e.target.closest('#bulk-restore');
+    const sel=effectiveCats();
+    if(d){
+      if(!sel.length)return;
+      if(!confirm(t('bulk_mark_q').replace('%n%',sel.length)))return;
+      sel.forEach(c=>c.verses.forEach(v=>{if(!S.offV[v.id])setLevel(v.id,d.dataset.gall);}));
+      saveProgress(); renderCats(); return;
+    }
+    if(rb){
+      const baseSel=sel.filter(c=>isBase(c.id));
+      if(!baseSel.length)return;
+      if(!confirm(t('bulk_restore_q').replace('%n%',baseSel.length)))return;
+      baseSel.forEach(c=>{delete S.baseEdits[c.id];}); saveBaseEdits();
+      S.trash=S.trash.filter(x=>!(x.origin==='base'&&baseSel.some(c=>c.id===x.catId))); saveTrash();
+      renderCats(); return;
+    }
+  });
+  // clavier 1-4 pendant l'étude
+  document.addEventListener('keydown',e=>{
+    if($('study').style.display!=='block'||!S.cur||S.cur.done)return;
+    const n=parseInt(e.key); if(n>=1&&n<=S.cur.options.length){const btns=$('opts').querySelectorAll('.opt');if(btns[n-1])btns[n-1].click();}
+  });
+  // délégation catégories
+  $('cat-list').addEventListener('click',async e=>{
+    const catEl=e.target.closest('.cat'); if(!catEl)return; const id=catEl.dataset.id;
+    const togv=e.target.closest('[data-togv]');
+    if(togv){const vid=togv.dataset.togv;S.offV[vid]?delete S.offV[vid]:S.offV[vid]=1;savePrefs();renderCats();return;}
+    const setDot=e.target.closest('[data-set]');
+    const allDot=e.target.closest('[data-all]');
+    const editv=e.target.closest('[data-editv]');
+    const movv=e.target.closest('[data-movev]');
+    const delv=e.target.closest('[data-delv]');
+    const addv=e.target.closest('[data-addv]');
+    const editc=e.target.closest('[data-editc]');
+    const delc=e.target.closest('[data-delc]');
+    const restorec=e.target.closest('[data-restorec]');
+    const act=e.target.closest('[data-act]');
+    if(setDot){setLevel(setDot.dataset.v,setDot.dataset.set);saveProgress();renderCats();return;}
+    if(allDot){const c=effectiveCats().find(x=>x.id===id);c.verses.forEach(v=>{if(!S.offV[v.id])setLevel(v.id,allDot.dataset.all);});saveProgress();renderCats();return;}
+    if(movv){openMoveVerse(id,movv.dataset.movev);return;}
+    if(delv){await trashVerse(id,delv.dataset.delv);return;}
+    if(editv){openEditVerse(id,editv.dataset.editv);return;}
+    if(addv){openAddVerse(id);return;}
+    if(editc){openRenameCat(id);return;}
+    if(delc){await delCatById(id);return;}
+    if(restorec){restoreCatBase(id);return;}
+    if(act&&act.dataset.act==='solo'){S.soloCat=id;startSession();return;}
+    if(act&&act.dataset.act==='sel'){
+      const c=effectiveCats().find(x=>x.id===id);
+      if(c&&c.verses.length){
+        const allOn=c.verses.every(v=>!S.offV[v.id]);
+        if(allOn){c.verses.forEach(v=>S.offV[v.id]=1);}
+        else{c.verses.forEach(v=>{delete S.offV[v.id];});}
+      }
+      savePrefs();renderCats();return;}
+    if(act){S.open[id]=!S.open[id];catEl.classList.toggle('open');return;}
+  });
+  $('mcat-cancel').onclick=()=>closeModal('m-cat'); $('mcat-ok').onclick=saveCatModal;
+  $('rech-ouvrir').addEventListener('click',openSearch);
+  $('rech-ouvrir').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openSearch();}});
+  $('i-srch').addEventListener('input',renderSearch);
+  $('i-srch').addEventListener('keydown',e=>{
+    const its=skItems();
+    if(e.key==='ArrowDown'){e.preventDefault();if(!its.length)return;SKIDX=Math.min(its.length-1,SKIDX+1);skMaj();}
+    else if(e.key==='ArrowUp'){e.preventDefault();if(!its.length)return;SKIDX=Math.max(-1,SKIDX-1);skMaj();}
+    else if(e.key==='Enter'){const c=its[SKIDX>=0?SKIDX:0];if(c){e.preventDefault();c.click();}}
+  });
+  $('msrch-close').onclick=()=>closeModal('m-search');
+  $('mmove-cancel').onclick=()=>closeModal('m-move');
+  $('mv-cancel').onclick=()=>closeModal('m-verse'); $('mv-ok').onclick=saveVerseModal; $('mv-reset').onclick=resetVerseOrig;
+  $('mv-bible').onclick=bibOuvre;
+  $('mbib-cancel').onclick=()=>closeModal('m-bib');
+  $('mbib-ok').onclick=bibUtilise;
+  $('mbib-go').onclick=bibVaRef;
+  $('i-mbib').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();bibVaRef();}});
+  $('mbib-fil').addEventListener('click',e=>{
+    const el=e.target.closest('[data-b]'); if(!el)return;
+    if(el.dataset.b==='livres')bibLivres(); else if(el.dataset.b==='livre')bibChaps(el.dataset.slug);
+  });
+  $('mbib-corps').addEventListener('click',e=>{
+    const el=e.target.closest('[data-b]'); if(!el)return;
+    if(el.dataset.b==='livre')bibChaps(el.dataset.slug);
+    else if(el.dataset.b==='chap')bibVersets(el.dataset.slug,+el.dataset.n);
+    else if(el.dataset.b==='v')bibTapVerset(+el.dataset.v);
+  });
+  $('mbib-apercu').addEventListener('click',e=>{
+    if(e.target.id==='mbib-tout'){B.wa=null;B.wb=null;bibApercu();return;}
+    const m=e.target.closest('.mbib-mot'); if(m)bibTapMot(+m.dataset.m);
+  });
+  ['m-cat','m-verse','m-search','m-move','m-bib'].forEach(id=>$(id).addEventListener('click',e=>{if(e.target===$(id))closeModal(id);}));
+});
+
+// ════════ OBSERVATEUR AUTH ════════
+function demarrerAuto(){try{if(/[?&]demarrer=1/.test(location.search)){try{sessionStorage.setItem('lm_dem','1')}catch(_){}history.replaceState(null,'','/memoriser.html');}var go=false;try{go=sessionStorage.getItem('lm_dem')==='1';if(go)sessionStorage.removeItem('lm_dem');}catch(_){}if(!go)return;if(!allItems().length){S.offV={};S.selCats=PRE.map(function(c){return c.id;});}if(allItems().length>=2){S.soloCat=null;startSession();return true;}}catch(e){}return false;}
+async function chargerBaseLV(){try{const s=await db.doc('config/memoriser').get();if(s.exists){const c=s.data().categories;if(Array.isArray(c)&&c.length){PRE.length=0;c.forEach(x=>PRE.push(x));}}}catch(e){}}
+if('serviceWorker' in navigator){try{navigator.serviceWorker.register('/memoriser-sw.js',{updateViaCache:'none'});}catch(_){}}
+auth.onAuthStateChanged(async u=>{
+  if(u){
+    S.uid=u.uid;
+    $('auth-screen').style.display='none'; $('app').classList.add('on');
+    await chargerBaseLV(); await loadUser(); applyLang(); renderCats();
+    document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',+x.dataset.m===S.mode));
+    if(!demarrerAuto()) showView('setup');
+  }else{
+    S.uid=null; $('app').classList.remove('on'); $('auth-screen').style.display='flex';
+    applyLang(); setAuth('si');
+  }
+});
+</script>
+
+<div class="auth-ov" id="auth-overlay">
+  <div class="auth-box">
+    <span class="auth-x" id="macct-x" role="button" tabindex="0">✕</span>
+    <div id="auth-in">
+      <div class="auth-t" id="macct-t">Mon compte</div>
+      <div class="auth-mail" id="macct-mail"></div>
+      <a class="macct-btn" id="macct-notes" href="/bible.html#notes">Mes notes</a>
+      <div class="ttx-row"><span class="ttx-lab" id="macct-ttx">Taille du texte</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
+      <div class="tog-row"><span class="tog-lab" id="macct-tog">Onglet Bible à gauche</span><span class="tog-sw" id="tog-bible" role="button" tabindex="0" aria-label="Afficher ou masquer l’onglet Bible"></span></div>
+      <button type="button" class="auth-out" id="auth-logout">Déconnexion</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var TZ=[0.85,0.925,1,1.08,1.16,1.25];
+  function tzCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_taille_mobile':'lv_taille_pc';}catch(e){return 'lv_taille_pc';}}
+  function tzLit(){var v=1;try{v=parseFloat(localStorage.getItem(tzCle())||localStorage.getItem('lv_taille'))||1;}catch(e){}return v;}
+  document.addEventListener('click',function(e){
+    var b=e.target.closest?e.target.closest('.ttx-b'):null;
+    if(!b)return;
+    var d=b.getAttribute('data-ttx'),v=tzLit();
+    if(d==='0')v=1;
+    else{var i=TZ.indexOf(v);if(i<0){i=2;}i+=(d==='1'?1:-1);i=Math.max(0,Math.min(TZ.length-1,i));v=TZ[i];}
+    try{localStorage.setItem(tzCle(),String(v));}catch(e2){}
+    document.documentElement.style.setProperty('--lvz',v);
+  });
+})();
+(function(){
+  function obCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_onglet_bible_mobile':'lv_onglet_bible_pc';}catch(e){return 'lv_onglet_bible_pc';}}
+  function obMasque(){try{return localStorage.getItem(obCle())==='0';}catch(e){return false;}}
+  var sw=document.getElementById('tog-bible');
+  function etat(){if(sw)sw.classList.toggle('on',!obMasque());}
+  etat();
+  window.addEventListener('resize',etat);
+  if(sw){
+    var bascule=function(){var m=obMasque();try{localStorage.setItem(obCle(),m?'1':'0');}catch(e){}etat();try{window.dispatchEvent(new Event('resize'));}catch(e2){}};
+    sw.addEventListener('click',bascule);
+    sw.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();bascule();}});
+  }
+})();
+</script>
+</body>
+</html>
