@@ -206,6 +206,14 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .modal .auth-fieldrow{margin-bottom:18px}
 .modal-flbl{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa2);margin-bottom:5px}
 .modal-btns{display:flex;justify-content:flex-end;gap:14px;margin-top:28px}
+.mdlg-txt{font-size:15px;line-height:1.65;color:var(--pa)}
+#m-conf .modal,#m-info .modal{max-width:420px}
+#m-conf .modal-title,#m-info .modal-title{margin-bottom:16px}
+/* la rangée d'actions passe à la ligne au lieu de sortir de l'écran, et
+   chaque action reçoit une zone tactile confortable */
+.cat-custom-acts{flex-wrap:wrap;row-gap:12px}
+.mini-act{position:relative;display:inline-block}
+.cat-custom-acts .mini-act::before{content:'';position:absolute;inset:-13px -8px}
 .m-cancel{font-family:var(--display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa);padding:9px 16px;transition:color .3s}
 .m-cancel:hover{color:var(--or)}
 .m-ok{font-family:var(--display);font-size:14px;letter-spacing:.1em;text-transform:uppercase;background:var(--or);color:var(--encre);padding:10px 22px;transition:background .3s}
@@ -615,6 +623,20 @@ if(app&&sc&&!app.classList.contains('on')&&getComputedStyle(sc).display==='none'
     <div class="modal-btns"><button class="m-cancel" id="mmove-cancel">Annuler</button></div>
   </div>
 </div>
+<div class="overlay" id="m-conf">
+  <div class="modal">
+    <div class="modal-title" id="mconf-title">Confirmer</div>
+    <div class="mdlg-txt" id="mconf-txt"></div>
+    <div class="modal-btns"><button class="m-cancel" id="mconf-no">Annuler</button><button class="m-ok" id="mconf-yes">Confirmer</button></div>
+  </div>
+</div>
+<div class="overlay" id="m-info">
+  <div class="modal">
+    <div class="modal-title" id="minfo-title">Information</div>
+    <div class="mdlg-txt" id="minfo-txt"></div>
+    <div class="modal-btns"><button class="m-ok" id="minfo-ok">OK</button></div>
+  </div>
+</div>
 <div class="overlay" id="m-cat">
   <div class="modal">
     <div class="modal-title" id="mcat-title">Nouvelle catégorie</div>
@@ -706,7 +728,7 @@ const T={
 const S={
   lang:'fr',
   uid:null, mode:0,
-  selCats:[], offV:{}, progress:{}, step:0, customCats:[], baseEdits:{}, trash:[], trashOpen:false, showAllCats:false,
+  selCats:[], offV:{}, progress:{}, step:0, customCats:[], baseEdits:{}, hidCats:[], trash:[], trashOpen:false, showAllCats:false,
   open:{},          // catId -> bool (déplié)
   cur:null, lastId:null, answered:0, correct:0,
   pendingCat:null, editCat:null, editVerse:null
@@ -719,7 +741,7 @@ const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=0|Math.random()*(i+1);[a
 const trunc=(s,n)=>s.length>n?s.slice(0,n)+'…':s;
 function effectiveCats(){
   const trashIds=new Set((S.trash||[]).map(t=>t.vId));
-  const base=PRE.map(c=>{
+  const base=PRE.filter(c=>!(S.hidCats||[]).includes(c.id)).map(c=>{
     const ov=S.baseEdits[c.id];
     if(!ov) return {id:c.id,name:c.name,verses:c.verses,base:true};
     // catégorie de base éditée : on conserve l'édition de l'utilisateur, mais on y ajoute
@@ -785,6 +807,7 @@ async function loadUser(){
     S.customCats=snap.docs.map(d=>({id:d.id,...d.data()}));
     S.baseEdits=base.exists?(base.data().cats||{}):{};
     S.trash=trash.exists?(trash.data().items||[]):[];
+    S.hidCats=prefs.exists?(prefs.data().hidCats||[]):[];
     if(prefs.exists){S.selCats=prefs.data().selCats||[];S.mode=prefs.data().mode||0;S.offV={};(prefs.data().offV||[]).forEach(id=>S.offV[id]=1);
       effectiveCats().forEach(c=>{if(c.verses.length&&!S.selCats.includes(c.id)&&c.verses.every(v=>!S.offV[v.id])){c.verses.forEach(v=>S.offV[v.id]=1);}});
       syncSelCats();}
@@ -792,10 +815,47 @@ async function loadUser(){
   }catch(e){console.error(e);}
 }
 function saveProgress(){udoc('meta/progress').set({items:S.progress,step:S.step});}
-function savePrefs(){syncSelCats();udoc('meta/prefs').set({selCats:S.selCats,mode:S.mode,offV:Object.keys(S.offV)});}
+function savePrefs(){syncSelCats();udoc('meta/prefs').set({selCats:S.selCats,mode:S.mode,offV:Object.keys(S.offV),hidCats:S.hidCats});}
 function saveCat(c){return ucol('categories').doc(c.id).set({name:c.name,verses:c.verses});}
 function saveBaseEdits(){udoc('meta/baseEdits').set({cats:S.baseEdits});}
 function saveTrash(){udoc('meta/trash').set({items:S.trash});}
+
+/* ── Écoute en direct ──
+   Chaque source est suivie séparément. On ignore l'écho de nos propres
+   écritures, on ignore un état identique à celui déjà appliqué, et une
+   session en cours reste maîtresse de sa progression jusqu'à sa fin. */
+let LIVE_OFF=[], LIVE_SIG={};
+function couperLive(){LIVE_OFF.forEach(f=>{try{f();}catch(e){}});LIVE_OFF=[];LIVE_SIG={};}
+function enSession(){const e=$('study');return !!e&&e.style.display==='block';}
+function veille(cle,ref,applique){
+  if(!ref||typeof ref.onSnapshot!=='function')return;
+  LIVE_OFF.push(ref.onSnapshot(sn=>{
+    if(sn.metadata&&sn.metadata.hasPendingWrites)return;
+    const d=sn.docs?sn.docs.map(x=>Object.assign({id:x.id},x.data())):(sn.exists?sn.data():null);
+    const emp=JSON.stringify(d);
+    if(LIVE_SIG[cle]===emp)return;
+    LIVE_SIG[cle]=emp;
+    if(applique(d)===false){delete LIVE_SIG[cle];return;}
+    if(!enSession())renderCats();
+  },e=>console.warn('sync '+cle,e)));
+}
+function ecouteLive(){
+  couperLive(); if(!S.uid)return;
+  veille('progress',udoc('meta/progress'),d=>{
+    if(enSession())return false;
+    S.progress=(d&&d.items)||{}; S.step=(d&&d.step)||0;
+  });
+  veille('prefs',udoc('meta/prefs'),d=>{
+    if(!d)return false;
+    S.selCats=d.selCats||[]; S.mode=d.mode||0;
+    S.offV={}; (d.offV||[]).forEach(id=>S.offV[id]=1);
+    S.hidCats=d.hidCats||[];
+    document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',+x.dataset.m===S.mode));
+  });
+  veille('baseEdits',udoc('meta/baseEdits'),d=>{S.baseEdits=(d&&d.cats)||{};});
+  veille('trash',udoc('meta/trash'),d=>{S.trash=(d&&d.items)||[];});
+  veille('categories',ucol('categories'),d=>{S.customCats=d||[];});
+}
 
 // ════════ UI : CATÉGORIES & MÉMOIRE ════════
 function renderCats(){
@@ -803,7 +863,6 @@ function renderCats(){
   const CATLIM=6;
   const _allc=allCats();
   (S.showAllCats?_allc:_allc.slice(0,CATLIM)).forEach(cat=>{
-    const custom=!!S.customCats.find(c=>c.id===cat.id);
     const _act=cat.verses.filter(vv=>!S.offV[vv.id]).length;
     const sel=cat.verses.length&&_act===cat.verses.length;
     const part=!sel&&_act>0;
@@ -831,7 +890,7 @@ function renderCats(){
         +'<span class="mov-v" data-movev="'+vv.id+'" title="'+(S.lang==='fr'?'Déplacer dans…':'Move to…')+'">\u21C4</span>'
         +'<span class="del-v" data-delv="'+vv.id+'">×</span></div>';
     });
-    body+='<div class="cat-custom-acts"><span class="mini-act" data-addv="1">+ '+t('addverse')+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span>'+(cat.base?'<span class="mini-act" data-restorec="1">'+t('cat_restore')+'</span>':'')+(custom?'<span class="mini-act del" data-delc="1">'+t('del')+'</span>':'')+'</div>';
+    body+='<div class="cat-custom-acts"><span class="mini-act" data-addv="1">+ '+t('addverse')+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span>'+(cat.base?'<span class="mini-act" data-restorec="1">'+t('cat_restore')+'</span>':'')+'<span class="mini-act del" data-delc="1">'+t('del')+'</span></div>';
     body+='</div>';
     div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp">'+cat.name[S.lang]+'</span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-mark"><span class="dot r" data-all="r"></span><span class="dot a" data-all="a"></span><span class="dot v" data-all="v"></span></span><span class="cat-go" data-act="solo" title="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'" aria-label="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
     host.appendChild(div);
@@ -872,8 +931,8 @@ function showView(v){
   $('summary').style.display=v==='summary'?'block':'none';
 }
 function startSession(){
-  if(!S.soloCat && !allItems().length){alert(t('empty_sel'));return;}
-  if(allItems().length<2){alert(t('not_enough'));return;}
+  if(!S.soloCat && !allItems().length){lvInfo(t('empty_sel'));return;}
+  if(allItems().length<2){lvInfo(t('not_enough'));return;}
   S.answered=0; S.correct=0; S.lastId=null;
   showView('study'); nextQuestion();
 }
@@ -991,7 +1050,7 @@ function bibApi(){return window.LVBible||null;}
 function bibRaz(){B.v1=0;B.v2=0;B.wa=null;B.wb=null;B.mots=[];}
 function bibOuvre(){
   const api=bibApi();
-  if(!api){alert('La Bible n’est pas encore prête. Réessayez dans un instant.');return;}
+  if(!api){lvInfo(S.lang==='fr'?'La Bible n’est pas encore prête. Réessayez dans un instant.':'The Bible is not ready yet. Try again in a moment.');return;}
   openModal('m-bib');
   $('mbib-corps').innerHTML='<div class="mbib-charge">Chargement…</div>';
   $('mbib-apercu').innerHTML='';
@@ -1114,6 +1173,25 @@ function bibUtilise(){
 }
 function openModal(id){$(id).classList.add('on')}
 function closeModal(id){$(id).classList.remove('on')}
+/* Confirmation et information maison : sur iOS, confirm() et alert() sont
+   ignorés dès que la page tourne en application installée. */
+let _confRes=null;
+function lvConfirm(msg,danger){
+  const fr=S.lang==='fr';
+  $('mconf-title').textContent=fr?'Confirmer':'Confirm';
+  $('mconf-txt').textContent=msg;
+  $('mconf-no').textContent=fr?'Annuler':'Cancel';
+  $('mconf-yes').textContent=danger?(fr?'Supprimer':'Delete'):(fr?'Confirmer':'Confirm');
+  openModal('m-conf');
+  return new Promise(res=>{_confRes=res;});
+}
+function confFin(v){closeModal('m-conf');const f=_confRes;_confRes=null;if(f)f(v);}
+function lvInfo(msg){
+  const fr=S.lang==='fr';
+  $('minfo-title').textContent=fr?'Information':'Notice';
+  $('minfo-txt').textContent=msg; $('minfo-ok').textContent='OK';
+  openModal('m-info');
+}
 function openNewCat(){S.editCat=null;$('mcat-title').textContent=t('mcat');$('i-cfr').value='';$('i-cen').value='';modalCatLang();openModal('m-cat');}
 function openRenameCat(id){const c=effectiveCats().find(x=>x.id===id);if(!c)return;S.editCat=id;$('mcat-title').textContent=t('mcat_edit');$('i-cfr').value=c.name.fr;$('i-cen').value=c.name.en;modalCatLang();openModal('m-cat');}
 async function saveCatModal(){
@@ -1129,9 +1207,19 @@ async function saveCatModal(){
   closeModal('m-cat'); renderCats();
 }
 async function delCatById(id){
-  if(!confirm(t('del_cat_q')))return;
-  S.customCats=S.customCats.filter(c=>c.id!==id); S.selCats=S.selCats.filter(x=>x!==id);
-  await ucol('categories').doc(id).delete(); savePrefs(); renderCats();
+  if(!await lvConfirm(t('del_cat_q'),1))return;
+  const base=isBase(id);
+  /* l'écran répond d'abord : sur mobile, une écriture Firestore lente ou
+     refusée laissait autrefois l'impression que le bouton ne marchait pas */
+  if(base){ if(!S.hidCats.includes(id))S.hidCats.push(id); delete S.baseEdits[id]; }
+  else S.customCats=S.customCats.filter(c=>c.id!==id);
+  S.selCats=S.selCats.filter(x=>x!==id);
+  S.trash=S.trash.filter(x=>x.catId!==id);
+  renderCats();
+  try{
+    savePrefs(); saveTrash();
+    if(base) saveBaseEdits(); else await ucol('categories').doc(id).delete();
+  }catch(e){console.warn('suppression',e);}
 }
 function modalVerseLang(){
   const fr=S.lang==='fr';
@@ -1192,7 +1280,7 @@ async function trashVerse(catId,vId){
 async function restoreTrash(vId){
   const idx=S.trash.findIndex(x=>x.vId===vId); if(idx<0)return;
   const rec=S.trash[idx];
-  if(!effectiveCats().some(c=>c.id===rec.catId)){alert(t('trash_cat_gone'));return;}
+  if(!effectiveCats().some(c=>c.id===rec.catId)){lvInfo(t('trash_cat_gone'));return;}
   if(isBase(rec.catId)){ editBase(rec.catId,cc=>{if(!cc.verses.some(x=>x.id===rec.vId))cc.verses.push(rec.verse);}); }
   else{const cu=S.customCats.find(x=>x.id===rec.catId);if(cu&&!cu.verses.some(x=>x.id===rec.vId)){cu.verses.push(rec.verse);await saveCat(cu);}}
   if(rec.prog){S.progress[rec.vId]=rec.prog; saveProgress();}
@@ -1202,22 +1290,23 @@ function deleteTrashPerm(vId){
   S.trash=S.trash.filter(x=>x.vId!==vId); delete S.progress[vId];
   saveProgress(); saveTrash(); renderTrash();
 }
-function emptyTrash(){
-  if(!S.trash.length)return; if(!confirm(t('trash_empty_q')))return;
+async function emptyTrash(){
+  if(!S.trash.length)return; if(!await lvConfirm(t('trash_empty_q'),1))return;
   S.trash.forEach(x=>{delete S.progress[x.vId];});
   S.trash=[]; saveProgress(); saveTrash(); renderTrash();
 }
 // restaurer UNE catégorie de base à son état d'origine
-function restoreCatBase(catId){
-  if(!isBase(catId))return; if(!confirm(t('cat_restore_q')))return;
+async function restoreCatBase(catId){
+  if(!isBase(catId))return; if(!await lvConfirm(t('cat_restore_q')))return;
   delete S.baseEdits[catId]; saveBaseEdits();
   S.trash=S.trash.filter(x=>!(x.origin==='base'&&x.catId===catId)); saveTrash();
   renderCats();
 }
 // restaurer TOUTES les catégories de base
-function restoreBase(){
-  if(!confirm(t('restore_q')))return;
+async function restoreBase(){
+  if(!await lvConfirm(t('restore_q')))return;
   S.baseEdits={}; udoc('meta/baseEdits').set({cats:{}});
+  S.hidCats=[]; savePrefs();
   S.trash=S.trash.filter(x=>x.origin!=='base'); saveTrash();
   renderCats();
 }
@@ -1287,12 +1376,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('macct-x').onclick=()=>document.getElementById('auth-overlay').classList.remove('ouvert');
   document.getElementById('auth-overlay').addEventListener('click',(ev)=>{if(ev.target===ev.currentTarget)ev.currentTarget.classList.remove('ouvert');});
   document.getElementById('auth-logout').onclick=()=>{auth.signOut();document.getElementById('auth-overlay').classList.remove('ouvert');};
-  document.addEventListener('keydown',(ev)=>{if(ev.key==='Escape'){var o=document.getElementById('auth-overlay');if(o)o.classList.remove('ouvert');}});
+  document.addEventListener('keydown',(ev)=>{if(ev.key==='Escape'){var o=document.getElementById('auth-overlay');if(o)o.classList.remove('ouvert');if($('m-conf').classList.contains('on'))confFin(false);closeModal('m-info');}});
   $('modes').onclick=e=>{const b=e.target.closest('.mode');if(!b)return;S.mode=+b.dataset.m;document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',x===b));savePrefs();};
   $('start-btn').onclick=()=>{S.soloCat=null;startSession();};
   $('finish-btn').onclick=endSession;
-  $('sum-back').onclick=()=>showView('setup');
-  $('reset-btn').onclick=()=>{if(confirm(t('reset_q'))){S.progress={};S.step=0;saveProgress();renderCats();}};
+  $('sum-back').onclick=()=>{showView('setup');ecouteLive();};
+  $('reset-btn').onclick=async()=>{if(await lvConfirm(t('reset_q'),1)){S.progress={};S.step=0;saveProgress();renderCats();}};
   $('restore-btn').onclick=restoreBase;
   $('add-cat').onclick=openNewCat;
   $('sel-all').onclick=toggleSelectAll;
@@ -1304,19 +1393,19 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(e.target.closest('#trash-empty')){emptyTrash();return;}
   });
   // marquage global : toutes les catégories sélectionnées
-  document.querySelector('.markglobal').addEventListener('click',e=>{
+  document.querySelector('.markglobal').addEventListener('click',async e=>{
     const d=e.target.closest('[data-gall]'), rb=e.target.closest('#bulk-restore');
     const sel=effectiveCats();
     if(d){
       if(!sel.length)return;
-      if(!confirm(t('bulk_mark_q').replace('%n%',sel.length)))return;
+      if(!await lvConfirm(t('bulk_mark_q').replace('%n%',sel.length)))return;
       sel.forEach(c=>c.verses.forEach(v=>{if(!S.offV[v.id])setLevel(v.id,d.dataset.gall);}));
       saveProgress(); renderCats(); return;
     }
     if(rb){
       const baseSel=sel.filter(c=>isBase(c.id));
       if(!baseSel.length)return;
-      if(!confirm(t('bulk_restore_q').replace('%n%',baseSel.length)))return;
+      if(!await lvConfirm(t('bulk_restore_q').replace('%n%',baseSel.length)))return;
       baseSel.forEach(c=>{delete S.baseEdits[c.id];}); saveBaseEdits();
       S.trash=S.trash.filter(x=>!(x.origin==='base'&&baseSel.some(c=>c.id===x.catId))); saveTrash();
       renderCats(); return;
@@ -1350,7 +1439,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(addv){openAddVerse(id);return;}
     if(editc){openRenameCat(id);return;}
     if(delc){await delCatById(id);return;}
-    if(restorec){restoreCatBase(id);return;}
+    if(restorec){await restoreCatBase(id);return;}
     if(act&&act.dataset.act==='solo'){S.soloCat=id;startSession();return;}
     if(act&&act.dataset.act==='sel'){
       const c=effectiveCats().find(x=>x.id===id);
@@ -1362,6 +1451,10 @@ document.addEventListener('DOMContentLoaded',()=>{
       savePrefs();renderCats();return;}
     if(act){S.open[id]=!S.open[id];catEl.classList.toggle('open');return;}
   });
+  $('mconf-yes').onclick=()=>confFin(true); $('mconf-no').onclick=()=>confFin(false);
+  $('m-conf').addEventListener('click',e=>{if(e.target===$('m-conf'))confFin(false);});
+  $('minfo-ok').onclick=()=>closeModal('m-info');
+  $('m-info').addEventListener('click',e=>{if(e.target===$('m-info'))closeModal('m-info');});
   $('mcat-cancel').onclick=()=>closeModal('m-cat'); $('mcat-ok').onclick=saveCatModal;
   $('rech-ouvrir').addEventListener('click',openSearch);
   $('rech-ouvrir').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openSearch();}});
@@ -1408,7 +1501,9 @@ auth.onAuthStateChanged(async u=>{
     await chargerBaseLV(); await loadUser(); applyLang(); renderCats();
     document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('on',+x.dataset.m===S.mode));
     if(!demarrerAuto()) showView('setup');
+    ecouteLive();
   }else{
+    couperLive();
     S.uid=null; $('app').classList.remove('on'); $('auth-screen').style.display='flex';
     applyLang(); setAuth('si');
   }

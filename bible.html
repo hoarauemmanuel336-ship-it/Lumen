@@ -566,6 +566,20 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
   }
   document.addEventListener('lv-fb-ready', lvInitFB);
   lvInitFB();
+  /* Pierres tombales : une note supprimée sur un appareil doit rester
+     supprimée sur l'autre. Sans cette trace, l'appareil qui en gardait encore
+     une copie la renvoyait au nuage à la connexion suivante. */
+  var MORTS = {};
+  try { MORTS = JSON.parse(localStorage.getItem('lv_bible_morts') || '{}'); } catch(e) { MORTS = {}; }
+  function sauveMorts(){
+    try { localStorage.setItem('lv_bible_morts', JSON.stringify(MORTS)); } catch(e){}
+    if (UID && db) db.doc('users/' + UID + '/bibleNotes/__morts__').set({ morts: true, ids: MORTS }).catch(function(){});
+  }
+  function vivante(n){
+    var d = MORTS[n.id]; if (!d) return true;
+    var q = Date.parse(n.m || n.d) || 0;
+    return q > d;
+  }
   function cloudDoc(id){ return db.doc('users/' + UID + '/bibleNotes/' + id); }
   function cloudSet(n){
     if (!UID || !db) return;
@@ -573,60 +587,128 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
       .catch(function(e){ console.warn('sync note', e); });
   }
   function cloudDel(id){
+    MORTS[id] = Date.now(); sauveMorts();
     if (!UID || !db) return;
     cloudDoc(id).delete().catch(function(e){ console.warn('sync note', e); });
   }
+  /* ───────── Fusion entrée par entrée ─────────
+     Chaque surlignage, chaque fragment, chaque catégorie porte sa propre date
+     de dernière retouche. À la rencontre du local et du nuage, on compare
+     entrée par entrée et non paquet par paquet : ce qui a été posé sur le
+     téléphone et ce qui a été posé sur l'ordinateur se rejoignent au lieu de
+     s'écraser. Une entrée effacée garde sa date sans valeur, ce qui fait
+     voyager la suppression au lieu de la faire renaître. */
+  function estampe(cour, prec, tps, ms){
+    var k;
+    for (k in cour) if (empreinte(cour[k]) !== empreinte(prec[k])) tps[k] = ms;
+    for (k in prec) if (!(k in cour)) tps[k] = ms;
+  }
+  function fusionne(sLoc, tLoc, sDis, tDis){
+    var s = {}, t = {}, vus = {}, k;
+    for (k in sLoc) vus[k] = 1;
+    for (k in tLoc) vus[k] = 1;
+    for (k in sDis) vus[k] = 1;
+    for (k in tDis) vus[k] = 1;
+    for (k in vus) {
+      var a = tLoc[k] || 0, b = tDis[k] || 0, pris;
+      if (b > a) pris = sDis;
+      else if (a > b) pris = sLoc;
+      else pris = (sLoc[k] !== undefined) ? sLoc : sDis;   /* aucune date connue : on réunit */
+      if (pris[k] !== undefined) s[k] = pris[k];
+      if (a || b) t[k] = a > b ? a : b;
+    }
+    return { s: s, t: t };
+  }
+  function ecrisLocal(cle, val){ try { localStorage.setItem(cle, JSON.stringify(val)); } catch(e){} }
+  /* empreinte stable : l'ordre des clés ne doit pas compter */
+  function empreinte(o){
+    if (o === null || typeof o !== 'object') return JSON.stringify(o);
+    if (Array.isArray(o)) return '[' + o.map(empreinte).join(',') + ']';
+    return '{' + Object.keys(o).sort().map(function(k){
+      return JSON.stringify(k) + ':' + empreinte(o[k]);
+    }).join(',') + '}';
+  }
+  function memeEtat(a, b){ return empreinte(a) === empreinte(b); }
+  var SYNC_OFF = null;
   function syncInitiale(){
-    db.collection('users/' + UID + '/bibleNotes').get().then(function(snap){
-      var nuage = {}, meta = null, surlN = null, surlfN = null;
-      snap.forEach(function(dc){
-        if (dc.id === '__meta__') { meta = dc.data(); return; }
-        if (dc.id === '__surl__') { surlN = dc.data(); return; }
-        if (dc.id === '__surlf__') { surlfN = dc.data(); return; }
-        var x = dc.data(); x.id = dc.id; nuage[x.id] = x;
-      });
-      /* surlignage : le plus recent (local ou nuage) gagne en bloc */
-      if (surlN && (surlN.m || 0) > SURL_M) {
-        SURL = surlN.s || {}; SURL_M = surlN.m || 0;
-        try {
-          localStorage.setItem('lv_bible_surl', JSON.stringify(SURL));
-          localStorage.setItem('lv_bible_surl_m', String(SURL_M));
-        } catch(e){}
-        marqueSurl();
-      } else if (SURL_M > (surlN ? (surlN.m || 0) : 0) && Object.keys(SURL).length) {
-        db.doc('users/' + UID + '/bibleNotes/__surl__').set({ surl: true, m: SURL_M, s: SURL }).catch(function(){});
-      }
-      /* surlignage de fragments : idem, le plus recent gagne en bloc */
-      if (surlfN && (surlfN.m || 0) > SURLF_M) {
-        SURLF = surlfN.s || {}; SURLF_M = surlfN.m || 0;
-        try {
-          localStorage.setItem('lv_bible_surlf', JSON.stringify(SURLF));
-          localStorage.setItem('lv_bible_surlf_m', String(SURLF_M));
-        } catch(e){}
-        marqueSurlF();
-      } else if (SURLF_M > (surlfN ? (surlfN.m || 0) : 0) && Object.keys(SURLF).length) {
-        db.doc('users/' + UID + '/bibleNotes/__surlf__').set({ surlf: true, m: SURLF_M, s: SURLF }).catch(function(){});
-      }
-      if (meta && (meta.m || 0) > CATS_M) {
-        CATS = meta.cats || []; CATS_M = meta.m || 0;
-        try {
-          localStorage.setItem('lv_bible_cats', JSON.stringify(CATS));
-          localStorage.setItem('lv_bible_cats_m', String(CATS_M));
-        } catch(e){}
-      } else if (CATS_M > (meta ? (meta.m || 0) : 0) && CATS.length) {
-        db.doc('users/' + UID + '/bibleNotes/__meta__').set({ meta: true, m: CATS_M, cats: CATS }).catch(function(){});
-      }
-      var aEnvoyer = [];
-      NOTES.forEach(function(n){
-        var c = nuage[n.id];
-        if (!c || (n.m || n.d) > (c.m || c.d)) { aEnvoyer.push(n); nuage[n.id] = n; }
-      });
-      NOTES = Object.keys(nuage).map(function(k){ return nuage[k]; })
-        .sort(function(a, b){ return a.d < b.d ? 1 : -1; });
-      sauveNotes(); majLienNotes();
-      aEnvoyer.forEach(cloudSet);
-      if (location.hash === '#notes') vueNotes();
-    }).catch(function(e){ console.warn('sync initiale', e); });
+    if (SYNC_OFF) { try { SYNC_OFF(); } catch(e){} SYNC_OFF = null; }
+    var col = db.collection('users/' + UID + '/bibleNotes');
+    if (typeof col.onSnapshot === 'function') {
+      SYNC_OFF = col.onSnapshot(function(snap){
+        if (snap.metadata && snap.metadata.hasPendingWrites) return;
+        appliqueNuage(snap);
+      }, function(e){ console.warn('sync', e); });
+    } else {
+      col.get().then(appliqueNuage).catch(function(e){ console.warn('sync initiale', e); });
+    }
+  }
+  function appliqueNuage(snap){
+    var nuage = {}, meta = null, surlN = null, surlfN = null, mortsN = null, k;
+    snap.forEach(function(dc){
+      if (dc.id === '__meta__') { meta = dc.data(); return; }
+      if (dc.id === '__surl__') { surlN = dc.data(); return; }
+      if (dc.id === '__surlf__') { surlfN = dc.data(); return; }
+      if (dc.id === '__morts__') { mortsN = dc.data(); return; }
+      var x = dc.data(); x.id = dc.id; nuage[x.id] = x;
+    });
+
+    /* ── surlignage par verset ── */
+    var dS = (surlN && surlN.s) || {}, dT = (surlN && surlN.t) || {};
+    var fS = fusionne(SURL, SURL_T, dS, dT);
+    SURL = fS.s; SURL_T = fS.t; SURL_P = JSON.parse(JSON.stringify(SURL));
+    SURL_M = Math.max(SURL_M, (surlN && surlN.m) || 0);
+    ecrisLocal('lv_bible_surl', SURL); ecrisLocal('lv_bible_surl_t', SURL_T);
+    try { localStorage.setItem('lv_bible_surl_m', String(SURL_M)); } catch(e){}
+    if (!memeEtat(fS.s, dS) || !memeEtat(fS.t, dT))
+      db.doc('users/' + UID + '/bibleNotes/__surl__').set({ surl: true, m: SURL_M, s: SURL, t: SURL_T }).catch(function(){});
+    marqueSurl();
+
+    /* ── surlignage de fragments ── */
+    var dF = (surlfN && surlfN.s) || {}, dFT = (surlfN && surlfN.t) || {};
+    var fF = fusionne(SURLF, SURLF_T, dF, dFT);
+    SURLF = fF.s; SURLF_T = fF.t; SURLF_P = JSON.parse(JSON.stringify(SURLF));
+    SURLF_M = Math.max(SURLF_M, (surlfN && surlfN.m) || 0);
+    ecrisLocal('lv_bible_surlf', SURLF); ecrisLocal('lv_bible_surlf_t', SURLF_T);
+    try { localStorage.setItem('lv_bible_surlf_m', String(SURLF_M)); } catch(e){}
+    if (!memeEtat(fF.s, dF) || !memeEtat(fF.t, dFT))
+      db.doc('users/' + UID + '/bibleNotes/__surlf__').set({ surlf: true, m: SURLF_M, s: SURLF, t: SURLF_T }).catch(function(){});
+    marqueSurlF();
+
+    /* ── catégories de notes : tableau, fusionné par identifiant ── */
+    var cLoc = {}, cDis = {};
+    CATS.forEach(function(c){ if (c && c.id) cLoc[c.id] = c; });
+    ((meta && meta.cats) || []).forEach(function(c){ if (c && c.id) cDis[c.id] = c; });
+    var fC = fusionne(cLoc, CATS_T, cDis, (meta && meta.t) || {});
+    CATS = Object.keys(fC.s).sort().map(function(x){ return fC.s[x]; });
+    CATS_T = fC.t; CATS_P = JSON.parse(JSON.stringify(fC.s));
+    CATS_M = Math.max(CATS_M, (meta && meta.m) || 0);
+    ecrisLocal('lv_bible_cats', CATS); ecrisLocal('lv_bible_cats_t', CATS_T);
+    try { localStorage.setItem('lv_bible_cats_m', String(CATS_M)); } catch(e){}
+    if (!memeEtat(fC.s, cDis) || !memeEtat(fC.t, (meta && meta.t) || {}))
+      db.doc('users/' + UID + '/bibleNotes/__meta__').set({ meta: true, m: CATS_M, cats: CATS, t: CATS_T }).catch(function(){});
+
+    /* ── pierres tombales ── */
+    var dM = (mortsN && mortsN.ids) || {}, chgM = false;
+    for (k in dM) if (!MORTS[k] || dM[k] > MORTS[k]) { MORTS[k] = dM[k]; chgM = true; }
+    for (k in MORTS) if (!dM[k] || dM[k] < MORTS[k]) chgM = true;
+    ecrisLocal('lv_bible_morts', MORTS);
+    if (chgM && UID && db) db.doc('users/' + UID + '/bibleNotes/__morts__').set({ morts: true, ids: MORTS }).catch(function(){});
+
+    /* ── notes : fusion par note, les mortes restent mortes ── */
+    var aEnvoyer = [];
+    Object.keys(nuage).forEach(function(id){
+      if (!vivante(nuage[id])) { delete nuage[id]; cloudDoc(id).delete().catch(function(){}); }
+    });
+    NOTES.forEach(function(n){
+      if (!vivante(n)) return;
+      var c = nuage[n.id];
+      if (!c || (n.m || n.d) > (c.m || c.d)) { aEnvoyer.push(n); nuage[n.id] = n; }
+    });
+    NOTES = Object.keys(nuage).map(function(x){ return nuage[x]; })
+      .sort(function(a, b){ return a.d < b.d ? 1 : -1; });
+    sauveNotes(); majLienNotes();
+    aEnvoyer.forEach(cloudSet);
+    if (location.hash === '#notes') vueNotes(filtreNotes);
   }
   function initAuth(){
     if (!FB) return;
@@ -634,7 +716,8 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
       UID = u ? u.uid : null;
       MAIL = u ? (u.email || u.displayName || '') : '';
       if (UID) { fermeAuth(); syncInitiale(); }
-      else if (location.hash === '#notes') vueNotes();
+      else { if (SYNC_OFF) { try { SYNC_OFF(); } catch(e){} SYNC_OFF = null; }
+             if (location.hash === '#notes') vueNotes(); }
     });
   }
 
@@ -946,16 +1029,21 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
   try { SEL = JSON.parse(localStorage.getItem('lv_bible_sel') || '[]'); } catch(e) { SEL = []; }
   function sauveSel(){ try { localStorage.setItem('lv_bible_sel', JSON.stringify(SEL)); } catch(e){} }
   /* — surlignage : par verset, six couleurs, synchronise au compte — */
-  var SURL = {}, SURL_M = 0;
+  var SURL = {}, SURL_M = 0, SURL_T = {}, SURL_P = {};
   try { SURL = JSON.parse(localStorage.getItem('lv_bible_surl') || '{}'); } catch(e) { SURL = {}; }
   try { SURL_M = parseInt(localStorage.getItem('lv_bible_surl_m') || '0', 10) || 0; } catch(e) { SURL_M = 0; }
+  try { SURL_T = JSON.parse(localStorage.getItem('lv_bible_surl_t') || '{}'); } catch(e) { SURL_T = {}; }
+  SURL_P = JSON.parse(JSON.stringify(SURL));
   function sauveSurl(){
     SURL_M = Date.now();
+    estampe(SURL, SURL_P, SURL_T, SURL_M);
+    SURL_P = JSON.parse(JSON.stringify(SURL));
     try {
       localStorage.setItem('lv_bible_surl', JSON.stringify(SURL));
+      localStorage.setItem('lv_bible_surl_t', JSON.stringify(SURL_T));
       localStorage.setItem('lv_bible_surl_m', String(SURL_M));
     } catch(e){}
-    if (UID && db) db.doc('users/' + UID + '/bibleNotes/__surl__').set({ surl: true, m: SURL_M, s: SURL }).catch(function(){});
+    if (UID && db) db.doc('users/' + UID + '/bibleNotes/__surl__').set({ surl: true, m: SURL_M, s: SURL, t: SURL_T }).catch(function(){});
   }
   var SURL_HEX_LEGACY = ['#efe6cf', '#c96a6a', '#6a8fb4', '#7ba07b', '#a98ccd', '#d9a05f'];
   function surlCouleur(val){
@@ -1095,15 +1183,21 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
   function sauveNotes(){ try { localStorage.setItem('lv_bible_notes', JSON.stringify(NOTES)); } catch(e){} }
   var CATS = [];
   try { CATS = JSON.parse(localStorage.getItem('lv_bible_cats') || '[]'); } catch(e) { CATS = []; }
-  var CATS_M = 0;
+  var CATS_M = 0, CATS_T = {}, CATS_P = {};
   try { CATS_M = parseInt(localStorage.getItem('lv_bible_cats_m') || '0', 10) || 0; } catch(e) {}
+  try { CATS_T = JSON.parse(localStorage.getItem('lv_bible_cats_t') || '{}'); } catch(e) { CATS_T = {}; }
+  CATS.forEach(function(c){ if (c && c.id) CATS_P[c.id] = JSON.parse(JSON.stringify(c)); });
   function sauveCats(){
     CATS_M = Date.now();
+    var m = {}; CATS.forEach(function(c){ if (c && c.id) m[c.id] = c; });
+    estampe(m, CATS_P, CATS_T, CATS_M);
+    CATS_P = JSON.parse(JSON.stringify(m));
     try {
       localStorage.setItem('lv_bible_cats', JSON.stringify(CATS));
+      localStorage.setItem('lv_bible_cats_t', JSON.stringify(CATS_T));
       localStorage.setItem('lv_bible_cats_m', String(CATS_M));
     } catch(e){}
-    if (UID && db) db.doc('users/' + UID + '/bibleNotes/__meta__').set({ meta: true, m: CATS_M, cats: CATS }).catch(function(e){ console.warn('sync cats', e); });
+    if (UID && db) db.doc('users/' + UID + '/bibleNotes/__meta__').set({ meta: true, m: CATS_M, cats: CATS, t: CATS_T }).catch(function(e){ console.warn('sync cats', e); });
   }
   function catParId(id){ for (var i = 0; i < CATS.length; i++) if (CATS[i].id === id) return CATS[i]; return null; }
   function optionsCats(actuel){
@@ -1186,16 +1280,21 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
   });
 
   /* ───────── Surlignage de FRAGMENTS (portions de verset) ───────── */
-  var SURLF = {}, SURLF_M = 0;
+  var SURLF = {}, SURLF_M = 0, SURLF_T = {}, SURLF_P = {};
   try { SURLF = JSON.parse(localStorage.getItem('lv_bible_surlf') || '{}'); } catch(e) { SURLF = {}; }
   try { SURLF_M = parseInt(localStorage.getItem('lv_bible_surlf_m') || '0', 10) || 0; } catch(e) { SURLF_M = 0; }
+  try { SURLF_T = JSON.parse(localStorage.getItem('lv_bible_surlf_t') || '{}'); } catch(e) { SURLF_T = {}; }
+  SURLF_P = JSON.parse(JSON.stringify(SURLF));
   function sauveSurlF(){
     SURLF_M = Date.now();
+    estampe(SURLF, SURLF_P, SURLF_T, SURLF_M);
+    SURLF_P = JSON.parse(JSON.stringify(SURLF));
     try {
       localStorage.setItem('lv_bible_surlf', JSON.stringify(SURLF));
+      localStorage.setItem('lv_bible_surlf_t', JSON.stringify(SURLF_T));
       localStorage.setItem('lv_bible_surlf_m', String(SURLF_M));
     } catch(e){}
-    if (UID && db) db.doc('users/' + UID + '/bibleNotes/__surlf__').set({ surlf: true, m: SURLF_M, s: SURLF }).catch(function(){});
+    if (UID && db) db.doc('users/' + UID + '/bibleNotes/__surlf__').set({ surlf: true, m: SURLF_M, s: SURLF, t: SURLF_T }).catch(function(){});
   }
   var pendingFrag = null;
   function verseTextMap(){

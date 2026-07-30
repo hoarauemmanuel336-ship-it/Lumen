@@ -1,7 +1,7 @@
 ════════════════════════════════════════════════════════════════════
 FICHIER DE REPRISE : LUMEN VERITATIS
 Mémoire de travail du projet, en mode Cowork automatique.
-Mis à jour : 25 juillet 2026
+Mis à jour : 30 juillet 2026
 ════════════════════════════════════════════════════════════════════
 
 NATURE DE CE FICHIER
@@ -388,6 +388,30 @@ par cas seulement. Faits : Psaume 25:6 et Habaquq 3:6 (« de toujours » →
 pour l'abolition de la Loi ; Colossiens 2:14 examiné et laissé, « supprimé » y
 porte sur un document).
 
+⚠ CRITÈRE DE CORRECTION, posé par Emmanuel le 26/07 : « n'oublie pas que cette
+bible est une traduction à équivalence dynamique, pas une traduction littérale
+soignée ». Conséquences, à tenir avant toute correction. (1) « L'hébreu porte
+littéralement autre chose » n'est JAMAIS à soi seul un motif de correction :
+cette Bible traduit l'effet du texte, pas le mot. (2) La cohérence de rendu
+d'un même mot hébreu d'un passage à l'autre n'est PAS une exigence : le même
+mot se rend selon ce que le contexte demande, et une divergence de rendu n'est
+donc pas une incohérence à réparer. (3) Ne corriger que ce qui est réellement
+en défaut : contresens, français fautif ou devenu obscur, texte abîmé,
+tronqué, corrompu. Un rendu simplement moins littéral qu'un autre possible
+n'est pas un défaut.
+
+Cas d'école, 26/07 : Proverbes 4:23 a été corrigé en « de lui partent les
+issues de la vie » (l'hébreu porte tots'ot hayyim, les points de sortie, que
+la Chérubin rend « issues » en Ézéchiel 48:30 et Psaume 68:21), puis RÉTABLI
+le jour même en « de lui jaillissent les sources de la vie » : en français
+d'aujourd'hui « les issues de la vie » s'entend comme les dénouements de
+l'existence, ce qui est un faux sens, là où « sources » donne l'image juste du
+cœur comme point d'où la vie s'écoule. Le fichier est revenu à l'octet près à
+son état d'avant correction. Proverbes 16:2 a été examiné le même jour et
+laissé tel quel : le site porte déjà « le Seigneur pèse les intentions », qui
+est le bon rendu dynamique de ruhot, et Isaïe 40:13 porte déjà « Qui a mesuré
+l'esprit du Seigneur ».
+
 CITATIONS DU NT QUI REPRENNENT L'AT : UNE DIFFÉRENCE N'EST PAS UNE ERREUR
 (19/07). Quand un passage du Nouveau Testament cite l'Ancien et que la
 formulation diffère de la source dans la Chérubin, c'est NORMAL, il n'y a RIEN
@@ -409,6 +433,44 @@ mobile : padding-bottom:env(safe-area-inset-bottom), max-height:80vh +
 overflow-y:auto sous 720px, sélecteur de couleur 40×32 et pastilles 24px
 (cibles tactiles). Notes : la catégorie passe par le champ c, l'omettre
 déclasse la note.
+
+BIBLE, SYNCHRONISATION ENTRE APPAREILS (30/07, Emmanuel : « je crois que le
+surlignage des versets n'est pas synchronisé sur pc et mobile »). Le défaut :
+__surl__, __surlf__ et __meta__ étaient fusionnés EN BLOC, par une seule date
+posée sur le document entier, et une seule fois, à la connexion. Le dernier
+appareil connecté écrasait donc tout le travail de l'autre, et rien ne
+circulait tant qu'on ne rechargeait pas la page. Le socle actuel, à ne pas
+défaire :
+• FUSION ENTRÉE PAR ENTRÉE. Chaque surlignage, chaque fragment, chaque
+  catégorie porte SA PROPRE date de dernière retouche, dans une carte t
+  parallèle à la carte s. estampe(cour, prec, tps, ms) compare l'état courant à
+  l'état précédent et ne date que ce qui a bougé ; fusionne(sLoc, tLoc, sDis,
+  tDis) réunit ensuite les deux côtés clé par clé, la date la plus récente
+  l'emportant. Quand AUCUN des deux côtés n'a de date (données d'avant la
+  bascule), on RÉUNIT au lieu de choisir : rien d'ancien ne se perd.
+• UNE SUPPRESSION EST UNE ENTRÉE DATÉE SANS VALEUR. C'est ce qui la fait
+  voyager : la clé disparaît de s mais garde sa date dans t, donc l'autre
+  appareil comprend qu'elle a été retirée après coup au lieu de la renvoyer.
+• PIERRES TOMBALES POUR LES NOTES. localStorage lv_bible_morts + document
+  __morts__ (id → date de suppression) ; vivante(n) compare Date.parse(n.m ||
+  n.d) à cette date. Sans cette trace, l'appareil qui gardait encore une copie
+  renvoyait la note supprimée au nuage à la connexion suivante.
+• ÉCOUTE EN DIRECT. syncInitiale() pose un onSnapshot sur la collection
+  bibleNotes, avec repli sur .get() si l'écoute n'est pas disponible, et se
+  coupe à la déconnexion (SYNC_OFF). Les échos de nos propres écritures sont
+  ignorés (snap.metadata.hasPendingWrites).
+• ⚠ EMPREINTE INSENSIBLE À L'ORDRE DES CLÉS. appliqueNuage ne réécrit dans le
+  nuage que si l'état fusionné DIFFÈRE de l'état distant, et cette comparaison
+  passe obligatoirement par empreinte(o) / memeEtat(a,b), qui trient les clés.
+  Avec un JSON.stringify brut, Firestore renvoyant les cartes dans son propre
+  ordre, une différence purement cosmétique déclencherait une écriture, donc un
+  instantané, donc une écriture : boucle sans fin. Tout nouveau point de
+  comparaison doit utiliser memeEtat.
+• Clés locales : lv_bible_surl / _m / _t, lv_bible_surlf / _m / _t,
+  lv_bible_cats / _m / _t, lv_bible_morts. Restent VOLONTAIREMENT locales,
+  parce qu'elles décrivent l'appareil et non le travail : lv_bible_sel
+  (sélection en cours), lv_bp_etat (panneau ouvert), lv_taille_pc /
+  lv_taille_mobile.
 
 BIBLE, SOCLE MOBILE (25/07, trois symptômes signalés par Emmanuel : sélection
 sans surlignage, barre d'options mal posée, page en échec sur « index non
@@ -548,7 +610,37 @@ puis échéance croissante. Sélection TRI-STATE : la vérité est offV (versets
 exclus) SEUL, selCats en est DÉRIVÉ via syncSelCats() ; case pleine, partielle
 (.part) ou vide ; les exclus sont atténués, retirés des révisions et des
 pourcentages. Un même verset peut vivre dans deux catégories sous un id
-distinct.
+distinct. Persistance 100 % Firestore : udoc('meta/progress'), 'meta/prefs',
+'meta/baseEdits', 'meta/trash' et la collection ucol('categories'). Aucun
+localStorage de progression.
+
+MÉMORISER, SOCLE MOBILE ET DIRECT (30/07, Emmanuel : « quand j'essaie de
+supprimer une section dans memoriser verset sur mobile ça ne marche pas »).
+Deux causes, deux acquis à ne pas défaire :
+• AUCUN confirm() NI alert() NATIF, comme dans « Mes notes ». memoriser.html
+  déclare "display": "standalone" : une fois l'application posée sur l'écran
+  d'accueil d'iOS, les boîtes natives sont IGNORÉES, et delCatById, qui
+  commençait par if(!confirm(...))return;, sortait aussitôt sans rien faire.
+  Toutes les confirmations passent désormais par la modale maison #m-conf
+  (await lvConfirm) et tous les avis par #m-info (lvInfo). La règle vaut pour
+  toute action destructive ou informative ajoutée plus tard : jamais de boîte
+  native sur une surface installable.
+• L'ÉCRAN D'ABORD, LE NUAGE ENSUITE. delCatById retire la section de l'état et
+  redessine avant d'écrire dans Firestore, dans un try/catch : une écriture
+  lente ou en échec ne fige plus l'interface.
+• SUPPRESSION RÉVERSIBLE DES CATÉGORIES DE BASE. Elles viennent du fichier, on
+  ne peut donc pas les effacer : elles sont MASQUÉES par S.hidCats, enregistré
+  dans meta/prefs, et « Restaurer les catégories de base » vide ce masque.
+• ÉCOUTE EN DIRECT DES CINQ SOURCES (ecouteLive / veille / couperLive). Avant,
+  Firestore n'était lu qu'une fois, à la connexion : ce qui était fait sur le
+  téléphone n'atteignait l'ordinateur qu'au rechargement, et l'onglet resté
+  ouvert réécrivait ensuite par-dessus avec son ancien état. veille() ignore
+  l'écho de nos propres écritures et un état identique au dernier appliqué.
+  ⚠ RÈGLE DE PRIORITÉ : une session de révision en cours reste MAÎTRESSE de sa
+  progression jusqu'à sa fin (enSession() → le rappel renvoie false et la
+  signature est oubliée, donc l'état distant sera réappliqué plus tard).
+  L'écoute est coupée à la déconnexion et relancée au retour au tableau depuis
+  le résumé de session.
 
 MÉMORISER, SÉLECTEUR BIBLIQUE (25/07, demande d'Emmanuel : « pouvoir
 sélectionner directement un verset de la bible chérubin, le verset entier ou
