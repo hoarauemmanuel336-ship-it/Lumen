@@ -124,13 +124,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .cat.open .cat-chev{transform:rotate(90deg);color:var(--or)}
 .cat-body{display:none;padding:4px 0 20px 30px}
 .cat.open .cat-body{display:block;animation:fade .35s ease both}
-.markall{display:flex;align-items:center;gap:12px;padding:8px 0 14px;font-size:13px;color:var(--pa2);letter-spacing:.04em}
-.markall-dots{display:flex;gap:8px}
-.markall-dots .dot,.markglobal .dot{opacity:.8}
-.markall-dots .dot:hover,.markglobal .dot:hover{opacity:1;box-shadow:0 0 0 1px var(--encre),0 0 0 2px currentColor}
-.markall-dots .dot.r,.markglobal .dot.r{color:var(--rouge)}
-.markall-dots .dot.a,.markglobal .dot.a{color:var(--ambre)}
-.markall-dots .dot.v,.markglobal .dot.v{color:var(--vert)}
 .vrow{display:flex;align-items:center;gap:14px;padding:11px 0;border-top:1px solid var(--filet)}
 .vline{display:flex;align-items:center;gap:14px;flex:1;min-width:0;cursor:pointer}
 .vline:hover .vref{color:var(--or-pale)}
@@ -139,9 +132,8 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .vtext{flex:1;font-size:15px;color:var(--pa);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .25s}
 .markglobal{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 2px 16px;margin-bottom:4px;border-bottom:1px solid var(--filet);font-size:13px;letter-spacing:.04em;color:var(--pa2)}
 .lvl{display:flex;gap:8px;flex-shrink:0}
-.dot{width:13px;height:13px;border-radius:50%;cursor:pointer;opacity:.26;transition:opacity .25s,box-shadow .25s;position:relative}
+.dot{width:13px;height:13px;border-radius:50%;cursor:default;pointer-events:none;opacity:.22;transition:opacity .25s,box-shadow .25s;position:relative}
 .dot.r{background:var(--rouge)}.dot.a{background:var(--ambre)}.dot.v{background:var(--vert)}
-.dot:hover{opacity:.6}
 .dot.act{opacity:1;box-shadow:0 0 0 1px var(--encre),0 0 0 2px currentColor}
 .dot.r.act{color:var(--rouge)}.dot.a.act{color:var(--ambre)}.dot.v.act{color:var(--vert)}
 .cat-custom-acts{display:flex;gap:18px;padding:14px 0 4px;border-top:1px solid var(--filet);margin-top:6px}
@@ -164,6 +156,7 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .start{display:block;width:100%;text-align:center;padding:17px;margin-top:10px;background:var(--or);color:var(--encre);font-family:var(--display);font-size:16px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;transition:background .3s}
 .start:hover{background:var(--or-pale)}
 .start:disabled{opacity:.35;cursor:default}
+.start.pas-pret{opacity:.6}
 .reset-link{display:block;margin:36px auto 0;font-size:13px;letter-spacing:.06em;color:var(--pa2);transition:color .3s}
 .reset-link:hover{color:var(--pourpre)}
 
@@ -255,11 +248,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 #sel-all{cursor:pointer}
 .mini-act{cursor:pointer}
 @media(max-width:600px){.cat-pct{min-width:38px;font-size:12px}}
-.cat-mark{display:none;align-items:center;gap:8px;flex-shrink:0}
-.cat.open .cat-mark{display:flex}
-.cat-mark .dot{opacity:.8}
-.cat-mark .dot:hover{opacity:1;box-shadow:0 0 0 1px var(--encre),0 0 0 2px currentColor}
-.cat-mark .dot.r{color:var(--rouge)}.cat-mark .dot.a{color:var(--ambre)}.cat-mark .dot.v{color:var(--vert)}
 .mg-acts{display:flex;align-items:center;gap:16px}
 .m-reset{margin-right:auto;font-family:var(--display);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--pa);transition:color .3s}
 .m-reset:hover{color:var(--or)}
@@ -340,7 +328,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
   .cat-name{min-width:0;font-size:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .cat-dist{width:52px}
   .cat-pct{min-width:34px;font-size:12px}
-  .cat-mark{gap:7px}
   .cat-body{padding:2px 0 18px 0}
   .vrow{gap:10px;padding:13px 0;align-items:flex-start}
   .vline{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
@@ -354,8 +341,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
   .wrap{padding-left:16px;padding-right:16px}
   .cat-dist{display:none}
   .cat-pct{display:none}
-  .cat.open .cat-mark{display:flex!important}
-  .cat:not(.open) .cat-mark{display:none!important}
   .cat-name{font-size:19px}
   .vref{font-size:16px}
   .lvl{gap:8px}
@@ -381,13 +366,10 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 @media(max-width:720px){
   .markglobal{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px 12px;font-size:13px;line-height:1.35}
   .markglobal .mg-acts{display:flex;align-items:center;gap:14px;justify-content:flex-end;min-width:0}
-  .markglobal .markall-dots{display:flex;gap:10px;flex-shrink:0}
   .markglobal #bulk-restore{white-space:nowrap}
-  .cat-row{display:grid;grid-template-columns:18px minmax(0,1fr) auto auto auto;align-items:center;gap:10px;padding:17px 2px}
+  .cat-row{display:grid;grid-template-columns:18px minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:17px 2px}
   .cat-dist,.cat-pct{display:none!important}
   .cat-check::before,.v-check::before{content:'';position:absolute;inset:-12px}
-  .cat-mark{display:flex!important;align-items:center;gap:8px;justify-content:flex-end}
-  .cat-mark .dot{width:14px;height:14px;opacity:.85}
   .cat-go{font-size:14px;padding:0 2px}
   .cat-chev{font-size:22px}
   .cat-body{padding-left:0!important;padding-right:0!important}
@@ -402,10 +384,8 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 }
 @media(max-width:420px){
   .wrap{padding-left:16px!important;padding-right:16px!important}
-  .cat-row{grid-template-columns:18px minmax(0,1fr) auto auto auto;gap:8px}
+  .cat-row{grid-template-columns:18px minmax(0,1fr) auto auto;gap:8px}
   .cat-name{font-size:19px}
-  .cat-mark{gap:7px}
-  .cat-mark .dot{width:13px;height:13px}
   .vrow{grid-template-columns:16px minmax(0,1fr) auto auto 16px;gap:8px}
   .lvl{gap:7px}
   .lvl .dot{width:14px;height:14px}
@@ -555,8 +535,8 @@ if(app&&sc&&!app.classList.contains('on')&&getComputedStyle(sc).display==='none'
       <div class="block">
         <div class="block-head bh-cats" style="display:flex;align-items:center;justify-content:space-between;gap:14px"><span class="lbl" id="lbl-cats">Catégories &amp; mémoire</span><span class="mini-act" id="sel-all"></span></div>
         <div class="markglobal">
-          <span id="lbl-markglobal">Marquer les catégories cochées</span>
-          <span class="mg-acts"><span class="markall-dots"><span class="dot r" data-gall="r"></span><span class="dot a" data-gall="a"></span><span class="dot v" data-gall="v"></span></span><span class="mini-act" id="bulk-restore"></span></span>
+          <span id="lbl-markglobal">Catégories de base cochées</span>
+          <span class="mg-acts"><span class="mini-act" id="bulk-restore"></span></span>
         </div>
         <div id="cat-list"></div>
         <button class="ghost-btn" id="cat-more" style="display:none"></button>
@@ -699,8 +679,8 @@ const T={
     start:'Commencer', reset:'Réinitialiser toute la mémoire',
     reset_q:'Réinitialiser toute la mémoire ? Tous les niveaux reviennent au rouge. Action irréversible.',
     restore:'Restaurer les catégories de base', restore_q:'Restaurer les catégories de base ? Tes modifications des versets de base seront perdues (tes catégories personnelles sont conservées).',
-    markall:'Tout marquer', markglobal:'Marquer les catégories cochées', bulk_restore:'Réinitialiser', reset_verse:'Réinitialiser ce verset',
-    bulk_mark_q:'Changer le niveau de tous les versets des %n% catégorie(s) cochée(s) ?', bulk_restore_q:'Réinitialiser les versets et références des %n% catégorie(s) de base cochée(s) à leur état d\u2019origine ? Tes modifications seront perdues.',
+    markglobal:'Catégories de base cochées', bulk_restore:'Réinitialiser', reset_verse:'Réinitialiser ce verset',
+    bulk_restore_q:'Réinitialiser les versets et références des %n% catégorie(s) de base cochée(s) à leur état d\u2019origine ? Tes modifications seront perdues.',
     find_ref:'Quelle est la référence ?', find_verse:'Quel est le verset ?',
     answered:'répondues', correct:'justes', finish:'Terminer',
     done:'Session terminée', of:'sur', acquired:'versets acquis',
@@ -709,8 +689,9 @@ const T={
     mcat:'Nouvelle catégorie', mcat_edit:'Renommer la catégorie', mv_edit:'Modifier le verset',
     f_text:'Texte', f_ref:'Référence (ex : Jean 3:16)', f_name:'Nom',
     mv:'Ajouter un verset', save:'Enregistrer', cancel:'Annuler',
-    empty_sel:'Sélectionne au moins une catégorie pour commencer.',
-    not_enough:'Pas assez de versets. Sélectionne d\u2019autres catégories ou ajoute des versets.',
+    no_cats:'Aucune catégorie disponible. Ajoutez une catégorie, ou restaurez les catégories de base.',
+    empty_sel:'Aucun verset coché. Touchez « Tout sélectionner » en haut de la liste, ou cochez au moins deux versets.',
+    not_enough:'Il faut au moins deux versets pour commencer. Cochez-en un second, ou ajoutez un verset.',
     del_cat_q:'Supprimer cette catégorie et ses versets ?',
     select_all:'Tout sélectionner', deselect_all:'Tout désélectionner', show_all:'Afficher tout', show_less:'Afficher moins',
     trash:'Corbeille', trash_original:'Versets d\u2019origine', trash_perso:'Versets personnels',
@@ -766,7 +747,6 @@ const boxOf=id=>(S.progress[id]||{box:0}).box;
 const dueOf=id=>(S.progress[id]||{due:0}).due||0;
 function isDue(id){const p=S.progress[id];if(!p)return true;if(p.box===0)return true;return p.due<=S.step;}
 function levelOf(id){const b=boxOf(id);return b<=1?'r':b<=3?'a':'v';}     // rouge / ambre / vert
-function setLevel(id,lvl){const b=lvl==='r'?0:lvl==='a'?2:5;S.progress[id]={box:b,due:S.step+IVLS[b]};}
 function answer(id,ok){
   const p=S.progress[id]||{box:0,due:0};
   p.v=(p.v||0)+1;   // compteur d'expositions : ne s'efface jamais, sert au tirage equitable
@@ -809,7 +789,9 @@ async function loadUser(){
     S.trash=trash.exists?(trash.data().items||[]):[];
     S.hidCats=prefs.exists?(prefs.data().hidCats||[]):[];
     if(prefs.exists){S.selCats=prefs.data().selCats||[];S.mode=prefs.data().mode||0;S.offV={};(prefs.data().offV||[]).forEach(id=>S.offV[id]=1);
-      effectiveCats().forEach(c=>{if(c.verses.length&&!S.selCats.includes(c.id)&&c.verses.every(v=>!S.offV[v.id])){c.verses.forEach(v=>S.offV[v.id]=1);}});
+      if(S.selCats.length||Object.keys(S.offV).length){
+        effectiveCats().forEach(c=>{if(c.verses.length&&!S.selCats.includes(c.id)&&c.verses.every(v=>!S.offV[v.id])){c.verses.forEach(v=>S.offV[v.id]=1);}});
+      }
       syncSelCats();}
     else{S.selCats=PRE.map(c=>c.id);}
   }catch(e){console.error(e);}
@@ -884,15 +866,15 @@ function renderCats(){
       const l=levelOf(vv.id);
       const voff=!!S.offV[vv.id];
       body+='<div class="vrow'+(voff?' voff':'')+'"><span class="v-check'+(voff?'':' on')+'" data-togv="'+vv.id+'" title="'+(S.lang==='fr'?'Inclure ou exclure des révisions':'Include or exclude from reviews')+'"></span><span class="vline" data-editv="'+vv.id+'"><span class="vref">'+vv[S.lang].ref+'</span><span class="vtext">'+trunc(vv[S.lang].text,58)+'</span></span>'+(vuesOf(vv.id)?'<span style="font-family:ui-monospace,monospace;font-size:11px;color:rgba(255,255,255,.4);flex-shrink:0;margin-right:8px">\u00d7'+vuesOf(vv.id)+'</span>':'')+'<span class="lvl">'
-        +'<span class="dot r'+(l==='r'?' act':'')+'" data-set="r" data-v="'+vv.id+'"></span>'
-        +'<span class="dot a'+(l==='a'?' act':'')+'" data-set="a" data-v="'+vv.id+'"></span>'
-        +'<span class="dot v'+(l==='v'?' act':'')+'" data-set="v" data-v="'+vv.id+'"></span></span>'
+        +'<span class="dot r'+(l==='r'?' act':'')+'"></span>'
+        +'<span class="dot a'+(l==='a'?' act':'')+'"></span>'
+        +'<span class="dot v'+(l==='v'?' act':'')+'"></span></span>'
         +'<span class="mov-v" data-movev="'+vv.id+'" title="'+(S.lang==='fr'?'Déplacer dans…':'Move to…')+'">\u21C4</span>'
         +'<span class="del-v" data-delv="'+vv.id+'">×</span></div>';
     });
     body+='<div class="cat-custom-acts"><span class="mini-act" data-addv="1">+ '+t('addverse')+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span>'+(cat.base?'<span class="mini-act" data-restorec="1">'+t('cat_restore')+'</span>':'')+'<span class="mini-act del" data-delc="1">'+t('del')+'</span></div>';
     body+='</div>';
-    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp">'+cat.name[S.lang]+'</span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-mark"><span class="dot r" data-all="r"></span><span class="dot a" data-all="a"></span><span class="dot v" data-all="v"></span></span><span class="cat-go" data-act="solo" title="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'" aria-label="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
+    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp">'+cat.name[S.lang]+'</span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-go" data-act="solo" title="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'" aria-label="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
     host.appendChild(div);
   });
   const _cs=effectiveCats(),_all=_cs.length&&_cs.every(c=>c.verses.every(v=>!S.offV[v.id]));$('sel-all').textContent=_all?t('deselect_all'):t('select_all');
@@ -900,7 +882,7 @@ function renderCats(){
   renderTrash();
   updateStart();
 }
-function updateStart(){$('start-btn').disabled=!(allItems().length>=2);}
+function updateStart(){const b=$('start-btn');b.disabled=false;b.classList.toggle('pas-pret',allItems().length<2);}
 function toggleSelectAll(){const cs=effectiveCats();const allSel=cs.length&&cs.every(c=>c.verses.every(v=>!S.offV[v.id]));
   if(allSel){S.selCats=[];S.offV={};cs.forEach(c=>c.verses.forEach(v=>S.offV[v.id]=1));}
   else{S.selCats=cs.map(c=>c.id);S.offV={};}
@@ -931,8 +913,13 @@ function showView(v){
   $('summary').style.display=v==='summary'?'block':'none';
 }
 function startSession(){
-  if(!S.soloCat && !allItems().length){lvInfo(t('empty_sel'));return;}
-  if(allItems().length<2){lvInfo(t('not_enough'));return;}
+  const dispo=allItems().length;
+  if(dispo<2){
+    if(!effectiveCats().length)lvInfo(t('no_cats'));
+    else if(!dispo)lvInfo(t('empty_sel'));
+    else lvInfo(t('not_enough'));
+    return;
+  }
   S.answered=0; S.correct=0; S.lastId=null;
   showView('study'); nextQuestion();
 }
@@ -1394,14 +1381,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
   // marquage global : toutes les catégories sélectionnées
   document.querySelector('.markglobal').addEventListener('click',async e=>{
-    const d=e.target.closest('[data-gall]'), rb=e.target.closest('#bulk-restore');
+    const rb=e.target.closest('#bulk-restore');
     const sel=effectiveCats();
-    if(d){
-      if(!sel.length)return;
-      if(!await lvConfirm(t('bulk_mark_q').replace('%n%',sel.length)))return;
-      sel.forEach(c=>c.verses.forEach(v=>{if(!S.offV[v.id])setLevel(v.id,d.dataset.gall);}));
-      saveProgress(); renderCats(); return;
-    }
     if(rb){
       const baseSel=sel.filter(c=>isBase(c.id));
       if(!baseSel.length)return;
@@ -1421,8 +1402,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     const catEl=e.target.closest('.cat'); if(!catEl)return; const id=catEl.dataset.id;
     const togv=e.target.closest('[data-togv]');
     if(togv){const vid=togv.dataset.togv;S.offV[vid]?delete S.offV[vid]:S.offV[vid]=1;savePrefs();renderCats();return;}
-    const setDot=e.target.closest('[data-set]');
-    const allDot=e.target.closest('[data-all]');
     const editv=e.target.closest('[data-editv]');
     const movv=e.target.closest('[data-movev]');
     const delv=e.target.closest('[data-delv]');
@@ -1431,8 +1410,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     const delc=e.target.closest('[data-delc]');
     const restorec=e.target.closest('[data-restorec]');
     const act=e.target.closest('[data-act]');
-    if(setDot){setLevel(setDot.dataset.v,setDot.dataset.set);saveProgress();renderCats();return;}
-    if(allDot){const c=effectiveCats().find(x=>x.id===id);c.verses.forEach(v=>{if(!S.offV[v.id])setLevel(v.id,allDot.dataset.all);});saveProgress();renderCats();return;}
     if(movv){openMoveVerse(id,movv.dataset.movev);return;}
     if(delv){await trashVerse(id,delv.dataset.delv);return;}
     if(editv){openEditVerse(id,editv.dataset.editv);return;}

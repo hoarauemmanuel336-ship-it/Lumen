@@ -759,3 +759,146 @@ chantiers réellement ouverts. Ne jamais la laisser redevenir un journal.)
 ════════════════════════════════════════════════════════════════════
 FIN DU FICHIER DE REPRISE
 ════════════════════════════════════════════════════════════════════
+
+================================================================
+30 juillet 2026 — six demandes d'Emmanuel, en une seule passe
+================================================================
+
+1. BIBLE, Exode 3:14. « Je suis qui je suis » → « Je suis celui qui suis ».
+   Fait dans content/bible.json, 0 occurrence résiduelle après balayage de
+   tous les versets, journalisé dans claude/corrections-cherubin.md.
+   Aucun identifiant de progression Mémoriser touché.
+
+2. BIBLE, « Mes notes » : les surlignages se rangent par couleur.
+   Dans bible.html, remplirSurlignages regroupe désormais par it.hex,
+   trie selon l'ordre de la palette (couleurRang), et nomme chaque couleur
+   en clair (couleurNom, Jaune / Ambre / Orange / Rouge / Rose / Violet /
+   Bleu / Cyan / Turquoise / Vert / Anis, une teinte inconnue devenant
+   « Couleur libre #XXXXXX »). Un sous-titre .surl-scat par couleur, avec
+   pastille, nom et compte. Au-delà de SURL_MAX = 5 cartes, le reste part
+   dans un <div class="surl-reste" hidden> derrière « Voir tout (n) », qui
+   bascule en « Voir moins » (basculeSurlGroupe, branché par délégation sur
+   .surl-plus). Pendant une recherche, rien n'est replié : on cherche
+   justement à voir.
+   Nouvelles classes : .surl-groupe, .surl-scat, .surl-scat-nom,
+   .surl-scat-n, .surl-plus. Fonction carteSurl extraite pour servir aux
+   deux moitiés du groupe.
+
+3. MÉMORISER, le bouton « Commencer » muet sur mobile.
+   Cause : updateStart posait b.disabled = allItems().length < 2, et un
+   profil ancien où tout était éteint condamnait le bouton sans un mot.
+   Le bouton n'est plus jamais désactivé : il s'atténue (.start.pas-pret)
+   et, au clic, explique le refus par lvInfo, avec trois messages distincts
+   (no_cats, empty_sel, not_enough). Garde-fou ajouté dans loadUser : la
+   passe d'extinction automatique ne s'exécute que si le profil contient
+   déjà une sélection ou des versets éteints.
+
+4. MÉMORISER, niveau de maîtrise non réglable.
+   Les ronds restent, en simple témoin : .dot passe en cursor:default,
+   pointer-events:none, opacity .22, .dot.act conservé. Supprimés :
+   setLevel, les branches data-set / data-all / data-gall, tout le CSS et
+   le balisage .markall et .cat-mark, les libellés markall et bulk_mark_q.
+   Les deux grilles .cat-row perdent une colonne.
+
+5. NOTES supprimées sur mobile qui revenaient sur PC.
+   Le mécanisme de pierres tombales était correct ; la preuve manquait.
+   Deux scénarios de non-régression l'établissent maintenant, aux deux
+   largeurs : suppression reçue page ouverte, et suppression survenue
+   pendant que l'appareil dormait (la note ne reparaît pas, quitte la
+   mémoire locale, et n'est pas renvoyée au nuage).
+   Rappel du format : users/{uid}/bibleNotes/__morts__ contient
+   { morts:true, ids:{ <id>: <horodatage> } }, et vivante() compare par
+   Date.parse(n.m || n.d) : les dates de notes doivent rester des chaînes
+   ISO, jamais des nombres.
+
+6. Libellé hors connexion : « Se connecter pour retrouver vos notes
+   partout » → « Se connecter pour retrouver vos notes ».
+
+7. Défaut découvert au contrôle visuel, corrigé dans la foulée.
+   « Mes notes » affichait « Rien encore » et son invitation à écrire
+   juste au-dessus de surlignages bien réels, parce que vueNotes rendait
+   son état vide dès que corps était vide, sans regarder nSurl. Désormais :
+   surlignages présents et aucune note → « Aucune note pour l'instant. Vos
+   surlignages sont rassemblés plus bas. » (classe .notes-vide-min, marge
+   resserrée) ; rien du tout → « Rien encore » inchangé ; recherche sans
+   résultat → « Aucune note ne correspond. »
+
+Contrôles : /tmp/bible-surl-check.js, /tmp/bible-vide-check.js,
+/tmp/memo-6t-check.js, /tmp/memo-actions-check.js, /tmp/sync-check.js,
+/tmp/sync-suppr-check.js, /tmp/pr423-retour-check.js, tous « TOUT PASSE »
+à 390 et 1280 px.
+
+Note d'atelier : le gabarit de test site/memoriser-test.html se
+reconstruit en copiant site/memoriser.html et en remplaçant le contenu
+entre /*PRE_START*/ et /*PRE_END*/. La forme attendue est
+{ id, name:{fr,en}, verses:[{ id, fr:{ref,text}, en:{ref,text} }] } ;
+toute autre forme laisse #sel-all vide, donc invisible, et les tests
+échouent sur un faux motif. Ce fichier est supprimé avant livraison.
+
+
+================================================================
+1er août 2026 — les cadres empilés, et les couleurs hors palette
+================================================================
+
+Emmanuel, deux captures à l'appui : « tout ces cadre superpossé
+(rond bleu) l'un sur l'autre n'est pas agreable à l'oeil. et second
+screenshit pour prendre une note, un cadre dans un cadre, c'est
+mauvais ». Puis, en cours de travail : « tu a pris en compte les
+couleur non predefini ? »
+
+1. « Mes notes » : l'en-tête empilait trois registres de cadres sous
+   un champ de recherche déjà souligné. Le bouton « Écrire une note »
+   était encadré (border 1px var(--filet-f)), et juste en dessous le
+   rail de filtres alignait des pastilles encadrées, dont l'active en
+   or. Boîte sur boîte sur filet.
+
+   Corrigé : plus aucun cadre dans cette zone. Les deux actions sont
+   du texte capitale espacé, précédé d'un « + » posé en ::before
+   (or atténué pour l'action principale, blanc atténué pour la
+   seconde ; les deux passent à l'or au survol). Le rail devient des
+   onglets : plus de bordure, seul l'onglet actif porte un filet or
+   de 1px en ::after. Écarts repris en conséquence
+   (.notes-actions gap 30px, .nz-rail gap 28px ; 22px et 20px sur
+   mobile, où les deux actions tiennent maintenant sur une ligne).
+
+2. Modale de note : la zone d'écriture portait sa propre bordure à
+   l'intérieur du panneau, qui a déjà son filet en inset box-shadow.
+   Un cadre dans un cadre.
+
+   Corrigé : .nb-zone perd bordure et fond, passe en padding:2px 0 0
+   et resize:none, avec un ::placeholder italique assorti au reste du
+   site. Pour que l'écriture ne se confonde pas avec les
+   métadonnées, .nb-cat-ligne reçoit un simple filet supérieur
+   (border-top var(--filet), padding-top 18px ; 14px sur mobile) :
+   un trait de clôture, pas un cadre. La puce de référence (.sb-chip)
+   et le menu déroulant de catégorie gardent leur bordure : ce sont
+   un jeton et un contrôle, pas des conteneurs.
+
+3. Couleurs hors palette. Le rangement des surlignages les prenait
+   déjà (rang 99, groupe propre, pastille de la vraie couleur,
+   compte, « Voir tout » au-delà de cinq), mais il les nommait
+   « Couleur libre #XXXXXX ». Or six d'entre elles ne sont pas libres :
+   ce sont les couleurs de l'ancienne palette, encore présentes chez
+   quiconque a surligné avant le changement, et servies par
+   SURL_HEX_LEGACY pour les anciens index numériques.
+
+   Ajouté LVF_COUL_ANC = Crème #efe6cf, Brique #c96a6a,
+   Ardoise #6a8fb4, Sauge #7ba07b, Lavande #a98ccd, Miel #d9a05f.
+   couleurRang leur donne 50+j, donc elles se rangent après les onze
+   couleurs actuelles et avant les vraies inconnues ; couleurNom leur
+   rend leur nom. « Couleur libre #XXXXXX » ne reste que pour un
+   hexadécimal réellement inconnu.
+
+   Rappel du garde-fou : surlCouleur() n'accepte qu'un #rrggbb valide
+   ou un ancien index numérique, tout le reste est écarté avant le
+   groupement. Le rangement ne reçoit donc jamais de couleur vide.
+
+Contrôles : /tmp/bible-coul-check.js (nouveau) vérifie les dix-huit
+couleurs une à une, leur ordre, la couleur réelle de chaque pastille,
+le compte, le repli à cinq et le « Voir tout » sur une couleur libre ;
+plus /tmp/bible-surl-check.js, /tmp/bible-vide-check.js,
+/tmp/sync-check.js, /tmp/sync-suppr-check.js,
+/tmp/pr423-retour-check.js, /tmp/memo-6t-check.js,
+/tmp/memo-actions-check.js. Tous « TOUT PASSE » à 390 et 1280 px.
+Captures relues : /tmp/cadres-notes-{390,1280}.png et
+/tmp/cadres-modale-{390,1280}.png.

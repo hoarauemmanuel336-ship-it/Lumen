@@ -167,6 +167,14 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .surl-item .surl-oter{position:absolute;top:4px;right:-14px;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);cursor:pointer;padding:14px 12px;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;white-space:nowrap}
 .surl-item .surl-oter:hover,.surl-item .surl-oter:active{color:var(--or-pale)}
 .surl-item .surl-txt{line-height:1.6;font-size:calc(16.5px*var(--lvz,1));color:rgba(255,255,255,.86);overflow-wrap:anywhere}
+/* un groupe par couleur de surlignage */
+.surl-groupe{box-sizing:border-box;max-width:760px;margin:0 auto}
+.surl-scat{display:flex;align-items:center;gap:11px;box-sizing:border-box;max-width:760px;margin:26px auto 0;padding:0 0 8px 16px}
+.surl-scat .surl-pastille{width:9px;height:9px}
+.surl-scat-nom{flex:0 1 auto;min-width:0;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.62);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.surl-scat-n{flex:0 0 auto;margin-right:auto;font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.3)}
+.surl-plus{flex:0 0 auto;font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--or);cursor:pointer;white-space:nowrap;padding:6px 0 6px 14px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.surl-plus:hover,.surl-plus:active{color:var(--or-pale)}
 .ch-nav{display:flex;justify-content:space-between;gap:18px;margin-top:54px;padding-top:26px;border-top:1px solid rgba(231,224,207,.14)}
 .ch-nav a{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa);transition:color .3s;padding:6px 0}
 .ch-nav a:hover{color:var(--or-pale)}
@@ -210,18 +218,26 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px;line-he
 .notes-rech{display:block;width:100%;box-sizing:border-box;max-width:760px;margin:26px auto 0;background:none;border:none;border-bottom:1px solid rgba(231,224,207,.18);padding:9px 2px;font-size:17px;color:var(--parchemin);outline:none;transition:border-color .3s}
 .notes-rech::placeholder{color:rgba(255,255,255,.33);font-style:italic}
 .notes-rech:focus{border-color:var(--or)}
-.notes-btn{display:inline-block;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);border:1px solid var(--filet-f);padding:12px 20px;cursor:pointer;white-space:nowrap;transition:color .3s,border-color .35s,box-shadow .45s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.notes-btn:hover,.notes-btn:active{color:var(--or-pale);border-color:var(--or);box-shadow:0 0 22px rgba(231,224,207,.07)}
-.notes-lien{display:inline-block;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;white-space:nowrap;padding:13px 2px;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+/* actions : du texte, jamais une boîte ; le signe + porte l'affordance */
+.notes-btn{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);padding:11px 2px;cursor:pointer;white-space:nowrap;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.notes-btn::before{content:"+";font-size:15px;line-height:1;letter-spacing:0;color:rgba(231,224,207,.5);transition:color .3s}
+.notes-btn:hover,.notes-btn:active{color:var(--or-pale)}
+.notes-btn:hover::before,.notes-btn:active::before{color:var(--or)}
+.notes-lien{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;white-space:nowrap;padding:11px 2px;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.notes-lien::before{content:"+";font-size:15px;line-height:1;letter-spacing:0;color:rgba(255,255,255,.28);transition:color .3s}
 .notes-lien:hover,.notes-lien:active{color:var(--or-pale)}
+.notes-lien:hover::before,.notes-lien:active::before{color:var(--or)}
 /* rail de filtres : la seule navigation transversale de la vue */
-.nz-rail{display:flex;gap:9px;box-sizing:border-box;max-width:760px;margin:26px auto 0;padding-bottom:3px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nz-rail{display:flex;gap:28px;box-sizing:border-box;max-width:760px;margin:24px auto 0;padding-bottom:3px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .nz-rail::-webkit-scrollbar{display:none}
-.nz-fil{flex:0 0 auto;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);border:1px solid rgba(231,224,207,.13);padding:12px 15px;cursor:pointer;white-space:nowrap;transition:color .3s,border-color .35s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.nz-fil:hover{color:var(--parchemin);border-color:var(--filet-f)}
-.nz-fil.on{color:var(--or);border-color:var(--or)}
-.nz-fil i{font-style:normal;color:rgba(255,255,255,.3);margin-left:8px}
-.nz-fil.on i{color:rgba(231,224,207,.55)}
+/* onglets : seul le filtre actif porte un filet, aucun cadre nulle part */
+.nz-fil{position:relative;flex:0 0 auto;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:10px 1px 11px;cursor:pointer;white-space:nowrap;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.nz-fil::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--or);opacity:0;transition:opacity .35s}
+.nz-fil:hover{color:var(--parchemin)}
+.nz-fil.on{color:var(--or)}
+.nz-fil.on::after{opacity:1}
+.nz-fil i{font-style:normal;color:rgba(255,255,255,.28);margin-left:7px}
+.nz-fil.on i{color:rgba(231,224,207,.5)}
 .nz-liste{box-sizing:border-box;max-width:760px;margin:38px auto 0}
 .nz-liste>.notes-cat:first-child{margin-top:0}
 /* entrée de note : filet fin, barre d'or au survol, aucun cadre */
@@ -246,6 +262,7 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px;line-he
 .notes-vide{box-sizing:border-box;max-width:760px;margin:0 auto;text-align:center;padding:66px 12px}
 .notes-vide-t{font-family:var(--display);font-size:25px;color:rgba(255,255,255,.66);margin-bottom:11px}
 .notes-vide-p{font-size:15.5px;line-height:1.65;font-style:italic;color:rgba(255,255,255,.4);max-width:420px;margin:0 auto}
+.notes-vide.notes-vide-min{padding:30px 12px 2px}
 
 /* — Modale de note — */
 #note-voile{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:90px 20px 40px;overflow-y:auto}
@@ -253,15 +270,16 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px;line-he
 .note-boite{width:100%;max-width:620px;background:var(--encre);box-shadow:inset 0 0 0 1px var(--filet),inset 0 1px 0 rgba(231,224,207,.05);clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%);padding:34px 36px;animation:rise .4s ease both}
 .nb-titre{font-family:var(--display);font-weight:400;font-size:27px;margin-bottom:16px}
 .nb-refs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.nb-zone{width:100%;min-height:300px;background:rgba(231,224,207,.03);border:1px solid rgba(231,224,207,.14);padding:14px 16px;font-size:17.5px;line-height:1.6;outline:none;resize:vertical;transition:border-color .3s}
-.nb-zone:focus{border-color:var(--or)}
+/* une seule surface : pas de cadre dans le cadre */
+.nb-zone{width:100%;min-height:320px;background:none;border:none;padding:2px 0 0;font-size:17.5px;line-height:1.6;outline:none;resize:none}
+.nb-zone::placeholder{color:rgba(255,255,255,.3);font-style:italic}
 .nb-actes{display:flex;align-items:center;gap:24px;margin-top:20px}
 .nb-btn{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:color .3s;padding:6px 0}
 .nb-btn:hover{color:var(--or-pale)}
 .nb-btn.principal{color:var(--or)}
 .nb-btn.principal:hover{color:var(--or-pale)}
 .nb-suppr{margin-left:auto;color:var(--parchemin-att)}
-.nb-cat-ligne{display:flex;align-items:center;gap:12px;margin:0 0 16px}
+.nb-cat-ligne{display:flex;align-items:center;gap:12px;margin:20px 0 16px;padding-top:18px;border-top:1px solid var(--filet)}
 .nb-cat-lab{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
 
 /* — Compte / synchronisation — */
@@ -288,7 +306,7 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px;line-he
 input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
 .cat-input{width:100%;box-sizing:border-box;background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:15px;padding:11px 12px;outline:none;margin-bottom:18px}
 .cat-input:focus{border-color:var(--or)}
-.notes-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;box-sizing:border-box;max-width:760px;margin:22px auto 0}
+.notes-actions{display:flex;align-items:center;gap:30px;flex-wrap:wrap;box-sizing:border-box;max-width:760px;margin:20px auto 0}
 /* en-tête de catégorie : structurel, collant, jamais décoratif */
 .notes-cat{position:sticky;top:var(--hbar,86px);z-index:9;display:flex;align-items:center;gap:12px;box-sizing:border-box;max-width:760px;margin:46px auto 0;padding:13px 0 10px;background:var(--encre);box-shadow:inset 0 -1px 0 var(--filet)}
 .notes-cat-nom{flex:0 1 auto;min-width:0;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -307,12 +325,12 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
   h2.notes-titre{font-size:30px}
   .notes-compte{margin-top:7px;font-size:11px;letter-spacing:.14em}
   .notes-rech{margin-top:21px;font-size:16px}
-  .notes-actions{gap:12px;margin-top:17px}
-  .notes-btn{padding:12px 15px;font-size:11px;letter-spacing:.14em}
-  .notes-lien{font-size:11px;letter-spacing:.14em}
+  .notes-actions{gap:22px;margin-top:15px}
+  .notes-btn{padding:11px 1px;font-size:11px;letter-spacing:.14em;gap:8px}
+  .notes-lien{padding:11px 1px;font-size:11px;letter-spacing:.14em;gap:8px}
   .sync-ligne{margin-top:17px;font-size:13.5px}
-  .nz-rail{margin-top:21px;gap:8px}
-  .nz-fil{font-size:11px;padding:12px 13px}
+  .nz-rail{margin-top:19px;gap:20px}
+  .nz-fil{font-size:11px;padding:10px 1px 11px}
   .nz-liste{margin-top:32px}
   .note-item{padding:15px 26px 14px 13px}
   .note-item>.nt-menu{right:-16px;top:2px}
@@ -334,7 +352,7 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
   .nb-titre{flex:0 0 auto;font-size:23px;margin-bottom:12px}
   .nb-refs{flex:0 0 auto;margin-bottom:12px;max-height:22vh;overflow-y:auto}
   .nb-zone{flex:1 1 auto;min-height:0;resize:none;font-size:17px}
-  .nb-cat-ligne{flex:0 0 auto;margin:12px 0 0}
+  .nb-cat-ligne{flex:0 0 auto;margin:14px 0 0;padding-top:14px}
   .nb-actes{flex:0 0 auto;margin-top:12px;gap:12px}
   .nb-btn{padding:13px 4px}
   .note-depl{max-width:none;flex:1;font-size:14px;padding:10px 26px 10px 10px}
@@ -1415,6 +1433,43 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
 
   /* ── Surlignages dans « Mes notes » ── */
   var LVF_TXT = { surl: 'Surlignages', oter: 'Retirer' };
+  /* la palette du plateau de sélection, dans son ordre, avec son nom en clair */
+  var LVF_COUL = [['#ffe600','Jaune'],['#ffb700','Ambre'],['#ff7a00','Orange'],['#ff2b2b','Rouge'],
+    ['#ff4da6','Rose'],['#b04dff','Violet'],['#2979ff','Bleu'],['#00cfff','Cyan'],
+    ['#00ffb3','Turquoise'],['#35ff6a','Vert'],['#b8ff00','Anis']];
+  var SURL_MAX = 5;   // au-delà, le groupe se replie
+  /* ancienne palette : ces surlignages existent encore chez ceux qui les ont
+     posés avant, ils gardent un nom et se rangent après les onze couleurs */
+  var LVF_COUL_ANC = [['#efe6cf', 'Cr\u00e8me'], ['#c96a6a', 'Brique'], ['#6a8fb4', 'Ardoise'],
+    ['#7ba07b', 'Sauge'], ['#a98ccd', 'Lavande'], ['#d9a05f', 'Miel']];
+  function couleurRang(hex){
+    for (var i = 0; i < LVF_COUL.length; i++) if (LVF_COUL[i][0] === hex) return i;
+    for (var j = 0; j < LVF_COUL_ANC.length; j++) if (LVF_COUL_ANC[j][0] === hex) return 50 + j;
+    return 99;
+  }
+  function couleurNom(hex){
+    for (var i = 0; i < LVF_COUL.length; i++) if (LVF_COUL[i][0] === hex) return LVF_COUL[i][1];
+    for (var j = 0; j < LVF_COUL_ANC.length; j++) if (LVF_COUL_ANC[j][0] === hex) return LVF_COUL_ANC[j][1];
+    return 'Couleur libre ' + hex.toUpperCase();
+  }
+  function carteSurl(it){
+    var ref = libelle({ slug: it.slug, ch: it.ch, v1: it.v, v2: it.v });
+    var off = it.slug + '|' + it.ch + '|' + it.v + (it.frag ? ('|' + it.a + '|' + it.b) : '');
+    var corps = it.frag
+      ? '<span style="' + fragStyle(it.hex) + ';border-radius:2px;padding:.02em 2px">' + esc(it.text) + '</span>'
+      : esc(it.text);
+    return '<div class="surl-item">'
+      + '<div class="surl-tete"><span class="surl-pastille" style="background:' + it.hex + '"></span>'
+      + '<span class="surl-ref" data-snav="' + it.slug + '/' + it.ch + '/' + it.v + '">' + esc(ref) + '</span>'
+      + '<span class="surl-oter" data-soff="' + off + '" role="button" tabindex="0">' + LVF_TXT.oter + '</span></div>'
+      + '<div class="surl-txt">' + corps + '</div></div>';
+  }
+  function basculeSurlGroupe(el){
+    var g = el.closest('.surl-groupe'); if (!g) return;
+    var reste = g.querySelector('.surl-reste'); if (!reste) return;
+    if (reste.hasAttribute('hidden')) { reste.removeAttribute('hidden'); el.textContent = el.getAttribute('data-less'); }
+    else { reste.setAttribute('hidden', ''); el.textContent = el.getAttribute('data-more'); }
+  }
   /* Compte synchrone, pour le rail : remplirSurlignages() est asynchrone. */
   function compteSurl(){
     var n = 0;
@@ -1466,19 +1521,32 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
         return norm(it.text).indexOf(f) >= 0 || norm(libelle({ slug: it.slug, ch: it.ch, v1: it.v, v2: it.v })).indexOf(f) >= 0;
       });
       if (!vis.length) { zone.innerHTML = ''; return; }
+      /* rangement par couleur : ordre de la palette, couleurs libres à la fin */
+      var groupes = [], parHex = {};
+      vis.forEach(function(it){
+        var hx = String(it.hex || '').toLowerCase();
+        it.hex = hx;
+        if (!parHex[hx]) { parHex[hx] = { hex: hx, items: [] }; groupes.push(parHex[hx]); }
+        parHex[hx].items.push(it);
+      });
+      groupes.sort(function(a, b){
+        return (couleurRang(a.hex) - couleurRang(b.hex)) || (a.hex < b.hex ? -1 : a.hex > b.hex ? 1 : 0);
+      });
       var h = '<div class="notes-cat"><span class="notes-cat-nom">' + LVF_TXT.surl + '</span>'
             + '<span class="notes-cat-n">' + vis.length + '</span></div>';
-      vis.forEach(function(it){
-        var ref = libelle({ slug: it.slug, ch: it.ch, v1: it.v, v2: it.v });
-        var off = it.slug + '|' + it.ch + '|' + it.v + (it.frag ? ('|' + it.a + '|' + it.b) : '');
-        var corps = it.frag
-          ? '<span style="' + fragStyle(it.hex) + ';border-radius:2px;padding:.02em 2px">' + esc(it.text) + '</span>'
-          : esc(it.text);
-        h += '<div class="surl-item">'
-           + '<div class="surl-tete"><span class="surl-pastille" style="background:' + it.hex + '"></span>'
-           + '<span class="surl-ref" data-snav="' + it.slug + '/' + it.ch + '/' + it.v + '">' + esc(ref) + '</span>'
-           + '<span class="surl-oter" data-soff="' + off + '" role="button" tabindex="0">' + LVF_TXT.oter + '</span></div>'
-           + '<div class="surl-txt">' + corps + '</div></div>';
+      groupes.forEach(function(g){
+        /* pendant une recherche, tout reste visible : on cherche justement à voir */
+        var coupe = (!f && g.items.length > SURL_MAX) ? SURL_MAX : g.items.length;
+        var plus = 'Voir tout (' + g.items.length + ')';
+        h += '<div class="surl-groupe">'
+           + '<div class="surl-scat"><span class="surl-pastille" style="background:' + g.hex + '"></span>'
+           + '<span class="surl-scat-nom">' + esc(couleurNom(g.hex)) + '</span>'
+           + '<span class="surl-scat-n">' + g.items.length + '</span>'
+           + (coupe < g.items.length ? '<span class="surl-plus" role="button" tabindex="0" data-more="' + plus + '" data-less="Voir moins">' + plus + '</span>' : '')
+           + '</div>'
+           + g.items.slice(0, coupe).map(carteSurl).join('')
+           + (coupe < g.items.length ? '<div class="surl-reste" hidden>' + g.items.slice(coupe).map(carteSurl).join('') + '</div>' : '')
+           + '</div>';
       });
       zone.innerHTML = h;
     });
@@ -1666,6 +1734,7 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
       if (g) location.hash = '#' + g.slug + '/' + g.ch + '/' + g.v1;
       return true;
     }
+    if ((el = cible.closest('.surl-plus'))) { basculeSurlGroupe(el); return true; }
     if ((el = cible.closest('[data-snav]'))) { location.hash = '#' + el.getAttribute('data-snav'); return true; }
     if ((el = cible.closest('[data-soff]'))) { oteSurlignage(el.getAttribute('data-soff')); return true; }
     return false;
@@ -1746,7 +1815,7 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
           + '<span class="notes-lien" id="cat-nouvelle" role="button" tabindex="0">Nouvelle cat\u00e9gorie</span>'
           + '</div>';
     if (FB && !UID) {
-      h += '<div class="sync-ligne"><span class="sync-act" id="sync-in" role="button" tabindex="0">Se connecter pour retrouver vos notes partout</span></div>';
+      h += '<div class="sync-ligne"><span class="sync-act" id="sync-in" role="button" tabindex="0">Se connecter pour retrouver vos notes</span></div>';
     }
     if (racines.length || nSurl) {
       var rail = puce('', 'Tout', liste.length);
@@ -1817,10 +1886,14 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
         }
       }
       if (!corps) {
+        /* des surlignages s'affichent juste en dessous : ne pas dire « rien » */
+        var surlSuivent = nSurl && !filtreCat;
         corps = NOTES.length
           ? '<div class="notes-vide"><div class="notes-vide-p">Aucune note ne correspond.</div></div>'
-          : '<div class="notes-vide"><div class="notes-vide-t">Rien encore</div>'
-            + '<div class="notes-vide-p">Ouvrez un chapitre, s\u00e9lectionnez un verset, puis \u00e9crivez. Vos notes et vos surlignages se rassemblent ici.</div></div>';
+          : surlSuivent
+            ? '<div class="notes-vide notes-vide-min"><div class="notes-vide-p">Aucune note pour l’instant. Vos surlignages sont rassemblés plus bas.</div></div>'
+            : '<div class="notes-vide"><div class="notes-vide-t">Rien encore</div>'
+              + '<div class="notes-vide-p">Ouvrez un chapitre, s\u00e9lectionnez un verset, puis \u00e9crivez. Vos notes et vos surlignages se rassemblent ici.</div></div>';
       }
     }
     if (corps) h += '<div class="nz-liste">' + corps + '</div>';
