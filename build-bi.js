@@ -803,6 +803,229 @@ if (fs.existsSync('bible.html')) {
   }
   console.log('Copié : memoriser-sw.js + manifests + icônes');
   // Chaque Bible est UN fichier source que le build redécoupe en un fichier
+
+/* ════════ MISE EN PAGE POÉTIQUE ════════
+   Une Bible imprimée ne coule pas les psaumes et les proverbes en un seul
+   pavé : chaque verset y tient sa ligne, et la seconde moitié du verset,
+   celle qui répond à la première, est mise en retrait. C'est le balancement
+   de la poésie hébraïque, et c'est ce qui rend ces livres lisibles.
+   Ici, la décision est prise À LA FABRICATION : le texte source n'est jamais
+   modifié, on lui ajoute seulement deux indications par verset :
+     p = 1        ce verset se lit en vers, donc en bloc à lui seul
+     c = [i, …]   les endroits où couper : chaque i est l'indice de l'ESPACE
+                  qui termine une ligne. L'espace reste dans la ligne qu'il
+                  termine, si bien que la suite des caractères affichés est
+                  rigoureusement celle du verset : les surlignages de
+                  fragments, qui travaillent sur des positions, ne bougent pas.
+   Ne jamais transformer c en un tableau de textes déjà découpés : ce sont les
+   positions qui garantissent que rien ne se décale. */
+
+/* Qui est en vers. true = le livre entier. Sinon une liste d'étendues
+   [chapitre de départ, verset, chapitre d'arrivée, verset]. POESIE_SAUF
+   retire des étendues d'un livre déclaré entièrement poétique : ce sont les
+   pages de récit enchâssées dans un livre de poèmes. */
+const POESIE = {
+  /* Les livres poétiques et sapientiaux */
+  'psaumes': true,
+  'proverbes': true,
+  'cantique-des-cantiques': true,
+  'ecclesiaste': true,
+  'sagesse': true,
+  'ecclesiastique': true,                      // le Siracide
+  'job': [[3, 1, 42, 6]],                      // le prologue et l'épilogue sont un récit
+
+  /* Les poèmes enchâssés dans les livres du récit */
+  'genese': [[3, 14, 3, 19], [4, 23, 4, 24], [9, 25, 9, 27], [25, 23, 25, 23],
+             [27, 27, 27, 29], [27, 39, 27, 40], [49, 2, 49, 27]],  // sentence d'Éden, chant de Lamek, bénédictions
+  'exode': [[15, 1, 15, 18], [15, 21, 15, 21]],                  // cantique de Moïse, chant de Miryam
+  'nombres': [[6, 24, 6, 26], [10, 35, 10, 36], [21, 17, 21, 18], [21, 27, 21, 30],
+              [23, 7, 23, 10], [23, 18, 23, 24], [24, 3, 24, 9], [24, 15, 24, 24]],  // bénédiction sacerdotale, oracles de Balaam
+  'deuteronome': [[32, 1, 32, 43], [33, 2, 33, 29]],             // cantique et bénédictions
+  'josue': [[10, 12, 10, 13]],
+  'juges': [[5, 2, 5, 31], [14, 18, 14, 18], [15, 16, 15, 16]],  // cantique de Débora, devinettes de Samson
+  'ruth': [[1, 16, 1, 17]],                                      // « où tu iras j'irai »
+  '1-samuel': [[2, 1, 2, 10], [15, 22, 15, 23]],                 // cantique d'Anne
+  '2-samuel': [[1, 19, 1, 27], [22, 2, 22, 51], [23, 1, 23, 7]], // élégie sur Saül, psaume de David
+  '1-rois': [[8, 12, 8, 13], [12, 16, 12, 16]],
+  '2-rois': [[19, 21, 19, 34]],                                  // l'oracle d'Isaïe sur Sennachérib
+  '1-chroniques': [[16, 8, 16, 36]],
+  'tobie': [[13, 1, 13, 18]],
+  'judith': [[16, 1, 16, 17]],
+  /* Le premier livre des Maccabées est un récit, mais il s'interrompt cinq
+     fois pour chanter : deux complaintes sur Jérusalem, la lamentation de
+     Mattathias, l'éloge de Judas et celui de Simon. */
+  '1-maccabees': [[1, 25, 1, 28], [1, 36, 1, 40], [2, 7, 2, 13], [3, 3, 3, 9],
+                  [3, 45, 3, 45], [14, 4, 14, 15]],
+
+  /* Les prophètes : oracles en vers, récits en prose */
+  'isaie': true,
+  'jeremie': [[2, 1, 6, 30], [8, 4, 10, 25], [12, 1, 13, 27], [14, 1, 15, 21], [17, 1, 17, 18],
+              [18, 13, 18, 17], [20, 7, 20, 18], [22, 6, 23, 40], [25, 30, 25, 38],
+              [30, 1, 31, 40], [46, 1, 51, 58]],
+  'lamentations': true,
+  'baruch': [[3, 9, 5, 9]],
+  'ezechiel': [[19, 1, 19, 14], [26, 17, 26, 18], [27, 3, 27, 36], [28, 12, 28, 19],
+               [30, 2, 30, 19], [31, 2, 31, 18], [32, 2, 32, 32]],
+  'daniel': [[2, 20, 2, 23], [3, 52, 3, 90], [4, 31, 4, 32], [6, 27, 6, 28],
+             [7, 9, 7, 10], [7, 13, 7, 14]],                     // cantique des trois jeunes gens, visions
+  'osee': [[2, 1, 2, 25], [4, 1, 14, 10]],
+  'joel': true,
+  'amos': true,
+  'abdias': true,
+  'jonas': [[2, 3, 2, 10]],                                      // le psaume dans le poisson
+  'michee': true,
+  'nahum': true,
+  'habacuc': true,
+  'sophonie': true,
+  'zacharie': [[9, 1, 11, 3], [13, 7, 13, 9]],
+
+  /* Le Nouveau Testament : béatitudes, cantiques et hymnes */
+  'matthieu': [[5, 3, 5, 12]],
+  'luc': [[1, 46, 1, 55], [1, 68, 1, 79], [2, 14, 2, 14], [2, 29, 2, 32]],  // Magnificat, Benedictus, Gloria, Nunc dimittis
+  'jean': [[1, 1, 1, 18]],                                       // le prologue
+  'romains': [[11, 33, 11, 36]],
+  '1-corinthiens': [[13, 1, 13, 13]],                            // l'hymne à la charité
+  'philippiens': [[2, 6, 2, 11]],
+  'colossiens': [[1, 15, 1, 20]],
+  'ephesiens': [[1, 3, 1, 14]],                                  // la bénédiction inaugurale
+  '1-pierre': [[2, 21, 2, 25]],                                  // le serviteur souffrant
+  '1-timothee': [[3, 16, 3, 16]],
+  '2-timothee': [[2, 11, 2, 13]],
+  'apocalypse': [[4, 11, 4, 11], [5, 9, 5, 13], [7, 15, 7, 17], [11, 17, 11, 18],
+                 [12, 10, 12, 12], [15, 3, 15, 4], [19, 1, 19, 8]]
+};
+const POESIE_SAUF = {
+  /* Isaïe : les chapitres de récit autour d'Ézéchias, et le cantique qu'ils
+     enferment reste, lui, en vers (38, 9-20). */
+  'isaie': [[7, 1, 7, 9], [20, 1, 20, 6], [36, 1, 38, 8], [38, 21, 39, 8]],
+  'amos': [[7, 10, 7, 17]]                                       // Amos devant Amasias
+};
+
+/* ── DEUX RÉGIMES DE POÉSIE, ET ILS NE SE LISENT PAS PAREIL ──
+   Une SENTENCE est un dicton qui se suffit à lui-même : le proverbe d'à côté
+   ne le continue pas, il en dit un autre. Chacun doit donc être posé seul,
+   entouré d'air, comme une perle sur un fil.
+   Un POÈME SUIVI est tout le contraire : les versets s'enchaînent, un psaume
+   ou un oracle est UNE seule coulée. Les espacer largement le hacherait en
+   morceaux qui n'existent pas. Ses lignes se serrent, et l'air ne revient
+   qu'aux titres de section, qui marquent les vraies articulations.
+   Tout ce qui n'est pas listé ici est un poème suivi. */
+const SENTENCES = {
+  /* Les deux grands recueils de dictons de Salomon. Les chapitres 1 à 9 en
+     sont exclus : ce sont des discours suivis, pas des dictons. De même
+     30 (les nombres d'Agour) et 31 (la femme vaillante, acrostiche). */
+  'proverbes': [[10, 1, 22, 16], [25, 1, 29, 27]],
+  /* Le Siracide est un livre de sentences, sauf ses grands poèmes : l'éloge
+     de la Sagesse, celui de la création, celui des Pères, et la prière
+     finale. */
+  'ecclesiastique': [[1, 1, 23, 27], [25, 1, 42, 14]]
+};
+function estSentence(slug, ch, v) {
+  const t = SENTENCES[slug];
+  return !!t && t.some(e => dansEtendue(e, ch, v));
+}
+
+const dansEtendue = (et, ch, v) => {
+  const [c1, v1, c2, v2] = et;
+  if (ch < c1 || ch > c2) return false;
+  if (ch === c1 && v < v1) return false;
+  if (ch === c2 && v > v2) return false;
+  return true;
+};
+function estPoetique(slug, ch, v) {
+  const p = POESIE[slug];
+  if (!p) return false;
+  const sauf = POESIE_SAUF[slug];
+  if (sauf && sauf.some(e => dansEtendue(e, ch, v))) return false;
+  if (p === true) return true;
+  return p.some(e => dansEtendue(e, ch, v));
+}
+
+/* Où couper. On préfère la ponctuation la plus forte, et parmi elles celle
+   qui tombe le plus près du milieu : c'est presque toujours la charnière du
+   verset. Aucune ligne ne descend sous vingt-quatre caractères, pour ne pas
+   laisser un lambeau tout seul. */
+const POIDS = { ';': 3, ':': 2.5, '!': 2.2, '?': 2.2, '.': 2, ',': 1 };
+function coupesVerset(t) {
+  const n = t.length;
+  if (n < 70) return null;
+  const cand = [];
+  const re = /[;:!?.,]\s/g;
+  let m;
+  while ((m = re.exec(t))) {
+    const k = m.index + 1;                       // l'indice de l'espace
+    if (k > 0 && k < n - 1) cand.push([k, POIDS[t[m.index]]]);
+  }
+  if (!cand.length) return null;
+  const choisit = (a, b) => {
+    const L = b - a;
+    if (L < 70) return null;
+    const ok = cand.filter(([k]) => k >= a + 24 && k <= b - 24);
+    if (!ok.length) return null;
+    const wmax = Math.max(...ok.map(x => x[1]));
+    const forts = ok.filter(x => x[1] === wmax);
+    let best = forts[0], d = Infinity;
+    for (const f of forts) {
+      const e = Math.abs((f[0] - a) / L - 0.5);
+      if (e < d) { d = e; best = f; }
+    }
+    return best[0];
+  };
+  const c1 = choisit(0, n);
+  if (c1 === null) return null;
+  const out = [c1];
+  /* une troisième ligne quand une moitié reste trop longue pour l'œil */
+  for (const [a, b] of [[0, c1 + 1], [c1 + 1, n]]) {
+    if (b - a > 92) { const k = choisit(a, b); if (k !== null) out.push(k); }
+  }
+  return out.sort((x, y) => x - y);
+}
+/* ── LES PARAGRAPHES DE LA PROSE ──
+   Un chapitre de récit coulé d'un seul tenant est une muraille. On le
+   respire en paragraphes, sans jamais rien affirmer sur le sens : la coupure
+   ne tombe QU'APRÈS UNE PHRASE ACHEVÉE, et seulement quand le paragraphe a
+   déjà de quoi tenir debout. Un verset qui ouvre un paragraphe porte br = 1.
+   Un titre de section ouvre toujours un paragraphe, c'est le lecteur qui le
+   voit, pas la donnée. */
+/* Les paragraphes de prose : adoptés par Emmanuel le 26/08 après l'exemple
+   de Genèse 1. L'interrupteur reste, il n'est plus qu'un témoin. */
+const PARAGRAPHES = true;
+const FIN_PHRASE = /[.!?…][»"'\u2019\u201d\)\]]*\s*$/;
+function poseParagraphes(ch) {
+  if (!PARAGRAPHES) return 0;
+  let nb = 0, depuis = 0, signes = 0;
+  const t = ch.titres ? ch.titres.reduce((m, x) => (x && x.titre && (m[x.v] = 1), m), {}) : {};
+  for (const v of ch.versets) {
+    if (v.p) { depuis = 0; signes = 0; continue; }   // les vers ne se groupent pas
+    if (t[v.v]) { depuis = 0; signes = 0; }          // un titre ouvre déjà un paragraphe
+    depuis++; signes += v.t.length;
+    const acheve = FIN_PHRASE.test(v.t);
+    const assez = depuis >= 3 && signes >= 420;
+    const trop = depuis >= 7 || signes >= 900;
+    if (acheve && (assez || trop)) { v.fin = 1; depuis = 0; signes = 0; nb++; }
+  }
+  /* fin = 1 marque le DERNIER verset d'un paragraphe : c'est plus sûr que de
+     marquer le premier, car le rendu ferme alors le paragraphe et en rouvre
+     un seulement s'il reste quelque chose. */
+  return nb;
+}
+function posePoesie(livre) {
+  let nb = 0;
+  for (const ch of livre.chapitres) {
+    if (POESIE[livre.slug]) {
+      for (const v of ch.versets) {
+        if (!estPoetique(livre.slug, ch.n, v.v)) continue;
+        v.p = 1; nb++;
+        if (estSentence(livre.slug, ch.n, v.v)) v.s = 1;
+        const c = coupesVerset(v.t);
+        if (c) v.c = c;
+      }
+    }
+    poseParagraphes(ch);
+  }
+  return nb;
+}
+
   // par livre + un index : FR (Crampon) → /bible-data/, EN (Douay-Rheims) → /bible-data-en/.
   const decoupeBible = (src, dossier) => {
     if (!fs.existsSync(src)) return false;
@@ -810,11 +1033,13 @@ if (fs.existsSync('bible.html')) {
     const bible = JSON.parse(fs.readFileSync(src, 'utf8'));
     fs.writeFileSync(`${OUT}/${dossier}/index.json`, JSON.stringify({ livres: bible.livres, groupes: bible.groupes }));
     let nb = 0;
+    let poe = 0;
     for (const livre of bible.data) {
+      poe += posePoesie(livre);
       fs.writeFileSync(`${OUT}/${dossier}/${livre.slug}.json`, JSON.stringify(livre));
       nb++;
     }
-    console.log('Bible (' + dossier + ') : ' + nb + ' livres + index');
+    console.log('Bible (' + dossier + ') : ' + nb + ' livres + index, ' + poe + ' versets en vers');
     return true;
   };
   if (!decoupeBible('content/bible.json', 'bible-data')) if (fs.existsSync('content/bible')) {

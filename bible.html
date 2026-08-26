@@ -142,9 +142,56 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .ch-sect:first-child{margin-top:4px}
 .ch-psaume-titre{font-style:italic;color:var(--pa);text-align:center;margin-top:22px;font-size:19px}
 .ch-sep{width:44px;height:1px;background:linear-gradient(90deg,transparent,var(--filet-f),transparent);margin:30px auto 34px}
-.ch-texte{text-align:justify;hyphens:auto;line-height:1.74}
+/* L'INTERLIGNE EST CELUI D'UN BLOC, PAS D'UNE LISTE DE LIGNES (Emmanuel,
+   26/08 : « trop d'espace haut et en bas alors que c'est dans le même
+   bloc »). Les lignes d'un même paragraphe se tiennent : c'est le blanc
+   ENTRE les paragraphes qui doit se voir, pas celui entre deux lignes.
+   POURQUOI LA PROSE N'EST PAS AUSSI SERRÉE QUE LES VERS : ce n'est pas un
+   oubli. Une ligne de vers fait une trentaine de signes, l'œil retrouve le
+   début de la suivante sans effort. Une ligne de prose en fait
+   soixante-seize sur un écran large : trop serrée, le regard qui revient à
+   gauche retombe sur la ligne qu'il vient de lire. L'interligne suit donc la
+   LARGEUR DE LA COLONNE, comme en typographie : large sur un écran d'ordi,
+   resserré sur un téléphone où la ligne ne fait plus que trente-cinq signes
+   et rejoint alors celui des vers. */
+.ch-texte{text-align:justify;hyphens:auto;line-height:1.38}
+@media(max-width:600px){.ch-texte{line-height:1.3}}
+/* Le paragraphe respire des deux côtés : un poème enchâssé dans le récit
+   (le Gloria au milieu de Luc 2) doit être aussi dégagé au-dessous qu'au-dessus. */
+.ch-texte .par{margin:1.25em 0}
+.ch-texte .par:first-child{margin-top:0}
+.ch-texte .par:last-child{margin-bottom:0}
 .ch-texte sup.vn{font-family:var(--serif);font-size:12.5px;color:var(--or);line-height:0;margin-right:5px;letter-spacing:0}
 .vst{scroll-margin-top:160px;cursor:pointer;transition:background .3s,box-shadow .3s;-webkit-tap-highlight-color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* ── LES VERS ──
+   Un verset de psaume, de proverbe ou d'oracle ne se coule pas dans le
+   paragraphe : il tient sa ligne, comme dans une Bible imprimée, et les
+   versets respirent entre eux. Rien n'est justifié : la poésie se lit au fil
+   du souffle, pas au cordeau.
+   AUCUN DÉCALAGE ENTRE LES LIGNES (Emmanuel, 26/08 : « arrête tout simplement
+   cette espèce de décalage bizarre »). Toutes les lignes d'un verset partent
+   du même bord ; seul le NUMÉRO pend dans la marge, en avant de ce bord, ce
+   qui aligne le premier mot de la première ligne sur celui des suivantes. Ne
+   pas remettre de retrait sur la seconde moitié du verset. */
+/* DEUX RÉGIMES. Un poème suivi (psaume, oracle, discours de Job) est UNE
+   coulée : ses lignes se serrent, et l'air ne revient qu'aux titres de
+   section. Une sentence (un proverbe, une maxime du Siracide) se suffit à
+   elle-même : elle est posée seule, entourée d'air. */
+/* L'AIR EST ENTRE LES VERSETS, PAS ENTRE LES LIGNES D'UN MÊME VERSET
+   (Emmanuel, 26/08). Les lignes d'un verset se tiennent serrées : elles ne
+   font qu'une phrase, coupée pour l'œil. C'est le blanc AUTOUR du verset qui
+   dit où il commence et où il finit. Interligne de prose : 1.74 ; interligne
+   d'un verset : 1.42. Ne pas revenir à un interligne large ici, sinon un
+   simple passage à la ligne se confond avec un changement de verset. */
+.vst.po{display:block;position:relative;text-align:left;hyphens:none;line-height:1.34;margin:.7em 0;padding-left:2.2em}
+.vst.po.sent{margin:1.25em 0}
+.vst.po .li{display:block;position:relative}
+/* Le numéro sort du flux et va se poser dans la marge : sans cela il
+   pousserait la première ligne vers la droite et elle ne s'alignerait plus
+   sur les suivantes. Il s'accroche à SA ligne, pas au verset entier, sinon
+   il flotterait au-dessus du texte. */
+.vst.po .vn{position:absolute;left:-2.2em;top:.42em;margin-right:0;line-height:1}
+@media(max-width:600px){.vst.po{margin:.62em 0;padding-left:1.7em}.vst.po.sent{margin:1.1em 0}.vst.po .vn{left:-1.7em}}
 @media(hover:hover){.vst:hover{background:var(--surv);box-shadow:0 0 0 5px var(--surv)}}
 #sb-cercle{width:26px;height:22px;padding:1px;background:#0a0a0a;border:1px solid rgba(255,255,255,.25);cursor:pointer}
 .sb-surl{display:none;align-items:center;gap:10px;padding:8px 0 2px;flex-wrap:wrap}
@@ -1332,29 +1379,65 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
     if (!ch) return null;
     var m = {}; ch.versets.forEach(function(v){ m[v.v] = v.t; }); return m;
   }
+  function verseCutMap(){
+    var ctx = ctxCourant(); if (!ctx) return {};
+    var d = CACHE[ctx.slug]; if (!d) return {};
+    var ch = null;
+    for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === ctx.ch) { ch = d.chapitres[i]; break; }
+    if (!ch) return {};
+    var m = {}; ch.versets.forEach(function(v){ if (v.c) m[v.v] = v.c; }); return m;
+  }
   function fragStyle(hex){
     return 'background:' + surlRgba(hex, .42) + ';box-shadow:inset 0 -0.5px 0 ' + surlRgba(hex, .7);
   }
-  function fragHTML(text, frags, meta){
-    var l = frags.slice().sort(function(a, b){ return a.a - b.a; });
-    var out = '', pos = 0;
-    l.forEach(function(f){
-      if (f.a > pos) out += esc(text.slice(pos, f.a));
-      out += '<span class="lv-frag" data-fa="' + f.a + '" data-fb="' + f.b + '" style="' + fragStyle(f.hex) + '">' + esc(text.slice(f.a, f.b)) + '</span>';
-      pos = f.b;
+  /* La portion [a, b) du verset, avec les surlignages qui la traversent.
+     Un surlignage coupé par un passage à la ligne donne deux morceaux qui
+     gardent tous deux les bornes du surlignage entier : cliquer sur l'un ou
+     sur l'autre rouvre bien la même portion. */
+  function fragLigne(text, frags, a, b){
+    var out = '', pos = a;
+    (frags || []).slice().sort(function(x, y){ return x.a - y.a; }).forEach(function(f){
+      var fa = Math.max(f.a, a), fb = Math.min(f.b, b);
+      if (fb <= fa) return;
+      if (fa > pos) out += esc(text.slice(pos, fa));
+      out += '<span class="lv-frag" data-fa="' + f.a + '" data-fb="' + f.b + '" style="' + fragStyle(f.hex) + '">' + esc(text.slice(fa, fb)) + '</span>';
+      pos = fb;
     });
-    out += esc(text.slice(pos));
+    out += esc(text.slice(pos, b));
+    return out;
+  }
+  /* Le contenu d'un verset, posé au premier dessin comme après chaque
+     surlignage : une seule fonction, sinon les vers disparaîtraient au
+     premier repeint. Les coupures sont des POSITIONS : l'espace qui termine
+     une ligne reste dans cette ligne, donc la suite des caractères affichés
+     est exactement celle du verset et aucune position ne se décale. */
+  function corpsVerset(v, text, frags, coupes, vers){
+    var sup = '<sup class="vn">' + v + '</sup>';
+    /* La prose reste un flux : aucun bloc, le verset se coule dans le
+       paragraphe. Les vers, eux, passent toujours par une ligne, même quand
+       ils n'ont pas été coupés : c'est ce qui aligne leur premier mot sur
+       celui des versets coupés. */
+    if (!vers) return sup + fragLigne(text, frags, 0, text.length);
+    if (!coupes || !coupes.length) return '<span class="li">' + sup + fragLigne(text, frags, 0, text.length) + '</span>';
+    var bornes = [0];
+    coupes.forEach(function(k){ if (k + 1 > bornes[bornes.length - 1] && k + 1 < text.length) bornes.push(k + 1); });
+    bornes.push(text.length);
+    var out = '';
+    for (var i = 0; i < bornes.length - 1; i++) {
+      out += '<span class="li' + (i ? ' in' : '') + '">' + (i ? '' : sup)
+           + fragLigne(text, frags, bornes[i], bornes[i + 1]) + '</span>';
+    }
     return out;
   }
   function marqueSurlF(){
     var ctx = ctxCourant(); if (!ctx) return;
     var vm = verseTextMap(); if (!vm) return;
+    var cm = verseCutMap();
     document.querySelectorAll('.ch-texte .vst').forEach(function(sp){
       var v = parseInt(sp.id.replace('va-', ''), 10);
       var txt = vm[v]; if (txt == null) return;
       var key = ctx.slug + '|' + ctx.ch + '|' + v;
-      var frags = SURLF[key];
-      var inner = '<sup class="vn">' + v + '</sup>' + ((frags && frags.length) ? fragHTML(txt, frags) : esc(txt));
+      var inner = corpsVerset(v, txt, SURLF[key], cm[v], sp.classList.contains('po'));
       if (sp.innerHTML !== inner) sp.innerHTML = inner;
     });
   }
@@ -2012,10 +2095,22 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
       h += '<div class="ch-sep"></div><div class="ch-texte">';
       var secT = {};
       if (ch.titres) ch.titres.forEach(function(t){ if (t && t.titre) secT[t.v] = t.titre; });
+      /* La prose se lit en paragraphes, les vers en lignes : on ouvre un
+         paragraphe pour la première et on le referme avant les seconds. */
+      var ouvert = false;
+      var ferme = function(){ if (ouvert) { h += '</p>'; ouvert = false; } };
       ch.versets.forEach(function(v){
-        if (secT[v.v]) h += '<div class="ch-sect">' + esc(secT[v.v]) + '</div>';
-        h += '<span class="vst" id="va-' + v.v + '"><sup class="vn">' + v.v + '</sup>' + esc(v.t) + '</span> ';
+        if (secT[v.v]) { ferme(); h += '<div class="ch-sect">' + esc(secT[v.v]) + '</div>'; }
+        if (v.p) {
+          ferme();
+          h += '<span class="vst po' + (v.s ? ' sent' : '') + '" id="va-' + v.v + '">' + corpsVerset(v.v, v.t, null, v.c, true) + '</span>';
+          return;
+        }
+        if (!ouvert) { h += '<p class="par">'; ouvert = true; }
+        h += '<span class="vst" id="va-' + v.v + '">' + corpsVerset(v.v, v.t, null, null, false) + '</span> ';
+        if (v.fin) ferme();
       });
+      ferme();
       h += '</div><div class="ch-nav">';
       h += (n > 1)
         ? '<a href="#' + slug + '/' + (n - 1) + '">\u2190 ' + (ps ? 'Psaume ' + (n - 1) : 'Chapitre ' + (n - 1)) + '</a>'

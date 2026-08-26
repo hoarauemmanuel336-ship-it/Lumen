@@ -1,0 +1,6 @@
+# Le dossier « site » est FABRIQUÉ, il n'a pas sa place dans le dépôt.
+# Netlify lance « node build-bi.js » à chaque publication et le reconstruit
+# de zéro (build-bi.js efface le dossier avant de le réécrire). Le garder
+# ici ne servirait qu'à ajouter quatre-vingt-seize fichiers à téléverser.
+site/
+node_modules/

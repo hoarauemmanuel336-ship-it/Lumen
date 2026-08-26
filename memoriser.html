@@ -139,7 +139,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .vline:hover .vtext{color:var(--pa)}
 .vref{flex-shrink:0;font-family:var(--display);font-size:15px;color:var(--or);width:124px}
 .vtext{flex:1;font-size:15px;color:var(--pa);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .25s}
-.markglobal{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 2px 16px;margin-bottom:4px;border-bottom:1px solid var(--filet);font-size:13px;letter-spacing:.04em;color:var(--pa2)}
 .lvl{display:flex;gap:8px;flex-shrink:0}
 .dot{width:13px;height:13px;border-radius:50%;cursor:default;pointer-events:none;opacity:.22;transition:opacity .25s,box-shadow .25s;position:relative}
 .dot.r{background:var(--rouge)}.dot.a{background:var(--ambre)}.dot.v{background:var(--vert)}
@@ -246,11 +245,8 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 #sel-all{cursor:pointer}
 .mini-act{cursor:pointer}
 @media(max-width:600px){.cat-pct{min-width:38px;font-size:12px}}
-.mg-acts{display:flex;align-items:center;gap:16px}
 .m-reset{margin-right:auto;font-family:var(--display);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--pa);transition:color .3s}
 .m-reset:hover{color:var(--or)}
-.bh-cats{border-bottom:none;padding-bottom:0;margin-bottom:10px}
-.markglobal{padding-bottom:14px;margin-bottom:0}
 
 
 /* ═══ EN-TÊTE ALIGNÉ SUR L'ACCUEIL ═══ */
@@ -353,9 +349,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 
 /* ═══ CORRECTION MOBILE CATÉGORIES / VERSETS / MODALES ═══ */
 @media(max-width:720px){
-  .markglobal{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px 12px;font-size:13px;line-height:1.35}
-  .markglobal .mg-acts{display:flex;align-items:center;gap:14px;justify-content:flex-end;min-width:0}
-  .markglobal #bulk-restore{white-space:nowrap}
   .cat-row{display:grid;grid-template-columns:18px minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:17px 2px}
   .cat-dist,.cat-pct{display:none!important}
   .cat-check::before,.v-check::before{content:'';position:absolute;inset:-12px}
@@ -569,10 +562,6 @@ if(app&&sc&&!app.classList.contains('on')&&getComputedStyle(sc).display==='none'
     <section id="setup">
       <div class="block">
         <div class="block-head bh-cats" style="display:flex;align-items:center;justify-content:space-between;gap:14px"><span class="lbl" id="lbl-cats">Catégories &amp; mémoire</span><span class="mini-act" id="sel-all"></span></div>
-        <div class="markglobal">
-          <span id="lbl-markglobal">Catégories de base cochées</span>
-          <span class="mg-acts"><span class="mini-act" id="bulk-restore"></span></span>
-        </div>
         <div id="cat-list"></div>
         <button class="ghost-btn" id="cat-more" style="display:none"></button>
         <div class="cat-acts">
@@ -718,8 +707,7 @@ const T={
     cats:'Catégories & mémoire', newcat:'Nouvelle catégorie',
     start:'Commencer', reset:'Réinitialiser toute la mémoire',
     reset_q:'Réinitialiser toute la mémoire ? Tous les niveaux reviennent au rouge. Action irréversible.',
-    markglobal:'Catégories de base cochées', bulk_restore:'Réinitialiser', reset_verse:'Réinitialiser ce verset',
-    bulk_restore_q:'Réinitialiser les versets et références des %n% catégorie(s) de base cochée(s) à leur état d\u2019origine ? Tes modifications seront perdues.',
+    reset_verse:'Réinitialiser ce verset',
     find_ref:'Quelle est la référence ?', find_verse:'Quel est le verset ?',
     answered:'répondues', correct:'justes', finish:'Terminer',
     done:'Session terminée', of:'sur', acquired:'versets acquis',
@@ -1088,7 +1076,6 @@ function applyLang(){
   if($('macct-tog'))$('macct-tog').textContent=(S.lang==='fr')?'Onglet Bible \u00e0 gauche':'Bible tab on the left';
   $('lbl-cats').textContent=tl.cats; $('lbl-newcat').textContent=tl.newcat; $('lbl-newsec').textContent=tl.sec_new;
   $('start-btn').textContent=tl.start; $('reset-btn').textContent=tl.reset; $('finish-btn').textContent=tl.finish;
-  $('lbl-markglobal').textContent=tl.markglobal; $('bulk-restore').textContent=tl.bulk_restore;
   $('sum-back').textContent=tl.backbtn;
 }
 function showView(v){
@@ -1662,21 +1649,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     const rst=e.target.closest('[data-trestore]'); if(rst){restoreTrash(rst.dataset.trestore);return;}
     const tdl=e.target.closest('[data-tdel]'); if(tdl){deleteTrashPerm(tdl.dataset.tdel);return;}
     if(e.target.closest('#trash-empty')){emptyTrash();return;}
-  });
-  // marquage global : toutes les catégories sélectionnées
-  document.querySelector('.markglobal').addEventListener('click',async e=>{
-    const rb=e.target.closest('#bulk-restore');
-    if(rb){
-      /* le libellé dit « catégories de base cochées » : on s'y tient */
-      const sel=effectiveCats().filter(c=>c.verses.length&&c.verses.every(v=>!S.offV[v.id]));
-      const baseSel=sel.filter(c=>isBase(c.id));
-      if(!baseSel.length){lvInfo('Aucune catégorie de base n’est cochée.');return;}
-      if(!baseSel.length)return;
-      if(!await lvConfirm(t('bulk_restore_q').replace('%n%',baseSel.length)))return;
-      baseSel.forEach(c=>{delete S.baseEdits[c.id];}); saveBaseEdits();
-      S.trash=S.trash.filter(x=>!(x.origin==='base'&&baseSel.some(c=>c.id===x.catId))); saveTrash();
-      renderCats(); return;
-    }
   });
   // clavier 1-4 pendant l'étude
   document.addEventListener('keydown',e=>{
