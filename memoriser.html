@@ -848,14 +848,49 @@ const vuLe=id=>{const p=S.progress[id];if(!p||!p.t)return 0;const t=Date.parse(p
 function isDue(id){const p=S.progress[id];if(!p||!p.n)return true;const t=Date.parse(p.n);if(isNaN(t))return true;const ms=maintenant();return t<=ms||t-ms>HORIZON;}
 // tenu à l'écart pour quelques versets, dans la séance en cours seulement
 function retenu(id){const p=S.progress[id];return !!(p&&p.s&&S.step<p.s);}
-function levelOf(id){const b=boxOf(id);return b<=1?'r':b<=3?'a':'v';}     // rouge / ambre / vert
+/* ── CE QUE VAUT LE SOUVENIR AUJOURD'HUI ──
+   La boîte dit jusqu'où un verset est MONTÉ ; elle ne dit pas où il en est
+   maintenant. Un verset acquis l'an dernier et jamais revu depuis n'est plus
+   acquis, et l'afficher en vert est un mensonge : le tableau annoncerait une
+   mémoire qu'on n'a plus. Le NIVEAU EFFECTIF retire donc un cran par délai
+   entier de retard. Un verset fragile (délai de trois jours) redescend en
+   quelques jours ; un verset solide (délai de trente-cinq jours) met des mois
+   à pâlir. C'est la courbe de l'oubli : on perd vite ce qu'on savait mal.
+   La boîte enregistrée, elle, N'EST PAS TOUCHÉE : le retard n'efface pas le
+   travail fait, il le met en veille, et une seule bonne réponse le réveille. */
+function niveauEffectif(id){
+  const b=boxOf(id); if(!b)return 0;
+  const p=S.progress[id]; if(!p||!p.n)return b;
+  const t=Date.parse(p.n); if(isNaN(t))return b;
+  const retard=maintenant()-t; if(retard<=0)return b;
+  const delai=Math.max(JOUR,(JOURS[Math.min(5,Math.max(0,b))]||1)*JOUR);
+  return Math.max(0,b-Math.floor(retard/delai));
+}
+function levelOf(id){const b=niveauEffectif(id);return b<=1?'r':b<=3?'a':'v';}     // rouge / ambre / vert
 function answer(id,ok){
   const p=S.progress[id]||{box:0};
   p.box=Math.max(0,Math.min(5,+p.box||0));   // une donnée abîmée ne fige plus la séance
   p.v=(p.v||0)+1;   // compteur d'expositions : ne s'efface jamais, sert au tirage équitable
   const ms=maintenant();
-  if(ok){ p.box=Math.min(5,p.box+1); p.n=new Date(ms+JOURS[p.box]*JOUR).toISOString(); delete p.s; }
-  else  { p.box=Math.max(0,p.box-2); p.n=new Date(ms).toISOString(); p.s=S.step+3; }   // erreur : on redescend de 2, on revoit dans la séance
+  /* ON NE MONTE QUE SI LE VERSET ÉTAIT MÛR.
+     Se souvenir d'un verset revu il y a trois minutes ne prouve rien : c'est
+     la mémoire courte qui répond, pas la mémoire. Le niveau (et donc la
+     couleur) ne récompense donc que le souvenir qui a traversé le DÉLAI de sa
+     boîte. Sans ce verrou, quatre bonnes réponses d'affilée dans la même
+     séance faisaient passer un verset au vert, et cent réponses suffisaient à
+     faire virer au vert les vingt-quatre versets d'une mémoire : le tableau
+     annonçait une mémoire acquise en une soirée. Une séance qui continue
+     au-delà des versets mûrs reste un exercice utile, mais elle n'avance plus
+     les niveaux. L'ERREUR, ELLE, COMPTE TOUJOURS : se tromper est une
+     information vraie, mûr ou pas. */
+  const mur=isDue(id);
+  /* On repart du NIVEAU EFFECTIF, pas de la boîte enregistrée : ce que
+     l'affichage montre est exactement ce dont l'algorithme part. Un verset
+     laissé de côté six mois ne remonte donc pas au vert d'une seule bonne
+     réponse, il se réapprend cran par cran. */
+  const eff=niveauEffectif(id);
+  if(ok){ if(mur){ p.box=Math.min(5,eff+1); p.n=new Date(ms+JOURS[p.box]*JOUR).toISOString(); } delete p.s; }
+  else  { p.box=Math.max(0,eff-2); p.n=new Date(ms).toISOString(); p.s=S.step+3; }   // erreur : on redescend de 2, on revoit dans la séance
   p.t=new Date(ms).toISOString();
   delete p.due;     // ancien pas de séance, remplacé par une vraie date
   S.progress[id]=p; S.step++;
@@ -869,12 +904,12 @@ function nextItem(){
   if(due.length){
     /* Des versets sont mûrs : le niveau commande, le compteur départage. */
     due.sort((a,b)=>{
-      const ba=boxOf(a.id),bb=boxOf(b.id);if(ba!==bb)return ba-bb;
+      const ba=niveauEffectif(a.id),bb=niveauEffectif(b.id);if(ba!==bb)return ba-bb;
       const va=vuesOf(a.id),vb=vuesOf(b.id);if(va!==vb)return va-vb;
       return dateOf(a.id)-dateOf(b.id);                               // puis le plus en retard
     });
-    const low=boxOf(due[0].id);
-    const top=due.filter(i=>boxOf(i.id)===low);
+    const low=niveauEffectif(due[0].id);
+    const top=due.filter(i=>niveauEffectif(i.id)===low);
     const vmin=vuesOf(top[0].id);
     const moinsVus=top.filter(i=>vuesOf(i.id)===vmin);
     return moinsVus[0|Math.random()*moinsVus.length];
@@ -991,7 +1026,7 @@ function elementCat(cat){
     actifs.forEach(vv=>{const l=levelOf(vv.id);if(l==='r')r++;else if(l==='a')a++;else v++;});
     const tot=actifs.length||1;
     const dist='<i class="r" style="width:'+(r/tot*100)+'%"></i><i class="a" style="width:'+(a/tot*100)+'%"></i><i class="v" style="width:'+(v/tot*100)+'%"></i>'+(actifs.length?'':'<i class="e" style="width:100%"></i>');
-    let boxsum=0; actifs.forEach(vv=>boxsum+=boxOf(vv.id));
+    let boxsum=0; actifs.forEach(vv=>boxsum+=niveauEffectif(vv.id));   // ce que vaut la mémoire aujourd'hui, pas ce qu'elle a valu
     const pct=actifs.length?Math.round(boxsum/(5*actifs.length)*100):0;
     const pctTxt=S.lang==='fr'?pct+'\u00a0%':pct+'%';
     const div=document.createElement('div');

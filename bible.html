@@ -154,8 +154,15 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    LARGEUR DE LA COLONNE, comme en typographie : large sur un écran d'ordi,
    resserré sur un téléphone où la ligne ne fait plus que trente-cinq signes
    et rejoint alors celui des vers. */
-.ch-texte{text-align:justify;hyphens:auto;line-height:1.38}
-@media(max-width:600px){.ch-texte{line-height:1.3}}
+/* PLUS DE JUSTIFICATION (Emmanuel, 26/08 : « l'espace entre les mots »).
+   Justifier, c'est étirer les blancs entre les mots pour que la ligne
+   atteigne le bord droit : sur une colonne étroite, certaines lignes se
+   retrouvent avec des trous béants et d'autres serrées, et l'œil bute. Au
+   fer à gauche, l'espace entre deux mots est TOUJOURS le même ; c'est le
+   bord droit qui devient irrégulier, et lui ne gêne personne. La coupure des
+   mots reste active pour que ce bord ne parte pas trop loin. */
+.ch-texte{text-align:left;hyphens:auto;line-height:1.08}
+@media(max-width:600px){.ch-texte{line-height:1.08}}
 /* Le paragraphe respire des deux côtés : un poème enchâssé dans le récit
    (le Gloria au milieu de Luc 2) doit être aussi dégagé au-dessous qu'au-dessus. */
 .ch-texte .par{margin:1.25em 0}
@@ -183,7 +190,7 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    dit où il commence et où il finit. Interligne de prose : 1.74 ; interligne
    d'un verset : 1.42. Ne pas revenir à un interligne large ici, sinon un
    simple passage à la ligne se confond avec un changement de verset. */
-.vst.po{display:block;position:relative;text-align:left;hyphens:none;line-height:1.34;margin:.7em 0;padding-left:2.2em}
+.vst.po{display:block;position:relative;text-align:left;hyphens:none;line-height:1.08;margin:.7em 0;padding-left:2.2em}
 .vst.po.sent{margin:1.25em 0}
 .vst.po .li{display:block;position:relative}
 /* Le numéro sort du flux et va se poser dans la marge : sans cela il
