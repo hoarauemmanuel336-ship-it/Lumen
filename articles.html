@@ -49,7 +49,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 @keyframes fade{from{opacity:0}to{opacity:1}}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-.wrap{width:100%;max-width:760px;margin:0 auto;padding:46px 26px 90px;animation:fade .4s ease both}
+.wrap{width:100%;max-width:772px;margin:0 auto;padding:46px 26px 90px;animation:fade .4s ease both}   /* 772 - 2×26 = 720 px de texte, comme la colonne de la Bible */
 .tete{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--filet);margin-bottom:6px}
 .tete h1{font-family:var(--display);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa);font-weight:500}
 .resume{font-size:14px;color:var(--pa2);margin:14px 0 4px}
@@ -118,12 +118,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 /* ═══ ÉDITEUR ═══ */
 #ecran-edit{display:none}
-.ed-titre{width:100%;background:none;border:none;color:var(--parchemin);font-family:var(--display);font-size:38px;line-height:1.22;padding:10px 0 20px;outline:none;resize:none;overflow:hidden;text-align:center}
+.ed-titre{width:100%;background:none;border:none;color:var(--parchemin);font-family:var(--display);font-size:calc(38px*var(--lvz,1));line-height:1.22;padding:10px 0 20px;outline:none;resize:none;overflow:hidden;text-align:center}
 .ed-titre::placeholder{color:rgba(255,255,255,.22)}
 .ed-corps{padding-top:10px}
-.bloc{position:relative;padding:2px 0 2px 34px;margin:0 0 2px}
+/* La poignée qui sert à déplacer un bloc allait jusque-là chercher sa place
+   DANS la colonne : tout l'article s'en trouvait poussé de trente-quatre
+   pixels vers la droite, alors que le titre, lui, restait centré sur la
+   colonne entière. L'article n'était pas d'aplomb. La poignée va maintenant
+   se loger dans la marge, hors du texte ; sous 900 px, où il n'y a plus de
+   marge, elle reprend sa place à l'intérieur. */
+.bloc{position:relative;padding:2px 0;margin:0 0 20px}
 .bloc:focus-within .bl-poignee{opacity:1}
-.bl-poignee{position:absolute;left:0;top:4px;width:26px;text-align:center;font-size:17px;line-height:1.5;color:rgba(255,255,255,.22);opacity:0;transition:opacity .25s,color .25s;cursor:pointer}
+.bl-poignee{position:absolute;left:-34px;top:2px;width:26px;text-align:center;font-size:17px;line-height:1.5;color:rgba(255,255,255,.22);opacity:0;transition:opacity .25s,color .25s;cursor:pointer}
+@media(max-width:900px){.bloc{padding-left:30px}.bl-poignee{left:0}}
 .bloc:hover .bl-poignee{opacity:1}
 .bl-poignee:hover{color:var(--or)}
 .zone{outline:none;min-height:1.6em;word-wrap:break-word}
@@ -132,15 +139,20 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .zone i,.zone em{font-style:italic}
 .zone a{color:var(--or);border-bottom:1px solid rgba(231,224,207,.3)}
 .zone .ref{color:var(--or);cursor:pointer;border-bottom:1px dotted rgba(231,224,207,.4)}
-.b-p .zone{font-size:19px;line-height:1.78;color:rgba(255,255,255,.9)}
-.b-h2 .zone{font-family:var(--display);font-size:27px;line-height:1.3;color:var(--parchemin);margin-top:22px}
-.b-h3 .zone{font-family:var(--display);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);margin-top:20px}
+/* Un article se lit comme la Bible se lit : même taille de texte (20,5 px),
+   même interligne serré (1,08), même largeur de colonne. C'est le blanc
+   ENTRE les blocs qui sépare, pas celui entre les lignes. */
+.b-p .zone{font-size:calc(20.5px*var(--lvz,1));line-height:1.08;color:rgba(255,255,255,.9)}
+.b-h2 .zone{font-family:var(--display);font-size:calc(28px*var(--lvz,1));line-height:1.16;color:var(--parchemin);margin-top:16px}
+.b-h2{margin-top:20px}
+.b-h3 .zone{font-family:var(--display);font-size:calc(15px*var(--lvz,1));letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin-top:12px}
+.b-h3{margin-top:14px}
 /* Citation d'un auteur : romaine et bien lisible, entre guillemets français
    posés par la feuille de style, avec un filet à gauche pour la distinguer
    d'un paragraphe. L'italique à 60 % de blanc, illisible sur un long passage,
    a été abandonné le 22/08. */
-.b-cite{padding-top:24px;padding-bottom:18px}
-.b-cite .zone{font-size:19px;line-height:1.78;color:rgba(255,255,255,.88);padding-left:20px;box-shadow:inset 2px 0 0 var(--filet-fort)}
+.b-cite{padding-top:10px;padding-bottom:6px}
+.b-cite .zone{font-size:calc(20.5px*var(--lvz,1));line-height:1.14;color:rgba(255,255,255,.88);padding-left:20px;box-shadow:inset 2px 0 0 var(--filet-fort)}
 .b-cite .zone::before{content:'«\00a0'}
 .b-cite .zone::after{content:'\00a0»'}
 .b-cite .zone:empty::before{content:attr(data-vide)}
@@ -148,19 +160,23 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 /* Verset : le format du site, texte en italique entre guillemets français,
    référence en gras à la suite, sans parenthèses. Les guillemets viennent de
    la feuille de style : on ne les tape pas, on ne peut pas les effacer. */
-.b-verset{padding-top:10px;padding-bottom:10px}
-.b-verset .v-txt{display:inline;font-style:italic;font-size:19px;line-height:1.8;color:rgba(255,255,255,.92)}
+/* L'interligne doit être posé sur le BLOC, pas seulement sur les morceaux de
+   texte qui sont dedans : une ligne prend la hauteur la plus grande entre
+   celle de son contenu et celle de son conteneur. Réglé sur les seuls
+   .v-txt et .v-ref, le verset restait aéré comme le reste de la page. */
+.b-verset{padding-top:4px;padding-bottom:4px;line-height:1.14}
+.b-verset .v-txt{display:inline;font-style:italic;font-size:calc(20.5px*var(--lvz,1));line-height:1.14;color:rgba(255,255,255,.92)}
 .b-verset .v-txt::before{content:'«\00a0'}
 .b-verset .v-txt::after{content:'\00a0»'}
 .b-verset .v-txt:empty::before{content:attr(data-vide);font-style:normal}
 .b-verset .v-txt:empty::after{content:''}
-.b-verset .v-ref{display:inline;font-weight:700;font-size:19px;line-height:1.8;color:var(--or);margin-left:.32em;white-space:nowrap}
+.b-verset .v-ref{display:inline;font-weight:700;font-size:calc(20.5px*var(--lvz,1));line-height:1.14;color:var(--or);margin-left:.32em;white-space:nowrap}
 .b-verset .v-ref:empty::before{content:attr(data-vide);font-weight:400;white-space:normal}
 /* Image : elle occupe la largeur du texte, sa légende se met dessous. */
 .b-image{padding-top:22px;padding-bottom:16px}
 .b-image figure{margin:0}
 .b-image img{display:block;width:100%;height:auto;background:var(--encre-2)}
-.b-image figcaption{font-size:14.5px;line-height:1.6;color:var(--pa2);margin-top:9px;font-style:italic}
+.b-image figcaption{font-size:calc(15px*var(--lvz,1));line-height:1.2;color:var(--pa2);margin-top:9px;font-style:italic}
 .b-image figcaption:empty::before{font-style:normal}
 .im-place{display:flex;align-items:center;justify-content:center;gap:14px;min-height:120px;box-shadow:inset 0 0 0 1px var(--filet);color:var(--pa2);font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:color .3s,background .3s}
 .im-place:hover{color:var(--or);background:var(--surv)}
@@ -182,7 +198,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .ou-sep{width:1px;height:15px;background:var(--filet-f);flex:none}
 .enr{margin-left:auto;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.28);transition:color .3s}
 .enr.vu{color:var(--pa2)}
-@media(max-width:720px){.outils{gap:16px;font-size:12px}.ed-titre{font-size:30px}.bloc{padding-left:28px}.b-cite{padding-top:20px;padding-bottom:15px}.b-h2 .zone{font-size:23px}.b-p .zone,.b-cite .zone,.b-verset .v-txt,.b-verset .v-ref{font-size:18px}}
+@media(max-width:720px){.outils{gap:16px;font-size:12px}.ed-titre{font-size:calc(30px*var(--lvz,1))}.bloc{padding-left:28px;margin-bottom:17px}.b-cite{padding-top:8px;padding-bottom:5px}.b-h2 .zone{font-size:calc(24px*var(--lvz,1))}.b-p .zone,.b-cite .zone,.b-verset .v-txt,.b-verset .v-ref{font-size:calc(19.5px*var(--lvz,1))}}
 
 /* ═══ MODALES ═══ */
 .overlay{position:fixed;inset:0;z-index:120;background:rgba(4,4,4,.9);display:none;align-items:center;justify-content:center;padding:24px}
@@ -222,6 +238,21 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 .auth-mail{text-align:center;color:var(--pa);font-size:15px;margin-bottom:20px;word-break:break-all}
 .macct-btn{display:block;width:100%;text-align:center;padding:13px 10px;margin-bottom:4px;border:1px solid var(--filet-fort);color:var(--parchemin);font-family:var(--display);font-size:14px;letter-spacing:.18em;text-transform:uppercase;transition:border-color .3s,color .3s,background .3s}
 .macct-btn:hover{border-color:var(--or);color:var(--or-pale);background:var(--surv)}
+/* Le panneau « Mon compte » doit être LE MÊME sur les quatre surfaces. Ces
+   règles sont reprises mot pour mot de bible.html et memoriser.html : si on
+   les retouche ici, il faut les retoucher là-bas aussi. */
+.ttx-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:18px 0 6px;padding-top:18px;border-top:1px solid var(--filet)}
+.ttx-lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.ttx-btns{display:flex;gap:8px}
+.ttx-b{background:none;border:1px solid var(--filet);color:#fff;font-family:var(--display);font-size:14px;min-width:38px;padding:7px 8px;cursor:pointer;transition:border-color .25s,color .25s}
+.ttx-b:hover{border-color:var(--or)}
+.tog-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:14px 0 6px;padding-top:16px;border-top:1px solid var(--filet)}
+.tog-lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.tog-sw{position:relative;width:46px;height:24px;border:1px solid var(--filet-f);background:none;cursor:pointer;flex:none;transition:border-color .25s}
+.tog-sw:hover{border-color:var(--or)}
+.tog-sw::after{content:'';position:absolute;top:50%;left:3px;width:16px;height:16px;background:rgba(255,255,255,.55);transform:translateY(-50%);transition:left .25s,background .25s}
+.tog-sw.on{border-color:var(--or)}
+.tog-sw.on::after{left:25px;background:var(--or)}
 .auth-out{display:block;width:100%;text-align:center;color:rgba(255,255,255,.55);font-family:var(--display);font-size:14px;margin-top:16px;transition:color .25s}
 .auth-out:hover{color:var(--or)}
 </style>
@@ -325,6 +356,8 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
   <div class="auth-t" id="macct-t">Mon compte</div>
   <div class="auth-mail" id="macct-mail"></div>
   <a class="macct-btn" href="/bible.html#notes">Mes notes</a>
+  <div class="ttx-row"><span class="ttx-lab">Taille du texte</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
+  <div class="tog-row"><span class="tog-lab">Onglet Bible à gauche</span><span class="tog-sw" id="tog-bible" role="button" tabindex="0" aria-label="Afficher ou masquer l’onglet Bible"></span></div>
   <button type="button" class="auth-out" id="auth-logout">Déconnexion</button>
 </div></div>
 
@@ -1166,6 +1199,43 @@ auth.onAuthStateChanged(u=>{
   motAccueil();
   if(S.auteur)ecoute(); else{if(COUPE){COUPE();COUPE=null;}rendLister();}
 });
+</script>
+<script>
+/* Réglage de la taille du texte et bascule de l'onglet Bible : MÊME CODE que
+   sur l'accueil, la Bible et Mémoriser. La clé de rangement est distincte
+   entre téléphone et ordinateur, pour qu'un choix fait sur l'un ne s'impose
+   pas à l'autre. */
+(function(){
+  var TZ=[0.85,0.925,1,1.08,1.16,1.25];
+  function tzCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_taille_mobile':'lv_taille_pc';}catch(e){return 'lv_taille_pc';}}
+  function tzLit(){var v=1;try{v=parseFloat(localStorage.getItem(tzCle())||localStorage.getItem('lv_taille'))||1;}catch(e){}return v;}
+  function tzApplique(v){document.documentElement.style.setProperty('--lvz',v);}
+  /* application au chargement : sans elle, la taille choisie ailleurs resterait
+     sans effet sur cette page tant qu'on n'aurait pas retouché A+ ou A−. */
+  tzApplique(tzLit());
+  document.addEventListener('click',function(e){
+    var b=e.target.closest?e.target.closest('.ttx-b'):null;
+    if(!b)return;
+    var d=b.getAttribute('data-ttx'),v=tzLit();
+    if(d==='0')v=1;
+    else{var i=TZ.indexOf(v);if(i<0){i=2;}i+=(d==='1'?1:-1);i=Math.max(0,Math.min(TZ.length-1,i));v=TZ[i];}
+    try{localStorage.setItem(tzCle(),String(v));}catch(e2){}
+    tzApplique(v);
+  });
+})();
+(function(){
+  function obCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_onglet_bible_mobile':'lv_onglet_bible_pc';}catch(e){return 'lv_onglet_bible_pc';}}
+  function obMasque(){try{return localStorage.getItem(obCle())==='0';}catch(e){return false;}}
+  var sw=document.getElementById('tog-bible');
+  function etat(){if(sw)sw.classList.toggle('on',!obMasque());}
+  etat();
+  window.addEventListener('resize',etat);
+  if(sw){
+    var bascule=function(){var m=obMasque();try{localStorage.setItem(obCle(),m?'1':'0');}catch(e){}etat();try{window.dispatchEvent(new Event('resize'));}catch(e2){}};
+    sw.addEventListener('click',bascule);
+    sw.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();bascule();}});
+  }
+})();
 </script>
 </body>
 </html>
