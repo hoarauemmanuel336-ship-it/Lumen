@@ -166,6 +166,8 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .study-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:48px;padding-bottom:14px;border-bottom:1px solid var(--filet)}
 .study-stat{font-size:14px;letter-spacing:.04em;color:var(--pa)}
 .study-stat b{color:var(--or);font-weight:500}
+.study-stat .fini{display:block;margin-top:6px;font-size:12.5px;letter-spacing:.04em;color:var(--pa2)}
+@media(max-width:600px){.study-stat .fini{font-size:11.5px}}
 .finish{font-family:var(--display);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa);border:1px solid var(--filet-f);padding:8px 18px;transition:all .3s}
 .finish:hover{border-color:var(--or);color:var(--or);background:var(--surv)}
 .qbox{text-align:center;margin-bottom:42px;animation:rise .5s cubic-bezier(.2,.7,.3,1) both}
@@ -806,7 +808,20 @@ function isBase(catId){return PRE.some(c=>c.id===catId);}
    Une troisième minuterie, courte, vit dans la séance seule : p.s tient à
    l'écart pour quelques versets celui qu'on vient de manquer, le temps de
    respirer avant de le revoir. */
-const JOURS=[0,1,3,7,16,35];       // délai avant nouvelle échéance, par niveau
+/* L'ÉCHELLE DES DÉLAIS, en jours, par niveau. Elle monte jusqu'à cent
+   soixante jours : sans les deux derniers paliers, elle s'arrêtait à
+   trente-cinq, et un verset su depuis des années revenait encore toutes les
+   cinq semaines. La charge quotidienne, à régime établi, vaut le nombre de
+   versets divisé par le dernier délai : trois mille versets, c'était
+   quatre-vingt-six révisions PAR JOUR pour toujours ; c'est dix-neuf
+   maintenant. NIVEAU_MAX se déduit de l'échelle, il ne se recopie pas. */
+const JOURS=[0,1,3,7,16,35,75,160];
+const NIVEAU_MAX=JOURS.length-1;
+/* Le SEUIL D'ACQUISITION reste le niveau 5, celui des trente-cinq jours :
+   c'est là que le verset passe au vert et que la catégorie affiche 100 %.
+   Les deux paliers au-dessus ne sont plus de l'apprentissage, ils sont de
+   l'entretien, et ils n'ont pas à faire redescendre un pourcentage acquis. */
+const NIVEAU_ACQUIS=5;
 const JOUR=86400000;
 /* ── L'HEURE NE VIENT PLUS DE L'APPAREIL SEUL ──
    Une échéance est une date écrite en clair : elle vaut ce que valait
@@ -840,7 +855,7 @@ const dateOf=id=>{const p=S.progress[id];if(!p||!p.n)return 0;const t=Date.parse
    tablette dont la pile s'est vidée suffit) : sans ce garde-fou le verset
    n'était plus jamais mûr et, daté du futur, il passait dernier dans le repli,
    donc il disparaissait purement et simplement de la mémorisation. */
-const HORIZON=(JOURS[JOURS.length-1]+1)*JOUR;
+const HORIZON=(JOURS[NIVEAU_MAX]+1)*JOUR;
 // date de la dernière fois vu ; jamais vu = zéro, donc tout en haut ; une date
 // du futur est ramenée à maintenant, sans quoi le verset passerait toujours dernier
 const vuLe=id=>{const p=S.progress[id];if(!p||!p.t)return 0;const t=Date.parse(p.t);return isNaN(t)?0:Math.min(t,maintenant());};
@@ -859,17 +874,23 @@ function retenu(id){const p=S.progress[id];return !!(p&&p.s&&S.step<p.s);}
    La boîte enregistrée, elle, N'EST PAS TOUCHÉE : le retard n'efface pas le
    travail fait, il le met en veille, et une seule bonne réponse le réveille. */
 function niveauEffectif(id){
-  const b=boxOf(id); if(!b)return 0;
+  /* Une donnée abîmée (un niveau qui n'est pas un nombre, un niveau négatif ou
+     hors échelle) ressortait telle quelle et s'affichait en VERT, puisque la
+     comparaison d'un texte avec un nombre est toujours fausse. On la ramène
+     d'abord dans l'échelle. */
+  let b=Math.floor(+boxOf(id));
+  if(!isFinite(b)||b<=0)return 0;
+  b=Math.min(NIVEAU_MAX,b);
   const p=S.progress[id]; if(!p||!p.n)return b;
   const t=Date.parse(p.n); if(isNaN(t))return b;
   const retard=maintenant()-t; if(retard<=0)return b;
-  const delai=Math.max(JOUR,(JOURS[Math.min(5,Math.max(0,b))]||1)*JOUR);
+  const delai=Math.max(JOUR,(JOURS[Math.min(NIVEAU_MAX,Math.max(0,b))]||1)*JOUR);
   return Math.max(0,b-Math.floor(retard/delai));
 }
-function levelOf(id){const b=niveauEffectif(id);return b<=1?'r':b<=3?'a':'v';}     // rouge / ambre / vert
+function levelOf(id){const b=niveauEffectif(id);return b<=1?'r':b<=3?'a':'v';}     // rouge / ambre / vert, le vert dès le niveau 4 comme avant
 function answer(id,ok){
   const p=S.progress[id]||{box:0};
-  p.box=Math.max(0,Math.min(5,+p.box||0));   // une donnée abîmée ne fige plus la séance
+  p.box=Math.max(0,Math.min(NIVEAU_MAX,+p.box||0));   // une donnée abîmée ne fige plus la séance
   p.v=(p.v||0)+1;   // compteur d'expositions : ne s'efface jamais, sert au tirage équitable
   const ms=maintenant();
   /* ON NE MONTE QUE SI LE VERSET ÉTAIT MÛR.
@@ -889,18 +910,42 @@ function answer(id,ok){
      laissé de côté six mois ne remonte donc pas au vert d'une seule bonne
      réponse, il se réapprend cran par cran. */
   const eff=niveauEffectif(id);
-  if(ok){ if(mur){ p.box=Math.min(5,eff+1); p.n=new Date(ms+JOURS[p.box]*JOUR).toISOString(); } delete p.s; }
-  else  { p.box=Math.max(0,eff-2); p.n=new Date(ms).toISOString(); p.s=S.step+3; }   // erreur : on redescend de 2, on revoit dans la séance
+  if(ok){ if(mur){ p.box=Math.min(NIVEAU_MAX,eff+1); p.n=new Date(ms+JOURS[p.box]*JOUR).toISOString(); } delete p.s; }
+  /* L'ERREUR NE PÈSE PAS PAREIL SELON QU'ELLE ARRIVE OU NON À L'HEURE.
+     Manquer un verset le jour de sa révision est une vraie information : on
+     redescend de deux crans. Le manquer pendant un exercice libre, alors
+     qu'il n'était pas dû, en dit moins : on ne redescend que d'UN cran, et
+     surtout on ramène sa révision à maintenant. Sans cette distinction, un
+     doigt qui glisse pendant un entraînement coûtait deux niveaux ; et à
+     l'inverse, ne rien retirer du tout aurait ouvert une faille (se tromper
+     exprès pour rendre le verset mûr, puis répondre juste pour gagner un
+     cran). Un cran perdu puis un cran repris : le compte est nul. */
+  else  { p.box=Math.max(0,eff-(mur?2:1)); p.n=new Date(ms).toISOString(); p.s=S.step+3; }
   p.t=new Date(ms).toISOString();
   delete p.due;     // ancien pas de séance, remplacé par une vraie date
   S.progress[id]=p; S.step++;
 }
 const vuesOf=id=>(S.progress[id]||{}).v||0;
+/* Un verset « EN JEU » est un verset déjà travaillé au moins une fois : il a
+   une date de dernière vue. C'est la seule distinction qui subsiste, et elle
+   ne sert qu'à une chose, la seule règle d'ordre du tirage : RÉVISER PASSE
+   AVANT DÉCOUVRIR. Tant qu'un verset commencé a atteint son terme, il passe
+   devant les versets jamais vus. Sans cet ordre, les nouveaux venus,
+   tous au niveau zéro, passaient systématiquement devant les versets acquis
+   et ceux-ci pâlissaient faute d'être revus (mesuré : sur cent questions,
+   cent nouveaux et zéro ancien). Ce n'est pas une limite : rien n'est
+   plafonné, on met en mémoire autant de versets qu'on veut, aussi vite qu'on
+   veut. C'est un ordre de passage. */
+const enJeu=id=>{const p=S.progress[id];return !!(p&&p.t);};
 function nextItem(){
   const items=allItems(); if(!items.length)return null;
   let pool=items.filter(i=>i.id!==S.lastId); if(!pool.length)pool=items;
   let libres=pool.filter(i=>!retenu(i.id)); if(!libres.length)libres=pool;
-  const due=libres.filter(i=>isDue(i.id));
+  /* On révise d'abord ce qui est commencé et arrivé à terme ; les versets
+     jamais vus passent ensuite, et rien n'en limite le nombre. */
+  const dueTous=libres.filter(i=>isDue(i.id));
+  const dueRevus=dueTous.filter(i=>enJeu(i.id));
+  const due=dueRevus.length?dueRevus:dueTous;
   if(due.length){
     /* Des versets sont mûrs : le niveau commande, le compteur départage. */
     due.sort((a,b)=>{
@@ -920,6 +965,12 @@ function nextItem(){
      mille fois pendant trois mille tirages, et mangerait la moitié de chaque
      séance. La date de la dernière vue, elle, remet tout le monde à égalité
      dès qu'un verset vient de passer. */
+  /* Rien n'est mûr : on tourne sur ce qui est DÉJÀ EN JEU, pas sur la réserve
+     de versets qui n'ont pas encore eu leur tour. */
+  /* On tourne d'abord sur ce qui est déjà en jeu ; s'il n'y a rien en jeu
+     ici, on sert le reste, sans rien refuser à personne. */
+  const enCirculation=libres.filter(i=>enJeu(i.id));
+  if(enCirculation.length)libres=enCirculation;
   libres.sort((a,b)=>{
     const ta=vuLe(a.id),tb=vuLe(b.id);if(ta!==tb)return ta-tb;
     const ba=boxOf(a.id),bb=boxOf(b.id);if(ba!==bb)return ba-bb;
@@ -971,6 +1022,18 @@ async function loadUser(){
   }catch(e){console.error(e);}
 }
 function saveProgress(){udoc('meta/progress').set({items:S.progress,step:S.step});}
+/* ── ENREGISTREMENT GROUPÉ ──
+   La progression part en UN SEUL document : avec trois mille versets il pèse
+   260 Ko, et l'envoyer à chaque réponse, c'est vingt-six mégaoctets pour une
+   séance de cent cartes, sur la connexion du téléphone. On regroupe donc les
+   réponses rapprochées et on n'envoie qu'une fois toutes les quatre secondes.
+   Rien n'est perdu pour autant : la mémoire est vidée d'un coup à la fin de
+   la séance et dès que la page passe en arrière-plan. */
+let ATTENTE=null;
+function saveProgressGroupe(){ if(ATTENTE)return; ATTENTE=setTimeout(()=>{ATTENTE=null;saveProgress();},4000); }
+function videAttente(){ if(ATTENTE){clearTimeout(ATTENTE);ATTENTE=null;saveProgress();} }
+document.addEventListener('visibilitychange',()=>{if(document.hidden)videAttente();});
+window.addEventListener('pagehide',videAttente);
 function savePrefs(){syncSelCats();udoc('meta/prefs').set({selCats:S.selCats,offV:Object.keys(S.offV),hidCats:S.hidCats});}
 function saveCat(c){return ucol('categories').doc(c.id).set({name:c.name,verses:c.verses});}
 function saveBaseEdits(){udoc('meta/baseEdits').set({cats:S.baseEdits});}
@@ -1026,8 +1089,10 @@ function elementCat(cat){
     actifs.forEach(vv=>{const l=levelOf(vv.id);if(l==='r')r++;else if(l==='a')a++;else v++;});
     const tot=actifs.length||1;
     const dist='<i class="r" style="width:'+(r/tot*100)+'%"></i><i class="a" style="width:'+(a/tot*100)+'%"></i><i class="v" style="width:'+(v/tot*100)+'%"></i>'+(actifs.length?'':'<i class="e" style="width:100%"></i>');
-    let boxsum=0; actifs.forEach(vv=>boxsum+=niveauEffectif(vv.id));   // ce que vaut la mémoire aujourd'hui, pas ce qu'elle a valu
-    const pct=actifs.length?Math.round(boxsum/(5*actifs.length)*100):0;
+    /* le pourcentage mesure le chemin jusqu'à l'ACQUISITION, pas jusqu'au bout
+       de l'entretien : un verset au-delà du seuil compte pour un seuil plein */
+    let acquis=0; actifs.forEach(vv=>acquis+=Math.min(NIVEAU_ACQUIS,niveauEffectif(vv.id)));
+    const pct=actifs.length?Math.round(acquis/(NIVEAU_ACQUIS*actifs.length)*100):0;
     const pctTxt=S.lang==='fr'?pct+'\u00a0%':pct+'%';
     const div=document.createElement('div');
     div.className='cat'+(sel?' sel':part?' part':'')+(open?' open':'');
@@ -1142,6 +1207,16 @@ function startSession(){
   Object.keys(S.progress).forEach(id=>{const p=S.progress[id];if(p&&p.s!==undefined)delete p.s;});
   showView('study'); nextQuestion();
 }
+/* Reste-t-il un verset arrivé à terme ? Un verset jamais vu compte toujours
+   comme arrivé à terme : tant qu'il en reste un seul dans la sélection, la
+   réponse est oui. Cette phrase n'apparaît donc QUE lorsque tout a été vu au
+   moins une fois ET que toutes les échéances sont devant. Ce n'est pas une
+   fermeture, c'est un état : passé ce point, continuer reste possible mais
+   n'avance plus les niveaux, et il faut le DIRE, sinon on croit progresser
+   alors qu'on tourne à vide. */
+function resteAReviser(){
+  return allItems().some(i=>isDue(i.id));
+}
 function nextQuestion(){
   const item=nextItem(); if(!item){endSession();return;}
   S.lastId=item.id;
@@ -1149,9 +1224,16 @@ function nextQuestion(){
   S.cur={item,qMode,options:getOptions(item,qMode),done:false};
   renderQuestion();
 }
+function majStat(){
+  const fr=S.lang==='fr';
+  let h='<b>'+S.answered+'</b> '+t('answered')+' · <b>'+S.correct+'</b> '+t('correct');
+  if(!resteAReviser())h+='<span class="fini">'+(fr?'Tous tes versets sont à jour \u00b7 tu peux continuer autant que tu veux, mais un verset revu avant son terme ne monte pas de niveau'
+                                                  :'Every verse is up to date \u00b7 keep going as long as you like, but a verse reviewed before its term does not move up')+'</span>';
+  $('study-stat').innerHTML=h;
+}
 function renderQuestion(){
   const q=S.cur,l=S.lang;
-  $('study-stat').innerHTML='<b>'+S.answered+'</b> '+t('answered')+' · <b>'+S.correct+'</b> '+t('correct');
+  majStat();
   $('q-label').textContent=q.qMode==='vr'?t('find_ref'):t('find_verse');
   const pr=$('q-prompt');
   pr.textContent=q.qMode==='vr'?q.item[l].text:q.item[l].ref;
@@ -1173,17 +1255,18 @@ function pick(opt,btn){
   if(S.cur.done)return; S.cur.done=true;
   const q=S.cur, ok=opt.id===q.item.id;
   S.answered++; if(ok)S.correct++;
-  answer(q.item.id,ok); saveProgress();
+  answer(q.item.id,ok); saveProgressGroupe();
   $('opts').querySelectorAll('.opt').forEach(b=>{
     b.disabled=true;
     if(b.dataset.oid===q.item.id)b.classList.add(ok?'ok':'reveal');
     else if(b.dataset.oid===opt.id&&!ok)b.classList.add('bad');
   });
-  $('study-stat').innerHTML='<b>'+S.answered+'</b> '+t('answered')+' · <b>'+S.correct+'</b> '+t('correct');
+  majStat();
   coupeTic(); TIC=setTimeout(()=>{TIC=null;nextQuestion();}, ok?750:4000);
 }
 function endSession(){
   coupeTic();
+  videAttente();      // la séance se termine : rien ne reste en attente
   showView('summary');
   $('sum-num').textContent=S.answered?Math.round(S.correct/S.answered*100)+'%':'—';
   $('sum-sub').textContent=t('done');
@@ -1670,6 +1753,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('start-btn').onclick=()=>{S.soloCat=null;S.soloSec=null;startSession();};
   $('finish-btn').onclick=endSession;
   $('sum-back').onclick=()=>{showView('setup');ecouteLive();};
+  /* Remettre la mémoire à zéro efface les niveaux ET les échéances : tout
+     redevient immédiatement disponible, il n'y a rien à attendre. */
   $('reset-btn').onclick=async()=>{if(await lvConfirm(t('reset_q'),1)){S.progress={};S.step=0;saveProgress();renderCats();}};
   $('add-cat').onclick=openNewCat;
   $('add-sec').onclick=()=>openNewSec(null);

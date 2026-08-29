@@ -114,10 +114,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .art-menu:hover{color:var(--or)}
 .art-etat{color:var(--pa2)}
 .art-etat.publie{color:var(--or)}
+#b-etat.publie{color:var(--or)}
 .vide{font-size:15px;color:var(--pa2);padding:40px 2px;text-align:center;line-height:1.7}
 
 /* ═══ ÉDITEUR ═══ */
 #ecran-edit{display:none}
+#ecran-lire{display:none}
+.lire-titre{font-family:var(--display);font-size:calc(38px*var(--lvz,1));line-height:1.16;font-weight:400;color:var(--parchemin);text-align:center;padding:10px 0 6px}
+.lire-pied{text-align:center;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:26px}
+#lire-corps .bloc{padding-left:0}
+@media(max-width:720px){.lire-titre{font-size:calc(30px*var(--lvz,1))}}
 .ed-titre{width:100%;background:none;border:none;color:var(--parchemin);font-family:var(--display);font-size:calc(38px*var(--lvz,1));line-height:1.22;padding:10px 0 20px;outline:none;resize:none;overflow:hidden;text-align:center}
 .ed-titre::placeholder{color:rgba(255,255,255,.22)}
 .ed-corps{padding-top:10px}
@@ -153,10 +159,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
    a été abandonné le 22/08. */
 .b-cite{padding-top:10px;padding-bottom:6px}
 .b-cite .zone{font-size:calc(20.5px*var(--lvz,1));line-height:1.14;color:rgba(255,255,255,.88);padding-left:20px;box-shadow:inset 2px 0 0 var(--filet-fort)}
-.b-cite .zone::before{content:'«\00a0'}
-.b-cite .zone::after{content:'\00a0»'}
+/* Les guillemets ne sont plus posés par la feuille de style (Emmanuel,
+   26/08) : on les tape si on en veut. Le filet à gauche suffit à dire que
+   c'est une citation, et certaines citations n'en demandent pas. */
 .b-cite .zone:empty::before{content:attr(data-vide)}
-.b-cite .zone:empty::after{content:''}
 /* Verset : le format du site, texte en italique entre guillemets français,
    référence en gras à la suite, sans parenthèses. Les guillemets viennent de
    la feuille de style : on ne les tape pas, on ne peut pas les effacer. */
@@ -289,6 +295,16 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
     </div>
   </section>
 
+  <!-- Lecture d'un article publié : ni poignées, ni champs, ni outils. -->
+  <section id="ecran-lire">
+    <h1 class="lire-titre" id="lire-titre"></h1>
+    <div class="lire-pied" id="lire-date"></div>
+    <div class="ed-corps" id="lire-corps"></div>
+    <div class="acts">
+      <button class="act" id="b-lire-retour">← Les articles</button>
+    </div>
+  </section>
+
   <section id="ecran-edit">
     <div class="outils" id="outils">
       <button class="ou ou-g" id="o-gras" title="Gras">Gras</button>
@@ -305,6 +321,7 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
     <div class="acts">
       <button class="act" id="b-retour">← Mes articles</button>
       <button class="act" id="b-enr">Enregistrer</button>
+      <button class="act" id="b-etat">Publier</button>
       <button class="act" id="b-ranger">Ranger</button>
       <button class="act danger" id="b-suppr">Supprimer</button>
     </div>
@@ -585,22 +602,24 @@ async function envoieImage(f,i){
   if(vieux&&vieux!==id)effaceMedia(vieux);
   rendEditeur(); marqueSale(); enregistre(true);
 }
-async function chargeMedia(id){
-  if(CACHE.has(id))return CACHE.get(id);
-  const meta=await mcol().doc(id).get();
+async function chargeMedia(id,publik){
+  const cle=(publik?'p:':'')+id;
+  if(CACHE.has(cle))return CACHE.get(cle);
+  const col=publik?pmed():mcol();
+  const meta=await col.doc(id).get();
   if(!meta.exists)throw new Error('média introuvable');
   const m=meta.data(), bouts=[];
   for(let k=0;k<(m.n||0);k++){
-    const t=await mcol().doc(id).collection('tranches').doc(String(k)).get();
+    const t=await col.doc(id).collection('tranches').doc(String(k)).get();
     bouts.push(t.exists?(t.data().d||''):'');
   }
   const url='data:'+(m.mime||'image/jpeg')+';base64,'+bouts.join('');
-  CACHE.set(id,url);
+  CACHE.set(cle,url);
   return url;
 }
-function poseImage(img,id){
+function poseImage(img,id,publik){
   if(!img)return;
-  chargeMedia(id).then(u=>{img.src=u;}).catch(()=>{
+  chargeMedia(id,publik).then(u=>{img.src=u;}).catch(()=>{
     const f=img.parentNode; if(!f)return;
     const d=document.createElement('div'); d.className='im-etat'; d.textContent='Image introuvable';
     f.replaceChild(d,img);
@@ -780,18 +799,171 @@ async function rangeArticle(id){
   }catch(e2){console.warn('rangement',e2);lvInfo('Le rangement n’a pas pu être enregistré.');}
   rendLister();
 }
+/* PUBLIÉ OU PRIVÉ.
+   L'état existait dans les données et s'affichait sous chaque article, mais
+   rien ne permettait d'en changer : tout restait « Privé » à vie. On le
+   bascule depuis le menu de l'article, et depuis la barre de l'éditeur.
+   Ce que cela fait AUJOURD'HUI : cela marque l'article. Les articles vivent
+   tous dans l'espace privé du compte, que personne d'autre ne peut lire ;
+   « Publié » prépare la mise en ligne, il ne la fait pas encore. Il y faudra
+   les règles Firestore et une page de lecture publique. */
+async function basculeEtat(id){
+  const a=S.liste.find(x=>x.id===id); if(!a)return;
+  const versPublic=!a.publie;
+  const b=document.getElementById('b-etat');
+  if(b){b.disabled=true;b.textContent=versPublic?'Publication…':'Retrait…';}
+  try{
+    if(versPublic)await metEnLigne(a); else await retireDeLigne(a);
+    a.publie=versPublic; a.maj=new Date().toISOString();
+    if(S.art&&S.art.id===id)S.art.publie=a.publie;
+    await acol().doc(id).set({publie:a.publie,maj:a.maj},{merge:true});
+  }catch(e){
+    console.warn('publication',e);
+    lvInfo(versPublic
+      ? 'La mise en ligne a échoué. Si c\u2019est la première fois, les règles de sécurité ne sont peut-être pas encore posées : voir REGLES-firestore.txt.'
+      : 'Le retrait a échoué. Réessayez.');
+  }
+  if(b)b.disabled=false;
+  rendLister(); majEtatEditeur();
+}
+/* Un article publié puis modifié doit être remis en ligne, sinon les lecteurs
+   gardent l'ancienne version sans que rien ne le dise. */
+async function rafraichitPublic(a){
+  if(!a||!a.publie)return;
+  try{await metEnLigne(a);}catch(e){console.warn('rafraîchissement public',e);}
+}
+/* Le bouton de l'éditeur dit l'état courant : « Publier » quand l'article est
+   privé, « Rendre privé » quand il est publié. */
+function majEtatEditeur(){
+  const b=document.getElementById('b-etat'); if(!b||!S.art)return;
+  b.textContent=S.art.publie?'Rendre privé':'Publier';
+  b.classList.toggle('publie',!!S.art.publie);
+}
+/* ════════ L'ESPACE PUBLIC ════════
+   Les articles privés vivent sous users/{compte}/… , que personne d'autre ne
+   peut lire. Publier ne « déverrouille » donc pas le brouillon : cela en
+   RECOPIE une version dans deux collections ouvertes à tous, hors de l'espace
+   du compte. C'est plus sûr qu'une règle qui laisserait entrer les visiteurs
+   dans l'espace privé : ce qui n'a pas été copié n'est pas lisible, point.
+   Les images suivent le même chemin, tranche par tranche, sans quoi l'article
+   publié afficherait des cadres vides pour tout le monde sauf pour l'auteur. */
+const pcol=()=>db.collection('public_articles');
+const pmed=()=>db.collection('public_medias');
+
+async function copieMediaPublic(id){
+  if(!id)return;
+  const meta=await mcol().doc(id).get();
+  if(!meta.exists)return;
+  const m=meta.data(), n=m.n||0;
+  for(let k=0;k<n;k++){
+    const t=await mcol().doc(id).collection('tranches').doc(String(k)).get();
+    await pmed().doc(id).collection('tranches').doc(String(k)).set({d:t.exists?(t.data().d||''):''});
+  }
+  await pmed().doc(id).set({mime:m.mime||'image/jpeg',n:n});
+}
+async function effaceMediaPublic(id){
+  if(!id)return;
+  try{
+    const meta=await pmed().doc(id).get();
+    const n=meta.exists?(meta.data().n||0):0;
+    for(let k=0;k<n;k++)await pmed().doc(id).collection('tranches').doc(String(k)).delete();
+    await pmed().doc(id).delete();
+  }catch(e){console.warn('média public',e);}
+}
+/* Le chemin de rangement est recopié EN CLAIR : le visiteur n'a pas accès à
+   la liste des sections, qui est privée. */
+function cheminTexte(rid){ return rubValide(rid)?chemin(rid):''; }
+
+async function metEnLigne(a){
+  const medias=(a.blocs||[]).filter(b=>b.t==='image'&&b.media).map(b=>b.media);
+  for(const m of medias)await copieMediaPublic(m);
+  await pcol().doc(a.id).set({
+    titre:a.titre||'', blocs:a.blocs||[], chemin:cheminTexte(a.rub),
+    cree:a.cree||null, maj:a.maj||null
+  });
+}
+async function retireDeLigne(a){
+  const medias=(a.blocs||[]).filter(b=>b.t==='image'&&b.media).map(b=>b.media);
+  try{await pcol().doc(a.id).delete();}catch(e){console.warn('retrait',e);}
+  for(const m of medias)await effaceMediaPublic(m);
+}
+
+/* ── LECTURE PUBLIQUE ── */
+let PUBS=[];
+async function litPublic(){
+  try{
+    const sn=await pcol().get();
+    PUBS=sn.docs.map(d=>Object.assign({id:d.id},d.data()));
+    PUBS.sort((x,y)=>String(y.maj||y.cree||'').localeCompare(String(x.maj||x.cree||'')));
+  }catch(e){console.warn('articles publics',e);PUBS=[];}
+}
+function rendPublic(){
+  const h=$('liste'); h.innerHTML='';
+  $('compte-liste').textContent=PUBS.length?PUBS.length+(PUBS.length>1?' articles':' article'):'';
+  $('mot-liste').textContent=PUBS.length?'':'Aucun article publié pour l\u2019instant.';
+  $('acts-liste').style.display='none';
+  /* regroupés par chemin de section, l'ordre des sections suivant la date du
+     plus récent article de chacune */
+  const groupes=new Map();
+  PUBS.forEach(a=>{const c=a.chemin||'';if(!groupes.has(c))groupes.set(c,[]);groupes.get(c).push(a);});
+  groupes.forEach((liste,c)=>{
+    if(c){const t=document.createElement('div');t.className='rub-nom';t.style.margin='26px 0 10px';t.textContent=c;h.appendChild(t);}
+    liste.forEach(a=>{
+      const d=document.createElement('div'); d.className='art-ligne';
+      d.innerHTML='<button class="art-item" type="button" data-lire="'+esc(a.id)+'">'
+        +'<div class="art-titre">'+esc(a.titre||'Sans titre')+'</div>'
+        +'<div class="art-extrait">'+esc(extraitDe(a))+'</div>'
+        +'<div class="art-pied"><span>'+esc(dateFr(a.maj||a.cree))+'</span></div></button>';
+      h.appendChild(d);
+    });
+  });
+}
+function extraitDe(a){
+  const b=(a.blocs||[]).find(x=>x.t==='p'||x.t==='cite');
+  if(!b)return '';
+  const d=document.createElement('div'); d.innerHTML=b.h||'';
+  return (d.textContent||'').slice(0,180);
+}
+/* Le même dessin que l'éditeur, mais figé : aucun champ, aucune poignée. */
+function elementLecture(b){
+  const d=document.createElement('div');
+  d.className='bloc b-'+b.t;
+  let inner='';
+  if(b.t==='sep')inner='<div class="trait-sep"></div>';
+  else if(b.t==='verset')inner='<div class="v-ligne"><span class="v-txt">'+(b.txt||'')+'</span><span class="v-ref">'+esc(b.ref||'')+'</span></div>';
+  else if(b.t==='image')inner='<figure>'+(b.media?'<img data-media="'+esc(b.media)+'" alt="">':'')+(b.leg?'<figcaption>'+b.leg+'</figcaption>':'')+'</figure>';
+  else if(b.t==='html')inner=b.code?'<iframe style="height:'+(Math.max(80,Math.min(2000,Number(b.haut)||320)))+'px" sandbox="allow-scripts" referrerpolicy="no-referrer" title="Bloc interactif"></iframe>':'';
+  else inner='<div class="zone">'+(b.h||'')+'</div>';
+  d.innerHTML=inner;
+  if(b.t==='image'&&b.media)poseImage(d.querySelector('img'),b.media,true);
+  if(b.t==='html'&&b.code)poseCadre(d.querySelector('iframe'),b.code);
+  return d;
+}
+function lit(id){
+  const a=PUBS.find(x=>x.id===id); if(!a){vue('liste');return;}
+  $('lire-titre').textContent=a.titre||'Sans titre';
+  $('lire-date').textContent=dateFr(a.maj||a.cree)+(a.chemin?'  ·  '+a.chemin:'');
+  const c=$('lire-corps'); c.innerHTML='';
+  (a.blocs||[]).forEach(b=>c.appendChild(elementLecture(b)));
+  vue('lire');
+  try{history.replaceState(null,'','#a/'+id);}catch(_){}
+}
+
 async function menuArticle(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
   const c=await lvChoix((a.titre||'Sans titre'),[
     {cle:'ouvrir',nom:'Ouvrir'},
+    {cle:'etat',nom:a.publie?'Rendre privé':'Publier',note:a.publie?'publié':'privé'},
     {cle:'ranger',nom:'Ranger dans…',note:rubValide(a.rub)?chemin(a.rub):'hors section'},
     {cle:'suppr',nom:'Supprimer',danger:true}
   ]);
   if(c==='ouvrir')ouvre(id);
+  else if(c==='etat')await basculeEtat(id);
   else if(c==='ranger')rangeArticle(id);
   else if(c==='suppr'){
     if(!await lvConfirm('Supprimer cet article ? Il ne pourra pas être récupéré.',1))return;
     const medias=(a.blocs||[]).filter(b=>b.t==='image'&&b.media).map(b=>b.media);
+    if(a.publie)await retireDeLigne(a);     // il ne doit rien rester en ligne
     try{await acol().doc(id).delete();}catch(e){console.warn('suppression',e);}
     for(const m of medias)await effaceMedia(m);
   }
@@ -803,9 +975,10 @@ function vue(quoi){
      une chaîne vide le laisserait masqué. */
   $('ecran-liste').style.display=quoi==='liste'?'block':'none';
   $('ecran-edit').style.display=quoi==='edit'?'block':'none';
+  $('ecran-lire').style.display=quoi==='lire'?'block':'none';
   /* la liste ne se redessine pas pendant l'écriture, pour ne pas déplacer le
      curseur : on la redessine donc en y revenant. */
-  if(quoi==='liste')rendLister();
+  if(quoi==='liste'){ if(S.auteur)rendLister(); else rendPublic(); }
   window.scrollTo(0,0);
 }
 function autoHauteur(el){el.style.height='auto';el.style.height=el.scrollHeight+'px';}
@@ -879,6 +1052,7 @@ async function enregistre(silence){
   if(!a.cree)a.cree=a.maj;
   try{
     await acol().doc(a.id).set({titre:a.titre||'',blocs:a.blocs||[],publie:!!a.publie,rub:a.rub||'',cree:a.cree,maj:a.maj});
+    if(a.publie)await rafraichitPublic(a);
     S.sale=false;
     $('etat-enr').textContent='Enregistré'; $('etat-enr').classList.add('vu');
     if(!silence)setTimeout(()=>{if(!S.sale)$('etat-enr').textContent='';},2600);
@@ -891,11 +1065,11 @@ function ouvre(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
   S.art=JSON.parse(JSON.stringify(a)); S.sale=false;
   $('etat-enr').textContent='';
-  rendEditeur(); vue('edit');
+  rendEditeur(); majEtatEditeur(); vue('edit');
 }
 function nouveau(){
   S.art={id:'a'+Date.now(),titre:'',blocs:[blocNeuf('p')],publie:false,rub:'',cree:null,maj:null};
-  S.sale=false; $('etat-enr').textContent='';
+  S.sale=false; $('etat-enr').textContent=''; majEtatEditeur();
   rendEditeur(); vue('edit');
   setTimeout(()=>$('ed-titre').focus(),80);
 }
@@ -904,8 +1078,10 @@ async function supprime(){
   if(!await lvConfirm('Supprimer cet article ? Il ne pourra pas être récupéré.',1))return;
   clearTimeout(S.minute);
   const id=S.art.id, medias=(S.art.blocs||[]).filter(b=>b.t==='image'&&b.media).map(b=>b.media);
+  const etaitPublie=!!S.art.publie, copie=S.art;
   S.art=null; S.sale=false;
   vue('liste');
+  if(etaitPublie)await retireDeLigne(copie);   // il ne doit rien rester en ligne
   try{await acol().doc(id).delete();}catch(e){console.warn('suppression',e);}
   for(const m of medias)await effaceMedia(m);
 }
@@ -1037,7 +1213,19 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('b-nouveau').onclick=nouveau;
   $('b-retour').onclick=async()=>{ if(S.sale)await enregistre(true); S.art=null; vue('liste'); };
   $('b-enr').onclick=()=>enregistre();
+  $('b-etat').onclick=async()=>{
+    if(!S.art)return;
+    /* un article jamais enregistré n'existe pas encore : on l'enregistre
+       d'abord, sinon la bascule n'aurait rien sur quoi se poser */
+    if(!S.liste.some(x=>x.id===S.art.id))await enregistre(true);
+    await basculeEtat(S.art.id);
+  };
   $('b-suppr').onclick=supprime;
+  $('b-lire-retour').onclick=()=>{try{history.replaceState(null,'','/articles.html');}catch(_){}vue('liste');};
+  $('liste').addEventListener('click',e=>{
+    const l=e.target.closest&&e.target.closest('[data-lire]');
+    if(l){lit(l.dataset.lire);}
+  });
   /* un bouton qui prend le focus vide la sélection : la commande deviendrait
      un coup dans l'eau, sans rien dire */
   document.querySelectorAll('.ou').forEach(b=>b.addEventListener('mousedown',e=>e.preventDefault()));
@@ -1192,12 +1380,29 @@ function motAccueil(){
   if(!S.auteur){$('mot-liste').textContent='Aucun article publié pour l’instant.';$('acts-liste').style.display='none';$('liste').innerHTML='';return;}
   $('mot-liste').textContent=''; $('acts-liste').style.display='';
 }
+/* Le visiteur, connecté ou non, voit les articles PUBLIÉS. L'auteur, lui,
+   retrouve ses brouillons et son éditeur. Une seule page, deux visages. */
+async function ouvrePublic(){
+  await litPublic();
+  rendPublic();
+  const m=(location.hash||'').match(/^#a\/(.+)$/);
+  if(m&&PUBS.some(x=>x.id===m[1]))lit(m[1]); else vue('liste');
+}
 auth.onAuthStateChanged(u=>{
   S.uid=u?u.uid:null; S.email=u?(u.email||''):null;
   S.auteur=!!(u&&u.email&&u.email.toLowerCase()===AUTEUR);
-  S.art=null; S.liste=[]; S.rubs=[]; S.rubOpen={}; RUBS_LUES=false; vue('liste');
-  motAccueil();
-  if(S.auteur)ecoute(); else{if(COUPE){COUPE();COUPE=null;}rendLister();}
+  S.art=null; S.liste=[]; S.rubs=[]; S.rubOpen={}; RUBS_LUES=false;
+  if(S.auteur){ vue('liste'); motAccueil(); ecoute(); }
+  else{ if(COUPE){COUPE();COUPE=null;} $('acts-liste').style.display='none'; ouvrePublic(); }
+});
+/* Sans compte du tout, Firebase ne prévient parfois jamais : on affiche donc
+   la lecture publique tout de suite, elle sera simplement redessinée si un
+   compte se présente. */
+ouvrePublic();
+window.addEventListener('hashchange',()=>{
+  if(S.auteur)return;
+  const m=(location.hash||'').match(/^#a\/(.+)$/);
+  if(m&&PUBS.some(x=>x.id===m[1]))lit(m[1]); else vue('liste');
 });
 </script>
 <script>
