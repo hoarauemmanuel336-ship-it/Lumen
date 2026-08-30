@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Articles · Lumen Veritatis</title>
+<title>Ressources &#183; Lumen Veritatis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
@@ -262,6 +262,75 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 .auth-out{display:block;width:100%;text-align:center;color:rgba(255,255,255,.55);font-family:var(--display);font-size:14px;margin-top:16px;transition:color .25s}
 .auth-out:hover{color:var(--or)}
 </style>
+<style>
+/* ═══════════ RESSOURCES ═══════════
+   Une ressource se regarde avant de se lire : la liste est donc une grille de
+   cartes, pas un sommaire de titres. Le rangement en sections reste celui des
+   articles, qu'Emmanuel connaît déjà. */
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;padding:6px 0 4px}
+.carte{position:relative;display:flex;flex-direction:column;text-align:left;border:1px solid var(--filet);background:var(--encre-2);overflow:hidden;cursor:pointer;transition:border-color .3s,background .3s}
+.carte:hover{border-color:var(--or);background:var(--surv)}
+.ct-vue{position:relative;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;background:#0a0a0a;border-bottom:1px solid var(--filet);overflow:hidden}
+.ct-vue img{width:100%;height:100%;object-fit:cover;display:block}
+.ct-vue svg{width:34px;height:34px;stroke:var(--pa2);fill:none;stroke-width:1.3}
+.ct-bas{padding:12px 13px 13px}
+.ct-titre{font-family:var(--serif);font-size:16px;line-height:1.35;color:var(--parchemin)}
+.ct-vide{color:var(--pa2);font-style:italic}
+.ct-pied{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa2)}
+.ct-etat.publie{color:var(--or)}
+.ct-menu{position:absolute;top:6px;right:6px;z-index:2;padding:4px 9px;font-size:15px;line-height:1;color:var(--pa2);background:rgba(0,0,0,.55);transition:color .3s}
+.ct-menu:hover{color:var(--or)}
+@media(max-width:600px){.grille{grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:12px}.ct-titre{font-size:14.5px}}
+
+/* ── la ressource en grand ── */
+.res-cadre{border:1px solid var(--filet);background:#050505;margin:6px 0 4px}
+.res-cadre img{display:block;width:100%;height:auto}
+.res-cadre iframe{display:block;width:100%;border:0;background:#000}
+.res-desc{font-family:var(--serif);font-size:calc(17px*var(--lvz,1));line-height:1.72;color:var(--pa);margin:20px 0 4px;white-space:pre-wrap}
+.res-lien{display:inline-block;margin:22px 0 4px;padding:13px 26px;border:1px solid var(--filet-f);font-family:var(--display);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchemin);text-decoration:none;transition:border-color .3s,color .3s,background .3s}
+.res-lien:hover{border-color:var(--or);color:var(--or);background:var(--surv)}
+.res-url{font-size:12.5px;color:var(--pa2);word-break:break-all;margin-top:12px}
+
+/* ── le formulaire ── */
+.champ-lab{display:block;font-family:var(--display);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa2);margin:26px 0 9px}
+.types{display:flex;flex-wrap:wrap;gap:10px}
+.ty{padding:11px 18px;border:1px solid var(--filet);background:none;font-family:var(--display);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:border-color .3s,color .3s,background .3s}
+.ty:hover{border-color:var(--filet-fort);color:var(--parchemin)}
+.ty.on{border-color:var(--or);color:var(--or);background:var(--surv)}
+.res-zone{width:100%;box-sizing:border-box;background:var(--encre-2);border:1px solid var(--filet);color:var(--parchemin);font-family:var(--serif);font-size:16px;line-height:1.6;padding:13px 15px;outline:none;resize:vertical;transition:border-color .3s}
+.res-zone:focus{border-color:var(--filet-fort)}
+.res-zone.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.55}
+.depose{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:20px;border:1px dashed var(--filet-f);color:var(--pa)}
+.depose .nom{flex:1;min-width:140px;font-family:var(--serif);font-size:15px;color:var(--parchemin);word-break:break-all}
+.depose .poids{font-size:12px;color:var(--pa2);white-space:nowrap}
+.aide{font-size:12.5px;line-height:1.6;color:var(--pa2);margin-top:10px}
+
+/* ── LES DOMAINES ──
+   Le premier niveau porte un nom de domaine et se détache : un filet dessous,
+   les lettres en or. Les niveaux suivants s'effacent à mesure qu'ils
+   descendent, pour qu'un coup d'œil suffise à savoir où l'on est. */
+/* ── ON ENTRE, ON RESSORT ──
+   Pas d'arbre qui se déplie : on entre dans un domaine comme on ouvre un
+   rayon, et le fil d'Ariane dit où l'on est et ramène d'un clic. C'est le
+   geste de la Bible du site, livres puis chapitres puis lecture. */
+.fil{font-family:var(--display);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa2);padding:6px 0 2px}
+.fil span{cursor:pointer;transition:color .3s}
+.fil span:hover{color:var(--or)}
+.fil i{font-style:normal;padding:0 9px;color:rgba(255,255,255,.22)}
+.fil b{font-weight:400;color:var(--pa)}
+.rayons{display:grid;grid-template-columns:1fr 1fr;gap:0 26px;margin:2px 0 30px}
+@media(max-width:600px){.rayons{grid-template-columns:1fr}}
+.rayon{position:relative;display:flex;align-items:baseline;gap:12px;padding:15px 2px;border-bottom:1px solid var(--filet);cursor:pointer;transition:border-color .3s}
+.rayon:hover{border-color:var(--or)}
+.rayon .ry-nom{flex:1;min-width:0;font-family:var(--serif);font-size:17.5px;color:var(--parchemin);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .3s}
+.rayon:hover .ry-nom{color:var(--or-pale)}
+.rayon .ry-n{flex-shrink:0;font-size:12px;color:var(--pa2)}
+.rayon .ry-menu{flex-shrink:0;font-size:15px;line-height:1;color:var(--pa2);padding:0 3px;transition:color .3s}
+.rayon .ry-menu::before{content:'';position:absolute;top:0;bottom:0;right:-6px;width:34px}
+.rayon .ry-menu:hover{color:var(--or)}
+.rayon .ry-chev{flex-shrink:0;font-family:var(--display);font-size:17px;color:var(--pa2);line-height:1}
+@media(max-width:600px){.rayon .ry-nom{font-size:16px}}
+</style>
 <meta property="og:image" content="https://lumenveritatis.net/icones/partage.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -272,54 +341,44 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 <header>
   <div class="barre">
     <a href="/" class="logo">Lumen</a>
-    <button class="burger" id="burger" aria-label="Menu">☰</button>
+    <button class="burger" id="burger" aria-label="Menu">&#9776;</button>
     <nav class="menu" id="menu">
       <a href="/">Accueil</a>
       <a href="/bible.html">Bible</a>
-      <a href="/memoriser.html">Mémoriser</a>
+      <a href="/memoriser.html">M&#233;moriser</a>
       <a href="/articles.html">Articles</a>
-      <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="Rechercher"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><span class="ll-mob">Rechercher</span></span>
-      <span class="rech-loupe auth-icone" id="auth-ouvrir" role="button" tabindex="0" aria-label="Compte"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg><span class="ll-mob">Compte</span></span>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
   <section id="ecran-liste">
-    <div class="tete"><h1>Articles</h1><span class="art-etat" id="compte-liste"></span></div>
+    <div class="fil" id="fil"></div>
+    <div class="tete"><h1 id="titre-liste">Ressources</h1><span class="art-etat" id="compte-liste"></span></div>
     <div class="resume" id="mot-liste"></div>
     <div id="liste"></div>
     <div class="acts" id="acts-liste">
-      <button class="act majeur" id="b-nouveau">+ Écrire un article</button>
-      <button class="act" id="b-section">+ Nouvelle section</button>
+      <button class="act majeur" id="b-nouveau">+ Ajouter une ressource</button>
+      <button class="act" id="b-section">+ Nouveau domaine</button>
     </div>
   </section>
 
-  <!-- Lecture d'un article publié : ni poignées, ni champs, ni outils. -->
-  <section id="ecran-lire">
-    <h1 class="lire-titre" id="lire-titre"></h1>
-    <div class="lire-pied" id="lire-date"></div>
-    <div class="ed-corps" id="lire-corps"></div>
+  <!-- Une ressource en grand : ni champ, ni poignée, ni outil. -->
+  <section id="ecran-voir">
+    <h1 class="lire-titre" id="voir-titre"></h1>
+    <div class="lire-pied" id="voir-pied"></div>
+    <div id="voir-corps"></div>
     <div class="acts">
-      <button class="act" id="b-lire-retour">← Les articles</button>
+      <button class="act" id="b-voir-retour">&#8592; Les ressources</button>
     </div>
   </section>
 
   <section id="ecran-edit">
-    <div class="outils" id="outils">
-      <button class="ou ou-g" id="o-gras" title="Gras">Gras</button>
-      <button class="ou ou-i" id="o-ital" title="Italique">Italique</button>
-      <span class="ou-sep"></span>
-      <button class="ou" id="o-lien">Lien</button>
-      <button class="ou" id="o-ref">Référence</button>
-      <span class="ou-sep"></span>
-      <button class="ou" id="o-bloc">+ Bloc</button>
-      <span class="enr" id="etat-enr"></span>
-    </div>
-    <textarea class="ed-titre" id="ed-titre" rows="1" placeholder="Titre de l’article" spellcheck="true"></textarea>
-    <div class="ed-corps" id="ed-corps"></div>
+    <div class="outils"><span class="enr" id="etat-enr"></span></div>
+    <textarea class="ed-titre" id="ed-titre" rows="1" placeholder="Titre de la ressource" spellcheck="true"></textarea>
+    <div id="res-form"></div>
     <div class="acts">
-      <button class="act" id="b-retour">← Mes articles</button>
+      <button class="act" id="b-retour">&#8592; Mes ressources</button>
       <button class="act" id="b-enr">Enregistrer</button>
       <button class="act" id="b-etat">Publier</button>
       <button class="act" id="b-ranger">Ranger</button>
@@ -330,7 +389,7 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 
 <footer>
   <div class="marque">Lumen</div>
-  <div class="verset-pied">« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l’ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span></div>
+  <div class="verset-pied">&#171; Le peuple qui marchait dans les t&#233;n&#232;bres a vu une grande lumi&#232;re &#187; <span class="ref-pied">Isa&#239;e 9:1</span></div>
   <div class="copy" id="annee"></div>
 </footer>
 
@@ -379,7 +438,10 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
   <button type="button" class="auth-out" id="auth-logout">Déconnexion</button>
 </div></div>
 
+<input type="file" id="f-fichier" style="display:none">
+
 <script>
+// ════════ FIREBASE ════════
 // ════════ FIREBASE ════════
 firebase.initializeApp({
   apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",
@@ -400,24 +462,44 @@ try{db.enablePersistence({synchronizeTabs:true}).catch(function(){});}catch(_){}
 const AUTEUR='hoarauemmanuel336@gmail.com';
 
 // ════════ ÉTAT ════════
-const S={uid:null,email:null,auteur:false,liste:[],art:null,sale:false,minute:null,rubs:[],rubOpen:{}};
+const S={uid:null,email:null,auteur:false,liste:[],res:null,sale:false,minute:null,rubs:[],ouLa:''};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-const acol=()=>db.collection('users/'+S.uid+'/articles');
-const rdoc=()=>db.doc('users/'+S.uid+'/meta/rubriques');
+const acol=()=>db.collection('users/'+S.uid+'/ressources');
+const rdoc=()=>db.doc('users/'+S.uid+'/meta/res_rubriques');
 
+/* ── LES QUATRE ESPÈCES ──
+   Un diagramme est une page HTML qui tourne dans un cadre isolé. Une image et
+   un PDF sont des fichiers déposés dans le compte, découpés en tranches. Un
+   lien ne pèse rien : c'est une fiche qui montre la porte. */
+const TYPES={
+  diagramme:{nom:'Diagramme', pl:'Diagrammes', accept:'', icone:'<path d="M4 4h6v6H4zM14 4h6v6h-6zM9 14h6v6H9zM7 10v2h10v-2M12 12v2"/>'},
+  image:    {nom:'Image',     pl:'Images',     accept:'image/*', icone:'<path d="M3 5h18v14H3zM3 16l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="9" r="1.5"/>'},
+  pdf:      {nom:'PDF',       pl:'PDF',        accept:'application/pdf', icone:'<path d="M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h6"/>'},
+  lien:     {nom:'Lien',      pl:'Liens',      accept:'', icone:'<path d="M10 13a4 4 0 0 0 6 .5l2-2a4 4 0 0 0-6-6l-1 1M14 11a4 4 0 0 0-6-.5l-2 2a4 4 0 0 0 6 6l1-1"/>'}
+};
+const typeDe=r=>TYPES[r&&r.type]?r.type:'lien';
+const ICONE=t=>'<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">'+(TYPES[t]||TYPES.lien).icone+'</svg>';
+
+// ════════ RANGEMENT ════════
 /* ── RANGEMENT ──
    Une rubrique vaut {id, nom, parent}. Le parent est l'identifiant d'une autre
    rubrique, ou une chaîne vide pour une rubrique de premier niveau : la
    profondeur n'est donc pas écrite dans les données, elle se lit. Trois
-   niveaux au plus, au-delà le rangement dessert la lecture. Un article porte
-   son rub ; s'il pointe une rubrique disparue, il retombe de lui-même hors
+   niveaux au plus, au-delà le rangement dessert la lecture. Une ressource porte
+   son rub ; si elle pointe une rubrique disparue, elle retombe hors
    section. */
-const RUB_MAX=3;
+/* Le premier niveau est un DOMAINE (« Bible »), ceux d'en dessous sont des
+   sections (« Ancien Testament », puis « Genèse », puis ce qu'on veut).
+   Cinq niveaux : de quoi descendre du domaine jusqu'au chapitre sans se
+   trouver à l'étroit, et pas au-delà, car un rangement plus profond coûte
+   plus à tenir qu'il ne fait gagner. */
+const RUB_MAX=5;
+const motRub=id=>niveau(id)<=1?'domaine':'section';
 const rubDe=id=>S.rubs.find(r=>r.id===id)||null;
 function rubValide(id){return !!(id&&rubDe(id));}
 /* une rubrique dont le parent a disparu remonte au premier niveau : sans cela
-   elle deviendrait invisible, avec tous ses articles */
+   elle deviendrait invisible, avec tout ce qu'elle contient */
 function enfants(pid){return S.rubs.filter(r=>(rubValide(r.parent)?r.parent:'')===(pid||''));}
 function niveau(id){let n=1,r=rubDe(id),g=0;while(r&&r.parent&&rubDe(r.parent)&&g++<6){n++;r=rubDe(r.parent);}return n;}
 function chemin(id){
@@ -433,13 +515,11 @@ function descendance(id,vus){
   enfants(id).forEach(e=>out.push(...descendance(e.id,vus)));
   return out;
 }
-function articlesDe(rid){return S.liste.filter(a=>(rubValide(a.rub)?a.rub:'')===(rid||''));}
-function compteRub(rid){return descendance(rid).reduce((n,x)=>n+articlesDe(x).length,0);}
-/* Replié par défaut (Emmanuel, 22/08) : la page s'ouvre comme un sommaire.
-   Ce qu'on déplie reste déplié sur l'appareil. */
-const rubOuverte=id=>S.rubOpen[id]===true;
-function rubOpenLit(){try{const o=JSON.parse(localStorage.getItem('lv_art_rub')||'{}');S.rubOpen=(o&&typeof o==='object')?o:{};}catch(e){S.rubOpen={};}}
-function rubOpenEcrit(){try{localStorage.setItem('lv_art_rub',JSON.stringify(S.rubOpen));}catch(e){}}
+function ressourcesDe(rid){return S.liste.filter(a=>(rubValide(a.rub)?a.rub:'')===(rid||''));}
+function compteRub(rid){return descendance(rid).reduce((n,x)=>n+ressourcesDe(x).length,0);}
+/* Ici, rien ne se déplie : on ENTRE dans un domaine, comme on ouvre un rayon.
+   La position vit dans l'adresse (voir vaVers), donc elle se partage et le
+   bouton « précédent » du navigateur remonte d'un cran. */
 /* On n'écrit la liste des rubriques qu'après l'avoir lue : sinon une lecture
    ratée (hors ligne, erreur passagère) ferait repartir de zéro et le premier
    enregistrement effacerait tout le rangement. */
@@ -449,6 +529,7 @@ function saveRubs(){
   rdoc().set({list:S.rubs}).catch(e=>{console.warn('rubriques',e);lvInfo('Le rangement n’a pas pu être enregistré.');});
 }
 
+// ════════ MODALES MAISON ════════
 // ════════ MODALES MAISON ════════
 /* Aucune boîte native : sur iOS, confirm() et alert() sont ignorés dès que la
    page tourne en application installée. */
@@ -492,72 +573,24 @@ function lvChoix(titre,entrees){
   });
 }
 
-// ════════ NETTOYAGE DU TEXTE COLLÉ ════════
-/* On ne garde que le gras, l’italique, les liens, les références et les
-   retours à la ligne. Tout le reste du presse-papier est jeté. */
-const BALISES={B:'b',STRONG:'b',I:'i',EM:'i',A:'a',BR:'br',SPAN:'span'};
-function propre(html){
-  const doc=new DOMParser().parseFromString('<div>'+html+'</div>','text/html');
-  const src=doc.body.firstChild, out=document.createElement('div');
-  (function marche(de,vers){
-    de.childNodes.forEach(n=>{
-      if(n.nodeType===3){vers.appendChild(document.createTextNode(n.nodeValue));return;}
-      if(n.nodeType!==1)return;
-      const t=BALISES[n.tagName];
-      if(!t){marche(n,vers);return;}
-      if(t==='br'){vers.appendChild(document.createElement('br'));return;}
-      if(t==='span'&&!n.classList.contains('ref')){marche(n,vers);return;}
-      const el=document.createElement(t);
-      if(t==='a'){
-        const h=n.getAttribute('href')||'';
-        if(!/^(https?:|mailto:|\/|#)/i.test(h)){marche(n,vers);return;}
-        el.setAttribute('href',h); el.setAttribute('rel','noopener');
-        if(/^https?:/i.test(h))el.setAttribute('target','_blank');
-      }
-      if(t==='span'){el.className='ref';el.setAttribute('role','button');el.setAttribute('tabindex','0');}
-      marche(n,el); vers.appendChild(el);
-    });
-  })(src,out);
-  return out.innerHTML.replace(/\s+$/,'');
-}
 
-// ════════ BLOCS ════════
-const TYPES=[
-  {cle:'p',nom:'Paragraphe',vide:'Écrivez ici…'},
-  {cle:'h2',nom:'Titre de section',vide:'Titre'},
-  {cle:'h3',nom:'Intertitre',vide:'Intertitre'},
-  {cle:'cite',nom:'Citation',vide:'Citation'},
-  {cle:'verset',nom:'Verset biblique',vide:''},
-  {cle:'image',nom:'Image',vide:'Légende (facultative)'},
-  {cle:'html',nom:'Bloc interactif',vide:''},
-  {cle:'sep',nom:'Séparateur',vide:''}
-];
-const typeDe=c=>TYPES.find(t=>t.cle===c)||TYPES[0];
-function blocNeuf(cle){
-  if(cle==='verset')return{t:'verset',txt:'',ref:''};
-  if(cle==='sep')return{t:'sep'};
-  if(cle==='image')return{t:'image',media:'',mime:'',leg:''};
-  if(cle==='html')return{t:'html',code:'',haut:0};
-  return{t:cle||'p',h:''};
-}
-function texteBrut(a){
-  return (a.blocs||[]).map(b=>{
-    if(b.t==='verset')return (b.txt||'')+' '+(b.ref||'');
-    if(b.t==='sep')return '';
-    return String(b.h||'').replace(/<[^>]+>/g,' ');
-  }).join(' ').replace(/\s+/g,' ').trim();
-}
-
-// ════════ IMAGES ════════
-/* L'image part TELLE QUELLE, sans retouche ni recompression (exigence
-   d'Emmanuel du 22/08). Firestore refuse tout enregistrement de plus d'un
-   mégaoctet : on la découpe donc en tranches, et le navigateur la recolle à
-   l'affichage. Rien n'est perdu, pas un pixel. */
-const IMG_MAX=20*1024*1024;      // plafond de sécurité, 20 Mo
-const TRANCHE=480000;            // caractères par tranche, bien sous le mégaoctet
-const mcol=()=>db.collection('users/'+S.uid+'/medias');
+// ════════ FICHIERS ════════
+/* Le fichier part TEL QUEL, découpé en tranches qui tiennent chacune sous le
+   mégaoctet imposé par Firestore. Vingt-cinq mégaoctets au plus : au-delà, le
+   découpage devient long et coûteux, et une fiche « Lien » vers un fichier
+   hébergé ailleurs sert mieux. */
+const FICH_MAX=25*1024*1024;
+const TRANCHE=480000;
+const mcol=()=>db.collection('users/'+S.uid+'/res_medias');
 const CACHE=new Map();
+const BLOBS=new Map();
 
+function poids(o){
+  o=Number(o)||0;
+  if(o<1024)return o+' o';
+  if(o<1024*1024)return Math.round(o/1024)+' Ko';
+  return (o/1048576).toFixed(o<10485760?1:0)+' Mo';
+}
 function litFichier(f){
   return new Promise((res,rej)=>{
     const r=new FileReader();
@@ -566,40 +599,56 @@ function litFichier(f){
     r.readAsDataURL(f);
   });
 }
-async function envoieImage(f,i){
-  if(!f)return;
-  if(!/^image\//.test(f.type)){lvInfo('Ce fichier n’est pas une image.');return;}
-  if(f.size>IMG_MAX){lvInfo('Cette image dépasse 20 Mo. Choisissez-en une plus légère.');return;}
-  const cible=S.art, ancre=S.art?S.art.blocs[i]:null;
-  if(!cible||!ancre)return;
-  const bloc=$('ed-corps').querySelector('.bloc[data-i="'+i+'"]');
-  const place=bloc&&bloc.querySelector('.im-place');
-  const dis=m=>{if(place)place.textContent=m;};
+/* Une vignette légère, gardée AVEC la fiche : sans elle, ouvrir la liste
+   voudrait dire télécharger toutes les images en pleine résolution. */
+function vignetteDe(url){
+  return new Promise(res=>{
+    const im=new Image();
+    im.onload=()=>{
+      try{
+        const c=document.createElement('canvas');
+        const e=Math.min(1,480/Math.max(im.width||1,im.height||1));
+        c.width=Math.max(1,Math.round((im.width||1)*e));
+        c.height=Math.max(1,Math.round((im.height||1)*e));
+        c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+        res(c.toDataURL('image/jpeg',0.7));
+      }catch(_){res('');}
+    };
+    im.onerror=()=>res('');
+    im.src=url;
+  });
+}
+async function envoieFichier(f){
+  if(!f||!S.res)return;
+  const t=typeDe(S.res);
+  if(t==='image'&&!/^image\//.test(f.type)){lvInfo('Ce fichier n’est pas une image.');return;}
+  if(t==='pdf'&&f.type&&f.type.indexOf('pdf')<0){lvInfo('Ce fichier n’est pas un PDF.');return;}
+  if(f.size>FICH_MAX){lvInfo('Ce fichier dépasse 25 Mo. Choisissez-en un plus léger, ou faites-en une fiche « Lien » vers l’endroit où il est déjà hébergé.');return;}
+  const cible=S.res;
+  const dis=m=>{const e=$('dep-etat');if(e)e.textContent=m;};
   dis('Lecture…');
   let url;
-  try{url=await litFichier(f);}catch(e){dis('Choisir une image');lvInfo('La lecture du fichier a échoué.');return;}
-  const virgule=url.indexOf(','), b64=url.slice(virgule+1);
+  try{url=await litFichier(f);}catch(e){dis('');lvInfo('La lecture du fichier a échoué.');return;}
+  const b64=url.slice(url.indexOf(',')+1);
   const id='m'+Date.now()+Math.floor(Math.random()*1000);
   const parts=[];
   for(let k=0;k<b64.length;k+=TRANCHE)parts.push(b64.slice(k,k+TRANCHE));
   try{
     /* la tête d'abord : si l'envoi casse en route, effaceMedia saura quoi
        retirer, sinon les tranches resteraient introuvables et perdues */
-    await mcol().doc(id).set({mime:f.type,n:parts.length,taille:f.size,complet:false,cree:new Date().toISOString()});
+    await mcol().doc(id).set({mime:f.type||'application/octet-stream',n:parts.length,taille:f.size,complet:false,cree:new Date().toISOString()});
     for(let k=0;k<parts.length;k++){
       dis('Envoi '+Math.round((k+1)/parts.length*100)+' %');
       await mcol().doc(id).collection('tranches').doc(String(k)).set({d:parts[k]});
     }
-    await mcol().doc(id).set({mime:f.type,n:parts.length,taille:f.size,complet:true,cree:new Date().toISOString()});
-  }catch(e){dis('Choisir une image');lvInfo('L’envoi a échoué. Réessayez.');console.warn('envoi',e);effaceMedia(id);return;}
+    await mcol().doc(id).set({mime:f.type||'application/octet-stream',n:parts.length,taille:f.size,complet:true,cree:new Date().toISOString()});
+  }catch(e){dis('');lvInfo('L’envoi a échoué. Réessayez.');console.warn('envoi',e);effaceMedia(id);return;}
   CACHE.set(id,url);
-  /* l'envoi est long : l'article a pu être quitté, changé, ou le bloc déplacé.
-     On ne pose l'image que si la cible est toujours celle qu'on visait. */
-  if(S.art!==cible||S.art.blocs.indexOf(ancre)<0){effaceMedia(id);return;}
-  litEditeur();
-  const j=S.art.blocs.indexOf(ancre)>=0?S.art.blocs.indexOf(ancre):i;
-  const vieux=(S.art.blocs[j]||{}).media;
-  S.art.blocs[j]={t:'image',media:id,mime:f.type,leg:(S.art.blocs[j]||{}).leg||''};
+  const vign=(t==='image')?await vignetteDe(url):'';
+  /* l'envoi est long : la ressource a pu être quittée ou changée entre-temps */
+  if(S.res!==cible){effaceMedia(id);return;}
+  const vieux=cible.media;
+  cible.media=id; cible.mime=f.type||''; cible.taille=f.size; cible.nom=f.name||''; cible.vign=vign;
   if(vieux&&vieux!==id)effaceMedia(vieux);
   rendEditeur(); marqueSale(); enregistre(true);
 }
@@ -608,23 +657,27 @@ async function chargeMedia(id,publik){
   if(CACHE.has(cle))return CACHE.get(cle);
   const col=publik?pmed():mcol();
   const meta=await col.doc(id).get();
-  if(!meta.exists)throw new Error('média introuvable');
+  if(!meta.exists)throw new Error('fichier introuvable');
   const m=meta.data(), bouts=[];
   for(let k=0;k<(m.n||0);k++){
     const t=await col.doc(id).collection('tranches').doc(String(k)).get();
     bouts.push(t.exists?(t.data().d||''):'');
   }
-  const url='data:'+(m.mime||'image/jpeg')+';base64,'+bouts.join('');
+  const url='data:'+(m.mime||'application/octet-stream')+';base64,'+bouts.join('');
   CACHE.set(cle,url);
   return url;
 }
-function poseImage(img,id,publik){
-  if(!img)return;
-  chargeMedia(id,publik).then(u=>{img.src=u;}).catch(()=>{
-    const f=img.parentNode; if(!f)return;
-    const d=document.createElement('div'); d.className='im-etat'; d.textContent='Image introuvable';
-    f.replaceChild(d,img);
-  });
+/* Un PDF ne s'ouvre pas de façon fiable depuis une adresse « data: ».
+   On repasse donc par un vrai objet binaire, que le lecteur du navigateur
+   sait afficher comme un fichier ordinaire. */
+function blobDe(url){
+  if(BLOBS.has(url))return BLOBS.get(url);
+  const i=url.indexOf(','), mime=(url.slice(0,i).match(/^data:([^;]+)/)||[])[1]||'application/octet-stream';
+  const bin=atob(url.slice(i+1)), u=new Uint8Array(bin.length);
+  for(let k=0;k<bin.length;k++)u[k]=bin.charCodeAt(k);
+  const b=URL.createObjectURL(new Blob([u],{type:mime}));
+  BLOBS.set(url,b);
+  return b;
 }
 async function effaceMedia(id){
   if(!id)return;
@@ -634,9 +687,10 @@ async function effaceMedia(id){
     for(let k=0;k<n;k++)await mcol().doc(id).collection('tranches').doc(String(k)).delete();
     await mcol().doc(id).delete();
     CACHE.delete(id);
-  }catch(e){console.warn('effacement média',e);}
+  }catch(e){console.warn('effacement fichier',e);}
 }
 
+// ════════ CADRE ISOLÉ ════════
 // ════════ BLOCS INTERACTIFS ════════
 /* Le code de l'auteur tourne dans un cadre isolé : sandbox SANS
    allow-same-origin, donc il ne peut lire ni les comptes, ni les données, ni
@@ -658,14 +712,13 @@ function pageCadre(code){
     +'</bo'+'dy></html>';
 }
 function poseCadre(f,code){ if(f)f.srcdoc=pageCadre(code); }
+/* Un diagramme annonce sa hauteur ; on l'écoute pour ne laisser ni bande
+   blanche ni ascenseur inutile. */
 window.addEventListener('message',e=>{
   const d=e.data; if(!d||typeof d.lvHaut!=='number')return;
-  document.querySelectorAll('#ed-corps iframe[data-html]').forEach(f=>{
+  document.querySelectorAll('iframe[data-diag]').forEach(f=>{
     if(f.contentWindow!==e.source)return;
-    const h=Math.max(80,Math.min(2000,Math.round(d.lvHaut)+2));
-    f.style.height=h+'px';
-    const i=+f.dataset.html;
-    if(S.art&&S.art.blocs[i]&&S.art.blocs[i].haut!==h){S.art.blocs[i].haut=h;marqueSale();}
+    f.style.height=Math.max(120,Math.min(4000,Math.round(d.lvHaut)+2))+'px';
   });
 });
 
@@ -675,73 +728,99 @@ function dateFr(iso){
   const d=new Date(iso); if(isNaN(d))return '';
   return d.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
 }
-function ligneArticle(a){
-  const l=document.createElement('div'); l.className='art-ligne';
-  const t=(a.titre||'').trim();
-  const ex=texteBrut(a).slice(0,180);
-  l.innerHTML='<button class="art-item" data-id="'+esc(a.id)+'">'
-    +'<div class="art-titre'+(t?'':' art-vide-titre')+'">'+esc(t||'Sans titre')+'</div>'
-    +(ex?'<div class="art-extrait">'+esc(ex)+'</div>':'')
-    +'<div class="art-pied"><span class="art-etat'+(a.publie?' publie':'')+'">'+(a.publie?'Publié':'Privé')+'</span><span>'+esc(dateFr(a.maj||a.cree))+'</span></div>'
-    +'</button><span class="art-menu" data-amenu="'+esc(a.id)+'" role="button" tabindex="0" aria-label="Cet article">⋯</span>';
-  return l;
-}
-function elementRub(r){
-  const n=niveau(r.id), ouverte=rubOuverte(r.id);
+function carteRessource(r,publik){
+  const t=typeDe(r), titre=(r.titre||'').trim();
   const d=document.createElement('div');
-  d.className='rub rub-'+n+(ouverte?' ouvert':'');
-  d.dataset.rid=r.id;
-  const tete=document.createElement('div');
-  tete.className='rub-tete'; tete.dataset.rtog=r.id;
-  tete.setAttribute('role','button'); tete.setAttribute('tabindex','0');
-  tete.innerHTML='<span class="rub-nom">'+esc(r.nom)+'</span><span class="rub-n">'+compteRub(r.id)+'</span>'
-    +'<span class="rub-menu" data-rmenu="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Cette section">⋯</span>'
-    +'<span class="rub-chev">›</span>';
-  d.appendChild(tete);
-  const corps=document.createElement('div'); corps.className='rub-corps';
-  const fils=enfants(r.id), arts=articlesDe(r.id);
-  fils.forEach(f=>corps.appendChild(elementRub(f)));
-  arts.forEach(a=>corps.appendChild(ligneArticle(a)));
-  if(!fils.length&&!arts.length)corps.innerHTML='<div class="rub-vide">Aucun article ici.</div>';
-  d.appendChild(corps);
+  d.className='carte'; d.dataset.rid2=r.id;
+  d.setAttribute('role','button'); d.setAttribute('tabindex','0');
+  d.innerHTML='<div class="ct-vue">'+(r.vign?'<img alt="" src="'+esc(r.vign)+'">':ICONE(t))+'</div>'
+    +'<div class="ct-bas"><div class="ct-titre'+(titre?'':' ct-vide')+'">'+esc(titre||'Sans titre')+'</div>'
+    +'<div class="ct-pied"><span>'+esc(TYPES[t].nom)+'</span>'
+    +(publik?'<span>'+esc(dateFr(r.maj||r.cree))+'</span>'
+            :'<span class="ct-etat'+(r.publie?' publie':'')+'">'+(r.publie?'Publié':'Privé')+'</span>')
+    +'</div></div>'
+    +(publik?'':'<span class="ct-menu" data-rmenu2="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Cette ressource">⋯</span>');
+  return d;
+}
+function grilleDe(liste,publik){
+  const g=document.createElement('div'); g.className='grille';
+  liste.forEach(r=>g.appendChild(carteRessource(r,publik)));
+  return g;
+}
+/* ── OÙ L'ON EST ──
+   Une seule variable dit tout : l'identifiant du domaine ou de la section
+   ouverte, vide à la racine. Elle vit aussi dans l'adresse, donc le bouton
+   « précédent » du navigateur remonte d'un cran et un endroit se partage. */
+function ici(){ return rubValide(S.ouLa) ? S.ouLa : ''; }
+function vaVers(id){
+  S.ouLa = id || '';
+  const cible = S.ouLa ? '#d/' + S.ouLa : '';
+  if((location.hash||'') !== cible){ try{ history.pushState(null,'',cible||location.pathname); }catch(_){} }
+  /* on revient toujours à l'écran de la liste : on peut cliquer un maillon du
+     fil d'Ariane depuis une ressource ouverte, et il faut alors en sortir */
+  vue('liste');
+}
+function majFil(){
+  const f=$('fil'); if(!f)return;
+  const bouts=[]; let r=rubDe(ici()), garde=0;
+  while(r&&garde++<8){bouts.unshift(r);r=r.parent?rubDe(r.parent):null;}
+  let h='<span data-va="">Ressources</span>';
+  bouts.forEach((x,k)=>{
+    h+='<i>›</i>'+(k===bouts.length-1?'<b>'+esc(x.nom)+'</b>':'<span data-va="'+esc(x.id)+'">'+esc(x.nom)+'</span>');
+  });
+  f.innerHTML=bouts.length?h:'';
+  $('titre-liste').textContent=bouts.length?bouts[bouts.length-1].nom:'Ressources';
+}
+function rayonDe(r,publik){
+  const d=document.createElement('div');
+  d.className='rayon'; d.dataset.va=r.id;
+  d.setAttribute('role','button'); d.setAttribute('tabindex','0');
+  d.innerHTML='<span class="ry-nom">'+esc(r.nom)+'</span><span class="ry-n">'+compteRub(r.id)+'</span>'
+    +(publik?'':'<span class="ry-menu" data-rmenu="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Ce rayon">⋯</span>')
+    +'<span class="ry-chev">›</span>';
   return d;
 }
 function rendLister(){
+  const ou=ici(), publik=!S.auteur;
+  majFil();
+  /* le bouton dit ce qu'il va faire À CET ENDROIT : un domaine à la racine,
+     une section dès qu'on est entré quelque part */
+  const bs=$('b-section'); if(bs)bs.textContent=ou?'+ Nouvelle section':'+ Nouveau domaine';
   const h=$('liste'); h.innerHTML='';
-  $('compte-liste').textContent=S.liste.length?S.liste.length+(S.liste.length>1?' articles':' article'):'';
-  if(!S.liste.length&&!S.rubs.length){
-    h.innerHTML='<div class="vide">Rien encore.<br>Le premier article vous attend.</div>';
+  const fils=enfants(ou), res=ressourcesDe(ou);
+  const total=publik?PUBS.length:S.liste.length;
+  $('compte-liste').textContent=total?total+(total>1?' ressources':' ressource'):'';
+  if(!fils.length&&!res.length){
+    h.innerHTML=ou
+      ? '<div class="vide">Rien ici pour l’instant.</div>'
+      : (publik
+         ? '<div class="vide">Aucune ressource publiée pour l’instant.</div>'
+         : '<div class="vide">Rien encore.<br>Crée un domaine (Bible, Liturgie, Histoire…),<br>puis range dedans diagrammes, cartes, livres et liens.</div>');
     return;
   }
-  enfants('').forEach(r=>h.appendChild(elementRub(r)));
-  const libres=articlesDe('');
-  if(S.rubs.length&&libres.length){
-    const d=document.createElement('div');
-    d.className='rub rub-1'+(rubOuverte('__libres')?' ouvert':'');
-    d.dataset.rid='__libres';
-    d.innerHTML='<div class="rub-tete" data-rtog="__libres" role="button" tabindex="0"><span class="rub-nom">Hors section</span><span class="rub-n">'+libres.length+'</span><span class="rub-chev">›</span></div>';
-    const corps=document.createElement('div'); corps.className='rub-corps';
-    libres.forEach(a=>corps.appendChild(ligneArticle(a)));
-    d.appendChild(corps);
-    h.appendChild(d);
-  }else{
-    libres.forEach(a=>h.appendChild(ligneArticle(a)));
+  if(fils.length){
+    const g=document.createElement('div'); g.className='rayons';
+    fils.forEach(r=>g.appendChild(rayonDe(r,publik)));
+    h.appendChild(g);
   }
+  /* Ce qui est ICI vient après les rayons : on descend d'abord, on lit ensuite. */
+  if(res.length)h.appendChild(grilleDe(res,publik));
 }
 
 // ════════ ACTIONS DE RANGEMENT ════════
 async function nouvelleRub(parent){
-  const nom=await lvSaisie(parent?'Nouvelle sous-section':'Nouvelle section','','','Nom');
+  const nom=await lvSaisie(parent?'Nouvelle section':'Nouveau domaine','',
+    '',parent?'Ancien Testament, Genèse…':'Bible, Liturgie, Histoire…');
   if(!nom||!nom.trim())return null;
   const r={id:'r'+Date.now(),nom:nom.trim(),parent:parent||''};
-  S.rubs.push(r); S.rubOpen[r.id]=true; rubOpenEcrit(); saveRubs(); rendLister();
+  S.rubs.push(r); saveRubs(); rendLister();
   return r.id;
 }
 async function menuRub(id){
   const r=rubDe(id); if(!r)return;
   const freres=enfants(r.parent||''), i=freres.findIndex(x=>x.id===id);
   const e=[{cle:'renom',nom:'Renommer'}];
-  if(niveau(id)<RUB_MAX)e.push({cle:'sous',nom:'Ajouter une sous-section'});
+  if(niveau(id)<RUB_MAX)e.push({cle:'sous',nom:'Ajouter une section dedans'});
   if(i>0)e.push({cle:'haut',nom:'Monter'});
   if(i<freres.length-1)e.push({cle:'bas',nom:'Descendre'});
   e.push({cle:'suppr',nom:'Supprimer',danger:true});
@@ -752,40 +831,43 @@ async function menuRub(id){
     if(nom&&nom.trim()){r.nom=nom.trim();saveRubs();rendLister();}
     return;
   }
-  if(c==='sous'){const nid=await nouvelleRub(id);if(nid){S.rubOpen[id]=true;rubOpenEcrit();rendLister();}return;}
+  if(c==='sous'){await nouvelleRub(id);return;}
   if(c==='haut'||c==='bas'){
     const j=i+(c==='haut'?-1:1);
     if(j<0||j>=freres.length)return;
-    /* on réordonne dans la liste générale, en échangeant les deux frères */
     const ia=S.rubs.indexOf(freres[i]), ib=S.rubs.indexOf(freres[j]);
-    const x=S.rubs[ia]; S.rubs[ia]=S.rubs[ib]; S.rubs[ib]=x;
+    const tmp=S.rubs[ia]; S.rubs[ia]=S.rubs[ib]; S.rubs[ib]=tmp;
     saveRubs(); rendLister(); return;
   }
   if(c==='suppr'){
-    const n=compteRub(id), sous=descendance(id).length-1;
-    let txt='Supprimer cette section ?';
-    if(sous)txt+=' Ses '+sous+' sous-section'+(sous>1?'s':'')+' partent avec elle.';
-    if(n)txt+=' Ses '+n+' article'+(n>1?'s':'')+' sont conservés : ils reviennent hors section.';
-    if(!await lvConfirm(txt,1))return;
-    const partis=descendance(id);
-    S.rubs=S.rubs.filter(r2=>partis.indexOf(r2.id)<0);
+    const dedans=descendance(id).reduce((n,x)=>n+ressourcesDe(x).length,0);
+    const mot=motRub(id);
+    if(!await lvConfirm(dedans
+      ? 'Supprimer ce '+mot+' ? Les '+dedans+' ressource(s) qu’il contient ne sont pas supprimées, elles ressortent sans domaine.'
+      : 'Supprimer ce '+mot+' ?',1))return;
+    const morts=descendance(id);
+    /* On note où l'on se tenait AVANT de retirer la rubrique : une fois la
+       liste filtrée, l'endroit courant n'est plus reconnu, ici() répond « la
+       racine », et l'on croirait à tort n'avoir jamais été dedans. */
+    const ouAvant=S.ouLa;
+    S.rubs=S.rubs.filter(x=>morts.indexOf(x.id)<0);
     saveRubs();
-    /* les articles concernés retombent hors section */
-    for(const a of S.liste.filter(a=>partis.indexOf(a.rub)>=0)){
-      try{await acol().doc(a.id).set({rub:''},{merge:true});}catch(e){console.warn('déclassement',e);}
-      a.rub='';
-      if(S.art&&S.art.id===a.id)S.art.rub='';
-    }
-    rendLister();
+    /* les ressources orphelines retombent sans domaine, sans quoi elles
+       deviendraient invisibles avec leur rubrique */
+    S.liste.forEach(a=>{if(morts.indexOf(a.rub)>=0){a.rub='';acol().doc(a.id).set({rub:''},{merge:true}).catch(()=>{});}});
+    /* et si l'on se tenait DEDANS, on remonte d'un cran plutôt que de rester
+       sur une page qui n'existe plus */
+    if(morts.indexOf(ouAvant)>=0)vaVers(r.parent||'');
+    else rendLister();
   }
 }
-async function rangeArticle(id){
+async function rangeRessource(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
   const e=[];
   S.rubs.forEach(r=>e.push({cle:'r:'+r.id,nom:chemin(r.id),note:(rubValide(a.rub)?a.rub:'')===r.id?'ici':''}));
-  e.push({cle:'r:',nom:'Hors section',note:rubValide(a.rub)?'':'ici'});
-  e.push({cle:'neuve',nom:'+ Nouvelle section'});
-  const c=await lvChoix('Ranger l’article dans…',e);
+  e.push({cle:'r:',nom:'Sans domaine',note:rubValide(a.rub)?'':'ici'});
+  e.push({cle:'neuve',nom:'+ Nouveau domaine'});
+  const c=await lvChoix('Ranger la ressource dans…',e);
   if(!c)return;
   let cible=null;
   if(c==='neuve'){cible=await nouvelleRub('');if(!cible)return;}
@@ -793,63 +875,18 @@ async function rangeArticle(id){
   try{
     await acol().doc(id).set({rub:cible||''},{merge:true});
     a.rub=cible||'';
-    /* l'article ouvert porte sa propre copie : sans cette ligne, le prochain
-       enregistrement automatique réécrirait l'ancienne rubrique */
-    if(S.art&&S.art.id===id)S.art.rub=cible||'';
-    if(cible){S.rubOpen[cible]=true;rubOpenEcrit();}
+    if(S.res&&S.res.id===id)S.res.rub=cible||'';
   }catch(e2){console.warn('rangement',e2);lvInfo('Le rangement n’a pas pu être enregistré.');}
   rendLister();
 }
-/* PUBLIÉ OU PRIVÉ.
-   L'état existait dans les données et s'affichait sous chaque article, mais
-   rien ne permettait d'en changer : tout restait « Privé » à vie. On le
-   bascule depuis le menu de l'article, et depuis la barre de l'éditeur.
-   Ce que cela fait AUJOURD'HUI : cela marque l'article. Les articles vivent
-   tous dans l'espace privé du compte, que personne d'autre ne peut lire ;
-   « Publié » prépare la mise en ligne, il ne la fait pas encore. Il y faudra
-   les règles Firestore et une page de lecture publique. */
-async function basculeEtat(id){
-  const a=S.liste.find(x=>x.id===id); if(!a)return;
-  const versPublic=!a.publie;
-  const b=document.getElementById('b-etat');
-  if(b){b.disabled=true;b.textContent=versPublic?'Publication…':'Retrait…';}
-  try{
-    if(versPublic)await metEnLigne(a); else await retireDeLigne(a);
-    a.publie=versPublic; a.maj=new Date().toISOString();
-    if(S.art&&S.art.id===id)S.art.publie=a.publie;
-    await acol().doc(id).set({publie:a.publie,maj:a.maj},{merge:true});
-  }catch(e){
-    console.warn('publication',e);
-    lvInfo(versPublic
-      ? 'La mise en ligne a échoué. Si c\u2019est la première fois, les règles de sécurité ne sont peut-être pas encore posées : voir REGLES-firestore.txt.'
-      : 'Le retrait a échoué. Réessayez.');
-  }
-  if(b)b.disabled=false;
-  rendLister(); majEtatEditeur();
-}
-/* Un article publié puis modifié doit être remis en ligne, sinon les lecteurs
-   gardent l'ancienne version sans que rien ne le dise. */
-async function rafraichitPublic(a){
-  if(!a||!a.publie)return;
-  try{await metEnLigne(a);}catch(e){console.warn('rafraîchissement public',e);}
-}
-/* Le bouton de l'éditeur dit l'état courant : « Publier » quand l'article est
-   privé, « Rendre privé » quand il est publié. */
-function majEtatEditeur(){
-  const b=document.getElementById('b-etat'); if(!b||!S.art)return;
-  b.textContent=S.art.publie?'Rendre privé':'Publier';
-  b.classList.toggle('publie',!!S.art.publie);
-}
-/* ════════ L'ESPACE PUBLIC ════════
-   Les articles privés vivent sous users/{compte}/… , que personne d'autre ne
-   peut lire. Publier ne « déverrouille » donc pas le brouillon : cela en
-   RECOPIE une version dans deux collections ouvertes à tous, hors de l'espace
-   du compte. C'est plus sûr qu'une règle qui laisserait entrer les visiteurs
-   dans l'espace privé : ce qui n'a pas été copié n'est pas lisible, point.
-   Les images suivent le même chemin, tranche par tranche, sans quoi l'article
-   publié afficherait des cadres vides pour tout le monde sauf pour l'auteur. */
-const pcol=()=>db.collection('public_articles');
-const pmed=()=>db.collection('public_medias');
+
+// ════════ L'ESPACE PUBLIC ════════
+/* Les ressources privées vivent sous users/{compte}/… , que personne d'autre
+   ne peut lire. Publier ne « déverrouille » donc rien : cela RECOPIE la fiche
+   et son fichier dans deux collections ouvertes à tous. Ce qui n'a pas été
+   copié n'est pas lisible, point. */
+const pcol=()=>db.collection('public_ressources');
+const pmed=()=>db.collection('public_res_medias');
 
 async function copieMediaPublic(id){
   if(!id)return;
@@ -860,7 +897,7 @@ async function copieMediaPublic(id){
     const t=await mcol().doc(id).collection('tranches').doc(String(k)).get();
     await pmed().doc(id).collection('tranches').doc(String(k)).set({d:t.exists?(t.data().d||''):''});
   }
-  await pmed().doc(id).set({mime:m.mime||'image/jpeg',n:n});
+  await pmed().doc(id).set({mime:m.mime||'application/octet-stream',n:n});
 }
 async function effaceMediaPublic(id){
   if(!id)return;
@@ -869,190 +906,254 @@ async function effaceMediaPublic(id){
     const n=meta.exists?(meta.data().n||0):0;
     for(let k=0;k<n;k++)await pmed().doc(id).collection('tranches').doc(String(k)).delete();
     await pmed().doc(id).delete();
-  }catch(e){console.warn('média public',e);}
+  }catch(e){console.warn('fichier public',e);}
 }
 /* Le chemin de rangement est recopié EN CLAIR : le visiteur n'a pas accès à
    la liste des sections, qui est privée. */
 function cheminTexte(rid){ return rubValide(rid)?chemin(rid):''; }
-
 async function metEnLigne(a){
-  const medias=(a.blocs||[]).filter(b=>b.t==='image'&&b.media).map(b=>b.media);
-  for(const m of medias)await copieMediaPublic(m);
+  if(a.media)await copieMediaPublic(a.media);
   await pcol().doc(a.id).set({
-    titre:a.titre||'', blocs:a.blocs||[], chemin:cheminTexte(a.rub),
+    titre:a.titre||'', type:typeDe(a), desc:a.desc||'', chemin:cheminTexte(a.rub),
+    media:a.media||'', mime:a.mime||'', taille:a.taille||0, nom:a.nom||'',
+    vign:a.vign||'', code:a.code||'', url:a.url||'',
     cree:a.cree||null, maj:a.maj||null
   });
 }
 async function retireDeLigne(a){
-  const medias=(a.blocs||[]).filter(b=>b.t==='image'&&b.media).map(b=>b.media);
   try{await pcol().doc(a.id).delete();}catch(e){console.warn('retrait',e);}
-  for(const m of medias)await effaceMediaPublic(m);
+  if(a.media)await effaceMediaPublic(a.media);
+}
+async function rafraichitPublic(a){
+  if(!a||!a.publie)return;
+  try{await metEnLigne(a);}catch(e){console.warn('rafraîchissement public',e);}
+}
+async function basculeEtat(id){
+  const a=S.liste.find(x=>x.id===id); if(!a)return;
+  const versPublic=!a.publie;
+  const b=$('b-etat');
+  if(b){b.disabled=true;b.textContent=versPublic?'Publication…':'Retrait…';}
+  try{
+    if(versPublic)await metEnLigne(a); else await retireDeLigne(a);
+    a.publie=versPublic; a.maj=new Date().toISOString();
+    if(S.res&&S.res.id===id)S.res.publie=a.publie;
+    await acol().doc(id).set({publie:a.publie,maj:a.maj},{merge:true});
+  }catch(e){
+    console.warn('publication',e);
+    lvInfo(versPublic
+      ? 'La mise en ligne a échoué. Si c’est la première fois, les règles de sécurité ne sont peut-être pas encore posées : voir REGLES-firestore.txt.'
+      : 'Le retrait a échoué. Réessayez.');
+  }
+  if(b)b.disabled=false;
+  rendLister(); majEtatEditeur();
+}
+function majEtatEditeur(){
+  const b=$('b-etat'); if(!b||!S.res)return;
+  b.textContent=S.res.publie?'Rendre privé':'Publier';
+  b.classList.toggle('publie',!!S.res.publie);
 }
 
-/* ── LECTURE PUBLIQUE ── */
+// ════════ LECTURE PUBLIQUE ════════
 let PUBS=[];
 async function litPublic(){
   try{
     const sn=await pcol().get();
     PUBS=sn.docs.map(d=>Object.assign({id:d.id},d.data()));
     PUBS.sort((x,y)=>String(y.maj||y.cree||'').localeCompare(String(x.maj||x.cree||'')));
-  }catch(e){console.warn('articles publics',e);PUBS=[];}
+    /* SEULEMENT POUR LE VISITEUR. L'auteur a ses propres domaines, lus depuis
+       son compte ; l'arbre reconstruit à partir des ressources publiées ne doit
+       surtout pas les remplacer. La lecture publique part au chargement, avant
+       que le compte ne soit connu : quand elle revenait après, elle vidait le
+       rangement de l'auteur et le renvoyait à la racine, même s'il avait ouvert
+       une page profonde. */
+    if(!S.auteur)arbrePublic();
+  }catch(e){console.warn('ressources publiques',e);PUBS=[];if(!S.auteur)S.rubs=[];}
+}
+/* Le visiteur n'a pas accès à la liste des domaines, qui est privée : chaque
+   ressource publiée porte seulement son chemin écrit en clair. On reconstruit
+   donc l'arborescence à partir de ces chemins, et le visiteur navigue de la
+   même façon que l'auteur, sans que rien de privé n'ait été exposé. */
+function arbrePublic(){
+  const rubs=[], vus={};
+  PUBS.forEach(a=>{
+    const bouts=String(a.chemin||'').split('›').map(x=>x.trim()).filter(Boolean);
+    let parent='';
+    bouts.forEach(nom=>{
+      const cle=parent+'/'+nom;
+      if(!vus[cle]){ vus[cle]='p'+rubs.length; rubs.push({id:vus[cle],nom:nom,parent:parent}); }
+      parent=vus[cle];
+    });
+    a.rub=parent;
+  });
+  S.rubs=rubs;
 }
 function rendPublic(){
-  const h=$('liste'); h.innerHTML='';
-  $('compte-liste').textContent=PUBS.length?PUBS.length+(PUBS.length>1?' articles':' article'):'';
-  $('mot-liste').textContent=PUBS.length?'':'Aucun article publié pour l\u2019instant.';
+  $('mot-liste').textContent='';
   $('acts-liste').style.display='none';
-  /* regroupés par chemin de section, l'ordre des sections suivant la date du
-     plus récent article de chacune */
-  const groupes=new Map();
-  PUBS.forEach(a=>{const c=a.chemin||'';if(!groupes.has(c))groupes.set(c,[]);groupes.get(c).push(a);});
-  groupes.forEach((liste,c)=>{
-    if(c){const t=document.createElement('div');t.className='rub-nom';t.style.margin='26px 0 10px';t.textContent=c;h.appendChild(t);}
-    liste.forEach(a=>{
-      const d=document.createElement('div'); d.className='art-ligne';
-      d.innerHTML='<button class="art-item" type="button" data-lire="'+esc(a.id)+'">'
-        +'<div class="art-titre">'+esc(a.titre||'Sans titre')+'</div>'
-        +'<div class="art-extrait">'+esc(extraitDe(a))+'</div>'
-        +'<div class="art-pied"><span>'+esc(dateFr(a.maj||a.cree))+'</span></div></button>';
-      h.appendChild(d);
-    });
-  });
-}
-function extraitDe(a){
-  const b=(a.blocs||[]).find(x=>x.t==='p'||x.t==='cite');
-  if(!b)return '';
-  const d=document.createElement('div'); d.innerHTML=b.h||'';
-  return (d.textContent||'').slice(0,180);
-}
-/* Le même dessin que l'éditeur, mais figé : aucun champ, aucune poignée. */
-function elementLecture(b){
-  const d=document.createElement('div');
-  d.className='bloc b-'+b.t;
-  let inner='';
-  if(b.t==='sep')inner='<div class="trait-sep"></div>';
-  else if(b.t==='verset')inner='<div class="v-ligne"><span class="v-txt">'+(b.txt||'')+'</span><span class="v-ref">'+esc(b.ref||'')+'</span></div>';
-  else if(b.t==='image')inner='<figure>'+(b.media?'<img data-media="'+esc(b.media)+'" alt="">':'')+(b.leg?'<figcaption>'+b.leg+'</figcaption>':'')+'</figure>';
-  else if(b.t==='html')inner=b.code?'<iframe style="height:'+(Math.max(80,Math.min(2000,Number(b.haut)||320)))+'px" sandbox="allow-scripts" referrerpolicy="no-referrer" title="Bloc interactif"></iframe>':'';
-  else inner='<div class="zone">'+(b.h||'')+'</div>';
-  d.innerHTML=inner;
-  if(b.t==='image'&&b.media)poseImage(d.querySelector('img'),b.media,true);
-  if(b.t==='html'&&b.code)poseCadre(d.querySelector('iframe'),b.code);
-  return d;
-}
-function lit(id){
-  const a=PUBS.find(x=>x.id===id); if(!a){vue('liste');return;}
-  $('lire-titre').textContent=a.titre||'Sans titre';
-  $('lire-date').textContent=dateFr(a.maj||a.cree)+(a.chemin?'  ·  '+a.chemin:'');
-  const c=$('lire-corps'); c.innerHTML='';
-  (a.blocs||[]).forEach(b=>c.appendChild(elementLecture(b)));
-  vue('lire');
-  try{history.replaceState(null,'','#a/'+id);}catch(_){}
+  S.liste=PUBS;
+  rendLister();
 }
 
-async function menuArticle(id){
-  const a=S.liste.find(x=>x.id===id); if(!a)return;
-  const c=await lvChoix((a.titre||'Sans titre'),[
-    {cle:'ouvrir',nom:'Ouvrir'},
-    {cle:'etat',nom:a.publie?'Rendre privé':'Publier',note:a.publie?'publié':'privé'},
-    {cle:'ranger',nom:'Ranger dans…',note:rubValide(a.rub)?chemin(a.rub):'hors section'},
-    {cle:'suppr',nom:'Supprimer',danger:true}
-  ]);
-  if(c==='ouvrir')ouvre(id);
-  else if(c==='etat')await basculeEtat(id);
-  else if(c==='ranger')rangeArticle(id);
-  else if(c==='suppr'){
-    if(!await lvConfirm('Supprimer cet article ? Il ne pourra pas être récupéré.',1))return;
-    const medias=(a.blocs||[]).filter(b=>b.t==='image'&&b.media).map(b=>b.media);
-    if(a.publie)await retireDeLigne(a);     // il ne doit rien rester en ligne
-    try{await acol().doc(id).delete();}catch(e){console.warn('suppression',e);}
-    for(const m of medias)await effaceMedia(m);
-  }
-}
-
-// ════════ ÉDITEUR ════════
+// ════════ VOIR UNE RESSOURCE ════════
 function vue(quoi){
-  /* valeurs explicites : #ecran-edit est masqué par la feuille de style, et
-     une chaîne vide le laisserait masqué. */
   $('ecran-liste').style.display=quoi==='liste'?'block':'none';
   $('ecran-edit').style.display=quoi==='edit'?'block':'none';
-  $('ecran-lire').style.display=quoi==='lire'?'block':'none';
-  /* la liste ne se redessine pas pendant l'écriture, pour ne pas déplacer le
-     curseur : on la redessine donc en y revenant. */
+  $('ecran-voir').style.display=quoi==='voir'?'block':'none';
   if(quoi==='liste'){ if(S.auteur)rendLister(); else rendPublic(); }
   window.scrollTo(0,0);
 }
+function corpsVoir(a,publik){
+  const t=typeDe(a), c=document.createElement('div');
+  if(t==='lien'){
+    const u=String(a.url||'').trim();
+    c.innerHTML=(a.desc?'<div class="res-desc">'+esc(a.desc)+'</div>':'')
+      +(u?'<a class="res-lien" target="_blank" rel="noopener noreferrer" href="'+esc(u)+'">Ouvrir le lien →</a>'
+         +'<div class="res-url">'+esc(u)+'</div>':'<div class="res-desc">Aucune adresse.</div>');
+    return c;
+  }
+  if(t==='diagramme'){
+    const cadre=document.createElement('div'); cadre.className='res-cadre';
+    if(a.code){
+      const f=document.createElement('iframe');
+      f.setAttribute('sandbox','allow-scripts');
+      f.setAttribute('referrerpolicy','no-referrer');
+      f.setAttribute('title',a.titre||'Diagramme');
+      f.dataset.diag='1'; f.style.height='420px';
+      cadre.appendChild(f); c.appendChild(cadre); poseCadre(f,a.code);
+    }else c.innerHTML='<div class="res-desc">Ce diagramme est vide.</div>';
+    if(a.desc){const d=document.createElement('div');d.className='res-desc';d.textContent=a.desc;c.appendChild(d);}
+    return c;
+  }
+  const cadre=document.createElement('div'); cadre.className='res-cadre';
+  cadre.innerHTML='<div class="res-desc" style="padding:26px;margin:0">Chargement…</div>';
+  c.appendChild(cadre);
+  if(a.desc){const d=document.createElement('div');d.className='res-desc';d.textContent=a.desc;c.appendChild(d);}
+  if(a.media){
+    chargeMedia(a.media,publik).then(u=>{
+      cadre.innerHTML='';
+      if(t==='image'){
+        const im=document.createElement('img'); im.alt=a.titre||''; im.src=u; cadre.appendChild(im);
+      }else{
+        const f=document.createElement('iframe');
+        f.setAttribute('title',a.titre||'Document');
+        f.style.height='min(80vh,900px)';
+        f.src=blobDe(u);
+        cadre.appendChild(f);
+      }
+      const tel=document.createElement('a');
+      tel.className='res-lien'; tel.href=u; tel.download=a.nom||((a.titre||'ressource')+(t==='pdf'?'.pdf':''));
+      tel.textContent='Télécharger'+(a.taille?' ('+poids(a.taille)+')':'');
+      c.appendChild(tel);
+    }).catch(()=>{cadre.innerHTML='<div class="res-desc" style="padding:26px;margin:0">Ce fichier est introuvable.</div>';});
+  }else cadre.innerHTML='<div class="res-desc" style="padding:26px;margin:0">Aucun fichier.</div>';
+  return c;
+}
+function voit(a,publik){
+  if(!a){vue('liste');return;}
+  $('voir-titre').textContent=a.titre||'Sans titre';
+  $('voir-pied').textContent=TYPES[typeDe(a)].nom+'  ·  '+dateFr(a.maj||a.cree)+(a.chemin?'  ·  '+a.chemin:'');
+  const c=$('voir-corps'); c.innerHTML=''; c.appendChild(corpsVoir(a,publik));
+  vue('voir');
+  if(publik){try{history.pushState(null,'','#r/'+a.id);}catch(_){}}
+}
+async function menuRessource(id){
+  const a=S.liste.find(x=>x.id===id); if(!a)return;
+  const c=await lvChoix((a.titre||'Sans titre'),[
+    {cle:'voir',nom:'Voir'},
+    {cle:'modif',nom:'Modifier'},
+    {cle:'etat',nom:a.publie?'Rendre privé':'Publier',note:a.publie?'publiée':'privée'},
+    {cle:'ranger',nom:'Ranger dans…',note:rubValide(a.rub)?chemin(a.rub):'sans domaine'},
+    {cle:'suppr',nom:'Supprimer',danger:true}
+  ]);
+  if(c==='voir')voit(a,false);
+  else if(c==='modif')ouvre(id);
+  else if(c==='etat')await basculeEtat(id);
+  else if(c==='ranger')rangeRessource(id);
+  else if(c==='suppr'){
+    if(!await lvConfirm('Supprimer cette ressource ? Elle ne pourra pas être récupérée.',1))return;
+    if(a.publie)await retireDeLigne(a);
+    try{await acol().doc(id).delete();}catch(e){console.warn('suppression',e);}
+    if(a.media)await effaceMedia(a.media);
+  }
+}
+
+// ════════ FORMULAIRE ════════
 function autoHauteur(el){el.style.height='auto';el.style.height=el.scrollHeight+'px';}
 function rendEditeur(){
-  const a=S.art;
+  const a=S.res, t=typeDe(a);
   $('ed-titre').value=a.titre||'';
   setTimeout(()=>autoHauteur($('ed-titre')),0);
-  const c=$('ed-corps'); c.innerHTML='';
-  if(!a.blocs||!a.blocs.length)a.blocs=[blocNeuf('p')];
-  a.blocs.forEach((b,i)=>c.appendChild(elementBloc(b,i)));
-}
-function elementBloc(b,i){
-  const d=document.createElement('div');
-  d.className='bloc b-'+b.t; d.dataset.i=i;
-  let inner='<span class="bl-poignee" data-menu="'+i+'" role="button" tabindex="0" aria-label="Ce bloc">⋯</span>';
-  if(b.t==='sep'){
-    inner+='<div class="trait-sep"></div>';
-  }else if(b.t==='verset'){
-    inner+='<div class="v-ligne"><span class="zone v-txt" contenteditable="true" data-champ="txt" data-vide="Texte du verset">'+(b.txt||'')+'</span>'
-      +'<span class="zone v-ref" contenteditable="true" data-champ="ref" data-vide="Référence">'+esc(b.ref||'')+'</span></div>';
-  }else if(b.t==='image'){
-    inner+='<figure>'
-      +(b.media?'<img data-media="'+esc(b.media)+'" alt="">':'<div class="im-place" data-choisir="'+i+'">Choisir une image</div>')
-      +'<figcaption class="zone" contenteditable="true" data-champ="leg" data-vide="Légende (facultative)">'+(b.leg||'')+'</figcaption></figure>';
-  }else if(b.t==='html'){
-    inner+=(b.code
-      ? '<iframe data-html="'+i+'" style="height:'+(Math.max(80,Math.min(2000,Number(b.haut)||320)))+'px" sandbox="allow-scripts" referrerpolicy="no-referrer" title="Bloc interactif"></iframe>'
-      : '<div class="im-place" data-code="'+i+'">Coller le code</div>');
+  let h='<span class="champ-lab">Ce que c’est</span><div class="types">';
+  Object.keys(TYPES).forEach(k=>{h+='<button type="button" class="ty'+(k===t?' on':'')+'" data-ty="'+k+'">'+esc(TYPES[k].nom)+'</button>';});
+  h+='</div>';
+  if(t==='lien'){
+    h+='<span class="champ-lab">Adresse</span>'
+      +'<input type="text" class="res-zone" id="f-url" autocomplete="off" spellcheck="false" placeholder="https://…" value="'+esc(a.url||'')+'">';
+  }else if(t==='diagramme'){
+    h+='<span class="champ-lab">Le code</span>'
+      +'<textarea class="res-zone code" id="f-code" rows="14" spellcheck="false" placeholder="&lt;div&gt;…&lt;/div&gt;">'+esc(a.code||'')+'</textarea>'
+      +'<div class="aide">Colle ici la page HTML du diagramme. Elle tournera dans un cadre isolé, sans aucun accès au site ni aux comptes.</div>';
   }else{
-    inner+='<div class="zone" contenteditable="true" data-champ="h" data-vide="'+esc(typeDe(b.t).vide)+'">'+(b.h||'')+'</div>';
+    h+='<span class="champ-lab">Le fichier</span><div class="depose">'
+      +'<span class="nom">'+(a.media?esc(a.nom||'Fichier déposé'):'Aucun fichier')+'</span>'
+      +(a.taille?'<span class="poids">'+esc(poids(a.taille))+'</span>':'')
+      +'<button type="button" class="act" id="b-fichier">'+(a.media?'Remplacer':'Choisir un fichier')+'</button>'
+      +'<span class="poids" id="dep-etat"></span></div>'
+      +'<div class="aide">'+(t==='image'?'Images et cartes':'Documents PDF')+', vingt-cinq mégaoctets au plus. Au-delà, une fiche « Lien » vers l’endroit où le fichier est déjà hébergé vaut mieux.</div>';
   }
-  d.innerHTML=inner;
-  if(b.t==='image'&&b.media)poseImage(d.querySelector('img'),b.media);
-  if(b.t==='html'&&b.code)poseCadre(d.querySelector('iframe'),b.code);
-  return d;
+  h+='<span class="champ-lab">Description</span>'
+    +'<textarea class="res-zone" id="f-desc" rows="4" placeholder="À quoi ça sert, d’où ça vient…">'+esc(a.desc||'')+'</textarea>';
+  $('res-form').innerHTML=h;
+  const u=$('f-url'), co=$('f-code'), de=$('f-desc');
+  if(u)u.addEventListener('input',()=>{S.res.url=u.value;marqueSale();});
+  if(co)co.addEventListener('input',()=>{S.res.code=co.value;marqueSale();});
+  if(de)de.addEventListener('input',()=>{S.res.desc=de.value;marqueSale();});
+  const bf=$('b-fichier');
+  if(bf)bf.onclick=()=>{const i=$('f-fichier');i.accept=TYPES[t].accept||'';i.value='';i.click();};
+  $('res-form').querySelectorAll('.ty').forEach(b=>{
+    b.onclick=async()=>{
+      const k=b.dataset.ty;
+      if(k===typeDe(S.res))return;
+      /* UN FICHIER NE SUIT PAS LE CHANGEMENT D'ESPÈCE. Une image ne devient pas
+         le fichier d'un lien, ni celui d'un PDF. Si on le laissait attaché, il
+         resterait dans le compte sans que rien ne l'affiche : invisible, et à
+         charge. On le détache donc et on l'efface, mais jamais sans demander,
+         car un fichier lourd ne se renvoie pas d'un clic. */
+      if(S.res.media){
+        if(!await lvConfirm('Changer d’espèce retire le fichier déjà déposé. Continuer ?'))return;
+        const vieux=S.res.media;
+        S.res.media=''; S.res.mime=''; S.res.taille=0; S.res.nom=''; S.res.vign='';
+        effaceMedia(vieux);
+      }
+      S.res.type=k; rendEditeur(); marqueSale();
+    };
+  });
 }
 function litEditeur(){
-  const a=S.art; if(!a)return;
-  a.titre=$('ed-titre').value.trim();
-  const blocs=[];
-  $('ed-corps').querySelectorAll('.bloc').forEach(d=>{
-    const t=(d.className.match(/b-([a-z0-9]+)/)||[])[1]||'p';
-    const anc=(a.blocs||[])[+d.dataset.i]||{};
-    if(t==='sep'){blocs.push({t:'sep'});return;}
-    if(t==='image'){
-      const c=d.querySelector('[data-champ="leg"]');
-      blocs.push({t:'image',media:anc.media||'',mime:anc.mime||'',leg:c?propre(c.innerHTML):''});
-      return;
-    }
-    if(t==='html'){blocs.push({t:'html',code:anc.code||'',haut:anc.haut||0});return;}
-    if(t==='verset'){
-      blocs.push({t:'verset',
-        txt:propre(d.querySelector('[data-champ="txt"]').innerHTML),
-        ref:d.querySelector('[data-champ="ref"]').textContent.trim()});
-      return;
-    }
-    blocs.push({t:t,h:propre(d.querySelector('[data-champ="h"]').innerHTML)});
-  });
-  a.blocs=blocs;
+  if(!S.res)return;
+  S.res.titre=$('ed-titre').value.trim();
+  const u=$('f-url'), co=$('f-code'), de=$('f-desc');
+  if(u)S.res.url=u.value.trim();
+  if(co)S.res.code=co.value;
+  if(de)S.res.desc=de.value.trim();
 }
 function marqueSale(){
   S.sale=true; $('etat-enr').textContent='Modifié'; $('etat-enr').classList.remove('vu');
   clearTimeout(S.minute); S.minute=setTimeout(enregistre,1600);
 }
 async function enregistre(silence){
-  if(!S.art)return;
+  if(!S.res)return;
   clearTimeout(S.minute);
   litEditeur();
-  const a=S.art;
+  const a=S.res;
   a.maj=new Date().toISOString();
   if(!a.cree)a.cree=a.maj;
   try{
-    await acol().doc(a.id).set({titre:a.titre||'',blocs:a.blocs||[],publie:!!a.publie,rub:a.rub||'',cree:a.cree,maj:a.maj});
+    await acol().doc(a.id).set({
+      titre:a.titre||'', type:typeDe(a), desc:a.desc||'', publie:!!a.publie, rub:a.rub||'',
+      media:a.media||'', mime:a.mime||'', taille:a.taille||0, nom:a.nom||'',
+      vign:a.vign||'', code:a.code||'', url:a.url||'', cree:a.cree, maj:a.maj
+    });
     if(a.publie)await rafraichitPublic(a);
     S.sale=false;
     $('etat-enr').textContent='Enregistré'; $('etat-enr').classList.add('vu');
@@ -1064,288 +1165,140 @@ async function enregistre(silence){
 }
 function ouvre(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
-  S.art=JSON.parse(JSON.stringify(a)); S.sale=false;
+  S.res=JSON.parse(JSON.stringify(a)); S.sale=false;
   $('etat-enr').textContent='';
   rendEditeur(); majEtatEditeur(); vue('edit');
 }
 function nouveau(){
-  S.art={id:'a'+Date.now(),titre:'',blocs:[blocNeuf('p')],publie:false,rub:'',cree:null,maj:null};
+  /* la ressource naît là où l'on se trouve : on vient d'ouvrir « Pentateuque »,
+     c'est là qu'elle doit se ranger, sans avoir à le redire */
+  S.res={id:'s'+Date.now(),titre:'',type:'diagramme',desc:'',publie:false,rub:ici(),
+         media:'',mime:'',taille:0,nom:'',vign:'',code:'',url:'',cree:null,maj:null};
   S.sale=false; $('etat-enr').textContent=''; majEtatEditeur();
   rendEditeur(); vue('edit');
   setTimeout(()=>$('ed-titre').focus(),80);
 }
 async function supprime(){
-  if(!S.art)return;
-  if(!await lvConfirm('Supprimer cet article ? Il ne pourra pas être récupéré.',1))return;
+  if(!S.res)return;
+  if(!await lvConfirm('Supprimer cette ressource ? Elle ne pourra pas être récupérée.',1))return;
   clearTimeout(S.minute);
-  const id=S.art.id, medias=(S.art.blocs||[]).filter(b=>b.t==='image'&&b.media).map(b=>b.media);
-  const etaitPublie=!!S.art.publie, copie=S.art;
-  S.art=null; S.sale=false;
+  const id=S.res.id, media=S.res.media, etaitPublie=!!S.res.publie, copie=S.res;
+  S.res=null; S.sale=false;
   vue('liste');
-  if(etaitPublie)await retireDeLigne(copie);   // il ne doit rien rester en ligne
+  if(etaitPublie)await retireDeLigne(copie);
   try{await acol().doc(id).delete();}catch(e){console.warn('suppression',e);}
-  for(const m of medias)await effaceMedia(m);
-}
-
-// ════════ MISE EN FORME ════════
-function zoneActive(){
-  const s=getSelection(); if(!s||!s.anchorNode)return null;
-  let n=s.anchorNode; if(n.nodeType===3)n=n.parentNode;
-  return n.closest?n.closest('.zone'):null;
-}
-function applique(cmd){
-  const z=zoneActive(); if(!z){lvInfo('Placez d’abord le curseur dans un texte.');return;}
-  document.execCommand(cmd,false,null);
-  z.focus(); marqueSale(); majOutils();
-}
-function majOutils(){
-  try{
-    $('o-gras').classList.toggle('on',document.queryCommandState('bold'));
-    $('o-ital').classList.toggle('on',document.queryCommandState('italic'));
-  }catch(e){}
-}
-function insere(el){
-  const s=getSelection(); if(!s.rangeCount)return;
-  const r=s.getRangeAt(0); r.deleteContents(); r.insertNode(el);
-  r.setStartAfter(el); r.collapse(true); s.removeAllRanges(); s.addRange(r);
-  marqueSale();
-}
-/* Ouvrir une modale déplace le curseur dans son champ : on met la sélection de
-   côté avant, on la remet après, sinon la commande s'applique à rien. */
-function gardeSelection(){
-  const s=getSelection();
-  return (s&&s.rangeCount)?s.getRangeAt(0).cloneRange():null;
-}
-function rendSelection(z,r){
-  if(!z)return; z.focus();
-  if(!r)return;
-  try{const s=getSelection();s.removeAllRanges();s.addRange(r);}catch(_){}
-}
-async function poseLien(){
-  const z=zoneActive(); if(!z){lvInfo('Sélectionnez d’abord le texte à lier.');return;}
-  const s=getSelection(); const txt=s.toString(); const garde=gardeSelection();
-  const url=await lvSaisie('Adresse du lien','','','https://');
-  if(!url||!url.trim())return;
-  rendSelection(z,garde);
-  if(txt){document.execCommand('createLink',false,url.trim());}
-  else{
-    const a=document.createElement('a'); a.href=url.trim(); a.textContent=url.trim();
-    insere(a);
-  }
-  marqueSale();
-}
-async function poseRef(){
-  const z=zoneActive(); if(!z){lvInfo('Placez d’abord le curseur dans un texte.');return;}
-  const s=getSelection(); const sel=s.toString().trim(); const garde=gardeSelection();
-  const r=await lvSaisie('Référence biblique','Elle devient un renvoi cliquable vers la Bible.',sel,'Jean 3:16');
-  if(!r||!r.trim())return;
-  rendSelection(z,garde);
-  const sp=document.createElement('span');
-  sp.className='ref'; sp.setAttribute('role','button'); sp.setAttribute('tabindex','0');
-  sp.textContent=r.trim();
-  const sel2=getSelection();
-  if(sel2.rangeCount&&!sel2.isCollapsed)sel2.getRangeAt(0).deleteContents();
-  insere(sp);
-}
-async function menuBloc(i){
-  const a=S.art; if(!a)return;
-  const entrees=[];
-  if(a.blocs[i].t==='image')entrees.push({cle:'img',nom:a.blocs[i].media?'Remplacer l’image':'Choisir une image'});
-  if(a.blocs[i].t==='html')entrees.push({cle:'code',nom:a.blocs[i].code?'Modifier le code':'Coller le code'});
-  TYPES.forEach(t=>{ if(t.cle!==a.blocs[i].t) entrees.push({cle:'t:'+t.cle,nom:t.nom,note:'changer'}); });
-  entrees.push({cle:'apres',nom:'Ajouter un bloc dessous'});
-  if(i>0)entrees.push({cle:'haut',nom:'Monter'});
-  if(i<a.blocs.length-1)entrees.push({cle:'bas',nom:'Descendre'});
-  if(a.blocs.length>1)entrees.push({cle:'suppr',nom:'Supprimer ce bloc',danger:true});
-  const c=await lvChoix('Ce bloc',entrees);
-  if(!c)return;
-  if(c==='img'){choisirImage(i);return;}
-  if(c==='code'){await editeCode(i);return;}
-  litEditeur();
-  if(c==='suppr'&&a.blocs[i]&&a.blocs[i].t==='image'&&a.blocs[i].media)effaceMedia(a.blocs[i].media);
-  if(c.indexOf('t:')===0){
-    const nt=c.slice(2), anc=a.blocs[i];
-    if(anc.t==='image'&&anc.media&&nt!=='image')effaceMedia(anc.media);
-    const nb=blocNeuf(nt);
-    if(nt!=='sep'&&nt!=='verset'&&anc.t!=='sep')nb.h=anc.t==='verset'?(anc.txt||''):(anc.h||'');
-    if(nt==='verset'&&anc.t!=='sep'&&anc.t!=='verset')nb.txt=anc.h||'';
-    a.blocs[i]=nb;
-  }
-  else if(c==='apres')a.blocs.splice(i+1,0,blocNeuf('p'));
-  else if(c==='haut'){const x=a.blocs[i];a.blocs[i]=a.blocs[i-1];a.blocs[i-1]=x;}
-  else if(c==='bas'){const x=a.blocs[i];a.blocs[i]=a.blocs[i+1];a.blocs[i+1]=x;}
-  else if(c==='suppr')a.blocs.splice(i,1);
-  rendEditeur(); marqueSale();
-  const cible=$('ed-corps').querySelectorAll('.bloc')[c==='apres'?i+1:Math.min(i,a.blocs.length-1)];
-  const z=cible&&cible.querySelector('.zone'); if(z)z.focus();
-}
-let CIBLE_IMG=-1;
-function choisirImage(i){
-  CIBLE_IMG=i;
-  const f=$('f-image'); f.value=''; f.click();
-}
-async function editeCode(i){
-  const a=S.art; if(!a)return;
-  const code=await lvCode(a.blocs[i].code||'');
-  if(code===null)return;
-  litEditeur();
-  S.art.blocs[i]={t:'html',code:code,haut:S.art.blocs[i].haut||0};
-  rendEditeur(); marqueSale();
-}
-let _cres=null;
-function lvCode(valeur){
-  $('code-champ').value=valeur||'';
-  $('m-code').classList.add('on');
-  setTimeout(()=>$('code-champ').focus(),60);
-  return new Promise(r=>{_cres=r;});
-}
-function codeFin(v){$('m-code').classList.remove('on');const f=_cres;_cres=null;if(f)f(v);}
-async function ajouteBloc(){
-  const a=S.art; if(!a)return;
-  const c=await lvChoix('Ajouter un bloc',TYPES.map(t=>({cle:t.cle,nom:t.nom})));
-  if(!c)return;
-  litEditeur(); a.blocs.push(blocNeuf(c)); rendEditeur(); marqueSale();
-  const blocs=$('ed-corps').querySelectorAll('.bloc');
-  const z=blocs[blocs.length-1].querySelector('.zone'); if(z)z.focus();
+  if(media)await effaceMedia(media);
 }
 
 // ════════ ÉVÉNEMENTS ════════
+$('b-nouveau').onclick=nouveau;
+$('b-section').onclick=()=>nouvelleRub(ici());
+$('b-retour').onclick=async()=>{if(S.sale)await enregistre(true);S.res=null;vue('liste');};
+$('b-voir-retour').onclick=()=>{S.res=null;vaVers(ici());vue('liste');};
+$('b-enr').onclick=()=>enregistre();
+$('b-etat').onclick=()=>{if(S.res)basculeEtat(S.res.id);};
+$('b-ranger').onclick=()=>{if(S.res)rangeRessource(S.res.id);};
+$('b-suppr').onclick=supprime;
+$('ed-titre').addEventListener('input',function(){autoHauteur(this);marqueSale();});
+$('f-fichier').addEventListener('change',function(){const f=this.files&&this.files[0];if(f)envoieFichier(f);});
+$('conf-non').onclick=()=>confFin(false);
+$('conf-oui').onclick=()=>confFin(true);
+$('info-ok').onclick=()=>$('m-info').classList.remove('on');
+$('sai-annul').onclick=()=>saiFin(null);
+$('sai-ok').onclick=()=>saiFin($('sai-champ').value);
+$('sai-champ').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();saiFin($('sai-champ').value);}});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape')return;
+  if($('m-choix').classList.contains('on')){choixFin();return;}
+  if($('m-saisie').classList.contains('on')){saiFin(null);return;}
+  if($('m-conf').classList.contains('on')){confFin(false);return;}
+  $('m-info').classList.remove('on');
+  document.getElementById('auth-overlay').classList.remove('ouvert');
+});
+document.addEventListener('click',e=>{
+  const c=e.target.closest?e.target.closest('[data-rmenu2]'):null;
+  if(c){e.stopPropagation();menuRessource(c.getAttribute('data-rmenu2'));return;}
+  const m=e.target.closest?e.target.closest('[data-rmenu]'):null;
+  if(m){e.stopPropagation();menuRub(m.getAttribute('data-rmenu'));return;}
+  const v=e.target.closest?e.target.closest('[data-va]'):null;
+  if(v){vaVers(v.getAttribute('data-va'));return;}
+  const k=e.target.closest?e.target.closest('[data-rid2]'):null;
+  if(k){
+    const id=k.getAttribute('data-rid2');
+    const a=S.auteur?S.liste.find(x=>x.id===id):PUBS.find(x=>x.id===id);
+    if(a)voit(a,!S.auteur);
+  }
+});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Enter'&&e.key!==' ')return;
+  const el=e.target.closest?e.target.closest('[data-va],[data-rid2],[data-rmenu],[data-rmenu2]'):null;
+  if(!el)return;
+  e.preventDefault(); el.click();
+});
+window.addEventListener('beforeunload',e=>{if(S.sale){e.preventDefault();e.returnValue='';}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&S.sale)enregistre(true);});
+
+// ════════ COMPTE ════════
+let COUPE=null;
+function ecoute(){
+  if(COUPE){try{COUPE();}catch(e){}COUPE=null;}
+  if(!S.uid)return;
+  RUBS_LUES=false;
+  rdoc().get()
+    .then(d=>{S.rubs=(d.exists&&d.data().list)||[];RUBS_LUES=true;if(!S.res)routeHash();})
+    .catch(e=>{console.warn('rubriques',e);lvInfo('Le rangement n’a pas pu être lu. Rechargez la page avant d’y toucher.');});
+  COUPE=acol().onSnapshot(sn=>{
+    const l=sn.docs.map(d=>Object.assign({id:d.id},d.data()));
+    l.sort((a,b)=>String(b.maj||b.cree||'').localeCompare(String(a.maj||a.cree||'')));
+    S.liste=l;
+    if(!S.res)rendLister();
+  },e=>console.warn('ressources',e));
+}
+function motAccueil(){
+  if(!S.uid){$('mot-liste').textContent='Connectez-vous pour ajouter des ressources.';$('acts-liste').style.display='none';return;}
+  if(!S.auteur){$('mot-liste').textContent='Aucune ressource publiée pour l’instant.';$('acts-liste').style.display='none';$('liste').innerHTML='';return;}
+  $('mot-liste').textContent=''; $('acts-liste').style.display='';
+}
+/* Le visiteur voit les ressources PUBLIÉES. L'auteur retrouve les siennes et
+   son formulaire. Une seule page, deux visages. */
+async function ouvrePublic(){
+  await litPublic();
+  /* routeHash choisit lui-même le visage à montrer : la liste de l'auteur ou
+     celle du visiteur. Rien d'autre à faire ici. */
+  routeHash();
+}
+auth.onAuthStateChanged(u=>{
+  S.uid=u?u.uid:null; S.email=u?(u.email||''):null;
+  S.auteur=!!(u&&u.email&&u.email.toLowerCase()===AUTEUR);
+  S.res=null; S.liste=[]; S.rubs=[]; RUBS_LUES=false;
+  if(S.auteur){ vue('liste'); motAccueil(); ecoute(); }
+  else{ if(COUPE){COUPE();COUPE=null;} $('acts-liste').style.display='none'; ouvrePublic(); }
+});
+ouvrePublic();
+/* L'adresse porte l'endroit : #d/… pour un rayon, #r/… pour une ressource
+   publiée. Le bouton « précédent » du navigateur remonte donc tout seul. */
+function routeHash(){
+  const h=location.hash||'';
+  const mr=h.match(/^#r\/(.+)$/);
+  if(mr&&!S.auteur){
+    const a=PUBS.find(x=>x.id===mr[1]);
+    if(a){voit(a,true);return;}
+  }
+  const md=h.match(/^#d\/(.+)$/);
+  S.ouLa=(md&&rubValide(md[1]))?md[1]:'';
+  vue('liste');
+}
+window.addEventListener('popstate',routeHash);
+window.addEventListener('hashchange',routeHash);
+const an=$('annee'); if(an)an.textContent='© '+new Date().getFullYear()+' Lumen';
+
+/* Le panneau « Mon compte » : MÊME câblage que sur les articles, sur la Bible
+   et sur Mémoriser. La barre du site est posée par le build, donc ses deux
+   icônes n'existent qu'une fois la page servie : on attend qu'elles soient là
+   plutôt que de les chercher trop tôt. */
 document.addEventListener('DOMContentLoaded',()=>{
-  $('b-nouveau').onclick=nouveau;
-  $('b-retour').onclick=async()=>{ if(S.sale)await enregistre(true); S.art=null; vue('liste'); };
-  $('b-enr').onclick=()=>enregistre();
-  $('b-etat').onclick=async()=>{
-    if(!S.art)return;
-    /* un article jamais enregistré n'existe pas encore : on l'enregistre
-       d'abord, sinon la bascule n'aurait rien sur quoi se poser */
-    if(!S.liste.some(x=>x.id===S.art.id))await enregistre(true);
-    await basculeEtat(S.art.id);
-  };
-  $('b-suppr').onclick=supprime;
-  $('b-lire-retour').onclick=()=>{try{history.replaceState(null,'','/articles.html');}catch(_){}vue('liste');};
-  $('liste').addEventListener('click',e=>{
-    const l=e.target.closest&&e.target.closest('[data-lire]');
-    if(l){lit(l.dataset.lire);}
-  });
-  /* un bouton qui prend le focus vide la sélection : la commande deviendrait
-     un coup dans l'eau, sans rien dire */
-  document.querySelectorAll('.ou').forEach(b=>b.addEventListener('mousedown',e=>e.preventDefault()));
-  $('o-gras').onclick=()=>applique('bold');
-  $('o-ital').onclick=()=>applique('italic');
-  $('o-lien').onclick=poseLien;
-  $('o-ref').onclick=poseRef;
-  $('o-bloc').onclick=ajouteBloc;
-  $('f-image').addEventListener('change',e=>{
-    const f=e.target.files&&e.target.files[0];
-    if(f&&CIBLE_IMG>=0)envoieImage(f,CIBLE_IMG);
-    CIBLE_IMG=-1;
-  });
-  $('code-ok').onclick=()=>codeFin($('code-champ').value);
-  $('code-annul').onclick=()=>codeFin(null);
-  $('m-code').addEventListener('click',e=>{if(e.target===$('m-code'))codeFin(null);});
-
-  $('liste').addEventListener('click',e=>{
-    const am=e.target.closest('[data-amenu]'); if(am){menuArticle(am.dataset.amenu);return;}
-    const rm=e.target.closest('[data-rmenu]'); if(rm){menuRub(rm.dataset.rmenu);return;}
-    const rt=e.target.closest('[data-rtog]'); if(rt){
-      const id=rt.dataset.rtog;
-      S.rubOpen[id]=!rubOuverte(id); rubOpenEcrit();
-      const w=rt.closest('.rub'); if(w)w.classList.toggle('ouvert',rubOuverte(id));
-      return;
-    }
-    const it=e.target.closest('.art-item'); if(it)ouvre(it.dataset.id);
-  });
-  $('liste').addEventListener('keydown',e=>{
-    if(e.key!=='Enter'&&e.key!==' ')return;
-    const el=e.target.closest&&e.target.closest('[data-amenu],[data-rmenu],[data-rtog]');
-    if(!el)return; e.preventDefault(); el.click();
-  });
-  $('b-section').onclick=()=>nouvelleRub('');
-  $('b-ranger').onclick=async()=>{
-    if(!S.art)return;
-    /* un article jamais enregistré n'existe pas encore dans la liste : on
-       l'enregistre avant, sinon le bouton ne ferait rien, sans un mot */
-    if(!S.liste.some(x=>x.id===S.art.id))await enregistre(true);
-    rangeArticle(S.art.id);
-  };
-
-  const corps=$('ed-corps');
-  /* Une zone vide n'offre aucune position de curseur : le navigateur accroche
-     alors le curseur au texte voisin, et la frappe part dans le mauvais champ
-     (cas du verset, dont le texte et la référence sont sur la même ligne). On
-     prend donc la main sur ce cas précis. */
-  corps.addEventListener('pointerdown',e=>{
-    const z=e.target.closest&&e.target.closest('.zone');
-    if(!z||z.textContent.trim())return;
-    e.preventDefault(); z.focus();
-    try{const r=document.createRange();r.selectNodeContents(z);r.collapse(true);
-      const s=getSelection();s.removeAllRanges();s.addRange(r);}catch(_){}
-  });
-  corps.addEventListener('input',marqueSale);
-  corps.addEventListener('keyup',majOutils);
-  corps.addEventListener('mouseup',majOutils);
-  corps.addEventListener('click',e=>{
-    const m=e.target.closest('[data-menu]'); if(m){menuBloc(+m.dataset.menu);return;}
-    const im=e.target.closest('[data-choisir]'); if(im){choisirImage(+im.dataset.choisir);return;}
-    const co=e.target.closest('[data-code]'); if(co){editeCode(+co.dataset.code);return;}
-  });
-  corps.addEventListener('keydown',e=>{
-    if(e.key==='Enter'||e.key===' '){
-      const poignee=e.target.closest&&e.target.closest('[data-menu]');
-      if(poignee){e.preventDefault();menuBloc(+poignee.dataset.menu);return;}
-    }
-    const z=e.target.closest&&e.target.closest('.zone'); if(!z)return;
-    const bl=z.closest('.bloc'); const i=+bl.dataset.i;
-    if(e.key==='Enter'&&!e.shiftKey&&z.dataset.champ!=='ref'){
-      e.preventDefault();
-      litEditeur();
-      S.art.blocs.splice(i+1,0,blocNeuf('p'));
-      rendEditeur(); marqueSale();
-      const n=$('ed-corps').querySelectorAll('.bloc')[i+1].querySelector('.zone');
-      if(n)n.focus();
-    }
-    if((e.metaKey||e.ctrlKey)&&(e.key==='s'||e.key==='S')){e.preventDefault();enregistre();}
-  });
-  /* Coller : on ne garde que le texte et sa mise en forme simple. */
-  corps.addEventListener('paste',e=>{
-    const z=e.target.closest&&e.target.closest('.zone'); if(!z)return;
-    e.preventDefault();
-    const d=e.clipboardData; if(!d)return;
-    const html=d.getData('text/html');
-    const t=html?propre(html):esc(d.getData('text/plain')).replace(/\n/g,'<br>');
-    document.execCommand('insertHTML',false,t);
-    marqueSale();
-  });
-  /* Une référence ouvre la Bible dans le panneau latéral. */
-  corps.addEventListener('click',e=>{
-    const r=e.target.closest('.ref'); if(!r)return;
-    if(window.LVBible&&window.LVBible.ouvreSurRef){try{window.LVBible.ouvreSurRef(r.textContent);}catch(_){}}
-  });
-  $('ed-titre').addEventListener('input',()=>{autoHauteur($('ed-titre'));marqueSale();});
-  $('ed-titre').addEventListener('keydown',e=>{
-    if(e.key==='Enter'){e.preventDefault();const z=$('ed-corps').querySelector('.zone');if(z)z.focus();}
-  });
-
-  $('conf-oui').onclick=()=>confFin(true); $('conf-non').onclick=()=>confFin(false);
-  $('m-conf').addEventListener('click',e=>{if(e.target===$('m-conf'))confFin(false);});
-  $('info-ok').onclick=()=>$('m-info').classList.remove('on');
-  $('m-info').addEventListener('click',e=>{if(e.target===$('m-info'))$('m-info').classList.remove('on');});
-  $('sai-ok').onclick=()=>saiFin($('sai-champ').value);
-  $('sai-annul').onclick=()=>saiFin(null);
-  $('sai-champ').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();saiFin($('sai-champ').value);}});
-  $('m-saisie').addEventListener('click',e=>{if(e.target===$('m-saisie'))saiFin(null);});
-  $('m-choix').addEventListener('click',e=>{if(e.target===$('m-choix'))choixFin();});
-  document.addEventListener('keydown',e=>{
-    if(e.key!=='Escape')return;
-    if($('m-conf').classList.contains('on'))confFin(false);
-    if($('m-saisie').classList.contains('on'))saiFin(null);
-    if($('m-code').classList.contains('on'))codeFin(null);
-    $('m-info').classList.remove('on'); if($('m-choix').classList.contains('on'))choixFin();
-    const o=$('auth-overlay'); if(o)o.classList.remove('ouvert');
-  });
-  window.addEventListener('beforeunload',()=>{if(S.sale)enregistre(true);});
-
-  $('auth-ouvrir').onclick=e=>{
+  const ao=$('auth-ouvrir');
+  if(ao)ao.onclick=e=>{
     e.stopPropagation();
     /* le formulaire de connexion vit sur l'accueil : cette page n'en porte
        pas, on y renvoie plutôt que de ne rien faire */
@@ -1353,58 +1306,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     $('macct-mail').textContent=auth.currentUser.email||'';
     $('auth-overlay').classList.add('ouvert');
   };
-  $('macct-x').onclick=()=>$('auth-overlay').classList.remove('ouvert');
-  $('auth-overlay').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('ouvert');});
-  $('auth-logout').onclick=()=>{auth.signOut();$('auth-overlay').classList.remove('ouvert');};
-  $('rech-ouvrir').onclick=()=>lvInfo('La recherche des articles arrive avec la publication.');
+  const ax=$('macct-x'); if(ax)ax.onclick=()=>$('auth-overlay').classList.remove('ouvert');
+  const ov=$('auth-overlay');
+  if(ov)ov.addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('ouvert');});
+  const al=$('auth-logout'); if(al)al.onclick=()=>{auth.signOut();$('auth-overlay').classList.remove('ouvert');};
+  const ro=$('rech-ouvrir'); if(ro)ro.onclick=()=>lvInfo('La recherche des ressources arrive bientôt.');
 });
 
-// ════════ COMPTE ════════
-let COUPE=null;
-function ecoute(){
-  if(COUPE){try{COUPE();}catch(e){}COUPE=null;}
-  if(!S.uid)return;
-  rubOpenLit();
-  RUBS_LUES=false;
-  rdoc().get()
-    .then(d=>{S.rubs=(d.exists&&d.data().list)||[];RUBS_LUES=true;if(!S.art)rendLister();})
-    .catch(e=>{console.warn('rubriques',e);lvInfo('Le rangement n’a pas pu être lu. Rechargez la page avant d’y toucher.');});
-  COUPE=acol().onSnapshot(sn=>{
-    const l=sn.docs.map(d=>Object.assign({id:d.id},d.data()));
-    l.sort((a,b)=>String(b.maj||b.cree||'').localeCompare(String(a.maj||a.cree||'')));
-    S.liste=l;
-    if(!S.art)rendLister();
-  },e=>console.warn('articles',e));
-}
-function motAccueil(){
-  if(!S.uid){$('mot-liste').textContent='Connectez-vous pour écrire.';$('acts-liste').style.display='none';return;}
-  if(!S.auteur){$('mot-liste').textContent='Aucun article publié pour l’instant.';$('acts-liste').style.display='none';$('liste').innerHTML='';return;}
-  $('mot-liste').textContent=''; $('acts-liste').style.display='';
-}
-/* Le visiteur, connecté ou non, voit les articles PUBLIÉS. L'auteur, lui,
-   retrouve ses brouillons et son éditeur. Une seule page, deux visages. */
-async function ouvrePublic(){
-  await litPublic();
-  rendPublic();
-  const m=(location.hash||'').match(/^#a\/(.+)$/);
-  if(m&&PUBS.some(x=>x.id===m[1]))lit(m[1]); else vue('liste');
-}
-auth.onAuthStateChanged(u=>{
-  S.uid=u?u.uid:null; S.email=u?(u.email||''):null;
-  S.auteur=!!(u&&u.email&&u.email.toLowerCase()===AUTEUR);
-  S.art=null; S.liste=[]; S.rubs=[]; S.rubOpen={}; RUBS_LUES=false;
-  if(S.auteur){ vue('liste'); motAccueil(); ecoute(); }
-  else{ if(COUPE){COUPE();COUPE=null;} $('acts-liste').style.display='none'; ouvrePublic(); }
-});
-/* Sans compte du tout, Firebase ne prévient parfois jamais : on affiche donc
-   la lecture publique tout de suite, elle sera simplement redessinée si un
-   compte se présente. */
-ouvrePublic();
-window.addEventListener('hashchange',()=>{
-  if(S.auteur)return;
-  const m=(location.hash||'').match(/^#a\/(.+)$/);
-  if(m&&PUBS.some(x=>x.id===m[1]))lit(m[1]); else vue('liste');
-});
 </script>
 <script>
 /* Réglage de la taille du texte et bascule de l'onglet Bible : MÊME CODE que

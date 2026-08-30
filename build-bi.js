@@ -135,7 +135,8 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
 const SVG_LOUPE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg>';
 const SVG_CLOCHE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg>';
 const SVG_COMPTE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg>';
-const NAV_LIENS = [['/', 'Accueil'], ['/bible.html', 'Bible'], ['/memoriser.html', 'Mémoriser'], ['/articles.html', 'Articles']];
+const NAV_LIENS = [['/', 'Accueil'], ['/bible.html', 'Bible'], ['/memoriser.html', 'Mémoriser'],
+                   ['/articles.html', 'Articles'], ['/ressources.html', 'Ressources']];
 const VERSET_PIED = '« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l\u2019ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span>';
 
 /* Une seule barre, un seul pied. Aucun argument, donc aucune dérive possible :
@@ -224,7 +225,7 @@ html{scroll-behavior:smooth}
 .auth-m-msg.ok{display:block;background:rgba(58,107,74,.18);border:1px solid #3a6b4a;color:#a0d4b2}
 .auth-m-email{text-align:center;color:var(--parchemin-att);font-size:15px;margin-bottom:22px;word-break:break-all}
 input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
-.auth-m-btn{display:block;width:100%;box-sizing:border-box;text-align:center;padding:13px 10px;border:1px solid var(--filet-fort);color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:border-color .3s,color .3s}
+.auth-m-btn{display:block;width:100%;box-sizing:border-box;text-align:center;padding:13px 10px;margin-bottom:10px;border:1px solid var(--filet-fort);color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:border-color .3s,color .3s}
 .auth-m-btn:hover{border-color:var(--or);color:var(--or-pale)}
 
 /* ── Raffinements d'interface ── */
@@ -528,7 +529,11 @@ ${footer()}
 <script>
 window.LUMEN={base:${JSON.stringify(base)},lang:${JSON.stringify(lang)},hint:${JSON.stringify(u.search_hint)},empty:${JSON.stringify(u.search_empty)}};
 </script>
-<script src="/lumen-app.js?v=${APP_V}"></script>${extraJS ? `
+<script src="/lumen-app.js?v=${APP_V}"></script>
+<!-- L'onglet Bible au bord gauche : il vivait sur « Mémoriser » et sur les
+     articles, et manquait sur l'accueil, où le réglage du compte promettait
+     pourtant de l'afficher. -->
+<script src="/bible-panneau.js?v=${PAN_V}" defer></script>${extraJS ? `
 <script>${extraJS}</script>` : ''}
 </body>
 </html>`;
@@ -677,7 +682,7 @@ ecrire('404.html', page({
    genPaire ; la Bible, Mémoriser et les Articles en étaient absents. */
 /* on regarde les fichiers SOURCE : à ce moment du build, les pages ne sont pas
    encore copiées dans le dossier de sortie */
-const CHEMINS_PUBLICS = ['bible.html', 'memoriser.html', 'articles.html']
+const CHEMINS_PUBLICS = ['bible.html', 'memoriser.html', 'articles.html', 'ressources.html']
   .filter(f => fs.existsSync(f)).map(f => '/' + f);
 const sm = pairs.map(p => p.fr).concat(CHEMINS_PUBLICS).map(u => {
   return `  <url>
@@ -770,6 +775,27 @@ if (fs.existsSync('articles.html')) {
   ah = ah.replace('</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script></body>');
   fs.writeFileSync(`${OUT}/articles.html`, ah);
   console.log('Copié : articles.html');
+}
+
+// ── Ressources : diagrammes, cartes, livres et liens, même traitement ──
+if (fs.existsSync('ressources.html')) {
+  let rh = fs.readFileSync('ressources.html', 'utf8');
+  if (APPEARANCE_CSS && rh.indexOf('</head>') >= 0) {
+    rh = rh.replace('</head>', '<style>' + APPEARANCE_CSS + '</style></head>');
+  }
+  {
+    const hOld = rh.match(/<header>[\s\S]*?<\/header>/);
+    const fOld = rh.match(/<footer[^>]*>[\s\S]*?<\/footer>/);
+    if (!hOld || !fOld) throw new Error('ressources.html : header ou footer introuvable');
+    rh = rh.replace(hOld[0], barreCanon());
+    rh = rh.replace(fOld[0], piedCanon());
+    rh = rh.replace('</head>', '<style>' + BARRE_CSS + '</style></head>');
+    rh = rh.replace('</body>', '<script>' + BARRE_JS + '</scr' + 'ipt></body>');
+    console.log('Ressources : barre et pied canoniques injectés');
+  }
+  rh = rh.replace('</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script></body>');
+  fs.writeFileSync(`${OUT}/ressources.html`, rh);
+  console.log('Copié : ressources.html');
 }
 
 // ── La Sainte Bible (traduction Chérubin) : page de lecture + données par livre ──
@@ -1060,7 +1086,7 @@ function posePoesie(livre) {
 /* Garde-fou : la barre et le pied doivent être rigoureusement identiques
    sur les quatre surfaces. Le build échoue si l'un d'eux dérive. */
 {
-  const surfaces = ['index.html', 'bible.html', 'memoriser.html', 'articles.html', '404.html'];
+  const surfaces = ['index.html', 'bible.html', 'memoriser.html', 'articles.html', 'ressources.html', '404.html'];
   const ref = { h: null, f: null };
   let vues = 0;
   for (const f of surfaces) {

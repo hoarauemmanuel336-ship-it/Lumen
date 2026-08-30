@@ -10,10 +10,11 @@ publics que tout le monde peut lire mais que toi seul peux remplir.
 
 CE QUI CHANGE PAR RAPPORT AUX RÈGLES DÉJÀ EN PLACE
 Rien n'est retiré. Les trois blocs existants (« users », « config »,
-« contenu ») sont conservés mot pour mot. Deux blocs sont ajoutés à la
-fin, « public_articles » et « public_medias », qui n'existaient pas
-encore et sans lesquels le bouton « Publier » échoue : Firebase refuse
-d'écrire dans un endroit dont personne ne lui a dit qu'il existe.
+« contenu ») sont conservés mot pour mot. Quatre blocs sont ajoutés à la
+fin : « public_articles » et « public_medias » pour les articles,
+« public_ressources » et « public_res_medias » pour la section Ressources.
+Sans eux, le bouton « Publier » échoue : Firebase refuse d'écrire dans un
+endroit dont personne ne lui a dit qu'il existe.
 
 
 LE PAS À PAS
@@ -35,7 +36,8 @@ LE PAS À PAS
 
 7. Reviens sur le site, ouvre un article et clique « Publier ». Ouvre
    ensuite lumenveritatis.net/articles.html dans une fenêtre de navigation
-   privée, sans être connecté : l'article doit s'y lire.
+   privée, sans être connecté : l'article doit s'y lire. Fais le même essai
+   depuis Ressources.
 
 
 LE TEXTE À COLLER
@@ -90,6 +92,23 @@ service cloud.firestore {
         && request.auth.token.email == "hoarauemmanuel336@gmail.com"
         && request.auth.token.email_verified == true;
     }
+
+    // ── LES RESSOURCES PUBLIÉES ──
+    // Diagrammes, cartes, livres et liens. Mêmes règles que les articles.
+    match /public_ressources/{doc=**} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.email == "hoarauemmanuel336@gmail.com"
+        && request.auth.token.email_verified == true;
+    }
+
+    // ── LES FICHIERS DES RESSOURCES PUBLIÉES ──
+    match /public_res_medias/{doc=**} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.email == "hoarauemmanuel336@gmail.com"
+        && request.auth.token.email_verified == true;
+    }
   }
 }
 ────────────────────────────────────────────────────────────────────
@@ -106,7 +125,7 @@ fausse et Firebase refuse l'écriture, même au propriétaire.
 Deux façons d'en sortir. La plus propre : se connecter une fois au site
 avec le bouton « Continuer avec Google », en utilisant la même adresse.
 Google confirme l'adresse de lui-même, et la condition devient vraie
-pour de bon. La plus rapide : retirer les quatre lignes
+pour de bon. La plus rapide : retirer les six lignes
 « && request.auth.token.email_verified == true » et republier les règles.
 La sécurité reste entière, car personne ne peut créer un compte avec
 cette adresse, Firebase refuse une adresse déjà prise.
@@ -116,7 +135,7 @@ CE QU'IL FAUT SAVOIR
 
 L'ADRESSE EST LA CLÉ. C'est l'adresse écrite dans les règles qui donne le
 droit d'écrire, pas un mot de passe caché dans le site. Si l'adresse du
-compte change un jour, il faudra la changer ici aussi, aux quatre
+compte change un jour, il faudra la changer ici aussi, à chacun des six
 endroits.
 
 UN BROUILLON N'EST JAMAIS EXPOSÉ. Publier ne « déverrouille » pas un

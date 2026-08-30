@@ -394,6 +394,7 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px;line-he
 .bacct-t{font-family:var(--display);font-size:24px;text-align:center;margin-bottom:22px;color:#fff}
 .bacct-mail{text-align:center;color:rgba(255,255,255,.55);font-size:15px;margin-bottom:22px;word-break:break-all}
 .bacct-btn{display:block;width:100%;box-sizing:border-box;text-align:center;padding:13px 10px;border:1px solid var(--filet-f);color:#fff;font-family:var(--display);font-size:14px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:border-color .3s,color .3s}
+.bacct-btn+.bacct-btn{margin-top:10px}
 .bacct-btn:hover{border-color:var(--or);color:var(--or-pale);background:var(--surv)}
 .bacct-deco{display:block;text-align:center;margin-top:18px;color:rgba(255,255,255,.55);font-size:14px;cursor:pointer;transition:color .3s}
 .bacct-deco:hover{color:#fff}
@@ -581,7 +582,9 @@ var c=document.createElement('link');c.rel='canonical';c.href=location.origin+lo
       <span class="bacct-btn" id="bacct-notes" role="button" tabindex="0">Mes notes</span>
       <span class="bacct-btn" id="bacct-signets" role="button" tabindex="0">Mes signets</span>
       <div class="ttx-row"><span class="ttx-lab">Taille du texte</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
-      <div class="tog-row"><span class="tog-lab">Onglet Bible à gauche</span><span class="tog-sw" id="tog-bible" role="button" tabindex="0" aria-label="Afficher ou masquer l'onglet Bible"></span></div>
+      <!-- Pas de bascule « Onglet Bible » ici : l'onglet n'existe pas sur la
+           page Bible elle-même, on y est déjà. Un interrupteur qui ne commande
+           rien là où on le montre est pire que pas d'interrupteur. -->
       <span class="bacct-deco" id="auth-logout" role="button" tabindex="0">Déconnexion</span>
       </div>
     </div>
