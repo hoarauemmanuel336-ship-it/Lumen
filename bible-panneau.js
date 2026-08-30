@@ -1,6 +1,19 @@
 /* Lumen Veritatis — panneau biblique latéral (traduction Chérubin).
-   Module autonome : onglet discret au bord gauche, panneau coulissant
-   par-dessus la page, lecture sans quitter la page. */
+   Onglet discret au bord gauche, panneau coulissant par-dessus la page.
+
+   IL N'Y A PLUS QU'UNE SEULE BIBLE. Ce fichier contenait autrefois sa propre
+   lecture : sa mise en page, sa navigation, ses chapitres. C'était une seconde
+   Bible, forcément en retard sur la vraie, et il lui manquait tout ce qui fait
+   la page : la sélection de versets, le surlignage au verset et au fragment,
+   les notes et leurs catégories, la recherche, le compte et la synchronisation,
+   la taille de texte, la mise en page de la poésie. Le panneau affiche
+   désormais la page « bible.html » elle-même, dans son mode panneau, où seuls
+   la barre du site et le pied sont retirés. Tout ce qu'on gagne sur la page,
+   on le gagne ici le jour même, sans rien recopier.
+
+   Ce qui reste ici : l'onglet, le tiroir, le champ de référence, les puces
+   quand un texte en cite plusieurs, et le petit analyseur de références que
+   « Mémoriser » utilise aussi (window.LVBible). */
 (function(){
   'use strict';
   if (document.getElementById('bp-tab')) return;
@@ -9,15 +22,13 @@
   var BP_DATA = BP_EN ? '/bible-data-en/' : '/bible-data/';
   var BP_PAGE = BP_EN ? '/en/bible.html' : '/bible.html';
   var BP_T = BP_EN ? {
-    bible: 'The Holy Bible', ouvrir: 'Open the Bible', page: 'Open the page',
-    ph: 'Reference: Matthew 7:6-8', chs: 'Chapters', charge: 'Loading\u2026',
-    aller: 'Go', fermer: 'Close',
-    errTxt: 'The text could not be loaded.', errBible: 'The Bible could not be loaded.'
+    bible: 'The Holy Bible', ouvrir: 'Open the Bible', page: 'Full page',
+    ph: 'Reference: Matthew 7:6-8', aller: 'Go', fermer: 'Close', rech: 'Search', compte: 'Account',
+    inconnue: 'Not recognised.', errBible: 'The Bible could not be loaded.'
   } : {
-    bible: 'La Sainte Bible', ouvrir: 'Ouvrir la Bible', page: 'Ouvrir la page',
-    ph: 'R\u00e9f\u00e9rence : Matthieu 7:6-8', chs: 'Chapitres', charge: 'Chargement\u2026',
-    aller: 'Aller', fermer: 'Fermer',
-    errTxt: 'Le texte n\u2019a pas pu \u00eatre charg\u00e9.', errBible: 'La Bible n\u2019a pas pu \u00eatre charg\u00e9e.'
+    bible: 'La Sainte Bible', ouvrir: 'Ouvrir la Bible', page: 'Pleine page',
+    ph: 'R\u00e9f\u00e9rence : Matthieu 7:6-8', aller: 'Aller', fermer: 'Fermer', rech: 'Rechercher', compte: 'Mon compte',
+    inconnue: 'Non reconnue.', errBible: 'La Bible n\u2019a pas pu \u00eatre charg\u00e9e.'
   };
 
   /* ───────── Styles ───────── */
@@ -30,13 +41,18 @@
   + '#bp-tab.bp-tab-masque{display:none!important}'
   + '#bp-voile{position:fixed;inset:0;z-index:108;background:rgba(0,0,0,.55);display:none}'
   + '#bp-voile.on{display:block}'
-  + '#bp-pan{position:fixed;left:0;top:0;bottom:0;width:min(520px,100vw);z-index:110;background:#000;'
+  /* Le tiroir est plus large qu'avant : il porte maintenant la vraie page, avec
+     sa barre de sélection et ses menus, qui ont besoin de place pour respirer. */
+  + '#bp-pan{position:fixed;left:0;top:0;bottom:0;width:min(640px,100vw);z-index:110;background:#000;'
   + 'border-right:1px solid var(--filet,rgba(231,224,207,.14));display:flex;flex-direction:column;'
   + 'transform:translateX(-103%);transition:transform .35s cubic-bezier(.25,.7,.3,1)}'
   + '#bp-pan.on{transform:none}'
   + '.bp-tete{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--filet,rgba(231,224,207,.14))}'
   + '.bp-titre{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--or,#efe6cf)}'
-  + '.bp-page{margin-left:auto;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa,rgba(255,255,255,.6));text-decoration:none;transition:color .3s}'
+  + '.bp-icone{display:inline-flex;align-items:center;color:var(--pa,rgba(255,255,255,.6));cursor:pointer;padding:2px;transition:color .3s}'
+  + '.bp-icone:hover{color:var(--or-pale,#f8f3e6)}'
+  + '.bp-icone:first-of-type{margin-left:auto}'
+  + '.bp-page{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa,rgba(255,255,255,.6));text-decoration:none;transition:color .3s}'
   + '.bp-page:hover{color:var(--or-pale,#f8f3e6)}'
   + '.bp-fermer{font-size:15px;color:var(--pa,rgba(255,255,255,.6));cursor:pointer;padding:2px 6px;transition:color .3s}'
   + '.bp-fermer:hover{color:var(--or-pale,#f8f3e6)}'
@@ -54,58 +70,16 @@
   + '.bp-chip:hover{border-color:var(--or,#efe6cf);background:var(--surv,rgba(239,230,207,.06))}'
   + '.bp-chip .bp-x{font-size:12px;color:var(--pa,rgba(255,255,255,.6));transition:color .3s;padding:0 1px}'
   + '.bp-chip .bp-x:hover{color:var(--or-pale,#f8f3e6)}'
-  + '.bp-corps{flex:1;overflow-y:auto;padding:18px 18px 34px;font-family:var(--serif,Georgia,serif);'
-  + 'scrollbar-color:rgba(231,224,207,.35) #000}'
-  + '.bp-corps::-webkit-scrollbar{width:8px}'
-  + '.bp-corps::-webkit-scrollbar-track{background:#000}'
-  + '.bp-corps::-webkit-scrollbar-thumb{background:rgba(231,224,207,.35)}'
-  + '.bp-corps::-webkit-scrollbar-thumb:hover{background:rgba(231,224,207,.6)}'
-  + '#bp-pan ::selection{background:var(--sel,rgba(239,230,207,.5));color:var(--encre,#000)}'
+  + '.bp-corps{flex:1;position:relative;min-height:0}'
+  + '#bp-cadre{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}'
+  + '.bp-charge{text-align:center;font-style:italic;color:var(--parchemin-att,rgba(255,255,255,.45));padding:40px 18px;font-family:var(--serif,Georgia,serif)}'
   + '#bp-pan :focus{outline:none}#bp-tab:focus{outline:none}'
   + '#bp-pan :focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}'
   + '#bp-tab:focus,#bp-tab:focus-visible{outline:none}'
   + '#bp-pan .bp-refrow :focus,#bp-pan .bp-refrow :focus-visible{outline:none}'
   + 'span.ref{cursor:pointer}'
   + 'span.ref:hover{text-decoration:underline;text-underline-offset:3px}'
-  + '@media print{#bp-tab,#bp-pan,#bp-voile{display:none!important}}'
-  + '.bp-carte{border:1px solid var(--filet,rgba(231,224,207,.14));padding:14px 16px;margin:0 0 14px;cursor:pointer;transition:border-color .3s,background .3s}'
-  + '.bp-carte:hover{border-color:var(--filet-fort,rgba(231,224,207,.3));background:var(--surv,rgba(239,230,207,.06))}'
-  + '.bp-carte-ref{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--or,#efe6cf);margin-bottom:8px}'
-  + '.bp-carte .bp-v{cursor:inherit}'
-  + '.bp-test{font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--or,#efe6cf);text-align:center;margin:26px 0 2px}'
-  + '.bp-test:first-child{margin-top:4px}'
-  + '.bp-grp{font-family:var(--display,serif);font-style:italic;font-size:19px;color:var(--pa,rgba(255,255,255,.6));text-align:center;margin:18px 0 10px}'
-  + '.bp-livres{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}'
-  + '@media(max-width:430px){.bp-livres{grid-template-columns:1fr}}'
-  + '.bp-livre{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:7px 2px;'
-  + 'border-bottom:1px solid rgba(231,224,207,.10);cursor:pointer;font-size:15.5px;color:var(--parchemin,#ffffff);transition:border-color .3s}'
-  + '.bp-livre .n2{font-size:11px;color:var(--parchemin-att,rgba(255,255,255,.45));white-space:nowrap}'
-  + '.bp-livre:hover{border-color:var(--or,#efe6cf);background:var(--surv,rgba(239,230,207,.06))}'
-  + '.bp-livre:hover .n1{color:var(--or-pale,#f8f3e6)}'
-  + '.bp-fil{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--parchemin-att,rgba(255,255,255,.45));text-align:center;margin:2px 0 12px}'
-  + '.bp-fil span{color:var(--pa,rgba(255,255,255,.6));cursor:pointer;transition:color .3s}'
-  + '.bp-fil span:hover{color:var(--or-pale,#f8f3e6)}'
-  + '.bp-livre-titre{font-family:var(--display,serif);font-weight:400;font-size:26px;color:var(--parchemin,#ffffff);text-align:center;margin:0 0 14px}'
-  + '.bp-chaps{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:8px}'
-  + '.bp-chap{display:flex;align-items:center;justify-content:center;height:40px;border:1px solid var(--filet,rgba(231,224,207,.14));'
-  + 'font-size:14px;color:var(--pa,rgba(255,255,255,.6));cursor:pointer;transition:border-color .35s,color .3s,box-shadow .4s}'
-  + '.bp-chap:hover{border-color:var(--or,#efe6cf);color:var(--or-pale,#f8f3e6);background:var(--surv,rgba(239,230,207,.06))}'
-  + '.bp-ch-titre{font-family:var(--display,serif);font-weight:400;font-size:24px;color:var(--parchemin,#ffffff);text-align:center;margin:0}'
-  + '.bp-vulg{font-size:12px;font-style:italic;color:var(--parchemin-att,rgba(255,255,255,.45));text-align:center;margin-top:4px}'
-  + '.bp-section{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--or,#efe6cf);text-align:center;margin-top:14px}'
-  + '.bp-sect{font-family:\'Cormorant Garamond\',serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--or,#efe6cf);margin:20px 0 8px;text-align:left}'
-  + '.bp-sect:first-child{margin-top:2px}'
-  + '.bp-ps-titre{font-style:italic;font-size:15.5px;color:var(--pa,rgba(255,255,255,.6));text-align:center;margin-top:14px}'
-  + '.bp-sep{width:38px;height:1px;background:linear-gradient(90deg,transparent,var(--filet-f,rgba(231,224,207,.28)),transparent);margin:18px auto 20px}'
-  + '.bp-texte{text-align:justify;hyphens:auto;font-size:17px;line-height:1.72;color:var(--parchemin,#ffffff)}'
-  + '.bp-texte sup{font-size:11px;color:var(--or,#efe6cf);line-height:0;margin-right:4px}'
-  + '.bp-v{scroll-margin-top:30px}'
-  + '.bp-v.cible{background:rgba(231,224,207,.14);box-shadow:0 0 0 5px rgba(231,224,207,.14)}'
-  + '.bp-nav{display:flex;justify-content:space-between;gap:10px;margin-top:26px;padding-top:16px;border-top:1px solid rgba(231,224,207,.14)}'
-  + '.bp-nav span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa,rgba(255,255,255,.6));cursor:pointer;transition:color .3s}'
-  + '.bp-nav span:hover{color:var(--or-pale,#f8f3e6)}'
-  + '.bp-nav .vide{visibility:hidden}'
-  + '.bp-charge{text-align:center;font-style:italic;color:var(--parchemin-att,rgba(255,255,255,.45));padding:40px 0}';
+  + '@media print{#bp-tab,#bp-pan,#bp-voile{display:none!important}}';
   var st = document.createElement('style');
   st.textContent = css;
   document.head.appendChild(st);
@@ -124,6 +98,13 @@
   pan.innerHTML = ''
     + '<div class="bp-tete">'
     + '  <span class="bp-titre">' + BP_T.bible + '</span>'
+    /* La recherche et le compte vivent normalement dans la barre du site, que
+       le tiroir retire. On les remet ici : ce ne sont pas des copies, ils
+       actionnent les vrais boutons de la page à l'intérieur du cadre. */
+    + '  <span class="bp-icone" id="bp-rech" role="button" tabindex="0" aria-label="' + BP_T.rech + '" title="' + BP_T.rech + '">'
+    + '    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg></span>'
+    + '  <span class="bp-icone" id="bp-compte" role="button" tabindex="0" aria-label="' + BP_T.compte + '" title="' + BP_T.compte + '">'
+    + '    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg></span>'
     + '  <a class="bp-page" href="' + BP_PAGE + '">' + BP_T.page + '</a>'
     + '  <span class="bp-fermer" id="bp-fermer" role="button" tabindex="0" aria-label="' + BP_T.fermer + '">\u2715</span>'
     + '</div>'
@@ -133,7 +114,7 @@
     + '  <span class="bp-err" id="bp-err"></span>'
     + '</div>'
     + '<div class="bp-chips" id="bp-chips"></div>'
-    + '<div class="bp-corps" id="bp-corps"><div class="bp-charge">' + BP_T.charge + '</div></div>';
+    + '<div class="bp-corps" id="bp-corps"></div>';
   document.body.appendChild(tab);
   document.body.appendChild(voile);
   document.body.appendChild(pan);
@@ -167,7 +148,6 @@
     return null;
   }
   function esc(s){ return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
-
   /* ───────── Références ───────── */
   var ALIAS = {
     'genese':['gn','gen'],'exode':['ex','exo'],'levitique':['lv','lev'],'nombres':['nb','nbr','num'],'deuteronome':['dt','deut'],
@@ -230,6 +210,7 @@
     });
   }
   function trouveLivre(token){
+    if (!DICO || !IDX) return null;      // l'index n'est pas encore là : on ne devine pas
     var t = norm(token);
     if (!t) return null;
     if (DICO[t]) return DICO[t];
@@ -270,119 +251,50 @@
     return { slug: slug, ch: ch, v1: v1, v2: v2 };
   }
 
-  /* ───────── État (dernière position retenue) ───────── */
-  function sauveEtat(e){ try { localStorage.setItem('lv_bp_etat', JSON.stringify(e)); } catch(_){} }
-  function litEtat(){
-    try { return JSON.parse(localStorage.getItem('lv_bp_etat') || 'null'); } catch(_){ return null; }
-  }
+  /* ───────── La page Bible elle-même, dans le tiroir ─────────
+     Un seul cadre, créé au premier ouvrage et jamais détruit : la page garde
+     ainsi sa position, ses notes ouvertes et son compte connecté d'une
+     ouverture à l'autre. Même origine, donc on lui parle simplement en
+     changeant son adresse interne, comme on cliquerait un lien. */
+  var cadre = null;
+  function sauveCoin(h){ try { localStorage.setItem('lv_bp_coin', h || ''); } catch(_){} }
+  function litCoin(){ try { return localStorage.getItem('lv_bp_coin') || ''; } catch(_){ return ''; } }
 
-  /* ───────── Vues ───────── */
-  function rendLivres(){
-    sauveEtat({ v: 'livres' });
-    var h = '', tc = '';
-    IDX.groupes.forEach(function(g){
-      if (g.test !== tc) {
-        tc = g.test;
-        h += '<div class="bp-test">' + (g.test === 'AT' ? 'Ancien Testament' : 'Nouveau Testament') + '</div>';
-      }
-      h += '<div class="bp-grp">' + esc(g.nom) + '</div><div class="bp-livres">';
-      IDX.livres.forEach(function(l){
-        if (l.groupe !== g.nom) return;
-        h += '<div class="bp-livre" data-bp="livre" data-slug="' + l.slug + '">'
-           + '<span class="n1">' + esc(l.nom) + '</span><span class="n2">' + l.nch + '</span></div>';
-      });
-      h += '</div>';
-    });
-    corps.innerHTML = h;
-    corps.scrollTop = 0;
-  }
-  function rendChaps(slug){
-    var inf = infoLivre(slug);
-    if (!inf) return rendLivres();
-    if (inf.nch === 1) return rendLect(slug, 1, 0);
-    sauveEtat({ v: 'chap', slug: slug });
-    var h = '<div class="bp-fil"><span data-bp="livres">' + BP_T.bible + '</span></div>'
-          + '<div class="bp-livre-titre">' + esc(inf.nom) + '</div><div class="bp-chaps">';
-    for (var i = 1; i <= inf.nch; i++) h += '<div class="bp-chap" data-bp="chap" data-slug="' + slug + '" data-n="' + i + '">' + i + '</div>';
-    h += '</div>';
-    corps.innerHTML = h;
-    corps.scrollTop = 0;
-  }
-  function rendLect(slug, n, vCible){
-    var inf = infoLivre(slug);
-    if (!inf) return rendLivres();
-    sauveEtat({ v: 'lect', slug: slug, n: n });
-    corps.innerHTML = '<div class="bp-charge">' + BP_T.charge + '</div>';
-    livreData(slug).then(function(d){
-      var ch = null;
-      for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === n) { ch = d.chapitres[i]; break; }
-      if (!ch) return rendChaps(slug);
-      var ps = (slug === 'psaumes');
-      var nomCh = ps ? 'Psaume ' + n : esc(inf.nom) + (inf.nch > 1 ? ' ' + n : '');
-      var h = '<div class="bp-fil"><span data-bp="livres">' + BP_T.bible + '</span> \u00b7 '
-            + '<span data-bp="livre" data-slug="' + slug + '">' + esc(inf.nom) + '</span></div>'
-            + '<div class="bp-ch-titre">' + nomCh + '</div>';
-      if (ch.vulg) h += '<div class="bp-vulg">Vulgate : ' + esc(ch.vulg) + '</div>';
-      if (ch.titre) h += ps ? '<div class="bp-ps-titre">' + esc(ch.titre) + '</div>'
-                            : '<div class="bp-section">' + esc(ch.titre) + '</div>';
-      h += '<div class="bp-sep"></div><div class="bp-texte">';
-      var secT = {};
-      if (ch.titres) ch.titres.forEach(function(t){ if (t && t.titre) secT[t.v] = t.titre; });
-      ch.versets.forEach(function(v){
-        if (secT[v.v]) h += '<div class="bp-sect">' + esc(secT[v.v]) + '</div>';
-        h += '<span class="bp-v" data-v="' + v.v + '"><sup>' + v.v + '</sup>' + esc(v.t) + '</span> ';
-      });
-      h += '</div><div class="bp-nav">';
-      h += (n > 1) ? '<span data-bp="chap" data-slug="' + slug + '" data-n="' + (n - 1) + '">\u2190 ' + (ps ? 'Ps ' + (n - 1) : 'Ch. ' + (n - 1)) + '</span>' : '<span class="vide">\u00b7</span>';
-      h += '<span data-bp="livre" data-slug="' + slug + '">' + (inf.nch > 1 ? BP_T.chs : esc(inf.nom)) + '</span>';
-      h += (n < inf.nch) ? '<span data-bp="chap" data-slug="' + slug + '" data-n="' + (n + 1) + '">' + (ps ? 'Ps ' + (n + 1) : 'Ch. ' + (n + 1)) + ' \u2192</span>' : '<span class="vide">\u00b7</span>';
-      h += '</div>';
-      corps.innerHTML = h;
-      corps.scrollTop = 0;
-      var plages = null;
-      if (pend && pend.slug === slug && pend.ch === n) {
-        plages = pend.plages ? pend.plages : (pend.v1 ? [{ v1: pend.v1, v2: pend.v2 || pend.v1 }] : null);
-      } else if (vCible) {
-        plages = [{ v1: vCible, v2: vCible }];
-      }
-      pend = null;
-      if (plages) {
-        var premier = null;
-        corps.querySelectorAll('.bp-v').forEach(function(sp){
-          var v = parseInt(sp.dataset.v, 10);
-          var dans = plages.some(function(p){ return v >= p.v1 && v <= p.v2; });
-          if (dans) {
-            sp.classList.add('cible');
-            if (!premier) premier = sp;
-          }
+  function faitCadre(depart){
+    if (cadre) return cadre;
+    cadre = document.createElement('iframe');
+    cadre.id = 'bp-cadre';
+    cadre.setAttribute('title', BP_T.bible);
+    cadre.src = BP_PAGE + '?p=1' + (depart || '');
+    corps.appendChild(cadre);
+    cadre.addEventListener('load', function(){
+      /* on retient la dernière position lue, pour rouvrir là où on s'était
+         arrêté, exactement comme le faisait l'ancien panneau */
+      try {
+        cadre.contentWindow.addEventListener('hashchange', function(){
+          sauveCoin(cadre.contentWindow.location.hash || '');
         });
-        if (premier) {
-          var dec = Math.max(0, premier.offsetTop - corps.clientHeight / 2 + premier.offsetHeight / 2);
-          if (typeof corps.scrollTo === 'function') corps.scrollTo({ top: dec, behavior: 'smooth' });
-          else corps.scrollTop = dec;
-        }
-      }
-    }).catch(function(){
-      corps.innerHTML = '<div class="bp-charge">' + BP_T.errTxt + '</div>';
+        sauveCoin(cadre.contentWindow.location.hash || '');
+      } catch(_){}
     });
+    return cadre;
+  }
+  /* Poser une adresse dans le cadre. Tant qu'il n'existe pas, on le crée
+     directement au bon endroit : une seule charge, pas deux. */
+  function va(hash){
+    if (!cadre) { faitCadre(hash || ''); return; }
+    try {
+      if (cadre.contentWindow.location.hash === hash) cadre.contentWindow.location.reload();
+      else cadre.contentWindow.location.hash = hash;
+    } catch(_){ cadre.src = BP_PAGE + '?p=1' + hash; }
+    sauveCoin(hash);
+  }
+  function hashDe(r){
+    if (!r) return '';
+    return '#' + r.slug + (r.ch ? '/' + r.ch + (r.v1 ? '/' + r.v1 : '') : '');
   }
 
-  corps.addEventListener('click', function(e){
-    var el = e.target.closest('[data-bp]');
-    if (!el) return;
-    var a = el.dataset.bp;
-    if (a === 'livres') rendLivres();
-    else if (a === 'livre') rendChaps(el.dataset.slug);
-    else if (a === 'chap') rendLect(el.dataset.slug, parseInt(el.dataset.n, 10), 0);
-    else if (a === 'carte') {
-      var ch = parseInt(el.dataset.ch, 10), v1 = parseInt(el.dataset.v1, 10), v2 = parseInt(el.dataset.v2, 10);
-      if (!ch) { rendChaps(el.dataset.slug); return; }
-      if (v1) pend = { slug: el.dataset.slug, ch: ch, v1: v1, v2: v2 || v1 };
-      rendLect(el.dataset.slug, ch, 0);
-    }
-  });
-
-  /* ───────── Champ de référence ───────── */
+  /* ───────── Puces, quand un texte cite plusieurs références ───────── */
   function decoupeRefs(txt){
     return String(txt || '').split(/\s*;\s*|,(?=\s*[1-4]?\s*[a-zA-Z\u00c0-\u024f])/)
       .map(function(x){ return x.trim(); }).filter(Boolean);
@@ -407,53 +319,61 @@
     z.innerHTML = h;
     z.classList.add('on');
   }
-  function ouvreRef(r){
-    if (!r) return;
-    if (!r.ch) { rendChaps(r.slug); return; }
-    if (r.v1) pend = { slug: r.slug, ch: r.ch, plages: [{ v1: r.v1, v2: r.v2 || r.v1 }] };
-    rendLect(r.slug, r.ch, 0);
-  }
-  function rendMulti(refs){
-    /* plusieurs références : une puce par référence (comme la barre de
-       sélection de la page Bible), chacune ouvrant son passage au clic ;
-       la première s'ouvre immédiatement, avec toutes les plages des
-       références tombant dans le même chapitre. */
-    refs.forEach(function(r){
-      var deja = MULTI.some(function(m){ return m.slug === r.slug && m.ch === r.ch && m.v1 === r.v1 && m.v2 === r.v2; });
-      if (!deja) MULTI.push(r);
-    });
-    majChips();
-    var r0 = refs[0];
-    if (!r0) return rendLivres();
-    if (!r0.ch) { rendChaps(r0.slug); return; }
-    var plages = [];
-    refs.forEach(function(r){
-      if (r.slug === r0.slug && r.ch === r0.ch && r.v1) plages.push({ v1: r.v1, v2: r.v2 || r.v1 });
-    });
-    pend = { slug: r0.slug, ch: r0.ch, plages: plages.length ? plages : null };
-    rendLect(r0.slug, r0.ch, 0);
-  }
   document.addEventListener('click', function(e){
     var x = e.target.closest ? e.target.closest('#bp-chips .bp-x') : null;
     if (x) { MULTI.splice(parseInt(x.getAttribute('data-bx'), 10), 1); majChips(); return; }
     var c = e.target.closest ? e.target.closest('#bp-chips .bp-chip') : null;
-    if (c) ouvreRef(MULTI[parseInt(c.getAttribute('data-bi'), 10)]);
+    if (c) va(hashDe(MULTI[parseInt(c.getAttribute('data-bi'), 10)]));
   });
-  function vaRef(){
+
+  /* ───────── Champ de référence ───────── */
+  /* Le champ de référence a besoin du dictionnaire des noms de livres. Sans
+     cette attente, taper une référence avant que l'index ne soit là faisait
+     lire un dictionnaire encore vide, et la page tombait en erreur. */
+  function vaRef(){ assureIdx().then(vaRefVrai).catch(function(){
+    document.getElementById('bp-err').textContent = BP_T.errBible;
+  }); }
+  function vaRefVrai(){
     var champ = document.getElementById('bp-ref');
     var err = document.getElementById('bp-err');
     var morceaux = decoupeRefs(champ.value);
     var refs = [];
     for (var i = 0; i < morceaux.length; i++) { var p = parseRef(morceaux[i]); if (p) refs.push(p); }
-    if (!refs.length) { err.textContent = champ.value.trim() ? 'Non reconnue.' : ''; return; }
+    if (!refs.length) { err.textContent = champ.value.trim() ? BP_T.inconnue : ''; return; }
     err.textContent = '';
     champ.value = '';
-    if (refs.length > 1) { rendMulti(refs); return; }
-    var r = refs[0];
-    if (!r.ch) { rendChaps(r.slug); return; }
-    if (r.v1) pend = r;
-    rendLect(r.slug, r.ch, 0);
+    if (refs.length > 1) {
+      refs.forEach(function(r){
+        var deja = MULTI.some(function(m){ return m.slug === r.slug && m.ch === r.ch && m.v1 === r.v1 && m.v2 === r.v2; });
+        if (!deja) MULTI.push(r);
+      });
+      majChips();
+    }
+    va(hashDe(refs[0]));
   }
+  /* Actionner un bouton de la page, à l'intérieur du cadre. Rien n'est
+     reconstruit : c'est le bouton d'origine qui reçoit le clic, donc la
+     recherche et le compte sont exactement ceux de la page Bible. */
+  function dansCadre(id){
+    if (!cadre) { faitCadre(litCoin()); }
+    var essais = 0;
+    (function tente(){
+      try {
+        var el = cadre.contentDocument && cadre.contentDocument.getElementById(id);
+        if (el) { el.click(); return; }
+      } catch(_){}
+      if (essais++ < 40) setTimeout(tente, 120);
+    })();
+  }
+  function icone(id, cible){
+    var el = document.getElementById(id);
+    el.addEventListener('click', function(){ dansCadre(cible); });
+    el.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); dansCadre(cible); }
+    });
+  }
+  icone('bp-rech', 'rech-ouvrir');
+  icone('bp-compte', 'auth-ouvrir');
   document.getElementById('bp-aller').addEventListener('click', vaRef);
   document.getElementById('bp-ref').addEventListener('keydown', function(e){
     if (e.key === 'Enter') vaRef();
@@ -467,21 +387,11 @@
       construitDico();
     });
   }
-  function restaure(){
-    var e = litEtat();
-    if (e && e.v === 'lect' && infoLivre(e.slug)) rendLect(e.slug, e.n, 0);
-    else if (e && e.v === 'chap' && infoLivre(e.slug)) rendChaps(e.slug);
-    else rendLivres();
-  }
-  var dejaRendu = false;
+  function montre(){ voile.classList.add('on'); pan.classList.add('on'); }
   function ouvre(){
-    voile.classList.add('on');
-    pan.classList.add('on');
-    assureIdx().then(function(){
-      if (!dejaRendu) { restaure(); dejaRendu = true; }
-    }).catch(function(){
-      corps.innerHTML = '<div class="bp-charge">' + BP_T.errBible + '</div>';
-    });
+    montre();
+    faitCadre(litCoin());
+    assureIdx().catch(function(){});     // pour le champ de référence
   }
   function ferme(){
     voile.classList.remove('on');
@@ -489,19 +399,20 @@
   }
   function ouvreSurRef(txt){
     var propre = String(txt || '').replace(/\u00a0/g, ' ').trim();
-    voile.classList.add('on');
-    pan.classList.add('on');
+    montre();
     assureIdx().then(function(){
       var refs = decoupeRefs(propre).map(parseRef).filter(Boolean);
-      if (!refs.length) { if (!dejaRendu) { restaure(); dejaRendu = true; } return; }
-      dejaRendu = true;
-      if (refs.length > 1) { rendMulti(refs); return; }
-      var r = refs[0];
-      if (!r.ch) { rendChaps(r.slug); return; }
-      if (r.v1) pend = r;
-      rendLect(r.slug, r.ch, 0);
+      if (!refs.length) { faitCadre(litCoin()); return; }
+      if (refs.length > 1) {
+        refs.forEach(function(r){
+          var deja = MULTI.some(function(m){ return m.slug === r.slug && m.ch === r.ch && m.v1 === r.v1 && m.v2 === r.v2; });
+          if (!deja) MULTI.push(r);
+        });
+        majChips();
+      }
+      va(hashDe(refs[0]));
     }).catch(function(){
-      corps.innerHTML = '<div class="bp-charge">' + BP_T.errBible + '</div>';
+      if (!cadre) corps.innerHTML = '<div class="bp-charge">' + BP_T.errBible + '</div>';
     });
   }
   document.addEventListener('click', function(e){

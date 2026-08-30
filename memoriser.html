@@ -170,7 +170,7 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 @media(max-width:600px){.study-stat .fini{font-size:11.5px}}
 .finish{font-family:var(--display);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa);border:1px solid var(--filet-f);padding:8px 18px;transition:all .3s}
 .finish:hover{border-color:var(--or);color:var(--or);background:var(--surv)}
-.qbox{text-align:center;margin-bottom:42px;animation:rise .5s cubic-bezier(.2,.7,.3,1) both}
+.qbox{text-align:center;margin-bottom:28px;animation:rise .5s cubic-bezier(.2,.7,.3,1) both}
 .q-label{font-family:var(--display);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:24px}
 .rule{width:38px;height:1px;background:var(--or);opacity:.5;margin:24px auto}
 .q-prompt{font-family:var(--serif);font-size:calc(27px*var(--lvz,1));line-height:1.62;color:var(--parchemin);max-width:30em;margin:0 auto}
@@ -187,11 +187,31 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .opt.reveal{border-color:var(--vert);color:#bcdcbe}
 .opt:disabled{cursor:default}
 
+/* ═══ AUTO-ÉVALUATION ═══
+   Trois points de couleur sous le texte à retrouver, pour dire ce dont on
+   s'est souvenu. Les propositions restent visibles : la discipline de ne pas
+   les lire d'abord appartient au lecteur, la machine ne la force plus. Rien
+   n'est écrit sous les points, le mot reste au survol. */
+.rappel{display:flex;justify-content:center;align-items:center;gap:38px;margin-top:28px}
+.rap{position:relative;display:inline-flex;padding:2px}
+.rap::before{content:'';position:absolute;inset:-16px}   /* zone tactile confortable, invisible */
+.rap .pastille{width:11px;height:11px;border-radius:50%;display:block;opacity:.42;transition:opacity .3s,transform .3s}
+.rap[data-r="r"] .pastille{background:var(--rouge)}
+.rap[data-r="a"] .pastille{background:var(--ambre)}
+.rap[data-r="v"] .pastille{background:var(--vert)}
+.rap:hover:not(:disabled) .pastille{opacity:1;transform:scale(1.3)}
+.rap.choisi .pastille{opacity:1;transform:scale(1.15)}
+.rap:disabled{cursor:default}
+.rap:disabled:not(.choisi) .pastille{opacity:.1;transform:none}
+.opts{margin-top:26px}
+@media(max-width:600px){.rappel{gap:34px}}
+
 /* ═══ SUMMARY ═══ */
 #summary{display:none;text-align:center;padding-top:48px;animation:fade .5s ease both}
 .sum-num{font-family:var(--display);font-size:72px;line-height:1;color:var(--or)}
 .sum-sub{font-size:15px;letter-spacing:.04em;color:var(--pa);margin:14px 0 8px}
-.sum-detail{font-size:14px;color:var(--pa2);margin-bottom:40px}
+.sum-detail{font-size:14px;color:var(--pa2);margin-bottom:8px}
+.sum-rap{font-size:13px;letter-spacing:.03em;color:var(--pa2);margin-bottom:32px}
 #sum-back{max-width:260px;margin:0 auto}
 
 /* ═══ MODAL ═══ */
@@ -585,6 +605,14 @@ if(app&&sc&&!app.classList.contains('on')&&getComputedStyle(sc).display==='none'
         <div class="q-label" id="q-label"></div>
         <div class="rule"></div>
         <div class="q-prompt" id="q-prompt"></div>
+        <!-- Les pastilles sont DANS le cadre de la question : elles portent sur
+             la référence ou le verset qu'il faut retrouver, pas sur les quatre
+             propositions, qui ne sont même pas encore lisibles. -->
+        <div class="rappel" id="rappel">
+          <button class="rap" data-r="r"><span class="pastille"></span></button>
+          <button class="rap" data-r="a"><span class="pastille"></span></button>
+          <button class="rap" data-r="v"><span class="pastille"></span></button>
+        </div>
         <div class="rule"></div>
       </div>
       <div class="opts" id="opts"></div>
@@ -594,6 +622,7 @@ if(app&&sc&&!app.classList.contains('on')&&getComputedStyle(sc).display==='none'
       <div class="sum-num" id="sum-num"></div>
       <div class="sum-sub" id="sum-sub"></div>
       <div class="sum-detail" id="sum-detail"></div>
+      <div class="sum-rap" id="sum-rap"></div>
       <button class="start" id="sum-back">Retour</button>
     </section>
   </main>
@@ -712,6 +741,7 @@ const T={
     reset_verse:'Réinitialiser ce verset',
     find_ref:'Quelle est la référence ?', find_verse:'Quel est le verset ?',
     answered:'répondues', correct:'justes', finish:'Terminer',
+    rap_r:'Pas du tout', rap_a:'À peu près', rap_v:'Parfaitement',
     done:'Session terminée', of:'sur', acquired:'versets acquis',
     backbtn:'Retour',
     addverse:'Verset', edit:'Modifier', rename:'Renommer', del:'Supprimer',
@@ -749,7 +779,7 @@ const S={
   catSec:{},        // catId -> sectionId
   secOpen:{},       // sectionId -> false quand la section est repliée (par appareil)
   soloSec:null,
-  cur:null, lastId:null, answered:0, correct:0,
+  cur:null, lastId:null, answered:0, correct:0, rap:{r:0,a:0,v:0},
   pendingCat:null, editCat:null, editVerse:null, editSec:null, pendingCatSec:null
 };
 
@@ -888,7 +918,9 @@ function niveauEffectif(id){
   return Math.max(0,b-Math.floor(retard/delai));
 }
 function levelOf(id){const b=niveauEffectif(id);return b<=1?'r':b<=3?'a':'v';}     // rouge / ambre / vert, le vert dès le niveau 4 comme avant
-function answer(id,ok){
+/* DEMI-DÉLAIS, pour le jaune. 1 · 1 · 2 · 4 · 8 · 18 · 38 · 80 */
+const DEMI=JOURS.map(j=>Math.max(1,Math.round(j/2)));
+function answer(id,ok,rap){
   const p=S.progress[id]||{box:0};
   p.box=Math.max(0,Math.min(NIVEAU_MAX,+p.box||0));   // une donnée abîmée ne fige plus la séance
   p.v=(p.v||0)+1;   // compteur d'expositions : ne s'efface jamais, sert au tirage équitable
@@ -910,7 +942,43 @@ function answer(id,ok){
      laissé de côté six mois ne remonte donc pas au vert d'une seule bonne
      réponse, il se réapprend cran par cran. */
   const eff=niveauEffectif(id);
-  if(ok){ if(mur){ p.box=Math.min(NIVEAU_MAX,eff+1); p.n=new Date(ms+JOURS[p.box]*JOUR).toISOString(); } delete p.s; }
+  /* LA COULEUR DÉCLARÉE, s'il y en a une. Elle est gardée telle quelle : c'est
+     la dernière chose que tu as dite de ce verset, et elle ne s'efface pas
+     toute seule. Elle ne pèse QUE sur un verset arrivé à terme, comme tout le
+     reste : sans cette réserve, il suffirait de se déclarer rouge pour rendre
+     un verset mûr avant l'heure, puis de se déclarer vert pour gagner un cran
+     sans avoir attendu. */
+  if(rap==='r'||rap==='a'||rap==='v')p.r=rap;
+  if(ok){
+    if(mur){
+      /* TROIS COULEURS, TROIS GESTES, ET UN SEUL SENS DE LECTURE :
+         rouge il revient tout de suite, jaune il reste, vert il monte.
+
+         SEUL LE VERT FAIT MONTER, et c'est la clé. J'avais d'abord fait monter
+         le jaune aussi, avec un délai réduit de moitié. Une simulation sur cent
+         quatre-vingts jours a montré l'absurdité : en revenant deux fois plus
+         souvent, le jaune atteignait le dernier cran AVANT le vert. Se déclarer
+         « à peu près » rapportait donc plus vite que « parfaitement ». Un cran
+         mesure l'espacement qu'une mémoire supporte : on ne peut pas l'accorder
+         à quelqu'un qui vient de dire qu'il n'y arrive qu'à moitié. */
+      if(rap==='r'){
+        /* RECONNU N'EST PAS RAPPELÉ. La bonne case a été trouvée en lisant les
+           propositions, pas en se souvenant : c'est précisément ce que le choix
+           multiple ne pouvait pas voir. Le niveau ne bouge pas, et le verset
+           repasse quelques questions plus loin, comme après une erreur. */
+        p.box=eff; p.n=new Date(ms).toISOString(); p.s=S.step+3;
+      } else if(rap==='a'){
+        /* RAPPELÉ AVEC EFFORT. Le cran reste le même, mais l'effort est une
+           information : le verset revient environ deux fois plus tôt que si
+           tout avait été limpide. */
+        p.box=eff; p.n=new Date(ms+DEMI[eff]*JOUR).toISOString(); delete p.s;
+      } else {
+        p.box=Math.min(NIVEAU_MAX,eff+1);
+        p.n=new Date(ms+JOURS[p.box]*JOUR).toISOString();
+        delete p.s;
+      }
+    } else delete p.s;
+  }
   /* L'ERREUR NE PÈSE PAS PAREIL SELON QU'ELLE ARRIVE OU NON À L'HEURE.
      Manquer un verset le jour de sa révision est une vraie information : on
      redescend de deux crans. Le manquer pendant un exercice libre, alors
@@ -1201,7 +1269,7 @@ function startSession(){
     updateStart();
     return;
   }
-  S.answered=0; S.correct=0; S.lastId=null;
+  S.answered=0; S.correct=0; S.lastId=null; S.rap={r:0,a:0,v:0};
   /* la mise à l'écart courte d'un verset manqué ne vaut que dans la séance où
      il a été manqué : on repart d'une ardoise nette */
   Object.keys(S.progress).forEach(id=>{const p=S.progress[id];if(p&&p.s!==undefined)delete p.s;});
@@ -1250,12 +1318,28 @@ function renderQuestion(){
     b.addEventListener('click',()=>pick(opt,b));
     opts.appendChild(b);
   });
+  q.rappel=null;
+  /* Le mot n'est plus écrit sous le point : il reste accessible au survol et
+     aux lecteurs d'écran, mais il n'encombre plus la page. */
+  {const m={r:t('rap_r'),a:t('rap_a'),v:t('rap_v')};
+   document.querySelectorAll('#rappel .rap').forEach(b=>{const x=m[b.dataset.r]||'';b.title=x;b.setAttribute('aria-label',x);});}
+  document.querySelectorAll('#rappel .rap').forEach(b=>{b.classList.remove('choisi');b.disabled=false;});
+}
+/* La note reste facultative et modifiable tant qu'on n'a pas répondu : on peut
+   changer d'avis en touchant un autre point. Elle se fige au moment de la
+   réponse, pas avant. */
+function noteRappel(r){
+  if(!S.cur||S.cur.done)return;
+  S.cur.rappel=r;
+  document.querySelectorAll('#rappel .rap').forEach(b=>b.classList.toggle('choisi',b.dataset.r===r));
 }
 function pick(opt,btn){
   if(S.cur.done)return; S.cur.done=true;
   const q=S.cur, ok=opt.id===q.item.id;
   S.answered++; if(ok)S.correct++;
-  answer(q.item.id,ok); saveProgressGroupe();
+  if(q.rappel)S.rap[q.rappel]=(S.rap[q.rappel]||0)+1;
+  answer(q.item.id,ok,q.rappel); saveProgressGroupe();
+  document.querySelectorAll('#rappel .rap').forEach(b=>b.disabled=true);
   $('opts').querySelectorAll('.opt').forEach(b=>{
     b.disabled=true;
     if(b.dataset.oid===q.item.id)b.classList.add(ok?'ok':'reveal');
@@ -1272,6 +1356,10 @@ function endSession(){
   $('sum-sub').textContent=t('done');
   let vCount=0; allItems().forEach(i=>{if(levelOf(i.id)==='v')vCount++;});
   $('sum-detail').textContent=S.correct+' / '+S.answered+' '+t('correct')+'  ·  '+vCount+' '+t('acquired');
+  /* Ce que TU as déclaré, à côté de ce que la machine a mesuré. La ligne
+     n'apparaît que si tu t'es noté au moins une fois. */
+  const R=S.rap||{}, tot=(R.r||0)+(R.a||0)+(R.v||0);
+  $('sum-rap').textContent=tot?t('rap_v')+' '+(R.v||0)+'  ·  '+t('rap_a')+' '+(R.a||0)+'  ·  '+t('rap_r')+' '+(R.r||0):'';
   S.soloCat=null; S.soloSec=null;
   renderCats();
 }
@@ -1770,10 +1858,20 @@ document.addEventListener('DOMContentLoaded',()=>{
     const tdl=e.target.closest('[data-tdel]'); if(tdl){deleteTrashPerm(tdl.dataset.tdel);return;}
     if(e.target.closest('#trash-empty')){emptyTrash();return;}
   });
-  // clavier 1-4 pendant l'étude
+  // les pastilles
+  $('rappel').addEventListener('click',e=>{
+    const b=e.target.closest?e.target.closest('.rap'):null;
+    if(b&&!b.disabled)noteRappel(b.dataset.r);
+  });
+  /* Clavier pendant l'étude : les chiffres 1 à 4 répondent, et les initiales
+     des trois couleurs posent la note (r comme rouge, j comme jaune, v comme
+     vert) sans quitter le clavier. */
   document.addEventListener('keydown',e=>{
     if($('study').style.display!=='block'||!S.cur||S.cur.done)return;
-    const n=parseInt(e.key); if(n>=1&&n<=S.cur.options.length){const btns=$('opts').querySelectorAll('.opt');if(btns[n-1])btns[n-1].click();}
+    const c={r:'r',j:'a',v:'v'}[String(e.key).toLowerCase()];
+    if(c){noteRappel(c);return;}
+    const n=parseInt(e.key);
+    if(n>=1&&n<=S.cur.options.length){const btns=$('opts').querySelectorAll('.opt');if(btns[n-1])btns[n-1].click();}
   });
   // sections au clavier : entrée et espace valent une touche
   $('cat-list').addEventListener('keydown',e=>{
@@ -1893,6 +1991,7 @@ auth.onAuthStateChanged(async u=>{
       <div class="auth-t" id="macct-t">Mon compte</div>
       <div class="auth-mail" id="macct-mail"></div>
       <a class="macct-btn" id="macct-notes" href="/bible.html#notes">Mes notes</a>
+      <a class="macct-btn" id="macct-signets" href="/bible.html#signets">Mes signets</a>
       <div class="ttx-row"><span class="ttx-lab" id="macct-ttx">Taille du texte</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
       <div class="tog-row"><span class="tog-lab" id="macct-tog">Onglet Bible à gauche</span><span class="tog-sw" id="tog-bible" role="button" tabindex="0" aria-label="Afficher ou masquer l’onglet Bible"></span></div>
       <button type="button" class="auth-out" id="auth-logout">Déconnexion</button>

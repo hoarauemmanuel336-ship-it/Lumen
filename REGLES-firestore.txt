@@ -4,15 +4,16 @@ RÈGLES DE SÉCURITÉ FIRESTORE — LUMEN VERITATIS
 ════════════════════════════════════════════════════════════════════
 
 CE QUE CES RÈGLES FONT, EN UNE PHRASE
-Chacun est seul maître de son espace, et il existe à côté un espace public
-que tout le monde peut lire mais que toi seul peux remplir.
+Chacun est seul maître de son espace, et il existe à côté des espaces
+publics que tout le monde peut lire mais que toi seul peux remplir.
 
 
-POURQUOI IL FAUT LES POSER
-Tant qu'elles ne sont pas en place, le bouton « Publier » échoue : Firebase
-refuse d'écrire dans un endroit dont personne ne lui a dit qu'il existe.
-Les articles restent alors privés, et le site continue de fonctionner
-normalement pour tout le reste.
+CE QUI CHANGE PAR RAPPORT AUX RÈGLES DÉJÀ EN PLACE
+Rien n'est retiré. Les trois blocs existants (« users », « config »,
+« contenu ») sont conservés mot pour mot. Deux blocs sont ajoutés à la
+fin, « public_articles » et « public_medias », qui n'existaient pas
+encore et sans lesquels le bouton « Publier » échoue : Firebase refuse
+d'écrire dans un endroit dont personne ne lui a dit qu'il existe.
 
 
 LE PAS À PAS
@@ -44,55 +45,89 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     // ── L'ESPACE DE CHAQUE COMPTE ──
-    // Versets mémorisés, notes, surlignages, brouillons d'articles, images :
-    // seul le compte concerné y entre, en lecture comme en écriture.
-    match /users/{compte}/{reste=**} {
-      allow read, write: if request.auth != null && request.auth.uid == compte;
+    // Versets mémorisés, notes, surlignages, brouillons d'articles,
+    // images : seul le compte concerné y entre, en lecture comme en
+    // écriture.
+    match /users/{uid}/{doc=**} {
+      allow read, write: if request.auth != null
+        && request.auth.uid == uid;
+    }
+
+    // ── LES RÉGLAGES DU SITE ──
+    // Lus par tout le monde (Mémoriser y prend ses catégories de base),
+    // écrits par toi seul.
+    match /config/{doc} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.email == "hoarauemmanuel336@gmail.com"
+        && request.auth.token.email_verified == true;
+    }
+
+    match /contenu/{slug} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.email == "hoarauemmanuel336@gmail.com"
+        && request.auth.token.email_verified == true;
     }
 
     // ── LES ARTICLES PUBLIÉS ──
     // Lisibles par tout le monde, même sans compte. Écrits par toi seul.
-    match /public_articles/{article} {
+    match /public_articles/{doc=**} {
       allow read: if true;
       allow write: if request.auth != null
-                   && request.auth.token.email == 'hoarauemmanuel336@gmail.com';
+        && request.auth.token.email == "hoarauemmanuel336@gmail.com"
+        && request.auth.token.email_verified == true;
     }
 
     // ── LES IMAGES DES ARTICLES PUBLIÉS ──
-    // Mêmes règles : elles doivent être lisibles, sinon les articles
-    // publiés afficheraient des cadres vides pour tout le monde sauf toi.
-    match /public_medias/{media} {
+    // Mêmes règles. Le « doc=** » couvre aussi les tranches dans
+    // lesquelles une image est découpée pour tenir dans Firestore ;
+    // sans elles, les articles publiés afficheraient des cadres vides
+    // pour tout le monde sauf toi.
+    match /public_medias/{doc=**} {
       allow read: if true;
       allow write: if request.auth != null
-                   && request.auth.token.email == 'hoarauemmanuel336@gmail.com';
-
-      match /tranches/{tranche} {
-        allow read: if true;
-        allow write: if request.auth != null
-                     && request.auth.token.email == 'hoarauemmanuel336@gmail.com';
-      }
+        && request.auth.token.email == "hoarauemmanuel336@gmail.com"
+        && request.auth.token.email_verified == true;
     }
   }
 }
 ────────────────────────────────────────────────────────────────────
 
 
+SI « PUBLIER » ÉCHOUE QUAND MÊME
+
+La cause la plus probable est la dernière ligne de chaque bloc,
+« email_verified ». Elle exige que l'adresse ait été confirmée par un
+clic sur le lien reçu par courriel. Si le compte a été créé avec une
+adresse et un mot de passe sans jamais confirmer, la condition est
+fausse et Firebase refuse l'écriture, même au propriétaire.
+
+Deux façons d'en sortir. La plus propre : se connecter une fois au site
+avec le bouton « Continuer avec Google », en utilisant la même adresse.
+Google confirme l'adresse de lui-même, et la condition devient vraie
+pour de bon. La plus rapide : retirer les quatre lignes
+« && request.auth.token.email_verified == true » et republier les règles.
+La sécurité reste entière, car personne ne peut créer un compte avec
+cette adresse, Firebase refuse une adresse déjà prise.
+
+
 CE QU'IL FAUT SAVOIR
 
-TON ADRESSE EST LA CLÉ. C'est l'adresse écrite dans les règles qui donne le
-droit de publier, pas un mot de passe caché dans le site. Si tu changes un
-jour l'adresse de ton compte, il faudra la changer ici aussi, aux trois
-endroits. Personne ne peut créer un compte avec ton adresse : Firebase
-refuse une adresse déjà prise.
+L'ADRESSE EST LA CLÉ. C'est l'adresse écrite dans les règles qui donne le
+droit d'écrire, pas un mot de passe caché dans le site. Si l'adresse du
+compte change un jour, il faudra la changer ici aussi, aux quatre
+endroits.
 
-UN BROUILLON N'EST JAMAIS EXPOSÉ. Publier ne « déverrouille » pas ton
-brouillon : cela en recopie une version dans l'espace public. Ce qui n'a pas
-été copié n'est pas lisible, il n'y a pas de règle à se tromper. Retirer un
-article de la ligne efface la copie, images comprises.
+UN BROUILLON N'EST JAMAIS EXPOSÉ. Publier ne « déverrouille » pas un
+brouillon : cela en recopie une version dans l'espace public. Ce qui n'a
+pas été copié n'est pas lisible, il n'y a pas de règle à se tromper.
+Retirer un article de la ligne efface la copie, images comprises.
 
-LA MODIFICATION SUIT. Un article déjà publié que tu modifies est remis en
+LA MODIFICATION SUIT. Un article déjà publié que l'on modifie est remis en
 ligne à l'enregistrement, sans rien avoir à faire.
 
 CE QUE ÇA COÛTE. Rien. Le projet est sur le forfait gratuit, aucune carte
-n'est attachée, aucune facture n'est possible. La lecture publique consomme
-des lectures Firestore, largement sous les cinquante mille par jour offertes.
+n'est attachée, aucune facture n'est possible. La lecture publique
+consomme des lectures Firestore, largement sous les cinquante mille par
+jour offertes.

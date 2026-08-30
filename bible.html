@@ -107,6 +107,14 @@ a.b-r:hover b,.b-r:hover b,.b-r.kact b{color:var(--or-pale)}
 .wrap{max-width:1100px;margin:0 auto;padding:0 28px 90px}
 body.sel-active .wrap{padding-bottom:calc(var(--sb-h,190px) + 28px)}
 .hero{text-align:center;padding:74px 0 26px;animation:rise .7s ease both}
+/* ═══ MODE PANNEAU ═══ Rien n'est retiré des fonctions : on enlève la barre et
+   le pied, qui appartiennent à la page d'accueil de la Bible et non à la
+   lecture, et on resserre les marges pour une colonne étroite. */
+html.panneau header,html.panneau footer{display:none!important}
+html.panneau .wrap{max-width:none;padding:0 20px 40px}
+html.panneau .hero{padding:26px 0 14px}
+html.panneau h1.titre{font-size:32px}
+html.panneau .notes-cat{top:0}
 .sur-titre{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--or);margin-bottom:18px}
 h1.titre{font-family:var(--display);font-weight:400;font-size:48px;line-height:1.1;letter-spacing:.04em}
 .hero .souligne{width:54px;height:1px;background:linear-gradient(90deg,transparent,var(--filet-f),transparent);margin:26px auto 0}
@@ -136,6 +144,29 @@ a.chap:hover{border-color:var(--or);color:var(--or-pale);background:var(--surv)}
 .lecture-col{max-width:720px;margin:0 auto;padding:56px 0 48px;animation:rise .6s ease both}
 @media(max-width:720px){.lecture-col{padding:38px 0 34px}}
 h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align:center;margin:0}
+/* ═══ SIGNETS ═══
+   Le ruban cousu dans la reliure d'une bible : on le laisse tomber sur un
+   chapitre pour le retrouver plus tard. Vide, c'est un simple contour ; posé,
+   il se remplit d'or. Le titre garde sa place au centre, le ruban se tient à
+   droite sans le pousser. */
+.ch-tete{position:relative;padding:0 42px}
+.signet-btn{position:absolute;right:0;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;color:var(--parchemin-att);cursor:pointer;transition:color .3s}
+.signet-btn:hover{color:var(--or)}
+.signet-btn.pose{color:var(--or)}
+.signet-btn svg{display:block;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linejoin:round}
+.signet-btn.pose svg{fill:currentColor}
+@media(max-width:600px){.ch-tete{padding:0 36px}.signet-btn{width:34px;height:34px}}
+.sg-vide{text-align:center;color:var(--parchemin-att);font-style:italic;padding:56px 0}
+.sg-liste{max-width:760px;margin:36px auto 0}
+.sg-carte{display:flex;align-items:center;gap:16px;padding:16px 6px;border-bottom:1px solid var(--filet);cursor:pointer;transition:border-color .3s,background .3s}
+.sg-carte:hover{border-color:var(--or);background:var(--surv)}
+.sg-ruban{flex:none;display:flex;color:var(--or)}
+.sg-ruban svg{display:block;fill:currentColor;stroke:none}
+.sg-txt{flex:1;min-width:0}
+.sg-ref{font-family:var(--display);font-size:20px;color:var(--parchemin)}
+.sg-date{font-size:12px;letter-spacing:.04em;color:var(--parchemin-att);margin-top:4px}
+.sg-x{flex:none;font-size:14px;color:var(--parchemin-att);padding:8px 6px;transition:color .3s}
+.sg-x:hover{color:var(--or)}
 .ch-vulg{font-size:13.5px;color:var(--parchemin-att);text-align:center;font-style:italic;margin-top:6px}
 .ch-section{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);text-align:center;margin-top:22px}
 .ch-sect{font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin:30px 0 12px;text-align:left}
@@ -451,6 +482,15 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/icones/lumen-180.png">
 <meta name="theme-color" content="#0a0a0a">
+<!-- MODE PANNEAU. La même page sert la colonne latérale des autres écrans :
+     « ?p=1 » retire seulement l'habillage du site autour (barre, pied), jamais
+     une fonction. Le drapeau est posé ici, avant le premier affichage, pour
+     qu'aucune barre n'apparaisse une fraction de seconde. -->
+<script>try{if(/[?&]p=1(&|$)/.test(location.search)){document.documentElement.classList.add('panneau');
+/* la même page sous deux adresses : on demande aux moteurs de n'en retenir
+   qu'une, sinon le tiroir ferait doublon avec la page dans les résultats */
+var m=document.createElement('meta');m.name='robots';m.content='noindex';document.head.appendChild(m);
+var c=document.createElement('link');c.rel='canonical';c.href=location.origin+location.pathname;document.head.appendChild(c);}}catch(e){}</script>
 </head>
 <body>
   <header>
@@ -539,6 +579,7 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
       <div class="bacct-t">Mon compte</div>
       <div class="bacct-mail" id="bacct-mail"></div>
       <span class="bacct-btn" id="bacct-notes" role="button" tabindex="0">Mes notes</span>
+      <span class="bacct-btn" id="bacct-signets" role="button" tabindex="0">Mes signets</span>
       <div class="ttx-row"><span class="ttx-lab">Taille du texte</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
       <div class="tog-row"><span class="tog-lab">Onglet Bible à gauche</span><span class="tog-sw" id="tog-bible" role="button" tabindex="0" aria-label="Afficher ou masquer l'onglet Bible"></span></div>
       <span class="bacct-deco" id="auth-logout" role="button" tabindex="0">Déconnexion</span>
@@ -724,12 +765,13 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
     }
   }
   function appliqueNuage(snap){
-    var nuage = {}, meta = null, surlN = null, surlfN = null, mortsN = null, k;
+    var nuage = {}, meta = null, surlN = null, surlfN = null, mortsN = null, signN = null, k;
     snap.forEach(function(dc){
       if (dc.id === '__meta__') { meta = dc.data(); return; }
       if (dc.id === '__surl__') { surlN = dc.data(); return; }
       if (dc.id === '__surlf__') { surlfN = dc.data(); return; }
       if (dc.id === '__morts__') { mortsN = dc.data(); return; }
+      if (dc.id === '__signets__') { signN = dc.data(); return; }
       var x = dc.data(); x.id = dc.id; nuage[x.id] = x;
     });
 
@@ -754,6 +796,18 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
     if (!memeEtat(fF.s, dF) || !memeEtat(fF.t, dFT))
       db.doc('users/' + UID + '/bibleNotes/__surlf__').set({ surlf: true, m: SURLF_M, s: SURLF, t: SURLF_T }).catch(function(){});
     marqueSurlF();
+
+    /* ── signets ── */
+    var dG = (signN && signN.s) || {}, dGT = (signN && signN.t) || {};
+    var fG = fusionne(SIGN, SIGN_T, dG, dGT);
+    SIGN = fG.s; SIGN_T = fG.t; SIGN_P = JSON.parse(JSON.stringify(SIGN));
+    SIGN_M = Math.max(SIGN_M, (signN && signN.m) || 0);
+    ecrisLocal('lv_bible_signets', SIGN); ecrisLocal('lv_bible_signets_t', SIGN_T);
+    try { localStorage.setItem('lv_bible_signets_m', String(SIGN_M)); } catch(e){}
+    if (!memeEtat(fG.s, dG) || !memeEtat(fG.t, dGT))
+      db.doc('users/' + UID + '/bibleNotes/__signets__').set({ signets: true, m: SIGN_M, s: SIGN, t: SIGN_T }).catch(function(){});
+    majSignets();
+    if (location.hash === '#signets') vueSignets();
 
     /* ── catégories de notes : tableau, fusionné par identifiant ── */
     var cLoc = {}, cDis = {};
@@ -967,6 +1021,7 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
   document.getElementById('bacct-x').addEventListener('click', function(){ document.getElementById('bacct-voile').classList.remove('ouvert'); });
   document.getElementById('bacct-voile').addEventListener('click', function(e){ if (e.target === this) this.classList.remove('ouvert'); });
   document.getElementById('bacct-notes').addEventListener('click', function(){ document.getElementById('bacct-voile').classList.remove('ouvert'); location.hash = '#notes'; });
+  document.getElementById('bacct-signets').addEventListener('click', function(){ document.getElementById('bacct-voile').classList.remove('ouvert'); location.hash = '#signets'; });
   document.getElementById('auth-logout').addEventListener('click', function(){
     try { firebase.auth().signOut(); } catch(e) {}
     document.getElementById('bacct-voile').classList.remove('ouvert');
@@ -2046,6 +2101,116 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
     });
   }
 
+  /* ═══════════ SIGNETS ═══════════
+     Un signet marque un chapitre, et le verset précis s'il y en avait un à
+     l'écran. Il en tient autant qu'on veut, ils voyagent avec le compte comme
+     les notes et les surlignages, et ils se fondent entrée par entrée : celui
+     posé sur le téléphone et celui posé sur l'ordinateur se rejoignent au lieu
+     de s'écraser. Un signet retiré ici disparaît là-bas, il ne renaît pas. */
+  var SIGN = {}, SIGN_T = {}, SIGN_P = {}, SIGN_M = 0;
+  try { SIGN = JSON.parse(localStorage.getItem('lv_bible_signets') || '{}'); } catch(e){ SIGN = {}; }
+  try { SIGN_T = JSON.parse(localStorage.getItem('lv_bible_signets_t') || '{}'); } catch(e){ SIGN_T = {}; }
+  try { SIGN_M = parseInt(localStorage.getItem('lv_bible_signets_m') || '0', 10) || 0; } catch(e){ SIGN_M = 0; }
+  SIGN_P = JSON.parse(JSON.stringify(SIGN));
+  var RUBAN = '<svg viewBox="0 0 24 24" width="20" height="26" aria-hidden="true"><path d="M6 3h12v18l-6-4.2L6 21z"/></svg>';
+
+  function cleSignet(slug, ch){ return slug + '/' + ch; }
+  function sauveSignets(){
+    var ms = Date.now();
+    estampe(SIGN, SIGN_P, SIGN_T, ms);
+    SIGN_M = ms;
+    SIGN_P = JSON.parse(JSON.stringify(SIGN));
+    ecrisLocal('lv_bible_signets', SIGN);
+    ecrisLocal('lv_bible_signets_t', SIGN_T);
+    try { localStorage.setItem('lv_bible_signets_m', String(SIGN_M)); } catch(e){}
+    if (UID && db) db.doc('users/' + UID + '/bibleNotes/__signets__')
+      .set({ signets: true, m: SIGN_M, s: SIGN, t: SIGN_T }).catch(function(){});
+    majSignets();
+  }
+  function libelleSignet(g){
+    var inf = infoLivre(g.s);
+    var nom = inf ? inf.nom : g.s;
+    var t = (g.s === 'psaumes') ? 'Psaume ' + g.c : nom + (inf && inf.nch > 1 ? ' ' + g.c : '');
+    if (g.v) t += ':' + g.v;
+    return t;
+  }
+  function dateSignet(g){
+    var d = new Date(g.d || 0);
+    if (isNaN(d.getTime())) return '';
+    try { return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }); }
+    catch(e){ return d.toISOString().slice(0, 10); }
+  }
+  function hashSignet(g){ return '#' + g.s + '/' + g.c + (g.v ? '/' + g.v : ''); }
+  /* Le ruban de la page en cours, et le compte affiché dans « Mon compte ». */
+  function majSignets(){
+    var b = document.getElementById('signet-btn');
+    if (b && vue._ctx) {
+      var pose = !!SIGN[cleSignet(vue._ctx.slug, vue._ctx.ch)];
+      b.classList.toggle('pose', pose);
+      b.setAttribute('aria-label', pose ? 'Retirer le signet' : 'Poser un signet');
+      b.setAttribute('title', pose ? 'Retirer le signet' : 'Poser un signet');
+    }
+    var l = document.getElementById('bacct-signets');
+    var n = Object.keys(SIGN).length;
+    if (l) l.textContent = 'Mes signets' + (n ? ' (' + n + ')' : '');
+  }
+  function basculeSignet(){
+    var c = vue._ctx; if (!c) return;
+    var cle = cleSignet(c.slug, c.ch);
+    if (SIGN[cle]) { delete SIGN[cle]; }
+    else {
+      var p = location.hash.replace(/^#/, '').split('/');
+      var v = parseInt(p[2], 10);
+      SIGN[cle] = { s: c.slug, c: c.ch, v: (v > 0 ? v : 0), d: new Date().toISOString() };
+    }
+    sauveSignets();
+    if (location.hash === '#signets') vueSignets();
+  }
+  function vueSignets(){
+    document.title = 'Mes signets \u00b7 La Sainte Bible \u00b7 Lumen Veritatis';
+    hero.style.display = 'none';
+    var ids = Object.keys(SIGN).sort(function(a, b){
+      var da = SIGN[a].d || '', db2 = SIGN[b].d || '';
+      return da < db2 ? 1 : (da > db2 ? -1 : 0);        // le dernier posé en tête
+    });
+    var h = '<div class="lecture-col"><h2 class="ch-titre">Mes signets</h2><div class="ch-sep"></div>';
+    if (!ids.length) {
+      h += '<div class="sg-vide">Aucun signet pour l\u2019instant. Ouvre un chapitre et touche le ruban, '
+         + 'en haut \u00e0 droite du titre, pour le marquer.</div>';
+    } else {
+      h += '<div class="sg-liste">';
+      ids.forEach(function(cle){
+        var g = SIGN[cle];
+        h += '<div class="sg-carte" data-sg="' + esc(cle) + '">'
+           + '<span class="sg-ruban">' + RUBAN + '</span>'
+           + '<span class="sg-txt"><span class="sg-ref">' + esc(libelleSignet(g)) + '</span>'
+           + '<div class="sg-date">' + esc(dateSignet(g)) + '</div></span>'
+           + '<span class="sg-x" data-sgx="' + esc(cle) + '" role="button" tabindex="0" '
+           + 'aria-label="Retirer ce signet" title="Retirer ce signet">\u2715</span></div>';
+      });
+      h += '</div>';
+    }
+    h += '</div>';
+    vue.innerHTML = h;
+    vue._ctx = null;
+    [].forEach.call(vue.querySelectorAll('.sg-carte'), function(el){
+      actif(el, function(ev){
+        if (ev.target.closest && ev.target.closest('[data-sgx]')) return;
+        var g = SIGN[el.getAttribute('data-sg')];
+        if (g) location.hash = hashSignet(g);
+      });
+    });
+    [].forEach.call(vue.querySelectorAll('[data-sgx]'), function(el){
+      actif(el, function(ev){
+        ev.stopPropagation();
+        delete SIGN[el.getAttribute('data-sgx')];
+        sauveSignets();
+        vueSignets();
+      });
+    });
+    majSignets();
+  }
+
   /* ───────── Vues ───────── */
   function vueLivres(){
     document.title = 'La Sainte Bible · Lumen Veritatis';
@@ -2095,7 +2260,8 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
       var nomCh = ps ? 'Psaume ' + n : esc(inf.nom) + (inf.nch > 1 ? ' ' + n : '');
       document.title = nomCh + ' · La Sainte Bible · Lumen Veritatis';
       var h = '<div class="lecture-col">' +
-              '<h2 class="ch-titre">' + nomCh + '</h2>';
+              '<div class="ch-tete"><h2 class="ch-titre">' + nomCh + '</h2>' +
+              '<span class="signet-btn" id="signet-btn" role="button" tabindex="0">' + RUBAN + '</span></div>';
       if (ch.vulg) h += '<div class="ch-vulg">Vulgate : ' + esc(ch.vulg) + '</div>';
       if (ch.titre) h += ps ? '<div class="ch-psaume-titre">' + esc(ch.titre) + '</div>'
                             : '<div class="ch-section">' + esc(ch.titre) + '</div>';
@@ -2129,6 +2295,8 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
       h += '</div></div>';
       vue.innerHTML = h;
       vue._ctx = { slug: slug, ch: n };
+      actifId('signet-btn', basculeSignet);
+      majSignets();
       if (pendingSel && pendingSel.slug === slug && pendingSel.ch === n) {
         for (var v = pendingSel.v1; v <= pendingSel.v2; v++) {
           if (document.getElementById('va-' + v) && selIdx(slug, n, v) < 0) SEL.push({ s: slug, c: n, v: v });
@@ -2199,9 +2367,20 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
 
   /* ───────── Routage : #livre, #livre/ch, #livre/ch/v, #notes ───────── */
   function route(){
-    var p = location.hash.replace(/^#/, '').split('/');
+    var brut = location.hash.replace(/^#/, '');
+    /* « #ref=Matthieu 7:6 » : une référence écrite en toutes lettres. C'est ce
+       qui permet au panneau latéral de demander un passage sans avoir à
+       reconstruire de son côté le dictionnaire des noms de livres. */
+    if (brut.indexOf('ref=') === 0) {
+      var g = parseRef(decodeURIComponent(brut.slice(4)));
+      if (!g) { vueLivres(); window.scrollTo(0, 0); return; }
+      location.replace('#' + g.slug + (g.ch ? '/' + g.ch + (g.v1 ? '/' + g.v1 : '') : ''));
+      return;
+    }
+    var p = brut.split('/');
     var slug = p[0] || '';
     if (slug === 'notes') { vueNotes(); window.scrollTo(0, 0); return; }
+    if (slug === 'signets') { vueSignets(); window.scrollTo(0, 0); return; }
     if (!slug) { vueLivres(); window.scrollTo(0, 0); return; }
     var n = parseInt(p[1], 10), v = parseInt(p[2], 10);
     if (n > 0) { vueLecture(slug, n, v > 0 ? v : 0); if (!(v > 0)) window.scrollTo(0, 0); }
