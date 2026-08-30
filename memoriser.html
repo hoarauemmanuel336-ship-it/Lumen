@@ -984,6 +984,21 @@ function answer(id,ok,rap){
          « à peu près » rapportait donc plus vite que « parfaitement ». Un cran
          mesure l'espacement qu'une mémoire supporte : on ne peut pas l'accorder
          à quelqu'un qui vient de dire qu'il n'y arrive qu'à moitié. */
+      /* ── LE CRÉDIT : CE QUE LE VERSET AVAIT ATTEINT AVANT DE PÂLIR ──
+         Le retard fait redescendre le niveau AFFICHÉ, mais la boîte
+         enregistrée, elle, garde la trace du travail fait. Tant que la remontée
+         se faisait cran par cran depuis le niveau pâli, une pause de trois mois
+         coûtait presque trois mois de retour : le verset devait repasser par le
+         délai de sept jours, puis seize, puis trente-cinq, puis soixante-quinze.
+         C'était punir quelqu'un qui, à l'épreuve, se souvenait très bien.
+         RETROUVER N'EST PAS APPRENDRE : une mémoire qu'on a laissée dormir
+         revient beaucoup plus vite qu'elle n'est venue la première fois. Une
+         réponse limpide APRÈS le retard prouve que le niveau atteint était
+         mérité et qu'il tient encore ; on le rend d'un coup au lieu de le
+         faire remonter à l'échelle. Aucune faille n'est ouverte pour autant :
+         on ne rend JAMAIS plus que ce qui avait été gagné, et ce niveau-là
+         n'avait pu s'obtenir qu'en franchissant tous les délais un à un. */
+      const credit=Math.min(NIVEAU_MAX,Math.max(0,Math.floor(+p.box)||0));
       if(note==='r'){
         /* RECONNU N'EST PAS RAPPELÉ. La bonne case a été trouvée en lisant les
            propositions, pas en se souvenant : c'est précisément ce que le choix
@@ -991,12 +1006,17 @@ function answer(id,ok,rap){
            repasse quelques questions plus loin, comme après une erreur. */
         p.box=eff; p.n=new Date(ms).toISOString(); p.s=S.step+3;
       } else if(note==='a'){
-        /* RAPPELÉ AVEC EFFORT. Le cran reste le même, mais l'effort est une
-           information : le verset revient environ deux fois plus tôt que si
-           tout avait été limpide. */
-        p.box=eff; p.n=new Date(ms+DEMI[eff]*JOUR).toISOString(); delete p.s;
+        /* RAPPELÉ AVEC EFFORT. Sans retard, le cran reste le même et le verset
+           revient environ deux fois plus tôt que si tout avait été limpide.
+           Après un retard, l'effort dit que la mémoire est là mais fragile :
+           on rend la MOITIÉ du chemin perdu, pas la totalité. */
+        const cible=credit>eff?Math.min(credit,eff+Math.ceil((credit-eff)/2)):eff;
+        p.box=cible; p.n=new Date(ms+DEMI[cible]*JOUR).toISOString(); delete p.s;
       } else {
-        p.box=Math.min(NIVEAU_MAX,eff+1);
+        /* LIMPIDE. Sans retard, un cran de plus. Après un retard, le niveau
+           gagné autrefois est rendu en entier : la réponse vient de démontrer
+           qu'il était juste. */
+        p.box=credit>eff?credit:Math.min(NIVEAU_MAX,eff+1);
         p.n=new Date(ms+JOURS[p.box]*JOUR).toISOString();
         delete p.s;
       }

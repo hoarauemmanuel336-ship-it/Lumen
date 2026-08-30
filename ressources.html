@@ -700,6 +700,13 @@ function pageCadre(code){
     +'<meta name="viewport" content="width=device-width,initial-scale=1">'
     +'<style>html,body{margin:0;padding:0;background:#000;color:#fff;'
     +'font-family:Georgia,serif}*{box-sizing:border-box}'
+    /* Le cadre est TOUJOURS taillé à la hauteur exacte de son contenu : un
+       ascenseur à l'intérieur n'aurait donc jamais rien à faire défiler, et
+       s'il apparaît c'est le signe d'un écart de quelques pixels entre la
+       mesure et le rendu. Sous Windows il prend en plus sa place et vole
+       quinze pixels de largeur, ce qui suffit à décaler la mise en page.
+       On le retire donc franchement. */
+    +'html{overflow:hidden}'
     /* Le contenu est enfermé dans une boîte qu'on peut mesurer. display:flow-root
        empêche les marges de ses enfants de s'échapper : sans cela la boîte
        serait annoncée plus courte que ce qu'elle occupe et le bas du diagramme
@@ -715,11 +722,39 @@ function pageCadre(code){
        repliant il restait grand, et chaque aller-retour ajoutait sa bande
        noire sous le diagramme. On mesure maintenant la boîte du contenu, qui
        rétrécit quand le contenu rétrécit. */
+    /* On ne mesure pas la BOÎTE du contenu mais son DERNIER PIXEL VISIBLE :
+       on parcourt les éléments et on retient le bord bas le plus loin. La
+       différence n'est pas théorique. Le diagramme se termine par sa ligne
+       « cliquez sur un élément », qui porte une marge basse ; cette marge fait
+       partie de la boîte sans rien afficher, et se lisait donc comme une bande
+       noire sous le diagramme, présente aussi bien replié que déplié. Les
+       éléments repliés ou masqués n'ont pas de dimensions et sont ignorés
+       d'eux-mêmes. */
     +'var w=document.getElementById("lv-mesure"),dernier=-1;'
-    +'function h(){if(!w)return;var n=Math.ceil(Math.max(w.getBoundingClientRect().height,w.scrollHeight));'
-    +'if(n===dernier)return;dernier=n;try{parent.postMessage({lvHaut:n},"*");}catch(e){}}'
+    +'function bas(){var m=0,l=w.getElementsByTagName("*"),i,r;'
+    +'for(i=0;i<l.length;i++){r=l[i].getBoundingClientRect();'
+    +'if(!r.width&&!r.height)continue;if(r.bottom>m)m=r.bottom;}'
+    +'return m+(window.pageYOffset||0);}'
+    +'function h(){if(!w)return;var n=Math.ceil(bas());'
+    +'if(n<=0)n=Math.ceil(Math.max(w.getBoundingClientRect().height,w.scrollHeight));'
+    +'if(n===dernier)return;dernier=n;'
+    /* On taille aussi la boîte à cette hauteur. Sans cela il reste sous le
+       dernier élément une marge basse qui n'affiche rien mais qui rend la page
+       du cadre défilable de quelques pixels : le diagramme se décalait sous le
+       doigt ou la molette sans qu'on voie pourquoi. La boîte étant close, la
+       page du cadre fait exactement la hauteur de ce qu'elle montre. */
+    +'w.style.height=n+"px";'
+    +'try{parent.postMessage({lvHaut:n},"*");}catch(e){}}'
     +'window.addEventListener("load",h);setTimeout(h,120);setTimeout(h,600);'
-    +'if(window.ResizeObserver){new ResizeObserver(h).observe(w);}'
+    /* ── QUI SURVEILLE QUOI ──
+       On ferme la boîte à la hauteur mesurée, donc elle ne bouge plus : la
+       surveiller ELLE ne dirait plus jamais rien, et un diagramme qu'on déplie
+       resterait coupé à sa hauteur du moment. Ce sont donc les éléments QU'ELLE
+       CONTIENT qu'on surveille, eux qui grandissent et rétrécissent pour de
+       bon. */
+    +'if(window.ResizeObserver){var ro=new ResizeObserver(h),k;'
+    +'for(k=0;k<w.children.length;k++)ro.observe(w.children[k]);'
+    +'if(!w.children.length)ro.observe(w);}'
     /* ── LA COPIE PASSE PAR LA PAGE ──
        Le cadre n'a pas le droit d'écrire dans le presse-papier : il est en
        bac à sable sans allow-same-origin, donc d'origine opaque, et le
@@ -781,7 +816,9 @@ window.addEventListener('message',e=>{
   document.querySelectorAll('iframe[data-diag]').forEach(f=>{if(f.contentWindow===e.source)cadre=f;});
   if(!cadre)return;
   if(typeof d.lvHaut==='number'){
-    cadre.style.height=Math.max(120,Math.min(4000,Math.round(d.lvHaut)+2))+'px';
+    /* Pas un pixel de rab : le cadre vaut exactement ce que le diagramme
+       annonce. Les deux pixels ajoutés « au cas où » se voyaient. */
+    cadre.style.height=Math.max(40,Math.min(4000,Math.round(d.lvHaut)))+'px';
     return;
   }
   if(typeof d.lvCopie==='string')copiePresse(d.lvCopie);
