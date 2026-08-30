@@ -730,7 +730,7 @@ function pageCadre(code){
        noire sous le diagramme, présente aussi bien replié que déplié. Les
        éléments repliés ou masqués n'ont pas de dimensions et sont ignorés
        d'eux-mêmes. */
-    +'var w=document.getElementById("lv-mesure"),dernier=-1;'
+    +'var w=document.getElementById("lv-mesure"),dernier=-1,demande=0;'
     +'function bas(){var m=0,l=w.getElementsByTagName("*"),i,r;'
     +'for(i=0;i<l.length;i++){r=l[i].getBoundingClientRect();'
     +'if(!r.width&&!r.height)continue;if(r.bottom>m)m=r.bottom;}'
@@ -743,8 +743,19 @@ function pageCadre(code){
        du cadre défilable de quelques pixels : le diagramme se décalait sous le
        doigt ou la molette sans qu'on voie pourquoi. La boîte étant close, la
        page du cadre fait exactement la hauteur de ce qu'elle montre. */
-    +'w.style.height=n+"px";'
+    +'w.style.height=n+"px";demande=n;'
     +'try{parent.postMessage({lvHaut:n},"*");}catch(e){}}'
+    /* ── LA PAGE RÉPOND CE QU'ELLE A PU DONNER ──
+       Elle refuse au-delà d'une certaine hauteur, par prudence. Tant que le
+       cadre l'ignorait, un grand diagramme entièrement déplié dépassait ce
+       plafond et TOUT CE QUI EST AU-DELÀ DISPARAISSAIT, sans bande, sans
+       ascenseur, sans rien pour le signaler : coupé net. Le cadre écoute donc
+       la réponse. S'il a eu ce qu'il demandait, il verrouille son défilement
+       comme prévu ; s'il a eu moins, il le rouvre, et le peu qui dépasse
+       redevient atteignable. Rien ne peut plus être perdu. */
+    +'window.addEventListener("message",function(e){var d=e.data;'
+    +'if(!d||typeof d.lvApplique!=="number")return;'
+    +'document.documentElement.style.overflow=(d.lvApplique<demande-1)?"auto":"hidden";});'
     +'window.addEventListener("load",h);setTimeout(h,120);setTimeout(h,600);'
     /* ── QUI SURVEILLE QUOI ──
        On ferme la boîte à la hauteur mesurée, donc elle ne bouge plus : la
@@ -817,8 +828,19 @@ window.addEventListener('message',e=>{
   if(!cadre)return;
   if(typeof d.lvHaut==='number'){
     /* Pas un pixel de rab : le cadre vaut exactement ce que le diagramme
-       annonce. Les deux pixels ajoutés « au cas où » se voyaient. */
-    cadre.style.height=Math.max(40,Math.min(4000,Math.round(d.lvHaut)))+'px';
+       annonce. Les deux pixels ajoutés « au cas où » se voyaient.
+       LE PLAFOND N'EST PAS UNE MISE EN PAGE, C'EST UN GARDE-FOU. Il était à
+       quatre mille pixels, ce qu'un diagramme d'une dizaine de sections
+       entièrement dépliées dépasse largement : mesuré à neuf mille six cent
+       soixante-quinze sur un cas d'essai. Tout le bas était alors perdu.
+       On le monte à quarante mille, hors d'atteinte d'un vrai diagramme, et
+       il ne sert plus qu'à ce pour quoi il est fait : arrêter un chiffre
+       aberrant. On renvoie en plus au cadre la hauteur réellement accordée,
+       pour qu'il rouvre son défilement dans le cas, désormais improbable, où
+       elle serait inférieure à ce qu'il demandait. */
+    const accorde=Math.max(40,Math.min(40000,Math.round(d.lvHaut)));
+    cadre.style.height=accorde+'px';
+    try{e.source.postMessage({lvApplique:accorde},'*');}catch(_){}
     return;
   }
   if(typeof d.lvCopie==='string')copiePresse(d.lvCopie);
