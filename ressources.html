@@ -699,11 +699,40 @@ function pageCadre(code){
   return '<!doctype html><html lang="fr"><head><meta charset="utf-8">'
     +'<meta name="viewport" content="width=device-width,initial-scale=1">'
     +'<style>html,body{margin:0;padding:0;background:#000;color:#fff;'
-    +'font-family:Georgia,serif}*{box-sizing:border-box}</style></he'+'ad><body>'
-    +code
-    +'<scr'+'ipt>(function(){function h(){try{parent.postMessage({lvHaut:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)},"*");}catch(e){}}'
+    +'font-family:Georgia,serif}*{box-sizing:border-box}'
+    /* Le contenu est enfermé dans une boîte qu'on peut mesurer. display:flow-root
+       empêche les marges de ses enfants de s'échapper : sans cela la boîte
+       serait annoncée plus courte que ce qu'elle occupe et le bas du diagramme
+       se ferait couper. */
+    +'#lv-mesure{display:flow-root}</style></he'+'ad><body>'
+    +'<div id="lv-mesure">'+code+'</div>'
+    +'<scr'+'ipt>(function(){'
+    /* ── LA HAUTEUR SE MESURE SUR LE CONTENU, PAS SUR LA PAGE ──
+       On lisait avant document.documentElement.scrollHeight, qui ne descend
+       JAMAIS sous la hauteur de la fenêtre du cadre, laquelle est justement la
+       hauteur qu'on vient de donner au cadre. Le chiffre annoncé ne pouvait
+       donc que monter : en dépliant une section le cadre grandissait, en la
+       repliant il restait grand, et chaque aller-retour ajoutait sa bande
+       noire sous le diagramme. On mesure maintenant la boîte du contenu, qui
+       rétrécit quand le contenu rétrécit. */
+    +'var w=document.getElementById("lv-mesure"),dernier=-1;'
+    +'function h(){if(!w)return;var n=Math.ceil(Math.max(w.getBoundingClientRect().height,w.scrollHeight));'
+    +'if(n===dernier)return;dernier=n;try{parent.postMessage({lvHaut:n},"*");}catch(e){}}'
     +'window.addEventListener("load",h);setTimeout(h,120);setTimeout(h,600);'
-    +'if(window.ResizeObserver){new ResizeObserver(h).observe(document.body);}})();</scr'+'ipt>'
+    +'if(window.ResizeObserver){new ResizeObserver(h).observe(w);}'
+    /* ── LA COPIE PASSE PAR LA PAGE ──
+       Le cadre n'a pas le droit d'écrire dans le presse-papier : il est en
+       bac à sable sans allow-same-origin, donc d'origine opaque, et le
+       navigateur lui refuse l'accès sans un mot dire. Le diagramme croyait
+       copier, son ✓ s'affichait, et rien n'était copié. On intercepte donc
+       l'appel et on fait faire le travail à la page, qui a le droit. La
+       tentative directe est conservée : là où elle passe, elle passe. */
+    +'function relais(t){try{parent.postMessage({lvCopie:String(t)},"*");}catch(e){}}'
+    +'try{var nat=(navigator.clipboard&&navigator.clipboard.writeText)?navigator.clipboard.writeText.bind(navigator.clipboard):null;'
+    +'Object.defineProperty(navigator,"clipboard",{configurable:true,value:{'
+    +'writeText:function(t){relais(t);if(nat)return nat(t).catch(function(){return undefined;});return Promise.resolve();},'
+    +'readText:function(){return Promise.reject(new Error("indisponible"));}}});}catch(e){}'
+    +'})();</scr'+'ipt>'
     /* Balise fermante coupée en deux : le build injecte son script sur la
        PREMIERE balise de fermeture du corps qu'il trouve dans le fichier, et
        il tomberait sinon au milieu de cette chaîne. Ne pas la recoller, et ne
@@ -714,12 +743,48 @@ function pageCadre(code){
 function poseCadre(f,code){ if(f)f.srcdoc=pageCadre(code); }
 /* Un diagramme annonce sa hauteur ; on l'écoute pour ne laisser ni bande
    blanche ni ascenseur inutile. */
+/* Copie de secours, à l'ancienne : un champ posé hors champ, sélectionné, puis
+   la commande de copie du navigateur. Il doit rester RENDU (ni display:none ni
+   visibility:hidden), sinon rien n'est sélectionnable, et sa police à 16px, en
+   dessous de quoi iOS zoome tout seul au moment de la sélection. */
+function copieVieille(txt){
+  try{
+    const z=document.createElement('textarea');
+    z.value=txt; z.readOnly=false; z.contentEditable='true';
+    z.style.cssText='position:fixed;top:0;left:-9999px;width:1px;height:1px;font-size:16px;opacity:0';
+    document.body.appendChild(z);
+    const r=document.createRange(); r.selectNodeContents(z);
+    const s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    z.setSelectionRange(0,999999);
+    document.execCommand('copy');
+    s.removeAllRanges(); document.body.removeChild(z);
+    return true;
+  }catch(e){return false;}
+}
+function copiePresse(txt){
+  try{
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).catch(()=>copieVieille(txt));
+      return;
+    }
+  }catch(e){}
+  copieVieille(txt);
+}
+/* Un diagramme annonce sa hauteur ; on l'écoute pour ne laisser ni bande
+   blanche ni ascenseur inutile. Il demande aussi les copies, n'ayant pas le
+   droit de les faire lui-même. On ne répond qu'aux cadres de cette page :
+   n'importe quel onglet peut envoyer un message, aucun ne doit pouvoir écrire
+   dans le presse-papier par ce chemin. */
 window.addEventListener('message',e=>{
-  const d=e.data; if(!d||typeof d.lvHaut!=='number')return;
-  document.querySelectorAll('iframe[data-diag]').forEach(f=>{
-    if(f.contentWindow!==e.source)return;
-    f.style.height=Math.max(120,Math.min(4000,Math.round(d.lvHaut)+2))+'px';
-  });
+  const d=e.data; if(!d)return;
+  let cadre=null;
+  document.querySelectorAll('iframe[data-diag]').forEach(f=>{if(f.contentWindow===e.source)cadre=f;});
+  if(!cadre)return;
+  if(typeof d.lvHaut==='number'){
+    cadre.style.height=Math.max(120,Math.min(4000,Math.round(d.lvHaut)+2))+'px';
+    return;
+  }
+  if(typeof d.lvCopie==='string')copiePresse(d.lvCopie);
 });
 
 // ════════ LISTE ════════
@@ -1016,9 +1081,18 @@ function corpsVoir(a,publik){
     if(a.code){
       const f=document.createElement('iframe');
       f.setAttribute('sandbox','allow-scripts');
+      /* Autorisation explicite d'écrire dans le presse-papier. L'étoile est
+         nécessaire : le cadre est d'origine opaque (bac à sable sans
+         allow-same-origin), donc la valeur par défaut, qui vise l'origine de
+         la source, ne le désigne pas. Là où le navigateur l'accepte, la copie
+         se fait sur place ; ailleurs, le relais vers la page prend la suite. */
+      f.setAttribute('allow','clipboard-write *');
       f.setAttribute('referrerpolicy','no-referrer');
       f.setAttribute('title',a.titre||'Diagramme');
-      f.dataset.diag='1'; f.style.height='420px';
+      /* Hauteur de départ modeste : le diagramme annonce la sienne dès qu'il
+         est prêt, et une valeur haute laisserait une bande noire le temps du
+         premier message. */
+      f.dataset.diag='1'; f.style.height='160px';
       cadre.appendChild(f); c.appendChild(cadre); poseCadre(f,a.code);
     }else c.innerHTML='<div class="res-desc">Ce diagramme est vide.</div>';
     if(a.desc){const d=document.createElement('div');d.className='res-desc';d.textContent=a.desc;c.appendChild(d);}

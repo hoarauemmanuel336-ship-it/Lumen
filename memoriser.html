@@ -879,6 +879,12 @@ async function caleHorloge(){
   }catch(_){}
 }
 const boxOf=id=>(S.progress[id]||{box:0}).box;
+/* LA DERNIÈRE COULEUR DÉCLARÉE POUR UN VERSET, s'il y en a une. Elle est rangée
+   avec le reste de sa progression, donc à un seul endroit, donc valable dans
+   les deux sens de question : c'est le même verset qu'on interroge, qu'on
+   parte de la référence ou du texte. Une valeur abîmée ou absente ne renvoie
+   rien plutôt que d'allumer une pastille au hasard. */
+const rapDe=id=>{const r=(S.progress[id]||{}).r;return(r==='r'||r==='a'||r==='v')?r:null;};
 const dateOf=id=>{const p=S.progress[id];if(!p||!p.n)return 0;const t=Date.parse(p.n);return isNaN(t)?0:t;};
 /* Une échéance ne peut pas dépasser le plus long délai de l'échelle. Au-delà,
    c'est l'horloge de l'appareil qui était fausse le jour de la réponse (une
@@ -947,10 +953,27 @@ function answer(id,ok,rap){
      toute seule. Elle ne pèse QUE sur un verset arrivé à terme, comme tout le
      reste : sans cette réserve, il suffirait de se déclarer rouge pour rendre
      un verset mûr avant l'heure, puis de se déclarer vert pour gagner un cran
-     sans avoir attendu. */
-  if(rap==='r'||rap==='a'||rap==='v')p.r=rap;
+     sans avoir attendu.
+
+     AUCUNE COULEUR EFFACE LA PRÉCÉDENTE. Puisque la note se garde d'une fois
+     sur l'autre, la retirer doit pouvoir se dire : rappuyer sur la pastille
+     déjà posée l'enlève, et ce retrait descend jusqu'ici, sans quoi la
+     couleur reviendrait toute seule à la question suivante. */
+  if(rap==='r'||rap==='a'||rap==='v')p.r=rap; else delete p.r;
   if(ok){
     if(mur){
+      /* SANS COULEUR DÉCLARÉE, C'EST UN JAUNE, et non un vert. Le vert est la
+         seule note qui fait monter d'un cran : il doit se dire. Tant que
+         l'absence de note tombait dans la même branche que le vert, ne rien
+         toucher rapportait exactement autant que se déclarer parfait, et
+         celui qui prenait la peine d'avouer « à peu près » perdait le cran
+         que le silence lui aurait donné : l'honnêteté coûtait. Le jaune est
+         d'ailleurs le bon défaut par nature, une réponse dont on ne sait rien
+         n'étant ni un échec ni une réussite pleine.
+         Ce jaune-là n'est PAS enregistré comme une déclaration (voir le
+         `delete p.r` plus haut) : il fait avancer l'algorithme, il ne parle
+         pas à ta place, et les pastilles repartent vides la fois d'après. */
+      const note=(rap==='r'||rap==='v')?rap:'a';
       /* TROIS COULEURS, TROIS GESTES, ET UN SEUL SENS DE LECTURE :
          rouge il revient tout de suite, jaune il reste, vert il monte.
 
@@ -961,13 +984,13 @@ function answer(id,ok,rap){
          « à peu près » rapportait donc plus vite que « parfaitement ». Un cran
          mesure l'espacement qu'une mémoire supporte : on ne peut pas l'accorder
          à quelqu'un qui vient de dire qu'il n'y arrive qu'à moitié. */
-      if(rap==='r'){
+      if(note==='r'){
         /* RECONNU N'EST PAS RAPPELÉ. La bonne case a été trouvée en lisant les
            propositions, pas en se souvenant : c'est précisément ce que le choix
            multiple ne pouvait pas voir. Le niveau ne bouge pas, et le verset
            repasse quelques questions plus loin, comme après une erreur. */
         p.box=eff; p.n=new Date(ms).toISOString(); p.s=S.step+3;
-      } else if(rap==='a'){
+      } else if(note==='a'){
         /* RAPPELÉ AVEC EFFORT. Le cran reste le même, mais l'effort est une
            information : le verset revient environ deux fois plus tôt que si
            tout avait été limpide. */
@@ -1318,20 +1341,31 @@ function renderQuestion(){
     b.addEventListener('click',()=>pick(opt,b));
     opts.appendChild(b);
   });
-  q.rappel=null;
+  /* LA NOTE NE SE VIDE PLUS À CHAQUE CARTE. Elle repart de la dernière
+     couleur déclarée POUR CE VERSET, et un verset n'a qu'une mémoire : la
+     couleur posée quand la référence s'affichait ressort telle quelle quand
+     c'est le verset qui s'affiche, et l'inverse. Les pastilles éteintes à
+     chaque question donnaient l'impression que les deux sens vivaient
+     chacun de leur côté, alors que la progression n'a jamais été rangée que
+     par verset. */
+  q.rappel=rapDe(q.item.id);
   /* Le mot n'est plus écrit sous le point : il reste accessible au survol et
      aux lecteurs d'écran, mais il n'encombre plus la page. */
   {const m={r:t('rap_r'),a:t('rap_a'),v:t('rap_v')};
    document.querySelectorAll('#rappel .rap').forEach(b=>{const x=m[b.dataset.r]||'';b.title=x;b.setAttribute('aria-label',x);});}
-  document.querySelectorAll('#rappel .rap').forEach(b=>{b.classList.remove('choisi');b.disabled=false;});
+  document.querySelectorAll('#rappel .rap').forEach(b=>{b.classList.toggle('choisi',b.dataset.r===q.rappel);b.disabled=false;});
 }
 /* La note reste facultative et modifiable tant qu'on n'a pas répondu : on peut
    changer d'avis en touchant un autre point. Elle se fige au moment de la
-   réponse, pas avant. */
+   réponse, pas avant.
+   ON PEUT AUSSI TOUT ENLEVER : rappuyer sur la couleur déjà posée la retire et
+   laisse les trois pastilles éteintes. Sans ce geste, une note gardée d'une
+   séance sur l'autre serait devenue impossible à défaire : on aurait pu passer
+   du rouge au vert, jamais revenir à « je ne me prononce pas ». */
 function noteRappel(r){
   if(!S.cur||S.cur.done)return;
-  S.cur.rappel=r;
-  document.querySelectorAll('#rappel .rap').forEach(b=>b.classList.toggle('choisi',b.dataset.r===r));
+  S.cur.rappel=(S.cur.rappel===r)?null:r;
+  document.querySelectorAll('#rappel .rap').forEach(b=>b.classList.toggle('choisi',b.dataset.r===S.cur.rappel));
 }
 function pick(opt,btn){
   if(S.cur.done)return; S.cur.done=true;
