@@ -104,7 +104,11 @@ a.b-r:hover b,.b-r:hover b,.b-r.kact b{color:var(--or-pale)}
 @media(max-width:720px){.ref-int{padding:8px 18px;gap:12px}.ref-champ{font-size:15px;min-width:0}.ref-erreur{display:none}}
 
 /* — Cadre général — */
-.wrap{max-width:1100px;margin:0 auto;padding:0 28px 90px}
+.wrap{width:100%;max-width:1100px;margin:0 auto;padding:0 28px 90px}
+/* pied de page collé en bas sur les pages courtes : le corps est une colonne, le contenu prend la place libre */
+body{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+main.wrap{flex:1 0 auto}
+body>footer{flex-shrink:0}
 body.sel-active .wrap{padding-bottom:calc(var(--sb-h,190px) + 28px)}
 .hero{text-align:center;padding:74px 0 26px;animation:rise .7s ease both}
 /* ═══ MODE PANNEAU ═══ Rien n'est retiré des fonctions : on enlève la barre et
@@ -200,7 +204,13 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .ch-texte .par:first-child{margin-top:0}
 .ch-texte .par:last-child{margin-bottom:0}
 .ch-texte sup.vn{font-family:var(--serif);font-size:12.5px;color:var(--or);line-height:0;margin-right:5px;letter-spacing:0}
-.vst{scroll-margin-top:160px;cursor:pointer;transition:background .3s,box-shadow .3s;-webkit-tap-highlight-color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.vst{scroll-margin-top:160px;cursor:pointer;transition:background .3s,box-shadow .3s;-webkit-tap-highlight-color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:3px}
+/* Un verset de prose porte sa propre marge intérieure, retirée par une marge
+   extérieure négative de même largeur : rien ne bouge dans le texte, mais le
+   fond (sélection, surlignage) déborde un peu du mot et recouvre l'espace qui
+   sépare deux versets. Sans cela, deux versets voisins sélectionnés laissent
+   voir une couture sombre entre eux. */
+.vst:not(.po){padding:.06em .3em;margin:0 -.3em}
 /* ── LES VERS ──
    Un verset de psaume, de proverbe ou d'oracle ne se coule pas dans le
    paragraphe : il tient sa ligne, comme dans une Bible imprimée, et les
@@ -230,7 +240,7 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    il flotterait au-dessus du texte. */
 .vst.po .vn{position:absolute;left:-2.2em;top:.42em;margin-right:0;line-height:1}
 @media(max-width:600px){.vst.po{margin:.62em 0;padding-left:1.7em}.vst.po.sent{margin:1.1em 0}.vst.po .vn{left:-1.7em}}
-@media(hover:hover){.vst:hover{background:var(--surv);box-shadow:0 0 0 5px var(--surv)}}
+@media(hover:hover){.vst:hover{background:var(--surv)}.vst.po:hover{box-shadow:0 0 0 5px var(--surv)}}
 #sb-cercle{width:26px;height:22px;padding:1px;background:#0a0a0a;border:1px solid rgba(255,255,255,.25);cursor:pointer}
 .sb-surl{display:none;align-items:center;gap:10px;padding:8px 0 2px;flex-wrap:wrap}
 .sb-surl.ouvert{display:flex}
@@ -238,8 +248,22 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .sb-past:hover{transform:scale(1.18);border-color:#fff}
 .sb-oter{font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.55);cursor:pointer;padding:2px 6px}
 .sb-oter:hover{color:#fff}
-.vst.sel{background:rgba(231,224,207,.28)!important;box-shadow:0 0 0 5px rgba(231,224,207,.28)!important;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-.vst.cible{background:rgba(231,224,207,.14);box-shadow:0 0 0 5px rgba(231,224,207,.14)}
+/* Verset sélectionné : un voile de parchemin, net mais léger, pas une dalle
+   grise. En prose il n'y a plus de halo (le débord vient de la marge intérieure
+   ci-dessus) ; seuls les vers, posés en bloc, gardent un halo pour respirer. */
+/* Les teintes sont données déjà fondues sur le noir (opaques) : deux versets
+   voisins se recouvrent d'un rien, et deux voiles transparents superposés
+   feraient une bande plus claire à la jointure. Parchemin à 17 % sur noir =
+   rgb(41,39,35) ; à 12 % = rgb(29,28,25). */
+.vst.sel{background:rgb(41,39,35)!important;box-shadow:none!important}
+.vst.po.sel{box-shadow:0 0 0 5px rgb(41,39,35)!important}
+/* Deux vers voisins sélectionnés : leurs cadres sont séparés par la marge qui
+   sépare les vers ; on comble cet espace pour ne former qu'un seul bloc. */
+.vst.po.sel+.vst.po.sel::before{content:'';position:absolute;left:-5px;right:-5px;bottom:100%;height:.7em;background:rgb(41,39,35);pointer-events:none}
+.vst.po.sent+.vst.po.sel::before,.vst.po.sel+.vst.po.sent.sel::before{height:1.25em}
+@media(max-width:600px){.vst.po.sel+.vst.po.sel::before{height:.62em}.vst.po.sent+.vst.po.sel::before,.vst.po.sel+.vst.po.sent.sel::before{height:1.1em}}
+.vst.cible{background:rgb(29,28,25)}
+.vst.po.cible{box-shadow:0 0 0 5px rgb(29,28,25)}
 .lv-frag{border-radius:2px;padding:.02em 0;box-decoration-break:clone;-webkit-box-decoration-break:clone;cursor:pointer}
 /* petit menu flottant de surlignage de fragment */
 #lv-frag-pop{position:absolute;z-index:120;display:none;align-items:center;gap:8px;padding:8px 10px;background:rgba(12,12,12,.97);border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 30px rgba(0,0,0,.55);backdrop-filter:blur(8px);flex-wrap:wrap;max-width:min(92vw,340px)}
@@ -252,22 +276,26 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 #lv-frag-pop .lvp-sep{width:1px;height:18px;background:rgba(255,255,255,.14)}
 /* section surlignages dans « Mes notes » */
 #surl-zone{box-sizing:border-box;max-width:760px;margin:0 auto}
-.surl-item{position:relative;box-sizing:border-box;display:block;max-width:760px;margin:0 auto;padding:16px 28px 15px 16px;border:none;box-shadow:inset 0 -1px 0 rgba(231,224,207,.075),inset 2px 0 0 transparent;transition:box-shadow .35s,background .35s}
-.surl-item:hover{background:var(--surv);box-shadow:inset 0 -1px 0 rgba(231,224,207,.075),inset 2px 0 0 var(--or)}
-.surl-item .surl-tete{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+/* chaque ligne porte un fin trait de sa couleur à gauche, discret au repos,
+   franc au survol : la couleur se lit sans chercher la pastille */
+.surl-item{position:relative;box-sizing:border-box;display:block;max-width:760px;margin:0 auto;padding:20px 30px 18px 20px;border:none;box-shadow:inset 0 -1px 0 rgba(231,224,207,.09),inset 2px 0 0 var(--sc-f,transparent);transition:box-shadow .35s,background .35s}
+.surl-item:hover{background:var(--surv);box-shadow:inset 0 -1px 0 rgba(231,224,207,.09),inset 2px 0 0 var(--sc,var(--or))}
+.surl-item .surl-tete{display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .surl-pastille{width:8px;height:8px;border-radius:50%;flex:0 0 auto;border:none}
-.surl-item .surl-ref{font-family:var(--serif);font-size:13.5px;letter-spacing:.02em;color:var(--or);cursor:pointer;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.surl-item .surl-pastille{width:6px;height:6px;opacity:.85}
+.surl-item .surl-ref{font-family:var(--serif);font-size:13.5px;letter-spacing:.03em;color:var(--or);cursor:pointer;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .surl-item .surl-ref:hover,.surl-item .surl-ref:active{color:var(--or-pale);text-decoration:underline}
-.surl-item .surl-oter{position:absolute;top:4px;right:-14px;margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);cursor:pointer;padding:14px 12px;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;white-space:nowrap}
+.surl-item .surl-oter{position:absolute;top:7px;right:-12px;margin:0;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);cursor:pointer;padding:14px 12px;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;white-space:nowrap}
 .surl-item .surl-oter:hover,.surl-item .surl-oter:active{color:var(--or-pale)}
-.surl-item .surl-txt{line-height:1.6;font-size:calc(16.5px*var(--lvz,1));color:rgba(255,255,255,.86);overflow-wrap:anywhere}
-/* un groupe par couleur de surlignage */
+.surl-item .surl-txt{line-height:1.68;font-size:calc(16.5px*var(--lvz,1));color:rgba(255,255,255,.88);overflow-wrap:anywhere}
+/* un groupe par couleur de surlignage : son en-tête est souligné d'un filet
+   teinté et la pastille porte un halo, pour qu'il pèse autant qu'une sous-catégorie */
 .surl-groupe{box-sizing:border-box;max-width:760px;margin:0 auto}
-.surl-scat{display:flex;align-items:center;gap:11px;box-sizing:border-box;max-width:760px;margin:26px auto 0;padding:0 0 8px 16px}
-.surl-scat .surl-pastille{width:9px;height:9px}
-.surl-scat-nom{flex:0 1 auto;min-width:0;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.62);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.surl-scat-n{flex:0 0 auto;margin-right:auto;font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.3)}
-.surl-plus{flex:0 0 auto;font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--or);cursor:pointer;white-space:nowrap;padding:6px 0 6px 14px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.surl-scat{display:flex;align-items:center;gap:12px;box-sizing:border-box;max-width:760px;margin:36px auto 0;padding:0 0 11px 20px;box-shadow:inset 0 -1px 0 var(--sc-f,var(--filet))}
+.surl-scat .surl-pastille{width:9px;height:9px;box-shadow:0 0 0 3px var(--sc-f,transparent)}
+.surl-scat-nom{flex:0 1 auto;min-width:0;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.8);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.surl-scat-n{flex:0 0 auto;margin-right:auto;font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.34)}
+.surl-plus{flex:0 0 auto;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);cursor:pointer;white-space:nowrap;padding:6px 0 6px 14px;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .surl-plus:hover,.surl-plus:active{color:var(--or-pale)}
 .ch-nav{display:flex;justify-content:space-between;gap:18px;margin-top:54px;padding-top:26px;border-top:1px solid rgba(231,224,207,.14)}
 .ch-nav a{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa);transition:color .3s;padding:6px 0}
@@ -306,11 +334,13 @@ body.sel-active #sel-barre{display:block}
    Une liste de lecture, pas une grille de cartes : la note est le héros,
    la date et le menu se tiennent en retrait, et la structure se lit
    d'un coup d'œil grâce aux en-têtes en capitales espacées. */
-.notes-tete{box-sizing:border-box;max-width:760px;margin:48px auto 0}
-h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px;line-height:1.08}
-.notes-compte{margin-top:9px;font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.33)}
-.notes-rech{display:block;width:100%;box-sizing:border-box;max-width:760px;margin:26px auto 0;background:none;border:none;border-bottom:1px solid rgba(231,224,207,.18);padding:9px 2px;font-size:17px;color:var(--parchemin);outline:none;transition:border-color .3s}
-.notes-rech::placeholder{color:rgba(255,255,255,.33);font-style:italic}
+.notes-tete{box-sizing:border-box;max-width:760px;margin:60px auto 0}
+h2.notes-titre{font-family:var(--display);font-weight:400;font-size:44px;line-height:1.06;letter-spacing:.01em;color:var(--or-pale)}
+.notes-compte{margin-top:12px;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+/* le même filet d'or que sous le titre de la Bible, mais aligné à gauche : signature de la maison */
+.notes-tete::after{content:"";display:block;width:52px;height:1px;background:linear-gradient(90deg,rgba(231,224,207,.55),transparent);margin-top:24px}
+.notes-rech{display:block;width:100%;box-sizing:border-box;max-width:760px;margin:24px auto 0;appearance:none;-webkit-appearance:none;border-radius:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-opacity='.38' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5 21 21'/%3E%3C/svg%3E") no-repeat left 1px center/16px 16px;border:none;border-bottom:1px solid rgba(231,224,207,.2);padding:11px 2px 11px 29px;font-size:17px;color:var(--parchemin);outline:none;transition:border-color .3s}
+.notes-rech::placeholder{color:rgba(255,255,255,.36);font-style:italic}
 .notes-rech:focus{border-color:var(--or)}
 /* actions : du texte, jamais une boîte ; le signe + porte l'affordance */
 .notes-btn{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);padding:11px 2px;cursor:pointer;white-space:nowrap;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -322,41 +352,41 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px;line-he
 .notes-lien:hover,.notes-lien:active{color:var(--or-pale)}
 .notes-lien:hover::before,.notes-lien:active::before{color:var(--or)}
 /* rail de filtres : la seule navigation transversale de la vue */
-.nz-rail{display:flex;gap:28px;box-sizing:border-box;max-width:760px;margin:24px auto 0;padding-bottom:3px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nz-rail{display:flex;gap:30px;box-sizing:border-box;max-width:760px;margin:30px auto 0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;box-shadow:inset 0 -1px 0 rgba(231,224,207,.1)}
 .nz-rail::-webkit-scrollbar{display:none}
-/* onglets : seul le filtre actif porte un filet, aucun cadre nulle part */
-.nz-fil{position:relative;flex:0 0 auto;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:10px 1px 11px;cursor:pointer;white-space:nowrap;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+/* onglets : un filet continu sous tout le rail, l'onglet actif le rehausse d'or */
+.nz-fil{position:relative;flex:0 0 auto;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.46);padding:11px 1px 13px;cursor:pointer;white-space:nowrap;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .nz-fil::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--or);opacity:0;transition:opacity .35s}
 .nz-fil:hover{color:var(--parchemin)}
 .nz-fil.on{color:var(--or)}
 .nz-fil.on::after{opacity:1}
 .nz-fil i{font-style:normal;color:rgba(255,255,255,.28);margin-left:7px}
 .nz-fil.on i{color:rgba(231,224,207,.5)}
-.nz-liste{box-sizing:border-box;max-width:760px;margin:38px auto 0}
+.nz-liste{box-sizing:border-box;max-width:760px;margin:46px auto 0}
 .nz-liste>.notes-cat:first-child{margin-top:0}
 /* entrée de note : filet fin, barre d'or au survol, aucun cadre */
-.note-item{position:relative;box-sizing:border-box;max-width:760px;margin:0 auto;padding:17px 28px 15px 16px;box-shadow:inset 0 -1px 0 rgba(231,224,207,.075),inset 2px 0 0 transparent;transition:box-shadow .35s,background .35s}
-.note-item:hover{background:var(--surv);box-shadow:inset 0 -1px 0 rgba(231,224,207,.075),inset 2px 0 0 var(--or)}
-.note-pied{margin-top:9px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.27)}
+.note-item{position:relative;box-sizing:border-box;max-width:760px;margin:0 auto;padding:20px 30px 18px 18px;box-shadow:inset 0 -1px 0 rgba(231,224,207,.09),inset 2px 0 0 transparent;transition:box-shadow .35s,background .35s}
+.note-item:hover{background:var(--surv);box-shadow:inset 0 -1px 0 rgba(231,224,207,.09),inset 2px 0 0 var(--or)}
+.note-pied{margin-top:12px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.32)}
 /* Un seul déclencheur au lieu d'une rangée de libellés répétée partout. */
-.nt-menu{color:rgba(255,255,255,.4);font-size:16px;line-height:1;letter-spacing:.12em;cursor:pointer;padding:14px 12px;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.nt-menu{color:rgba(255,255,255,.38);font-size:16px;line-height:1;letter-spacing:.12em;cursor:pointer;padding:14px 12px;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-user-select:none;user-select:none}
 .nt-menu:hover,.nt-menu:active{color:var(--or-pale)}
-.note-item>.nt-menu{position:absolute;top:3px;right:-14px}
+.note-item>.nt-menu{position:absolute;top:6px;right:-12px}
 .notes-cat>.nt-menu,.notes-scat>.nt-menu{flex:0 0 auto;margin:-13px -12px -13px 0}
 #menu-flot{position:fixed;z-index:62;min-width:184px;background:#0d0d0d;box-shadow:inset 0 0 0 1px var(--filet-f),0 20px 46px rgba(0,0,0,.62);clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);padding:5px 0;display:none;animation:rise .22s ease both}
 #menu-flot.ouvert{display:block}
 .mf-act{display:block;padding:13px 20px;font-size:14px;color:var(--parchemin-att);cursor:pointer;white-space:nowrap;transition:color .25s,background .25s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .mf-act:hover,.mf-act:active{color:var(--parchemin);background:var(--surv)}
 .mf-sep{margin-top:5px;padding-top:14px;box-shadow:inset 0 1px 0 var(--filet)}
-.note-refs{margin-bottom:7px;font-size:13.5px;line-height:1.5;letter-spacing:.02em;color:var(--or)}
+.note-refs{margin-bottom:9px;font-size:13.5px;line-height:1.5;letter-spacing:.03em;color:var(--or)}
 .note-ref{cursor:pointer;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .note-ref:hover,.note-ref:active{color:var(--or-pale);text-decoration:underline}
-.note-sep{color:rgba(231,224,207,.26);margin:0 8px}
-.note-texte{font-size:calc(17.5px*var(--lvz,1));line-height:1.6;color:rgba(255,255,255,.9);white-space:pre-wrap;overflow-wrap:anywhere}
-.notes-vide{box-sizing:border-box;max-width:760px;margin:0 auto;text-align:center;padding:66px 12px}
-.notes-vide-t{font-family:var(--display);font-size:25px;color:rgba(255,255,255,.66);margin-bottom:11px}
-.notes-vide-p{font-size:15.5px;line-height:1.65;font-style:italic;color:rgba(255,255,255,.4);max-width:420px;margin:0 auto}
-.notes-vide.notes-vide-min{padding:30px 12px 2px}
+.note-sep{color:rgba(231,224,207,.26);margin:0 9px}
+.note-texte{font-size:calc(17.5px*var(--lvz,1));line-height:1.68;color:rgba(255,255,255,.9);white-space:pre-wrap;overflow-wrap:anywhere}
+.notes-vide{box-sizing:border-box;max-width:760px;margin:0 auto;text-align:center;padding:80px 12px}
+.notes-vide-t{font-family:var(--display);font-size:27px;color:rgba(255,255,255,.7);margin-bottom:12px}
+.notes-vide-p{font-size:15.5px;line-height:1.65;font-style:italic;color:rgba(255,255,255,.42);max-width:420px;margin:0 auto}
+.notes-vide.notes-vide-min{padding:34px 12px 2px}
 
 /* — Modale de note — */
 #note-voile{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:90px 20px 40px;overflow-y:auto}
@@ -377,7 +407,7 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px;line-he
 .nb-cat-lab{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
 
 /* — Compte / synchronisation — */
-.sync-ligne{box-sizing:border-box;max-width:760px;margin:20px auto 0;font-size:14px;font-style:italic;color:rgba(255,255,255,.4)}
+.sync-ligne{box-sizing:border-box;max-width:760px;margin:22px auto 0;font-size:14px;line-height:1.6;font-style:italic;color:rgba(255,255,255,.42)}
 .sync-act{font-style:normal;color:var(--pa);cursor:pointer;transition:color .3s;border-bottom:1px solid rgba(231,224,207,.18)}
 .sync-act:hover{color:var(--or-pale);border-color:var(--filet-f)}
 #auth-voile{position:fixed;inset:0;z-index:61;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:100px 20px 40px;overflow-y:auto}
@@ -401,46 +431,49 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:40px;line-he
 input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
 .cat-input{width:100%;box-sizing:border-box;background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:15px;padding:11px 12px;outline:none;margin-bottom:18px}
 .cat-input:focus{border-color:var(--or)}
-.notes-actions{display:flex;align-items:center;gap:30px;flex-wrap:wrap;box-sizing:border-box;max-width:760px;margin:20px auto 0}
+.notes-actions{display:flex;align-items:center;gap:32px;flex-wrap:wrap;box-sizing:border-box;max-width:760px;margin:22px auto 0}
 /* en-tête de catégorie : structurel, collant, jamais décoratif */
-.notes-cat{position:sticky;top:var(--hbar,86px);z-index:9;display:flex;align-items:center;gap:12px;box-sizing:border-box;max-width:760px;margin:46px auto 0;padding:13px 0 10px;background:var(--encre);box-shadow:inset 0 -1px 0 var(--filet)}
-.notes-cat-nom{flex:0 1 auto;min-width:0;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.notes-cat-n{flex:0 0 auto;margin-right:auto;font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.3)}
-.notes-scat{display:flex;align-items:center;gap:11px;box-sizing:border-box;max-width:760px;margin:26px auto 0;padding:0 0 8px 16px}
-.notes-scat-nom{flex:0 1 auto;min-width:0;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.62);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.notes-scat-nom::before{content:"";display:inline-block;width:13px;height:1px;background:rgba(231,224,207,.3);vertical-align:middle;margin-right:10px}
-.notes-sgroupe{box-sizing:border-box;max-width:760px;margin:0 auto;padding-left:16px}
+.notes-cat{position:sticky;top:var(--hbar,86px);z-index:9;display:flex;align-items:center;gap:12px;box-sizing:border-box;max-width:760px;margin:56px auto 0;padding:15px 0 12px;background:var(--encre);box-shadow:inset 0 -1px 0 var(--filet)}
+.notes-cat-nom{flex:0 1 auto;min-width:0;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.notes-cat-n{flex:0 0 auto;margin-right:auto;font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.32)}
+.notes-scat{display:flex;align-items:center;gap:11px;box-sizing:border-box;max-width:760px;margin:32px auto 0;padding:0 0 9px 18px}
+.notes-scat-nom{flex:0 1 auto;min-width:0;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.66);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.notes-scat-nom::before{content:"";display:inline-block;width:14px;height:1px;background:rgba(231,224,207,.34);vertical-align:middle;margin-right:11px}
+.notes-sgroupe{box-sizing:border-box;max-width:760px;margin:0 auto;padding-left:18px}
 .note-depl{background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:13px;padding:5px 26px 5px 8px;outline:none;max-width:230px;appearance:none;-webkit-appearance:none;cursor:pointer}
 .note-sel{position:relative;display:inline-block}
 .note-sel::after{content:"›";position:absolute;right:9px;top:50%;transform:translateY(-50%) rotate(90deg);color:rgba(231,224,207,.6);pointer-events:none;font-size:14px;line-height:1}
-.nt-plus{display:inline-block;color:var(--or,#e7d9a8);font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;white-space:nowrap;padding:9px 8px;margin-left:2px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.nt-plus{display:inline-block;color:var(--or,#e7d9a8);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;white-space:nowrap;padding:9px 10px 9px 0;margin:2px 0 0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:color .3s}
 .nt-plus:hover,.nt-plus:active{color:var(--or-pale,#f8f3e6)}
 @media(max-width:720px){
-  .notes-tete{margin:32px auto 0}
-  h2.notes-titre{font-size:30px}
-  .notes-compte{margin-top:7px;font-size:11px;letter-spacing:.14em}
-  .notes-rech{margin-top:21px;font-size:16px}
-  .notes-actions{gap:22px;margin-top:15px}
+  .notes-tete{margin:38px auto 0}
+  h2.notes-titre{font-size:33px}
+  .notes-compte{margin-top:9px;font-size:11px;letter-spacing:.16em}
+  .notes-tete::after{margin-top:18px;width:40px}
+  .notes-rech{margin-top:20px;font-size:16px;padding:10px 2px 10px 27px;background-size:15px 15px}
+  .notes-actions{gap:22px;margin-top:16px}
   .notes-btn{padding:11px 1px;font-size:11px;letter-spacing:.14em;gap:8px}
   .notes-lien{padding:11px 1px;font-size:11px;letter-spacing:.14em;gap:8px}
-  .sync-ligne{margin-top:17px;font-size:13.5px}
-  .nz-rail{margin-top:19px;gap:20px}
-  .nz-fil{font-size:11px;padding:10px 1px 11px}
-  .nz-liste{margin-top:32px}
-  .note-item{padding:15px 26px 14px 13px}
-  .note-item>.nt-menu{right:-16px;top:2px}
-  .note-refs{font-size:13px}
-  .note-texte{font-size:calc(16.5px*var(--lvz,1))}
-  .note-pied{margin-top:8px;letter-spacing:.13em}
-  .notes-cat{margin-top:38px;padding:12px 0 9px}
-  .notes-cat-nom{font-size:11.5px;letter-spacing:.2em}
-  .notes-scat{margin-top:22px;padding-left:12px}
-  .notes-sgroupe{padding-left:12px}
-  .surl-item{padding:15px 26px 14px 13px}
-  .surl-item .surl-oter{right:-16px;top:3px}
-  .surl-item .surl-txt{font-size:calc(16px*var(--lvz,1))}
-  .notes-vide{padding:52px 8px}
-  .notes-vide-t{font-size:23px}
+  .sync-ligne{margin-top:18px;font-size:13.5px}
+  .nz-rail{margin-top:24px;gap:22px}
+  .nz-fil{font-size:11px;padding:11px 1px 12px}
+  .nz-liste{margin-top:38px}
+  .note-item{padding:18px 26px 16px 14px}
+  .note-item>.nt-menu{right:-12px;top:4px}
+  .note-refs{font-size:13px;margin-bottom:8px}
+  .note-texte{font-size:calc(16.5px*var(--lvz,1));line-height:1.64}
+  .note-pied{margin-top:10px;letter-spacing:.16em}
+  .notes-cat{margin-top:46px;padding:13px 0 10px}
+  .notes-cat-nom{font-size:11.5px;letter-spacing:.22em}
+  .notes-scat{margin-top:26px;padding-left:14px}
+  .notes-sgroupe{padding-left:14px}
+  .surl-item{padding:18px 26px 16px 16px}
+  .surl-item .surl-oter{right:-12px;top:5px}
+  .surl-item .surl-txt{font-size:calc(16px*var(--lvz,1));line-height:1.64}
+  .surl-scat{margin-top:30px;padding:0 0 10px 16px;gap:11px}
+  .surl-scat-nom{font-size:11px;letter-spacing:.22em}
+  .notes-vide{padding:60px 8px}
+  .notes-vide-t{font-size:24px}
   /* feuille de note : plein écran, la zone d'écriture prend toute la place */
   #note-voile{padding:0;align-items:stretch;overflow:hidden}
   .note-boite{max-width:none;height:100vh;max-height:100vh;clip-path:none;overflow:hidden;box-sizing:border-box;display:flex;flex-direction:column;padding:20px 18px calc(16px + env(safe-area-inset-bottom))}
@@ -1194,6 +1227,14 @@ var c=document.createElement('link');c.rel='canonical';c.href=location.origin+lo
     var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
     return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
   }
+  /* Même teinte, mais déjà fondue sur le noir de la page (opaque). Sert au
+     fond d'un verset entier : deux versets voisins se recouvrent un peu, et
+     deux voiles transparents superposés feraient une bande plus claire à la
+     jointure ; un fond opaque ne laisse rien voir. */
+  function surlOpaque(hex, a){
+    var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+    return 'rgb(' + Math.round(r * a) + ',' + Math.round(g * a) + ',' + Math.round(b * a) + ')';
+  }
   function marqueSurl(){
     var spans = document.querySelectorAll('.ch-texte .vst');
     if (!spans.length) return;
@@ -1204,8 +1245,10 @@ var c=document.createElement('link');c.rel='canonical';c.href=location.origin+lo
       var k = ctx.slug + '|' + ctx.ch + '|' + v;
       var c = (SURL[k] != null) ? surlCouleur(SURL[k]) : null;
       if (c) {
-        sp.style.background = surlRgba(c, .30);
-        sp.style.boxShadow = '0 0 0 5px ' + surlRgba(c, .30);
+        sp.style.background = surlOpaque(c, .30);
+        /* en prose le fond déborde déjà grâce à la marge intérieure du verset ;
+           le halo ne sert qu'aux vers posés en bloc */
+        sp.style.boxShadow = sp.classList.contains('po') ? '0 0 0 5px ' + surlOpaque(c, .30) : '';
       } else {
         sp.style.background = '';
         sp.style.boxShadow = '';
@@ -1609,6 +1652,12 @@ var c=document.createElement('link');c.rel='canonical';c.href=location.origin+lo
     for (var j = 0; j < LVF_COUL_ANC.length; j++) if (LVF_COUL_ANC[j][0] === hex) return LVF_COUL_ANC[j][1];
     return 'Couleur libre ' + hex.toUpperCase();
   }
+  /* la couleur du groupe passe au CSS (trait à gauche, filet, halo) : la pastille
+     n'est plus la seule à la porter */
+  function surlVars(hex){
+    if (!/^#[0-9a-f]{6}$/i.test(hex || '')) return '';
+    return '--sc:' + hex + ';--sc-f:' + surlRgba(hex, .3);
+  }
   function carteSurl(it){
     var ref = libelle({ slug: it.slug, ch: it.ch, v1: it.v, v2: it.v });
     var off = it.slug + '|' + it.ch + '|' + it.v + (it.frag ? ('|' + it.a + '|' + it.b) : '');
@@ -1695,7 +1744,7 @@ var c=document.createElement('link');c.rel='canonical';c.href=location.origin+lo
         /* pendant une recherche, tout reste visible : on cherche justement à voir */
         var coupe = (!f && g.items.length > SURL_MAX) ? SURL_MAX : g.items.length;
         var plus = 'Voir tout (' + g.items.length + ')';
-        h += '<div class="surl-groupe">'
+        h += '<div class="surl-groupe" style="' + surlVars(g.hex) + '">'
            + '<div class="surl-scat"><span class="surl-pastille" style="background:' + g.hex + '"></span>'
            + '<span class="surl-scat-nom">' + esc(couleurNom(g.hex)) + '</span>'
            + '<span class="surl-scat-n">' + g.items.length + '</span>'

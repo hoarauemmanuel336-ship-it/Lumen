@@ -69,8 +69,8 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .move-row{padding:10px 12px;border:1px solid var(--filet);margin-bottom:8px;cursor:pointer;transition:border-color .2s,color .2s}
 .move-row:hover{border-color:var(--or);color:var(--or)}
 #m-search .modal,#m-move .modal{max-height:82vh;overflow:auto}
-#auth-screen{display:none;align-items:center;justify-content:center;min-height:calc(100vh - 160px);background:rgba(8,8,8,.98);padding:24px}
-.auth-panel{position:relative;width:100%;max-width:400px;border:1px solid var(--filet);background:var(--encre);padding:40px 34px;animation:fade .35s ease both}
+#auth-screen{display:none;align-items:center;justify-content:center;min-height:calc(100vh - 86px);background:transparent;padding:32px 24px}
+.auth-panel{position:relative;width:100%;max-width:400px;border:1px solid var(--filet-f);background:var(--encre);padding:40px 34px;animation:fade .35s ease both}
 .auth-paneltitle{font-family:var(--display);font-size:24px;text-align:center;margin-bottom:24px;color:var(--parchemin)}
 .auth-cross{width:48px;height:88px;margin:0 auto 22px;background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2072%20132'%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,2%2031,2'%20fill='%23ffffff'/%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,130%2031,130'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%202,45%202,35'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%2070,45%2070,35'%20fill='%23ffffff'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:contain}
 .auth-logo{font-family:var(--display);font-size:23px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;text-align:center;padding-left:.42em;margin-bottom:34px}
@@ -333,8 +333,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
   .wrap{padding:32px 20px 60px}
   .cat-row{gap:10px}
   .cat-name{min-width:0;font-size:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .cat-dist{width:52px}
-  .cat-pct{min-width:34px;font-size:12px}
   .cat-body{padding:2px 0 18px 0}
   .vrow{gap:10px;padding:13px 0;align-items:flex-start}
   .vline{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
@@ -346,8 +344,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 }
 @media(max-width:430px){
   .wrap{padding-left:16px;padding-right:16px}
-  .cat-dist{display:none}
-  .cat-pct{display:none}
   .cat-name{font-size:19px}
   .vref{font-size:16px}
   .lvl{gap:8px}
@@ -371,9 +367,19 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 
 /* ═══ CORRECTION MOBILE CATÉGORIES / VERSETS / MODALES ═══ */
 @media(max-width:720px){
-  .cat-row{display:grid;grid-template-columns:18px minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:17px 2px}
-  .cat-dist,.cat-pct{display:none!important}
+  /* Ligne de catégorie sur deux rangées : nom + actions, puis barre de progression + pourcentage */
+  .cat-row{display:grid;grid-template-columns:18px minmax(0,1fr) auto auto;grid-template-areas:"chk nom go chev" ". dist pct pct";align-items:center;column-gap:10px;row-gap:9px;padding:17px 2px}
+  .cat-check{grid-area:chk}
+  .cat-name{grid-area:nom}
+  .cat-go{grid-area:go}
+  .cat-chev{grid-area:chev;justify-self:end}
+  .cat-dist{grid-area:dist;display:flex!important;width:auto;height:3px;align-self:center}
+  .cat-pct{grid-area:pct;display:block!important;min-width:0;font-size:12px;text-align:right;line-height:1;color:var(--pa)}
   .cat-check::before,.v-check::before{content:'';position:absolute;inset:-12px}
+  /* En-tête du bloc : le libellé garde sa ligne, l'action passe dessous à droite si la place manque */
+  .bh-cats{flex-wrap:wrap;row-gap:6px}
+  .bh-cats .lbl{white-space:nowrap}
+  .bh-cats #sel-all{margin-left:auto;white-space:nowrap;font-size:12px}
   .cat-go{font-size:14px;padding:0 2px}
   .cat-chev{font-size:22px}
   .cat-body{padding-left:0!important;padding-right:0!important}
@@ -388,7 +394,7 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 }
 @media(max-width:420px){
   .wrap{padding-left:16px!important;padding-right:16px!important}
-  .cat-row{grid-template-columns:18px minmax(0,1fr) auto auto;gap:8px}
+  .cat-row{grid-template-columns:18px minmax(0,1fr) auto auto;column-gap:8px}
   .cat-name{font-size:19px}
   .vrow{grid-template-columns:16px minmax(0,1fr) auto auto 16px;gap:8px}
   .lvl{gap:7px}

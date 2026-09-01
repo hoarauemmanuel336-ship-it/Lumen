@@ -50,6 +50,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 .wrap{width:100%;max-width:772px;margin:0 auto;padding:46px 26px 90px;animation:fade .4s ease both}   /* 772 - 2×26 = 720 px de texte, comme la colonne de la Bible */
+/* pied de page collé en bas sur les pages courtes : le corps est une colonne, le contenu prend la place libre */
+body{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+main.wrap{flex:1 0 auto}
+body>footer{flex-shrink:0}
 .tete{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--filet);margin-bottom:6px}
 .tete h1{font-family:var(--display);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa);font-weight:500}
 .resume{font-size:14px;color:var(--pa2);margin:14px 0 4px}
@@ -923,7 +927,12 @@ function extraitDe(a){
   const b=(a.blocs||[]).find(x=>x.t==='p'||x.t==='cite');
   if(!b)return '';
   const d=document.createElement('div'); d.innerHTML=b.h||'';
-  return (d.textContent||'').slice(0,180);
+  /* coupé à la fin d'un mot, jamais au milieu, avec des points de suspension */
+  const t=(d.textContent||'').replace(/\s+/g,' ').trim();
+  if(t.length<=180)return t;
+  let c=t.slice(0,180); const i=c.lastIndexOf(' ');
+  if(i>100)c=c.slice(0,i);
+  return c.replace(/[\s,;:(« ]+$/,'')+'…';
 }
 /* Le même dessin que l'éditeur, mais figé : aucun champ, aucune poignée. */
 function elementLecture(b){

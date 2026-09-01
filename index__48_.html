@@ -129,7 +129,11 @@ nav.menu a:hover,nav.menu a.actif{color:var(--parchemin);border-color:var(--or)}
 @media(max-width:720px){#rech-champ{font-size:24px}.rech-boite{padding-top:6vh}}
 
 /* ---------- conteneur de page ---------- */
-main{max-width:1080px;margin:0 auto;padding:0 32px;min-height:70vh}
+/* Le pied de page reste collé en bas de l'écran sur les pages courtes :
+   le corps est une colonne, le contenu prend toute la place disponible. */
+body{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+main{width:100%;max-width:1080px;margin:0 auto;padding:0 32px;flex:1 0 auto}
+footer{flex-shrink:0}
 .vue{animation:apparait .6s ease both}
 @keyframes apparait{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
@@ -261,6 +265,8 @@ nav.menu .rech-loupe .ll-mob{display:inline}
 .memo-droite:not([data-state="ok"]) .memo-pct,
 .memo-droite:not([data-state="ok"]) .memo-bar,
 .memo-droite:not([data-state="ok"]) .memo-leg{display:none}
+/* tant que rien n'est chargé, le bloc vide ne creuse pas d'écart au-dessus du bouton */
+.memo-droite[data-state="load"]{display:none}
 .memo-start{display:inline-block;width:auto;text-align:center;padding:15px 52px;background:var(--or);color:var(--encre);font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;transition:background .3s}
 .memo-start:hover{background:var(--or-pale)}
 </style>
