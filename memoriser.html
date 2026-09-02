@@ -949,12 +949,22 @@ const DEMI=JOURS.map(j=>Math.max(1,Math.round(j/2)));
    « Dans un jour » voulait dire : vingt-quatre heures exactement après la
    réponse. Un verset appris lundi à 21 h 30 n'était donc mûr que mardi à
    21 h 30 : qui révisait mardi à 20 h le voyait « à jour », y répondait sans
-   que le niveau bouge, et perdait sa journée. L'échéance est ramenée à
-   minuit (heure de l'appareil) du jour voulu : « demain » commence demain. */
+   que le niveau bouge, et perdait sa journée. L'échéance est donc ramenée au
+   début du jour voulu : « demain » commence demain.
+   ── LA JOURNÉE COMMENCE À 4 H DU MATIN (02/09) ──
+   Elle commençait à minuit, et l'attente réelle dépendait alors de l'heure à
+   laquelle on répondait : seize heures pour une révision faite à 8 h, mais
+   une seule heure pour une révision faite à 23 h, puisque minuit arrivait
+   tout de suite après. Qui étudie le soir retrouvait donc tous ses versets
+   dus une heure plus tard. La frontière est posée à 4 h : une séance de 23 h
+   et une séance de 1 h du matin appartiennent au même jour, et le veilleur
+   est traité comme tout le monde. C'est le réglage qu'emploient les
+   logiciels de mémorisation, pour cette raison exactement. */
+const HEURE_JOUR=4;
 function echeance(ms,jours){
   if(!(jours>0))return new Date(ms).toISOString();
-  const d=new Date(ms); d.setHours(0,0,0,0);
-  return new Date(d.getTime()+jours*JOUR).toISOString();
+  const d=new Date(ms-HEURE_JOUR*3600000); d.setHours(0,0,0,0);
+  return new Date(d.getTime()+HEURE_JOUR*3600000+jours*JOUR).toISOString();
 }
 function answer(id,ok,rap){
   const p=S.progress[id]||{box:0};
@@ -973,6 +983,8 @@ function answer(id,ok,rap){
      les niveaux. L'ERREUR, ELLE, COMPTE TOUJOURS : se tromper est une
      information vraie, mûr ou pas. */
   const mur=isDue(id);
+  /* Première rencontre : le verset n'a encore aucune date de lecture. */
+  const premiereFois=!p.t;
   /* On repart du NIVEAU EFFECTIF, pas de la boîte enregistrée : ce que
      l'affichage montre est exactement ce dont l'algorithme part. Un verset
      laissé de côté six mois ne remonte donc pas au vert d'une seule bonne
@@ -1038,7 +1050,17 @@ function answer(id,ok,rap){
          on ne rend JAMAIS plus que ce qui avait été gagné, et ce niveau-là
          n'avait pu s'obtenir qu'en franchissant tous les délais un à un. */
       const credit=Math.min(NIVEAU_MAX,Math.max(0,Math.floor(+p.box)||0));
-      if(note==='r'){
+      /* ── UN VERSET NEUF SE REVOIT UNE FOIS AVANT DE PARTIR (02/09) ──
+         Une seule bonne réponse sur un verset jamais vu l'envoyait à demain.
+         C'est trop vite pour du par cœur : on vient de le lire, la mémoire
+         courte répond encore. Il repasse donc une fois dans la même séance,
+         cinq questions plus loin, et ce n'est qu'à la seconde bonne réponse
+         qu'il quitte la séance pour demain. Deux exceptions : le vert, qui
+         dit « celui-là je le sais déjà » et le fait partir tout de suite, et
+         le rouge, qui a son propre chemin juste en dessous. */
+      if(premiereFois&&declare!=='v'&&note!=='r'){
+        p.box=0; p.n=new Date(ms).toISOString(); p.s=S.step+5;
+      } else if(note==='r'){
         /* RECONNU N'EST PAS RAPPELÉ. La bonne case a été trouvée en lisant les
            propositions, pas en se souvenant : c'est précisément ce que le choix
            multiple ne pouvait pas voir. Le niveau ne bouge pas, et le verset

@@ -1023,8 +1023,39 @@ des problèmes et des bugs »). Acquis à ne pas défaire :
   appareils ne s'écrasent plus. Aucune écriture (peutEcrire) tant que loadUser
   n'a pas réussi (S.charge) ; razEtat() à la déconnexion et au changement de
   compte ; message si Firebase ne se charge pas.
-• MÉMORISER, ÉCHÉANCES : echeance(ms, jours) ramène l'échéance à MINUIT du
-  jour voulu (« demain » commence demain), sauf délai nul.
+• MÉMORISER, ÉCHÉANCES : echeance(ms, jours) ramène l'échéance au DÉBUT DU
+  JOUR voulu (« demain » commence demain), sauf délai nul. La journée commence
+  à 4 H DU MATIN (HEURE_JOUR=4, 02/09) et non à minuit : à minuit, l'attente
+  réelle dépendait de l'heure de la réponse (16 h pour une révision faite à
+  8 h, mais 1 h seulement pour une révision faite à 23 h, minuit tombant juste
+  après). Avec la frontière à 4 h, une séance de 23 h et une séance de 1 h du
+  matin sont le même jour, et le pire cas passe de 1 h à 3 h. C'est le réglage
+  des logiciels de mémorisation, pour cette raison exactement.
+• MÉMORISER, UN VERSET NEUF SE REVOIT DANS LA SÉANCE (02/09). Une seule bonne
+  réponse sur un verset jamais vu l'envoyait à demain : trop vite pour du par
+  cœur, c'est encore la mémoire courte qui répond. Il repasse cinq questions
+  plus loin (premiereFois = !p.t, p.box reste 0, p.n = maintenant, p.s =
+  step+5) et ne part à demain qu'à la SECONDE bonne réponse. Deux exceptions :
+  le vert (« je le sais déjà ») le fait partir tout de suite au cran 2, et le
+  rouge garde son propre chemin.
+• MÉMORISER, L'ÉCHELLE NE CHANGE PAS. Le saut du cran 1 au cran 2 (1 jour →
+  3 jours, ×3) est le plus raide de l'échelle et un cran intermédiaire à 2
+  jours l'adoucirait. NON FAIT, et à ne pas faire à la légère : ajouter un
+  cran RENUMÉROTE tous les niveaux déjà enregistrés (un verset au cran 5 chez
+  Emmanuel deviendrait un cran 4), il faudrait migrer les données de chaque
+  compte, et NIVEAU_ACQUIS, levelOf et le pourcentage de l'accueil suivraient.
+  Le gain est mince : 1 → 3 est ce que font les autres (Anki : 1 → 2,5), et la
+  reprise du verset neuf dans la même séance couvre déjà le vrai risque.
+  Vérifié : échelle 1, 3, 7, 16, 35, 75, 160 = rapport constant d'environ 2,2 ;
+  plafond à 160 j volontaire (un verset su revient deux fois l'an, et la charge
+  reste bornée : 1000 versets → 6 révisions/jour, 3000 → 19).
+• MÉMORISER, TRAVAIL IRRÉGULIER (mesuré le 02/09, un an, 80 versets, 30
+  questions par séance) : tous les jours, un jour sur deux, trois fois par
+  semaine, le dimanche seulement, ou au hasard quatre jours sur dix → dans TOUS
+  les cas les 80 versets sont acquis dans l'année, aucun n'est oublié, la file
+  d'attente ne dépasse jamais 36 versets. Après trois mois d'arrêt complet :
+  17 versets en attente, 8 pâlis, tout est rattrapé en UNE séance. L'algorithme
+  n'a pas besoin de régularité, ne pas ajouter de mécanique de « série ».
 • MÉMORISER, LE DÉFAUT EST LE VERT (02/09, Emmanuel : « j'ai l'impression que
   je révise plus que j'apprends »). Une bonne réponse SANS pastille valait
   « à peu près », qui ne fait pas monter : tout restait au premier cran et
