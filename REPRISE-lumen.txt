@@ -1025,6 +1025,48 @@ des problèmes et des bugs »). Acquis à ne pas défaire :
   compte ; message si Firebase ne se charge pas.
 • MÉMORISER, ÉCHÉANCES : echeance(ms, jours) ramène l'échéance à MINUIT du
   jour voulu (« demain » commence demain), sauf délai nul.
+• MÉMORISER, LE DÉFAUT EST LE VERT (02/09, Emmanuel : « j'ai l'impression que
+  je révise plus que j'apprends »). Une bonne réponse SANS pastille valait
+  « à peu près », qui ne fait pas monter : tout restait au premier cran et
+  revenait le lendemain, à vie. Mesuré en rejouant le vrai code (60 versets,
+  40 questions/jour, 90 jours) : ZÉRO acquis, 21 versets jamais posés une
+  seule fois, les autres posés 92 fois chacun. Désormais note = vert par
+  défaut ; les pastilles CORRIGENT VERS LE BAS (jaune retient le cran, rouge
+  ramène le verset tout de suite). Même mesure après : 34 acquis, aucun verset
+  oublié. Ne pas revenir au jaune par défaut. Le vert implicite n'est pas
+  enregistré comme déclaration (delete p.r) : les pastilles repartent vides.
+• MÉMORISER, CE QUE FAIT LA PASTILLE VERTE (02/09). Le vert étant devenu le
+  défaut, la pastille verte ne changeait plus rien (vérifié : niveaux et
+  échéances identiques avec ou sans). Elle vaut désormais DEUX CRANS au lieu
+  d'un : le verset saute un palier. Quatre gestes, quatre effets distincts sur
+  une bonne réponse → rien : +1 cran ; vert : +2 ; jaune : sur place ; rouge :
+  revient dans trois questions. Le verrou du terme (mur) empêche deux verts de
+  s'enchaîner le même soir (vérifié), donc atteindre le dernier palier demande
+  de traverser pour de bon 3 puis 16 puis 75 jours. Le crédit reste un
+  plancher, jamais un plafond. Mesure sur 90 jours : 31 versets acquis sans
+  jamais toucher aux pastilles, 59 en mettant vert à chaque bonne réponse.
+• MÉMORISER, DÉCOUVRIR NE S'ARRÊTE JAMAIS (02/09). « Réviser passe avant
+  découvrir » était SANS RÉSERVE : un seul verset commencé et arrivé à terme
+  suffisait à bloquer toute la réserve. CADENCE_NEUF=5 : un verset neuf passe
+  au moins toutes les cinq questions tant qu'il en reste (S.depuisNeuf, remis
+  à zéro au début de chaque séance). Les révisions gardent la priorité le
+  reste du temps.
+• MÉMORISER, LA SÉANCE EST INFINIE, ET LE RAB VA AUX PLUS FRAGILES (02/09,
+  Emmanuel : « je veux que la série soit infinie »). Quand plus rien n'est mûr
+  la séance CONTINUE — ne jamais la clore — mais ces questions ne comptant plus
+  pour les niveaux, elles vont au TIERS LE PLUS FRAGILE (niveau effectif
+  croissant, trois versets au minimum pour que ça tourne, le plus anciennement
+  vu en tête). Avant, le tirage se faisait du plus anciennement vu au plus
+  récent tous niveaux confondus : un verset à 35 jours revenait aussi souvent
+  qu'un verset à 3 jours (mesuré : 57 à 64 passages à tous les niveaux). Après :
+  99 passages au niveau 2, 26 au niveau 6, et plus aucune question gaspillée
+  sur les niveaux 5 et 6.
+• MÉMORISER, EN-TÊTE DE SÉANCE (02/09, Emmanuel) : la phrase « Tous tes
+  versets sont à jour · tu peux continuer… » est SUPPRIMÉE (elle tenait deux
+  lignes et déplaçait le bouton « Terminer »). majStat n'affiche plus que
+  « n répondues · n justes » ; .study-top a min-height:38px pour que rien ne
+  bouge. resteAReviser() reste, pour le tirage. Ne pas remettre de message
+  d'état dans cet en-tête.
 • MÉMORISER, DIVERS : clavier de séance inactif dans un champ de saisie et
   avec Ctrl/Alt/Cmd ; propositions passées par besc ; « Restaurer les
   catégories de base » (#restore-base) quand hidCats n'est pas vide ;
