@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumen · Théologie catholique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   LUMEN — feuille de style
+   Palette « manuscrit nocturne » : encre profonde, parchemin, or ancien.
+   ============================================================ */
+:root{
+  --encre:#000000;          /* fond global, noir total */
+  --encre-2:#0b0b0b;        /* fond des surfaces légèrement levées */
+  --parchemin:#ffffff;      /* texte principal, blanc franc */
+  --parchemin-att:#ffffff;  /* texte secondaire, blanc lui aussi */
+  --or:#efe6cf;             /* accent principal, crème clair */
+  --or-pale:#f8f3e6;        /* crème éclairci, hover */
+  /* fond de survol : la couleur d'accent, une seule intensité pour tout le
+     site ; la seconde ligne suit l'accent, une vieille version l'ignore. */
+  --surv:rgba(239,230,207,.06);
+  --surv:color-mix(in srgb, var(--or) 6%, transparent);
+  /* texte sélectionné : la même couleur, franche, texte en noir */
+  --sel:rgba(239,230,207,.5);
+  --sel:color-mix(in srgb, var(--or) 50%, transparent);
+  --pourpre:#9a3b3b;        /* accent rare, rouge liturgique */
+  --filet:rgba(231,224,207,.14); /* filets fins */
+  --filet-fort:rgba(231,224,207,.28);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--encre);
+  color:var(--parchemin);
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:23px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+::selection{background:var(--sel);color:var(--encre)}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--encre)}
+::-webkit-scrollbar-thumb{background:rgba(231,224,207,.35)}
+::-webkit-scrollbar-thumb:hover{background:rgba(231,224,207,.6)}
+html{scrollbar-color:rgba(231,224,207,.35) var(--encre)}
+
+a{color:inherit;text-decoration:none}
+
+/* ---------- bandeau d'en-tête ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--filet);
+}
+.barre{
+  max-width:1080px;margin:0 auto;
+  padding:20px 32px;
+  display:grid;grid-template-columns:auto auto 1fr;align-items:center;
+  gap:24px;
+}
+.logo{
+  grid-column:1;grid-row:1;
+  font-family:'Cormorant Garamond',serif;
+  font-weight:500;font-size:26px;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--parchemin);
+  padding-left:.34em;
+}
+.logo:hover{color:var(--or-pale)}
+nav.menu{display:flex;gap:30px;grid-column:3;grid-row:1;justify-self:end;align-items:center}
+nav.menu a{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;letter-spacing:.12em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  color:var(--parchemin-att);
+  padding-bottom:3px;
+  border-bottom:1px solid transparent;
+  transition:color .3s,border-color .3s;
+}
+nav.menu a:hover,nav.menu a.actif{color:var(--parchemin);border-color:var(--or)}
+
+/* bouton menu mobile */
+.burger{display:none;background:none;border:none;color:var(--parchemin);
+  font-size:24px;cursor:pointer;line-height:1}
+
+/* contexte d'article (thème · date) centré dans le bandeau */
+.contexte-bar{
+  grid-column:2;grid-row:1;text-align:left;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--parchemin-att);white-space:nowrap;pointer-events:auto;
+}
+.contexte-bar:empty{display:none}
+.contexte-bar a{transition:color .3s}
+.contexte-bar a:hover{color:var(--or)}
+
+/* ---------- recherche ---------- */
+.rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:var(--parchemin-att);transition:color .3s;background:none;border:none;padding:0;outline:none}
+.rech-loupe:hover,.rech-loupe:focus{color:var(--or)}
+.rech-loupe svg{display:block}
+.rech-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);display:none}
+.rech-overlay.ouvert{display:block}
+.rech-boite{max-width:760px;margin:0 auto;padding:8vh 24px 40px;height:100%;display:flex;flex-direction:column;box-sizing:border-box}
+.rech-haut{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--filet-fort);padding-bottom:18px}
+.rech-haut svg{color:var(--or);flex:none}
+#rech-champ{flex:1;min-width:0;background:none;border:none;outline:none;color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:30px;letter-spacing:.01em}
+#rech-champ::-webkit-search-cancel-button,#rech-champ::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
+#rech-champ::placeholder{color:var(--parchemin-att);opacity:.5;font-style:italic}
+.rech-fermer{cursor:pointer;color:rgba(255,255,255,.6);font-size:24px;line-height:1;transition:color .3s;flex:none;outline:none;padding:2px 6px}
+.rech-fermer:hover,.rech-fermer:focus{color:var(--parchemin)}
+.rech-res{margin-top:6px;overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:rgba(231,224,207,.35) var(--encre)}
+.rech-msg{padding:38px 4px;color:var(--parchemin-att);font-style:italic;font-size:18px}
+.rech-item{display:block;padding:22px 4px;border-bottom:1px solid var(--filet);cursor:pointer;transition:padding-left .3s}
+.rech-item:hover,.rech-item.kact{padding-left:14px;background:var(--surv)}
+.rech-meta{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin-bottom:6px}
+.rech-titre{font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.15;transition:color .3s}
+.rech-item:hover .rech-titre,.rech-item.kact .rech-titre{color:var(--or-pale)}
+.rech-extrait{margin-top:7px;font-size:16px;color:var(--parchemin-att);line-height:1.55}
+.rech-extrait mark{background:none;color:var(--or);font-weight:600}
+@media(max-width:720px){#rech-champ{font-size:24px}.rech-boite{padding-top:6vh}}
+
+/* ---------- conteneur de page ---------- */
+/* Le pied de page reste collé en bas de l'écran sur les pages courtes :
+   le corps est une colonne, le contenu prend toute la place disponible. */
+body{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+main{width:100%;max-width:1080px;margin:0 auto;padding:0 32px;flex:1 0 auto}
+footer{flex-shrink:0}
+.vue{animation:apparait .6s ease both}
+@keyframes apparait{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- accueil ---------- */
+.hero{
+  padding:112px 0 76px;
+  text-align:center;
+}
+.croix{
+  width:72px;height:132px;
+  margin:0 auto;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2072%20132'%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,2%2031,2'%20fill='%23ffffff'/%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,130%2031,130'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%202,45%202,35'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%2070,45%2070,35'%20fill='%23ffffff'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:center;background-size:contain;
+}
+
+
+/* titres de section internes */
+.titre-section{
+  display:flex;align-items:baseline;gap:18px;
+  margin:72px 0 36px;
+}
+.titre-section .num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;letter-spacing:.2em;color:var(--or);
+  white-space:nowrap;
+}
+.titre-section h2{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;font-size:34px;letter-spacing:.02em;
+  white-space:nowrap;
+}
+.titre-section .trait{flex:1;height:1px;background:var(--filet)}
+
+.titre-section h2{text-wrap:balance}
+
+/* ---------- pied de page ---------- */
+footer{
+  border-top:1px solid var(--filet);
+  margin-top:40px;
+  padding:48px 32px 56px;
+  text-align:center;
+}
+footer .marque{
+  font-family:'Cormorant Garamond',serif;
+  letter-spacing:.34em;text-transform:uppercase;font-size:18px;
+  padding-left:.34em;color:var(--parchemin);
+}
+footer .verset-pied{
+  margin-top:18px;font-style:italic;color:var(--parchemin-att);font-size:17px;
+}
+footer .verset-pied .ref-pied{font-style:normal}
+footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--parchemin-att);
+  font-family:'Cormorant Garamond',serif}
+
+/* ---------- responsive ---------- */
+@media(max-width:720px){
+  body{font-size:20px}
+  .barre{padding:16px 20px;display:flex;justify-content:space-between}
+  main{padding:0 20px}
+  nav.menu{
+    position:fixed;inset:62px 0 auto 0;
+    flex-direction:column;gap:0;align-items:flex-start;
+    background:rgba(0,0,0,.97);
+    padding:10px 28px 18px;
+    border-bottom:1px solid var(--filet);
+    transform:translateY(-130%);transition:transform .35s;
+  }
+  nav.menu.ouvert{transform:none}
+  nav.menu a{font-size:15px;padding:12px 0;width:100%;border-bottom:none}
+  .burger{display:block}
+  .contexte-bar{display:none}
+  .titre-section h2{font-size:26px;white-space:normal}
+  .titre-section{flex-wrap:wrap}
+}
+.ll-mob{display:none}
+@media(max-width:720px){
+nav.menu .rech-loupe{width:100%;justify-content:flex-start;gap:14px;padding:12px 0;border-bottom:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-att)}
+nav.menu .rech-loupe .ll-mob{display:inline}
+}
+
+/* ---------- taille de lecture (réglée depuis Mon compte) ---------- */
+.ttx-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:18px 0 6px;padding-top:18px;border-top:1px solid var(--filet)}
+.ttx-lab{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--parchemin-att)}
+.ttx-btns{display:flex;gap:8px}
+.ttx-b{background:none;border:1px solid var(--filet);color:var(--parchemin);font-family:'Cormorant Garamond',serif;font-size:14px;min-width:38px;padding:7px 8px;cursor:pointer;transition:border-color .25s,color .25s}
+.ttx-b:hover{border-color:var(--or);color:#fff}
+.tog-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:14px 0 6px;padding-top:16px;border-top:1px solid var(--filet)}
+.tog-lab{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--parchemin-att)}
+.tog-sw{position:relative;width:46px;height:24px;border:1px solid var(--filet-fort);background:none;cursor:pointer;flex:none;transition:border-color .25s}
+.tog-sw:hover{border-color:var(--or)}
+.tog-sw:focus,.tog-sw:focus-visible{outline:none}
+.tog-sw::after{content:'';position:absolute;top:50%;left:3px;width:16px;height:16px;background:rgba(255,255,255,.55);transform:translateY(-50%);transition:left .25s,background .25s}
+.tog-sw.on{border-color:var(--or)}
+.tog-sw.on::after{left:25px;background:var(--or)}
+/* ---------- focus clavier ---------- */
+:focus{outline:none}
+:focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}
+.rech-loupe:focus,.rech-loupe:focus-visible{outline:none}
+/* ---------- impression ---------- */
+@media print{
+  body{background:#fff;color:#000;font-size:12pt}
+  .barre,nav.menu,.burger,.contexte-bar,footer,.rech-overlay,
+  #bp-tab,#bp-pan,#bp-voile,.memo-accueil{display:none!important}
+  main{padding:0}
+  .vue{max-width:none}
+  h1,h2,h3,.titre-section h2{color:#000}
+  .ref-pied,.rech-meta{color:#000}
+  em{color:#000}
+  a{color:#000;text-decoration:none}
+}
+
+/* ---------- bloc Mémoriser (accueil) ---------- */
+.memo-bloc{max-width:628px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:30px}
+.memo-droite{width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+.memo-pct{display:flex;align-items:baseline;justify-content:center;gap:11px}
+.memo-pct span{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:48px;line-height:1;color:var(--parchemin)}
+.memo-pct i{font-style:italic;font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.04em;text-transform:none;color:#ffffff}
+.memo-bar{display:flex;width:100%;height:4px;overflow:hidden;background:var(--filet)}
+.memo-bar i{display:block;height:100%;width:0;transition:width .6s cubic-bezier(.2,.7,.3,1)}
+.memo-bar .r{background:#c75d52}
+.memo-bar .a{background:#cfa24f}
+.memo-bar .v{background:#7ba37e}
+.memo-bar .l{background:var(--or)}
+.memo-leg{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--parchemin-att)}
+.memo-leg b{color:var(--parchemin);font-weight:600;font-variant-numeric:tabular-nums}
+.memo-note{font-size:16px;color:var(--parchemin-att);font-style:italic;margin:0;display:none;text-align:center}
+.memo-droite[data-state="out"] .memo-note,
+.memo-droite[data-state="empty"] .memo-note{display:block}
+.memo-droite:not([data-state="ok"]) .memo-pct,
+.memo-droite:not([data-state="ok"]) .memo-bar,
+.memo-droite:not([data-state="ok"]) .memo-leg{display:none}
+/* tant que rien n'est chargé, le bloc vide ne creuse pas d'écart au-dessus du bouton */
+.memo-droite[data-state="load"]{display:none}
+.memo-start{display:inline-block;width:auto;text-align:center;padding:15px 52px;background:var(--or);color:var(--encre);font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;transition:background .3s}
+.memo-start:hover{background:var(--or-pale)}
+</style>
+</head>
+<body>
+<!-- ============================================================
+     SOURCE DU GENERATEUR - node build-bi.js
+     Le build ne lit qu'une seule chose dans ce fichier : la
+     feuille de style ci-dessus, qui porte tout l'habillage du
+     site. Les pages publiques (accueil, Bible, Memoriser) sont
+     construites par build-bi.js et deposees dans site/.
+     Ne rien ajouter ici : aucun contenu de ce corps n'est lu ni
+     affiche, et un gabarit oublie finirait par reapparaitre par
+     erreur dans le site.
+     ============================================================ -->
+</body>
+</html>

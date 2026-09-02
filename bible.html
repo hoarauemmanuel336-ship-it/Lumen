@@ -1,0 +1,2728 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La Sainte Bible · Lumen Veritatis</title>
+<meta name="description" content="La Sainte Bible, traduction Chérubin. Lecture en ligne, Ancien et Nouveau Testament.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<script>
+/* Firebase à la demande : chargé après le rendu (ou à la première interaction). */
+window.lvFB=function(){if(window.__lvFBP)return window.__lvFBP;window.__lvFBP=new Promise(function(res){var u=['app','auth','firestore'].map(function(n){return 'https://www.gstatic.com/firebasejs/10.7.1/firebase-'+n+'-compat.js';});(function next(i){if(i>=u.length){try{document.dispatchEvent(new Event('lv-fb-ready'));}catch(_){}res();return;}var s=document.createElement('script');s.src=u[i];s.onload=function(){next(i+1);};s.onerror=function(){res();};document.head.appendChild(s);})(0);});return window.__lvFBP;};
+(function(){var go=function(){window.lvFB();};window.addEventListener('load',function(){setTimeout(go,600);});['pointerdown','keydown'].forEach(function(ev){window.addEventListener(ev,go,{once:true,passive:true});});})();
+</script>
+<style>
+:root{
+  --encre:#000000;--encre-2:#0b0b0b;--encre-3:#111111;
+  --or:#efe6cf;--or-pale:#f8f3e6;
+  /* fond de survol : la couleur d'accent, une seule intensité pour tout
+     le site. La seconde ligne suit l'accent quand il change ; un vieux
+     navigateur l'ignore et garde la première. */
+  --surv:rgba(239,230,207,.06);
+  --surv:color-mix(in srgb, var(--or) 6%, transparent);
+  /* texte sélectionné : la même couleur, franche cette fois, avec le
+     texte en noir pour rester lisible. */
+  --sel:rgba(239,230,207,.5);
+  --sel:color-mix(in srgb, var(--or) 50%, transparent);
+  --parchemin:#ffffff;--pa:rgba(255,255,255,.6);--pa2:rgba(255,255,255,.38);
+  --filet:rgba(231,224,207,.14);--filet-f:rgba(231,224,207,.28);
+  --parchemin-att:rgba(255,255,255,.45);--filet-fort:rgba(231,224,207,.34);--pourpre:#9a3b3b;
+  --serif:'EB Garamond',Georgia,serif;--display:'Cormorant Garamond',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{height:100%}
+body{background:var(--encre);color:var(--parchemin);font-family:var(--serif);font-size:20px;line-height:1.6;min-height:100%;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:var(--sel);color:var(--encre)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea{font-family:inherit;color:inherit}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--encre)}
+::-webkit-scrollbar-thumb{background:rgba(231,224,207,.35)}
+::-webkit-scrollbar-thumb:hover{background:rgba(231,224,207,.6)}
+html{scrollbar-color:rgba(231,224,207,.35) var(--encre)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.b-ov{position:fixed;inset:0;z-index:62;background:rgba(8,8,8,.98);display:none}
+.b-ov.ouvert{display:block}
+.b-boite{max-width:760px;margin:0 auto;padding:8vh 24px 40px;height:100%;display:flex;flex-direction:column;box-sizing:border-box}
+.b-tete{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--filet-f);padding-bottom:18px;color:#fff}
+.b-titre{font-family:var(--display);font-size:22px;color:#fff;flex:1}
+.b-champ{flex:1;min-width:0;background:none;border:none;padding:0;font-size:30px;letter-spacing:.01em;font-family:var(--display);color:#fff;outline:none}
+.b-champ::placeholder{color:rgba(255,255,255,.5);font-style:italic}
+.b-hint{padding:38px 4px;color:rgba(255,255,255,.5);font-style:italic;font-size:18px}
+@media(max-width:720px){.b-champ{font-size:24px}.b-boite{padding-top:6vh}}
+.b-fermer{cursor:pointer;color:rgba(255,255,255,.6);font-size:24px;line-height:1;flex:none;transition:color .3s;padding:2px 6px}
+.b-fermer:hover{color:#fff}
+.b-res{margin-top:6px;overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:rgba(231,224,207,.35) transparent}
+a.b-r,.b-r{display:block;padding:16px 2px;border-bottom:1px solid var(--filet);cursor:pointer}
+a.b-r b,.b-r b{display:block;font-family:var(--display);font-weight:500;font-size:21px;color:#fff;transition:color .3s}
+a.b-r span,.b-r span{font-size:14.5px;color:rgba(255,255,255,.45);line-height:1.5}
+a.b-r:hover b,.b-r:hover b,.b-r.kact b{color:var(--or-pale)}
+.b-r.kact{background:var(--surv)}
+.b-vide{text-align:center;font-style:italic;color:rgba(255,255,255,.45);padding:26px 0}
+.nv-d{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--or);margin:20px 0 16px}
+.nv-l{position:relative;padding-left:22px;color:#ffffff;font-size:18px;line-height:1.55}
+.nv-l::before{content:"";position:absolute;left:0;top:.85em;width:12px;height:1px;background:var(--or);opacity:.6}
+.nv-l + .nv-l{margin-top:16px}
+
+/* ---------- taille de lecture (réglée depuis Mon compte) ---------- */
+.ch-texte{font-size:calc(20.5px*var(--lvz,1))}
+.ttx-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:18px 0 6px;padding-top:18px;border-top:1px solid var(--filet)}
+.ttx-lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.ttx-btns{display:flex;gap:8px}
+.ttx-b{background:none;border:1px solid var(--filet);color:#fff;font-family:var(--display);font-size:14px;min-width:38px;padding:7px 8px;cursor:pointer;transition:border-color .25s,color .25s}
+.ttx-b:hover{border-color:var(--or)}
+.tog-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:14px 0 6px;padding-top:16px;border-top:1px solid var(--filet)}
+.tog-lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.tog-sw{position:relative;width:46px;height:24px;border:1px solid var(--filet-f);background:none;cursor:pointer;flex:none;transition:border-color .25s}
+.tog-sw:hover{border-color:var(--or)}
+.tog-sw::after{content:'';position:absolute;top:50%;left:3px;width:16px;height:16px;background:rgba(255,255,255,.55);transform:translateY(-50%);transition:left .25s,background .25s}
+.tog-sw.on{border-color:var(--or)}
+.tog-sw.on::after{left:25px;background:var(--or)}
+#bp-tab.bp-tab-masque{display:none!important}
+/* ---------- focus clavier ---------- */
+:focus{outline:none}
+:focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}
+.ic-btn:focus,.ic-btn:focus-visible{outline:none}
+#brech-voile :focus,#brech-voile :focus-visible{outline:none}
+/* ---------- impression ---------- */
+@media print{
+  body{background:#fff;color:#000}
+  .barre,nav.menu,.burger,.ctx,.hero,.ref-barre,#sel-barre,.b-ov,#note-voile,#auth-voile,
+  #bacct-voile,#cat-voile,#conf-voile,#menu-flot,.nt-menu,.nz-rail,.notes-btn,.notes-lien,.notes-rech,.surl-oter,footer,.ch-nav{display:none!important}
+  .notes-cat{position:static!important;background:none!important}
+  .wrap{padding-bottom:0!important}
+  .vst,.vn,.ch-titre,.livre-titre,h1,h2{color:#000}
+  .vst sup{color:#000}
+  a{color:#000;text-decoration:none}
+}
+
+/* — Barre de référence — */
+@media(max-width:720px){.ref-int{padding:8px 18px;gap:12px}.ref-champ{font-size:15px;min-width:0}.ref-erreur{display:none}}
+
+/* — Cadre général — */
+.wrap{width:100%;max-width:1100px;margin:0 auto;padding:0 28px 90px}
+/* pied de page collé en bas sur les pages courtes : le corps est une colonne, le contenu prend la place libre */
+body{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+main.wrap{flex:1 0 auto}
+body>footer{flex-shrink:0}
+body.sel-active .wrap{padding-bottom:calc(var(--sb-h,190px) + 28px)}
+.hero{text-align:center;padding:74px 0 26px;animation:rise .7s ease both}
+/* ═══ MODE PANNEAU ═══ Rien n'est retiré des fonctions : on enlève la barre et
+   le pied, qui appartiennent à la page d'accueil de la Bible et non à la
+   lecture, et on resserre les marges pour une colonne étroite. */
+html.panneau header,html.panneau footer{display:none!important}
+html.panneau .wrap{max-width:none;padding:0 20px 40px}
+html.panneau .hero{padding:26px 0 14px}
+html.panneau h1.titre{font-size:32px}
+html.panneau .notes-cat{top:0}
+.sur-titre{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--or);margin-bottom:18px}
+h1.titre{font-family:var(--display);font-weight:400;font-size:48px;line-height:1.1;letter-spacing:.04em}
+.hero .souligne{width:54px;height:1px;background:linear-gradient(90deg,transparent,var(--filet-f),transparent);margin:26px auto 0}
+@media(max-width:720px){h1.titre{font-size:36px}.hero{padding:52px 0 18px}}
+
+/* — Vue : livres — */
+.testament{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--or);text-align:center;margin:58px 0 8px}
+.groupe-nom{font-family:var(--display);font-style:italic;font-weight:400;font-size:25px;color:var(--parchemin,#fff);text-align:center;margin:40px 0 20px}
+.livres-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:0 44px;max-width:920px;margin:0 auto}
+@media(max-width:900px){.livres-grille{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.livres-grille{grid-template-columns:1fr}}
+a.livre{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:11px 4px;border-bottom:1px solid rgba(231,224,207,.10);transition:border-color .35s,color .3s}
+a.livre .ln{font-size:19px;transition:color .3s}
+a.livre .lc{font-size:12.5px;color:var(--parchemin-att);letter-spacing:.06em;white-space:nowrap;transition:color .3s}
+a.livre:hover{border-color:var(--or);background:var(--surv)}
+a.livre:hover .ln{color:var(--parchemin,#fff)}
+a.livre:hover .lc{color:var(--pa)}
+
+/* — Vue : chapitres — */
+h2.livre-titre{font-family:var(--display);font-weight:400;font-size:40px;text-align:center;margin:52px 0 8px}
+.livre-sous{font-size:14px;color:var(--parchemin-att);text-align:center;font-style:italic;margin-bottom:40px}
+.chap-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(56px,1fr));gap:10px;max-width:760px;margin:0 auto}
+a.chap{display:flex;align-items:center;justify-content:center;height:52px;border:1px solid var(--filet);font-size:17px;color:var(--pa);transition:border-color .35s,color .3s,box-shadow .4s}
+a.chap:hover{border-color:var(--or);color:var(--or-pale);background:var(--surv)}
+
+/* — Vue : lecture — */
+.lecture-col{max-width:720px;margin:0 auto;padding:56px 0 48px;animation:rise .6s ease both}
+@media(max-width:720px){.lecture-col{padding:38px 0 34px}}
+h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align:center;margin:0}
+/* ═══ SIGNETS ═══
+   Le ruban cousu dans la reliure d'une bible : on le laisse tomber sur un
+   chapitre pour le retrouver plus tard. Vide, c'est un simple contour ; posé,
+   il se remplit d'or. Le titre garde sa place au centre, le ruban se tient à
+   droite sans le pousser. */
+.ch-tete{position:relative;padding:0 42px}
+.signet-btn{position:absolute;right:0;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;color:var(--parchemin-att);cursor:pointer;transition:color .3s}
+.signet-btn:hover{color:var(--or)}
+.signet-btn.pose{color:var(--or)}
+.signet-btn svg{display:block;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linejoin:round}
+.signet-btn.pose svg{fill:currentColor}
+@media(max-width:600px){.ch-tete{padding:0 36px}.signet-btn{width:34px;height:34px}}
+.sg-vide{text-align:center;color:var(--parchemin-att);font-style:italic;padding:56px 0}
+.sg-liste{max-width:760px;margin:36px auto 0}
+.sg-carte{display:flex;align-items:center;gap:16px;padding:16px 6px;border-bottom:1px solid var(--filet);cursor:pointer;transition:border-color .3s,background .3s}
+.sg-carte:hover{border-color:var(--or);background:var(--surv)}
+.sg-ruban{flex:none;display:flex;color:var(--or)}
+.sg-ruban svg{display:block;fill:currentColor;stroke:none}
+.sg-txt{flex:1;min-width:0}
+.sg-ref{font-family:var(--display);font-size:20px;color:var(--parchemin)}
+.sg-date{font-size:12px;letter-spacing:.04em;color:var(--parchemin-att);margin-top:4px}
+.sg-x{flex:none;font-size:14px;color:var(--parchemin-att);padding:8px 6px;transition:color .3s}
+.sg-x:hover{color:var(--or)}
+.ch-vulg{font-size:13.5px;color:var(--parchemin-att);text-align:center;font-style:italic;margin-top:6px}
+.ch-section{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);text-align:center;margin-top:22px}
+.ch-sect{font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin:30px 0 12px;text-align:left}
+.ch-sect:first-child{margin-top:4px}
+.ch-psaume-titre{font-style:italic;color:var(--pa);text-align:center;margin-top:22px;font-size:19px}
+.ch-sep{width:44px;height:1px;background:linear-gradient(90deg,transparent,var(--filet-f),transparent);margin:30px auto 34px}
+/* L'INTERLIGNE EST CELUI D'UN BLOC, PAS D'UNE LISTE DE LIGNES (Emmanuel,
+   26/08 : « trop d'espace haut et en bas alors que c'est dans le même
+   bloc »). Les lignes d'un même paragraphe se tiennent : c'est le blanc
+   ENTRE les paragraphes qui doit se voir, pas celui entre deux lignes.
+   POURQUOI LA PROSE N'EST PAS AUSSI SERRÉE QUE LES VERS : ce n'est pas un
+   oubli. Une ligne de vers fait une trentaine de signes, l'œil retrouve le
+   début de la suivante sans effort. Une ligne de prose en fait
+   soixante-seize sur un écran large : trop serrée, le regard qui revient à
+   gauche retombe sur la ligne qu'il vient de lire. L'interligne suit donc la
+   LARGEUR DE LA COLONNE, comme en typographie : large sur un écran d'ordi,
+   resserré sur un téléphone où la ligne ne fait plus que trente-cinq signes
+   et rejoint alors celui des vers. */
+/* PLUS DE JUSTIFICATION (Emmanuel, 26/08 : « l'espace entre les mots »).
+   Justifier, c'est étirer les blancs entre les mots pour que la ligne
+   atteigne le bord droit : sur une colonne étroite, certaines lignes se
+   retrouvent avec des trous béants et d'autres serrées, et l'œil bute. Au
+   fer à gauche, l'espace entre deux mots est TOUJOURS le même ; c'est le
+   bord droit qui devient irrégulier, et lui ne gêne personne. La coupure des
+   mots reste active pour que ce bord ne parte pas trop loin. */
+.ch-texte{text-align:left;hyphens:auto;line-height:1.08}
+@media(max-width:600px){.ch-texte{line-height:1.08}}
+/* Le paragraphe respire des deux côtés : un poème enchâssé dans le récit
+   (le Gloria au milieu de Luc 2) doit être aussi dégagé au-dessous qu'au-dessus. */
+.ch-texte .par{margin:1.25em 0}
+.ch-texte .par:first-child{margin-top:0}
+.ch-texte .par:last-child{margin-bottom:0}
+.ch-texte sup.vn{font-family:var(--serif);font-size:12.5px;color:var(--or);line-height:0;margin-right:5px;letter-spacing:0}
+/* --vc : teinte du surlignage de verset entier (posée par le script), --vc-sel :
+   la même teinte, un peu plus franche, quand ce verset est en plus sélectionné.
+   Sans couleur, un verset est nu ; sélectionné, il prend le voile parchemin. */
+.vst{scroll-margin-top:160px;cursor:pointer;transition:background .3s,box-shadow .3s;-webkit-tap-highlight-color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:3px;background:var(--vc,transparent)}
+/* Un verset de prose porte sa propre marge intérieure, retirée par une marge
+   extérieure négative de même largeur : rien ne bouge dans le texte, mais le
+   fond (sélection, surlignage) déborde un peu du mot et recouvre l'espace qui
+   sépare deux versets. Sans cela, deux versets voisins sélectionnés laissent
+   voir une couture sombre entre eux. */
+.vst:not(.po){padding:.06em .3em;margin:0 -.3em}
+/* ── LES VERS ──
+   Un verset de psaume, de proverbe ou d'oracle ne se coule pas dans le
+   paragraphe : il tient sa ligne, comme dans une Bible imprimée, et les
+   versets respirent entre eux. Rien n'est justifié : la poésie se lit au fil
+   du souffle, pas au cordeau.
+   AUCUN DÉCALAGE ENTRE LES LIGNES (Emmanuel, 26/08 : « arrête tout simplement
+   cette espèce de décalage bizarre »). Toutes les lignes d'un verset partent
+   du même bord ; seul le NUMÉRO pend dans la marge, en avant de ce bord, ce
+   qui aligne le premier mot de la première ligne sur celui des suivantes. Ne
+   pas remettre de retrait sur la seconde moitié du verset. */
+/* DEUX RÉGIMES. Un poème suivi (psaume, oracle, discours de Job) est UNE
+   coulée : ses lignes se serrent, et l'air ne revient qu'aux titres de
+   section. Une sentence (un proverbe, une maxime du Siracide) se suffit à
+   elle-même : elle est posée seule, entourée d'air. */
+/* L'AIR EST ENTRE LES VERSETS, PAS ENTRE LES LIGNES D'UN MÊME VERSET
+   (Emmanuel, 26/08). Les lignes d'un verset se tiennent serrées : elles ne
+   font qu'une phrase, coupée pour l'œil. C'est le blanc AUTOUR du verset qui
+   dit où il commence et où il finit. Interligne de prose : 1.74 ; interligne
+   d'un verset : 1.42. Ne pas revenir à un interligne large ici, sinon un
+   simple passage à la ligne se confond avec un changement de verset. */
+.vst.po{display:block;position:relative;text-align:left;hyphens:none;line-height:1.08;margin:.7em 0;padding-left:2.2em}
+.vst.po.sent{margin:1.25em 0}
+.vst.po .li{display:block;position:relative}
+/* Le numéro sort du flux et va se poser dans la marge : sans cela il
+   pousserait la première ligne vers la droite et elle ne s'alignerait plus
+   sur les suivantes. Il s'accroche à SA ligne, pas au verset entier, sinon
+   il flotterait au-dessus du texte. */
+.vst.po .vn{position:absolute;left:-2.2em;top:.42em;margin-right:0;line-height:1}
+@media(max-width:600px){.vst.po{margin:.62em 0;padding-left:1.7em}.vst.po.sent{margin:1.1em 0}.vst.po .vn{left:-1.7em}}
+@media(hover:hover){.vst:hover{background:var(--vc,var(--surv))}.vst.po:hover{box-shadow:0 0 0 5px var(--vc,var(--surv))}}
+#sb-cercle{width:26px;height:22px;padding:1px;background:#0a0a0a;border:1px solid rgba(255,255,255,.25);cursor:pointer}
+.sb-surl{display:none;align-items:center;gap:10px;padding:8px 0 2px;flex-wrap:wrap}
+.sb-surl.ouvert{display:flex}
+.sb-past{width:18px;height:18px;border-radius:50%;cursor:pointer;border:1px solid rgba(255,255,255,.25);transition:transform .15s,border-color .2s}
+.sb-past:hover{transform:scale(1.18);border-color:#fff}
+.sb-oter{font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.55);cursor:pointer;padding:2px 6px}
+.sb-oter:hover{color:#fff}
+/* Verset sélectionné : un voile de parchemin, net mais léger, pas une dalle
+   grise. En prose il n'y a plus de halo (le débord vient de la marge intérieure
+   ci-dessus) ; seuls les vers, posés en bloc, gardent un halo pour respirer. */
+/* Les teintes sont données déjà fondues sur le noir (opaques) : deux versets
+   voisins se recouvrent d'un rien, et deux voiles transparents superposés
+   feraient une bande plus claire à la jointure. Parchemin à 17 % sur noir =
+   rgb(41,39,35) ; à 12 % = rgb(29,28,25).
+   Un verset déjà coloré ne devient pas gris quand on le sélectionne : il garde
+   sa couleur, simplement plus franche (--vc-sel). */
+.vst.sel{background:var(--vc-sel,rgb(41,39,35))!important;box-shadow:none!important}
+.vst.po.sel{box-shadow:0 0 0 5px var(--vc-sel,rgb(41,39,35))!important}
+/* Deux vers voisins sélectionnés : leurs cadres sont séparés par la marge qui
+   sépare les vers ; on comble cet espace pour ne former qu'un seul bloc. */
+.vst.po.sel+.vst.po.sel::before{content:'';position:absolute;left:-5px;right:-5px;bottom:100%;height:.7em;background:var(--vc-sel,rgb(41,39,35));pointer-events:none}
+.vst.po.sent+.vst.po.sel::before,.vst.po.sel+.vst.po.sent.sel::before{height:1.25em}
+@media(max-width:600px){.vst.po.sel+.vst.po.sel::before{height:.62em}.vst.po.sent+.vst.po.sel::before,.vst.po.sel+.vst.po.sent.sel::before{height:1.1em}}
+.vst.cible{background:var(--vc,rgb(29,28,25))}
+.vst.po.cible{box-shadow:0 0 0 5px var(--vc,rgb(29,28,25))}
+/* Portion surlignée à la souris : même voile, mêmes coins doux que le verset
+   entier ; la marge intérieure est reprise par une marge extérieure négative,
+   le texte ne bouge pas d'un cheveu. */
+.lv-frag{border-radius:3px;padding:.06em .1em;margin:0 -.1em;box-decoration-break:clone;-webkit-box-decoration-break:clone;cursor:pointer}
+/* petit menu flottant de surlignage de fragment */
+#lv-frag-pop{position:absolute;z-index:120;display:none;align-items:center;gap:8px;padding:8px 10px;background:rgba(12,12,12,.97);border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 30px rgba(0,0,0,.55);backdrop-filter:blur(8px);flex-wrap:wrap;max-width:min(92vw,340px)}
+#lv-frag-pop.ouvert{display:flex}
+#lv-frag-pop .lvp-past{width:19px;height:19px;border-radius:50%;cursor:pointer;border:1px solid rgba(255,255,255,.25);transition:transform .15s,border-color .2s}
+#lv-frag-pop .lvp-past:hover{transform:scale(1.18);border-color:#fff}
+#lv-frag-pop .lvp-libre{width:26px;height:22px;padding:1px;background:#0a0a0a;border:1px solid rgba(255,255,255,.25);cursor:pointer}
+#lv-frag-pop .lvp-oter{font-size:12px;letter-spacing:.05em;color:rgba(255,255,255,.6);cursor:pointer;padding:2px 4px;white-space:nowrap}
+#lv-frag-pop .lvp-oter:hover{color:#fff}
+#lv-frag-pop .lvp-sep{width:1px;height:18px;background:rgba(255,255,255,.14)}
+/* section surlignages dans « Mes notes » */
+#surl-zone{box-sizing:border-box;max-width:760px;margin:0 auto}
+/* chaque ligne porte un fin trait de sa couleur à gauche, discret au repos,
+   franc au survol : la couleur se lit sans chercher la pastille */
+.surl-item{position:relative;box-sizing:border-box;display:block;max-width:760px;margin:0 auto;padding:20px 30px 18px 20px;border:none;box-shadow:inset 0 -1px 0 rgba(231,224,207,.09),inset 2px 0 0 var(--sc-f,transparent);transition:box-shadow .35s,background .35s}
+.surl-item:hover{background:var(--surv);box-shadow:inset 0 -1px 0 rgba(231,224,207,.09),inset 2px 0 0 var(--sc,var(--or))}
+.surl-item .surl-tete{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.surl-pastille{width:8px;height:8px;border-radius:50%;flex:0 0 auto;border:none}
+.surl-item .surl-pastille{width:6px;height:6px;opacity:.85}
+.surl-item .surl-ref{font-family:var(--serif);font-size:13.5px;letter-spacing:.03em;color:var(--or);cursor:pointer;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.surl-item .surl-ref:hover,.surl-item .surl-ref:active{color:var(--or-pale);text-decoration:underline}
+.surl-item .surl-oter{position:absolute;top:7px;right:-12px;margin:0;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);cursor:pointer;padding:14px 12px;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;white-space:nowrap}
+.surl-item .surl-oter:hover,.surl-item .surl-oter:active{color:var(--or-pale)}
+.surl-item .surl-txt{line-height:1.68;font-size:calc(16.5px*var(--lvz,1));color:rgba(255,255,255,.88);overflow-wrap:anywhere}
+/* Dans « Mes notes », le verset s'affiche en entier et la part surlignée porte
+   le même voile que dans la lecture : tout le verset s'il a été surligné d'un
+   clic, la seule portion choisie s'il a été surligné à la souris. La marge
+   intérieure verticale rejoint l'interligne : sur plusieurs lignes, le voile
+   forme un seul bloc et non des bandes. */
+.surl-mark{border-radius:3px;padding:.36em .12em;margin:0 -.12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+/* un groupe par couleur de surlignage : son en-tête est souligné d'un filet
+   teinté et la pastille porte un halo, pour qu'il pèse autant qu'une sous-catégorie */
+.surl-groupe{box-sizing:border-box;max-width:760px;margin:0 auto}
+.surl-scat{display:flex;align-items:center;gap:12px;box-sizing:border-box;max-width:760px;margin:36px auto 0;padding:0 0 11px 20px;box-shadow:inset 0 -1px 0 var(--sc-f,var(--filet))}
+.surl-scat .surl-pastille{width:9px;height:9px;box-shadow:0 0 0 3px var(--sc-f,transparent)}
+.surl-scat-nom{flex:0 1 auto;min-width:0;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.8);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.surl-scat-n{flex:0 0 auto;margin-right:auto;font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.34)}
+.surl-plus{flex:0 0 auto;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);cursor:pointer;white-space:nowrap;padding:6px 0 6px 14px;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.surl-plus:hover,.surl-plus:active{color:var(--or-pale)}
+.ch-nav{display:flex;justify-content:space-between;gap:18px;margin-top:54px;padding-top:26px;border-top:1px solid rgba(231,224,207,.14)}
+.ch-nav a{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa);transition:color .3s;padding:6px 0}
+.ch-nav a:hover{color:var(--or-pale)}
+.ch-nav .vide{visibility:hidden}
+
+/* — Plateau de sélection — */
+#sel-barre{position:fixed;left:0;right:0;bottom:0;z-index:48;background:rgba(0,0,0,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--filet);padding-bottom:env(safe-area-inset-bottom,0px);display:none}
+body.sel-active #sel-barre{display:block}
+.sb-int{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.sb-refs{display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex:1;min-width:200px}
+.sb-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--filet);padding:5px 11px;font-size:14.5px;color:var(--parchemin);cursor:pointer;transition:border-color .35s,box-shadow .4s}
+.sb-chip:hover{border-color:var(--or);background:var(--surv)}
+.sb-x{font-size:12px;color:var(--parchemin-att);transition:color .3s;padding:0 1px}
+.sb-x:hover{color:var(--or-pale)}
+.sb-act{display:flex;align-items:center;gap:22px;margin-left:auto}
+.sb-btn{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:color .3s;white-space:nowrap;padding:6px 0}
+.sb-btn:hover{color:var(--or-pale)}
+.reessayer{display:inline-block;margin-top:16px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-style:normal;color:var(--pa);border:1px solid var(--filet);padding:9px 18px;cursor:pointer;transition:color .3s,border-color .35s}
+.reessayer:hover{color:var(--or-pale);border-color:var(--or);background:var(--surv)}
+@media(max-width:720px){
+  .sb-int{padding:11px 15px 13px;gap:9px;flex-direction:column;align-items:stretch}
+  .sb-refs{gap:8px;min-width:0;flex:0 0 auto;max-height:23vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .sb-chip{font-size:14px;padding:5px 9px}
+  .sb-act{gap:6px;margin-left:0;width:100%;justify-content:space-between;flex-wrap:nowrap}
+  .sb-btn{font-size:11px;letter-spacing:.06em;padding:7px 0;flex:1 1 auto;text-align:center}
+  #sel-barre{max-height:62vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  #sb-cercle{width:40px;height:32px}
+  .sb-past{width:26px;height:26px}
+  .sb-surl{gap:13px;width:100%;justify-content:center}
+  .sb-oter{font-size:12px;padding:4px 8px}
+}
+@supports(height:100dvh){@media(max-width:720px){#sel-barre{max-height:62dvh}}}
+
+/* — Vue : notes —
+   Une liste de lecture, pas une grille de cartes : la note est le héros,
+   la date et le menu se tiennent en retrait, et la structure se lit
+   d'un coup d'œil grâce aux en-têtes en capitales espacées. */
+.notes-tete{box-sizing:border-box;max-width:760px;margin:60px auto 0}
+h2.notes-titre{font-family:var(--display);font-weight:400;font-size:44px;line-height:1.06;letter-spacing:.01em;color:var(--or-pale)}
+.notes-compte{margin-top:12px;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+/* le même filet d'or que sous le titre de la Bible, mais aligné à gauche : signature de la maison */
+.notes-tete::after{content:"";display:block;width:52px;height:1px;background:linear-gradient(90deg,rgba(231,224,207,.55),transparent);margin-top:24px}
+.notes-rech{display:block;width:100%;box-sizing:border-box;max-width:760px;margin:24px auto 0;appearance:none;-webkit-appearance:none;border-radius:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-opacity='.38' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5 21 21'/%3E%3C/svg%3E") no-repeat left 1px center/16px 16px;border:none;border-bottom:1px solid rgba(231,224,207,.2);padding:11px 2px 11px 29px;font-size:17px;color:var(--parchemin);outline:none;transition:border-color .3s}
+.notes-rech::placeholder{color:rgba(255,255,255,.36);font-style:italic}
+.notes-rech:focus{border-color:var(--or)}
+/* actions : du texte, jamais une boîte ; le signe + porte l'affordance */
+.notes-btn{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);padding:11px 2px;cursor:pointer;white-space:nowrap;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.notes-btn::before{content:"+";font-size:15px;line-height:1;letter-spacing:0;color:rgba(231,224,207,.5);transition:color .3s}
+.notes-btn:hover,.notes-btn:active{color:var(--or-pale)}
+.notes-btn:hover::before,.notes-btn:active::before{color:var(--or)}
+.notes-lien{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;white-space:nowrap;padding:11px 2px;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.notes-lien::before{content:"+";font-size:15px;line-height:1;letter-spacing:0;color:rgba(255,255,255,.28);transition:color .3s}
+.notes-lien:hover,.notes-lien:active{color:var(--or-pale)}
+.notes-lien:hover::before,.notes-lien:active::before{color:var(--or)}
+/* rail de filtres : la seule navigation transversale de la vue */
+.nz-rail{display:flex;gap:30px;box-sizing:border-box;max-width:760px;margin:30px auto 0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;box-shadow:inset 0 -1px 0 rgba(231,224,207,.1)}
+.nz-rail::-webkit-scrollbar{display:none}
+/* onglets : un filet continu sous tout le rail, l'onglet actif le rehausse d'or */
+.nz-fil{position:relative;flex:0 0 auto;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.46);padding:11px 1px 13px;cursor:pointer;white-space:nowrap;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.nz-fil::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--or);opacity:0;transition:opacity .35s}
+.nz-fil:hover{color:var(--parchemin)}
+.nz-fil.on{color:var(--or)}
+.nz-fil.on::after{opacity:1}
+.nz-fil i{font-style:normal;color:rgba(255,255,255,.28);margin-left:7px}
+.nz-fil.on i{color:rgba(231,224,207,.5)}
+.nz-liste{box-sizing:border-box;max-width:760px;margin:46px auto 0}
+.nz-liste>.notes-cat:first-child{margin-top:0}
+/* entrée de note : filet fin, barre d'or au survol, aucun cadre */
+.note-item{position:relative;box-sizing:border-box;max-width:760px;margin:0 auto;padding:20px 30px 18px 18px;box-shadow:inset 0 -1px 0 rgba(231,224,207,.09),inset 2px 0 0 transparent;transition:box-shadow .35s,background .35s}
+.note-item:hover{background:var(--surv);box-shadow:inset 0 -1px 0 rgba(231,224,207,.09),inset 2px 0 0 var(--or)}
+.note-pied{margin-top:12px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.32)}
+/* Un seul déclencheur au lieu d'une rangée de libellés répétée partout. */
+.nt-menu{color:rgba(255,255,255,.38);font-size:16px;line-height:1;letter-spacing:.12em;cursor:pointer;padding:14px 12px;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.nt-menu:hover,.nt-menu:active{color:var(--or-pale)}
+.note-item>.nt-menu{position:absolute;top:6px;right:-12px}
+.notes-cat>.nt-menu,.notes-scat>.nt-menu{flex:0 0 auto;margin:-13px -12px -13px 0}
+#menu-flot{position:fixed;z-index:62;min-width:184px;background:#0d0d0d;box-shadow:inset 0 0 0 1px var(--filet-f),0 20px 46px rgba(0,0,0,.62);clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);padding:5px 0;display:none;animation:rise .22s ease both}
+#menu-flot.ouvert{display:block}
+.mf-act{display:block;padding:13px 20px;font-size:14px;color:var(--parchemin-att);cursor:pointer;white-space:nowrap;transition:color .25s,background .25s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.mf-act:hover,.mf-act:active{color:var(--parchemin);background:var(--surv)}
+.mf-sep{margin-top:5px;padding-top:14px;box-shadow:inset 0 1px 0 var(--filet)}
+.note-refs{margin-bottom:9px;font-size:13.5px;line-height:1.5;letter-spacing:.03em;color:var(--or)}
+.note-ref{cursor:pointer;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.note-ref:hover,.note-ref:active{color:var(--or-pale);text-decoration:underline}
+.note-sep{color:rgba(231,224,207,.26);margin:0 9px}
+.note-texte{font-size:calc(17.5px*var(--lvz,1));line-height:1.68;color:rgba(255,255,255,.9);white-space:pre-wrap;overflow-wrap:anywhere}
+.notes-vide{box-sizing:border-box;max-width:760px;margin:0 auto;text-align:center;padding:80px 12px}
+.notes-vide-t{font-family:var(--display);font-size:27px;color:rgba(255,255,255,.7);margin-bottom:12px}
+.notes-vide-p{font-size:15.5px;line-height:1.65;font-style:italic;color:rgba(255,255,255,.42);max-width:420px;margin:0 auto}
+.notes-vide.notes-vide-min{padding:34px 12px 2px}
+
+/* — Modale de note — */
+#note-voile{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:90px 20px 40px;overflow-y:auto}
+#note-voile.ouvert{display:flex}
+.note-boite{width:100%;max-width:620px;background:var(--encre);box-shadow:inset 0 0 0 1px var(--filet),inset 0 1px 0 rgba(231,224,207,.05);clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%);padding:34px 36px;animation:rise .4s ease both}
+.nb-titre{font-family:var(--display);font-weight:400;font-size:27px;margin-bottom:16px}
+.nb-refs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+/* une seule surface : pas de cadre dans le cadre */
+.nb-zone{width:100%;min-height:320px;background:none;border:none;padding:2px 0 0;font-size:17.5px;line-height:1.6;outline:none;resize:none}
+.nb-zone::placeholder{color:rgba(255,255,255,.3);font-style:italic}
+.nb-actes{display:flex;align-items:center;gap:24px;margin-top:20px}
+.nb-btn{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:color .3s;padding:6px 0}
+.nb-btn:hover{color:var(--or-pale)}
+.nb-btn.principal{color:var(--or)}
+.nb-btn.principal:hover{color:var(--or-pale)}
+.nb-suppr{margin-left:auto;color:var(--parchemin-att)}
+.nb-cat-ligne{display:flex;align-items:center;gap:12px;margin:20px 0 16px;padding-top:18px;border-top:1px solid var(--filet)}
+.nb-cat-lab{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+
+/* — Compte / synchronisation — */
+.sync-ligne{box-sizing:border-box;max-width:760px;margin:22px auto 0;font-size:14px;line-height:1.6;font-style:italic;color:rgba(255,255,255,.42)}
+.sync-act{font-style:normal;color:var(--pa);cursor:pointer;transition:color .3s;border-bottom:1px solid rgba(231,224,207,.18)}
+.sync-act:hover{color:var(--or-pale);border-color:var(--filet-f)}
+#auth-voile{position:fixed;inset:0;z-index:61;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:100px 20px 40px;overflow-y:auto}
+#auth-voile.ouvert{display:flex}
+#bacct-voile,#cat-voile,#conf-voile{position:fixed;inset:0;z-index:63;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px}
+#bacct-voile.ouvert,#cat-voile.ouvert,#conf-voile.ouvert{display:flex}
+#conf-voile{z-index:64}
+.conf-txt{text-align:center;color:rgba(255,255,255,.6);font-size:15px;line-height:1.55;margin-bottom:22px}
+.conf-danger{color:var(--parchemin-att)}
+.conf-danger:hover{border-color:var(--filet-fort);color:#fff}
+.bacct{position:relative;width:100%;max-width:380px;background:var(--encre);border:1px solid var(--filet);padding:36px 32px;animation:rise .4s ease both}
+.bacct-x{position:absolute;top:12px;right:14px;cursor:pointer;color:rgba(255,255,255,.55);font-size:18px;padding:4px 8px;transition:color .3s}
+.bacct-x:hover{color:#fff}
+.bacct-t{font-family:var(--display);font-size:24px;text-align:center;margin-bottom:22px;color:#fff}
+.bacct-mail{text-align:center;color:rgba(255,255,255,.55);font-size:15px;margin-bottom:22px;word-break:break-all}
+.bacct-btn{display:block;width:100%;box-sizing:border-box;text-align:center;padding:13px 10px;border:1px solid var(--filet-f);color:#fff;font-family:var(--display);font-size:14px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:border-color .3s,color .3s}
+.bacct-btn+.bacct-btn{margin-top:10px}
+.bacct-btn:hover{border-color:var(--or);color:var(--or-pale);background:var(--surv)}
+.bacct-deco{display:block;text-align:center;margin-top:18px;color:rgba(255,255,255,.55);font-size:14px;cursor:pointer;transition:color .3s}
+.bacct-deco:hover{color:#fff}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
+.cat-input{width:100%;box-sizing:border-box;background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:15px;padding:11px 12px;outline:none;margin-bottom:18px}
+.cat-input:focus{border-color:var(--or)}
+.notes-actions{display:flex;align-items:center;gap:32px;flex-wrap:wrap;box-sizing:border-box;max-width:760px;margin:22px auto 0}
+/* en-tête de catégorie : structurel, collant, jamais décoratif */
+.notes-cat{position:sticky;top:var(--hbar,86px);z-index:9;display:flex;align-items:center;gap:12px;box-sizing:border-box;max-width:760px;margin:56px auto 0;padding:15px 0 12px;background:var(--encre);box-shadow:inset 0 -1px 0 var(--filet)}
+.notes-cat-nom{flex:0 1 auto;min-width:0;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.notes-cat-n{flex:0 0 auto;margin-right:auto;font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.32)}
+.notes-scat{display:flex;align-items:center;gap:11px;box-sizing:border-box;max-width:760px;margin:32px auto 0;padding:0 0 9px 18px}
+.notes-scat-nom{flex:0 1 auto;min-width:0;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.66);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.notes-scat-nom::before{content:"";display:inline-block;width:14px;height:1px;background:rgba(231,224,207,.34);vertical-align:middle;margin-right:11px}
+.notes-sgroupe{box-sizing:border-box;max-width:760px;margin:0 auto;padding-left:18px}
+.note-depl{background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:13px;padding:5px 26px 5px 8px;outline:none;max-width:230px;appearance:none;-webkit-appearance:none;cursor:pointer}
+.note-sel{position:relative;display:inline-block}
+.note-sel::after{content:"›";position:absolute;right:9px;top:50%;transform:translateY(-50%) rotate(90deg);color:rgba(231,224,207,.6);pointer-events:none;font-size:14px;line-height:1}
+.nt-plus{display:inline-block;color:var(--or,#e7d9a8);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;white-space:nowrap;padding:9px 10px 9px 0;margin:2px 0 0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:color .3s}
+.nt-plus:hover,.nt-plus:active{color:var(--or-pale,#f8f3e6)}
+@media(max-width:720px){
+  .notes-tete{margin:38px auto 0}
+  h2.notes-titre{font-size:33px}
+  .notes-compte{margin-top:9px;font-size:11px;letter-spacing:.16em}
+  .notes-tete::after{margin-top:18px;width:40px}
+  .notes-rech{margin-top:20px;font-size:16px;padding:10px 2px 10px 27px;background-size:15px 15px}
+  .notes-actions{gap:22px;margin-top:16px}
+  .notes-btn{padding:11px 1px;font-size:11px;letter-spacing:.14em;gap:8px}
+  .notes-lien{padding:11px 1px;font-size:11px;letter-spacing:.14em;gap:8px}
+  .sync-ligne{margin-top:18px;font-size:13.5px}
+  .nz-rail{margin-top:24px;gap:22px}
+  .nz-fil{font-size:11px;padding:11px 1px 12px}
+  .nz-liste{margin-top:38px}
+  .note-item{padding:18px 26px 16px 14px}
+  .note-item>.nt-menu{right:-12px;top:4px}
+  .note-refs{font-size:13px;margin-bottom:8px}
+  .note-texte{font-size:calc(16.5px*var(--lvz,1));line-height:1.64}
+  .note-pied{margin-top:10px;letter-spacing:.16em}
+  .notes-cat{margin-top:46px;padding:13px 0 10px}
+  .notes-cat-nom{font-size:11.5px;letter-spacing:.22em}
+  .notes-scat{margin-top:26px;padding-left:14px}
+  .notes-sgroupe{padding-left:14px}
+  .surl-item{padding:18px 26px 16px 16px}
+  .surl-item .surl-oter{right:-12px;top:5px}
+  .surl-item .surl-txt{font-size:calc(16px*var(--lvz,1));line-height:1.64}
+  .surl-scat{margin-top:30px;padding:0 0 10px 16px;gap:11px}
+  .surl-scat-nom{font-size:11px;letter-spacing:.22em}
+  .notes-vide{padding:60px 8px}
+  .notes-vide-t{font-size:24px}
+  /* feuille de note : plein écran, la zone d'écriture prend toute la place */
+  #note-voile{padding:0;align-items:stretch;overflow:hidden}
+  .note-boite{max-width:none;height:100vh;max-height:100vh;clip-path:none;overflow:hidden;box-sizing:border-box;display:flex;flex-direction:column;padding:20px 18px calc(16px + env(safe-area-inset-bottom))}
+  .nb-titre{flex:0 0 auto;font-size:23px;margin-bottom:12px}
+  .nb-refs{flex:0 0 auto;margin-bottom:12px;max-height:22vh;overflow-y:auto}
+  .nb-zone{flex:1 1 auto;min-height:0;resize:none;font-size:17px}
+  .nb-cat-ligne{flex:0 0 auto;margin:14px 0 0;padding-top:14px}
+  .nb-actes{flex:0 0 auto;margin-top:12px;gap:12px}
+  .nb-btn{padding:13px 4px}
+  .note-depl{max-width:none;flex:1;font-size:14px;padding:10px 26px 10px 10px}
+  .nb-cat-ligne .note-sel{flex:1;display:flex}
+}
+@supports(height:100dvh){@media(max-width:720px){.note-boite{height:100dvh;max-height:100dvh}}}
+.ab-boite{width:100%;max-width:400px;background:var(--encre);border:1px solid var(--filet);padding:32px 34px;animation:rise .4s ease both}
+.ab-titre{font-family:var(--display);font-weight:400;font-size:27px;margin-bottom:18px;text-align:center}
+.ab-tabs{display:flex;gap:24px;justify-content:center;margin-bottom:20px}
+.ab-tab{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-att);padding:6px 2px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+.ab-tab.on{color:var(--parchemin);border-color:var(--or)}
+.ab-tab:hover{color:var(--or-pale)}
+.ab-msg{font-size:14px;line-height:1.5;margin-bottom:12px;min-height:0;text-align:center}
+.ab-msg.err{color:#c75d52}
+.ab-msg.ok{color:#7ba37e}
+.ab-champ{display:block;width:100%;background:rgba(231,224,207,.03);border:1px solid rgba(231,224,207,.14);padding:11px 14px;font-size:16.5px;outline:none;margin-bottom:12px;transition:border-color .3s}
+.ab-champ:focus{border-color:var(--filet-f)}
+.ab-principal{display:block;width:100%;border:1px solid var(--filet-f);padding:11px 14px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);text-align:center;cursor:pointer;transition:border-color .35s,color .3s,box-shadow .4s;margin-top:4px}
+.ab-principal:hover{border-color:var(--or);color:var(--or-pale);background:var(--surv)}
+.ab-ou{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--parchemin-att);text-align:center;margin:16px 0}
+.ab-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:1px solid var(--filet);padding:10px 14px;font-size:15px;color:var(--parchemin);cursor:pointer;transition:border-color .35s,box-shadow .4s}
+.ab-google:hover{border-color:var(--or);background:var(--surv)}
+.ab-oubli{display:block;margin:16px auto 0;font-size:13.5px;font-style:italic;color:var(--parchemin-att);cursor:pointer;transition:color .3s}
+.ab-oubli:hover{color:var(--or-pale)}
+
+/* — Pied — */
+.chargement{text-align:center;color:var(--parchemin-att);font-style:italic;padding:80px 0}
+</style>
+<meta property="og:image" content="https://lumenveritatis.net/icones/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icones/lumen-180.png">
+<meta name="theme-color" content="#0a0a0a">
+<!-- MODE PANNEAU. La même page sert la colonne latérale des autres écrans :
+     « ?p=1 » retire seulement l'habillage du site autour (barre, pied), jamais
+     une fonction. Le drapeau est posé ici, avant le premier affichage, pour
+     qu'aucune barre n'apparaisse une fraction de seconde. -->
+<script>try{if(/[?&]p=1(&|$)/.test(location.search)){document.documentElement.classList.add('panneau');
+/* la même page sous deux adresses : on demande aux moteurs de n'en retenir
+   qu'une, sinon le tiroir ferait doublon avec la page dans les résultats */
+var m=document.createElement('meta');m.name='robots';m.content='noindex';document.head.appendChild(m);
+var c=document.createElement('link');c.rel='canonical';c.href=location.origin+location.pathname;document.head.appendChild(c);}}catch(e){}</script>
+</head>
+<body>
+  <header>
+    <div class="barre">
+      <a href="/" class="logo">Lumen</a>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+      <nav class="menu" id="menu">
+        <a href="/">Accueil</a>
+        <a href="/bible.html">Bible</a>
+        <a href="/memoriser.html">Mémoriser</a>
+        <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="Rechercher"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><span class="ll-mob">Rechercher</span></span>
+        <span class="rech-loupe auth-icone" id="auth-ouvrir" role="button" tabindex="0" aria-label="Compte"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg><span class="ll-mob">Compte</span></span>
+      </nav>
+    </div>
+  </header>
+
+
+  <main class="wrap">
+    <div class="hero" id="hero">
+      <div class="sur-titre">Traduction Chérubin</div>
+      <h1 class="titre">La Sainte Bible</h1>
+      <div class="souligne"></div>
+    </div>
+    <div id="vue"><div class="chargement">Chargement…</div></div>
+  </main>
+
+  <div id="sel-barre">
+    <div class="sb-int">
+      <div class="sb-refs" id="sb-refs"></div>
+      <div class="sb-act">
+        <span class="sb-btn" id="sb-copier" role="button" tabindex="0">Copier</span>
+        <span class="sb-btn" id="sb-surligner" role="button" tabindex="0">Surligner</span>
+        <span class="sb-btn" id="sb-note" role="button" tabindex="0">Prendre une note</span>
+        <span class="sb-btn" id="sb-vider" role="button" tabindex="0">Tout effacer</span>
+      </div>
+      <div class="sb-surl" id="sb-surl">
+        <input type="color" id="sb-cercle" value="#ffe600" title="Couleur libre">
+        <span class="sb-past" data-suc="#ffe600" style="background:#ffe600" role="button" tabindex="0" aria-label="Jaune"></span>
+        <span class="sb-past" data-suc="#ffb700" style="background:#ffb700" role="button" tabindex="0" aria-label="Ambre"></span>
+        <span class="sb-past" data-suc="#ff7a00" style="background:#ff7a00" role="button" tabindex="0" aria-label="Orange"></span>
+        <span class="sb-past" data-suc="#ff2b2b" style="background:#ff2b2b" role="button" tabindex="0" aria-label="Rouge"></span>
+        <span class="sb-past" data-suc="#ff4da6" style="background:#ff4da6" role="button" tabindex="0" aria-label="Rose"></span>
+        <span class="sb-past" data-suc="#b04dff" style="background:#b04dff" role="button" tabindex="0" aria-label="Violet"></span>
+        <span class="sb-past" data-suc="#2979ff" style="background:#2979ff" role="button" tabindex="0" aria-label="Bleu"></span>
+        <span class="sb-past" data-suc="#00cfff" style="background:#00cfff" role="button" tabindex="0" aria-label="Cyan"></span>
+        <span class="sb-past" data-suc="#00ffb3" style="background:#00ffb3" role="button" tabindex="0" aria-label="Turquoise"></span>
+        <span class="sb-past" data-suc="#35ff6a" style="background:#35ff6a" role="button" tabindex="0" aria-label="Vert"></span>
+        <span class="sb-past" data-suc="#b8ff00" style="background:#b8ff00" role="button" tabindex="0" aria-label="Anis"></span>
+        <span class="sb-oter" id="sb-oter" role="button" tabindex="0">Retirer le surlignage</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="lv-frag-pop" aria-hidden="true">
+    <input type="color" class="lvp-libre" id="lvp-cercle" value="#ffe600" title="Couleur libre">
+    <span class="lvp-past" data-suc="#ffe600" style="background:#ffe600" role="button" tabindex="0" aria-label="Jaune"></span>
+    <span class="lvp-past" data-suc="#ffb700" style="background:#ffb700" role="button" tabindex="0" aria-label="Ambre"></span>
+    <span class="lvp-past" data-suc="#ff7a00" style="background:#ff7a00" role="button" tabindex="0" aria-label="Orange"></span>
+    <span class="lvp-past" data-suc="#ff2b2b" style="background:#ff2b2b" role="button" tabindex="0" aria-label="Rouge"></span>
+    <span class="lvp-past" data-suc="#ff4da6" style="background:#ff4da6" role="button" tabindex="0" aria-label="Rose"></span>
+    <span class="lvp-past" data-suc="#b04dff" style="background:#b04dff" role="button" tabindex="0" aria-label="Violet"></span>
+    <span class="lvp-past" data-suc="#2979ff" style="background:#2979ff" role="button" tabindex="0" aria-label="Bleu"></span>
+    <span class="lvp-past" data-suc="#00cfff" style="background:#00cfff" role="button" tabindex="0" aria-label="Cyan"></span>
+    <span class="lvp-past" data-suc="#00ffb3" style="background:#00ffb3" role="button" tabindex="0" aria-label="Turquoise"></span>
+    <span class="lvp-past" data-suc="#35ff6a" style="background:#35ff6a" role="button" tabindex="0" aria-label="Vert"></span>
+    <span class="lvp-past" data-suc="#b8ff00" style="background:#b8ff00" role="button" tabindex="0" aria-label="Anis"></span>
+    <span class="lvp-sep" aria-hidden="true"></span>
+    <span class="lvp-oter" id="lvp-oter" role="button" tabindex="0">Retirer</span>
+  </div>
+
+  <footer>
+    <div class="marque">Lumen</div>
+    <div class="verset-pied">« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l'ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span></div>
+    <div class="copy" id="annee"></div>
+  </footer>
+  <div class="b-ov" id="brech-voile">
+    <div class="b-boite" role="dialog" aria-modal="true" aria-label="Recherche">
+      <div class="b-tete"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><input class="b-champ" id="brech-champ" type="search" placeholder="Rechercher dans Lumen…" autocomplete="off" spellcheck="false"><span class="b-fermer" id="brech-fermer" role="button" tabindex="0" aria-label="Fermer">✕</span></div>
+      <div class="b-res" id="brech-res"></div>
+    </div>
+  </div>
+  <div id="bacct-voile">
+    <div class="bacct" role="dialog" aria-modal="true" aria-label="Mon compte">
+      <span class="bacct-x" id="bacct-x" role="button" tabindex="0" aria-label="Fermer">✕</span>
+      <div id="auth-in">
+      <div class="bacct-t">Mon compte</div>
+      <div class="bacct-mail" id="bacct-mail"></div>
+      <span class="bacct-btn" id="bacct-notes" role="button" tabindex="0">Mes notes</span>
+      <span class="bacct-btn" id="bacct-signets" role="button" tabindex="0">Mes signets</span>
+      <div class="ttx-row"><span class="ttx-lab">Taille du texte</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
+      <!-- Pas de bascule « Onglet Bible » ici : l'onglet n'existe pas sur la
+           page Bible elle-même, on y est déjà. Un interrupteur qui ne commande
+           rien là où on le montre est pire que pas d'interrupteur. -->
+      <span class="bacct-deco" id="auth-logout" role="button" tabindex="0">Déconnexion</span>
+      </div>
+    </div>
+  </div>
+  <div id="cat-voile">
+    <div class="bacct" role="dialog" aria-modal="true" aria-labelledby="cat-titre">
+      <div class="bacct-t" id="cat-titre">Nouvelle catégorie</div>
+      <input class="cat-input" id="cat-nom" type="text" placeholder="Nom…" autocomplete="off">
+      <span class="bacct-btn" id="cat-enr" role="button" tabindex="0">Enregistrer</span>
+      <span class="bacct-deco" id="cat-ann" role="button" tabindex="0">Annuler</span>
+    </div>
+  </div>
+  <div id="conf-voile">
+    <div class="bacct" role="alertdialog" aria-modal="true" aria-labelledby="conf-titre" aria-describedby="conf-txt">
+      <div class="bacct-t" id="conf-titre">Confirmer</div>
+      <div class="conf-txt" id="conf-txt"></div>
+      <span class="bacct-btn conf-danger" id="conf-ok" role="button" tabindex="0">Supprimer</span>
+      <span class="bacct-deco" id="conf-ann" role="button" tabindex="0">Annuler</span>
+    </div>
+  </div>
+  <div id="note-voile">
+    <div class="note-boite" role="dialog" aria-modal="true" aria-labelledby="nb-titre">
+      <div class="nb-titre" id="nb-titre">Note</div>
+      <div class="nb-refs" id="nb-refs"></div>
+      <textarea class="nb-zone" id="nb-zone" placeholder="Écrire la note…"></textarea>
+      <div class="nb-cat-ligne"><span class="nb-cat-lab">Catégorie</span><span class="note-sel"><select class="note-depl" id="nb-cat"></select></span></div>
+      <div class="nb-actes">
+        <span class="nb-btn principal" id="nb-enregistrer" role="button" tabindex="0">Enregistrer</span>
+        <span class="nb-btn" id="nb-annuler" role="button" tabindex="0">Annuler</span>
+        <span class="nb-btn nb-suppr" id="nb-supprimer" role="button" tabindex="0">Supprimer</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="auth-voile">
+    <div class="ab-boite" role="dialog" aria-modal="true" aria-label="Compte">
+      <div class="ab-titre">Compte</div>
+      <div class="ab-tabs">
+        <button class="ab-tab on" id="ab-tab-si">Connexion</button>
+        <button class="ab-tab" id="ab-tab-su">Inscription</button>
+      </div>
+      <div class="ab-msg" id="ab-msg"></div>
+      <input type="email" class="ab-champ" id="ab-email" placeholder="Adresse e-mail" autocomplete="email">
+      <input type="password" class="ab-champ" id="ab-pw" placeholder="Mot de passe" autocomplete="current-password">
+      <input type="password" class="ab-champ" id="ab-cf" placeholder="Confirmer le mot de passe" autocomplete="new-password" style="display:none">
+      <button class="ab-principal" id="ab-valider">Se connecter</button>
+      <div class="ab-ou">ou</div>
+      <button class="ab-google" id="ab-google">
+        <svg width="17" height="17" viewBox="0 0 18 18"><path fill="#EA4335" d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.54C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z"/><path fill="#FBBC05" d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9 9 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z"/><path fill="#4A90D9" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.96 13.04C2.44 15.98 5.48 18 9 18z"/></svg>
+        Continuer avec Google
+      </button>
+      <span class="ab-oubli" id="ab-oubli" role="button" tabindex="0">Mot de passe oublié ?</span>
+    </div>
+  </div>
+
+<script>
+(function(){
+  'use strict';
+  var vue = document.getElementById('vue');
+
+  /* Un <span role="button"> ne reçoit pas toujours le clic simulé sur iOS :
+     on écoute le doigt directement, avec garde anti-double-déclenchement. */
+  function actif(el, fn){
+    if (!el) return;
+    var vu = 0, am = null;
+    el.addEventListener('touchstart', function(e){
+      if (!e.touches || e.touches.length !== 1) { am = null; return; }
+      var p = e.touches[0]; am = { x: p.clientX, y: p.clientY, t: Date.now() };
+    }, { passive: true });
+    el.addEventListener('touchend', function(e){
+      var a = am; am = null; if (!a) return;
+      var p = e.changedTouches && e.changedTouches[0];
+      var d = p ? (Math.abs(p.clientX - a.x) + Math.abs(p.clientY - a.y)) : 99;
+      if (d > 14 || (Date.now() - a.t) > 700) return;
+      vu = Date.now(); e.preventDefault(); fn(e);
+    }, { passive: false });
+    el.addEventListener('touchcancel', function(){ am = null; }, { passive: true });
+    el.addEventListener('click', function(e){ if (Date.now() - vu < 1000) return; fn(e); });
+  }
+  function actifId(id, fn){ actif(document.getElementById(id), fn); }
+  /* Au clavier, Entrée ou Espace sur un « bouton » dessiné en <span> agit
+     comme un clic : sans cela, tout ce qui n'est pas un vrai <button> restait
+     muet pour qui navigue à la tabulation. */
+  document.addEventListener('keydown', function(e){
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey) return;
+    var b = e.target && e.target.closest ? e.target.closest('[role="button"]') : null;
+    if (!b || /^(BUTTON|A|INPUT|TEXTAREA|SELECT)$/.test(b.tagName)) return;
+    if (e.target !== b && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+    e.preventDefault(); b.click();
+  });
+  var hero = document.getElementById('hero');
+  var IDX = null, CACHE = {}, ORDRE = {};
+  var pendingSel = null;
+
+  /* ───────── Firebase : compte et synchronisation des notes ───────── */
+  var FB = false;
+  var auth = null, db = null, UID = null, MAIL = '';
+  function lvInitFB(){
+    if (FB || typeof firebase === 'undefined') return;
+    try {
+      if (!firebase.apps.length) firebase.initializeApp({
+        apiKey: 'AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA',
+        authDomain: 'lumen-veritatis.firebaseapp.com',
+        projectId: 'lumen-veritatis',
+        storageBucket: 'lumen-veritatis.firebasestorage.app',
+        messagingSenderId: '195902823875',
+        appId: '1:195902823875:web:a8be1f216a5ae1d945f176'
+      });
+      auth = firebase.auth();
+      db = firebase.firestore();
+      FB = true;
+      brancheAuth();
+      initAuth();
+    } catch(e) { FB = false; }
+  }
+  document.addEventListener('lv-fb-ready', lvInitFB);
+  lvInitFB();
+  /* Pierres tombales : une note supprimée sur un appareil doit rester
+     supprimée sur l'autre. Sans cette trace, l'appareil qui en gardait encore
+     une copie la renvoyait au nuage à la connexion suivante. */
+  var MORTS = {};
+  try { MORTS = JSON.parse(localStorage.getItem('lv_bible_morts') || '{}'); } catch(e) { MORTS = {}; }
+  function sauveMorts(){
+    try { localStorage.setItem('lv_bible_morts', JSON.stringify(MORTS)); } catch(e){}
+    ecritTech('morts', { morts: true, ids: MORTS });
+  }
+  function vivante(n){
+    var d = MORTS[n.id]; if (!d) return true;
+    var q = Date.parse(n.m || n.d) || 0;
+    return q > d;
+  }
+  function cloudDoc(id){ return db.doc('users/' + UID + '/bibleNotes/' + id); }
+  /* Documents techniques (surlignages, portions, signets, catégories, tombes).
+     Ils s'appelaient __surl__, __meta__… or Firestore réserve les noms qui
+     commencent ET finissent par deux tirets bas (« __.*__ ») : une écriture
+     sous un tel nom peut être refusée en silence, et rien ne se synchronise.
+     On écrit désormais sous lv-surl, lv-meta…, et l'on continue de LIRE les
+     anciens noms s'ils existent, pour ne rien perdre. */
+  function docTech(nom){ return db.doc('users/' + UID + '/bibleNotes/lv-' + nom); }
+  function ecritTech(nom, data){
+    if (!UID || !db) return;
+    docTech(nom).set(data).catch(function(e){ console.warn('sync ' + nom, e); });
+  }
+  function estTech(id, nom){ return id === 'lv-' + nom || id === '__' + nom + '__'; }
+  function cloudSet(n){
+    if (!UID || !db) return;
+    cloudDoc(n.id).set({ d: n.d, m: n.m || n.d, t: n.t, refs: n.refs || [], c: n.c || '' })
+      .catch(function(e){ console.warn('sync note', e); });
+  }
+  function cloudDel(id){
+    MORTS[id] = Date.now(); sauveMorts();
+    if (!UID || !db) return;
+    cloudDoc(id).delete().catch(function(e){ console.warn('sync note', e); });
+  }
+  /* ───────── Fusion entrée par entrée ─────────
+     Chaque surlignage, chaque fragment, chaque catégorie porte sa propre date
+     de dernière retouche. À la rencontre du local et du nuage, on compare
+     entrée par entrée et non paquet par paquet : ce qui a été posé sur le
+     téléphone et ce qui a été posé sur l'ordinateur se rejoignent au lieu de
+     s'écraser. Une entrée effacée garde sa date sans valeur, ce qui fait
+     voyager la suppression au lieu de la faire renaître. */
+  function estampe(cour, prec, tps, ms){
+    var k;
+    for (k in cour) if (empreinte(cour[k]) !== empreinte(prec[k])) tps[k] = ms;
+    for (k in prec) if (!(k in cour)) tps[k] = ms;
+  }
+  function fusionne(sLoc, tLoc, sDis, tDis){
+    var s = {}, t = {}, vus = {}, k;
+    for (k in sLoc) vus[k] = 1;
+    for (k in tLoc) vus[k] = 1;
+    for (k in sDis) vus[k] = 1;
+    for (k in tDis) vus[k] = 1;
+    for (k in vus) {
+      var a = tLoc[k] || 0, b = tDis[k] || 0, pris;
+      if (b > a) pris = sDis;
+      else if (a > b) pris = sLoc;
+      else pris = (sLoc[k] !== undefined) ? sLoc : sDis;   /* aucune date connue : on réunit */
+      if (pris[k] !== undefined) s[k] = pris[k];
+      if (a || b) t[k] = a > b ? a : b;
+    }
+    return { s: s, t: t };
+  }
+  function ecrisLocal(cle, val){ try { localStorage.setItem(cle, JSON.stringify(val)); } catch(e){} }
+  /* empreinte stable : l'ordre des clés ne doit pas compter */
+  function empreinte(o){
+    if (o === null || typeof o !== 'object') return JSON.stringify(o);
+    if (Array.isArray(o)) return '[' + o.map(empreinte).join(',') + ']';
+    return '{' + Object.keys(o).sort().map(function(k){
+      return JSON.stringify(k) + ':' + empreinte(o[k]);
+    }).join(',') + '}';
+  }
+  function memeEtat(a, b){ return empreinte(a) === empreinte(b); }
+  var SYNC_OFF = null;
+  function syncInitiale(){
+    if (SYNC_OFF) { try { SYNC_OFF(); } catch(e){} SYNC_OFF = null; }
+    var col = db.collection('users/' + UID + '/bibleNotes');
+    if (typeof col.onSnapshot === 'function') {
+      SYNC_OFF = col.onSnapshot(function(snap){
+        if (snap.metadata && snap.metadata.hasPendingWrites) return;
+        try { appliqueNuage(snap); } catch(e) { console.warn('sync', e); }
+      }, function(e){ console.warn('sync', e); });
+    } else {
+      col.get().then(function(snap){
+        try { appliqueNuage(snap); } catch(e) { console.warn('sync', e); }
+      }).catch(function(e){ console.warn('sync initiale', e); });
+    }
+  }
+  function appliqueNuage(snap){
+    var nuage = {}, meta = null, surlN = null, surlfN = null, mortsN = null, signN = null, k;
+    /* un document technique peut exister sous son ancien nom (__surl__) et
+       sous le nouveau (lv-surl) : on garde le plus récent, et l'ancien est
+       marqué pour que la fusion soit réécrite sous le nouveau nom */
+    var techs = { meta: null, surl: null, surlf: null, morts: null, signets: null };
+    snap.forEach(function(dc){
+      for (var nom in techs) {
+        if (estTech(dc.id, nom)) {
+          var d = dc.data() || {}; d.ancien = (dc.id !== 'lv-' + nom);
+          var cur = techs[nom];
+          if (!cur || (d.m || 0) > (cur.m || 0) || (cur.ancien && !d.ancien && (d.m || 0) === (cur.m || 0))) techs[nom] = d;
+          return;
+        }
+      }
+      var x = dc.data(); x.id = dc.id; nuage[x.id] = x;
+    });
+    meta = techs.meta; surlN = techs.surl; surlfN = techs.surlf; mortsN = techs.morts; signN = techs.signets;
+
+    /* ── surlignage par verset ── */
+    var dS = (surlN && surlN.s) || {}, dT = (surlN && surlN.t) || {};
+    var fS = fusionne(SURL, SURL_T, dS, dT);
+    SURL = fS.s; SURL_T = fS.t; SURL_P = JSON.parse(JSON.stringify(SURL));
+    SURL_M = Math.max(SURL_M, (surlN && surlN.m) || 0);
+    ecrisLocal('lv_bible_surl', SURL); ecrisLocal('lv_bible_surl_t', SURL_T);
+    try { localStorage.setItem('lv_bible_surl_m', String(SURL_M)); } catch(e){}
+    if (!memeEtat(fS.s, dS) || !memeEtat(fS.t, dT) || (surlN && surlN.ancien))
+      ecritTech('surl', { surl: true, m: SURL_M, s: SURL, t: SURL_T });
+    marqueSurl();
+
+    /* ── surlignage de fragments ── */
+    var dF = (surlfN && surlfN.s) || {}, dFT = (surlfN && surlfN.t) || {};
+    var fF = fusionne(SURLF, SURLF_T, dF, dFT);
+    SURLF = fF.s; SURLF_T = fF.t; SURLF_P = JSON.parse(JSON.stringify(SURLF));
+    SURLF_M = Math.max(SURLF_M, (surlfN && surlfN.m) || 0);
+    ecrisLocal('lv_bible_surlf', SURLF); ecrisLocal('lv_bible_surlf_t', SURLF_T);
+    try { localStorage.setItem('lv_bible_surlf_m', String(SURLF_M)); } catch(e){}
+    if (!memeEtat(fF.s, dF) || !memeEtat(fF.t, dFT) || (surlfN && surlfN.ancien))
+      ecritTech('surlf', { surlf: true, m: SURLF_M, s: SURLF, t: SURLF_T });
+    marqueSurlF();
+
+    /* ── signets ── */
+    var dG = (signN && signN.s) || {}, dGT = (signN && signN.t) || {};
+    var fG = fusionne(SIGN, SIGN_T, dG, dGT);
+    SIGN = fG.s; SIGN_T = fG.t; SIGN_P = JSON.parse(JSON.stringify(SIGN));
+    SIGN_M = Math.max(SIGN_M, (signN && signN.m) || 0);
+    ecrisLocal('lv_bible_signets', SIGN); ecrisLocal('lv_bible_signets_t', SIGN_T);
+    try { localStorage.setItem('lv_bible_signets_m', String(SIGN_M)); } catch(e){}
+    if (!memeEtat(fG.s, dG) || !memeEtat(fG.t, dGT) || (signN && signN.ancien))
+      ecritTech('signets', { signets: true, m: SIGN_M, s: SIGN, t: SIGN_T });
+    majSignets();
+    if (location.hash === '#signets') vueSignets();
+
+    /* ── catégories de notes : tableau, fusionné par identifiant ── */
+    var cLoc = {}, cDis = {};
+    CATS.forEach(function(c){ if (c && c.id) cLoc[c.id] = c; });
+    ((meta && meta.cats) || []).forEach(function(c){ if (c && c.id) cDis[c.id] = c; });
+    var fC = fusionne(cLoc, CATS_T, cDis, (meta && meta.t) || {});
+    CATS = Object.keys(fC.s).sort().map(function(x){ return fC.s[x]; });
+    CATS_T = fC.t; CATS_P = JSON.parse(JSON.stringify(fC.s));
+    CATS_M = Math.max(CATS_M, (meta && meta.m) || 0);
+    ecrisLocal('lv_bible_cats', CATS); ecrisLocal('lv_bible_cats_t', CATS_T);
+    try { localStorage.setItem('lv_bible_cats_m', String(CATS_M)); } catch(e){}
+    if (!memeEtat(fC.s, cDis) || !memeEtat(fC.t, (meta && meta.t) || {}) || (meta && meta.ancien))
+      ecritTech('meta', { meta: true, m: CATS_M, cats: CATS, t: CATS_T });
+
+    /* ── pierres tombales ── */
+    var dM = (mortsN && mortsN.ids) || {}, chgM = false;
+    for (k in dM) if (!MORTS[k] || dM[k] > MORTS[k]) { MORTS[k] = dM[k]; chgM = true; }
+    for (k in MORTS) if (!dM[k] || dM[k] < MORTS[k]) chgM = true;
+    ecrisLocal('lv_bible_morts', MORTS);
+    if (chgM || (mortsN && mortsN.ancien)) ecritTech('morts', { morts: true, ids: MORTS });
+
+    /* ── notes : fusion par note, les mortes restent mortes ── */
+    var aEnvoyer = [];
+    Object.keys(nuage).forEach(function(id){
+      if (!vivante(nuage[id])) { delete nuage[id]; cloudDoc(id).delete().catch(function(){}); }
+    });
+    NOTES.forEach(function(n){
+      if (!vivante(n)) return;
+      var c = nuage[n.id];
+      if (!c || (n.m || n.d) > (c.m || c.d)) { aEnvoyer.push(n); nuage[n.id] = n; }
+    });
+    NOTES = Object.keys(nuage).map(function(x){ return nuage[x]; })
+      .sort(function(a, b){ return a.d < b.d ? 1 : -1; });
+    sauveNotes(); majLienNotes();
+    aEnvoyer.forEach(cloudSet);
+    if (location.hash === '#notes') vueNotes(filtreNotes);
+  }
+  /* Changement de compte sur le même navigateur : les notes et surlignages
+     restés en local appartiennent au compte précédent. Sans ce garde-fou, ils
+     étaient envoyés dans le nouveau compte à la connexion. Le travail fait
+     sans compte (aucun compte mémorisé) reste, lui, rattaché au premier
+     compte qui se connecte. */
+  function dernierUid(){ try { return localStorage.getItem('lv_bible_uid') || ''; } catch(e){ return ''; } }
+  function razLocal(){
+    NOTES = []; CATS = []; CATS_T = {}; CATS_P = {}; CATS_M = 0;
+    SURL = {}; SURL_T = {}; SURL_P = {}; SURL_M = 0;
+    SURLF = {}; SURLF_T = {}; SURLF_P = {}; SURLF_M = 0;
+    SIGN = {}; SIGN_T = {}; SIGN_P = {}; SIGN_M = 0;
+    MORTS = {}; SEL = [];
+    ['lv_bible_notes', 'lv_bible_cats', 'lv_bible_cats_t', 'lv_bible_cats_m',
+     'lv_bible_surl', 'lv_bible_surl_t', 'lv_bible_surl_m',
+     'lv_bible_surlf', 'lv_bible_surlf_t', 'lv_bible_surlf_m',
+     'lv_bible_signets', 'lv_bible_signets_t', 'lv_bible_signets_m',
+     'lv_bible_morts', 'lv_bible_sel'].forEach(function(k){ try { localStorage.removeItem(k); } catch(e){} });
+    marqueSelection(); majPlateau(); marqueSurl(); marqueSurlF(); majSignets(); majLienNotes();
+  }
+  var authInit = false;
+  function initAuth(){
+    if (!FB || authInit) return;
+    authInit = true;
+    auth.onAuthStateChanged(function(u){
+      UID = u ? u.uid : null;
+      MAIL = u ? (u.email || u.displayName || '') : '';
+      if (UID) {
+        var prec = dernierUid();
+        if (prec && prec !== UID) razLocal();
+        try { localStorage.setItem('lv_bible_uid', UID); } catch(e){}
+        fermeAuth(); syncInitiale();
+      }
+      else { if (SYNC_OFF) { try { SYNC_OFF(); } catch(e){} SYNC_OFF = null; }
+             if (location.hash === '#notes') vueNotes(); }
+    });
+  }
+
+  /* — Modale de compte — */
+  var abMode = 'si';
+  function abMsg(t, cls){
+    var m = document.getElementById('ab-msg');
+    m.textContent = t || '';
+    m.className = 'ab-msg' + (cls ? ' ' + cls : '');
+  }
+  function abModeSet(m){
+    abMode = m;
+    document.getElementById('ab-tab-si').classList.toggle('on', m === 'si');
+    document.getElementById('ab-tab-su').classList.toggle('on', m === 'su');
+    document.getElementById('ab-pw').style.display = (m === 'forgot') ? 'none' : '';
+    document.getElementById('ab-cf').style.display = (m === 'su') ? '' : 'none';
+    document.getElementById('ab-valider').textContent =
+      m === 'su' ? 'Cr\u00e9er le compte' : m === 'forgot' ? 'Envoyer le lien' : 'Se connecter';
+    abMsg('');
+  }
+  function ouvreAuth(){
+    if (!FB) return;
+    abModeSet('si');
+    document.getElementById('auth-voile').classList.add('ouvert');
+    document.getElementById('ab-email').focus();
+  }
+  function fermeAuth(){
+    var v = document.getElementById('auth-voile');
+    if (v) v.classList.remove('ouvert');
+  }
+  function abErreur(e){
+    var c = (e && e.code) || '';
+    var t = c === 'auth/invalid-credential' || c === 'auth/wrong-password' || c === 'auth/user-not-found'
+        ? 'Identifiants incorrects.'
+      : c === 'auth/email-already-in-use' ? 'Cette adresse est d\u00e9j\u00e0 utilis\u00e9e.'
+      : c === 'auth/weak-password' ? 'Mot de passe trop court (6 caract\u00e8res minimum).'
+      : c === 'auth/invalid-email' ? 'Adresse e-mail invalide.'
+      : c === 'auth/popup-closed-by-user' ? ''
+      : '\u00c9chec de la connexion.';
+    if (t) abMsg(t, 'err');
+  }
+  /* Le formulaire de compte n'est branché qu'une fois Firebase arrivé : comme
+     Firebase se charge après la page (ou au premier geste), un simple
+     « if (FB) » exécuté au chargement laissait le formulaire muet (onglets,
+     boutons, touche Entrée, voile : rien ne répondait). */
+  var authBranche = false;
+  function brancheAuth(){
+    if (authBranche || !FB) return;
+    authBranche = true;
+    document.getElementById('ab-tab-si').addEventListener('click', function(){ abModeSet('si'); });
+    document.getElementById('ab-tab-su').addEventListener('click', function(){ abModeSet('su'); });
+    document.getElementById('ab-oubli').addEventListener('click', function(){ abModeSet(abMode === 'forgot' ? 'si' : 'forgot'); });
+    document.getElementById('ab-valider').addEventListener('click', function(){
+      var em = document.getElementById('ab-email').value.trim();
+      var pw = document.getElementById('ab-pw').value;
+      var cf = document.getElementById('ab-cf').value;
+      abMsg('');
+      if (abMode === 'forgot') {
+        auth.sendPasswordResetEmail(em)
+          .then(function(){ abMsg('Lien de r\u00e9initialisation envoy\u00e9.', 'ok'); })
+          .catch(abErreur);
+      } else if (abMode === 'su') {
+        if (pw !== cf) { abMsg('Les mots de passe ne correspondent pas.', 'err'); return; }
+        auth.createUserWithEmailAndPassword(em, pw).catch(abErreur);
+      } else {
+        auth.signInWithEmailAndPassword(em, pw).catch(abErreur);
+      }
+    });
+    ['ab-email','ab-pw','ab-cf'].forEach(function(id){
+      document.getElementById(id).addEventListener('keydown', function(e){
+        if (e.key === 'Enter') document.getElementById('ab-valider').click();
+      });
+    });
+    document.getElementById('ab-google').addEventListener('click', function(){
+      auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(abErreur);
+    });
+    document.getElementById('auth-voile').addEventListener('click', function(e){
+      if (e.target === this) fermeAuth();
+    });
+  }
+
+  /* — Barre du haut : recherche, compte (mêmes organes que le site) — */
+  function ouvreOv(id){ document.getElementById(id).classList.add('ouvert'); document.body.style.overflow='hidden'; }
+  function fermeOv(id){ document.getElementById(id).classList.remove('ouvert'); document.body.style.overflow=''; }
+  var DERNIERES_REFS = null;
+  function rendRecherche(q){
+    var z = document.getElementById('brech-res');
+    DERNIERES_REFS = null;
+    BKIDX = -1;
+    var nq = norm(q);
+    var h = '';
+    if (!String(q).trim()) {
+      z.innerHTML = '<div class="b-hint">Tapez une référence, par exemple Jean 3:16, pour ouvrir le passage.</div>';
+      return;
+    }
+    if (String(q).trim()) {
+      var an = refsDepuis(q);
+      if (an.refs.length && !an.mauvais.length) {
+        DERNIERES_REFS = an.refs;
+        var avecSel = an.refs.some(function(r){ return r.v1; });
+        h += '<span class="b-r b-ref" id="brech-go" role="button" tabindex="0"><b>Aller à : ' + esc(an.refs.map(etiquetteRef).join(', ')) + '</b><span>Référence biblique — Entrée pour ouvrir' + (avecSel ? ' et sélectionner' : '') + '</span></span>';
+      }
+    }
+    z.innerHTML = h || (nq ? '<div class="b-vide">Aucune référence reconnue dans « ' + esc(q) + ' ».</div>' : '');
+  }
+  function brechVa(){
+    if (!DERNIERES_REFS) return;
+    var refs = DERNIERES_REFS;
+    fermeOv('brech-voile');
+    allerRefs(refs).catch(function(){});
+  }
+  document.getElementById('rech-ouvrir').addEventListener('click', function(){
+    ouvreOv('brech-voile');
+    var c = document.getElementById('brech-champ');
+    c.value = ''; rendRecherche(''); c.focus();
+  });
+  document.getElementById('brech-fermer').addEventListener('click', function(){ fermeOv('brech-voile'); });
+  document.getElementById('brech-champ').addEventListener('input', function(){ rendRecherche(this.value); });
+  var BKIDX = -1;
+  function bkItems(){ return document.getElementById('brech-res').querySelectorAll('.b-r'); }
+  function bkMaj(){ var its = bkItems(); for (var i = 0; i < its.length; i++) its[i].classList.toggle('kact', i === BKIDX); if (BKIDX >= 0 && its[BKIDX] && its[BKIDX].scrollIntoView) its[BKIDX].scrollIntoView({ block: 'nearest' }); }
+  document.getElementById('brech-champ').addEventListener('keydown', function(e){
+    var its = bkItems();
+    if (e.key === 'ArrowDown') { e.preventDefault(); if (!its.length) return; BKIDX = Math.min(its.length - 1, BKIDX + 1); bkMaj(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); if (!its.length) return; BKIDX = Math.max(-1, BKIDX - 1); bkMaj(); }
+    else if (e.key === 'Enter') {
+      var c = BKIDX >= 0 ? its[BKIDX] : null;
+      if (c) { e.preventDefault(); if (c.id === 'brech-go') { brechVa(); } else if (c.getAttribute('href')) { location.href = c.getAttribute('href'); } return; }
+      if (DERNIERES_REFS) { brechVa(); return; }
+      if (its[0] && its[0].getAttribute('href')) { e.preventDefault(); location.href = its[0].getAttribute('href'); }
+    }
+  });
+  document.getElementById('brech-res').addEventListener('click', function(e){ if (e.target.closest && e.target.closest('#brech-go')) brechVa(); });
+  (function(){
+    var TZ=[0.85,0.925,1,1.08,1.16,1.25];
+    function tzCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_taille_mobile':'lv_taille_pc';}catch(e){return 'lv_taille_pc';}}
+    function tzLit(){var v=1;try{v=parseFloat(localStorage.getItem(tzCle())||localStorage.getItem('lv_taille'))||1;}catch(e){}return v;}
+    function tzApplique(v){document.documentElement.style.setProperty('--lvz',v);}
+    tzApplique(tzLit());
+    document.addEventListener('click',function(e){
+      var b=e.target.closest?e.target.closest('.ttx-b'):null;
+      if(!b)return;
+      var d=b.getAttribute('data-ttx'),v=tzLit();
+      if(d==='0')v=1;
+      else{var i=TZ.indexOf(v);if(i<0){i=2;}i+=(d==='1'?1:-1);i=Math.max(0,Math.min(TZ.length-1,i));v=TZ[i];}
+      try{localStorage.setItem(tzCle(),String(v));}catch(e2){}
+      tzApplique(v);
+    });
+  })();
+  (function(){
+    /* interrupteur « Onglet Bible à gauche » dans Mon compte : écrit la préférence par appareil.
+       L'application réelle sur l'onglet se fait dans bible-panneau.js (présent sur les pages à onglet). */
+    function obCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_onglet_bible_mobile':'lv_onglet_bible_pc';}catch(e){return 'lv_onglet_bible_pc';}}
+    function obMasque(){try{return localStorage.getItem(obCle())==='0';}catch(e){return false;}}
+    var sw=document.getElementById('tog-bible');
+    function etat(){if(sw)sw.classList.toggle('on',!obMasque());}
+    etat();
+    if(sw){
+      function bascule(){var m=obMasque();try{localStorage.setItem(obCle(),m?'1':'0');}catch(e){}etat();}
+      sw.addEventListener('click',bascule);
+      sw.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();bascule();}});
+    }
+  })();
+  document.getElementById('brech-voile').addEventListener('click', function(e){ if (e.target === this) fermeOv('brech-voile'); });
+  function ouvreCompte(){
+    var u = (FB && firebase.auth().currentUser) || null;
+    document.getElementById('bacct-mail').textContent = u ? (u.email || u.displayName || '') : '';
+    document.getElementById('bacct-voile').classList.add('ouvert');
+  }
+  /* Firebase se charge après la page : si l'on clique avant son arrivée, on
+     l'attend au lieu de ne rien faire */
+  function demandeConnexion(){
+    if (FB) { ouvreAuth(); return; }
+    var p = (window.lvFB ? window.lvFB() : Promise.resolve());
+    p.then(function(){ lvInitFB(); if (FB) ouvreAuth(); });
+  }
+  document.getElementById('auth-ouvrir').addEventListener('click', function(){
+    if (UID) ouvreCompte(); else demandeConnexion();
+  });
+  document.getElementById('bacct-x').addEventListener('click', function(){ document.getElementById('bacct-voile').classList.remove('ouvert'); });
+  document.getElementById('bacct-voile').addEventListener('click', function(e){ if (e.target === this) this.classList.remove('ouvert'); });
+  document.getElementById('bacct-notes').addEventListener('click', function(){ document.getElementById('bacct-voile').classList.remove('ouvert'); location.hash = '#notes'; });
+  document.getElementById('bacct-signets').addEventListener('click', function(){ document.getElementById('bacct-voile').classList.remove('ouvert'); location.hash = '#signets'; });
+  document.getElementById('auth-logout').addEventListener('click', function(){
+    try { firebase.auth().signOut(); } catch(e) {}
+    document.getElementById('bacct-voile').classList.remove('ouvert');
+  });
+
+  /* échappement complet : le texte passe aussi dans des attributs (value=,
+     data-…), où un guillemet non échappé coupait l'attribut */
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  /* Un réseau de téléphone lâche une requête sur deux : on retente avant
+     de déclarer la page perdue (bug « index non disponible », 25/07). */
+  function charge(url, restant){
+    var n = (restant == null) ? 3 : restant;
+    return fetch(url).then(function(r){
+      if (!r.ok) throw new Error(url);
+      return r.json();
+    }).catch(function(e){
+      if (n <= 1) throw e;
+      return new Promise(function(ok){ setTimeout(ok, (4 - n) * 700); })
+        .then(function(){ return charge(url, n - 1); });
+    });
+  }
+  /* Le contexte de lecture : l'objet posé au rendu, sinon l'adresse elle-même. */
+  function ctxCourant(){
+    if (vue._ctx) return vue._ctx;
+    var p = location.hash.replace(/^#/, '').split('/');
+    var n = parseInt(p[1], 10);
+    if (p[0] && n > 0 && document.querySelector('.ch-texte')) return { slug: p[0], ch: n };
+    return null;
+  }
+  function livreData(slug){
+    if (CACHE[slug]) return Promise.resolve(CACHE[slug]);
+    return charge('/bible-data/' + slug + '.json').then(function(d){ CACHE[slug] = d; return d; });
+  }
+  /* Variante tolérante : une donnée ancienne au slug disparu ne doit JAMAIS
+     faire échouer un Promise.all entier (bug « Mes notes » vide, 23/07). */
+  function livreDataSur(slug){
+    return livreData(slug).catch(function(){ return null; });
+  }
+  function infoLivre(slug){
+    /* l'index peut ne pas être encore là : on arrive parfois droit sur #notes */
+    if (!IDX || !IDX.livres) return null;
+    for (var i = 0; i < IDX.livres.length; i++) if (IDX.livres[i].slug === slug) return IDX.livres[i];
+    return null;
+  }
+
+  /* ───────── Références : analyse de « Matthieu 7:6-8 » ───────── */
+  var ALIAS = {
+    'genese':['gn','gen'],'exode':['ex','exo'],'levitique':['lv','lev'],'nombres':['nb','nbr','num'],'deuteronome':['dt','deut'],
+    'josue':['jos'],'juges':['jg','jug'],'ruth':['rt'],
+    '1-samuel':['1s','1sam','1sm'],'2-samuel':['2s','2sam','2sm'],'1-rois':['1r','1roi'],'2-rois':['2r','2roi'],
+    '1-chroniques':['1ch','1chr','1par'],'2-chroniques':['2ch','2chr','2par'],'esdras':['esd'],'nehemie':['ne','neh'],
+    'tobie':['tb','tob'],'judith':['jdt'],'esther':['est'],'1-maccabees':['1m','1ma','1mac','1macc'],'2-maccabees':['2m','2ma','2mac','2macc'],
+    'job':['jb'],'psaumes':['ps','psaume'],'proverbes':['pr','prv','prov'],'ecclesiaste':['qo','eccl','qohelet'],
+    'cantique-des-cantiques':['ct','cant','cantique','cantiques'],'sagesse':['sg','sag'],'ecclesiastique':['si','sir','siracide','eccli','ecclesiastique'],
+    'isaie':['is','isa','esaie'],'jeremie':['jr','jer'],'lamentations':['lm','lam'],'baruch':['ba','bar'],'ezechiel':['ez','eze'],'daniel':['dn','dan'],
+    'osee':['os'],'joel':['jl'],'amos':['am'],'abdias':['ab','abd'],'jonas':['jon'],'michee':['mi','mich'],'nahum':['na','nah'],
+    'habacuc':['ha','hab'],'sophonie':['so','soph'],'aggee':['ag','agg'],'zacharie':['za','zac'],'malachie':['ml','mal'],
+    'matthieu':['mt','mat','matt'],'marc':['mc'],'luc':['lc'],'jean':['jn'],'actes':['ac','act'],
+    'romains':['rm','rom'],'1-corinthiens':['1co','1cor'],'2-corinthiens':['2co','2cor'],'galates':['ga','gal'],
+    'ephesiens':['ep','eph'],'philippiens':['ph','phil','php'],'colossiens':['col'],
+    '1-thessaloniciens':['1th','1thes','1thess'],'2-thessaloniciens':['2th','2thes','2thess'],
+    '1-timothee':['1tm','1tim'],'2-timothee':['2tm','2tim'],'tite':['tt','tit'],'philemon':['phm','phlm'],'hebreux':['he','heb'],
+    'jacques':['jc','jac'],'1-pierre':['1p','1pi'],'2-pierre':['2p','2pi'],'1-jean':['1jn'],'2-jean':['2jn'],'3-jean':['3jn'],
+    'jude':['jud'],'apocalypse':['ap','apc','apoc']
+  };
+  /* noms alternatifs selon les traditions et noms anglais, additifs */
+  (function(){
+    var X = {
+      'josue':['joshua','josh'],'juges':['judg','jdg'],
+      '1-samuel':['1samuel'],'2-samuel':['2samuel'],
+      '1-rois':['3rois','3r','3kings'],'2-rois':['4rois','4r','4kings'],
+      '1-chroniques':['1chronicles','1chron','1paralipomenes'],'2-chroniques':['2chronicles','2chron','2paralipomenes'],
+      'esdras':['ezra','1esdras'],'nehemie':['nehemiah','nehemias','2esdras','neemie'],'tobie':['tobit'],
+      'psaumes':['psalm','pss'],
+      'ecclesiaste':['qoheleth','coheleth','eccles'],
+      'cantique-des-cantiques':['songofsongs','songofsolomon','canticles','canticleofcanticles'],
+      'ecclesiastique':['sirach','bensira','sirac','ecclus'],
+      'sagesse':['wisdom','wis','sagessedesalomon','wisdomofsolomon'],
+      'isaie':['isaiah'],'jeremie':['jeremiah'],
+      'lamentations':['threnes','lamentationsdejeremie'],
+      'ezechiel':['ezekiel','ezek'],
+      'osee':['hosea','hos'],'abdias':['obadiah','obad'],'jonas':['jonah'],'michee':['micah','mic'],
+      'habacuc':['habakkuk'],'sophonie':['zephaniah','zeph'],'aggee':['haggai','hag'],
+      'zacharie':['zechariah','zech'],'malachie':['malachi'],
+      '1-maccabees':['1maccabees'],'2-maccabees':['2maccabees'],
+      'matthieu':['matthew'],'marc':['mk'],'luc':['lk'],'actes':['actsoftheapostles','actesdesapotres'],
+      '1-thessaloniciens':['1thessalonians'],'2-thessaloniciens':['2thessalonians'],
+      '1-timothee':['1timothy'],'2-timothee':['2timothy'],
+      'jacques':['jas'],'1-pierre':['1peter','1pet'],'2-pierre':['2peter','2pet'],
+      '1-jean':['1john'],'2-jean':['2john'],'3-jean':['3john'],
+      'apocalypse':['revelation','rev','revelations','apocalypsedejean']
+    };
+    Object.keys(X).forEach(function(k){ ALIAS[k] = (ALIAS[k] || []).concat(X[k]); });
+  })();
+  var DICO = null;
+  function norm(s){
+    return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'');
+  }
+  function construitDico(){
+    DICO = {};
+    IDX.livres.forEach(function(l){
+      DICO[norm(l.nom)] = l.slug;
+      DICO[norm(l.slug)] = l.slug;
+      (ALIAS[l.slug] || []).forEach(function(a){ DICO[norm(a)] = l.slug; });
+    });
+  }
+  function trouveLivre(token){
+    var t = norm(token);
+    if (!t) return null;
+    /* l'index peut ne pas être encore là (ou avoir échoué) : pas de recherche
+       possible, mais pas d'erreur non plus */
+    if (!DICO || !IDX || !IDX.livres) return null;
+    if (DICO[t]) return DICO[t];
+    var arts = ['les','le','la','l','the'];
+    for (var ai = 0; ai < arts.length; ai++) {
+      if (t.indexOf(arts[ai]) === 0) {
+        var t2 = t.slice(arts[ai].length);
+        if (t2.length >= 2 && DICO[t2]) return DICO[t2];
+      }
+    }
+    var cands = [];
+    IDX.livres.forEach(function(l){ if (norm(l.nom).indexOf(t) === 0) cands.push(l.slug); });
+    return (cands.length === 1 && t.length >= 2) ? cands[0] : null;
+  }
+  function parseRef(txt){
+    var s = String(txt || '').trim().toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/\s+/g,' ').trim();
+    if (!s) return null;
+    var m = s.match(/^([1-4]?\s*[a-z']+(?:[ -][a-z']+)*)(?:\s+(\d{1,3})(?:\s*[:,.]\s*(\d{1,3})(?:\s*[-\u2013a]\s*(\d{1,3}))?)?)?$/);
+    if (!m) return null;
+    var slug = trouveLivre(m[1]);
+    if (!slug) return null;
+    var inf = infoLivre(slug);
+    var ch = m[2] ? parseInt(m[2], 10) : 0;
+    var v1 = m[3] ? parseInt(m[3], 10) : 0;
+    var v2 = m[4] ? parseInt(m[4], 10) : v1;
+    if (ch && inf.nch === 1 && !v1) { v1 = ch; v2 = ch; ch = 1; }
+    if (ch && ch > inf.nch) return null;
+    if (v2 < v1) { var t2 = v1; v1 = v2; v2 = t2; }
+    return { slug: slug, ch: ch, v1: v1, v2: v2 };
+  }
+
+  /* ───────── Sélection de versets (multi-livres, persistante) ───────── */
+  var SEL = [];
+  try { SEL = JSON.parse(localStorage.getItem('lv_bible_sel') || '[]'); } catch(e) { SEL = []; }
+  function sauveSel(){ try { localStorage.setItem('lv_bible_sel', JSON.stringify(SEL)); } catch(e){} }
+  /* — surlignage : par verset, six couleurs, synchronise au compte — */
+  var SURL = {}, SURL_M = 0, SURL_T = {}, SURL_P = {};
+  try { SURL = JSON.parse(localStorage.getItem('lv_bible_surl') || '{}'); } catch(e) { SURL = {}; }
+  try { SURL_M = parseInt(localStorage.getItem('lv_bible_surl_m') || '0', 10) || 0; } catch(e) { SURL_M = 0; }
+  try { SURL_T = JSON.parse(localStorage.getItem('lv_bible_surl_t') || '{}'); } catch(e) { SURL_T = {}; }
+  SURL_P = JSON.parse(JSON.stringify(SURL));
+  function sauveSurl(){
+    SURL_M = Date.now();
+    estampe(SURL, SURL_P, SURL_T, SURL_M);
+    SURL_P = JSON.parse(JSON.stringify(SURL));
+    try {
+      localStorage.setItem('lv_bible_surl', JSON.stringify(SURL));
+      localStorage.setItem('lv_bible_surl_t', JSON.stringify(SURL_T));
+      localStorage.setItem('lv_bible_surl_m', String(SURL_M));
+    } catch(e){}
+    ecritTech('surl', { surl: true, m: SURL_M, s: SURL, t: SURL_T });
+  }
+  var SURL_HEX_LEGACY = ['#efe6cf', '#c96a6a', '#6a8fb4', '#7ba07b', '#a98ccd', '#d9a05f'];
+  function surlCouleur(val){
+    if (typeof val === 'number') return SURL_HEX_LEGACY[val] || '#ffe600';
+    if (/^#[0-9a-fA-F]{6}$/.test(String(val))) return val;
+    return null;
+  }
+  /* une teinte mal formée (donnée ancienne ou corrompue) retombe sur le jaune
+     au lieu de faire échouer tout le rendu */
+  function hexSur(hex){ return /^#[0-9a-fA-F]{6}$/.test(String(hex || '')) ? String(hex) : '#ffe600'; }
+  function surlRgba(hex, a){
+    hex = hexSur(hex);
+    var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+  }
+  /* Même teinte, mais déjà fondue sur le noir de la page (opaque). Sert au
+     fond d'un verset entier : deux versets voisins se recouvrent un peu, et
+     deux voiles transparents superposés feraient une bande plus claire à la
+     jointure ; un fond opaque ne laisse rien voir. */
+  function surlOpaque(hex, a){
+    hex = hexSur(hex);
+    var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+    return 'rgb(' + Math.round(r * a) + ',' + Math.round(g * a) + ',' + Math.round(b * a) + ')';
+  }
+  function marqueSurl(){
+    var spans = document.querySelectorAll('.ch-texte .vst');
+    if (!spans.length) return;
+    var ctx = ctxCourant();
+    if (!ctx) return;
+    spans.forEach(function(sp){
+      var v = parseInt(sp.id.replace('va-', ''), 10);
+      var k = ctx.slug + '|' + ctx.ch + '|' + v;
+      var c = (SURL[k] != null) ? surlCouleur(SURL[k]) : null;
+      if (c) {
+        /* la couleur passe par deux variables CSS : le fond (--vc) et sa
+           version plus franche quand le verset est aussi sélectionné (--vc-sel),
+           que la feuille de style applique elle-même */
+        sp.style.setProperty('--vc', surlOpaque(c, .30));
+        sp.style.setProperty('--vc-sel', surlOpaque(c, .46));
+        /* en prose le fond déborde déjà grâce à la marge intérieure du verset ;
+           le halo ne sert qu'aux vers posés en bloc */
+        sp.style.boxShadow = sp.classList.contains('po') ? '0 0 0 5px var(--vc)' : '';
+      } else {
+        sp.style.removeProperty('--vc');
+        sp.style.removeProperty('--vc-sel');
+        sp.style.background = '';
+        sp.style.boxShadow = '';
+      }
+    });
+  }
+  function selIdx(slug, ch, v){
+    for (var i = 0; i < SEL.length; i++) if (SEL[i].s === slug && SEL[i].c === ch && SEL[i].v === v) return i;
+    return -1;
+  }
+  function basculeSel(slug, ch, v){
+    var i = selIdx(slug, ch, v);
+    if (i >= 0) SEL.splice(i, 1); else SEL.push({ s: slug, c: ch, v: v });
+    sauveSel(); majPlateau();
+  }
+  function groupes(liste){
+    var l = (liste || SEL).slice().sort(function(a, b){
+      return (ORDRE[a.s] - ORDRE[b.s]) || (a.c - b.c) || (a.v - b.v);
+    });
+    var gs = [];
+    l.forEach(function(x){
+      var d = gs[gs.length - 1];
+      if (d && d.slug === x.s && d.ch === x.c && x.v === d.v2 + 1) d.v2 = x.v;
+      else gs.push({ slug: x.s, ch: x.c, v1: x.v, v2: x.v });
+    });
+    return gs;
+  }
+  function libelle(g){
+    var inf = infoLivre(g.slug);
+    var ps = (g.slug === 'psaumes');
+    var nom = ps ? 'Psaume' : (inf ? inf.nom : g.slug);
+    var base = (inf && inf.nch === 1) ? nom + ' ' : nom + ' ' + g.ch + ':';
+    return base + g.v1 + (g.v2 > g.v1 ? '-' + g.v2 : '');
+  }
+  /* Le plateau est flottant : sa hauteur réelle, mesurée, devient la marge
+     basse de la page, sinon il recouvre les derniers versets sur téléphone. */
+  function majHauteurPlateau(){
+    var b = document.getElementById('sel-barre');
+    if (!b) return;
+    var h = document.body.classList.contains('sel-active') ? Math.round(b.offsetHeight) : 0;
+    document.documentElement.style.setProperty('--sb-h', h + 'px');
+  }
+  function planifieHauteur(){
+    requestAnimationFrame(function(){ majHauteurPlateau(); });
+    setTimeout(majHauteurPlateau, 260);
+  }
+  window.addEventListener('resize', planifieHauteur);
+  window.addEventListener('orientationchange', planifieHauteur);
+  function majPlateau(){
+    var z = document.getElementById('sb-refs');
+    document.body.classList.toggle('sel-active', SEL.length > 0);
+    planifieHauteur();
+    if (!SEL.length) { z.innerHTML = ''; marqueSelection(); document.getElementById('sb-surl').classList.remove('ouvert'); return; }
+    var h = '';
+    groupes().forEach(function(g, i){
+      h += '<span class="sb-chip" data-g="' + i + '">' + esc(libelle(g)) + '<span class="sb-x" data-x="' + i + '">\u2715</span></span>';
+    });
+    z.innerHTML = h;
+    marqueSelection();
+  }
+  function marqueSelection(){
+    var spans = document.querySelectorAll('.ch-texte .vst');
+    if (!spans.length) return;
+    var ctx = ctxCourant();
+    if (!ctx) return;
+    spans.forEach(function(sp){
+      var v = parseInt(sp.id.replace('va-', ''), 10);
+      var on = selIdx(ctx.slug, ctx.ch, v) >= 0;
+      sp.classList.toggle('sel', on);
+      if (!on) sp.classList.remove('cible');
+    });
+  }
+  document.getElementById('sb-refs').addEventListener('click', function(e){
+    var x = e.target.closest('.sb-x');
+    var gs = groupes();
+    if (x) {
+      var g = gs[parseInt(x.dataset.x, 10)];
+      SEL = SEL.filter(function(s){ return !(s.s === g.slug && s.c === g.ch && s.v >= g.v1 && s.v <= g.v2); });
+      sauveSel(); majPlateau(); return;
+    }
+    var chip = e.target.closest('.sb-chip');
+    if (chip) {
+      var g2 = gs[parseInt(chip.dataset.g, 10)];
+      location.hash = '#' + g2.slug + '/' + g2.ch + '/' + g2.v1;
+    }
+  });
+  document.getElementById('sb-vider').addEventListener('click', function(){
+    SEL = []; sauveSel(); majPlateau();
+  });
+  document.getElementById('sb-copier').addEventListener('click', function(){
+    var gs = groupes();
+    var besoins = {};
+    gs.forEach(function(g){ besoins[g.slug] = 1; });
+    Promise.all(Object.keys(besoins).map(livreDataSur)).then(function(){
+      var morceaux = gs.map(function(g){
+        var d = CACHE[g.slug], ch = null;
+        if (!d) return '';
+        for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === g.ch) { ch = d.chapitres[i]; break; }
+        if (!ch) return '';
+        var txt = ch.versets.filter(function(v){ return v.v >= g.v1 && v.v <= g.v2; })
+                            .map(function(v){ return v.t; }).join(' ');
+        return '\u00ab\u00a0' + txt + '\u00a0\u00bb ' + libelle(g);
+      }).filter(Boolean);
+      var texte = morceaux.join('\n\n');
+      if (!texte) throw new Error('rien');
+      /* presse-papiers moderne, avec repli sur l'ancienne commande (page non
+         sécurisée, navigateur ancien, permission refusée) */
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(texte).catch(function(){ return copieRepli(texte); });
+      }
+      return copieRepli(texte);
+    }).then(function(){
+      var b = document.getElementById('sb-copier');
+      b.textContent = 'Copié \u2713';
+      setTimeout(function(){ b.textContent = 'Copier'; }, 1500);
+    }).catch(function(){
+      var b = document.getElementById('sb-copier');
+      b.textContent = '\u00c9chec de la copie';
+      setTimeout(function(){ b.textContent = 'Copier'; }, 1800);
+    });
+  });
+  function copieRepli(texte){
+    var ta = document.createElement('textarea'); ta.value = texte;
+    ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch(e){ ok = false; }
+    document.body.removeChild(ta);
+    if (!ok) throw new Error('copie');
+  }
+
+  /* ───────── Notes ───────── */
+  var NOTES = [];
+  try { NOTES = JSON.parse(localStorage.getItem('lv_bible_notes') || '[]'); } catch(e) { NOTES = []; }
+  function sauveNotes(){ try { localStorage.setItem('lv_bible_notes', JSON.stringify(NOTES)); } catch(e){} }
+  var CATS = [];
+  try { CATS = JSON.parse(localStorage.getItem('lv_bible_cats') || '[]'); } catch(e) { CATS = []; }
+  var CATS_M = 0, CATS_T = {}, CATS_P = {};
+  try { CATS_M = parseInt(localStorage.getItem('lv_bible_cats_m') || '0', 10) || 0; } catch(e) {}
+  try { CATS_T = JSON.parse(localStorage.getItem('lv_bible_cats_t') || '{}'); } catch(e) { CATS_T = {}; }
+  CATS.forEach(function(c){ if (c && c.id) CATS_P[c.id] = JSON.parse(JSON.stringify(c)); });
+  function sauveCats(){
+    CATS_M = Date.now();
+    var m = {}; CATS.forEach(function(c){ if (c && c.id) m[c.id] = c; });
+    estampe(m, CATS_P, CATS_T, CATS_M);
+    CATS_P = JSON.parse(JSON.stringify(m));
+    try {
+      localStorage.setItem('lv_bible_cats', JSON.stringify(CATS));
+      localStorage.setItem('lv_bible_cats_t', JSON.stringify(CATS_T));
+      localStorage.setItem('lv_bible_cats_m', String(CATS_M));
+    } catch(e){}
+    ecritTech('meta', { meta: true, m: CATS_M, cats: CATS, t: CATS_T });
+  }
+  function catParId(id){ for (var i = 0; i < CATS.length; i++) if (CATS[i].id === id) return CATS[i]; return null; }
+  function optionsCats(actuel){
+    var o = '<option value=""' + (!actuel ? ' selected' : '') + '>Non class\u00e9e</option>';
+    CATS.filter(function(c){ return !c.parent; }).forEach(function(c){
+      o += '<option value="' + c.id + '"' + (actuel === c.id ? ' selected' : '') + '>' + esc(c.nom) + '</option>';
+      CATS.filter(function(x){ return x.parent === c.id; }).forEach(function(x){
+        o += '<option value="' + x.id + '"' + (actuel === x.id ? ' selected' : '') + '>\u2014 ' + esc(x.nom) + '</option>';
+      });
+    });
+    return o;
+  }
+  /* « Mes notes (n) » dans la fiche de compte, comme « Mes signets (n) » :
+     l'ancien identifiant visé (lien-notes) n'existait plus, le compte ne
+     s'affichait jamais */
+  function majLienNotes(){
+    var l = document.getElementById('bacct-notes'); if (!l) return;
+    var n = NOTES.length;
+    l.textContent = 'Mes notes' + (n ? ' (' + n + ')' : '');
+  }
+  var noteEnCours = null;
+  function ouvreNote(note){
+    noteEnCours = note;
+    document.getElementById('nb-titre').textContent = note.id ? 'Modifier la note' : 'Nouvelle note';
+    document.getElementById('nb-refs').innerHTML = (note.refs || []).map(function(g){
+      return '<span class="sb-chip">' + esc(libelle(g)) + '</span>';
+    }).join('');
+    document.getElementById('nb-zone').value = note.t || '';
+    document.getElementById('nb-cat').innerHTML = optionsCats(note.c || '');
+    document.getElementById('nb-supprimer').style.display = note.id ? '' : 'none';
+    document.getElementById('note-voile').classList.add('ouvert');
+    document.getElementById('nb-zone').focus();
+  }
+  /* Un texte tapé et non enregistré ne se perd pas d'un Échap ou d'un clic à
+     côté de la fiche : on demande d'abord. « force » (vrai) ferme sans rien
+     demander, après un enregistrement ou une suppression. */
+  function noteModifiee(){
+    if (!noteEnCours) return false;
+    var z = document.getElementById('nb-zone');
+    return z.value.trim() !== String(noteEnCours.t || '').trim();
+  }
+  function fermeNote(force){
+    if (force !== true && noteModifiee()) {
+      ouvreConf({ titre: 'Abandonner les modifications ?', texte: 'Le texte de cette note n\u2019a pas \u00e9t\u00e9 enregistr\u00e9.', bouton: 'Abandonner', suite: function(){ fermeNote(true); } });
+      return;
+    }
+    document.getElementById('note-voile').classList.remove('ouvert'); noteEnCours = null;
+  }
+  var catEnCours = null;
+  function ouvreCat(o){
+    catEnCours = o;
+    var t = o.mode === 'ren' ? 'Renommer' : (o.mode === 'sub' ? 'Nouvelle sous-section' : 'Nouvelle cat\u00e9gorie');
+    if (o.mode === 'sub') { var pa = catParId(o.parent); if (pa) t += ' \u2014 ' + pa.nom; }
+    document.getElementById('cat-titre').textContent = t;
+    var ch = document.getElementById('cat-nom');
+    var c0 = o.mode === 'ren' ? catParId(o.id) : null;
+    ch.value = c0 ? c0.nom : '';
+    document.getElementById('cat-voile').classList.add('ouvert');
+    ch.focus();
+  }
+  function fermeCat(){ document.getElementById('cat-voile').classList.remove('ouvert'); catEnCours = null; }
+  document.getElementById('cat-ann').addEventListener('click', fermeCat);
+  document.getElementById('cat-voile').addEventListener('click', function(e){ if (e.target === this) fermeCat(); });
+  document.getElementById('cat-nom').addEventListener('keydown', function(e){ if (e.key === 'Enter') document.getElementById('cat-enr').click(); });
+  document.getElementById('cat-enr').addEventListener('click', function(){
+    if (!catEnCours) return;
+    var nom = document.getElementById('cat-nom').value.trim();
+    if (!nom) { fermeCat(); return; }
+    if (catEnCours.mode === 'ren') {
+      var c = catParId(catEnCours.id);
+      if (c) c.nom = nom;
+    } else {
+      CATS.push({ id: 'c' + Date.now(), nom: nom, parent: catEnCours.mode === 'sub' ? catEnCours.parent : '' });
+    }
+    sauveCats(); fermeCat();
+    if (location.hash === '#notes') vueNotes();
+  });
+  document.getElementById('sb-note').addEventListener('click', function(){
+    ouvreNote({ refs: groupes(), t: '' });
+  });
+  document.getElementById('sb-surligner').addEventListener('click', function(){
+    document.getElementById('sb-surl').classList.toggle('ouvert');
+    planifieHauteur();
+  });
+  function appliqueSurl(hex){
+    SEL.forEach(function(x){ SURL[x.s + '|' + x.c + '|' + x.v] = hex; });
+    sauveSurl(); marqueSurl();
+  }
+  document.getElementById('sb-surl').addEventListener('click', function(e){
+    var pa = e.target.closest ? e.target.closest('.sb-past') : null;
+    if (pa) { appliqueSurl(pa.getAttribute('data-suc')); return; }
+    if (e.target.closest && e.target.closest('#sb-oter')) {
+      SEL.forEach(function(x){ delete SURL[x.s + '|' + x.c + '|' + x.v]; });
+      sauveSurl(); marqueSurl();
+    }
+  });
+  /* « change » et non « input » : un sélecteur de couleur émet « input » en
+     rafale pendant qu'on déplace le curseur, ce qui déclenchait une
+     sauvegarde (et une écriture dans le nuage) à chaque nuance traversée */
+  document.getElementById('sb-cercle').addEventListener('change', function(){
+    appliqueSurl(this.value);
+  });
+
+  /* ───────── Surlignage de FRAGMENTS (portions de verset) ───────── */
+  var SURLF = {}, SURLF_M = 0, SURLF_T = {}, SURLF_P = {};
+  try { SURLF = JSON.parse(localStorage.getItem('lv_bible_surlf') || '{}'); } catch(e) { SURLF = {}; }
+  try { SURLF_M = parseInt(localStorage.getItem('lv_bible_surlf_m') || '0', 10) || 0; } catch(e) { SURLF_M = 0; }
+  try { SURLF_T = JSON.parse(localStorage.getItem('lv_bible_surlf_t') || '{}'); } catch(e) { SURLF_T = {}; }
+  SURLF_P = JSON.parse(JSON.stringify(SURLF));
+  function sauveSurlF(){
+    SURLF_M = Date.now();
+    estampe(SURLF, SURLF_P, SURLF_T, SURLF_M);
+    SURLF_P = JSON.parse(JSON.stringify(SURLF));
+    try {
+      localStorage.setItem('lv_bible_surlf', JSON.stringify(SURLF));
+      localStorage.setItem('lv_bible_surlf_t', JSON.stringify(SURLF_T));
+      localStorage.setItem('lv_bible_surlf_m', String(SURLF_M));
+    } catch(e){}
+    ecritTech('surlf', { surlf: true, m: SURLF_M, s: SURLF, t: SURLF_T });
+  }
+  var pendingFrag = null;
+  function verseTextMap(){
+    var ctx = ctxCourant(); if (!ctx) return null;
+    var d = CACHE[ctx.slug]; if (!d) return null;
+    var ch = null;
+    for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === ctx.ch) { ch = d.chapitres[i]; break; }
+    if (!ch) return null;
+    var m = {}; ch.versets.forEach(function(v){ m[v.v] = v.t; }); return m;
+  }
+  function verseCutMap(){
+    var ctx = ctxCourant(); if (!ctx) return {};
+    var d = CACHE[ctx.slug]; if (!d) return {};
+    var ch = null;
+    for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === ctx.ch) { ch = d.chapitres[i]; break; }
+    if (!ch) return {};
+    var m = {}; ch.versets.forEach(function(v){ if (v.c) m[v.v] = v.c; }); return m;
+  }
+  /* Même voile que le verset entier (teinte à 30 %, fondue sur le noir) : une
+     portion surlignée à la souris et un verset surligné d'un clic se lisent
+     de la même façon. */
+  function fragStyle(hex){
+    return 'background:' + surlOpaque(hex, .30);
+  }
+  /* La portion [a, b) du verset, avec les surlignages qui la traversent.
+     Un surlignage coupé par un passage à la ligne donne deux morceaux qui
+     gardent tous deux les bornes du surlignage entier : cliquer sur l'un ou
+     sur l'autre rouvre bien la même portion. */
+  function fragLigne(text, frags, a, b){
+    var out = '', pos = a;
+    (frags || []).slice().sort(function(x, y){ return x.a - y.a; }).forEach(function(f){
+      var fa = Math.max(f.a, a), fb = Math.min(f.b, b);
+      if (fb <= fa) return;
+      if (fa > pos) out += esc(text.slice(pos, fa));
+      out += '<span class="lv-frag" data-fa="' + f.a + '" data-fb="' + f.b + '" style="' + fragStyle(f.hex) + '">' + esc(text.slice(fa, fb)) + '</span>';
+      pos = fb;
+    });
+    out += esc(text.slice(pos, b));
+    return out;
+  }
+  /* Le contenu d'un verset, posé au premier dessin comme après chaque
+     surlignage : une seule fonction, sinon les vers disparaîtraient au
+     premier repeint. Les coupures sont des POSITIONS : l'espace qui termine
+     une ligne reste dans cette ligne, donc la suite des caractères affichés
+     est exactement celle du verset et aucune position ne se décale. */
+  function corpsVerset(v, text, frags, coupes, vers){
+    var sup = '<sup class="vn">' + v + '</sup>';
+    /* La prose reste un flux : aucun bloc, le verset se coule dans le
+       paragraphe. Les vers, eux, passent toujours par une ligne, même quand
+       ils n'ont pas été coupés : c'est ce qui aligne leur premier mot sur
+       celui des versets coupés. */
+    if (!vers) return sup + fragLigne(text, frags, 0, text.length);
+    if (!coupes || !coupes.length) return '<span class="li">' + sup + fragLigne(text, frags, 0, text.length) + '</span>';
+    var bornes = [0];
+    coupes.forEach(function(k){ if (k + 1 > bornes[bornes.length - 1] && k + 1 < text.length) bornes.push(k + 1); });
+    bornes.push(text.length);
+    var out = '';
+    for (var i = 0; i < bornes.length - 1; i++) {
+      out += '<span class="li' + (i ? ' in' : '') + '">' + (i ? '' : sup)
+           + fragLigne(text, frags, bornes[i], bornes[i + 1]) + '</span>';
+    }
+    return out;
+  }
+  function marqueSurlF(){
+    var ctx = ctxCourant(); if (!ctx) return;
+    var vm = verseTextMap(); if (!vm) return;
+    var cm = verseCutMap();
+    document.querySelectorAll('.ch-texte .vst').forEach(function(sp){
+      var v = parseInt(sp.id.replace('va-', ''), 10);
+      var txt = vm[v]; if (txt == null) return;
+      var key = ctx.slug + '|' + ctx.ch + '|' + v;
+      var inner = corpsVerset(v, txt, SURLF[key], cm[v], sp.classList.contains('po'));
+      /* on compare avec ce que l'on a soi-même écrit la dernière fois : le
+         navigateur réécrit les espaces insécables en « &nbsp; », et comparer
+         avec innerHTML faisait reconstruire la moitié des versets à chaque
+         passage (ce qui effaçait aussi la sélection en cours) */
+      if (sp._rendu !== inner) { sp.innerHTML = inner; sp._rendu = inner; }
+    });
+  }
+  function poseFrag(key, a, b, hex, text){
+    var len = text.length, arr = new Array(len), i;
+    (SURLF[key] || []).forEach(function(f){ for (i = f.a; i < Math.min(f.b, len); i++) arr[i] = f.hex; });
+    for (i = Math.max(0, a); i < Math.min(b, len); i++) arr[i] = hex || null;
+    var out = []; i = 0;
+    while (i < len) {
+      if (arr[i]) { var j = i; while (j < len && arr[j] === arr[i]) j++; out.push({ a: i, b: j, hex: arr[i], t: text.slice(i, j) }); i = j; }
+      else i++;
+    }
+    if (out.length) SURLF[key] = out; else delete SURLF[key];
+  }
+  function vOffset(sp, node, off){
+    var sup = sp.querySelector('.vn');
+    var rr = document.createRange();
+    try { if (sup) rr.setStartAfter(sup); else rr.setStart(sp, 0); rr.setEnd(node, off); }
+    catch(e){ return 0; }
+    return rr.toString().length;
+  }
+  function clearNativeSel(){ var s = window.getSelection(); if (s && s.removeAllRanges) s.removeAllRanges(); }
+  function fermeFragPop(){ var p = document.getElementById('lv-frag-pop'); if (!p) return; p.classList.remove('ouvert'); p.setAttribute('aria-hidden', 'true'); pendingFrag = null; }
+  function ouvreFragPop(rect){
+    var pop = document.getElementById('lv-frag-pop');
+    pop.classList.add('ouvert'); pop.setAttribute('aria-hidden', 'false');
+    var rc = rect.getBoundingClientRect ? rect.getBoundingClientRect() : rect;
+    var pw = pop.offsetWidth, ph = pop.offsetHeight;
+    var cw = document.documentElement.clientWidth;
+    var left = window.scrollX + rc.left + rc.width / 2 - pw / 2;
+    left = Math.max(8, Math.min(left, window.scrollX + cw - pw - 8));
+    var top = (rc.top - ph - 10 < 0) ? (window.scrollY + rc.bottom + 10) : (window.scrollY + rc.top - ph - 10);
+    pop.style.left = left + 'px'; pop.style.top = top + 'px';
+  }
+  function capterSelection(){
+    var ctx = ctxCourant(); if (!ctx) { fermeFragPop(); return; }
+    var sel = window.getSelection();
+    if (!sel || sel.isCollapsed || !sel.rangeCount) { fermeFragPop(); return; }
+    var r = sel.getRangeAt(0);
+    var cont = document.querySelector('.ch-texte');
+    if (!cont || !cont.contains(r.commonAncestorContainer)) { fermeFragPop(); return; }
+    var vm = verseTextMap(); if (!vm) { fermeFragPop(); return; }
+    var frags = [];
+    document.querySelectorAll('.ch-texte .vst').forEach(function(sp){
+      if (!r.intersectsNode(sp)) return;
+      var v = parseInt(sp.id.replace('va-', ''), 10);
+      var txt = vm[v]; if (txt == null) return;
+      var len = txt.length, a = 0, b = len;
+      if (sp.contains(r.startContainer)) a = vOffset(sp, r.startContainer, r.startOffset);
+      if (sp.contains(r.endContainer)) b = vOffset(sp, r.endContainer, r.endOffset);
+      a = Math.max(0, Math.min(a, len)); b = Math.max(0, Math.min(b, len));
+      if (b > a) frags.push({ key: ctx.slug + '|' + ctx.ch + '|' + v, slug: ctx.slug, ch: ctx.ch, v: v, a: a, b: b, t: txt.slice(a, b) });
+    });
+    if (!frags.length) { fermeFragPop(); return; }
+    pendingFrag = frags;
+    ouvreFragPop(r);
+  }
+  function appliqueFrag(hex){
+    if (!pendingFrag || !pendingFrag.length) { fermeFragPop(); return; }
+    var vm = verseTextMap();
+    pendingFrag.forEach(function(pf){
+      var txt = (vm && vm[pf.v] != null) ? vm[pf.v] : (pf.t || '');
+      poseFrag(pf.key, pf.a, pf.b, hex, txt);
+    });
+    sauveSurlF(); clearNativeSel(); fermeFragPop(); marqueSurlF();
+    if (location.hash === '#notes') vueNotes();
+  }
+  document.addEventListener('mouseup', function(e){
+    /* un clic sur une portion déjà surlignée rouvre son menu par le clic
+       lui-même ; le relâchement de la souris ne doit pas le refermer aussitôt */
+    if (e.target.closest && e.target.closest('#lv-frag-pop')) return;
+    var surFrag = !!(e.target.closest && e.target.closest('.lv-frag'));
+    setTimeout(function(){
+      var s = window.getSelection();
+      if (surFrag && (!s || s.isCollapsed)) return;
+      capterSelection();
+    }, 0);
+  });
+  document.addEventListener('touchend', function(e){
+    if (e.target.closest && e.target.closest('#lv-frag-pop')) return;
+    setTimeout(capterSelection, 10);
+  });
+  document.addEventListener('mousedown', function(e){
+    if (!(e.target.closest && e.target.closest('#lv-frag-pop'))) fermeFragPop();
+  });
+  document.getElementById('lv-frag-pop').addEventListener('click', function(e){
+    var pa = e.target.closest ? e.target.closest('.lvp-past') : null;
+    if (pa) { appliqueFrag(pa.getAttribute('data-suc')); return; }
+    if (e.target.closest && e.target.closest('#lvp-oter')) { appliqueFrag(null); return; }
+  });
+  /* « change » : avec « input », la première nuance traversée était appliquée
+     et refermait le menu, les suivantes étaient perdues */
+  document.getElementById('lvp-cercle').addEventListener('change', function(){ appliqueFrag(this.value); });
+
+  /* ── Surlignages dans « Mes notes » ── */
+  var LVF_TXT = { surl: 'Surlignages', oter: 'Retirer' };
+  /* la palette du plateau de sélection, dans son ordre, avec son nom en clair */
+  var LVF_COUL = [['#ffe600','Jaune'],['#ffb700','Ambre'],['#ff7a00','Orange'],['#ff2b2b','Rouge'],
+    ['#ff4da6','Rose'],['#b04dff','Violet'],['#2979ff','Bleu'],['#00cfff','Cyan'],
+    ['#00ffb3','Turquoise'],['#35ff6a','Vert'],['#b8ff00','Anis']];
+  var SURL_MAX = 5;   // au-delà, le groupe se replie
+  /* ancienne palette : ces surlignages existent encore chez ceux qui les ont
+     posés avant, ils gardent un nom et se rangent après les onze couleurs */
+  var LVF_COUL_ANC = [['#efe6cf', 'Cr\u00e8me'], ['#c96a6a', 'Brique'], ['#6a8fb4', 'Ardoise'],
+    ['#7ba07b', 'Sauge'], ['#a98ccd', 'Lavande'], ['#d9a05f', 'Miel']];
+  function couleurRang(hex){
+    for (var i = 0; i < LVF_COUL.length; i++) if (LVF_COUL[i][0] === hex) return i;
+    for (var j = 0; j < LVF_COUL_ANC.length; j++) if (LVF_COUL_ANC[j][0] === hex) return 50 + j;
+    return 99;
+  }
+  function couleurNom(hex){
+    for (var i = 0; i < LVF_COUL.length; i++) if (LVF_COUL[i][0] === hex) return LVF_COUL[i][1];
+    for (var j = 0; j < LVF_COUL_ANC.length; j++) if (LVF_COUL_ANC[j][0] === hex) return LVF_COUL_ANC[j][1];
+    return 'Couleur libre ' + hex.toUpperCase();
+  }
+  /* la couleur du groupe passe au CSS (trait à gauche, filet, halo) : la pastille
+     n'est plus la seule à la porter */
+  function surlVars(hex){
+    if (!/^#[0-9a-f]{6}$/i.test(hex || '')) return '';
+    return '--sc:' + hex + ';--sc-f:' + surlRgba(hex, .3);
+  }
+  function marqueNote(texte, hex){
+    return '<span class="surl-mark" style="' + fragStyle(hex) + '">' + esc(texte) + '</span>';
+  }
+  /* Le corps d'une carte : le verset entier, avec le voile sur ce qui a été
+     surligné. Pour une portion, on la replace dans son verset ; si le texte du
+     verset a changé depuis (autre édition), on la retrouve par son contenu, et
+     à défaut on ne montre que la portion. */
+  function corpsCarteSurl(it){
+    if (!it.frag) return marqueNote(it.text || '', it.hex);
+    var full = it.full || '', t = it.text || '';
+    if (full && t && it.a >= 0 && it.b <= full.length && full.slice(it.a, it.b) === t) {
+      return esc(full.slice(0, it.a)) + marqueNote(t, it.hex) + esc(full.slice(it.b));
+    }
+    var p = (full && t) ? full.indexOf(t) : -1;
+    if (p >= 0) return esc(full.slice(0, p)) + marqueNote(t, it.hex) + esc(full.slice(p + t.length));
+    return marqueNote(t, it.hex);
+  }
+  function carteSurl(it){
+    var ref = libelle({ slug: it.slug, ch: it.ch, v1: it.v, v2: it.v });
+    var off = it.slug + '|' + it.ch + '|' + it.v + (it.frag ? ('|' + it.a + '|' + it.b) : '');
+    var corps = corpsCarteSurl(it);
+    return '<div class="surl-item">'
+      + '<div class="surl-tete"><span class="surl-pastille" style="background:' + hexSur(it.hex) + '"></span>'
+      + '<span class="surl-ref" data-snav="' + it.slug + '/' + it.ch + '/' + it.v + '">' + esc(ref) + '</span>'
+      + '<span class="surl-oter" data-soff="' + off + '" role="button" tabindex="0">' + LVF_TXT.oter + '</span></div>'
+      + '<div class="surl-txt">' + corps + '</div></div>';
+  }
+  function basculeSurlGroupe(el){
+    var g = el.closest('.surl-groupe'); if (!g) return;
+    var reste = g.querySelector('.surl-reste'); if (!reste) return;
+    if (reste.hasAttribute('hidden')) { reste.removeAttribute('hidden'); el.textContent = el.getAttribute('data-less'); }
+    else { reste.setAttribute('hidden', ''); el.textContent = el.getAttribute('data-more'); }
+  }
+  /* Compte synchrone, pour le rail : remplirSurlignages() est asynchrone. */
+  function compteSurl(){
+    var n = 0;
+    Object.keys(SURLF).forEach(function(k){
+      var p = k.split('|');
+      if (ORDRE[p[0]] === undefined) return;
+      n += (SURLF[k] || []).length;
+    });
+    Object.keys(SURL).forEach(function(k){
+      var p = k.split('|');
+      if (ORDRE[p[0]] === undefined) return;
+      if (surlCouleur(SURL[k])) n++;
+    });
+    return n;
+  }
+  function remplirSurlignages(filtre){
+    var zone = document.getElementById('surl-zone');
+    if (!zone) return;
+    var f = norm(filtre || '');
+    var items = [];
+    Object.keys(SURLF).forEach(function(k){
+      var p = k.split('|'); var slug = p[0], ch = parseInt(p[1], 10), v = parseInt(p[2], 10);
+      (SURLF[k] || []).forEach(function(fr){
+        items.push({ slug: slug, ch: ch, v: v, hex: fr.hex, text: fr.t, frag: true, a: fr.a, b: fr.b });
+      });
+    });
+    Object.keys(SURL).forEach(function(k){
+      var c = surlCouleur(SURL[k]); if (!c) return;
+      var p = k.split('|'); items.push({ slug: p[0], ch: parseInt(p[1], 10), v: parseInt(p[2], 10), hex: c, text: null, frag: false });
+    });
+    /* données anciennes : un slug qui n'existe plus (ou une clé corrompue)
+       ne doit pas faire disparaître les surlignages valides */
+    items = items.filter(function(it){ return ORDRE[it.slug] !== undefined && it.ch > 0 && it.v > 0; });
+    if (!items.length) { zone.innerHTML = ''; return; }
+    items.sort(function(a, b){ return (ORDRE[a.slug] - ORDRE[b.slug]) || (a.ch - b.ch) || (a.v - b.v) || ((a.a || 0) - (b.a || 0)); });
+    /* le texte du verset sert aux deux : il est le corps d'un surlignage
+       entier, et l'écrin d'une portion surlignée à la souris */
+    var besoins = {}; items.forEach(function(it){ besoins[it.slug] = 1; });
+    Promise.all(Object.keys(besoins).map(livreDataSur)).then(function(){
+      items.forEach(function(it){
+        var d = CACHE[it.slug];
+        var vt = '';
+        if (d) {
+          var ch = null;
+          for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === it.ch) { ch = d.chapitres[i]; break; }
+          if (ch) ch.versets.forEach(function(v){ if (v.v === it.v) vt = v.t; });
+        }
+        if (it.frag) it.full = vt; else it.text = vt;
+      });
+      var vis = items.filter(function(it){
+        if (!f) return true;
+        return norm(it.full || it.text || '').indexOf(f) >= 0 || norm(it.text || '').indexOf(f) >= 0
+            || norm(libelle({ slug: it.slug, ch: it.ch, v1: it.v, v2: it.v })).indexOf(f) >= 0;
+      });
+      if (!vis.length) { zone.innerHTML = ''; return; }
+      /* rangement par couleur : ordre de la palette, couleurs libres à la fin */
+      var groupes = [], parHex = {};
+      vis.forEach(function(it){
+        var hx = String(it.hex || '').toLowerCase();
+        it.hex = hx;
+        if (!parHex[hx]) { parHex[hx] = { hex: hx, items: [] }; groupes.push(parHex[hx]); }
+        parHex[hx].items.push(it);
+      });
+      groupes.sort(function(a, b){
+        return (couleurRang(a.hex) - couleurRang(b.hex)) || (a.hex < b.hex ? -1 : a.hex > b.hex ? 1 : 0);
+      });
+      var h = '<div class="notes-cat"><span class="notes-cat-nom">' + LVF_TXT.surl + '</span>'
+            + '<span class="notes-cat-n">' + vis.length + '</span></div>';
+      groupes.forEach(function(g){
+        /* pendant une recherche, tout reste visible : on cherche justement à voir */
+        var coupe = (!f && g.items.length > SURL_MAX) ? SURL_MAX : g.items.length;
+        var plus = 'Voir tout (' + g.items.length + ')';
+        h += '<div class="surl-groupe" style="' + surlVars(g.hex) + '">'
+           + '<div class="surl-scat"><span class="surl-pastille" style="background:' + hexSur(g.hex) + '"></span>'
+           + '<span class="surl-scat-nom">' + esc(couleurNom(g.hex)) + '</span>'
+           + '<span class="surl-scat-n">' + g.items.length + '</span>'
+           + (coupe < g.items.length ? '<span class="surl-plus" role="button" tabindex="0" data-more="' + plus + '" data-less="Voir moins">' + plus + '</span>' : '')
+           + '</div>'
+           + g.items.slice(0, coupe).map(carteSurl).join('')
+           + (coupe < g.items.length ? '<div class="surl-reste" hidden>' + g.items.slice(coupe).map(carteSurl).join('') + '</div>' : '')
+           + '</div>';
+      });
+      zone.innerHTML = h;
+    });
+  }
+  /* Confirmation maison : confirm() natif est bloqué ou ignoré sur mobile. */
+  var confSuite = null;
+  function ouvreConf(o){
+    document.getElementById('conf-titre').textContent = o.titre || 'Confirmer';
+    document.getElementById('conf-txt').textContent = o.texte || '';
+    document.getElementById('conf-ok').textContent = o.bouton || 'Confirmer';
+    confSuite = o.suite || null;
+    document.getElementById('conf-voile').classList.add('ouvert');
+  }
+  function fermeConf(){ document.getElementById('conf-voile').classList.remove('ouvert'); confSuite = null; }
+  actifId('conf-ok', function(){ var f = confSuite; fermeConf(); if (f) f(); });
+  actifId('conf-ann', fermeConf);
+  document.getElementById('conf-voile').addEventListener('click', function(e){ if (e.target === this) fermeConf(); });
+
+  actifId('nb-annuler', fermeNote);
+  document.getElementById('note-voile').addEventListener('click', function(e){ if (e.target === this) fermeNote(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key !== 'Escape') return;
+    /* la confirmation, si elle est ouverte, se ferme seule : sinon Échap
+       refermerait aussi la question que l'on vient de poser */
+    if (document.getElementById('conf-voile').classList.contains('ouvert')) { fermeConf(); return; }
+    fermeNote(); fermeCat(); fermeAuth(); fermeOv('brech-voile'); fermeFragPop(); fermeMenu();
+    document.getElementById('bacct-voile').classList.remove('ouvert');
+  });
+  actifId('nb-enregistrer', function(){
+    if (!noteEnCours) return;
+    var t = document.getElementById('nb-zone').value.trim();
+    if (!t && !(noteEnCours.refs || []).length) { fermeNote(true); return; }
+    var maintenant = new Date().toISOString();
+    if (noteEnCours.id) {
+      for (var i = 0; i < NOTES.length; i++) if (NOTES[i].id === noteEnCours.id) {
+        NOTES[i].t = t; NOTES[i].m = maintenant; NOTES[i].c = document.getElementById('nb-cat').value; cloudSet(NOTES[i]);
+      }
+    } else {
+      var n = { id: String(Date.now()), d: maintenant, m: maintenant, t: t, refs: noteEnCours.refs || [], c: document.getElementById('nb-cat').value };
+      NOTES.unshift(n); cloudSet(n);
+    }
+    sauveNotes(); majLienNotes(); fermeNote(true);
+    if (location.hash === '#notes') vueNotes(filtreNotes);
+  });
+  actifId('nb-supprimer', function(){
+    if (!noteEnCours || !noteEnCours.id) return;
+    var mort = noteEnCours.id;
+    ouvreConf({ titre: 'Supprimer la note', texte: 'Cette note sera retirée de tous vos appareils.', bouton: 'Supprimer', suite: function(){
+      cloudDel(mort);
+      NOTES = NOTES.filter(function(n){ return n.id !== mort; });
+      sauveNotes(); majLienNotes(); fermeNote(true);
+      if (location.hash === '#notes') vueNotes(filtreNotes);
+    } });
+  });
+
+  /* ───────── Mes notes : un seul gestionnaire, posé une fois ─────────
+     Les écouteurs posés élément par élément mouraient à chaque rendu de la
+     vue et ne répondaient pas de façon fiable au doigt. Ici tout passe par
+     un gestionnaire unique sur « vue », qui survit à tous les rendus. */
+  var filtreNotes = '';
+  var filtreCat = '';
+  function supprimeCat(id){
+    var c = catParId(id); if (!c) return;
+    ouvreConf({
+      titre: 'Supprimer la catégorie',
+      texte: '« ' + c.nom + ' » et ses sous-sections seront supprimées. Les notes qu’elles contiennent redeviennent non classées.',
+      bouton: 'Supprimer',
+      suite: function(){
+        var mortes = {}; mortes[id] = 1;
+        CATS.filter(function(x){ return x.parent === id; }).forEach(function(x){ mortes[x.id] = 1; });
+        CATS = CATS.filter(function(x){ return !mortes[x.id]; });
+        var quand = new Date().toISOString();
+        NOTES.forEach(function(n){ if (n.c && mortes[n.c]) { n.c = ''; n.m = quand; cloudSet(n); } });
+        sauveCats(); sauveNotes(); vueNotes(filtreNotes);
+      }
+    });
+  }
+  function oteSurlignage(code){
+    var parts = String(code || '').split('|');
+    var slug = parts[0], ch = parseInt(parts[1], 10), v = parseInt(parts[2], 10);
+    var key = slug + '|' + ch + '|' + v;
+    if (parts.length >= 5) {
+      var d = CACHE[slug], cho = null;
+      if (d) for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === ch) { cho = d.chapitres[i]; break; }
+      var vt = ''; if (cho) cho.versets.forEach(function(x){ if (x.v === v) vt = x.t; });
+      var fa = parseInt(parts[3], 10), fb = parseInt(parts[4], 10);
+      if (vt) poseFrag(key, fa, fb, null, vt);
+      else {
+        /* texte du livre pas encore chargé : on retire cette seule portion,
+           sans toucher aux autres portions du même verset */
+        var reste = (SURLF[key] || []).filter(function(f){ return !(f.a === fa && f.b === fb); });
+        if (reste.length) SURLF[key] = reste; else delete SURLF[key];
+      }
+      sauveSurlF(); marqueSurlF();
+    } else {
+      delete SURL[key]; sauveSurl(); marqueSurl();
+    }
+    remplirSurlignages(filtreNotes);
+  }
+  function copieNote(el){
+    var n = NOTES.filter(function(x){ return x.id === el.getAttribute('data-cop'); })[0];
+    if (!n) return;
+    var etiq = el.textContent;
+    var fini = function(){ el.textContent = 'Copié ✓'; setTimeout(function(){ el.textContent = etiq; fermeMenu(); }, 1300); };
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(n.t).then(fini).catch(function(){}); }
+    else {
+      var ta = document.createElement('textarea'); ta.value = n.t; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); fini(); } catch(e){}
+      document.body.removeChild(ta);
+    }
+  }
+  function basculePlus(el){
+    var z = el.closest('.nt-trunc'); if (!z) return;
+    var c = z.querySelector('.nt-court'), fl = z.querySelector('.nt-full');
+    if (!fl.hasAttribute('hidden')) { fl.setAttribute('hidden',''); c.removeAttribute('hidden'); el.textContent = el.getAttribute('data-more'); }
+    else { c.setAttribute('hidden',''); fl.removeAttribute('hidden'); el.textContent = el.getAttribute('data-less'); }
+  }
+  /* ── Menu d'actions : un seul point d'entrée par élément ── */
+  var menuFlot = document.createElement('div');
+  menuFlot.id = 'menu-flot';
+  document.body.appendChild(menuFlot);
+  function fermeMenu(){ menuFlot.classList.remove('ouvert'); menuFlot.innerHTML = ''; menuFlot._pour = null; }
+  function ouvreMenu(el){
+    menuFlot._pour = el;
+    var p = String(el.getAttribute('data-menu') || '').split(':');
+    var type = p[0], id = p.slice(1).join(':');
+    var h;
+    if (type === 'cat') {
+      h = '<span class="mf-act" data-cren="' + id + '" role="button" tabindex="0">Renommer</span>'
+        + '<span class="mf-act" data-csub="' + id + '" role="button" tabindex="0">Ajouter une sous-section</span>'
+        + '<span class="mf-act mf-sep" data-csup="' + id + '" role="button" tabindex="0">Supprimer</span>';
+    } else if (type === 'scat') {
+      h = '<span class="mf-act" data-cren="' + id + '" role="button" tabindex="0">Renommer</span>'
+        + '<span class="mf-act mf-sep" data-csup="' + id + '" role="button" tabindex="0">Supprimer</span>';
+    } else {
+      h = '<span class="mf-act" data-mod="' + id + '" role="button" tabindex="0">Modifier</span>'
+        + '<span class="mf-act" data-cop="' + id + '" role="button" tabindex="0">Copier le texte</span>'
+        + '<span class="mf-act mf-sep" data-nsup="' + id + '" role="button" tabindex="0">Supprimer</span>';
+    }
+    menuFlot.innerHTML = h;
+    menuFlot.style.left = '-9999px'; menuFlot.style.top = '0';
+    menuFlot.classList.add('ouvert');
+    var r = el.getBoundingClientRect(), m = menuFlot.getBoundingClientRect(), g = 6;
+    var gauche = Math.max(10, Math.min(r.right - m.width, window.innerWidth - m.width - 10));
+    var haut = r.bottom + g;
+    if (haut + m.height > window.innerHeight - 10) haut = Math.max(10, r.top - m.height - g);
+    menuFlot.style.left = Math.round(gauche) + 'px';
+    menuFlot.style.top = Math.round(haut) + 'px';
+  }
+  /* un geste hors du menu le ferme ; le bouton « ⋯ » lui-même est laissé à
+     agitNotes, qui bascule (sinon il refermait puis rouvrait aussitôt) */
+  function horsMenu(t){ return menuFlot.classList.contains('ouvert') && !menuFlot.contains(t) && !(t.closest && t.closest('[data-menu]')); }
+  document.addEventListener('touchstart', function(e){ if (horsMenu(e.target)) fermeMenu(); }, true);
+  document.addEventListener('mousedown', function(e){ if (horsMenu(e.target)) fermeMenu(); }, true);
+  window.addEventListener('scroll', function(){ if (menuFlot.classList.contains('ouvert')) fermeMenu(); }, true);
+  window.addEventListener('resize', fermeMenu);
+  window.addEventListener('hashchange', fermeMenu);
+
+  function supprimeNote(id){
+    var n = NOTES.filter(function(x){ return x.id === id; })[0]; if (!n) return;
+    ouvreConf({ titre: 'Supprimer la note', texte: 'Cette note sera retirée de tous vos appareils.', bouton: 'Supprimer', suite: function(){
+      cloudDel(id);
+      NOTES = NOTES.filter(function(x){ return x.id !== id; });
+      sauveNotes(); majLienNotes(); vueNotes(filtreNotes);
+    } });
+  }
+
+  function agitNotes(cible){
+    if (!cible || !cible.closest) return false;
+    if (cible.closest('#notes-rech')) return false;
+    var el;
+    if ((el = cible.closest('[data-menu]'))) {
+      if (menuFlot.classList.contains('ouvert') && menuFlot._pour === el) fermeMenu(); else ouvreMenu(el);
+      return true;
+    }
+    if ((el = cible.closest('[data-fil]'))) {
+      filtreCat = el.getAttribute('data-fil') || '';
+      vueNotes(filtreNotes);
+      return true;
+    }
+    if ((el = cible.closest('[data-nsup]'))) { supprimeNote(el.getAttribute('data-nsup')); return true; }
+    if (cible.closest('#note-libre')) { ouvreNote({ refs: [], t: '' }); return true; }
+    if (cible.closest('#cat-nouvelle')) { ouvreCat({ mode: 'new' }); return true; }
+    if (cible.closest('#sync-in')) { demandeConnexion(); return true; }
+    if ((el = cible.closest('[data-cren]'))) { ouvreCat({ mode: 'ren', id: el.getAttribute('data-cren') }); return true; }
+    if ((el = cible.closest('[data-csub]'))) { ouvreCat({ mode: 'sub', parent: el.getAttribute('data-csub') }); return true; }
+    if ((el = cible.closest('[data-csup]'))) { supprimeCat(el.getAttribute('data-csup')); return true; }
+    if ((el = cible.closest('[data-mod]'))) {
+      var nm = NOTES.filter(function(x){ return x.id === el.getAttribute('data-mod'); })[0];
+      if (nm) ouvreNote({ id: nm.id, refs: nm.refs, t: nm.t, c: nm.c });
+      return true;
+    }
+    if ((el = cible.closest('[data-cop]'))) { copieNote(el); return true; }
+    if ((el = cible.closest('.nt-plus'))) { basculePlus(el); return true; }
+    if ((el = cible.closest('[data-nav]'))) {
+      var p = el.getAttribute('data-nav').split(':');
+      var nn = NOTES.filter(function(x){ return x.id === p[0]; })[0];
+      var g = nn && nn.refs[parseInt(p[1], 10)];
+      if (g) location.hash = '#' + g.slug + '/' + g.ch + '/' + g.v1;
+      return true;
+    }
+    if ((el = cible.closest('.surl-plus'))) { basculeSurlGroupe(el); return true; }
+    if ((el = cible.closest('[data-snav]'))) { location.hash = '#' + el.getAttribute('data-snav'); return true; }
+    if ((el = cible.closest('[data-soff]'))) { oteSurlignage(el.getAttribute('data-soff')); return true; }
+    return false;
+  }
+  var doigtNotes = 0;
+  function delegue(hote, apres){
+    var amorce = null;
+    hote.addEventListener('touchstart', function(e){
+      if (!e.touches || e.touches.length !== 1) { amorce = null; return; }
+      var p = e.touches[0];
+      amorce = { x: p.clientX, y: p.clientY, t: Date.now(), cible: e.target };
+    }, { passive: true });
+    hote.addEventListener('touchend', function(e){
+      var a = amorce; amorce = null; if (!a) return;
+      var p = e.changedTouches && e.changedTouches[0];
+      var d = p ? (Math.abs(p.clientX - a.x) + Math.abs(p.clientY - a.y)) : 99;
+      if (d > 14 || (Date.now() - a.t) > 700) return;
+      if (agitNotes(a.cible)) { doigtNotes = Date.now(); e.preventDefault(); e.stopPropagation(); if (apres) apres(a.cible); }
+    }, { passive: false });
+    hote.addEventListener('touchcancel', function(){ amorce = null; }, { passive: true });
+    hote.addEventListener('click', function(e){
+      if (Date.now() - doigtNotes < 1000) { e.stopPropagation(); return; }
+      if (agitNotes(e.target)) { e.stopPropagation(); if (apres) apres(e.target); }
+    });
+  }
+  /* Dans la vue, une action ferme le menu ; dans le menu, elle le ferme aussi,
+     sauf la copie qui garde sa confirmation « Copié » un instant. */
+  delegue(vue, function(cible){ if (!cible.closest('[data-menu]')) fermeMenu(); });
+  delegue(menuFlot, function(cible){ if (!cible.closest('[data-cop]')) fermeMenu(); });
+
+  function vueNotes(filtre){
+    filtreNotes = filtre || '';
+    document.title = 'Mes notes · La Sainte Bible · Lumen Veritatis';
+    hero.style.display = 'none';
+    /* la vue est reconstruite en entier : si l'on était en train de taper
+       dans le champ de recherche, on y remet le curseur ensuite (et
+       seulement dans ce cas : un rafraîchissement venu du nuage ne doit pas
+       voler le focus) */
+    var actif = document.activeElement;
+    var rechActive = !!(actif && actif.id === 'notes-rech');
+    var caret = rechActive ? actif.selectionStart : 0;
+    var f = norm(filtre || '');
+    var liste = NOTES.filter(function(n){
+      if (!f) return true;
+      if (norm(n.t).indexOf(f) >= 0) return true;
+      return (n.refs || []).some(function(g){ return norm(libelle(g)).indexOf(f) >= 0; });
+    });
+    var nSurl = compteSurl();
+    var valides = {};
+    CATS.forEach(function(c){ valides[c.id] = 1; });
+    var racines = CATS.filter(function(c){ return !c.parent; });
+    var libres = liste.filter(function(n){ return !n.c || !valides[n.c]; });
+    /* un filtre qui pointe sur une catégorie supprimée doit retomber sur Tout */
+    if (filtreCat && filtreCat !== '__surl__' && filtreCat !== '__libre__'
+        && !valides[filtreCat]) filtreCat = '';
+    if (filtreCat === '__surl__' && !nSurl) filtreCat = '';
+    if (filtreCat === '__libre__' && !libres.length) filtreCat = '';
+
+    function pl(n, un, pls){ return n + ' ' + (n > 1 ? pls : un); }
+    function compteCat(c){
+      var n = 0;
+      liste.forEach(function(x){ if (x.c === c.id) n++; });
+      CATS.forEach(function(sc){
+        if (sc.parent !== c.id) return;
+        liste.forEach(function(x){ if (x.c === sc.id) n++; });
+      });
+      return n;
+    }
+    function puce(id, nom, n){
+      return '<span class="nz-fil' + (filtreCat === id ? ' on' : '') + '" data-fil="' + id + '"'
+           + ' role="button" tabindex="0">' + esc(nom) + '<i>' + n + '</i></span>';
+    }
+
+    var resume = [];
+    if (NOTES.length) resume.push(pl(NOTES.length, 'note', 'notes'));
+    if (CATS.length) resume.push(pl(CATS.length, 'cat\u00e9gorie', 'cat\u00e9gories'));
+    if (nSurl) resume.push(pl(nSurl, 'surlignage', 'surlignages'));
+
+    var h = '<div class="notes-tete"><h2 class="notes-titre">Mes notes</h2>'
+          + (resume.length ? '<div class="notes-compte">' + resume.join(' \u00b7 ') + '</div>' : '')
+          + '</div>'
+          + '<input class="notes-rech" id="notes-rech" type="search" placeholder="Rechercher dans les notes\u2026" value="' + esc(filtre || '') + '">'
+          + '<div class="notes-actions">'
+          + '<span class="notes-btn" id="note-libre" role="button" tabindex="0">\u00c9crire une note</span>'
+          + '<span class="notes-lien" id="cat-nouvelle" role="button" tabindex="0">Nouvelle cat\u00e9gorie</span>'
+          + '</div>';
+    if (!UID) {
+      h += '<div class="sync-ligne"><span class="sync-act" id="sync-in" role="button" tabindex="0">Se connecter pour retrouver vos notes</span></div>';
+    }
+    if (racines.length || nSurl) {
+      var rail = puce('', 'Tout', liste.length);
+      racines.forEach(function(c){ rail += puce(c.id, c.nom, compteCat(c)); });
+      if (libres.length && CATS.length) rail += puce('__libre__', 'Non class\u00e9es', libres.length);
+      if (nSurl) rail += puce('__surl__', LVF_TXT.surl, nSurl);
+      h += '<div class="nz-rail">' + rail + '</div>';
+    }
+
+    function enTete(nom, n, menu){
+      return '<div class="notes-cat"><span class="notes-cat-nom">' + esc(nom) + '</span>'
+           + '<span class="notes-cat-n">' + n + '</span>'
+           + (menu ? '<span class="nt-menu" data-menu="' + menu + '" role="button" tabindex="0" aria-label="Actions de la cat\u00e9gorie">\u22ef</span>' : '')
+           + '</div>';
+    }
+    function carteNote(n){
+      var date = new Date(n.d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+      var x = '<div class="note-item" data-id="' + n.id + '">'
+            + '<span class="nt-menu" data-menu="note:' + n.id + '" role="button" tabindex="0" aria-label="Actions de la note">\u22ef</span>';
+      if ((n.refs || []).length) {
+        x += '<div class="note-refs">' + n.refs.map(function(g, i){
+          return '<span class="note-ref" data-nav="' + n.id + ':' + i + '">' + esc(libelle(g)) + '</span>';
+        }).join('<span class="note-sep">\u00b7</span>') + '</div>';
+      }
+      /* note longue : apercu tronque tant qu'on n'a pas depli\u00e9 */
+      var LIM = 420;
+      if ((n.t || '').length > LIM) {
+        var coupe = n.t.slice(0, LIM);
+        var sp = coupe.lastIndexOf(' ');
+        if (sp > LIM - 80) coupe = coupe.slice(0, sp);
+        x += '<div class="note-texte nt-trunc">'
+           + '<span class="nt-court">' + esc(coupe) + '\u2026</span>'
+           + '<span class="nt-full" hidden>' + esc(n.t) + '</span> '
+           + '<span class="nt-plus" role="button" tabindex="0" data-more="Voir plus" data-less="Voir moins">Voir plus</span></div>';
+      } else {
+        x += '<div class="note-texte">' + esc(n.t) + '</div>';
+      }
+      return x + '<div class="note-pied">' + date + '</div></div>';
+    }
+
+    var corps = '';
+    if (filtreCat !== '__surl__') {
+      if (filtreCat !== '__libre__') {
+        racines.forEach(function(c){
+          if (filtreCat && filtreCat !== c.id) return;
+          var directes = liste.filter(function(n){ return n.c === c.id; });
+          var sous = CATS.filter(function(x){ return x.parent === c.id; });
+          var notesSous = sous.some(function(sc){ return liste.some(function(n){ return n.c === sc.id; }); });
+          if (f && !directes.length && !notesSous) return;
+          corps += enTete(c.nom, compteCat(c), 'cat:' + c.id);
+          directes.forEach(function(n){ corps += carteNote(n); });
+          sous.forEach(function(sc){
+            var dn = liste.filter(function(n){ return n.c === sc.id; });
+            if (f && !dn.length) return;
+            corps += '<div class="notes-scat"><span class="notes-scat-nom">' + esc(sc.nom) + '</span>'
+                   + '<span class="notes-cat-n">' + dn.length + '</span>'
+                   + '<span class="nt-menu" data-menu="scat:' + sc.id + '" role="button" tabindex="0" aria-label="Actions de la sous-section">\u22ef</span></div>'
+                   + '<div class="notes-sgroupe">';
+            dn.forEach(function(n){ corps += carteNote(n); });
+            corps += '</div>';
+          });
+        });
+      }
+      if (!filtreCat || filtreCat === '__libre__') {
+        if (libres.length) {
+          if (CATS.length) corps += enTete('Non class\u00e9es', libres.length, '');
+          libres.forEach(function(n){ corps += carteNote(n); });
+        }
+      }
+      if (!corps) {
+        /* des surlignages s'affichent juste en dessous : ne pas dire « rien » */
+        var surlSuivent = nSurl && !filtreCat;
+        corps = NOTES.length
+          ? '<div class="notes-vide"><div class="notes-vide-p">Aucune note ne correspond.</div></div>'
+          : surlSuivent
+            ? '<div class="notes-vide notes-vide-min"><div class="notes-vide-p">Aucune note pour l’instant. Vos surlignages sont rassemblés plus bas.</div></div>'
+            : '<div class="notes-vide"><div class="notes-vide-t">Rien encore</div>'
+              + '<div class="notes-vide-p">Ouvrez un chapitre, s\u00e9lectionnez un verset, puis \u00e9crivez. Vos notes et vos surlignages se rassemblent ici.</div></div>';
+      }
+    }
+    if (corps) h += '<div class="nz-liste">' + corps + '</div>';
+    if (!filtreCat || filtreCat === '__surl__') h += '<div id="surl-zone"></div>';
+    vue.innerHTML = h;
+    remplirSurlignages(filtre);
+    var champ = document.getElementById('notes-rech');
+    champ.addEventListener('input', function(){ vueNotes(champ.value); });
+    if (rechActive) {
+      champ.focus();
+      var pos = Math.min(caret == null ? champ.value.length : caret, champ.value.length);
+      try { champ.setSelectionRange(pos, pos); } catch(e){}
+    }
+  }
+
+  /* ───────── Références : analyse et navigation (depuis la loupe) ───────── */
+  function decoupeRefs(txt){
+    return String(txt || '').split(/\s*;\s*|,(?=\s*[1-4]?\s*[a-zA-Z\u00c0-\u024f])/)
+      .map(function(x){ return x.trim(); }).filter(Boolean);
+  }
+  function refsDepuis(valeur){
+    var morceaux = decoupeRefs(valeur);
+    var refs = [], mauvais = [];
+    morceaux.forEach(function(m){
+      var r = parseRef(m);
+      if (r) refs.push(r); else mauvais.push(m);
+    });
+    return { refs: refs, mauvais: mauvais };
+  }
+  function etiquetteRef(r){
+    var inf = infoLivre(r.slug);
+    var t = inf ? inf.nom : r.slug;
+    if (r.ch) t += ' ' + r.ch;
+    if (r.v1) { t += ':' + r.v1; if (r.v2 > r.v1) t += '-' + r.v2; }
+    return t;
+  }
+  function allerRefs(refs){
+    var avecV = refs.filter(function(r){ return r.ch && r.v1; });
+    var besoins = {};
+    avecV.forEach(function(r){ besoins[r.slug] = 1; });
+    return Promise.all(Object.keys(besoins).map(livreDataSur)).then(function(){
+      avecV.forEach(function(r){
+        var d = CACHE[r.slug], ch = null;
+        if (!d) return;
+        for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === r.ch) { ch = d.chapitres[i]; break; }
+        if (!ch) return;
+        var ok = {};
+        ch.versets.forEach(function(v){ ok[v.v] = 1; });
+        for (var v = r.v1; v <= r.v2; v++) if (ok[v] && selIdx(r.slug, r.ch, v) < 0) SEL.push({ s: r.slug, c: r.ch, v: v });
+      });
+      if (avecV.length) { sauveSel(); majPlateau(); }
+      var p0 = refs[0];
+      var cible = !p0.ch ? ('#' + p0.slug) : ('#' + p0.slug + '/' + p0.ch + (p0.v1 ? '/' + p0.v1 : ''));
+      if (location.hash === cible) route(); else location.hash = cible;
+    });
+  }
+
+  /* ═══════════ SIGNETS ═══════════
+     Un signet marque un chapitre, et le verset précis s'il y en avait un à
+     l'écran. Il en tient autant qu'on veut, ils voyagent avec le compte comme
+     les notes et les surlignages, et ils se fondent entrée par entrée : celui
+     posé sur le téléphone et celui posé sur l'ordinateur se rejoignent au lieu
+     de s'écraser. Un signet retiré ici disparaît là-bas, il ne renaît pas. */
+  var SIGN = {}, SIGN_T = {}, SIGN_P = {}, SIGN_M = 0;
+  try { SIGN = JSON.parse(localStorage.getItem('lv_bible_signets') || '{}'); } catch(e){ SIGN = {}; }
+  try { SIGN_T = JSON.parse(localStorage.getItem('lv_bible_signets_t') || '{}'); } catch(e){ SIGN_T = {}; }
+  try { SIGN_M = parseInt(localStorage.getItem('lv_bible_signets_m') || '0', 10) || 0; } catch(e){ SIGN_M = 0; }
+  SIGN_P = JSON.parse(JSON.stringify(SIGN));
+  var RUBAN = '<svg viewBox="0 0 24 24" width="20" height="26" aria-hidden="true"><path d="M6 3h12v18l-6-4.2L6 21z"/></svg>';
+
+  function cleSignet(slug, ch){ return slug + '/' + ch; }
+  function sauveSignets(){
+    var ms = Date.now();
+    estampe(SIGN, SIGN_P, SIGN_T, ms);
+    SIGN_M = ms;
+    SIGN_P = JSON.parse(JSON.stringify(SIGN));
+    ecrisLocal('lv_bible_signets', SIGN);
+    ecrisLocal('lv_bible_signets_t', SIGN_T);
+    try { localStorage.setItem('lv_bible_signets_m', String(SIGN_M)); } catch(e){}
+    ecritTech('signets', { signets: true, m: SIGN_M, s: SIGN, t: SIGN_T });
+    majSignets();
+  }
+  function libelleSignet(g){
+    var inf = infoLivre(g.s);
+    var nom = inf ? inf.nom : g.s;
+    var t = (g.s === 'psaumes') ? 'Psaume ' + g.c : nom + (inf && inf.nch > 1 ? ' ' + g.c : '');
+    if (g.v) t += ':' + g.v;
+    return t;
+  }
+  function dateSignet(g){
+    var d = new Date(g.d || 0);
+    if (isNaN(d.getTime())) return '';
+    try { return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }); }
+    catch(e){ return d.toISOString().slice(0, 10); }
+  }
+  function hashSignet(g){ return '#' + g.s + '/' + g.c + (g.v ? '/' + g.v : ''); }
+  /* Le ruban de la page en cours, et le compte affiché dans « Mon compte ». */
+  function majSignets(){
+    var b = document.getElementById('signet-btn');
+    if (b && vue._ctx) {
+      var pose = !!SIGN[cleSignet(vue._ctx.slug, vue._ctx.ch)];
+      b.classList.toggle('pose', pose);
+      b.setAttribute('aria-label', pose ? 'Retirer le signet' : 'Poser un signet');
+      b.setAttribute('title', pose ? 'Retirer le signet' : 'Poser un signet');
+    }
+    var l = document.getElementById('bacct-signets');
+    var n = Object.keys(SIGN).length;
+    if (l) l.textContent = 'Mes signets' + (n ? ' (' + n + ')' : '');
+  }
+  function basculeSignet(){
+    var c = vue._ctx; if (!c) return;
+    var cle = cleSignet(c.slug, c.ch);
+    if (SIGN[cle]) { delete SIGN[cle]; }
+    else {
+      var p = location.hash.replace(/^#/, '').split('/');
+      var v = parseInt(p[2], 10);
+      SIGN[cle] = { s: c.slug, c: c.ch, v: (v > 0 ? v : 0), d: new Date().toISOString() };
+    }
+    sauveSignets();
+    if (location.hash === '#signets') vueSignets();
+  }
+  function vueSignets(){
+    document.title = 'Mes signets \u00b7 La Sainte Bible \u00b7 Lumen Veritatis';
+    hero.style.display = 'none';
+    var ids = Object.keys(SIGN).sort(function(a, b){
+      var da = SIGN[a].d || '', db2 = SIGN[b].d || '';
+      return da < db2 ? 1 : (da > db2 ? -1 : 0);        // le dernier posé en tête
+    });
+    var h = '<div class="lecture-col"><h2 class="ch-titre">Mes signets</h2><div class="ch-sep"></div>';
+    if (!ids.length) {
+      h += '<div class="sg-vide">Aucun signet pour l\u2019instant. Ouvre un chapitre et touche le ruban, '
+         + 'en haut \u00e0 droite du titre, pour le marquer.</div>';
+    } else {
+      h += '<div class="sg-liste">';
+      ids.forEach(function(cle){
+        var g = SIGN[cle];
+        h += '<div class="sg-carte" data-sg="' + esc(cle) + '">'
+           + '<span class="sg-ruban">' + RUBAN + '</span>'
+           + '<span class="sg-txt"><span class="sg-ref">' + esc(libelleSignet(g)) + '</span>'
+           + '<div class="sg-date">' + esc(dateSignet(g)) + '</div></span>'
+           + '<span class="sg-x" data-sgx="' + esc(cle) + '" role="button" tabindex="0" '
+           + 'aria-label="Retirer ce signet" title="Retirer ce signet">\u2715</span></div>';
+      });
+      h += '</div>';
+    }
+    h += '</div>';
+    vue.innerHTML = h;
+    vue._ctx = null;
+    [].forEach.call(vue.querySelectorAll('.sg-carte'), function(el){
+      actif(el, function(ev){
+        if (ev.target.closest && ev.target.closest('[data-sgx]')) return;
+        var g = SIGN[el.getAttribute('data-sg')];
+        if (g) location.hash = hashSignet(g);
+      });
+    });
+    [].forEach.call(vue.querySelectorAll('[data-sgx]'), function(el){
+      actif(el, function(ev){
+        ev.stopPropagation();
+        delete SIGN[el.getAttribute('data-sgx')];
+        sauveSignets();
+        vueSignets();
+      });
+    });
+    majSignets();
+  }
+
+  /* ───────── Vues ───────── */
+  function vueLivres(){
+    document.title = 'La Sainte Bible · Lumen Veritatis';
+    hero.style.display = '';
+    vue._ctx = null;
+    var h = '', testCourant = '';
+    IDX.groupes.forEach(function(g){
+      if (g.test !== testCourant) {
+        testCourant = g.test;
+        h += '<div class="testament">' + (g.test === 'AT' ? 'Ancien Testament' : 'Nouveau Testament') + '</div>';
+      }
+      h += '<div class="groupe-nom">' + esc(g.nom) + '</div><div class="livres-grille">';
+      IDX.livres.forEach(function(l){
+        if (l.groupe !== g.nom) return;
+        h += '<a class="livre" href="#' + l.slug + '"><span class="ln">' + esc(l.nom) + '</span>' +
+             '<span class="lc">' + l.nch + (l.nch > 1 ? ' chapitres' : ' chapitre') + '</span></a>';
+      });
+      h += '</div>';
+    });
+    vue.innerHTML = h;
+  }
+
+  function vueChapitres(slug){
+    var inf = infoLivre(slug);
+    if (!inf) return vueLivres();
+    document.title = inf.nom + ' · La Sainte Bible · Lumen Veritatis';
+    hero.style.display = 'none';
+    vue._ctx = null;
+    if (inf.nch === 1) { location.replace('#' + slug + '/1'); return; }
+    var h = '<h2 class="livre-titre">' + esc(inf.nom) + '</h2>' +
+            '<div class="livre-sous">' + esc(inf.groupe) + '</div><div class="chap-grille">';
+    for (var i = 1; i <= inf.nch; i++) h += '<a class="chap" href="#' + slug + '/' + i + '">' + i + '</a>';
+    h += '</div>';
+    vue.innerHTML = h;
+  }
+
+  /* Jeton de rendu : si l'on change de page pendant qu'un chapitre se charge
+     (réseau lent), l'ancien chargement, arrivé en retard, ne doit pas écraser
+     la page que l'on regarde à présent. */
+  var JETON = 0;
+  function vueLecture(slug, n, vCible){
+    var inf = infoLivre(slug);
+    if (!inf) return vueLivres();
+    hero.style.display = 'none';
+    vue.innerHTML = '<div class="chargement">Chargement…</div>';
+    var jeton = ++JETON;
+    livreData(slug).then(function(d){
+      if (jeton !== JETON) return;
+      var ch = null;
+      for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === n) { ch = d.chapitres[i]; break; }
+      if (!ch) return vueChapitres(slug);
+      var ps = (slug === 'psaumes');
+      var nomCh = ps ? 'Psaume ' + n : esc(inf.nom) + (inf.nch > 1 ? ' ' + n : '');
+      document.title = nomCh + ' · La Sainte Bible · Lumen Veritatis';
+      var h = '<div class="lecture-col">' +
+              '<div class="ch-tete"><h2 class="ch-titre">' + nomCh + '</h2>' +
+              '<span class="signet-btn" id="signet-btn" role="button" tabindex="0">' + RUBAN + '</span></div>';
+      if (ch.vulg) h += '<div class="ch-vulg">Vulgate : ' + esc(ch.vulg) + '</div>';
+      if (ch.titre) h += ps ? '<div class="ch-psaume-titre">' + esc(ch.titre) + '</div>'
+                            : '<div class="ch-section">' + esc(ch.titre) + '</div>';
+      h += '<div class="ch-sep"></div><div class="ch-texte">';
+      var secT = {};
+      if (ch.titres) ch.titres.forEach(function(t){ if (t && t.titre) secT[t.v] = t.titre; });
+      /* La prose se lit en paragraphes, les vers en lignes : on ouvre un
+         paragraphe pour la première et on le referme avant les seconds. */
+      var ouvert = false;
+      var ferme = function(){ if (ouvert) { h += '</p>'; ouvert = false; } };
+      ch.versets.forEach(function(v){
+        if (secT[v.v]) { ferme(); h += '<div class="ch-sect">' + esc(secT[v.v]) + '</div>'; }
+        if (v.p) {
+          ferme();
+          h += '<span class="vst po' + (v.s ? ' sent' : '') + '" id="va-' + v.v + '">' + corpsVerset(v.v, v.t, null, v.c, true) + '</span>';
+          return;
+        }
+        if (!ouvert) { h += '<p class="par">'; ouvert = true; }
+        h += '<span class="vst" id="va-' + v.v + '">' + corpsVerset(v.v, v.t, null, null, false) + '</span> ';
+        if (v.fin) ferme();
+      });
+      ferme();
+      h += '</div><div class="ch-nav">';
+      h += (n > 1)
+        ? '<a href="#' + slug + '/' + (n - 1) + '">\u2190 ' + (ps ? 'Psaume ' + (n - 1) : 'Chapitre ' + (n - 1)) + '</a>'
+        : '<a class="vide">·</a>';
+      h += '<a href="#' + slug + '">' + (inf.nch > 1 ? 'Chapitres' : esc(inf.nom)) + '</a>';
+      h += (n < inf.nch)
+        ? '<a href="#' + slug + '/' + (n + 1) + '">' + (ps ? 'Psaume ' + (n + 1) : 'Chapitre ' + (n + 1)) + ' \u2192</a>'
+        : '<a class="vide">·</a>';
+      h += '</div></div>';
+      vue.innerHTML = h;
+      vue._ctx = { slug: slug, ch: n };
+      actifId('signet-btn', basculeSignet);
+      majSignets();
+      if (pendingSel && pendingSel.slug === slug && pendingSel.ch === n) {
+        for (var v = pendingSel.v1; v <= pendingSel.v2; v++) {
+          if (document.getElementById('va-' + v) && selIdx(slug, n, v) < 0) SEL.push({ s: slug, c: n, v: v });
+        }
+        pendingSel = null;
+        sauveSel(); majPlateau();
+      } else {
+        marqueSelection();
+        marqueSurl();
+      }
+      marqueSurlF();
+      /* Le doigt et la souris passent par la même porte. Sur iOS, le clic
+         synthétique qui suit le toucher rejouait la bascule et annulait la
+         sélection aussitôt posée : le toucher le neutralise désormais. */
+      var zoneT = vue.querySelector('.ch-texte');
+      var dernierDoigt = 0, amorce = null;
+      function agitSur(cible){
+        var sp = cible && cible.closest ? cible.closest('.vst') : null;
+        if (!sp) return false;
+        var fr = cible.closest('.lv-frag');
+        if (fr) {
+          var v0 = parseInt(sp.id.replace('va-', ''), 10);
+          var vm = verseTextMap();
+          var t0 = (vm && vm[v0] != null) ? vm[v0] : '';
+          var a0 = parseInt(fr.getAttribute('data-fa'), 10), b0 = parseInt(fr.getAttribute('data-fb'), 10);
+          pendingFrag = [{ key: slug + '|' + n + '|' + v0, slug: slug, ch: n, v: v0, a: a0, b: b0, t: t0.slice(a0, b0) }];
+          var rng = document.createRange(); rng.selectNode(fr); ouvreFragPop(rng);
+          return true;
+        }
+        clearNativeSel();
+        fermeFragPop();
+        basculeSel(slug, n, parseInt(sp.id.replace('va-', ''), 10));
+        return true;
+      }
+      zoneT.addEventListener('touchstart', function(e){
+        if (!e.touches || e.touches.length !== 1) { amorce = null; return; }
+        var p0 = e.touches[0];
+        amorce = { x: p0.clientX, y: p0.clientY, t: Date.now(), cible: e.target };
+      }, { passive: true });
+      zoneT.addEventListener('touchend', function(e){
+        var a = amorce; amorce = null;
+        if (!a) return;
+        var p0 = e.changedTouches && e.changedTouches[0];
+        var bouge = p0 ? (Math.abs(p0.clientX - a.x) + Math.abs(p0.clientY - a.y)) : 99;
+        if (bouge > 14 || (Date.now() - a.t) > 700) return;
+        var s = window.getSelection();
+        if (s && !s.isCollapsed && String(s).trim().length > 1) return;
+        if (agitSur(a.cible)) { dernierDoigt = Date.now(); e.preventDefault(); e.stopPropagation(); }
+      }, { passive: false });
+      zoneT.addEventListener('touchcancel', function(){ amorce = null; }, { passive: true });
+      zoneT.addEventListener('click', function(e){
+        if (Date.now() - dernierDoigt < 1000) { e.stopPropagation(); return; }
+        var s = window.getSelection();
+        if (s && !s.isCollapsed && !(e.target.closest && e.target.closest('.lv-frag'))) return;
+        if (agitSur(e.target)) e.stopPropagation();
+      });
+      if (vCible) {
+        var el = document.getElementById('va-' + vCible);
+        if (el) { el.classList.add('cible'); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      }
+    }).catch(function(e){
+      if (jeton !== JETON) return;
+      /* une erreur de rendu (et non de r\u00e9seau) ne doit pas rester muette */
+      if (e && e.name === 'TypeError') console.warn('lecture', e);
+      vue.innerHTML = '<div class="chargement">Le texte n\u2019a pas pu \u00eatre charg\u00e9.<br>'
+        + '<span class="reessayer" id="reessai-ch" role="button" tabindex="0">R\u00e9essayer</span></div>';
+      var b = document.getElementById('reessai-ch');
+      if (b) b.addEventListener('click', function(){ vueLecture(slug, n, vCible); });
+    });
+  }
+
+  /* ───────── Routage : #livre, #livre/ch, #livre/ch/v, #notes ───────── */
+  function route(){
+    JETON++;
+    var brut = location.hash.replace(/^#/, '');
+    /* « #ref=Matthieu 7:6 » : une référence écrite en toutes lettres. C'est ce
+       qui permet au panneau latéral de demander un passage sans avoir à
+       reconstruire de son côté le dictionnaire des noms de livres. */
+    if (brut.indexOf('ref=') === 0) {
+      var g = null;
+      /* une adresse mal formée (un « % » isolé) ne doit pas figer la page */
+      try { g = parseRef(decodeURIComponent(brut.slice(4))); } catch(e) { g = null; }
+      if (!g) { vueLivres(); window.scrollTo(0, 0); return; }
+      location.replace('#' + g.slug + (g.ch ? '/' + g.ch + (g.v1 ? '/' + g.v1 : '') : ''));
+      return;
+    }
+    var p = brut.split('/');
+    var slug = p[0] || '';
+    if (slug === 'notes') { vueNotes(); window.scrollTo(0, 0); return; }
+    if (slug === 'signets') { vueSignets(); window.scrollTo(0, 0); return; }
+    if (!slug) { vueLivres(); window.scrollTo(0, 0); return; }
+    var n = parseInt(p[1], 10), v = parseInt(p[2], 10);
+    if (n > 0) { vueLecture(slug, n, v > 0 ? v : 0); if (!(v > 0)) window.scrollTo(0, 0); }
+    else { vueChapitres(slug); window.scrollTo(0, 0); }
+  }
+
+  var routeBranchee = false;
+  function demarre(){
+    vue.innerHTML = '<div class="chargement">Chargement\u2026</div>';
+    return charge('/bible-data/index.json').then(function(d){
+      IDX = d;
+      IDX.livres.forEach(function(l, i){ ORDRE[l.slug] = i; });
+      construitDico();
+      majLienNotes();
+      majPlateau();
+      initAuth();
+      route();
+      if (!routeBranchee) { window.addEventListener('hashchange', route); routeBranchee = true; }
+    }).catch(function(){
+      vue.innerHTML = '<div class="chargement">L\u2019index de la Bible n\u2019a pas pu \u00eatre charg\u00e9.<br>'
+        + '<span class="reessayer" id="reessai-idx" role="button" tabindex="0">R\u00e9essayer</span></div>';
+      var b = document.getElementById('reessai-idx');
+      if (b) b.addEventListener('click', demarre);
+    });
+  }
+  /* La barre du site est collante : les en-têtes de catégorie doivent se caler
+     dessous, sinon ils passent derrière elle au défilement. */
+  function mesureBarre(){
+    var b = document.querySelector('header');
+    var hh = b ? Math.round(b.getBoundingClientRect().height) : 0;
+    document.documentElement.style.setProperty('--hbar', hh + 'px');
+  }
+  mesureBarre();
+  window.addEventListener('resize', mesureBarre);
+  window.addEventListener('orientationchange', function(){ setTimeout(mesureBarre, 200); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(mesureBarre);
+  demarre();
+  /* Deux exemplaires de la page peuvent vivre côte à côte (un onglet Bible et
+     le panneau latéral des autres pages). Chacun réécrit le stockage local en
+     bloc : sans cette écoute, ce que l'un enregistrait effaçait ce que
+     l'autre venait de faire. Dès que l'autre exemplaire écrit, on relit. */
+  function litLocal(k, def){ try { return JSON.parse(localStorage.getItem(k) || def); } catch(e){ return JSON.parse(def); } }
+  function litNombre(k){ try { return parseInt(localStorage.getItem(k) || '0', 10) || 0; } catch(e){ return 0; } }
+  var rechargeTimer = null;
+  function rechargeLocal(){
+    rechargeTimer = null;
+    NOTES = litLocal('lv_bible_notes', '[]');
+    CATS = litLocal('lv_bible_cats', '[]'); CATS_T = litLocal('lv_bible_cats_t', '{}'); CATS_M = litNombre('lv_bible_cats_m');
+    CATS_P = {}; CATS.forEach(function(c){ if (c && c.id) CATS_P[c.id] = JSON.parse(JSON.stringify(c)); });
+    SURL = litLocal('lv_bible_surl', '{}'); SURL_T = litLocal('lv_bible_surl_t', '{}'); SURL_M = litNombre('lv_bible_surl_m');
+    SURL_P = JSON.parse(JSON.stringify(SURL));
+    SURLF = litLocal('lv_bible_surlf', '{}'); SURLF_T = litLocal('lv_bible_surlf_t', '{}'); SURLF_M = litNombre('lv_bible_surlf_m');
+    SURLF_P = JSON.parse(JSON.stringify(SURLF));
+    SIGN = litLocal('lv_bible_signets', '{}'); SIGN_T = litLocal('lv_bible_signets_t', '{}'); SIGN_M = litNombre('lv_bible_signets_m');
+    SIGN_P = JSON.parse(JSON.stringify(SIGN));
+    MORTS = litLocal('lv_bible_morts', '{}');
+    SEL = litLocal('lv_bible_sel', '[]');
+    marqueSelection(); majPlateau(); marqueSurl(); marqueSurlF(); majSignets(); majLienNotes();
+    if (location.hash === '#notes' && !noteEnCours) vueNotes(filtreNotes);
+    if (location.hash === '#signets') vueSignets();
+  }
+  window.addEventListener('storage', function(e){
+    if (!e.key || e.key.indexOf('lv_bible_') !== 0 || e.key === 'lv_bible_uid') return;
+    if (rechargeTimer) clearTimeout(rechargeTimer);
+    rechargeTimer = setTimeout(rechargeLocal, 80);
+  });
+  /* le téléphone qui retrouve du réseau, ou l'onglet qu'on rouvre, reprend seul */
+  window.addEventListener('online', function(){ if (!IDX) demarre(); });
+  document.addEventListener('visibilitychange', function(){
+    if (!IDX && document.visibilityState === 'visible') demarre();
+  });
+})();
+</script>
+</body>
+</html>
