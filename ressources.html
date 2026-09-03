@@ -480,7 +480,7 @@ try{db.enablePersistence({synchronizeTabs:true}).catch(function(){});}catch(_){}
 const AUTEUR='hoarauemmanuel336@gmail.com';
 
 // ════════ ÉTAT ════════
-const S={uid:null,email:null,auteur:false,liste:[],res:null,sale:false,minute:null,rubs:[],ouLa:''};
+const S={uid:null,email:null,auteur:false,liste:[],res:null,sale:false,minute:null,rubs:[],ouLa:'',vu:''};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 const acol=()=>db.collection('users/'+S.uid+'/ressources');
@@ -710,6 +710,9 @@ function pageCadre(code){
     +'<meta name="viewport" content="width=device-width,initial-scale=1">'
     +'<style>html,body{margin:0;padding:0;background:#000;color:#fff;'
     +'font-family:Georgia,serif}*{box-sizing:border-box}'
+    /* le texte du diagramme reste sélectionnable au doigt : sur mobile, la
+       copie à l'ancienne, par appui long, doit rester possible */
+    +'body{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}'
     /* Le cadre est TOUJOURS taillé à la hauteur exacte de son contenu : un
        ascenseur à l'intérieur n'aurait donc jamais rien à faire défiler, et
        s'il apparaît c'est le signe d'un écart de quelques pixels entre la
@@ -784,9 +787,29 @@ function pageCadre(code){
        l'appel et on fait faire le travail à la page, qui a le droit. La
        tentative directe est conservée : là où elle passe, elle passe. */
     +'function relais(t){try{parent.postMessage({lvCopie:String(t)},"*");}catch(e){}}'
+    /* ── LA COPIE SE FAIT D'ABORD SUR PLACE, DANS LE GESTE ──
+       Le relais vers la page arrive par message, donc APRÈS le doigt : la page
+       n'a plus le « geste récent » que les navigateurs exigent pour toucher au
+       presse-papier. Chrome ferme les yeux, Brave non, et la copie échouait là
+       sans rien dire. On copie donc d'abord ici même, pendant le clic, par la
+       vieille commande de copie, qui n'a besoin ni d'origine ni de permission,
+       seulement du geste. Le relais et la voie moderne ne servent plus que de
+       secours si elle échoue. */
+    +'function surPlace(t){try{var z=document.createElement("textarea");z.value=String(t);'
+    +'z.setAttribute("readonly","");'
+    /* rendu mais invisible : masqué pour de bon, rien ne serait sélectionnable ;
+       16px sinon iOS zoome de lui-même au moment de la sélection */
+    +'z.style.cssText="position:fixed;top:0;left:0;width:1px;height:1px;padding:0;border:0;font-size:16px;opacity:0";'
+    +'document.body.appendChild(z);var ok=false;'
+    +'try{z.focus();z.select();if(z.setSelectionRange)z.setSelectionRange(0,999999);'
+    +'var s=window.getSelection(),r=document.createRange();r.selectNodeContents(z);'
+    +'s.removeAllRanges();s.addRange(r);ok=document.execCommand("copy");'
+    +'s.removeAllRanges();}catch(e){}'
+    +'document.body.removeChild(z);return ok;}catch(e){return false;}}'
     +'try{var nat=(navigator.clipboard&&navigator.clipboard.writeText)?navigator.clipboard.writeText.bind(navigator.clipboard):null;'
     +'Object.defineProperty(navigator,"clipboard",{configurable:true,value:{'
-    +'writeText:function(t){relais(t);if(nat)return nat(t).catch(function(){return undefined;});return Promise.resolve();},'
+    +'writeText:function(t){if(surPlace(t))return Promise.resolve();'
+    +'relais(t);if(nat)return nat(t).catch(function(){return undefined;});return Promise.resolve();},'
     +'readText:function(){return Promise.reject(new Error("indisponible"));}}});}catch(e){}'
     +'})();</scr'+'ipt>'
     /* Balise fermante coupée en deux : le build injecte son script sur la
@@ -888,7 +911,7 @@ function grilleDe(liste,publik){
    « précédent » du navigateur remonte d'un cran et un endroit se partage. */
 function ici(){ return rubValide(S.ouLa) ? S.ouLa : ''; }
 function vaVers(id){
-  S.ouLa = id || '';
+  S.ouLa = id || ''; S.vu='';
   const cible = S.ouLa ? '#d/' + S.ouLa : '';
   if((location.hash||'') !== cible){ try{ history.pushState(null,'',cible||location.pathname); }catch(_){} }
   /* on revient toujours à l'écran de la liste : on peut cliquer un maillon du
@@ -1223,14 +1246,19 @@ function corpsVoir(a,publik){
   return c;
 }
 function voit(a,publik){
-  if(!a){vue('liste');return;}
+  if(!a){S.vu='';vue('liste');return;}
+  /* on retient la ressource ouverte : c'est elle que l'on rouvre si la page
+     se réveille (retour d'onglet, compte rafraîchi) au lieu de la liste */
+  S.vu=a.id;
   $('voir-titre').textContent=a.titre||'Sans titre';
   $('voir-pied').textContent=TYPES[typeDe(a)].nom+'  ·  '+dateFr(a.maj||a.cree)+(a.chemin?'  ·  '+a.chemin:'');
   const c=$('voir-corps'); c.innerHTML=''; c.appendChild(corpsVoir(a,publik));
   vue('voir');
   /* une entrée d'historique par ressource ouverte, jamais deux fois la même :
-     sinon chaque « précédent » recréait l'entrée et l'on ne sortait plus */
-  if(publik&&location.hash!=='#r/'+a.id){try{history.pushState(null,'','#r/'+a.id);}catch(_){}}
+     sinon chaque « précédent » recréait l'entrée et l'on ne sortait plus.
+     L'auteur y a droit aussi : sans adresse, sa ressource ouverte était
+     perdue au moindre rechargement d'état. */
+  if(location.hash!=='#r/'+a.id){try{history.pushState(null,'','#r/'+a.id);}catch(_){}}
 }
 async function menuRessource(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
@@ -1387,8 +1415,8 @@ async function supprime(){
 // ════════ ÉVÉNEMENTS ════════
 $('b-nouveau').onclick=nouveau;
 $('b-section').onclick=()=>nouvelleRub(ici());
-$('b-retour').onclick=async()=>{if(S.sale)await enregistre(true);S.res=null;vue('liste');};
-$('b-voir-retour').onclick=()=>{S.res=null;vaVers(ici());vue('liste');};
+$('b-retour').onclick=async()=>{if(S.sale)await enregistre(true);S.res=null;S.vu='';vue('liste');};
+$('b-voir-retour').onclick=()=>{S.res=null;S.vu='';vaVers(ici());vue('liste');};
 $('b-enr').onclick=()=>enregistre();
 /* une ressource jamais enregistrée n'existe pas encore dans la liste : on
    l'enregistre d'abord, sinon ces boutons ne faisaient rien, sans un mot */
@@ -1441,13 +1469,21 @@ function ecoute(){
   if(!S.uid)return;
   RUBS_LUES=false;
   rdoc().get()
-    .then(d=>{S.rubs=(d.exists&&d.data().list)||[];RUBS_LUES=true;if(!S.res)routeHash();})
+    .then(d=>{S.rubs=(d.exists&&d.data().list)||[];RUBS_LUES=true;
+      /* si une ressource est déjà ouverte à l'écran, on la laisse : relire le
+         rangement ne doit pas la refermer */
+      if(!S.res&&$('ecran-voir').style.display==='none')routeHash();})
     .catch(e=>{console.warn('rubriques',e);lvInfo('Le rangement n’a pas pu être lu. Rechargez la page avant d’y toucher.');});
   COUPE=acol().onSnapshot(sn=>{
     const l=sn.docs.map(d=>Object.assign({id:d.id},d.data()));
     l.sort((a,b)=>String(b.maj||b.cree||'').localeCompare(String(a.maj||a.cree||'')));
     S.liste=l;
-    if(!S.res)rendLister();
+    /* on ne rebâtit la liste que si elle est bien à l'écran : sinon un simple
+       rafraîchissement des données chassait la ressource ouverte */
+    if(!S.res&&!S.vu)rendLister();
+    /* arrivé avec une adresse #r/… : la ressource n'existait pas encore quand
+       la page a lu l'adresse, elle est là maintenant, on l'ouvre */
+    else if(!S.res&&S.vu&&$('ecran-voir').style.display==='none')routeHash();
   },e=>console.warn('ressources',e));
 }
 function motAccueil(){
@@ -1467,10 +1503,18 @@ async function ouvrePublic(){
      celle du visiteur. Rien d'autre à faire ici. */
   routeHash();
 }
+/* Firebase redit qui est connecté à chaque réveil de la page (retour d'onglet,
+   jeton rafraîchi). Ce n'est pas un changement de compte : si c'est le même
+   utilisateur, on ne touche à rien, sinon on refermait la ressource ouverte et
+   l'on retombait à l'accueil chaque fois que l'on revenait sur l'onglet. */
+let COMPTE_CONNU='∅';
 auth.onAuthStateChanged(u=>{
-  S.uid=u?u.uid:null; S.email=u?(u.email||''):null;
+  const cle=u?u.uid:null;
+  if(cle===COMPTE_CONNU)return;
+  COMPTE_CONNU=cle;
+  S.uid=cle; S.email=u?(u.email||''):null;
   S.auteur=!!(u&&u.email&&u.email.toLowerCase()===AUTEUR);
-  S.res=null; S.liste=[]; S.rubs=[]; RUBS_LUES=false;
+  S.res=null; S.vu=''; S.liste=[]; S.rubs=[]; RUBS_LUES=false;
   if(S.auteur){ vue('liste'); motAccueil(); ecoute(); }
   else{ if(COUPE){COUPE();COUPE=null;} $('acts-liste').style.display='none'; ouvrePublic(); }
 });
@@ -1480,12 +1524,17 @@ ouvrePublic();
 function routeHash(){
   const h=location.hash||'';
   const mr=h.match(/^#r\/(.+)$/);
-  if(mr&&!S.auteur){
-    const a=PUBS.find(x=>x.id===mr[1]);
-    if(a){voit(a,true);return;}
+  if(mr){
+    const a=S.auteur?S.liste.find(x=>x.id===mr[1]):PUBS.find(x=>x.id===mr[1]);
+    if(a){voit(a,!S.auteur);return;}
+    /* la liste n'est pas encore arrivée : on garde l'adresse en mémoire et on
+       ouvrira dès que les données seront là, plutôt que de retomber à la
+       racine */
+    if(S.auteur&&!S.liste.length){S.vu=mr[1];return;}
   }
   const md=h.match(/^#d\/(.+)$/);
   S.ouLa=(md&&rubValide(md[1]))?md[1]:'';
+  S.vu='';
   vue('liste');
 }
 /* popstate couvre déjà les changements de fragment : écouter aussi hashchange

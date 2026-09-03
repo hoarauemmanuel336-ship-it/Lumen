@@ -106,6 +106,19 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .wrap{flex:1;width:100%;max-width:680px;margin:0 auto;padding:46px 26px 80px}
 
 .lbl{font-family:var(--display);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa)}
+
+/* bascule Versets / Passages : deux onglets sobres, un filet d'or sous celui
+   où l'on est, comme un intercalaire dans un classeur */
+.modes{display:flex;gap:30px;margin:0 0 34px;border-bottom:1px solid var(--filet)}
+.mode{background:none;border:0;padding:0 0 13px;font-family:var(--display);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa2);cursor:pointer;position:relative;transition:color .3s}
+.mode:hover{color:var(--pa)}
+.mode.on{color:var(--or)}
+.mode.on::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--or)}
+/* ligne de passage : le titre prend la place, la référence se pose à droite
+   en petites capitales dorées, là où un verset porte sa référence à gauche */
+.vrow.pas .vref{width:auto;flex:1 1 auto;min-width:0;color:var(--parchemin);font-family:var(--serif);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vrow.pas .vtext{flex:0 0 auto;font-family:var(--display);color:var(--or);font-size:14px;letter-spacing:.02em}
+.vline:hover .vrow.pas .vtext{color:var(--or-pale)}
 .block{margin-bottom:42px}
 .block-head{margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--filet)}
 
@@ -173,6 +186,7 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .rule{width:38px;height:1px;background:var(--or);opacity:.5;margin:24px auto}
 .q-prompt{font-family:var(--serif);font-size:calc(27px*var(--lvz,1));line-height:1.62;color:var(--parchemin);max-width:30em;margin:0 auto}
 .q-prompt.ref{font-family:var(--display);font-style:normal;font-size:calc(38px*var(--lvz,1));letter-spacing:.03em;color:var(--or)}
+.q-prompt.titre{font-family:var(--display);font-style:normal;font-size:calc(31px*var(--lvz,1));line-height:1.34;letter-spacing:.01em;color:var(--parchemin)}
 .opts{display:grid;gap:11px}
 .opts.two{grid-template-columns:1fr 1fr}
 .opt{text-align:left;padding:16px 20px;border:1px solid var(--filet);background:var(--encre-2);font-family:var(--serif);font-size:calc(17px*var(--lvz,1));line-height:1.5;color:rgba(255,255,255,.9);transition:border-color .25s,color .25s,background .25s;animation:rise .45s cubic-bezier(.2,.7,.3,1) both}
@@ -241,8 +255,12 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
   .opts.two{grid-template-columns:1fr}
   .q-prompt{font-size:calc(23px*var(--lvz,1))}
   .q-prompt.ref{font-size:calc(30px*var(--lvz,1))}
+  .q-prompt.titre{font-size:calc(25px*var(--lvz,1))}
   .vref{width:96px;font-size:14px}
   .vtext{display:none}
+  /* pour un passage, ce n'est pas le second champ qui s'efface mais rien du
+     tout : la référence EST la réponse, elle doit rester lisible */
+  .vrow.pas .vtext{display:block;font-size:13px}
 }
 /* corbeille */
 .trash-head{display:flex;align-items:center;gap:12px;padding:6px 2px;cursor:pointer;border-bottom:1px solid var(--filet)}
@@ -339,6 +357,12 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
   .lvl{gap:9px;flex:0 0 auto;padding-top:4px}
   .dot{width:15px;height:15px}
   .del-v{font-size:19px;padding-left:3px;color:var(--pa2)}
+  /* le titre du passage peut tenir sur deux lignes, sa référence sur une
+     seule, en dessous : c'est l'ordre dans lequel on les lit */
+  .vrow.pas .vref{display:-webkit-box;white-space:normal;font-size:16px;line-height:1.32;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .vrow.pas .vtext{display:block;font-size:13px;white-space:nowrap}
+  .modes{gap:24px;margin-bottom:28px}
+  .mode{font-size:13px;letter-spacing:.16em}
 }
 @media(max-width:430px){
   .wrap{padding-left:16px;padding-right:16px}
@@ -589,6 +613,12 @@ if(typeof firebase==='undefined'){var m=document.getElementById('auth-msg');if(m
 
   <main class="wrap">
     <section id="setup">
+      <!-- Deux séries, deux onglets. Les versets d'un côté, les passages de
+           l'autre ; rien ne se mélange, ni à l'écran ni dans les questions. -->
+      <div class="modes" id="modes">
+        <button type="button" class="mode on" id="mode-v">Versets</button>
+        <button type="button" class="mode" id="mode-p">Passages</button>
+      </div>
       <div class="block">
         <div class="block-head bh-cats" style="display:flex;align-items:center;justify-content:space-between;gap:14px"><span class="lbl" id="lbl-cats">Catégories &amp; mémoire</span><span class="mini-act" id="sel-all"></span></div>
         <div id="cat-list"></div>
@@ -772,7 +802,27 @@ const T={
     sec_up:'Monter', sec_down:'Descendre', sec_start:'Lancer cette section',
     sec_empty:'Aucune catégorie dans cette section.',
     sec_del_q:'Supprimer cette section ? Ses catégories et leurs versets sont conservés : ils reviennent hors section.',
-    sec_name:'Nom de la section'
+    sec_name:'Nom de la section',
+    /* ── PASSAGES ──
+       Une carte « passage » retient OÙ se trouve un récit, un discours, une
+       scène : d'un côté son titre, de l'autre sa référence. C'est la même
+       carte qu'un verset (un titre à la place du texte), donc le même
+       algorithme, les mêmes couleurs, la même progression ; seuls les mots
+       changent. Deux séries séparées : on révise ses versets ou ses passages,
+       jamais les deux ensemble. */
+    mode_v:'Versets', mode_p:'Passages',
+    find_ref_p:'Où se trouve ce passage ?', find_passage:'Quel passage est-ce ?',
+    addpassage:'Passage',
+    mp:'Ajouter un passage', mp_edit:'Modifier le passage',
+    mcat_p:'Nouvelle catégorie de passages',
+    f_titre:'Titre du passage', f_ref_p:'Référence (ex : Marc 10:46-52)',
+    ph_titre:'La guérison de l’aveugle de Jéricho',
+    acquired_p:'passages acquis',
+    no_cats_p:'Aucune catégorie de passages. Créez-en une, puis ajoutez-y des passages.',
+    empty_sel_p:'Aucun passage coché. Touchez « Tout sélectionner » en haut de la liste, ou cochez au moins deux passages.',
+    not_enough_p:'Il faut au moins deux passages pour commencer. Cochez-en un second, ou ajoutez un passage.',
+    del_cat_q_p:'Supprimer cette catégorie et ses passages ?',
+    bible_ref:'Prendre la référence dans la Bible'
   }
 };
 
@@ -782,6 +832,11 @@ const T={
 // ════════ ÉTAT ════════
 const S={
   lang:'fr',
+  /* 'v' pour les versets, 'p' pour les passages. Les deux séries ne se
+     mélangent jamais : le mode décide quelles catégories s'affichent et
+     lesquelles entrent dans le tirage. Il vit sur l'appareil, pas dans le
+     nuage : c'est un endroit où l'on est, pas une donnée. */
+  mode:'v',
   uid:null,
   selCats:[], offV:{}, progress:{}, step:0, customCats:[], baseEdits:{}, hidCats:[], trash:[], trashOpen:false, showAllCats:false,
   open:{},          // catId -> bool (déplié)
@@ -790,7 +845,7 @@ const S={
   secOpen:{},       // sectionId -> false quand la section est repliée (par appareil)
   soloSec:null,
   cur:null, lastId:null, answered:0, correct:0, rap:{r:0,a:0,v:0}, depuisNeuf:0,
-  pendingCat:null, editCat:null, editVerse:null, editSec:null, pendingCatSec:null,
+  pendingCat:null, pendingPas:false, editCat:null, editVerse:null, editSec:null, pendingCatSec:null,
   charge:false      // vrai une fois les données du compte lues : avant, on n'écrit rien dans le nuage
 };
 /* Remise à zéro de l'état propre à un compte : à la déconnexion et avant de
@@ -821,6 +876,20 @@ function effectiveCats(){
   return [...base,...S.customCats.map(c=>({...c,base:false}))];
 }
 const allCats=effectiveCats;
+/* ── LE GENRE D'UNE CATÉGORIE ──
+   Rien d'écrit veut dire « versets » : toutes les catégories existantes le
+   sont, et aucune donnée n'a besoin d'être retouchée pour que les passages
+   arrivent. Les catégories de base du site sont des versets par nature. */
+const kindDe=c=>(c&&c.kind==='p')?'p':'v';
+const estPassage=c=>kindDe(c)==='p';
+const modeP=()=>S.mode==='p';
+/* Les catégories du mode où l'on se trouve, et elles seules. */
+function catsMode(){return effectiveCats().filter(c=>kindDe(c)===S.mode);}
+function modeLit(){try{const m=localStorage.getItem('lv_memo_mode');if(m==='p'||m==='v')S.mode=m;}catch(e){}}
+function modeEcrit(){try{localStorage.setItem('lv_memo_mode',S.mode);}catch(e){}}
+/* Le genre d'un verset ou d'un passage se lit sur sa catégorie ; on le pose
+   sur chaque carte tirée pour que l'écran de question sache quels mots dire. */
+function pasDe(vId){const c=effectiveCats().find(x=>x.verses.some(v=>v.id===vId));return c?estPassage(c):false;}
 /* ── SECTIONS ──
    Une section range des catégories, elle ne contient aucun verset et ne
    touche à aucun identifiant de progression : c'est un pur classement.
@@ -833,13 +902,25 @@ const secOuverte=id=>S.secOpen[id]!==false;
 function secOpenLit(){try{const o=JSON.parse(localStorage.getItem('lv_memo_sec')||'{}');S.secOpen=(o&&typeof o==='object')?o:{};}catch(e){S.secOpen={};}}
 function secOpenEcrit(){try{localStorage.setItem('lv_memo_sec',JSON.stringify(S.secOpen));}catch(e){}}
 function groupesCats(){
-  const all=allCats(), g=[];
-  S.sections.forEach(s=>g.push({sec:s,cats:all.filter(c=>secDe(c.id)===s.id)}));
+  const all=catsMode(), g=[];
+  const tous=effectiveCats();
+  /* Une section qui ne contient rien du mode courant est masquée : la voir
+     vide en permanence dans l'autre onglet n'apprend rien. Une section
+     RÉELLEMENT vide, elle, reste visible, sinon celle qu'on vient de créer
+     disparaîtrait aussitôt. */
+  S.sections.forEach(s=>{
+    const cs=all.filter(c=>secDe(c.id)===s.id);
+    if(cs.length||!tous.some(c=>secDe(c.id)===s.id))g.push({sec:s,cats:cs});
+  });
   const libres=all.filter(c=>!secDe(c.id));
   if(libres.length)g.push({sec:null,cats:libres});
   return g;
 }
-function allItems(){const out=[];effectiveCats().filter(c=>S.soloCat?c.id===S.soloCat:(S.soloSec?secDe(c.id)===S.soloSec:true)).forEach(c=>c.verses.forEach(v=>{if(!S.offV[v.id])out.push({...v,catId:c.id});}));return out;}
+/* Le tirage ne voit que le mode courant : c'est là qu'est la séparation des
+   deux séries, et il n'y en a pas d'autre à faire. Les propositions fausses
+   sont tirées du même vivier, donc on ne se voit jamais proposer un verset
+   en réponse à un passage. */
+function allItems(){const out=[];catsMode().filter(c=>S.soloCat?c.id===S.soloCat:(S.soloSec?secDe(c.id)===S.soloSec:true)).forEach(c=>{const pas=estPassage(c);c.verses.forEach(v=>{if(!S.offV[v.id])out.push({...v,catId:c.id,pas:pas});});});return out;}
 function syncSelCats(){S.selCats=effectiveCats().filter(c=>c.verses.length&&c.verses.every(v=>!S.offV[v.id])).map(c=>c.id);}
 // clone profond de la version effective d'une catégorie de base, pour la rendre éditable
 function baseClone(catId){const e=effectiveCats().find(c=>c.id===catId);return{name:JSON.parse(JSON.stringify(e.name)),verses:JSON.parse(JSON.stringify(e.verses))};}
@@ -1132,6 +1213,8 @@ const enJeu=id=>{const p=S.progress[id];return !!(p&&p.t);};
    reste en réserve : les révisions ne sont jamais repoussées de plus de
    quelques cartes, et la réserve avance tous les jours. */
 const CADENCE_NEUF=5;
+/* Trois tirages fragiles, puis un acquis : un sur quatre dans la série libre. */
+const CADENCE_SU=3;
 function nextItem(){
   const items=allItems(); if(!items.length)return null;
   let pool=items.filter(i=>i.id!==S.lastId); if(!pool.length)pool=items;
@@ -1175,9 +1258,23 @@ function nextItem(){
     return vuLe(a.id)-vuLe(b.id);
   });
   const fragiles=libres.slice(0,Math.max(3,Math.ceil(libres.length/3)));
-  fragiles.sort((a,b)=>vuLe(a.id)-vuLe(b.id));
-  const t0=vuLe(fragiles[0].id);
-  const memeAge=fragiles.filter(i=>vuLe(i.id)===t0);
+  /* ── LES VERSETS ACQUIS REVIENNENT AUSSI, DE TEMPS EN TEMPS (03/09) ──
+     Le tiers le plus fragile est le bon endroit pour l'essentiel du temps
+     libre, mais pris seul il enferme la série : les versets tenus pour acquis
+     n'y entrent jamais, et une longue séance ne les propose plus DU TOUT. Or
+     un verset su reste agréable à réciter, et un doute doit pouvoir se lever
+     tout de suite plutôt que d'attendre son échéance à quatre-vingts jours.
+     Un tirage sur quatre va donc à ceux-là, du plus anciennement revu au plus
+     récent. Rien ne change pour les niveaux : hors échéance, une bonne réponse
+     ne fait toujours pas monter, et une erreur ramène le verset à réviser,
+     ce qui est précisément ce que l'on veut d'un verset qu'on croyait su. */
+  const sus=libres.filter(i=>niveauEffectif(i.id)>=NIVEAU_ACQUIS&&fragiles.indexOf(i)<0);
+  let bassin;
+  if(sus.length&&(S.depuisSu||0)>=CADENCE_SU){ S.depuisSu=0; bassin=sus; }
+  else { S.depuisSu=(S.depuisSu||0)+1; bassin=fragiles; }
+  bassin=bassin.slice().sort((a,b)=>vuLe(a.id)-vuLe(b.id));
+  const t0=vuLe(bassin[0].id);
+  const memeAge=bassin.filter(i=>vuLe(i.id)===t0);
   return memeAge[0|Math.random()*memeAge.length];
 }
 /* Les propositions doivent être DISCERNABLES. Un même verset peut vivre dans
@@ -1258,7 +1355,7 @@ function videAttente(){ if(ATTENTE){clearTimeout(ATTENTE);ATTENTE=null;saveProgr
 document.addEventListener('visibilitychange',()=>{if(document.hidden)videAttente();});
 window.addEventListener('pagehide',videAttente);
 function savePrefs(){syncSelCats();if(!peutEcrire())return;udoc('meta/prefs').set({selCats:S.selCats,offV:Object.keys(S.offV),hidCats:S.hidCats}).catch(e=>console.warn('sync prefs',e));}
-function saveCat(c){if(!peutEcrire())return Promise.resolve();return ucol('categories').doc(c.id).set({name:c.name,verses:c.verses});}
+function saveCat(c){if(!peutEcrire())return Promise.resolve();return ucol('categories').doc(c.id).set({name:c.name,verses:c.verses,kind:kindDe(c)});}
 function saveBaseEdits(){if(!peutEcrire())return;udoc('meta/baseEdits').set({cats:S.baseEdits}).catch(e=>console.warn('sync baseEdits',e));}
 function saveTrash(){if(!peutEcrire())return;udoc('meta/trash').set({items:S.trash}).catch(e=>console.warn('sync trash',e));}
 function saveSections(){if(!peutEcrire())return;udoc('meta/sections').set({list:S.sections,of:S.catSec}).catch(e=>console.warn('sync sections',e));}
@@ -1302,6 +1399,7 @@ function ecouteLive(){
 
 // ════════ UI : CATÉGORIES & MÉMOIRE ════════
 function elementCat(cat){
+    const pas=estPassage(cat);
     const _act=cat.verses.filter(vv=>!S.offV[vv.id]).length;
     const sel=cat.verses.length&&_act===cat.verses.length;
     const part=!sel&&_act>0;
@@ -1324,7 +1422,10 @@ function elementCat(cat){
     cat.verses.forEach(vv=>{
       const l=levelOf(vv.id);
       const voff=!!S.offV[vv.id];
-      body+='<div class="vrow'+(voff?' voff':'')+'"><span class="v-check'+(voff?'':' on')+'" data-togv="'+vv.id+'" title="'+(S.lang==='fr'?'Inclure ou exclure des révisions':'Include or exclude from reviews')+'"></span><span class="vline" data-editv="'+vv.id+'"><span class="vref">'+besc(vv[S.lang].ref)+'</span><span class="vtext">'+besc(trunc(vv[S.lang].text,58))+'</span></span>'/* le compteur d'expositions continue de compter, il ne s'affiche plus
+      /* Pour un passage, c'est le TITRE qui identifie la carte : il prend la
+         place de la référence, et la référence passe à sa suite. On lit
+         « La guérison de l'aveugle · Marc 10:46-52 », dans cet ordre. */
+      body+='<div class="vrow'+(voff?' voff':'')+(pas?' pas':'')+'"><span class="v-check'+(voff?'':' on')+'" data-togv="'+vv.id+'" title="'+(S.lang==='fr'?'Inclure ou exclure des révisions':'Include or exclude from reviews')+'"></span><span class="vline" data-editv="'+vv.id+'"><span class="vref">'+besc(pas?trunc(vv[S.lang].text,72):vv[S.lang].ref)+'</span><span class="vtext">'+besc(pas?vv[S.lang].ref:trunc(vv[S.lang].text,58))+'</span></span>'/* le compteur d'expositions continue de compter, il ne s'affiche plus
              (Emmanuel, 22/08 : « retire l'affichage, pas le système ») */+'<span class="lvl">'
         +'<span class="dot r'+(l==='r'?' act':'')+'"></span>'
         +'<span class="dot a'+(l==='a'?' act':'')+'"></span>'
@@ -1332,7 +1433,7 @@ function elementCat(cat){
         +'<span class="mov-v" data-movev="'+vv.id+'" title="'+(S.lang==='fr'?'Déplacer dans…':'Move to…')+'">\u21C4</span>'
         +'<span class="del-v" data-delv="'+vv.id+'">×</span></div>';
     });
-    body+='<div class="cat-custom-acts"><span class="mini-act" data-addv="1">+ '+t('addverse')+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span><span class="mini-act" data-secc="1">'+t('sec_range')+'</span>'+(cat.base?'<span class="mini-act" data-restorec="1">'+t('cat_restore')+'</span>':'')+'<span class="mini-act del" data-delc="1">'+t('del')+'</span></div>';
+    body+='<div class="cat-custom-acts"><span class="mini-act" data-addv="1">+ '+t(pas?'addpassage':'addverse')+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span><span class="mini-act" data-secc="1">'+t('sec_range')+'</span>'+(cat.base?'<span class="mini-act" data-restorec="1">'+t('cat_restore')+'</span>':'')+'<span class="mini-act del" data-delc="1">'+t('del')+'</span></div>';
     body+='</div>';
     div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp">'+besc(cat.name[S.lang]||'')+'</span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-go" data-act="solo" title="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'" aria-label="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
     return div;
@@ -1363,9 +1464,10 @@ function elementSection(sec,cats){
   return w;
 }
 function renderCats(){
+  majMode();
   const host=$('cat-list'); host.innerHTML='';
   const CATLIM=6;
-  const _allc=allCats();
+  const _allc=catsMode();
   const _more=$('cat-more');
   if(S.sections.length){
     groupesCats().forEach(g=>host.appendChild(elementSection(g.sec,g.cats)));
@@ -1374,7 +1476,12 @@ function renderCats(){
     (S.showAllCats?_allc:_allc.slice(0,CATLIM)).forEach(cat=>host.appendChild(elementCat(cat)));
     if(_allc.length>CATLIM){_more.style.display='';_more.textContent=S.showAllCats?t('show_less'):t('show_all')+' ('+_allc.length+')';}else{_more.style.display='none';}
   }
-  const _cs=effectiveCats(),_all=_cs.length&&_cs.every(c=>c.verses.every(v=>!S.offV[v.id]));$('sel-all').textContent=_all?t('deselect_all'):t('select_all');
+  /* Un onglet vide ne doit pas être une page blanche : on dit ce qu'il
+     attend. C'est le cas des passages tant que rien n'a été créé. */
+  if(!_allc.length){const vide=document.createElement('div');vide.className='sec-vide';
+    vide.textContent=modeP()?'Aucune catégorie de passages pour l’instant. Créez-en une ci-dessous, puis ajoutez-y vos passages : un titre d’un côté, sa référence de l’autre.':t('no_cats');
+    host.appendChild(vide);}
+  const _cs=catsMode(),_all=_cs.length&&_cs.every(c=>c.verses.every(v=>!S.offV[v.id]));$('sel-all').textContent=_cs.length?(_all?t('deselect_all'):t('select_all')):'';
   /* une catégorie de base supprimée doit pouvoir revenir : le message
      « restaurez les catégories de base » promettait un geste qui n'existait pas */
   const rb=$('restore-base'); if(rb){rb.style.display=(S.hidCats||[]).length?'':'none';rb.textContent=t('base_restore');}
@@ -1382,9 +1489,29 @@ function renderCats(){
   updateStart();
 }
 function updateStart(){const b=$('start-btn');b.disabled=false;b.classList.toggle('pas-pret',allItems().length<2);}
-function toggleSelectAll(){const cs=effectiveCats();const allSel=cs.length&&cs.every(c=>c.verses.every(v=>!S.offV[v.id]));
-  if(allSel){S.selCats=[];S.offV={};cs.forEach(c=>c.verses.forEach(v=>S.offV[v.id]=1));}
-  else{S.selCats=cs.map(c=>c.id);S.offV={};}
+/* ── LA BASCULE ──
+   Changer d'onglet, c'est changer d'endroit : la portée d'une catégorie ou
+   d'une section lancée ne suit pas, et la liste repart repliée. Rien n'est
+   écrit dans le nuage, seulement sur l'appareil. */
+function majMode(){
+  const bv=$('mode-v'), bp=$('mode-p');
+  if(!bv||!bp)return;
+  bv.textContent=t('mode_v'); bp.textContent=t('mode_p');
+  bv.classList.toggle('on',!modeP()); bp.classList.toggle('on',modeP());
+  const nc=$('lbl-newcat'); if(nc)nc.textContent=t('newcat');
+}
+function vaMode(m){
+  if(S.mode===m)return;
+  S.mode=m; modeEcrit();
+  S.soloCat=null; S.soloSec=null; S.showAllCats=false; S.open={};
+  renderCats();
+}
+function toggleSelectAll(){const cs=catsMode();const allSel=cs.length&&cs.every(c=>c.verses.every(v=>!S.offV[v.id]));
+  /* On ne touche qu'aux cartes du mode où l'on est. Vider la liste des
+     exclusions d'un coup, comme avant, aurait rallumé en douce tous les
+     versets décochés dès qu'on aurait touché « Tout sélectionner » du côté
+     des passages, et l'inverse. */
+  cs.forEach(c=>c.verses.forEach(v=>{if(allSel)S.offV[v.id]=1;else delete S.offV[v.id];}));
   savePrefs();renderCats();}
 
 // ════════ UI : STUDY ════════
@@ -1403,6 +1530,7 @@ function applyLang(){
   $('lbl-cats').textContent=tl.cats; $('lbl-newcat').textContent=tl.newcat; $('lbl-newsec').textContent=tl.sec_new;
   $('start-btn').textContent=tl.start; $('reset-btn').textContent=tl.reset; $('finish-btn').textContent=tl.finish;
   $('sum-back').textContent=tl.backbtn;
+  majMode();
 }
 function showView(v){
   $('setup').style.display=v==='setup'?'block':'none';
@@ -1421,9 +1549,10 @@ function startSession(){
     /* sans cette remise à zéro, la portée d'une section ou d'une catégorie
        resterait armée et le tableau croirait la mémoire vide */
     S.soloCat=null; S.soloSec=null;
-    if(!effectiveCats().length)lvInfo(t('no_cats'));
-    else if(!dispo)lvInfo(t('empty_sel'));
-    else lvInfo(t('not_enough'));
+    const p=modeP();
+    if(!catsMode().length)lvInfo(t(p?'no_cats_p':'no_cats'));
+    else if(!dispo)lvInfo(t(p?'empty_sel_p':'empty_sel'));
+    else lvInfo(t(p?'not_enough_p':'not_enough'));
     updateStart();
     return;
   }
@@ -1455,10 +1584,16 @@ function majStat(){
 function renderQuestion(){
   const q=S.cur,l=S.lang;
   majStat();
-  $('q-label').textContent=q.qMode==='vr'?t('find_ref'):t('find_verse');
+  /* Un passage se demande dans les mêmes deux sens qu'un verset, avec les
+     mots qui conviennent : « Où se trouve ce passage ? » quand le titre est
+     posé, « Quel passage est-ce ? » quand c'est la référence. */
+  const pas=!!q.item.pas;
+  $('q-label').textContent=q.qMode==='vr'?t(pas?'find_ref_p':'find_ref'):t(pas?'find_passage':'find_verse');
   const pr=$('q-prompt');
   pr.textContent=q.qMode==='vr'?q.item[l].text:q.item[l].ref;
-  pr.className='q-prompt'+(q.qMode==='rv'?' ref':'');
+  /* Le titre d'un passage n'est pas de l'Écriture : il ne se compose pas dans
+     la même lettre qu'un verset, mais dans celle des titres. */
+  pr.className='q-prompt'+(q.qMode==='rv'?' ref':(pas?' titre':''));
   // relancer l\u2019animation d\u2019entrée
   const qb=$('qbox'); qb.style.animation='none'; void qb.offsetHeight; qb.style.animation='rise .5s cubic-bezier(.2,.7,.3,1) both';
   const opts=$('opts'); opts.className='opts'+(q.qMode==='vr'?' two':''); opts.innerHTML='';
@@ -1519,7 +1654,7 @@ function endSession(){
   $('sum-num').textContent=S.answered?Math.round(S.correct/S.answered*100)+'%':'—';
   $('sum-sub').textContent=t('done');
   let vCount=0; allItems().forEach(i=>{if(levelOf(i.id)==='v')vCount++;});
-  $('sum-detail').textContent=S.correct+' / '+S.answered+' '+t('correct')+'  ·  '+vCount+' '+t('acquired');
+  $('sum-detail').textContent=S.correct+' / '+S.answered+' '+t('correct')+'  ·  '+vCount+' '+t(modeP()?'acquired_p':'acquired');
   /* Ce que TU as déclaré, à côté de ce que la machine a mesuré. La ligne
      n'apparaît que si tu t'es noté au moins une fois. */
   const R=S.rap||{}, tot=(R.r||0)+(R.a||0)+(R.v||0);
@@ -1541,7 +1676,9 @@ function moveVerse(srcId,vId,dstId){
 }
 function openMoveVerse(srcId,vId){
   const host=$('move-list'); host.innerHTML='';
-  $('mmove-title').textContent=S.lang==='fr'?'Déplacer le verset dans…':'Move the verse to…';
+  /* La liste ne propose que des catégories du mode courant (groupesCats les
+     filtre déjà) : un verset ne peut pas atterrir chez les passages. */
+  $('mmove-title').textContent=S.lang==='fr'?(modeP()?'Déplacer le passage dans…':'Déplacer le verset dans…'):'Move to…';
   $('mmove-cancel').textContent=S.lang==='fr'?'Annuler':'Cancel';
   // les catégories sont proposées dans l'ordre des sections, chacune portant
   // le nom de la sienne : on sait où l'on envoie le verset
@@ -1572,18 +1709,23 @@ function renderSearch(){
     hits.forEach(v=>{
       total++;
       const r=document.createElement('div'); r.className='srch-v';
+      const pas=estPassage(c), dv=v[S.lang]||{};
       r.innerHTML='<span class="vref"></span><span class="vtext"></span>';
-      r.querySelector('.vref').textContent=(v[S.lang]||{}).ref||'';
-      r.querySelector('.vtext').textContent=trunc(((v[S.lang]||{}).text||''),90);
-      r.onclick=()=>{closeModal('m-search');S.showAllCats=true;S.open[c.id]=true;const _s=secDe(c.id);if(_s){S.secOpen[_s]=true;secOpenEcrit();}renderCats();const el=document.querySelector('.cat[data-id="'+c.id+'"]');if(el)el.scrollIntoView({behavior:'smooth',block:'center'});};
+      r.querySelector('.vref').textContent=(pas?trunc(dv.text||'',72):dv.ref)||'';
+      r.querySelector('.vtext').textContent=pas?(dv.ref||''):trunc(dv.text||'',90);
+      /* La recherche fouille les deux séries : si le résultat vit dans
+         l'autre onglet, on y va, sinon le clic n'ouvrirait rien de visible. */
+      r.onclick=()=>{closeModal('m-search');if(S.mode!==kindDe(c)){S.mode=kindDe(c);modeEcrit();}S.showAllCats=true;S.open[c.id]=true;const _s=secDe(c.id);if(_s){S.secOpen[_s]=true;secOpenEcrit();}renderCats();const el=document.querySelector('.cat[data-id="'+c.id+'"]');if(el)el.scrollIntoView({behavior:'smooth',block:'center'});};
       host.appendChild(r);
     });
   });
-  if(!total){const e=document.createElement('div');e.className='srch-vide';e.textContent=S.lang==='fr'?'Aucun verset trouvé.':'No verse found.';host.appendChild(e);}
+  if(!total){const e=document.createElement('div');e.className='srch-vide';e.textContent=S.lang==='fr'?'Rien trouvé.':'Nothing found.';host.appendChild(e);}
 }
 function openSearch(){
-  $('msrch-title').textContent=S.lang==='fr'?'Rechercher un verset':'Search a verse';
-  $('i-srch').placeholder=S.lang==='fr'?'Référence ou texte…':'Reference or text…';
+  /* La recherche couvre les deux séries : elle ne s'appelle donc plus
+     « rechercher un verset ». */
+  $('msrch-title').textContent=S.lang==='fr'?'Rechercher':'Search';
+  $('i-srch').placeholder=S.lang==='fr'?'Référence, texte ou titre…':'Reference, text or title…';
   $('msrch-close').textContent=S.lang==='fr'?'Fermer':'Close';
   $('i-srch').value=''; $('srch-results').innerHTML='';
   openModal('m-search'); setTimeout(()=>$('i-srch').focus(),60);
@@ -1714,7 +1856,9 @@ function bibUtilise(){
   const r=bibResultat();
   if(!r)return;
   const fr=S.lang!=='en';
-  $(fr?'i-vfr':'i-ven').value=r.texte;
+  /* Sur un passage, on ne prend que la référence : le titre est un mot de
+     toi, pas un morceau de texte biblique. */
+  if(!S.pendingPas)$(fr?'i-vfr':'i-ven').value=r.texte;
   $(fr?'i-rfr':'i-ren').value=r.ref;
   closeModal('m-bib');
 }
@@ -1742,7 +1886,9 @@ function lvInfo(msg){
   $('minfo-txt').textContent=msg; $('minfo-ok').textContent='OK';
   openModal('m-info');
 }
-function openNewCat(){S.editCat=null;$('mcat-title').textContent=t('mcat');$('i-cfr').value='';$('i-cen').value='';modalCatLang();openModal('m-cat');}
+/* Une catégorie naît dans le mode où l'on se trouve : on ne le lui demande
+   pas, l'onglet l'a déjà dit. */
+function openNewCat(){S.editCat=null;$('mcat-title').textContent=t(modeP()?'mcat_p':'mcat');$('i-cfr').value='';$('i-cen').value='';modalCatLang();openModal('m-cat');}
 function openRenameCat(id){const c=effectiveCats().find(x=>x.id===id);if(!c)return;S.editCat=id;$('mcat-title').textContent=t('mcat_edit');$('i-cfr').value=c.name.fr;$('i-cen').value=c.name.en;modalCatLang();openModal('m-cat');}
 async function saveCatModal(){
   const fr=S.lang==='fr';
@@ -1752,12 +1898,13 @@ async function saveCatModal(){
     if(isBase(S.editCat)) editBase(S.editCat,setn);
     else{const c=S.customCats.find(x=>x.id===S.editCat);setn(c);await saveCat(c);}
   } else {
-    const c={id:'c'+Date.now(),name:{fr:name,en:name},verses:[]};S.customCats.push(c);S.selCats.push(c.id);await saveCat(c);savePrefs();
+    const c={id:'c'+Date.now(),name:{fr:name,en:name},verses:[],kind:S.mode};S.customCats.push(c);S.selCats.push(c.id);await saveCat(c);savePrefs();
   }
   closeModal('m-cat'); renderCats();
 }
 async function delCatById(id){
-  if(!await lvConfirm(t('del_cat_q'),1))return;
+  const _c=effectiveCats().find(x=>x.id===id);
+  if(!await lvConfirm(t(_c&&estPassage(_c)?'del_cat_q_p':'del_cat_q'),1))return;
   const base=isBase(id);
   /* l'écran répond d'abord : sur mobile, une écriture Firestore lente ou
      refusée laissait autrefois l'impression que le bouton ne marchait pas */
@@ -1774,21 +1921,35 @@ async function delCatById(id){
 }
 function modalVerseLang(){
   const fr=S.lang==='fr';
+  /* La même modale sert aux deux : pour un passage, « Texte » devient
+     « Titre du passage » et l'exemple de référence change. Le champ garde une
+     seule ligne d'invite, il n'y a rien de plus à expliquer. */
+  const pas=!!S.pendingPas;
   $('row-vfr').style.display=fr?'':'none'; $('row-rfr').style.display=fr?'':'none';
   $('row-ven').style.display=fr?'none':''; $('row-ren').style.display=fr?'none':'';
-  $('lbl-vfr').textContent=t('f_text'); $('lbl-ven').textContent=t('f_text');
-  $('lbl-rfr').textContent=t('f_ref'); $('lbl-ren').textContent=t('f_ref');
+  const lt=t(pas?'f_titre':'f_text'), lr=t(pas?'f_ref_p':'f_ref');
+  $('lbl-vfr').textContent=lt; $('lbl-ven').textContent=lt;
+  $('lbl-rfr').textContent=lr; $('lbl-ren').textContent=lr;
+  $('i-vfr').placeholder=pas?t('ph_titre'):''; $('i-ven').placeholder=pas?t('ph_titre'):'';
+  $('i-vfr').rows=pas?2:3; $('i-ven').rows=pas?2:3;
+  /* Le choix dans la Bible reste offert aux passages : il n'y remplit que la
+     RÉFÉRENCE, jamais le titre, qui s'écrit à la main. */
+  const src=$('mv-bible'); if(src)src.textContent=pas?t('bible_ref'):(S.lang==='fr'?'Choisir dans la Bible':'Pick from the Bible');
 }
 function modalCatLang(){
   const fr=S.lang==='fr';
   $('row-cfr').style.display=fr?'':'none'; $('row-cen').style.display=fr?'none':'';
   $('mcat-lfr').textContent=t('f_name'); $('mcat-len').textContent=t('f_name');
 }
-function openAddVerse(catId){S.pendingCat=catId;S.editVerse=null;$('mv-title').textContent=t('mv');['i-vfr','i-rfr','i-ven','i-ren'].forEach(x=>$(x).value='');$('mv-reset').style.display='none';bibRaz();modalVerseLang();openModal('m-verse');}
+function openAddVerse(catId){
+  const c0=effectiveCats().find(x=>x.id===catId);
+  S.pendingPas=!!(c0&&estPassage(c0));
+  S.pendingCat=catId;S.editVerse=null;$('mv-title').textContent=t(S.pendingPas?'mp':'mv');['i-vfr','i-rfr','i-ven','i-ren'].forEach(x=>$(x).value='');$('mv-reset').style.display='none';bibRaz();modalVerseLang();openModal('m-verse');}
 function openEditVerse(catId,vId){
   const c=effectiveCats().find(x=>x.id===catId); if(!c)return;
   const v=c.verses.find(x=>x.id===vId); if(!v)return;
-  S.pendingCat=catId; S.editVerse=vId; $('mv-title').textContent=t('mv_edit');
+  S.pendingPas=estPassage(c);
+  S.pendingCat=catId; S.editVerse=vId; $('mv-title').textContent=t(S.pendingPas?'mp_edit':'mv_edit');
   $('i-vfr').value=v.fr.text; $('i-rfr').value=v.fr.ref; $('i-ven').value=v.en.text; $('i-ren').value=v.en.ref;
   $('mv-reset').style.display=verseOrigin(vId)==='base'?'':'none'; $('mv-reset').textContent=t('reset_verse');
   modalVerseLang();
@@ -1824,7 +1985,7 @@ function resetVerseOrig(){
 async function trashVerse(catId,vId){
   const c=effectiveCats().find(x=>x.id===catId); if(!c)return;
   const v=c.verses.find(x=>x.id===vId); if(!v)return;
-  const rec={vId, catId, catName:clone(c.name), verse:clone(v), origin:verseOrigin(vId), prog:S.progress[vId]?clone(S.progress[vId]):null, ts:Date.now()};
+  const rec={vId, catId, catName:clone(c.name), verse:clone(v), kind:kindDe(c), origin:verseOrigin(vId), prog:S.progress[vId]?clone(S.progress[vId]):null, ts:Date.now()};
   if(isBase(catId)) editBase(catId,cc=>{cc.verses=cc.verses.filter(x=>x.id!==vId);});
   else{const cu=S.customCats.find(x=>x.id===catId);if(!cu)return;cu.verses=cu.verses.filter(x=>x.id!==vId);await saveCat(cu);}
   delete S.progress[vId]; marqueSale(vId); saveProgress();
@@ -1955,7 +2116,10 @@ function saveSecModal(){
 function trashListe(items){
   let h='';
   items.forEach(it=>{
-    h+='<div class="trash-item"><span class="trash-vmeta"><span class="trash-vref">'+besc((it.verse[S.lang]||{}).ref||'')
+    /* Un passage se reconnaît à son titre, pas à sa référence : la corbeille
+       montre donc de lui ce qui permet de le retrouver. */
+    const d=it.verse[S.lang]||{};
+    h+='<div class="trash-item"><span class="trash-vmeta"><span class="trash-vref">'+besc((it.kind==='p'?(d.text||d.ref):d.ref)||'')
       +'</span><span class="trash-vcat">'+besc(it.catName?(it.catName[S.lang]||''):'')+'</span></span>'
       +'<span class="trash-acts"><span class="trash-act" data-trestore="'+it.vId+'">'+t('trash_restore')
       +'</span><span class="trash-act del" data-tdel="'+it.vId+'">'+t('trash_delperm')+'</span></span></div>';
@@ -1995,6 +2159,7 @@ document.addEventListener('DOMContentLoaded',()=>{
      recale dès que la connexion revient */
   caleHorloge();
   window.addEventListener('online',caleHorloge);
+  modeLit();
   $('tab-si').onclick=()=>setAuth('si');
   $('tab-su').onclick=()=>setAuth('su');
   $('b-forgot').onclick=()=>setAuth(authMode==='forgot'?'si':'forgot');
@@ -2026,6 +2191,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   /* Remettre la mémoire à zéro efface les niveaux ET les échéances : tout
      redevient immédiatement disponible, il n'y a rien à attendre. */
   $('reset-btn').onclick=async()=>{if(await lvConfirm(t('reset_q'),1)){S.progress={};S.step=0;RAZ_PROG=true;saveProgress();renderCats();}};
+  $('mode-v').onclick=()=>vaMode('v');
+  $('mode-p').onclick=()=>vaMode('p');
   $('add-cat').onclick=openNewCat;
   $('restore-base').onclick=async()=>{if(!(S.hidCats||[]).length)return;if(!await lvConfirm(t('base_restore_q')))return;S.hidCats=[];savePrefs();renderCats();};
   $('add-sec').onclick=()=>openNewSec(null);
