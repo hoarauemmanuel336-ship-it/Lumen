@@ -1340,19 +1340,31 @@ des problèmes et des bugs »). Acquis à ne pas défaire :
   dessus ») : .vst:hover (et le halo des vers .po) prend var(--vc-sel,
   rgb(41,39,35)), le voile exact de la sélection, au lieu de --surv à 6 %.
   Sous @media(hover:hover) seulement, le doigt n'a pas de survol.
-• BIBLE, LE VOILE NE MORD PLUS SUR LES LIGNES VOISINES (05/09, Emmanuel :
-  « quand je survole ou clique sur un verset, parfois ça bloque la vue du
-  verset du dessus/dessous »). Le fond d'un verset est OPAQUE (voulu : deux
-  versets voisins sélectionnés ne doivent pas laisser voir de couture), donc
-  tout ce qu'il recouvre disparaît. Il portait .06em de marge intérieure en
-  haut et en bas : le fond faisait 24 px pour une ligne de 22,1 px et mangeait
-  les jambages des lignes d'à côté — invisible tant que le survol était à 6 %,
-  criant depuis qu'il montre la teinte pleine. Marge intérieure verticale
-  supprimée sur .vst:not(.po) ET sur .lv-frag (portions surlignées) : le fond
-  tient dans sa ligne (22,0 px, 0,1 px d'écart entre deux lignes empilées). La
-  marge intérieure HORIZONTALE (.3em, avec sa marge extérieure négative) est
-  conservée : c'est elle qui recouvre l'espace entre deux versets voisins.
-  Ne pas remettre de marge verticale ici.
+• BIBLE, LE VOILE NE MASQUE PLUS RIEN (05/09, Emmanuel : « quand je survole ou
+  clique sur un verset, ça bloque la vue du verset du dessus/dessous », puis
+  « toujours pareil » après une première tentative). LA CAUSE : le fond d'un
+  verset était OPAQUE, et l'interligne du texte est serré (1,08) — les jambages
+  d'une ligne (le pied des j, p, g) descendent DANS la ligne suivante, dont le
+  fond les effaçait. Cela valait même à l'intérieur d'un seul verset de trois
+  lignes, ce que la première correction (retirer la marge verticale) ne pouvait
+  pas régler. LA SOLUTION, en deux temps :
+    1. Le voile devient TRANSPARENT. rgb(41,39,35) valait exactement le
+       parchemin à 17 % fondu sur le noir : on écrit donc rgba(239,230,207,.17)
+       (et .12 pour .cible). Même teinte sur le fond noir, mais les lettres
+       passent au travers. surlOpaque() rend de même la couleur choisie en
+       rgba au lieu de la fondre sur le noir : les surlignages de couleur ne
+       coupent plus rien non plus.
+    2. L'ESPACE QUI SÉPARE DEUX VERSETS EST ÉCRITE DANS LE VERSET QUI PRÉCÈDE
+       (corpsVerset, prose seulement). Elle vivait entre les balises, ce qui
+       obligeait chaque voile à déborder de .3em pour la couvrir — un débord
+       qui, en transparence, aurait fait une bande plus claire à la jointure.
+       Dedans, deux versets se touchent exactement : .vst:not(.po) n'a donc
+       PLUS AUCUNE marge, ni verticale ni horizontale, et il n'y a ni couture
+       sombre ni transparence doublée.
+  Vérifié : jambages intacts (Matthieu 12:42, trois lignes), jointure invisible
+  entre deux versets sélectionnés, copie du texte inchangée (elle vient des
+  données, pas du DOM), surlignage de portion toujours juste. Ne pas remettre
+  de fond opaque, ni de marge sur .vst, ni l'espace hors du verset.
 • BIBLE (05/09) : body.sel-active .wrap posé APRÈS html.panneau .wrap (même
   spécificité, le raccourci padding écrasait le bas) ; « #ref=… » sélectionne
   la plage via allerRefs et hashDe() du panneau l'emploie pour les plages ;
