@@ -1257,7 +1257,22 @@ function nextItem(){
     const na=niveauEffectif(a.id),nb=niveauEffectif(b.id);if(na!==nb)return na-nb;
     return vuLe(a.id)-vuLe(b.id);
   });
-  const fragiles=libres.slice(0,Math.max(3,Math.ceil(libres.length/3)));
+  /* ── « LE TIERS LE PLUS FRAGILE » NE VOULAIT PLUS RIEN DIRE (05/09) ──
+     Ce tiers était pris sur TOUT le contenu, acquis compris : c'est une part
+     relative, pas une mesure de fragilité. Tant que la mémoire est jeune, les
+     deux coïncident. Le jour où l'essentiel est acquis, le « tiers le plus
+     fragile » est composé de versets… acquis, et ce qui reste à apprendre n'y
+     entre plus. Mesuré sur le vrai code, trois cent soixante versets dont
+     soixante-quatorze non maîtrisés : DEUX QUESTIONS SUR TROIS allaient à des
+     versets déjà sus. Exactement l'inverse de ce qu'on veut.
+     Le tiers se prend donc maintenant sur CE QUI N'EST PAS MAÎTRISÉ, et rien
+     d'autre. Les acquis gardent leur tour de rôle (un tirage sur quatre), pas
+     davantage. Quand tout est acquis, il n'y a plus de « pas maîtrisé » : on
+     retombe alors sur l'ancien calcul, le tiers le plus pâle de l'ensemble,
+     qui redevient la bonne mesure puisqu'il n'y a rien d'autre. */
+  const pasSus=libres.filter(i=>niveauEffectif(i.id)<NIVEAU_ACQUIS);
+  const socle=pasSus.length?pasSus:libres;
+  const fragiles=socle.slice(0,Math.max(3,Math.ceil(socle.length/3)));
   /* ── LES VERSETS ACQUIS REVIENNENT AUSSI, DE TEMPS EN TEMPS (03/09) ──
      Le tiers le plus fragile est le bon endroit pour l'essentiel du temps
      libre, mais pris seul il enferme la série : les versets tenus pour acquis
@@ -1269,9 +1284,14 @@ function nextItem(){
      ne fait toujours pas monter, et une erreur ramène le verset à réviser,
      ce qui est précisément ce que l'on veut d'un verset qu'on croyait su. */
   const sus=libres.filter(i=>niveauEffectif(i.id)>=NIVEAU_ACQUIS&&fragiles.indexOf(i)<0);
-  let bassin;
-  if(sus.length&&(S.depuisSu||0)>=CADENCE_SU){ S.depuisSu=0; bassin=sus; }
-  else { S.depuisSu=(S.depuisSu||0)+1; bassin=fragiles; }
+  let bassin=fragiles;
+  /* Le tour de rôle des acquis ne s'ouvre que s'il reste quelque chose à
+     apprendre : sinon il n'y a rien à protéger, et toute la séance leur
+     revient de droit. */
+  if(sus.length&&pasSus.length){
+    if((S.depuisSu||0)>=CADENCE_SU){ S.depuisSu=0; bassin=sus; }
+    else S.depuisSu=(S.depuisSu||0)+1;
+  }
   bassin=bassin.slice().sort((a,b)=>vuLe(a.id)-vuLe(b.id));
   const t0=vuLe(bassin[0].id);
   const memeAge=bassin.filter(i=>vuLe(i.id)===t0);

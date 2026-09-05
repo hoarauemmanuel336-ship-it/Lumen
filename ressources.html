@@ -296,6 +296,18 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 
 /* ── la ressource en grand ── */
 .res-cadre{border:1px solid var(--filet);background:#050505;margin:6px 0 4px}
+/* ── UNE IMAGE SE VOIT D'ABORD EN ENTIER ──
+   Elle occupait toute la largeur de la colonne, quelle que soit sa forme. Une
+   image en hauteur, comme une page de prière, devenait alors plus haute que
+   l'écran : on n'en voyait que le premier tiers et il fallait faire défiler
+   pour deviner le reste. Elle tient maintenant dans l'écran d'un seul coup,
+   posée au centre de son cadre ; un clic la porte à sa pleine largeur pour
+   lire les petits caractères, un second la remet en place. */
+.res-cadre.img{display:flex;align-items:center;justify-content:center;padding:14px}
+.res-cadre.img img{display:block;width:auto;max-width:100%;max-height:min(78vh,1000px);height:auto;cursor:zoom-in;transition:max-height .35s ease}
+.res-cadre.img.zoom{padding:0}
+.res-cadre.img.zoom img{width:100%;max-height:none;cursor:zoom-out}
+@media(max-width:720px){.res-cadre.img{padding:8px}.res-cadre.img img{max-height:72vh}}
 .res-cadre img{display:block;width:100%;height:auto}
 .res-cadre iframe{display:block;width:100%;border:0;background:#000}
 .res-desc{font-family:var(--serif);font-size:calc(17px*var(--lvz,1));line-height:1.72;color:var(--pa);margin:20px 0 4px;white-space:pre-wrap}
@@ -787,29 +799,46 @@ function pageCadre(code){
        l'appel et on fait faire le travail à la page, qui a le droit. La
        tentative directe est conservée : là où elle passe, elle passe. */
     +'function relais(t){try{parent.postMessage({lvCopie:String(t)},"*");}catch(e){}}'
-    /* ── LA COPIE SE FAIT D'ABORD SUR PLACE, DANS LE GESTE ──
+    /* ── LA COPIE SE FAIT SUR PLACE, DANS LE GESTE, *ET* PAR LA PAGE ──
        Le relais vers la page arrive par message, donc APRÈS le doigt : la page
        n'a plus le « geste récent » que les navigateurs exigent pour toucher au
-       presse-papier. Chrome ferme les yeux, Brave non, et la copie échouait là
-       sans rien dire. On copie donc d'abord ici même, pendant le clic, par la
-       vieille commande de copie, qui n'a besoin ni d'origine ni de permission,
-       seulement du geste. Le relais et la voie moderne ne servent plus que de
-       secours si elle échoue. */
+       presse-papier. Chrome ferme les yeux, Brave non. On copie donc aussi ici
+       même, pendant le clic, par la vieille commande de copie, qui n'a besoin
+       ni d'origine ni de permission, seulement du geste.
+       LES DEUX SONT TENTÉES À CHAQUE FOIS, et c'est le point. La vieille
+       commande RÉPOND « réussi » même quand le navigateur a bloqué l'écriture
+       (vérifié : dans un cadre en bac à sable, elle renvoie vrai sans que rien
+       n'atterrisse dans le presse-papier). Sa réponse ne peut donc pas servir
+       à décider s'il faut relayer : on relaie toujours. Deux écritures du même
+       texte ne coûtent rien, et il suffit qu'une seule passe. */
+    /* ── OÙ SE POSE LE CHAMP DE COPIE ──
+       Il se posait en haut du cadre. Or sélectionner un champ le fait amener à
+       l'écran, et le cadre ne défile pas lui-même : c'est LA PAGE qui bougeait,
+       et l'on se retrouvait ramené en haut du diagramme à chaque copie. Il se
+       pose donc désormais à la hauteur du doigt, là où l'on est déjà : amener
+       cet endroit à l'écran ne déplace rien. Et le focus est demandé sans
+       défilement, ce que les navigateurs savent faire. */
+    +'var lvY=0;'
+    +'function lvPose(e){var y=e&&e.pageY;if(typeof y==="number"&&y>=0)lvY=y;}'
+    +'document.addEventListener("pointerdown",lvPose,true);'
+    +'document.addEventListener("click",lvPose,true);'
     +'function surPlace(t){try{var z=document.createElement("textarea");z.value=String(t);'
     +'z.setAttribute("readonly","");'
     /* rendu mais invisible : masqué pour de bon, rien ne serait sélectionnable ;
        16px sinon iOS zoome de lui-même au moment de la sélection */
-    +'z.style.cssText="position:fixed;top:0;left:0;width:1px;height:1px;padding:0;border:0;font-size:16px;opacity:0";'
+    +'z.style.cssText="position:absolute;left:0;width:1px;height:1px;padding:0;border:0;font-size:16px;opacity:0";'
+    +'z.style.top=Math.max(0,lvY-8)+"px";'
     +'document.body.appendChild(z);var ok=false;'
-    +'try{z.focus();z.select();if(z.setSelectionRange)z.setSelectionRange(0,999999);'
+    +'try{try{z.focus({preventScroll:true});}catch(e2){z.focus();}'
+    +'if(z.setSelectionRange)z.setSelectionRange(0,999999);'
     +'var s=window.getSelection(),r=document.createRange();r.selectNodeContents(z);'
     +'s.removeAllRanges();s.addRange(r);ok=document.execCommand("copy");'
     +'s.removeAllRanges();}catch(e){}'
     +'document.body.removeChild(z);return ok;}catch(e){return false;}}'
     +'try{var nat=(navigator.clipboard&&navigator.clipboard.writeText)?navigator.clipboard.writeText.bind(navigator.clipboard):null;'
     +'Object.defineProperty(navigator,"clipboard",{configurable:true,value:{'
-    +'writeText:function(t){if(surPlace(t))return Promise.resolve();'
-    +'relais(t);if(nat)return nat(t).catch(function(){return undefined;});return Promise.resolve();},'
+    +'writeText:function(t){var v=String(t);surPlace(v);relais(v);'
+    +'if(nat)return nat(v).catch(function(){return undefined;});return Promise.resolve();},'
     +'readText:function(){return Promise.reject(new Error("indisponible"));}}});}catch(e){}'
     +'})();</scr'+'ipt>'
     /* Balise fermante coupée en deux : le build injecte son script sur la
@@ -830,8 +859,14 @@ function copieVieille(txt){
   try{
     const z=document.createElement('textarea');
     z.value=txt; z.readOnly=false; z.contentEditable='true';
-    z.style.cssText='position:fixed;top:0;left:-9999px;width:1px;height:1px;font-size:16px;opacity:0';
+    /* posé À LA HAUTEUR OÙ L'ON LIT, pas en haut de la page : sélectionner un
+       champ le fait amener à l'écran, et un champ posé en haut ramenait donc
+       la page tout en haut à chaque copie. Le focus est en plus demandé sans
+       défilement. */
+    z.style.cssText='position:absolute;left:-9999px;width:1px;height:1px;font-size:16px;opacity:0';
+    z.style.top=(window.pageYOffset||document.documentElement.scrollTop||0)+'px';
     document.body.appendChild(z);
+    try{z.focus({preventScroll:true});}catch(_){}
     const r=document.createRange(); r.selectNodeContents(z);
     const s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
     z.setSelectionRange(0,999999);
@@ -1229,7 +1264,17 @@ function corpsVoir(a,publik){
     chargeMedia(a.media,publik).then(u=>{
       cadre.innerHTML='';
       if(t==='image'){
-        const im=document.createElement('img'); im.alt=a.titre||''; im.src=u; cadre.appendChild(im);
+        const im=document.createElement('img'); im.alt=a.titre||''; im.src=u;
+        im.title='Cliquer pour agrandir';
+        cadre.classList.add('img');
+        /* l'agrandissement se fait sur place : on reste dans la page, et le
+           bouton « précédent » n'a rien de nouveau à défaire */
+        im.addEventListener('click',()=>{
+          const z=cadre.classList.toggle('zoom');
+          im.title=z?'Cliquer pour réduire':'Cliquer pour agrandir';
+          if(!z)cadre.scrollIntoView({block:'nearest'});
+        });
+        cadre.appendChild(im);
       }else{
         const f=document.createElement('iframe');
         f.setAttribute('title',a.titre||'Document');
