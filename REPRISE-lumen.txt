@@ -1237,6 +1237,41 @@ des problèmes et des bugs »). Acquis à ne pas défaire :
   filtre est écrit dans le champ de recherche), au lieu de la page entière.
   Rejoué après chaque rendu de chapitre, après la synchronisation, et après
   enregistrement ou suppression.
+• CHOISIR UNE RÉFÉRENCE : LE SÉLECTEUR DE MÉMORISER, PARTOUT (05/09, Emmanuel :
+  « que ce soit pour les articles ou pour les commentaires, pour sélectionner
+  une référence, rends ça pareil que dans Mémoriser »). Le sélecteur de
+  memoriser.html (modale m-bib : fil d'Ariane, champ « Aller », liste des
+  livres par testament, grille des chapitres, versets touchables, aperçu où
+  l'on resserre mot à mot, « Tout le passage ») est porté TEL QUEL dans
+  articles.html et commentaires.html — mêmes classes mbib-*, même code, tout
+  emprunté à window.LVBible. Une variable BIB_CIBLE dit ce que « Utiliser »
+  remplit :
+    – « ref » : le bouton « Référence » de la barre d'outils. Il n'ouvre plus
+      une simple saisie au clavier : on choisit dans la Bible, et le renvoi
+      posé est donc toujours un vrai passage. DEUX VALIDATIONS (Emmanuel,
+      05/09 : « si on veut mettre aussi le verset ? », puis « je veux aussi
+      pouvoir mettre que le numéro si je veux ») : « La référence » pose le
+      seul renvoi, « Le verset entier » pose le texte PUIS sa référence, au
+      format du site (italique entre guillemets français, référence en gras
+      sans parenthèses, et cliquable). Le second bouton ne paraît que sur un
+      passage choisi et pour ce contexte (bibMajBoutons). Seul cas qui accepte
+      un CHAPITRE entier (chapOk) : sans verset touché, « La référence » rend
+      « Matthieu 5 ». La sélection du texte est mise de côté avant l'ouverture
+      et rendue après (gardeSelection/rendSelection), sinon le renvoi partait
+      dans le vide ; besoinEspace() pose une espace si le curseur touche le mot
+      précédent. Sur téléphone les trois boutons s'empilent, insertions
+      d'abord, « Annuler » en dernier.
+    – « verset » : entrée « Prendre le verset dans la Bible » en tête du menu
+      d'un bloc de verset. Elle remplit le TEXTE et la RÉFÉRENCE d'un coup :
+      plus besoin de recopier un verset à la main. Le bloc est retrouvé par sa
+      clé (k), pas par son rang, et litEditeur() est appelé avant l'ouverture
+      pour ne pas perdre ce qui vient d'être tapé.
+    – « edref » : le lien « Choisir dans la Bible » sous le champ de référence
+      d'un commentaire ; il ne prend que la référence (pas de chapitre seul,
+      un commentaire vise un verset ou une plage).
+  Dans les trois cas, « depart » ouvre le sélecteur sur la référence déjà en
+  place (le texte sélectionné, la référence du bloc, le champ) au lieu de
+  repartir de la Genèse.
 • COMMENTAIRES BIBLIQUES (05/09, Emmanuel : « en plus des notes personnelles,
   je veux pouvoir créer des commentaires bibliques » ; réponses : affichés
   dans la Bible sur le verset, un verset ou une plage, écrits avec l'éditeur
@@ -1246,15 +1281,22 @@ des problèmes et des bugs »). Acquis à ne pas défaire :
   blocs, mêmes images tranchées dans users/{uid}/medias et public_medias,
   mêmes cadres isolés, même enregistrement automatique). Pas de rubriques :
   la liste se range PAR LIVRE, dans l'ordre de la Bible, chaque livre
-  dépliable (lv_com_liv). Un commentaire porte UNE référence (champ .ed-ref
-  au-dessus du titre, titre facultatif) : un verset ou une plage d'un même
-  chapitre, lue par le dictionnaire de bible-panneau.js (LVBible.ref, attendu
-  via LVBible.pret()) et écrite en trois formes dans le document : ref (le
+  dépliable (lv_com_liv). Un commentaire porte UNE référence : un verset ou une
+  plage d'un même chapitre, écrite en trois formes dans le document : ref (le
   libellé canonique, « Matthieu 5:3-12 », « Psaume 23:1 », « Jude 3 »), refs
-  [{slug,ch,v1,v2}] et livres [slug]. Le champ dit sous lui ce qu'il a compris
-  ou ce qui manque ; au blur, la saisie prend sa forme canonique. SANS
-  RÉFÉRENCE VALABLE, PAS DE MISE EN LIGNE (metEnLigne lève lvSansRef, le
-  bouton le dit). Brouillons : users/{uid}/commentaires ; publiés :
+  [{slug,ch,v1,v2}] et livres [slug].
+  UNE SEULE LIGNE POUR LA RÉFÉRENCE (Emmanuel, 05/09 : « enlève cette double
+  ligne, Matthieu et en dessous commentaire de, c'est moche »). Il y avait un
+  champ de saisie et, dessous, une ligne qui répétait la même référence en
+  clair. La référence EST maintenant le bouton (span #ed-ref, en petites
+  capitales dorées, au-dessus du titre) : on la touche, le sélecteur biblique
+  s'ouvre sur elle. Elle ne se tape plus au clavier — la barre de recherche du
+  sélecteur reste là pour qui va vite. La ligne du dessous ne paraît QUE pour
+  une référence illisible (une vieille saisie), et disparaît sinon (:empty).
+  Un commentaire neuf sans référence ouvre le sélecteur de lui-même ; « Publier »
+  sans référence dit ce qui manque, SANS ouvrir le sélecteur par-dessus le
+  message (jamais deux boîtes à la fois). SANS RÉFÉRENCE VALABLE, PAS DE MISE
+  EN LIGNE (metEnLigne lève lvSansRef, le bouton le dit). Brouillons : users/{uid}/commentaires ; publiés :
   public_commentaires (règle ajoutée dans REGLES-firestore.txt, à poser dans
   la console). Route « #nouveau/<référence> » : ouvre le commentaire existant
   sur cette référence s'il y en a un, sinon en crée un prérempli ; traitée
@@ -1299,6 +1341,18 @@ des problèmes et des bugs »). Acquis à ne pas défaire :
   chapitre sans index ; assureIdx() partage la requête en vol (pend) et ne
   pose IDX qu'après construitDico ; résidu Douay retiré de parseRef (les deux
   copies sont de nouveau identiques).
+• BIBLE, UN RENVOI MÈNE AU PASSAGE SANS LE SÉLECTIONNER (05/09). L'adresse de
+  lecture accepte une PLAGE : « #matthieu/7/1-2 » marque les versets 1 à 2
+  (classe cible) et se rend au premier ; vueLecture prend un quatrième
+  argument (vFin) et route() lit « v1-v2 ». hashDe() du panneau, le clic sur
+  une référence dans un commentaire et les lignes de commentaires.html
+  emploient cette forme. Ils passaient par « #ref=… », qui SÉLECTIONNE la
+  plage : la barre du bas s'ouvrait et la sélection restait ensuite dans la
+  Bible du lecteur, d'un appareil à l'autre. « #ref=… » demeure pour la loupe
+  de la Bible (allerRefs), où l'on veut bien une sélection.
+  Contrôlé : verset seul, plage, chapitre entier, psaume, livre d'un seul
+  chapitre (« Jude 3 » → #jude/1/3), et deux références d'un coup (les puces
+  du panneau).
 
 ────────────────────────────────────────────────────────────────────
 6. SUPPRIMÉ : NE PAS RÉINTRODUIRE (sans accord d'Emmanuel)

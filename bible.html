@@ -2893,7 +2893,9 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
      (réseau lent), l'ancien chargement, arrivé en retard, ne doit pas écraser
      la page que l'on regarde à présent. */
   var JETON = 0;
-  function vueLecture(slug, n, vCible){
+  /* vFin : le dernier verset d'un passage visé (« #matthieu/7/1-2 »). Tout le
+     passage est marqué, on se rend au premier. */
+  function vueLecture(slug, n, vCible, vFin){
     var inf = infoLivre(slug);
     if (!inf) return vueLivres();
     hero.style.display = 'none';
@@ -2975,7 +2977,11 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
         var pan = cible.closest('.com-pan');
         if (pan) {
           var rf = cible.closest('.ref');
-          if (rf) { var gr = parseRef(rf.textContent || ''); if (gr) location.hash = '#ref=' + encodeURIComponent(etiquetteRef(gr)); return true; }
+          if (rf) {
+            var gr = parseRef(rf.textContent || '');
+            if (gr) location.hash = '#' + gr.slug + (gr.ch ? '/' + gr.ch + (gr.v1 ? '/' + gr.v1 + (gr.v2 > gr.v1 ? '-' + gr.v2 : '') : '') : '');
+            return true;
+          }
           if (cible.closest('.com-fermer')) { fermeCom(pan); return true; }
           return false;
         }
@@ -3023,8 +3029,13 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
         if (agitSur(e.target)) e.stopPropagation();
       });
       if (vCible) {
+        var fin = Math.max(vFin || vCible, vCible);
+        for (var vv = vCible; vv <= fin; vv++) {
+          var ev = document.getElementById('va-' + vv);
+          if (ev) ev.classList.add('cible');
+        }
         var el = document.getElementById('va-' + vCible);
-        if (el) { el.classList.add('cible'); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }).catch(function(e){
       if (jeton !== JETON) return;
@@ -3067,8 +3078,13 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     }
     if (slug === 'signets') { vueSignets(); window.scrollTo(0, 0); return; }
     if (!slug) { vueLivres(); window.scrollTo(0, 0); return; }
-    var n = parseInt(p[1], 10), v = parseInt(p[2], 10);
-    if (n > 0) { vueLecture(slug, n, v > 0 ? v : 0); if (!(v > 0)) window.scrollTo(0, 0); }
+    /* « #matthieu/7/1 » vise un verset, « #matthieu/7/1-2 » un passage : un
+       renvoi mène au passage entier sans rien SÉLECTIONNER, sinon la barre du
+       bas s'ouvrait et la sélection restait sur les bras du lecteur (05/09). */
+    var n = parseInt(p[1], 10);
+    var mv = String(p[2] || '').match(/^(\d+)(?:-(\d+))?$/);
+    var v = mv ? parseInt(mv[1], 10) : 0, vf = (mv && mv[2]) ? parseInt(mv[2], 10) : v;
+    if (n > 0) { vueLecture(slug, n, v > 0 ? v : 0, vf); if (!(v > 0)) window.scrollTo(0, 0); }
     else { vueChapitres(slug); window.scrollTo(0, 0); }
   }
 

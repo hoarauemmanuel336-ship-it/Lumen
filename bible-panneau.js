@@ -287,13 +287,11 @@
   }
   function hashDe(r){
     if (!r) return '';
-    /* une PLAGE (Matthieu 7:6-8) passe par l'adresse « #ref=… », que la page
-       sait lire : elle sélectionne les versets 6 à 8 puis s'y rend. Avant,
-       seul le premier verset était transmis et rien n'était sélectionné,
-       alors que la même référence tapée dans la loupe de la Bible
-       sélectionnait bien la plage (05/09). */
-    if (r.v1 && r.v2 > r.v1) return '#ref=' + encodeURIComponent(etiquetteRef(r));
-    return '#' + r.slug + (r.ch ? '/' + r.ch + (r.v1 ? '/' + r.v1 : '') : '');
+    /* une PLAGE (Matthieu 7:6-8) s'écrit « #matthieu/7/6-8 » : la page marque
+       les versets 6 à 8 et s'y rend, SANS les sélectionner. Elle passait avant
+       par « #ref=… », qui sélectionne : la barre du bas s'ouvrait et la
+       sélection restait ensuite dans la Bible du lecteur (05/09). */
+    return '#' + r.slug + (r.ch ? '/' + r.ch + (r.v1 ? '/' + r.v1 + (r.v2 > r.v1 ? '-' + r.v2 : '') : '') : '');
   }
 
   /* ───────── Puces, quand un texte cite plusieurs références ───────── */

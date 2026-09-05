@@ -238,6 +238,77 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
   .modal-btns .m-annul,.modal-btns .m-ok{width:100%;text-align:center;padding:12px 8px}
 }
 
+/* ═══ CHOISIR UN VERSET DANS LA BIBLE ═══ */
+/* Le même sélecteur que dans Mémoriser (Emmanuel, 05/09 : « pour sélectionner
+   une référence, rends ça pareil que dans Mémoriser ») : on feuillette les
+   livres, puis les chapitres, on touche les versets, et l'aperçu du bas
+   permet de resserrer sur quelques mots. Ces règles sont reprises de
+   memoriser.html : si on les retouche ici, il faut les retoucher là-bas. */
+#m-bib .modal{max-width:660px;display:flex;flex-direction:column;height:min(760px,calc(100vh - 48px));max-height:calc(100vh - 48px);overflow:hidden}
+#m-bib .modal-titre,#m-bib .modal-btns,.mbib-fil,.mbib-rech{flex:0 0 auto}
+#m-bib .modal-titre{margin-bottom:14px}
+#m-bib .modal-btns{margin-top:18px}
+.mbib-fil{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa2);margin-bottom:14px;min-height:15px}
+.mbib-fil span{cursor:pointer;transition:color .3s}
+.mbib-fil span:hover{color:var(--or-pale)}
+.mbib-rech{display:flex;gap:10px;margin-bottom:16px}
+.mbib-rech .champ{flex:1;min-width:0;margin-top:0}
+.mbib-go{font-family:var(--display);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa);border:1px solid var(--filet-f);background:none;padding:0 15px;cursor:pointer;white-space:nowrap;transition:border-color .3s,color .3s}
+.mbib-go:hover{border-color:var(--or);color:var(--or-pale);background:var(--surv)}
+.mbib-corps{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;border-top:1px solid var(--filet-f);padding-top:14px}
+.mbib-charge{text-align:center;font-style:italic;color:var(--pa2);padding:40px 0}
+.mbib-test{font-family:var(--display);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin:16px 0 8px}
+.mbib-test:first-child{margin-top:0}
+.mbib-grp{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2);margin:12px 0 5px}
+.mbib-livre,.mbib-chap{cursor:pointer;transition:color .25s,border-color .3s}
+.mbib-livre{display:flex;justify-content:space-between;gap:12px;padding:8px 2px;border-bottom:1px solid rgba(231,224,207,.07);font-size:15.5px;color:var(--parchemin)}
+.mbib-livre:hover{color:var(--or-pale)}
+.mbib-n{font-size:12px;color:var(--pa2)}
+.mbib-chaps{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:7px}
+.mbib-chap{border:1px solid var(--filet-f);padding:9px 0;text-align:center;font-size:14px;color:var(--pa)}
+.mbib-chap:hover{border-color:var(--or);color:var(--or-pale);background:var(--surv)}
+.mbib-v{display:flex;gap:10px;padding:9px 8px;cursor:pointer;line-height:1.55;font-size:15.5px;border-bottom:1px solid rgba(231,224,207,.06);transition:background .25s;-webkit-tap-highlight-color:transparent}
+.mbib-v:hover{background:var(--surv)}
+.mbib-v.on{background:rgba(231,224,207,.15)}
+.mbib-vn{flex:0 0 auto;font-size:12px;color:var(--or);padding-top:3px;min-width:20px}
+.mbib-apercu{border-top:1px solid var(--filet-f);margin-top:14px;padding-top:14px;flex:0 1 auto;min-height:152px;display:flex;flex-direction:column;overflow:hidden}
+.mbib-apercu.vide{min-height:0;margin-top:0;padding-top:0;border-top:none}
+.mbib-tete{flex:0 0 auto;display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:9px}
+.mbib-ref{font-family:var(--display);font-size:15px;color:var(--or)}
+.mbib-tout{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa2);cursor:pointer;transition:color .3s}
+.mbib-tout:hover{color:var(--or-pale)}
+.mbib-mots{flex:1 1 auto;min-height:52px;max-height:26vh;overflow-y:auto;line-height:1.85;font-size:15.5px}
+.mbib-mot{cursor:pointer;padding:1px 2px;color:var(--pa2);transition:color .2s,background .2s;-webkit-tap-highlight-color:transparent}
+.mbib-mot.on{color:var(--parchemin);background:rgba(231,224,207,.16)}
+.mbib-mot.bout{box-shadow:inset 0 -1.5px 0 var(--or)}
+.mbib-mots.tout .mbib-mot{color:var(--parchemin);background:none;box-shadow:none}
+.mbib-mots.tout .mbib-mot:hover{background:var(--surv)}
+.mbib-mot-vide{font-size:14px;color:var(--pa2);font-style:italic;line-height:1.5}
+@media(max-width:720px){
+  #m-bib{padding:0!important;align-items:stretch!important;overflow:hidden!important}
+  #m-bib .modal{box-sizing:border-box;width:100%!important;max-width:none!important;margin:0!important;border:none;height:100vh!important;max-height:100vh!important;padding:20px 16px 16px!important;overflow:hidden!important}
+  #m-bib .modal-titre{font-size:20px;margin-bottom:12px}
+  #m-bib .modal-btns{margin-top:14px}
+  .mbib-v{font-size:16px;padding:11px 6px}
+  .mbib-mot{padding:3px 2px}
+}
+@supports(height:100dvh){@media(max-width:720px){#m-bib .modal{height:100dvh!important;max-height:100dvh!important}}}
+
+/* Deuxième validation : poser le VERSET (son texte et sa référence) et non la
+   seule référence (Emmanuel, 05/09 : « si on veut mettre aussi le verset ? »).
+   Bouton bordé, pas plein : c'est un second choix, à côté du principal. */
+.mbib-2{font-family:var(--display);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--parchemin);border:1px solid var(--filet-fort);background:none;padding:9px 18px;cursor:pointer;transition:border-color .3s,color .3s,background .3s}
+.mbib-2:hover{border-color:var(--or);color:var(--or-pale);background:var(--surv)}
+/* Sur téléphone, les trois boutons s'empilent : les deux façons d'insérer
+   d'abord, la sortie en dernier. En grille deux colonnes ils laissaient des
+   trous et « Annuler » se retrouvait seul en tête. */
+@media(max-width:600px){
+  #m-bib .modal-btns{display:flex!important;flex-direction:column;gap:10px}
+  #m-bib .modal-btns .m-ok{order:1}
+  #m-bib .modal-btns .mbib-2{order:2}
+  #m-bib .modal-btns .m-annul{order:3}
+  #m-bib .modal-btns .m-ok,#m-bib .modal-btns .mbib-2,#m-bib .modal-btns .m-annul{width:100%;text-align:center;padding:12px 8px}
+}
 /* compte */
 .auth-ov{position:fixed;inset:0;z-index:4000;background:rgba(8,8,8,.98);display:none;align-items:center;justify-content:center;padding:24px}
 .auth-ov.ouvert{display:flex}
@@ -370,6 +441,15 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
   <div class="modal-titre" id="choix-titre"></div>
   <div id="choix-liste"></div>
   <div class="modal-btns"><button class="m-annul" id="choix-annul">Annuler</button></div>
+</div></div>
+
+<div class="overlay" id="m-bib"><div class="modal">
+  <div class="modal-titre" id="mbib-titre">Choisir un verset</div>
+  <div class="mbib-fil" id="mbib-fil"></div>
+  <div class="mbib-rech"><input type="text" class="champ" id="i-mbib" placeholder="Référence : Jean 3:16" autocomplete="off"><button type="button" class="mbib-go" id="mbib-go">Aller</button></div>
+  <div class="mbib-corps" id="mbib-corps"></div>
+  <div class="mbib-apercu" id="mbib-apercu"></div>
+  <div class="modal-btns"><button class="m-annul" id="mbib-annul">Annuler</button><button class="mbib-2" id="mbib-texte" style="display:none">Le verset entier</button><button class="m-ok" id="mbib-ok">Utiliser</button></div>
 </div></div>
 
 <div class="auth-ov" id="auth-overlay"><div class="auth-box">
@@ -1359,22 +1439,20 @@ async function poseLien(){
   }
   marqueSale();
 }
-async function poseRef(){
+/* La référence se CHOISIT dans la Bible, elle ne se tape plus au clavier
+   (Emmanuel, 05/09) : le renvoi posé est toujours un vrai passage. La barre de
+   recherche du sélecteur accepte quand même une référence écrite, pour aller
+   vite. */
+function poseRef(){
   const z=zoneActive(); if(!z){lvInfo('Placez d’abord le curseur dans un texte.');return;}
-  const s=getSelection(); const sel=s.toString().trim(); const garde=gardeSelection();
-  const r=await lvSaisie('Référence biblique','Elle devient un renvoi cliquable vers la Bible.',sel,'Jean 3:16');
-  if(!r||!r.trim())return;
-  rendSelection(z,garde);
-  const sp=document.createElement('span');
-  sp.className='ref'; sp.setAttribute('role','button'); sp.setAttribute('tabindex','0');
-  sp.textContent=r.trim();
-  const sel2=getSelection();
-  if(sel2.rangeCount&&!sel2.isCollapsed)sel2.getRangeAt(0).deleteContents();
-  insere(sp);
+  const s=getSelection();
+  bibOuvre({quoi:'ref',zone:z,garde:gardeSelection(),depart:s.toString().trim(),
+            chapOk:true,titre:'Choisir la référence'});
 }
 async function menuBloc(i){
   const a=S.art; if(!a)return;
   const entrees=[];
+  if(a.blocs[i].t==='verset')entrees.push({cle:'bib',nom:'Prendre le verset dans la Bible'});
   if(a.blocs[i].t==='image')entrees.push({cle:'img',nom:a.blocs[i].media?'Remplacer l’image':'Choisir une image'});
   if(a.blocs[i].t==='html')entrees.push({cle:'code',nom:a.blocs[i].code?'Modifier le code':'Coller le code'});
   TYPES.forEach(t=>{ if(t.cle!==a.blocs[i].t) entrees.push({cle:'t:'+t.cle,nom:t.nom,note:'changer'}); });
@@ -1384,6 +1462,15 @@ async function menuBloc(i){
   if(a.blocs.length>1)entrees.push({cle:'suppr',nom:'Supprimer ce bloc',danger:true});
   const c=await lvChoix('Ce bloc',entrees);
   if(!c)return;
+  if(c==='bib'){
+    /* on relit d'abord l'écran : ce qui vient d'être tapé ne doit pas se
+       perdre pendant qu'on feuillette */
+    litEditeur();
+    const b=S.art.blocs[i]; if(!b)return;
+    if(!b.k)b.k=cleBloc();
+    bibOuvre({quoi:'verset',cle:b.k,depart:b.ref||'',titre:'Choisir le verset'});
+    return;
+  }
   if(c==='img'){choisirImage(i);return;}
   if(c==='code'){await editeCode(i);return;}
   litEditeur();
@@ -1434,6 +1521,229 @@ async function ajouteBloc(){
   const z=blocs[blocs.length-1].querySelector('.zone'); if(z)z.focus();
 }
 
+// ════════ CHOISIR UN VERSET DANS LA BIBLE ════════
+/* Le même choix que dans Mémoriser (Emmanuel, 05/09 : « pour sélectionner une
+   référence, rends ça pareil que dans Mémoriser ») : on feuillette les livres
+   et les chapitres, on touche les versets pour prendre un passage, et l'on
+   peut resserrer sur quelques mots. Tout le savoir biblique vient du panneau
+   (window.LVBible) : ni dictionnaire ni texte recopiés ici.
+   BIB_CIBLE dit ce que « Utiliser » doit remplir : une référence dans le
+   texte, un bloc de verset (texte ET référence), ou le champ de référence
+   d'un commentaire. */
+const B={slug:null,ch:0,v1:0,v2:0,versets:[],mots:[],wa:null,wb:null};
+let BIB_CIBLE=null;
+function bibApi(){return window.LVBible||null;}
+function bibRaz(){B.v1=0;B.v2=0;B.wa=null;B.wb=null;B.mots=[];}
+function bibOuvre(cible){
+  const api=bibApi();
+  if(!api){lvInfo('La Bible n’est pas encore prête. Réessayez dans un instant.');return;}
+  BIB_CIBLE=cible||{quoi:'ref'};
+  $('mbib-titre').textContent=BIB_CIBLE.titre||'Choisir un verset';
+  $('m-bib').classList.add('on');
+  $('mbib-corps').innerHTML='<div class="mbib-charge">Chargement…</div>';
+  $('mbib-apercu').innerHTML=''; bibMajBoutons();
+  api.pret().then(()=>{
+    /* on ouvre sur la référence déjà en place, quand il y en a une */
+    let d=null; try{d=BIB_CIBLE.depart?api.ref(BIB_CIBLE.depart):null;}catch(e){d=null;}
+    if(d&&d.ch)return bibVersets(d.slug,d.ch,d.v1,d.v2);
+    if(d)return bibChaps(d.slug);
+    if(B.slug&&B.ch)return bibVersets(B.slug,B.ch);
+    bibLivres();
+  }).catch(()=>{$('mbib-corps').innerHTML='<div class="mbib-charge">La Bible n’a pas pu être chargée. Fermez et réessayez.</div>';});
+}
+function bibFerme(){$('m-bib').classList.remove('on');BIB_CIBLE=null;}
+function bibFil(){
+  const api=bibApi(); let h='<span data-b="livres">La Sainte Bible</span>';
+  if(B.slug){const i=api.info(B.slug); if(i){h+=' · <span data-b="livre" data-slug="'+esc(B.slug)+'">'+esc(i.nom)+'</span>'; if(B.ch)h+=' · <span>'+(B.slug==='psaumes'?'Psaume ':'Ch. ')+B.ch+'</span>';}}
+  $('mbib-fil').innerHTML=h;
+}
+function bibLivres(){
+  const IDX=bibApi().index(); B.slug=null;B.ch=0;B.versets=[];bibRaz();
+  let h='',tc='';
+  IDX.groupes.forEach(g=>{
+    if(g.test!==tc){tc=g.test;h+='<div class="mbib-test">'+(g.test==='AT'?'Ancien Testament':'Nouveau Testament')+'</div>';}
+    h+='<div class="mbib-grp">'+esc(g.nom)+'</div>';
+    IDX.livres.forEach(l=>{if(l.groupe!==g.nom)return;
+      h+='<div class="mbib-livre" data-b="livre" data-slug="'+esc(l.slug)+'"><span>'+esc(l.nom)+'</span><span class="mbib-n">'+l.nch+'</span></div>';});
+  });
+  $('mbib-corps').innerHTML=h; $('mbib-corps').scrollTop=0; bibFil(); bibApercu();
+}
+function bibChaps(slug){
+  const api=bibApi(), inf=api.info(slug); if(!inf)return bibLivres();
+  if(inf.nch===1)return bibVersets(slug,1);
+  B.slug=slug;B.ch=0;B.versets=[];bibRaz();
+  let h='<div class="mbib-chaps">';
+  for(let i=1;i<=inf.nch;i++)h+='<div class="mbib-chap" data-b="chap" data-slug="'+esc(slug)+'" data-n="'+i+'">'+i+'</div>';
+  $('mbib-corps').innerHTML=h+'</div>'; $('mbib-corps').scrollTop=0; bibFil(); bibApercu();
+}
+function bibVersets(slug,ch,v1,v2){
+  const api=bibApi(); B.slug=slug;B.ch=ch;bibRaz();
+  $('mbib-corps').innerHTML='<div class="mbib-charge">Chargement…</div>'; bibFil();
+  api.livre(slug).then(d=>{
+    let c=null; for(let i=0;i<d.chapitres.length;i++)if(d.chapitres[i].n===ch){c=d.chapitres[i];break;}
+    if(!c)return bibChaps(slug);
+    B.versets=c.versets;
+    if(v1){B.v1=v1;B.v2=v2||v1;}
+    let h='';
+    c.versets.forEach(v=>{h+='<div class="mbib-v" data-b="v" data-v="'+v.v+'"><span class="mbib-vn">'+v.v+'</span><span>'+esc(v.t)+'</span></div>';});
+    $('mbib-corps').innerHTML=h; bibMarque(); bibAmene(B.v1); bibApercu();
+  }).catch(()=>{$('mbib-corps').innerHTML='<div class="mbib-charge">Le texte n’a pas pu être chargé.</div>';});
+}
+function bibAmene(v){
+  const z=$('mbib-corps');
+  if(!v){z.scrollTop=0;return;}
+  const el=z.querySelector('.mbib-v[data-v="'+v+'"]');
+  if(!el){z.scrollTop=0;return;}
+  z.scrollTop=Math.max(0,z.scrollTop+el.getBoundingClientRect().top-z.getBoundingClientRect().top-14);
+}
+function bibMarque(){
+  $('mbib-corps').querySelectorAll('.mbib-v').forEach(el=>{
+    const v=+el.dataset.v; el.classList.toggle('on',B.v1>0&&v>=B.v1&&v<=B.v2);
+  });
+}
+function bibTapVerset(v){
+  if(!B.v1){B.v1=B.v2=v;}
+  else if(v===B.v1&&v===B.v2){B.v1=B.v2=0;}
+  else if(v<B.v1){B.v1=v;}
+  else if(v>B.v2){B.v2=v;}
+  else {B.v1=B.v2=v;}
+  B.wa=null;B.wb=null; bibMarque(); bibApercu();
+}
+function bibMots(){
+  B.mots=[];
+  if(!B.v1)return;
+  B.versets.forEach(v=>{ if(v.v<B.v1||v.v>B.v2)return;
+    String(v.t).split(/\s+/).forEach(m=>{ if(m)B.mots.push({m:m,v:v.v}); }); });
+}
+function bibNomLivre(){
+  const api=bibApi(), inf=api?api.info(B.slug):null;
+  return (B.slug==='psaumes')?'Psaume':(inf?inf.nom:B.slug);
+}
+/* Un livre d'un seul chapitre s'écrit « Jude 3 », jamais « Jude 1:3 ». */
+function bibUnSeulCh(){
+  const api=bibApi(), inf=api?api.info(B.slug):null;
+  return !!(inf&&inf.nch===1);
+}
+function bibResultat(){
+  bibMots();
+  if(!B.mots.length)return null;
+  let a=0,b=B.mots.length-1;
+  if(B.wa!==null){a=B.wa;b=(B.wb===null?B.wa:B.wb);}
+  const part=B.mots.slice(a,b+1);
+  if(!part.length)return null;
+  const va=part[0].v, vb=part[part.length-1].v;
+  const tete=bibUnSeulCh()?(bibNomLivre()+' '):(bibNomLivre()+' '+B.ch+':');
+  return {texte:part.map(x=>x.m).join(' '),ref:tete+va+(vb>va?'-'+vb:''),a:a,b:b};
+}
+/* Le chapitre entier : un article renvoie parfois à « Matthieu 5 » sans viser
+   un verset. Réservé au renvoi dans le texte (chapOk). */
+function bibChapRef(){
+  if(!B.slug||!B.ch)return null;
+  return bibUnSeulCh()?bibNomLivre():(bibNomLivre()+' '+B.ch);
+}
+/* « Le verset entier » n'a de sens que sur un passage choisi, et seulement
+   pour un renvoi dans le texte : un bloc de verset prend déjà les deux, et la
+   référence d'un commentaire ne veut que la référence. */
+function bibMajBoutons(){
+  const b=$('mbib-texte'); if(!b)return;
+  const on=!!(BIB_CIBLE&&BIB_CIBLE.quoi==='ref'&&bibResultat());
+  b.style.display=on?'':'none';
+  $('mbib-ok').textContent=on?'La référence':'Utiliser';
+}
+function bibApercu(){
+  bibMajBoutons();
+  const z=$('mbib-apercu'), r=bibResultat();
+  if(!r){
+    const ch=(BIB_CIBLE&&BIB_CIBLE.chapOk)?bibChapRef():null;
+    if(ch){
+      z.classList.remove('vide');
+      z.innerHTML='<div class="mbib-tete"><span class="mbib-ref">'+esc(ch)+'</span></div>'
+        +'<div class="mbib-mot-vide">Touchez un verset pour préciser, ou validez pour renvoyer au chapitre entier.</div>';
+      return;
+    }
+    z.innerHTML='';z.classList.add('vide');return;
+  }
+  z.classList.remove('vide');
+  let h='<div class="mbib-tete"><span class="mbib-ref">'+esc(r.ref)+'</span>';
+  if(B.wa!==null)h+='<span class="mbib-tout" id="mbib-tout" role="button" tabindex="0">Tout le passage</span>';
+  h+='</div><div class="mbib-mots'+(B.wa===null?' tout':'')+'" id="mbib-mots">';
+  B.mots.forEach((x,i)=>{
+    const on=i>=r.a&&i<=r.b, bout=(i===r.a||i===r.b)&&B.wa!==null;
+    h+='<span class="mbib-mot'+(on?' on':'')+(bout?' bout':'')+'" data-m="'+i+'">'+esc(x.m)+'</span> ';
+  });
+  z.innerHTML=h+'</div>';
+}
+function bibTapMot(i){
+  if(B.wa===null||B.wb!==null){B.wa=i;B.wb=null;}
+  else {B.wb=i; if(B.wb<B.wa){const t=B.wa;B.wa=B.wb;B.wb=t;}}
+  bibApercu();
+}
+function bibVaRef(){
+  const api=bibApi(), champ=$('i-mbib'), v=champ.value.trim();
+  if(!v)return;
+  let r=null; try{r=api.ref(v);}catch(e){r=null;}
+  if(!r){champ.value='';champ.placeholder='Référence non reconnue';return;}
+  champ.value='';champ.placeholder='Référence : Jean 3:16';
+  if(!r.ch)return bibChaps(r.slug);
+  bibVersets(r.slug,r.ch,r.v1,r.v2);
+}
+/* Ce qui précède le curseur dans la zone : sert à savoir s'il faut une espace
+   avant ce qu'on insère. */
+function besoinEspace(z){
+  try{
+    if(!z)return false;
+    const s=getSelection(); if(!s.rangeCount)return false;
+    const r=s.getRangeAt(0).cloneRange(); r.setStart(z,0);
+    const t=r.toString();
+    return !!t&&!/\s$/.test(t);
+  }catch(e){return false;}
+}
+/* avecTexte : on pose le verset en entier, « texte » puis sa référence, au
+   format du site (italique entre guillemets français, référence en gras, sans
+   parenthèses). Sinon, la seule référence. */
+function bibUtilise(avecTexte){
+  const c=BIB_CIBLE; if(!c)return;
+  const r=bibResultat();
+  const ref=r?r.ref:(c.chapOk?bibChapRef():null);
+  if(!ref&&!(c.quoi==='verset'&&r))return;
+  if(c.quoi==='verset'&&!r)return;
+  if(avecTexte&&!r)return;
+  bibFerme();
+  if(c.quoi==='edref'){
+    const ch=$('ed-ref'); if(!ch)return;
+    ch.value=ref; if(typeof majRefEtat==='function')majRefEtat(); marqueSale(); return;
+  }
+  if(c.quoi==='verset'){
+    litEditeur();
+    const a=S.art; if(!a)return;
+    const i=(a.blocs||[]).findIndex(b=>b&&b.k===c.cle);
+    if(i<0)return;
+    a.blocs[i]={t:'verset',txt:r.texte,ref:r.ref,k:c.cle};
+    rendEditeur(); marqueSale(); return;
+  }
+  /* renvoi dans le texte : on remet le curseur là où il était */
+  rendSelection(c.zone,c.garde);
+  const sp=document.createElement('span');
+  sp.className='ref'; sp.setAttribute('role','button'); sp.setAttribute('tabindex','0');
+  sp.textContent=ref;
+  const s=getSelection();
+  if(s.rangeCount&&!s.isCollapsed)s.getRangeAt(0).deleteContents();
+  /* on ne colle pas le verset au mot qui précède : s'il n'y a pas déjà une
+     espace sous le curseur, on en pose une */
+  if(besoinEspace(c.zone))insere(document.createTextNode(' '));
+  if(avecTexte){
+    const it=document.createElement('i');
+    it.textContent='\u00ab\u00a0'+r.texte+'\u00a0\u00bb ';
+    insere(it);
+    /* la référence d'une citation est en gras, sans parenthèses ; elle reste
+       cliquable et mène au passage */
+    const g=document.createElement('b'); g.appendChild(sp);
+    insere(g);
+    return;
+  }
+  insere(sp);
+}
+
 // ════════ ÉVÉNEMENTS ════════
 document.addEventListener('DOMContentLoaded',()=>{
   $('b-nouveau').onclick=nouveau;
@@ -1471,6 +1781,26 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(f&&CIBLE_IMG>=0)envoieImage(f,CIBLE_IMG);
     CIBLE_IMG=-1;
   });
+  $('mbib-annul').onclick=bibFerme;
+  $('mbib-ok').onclick=()=>bibUtilise(false);
+  $('mbib-texte').onclick=()=>bibUtilise(true);
+  $('mbib-go').onclick=bibVaRef;
+  $('i-mbib').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();bibVaRef();}});
+  $('mbib-fil').addEventListener('click',e=>{
+    const el=e.target.closest('[data-b]'); if(!el)return;
+    if(el.dataset.b==='livres')bibLivres(); else if(el.dataset.b==='livre')bibChaps(el.dataset.slug);
+  });
+  $('mbib-corps').addEventListener('click',e=>{
+    const el=e.target.closest('[data-b]'); if(!el)return;
+    if(el.dataset.b==='livre')bibChaps(el.dataset.slug);
+    else if(el.dataset.b==='chap')bibVersets(el.dataset.slug,+el.dataset.n);
+    else if(el.dataset.b==='v')bibTapVerset(+el.dataset.v);
+  });
+  $('mbib-apercu').addEventListener('click',e=>{
+    if(e.target.id==='mbib-tout'){B.wa=null;B.wb=null;bibApercu();return;}
+    const m=e.target.closest('.mbib-mot'); if(m)bibTapMot(+m.dataset.m);
+  });
+  $('m-bib').addEventListener('click',e=>{if(e.target===$('m-bib'))bibFerme();});
   $('code-ok').onclick=()=>codeFin($('code-champ').value);
   $('code-annul').onclick=()=>codeFin(null);
   $('m-code').addEventListener('click',e=>{if(e.target===$('m-code'))codeFin(null);});
@@ -1569,6 +1899,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if($('m-conf').classList.contains('on'))confFin(false);
     if($('m-saisie').classList.contains('on'))saiFin(null);
     if($('m-code').classList.contains('on'))codeFin(null);
+    if($('m-bib').classList.contains('on'))bibFerme();
     $('m-info').classList.remove('on'); if($('m-choix').classList.contains('on'))choixFin();
     const o=$('auth-overlay'); if(o)o.classList.remove('ouvert');
   });
