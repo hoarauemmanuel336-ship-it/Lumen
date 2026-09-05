@@ -10,11 +10,18 @@ publics que tout le monde peut lire mais que toi seul peux remplir.
 
 CE QUI CHANGE PAR RAPPORT AUX RÈGLES DÉJÀ EN PLACE
 Rien n'est retiré. Les trois blocs existants (« users », « config »,
-« contenu ») sont conservés mot pour mot. Quatre blocs sont ajoutés à la
+« contenu ») sont conservés mot pour mot. Cinq blocs sont ajoutés à la
 fin : « public_articles » et « public_medias » pour les articles,
-« public_ressources » et « public_res_medias » pour la section Ressources.
+« public_ressources » et « public_res_medias » pour la section Ressources,
+et « public_commentaires » pour les commentaires bibliques (05/09).
 Sans eux, le bouton « Publier » échoue : Firebase refuse d'écrire dans un
 endroit dont personne ne lui a dit qu'il existe.
+
+SI LES RÈGLES SONT DÉJÀ EN PLACE ET QU'IL NE MANQUE QUE LES COMMENTAIRES :
+recopie simplement le bloc « public_commentaires » ci-dessous, juste avant
+les deux dernières accolades, puis « Publier ». Tant qu'il n'y est pas, la
+Bible ne montrera aucun commentaire (la lecture est refusée) et le bouton
+« Publier » de la page des commentaires échouera.
 
 
 LE PAS À PAS
@@ -109,6 +116,16 @@ service cloud.firestore {
         && request.auth.token.email == "hoarauemmanuel336@gmail.com"
         && request.auth.token.email_verified == true;
     }
+
+    // ── LES COMMENTAIRES BIBLIQUES PUBLIÉS (05/09) ──
+    // La Bible les lit, livre par livre, pour tout le monde. Leurs images
+    // passent par « public_medias », déjà couvert plus haut.
+    match /public_commentaires/{doc=**} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.email == "hoarauemmanuel336@gmail.com"
+        && request.auth.token.email_verified == true;
+    }
   }
 }
 ────────────────────────────────────────────────────────────────────
@@ -125,7 +142,7 @@ fausse et Firebase refuse l'écriture, même au propriétaire.
 Deux façons d'en sortir. La plus propre : se connecter une fois au site
 avec le bouton « Continuer avec Google », en utilisant la même adresse.
 Google confirme l'adresse de lui-même, et la condition devient vraie
-pour de bon. La plus rapide : retirer les six lignes
+pour de bon. La plus rapide : retirer les sept lignes
 « && request.auth.token.email_verified == true » et republier les règles.
 La sécurité reste entière, car personne ne peut créer un compte avec
 cette adresse, Firebase refuse une adresse déjà prise.
@@ -135,7 +152,7 @@ CE QU'IL FAUT SAVOIR
 
 L'ADRESSE EST LA CLÉ. C'est l'adresse écrite dans les règles qui donne le
 droit d'écrire, pas un mot de passe caché dans le site. Si l'adresse du
-compte change un jour, il faudra la changer ici aussi, à chacun des six
+compte change un jour, il faudra la changer ici aussi, à chacun des sept
 endroits.
 
 UN BROUILLON N'EST JAMAIS EXPOSÉ. Publier ne « déverrouille » pas un

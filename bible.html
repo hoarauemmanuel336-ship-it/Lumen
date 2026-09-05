@@ -210,6 +210,78 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .ch-texte .par:first-child{margin-top:0}
 .ch-texte .par:last-child{margin-bottom:0}
 .ch-texte sup.vn{font-family:var(--serif);font-size:12.5px;color:var(--or);line-height:0;margin-right:5px;letter-spacing:0}
+/* ── LA MARQUE D'UNE NOTE (05/09, Emmanuel : « quelque chose de subtil sur le
+   verset pour montrer qu'il y a une ou des notes ») ──
+   Un point d'or, petit et à demi éteint, collé au numéro du verset : il ne
+   touche pas au texte, il se voit quand on le cherche, il s'allume au survol,
+   et il ouvre la note quand on le touche. Deux notes ou plus : le point est un
+   peu plus plein, et son infobulle le dit. */
+/* LE NUMÉRO LUI-MÊME PORTE LA MARQUE : un filet doré sous le chiffre, rien
+   d'ajouté au flux du texte (choix d'Emmanuel parmi huit essais, 05/09).
+   UN SEUL TRAIT, TOUJOURS LE MÊME : qu'il y ait une note ou dix, la marque
+   dit « il y a une note ici », et rien d'autre (Emmanuel, 05/09 : « je ne
+   veux pas plusieurs affichages selon s'il y a plusieurs notes ou pas, mets
+   juste un trait »). Le filet passe par un dégradé plutôt que par une
+   bordure, pour tenir sous la ligne de base sans déplacer le chiffre d'un
+   pixel. */
+.ch-texte sup.vn.a-note .vnn{background-image:linear-gradient(var(--or),var(--or));background-repeat:no-repeat;background-size:100% 1px;background-position:0 100%;padding-bottom:1.5px}
+.ch-texte sup.vn.a-note{opacity:.8;transition:opacity .25s}
+.ch-texte .vst:hover sup.vn.a-note,.ch-texte sup.vn.a-note:hover{opacity:1}
+/* la zone touchée est le chiffre, élargie tout autour pour le doigt */
+.ch-texte sup.vn .nt{position:absolute;inset:-10px -8px;display:block;width:auto;height:auto;background:none;cursor:pointer}
+.ch-texte sup.vn.a-note,.ch-texte sup.vn.a-com{position:relative;cursor:pointer}
+.ch-texte sup.vn .nt:focus-visible{outline:1px solid var(--or);outline-offset:0}
+/* ── LA MARQUE D'UN COMMENTAIRE (05/09) ──
+   Autre chose qu'une note : un commentaire est écrit par l'auteur du site et
+   lu par tous. Sa marque est un petit « § » doré posé DEVANT le numéro, le
+   signe des paragraphes commentés dans les éditions savantes. Il ne prend pas
+   le filet des notes (le filet ne court que sous le chiffre, .vnn), pour que
+   les deux marques restent lisibles côte à côte. Il passe au-dessus de la
+   zone de la note (.nt) : le toucher ouvre le commentaire, pas la note. */
+.ch-texte sup.vn .cm{position:relative;z-index:1;display:inline-block;font-style:normal;font-weight:400;font-size:9.5px;line-height:1;color:var(--or);opacity:.72;margin-right:2.5px;cursor:pointer;transition:opacity .25s;letter-spacing:0}
+/* Zone du doigt : vers la gauche et en hauteur seulement, pour laisser le
+   chiffre à la note quand le verset porte les deux marques ; s'il n'y a pas
+   de note, tout le numéro ouvre le commentaire. */
+.ch-texte sup.vn .cm::before{content:'';position:absolute;inset:-10px 0 -10px -9px}
+.ch-texte sup.vn.a-com:not(.a-note) .cm::before{inset:-10px -16px -10px -9px}
+.ch-texte .vst:hover sup.vn .cm,.ch-texte sup.vn .cm:hover{opacity:1}
+.ch-texte sup.vn .cm:focus-visible{outline:1px solid var(--or);outline-offset:1px}
+/* ── LE COMMENTAIRE, SOUS LE VERSET ──
+   Il s'ouvre dans le chapitre, juste après le verset, et se referme d'un
+   toucher ; on ne quitte pas la lecture. Un filet doré à gauche le distingue
+   du texte sacré, la taille est un cran sous celle du texte biblique. */
+.com-pan{display:block;margin:.85em 0 1.15em;padding:12px 18px 14px 20px;border-left:2px solid var(--or);background:rgba(239,230,207,.035);text-align:left;hyphens:none;line-height:1.3;animation:rise .3s ease both;font-size:calc(17.5px*var(--lvz,1));color:rgba(255,255,255,.88);cursor:auto}
+.vst.po+.com-pan{margin-left:2.2em}
+@media(max-width:600px){.com-pan{padding:11px 14px 12px 16px;font-size:calc(17px*var(--lvz,1))}.vst.po+.com-pan{margin-left:1.7em}}
+/* Pas d'en-tête (Emmanuel, 05/09 : « supprime le "Commentaire · référence" ») :
+   le passage surligné au-dessus dit de quoi il s'agit. Il ne reste qu'un
+   « Fermer » discret, en pied. */
+.com-pied{text-align:right;margin-top:10px}
+.com-fermer{font-family:var(--display);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa2);cursor:pointer;transition:color .25s;position:relative}
+.com-fermer::before{content:'';position:absolute;inset:-10px -8px}
+.com-fermer:hover{color:var(--or)}
+.com-un+.com-un{margin-top:18px;padding-top:14px;border-top:1px solid var(--filet)}
+.com-titre{font-family:var(--display);font-size:calc(24px*var(--lvz,1));line-height:1.2;color:var(--parchemin);margin:0 0 10px}
+.com-vide{font-size:14px;color:var(--pa2);font-style:italic}
+.cb{margin:0 0 11px;word-wrap:break-word}
+.cb:last-child{margin-bottom:2px}
+.cb-h2{font-family:var(--display);font-size:calc(22px*var(--lvz,1));line-height:1.2;color:var(--parchemin);margin-top:14px}
+.cb-h3{font-family:var(--display);font-size:calc(13px*var(--lvz,1));letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin-top:10px}
+.cb-cite{padding-left:16px;box-shadow:inset 2px 0 0 var(--filet-fort);color:rgba(255,255,255,.85)}
+.cb-verset .v-txt{font-style:italic}
+.cb-verset .v-txt::before{content:'«\00a0'}
+.cb-verset .v-txt::after{content:'\00a0»'}
+.cb-verset .v-ref{font-weight:700;color:var(--or);margin-left:.32em;white-space:nowrap}
+.cb-image img{display:block;width:100%;height:auto;background:var(--encre-2)}
+.cb-image figcaption{font-size:calc(14px*var(--lvz,1));line-height:1.25;color:var(--pa2);font-style:italic;margin-top:7px}
+.cb-image .cb-att{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa2);padding:8px 0}
+.cb-html iframe{display:block;width:100%;border:1px solid var(--filet);background:var(--encre-2)}
+.cb-sep .trait-sep{width:44px;height:1px;background:var(--or);opacity:.45;margin:8px auto}
+.cb b,.cb strong{font-weight:600;color:#fff}
+.cb i,.cb em{font-style:italic}
+.cb a{color:var(--or);border-bottom:1px solid rgba(231,224,207,.3)}
+.cb .ref{color:var(--or);cursor:pointer;border-bottom:1px dotted rgba(231,224,207,.4)}
+@media print{.com-pan{display:none}.ch-texte sup.vn .cm{display:none}}
 /* --vc : teinte du surlignage de verset entier (posée par le script), --vc-sel :
    la même teinte, un peu plus franche, quand ce verset est en plus sélectionné.
    Sans couleur, un verset est nu ; sélectionné, il prend le voile parchemin. */
@@ -249,7 +321,11 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    il flotterait au-dessus du texte. */
 .vst.po .vn{position:absolute;left:-2.2em;top:.42em;margin-right:0;line-height:1}
 @media(max-width:600px){.vst.po{margin:.62em 0;padding-left:1.7em}.vst.po.sent{margin:1.1em 0}.vst.po .vn{left:-1.7em}}
-@media(hover:hover){.vst:hover{background:var(--vc,var(--surv))}.vst.po:hover{box-shadow:0 0 0 5px var(--vc,var(--surv))}}
+/* Le survol montre EXACTEMENT ce que donnera le clic (Emmanuel, 05/09 :
+   « quand je survole un verset avec la souris, fais en sorte que le
+   surlignage soit le même que quand je clique dessus ») : même voile de
+   parchemin que la sélection, et non plus une teinte à peine visible. */
+@media(hover:hover){.vst:hover{background:var(--vc-sel,rgb(41,39,35))}.vst.po:hover{box-shadow:0 0 0 5px var(--vc-sel,rgb(41,39,35))}}
 #sb-cercle{width:26px;height:22px;padding:1px;background:#0a0a0a;border:1px solid rgba(255,255,255,.25);cursor:pointer}
 .sb-surl{display:none;align-items:center;gap:10px;padding:8px 0 2px;flex-wrap:wrap}
 .sb-surl.ouvert{display:flex}
@@ -266,8 +342,15 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    rgb(41,39,35) ; à 12 % = rgb(29,28,25).
    Un verset déjà coloré ne devient pas gris quand on le sélectionne : il garde
    sa couleur, simplement plus franche (--vc-sel). */
-.vst.sel{background:var(--vc-sel,rgb(41,39,35))!important;box-shadow:none!important}
-.vst.po.sel{box-shadow:0 0 0 5px var(--vc-sel,rgb(41,39,35))!important}
+.vst.sel,.vst.com-on{background:var(--vc-sel,rgb(41,39,35))!important;box-shadow:none!important}
+.vst.po.sel,.vst.po.com-on{box-shadow:0 0 0 5px var(--vc-sel,rgb(41,39,35))!important}
+/* .com-on : les versets du passage dont le commentaire est ouvert (05/09,
+   Emmanuel : « il faut que ça surligne tout le passage et ensuite il y a la
+   note »). Même voile que la sélection, pour que le lecteur voie d'un coup
+   d'œil jusqu'où va le passage commenté ; le commentaire vient dessous. */
+.vst.po.com-on+.vst.po.com-on::before{content:'';position:absolute;left:-5px;right:-5px;bottom:100%;height:.7em;background:var(--vc-sel,rgb(41,39,35));pointer-events:none}
+.vst.po.sent+.vst.po.com-on::before,.vst.po.com-on+.vst.po.sent.com-on::before{height:1.25em}
+@media(max-width:600px){.vst.po.com-on+.vst.po.com-on::before{height:.62em}.vst.po.sent+.vst.po.com-on::before,.vst.po.com-on+.vst.po.sent.com-on::before{height:1.1em}}
 /* Deux vers voisins sélectionnés : leurs cadres sont séparés par la marge qui
    sépare les vers ; on comble cet espace pour ne former qu'un seul bloc. */
 .vst.po.sel+.vst.po.sel::before{content:'';position:absolute;left:-5px;right:-5px;bottom:100%;height:.7em;background:var(--vc-sel,rgb(41,39,35));pointer-events:none}
@@ -578,6 +661,8 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
         <span class="sb-btn" id="sb-copier" role="button" tabindex="0">Copier</span>
         <span class="sb-btn" id="sb-surligner" role="button" tabindex="0">Surligner</span>
         <span class="sb-btn" id="sb-note" role="button" tabindex="0">Prendre une note</span>
+        <!-- l'auteur du site seulement : écrire un commentaire public sur la sélection -->
+        <span class="sb-btn" id="sb-com" role="button" tabindex="0" style="display:none">Commenter</span>
         <span class="sb-btn" id="sb-vider" role="button" tabindex="0">Tout effacer</span>
       </div>
       <div class="sb-surl" id="sb-surl">
@@ -634,6 +719,8 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       <div class="bacct-mail" id="bacct-mail"></div>
       <span class="bacct-btn" id="bacct-notes" role="button" tabindex="0">Mes notes</span>
       <span class="bacct-btn" id="bacct-signets" role="button" tabindex="0">Mes signets</span>
+      <!-- l'auteur du site seulement -->
+      <span class="bacct-btn" id="bacct-coms" role="button" tabindex="0" style="display:none">Mes commentaires</span>
       <div class="ttx-row"><span class="ttx-lab">Taille du texte</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
       <!-- Pas de bascule « Onglet Bible » ici : l'onglet n'existe pas sur la
            page Bible elle-même, on y est déjà. Un interrupteur qui ne commande
@@ -952,7 +1039,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
      'lv_bible_surlf', 'lv_bible_surlf_t', 'lv_bible_surlf_m',
      'lv_bible_signets', 'lv_bible_signets_t', 'lv_bible_signets_m',
      'lv_bible_morts', 'lv_bible_sel'].forEach(function(k){ try { localStorage.removeItem(k); } catch(e){} });
-    marqueSelection(); majPlateau(); marqueSurl(); marqueSurlF(); majSignets(); majLienNotes();
+    marqueSelection(); majPlateau(); marqueSurl(); marqueSurlF(); marqueNotes(); majSignets(); majLienNotes();
   }
   var authInit = false;
   function initAuth(){
@@ -961,6 +1048,8 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     auth.onAuthStateChanged(function(u){
       UID = u ? u.uid : null;
       MAIL = u ? (u.email || u.displayName || '') : '';
+      EST_AUTEUR = !!(u && u.email && String(u.email).toLowerCase() === AUTEUR);
+      majAuteur();
       if (UID) {
         var prec = dernierUid();
         if (prec && prec !== UID) razLocal();
@@ -1676,7 +1765,10 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
      une ligne reste dans cette ligne, donc la suite des caractères affichés
      est exactement celle du verset et aucune position ne se décale. */
   function corpsVerset(v, text, frags, coupes, vers){
-    var sup = '<sup class="vn">' + v + '</sup>';
+    /* le chiffre a sa propre boîte (.vnn) : c'est elle qui porte le filet
+       d'une note, et non le sup entier, qui reçoit aussi la marque d'un
+       commentaire (05/09) */
+    var sup = '<sup class="vn"><span class="vnn">' + v + '</span></sup>';
     /* La prose reste un flux : aucun bloc, le verset se coule dans le
        paragraphe. Les vers, eux, passent toujours par une ligne, même quand
        ils n'ont pas été coupés : c'est ce qui aligne leur premier mot sur
@@ -1693,10 +1785,292 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     }
     return out;
   }
+  /* Les versets qui portent une note reçoivent leur point (voir la feuille de
+     style, .nt). Rejoué après chaque rendu de chapitre et après toute écriture
+     ou suppression de note, comme les surlignages. */
+  function notesDuVerset(ctx, v){
+    return NOTES.filter(function(n){
+      return (n.refs || []).some(function(g){ return g.slug === ctx.slug && g.ch === ctx.ch && g.v1 <= v && v <= g.v2; });
+    });
+  }
+  function marqueNotes(){
+    var ctx = ctxCourant(); if (!ctx) return;
+    document.querySelectorAll('.ch-texte .vst').forEach(function(sp){
+      var sup = sp.querySelector('sup.vn'); if (!sup) return;
+      var old = sup.querySelector('.nt'); if (old) old.parentNode.removeChild(old);
+      sup.classList.remove('a-note');
+      var v = parseInt(sp.id.replace('va-', ''), 10);
+      var ns = notesDuVerset(ctx, v);
+      if (!ns.length) return;
+      var i = document.createElement('i');
+      i.className = 'nt';
+      i.setAttribute('role', 'button'); i.setAttribute('tabindex', '0');
+      i.setAttribute('data-nt', ns.map(function(n){ return n.id; }).join(','));
+      i.setAttribute('data-ref', libelle({ slug: ctx.slug, ch: ctx.ch, v1: v, v2: v }));
+      var lib = ns.length > 1 ? 'Voir les ' + ns.length + ' notes sur ce verset' : 'Voir la note sur ce verset';
+      i.title = lib; i.setAttribute('aria-label', lib);
+      i.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); ouvreNotesDe(i); } });
+      /* AVANT le numéro : la marque annonce le verset, elle ne le suit pas */
+      sup.insertBefore(i, sup.firstChild);
+      sup.classList.add('a-note');
+    });
+  }
+  /* Une seule note : elle s'ouvre sur place, sans quitter le chapitre.
+     Plusieurs : la page « Mes notes » s'ouvre DÉJÀ FILTRÉE sur ce verset, pour
+     n'avoir à choisir qu'entre celles qui le concernent (05/09) ; avant, elle
+     s'ouvrait entière et il fallait retrouver le verset à la main. */
+  function ouvreNotesDe(pt){
+    var ids = String(pt.getAttribute('data-nt') || '').split(',').filter(Boolean);
+    if (ids.length === 1) {
+      var n = null; NOTES.forEach(function(x){ if (x.id === ids[0]) n = x; });
+      if (n) { ouvreNote({ id: n.id, refs: n.refs, t: n.t, c: n.c }); return; }
+    }
+    var f = pt.getAttribute('data-ref') || '';
+    location.hash = '#notes' + (f ? '/' + encodeURIComponent(f) : '');
+  }
+  /* ───────── Commentaires bibliques (05/09) ─────────
+     Écrits par l'auteur du site sur commentaires.html, publiés dans
+     « public_commentaires », lus par tous. La Bible les va chercher LIVRE PAR
+     LIVRE (une seule requête par livre ouvert, gardée en mémoire le temps de
+     la visite), marque d'un « § » le premier verset de chaque passage
+     commenté, et ouvre le commentaire sous ce verset d'un toucher, sans
+     quitter le chapitre. */
+  var AUTEUR = 'hoarauemmanuel336@gmail.com', EST_AUTEUR = false;
+  var COMS = {}, COMS_P = {}, COM_MED = {};
+  function majAuteur(){
+    var b = document.getElementById('sb-com'); if (b) b.style.display = EST_AUTEUR ? '' : 'none';
+    var c = document.getElementById('bacct-coms'); if (c) c.style.display = EST_AUTEUR ? '' : 'none';
+  }
+  /* Firebase se charge après la page : pour lire les commentaires il faut
+     l'attendre, et l'appeler si personne ne l'a encore demandé */
+  function assureFB(){
+    if (FB) return Promise.resolve(true);
+    var p = window.lvFB ? window.lvFB() : Promise.resolve();
+    return p.then(function(){ lvInitFB(); return FB; });
+  }
+  function chargeComs(slug){
+    if (COMS[slug]) return Promise.resolve(COMS[slug]);
+    if (COMS_P[slug]) return COMS_P[slug];
+    COMS_P[slug] = assureFB().then(function(ok){
+      if (!ok || !db) return [];
+      return db.collection('public_commentaires').where('livres', 'array-contains', slug).get().then(function(sn){
+        var l = [];
+        sn.forEach(function(d){ var x = d.data() || {}; x.id = d.id; if (x.refs && x.refs[0]) l.push(x); });
+        l.sort(function(a, b){ var x = a.refs[0], y = b.refs[0]; return (x.ch - y.ch) || (x.v1 - y.v1) || (x.v2 - y.v2) || String(a.maj || '').localeCompare(String(b.maj || '')); });
+        COMS[slug] = l;
+        return l;
+      });
+    }).catch(function(e){ console.warn('commentaires', e); return []; })
+      .then(function(l){ delete COMS_P[slug]; return l; });
+    return COMS_P[slug];
+  }
+  /* la marque est posée sur le PREMIER verset du passage commenté : un
+     commentaire sur Matthieu 5:3-12 se signale au verset 3, pas dix fois */
+  function comsDuVerset(ctx, v){
+    return (COMS[ctx.slug] || []).filter(function(c){
+      var g = c.refs[0]; return g.slug === ctx.slug && g.ch === ctx.ch && g.v1 === v;
+    });
+  }
+  function marqueComs(){
+    var ctx = ctxCourant(); if (!ctx) return;
+    var liste = COMS[ctx.slug];
+    document.querySelectorAll('.ch-texte .vst').forEach(function(sp){
+      var sup = sp.querySelector('sup.vn'); if (!sup) return;
+      var old = sup.querySelector('.cm'); if (old) old.parentNode.removeChild(old);
+      sup.classList.remove('a-com');
+      if (!liste || !liste.length) return;
+      var v = parseInt(sp.id.replace('va-', ''), 10);
+      var cs = comsDuVerset(ctx, v);
+      if (!cs.length) return;
+      var i = document.createElement('i');
+      i.className = 'cm'; i.textContent = '§';
+      i.setAttribute('role', 'button'); i.setAttribute('tabindex', '0');
+      var lib = cs.length > 1 ? 'Lire les ' + cs.length + ' commentaires sur ' + (cs[0].ref || 'ce passage')
+                              : 'Lire le commentaire sur ' + (cs[0].ref || 'ce passage');
+      i.title = lib; i.setAttribute('aria-label', lib);
+      i.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); basculeCom(sp); } });
+      sup.insertBefore(i, sup.firstChild);
+      sup.classList.add('a-com');
+    });
+  }
+  /* Le panneau vit HORS des versets (les réécritures du verset par le
+     surlignage ne l'emportent pas), APRÈS LE DERNIER VERSET du passage : le
+     lecteur voit d'abord tout le passage, surligné comme une sélection, puis
+     le commentaire (Emmanuel, 05/09). Il porte le premier verset (data-v) et
+     le dernier (data-v2) pour savoir quoi éteindre en se refermant. */
+  function panneauDe(v){ return vue.querySelector('.com-pan[data-v="' + v + '"]'); }
+  function fermeCom(pan){
+    var v1 = parseInt(pan.getAttribute('data-v'), 10), v2 = parseInt(pan.getAttribute('data-v2'), 10) || v1;
+    for (var k = v1; k <= v2; k++) { var e = document.getElementById('va-' + k); if (e) e.classList.remove('com-on'); }
+    if (pan.parentNode) pan.parentNode.removeChild(pan);
+  }
+  function basculeCom(sp){
+    if (!sp) return;
+    var v = parseInt(sp.id.replace('va-', ''), 10);
+    var ex = panneauDe(v);
+    if (ex) { fermeCom(ex); return; }
+    var ctx = ctxCourant(); if (!ctx) return;
+    var cs = comsDuVerset(ctx, v); if (!cs.length) return;
+    /* plusieurs commentaires sur le même verset : le passage va jusqu'au
+       plus loin des deux */
+    var v2 = v; cs.forEach(function(c){ var g = c.refs[0]; if (g.v2 > v2) v2 = g.v2; });
+    var dernier = sp;
+    for (var k = v; k <= v2; k++) { var e = document.getElementById('va-' + k); if (e) { e.classList.add('com-on'); dernier = e; } }
+    var pan = document.createElement('div'); pan.className = 'com-pan';
+    pan.setAttribute('data-v', String(v)); pan.setAttribute('data-v2', String(v2));
+    cs.forEach(function(c){ pan.appendChild(elementCom(c)); });
+    var pied = document.createElement('div'); pied.className = 'com-pied';
+    pied.innerHTML = '<span class="com-fermer" role="button" tabindex="0">Fermer</span>';
+    pan.appendChild(pied);
+    dernier.parentNode.insertBefore(pan, dernier.nextSibling);
+  }
+  function elementCom(c){
+    var d = document.createElement('div'); d.className = 'com-un';
+    var h = '';
+    if (c.titre) h += '<div class="com-titre">' + esc(c.titre) + '</div>';
+    d.innerHTML = h;
+    var blocs = c.blocs || [];
+    if (!blocs.length) d.innerHTML += '<div class="com-vide">Ce commentaire est vide.</div>';
+    blocs.forEach(function(b){ if (b && b.t) d.appendChild(blocCom(b)); });
+    return d;
+  }
+  /* ── Le texte des commentaires, nettoyé ──
+     Le même filtre que l'éditeur : on ne garde que le gras, l'italique, les
+     liens sûrs, les références et les retours à la ligne. Ce qui vient du
+     nuage n'est jamais posé tel quel dans la page. */
+  var CB_BAL = { B: 'b', STRONG: 'b', I: 'i', EM: 'i', A: 'a', BR: 'br', SPAN: 'span' };
+  function propreCom(html){
+    var doc = new DOMParser().parseFromString('<div>' + String(html || '') + '</div>', 'text/html');
+    var src = doc.body.firstChild, out = document.createElement('div');
+    (function marche(de, vers){
+      Array.prototype.forEach.call(de.childNodes, function(n){
+        if (n.nodeType === 3) { vers.appendChild(document.createTextNode(n.nodeValue)); return; }
+        if (n.nodeType !== 1) return;
+        var t = CB_BAL[n.tagName];
+        if (!t) {
+          marche(n, vers);
+          if (/^(P|DIV|LI|H[1-6]|BLOCKQUOTE|TR|PRE|SECTION|ARTICLE)$/.test(n.tagName) && n.nextSibling && vers.lastChild) {
+            var dern = vers.lastChild;
+            if (!(dern.nodeType === 1 && dern.tagName === 'BR')) vers.appendChild(document.createElement('br'));
+          }
+          return;
+        }
+        if (t === 'br') { vers.appendChild(document.createElement('br')); return; }
+        if (t === 'span' && !n.classList.contains('ref')) { marche(n, vers); return; }
+        var el = document.createElement(t);
+        if (t === 'a') {
+          var hr = n.getAttribute('href') || '';
+          if (!/^(https?:\/\/|mailto:|\/(?!\/)|#)/i.test(hr)) { marche(n, vers); return; }
+          el.setAttribute('href', hr); el.setAttribute('rel', 'noopener');
+          if (/^https?:/i.test(hr)) el.setAttribute('target', '_blank');
+        }
+        if (t === 'span') { el.className = 'ref'; el.setAttribute('role', 'button'); el.setAttribute('tabindex', '0'); }
+        marche(n, el); vers.appendChild(el);
+      });
+    })(src, out);
+    return out.innerHTML;
+  }
+  function blocCom(b){
+    var d = document.createElement('div');
+    d.className = 'cb cb-' + b.t;
+    var inner = '';
+    if (b.t === 'sep') inner = '<div class="trait-sep"></div>';
+    else if (b.t === 'verset') inner = '<span class="v-txt">' + propreCom(b.txt || '') + '</span><span class="v-ref">' + esc(b.ref || '') + '</span>';
+    else if (b.t === 'image') inner = '<figure>' + (b.media ? '<img alt="' + esc(String(b.leg || '').replace(/<[^>]+>/g, '')) + '">' : '') + (b.leg ? '<figcaption>' + propreCom(b.leg) + '</figcaption>' : '') + '</figure>';
+    else if (b.t === 'html') inner = b.code ? '<iframe data-com="1" style="height:' + (Math.max(40, Math.min(40000, Number(b.haut) || 320))) + 'px" sandbox="allow-scripts" referrerpolicy="no-referrer" title="Bloc interactif"></iframe>' : '';
+    else inner = propreCom(b.h || '');
+    d.innerHTML = inner;
+    if (b.t === 'image' && b.media) poseImageCom(d.querySelector('img'), b.media);
+    if (b.t === 'html' && b.code) { var f = d.querySelector('iframe'); if (f) f.srcdoc = pageCadreCom(b.code); }
+    return d;
+  }
+  /* ── Les images : découpées en tranches dans public_medias, recollées ici ── */
+  function chargeMediaCom(id){
+    if (COM_MED[id]) return COM_MED[id];
+    COM_MED[id] = assureFB().then(function(ok){
+      if (!ok || !db) throw new Error('hors ligne');
+      var col = db.collection('public_medias');
+      return col.doc(id).get().then(function(meta){
+        if (!meta.exists) throw new Error('média introuvable');
+        var m = meta.data() || {}, n = m.n || 0, lus = [];
+        for (var k = 0; k < n; k++) lus.push(col.doc(id).collection('tranches').doc(String(k)).get());
+        return Promise.all(lus).then(function(ts){
+          return 'data:' + (m.mime || 'image/jpeg') + ';base64,' + ts.map(function(t){ return t.exists ? (t.data().d || '') : ''; }).join('');
+        });
+      });
+    });
+    COM_MED[id].catch(function(){ delete COM_MED[id]; });
+    return COM_MED[id];
+  }
+  function poseImageCom(img, id){
+    if (!img) return;
+    chargeMediaCom(id).then(function(u){ img.src = u; }).catch(function(){
+      var f = img.parentNode; if (!f) return;
+      var d = document.createElement('div'); d.className = 'cb-att'; d.textContent = 'Image introuvable';
+      f.replaceChild(d, img);
+    });
+  }
+  /* ── Les blocs interactifs : même cadre isolé qu'ailleurs sur le site ──
+     Le code tourne sans accès à la page ni aux comptes, annonce sa hauteur, et
+     fait passer ses copies par la page (le cadre n'a pas le droit d'écrire
+     dans le presse-papiers). Balise fermante coupée en deux : le build cherche
+     la dernière balise de fermeture du corps, il ne doit pas tomber ici. */
+  function pageCadreCom(code){
+    return '<!doctype html><html lang="fr"><head><meta charset="utf-8">'
+      + '<meta name="viewport" content="width=device-width,initial-scale=1">'
+      + '<style>html,body{margin:0;padding:0;background:#000;color:#fff;font-family:Georgia,serif}*{box-sizing:border-box}html{overflow:hidden}#lv-mesure{display:flow-root}</style></he' + 'ad><body>'
+      + '<div id="lv-mesure">' + code + '</div>'
+      + '<scr' + 'ipt>(function(){'
+      + 'var w=document.getElementById("lv-mesure"),dernier=-1,demande=0;'
+      + 'function bas(){var m=0,l=w.getElementsByTagName("*"),i,r;for(i=0;i<l.length;i++){r=l[i].getBoundingClientRect();if(!r.width&&!r.height)continue;if(r.bottom>m)m=r.bottom;}return m+(window.pageYOffset||0);}'
+      + 'function h(){if(!w)return;var n=Math.ceil(bas());if(n<=0)n=Math.ceil(Math.max(w.getBoundingClientRect().height,w.scrollHeight));if(n===dernier)return;dernier=n;w.style.height=n+"px";demande=n;try{parent.postMessage({lvHaut:n},"*");}catch(e){}}'
+      + 'window.addEventListener("message",function(e){var d=e.data;if(!d||typeof d.lvApplique!=="number")return;document.documentElement.style.overflow=(d.lvApplique<demande-1)?"auto":"hidden";});'
+      + 'window.addEventListener("load",h);setTimeout(h,120);setTimeout(h,600);'
+      + 'if(window.ResizeObserver){var ro=new ResizeObserver(h),k;for(k=0;k<w.children.length;k++)ro.observe(w.children[k]);if(!w.children.length)ro.observe(w);}'
+      + 'function relais(t){try{parent.postMessage({lvCopie:String(t)},"*");}catch(e){}}'
+      + 'try{var nat=(navigator.clipboard&&navigator.clipboard.writeText)?navigator.clipboard.writeText.bind(navigator.clipboard):null;'
+      + 'Object.defineProperty(navigator,"clipboard",{configurable:true,value:{writeText:function(t){relais(t);if(nat)return nat(t).catch(function(){return undefined;});return Promise.resolve();},readText:function(){return Promise.reject(new Error("indisponible"));}}});}catch(e){}'
+      + '})();</scr' + 'ipt></bo' + 'dy></html>';
+  }
+  window.addEventListener('message', function(e){
+    var d = e.data; if (!d) return;
+    var cadre = null;
+    document.querySelectorAll('.com-pan iframe[data-com]').forEach(function(f){ if (f.contentWindow === e.source) cadre = f; });
+    if (!cadre) return;
+    if (typeof d.lvHaut === 'number') {
+      var accorde = Math.max(40, Math.min(40000, Math.round(d.lvHaut)));
+      cadre.style.height = accorde + 'px';
+      try { e.source.postMessage({ lvApplique: accorde }, '*'); } catch(_){}
+      return;
+    }
+    if (typeof d.lvCopie === 'string') {
+      var t = d.lvCopie;
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(t).catch(function(){ try { copieRepli(t); } catch(_){} }); return; }
+      } catch(_){}
+      try { copieRepli(t); } catch(_){}
+    }
+  });
+  /* ── L'auteur : « Commenter » depuis la sélection, « Mes commentaires » depuis
+     le compte. La page d'écriture s'ouvre dans la fenêtre principale, même
+     quand la Bible est dans le tiroir d'une autre page. */
+  function versCommentaires(hash){
+    var cible = '/commentaires.html' + (hash || '');
+    try { (window.top || window).location.href = cible; } catch(e) { location.href = cible; }
+  }
+  document.getElementById('sb-com').addEventListener('click', function(){
+    var gs = groupes(); if (!gs.length) return;
+    versCommentaires('#nouveau/' + encodeURIComponent(libelle(gs[0])));
+  });
+  document.getElementById('bacct-coms').addEventListener('click', function(){
+    document.getElementById('bacct-voile').classList.remove('ouvert');
+    versCommentaires('');
+  });
+
   function marqueSurlF(){
     var ctx = ctxCourant(); if (!ctx) return;
     var vm = verseTextMap(); if (!vm) return;
-    var cm = verseCutMap();
+    var cm = verseCutMap(), reecrit = false;
     document.querySelectorAll('.ch-texte .vst').forEach(function(sp){
       var v = parseInt(sp.id.replace('va-', ''), 10);
       var txt = vm[v]; if (txt == null) return;
@@ -1706,8 +2080,11 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
          navigateur réécrit les espaces insécables en « &nbsp; », et comparer
          avec innerHTML faisait reconstruire la moitié des versets à chaque
          passage (ce qui effaçait aussi la sélection en cours) */
-      if (sp._rendu !== inner) { sp.innerHTML = inner; sp._rendu = inner; }
+      if (sp._rendu !== inner) { sp.innerHTML = inner; sp._rendu = inner; reecrit = true; }
     });
+    /* un verset réécrit (surlignage posé ou retiré) perdait sa marque de note
+       et de commentaire jusqu'au prochain passage : on les repose (05/09) */
+    if (reecrit) { marqueNotes(); marqueComs(); }
   }
   function poseFrag(key, a, b, hex, text){
     var len = text.length, arr = new Array(len), i;
@@ -1982,7 +2359,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       var n = { id: String(Date.now()), d: maintenant, m: maintenant, t: t, refs: noteEnCours.refs || [], c: document.getElementById('nb-cat').value };
       NOTES.unshift(n); cloudSet(n);
     }
-    sauveNotes(); majLienNotes(); fermeNote(true);
+    sauveNotes(); majLienNotes(); marqueNotes(); fermeNote(true);
     if (location.hash === '#notes') vueNotes(filtreNotes);
   });
   actifId('nb-supprimer', function(){
@@ -1991,7 +2368,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     ouvreConf({ titre: 'Supprimer la note', texte: 'Cette note sera retirée de tous vos appareils.', bouton: 'Supprimer', suite: function(){
       cloudDel(mort);
       NOTES = NOTES.filter(function(n){ return n.id !== mort; });
-      sauveNotes(); majLienNotes(); fermeNote(true);
+      sauveNotes(); majLienNotes(); marqueNotes(); fermeNote(true);
       if (location.hash === '#notes') vueNotes(filtreNotes);
     } });
   });
@@ -2579,12 +2956,33 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
         marqueSurl();
       }
       marqueSurlF();
+      marqueNotes();
+      /* les commentaires publiés sur ce livre : déjà connus, ils se posent
+         tout de suite ; sinon ils arrivent du nuage et se posent à l'arrivée,
+         si l'on est encore sur ce chapitre */
+      marqueComs();
+      chargeComs(slug).then(function(){ if (jeton === JETON) marqueComs(); });
       /* Le doigt et la souris passent par la même porte. Sur iOS, le clic
          synthétique qui suit le toucher rejouait la bascule et annulait la
          sélection aussitôt posée : le toucher le neutralise désormais. */
       var zoneT = vue.querySelector('.ch-texte');
       var dernierDoigt = 0, amorce = null;
       function agitSur(cible){
+        if (!cible || !cible.closest) return false;
+        /* dans un commentaire ouvert : une référence mène à son verset, le
+           « Fermer » referme ; le reste (liens, texte) est laissé au
+           navigateur, et rien ne sélectionne de verset */
+        var pan = cible.closest('.com-pan');
+        if (pan) {
+          var rf = cible.closest('.ref');
+          if (rf) { var gr = parseRef(rf.textContent || ''); if (gr) location.hash = '#ref=' + encodeURIComponent(etiquetteRef(gr)); return true; }
+          if (cible.closest('.com-fermer')) { fermeCom(pan); return true; }
+          return false;
+        }
+        var cm = cible.closest('.cm');
+        if (cm) { basculeCom(cm.closest('.vst')); return true; }
+        var pt = cible.closest('.nt');
+        if (pt) { ouvreNotesDe(pt); return true; }
         var sp = cible && cible.closest ? cible.closest('.vst') : null;
         if (!sp) return false;
         var fr = cible.closest('.lv-frag');
@@ -2659,7 +3057,14 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     }
     var p = brut.split('/');
     var slug = p[0] || '';
-    if (slug === 'notes') { vueNotes(); window.scrollTo(0, 0); return; }
+    if (slug === 'notes') {
+      /* « #notes/Matthieu 7:5 » : la page des notes s'ouvre déjà filtrée sur
+         ce verset. C'est par là qu'arrive le clic sur un numéro souligné
+         quand le verset porte plusieurs notes (05/09). */
+      var fN = p.slice(1).join('/');
+      try { fN = decodeURIComponent(fN); } catch(_) {}
+      vueNotes(fN); window.scrollTo(0, 0); return;
+    }
     if (slug === 'signets') { vueSignets(); window.scrollTo(0, 0); return; }
     if (!slug) { vueLivres(); window.scrollTo(0, 0); return; }
     var n = parseInt(p[1], 10), v = parseInt(p[2], 10);
@@ -2718,7 +3123,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     SIGN_P = JSON.parse(JSON.stringify(SIGN));
     MORTS = litLocal('lv_bible_morts', '{}');
     SEL = litLocal('lv_bible_sel', '[]');
-    marqueSelection(); majPlateau(); marqueSurl(); marqueSurlF(); majSignets(); majLienNotes();
+    marqueSelection(); majPlateau(); marqueSurl(); marqueSurlF(); marqueNotes(); majSignets(); majLienNotes();
     if (location.hash === '#notes' && !noteEnCours) vueNotes(filtreNotes);
     if (location.hash === '#signets') vueSignets();
   }

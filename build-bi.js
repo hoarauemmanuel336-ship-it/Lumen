@@ -299,6 +299,7 @@ function header(lang, type, base, otherRel, ctx) {
       <div class="auth-m-email" id="auth-in-email"></div>
       <a class="auth-m-btn" href="/bible.html#notes">${lang === 'fr' ? 'Mes notes' : 'My notes'}</a>
       <a class="auth-m-btn" href="/bible.html#signets">${lang === 'fr' ? 'Mes signets' : 'My bookmarks'}</a>
+      <a class="auth-m-btn" id="auth-m-coms" href="/commentaires.html" style="display:none">${lang === 'fr' ? 'Mes commentaires' : 'My commentaries'}</a>
       <div class="ttx-row"><span class="ttx-lab">${lang === 'fr' ? 'Taille du texte' : 'Text size'}</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
       <div class="tog-row"><span class="tog-lab">${lang === 'fr' ? 'Onglet Bible à gauche' : 'Bible tab on the left'}</span><span class="tog-sw" id="tog-bible" role="button" tabindex="0" aria-label="${lang === 'fr' ? 'Afficher ou masquer l’onglet Bible' : 'Show or hide the Bible tab'}"></span></div>
       <button class="auth-m-link" id="auth-logout">${lang === 'fr' ? 'Déconnexion' : 'Sign out'}</button>
@@ -394,7 +395,9 @@ const AUTH_JS = `(function(){
     el('auth-forgot').textContent=(x==='forgot')?L('← Retour','← Back'):L('Mot de passe oublié ?','Forgot password?');
   }
   function open(){clr();
-    if(auth.currentUser){vOut.style.display='none';vIn.style.display='block';el('auth-in-email').textContent=auth.currentUser.email||auth.currentUser.displayName||'';}
+    if(auth.currentUser){vOut.style.display='none';vIn.style.display='block';el('auth-in-email').textContent=auth.currentUser.email||auth.currentUser.displayName||'';
+      /* l'auteur du site seulement : l'entrée vers ses commentaires bibliques */
+      var lc=el('auth-m-coms');if(lc)lc.style.display=(String(auth.currentUser.email||'').toLowerCase()==='hoarauemmanuel336@gmail.com')?'':'none';}
     else{vOut.style.display='block';vIn.style.display='none';setMode('si');}
     ov.classList.add('ouvert');document.body.style.overflow='hidden';}
   function close(){ov.classList.remove('ouvert');document.body.style.overflow='';}
@@ -861,6 +864,31 @@ if (fs.existsSync('ressources.html')) {
   console.log('Copié : ressources.html');
 }
 
+// ── Commentaires bibliques : la page d'écriture de l'auteur (05/09). Hors menu,
+//    hors plan du site, non indexée (la page porte son « noindex ») ; les
+//    commentaires se lisent dans la Bible. Même barre, même pied, même panneau
+//    Bible que les autres pages. ──
+if (fs.existsSync('commentaires.html')) {
+  let ch = fs.readFileSync('commentaires.html', 'utf8');
+  if (APPEARANCE_CSS && ch.indexOf('</head>') >= 0) {
+    ch = injecteAvant(ch, '</head>', '<style>' + APPEARANCE_CSS + '</style>');
+  }
+  {
+    const hOld = ch.match(/<header>[\s\S]*?<\/header>/);
+    const fOld = ch.match(/<footer[^>]*>[\s\S]*?<\/footer>/);
+    if (!hOld || !fOld) throw new Error('commentaires.html : header ou footer introuvable');
+    ch = ch.replace(hOld[0], barreCanon());
+    ch = ch.replace(fOld[0], piedCanon());
+    ch = injecteAvant(ch, '</head>', '<style>' + BARRE_CSS + '</style>');
+    ch = metaCopie(ch, '/commentaires.html', 'Commentaires bibliques · Lumen Veritatis', 'Commentaires bibliques de Lumen Veritatis, à lire dans la Bible.');
+    ch = injecteAvant(ch, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
+    console.log('Commentaires : barre et pied canoniques injectés');
+  }
+  ch = injecteAvant(ch, '</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script>');
+  fs.writeFileSync(`${OUT}/commentaires.html`, ch);
+  console.log('Copié : commentaires.html');
+}
+
 // ── Fichiers communs à toutes les pages : panneau Bible, service worker, manifestes, icônes ──
 // (hors de toute condition : chaque page les référence, ils doivent toujours être copiés)
 if (fs.existsSync('bible-panneau.js')) {
@@ -1160,7 +1188,7 @@ function posePoesie(livre) {
 /* Garde-fou : la barre et le pied doivent être rigoureusement identiques
    sur les quatre surfaces. Le build échoue si l'un d'eux dérive. */
 {
-  const surfaces = ['index.html', 'bible.html', 'memoriser.html', 'articles.html', 'ressources.html', '404.html'];
+  const surfaces = ['index.html', 'bible.html', 'memoriser.html', 'articles.html', 'ressources.html', 'commentaires.html', '404.html'];
   const ref = { h: null, f: null };
   let vues = 0;
   for (const f of surfaces) {

@@ -231,6 +231,13 @@ body>footer{flex-shrink:0}
 textarea.champ{resize:vertical;min-height:180px;line-height:1.5}
 textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px}
 .choix i{font-style:normal;font-family:var(--display);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa2);flex:none}
+/* l'arbre du rangement : retrait par niveau, un petit chevron devant les
+   sections, les entrées interdites en gris et sans survol */
+.choix span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.choix .cx-arbre{flex:none;font-family:var(--display);font-style:normal;font-weight:400;color:var(--pa2);margin-right:-4px}
+.choix.off{color:var(--pa2);cursor:default}
+.choix.off:hover{color:var(--pa2);background:none}
+.choix.fort{font-family:var(--display);letter-spacing:.06em}
 @media(max-width:600px){
   .overlay{padding:16px;align-items:flex-start;overflow-y:auto}
   .modal{max-width:100%;padding:28px 20px;margin:22px 0;max-height:none}
@@ -363,6 +370,44 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 .fil span:hover{color:var(--or)}
 .fil i{font-style:normal;padding:0 9px;color:rgba(255,255,255,.22)}
 .fil b{font-weight:400;color:var(--pa)}
+/* ═══ ORGANISER : GLISSER-DÉPOSER (05/09) ═══
+   Emmanuel, sur la liste « Placer… » : « c'est vraiment pas top comme
+   système ». Le geste juste, c'est de prendre l'objet et de le poser où l'on
+   veut. Le mode « Organiser » fait apparaître une poignée (⠿) sur chaque
+   carte et chaque rayon ; on la tire, un repère doré dit où l'objet va se
+   poser, et l'on lâche. Une carte posée SUR un rayon y entre ; posée sur un
+   maillon du fil d'Ariane, elle remonte. Les deux petites flèches font le
+   même travail au clavier et au pouce, d'un cran à la fois. Hors du mode,
+   rien de tout cela n'existe, et la page reste ce qu'elle est. */
+.poignee,.fleches{display:none}
+body.organise .poignee{display:flex;align-items:center;justify-content:center;flex:none;width:30px;height:30px;color:var(--pa2);font-size:17px;line-height:1;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;transition:color .25s}
+body.organise .poignee:hover{color:var(--or)}
+body.organise .fleches{display:inline-flex;gap:2px;flex:none}
+body.organise .fleches b{display:flex;align-items:center;justify-content:center;width:26px;height:26px;font-family:var(--display);font-weight:400;font-size:18px;line-height:1;color:var(--pa2);cursor:pointer;transition:color .25s}
+body.organise .fleches b:hover{color:var(--or)}
+body.organise .carte,body.organise .rayon{cursor:default}
+body.organise .carte:hover{border-color:var(--filet);background:var(--encre-2);box-shadow:none}
+body.organise .carte:hover .ct-titre{color:var(--parchemin);text-shadow:none}
+body.organise .rayon:hover .ry-nom{color:var(--parchemin)}
+body.organise .carte .ct-bas{padding-left:40px}
+body.organise .carte .poignee{position:absolute;left:6px;top:14px}
+body.organise .carte .fleches{position:absolute;right:40px;top:8px}
+body.organise .carte .ct-titre{padding-right:96px}
+body.organise .rayon .ry-chev{display:none}
+.fantome{opacity:.28}
+.tire{position:fixed;z-index:500;pointer-events:none;opacity:.92;transform:scale(1.02);box-shadow:0 14px 40px rgba(0,0,0,.6);border-color:var(--or)!important;background:var(--encre-2)!important}
+.carte.avant,.rayon.avant{box-shadow:inset 3px 0 0 var(--or)}
+.carte.apres,.rayon.apres{box-shadow:inset -3px 0 0 var(--or)}
+.rayon.cible,.fil span.cible{color:var(--or);box-shadow:inset 0 -2px 0 var(--or)}
+.rayon.cible .ry-nom{color:var(--or)}
+@media(max-width:640px){
+  .carte.avant{box-shadow:inset 0 3px 0 var(--or)}
+  .carte.apres{box-shadow:inset 0 -3px 0 var(--or)}
+}
+@media(max-width:600px){
+  .rayon.avant{box-shadow:inset 0 2px 0 var(--or)}
+  .rayon.apres{box-shadow:inset 0 -2px 0 var(--or)}
+}
 .rayons{display:grid;grid-template-columns:1fr 1fr;gap:0 26px;margin:2px 0 30px}
 @media(max-width:600px){.rayons{grid-template-columns:1fr}}
 .rayon{position:relative;display:flex;align-items:baseline;gap:12px;padding:15px 2px;border-bottom:1px solid var(--filet);cursor:pointer;transition:border-color .3s}
@@ -405,6 +450,7 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
     <div class="acts" id="acts-liste" style="display:none">
       <button class="act majeur" id="b-nouveau">+ Ajouter une ressource</button>
       <button class="act" id="b-section">+ Nouveau domaine</button>
+      <button class="act" id="b-organiser">Organiser</button>
     </div>
   </section>
 
@@ -568,7 +614,23 @@ function descendance(id,vus){
   enfants(id).forEach(e=>out.push(...descendance(e.id,vus)));
   return out;
 }
-function ressourcesDe(rid){return S.liste.filter(a=>(rubValide(a.rub)?a.rub:'')===(rid||''));}
+/* ── L'ORDRE DES RESSOURCES (05/09, Emmanuel : « je veux pouvoir choisir la
+   place qu'a un objet, avant ou après un autre ») ──
+   Une ressource peut porter un rang (ordre, un nombre) : à l'intérieur d'un
+   endroit, celles qui en ont un passent d'abord, dans cet ordre ; celles qui
+   n'en ont pas suivent, de la plus récente à la plus ancienne, comme avant.
+   Le rang se pose par « Placer… » et voyage avec la copie publique. */
+const rangDe=a=>(typeof a.ordre==='number'&&isFinite(a.ordre))?a.ordre:null;
+function triRessources(l){
+  return l.slice().sort((a,b)=>{
+    const ra=rangDe(a), rb=rangDe(b);
+    if(ra!==null&&rb!==null&&ra!==rb)return ra-rb;
+    if(ra!==null&&rb===null)return -1;
+    if(ra===null&&rb!==null)return 1;
+    return String(b.maj||b.cree||'').localeCompare(String(a.maj||a.cree||''));
+  });
+}
+function ressourcesDe(rid){return triRessources(S.liste.filter(a=>(rubValide(a.rub)?a.rub:'')===(rid||'')));}
 function compteRub(rid){return descendance(rid).reduce((n,x)=>n+ressourcesDe(x).length,0);}
 /* Ici, rien ne se déplie : on ENTRE dans un domaine, comme on ouvre un rayon.
    La position vit dans l'adresse (voir vaVers), donc elle se partage et le
@@ -600,6 +662,13 @@ setTimeout(()=>{if(!AUTH_VU){AUTH_VU=true;try{vue('liste');}catch(_){}}},6000);
 function saveRubs(){
   if(!RUBS_LUES){lvInfo('Le rangement n’est pas encore chargé. Réessayez dans un instant.');return;}
   rdoc().set({list:S.rubs}).catch(e=>{console.warn('rubriques',e);lvInfo('Le rangement n’a pas pu être enregistré.');});
+  /* ── L'ORDRE DES DOMAINES SE VOIT AUSSI CHEZ LE VISITEUR (05/09) ──
+     Le visiteur reconstruisait l'arbre à partir des chemins des ressources
+     publiées, dans l'ordre où elles lui arrivaient (les plus récentes
+     d'abord) : l'ordre soigneusement choisi par l'auteur n'existait que chez
+     lui. L'arbre (noms et ordre, rien de privé) est donc aussi déposé dans
+     un document public, que le visiteur lit et suit. */
+  try{db.doc('config/res_rubriques').set({list:S.rubs.map(r=>({id:r.id,nom:r.nom,parent:r.parent||''}))}).catch(e=>console.warn('rubriques publiques',e));}catch(_){}
 }
 
 // ════════ MODALES MAISON ════════
@@ -633,10 +702,14 @@ function lvChoix(titre,entrees){
   return new Promise(res=>{
     entrees.forEach(e=>{
       const d=document.createElement('div');
-      d.className='choix'+(e.danger?' del':'');
-      d.innerHTML='<span>'+esc(e.nom)+'</span>'+(e.note?'<i>'+esc(e.note)+'</i>':'');
-      d.setAttribute('role','button'); d.tabIndex=0;
-      d.onclick=()=>{CHOIX_FIN=null;$('m-choix').classList.remove('on');res(e.cle);};
+      d.className='choix'+(e.danger?' del':'')+(e.off?' off':'')+(e.fort?' fort':'');
+      /* niv : profondeur dans un arbre (le rangement se lit en retrait, comme
+         un sommaire) ; off : visible mais impossible à choisir (soi-même, ses
+         descendants, un niveau trop profond) */
+      if(e.niv)d.style.paddingLeft=(10+e.niv*22)+'px';
+      d.innerHTML=(e.niv?'<b class="cx-arbre">›</b>':'')+'<span>'+esc(e.nom)+'</span>'+(e.note?'<i>'+esc(e.note)+'</i>':'');
+      d.setAttribute('role','button'); d.tabIndex=e.off?-1:0;
+      d.onclick=()=>{if(e.off)return;CHOIX_FIN=null;$('m-choix').classList.remove('on');res(e.cle);};
       d.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();d.click();}};
       h.appendChild(d);
     });
@@ -975,7 +1048,9 @@ function carteRessource(r,publik){
     +(publik?'<span>'+esc(dateFr(r.maj||r.cree))+'</span>'
             :'<span class="ct-etat'+(r.publie?' publie':'')+'">'+(r.publie?'Publié':'Privé')+'</span>')
     +'</div></div>'
-    +(publik?'':'<span class="ct-menu" data-rmenu2="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Cette ressource">⋯</span>');
+    +(publik?'':'<span class="ct-menu" data-rmenu2="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Cette ressource">⋯</span>'
+      +'<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>'
+      +'<span class="fleches"><b data-mv="-1" role="button" tabindex="0" aria-label="Avancer">‹</b><b data-mv="1" role="button" tabindex="0" aria-label="Reculer">›</b></span>');
   return d;
 }
 function grilleDe(liste,publik){
@@ -1015,8 +1090,10 @@ function rayonDe(r,publik){
   const d=document.createElement('div');
   d.className='rayon'; d.dataset.va=r.id;
   d.setAttribute('role','button'); d.setAttribute('tabindex','0');
-  d.innerHTML='<span class="ry-nom">'+esc(r.nom)+'</span><span class="ry-n">'+compteRub(r.id)+'</span>'
-    +(publik?'':'<span class="ry-menu" data-rmenu="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Ce rayon">⋯</span>')
+  d.innerHTML=(publik?'':'<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>')
+    +'<span class="ry-nom">'+esc(r.nom)+'</span><span class="ry-n">'+compteRub(r.id)+'</span>'
+    +(publik?'':'<span class="fleches"><b data-mv="-1" role="button" tabindex="0" aria-label="Avancer">‹</b><b data-mv="1" role="button" tabindex="0" aria-label="Reculer">›</b></span>'
+      +'<span class="ry-menu" data-rmenu="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Ce rayon">⋯</span>')
     +'<span class="ry-chev">›</span>';
   return d;
 }
@@ -1073,24 +1150,23 @@ async function menuRub(id){
   const freres=enfants(r.parent||''), i=freres.findIndex(x=>x.id===id);
   const e=[{cle:'renom',nom:'Renommer'}];
   if(niveau(id)<RUB_MAX)e.push({cle:'sous',nom:'Ajouter une section dedans'});
-  if(i>0)e.push({cle:'haut',nom:'Monter'});
-  if(i<freres.length-1)e.push({cle:'bas',nom:'Descendre'});
+  /* « Placer… » remplace Monter / Descendre : une seule liste pour aller
+     n'importe où d'un coup, au lieu d'un cran à la fois. « Ranger dans… »
+     manquait tout à fait : un domaine ou une section ne pouvait pas changer
+     de parent, il fallait le recréer ailleurs et redéplacer chaque ressource
+     une à une (05/09). */
+  e.push({cle:'deplacer',nom:'Ranger dans…',note:r.parent&&rubValide(r.parent)?chemin(r.parent):'à la racine'});
   e.push({cle:'suppr',nom:'Supprimer',danger:true});
   const c=await lvChoix(r.nom,e);
   if(!c)return;
+  if(c==='deplacer'){await deplaceRub(id);return;}
   if(c==='renom'){
     const nom=await lvSaisie('Renommer','',r.nom,'Nom');
     if(nom&&nom.trim()){r.nom=nom.trim();saveRubs();rendLister();rafraichitRub(id);}
     return;
   }
   if(c==='sous'){await nouvelleRub(id);return;}
-  if(c==='haut'||c==='bas'){
-    const j=i+(c==='haut'?-1:1);
-    if(j<0||j>=freres.length)return;
-    const ia=S.rubs.indexOf(freres[i]), ib=S.rubs.indexOf(freres[j]);
-    const tmp=S.rubs[ia]; S.rubs[ia]=S.rubs[ib]; S.rubs[ib]=tmp;
-    saveRubs(); rendLister(); return;
-  }
+
   if(c==='suppr'){
     const dedans=descendance(id).reduce((n,x)=>n+ressourcesDe(x).length,0);
     const mot=motRub(id);
@@ -1113,19 +1189,53 @@ async function menuRub(id){
     else rendLister();
   }
 }
-/* après un renommage de domaine : les ressources publiées qu'il contient
-   (sections comprises) portent le nouveau chemin */
+/* la hauteur d'un sous-arbre : 1 pour une section sans enfant, 2 si elle a
+   des sections, etc. Sert à refuser un rangement qui dépasserait RUB_MAX. */
+function hauteur(id){let h=1;enfants(id).forEach(e=>{h=Math.max(h,1+hauteur(e.id));});return h;}
+async function deplaceRub(id){
+  const r=rubDe(id); if(!r)return;
+  const interdits=descendance(id), h=hauteur(id);
+  const parent=r.parent&&rubValide(r.parent)?r.parent:'';
+  const peut=cid=>niveau(cid)+h<=RUB_MAX;
+  const e=[{cle:'r:',nom:'À la racine, comme domaine',note:parent?'':'ici',fort:true}];
+  e.push(...entreesArbre(interdits,peut,parent));
+  const c=await lvChoix('Ranger « '+r.nom+' » dans…',e);
+  if(!c)return;
+  rubDans(id,c.slice(2));
+}
+/* après un renommage ou un déplacement de domaine : les ressources publiées
+   qu'il contient (sections comprises) portent le nouveau chemin */
 async function rafraichitRub(id){
   const dedans=descendance(id);
   for(const a of S.liste.filter(a=>a.publie&&dedans.indexOf(a.rub)>=0))await rafraichitPublic(a);
 }
+/* ── L'ARBRE DU RANGEMENT (05/09, Emmanuel : « le truc pour ranger est
+   catastrophique ») ──
+   Avant : une liste plate de tous les chemins complets (« Bible › Ancien
+   Testament › Genèse »), sans ordre lisible, où chaque ligne répétait tout le
+   chemin. Maintenant : le rangement se lit comme un sommaire, domaine par
+   domaine, sections en retrait, « ici » sur l'endroit courant. Les entrées
+   qu'on ne peut pas choisir restent visibles mais grisées, pour qu'on
+   comprenne l'arbre entier. */
+function entreesArbre(exclure,peut,courant){
+  const e=[];
+  const marche=(pid,niv)=>{
+    enfants(pid).forEach(r=>{
+      if(exclure&&exclure.indexOf(r.id)>=0)return;
+      e.push({cle:'r:'+r.id,nom:r.nom,niv:niv,note:courant===r.id?'ici':'',off:!peut(r.id)});
+      marche(r.id,niv+1);
+    });
+  };
+  marche('',0);
+  return e;
+}
 async function rangeRessource(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
-  const e=[];
-  S.rubs.forEach(r=>e.push({cle:'r:'+r.id,nom:chemin(r.id),note:(rubValide(a.rub)?a.rub:'')===r.id?'ici':''}));
-  e.push({cle:'r:',nom:'Sans domaine',note:rubValide(a.rub)?'':'ici'});
-  e.push({cle:'neuve',nom:'+ Nouveau domaine'});
-  const c=await lvChoix('Ranger la ressource dans…',e);
+  const ou=rubValide(a.rub)?a.rub:'';
+  const e=[{cle:'r:',nom:'Sans domaine',note:ou?'':'ici',fort:true}];
+  e.push(...entreesArbre(null,()=>true,ou));
+  e.push({cle:'neuve',nom:'+ Nouveau domaine',fort:true});
+  const c=await lvChoix('Ranger « '+(a.titre||'Sans titre')+' » dans…',e);
   if(!c)return;
   let cible=null;
   if(c==='neuve'){cible=await nouvelleRub('');if(!cible)return;}
@@ -1139,6 +1249,177 @@ async function rangeRessource(id){
   }catch(e2){console.warn('rangement',e2);lvInfo('Le rangement n’a pas pu être enregistré.');}
   rendLister();
 }
+
+/* ── L'ORDRE S'ÉCRIT (05/09) ──
+   Une liste de ressources dans son nouvel ordre : chacune reçoit son rang,
+   seules celles dont le rang a changé sont réécrites, par lot, et leur copie
+   publique suit. */
+async function appliqueOrdre(nouvel){
+  const changes=nouvel.filter((x,k)=>rangDe(x)!==k);
+  if(!changes.length){rendLister();return;}
+  changes.forEach(x=>{x.ordre=nouvel.indexOf(x);});
+  rendLister();
+  try{
+    const lot=db.batch();
+    changes.forEach(x=>lot.set(acol().doc(x.id),{ordre:x.ordre},{merge:true}));
+    await lot.commit();
+    if(S.res)S.res.ordre=(S.liste.find(x=>x.id===S.res.id)||{}).ordre;
+    for(const x of changes)if(x.publie)await rafraichitPublic(x);
+  }catch(e2){console.warn('placement',e2);lvInfo('La place n’a pas pu être enregistrée. Vérifiez la connexion et réessayez.');}
+}
+/* déplacer une ressource d'un cran (les flèches), ou la poser à un rang donné */
+function deplaceRessource(id,vers){
+  const a=S.liste.find(x=>x.id===id); if(!a)return;
+  const freres=ressourcesDe(rubValide(a.rub)?a.rub:'');
+  const i=freres.findIndex(x=>x.id===id); if(i<0)return;
+  const j=Math.max(0,Math.min(freres.length-1,vers)); if(j===i)return;
+  const l=freres.slice(); l.splice(i,1); l.splice(j,0,a);
+  appliqueOrdre(l);
+}
+function deplaceRubrique(id,vers){
+  const r=rubDe(id); if(!r)return;
+  const freres=enfants(r.parent||''), i=freres.findIndex(x=>x.id===id); if(i<0)return;
+  const j=Math.max(0,Math.min(freres.length-1,vers)); if(j===i)return;
+  const ordre=freres.slice(); ordre.splice(i,1); ordre.splice(j,0,r);
+  /* on réécrit la liste : les sœurs prennent leur nouvel ordre à leurs
+     anciennes places, tout le reste ne bouge pas */
+  const places=S.rubs.map((x,k)=>freres.indexOf(x)>=0?k:-1).filter(k=>k>=0);
+  const nv=S.rubs.slice(); places.forEach((k,n)=>{nv[k]=ordre[n];});
+  S.rubs=nv; saveRubs(); rendLister();
+}
+/* mettre une ressource dans une rubrique (ou à la racine, cible vide) */
+async function metDans(id,cible){
+  const a=S.liste.find(x=>x.id===id); if(!a)return;
+  cible=rubValide(cible)?cible:'';
+  if((rubValide(a.rub)?a.rub:'')===cible)return;
+  try{
+    await acol().doc(id).set({rub:cible},{merge:true});
+    a.rub=cible; if(S.res&&S.res.id===id)S.res.rub=cible;
+    if(a.publie)await rafraichitPublic(a);
+  }catch(e2){console.warn('rangement',e2);lvInfo('Le rangement n’a pas pu être enregistré.');}
+  rendLister();
+}
+/* ranger une rubrique sous une autre (ou à la racine), avec les mêmes gardes
+   que le menu : ni sous elle-même, ni trop profond */
+function rubDans(id,cible){
+  const r=rubDe(id); if(!r)return false;
+  cible=rubValide(cible)?cible:'';
+  if(cible===(r.parent&&rubValide(r.parent)?r.parent:''))return false;
+  if(cible&&descendance(id).indexOf(cible)>=0)return false;
+  if(cible&&niveau(cible)+hauteur(id)>RUB_MAX){lvInfo('Trop profond : le rangement ne descend pas au-delà de '+RUB_MAX+' niveaux.');return false;}
+  const ouAvant=S.ouLa;
+  r.parent=cible; saveRubs(); rafraichitRub(id);
+  if(ouAvant&&descendance(id).indexOf(ouAvant)>=0)vaVers(ouAvant); else rendLister();
+  return true;
+}
+/* ── LE MODE ORGANISER ── */
+function basculeOrganise(on){
+  S.organise=(on===undefined)?!S.organise:!!on;
+  document.body.classList.toggle('organise',S.organise);
+  const b=$('b-organiser'); if(b){b.textContent=S.organise?'Terminer':'Organiser';b.classList.toggle('majeur',S.organise);}
+  const m=$('mot-liste'); if(m&&S.auteur)m.textContent=S.organise?'Tirez une carte ou un rayon par sa poignée ⠿ et posez-le où vous voulez. Posé sur un rayon, il y entre ; posé sur le fil d’Ariane, il remonte.':'';
+  rendLister();
+}
+/* ── LE GLISSER-DÉPOSER LUI-MÊME ──
+   Événements de pointeur : une seule mécanique pour la souris, le doigt et
+   le stylet. La poignée capture le pointeur, un double de l'objet suit le
+   doigt, l'original pâlit, et à chaque mouvement on cherche sous le pointeur
+   soit un rayon ou un maillon du fil (poser DEDANS), soit le voisin le plus
+   proche (poser AVANT ou APRÈS, selon le côté). Près des bords, la page
+   défile d'elle-même. Échap annule. */
+let DRAG=null;
+function dragNettoie(){
+  if(!DRAG)return;
+  if(DRAG.ghost&&DRAG.ghost.parentNode)DRAG.ghost.parentNode.removeChild(DRAG.ghost);
+  DRAG.el.classList.remove('fantome');
+  document.querySelectorAll('.avant,.apres,.cible').forEach(x=>x.classList.remove('avant','apres','cible'));
+  if(DRAG.defile)cancelAnimationFrame(DRAG.defile);
+  DRAG=null;
+}
+function dragMarque(cible){
+  document.querySelectorAll('.avant,.apres,.cible').forEach(x=>x.classList.remove('avant','apres','cible'));
+  if(!cible)return;
+  if(cible.type==='dans')cible.el.classList.add('cible');
+  else cible.el.classList.add(cible.avant?'avant':'apres');
+}
+function dragCible(x,y){
+  const sous=document.elementsFromPoint(x,y).filter(e=>!DRAG.ghost.contains(e));
+  const fil=sous.map(e=>e.closest&&e.closest('.fil [data-va]')).find(Boolean);
+  if(fil)return {type:'dans',el:fil,id:fil.getAttribute('data-va')||''};
+  const ray=sous.map(e=>e.closest&&e.closest('.rayon')).find(Boolean);
+  if(ray&&ray!==DRAG.el){
+    const rid=ray.dataset.va;
+    /* une carte entre dans le rayon ; un rayon y entre aussi, sauf s'il est
+       lui-même ou un de ses propres descendants */
+    if(DRAG.kind==='c'||(descendance(DRAG.id).indexOf(rid)<0)){
+      /* pour un rayon posé sur un rayon FRÈRE, on préfère le réordonner :
+         « dedans » se fait en visant le bord intérieur (tiers central) */
+      if(DRAG.kind==='r'&&ray.parentElement===DRAG.el.parentElement){
+        const r=ray.getBoundingClientRect(), fx=(x-r.left)/r.width, fy=(y-r.top)/r.height;
+        const unCol=ray.parentElement.getBoundingClientRect().width<ray.getBoundingClientRect().width*1.5;
+        const centre=unCol?(fy>.35&&fy<.65):(fx>.35&&fx<.65);
+        if(centre)return {type:'dans',el:ray,id:rid};
+      }else return {type:'dans',el:ray,id:rid};
+    }
+  }
+  /* sinon : le voisin le plus proche, dans le même contenant */
+  const cont=DRAG.el.parentElement; if(!cont)return null;
+  const freres=[...cont.children].filter(e=>e!==DRAG.el&&(e.classList.contains('carte')||e.classList.contains('rayon')));
+  if(!freres.length)return null;
+  let best=null,bd=1e12;
+  freres.forEach(e=>{const r=e.getBoundingClientRect();const cx=Math.max(r.left,Math.min(r.right,x)),cy=Math.max(r.top,Math.min(r.bottom,y));const d=(cx-x)*(cx-x)+(cy-y)*(cy-y);if(d<bd){bd=d;best=e;}});
+  const r=best.getBoundingClientRect();
+  const unCol=cont.getBoundingClientRect().width<r.width*1.5;
+  let avant;
+  if(y<r.top)avant=true; else if(y>r.bottom)avant=false;
+  else avant=unCol?(y<r.top+r.height/2):(x<r.left+r.width/2);
+  return {type:'ordre',el:best,avant};
+}
+document.addEventListener('pointerdown',e=>{
+  const h=e.target.closest?e.target.closest('.poignee'):null;
+  if(!h||!S.organise||!S.auteur)return;
+  const el=h.closest('.carte,.rayon'); if(!el)return;
+  e.preventDefault();
+  const kind=el.classList.contains('carte')?'c':'r';
+  const id=kind==='c'?el.dataset.rid2:el.dataset.va;
+  const r=el.getBoundingClientRect();
+  const ghost=el.cloneNode(true); ghost.classList.add('tire'); ghost.classList.remove('fantome');
+  ghost.style.width=r.width+'px'; ghost.style.height=r.height+'px'; ghost.style.left=r.left+'px'; ghost.style.top=r.top+'px';
+  document.body.appendChild(ghost);
+  el.classList.add('fantome');
+  DRAG={kind,id,el,ghost,dx:e.clientX-r.left,dy:e.clientY-r.top,cible:null,x:e.clientX,y:e.clientY,defile:0};
+  try{h.setPointerCapture(e.pointerId);}catch(_){}
+  const boucle=()=>{ if(!DRAG)return;
+    const marge=70, v=window.innerHeight;
+    if(DRAG.y<marge)window.scrollBy(0,-Math.ceil((marge-DRAG.y)/6));
+    else if(DRAG.y>v-marge)window.scrollBy(0,Math.ceil((DRAG.y-(v-marge))/6));
+    DRAG.defile=requestAnimationFrame(boucle); };
+  DRAG.defile=requestAnimationFrame(boucle);
+});
+document.addEventListener('pointermove',e=>{
+  if(!DRAG)return;
+  DRAG.x=e.clientX; DRAG.y=e.clientY;
+  DRAG.ghost.style.left=(e.clientX-DRAG.dx)+'px'; DRAG.ghost.style.top=(e.clientY-DRAG.dy)+'px';
+  DRAG.cible=dragCible(e.clientX,e.clientY);
+  dragMarque(DRAG.cible);
+});
+document.addEventListener('pointerup',e=>{
+  if(!DRAG)return;
+  const d=DRAG, c=d.cible; dragNettoie();
+  if(!c)return;
+  if(c.type==='dans'){
+    if(d.kind==='c')metDans(d.id,c.id); else rubDans(d.id,c.id);
+    return;
+  }
+  /* réordonner : la place du voisin visé, avant ou après lui */
+  const cont=c.el.parentElement;
+  const freres=[...cont.children].filter(x=>x.classList.contains('carte')||x.classList.contains('rayon'));
+  const sans=freres.filter(x=>x!==d.el);
+  let pos=sans.indexOf(c.el); if(!c.avant)pos++;
+  if(d.kind==='c')deplaceRessource(d.id,pos); else deplaceRubrique(d.id,pos);
+});
+document.addEventListener('pointercancel',()=>dragNettoie());
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&DRAG)dragNettoie();});
 
 // ════════ L'ESPACE PUBLIC ════════
 /* Les ressources privées vivent sous users/{compte}/… , que personne d'autre
@@ -1188,7 +1469,8 @@ async function metEnLigne(a){
     titre:a.titre||'', type:typeDe(a), desc:a.desc||'', chemin:cheminTexte(a.rub),
     media:a.media||'', mime:a.mime||'', taille:a.taille||0, nom:a.nom||'',
     vign:a.vign||'', code:a.code||'', url:a.url||'',
-    cree:a.cree||null, maj:a.maj||null
+    cree:a.cree||null, maj:a.maj||null,
+    ordre:rangDe(a)===null?null:a.ordre
   });
 }
 async function retireDeLigne(a){
@@ -1237,7 +1519,8 @@ function majEtatEditeur(){
 let PUBS=[];
 async function litPublic(){
   try{
-    const sn=await pcol().get();
+    const [sn,rp]=await Promise.all([pcol().get(),db.doc('config/res_rubriques').get().catch(()=>null)]);
+    RUBS_PUB=(rp&&rp.exists&&Array.isArray(rp.data().list))?rp.data().list:null;
     PUBS=sn.docs.map(d=>Object.assign({id:d.id},d.data()));
     PUBS.sort((x,y)=>String(y.maj||y.cree||'').localeCompare(String(x.maj||x.cree||'')));
     /* SEULEMENT POUR LE VISITEUR. L'auteur a ses propres domaines, lus depuis
@@ -1254,19 +1537,34 @@ async function litPublic(){
    ressource publiée porte seulement son chemin écrit en clair. On reconstruit
    donc l'arborescence à partir de ces chemins, et le visiteur navigue de la
    même façon que l'auteur, sans que rien de privé n'ait été exposé. */
+let RUBS_PUB=null;
 function arbrePublic(){
+  /* L'arbre publié par l'auteur, s'il existe, donne l'ordre ; chaque ressource
+     y est rattachée par son chemin (les noms). Ce qui n'y correspond pas (un
+     arbre pas encore republié) est ajouté à la suite, comme avant. Puis les
+     branches sans ressource publiée sont retirées : le visiteur ne voit pas
+     de rayon vide. */
   const rubs=[], vus={};
+  (Array.isArray(RUBS_PUB)?RUBS_PUB:[]).forEach(r=>{ if(r&&r.id&&r.nom){rubs.push({id:String(r.id),nom:String(r.nom),parent:String(r.parent||'')});} });
+  const parentOk=id=>!id||rubs.some(x=>x.id===id);
+  rubs.forEach(r=>{ if(!parentOk(r.parent))r.parent=''; });
+  /* clé de chemin → id, pour l'arbre publié */
+  const cheminDe=(id)=>{const b=[];let r=rubs.find(x=>x.id===id),g=0;while(r&&g++<8){b.unshift(r.nom);r=r.parent?rubs.find(x=>x.id===r.parent):null;}return b.join('/');};
+  rubs.forEach(r=>{vus[cheminDe(r.id)]=r.id;});
   PUBS.forEach(a=>{
     const bouts=String(a.chemin||'').split('›').map(x=>x.trim()).filter(Boolean);
-    let parent='';
+    let parent='', cle='';
     bouts.forEach(nom=>{
-      const cle=parent+'/'+nom;
+      cle=cle?cle+'/'+nom:nom;
       if(!vus[cle]){ vus[cle]='p'+rubs.length; rubs.push({id:vus[cle],nom:nom,parent:parent}); }
       parent=vus[cle];
     });
     a.rub=parent;
   });
   S.rubs=rubs;
+  const pleines=new Set();
+  PUBS.forEach(a=>{let id=a.rub,g=0;while(id&&g++<8){pleines.add(id);const r=rubDe(id);id=r?r.parent:'';}});
+  S.rubs=rubs.filter(r=>pleines.has(r.id));
 }
 function rendPublic(){
   $('mot-liste').textContent='';
@@ -1277,6 +1575,8 @@ function rendPublic(){
 
 // ════════ VOIR UNE RESSOURCE ════════
 function vue(quoi){
+  /* on quitte la liste : le mode Organiser se referme de lui-même */
+  if(quoi!=='liste'&&S.organise){S.organise=false;document.body.classList.remove('organise');const b=$('b-organiser');if(b){b.textContent='Organiser';b.classList.remove('majeur');}const m=$('mot-liste');if(m)m.textContent='';}
   $('ecran-liste').style.display=quoi==='liste'?'block':'none';
   $('ecran-edit').style.display=quoi==='edit'?'block':'none';
   $('ecran-voir').style.display=quoi==='voir'?'block':'none';
@@ -1536,6 +1836,7 @@ async function supprime(){
 
 // ════════ ÉVÉNEMENTS ════════
 $('b-nouveau').onclick=nouveau;
+$('b-organiser').onclick=()=>basculeOrganise();
 $('b-section').onclick=()=>nouvelleRub(ici());
 $('b-retour').onclick=async()=>{if(S.sale)await enregistre(true);S.res=null;S.vu='';vue('liste');};
 $('b-voir-retour').onclick=()=>{S.res=null;S.vu='';vaVers(ici());vue('liste');};
@@ -1566,10 +1867,27 @@ document.addEventListener('click',e=>{
   if(c){e.stopPropagation();menuRessource(c.getAttribute('data-rmenu2'));return;}
   const m=e.target.closest?e.target.closest('[data-rmenu]'):null;
   if(m){e.stopPropagation();menuRub(m.getAttribute('data-rmenu'));return;}
+  const fl=e.target.closest?e.target.closest('[data-mv]'):null;
+  if(fl&&S.organise){
+    e.stopPropagation();
+    const pas=parseInt(fl.getAttribute('data-mv'),10)||0;
+    const ca=fl.closest('.carte'), ry=fl.closest('.rayon');
+    if(ca){const id=ca.dataset.rid2,a=S.liste.find(x=>x.id===id);if(a){const f=ressourcesDe(rubValide(a.rub)?a.rub:'');deplaceRessource(id,f.findIndex(x=>x.id===id)+pas);}}
+    else if(ry){const id=ry.dataset.va,r=rubDe(id);if(r){const f=enfants(r.parent||'');deplaceRubrique(id,f.findIndex(x=>x.id===id)+pas);}}
+    return;
+  }
+  if(e.target.closest&&e.target.closest('.poignee'))return;
   const v=e.target.closest?e.target.closest('[data-va]'):null;
-  if(v){vaVers(v.getAttribute('data-va'));return;}
+  if(v){
+    /* en mode Organiser, on n'entre pas dans un rayon en le touchant : la
+       carte ou le rayon est une chose qu'on prend, pas une porte ; le fil
+       d'Ariane, lui, reste un chemin */
+    if(S.organise&&v.classList.contains('rayon'))return;
+    vaVers(v.getAttribute('data-va'));return;
+  }
   const k=e.target.closest?e.target.closest('[data-rid2]'):null;
   if(k){
+    if(S.organise)return;
     const id=k.getAttribute('data-rid2');
     const a=S.auteur?S.liste.find(x=>x.id===id):PUBS.find(x=>x.id===id);
     if(a)voit(a,!S.auteur);

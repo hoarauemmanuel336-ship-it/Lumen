@@ -197,7 +197,8 @@ par le pourquoi, sans s'excuser ni corriger quoi que ce soit.
 ────────────────────────────────────────────────────────────────────
 SOURCE (dépôt GitHub hoarauemmanuel336-ship-it/Lumen, branche main) :
   Racine : build-bi.js, index__48_.html, bible.html, bible-panneau.js,
-  memoriser.html, articles.html, ressources.html, memoriser-sw.js,
+  memoriser.html, articles.html, ressources.html, commentaires.html,
+  memoriser-sw.js, REGLES-firestore.txt,
   manifest.webmanifest,
   memoriser-manifest.webmanifest, netlify.toml, package.json,
   package-lock.json (sans aucune dépendance : jsdom retiré le 25/07),
@@ -212,13 +213,19 @@ prismatic-fox-161266) publie site/ à chaque push GitHub
 en REST (curl, lecture publique) pour config/memoriser ; hors réseau il ignore
 Firestore proprement et retombe sur les fichiers.
 
-SIX SURFACES PUBLIQUES, ET RIEN D'AUTRE :
+SIX SURFACES PUBLIQUES, PLUS UNE PAGE D'AUTEUR, ET RIEN D'AUTRE :
   /                → accueil (index.html), généré par mainAccueil()
-  /bible.html      → lecteur biblique
+  /bible.html      → lecteur biblique (et lecture des commentaires publiés)
   /memoriser.html  → application de mémorisation (versets ET passages)
   /articles.html   → les articles : écriture pour l'auteur, lecture pour tous
   /ressources.html → diagrammes, images, PDF, liens : même modèle que les articles
   /404.html        → page introuvable, volontairement simple
+  /commentaires.html → page d'ÉCRITURE des commentaires bibliques (05/09) :
+                     hors menu, hors sitemap, noindex ; l'auteur y arrive par
+                     la Bible (« Commenter ») ou par le compte (« Mes
+                     commentaires », accueil et Bible). Le visiteur qui y
+                     tombe voit la liste des commentaires publiés, chaque
+                     ligne menant au verset dans la Bible.
 
 ARCHITECTURE DU CODE :
 • build-bi.js : générateur unique. Il extrait le CSS de index__48_.html
@@ -325,7 +332,7 @@ numéro.
 MARQUEURS ANTI-RESET (vérifier AVANT toute édition ; au moindre doute,
 restaurer depuis la dernière livraison, source de vérité avec le dépôt) :
   index__48_.html  → « memo-start:hover »
-  build-bi.js      → « bible-data », « Barres : identiques sur les 6 surfaces »,
+  build-bi.js      → « bible-data », « Barres : identiques sur les 7 surfaces »,
                      « injecteAvant », « metaCopie »
   bible.html       → « parseRef », « bibleNotes »
   bible-panneau.js → « bp-pan »
@@ -1194,6 +1201,97 @@ des problèmes et des bugs »). Acquis à ne pas défaire :
   copie dans un cadre isolé : surPlace (execCommand, champ posé à la hauteur
   du doigt, focus sans défilement) ET relais à la page, toujours les deux
   (execCommand répond « réussi » même bloqué) ; #r/… aussi pour l'auteur.
+• RESSOURCES, RANGER ET ORGANISER (05/09, Emmanuel : « le truc pour ranger
+  est catastrophique », « je veux choisir la place qu'a un objet », puis, sur
+  une liste « Placer… / Après X » : « c'est vraiment pas top »). lvChoix
+  accepte niv (retrait), off (grisé), fort. entreesArbre() rend l'arbre en
+  sommaire (« ici » sur l'endroit courant) pour « Ranger dans… », ressources
+  comme rubriques (deplaceRub → rubDans : soi-même et descendants grisés,
+  RUB_MAX via hauteur()). L'ORDRE se fait au doigt : bouton « Organiser »
+  (S.organise, body.organise) → poignée ⠿ et flèches ‹ › sur chaque carte et
+  chaque rayon ; glisser-déposer aux événements de pointeur (DRAG, dragCible,
+  dragMarque : repère doré avant/après, ou « cible » quand on pose SUR un
+  rayon ou sur un maillon du fil = entrer / remonter ; défilement automatique
+  près des bords ; Échap annule) ; en mode Organiser, cartes et rayons ne
+  s'ouvrent pas. Écriture : appliqueOrdre() pose ordre (nombre) par lot
+  (db.batch) et recopie en public ; deplaceRubrique() réordonne S.rubs ;
+  metDans() / rubDans() pour « dedans ». triRessources() : rangées d'abord,
+  puis les autres par date. saveRubs() dépose aussi l'arbre (id, nom, parent)
+  dans config/res_rubriques ; arbrePublic() le lit, rattache chaque ressource
+  publiée par son chemin, ajoute ce qui n'y figure pas, retire les branches
+  vides : le visiteur voit l'ordre de l'auteur (écriture de config : auteur
+  avec adresse vérifiée). Le mode se referme en quittant la liste (vue()).
+• BIBLE, LA MARQUE D'UNE NOTE (05/09, Emmanuel : « quelque chose de subtil
+  sur le verset pour montrer qu'il y a une ou des notes », puis, après huit
+  essais montrés côte à côte, choix du NUMÉRO SOULIGNÉ). marqueNotes() pose la
+  classe a-note sur le sup.vn des versets annotés : un filet doré sous le
+  chiffre, obtenu par background-image en dégradé plutôt que par une bordure,
+  pour ne pas décaler le chiffre d'un pixel ; opacité .8, 1 au survol. UN SEUL
+  TRAIT, quel que soit le nombre de notes (Emmanuel, 05/09 : « je ne veux pas
+  plusieurs affichages selon s'il y a plusieurs notes ou pas ») : la marque dit
+  qu'il y a une note, rien d'autre. Rien n'est ajouté au flux du texte. Un i.nt en position absolue élargit la zone touchée autour
+  du chiffre ; toucher ou cliquer ouvre la note (une seule) ou « Mes notes »
+  (plusieurs) via ouvreNotesDe(), intercepté dans agitSur() AVANT la sélection
+  du verset, qui reste intacte partout ailleurs. Plusieurs notes : la route
+  « #notes/<référence> » ouvre « Mes notes » DÉJÀ FILTRÉE sur ce verset (le
+  filtre est écrit dans le champ de recherche), au lieu de la page entière.
+  Rejoué après chaque rendu de chapitre, après la synchronisation, et après
+  enregistrement ou suppression.
+• COMMENTAIRES BIBLIQUES (05/09, Emmanuel : « en plus des notes personnelles,
+  je veux pouvoir créer des commentaires bibliques » ; réponses : affichés
+  dans la Bible sur le verset, un verset ou une plage, écrits avec l'éditeur
+  des articles « mais ça ne doit pas se retrouver dans la page des articles »,
+  lisibles par tous une fois publiés).
+  ÉCRITURE : commentaires.html est une copie adaptée d'articles.html (mêmes
+  blocs, mêmes images tranchées dans users/{uid}/medias et public_medias,
+  mêmes cadres isolés, même enregistrement automatique). Pas de rubriques :
+  la liste se range PAR LIVRE, dans l'ordre de la Bible, chaque livre
+  dépliable (lv_com_liv). Un commentaire porte UNE référence (champ .ed-ref
+  au-dessus du titre, titre facultatif) : un verset ou une plage d'un même
+  chapitre, lue par le dictionnaire de bible-panneau.js (LVBible.ref, attendu
+  via LVBible.pret()) et écrite en trois formes dans le document : ref (le
+  libellé canonique, « Matthieu 5:3-12 », « Psaume 23:1 », « Jude 3 »), refs
+  [{slug,ch,v1,v2}] et livres [slug]. Le champ dit sous lui ce qu'il a compris
+  ou ce qui manque ; au blur, la saisie prend sa forme canonique. SANS
+  RÉFÉRENCE VALABLE, PAS DE MISE EN LIGNE (metEnLigne lève lvSansRef, le
+  bouton le dit). Brouillons : users/{uid}/commentaires ; publiés :
+  public_commentaires (règle ajoutée dans REGLES-firestore.txt, à poser dans
+  la console). Route « #nouveau/<référence> » : ouvre le commentaire existant
+  sur cette référence s'il y en a un, sinon en crée un prérempli ; traitée
+  après la première liste (traiteHash), hash effacé par replaceState.
+  LECTURE (bible.html) : chargeComs(slug) lit public_commentaires
+  where('livres','array-contains',slug), UNE requête par livre ouvert, gardée
+  en COMS[slug] le temps de la visite ; assureFB() charge Firebase à la
+  demande. marqueComs() pose un « § » doré (i.cm) DEVANT le numéro du PREMIER
+  verset du passage commenté (jamais dix marques pour une plage) et la classe
+  a-com sur le sup.vn ; le chiffre vit désormais dans son propre span .vnn,
+  qui seul porte le filet d'une note, pour que les deux marques cohabitent.
+  Zones tactiles : le § prend la gauche et la hauteur ; s'il n'y a pas de
+  note, tout le numéro ouvre le commentaire ; avec une note, le chiffre reste
+  à la note. Toucher le § SURLIGNE TOUT LE PASSAGE (classe com-on sur chaque
+  verset de v1 à v2, même voile que la sélection) et ouvre un div.com-pan
+  INSÉRÉ APRÈS LE DERNIER VERSET du passage (jamais dans un verset :
+  marqueSurlF réécrit l'intérieur du verset) ; data-v/data-v2 disent quoi
+  éteindre à la fermeture (fermeCom). Pas d'en-tête « Commentaire ·
+  référence » (Emmanuel, 05/09 : le passage surligné suffit), seulement le
+  titre s'il y en a un et un « Fermer » discret en pied. Le panneau rend les
+  blocs avec propreCom (même filtre que l'éditeur), les images
+  publiques (chargeMediaCom, tranches recollées) et les blocs interactifs
+  (pageCadreCom, hauteur annoncée et copie relayée par la page). Une
+  référence (.ref) dans un commentaire mène à son verset (« #ref=… ») ;
+  « Fermer » ou le § referment ; rien dans le panneau ne sélectionne de verset (agitSur
+  traite .com-pan en premier). marqueSurlF rejoue marqueNotes et marqueComs
+  quand elle a réécrit un verset (avant, la marque de note disparaissait
+  après un surlignage). AUTEUR (EST_AUTEUR posé dans onAuthStateChanged) :
+  « Commenter » dans la barre de sélection (#sb-com) envoie vers
+  /commentaires.html#nouveau/<premier groupe sélectionné>, dans la fenêtre
+  principale même depuis le tiroir (window.top) ; « Mes commentaires » dans
+  le panneau de compte (#bacct-coms, et #auth-m-coms sur l'accueil).
+• BIBLE, SURVOL = CLIC (05/09, Emmanuel : « quand je survole un verset avec la
+  souris, fais en sorte que le surlignage soit le même que quand je clique
+  dessus ») : .vst:hover (et le halo des vers .po) prend var(--vc-sel,
+  rgb(41,39,35)), le voile exact de la sélection, au lieu de --surv à 6 %.
+  Sous @media(hover:hover) seulement, le doigt n'a pas de survol.
 • BIBLE (05/09) : body.sel-active .wrap posé APRÈS html.panneau .wrap (même
   spécificité, le raccourci padding écrasait le bas) ; « #ref=… » sélectionne
   la plage via allerRefs et hashDe() du panneau l'emploie pour les plages ;
