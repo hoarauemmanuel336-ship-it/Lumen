@@ -1306,7 +1306,13 @@ des problèmes et des bugs »). Acquis à ne pas défaire :
   en COMS[slug] le temps de la visite ; assureFB() charge Firebase à la
   demande. marqueComs() pose un « § » doré (i.cm) DEVANT le numéro du PREMIER
   verset du passage commenté (jamais dix marques pour une plage) et la classe
-  a-com sur le sup.vn ; le chiffre vit désormais dans son propre span .vnn,
+  a-com sur le sup.vn. LE § EST GRAND ET GRAS (13 px, poids 700, pleine
+  opacité) : le premier essai, petit et à demi éteint, ne se voyait pas
+  (Emmanuel, 05/09 : « le truc pour indiquer qu'il y a un commentaire n'est pas
+  assez visible » ; choix fait parmi huit variantes montrées côte à côte sur le
+  vrai texte). Un verset qui porte À LA FOIS une note et un commentaire garde
+  son sup en pleine lumière (a-note l'atténuait à 80 %). Le chiffre vit dans
+  son propre span .vnn,
   qui seul porte le filet d'une note, pour que les deux marques cohabitent.
   Zones tactiles : le § prend la gauche et la hauteur ; s'il n'y a pas de
   note, tout le numéro ouvre le commentaire ; avec une note, le chiffre reste
@@ -1334,6 +1340,19 @@ des problèmes et des bugs »). Acquis à ne pas défaire :
   dessus ») : .vst:hover (et le halo des vers .po) prend var(--vc-sel,
   rgb(41,39,35)), le voile exact de la sélection, au lieu de --surv à 6 %.
   Sous @media(hover:hover) seulement, le doigt n'a pas de survol.
+• BIBLE, LE VOILE NE MORD PLUS SUR LES LIGNES VOISINES (05/09, Emmanuel :
+  « quand je survole ou clique sur un verset, parfois ça bloque la vue du
+  verset du dessus/dessous »). Le fond d'un verset est OPAQUE (voulu : deux
+  versets voisins sélectionnés ne doivent pas laisser voir de couture), donc
+  tout ce qu'il recouvre disparaît. Il portait .06em de marge intérieure en
+  haut et en bas : le fond faisait 24 px pour une ligne de 22,1 px et mangeait
+  les jambages des lignes d'à côté — invisible tant que le survol était à 6 %,
+  criant depuis qu'il montre la teinte pleine. Marge intérieure verticale
+  supprimée sur .vst:not(.po) ET sur .lv-frag (portions surlignées) : le fond
+  tient dans sa ligne (22,0 px, 0,1 px d'écart entre deux lignes empilées). La
+  marge intérieure HORIZONTALE (.3em, avec sa marge extérieure négative) est
+  conservée : c'est elle qui recouvre l'espace entre deux versets voisins.
+  Ne pas remettre de marge verticale ici.
 • BIBLE (05/09) : body.sel-active .wrap posé APRÈS html.panneau .wrap (même
   spécificité, le raccourci padding écrasait le bas) ; « #ref=… » sélectionne
   la plage via allerRefs et hashDe() du panneau l'emploie pour les plages ;

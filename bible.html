@@ -227,6 +227,9 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .ch-texte sup.vn.a-note .vnn{background-image:linear-gradient(var(--or),var(--or));background-repeat:no-repeat;background-size:100% 1px;background-position:0 100%;padding-bottom:1.5px}
 .ch-texte sup.vn.a-note{opacity:.8;transition:opacity .25s}
 .ch-texte .vst:hover sup.vn.a-note,.ch-texte sup.vn.a-note:hover{opacity:1}
+/* un verset qui porte un commentaire garde sa marque en pleine lumière, même
+   s'il porte aussi une note (le sup était atténué à 80 %) */
+.ch-texte sup.vn.a-note.a-com{opacity:1}
 /* la zone touchée est le chiffre, élargie tout autour pour le doigt */
 .ch-texte sup.vn .nt{position:absolute;inset:-10px -8px;display:block;width:auto;height:auto;background:none;cursor:pointer}
 .ch-texte sup.vn.a-note,.ch-texte sup.vn.a-com{position:relative;cursor:pointer}
@@ -238,13 +241,16 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    le filet des notes (le filet ne court que sous le chiffre, .vnn), pour que
    les deux marques restent lisibles côte à côte. Il passe au-dessus de la
    zone de la note (.nt) : le toucher ouvre le commentaire, pas la note. */
-.ch-texte sup.vn .cm{position:relative;z-index:1;display:inline-block;font-style:normal;font-weight:400;font-size:9.5px;line-height:1;color:var(--or);opacity:.72;margin-right:2.5px;cursor:pointer;transition:opacity .25s;letter-spacing:0}
+/* Il était trop discret (Emmanuel, 05/09 : « le truc pour indiquer qu'il y a
+   un commentaire n'est pas assez visible ») : parmi huit essais montrés côte à
+   côte, choix du § PLUS GRAND ET GRAS, en pleine lumière. */
+.ch-texte sup.vn .cm{position:relative;z-index:1;display:inline-block;font-style:normal;font-weight:700;font-size:13px;line-height:1;color:var(--or);opacity:1;margin-right:3.5px;cursor:pointer;transition:opacity .25s;letter-spacing:0}
 /* Zone du doigt : vers la gauche et en hauteur seulement, pour laisser le
    chiffre à la note quand le verset porte les deux marques ; s'il n'y a pas
    de note, tout le numéro ouvre le commentaire. */
 .ch-texte sup.vn .cm::before{content:'';position:absolute;inset:-10px 0 -10px -9px}
 .ch-texte sup.vn.a-com:not(.a-note) .cm::before{inset:-10px -16px -10px -9px}
-.ch-texte .vst:hover sup.vn .cm,.ch-texte sup.vn .cm:hover{opacity:1}
+.ch-texte sup.vn .cm:hover{color:var(--or-pale)}
 .ch-texte sup.vn .cm:focus-visible{outline:1px solid var(--or);outline-offset:1px}
 /* ── LE COMMENTAIRE, SOUS LE VERSET ──
    Il s'ouvre dans le chapitre, juste après le verset, et se referme d'un
@@ -291,7 +297,15 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    fond (sélection, surlignage) déborde un peu du mot et recouvre l'espace qui
    sépare deux versets. Sans cela, deux versets voisins sélectionnés laissent
    voir une couture sombre entre eux. */
-.vst:not(.po){padding:.06em .3em;margin:0 -.3em}
+/* AUCUNE MARGE INTÉRIEURE VERTICALE (05/09, Emmanuel : « quand je survole ou
+   clique sur un verset, parfois ça bloque la vue du verset du dessus ou du
+   dessous »). Le fond est opaque : tout ce qu'il recouvre disparaît. Avec
+   .06em en haut et en bas, il dépassait la ligne de deux pixels et demi et
+   mordait sur les lignes voisines — d'autant plus visible depuis que le
+   survol montre la même teinte que le clic. Il tient maintenant exactement
+   dans sa ligne. La marge intérieure HORIZONTALE reste : c'est elle qui
+   recouvre l'espace entre deux versets voisins. */
+.vst:not(.po){padding:0 .3em;margin:0 -.3em}
 /* ── LES VERS ──
    Un verset de psaume, de proverbe ou d'oracle ne se coule pas dans le
    paragraphe : il tient sa ligne, comme dans une Bible imprimée, et les
@@ -361,7 +375,9 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 /* Portion surlignée à la souris : même voile, mêmes coins doux que le verset
    entier ; la marge intérieure est reprise par une marge extérieure négative,
    le texte ne bouge pas d'un cheveu. */
-.lv-frag{border-radius:3px;padding:.06em .1em;margin:0 -.1em;box-decoration-break:clone;-webkit-box-decoration-break:clone;cursor:pointer}
+/* même règle que pour le verset entier : pas de marge intérieure verticale,
+   sinon la couleur mord sur les lignes voisines (05/09) */
+.lv-frag{border-radius:3px;padding:0 .1em;margin:0 -.1em;box-decoration-break:clone;-webkit-box-decoration-break:clone;cursor:pointer}
 /* petit menu flottant de surlignage de fragment */
 #lv-frag-pop{position:absolute;z-index:120;display:none;align-items:center;gap:8px;padding:8px 10px;background:rgba(12,12,12,.97);border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 30px rgba(0,0,0,.55);backdrop-filter:blur(8px);flex-wrap:wrap;max-width:min(92vw,340px)}
 #lv-frag-pop.ouvert{display:flex}
