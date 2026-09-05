@@ -1388,9 +1388,36 @@ des problèmes et des bugs »). Acquis à ne pas défaire :
        par un filet sombre d'un pixel, comme les passages d'un surligneur.
        Même traitement pour .lv-frag (fragStyle rend « --voile:… » et non plus
        « background:… »). Les teintes passent toutes par --voile : ne pas
-       revenir à « background: » sur .vst, sinon la bande reprend toute la
-       hauteur. Essayé et écarté : allonger l'interligne (il faudrait 1,17 au
-       lieu de 1,08, le texte perdrait sa densité).
+       revenir à « background: » sur .vst. Essayé et écarté : allonger
+       l'interligne (il faudrait 1,17 au lieu de 1,08, le texte perdrait sa
+       densité).
+    5. LA HAUTEUR DE LA BANDE NE VIENT PLUS DE LA POLICE (05/09) — LA VRAIE
+       CAUSE, et une leçon à retenir. Tant que la bande valait « 100 % », elle
+       épousait la BOÎTE DU TEXTE, dont la hauteur dépend des mesures internes
+       de la police ; or Chromium ne lit pas ces mesures de la même façon selon
+       le système. Sous Linux (mes vérifications) cette boîte valait 22,0 px
+       pour une ligne de 22,1 : rien ne dépassait, tout paraissait juste. Sous
+       Windows (Emmanuel), la même police annonce une boîte d'environ une fois
+       et demie le corps : la bande faisait 31 px pour une ligne de 22, mordait
+       de neuf pixels sur ses voisines, et deux bandes superposées donnaient une
+       RAIE PLUS FONCÉE entre chaque ligne. Prouvé sur sa capture : le fond y
+       mesurait 131,22,22 entre les lignes contre 77,13,13 dedans, soit très
+       exactement deux couches de rouge à 30 %.
+       La bande est donc taillée à la HAUTEUR DE LA LIGNE moins deux pixels et
+       centrée : background-size:100% calc(1.08em - 2px); background-position:0
+       50%. Une boîte de texte et sa ligne partagent toujours le même centre
+       (le demi-interligne se répartit également de part et d'autre), donc le
+       calage est juste quelles que soient les mesures de la police. Vérifié en
+       simulant une police à grandes mesures : plus aucun doublement, et un
+       filet sombre de deux pixels entre les lignes.
+       ⚠ Si l'interligne de .ch-texte change, changer aussi le 1.08em de .vst
+       et de .lv-frag.
+    6. LE VOILE SUIT L'ACCENT DU SITE (05/09, « le survol et le surlignage
+       n'ont même plus la couleur d'accent du site »). Le gris chaud était écrit
+       en dur depuis toujours (rgb(41,39,35), qui est bien l'accent à 17 % —
+       mesuré sur sa capture). Il passe maintenant par --voile-vif et
+       --voile-doux, définis en color-mix sur var(--or) avec un rgba de repli :
+       si l'accent du site change, le voile change avec lui.
 • BIBLE (05/09) : body.sel-active .wrap posé APRÈS html.panneau .wrap (même
   spécificité, le raccourci padding écrasait le bas) ; « #ref=… » sélectionne
   la plage via allerRefs et hashDe() du panneau l'emploie pour les plages ;
