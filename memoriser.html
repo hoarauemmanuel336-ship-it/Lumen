@@ -1146,8 +1146,14 @@ function answer(id,ok,rap){
         /* RECONNU N'EST PAS RAPPELÉ. La bonne case a été trouvée en lisant les
            propositions, pas en se souvenant : c'est précisément ce que le choix
            multiple ne pouvait pas voir. Le niveau ne bouge pas, et le verset
-           repasse quelques questions plus loin, comme après une erreur. */
-        p.box=eff; p.n=new Date(ms).toISOString(); p.s=S.step+3;
+           repasse quelques questions plus loin, comme après une erreur.
+           ── LE JUGEMENT SUIVANT ATTEND DEMAIN (05/09) ──
+           Il était remis « à maintenant », donc jugé de nouveau trois questions
+           plus loin, et il montait alors d'un cran sur la foi d'un souvenir
+           vieux de trois minutes : « pas du tout » ne coûtait rien. Il revient
+           bien trois questions plus loin, mais pour s'exercer ; le prochain
+           jugement se fait après une nuit. */
+        p.box=eff; p.n=echeance(ms,1); p.s=S.step+3;
       } else if(note==='a'){
         /* RAPPELÉ AVEC EFFORT. Sans retard, le cran reste le même et le verset
            revient environ deux fois plus tôt que si tout avait été limpide.
@@ -1193,7 +1199,13 @@ function answer(id,ok,rap){
      Il n'y a plus de faille à fermer : se tromper exprès ne rend plus le
      verset mûr, il n'y a rien à gagner. Le verset manqué revient simplement
      quelques questions plus loin, comme après toute erreur. */
-  else if(mur){ p.box=Math.max(0,eff-2); p.n=new Date(ms).toISOString(); p.s=S.step+3; }
+  /* Manqué à l'heure : deux crans de moins, et le prochain jugement attend
+     demain. Remis « à maintenant », il était rejugé trois questions plus loin
+     et reprenait aussitôt un cran sur la mémoire courte : l'erreur ne coûtait
+     qu'un cran net, gagné sur rien. Le verset revient quand même tout de
+     suite dans la séance, pour s'exercer, puisque c'est ce qui tient le
+     moins ; mais on ne le croit sur parole qu'après une nuit. */
+  else if(mur){ p.box=Math.max(0,eff-2); p.n=echeance(ms,1); p.s=S.step+3; }
   else { p.s=S.step+3; }
   p.t=new Date(ms).toISOString();
   delete p.due;     // ancien pas de séance, remplacé par une vraie date
