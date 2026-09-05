@@ -291,7 +291,25 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 /* --vc : teinte du surlignage de verset entier (posée par le script), --vc-sel :
    la même teinte, un peu plus franche, quand ce verset est en plus sélectionné.
    Sans couleur, un verset est nu ; sélectionné, il prend le voile parchemin. */
-.vst{scroll-margin-top:160px;cursor:pointer;transition:background .3s,box-shadow .3s;-webkit-tap-highlight-color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:3px;background:var(--vc,transparent)}
+/* AUCUN FONDU SUR LE VOILE (05/09, Emmanuel : « quand je surligne, il faut que
+   je resurvole pour que ça s'affiche bien, ça doit être bien dès le départ ;
+   pareil quand on survole juste un verset »). Le fond passait en trois dixièmes
+   de seconde : pendant tout ce temps le verset n'était qu'à demi teinté, et un
+   simple passage de souris ne montrait qu'un voile pâle et inachevé. Le voile
+   se pose maintenant d'un coup, entier. Ne pas remettre de transition ici. */
+/* ── LE VOILE S'ARRÊTE UN PIXEL SOUS LE HAUT DE LA LIGNE (05/09) ──
+   Mesures faites sur la page : le texte remplit sa ligne à ras (22,0 px de
+   hauteur naturelle pour 22,1 px d'interligne), et les jambages — le pied des
+   j, g, p, q, y — descendent 0,9 px DANS la ligne suivante. Le voile de cette
+   ligne-là les teintait donc, ce qui se voyait à peine en gris mais donnait un
+   rose sale avec un surlignage de couleur.
+   Le voile est peint par un dégradé plat, d'où sa hauteur réglable : il part
+   du bas de la ligne et s'arrête un pixel avant le haut. Ce pixel, c'est
+   justement celui qu'occupent les jambages du dessus, qui restent donc blancs
+   et nets. Les lignes d'un même surlignage sont séparées par un filet sombre
+   d'un pixel, comme les passages d'un vrai surligneur.
+   La teinte passe par --voile, pour n'écrire le dégradé qu'une fois. */
+.vst{scroll-margin-top:160px;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:3px;--voile:var(--vc,transparent);background-image:linear-gradient(var(--voile),var(--voile));background-repeat:no-repeat;background-size:100% calc(100% - 1px);background-position:0 100%}
 /* Un verset de prose porte sa propre marge intérieure, retirée par une marge
    extérieure négative de même largeur : rien ne bouge dans le texte, mais le
    fond (sélection, surlignage) déborde un peu du mot et recouvre l'espace qui
@@ -346,7 +364,7 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    « quand je survole un verset avec la souris, fais en sorte que le
    surlignage soit le même que quand je clique dessus ») : même voile de
    parchemin que la sélection, et non plus une teinte à peine visible. */
-@media(hover:hover){.vst:hover{background:var(--vc-sel,rgba(239,230,207,.17))}.vst.po:hover{box-shadow:0 0 0 5px var(--vc-sel,rgba(239,230,207,.17))}}
+@media(hover:hover){.vst:hover{--voile:var(--vc-sel,rgba(239,230,207,.17))}.vst.po:hover{box-shadow:0 0 0 5px var(--vc-sel,rgba(239,230,207,.17))}}
 #sb-cercle{width:26px;height:22px;padding:1px;background:#0a0a0a;border:1px solid rgba(255,255,255,.25);cursor:pointer}
 .sb-surl{display:none;align-items:center;gap:10px;padding:8px 0 2px;flex-wrap:wrap}
 .sb-surl.ouvert{display:flex}
@@ -363,7 +381,8 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    rgb(41,39,35) ; à 12 % = rgb(29,28,25).
    Un verset déjà coloré ne devient pas gris quand on le sélectionne : il garde
    sa couleur, simplement plus franche (--vc-sel). */
-.vst.sel,.vst.com-on{background:var(--vc-sel,rgba(239,230,207,.17))!important;box-shadow:none!important}
+/* « important » : la sélection l'emporte sur .cible, déclarée plus bas */
+.vst.sel,.vst.com-on{--voile:var(--vc-sel,rgba(239,230,207,.17))!important;box-shadow:none!important}
 .vst.po.sel,.vst.po.com-on{box-shadow:0 0 0 5px var(--vc-sel,rgba(239,230,207,.17))!important}
 /* .com-on : les versets du passage dont le commentaire est ouvert (05/09,
    Emmanuel : « il faut que ça surligne tout le passage et ensuite il y a la
@@ -377,14 +396,15 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .vst.po.sel+.vst.po.sel::before{content:'';position:absolute;left:-5px;right:-5px;bottom:100%;height:.7em;background:var(--vc-sel,rgba(239,230,207,.17));pointer-events:none}
 .vst.po.sent+.vst.po.sel::before,.vst.po.sel+.vst.po.sent.sel::before{height:1.25em}
 @media(max-width:600px){.vst.po.sel+.vst.po.sel::before{height:.62em}.vst.po.sent+.vst.po.sel::before,.vst.po.sel+.vst.po.sent.sel::before{height:1.1em}}
-.vst.cible{background:var(--vc,rgba(239,230,207,.12))}
+.vst.cible{--voile:var(--vc,rgba(239,230,207,.12))}
 .vst.po.cible{box-shadow:0 0 0 5px var(--vc,rgba(239,230,207,.12))}
 /* Portion surlignée à la souris : même voile, mêmes coins doux que le verset
    entier ; la marge intérieure est reprise par une marge extérieure négative,
    le texte ne bouge pas d'un cheveu. */
 /* même règle que pour le verset entier : pas de marge intérieure verticale,
    sinon la couleur mord sur les lignes voisines (05/09) */
-.lv-frag{border-radius:3px;padding:0 .06em;margin:0 -.06em;box-decoration-break:clone;-webkit-box-decoration-break:clone;cursor:pointer}
+/* même bande qu'un verset entier, un pixel plus courte en haut */
+.lv-frag{border-radius:3px;padding:0 .06em;margin:0 -.06em;box-decoration-break:clone;-webkit-box-decoration-break:clone;cursor:pointer;background-image:linear-gradient(var(--voile,transparent),var(--voile,transparent));background-repeat:no-repeat;background-size:100% calc(100% - 1px);background-position:0 100%}
 /* petit menu flottant de surlignage de fragment */
 #lv-frag-pop{position:absolute;z-index:120;display:none;align-items:center;gap:8px;padding:8px 10px;background:rgba(12,12,12,.97);border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 30px rgba(0,0,0,.55);backdrop-filter:blur(8px);flex-wrap:wrap;max-width:min(92vw,340px)}
 #lv-frag-pop.ouvert{display:flex}
@@ -1771,7 +1791,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
      portion surlignée à la souris et un verset surligné d'un clic se lisent
      de la même façon. */
   function fragStyle(hex){
-    return 'background:' + surlOpaque(hex, .30);
+    return '--voile:' + surlOpaque(hex, .30);
   }
   /* La portion [a, b) du verset, avec les surlignages qui la traversent.
      Un surlignage coupé par un passage à la ligne donne deux morceaux qui
