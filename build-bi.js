@@ -115,7 +115,7 @@ nav.menu a{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:
 nav.menu a:hover,nav.menu a.actif{color:var(--parchemin,#ffffff);border-color:var(--or,#efe6cf)}
 .rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:var(--parchemin,#ffffff);transition:color .3s;background:none;border:none;padding:0;outline:none}
 .rech-loupe:hover{color:var(--or,#efe6cf)}
-.rech-loupe:focus,.rech-loupe:focus-visible{outline:none}
+.rech-loupe:focus:not(:focus-visible){outline:none}
 .rech-loupe svg{display:block}
 .ll-mob{display:none}
 footer{border-top:1px solid rgba(231,224,207,.14);margin-top:40px;padding:48px 32px 56px;text-align:center;background:none}
@@ -125,7 +125,13 @@ footer .verset-pied .ref-pied{font-style:normal;font-weight:600;color:rgba(255,2
 footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,255,255,.45);font-family:'Cormorant Garamond',serif}
 @media(max-width:720px){
   .barre{padding:16px 20px;display:flex;justify-content:space-between}
-  nav.menu{position:fixed;inset:62px 0 auto 0;flex-direction:column;gap:0;align-items:flex-start;background:rgba(0,0,0,.97);padding:10px 28px 18px;border-bottom:1px solid rgba(231,224,207,.14);transform:translateY(-130%);transition:transform .35s}
+  /* Le menu déplié est ACCROCHÉ SOUS LA BARRE, quelle que soit sa hauteur
+     (05/09). Il était « fixed » à 62 px du haut, alors que la barre en fait
+     78 : il chevauchait son filet. Et « justify-self:end », hérité de la
+     grille de la version large, le rétrécissait à sa largeur de contenu et
+     le collait à droite : un demi-panneau. Position absolue par rapport à
+     la barre (qui est positionnée, donc sert de repère), pleine largeur. */
+  nav.menu{position:absolute;top:100%;left:0;right:0;width:100%;justify-self:auto;flex-direction:column;gap:0;align-items:flex-start;background:rgba(0,0,0,.97);padding:10px 28px 18px;border-bottom:1px solid rgba(231,224,207,.14);transform:translateY(-130%);transition:transform .35s}
   nav.menu.ouvert{transform:none}
   nav.menu a{font-size:15px;padding:12px 0;width:100%;border-bottom:none}
   .burger{display:block}
@@ -176,6 +182,17 @@ const BARRE_JS = `(function(){
   Array.prototype.forEach.call(document.querySelectorAll('nav.menu a'),function(a){
     var h=(a.getAttribute('href')||'').replace(/index\\.html$/,'');
     if(h===p)a.classList.add('actif');
+  });
+  /* La loupe, le compte et la croix du panneau de compte sont des « boutons »
+     pour le lecteur d'écran (role=button) : Entrée et Espace doivent donc les
+     activer, sur TOUTES les pages. Chaque page branchait le clic, presque
+     aucune le clavier (05/09). Un seul geste ici vaut pour toutes. */
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Enter'&&e.key!==' ')return;
+    var t=e.target; if(!t||!t.closest)return;
+    var el=t.closest('#rech-ouvrir,#auth-ouvrir,#macct-x,.macct-btn[role=button]');
+    if(!el||el.tagName==='BUTTON'||el.tagName==='A'||el.tagName==='INPUT'||el.tagName==='TEXTAREA')return;
+    e.preventDefault(); el.click();
   });
 })();`;
 
@@ -464,13 +481,15 @@ const RECH_JS = `(function(){
     var bib=brefItem(q);
     res.innerHTML=bib||('<div class="rech-msg">'+L.empty+' « '+q+' ».</div>');
   }
-  function prep(){charge=true;}
+  function prep(){charge=!!window.LUMEN_BIBLE;}
+  var attentes=[];
   function chargerPuis(cb){
     if(charge){cb();return;}
+    attentes.push(cb);
     if(enCours)return; enCours=true;
     var sc=document.createElement('script');sc.src=L.base+'recherche-'+L.lang+'.js';
-    sc.onload=function(){prep();enCours=false;cb();};
-    sc.onerror=function(){enCours=false;};
+    sc.onload=function(){prep();enCours=false;var f=attentes.splice(0);if(charge)f.forEach(function(g){g();});else res.innerHTML='<div class="rech-msg">La recherche est momentanément indisponible.</div>';};
+    sc.onerror=function(){enCours=false;attentes.length=0;res.innerHTML='<div class="rech-msg">La recherche est momentanément indisponible.</div>';};
     document.body.appendChild(sc);
   }
   function ouvre(){overlay.classList.add('ouvert');document.body.style.overflow='hidden';if(!charge)res.innerHTML='<div class="rech-msg">'+L.hint+'</div>';setTimeout(function(){champ.focus();},40);chargerPuis(function(){chercher(champ.value);});}
@@ -712,16 +731,51 @@ const tableBible = (src, base) => {
   } catch (e) { return null; }
 };
 const bibFR = tableBible('content/bible.json', '/bible.html');
-ecrire('recherche-fr.js', bibFR ? 'window.LUMEN_BIBLE=' + JSON.stringify(bibFR) + ';' : '');
+/* sans bible.json, la recherche serait un fichier vide servi sans erreur :
+   on préfère un build qui échoue à un site qui répond « rien trouvé » (05/09) */
+if (!bibFR) throw new Error('content/bible.json illisible : recherche-fr.js serait vide');
+ecrire('recherche-fr.js', 'window.LUMEN_BIBLE=' + JSON.stringify(bibFR) + ';');
 
 // copie des pages autonomes (hors pipeline bilingue)
+/* ── LES PAGES COPIÉES REÇOIVENT AUSSI LEURS MÉTADONNÉES (05/09) ──
+   Seules les pages générées (accueil, 404) portaient canonical, description
+   et cartes de partage ; les quatre pages copiées n'avaient rien, si bien que
+   /memoriser.html?demarrer=1 était indexable en doublon et qu'un lien partagé
+   sortait sans titre. On complète sans jamais dupliquer ce qu'une page porte
+   déjà. */
+function metaCopie(h, chemin, titre, desc){
+  const url = DOMAINE + chemin, e = x => String(x).replace(/"/g, '&quot;');
+  let m = '';
+  if (!/rel="canonical"/.test(h)) m += `<link rel="canonical" href="${url}">\n`;
+  if (!/name="description"/.test(h)) m += `<meta name="description" content="${e(desc)}">\n`;
+  if (!/property="og:title"/.test(h)) m += `<meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Lumen">\n<meta property="og:title" content="${e(titre)}"><meta property="og:description" content="${e(desc)}"><meta property="og:url" content="${url}">\n`;
+  if (!/property="og:image"/.test(h)) m += `<meta property="og:image" content="${DOMAINE}/icones/partage.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">\n`;
+  if (!/rel="manifest"/.test(h)) m += `<link rel="manifest" href="/manifest.webmanifest">\n`;
+  return m ? injecteAvant(h, '</head>', m) : h;
+}
+/* ── INJECTER AVANT LA DERNIÈRE BALISE, PAS LA PREMIÈRE (05/09) ──
+   String.replace frappe la première occurrence : si une page écrivait un
+   jour « </body> » dans une chaîne JavaScript (les pages qui fabriquent des
+   cadres isolés en portent une, écrite coupée en deux par prudence), le
+   script du build atterrissait DANS cette chaîne, en silence. On vise donc la
+   dernière occurrence, qui est la vraie, et l'on s'arrête si elle manque. */
+function injecteAvant(s, balise, ajout){
+  const i = s.lastIndexOf(balise);
+  if (i < 0) throw new Error('ancre ' + balise + ' introuvable');
+  return s.slice(0, i) + ajout + s.slice(i);
+}
 if (fs.existsSync('memoriser.html')) {
   let mh = fs.readFileSync('memoriser.html', 'utf8');
   {
     let catsSrc = null, origineCats = '';
     const memLigne = fsLireDoc('config/memoriser');
     if (memLigne && Array.isArray(memLigne.categories) && memLigne.categories.length) { catsSrc = memLigne.categories; origineCats = 'en ligne'; }
-    else if (fs.existsSync('content/memoriser.json')) { catsSrc = JSON.parse(fs.readFileSync('content/memoriser.json', 'utf8')).categories || []; origineCats = 'fichier'; }
+    else if (fs.existsSync('content/memoriser.json')) {
+      /* même exigence que pour la source en ligne : une liste VIDE ne remplace
+         pas ce que la page embarque (05/09) */
+      const cf = JSON.parse(fs.readFileSync('content/memoriser.json', 'utf8')).categories;
+      if (Array.isArray(cf) && cf.length) { catsSrc = cf; origineCats = 'fichier'; }
+    }
     if (catsSrc) {
       const cats = catsSrc;
       const slug = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -745,7 +799,7 @@ if (fs.existsSync('memoriser.html')) {
     }
   }
   if (APPEARANCE_CSS && mh.indexOf('</head>') >= 0) {
-    mh = mh.replace('</head>', '<style>' + APPEARANCE_CSS + '</style></head>');
+    mh = injecteAvant(mh, '</head>', '<style>' + APPEARANCE_CSS + '</style>');
   }
   {
     const hOld = mh.match(/<header>[\s\S]*?<\/header>/);
@@ -753,11 +807,12 @@ if (fs.existsSync('memoriser.html')) {
     if (!hOld || !fOld) throw new Error('memoriser.html : header ou footer introuvable');
     mh = mh.replace(hOld[0], barreCanon());
     mh = mh.replace(fOld[0], piedCanon());
-    mh = mh.replace('</head>', '<style>' + BARRE_CSS + '</style></head>');
-    mh = mh.replace('</body>', '<script>' + BARRE_JS + '</scr' + 'ipt></body>');
+    mh = injecteAvant(mh, '</head>', '<style>' + BARRE_CSS + '</style>');
+    mh = metaCopie(mh, '/memoriser.html', 'Mémoriser · Lumen Veritatis', 'Mémorisation de versets et de passages bibliques, par répétition espacée.');
+    mh = injecteAvant(mh, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Mémoriser : barre et pied canoniques injectés');
   }
-  mh = mh.replace('</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script></body>');
+  mh = injecteAvant(mh, '</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script>');
   fs.writeFileSync(`${OUT}/memoriser.html`, mh);
   console.log('Copié : memoriser.html');
 }
@@ -766,7 +821,7 @@ if (fs.existsSync('memoriser.html')) {
 if (fs.existsSync('articles.html')) {
   let ah = fs.readFileSync('articles.html', 'utf8');
   if (APPEARANCE_CSS && ah.indexOf('</head>') >= 0) {
-    ah = ah.replace('</head>', '<style>' + APPEARANCE_CSS + '</style></head>');
+    ah = injecteAvant(ah, '</head>', '<style>' + APPEARANCE_CSS + '</style>');
   }
   {
     const hOld = ah.match(/<header>[\s\S]*?<\/header>/);
@@ -774,11 +829,12 @@ if (fs.existsSync('articles.html')) {
     if (!hOld || !fOld) throw new Error('articles.html : header ou footer introuvable');
     ah = ah.replace(hOld[0], barreCanon());
     ah = ah.replace(fOld[0], piedCanon());
-    ah = ah.replace('</head>', '<style>' + BARRE_CSS + '</style></head>');
-    ah = ah.replace('</body>', '<script>' + BARRE_JS + '</scr' + 'ipt></body>');
+    ah = injecteAvant(ah, '</head>', '<style>' + BARRE_CSS + '</style>');
+    ah = metaCopie(ah, '/articles.html', 'Articles · Lumen Veritatis', 'Articles de théologie catholique, accessibles aux débutants.');
+    ah = injecteAvant(ah, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Articles : barre et pied canoniques injectés');
   }
-  ah = ah.replace('</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script></body>');
+  ah = injecteAvant(ah, '</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script>');
   fs.writeFileSync(`${OUT}/articles.html`, ah);
   console.log('Copié : articles.html');
 }
@@ -787,7 +843,7 @@ if (fs.existsSync('articles.html')) {
 if (fs.existsSync('ressources.html')) {
   let rh = fs.readFileSync('ressources.html', 'utf8');
   if (APPEARANCE_CSS && rh.indexOf('</head>') >= 0) {
-    rh = rh.replace('</head>', '<style>' + APPEARANCE_CSS + '</style></head>');
+    rh = injecteAvant(rh, '</head>', '<style>' + APPEARANCE_CSS + '</style>');
   }
   {
     const hOld = rh.match(/<header>[\s\S]*?<\/header>/);
@@ -795,11 +851,12 @@ if (fs.existsSync('ressources.html')) {
     if (!hOld || !fOld) throw new Error('ressources.html : header ou footer introuvable');
     rh = rh.replace(hOld[0], barreCanon());
     rh = rh.replace(fOld[0], piedCanon());
-    rh = rh.replace('</head>', '<style>' + BARRE_CSS + '</style></head>');
-    rh = rh.replace('</body>', '<script>' + BARRE_JS + '</scr' + 'ipt></body>');
+    rh = injecteAvant(rh, '</head>', '<style>' + BARRE_CSS + '</style>');
+    rh = metaCopie(rh, '/ressources.html', 'Ressources · Lumen Veritatis', 'Diagrammes, cartes, documents et liens pour étudier la foi catholique.');
+    rh = injecteAvant(rh, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Ressources : barre et pied canoniques injectés');
   }
-  rh = rh.replace('</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script></body>');
+  rh = injecteAvant(rh, '</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script>');
   fs.writeFileSync(`${OUT}/ressources.html`, rh);
   console.log('Copié : ressources.html');
 }
@@ -810,8 +867,16 @@ if (fs.existsSync('bible-panneau.js')) {
   fs.copyFileSync('bible-panneau.js', `${OUT}/bible-panneau.js`);
   console.log('Copié : bible-panneau.js');
 }
-for (const f of ['memoriser-sw.js', 'memoriser-manifest.webmanifest', 'manifest.webmanifest']) {
+for (const f of ['memoriser-manifest.webmanifest', 'manifest.webmanifest']) {
   if (fs.existsSync(f)) fs.copyFileSync(f, `${OUT}/${f}`);
+}
+/* le service worker reçoit sa version du build : empreinte de la page, du
+   panneau et de lui-même, pour qu'un changement de l'un renouvelle le cache */
+if (fs.existsSync('memoriser-sw.js')) {
+  const swSrc = fs.readFileSync('memoriser-sw.js', 'utf8');
+  const SW_V = crypto.createHash('md5').update(swSrc + PAN_V + fs.readFileSync(`${OUT}/memoriser.html`, 'utf8')).digest('hex').slice(0, 8);
+  if (!/__VERSION__/.test(swSrc) || !/__PAN_V__/.test(swSrc)) throw new Error('memoriser-sw.js : marqueurs __VERSION__ / __PAN_V__ absents');
+  fs.writeFileSync(`${OUT}/memoriser-sw.js`, swSrc.replace(/__VERSION__/g, SW_V).replace(/__PAN_V__/g, PAN_V)   /* toutes les occurrences : la première est dans un commentaire */);
 }
 if (fs.existsSync('icones')) {
   fs.mkdirSync(`${OUT}/icones`, { recursive: true });
@@ -823,7 +888,7 @@ console.log('Copié : memoriser-sw.js + manifests + icônes');
 if (fs.existsSync('bible.html')) {
   let bh = fs.readFileSync('bible.html', 'utf8');
   if (APPEARANCE_CSS && bh.indexOf('</head>') >= 0) {
-    bh = bh.replace('</head>', '<style>' + APPEARANCE_CSS + '</style></head>');
+    bh = injecteAvant(bh, '</head>', '<style>' + APPEARANCE_CSS + '</style>');
   }
   {
     const hOld = bh.match(/<header>[\s\S]*?<\/header>/);
@@ -831,8 +896,9 @@ if (fs.existsSync('bible.html')) {
     if (!hOld || !fOld) throw new Error('bible.html : header ou footer introuvable');
     bh = bh.replace(hOld[0], barreCanon());
     bh = bh.replace(fOld[0], piedCanon());
-    bh = bh.replace('</head>', '<style>' + BARRE_CSS + '</style></head>');
-    bh = bh.replace('</body>', '<script>' + BARRE_JS + '</scr' + 'ipt></body>');
+    bh = injecteAvant(bh, '</head>', '<style>' + BARRE_CSS + '</style>');
+    bh = metaCopie(bh, '/bible.html', 'La Sainte Bible · Lumen Veritatis', 'La Sainte Bible, traduction Chérubin. Lecture en ligne, Ancien et Nouveau Testament.');
+    bh = injecteAvant(bh, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Bible : barre et pied canoniques injectés');
   }
   fs.writeFileSync(`${OUT}/bible.html`, bh);

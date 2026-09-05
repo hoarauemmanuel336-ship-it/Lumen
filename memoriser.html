@@ -2388,7 +2388,15 @@ if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/memoriser-sw.js',{scope:'/memoriser',updateViaCache:'none'}).catch(function(){});
   }catch(_){}
 }
+/* Même compte qui se représente : on ne relit rien et on ne change pas
+   d'écran. Sans ce garde, un réveil de l'onglet en pleine séance ramenait à
+   l'accueil et rechargeait la progression par-dessus les réponses encore en
+   attente d'envoi (05/09). */
+let COMPTE_CONNU='∅';
 auth.onAuthStateChanged(async u=>{
+  const cle=u?u.uid:null;
+  if(cle===COMPTE_CONNU)return;
+  COMPTE_CONNU=cle;
   if(u){
     if(S.uid!==u.uid)razEtat();
     S.uid=u.uid;

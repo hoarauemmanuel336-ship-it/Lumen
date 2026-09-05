@@ -385,6 +385,14 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 
 <script>
 // ════════ FIREBASE ════════
+/* Sans le service de connexion (bloqueur, réseau coupé), tout le code de la
+   page mourait sur sa première ligne et l'écran restait muet. On le dit, et
+   on s'arrête proprement (05/09). */
+if(typeof firebase==='undefined'){
+  const dire=()=>{const m=document.getElementById('mot-liste');if(m)m.textContent='Le service de connexion n’a pas pu être chargé. Vérifiez la connexion ou un bloqueur, puis rechargez la page.';const l=document.getElementById('liste');if(l)l.innerHTML='';const a=document.getElementById('acts-liste');if(a)a.style.display='none';};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',dire);else dire();
+  throw new Error('Firebase absent');
+}
 firebase.initializeApp({
   apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",
   authDomain:"lumen-veritatis.firebaseapp.com",
@@ -527,7 +535,7 @@ function propre(html){
       const el=document.createElement(t);
       if(t==='a'){
         const h=n.getAttribute('href')||'';
-        if(!/^(https?:|mailto:|\/|#)/i.test(h)){marche(n,vers);return;}
+        if(!/^(https?:\/\/|mailto:|\/(?!\/)|#)/i.test(h)){marche(n,vers);return;}
         el.setAttribute('href',h); el.setAttribute('rel','noopener');
         if(/^https?:/i.test(h))el.setAttribute('target','_blank');
       }
@@ -963,16 +971,23 @@ async function basculeEtat(id){
   const versPublic=!a.publie;
   const b=document.getElementById('b-etat');
   if(b){b.disabled=true;b.textContent=versPublic?'Publication…':'Retrait…';}
+  let enLigneFait=false;
   try{
     if(versPublic)await metEnLigne(a); else await retireDeLigne(a);
-    a.publie=versPublic; a.maj=new Date().toISOString();
+    enLigneFait=true;
+    const maj=new Date().toISOString();
+    await acol().doc(id).set({publie:versPublic,maj:maj},{merge:true});
+    a.publie=versPublic; a.maj=maj;
     if(S.art&&S.art.id===id)S.art.publie=a.publie;
-    await acol().doc(id).set({publie:a.publie,maj:a.maj},{merge:true});
   }catch(e){
     console.warn('publication',e);
+    /* Si la copie publique a été faite mais que l'état privé n'a pas pu être
+       écrit, on DÉFAIT la copie publique : sinon l'article était en ligne,
+       marqué « Privé », et le menu ne proposait plus de le retirer (05/09). */
+    if(enLigneFait){try{if(versPublic)await retireDeLigne(a);else await metEnLigne(a);}catch(_){}}
     lvInfo(versPublic
-      ? 'La mise en ligne a échoué. Si c\u2019est la première fois, les règles de sécurité ne sont peut-être pas encore posées : voir REGLES-firestore.txt.'
-      : 'Le retrait a échoué. Réessayez.');
+      ? 'La mise en ligne a échoué, rien n\u2019a été changé. Si c\u2019est la première fois, les règles de sécurité ne sont peut-être pas encore posées : voir REGLES-firestore.txt.'
+      : 'Le retrait a échoué, rien n\u2019a été changé. Réessayez.');
   }
   if(b)b.disabled=false;
   rendLister(); majEtatEditeur();
@@ -980,8 +995,8 @@ async function basculeEtat(id){
 /* Un article publié puis modifié doit être remis en ligne, sinon les lecteurs
    gardent l'ancienne version sans que rien ne le dise. */
 async function rafraichitPublic(a){
-  if(!a||!a.publie)return;
-  try{await metEnLigne(a);}catch(e){console.warn('rafraîchissement public',e);}
+  if(!a||!a.publie)return true;
+  try{await metEnLigne(a);return true;}catch(e){console.warn('rafraîchissement public',e);return false;}
 }
 /* Le bouton de l'éditeur dit l'état courant : « Publier » quand l'article est
    privé, « Rendre privé » quand il est publié. */
@@ -1137,9 +1152,14 @@ async function menuArticle(id){
     if(!await lvConfirm('Supprimer cet article ? Il ne pourra pas être récupéré.',1))return;
     SUPPRIMES.add(id);
     const medias=(a.blocs||[]).filter(b=>b.t==='image'&&b.media).map(b=>b.media);
-    if(a.publie)await retireDeLigne(a);     // il ne doit rien rester en ligne
-    try{await acol().doc(id).delete();}catch(e){console.warn('suppression',e);}
-    for(const m of medias)await effaceMedia(m);
+    try{
+      if(a.publie)await retireDeLigne(a);     // il ne doit rien rester en ligne
+      await acol().doc(id).delete();
+      for(const m of medias)await effaceMedia(m);
+    }catch(e){
+      console.warn('suppression',e); SUPPRIMES.delete(id); rendLister();
+      lvInfo('La suppression a échoué : l’article est peut-être encore en ligne. Vérifiez la connexion et réessayez.');
+    }
   }
 }
 
@@ -1171,18 +1191,18 @@ function elementBloc(b,i){
   if(b.t==='sep'){
     inner+='<div class="trait-sep"></div>';
   }else if(b.t==='verset'){
-    inner+='<div class="v-ligne"><span class="zone v-txt" contenteditable="true" data-champ="txt" data-vide="Texte du verset">'+(b.txt||'')+'</span>'
+    inner+='<div class="v-ligne"><span class="zone v-txt" contenteditable="true" data-champ="txt" data-vide="Texte du verset">'+propre(b.txt||'')+'</span>'
       +'<span class="zone v-ref" contenteditable="true" data-champ="ref" data-vide="Référence">'+esc(b.ref||'')+'</span></div>';
   }else if(b.t==='image'){
     inner+='<figure>'
       +(b.media?'<img data-media="'+esc(b.media)+'" alt="">':'<div class="im-place" data-choisir="'+i+'">Choisir une image</div>')
-      +'<figcaption class="zone" contenteditable="true" data-champ="leg" data-vide="Légende (facultative)">'+(b.leg||'')+'</figcaption></figure>';
+      +'<figcaption class="zone" contenteditable="true" data-champ="leg" data-vide="Légende (facultative)">'+propre(b.leg||'')+'</figcaption></figure>';
   }else if(b.t==='html'){
     inner+=(b.code
       ? '<iframe data-html="'+i+'" style="height:'+(Math.max(40,Math.min(40000,Number(b.haut)||320)))+'px" sandbox="allow-scripts" referrerpolicy="no-referrer" title="Bloc interactif"></iframe>'
       : '<div class="im-place" data-code="'+i+'">Coller le code</div>');
   }else{
-    inner+='<div class="zone" contenteditable="true" data-champ="h" data-vide="'+esc(typeDe(b.t).vide)+'">'+(b.h||'')+'</div>';
+    inner+='<div class="zone" contenteditable="true" data-champ="h" data-vide="'+esc(typeDe(b.t).vide)+'">'+propre(b.h||'')+'</div>';
   }
   d.innerHTML=inner;
   if(b.t==='image'&&b.media)poseImage(d.querySelector('img'),b.media);
@@ -1240,11 +1260,15 @@ async function enregistre(silence){
     await acol().doc(a.id).set(doc);
     /* quitté ou supprimé pendant l'envoi : on n'y touche plus */
     if(S.art!==a||SUPPRIMES.has(a.id))return;
-    if(a.publie)await rafraichitPublic(a);
+    const enLigne=a.publie?await rafraichitPublic(a):true;
     if(S.art!==a)return;
     /* une frappe survenue pendant l'envoi reste « modifiée » et partira au
        prochain passage ; sinon elle se perdait si l'on quittait aussitôt */
     if(gen===(S.gen||0))S.sale=false;
+    /* Enregistré chez soi mais pas remis en ligne : ça se dit, et ça reste
+       affiché. Avant, « Enregistré » s'affichait et les lecteurs gardaient
+       l'ancienne version sans que rien ne le signale (05/09). */
+    if(!enLigne){$('etat-enr').textContent='Enregistré, mais pas remis en ligne';$('etat-enr').classList.remove('vu');S.sale=true;return;}
     $('etat-enr').textContent=S.sale?'Modifié':'Enregistré'; $('etat-enr').classList.toggle('vu',!S.sale);
     if(!silence)setTimeout(()=>{if(!S.sale)$('etat-enr').textContent='';},2600);
   }catch(e){
@@ -1274,9 +1298,18 @@ async function supprime(){
   SUPPRIMES.add(id);
   S.art=null; S.sale=false;
   vue('liste');
-  if(etaitPublie)await retireDeLigne(copie);   // il ne doit rien rester en ligne
-  try{await acol().doc(id).delete();}catch(e){console.warn('suppression',e);}
-  for(const m of medias)await effaceMedia(m);
+  /* Les trois étapes sous UN SEUL filet (05/09). Le retrait de la copie
+     publique pouvait échouer (hors ligne, règles) : l'écran disait déjà
+     « supprimé », l'article restait lisible par tous, et personne n'en
+     savait rien. Désormais un échec se dit, et l'article revient à la liste. */
+  try{
+    if(etaitPublie)await retireDeLigne(copie);   // il ne doit rien rester en ligne
+    await acol().doc(id).delete();
+    for(const m of medias)await effaceMedia(m);
+  }catch(e){
+    console.warn('suppression',e); SUPPRIMES.delete(id); rendLister();
+    lvInfo('La suppression a échoué : l’article est peut-être encore en ligne. Vérifiez la connexion et réessayez.');
+  }
 }
 
 // ════════ MISE EN FORME ════════
@@ -1451,7 +1484,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       const w=rt.closest('.rub'); if(w)w.classList.toggle('ouvert',rubOuverte(id));
       return;
     }
-    const it=e.target.closest('.art-item'); if(it)ouvre(it.dataset.id);
+    const it=e.target.closest('.art-item'); if(it&&it.dataset.id)ouvre(it.dataset.id);
   });
   $('liste').addEventListener('keydown',e=>{
     if(e.key!=='Enter'&&e.key!==' ')return;
@@ -1582,8 +1615,12 @@ function motAccueil(){
 }
 /* Le visiteur, connecté ou non, voit les articles PUBLIÉS. L'auteur, lui,
    retrouve ses brouillons et son éditeur. Une seule page, deux visages. */
+let LECTURE_PUB=null;
 async function ouvrePublic(){
-  await litPublic();
+  /* lancée au chargement puis à l'arrivée du compte : une seule lecture à la
+     fois, la seconde attend la première au lieu de tout relire (05/09) */
+  if(!LECTURE_PUB)LECTURE_PUB=litPublic().finally(()=>{LECTURE_PUB=null;});
+  await LECTURE_PUB;
   /* La lecture publique part au chargement, avant que le compte ne soit
      connu, et revient APRÈS lui : chez l'auteur elle remplaçait sa liste et
      faisait disparaître « Écrire un article » et « Nouvelle section ». */
@@ -1592,9 +1629,20 @@ async function ouvrePublic(){
   const m=(location.hash||'').match(/^#a\/(.+)$/);
   if(m&&PUBS.some(x=>x.id===m[1]))lit(m[1]); else vue('liste');
 }
+/* Même compte qui se représente (réveil de l'onglet, jeton rafraîchi) : on ne
+   touche à rien. Sinon l'article en cours de lecture, ou d'ÉCRITURE, était
+   refermé et l'on retombait à la liste (05/09, comme sur Ressources). */
+let COMPTE_CONNU='∅';
 auth.onAuthStateChanged(u=>{
-  S.uid=u?u.uid:null; S.email=u?(u.email||''):null;
+  const cle=u?u.uid:null;
+  if(cle===COMPTE_CONNU)return;
+  COMPTE_CONNU=cle;
+  S.uid=cle; S.email=u?(u.email||''):null;
   S.auteur=!!(u&&u.email&&u.email.toLowerCase()===AUTEUR);
+  /* les règles de sécurité n'acceptent la mise en ligne que d'une adresse
+     VÉRIFIÉE : si ce n'est pas le cas, mieux vaut le dire tout de suite que de
+     laisser chaque publication échouer sans explication (05/09) */
+  if(S.auteur&&u&&u.emailVerified===false)setTimeout(()=>lvInfo('Votre adresse e-mail n’est pas vérifiée : les règles de sécurité refuseront toute mise en ligne tant qu’elle ne l’est pas. Connectez-vous avec Google, ou faites vérifier l’adresse depuis la console Firebase.'),600);
   S.art=null; S.liste=[]; S.rubs=[]; S.rubOpen={}; RUBS_LUES=false;
   if(S.auteur){ vue('liste'); motAccueil(); ecoute(); }
   else{ if(COUPE){COUPE();COUPE=null;} $('acts-liste').style.display='none'; ouvrePublic(); }

@@ -1,7 +1,7 @@
 ════════════════════════════════════════════════════════════════════
 FICHIER DE REPRISE : LUMEN VERITATIS
 Mémoire de travail du projet, en mode Cowork automatique.
-Mis à jour : 2 septembre 2026
+Mis à jour : 5 septembre 2026
 ════════════════════════════════════════════════════════════════════
 
 LE DÉPÔT NE CONTIENT PAS « site » (26/08, Emmanuel : « essaie de mettre tout
@@ -197,7 +197,8 @@ par le pourquoi, sans s'excuser ni corriger quoi que ce soit.
 ────────────────────────────────────────────────────────────────────
 SOURCE (dépôt GitHub hoarauemmanuel336-ship-it/Lumen, branche main) :
   Racine : build-bi.js, index__48_.html, bible.html, bible-panneau.js,
-  memoriser.html, articles.html, memoriser-sw.js, manifest.webmanifest,
+  memoriser.html, articles.html, ressources.html, memoriser-sw.js,
+  manifest.webmanifest,
   memoriser-manifest.webmanifest, netlify.toml, package.json,
   package-lock.json (sans aucune dépendance : jsdom retiré le 25/07),
   REPRISE-lumen.txt, icones/.
@@ -211,12 +212,13 @@ prismatic-fox-161266) publie site/ à chaque push GitHub
 en REST (curl, lecture publique) pour config/memoriser ; hors réseau il ignore
 Firestore proprement et retombe sur les fichiers.
 
-CINQ SURFACES PUBLIQUES, ET RIEN D'AUTRE :
-  /               → accueil (index.html), généré par mainAccueil()
-  /bible.html     → lecteur biblique
-  /memoriser.html → application de mémorisation
-  /articles.html  → les articles : écriture pour l'auteur, lecture pour tous
-  /404.html       → page introuvable, volontairement simple
+SIX SURFACES PUBLIQUES, ET RIEN D'AUTRE :
+  /                → accueil (index.html), généré par mainAccueil()
+  /bible.html      → lecteur biblique
+  /memoriser.html  → application de mémorisation (versets ET passages)
+  /articles.html   → les articles : écriture pour l'auteur, lecture pour tous
+  /ressources.html → diagrammes, images, PDF, liens : même modèle que les articles
+  /404.html        → page introuvable, volontairement simple
 
 ARCHITECTURE DU CODE :
 • build-bi.js : générateur unique. Il extrait le CSS de index__48_.html
@@ -251,7 +253,9 @@ ARCHITECTURE DU CODE :
      bible.html → .ch-texte (20,5), .note-texte (17,5 · 16,5 mobile),
      .surl-item .surl-txt (16,5 · 16 mobile) ;
      memoriser.html → .q-prompt (27 · 23 mobile), .q-prompt.ref (38 · 30
-     mobile), .opt (17), .opt.refopt (19).
+     mobile), .q-prompt.titre (31 · 25 mobile), .opt (17), .opt.refopt (19) ;
+     articles.html et ressources.html → leurs surfaces de lecture (.res-desc,
+     corps d'article) passent aussi par --lvz.
   Le libellé « taille du texte » doit rester vrai : toute surface de lecture
   qui apparaît passe par --lvz.
 • bible.html : lecteur (73 livres, routage #livre/ch/v, recherche unique
@@ -275,8 +279,8 @@ ne repose sur aucune vigilance :
   – IDENTIFIANTS GELÉS, jamais renommés : burger, menu, rech-ouvrir,
     auth-ouvrir, annee. Chaque page se contente de brancher ses propres
     ouvertures sur ces identifiants.
-  – NAV = 4 liens, même ordre partout : Accueil | Bible | Mémoriser |
-    Articles (constante NAV_LIENS).
+  – NAV = 5 liens, même ordre partout : Accueil | Bible | Mémoriser |
+    Articles | Ressources (constante NAV_LIENS).
   – Le pied porte le verset d'Isaïe 9:1 écrit en dur (constante VERSET_PIED)
     et l'année est remplie par BARRE_JS.
   – Le lien actif est la SEULE différence entre deux pages, et il est posé au
@@ -321,7 +325,8 @@ numéro.
 MARQUEURS ANTI-RESET (vérifier AVANT toute édition ; au moindre doute,
 restaurer depuis la dernière livraison, source de vérité avec le dépôt) :
   index__48_.html  → « memo-start:hover »
-  build-bi.js      → « bible-data », « Barres : identiques sur les 4 surfaces »
+  build-bi.js      → « bible-data », « Barres : identiques sur les 6 surfaces »,
+                     « injecteAvant », « metaCopie »
   bible.html       → « parseRef », « bibleNotes »
   bible-panneau.js → « bp-pan »
   memoriser.html   → « openMoveVerse », « bibOuvre », « elementSection »
@@ -1076,22 +1081,45 @@ des problèmes et des bugs »). Acquis à ne pas défaire :
   de traverser pour de bon 3 puis 16 puis 75 jours. Le crédit reste un
   plancher, jamais un plafond. Mesure sur 90 jours : 31 versets acquis sans
   jamais toucher aux pastilles, 59 en mettant vert à chaque bonne réponse.
-• MÉMORISER, DÉCOUVRIR NE S'ARRÊTE JAMAIS (02/09). « Réviser passe avant
-  découvrir » était SANS RÉSERVE : un seul verset commencé et arrivé à terme
-  suffisait à bloquer toute la réserve. CADENCE_NEUF=5 : un verset neuf passe
-  au moins toutes les cinq questions tant qu'il en reste (S.depuisNeuf, remis
-  à zéro au début de chaque séance). Les révisions gardent la priorité le
-  reste du temps.
-• MÉMORISER, LA SÉANCE EST INFINIE, ET LE RAB VA AUX PLUS FRAGILES (02/09,
-  Emmanuel : « je veux que la série soit infinie »). Quand plus rien n'est mûr
-  la séance CONTINUE — ne jamais la clore — mais ces questions ne comptant plus
-  pour les niveaux, elles vont au TIERS LE PLUS FRAGILE (niveau effectif
-  croissant, trois versets au minimum pour que ça tourne, le plus anciennement
-  vu en tête). Avant, le tirage se faisait du plus anciennement vu au plus
-  récent tous niveaux confondus : un verset à 35 jours revenait aussi souvent
-  qu'un verset à 3 jours (mesuré : 57 à 64 passages à tous les niveaux). Après :
-  99 passages au niveau 2, 26 au niveau 6, et plus aucune question gaspillée
-  sur les niveaux 5 et 6.
+• MÉMORISER, LE TIRAGE (état au 05/09 ; remplace « découvrir ne s'arrête
+  jamais » et « le rab va aux plus fragiles » du 02/09). Emmanuel : « priorité
+  à ce qu'on connaît moyennement, puis à ce qu'on ne maîtrise pas, et ensuite
+  à ce qu'on maîtrise » ; « répéter, c'est comme ça qu'on apprend ». Trois
+  groupes réglés sur LA COULEUR AFFICHÉE (levelOf) : jaune (crans 2-3), rouge
+  et neuf (0-1, jamais vu), vert (4+). Cadence fixe TOUR = j,j,r,j,r,v ; un
+  groupe vide cède son tour au suivant ; s'il ne reste que du vert, tout lui
+  revient. Dans un groupe : mûrs d'abord (niveau, vues, retard), sinon ce que
+  la séance n'a pas encore montré (S.debut), du plus faible au plus solide,
+  puis le plus anciennement vu. Aucune limite de passages par séance. Plus de
+  CADENCE_NEUF : le neuf est dans le rouge.
+  CE QUI REND LA RÉPÉTITION SAINE : hors échéance, l'exercice ne juge plus.
+  Une erreur non due ne change ni niveau ni date (seulement p.s=step+3). La
+  règle d'avant (un cran et l'échéance à maintenant) avait été mesurée avec la
+  répétition des jaunes : ZÉRO acquis sur 240 jours à 85 %. Manqué À L'HEURE :
+  deux crans de moins et le prochain jugement attend DEMAIN (echeance(ms,1)),
+  idem pour la pastille rouge sur bonne réponse : rejugé trois questions plus
+  loin, il reprenait un cran sur la mémoire courte. Mesuré (240 j, 300
+  versets, 40 q/j) : 296 acquis à 85 %, 287 à 80 %, 300 à 90 % ; après deux
+  mois d'absence, quatre séances rattrapent tout (crédit).
+  Conséquence acceptée : un jour à beaucoup de verts dus, ils attendent et
+  certains pâlissent avant leur tour ; c'est la file, pas la mémoire.
+  Limite structurelle à connaître : le choix à quatre mesure la
+  RECONNAISSANCE ; le rappel ne se dit que par les pastilles.
+• MÉMORISER, PASSAGES (03/09, Emmanuel). Onglet « Versets | Passages »
+  (S.mode, localStorage lv_memo_mode, par appareil). Une catégorie porte
+  kind:'p' (absent = versets, rien à migrer) ; une carte passage = titre dans
+  text, référence dans ref, même algorithme, même progression. catsMode()
+  filtre l'affichage, allItems() le tirage (les fausses réponses ne se
+  mélangent jamais) ; groupesCats() masque les sections sans catégorie du
+  mode ; « Tout sélectionner » ne touche qu'au mode courant ; la recherche
+  couvre les deux et bascule d'onglet. Libellés : « Où se trouve ce
+  passage ? » / « Quel passage est-ce ? », .q-prompt.titre. Le sélecteur
+  biblique ne remplit que la référence d'un passage.
+• MÉMORISER, CHARGEMENT (05/09, filmé) : renderCats() affiche « Chargement… »
+  tant que !S.charge (S.chargeErr → message d'échec), et « Commencer » le dit
+  au lieu de répondre « aucune catégorie ». onAuthStateChanged ignore un même
+  compte qui se représente (COMPTE_CONNU) : un réveil d'onglet ne coupe plus
+  la séance.
 • MÉMORISER, EN-TÊTE DE SÉANCE (02/09, Emmanuel) : la phrase « Tous tes
   versets sont à jour · tu peux continuer… » est SUPPRIMÉE (elle tenait deux
   lignes et déplaçait le bouton « Terminer »). majStat n'affiche plus que
@@ -1131,6 +1159,48 @@ des problèmes et des bugs »). Acquis à ne pas défaire :
 • DÉPÔT : « download » était un .gitignore mal nommé → renommé .gitignore.
   Restent à la racine des doublons jamais lus (bible.json, settings.json,
   memoriser.json, huit PNG) : le build ne lit que content/ et icones/.
+
+• BUILD (05/09) : injecteAvant(s, balise, ajout) vise la DERNIÈRE occurrence
+  de </head> et </body> et échoue si elle manque (String.replace prenait la
+  première : un « </body> » dans une chaîne JS aurait reçu le script) ;
+  metaCopie() pose canonical, description, Open Graph et manifest sur les
+  quatre pages copiées sans dupliquer ce qu'elles portent ; memoriser-sw.js
+  reçoit du build son nom de cache (__VERSION__ = md5 du SW + PAN_V + page) et
+  PAN_V, précache /bible-panneau.js?v= et /bible-data/index.json, retient la
+  mise à jour de fond par waitUntil, n'accepte en cache qu'une vraie page HTML
+  du site ; content/bible.json illisible fait ÉCHOUER le build ; la recherche
+  met les demandes en file et dit quand elle est indisponible ; BARRE_JS
+  active loupe, compte et croix au clavier sur toutes les pages ; menu mobile
+  en position absolue sous la barre (top:100%, pleine largeur : « fixed » à
+  62 px avec justify-self:end hérité donnait un demi-panneau à droite qui
+  chevauchait le filet). netlify.toml : nosniff, SAMEORIGIN, Referrer-Policy,
+  Permissions-Policy sur tout le site. Les doublons de la racine (bible.json,
+  memoriser.json, settings.json, huit PNG) ont été retirés : seuls content/ et
+  icones/ font foi.
+• ARTICLES et RESSOURCES, ÉCHECS DITS (05/09) : suppression sous un seul
+  try/catch (échec → l'élément revient, message) ; bascule publié/privé
+  annule la copie publique si l'état privé n'a pas pu s'écrire ;
+  rafraichitPublic renvoie vrai/faux et « Enregistré, mais pas remis en
+  ligne » s'affiche et persiste (S.sale reste vrai, l'auto-enregistrement
+  réessaie) ; garde « firebase absent » en tête de script (message, arrêt
+  propre) ; adresse non vérifiée signalée à l'auteur (les règles exigent
+  email_verified pour la mise en ligne) ; COMPTE_CONNU sur les deux pages.
+• RESSOURCES (05/09) : témoins AUTH_VU / PUBS_LUES / LISTE_LUE / RUBS_LUES
+  (+ *_ERR) et pretListe() : « Chargement… » dès la première image, rien
+  d'affirmé avant lecture, boutons d'auteur avec la liste, visiteur forcé
+  après six secondes sans réponse d'auth ; image : tient dans l'écran
+  (.res-cadre.img, max-height 78vh), clic = pleine largeur ; téléchargement =
+  ligne discrète .res-tel centrée, calquée sur « + Nouvelle catégorie » ;
+  copie dans un cadre isolé : surPlace (execCommand, champ posé à la hauteur
+  du doigt, focus sans défilement) ET relais à la page, toujours les deux
+  (execCommand répond « réussi » même bloqué) ; #r/… aussi pour l'auteur.
+• BIBLE (05/09) : body.sel-active .wrap posé APRÈS html.panneau .wrap (même
+  spécificité, le raccourci padding écrasait le bas) ; « #ref=… » sélectionne
+  la plage via allerRefs et hashDe() du panneau l'emploie pour les plages ;
+  etiquetteRef dit « Psaume » comme libelle() ; libelleSignet garde le
+  chapitre sans index ; assureIdx() partage la requête en vol (pend) et ne
+  pose IDX qu'après construitDico ; résidu Douay retiré de parseRef (les deux
+  copies sont de nouveau identiques).
 
 ────────────────────────────────────────────────────────────────────
 6. SUPPRIMÉ : NE PAS RÉINTRODUIRE (sans accord d'Emmanuel)

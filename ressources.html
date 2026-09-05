@@ -488,6 +488,14 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 <script>
 // ════════ FIREBASE ════════
 // ════════ FIREBASE ════════
+/* Sans le service de connexion (bloqueur, réseau coupé), tout le code de la
+   page mourait sur sa première ligne et l'écran restait muet. On le dit, et
+   on s'arrête proprement (05/09). */
+if(typeof firebase==='undefined'){
+  const dire=()=>{const m=document.getElementById('mot-liste');if(m)m.textContent='Le service de connexion n’a pas pu être chargé. Vérifiez la connexion ou un bloqueur, puis rechargez la page.';const l=document.getElementById('liste');if(l)l.innerHTML='';const a=document.getElementById('acts-liste');if(a)a.style.display='none';};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',dire);else dire();
+  throw new Error('Firebase absent');
+}
 firebase.initializeApp({
   apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",
   authDomain:"lumen-veritatis.firebaseapp.com",
@@ -1190,24 +1198,31 @@ async function retireDeLigne(a){
   if(a.media)await effaceMediaPublic(a.media);
 }
 async function rafraichitPublic(a){
-  if(!a||!a.publie)return;
-  try{await metEnLigne(a);}catch(e){console.warn('rafraîchissement public',e);}
+  if(!a||!a.publie)return true;
+  try{await metEnLigne(a);return true;}catch(e){console.warn('rafraîchissement public',e);return false;}
 }
 async function basculeEtat(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
   const versPublic=!a.publie;
   const b=$('b-etat');
   if(b){b.disabled=true;b.textContent=versPublic?'Publication…':'Retrait…';}
+  let enLigneFait=false;
   try{
     if(versPublic)await metEnLigne(a); else await retireDeLigne(a);
-    a.publie=versPublic; a.maj=new Date().toISOString();
+    enLigneFait=true;
+    const maj=new Date().toISOString();
+    await acol().doc(id).set({publie:versPublic,maj:maj},{merge:true});
+    a.publie=versPublic; a.maj=maj;
     if(S.res&&S.res.id===id)S.res.publie=a.publie;
-    await acol().doc(id).set({publie:a.publie,maj:a.maj},{merge:true});
   }catch(e){
     console.warn('publication',e);
+    /* copie publique faite mais état privé non écrit : on défait la copie,
+       sinon la ressource était en ligne, marquée « Privé », sans moyen de la
+       retirer (05/09) */
+    if(enLigneFait){try{if(versPublic)await retireDeLigne(a);else await metEnLigne(a);}catch(_){}}
     lvInfo(versPublic
-      ? 'La mise en ligne a échoué. Si c’est la première fois, les règles de sécurité ne sont peut-être pas encore posées : voir REGLES-firestore.txt.'
-      : 'Le retrait a échoué. Réessayez.');
+      ? 'La mise en ligne a échoué, rien n’a été changé. Si c’est la première fois, les règles de sécurité ne sont peut-être pas encore posées : voir REGLES-firestore.txt.'
+      : 'Le retrait a échoué, rien n’a été changé. Réessayez.');
   }
   if(b)b.disabled=false;
   rendLister(); majEtatEditeur();
@@ -1369,9 +1384,14 @@ async function menuRessource(id){
   else if(c==='suppr'){
     if(!await lvConfirm('Supprimer cette ressource ? Elle ne pourra pas être récupérée.',1))return;
     SUPPRIMES.add(id);
-    if(a.publie)await retireDeLigne(a);
-    try{await acol().doc(id).delete();}catch(e){console.warn('suppression',e);}
-    if(a.media)await effaceMedia(a.media);
+    try{
+      if(a.publie)await retireDeLigne(a);
+      await acol().doc(id).delete();
+      if(a.media)await effaceMedia(a.media);
+    }catch(e){
+      console.warn('suppression',e); SUPPRIMES.delete(id); rendLister();
+      lvInfo('La suppression a échoué : la ressource est peut-être encore en ligne. Vérifiez la connexion et réessayez.');
+    }
   }
 }
 
@@ -1464,11 +1484,13 @@ async function enregistre(silence){
     await acol().doc(a.id).set(doc);
     /* quittée ou supprimée pendant l'envoi : on n'y touche plus */
     if(S.res!==a||SUPPRIMES.has(a.id))return;
-    if(a.publie)await rafraichitPublic(a);
+    const enLigne=a.publie?await rafraichitPublic(a):true;
     if(S.res!==a)return;
     /* une frappe survenue pendant l'envoi reste « modifiée » et partira au
        prochain passage */
     if(gen===(S.gen||0))S.sale=false;
+    /* enregistrée chez soi mais pas remise en ligne : ça se dit (05/09) */
+    if(!enLigne){$('etat-enr').textContent='Enregistré, mais pas remis en ligne';$('etat-enr').classList.remove('vu');S.sale=true;return;}
     $('etat-enr').textContent=S.sale?'Modifié':'Enregistré'; $('etat-enr').classList.toggle('vu',!S.sale);
     if(!silence)setTimeout(()=>{if(!S.sale)$('etat-enr').textContent='';},2600);
   }catch(e){
@@ -1500,9 +1522,16 @@ async function supprime(){
   SUPPRIMES.add(id);
   S.res=null; S.sale=false;
   vue('liste');
-  if(etaitPublie)await retireDeLigne(copie);
-  try{await acol().doc(id).delete();}catch(e){console.warn('suppression',e);}
-  if(media)await effaceMedia(media);
+  /* les trois étapes sous un seul filet : un échec se dit, et la ressource
+     revient à la liste au lieu de rester en ligne en silence (05/09) */
+  try{
+    if(etaitPublie)await retireDeLigne(copie);
+    await acol().doc(id).delete();
+    if(media)await effaceMedia(media);
+  }catch(e){
+    console.warn('suppression',e); SUPPRIMES.delete(id); rendLister();
+    lvInfo('La suppression a échoué : la ressource est peut-être encore en ligne. Vérifiez la connexion et réessayez.');
+  }
 }
 
 // ════════ ÉVÉNEMENTS ════════
@@ -1608,6 +1637,10 @@ auth.onAuthStateChanged(u=>{
   COMPTE_CONNU=cle;
   S.uid=cle; S.email=u?(u.email||''):null;
   S.auteur=!!(u&&u.email&&u.email.toLowerCase()===AUTEUR);
+  /* les règles de sécurité n'acceptent la mise en ligne que d'une adresse
+     VÉRIFIÉE : si ce n'est pas le cas, mieux vaut le dire tout de suite que de
+     laisser chaque publication échouer sans explication (05/09) */
+  if(S.auteur&&u&&u.emailVerified===false)setTimeout(()=>lvInfo('Votre adresse e-mail n’est pas vérifiée : les règles de sécurité refuseront toute mise en ligne tant qu’elle ne l’est pas. Connectez-vous avec Google, ou faites vérifier l’adresse depuis la console Firebase.'),600);
   S.res=null; S.vu=''; S.liste=[]; S.rubs=[]; RUBS_LUES=false; RUBS_ERR=false; LISTE_ERR=false;
   if(S.auteur){ vue('liste'); motAccueil(); ecoute(); }
   else{ if(COUPE){COUPE();COUPE=null;} $('acts-liste').style.display='none'; ouvrePublic(); }

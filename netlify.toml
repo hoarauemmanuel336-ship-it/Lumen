@@ -24,3 +24,16 @@
   for = "/memoriser.html"
   [headers.values]
     Cache-Control = "no-cache, max-age=0, must-revalidate"
+
+# ── En-têtes de sécurité, sur tout le site (05/09) ──
+# nosniff : un fichier n'est jamais interprété comme autre chose que son type.
+# SAMEORIGIN : la Bible peut vivre dans son tiroir (même site), personne
+# d'autre ne peut encadrer le site dans une page tierce.
+# Referrer-Policy : les adresses complètes ne fuient pas vers les sites tiers.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

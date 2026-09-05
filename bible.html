@@ -109,7 +109,6 @@ a.b-r:hover b,.b-r:hover b,.b-r.kact b{color:var(--or-pale)}
 body{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
 main.wrap{flex:1 0 auto}
 body>footer{flex-shrink:0}
-body.sel-active .wrap{padding-bottom:calc(var(--sb-h,190px) + 28px)}
 .hero{text-align:center;padding:74px 0 26px;animation:rise .7s ease both}
 /* ═══ MODE PANNEAU ═══ Rien n'est retiré des fonctions : on enlève la barre et
    le pied, qui appartiennent à la page d'accueil de la Bible et non à la
@@ -119,6 +118,13 @@ html.panneau .wrap{max-width:none;padding:0 20px 40px}
 html.panneau .hero{padding:26px 0 14px}
 html.panneau h1.titre{font-size:32px}
 html.panneau .notes-cat{top:0}
+/* Posée APRÈS le mode panneau, et pas avant (05/09) : « html.panneau .wrap »
+   a la même spécificité et son raccourci « padding » écrasait ce
+   padding-bottom. Dans le tiroir, la barre de sélection recouvrait alors la
+   fin du chapitre et aucun défilement ne permettait d'atteindre les derniers
+   versets. Même piège que celui documenté pour les @media : à spécificité
+   égale, la dernière règle gagne. */
+body.sel-active .wrap{padding-bottom:calc(var(--sb-h,190px) + 28px)}
 .sur-titre{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--or);margin-bottom:18px}
 h1.titre{font-family:var(--display);font-weight:400;font-size:48px;line-height:1.1;letter-spacing:.04em}
 .hero .souligne{width:54px;height:1px;background:linear-gradient(90deg,transparent,var(--filet-f),transparent);margin:26px auto 0}
@@ -538,7 +544,7 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
 /* la même page sous deux adresses : on demande aux moteurs de n'en retenir
    qu'une, sinon le tiroir ferait doublon avec la page dans les résultats */
 var m=document.createElement('meta');m.name='robots';m.content='noindex';document.head.appendChild(m);
-var c=document.createElement('link');c.rel='canonical';c.href=location.origin+location.pathname;document.head.appendChild(c);}}catch(e){}</script>
+if(!document.querySelector('link[rel=canonical]')){var c=document.createElement('link');c.rel='canonical';c.href=location.origin+location.pathname;document.head.appendChild(c);}}}catch(e){}</script>
 </head>
 <body>
   <header>
@@ -2335,6 +2341,7 @@ var c=document.createElement('link');c.rel='canonical';c.href=location.origin+lo
   function etiquetteRef(r){
     var inf = infoLivre(r.slug);
     var t = inf ? inf.nom : r.slug;
+    if (r.slug === 'psaumes' && r.ch) t = 'Psaume';   // aligné sur libelle() et sur le panneau (05/09)
     if (r.ch) t += ' ' + r.ch;
     if (r.v1) { t += ':' + r.v1; if (r.v2 > r.v1) t += '-' + r.v2; }
     return t;
@@ -2388,7 +2395,7 @@ var c=document.createElement('link');c.rel='canonical';c.href=location.origin+lo
   function libelleSignet(g){
     var inf = infoLivre(g.s);
     var nom = inf ? inf.nom : g.s;
-    var t = (g.s === 'psaumes') ? 'Psaume ' + g.c : nom + (inf && inf.nch > 1 ? ' ' + g.c : '');
+    var t = (g.s === 'psaumes') ? 'Psaume ' + g.c : nom + ((inf && inf.nch === 1) ? '' : ' ' + g.c);   // sans index, le chapitre reste (05/09)
     if (g.v) t += ':' + g.v;
     return t;
   }
@@ -2644,7 +2651,10 @@ var c=document.createElement('link');c.rel='canonical';c.href=location.origin+lo
       /* une adresse mal formée (un « % » isolé) ne doit pas figer la page */
       try { g = parseRef(decodeURIComponent(brut.slice(4))); } catch(e) { g = null; }
       if (!g) { vueLivres(); window.scrollTo(0, 0); return; }
-      location.replace('#' + g.slug + (g.ch ? '/' + g.ch + (g.v1 ? '/' + g.v1 : '') : ''));
+      /* la plage est SÉLECTIONNÉE, puis on s'y rend : même chemin que la
+         loupe de la page (allerRefs). Avant, l'adresse était réécrite vers
+         le seul premier verset et la plage se perdait (05/09). */
+      allerRefs([g]).catch(function(){ location.replace('#' + g.slug + (g.ch ? '/' + g.ch + (g.v1 ? '/' + g.v1 : '') : '')); });
       return;
     }
     var p = brut.split('/');

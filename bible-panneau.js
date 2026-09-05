@@ -211,7 +211,7 @@
     });
   }
   function trouveLivre(token){
-    if (!DICO || !IDX) return null;      // l'index n'est pas encore là : on ne devine pas
+    if (!DICO || !IDX || !IDX.livres) return null;      // l'index n'est pas encore là : on ne devine pas
     var t = norm(token);
     if (!t) return null;
     if (DICO[t]) return DICO[t];
@@ -239,14 +239,6 @@
     var v1 = m[3] ? parseInt(m[3], 10) : 0;
     var v2 = m[4] ? parseInt(m[4], 10) : v1;
     if (ch && inf.nch === 1 && !v1) { v1 = ch; v2 = ch; ch = 1; }
-    /* les références des articles portent la numérotation catholique moderne ;
-       la bible EN du site (Douay) a la sienne : conversion vers le fichier */
-    if (ch && BP_EN && window.LV_VERSIF && window.LV_VERSIF.douay) {
-      var cv1 = window.LV_VERSIF.douay(inf.nom, ch, v1 || 1);
-      var cv2 = v2 ? window.LV_VERSIF.douay(inf.nom, ch, v2) : cv1;
-      ch = cv1.ch;
-      if (v1) { v1 = cv1.v; v2 = cv2.v; }
-    }
     if (ch && ch > inf.nch) return null;
     if (v2 < v1) { var t2 = v1; v1 = v2; v2 = t2; }
     return { slug: slug, ch: ch, v1: v1, v2: v2 };
@@ -295,6 +287,12 @@
   }
   function hashDe(r){
     if (!r) return '';
+    /* une PLAGE (Matthieu 7:6-8) passe par l'adresse « #ref=… », que la page
+       sait lire : elle sélectionne les versets 6 à 8 puis s'y rend. Avant,
+       seul le premier verset était transmis et rien n'était sélectionné,
+       alors que la même référence tapée dans la loupe de la Bible
+       sélectionnait bien la plage (05/09). */
+    if (r.v1 && r.v2 > r.v1) return '#ref=' + encodeURIComponent(etiquetteRef(r));
     return '#' + r.slug + (r.ch ? '/' + r.ch + (r.v1 ? '/' + r.v1 : '') : '');
   }
 
@@ -386,10 +384,18 @@
   /* ───────── Ouverture / fermeture ───────── */
   function assureIdx(){
     if (IDX) return Promise.resolve();
-    return charge(BP_DATA + 'index.json').then(function(d){
+    /* une seule requête en vol, partagée : ouvrir le tiroir puis taper une
+       référence dans la seconde qui suit lançait deux téléchargements de
+       l'index (05/09). Et IDX n'est posé qu'une fois le dictionnaire
+       construit : un index tronqué ne fige plus le champ pour toujours. */
+    if (pend) return pend;
+    pend = charge(BP_DATA + 'index.json').then(function(d){
+      if (!d || !d.livres) throw new Error('index');
       IDX = d;
       construitDico();
-    });
+      pend = null;
+    }, function(e){ pend = null; throw e; });
+    return pend;
   }
   function montre(){ voile.classList.add('on'); pan.classList.add('on'); }
   function ouvre(){

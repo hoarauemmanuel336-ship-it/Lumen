@@ -150,3 +150,18 @@ CE QUE ÇA COÛTE. Rien. Le projet est sur le forfait gratuit, aucune carte
 n'est attachée, aucune facture n'est possible. La lecture publique
 consomme des lectures Firestore, largement sous les cinquante mille par
 jour offertes.
+
+────────────────────────────────────────────────────────────────────
+AJOUT DU 05/09 : CE QUE LES RÈGLES NE PEUVENT PAS FAIRE
+────────────────────────────────────────────────────────────────────
+L'inscription est ouverte à tous, et chaque compte écrit librement dans son
+espace. Les règles ne savent pas mesurer le poids d'un document ni compter
+ceux d'un compte : un compte malveillant pourrait multiplier les écritures
+jusqu'à épuiser le quota gratuit, et le site public tomberait avec lui (les
+lectures publiques passent par le même quota). Deux gestes, dans la console Firebase, ferment cette porte :
+  1. App Check (Paramètres du projet → App Check) : seules les pages du site
+     peuvent parler à Firestore, pas un script lancé d'ailleurs.
+  2. Une alerte de budget (Utilisation et facturation) : un courriel dès que
+     l'usage sort de l'ordinaire.
+Le site n'y perd rien ; il faut simplement ajouter le SDK App Check dans les
+pages le jour où on l'active (dis-le à l'assistant, il le fera).
