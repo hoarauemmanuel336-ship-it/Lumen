@@ -313,6 +313,21 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 .res-desc{font-family:var(--serif);font-size:calc(17px*var(--lvz,1));line-height:1.72;color:var(--pa);margin:20px 0 4px;white-space:pre-wrap}
 .res-lien{display:inline-block;margin:22px 0 4px;padding:13px 26px;border:1px solid var(--filet-f);font-family:var(--display);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchemin);text-decoration:none;transition:border-color .3s,color .3s,background .3s}
 .res-lien:hover{border-color:var(--or);color:var(--or);background:var(--surv)}
+/* ── TÉLÉCHARGER N'EST PAS L'ACTION PRINCIPALE ──
+   Le cadre encadré pesait autant que l'image elle-même, alors que l'image est
+   déjà là, sous les yeux : télécharger n'est qu'un service rendu à qui le
+   veut. Le bouton redevient donc ce qu'il aurait dû rester, une ligne de
+   petites capitales comme « ← Les ressources » juste en dessous, discrète et
+   qui s'éclaire quand on la vise. Le bouton encadré reste pour la ressource
+   de type « lien », où ouvrir EST l'action.
+   Il reprend au trait près le « + Nouvelle catégorie » de Mémoriser : même
+   caractère, même corps, même interlettrage, même gris, même or au survol,
+   même zone de clic élargie autour du texte, et centré comme lui. Un seul
+   geste discret, écrit deux fois de la même façon dans le site. */
+.res-tel-rang{display:flex;align-items:center;justify-content:center;margin:26px 0 2px}
+.res-tel{position:relative;font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2);text-decoration:none;transition:color .3s}
+.res-tel::before{content:'';position:absolute;inset:-15px -10px}
+.res-tel:hover{color:var(--or)}
 .res-url{font-size:12.5px;color:var(--pa2);word-break:break-all;margin-top:12px}
 
 /* ── le formulaire ── */
@@ -387,7 +402,7 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
     <div class="tete"><h1 id="titre-liste">Ressources</h1><span class="art-etat" id="compte-liste"></span></div>
     <div class="resume" id="mot-liste"></div>
     <div id="liste"></div>
-    <div class="acts" id="acts-liste">
+    <div class="acts" id="acts-liste" style="display:none">
       <button class="act majeur" id="b-nouveau">+ Ajouter une ressource</button>
       <button class="act" id="b-section">+ Nouveau domaine</button>
     </div>
@@ -554,6 +569,26 @@ function compteRub(rid){return descendance(rid).reduce((n,x)=>n+ressourcesDe(x).
    ratée (hors ligne, erreur passagère) ferait repartir de zéro et le premier
    enregistrement effacerait tout le rangement. */
 let RUBS_LUES=false;
+/* ── CE QUE LA PAGE SAIT DÉJÀ, ET CE QU'ELLE ATTEND ENCORE (05/09) ──
+   Emmanuel : « quand je clique pour aller dessus, ça charge mal parfois. »
+   La page se dessinait avant d'avoir la moindre donnée : elle annonçait donc
+   « Aucune ressource publiée » ou « Rien encore » à qui en avait des dizaines,
+   montrait un instant les deux boutons de l'auteur à tout le monde, et le
+   rangement public s'affichait une seconde avant d'être remplacé par celui de
+   l'auteur. Rien n'était cassé, tout était simplement dit trop tôt.
+   On note donc ce qui est arrivé : qui regarde, la liste publique, la liste
+   privée. Tant qu'il manque une pièce, la page dit « Chargement… » au lieu
+   d'affirmer une absence qu'elle ne connaît pas. */
+let AUTH_VU=false, PUBS_LUES=false, PUB_ERR=false, LISTE_LUE=false, LISTE_ERR=false, RUBS_ERR=false;
+function pretListe(){
+  if(!AUTH_VU)return false;
+  /* une lecture qui a ÉCHOUÉ compte comme faite : on montre ce qu'on a, et
+     l'on dit ce qui manque, plutôt que d'attendre pour toujours */
+  return S.auteur ? ((RUBS_LUES||RUBS_ERR)&&LISTE_LUE) : PUBS_LUES;
+}
+/* Si le service de connexion ne répond jamais (bloqueur, réseau coupé), on ne
+   reste pas sur « Chargement… » : passé six secondes, on regarde en visiteur. */
+setTimeout(()=>{if(!AUTH_VU){AUTH_VU=true;try{vue('liste');}catch(_){}}},6000);
 function saveRubs(){
   if(!RUBS_LUES){lvInfo('Le rangement n’est pas encore chargé. Réessayez dans un instant.');return;}
   rdoc().set({list:S.rubs}).catch(e=>{console.warn('rubriques',e);lvInfo('Le rangement n’a pas pu être enregistré.');});
@@ -984,6 +1019,14 @@ function rendLister(){
      une section dès qu'on est entré quelque part */
   const bs=$('b-section'); if(bs)bs.textContent=ou?'+ Nouvelle section':'+ Nouveau domaine';
   const h=$('liste'); h.innerHTML='';
+  /* Tant qu'on ne sait pas QUI REGARDE, on ne montre le rangement de personne.
+     La lecture publique part au chargement, avant le compte : quand elle
+     revenait la première, l'auteur voyait s'afficher une seconde la liste
+     publique, puis la sienne par-dessus. */
+  /* les deux boutons de l'auteur arrivent AVEC la liste, pas avant : un
+     élément qui se pose puis se déplace, c'est encore une page qui bouge */
+  if(S.auteur)$('acts-liste').style.display=pretListe()?'':'none';
+  if(!pretListe()){ $('compte-liste').textContent=''; h.innerHTML='<div class="vide">Chargement…</div>'; return; }
   const fils=enfants(ou), res=ressourcesDe(ou);
   /* Le compte dit ce que contient l'endroit où l'on est, sous-sections
      comprises ; à la racine, c'est tout le rayonnage. Un « 5 ressources »
@@ -991,6 +1034,7 @@ function rendLister(){
   const total=ou?compteRub(ou):(publik?PUBS.length:S.liste.length);
   $('compte-liste').textContent=total?total+(total>1?' ressources':' ressource'):'';
   if(!fils.length&&!res.length){
+    if((PUB_ERR&&!S.auteur)||(LISTE_ERR&&S.auteur)){ h.innerHTML='<div class="vide">Les ressources n’ont pas pu être lues.<br>Vérifiez la connexion, puis rechargez la page.</div>'; return; }
     h.innerHTML=ou
       ? '<div class="vide">Rien ici pour l’instant.</div>'
       : (publik
@@ -1188,7 +1232,8 @@ async function litPublic(){
        rangement de l'auteur et le renvoyait à la racine, même s'il avait ouvert
        une page profonde. */
     if(!S.auteur)arbrePublic();
-  }catch(e){console.warn('ressources publiques',e);PUBS=[];if(!S.auteur)S.rubs=[];}
+    PUBS_LUES=true; PUB_ERR=false;
+  }catch(e){console.warn('ressources publiques',e);PUBS=[];if(!S.auteur)S.rubs=[];PUBS_LUES=true;PUB_ERR=true;}
 }
 /* Le visiteur n'a pas accès à la liste des domaines, qui est privée : chaque
    ressource publiée porte seulement son chemin écrit en clair. On reconstruit
@@ -1283,9 +1328,12 @@ function corpsVoir(a,publik){
         cadre.appendChild(f);
       }
       const tel=document.createElement('a');
-      tel.className='res-lien'; tel.href=u; tel.download=a.nom||((a.titre||'ressource')+(t==='pdf'?'.pdf':''));
-      tel.textContent='Télécharger'+(a.taille?' ('+poids(a.taille)+')':'');
-      c.appendChild(tel);
+      tel.className='res-tel'; tel.href=u; tel.download=a.nom||((a.titre||'ressource')+(t==='pdf'?'.pdf':''));
+      /* la flèche vers le bas dit le geste sans le nommer deux fois, comme le
+         « + » des boutons de Mémoriser */
+      tel.textContent='↓ Télécharger'+(a.taille?' ('+poids(a.taille)+')':'');
+      const rang=document.createElement('div'); rang.className='res-tel-rang';
+      rang.appendChild(tel); c.appendChild(rang);
     }).catch(()=>{cadre.innerHTML='<div class="res-desc" style="padding:26px;margin:0">Ce fichier est introuvable.</div>';});
   }else cadre.innerHTML='<div class="res-desc" style="padding:26px;margin:0">Aucun fichier.</div>';
   return c;
@@ -1512,29 +1560,29 @@ let COUPE=null;
 function ecoute(){
   if(COUPE){try{COUPE();}catch(e){}COUPE=null;}
   if(!S.uid)return;
-  RUBS_LUES=false;
+  RUBS_LUES=false; LISTE_LUE=false;
   rdoc().get()
     .then(d=>{S.rubs=(d.exists&&d.data().list)||[];RUBS_LUES=true;
       /* si une ressource est déjà ouverte à l'écran, on la laisse : relire le
          rangement ne doit pas la refermer */
       if(!S.res&&$('ecran-voir').style.display==='none')routeHash();})
-    .catch(e=>{console.warn('rubriques',e);lvInfo('Le rangement n’a pas pu être lu. Rechargez la page avant d’y toucher.');});
+    .catch(e=>{console.warn('rubriques',e);RUBS_ERR=true;lvInfo('Le rangement n’a pas pu être lu. Rechargez la page avant d’y toucher.');if(!S.res&&!S.vu)rendLister();});
   COUPE=acol().onSnapshot(sn=>{
     const l=sn.docs.map(d=>Object.assign({id:d.id},d.data()));
     l.sort((a,b)=>String(b.maj||b.cree||'').localeCompare(String(a.maj||a.cree||'')));
-    S.liste=l;
+    S.liste=l; LISTE_LUE=true;
     /* on ne rebâtit la liste que si elle est bien à l'écran : sinon un simple
        rafraîchissement des données chassait la ressource ouverte */
     if(!S.res&&!S.vu)rendLister();
     /* arrivé avec une adresse #r/… : la ressource n'existait pas encore quand
        la page a lu l'adresse, elle est là maintenant, on l'ouvre */
     else if(!S.res&&S.vu&&$('ecran-voir').style.display==='none')routeHash();
-  },e=>console.warn('ressources',e));
+  },e=>{console.warn('ressources',e);LISTE_ERR=true;LISTE_LUE=true;if(!S.res&&!S.vu)rendLister();});
 }
 function motAccueil(){
   if(!S.uid){$('mot-liste').textContent='Connectez-vous pour ajouter des ressources.';$('acts-liste').style.display='none';return;}
-  if(!S.auteur){$('mot-liste').textContent='Aucune ressource publiée pour l’instant.';$('acts-liste').style.display='none';$('liste').innerHTML='';return;}
-  $('mot-liste').textContent=''; $('acts-liste').style.display='';
+  if(!S.auteur){$('mot-liste').textContent=pretListe()?'Aucune ressource publiée pour l’instant.':'';$('acts-liste').style.display='none';$('liste').innerHTML='';return;}
+  $('mot-liste').textContent=''; $('acts-liste').style.display=pretListe()?'':'none';
 }
 /* Le visiteur voit les ressources PUBLIÉES. L'auteur retrouve les siennes et
    son formulaire. Une seule page, deux visages. */
@@ -1555,14 +1603,21 @@ async function ouvrePublic(){
 let COMPTE_CONNU='∅';
 auth.onAuthStateChanged(u=>{
   const cle=u?u.uid:null;
+  AUTH_VU=true;
   if(cle===COMPTE_CONNU)return;
   COMPTE_CONNU=cle;
   S.uid=cle; S.email=u?(u.email||''):null;
   S.auteur=!!(u&&u.email&&u.email.toLowerCase()===AUTEUR);
-  S.res=null; S.vu=''; S.liste=[]; S.rubs=[]; RUBS_LUES=false;
+  S.res=null; S.vu=''; S.liste=[]; S.rubs=[]; RUBS_LUES=false; RUBS_ERR=false; LISTE_ERR=false;
   if(S.auteur){ vue('liste'); motAccueil(); ecoute(); }
   else{ if(COUPE){COUPE();COUPE=null;} $('acts-liste').style.display='none'; ouvrePublic(); }
 });
+/* ── ON DESSINE TOUT DE SUITE ──
+   Rien n'était affiché tant que la première réponse du serveur n'était pas
+   revenue : sur une connexion lente, la page restait nue une seconde ou deux
+   sous son titre, et l'on croyait qu'elle avait échoué. Elle dit maintenant
+   « Chargement… » dès la première image. */
+vue('liste');
 ouvrePublic();
 /* L'adresse porte l'endroit : #d/… pour un rayon, #r/… pour une ressource
    publiée. Le bouton « précédent » du navigateur remonte donc tout seul. */

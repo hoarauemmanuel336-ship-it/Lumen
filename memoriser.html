@@ -844,9 +844,10 @@ const S={
   catSec:{},        // catId -> sectionId
   secOpen:{},       // sectionId -> false quand la section est repliée (par appareil)
   soloSec:null,
-  cur:null, lastId:null, answered:0, correct:0, rap:{r:0,a:0,v:0}, depuisNeuf:0,
+  cur:null, lastId:null, answered:0, correct:0, rap:{r:0,a:0,v:0}, tour:0,
   pendingCat:null, pendingPas:false, editCat:null, editVerse:null, editSec:null, pendingCatSec:null,
-  charge:false      // vrai une fois les données du compte lues : avant, on n'écrit rien dans le nuage
+  charge:false,     // vrai une fois les données du compte lues : avant, on n'écrit rien dans le nuage
+  chargeErr:false   // vrai si cette lecture a échoué : l'écran le dit au lieu de rester sur « Chargement… »
 };
 /* Remise à zéro de l'état propre à un compte : à la déconnexion et avant de
    lire un autre compte. Sans cela, ce qui restait en mémoire du compte
@@ -854,7 +855,7 @@ const S={
    nuage du compte suivant à la première action. */
 function razEtat(){
   S.selCats=[]; S.offV={}; S.progress={}; S.step=0; S.customCats=[]; S.baseEdits={}; S.hidCats=[]; S.trash=[];
-  S.sections=[]; S.catSec={}; S.soloCat=null; S.soloSec=null; S.charge=false; SALES={}; RAZ_PROG=false;
+  S.sections=[]; S.catSec={}; S.soloCat=null; S.soloSec=null; S.charge=false; S.chargeErr=false; SALES={}; RAZ_PROG=false;
 }
 
 // ════════ OUTILS ════════
@@ -1061,8 +1062,8 @@ function answer(id,ok,rap){
      faire virer au vert les vingt-quatre versets d'une mémoire : le tableau
      annonçait une mémoire acquise en une soirée. Une séance qui continue
      au-delà des versets mûrs reste un exercice utile, mais elle n'avance plus
-     les niveaux. L'ERREUR, ELLE, COMPTE TOUJOURS : se tromper est une
-     information vraie, mûr ou pas. */
+     les niveaux. Et depuis le 05/09 l'erreur non plus ne pèse qu'à l'heure :
+     hors échéance, la séance entraîne, elle ne juge pas (voir plus bas). */
   const mur=isDue(id);
   /* Première rencontre : le verset n'a encore aucune date de lecture. */
   const premiereFois=!p.t;
@@ -1177,16 +1178,23 @@ function answer(id,ok,rap){
       }
     } else delete p.s;
   }
-  /* L'ERREUR NE PÈSE PAS PAREIL SELON QU'ELLE ARRIVE OU NON À L'HEURE.
+  /* ── L'ERREUR NE COMPTE QU'À L'HEURE (05/09) ──
      Manquer un verset le jour de sa révision est une vraie information : on
-     redescend de deux crans. Le manquer pendant un exercice libre, alors
-     qu'il n'était pas dû, en dit moins : on ne redescend que d'UN cran, et
-     surtout on ramène sa révision à maintenant. Sans cette distinction, un
-     doigt qui glisse pendant un entraînement coûtait deux niveaux ; et à
-     l'inverse, ne rien retirer du tout aurait ouvert une faille (se tromper
-     exprès pour rendre le verset mûr, puis répondre juste pour gagner un
-     cran). Un cran perdu puis un cran repris : le compte est nul. */
-  else  { p.box=Math.max(0,eff-(mur?2:1)); p.n=new Date(ms).toISOString(); p.s=S.step+3; }
+     redescend de deux crans, et l'attente repart.
+     Le manquer HORS échéance ne change plus rien à son niveau ni à sa date.
+     Emmanuel : « répéter, c'est comme ça qu'on apprend ». Dès lors qu'un
+     verset moyennement su repasse plusieurs fois par séance, chaque passage
+     ne peut pas être un jugement : c'est un exercice. La règle d'avant (un
+     cran de moins et l'attente remise à zéro) avait été mesurée avec cette
+     répétition : plus un seul verset n'atteignait l'acquisition, parce qu'un
+     jaune montré trois fois par jour voyait son attente remise à zéro avant
+     d'avoir jamais franchi ses sept jours. L'exercice ne juge donc plus, il
+     entraîne ; le jugement reste à l'échéance, où il est juste.
+     Il n'y a plus de faille à fermer : se tromper exprès ne rend plus le
+     verset mûr, il n'y a rien à gagner. Le verset manqué revient simplement
+     quelques questions plus loin, comme après toute erreur. */
+  else if(mur){ p.box=Math.max(0,eff-2); p.n=new Date(ms).toISOString(); p.s=S.step+3; }
+  else { p.s=S.step+3; }
   p.t=new Date(ms).toISOString();
   delete p.due;     // ancien pas de séance, remplacé par une vraie date
   S.progress[id]=p; S.step++; marqueSale(id);
@@ -1203,98 +1211,66 @@ const vuesOf=id=>(S.progress[id]||{}).v||0;
    plafonné, on met en mémoire autant de versets qu'on veut, aussi vite qu'on
    veut. C'est un ordre de passage. */
 const enJeu=id=>{const p=S.progress[id];return !!(p&&p.t);};
-/* ── DÉCOUVRIR NE S'ARRÊTE JAMAIS (02/09, Emmanuel : « j'ai l'impression que
-   je révise plus que j'apprends ») ──
-   Réviser passait avant découvrir SANS RÉSERVE : tant qu'un seul verset déjà
-   commencé était arrivé à terme, aucun verset neuf ne pouvait passer. Le jour
-   où les révisions du jour remplissent la séance entière, la découverte
-   s'arrête donc pour de bon. On garde la priorité aux révisions, mais on
-   glisse un verset neuf au moins toutes les cinq questions tant qu'il en
-   reste en réserve : les révisions ne sont jamais repoussées de plus de
-   quelques cartes, et la réserve avance tous les jours. */
-const CADENCE_NEUF=5;
-/* Trois tirages fragiles, puis un acquis : un sur quatre dans la série libre. */
-const CADENCE_SU=3;
+/* ── L'ORDRE DES PRIORITÉS (05/09, Emmanuel) ──
+   « C'est très simple : priorité à ce qu'on connaît moyennement, puis à ce
+   qu'on ne maîtrise pas, et ensuite à ce qu'on maîtrise. » Et : « répéter,
+   c'est comme ça qu'on apprend. » Valable aux échéances comme dans la série
+   infinie.
+   Trois groupes, réglés sur LA COULEUR QUE TU VOIS : le JAUNE (ce qu'on
+   connaît moyennement), le ROUGE et le NEUF (ce qu'on ne maîtrise pas), le
+   VERT (ce qu'on maîtrise). Ils passent à tour de rôle selon une cadence fixe
+   de six tirages : jaune, jaune, rouge, jaune, rouge, vert. Trois jaunes, deux
+   rouges, un vert. Un groupe vide cède son tour au suivant dans l'ordre des
+   priorités ; s'il ne reste que du vert, tout lui revient.
+   À l'intérieur d'un groupe, ce qui est mûr passe d'abord (le niveau commande,
+   le compteur d'expositions départage, puis le plus en retard) ; sinon, ce que
+   la séance n'a pas encore montré, du plus faible au plus solide ; puis le
+   plus anciennement vu. Rien n'est limité à un passage par séance : un jaune
+   revient autant que son tour le ramène. Ce qui rend cette répétition sans
+   danger est écrit dans answer : hors échéance, l'exercice n'abaisse plus
+   rien.
+   Un verset neuf, jamais vu, appartient au rouge : c'est ce qu'on ne maîtrise
+   pas, par définition. L'ancienne cadence particulière des neufs (un sur cinq)
+   n'a donc plus lieu d'être. */
+const TOUR=['j','j','r','j','r','v'];
+/* dérivé de la couleur affichée, pour que les deux ne divergent jamais */
+const GROUPE_DE=id=>{const l=levelOf(id);return l==='a'?'j':l;};
 function nextItem(){
   const items=allItems(); if(!items.length)return null;
   let pool=items.filter(i=>i.id!==S.lastId); if(!pool.length)pool=items;
   let libres=pool.filter(i=>!retenu(i.id)); if(!libres.length)libres=pool;
-  const jamais=libres.filter(i=>!enJeu(i.id));
-  const dueRevus=libres.filter(i=>enJeu(i.id)&&isDue(i.id));
-  /* un verset neuf : quand il n'y a plus rien à réviser, ou quand cinq
-     questions ont passé sans en présenter un seul */
-  if(jamais.length&&(!dueRevus.length||(S.depuisNeuf||0)>=CADENCE_NEUF)){
-    S.depuisNeuf=0;
-    return jamais[0|Math.random()*jamais.length];
-  }
-  S.depuisNeuf=(S.depuisNeuf||0)+1;
-  if(dueRevus.length){
-    /* Des versets sont mûrs : le niveau commande, le compteur départage. */
-    dueRevus.sort((a,b)=>{
+  const debut=S.debut||0;
+  const mur=i=>enJeu(i.id)&&isDue(i.id);
+  const inedit=i=>vuLe(i.id)<debut;
+  const g={j:[],r:[],v:[]};
+  libres.forEach(i=>g[enJeu(i.id)?GROUPE_DE(i.id):'r'].push(i));
+  /* le tour : la lettre du moment, puis la suivante dans l'ordre des
+     priorités si le groupe est vide */
+  const k=(S.tour||0)%TOUR.length; S.tour=k+1;
+  const ordre=['j','r','v'];
+  let choix=TOUR[k];
+  if(!g[choix].length){ choix=ordre.find(x=>g[x].length); }
+  const vivier=g[choix];
+  const murs=vivier.filter(mur);
+  if(murs.length){
+    murs.sort((a,b)=>{
       const ba=niveauEffectif(a.id),bb=niveauEffectif(b.id);if(ba!==bb)return ba-bb;
       const va=vuesOf(a.id),vb=vuesOf(b.id);if(va!==vb)return va-vb;
-      return dateOf(a.id)-dateOf(b.id);                               // puis le plus en retard
+      return dateOf(a.id)-dateOf(b.id);
     });
-    const low=niveauEffectif(dueRevus[0].id);
-    const top=dueRevus.filter(i=>niveauEffectif(i.id)===low);
+    const low=niveauEffectif(murs[0].id);
+    const top=murs.filter(i=>niveauEffectif(i.id)===low);
     const vmin=vuesOf(top[0].id);
     const moinsVus=top.filter(i=>vuesOf(i.id)===vmin);
     return moinsVus[0|Math.random()*moinsVus.length];
   }
-  /* ── PLUS RIEN N'EST MÛR, ET LA SÉANCE CONTINUE ──
-     Elle ne s'arrête jamais : on peut réviser autant qu'on veut, c'est voulu.
-     Mais ces questions-là ne comptent plus pour les niveaux, alors autant les
-     donner à CE QUI TIENT LE MOINS. Elles tournaient jusqu'ici du plus
-     anciennement vu au plus récent, tous niveaux confondus : un verset revu
-     depuis trente-cinq jours revenait exactement aussi souvent qu'un verset
-     fragile de trois jours (mesuré : autant de passages à tous les niveaux).
-     On tire donc dans le TIERS LE PLUS FRAGILE, trois versets au minimum pour
-     qu'il tourne au lieu de s'acharner sur un seul, et à l'intérieur c'est le
-     plus anciennement vu qui passe. Le compteur d'expositions ne sert à rien
-     ici : il est absolu, et un verset ajouté aujourd'hui, à zéro, resterait
-     prioritaire pendant des milliers de tirages. */
-  libres.sort((a,b)=>{
+  const tri=vivier.slice().sort((a,b)=>{
+    const sa=inedit(a)?0:1,sb=inedit(b)?0:1;if(sa!==sb)return sa-sb;
     const na=niveauEffectif(a.id),nb=niveauEffectif(b.id);if(na!==nb)return na-nb;
     return vuLe(a.id)-vuLe(b.id);
   });
-  /* ── « LE TIERS LE PLUS FRAGILE » NE VOULAIT PLUS RIEN DIRE (05/09) ──
-     Ce tiers était pris sur TOUT le contenu, acquis compris : c'est une part
-     relative, pas une mesure de fragilité. Tant que la mémoire est jeune, les
-     deux coïncident. Le jour où l'essentiel est acquis, le « tiers le plus
-     fragile » est composé de versets… acquis, et ce qui reste à apprendre n'y
-     entre plus. Mesuré sur le vrai code, trois cent soixante versets dont
-     soixante-quatorze non maîtrisés : DEUX QUESTIONS SUR TROIS allaient à des
-     versets déjà sus. Exactement l'inverse de ce qu'on veut.
-     Le tiers se prend donc maintenant sur CE QUI N'EST PAS MAÎTRISÉ, et rien
-     d'autre. Les acquis gardent leur tour de rôle (un tirage sur quatre), pas
-     davantage. Quand tout est acquis, il n'y a plus de « pas maîtrisé » : on
-     retombe alors sur l'ancien calcul, le tiers le plus pâle de l'ensemble,
-     qui redevient la bonne mesure puisqu'il n'y a rien d'autre. */
-  const pasSus=libres.filter(i=>niveauEffectif(i.id)<NIVEAU_ACQUIS);
-  const socle=pasSus.length?pasSus:libres;
-  const fragiles=socle.slice(0,Math.max(3,Math.ceil(socle.length/3)));
-  /* ── LES VERSETS ACQUIS REVIENNENT AUSSI, DE TEMPS EN TEMPS (03/09) ──
-     Le tiers le plus fragile est le bon endroit pour l'essentiel du temps
-     libre, mais pris seul il enferme la série : les versets tenus pour acquis
-     n'y entrent jamais, et une longue séance ne les propose plus DU TOUT. Or
-     un verset su reste agréable à réciter, et un doute doit pouvoir se lever
-     tout de suite plutôt que d'attendre son échéance à quatre-vingts jours.
-     Un tirage sur quatre va donc à ceux-là, du plus anciennement revu au plus
-     récent. Rien ne change pour les niveaux : hors échéance, une bonne réponse
-     ne fait toujours pas monter, et une erreur ramène le verset à réviser,
-     ce qui est précisément ce que l'on veut d'un verset qu'on croyait su. */
-  const sus=libres.filter(i=>niveauEffectif(i.id)>=NIVEAU_ACQUIS&&fragiles.indexOf(i)<0);
-  let bassin=fragiles;
-  /* Le tour de rôle des acquis ne s'ouvre que s'il reste quelque chose à
-     apprendre : sinon il n'y a rien à protéger, et toute la séance leur
-     revient de droit. */
-  if(sus.length&&pasSus.length){
-    if((S.depuisSu||0)>=CADENCE_SU){ S.depuisSu=0; bassin=sus; }
-    else S.depuisSu=(S.depuisSu||0)+1;
-  }
-  bassin=bassin.slice().sort((a,b)=>vuLe(a.id)-vuLe(b.id));
-  const t0=vuLe(bassin[0].id);
-  const memeAge=bassin.filter(i=>vuLe(i.id)===t0);
+  const t0=vuLe(tri[0].id), l0=niveauEffectif(tri[0].id);
+  const memeAge=tri.filter(i=>vuLe(i.id)===t0&&niveauEffectif(i.id)===l0);
   return memeAge[0|Math.random()*memeAge.length];
 }
 /* Les propositions doivent être DISCERNABLES. Un même verset peut vivre dans
@@ -1341,7 +1317,7 @@ async function loadUser(){
     /* lecture impossible (réseau, Firestore) : on le dit, et surtout on
        n'écrit RIEN tant que l'on n'a pas lu, sinon un état vide remplacerait
        la progression réelle dans le nuage */
-    console.error(e); S.charge=false;
+    console.error(e); S.charge=false; S.chargeErr=true;
     try{lvInfo(S.lang==='fr'?'Vos données n\u2019ont pas pu \u00eatre lues. V\u00e9rifiez la connexion, puis rechargez la page.':'Your data could not be loaded. Check the connection, then reload the page.');}catch(_){}
   }
 }
@@ -1486,6 +1462,21 @@ function elementSection(sec,cats){
 function renderCats(){
   majMode();
   const host=$('cat-list'); host.innerHTML='';
+  /* ── TANT QUE LES DONNÉES NE SONT PAS LÀ, ON LE DIT (05/09) ──
+     Filmé image par image : l'écran apparaissait vide sous « Catégories &
+     mémoire », avec un grand « Commencer » cliquable, pendant tout le temps de
+     la lecture ; et « Commencer » répondait alors « Aucune catégorie », ce qui
+     est faux. La page dit maintenant « Chargement… », et si la lecture a
+     échoué, elle le dit aussi au lieu de laisser un vide. */
+  if(!S.charge){
+    host.innerHTML='<div class="sec-vide">'+(S.chargeErr
+      ?'Vos données n’ont pas pu être lues. Vérifiez la connexion, puis rechargez la page.'
+      :'Chargement…')+'</div>';
+    $('cat-more').style.display='none'; $('sel-all').textContent='';
+    const rb0=$('restore-base'); if(rb0)rb0.style.display='none';
+    renderTrash(); updateStart();
+    return;
+  }
   const CATLIM=6;
   const _allc=catsMode();
   const _more=$('cat-more');
@@ -1564,6 +1555,7 @@ let TIC=null;
 function coupeTic(){if(TIC){clearTimeout(TIC);TIC=null;}}
 function startSession(){
   coupeTic();
+  if(!S.charge){lvInfo(S.chargeErr?'Vos données n’ont pas pu être lues. Rechargez la page.':'Vos versets sont en cours de chargement. Un instant.');return;}
   const dispo=allItems().length;
   if(dispo<2){
     /* sans cette remise à zéro, la portée d'une section ou d'une catégorie
@@ -1576,7 +1568,10 @@ function startSession(){
     updateStart();
     return;
   }
-  S.answered=0; S.correct=0; S.lastId=null; S.rap={r:0,a:0,v:0}; S.depuisNeuf=0;
+  S.answered=0; S.correct=0; S.lastId=null; S.rap={r:0,a:0,v:0}; S.tour=0;
+  /* l'heure de départ de la séance : ce qui a été vu avant elle compte comme
+     « pas encore vu dans cette séance » */
+  S.debut=maintenant();
   /* la mise à l'écart courte d'un verset manqué ne vaut que dans la séance où
      il a été manqué : on repart d'une ardoise nette */
   Object.keys(S.progress).forEach(id=>{const p=S.progress[id];if(p&&p.s!==undefined)delete p.s;});
@@ -2386,6 +2381,7 @@ auth.onAuthStateChanged(async u=>{
     if(S.uid!==u.uid)razEtat();
     S.uid=u.uid;
     $('auth-screen').style.display='none'; $('app').classList.add('on');
+    S.chargeErr=false; applyLang(); renderCats();
     await chargerBaseLV(); await loadUser(); applyLang(); renderCats();
     if(!demarrerAuto()) showView('setup');
     ecouteLive();
