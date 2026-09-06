@@ -939,7 +939,20 @@ function pageCadre(code){
        La barre « Explorer » et le titre de la section ouverte accompagnent
        ainsi la lecture, et l'on copie sa sélection de là où on la fait. */
     +'var vueHaut=0,collants=[],attente=0;'
-    +'function recense(){collants=[];var l=w.getElementsByTagName("*"),i,cs,t;'
+    /* ── CHAQUE RECENSEMENT REND SA PLACE À CE QUI NE COLLE PLUS ──
+       Un titre de section n'est collant que pendant que sa section est ouverte.
+       Tant qu'il l'est, il porte une translation qui le fait descendre avec la
+       lecture. Au repli, il sort du recensement suivant, et la translation
+       posée sur lui restait en place : le titre demeurait figé à la hauteur où
+       la lecture l'avait laissé, plusieurs centaines de pixels sous sa vraie
+       ligne, si bien que l'ordre des sections paraissait bouleversé et qu'un
+       grand vide s'ouvrait au milieu du diagramme.
+       Le recensement remet donc à zéro toutes les translations qu'il a posées
+       avant de refaire sa liste : ceux qui collent encore la reçoivent de
+       nouveau dans la foulée, les autres retrouvent leur place. */
+    +'function recense(){var j;for(j=0;j<collants.length;j++){'
+    +'collants[j].e.style.transform="";collants[j].d=0;}'
+    +'collants=[];var l=w.getElementsByTagName("*"),i,cs,t;'
     +'for(i=0;i<l.length;i++){cs=getComputedStyle(l[i]);'
     +'if(cs.position==="sticky"){t=parseFloat(cs.top);'
     +'if(t===t)collants.push({e:l[i],t:t,d:0});}}'
