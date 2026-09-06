@@ -1412,12 +1412,25 @@ des problèmes et des bugs »). Acquis à ne pas défaire :
        filet sombre de deux pixels entre les lignes.
        ⚠ Si l'interligne de .ch-texte change, changer aussi le 1.08em de .vst
        et de .lv-frag.
-    6. LE VOILE SUIT L'ACCENT DU SITE (05/09, « le survol et le surlignage
-       n'ont même plus la couleur d'accent du site »). Le gris chaud était écrit
-       en dur depuis toujours (rgb(41,39,35), qui est bien l'accent à 17 % —
-       mesuré sur sa capture). Il passe maintenant par --voile-vif et
-       --voile-doux, définis en color-mix sur var(--or) avec un rgba de repli :
-       si l'accent du site change, le voile change avec lui.
+    6. LE VOILE SUIT L'ACCENT DU SITE, ET SE VOIT (05/09, « le survol et le
+       surlignage n'ont même plus la couleur d'accent du site »). Le gris chaud
+       était écrit en dur depuis toujours (rgb(41,39,35), qui EST l'accent à
+       17 % — mesuré sur sa capture) : il suit maintenant var(--or) par
+       --voile-vif et --voile-doux (color-mix, avec un rgba de repli), donc un
+       changement d'accent le change aussi. Et il est monté à 38 % (25 % pour
+       le verset visé, valeur choisie par Emmanuel parmi 17, 24, 30 et 38 vues
+       côte à côte) : à 17 %, le crème sur noir se lit comme un gris et
+       l'accent ne se reconnaît pas.
+    7. UNE SEULE FORCE POUR TOUT LE SURLIGNAGE : 38 % (Emmanuel, 05/09, « je
+       dois à nouveau survoler pour avoir la bonne couleur », puis « que tout
+       soit à 38 pour cent, tout le surlignage du site d'ailleurs »). Il y
+       avait quatre valeurs : 17 % pour le survol et la sélection, 12 % pour le
+       verset visé par un renvoi, 30 % pour un verset surligné au repos, 46 %
+       dès qu'on le survolait. Tout vaut 38 % : --voile-vif, --voile-doux (qui
+       n'est plus qu'un alias), les deux valeurs de marqueSurl (--vc et
+       --vc-sel) et fragStyle pour les portions. Ne pas réintroduire de
+       différence : la couleur qu'on pose est celle qu'on voit, tout de suite
+       et partout.
 • BIBLE (05/09) : body.sel-active .wrap posé APRÈS html.panneau .wrap (même
   spécificité, le raccourci padding écrasait le bas) ; « #ref=… » sélectionne
   la plage via allerRefs et hashDe() du panneau l'emploie pour les plages ;
@@ -1702,3 +1715,164 @@ plus /tmp/bible-surl-check.js, /tmp/bible-vide-check.js,
 /tmp/memo-actions-check.js. Tous « TOUT PASSE » à 390 et 1280 px.
 Captures relues : /tmp/cadres-notes-{390,1280}.png et
 /tmp/cadres-modale-{390,1280}.png.
+
+────────────────────────────────────────────────────────────
+SURVOLS ÉTEINTS PAR PLUS FORT QUE LE SURVOL (05/09)
+────────────────────────────────────────────────────────────
+Emmanuel : « vérifie le survol des diagrammes etc, et les boutons
+nouvelle catégorie et section dans memoriser, ce genre de choses ».
+
+Audit fait au navigateur : pour chaque règle de survol de chaque
+surface, on survole vraiment un élément qui la reçoit et on compare
+les propriétés annoncées avant et après (script scratchpad
+audit-survol.js). Une règle qui ne change rien est masquée.
+
+Trois cas réels, tous de la même famille : une règle écrite APRÈS la
+règle de survol, et au moins aussi forte, refixait la couleur de
+repos ; le survol ne pouvait plus rien.
+
+1. memoriser : #add-cat{color:rgba(231,224,207,.6)} (un identifiant,
+   donc plus fort que .cat-acts .ghost-btn:hover). « + Nouvelle
+   catégorie » ne s'allumait jamais ; « + Nouvelle section », qui n'a
+   pas de règle d'identifiant, s'allumait. La règle d'identifiant a
+   été retirée (voir le point 2 pour l'état retenu).
+
+2. articles, commentaires, ressources : .act.majeur{color:…} venait
+   après .act:hover et pesait autant, donc « + Écrire un article »,
+   « + Écrire un commentaire » et « + Ajouter une ressource »
+   restaient éteints au survol.
+
+   Emmanuel a tranché plus loin que la correction : ces actions
+   « doivent être allumées de base, sans survol ». Donc
+   #acts-liste .act{color:var(--or)} et, au survol,
+   #acts-liste .act:hover{color:var(--or-pale)} ; la classe .majeur
+   n'a plus de couleur propre. Même chose dans Mémoriser :
+   .cat-acts .ghost-btn part à var(--or). Les actions de l'ÉDITEUR
+   (Enregistrer, Publier, Ranger, Supprimer) gardent leur teinte
+   discrète : la règle vise #acts-liste, la barre de la liste.
+
+3. La barre canonique fixe .barre .logo{color:var(--parchemin)}, plus
+   fort que le .logo:hover écrit dans l'accueil : le titre du site ne
+   répondait sur aucune des sept surfaces. Ajouté dans barreCanon()
+   une transition et .barre .logo:hover{color:var(--or-pale)}, donc la
+   correction vaut pour les sept d'un coup.
+
+4. Cartes de Ressources (diagrammes, PDF, images, liens). Le survol
+   écrivait background:var(--surv), ce qui REMPLAÇAIT le fond de la
+   carte (--encre-2, #0b0b0b) par un voile à 6 % posé sur le noir de
+   la page. Mesuré au pixel : rgb(11,11,11) au repos, rgb(14,14,12)
+   au survol, soit trois niveaux d'écart. La carte perdait son corps
+   et paraissait sombre (Emmanuel : « non, regarde c'est sombre »).
+
+   Choix retenu, de lui : « juste le contour doit s'allumer ». Donc
+   .carte:hover ne touche plus au fond ; le trait passe à var(--or)
+   et le halo reste. --surv reste à 6 % partout ailleurs.
+
+   Au passage, .opt:hover dans Mémoriser (une réponse du quiz) avait
+   le même défaut : le voile se pose désormais PAR-DESSUS le fond de
+   la réponse au lieu de le remplacer.
+
+Vérifié bon par ailleurs : la barre du panneau de Bible (fermer,
+rechercher, compte, « Aller », lien vers la page) répond partout. Les faux positifs de l'audit sont les règles neutres
+voulues (.art-ligne .art-item:hover remet le fond à néant, l'onglet
+déjà actif est déjà à la couleur d'accent) et les éléments cachés au
+moment du test.
+
+Leçon : quand un survol semble mort, chercher la règle de couleur de
+repos écrite plus bas dans la feuille, pas la règle de survol.
+
+────────────────────────────────────────────────────────────
+LA CASE D'UN VERSET N'EST PLUS CELLE D'UNE CATÉGORIE (05/09)
+────────────────────────────────────────────────────────────
+Emmanuel : « la case à cocher ne doit pas avoir la même apparence
+que le titre de section coché, ça rend confus ».
+
+Dans Mémoriser, .cat-check (choisir une catégorie pour la séance) et
+.v-check (compter ou non ce verset dans les révisions) étaient le même
+carré bordé avec un carré doré dedans, à un ou deux pixels près. Deux
+commandes de niveaux différents, un seul dessin.
+
+Quatre états montrés (carré actuel, rond, coche, carré sans cadre) ;
+il a pris la COCHE. Donc : .v-check n'a plus de cadre, elle porte un
+✓ à la couleur d'accent, pleine lumière quand le verset compte,
+pâle (16 %) quand il est mis de côté. La case d'une catégorie ne
+bouge pas. Le cadre reste le signe d'une catégorie, la coche celui
+d'un verset.
+
+La zone tactile est inchangée (le ::before à inset:-12px), et le
+basculement au clic a été revérifié sur mobile comme sur ordinateur.
+
+────────────────────────────────────────────────────────────
+MÉMORISER : VERSETS JUMEAUX, ÉCART AVEC LA BIBLE (05/09)
+────────────────────────────────────────────────────────────
+Emmanuel : « je vais probablement mettre le même verset dans plusieurs
+catégories différentes ; quand le verset est exactement pareil, je veux
+que leur progression soit partagée, avec un petit indicateur qui
+indique si le verset est aussi dans d'autres catégories. Et un autre,
+qui indique si le verset dérive de la Bible du site, avec une option
+pour désactiver cet indicateur sur le verset en question, car parfois
+ce sera volontaire. »
+
+1. JUMEAUX. cleVerset(v,kind) = genre + référence + texte, le tout
+   normalisé par normTexte (minuscules, apostrophes unifiées, tout ce
+   qui n'est pas lettre/chiffre devient une espace, espaces réduites).
+   « Jean 3:16 » et « jean 3 : 16 » sont donc le même verset, un point
+   final en plus aussi. Le texte français fait foi (l'anglais n'est
+   qu'une copie à la création).
+   - partageProgression() : appelé au début de chaque renderCats (donc
+     après la lecture du compte et après toute retouche), jamais avant
+     S.charge ni pendant une séance. Pour chaque groupe de jumeaux,
+     meilleureProg (boîte la plus haute, puis réponse la plus récente)
+     est copiée sur tous, marqueSale, saveProgressGroupe. Des copies
+     faites avant ce partage se rejoignent ainsi à la première lecture.
+   - propageProg(id) : à la fin de answer(), la progression part chez
+     les jumeaux tout de suite.
+   - allItems() dédoublonne par clé : un verset présent dans deux
+     catégories choisies n'est posé qu'une fois par séance (et n'est
+     jamais son propre leurre).
+   - Marque « deux carrés » (.mq-jum, SVG) sur la ligne, title « Aussi
+     dans : X, Y » ; clic → lvInfo avec la liste et l'explication.
+
+2. ÉCART AVEC LA BIBLE DU SITE. ecartTexte(ref,texte) lit le passage
+   visé (LVBible.ref + LVBible.livre, promesses mises en cache dans
+   LIVRES_P) et cherche les mots du verset, d'un seul tenant, dans le
+   passage (normTexte des deux côtés). Un extrait pris mot à mot n'est
+   pas un écart ; un mot changé, une référence qui ne correspond pas au
+   texte : écart. Renvoie null quand il n'y a rien à dire (référence
+   illisible, sans verset, Bible indisponible) ; les passages ne sont
+   jamais comparés.
+   - verifieEcarts() après chaque rendu : compare ce qui ne l'a pas
+     encore été (cache ECART[id]={cle,res}), puis allume la marque en
+     place (poseMarqueEcart) sans re-rendre. La marque ≠ (.mq-ecart,
+     ambre) est toujours dans la ligne, cachée tant qu'elle n'est pas
+     .on ; clic → la fenêtre du verset (elle est dans la zone editv).
+   - v.libre = true : écart voulu. La marque se tait, la comparaison
+     n'est plus faite pour ce verset. Se règle dans la fenêtre du
+     verset : bloc #mv-ecart (texte de la Bible entre guillemets +
+     interrupteur #tog-libre), montré quand le texte saisi s'écarte ou
+     quand l'écart est déjà déclaré voulu ; suit la saisie (input,
+     450 ms) et le sélecteur de Bible. Enregistré avec le verset dans
+     la catégorie (saveCat / editBase), donc synchronisé comme le reste.
+   - Mobile : .vline devient une grille "ref mq" / "txt txt", les
+     marques à droite de la référence.
+
+Contrôle : scratchpad jumeaux.js (marques, partage à la lecture,
+propagation après réponse, tirage dédoublonné, bloc Bible, écart voulu
+enregistré et relu, mobile). Tout passe.
+
+────────────────────────────────────────────────────────────
+L'ARCHIVE NE CONTIENT PLUS « site/ » (06/09)
+────────────────────────────────────────────────────────────
+Emmanuel dépose les fichiers sur GitHub par le navigateur, qui refuse
+plus de cent fichiers à la fois. L'archive en comptait 132, dont 102
+dans site/, le dossier PRODUIT par « node build-bi.js » (les 73 livres
+de bible-data, les pages copiées, sitemap, robots…). Or Netlify refait
+ce dossier lui-même à chaque déploiement (netlify.toml : command =
+"node build-bi.js", publish = "site") : il n'a rien à faire sur GitHub.
+
+Donc : l'archive livrée = les sources seules, 31 fichiers, et un
+.gitignore qui écarte site/ et node_modules/. Commande :
+  cd Lumen-main && rm -rf site
+  cd .. && zip -q -r Lumen.zip Lumen-main -x "Lumen-main/node_modules/*" "Lumen-main/site/*"
+Un site/ resté sur GitHub d'un ancien dépôt peut être supprimé, ou
+laissé : Netlify l'écrase de toute façon.

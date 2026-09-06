@@ -27,10 +27,14 @@ window.lvFB=function(){if(window.__lvFBP)return window.__lvFBP;window.__lvFBP=ne
      lieu du gris chaud figé qu'on écrivait en dur (Emmanuel, 05/09 : « le
      survol et le surlignage n'ont même plus la couleur d'accent du site »).
      Première ligne pour les vieux navigateurs, seconde pour les autres. */
-  --voile-vif:rgba(239,230,207,.17);
-  --voile-vif:color-mix(in srgb, var(--or) 17%, transparent);
-  --voile-doux:rgba(239,230,207,.12);
-  --voile-doux:color-mix(in srgb, var(--or) 12%, transparent);
+  /* UNE SEULE INTENSITÉ POUR TOUT LE SURLIGNAGE : 38 % (Emmanuel, 05/09,
+     « que tout soit à 38 pour cent, tout le surlignage du site d'ailleurs »).
+     Le verset visé par un renvoi était plus discret, un verset surligné d'une
+     couleur était plus franc : tout se vaut désormais. --voile-doux existe
+     encore pour ne pas éparpiller les appels, mais vaut la même chose. */
+  --voile-vif:rgba(239,230,207,.38);
+  --voile-vif:color-mix(in srgb, var(--or) 38%, transparent);
+  --voile-doux:var(--voile-vif);
   /* texte sélectionné : la même couleur, franche cette fois, avec le
      texte en noir pour rester lisible. */
   --sel:rgba(239,230,207,.5);
@@ -1517,8 +1521,13 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
         /* la couleur passe par deux variables CSS : le fond (--vc) et sa
            version plus franche quand le verset est aussi sélectionné (--vc-sel),
            que la feuille de style applique elle-même */
-        sp.style.setProperty('--vc', surlOpaque(c, .30));
-        sp.style.setProperty('--vc-sel', surlOpaque(c, .46));
+        /* MÊME FORCE AU REPOS ET AU SURVOL (05/09, Emmanuel : « je dois à
+           nouveau survoler pour avoir la bonne couleur »). Un verset surligné
+           s'affichait à 30 % et ne prenait sa couleur franche qu'une fois
+           survolé ou sélectionné : la couleur choisie ne se voyait donc
+           jamais telle quelle. Une seule valeur désormais. */
+        sp.style.setProperty('--vc', surlOpaque(c, .38));
+        sp.style.setProperty('--vc-sel', surlOpaque(c, .38));
         /* en prose le fond déborde déjà grâce à la marge intérieure du verset ;
            le halo ne sert qu'aux vers posés en bloc */
         sp.style.boxShadow = sp.classList.contains('po') ? '0 0 0 5px var(--vc)' : '';
@@ -1817,7 +1826,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
      portion surlignée à la souris et un verset surligné d'un clic se lisent
      de la même façon. */
   function fragStyle(hex){
-    return '--voile:' + surlOpaque(hex, .30);
+    return '--voile:' + surlOpaque(hex, .38);
   }
   /* La portion [a, b) du verset, avec les surlignages qui la traversent.
      Un surlignage coupé par un passage à la ligne donne deux morceaux qui

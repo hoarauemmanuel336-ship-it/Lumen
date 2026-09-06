@@ -68,7 +68,12 @@ body>footer{flex-shrink:0}
 .act{position:relative;font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2);transition:color .3s}
 .act::before{content:'';position:absolute;inset:-15px -10px}
 .act:hover{color:var(--or)}
-.act.majeur{color:rgba(231,224,207,.6)}
+/* Les actions de la liste (écrire, ajouter, nouvelle section, organiser)
+   sont allumées d'emblée, à la couleur d'accent : ce sont les portes de la
+   page, elles n'attendent pas la souris. Le survol les éclaircit d'un cran.
+   Les actions de l'éditeur, elles, gardent leur teinte discrète. */
+#acts-liste .act{color:var(--or)}
+#acts-liste .act:hover{color:var(--or-pale)}
 .act.danger:hover{color:var(--pourpre)}
 @media(max-width:720px){.acts{gap:24px;margin-top:26px}}
 
