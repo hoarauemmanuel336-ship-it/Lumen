@@ -2128,10 +2128,46 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       + '<div id="lv-mesure">' + code + '</div>'
       + '<scr' + 'ipt>(function(){'
       + 'var w=document.getElementById("lv-mesure"),dernier=-1,demande=0;'
-      + 'function bas(){var m=0,l=w.getElementsByTagName("*"),i,r;for(i=0;i<l.length;i++){r=l[i].getBoundingClientRect();if(!r.width&&!r.height)continue;if(r.bottom>m)m=r.bottom;}return m+(window.pageYOffset||0);}'
-      + 'function h(){if(!w)return;var n=Math.ceil(bas());if(n<=0)n=Math.ceil(Math.max(w.getBoundingClientRect().height,w.scrollHeight));if(n===dernier)return;dernier=n;w.style.height=n+"px";demande=n;try{parent.postMessage({lvHaut:n},"*");}catch(e){}}'
-      + 'window.addEventListener("message",function(e){var d=e.data;if(!d||typeof d.lvApplique!=="number")return;document.documentElement.style.overflow=(d.lvApplique<demande-1)?"auto":"hidden";});'
-      + 'window.addEventListener("load",h);setTimeout(h,120);setTimeout(h,600);'
+      /* Une section repliée garde son contenu dans la page : l'enveloppe le
+         coupe, mais le bloc enfermé conserve sa taille entière. La mesure
+         descend donc l'arbre en emportant la limite de ce qui est visible,
+         et laisse de côté les sous-arbres masqués : le chiffre annoncé est le
+         dernier pixel vu, et le cadre ne s'étire plus sous le diagramme. */
+      + 'function scrute(e,coupe){var cs=getComputedStyle(e);'
+      + 'if(cs.display==="none"||cs.visibility==="hidden")return 0;'
+      + 'var r=e.getBoundingClientRect(),b=Math.min(r.bottom,coupe),m=0,i,v,k;'
+      + 'if(r.width||r.height)m=b;'
+      + 'if(cs.overflowY!=="visible"&&r.bottom<coupe)coupe=r.bottom;'
+      + 'k=e.children;for(i=0;i<k.length;i++){v=scrute(k[i],coupe);if(v>m)m=v;}'
+      + 'return m;}'
+      + 'function bas(){var m=0,k=w.children,i,v;'
+      + 'for(i=0;i<k.length;i++){v=scrute(k[i],1/0);if(v>m)m=v;}'
+      + 'return m+(window.pageYOffset||0);}'
+      + 'function h(){if(!w)return;var n=Math.ceil(bas());if(n<=0)n=Math.ceil(Math.max(w.getBoundingClientRect().height,w.scrollHeight));planRecense();if(n===dernier)return;dernier=n;w.style.height=n+"px";demande=n;try{parent.postMessage({lvHaut:n},"*");}catch(e){}}'
+      /* Le cadre fait la hauteur exacte du diagramme et ne défile jamais :
+         ce qu'il tient pour le haut de l'écran est le haut du diagramme, et
+         sa barre « Explorer » y restait plantée. La page lui dit maintenant
+         quelle part est déjà passée sous le bord haut de la lecture, et il
+         fait glisser lui-même ses éléments collants, chacun retenu par le
+         bloc auquel il appartient, comme le ferait le navigateur. */
+      + 'var vueHaut=0,collants=[],attente=0;'
+      + 'function recense(){collants=[];var l=w.getElementsByTagName("*"),i,cs,t;'
+      + 'for(i=0;i<l.length;i++){cs=getComputedStyle(l[i]);'
+      + 'if(cs.position==="sticky"){t=parseFloat(cs.top);if(t===t)collants.push({e:l[i],t:t,d:0});}}'
+      + 'colle();}'
+      + 'function planRecense(){clearTimeout(attente);attente=setTimeout(recense,180);}'
+      + 'function colle(){var i,s,e,p,r,pr,nat,d,max;'
+      + 'for(i=0;i<collants.length;i++){s=collants[i];e=s.e;p=e.parentElement;'
+      + 'if(!p)continue;r=e.getBoundingClientRect();nat=r.top-s.d;'
+      + 'pr=p.getBoundingClientRect();d=vueHaut+s.t-nat;if(d<0)d=0;'
+      + 'max=pr.bottom-nat-r.height;if(max<0)max=0;if(d>max)d=max;'
+      + 'if(d!==s.d){s.d=d;e.style.transform=d?("translateY("+d+"px)"):"";}}}'
+      + 'window.addEventListener("message",function(e){var d=e.data;if(!d)return;'
+      + 'if(d.lvVue&&typeof d.lvVue.haut==="number"){vueHaut=d.lvVue.haut;colle();return;}'
+      + 'if(typeof d.lvApplique!=="number")return;'
+      + 'document.documentElement.style.overflow=(d.lvApplique<demande-1)?"auto":"hidden";});'
+      + 'window.addEventListener("load",function(){h();recense();});'
+      + 'setTimeout(h,120);setTimeout(h,600);setTimeout(recense,700);'
       + 'if(window.ResizeObserver){var ro=new ResizeObserver(h),k;for(k=0;k<w.children.length;k++)ro.observe(w.children[k]);if(!w.children.length)ro.observe(w);}'
       + 'function relais(t){try{parent.postMessage({lvCopie:String(t)},"*");}catch(e){}}'
       + 'try{var nat=(navigator.clipboard&&navigator.clipboard.writeText)?navigator.clipboard.writeText.bind(navigator.clipboard):null;'
@@ -2147,6 +2183,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       var accorde = Math.max(40, Math.min(40000, Math.round(d.lvHaut)));
       cadre.style.height = accorde + 'px';
       try { e.source.postMessage({ lvApplique: accorde }, '*'); } catch(_){}
+      suitVue();
       return;
     }
     if (typeof d.lvCopie === 'string') {
@@ -2157,6 +2194,37 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       try { copieRepli(t); } catch(_){}
     }
   });
+
+  /* ── LA PAGE DIT AU DIAGRAMME OÙ EN EST LA LECTURE ──
+     Le cadre ne défile pas : sans cela, ce qui doit rester sous les yeux
+     pendant la lecture, barre de sélection et titre de section, resterait figé
+     tout en haut du diagramme. On lui envoie donc, à chaque défilement, la
+     hauteur déjà passée sous le bord haut de la zone de lecture, barre du site
+     déduite. L'envoi est calé sur le rythme d'affichage de l'écran. */
+  var vuePrevue = 0;
+  function hautLecture(){
+    var b = document.querySelector('header');
+    if (!b) return 0;
+    var p = getComputedStyle(b).position;
+    if (p !== 'sticky' && p !== 'fixed') return 0;
+    return Math.max(0, b.getBoundingClientRect().bottom);
+  }
+  function diffuseVue(){
+    vuePrevue = 0;
+    var cadres = document.querySelectorAll('.com-pan iframe[data-com]');
+    if (!cadres.length) return;
+    var plafond = hautLecture();
+    cadres.forEach(function(f){
+      var r = f.getBoundingClientRect();
+      try { f.contentWindow.postMessage({ lvVue: { haut: Math.max(0, plafond - r.top) } }, '*'); } catch(_){}
+    });
+  }
+  function suitVue(){
+    if (vuePrevue) return;
+    vuePrevue = requestAnimationFrame(diffuseVue);
+  }
+  window.addEventListener('scroll', suitVue, { passive: true, capture: true });
+  window.addEventListener('resize', suitVue);
   /* ── L'auteur : « Commenter » depuis la sélection, « Mes commentaires » depuis
      le compte. La page d'écriture s'ouvre dans la fenêtre principale, même
      quand la Bible est dans le tiroir d'une autre page. */

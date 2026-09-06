@@ -877,16 +877,40 @@ function pageCadre(code){
        différence n'est pas théorique. Le diagramme se termine par sa ligne
        « cliquez sur un élément », qui porte une marge basse ; cette marge fait
        partie de la boîte sans rien afficher, et se lisait donc comme une bande
-       noire sous le diagramme, présente aussi bien replié que déplié. Les
-       éléments repliés ou masqués n'ont pas de dimensions et sont ignorés
-       d'eux-mêmes. */
+       noire sous le diagramme, présente aussi bien replié que déplié. */
+    /* ── CE QUI EST REPLIÉ OCCUPE ENCORE DE LA PLACE, POUR QUI MESURE MAL ──
+       Une section repliée garde tout son contenu dans la page : l'enveloppe
+       qui la referme descend à zéro et coupe ce qui dépasse, mais le bloc
+       enfermé dedans, lui, conserve sa taille entière. Le parcours à plat des
+       éléments lisait donc le bas de ce contenu invisible, plusieurs centaines
+       de pixels sous la dernière ligne réellement affichée, et le cadre
+       s'étirait d'autant : une longue bande noire sous un diagramme tout
+       replié. C'est le débordement qui dépassait, pas le diagramme.
+       La mesure descend maintenant l'arbre au lieu de le parcourir à plat, et
+       elle emporte avec elle la limite de ce que l'on voit : chaque fois
+       qu'elle traverse un élément qui coupe ce qui dépasse, elle retient son
+       bord bas comme nouvelle limite, et tout ce qui se trouve en dessous est
+       ramené à cette limite. Un sous-arbre masqué, par l'affichage ou par la
+       visibilité, sort du compte avec toute sa descendance. Le chiffre annoncé
+       est ainsi le dernier pixel VU, quoi que contienne le diagramme. */
     +'var w=document.getElementById("lv-mesure"),dernier=-1,demande=0;'
-    +'function bas(){var m=0,l=w.getElementsByTagName("*"),i,r;'
-    +'for(i=0;i<l.length;i++){r=l[i].getBoundingClientRect();'
-    +'if(!r.width&&!r.height)continue;if(r.bottom>m)m=r.bottom;}'
+    +'function scrute(e,coupe){var cs=getComputedStyle(e);'
+    +'if(cs.display==="none"||cs.visibility==="hidden")return 0;'
+    +'var r=e.getBoundingClientRect(),b=Math.min(r.bottom,coupe),m=0,i,v,k;'
+    +'if(r.width||r.height)m=b;'
+    +'if(cs.overflowY!=="visible"&&r.bottom<coupe)coupe=r.bottom;'
+    +'k=e.children;for(i=0;i<k.length;i++){v=scrute(k[i],coupe);if(v>m)m=v;}'
+    +'return m;}'
+    +'function bas(){var m=0,k=w.children,i,v,c=1/0;'
+    +'for(i=0;i<k.length;i++){v=scrute(k[i],c);if(v>m)m=v;}'
     +'return m+(window.pageYOffset||0);}'
     +'function h(){if(!w)return;var n=Math.ceil(bas());'
     +'if(n<=0)n=Math.ceil(Math.max(w.getBoundingClientRect().height,w.scrollHeight));'
+    /* Le recensement des éléments collants est demandé à chaque remaniement,
+       même quand la hauteur totale ne bouge pas : la barre de sélection qui
+       apparaît décale le point d'accrochage des titres de sections, et c'est
+       un changement de position sans changement de hauteur. */
+    +'planRecense();'
     +'if(n===dernier)return;dernier=n;'
     /* On taille aussi la boîte à cette hauteur. Sans cela il reste sous le
        dernier élément une marge basse qui n'affiche rien mais qui rend la page
@@ -895,6 +919,45 @@ function pageCadre(code){
        page du cadre fait exactement la hauteur de ce qu'elle montre. */
     +'w.style.height=n+"px";demande=n;'
     +'try{parent.postMessage({lvHaut:n},"*");}catch(e){}}'
+    /* ── CE QUI COLLE EN HAUT DOIT SUIVRE LA LECTURE ──
+       Ouvert seul dans un navigateur, le diagramme voit sa barre « Explorer »
+       et ses titres de sections rester au bord haut de l'écran pendant tout le
+       défilement : ils sont posés en « collant », et le collant s'accroche à
+       ce qui défile. Ici, c'est LA PAGE qui défile, jamais le cadre : celui-ci
+       fait exactement la hauteur du diagramme et n'a rien à faire glisser.
+       Le collant n'avait donc rien à quoi s'accrocher et restait au point où
+       il était né, tout en haut du diagramme. On sélectionnait trois cartes en
+       bas de page, et il fallait remonter chercher le bouton.
+       La page dit maintenant au cadre où en est la lecture : à chaque
+       défilement elle lui envoie la hauteur de diagramme déjà passée sous le
+       bord haut de l'écran, sous la barre du site. Le cadre reconnaît tout
+       seul ses éléments collants, quels qu'ils soient, et les fait glisser
+       d'autant, sans jamais les laisser sortir du bloc auquel ils
+       appartiennent, exactement comme le ferait le navigateur. Le mouvement
+       passe par une translation, que l'écran compose sans refaire la mise en
+       page : le geste reste fluide sur un long diagramme.
+       La barre « Explorer » et le titre de la section ouverte accompagnent
+       ainsi la lecture, et l'on copie sa sélection de là où on la fait. */
+    +'var vueHaut=0,collants=[],attente=0;'
+    +'function recense(){collants=[];var l=w.getElementsByTagName("*"),i,cs,t;'
+    +'for(i=0;i<l.length;i++){cs=getComputedStyle(l[i]);'
+    +'if(cs.position==="sticky"){t=parseFloat(cs.top);'
+    +'if(t===t)collants.push({e:l[i],t:t,d:0});}}'
+    +'colle();}'
+    /* Le recensement se refait après chaque changement de hauteur, c'est-à-dire
+       à chaque ouverture ou repli de section : un titre ne devient collant que
+       lorsque sa section s'ouvre. Le délai laisse l'animation finir et ramène
+       toute une cascade de mesures à un seul parcours. */
+    +'function planRecense(){clearTimeout(attente);attente=setTimeout(recense,180);}'
+    /* La position naturelle se retrouve en retirant la translation déjà posée :
+       une translation ne change rien à la mise en page, le bloc parent garde
+       donc sa vraie boîte et sert de butée basse. */
+    +'function colle(){var i,s,e,p,r,pr,nat,d,max;'
+    +'for(i=0;i<collants.length;i++){s=collants[i];e=s.e;p=e.parentElement;'
+    +'if(!p)continue;r=e.getBoundingClientRect();nat=r.top-s.d;'
+    +'pr=p.getBoundingClientRect();d=vueHaut+s.t-nat;if(d<0)d=0;'
+    +'max=pr.bottom-nat-r.height;if(max<0)max=0;if(d>max)d=max;'
+    +'if(d!==s.d){s.d=d;e.style.transform=d?("translateY("+d+"px)"):"";}}}'
     /* ── LA PAGE RÉPOND CE QU'ELLE A PU DONNER ──
        Elle refuse au-delà d'une certaine hauteur, par prudence. Tant que le
        cadre l'ignorait, un grand diagramme entièrement déplié dépassait ce
@@ -903,10 +966,12 @@ function pageCadre(code){
        la réponse. S'il a eu ce qu'il demandait, il verrouille son défilement
        comme prévu ; s'il a eu moins, il le rouvre, et le peu qui dépasse
        redevient atteignable. Rien ne peut plus être perdu. */
-    +'window.addEventListener("message",function(e){var d=e.data;'
-    +'if(!d||typeof d.lvApplique!=="number")return;'
+    +'window.addEventListener("message",function(e){var d=e.data;if(!d)return;'
+    +'if(d.lvVue&&typeof d.lvVue.haut==="number"){vueHaut=d.lvVue.haut;colle();return;}'
+    +'if(typeof d.lvApplique!=="number")return;'
     +'document.documentElement.style.overflow=(d.lvApplique<demande-1)?"auto":"hidden";});'
-    +'window.addEventListener("load",h);setTimeout(h,120);setTimeout(h,600);'
+    +'window.addEventListener("load",function(){h();recense();});'
+    +'setTimeout(h,120);setTimeout(h,600);setTimeout(recense,700);'
     /* ── QUI SURVEILLE QUOI ──
        On ferme la boîte à la hauteur mesurée, donc elle ne bouge plus : la
        surveiller ELLE ne dirait plus jamais rien, et un diagramme qu'on déplie
@@ -1034,10 +1099,49 @@ window.addEventListener('message',e=>{
     const accorde=Math.max(40,Math.min(40000,Math.round(d.lvHaut)));
     cadre.style.height=accorde+'px';
     try{e.source.postMessage({lvApplique:accorde},'*');}catch(_){}
+    suitVue();
     return;
   }
   if(typeof d.lvCopie==='string')copiePresse(d.lvCopie);
 });
+
+/* ── LA PAGE DIT AU DIAGRAMME OÙ EN EST LA LECTURE ──
+   Le cadre fait la hauteur exacte du diagramme et ne défile donc jamais : ce
+   qu'il tient pour « le haut de l'écran » est le haut du diagramme, et sa
+   barre « Explorer » restait plantée là, tout en haut, alors que le lecteur
+   était descendu. On lui envoie la seule chose qui lui manque : combien de
+   diagramme est déjà passé au-dessus du bord haut de la zone de lecture. Il
+   fait glisser lui-même ce qui doit rester visible.
+   Le bord haut de la lecture n'est pas le bord de la fenêtre : la barre du
+   site y est posée et couvre ce qui passe dessous. On lui rend donc sa
+   hauteur, mesurée à l'instant, pour que le bouton se fige juste en dessous
+   au lieu de disparaître derrière.
+   L'envoi est calé sur le rythme d'affichage de l'écran : un message par
+   image, pas un par pixel parcouru. */
+let vuePrevue=0;
+function hautLecture(){
+  const b=document.querySelector('header');
+  if(!b)return 0;
+  const p=getComputedStyle(b).position;
+  if(p!=='sticky'&&p!=='fixed')return 0;
+  return Math.max(0,b.getBoundingClientRect().bottom);
+}
+function diffuseVue(){
+  vuePrevue=0;
+  const cadres=document.querySelectorAll('iframe[data-diag]');
+  if(!cadres.length)return;
+  const plafond=hautLecture();
+  cadres.forEach(f=>{
+    const r=f.getBoundingClientRect();
+    try{f.contentWindow.postMessage({lvVue:{haut:Math.max(0,plafond-r.top)}},'*');}catch(_){}
+  });
+}
+function suitVue(){
+  if(vuePrevue)return;
+  vuePrevue=requestAnimationFrame(diffuseVue);
+}
+window.addEventListener('scroll',suitVue,{passive:true,capture:true});
+window.addEventListener('resize',suitVue);
 
 // ════════ LISTE ════════
 function dateFr(iso){
