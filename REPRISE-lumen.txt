@@ -1941,3 +1941,278 @@ scratchpad) : l'aperçu redonnait alors exactement la capture
 d'Emmanuel, « tra-vaillent », « re-cherchent », « au-jourd'hui »,
 « de-main » compris. Même leçon que la fonte sous Windows : ce qui
 dépend du système ne se voit pas ici, il faut le reproduire.
+
+────────────────────────────────────────────────────────────
+LE VERT SE FAIT PLUS RARE (06/09)
+────────────────────────────────────────────────────────────
+Emmanuel : « le vert apparaît encore un peu trop souvent, focus ça un
+peu plus sur le jaune et rouge ».
+
+La cadence des groupes passe de six tirages à onze :
+  avant       j j r j r v          → 3 jaunes, 2 rouges, 1 vert
+  maintenant  j j r j r j j r j r v → 6 jaunes, 4 rouges, 1 vert
+Le vert tombe de une fois sur six (17 %) à une fois sur onze (9 %),
+soit près de deux fois moins. Le rapport du jaune au rouge est
+inchangé (trois pour deux) : les deux gagnent ensemble la place que le
+vert laisse. Le reste ne bouge pas (groupe vide qui cède son tour,
+ordre à l'intérieur d'un groupe, mûrs d'abord).
+
+Mesuré : un verset acquis parmi vingt neufs passe désormais aux rangs
+11, 22, 33, 44, 55 (au lieu de 6, 12, 18, 24, 30). Cinq versets acquis
+se partagent cette place et tournent équitablement : rangs 11, 22, 33,
+44, 55 puis 66, 77, 88… un chacun à son tour. Sur un jeu réaliste
+(six verts, six jaunes, quatre rouges, quatre neufs), la part observée
+du vert est de 9 %.
+
+────────────────────────────────────────────────────────────
+LA COULEUR DU DÉPART TIENT TOUTE LA SÉANCE (06/09)
+────────────────────────────────────────────────────────────
+Emmanuel, après le passage du vert à une fois sur onze : « j'avais au
+moins cinq ou six verts d'affilée ». La cadence n'était pas en cause,
+elle était respectée. Le vrai coupable est ailleurs, et il est mesuré.
+
+Reproduit : six versets jaunes et deux verts, tous dus, on répond sans
+rien déclarer (le silence vaut « limpide », et la pastille verte vaut
+DEUX crans depuis le 02/09). Chaque jaune saute donc de deux crans à
+son premier passage et devient vert. Au bout d'un tour, le groupe
+jaune est vide, le rouge aussi, et le tirage n'a plus que du vert :
+quatre-vingt-dix pour cent de verts sur soixante questions, cinquante
+d'affilée. La cadence de onze n'y pouvait rien : un groupe vide cède
+son tour, et il ne restait que le vert.
+
+Correction : S.grp, arrêté dans startSession, dit à quel groupe
+appartient chaque verset AU DÉPART de la séance, et nextItem s'y tient
+jusqu'à la fin (repli sur la couleur vivante pour un verset qui
+n'existait pas au départ). Un verset devenu vert il y a deux minutes
+n'a rien traversé : il n'a pas à prendre la place du vert. Le travail
+fait compte pleinement, il se lit dans la liste et dans la séance
+suivante.
+
+Mesuré après correction, mêmes jeux, séance lancée par startSession :
+8 % de verts dans les trois cas, plus une seule série.
+Reste normal : si tout ce qui est sélectionné est déjà vert, tout ce
+qui sort est vert, il n'y a rien d'autre.
+
+Contrôle : scratchpad runs3.js (groupe d'où le verset est tiré ET sa
+couleur à l'instant, les deux relevés séparément), runs2.js, cadence.js,
+cadence2.js, jumeaux.js. Tout passe.
+
+────────────────────────────────────────────────────────────
+« PAS DU TOUT » DESCEND VRAIMENT LE VERSET (06/09)
+────────────────────────────────────────────────────────────
+Suite de la section précédente, et vraie cause de ce qu'Emmanuel
+voyait : « j'avais tout mis sous rouge, et j'avais quand même cinq ou
+six verts, j'ai pas laissé ça sans couleur ».
+
+Ce que faisait la pastille rouge : p.box=eff, c'est-à-dire RIEN. Le
+niveau ne bougeait pas, seule l'échéance repassait à demain. Un verset
+vert déclaré « pas du tout » restait donc vert, dans la liste comme
+dans le tirage, et le groupe vert continuait de le servir. Déclarer
+rouge dix versets ne changeait rien à ce qu'on voyait. Une déclaration
+qui ne change rien n'est pas une déclaration.
+
+Trois corrections liées :
+
+1. « Pas du tout » ramène la boîte à Math.min(eff,1), donc au rouge,
+   et l'échéance à demain. Valable pour une bonne comme pour une
+   mauvaise réponse, À L'HEURE COMME HORS DE L'HEURE : la règle « hors
+   échéance, la séance entraîne et ne juge pas » vaut pour les faits
+   d'exercice, pas pour une parole. Sans quoi un rouge posé au second
+   passage d'une séance ne faisait rien.
+   `declare` et `note` ont été remontés avant le `if(ok)`, ils servent
+   désormais dans les deux branches.
+
+2. LE CRÉDIT A SON PROPRE CHAMP, p.c. Il se lisait dans p.box, ce qui
+   suffisait tant que rien ne faisait descendre la boîte. Maintenant
+   qu'un rouge la fait vraiment descendre, p.c retient le plus haut
+   niveau atteint et ne redescend jamais ; il est inscrit AVANT toute
+   modification de la boîte dans la même réponse, et remis à jour à la
+   fin. Les profils d'avant, sans p.c, repartent de leur boîte.
+   Conséquence mesurée : un vert de niveau 6 déclaré rouge tombe à 1,
+   et une réponse limpide à l'échéance suivante le rend à 6 d'un seul
+   coup. Un rouge posé par erreur ne coûte donc pas des mois.
+
+3. TA PAROLE DÉPLACE LE VERSET TOUT DE SUITE. Le groupe figé au départ
+   de la séance (section précédente) empêche les montées automatiques
+   de redistribuer les places ; une couleur déclarée, elle, s'applique
+   sur-le-champ : rouge → groupe rouge, « à peu près » → groupe jaune.
+   Le vert déclaré ne déplace rien, c'est justement la montée qu'on ne
+   veut pas voir se payer pendant la séance.
+
+Mesuré (scratchpad rouge.js, rouge2.js) : huit versets verts, on
+déclare rouge à chaque question → les huit passent au rouge, le sommet
+6 ou 7 est gardé, et le tirage se recentre sur eux dès la déclaration.
+Table des six cas (rouge/jaune/rien, bonne/mauvaise, à l'heure/hors) :
+rouge → 1 dans les trois cas ; jaune → niveau tenu ; rien dit et bonne
+réponse → un cran de plus ; rien dit et mauvaise réponse à l'heure →
+deux crans de moins. runs2, runs3, cadence, jumeaux : tout passe.
+
+────────────────────────────────────────────────────────────
+VÉRIFICATION COMPLÈTE DE L'ALGORITHME (06/09)
+────────────────────────────────────────────────────────────
+Emmanuel : « fais une bonne vérification de l'algorithme ». Trois bancs,
+tous sur la vraie page (scratchpad) :
+  verif-algo.js    28 cas unitaires sur answer / niveauEffectif / isDue /
+                   echeance (neuf, montée, erreur, rouge, crédit, jaune,
+                   données abîmées, horloge, 4 h du matin, pâlissement).
+  verif-seance.js  une séance de 66 questions jouée PAR L'INTERFACE
+                   (clics sur les réponses et sur les pastilles).
+  banc.js          120 jours, 40 questions par jour, trois apprenants
+                   simulés (réaliste, appliqué, sévère), +2 versets tous
+                   les 3 jours, invariants vérifiés chaque jour.
+
+Trois défauts trouvés et corrigés :
+
+1. LE CRÉDIT PRIS TROP TARD. p.c n'était inscrit que dans la branche
+   « bonne réponse à l'heure ». Une erreur à l'heure (-2) ou un rouge
+   hors de cette branche abaissait la boîte AVANT que le sommet soit
+   noté : un profil d'avant (sans p.c) perdait son crédit. Le crédit
+   est maintenant lu et inscrit en tête de answer, avant toute branche.
+
+2. LE ROUGE RESTAIT POSÉ. La note se garde d'une question à l'autre et
+   repart telle quelle (nextQuestion : q.rappel=rapDe). Tant que le
+   rouge ne changeait rien, sans conséquence ; depuis qu'il ramène au
+   rouge, un rouge resté posé y clouait le verset : chaque bonne réponse
+   repartait avec « pas du tout ». Le rouge s'efface une fois appliqué
+   (delete p.r). Le jaune et le vert restent posés, comme avant.
+
+3. DANS UN GROUPE, LE PLUS FAIBLE PRENAIT TOUT. Parmi les versets déjà
+   montrés dans la séance, le tri mettait le niveau avant l'ancienneté :
+   le plus faible du groupe reprenait chaque place dès qu'il était
+   libre. Séance jouée : un verset manqué posé sept fois, un verset
+   déclaré rouge posé une fois, un troisième jamais. Le tri met
+   maintenant le plus anciennement vu d'abord (le niveau ne départage
+   que les égaux) ; les inédits gardent « du plus faible au plus
+   solide ». Effet sur 120 jours, apprenant réaliste : versets jamais
+   vus 28 → 0, verts 47 → 82, niveau moyen 2,45 → 4,30. Apprenant
+   appliqué : inchangé (tout au vert, 102 sur 108).
+
+Confirmé bon : jamais le même verset deux fois de suite (0 sur 14 400
+questions) ; aucune boîte hors échelle, aucun crédit sous la boîte,
+aucune échéance illisible ou au-delà de l'horizon ; le vert tient sa
+part (une sur onze) dès qu'il existe du jaune ou du rouge ; un neuf
+juste repasse une fois avant de partir et finit la séance au niveau 1 ;
+un manqué revient au plus tôt trois questions plus loin ; « demain »
+commence à 4 h ; un niveau 6 laissé 300 jours pâlit à 3 et une réponse
+limpide le rend d'un coup ; « à peu près » rend la moitié ; un rouge
+d'hier suivi d'une bonne réponse retrouve son sommet.
+
+À savoir, ce sont des conséquences des règles, pas des défauts :
+- Réviser passe avant découvrir : avec beaucoup de rouges dus chaque
+  jour (apprenant qui se trompe souvent, ou qui déclare rouge sans
+  cesse), les versets neufs attendent. Profil sévère (rouge sur 40 %
+  des bonnes réponses) : 68 versets jamais vus au bout de 120 jours,
+  tout reste rouge. C'est l'utilisateur qui le décide.
+- Un jaune ou un vert posé reste posé jusqu'au geste qui l'enlève : un
+  jaune posé tient le niveau, un vert posé pousse de deux crans à
+  chaque échéance.
+- Une couleur déclarée déplace le verset dans son groupe sur-le-champ
+  (rouge → rouge, jaune → jaune) ; un vert déclaré « à peu près » est
+  donc travaillé avec les jaunes, ce qui est le sens de la déclaration.
+- Si tout est vert, tout ce qui sort est vert.
+
+────────────────────────────────────────────────────────────
+LA COULEUR EST OBLIGATOIRE À LA PREMIÈRE APPARITION (06/09)
+────────────────────────────────────────────────────────────
+Emmanuel : « rends obligatoire le fait de cocher rouge, jaune ou vert.
+Pas à chaque réponse, mais la première fois que le verset apparaît. »
+Et, sur le vocabulaire : réviser = le vert qu'on revoit ; apprendre =
+le rouge et le jaune, le jaune d'abord ; la priorité, c'est apprendre.
+
+1. Première apparition = verset jamais répondu (pas de p.t). Dans
+   nextQuestion, q.exige=!enJeu(id). Tant qu'aucune pastille n'est
+   choisie : ligne « Première fois : dis d'abord comment tu le
+   connais » (#rap-exige, clé rap_exige), propositions estompées
+   (.opts.attend), et pick() refuse le clic en faisant trembler la
+   ligne. noteRappel lève ou remet l'exigence (majExigence). Au second
+   passage, plus rien n'est exigé. Clavier (1-4) passe par pick, donc
+   refusé pareil.
+
+2. LA NOTE NE RESTE PLUS POSÉE, aucune couleur. Elle repartait telle
+   quelle à la question suivante (q.rappel=rapDe). Avec la couleur
+   exigée à la première vue, un jaune posé tenait le verset à zéro pour
+   toujours (mesuré : un neuf déclaré « à peu près » finissait la
+   séance à 0 au lieu de 1). La couleur vaut pour la réponse où elle
+   est posée : appliquée, elle s'efface (delete p.r), et les pastilles
+   repartent éteintes (q.rappel=null). Le verset n'a toujours qu'une
+   mémoire, quel que soit le sens de la question : la note agit sur le
+   verset, la direction n'y est pour rien. Si Emmanuel regrette de ne
+   plus voir sa dernière couleur, on peut la montrer en anneau pâle
+   sans la renvoyer.
+
+3. UNE RÉPÉTITION NE PASSE PAS DEVANT UN VRAI BESOIN. Trouvé au banc :
+   une fois sur quatre, sur cent vingt jours simulés (apprenant
+   réaliste), le tirage s'enfermait : les six places du jaune allaient
+   à des répétitions de séance (rien de mûr ni d'inédit en jaune)
+   pendant que les rouges dus s'accumulaient au-delà de leurs quatre
+   places et que 57 versets neufs n'étaient jamais posés. Règle
+   ajoutée dans nextItem : une place jaune (ou rouge) dont le groupe
+   n'a rien de mûr ni d'inédit va à l'autre groupe d'apprentissage si
+   celui-ci en a. Le vert n'est pas concerné. Résultat, huit runs
+   d'affilée : 0 jamais vu, niveau moyen 4,4 à 4,65 ; l'apprenant
+   appliqué est inchangé (102 verts sur 108).
+
+Contrôle : exige.js (interface : refus, levée, retrait, second
+passage), verif-seance.js, verif-algo.js, banc.js, cadence.js,
+runs3.js, jumeaux.js, rouge.js. Tout passe.
+
+────────────────────────────────────────────────────────────
+RETOUR D'EMMANUEL SUR LA PREMIÈRE APPARITION (06/09, plus tard)
+────────────────────────────────────────────────────────────
+« Je ne veux pas de cette phrase, supprime-la. Et je veux que cette
+pastille reste allumée, je ne t'ai pas dit de modifier ça. »
+
+1. Plus de phrase. À la première apparition, les propositions
+   s'estompent (.opts.attend) jusqu'au choix d'une couleur ; un clic
+   sur une proposition sans couleur fait trembler les pastilles
+   (.rappel.secoue). #rap-exige et rap_exige n'existent plus.
+
+2. LA PASTILLE RESTE ALLUMÉE, comme avant : p.r se garde, q.rappel
+   repart de rapDe(). Elle agit à chaque passage tant qu'elle est
+   posée : rouge posé → le verset reste au rouge ; jaune posé → il
+   tient son niveau ; vert posé → deux crans à chaque échéance. C'est
+   une étiquette, qu'on retire ou qu'on change d'un geste (rappuyer).
+   Le point 2 de la section précédente est annulé.
+
+3. Pour que le jaune posé à la première vue ne cloue pas le verset à
+   zéro (mesuré avant), LA PREMIÈRE COULEUR FIXE LE NIVEAU DE DÉPART :
+   « à peu près » → niveau 2 (jaune, revu dans deux jours) ;
+   « parfaitement » → niveau 4 (vert, revu dans seize jours) ;
+   « pas du tout » → niveau 0, revient dans trois questions, jugé
+   demain ; sans couleur (clavier, anciens chemins) → niveau 0, repasse
+   une fois avant de partir. Ensuite les règles habituelles.
+
+Tout le banc repasse (exige, verif-seance, verif-algo, banc ×3,
+runs3, jumeaux). Le banc cadence.js, qui déclare « parfaitement » sur
+chaque question, voit désormais ses vingt neufs partir verts d'emblée :
+c'est le banc qui triche, pas l'algorithme.
+
+────────────────────────────────────────────────────────────
+RETOUR À UN VERT TOUS LES SIX (06/09, Emmanuel)
+────────────────────────────────────────────────────────────
+« Mets un vert tous les six. » TOUR redevient j j r j r v : trois
+jaunes, deux rouges, un vert. Le passage à onze, plus tôt dans la
+journée, visait un débordement du vert dont la vraie cause a été
+trouvée depuis (la pastille rouge qui ne faisait rien au niveau, et
+les groupes qui se redistribuaient en cours de séance). Ces deux
+défauts réparés, une place sur six ne déborde plus : part observée du
+vert, une sur six exactement dès qu'il existe du jaune ou du rouge.
+
+TROUVÉ EN VÉRIFIANT : LA RÉSERVE COURTE FAISAIT CADEAU AU VERT.
+Un verset qu'on vient de poser est mis à l'écart trois questions
+(p.s). Les groupes du tirage étaient construits sur les seuls versets
+libres : avec peu de jaunes et de rouges, ils étaient tous en réserve
+au moment de leur propre tour, leur groupe paraissait vide, et la
+place tombait au vert. Mesuré : dix verts pour un jaune et un neuf
+donnaient jusqu'à huit verts d'affilée.
+Une place de jaune ou de rouge cherche donc, dans l'ordre : son
+groupe libre, l'autre groupe d'apprentissage libre, puis ces mêmes
+groupes EN RÉSERVE, et ne va au vert qu'en dernier. La réserve est un
+confort de lecture, pas une règle de priorité. (Second jeu de groupes
+gp, construit sur pool ; la variable src dit d'où le vivier est tiré,
+et la règle « une répétition ne passe pas devant un vrai besoin »
+travaille sur src.)
+
+Banc complet repassé : verif-algo, verif-seance, exige, jumeaux,
+banc ×4, cadence, runs2, runs3. Apprenant réaliste sur 120 jours :
+0 jamais vu, niveau moyen 4,5 à 4,7, aucun invariant violé.

@@ -230,6 +230,17 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
    les lire d'abord appartient au lecteur, la machine ne la force plus. Rien
    n'est écrit sous les points, le mot reste au survol. */
 .rappel{display:flex;justify-content:center;align-items:center;gap:38px;margin-top:28px}
+/* ── LA PREMIÈRE FOIS, LA COULEUR EST OBLIGATOIRE (06/09) ──
+   Emmanuel : « rends obligatoire le fait de cocher rouge, jaune ou vert ;
+   pas à chaque réponse, mais la première fois que le verset apparaît ».
+   Un verset jamais vu arrive sans aucune couleur, et c'est le moment où la
+   déclaration renseigne le plus : elle fixe le niveau de départ (voir answer).
+   Les propositions restent lisibles mais s'estompent ; cliquer une
+   proposition sans avoir choisi fait trembler les pastilles. Sans phrase :
+   Emmanuel n'en voulait pas (« je ne veux pas de cette phrase »). */
+.rappel.secoue{animation:secoue .45s}
+@keyframes secoue{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.opts.attend .opt{opacity:.3}
 .rap{position:relative;display:inline-flex;padding:2px}
 .rap::before{content:'';position:absolute;inset:-16px}   /* zone tactile confortable, invisible */
 .rap .pastille{width:11px;height:11px;border-radius:50%;display:block;opacity:.42;transition:opacity .3s,transform .3s}
@@ -880,6 +891,7 @@ const S={
   secOpen:{},       // sectionId -> false quand la section est repliée (par appareil)
   soloSec:null,
   cur:null, lastId:null, answered:0, correct:0, rap:{r:0,a:0,v:0}, tour:0,
+  grp:{},           // idVerset -> 'j' | 'r' | 'v', arrêté au départ de la séance
   pendingCat:null, pendingPas:false, editCat:null, editVerse:null, editSec:null, pendingCatSec:null,
   charge:false,     // vrai une fois les données du compte lues : avant, on n'écrit rien dans le nuage
   chargeErr:false   // vrai si cette lecture a échoué : l'écran le dit au lieu de rester sur « Chargement… »
@@ -890,7 +902,7 @@ const S={
    nuage du compte suivant à la première action. */
 function razEtat(){
   S.selCats=[]; S.offV={}; S.progress={}; S.step=0; S.customCats=[]; S.baseEdits={}; S.hidCats=[]; S.trash=[];
-  S.sections=[]; S.catSec={}; S.soloCat=null; S.soloSec=null; S.charge=false; S.chargeErr=false; SALES={}; RAZ_PROG=false;
+  S.sections=[]; S.catSec={}; S.soloCat=null; S.soloSec=null; S.charge=false; S.chargeErr=false; S.grp={}; SALES={}; RAZ_PROG=false;
 }
 
 // ════════ OUTILS ════════
@@ -1122,6 +1134,22 @@ function answer(id,ok,rap){
      déjà posée l'enlève, et ce retrait descend jusqu'ici, sans quoi la
      couleur reviendrait toute seule à la question suivante. */
   if(rap==='r'||rap==='a'||rap==='v')p.r=rap; else delete p.r;
+  /* La couleur déclarée est lue ici, avant tout : elle pèse aussi bien sur
+     une bonne réponse que sur une mauvaise, à l'heure comme hors de l'heure. */
+  const declare=(rap==='r'||rap==='a'||rap==='v')?rap:null;
+  const note=declare||'v';
+  /* ── LE CRÉDIT A SON PROPRE CHAMP (06/09) ──
+     Il se lisait dans la boîte enregistrée. Tant que rien ne faisait
+     descendre cette boîte, cela suffisait. Depuis que « pas du tout » la fait
+     vraiment descendre, il faut garder ailleurs la trace du plus haut niveau
+     atteint, sans quoi un rouge effacerait des mois de travail. p.c retient
+     ce sommet et ne descend jamais ; les profils d'avant, qui ne l'ont pas,
+     repartent de leur boîte. Il est lu et inscrit ICI, avant toute branche :
+     une erreur à l'heure ou un rouge abaissent la boîte plus bas, et le
+     sommet doit être retenu avant, pas après (relu le 06/09 : il ne l'était
+     que dans la branche de la bonne réponse à l'heure). */
+  const credit=Math.min(NIVEAU_MAX,Math.max(0,Math.floor(+(p.c!=null?p.c:p.box))||0));
+  p.c=credit;
   if(ok){
     if(mur){
       /* SANS COULEUR DÉCLARÉE, C'EST UN VERT (02/09). C'était un jaune, et le
@@ -1141,8 +1169,6 @@ function answer(id,ok,rap){
          Ce vert-là n'est PAS enregistré comme une déclaration (voir le
          `delete p.r` plus haut) : il fait avancer l'algorithme, il ne parle
          pas à ta place, et les pastilles repartent vides la fois d'après. */
-      const declare=(rap==='r'||rap==='a'||rap==='v')?rap:null;
-      const note=declare||'v';
       /* TROIS COULEURS, TROIS GESTES, ET UN SEUL SENS DE LECTURE :
          rouge il revient tout de suite, jaune il reste, vert il monte.
 
@@ -1169,7 +1195,7 @@ function answer(id,ok,rap){
          faire remonter à l'échelle. Aucune faille n'est ouverte pour autant :
          on ne rend JAMAIS plus que ce qui avait été gagné, et ce niveau-là
          n'avait pu s'obtenir qu'en franchissant tous les délais un à un. */
-      const credit=Math.min(NIVEAU_MAX,Math.max(0,Math.floor(+p.box)||0));
+    
       /* ── UN VERSET NEUF SE REVOIT UNE FOIS AVANT DE PARTIR (02/09) ──
          Une seule bonne réponse sur un verset jamais vu l'envoyait à demain.
          C'est trop vite pour du par cœur : on vient de le lire, la mémoire
@@ -1178,7 +1204,20 @@ function answer(id,ok,rap){
          qu'il quitte la séance pour demain. Deux exceptions : le vert, qui
          dit « celui-là je le sais déjà » et le fait partir tout de suite, et
          le rouge, qui a son propre chemin juste en dessous. */
-      if(premiereFois&&declare!=='v'&&note!=='r'){
+      /* ── LA PREMIÈRE COULEUR FIXE LE DÉPART (06/09) ──
+         Depuis que la couleur est exigée à la première apparition, elle dit
+         d'où part le verset : « à peu près » le pose au niveau 2 (jaune, revu
+         dans deux jours), « parfaitement » au niveau 4 (vert, revu dans seize
+         jours). Sans cela, un jaune posé à la première vue et resté allumé
+         tenait le verset à zéro pour toujours (mesuré). Le rouge garde son
+         chemin (niveau 0, revient dans trois questions, jugé demain), et
+         l'absence de couleur aussi (niveau 0, repasse une fois avant de
+         partir). Ce n'est qu'un point de départ : on n'a rien traversé. */
+      if(premiereFois&&declare==='a'){
+        p.box=2; p.n=echeance(ms,DEMI[2]); delete p.s;
+      } else if(premiereFois&&declare==='v'){
+        p.box=4; p.n=echeance(ms,JOURS[4]); delete p.s;
+      } else if(premiereFois&&note!=='r'){
         p.box=0; p.n=new Date(ms).toISOString(); p.s=S.step+5;
       } else if(note==='r'){
         /* RECONNU N'EST PAS RAPPELÉ. La bonne case a été trouvée en lisant les
@@ -1191,7 +1230,15 @@ function answer(id,ok,rap){
            vieux de trois minutes : « pas du tout » ne coûtait rien. Il revient
            bien trois questions plus loin, mais pour s'exercer ; le prochain
            jugement se fait après une nuit. */
-        p.box=eff; p.n=echeance(ms,1); p.s=S.step+3;
+        /* ── « PAS DU TOUT » DESCEND VRAIMENT (06/09) ──
+           Le niveau ne bougeait pas : Emmanuel a déclaré rouge tous ses
+           versets et les a vus rester verts, dans la liste comme dans le
+           tirage (« j'avais tout mis sous rouge, et j'avais quand même cinq
+           ou six verts »). Une déclaration qui ne change rien n'est pas une
+           déclaration. Le verset redescend donc au rouge, et il revient
+           demain. Rien n'est perdu : le crédit garde le sommet atteint, et
+           une réponse limpide à l'échéance le rend d'un seul coup. */
+        p.box=Math.min(eff,1); p.n=echeance(ms,1); p.s=S.step+3;
       } else if(note==='a'){
         /* RAPPELÉ AVEC EFFORT. Sans retard, le cran reste le même et le verset
            revient environ deux fois plus tôt que si tout avait été limpide.
@@ -1220,6 +1267,12 @@ function answer(id,ok,rap){
         p.n=echeance(ms,JOURS[p.box]);
         delete p.s;
       }
+    } else if(declare==='r'){
+      /* Hors échéance, la séance entraîne et ne juge pas : c'est vrai d'une
+         bonne ou d'une mauvaise réponse, qui sont des faits d'exercice. Une
+         couleur DÉCLARÉE, elle, est une parole ; elle vaut à tout moment,
+         sinon un rouge posé au second passage d'une séance ne ferait rien. */
+      p.box=Math.min(eff,1); p.n=echeance(ms,1); p.s=S.step+3;
     } else delete p.s;
   }
   /* ── L'ERREUR NE COMPTE QU'À L'HEURE (05/09) ──
@@ -1243,9 +1296,31 @@ function answer(id,ok,rap){
      qu'un cran net, gagné sur rien. Le verset revient quand même tout de
      suite dans la séance, pour s'exercer, puisque c'est ce qui tient le
      moins ; mais on ne le croit sur parole qu'après une nuit. */
-  else if(mur){ p.box=Math.max(0,eff-2); p.n=echeance(ms,1); p.s=S.step+3; }
+  else if(mur){ p.box=Math.max(0,declare==='r'?Math.min(eff,1):eff-2); p.n=echeance(ms,1); p.s=S.step+3; }
+  else if(declare==='r'){ p.box=Math.min(eff,1); p.n=echeance(ms,1); p.s=S.step+3; }
   else { p.s=S.step+3; }
+  /* ── TA PAROLE DÉPLACE LE VERSET TOUT DE SUITE ──
+     Le groupe d'un verset est arrêté au départ de la séance pour que les
+     montées automatiques ne redistribuent pas les places en cours de route.
+     Une couleur que tu DÉCLARES est d'une autre nature : elle vaut sur-le-champ.
+     « Pas du tout » l'envoie au rouge et « à peu près » au jaune, donc au
+     groupe qui repasse le plus souvent. Le vert déclaré, lui, ne déplace
+     rien : c'est précisément la montée qu'on ne veut pas voir se payer
+     pendant la séance. */
+  if(S.grp&&(declare==='r'||declare==='a'))S.grp[id]=(declare==='r')?'r':'j';
+  /* ── LA PASTILLE RESTE ALLUMÉE (06/09, Emmanuel : « je veux que cette
+     pastille reste allumée, je ne t'ai pas dit de modifier ça ») ──
+     La note se garde donc d'une fois sur l'autre et repart telle quelle à la
+     question suivante, quel que soit le sens de la question. Elle AGIT à
+     chaque passage tant qu'elle est posée : un rouge posé tient le verset au
+     rouge, un jaune posé le tient où il est, un vert posé le pousse de deux
+     crans à chaque échéance. C'est une étiquette qu'on retire ou qu'on
+     change d'un geste. Pour que le jaune posé à la première vue ne cloue
+     pas le verset au niveau zéro, la première déclaration fixe un niveau de
+     départ (voir plus haut, premiereFois). */
   p.t=new Date(ms).toISOString();
+  /* le sommet atteint monte avec la boîte et ne redescend jamais */
+  p.c=Math.max(Math.floor(+p.c||0),Math.floor(+p.box||0));
   delete p.due;     // ancien pas de séance, remplacé par une vraie date
   S.progress[id]=p; S.step++; marqueSale(id);
   propageProg(id);
@@ -1270,9 +1345,19 @@ const enJeu=id=>{const p=S.progress[id];return !!(p&&p.t);};
    Trois groupes, réglés sur LA COULEUR QUE TU VOIS : le JAUNE (ce qu'on
    connaît moyennement), le ROUGE et le NEUF (ce qu'on ne maîtrise pas), le
    VERT (ce qu'on maîtrise). Ils passent à tour de rôle selon une cadence fixe
-   de six tirages : jaune, jaune, rouge, jaune, rouge, vert. Trois jaunes, deux
-   rouges, un vert. Un groupe vide cède son tour au suivant dans l'ordre des
-   priorités ; s'il ne reste que du vert, tout lui revient.
+   de SIX tirages : trois jaunes, deux rouges, un vert. Un groupe vide cède
+   son tour au suivant dans l'ordre des priorités ; s'il ne reste que du vert,
+   tout lui revient.
+   ── UN VERT TOUS LES SIX (06/09, Emmanuel) ──
+   La cadence est passée à onze dans la journée (« le vert apparaît encore un
+   peu trop souvent »), puis est revenue à six sur sa demande : « mets un vert
+   tous les six ». Entre-temps la vraie cause de ce qu'il voyait a été trouvée
+   et corrigée : la pastille rouge ne faisait rien au niveau, et les montées
+   de la séance redistribuaient les groupes en cours de route, si bien que le
+   vert prenait TOUT dès que le jaune et le rouge se vidaient. Une fois ces
+   deux défauts réparés, une place sur six ne fait plus déborder le vert :
+   mesuré, sa part observée reste à un sixième dès qu'il existe du jaune ou du
+   rouge. Le rapport du jaune au rouge reste trois pour deux.
    À l'intérieur d'un groupe, ce qui est mûr passe d'abord (le niveau commande,
    le compteur d'expositions départage, puis le plus en retard) ; sinon, ce que
    la séance n'a pas encore montré, du plus faible au plus solide ; puis le
@@ -1294,14 +1379,49 @@ function nextItem(){
   const mur=i=>enJeu(i.id)&&isDue(i.id);
   const inedit=i=>vuLe(i.id)<debut;
   const g={j:[],r:[],v:[]};
-  libres.forEach(i=>g[enJeu(i.id)?GROUPE_DE(i.id):'r'].push(i));
+  const grpDe=i=>(S.grp&&S.grp[i.id])||(enJeu(i.id)?GROUPE_DE(i.id):'r');
+  libres.forEach(i=>g[grpDe(i)].push(i));
+  /* Les mêmes groupes SANS la mise à l'écart courte : un verset qu'on vient
+     de poser en est écarté trois questions, et cette réserve ne doit pas
+     faire passer sa place au vert (voir plus bas). */
+  const gp={j:[],r:[],v:[]};
+  pool.forEach(i=>gp[grpDe(i)].push(i));
   /* le tour : la lettre du moment, puis la suivante dans l'ordre des
      priorités si le groupe est vide */
   const k=(S.tour||0)%TOUR.length; S.tour=k+1;
   const ordre=['j','r','v'];
-  let choix=TOUR[k];
-  if(!g[choix].length){ choix=ordre.find(x=>g[x].length); }
-  const vivier=g[choix];
+  let choix=TOUR[k], src=g;
+  if(!g[choix].length){
+    /* ── LA PLACE DE L'APPRENTISSAGE RESTE À L'APPRENTISSAGE (06/09) ──
+       Un verset qu'on vient de poser est écarté trois questions. Avec peu de
+       jaunes et de rouges, ils étaient donc tous « en réserve » au moment de
+       leur propre tour, le groupe paraissait vide, et la place tombait au
+       vert : mesuré, dix verts pour un jaune et un neuf donnaient jusqu'à
+       huit verts d'affilée. Une place de jaune ou de rouge cherche donc
+       l'autre groupe d'apprentissage, PUIS ces mêmes groupes en réserve, et
+       ne va au vert qu'en dernier, quand il n'y a vraiment plus rien à
+       apprendre. La réserve est un confort de lecture, pas une règle. */
+    const prio=(choix==='v')?['v','j','r']:[choix,choix==='j'?'r':'j'];
+    let t=prio.find(x=>g[x].length);
+    if(!t){ t=prio.find(x=>gp[x].length); if(t)src=gp; }
+    if(!t){ t=ordre.find(x=>g[x].length); }
+    if(!t){ t=ordre.find(x=>gp[x].length); if(t)src=gp; }
+    choix=t;
+  }
+  /* ── UNE RÉPÉTITION NE PASSE PAS DEVANT UN VRAI BESOIN (06/09) ──
+     Le jaune garde ses six places sur onze, mais quand il n'a plus rien de
+     mûr ni d'inédit à offrir (seulement des répétitions de la séance), et que
+     le rouge, lui, a des versets dus ou jamais vus qui attendent, la place va
+     au rouge. Et l'inverse, plus rare. Le vert n'est pas concerné.
+     Mesuré sur cent vingt jours simulés, apprenant qui se trompe parfois :
+     une fois sur quatre, le tirage s'enfermait dans un cercle où les places
+     du jaune allaient à des répétitions pendant que les rouges dus se
+     multipliaient et que cinquante-sept versets neufs n'étaient jamais
+     posés. Apprendre passe avant réviser ; entre deux façons d'apprendre,
+     ce qui est dû ou jamais vu passe avant ce qu'on vient de revoir. */
+  const besoin=x=>src[x].some(i=>mur(i)||inedit(i));
+  if(choix!=='v'&&!besoin(choix)){ const autre=choix==='j'?'r':'j'; if(src[autre].length&&besoin(autre))choix=autre; }
+  const vivier=src[choix];
   const murs=vivier.filter(mur);
   if(murs.length){
     murs.sort((a,b)=>{
@@ -1315,10 +1435,24 @@ function nextItem(){
     const moinsVus=top.filter(i=>vuesOf(i.id)===vmin);
     return moinsVus[0|Math.random()*moinsVus.length];
   }
+  /* ── DANS UN GROUPE, CHACUN SON TOUR (06/09) ──
+     Le niveau passait avant l'ancienneté : le verset le plus faible du groupe
+     reprenait CHAQUE place du groupe dès qu'il était libre, et ses voisins
+     d'un cran au-dessus n'étaient jamais posés. Séance jouée par l'interface,
+     quarante-quatre questions : un verset manqué posé sept fois, un verset
+     déclaré « pas du tout » posé une fois, un troisième jamais. Le rouge
+     déclaré ne revenait pas.
+     L'ordre est donc : ce que la séance n'a pas encore montré, du plus faible
+     au plus solide ; puis, parmi ce qui a déjà été montré, LE PLUS ANCIENNEMENT
+     VU d'abord, le niveau ne départageant que les égaux. Le groupe tourne, et
+     comme il garde sa part (six places sur onze pour le jaune), chacun de ses
+     versets repasse bel et bien plusieurs fois par séance. */
   const tri=vivier.slice().sort((a,b)=>{
     const sa=inedit(a)?0:1,sb=inedit(b)?0:1;if(sa!==sb)return sa-sb;
-    const na=niveauEffectif(a.id),nb=niveauEffectif(b.id);if(na!==nb)return na-nb;
-    return vuLe(a.id)-vuLe(b.id);
+    const na=niveauEffectif(a.id),nb=niveauEffectif(b.id);
+    if(sa===0){ if(na!==nb)return na-nb; return vuLe(a.id)-vuLe(b.id); }
+    const va=vuLe(a.id),vb=vuLe(b.id);if(va!==vb)return va-vb;
+    return na-nb;
   });
   const t0=vuLe(tri[0].id), l0=niveauEffectif(tri[0].id);
   const memeAge=tri.filter(i=>vuLe(i.id)===t0&&niveauEffectif(i.id)===l0);
@@ -1643,6 +1777,19 @@ function startSession(){
   /* la mise à l'écart courte d'un verset manqué ne vaut que dans la séance où
      il a été manqué : on repart d'une ardoise nette */
   Object.keys(S.progress).forEach(id=>{const p=S.progress[id];if(p&&p.s!==undefined)delete p.s;});
+  /* ── LA COULEUR DU DÉPART TIENT TOUTE LA SÉANCE (06/09) ──
+     Emmanuel : « j'avais au moins cinq ou six verts d'affilée ». Mesuré :
+     avec six jaunes dus et deux verts, en répondant « limpide » (le silence),
+     chaque jaune saute deux crans dès son premier passage et devient vert.
+     Au bout d'un tour, le jaune est vide, le rouge aussi, et TOUT le reste de
+     la séance est vert : quatre-vingt-dix pour cent de verts sur soixante
+     questions. Un verset devenu vert il y a deux minutes n'est pourtant pas
+     un verset maîtrisé : il n'a rien traversé.
+     Le groupe de chaque verset est donc arrêté au moment où la séance
+     commence, et il ne bouge plus jusqu'à la fin. Le travail fait pendant la
+     séance compte pleinement, il se lit dans la liste et dans la prochaine
+     séance ; il ne redistribue pas les places de celle qui est en cours. */
+  S.grp={}; allItems().forEach(i=>{S.grp[i.id]=enJeu(i.id)?GROUPE_DE(i.id):'r';});
   showView('study'); nextQuestion();
 }
 /* Reste-t-il un verset arrivé à terme ? Un verset jamais vu compte toujours
@@ -1696,7 +1843,10 @@ function renderQuestion(){
      chaque question donnaient l'impression que les deux sens vivaient
      chacun de leur côté, alors que la progression n'a jamais été rangée que
      par verset. */
-  q.rappel=rapDe(q.item.id);
+  q.rappel=rapDe(q.item.id);   // la dernière couleur posée repart allumée
+  /* première apparition : la couleur est exigée avant la réponse */
+  q.exige=!enJeu(q.item.id);
+  majExigence();
   /* Le mot n'est plus écrit sous le point : il reste accessible au survol et
      aux lecteurs d'écran, mais il n'encombre plus la page. */
   {const m={r:t('rap_r'),a:t('rap_a'),v:t('rap_v')};
@@ -1714,9 +1864,19 @@ function noteRappel(r){
   if(!S.cur||S.cur.done)return;
   S.cur.rappel=(S.cur.rappel===r)?null:r;
   document.querySelectorAll('#rappel .rap').forEach(b=>b.classList.toggle('choisi',b.dataset.r===S.cur.rappel));
+  majExigence();
+}
+function majExigence(){
+  const q=S.cur; const on=!!(q&&q.exige&&!q.rappel&&!q.done);
+  const o=$('opts'); if(o)o.classList.toggle('attend',on);
 }
 function pick(opt,btn){
-  if(S.cur.done)return; S.cur.done=true;
+  if(S.cur.done)return;
+  if(S.cur.exige&&!S.cur.rappel){
+    const e=$('rappel'); if(e){e.classList.remove('secoue');void e.offsetWidth;e.classList.add('secoue');}
+    return;
+  }
+  S.cur.done=true;
   const q=S.cur, ok=opt.id===q.item.id;
   S.answered++; if(ok)S.correct++;
   if(q.rappel)S.rap[q.rappel]=(S.rap[q.rappel]||0)+1;
