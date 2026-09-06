@@ -381,7 +381,11 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    dit où il commence et où il finit. Interligne de prose : 1.74 ; interligne
    d'un verset : 1.42. Ne pas revenir à un interligne large ici, sinon un
    simple passage à la ligne se confond avec un changement de verset. */
-.vst.po{display:block;position:relative;text-align:left;hyphens:none;line-height:1.08;margin:.7em 0;padding-left:2.2em}
+/* Un verset en vers est un BLOC : sa couleur remplit tout le bloc, elle ne
+   se limite pas à la bande d'une ligne comme en prose. Sans cela, un verset
+   de deux lignes montrait une bande de couleur au milieu et deux bandes
+   noires au-dessus et en dessous, à l'intérieur même du halo (06/09). */
+.vst.po{display:block;position:relative;text-align:left;hyphens:none;line-height:1.08;margin:.7em 0;padding-left:2.2em;background-size:100% 100%}
 .vst.po.sent{margin:1.25em 0}
 .vst.po .li{display:block;position:relative}
 /* Le numéro sort du flux et va se poser dans la marge : sans cela il
@@ -1526,8 +1530,15 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
            s'affichait à 30 % et ne prenait sa couleur franche qu'une fois
            survolé ou sélectionné : la couleur choisie ne se voyait donc
            jamais telle quelle. Une seule valeur désormais. */
-        sp.style.setProperty('--vc', surlOpaque(c, .38));
-        sp.style.setProperty('--vc-sel', surlOpaque(c, .38));
+        /* ── LA COULEUR CHOISIE SE VOIT (06/09) ──
+           Emmanuel : « couleur pas assez vive, pourtant c'est le cas dans le
+           sélecteur de couleur ». Une couleur posée à 38 % sur du noir perd
+           les deux tiers de son éclat : le rouge vif de la pastille arrivait
+           en bordeaux sombre. Elle est portée à 65 %, la plus haute valeur
+           qui laisse le texte blanc lisible par-dessus sur les onze couleurs
+           (au-delà, il faudrait passer le texte en noir). */
+        sp.style.setProperty('--vc', surlOpaque(c, .65));
+        sp.style.setProperty('--vc-sel', surlOpaque(c, .65));
         /* en prose le fond déborde déjà grâce à la marge intérieure du verset ;
            le halo ne sert qu'aux vers posés en bloc */
         sp.style.boxShadow = sp.classList.contains('po') ? '0 0 0 5px var(--vc)' : '';
@@ -1822,11 +1833,10 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     if (!ch) return {};
     var m = {}; ch.versets.forEach(function(v){ if (v.c) m[v.v] = v.c; }); return m;
   }
-  /* Même voile que le verset entier (teinte à 30 %, fondue sur le noir) : une
-     portion surlignée à la souris et un verset surligné d'un clic se lisent
-     de la même façon. */
+  /* Même voile que le verset entier (65 %) : une portion surlignée à la
+     souris et un verset surligné d'un clic se lisent de la même façon. */
   function fragStyle(hex){
-    return '--voile:' + surlOpaque(hex, .38);
+    return '--voile:' + surlOpaque(hex, .65);
   }
   /* La portion [a, b) du verset, avec les surlignages qui la traversent.
      Un surlignage coupé par un passage à la ligne donne deux morceaux qui

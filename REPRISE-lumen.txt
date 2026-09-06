@@ -1876,3 +1876,35 @@ Donc : l'archive livrée = les sources seules, 31 fichiers, et un
   cd .. && zip -q -r Lumen.zip Lumen-main -x "Lumen-main/node_modules/*" "Lumen-main/site/*"
 Un site/ resté sur GitHub d'un ancien dépôt peut être supprimé, ou
 laissé : Netlify l'écrase de toute façon.
+
+────────────────────────────────────────────────────────────
+LE SURLIGNAGE PREND LA COULEUR DE SA PASTILLE (06/09)
+────────────────────────────────────────────────────────────
+Emmanuel, capture à l'appui : « couleur pas assez vive, pourtant
+c'est le cas dans le sélecteur de couleur ». Le rouge #ff2b2b posé à
+38 % sur du noir donne rgb(97,16,16), un bordeaux sombre ; la pastille
+du sélecteur, elle, montre la couleur pure.
+
+Quatre états montrés : 38 % (l'existant), couleur pleine avec texte
+noir, 65 % avec texte blanc, 85 % avec texte noir. Il a pris 65 % avec
+le texte blanc inchangé. C'est la valeur la plus haute qui laisse le
+texte blanc lisible : au-delà, les couleurs claires (jaune, anis,
+turquoise, vert) exigeraient de passer le texte en noir.
+
+Changé dans bible.html : marqueSurl pose --vc et --vc-sel à 65 %, et
+fragStyle (surlignage d'une portion à la souris) aussi. Le voile
+d'accent du survol et de la sélection (--voile-vif) reste à 38 % : ce
+n'est pas une couleur choisie, c'est un « tu es ici ».
+
+Contraste du texte blanc sur chaque couleur à 65 % (mesuré) :
+rouge 7.5, bleu 7.8, violet 7.7, rose 6.4, orange 5.6, cyan 4.2,
+ambre 4.0, vert 3.2, turquoise 3.1, jaune 3.0, anis 2.9. Les quatre
+dernières sont les plus claires : lisibles, mais moins franches.
+
+AU PASSAGE, LES VERS. Un verset en vers (.po) est un bloc, et sa
+couleur suivait la règle de la prose (une bande d'une hauteur de
+ligne, centrée) : à 38 % cela ne se voyait pas, à 65 % un verset de
+deux lignes montrait une bande de couleur au milieu et deux bandes
+noires au-dessus et en dessous, à l'intérieur du halo. Ajouté
+background-size:100% 100% sur .vst.po : la couleur remplit le bloc.
+Vérifié sur les onze couleurs du Psaume 119 et sur Matthieu 6.
