@@ -208,14 +208,19 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    LARGEUR DE LA COLONNE, comme en typographie : large sur un écran d'ordi,
    resserré sur un téléphone où la ligne ne fait plus que trente-cinq signes
    et rejoint alors celui des vers. */
-/* PLUS DE JUSTIFICATION (Emmanuel, 26/08 : « l'espace entre les mots »).
-   Justifier, c'est étirer les blancs entre les mots pour que la ligne
-   atteigne le bord droit : sur une colonne étroite, certaines lignes se
-   retrouvent avec des trous béants et d'autres serrées, et l'œil bute. Au
-   fer à gauche, l'espace entre deux mots est TOUJOURS le même ; c'est le
-   bord droit qui devient irrégulier, et lui ne gêne personne. La coupure des
-   mots reste active pour que ce bord ne parte pas trop loin. */
-.ch-texte{text-align:left;hyphens:auto;line-height:1.08}
+/* ── LE TEXTE TOUCHE LES DEUX BORDS (Emmanuel, 06/09) ──
+   Il avait fait retirer la justification le 26/08 (« l'espace entre les
+   mots »), et le texte est passé au fer à gauche. Il y revient en voyant le
+   bord droit irrégulier : « pourquoi certains mots sont vides comme à droite
+   et certains sautent à la ligne trop tôt ? Regarde le "Cherchez" ».
+   La ligne s'arrêtait tôt parce que le mot suivant, « d'abord », est
+   insécable pour le dictionnaire français. Justifié, le bord droit est droit
+   et ces trous de fin de ligne disparaissent ; ils deviennent un peu d'air
+   réparti entre les mots de la ligne, ce qui se voit beaucoup moins.
+   La coupure des mots reste active : c'est elle qui empêche la
+   justification de creuser des trous béants sur une colonne étroite. Les
+   deux vont ensemble, l'une sans l'autre donne un mauvais résultat. */
+.ch-texte{text-align:justify;hyphens:auto;line-height:1.08}
 @media(max-width:600px){.ch-texte{line-height:1.08}}
 /* Le paragraphe respire des deux côtés : un poème enchâssé dans le récit
    (le Gloria au milieu de Luc 2) doit être aussi dégagé au-dessous qu'au-dessus. */

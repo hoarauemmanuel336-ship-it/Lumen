@@ -1908,3 +1908,36 @@ deux lignes montrait une bande de couleur au milieu et deux bandes
 noires au-dessus et en dessous, à l'intérieur du halo. Ajouté
 background-size:100% 100% sur .vst.po : la couleur remplit le bloc.
 Vérifié sur les onze couleurs du Psaume 119 et sur Matthieu 6.
+
+────────────────────────────────────────────────────────────
+LE TEXTE BIBLIQUE REVIENT AU FER À DROITE AUSSI (06/09)
+────────────────────────────────────────────────────────────
+Emmanuel, capture d'un téléphone : « pourquoi certains mots sont vides
+comme à droite et certains sautent à la ligne trop tôt ? Regarde le
+"Cherchez" ».
+
+Diagnostic. Le texte était au fer à gauche depuis le 26/08 (c'est lui
+qui avait fait retirer la justification, « l'espace entre les mots »).
+Bord droit libre : une ligne s'arrête dès que le mot suivant n'entre
+plus en entier. Sur « ³³ Cherchez », le mot suivant est « d'abord » :
+le dictionnaire français refuse de couper « abord » (trop court, et
+l'apostrophe bloque), donc la ligne s'arrête tôt. Rien d'anormal, le
+bord irrégulier est la contrepartie du fer à gauche.
+
+Montré : fer à gauche (l'existant), justifié, et sans aucune coupure.
+Il a pris le justifié. .ch-texte passe à text-align:justify ;
+hyphens:auto reste, et les deux vont ensemble : sans coupure, la
+justification creuse des trous béants sur une colonne étroite. Les
+vers (.vst.po) gardent leur text-align:left, un poème ne se justifie
+pas ; le panneau d'un commentaire (.com-pan) aussi.
+
+PIÈGE DE VÉRIFICATION, à retenir. Le Chromium de ce bac à sable n'a
+pas le dictionnaire de coupure français : « hyphens:auto » n'y fait
+rien, et un premier aperçu montrait donc une justification pleine de
+trous, ce qui aurait conduit à déconseiller le bon réglage. Les
+coupures ont été posées à la main dans le DOM avec les mêmes motifs
+que le navigateur (paquets npm hypher + hyphenation.fr, dans le
+scratchpad) : l'aperçu redonnait alors exactement la capture
+d'Emmanuel, « tra-vaillent », « re-cherchent », « au-jourd'hui »,
+« de-main » compris. Même leçon que la fonte sous Windows : ce qui
+dépend du système ne se voit pas ici, il faut le reproduire.
