@@ -2216,3 +2216,165 @@ travaille sur src.)
 Banc complet repassé : verif-algo, verif-seance, exige, jumeaux,
 banc ×4, cadence, runs2, runs3. Apprenant réaliste sur 120 jours :
 0 jamais vu, niveau moyen 4,5 à 4,7, aucun invariant violé.
+
+════════════════════════════════════════════════════════════
+MÉMORISER : PLUS D'ÉCHÉANCES, TROIS COULEURS (06/09, Emmanuel)
+════════════════════════════════════════════════════════════
+Emmanuel : « Tu crois qu'il n'y a pas conflit entre la série infinie et
+les échéances ? » Mesuré : un verset vert était revu 14 à 52 fois
+PENDANT son délai avant d'être jugé à l'échéance, un jaune 4 à 16 fois.
+L'échéance jugeait une mémoire rafraîchie la veille. Puis : « Est-ce
+que ce n'est pas mieux de simplement supprimer les échéances ? »,
+« Remplace ».
+
+TOUTE LA MACHINE EST RETIRÉE : les huit niveaux, JOURS (1 à 160), le
+verrou de montée « mûr », le crédit (p.c), le pâlissement par retard,
+DEMI, echeance(), HORIZON, isDue, dateOf, niveauEffectif au sens
+ancien. Ce qui reste et ce qui vient :
+
+DONNÉES d'un verset (S.progress[id]) :
+  p.k  couleur 'r' | 'a' (jaune) | 'v'
+  p.j  journées différentes réussies d'affilée (0 à 2 ; la 3e fait monter)
+  p.d  jour (AAAA-MM-JJ, journée à 4 h) de la dernière réussite comptée
+  p.t  dernière vue ; p.v expositions ; p.s mise à l'écart courte
+  Un ancien profil est lu par sa boîte (0-1 rouge, 2-3 jaune, 4+ vert)
+  via couleurBrute(p) ; à sa première réponse, box/n/c/due/r sont effacés
+  et p.k écrit. Rien à migrer à la main.
+
+DEUX GARDE-FOUS :
+  1. Le frein : bonne réponse sans pastille touchée → une journée de plus
+     (une par jour au plus) ; à la troisième journée différente, une
+     couleur de plus, compte remis à zéro. Sauter un jour ne casse rien.
+     Une erreur : compte à zéro, et un vert redescend au jaune.
+  2. Le pâlissement : palit(k, p.t) retire une couleur par tranche de
+     60 jours sans le voir (JOURS_PALIR). levelOf() l'applique à
+     l'affichage ; answer() le matérialise avant de traiter la réponse
+     (ce qui a pâli reste pâli, la bonne réponse relance le compte).
+
+LA PASTILLE ALLUMÉE EST LA COULEUR DU VERSET (rapDe = levelOf pour un
+verset déjà répondu, rien pour un neuf). Elle reste allumée, la même
+dans les deux sens. La TOUCHER pose la couleur (q.touche=true, envoyée
+à answer) et déplace le verset dans son groupe sur-le-champ ; le rouge
+touché revient trois questions plus loin. Ne pas la toucher n'envoie
+rien : les réponses décident, la pastille suit. On ne peut la retirer
+qu'à la première apparition (q.exige), où la couleur est exigée et
+devient le point de départ (sans couleur : rouge, repasse dans cinq).
+Le bilan S.rap ne compte que les pastilles touchées.
+
+LE TIRAGE : inchangé dans l'esprit (cadence j j r j r v, groupes figés
+au départ, rotation dans un groupe, la place d'apprentissage reste à
+l'apprentissage), moins la notion de « mûr » : le seul vrai besoin
+dans un groupe est l'inédit (pas encore montré dans la séance).
+resteAReviser() = il reste quelque chose qui n'est pas vert.
+Le pourcentage d'une catégorie : rouge 0, jaune 1, vert 2 (POIDS,
+NIVEAU_ACQUIS=2). Les jumeaux se rejoignent sur la couleur la plus
+haute puis la plus récente (meilleureProg sur POIDS[couleurBrute]).
+
+À SAVOIR : quand tout est vert sauf un ou deux versets, la séance les
+répète beaucoup (priorité au jaune, groupes d'apprentissage servis
+avant le vert). C'est la règle voulue ; les verts passent une fois sur
+six.
+
+Bancs (scratchpad) : verif-couleurs.js (30 cas), verif-seance.js
+(séance de 66 questions par l'interface), exige.js, jumeaux.js, banc.js
+(120 jours × 3 apprenants : réaliste 85 verts sur 108, 0 jamais vu ;
+appliqué 106 sur 108 ; sévère tout rouge par ses propres rouges).
+Tout passe, aucun invariant violé.
+
+────────────────────────────────────────────────────────────
+LA COULEUR N'EST QU'À EMMANUEL (06/09, dernier état)
+────────────────────────────────────────────────────────────
+« Le verset monte d'une couleur : tu parles de à peu près, vert,
+rouge ? Ça c'est à moi de sélectionner, pas à l'algo. » Puis : « Je
+veux apprendre avant de réviser, jaune et rouge en priorité, vert
+après. Mais que ça ne soit pas par rapport au nombre de fois que je
+fais un verset. »
+
+Retirés : le frein des trois journées (p.j, p.d, jourDe, HEURE_JOUR)
+et le pâlissement (palit, JOURS_PALIR). La couleur d'un verset ne
+change QUE par une pastille touchée (ou à sa première apparition, où
+elle est exigée). Une erreur, une suite de bonnes réponses, le temps :
+rien de tout cela n'y touche. Une erreur ou un rouge posé font
+seulement revenir le verset trois questions plus loin.
+
+Ce qui reste automatique, et c'est le seul mécanisme : le tirage
+(cadence j j r j r v, groupes figés au départ, chacun son tour dans
+un groupe, la place d'apprentissage reste à l'apprentissage). Le vert
+revient donc toutes les six questions quel que soit le nombre de
+passages, et un neuf ne bloque jamais un ancien : c'est ce qu'il
+demande, et c'est mesuré (cadence.js, runs2.js).
+
+Pour mémoire, les séries de 5-6 verts qu'il avait vues venaient de
+trois défauts corrigés dans la journée (rouge sans effet sur le
+niveau, groupes redistribués en cours de séance, réserve courte qui
+donnait les places au vert), pas des niveaux ni des échéances.
+
+Bancs : verif-manuel.js (16 cas), verif-seance.js, exige.js,
+jumeaux.js, banc.js (120 jours, trois apprenants qui montent leurs
+couleurs eux-mêmes : réaliste 66 verts sur 108, appliqué 108, sévère
+tout rouge). Tout passe.
+
+════════════════════════════════════════════════════════════
+ÉTAT FINAL DE L'ALGORITHME DE MÉMORISER (06/09, soir)
+════════════════════════════════════════════════════════════
+Après une journée d'allers-retours, voici la règle qu'Emmanuel a
+arrêtée, et pourquoi. À relire AVANT de toucher au tirage ou aux
+couleurs.
+
+L'OBJECTIF, dans ses mots : apprendre avant réviser ; le jaune puis le
+rouge en priorité, le vert après, une fois sur six ; que rien ne
+dépende du nombre de passages (un verset fait trois mille fois revient
+quand même, un neuf ne le bloque pas) ; et la couleur, c'est à lui de
+la choisir, pas à l'algorithme. Sur ce dernier point il a ajouté
+l'argument décisif : « je peux très bien choisir la bonne réponse tout
+en étant sur rouge ou jaune » — un choix multiple mesure la
+reconnaissance, pas le souvenir.
+
+LA RÈGLE :
+- Un verset a une couleur, rouge / jaune / vert, et rien d'autre.
+- À sa première apparition, la couleur est exigée (propositions
+  estompées, pastilles qui tremblent si on clique avant) : c'est le
+  point de départ. Sans couleur (clavier), rouge.
+- La pastille allumée EST la couleur du verset ; elle reste allumée,
+  la même dans les deux sens de question. La toucher pose la couleur,
+  et le verset change de groupe sur-le-champ. Sa parole l'emporte sur
+  tout, y compris sur une erreur faite à la même question.
+- Une bonne réponse ne change RIEN.
+- Une erreur, sans pastille touchée, fait descendre d'une couleur
+  (vert → jaune → rouge, rouge reste rouge), déplace le verset dans le
+  groupe de sa nouvelle couleur, et le fait revenir trois questions
+  plus loin. Un rouge posé le fait aussi revenir trois questions plus
+  loin.
+- Rien d'autre ne touche à la couleur : ni le temps, ni une suite de
+  bonnes réponses.
+- Le tirage : cadence j j r j r v ; groupes figés au départ de la
+  séance (sauf parole ou erreur) ; dans un groupe, les inédits
+  d'abord puis le plus anciennement vu ; une place d'apprentissage
+  reste à l'apprentissage (l'autre groupe, puis la réserve, avant le
+  vert) ; une place jaune sans inédit va au rouge s'il en a, et
+  l'inverse ; jamais le même verset deux fois de suite ; un neuf
+  déclaré rouge repasse une fois dans la séance (cinq questions plus
+  loin).
+- Le même verset dans plusieurs catégories : une seule couleur,
+  partagée ; posé une fois par séance.
+- Affichage : rouge 0, jaune 1, vert 2 ; la barre montre les parts.
+
+CE QUI A ÉTÉ RETIRÉ, et pourquoi : niveaux et échéances (en conflit
+avec la série infinie : un vert revu 14 à 52 fois pendant son délai) ;
+frein des trois journées et pâlissement (l'algorithme jugeait à sa
+place sur des clics qui ne prouvent rien). Ne pas les remettre sans
+une demande explicite.
+
+CONSÉQUENCE CONNUE ET ASSUMÉE : quand presque tout est vert, les un ou
+deux versets à apprendre sont beaucoup répétés (mesuré : 60 passages
+sur 120 pour l'unique jaune). C'est « répéter, c'est comme ça qu'on
+apprend ».
+
+LEÇON DE MÉTHODE (06/09) : ne pas implémenter une réflexion à voix
+haute. Attendre « fais-le ». Emmanuel l'a dit : « je t'ai pas demandé
+de faire quoi que ce soit, j'étais en train de discuter avec toi ».
+
+Bancs : verif-manuel.js (21 cas), audit-objectif.js (cinq
+configurations lancées par startSession : part du vert, séries,
+doublons, tous vus, étalement dans un groupe), verif-seance.js
+(interface), exige.js, jumeaux.js, banc.js (120 jours). Tout passe.

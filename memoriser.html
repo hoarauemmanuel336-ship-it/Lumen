@@ -978,44 +978,58 @@ function baseClone(catId){const e=effectiveCats().find(c=>c.id===catId);return{n
 function editBase(catId,fn){const c=S.baseEdits[catId]||baseClone(catId);fn(c);S.baseEdits[catId]=c;saveBaseEdits();}
 function isBase(catId){return PRE.some(c=>c.id===catId);}
 
-// ════════ ALGORITHME (Leitner, infini) ════════
-/* DEUX HORLOGES, DEUX RÔLES.
-   Le TEMPS RÉEL décide quand un verset est mûr : une réussite le repousse
-   d'un nombre de JOURS croissant selon son niveau (p.n, échéance en date
-   ISO ; p.t, date de la dernière fois qu'il a été vu). L'oubli suit le
-   calendrier, pas le nombre de cartes vues entre-temps.
-   Le COMPTEUR D'EXPOSITIONS (p.v) ne décide de rien : il départage, à niveau
-   égal, ceux qui sont mûrs, pour que les versets rarement vus passent devant.
-   Une troisième minuterie, courte, vit dans la séance seule : p.s tient à
-   l'écart pour quelques versets celui qu'on vient de manquer, le temps de
-   respirer avant de le revoir. */
-/* L'ÉCHELLE DES DÉLAIS, en jours, par niveau. Elle monte jusqu'à cent
-   soixante jours : sans les deux derniers paliers, elle s'arrêtait à
-   trente-cinq, et un verset su depuis des années revenait encore toutes les
-   cinq semaines. La charge quotidienne, à régime établi, vaut le nombre de
-   versets divisé par le dernier délai : trois mille versets, c'était
-   quatre-vingt-six révisions PAR JOUR pour toujours ; c'est dix-neuf
-   maintenant. NIVEAU_MAX se déduit de l'échelle, il ne se recopie pas. */
-const JOURS=[0,1,3,7,16,35,75,160];
-const NIVEAU_MAX=JOURS.length-1;
-/* Le SEUIL D'ACQUISITION reste le niveau 5, celui des trente-cinq jours :
-   c'est là que le verset passe au vert et que la catégorie affiche 100 %.
-   Les deux paliers au-dessus ne sont plus de l'apprentissage, ils sont de
-   l'entretien, et ils n'ont pas à faire redescendre un pourcentage acquis. */
-const NIVEAU_ACQUIS=5;
+// ════════ ALGORITHME (trois couleurs, série infinie) ════════
+/* ── PLUS D'ÉCHÉANCES (06/09, Emmanuel : « Est-ce que ce n'est pas mieux de
+   simplement supprimer les échéances ? » puis « Remplace ») ──
+   Jusqu'ici une machine à mesurer l'oubli (huit niveaux, délais de 1 à 160
+   jours, verrou de montée, crédit, pâlissement par retard, journée à 4 h)
+   était greffée sur un exercice de par cœur en série infinie. Les deux se
+   contredisaient : la série reposait les versets pendant leur délai, si bien
+   que l'échéance jugeait une mémoire rafraîchie la veille (mesuré : un vert
+   revu 14 à 52 fois avant son échéance). Il en reste ce qui est vrai.
+
+   TROIS COULEURS, et rien d'autre : rouge (à apprendre), jaune (à peu près
+   su), vert (su). Chaque verset porte :
+     p.k   sa couleur : 'r', 'a' (ambre, le jaune) ou 'v'
+     p.t   la dernière fois qu'il a été vu
+     p.v   le compteur d'expositions (départage)
+     p.s   la mise à l'écart courte, dans la séance seule
+   Les anciens champs (box, n, c, j, d) ne servent plus ; un profil d'avant
+   est lu par sa boîte : 0-1 rouge, 2-3 jaune, 4 et plus vert.
+
+   MONTER SUR SA PAROLE, DESCENDRE SUR UNE PREUVE (06/09, Emmanuel).
+   « Ça c'est à moi de sélectionner, pas à l'algo » ; puis, sur ce que vaut
+   une bonne réponse : « je peux très bien choisir la bonne réponse tout en
+   étant sur rouge ou jaune ». Un choix multiple mesure la reconnaissance,
+   pas le souvenir : retrouver la bonne case parmi quatre ne prouve rien,
+   une chance sur quatre tombe juste au hasard. Une bonne réponse ne fait
+   donc RIEN. Une erreur, elle, est une preuve forte (se tromper avec les
+   quatre propositions sous les yeux, c'est ne pas savoir) : elle fait
+   redescendre le verset d'une couleur. Les montées n'appartiennent qu'à lui,
+   par la pastille. Un frein (montée après trois journées réussies) et un
+   pâlissement (une couleur de moins par soixante jours) ont existé quelques
+   heures et ont été retirés : c'était l'algorithme qui jugeait à sa place
+   sur des clics.
+
+   LA PASTILLE ALLUMÉE EST LA COULEUR DU VERSET. Elle reste allumée, la même
+   dans les deux sens de question, puisque le verset n'a qu'une couleur. La
+   toucher, c'est poser cette couleur (rouge, jaune ou vert), et le verset
+   change de groupe sur-le-champ ; sa parole l'emporte sur tout, y compris
+   sur une erreur faite à la même question. Ne pas la toucher, c'est laisser
+   la couleur, sauf erreur. Une erreur ou un rouge posé font en plus revenir
+   le verset trois questions plus loin, pour qu'on le revoie.
+
+   LE TIRAGE, lui, est automatique, et c'est le seul mécanisme : la cadence
+   jaune, jaune, rouge, jaune, rouge, vert ; les groupes figés au départ de
+   la séance ; chacun son tour dans un groupe. Le vert revient donc toutes
+   les six questions, qu'on ait fait un verset trois fois ou trois mille, et
+   un verset neuf ne bloque jamais un ancien. */
 const JOUR=86400000;
 /* ── L'HEURE NE VIENT PLUS DE L'APPAREIL SEUL ──
-   Une échéance est une date écrite en clair : elle vaut ce que valait
-   l'horloge au moment où on l'a écrite. Un appareil dont la pile s'est vidée,
-   une tablette longtemps éteinte, une date changée à la main, et le calcul
-   part de travers pour de bon. On demande donc l'heure au serveur qui sert la
-   page : toute réponse HTTP porte un en-tête « Date », fixé par le serveur,
-   que l'appareil ne peut pas fausser. On en tire un DÉCALAGE, appliqué à
-   chaque lecture de l'heure. Hors ligne, ou si la requête échoue, on retombe
-   sur l'horloge de l'appareil : c'est alors HORIZON qui rattrape les dégâts.
-   La requête est en HEAD : elle ne rapporte aucun contenu, le service worker
-   ne l'intercepte pas (il ne traite que les GET), et elle coûte quelques
-   centaines d'octets. */
+   Le jour d'une réussite et le pâlissement se calculent sur une heure qu'on
+   demande au serveur qui sert la page (en-tête « Date » d'une requête HEAD),
+   pour qu'une tablette à l'horloge fausse ne compte pas des jours qui
+   n'existent pas. Hors ligne, on retombe sur l'horloge de l'appareil. */
 let DECALAGE=0;
 const maintenant=()=>Date.now()+DECALAGE;
 async function caleHorloge(){
@@ -1024,319 +1038,75 @@ async function caleHorloge(){
     const d=r&&r.headers&&r.headers.get('date'); if(!d)return;
     const t=Date.parse(d); if(isNaN(t))return;
     const ecart=t-Date.now();
-    /* l'en-tête est à la seconde près et le réseau ajoute son délai : on ne
-       corrige que les vraies dérives, jamais le bruit */
     DECALAGE=Math.abs(ecart)>60000?ecart:0;
   }catch(_){}
 }
-const boxOf=id=>(S.progress[id]||{box:0}).box;
-/* LA DERNIÈRE COULEUR DÉCLARÉE POUR UN VERSET, s'il y en a une. Elle est rangée
-   avec le reste de sa progression, donc à un seul endroit, donc valable dans
-   les deux sens de question : c'est le même verset qu'on interroge, qu'on
-   parte de la référence ou du texte. Une valeur abîmée ou absente ne renvoie
-   rien plutôt que d'allumer une pastille au hasard. */
-const rapDe=id=>{const r=(S.progress[id]||{}).r;return(r==='r'||r==='a'||r==='v')?r:null;};
-const dateOf=id=>{const p=S.progress[id];if(!p||!p.n)return 0;const t=Date.parse(p.n);return isNaN(t)?0:t;};
-/* Une échéance ne peut pas dépasser le plus long délai de l'échelle. Au-delà,
-   c'est l'horloge de l'appareil qui était fausse le jour de la réponse (une
-   tablette dont la pile s'est vidée suffit) : sans ce garde-fou le verset
-   n'était plus jamais mûr et, daté du futur, il passait dernier dans le repli,
-   donc il disparaissait purement et simplement de la mémorisation. */
-const HORIZON=(JOURS[NIVEAU_MAX]+1)*JOUR;
-// date de la dernière fois vu ; jamais vu = zéro, donc tout en haut ; une date
-// du futur est ramenée à maintenant, sans quoi le verset passerait toujours dernier
+const COULEURS=['r','a','v'];
+const couleurValide=k=>k==='r'||k==='a'||k==='v';
+/* la couleur écrite d'un verset, ancien profil compris */
+function couleurBrute(p){
+  if(!p)return null;
+  if(couleurValide(p.k))return p.k;
+  if(p.box!=null){ const b=Math.floor(+p.box)||0; return b<=1?'r':b<=3?'a':'v'; }
+  return null;
+}
+/* la pastille à allumer pour un verset : sa couleur d'aujourd'hui, ou rien
+   s'il n'a jamais été répondu */
+const rapDe=id=>enJeu(id)?levelOf(id):null;
 const vuLe=id=>{const p=S.progress[id];if(!p||!p.t)return 0;const t=Date.parse(p.t);return isNaN(t)?0:Math.min(t,maintenant());};
-// mûr : jamais vu, profil d'avant la bascule (aucune date), échéance passée, ou date aberrante
-function isDue(id){const p=S.progress[id];if(!p||!p.n)return true;const t=Date.parse(p.n);if(isNaN(t))return true;const ms=maintenant();return t<=ms||t-ms>HORIZON;}
-// tenu à l'écart pour quelques versets, dans la séance en cours seulement
 function retenu(id){const p=S.progress[id];return !!(p&&p.s&&S.step<p.s);}
-/* ── CE QUE VAUT LE SOUVENIR AUJOURD'HUI ──
-   La boîte dit jusqu'où un verset est MONTÉ ; elle ne dit pas où il en est
-   maintenant. Un verset acquis l'an dernier et jamais revu depuis n'est plus
-   acquis, et l'afficher en vert est un mensonge : le tableau annoncerait une
-   mémoire qu'on n'a plus. Le NIVEAU EFFECTIF retire donc un cran par délai
-   entier de retard. Un verset fragile (délai de trois jours) redescend en
-   quelques jours ; un verset solide (délai de trente-cinq jours) met des mois
-   à pâlir. C'est la courbe de l'oubli : on perd vite ce qu'on savait mal.
-   La boîte enregistrée, elle, N'EST PAS TOUCHÉE : le retard n'efface pas le
-   travail fait, il le met en veille, et une seule bonne réponse le réveille. */
-function niveauEffectif(id){
-  /* Une donnée abîmée (un niveau qui n'est pas un nombre, un niveau négatif ou
-     hors échelle) ressortait telle quelle et s'affichait en VERT, puisque la
-     comparaison d'un texte avec un nombre est toujours fausse. On la ramène
-     d'abord dans l'échelle. */
-  let b=Math.floor(+boxOf(id));
-  if(!isFinite(b)||b<=0)return 0;
-  b=Math.min(NIVEAU_MAX,b);
-  const p=S.progress[id]; if(!p||!p.n)return b;
-  const t=Date.parse(p.n); if(isNaN(t))return b;
-  const retard=maintenant()-t; if(retard<=0)return b;
-  const delai=Math.max(JOUR,(JOURS[Math.min(NIVEAU_MAX,Math.max(0,b))]||1)*JOUR);
-  return Math.max(0,b-Math.floor(retard/delai));
-}
-function levelOf(id){const b=niveauEffectif(id);return b<=1?'r':b<=3?'a':'v';}     // rouge / ambre / vert, le vert dès le niveau 4 comme avant
-/* DEMI-DÉLAIS, pour le jaune. 1 · 1 · 2 · 4 · 8 · 18 · 38 · 80 */
-const DEMI=JOURS.map(j=>Math.max(1,Math.round(j/2)));
-/* ── L'ÉCHÉANCE TOMBE AU DÉBUT D'UN JOUR, PAS À L'HEURE PRÈS ──
-   « Dans un jour » voulait dire : vingt-quatre heures exactement après la
-   réponse. Un verset appris lundi à 21 h 30 n'était donc mûr que mardi à
-   21 h 30 : qui révisait mardi à 20 h le voyait « à jour », y répondait sans
-   que le niveau bouge, et perdait sa journée. L'échéance est donc ramenée au
-   début du jour voulu : « demain » commence demain.
-   ── LA JOURNÉE COMMENCE À 4 H DU MATIN (02/09) ──
-   Elle commençait à minuit, et l'attente réelle dépendait alors de l'heure à
-   laquelle on répondait : seize heures pour une révision faite à 8 h, mais
-   une seule heure pour une révision faite à 23 h, puisque minuit arrivait
-   tout de suite après. Qui étudie le soir retrouvait donc tous ses versets
-   dus une heure plus tard. La frontière est posée à 4 h : une séance de 23 h
-   et une séance de 1 h du matin appartiennent au même jour, et le veilleur
-   est traité comme tout le monde. C'est le réglage qu'emploient les
-   logiciels de mémorisation, pour cette raison exactement. */
-const HEURE_JOUR=4;
-function echeance(ms,jours){
-  if(!(jours>0))return new Date(ms).toISOString();
-  const d=new Date(ms-HEURE_JOUR*3600000); d.setHours(0,0,0,0);
-  return new Date(d.getTime()+HEURE_JOUR*3600000+jours*JOUR).toISOString();
-}
+/* la couleur d'un verset : celle qu'Emmanuel lui a donnée, rouge à défaut */
+function levelOf(id){ return couleurBrute(S.progress[id])||'r'; }
+/* le poids d'une couleur pour le pourcentage d'une catégorie : rouge 0, jaune 1, vert 2 */
+const POIDS={r:0,a:1,v:2};
+const NIVEAU_ACQUIS=2;
+const niveauEffectif=id=>POIDS[levelOf(id)];
+/* un verset « EN JEU » a déjà été répondu au moins une fois */
+const enJeu=id=>{const p=S.progress[id];return !!(p&&p.t);};
+const vuesOf=id=>(S.progress[id]||{}).v||0;
+/* Plus d'échéance : rien n'est jamais « dû ». Les deux fonctions restent
+   pour les endroits qui les appellent encore, et disent toujours non. */
+const isDue=()=>false;
+const dateOf=()=>0;
+
 function answer(id,ok,rap){
-  const p=S.progress[id]||{box:0};
-  p.box=Math.max(0,Math.min(NIVEAU_MAX,+p.box||0));   // une donnée abîmée ne fige plus la séance
-  p.v=(p.v||0)+1;   // compteur d'expositions : ne s'efface jamais, sert au tirage équitable
+  const p=S.progress[id]||{};
   const ms=maintenant();
-  /* ON NE MONTE QUE SI LE VERSET ÉTAIT MÛR.
-     Se souvenir d'un verset revu il y a trois minutes ne prouve rien : c'est
-     la mémoire courte qui répond, pas la mémoire. Le niveau (et donc la
-     couleur) ne récompense donc que le souvenir qui a traversé le DÉLAI de sa
-     boîte. Sans ce verrou, quatre bonnes réponses d'affilée dans la même
-     séance faisaient passer un verset au vert, et cent réponses suffisaient à
-     faire virer au vert les vingt-quatre versets d'une mémoire : le tableau
-     annonçait une mémoire acquise en une soirée. Une séance qui continue
-     au-delà des versets mûrs reste un exercice utile, mais elle n'avance plus
-     les niveaux. Et depuis le 05/09 l'erreur non plus ne pèse qu'à l'heure :
-     hors échéance, la séance entraîne, elle ne juge pas (voir plus bas). */
-  const mur=isDue(id);
-  /* Première rencontre : le verset n'a encore aucune date de lecture. */
+  p.v=(p.v||0)+1;
   const premiereFois=!p.t;
-  /* On repart du NIVEAU EFFECTIF, pas de la boîte enregistrée : ce que
-     l'affichage montre est exactement ce dont l'algorithme part. Un verset
-     laissé de côté six mois ne remonte donc pas au vert d'une seule bonne
-     réponse, il se réapprend cran par cran. */
-  const eff=niveauEffectif(id);
-  /* LA COULEUR DÉCLARÉE, s'il y en a une. Elle est gardée telle quelle : c'est
-     la dernière chose que tu as dite de ce verset, et elle ne s'efface pas
-     toute seule. Elle ne pèse QUE sur un verset arrivé à terme, comme tout le
-     reste : sans cette réserve, il suffirait de se déclarer rouge pour rendre
-     un verset mûr avant l'heure, puis de se déclarer vert pour gagner un cran
-     sans avoir attendu.
-
-     AUCUNE COULEUR EFFACE LA PRÉCÉDENTE. Puisque la note se garde d'une fois
-     sur l'autre, la retirer doit pouvoir se dire : rappuyer sur la pastille
-     déjà posée l'enlève, et ce retrait descend jusqu'ici, sans quoi la
-     couleur reviendrait toute seule à la question suivante. */
-  if(rap==='r'||rap==='a'||rap==='v')p.r=rap; else delete p.r;
-  /* La couleur déclarée est lue ici, avant tout : elle pèse aussi bien sur
-     une bonne réponse que sur une mauvaise, à l'heure comme hors de l'heure. */
-  const declare=(rap==='r'||rap==='a'||rap==='v')?rap:null;
-  const note=declare||'v';
-  /* ── LE CRÉDIT A SON PROPRE CHAMP (06/09) ──
-     Il se lisait dans la boîte enregistrée. Tant que rien ne faisait
-     descendre cette boîte, cela suffisait. Depuis que « pas du tout » la fait
-     vraiment descendre, il faut garder ailleurs la trace du plus haut niveau
-     atteint, sans quoi un rouge effacerait des mois de travail. p.c retient
-     ce sommet et ne descend jamais ; les profils d'avant, qui ne l'ont pas,
-     repartent de leur boîte. Il est lu et inscrit ICI, avant toute branche :
-     une erreur à l'heure ou un rouge abaissent la boîte plus bas, et le
-     sommet doit être retenu avant, pas après (relu le 06/09 : il ne l'était
-     que dans la branche de la bonne réponse à l'heure). */
-  const credit=Math.min(NIVEAU_MAX,Math.max(0,Math.floor(+(p.c!=null?p.c:p.box))||0));
-  p.c=credit;
-  if(ok){
-    if(mur){
-      /* SANS COULEUR DÉCLARÉE, C'EST UN VERT (02/09). C'était un jaune, et le
-         jaune ne fait pas monter : qui ne touchait pas aux pastilles voyait
-         donc TOUS ses versets rester au premier cran et revenir le lendemain,
-         indéfiniment. Mesuré sur le vrai code, soixante versets, quarante
-         questions par jour, quatre-vingt-dix jours : zéro verset acquis,
-         vingt et un jamais posés une seule fois, et les autres posés
-         quatre-vingt-douze fois chacun. Le silence ne peut pas être la
-         réponse la plus sévère du barème : une bonne réponse fait monter, et
-         les pastilles servent à CORRIGER VERS LE BAS quand on veut être
-         honnête (« à peu près » retient le cran, « pas du tout » ramène le
-         verset tout de suite).
-         L'ancienne crainte était qu'avouer « à peu près » coûte le cran que
-         le silence aurait donné. C'est vrai, et c'est le prix juste : l'aveu
-         doit être un geste, pas un défaut imposé à celui qui n'a rien vu.
-         Ce vert-là n'est PAS enregistré comme une déclaration (voir le
-         `delete p.r` plus haut) : il fait avancer l'algorithme, il ne parle
-         pas à ta place, et les pastilles repartent vides la fois d'après. */
-      /* TROIS COULEURS, TROIS GESTES, ET UN SEUL SENS DE LECTURE :
-         rouge il revient tout de suite, jaune il reste, vert il monte.
-
-         SEUL LE VERT FAIT MONTER, et c'est la clé. J'avais d'abord fait monter
-         le jaune aussi, avec un délai réduit de moitié. Une simulation sur cent
-         quatre-vingts jours a montré l'absurdité : en revenant deux fois plus
-         souvent, le jaune atteignait le dernier cran AVANT le vert. Se déclarer
-         « à peu près » rapportait donc plus vite que « parfaitement ». Un cran
-         mesure l'espacement qu'une mémoire supporte : on ne peut pas l'accorder
-         à quelqu'un qui vient de dire qu'il n'y arrive qu'à moitié.
-         Ce qui a changé le 02/09 n'est pas cette règle, c'est le DÉFAUT : ne
-         rien dire vaut vert, et non plus jaune. */
-      /* ── LE CRÉDIT : CE QUE LE VERSET AVAIT ATTEINT AVANT DE PÂLIR ──
-         Le retard fait redescendre le niveau AFFICHÉ, mais la boîte
-         enregistrée, elle, garde la trace du travail fait. Tant que la remontée
-         se faisait cran par cran depuis le niveau pâli, une pause de trois mois
-         coûtait presque trois mois de retour : le verset devait repasser par le
-         délai de sept jours, puis seize, puis trente-cinq, puis soixante-quinze.
-         C'était punir quelqu'un qui, à l'épreuve, se souvenait très bien.
-         RETROUVER N'EST PAS APPRENDRE : une mémoire qu'on a laissée dormir
-         revient beaucoup plus vite qu'elle n'est venue la première fois. Une
-         réponse limpide APRÈS le retard prouve que le niveau atteint était
-         mérité et qu'il tient encore ; on le rend d'un coup au lieu de le
-         faire remonter à l'échelle. Aucune faille n'est ouverte pour autant :
-         on ne rend JAMAIS plus que ce qui avait été gagné, et ce niveau-là
-         n'avait pu s'obtenir qu'en franchissant tous les délais un à un. */
-    
-      /* ── UN VERSET NEUF SE REVOIT UNE FOIS AVANT DE PARTIR (02/09) ──
-         Une seule bonne réponse sur un verset jamais vu l'envoyait à demain.
-         C'est trop vite pour du par cœur : on vient de le lire, la mémoire
-         courte répond encore. Il repasse donc une fois dans la même séance,
-         cinq questions plus loin, et ce n'est qu'à la seconde bonne réponse
-         qu'il quitte la séance pour demain. Deux exceptions : le vert, qui
-         dit « celui-là je le sais déjà » et le fait partir tout de suite, et
-         le rouge, qui a son propre chemin juste en dessous. */
-      /* ── LA PREMIÈRE COULEUR FIXE LE DÉPART (06/09) ──
-         Depuis que la couleur est exigée à la première apparition, elle dit
-         d'où part le verset : « à peu près » le pose au niveau 2 (jaune, revu
-         dans deux jours), « parfaitement » au niveau 4 (vert, revu dans seize
-         jours). Sans cela, un jaune posé à la première vue et resté allumé
-         tenait le verset à zéro pour toujours (mesuré). Le rouge garde son
-         chemin (niveau 0, revient dans trois questions, jugé demain), et
-         l'absence de couleur aussi (niveau 0, repasse une fois avant de
-         partir). Ce n'est qu'un point de départ : on n'a rien traversé. */
-      if(premiereFois&&declare==='a'){
-        p.box=2; p.n=echeance(ms,DEMI[2]); delete p.s;
-      } else if(premiereFois&&declare==='v'){
-        p.box=4; p.n=echeance(ms,JOURS[4]); delete p.s;
-      } else if(premiereFois&&note!=='r'){
-        p.box=0; p.n=new Date(ms).toISOString(); p.s=S.step+5;
-      } else if(note==='r'){
-        /* RECONNU N'EST PAS RAPPELÉ. La bonne case a été trouvée en lisant les
-           propositions, pas en se souvenant : c'est précisément ce que le choix
-           multiple ne pouvait pas voir. Le niveau ne bouge pas, et le verset
-           repasse quelques questions plus loin, comme après une erreur.
-           ── LE JUGEMENT SUIVANT ATTEND DEMAIN (05/09) ──
-           Il était remis « à maintenant », donc jugé de nouveau trois questions
-           plus loin, et il montait alors d'un cran sur la foi d'un souvenir
-           vieux de trois minutes : « pas du tout » ne coûtait rien. Il revient
-           bien trois questions plus loin, mais pour s'exercer ; le prochain
-           jugement se fait après une nuit. */
-        /* ── « PAS DU TOUT » DESCEND VRAIMENT (06/09) ──
-           Le niveau ne bougeait pas : Emmanuel a déclaré rouge tous ses
-           versets et les a vus rester verts, dans la liste comme dans le
-           tirage (« j'avais tout mis sous rouge, et j'avais quand même cinq
-           ou six verts »). Une déclaration qui ne change rien n'est pas une
-           déclaration. Le verset redescend donc au rouge, et il revient
-           demain. Rien n'est perdu : le crédit garde le sommet atteint, et
-           une réponse limpide à l'échéance le rend d'un seul coup. */
-        p.box=Math.min(eff,1); p.n=echeance(ms,1); p.s=S.step+3;
-      } else if(note==='a'){
-        /* RAPPELÉ AVEC EFFORT. Sans retard, le cran reste le même et le verset
-           revient environ deux fois plus tôt que si tout avait été limpide.
-           Après un retard, l'effort dit que la mémoire est là mais fragile :
-           on rend la MOITIÉ du chemin perdu, pas la totalité. */
-        const cible=credit>eff?Math.min(credit,eff+Math.ceil((credit-eff)/2)):eff;
-        p.box=cible; p.n=echeance(ms,DEMI[cible]); delete p.s;
-      } else {
-        /* LIMPIDE. Sans retard, un cran de plus. Après un retard, le niveau
-           gagné autrefois est rendu en entier : la réponse vient de démontrer
-           qu'il était juste.
-           ── CE QUE FAIT LA PASTILLE VERTE (02/09) ──
-           Depuis que le silence vaut vert, la pastille verte ne changeait plus
-           rien : elle se contentait de rester allumée. Elle vaut maintenant
-           DEUX CRANS au lieu d'un. Le verset saute un palier de l'échelle, ce
-           qui est exactement ce qu'on veut dire en la touchant : « celui-là,
-           je le sais, ne me le redemande pas si tôt ».
-           Aucune faille : le verrou du terme (mur) tient toujours, donc deux
-           crans ne peuvent PAS s'enchaîner dans la même soirée. Monter de zéro
-           au dernier palier demande de traverser pour de bon trois jours, puis
-           seize, puis soixante-quinze. Et le crédit reste un plancher, jamais
-           un plafond : on ne rend jamais moins que ce qui avait été gagné. */
-        const gagne=(declare==='v')?2:1;
-        const vise=Math.min(NIVEAU_MAX,eff+gagne);
-        p.box=credit>eff?Math.max(credit,vise):vise;
-        p.n=echeance(ms,JOURS[p.box]);
-        delete p.s;
-      }
-    } else if(declare==='r'){
-      /* Hors échéance, la séance entraîne et ne juge pas : c'est vrai d'une
-         bonne ou d'une mauvaise réponse, qui sont des faits d'exercice. Une
-         couleur DÉCLARÉE, elle, est une parole ; elle vaut à tout moment,
-         sinon un rouge posé au second passage d'une séance ne ferait rien. */
-      p.box=Math.min(eff,1); p.n=echeance(ms,1); p.s=S.step+3;
-    } else delete p.s;
+  let k=premiereFois?null:(couleurBrute(p)||'r');
+  /* rap : la couleur TOUCHÉE à cette question, ou rien si la pastille
+     allumée n'a pas été touchée (voir pick) */
+  const declare=couleurValide(rap)?rap:null;
+  if(premiereFois){
+    /* la première couleur est le point de départ ; sans couleur (clavier,
+       vieux chemins), le verset part rouge et repasse une fois dans la séance */
+    k=declare||'r';
+    if(!declare||declare==='r')p.s=S.step+5; else delete p.s;
+  } else if(declare){
+    /* une pastille touchée pose la couleur ; le rouge revient trois
+       questions plus loin */
+    k=declare;
+    if(declare==='r')p.s=S.step+3; else delete p.s;
+  } else if(!ok){
+    /* une erreur, sans un mot : une couleur de moins, et le verset revient
+       trois questions plus loin. Un rouge reste rouge. */
+    k=COULEURS[Math.max(0,COULEURS.indexOf(k)-1)];
+    p.s=S.step+3;
+  } else {
+    /* une bonne réponse ne prouve rien : la couleur reste */
+    delete p.s;
   }
-  /* ── L'ERREUR NE COMPTE QU'À L'HEURE (05/09) ──
-     Manquer un verset le jour de sa révision est une vraie information : on
-     redescend de deux crans, et l'attente repart.
-     Le manquer HORS échéance ne change plus rien à son niveau ni à sa date.
-     Emmanuel : « répéter, c'est comme ça qu'on apprend ». Dès lors qu'un
-     verset moyennement su repasse plusieurs fois par séance, chaque passage
-     ne peut pas être un jugement : c'est un exercice. La règle d'avant (un
-     cran de moins et l'attente remise à zéro) avait été mesurée avec cette
-     répétition : plus un seul verset n'atteignait l'acquisition, parce qu'un
-     jaune montré trois fois par jour voyait son attente remise à zéro avant
-     d'avoir jamais franchi ses sept jours. L'exercice ne juge donc plus, il
-     entraîne ; le jugement reste à l'échéance, où il est juste.
-     Il n'y a plus de faille à fermer : se tromper exprès ne rend plus le
-     verset mûr, il n'y a rien à gagner. Le verset manqué revient simplement
-     quelques questions plus loin, comme après toute erreur. */
-  /* Manqué à l'heure : deux crans de moins, et le prochain jugement attend
-     demain. Remis « à maintenant », il était rejugé trois questions plus loin
-     et reprenait aussitôt un cran sur la mémoire courte : l'erreur ne coûtait
-     qu'un cran net, gagné sur rien. Le verset revient quand même tout de
-     suite dans la séance, pour s'exercer, puisque c'est ce qui tient le
-     moins ; mais on ne le croit sur parole qu'après une nuit. */
-  else if(mur){ p.box=Math.max(0,declare==='r'?Math.min(eff,1):eff-2); p.n=echeance(ms,1); p.s=S.step+3; }
-  else if(declare==='r'){ p.box=Math.min(eff,1); p.n=echeance(ms,1); p.s=S.step+3; }
-  else { p.s=S.step+3; }
-  /* ── TA PAROLE DÉPLACE LE VERSET TOUT DE SUITE ──
-     Le groupe d'un verset est arrêté au départ de la séance pour que les
-     montées automatiques ne redistribuent pas les places en cours de route.
-     Une couleur que tu DÉCLARES est d'une autre nature : elle vaut sur-le-champ.
-     « Pas du tout » l'envoie au rouge et « à peu près » au jaune, donc au
-     groupe qui repasse le plus souvent. Le vert déclaré, lui, ne déplace
-     rien : c'est précisément la montée qu'on ne veut pas voir se payer
-     pendant la séance. */
-  if(S.grp&&(declare==='r'||declare==='a'))S.grp[id]=(declare==='r')?'r':'j';
-  /* ── LA PASTILLE RESTE ALLUMÉE (06/09, Emmanuel : « je veux que cette
-     pastille reste allumée, je ne t'ai pas dit de modifier ça ») ──
-     La note se garde donc d'une fois sur l'autre et repart telle quelle à la
-     question suivante, quel que soit le sens de la question. Elle AGIT à
-     chaque passage tant qu'elle est posée : un rouge posé tient le verset au
-     rouge, un jaune posé le tient où il est, un vert posé le pousse de deux
-     crans à chaque échéance. C'est une étiquette qu'on retire ou qu'on
-     change d'un geste. Pour que le jaune posé à la première vue ne cloue
-     pas le verset au niveau zéro, la première déclaration fixe un niveau de
-     départ (voir plus haut, premiereFois). */
+  p.k=k;
+  delete p.box; delete p.n; delete p.c; delete p.due; delete p.r; delete p.j; delete p.d;   // les anciennes machines
+  /* ce qui change la couleur déplace le verset dans son groupe sur-le-champ :
+     ta parole, ou une erreur. Un vert manqué rejoint donc les jaunes, à
+     apprendre, sans attendre la séance suivante. */
+  if(S.grp&&(declare||!ok))S.grp[id]=(k==='a')?'j':k;
   p.t=new Date(ms).toISOString();
-  /* le sommet atteint monte avec la boîte et ne redescend jamais */
-  p.c=Math.max(Math.floor(+p.c||0),Math.floor(+p.box||0));
-  delete p.due;     // ancien pas de séance, remplacé par une vraie date
   S.progress[id]=p; S.step++; marqueSale(id);
   propageProg(id);
 }
-const vuesOf=id=>(S.progress[id]||{}).v||0;
-/* Un verset « EN JEU » est un verset déjà travaillé au moins une fois : il a
-   une date de dernière vue. C'est la seule distinction qui subsiste, et elle
-   ne sert qu'à une chose, la seule règle d'ordre du tirage : RÉVISER PASSE
-   AVANT DÉCOUVRIR. Tant qu'un verset commencé a atteint son terme, il passe
-   devant les versets jamais vus. Sans cet ordre, les nouveaux venus,
-   tous au niveau zéro, passaient systématiquement devant les versets acquis
-   et ceux-ci pâlissaient faute d'être revus (mesuré : sur cent questions,
-   cent nouveaux et zéro ancien). Ce n'est pas une limite : rien n'est
-   plafonné, on met en mémoire autant de versets qu'on veut, aussi vite qu'on
-   veut. C'est un ordre de passage. */
-const enJeu=id=>{const p=S.progress[id];return !!(p&&p.t);};
 /* ── L'ORDRE DES PRIORITÉS (05/09, Emmanuel) ──
    « C'est très simple : priorité à ce qu'on connaît moyennement, puis à ce
    qu'on ne maîtrise pas, et ensuite à ce qu'on maîtrise. » Et : « répéter,
@@ -1376,7 +1146,8 @@ function nextItem(){
   let pool=items.filter(i=>i.id!==S.lastId); if(!pool.length)pool=items;
   let libres=pool.filter(i=>!retenu(i.id)); if(!libres.length)libres=pool;
   const debut=S.debut||0;
-  const mur=i=>enJeu(i.id)&&isDue(i.id);
+  /* plus d'échéance, donc plus de « mûr » : le seul vrai besoin, dans un
+     groupe, est ce que la séance n'a pas encore montré */
   const inedit=i=>vuLe(i.id)<debut;
   const g={j:[],r:[],v:[]};
   const grpDe=i=>(S.grp&&S.grp[i.id])||(enJeu(i.id)?GROUPE_DE(i.id):'r');
@@ -1409,32 +1180,19 @@ function nextItem(){
     choix=t;
   }
   /* ── UNE RÉPÉTITION NE PASSE PAS DEVANT UN VRAI BESOIN (06/09) ──
-     Le jaune garde ses six places sur onze, mais quand il n'a plus rien de
-     mûr ni d'inédit à offrir (seulement des répétitions de la séance), et que
-     le rouge, lui, a des versets dus ou jamais vus qui attendent, la place va
-     au rouge. Et l'inverse, plus rare. Le vert n'est pas concerné.
+     Le jaune garde ses places, mais quand il n'a plus rien d'inédit à offrir
+     (seulement des répétitions de la séance), et que le rouge, lui, a des
+     versets jamais vus qui attendent, la place va au rouge. Et l'inverse,
+     plus rare. Le vert n'est pas concerné.
      Mesuré sur cent vingt jours simulés, apprenant qui se trompe parfois :
      une fois sur quatre, le tirage s'enfermait dans un cercle où les places
      du jaune allaient à des répétitions pendant que les rouges dus se
      multipliaient et que cinquante-sept versets neufs n'étaient jamais
      posés. Apprendre passe avant réviser ; entre deux façons d'apprendre,
-     ce qui est dû ou jamais vu passe avant ce qu'on vient de revoir. */
-  const besoin=x=>src[x].some(i=>mur(i)||inedit(i));
+     ce qui n'a jamais été vu passe avant ce qu'on vient de revoir. */
+  const besoin=x=>src[x].some(inedit);
   if(choix!=='v'&&!besoin(choix)){ const autre=choix==='j'?'r':'j'; if(src[autre].length&&besoin(autre))choix=autre; }
   const vivier=src[choix];
-  const murs=vivier.filter(mur);
-  if(murs.length){
-    murs.sort((a,b)=>{
-      const ba=niveauEffectif(a.id),bb=niveauEffectif(b.id);if(ba!==bb)return ba-bb;
-      const va=vuesOf(a.id),vb=vuesOf(b.id);if(va!==vb)return va-vb;
-      return dateOf(a.id)-dateOf(b.id);
-    });
-    const low=niveauEffectif(murs[0].id);
-    const top=murs.filter(i=>niveauEffectif(i.id)===low);
-    const vmin=vuesOf(top[0].id);
-    const moinsVus=top.filter(i=>vuesOf(i.id)===vmin);
-    return moinsVus[0|Math.random()*moinsVus.length];
-  }
   /* ── DANS UN GROUPE, CHACUN SON TOUR (06/09) ──
      Le niveau passait avant l'ancienneté : le verset le plus faible du groupe
      reprenait CHAQUE place du groupe dès qu'il était libre, et ses voisins
@@ -1591,8 +1349,7 @@ function elementCat(cat){
     actifs.forEach(vv=>{const l=levelOf(vv.id);if(l==='r')r++;else if(l==='a')a++;else v++;});
     const tot=actifs.length||1;
     const dist='<i class="r" style="width:'+(r/tot*100)+'%"></i><i class="a" style="width:'+(a/tot*100)+'%"></i><i class="v" style="width:'+(v/tot*100)+'%"></i>'+(actifs.length?'':'<i class="e" style="width:100%"></i>');
-    /* le pourcentage mesure le chemin jusqu'à l'ACQUISITION, pas jusqu'au bout
-       de l'entretien : un verset au-delà du seuil compte pour un seuil plein */
+    /* le pourcentage : un rouge compte zéro, un jaune la moitié, un vert tout */
     let acquis=0; actifs.forEach(vv=>acquis+=Math.min(NIVEAU_ACQUIS,niveauEffectif(vv.id)));
     const pct=actifs.length?Math.round(acquis/(NIVEAU_ACQUIS*actifs.length)*100):0;
     const pctTxt=S.lang==='fr'?pct+'\u00a0%':pct+'%';
@@ -1799,7 +1556,7 @@ function startSession(){
    lignes, déplaçait le bouton « Terminer » et alourdissait l'en-tête. La
    fonction reste, elle sert au tirage. */
 function resteAReviser(){
-  return allItems().some(i=>isDue(i.id));
+  return allItems().some(i=>levelOf(i.id)!=='v');
 }
 function nextQuestion(){
   const item=nextItem(); if(!item){endSession();return;}
@@ -1843,7 +1600,8 @@ function renderQuestion(){
      chaque question donnaient l'impression que les deux sens vivaient
      chacun de leur côté, alors que la progression n'a jamais été rangée que
      par verset. */
-  q.rappel=rapDe(q.item.id);   // la dernière couleur posée repart allumée
+  q.rappel=rapDe(q.item.id);   // allumée : la couleur du verset aujourd'hui
+  q.touche=false;              // ne sera envoyée que si on la touche
   /* première apparition : la couleur est exigée avant la réponse */
   q.exige=!enJeu(q.item.id);
   majExigence();
@@ -1862,7 +1620,11 @@ function renderQuestion(){
    du rouge au vert, jamais revenir à « je ne me prononce pas ». */
 function noteRappel(r){
   if(!S.cur||S.cur.done)return;
-  S.cur.rappel=(S.cur.rappel===r)?null:r;
+  /* la pastille allumée est la couleur du verset : la toucher, c'est la
+     poser ; on ne peut la retirer qu'à la première apparition, où rien
+     n'est encore posé */
+  if(S.cur.rappel===r&&S.cur.exige){S.cur.rappel=null;S.cur.touche=false;}
+  else {S.cur.rappel=r;S.cur.touche=true;}
   document.querySelectorAll('#rappel .rap').forEach(b=>b.classList.toggle('choisi',b.dataset.r===S.cur.rappel));
   majExigence();
 }
@@ -1879,8 +1641,9 @@ function pick(opt,btn){
   S.cur.done=true;
   const q=S.cur, ok=opt.id===q.item.id;
   S.answered++; if(ok)S.correct++;
-  if(q.rappel)S.rap[q.rappel]=(S.rap[q.rappel]||0)+1;
-  answer(q.item.id,ok,q.rappel); saveProgressGroupe();
+  const dit=q.touche?q.rappel:null;
+  if(dit)S.rap[dit]=(S.rap[dit]||0)+1;
+  answer(q.item.id,ok,dit); saveProgressGroupe();
   document.querySelectorAll('#rappel .rap').forEach(b=>b.disabled=true);
   $('opts').querySelectorAll('.opt').forEach(b=>{
     b.disabled=true;
@@ -2255,7 +2018,7 @@ function jumeauxDe(catId,vId){
 function meilleureProg(ids){
   let best=null;
   ids.forEach(id=>{const p=S.progress[id]; if(!p)return;
-    const b=+p.box||0, bb=best?(+best.box||0):-1, t=Date.parse(p.t||0)||0, tb=best?(Date.parse(best.t||0)||0):0;
+    const b=POIDS[couleurBrute(p)||'r'], bb=best?POIDS[couleurBrute(best)||'r']:-1, t=Date.parse(p.t||0)||0, tb=best?(Date.parse(best.t||0)||0):0;
     if(!best||b>bb||(b===bb&&t>tb))best=p;});
   return best;
 }
