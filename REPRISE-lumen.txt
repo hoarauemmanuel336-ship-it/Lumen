@@ -1,7 +1,7 @@
 ════════════════════════════════════════════════════════════════════
 FICHIER DE REPRISE : LUMEN VERITATIS
 Mémoire de travail du projet, en mode Cowork automatique.
-Mis à jour : 5 septembre 2026
+Mis à jour : 10 septembre 2026
 ════════════════════════════════════════════════════════════════════
 
 LE DÉPÔT NE CONTIENT PAS « site » (26/08, Emmanuel : « essaie de mettre tout
@@ -384,12 +384,12 @@ PIÈGES DE BUILD load-bearing :
 5. ACQUIS TECHNIQUES DURABLES (par sous-système)
 ────────────────────────────────────────────────────────────────────
 BIBLE : TRADUCTION CHÉRUBIN, traduction propre d'Emmanuel ({groupes, livres,
-data}, 73 livres, 1334 chapitres, 35 588 versets). Aucune ligne de crédit
+data}, 73 livres, 1334 chapitres, 35 595 versets depuis le crible du 10/09). Aucune ligne de crédit
 n'apparaît sur le site : elle a été retirée de « Mes notes » le 25/07 et ne
 doit pas revenir. Chaque chapitre porte titres:[{v,titre}], rendus avant le
 verset v par .ch-sect (bible.html) et .bp-sect (bible-panneau.js), Cormorant
 doré en majuscules.
-TOUS LES CHAPITRES EN PORTENT DEPUIS LE 22/08 (3 479 titres pour 1 334
+TOUS LES CHAPITRES EN PORTENT DEPUIS LE 22/08 (3 492 titres depuis le 10/09, pour 1 334
 chapitres, un pour dix versets et demi en moyenne). Les seize qui en
 manquaient étaient tous dans les Proverbes, à l'intérieur des collections de
 sentences déjà titrées à leur tête : 11 à 21, 23, 26 à 29. Ils ont reçu
@@ -429,13 +429,52 @@ rendu par « un carré » ; le « quart » en était un doublet, et il donnait u
 mesure fausse, contredite par le chapitre lui-même (la ville reçoit 5 000 des
 25 000 coudées, soit un cinquième : Ézéchiel 48:15-16, « environ deux
 kilomètres et demi de large sur les treize kilomètres »). Contrôle mené sur
-toutes les mesures des livres prophétiques : partout ailleurs les conversions
-tombent juste (Ézéchiel 45:11-14, 46:11-14, 4:10-11, 40:47, 40:21, 40:49,
-Jérémie 32:9 et 52:21).
+toutes les mesures des livres prophétiques (Ézéchiel 45:11-14, 46:11-14,
+4:10-11, 40:47, 40:21, 40:49, Jérémie 32:9 et 52:21) ; le crible du 10/09 a
+encore corrigé Ézéchiel 42:16-20 (500 coudées, environ 260 m, comme 45:2) et
+48:16, 30-34 (4 500 coudées, environ 2,3 km).
 Autres faits : Psaume 25:6 et Habaquq 3:6 (« de toujours » →
 « d'éternité ») ; Matthieu 5:17 et Hébreux 10:9 (« supprimer » → « abolir »
 pour l'abolition de la Loi ; Colossiens 2:14 examiné et laissé, « supprimé » y
 porte sur un document).
+
+CRIBLE INTÉGRAL DU 10/09 (demande d'Emmanuel : « passe toute la bible au
+crible », lecture à 100 %, correction directe, rapport à la fin). Les 35 596
+versets et les 3 479 titres ont été lus en entier par 56 lecteurs, plus une
+passe dédiée aux noms propres et une passe théologique. Environ 1 200 versets
+ou titres modifiés ; le rapport complet (chaque correction, avant → après,
+raison) a été livré à Emmanuel avec l'archive. CRITÈRES PRÉCISÉS PAR EMMANUEL
+LE 10/09, qui s'ajoutent à ceux du 26/07 : (a) le contresens THÉOLOGIQUE est un
+défaut à corriger (qui agit, Dieu ou l'homme ; vérité de foi affaiblie), cas
+d'école Romains 12:2 « laissez-vous transformer » ; (b) les passages que la
+plupart des Bibles traduisent mal se corrigent quand la traduction efface le
+réalisme d'une image, une forme qui porte un sens ou l'intensité d'un verbe
+(« mâcher », « tes Créateurs », Psaume 23:6 « me poursuivront ») ; (c) un nom
+propre écrit de deux façons ne s'harmonise que si l'original porte une seule
+forme ; en cas d'harmonisation, la forme majoritaire de la Chérubin l'emporte
+(Aser, Thabor, Sisara, Zébée et Salmana, Abimélech pour le fils de Gédéon,
+Abimélek pour le roi de Guérar). CONVENTIONS POSÉES LE 10/09, à tenir :
+presbyteroi chrétiens écrits « Anciens » avec majuscule (les anciens juifs
+restent en minuscule) et Jacques 5:14 « les prêtres de l'Église » (concile de
+Trente) ; episkopos rendu « épiscope » (Philippiens 1:1, 1 Timothée 3, Tite 1) ;
+mal'akh / angelos désignant un homme rendu « messager » (Malachie 3:1, Aggée
+1:13, Malachie 2:7, Matthieu 11:10, Marc 1:2, Luc 7:27) ; « le Messager de
+l'alliance » en Malachie 3:1 ; Ashéra distinguée d'Astarté ; « pains de
+l'offrande » partout (titre de Lévitique 24 aligné) ; « avant Jésus-Christ »
+avec trait d'union dans les dates des Maccabées. VERSIFICATION ALIGNÉE sur la
+numérotation catholique moderne (celle du lectionnaire) : Deutéronome 5 (33
+versets, un commandement par verset en 5:17-20), Josué 21 (45), 1 Maccabées 1
+(64), 12 et 13 (53), 2 Maccabées 2 (32) et 15 (39), Siracide 22:7-8 (au lieu
+de 9-10) et 48:25 (recréé), Nombres 25:19-26:1 (titre déplacé). Tobie et
+Judith restent sur la Vulgate, texte et numérotation. Examinés et laissés :
+les « frères » de Jésus (le grec adelphos couvre les proches parents),
+Psaume 40:7 et Amos 9:12 (Septante voulue, reprise par le NT), Luc 14:26 et
+Jean 12:25 (« préférer », « s'en détacher », comme la traduction liturgique),
+Romains 16:7 (Junias). Mémoriser : les versets modifiés afficheront le signe
+d'écart avec la Bible du site. Fichiers texte du Drive (bible-cherubin) :
+régénérés le 11/09, 256 fichiers sur 292 remplacés (même nom, anciens à la
+corbeille), taille vérifiée à l'octet ; les fichiers remplacés ont des espaces
+normales au lieu des espaces insécables (limite de l'outil d'envoi).
 
 ⚠ CRITÈRE DE CORRECTION, posé par Emmanuel le 26/07 : « n'oublie pas que cette
 bible est une traduction à équivalence dynamique, pas une traduction littérale
@@ -451,7 +490,7 @@ n'est pas un défaut.
 
 Cas d'école, 26/07 : Proverbes 4:23 a été corrigé en « de lui partent les
 issues de la vie » (l'hébreu porte tots'ot hayyim, les points de sortie, que
-la Chérubin rend « issues » en Ézéchiel 48:30 et Psaume 68:21), puis RÉTABLI
+la Chérubin rend « issues » en Ézéchiel 48:30), puis RÉTABLI
 le jour même en « de lui jaillissent les sources de la vie » : en français
 d'aujourd'hui « les issues de la vie » s'entend comme les dénouements de
 l'existence, ce qui est un faux sens, là où « sources » donne l'image juste du
