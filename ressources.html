@@ -1117,6 +1117,28 @@ function pageCadre(code){
     +'if(d.lvVue&&typeof d.lvVue.haut==="number"){vueHaut=d.lvVue.haut;colle();return;}'
     +'if(typeof d.lvApplique!=="number")return;'
     +'document.documentElement.style.overflow=(d.lvApplique<demande-1)?"auto":"hidden";});'
+    /* ── LES LIENS INTERNES DU CONTENU RESTENT CHEZ LUI (12/09) ──
+       Le cadre est écrit par srcdoc : son adresse de base est celle de LA
+       PAGE, pas la sienne. Un lien de sommaire « #ch13 » ne désignait donc pas
+       le chapitre treize du livre mais l'ancre treize de ressources.html, et
+       le cadre partait charger la page du site à la place du livre : le
+       sommaire faisait disparaître le livre.
+       On reconnaît donc ces liens au moment du clic et on fait le travail
+       nous-mêmes : on cherche la cible dans le contenu et on l'amène en haut
+       de la lecture. Le cadre défile en plein écran, et c'est lui qui bouge ;
+       posé dans la page, il ne défile pas, et il demande alors à la page de
+       porter la lecture à la bonne hauteur. */
+    +'document.addEventListener("click",function(e){'
+    +'if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;'
+    +'var a=e.target&&e.target.closest?e.target.closest("a"):null;if(!a)return;'
+    +'var h=a.getAttribute("href")||"";if(h.charAt(0)!=="#"||h.length<2)return;'
+    +'var id=decodeURIComponent(h.slice(1));'
+    +'var c=document.getElementById(id)||document.getElementsByName(id)[0];if(!c)return;'
+    +'e.preventDefault();'
+    +'var libre=document.documentElement.scrollHeight>window.innerHeight+1;'
+    +'if(libre){c.scrollIntoView({block:"start"});}'
+    +'else{try{parent.postMessage({lvAncre:Math.round(c.getBoundingClientRect().top+(window.pageYOffset||0))},"*");}catch(e2){}}'
+    +'},false);'
     +'window.addEventListener("load",function(){h();recense();});'
     /* la fenêtre du cadre change de taille au passage en plein écran comme à
        la rotation de l'appareil : on remesure, et le défilement se rouvre ou
@@ -1254,6 +1276,15 @@ window.addEventListener('message',e=>{
     cadre.style.height=accorde+'px';
     try{e.source.postMessage({lvApplique:accorde},'*');}catch(_){}
     suitVue();
+    return;
+  }
+  /* Le cadre posé dans la page ne défile pas lui-même : quand un lien interne
+     de son contenu désigne un endroit plus bas, c'est la page qui porte la
+     lecture jusque-là, sous la barre du site. */
+  if(typeof d.lvAncre==='number'){
+    const r=cadre.getBoundingClientRect();
+    const y=r.top+(window.pageYOffset||0)+d.lvAncre-hautLecture()-8;
+    window.scrollTo({top:Math.max(0,Math.round(y)),behavior:'smooth'});
     return;
   }
   if(typeof d.lvPos==='number'){
