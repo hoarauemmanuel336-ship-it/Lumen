@@ -520,6 +520,67 @@ le contenu a raccourci. Motif : « La
 Sagesse » mesure 158 000 pixels de haut ; dépliée dans la page, elle butait sur
 le garde-fou de 40 000 et les trois quarts du livre étaient perdus. Les blocs
 interactifs des ARTICLES gardent, eux, l'affichage dans le fil du texte.
+QUI DÉFILE (12/09, Emmanuel : « vérifie si on peut bien scroller ») : le cadre
+décide lui-même de son ascenseur, en comparant la hauteur qu'il vient de
+mesurer à celle de sa propre fenêtre (html overflow auto au-delà, hidden en
+deçà), et il remesure aussi au resize. Posé dans la page, il fait la hauteur de
+son contenu et n'a rien à faire défiler ; en plein écran, il fait l'écran et le
+contenu le dépasse, donc il défile. Avant cette règle, l'overflow hidden de sa
+feuille de style tenait en plein écran et la molette comme le doigt ne
+donnaient rien (vérifié : 0 pixel parcouru avant, la hauteur demandée après).
+La même règle est posée dans articles.html, dont le cadre est une copie.
+L'ASCENSEUR DU CADRE porte l'accent du site (12/09, Emmanuel : « la barre de
+scroll a bien la couleur d'accent du site ? ») : le contenu vit dans son propre
+document, où la feuille de style du site n'entre pas, et sa barre était celle
+du navigateur. Le cadre reçoit donc les mêmes règles que les pages (filet mince
+en rgba(239,230,207,.35) sur fond transparent, dix pixels, coins ronds,
+color-scheme:dark). Toutes les pages du site sont passées de rgba(231,224,207)
+à rgba(239,230,207) sur leurs seules lignes de scrollbar : une seule valeur,
+celle de --or, pour la barre de tout le site.
+LE GESTE DU LECTEUR CLÔT LA REPRISE : la place est reposée plusieurs fois le
+temps que le contenu s'installe, et un lecteur qui prenait la molette dans
+cette seconde-là se voyait ramené en arrière. Le premier geste (molette, doigt,
+touche) met fin aux reprises.
+L'ÉTAT DU CONTENU est gardé par la page, comme la place de lecture : le cadre
+est en bac à sable, donc sans stockage local à lui. Il envoie son état (message
+lvEtat, objet libre : sections dépliées, chapitre ouvert au sommaire, épaisseur
+de lecture) et le demande au chargement (message lvEtatVoulu) ; la page le
+range tel quel par ressource (clé « lv_res_etat_<id> »), sans le lire, et le
+lui rend à la réouverture, avant la place de lecture. Les skills des DIAGRAMMES
+et des LIVRES portent la règle du côté du contenu.
+
+RESSOURCES, CHOISIR ET LA CORBEILLE, 12/09 (Emmanuel : « je veux pouvoir
+supprimer plusieurs ressources ou domaine, et également choisir si je veux
+supprimer les ressources qui sont le domaine si je veux supprimer un domaine,
+et ajoute aussi une corbeille ») :
+• MODE CHOISIR, à côté d'Organiser et exclusif avec lui (S.choix, body.choisir,
+  S.pris) : une coche nue paraît sur chaque carte et chaque rayon, le tap coche
+  au lieu d'ouvrir, ce qui est pris porte la barre d'accent à gauche, et la
+  barre du bas (#acts-choix) remplace les boutons ordinaires : « N choisis »,
+  « Tout choisir » (ce qui est à cet endroit, un second appui rend tout),
+  « Mettre à la corbeille », « Terminer ». Le chevron › d'un rayon reste la
+  porte : on descend d'un étage sans quitter le mode, la sélection tient d'un
+  endroit à l'autre, et le fil d'Ariane ramène.
+• LE CONTENU D'UN DOMAINE suit ou reste, et c'est Emmanuel qui le dit : dès
+  qu'un rayon jeté contient quelque chose, une question précède la
+  confirmation, « Les mettre aussi à la corbeille » ou « Les laisser, sans
+  domaine ». Valable pour un seul rayon (menuRub) comme pour un lot.
+• LA CORBEILLE, écran à part (#ecran-corbeille, adresse #corbeille, bouton
+  « Corbeille (N) » avec la liste). RIEN N'EN PART TOUT SEUL (choix d'Emmanuel
+  contre un vidage à trente jours) : chaque ligne porte « Remettre » et
+  « Supprimer », et « Vider la corbeille » demande confirmation.
+• DONNÉES. Une ressource jetée garde son document et reçoit suppr (date ISO) et
+  supprRub (la racine avec laquelle elle est tombée, vide si elle est tombée
+  seule) ; elle passe publie:false et sa copie publique est retirée, son
+  fichier reste attaché au compte. La liste courante ne montre que ce qui n'a
+  pas de suppr (S.liste), le reste va dans S.jetees. Un rayon jeté quitte
+  « list » pour la liste « corbeille » du même document meta/res_rubriques,
+  avec toute sa branche, chaque rubrique notant sa racine : « Remettre » relève
+  l'arbre entier et les ressources tombées avec lui. Une ressource remise
+  revient PRIVÉE (elle a quitté la ligne en tombant, c'est à l'auteur de
+  republier) ; une rubrique remise dont le parent a disparu remonte au premier
+  niveau, par la règle du rangement. Aucune règle Firestore à changer : tout se
+  passe sous users/{compte}/.
 
 RESSOURCES, 12/09 : l'espèce d'une ressource (Code, Image, PDF, Lien) ne
 s'affiche plus nulle part, ni sur la ligne du bas des cartes, ni sous le titre

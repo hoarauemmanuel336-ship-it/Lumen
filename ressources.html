@@ -40,10 +40,10 @@ body{background:var(--encre);color:var(--parchemin);font-family:var(--serif);fon
 ::selection{background:var(--sel);color:var(--encre)}
 :focus{outline:none}
 :focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}
-*{scrollbar-width:thin;scrollbar-color:rgba(231,224,207,.35) transparent}
+*{scrollbar-width:thin;scrollbar-color:rgba(239,230,207,.35) transparent}
 ::-webkit-scrollbar{width:10px;height:10px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:rgba(231,224,207,.35);background-clip:content-box;border:3px solid transparent;border-radius:99px}
+::-webkit-scrollbar-thumb{background:rgba(239,230,207,.35);background-clip:content-box;border:3px solid transparent;border-radius:99px}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 @keyframes fade{from{opacity:0}to{opacity:1}}
@@ -439,6 +439,55 @@ body.organise .rayon .ry-chev{display:none}
 .rayon .ry-menu:hover{color:var(--or)}
 .rayon .ry-chev{flex-shrink:0;font-family:var(--display);font-size:17px;color:var(--pa2);line-height:1}
 @media(max-width:600px){.rayon .ry-nom{font-size:16px}}
+
+/* ═══ CHOISIR : PLUSIEURS D'UN COUP (12/09) ═══
+   Emmanuel : « je veux pouvoir supprimer plusieurs ressources ou domaines ».
+   Le mode « Choisir » se tient à côté d'« Organiser » et suit le même esprit :
+   une coche paraît sur chaque carte et chaque rayon, le tap coche au lieu
+   d'ouvrir, et la barre du bas dit combien sont pris. La coche est un signe
+   nu, sans cadre, dans le langage des pastilles de Mémoriser ; ce qui est pris
+   porte en plus la barre d'accent à gauche, comme une ligne d'article
+   survolée. Hors du mode, rien de tout cela n'existe. */
+.coche{display:none}
+body.choisir .coche{display:flex;align-items:center;justify-content:center;flex:none;width:26px;height:26px;font-family:var(--display);font-size:16px;line-height:1;color:rgba(255,255,255,.3);user-select:none;-webkit-user-select:none;transition:color .25s}
+body.choisir .carte .coche{position:absolute;left:8px;top:14px}
+body.choisir .rayon .coche{align-self:center;margin-left:-4px}
+body.choisir .carte .ct-bas{padding-left:40px}
+body.choisir .carte .ct-menu,body.choisir .rayon .ry-menu{display:none}
+body.choisir .carte .ct-titre{padding-right:6px}
+/* En mode Choisir, la ligne d'un rayon se coche et son chevron reste la
+   porte : on descend dans un domaine sans quitter le mode, et l'on coche à
+   l'étage où l'on se trouve. */
+body.choisir .rayon .ry-chev{position:relative;color:var(--or);padding:0 4px}
+body.choisir .rayon .ry-chev::before{content:'';position:absolute;top:-14px;bottom:-14px;left:-10px;right:-8px}
+body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
+.carte.pris{border-color:var(--or);box-shadow:inset 3px 0 0 var(--or),0 0 26px var(--halo)}
+.carte.pris .ct-titre{color:#fff}
+.rayon.pris{border-color:var(--or);box-shadow:inset 3px 0 0 var(--or)}
+.rayon.pris .ry-nom{color:var(--or-pale)}
+.pris>.coche{color:var(--or)}
+#compte-choix{font-family:var(--display);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2)}
+
+/* ═══ LA CORBEILLE ═══
+   Une ligne par chose jetée, dans le dessin des rayons : le nom, la date, ce
+   qui est descendu avec elle, puis les deux gestes. Un domaine jeté avec son
+   contenu revient entier d'un seul « Remettre ». */
+#ecran-corbeille{display:none}
+.jete{display:flex;align-items:baseline;gap:16px;padding:15px 2px;border-bottom:1px solid var(--filet)}
+.jt-nom{flex:1;min-width:0;font-family:var(--serif);font-size:17.5px;color:var(--parchemin);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.jt-note{flex:none;font-family:var(--display);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2)}
+.jt-act{flex:none;font-family:var(--display);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2);cursor:pointer;transition:color .3s}
+.jt-act:hover{color:var(--or)}
+.jt-act.danger:hover{color:var(--pourpre)}
+@media(max-width:600px){
+  /* trois lignes, toujours les mêmes : le nom, ce qu'il en est, les deux
+     gestes. Une note courte cessait sinon de tenir sa ligne et les lignes de
+     la corbeille n'avaient plus la même forme. */
+  .jete{flex-wrap:wrap;gap:8px 16px;padding:16px 2px}
+  .jt-nom{flex:1 0 100%;white-space:normal}
+  .jt-note{flex:1 0 100%}
+  .jt-act{min-height:38px;display:inline-flex;align-items:center}
+}
 </style>
 <meta property="og:image" content="https://lumenveritatis.net/icones/partage.png">
 <meta property="og:image:width" content="1200">
@@ -470,6 +519,29 @@ body.organise .rayon .ry-chev{display:none}
       <button class="act majeur" id="b-nouveau">+ Ajouter une ressource</button>
       <button class="act" id="b-section">+ Nouveau domaine</button>
       <button class="act" id="b-organiser">Organiser</button>
+      <button class="act" id="b-choisir">Choisir</button>
+      <button class="act" id="b-corbeille">Corbeille</button>
+    </div>
+    <!-- Les actions du mode Choisir prennent la place des autres : à cet
+         instant, la seule chose à faire est d'agir sur ce qui est coché. -->
+    <div class="acts" id="acts-choix" style="display:none">
+      <span class="compte-choix" id="compte-choix"></span>
+      <button class="act" id="b-tout">Tout choisir</button>
+      <button class="act danger" id="b-jeter">Mettre à la corbeille</button>
+      <button class="act" id="b-choix-fin">Terminer</button>
+    </div>
+  </section>
+
+  <!-- LA CORBEILLE : rien n'en part tout seul (choix d'Emmanuel, 12/09). Ce
+       qui y tombe garde son nom, sa date et, pour un domaine, ce qui est
+       descendu avec lui ; on remet, ou l'on supprime pour de bon. -->
+  <section id="ecran-corbeille">
+    <div class="tete dedans"><h1>Corbeille</h1><span class="art-etat" id="compte-corb"></span></div>
+    <div class="resume" id="mot-corb"></div>
+    <div id="corb-liste"></div>
+    <div class="acts">
+      <button class="act" id="b-corb-retour">&#8592; Les ressources</button>
+      <button class="act danger" id="b-corb-vider">Vider la corbeille</button>
     </div>
   </section>
 
@@ -492,7 +564,7 @@ body.organise .rayon .ry-chev{display:none}
       <button class="act" id="b-enr">Enregistrer</button>
       <button class="act" id="b-etat">Publier</button>
       <button class="act" id="b-ranger">Ranger</button>
-      <button class="act danger" id="b-suppr">Supprimer</button>
+      <button class="act danger" id="b-suppr">À la corbeille</button>
     </div>
   </section>
 </main>
@@ -580,7 +652,10 @@ try{db.enablePersistence({synchronizeTabs:true}).catch(function(){});}catch(_){}
 const AUTEUR='hoarauemmanuel336@gmail.com';
 
 // ════════ ÉTAT ════════
-const S={uid:null,email:null,auteur:false,liste:[],res:null,sale:false,minute:null,rubs:[],ouLa:'',vu:''};
+/* liste : ce qui vit. jetees : ce qui est à la corbeille (même compte, même
+   collection, marqué d'une date de mise au rebut). corb : les domaines et
+   sections jetés. pris : ce qui est coché en mode Choisir. */
+const S={uid:null,email:null,auteur:false,liste:[],jetees:[],res:null,sale:false,minute:null,rubs:[],corb:[],ouLa:'',vu:'',choix:false,pris:new Set()};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 const acol=()=>db.collection('users/'+S.uid+'/ressources');
@@ -682,7 +757,9 @@ function pretListe(){
 setTimeout(()=>{if(!AUTH_VU){AUTH_VU=true;try{vue('liste');}catch(_){}}},6000);
 function saveRubs(){
   if(!RUBS_LUES){lvInfo('Le rangement n’est pas encore chargé. Réessayez dans un instant.');return;}
-  rdoc().set({list:S.rubs}).catch(e=>{console.warn('rubriques',e);lvInfo('Le rangement n’a pas pu être enregistré.');});
+  /* la corbeille voyage avec le rangement : elle est faite des mêmes rubriques,
+     mises de côté au lieu d'être effacées */
+  rdoc().set({list:S.rubs,corbeille:S.corb}).catch(e=>{console.warn('rubriques',e);lvInfo('Le rangement n’a pas pu être enregistré.');});
   /* ── L'ORDRE DES DOMAINES SE VOIT AUSSI CHEZ LE VISITEUR (05/09) ──
      Le visiteur reconstruisait l'arbre à partir des chemins des ressources
      publiées, dans l'ordre où elles lui arrivaient (les plus récentes
@@ -859,6 +936,19 @@ function pageCadre(code){
     +'<meta name="viewport" content="width=device-width,initial-scale=1">'
     +'<style>html,body{margin:0;padding:0;background:#000;color:#fff;'
     +'font-family:Georgia,serif}*{box-sizing:border-box}'
+    /* ── L'ASCENSEUR DU CADRE PORTE L'ACCENT DU SITE (12/09) ──
+       Le contenu vit dans son propre document : la feuille de style du site
+       ne l'atteint pas, et sa barre de défilement était celle du navigateur,
+       claire et large, la seule pièce du plein écran à ne pas être de la
+       maison. On lui pose donc les mêmes règles qu'aux pages : filet mince à
+       l'or du site sur fond transparent, et color-scheme sombre pour que tout
+       ce que le navigateur dessine de lui-même suive la même nuit. */
+    +'html{color-scheme:dark}'
+    +'*{scrollbar-width:thin;scrollbar-color:rgba(239,230,207,.35) transparent}'
+    +'::-webkit-scrollbar{width:10px;height:10px}'
+    +'::-webkit-scrollbar-track{background:transparent}'
+    +'::-webkit-scrollbar-thumb{background:rgba(239,230,207,.35);background-clip:content-box;border:3px solid transparent;border-radius:99px}'
+    +'::-webkit-scrollbar-thumb:hover{background:rgba(239,230,207,.6);background-clip:content-box;border:3px solid transparent}'
     /* le texte du diagramme reste sélectionnable au doigt : sur mobile, la
        copie à l'ancienne, par appui long, doit rester possible */
     +'body{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}'
@@ -930,6 +1020,15 @@ function pageCadre(code){
        doigt ou la molette sans qu'on voie pourquoi. La boîte étant close, la
        page du cadre fait exactement la hauteur de ce qu'elle montre. */
     +'w.style.height=n+"px";demande=n;'
+    /* ── QUI DÉFILE, ET QUAND (Emmanuel, 12/09 : « vérifie si on peut bien
+       scroller ») ──
+       Posé dans la page, le cadre fait la hauteur exacte de son contenu : rien
+       n'a à défiler chez lui, et son ascenseur reste fermé. En PLEIN ÉCRAN, le
+       cadre fait l'écran et le contenu le dépasse : c'est lui, alors, qui doit
+       défiler. Le cadre le voit tout seul en comparant la hauteur mesurée à
+       celle de sa propre fenêtre, si bien qu'un livre de cent cinquante mille
+       pixels se parcourt du doigt comme à la molette. */
+    +'document.documentElement.style.overflow=(n>window.innerHeight+1)?"auto":"hidden";'
     +'try{parent.postMessage({lvHaut:n},"*");}catch(e){}}'
     /* ── CE QUI COLLE EN HAUT DOIT SUIVRE LA LECTURE ──
        Ouvert seul dans un navigateur, le diagramme voit sa barre « Explorer »
@@ -1000,7 +1099,17 @@ function pageCadre(code){
     +'function ditPos(){posDit=0;try{parent.postMessage({lvPos:Math.round(window.pageYOffset||document.documentElement.scrollTop||0)},"*");}catch(e){}}'
     +'function planPos(){if(posDit)return;posDit=setTimeout(ditPos,220);}'
     +'window.addEventListener("scroll",planPos,{passive:true});'
-    +'function reposeToi(){if(posVoulue<0)return;var m=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);'
+    /* ── LE GESTE DU LECTEUR CLÔT LA REPRISE (12/09) ──
+       La place est reposée plusieurs fois, le temps que le contenu s'installe.
+       Un lecteur qui prend la molette ou le doigt dans cette seconde-là se
+       voyait ramené en arrière par la reprise suivante. Son premier geste met
+       donc fin aux reprises : à partir de là, c'est lui qui mène. */
+    +'var posGeste=0;'
+    +'function siGeste(){posGeste=1;}'
+    +'window.addEventListener("wheel",siGeste,{passive:true});'
+    +'window.addEventListener("touchstart",siGeste,{passive:true});'
+    +'window.addEventListener("keydown",siGeste);'
+    +'function reposeToi(){if(posGeste||posVoulue<0)return;var m=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);'
     +'window.scrollTo(0,Math.min(posVoulue,m));}'
     +'window.addEventListener("message",function(e){var d=e.data;if(!d)return;'
     +'if(typeof d.lvRevoir==="number"){posVoulue=d.lvRevoir;reposeToi();'
@@ -1009,6 +1118,10 @@ function pageCadre(code){
     +'if(typeof d.lvApplique!=="number")return;'
     +'document.documentElement.style.overflow=(d.lvApplique<demande-1)?"auto":"hidden";});'
     +'window.addEventListener("load",function(){h();recense();});'
+    /* la fenêtre du cadre change de taille au passage en plein écran comme à
+       la rotation de l'appareil : on remesure, et le défilement se rouvre ou
+       se referme selon ce que le contenu demande */
+    +'window.addEventListener("resize",function(){h();planRecense();});'
     +'setTimeout(h,120);setTimeout(h,600);setTimeout(recense,700);'
     /* ── QUI SURVEILLE QUOI ──
        On ferme la boîte à la hauteur mesurée, donc elle ne bouge plus : la
@@ -1225,7 +1338,7 @@ function dateFr(iso){
 function carteRessource(r,publik){
   const t=typeDe(r), titre=(r.titre||'').trim();
   const d=document.createElement('div');
-  d.className='carte'; d.dataset.rid2=r.id;
+  d.className='carte'+(S.pris.has('c:'+r.id)?' pris':''); d.dataset.rid2=r.id;
   d.setAttribute('role','button'); d.setAttribute('tabindex','0');
   /* Pas d'aperçu : une carte porte son titre et son état, rien de plus. Une
      miniature qui ne montre rien vaut moins qu'un titre lisible. L'espèce, elle,
@@ -1235,7 +1348,8 @@ function carteRessource(r,publik){
     +(publik?'<span>'+esc(dateFr(r.maj||r.cree))+'</span>'
             :'<span class="ct-etat'+(r.publie?' publie':'')+'">'+(r.publie?'Publié':'Privé')+'</span>')
     +'</div></div>'
-    +(publik?'':'<span class="ct-menu" data-rmenu2="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Cette ressource">⋯</span>'
+    +(publik?'':'<span class="coche" aria-hidden="true">✓</span>'
+      +'<span class="ct-menu" data-rmenu2="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Cette ressource">⋯</span>'
       +'<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>'
       +'<span class="fleches"><b data-mv="-1" role="button" tabindex="0" aria-label="Avancer">‹</b><b data-mv="1" role="button" tabindex="0" aria-label="Reculer">›</b></span>');
   return d;
@@ -1275,9 +1389,10 @@ function majFil(){
 }
 function rayonDe(r,publik){
   const d=document.createElement('div');
-  d.className='rayon'; d.dataset.va=r.id;
+  d.className='rayon'+(S.pris.has('r:'+r.id)?' pris':''); d.dataset.va=r.id;
   d.setAttribute('role','button'); d.setAttribute('tabindex','0');
-  d.innerHTML=(publik?'':'<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>')
+  d.innerHTML=(publik?'':'<span class="coche" aria-hidden="true">✓</span>'
+    +'<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>')
     +'<span class="ry-nom">'+esc(r.nom)+'</span><span class="ry-n">'+compteRub(r.id)+'</span>'
     +(publik?'':'<span class="fleches"><b data-mv="-1" role="button" tabindex="0" aria-label="Avancer">‹</b><b data-mv="1" role="button" tabindex="0" aria-label="Reculer">›</b></span>'
       +'<span class="ry-menu" data-rmenu="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Ce rayon">⋯</span>')
@@ -1298,6 +1413,7 @@ function rendLister(){
   /* les deux boutons de l'auteur arrivent AVEC la liste, pas avant : un
      élément qui se pose puis se déplace, c'est encore une page qui bouge */
   if(S.auteur)$('acts-liste').style.display=pretListe()?'':'none';
+  if(S.auteur){majCorbBouton();majChoix();}
   if(!pretListe()){ $('compte-liste').textContent=''; h.innerHTML='<div class="vide">Chargement…</div>'; return; }
   const fils=enfants(ou), res=ressourcesDe(ou);
   /* Le compte dit ce que contient l'endroit où l'on est, sous-sections
@@ -1343,7 +1459,7 @@ async function menuRub(id){
      de parent, il fallait le recréer ailleurs et redéplacer chaque ressource
      une à une (05/09). */
   e.push({cle:'deplacer',nom:'Ranger dans…',note:r.parent&&rubValide(r.parent)?chemin(r.parent):'à la racine'});
-  e.push({cle:'suppr',nom:'Supprimer',danger:true});
+  e.push({cle:'suppr',nom:'Mettre à la corbeille',danger:true});
   const c=await lvChoix(r.nom,e);
   if(!c)return;
   if(c==='deplacer'){await deplaceRub(id);return;}
@@ -1355,25 +1471,24 @@ async function menuRub(id){
   if(c==='sous'){await nouvelleRub(id);return;}
 
   if(c==='suppr'){
-    const dedans=descendance(id).reduce((n,x)=>n+ressourcesDe(x).length,0);
-    const mot=motRub(id);
-    if(!await lvConfirm(dedans
-      ? 'Supprimer ce '+mot+' ? Les '+dedans+' ressource(s) qu’il contient ne sont pas supprimées, elles ressortent sans domaine.'
-      : 'Supprimer ce '+mot+' ?',1))return;
-    const morts=descendance(id);
-    /* On note où l'on se tenait AVANT de retirer la rubrique : une fois la
-       liste filtrée, l'endroit courant n'est plus reconnu, ici() répond « la
-       racine », et l'on croirait à tort n'avoir jamais été dedans. */
-    const ouAvant=S.ouLa;
-    S.rubs=S.rubs.filter(x=>morts.indexOf(x.id)<0);
-    saveRubs();
-    /* les ressources orphelines retombent sans domaine, sans quoi elles
-       deviendraient invisibles avec leur rubrique */
-    S.liste.forEach(a=>{if(morts.indexOf(a.rub)>=0){a.rub='';acol().doc(a.id).set({rub:''},{merge:true}).then(()=>{if(a.publie)rafraichitPublic(a);}).catch(()=>{});}});
-    /* et si l'on se tenait DEDANS, on remonte d'un cran plutôt que de rester
-       sur une page qui n'existe plus */
-    if(morts.indexOf(ouAvant)>=0)vaVers(r.parent||'');
-    else rendLister();
+    /* Le contenu suit le domaine, ou reste : c'est Emmanuel qui le dit, chaque
+       fois qu'il y a quelque chose dedans (12/09). */
+    const dedans=compteRub(id), mot=motRub(id);
+    let avec=true;
+    if(dedans){
+      const q=await lvChoix(dedans>1?('Et les '+dedans+' ressources rangées dedans ?'):'Et la ressource rangée dedans ?',[
+        {cle:'avec',nom:'Les mettre aussi à la corbeille',fort:true},
+        {cle:'sans',nom:'Les laisser, sans domaine'}
+      ]);
+      if(!q)return;
+      avec=(q==='avec');
+    }
+    if(!await lvConfirm('Mettre ce '+mot+' à la corbeille'+(dedans&&avec?', avec son contenu':'')+' ?'))return;
+    try{ await jetteRubrique(id,avec); majCorbBouton(); }
+    catch(e){
+      console.warn('corbeille',e);
+      lvInfo('La mise à la corbeille a échoué. Vérifiez la connexion, puis réessayez.');
+    }
   }
 }
 /* la hauteur d'un sous-arbre : 1 pour une section sans enfant, 2 si elle a
@@ -1502,6 +1617,7 @@ function rubDans(id,cible){
 /* ── LE MODE ORGANISER ── */
 function basculeOrganise(on){
   S.organise=(on===undefined)?!S.organise:!!on;
+  if(S.organise&&S.choix)basculeChoisir(false);
   document.body.classList.toggle('organise',S.organise);
   const b=$('b-organiser'); if(b){b.textContent=S.organise?'Terminer':'Organiser';b.classList.toggle('majeur',S.organise);}
   const m=$('mot-liste'); if(m&&S.auteur)m.textContent=S.organise?'Tirez une carte ou un rayon par sa poignée ⠿ et posez-le où vous voulez. Posé sur un rayon, il y entre ; posé sur le fil d’Ariane, il remonte.':'';
@@ -1607,6 +1723,205 @@ document.addEventListener('pointerup',e=>{
 });
 document.addEventListener('pointercancel',()=>dragNettoie());
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&DRAG)dragNettoie();});
+
+// ════════ CHOISIR PLUSIEURS ════════
+/* ── CHOISIR (12/09, Emmanuel : « je veux pouvoir supprimer plusieurs
+   ressources ou domaines ») ──
+   Un mode, dans l'esprit d'Organiser : on coche ce qu'on veut, la barre du bas
+   dit combien sont pris, et l'action porte sur tout le lot d'un coup. Le tap
+   coche ; le chevron › d'un rayon reste la porte, si bien qu'on descend d'un
+   étage sans quitter le mode et que la sélection déjà faite tient. Organiser
+   et Choisir s'excluent : chacun demande le tap pour lui. */
+function basculeChoisir(on){
+  S.choix=(on===undefined)?!S.choix:!!on;
+  if(S.choix&&S.organise)basculeOrganise(false);
+  if(!S.choix)S.pris.clear();
+  document.body.classList.toggle('choisir',S.choix);
+  const b=$('b-choisir'); if(b){b.textContent=S.choix?'Terminer':'Choisir';b.classList.toggle('majeur',S.choix);}
+  const m=$('mot-liste');
+  if(m&&S.auteur)m.textContent=S.choix?'Touchez les cartes et les rayons à prendre. Le chevron › d’un rayon descend dedans.':'';
+  majChoix(); rendLister();
+}
+function majChoix(){
+  const a=$('acts-liste'), c=$('acts-choix');
+  if(a&&S.auteur&&pretListe())a.style.display=S.choix?'none':'';
+  if(c)c.style.display=(S.choix&&S.auteur)?'':'none';
+  const n=S.pris.size, t=$('compte-choix');
+  if(t)t.textContent=n?(n+(n>1?' choisis':' choisi')):'Rien de choisi';
+  const j=$('b-jeter'); if(j){j.style.opacity=n?'1':'.4';j.disabled=!n;}
+}
+function prend(cle,el){
+  if(S.pris.has(cle)){S.pris.delete(cle);if(el)el.classList.remove('pris');}
+  else{S.pris.add(cle);if(el)el.classList.add('pris');}
+  majChoix();
+}
+/* « Tout choisir » prend ce qui est À CET ENDROIT, rayons et cartes ; un
+   second appui rend tout. */
+function toutChoisir(){
+  const ou=ici(), fils=enfants(ou), res=ressourcesDe(ou), tout=fils.length+res.length;
+  const deja=tout>0&&fils.every(r=>S.pris.has('r:'+r.id))&&res.every(a=>S.pris.has('c:'+a.id));
+  S.pris.clear();
+  if(!deja){fils.forEach(r=>S.pris.add('r:'+r.id));res.forEach(a=>S.pris.add('c:'+a.id));}
+  majChoix(); rendLister();
+}
+async function jetteChoix(){
+  if(!S.pris.size)return;
+  const pris=[...S.pris];
+  const rids=pris.filter(k=>k.slice(0,2)==='r:').map(k=>k.slice(2)).filter(rubValide);
+  const res=pris.filter(k=>k.slice(0,2)==='c:').map(k=>k.slice(2))
+                .map(id=>S.liste.find(x=>x.id===id)).filter(Boolean);
+  if(!rids.length&&!res.length){basculeChoisir(false);return;}
+  let avec=true;
+  const sous=rids.reduce((n,id)=>n+compteRub(id),0);
+  if(sous){
+    const q=await lvChoix(sous>1?('Et les '+sous+' ressources rangées dedans ?'):'Et la ressource rangée dedans ?',[
+      {cle:'avec',nom:'Les mettre aussi à la corbeille',fort:true},
+      {cle:'sans',nom:'Les laisser, sans domaine'}
+    ]);
+    if(!q)return;
+    avec=(q==='avec');
+  }
+  const bouts=[];
+  if(res.length)bouts.push(res.length+(res.length>1?' ressources':' ressource'));
+  /* un seul rayon se nomme par ce qu'il est, plusieurs se comptent ensemble */
+  if(rids.length)bouts.push(rids.length>1?(rids.length+' domaines ou sections'):('ce '+motRub(rids[0])));
+  if(!await lvConfirm('Mettre à la corbeille '+bouts.join(' et ')+' ?'))return;
+  /* du plus haut vers le plus profond : un domaine emporte ses sections, et
+     celles qui étaient cochées avec lui sont déjà parties quand leur tour
+     vient */
+  const ordre=rids.slice().sort((x,y)=>niveau(x)-niveau(y));
+  try{
+    for(const a of res)await jetteRessource(a,'');
+    for(const id of ordre)if(rubValide(id))await jetteRubrique(id,avec);
+  }catch(e){
+    console.warn('corbeille',e);
+    lvInfo('Une partie n’a pas pu être mise à la corbeille. Vérifiez la connexion, puis réessayez.');
+  }
+  basculeChoisir(false); majCorbBouton();
+}
+
+// ════════ LA CORBEILLE ════════
+/* ── LA CORBEILLE (12/09, Emmanuel : « ajoute aussi une corbeille ») ──
+   Une ressource jetée garde sa place dans le compte et reçoit une date de mise
+   au rebut : elle sort de la liste, elle entre à la corbeille, son fichier
+   reste attaché, et sa copie publique est retirée de la ligne. Un domaine jeté
+   passe de la liste des rubriques à la liste « corbeille » du même document,
+   avec toute sa branche, chaque rubrique notant la RACINE avec laquelle elle
+   est tombée : « Remettre » relève l'arbre entier d'un seul geste, et les
+   ressources descendues avec lui reviennent avec lui. Rien n'en part tout seul
+   (choix d'Emmanuel) : le départ définitif se demande, ligne par ligne ou d'un
+   coup par « Vider la corbeille ». Une ressource remise revient PRIVÉE : elle
+   a quitté la ligne en tombant, et c'est à l'auteur de la republier. */
+const maintenant=()=>new Date().toISOString();
+const racinesJetees=()=>S.corb.filter(x=>(x.racine||x.id)===x.id);
+/* une ressource jetée seule, ou dont le domaine a depuis quitté la corbeille,
+   se présente pour elle-même */
+const jeteesSeules=()=>S.jetees.filter(a=>!a.supprRub||!S.corb.some(x=>x.id===a.supprRub));
+const nCorbeille=()=>racinesJetees().length+jeteesSeules().length;
+function majCorbBouton(){
+  const b=$('b-corbeille'); if(!b)return;
+  const n=nCorbeille();
+  b.textContent=n?('Corbeille ('+n+')'):'Corbeille';
+}
+async function jetteRessource(a,racine){
+  if(!a)return;
+  if(a.publie)await retireDeLigne(a);
+  const q={suppr:maintenant(),supprRub:racine||'',publie:false};
+  await acol().doc(a.id).set(q,{merge:true});
+  Object.assign(a,q);
+}
+async function remetRessource(a){
+  if(!a)return;
+  await acol().doc(a.id).set({suppr:'',supprRub:''},{merge:true});
+  a.suppr=''; a.supprRub='';
+}
+async function detruitRessource(a){
+  if(!a)return;
+  SUPPRIMES.add(a.id);
+  /* la copie publique est déjà retirée à la mise à la corbeille ; ce filet
+     couvre une fiche tombée là avant cette règle */
+  try{ if(a.publie)await retireDeLigne(a); }catch(e){console.warn('retrait',e);}
+  await acol().doc(a.id).delete();
+  if(a.media)await effaceMedia(a.media);
+}
+async function jetteRubrique(id,avec){
+  const r=rubDe(id); if(!r)return;
+  const morts=descendance(id), ouAvant=S.ouLa, quand=maintenant();
+  const dedans=S.liste.filter(a=>morts.indexOf(a.rub)>=0);
+  morts.forEach(mid=>{const x=rubDe(mid);if(x)S.corb.push({id:x.id,nom:x.nom,parent:x.parent||'',suppr:quand,racine:id});});
+  S.rubs=S.rubs.filter(x=>morts.indexOf(x.id)<0);
+  saveRubs();
+  for(const a of dedans){
+    if(avec)await jetteRessource(a,id);
+    else{
+      /* laissées en place, elles ressortent sans domaine */
+      a.rub=''; await acol().doc(a.id).set({rub:''},{merge:true});
+      if(a.publie)await rafraichitPublic(a);
+    }
+  }
+  /* si l'on se tenait dedans, on remonte d'un cran plutôt que de rester sur
+     une page qui n'existe plus */
+  if(morts.indexOf(ouAvant)>=0)vaVers(r.parent||'');
+  else rendLister();
+}
+async function remetRubrique(id){
+  const bande=S.corb.filter(x=>(x.racine||x.id)===id);
+  if(!bande.length)return;
+  /* une rubrique dont le parent a disparu remonte au premier niveau : la règle
+     du rangement s'en charge d'elle-même */
+  bande.forEach(x=>S.rubs.push({id:x.id,nom:x.nom,parent:x.parent||''}));
+  S.corb=S.corb.filter(x=>(x.racine||x.id)!==id);
+  saveRubs();
+  for(const a of S.jetees.filter(a=>a.supprRub===id))await remetRessource(a);
+  rendCorbeille(); majCorbBouton();
+}
+async function detruitRubrique(id){
+  for(const a of S.jetees.filter(a=>a.supprRub===id))await detruitRessource(a);
+  S.corb=S.corb.filter(x=>(x.racine||x.id)!==id);
+  saveRubs(); rendCorbeille(); majCorbBouton();
+}
+function ligneJetee(nom,note,cleR,cleX){
+  const d=document.createElement('div'); d.className='jete';
+  d.innerHTML='<span class="jt-nom">'+esc(nom)+'</span>'
+    +'<span class="jt-note">'+esc(note)+'</span>'
+    +'<span class="jt-act" '+cleR+' role="button" tabindex="0">Remettre</span>'
+    +'<span class="jt-act danger" '+cleX+' role="button" tabindex="0">Supprimer</span>';
+  return d;
+}
+function rendCorbeille(){
+  const h=$('corb-liste'); if(!h)return;
+  majCorbBouton();
+  const racines=racinesJetees(), seules=jeteesSeules(), n=racines.length+seules.length;
+  $('compte-corb').textContent=n?(n+(n>1?' éléments':' élément')):'';
+  $('mot-corb').textContent=n
+    ? 'Ce qui est ici attend : rien n’en part de lui-même. Remettez ce que vous voulez garder, videz le reste.'
+    : '';
+  const bv=$('b-corb-vider'); if(bv)bv.style.display=n?'':'none';
+  h.innerHTML='';
+  if(!n){h.innerHTML='<div class="vide">La corbeille est vide.</div>';return;}
+  racines.forEach(x=>{
+    const dedans=S.jetees.filter(a=>a.supprRub===x.id).length;
+    const note=(x.parent?'Section':'Domaine')
+      +(dedans?' · '+dedans+(dedans>1?' ressources':' ressource'):'')
+      +' · '+dateFr(x.suppr);
+    h.appendChild(ligneJetee(x.nom||'Sans nom',note,'data-corb-r="'+esc(x.id)+'"','data-corb-rx="'+esc(x.id)+'"'));
+  });
+  seules.forEach(a=>{
+    h.appendChild(ligneJetee(a.titre||'Sans titre',dateFr(a.suppr),'data-corb-a="'+esc(a.id)+'"','data-corb-ax="'+esc(a.id)+'"'));
+  });
+}
+async function videCorbeille(){
+  if(!nCorbeille())return;
+  if(!await lvConfirm('Vider la corbeille ? Tout ce qu’elle contient part pour de bon.',1))return;
+  try{
+    for(const a of S.jetees.slice())await detruitRessource(a);
+    S.corb=[]; saveRubs();
+  }catch(e){
+    console.warn('corbeille',e);
+    lvInfo('La corbeille n’a pas pu être entièrement vidée. Vérifiez la connexion, puis réessayez.');
+  }
+  rendCorbeille(); majCorbBouton();
+}
 
 // ════════ L'ESPACE PUBLIC ════════
 /* Les ressources privées vivent sous users/{compte}/… , que personne d'autre
@@ -1765,10 +2080,14 @@ function vue(quoi){
   fermePlein();
   /* on quitte la liste : le mode Organiser se referme de lui-même */
   if(quoi!=='liste'&&S.organise){S.organise=false;document.body.classList.remove('organise');const b=$('b-organiser');if(b){b.textContent='Organiser';b.classList.remove('majeur');}const m=$('mot-liste');if(m)m.textContent='';}
+  /* le mode Choisir appartient à la liste : on le referme en la quittant */
+  if(quoi!=='liste'&&S.choix)basculeChoisir(false);
   $('ecran-liste').style.display=quoi==='liste'?'block':'none';
   $('ecran-edit').style.display=quoi==='edit'?'block':'none';
   $('ecran-voir').style.display=quoi==='voir'?'block':'none';
+  $('ecran-corbeille').style.display=quoi==='corbeille'?'block':'none';
   if(quoi==='liste'){ if(S.auteur)rendLister(); else rendPublic(); }
+  else if(quoi==='corbeille')rendCorbeille();
   window.scrollTo(0,0);
 }
 function corpsVoir(a,publik){
@@ -1906,22 +2225,18 @@ async function menuRessource(id){
     {cle:'modif',nom:'Modifier'},
     {cle:'etat',nom:a.publie?'Rendre privé':'Publier',note:a.publie?'publiée':'privée'},
     {cle:'ranger',nom:'Ranger dans…',note:rubValide(a.rub)?chemin(a.rub):'sans domaine'},
-    {cle:'suppr',nom:'Supprimer',danger:true}
+    {cle:'suppr',nom:'Mettre à la corbeille',danger:true}
   ]);
   if(c==='voir')voit(a,false);
   else if(c==='modif')ouvre(id);
   else if(c==='etat')await basculeEtat(id);
   else if(c==='ranger')rangeRessource(id);
   else if(c==='suppr'){
-    if(!await lvConfirm('Supprimer cette ressource ? Elle ne pourra pas être récupérée.',1))return;
-    SUPPRIMES.add(id);
-    try{
-      if(a.publie)await retireDeLigne(a);
-      await acol().doc(id).delete();
-      if(a.media)await effaceMedia(a.media);
-    }catch(e){
-      console.warn('suppression',e); SUPPRIMES.delete(id); rendLister();
-      lvInfo('La suppression a échoué : la ressource est peut-être encore en ligne. Vérifiez la connexion et réessayez.');
+    if(!await lvConfirm('Mettre cette ressource à la corbeille ? Elle quitte la ligne et vous la retrouvez dans la corbeille.'))return;
+    try{ await jetteRessource(a,''); rendLister(); majCorbBouton(); }
+    catch(e){
+      console.warn('corbeille',e); rendLister();
+      lvInfo('La mise à la corbeille a échoué : la ressource est peut-être encore en ligne. Vérifiez la connexion, puis réessayez.');
     }
   }
 }
@@ -2047,27 +2362,40 @@ function nouveau(){
 }
 async function supprime(){
   if(!S.res)return;
-  if(!await lvConfirm('Supprimer cette ressource ? Elle ne pourra pas être récupérée.',1))return;
+  if(!await lvConfirm('Mettre cette ressource à la corbeille ? Elle quitte la ligne et vous la retrouvez dans la corbeille.'))return;
   clearTimeout(S.minute);
-  const id=S.res.id, media=S.res.media, etaitPublie=!!S.res.publie, copie=S.res;
-  SUPPRIMES.add(id);
+  const copie=S.res;
   S.res=null; S.sale=false;
   vue('liste');
-  /* les trois étapes sous un seul filet : un échec se dit, et la ressource
-     revient à la liste au lieu de rester en ligne en silence (05/09) */
+  /* la ressource ouverte dans l'éditeur tombe comme une autre : elle quitte la
+     ligne, garde son fichier, et attend à la corbeille. Un échec se dit, et
+     elle revient à la liste telle qu'elle était (05/09). */
   try{
-    if(etaitPublie)await retireDeLigne(copie);
-    await acol().doc(id).delete();
-    if(media)await effaceMedia(media);
+    await jetteRessource(copie,'');
+    rendLister(); majCorbBouton();
   }catch(e){
-    console.warn('suppression',e); SUPPRIMES.delete(id); rendLister();
-    lvInfo('La suppression a échoué : la ressource est peut-être encore en ligne. Vérifiez la connexion et réessayez.');
+    console.warn('corbeille',e); rendLister();
+    lvInfo('La mise à la corbeille a échoué : la ressource est peut-être encore en ligne. Vérifiez la connexion, puis réessayez.');
   }
 }
 
 // ════════ ÉVÉNEMENTS ════════
 $('b-nouveau').onclick=nouveau;
 $('b-organiser').onclick=()=>basculeOrganise();
+$('b-choisir').onclick=()=>basculeChoisir();
+$('b-choix-fin').onclick=()=>basculeChoisir(false);
+$('b-tout').onclick=toutChoisir;
+$('b-jeter').onclick=jetteChoix;
+$('b-corbeille').onclick=()=>{
+  if(location.hash!=='#corbeille'){try{history.pushState(null,'','#corbeille');}catch(_){}}
+  vue('corbeille');
+};
+$('b-corb-retour').onclick=()=>{
+  const cible=S.ouLa?('#d/'+S.ouLa):'';
+  if((location.hash||'')!==cible){try{history.pushState(null,'',cible||location.pathname);}catch(_){}}
+  vue('liste');
+};
+$('b-corb-vider').onclick=videCorbeille;
 $('b-section').onclick=()=>nouvelleRub(ici());
 $('b-retour').onclick=async()=>{if(S.sale)await enregistre(true);S.res=null;S.vu='';vue('liste');};
 $('b-voir-retour').onclick=()=>{S.res=null;S.vu='';vaVers(ici());vue('liste');};
@@ -2094,6 +2422,44 @@ document.addEventListener('keydown',e=>{
   document.getElementById('auth-overlay').classList.remove('ouvert');
 });
 document.addEventListener('click',e=>{
+  /* ── LES DEUX GESTES DE LA CORBEILLE ── */
+  const cr=e.target.closest?e.target.closest('[data-corb-r]'):null;
+  if(cr){remetRubrique(cr.getAttribute('data-corb-r'));return;}
+  const ca2=e.target.closest?e.target.closest('[data-corb-a]'):null;
+  if(ca2){
+    const a=S.jetees.find(x=>x.id===ca2.getAttribute('data-corb-a'));
+    if(a)remetRessource(a).then(()=>{rendCorbeille();majCorbBouton();}).catch(err=>{console.warn('corbeille',err);lvInfo('La remise a échoué. Vérifiez la connexion, puis réessayez.');});
+    return;
+  }
+  const crx=e.target.closest?e.target.closest('[data-corb-rx]'):null;
+  if(crx){
+    const id=crx.getAttribute('data-corb-rx'), x=S.corb.find(y=>y.id===id);
+    const dedans=S.jetees.filter(a=>a.supprRub===id).length;
+    lvConfirm('Supprimer « '+((x&&x.nom)||'ceci')+' »'+(dedans?' et les '+dedans+' ressource'+(dedans>1?'s':'')+' tombée'+(dedans>1?'s':'')+' avec':'')+' pour de bon ?',1)
+      .then(ok=>{if(ok)return detruitRubrique(id);})
+      .catch(err=>{console.warn('corbeille',err);lvInfo('La suppression définitive a échoué. Vérifiez la connexion, puis réessayez.');});
+    return;
+  }
+  const cax=e.target.closest?e.target.closest('[data-corb-ax]'):null;
+  if(cax){
+    const a=S.jetees.find(x=>x.id===cax.getAttribute('data-corb-ax'));
+    if(a)lvConfirm('Supprimer « '+(a.titre||'Sans titre')+' » pour de bon ? Son fichier part avec elle.',1)
+      .then(ok=>{if(ok)return detruitRessource(a).then(()=>{rendCorbeille();majCorbBouton();});})
+      .catch(err=>{console.warn('corbeille',err);lvInfo('La suppression définitive a échoué. Vérifiez la connexion, puis réessayez.');});
+    return;
+  }
+  /* ── EN MODE CHOISIR, LE TAP PREND ET REND ──
+     La carte se coche, la ligne d'un rayon se coche, et seuls le chevron › du
+     rayon et le fil d'Ariane mènent encore quelque part. */
+  if(S.choix&&S.auteur){
+    const ch=e.target.closest?e.target.closest('.ry-chev'):null;
+    const ry=ch?ch.closest('.rayon'):null;
+    if(ry&&ry.dataset.va){e.stopPropagation();vaVers(ry.dataset.va);return;}
+    const kc=e.target.closest?e.target.closest('.carte'):null;
+    if(kc&&kc.dataset.rid2){e.stopPropagation();prend('c:'+kc.dataset.rid2,kc);return;}
+    const kr=e.target.closest?e.target.closest('.rayon'):null;
+    if(kr&&kr.dataset.va){e.stopPropagation();prend('r:'+kr.dataset.va,kr);return;}
+  }
   const c=e.target.closest?e.target.closest('[data-rmenu2]'):null;
   if(c){e.stopPropagation();menuRessource(c.getAttribute('data-rmenu2'));return;}
   const m=e.target.closest?e.target.closest('[data-rmenu]'):null;
@@ -2126,7 +2492,7 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('keydown',e=>{
   if(e.key!=='Enter'&&e.key!==' ')return;
-  const el=e.target.closest?e.target.closest('[data-va],[data-rid2],[data-rmenu],[data-rmenu2]'):null;
+  const el=e.target.closest?e.target.closest('[data-va],[data-rid2],[data-rmenu],[data-rmenu2],[data-corb-r],[data-corb-a],[data-corb-rx],[data-corb-ax]'):null;
   if(!el)return;
   e.preventDefault(); el.click();
 });
@@ -2140,7 +2506,7 @@ function ecoute(){
   if(!S.uid)return;
   RUBS_LUES=false; LISTE_LUE=false;
   rdoc().get()
-    .then(d=>{S.rubs=(d.exists&&d.data().list)||[];RUBS_LUES=true;
+    .then(d=>{S.rubs=(d.exists&&d.data().list)||[];S.corb=(d.exists&&d.data().corbeille)||[];RUBS_LUES=true;
       /* si une ressource est déjà ouverte à l'écran, on la laisse : relire le
          rangement ne doit pas la refermer */
       if(!S.res&&$('ecran-voir').style.display==='none')routeHash();})
@@ -2148,7 +2514,11 @@ function ecoute(){
   COUPE=acol().onSnapshot(sn=>{
     const l=sn.docs.map(d=>Object.assign({id:d.id},d.data()));
     l.sort((a,b)=>String(b.maj||b.cree||'').localeCompare(String(a.maj||a.cree||'')));
-    S.liste=l; LISTE_LUE=true;
+    /* Ce qui est à la corbeille porte une date de mise au rebut : la liste
+       courante ne montre que ce qui vit, la corbeille montre le reste. */
+    S.jetees=l.filter(a=>!!a.suppr).sort((a,b)=>String(b.suppr).localeCompare(String(a.suppr)));
+    S.liste=l.filter(a=>!a.suppr); LISTE_LUE=true;
+    if($('ecran-corbeille').style.display!=='none')rendCorbeille();
     /* on ne rebâtit la liste que si elle est bien à l'écran : sinon un simple
        rafraîchissement des données chassait la ressource ouverte */
     if(!S.res&&!S.vu)rendLister();
@@ -2190,7 +2560,7 @@ auth.onAuthStateChanged(u=>{
      VÉRIFIÉE : si ce n'est pas le cas, mieux vaut le dire tout de suite que de
      laisser chaque publication échouer sans explication (05/09) */
   if(S.auteur&&u&&u.emailVerified===false)setTimeout(()=>lvInfo('Votre adresse e-mail n’est pas vérifiée : les règles de sécurité refuseront toute mise en ligne tant qu’elle ne l’est pas. Connectez-vous avec Google, ou faites vérifier l’adresse depuis la console Firebase.'),600);
-  S.res=null; S.vu=''; S.liste=[]; S.rubs=[]; RUBS_LUES=false; RUBS_ERR=false; LISTE_ERR=false;
+  S.res=null; S.vu=''; S.liste=[]; S.jetees=[]; S.rubs=[]; S.corb=[]; S.pris.clear(); RUBS_LUES=false; RUBS_ERR=false; LISTE_ERR=false;
   if(S.auteur){ vue('liste'); motAccueil(); ecoute(); }
   else{ if(COUPE){COUPE();COUPE=null;} $('acts-liste').style.display='none'; ouvrePublic(); }
 });
@@ -2214,6 +2584,9 @@ function routeHash(){
        racine */
     if(S.auteur&&!S.liste.length){S.vu=mr[1];return;}
   }
+  /* la corbeille a son adresse : le bouton « précédent » du navigateur en
+     ressort comme d'un domaine */
+  if(h==='#corbeille'&&S.auteur){S.vu='';vue('corbeille');return;}
   const md=h.match(/^#d\/(.+)$/);
   S.ouLa=(md&&rubValide(md[1]))?md[1]:'';
   S.vu='';
