@@ -461,7 +461,15 @@ mal'akh / angelos désignant un homme rendu « messager » (Malachie 3:1, Aggée
 1:13, Malachie 2:7, Matthieu 11:10, Marc 1:2, Luc 7:27) ; « le Messager de
 l'alliance » en Malachie 3:1 ; Ashéra distinguée d'Astarté ; « pains de
 l'offrande » partout (titre de Lévitique 24 aligné) ; « avant Jésus-Christ »
-avec trait d'union dans les dates des Maccabées. VERSIFICATION ALIGNÉE sur la
+avec trait d'union dans les dates des Maccabées ; MOIS : l'équivalent moderne
+entre parenthèses est donné à la première mention de chaque mois dans chaque
+livre (Ézéchiel le redonne à chaque date), toujours le même : 1er mars-avril,
+2e avril-mai, 3e mai-juin, 4e juin-juillet, 5e juillet-août, 6e août-septembre,
+7e septembre-octobre, 8e octobre-novembre, 9e (Kislev) novembre-décembre,
+10e décembre-janvier, 11e janvier-février, 12e (Adar) février-mars ; complété
+le 11/09 (46 versets, dont 1 Chroniques 27, 2 Rois 25, Esdras), Luc 1:26 et
+1:36 exclus (mois de grossesse). Joël 2:23 fixé par Emmanuel le 11/09 :
+« la pluie d'automne selon sa justice ». VERSIFICATION ALIGNÉE sur la
 numérotation catholique moderne (celle du lectionnaire) : Deutéronome 5 (33
 versets, un commandement par verset en 5:17-20), Josué 21 (45), 1 Maccabées 1
 (64), 12 et 13 (53), 2 Maccabées 2 (32) et 15 (39), Siracide 22:7-8 (au lieu
@@ -472,9 +480,17 @@ Psaume 40:7 et Amos 9:12 (Septante voulue, reprise par le NT), Luc 14:26 et
 Jean 12:25 (« préférer », « s'en détacher », comme la traduction liturgique),
 Romains 16:7 (Junias). Mémoriser : les versets modifiés afficheront le signe
 d'écart avec la Bible du site. Fichiers texte du Drive (bible-cherubin) :
-régénérés le 11/09, 256 fichiers sur 292 remplacés (même nom, anciens à la
+régénérés le 11/09 (puis à chaque correction suivante), 256 fichiers sur 292 remplacés (même nom, anciens à la
 corbeille), taille vérifiée à l'octet ; les fichiers remplacés ont des espaces
 normales au lieu des espaces insécables (limite de l'outil d'envoi).
+
+ÉDITEUR D'ARTICLES ET DE COMMENTAIRES, 12/09 : un renvoi posé dans le texte
+laissait le curseur au bord du renvoi, si bien que la suite tapée (« parce
+que… ») entrait dedans ; une marque invisible est désormais posée juste après
+le renvoi, le curseur va derrière, et cette marque est retirée à
+l'enregistrement. La référence d'un verset posé avec son texte n'est plus mise
+en gras, et une règle de style garde les références en épaisseur normale même
+dans les articles déjà écrits.
 
 ⚠ CRITÈRE DE CORRECTION, posé par Emmanuel le 26/07 : « n'oublie pas que cette
 bible est une traduction à équivalence dynamique, pas une traduction littérale

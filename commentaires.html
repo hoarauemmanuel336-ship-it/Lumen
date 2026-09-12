@@ -176,6 +176,9 @@ body>footer{flex-shrink:0}
 .zone i,.zone em{font-style:italic}
 .zone a{color:var(--or);border-bottom:1px solid rgba(231,224,207,.3)}
 .zone .ref{color:var(--or);cursor:pointer;border-bottom:1px dotted rgba(231,224,207,.4)}
+/* une référence garde son épaisseur normale, même dans un passage en gras
+   (Emmanuel, 12/09) : cela vaut aussi pour les articles écrits avant */
+.ref{font-weight:400}
 /* Un article se lit comme la Bible se lit : même taille de texte (20,5 px),
    même interligne serré (1,08), même largeur de colonne. C'est le blanc
    ENTRE les blocs qui sépare, pas celui entre les lignes. */
@@ -629,7 +632,7 @@ function propre(html){
   const src=doc.body.firstChild, out=document.createElement('div');
   (function marche(de,vers){
     de.childNodes.forEach(n=>{
-      if(n.nodeType===3){vers.appendChild(document.createTextNode(n.nodeValue));return;}
+      if(n.nodeType===3){vers.appendChild(document.createTextNode(n.nodeValue.replace(/\u200B/g,'')));return;}
       if(n.nodeType!==1)return;
       const t=BALISES[n.tagName];
       if(!t){
@@ -1502,6 +1505,20 @@ function majOutils(){
     $('o-ital').classList.toggle('on',document.queryCommandState('italic'));
   }catch(e){}
 }
+/* Après un renvoi posé, le curseur restait collé au bord du renvoi : tout ce
+   qu'Emmanuel tapait ensuite (« parce que… ») entrait dans le renvoi et prenait
+   sa couleur. On pose une marque invisible juste après lui et on met le curseur
+   derrière : la suite s'écrit en texte ordinaire. La marque part au nettoyage,
+   donc elle n'est jamais enregistrée. */
+function sortApres(el){
+  try{
+    const s=getSelection(); if(!s)return;
+    const t=document.createTextNode('\u200B');
+    if(el.parentNode)el.parentNode.insertBefore(t,el.nextSibling);
+    const r=document.createRange(); r.setStart(t,1); r.collapse(true);
+    s.removeAllRanges(); s.addRange(r);
+  }catch(_){}
+}
 function insere(el){
   const s=getSelection(); if(!s.rangeCount)return;
   const r=s.getRangeAt(0); r.deleteContents(); r.insertNode(el);
@@ -1830,13 +1847,12 @@ function bibUtilise(avecTexte){
     const it=document.createElement('i');
     it.textContent='\u00ab\u00a0'+r.texte+'\u00a0\u00bb ';
     insere(it);
-    /* la référence d'une citation est en gras, sans parenthèses ; elle reste
-       cliquable et mène au passage */
-    const g=document.createElement('b'); g.appendChild(sp);
-    insere(g);
+    /* la référence d'une citation suit le texte, sans parenthèses et sans
+       gras (Emmanuel, 12/09) ; elle reste cliquable et mène au passage */
+    insere(sp); sortApres(sp);
     return;
   }
-  insere(sp);
+  insere(sp); sortApres(sp);
 }
 
 // ════════ ÉVÉNEMENTS ════════
