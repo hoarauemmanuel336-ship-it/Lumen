@@ -484,6 +484,49 @@ régénérés le 11/09 (puis à chaque correction suivante), 256 fichiers sur 29
 corbeille), taille vérifiée à l'octet ; les fichiers remplacés ont des espaces
 normales au lieu des espaces insécables (limite de l'outil d'envoi).
 
+BARRE DU SITE, 12/09 : une poignée (un chevron, centré sous la barre) replie
+la barre du haut sur toutes les pages ; il ne reste qu'un bandeau de 31 pixels
+avec son chevron, par lequel on la rappelle. L'état est gardé par appareil
+(localStorage « lv_barre »), relu dans la tête de page avant le premier
+affichage pour éviter le saut. Tout est dans build-bi.js, source unique de la
+barre : le style dans BARRE_CSS, la poignée fabriquée par BARRE_JS (donc posée
+sur chaque page sans toucher à leurs fichiers), le petit script de tête dans
+BARRE_TETE. Replier envoie un événement « resize » pour que ce qui se cale sous
+la barre (--hbar de la Bible, barres d'outils, cadres) se remesure.
+
+MÉMORISER, 12/09 : une TROISIÈME série s'ajoute aux versets et aux passages,
+les CITATIONS (paroles qui ne sont pas de l'Écriture). Même carte, même
+algorithme, mêmes couleurs : deux champs, le texte et la source en une ligne
+(« saint Augustin, Confessions III, 6 »), et les deux sens de question (« De
+qui est cette citation ? » et « Quelle citation est-ce ? »). Une catégorie de
+citations porte kind:'c' ; rien n'est écrit pour les anciennes, qui restent des
+versets. La Bible du site n'intervient pas : ni bouton « Choisir dans la
+Bible », ni signe d'écart. Les trois séries restent étanches, à l'écran comme
+dans le tirage des propositions.
+
+RESSOURCES, PLEIN ÉCRAN, 12/09 (choix d'Emmanuel après un essai en fenêtre) :
+une ressource de type Code ne s'affiche plus dans la page, elle s'ouvre en
+PLEIN ÉCRAN, tout de suite : cadre fixe couvrant la fenêtre entière, corps de
+la page figé, un seul bouton par-dessus, « ← Les ressources » en bas à gauche,
+qui ramène à la liste là où elle était (la touche Échap fait de même). Le contenu
+défile chez lui et retrouve donc sa barre, son sommaire, sa progression ; la
+page ne lui envoie plus la position de lecture (message lvVue), inutile là. La
+fiche reste derrière avec sa description et un bouton « Ouvrir ». La PLACE DE
+LECTURE est gardée par ressource et par appareil (clé localStorage
+« lv_res_pos_<id> ») : le cadre annonce sa position en défilant (message
+lvPos), la page la lui rend à la réouverture (message lvRevoir, réessayé le
+temps que le contenu s'installe) et elle est ramenée à la hauteur disponible si
+le contenu a raccourci. Motif : « La
+Sagesse » mesure 158 000 pixels de haut ; dépliée dans la page, elle butait sur
+le garde-fou de 40 000 et les trois quarts du livre étaient perdus. Les blocs
+interactifs des ARTICLES gardent, eux, l'affichage dans le fil du texte.
+
+RESSOURCES, 12/09 : l'espèce d'une ressource (Code, Image, PDF, Lien) ne
+s'affiche plus nulle part, ni sur la ligne du bas des cartes, ni sous le titre
+quand la ressource est ouverte ; elle sert seulement à la création. L'espèce
+« Diagramme » s'appelle désormais « Code » (la clé interne reste diagramme,
+les ressources déjà enregistrées gardent donc leur espèce).
+
 ÉDITEUR D'ARTICLES ET DE COMMENTAIRES, 12/09 : un renvoi posé dans le texte
 laissait le curseur au bord du renvoi, si bien que la suite tapée (« parce
 que… ») entrait dedans ; une marque invisible est désormais posée juste après

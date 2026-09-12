@@ -105,6 +105,23 @@ const BARRE_CSS = `
 }
 
 header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(231,224,207,.14)}
+/* ── LA BARRE SE RANGE (Emmanuel, 12/09) ──
+   Une poignée sous la barre la replie : il ne reste qu'un mince bandeau avec
+   son chevron, et l'écran entier revient à la lecture. Elle reste rangée tant
+   qu'on ne la rappelle pas, sur cet appareil. Elle est posée en bas de la
+   barre, centrée, et reste en place une fois la barre repliée : c'est par elle
+   qu'on la fait revenir. */
+.barre-poignee{display:block;width:100%;margin:0;padding:5px 0 6px;background:none;border:0;line-height:0;cursor:pointer;color:rgba(231,224,207,.42);transition:color .3s;-webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.barre-poignee:hover,.barre-poignee:focus-visible{color:var(--or,#efe6cf)}
+.barre-poignee svg{display:block;margin:0 auto;width:30px;height:9px;transition:transform .3s}
+html.barre-rangee .barre{display:none}
+html.barre-rangee header{background:rgba(0,0,0,.5)}
+html.barre-rangee .barre-poignee svg{transform:rotate(180deg)}
+/* rangée, la poignée est tout ce qui reste : elle s'épaissit un peu pour
+   rester facile à toucher du doigt */
+html.barre-rangee .barre-poignee{padding:10px 0 11px}
+/* le menu déplié se referme avec la barre : il n'a plus de barre où s'accrocher */
+html.barre-rangee nav.menu{display:none}
 .barre{max-width:1080px;margin:0 auto;padding:20px 32px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:24px;height:auto;line-height:1.75}
 .barre .logo{grid-column:1;grid-row:1;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px;letter-spacing:.34em;text-transform:uppercase;color:var(--parchemin,#ffffff);padding-left:.34em;border-bottom:none;text-decoration:none;transition:color .3s}
 /* Le titre est un lien vers l'accueil : il répond au survol comme les
@@ -143,6 +160,9 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
   .rech-loupe .ll-mob{display:inline}
 }
 `;
+/* L'état de la barre est lu AVANT le premier affichage : sans cela la barre
+   apparaîtrait le temps d'une image, puis la page sauterait en la repliant. */
+const BARRE_TETE = `<script>try{if(localStorage.getItem('lv_barre')==='1')document.documentElement.classList.add('barre-rangee');}catch(e){}</scr`+`ipt>`;
 const SVG_LOUPE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg>';
 const SVG_CLOCHE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg>';
 const SVG_COMPTE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg>';
@@ -180,6 +200,32 @@ function piedCanon() {
 const BARRE_JS = `(function(){
   var b=document.getElementById('burger'),m=document.getElementById('menu');
   if(b&&m){b.addEventListener('click',function(){m.classList.toggle('ouvert');});}
+  /* ── LA POIGNÉE ──
+     Elle est fabriquée ici, une fois pour toutes : chaque page garde sa barre
+     telle quelle et reçoit la poignée sans rien changer chez elle. */
+  var tete=document.querySelector('header');
+  if(tete&&!document.getElementById('barre-poignee')){
+    var pg=document.createElement('button');
+    pg.type='button'; pg.id='barre-poignee'; pg.className='barre-poignee';
+    pg.innerHTML='<svg viewBox="0 0 30 9" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 6.2 15 2.4l8 3.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    tete.appendChild(pg);
+    var dit=function(){
+      var rangee=document.documentElement.classList.contains('barre-rangee');
+      pg.setAttribute('aria-expanded',rangee?'false':'true');
+      var mot=rangee?'Afficher la barre':'Ranger la barre';
+      pg.setAttribute('aria-label',mot); pg.title=mot;
+    };
+    dit();
+    pg.addEventListener('click',function(){
+      var rangee=document.documentElement.classList.toggle('barre-rangee');
+      if(m)m.classList.remove('ouvert');
+      try{localStorage.setItem('lv_barre',rangee?'1':'0');}catch(e){}
+      dit();
+      /* la barre change de hauteur : les pages qui calent quelque chose
+         dessous (titres de catégories, barre d'outils, cadres) remesurent */
+      try{window.dispatchEvent(new Event('resize'));}catch(e){}
+    });
+  }
   var an=document.getElementById('annee');
   if(an)an.textContent='\u00a9 '+new Date().getFullYear()+' Lumen';
   var p=location.pathname.replace(/index\\.html$/,'')||'/';
@@ -549,6 +595,7 @@ ${hreflang}
 ${FONTS}
 ${FIREBASE_HEAD}
 <style>${css}${EXTRA_CSS}${APPEARANCE_CSS}</style>
+${BARRE_TETE}
 </head>
 <body>
 ${header(lang, type, base, otherRel, ctx)}
@@ -814,7 +861,7 @@ if (fs.existsSync('memoriser.html')) {
     if (!hOld || !fOld) throw new Error('memoriser.html : header ou footer introuvable');
     mh = mh.replace(hOld[0], barreCanon());
     mh = mh.replace(fOld[0], piedCanon());
-    mh = injecteAvant(mh, '</head>', '<style>' + BARRE_CSS + '</style>');
+    mh = injecteAvant(mh, '</head>', '<style>' + BARRE_CSS + '</style>' + BARRE_TETE);
     mh = metaCopie(mh, '/memoriser.html', 'Mémoriser · Lumen Veritatis', 'Mémorisation de versets et de passages bibliques, par répétition espacée.');
     mh = injecteAvant(mh, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Mémoriser : barre et pied canoniques injectés');
@@ -836,7 +883,7 @@ if (fs.existsSync('articles.html')) {
     if (!hOld || !fOld) throw new Error('articles.html : header ou footer introuvable');
     ah = ah.replace(hOld[0], barreCanon());
     ah = ah.replace(fOld[0], piedCanon());
-    ah = injecteAvant(ah, '</head>', '<style>' + BARRE_CSS + '</style>');
+    ah = injecteAvant(ah, '</head>', '<style>' + BARRE_CSS + '</style>' + BARRE_TETE);
     ah = metaCopie(ah, '/articles.html', 'Articles · Lumen Veritatis', 'Articles de théologie catholique, accessibles aux débutants.');
     ah = injecteAvant(ah, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Articles : barre et pied canoniques injectés');
@@ -858,7 +905,7 @@ if (fs.existsSync('ressources.html')) {
     if (!hOld || !fOld) throw new Error('ressources.html : header ou footer introuvable');
     rh = rh.replace(hOld[0], barreCanon());
     rh = rh.replace(fOld[0], piedCanon());
-    rh = injecteAvant(rh, '</head>', '<style>' + BARRE_CSS + '</style>');
+    rh = injecteAvant(rh, '</head>', '<style>' + BARRE_CSS + '</style>' + BARRE_TETE);
     rh = metaCopie(rh, '/ressources.html', 'Ressources · Lumen Veritatis', 'Diagrammes, cartes, documents et liens pour étudier la foi catholique.');
     rh = injecteAvant(rh, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Ressources : barre et pied canoniques injectés');
@@ -883,7 +930,7 @@ if (fs.existsSync('commentaires.html')) {
     if (!hOld || !fOld) throw new Error('commentaires.html : header ou footer introuvable');
     ch = ch.replace(hOld[0], barreCanon());
     ch = ch.replace(fOld[0], piedCanon());
-    ch = injecteAvant(ch, '</head>', '<style>' + BARRE_CSS + '</style>');
+    ch = injecteAvant(ch, '</head>', '<style>' + BARRE_CSS + '</style>' + BARRE_TETE);
     ch = metaCopie(ch, '/commentaires.html', 'Commentaires bibliques · Lumen Veritatis', 'Commentaires bibliques de Lumen Veritatis, à lire dans la Bible.');
     ch = injecteAvant(ch, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Commentaires : barre et pied canoniques injectés');
@@ -928,7 +975,7 @@ if (fs.existsSync('bible.html')) {
     if (!hOld || !fOld) throw new Error('bible.html : header ou footer introuvable');
     bh = bh.replace(hOld[0], barreCanon());
     bh = bh.replace(fOld[0], piedCanon());
-    bh = injecteAvant(bh, '</head>', '<style>' + BARRE_CSS + '</style>');
+    bh = injecteAvant(bh, '</head>', '<style>' + BARRE_CSS + '</style>' + BARRE_TETE);
     bh = metaCopie(bh, '/bible.html', 'La Sainte Bible · Lumen Veritatis', 'La Sainte Bible, traduction Chérubin. Lecture en ligne, Ancien et Nouveau Testament.');
     bh = injecteAvant(bh, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Bible : barre et pied canoniques injectés');
