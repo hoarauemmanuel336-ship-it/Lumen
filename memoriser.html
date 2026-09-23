@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<style>html{color-scheme:dark}</style>
 <title>Mémoriser · Lumen Veritatis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,9 +28,9 @@
      texte en noir pour rester lisible. */
   --sel:rgba(239,230,207,.5);
   --sel:color-mix(in srgb, var(--or) 50%, transparent);
-  --parchemin:#ffffff;--pa:rgba(255,255,255,.6);--pa2:rgba(255,255,255,.38);
+  --parchemin:#ffffff;--pa:rgba(255,255,255,.6);--pa2:rgba(255,255,255,.5);
   --filet:rgba(231,224,207,.14);--filet-f:rgba(231,224,207,.28);
-  --parchemin-att:rgba(255,255,255,.45);--filet-fort:rgba(231,224,207,.34);
+  --parchemin-att:rgba(255,255,255,.52);--filet-fort:rgba(231,224,207,.34);
   --rouge:#c75d52;--ambre:#cfa24f;--vert:#7ba37e;--pourpre:#8e3a36;
   --serif:'EB Garamond',Georgia,serif;--display:'Cormorant Garamond',serif;
 }
@@ -179,7 +181,20 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .mq-ecart{display:none;color:var(--ambre);cursor:pointer}
 .mq-ecart.on{display:inline-flex}
 .mq-ecart:hover{color:var(--or-pale)}
-.dot{width:13px;height:13px;border-radius:50%;cursor:default;pointer-events:none;opacity:.22;transition:opacity .25s,box-shadow .25s;position:relative}
+.mq-ecart::before{content:'';position:absolute;inset:-12px -6px}   /* zone tactile */
+/* le signe d'écart remonte aussi sur la catégorie et sur la question (23/09) */
+.cat-name{display:flex;align-items:baseline;gap:10px;min-width:0}
+.cat-nom-t{min-width:0}
+.cat-ecart{display:none;flex-shrink:0;color:var(--ambre);font-family:var(--display);font-size:16px;line-height:1}
+.cat-ecart.on{display:inline}
+.qbox{position:relative}
+.q-ecart{display:none;position:absolute;top:-6px;right:0;padding:6px 8px;color:var(--ambre);font-family:var(--display);font-size:17px;line-height:1;cursor:pointer;background:none;border:0}
+.q-ecart::before{content:'';position:absolute;inset:-8px}
+.q-ecart.on{display:block}
+.q-ecart:hover{color:var(--or-pale)}
+.dot{width:13px;height:13px;border-radius:50%;cursor:pointer;opacity:.22;transition:opacity .25s,box-shadow .25s;position:relative}
+.dot::before{content:'';position:absolute;inset:-9px -4px}   /* zone tactile, invisible */
+.dot:not(.act):hover{opacity:.6}
 .dot.r{background:var(--rouge)}.dot.a{background:var(--ambre)}.dot.v{background:var(--vert)}
 .dot.act{opacity:1;box-shadow:0 0 0 1px var(--encre),0 0 0 2px currentColor}
 .dot.r.act{color:var(--rouge)}.dot.a.act{color:var(--ambre)}.dot.v.act{color:var(--vert)}
@@ -387,7 +402,8 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 @media(max-width:720px){
   .wrap{padding:32px 20px 60px}
   .cat-row{gap:10px}
-  .cat-name{min-width:0;font-size:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cat-name{min-width:0;font-size:20px}
+  .cat-nom-t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .cat-body{padding:2px 0 18px 0}
   .vrow{gap:10px;padding:13px 0;align-items:flex-start}
   .vline{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
@@ -579,6 +595,10 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
   .sec-chev{font-size:20px}
   .move-row{padding:15px 10px}
 }
+body.memo-vide .cat-acts{flex-direction:column;align-items:stretch;gap:22px}
+body.memo-vide .cat-acts #add-cat{display:block;width:100%;padding:17px;background:var(--or);color:var(--encre);font-size:16px;letter-spacing:.18em;margin-top:10px;transition:background .3s}
+body.memo-vide .cat-acts #add-cat:hover{background:var(--or-pale)}
+.auth-link{padding:12px 0;margin-top:10px}
 </style>
 <style>
 .auth-ov{position:fixed;inset:0;z-index:4000;background:rgba(8,8,8,.98);display:none;align-items:center;justify-content:center;padding:24px}
@@ -662,7 +682,7 @@ if(typeof firebase==='undefined'){var m=document.getElementById('auth-msg');if(m
       <div class="modes" id="modes">
         <button type="button" class="mode on" id="mode-v">Versets</button>
         <button type="button" class="mode" id="mode-p">Passages</button>
-        <button type="button" class="mode" id="mode-c">Citations</button>
+        <button type="button" class="mode" id="mode-c">Fiches</button>
       </div>
       <div class="block">
         <div class="block-head bh-cats" style="display:flex;align-items:center;justify-content:space-between;gap:14px"><span class="lbl" id="lbl-cats">Catégories &amp; mémoire</span><span class="mini-act" id="sel-all"></span></div>
@@ -685,6 +705,7 @@ if(typeof firebase==='undefined'){var m=document.getElementById('auth-msg');if(m
         <button class="finish" id="finish-btn">Terminer</button>
       </div>
       <div class="qbox" id="qbox">
+        <button type="button" class="q-ecart" id="q-ecart" title="Ce verset s’écarte de la Bible du site. Toucher si c’est voulu, pour ne plus le signaler." aria-label="Ce verset s’écarte de la Bible du site">≠</button>
         <div class="q-label" id="q-label"></div>
         <div class="rule"></div>
         <div class="q-prompt" id="q-prompt"></div>
@@ -872,24 +893,31 @@ const T={
     empty_sel_p:'Aucun passage coché. Touchez « Tout sélectionner » en haut de la liste, ou cochez au moins deux passages.',
     not_enough_p:'Il faut au moins deux passages pour commencer. Cochez-en un second, ou ajoutez un passage.',
     del_cat_q_p:'Supprimer cette catégorie et ses passages ?',
-    /* ── CITATIONS ──
+    /* ── FICHES (anciennement « Citations », renommé le 23/09) ──
+       « Au final ce sera pas juste pour les citations mais pour tout et
+       n'importe quoi, par exemple des définitions » (Emmanuel). Le troisième
+       onglet s'appelle donc « Fiches » : d'un côté un texte (une citation, une
+       définition, une formule…), de l'autre ce à quoi il se rapporte (l'auteur,
+       le mot défini, un titre…). Rien ne change dans les données : les
+       anciennes citations sont des fiches comme les autres.
+       Ce qui suit est l'ancienne note, toujours vraie pour le fonctionnement :
        Une carte « citation » retient une parole qui n'est pas de l'Écriture :
        d'un côté son texte, de l'autre sa source, écrite en une ligne (auteur,
        œuvre, numéro). Même carte, même algorithme, mêmes couleurs que les
        versets ; seuls les mots changent, et la Bible du site n'a rien à y
        dire : ni bouton « Choisir dans la Bible », ni signe d'écart. */
-    mode_c:'Citations',
-    find_ref_c:'De qui est cette citation ?', find_citation:'Quelle citation est-ce ?',
-    addcitation:'Citation',
-    mc:'Ajouter une citation', mc_edit:'Modifier la citation',
-    mcat_c:'Nouvelle catégorie de citations',
-    f_cit:'Texte de la citation', f_src:'Source (ex : saint Augustin, Confessions III, 6)',
+    mode_c:'Fiches',
+    find_ref_c:'À quoi correspond ce texte ?', find_citation:'Quel texte y correspond ?',
+    addcitation:'Fiche',
+    mc:'Ajouter une fiche', mc_edit:'Modifier la fiche',
+    mcat_c:'Nouvelle catégorie de fiches',
+    f_cit:'Le texte (une citation, une définition…)', f_src:'Ce à quoi il se rapporte (ex : saint Augustin, ou le mot défini)',
     ph_cit:'Tu nous as faits pour toi, et notre cœur est sans repos tant qu\u2019il ne repose en toi.',
-    acquired_c:'citations acquises',
-    no_cats_c:'Aucune catégorie de citations. Créez-en une, puis ajoutez-y des citations.',
-    empty_sel_c:'Aucune citation cochée. Touchez « Tout sélectionner » en haut de la liste, ou cochez au moins deux citations.',
-    not_enough_c:'Il faut au moins deux citations pour commencer. Cochez-en une seconde, ou ajoutez une citation.',
-    del_cat_q_c:'Supprimer cette catégorie et ses citations ?',
+    acquired_c:'fiches acquises',
+    no_cats_c:'Aucune catégorie de fiches. Créez-en une, puis ajoutez-y des fiches.',
+    empty_sel_c:'Aucune fiche cochée. Touchez « Tout sélectionner » en haut de la liste, ou cochez au moins deux fiches.',
+    not_enough_c:'Il faut au moins deux fiches pour commencer. Cochez-en une seconde, ou ajoutez une fiche.',
+    del_cat_q_c:'Supprimer cette catégorie et ses fiches ?',
     bible_ref:'Prendre la référence dans la Bible'
   }
 };
@@ -931,7 +959,7 @@ function razEtat(){
 const $=id=>document.getElementById(id);
 const t=k=>(T[S.lang]||T.fr)[k]||k;
 const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=0|Math.random()*(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
-const trunc=(s,n)=>s.length>n?s.slice(0,n)+'…':s;
+const trunc=(s,n)=>{const a=Array.from(String(s));return a.length>n?a.slice(0,n).join('')+'…':String(s);};
 function effectiveCats(){
   const trashIds=new Set((S.trash||[]).map(t=>t.vId));
   const base=PRE.filter(c=>!(S.hidCats||[]).includes(c.id)).map(c=>{
@@ -1257,14 +1285,35 @@ function nextItem(){
    une question sur dix dès qu'un verset était rangé à deux endroits. On écarte
    donc sur le LIBELLÉ RÉELLEMENT AFFICHÉ, qui dépend du sens de la question. */
 function libelleOpt(o,qMode){const d=o[S.lang]||o.fr||o.en||{};return((qMode==='vr'?d.ref:d.text)||'').trim().toLowerCase();}
+/* ── DEUX CITATIONS DU MÊME AUTEUR (22/09) ──
+   Deux versets n'ont jamais la même référence ; deux citations ont souvent la
+   même source (« saint Augustin »). Sans garde, « De qui est cette citation ? »
+   n'offrait qu'un seul choix, la bonne réponse, et « Quelle citation est-ce ? »
+   posait « saint Augustin » en proposant trois phrases de saint Augustin dont
+   une seule comptait juste. Une option n'est donc retenue que si elle ne
+   partage pas ce qui est affiché en question : sa réponse doit être la seule
+   juste. */
+function libelleQuestion(o,qMode){return libelleOpt(o,qMode==='vr'?'rv':'vr');}
 function getOptions(item,qMode){
   const pris={}; pris[libelleOpt(item,qMode)]=1;
+  const q0=libelleQuestion(item,qMode);
   const others=[];
-  shuffle(allItems().filter(i=>i.id!==item.id)).forEach(o=>{
-    if(others.length>=3)return;
+  const prend=o=>{
+    if(others.length>=3||o.id===item.id)return;
+    if(libelleQuestion(o,qMode)===q0)return;
     const l=libelleOpt(o,qMode); if(pris[l])return;
     pris[l]=1; others.push(o);
-  });
+  };
+  shuffle(allItems()).forEach(prend);
+  /* Quand on joue une seule catégorie (ou une petite sélection), les fausses
+     réponses peuvent manquer : une catégorie de citations d'un seul auteur ne
+     laisse aucun autre nom à proposer. On complète alors avec le reste de ce
+     genre, même non coché : ce ne sont que des leurres, pas des questions. */
+  if(others.length<3){
+    const tous=[];
+    catsMode().forEach(c=>c.verses.forEach(v=>tous.push({...v,catId:c.id,pas:estPassage(c),genre:kindDe(c)})));
+    shuffle(tous).forEach(prend);
+  }
   return shuffle([item,...others]);
 }
 
@@ -1405,22 +1454,22 @@ function elementCat(cat){
           +'<svg viewBox="0 0 24 24"><path d="M3 3h13v13H3zM8 8h13v13H8z"/></svg></span>';
       }
       if(kind0==='v'&&!vv.libre){
-        mq+='<span class="mq mq-ecart'+(ecartConnu(vv)?' on':'')+'" data-ecart="'+vv.id+'" title="'+(S.lang==='fr'?'Le texte s\u2019\u00e9carte de la Bible du site':'The text departs from the site\u2019s Bible')+'">\u2260</span>';
+        mq+='<span class="mq mq-ecart'+(ecartConnu(vv)?' on':'')+'" data-ecart="'+vv.id+'" role="button" title="'+(S.lang==='fr'?'Le texte s\u2019\u00e9carte de la Bible du site. Toucher si c\u2019est voulu, pour ne plus le signaler.':'The text departs from the site\u2019s Bible')+'">\u2260</span>';
       }
       /* Pour un passage, c'est le TITRE qui identifie la carte : il prend la
          place de la référence, et la référence passe à sa suite. On lit
          « La guérison de l'aveugle · Marc 10:46-52 », dans cet ordre. */
       body+='<div class="vrow'+(voff?' voff':'')+(pas?' pas':'')+'"><span class="v-check'+(voff?'':' on')+'" data-togv="'+vv.id+'" title="'+(S.lang==='fr'?'Inclure ou exclure des révisions':'Include or exclude from reviews')+'"></span><span class="vline" data-editv="'+vv.id+'"><span class="vref">'+besc(pas?trunc(vv[S.lang].text,72):vv[S.lang].ref)+'</span><span class="vtext">'+besc(pas?vv[S.lang].ref:trunc(vv[S.lang].text,58))+'</span>'+(mq?'<span class="vmq">'+mq+'</span>':'')+'</span>'/* le compteur d'expositions continue de compter, il ne s'affiche plus
              (Emmanuel, 22/08 : « retire l'affichage, pas le système ») */+'<span class="lvl">'
-        +'<span class="dot r'+(l==='r'?' act':'')+'"></span>'
-        +'<span class="dot a'+(l==='a'?' act':'')+'"></span>'
-        +'<span class="dot v'+(l==='v'?' act':'')+'"></span></span>'
+        /* les trois points se touchent : on pose la couleur d'ici, sans attendre
+           que le verset passe en séance (Emmanuel, 23/09) */
+        +['r','a','v'].map(k=>'<span class="dot '+k+(l===k?' act':'')+'" data-niv="'+k+'" data-nivid="'+vv.id+'" role="button" title="'+besc(t('rap_'+k))+'" aria-label="'+besc(t('rap_'+k))+'"></span>').join('')+'</span>'
         +'<span class="mov-v" data-movev="'+vv.id+'" title="'+(S.lang==='fr'?'Déplacer dans…':'Move to…')+'">\u21C4</span>'
         +'<span class="del-v" data-delv="'+vv.id+'">×</span></div>';
     });
     body+='<div class="cat-custom-acts"><span class="mini-act" data-addv="1">+ '+tk('addverse',kind0)+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span><span class="mini-act" data-secc="1">'+t('sec_range')+'</span>'+(cat.base?'<span class="mini-act" data-restorec="1">'+t('cat_restore')+'</span>':'')+'<span class="mini-act del" data-delc="1">'+t('del')+'</span></div>';
     body+='</div>';
-    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp">'+besc(cat.name[S.lang]||'')+'</span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-go" data-act="solo" title="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'" aria-label="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
+    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp"><span class="cat-nom-t">'+besc(cat.name[S.lang]||'')+'</span><span class="cat-ecart'+(catEcart(cat)?' on':'')+'" data-catecart="'+cat.id+'" title="Un verset de cette catégorie s’écarte de la Bible du site">≠</span></span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-go" data-act="solo" title="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'" aria-label="'+(S.lang==='fr'?'Lancer cette catégorie':'Start this category')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
     return div;
 }
 /* Sans aucune section, la liste reste ce qu'elle était : les six premières
@@ -1483,7 +1532,7 @@ function renderCats(){
      attend. C'est le cas des passages tant que rien n'a été créé. */
   if(!_allc.length){const vide=document.createElement('div');vide.className='sec-vide';
     vide.textContent=modeP()?'Aucune catégorie de passages pour l’instant. Créez-en une ci-dessous, puis ajoutez-y vos passages : un titre d’un côté, sa référence de l’autre.'
-      :(modeC()?'Aucune catégorie de citations pour l’instant. Créez-en une ci-dessous, puis ajoutez-y vos citations : le texte d’un côté, sa source de l’autre.':t('no_cats'));
+      :(modeC()?'Aucune catégorie de fiches pour l’instant. Créez-en une ci-dessous, puis ajoutez-y vos fiches : d’un côté un texte (une citation, une définition…), de l’autre ce à quoi il se rapporte (l’auteur, le mot défini…).':t('no_cats'));
     host.appendChild(vide);}
   const _cs=catsMode(),_all=_cs.length&&_cs.every(c=>c.verses.every(v=>!S.offV[v.id]));$('sel-all').textContent=_cs.length?(_all?t('deselect_all'):t('select_all')):'';
   try{verifieEcarts();}catch(_){}
@@ -1493,7 +1542,14 @@ function renderCats(){
   renderTrash();
   updateStart();
 }
-function updateStart(){const b=$('start-btn');b.disabled=false;b.classList.toggle('pas-pret',allItems().length<2);}
+/* ── SANS CATÉGORIE, PAS DE « COMMENCER » (22/09) ──
+   Le bouton restait affiché, grisé, et répondait « Aucune catégorie » : il
+   promettait ce qu'il ne pouvait pas tenir. Tant que l'onglet n'a aucune
+   catégorie, il s'efface, et « Nouvelle catégorie » devient le geste
+   principal de la page. On attend que les données soient lues : pendant le
+   chargement, la liste est vide sans l'être vraiment. */
+function updateStart(){const b=$('start-btn');b.disabled=false;b.classList.toggle('pas-pret',allItems().length<2);
+  const vide=!!S.charge&&!catsMode().length; b.style.display=vide?'none':''; document.body.classList.toggle('memo-vide',vide);}
 /* ── LA BASCULE ──
    Changer d'onglet, c'est changer d'endroit : la portée d'une catégorie ou
    d'une section lancée ne suit pas, et la liste repart repliée. Rien n'est
@@ -1595,8 +1651,11 @@ function resteAReviser(){
 function nextQuestion(){
   const item=nextItem(); if(!item){endSession();return;}
   S.lastId=item.id;
-  const qMode=Math.random()<.5?'vr':'rv';   // mixte, et rien d'autre
-  S.cur={item,qMode,options:getOptions(item,qMode),done:false};
+  let qMode=Math.random()<.5?'vr':'rv';   // mixte, et rien d'autre
+  let options=getOptions(item,qMode);
+  /* un sens qui n'offre qu'un choix n'est pas une question : on prend l'autre */
+  if(options.length<2){const autre=qMode==='vr'?'rv':'vr', o2=getOptions(item,autre); if(o2.length>options.length){qMode=autre;options=o2;}}
+  S.cur={item,qMode,options,done:false};
   renderQuestion();
 }
 function majStat(){
@@ -1636,6 +1695,7 @@ function renderQuestion(){
      chaque question donnaient l'impression que les deux sens vivaient
      chacun de leur côté, alors que la progression n'a jamais été rangée que
      par verset. */
+  majEcartQuestion();
   q.rappel=rapDe(q.item.id);   // allumée : la couleur du verset aujourd'hui
   q.touche=false;              // ne sera envoyée que si on la touche
   /* première apparition : la couleur est exigée avant la réponse */
@@ -1720,7 +1780,7 @@ function openMoveVerse(srcId,vId){
   const host=$('move-list'); host.innerHTML='';
   /* La liste ne propose que des catégories du mode courant (groupesCats les
      filtre déjà) : un verset ne peut pas atterrir chez les passages. */
-  $('mmove-title').textContent=S.lang==='fr'?(modeP()?'Déplacer le passage dans…':(modeC()?'Déplacer la citation dans…':'Déplacer le verset dans…')):'Move to…';
+  $('mmove-title').textContent=S.lang==='fr'?(modeP()?'Déplacer le passage dans…':(modeC()?'Déplacer la fiche dans…':'Déplacer le verset dans…')):'Move to…';
   $('mmove-cancel').textContent=S.lang==='fr'?'Annuler':'Cancel';
   // les catégories sont proposées dans l'ordre des sections, chacune portant
   // le nom de la sienne : on sait où l'on envoie le verset
@@ -1951,7 +2011,11 @@ async function delCatById(id){
   const base=isBase(id);
   /* l'écran répond d'abord : sur mobile, une écriture Firestore lente ou
      refusée laissait autrefois l'impression que le bouton ne marchait pas */
-  if(base){ if(!S.hidCats.includes(id))S.hidCats.push(id); delete S.baseEdits[id]; }
+  /* une catégorie de base est MASQUÉE, pas vidée (22/09) : ses retouches
+     restent, pour qu'elle revienne telle qu'on l'avait laissée si on la
+     restaure. Effacer ses retouches faisait revenir, à la restauration, les
+     versets supprimés pour de bon et, en double, ceux déplacés ailleurs. */
+  if(base){ if(!S.hidCats.includes(id))S.hidCats.push(id); }
   else S.customCats=S.customCats.filter(c=>c.id!==id);
   S.selCats=S.selCats.filter(x=>x!==id);
   S.trash=S.trash.filter(x=>x.catId!==id);
@@ -1959,7 +2023,7 @@ async function delCatById(id){
   renderCats();
   try{
     savePrefs(); saveTrash(); if(rangee)saveSections();
-    if(base) saveBaseEdits(); else await ucol('categories').doc(id).delete();
+    if(!base) await ucol('categories').doc(id).delete();
   }catch(e){console.warn('suppression',e);}
 }
 function modalVerseLang(){
@@ -2087,6 +2151,27 @@ function propageProg(id){
   const g=indexJumeaux()[cle]||[];
   g.forEach(x=>{ if(x.v.id!==id){S.progress[x.v.id]=clone(p);marqueSale(x.v.id);} });
 }
+/* ── POSER LA COULEUR DEPUIS LA LISTE (23/09) ──
+   « Je veux pouvoir sélectionner le niveau que je veux sur un verset,
+   passage, citation, dans le menu : ça permettra de ne pas attendre que le
+   truc passe pour choisir la couleur si on sait qu'on a régressé ou
+   progressé. » Toucher un des trois points d'une ligne pose cette couleur,
+   comme la pastille en séance : le verset change de groupe pour la
+   prochaine séance, et ses jumeaux des autres catégories suivent. Un verset
+   jamais répondu compte désormais comme déjà noté : sa couleur n'est plus
+   redemandée à sa première apparition. */
+function poseNiveau(id,k){
+  if(!id||!couleurValide(k))return;
+  const p=S.progress[id]||{};
+  if(p.t&&couleurBrute(p)===k)return;
+  p.k=k;
+  delete p.s; delete p.box; delete p.n; delete p.c; delete p.due; delete p.r; delete p.j; delete p.d;
+  if(!p.t)p.t=new Date(maintenant()).toISOString();
+  S.progress[id]=p; marqueSale(id);
+  propageProg(id);
+  saveProgress();
+  renderCats();
+}
 function montreJumeaux(catId,vId){
   const j=jumeauxDe(catId,vId); if(!j.length)return;
   const noms=j.map(x=>x.cat.name[S.lang]||x.cat.name.fr||x.cat.name.en||'').filter(Boolean);
@@ -2107,6 +2192,15 @@ function montreJumeaux(catId,vId){
    une référence) n'ont rien à comparer. */
 const ECART={}, LIVRES_P={};
 function livreP(slug){ const api=bibApi(); if(!api)return Promise.resolve(null); return LIVRES_P[slug]||(LIVRES_P[slug]=api.livre(slug).catch(()=>null)); }
+/* ── LES DEUX TRADUCTIONS DU SITE (23/09) ──
+   Un verset recopié de la Séraphin n'est pas un écart : le site a deux Bibles.
+   On compare donc aux deux, et le signe ne s'allume que si le texte ne se
+   trouve ni dans la Chérubin ni dans la Séraphin. */
+const LIVRES_S={};
+function livreS(slug){
+  if(LIVRES_S[slug])return LIVRES_S[slug];
+  return LIVRES_S[slug]=fetch('/bible-data-seraphin/'+slug+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+}
 function texteBible(d,r){
   const c=((d&&d.chapitres)||[]).find(x=>x.n===r.ch); if(!c)return null;
   const v2=r.v2||r.v1;
@@ -2120,11 +2214,56 @@ async function ecartTexte(ref,texte){
   const a=normTexte(texte); if(!a)return null;
   try{ await api.pret(); }catch(_){ return null; }
   const r=api.ref(ref); if(!r||!r.ch||!r.v1)return null;
-  const d=await livreP(r.slug); if(!d)return null;
-  const tb=texteBible(d,r); if(tb===null)return null;
-  return (' '+normTexte(tb)+' ').indexOf(' '+a+' ')<0;
+  const [d,ds]=await Promise.all([livreP(r.slug),livreS(r.slug)]); if(!d&&!ds)return null;
+  const tb=d?texteBible(d,r):null, ts=ds?texteBible(ds,r):null;
+  if(tb===null&&ts===null)return null;
+  const dedans=t=>t!==null&&(' '+normTexte(t)+' ').indexOf(' '+a+' ')>=0;
+  return !(dedans(tb)||dedans(ts));
 }
-function poseMarqueEcart(id,on){ document.querySelectorAll('[data-ecart="'+id+'"]').forEach(el=>el.classList.toggle('on',!!on)); }
+function poseMarqueEcart(id,on){ document.querySelectorAll('[data-ecart="'+id+'"]').forEach(el=>el.classList.toggle('on',!!on)); majEcartsCats(); }
+/* une catégorie porte le signe dès qu'un de ses versets s'écarte sans que ce soit voulu */
+function catEcart(c){ return kindDe(c)==='v'&&c.verses.some(v=>!v.libre&&ecartConnu(v)); }
+function majEcartsCats(){
+  document.querySelectorAll('[data-catecart]').forEach(el=>{
+    const c=effectiveCats().find(x=>x.id===el.dataset.catecart);
+    el.classList.toggle('on',!!(c&&catEcart(c)));
+  });
+}
+/* ── ÉTEINDRE LE SIGNE D'UN TOUCHER (23/09) ──
+   « Si c'est fait exprès, on peut déjà appuyer dessus pour éteindre le
+   bouton, non ? » Toucher le signe, dans la liste ou pendant la série,
+   demande si l'écart est voulu ; oui, et il ne s'affiche plus pour ce verset
+   ni pour ses jumeaux. On le rallume en modifiant le verset (interrupteur
+   « Écart voulu »). */
+async function accepteEcart(catId,vId){
+  const c=effectiveCats().find(x=>x.id===catId); if(!c)return;
+  const v=c.verses.find(x=>x.id===vId); if(!v)return;
+  const ok=await lvConfirm('Ce verset ne suit pas mot pour mot la Bible du site (ni la Chérubin, ni la Séraphin).\n\nSi c’est voulu, le signe ≠ ne s’affichera plus pour ce verset. Vous pourrez le rallumer en modifiant le verset.');
+  if(!ok)return;
+  const cibles=(indexJumeaux()[cleVerset(v,'v')]||[{cat:c,v:v}]).filter(x=>kindDe(x.cat)==='v');
+  const aSauver={};
+  for(const x of cibles){
+    const cid=x.cat.id, id=x.v.id;
+    const pose=cc=>{const w=cc.verses.find(y=>y.id===id); if(w)w.libre=true;};
+    if(isBase(cid)) editBase(cid,pose);
+    else{ const cc=S.customCats.find(y=>y.id===cid); if(cc){pose(cc); aSauver[cid]=cc;} }
+    poseMarqueEcart(id,false);
+  }
+  for(const cid in aSauver){ try{await saveCat(aSauver[cid]);}catch(e){console.warn('ecart',e);} }
+  if(S.cur&&S.cur.item&&cibles.some(x=>x.v.id===S.cur.item.id)){ S.cur.item.libre=true; majEcartQuestion(); }
+  if(!enSession())renderCats(); else majEcartsCats();
+}
+/* pendant la série : le même signe, en haut du cadre de la question */
+function majEcartQuestion(){
+  const b=$('q-ecart'); if(!b)return;
+  const q=S.cur, it=q&&q.item;
+  const vis=it&&it.genre==='v'&&!it.pas&&!it.libre;
+  if(!vis){b.classList.remove('on');return;}
+  const e=ECART[it.id];
+  if(e&&e.res!==undefined&&e.cle===cleVerset(it,'v')){b.classList.toggle('on',e.res===true);return;}
+  b.classList.remove('on');
+  ecartTexte(it.fr&&it.fr.ref,it.fr&&it.fr.text).then(res=>{ if(S.cur&&S.cur.item&&S.cur.item.id===it.id)b.classList.toggle('on',res===true&&!S.cur.item.libre); });
+}
 /* Après un rendu : on compare ce qui ne l'a pas encore été (ou dont le
    texte a changé), puis on allume les signes en place, sans re-rendre. */
 function verifieEcarts(){
@@ -2135,9 +2274,22 @@ function verifieEcarts(){
       const k=cleVerset(v,'v'), e=ECART[v.id];
       if(e&&e.cle===k)return;
       ECART[v.id]={cle:k,res:undefined};
-      ecartTexte(v.fr&&v.fr.ref,v.fr&&v.fr.text).then(res=>{ ECART[v.id]={cle:k,res:res}; poseMarqueEcart(v.id,res===true); });
+      ecartTexte(v.fr&&v.fr.ref,v.fr&&v.fr.text).then(res=>{
+        /* rien à dire parce que la Bible n'était pas encore chargée (le tiroir
+           arrive après la page) : on ne le retient pas, on reviendra voir.
+           Sans cela, le signe ne s'allumait jamais de toute la visite. */
+        if(res===null&&!bibPrete()){ delete ECART[v.id]; relanceEcarts(); return; }
+        ECART[v.id]={cle:k,res:res}; poseMarqueEcart(v.id,res===true);
+      });
     });
   });
+}
+let ECART_RELANCE=null, ECART_ESSAIS=0;
+function bibPrete(){ const api=bibApi(); return !!(api&&api.index&&api.index()); }
+function relanceEcarts(){
+  if(ECART_RELANCE||ECART_ESSAIS>20)return;
+  ECART_ESSAIS++;
+  ECART_RELANCE=setTimeout(()=>{ ECART_RELANCE=null; try{verifieEcarts();}catch(_){} majEcartQuestion(); },1500);
 }
 const ecartConnu=(v)=>{const e=ECART[v.id];return !!(e&&e.cle===cleVerset(v,'v')&&e.res===true);};
 /* Dans la fenêtre du verset : le bloc « Bible du site » se montre quand le
@@ -2307,7 +2459,9 @@ function trashListe(items){
     /* Un passage se reconnaît à son titre, pas à sa référence : la corbeille
        montre donc de lui ce qui permet de le retrouver. */
     const d=it.verse[S.lang]||{};
-    h+='<div class="trash-item"><span class="trash-vmeta"><span class="trash-vref">'+besc((it.kind==='p'?(d.text||d.ref):d.ref)||'')
+    /* une citation se reconnaît à ses mots, non à son auteur, que plusieurs
+       citations partagent (22/09) */
+    h+='<div class="trash-item"><span class="trash-vmeta"><span class="trash-vref">'+besc((it.kind==='p'?(d.text||d.ref):(it.kind==='c'?trunc(d.text||d.ref||'',72):d.ref))||'')
       +'</span><span class="trash-vcat">'+besc(it.catName?(it.catName[S.lang]||''):'')+'</span></span>'
       +'<span class="trash-acts"><span class="trash-act" data-trestore="'+it.vId+'">'+t('trash_restore')
       +'</span><span class="trash-act del" data-tdel="'+it.vId+'">'+t('trash_delperm')+'</span></span></div>';
@@ -2398,6 +2552,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(e.target.closest('#trash-empty')){emptyTrash();return;}
   });
   // les pastilles
+  $('q-ecart').addEventListener('click',()=>{ const it=S.cur&&S.cur.item; if(it)accepteEcart(it.catId,it.id); });
   $('rappel').addEventListener('click',e=>{
     const b=e.target.closest?e.target.closest('.rap'):null;
     if(b&&!b.disabled)noteRappel(b.dataset.r);
@@ -2442,6 +2597,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     const catEl=e.target.closest('.cat'); if(!catEl)return; const id=catEl.dataset.id;
     const togv=e.target.closest('[data-togv]');
     if(togv){const vid=togv.dataset.togv;S.offV[vid]?delete S.offV[vid]:S.offV[vid]=1;savePrefs();renderCats();return;}
+    const ecv=e.target.closest('[data-ecart]');
+    if(ecv){accepteEcart(id,ecv.dataset.ecart);return;}
+    const niv=e.target.closest('[data-niv]');
+    if(niv){poseNiveau(niv.dataset.nivid,niv.dataset.niv);return;}
     const jum=e.target.closest('[data-jum]');
     if(jum){montreJumeaux(id,jum.dataset.jum);return;}
     const editv=e.target.closest('[data-editv]');

@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<style>html{color-scheme:dark}</style>
 <title>Articles · Lumen Veritatis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,9 +31,9 @@
      une lueur diffuse au-dehors, doublée d'une bordure intérieure ténue. */
   --halo:rgba(239,230,207,.1);
   --halo:color-mix(in srgb, var(--or) 10%, transparent);
-  --parchemin:#ffffff;--pa:rgba(255,255,255,.6);--pa2:rgba(255,255,255,.38);
+  --parchemin:#ffffff;--pa:rgba(255,255,255,.6);--pa2:rgba(255,255,255,.5);
   --filet:rgba(231,224,207,.14);--filet-f:rgba(231,224,207,.28);
-  --parchemin-att:rgba(255,255,255,.45);--filet-fort:rgba(231,224,207,.34);--pourpre:#9a3b3b;
+  --parchemin-att:rgba(255,255,255,.52);--filet-fort:rgba(231,224,207,.34);--pourpre:#9a3b3b;
   --serif:'EB Garamond',Georgia,serif;--display:'Cormorant Garamond',serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -94,7 +96,7 @@ body>footer{flex-shrink:0}
 .rub-2>.rub-tete{padding:20px 2px 11px}
 .rub-2>.rub-tete .rub-nom{font-size:12.5px;letter-spacing:.18em;color:rgba(239,230,207,.82)}
 .rub-3>.rub-tete{padding:17px 2px 9px}
-.rub-3>.rub-tete .rub-nom{font-size:11.5px;letter-spacing:.16em;color:rgba(255,255,255,.55)}
+.rub-3>.rub-tete .rub-nom{font-size:13px;letter-spacing:.16em;color:rgba(255,255,255,.55)}
 .rub-vide{font-size:14px;color:var(--pa2);padding:10px 2px 14px}
 @media(max-width:720px){
   .rub-tete{padding:24px 2px 14px}
@@ -109,7 +111,7 @@ body>footer{flex-shrink:0}
 .art-extrait{transition:color .25s}
 .art-vide-titre{color:var(--pa2);font-style:italic}
 .art-extrait{font-size:15px;color:var(--pa);margin-top:5px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.art-pied{display:flex;align-items:center;gap:12px;margin-top:9px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.art-pied{display:flex;align-items:center;gap:12px;margin-top:9px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.58)}
 .art-ligne{display:flex;align-items:flex-start;gap:6px;box-shadow:inset 0 -1px 0 var(--filet);transition:background .25s,box-shadow .25s}
 /* Au survol, la ligne s'illumine sans bouger : halo diffus au-dehors,
    bordure intérieure ténue, fond au ton d'accent. Rien ne se déplace. */
@@ -130,7 +132,7 @@ body>footer{flex-shrink:0}
 #ecran-edit{display:none}
 #ecran-lire{display:none}
 .lire-titre{font-family:var(--display);font-size:calc(38px*var(--lvz,1));line-height:1.16;font-weight:400;color:var(--parchemin);text-align:center;padding:10px 0 6px}
-.lire-pied{text-align:center;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:26px}
+.lire-pied{text-align:center;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.58);margin-bottom:26px}
 #lire-corps .bloc{padding-left:0}
 @media(max-width:720px){.lire-titre{font-size:calc(30px*var(--lvz,1))}}
 .ed-titre{width:100%;background:none;border:none;color:var(--parchemin);font-family:var(--display);font-size:calc(38px*var(--lvz,1));line-height:1.22;padding:10px 0 20px;outline:none;resize:none;overflow:hidden;text-align:center}
@@ -631,7 +633,31 @@ function propre(html){
       marche(n,el); vers.appendChild(el);
     });
   })(src,out);
+  alignGauche(out);
   return out.innerHTML.replace(/\s+$/,'');
+}
+/* ── LE TEXTE RESTE COLLÉ À GAUCHE (23/09) ──
+   « Quand j'écris des articles, des mots sont décalés à droite, je dois
+   effacer les espaces. » Ces espaces venaient du collage : les retraits et
+   retours à la ligne du texte copié, que le navigateur garde sous forme
+   d'espaces insécables, et qui poussaient le début des lignes vers la droite.
+   On retire donc tout blanc en début de ligne (début du bloc ou après un
+   retour à la ligne) et en fin de ligne, et l'on ramène une suite de blancs à
+   un seul, en gardant l'espace insécable devant : ; ? ! ». Comme le texte
+   repasse ici à l'affichage, les articles déjà écrits se corrigent aussi. */
+function alignGauche(racine){
+  const w=document.createTreeWalker(racine,NodeFilter.SHOW_ELEMENT|NodeFilter.SHOW_TEXT);
+  let debut=true, dernierTexte=null, n;
+  const finLigne=()=>{ if(dernierTexte)dernierTexte.nodeValue=dernierTexte.nodeValue.replace(/[\s\u00a0]+$/,''); dernierTexte=null; };
+  while((n=w.nextNode())){
+    if(n.nodeType===1){ if(n.tagName==='BR'){ finLigne(); debut=true; } continue; }
+    let v=n.nodeValue.replace(/[ \t\r\n\f]+/g,' ');
+    v=v.replace(/[ \u00a0\u2002-\u200a\u202f\u3000]{2,}(?=([:;?!»])?)/g,(m,p)=>p?'\u00a0':' ');
+    if(debut){ v=v.replace(/^[\s\u00a0\u2002-\u200a\u202f\u3000]+/,''); if(v)debut=false; }
+    n.nodeValue=v;
+    if(v)dernierTexte=n;
+  }
+  finLigne();
 }
 
 // ════════ BLOCS ════════
@@ -1501,15 +1527,32 @@ async function enregistre(silence){
   clearTimeout(S.minute);
   litEditeur();
   const a=S.art, gen=S.gen||0;
+  const deja=!!a.cree;   // déjà enregistré une fois : il existe dans le nuage
   a.maj=new Date().toISOString();
   if(!a.cree)a.cree=a.maj;
   const doc={titre:a.titre||'',blocs:a.blocs||[],publie:!!a.publie,rub:a.rub||'',cree:a.cree,maj:a.maj};
-  if(JSON.stringify(doc).length>LIMITE_DOC){
+  /* la limite de Firestore se compte en octets : un accent en pèse deux */
+  if(new Blob([JSON.stringify(doc)]).size>LIMITE_DOC){
     $('etat-enr').textContent='Non enregistré';
     lvInfo('L\u2019article d\u00e9passe la taille maximale (1 Mo de texte et de code). All\u00e9gez un bloc interactif ou coupez l\u2019article en deux.');
     return;
   }
   try{
+    /* ── UN AUTRE ONGLET, UN AUTRE APPAREIL (22/09) ──
+       Supprimé ailleurs pendant qu'il restait ouvert ici : l'enregistrement
+       automatique le recréait, et le remettait en ligne s'il était publié.
+       Publié ou retiré ailleurs : on le réécrivait avec l'état d'ici, et sa
+       copie publique pouvait rester en ligne alors qu'on le croyait privé.
+       On relit donc le nuage avant d'écrire : ce qui a disparu ne renaît
+       pas, et l'état publié est celui du nuage, que seul le bouton change. */
+    const ex=await acol().doc(a.id).get();
+    if(S.art!==a)return;
+    if(deja&&!ex.exists){
+      S.sale=false; $('etat-enr').textContent='Supprimé ailleurs'; $('etat-enr').classList.remove('vu');
+      lvInfo('Cet article a été supprimé depuis un autre onglet ou un autre appareil : cette version n\u2019a pas été enregistrée. Copiez votre texte si vous voulez le garder.');
+      return;
+    }
+    if(ex.exists){ const pub=!!(ex.data()||{}).publie; if(pub!==!!a.publie){ a.publie=pub; doc.publie=pub; try{ if(typeof majEtatEditeur==='function')majEtatEditeur(); }catch(_){} } }
     await acol().doc(a.id).set(doc);
     /* quitté ou supprimé pendant l'envoi : on n'y touche plus */
     if(S.art!==a||SUPPRIMES.has(a.id))return;
@@ -1892,9 +1935,11 @@ function bibUtilise(avecTexte){
   const c=BIB_CIBLE; if(!c)return;
   const r=bibResultat();
   const ref=r?r.ref:(c.chapOk?bibChapRef():null);
-  if(!ref&&!(c.quoi==='verset'&&r))return;
-  if(c.quoi==='verset'&&!r)return;
-  if(avecTexte&&!r)return;
+  /* rien de choisi : on le dit, au lieu de laisser le bouton sans réponse (22/09) */
+  const rien=()=>{lvInfo(c.quoi==='verset'||avecTexte?'Choisissez d\u2019abord un verset (touchez son numéro).':'Choisissez d\u2019abord un chapitre ou un verset.');};
+  if(!ref&&!(c.quoi==='verset'&&r))return rien();
+  if(c.quoi==='verset'&&!r)return rien();
+  if(avecTexte&&!r)return rien();
   bibFerme();
   if(c.quoi==='edref'){
     const ch=$('ed-ref'); if(!ch)return;
@@ -2059,7 +2104,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     e.preventDefault();
     const d=e.clipboardData; if(!d)return;
     const html=d.getData('text/html');
-    const t=html?propre(html):esc(d.getData('text/plain')).replace(/\n/g,'<br>');
+    const t=propre(html||esc(d.getData('text/plain')).replace(/\r?\n/g,'<br>'));
     document.execCommand('insertHTML',false,t);
     marqueSale();
   });

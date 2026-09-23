@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<style>html{color-scheme:dark}</style>
 <title>La Sainte Bible · Lumen Veritatis</title>
 <meta name="description" content="La Sainte Bible, traduction Chérubin. Lecture en ligne, Ancien et Nouveau Testament.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,9 +41,9 @@ window.lvFB=function(){if(window.__lvFBP)return window.__lvFBP;window.__lvFBP=ne
      texte en noir pour rester lisible. */
   --sel:rgba(239,230,207,.5);
   --sel:color-mix(in srgb, var(--or) 50%, transparent);
-  --parchemin:#ffffff;--pa:rgba(255,255,255,.6);--pa2:rgba(255,255,255,.38);
+  --parchemin:#ffffff;--pa:rgba(255,255,255,.6);--pa2:rgba(255,255,255,.5);
   --filet:rgba(231,224,207,.14);--filet-f:rgba(231,224,207,.28);
-  --parchemin-att:rgba(255,255,255,.45);--filet-fort:rgba(231,224,207,.34);--pourpre:#9a3b3b;
+  --parchemin-att:rgba(255,255,255,.52);--filet-fort:rgba(231,224,207,.34);--pourpre:#9a3b3b;
   --serif:'EB Garamond',Georgia,serif;--display:'Cormorant Garamond',serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -138,20 +140,51 @@ html.panneau .notes-cat{top:0}
    versets. Même piège que celui documenté pour les @media : à spécificité
    égale, la dernière règle gagne. */
 body.sel-active .wrap{padding-bottom:calc(var(--sb-h,190px) + 28px)}
-.sur-titre{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--or);margin-bottom:18px}
+/* ═══ LE CHOIX DE LA TRADUCTION ═══
+   Il se fait là où la traduction s'annonçait déjà : la ligne en petites
+   capitales sous le titre de la page. La même ligne revient sous le titre du
+   chapitre, juste avant le filet qui ouvre le texte, pour que le lecteur
+   n'ait jamais à remonter pour changer. Celle qu'on lit est en or, l'autre
+   attend en retrait. Sur un écran étroit la ligne se replie, elle ne déborde
+   jamais. */
+.trad{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:0 10px;font-size:13px;letter-spacing:.24em;text-transform:uppercase;line-height:1.7;color:var(--pa)}
+.trad-o{color:rgba(255,255,255,.72);cursor:pointer;transition:color .3s;position:relative}.trad-o::before{content:'';position:absolute;inset:-12px -6px}
+.trad-o:hover{color:var(--or-pale)}
+.trad-o.on{color:var(--or);cursor:default}
+.trad-sep{color:var(--filet-f)}
+.hero .trad{margin-bottom:18px}
+.ch-trad{margin:26px 0 0}
 h1.titre{font-family:var(--display);font-weight:400;font-size:48px;line-height:1.1;letter-spacing:.04em}
 .hero .souligne{width:54px;height:1px;background:linear-gradient(90deg,transparent,var(--filet-f),transparent);margin:26px auto 0}
 @media(max-width:720px){h1.titre{font-size:36px}.hero{padding:52px 0 18px}}
 
 /* — Vue : livres — */
-.testament{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--or);text-align:center;margin:58px 0 8px}
+.testament{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--or);text-align:center;margin:58px 0 8px}
 .groupe-nom{font-family:var(--display);font-style:italic;font-weight:400;font-size:25px;color:var(--parchemin,#fff);text-align:center;margin:40px 0 20px}
 .livres-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:0 44px;max-width:920px;margin:0 auto}
 @media(max-width:900px){.livres-grille{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.livres-grille{grid-template-columns:1fr}}
+/* Sur téléphone, deux colonnes et le nombre de chapitres sous le nom : la
+   liste des 73 livres passe de près de six mètres d'écran à la moitié (22/09). */
+@media(max-width:560px){
+  .livres-grille{grid-template-columns:1fr 1fr;gap:0 18px}
+  a.livre{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:3px;padding:11px 2px 12px}
+  a.livre .ln{font-size:17.5px;line-height:1.2}
+}
+/* En tête de la liste : reprendre la lecture, aller à une référence. */
+.bib-tete{max-width:560px;margin:34px auto 0;display:flex;flex-direction:column;gap:16px}
+.bib-reprendre{display:flex;align-items:baseline;justify-content:center;gap:12px;padding:13px 16px;border:1px solid var(--filet-f);color:var(--parchemin);text-decoration:none;transition:border-color .3s,background .3s}
+.bib-reprendre:hover{border-color:var(--or);background:var(--surv,rgba(239,230,207,.06))}
+.bib-reprendre .br-l{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa)}
+.bib-reprendre .br-r{font-family:var(--display);font-size:21px}
+.bib-aller{display:flex;align-items:stretch;border:1px solid var(--filet-f)}
+.bib-aller input{flex:1;min-width:0;background:transparent;border:0;color:var(--parchemin);font-family:inherit;font-size:17px;padding:11px 14px;outline:none}
+.bib-aller input::placeholder{color:var(--pa);font-style:italic}
+.bib-aller button{background:none;border:0;border-left:1px solid var(--filet-f);color:var(--or);font-family:inherit;font-size:13px;letter-spacing:.2em;text-transform:uppercase;padding:0 18px;min-width:64px;cursor:pointer}
+.bib-aller:focus-within{border-color:var(--or)}
+.bib-err{font-size:14px;color:#eba0a0;text-align:center;min-height:0}
 a.livre{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:11px 4px;border-bottom:1px solid rgba(231,224,207,.10);transition:border-color .35s,color .3s}
 a.livre .ln{font-size:19px;transition:color .3s}
-a.livre .lc{font-size:12.5px;color:var(--parchemin-att);letter-spacing:.06em;white-space:nowrap;transition:color .3s}
+a.livre .lc{font-size:13px;color:var(--pa);letter-spacing:.06em;white-space:nowrap;transition:color .3s}
 a.livre:hover{border-color:var(--or);background:var(--surv)}
 a.livre:hover .ln{color:var(--parchemin,#fff)}
 a.livre:hover .lc{color:var(--pa)}
@@ -220,7 +253,7 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    La coupure des mots reste active : c'est elle qui empêche la
    justification de creuser des trous béants sur une colonne étroite. Les
    deux vont ensemble, l'une sans l'autre donne un mauvais résultat. */
-.ch-texte{text-align:justify;hyphens:auto;line-height:1.08}
+.ch-texte{text-align:justify;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 2;line-height:1.08}
 @media(max-width:600px){.ch-texte{line-height:1.08}}
 /* Le paragraphe respire des deux côtés : un poème enchâssé dans le récit
    (le Gloria au milieu de Luc 2) doit être aussi dégagé au-dessous qu'au-dessus. */
@@ -228,6 +261,8 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .ch-texte .par:first-child{margin-top:0}
 .ch-texte .par:last-child{margin-bottom:0}
 .ch-texte sup.vn{font-family:var(--serif);font-size:12.5px;color:var(--or);line-height:0;margin-right:5px;letter-spacing:0}
+/* un verset que seule la Septante contient (35a, 35b…) : son numéro, dans le fil du verset hébreu qui le précède */
+.ch-texte sup.vsub{font-family:var(--serif);font-size:11.5px;color:var(--or);line-height:0;letter-spacing:0;opacity:.85}
 /* ── LA MARQUE D'UNE NOTE (05/09, Emmanuel : « quelque chose de subtil sur le
    verset pour montrer qu'il y a une ou des notes ») ──
    Un point d'or, petit et à demi éteint, collé au numéro du verset : il ne
@@ -488,7 +523,7 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .ch-nav .vide{visibility:hidden}
 
 /* — Plateau de sélection — */
-#sel-barre{position:fixed;left:0;right:0;bottom:0;z-index:48;background:rgba(0,0,0,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--filet);padding-bottom:env(safe-area-inset-bottom,0px);display:none}
+#sel-barre{position:fixed;left:0;right:0;bottom:var(--lv-bas,0px);z-index:48;background:rgba(0,0,0,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--filet);padding-bottom:env(safe-area-inset-bottom,0px);display:none}
 body.sel-active #sel-barre{display:block}
 .sb-int{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
 .sb-refs{display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex:1;min-width:200px}
@@ -729,7 +764,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
 
   <main class="wrap">
     <div class="hero" id="hero">
-      <div class="sur-titre">Traduction Chérubin</div>
+      <div class="trad" id="trad" role="group" aria-label="Traduction"></div>
       <h1 class="titre">La Sainte Bible</h1>
       <div class="souligne"></div>
     </div>
@@ -899,7 +934,33 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     e.preventDefault(); b.click();
   });
   var hero = document.getElementById('hero');
-  var IDX = null, CACHE = {}, ORDRE = {};
+  var IDX = null, ORDRE = {};
+  /* ═══ LES DEUX TRADUCTIONS ═══
+     La Chérubin est la traduction du site et le reste par défaut. La
+     Séraphin est un second fichier, que le build découpe et sert exactement
+     comme elle, dans un dossier à elle ; elle NE SE CHARGE QUE SI on la
+     demande, livre par livre, si bien que l'ouverture de la page ne pèse pas
+     un octet de plus pour qui ne la lit pas.
+     Les deux Bibles ont une seule et même grille de versets : mêmes livres,
+     mêmes slugs, mêmes chapitres, mêmes numéros, mêmes titres de section. Un
+     seul index suffit donc aux deux, et les signets, les notes, les
+     surlignages et les sélections, qui désignent un verset par son livre, son
+     chapitre et son numéro, valent de part et d'autre sans rien changer.
+     Le choix est gardé PAR APPAREIL, comme la taille du texte et la barre
+     repliée, et le panneau latéral des autres pages le retrouve tout seul :
+     il affiche cette page-ci dans son tiroir. */
+  var TRADS = {
+    cherubin:  { nom: 'Chérubin',  dossier: '/bible-data' },
+    seraphin: { nom: 'Séraphin', dossier: '/bible-data-seraphin' }
+  };
+  var TRAD_CLE = 'lv_traduction';
+  var TRAD = 'cherubin';
+  try { var tLu = localStorage.getItem(TRAD_CLE); if (tLu && TRADS[tLu]) TRAD = tLu; } catch(e) {}
+  /* un cache par traduction : aller à l'autre et revenir ne recharge rien */
+  var CACHES = { cherubin: {}, seraphin: {} };
+  var CACHE = CACHES[TRAD];
+  /* la place du lecteur, gardée le temps d'un changement de traduction */
+  var repriseLecture = null;
   var pendingSel = null;
 
   /* ───────── Firebase : compte et synchronisation des notes ───────── */
@@ -1354,7 +1415,11 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
   }
   function livreData(slug){
     if (CACHE[slug]) return Promise.resolve(CACHE[slug]);
-    return charge('/bible-data/' + slug + '.json').then(function(d){ CACHE[slug] = d; return d; });
+    /* la traduction est FIXÉE à l'appel : un chargement lent qui arrive après
+       un changement de traduction se range dans son propre cache, jamais dans
+       celui de l'autre */
+    var t = TRAD, c = CACHES[t];
+    return charge(TRADS[t].dossier + '/' + slug + '.json').then(function(d){ c[slug] = d; return d; });
   }
   /* Variante tolérante : une donnée ancienne au slug disparu ne doit JAMAIS
      faire échouer un Promise.all entier (bug « Mes notes » vide, 23/07). */
@@ -1367,6 +1432,60 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     for (var i = 0; i < IDX.livres.length; i++) if (IDX.livres[i].slug === slug) return IDX.livres[i];
     return null;
   }
+
+  /* ───────── Le sélecteur de traduction ─────────
+     UNE SEULE FABRIQUE pour les deux endroits où il paraît : le haut de la
+     page et la tête du chapitre. Deux libellés ne peuvent donc pas diverger,
+     et ajouter une traduction se ferait dans la seule table TRADS. */
+  function optionsTrad(){
+    var h = '<span class="trad-lab">Traduction</span>';
+    ['cherubin', 'seraphin'].forEach(function(k, i){
+      if (i) h += '<span class="trad-sep" aria-hidden="true">\u00b7</span>';
+      h += '<span class="trad-o' + (TRAD === k ? ' on' : '') + '" data-trad="' + k + '"'
+         + ' role="button" tabindex="0" aria-pressed="' + (TRAD === k ? 'true' : 'false') + '">'
+         + esc(TRADS[k].nom) + '</span>';
+    });
+    return h;
+  }
+  function htmlTrad(cls){
+    return '<div class="trad' + (cls ? ' ' + cls : '') + '" role="group" aria-label="Traduction">'
+         + optionsTrad() + '</div>';
+  }
+  function majTrad(){
+    var ds = document.querySelectorAll('.trad');
+    for (var i = 0; i < ds.length; i++) ds[i].innerHTML = optionsTrad();
+  }
+  majTrad();
+  /* Changer de traduction ne doit pas renvoyer le lecteur en haut du chapitre.
+     On retient le premier verset qui touche le haut de l'écran et la hauteur
+     exacte à laquelle il se tient : l'autre texte n'a pas les mêmes lignes,
+     mais il a les mêmes versets, et c'est le verset qui fait la place. */
+  function ancreLecture(){
+    var ctx = ctxCourant(); if (!ctx) return null;
+    var hb = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hbar'), 10) || 0;
+    var els = document.querySelectorAll('.ch-texte .vst');
+    for (var i = 0; i < els.length; i++) {
+      var r = els[i].getBoundingClientRect();
+      if (r.bottom > hb + 8) return { slug: ctx.slug, ch: ctx.ch, v: parseInt(els[i].id.replace('va-', ''), 10), dy: r.top };
+    }
+    return null;
+  }
+  function choisitTraduction(k){
+    if (!TRADS[k] || k === TRAD) return;
+    repriseLecture = ancreLecture();
+    TRAD = k;
+    CACHE = CACHES[k];
+    try { localStorage.setItem(TRAD_CLE, k); } catch(e) {}
+    majTrad();
+    route();
+  }
+  /* même délégation que les boutons de taille du texte : le sélecteur est
+     redessiné à chaque rendu, l'écoute ne l'est pas */
+  document.addEventListener('click', function(e){
+    var o = e.target.closest ? e.target.closest('.trad-o') : null;
+    if (!o) return;
+    choisitTraduction(o.getAttribute('data-trad'));
+  });
 
   /* ───────── Références : analyse de « Matthieu 7:6-8 » ───────── */
   var ALIAS = {
@@ -1857,7 +1976,10 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       pos = fb;
     });
     out += esc(text.slice(pos, b));
-    return out;
+    /* les versets de la Septante : « ⁠35a⁠ » devient un petit numéro. Les
+       caractères restent les mêmes, dans le même ordre : les positions des
+       surlignages ne bougent pas. */
+    return out.replace(/\u2060(\d+[a-z]*)\u2060/g, '<sup class="vsub">\u2060$1\u2060</sup>');
   }
   /* Le contenu d'un verset, posé au premier dessin comme après chaque
      surlignage : une seule fonction, sinon les vers disparaîtraient au
@@ -2249,7 +2371,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       var v = parseInt(sp.id.replace('va-', ''), 10);
       var txt = vm[v]; if (txt == null) return;
       var key = ctx.slug + '|' + ctx.ch + '|' + v;
-      var inner = corpsVerset(v, txt, SURLF[key], cm[v], sp.classList.contains('po'));
+      var inner = corpsVerset(v, txt, recaleFrags(SURLF[key], txt).ok, cm[v], sp.classList.contains('po'));
       /* on compare avec ce que l'on a soi-même écrit la dernière fois : le
          navigateur réécrit les espaces insécables en « &nbsp; », et comparer
          avec innerHTML faisait reconstruire la moitié des versets à chaque
@@ -2260,15 +2382,40 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
        et de commentaire jusqu'au prochain passage : on les repose (05/09) */
     if (reecrit) { marqueNotes(); marqueComs(); }
   }
+  /* ── UNE PORTION SURLIGNÉE SUIT SES MOTS (22/09) ──
+     Une portion est gardée par ses positions dans le texte, et la Chérubin
+     et la Séraphin n'ont pas le même texte : repassée dans l'autre
+     traduction, la couleur tombait sur d'autres mots. On la recale donc sur
+     les mots qu'elle portait ; introuvables dans le texte affiché, elle
+     appartient à l'autre traduction : on ne la dessine pas, et on la garde
+     intacte pour elle. */
+  function recaleFrags(frags, text){
+    var ok = [], autres = [];
+    (frags || []).forEach(function(f){
+      if (!f.t || text.slice(f.a, f.b) === f.t) { ok.push(f); return; }
+      var p = text.indexOf(f.t);
+      if (p >= 0) ok.push({ a: p, b: p + f.t.length, hex: f.hex, t: f.t });
+      else autres.push(f);
+    });
+    return { ok: ok, autres: autres };
+  }
   function poseFrag(key, a, b, hex, text){
+    /* retirer une portion précise, désignée par ses propres bornes */
+    if (!hex && (SURLF[key] || []).some(function(f){ return f.a === a && f.b === b; })) {
+      var reste0 = SURLF[key].filter(function(f){ return !(f.a === a && f.b === b); });
+      if (reste0.length) SURLF[key] = reste0; else delete SURLF[key];
+      return;
+    }
+    var rc = recaleFrags(SURLF[key], text);
     var len = text.length, arr = new Array(len), i;
-    (SURLF[key] || []).forEach(function(f){ for (i = f.a; i < Math.min(f.b, len); i++) arr[i] = f.hex; });
+    rc.ok.forEach(function(f){ for (i = f.a; i < Math.min(f.b, len); i++) arr[i] = f.hex; });
     for (i = Math.max(0, a); i < Math.min(b, len); i++) arr[i] = hex || null;
     var out = []; i = 0;
     while (i < len) {
       if (arr[i]) { var j = i; while (j < len && arr[j] === arr[i]) j++; out.push({ a: i, b: j, hex: arr[i], t: text.slice(i, j) }); i = j; }
       else i++;
     }
+    out = out.concat(rc.autres);
     if (out.length) SURLF[key] = out; else delete SURLF[key];
   }
   function vOffset(sp, node, off){
@@ -2525,12 +2672,18 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     var t = document.getElementById('nb-zone').value.trim();
     if (!t && !(noteEnCours.refs || []).length) { fermeNote(true); return; }
     var maintenant = new Date().toISOString();
+    var trouvee = false;
     if (noteEnCours.id) {
       for (var i = 0; i < NOTES.length; i++) if (NOTES[i].id === noteEnCours.id) {
         NOTES[i].t = t; NOTES[i].m = maintenant; NOTES[i].c = document.getElementById('nb-cat').value; cloudSet(NOTES[i]);
+        trouvee = true;
       }
-    } else {
-      var n = { id: String(Date.now()), d: maintenant, m: maintenant, t: t, refs: noteEnCours.refs || [], c: document.getElementById('nb-cat').value };
+    }
+    /* la note a pu être supprimée ailleurs (autre onglet, autre appareil)
+       pendant qu'on l'écrivait : le texte tapé n'est pas perdu, il devient
+       une note nouvelle, sous un nouvel identifiant (22/09) */
+    if (!trouvee) {
+      var n = { id: String(Date.now()), d: noteEnCours.d || maintenant, m: maintenant, t: t, refs: noteEnCours.refs || [], c: document.getElementById('nb-cat').value };
       NOTES.unshift(n); cloudSet(n);
     }
     sauveNotes(); majLienNotes(); marqueNotes(); fermeNote(true);
@@ -3033,6 +3186,12 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     hero.style.display = '';
     vue._ctx = null;
     var h = '', testCourant = '';
+    var lu = null;
+    try { lu = JSON.parse(localStorage.getItem('lv_bible_lu') || 'null'); } catch(e){ lu = null; }
+    h += '<div class="bib-tete">';
+    if (lu && lu.s && lu.n && infoLivre(lu.s)) h += '<a class="bib-reprendre" href="#' + esc(lu.s) + '/' + (+lu.n) + '"><span class="br-l">Reprendre</span><span class="br-r">' + esc(lu.t || '') + '</span></a>';
+    h += '<form class="bib-aller" id="bib-aller" autocomplete="off"><input type="text" id="bib-ref" placeholder="Aller à : Jean 3:16" spellcheck="false" enterkeyhint="go" aria-label="Aller à une référence"><button type="submit">Aller</button></form>'
+       + '<div class="bib-err" id="bib-err" aria-live="polite"></div></div>';
     IDX.groupes.forEach(function(g){
       if (g.test !== testCourant) {
         testCourant = g.test;
@@ -3047,6 +3206,16 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       h += '</div>';
     });
     vue.innerHTML = h;
+    var fa = document.getElementById('bib-aller');
+    if (fa) fa.addEventListener('submit', function(e){
+      e.preventDefault();
+      var champ = document.getElementById('bib-ref'), err = document.getElementById('bib-err');
+      var val = String(champ.value || '').trim(); if (!val) return;
+      var g = null; try { g = parseRef(val); } catch(_) { g = null; }
+      if (!g) { err.textContent = 'Référence non reconnue.'; return; }
+      err.textContent = ''; champ.blur();
+      location.hash = 'ref=' + encodeURIComponent(val);
+    });
   }
 
   function vueChapitres(slug){
@@ -3082,6 +3251,8 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       if (!ch) return vueChapitres(slug);
       var ps = (slug === 'psaumes');
       var nomCh = ps ? 'Psaume ' + n : esc(inf.nom) + (inf.nch > 1 ? ' ' + n : '');
+      /* le dernier chapitre ouvert, pour « Reprendre » en tête de la liste */
+      try { localStorage.setItem('lv_bible_lu', JSON.stringify({ s: slug, n: n, t: ps ? 'Psaume ' + n : inf.nom + (inf.nch > 1 ? ' ' + n : '') })); } catch(e){}
       document.title = nomCh + ' · La Sainte Bible · Lumen Veritatis';
       var h = '<div class="lecture-col">' +
               '<div class="ch-tete"><h2 class="ch-titre">' + nomCh + '</h2>' +
@@ -3089,6 +3260,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       if (ch.vulg) h += '<div class="ch-vulg">Vulgate : ' + esc(ch.vulg) + '</div>';
       if (ch.titre) h += ps ? '<div class="ch-psaume-titre">' + esc(ch.titre) + '</div>'
                             : '<div class="ch-section">' + esc(ch.titre) + '</div>';
+      h += htmlTrad('ch-trad');
       h += '<div class="ch-sep"></div><div class="ch-texte">';
       var secT = {};
       if (ch.titres) ch.titres.forEach(function(t){ if (t && t.titre) secT[t.v] = t.titre; });
@@ -3133,6 +3305,13 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       }
       marqueSurlF();
       marqueNotes();
+      /* on remet le lecteur là où il était avant de changer de traduction ;
+         un verset visé par l'adresse l'emporte, il a sa propre visée plus bas */
+      if (repriseLecture && !vCible && repriseLecture.slug === slug && repriseLecture.ch === n) {
+        var eAnc = document.getElementById('va-' + repriseLecture.v);
+        if (eAnc) window.scrollTo(0, Math.max(0, window.scrollY + eAnc.getBoundingClientRect().top - repriseLecture.dy));
+      }
+      repriseLecture = null;
       /* les commentaires publiés sur ce livre : déjà connus, ils se posent
          tout de suite ; sinon ils arrivent du nuage et se posent à l'arrivée,
          si l'on est encore sur ce chapitre */
@@ -3213,6 +3392,10 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       }
     }).catch(function(e){
       if (jeton !== JETON) return;
+      /* la Séraphin peut manquer du dossier publié : le livre n'est jamais
+         arrivé, et plutôt qu'une page d'erreur on ramène le lecteur à la
+         Chérubin, qui, elle, est toujours là */
+      if (TRAD !== 'cherubin' && !CACHES[TRAD][slug]) { choisitTraduction('cherubin'); return; }
       /* une erreur de rendu (et non de r\u00e9seau) ne doit pas rester muette */
       if (e && e.name === 'TypeError') console.warn('lecture', e);
       vue.innerHTML = '<div class="chargement">Le texte n\u2019a pas pu \u00eatre charg\u00e9.<br>'

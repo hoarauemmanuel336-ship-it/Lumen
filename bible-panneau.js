@@ -1,4 +1,4 @@
-/* Lumen Veritatis — panneau biblique latéral (traduction Chérubin).
+/* Lumen Veritatis — panneau biblique latéral.
    Onglet discret au bord gauche, panneau coulissant par-dessus la page.
 
    IL N'Y A PLUS QU'UNE SEULE BIBLE. Ce fichier contenait autrefois sa propre
@@ -13,7 +13,14 @@
 
    Ce qui reste ici : l'onglet, le tiroir, le champ de référence, les puces
    quand un texte en cite plusieurs, et le petit analyseur de références que
-   « Mémoriser » utilise aussi (window.LVBible). */
+   « Mémoriser » utilise aussi (window.LVBible).
+
+   LES DEUX TRADUCTIONS. Le tiroir n'a rien à faire pour elles : il montre
+   « bible.html », qui porte le sélecteur, et le choix du lecteur est gardé
+   dans le stockage local du site, donc commun à la page et au tiroir.
+   BP_DATA, lui, reste sur la Chérubin : il ne sert pas à lire, il sert à
+   window.LVBible, c'est-à-dire au sélecteur de verset de « Mémoriser » et à
+   son signe d'écart, qui se comparent à la Bible du site. */
 (function(){
   'use strict';
   if (document.getElementById('bp-tab')) return;
@@ -79,6 +86,10 @@
   + '#bp-pan .bp-refrow :focus,#bp-pan .bp-refrow :focus-visible{outline:none}'
   + 'span.ref{cursor:pointer}'
   + 'span.ref:hover{text-decoration:underline;text-underline-offset:3px}'
+  /* zones de toucher de 44 px autour des petits boutons du tiroir (22/09) */
+  + '.bp-icone,.bp-fermer,.bp-page,.bp-aller{position:relative}'
+  + '.bp-icone::before,.bp-fermer::before,.bp-page::before,.bp-aller::before{content:"";position:absolute;inset:-12px -8px}'
+  + '.bp-page,.bp-aller{font-size:12.5px}'
   + '@media print{#bp-tab,#bp-pan,#bp-voile{display:none!important}}';
   var st = document.createElement('style');
   st.textContent = css;
@@ -459,6 +470,8 @@
     ref: parseRef,
     refs: decoupeRefs,
     etiquette: etiquetteRef,
-    ouvreSurRef: ouvreSurRef
+    ouvreSurRef: ouvreSurRef,
+    /* la barre du bas du téléphone ouvre et referme le tiroir (22/09) */
+    bascule: function(){ if (pan.classList.contains('on')) ferme(); else ouvre(); }
   };
 })();

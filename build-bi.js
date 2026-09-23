@@ -70,7 +70,7 @@ const UI = {
     t_home: 'Lumen · La Sainte Bible', t_404: 'Page introuvable · Lumen',
     search_placeholder: 'Une référence, par exemple Jean 3:16…', search_hint: 'Tapez une référence, par exemple Jean 3:16, pour l\u2019ouvrir dans la Bible.', search_empty: 'Aucune référence reconnue dans',
     memo_label:"L'outil", memo_title:'Mémoriser', memo_open:'Ouvrir Mémoriser', memo_start:'Commencer',
-    art_label:'Les écrits', art_title:'Articles', art_open:'Ouvrir les articles', memo_mastery:'de maîtrise', memo_acquired:'acquis', memo_learning:'en cours', memo_review:'à revoir', memo_signedout:'Connectez-vous pour suivre votre progression.',
+    art_label:'Les écrits', art_title:'Articles', art_open:'Ouvrir les articles', res_label:'Pour étudier', res_title:'Ressources', res_open:'Ouvrir les ressources', memo_mastery:'de maîtrise', memo_acquired:'acquis', memo_learning:'en cours', memo_review:'à revoir', memo_signedout:'Connectez-vous pour suivre votre progression.',
   }
 };
 
@@ -104,22 +104,27 @@ const BARRE_CSS = `
   html{scroll-behavior:auto!important}
 }
 
-header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(231,224,207,.14)}
+/* fond plein (22/09) : le texte qui défilait dessous restait lisible à travers le titre */
+header{position:sticky;top:0;z-index:50;background:#000;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid rgba(231,224,207,.14)}
 /* ── LA BARRE SE RANGE (Emmanuel, 12/09) ──
    Une poignée sous la barre la replie : il ne reste qu'un mince bandeau avec
    son chevron, et l'écran entier revient à la lecture. Elle reste rangée tant
    qu'on ne la rappelle pas, sur cet appareil. Elle est posée en bas de la
    barre, centrée, et reste en place une fois la barre repliée : c'est par elle
    qu'on la fait revenir. */
-.barre-poignee{display:block;width:100%;margin:0;padding:5px 0 6px;background:none;border:0;line-height:0;cursor:pointer;color:rgba(231,224,207,.42);transition:color .3s;-webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+/* La poignée se tient juste à droite du titre « Lumen » (22/09) : elle ne
+   prend plus de hauteur à la barre. Rangée, la barre n'est plus qu'elle,
+   en mince bandeau. */
+.barre-poignee{display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin:0 0 0 -8px;padding:0;background:none;border:0;line-height:0;cursor:pointer;color:rgba(231,224,207,.42);transition:color .3s;-webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .barre-poignee:hover,.barre-poignee:focus-visible{color:var(--or,#efe6cf)}
 .barre-poignee svg{display:block;margin:0 auto;width:30px;height:9px;transition:transform .3s}
-html.barre-rangee .barre{display:none}
-html.barre-rangee header{background:rgba(0,0,0,.5)}
+html.barre-rangee header .barre{display:block;padding:0;max-width:none}
+html.barre-rangee header .barre>*:not(.barre-poignee){display:none!important}
+html.barre-rangee header{background:#000}
 html.barre-rangee .barre-poignee svg{transform:rotate(180deg)}
 /* rangée, la poignée est tout ce qui reste : elle s'épaissit un peu pour
    rester facile à toucher du doigt */
-html.barre-rangee .barre-poignee{padding:10px 0 11px}
+html.barre-rangee .barre-poignee{width:100%;height:auto;margin:0;padding:10px 0 11px}
 /* le menu déplié se referme avec la barre : il n'a plus de barre où s'accrocher */
 html.barre-rangee nav.menu{display:none}
 .barre{max-width:1080px;margin:0 auto;padding:20px 32px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:24px;height:auto;line-height:1.75}
@@ -145,19 +150,46 @@ footer .verset-pied{margin-top:18px;font-style:italic;color:rgba(255,255,255,.55
 footer .verset-pied .ref-pied{font-style:normal;font-weight:600;color:rgba(255,255,255,.55)}
 footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,255,255,.45);font-family:'Cormorant Garamond',serif}
 @media(max-width:720px){
-  .barre{padding:16px 20px;display:flex;justify-content:space-between}
-  /* Le menu déplié est ACCROCHÉ SOUS LA BARRE, quelle que soit sa hauteur
-     (05/09). Il était « fixed » à 62 px du haut, alors que la barre en fait
-     78 : il chevauchait son filet. Et « justify-self:end », hérité de la
-     grille de la version large, le rétrécissait à sa largeur de contenu et
-     le collait à droite : un demi-panneau. Position absolue par rapport à
-     la barre (qui est positionnée, donc sert de repère), pleine largeur. */
-  nav.menu{position:absolute;top:100%;left:0;right:0;width:100%;justify-self:auto;flex-direction:column;gap:0;align-items:flex-start;background:rgba(0,0,0,.97);padding:10px 28px 18px;border-bottom:1px solid rgba(231,224,207,.14);transform:translateY(-130%);transition:transform .35s}
-  nav.menu.ouvert{transform:none}
-  nav.menu a{font-size:15px;padding:12px 0;width:100%;border-bottom:none}
-  .burger{display:block}
-  .rech-loupe{width:100%;justify-content:flex-start;gap:14px;padding:12px 0;border-bottom:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin,#ffffff)}
-  .rech-loupe .ll-mob{display:inline}
+  /* ── NAVIGATION DU TÉLÉPHONE (22/09) ──
+     Le menu déroulant cède la place à une barre d'onglets en bas de l'écran,
+     à portée du pouce. En haut ne restent que le titre, la loupe et le
+     compte, chacun sur une zone de toucher de 44 px. */
+  /* préfixées par « header » : certaines pages gardent leur propre copie des
+     anciennes règles du menu, qu'il faut emporter */
+  header .barre{padding:8px 6px 8px 20px;display:flex;justify-content:space-between}
+  .barre-poignee{width:44px;height:44px;margin:0 auto 0 0}
+  header .burger{display:none}
+  header nav.menu{position:static;flex-direction:row;gap:0;align-items:center;background:none;padding:0;border:0;transform:none;width:auto}
+  header nav.menu a{display:none}
+  header nav.menu .rech-loupe{width:44px;height:44px;justify-content:center;padding:0}
+  header nav.menu .rech-loupe .ll-mob{display:none}
+  /* une fenêtre sans champ à remplir (information, confirmation) se centre ;
+     un formulaire reste en haut, où le clavier ne le recouvre pas */
+  .overlay:not(:has(input,textarea,select))>.modal{margin-top:auto;margin-bottom:auto}
+}
+
+/* ── BARRE D'ONGLETS DU TÉLÉPHONE (22/09) ──
+   --lv-bas porte sa hauteur : les pages y calent ce qui se pose au bas de
+   l'écran (barre de sélection de la Bible, bouton « haut de page »). Barre
+   du haut rangée, celle du bas se range avec elle : l'écran entier revient
+   à la lecture. */
+:root{--lv-bas:0px}
+.nav-bas{display:none}
+@media(max-width:720px){
+  :root{--lv-bas:calc(58px + env(safe-area-inset-bottom,0px))}
+  html.barre-rangee,html.panneau{--lv-bas:0px}
+  html.panneau .nav-bas{display:none!important}
+  body{padding-bottom:var(--lv-bas)}
+  .nav-bas{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:55;height:var(--lv-bas);padding-bottom:env(safe-area-inset-bottom,0px);background:#000;border-top:1px solid rgba(231,224,207,.14)}
+  html.barre-rangee .nav-bas{display:none}
+  .nav-bas a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:0;color:rgba(255,255,255,.62);text-decoration:none;font-family:'EB Garamond',Georgia,serif;font-size:12.5px;letter-spacing:.02em;line-height:1;transition:color .25s;-webkit-tap-highlight-color:transparent;position:relative}
+  .nav-bas a svg{width:22px;height:22px;display:block}
+  .nav-bas a.actif{color:var(--or,#efe6cf)}
+  .nav-bas a.actif::before{content:'';position:absolute;top:-1px;left:22%;right:22%;height:1px;background:var(--or,#efe6cf)}
+  /* le réglage « onglet Bible à gauche » n'a plus d'objet sur téléphone :
+     la Bible s'ouvre depuis la barre du bas */
+  #bp-tab{display:none!important}
+  .tog-row:has(#tog-bible){display:none}
 }
 `;
 /* L'état de la barre est lu AVANT le premier affichage : sans cela la barre
@@ -168,6 +200,15 @@ const SVG_CLOCHE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" 
 const SVG_COMPTE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg>';
 const NAV_LIENS = [['/', 'Accueil'], ['/bible.html', 'Bible'], ['/memoriser.html', 'Mémoriser'],
                    ['/articles.html', 'Articles'], ['/ressources.html', 'Ressources']];
+/* Les icônes de la barre du bas : un trait fin, comme la loupe et le compte. */
+const SVGB = d => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>';
+const NAV_BAS = [
+  ['/', 'Accueil', SVGB('<path d="M12 3v18M7.5 8.5h9"/>')],
+  ['/bible.html', 'Bible', SVGB('<path d="M12 6.5C10 5 7 4.6 4 5v13c3-.4 6 0 8 1.5 2-1.5 5-1.9 8-1.5V5c-3-.4-6 0-8 1.5z"/><path d="M12 6.5V19"/>')],
+  ['/memoriser.html', 'Mémoriser', SVGB('<rect x="4.5" y="7.5" width="11.5" height="13" rx=".5"/><path d="M8 4.5h11.5v13"/>')],
+  ['/articles.html', 'Articles', SVGB('<path d="M6.5 3.5h8l3 3v14h-11z"/><path d="M9.5 11h5M9.5 14.5h5M9.5 7.5h2.5"/>')],
+  ['/ressources.html', 'Ressources', SVGB('<rect x="4.5" y="4.5" width="6.2" height="6.2"/><rect x="13.3" y="4.5" width="6.2" height="6.2"/><rect x="4.5" y="13.3" width="6.2" height="6.2"/><rect x="13.3" y="13.3" width="6.2" height="6.2"/>')]
+];
 const VERSET_PIED = '« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l\u2019ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span>';
 
 /* Une seule barre, un seul pied. Aucun argument, donc aucune dérive possible :
@@ -185,7 +226,10 @@ function barreCanon() {
       <span class="rech-loupe auth-icone" id="auth-ouvrir" role="button" tabindex="0" aria-label="Compte">${SVG_COMPTE}<span class="ll-mob">Compte</span></span>
     </nav>
   </div>
-</header>`;
+</header>
+<nav class="nav-bas" id="nav-bas" aria-label="Navigation">
+  ${NAV_BAS.map(l => `<a href="${l[0]}"${l[0] === '/bible.html' ? ' id="nav-bas-bible"' : ''}>${l[2]}<span>${l[1]}</span></a>`).join('\n  ')}
+</nav>`;
 }
 function piedCanon() {
   return `<footer>
@@ -208,7 +252,9 @@ const BARRE_JS = `(function(){
     var pg=document.createElement('button');
     pg.type='button'; pg.id='barre-poignee'; pg.className='barre-poignee';
     pg.innerHTML='<svg viewBox="0 0 30 9" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 6.2 15 2.4l8 3.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    tete.appendChild(pg);
+    /* juste après le titre ; faute de titre, au bout de la barre */
+    var lg=tete.querySelector('.barre .logo');
+    if(lg)lg.insertAdjacentElement('afterend',pg); else tete.appendChild(pg);
     var dit=function(){
       var rangee=document.documentElement.classList.contains('barre-rangee');
       pg.setAttribute('aria-expanded',rangee?'false':'true');
@@ -229,7 +275,14 @@ const BARRE_JS = `(function(){
   var an=document.getElementById('annee');
   if(an)an.textContent='\u00a9 '+new Date().getFullYear()+' Lumen';
   var p=location.pathname.replace(/index\\.html$/,'')||'/';
-  Array.prototype.forEach.call(document.querySelectorAll('nav.menu a'),function(a){
+  /* Barre du bas : « Bible », hors de la page Bible, ouvre le tiroir de la
+     Bible par-dessus la page, sans perdre sa place ; « Pleine page », dans le
+     tiroir, mène à la Bible elle-même. */
+  var nb=document.getElementById('nav-bas-bible');
+  if(nb&&p!=='/bible.html'){nb.addEventListener('click',function(e){
+    if(window.LVBible&&typeof window.LVBible.bascule==='function'){e.preventDefault();window.LVBible.bascule();}
+  });}
+  Array.prototype.forEach.call(document.querySelectorAll('nav.menu a, .nav-bas a'),function(a){
     var h=(a.getAttribute('href')||'').replace(/index\\.html$/,'');
     if(h===p)a.classList.add('actif');
   });
@@ -262,7 +315,7 @@ const EXTRA_CSS = `${BARRE_CSS}
 :focus-visible{outline:1px solid var(--or,#efe6cf);outline-offset:3px}
 
 html{scroll-behavior:smooth}
-.haut-page{position:fixed;right:18px;bottom:18px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--filet,rgba(231,224,207,.25));color:var(--or,#efe6cf);font-size:17px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .35s,border-color .3s;z-index:1100}
+.haut-page{position:fixed;right:18px;bottom:calc(18px + var(--lv-bas,0px));width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--filet,rgba(231,224,207,.25));color:var(--or,#efe6cf);font-size:17px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .35s,border-color .3s;z-index:1100}
 .haut-page.on{opacity:1;pointer-events:auto}
 .haut-page:hover{border-color:var(--or,#efe6cf)}
 
@@ -481,6 +534,9 @@ const RECH_JS = `(function(){
      Même logique que la recherche de la page Bible (dico + alias + préfixe
      unique), sur la table LUMEN_BIBLE injectée dans recherche-<lang>.js */
   var BALIAS={'genese':['gn','gen'],'exode':['ex','exo'],'levitique':['lv','lev'],'nombres':['nb','nbr','num'],'deuteronome':['dt','deut'],'josue':['jos'],'juges':['jg','jug'],'ruth':['rt'],'1-samuel':['1s','1sam','1sm'],'2-samuel':['2s','2sam','2sm'],'1-rois':['1r','1roi'],'2-rois':['2r','2roi'],'1-chroniques':['1ch','1chr','1par'],'2-chroniques':['2ch','2chr','2par'],'esdras':['esd'],'nehemie':['ne','neh'],'tobie':['tb','tob'],'judith':['jdt'],'esther':['est'],'1-maccabees':['1m','1ma','1mac','1macc'],'2-maccabees':['2m','2ma','2mac','2macc'],'job':['jb'],'psaumes':['ps','psaume'],'proverbes':['pr','prv','prov'],'ecclesiaste':['qo','eccl','qohelet'],'cantique-des-cantiques':['ct','cant','cantique','cantiques'],'sagesse':['sg','sag'],'ecclesiastique':['si','sir','siracide','eccli','ecclesiastique'],'isaie':['is','isa','esaie'],'jeremie':['jr','jer'],'lamentations':['lm','lam'],'baruch':['ba','bar'],'ezechiel':['ez','eze'],'daniel':['dn','dan'],'osee':['os'],'joel':['jl'],'amos':['am'],'abdias':['ab','abd'],'jonas':['jon'],'michee':['mi','mich'],'nahum':['na','nah'],'habacuc':['ha','hab'],'sophonie':['so','soph'],'aggee':['ag','agg'],'zacharie':['za','zac'],'malachie':['ml','mal'],'matthieu':['mt','mat','matt'],'marc':['mc'],'luc':['lc'],'jean':['jn'],'actes':['ac','act'],'romains':['rm','rom'],'1-corinthiens':['1co','1cor'],'2-corinthiens':['2co','2cor'],'galates':['ga','gal'],'ephesiens':['ep','eph'],'philippiens':['ph','phil','php'],'colossiens':['col'],'1-thessaloniciens':['1th','1thes','1thess'],'2-thessaloniciens':['2th','2thes','2thess'],'1-timothee':['1tm','1tim'],'2-timothee':['2tm','2tim'],'tite':['tt','tit'],'philemon':['phm','phlm'],'hebreux':['he','heb'],'jacques':['jc','jac'],'1-pierre':['1p','1pi'],'2-pierre':['2p','2pi'],'1-jean':['1jn'],'2-jean':['2jn'],'3-jean':['3jn'],'jude':['jud'],'apocalypse':['ap','apc','apoc']};
+  /* mêmes noms additifs que le tiroir Bible (bible-panneau.js), pour que la
+     recherche du site reconnaisse les mêmes références (22/09) */
+  (function(){var X={       'josue':['joshua','josh'],'juges':['judg','jdg'],       '1-samuel':['1samuel'],'2-samuel':['2samuel'],       '1-rois':['3rois','3r','3kings'],'2-rois':['4rois','4r','4kings'],       '1-chroniques':['1chronicles','1chron','1paralipomenes'],'2-chroniques':['2chronicles','2chron','2paralipomenes'],       'esdras':['ezra','1esdras'],'nehemie':['nehemiah','nehemias','2esdras','neemie'],'tobie':['tobit'],       'psaumes':['psalm','pss'],       'ecclesiaste':['qoheleth','coheleth','eccles'],       'cantique-des-cantiques':['songofsongs','songofsolomon','canticles','canticleofcanticles'],       'ecclesiastique':['sirach','bensira','sirac','ecclus'],       'sagesse':['wisdom','wis','sagessedesalomon','wisdomofsolomon'],       'isaie':['isaiah'],'jeremie':['jeremiah'],       'lamentations':['threnes','lamentationsdejeremie'],       'ezechiel':['ezekiel','ezek'],       'osee':['hosea','hos'],'abdias':['obadiah','obad'],'jonas':['jonah'],'michee':['micah','mic'],       'habacuc':['habakkuk'],'sophonie':['zephaniah','zeph'],'aggee':['haggai','hag'],       'zacharie':['zechariah','zech'],'malachie':['malachi'],       '1-maccabees':['1maccabees'],'2-maccabees':['2maccabees'],       'matthieu':['matthew'],'marc':['mk'],'luc':['lk'],'actes':['actsoftheapostles','actesdesapotres'],       '1-thessaloniciens':['1thessalonians'],'2-thessaloniciens':['2thessalonians'],       '1-timothee':['1timothy'],'2-timothee':['2timothy'],       'jacques':['jas'],'1-pierre':['1peter','1pet'],'2-pierre':['2peter','2pet'],       '1-jean':['1john'],'2-jean':['2john'],'3-jean':['3john'],       'apocalypse':['revelation','rev','revelations','apocalypsedejean']     };Object.keys(X).forEach(function(k){BALIAS[k]=(BALIAS[k]||[]).concat(X[k]);});})();
   var BDICO=null;
   function bnorm(s){return String(s).toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/[^a-z0-9]+/g,'');}
   function bdico(){
@@ -532,7 +588,9 @@ const RECH_JS = `(function(){
     kidx=-1;
     if(!String(q||'').trim()){res.innerHTML='<div class="rech-msg">'+L.hint+'</div>';return;}
     var bib=brefItem(q);
-    res.innerHTML=bib||('<div class="rech-msg">'+L.empty+' « '+q+' ».</div>');
+    /* le texte tapé est échappé avant d'entrer dans la page (22/09) */
+    var qe=String(q).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});
+    res.innerHTML=bib||('<div class="rech-msg">'+L.empty+' « '+qe+' ».</div>');
   }
   function prep(){charge=!!window.LUMEN_BIBLE;}
   var attentes=[];
@@ -573,6 +631,8 @@ function page({ lang, type, title, description, frPath, enPath, base, otherRel, 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<style>html{color-scheme:dark}</style>
 <title>${title}</title>
 <meta name="description" content="${description}">${robots}
 <link rel="canonical" href="${url}">
@@ -653,6 +713,14 @@ function mainAccueil(lang, base) {
     </div>
     <div class="memo-bloc">
       <a class="memo-start" href="/articles.html">${u.art_open}</a>
+    </div>
+    <div class="titre-section">
+      <span class="num">${u.res_label || 'Pour étudier'}</span>
+      <h2>${u.res_title || 'Ressources'}</h2>
+      <span class="trait"></span>
+    </div>
+    <div class="memo-bloc">
+      <a class="memo-start" href="/ressources.html">${u.res_open || 'Ouvrir les ressources'}</a>
     </div>
     <div style="height:60px"></div>
   </div>`;
@@ -1189,17 +1257,74 @@ function poseParagraphes(ch) {
      un seulement s'il reste quelque chose. */
   return nb;
 }
+/* ── LES VERSETS DE LA SEPTANTE (23/09) ──
+   Un verset que seule la Septante contient (1 Rois 2:35a, Proverbes 9:12a…)
+   vit à la suite du verset hébreu qui le précède, précédé de son numéro entre
+   deux « word joiner » (U+2060) : la page le dessine en petit numéro. En vers,
+   il ouvre une nouvelle ligne : le texte porte alors un « \n » devant lui,
+   comme les fins de vers de la Séraphin. Pour la Chérubin, ces « \n » sont
+   convertis ici en coupes (vers) ou en simples espaces (prose), et chaque
+   ligne reçoit ensuite ses propres coupes. */
+function coupesParLignes(t) {
+  const lignes = t.split('\n');
+  let txt = '', out = [];
+  lignes.forEach((l, i) => {
+    if (i) { out.push(txt.length); txt += ' '; }
+    const base = txt.length;
+    const c = coupesVerset(l);
+    if (c) c.forEach(k => out.push(base + k));
+    txt += l;
+  });
+  return { t: txt, c: out.sort((x, y) => x - y) };
+}
 function posePoesie(livre) {
   let nb = 0;
   for (const ch of livre.chapitres) {
-    if (POESIE[livre.slug]) {
-      for (const v of ch.versets) {
-        if (!estPoetique(livre.slug, ch.n, v.v)) continue;
-        v.p = 1; nb++;
-        if (estSentence(livre.slug, ch.n, v.v)) v.s = 1;
-        const c = coupesVerset(v.t);
-        if (c) v.c = c;
+    for (const v of ch.versets) {
+      const poe = POESIE[livre.slug] && estPoetique(livre.slug, ch.n, v.v);
+      if (!poe) { if (v.t.indexOf('\n') >= 0) v.t = v.t.replace(/\n/g, ' '); continue; }
+      v.p = 1; nb++;
+      if (estSentence(livre.slug, ch.n, v.v)) v.s = 1;
+      if (v.t.indexOf('\n') >= 0) { const r = coupesParLignes(v.t); v.t = r.t; if (r.c.length) v.c = r.c; continue; }
+      const c = coupesVerset(v.t);
+      if (c) v.c = c;
+    }
+    poseParagraphes(ch);
+  }
+  return nb;
+}
+/* ── LES VERS DE LA LITTÉRALE ──
+   La littérale n'a rien à deviner : elle porte ses coupes dans son texte, un
+   « \n » à chaque fin de vers, posé par le traducteur lui-même. On les
+   CONVERTIT donc dans la seule notation que la page connaisse, celle de la
+   Chérubin : le retour à la ligne devient l'espace qui termine la ligne, et
+   sa position entre dans c. Le texte servi ne contient plus aucun « \n », la
+   suite des caractères affichés reste celle du verset, et la mécanique des
+   positions (surlignages de fragments) est rigoureusement la même des deux
+   côtés. On ne fait JAMAIS tourner coupesVerset sur ce texte : la heuristique
+   inventerait des coupes là où le traducteur n'en a pas voulu.
+   QUI EST EN VERS ICI : les mêmes étendues que la Chérubin, PLUS tout verset
+   qui porte un « \n ». Ce sont les oracles et les psaumes cités au milieu
+   d'un récit (Matthieu 2:6, Isaïe 7:7…), que les étendues ne couvrent pas et
+   que la littérale, elle, compose en vers. */
+function poseVersSeraphin(livre) {
+  let nb = 0;
+  for (const ch of livre.chapitres) {
+    for (const v of ch.versets) {
+      const coupes = [];
+      if (v.t.indexOf('\n') >= 0) {
+        const lignes = v.t.split('\n');
+        let t = lignes[0];
+        for (let i = 1; i < lignes.length; i++) {
+          coupes.push(t.length);       // l'indice de l'espace qui va s'écrire
+          t += ' ' + lignes[i];
+        }
+        v.t = t;
       }
+      if (!coupes.length && !estPoetique(livre.slug, ch.n, v.v)) continue;
+      v.p = 1; nb++;
+      if (estSentence(livre.slug, ch.n, v.v)) v.s = 1;
+      if (coupes.length) v.c = coupes;
     }
     poseParagraphes(ch);
   }
@@ -1207,7 +1332,7 @@ function posePoesie(livre) {
 }
 
   // par livre + un index : FR (Crampon) → /bible-data/, EN (Douay-Rheims) → /bible-data-en/.
-  const decoupeBible = (src, dossier) => {
+  const decoupeBible = (src, dossier, pose) => {
     if (!fs.existsSync(src)) return false;
     fs.mkdirSync(`${OUT}/${dossier}`, { recursive: true });
     const bible = JSON.parse(fs.readFileSync(src, 'utf8'));
@@ -1215,7 +1340,7 @@ function posePoesie(livre) {
     let nb = 0;
     let poe = 0;
     for (const livre of bible.data) {
-      poe += posePoesie(livre);
+      poe += (pose || posePoesie)(livre);
       fs.writeFileSync(`${OUT}/${dossier}/${livre.slug}.json`, JSON.stringify(livre));
       nb++;
     }
@@ -1232,6 +1357,17 @@ function posePoesie(livre) {
       nb++;
     }
     console.log('Bible : ' + nb + ' fichiers de données copiés (ancien format)');
+  }
+  /* ── LA SECONDE TRADUCTION ──
+     La littérale suit exactement le chemin de la Chérubin : même découpage par
+     livre, même index, un dossier à elle. La page ne va la chercher que si le
+     lecteur la demande. Son index est celui de la Chérubin à la virgule près
+     (mêmes livres, mêmes slugs, mêmes chapitres) : il est écrit tout de même,
+     pour que le dossier se tienne debout tout seul. */
+  {
+    const src = ['content/bible-seraphin.json', 'bible-seraphin.json'].find(p => fs.existsSync(p));
+    if (src) decoupeBible(src, 'bible-data-seraphin', poseVersSeraphin);
+    else console.warn('⚠ bible-seraphin.json absent : la page Bible n’ouvrira que la Chérubin');
   }
 }
 

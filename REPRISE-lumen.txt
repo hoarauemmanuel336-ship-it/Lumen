@@ -378,11 +378,63 @@ PIÈGES DE BUILD load-bearing :
   lecture de cascade ; hit-test elementFromPoint pour trancher les artefacts.
 • Téléverser sur GitHub ne supprime pas les anciens fichiers : supprimer
   explicitement ce qui doit disparaître.
-• CHÉRUBIN : le texte du site dit « le Seigneur » (zéro Yahweh).
+• CHÉRUBIN : le texte du site dit « le Seigneur » (zéro Yahvé).
 
 ────────────────────────────────────────────────────────────────────
 5. ACQUIS TECHNIQUES DURABLES (par sous-système)
 ────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────
+SECONDE TRADUCTION : LA SÉRAPHIN (20/09)
+────────────────────────────────────────────────────────────────────
+Le site porte désormais DEUX traductions françaises. La Chérubin (bible.json)
+est à équivalence dynamique et reste la traduction par défaut, celle que citent
+les articles et Mémoriser. La SÉRAPHIN (bible-seraphin.json, 5,8 Mo) traduit
+le mot plutôt que l'effet ; elle a été faite sur les originaux, verset par
+verset, en septembre, et elle suit EXACTEMENT la grille de la Chérubin : mêmes
+73 livres, mêmes slugs, mêmes 1 334 chapitres, mêmes 35 595 versets, mêmes
+3 492 titres de section. Cette identité de grille est la règle qui tient tout
+le dispositif : surlignages, notes, signets et Mémoriser valent des deux côtés.
+
+SOURCES. Ancien Testament sur l'hébreu massorétique (Westminster Leningrad
+Codex, avec morphologie) ; Nouveau Testament sur le grec critique (SBLGNT),
+complété par le texte byzantin pour les versets que le critique met en note et
+que la Chérubin porte (Mt 17:21, Mc 16:9-20, Jn 7:53-8:11, Ac 8:37…) ;
+deutérocanoniques sur la Septante de Rahlfs ; TOBIE et JUDITH sur le latin de
+la Vulgate clémentine, parce que la grille de la Chérubin y est celle de saint
+Jérôme et qu'aucune version grecque ne s'y aligne ; Esther 10-16 sur les ajouts
+grecs, découpés selon le latin.
+
+DÉCISIONS DE TRADUCTION, arrêtées par Emmanuel le 19/09 : littérale LISIBLE
+(repère Osty/TOB serrées, jamais le calque) ; tétragramme rendu « Yahvé » dans
+l'Ancien Testament, « Seigneur » dans le Nouveau (le grec y porte Kyrios) ;
+mots-piliers rendus uniformément (hesed → bonté, nephesh → âme, charis → grâce,
+agapè → amour, sarx → chair…) ; MESURES, MONNAIES ET MOIS LAISSÉS TELS QUELS,
+sans équivalent moderne, là où la Chérubin convertit (coudée, sicle, denier,
+stade, « le septième mois ») ; noms propres sous leur forme française reçue ;
+récit au passé simple ; sur une variante de manuscrits, la leçon de la
+tradition latine l'emporte (Jn 1:34 « le Fils de Dieu ») ; aucune note dans le
+texte. La charte complète et le journal des 15 263 décisions ont été livrés
+avec l'archive.
+
+RENDU. Les versets poétiques portent la coupe des vers. Dans le fichier elle
+est un \n ; le build (poseVersLitterale) la convertit dans la notation déjà en
+place pour la poésie de la Chérubin (p = 1, c = positions d'espaces), si bien
+que le texte servi ne contient aucun \n. 10 348 versets sont en vers du côté
+littéral, 10 173 du côté Chérubin, l'écart venant des 175 oracles cités à
+l'intérieur d'un récit (Matthieu 2:6, Isaïe 7:7…).
+
+CÔTÉ SITE. Sélecteur « Chérubin | Séraphin » en haut de la page Bible et sous
+le titre du chapitre, à la typographie de l'ancienne .sur-titre, qu'il remplace.
+Le choix vit dans localStorage sous lv_traduction et se retrouve d'une visite à
+l'autre et dans le tiroir latéral (qui affiche bible.html en iframe et hérite
+donc du sélecteur). Le fichier littéral n'est demandé qu'au premier clic. Le
+build découpe la Séraphin vers bible-data-seraphin/ par le même mécanisme que
+bible-data/, avec un index identique à l'octet près. Si ce dossier manque, la
+page revient seule à la Chérubin. BP_DATA de bible-panneau.js reste
+délibérément sur la Chérubin : il sert window.LVBible, donc le sélecteur de
+verset de Mémoriser et son signe d'écart avec « la Bible du site ».
+
+
 BIBLE : TRADUCTION CHÉRUBIN, traduction propre d'Emmanuel ({groupes, livres,
 data}, 73 livres, 1334 chapitres, 35 595 versets depuis le crible du 10/09). Aucune ligne de crédit
 n'apparaît sur le site : elle a été retirée de « Mes notes » le 25/07 et ne
@@ -2537,3 +2589,55 @@ Bancs : verif-manuel.js (21 cas), audit-objectif.js (cinq
 configurations lancées par startSession : part du vert, séries,
 doublons, tous vus, étalement dans un groupe), verif-seance.js
 (interface), exige.js, jumeaux.js, banc.js (120 jours). Tout passe.
+
+MÉMORISER ET COULEURS (22/09)
+- Sur téléphone, les cases à cocher et le bouton « Commencer » apparaissaient
+  olive foncé : un mode sombre forcé (extension de Safari type Noir, ou mode
+  sombre automatique d'un navigateur) repeignait les éléments crème, faute
+  pour le site de déclarer qu'il est déjà sombre. Toutes les pages portent
+  désormais <meta name="color-scheme" content="dark"> et html{color-scheme:dark},
+  y compris celles que fabrique build-bi.js (accueil, articles, 404).
+- Citations : le quiz ignorait que plusieurs citations partagent un auteur.
+  « De qui est cette citation ? » pouvait n'offrir qu'un choix, et « Quelle
+  citation est-ce ? » posait « saint Augustin » avec plusieurs phrases de lui
+  dont une seule comptait. Une option n'est plus retenue si elle partage ce qui
+  est affiché en question, et un sens qui n'offre qu'un choix cède la place à
+  l'autre. La corbeille montre les mots d'une citation, non son seul auteur.
+  ⚠ build-bi.js lit la PREMIÈRE balise <style> de index__48_.html comme feuille
+  de l'accueil : rien ne doit se glisser avant elle dans la source (une déclaration
+  color-scheme posée là avait vidé l'accueil de toute sa mise en forme, 22/09).
+  La déclaration de l'accueil vit dans le gabarit de build-bi.js.
+
+REFONTE MOBILE ET LISIBILITÉ (22/09)
+- Téléphone (≤ 720 px) : le menu ☰ disparaît. En haut, le titre, la loupe et
+  le compte (zones de 44 px). En bas, une barre d'onglets fixe : Accueil,
+  Bible, Mémoriser, Articles, Ressources (build-bi.js : NAV_BAS, .nav-bas).
+  Hors de la page Bible, « Bible » ouvre le tiroir (LVBible.bascule) ; l'onglet
+  vertical BIBLE, qui recouvrait le début des lignes, est masqué sur téléphone,
+  avec le réglage « onglet Bible à gauche » devenu sans objet. --lv-bas porte
+  la hauteur de la barre : body, #sel-barre et « haut de page » s'y calent ;
+  barre rangée ou page dans le tiroir, elle vaut 0.
+- En-tête à fond plein (#000, sans flou) : le texte ne se lit plus au travers.
+- Contrastes : --pa2 passe de .38 à .5, --parchemin-att de .45 à .52 sur les
+  pages ; dates, compteurs, choix de traduction et nombre de chapitres montés
+  à 13 px. Petits boutons du tiroir Bible élargis au toucher.
+- Texte biblique : -webkit-hyphens ajouté (Safari coupe les mots en français).
+- Bible : « Reprendre » (lv_bible_lu) et champ « Aller à » en tête de la liste ;
+  deux colonnes de livres sur téléphone.
+- Accueil : section Ressources ; les quatre boutons ont la même largeur.
+- Mémoriser : sans catégorie, « Commencer » s'efface et « + Nouvelle
+  catégorie » devient le bouton principal. Les fenêtres sans champ se centrent.
+- Commentaires reste hors menu (page d'écriture, décision du 05/09).
+- Poignée de la barre (22/09, soir) : placée juste à droite du titre « Lumen »,
+  sur téléphone comme sur ordinateur ; elle ne rajoute plus de hauteur. Rangée,
+  la barre n'est plus que le mince bandeau de 31 px. Barre du téléphone : 63 px.
+
+== 22/09 : chasse aux bugs (sans toucher au visuel) ==
+Corrigé : pages Articles/Ressources (un brouillon supprimé sur un autre appareil ne ressuscite plus ; l'état « publié » suit le cloud ; taille réelle du document mesurée en octets), Commentaires/Articles (message au lieu d'un clic muet quand un passage est déjà utilisé), Bible (surlignages partiels recalés après changement de texte ; note supprimée ailleurs recréée au lieu d'être perdue ; « Reprendre la lecture » et « Aller à »), recherche de l'accueil (texte tapé échappé, alias de livres alignés sur le panneau), Mémoriser (quiz citations sans question à choix unique ; supprimer une catégorie de base ne perd plus les retouches ; troncature sans casser les accents/émojis), Ressources (changer de domaine remet la place à la fin ; restauration d'un domaine avec message d'erreur ; un envoi de fichier ne se greffe plus sur une fiche dont on a changé l'espèce entre-temps).
+Limite connue laissée : Mémoriser enregistre préférences / retouches / corbeille / sections en réécrivant le document entier. Deux appareils ouverts en même temps : le dernier qui enregistre l'emporte. Corriger demande de restructurer les données (champ par champ).
+23/09 : Mémoriser, citations : les deux sens (texte → auteur / auteur → texte) tombent chacun à peu près une fois sur deux, comme versets et passages (vérifié sur 600 tirages). Corrigé : en jouant une seule catégorie dont toutes les citations ont le même auteur, chaque question n'offrait qu'un seul choix ; les leurres manquants sont maintenant pris dans les autres catégories de citations, même non cochées.
+23/09 : Mémoriser, les trois points de couleur de chaque ligne (versets, passages, citations) se touchent dans la liste pour poser directement le niveau ; les doublons dans d'autres catégories suivent, l'enregistrement est immédiat, et un verset jamais vu ainsi noté ne redemande plus sa couleur à sa première apparition.
+23/09 : Mémoriser, l'onglet « Citations » devient « Fiches » (citations, définitions, tout ce qui a un texte d'un côté et ce à quoi il se rapporte de l'autre). Questions : « À quoi correspond ce texte ? » / « Quel texte y correspond ? ». Données inchangées : les citations existantes sont devenues des fiches sans rien perdre.
+23/09 : Mémoriser, signe ≠ (écart avec la Bible du site) : comparé désormais à la Chérubin ET à la Séraphin ; remonte sur la catégorie et en haut de la question pendant la série ; un toucher sur le signe (liste ou série) demande si l'écart est voulu et l'éteint (jumeaux compris), rallumable en modifiant le verset. Bug corrigé : si la Bible se chargeait après la page, le signe ne s'allumait jamais.
+23/09 : Bible, versets lettrés de la Septante (35a…) affichés en petit numéro dans le fil du verset hébreu (bible.html, rendu des caractères U+2060) ; build : « \n » dans la Chérubin converti en coupes (vers) ou en espace (prose).
+23/09 : Articles et Commentaires, blancs en début de ligne retirés (collage et affichage) : le texte reste collé à gauche, les articles déjà écrits se corrigent à l'affichage.
