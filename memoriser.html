@@ -278,13 +278,27 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
    puisse changer la couleur aussi. » Chaque proposition porte donc ses trois
    pastilles, à droite, qui paraissent au survol ; la couleur du verset de la
    proposition est allumée. Les toucher pose cette couleur sans répondre.
-   Sur un écran tactile, où rien ne se survole, elles restent visibles,
-   discrètes. Les quatre propositions en portent, la bonne comprise : sinon
-   l'absence de pastilles trahirait la réponse. */
+   La bonne réponse n'en porte pas : sa couleur se pose en haut. Qu'elle
+   se distingue ainsi est voulu, puisqu'on survole, ou qu'on touche le
+   bouton, au moment qu'on choisit.
+   SUR TÉLÉPHONE, UN BOUTON (26/09, Emmanuel : « si ça s'affiche direct, en
+   voyant les niveaux, on devine la réponse »). Rien ne se survole sur un
+   écran tactile : un petit bouton sous les propositions fait paraître leurs
+   pastilles, et elles se cachent de nouveau à chaque question. */
 .opt{position:relative;padding-right:78px}
 .odots{position:absolute;right:16px;top:50%;transform:translateY(-50%);display:flex;gap:13px;opacity:0;transition:opacity .25s}
 .opt:hover:not(:disabled) .odots,.opt:focus-visible .odots{opacity:1}
-@media(hover:none){.opt:not(:disabled) .odots{opacity:.75}}
+.odots-tog{display:none}
+@media(hover:none){
+  .opts.odots-on .opt:not(:disabled) .odots{opacity:1}
+  .odots-tog{display:flex;align-items:center;justify-content:center;gap:7px;margin:18px auto 0;padding:12px 18px;border:1px solid var(--filet);border-radius:999px;background:transparent;transition:border-color .25s}
+  .odots-tog span{width:6px;height:6px;border-radius:50%;background:var(--pa2);opacity:.6;transition:background .25s,opacity .25s}
+  .odots-tog[aria-pressed="true"]{border-color:var(--or)}
+  .odots-tog[aria-pressed="true"] span:nth-child(1){background:var(--rouge);opacity:1}
+  .odots-tog[aria-pressed="true"] span:nth-child(2){background:var(--ambre);opacity:1}
+  .odots-tog[aria-pressed="true"] span:nth-child(3){background:var(--vert);opacity:1}
+  .odots-tog:disabled{opacity:.25}
+}
 .opt:disabled .odots{opacity:0}
 .odot{position:relative;display:block;width:9px;height:9px;border-radius:50%;opacity:.3;transition:opacity .25s,transform .25s;cursor:pointer}
 .odot::before{content:'';position:absolute;inset:-7px}
@@ -742,6 +756,7 @@ if(typeof firebase==='undefined'){var m=document.getElementById('auth-msg');if(m
         <div class="rule"></div>
       </div>
       <div class="opts" id="opts"></div>
+      <button class="odots-tog" id="odots-tog" aria-pressed="false"><span></span><span></span><span></span></button>
     </section>
 
     <section id="summary">
@@ -1742,7 +1757,10 @@ function renderQuestion(){
     b.dataset.oid=opt.id;
     const noms={r:t('rap_r'),a:t('rap_a'),v:t('rap_v')};
     b.innerHTML='<span class="num">'+(i+1)+'</span>'+besc(q.qMode==='vr'?opt[l].ref:opt[l].text)
-      +'<span class="odots">'+['r','a','v'].map(k=>'<span class="odot" data-r="'+k+'" title="'+besc(noms[k]||'')+'"></span>').join('')+'</span>';
+      /* pas de pastilles sur la bonne réponse : on la note déjà en haut
+         (26/09, Emmanuel : « on survole quand on veut, et on appuie sur le
+         bouton quand on veut ») */
+      +(opt.id===q.item.id?'':'<span class="odots">'+['r','a','v'].map(k=>'<span class="odot" data-r="'+k+'" title="'+besc(noms[k]||'')+'"></span>').join('')+'</span>');
     b.addEventListener('click',e=>{
       const d=e.target.closest&&e.target.closest('.odot');
       if(d){ e.preventDefault(); poseDepuisOption(opt.id,d.dataset.r); return; }
@@ -1769,6 +1787,14 @@ function renderQuestion(){
    document.querySelectorAll('#rappel .rap').forEach(b=>{const x=m[b.dataset.r]||'';b.title=x;b.setAttribute('aria-label',x);});}
   document.querySelectorAll('#rappel .rap').forEach(b=>{b.classList.toggle('choisi',b.dataset.r===q.rappel);b.disabled=false;});
   majPastillesOptions();
+  /* sur téléphone, les pastilles des propositions repartent cachées */
+  {const tg=$('odots-tog'); if(tg){tg.setAttribute('aria-pressed','false');tg.disabled=false;}}
+}
+function basculePastillesOptions(){
+  const q=S.cur, tg=$('odots-tog'); if(!q||q.done||!tg)return;
+  const on=!$('opts').classList.contains('odots-on');
+  $('opts').classList.toggle('odots-on',on);
+  tg.setAttribute('aria-pressed',on?'true':'false');
 }
 /* allume, sur chaque proposition, la couleur de son verset ; pour la bonne
    réponse, c'est la couleur choisie en haut, puisque c'est le même verset */
@@ -1828,6 +1854,7 @@ function pick(opt,btn){
   if(dit)S.rap[dit]=(S.rap[dit]||0)+1;
   answer(q.item.id,ok,dit); saveProgressGroupe();
   document.querySelectorAll('#rappel .rap').forEach(b=>b.disabled=true);
+  {const tg=$('odots-tog'); if(tg)tg.disabled=true;}
   $('opts').querySelectorAll('.opt').forEach(b=>{
     b.disabled=true;
     if(b.dataset.oid===q.item.id)b.classList.add(ok?'ok':'reveal');
@@ -2640,6 +2667,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
   // les pastilles
   $('q-ecart').addEventListener('click',()=>{ const it=S.cur&&S.cur.item; if(it)accepteEcart(it.catId,it.id); });
+  $('odots-tog').addEventListener('click',basculePastillesOptions);
   $('rappel').addEventListener('click',e=>{
     const b=e.target.closest?e.target.closest('.rap'):null;
     if(b&&!b.disabled)noteRappel(b.dataset.r);
