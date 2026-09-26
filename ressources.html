@@ -1097,8 +1097,27 @@ function pageCadre(code){
        s'est arrêté. Il le dit à la page, qui le garde ; en rouvrant, la page
        le lui rend et il s'y repose. Plusieurs tentatives, car le contenu
        s'installe (polices, images, sections) après les premières images. */
-    +'var posVoulue=-1,posDit=0;'
-    +'function ditPos(){posDit=0;try{parent.postMessage({lvPos:Math.round(window.pageYOffset||document.documentElement.scrollTop||0)},"*");}catch(e){}}'
+    /* ── LA PLACE SE RETROUVE SUR UN AUTRE ÉCRAN (Emmanuel, 26/09 : « harmonise
+       ça entre mobile et pc ») ──
+       Un nombre de pixels ne dit la place que sur un écran de même largeur :
+       sur téléphone, le texte se replie en plus de lignes et le même chiffre
+       tombe bien plus haut. Le cadre retient donc aussi un REPÈRE : l'élément
+       qui passe au tiers de l'écran (hors barres collantes), désigné par son
+       chemin dans le contenu, et la fraction de lui-même qui s'y trouve. Sur
+       un écran de même largeur, le chiffre sert tel quel ; sur un autre, on
+       ramène ce repère au même tiers d'écran. */
+    +'var posVoulue=-1,posInfo=null,posDit=0;'
+    +'function chemin(e){var p=[];while(e&&e!==w){var q=e.parentElement;if(!q)return null;p.unshift(Array.prototype.indexOf.call(q.children,e));e=q;}return e===w?p:null;}'
+    +'function suit(p){var e=w,i;for(i=0;i<p.length;i++){e=e.children[p[i]];if(!e)return null;}return e;}'
+    +'function colleDedans(e){while(e&&e!==w){var s=getComputedStyle(e).position;if(s==="sticky"||s==="fixed")return true;e=e.parentElement;}return false;}'
+    +'function repere(){var H=window.innerHeight,X=window.innerWidth/2,f=[.3,.45,.6,.2],i,y,e,r,p;'
+    +'for(i=0;i<f.length;i++){y=H*f[i];e=document.elementFromPoint(X,y);'
+    +'if(!e||e===w||!w.contains(e)||colleDedans(e))continue;'
+    +'r=e.getBoundingClientRect();if(r.height<1)continue;p=chemin(e);if(!p)continue;'
+    +'return {p:p,f:(y-r.top)/r.height,v:f[i]};}return null;}'
+    +'function ditPos(){posDit=0;var y=Math.round(window.pageYOffset||document.documentElement.scrollTop||0),a=null;'
+    +'try{a=repere();}catch(e){}'
+    +'try{parent.postMessage({lvPos:y,lvPosInfo:{y:y,l:window.innerWidth,h:document.documentElement.scrollHeight,a:a}},"*");}catch(e){}}'
     +'function planPos(){if(posDit)return;posDit=setTimeout(ditPos,220);}'
     +'window.addEventListener("scroll",planPos,{passive:true});'
     /* ── LE GESTE DU LECTEUR CLÔT LA REPRISE (12/09) ──
@@ -1111,10 +1130,14 @@ function pageCadre(code){
     +'window.addEventListener("wheel",siGeste,{passive:true});'
     +'window.addEventListener("touchstart",siGeste,{passive:true});'
     +'window.addEventListener("keydown",siGeste);'
+    +'function cible(){var i=posInfo;if(!i||!(i.l>0)||Math.abs(i.l-window.innerWidth)<=2)return posVoulue;'
+    +'if(i.a&&i.a.p){var e=suit(i.a.p);if(e){var r=e.getBoundingClientRect();'
+    +'if(r.height>0)return (window.pageYOffset||0)+r.top+i.a.f*r.height-i.a.v*window.innerHeight;}}'
+    +'if(i.h>0)return i.y/i.h*document.documentElement.scrollHeight;return posVoulue;}'
     +'function reposeToi(){if(posGeste||posVoulue<0)return;var m=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);'
-    +'window.scrollTo(0,Math.min(posVoulue,m));}'
+    +'window.scrollTo(0,Math.max(0,Math.min(Math.round(cible()),m)));}'
     +'window.addEventListener("message",function(e){var d=e.data;if(!d)return;'
-    +'if(typeof d.lvRevoir==="number"){posVoulue=d.lvRevoir;reposeToi();'
+    +'if(typeof d.lvRevoir==="number"){posVoulue=d.lvRevoir;posInfo=d.lvRevoirInfo||null;reposeToi();'
     +'setTimeout(reposeToi,150);setTimeout(reposeToi,500);setTimeout(reposeToi,1200);return;}'
     +'if(d.lvVue&&typeof d.lvVue.haut==="number"){vueHaut=d.lvVue.haut;colle();return;}'
     +'if(typeof d.lvApplique!=="number")return;'
@@ -1291,7 +1314,11 @@ window.addEventListener('message',e=>{
   }
   if(typeof d.lvPos==='number'){
     const id=cadre.dataset.res;
-    if(id)try{localStorage.setItem('lv_res_pos_'+id,String(Math.max(0,Math.round(d.lvPos))));}catch(_){}
+    if(id&&cadre._rendu){
+      const info=d.lvPosInfo&&typeof d.lvPosInfo==='object'?d.lvPosInfo:{y:d.lvPos};
+      info.y=Math.max(0,Math.round(info.y||0));
+      garde('pos',id,JSON.stringify(info));
+    }
     return;
   }
   /* ── L'ÉTAT DU CONTENU EST GARDÉ PAR LA PAGE (Emmanuel, 12/09) ──
@@ -1304,7 +1331,9 @@ window.addEventListener('message',e=>{
      chapitre ouvert au sommaire, épaisseur de lecture choisie. */
   if(typeof d.lvEtat!=='undefined'&&d.lvEtat!==null){
     const id=cadre.dataset.res;
-    if(id)try{localStorage.setItem('lv_res_etat_'+id,JSON.stringify(d.lvEtat));}catch(_){}
+    /* tant que l'état gardé n'a pas été rendu au cadre, ce qu'il envoie n'est
+       que son état de naissance : l'enregistrer effacerait la vraie reprise */
+    if(id&&cadre._rendu)garde('etat',id,JSON.stringify(d.lvEtat));
     return;
   }
   if(d.lvEtatVoulu){ rendEtat(cadre); return; }
@@ -1314,13 +1343,76 @@ window.addEventListener('message',e=>{
    de s'ouvrir. */
 function litEtat(id){
   if(!id)return null;
-  try{return JSON.parse(localStorage.getItem('lv_res_etat_'+id)||'null');}catch(_){return null;}
+  try{return JSON.parse(lLit('etat',id)||'null');}catch(_){return null;}
 }
-function rendEtat(cadre){
+function litPos(id){
+  const v=lLit('pos',id);
+  if(!v)return {y:0};
+  try{const o=JSON.parse(v);
+    if(typeof o==='number')return {y:Math.max(0,o)};
+    if(o&&typeof o==='object')return Object.assign({y:0},o);
+  }catch(_){}
+  return {y:0};
+}
+function envoieEtat(cadre){
   if(!cadre||!cadre.dataset)return;
   const e=litEtat(cadre.dataset.res||'');
   if(!e)return;
   try{cadre.contentWindow.postMessage({lvEtat:e},'*');}catch(_){}
+}
+/* on attend l'état venu des autres appareils avant de répondre */
+function rendEtat(cadre){
+  if(!cadre)return;
+  (cadre._pret||Promise.resolve()).then(()=>envoieEtat(cadre));
+}
+
+/* ── L'ÉTAT ET LA PLACE SUIVENT LE LECTEUR D'UN APPAREIL À L'AUTRE
+   (Emmanuel, 26/09 : « harmonise ça entre mobile et pc ») ──
+   Jusqu'ici, l'état d'une ressource (sections ouvertes, sujets cochés,
+   réglages) et la place de lecture ne vivaient que dans le stockage de
+   l'appareil : ce qu'on cochait sur le PC restait sur le PC. Ils sont
+   maintenant aussi rangés dans l'espace du compte, une fiche par ressource
+   (users/…/res_lecture/…), chaque valeur avec son heure. À l'ouverture, on lit
+   la fiche, et la plus récente des deux versions l'emporte, celle de
+   l'appareil ou celle du compte. L'écriture vers le compte est groupée (une
+   toutes les secondes et demie au plus) et partie aussitôt quand la page se
+   cache, se quitte ou qu'on revient aux ressources. */
+const LECT={att:{},minuteur:0};
+function lLit(q,id){try{return localStorage.getItem('lv_res_'+q+'_'+id);}catch(_){return null;}}
+function lMaj(q,id){return parseInt(lLit(q+'maj',id)||'0',10)||0;}
+function lPose(q,id,val,maj){
+  try{localStorage.setItem('lv_res_'+q+'_'+id,val);localStorage.setItem('lv_res_'+q+'maj_'+id,String(maj));}catch(_){}
+}
+const lecDoc=id=>db.doc('users/'+S.uid+'/res_lecture/'+id);
+function garde(q,id,val){
+  const t=Date.now();
+  lPose(q,id,val,t);
+  if(!S.uid)return;
+  const a=LECT.att[id]||(LECT.att[id]={});
+  a[q]=val; a[q+'Maj']=t;
+  clearTimeout(LECT.minuteur);
+  LECT.minuteur=setTimeout(pousseLecture,1500);
+}
+function pousseLecture(){
+  clearTimeout(LECT.minuteur); LECT.minuteur=0;
+  if(!S.uid)return;
+  const att=LECT.att; LECT.att={};
+  Object.keys(att).forEach(id=>{ lecDoc(id).set(att[id],{merge:true}).catch(()=>{}); });
+}
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='hidden')pousseLecture(); });
+window.addEventListener('pagehide',pousseLecture);
+function rapatrie(id){
+  if(!id||!S.uid)return Promise.resolve();
+  const lu=lecDoc(id).get().then(sn=>{
+    if(!sn.exists)return;
+    const d=sn.data()||{};
+    ['etat','pos'].forEach(q=>{
+      const m=+d[q+'Maj']||0;
+      if(typeof d[q]==='string'&&m>lMaj(q,id))lPose(q,id,d[q],m);
+    });
+  }).catch(()=>{});
+  /* hors ligne, on n'attend pas plus de deux secondes et demie */
+  return Promise.race([lu,new Promise(r=>setTimeout(r,2500))]);
 }
 
 /* ── LA PAGE DIT AU DIAGRAMME OÙ EN EST LA LECTURE ──
@@ -2205,12 +2297,18 @@ function ouvrePlein(a){
   f.setAttribute('referrerpolicy','no-referrer');
   f.setAttribute('title',a.titre||'Ressource');
   f.dataset.diag='1'; f.dataset.res=a.id||'';
-  /* on rouvre là où l'on s'était arrêté : la place est gardée par ressource,
-     sur cet appareil */
-  let place=0; try{place=parseInt(localStorage.getItem('lv_res_pos_'+(a.id||''))||'0',10)||0;}catch(_){}
+  /* on rouvre là où l'on s'était arrêté : la place et l'état sont gardés par
+     ressource, sur l'appareil et dans le compte ; la plus récente l'emporte */
+  f._pret=rapatrie(a.id||'');
   /* On lui rend son état avant sa place : les sections reprennent leur
      ouverture, puis la place de lecture tombe sur la page ainsi constituée. */
-  const rends=()=>{rendEtat(f);try{f.contentWindow.postMessage({lvRevoir:place},'*');}catch(_){}};
+  const rends=()=>f._pret.then(()=>{
+    if(PLEIN&&PLEIN.f!==f)return;
+    envoieEtat(f);
+    const pi=litPos(a.id||'');
+    try{f.contentWindow.postMessage({lvRevoir:Math.max(0,Math.round(pi.y||0)),lvRevoirInfo:pi},'*');}catch(_){}
+    f._rendu=true;
+  });
   f.addEventListener('load',()=>{rends();setTimeout(rends,300);setTimeout(rends,1000);});
   const x=document.createElement('button');
   /* Un seul bouton par-dessus le contenu, et il ramène aux ressources
@@ -2233,6 +2331,7 @@ function fermePlein(){
 /* Revenir aux ressources : on referme le plein écran et on repose la liste à
    l'endroit du rangement où l'on était. */
 function retourRessources(){
+  pousseLecture();
   fermePlein();
   S.res=null; S.vu='';
   try{vaVers(ici());}catch(_){}
