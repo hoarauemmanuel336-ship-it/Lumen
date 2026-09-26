@@ -304,6 +304,23 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
    la date, ou l'état de publication dans l'espace de l'auteur. */
 .ct-pied{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:16px;font-family:var(--display);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.34)}
 .ct-etat.publie{color:var(--or)}
+/* La marque ouvre la ligne du bas : l'icône à l'or du site, son nom dans
+   la voix des libellés. L'état ou la date se range à droite. */
+.ct-mq{display:inline-flex;align-items:center;gap:9px;color:rgba(239,230,207,.62);transition:color .3s}
+.ct-mq .mq-svg{width:19px;height:19px;flex:none;transition:filter .3s}
+.carte:hover .ct-mq{color:var(--or)}
+.carte:hover .ct-mq .mq-svg{filter:drop-shadow(0 0 6px rgba(239,230,207,.35))}
+.ct-mq+span{margin-left:auto}
+/* le choix de la marque, dans l'éditeur : une rangée de tuiles, l'icône
+   au-dessus de son nom */
+.marques{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px}
+.mq-b{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:88px;padding:14px 8px 12px;border:1px solid var(--filet);background:none;font-family:var(--display);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:border-color .3s,color .3s,background .3s,box-shadow .3s}
+.mq-b .mq-svg{width:28px;height:28px;transition:filter .3s}
+.mq-b .mq-rien{width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1;opacity:.6}
+.mq-b.on{border-color:var(--or);color:var(--or);background:var(--surv);box-shadow:0 0 22px var(--halo)}
+.mq-b.on .mq-svg{filter:drop-shadow(0 0 6px rgba(239,230,207,.4))}
+@media (hover:hover) and (pointer:fine){.mq-b:hover{border-color:var(--filet-fort);color:var(--parchemin)}.mq-b.on:hover{border-color:var(--or);color:var(--or)}}
+@media (max-width:600px){.marques{grid-template-columns:repeat(3,1fr)}}
 .ct-menu{position:absolute;top:10px;right:8px;z-index:2;padding:4px 9px;font-size:15px;line-height:1;color:var(--pa2);opacity:.55;transition:color .3s,opacity .3s}
 .ct-menu::before{content:'';position:absolute;inset:-8px}
 .carte:hover .ct-menu{opacity:1}
@@ -320,6 +337,8 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 .res-plein{position:fixed;top:0;left:0;width:100%;height:100%;height:100dvh;border:0;z-index:200;background:#000;display:block}
 .res-plein-x{position:fixed;left:max(12px,env(safe-area-inset-left,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));z-index:201;display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(0,0,0,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-family:var(--display);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);cursor:pointer;transition:color .3s,border-color .3s,background .3s}
 .res-plein-x:hover,.res-plein-x:focus-visible{color:#fff;border-color:var(--or);background:rgba(0,0,0,.82)}
+/* le même galet, à droite : le fichier du contenu, pris d'un geste */
+.res-plein-x.tel{left:auto;right:max(12px,env(safe-area-inset-right,0px))}
 body.plein{overflow:hidden}
 /* la fiche qui attend derrière : de quoi rouvrir sans repasser par la liste */
 .res-rouvrir{display:inline-block;margin:20px 0 4px;padding:13px 26px;border:1px solid var(--filet-f);font-family:var(--display);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchemin);background:none;cursor:pointer;transition:border-color .3s,color .3s,background .3s}
@@ -367,7 +386,9 @@ body.plein{overflow:hidden}
 .res-zone{width:100%;box-sizing:border-box;background:var(--encre-2);border:1px solid var(--filet);color:var(--parchemin);font-family:var(--serif);font-size:16px;line-height:1.6;padding:13px 15px;outline:none;resize:vertical;transition:border-color .3s}
 .res-zone:focus{border-color:var(--filet-fort)}
 .res-zone.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.55}
-.depose{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:20px;border:1px dashed var(--filet-f);color:var(--pa)}
+.depose.survol,.res-zone.code.survol{border-color:var(--or);border-style:solid;background:var(--surv);box-shadow:0 0 26px var(--halo)}
+.depose .dep-mot{flex:1;min-width:180px;font-size:15px;color:var(--pa)}
+.depose{transition:border-color .25s,background .25s,box-shadow .25s;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:20px;border:1px dashed var(--filet-f);color:var(--pa)}
 .depose .nom{flex:1;min-width:140px;font-family:var(--serif);font-size:15px;color:var(--parchemin);word-break:break-all}
 .depose .poids{font-size:12px;color:var(--pa2);white-space:nowrap}
 .aide{font-size:12.5px;line-height:1.6;color:var(--pa2);margin-top:10px}
@@ -623,6 +644,7 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
 </div></div>
 
 <input type="file" id="f-fichier" style="display:none">
+<input type="file" id="f-code-fichier" accept=".html,.htm,.svg,.txt,text/html,image/svg+xml,text/plain" style="display:none">
 
 <script>
 // ════════ FIREBASE ════════
@@ -676,6 +698,41 @@ const TYPES={
   lien:     {nom:'Lien',      pl:'Liens',      accept:'', icone:'<path d="M10 13a4 4 0 0 0 6 .5l2-2a4 4 0 0 0-6-6l-1 1M14 11a4 4 0 0 0-6-.5l-2 2a4 4 0 0 0 6 6l1-1"/>'}
 };
 const typeDe=r=>TYPES[r&&r.type]?r.type:'lien';
+
+/* ── LES MARQUES (Emmanuel, 26/09 : « des icônes que je peux choisir, pour
+   identifier les choses dans ressources ») ──
+   L'espèce dit comment la ressource est rangée (code, image, PDF, lien) ; la
+   MARQUE dit ce qu'elle est pour le lecteur : un diagramme, un livre, un
+   parcours, une carte, une image. Elle se choisit dans l'éditeur, et son
+   icône paraît au pied de la carte dans la liste.
+   Tant qu'aucune marque n'a été choisie, la page la devine d'après le
+   contenu : chaque skill laisse dans sa page une signature reconnaissable.
+   Choisir « Aucune » retire l'icône pour de bon. */
+const MARQUES={
+  diagramme:{nom:'Diagramme',icone:'<circle cx="12" cy="4.8" r="2.3"/><circle cx="5" cy="18.6" r="2.3"/><circle cx="19" cy="18.6" r="2.3"/><circle cx="12" cy="13.2" r="1.6"/><path d="M12 7.1v4.5M10.7 14.2l-4.1 2.8M13.3 14.2l4.1 2.8"/>'},
+  livre:    {nom:'Livre',    icone:'<path d="M12 6.4C9.9 4.9 6.9 4.3 3.2 4.7v13.6c3.7-.4 6.7.2 8.8 1.7 2.1-1.5 5.1-2.1 8.8-1.7V4.7c-3.7-.4-6.7.2-8.8 1.7zM12 6.4V20"/>'},
+  parcours: {nom:'Parcours', icone:'<circle cx="5" cy="18.8" r="2.1"/><path d="M7.1 18.8h7.4a3.2 3.2 0 0 0 0-6.4h-5a3.2 3.2 0 0 1 0-6.4h6"/><path d="M16.5 3.2v5.6M16.5 3.2h4.3l-1.2 1.4 1.2 1.4h-4.3"/>'},
+  carte:    {nom:'Carte',    icone:'<path d="M3 6.2l6-2.2 6 2.2 6-2.2v13.8l-6 2.2-6-2.2-6 2.2zM9 4v13.8M15 6.2V20"/>'},
+  image:    {nom:'Image',    icone:'<rect x="3" y="4.8" width="18" height="14.4" rx="1"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="8.6" cy="9.2" r="1.5"/>'}
+};
+const svgMarque=k=>'<svg class="mq-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+MARQUES[k].icone+'</svg>';
+function devineMarque(r){
+  const t=typeDe(r);
+  if(t==='image')return 'image';
+  if(t!=='diagramme')return '';
+  const c=String(r.code||'');
+  if(c.indexOf('parcours-etude:')>=0)return 'parcours';
+  if(c.indexOf('id="toc"')>=0||c.indexOf('class="tocbtn"')>=0)return 'livre';
+  if(c.indexOf('diag-etat-')>=0||c.indexOf('data-name=')>=0)return 'diagramme';
+  return '';
+}
+/* la marque choisie l'emporte ; « aucune » est un choix, et il est gardé */
+function marqueDe(r){
+  const m=r&&r.marque;
+  if(m==='aucune')return '';
+  if(MARQUES[m])return m;
+  return devineMarque(r);
+}
 const ICONE=t=>'<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">'+(TYPES[t]||TYPES.lien).icone+'</svg>';
 
 // ════════ RANGEMENT ════════
@@ -848,6 +905,46 @@ function litFichier(f){
     r.onerror=()=>rej(r.error);
     r.readAsDataURL(f);
   });
+}
+/* ── UN CODE SE DÉPOSE COMME UN FICHIER (Emmanuel, 26/09 : « je suis obligé
+   de copier-coller à chaque fois ») ──
+   Le fichier HTML est lu comme du texte et verse son contenu dans la zone du
+   code, exactement comme un collage. Si la ressource n'a pas encore de
+   titre, elle prend le nom du fichier. */
+async function chargeCode(f){
+  if(!f||!S.res)return;
+  const dit=m=>{const e=$('dep-code-etat');if(e)e.textContent=m;};
+  const nom=f.name||'';
+  if(!/\.(html?|svg|txt)$/i.test(nom)&&!/^(text\/|image\/svg)/.test(f.type||'')){lvInfo('Ce fichier n’est pas une page HTML.');return;}
+  if(f.size>LIMITE_DOC){lvInfo('Ce fichier dépasse la taille maximale d’une ressource (1 Mo). Allège-le avant de le déposer.');return;}
+  let txt='';
+  try{txt=await f.text();}catch(e){lvInfo('Ce fichier n’a pas pu être lu.');return;}
+  if(S.res.code&&S.res.code.trim()&&S.res.code!==txt){
+    if(!await lvConfirm('Remplacer le code actuel par celui de « '+nom+' » ?'))return;
+  }
+  S.res.code=txt;
+  const co=$('f-code'); if(co)co.value=txt;
+  const ti=$('ed-titre');
+  if(ti&&!ti.value.trim()){ti.value=nom.replace(/\.[^.]+$/,'').replace(/[-_]+/g,' ').trim();S.res.titre=ti.value;autoHauteur(ti);}
+  marqueSale();
+  /* la marque se devine de nouveau d'après le nouveau contenu */
+  if(!S.res.marque)rendEditeur();
+  dit(nom+'  ·  '+poids(f.size));
+}
+/* ── LE CODE SE REPREND EN FICHIER ──
+   Le fichier porte le titre de la ressource, débarrassé des signes que les
+   systèmes refusent dans un nom de fichier. */
+function nomFichier(titre,ext){
+  const n=String(titre||'').replace(/[\\/:*?"<>|\u0000-\u001f]+/g,' ').replace(/\s+/g,' ').trim().replace(/[. ]+$/,'');
+  return (n||'Ressource')+ext;
+}
+function telechargeCode(a){
+  if(!a||!a.code)return;
+  const u=URL.createObjectURL(new Blob([a.code],{type:'text/html;charset=utf-8'}));
+  const l=document.createElement('a');
+  l.href=u; l.download=nomFichier(a.titre,'.html'); l.style.display='none';
+  document.body.appendChild(l); l.click(); l.remove();
+  setTimeout(()=>URL.revokeObjectURL(u),4000);
 }
 async function envoieFichier(f){
   if(!f||!S.res)return;
@@ -1470,6 +1567,7 @@ function carteRessource(r,publik){
      ne se montre plus (Emmanuel, 12/09). */
   d.innerHTML='<div class="ct-bas"><div class="ct-titre'+(titre?'':' ct-vide')+'">'+esc(titre||'Sans titre')+'</div>'
     +'<div class="ct-pied">'
+    +(()=>{const m=marqueDe(r);return m?'<span class="ct-mq" title="'+esc(MARQUES[m].nom)+'">'+svgMarque(m)+'<span>'+esc(MARQUES[m].nom)+'</span></span>':'';})()
     +(publik?'<span>'+esc(dateFr(r.maj||r.cree))+'</span>'
             :'<span class="ct-etat'+(r.publie?' publie':'')+'">'+(r.publie?'Publié':'Privé')+'</span>')
     +'</div></div>'
@@ -2098,7 +2196,7 @@ async function metEnLigne(a){
   await pcol().doc(a.id).set({
     titre:a.titre||'', type:typeDe(a), desc:a.desc||'', chemin:cheminTexte(a.rub),
     media:a.media||'', mime:a.mime||'', taille:a.taille||0, nom:a.nom||'',
-    vign:a.vign||'', code:a.code||'', url:a.url||'',
+    vign:a.vign||'', code:a.code||'', url:a.url||'', marque:a.marque||'',
     cree:a.cree||null, maj:a.maj||null,
     ordre:rangDe(a)===null?null:a.ordre
   });
@@ -2238,6 +2336,11 @@ function corpsVoir(a,publik){
       b.type='button'; b.className='res-rouvrir'; b.textContent='Ouvrir';
       b.onclick=()=>ouvrePlein(a);
       c.appendChild(b);
+      const rang=document.createElement('div'); rang.className='res-tel-rang';
+      const tel=document.createElement('a'); tel.className='res-tel'; tel.href='#';
+      tel.textContent='↓ Télécharger ('+poids(new Blob([a.code]).size)+')';
+      tel.onclick=e=>{e.preventDefault();telechargeCode(a);};
+      rang.appendChild(tel); c.appendChild(rang);
       setTimeout(()=>{ if(S.vu===a.id)ouvrePlein(a); },60);
       return c;
     }
@@ -2272,7 +2375,7 @@ function corpsVoir(a,publik){
         cadre.appendChild(f);
       }
       const tel=document.createElement('a');
-      tel.className='res-tel'; tel.href=u; tel.download=a.nom||((a.titre||'ressource')+(t==='pdf'?'.pdf':''));
+      tel.className='res-tel'; tel.href=u; tel.download=a.titre?nomFichier(a.titre,((a.nom||'').match(/\.[a-z0-9]{2,5}$/i)||[t==='pdf'?'.pdf':''])[0]):(a.nom||'ressource');
       /* la flèche vers le bas dit le geste sans le nommer deux fois, comme le
          « + » des boutons de Mémoriser */
       tel.textContent='↓ Télécharger'+(a.taille?' ('+poids(a.taille)+')':'');
@@ -2317,14 +2420,18 @@ function ouvrePlein(a){
   x.type='button'; x.className='res-plein-x'; x.textContent='\u2190  Les ressources';
   x.setAttribute('aria-label','Revenir aux ressources');
   x.onclick=retourRessources;
-  document.body.appendChild(f); document.body.appendChild(x);
+  const t=document.createElement('button');
+  t.type='button'; t.className='res-plein-x tel'; t.textContent='\u2193  Télécharger';
+  t.setAttribute('aria-label','Télécharger ce fichier');
+  t.onclick=()=>telechargeCode(a);
+  document.body.appendChild(f); document.body.appendChild(x); document.body.appendChild(t);
   document.body.classList.add('plein');
-  PLEIN={f:f,x:x};
+  PLEIN={f:f,x:x,t:t};
   poseCadre(f,a.code);
 }
 function fermePlein(){
   if(!PLEIN)return;
-  try{PLEIN.f.remove();PLEIN.x.remove();}catch(_){}
+  try{PLEIN.f.remove();PLEIN.x.remove();if(PLEIN.t)PLEIN.t.remove();}catch(_){}
   PLEIN=null;
   document.body.classList.remove('plein');
 }
@@ -2358,12 +2465,14 @@ async function menuRessource(id){
   const c=await lvChoix((a.titre||'Sans titre'),[
     {cle:'voir',nom:'Voir'},
     {cle:'modif',nom:'Modifier'},
+    ...(typeDe(a)==='diagramme'&&a.code?[{cle:'tel',nom:'Télécharger',note:nomFichier(a.titre,'.html')}]:[]),
     {cle:'etat',nom:a.publie?'Rendre privé':'Publier',note:a.publie?'publiée':'privée'},
     {cle:'ranger',nom:'Ranger dans…',note:rubValide(a.rub)?chemin(a.rub):'sans domaine'},
     {cle:'suppr',nom:'Mettre à la corbeille',danger:true}
   ]);
   if(c==='voir')voit(a,false);
   else if(c==='modif')ouvre(id);
+  else if(c==='tel')telechargeCode(a);
   else if(c==='etat')await basculeEtat(id);
   else if(c==='ranger')rangeRessource(id);
   else if(c==='suppr'){
@@ -2385,15 +2494,28 @@ function rendEditeur(){
   let h='<span class="champ-lab">Ce que c’est</span><div class="types">';
   Object.keys(TYPES).forEach(k=>{h+='<button type="button" class="ty'+(k===t?' on':'')+'" data-ty="'+k+'">'+esc(TYPES[k].nom)+'</button>';});
   h+='</div>';
+  {
+    const choisie=a.marque||'', devinee=devineMarque(a);
+    const actif=choisie==='aucune'?'aucune':(MARQUES[choisie]?choisie:(devinee||'aucune'));
+    h+='<span class="champ-lab">Marque</span><div class="marques">';
+    Object.keys(MARQUES).forEach(k=>{
+      h+='<button type="button" class="mq-b'+(k===actif?' on':'')+'" data-mq="'+k+'" aria-pressed="'+(k===actif)+'">'+svgMarque(k)+'<span>'+esc(MARQUES[k].nom)+'</span>'+'</button>';
+    });
+    h+='<button type="button" class="mq-b'+(actif==='aucune'?' on':'')+'" data-mq="aucune" aria-pressed="'+(actif==='aucune')+'"><span class="mq-rien">∅</span><span>Aucune</span></button>';
+    h+='</div>';
+  }
   if(t==='lien'){
     h+='<span class="champ-lab">Adresse</span>'
       +'<input type="text" class="res-zone" id="f-url" autocomplete="off" spellcheck="false" placeholder="https://…" value="'+esc(a.url||'')+'">';
   }else if(t==='diagramme'){
     h+='<span class="champ-lab">Le code</span>'
+      +'<div class="depose" id="dep-code"><span class="dep-mot">Glisse ici un fichier HTML, ou</span>'
+      +'<button type="button" class="act" id="b-code-fichier">Choisir un fichier</button>'
+      +'<span class="poids" id="dep-code-etat"></span></div>'
       +'<textarea class="res-zone code" id="f-code" rows="14" spellcheck="false" placeholder="&lt;div&gt;…&lt;/div&gt;">'+esc(a.code||'')+'</textarea>'
-      +'<div class="aide">Colle ici la page HTML du diagramme. Elle tournera dans un cadre isolé, sans aucun accès au site ni aux comptes.</div>';
+      +'<div class="aide">Le fichier déposé remplit la zone ; tu peux aussi y coller la page HTML. Elle tournera dans un cadre isolé, sans aucun accès au site ni aux comptes.</div>';
   }else{
-    h+='<span class="champ-lab">Le fichier</span><div class="depose">'
+    h+='<span class="champ-lab">Le fichier</span><div class="depose" id="dep-media">'
       +'<span class="nom">'+(a.media?esc(a.nom||'Fichier déposé'):'Aucun fichier')+'</span>'
       +(a.taille?'<span class="poids">'+esc(poids(a.taille))+'</span>':'')
       +'<button type="button" class="act" id="b-fichier">'+(a.media?'Remplacer':'Choisir un fichier')+'</button>'
@@ -2407,8 +2529,32 @@ function rendEditeur(){
   if(u)u.addEventListener('input',()=>{S.res.url=u.value;marqueSale();});
   if(co)co.addEventListener('input',()=>{S.res.code=co.value;marqueSale();});
   if(de)de.addEventListener('input',()=>{S.res.desc=de.value;marqueSale();});
+  const bcf=$('b-code-fichier');
+  if(bcf)bcf.onclick=()=>{const i=$('f-code-fichier');i.value='';i.click();};
+  /* le dépôt à la souris : sur le cadre de dépôt comme sur la zone du code */
+  [$('dep-code'),$('f-code'),$('dep-media')].forEach(z=>{
+    if(!z)return;
+    let n=0;
+    const cadre=z.id==='f-code'?$('dep-code'):z;
+    z.addEventListener('dragenter',e=>{e.preventDefault();n++;cadre.classList.add('survol');});
+    z.addEventListener('dragover',e=>{e.preventDefault();if(e.dataTransfer)e.dataTransfer.dropEffect='copy';});
+    z.addEventListener('dragleave',()=>{n=Math.max(0,n-1);if(!n)cadre.classList.remove('survol');});
+    z.addEventListener('drop',e=>{
+      e.preventDefault();e.stopPropagation();n=0;cadre.classList.remove('survol');
+      const f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];
+      if(!f)return;
+      if(typeDe(S.res)==='diagramme')chargeCode(f); else envoieFichier(f);
+    });
+  });
   const bf=$('b-fichier');
   if(bf)bf.onclick=()=>{const i=$('f-fichier');i.accept=TYPES[t].accept||'';i.value='';i.click();};
+  $('res-form').querySelectorAll('.mq-b').forEach(b=>{
+    b.onclick=()=>{
+      S.res.marque=b.dataset.mq;
+      $('res-form').querySelectorAll('.mq-b').forEach(x=>{const on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',String(on));});
+      marqueSale();
+    };
+  });
   $('res-form').querySelectorAll('.ty').forEach(b=>{
     b.onclick=async()=>{
       const k=b.dataset.ty;
@@ -2455,7 +2601,8 @@ async function enregistre(silence){
   const doc={
     titre:a.titre||'', type:typeDe(a), desc:a.desc||'', publie:!!a.publie, rub:a.rub||'',
     media:a.media||'', mime:a.mime||'', taille:a.taille||0, nom:a.nom||'',
-    vign:a.vign||'', code:a.code||'', url:a.url||'', cree:a.cree, maj:a.maj
+    vign:a.vign||'', code:a.code||'', url:a.url||'', cree:a.cree, maj:a.maj,
+    marque:a.marque||''
   };
   /* la limite de Firestore se compte en octets : un accent en pèse deux */
   if(new Blob([JSON.stringify(doc)]).size>LIMITE_DOC){
@@ -2559,6 +2706,11 @@ $('b-ranger').onclick=async()=>{if(!S.res)return;if(!S.liste.some(x=>x.id===S.re
 $('b-suppr').onclick=supprime;
 $('ed-titre').addEventListener('input',function(){autoHauteur(this);marqueSale();});
 $('f-fichier').addEventListener('change',function(){const f=this.files&&this.files[0];if(f)envoieFichier(f);});
+$('f-code-fichier').addEventListener('change',function(){const f=this.files&&this.files[0];if(f)chargeCode(f);});
+/* un fichier lâché à côté d'une zone de dépôt ne doit pas remplacer la page */
+window.addEventListener('dragover',e=>{if(e.dataTransfer&&Array.prototype.indexOf.call(e.dataTransfer.types||[],'Files')>=0)e.preventDefault();});
+window.addEventListener('drop',e=>{if(e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files.length){e.preventDefault();
+  if(S.res&&$('ecran-edit').style.display==='block'){const f=e.dataTransfer.files[0];if(typeDe(S.res)==='diagramme')chargeCode(f);else if(typeDe(S.res)!=='lien')envoieFichier(f);}}});
 $('conf-non').onclick=()=>confFin(false);
 $('conf-oui').onclick=()=>confFin(true);
 $('info-ok').onclick=()=>$('m-info').classList.remove('on');
