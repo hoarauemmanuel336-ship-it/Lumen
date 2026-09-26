@@ -1,0 +1,69 @@
+REPRISE — retrait de la Vulgate (fait le 22/09)
+================================================
+
+Décision d'Emmanuel (20/09) : la Vulgate ne sert plus d'autorité, ni pour la
+Séraphin ni pour la Chérubin. Appliqué le 22/09.
+
+Règle retenue (charte § 4 bis réécrite) : le texte original tranche (hébreu
+massorétique, qeré suivi ; grec critique du dossier ; grec des deutérocanoniques).
+Vulgate seule et Septante seule ne comptent jamais. Exception : un verset de l'AT
+explicitement cité par le NT garde le sens de la citation. Tobie, Judith et
+Esther 10-16 restent sur le latin (leur texte source) ; les versets byzantins
+(Marc 16:9-20, Jean 7:53-8:11) restent.
+
+Fait : 678 versets examinés (journal de production + corrections du 20/09) ;
+117 versets changés dans la Séraphin, 184 dans la Chérubin. Grille des versets
+inchangée dans les deux. Relevé complet : retrait-vulgate-22-09.md.
+Exception volontaire : Actes 7:38 garde « l'Église » dans la Séraphin (règle de
+concordance ekklèsia → Église, indépendante de la Vulgate).
+
+(Ancienne liste des choix ouverts, réglée le 23/09 :)
+la place de la citation du NT (gardée) ; Hébreux 2:9, où le grec du dossier
+porte « à l'écart de Dieu » alors que la plupart des éditions critiques lisent
+« par la grâce de Dieu ».
+
+== Correction du 23/09 : la passe du 22/09 était allée trop loin ==
+Emmanuel a précisé : « c'est juste la Vulgate que je ne voulais pas suivre ; quand
+je dis suivre, c'est la prendre comme référence, comme l'hébreu ou le grec. »
+La passe du 22/09 avait aussi écarté des leçons portées par le grec (Septante,
+tradition manuscrite grecque du NT) ou par l'hébreu, soit parce que la Vulgate les
+portait aussi, soit parce que la seule édition SBLGNT les omettait (Marc 1:1
+« Fils de Dieu », Jean 1:34 « le Fils de Dieu », Hébreux 2:9 « par la grâce de
+Dieu », Matthieu 1:10 « Amon », la « mer Rouge », Genèse 4:8, etc.).
+Les 301 changements ont été réexaminés un par un : 251 rétablis (texte d'avant le
+22/09), 2 corrigés en partie (Siracide 3:7), 48 gardés parce que la leçon d'avant
+n'avait pour elle que le latin (Joël 2:23, Job 30:20, « Gédor » en 1 Maccabées,
+Baruch 6:71 « écarlate », Daniel 14:25, etc.), et Psaume 104:4 garde « esprits »
+dans la Chérubin (citation d'Hébreux 1:7, alignée sur la Séraphin).
+Charte § 4 bis réécrite en conséquence. Relevé : litterale/vulgate2/applique.json.
+Hébreux 2:9 tranché : « par la grâce de Dieu ». Proverbes 8:22 laissé tel quel
+(Séraphin « m'a acquise », Chérubin « m'a engendrée » : les deux sens sont dans
+qanah).
+
+Précision d'Emmanuel (23/09, plus tard) : « l'hébreu est prioritaire, mais la
+Septante peut servir quand c'est justifié. » (Il n'avait jamais demandé
+d'écarter la Septante : c'était une erreur de la passe du 22/09.) Les 105 versets
+de l'AT rétablis ont été relus sous cette règle : 94 gardés (appui hébreu, ou
+Septante justifiée : hébreu abîmé, Qumrân, reprise par le NT ou par la Sagesse,
+mot au sens perdu) ; 11 revenus à l'hébreu : Genèse 2:6 « flot », Genèse 37:3
+« tunique à manches », Lévitique 19:20 « enquête », Juges 19:28 (sans « elle
+était morte »), Psaume 109:17 (passé), Daniel 3:17 « s'il en est ainsi »,
+Daniel 5:25 « Mené, Mené, Teqel et Parsin », Malachie 2:3 « votre descendance ».
+Genèse 24:43 garde « la vierge » (Rébecca est dite vierge au v. 16, et Isaïe 7:14
+est cité par Matthieu 1:23).
+
+== 23/09 : ajouts de la Septante ==
+Décision d'Emmanuel : la Septante est inspirée ; tout ce qu'elle a EN PLUS de
+l'hébreu entre dans la Séraphin et la Chérubin (mots, membres de phrase, versets
+entiers numérotés 35a, 35b… à la suite du verset hébreu). Ce qu'elle dit
+autrement que l'hébreu : l'hébreu reste. Charte § 4 ter.
+Fait : tout l'Ancien Testament protocanonique relu verset par verset contre
+Rahlfs (50 lots) : 1045 versets enrichis, 150 versets entiers ajoutés, plus le
+prologue des Lamentations en tête de 1:1. Grille des versets inchangée.
+Relevé complet : litterale/lxx/tous.json (texte grec, avant/après, motif).
+Points à signaler à Emmanuel : Genèse 11:12-13 (Kaïnam inséré entre Arpakshad
+et Shélah, comme en Luc 3:36) ; non ajoutés : Psaume 151, Job 2:9e et 23:15a
+(répètent mot pour mot), Proverbes 15:27a-29b et 20:9a-c (versets hébreux
+16:6-9 et 20:20-22 déplacés), 1 Rois 21:30-43 grec (= hébreu 20:30-43).
+Les versets lettrés font partie du verset hébreu qui les précède pour les
+notes, surlignages et signets.

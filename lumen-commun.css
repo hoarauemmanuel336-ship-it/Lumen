@@ -1,0 +1,100 @@
+/* ════════════════════════════════════════════════════════════════════
+   LUMEN — FEUILLE COMMUNE À TOUTES LES PAGES (26/09)
+   ════════════════════════════════════════════════════════════════════
+   Chaque page porte encore sa propre feuille, écrite à part : c'est ainsi
+   que Commentaires était resté à l'ancien en-tête pendant qu'Articles et
+   Ressources changeaient, et que le crème s'était retrouvé écrit en dur à
+   plusieurs endroits. Cette feuille-ci est posée par le build dans CHAQUE
+   page, juste après la feuille propre de la page : ce qu'elle dit
+   l'emporte partout à la fois. Tout changement de ton, de taille ou de
+   forme commun aux pages se fait désormais ici, une seule fois.
+
+   Elle ne touche jamais à la couleur d'accent (--or) : celle-ci vient de
+   content/settings.json, posée après elle par le build.
+
+   Le site parle de trois voix :
+   · CE QUI SE LIT (titres, textes, extraits) : le romain de lecture, en
+     blanc, grandes et petites lettres ;
+   · CE QUI SE TOUCHE (actions) : un bouton qui se voit comme tel, cadre
+     fin à coin coupé, à la couleur d'accent ;
+   · CE QUI INFORME (états, dates, nombres, libellés) : petites capitales
+     espacées, sans cadre, à l'accent quand l'information compte.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── LE TEXTE SECONDAIRE SE LIT SANS EFFORT ──
+   Les tons secondaires descendaient à 50 % et 60 % de blanc : extraits,
+   dates et aides passaient pour des ombres, surtout sur téléphone. Ils
+   remontent, et les filets avec eux. */
+:root{
+  --pa:rgba(255,255,255,.76);
+  --pa2:rgba(255,255,255,.64);
+  --parchemin-att:rgba(255,255,255,.7);
+  --filet:rgba(231,224,207,.17);
+}
+
+/* ── EN-TÊTE DE PAGE (Articles, Ressources, Commentaires) ── */
+.tete h1{font-size:19px;letter-spacing:.2em;color:#fff}
+@media(max-width:600px){.tete h1{font-size:16px;letter-spacing:.14em}}
+
+/* ── CE QUI SE TOUCHE : LES ACTIONS SONT DES BOUTONS ──
+   Elles étaient des mots nus, qu'on devinait plus qu'on ne les voyait. Dans
+   toutes les rangées d'actions, chacune prend un cadre fin, sans fond,
+   allumé comme sur les cartes des ressources : texte à l'accent avec sa
+   lueur, cadre au ton du cadre des icônes. Toutes ont la même taille et la
+   même couleur, suppression comprise. L'accent est employé plein, jamais
+   atténué (Emmanuel, 26/09). */
+.acts{gap:12px}
+.acts .act{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:11px 20px;line-height:1.1;font-size:12.5px;color:var(--or);text-shadow:0 0 10px color-mix(in srgb,var(--or) 40%,transparent);border:1px solid var(--or);background:transparent;transition:color .25s,border-color .25s,background .25s}
+.acts .act::before{content:none}
+.acts .act:hover,.acts .act:focus-visible{color:var(--or-pale);border-color:var(--or);background:transparent}
+.acts .act.majeur{border-color:var(--or);background:transparent}
+/* les actions qui créent vont par deux, côte à côte ; les outils se
+   rangent dessous, en boutons plus sobres */
+#acts-liste{flex-direction:column;gap:14px}
+#acts-liste .acts-haut{display:flex;align-items:stretch;justify-content:center;flex-wrap:nowrap;gap:10px;width:100%;max-width:560px}
+#acts-liste .acts-haut .act{flex:1 1 0;min-width:0}
+#acts-liste .acts-outils{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px}
+#acts-liste .acts-outils .act{margin:0}
+#acts-liste .acts-outils .act+.act::after{content:none}
+#acts-liste .acts-outils .act.majeur{border-color:var(--or)}
+@media(max-width:600px){
+  .acts .act{min-height:44px}
+  #acts-liste .acts-haut{width:100%;max-width:420px}
+  #acts-liste .acts-haut{flex-wrap:nowrap}
+  #acts-liste .acts-haut .act{flex:1 1 0;min-width:0;min-height:52px;padding:9px 8px;font-size:11.5px;letter-spacing:.1em;line-height:1.35;text-align:center;white-space:normal}
+  #acts-liste .acts-outils{width:100%;max-width:420px;gap:10px}
+  #acts-liste .acts-outils .act{flex:1 1 40%;min-height:44px;padding:9px 10px;font-size:11.5px;letter-spacing:.12em;white-space:nowrap}
+}
+/* Mémoriser : les deux actions sous la liste des catégories, même forme */
+.cat-acts{gap:12px}
+.cat-acts .ghost-btn{display:inline-block;text-align:center;line-height:1.2;min-height:42px;padding:12px 20px;font-size:12.5px;color:var(--or);text-shadow:0 0 10px color-mix(in srgb,var(--or) 40%,transparent);border:1px solid var(--or);transition:color .25s,border-color .25s,background .25s}
+.cat-acts .ghost-btn::before{content:none}
+.cat-acts .ghost-btn:hover{color:var(--or-pale);border-color:var(--or);background:transparent}
+/* Nouvelle catégorie et Nouvelle section vont par deux, côte à côte et de
+   même taille, que Mémoriser soit vide ou non (Emmanuel, 26/09) */
+.cat-acts,body.memo-vide .cat-acts{flex-direction:row;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:12px;width:100%;max-width:520px;margin-left:auto;margin-right:auto}
+.cat-acts #add-cat,.cat-acts #add-sec,body.memo-vide .cat-acts #add-cat{flex:1 1 0;min-width:0;width:auto;margin:0;padding:12px 14px;font-size:12.5px;letter-spacing:.14em;background:transparent;color:var(--or);border:1px solid var(--or);text-shadow:0 0 10px color-mix(in srgb,var(--or) 40%,transparent)}
+.cat-acts #add-cat:hover,.cat-acts #add-sec:hover,body.memo-vide .cat-acts #add-cat:hover{background:transparent;color:var(--or-pale)}
+.cat-acts #restore-base{flex-basis:100%}
+
+/* les menus ⋯ se voient : ils ouvrent les actions d'une fiche */
+.art-menu,.ct-menu,.rub-menu,.ry-menu{color:var(--or);opacity:1;font-size:18px}
+.art-menu:hover,.ct-menu:hover,.rub-menu:hover,.ry-menu:hover{color:var(--or-pale)}
+
+/* ── CE QUI INFORME ──
+   L'état d'une fiche, Privé comme Publié, le nombre et le chevron des
+   rubriques : à l'accent, comme les cartes des ressources. */
+.art-pied .art-etat,.art-pied .art-etat.publie,.ct-etat,.ct-etat.publie{color:var(--or);text-shadow:0 0 10px color-mix(in srgb,var(--or) 40%,transparent)}
+.rub-n,.rub-chev,.rayon .ry-n,.rayon .ry-chev{color:var(--or)}
+
+/* ── CE QUI SE LIT EN SECOND : DATES, EXTRAITS, AIDES ── */
+.art-extrait{font-size:15.5px;line-height:1.5;color:var(--pa)}
+.art-pied{font-size:13px;color:rgba(255,255,255,.72)}
+.lire-pied{font-size:13.5px;color:rgba(255,255,255,.72)}
+.resume,.vide,.rub-vide,.sec-vide{color:var(--pa)}
+.aide{color:var(--pa);font-size:14.5px;line-height:1.6}
+.champ-lab{color:rgba(255,255,255,.72)}
+@media(max-width:600px){
+  .art-extrait{font-size:15px}
+  .resume,.aide{font-size:15px}
+}
