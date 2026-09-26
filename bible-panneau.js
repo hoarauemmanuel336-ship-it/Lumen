@@ -120,7 +120,7 @@
     + '  <span class="bp-fermer" id="bp-fermer" role="button" tabindex="0" aria-label="' + BP_T.fermer + '">\u2715</span>'
     + '</div>'
     + '<div class="bp-refrow">'
-    + '  <input class="bp-ref" id="bp-ref" type="text" placeholder="' + BP_T.ph + '" autocomplete="off" spellcheck="false">'
+    + '  <textarea class="bp-ref champ-ligne" id="bp-ref" rows="1" placeholder="' + BP_T.ph + '" autocomplete="off" spellcheck="false"></textarea>'
     + '  <span class="bp-aller" id="bp-aller" role="button" tabindex="0">' + BP_T.aller + '</span>'
     + '  <span class="bp-err" id="bp-err"></span>'
     + '</div>'

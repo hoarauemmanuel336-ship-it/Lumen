@@ -177,8 +177,8 @@ h1.titre{font-family:var(--display);font-weight:400;font-size:48px;line-height:1
 .bib-reprendre .br-l{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa)}
 .bib-reprendre .br-r{font-family:var(--display);font-size:21px}
 .bib-aller{display:flex;align-items:stretch;border:1px solid var(--filet-f)}
-.bib-aller input{flex:1;min-width:0;background:transparent;border:0;color:var(--parchemin);font-family:inherit;font-size:17px;padding:11px 14px;outline:none}
-.bib-aller input::placeholder{color:var(--pa);font-style:italic}
+.bib-aller .champ-ligne{flex:1;min-width:0;background:transparent;border:0;color:var(--parchemin);font-family:inherit;font-size:17px;padding:11px 14px;outline:none}
+.bib-aller .champ-ligne::placeholder{color:var(--pa);font-style:italic}
 .bib-aller button{background:none;border:0;border-left:1px solid var(--filet-f);color:var(--or);font-family:inherit;font-size:13px;letter-spacing:.2em;text-transform:uppercase;padding:0 18px;min-width:64px;cursor:pointer}
 .bib-aller:focus-within{border-color:var(--or)}
 .bib-err{font-size:14px;color:#eba0a0;text-align:center;min-height:0}
@@ -834,7 +834,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
   </footer>
   <div class="b-ov" id="brech-voile">
     <div class="b-boite" role="dialog" aria-modal="true" aria-label="Recherche">
-      <div class="b-tete"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><input class="b-champ" id="brech-champ" type="search" placeholder="Rechercher dans Lumen…" autocomplete="off" spellcheck="false"><span class="b-fermer" id="brech-fermer" role="button" tabindex="0" aria-label="Fermer">✕</span></div>
+      <div class="b-tete"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><textarea class="b-champ champ-ligne" id="brech-champ" rows="1" placeholder="Rechercher dans Lumen…" autocomplete="off" spellcheck="false"></textarea><span class="b-fermer" id="brech-fermer" role="button" tabindex="0" aria-label="Fermer">✕</span></div>
       <div class="b-res" id="brech-res"></div>
     </div>
   </div>
@@ -2948,7 +2948,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     var h = '<div class="notes-tete"><h2 class="notes-titre">Mes notes</h2>'
           + (resume.length ? '<div class="notes-compte">' + resume.join(' \u00b7 ') + '</div>' : '')
           + '</div>'
-          + '<input class="notes-rech" id="notes-rech" type="search" placeholder="Rechercher dans les notes\u2026" value="' + esc(filtre || '') + '">'
+          + '<textarea class="notes-rech champ-ligne" id="notes-rech" rows="1" placeholder="Rechercher dans les notes\u2026">' + esc(filtre || '') + '</textarea>'
           + '<div class="notes-actions">'
           + '<span class="notes-btn" id="note-libre" role="button" tabindex="0">\u00c9crire une note</span>'
           + '<span class="notes-lien" id="cat-nouvelle" role="button" tabindex="0">Nouvelle cat\u00e9gorie</span>'
@@ -3295,7 +3295,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     try { lu = JSON.parse(localStorage.getItem('lv_bible_lu') || 'null'); } catch(e){ lu = null; }
     h += '<div class="bib-tete">';
     if (lu && lu.s && lu.n && infoLivre(lu.s)) h += '<a class="bib-reprendre" href="#' + esc(lu.s) + '/' + (+lu.n) + '"><span class="br-l">Reprendre</span><span class="br-r">' + esc(lu.t || '') + '</span></a>';
-    h += '<form class="bib-aller" id="bib-aller" autocomplete="off"><input type="text" id="bib-ref" placeholder="Aller à : Jean 3:16" spellcheck="false" enterkeyhint="go" aria-label="Aller à une référence"><button type="submit">Aller</button></form>'
+    h += '<form class="bib-aller" id="bib-aller" autocomplete="off"><textarea id="bib-ref" class="champ-ligne" rows="1" placeholder="Aller à : Jean 3:16" spellcheck="false" enterkeyhint="go" aria-label="Aller à une référence"></textarea><button type="submit">Aller</button></form>'
        + '<div class="bib-err" id="bib-err" aria-live="polite"></div></div>';
     IDX.groupes.forEach(function(g){
       if (g.test !== testCourant) {

@@ -273,6 +273,22 @@ function piedCanon() {
 /* Câblage canonique de la barre : le menu déroulant, l'année du pied et le
    lien actif. Injecté tel quel sur les quatre surfaces. */
 const BARRE_JS = `(function(){
+  /* ── LES CHAMPS DE RECHERCHE PASSENT À LA LIGNE (Emmanuel, 27/09) ──
+     Un champ d'une seule ligne cachait le début de ce qu'on tapait et
+     obligeait à le faire défiler de côté. Les champs de recherche et de
+     référence sont des zones qui s'agrandissent vers le bas à mesure qu'on
+     écrit ; Entrée lance la recherche, jamais un retour à la ligne. */
+  (function(){
+    function ligne(t){return t&&t.classList&&t.classList.contains('champ-ligne');}
+    function ajuste(t){if(!ligne(t))return;t.style.height='auto';t.style.height=t.scrollHeight+'px';}
+    document.addEventListener('input',function(e){var t=e.target;if(!ligne(t))return;
+      if(/[\\r\\n]/.test(t.value)){var p=t.selectionStart;t.value=t.value.replace(/[\\r\\n]+/g,' ');try{t.setSelectionRange(p,p);}catch(_){}}
+      ajuste(t);},true);
+    document.addEventListener('keydown',function(e){var t=e.target;if(e.key!=='Enter'||!ligne(t))return;
+      e.preventDefault();var f=t.form;if(f){if(f.requestSubmit)f.requestSubmit();else f.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));}},true);
+    document.addEventListener('focusin',function(e){ajuste(e.target);});
+    var rz=0;window.addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(function(){[].forEach.call(document.querySelectorAll('.champ-ligne'),ajuste);},120);});
+  })();
   /* le site se garde sur l'appareil (site-sw.js) ; Mémoriser a son propre
      service worker, limité à sa page, auquel on ne touche pas */
   try{if('serviceWorker' in navigator&&location.pathname.indexOf('/memoriser')!==0){
@@ -407,7 +423,7 @@ function header(lang, type, base, otherRel, ctx) {
   <div class="rech-boite">
     <div class="rech-haut">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg>
-      <input type="search" id="rech-champ" placeholder="${u.search_placeholder}" autocomplete="off" spellcheck="false">
+      <textarea id="rech-champ" class="champ-ligne" rows="1" placeholder="${u.search_placeholder}" autocomplete="off" spellcheck="false"></textarea>
       <span class="rech-fermer" id="rech-fermer" role="button" tabindex="0" aria-label="${u.menu_home === 'Home' ? 'Close' : 'Fermer'}">\u2715</span>
     </div>
     <div class="rech-res" id="rech-res"></div>
