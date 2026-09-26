@@ -223,6 +223,9 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .sg-date{font-size:12px;letter-spacing:.04em;color:var(--parchemin-att);margin-top:4px}
 .sg-x{flex:none;font-size:14px;color:var(--parchemin-att);padding:8px 6px;transition:color .3s}
 .sg-x:hover{color:var(--or)}
+.sg-trad{display:flex;align-items:baseline;gap:10px;padding:0 6px 10px;border-bottom:1px solid var(--filet);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--or)}
+.sg-trad-n{font-size:11px;letter-spacing:.08em;color:var(--parchemin-att)}
+.sg-liste+.sg-liste{margin-top:48px}
 .ch-vulg{font-size:13.5px;color:var(--parchemin-att);text-align:center;font-style:italic;margin-top:6px}
 .ch-section{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);text-align:center;margin-top:22px}
 .ch-sect{font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin:30px 0 12px;text-align:left}
@@ -827,9 +830,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
   </div>
 
   <footer>
-    <div class="marque">Lumen</div>
     <div class="verset-pied">« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l'ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span></div>
-    <div class="copy" id="annee"></div>
   </footer>
   <div class="b-ov" id="brech-voile">
     <div class="b-boite" role="dialog" aria-modal="true" aria-label="Recherche">
@@ -3158,7 +3159,30 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
   SIGN_P = JSON.parse(JSON.stringify(SIGN));
   var RUBAN = '<svg viewBox="0 0 24 24" width="20" height="26" aria-hidden="true"><path d="M6 3h12v18l-6-4.2L6 21z"/></svg>';
 
-  function cleSignet(slug, ch){ return slug + '/' + ch; }
+  /* ── LE SIGNET RETIENT SA TRADUCTION (Emmanuel, 27/09 : « quand je mets un
+     signet dans la Bible, ça doit enregistrer et classer en fonction de la
+     traduction que j'ai choisie ») ──
+     Chaque signet garde la traduction ouverte au moment où il est posé : un
+     même chapitre peut porter un signet en Chérubin et un autre en Séraphin.
+     Les signets de la Chérubin gardent leur clé d'avant, ceux de la Séraphin
+     portent la leur en préfixe ; les signets posés avant ce changement, qui
+     ne disaient rien de leur traduction, sont rangés avec la Chérubin, la
+     traduction ouverte par défaut. Rouvrir un signet rouvre sa traduction. */
+  function cleSignet(slug, ch, t){
+    t = t || TRAD;
+    return (t === 'cherubin' ? '' : t + ':') + slug + '/' + ch;
+  }
+  function tradSignet(g){ return (g && g.t && TRADS[g.t]) ? g.t : 'cherubin'; }
+  function ouvreSignet(g){
+    var k = tradSignet(g);
+    if (k !== TRAD) {
+      TRAD = k; CACHE = CACHES[k];
+      try { localStorage.setItem(TRAD_CLE, k); } catch(e) {}
+      majTrad();
+    }
+    var cible = hashSignet(g);
+    if (location.hash === cible) route(); else location.hash = cible;
+  }
   function sauveSignets(){
     var ms = Date.now();
     estampe(SIGN, SIGN_P, SIGN_T, ms);
@@ -3204,7 +3228,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     else {
       var p = location.hash.replace(/^#/, '').split('/');
       var v = parseInt(p[2], 10);
-      SIGN[cle] = { s: c.slug, c: c.ch, v: (v > 0 ? v : 0), d: new Date().toISOString() };
+      SIGN[cle] = { s: c.slug, c: c.ch, v: (v > 0 ? v : 0), t: TRAD, d: new Date().toISOString() };
     }
     sauveSignets();
     if (location.hash === '#signets') vueSignets();
@@ -3216,22 +3240,29 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       var da = SIGN[a].d || '', db2 = SIGN[b].d || '';
       return da < db2 ? 1 : (da > db2 ? -1 : 0);        // le dernier posé en tête
     });
+    /* rangés par traduction : celle qui est ouverte d'abord, l'autre ensuite */
+    var ordre = [TRAD].concat(Object.keys(TRADS).filter(function(k){ return k !== TRAD; }));
     var h = '<div class="lecture-col"><h2 class="ch-titre">Mes signets</h2><div class="ch-sep"></div>';
     if (!ids.length) {
       h += '<div class="sg-vide">Aucun signet pour l\u2019instant. Ouvre un chapitre et touche le ruban, '
          + 'en haut \u00e0 droite du titre, pour le marquer.</div>';
     } else {
-      h += '<div class="sg-liste">';
-      ids.forEach(function(cle){
-        var g = SIGN[cle];
-        h += '<div class="sg-carte" data-sg="' + esc(cle) + '">'
-           + '<span class="sg-ruban">' + RUBAN + '</span>'
-           + '<span class="sg-txt"><span class="sg-ref">' + esc(libelleSignet(g)) + '</span>'
-           + '<div class="sg-date">' + esc(dateSignet(g)) + '</div></span>'
-           + '<span class="sg-x" data-sgx="' + esc(cle) + '" role="button" tabindex="0" '
-           + 'aria-label="Retirer ce signet" title="Retirer ce signet">\u2715</span></div>';
+      ordre.forEach(function(k){
+        var siens = ids.filter(function(cle){ return tradSignet(SIGN[cle]) === k; });
+        if (!siens.length) return;
+        h += '<div class="sg-liste"><div class="sg-trad">' + esc(TRADS[k].nom)
+           + '<span class="sg-trad-n">' + siens.length + '</span></div>';
+        siens.forEach(function(cle){
+          var g = SIGN[cle];
+          h += '<div class="sg-carte" data-sg="' + esc(cle) + '">'
+             + '<span class="sg-ruban">' + RUBAN + '</span>'
+             + '<span class="sg-txt"><span class="sg-ref">' + esc(libelleSignet(g)) + '</span>'
+             + '<div class="sg-date">' + esc(dateSignet(g)) + '</div></span>'
+             + '<span class="sg-x" data-sgx="' + esc(cle) + '" role="button" tabindex="0" '
+             + 'aria-label="Retirer ce signet" title="Retirer ce signet">\u2715</span></div>';
+        });
+        h += '</div>';
       });
-      h += '</div>';
     }
     h += '</div>';
     vue.innerHTML = h;
@@ -3240,7 +3271,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       actif(el, function(ev){
         if (ev.target.closest && ev.target.closest('[data-sgx]')) return;
         var g = SIGN[el.getAttribute('data-sg')];
-        if (g) location.hash = hashSignet(g);
+        if (g) ouvreSignet(g);
       });
     });
     [].forEach.call(vue.querySelectorAll('[data-sgx]'), function(el){

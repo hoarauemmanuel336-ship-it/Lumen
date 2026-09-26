@@ -38,16 +38,19 @@
 
 /* ── CE QUI SE TOUCHE : LES ACTIONS SONT DES BOUTONS ──
    Elles étaient des mots nus, qu'on devinait plus qu'on ne les voyait. Dans
-   toutes les rangées d'actions, chacune prend un cadre fin, sans fond,
-   allumé comme sur les cartes des ressources : texte à l'accent avec sa
-   lueur, cadre au ton du cadre des icônes. Toutes ont la même taille et la
-   même couleur, suppression comprise. L'accent est employé plein, jamais
-   atténué (Emmanuel, 26/09). */
+   toutes les rangées d'actions, chacune est un bouton de même taille et de
+   même couleur, suppression comprise (Emmanuel, 26/09).
+   BOUTONS PLEINS (Emmanuel, 27/09). Ils étaient en cadre fin à l'accent,
+   mais la crème en trait d'un pixel, dans le noir, se lit presque blanche :
+   elle ne rendait pas la couleur du gros bouton « Commencer ». Ils sont
+   désormais remplis comme lui : fond à l'accent, texte noir, fond éclairci
+   au survol. */
 .acts{gap:12px}
-.acts .act{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:11px 20px;line-height:1.1;font-size:12.5px;color:var(--or);text-shadow:0 0 10px color-mix(in srgb,var(--or) 40%,transparent);border:1px solid var(--or);background:transparent;transition:color .25s,border-color .25s,background .25s}
+.acts .act{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:11px 20px;line-height:1.1;font-size:12.5px;color:var(--encre);text-shadow:none;border:1px solid var(--or);background:var(--or);transition:color .25s,border-color .3s,background .3s}
 .acts .act::before{content:none}
-.acts .act:hover,.acts .act:focus-visible{color:var(--or-pale);border-color:var(--or);background:transparent}
-.acts .act.majeur{border-color:var(--or);background:transparent}
+.acts .act:hover,.acts .act:focus-visible{color:var(--encre);border-color:var(--or-pale);background:var(--or-pale)}
+.acts .act.majeur{border-color:var(--or);background:var(--or)}
+.acts .act.majeur:hover,.acts .act.majeur:focus-visible{border-color:var(--or-pale);background:var(--or-pale)}
 /* les actions qui créent vont par deux, côte à côte ; les outils se
    rangent dessous, en boutons plus sobres */
 #acts-liste{flex-direction:column;gap:14px}
@@ -57,6 +60,10 @@
 #acts-liste .acts-outils .act{margin:0}
 #acts-liste .acts-outils .act+.act::after{content:none}
 #acts-liste .acts-outils .act.majeur{border-color:var(--or)}
+#acts-liste .acts-outils .act.majeur:hover{border-color:var(--or-pale)}
+/* les pages donnaient au texte des actions la couleur d'accent, par une règle
+   plus forte : sur un bouton plein, le texte reste noir, survol compris */
+#acts-liste .act,#acts-liste .act:hover,.acts .act.danger:hover{color:var(--encre)}
 @media(max-width:600px){
   .acts .act{min-height:44px}
   #acts-liste .acts-haut{width:100%;max-width:420px}
@@ -67,14 +74,14 @@
 }
 /* Mémoriser : les deux actions sous la liste des catégories, même forme */
 .cat-acts{gap:12px}
-.cat-acts .ghost-btn{display:inline-block;text-align:center;line-height:1.2;min-height:42px;padding:12px 20px;font-size:12.5px;color:var(--or);text-shadow:0 0 10px color-mix(in srgb,var(--or) 40%,transparent);border:1px solid var(--or);transition:color .25s,border-color .25s,background .25s}
+.cat-acts .ghost-btn{display:inline-block;text-align:center;line-height:1.2;min-height:42px;padding:12px 20px;font-size:12.5px;color:var(--encre);text-shadow:none;border:1px solid var(--or);background:var(--or);transition:color .25s,border-color .3s,background .3s}
 .cat-acts .ghost-btn::before{content:none}
-.cat-acts .ghost-btn:hover{color:var(--or-pale);border-color:var(--or);background:transparent}
+.cat-acts .ghost-btn:hover{color:var(--encre);border-color:var(--or-pale);background:var(--or-pale)}
 /* Nouvelle catégorie et Nouvelle section vont par deux, côte à côte et de
    même taille, que Mémoriser soit vide ou non (Emmanuel, 26/09) */
 .cat-acts,body.memo-vide .cat-acts{flex-direction:row;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:12px;width:100%;max-width:520px;margin-left:auto;margin-right:auto}
-.cat-acts #add-cat,.cat-acts #add-sec,body.memo-vide .cat-acts #add-cat{flex:1 1 0;min-width:0;width:auto;margin:0;padding:12px 14px;font-size:12.5px;letter-spacing:.14em;background:transparent;color:var(--or);border:1px solid var(--or);text-shadow:0 0 10px color-mix(in srgb,var(--or) 40%,transparent)}
-.cat-acts #add-cat:hover,.cat-acts #add-sec:hover,body.memo-vide .cat-acts #add-cat:hover{background:transparent;color:var(--or-pale)}
+.cat-acts #add-cat,.cat-acts #add-sec,body.memo-vide .cat-acts #add-cat{flex:1 1 0;min-width:0;width:auto;margin:0;padding:12px 14px;font-size:12.5px;letter-spacing:.14em;background:var(--or);color:var(--encre);border:1px solid var(--or);text-shadow:none}
+.cat-acts #add-cat:hover,.cat-acts #add-sec:hover,body.memo-vide .cat-acts #add-cat:hover{background:var(--or-pale);border-color:var(--or-pale);color:var(--encre)}
 .cat-acts #restore-base{flex-basis:100%}
 
 /* les menus ⋯ se voient : ils ouvrent les actions d'une fiche */
@@ -98,3 +105,32 @@
   .art-extrait{font-size:15px}
   .resume,.aide{font-size:15px}
 }
+
+/* ── TOUS LES BOUTONS À CADRE SONT PLEINS (Emmanuel, 27/09 : « menu compte,
+   commentaires, notes, Bible… il faut vérifier partout ») ──
+   Comme les rangées d'actions plus haut, chaque bouton qui portait un cadre
+   est rempli comme « Commencer » : fond à l'accent, texte noir, fond
+   éclairci au survol. Menus du compte, fenêtres de connexion, boutons
+   Google, notes et signets de la Bible, reprise de lecture, « Réessayer »,
+   choix du passage, « Terminer », ouverture d'une ressource, boutons du
+   plein écran, retour en haut, taille du texte.
+   Restent à part, parce que ce ne sont pas des boutons : les cartes, les
+   champs, les onglets, les interrupteurs, les grilles de livres et de
+   chapitres, les options de réponse. L'onglet Bible, à gauche, garde son
+   fond noir (Emmanuel, 27/09). */
+html:root :is(.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x,.haut-page,.ttx-b){
+  background:var(--or);border-color:var(--or);color:var(--encre);text-shadow:none;box-shadow:none;
+  -webkit-backdrop-filter:none;backdrop-filter:none;transition:background .3s,border-color .3s,color .3s,opacity .3s}
+html:root :is(.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x,.haut-page,.ttx-b) *{color:inherit}
+html:root :is(.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x,.haut-page,.ttx-b):is(:hover,:focus-visible){
+  background:var(--or-pale);border-color:var(--or-pale);color:var(--encre);box-shadow:none}
+/* le « voir plus » de Mémoriser est un mot, pas un bouton */
+html:root #cat-more{background:none;border:none;color:var(--pa2)}
+html:root #cat-more:hover{color:var(--or)}
+
+/* ── LE PIED DE PAGE : LE VERSET SEUL, ÉCLAIRÉ (Emmanuel, 27/09) ──
+   « Lumen » et « © année Lumen » sont retirés ; le verset d'Isaïe et sa
+   référence passent en blanc plein, avec un léger halo. */
+html body footer .marque,html body footer .copy{display:none}
+html body footer .verset-pied{margin-top:0;color:#fff;text-shadow:0 0 14px rgba(255,255,255,.35)}
+html body footer .verset-pied .ref-pied{color:#fff}

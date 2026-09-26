@@ -263,10 +263,10 @@ function barreCanon() {
 </nav>`;
 }
 function piedCanon() {
+  /* le pied ne porte plus que le verset (Emmanuel, 27/09) : ni « Lumen »,
+     ni « © année Lumen » */
   return `<footer>
-  <div class="marque">Lumen</div>
   <div class="verset-pied">${VERSET_PIED}</div>
-  <div class="copy" id="annee"></div>
 </footer>`;
 }
 
@@ -308,8 +308,6 @@ const BARRE_JS = `(function(){
       try{window.dispatchEvent(new Event('resize'));}catch(e){}
     });
   }
-  var an=document.getElementById('annee');
-  if(an)an.textContent='\u00a9 '+new Date().getFullYear()+' Lumen';
   var p=location.pathname.replace(/index\\.html$/,'')||'/';
   /* Barre du bas : « Bible », hors de la page Bible, ouvre le tiroir de la
      Bible par-dessus la page, sans perdre sa place ; « Pleine page », dans le

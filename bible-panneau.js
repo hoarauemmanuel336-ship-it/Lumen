@@ -44,7 +44,7 @@
   + 'font-size:11px;letter-spacing:.25em;text-transform:uppercase;font-family:inherit;'
   + 'color:var(--pa,rgba(255,255,255,.6));background:#000;border:1px solid var(--filet,rgba(231,224,207,.14));border-left:none;'
   + 'padding:16px 7px;cursor:pointer;user-select:none;transition:color .3s,border-color .35s,box-shadow .4s}'
-  + '#bp-tab:hover{color:var(--or-pale,#f8f3e6);border-color:var(--or,#efe6cf);background:var(--surv,rgba(239,230,207,.06))}'
+  + '#bp-tab:hover{color:var(--or-pale,#f8f3e6);border-color:var(--or,#efe6cf)}'
   + '#bp-tab.bp-tab-masque{display:none!important}'
   + '#bp-voile{position:fixed;inset:0;z-index:108;background:rgba(0,0,0,.55);display:none}'
   + '#bp-voile.on{display:block}'

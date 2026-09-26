@@ -358,6 +358,13 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 @media(max-width:600px){.grille{gap:12px}.ct-bas{padding:18px 18px 13px}.ct-titre{font-size:19.5px}.ct-tete{gap:13px}.ct-mq{width:30px;height:30px}}
 /* sans survol, le ⋯ reste bien visible, et le doigt reçoit un retour bref */
 @media not ((hover:hover) and (pointer:fine)){.ct-menu{opacity:.85}.carte:active{background:linear-gradient(180deg,#141414,#0b0b0b 70%)}}
+/* ── LE ⋯ ET L'ÉTAT EN BLANC, BIEN ALLUMÉS (Emmanuel, 27/09) ──
+   Les trois points des cartes, des domaines et des rayons, et l'état
+   (Privé, Publié), passent en blanc plein avec un halo blanc, sans survol :
+   ils se voient d'emblée. Le survol n'ajoute qu'un peu plus de lumière. */
+html body .ct-menu,html body .rub-menu,html body .rayon .ry-menu{color:#fff;opacity:1;text-shadow:0 0 10px rgba(255,255,255,.7),0 0 20px rgba(255,255,255,.3)}
+html body .ct-menu:hover,html body .rub-menu:hover,html body .rayon .ry-menu:hover{color:#fff;text-shadow:0 0 12px rgba(255,255,255,.95),0 0 26px rgba(255,255,255,.45)}
+html body .ct-etat,html body .ct-etat.publie{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.7),0 0 20px rgba(255,255,255,.3)}
 
 /* ── la ressource en grand ── */
 .res-cadre{border:1px solid var(--filet);background:#050505;margin:6px 0 4px}
@@ -629,9 +636,7 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
 </main>
 
 <footer>
-  <div class="marque">Lumen</div>
   <div class="verset-pied">&#171; Le peuple qui marchait dans les t&#233;n&#232;bres a vu une grande lumi&#232;re &#187; <span class="ref-pied">Isa&#239;e 9:1</span></div>
-  <div class="copy" id="annee"></div>
 </footer>
 
 <div class="overlay" id="m-conf"><div class="modal">
@@ -1433,6 +1438,11 @@ window.addEventListener('message',e=>{
     return;
   }
   if(d.lvEtatVoulu){ rendEtat(cadre); return; }
+  if(d.lvProgression&&typeof d.lvProgression==='object'){
+    const id=cadre.dataset.res;
+    if(id&&S.auteur)inscritProgression(id,d.lvProgression);
+    return;
+  }
   if(typeof d.lvCopie==='string')copiePresse(d.lvCopie);
 });
 /* L'état gardé pour une ressource, rendu au cadre qui le demande ou qui vient
@@ -1510,6 +1520,85 @@ function rapatrie(id){
   /* hors ligne, on n'attend pas plus de deux secondes et demie */
   return Promise.race([lu,new Promise(r=>setTimeout(r,2500))]);
 }
+
+/* ── LA PROGRESSION D'UN PARCOURS EST ÉCRITE DANS SON FICHIER
+   (Emmanuel, 26/09 : « je vais mettre à jour le fichier parcours avec
+   Claude, c'est pour ça que je veux que ce soit le fichier qui se modifie ») ──
+   Un parcours porte, en tête de son code, un petit bloc réservé à la
+   progression : <script type="application/json" id="lv-progression">.
+   Quand un sujet change d'état, le parcours envoie {lvProgression:{maj,sujets}}
+   et la page réécrit CE BLOC SEUL dans le code de la ressource. Le reste du
+   fichier n'est jamais touché. Le fichier téléchargé porte donc les coches,
+   et Claude les voit quand on lui confie le parcours.
+   L'écriture relit le code dans le nuage au moment d'écrire (transaction) :
+   un appareil qui aurait gardé une ancienne version du parcours n'écrase
+   jamais la nouvelle, il y inscrit seulement la progression. */
+const PROG={att:{},minuteur:0};
+const PROG_BLOC=/<script\b[^>]*\bid=["']lv-progression["'][^>]*>[\s\S]*?<\/script>/i;
+const PROG_ETATS=['en-cours','termine','a-revoir'];
+function progressionPropre(p){
+  const s={};
+  const src=p&&p.sujets&&typeof p.sujets==='object'?p.sujets:{};
+  Object.keys(src).forEach(k=>{
+    if(/^[\w.-]{1,80}$/.test(k)&&PROG_ETATS.indexOf(src[k])>=0)s[k]=src[k];
+  });
+  return {maj:Math.max(0,Math.round(+p.maj||Date.now())),sujets:s};
+}
+function poseProgression(code,p){
+  const bloc='<script type="application/json" id="lv-progression">\n'
+    +JSON.stringify(p,null,1).replace(/</g,'\\u003c')+'\n<\/script>';
+  if(PROG_BLOC.test(code))return code.replace(PROG_BLOC,()=>bloc);
+  const i=code.search(/<\/head>/i);
+  if(i>=0)return code.slice(0,i)+bloc+'\n'+code.slice(i);
+  return bloc+'\n'+code;
+}
+function inscritProgression(id,brut){
+  const p=progressionPropre(brut);
+  /* sur place d'abord : le téléchargement qui suit porte déjà les coches */
+  const a=S.liste.find(x=>x.id===id);
+  if(a&&typeof a.code==='string'&&a.code){ a.code=poseProgression(a.code,p); CODES.set(id,a.code); }
+  if(S.res&&S.res.id===id&&typeof S.res.code==='string'&&S.res.code&&!S.sale){
+    S.res.code=poseProgression(S.res.code,p);
+    const co=$('f-code'); if(co)co.value=S.res.code;
+  }
+  PROG.att[id]=p;
+  clearTimeout(PROG.minuteur);
+  PROG.minuteur=setTimeout(pousseProgression,1500);
+}
+function pousseProgression(){
+  clearTimeout(PROG.minuteur); PROG.minuteur=0;
+  if(!S.uid)return;
+  const att=PROG.att; PROG.att={};
+  Object.keys(att).forEach(id=>{
+    if(SUPPRIMES.has(id))return;
+    const p=att[id];
+    let neu='';
+    db.runTransaction(async tx=>{
+      neu='';
+      const r=await tx.get(ccol().doc(id));
+      if(!r.exists)return;
+      const code=String((r.data()||{}).code||'');
+      if(!code)return;
+      const n=poseProgression(code,p);
+      if(n===code||new Blob([JSON.stringify({code:n})]).size>LIMITE_DOC)return;
+      tx.set(ccol().doc(id),{code:n});
+      tx.update(acol().doc(id),{codeTaille:new Blob([n]).size});
+      neu=n;
+    }).then(()=>{
+      if(!neu)return;
+      CODES.set(id,neu);
+      const a=S.liste.find(x=>x.id===id);
+      if(a){ a.code=neu; a.codeTaille=new Blob([neu]).size; }
+    }).catch(e=>{
+      /* ratée (hors ligne) : elle repartira avec la prochaine coche, sauf si
+         une plus récente attend déjà */
+      console.warn('progression',id,e);
+      if(!PROG.att[id])PROG.att[id]=p;
+    });
+  });
+}
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='hidden')pousseProgression(); });
+window.addEventListener('pagehide',pousseProgression);
 
 /* ── LA PAGE DIT AU DIAGRAMME OÙ EN EST LA LECTURE ──
    Le cadre fait la hauteur exacte du diagramme et ne défile donc jamais : ce
@@ -2461,6 +2550,7 @@ function fermePlein(){
    l'endroit du rangement où l'on était. */
 function retourRessources(){
   pousseLecture();
+  pousseProgression();
   fermePlein();
   S.res=null; S.vu='';
   try{vaVers(ici());}catch(_){}
@@ -2932,7 +3022,6 @@ function routeHash(){
 /* popstate couvre déjà les changements de fragment : écouter aussi hashchange
    faisait deux rendus par retour arrière */
 window.addEventListener('popstate',routeHash);
-const an=$('annee'); if(an)an.textContent='© '+new Date().getFullYear()+' Lumen';
 
 /* Le panneau « Mon compte » : MÊME câblage que sur les articles, sur la Bible
    et sur Mémoriser. La barre du site est posée par le build, donc ses deux
