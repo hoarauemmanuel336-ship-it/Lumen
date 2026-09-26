@@ -271,6 +271,28 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .rap:disabled:not(.choisi) .pastille{opacity:.1;transform:none}
 .opts{margin-top:26px}
 @media(max-width:600px){.rappel{gap:34px}}
+/* ── LES PASTILLES DES PROPOSITIONS (26/09, Emmanuel) ──
+   « Je regarde toutes les références dans les options et j'essaie de me
+   souvenir du verset, et inversement : ça permet de réviser trois autres
+   sujets en même temps. Je voudrais que, quand on survole les options, on
+   puisse changer la couleur aussi. » Chaque proposition porte donc ses trois
+   pastilles, à droite, qui paraissent au survol ; la couleur du verset de la
+   proposition est allumée. Les toucher pose cette couleur sans répondre.
+   Sur un écran tactile, où rien ne se survole, elles restent visibles,
+   discrètes. Les quatre propositions en portent, la bonne comprise : sinon
+   l'absence de pastilles trahirait la réponse. */
+.opt{position:relative;padding-right:78px}
+.odots{position:absolute;right:16px;top:50%;transform:translateY(-50%);display:flex;gap:13px;opacity:0;transition:opacity .25s}
+.opt:hover:not(:disabled) .odots,.opt:focus-visible .odots{opacity:1}
+@media(hover:none){.opt:not(:disabled) .odots{opacity:.75}}
+.opt:disabled .odots{opacity:0}
+.odot{position:relative;display:block;width:9px;height:9px;border-radius:50%;opacity:.3;transition:opacity .25s,transform .25s;cursor:pointer}
+.odot::before{content:'';position:absolute;inset:-7px}
+.odot[data-r="r"]{background:var(--rouge)}
+.odot[data-r="a"]{background:var(--ambre)}
+.odot[data-r="v"]{background:var(--vert)}
+.odot:hover{opacity:1;transform:scale(1.3)}
+.odot.choisi{opacity:1;transform:scale(1.15)}
 
 /* ═══ SUMMARY ═══ */
 #summary{display:none;text-align:center;padding-top:48px;animation:fade .5s ease both}
@@ -1164,7 +1186,11 @@ function answer(id,ok,rap){
   /* ce qui change la couleur déplace le verset dans son groupe sur-le-champ :
      ta parole, ou une erreur. Un vert manqué rejoint donc les jaunes, à
      apprendre, sans attendre la séance suivante. */
-  if(S.grp&&(declare||!ok))S.grp[id]=(k==='a')?'j':k;
+  if(S.grp&&(declare||!ok)){
+    S.grp[id]=(k==='a')?'j':k;
+    /* retombé au rouge : il entre dans la fenêtre des rouges tout de suite */
+    if(k==='r'){ S.fenR=S.fenR||[]; if(!S.fenR.includes(id))S.fenR.push(id); }
+  }
   p.t=new Date(ms).toISOString();
   S.progress[id]=p; S.step++; marqueSale(id);
   propageProg(id);
@@ -1203,6 +1229,34 @@ function answer(id,ok,rap){
 const TOUR=['j','j','r','j','r','v'];
 /* dérivé de la couleur affichée, pour que les deux ne divergent jamais */
 const GROUPE_DE=id=>{const l=levelOf(id);return l==='a'?'j':l;};
+/* ── LES ROUGES PAR PETITE FENÊTRE (26/09, Emmanuel) ──
+   « Quand on coche beaucoup de trucs nouveaux d'un coup, que tout est rouge,
+   tous sont à égalité dans le nombre de fois qu'ils passent. On apprend par
+   la répétition : il faudrait que l'algorithme se concentre sur des rouges
+   et mette d'autres rouges en attente. »
+   Le rouge ne tourne donc plus sur TOUS ses versets, mais sur une fenêtre de
+   FENETRE_ROUGE versets. Les autres attendent. Une place se libère quand un
+   verset de la fenêtre quitte le rouge (pastille jaune ou verte) : le rouge
+   suivant entre aussitôt. Pour entrer, les rouges déjà travaillés passent
+   avant les neufs, le plus récemment vu d'abord, pour reprendre d'une séance
+   à l'autre ceux qu'on était en train d'apprendre ; les neufs entrent dans
+   l'ordre de la liste. Un verset qui retombe au rouge pendant la séance
+   (erreur, ou pastille rouge) rejoint la fenêtre sur-le-champ, même pleine :
+   on vient de le manquer, il doit revenir. */
+const FENETRE_ROUGE=5;
+function fenetreRouge(items,grpDe){
+  const rouges={}; items.forEach(i=>{if(grpDe(i)==='r')rouges[i.id]=1;});
+  S.fenR=(S.fenR||[]).filter(id=>rouges[id]);
+  if(S.fenR.length<FENETRE_ROUGE){
+    const dedans={}; S.fenR.forEach(id=>dedans[id]=1);
+    const vus=[], neufs=[];
+    items.forEach(i=>{ if(!rouges[i.id]||dedans[i.id])return; (enJeu(i.id)?vus:neufs).push(i.id); });
+    vus.sort((a,b)=>(vuLe(b)-vuLe(a))||(vuesOf(b)-vuesOf(a)));
+    vus.concat(neufs).slice(0,FENETRE_ROUGE-S.fenR.length).forEach(id=>S.fenR.push(id));
+  }
+  const fen={}; S.fenR.forEach(id=>fen[id]=1);
+  return fen;
+}
 function nextItem(){
   const items=allItems(); if(!items.length)return null;
   let pool=items.filter(i=>i.id!==S.lastId); if(!pool.length)pool=items;
@@ -1213,12 +1267,14 @@ function nextItem(){
   const inedit=i=>vuLe(i.id)<debut;
   const g={j:[],r:[],v:[]};
   const grpDe=i=>(S.grp&&S.grp[i.id])||(enJeu(i.id)?GROUPE_DE(i.id):'r');
-  libres.forEach(i=>g[grpDe(i)].push(i));
+  const fen=fenetreRouge(items,grpDe);
+  const range=(dest,i)=>{const x=grpDe(i); if(x==='r'&&!fen[i.id])return; dest[x].push(i);};
+  libres.forEach(i=>range(g,i));
   /* Les mêmes groupes SANS la mise à l'écart courte : un verset qu'on vient
      de poser en est écarté trois questions, et cette réserve ne doit pas
      faire passer sa place au vert (voir plus bas). */
   const gp={j:[],r:[],v:[]};
-  pool.forEach(i=>gp[grpDe(i)].push(i));
+  pool.forEach(i=>range(gp,i));
   /* le tour : la lettre du moment, puis la suivante dans l'ordre des
      priorités si le groupe est vide */
   const k=(S.tour||0)%TOUR.length; S.tour=k+1;
@@ -1617,7 +1673,7 @@ function startSession(){
     updateStart();
     return;
   }
-  S.answered=0; S.correct=0; S.lastId=null; S.rap={r:0,a:0,v:0}; S.tour=0;
+  S.answered=0; S.correct=0; S.lastId=null; S.rap={r:0,a:0,v:0}; S.tour=0; S.fenR=[];
   /* l'heure de départ de la séance : ce qui a été vu avant elle compte comme
      « pas encore vu dans cette séance » */
   S.debut=maintenant();
@@ -1684,8 +1740,14 @@ function renderQuestion(){
     b.className='opt'+(q.qMode==='rv'?' refopt':'');
     b.style.animationDelay=(60+i*55)+'ms';
     b.dataset.oid=opt.id;
-    b.innerHTML='<span class="num">'+(i+1)+'</span>'+besc(q.qMode==='vr'?opt[l].ref:opt[l].text);
-    b.addEventListener('click',()=>pick(opt,b));
+    const noms={r:t('rap_r'),a:t('rap_a'),v:t('rap_v')};
+    b.innerHTML='<span class="num">'+(i+1)+'</span>'+besc(q.qMode==='vr'?opt[l].ref:opt[l].text)
+      +'<span class="odots">'+['r','a','v'].map(k=>'<span class="odot" data-r="'+k+'" title="'+besc(noms[k]||'')+'"></span>').join('')+'</span>';
+    b.addEventListener('click',e=>{
+      const d=e.target.closest&&e.target.closest('.odot');
+      if(d){ e.preventDefault(); poseDepuisOption(opt.id,d.dataset.r); return; }
+      pick(opt,b);
+    });
     opts.appendChild(b);
   });
   /* LA NOTE NE SE VIDE PLUS À CHAQUE CARTE. Elle repart de la dernière
@@ -1706,6 +1768,30 @@ function renderQuestion(){
   {const m={r:t('rap_r'),a:t('rap_a'),v:t('rap_v')};
    document.querySelectorAll('#rappel .rap').forEach(b=>{const x=m[b.dataset.r]||'';b.title=x;b.setAttribute('aria-label',x);});}
   document.querySelectorAll('#rappel .rap').forEach(b=>{b.classList.toggle('choisi',b.dataset.r===q.rappel);b.disabled=false;});
+  majPastillesOptions();
+}
+/* allume, sur chaque proposition, la couleur de son verset ; pour la bonne
+   réponse, c'est la couleur choisie en haut, puisque c'est le même verset */
+function majPastillesOptions(){
+  const q=S.cur; if(!q)return;
+  $('opts').querySelectorAll('.opt').forEach(b=>{
+    const id=b.dataset.oid, k=(id===q.item.id)?q.rappel:rapDe(id);
+    b.querySelectorAll('.odot').forEach(d=>d.classList.toggle('choisi',d.dataset.r===k));
+  });
+}
+/* une pastille touchée sur une proposition : la bonne réponse passe par la
+   note du haut (c'est le même verset) ; une autre proposition reçoit sa
+   couleur tout de suite, comme depuis la liste, et change de groupe dans la
+   séance en cours (un rouge rejoint la fenêtre des rouges) */
+function poseDepuisOption(id,k){
+  const q=S.cur; if(!q||q.done||!couleurValide(k))return;
+  if(id===q.item.id){ noteRappel(k); majPastillesOptions(); return; }
+  poseNiveau(id,k);
+  if(S.grp){
+    S.grp[id]=(k==='a')?'j':k;
+    if(k==='r'){ S.fenR=S.fenR||[]; if(!S.fenR.includes(id))S.fenR.push(id); }
+  }
+  majPastillesOptions();
 }
 /* La note reste facultative et modifiable tant qu'on n'a pas répondu : on peut
    changer d'avis en touchant un autre point. Elle se fige au moment de la
@@ -1723,6 +1809,7 @@ function noteRappel(r){
   else {S.cur.rappel=r;S.cur.touche=true;}
   document.querySelectorAll('#rappel .rap').forEach(b=>b.classList.toggle('choisi',b.dataset.r===S.cur.rappel));
   majExigence();
+  majPastillesOptions();
 }
 function majExigence(){
   const q=S.cur; const on=!!(q&&q.exige&&!q.rappel&&!q.done);
