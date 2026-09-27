@@ -232,10 +232,24 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .opts.two{grid-template-columns:1fr 1fr}
 .opt{text-align:left;padding:16px 20px;border:1px solid var(--filet);background:var(--encre-2);font-family:var(--serif);font-size:calc(17px*var(--lvz,1));line-height:1.5;color:rgba(255,255,255,.9);transition:border-color .25s,color .25s,background .25s;animation:rise .45s cubic-bezier(.2,.7,.3,1) both}
 .opt .num{font-family:var(--display);font-size:13px;color:var(--pa2);margin-right:10px}
+/* le texte d'un verset se compose comme dans la Bible : aligné à gauche et
+   à droite, avec la coupure des mots (27/09, Emmanuel) */
+.opt{text-align:justify;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 2}
+/* les références, elles, tiennent sur une ligne : au fer à gauche */
+.opts.two .opt{text-align:left;-webkit-hyphens:none;hyphens:none}
 .opt.refopt{font-family:var(--display);font-size:calc(19px*var(--lvz,1));letter-spacing:.03em}
 /* même remarque que pour les cartes : le voile se pose sur le fond de la
    réponse, il ne le remplace pas */
-.opt:hover:not(:disabled){border-color:var(--or);color:var(--parchemin);background:linear-gradient(var(--surv),var(--surv)),var(--encre-2)}
+/* ── LE SURVOL N'EXISTE QU'AVEC UNE SOURIS (27/09, Emmanuel : « quand je
+   clique sur une option sur mobile et que ça passe à la question suivante,
+   un des cadres d'options passe en mode survolé ») ──
+   Sur un écran tactile, le navigateur garde l'état « survolé » à l'endroit
+   du dernier toucher : la nouvelle proposition qui naît sous le doigt le
+   prenait aussitôt. Les effets de survol du quiz ne valent donc que là où
+   un vrai pointeur survole. */
+@media (hover:hover) and (pointer:fine){
+  .opt:hover:not(:disabled){border-color:var(--or);color:var(--parchemin);background:linear-gradient(var(--surv),var(--surv)),var(--encre-2)}
+}
 .opt.ok{border-color:var(--vert);color:#bcdcbe;background:rgba(123,163,126,.1)}
 .opt.ok .num{color:var(--vert)}
 .opt.bad{border-color:var(--pourpre);color:#e0a8a8;background:rgba(154,59,59,.12)}
@@ -265,7 +279,7 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .rap[data-r="r"] .pastille{background:var(--rouge)}
 .rap[data-r="a"] .pastille{background:var(--ambre)}
 .rap[data-r="v"] .pastille{background:var(--vert)}
-.rap:hover:not(:disabled) .pastille{opacity:1;transform:scale(1.3)}
+@media (hover:hover) and (pointer:fine){.rap:hover:not(:disabled) .pastille{opacity:1;transform:scale(1.3)}}
 .rap.choisi .pastille{opacity:1;transform:scale(1.15)}
 .rap:disabled{cursor:default}
 .rap:disabled:not(.choisi) .pastille{opacity:.1;transform:none}
@@ -285,12 +299,25 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
    voyant les niveaux, on devine la réponse »). Rien ne se survole sur un
    écran tactile : un petit bouton sous les propositions fait paraître leurs
    pastilles, et elles se cachent de nouveau à chaque question. */
-.opt{position:relative;padding-right:78px}
-.odots{position:absolute;right:16px;top:50%;transform:translateY(-50%);display:flex;gap:13px;opacity:0;transition:opacity .25s}
-.opt:hover:not(:disabled) .odots,.opt:focus-visible .odots{opacity:1}
+/* ── LES PASTILLES NE DÉCALENT PLUS LE TEXTE (27/09, Emmanuel : « par
+   rapport aux couleurs qu'on peut choisir dans les options, ça décale tout
+   le texte ») ──
+   Une marge de 78px leur était réservée à droite de chaque proposition, sur
+   toute sa hauteur : le texte entier se tassait vers la gauche et passait à
+   la ligne plus tôt, surtout sur téléphone et dans les propositions en deux
+   colonnes. Les pastilles se rangent maintenant À LA VERTICALE, en une fine
+   colonne contre le bord droit de la proposition, à mi-hauteur, sans cadre
+   (27/09, Emmanuel : « c'est pas possible de mettre les couleurs à la
+   verticale ? », puis : pas de gélule autour). Leur colonne ne prend que
+   20px de plus que la marge gauche, la même à chaque question et qu'elles
+   soient visibles ou non : le texte ne bouge jamais. */
+.opt{position:relative;padding-right:40px}
+.odots{position:absolute;right:15px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;pointer-events:none;transition:opacity .25s}
+.opt:focus-visible .odots{opacity:1;pointer-events:auto}
+@media (hover:hover) and (pointer:fine){.opt:hover:not(:disabled) .odots{opacity:1;pointer-events:auto}}
 .odots-tog{display:none}
 @media(hover:none){
-  .opts.odots-on .opt:not(:disabled) .odots{opacity:1}
+  .opts.odots-on .opt:not(:disabled) .odots{opacity:1;pointer-events:auto}
   .odots-tog{display:flex;align-items:center;justify-content:center;gap:7px;margin:18px auto 0;padding:12px 18px;border:1px solid var(--filet);border-radius:999px;background:transparent;transition:border-color .25s}
   .odots-tog span{width:6px;height:6px;border-radius:50%;background:var(--pa2);opacity:.6;transition:background .25s,opacity .25s}
   .odots-tog[aria-pressed="true"]{border-color:var(--or)}
@@ -300,12 +327,14 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
   .odots-tog:disabled{opacity:.25}
 }
 .opt:disabled .odots{opacity:0}
-.odot{position:relative;display:block;width:9px;height:9px;border-radius:50%;opacity:.3;transition:opacity .25s,transform .25s;cursor:pointer}
-.odot::before{content:'';position:absolute;inset:-7px}
+.odot{position:relative;display:block;width:8px;height:8px;border-radius:50%;opacity:.3;transition:opacity .25s,transform .25s;cursor:pointer}
+/* la cible du doigt s'élargit sur les côtés et s'arrête à mi-chemin de la
+   pastille voisine : la gélule reste plus basse qu'une proposition d'une ligne */
+.odot::before{content:'';position:absolute;inset:-3px -10px}
 .odot[data-r="r"]{background:var(--rouge)}
 .odot[data-r="a"]{background:var(--ambre)}
 .odot[data-r="v"]{background:var(--vert)}
-.odot:hover{opacity:1;transform:scale(1.3)}
+@media (hover:hover) and (pointer:fine){.odot:hover{opacity:1;transform:scale(1.3)}}
 .odot.choisi{opacity:1;transform:scale(1.15)}
 
 /* ═══ SUMMARY ═══ */
@@ -1754,11 +1783,11 @@ function renderQuestion(){
     b.style.animationDelay=(60+i*55)+'ms';
     b.dataset.oid=opt.id;
     const noms={r:t('rap_r'),a:t('rap_a'),v:t('rap_v')};
-    b.innerHTML='<span class="num">'+(i+1)+'</span>'+besc(q.qMode==='vr'?opt[l].ref:opt[l].text)
-      /* pas de pastilles sur la bonne réponse : on la note déjà en haut
-         (26/09, Emmanuel : « on survole quand on veut, et on appuie sur le
-         bouton quand on veut ») */
-      +(opt.id===q.item.id?'':'<span class="odots">'+['r','a','v'].map(k=>'<span class="odot" data-r="'+k+'" title="'+besc(noms[k]||'')+'"></span>').join('')+'</span>');
+    /* pas de pastilles sur la bonne réponse : on la note déjà en haut
+       (26/09, Emmanuel : « on survole quand on veut, et on appuie sur le
+       bouton quand on veut »). */
+    b.innerHTML=(opt.id===q.item.id?'':'<span class="odots">'+['r','a','v'].map(k=>'<span class="odot" data-r="'+k+'" title="'+besc(noms[k]||'')+'"></span>').join('')+'</span>')
+      +'<span class="num">'+(i+1)+'</span>'+besc(q.qMode==='vr'?opt[l].ref:opt[l].text);
     b.addEventListener('click',e=>{
       const d=e.target.closest&&e.target.closest('.odot');
       if(d){ e.preventDefault(); poseDepuisOption(opt.id,d.dataset.r); return; }
