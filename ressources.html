@@ -929,7 +929,7 @@ async function chargeCode(f){
   const dit=m=>{const e=$('dep-code-etat');if(e)e.textContent=m;};
   const nom=f.name||'';
   if(!/\.(html?|svg|txt)$/i.test(nom)&&!/^(text\/|image\/svg)/.test(f.type||'')){lvInfo('Ce fichier n’est pas une page HTML.');return;}
-  if(f.size>LIMITE_DOC){lvInfo('Ce fichier dépasse la taille maximale d’une ressource (1 Mo). Allège-le avant de le déposer.');return;}
+  if(f.size>CODE_MAX){lvInfo('Ce fichier dépasse 25 Mo. Allège-le, ou faites-en une fiche « Lien » vers l’endroit où il est déjà hébergé.');return;}
   let txt='';
   try{txt=await f.text();}catch(e){lvInfo('Ce fichier n’a pas pu être lu.');return;}
   if(S.res.code&&S.res.code.trim()&&S.res.code!==txt){
@@ -1633,18 +1633,31 @@ function pousseProgression(){
     if(SUPPRIMES.has(id))return;
     const p=att[id];
     let neu='';
+    let gros=false;
     db.runTransaction(async tx=>{
-      neu='';
+      neu=''; gros=false;
       const r=await tx.get(ccol().doc(id));
       if(!r.exists)return;
-      const code=String((r.data()||{}).code||'');
+      const m=r.data()||{};
+      /* un contenu en tranches suit le chemin des gros contenus, plus bas */
+      if(typeof m.code!=='string'){ gros=!!m.n; return; }
+      const code=m.code;
       if(!code)return;
       const n=poseProgression(code,p);
-      if(n===code||new Blob([JSON.stringify({code:n})]).size>LIMITE_DOC)return;
+      if(n===code)return;
+      if(octets(n)>CODE_SEUL){ gros=true; return; }
       tx.set(ccol().doc(id),{code:n});
-      tx.update(acol().doc(id),{codeTaille:new Blob([n]).size});
+      tx.update(acol().doc(id),{codeTaille:octets(n)});
       neu=n;
-    }).then(()=>{
+    }).then(async()=>{
+      if(gros){
+        const code=await litCode(ccol(),id);
+        if(!code)return;
+        const n=poseProgression(code,p);
+        if(n===code||octets(n)>CODE_MAX)return;
+        await ecritCode(ccol(),id,n,lot=>lot.update(acol().doc(id),{codeTaille:octets(n)}));
+        neu=n;
+      }
       if(!neu)return;
       CODES.set(id,neu);
       const a=S.liste.find(x=>x.id===id);
@@ -2192,7 +2205,7 @@ async function detruitRessource(a){
      couvre une fiche tombée là avant cette règle */
   try{ if(a.publie)await retireDeLigne(a); }catch(e){console.warn('retrait',e);}
   await acol().doc(a.id).delete();
-  try{ await ccol().doc(a.id).delete(); }catch(e){console.warn('contenu',e);}
+  try{ await effaceCode(ccol(),a.id); }catch(e){console.warn('contenu',e);}
   CODES.delete(a.id);
   if(a.media)await effaceMedia(a.media);
 }
@@ -2299,14 +2312,75 @@ const pmed=()=>db.collection('public_res_medias');
 const ccol=()=>db.collection('users/'+S.uid+'/res_code');
 const pccol=()=>db.collection('public_res_code');
 const CODES=new Map();
+
+/* ── LES GROS CONTENUS EN TRANCHES (28/09) ──
+   Emmanuel : « je peux pas upload des ressources qui font plus de 1 Mo ».
+   Firestore refuse une fiche de plus d'un mégaoctet. Un contenu qui tient
+   dans une fiche y reste tel quel, {code}. Au-delà, il est découpé en
+   tranches, rangées sous la fiche du contenu, comme les fichiers : la fiche
+   ne garde que leur nombre et leur « génération ». Une nouvelle version
+   écrit ses tranches sous une génération neuve, bascule la fiche d'un seul
+   coup, puis efface les tranches de l'ancienne : à aucun instant la fiche ne
+   désigne un contenu à moitié écrit. */
+const CODE_MAX=25*1024*1024;      // au-delà, une fiche « Lien » sert mieux
+const CODE_SEUL=900000;           // sous ce poids, le contenu tient dans sa fiche
+const CODE_TRANCHE=300000;        // signes par tranche : moins d'un mégaoctet même tout en accents
+const octets=t=>new Blob([t]).size;
+function decoupe(t){
+  const parts=[];let i=0;
+  while(i<t.length){
+    let j=Math.min(i+CODE_TRANCHE,t.length);
+    /* un caractère écrit en deux moitiés (certains signes, les émojis) ne se coupe pas */
+    if(j<t.length){const c=t.charCodeAt(j-1);if(c>=0xD800&&c<=0xDBFF)j--;}
+    parts.push(t.slice(i,j));i=j;
+  }
+  return parts;
+}
+async function litCode(col,id){
+  const d=await col.doc(id).get();
+  if(!d.exists)return null;
+  const m=d.data()||{};
+  if(typeof m.code==='string')return m.code;
+  const n=m.n||0,g=m.gen||'';
+  if(!n)return '';
+  const ts=await Promise.all(Array.from({length:n},(_,k)=>col.doc(id).collection('tranches').doc(g+'_'+k).get()));
+  return ts.map(t=>{ if(!t.exists)throw new Error('tranche manquante'); return String((t.data()||{}).d||''); }).join('');
+}
+async function effaceTranches(col,id,m){
+  const n=(m&&m.n)||0,g=(m&&m.gen)||'';
+  for(let k=0;k<n;k++)await col.doc(id).collection('tranches').doc(g+'_'+k).delete().catch(()=>{});
+}
+/* écrit le contenu ; avecFiche(lot) ajoute au même envoi ce qui doit partir
+   en même temps que la bascule (la fiche de la ressource) */
+async function ecritCode(col,id,code,avecFiche){
+  let ancien=null;
+  try{const d=await col.doc(id).get();if(d.exists)ancien=d.data()||null;}catch(e){}
+  const lot=db.batch();
+  if(octets(code)<=CODE_SEUL){
+    lot.set(col.doc(id),{code:code});
+  }else{
+    const parts=decoupe(code),gen=Date.now().toString(36);
+    for(let k=0;k<parts.length;k++)await col.doc(id).collection('tranches').doc(gen+'_'+k).set({d:parts[k]});
+    lot.set(col.doc(id),{n:parts.length,gen:gen,taille:octets(code)});
+  }
+  if(avecFiche)avecFiche(lot);
+  await lot.commit();
+  if(ancien&&ancien.n)await effaceTranches(col,id,ancien);
+}
+async function effaceCode(col,id){
+  let m=null;
+  try{const d=await col.doc(id).get();if(d.exists)m=d.data()||null;}catch(e){}
+  if(m&&m.n)await effaceTranches(col,id,m);
+  await col.doc(id).delete();
+}
 async function contenuDe(a,publik){
   if(!a||typeDe(a)!=='diagramme')return '';
   if(typeof a.code==='string'&&a.code)return a.code;
   if(CODES.has(a.id)){a.code=CODES.get(a.id);return a.code;}
   /* une lecture ratée LÈVE : un contenu pris pour vide serait ensuite
      enregistré vide par-dessus le vrai */
-  const d=await (publik?pccol():ccol()).doc(a.id).get();
-  const code=d.exists?String((d.data()||{}).code||''):(typeof a.code==='string'?a.code:'');
+  const lu=await litCode(publik?pccol():ccol(),a.id);
+  const code=lu!==null?lu:(typeof a.code==='string'?a.code:'');
   CODES.set(a.id,code); a.code=code;
   /* une ressource enregistrée avant qu'on sache reconnaître son espèce
      reçoit sa marque dès qu'on l'ouvre, et la liste la montre ensuite */
@@ -2369,7 +2443,7 @@ async function metEnLigne(a){
   }catch(e){console.warn('nettoyage fichier public',e);}
   if(typeDe(a)==='diagramme'){
     const code=await contenuDe(a,false);
-    await pccol().doc(a.id).set({code:code});
+    await ecritCode(pccol(),a.id,code);
   }
   await pcol().doc(a.id).set({
     titre:a.titre||'', type:typeDe(a), desc:a.desc||'', chemin:cheminTexte(a.rub),
@@ -2384,7 +2458,7 @@ async function retireDeLigne(a){
   /* si la copie publique ne peut pas être retirée, l'erreur remonte : sans
      cela la fiche s'affichait « Privée » tout en restant lisible en ligne */
   await pcol().doc(a.id).delete();
-  try{ await pccol().doc(a.id).delete(); }catch(e){console.warn('contenu public',e);}
+  try{ await effaceCode(pccol(),a.id); }catch(e){console.warn('contenu public',e);}
   if(a.media)await effaceMediaPublic(a.media);
 }
 async function basculeEtat(id){
@@ -2763,9 +2837,9 @@ async function enregistre(silence){
   if(avecCode){ doc.codeTaille=new Blob([a.code]).size; doc.marqueDevinee=devineMarque(a); a.codeTaille=doc.codeTaille; a.marqueDevinee=doc.marqueDevinee; }
   else{ doc.codeTaille=a.codeTaille||0; doc.marqueDevinee=a.marqueDevinee||''; }
   /* la limite de Firestore se compte en octets : un accent en pèse deux */
-  if(new Blob([JSON.stringify(doc)]).size>LIMITE_DOC||(avecCode&&new Blob([JSON.stringify({code:a.code})]).size>LIMITE_DOC)){
+  if(new Blob([JSON.stringify(doc)]).size>LIMITE_DOC||(avecCode&&octets(a.code)>CODE_MAX)){
     $('etat-enr').textContent='Non enregistré';
-    lvInfo('Le code de cette ressource d\u00e9passe la taille maximale (1 Mo). All\u00e9gez-le.');
+    lvInfo('Le code de cette ressource d\u00e9passe la taille maximale (25 Mo). All\u00e9gez-le.');
     return;
   }
   try{
@@ -2785,10 +2859,8 @@ async function enregistre(silence){
     }
     if(ex.exists){ const pub=!!(ex.data()||{}).publie; if(pub!==!!a.publie){ a.publie=pub; doc.publie=pub; try{ if(typeof majEtatEditeur==='function')majEtatEditeur(); }catch(_){} } }
     /* contenu et fiche partent ensemble, ou pas du tout */
-    const lot=db.batch();
-    if(avecCode&&CODES.get(a.id)!==a.code)lot.set(ccol().doc(a.id),{code:a.code});
-    lot.set(acol().doc(a.id),doc);
-    await lot.commit();
+    if(avecCode&&CODES.get(a.id)!==a.code)await ecritCode(ccol(),a.id,a.code,lot=>lot.set(acol().doc(a.id),doc));
+    else await acol().doc(a.id).set(doc);
     if(avecCode)CODES.set(a.id,a.code);
     /* quittée ou supprimée pendant l'envoi : on n'y touche plus */
     if(S.res!==a||SUPPRIMES.has(a.id))return;
