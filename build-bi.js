@@ -152,10 +152,14 @@ html.barre-rangee header{background:#000}
 html.barre-rangee .barre-poignee svg{transform:rotate(180deg)}
 /* rangée, la poignée est tout ce qui reste : elle s'épaissit un peu pour
    rester facile à toucher du doigt */
-html.barre-rangee .barre-poignee{width:100%;height:auto;margin:0;padding:10px 0 11px}
+html.barre-rangee .barre-poignee{width:100%;height:auto;margin:0;padding:7px 0 8px}
 /* le menu déplié se referme avec la barre : il n'a plus de barre où s'accrocher */
 html.barre-rangee nav.menu{display:none}
-.barre{max-width:1080px;margin:0 auto;padding:20px 32px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:24px;height:auto;line-height:1.75}
+/* ── UNE BARRE PLUS MINCE (Emmanuel, 01/10 : « la barre du haut, même
+   dépliée, reste un peu trop large ») ── marges et interligne resserrés :
+   elle passe d'environ 85 à 60 px de haut sur ordinateur, et le bandeau
+   rangé s'amincit avec elle. */
+.barre{max-width:1080px;margin:0 auto;padding:11px 32px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:24px;height:auto;line-height:1.35}
 .barre .logo{grid-column:1;grid-row:1;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px;letter-spacing:.34em;text-transform:uppercase;color:var(--parchemin,#ffffff);padding-left:.34em;border-bottom:none;text-decoration:none;transition:color .3s}
 /* Le titre est un lien vers l'accueil : il répond au survol comme les
    entrées du menu. Sans cette règle, la règle ci-dessus, plus forte,
@@ -184,7 +188,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
      compte, chacun sur une zone de toucher de 44 px. */
   /* préfixées par « header » : certaines pages gardent leur propre copie des
      anciennes règles du menu, qu'il faut emporter */
-  header .barre{padding:8px 6px 8px 20px;display:flex;justify-content:space-between}
+  header .barre{padding:3px 6px 3px 20px;display:flex;justify-content:space-between}
   .barre-poignee{width:44px;height:44px;margin:0 auto 0 0}
   header .burger{display:none}
   header nav.menu{position:static;flex-direction:row;gap:0;align-items:center;background:none;padding:0;border:0;transform:none;width:auto}

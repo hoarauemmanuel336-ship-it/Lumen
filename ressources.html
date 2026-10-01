@@ -2817,12 +2817,38 @@ function litEditeur(){
    automatique parti juste avant la suppression la remettait en ligne. */
 const SUPPRIMES=new Set();
 const LIMITE_DOC=1000000;   // Firestore refuse un document au-delà d'un mégaoctet
-async function enregistre(silence){
+/* ── UN ENREGISTREMENT À LA FOIS (01/10, Emmanuel : « quand je supprime un
+   fichier et que je recrée un autre fichier avec le même nom, il ne se crée
+   pas, une alerte dit que le précédent a été supprimé ») ──
+   Une ressource neuve qui porte un gros code met plusieurs secondes à partir.
+   Pendant ce temps, l'enregistrement automatique repartait de lui-même : il
+   croyait la ressource déjà dans le nuage (sa date de création était posée
+   dès le départ du premier envoi), ne l'y trouvait pas encore, et concluait
+   qu'elle avait été supprimée ailleurs. Désormais les enregistrements
+   passent l'un après l'autre, et une ressource n'est tenue pour « déjà dans
+   le nuage » qu'une fois son premier envoi réellement abouti. */
+let ENR_EN_COURS=null, ENR_REJOUE=false;
+function enregistre(silence){
+  if(ENR_EN_COURS){
+    ENR_REJOUE=true; clearTimeout(S.minute);
+    return ENR_EN_COURS;
+  }
+  ENR_EN_COURS=(async()=>{
+    try{ await enregistreUneFois(silence); }
+    finally{
+      ENR_EN_COURS=null;
+      if(ENR_REJOUE){ ENR_REJOUE=false; if(S.res&&S.sale)await enregistre(true); }
+    }
+  })();
+  return ENR_EN_COURS;
+}
+async function enregistreUneFois(silence){
   if(!S.res)return;
   clearTimeout(S.minute);
   litEditeur();
   const a=S.res, gen=S.gen||0;
-  const deja=!!a.cree;   // déjà enregistré une fois : il existe dans le nuage
+  /* une ressource neuve n'existe dans le nuage qu'après son premier envoi réussi */
+  const deja=!a.neuve;
   a.maj=new Date().toISOString();
   if(!a.cree)a.cree=a.maj;
   const doc={
@@ -2862,6 +2888,7 @@ async function enregistre(silence){
     if(avecCode&&CODES.get(a.id)!==a.code)await ecritCode(ccol(),a.id,a.code,lot=>lot.set(acol().doc(a.id),doc));
     else await acol().doc(a.id).set(doc);
     if(avecCode)CODES.set(a.id,a.code);
+    delete a.neuve;
     /* quittée ou supprimée pendant l'envoi : on n'y touche plus */
     if(S.res!==a||SUPPRIMES.has(a.id))return;
     const enLigne=a.publie?await rafraichitPublic(a):true;
@@ -2893,7 +2920,7 @@ function nouveau(){
   /* la ressource naît là où l'on se trouve : on vient d'ouvrir « Pentateuque »,
      c'est là qu'elle doit se ranger, sans avoir à le redire */
   S.res={id:'s'+Date.now(),titre:'',type:'diagramme',desc:'',publie:false,rub:ici(),
-         media:'',mime:'',taille:0,nom:'',vign:'',code:'',url:'',cree:null,maj:null};
+         media:'',mime:'',taille:0,nom:'',vign:'',code:'',url:'',cree:null,maj:null,neuve:true};
   S.sale=false; $('etat-enr').textContent=''; majEtatEditeur();
   rendEditeur(); vue('edit');
   setTimeout(()=>$('ed-titre').focus(),80);
