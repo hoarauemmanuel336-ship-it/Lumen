@@ -873,15 +873,18 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     </div>
   </div>
   <div id="note-voile">
-    <div class="note-boite" role="dialog" aria-modal="true" aria-labelledby="nb-titre">
-      <div class="nb-titre" id="nb-titre">Note</div>
+    <div class="note-boite nb2" role="dialog" aria-modal="true" aria-labelledby="nb-titre">
+      <div class="nb2-tete">
+        <div class="nb-titre" id="nb-titre">Note</div>
+        <div class="nb2-cat"><span class="nb-cat-lab">Catégorie</span><span class="note-sel"><select class="note-depl" id="nb-cat"></select></span></div>
+      </div>
       <div class="nb-refs" id="nb-refs"></div>
+      <div class="nb2-verset" id="nb-verset"></div>
       <textarea class="nb-zone" id="nb-zone" placeholder="Écrire la note…"></textarea>
-      <div class="nb-cat-ligne"><span class="nb-cat-lab">Catégorie</span><span class="note-sel"><select class="note-depl" id="nb-cat"></select></span></div>
       <div class="nb-actes">
-        <span class="nb-btn principal" id="nb-enregistrer" role="button" tabindex="0">Enregistrer</span>
+        <span class="nb-btn nb-suppr" id="nb-supprimer" role="button" tabindex="0" aria-label="Supprimer la note" title="Supprimer la note">✕</span>
         <span class="nb-btn" id="nb-annuler" role="button" tabindex="0">Annuler</span>
-        <span class="nb-btn nb-suppr" id="nb-supprimer" role="button" tabindex="0">Supprimer</span>
+        <span class="nb-btn principal" id="nb-enregistrer" role="button" tabindex="0">Enregistrer</span>
       </div>
     </div>
   </div>
@@ -1853,10 +1856,27 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
   var noteEnCours = null;
   function ouvreNote(note){
     noteEnCours = note;
-    document.getElementById('nb-titre').textContent = note.id ? 'Modifier la note' : 'Nouvelle note';
+    /* ── LA FICHE D'UNE NOTE (Emmanuel, 10/10) ──
+       En tête, « Nouvelle note » ou « Note » en petites capitales, la
+       catégorie à droite ; puis le passage annoté, sa référence en grand et
+       son texte cité dessous, quand le chapitre est déjà chargé ; enfin la
+       page où l'on écrit, sans cadre, et les actions en bas. */
+    document.getElementById('nb-titre').textContent = note.id ? 'Note' : 'Nouvelle note';
     document.getElementById('nb-refs').innerHTML = (note.refs || []).map(function(g){
-      return '<span class="sb-chip">' + esc(libelle(g)) + '</span>';
-    }).join('');
+      return '<span class="nb2-ref">' + esc(libelle(g)) + '</span>';
+    }).join('<span class="nb2-sep">\u00b7</span>') || '<span class="nb2-ref nb2-sans">Sans r\u00e9f\u00e9rence</span>';
+    var cite = (note.refs || []).map(function(g){
+      var d = CACHE[g.slug], ch = null;
+      if (!d || !g.ch) return '';
+      for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === g.ch) { ch = d.chapitres[i]; break; }
+      if (!ch) return '';
+      var a = g.v1 || 1, b = g.v2 || a;
+      return ch.versets.filter(function(v){ return v.v >= a && v.v <= b; }).map(function(v){ return v.t; }).join(' ');
+    }).filter(Boolean).join(' \u2026 ');
+    if (cite.length > 420) { cite = cite.slice(0, 420); var sp = cite.lastIndexOf(' '); if (sp > 300) cite = cite.slice(0, sp); cite += '\u2026'; }
+    var ve = document.getElementById('nb-verset');
+    ve.textContent = cite ? '\u00ab\u00a0' + cite + '\u00a0\u00bb' : '';
+    ve.style.display = cite ? '' : 'none';
     document.getElementById('nb-zone').value = note.t || '';
     document.getElementById('nb-cat').innerHTML = optionsCats(note.c || '');
     document.getElementById('nb-supprimer').style.display = note.id ? '' : 'none';
@@ -2559,7 +2579,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     return '<div class="surl-item">'
       + '<div class="surl-tete"><span class="surl-pastille" style="background:' + hexSur(it.hex) + '"></span>'
       + '<span class="surl-ref" data-snav="' + it.slug + '/' + it.ch + '/' + it.v + '">' + esc(ref) + '</span>'
-      + '<span class="surl-oter" data-soff="' + off + '" role="button" tabindex="0">' + LVF_TXT.oter + '</span></div>'
+      + '<span class="surl-oter" data-soff="' + off + '" role="button" tabindex="0" aria-label="' + LVF_TXT.oter + '" title="' + LVF_TXT.oter + '">\u2715</span></div>'
       + '<div class="surl-txt">' + corps + '</div></div>';
   }
   function basculeSurlGroupe(el){
@@ -2780,9 +2800,9 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
   var menuFlot = document.createElement('div');
   menuFlot.id = 'menu-flot';
   document.body.appendChild(menuFlot);
-  function fermeMenu(){ menuFlot.classList.remove('ouvert'); menuFlot.innerHTML = ''; menuFlot._pour = null; }
+  function fermeMenu(){ menuFlot.classList.remove('ouvert', 'mf-signet', 'mf-dessus'); menuFlot.innerHTML = ''; menuFlot._pour = null; }
   function ouvreMenu(el){
-    menuFlot._pour = el;
+    menuFlot._pour = el; menuFlot.classList.remove('mf-signet');
     var p = String(el.getAttribute('data-menu') || '').split(':');
     var type = p[0], id = p.slice(1).join(':');
     var h;
@@ -2808,6 +2828,24 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     menuFlot.style.left = Math.round(gauche) + 'px';
     menuFlot.style.top = Math.round(haut) + 'px';
   }
+  /* le menu du ruban : posé sous lui, comme celui des notes sous leur ⋯ */
+  function menuSignet(el){
+    menuFlot._pour = el;
+    menuFlot.innerHTML = '<span class="mf-act" data-sgaller="1" role="button" tabindex="0">Mes signets</span>';
+    menuFlot.classList.add('mf-signet'); menuFlot.classList.remove('mf-dessus');
+    menuFlot.style.left = '-9999px'; menuFlot.style.top = '0';
+    menuFlot.classList.add('ouvert');
+    /* accroché au ruban : centré sous lui, sa petite pointe le touche */
+    var ico = el.querySelector('svg') || el;
+    var r = ico.getBoundingClientRect(), m = menuFlot.getBoundingClientRect(), g = 10;
+    var centre = r.left + r.width / 2;
+    var gauche = Math.max(10, Math.min(centre - m.width / 2, window.innerWidth - m.width - 10));
+    var haut = r.bottom + g;
+    if (haut + m.height > window.innerHeight - 10) { haut = Math.max(10, r.top - m.height - g); menuFlot.classList.add('mf-dessus'); }
+    menuFlot.style.left = Math.round(gauche) + 'px';
+    menuFlot.style.top = Math.round(haut) + 'px';
+    menuFlot.style.setProperty('--pointe', Math.round(centre - gauche) + 'px');
+  }
   /* un geste hors du menu le ferme ; le bouton « ⋯ » lui-même est laissé à
      agitNotes, qui bascule (sinon il refermait puis rouvrait aussitôt) */
   function horsMenu(t){ return menuFlot.classList.contains('ouvert') && !menuFlot.contains(t) && !(t.closest && t.closest('[data-menu]')); }
@@ -2828,6 +2866,12 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
 
   function agitNotes(cible){
     if (!cible || !cible.closest) return false;
+    if (cible.closest('[data-sgaller]')) { fermeMenu(); location.hash = '#signets'; return true; }
+    if (!cible.closest('[data-menu]') && cible.closest('[data-ouvre]')) {
+      var no = null, idn = cible.closest('[data-ouvre]').getAttribute('data-ouvre');
+      NOTES.forEach(function(x){ if (x.id === idn) no = x; });
+      if (no) { ouvreNote({ id: no.id, refs: no.refs, t: no.t, c: no.c }); return true; }
+    }
     if (cible.closest('#notes-rech')) return false;
     var el;
     if ((el = cible.closest('[data-menu]'))) {
@@ -2924,6 +2968,13 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
         && !valides[filtreCat]) filtreCat = '';
     if (filtreCat === '__surl__' && !nSurl) filtreCat = '';
     if (filtreCat === '__libre__' && !libres.length) filtreCat = '';
+    /* ── À LA MANIÈRE DE MÉMORISER (Emmanuel, 10/10) ──
+       Deux onglets, Notes et Surlignages, à la place de la rangée de
+       filtres ; chaque catégorie (ou chaque livre) devient une section
+       encadrée, son nom en petites capitales et son nombre de notes ; chaque
+       note, une rangée : la référence, le début du texte, la date, le ⋯.
+       Toucher la rangée ouvre la note. */
+    if (filtreCat !== '__surl__') filtreCat = '';
 
     function pl(n, un, pls){ return n + ' ' + (n > 1 ? pls : un); }
     function compteCat(c){
@@ -2945,30 +2996,29 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     if (CATS.length) resume.push(pl(CATS.length, 'cat\u00e9gorie', 'cat\u00e9gories'));
     if (nSurl) resume.push(pl(nSurl, 'surlignage', 'surlignages'));
 
-    var h = '<div class="notes-tete"><h2 class="notes-titre">Mes notes</h2>'
-          + (resume.length ? '<div class="notes-compte">' + resume.join(' \u00b7 ') + '</div>' : '')
-          + '</div>'
-          + '<textarea class="notes-rech champ-ligne" id="notes-rech" rows="1" placeholder="Rechercher dans les notes\u2026">' + esc(filtre || '') + '</textarea>'
-          + '<div class="notes-actions">'
-          + '<span class="notes-btn" id="note-libre" role="button" tabindex="0">\u00c9crire une note</span>'
-          + '<span class="notes-lien" id="cat-nouvelle" role="button" tabindex="0">Nouvelle cat\u00e9gorie</span>'
-          + (NOTES.length ? '<span class="nz-tri">Classer'
-            + '<span class="nz-tri-o' + (triNotes !== 'livre' ? ' on' : '') + '" data-tri="cat" role="button" tabindex="0">Par cat\u00e9gorie</span>'
-            + '<span class="nz-tri-o' + (triNotes === 'livre' ? ' on' : '') + '" data-tri="livre" role="button" tabindex="0">Par livre</span></span>' : '')
+    var surlOn = filtreCat === '__surl__';
+    var h = '<div class="nzm-modes" role="tablist">'
+          + '<span class="nzm-mode' + (surlOn ? '' : ' on') + '" data-fil="" role="tab" tabindex="0">Notes</span>'
+          + '<span class="nzm-mode' + (surlOn ? ' on' : '') + '" data-fil="__surl__" role="tab" tabindex="0">' + esc(LVF_TXT.surl) + '</span>'
           + '</div>';
+    h += '<div class="nzm-tete"><span class="nzm-lbl">' + (surlOn ? esc(LVF_TXT.surl) : 'Mes notes') + '</span>'
+       + (!surlOn ? '<span class="nzm-acts"><span class="notes-btn" id="note-libre" role="button" tabindex="0">Écrire une note</span>'
+         + '<span class="notes-btn" id="cat-nouvelle" role="button" tabindex="0">Nouvelle catégorie</span></span>' : '')
+       + '</div>';
+    if (!surlOn) {
+      h += '<div class="nzm-outils"><textarea class="notes-rech champ-ligne" id="notes-rech" rows="1" placeholder="Rechercher dans les notes…">' + esc(filtre || '') + '</textarea>'
+         + (NOTES.length ? '<span class="nz-tri">'
+           + '<span class="nz-tri-o' + (triNotes !== 'livre' ? ' on' : '') + '" data-tri="cat" role="button" tabindex="0">Par catégorie</span>'
+           + '<span class="nz-tri-o' + (triNotes === 'livre' ? ' on' : '') + '" data-tri="livre" role="button" tabindex="0">Par livre</span></span>' : '')
+         + '</div>';
+    }
     if (!UID) {
       h += '<div class="sync-ligne"><span class="sync-act" id="sync-in" role="button" tabindex="0">Se connecter pour retrouver vos notes</span></div>';
     }
-    if (racines.length || nSurl) {
-      var rail = puce('', 'Tout', liste.length);
-      racines.forEach(function(c){ rail += puce(c.id, c.nom, compteCat(c)); });
-      if (libres.length && CATS.length) rail += puce('__libre__', 'Non class\u00e9es', libres.length);
-      if (nSurl) rail += puce('__surl__', LVF_TXT.surl, nSurl);
-      h += '<div class="nz-rail">' + rail + '</div>';
-    }
 
+    function finSec(){ return '</div>'; }
     function enTete(nom, n, menu){
-      return '<div class="notes-cat"><span class="notes-cat-nom">' + esc(nom) + '</span>'
+      return '<div class="nzm-sec"><div class="notes-cat"><span class="notes-cat-nom">' + esc(nom) + '</span>'
            + '<span class="notes-cat-n">' + n + '</span>'
            + (menu ? '<span class="nt-menu" data-menu="' + menu + '" role="button" tabindex="0" aria-label="Actions de la cat\u00e9gorie">\u22ef</span>' : '')
            + '</div>';
@@ -2996,6 +3046,15 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
         x += '<div class="note-texte">' + esc(n.t) + '</div>';
       }
       return x + '<div class="note-pied">' + date + '</div></div>';
+    }
+    function rangeeNote(n){
+      var date = new Date(n.d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+      var refs = (n.refs || []).map(function(g){ return libelle(g); }).join(' \u00b7 ');
+      return '<div class="note-item nzm-row" data-id="' + n.id + '" data-ouvre="' + n.id + '" role="button" tabindex="0">'
+        + '<span class="nzm-ref">' + esc(refs || 'Sans r\u00e9f\u00e9rence') + '</span>'
+        + '<span class="nzm-date">' + date + '</span>'
+        + '<span class="nt-menu" data-menu="note:' + n.id + '" role="button" tabindex="0" aria-label="Actions de la note">\u22ef</span>'
+        + '<span class="nzm-txt">' + esc(n.t || '') + '</span></div>';
     }
 
     /* Par livre : chaque note se range sous chaque livre qu'elle cite, dans
@@ -3038,11 +3097,13 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
         });
         var inf = infoLivre(slug);
         h += enTete(inf ? inf.nom : slug, l.length, '');
-        l.forEach(function(e){ h += carteNote(e.n); });
+        l.forEach(function(e){ h += rangeeNote(e.n); });
+        h += finSec();
       });
       if (sans.length) {
         h += enTete('Sans r\u00e9f\u00e9rence', sans.length, '');
-        sans.forEach(function(n){ h += carteNote(n); });
+        sans.forEach(function(n){ h += rangeeNote(n); });
+        h += finSec();
       }
       return h;
     }
@@ -3060,7 +3121,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
           var notesSous = sous.some(function(sc){ return liste.some(function(n){ return n.c === sc.id; }); });
           if (f && !directes.length && !notesSous) return;
           corps += enTete(c.nom, compteCat(c), 'cat:' + c.id);
-          directes.forEach(function(n){ corps += carteNote(n); });
+          directes.forEach(function(n){ corps += rangeeNote(n); });
           sous.forEach(function(sc){
             var dn = liste.filter(function(n){ return n.c === sc.id; });
             if (f && !dn.length) return;
@@ -3068,20 +3129,22 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
                    + '<span class="notes-cat-n">' + dn.length + '</span>'
                    + '<span class="nt-menu" data-menu="scat:' + sc.id + '" role="button" tabindex="0" aria-label="Actions de la sous-section">\u22ef</span></div>'
                    + '<div class="notes-sgroupe">';
-            dn.forEach(function(n){ corps += carteNote(n); });
+            dn.forEach(function(n){ corps += rangeeNote(n); });
             corps += '</div>';
           });
+          corps += finSec();
         });
       }
       if (triNotes !== 'livre' && (!filtreCat || filtreCat === '__libre__')) {
         if (libres.length) {
-          if (CATS.length) corps += enTete('Non class\u00e9es', libres.length, '');
-          libres.forEach(function(n){ corps += carteNote(n); });
+          corps += enTete(CATS.length ? 'Non class\u00e9es' : 'Mes notes', libres.length, '');
+          libres.forEach(function(n){ corps += rangeeNote(n); });
+          corps += finSec();
         }
       }
       if (!corps) {
         /* des surlignages s'affichent juste en dessous : ne pas dire « rien » */
-        var surlSuivent = nSurl && !filtreCat;
+        var surlSuivent = false;
         corps = NOTES.length
           ? '<div class="notes-vide"><div class="notes-vide-p">Aucune note ne correspond.</div></div>'
           : surlSuivent
@@ -3091,12 +3154,12 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       }
     }
     if (corps) h += '<div class="nz-liste">' + corps + '</div>';
-    if (!filtreCat || filtreCat === '__surl__') h += '<div id="surl-zone"></div>';
+    if (filtreCat === '__surl__') h += '<div id="surl-zone"></div>';
     vue.innerHTML = h;
     remplirSurlignages(filtre);
     var champ = document.getElementById('notes-rech');
-    champ.addEventListener('input', function(){ vueNotes(champ.value); });
-    if (rechActive) {
+    if (champ) champ.addEventListener('input', function(){ vueNotes(champ.value); });
+    if (rechActive && champ) {
       champ.focus();
       var pos = Math.min(caret == null ? champ.value.length : caret, champ.value.length);
       try { champ.setSelectionRange(pos, pos); } catch(e){}
@@ -3221,7 +3284,28 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     var n = Object.keys(SIGN).length;
     if (l) l.textContent = 'Mes signets' + (n ? ' (' + n + ')' : '');
   }
+  /* ── LE RUBAN MÈNE AUSSI AUX SIGNETS (Emmanuel, 10/10) ──
+     Un clic pose ou retire le signet, comme avant. Un clic droit sur le
+     ruban, ou un appui long sur téléphone, ouvre son petit menu, le même
+     que celui des notes : « Mes signets » y mène, où l'on reprend ou
+     retire les anciens, sans passer par le compte. */
+  var SG_LONG = false;
+  function versSignets(b){
+    if (!b) return;
+    b.addEventListener('contextmenu', function(e){ e.preventDefault(); menuSignet(b); });
+    var minuteur = null;
+    b.addEventListener('touchstart', function(){
+      SG_LONG = false;
+      minuteur = setTimeout(function(){ SG_LONG = true; menuSignet(b); }, 550);
+    }, { passive: true });
+    ['touchend', 'touchmove', 'touchcancel'].forEach(function(ev){
+      b.addEventListener(ev, function(){ clearTimeout(minuteur); }, { passive: true });
+    });
+  }
   function basculeSignet(){
+    /* l'appui long vient d'ouvrir « Mes signets » : le clic qui le suit ne
+       pose ni ne retire rien */
+    if (SG_LONG) { SG_LONG = false; return; }
     var c = vue._ctx; if (!c) return;
     var cle = cleSignet(c.slug, c.ch);
     if (SIGN[cle]) { delete SIGN[cle]; }
@@ -3233,33 +3317,47 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     sauveSignets();
     if (location.hash === '#signets') vueSignets();
   }
+  /* ── MES SIGNETS, À LA MANIÈRE DE MÉMORISER (Emmanuel, 10/10) ──
+     En haut, les onglets des traductions ; puis l'intitulé « Mes signets » ;
+     puis une section par livre, dans l'ordre de la Bible, son nom en
+     petites capitales et le nombre de signets, et dessous une rangée par
+     signet : le ruban, la référence, la date, ▷ pour reprendre la lecture,
+     ✕ pour retirer le signet. Toute la rangée rouvre le signet. */
+  var SG_ONGLET = '';
   function vueSignets(){
-    document.title = 'Mes signets \u00b7 La Sainte Bible \u00b7 Lumen Veritatis';
+    document.title = 'Mes signets · La Sainte Bible · Lumen Veritatis';
     hero.style.display = 'none';
-    var ids = Object.keys(SIGN).sort(function(a, b){
-      var da = SIGN[a].d || '', db2 = SIGN[b].d || '';
-      return da < db2 ? 1 : (da > db2 ? -1 : 0);        // le dernier posé en tête
-    });
-    /* rangés par traduction : celle qui est ouverte d'abord, l'autre ensuite */
-    var ordre = [TRAD].concat(Object.keys(TRADS).filter(function(k){ return k !== TRAD; }));
-    var h = '<div class="lecture-col"><h2 class="ch-titre">Mes signets</h2><div class="ch-sep"></div>';
-    if (!ids.length) {
-      h += '<div class="sg-vide">Aucun signet pour l\u2019instant. Ouvre un chapitre et touche le ruban, '
-         + 'en haut \u00e0 droite du titre, pour le marquer.</div>';
+    var ids = Object.keys(SIGN);
+    var parTrad = {};
+    ids.forEach(function(cle){ var k = tradSignet(SIGN[cle]); (parTrad[k] = parTrad[k] || []).push(cle); });
+    var trads = [TRAD].concat(Object.keys(TRADS).filter(function(k){ return k !== TRAD; }));
+    if (!SG_ONGLET || !TRADS[SG_ONGLET]) SG_ONGLET = (parTrad[TRAD] || !ids.length) ? TRAD : (trads.filter(function(k){ return parTrad[k]; })[0] || TRAD);
+    var h = '<div class="lecture-col sgm">';
+    h += '<div class="sgm-modes" role="tablist">' + Object.keys(TRADS).map(function(k){
+      return '<span class="sgm-mode' + (k === SG_ONGLET ? ' on' : '') + '" data-sgtab="' + esc(k) + '" role="tab" tabindex="0">' + esc(TRADS[k].nom) + '</span>';
+    }).join('') + '</div>';
+    h += '<div class="sgm-tete"><span class="sgm-lbl">Mes signets</span></div>';
+    var siens = parTrad[SG_ONGLET] || [];
+    if (!siens.length) {
+      h += '<div class="sg-vide sgm-vide">Aucun signet pour l’instant. Ouvre un chapitre et touche le ruban, '
+         + 'en haut à droite du titre, pour le marquer.</div>';
     } else {
-      ordre.forEach(function(k){
-        var siens = ids.filter(function(cle){ return tradSignet(SIGN[cle]) === k; });
-        if (!siens.length) return;
-        h += '<div class="sg-liste"><div class="sg-trad">' + esc(TRADS[k].nom)
-           + '<span class="sg-trad-n">' + siens.length + '</span></div>';
-        siens.forEach(function(cle){
+      var livres = {};
+      siens.forEach(function(cle){ var g = SIGN[cle]; (livres[g.s] = livres[g.s] || []).push(cle); });
+      Object.keys(livres).sort(function(a, b){ return (ORDRE[a] == null ? 999 : ORDRE[a]) - (ORDRE[b] == null ? 999 : ORDRE[b]); }).forEach(function(slug){
+        var inf = infoLivre(slug), liste = livres[slug];
+        liste.sort(function(a, b){ return (SIGN[a].c - SIGN[b].c) || ((SIGN[a].v || 0) - (SIGN[b].v || 0)); });
+        h += '<div class="sgm-sec"><div class="sgm-sec-tete"><span class="sgm-sec-nom">' + esc(inf ? inf.nom : slug) + '</span>'
+           + '<span class="sgm-n">' + liste.length + '</span></div>';
+        liste.forEach(function(cle){
           var g = SIGN[cle];
-          h += '<div class="sg-carte" data-sg="' + esc(cle) + '">'
-             + '<span class="sg-ruban">' + RUBAN + '</span>'
-             + '<span class="sg-txt"><span class="sg-ref">' + esc(libelleSignet(g)) + '</span>'
-             + '<div class="sg-date">' + esc(dateSignet(g)) + '</div></span>'
-             + '<span class="sg-x" data-sgx="' + esc(cle) + '" role="button" tabindex="0" '
-             + 'aria-label="Retirer ce signet" title="Retirer ce signet">\u2715</span></div>';
+          h += '<div class="sgm-row" data-sg="' + esc(cle) + '" role="button" tabindex="0">'
+             + '<span class="sgm-ruban">' + RUBAN + '</span>'
+             + '<span class="sgm-ref">' + esc(libelleSignet(g)) + '</span>'
+             + '<span class="sgm-date">' + esc(dateSignet(g)) + '</span>'
+             + '<span class="sgm-go" aria-hidden="true">▷</span>'
+             + '<span class="sgm-x" data-sgx="' + esc(cle) + '" role="button" tabindex="0" '
+             + 'aria-label="Retirer ce signet" title="Retirer ce signet">✕</span></div>';
         });
         h += '</div>';
       });
@@ -3267,7 +3365,10 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     h += '</div>';
     vue.innerHTML = h;
     vue._ctx = null;
-    [].forEach.call(vue.querySelectorAll('.sg-carte'), function(el){
+    [].forEach.call(vue.querySelectorAll('[data-sgtab]'), function(el){
+      actif(el, function(){ SG_ONGLET = el.getAttribute('data-sgtab'); vueSignets(); });
+    });
+    [].forEach.call(vue.querySelectorAll('.sgm-row'), function(el){
       actif(el, function(ev){
         if (ev.target.closest && ev.target.closest('[data-sgx]')) return;
         var g = SIGN[el.getAttribute('data-sg')];
@@ -3397,6 +3498,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       vue.innerHTML = h;
       vue._ctx = { slug: slug, ch: n };
       actifId('signet-btn', basculeSignet);
+      versSignets(document.getElementById('signet-btn'));
       majSignets();
       if (pendingSel && pendingSel.slug === slug && pendingSel.ch === n) {
         for (var v = pendingSel.v1; v <= pendingSel.v2; v++) {

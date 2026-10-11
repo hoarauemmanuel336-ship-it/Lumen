@@ -394,7 +394,8 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 
 <main class="wrap">
   <section id="ecran-liste">
-    <div class="tete"><h1>Commentaires bibliques</h1></div>
+    <div class="fil" id="fil"></div>
+    <div class="tete"><h1 id="titre-liste">Commentaires bibliques</h1></div>
     <div class="resume" id="mot-liste"></div>
     <div id="liste"></div>
     <div class="acts" id="acts-liste">
@@ -514,7 +515,7 @@ const AUTEUR='hoarauemmanuel336@gmail.com';
 // ════════ ÉTAT ════════
 /* S.art garde son nom d'origine (le code de l'éditeur vient d'Articles) : c'est
    le commentaire ouvert. S.ouv : les livres dépliés dans la liste. */
-const S={uid:null,email:null,auteur:false,liste:[],art:null,sale:false,minute:null,ouv:{}};
+const S={uid:null,email:null,auteur:false,liste:[],art:null,sale:false,minute:null,ouv:{},livre:''};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 const acol=()=>db.collection('users/'+S.uid+'/commentaires');
@@ -891,16 +892,30 @@ function ligneCom(a,publik){
     +fin;
   return l;
 }
-/* un livre de la Bible, avec ses commentaires dans l'ordre des chapitres */
-function elementLivre(slug,liste,publik){
+/* ── UN LIVRE, UNE PAGE (Emmanuel, 10/10) ──
+   Comme dans Articles et Ressources : la liste ne montre que l'endroit où
+   l'on est. Chaque livre est une rangée ; la toucher ouvre sa page, avec ses
+   commentaires dans l'ordre des chapitres, le fil d'Ariane au-dessus pour
+   remonter et le nom du livre en grand titre. L'adresse porte le livre
+   (#l/…), si bien que « précédent » ramène à la liste des livres. */
+const TITRE_COM='Commentaires bibliques';
+function rangeeLivre(slug,n,attr){
   const d=document.createElement('div');
-  d.className='rub rub-1'+(livreOuvert(slug)?' ouvert':'');
-  d.dataset.rid=slug;
-  d.innerHTML='<div class="rub-tete" data-rtog="'+esc(slug)+'" role="button" tabindex="0"><span class="rub-nom">'+esc(nomLivre(slug))+'</span><span class="rub-n">'+liste.length+'</span><span class="rub-chev">›</span></div>';
-  const corps=document.createElement('div'); corps.className='rub-corps';
-  liste.forEach(a=>corps.appendChild(ligneCom(a,publik)));
-  d.appendChild(corps);
+  d.className='rub rub-1'; d.dataset.rid=slug;
+  d.innerHTML='<div class="rub-tete" '+attr+'="'+esc(slug)+'" role="button" tabindex="0"><span class="rub-nom">'+esc(slug==='__sans'?'Sans référence':nomLivre(slug))+'</span><span class="rub-n">'+n+'</span><span class="rub-chev">›</span></div>';
   return d;
+}
+function vaLivre(slug){
+  S.livre=slug||'';
+  const cible=S.livre?'#l/'+S.livre:'';
+  if((location.hash||'')!==cible){try{history.pushState(null,'',cible||location.pathname);}catch(_){}}
+  vue('liste');
+}
+function majFil(dedans){
+  const f=$('fil'); if(!f)return;
+  f.innerHTML=dedans?'<span data-lva="" role="button" tabindex="0">'+TITRE_COM+'</span>':'';
+  $('titre-liste').textContent=dedans?(S.livre==='__sans'?'Sans référence':nomLivre(S.livre)):TITRE_COM;
+  $('titre-liste').parentElement.classList.toggle('dedans',!!dedans);
 }
 function livresDe(liste){
   const vus={}; liste.forEach(a=>{vus[livreDe(a)]=1;});
@@ -909,28 +924,23 @@ function livresDe(liste){
 function rendLister(){
   const h=$('liste'); h.innerHTML='';
   const n=S.liste.length;
+  const sans=S.liste.filter(a=>!livreDe(a));
+  const livres=livresDe(S.liste).filter(Boolean);
+  /* un livre qui n'a plus de commentaire ramène à la liste des livres */
+  if(S.livre&&!(S.livre==='__sans'?sans.length:livres.indexOf(S.livre)>=0))S.livre='';
+  majFil(!!S.livre);
   if(!n){
     h.innerHTML='<div class="vide">Rien encore.<br>Le premier commentaire vous attend : depuis la Bible, sélectionnez un verset et choisissez « Commenter ».</div>';
     return;
   }
-  /* un seul livre : pas d'en-tête à déplier, les commentaires sont là */
-  const livres=livresDe(S.liste);
-  if(livres.length===1&&livres[0]){commentairesDe(livres[0]).forEach(a=>h.appendChild(ligneCom(a,false)));return;}
-  livres.forEach(slug=>{
-    if(!slug)return;
-    h.appendChild(elementLivre(slug,commentairesDe(slug),false));
-  });
-  const sans=S.liste.filter(a=>!livreDe(a));
-  if(sans.length){
-    const d=document.createElement('div');
-    d.className='rub rub-1'+(livreOuvert('__sans')?' ouvert':'');
-    d.dataset.rid='__sans';
-    d.innerHTML='<div class="rub-tete" data-rtog="__sans" role="button" tabindex="0"><span class="rub-nom">Sans référence</span><span class="rub-n">'+sans.length+'</span><span class="rub-chev">›</span></div>';
-    const corps=document.createElement('div'); corps.className='rub-corps';
-    sans.forEach(a=>corps.appendChild(ligneCom(a,false)));
-    d.appendChild(corps);
-    h.appendChild(d);
+  if(S.livre){
+    (S.livre==='__sans'?sans:commentairesDe(S.livre)).forEach(a=>h.appendChild(ligneCom(a,false)));
+    return;
   }
+  /* un seul livre : pas de page intermédiaire, les commentaires sont là */
+  if(livres.length===1&&!sans.length){commentairesDe(livres[0]).forEach(a=>h.appendChild(ligneCom(a,false)));return;}
+  livres.forEach(slug=>h.appendChild(rangeeLivre(slug,commentairesDe(slug).length,'data-lva')));
+  if(sans.length)h.appendChild(rangeeLivre('__sans',sans.length,'data-lva'));
 }
 
 /* PUBLIÉ OU PRIVÉ : depuis le menu du commentaire, et depuis la barre de
@@ -1016,16 +1026,18 @@ async function litPublic(){
 function rendPublic(){
   const h=$('liste'); h.innerHTML='';
   const n=PUBS.length;
-  $('mot-liste').textContent=n
-    ?'Les commentaires se lisent dans la Bible, sur les versets qui en portent la marque. Chaque ligne y mène.'
-    :'Aucun commentaire publié pour l’instant.';
   $('acts-liste').style.display='none';
   const parLivre={};
   PUBS.forEach(a=>{const l=refValide(a)?a.refs[0].slug:'';if(!l)return;(parLivre[l]=parLivre[l]||[]).push(a);});
+  if(S.livre&&!parLivre[S.livre])S.livre='';
+  majFil(!!S.livre);
+  $('mot-liste').textContent=n
+    ?(S.livre?'':'Les commentaires se lisent dans la Bible, sur les versets qui en portent la marque. Chaque ligne y mène.')
+    :'Aucun commentaire publié pour l’instant.';
   const tri=(x,y)=>{const a=x.refs[0],b=y.refs[0];return (a.ch-b.ch)||(a.v1-b.v1)||(a.v2-b.v2);};
+  if(S.livre){parLivre[S.livre].sort(tri).forEach(a=>h.appendChild(ligneCom(a,true)));return;}
   Object.keys(parLivre).sort((a,b)=>ordreLivre(a)-ordreLivre(b)||nomLivre(a).localeCompare(nomLivre(b))).forEach(slug=>{
-    const t=document.createElement('div'); t.className='rub-nom'; t.style.margin='26px 0 10px'; t.textContent=nomLivre(slug); h.appendChild(t);
-    parLivre[slug].sort(tri).forEach(a=>h.appendChild(ligneCom(a,true)));
+    h.appendChild(rangeeLivre(slug,parLivre[slug].length,'data-lva'));
   });
 }
 function extraitDe(a){
@@ -1073,6 +1085,12 @@ function vue(quoi){
   /* la liste ne se redessine pas pendant l'écriture, pour ne pas déplacer le
      curseur : on la redessine donc en y revenant. */
   if(quoi==='liste'){ if(S.auteur)rendLister(); else rendPublic(); }
+  /* l'écriture a sa propre adresse (#e), posée par-dessus celle du livre :
+     « précédent » ramène ainsi au livre d'où l'on venait */
+  if(S.auteur){
+    if(quoi==='edit'&&location.hash!=='#e'){try{history.pushState(null,'','#e');}catch(_){}}
+    else if(quoi==='liste'&&location.hash==='#e'){try{history.replaceState(null,'',S.livre?'#l/'+S.livre:location.pathname);}catch(_){}}
+  }
   window.scrollTo(0,0);
 }
 /* La ligne de référence : le passage commenté, ou l'invitation à le choisir.
@@ -1295,7 +1313,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(S.auteur)rendLister(); else if(PUBS.length)rendPublic();
   });
   $('b-nouveau').onclick=()=>nouveau('');
-  $('b-retour').onclick=async()=>{ if(S.sale)await enregistre(true); S.art=null; vue('liste'); };
+  $('b-retour').onclick=async()=>{ if(location.hash==='#e'){try{history.back();return;}catch(_){}} if(S.sale)await enregistre(true); S.art=null; vue('liste'); };
   $('b-enr').onclick=()=>enregistre();
   $('b-etat').onclick=async()=>{
     if(!S.art)return;
@@ -1357,17 +1375,12 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   $('liste').addEventListener('click',e=>{
     const am=e.target.closest('[data-amenu]'); if(am){menuCom(am.dataset.amenu);return;}
-    const rt=e.target.closest('[data-rtog]'); if(rt){
-      const id=rt.dataset.rtog;
-      S.ouv[id]=!livreOuvert(id); ouvEcrit();
-      const w=rt.closest('.rub'); if(w)w.classList.toggle('ouvert',livreOuvert(id));
-      return;
-    }
+    const lv=e.target.closest('[data-lva]'); if(lv){vaLivre(lv.dataset.lva);return;}
     const it=e.target.closest('.art-item'); if(it&&it.dataset.id)ouvre(it.dataset.id);
   });
   $('liste').addEventListener('keydown',e=>{
     if(e.key!=='Enter'&&e.key!==' ')return;
-    const el=e.target.closest&&e.target.closest('[data-amenu],[data-rtog]');
+    const el=e.target.closest&&e.target.closest('[data-amenu],[data-lva]');
     if(!el)return; e.preventDefault(); el.click();
   });
 
@@ -1535,6 +1548,19 @@ auth.onAuthStateChanged(u=>{
    la lecture publique tout de suite, elle sera simplement redessinée si un
    compte se présente. */
 ouvrePublic();
+/* l'adresse dit le livre ouvert : on s'y place à l'arrivée, et « précédent »
+   ou « suivant » y ramènent */
+(function(){const m=(location.hash||'').match(/^#l\/(.+)$/);if(m)S.livre=m[1];})();
+window.addEventListener('popstate',async()=>{
+  const h=location.hash||'';
+  if(h==='#e'&&S.art)return;
+  if(/^#nouveau/.test(h))return;
+  if(S.art){ if(S.sale)await enregistre(true); S.art=null; }
+  const m=h.match(/^#l\/(.+)$/); S.livre=m?m[1]:'';
+  vue('liste');
+});
+$('fil').addEventListener('click',e=>{const el=e.target.closest('[data-lva]');if(el)vaLivre(el.dataset.lva);});
+$('fil').addEventListener('keydown',e=>{if(e.key!=='Enter'&&e.key!==' ')return;const el=e.target.closest&&e.target.closest('[data-lva]');if(!el)return;e.preventDefault();el.click();});
 </script>
 <script>
 /* Réglage de la taille du texte et bascule de l'onglet Bible : MÊME CODE que

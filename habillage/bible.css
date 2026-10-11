@@ -1,0 +1,990 @@
+/* ════════════════════════════════════════════════════════════════════
+   LUMEN — HABILLAGE DE LA BIBLE (10/10)
+   ════════════════════════════════════════════════════════════════════
+   La page Bible dans le nouveau langage du site. Elle a plusieurs visages :
+   la bibliothèque (titre, traduction, « Aller à », livres), la grille des
+   chapitres, la lecture, la barre de sélection et ses menus, les notes et
+   les surlignages, les signets, ses propres fenêtres (recherche, compte,
+   note, catégorie, confirmation). Elle s'affiche aussi dans le tiroir des
+   autres pages (« mode panneau »).
+   Rien ne touche à la taille ni à l'interligne du texte des versets, ni
+   aux couleurs de surlignage choisies par Emmanuel : seuls changent les
+   numéros, les titres, les contrôles et les surfaces autour du texte.
+   ════════════════════════════════════════════════════════════════════ */
+
+
+/* ════════════════════════════════════════════════════════════════════
+   1. LA BIBLIOTHÈQUE
+   Un grand titre Cormorant, la traduction au-dessus telle qu'avant,
+   puis la reprise de lecture et le champ « Aller à » en grande pilule.
+   ════════════════════════════════════════════════════════════════════ */
+html body .wrap{padding:0 28px 96px}
+html body .hero{
+  display:flex;flex-direction:column;align-items:center;
+  padding:88px 0 4px;animation:hMonte .6s var(--h-doux) both;
+}
+html body .hero h1.titre{
+  font-family:var(--h-titre);font-weight:400;font-size:58px;line-height:1.04;
+  letter-spacing:.005em;color:#fff;text-wrap:balance;
+}
+html body .hero .souligne{display:none}
+
+
+/* la tête de la liste : la reprise au-dessus, le champ dessous */
+html body .bib-tete{max-width:600px;margin:44px auto 0;gap:14px;align-items:center}
+
+/* REPRENDRE : un bouton plein, le mot en petite étiquette, le chapitre en
+   Cormorant */
+html:root body .bib-reprendre{
+  align-self:center;align-items:baseline;gap:12px;min-height:46px;padding:10px 24px 11px;
+}
+html body .bib-reprendre .br-l{font-family:var(--h-ui);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(0,0,0,.58)}
+html body .bib-reprendre .br-r{font-family:var(--h-titre);font-size:21px;font-weight:600;line-height:1;color:#000}
+
+/* ALLER À : une grande pilule, son bouton crème logé dedans, une loupe
+   discrète devant le texte */
+html body .bib-aller{
+  width:100%;align-items:center;gap:8px;padding:5px 5px 5px 46px;
+  background:var(--h-s1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-opacity='.42' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5 21 21'/%3E%3C/svg%3E") no-repeat left 19px center/17px 17px;
+  border:1px solid var(--h-l2);border-radius:0;
+  transition:border-color .25s,box-shadow .25s,background-color .25s;
+}
+html body .bib-aller:hover{border-color:var(--h-l3)}
+html body .bib-aller:focus-within{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body .bib-aller .champ-ligne{
+  padding:12px 4px;font-family:var(--h-ui);font-size:16px;line-height:1.3;color:#fff;
+}
+html body .bib-aller .champ-ligne::placeholder{font-style:normal;color:var(--h-t4)}
+html:root body .bib-aller button{
+  flex:none;align-self:stretch;min-width:0;min-height:44px;padding:0 24px;border:0;border-radius:0;
+  font-family:var(--h-ui);font-size:14px;font-weight:600;letter-spacing:.01em;text-transform:none;
+  background:var(--h-or);color:#000;transition:background .25s,box-shadow .3s;
+}
+html:root body .bib-aller button:is(:hover,:focus-visible){
+  background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;
+  box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent);
+}
+html body .bib-err{font-family:var(--h-ui);font-size:13.5px;color:#e3a7a0}
+html body .bib-err:empty{display:none}
+
+/* LES TESTAMENTS : un sur-titre entre deux traits de lumière */
+html body .testament{
+  display:flex;align-items:center;gap:20px;max-width:1000px;margin:88px auto 0;
+  font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--h-or);
+}
+html body .testament::before,html body .testament::after{content:'';flex:1;height:1px}
+html body .testament::before{background:linear-gradient(90deg,transparent,var(--h-l2))}
+html body .testament::after{background:linear-gradient(90deg,var(--h-l2),transparent)}
+
+/* LES GROUPES : un titre Cormorant italique */
+html body .groupe-nom{
+  margin:48px 0 22px;font-family:var(--h-titre);font-style:italic;font-weight:400;font-size:30px;line-height:1.15;color:#fff;
+}
+
+/* LES LIVRES : la disposition d'avant (Emmanuel, 10/10) : trois colonnes
+   alignées, chaque livre sur une ligne, le nom à gauche et le nombre de
+   chapitres à droite, un filet dessous ; deux colonnes sur tablette et sur
+   téléphone, où le nombre passe sous le nom. Seules les polices changent. */
+html body .livres-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:0 44px;max-width:920px;margin:0 auto}
+html body a.livre{
+  display:flex;flex-direction:row;align-items:baseline;justify-content:space-between;gap:14px;min-width:0;
+  padding:11px 4px;background:none;border:0;border-bottom:1px solid var(--h-l1);border-radius:0;box-shadow:none;
+  transition:border-color .3s,background .3s;
+}
+html body a.livre .ln{font-family:var(--h-texte);font-size:19px;line-height:1.3;color:#fff;min-width:0;overflow-wrap:anywhere}
+html body a.livre .lc{font-family:var(--h-ui);font-size:12px;font-weight:500;letter-spacing:.01em;color:var(--h-t3);font-variant-numeric:tabular-nums;white-space:nowrap;transition:color .25s}
+html body a.livre:hover{border-color:var(--h-or);background:var(--surv);box-shadow:none}
+html body a.livre:hover .ln{color:#fff}
+html body a.livre:hover .lc{color:var(--h-t2)}
+@media(max-width:900px){html body .livres-grille{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){
+  html body .livres-grille{grid-template-columns:1fr 1fr;gap:0 18px}
+  html body a.livre{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:3px;padding:11px 2px 12px}
+  html body a.livre .ln{font-size:17.5px;line-height:1.2}
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   2. LES CHAPITRES D'UN LIVRE
+   Le groupe en sur-titre, le nom du livre en grand, puis les chapitres en
+   pastilles rondes, toutes de même taille.
+   ════════════════════════════════════════════════════════════════════ */
+html body #vue:has(> .chap-grille){display:flex;flex-direction:column;align-items:center;animation:hMonte .45s var(--h-doux) both}
+html body .livre-sous{
+  order:-1;margin:80px 0 12px;
+  font-family:var(--h-ui);font-style:normal;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--h-or);
+}
+html body h2.livre-titre{margin:0;font-family:var(--h-titre);font-weight:400;font-size:56px;line-height:1.05;color:#fff;text-align:center}
+html body .chap-grille{
+  width:100%;max-width:780px;margin:48px auto 0;
+  grid-template-columns:repeat(auto-fill,58px);justify-content:center;gap:12px;
+}
+html body a.chap{
+  width:58px;height:58px;border-radius:0;
+  background:var(--h-s1);border:1px solid var(--h-l1);
+  font-family:var(--h-ui);font-size:15px;font-weight:500;color:var(--h-t2);font-variant-numeric:tabular-nums;
+  transition:border-color .25s,box-shadow .3s,color .25s,background .25s;
+}
+html body a.chap:hover{border-color:var(--h-l3);color:#fff;background:var(--h-s2);box-shadow:var(--h-lueur)}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   3. LA LECTURE
+   Le titre du chapitre en grand, le ruban du signet dans un bouton rond, la
+   capsule de traduction, puis le texte. Les sous-titres de section passent
+   en sur-titre ; les numéros de versets en police d'interface, petits, en
+   crème atténuée. La taille et l'interligne du texte ne changent pas.
+   ════════════════════════════════════════════════════════════════════ */
+html body .lecture-col{padding:72px 0 48px;animation:hMonte .5s var(--h-doux) both}
+html body .ch-tete{padding:0 56px}
+html body h2.ch-titre{font-family:var(--h-titre);font-weight:400;font-size:50px;line-height:1.06;color:#fff;text-wrap:balance}
+
+/* le signet garde son dessin d'origine : le ruban seul, sans cadre (Emmanuel, 10/10) */
+
+/* ce qui accompagne le titre */
+html body .ch-vulg{margin-top:10px;font-family:var(--h-ui);font-style:normal;font-size:12.5px;letter-spacing:.02em;color:var(--h-t3)}
+html body .ch-section{
+  margin-top:16px;font-family:var(--h-titre);font-style:italic;font-size:22px;font-weight:400;letter-spacing:0;text-transform:none;line-height:1.25;color:var(--h-t2);
+}
+html body .ch-psaume-titre{margin-top:16px;font-family:var(--h-titre);font-size:21px;line-height:1.3;color:var(--h-t2)}
+html body .ch-sep{width:120px;height:1px;margin:36px auto 40px;background:linear-gradient(90deg,transparent,var(--h-l3),transparent)}
+html body .lecture-col>.ch-titre+.ch-sep{margin-top:28px}
+
+/* SOUS-TITRES DE SECTION : un sur-titre, à l'accent */
+html body .ch-texte .ch-sect{
+  margin:40px 0 14px;font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;line-height:1.45;color:var(--h-or);
+}
+html body .ch-texte .ch-sect:first-child{margin-top:2px}
+
+/* NUMÉROS DE VERSETS : police d'interface, petite, crème atténuée */
+html body .ch-texte sup.vn{
+  font-family:var(--h-ui);font-size:10.5px;font-weight:600;letter-spacing:.01em;font-variant-numeric:tabular-nums;
+  color:color-mix(in srgb,var(--h-or) 62%,transparent);
+}
+html body .ch-texte sup.vsub{font-family:var(--h-ui);font-size:9.5px;font-weight:600;color:color-mix(in srgb,var(--h-or) 62%,transparent)}
+/* en vers, le numéro pend dans la marge même quand le verset porte une note
+   ou un commentaire : la marque le remettait dans le flux et décalait la
+   première ligne. Il se cale à droite de la marge, à un souffle du premier
+   mot, si bien que « § 12 » et « 3 » finissent au même endroit. */
+html body .ch-texte .vst.po sup.vn{position:absolute;left:auto;right:calc(100% + 8px);top:.62em;white-space:nowrap}
+html body .ch-texte sup.vn.a-note .vnn{padding-bottom:2px}
+html body .ch-texte sup.vn .cm{font-family:var(--h-texte);font-size:14px;color:var(--h-or)}
+
+/* LE COMMENTAIRE, SOUS LE VERSET : une carte, un trait de lumière à gauche */
+html body .com-pan{
+  position:relative;margin:1em 0 1.3em;padding:18px 22px 16px 26px;
+  background:var(--h-s1);border:1px solid var(--h-l2);border-radius:0;
+  box-shadow:0 26px 60px -36px color-mix(in srgb,var(--h-or) 45%,transparent);
+  animation:hMonte .35s var(--h-doux) both;
+}
+html body .com-pan::before{content:'';position:absolute;left:0;top:18px;bottom:18px;width:2px;border-radius:0;background:var(--h-or)}
+html body .com-titre{font-family:var(--h-titre);font-weight:500;color:#fff}
+html body .cb-h2{font-family:var(--h-titre);font-weight:500;color:#fff}
+html body .cb-h3{font-family:var(--h-ui);font-size:calc(11.5px*var(--lvz,1));font-weight:600;letter-spacing:.14em;color:var(--h-or)}
+html body .cb-cite{box-shadow:inset 2px 0 0 var(--h-l3)}
+html body .cb-image img{border-radius:0}
+html body .cb-html iframe{border-color:var(--h-l2);border-radius:0}
+html body .com-un+.com-un{border-top-color:var(--h-l1)}
+html body .com-vide{font-family:var(--h-ui);font-style:normal;font-size:13.5px;color:var(--h-t3)}
+html body .com-pied{margin-top:14px}
+html body .com-fermer{
+  display:inline-flex;align-items:center;min-height:30px;padding:0 14px;border-radius:0;
+  font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.01em;text-transform:none;
+  background:var(--h-or);color:#000;transition:background .25s,box-shadow .3s;
+}
+html body .com-fermer:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 8px 24px -10px color-mix(in srgb,var(--h-or) 70%,transparent)}
+
+/* NAVIGATION ENTRE CHAPITRES : le précédent et le suivant en cartes, le
+   retour à la grille au milieu */
+html body .ch-nav{
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:12px;
+  margin-top:72px;padding-top:0;border-top:0;
+}
+html body .ch-nav a{
+  display:flex;align-items:center;padding:16px 20px;border-radius:0;
+  font-family:var(--h-ui);font-size:14.5px;font-weight:500;letter-spacing:.01em;text-transform:none;line-height:1.3;color:#fff;
+  background:var(--h-s1);border:1px solid var(--h-l1);
+  transition:border-color .25s,box-shadow .3s,color .25s,background .25s;
+}
+html body .ch-nav a:first-child{justify-content:flex-start}
+html body .ch-nav a:last-child{justify-content:flex-end;text-align:right}
+html body .ch-nav a:hover{color:#fff;border-color:var(--h-l3);box-shadow:var(--h-lueur)}
+html body .ch-nav a:nth-child(2){
+  align-self:center;padding:10px 18px;border-color:transparent;background:none;border-radius:0;color:var(--h-t3);
+}
+html body .ch-nav a:nth-child(2):hover{color:#fff;background:var(--h-voile);border-color:transparent;box-shadow:none}
+html body .ch-nav .vide{visibility:hidden}
+
+@media(max-width:720px){
+  html body .wrap{padding:0 20px 80px}
+  html body .hero{padding:56px 0 4px}
+  html body .hero h1.titre{font-size:40px}
+  html body .bib-tete{margin-top:34px}
+  html body .testament{margin-top:64px;gap:14px}
+  html body .groupe-nom{font-size:26px;margin:36px 0 16px}
+  html body .livre-sous{margin-top:52px}
+  html body h2.livre-titre{font-size:40px}
+  html body .chap-grille{grid-template-columns:repeat(auto-fill,50px);gap:8px;margin-top:36px}
+  html body a.chap{width:50px;height:50px;font-size:14.5px}
+  html body .lecture-col{padding:44px 0 34px}
+  html body .ch-tete{padding:0 50px}
+  html body h2.ch-titre{font-size:38px}
+  html body .ch-sep{margin:28px auto 32px}
+  html body .com-pan{padding:15px 16px 14px 20px}
+  html body .ch-nav{gap:8px;margin-top:56px}
+  html body .ch-nav a{padding:14px 14px;font-size:13.5px}
+  html body .ch-nav a:nth-child(2){padding:10px 8px}
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   4. LA BARRE DE SÉLECTION
+   Une capsule de verre qui flotte au-dessus du bas de l'écran (et du dock
+   sur téléphone) : à gauche les passages choisis en pastilles, à droite
+   les actions réunies dans un seul bandeau crème, segmenté. La palette de
+   surlignage s'ouvre dessous, dans la même capsule.
+   ════════════════════════════════════════════════════════════════════ */
+html body #sel-barre{
+  left:0;right:0;margin:0 auto;width:min(960px,calc(100% - 32px));
+  bottom:calc(18px + var(--lv-bas,0px));padding-bottom:0;
+  background:color-mix(in srgb,var(--h-s1) 88%,transparent);
+  -webkit-backdrop-filter:saturate(150%) blur(22px);backdrop-filter:saturate(150%) blur(22px);
+  border:1px solid var(--h-l2);border-radius:0;
+  box-shadow:0 24px 60px -18px rgba(0,0,0,.92),0 0 50px -24px color-mix(in srgb,var(--h-or) 45%,transparent);
+}
+html body.sel-active #sel-barre{animation:hMonte .32s var(--h-doux) both}
+/* la page garde sous le dernier verset la place de la capsule et de son air */
+html body.sel-active .wrap,html.panneau body.sel-active .wrap{padding-bottom:calc(var(--sb-h,190px) + 64px)}
+html body .sb-int{max-width:none;padding:9px 9px 9px 12px;gap:10px 14px}
+html body .sb-refs{gap:6px;min-width:160px}
+html body .sb-chip{
+  gap:6px;padding:0 6px 0 14px;min-height:34px;border:0;border-radius:0;
+  background:var(--h-s3);font-family:var(--h-ui);font-size:13.5px;font-weight:500;color:#fff;
+  transition:background .25s,box-shadow .25s;
+}
+html body .sb-chip:hover{background:var(--h-s4);box-shadow:inset 0 0 0 1px var(--h-l2)}
+html body .sb-x{
+  display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;padding:0;border-radius:0;
+  font-size:11px;color:var(--h-t3);transition:color .25s,background .25s;
+}
+html body .sb-x:hover{color:#fff;background:var(--h-voile-fort)}
+/* les actions : un bandeau crème, chaque action un bouton plein */
+html body .sb-act{
+  gap:0;padding:3px;margin-left:auto;border-radius:0;background:var(--h-or);
+  box-shadow:0 10px 30px -14px color-mix(in srgb,var(--h-or) 70%,transparent);
+}
+html body .sb-btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;height:38px;padding:0 15px;
+  border-radius:0;font-family:var(--h-ui);font-size:13.5px;font-weight:600;letter-spacing:.01em;text-transform:none;
+  color:#000;transition:background .2s;
+}
+html body .sb-btn+.sb-btn::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:rgba(0,0,0,.16)}
+html body .sb-btn:hover,html body .sb-btn:focus-visible{color:#000;background:color-mix(in srgb,var(--h-or) 45%,#fff)}
+/* la palette : les couleurs d'Emmanuel, en pastilles cerclées */
+html body .sb-surl{flex-basis:100%;gap:10px;padding:12px 6px 4px;margin-top:2px;border-top:1px solid var(--h-l1);justify-content:center}
+html body .sb-past{
+  width:24px;height:24px;border:2px solid var(--h-s1);box-shadow:0 0 0 1px var(--h-l3);
+  transition:transform .15s,box-shadow .2s;
+}
+html body .sb-past:hover{transform:scale(1.14);border-color:var(--h-s1);box-shadow:0 0 0 1.5px #fff}
+html body :is(#sb-cercle,#lv-frag-pop .lvp-libre){
+  -webkit-appearance:none;appearance:none;width:28px;height:28px;padding:0;border-radius:50%;overflow:hidden;
+  background:var(--h-s1);border:2px solid var(--h-s1);box-shadow:0 0 0 1px var(--h-l3);
+}
+html body :is(#sb-cercle,#lv-frag-pop .lvp-libre)::-webkit-color-swatch-wrapper{padding:0}
+html body :is(#sb-cercle,#lv-frag-pop .lvp-libre)::-webkit-color-swatch{border:0;border-radius:50%}
+html body :is(#sb-cercle,#lv-frag-pop .lvp-libre)::-moz-color-swatch{border:0;border-radius:50%}
+html body :is(.sb-oter,#lv-frag-pop .lvp-oter){
+  display:inline-flex;align-items:center;min-height:30px;padding:0 14px;margin-left:4px;border-radius:0;
+  font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.01em;text-transform:none;
+  background:var(--h-or);color:#000;transition:background .25s;
+}
+html body :is(.sb-oter,#lv-frag-pop .lvp-oter):hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000}
+
+/* le petit menu de surlignage d'un fragment : la même capsule flottante */
+html body #lv-frag-pop{
+  max-width:min(calc(100vw - 24px),480px);gap:8px;padding:8px 8px 8px 10px;
+  background:color-mix(in srgb,var(--h-s1) 94%,transparent);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  border:1px solid var(--h-l2);border-radius:0;box-shadow:var(--h-ombre);
+}
+html body #lv-frag-pop .lvp-past{width:22px;height:22px;border:2px solid var(--h-s1);box-shadow:0 0 0 1px var(--h-l3)}
+html body #lv-frag-pop .lvp-past:hover{transform:scale(1.14);box-shadow:0 0 0 1.5px #fff}
+html body #lv-frag-pop .lvp-sep{height:20px;background:var(--h-l2)}
+html body #lv-frag-pop .lvp-oter{margin-left:0}
+
+@media(max-width:720px){
+  html body #sel-barre{width:calc(100% - 20px);bottom:calc(8px + var(--lv-bas,0px));border-radius:0}
+  html body .sb-int{padding:10px;gap:10px}
+  html body .sb-refs{gap:6px}
+  html body .sb-chip{font-size:14px}
+  /* sur téléphone, les actions deviennent des pilules séparées, sur une ou
+     deux rangées qui remplissent la largeur */
+  html body .sb-act{flex-wrap:wrap;gap:6px;padding:0;background:none;box-shadow:none;width:100%}
+  html body .sb-btn{
+    flex:1 1 auto;height:42px;padding:0 12px;font-size:13px;letter-spacing:0;
+    background:var(--h-or);
+  }
+  html body .sb-btn+.sb-btn::before{content:none}
+  html body .sb-btn:hover,html body .sb-btn:active{background:color-mix(in srgb,var(--h-or) 70%,#fff)}
+  html body .sb-surl{gap:11px;padding:12px 0 2px}
+  html body .sb-past{width:30px;height:30px}
+  html body #sb-cercle{width:34px;height:34px}
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   5. LES NOTES ET LES SURLIGNAGES
+   Le compte en sur-titre, « Mes notes » en grand, la recherche en pilule,
+   les actions en boutons pleins, les filtres et le classement en contrôles
+   segmentés. Chaque catégorie porte son titre ; ses notes forment une
+   liste groupée dans un même conteneur arrondi.
+   ════════════════════════════════════════════════════════════════════ */
+html body .notes-tete{display:flex;flex-direction:column;margin:72px auto 0;animation:hMonte .45s var(--h-doux) both}
+html body .notes-tete::after{content:none}
+html body .notes-compte{
+  order:-1;margin:0 0 12px;font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--h-or);
+}
+html body h2.notes-titre{font-family:var(--h-titre);font-weight:400;font-size:54px;line-height:1.04;letter-spacing:.005em;color:#fff}
+
+/* la recherche : une pilule, la loupe dedans */
+html body .notes-rech{
+  margin:30px auto 0;padding:13px 20px 13px 48px;
+  background-color:var(--h-s1);background-position:left 20px center;background-size:16px 16px;
+  border:1px solid var(--h-l2);border-radius:0;
+  font-family:var(--h-ui);font-size:15px;line-height:1.3;color:#fff;
+  transition:border-color .25s,box-shadow .25s;
+}
+html body .notes-rech:hover{border-color:var(--h-l3)}
+html body .notes-rech:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body .notes-rech::placeholder{font-style:normal;color:var(--h-t4)}
+
+/* les actions : deux boutons pleins ; le classement : une capsule */
+html body .notes-actions{gap:10px;margin:18px auto 0}
+html body :is(.notes-btn,.notes-lien){
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 22px 0 18px;
+  border-radius:0;background:var(--h-or);color:#000;
+  font-family:var(--h-ui);font-size:14px;font-weight:600;letter-spacing:.01em;text-transform:none;
+  transition:background .25s,box-shadow .3s,transform .2s;
+}
+html body :is(.notes-btn,.notes-lien)::before{font-family:var(--h-ui);font-size:18px;font-weight:400;line-height:1;color:#000}
+html body :is(.notes-btn,.notes-lien):is(:hover,:active,:focus-visible){
+  color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);
+  box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent);
+}
+html body :is(.notes-btn,.notes-lien):is(:hover,:active)::before{color:#000}
+/* le mot « Classer » est écrit à même la capsule : il prend la voix des
+   petites étiquettes, ses deux choix reprennent celle des onglets */
+html body .nz-tri{
+  gap:2px;padding:4px 4px 4px 13px;margin-left:auto;
+  background:var(--h-s2);border:1px solid var(--h-l1);border-radius:0;
+  font-family:var(--h-ui);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-t4);
+}
+html body .nz-tri-o{
+  display:inline-flex;align-items:center;min-height:34px;padding:0 14px;margin-left:6px;border-radius:0;
+  font-size:13px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t2);
+  transition:color .25s,background .25s;
+}
+html body .nz-tri-o+.nz-tri-o{margin-left:0}
+html body .nz-tri-o:hover{color:#fff;background:var(--h-voile)}
+html body .nz-tri-o.on{color:var(--h-or);background:var(--h-voile-fort);box-shadow:inset 0 0 0 1px var(--h-l2)}
+
+/* la ligne qui invite à se connecter */
+html body .sync-ligne{margin-top:20px;font-family:var(--h-ui);font-style:normal;font-size:13.5px;color:var(--h-t3)}
+html body .sync-act{
+  display:inline-flex;align-items:center;min-height:40px;padding:0 18px;border:0;border-radius:0;
+  font-family:var(--h-ui);font-style:normal;font-size:13.5px;font-weight:600;background:var(--h-or);color:#000;
+  transition:background .25s,box-shadow .3s;
+}
+html body .sync-act:hover{color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent)}
+
+/* les filtres : un contrôle segmenté qui défile de côté s'il est trop long */
+html body .nz-rail{
+  gap:2px;width:fit-content;max-width:min(760px,100%);padding:4px;
+  margin:30px auto 0 max(0px,calc((100% - 760px) / 2));
+  background:var(--h-s2);border:1px solid var(--h-l1);border-radius:0;box-shadow:none;
+}
+html body .nz-fil{
+  display:inline-flex;align-items:center;min-height:36px;padding:0 15px;border-radius:0;
+  font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t2);
+  transition:color .25s,background .25s;
+}
+html body .nz-fil::after{content:none}
+html body .nz-fil:hover{color:#fff;background:var(--h-voile)}
+html body .nz-fil.on{color:var(--h-or);background:var(--h-voile-fort);box-shadow:inset 0 0 0 1px var(--h-l2)}
+html body .nz-fil i{margin-left:7px;font-size:12px;font-weight:600;color:var(--h-t4);font-variant-numeric:tabular-nums}
+html body .nz-fil.on i{color:color-mix(in srgb,var(--h-or) 62%,transparent)}
+
+/* EN-TÊTE DE CATÉGORIE : un titre Cormorant, son nombre en pastille,
+   collé en haut pendant qu'on fait défiler ses notes */
+html body .nz-liste{margin-top:36px}
+html body .notes-cat{
+  gap:12px;margin:44px auto 10px;padding:12px 4px 10px;
+  background:#000;box-shadow:none;
+}
+html body .notes-cat-nom{
+  font-family:var(--h-titre);font-size:27px;font-weight:500;line-height:1.15;letter-spacing:.005em;text-transform:none;color:#fff;
+}
+html body .notes-cat-n{
+  display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:22px;padding:0 8px;border-radius:0;
+  background:var(--h-s3);font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:0;color:var(--h-t2);font-variant-numeric:tabular-nums;
+}
+html body :is(.notes-cat,.notes-scat)>.nt-menu{margin:0}
+/* sous-section : un sur-titre, décalé comme ses notes */
+html body .notes-scat{gap:10px;margin:26px auto 10px;padding:0 4px 0 18px}
+html body .notes-scat-nom{font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--h-t2)}
+html body .notes-scat-nom::before{width:14px;background:var(--h-l3);margin-right:10px}
+html body .notes-scat .notes-cat-n{height:20px;font-size:11.5px}
+
+/* LES LISTES GROUPÉES : notes, surlignages et signets se rangent en
+   rangées dans un même conteneur arrondi, séparées par des filets ; la
+   première et la dernière rangée portent les coins */
+html body :is(.note-item,.surl-item,.sg-carte){
+  background:var(--h-s1);border:1px solid var(--h-l1);border-top-width:0;border-radius:0;box-shadow:none;
+  transition:background .2s;
+}
+html body .note-item:not(.note-item+.note-item),
+html body .surl-item:not(.surl-item+.surl-item),
+html body .sg-carte:not(.sg-carte+.sg-carte){border-top-width:1px;border-top-left-radius:var(--h-r2);border-top-right-radius:var(--h-r2)}
+html body .note-item:not(:has(+.note-item)),
+html body .surl-item:not(:has(+.surl-item)),
+html body .sg-carte:not(:has(+.sg-carte)){border-bottom-left-radius:var(--h-r2);border-bottom-right-radius:var(--h-r2)}
+/* surlignages dépliés (« Voir tout ») : la suite prolonge la même liste */
+html body .surl-item:has(+.surl-reste:not([hidden])){border-bottom-left-radius:0;border-bottom-right-radius:0}
+html body .surl-reste>.surl-item:first-child{border-top-width:0;border-top-left-radius:0;border-top-right-radius:0}
+html body :is(.note-item,.sg-carte):hover{background:var(--h-s2);box-shadow:none}
+
+/* une note */
+html body .note-item{padding:20px 62px 18px 22px}
+html body .note-item>.nt-menu{top:12px;right:12px}
+html body .nt-menu{
+  display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;
+  font-size:18px;letter-spacing:0;line-height:1;
+}
+html body .note-refs{font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.01em;color:var(--h-or);margin-bottom:8px}
+html body .note-ref:hover{color:color-mix(in srgb,var(--h-or) 60%,#fff)}
+html body .note-sep{color:var(--h-l3)}
+html body .note-pied{margin-top:12px;font-family:var(--h-ui);font-size:12px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t4)}
+html body .nt-plus{
+  display:inline-flex;align-items:center;min-height:28px;padding:0 12px;margin:6px 0 0;border-radius:0;vertical-align:middle;
+  font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.01em;text-transform:none;background:var(--h-or);color:#000;
+}
+html body .nt-plus:hover,html body .nt-plus:active{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000}
+
+/* le menu ⋯ : une petite carte flottante, ses actions en rangées */
+html body #menu-flot{
+  min-width:200px;padding:6px;clip-path:none;
+  background:var(--h-s2);border-radius:0;box-shadow:var(--h-ombre);
+  animation:hMonte .22s var(--h-doux) both;
+}
+html body .mf-act{
+  position:relative;padding:11px 14px;border-radius:0;
+  font-family:var(--h-ui);font-size:14px;font-weight:500;color:var(--h-t2);
+}
+html body .mf-act:hover,html body .mf-act:active{color:#fff;background:var(--h-s4)}
+html body .mf-sep{margin-top:9px;padding-top:11px;box-shadow:none}
+html body .mf-sep::before{content:'';position:absolute;left:8px;right:8px;top:-5px;height:1px;background:var(--h-l2)}
+
+/* les surlignages : un groupe par couleur, son titre en sur-titre */
+html body .surl-scat{gap:10px;margin:30px auto 10px;padding:0 4px;box-shadow:none}
+html body .surl-scat .surl-pastille{width:10px;height:10px;box-shadow:0 0 0 3px var(--sc-f,transparent)}
+html body .surl-scat-nom{font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--h-t2)}
+html body .surl-scat-n{font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:0;color:var(--h-t4)}
+html body .surl-plus{
+  display:inline-flex;align-items:center;min-height:30px;padding:0 13px;border-radius:0;
+  font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.01em;text-transform:none;background:var(--h-or);color:#000;
+}
+html body .surl-plus:hover,html body .surl-plus:active{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000}
+html body .surl-item{padding:18px 104px 16px 24px;box-shadow:none}
+html body .surl-item:hover{background:var(--h-s2);box-shadow:none}
+/* la couleur du surlignage : un trait à gauche de la rangée, franc au survol */
+html body .surl-item::before{content:'';position:absolute;left:0;top:16px;bottom:16px;width:3px;border-radius:0;background:var(--sc-f,transparent);transition:background .25s}
+html body .surl-item:hover::before{background:var(--sc,var(--h-or))}
+html body .surl-item .surl-ref{font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.01em;color:var(--h-or)}
+html body .surl-item .surl-ref:hover{color:color-mix(in srgb,var(--h-or) 60%,#fff)}
+html body .surl-item .surl-oter{
+  top:14px;right:14px;display:inline-flex;align-items:center;min-height:30px;padding:0 13px;border-radius:0;
+  font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.01em;text-transform:none;background:var(--h-or);color:#000;
+}
+html body .surl-item .surl-oter:hover,html body .surl-item .surl-oter:active{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000}
+
+/* aucune note : un titre et sa phrase, centrés */
+html body .notes-vide-t{font-family:var(--h-titre);font-size:30px;font-weight:400;color:#fff}
+html body .notes-vide-p{font-family:var(--h-texte);font-size:16.5px;color:var(--h-t3)}
+
+@media(max-width:720px){
+  html body .notes-tete{margin-top:46px}
+  html body h2.notes-titre{font-size:40px}
+  html body .notes-compte{font-size:11.5px;letter-spacing:.12em;margin-bottom:10px}
+  html body .notes-rech{margin-top:22px;padding:12px 18px 12px 44px;background-position:left 17px center;font-size:15px}
+  html body .notes-actions{gap:8px;margin-top:14px}
+  html body :is(.notes-btn,.notes-lien){flex:1 1 0;padding:0 14px;font-size:13.5px}
+  html body .nz-tri{width:fit-content;margin:4px 0 0}
+  html body .nz-rail{margin-top:22px}
+  html body .nz-fil{padding:0 13px;font-size:13px}
+  html body .notes-cat{margin-top:36px;padding:10px 2px 8px}
+  html body .notes-cat-nom{font-size:24px;letter-spacing:0}
+  html body .notes-scat{padding-left:14px}
+  html body .note-item{padding:16px 54px 16px 16px}
+  html body .note-item>.nt-menu{top:8px;right:8px}
+  html body .surl-item{padding:16px 16px 14px 18px}
+  html body .surl-item .surl-tete{padding-right:84px}
+  html body .surl-item .surl-oter{top:12px;right:12px}
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   6. LES SIGNETS
+   ════════════════════════════════════════════════════════════════════ */
+html body .sg-liste{margin:8px auto 0}
+html body .sg-liste+.sg-liste{margin-top:44px}
+html body .sg-trad{
+  gap:10px;padding:0 4px 12px;border-bottom:0;
+  font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--h-or);
+}
+html body .sg-trad-n{
+  display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:20px;padding:0 7px;border-radius:0;
+  background:var(--h-s3);font-size:11.5px;letter-spacing:0;color:var(--h-t2);
+}
+html body .sg-carte{gap:16px;padding:14px 14px 14px 16px}
+html body .sg-ruban{
+  width:40px;height:40px;align-items:center;justify-content:center;border-radius:0;
+  background:var(--h-voile-fort);color:var(--h-or);
+}
+html body .sg-ruban svg{width:13px;height:17px}
+html body .sg-ref{font-family:var(--h-titre);font-size:23px;font-weight:500;line-height:1.15;color:#fff}
+html body .sg-date{margin-top:3px;font-family:var(--h-ui);font-size:12.5px;letter-spacing:.01em;color:var(--h-t3)}
+html body .sg-x{
+  display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border-radius:0;
+  font-size:13px;color:var(--h-t2);background:var(--h-s3);transition:color .25s,background .25s;
+}
+html body .sg-x:hover{color:#fff;background:var(--h-s4)}
+html body .sg-vide{font-family:var(--h-texte);font-size:18px;color:var(--h-t3);max-width:460px;margin:0 auto}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   7. LES FENÊTRES DE LA PAGE
+   La recherche, le compte, la connexion, la note, la catégorie et la
+   confirmation sont propres à la Bible et échappent aux règles communes :
+   elles prennent ici le même rendu que celles du socle.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* LA RECHERCHE DE LA BIBLE : la palette de commande du site */
+html body .b-ov{
+  background:color-mix(in srgb,#000 78%,transparent);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+}
+html body .b-ov.ouvert{animation:hVoile .25s ease both}
+html body .b-ov .b-boite{
+  max-width:720px;height:auto;max-height:calc(100% - 14vh);margin:10vh auto 0;padding:0;
+  background:var(--h-s1);border-radius:0;box-shadow:var(--h-ombre);overflow:hidden;
+  animation:hMonte .38s var(--h-doux) both;
+}
+html body .b-ov .b-tete{gap:14px;padding:18px 18px 18px 22px;border-bottom:1px solid var(--h-l1)}
+html body .b-ov .b-tete>svg{flex:none;width:20px;height:20px;color:var(--h-or)}
+html body .b-champ{font-family:var(--h-titre);font-size:28px;line-height:1.2;color:#fff;padding:2px 0}
+html body .b-champ::placeholder{color:var(--h-t4);font-style:italic}
+html body .b-fermer{
+  display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border-radius:0;
+  font-size:15px;color:var(--h-t2);background:var(--h-s3);transition:background .25s,color .25s;
+}
+html body .b-fermer:hover{color:#fff;background:var(--h-s4)}
+html body .b-res{margin:0;padding:8px;flex:0 1 auto}
+html body .b-res:empty{display:none}
+html body .b-hint,html body .b-vide{padding:22px 16px;font-family:var(--h-texte);font-size:17px;text-align:left;color:var(--h-t3)}
+html body :is(a.b-r,.b-r){padding:14px 16px;border:0;border-radius:0;transition:background .2s}
+html body :is(a.b-r,.b-r):hover,html body .b-r.kact{background:var(--h-s3)}
+html body :is(a.b-r,.b-r) b{font-family:var(--h-titre);font-size:22px;font-weight:500}
+html body :is(a.b-r,.b-r):hover b,html body .b-r.kact b{color:#fff}
+html body :is(a.b-r,.b-r) span{display:block;margin-top:4px;font-family:var(--h-ui);font-size:12.5px;letter-spacing:.01em;color:var(--h-t3)}
+@media(max-width:720px){
+  html body .b-ov .b-boite{margin:12px 10px 0;max-height:calc(100% - 24px - var(--lv-bas,0px))}
+  html body .b-champ{font-size:23px}
+}
+
+/* LES VOILES des fenêtres : noir flouté, comme partout */
+html body :is(#bacct-voile,#cat-voile,#conf-voile,#auth-voile,#note-voile){
+  background:color-mix(in srgb,#000 74%,transparent);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+}
+
+/* LE COMPTE, LA CATÉGORIE, LA CONFIRMATION : la carte des fenêtres */
+html body .bacct{
+  max-width:400px;padding:34px 30px 26px;border:0;border-radius:0;
+  background:var(--h-s1);box-shadow:var(--h-ombre);animation:hMonte .38s var(--h-doux) both;
+}
+html body .bacct-x{
+  top:14px;right:14px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;border-radius:0;
+  font-size:14px;line-height:1;color:var(--h-t2);background:var(--h-s3);transition:background .25s,color .25s;
+}
+html body .bacct-x:hover{color:#fff;background:var(--h-s4)}
+html body .bacct-t{margin-bottom:8px;font-family:var(--h-titre);font-weight:500;font-size:28px;line-height:1.2;color:#fff}
+html body .bacct-mail{margin-bottom:24px;font-family:var(--h-ui);font-size:13.5px;color:var(--h-t3)}
+html:root body .bacct-btn+.bacct-btn{margin-top:0}
+html body .bacct-deco{
+  display:block;width:fit-content;margin:16px auto 0;padding:8px 12px;border-radius:0;
+  font-family:var(--h-ui);font-size:13.5px;font-weight:500;color:var(--h-t3);transition:color .25s,background .25s;
+}
+html body .bacct-deco:hover{color:var(--h-or);background:var(--h-voile)}
+html body .bacct .ttx-row{margin-bottom:6px}
+html body .conf-txt{margin:10px 0 24px;font-family:var(--h-texte);font-size:17px;line-height:1.5;color:var(--h-t2)}
+html body #cat-voile .bacct-t,html body #conf-voile .bacct-t{margin-bottom:18px}
+html body #conf-voile .bacct-t{margin-bottom:4px}
+html body .cat-input{
+  margin-bottom:16px;padding:12px 14px;border:1px solid var(--h-l2);border-radius:0;background:#000;
+  font-family:var(--h-ui);font-size:15px;color:#fff;transition:border-color .25s,box-shadow .25s;
+}
+html body .cat-input:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+
+/* LA CONNEXION : comme la fenêtre de connexion du site */
+html body .ab-boite{
+  position:relative;max-width:400px;padding:34px 30px 26px;border:0;border-radius:0;
+  background:var(--h-s1);box-shadow:var(--h-ombre);animation:hMonte .38s var(--h-doux) both;
+}
+html body .ab-titre{margin-bottom:6px;font-family:var(--h-titre);font-weight:500;font-size:28px;color:#fff}
+html body .ab-tabs{gap:4px;padding:4px;margin:16px 0 20px;border-radius:0;background:var(--h-s3)}
+html body .ab-tab{
+  flex:1;padding:9px 12px;border:0;border-radius:0;
+  font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--h-t2);background:none;
+  transition:color .25s,background .25s;
+}
+html body .ab-tab:hover{color:#fff}
+html body .ab-tab.on{color:#000;background:var(--h-or)}
+html body .ab-champ{
+  margin-bottom:10px;padding:12px 14px;border:1px solid var(--h-l2);border-radius:0;background:#000;
+  font-family:var(--h-ui);font-size:15px;color:#fff;transition:border-color .25s,box-shadow .25s;
+}
+html body .ab-champ:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html:root body .ab-principal{display:flex;width:100%;margin-top:6px}
+html:root body .ab-google{display:flex;width:100%}
+html body .ab-ou{margin:14px 0;font-family:var(--h-ui);font-size:12px;letter-spacing:.08em;color:var(--h-t4)}
+html body .ab-msg{font-family:var(--h-ui);font-size:13.5px}
+html body .ab-oubli{
+  width:fit-content;margin:14px auto 0;padding:6px 10px;border-radius:0;
+  font-family:var(--h-ui);font-style:normal;font-size:13.5px;color:var(--h-t3);transition:color .25s,background .25s;
+}
+html body .ab-oubli:hover{color:var(--h-or);background:var(--h-voile)}
+
+/* LA NOTE : une carte, l'écriture dans un champ sombre, les actions en
+   boutons pleins */
+html body .note-boite{
+  max-width:640px;padding:30px 30px 24px;clip-path:none;
+  background:var(--h-s1);border-radius:0;box-shadow:var(--h-ombre);
+  animation:hMonte .38s var(--h-doux) both;
+}
+html body .nb-titre{margin-bottom:14px;font-family:var(--h-titre);font-weight:500;font-size:29px;line-height:1.2;color:#fff}
+html body .nb-refs{gap:6px}
+html body .nb-refs .sb-chip{padding:0 14px;cursor:default}
+html body .nb-zone{
+  min-height:280px;padding:14px 16px;border:1px solid var(--h-l2);border-radius:0;background:#000;
+  transition:border-color .25s,box-shadow .25s;
+}
+html body .nb-zone:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body .nb-zone::placeholder{color:var(--h-t4)}
+html body .nb-cat-ligne{margin:18px 0 4px;padding-top:16px;border-top:1px solid var(--h-l1)}
+html body .nb-cat-lab{font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--h-t2)}
+html body .note-depl{
+  padding:9px 34px 9px 14px;border:1px solid var(--h-l2);border-radius:0;background:#000;
+  font-family:var(--h-ui);font-size:14px;color:#fff;transition:border-color .25s,box-shadow .25s;
+}
+html body .note-depl:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body .note-sel::after{right:13px;color:var(--h-or)}
+html body .nb-actes{gap:10px;margin-top:18px}
+html body .nb-btn,html body .nb-btn.principal{
+  display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:0;
+  font-family:var(--h-ui);font-size:14px;font-weight:600;letter-spacing:.01em;text-transform:none;
+  background:var(--h-or);color:#000;transition:background .25s,box-shadow .3s,transform .2s;
+}
+html body .nb-btn:is(:hover,:focus-visible),html body .nb-btn.principal:is(:hover,:focus-visible){
+  color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);
+  box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent);
+}
+html body .nb-btn:active{transform:scale(.98)}
+html body .nb-suppr{margin-left:auto}
+@media(max-width:720px){
+  html body .note-boite{max-width:none;border-radius:0;box-shadow:none;padding:22px 18px calc(16px + env(safe-area-inset-bottom))}
+  html body .nb-zone{min-height:0}
+  html body .nb-actes{gap:8px}
+  html body .nb-btn{flex:1 1 auto;padding:0 14px}
+  html body .nb-suppr{margin-left:0}
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   8. LE CHARGEMENT
+   ════════════════════════════════════════════════════════════════════ */
+html body .chargement{font-family:var(--h-ui);font-style:normal;font-size:13.5px;letter-spacing:.02em;color:var(--h-t4)}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   9. LE MODE PANNEAU
+   Dans le tiroir des autres pages (640 px au plus), sans barre ni pied :
+   des marges plus serrées, des titres un cran plus petits, une capsule de
+   sélection posée au ras du bas du tiroir.
+   ════════════════════════════════════════════════════════════════════ */
+html.panneau body .wrap{padding:0 22px 40px}
+html.panneau body .hero{padding:40px 0 2px}
+html.panneau body .hero h1.titre{font-size:40px}
+html.panneau body .bib-tete{margin-top:28px}
+html.panneau body .testament{margin-top:56px}
+html.panneau body .groupe-nom{font-size:25px;margin:32px 0 16px}
+html.panneau body .livre-sous{margin-top:40px}
+html.panneau body h2.livre-titre{font-size:42px}
+html.panneau body .lecture-col{padding:36px 0 32px}
+html.panneau body h2.ch-titre{font-size:38px}
+html.panneau body .notes-tete{margin-top:40px}
+html.panneau body h2.notes-titre{font-size:42px}
+html.panneau body .notes-cat{top:0}
+html.panneau body #sel-barre{bottom:10px;width:calc(100% - 20px)}
+
+/* ── LES FILTRES DES NOTES, SUR TÉLÉPHONE, PASSENT À LA LIGNE ──
+   Dans la capsule, le dernier filtre se coupait au bord de l'écran : sur
+   téléphone, chaque filtre devient une pastille à part, et elles vont à la
+   ligne au lieu de défiler de côté. */
+@media(max-width:600px){
+  html body .nz-rail{flex-wrap:wrap;gap:6px;width:auto;max-width:100%;margin-left:0;padding:0;overflow:visible;background:none;border:0}
+  html body .nz-fil{background:var(--h-s1);box-shadow:inset 0 0 0 1px var(--h-l1)}
+}
+
+/* ── LES CHOIX EXCLUSIFS, COMME AVANT (Emmanuel, 10/10) ──
+   Classement et filtres des notes : plus de fond teinté ni de
+   cadre ; des mots côte à côte, celui qui est choisi en blanc, souligné
+   d'un trait crème. */
+html body :is(.nz-tri,.nz-rail){background:none;border:0;box-shadow:none;padding:0;gap:18px}
+html body :is(.nz-tri-o,.nz-fil){padding:0 2px;min-height:34px;background:none;box-shadow:inset 0 -1px 0 transparent;color:var(--h-t3)}
+html body :is(.nz-tri-o,.nz-fil):hover{background:none;color:#fff}
+html body :is(.nz-tri-o,.nz-fil).on{background:none;color:#fff;box-shadow:inset 0 -1px 0 var(--h-or)}
+@media(max-width:600px){
+  html body .nz-rail{gap:6px 18px}
+  html body .nz-fil{background:none;box-shadow:inset 0 -1px 0 transparent}
+  html body .nz-fil.on{box-shadow:inset 0 -1px 0 var(--h-or)}
+}
+
+
+/* le ruban : l'appui long ouvre son petit menu, sans le menu du téléphone */
+html body .signet-btn{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+
+/* ── MES SIGNETS, À LA MANIÈRE DE MÉMORISER (Emmanuel, 10/10) ──
+   Les onglets des traductions comme ceux de Mémoriser (Versets, Passages,
+   Fiches), l'intitulé en petites capitales crème, une section par livre
+   dans un cadre, et ses signets en rangées : ruban, référence en
+   Cormorant, date, ▷ et ✕. */
+html body .sgm{max-width:720px;margin:0 auto}
+html body .sgm-modes{display:flex;gap:28px;margin:0 0 40px;border-bottom:1px solid var(--h-l1)}
+html body .sgm-mode{
+  position:relative;padding:10px 2px;cursor:pointer;
+  font-family:var(--h-ui);font-size:14px;font-weight:500;letter-spacing:.01em;color:var(--h-t3);
+  box-shadow:inset 0 -1px 0 transparent;transition:color .25s,box-shadow .25s;
+}
+html body .sgm-mode:hover{color:#fff}
+html body .sgm-mode.on{color:#fff;box-shadow:inset 0 -1px 0 var(--h-or);cursor:default}
+html body .sgm-tete{display:flex;align-items:center;justify-content:space-between;margin:0 0 16px;padding:0 4px}
+html body .sgm-lbl{font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-or)}
+html body .sgm-sec{margin:0 0 16px;border:1px solid var(--h-l1);background:var(--h-s1);transition:border-color .3s}
+html body .sgm-sec:hover{border-color:var(--h-l2)}
+html body .sgm-sec-tete{display:flex;align-items:center;gap:10px;min-height:56px;padding:10px 12px 10px 20px}
+html body .sgm-sec-nom{font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-or)}
+html body .sgm-n{
+  display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:22px;padding:0 7px;background:var(--h-s3);
+  font-family:var(--h-ui);font-size:11.5px;font-weight:600;color:var(--h-t3);font-variant-numeric:tabular-nums;
+}
+html body .sgm-row{
+  display:flex;align-items:center;gap:14px;min-height:64px;padding:12px 12px 12px 20px;cursor:pointer;
+  border-top:1px solid var(--h-l1);transition:background .2s;
+}
+html body .sgm-row:hover{background:var(--h-s2)}
+html body .sgm-ruban{display:inline-flex;color:var(--h-or)}
+html body .sgm-ruban svg{width:13px;height:17px;fill:currentColor;stroke:none}
+html body .sgm-ref{flex:1;min-width:0;font-family:var(--h-titre);font-size:21px;font-weight:500;line-height:1.25;color:#fff}
+html body .sgm-date{font-family:var(--h-ui);font-size:12.5px;color:var(--h-t3);white-space:nowrap}
+html body :is(.sgm-go,.sgm-x){display:inline-flex;align-items:center;justify-content:center;flex:none;width:34px;height:34px;color:var(--h-t3);transition:color .2s,background .2s}
+html body .sgm-go{font-size:12px}
+html body .sgm-x{font-size:13px;cursor:pointer}
+html body .sgm-row:hover .sgm-go{color:var(--h-or)}
+html body .sgm-x:hover{color:#fff;background:var(--h-s3)}
+html body .sgm-vide{margin:0;padding:22px 24px;border:1px dashed var(--h-l2);text-align:center;font-size:17px}
+@media(max-width:600px){
+  html body .sgm-modes{margin-bottom:28px}
+  html body .sgm-row{gap:10px;padding:10px 6px 10px 14px}
+  html body .sgm-go{display:none}
+  html body .sgm-date{font-size:11.5px}
+  html body .sgm-sec-tete{padding-left:14px}
+}
+
+/* le menu du ruban : un cadre aux coins arrondis (Emmanuel, 10/10) */
+html body #menu-flot.mf-signet{clip-path:none;border-radius:14px;min-width:0;border:1px solid var(--filet-f);box-shadow:0 20px 46px rgba(0,0,0,.62)}
+/* la pointe qui le relie au ruban */
+html body #menu-flot.mf-signet::before{
+  content:'';position:absolute;top:-6px;left:var(--pointe,50%);width:10px;height:10px;
+  background:#0d0d0d;border-left:1px solid var(--filet-f);border-top:1px solid var(--filet-f);
+  transform:translateX(-50%) rotate(45deg);
+}
+html body #menu-flot.mf-signet.mf-dessus::before{top:auto;bottom:-6px;transform:translateX(-50%) rotate(225deg)}
+html body #menu-flot.mf-signet .mf-act{padding-left:20px;padding-right:20px}
+
+/* ── RETIRER UN SURLIGNAGE : UNE CROIX ROUGE (Emmanuel, 10/10) ──
+   Plus de bouton « Retirer » : une simple croix, d'un rouge sourd, qui
+   s'avive au survol. */
+html body .surl-item .surl-oter,html body .surl-item .surl-oter:hover,html body .surl-item .surl-oter:active{
+  top:12px;right:12px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;min-height:0;padding:0;
+  background:none;box-shadow:none;font-family:var(--h-ui);font-size:15px;font-weight:400;letter-spacing:0;text-transform:none;
+  color:#c75d52;
+}
+html body .surl-item .surl-oter:hover{color:#e07a6e}
+html body .surl-item{padding-right:56px}
+
+/* ── MES NOTES, À LA MANIÈRE DE MÉMORISER (Emmanuel, 10/10) ──
+   Les onglets Notes et Surlignages comme ceux de Mémoriser ; l'intitulé
+   en petites capitales crème avec les deux actions à sa droite ; la
+   recherche et le classement dessous ; une section encadrée par catégorie
+   (ou par livre) ; une rangée par note : la référence, la date, le ⋯, et
+   le début du texte sur une ligne. Les surlignages prennent les mêmes
+   sections, une par couleur. */
+html body .nzm-modes{display:flex;gap:28px;margin:0 0 40px;border-bottom:1px solid var(--h-l1)}
+html body .nzm-mode{
+  position:relative;padding:10px 2px;cursor:pointer;
+  font-family:var(--h-ui);font-size:14px;font-weight:500;letter-spacing:.01em;color:var(--h-t3);
+  box-shadow:inset 0 -1px 0 transparent;transition:color .25s,box-shadow .25s;
+}
+html body .nzm-mode:hover{color:#fff}
+html body .nzm-mode.on{color:#fff;box-shadow:inset 0 -1px 0 var(--h-or);cursor:default}
+html body .nzm-tete{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 16px;padding:0 4px}
+html body .nzm-lbl{font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-or)}
+html body .nzm-acts{display:flex;gap:8px;flex-wrap:wrap}
+html:root body .nzm-acts .notes-btn{
+  display:inline-flex;align-items:center;min-height:34px;padding:7px 15px;margin:0;border:0;
+  background:var(--h-or);color:#000;font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.01em;text-transform:none;white-space:nowrap;
+}
+html:root body .nzm-acts .notes-btn::before{content:none}
+html:root body .nzm-acts .notes-btn:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000}
+html body .nzm-outils{display:flex;align-items:center;gap:18px;margin:0 0 24px}
+html body .nzm-outils .notes-rech{flex:1;min-width:0;margin:0}
+html body .nzm-outils .nz-tri{margin:0;flex:none}
+
+html body .nz-liste{margin-top:0}
+html body .nzm-sec,html body #surl-zone .surl-groupe{margin:0 0 16px;border:1px solid var(--h-l1);background:var(--h-s1);transition:border-color .3s}
+html body .nzm-sec:hover,html body #surl-zone .surl-groupe:hover{border-color:var(--h-l2)}
+html body .nzm-sec>.notes-cat,html body #surl-zone .surl-scat{
+  display:flex;align-items:center;gap:10px;min-height:56px;margin:0;padding:10px 12px 10px 20px;border:0;box-shadow:none;
+}
+html body .nzm-sec .notes-cat-nom,html body .nzm-sec .notes-scat-nom,html body #surl-zone .surl-scat-nom{
+  font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-or)
+}
+html body .nzm-sec .notes-cat-n,html body #surl-zone .surl-scat-n{
+  display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:22px;padding:0 7px;background:var(--h-s3);
+  font-family:var(--h-ui);font-size:11.5px;font-weight:600;color:var(--h-t3);font-variant-numeric:tabular-nums;
+}
+html body .nzm-sec>.notes-cat .nt-menu{margin-left:auto}
+html body .nzm-sec .notes-scat{display:flex;align-items:center;gap:10px;margin:0;padding:12px 12px 8px 32px;border-top:1px solid var(--h-l1)}
+html body .nzm-sec .notes-scat .nt-menu{margin-left:auto}
+html body .nzm-sec .notes-sgroupe{margin:0;padding:0;border:0}
+
+html body .nzm-row,html body .nzm-row:hover{
+  display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;column-gap:12px;row-gap:2px;
+  min-height:64px;margin:0;padding:12px 8px 12px 20px;border:0;border-top:1px solid var(--h-l1);box-shadow:none;cursor:pointer;
+  background:none;transition:background .2s;
+}
+html body .nzm-row:hover{background:var(--h-s2)}
+html body .nzm-sec .notes-sgroupe .nzm-row{padding-left:32px}
+html body .nzm-ref{font-family:var(--h-titre);font-size:20px;font-weight:500;line-height:1.2;color:#fff;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html body .nzm-date{font-family:var(--h-ui);font-size:12.5px;color:var(--h-t3);white-space:nowrap}
+html body .nzm-row .nt-menu{position:static;grid-column:3;grid-row:1}
+html body .nzm-txt{grid-column:1/-1;font-family:var(--h-texte);font-size:16px;line-height:1.45;color:var(--h-t2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-right:44px}
+
+/* les surlignages : l'intitulé de la zone est déjà en tête ; chaque
+   couleur est une section, ses versets des rangées */
+html body #surl-zone>.notes-cat{display:none}
+html body #surl-zone .surl-item{margin:0;border:0;border-top:1px solid var(--h-l1);background:none;box-shadow:none;padding:12px 56px 12px 20px}
+html body #surl-zone .surl-item::before{content:none}
+html body #surl-zone .surl-item:hover{background:var(--h-s2)}
+html body #surl-zone .surl-tete{display:flex;align-items:center;gap:10px}
+html body #surl-zone .surl-item .surl-ref{font-family:var(--h-titre);font-size:20px;font-weight:500;letter-spacing:0;color:#fff}
+html body #surl-zone .surl-txt{margin-top:2px;font-family:var(--h-texte);font-size:16px;line-height:1.45;color:var(--h-t2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+@media(max-width:600px){
+  html body .nzm-modes{margin-bottom:28px}
+  html body .nzm-outils{flex-direction:column;align-items:stretch;gap:12px}
+  html body .nzm-row,html body .nzm-row:hover{padding-left:14px}
+  html body .nzm-date{font-size:11.5px}
+  html body .nzm-txt{padding-right:0}
+}
+/* une seule colonne pour toute la page des notes, comme Mémoriser */
+html body :is(.nzm-modes,.nzm-tete,.nzm-outils,.nz-liste,#surl-zone){box-sizing:border-box;width:100%;max-width:720px;margin-left:auto;margin-right:auto}
+html body .nzm-modes{margin-top:56px}
+@media(max-width:600px){html body .nzm-modes{margin-top:32px}}
+
+/* ── LA FICHE D'UNE NOTE, RÉIMAGINÉE (Emmanuel, 10/10) ──
+   Une page plutôt qu'une boîte : en tête, « Nouvelle note » ou « Note »
+   en petites capitales crème, la catégorie à droite ; la référence du
+   passage en grand Cormorant ; le texte du passage cité en italique, un
+   filet crème à sa gauche ; puis la page où l'on écrit, sans cadre, posée
+   sur un filet ; en bas, « Supprimer » en rouge discret à gauche,
+   « Annuler » et « Enregistrer » à droite. Sur téléphone, la fiche prend
+   tout l'écran. */
+html body .note-boite.nb2{
+  max-width:640px;padding:30px 34px 24px;border:1px solid var(--h-l2);background:#000;clip-path:none;
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.9);
+}
+html body .nb2-tete{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+html body .nb2 .nb-titre{margin:0;font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-or)}
+html body .nb2-cat{display:flex;align-items:center;gap:10px}
+html body .nb2-cat .nb-cat-lab{font-family:var(--h-ui);font-size:12.5px;color:var(--h-t3)}
+html body .nb2-cat .note-sel select{min-height:32px;padding:4px 26px 4px 10px;border:1px solid var(--h-l2);background-color:#000;font-family:var(--h-ui);font-size:13px;color:#fff}
+html body .nb2 .nb-refs{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin:0}
+html body .nb2-ref{font-family:var(--h-titre);font-size:30px;font-weight:500;line-height:1.15;color:#fff}
+html body .nb2-ref.nb2-sans{color:var(--h-t3);font-style:italic}
+html body .nb2-sep{font-family:var(--h-titre);font-size:24px;color:var(--h-t4)}
+html body .nb2-verset{
+  margin:14px 0 0;padding:2px 0 2px 16px;border-left:1px solid var(--h-or);
+  font-family:var(--h-texte);font-style:italic;font-size:17px;line-height:1.55;color:var(--h-t2);
+  max-height:7.8em;overflow:auto;
+}
+html body .nb2 .nb-zone,html body .nb2 .nb-zone:focus{
+  display:block;width:100%;min-height:200px;margin:22px 0 0;padding:18px 0 0;resize:vertical;
+  border:0;border-top:1px solid var(--h-l1);background:none;box-shadow:none;outline:none;
+  font-family:var(--h-texte);font-size:19px;line-height:1.6;color:#fff;
+}
+html body .nb2 .nb-zone::placeholder{color:var(--h-t4);font-style:italic}
+html body .nb2 .nb-actes{display:flex;align-items:center;gap:22px;margin-top:20px;padding-top:16px;border-top:1px solid var(--h-l1)}
+html body .nb2 .nb-btn:not(.principal),html body .nb2 .nb-btn:not(.principal):is(:hover,:focus-visible){
+  min-height:0;padding:0;background:none;border:0;box-shadow:none;transform:none;
+  font-family:var(--h-ui);font-size:14px;font-weight:500;color:var(--h-t2);
+}
+html body .nb2 .nb-btn:not(.principal):hover{color:#fff}
+html body .nb2 .nb-suppr,html body .nb2 .nb-suppr:is(:hover,:focus-visible){margin-right:auto;margin-left:0;color:#c75d52}
+html body .nb2 .nb-suppr:hover{color:#e07a6e}
+html body .nb2 .nb-btn.principal{margin-left:0}
+html body .nb2 .nb-actes:not(:has(.nb-suppr:not([style*="none"]))) #nb-annuler{margin-left:auto}
+@media(max-width:720px){
+  html body .note-boite.nb2{border:0;padding:20px 18px calc(16px + env(safe-area-inset-bottom))}
+  html body .nb2-tete{margin-bottom:14px}
+  html body .nb2-ref{font-size:26px}
+  html body .nb2 .nb-zone{flex:1;min-height:0;resize:none}
+  html body .nb2 .nb-actes{gap:18px}
+  html body .nb2 .nb-btn.principal{flex:0 0 auto;padding:0 18px}
+}
+html body .nb2 .nb-btn{flex:none}
+html body .nb2 .nb-btn.nb-suppr,html body .nb2 .nb-btn.nb-suppr:focus-visible{color:#c75d52}
+html body .nb2 .nb-btn.nb-suppr:hover{color:#e07a6e}
+html body .nb2 .nb-zone,html body .nb2 .nb-zone:focus{resize:none}
+/* la fiche sans boutons (Emmanuel, 10/10) : une croix rouge pour
+   supprimer, « Enregistrer » en simple mot crème, sans cadre */
+html body .nb2 .nb-btn.nb-suppr,html body .nb2 .nb-btn.nb-suppr:is(:hover,:focus-visible){font-size:16px;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:flex-start}
+html body .nb2 .nb-btn.principal,html body .nb2 .nb-btn.principal:is(:hover,:focus-visible){
+  min-height:0;padding:0;background:none;border:0;box-shadow:none;transform:none;
+  font-family:var(--h-ui);font-size:14px;font-weight:600;color:var(--h-or);
+}
+html body .nb2 .nb-btn.principal:hover{color:#fff}
+/* un mince trait vertical entre « Annuler » et « Enregistrer » */
+html body .nb2 .nb-btn.principal{position:relative;padding-left:22px}
+html body .nb2 .nb-btn.principal::before{content:'';position:absolute;left:0;top:50%;width:1px;height:14px;transform:translateY(-50%);background:var(--h-l3)}
+
+/* ── LA TRADUCTION NON CHOISIE, ÉTEINTE (Emmanuel, 10/10) ──
+   Seule la traduction en cours reste allumée en crème ; l'autre se tient
+   dans l'ombre et ne se rallume qu'au survol. */
+html body .trad-o:not(.on){color:rgba(255,255,255,.28)}
+html body .trad-o:not(.on):hover{color:var(--h-t2)}
+
+/* ── LE POINT ENTRE LES DEUX TRADUCTIONS (Emmanuel, 10/10) ──
+   Il était là mais presque noir : on le rend visible, en blanc doux. */
+html body .trad-sep{color:var(--h-t2);font-weight:700;letter-spacing:0}

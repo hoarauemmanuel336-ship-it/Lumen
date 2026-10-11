@@ -584,7 +584,7 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
       </div>
       <div class="acts-outils">
       <button class="act" id="b-organiser">Organiser</button>
-      <button class="act" id="b-choisir">Supprimer</button>
+      <button class="act" id="b-choisir">Choisir</button>
       <button class="act" id="b-corbeille">Corbeille</button>
       </div>
     </div>
@@ -593,6 +593,8 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
     <div class="acts" id="acts-choix" style="display:none">
       <span class="compte-choix" id="compte-choix"></span>
       <button class="act" id="b-tout">Tout choisir</button>
+      <button class="act" id="b-telech">Télécharger</button>
+      <button class="act" id="b-deplacer">Déplacer</button>
       <button class="act danger" id="b-jeter">Mettre à la corbeille</button>
       <button class="act" id="b-choix-fin">Terminer</button>
     </div>
@@ -1983,7 +1985,7 @@ function basculeOrganise(on){
   if(S.organise&&S.choix)basculeChoisir(false);
   document.body.classList.toggle('organise',S.organise);
   const b=$('b-organiser'); if(b){b.textContent=S.organise?'Terminer':'Organiser';b.classList.toggle('majeur',S.organise);}
-  const m=$('mot-liste'); if(m&&S.auteur)m.textContent=S.organise?'Tirez une carte ou un rayon par sa poignée ⠿ et posez-le où vous voulez. Posé sur un rayon, il y entre ; posé sur le fil d’Ariane, il remonte.':'';
+  const m=$('mot-liste'); if(m&&S.auteur)m.textContent=''; /* pas de mode d'emploi à l'écran (Emmanuel, 10/10) */
   rendLister();
 }
 /* ── LE GLISSER-DÉPOSER LUI-MÊME ──
@@ -2100,9 +2102,9 @@ function basculeChoisir(on){
   if(S.choix&&S.organise)basculeOrganise(false);
   if(!S.choix)S.pris.clear();
   document.body.classList.toggle('choisir',S.choix);
-  const b=$('b-choisir'); if(b){b.textContent=S.choix?'Terminer':'Supprimer';b.classList.toggle('majeur',S.choix);}
+  const b=$('b-choisir'); if(b){b.textContent=S.choix?'Terminer':'Choisir';b.classList.toggle('majeur',S.choix);}
   const m=$('mot-liste');
-  if(m&&S.auteur)m.textContent=S.choix?'Touchez les cartes et les rayons à supprimer. Le chevron › d’un rayon descend dedans.':'';
+  if(m&&S.auteur)m.textContent=''; /* pas de mode d'emploi à l'écran (Emmanuel, 10/10) */
   majChoix(); rendLister();
 }
 function majChoix(){
@@ -2111,7 +2113,53 @@ function majChoix(){
   if(c)c.style.display=(S.choix&&S.auteur)?'':'none';
   const n=S.pris.size, t=$('compte-choix');
   if(t)t.textContent=n?(n+(n>1?' choisis':' choisi')):'Rien de choisi';
-  const j=$('b-jeter'); if(j){j.style.opacity=n?'1':'.4';j.disabled=!n;}
+  ['b-jeter','b-telech','b-deplacer'].forEach(k=>{const j=$(k); if(j){j.style.opacity=n?'1':'.4';j.disabled=!n;}});
+}
+/* ── TÉLÉCHARGER ET DÉPLACER PLUSIEURS (Emmanuel, 10/10) ──
+   Le mode Choisir ne sert plus seulement à jeter : ce qui est coché se
+   télécharge d'un coup (les ressources cochées, et celles rangées dans les
+   domaines cochés), ou se range d'un coup dans un autre domaine. */
+function prisDecoupe(){
+  const pris=[...S.pris];
+  const rids=pris.filter(k=>k.slice(0,2)==='r:').map(k=>k.slice(2)).filter(rubValide);
+  const res=pris.filter(k=>k.slice(0,2)==='c:').map(k=>k.slice(2)).map(id=>S.liste.find(x=>x.id===id)).filter(Boolean);
+  return {rids,res};
+}
+async function telechargeChoix(){
+  if(!S.pris.size)return;
+  const {rids,res}=prisDecoupe();
+  const vus=new Set(res.map(a=>a.id)), lot=res.slice();
+  rids.forEach(id=>descendance(id).forEach(d=>S.liste.filter(a=>a.rub===d&&!a.suppr).forEach(a=>{if(!vus.has(a.id)){vus.add(a.id);lot.push(a);}})));
+  const ok=lot.filter(telechargeable), sans=lot.length-ok.length;
+  if(!ok.length){lvInfo(lot.length?'Rien à télécharger : les liens ne se téléchargent pas.':'Ces domaines ne contiennent aucune ressource.');return;}
+  if(ok.length>1&&!await lvConfirm('Télécharger '+ok.length+' fichiers ?'+(sans?' ('+sans+(sans>1?' liens ne se téléchargent pas)':' lien ne se télécharge pas)'):'')))return;
+  /* l'un après l'autre, avec un court répit : les navigateurs refusent
+     plusieurs téléchargements lancés au même instant */
+  for(const a of ok){ await telechargeRessource(a,false); await new Promise(r=>setTimeout(r,450)); }
+}
+async function deplaceChoix(){
+  if(!S.pris.size)return;
+  const {rids,res}=prisDecoupe();
+  if(!rids.length&&!res.length){basculeChoisir(false);return;}
+  /* un domaine ne descend ni en lui-même ni dans ses propres sections, ni
+     plus bas que la profondeur permise */
+  const interdits=[]; rids.forEach(id=>interdits.push(...descendance(id)));
+  const hMax=rids.reduce((m,id)=>Math.max(m,hauteur(id)),0);
+  const peut=cid=>!rids.length||niveau(cid)+hMax<=RUB_MAX;
+  const e=[{cle:'r:',nom:rids.length?'À la racine':'Sans domaine',fort:true}];
+  e.push(...entreesArbre(interdits,peut,ici()));
+  const n=rids.length+res.length;
+  const c=await lvChoix('Déplacer '+(n>1?('les '+n+' éléments choisis'):'l’élément choisi')+' dans…',e);
+  if(!c)return;
+  const cible=c.slice(2);
+  try{
+    const lot=db.batch(); let k=0;
+    res.forEach(a=>{ if((rubValide(a.rub)?a.rub:'')===cible)return; lot.set(acol().doc(a.id),{rub:cible,ordre:null},{merge:true}); a.rub=cible; a.ordre=null; k++; });
+    if(k)await lot.commit();
+    for(const a of res)if(a.publie)await rafraichitPublic(a);
+    rids.forEach(id=>rubDans(id,cible));
+  }catch(e2){console.warn('déplacement',e2);lvInfo('Le déplacement n’a pas pu être enregistré. Vérifiez la connexion, puis réessayez.');}
+  basculeChoisir(false);
 }
 function prend(cle,el){
   if(S.pris.has(cle)){S.pris.delete(cle);if(el)el.classList.remove('pris');}
@@ -2658,9 +2706,18 @@ function ouvrePlein(a){
   x.type='button'; x.className='res-plein-x'; x.textContent='\u2190  Les ressources';
   x.setAttribute('aria-label','Revenir aux ressources');
   x.onclick=retourRessources;
-  document.body.appendChild(f); document.body.appendChild(x);
+  /* Dans le même bouton que le retour, séparé par un mince trait, le livre
+     qui ouvre la Bible par-dessus la ressource (Emmanuel, 11/10). */
+  const bi=document.createElement('button');
+  bi.type='button'; bi.className='res-plein-x res-plein-bible';
+  bi.innerHTML='<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10.3 5.2 7.8 4.6 4 4.6v13.2c3.8 0 6.3.6 8 1.9 1.7-1.3 4.2-1.9 8-1.9V4.6c-3.8 0-6.3.6-8 1.9z"/><path d="M12 6.5v13.2"/></svg>';
+  bi.setAttribute('aria-label','Ouvrir la Bible');
+  bi.onclick=()=>{ if(window.LVBible&&typeof window.LVBible.bascule==='function')window.LVBible.bascule(); };
+  const g=document.createElement('div'); g.className='res-plein-acts';
+  g.appendChild(x); g.appendChild(bi);
+  document.body.appendChild(f); document.body.appendChild(g);
   document.body.classList.add('plein');
-  PLEIN={f:f,x:x};
+  PLEIN={f:f,x:g};
   poseCadre(f,a.code);
 }
 function fermePlein(){
@@ -2679,7 +2736,10 @@ function retourRessources(){
   try{vaVers(ici());}catch(_){}
   vue('liste');
 }
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&PLEIN)retourRessources(); });
+document.addEventListener('keydown',e=>{
+  /* Échap referme d'abord la Bible si elle est ouverte, sans quitter la ressource */
+  if(e.key==='Escape'&&PLEIN&&!document.querySelector('#bp-pan.on'))retourRessources();
+});
 function voit(a,publik){
   if(!a){S.vu='';vue('liste');return;}
   /* on retient la ressource ouverte : c'est elle que l'on rouvre si la page
@@ -2951,6 +3011,8 @@ $('b-choisir').onclick=()=>basculeChoisir();
 $('b-choix-fin').onclick=()=>basculeChoisir(false);
 $('b-tout').onclick=toutChoisir;
 $('b-jeter').onclick=jetteChoix;
+$('b-telech').onclick=telechargeChoix;
+$('b-deplacer').onclick=deplaceChoix;
 $('b-corbeille').onclick=()=>{
   if(location.hash!=='#corbeille'){try{history.pushState(null,'','#corbeille');}catch(_){}}
   vue('corbeille');

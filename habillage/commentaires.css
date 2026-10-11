@@ -1,0 +1,621 @@
+/* ════════════════════════════════════════════════════════════════════
+   LUMEN — HABILLAGE DES COMMENTAIRES BIBLIQUES (10/10)
+   ════════════════════════════════════════════════════════════════════
+   La page où Emmanuel écrit ses commentaires bibliques. Elle partage avec
+   Articles l'éditeur, les fenêtres et presque toutes les classes : elle en
+   reprend donc la tenue, pour que les deux pages sœurs se ressemblent
+   trait pour trait. Cette feuille se suffit à elle-même (le build la pose
+   seule dans Commentaires) :
+   · LA LISTE : un grand titre de page, les livres de la Bible en rangées
+     groupées dans un conteneur arrondi, chaque commentaire en carte de
+     lecture coiffée de sa référence ;
+   · L'ÉDITEUR : la barre d'outils en capsule collée en haut, la référence
+     commentée en pastille au-dessus du titre, les actions dans une barre
+     flottante en bas.
+   La taille et l'interligne du corps des commentaires ne bougent pas : le
+   texte serré est voulu (Emmanuel).
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. LA COLONNE ET L'APPARITION DES VUES ──
+   La colonne garde sa largeur de lecture ; chaque vue entre d'un léger
+   fondu montant quand on passe de la liste à un article. */
+html body main.wrap{padding-top:56px;padding-bottom:72px}
+html body :is(#ecran-liste,#ecran-edit){animation:hMonte .42s var(--h-doux) both}
+@media(max-width:720px){
+  html body main.wrap{padding:36px 16px 40px}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   2. L'EN-TÊTE DE PAGE
+   Un grand titre en Cormorant, à la place des petites capitales espacées,
+   souligné d'un court trait de lumière qui s'éteint vers la droite.
+   ════════════════════════════════════════════════════════════════════ */
+html body .tete{
+  display:block;padding:0 0 22px;margin:0 0 30px;border:0;position:relative;
+}
+html body .tete::after{
+  content:'';position:absolute;left:0;bottom:0;width:132px;height:1px;
+  background:linear-gradient(90deg,var(--h-or),color-mix(in srgb,var(--h-or) 0%,transparent));
+  opacity:.7;
+}
+html body .tete h1{
+  font-family:var(--h-titre);font-weight:400;font-size:54px;line-height:1.02;
+  letter-spacing:-.005em;text-transform:none;color:#fff;
+}
+html body .resume{
+  font-family:var(--h-texte);font-size:17.5px;line-height:1.55;color:var(--h-t2);margin:0 0 26px;max-width:620px;
+}
+html body .resume:empty{display:none}
+@media(max-width:720px){
+  html body .tete{padding-bottom:18px;margin-bottom:24px}
+  html body .tete h1{font-size:38px;letter-spacing:0}
+  html body .resume{font-size:16.5px}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   3. LES LIVRES (vue de l'auteur)
+   Les livres de la Bible sont des rangées groupées dans un conteneur
+   arrondi, séparées par des filets fins ; une rangée s'allume au survol.
+   Un livre déplié ouvre sous sa rangée ses commentaires, en cartes noires
+   posées dans le conteneur. Les règles des sous-niveaux restent, au cas
+   où la page en recevrait.
+   ════════════════════════════════════════════════════════════════════ */
+html body #liste:has(> .rub){
+  background:var(--h-s1);border:1px solid var(--h-l1);border-radius:0;overflow:clip;
+}
+html body #liste > .rub + .rub{border-top:1px solid var(--h-l1)}
+html body #liste > .art-ligne + .rub,html body #liste > .rub + .art-ligne{margin-top:10px}
+
+html body .rub-tete,
+html body .rub-1:first-child>.rub-tete{
+  display:flex;align-items:center;gap:6px;min-height:62px;padding:10px 10px 10px 22px;
+  cursor:pointer;transition:background .25s;
+}
+html body .rub-tete:hover{background:var(--h-s2)}
+html body .rub.ouvert>.rub-tete{background:color-mix(in srgb,var(--h-s2) 60%,transparent)}
+html body .rub-tete:focus-visible{outline-offset:-3px}
+html body .rub-nom,
+html body :is(.rub-1,.rub-2,.rub-3)>.rub-tete .rub-nom{
+  flex:1;min-width:0;font-family:var(--h-titre);font-weight:500;font-size:23px;line-height:1.2;
+  letter-spacing:0;text-transform:none;color:#fff;transition:color .25s;
+}
+html body .rub-tete:hover .rub-nom{color:#fff}
+/* le compteur : un petit jeton arrondi, en police d'interface */
+html body .rub-n{
+  flex:none;display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:22px;padding:0 8px;
+  border-radius:0;background:var(--h-s3);
+  font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:0;font-variant-numeric:tabular-nums;
+  color:var(--h-t2);margin-right:4px;
+}
+/* le ⋯ et le chevron : deux boutons ronds de même taille */
+html body .rub-menu{
+  flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;padding:0;
+  font-size:17px;letter-spacing:.06em;line-height:1;
+}
+html body .rub-menu::before{inset:-4px}
+html body .rub-chev{
+  flex:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;
+  font-family:var(--h-ui);font-size:20px;line-height:1;color:var(--h-t3);
+  transition:transform .3s var(--h-doux),color .25s;
+}
+html body .rub.ouvert>.rub-tete .rub-chev{transform:rotate(90deg);color:var(--h-or)}
+html body .rub.ouvert>.rub-tete .rub-n{background:var(--h-voile-fort);color:var(--h-or)}
+
+/* le corps d'une section dépliée */
+html body .rub-corps{padding:2px 12px 14px 12px}
+html body .rub.ouvert>.rub-corps{animation:hMonte .32s var(--h-doux) both}
+/* les sous-sections : un conteneur dans le conteneur */
+html body .rub-corps>.rub{
+  margin:0 0 10px;background:var(--h-s2);border:1px solid var(--h-l1);border-radius:0;overflow:clip;
+}
+html body .rub-corps>.rub>.rub-tete{min-height:54px;padding:8px 8px 8px 18px}
+html body .rub-corps>.rub>.rub-tete:hover{background:var(--h-s3)}
+html body .rub-2>.rub-tete .rub-nom{font-size:20px}
+html body .rub-3>.rub-tete .rub-nom{font-size:18.5px;color:var(--h-t1)}
+html body .rub-corps>.rub>.rub-corps{padding:0 10px 10px}
+html body .rub-corps .rub-corps>.rub{background:var(--h-s3)}
+html body .rub-vide{
+  font-family:var(--h-texte);font-style:italic;font-size:16.5px;color:var(--h-t3);padding:6px 10px 10px;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   4. LES FICHES DE COMMENTAIRES
+   Chaque commentaire est une carte de lecture : la référence commentée en
+   sur-titre, le titre en Cormorant, l'extrait en Garamond, le pied (état et date) en police
+   d'interface. Au survol, le contour s'allume d'une lueur douce, sans
+   rien déplacer. Posées dans le conteneur des rubriques, les cartes sont
+   noires ; seules sur la page, elles prennent la surface des cartes.
+   ════════════════════════════════════════════════════════════════════ */
+html body .art-ligne{
+  display:flex;align-items:center;gap:0;margin:0 0 10px;
+  background:var(--h-s1);border:1px solid var(--h-l1);border-radius:0;
+  box-shadow:none;transition:border-color .25s,box-shadow .3s,background .25s;
+}
+html body .rub-corps>.art-ligne{background:#000;border-radius:0}
+html body .rub-corps>.art-ligne:last-child{margin-bottom:0}
+html body .art-ligne:hover{background:var(--h-s1);border-color:var(--h-l3);box-shadow:var(--h-lueur)}
+html body .rub-corps>.art-ligne:hover{background:#000}
+html body .art-ligne:hover .art-titre{color:#fff;text-shadow:none}
+html body .art-ligne:hover .art-extrait{color:var(--h-t2)}
+html body .art-ligne .art-item,
+html body .art-ligne .art-item:hover{
+  flex:1;min-width:0;display:block;padding:20px 10px 18px 24px;
+  background:none;box-shadow:none;border-radius:0;text-align:left;
+}
+html body .art-ligne .art-item:last-child{padding-right:24px}
+html body .art-ligne .art-item:focus-visible{outline-offset:-2px}
+html body .art-titre{
+  font-family:var(--h-titre);font-weight:500;font-size:25px;line-height:1.2;letter-spacing:0;
+  color:#fff;text-wrap:pretty;
+}
+html body .art-vide-titre{color:var(--h-t3);font-style:italic}
+html body .art-extrait{
+  font-family:var(--h-texte);font-size:16.5px;line-height:1.5;color:rgba(255,255,255,.64);margin-top:7px;
+}
+html body .art-pied{
+  display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;margin-top:13px;
+  font-family:var(--h-ui);font-size:12.5px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t3);
+}
+/* l'état Publié ou Privé : en blanc, allumé (Emmanuel) ; une petite
+   lumière devant, pleine quand l'article est en ligne, cerclée sinon */
+html body .art-pied .art-etat,
+html body .art-pied .art-etat.publie{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:#fff;text-shadow:0 0 10px rgba(255,255,255,.65),0 0 20px rgba(255,255,255,.25);
+}
+html body .art-pied .art-etat::before{
+  content:'';width:6px;height:6px;border-radius:50%;flex:none;
+  box-shadow:inset 0 0 0 1.3px #fff,0 0 8px rgba(255,255,255,.55);
+}
+html body .art-pied .art-etat.publie::before{background:#fff;box-shadow:0 0 8px rgba(255,255,255,.85)}
+html body .art-pied .art-etat + span::before{
+  content:'';display:inline-block;width:3px;height:3px;border-radius:50%;margin:0 12px 0 0;vertical-align:middle;
+  background:var(--h-t4);
+}
+/* le ⋯ de chaque fiche : un bouton rond à droite de la carte */
+html body .art-ligne .art-menu{
+  flex:none;align-self:center;display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;margin:0 12px 0 0;padding:0;font-size:17px;letter-spacing:.06em;line-height:1;
+}
+html body .art-ligne .art-menu::before{inset:-4px}
+
+/* état vide : une carte en pointillés, le message en Garamond */
+html body .vide{
+  font-family:var(--h-texte);font-style:italic;font-size:18px;line-height:1.6;color:var(--h-t3);
+  padding:48px 24px;text-align:center;border:1px dashed var(--h-l2);border-radius:0;
+}
+
+/* ── LA LISTE DU VISITEUR ──
+   Les commentaires publiés sont groupés par livre : le nom du livre en
+   Cormorant, prolongé d'un filet, puis les cartes, qui mènent à la Bible. */
+html body #liste > .rub-nom{
+  display:flex;align-items:center;gap:16px;
+  margin:44px 0 16px!important;
+  font-family:var(--h-titre);font-weight:500;font-size:25px;line-height:1.2;letter-spacing:0;text-transform:none;
+  color:#fff;white-space:normal;overflow:visible;
+}
+html body #liste > .rub-nom:first-child{margin-top:4px!important}
+html body #liste > .rub-nom::after{content:'';flex:1;min-width:24px;height:1px;background:linear-gradient(90deg,var(--h-l2),transparent)}
+
+/* ── LES ACTIONS DE LA LISTE ── */
+html body #acts-liste{margin:36px 0 0}
+
+@media(max-width:720px){
+  html body .rub-tete,html body .rub-1:first-child>.rub-tete{min-height:58px;padding:8px 4px 8px 18px;gap:2px}
+  html body .rub-nom,html body :is(.rub-1,.rub-2,.rub-3)>.rub-tete .rub-nom{font-size:21px}
+  html body .rub-2>.rub-tete .rub-nom{font-size:19px}
+  html body .rub-3>.rub-tete .rub-nom{font-size:17.5px}
+  html body .rub-menu{width:44px;height:44px}
+  html body .rub-chev{width:30px}
+  html body .rub-corps{padding:0 8px 10px}
+  html body .rub-corps>.rub>.rub-tete{padding:6px 2px 6px 14px}
+  html body .rub-corps>.rub>.rub-corps{padding:0 6px 6px}
+  html body .art-ligne .art-item,html body .art-ligne .art-item:hover{padding:17px 4px 15px 18px}
+  html body .art-titre{font-size:22.5px;line-height:1.18}
+  html body .art-extrait{font-size:15.5px;margin-top:6px}
+  html body .art-pied{margin-top:11px;font-size:12px}
+  html body .art-ligne .art-menu{width:44px;height:44px;margin-right:4px}
+  html body #liste > .rub-nom{font-size:22px;margin:36px 0 12px!important}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   5. LE FILET DE LUMIÈRE
+   Sous le titre du commentaire, un trait de lumière ouvre le texte.
+   ════════════════════════════════════════════════════════════════════ */
+html body #ed-corps::before{
+  content:'';display:block;width:min(220px,50%);height:1px;margin:34px auto 44px;
+  background:linear-gradient(90deg,transparent,var(--h-or),transparent);opacity:.75;
+  box-shadow:0 0 14px color-mix(in srgb,var(--h-or) 55%,transparent);
+}
+@media(max-width:720px){
+  html body #ed-corps::before{margin:26px auto 32px}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   6. LES BLOCS DU TEXTE
+   Le corps, les citations et les versets gardent exactement leur taille
+   et leur interligne. Changent seulement : les intertitres, en Cormorant
+   sans capitales espacées ; la citation, marquée d'un filet de lumière ;
+   le verset, posé dans un encart arrondi teinté ; le séparateur, un trait
+   de lumière ; les images et les blocs interactifs, aux coins doux.
+   ════════════════════════════════════════════════════════════════════ */
+html body .b-h2 .zone{
+  font-family:var(--h-titre);font-weight:500;font-size:calc(31px*var(--lvz,1));line-height:1.15;
+  letter-spacing:-.003em;color:#fff;margin-top:22px;text-wrap:balance;
+}
+html body .b-h3 .zone{
+  font-family:var(--h-titre);font-weight:600;font-size:calc(22px*var(--lvz,1));line-height:1.2;
+  letter-spacing:0;text-transform:none;color:var(--h-or);margin-top:14px;
+}
+/* citation d'un auteur : le filet à gauche devient un trait de lumière */
+html body .b-cite .zone{
+  padding-left:22px;
+  box-shadow:inset 2px 0 0 color-mix(in srgb,var(--h-or) 48%,transparent);
+}
+/* verset cité : un encart arrondi, teinté de crème ; la référence à la
+   suite, à l'accent */
+html body .b-verset .v-ligne{
+  padding:17px 22px 18px;border-radius:0;
+  background:var(--h-voile);border:1px solid var(--h-l1);
+}
+html body .b-verset .v-ref{color:var(--h-or)}
+/* liens et références dans le texte : soulignés d'un trait fin */
+html body .zone a{color:var(--h-or);border-bottom:0;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--h-l3)}
+html body .zone .ref{color:var(--h-or);border-bottom:0;text-decoration:underline dotted;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:color-mix(in srgb,var(--h-or) 45%,transparent)}
+html body .zone :is(a,.ref):hover{text-decoration-color:var(--h-or)}
+/* séparateur : un trait de lumière qui s'éteint aux deux bouts */
+html body .b-sep{padding-top:22px;padding-bottom:22px}
+html body .trait-sep{
+  width:120px;height:1px;opacity:1;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--h-or) 70%,transparent),transparent);
+}
+/* image et bloc interactif */
+html body .b-image img{border-radius:0;background:var(--h-s1)}
+html body .b-image figcaption{font-family:var(--h-texte);color:var(--h-t3);margin-top:10px;text-align:center}
+html body .b-html iframe{border:1px solid var(--h-l1);border-radius:0;background:var(--h-s1)}
+html body .im-place{
+  min-height:128px;border-radius:0;box-shadow:none;border:1px dashed var(--h-l2);background:var(--h-s1);
+  font-family:var(--h-ui);font-size:14px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t2);
+  transition:color .25s,border-color .25s,background .25s;
+}
+html body .im-place:hover{color:var(--h-or);border-color:var(--h-l3);background:var(--h-s2)}
+html body .im-etat{font-family:var(--h-ui);font-size:12.5px;letter-spacing:.02em;text-transform:none;color:var(--h-t3)}
+
+/* ════════════════════════════════════════════════════════════════════
+   7. L'ÉDITEUR
+   La barre d'outils devient une capsule de verre collée sous la barre du
+   site ; ses outils sont des pastilles en police d'interface. Le titre
+   se tape en grand, comme il se lira.
+   ════════════════════════════════════════════════════════════════════ */
+html body .outils{
+  position:sticky;top:72px;z-index:30;
+  display:flex;align-items:center;flex-wrap:nowrap;gap:2px;
+  width:fit-content;max-width:100%;margin:0 auto 34px;padding:5px;
+  background:color-mix(in srgb,var(--h-s2) 94%,transparent);
+  -webkit-backdrop-filter:saturate(140%) blur(24px);backdrop-filter:saturate(140%) blur(24px);
+  border:1px solid var(--h-l2);border-radius:0;
+  box-shadow:0 16px 40px -16px #000,0 0 0 6px color-mix(in srgb,#000 55%,transparent);
+}
+html.barre-rangee body .outils{top:28px}
+html body .ou{
+  display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 15px;border-radius:0;
+  font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t2);
+  transition:color .2s,background .2s;white-space:nowrap;
+}
+html body .ou::before{content:none}
+html body .ou:hover{color:#fff;background:var(--h-s3)}
+html body .ou.on{color:var(--h-or);background:var(--h-voile-fort)}
+html body .ou-g{font-weight:700}
+html body .ou-i{font-style:italic;letter-spacing:.01em}
+html body .ou-sep{width:1px;height:18px;margin:0 6px;background:var(--h-l2)}
+html body .enr{
+  margin-left:4px;padding:0 12px 0 8px;font-family:var(--h-ui);font-size:12px;font-weight:500;
+  letter-spacing:.02em;text-transform:none;color:var(--h-t4);white-space:nowrap;
+}
+html body .enr:empty{display:none}
+html body .enr.vu{color:var(--h-t3)}
+
+/* le titre de l'article : la question, en très grand */
+html body .ed-titre{
+  font-family:var(--h-titre);font-weight:400;font-size:calc(52px*var(--lvz,1));line-height:1.12;
+  letter-spacing:-.008em;color:#fff;text-align:center;padding:6px 0 0;
+}
+html body .ed-titre::placeholder{color:var(--h-t4)}
+html body .ed-corps{padding-top:0}
+
+/* la poignée des blocs : un petit bouton rond dans la marge */
+html body .bl-poignee{
+  left:-44px;top:0;width:32px;height:32px;line-height:32px;border-radius:0;
+  font-size:16px;letter-spacing:.04em;transition:opacity .25s,background .2s;
+}
+html body .bl-poignee:hover{background:var(--h-s3)}
+html body .zone:empty::before{color:var(--h-t4)}
+
+/* les actions du bas : une barre flottante, collée au bas de l'écran
+   pendant qu'on écrit, qui se pose à la fin de l'article */
+html body #ecran-edit > .acts{
+  position:sticky;bottom:calc(18px + var(--lv-bas,0px));z-index:25;
+  width:fit-content;max-width:100%;margin:56px auto 0;padding:7px;gap:6px;flex-wrap:nowrap;
+  background:color-mix(in srgb,var(--h-s2) 94%,transparent);
+  -webkit-backdrop-filter:saturate(140%) blur(24px);backdrop-filter:saturate(140%) blur(24px);
+  border:1px solid var(--h-l2);border-radius:0;
+  box-shadow:0 20px 50px -14px #000,0 0 46px -20px color-mix(in srgb,var(--h-or) 45%,transparent);
+}
+html:root body #ecran-edit > .acts .act{min-height:40px;padding:9px 18px;font-size:13.5px;white-space:nowrap}
+
+@media(max-width:900px){
+  html body .bl-poignee{left:-4px;width:30px;height:30px;line-height:30px}
+}
+@media(max-width:720px){
+  html body .outils{top:66px;gap:0;padding:4px;margin-bottom:26px}
+  html body .ou{min-height:38px;padding:0 10px;font-size:13px}
+  html body .ou-sep{margin:0 2px;height:16px}
+  /* l'état d'enregistrement se pend sous la capsule, pour qu'elle tienne
+     sur une ligne */
+  html body .enr{position:absolute;top:calc(100% + 6px);right:14px;padding:0;margin:0;font-size:11.5px}
+  html body .ed-titre{font-size:calc(35px*var(--lvz,1));line-height:1.12}
+  /* sur téléphone, les actions se rangent dans un panneau à la fin de
+     l'article : le retour sur toute la largeur, les autres deux par deux */
+  html body #ecran-edit > .acts{
+    position:static;width:auto;display:flex;flex-wrap:wrap;gap:8px;margin-top:40px;padding:10px;
+    border-radius:0;background:var(--h-s1);border-color:var(--h-l1);
+    -webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;
+  }
+  html:root body #ecran-edit > .acts .act{flex:1 1 40%;min-height:46px;padding:10px 12px}
+  html:root body #ecran-edit > .acts .act:first-child{flex-basis:100%}
+  html body .b-verset .v-ligne{padding:14px 16px 15px}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   7 BIS. LA RÉFÉRENCE COMMENTÉE
+   Dans la liste, elle coiffe chaque carte en sur-titre, à l'accent. Dans
+   l'éditeur, elle devient une pastille en Garamond posée au-dessus du
+   titre : on la touche, le sélecteur biblique s'ouvre.
+   ════════════════════════════════════════════════════════════════════ */
+html body .com-ref{
+  font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--h-or);margin:0 0 8px;
+}
+html body .com-ref.vide{font-style:normal;letter-spacing:.02em;text-transform:none;font-size:12.5px;font-weight:500;color:var(--h-t3)}
+html body .ed-ref-ligne{padding:0 0 18px}
+html body .ed-ref{
+  display:inline-flex;align-items:center;min-height:42px;padding:7px 22px;border-radius:0;
+  background:var(--h-voile);border:1px solid var(--h-l2);
+  font-family:var(--h-titre);font-weight:600;font-size:20px;line-height:1.2;letter-spacing:.01em;text-transform:none;
+  color:var(--h-or);transition:border-color .25s,box-shadow .3s,background .25s,color .25s;
+}
+html body .ed-ref::before{inset:-4px}
+html body .ed-ref:hover{color:var(--h-or);border-color:var(--h-l3);background:var(--h-voile-fort);box-shadow:var(--h-lueur)}
+html body .ed-ref.vide{font-weight:400;font-style:italic;color:var(--h-t3);letter-spacing:0;text-transform:none}
+html body .ed-ref.vide:hover{color:#fff}
+html body .ed-ref-etat{font-family:var(--h-ui);font-size:13px;padding:0 0 12px;margin-top:-8px}
+@media(max-width:720px){
+  html body .ed-ref{font-size:18.5px;min-height:44px;padding:7px 18px}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   8. LES FENÊTRES
+   Confirmation, saisie, choix (menus ⋯, ranger dans une rubrique, type
+   de bloc), code : la carte flottante du site, un titre en Cormorant,
+   les entrées en rangées groupées, les boutons en pilules crème.
+   ════════════════════════════════════════════════════════════════════ */
+html body .overlay>.modal{padding:30px 28px 24px;max-width:440px;animation:hMonte .36s var(--h-doux) both}
+html body .overlay>.modal.modal-large{max-width:720px}
+html body .modal-titre{
+  font-family:var(--h-titre);font-weight:500;font-size:27px;line-height:1.15;letter-spacing:0;color:#fff;
+  margin:0 0 16px;padding-right:8px;text-wrap:balance;
+}
+html body .modal-txt{font-family:var(--h-texte);font-size:17px;line-height:1.55;color:var(--h-t2);margin-bottom:4px}
+html body .champ{
+  border-radius:0;background:#000;border:1px solid var(--h-l2);padding:12px 14px;margin-top:14px;
+  font-family:var(--h-ui);font-size:15px;line-height:1.35;color:#fff;transition:border-color .25s,box-shadow .25s;
+}
+html body .champ:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body .champ::placeholder{color:var(--h-t4)}
+html body textarea.champ.code{border-radius:0;font-size:13px;line-height:1.55;background:#000}
+html body .modal-btns{gap:10px;margin-top:24px;align-items:center}
+/* Annuler et Valider : des boutons pleins, comme tous les boutons du
+   site (Emmanuel) */
+html:root body .modal-btns :is(.m-annul,.m-ok){
+  display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 22px;border:0;
+  border-radius:0;background:var(--h-or);color:#000;
+  font-family:var(--h-ui);font-size:14px;font-weight:600;letter-spacing:.01em;text-transform:none;line-height:1.15;
+  transition:background .25s,box-shadow .3s,transform .2s;
+}
+html:root body .modal-btns :is(.m-annul,.m-ok):is(:hover,:focus-visible){
+  background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;
+  box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent);
+}
+html:root body .modal-btns :is(.m-annul,.m-ok):active{transform:scale(.98)}
+
+/* les entrées d'un choix : des rangées groupées */
+html body #choix-liste{
+  background:var(--h-s2);border:1px solid var(--h-l1);border-radius:0;overflow:hidden;
+}
+html body #choix-liste:empty{display:none}
+html body .choix{
+  min-height:50px;padding:12px 18px;box-shadow:none;
+  font-family:var(--h-ui);font-size:15px;font-weight:500;color:#fff;
+  transition:background .2s,color .2s;
+}
+html body .choix + .choix{border-top:1px solid var(--h-l1)}
+html body .choix:hover,html body .choix:focus-visible{background:var(--h-s3);color:#fff}
+html body .choix:focus-visible{outline-offset:-3px}
+html body .choix i{font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.1em;color:var(--h-t4)}
+html body .choix.del{color:color-mix(in srgb,var(--pourpre,#9a3b3b) 55%,#fff)}
+html body .choix.del:hover{color:color-mix(in srgb,var(--pourpre,#9a3b3b) 40%,#fff);background:color-mix(in srgb,var(--pourpre,#9a3b3b) 16%,transparent)}
+
+@media(max-width:600px){
+  html body .overlay{padding:16px}
+  html body .overlay>.modal{margin:auto 0;padding:26px 20px 20px}
+  html body .modal-titre{font-size:25px}
+  html body .overlay .modal-btns{display:flex;flex-wrap:wrap;gap:10px}
+  html:root body .modal-btns :is(.m-annul,.m-ok){flex:1 1 0;width:auto;min-width:0;padding:12px 10px}
+  html body #m-bib .modal-btns{flex-direction:column}
+  html:root body #m-bib .modal-btns :is(.m-annul,.m-ok,.mbib-2){flex:none}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   9. CHOISIR UN VERSET DANS LA BIBLE
+   Le fil en police d'interface, la recherche en champ arrondi, les
+   livres en rangées, les chapitres en pastilles, les versets en rangées
+   qui s'allument quand on les choisit, l'aperçu dans un encart teinté.
+   ════════════════════════════════════════════════════════════════════ */
+html body #m-bib .modal{max-width:680px}
+html body #m-bib .modal-titre{margin-bottom:10px}
+html body .mbib-fil{
+  font-family:var(--h-ui);font-size:12.5px;font-weight:500;letter-spacing:.02em;text-transform:none;color:var(--h-t4);
+  margin-bottom:14px;
+}
+html body .mbib-fil span{color:var(--h-t3)}
+html body .mbib-fil span:last-child{color:var(--h-or)}
+html body .mbib-fil span:hover{color:#fff}
+html body .mbib-rech{gap:8px;margin-bottom:14px;align-items:stretch}
+html body .mbib-rech .champ{margin-top:0;border-radius:0;padding:11px 18px;min-height:46px}
+html:root body .mbib-go{min-height:46px;padding:0 22px;align-self:stretch}
+html body .mbib-corps{border-top:1px solid var(--h-l1);padding:8px 4px 4px;margin:0 -4px}
+html body .mbib-charge{font-family:var(--h-texte);color:var(--h-t3)}
+html body .mbib-test{
+  font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-or);
+  margin:22px 6px 8px;
+}
+html body .mbib-test:first-child{margin-top:6px}
+html body .mbib-grp{
+  font-family:var(--h-ui);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--h-t4);
+  margin:14px 6px 4px;
+}
+html body .mbib-livre{
+  align-items:center;padding:10px 12px;border:0;border-radius:0;
+  font-family:var(--h-texte);font-size:17px;color:#fff;transition:background .2s,color .2s;
+}
+html body .mbib-livre:hover{background:var(--h-s3);color:#fff}
+html body .mbib-n{font-family:var(--h-ui);font-size:12px;font-weight:500;color:var(--h-t4);font-variant-numeric:tabular-nums}
+html body .mbib-chaps{grid-template-columns:repeat(auto-fill,minmax(50px,1fr));gap:6px;padding:4px 2px}
+html body .mbib-chap{
+  padding:11px 0;border:1px solid var(--h-l1);border-radius:0;background:var(--h-s2);
+  font-family:var(--h-ui);font-size:14px;font-weight:500;color:var(--h-t2);font-variant-numeric:tabular-nums;
+  transition:border-color .2s,background .2s,color .2s;
+}
+html body .mbib-chap:hover{border-color:var(--h-l3);background:var(--h-s3);color:#fff}
+html body .mbib-v{
+  gap:12px;padding:9px 12px;border:0;border-radius:0;
+  font-family:var(--h-texte);font-size:16.5px;line-height:1.5;transition:background .2s;
+}
+html body .mbib-v + .mbib-v{margin-top:1px}
+html body .mbib-v:hover{background:var(--h-s2)}
+html body .mbib-v.on{background:var(--h-voile-fort);box-shadow:inset 2px 0 0 var(--h-or)}
+html body .mbib-vn{font-family:var(--h-ui);font-size:11.5px;font-weight:600;color:var(--h-or);padding-top:4px;min-width:20px;font-variant-numeric:tabular-nums}
+html body .mbib-apercu{
+  margin-top:14px;padding:14px 16px;border:1px solid var(--h-l1);border-radius:0;background:var(--h-voile);
+}
+html body .mbib-apercu.vide{padding:0;margin-top:0;border:0;background:none}
+html body .mbib-ref{font-family:var(--h-titre);font-weight:600;font-size:20px;color:var(--h-or)}
+html body .mbib-tout{font-family:var(--h-ui);font-size:12.5px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t3)}
+html body .mbib-tout:hover{color:var(--h-or)}
+html body .mbib-mots{font-family:var(--h-texte);font-size:16.5px}
+html body .mbib-mot{border-radius:0}
+html body .mbib-mot.on{background:var(--h-voile-fort);color:#fff}
+html body .mbib-mot-vide{font-family:var(--h-texte);color:var(--h-t3)}
+/* « Le verset entier » : un bouton plein, comme les autres */
+html:root body .mbib-2{min-height:44px;padding:11px 22px}
+@media(max-width:720px){
+  html body #m-bib .modal{border-radius:0;padding:18px 16px calc(16px + env(safe-area-inset-bottom,0px))!important}
+  html body #m-bib .modal-titre{font-size:24px}
+  html body .mbib-v{font-size:16.5px;padding:11px 10px}
+}
+@media(max-width:600px){
+  html body #m-bib .modal-btns{gap:8px}
+  html:root body #m-bib .modal-btns :is(.m-ok,.mbib-2,.m-annul){width:100%;min-height:46px}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   10. LA FENÊTRE DU COMPTE PROPRE À LA PAGE
+   Le socle dessine déjà la carte, les boutons et les réglages ; reste la
+   déconnexion, qui passe à la voix de l'interface.
+   ════════════════════════════════════════════════════════════════════ */
+html body .auth-out{
+  display:flex;align-items:center;justify-content:center;min-height:44px;margin-top:14px;
+  font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:.01em;color:var(--h-t3);
+  border-radius:0;transition:color .25s,background .25s;
+}
+html body .auth-out:hover{color:var(--h-or);background:var(--h-s2)}
+html body .auth-box .tog-row{margin-top:14px}
+
+/* ── CHAQUE SECTION, UN BLOC À PART (Emmanuel, 10/10) ──
+   Les sections se suivaient dans un seul cadre et se confondaient : chacune
+   a maintenant son propre cadre, séparé de la suivante par un vide. */
+html body #liste:has(> .rub){background:none;border:0;overflow:visible}
+html body #liste > .rub{background:var(--h-s1);border:1px solid var(--h-l2);overflow:clip}
+html body #liste > .rub + .rub{margin-top:16px;border-top:1px solid var(--h-l2)}
+
+/* ── PLUS DE CADRES DANS LES CADRES (Emmanuel, 10/10) ──
+   Une section dépliée garde son seul cadre. Ce qu'elle contient (articles
+   et sous-sections) s'y range en simples rangées, séparées par un filet :
+   ni fond, ni contour, ni lueur propres. Les sous-sections se décalent un
+   peu vers la droite pour qu'on voie qu'elles sont dedans. */
+html body .rub-corps{padding:0}
+html body .rub-corps>.rub,
+html body .rub-corps .rub-corps>.rub{margin:0;background:none;border:0;border-top:1px solid var(--h-l1);overflow:visible}
+html body .rub-corps>.rub>.rub-tete{padding-left:38px}
+html body .rub-corps .rub-corps>.rub>.rub-tete{padding-left:54px}
+html body .rub-corps>.rub>.rub-tete:hover{background:var(--h-s2)}
+html body .rub-corps>.rub>.rub-corps{padding:0}
+html body .rub-corps>.art-ligne,
+html body .rub-corps>.art-ligne:hover{margin:0;background:none;border:0;border-top:1px solid var(--h-l1);box-shadow:none}
+html body .rub-corps>.art-ligne:hover{background:var(--h-s2)}
+html body .rub-corps>.art-ligne .art-item{padding-left:24px}
+html body .rub-corps .rub-corps>.art-ligne .art-item{padding-left:40px}
+html body .rub-vide{padding:14px 24px;border-top:1px solid var(--h-l1)}
+@media(max-width:600px){
+  html body .rub-corps>.rub>.rub-tete{padding-left:26px}
+  html body .rub-corps>.art-ligne .art-item{padding-left:18px}
+  html body .rub-corps .rub-corps>.art-ligne .art-item{padding-left:30px}
+}
+
+
+/* ── SANS CADRES (Emmanuel, 10/10 : « toujours trop carré dans des
+   carrés ») ──
+   Plus aucune boîte : les sections sont des rangées posées sur le noir,
+   séparées par un filet ; chaque livre s'ouvre sur sa propre page ; les nombres sont de
+   simples chiffres. Le survol éclaire le titre, pas un fond. */
+html body #liste > .rub,html body #liste > .rub + .rub{margin:0;background:none;border:0;border-bottom:1px solid var(--h-l2);overflow:visible}
+html body #liste > .rub:first-child{border-top:1px solid var(--h-l2)}
+html body .rub-tete,html body .rub-1:first-child>.rub-tete{padding-left:4px}
+html body .rub-tete:hover,html body .rub-corps>.rub>.rub-tete:hover{background:none}
+html body .rub-tete:hover .rub-nom{color:var(--h-or)}
+html body .rub-n,html body .rub.ouvert>.rub-tete .rub-n{min-width:0;height:auto;padding:0;background:none;color:var(--h-t3)}
+html body .art-ligne,html body .art-ligne:hover,
+html body .rub-corps>.art-ligne,html body .rub-corps>.art-ligne:hover{margin:0;background:none;border:0;border-top:1px solid var(--h-l1);box-shadow:none}
+html body .art-ligne:hover .art-titre{color:var(--h-or)}
+html body #liste > .art-ligne:last-child{border-bottom:1px solid var(--h-l1)}
+html body .rub-corps>.art-ligne .art-item{padding-left:28px}
+html body .rub-corps>.rub>.rub-tete{padding-left:28px}
+html body .rub-corps .rub-corps>.art-ligne .art-item{padding-left:52px}
+html body .rub-corps .rub-corps>.rub>.rub-tete{padding-left:52px}
+html body #liste > .art-ligne .art-item{padding-left:4px}
+@media(max-width:600px){
+  html body .rub-corps>.art-ligne .art-item,html body .rub-corps>.rub>.rub-tete{padding-left:20px}
+  html body .rub-corps .rub-corps>.art-ligne .art-item,html body .rub-corps .rub-corps>.rub>.rub-tete{padding-left:36px}
+}
+html body .rub.ouvert>.rub-tete{background:none}
+
+/* ── LE FIL D'ARIANE D'UNE SECTION (Emmanuel, 10/10) ──
+   Une section s'ouvre sur sa propre page, comme dans Ressources : au-dessus
+   du titre, le chemin qui y mène, chaque maillon ramenant à sa page ; le
+   nom de la section devient le grand titre. */
+html body .fil{
+  display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;padding:0 0 10px;
+  font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-t3);line-height:1.4;
+}
+html body .fil:empty{display:none}
+html body .fil span{display:inline-flex;align-items:center;min-height:28px;padding:0 9px;margin:0 -9px;color:var(--h-or);cursor:pointer;transition:color .25s}
+html body .fil span:hover{color:#fff}
+html body .fil i{padding:0 10px 0 12px;color:var(--h-t4);font-style:normal;font-weight:400;letter-spacing:0}
+html body .rub-tete .rub-chev{transform:none}
+html body .rub-vide{border-top:0;padding:14px 4px}
+
+/* ── « PRIVÉ » COMME « PUBLIÉ » (Emmanuel, 10/10) ──
+   Le petit rond creux devant « Privé » disparaît : l'état s'affiche de la
+   même façon dans les deux cas, avec le même point plein. */
+html body .art-pied .art-etat::before{background:#fff;border:0;box-shadow:0 0 8px rgba(255,255,255,.85)}

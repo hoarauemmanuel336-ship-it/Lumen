@@ -1,0 +1,551 @@
+/* ════════════════════════════════════════════════════════════════════
+   LUMEN — HABILLAGE DE LA PAGE RESSOURCES (10/10)
+   ════════════════════════════════════════════════════════════════════
+   Posée après habillage/commun.css, elle n'habille que ce qui est propre
+   aux Ressources : l'en-tête et le fil d'Ariane, les domaines, les cartes,
+   les modes Organiser et Choisir, la corbeille, la fiche d'une ressource,
+   le plein écran, l'éditeur et les fenêtres de la page.
+
+   Deux formes, deux gestes : les DOMAINES sont des rangées groupées dans
+   un seul cadre arrondi, chacune ouverte par un médaillon de dossier, et
+   l'on y entre ; les RESSOURCES sont des cartes arrondies, l'icône de leur
+   espèce dans un médaillon, et on les ouvre. Les cartes s'en tiennent au
+   titre, à l'espèce et à l'état ; au survol, seul leur contour s'allume
+   (Emmanuel).
+   ════════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* les deux pictogrammes dessinés par la feuille (dossier, corbeille) :
+     des masques, que la couleur d'accent remplit */
+  --re-dossier:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3.5 7.2c0-.9.7-1.7 1.7-1.7h4.1l1.9 2.1h7.6c.9 0 1.7.8 1.7 1.7v8.5c0 .9-.8 1.7-1.7 1.7H5.2c-1 0-1.7-.8-1.7-1.7z' fill='none' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --re-corbeille:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 7h15M9.5 7V5.2c0-.4.3-.7.7-.7h3.6c.4 0 .7.3.7.7V7M6.5 7l.9 11.6c.1.8.7 1.4 1.5 1.4h6.2c.8 0 1.4-.6 1.5-1.4L17.5 7M10.2 10.5v6M13.8 10.5v6' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  /* le fond d'un médaillon : un voile de crème */
+  --re-medaillon:color-mix(in srgb,var(--h-or) 12%,transparent);
+  /* la barre de verre du plein écran */
+  --re-barre:calc(68px + env(safe-area-inset-bottom,0px));
+}
+
+/* ── LA COLONNE ──
+   La même mesure qu'avant, un peu plus d'air au-dessus du titre. */
+html body main.wrap{padding:64px 26px 40px}
+@media(max-width:720px){html body main.wrap{padding:36px 18px 24px}}
+
+/* ════════════════════════════════════════════════════════════════════
+   1. L'EN-TÊTE ET LE FIL D'ARIANE
+   Le fil devient le sur-titre : la voix d'interface, en petites capitales,
+   chaque maillon s'allumant au survol. Sous lui, le nom de l'endroit en
+   grand Cormorant. Le filet sous le titre disparaît : c'est l'espace qui
+   sépare.
+   ════════════════════════════════════════════════════════════════════ */
+html body .fil{
+  display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;padding:0 0 10px;
+  font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-t3);line-height:1.4;
+}
+html body .fil:empty{display:none}
+html body .fil span{
+  display:inline-flex;align-items:center;min-height:28px;padding:0 9px;margin:0 -9px;border-radius:0;
+  color:var(--h-or);transition:color .25s,background .25s;
+}
+html body .fil span:hover{color:#fff;background:var(--h-voile)}
+html body .fil i{padding:0 10px 0 12px;color:var(--h-t4);font-style:normal;font-weight:400;letter-spacing:0}
+html body .fil span.cible{color:#000;background:var(--h-or);box-shadow:none}
+
+html body .tete,html body .tete.dedans{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding:0;margin:0 0 36px;border:0;
+}
+html body .tete h1,html body .tete.dedans h1{
+  font-family:var(--h-titre);font-size:54px;font-weight:400;line-height:1.04;letter-spacing:-.005em;text-transform:none;color:#fff;
+}
+@media(max-width:720px){
+  html body .tete,html body .tete.dedans{margin-bottom:26px}
+  html body .tete h1,html body .tete.dedans h1{font-size:38px}
+}
+
+/* le mot qui accompagne un mode (Organiser, Choisir) ou la corbeille : un
+   bandeau calme, dans la voix d'interface */
+html body .resume{
+  margin:0 0 22px;padding:12px 16px;border-radius:0;background:var(--h-s2);border:1px solid var(--h-l1);
+  font-family:var(--h-ui);font-size:13.5px;line-height:1.55;color:var(--h-t2);
+}
+html body .resume:empty{display:none}
+
+/* ════════════════════════════════════════════════════════════════════
+   2. LES DOMAINES
+   Une liste groupée : un seul cadre arrondi, des rangées séparées par un
+   filet. Chaque rangée s'ouvre sur un médaillon de dossier, puis le nom en
+   Cormorant, le nombre dans une pastille, le ⋯ et le chevron. Le survol
+   éclaire la rangée entière.
+   ════════════════════════════════════════════════════════════════════ */
+html body .rayons{
+  display:flex;flex-direction:column;gap:0;margin:0 0 28px;
+  background:var(--h-s1);border:1px solid var(--h-l1);border-radius:0;overflow:hidden;
+}
+html body .rayon{
+  position:relative;display:flex;align-items:center;gap:14px;min-height:68px;padding:12px 14px 12px 14px;
+  border:0;border-bottom:1px solid var(--h-l1);background:transparent;
+  transition:background .25s;
+}
+html body .rayons>.rayon:last-child{border-bottom:0}
+html body .rayon:hover{background:var(--h-s2);border-color:var(--h-l1)}
+/* le médaillon : un carré doux voilé de crème, le dossier dessiné dedans */
+html body .rayon::before{
+  content:'';flex:none;width:40px;height:40px;border-radius:0;background:var(--h-or);
+  -webkit-mask:var(--re-dossier) center/20px 20px no-repeat,linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.12));
+          mask:var(--re-dossier) center/20px 20px no-repeat,linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.12));
+}
+html body .rayon .ry-nom{
+  flex:1;min-width:0;font-family:var(--h-titre);font-size:22px;font-weight:500;line-height:1.2;color:#fff;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .25s;
+}
+html body .rayon:hover .ry-nom{color:#fff}
+html body .rayon .ry-n{
+  flex:none;display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:24px;padding:0 8px;border-radius:0;
+  background:var(--h-s3);font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--h-t2);line-height:1;
+}
+html body .rayon .ry-menu{
+  position:relative;flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;padding:0;
+  font-size:18px;letter-spacing:.04em;line-height:1;
+}
+html body .rayon .ry-menu::before{content:'';position:absolute;inset:-3px;width:auto}
+html body .rayon .ry-chev{
+  flex:none;width:18px;text-align:center;font-family:var(--h-ui);font-size:22px;font-weight:400;line-height:1;color:var(--h-t3);
+  transition:color .25s;
+}
+html body .rayon:hover .ry-chev{color:var(--h-or)}
+@media(max-width:600px){
+  html body .rayon{gap:12px;min-height:64px;padding:10px 10px 10px 12px}
+  html body .rayon::before{width:36px;height:36px;border-radius:0}
+  html body .rayon .ry-nom{font-size:20px}
+  html body .rayon .ry-menu{width:44px;height:44px;margin:-4px -6px}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   4. ORGANISER
+   La poignée et les deux flèches deviennent de petits boutons ronds ; la
+   poignée prend la place du médaillon des domaines. Le repère qui dit où
+   l'objet va se poser est un trait de crème ; la carte tirée flotte dans
+   la lumière.
+   ════════════════════════════════════════════════════════════════════ */
+html body.organise .poignee{
+  width:32px;height:32px;border-radius:0;color:var(--h-t2);font-size:16px;background:var(--h-s3);
+  transition:color .25s,background .25s;
+}
+html body.organise .poignee:hover{color:#000;background:var(--h-or)}
+html body.organise .fleches{gap:4px}
+html body.organise .fleches b{
+  width:30px;height:30px;border-radius:0;background:var(--h-s3);color:var(--h-t2);
+  font-family:var(--h-ui);font-size:16px;font-weight:500;line-height:1;transition:color .25s,background .25s;
+}
+html body.organise .fleches b:hover{color:#000;background:var(--h-or)}
+html body.organise .rayon::before{display:none}
+html body.organise .rayon:hover{background:transparent}
+/* le repère de dépose */
+html body .rayons .rayon.avant{box-shadow:inset 0 2px 0 var(--h-or)}
+html body .rayons .rayon.apres{box-shadow:inset 0 -2px 0 var(--h-or)}
+html body .rayon.cible{background:var(--h-voile-fort);box-shadow:inset 0 0 0 1px var(--h-or)}
+html body .rayon.cible .ry-nom{color:var(--h-or)}
+@media(max-width:640px){
+}
+@media(max-width:600px){
+  html body.organise .rayon{gap:8px}
+  html body.organise .fleches b{width:34px;height:34px}
+}
+html body .fantome{opacity:.28}
+html body .tire{
+  border-radius:0;border:1px solid var(--h-or)!important;background:var(--h-s2)!important;
+  box-shadow:var(--h-lueur),0 24px 60px -20px rgba(0,0,0,.9)!important;
+}
+html body .rayon.tire::before{display:none}
+
+/* ════════════════════════════════════════════════════════════════════
+   5. CHOISIR (supprimer plusieurs d'un coup)
+   Une pastille ronde paraît sur chaque carte, à la place du ⋯, et en tête
+   de chaque domaine, à la place du médaillon : vide, cernée de crème ;
+   prise, pleine, la coche en noir. Ce qui est pris porte un contour
+   crème. La rangée d'actions flotte en bas de l'écran dans une capsule de
+   verre, le compte en tête : on voit toujours combien sont pris.
+   ════════════════════════════════════════════════════════════════════ */
+html body.choisir .coche{
+  width:26px;height:26px;border-radius:0;box-sizing:border-box;border:1.5px solid var(--h-l3);background:transparent;
+  font-family:var(--h-ui);font-size:13px;font-weight:700;line-height:1;color:transparent;
+  transition:background .2s,border-color .2s,color .2s,box-shadow .2s;
+}
+html body.choisir .pris>.coche{
+  background:var(--h-or);border-color:var(--h-or);color:#000;
+  box-shadow:0 0 14px color-mix(in srgb,var(--h-or) 45%,transparent);
+}
+html body.choisir .rayon::before{display:none}
+html body.choisir .rayon .coche{margin:0 0 0 7px}
+html body.choisir .rayon .ry-chev{color:var(--h-or);padding:0 4px}
+html body.choisir .rayon .ry-chev:hover{color:#fff}
+html body .rayon.pris,html body .rayon.pris:hover{background:var(--h-voile);box-shadow:none;border-color:var(--h-l1)}
+html body .rayon.pris .ry-nom{color:#fff}
+
+/* la capsule des actions du mode Choisir */
+html body #acts-choix{
+  position:sticky;bottom:calc(16px + var(--lv-bas,0px));z-index:40;
+  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;
+  width:fit-content;max-width:100%;margin:32px auto 0;padding:8px 8px 8px 20px;
+  border-radius:0;border:1px solid var(--h-l2);
+  background:color-mix(in srgb,var(--h-s2) 84%,transparent);
+  -webkit-backdrop-filter:saturate(140%) blur(18px);backdrop-filter:saturate(140%) blur(18px);
+  box-shadow:0 18px 50px -14px rgba(0,0,0,.9),0 0 40px -18px color-mix(in srgb,var(--h-or) 45%,transparent);
+}
+html body #compte-choix{
+  margin-right:8px;font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.01em;text-transform:none;color:var(--h-or);white-space:nowrap;
+}
+html:root body #acts-choix .act{min-height:40px;padding:9px 18px;font-size:13.5px}
+@media(max-width:600px){
+  html body #acts-choix{
+    display:grid;grid-template-columns:1fr 1fr;width:100%;padding:12px;border-radius:0;
+    bottom:calc(10px + var(--lv-bas,0px));
+  }
+  html body #compte-choix{grid-column:1/-1;margin:0 0 2px;text-align:center}
+  html:root body #acts-choix .act{min-height:44px;padding:9px 10px;white-space:normal;line-height:1.2}
+  html:root body #acts-choix #b-jeter{grid-column:1/-1;order:3}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   6. LA CORBEILLE
+   Un écran à part : le titre s'ouvre sur un médaillon de corbeille, le
+   compte dans une pastille. Chaque chose jetée tient une rangée de la
+   même liste groupée que les domaines, son nom un ton plus bas, et ses
+   deux gestes en petits boutons crème.
+   ════════════════════════════════════════════════════════════════════ */
+html body #ecran-corbeille .tete h1{display:inline-flex;align-items:center;gap:18px}
+html body #ecran-corbeille .tete h1::before{
+  content:'';flex:none;width:52px;height:52px;border-radius:0;background:var(--h-or);
+  -webkit-mask:var(--re-corbeille) center/26px 26px no-repeat,linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.12));
+          mask:var(--re-corbeille) center/26px 26px no-repeat,linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.12));
+}
+html body #ecran-corbeille .tete .art-etat{
+  display:inline-flex;align-items:center;min-height:30px;padding:0 14px;border-radius:0;background:var(--h-s2);border:1px solid var(--h-l1);
+  font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.02em;text-transform:none;color:var(--h-t2);
+}
+html body #ecran-corbeille .tete .art-etat:empty{display:none}
+html body #corb-liste:has(.jete){
+  background:var(--h-s1);border:1px solid var(--h-l1);border-radius:0;overflow:hidden;
+}
+html body .jete{
+  display:flex;align-items:center;gap:14px;min-height:64px;padding:12px 12px 12px 20px;
+  border:0;border-bottom:1px solid var(--h-l1);
+}
+html body .jete:last-child{border-bottom:0}
+html body .jt-nom{flex:1;min-width:0;font-family:var(--h-titre);font-size:21px;font-weight:500;line-height:1.25;color:var(--h-t2)}
+html body .jt-note{flex:none;font-family:var(--h-ui);font-size:12.5px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t3)}
+html:root body .jt-act{
+  flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 16px;border-radius:0;
+  background:var(--h-or);color:#000;font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.01em;text-transform:none;
+  transition:background .25s,box-shadow .3s;
+}
+html:root body .jt-act:is(:hover,:focus-visible),html:root body .jt-act.danger:is(:hover,:focus-visible){
+  color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);
+  box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent);
+}
+@media(max-width:600px){
+  html body .jete{flex-wrap:wrap;gap:6px 10px;padding:16px}
+  html body .jt-nom{flex:1 0 100%;font-size:20px;white-space:normal}
+  html body .jt-note{flex:1 0 100%;margin-bottom:8px}
+  html:root body .jt-act{flex:1 1 0;min-height:44px}
+  html body #ecran-corbeille .tete h1::before{width:44px;height:44px;border-radius:0}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   7. LA FICHE D'UNE RESSOURCE
+   Le titre en grand, centré, la date et le chemin en sur-titre d'interface
+   dessous. Un lien ou un contenu à ouvrir se présente dans une carte ; une
+   image et un PDF dans un cadre arrondi.
+   ════════════════════════════════════════════════════════════════════ */
+html body .lire-titre{
+  padding:0 0 12px;font-family:var(--h-titre);font-size:calc(50px*var(--lvz,1));font-weight:400;line-height:1.08;color:#fff;text-wrap:balance;
+}
+html body .lire-pied{
+  margin-bottom:36px;font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-t3);
+}
+@media(max-width:720px){
+  html body .lire-titre{font-size:calc(36px*var(--lvz,1))}
+  html body .lire-pied{margin-bottom:26px}
+}
+html body #voir-corps>div:has(>.res-lien),html body #voir-corps>div:has(>.res-rouvrir){
+  padding:28px 28px 26px;background:var(--h-s1);border:1px solid var(--h-l1);border-radius:0;
+}
+html body #voir-corps>div:has(>.res-lien)>.res-desc:first-child,html body #voir-corps>div:has(>.res-rouvrir)>.res-desc:first-child{margin-top:0}
+html body .res-desc{
+  margin:24px 0 0;font-family:var(--h-texte);font-size:calc(18px*var(--lvz,1));line-height:1.6;color:var(--h-t2);
+}
+html:root body .res-lien,html:root body .res-rouvrir{margin:22px 0 0}
+html body #voir-corps>div>.res-rouvrir:first-child,html body #voir-corps>div>.res-lien:first-child{margin-top:0}
+html body .res-url{
+  margin-top:14px;font-family:var(--h-ui);font-size:12.5px;line-height:1.5;color:var(--h-t4);word-break:break-all;
+}
+html body .res-cadre{
+  margin:0;border:1px solid var(--h-l1);border-radius:0;background:var(--h-s1);overflow:hidden;
+}
+html body .res-cadre>.res-desc{font-family:var(--h-ui);font-size:14px;color:var(--h-t3);text-align:center}
+html body .res-cadre.img{padding:12px}
+html body .res-cadre.img img{border-radius:0}
+html body .res-cadre.img.zoom{padding:0}
+html body .res-cadre.img.zoom img{border-radius:0}
+html body .res-cadre iframe{background:#fff0}
+@media(max-width:720px){
+  html body .res-cadre.img{padding:8px}
+  html body .res-cadre.img img{border-radius:0}
+  html body #voir-corps>div:has(>.res-lien),html body #voir-corps>div:has(>.res-rouvrir){padding:22px 20px}
+}
+html body #ecran-voir .acts,html body #ecran-corbeille .acts,html body #ecran-edit .acts{margin-top:40px}
+
+/* ════════════════════════════════════════════════════════════════════
+   8. LE PLEIN ÉCRAN
+   Un diagramme, un livre, un cours s'ouvrent sur tout l'écran, au-dessus
+   d'une barre de verre où se pose le bouton de retour (et, s'il est là,
+   celui du fichier). Le contenu s'arrête au bord de la barre : rien n'est
+   caché dessous.
+   ════════════════════════════════════════════════════════════════════ */
+html body .res-plein{height:calc(100% - var(--re-barre));height:calc(100dvh - var(--re-barre))}
+html body.plein::after{
+  content:'';position:fixed;left:0;right:0;bottom:0;z-index:200;height:var(--re-barre);
+  background:color-mix(in srgb,var(--h-s1) 92%,transparent);
+  -webkit-backdrop-filter:saturate(140%) blur(20px);backdrop-filter:saturate(140%) blur(20px);
+  border-top:1px solid var(--h-l2);
+  box-shadow:0 -20px 50px -30px color-mix(in srgb,var(--h-or) 40%,transparent);
+}
+html:root body .res-plein-x{
+  left:max(16px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:201;
+  min-height:44px;padding:10px 20px;font-size:13.5px;
+}
+html:root body .res-plein-x.tel{left:auto;right:max(16px,env(safe-area-inset-right,0px))}
+/* sur tout l'écran, ni le dock ni l'onglet Bible ne restent derrière la
+   barre */
+html body.plein .nav-bas,html body.plein #bp-tab{visibility:hidden}
+
+/* ════════════════════════════════════════════════════════════════════
+   9. L'ÉDITEUR
+   Le titre se tape en grand, centré, sur un mince trait qui s'allume à
+   l'écriture. L'espèce se choisit dans un contrôle segmenté ; la marque
+   dans une rangée de tuiles arrondies ; les champs sont arrondis ; la zone
+   de dépôt est un cadre en pointillé, son bouton plein.
+   ════════════════════════════════════════════════════════════════════ */
+html body .outils{
+  top:var(--hbar,64px);justify-content:flex-end;min-height:0;padding:0;margin:0 0 8px;
+  background:none;box-shadow:none;pointer-events:none;
+}
+html body .enr{
+  display:inline-flex;align-items:center;gap:8px;min-height:28px;padding:0 12px;border-radius:0;
+  font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.02em;text-transform:none;color:var(--h-t3);
+  background:color-mix(in srgb,var(--h-s2) 88%,transparent);border:1px solid var(--h-l1);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+}
+html body .enr:empty{visibility:hidden}
+html body .enr.vu{color:var(--h-t2)}
+html body .enr.vu::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--h-or);box-shadow:0 0 8px var(--h-or)}
+html body .ed-titre{
+  padding:6px 0 18px;border-bottom:1px solid var(--h-l1);
+  font-family:var(--h-titre);font-size:calc(46px*var(--lvz,1));font-weight:400;line-height:1.12;color:#fff;
+  transition:border-color .25s;
+}
+html body .ed-titre:focus{border-bottom-color:color-mix(in srgb,var(--h-or) 70%,transparent)}
+html body .ed-titre::placeholder{color:var(--h-t4)}
+@media(max-width:720px){html body .ed-titre{font-size:calc(32px*var(--lvz,1))}}
+
+html body .champ-lab{
+  margin:32px 0 12px;font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-t3);
+}
+/* l'espèce : un contrôle segmenté */
+html body .types{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;border-radius:0;background:var(--h-s2);border:1px solid var(--h-l1)}
+html body .ty{
+  min-height:38px;padding:8px 20px;border:0;border-radius:0;background:none;
+  font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t2);
+  transition:color .25s,background .25s;
+}
+html body .ty:hover{color:#fff;background:var(--h-voile);border-color:transparent}
+html body .ty.on,html body .ty.on:hover{color:var(--h-or);background:var(--h-voile-fort);border-color:transparent}
+/* la marque : des tuiles arrondies, l'icône au-dessus du nom ; la
+   dernière rangée s'élargit pour ne pas laisser de vide */
+html body .marques{display:flex;flex-wrap:wrap;gap:8px}
+html body .mq-b{
+  flex:1 1 80px;min-height:86px;gap:9px;padding:14px 6px 12px;border:1px solid var(--h-l1);border-radius:0;background:var(--h-s1);
+  font-family:var(--h-ui);font-size:12.5px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t3);
+}
+html body .mq-b .mq-svg{width:24px;height:24px;color:var(--h-t2)}
+html body .mq-b .mq-rien{width:24px;height:24px;font-family:var(--h-ui);font-size:19px;opacity:.7}
+html body .mq-b.on{border-color:color-mix(in srgb,var(--h-or) 60%,transparent);background:var(--h-voile);color:var(--h-or);box-shadow:none}
+html body .mq-b.on .mq-svg{color:var(--h-or);filter:drop-shadow(0 0 6px color-mix(in srgb,var(--h-or) 40%,transparent))}
+@media (hover:hover) and (pointer:fine){
+  html body .mq-b:hover{border-color:var(--h-l3);color:#fff}
+  html body .mq-b.on:hover{border-color:color-mix(in srgb,var(--h-or) 60%,transparent);color:var(--h-or)}
+}
+@media(max-width:600px){
+  html body .mq-b{flex-basis:72px}
+  html body .types{display:flex}
+  html body .ty{flex:1 1 0;padding:8px 6px}
+}
+/* les champs */
+html body .res-zone{
+  border-radius:0;background:#000;border:1px solid var(--h-l2);padding:13px 15px;
+  font-family:var(--h-ui);font-size:15px;line-height:1.5;color:#fff;transition:border-color .25s,box-shadow .25s;
+}
+html body #f-desc{font-family:var(--h-texte);font-size:17px;line-height:1.55}
+html body .res-zone.code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.55;color:var(--h-t2)}
+html body .res-zone:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+/* la zone de dépôt */
+html body .depose{
+  gap:14px 16px;margin-bottom:10px;padding:16px 16px 16px 20px;border:1.5px dashed var(--h-l2);border-radius:0;background:var(--h-s1);color:var(--h-t2);
+}
+html body .depose .dep-mot{font-family:var(--h-ui);font-size:14px;color:var(--h-t3)}
+html body .depose .nom{font-family:var(--h-ui);font-size:14.5px;font-weight:500;color:#fff}
+html body .depose .poids{font-family:var(--h-ui);font-size:12.5px;color:var(--h-t3)}
+html body .depose .poids:empty{display:none}
+html body .depose.survol,html body .res-zone.code.survol{border-color:var(--h-or);border-style:solid;background:var(--h-voile);box-shadow:none}
+html:root body .depose .act{
+  display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 20px;border:0;border-radius:0;
+  background:var(--h-or);color:#000;font-family:var(--h-ui);font-size:13.5px;font-weight:600;letter-spacing:.01em;text-transform:none;
+  transition:background .25s,box-shadow .3s;
+}
+html:root body .depose .act::before{content:none}
+html:root body .depose .act:is(:hover,:focus-visible){
+  color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);
+  box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent);
+}
+html body .aide{margin-top:10px;font-family:var(--h-ui);font-size:13px;line-height:1.55;color:var(--h-t3)}
+
+/* ════════════════════════════════════════════════════════════════════
+   10. LES FENÊTRES DE LA PAGE
+   Confirmer, informer, nommer, choisir dans un menu ⋯ : la carte flottante
+   du socle. Les choix d'un menu se rangent dans une liste groupée, en voix
+   d'interface ; les gestes destructeurs prennent un rouge sourd. Sur le
+   téléphone, la fenêtre monte du bas de l'écran.
+   ════════════════════════════════════════════════════════════════════ */
+html body .overlay>.modal{max-width:460px;padding:28px 26px 22px;animation:hMonte .38s var(--h-doux) both}
+html body .overlay>.modal.modal-large{max-width:720px}
+html body .overlay.on{animation:hVoile .25s ease both}
+html body .modal-titre{
+  margin-bottom:16px;padding-right:8px;font-family:var(--h-titre);font-size:27px;font-weight:500;line-height:1.2;color:#fff;
+}
+html body .modal-txt{font-family:var(--h-texte);font-size:17.5px;line-height:1.55;color:var(--h-t2)}
+html body .modal-txt:empty{display:none}
+html body .champ{
+  margin-top:14px;padding:12px 14px;border-radius:0;background:#000;border:1px solid var(--h-l2);
+  font-family:var(--h-ui);font-size:15px;color:#fff;transition:border-color .25s,box-shadow .25s;
+}
+html body .champ:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+html body .modal-btns{gap:10px;margin-top:22px}
+html:root body :is(.m-annul,.m-ok){
+  display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 22px;border:0;border-radius:0;
+  background:var(--h-or);color:#000;font-family:var(--h-ui);font-size:14px;font-weight:600;letter-spacing:.01em;text-transform:none;line-height:1.15;
+  transition:background .25s,box-shadow .3s,transform .2s;
+}
+html:root body :is(.m-annul,.m-ok):is(:hover,:focus-visible){
+  color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);
+  box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent);
+}
+html:root body :is(.m-annul,.m-ok):active{transform:scale(.98)}
+
+/* le menu ⋯ : une liste groupée */
+html body #choix-liste:has(.choix){
+  background:#000;border:1px solid var(--h-l1);border-radius:0;overflow:hidden;
+}
+html body .choix{
+  gap:14px;min-height:52px;padding:12px 16px;box-shadow:none;border-top:1px solid var(--h-l1);
+  font-family:var(--h-ui);font-size:15px;font-weight:500;line-height:1.3;color:#fff;
+  transition:background .2s,color .2s;
+}
+html body .choix:first-child{border-top:0}
+html body .choix:hover{color:#fff;background:var(--h-s3)}
+html body .choix span{flex:1 0 auto;max-width:100%}
+html body .choix i{
+  flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-family:var(--h-ui);font-style:normal;font-size:12.5px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t3);
+}
+html body .choix .cx-arbre{font-family:var(--h-ui);font-weight:500;color:var(--h-t4);margin-right:-4px}
+html body .choix.fort{font-family:var(--h-ui);font-weight:600;letter-spacing:.01em}
+html body .choix.del{color:color-mix(in srgb,#c96a6a 70%,#fff)}
+html body .choix.del:hover{color:color-mix(in srgb,#c96a6a 55%,#fff);background:color-mix(in srgb,#9a3b3b 20%,transparent)}
+html body .choix.off,html body .choix.off:hover{color:var(--h-t4);background:none}
+
+/* le compte : la déconnexion, en voix d'interface */
+html body .auth-out{
+  margin-top:18px;font-family:var(--h-ui);font-size:13.5px;font-weight:500;color:var(--h-t3);transition:color .25s;
+}
+html body .auth-out:hover{color:var(--h-or)}
+
+@media(max-width:600px){
+  html body .overlay{align-items:flex-end;padding:10px;overflow-y:auto}
+  html body .overlay>.modal{max-width:100%;margin:0;padding:24px 18px 18px;border-radius:0;max-height:calc(100dvh - 20px);overflow-y:auto}
+  html body .modal-titre{font-size:24px}
+  html body .modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  html body .modal-btns>:only-child{grid-column:1/-1}
+  html:root body .modal-btns :is(.m-annul,.m-ok){width:100%;padding:12px 8px}
+}
+
+/* ── L'ESPÈCE, COMME AVANT (Emmanuel, 10/10) ──
+   Plus de fond teinté ni de cadre : l'espèce choisie en blanc, soulignée
+   d'un trait crème. */
+html body .types{background:none;border:0;border-bottom:1px solid var(--h-l1);padding:0;gap:22px}
+html body .ty{padding:8px 2px;background:none;box-shadow:inset 0 -1px 0 transparent}
+html body .ty:hover{background:none}
+html body .ty.on,html body .ty.on:hover{color:#fff;background:none;box-shadow:inset 0 -1px 0 var(--h-or)}
+
+
+/* ── SANS CADRES, COMME DANS ARTICLES (Emmanuel, 10/10) ──
+   Les domaines ne sont plus dans une boîte : des rangées posées sur le
+   noir, séparées par un filet ; le dossier est une simple icône, sans carré
+   autour ; le nombre, un simple chiffre. Le survol éclaire le nom. Les
+   cartes de ressources gardent leur contour, qui s'allume au survol. */
+html body .rayons{background:none;border:0;border-top:1px solid var(--h-l2);overflow:visible}
+html body .rayons>.rayon,html body .rayons>.rayon:last-child{border-bottom:1px solid var(--h-l2)}
+html body .rayon{padding-left:2px}
+html body .rayon:hover{background:none}
+html body .rayon:hover .ry-nom{color:var(--h-or)}
+html body .rayon::before{width:22px;height:22px;
+  -webkit-mask:var(--re-dossier) center/20px 20px no-repeat;mask:var(--re-dossier) center/20px 20px no-repeat;opacity:.85}
+html body .rayon .ry-n{min-width:0;height:auto;padding:0;background:none;color:var(--h-t3)}
+
+/* ── LES CARTES DE RESSOURCES, COMME AVANT (Emmanuel, 10/10) ──
+   Les cartes reprennent exactement leur dessin d'origine (coin coupé,
+   médaillon, état, survol) : l'habillage n'y touche plus, et elles
+   retrouvent les nuances d'origine du site. */
+html body .carte{
+  --encre-2:#0b0b0b;--encre-3:#111111;--surv:color-mix(in srgb,var(--or) 6%,transparent);
+  --halo:color-mix(in srgb,var(--or) 10%,transparent);
+  --pa:rgba(255,255,255,.76);--pa2:rgba(255,255,255,.64);--parchemin-att:rgba(255,255,255,.7);
+  --filet:rgba(231,224,207,.17);--filet-f:rgba(231,224,207,.28);--filet-fort:rgba(231,224,207,.34);
+  --display:'Cormorant Garamond',serif;--serif:'EB Garamond',Georgia,serif;
+}
+
+/* ── PAS DE COCHE SUR LES CARTES (Emmanuel, 10/10) ──
+   En mode Choisir, une carte prise se reconnaît à son contour crème ; la
+   case cochée ne paraît plus sur elle, et la carte garde sa mise en page. */
+html body.choisir .carte .coche{display:none}
+html body.choisir .carte .ct-bas{padding-left:22px}
+@media(max-width:600px){html body.choisir .carte .ct-bas{padding-left:18px}}
+
+/* le nombre d'éléments choisis ne s'affiche plus (Emmanuel, 10/10) */
+html body #compte-choix{display:none!important}
+html body #mot-liste:empty{display:none}
+
+/* ── LES ACTIONS DU MODE CHOISIR, SANS CADRE (Emmanuel, 10/10) ──
+   Les boutons se posent sous la liste, comme les autres actions de la
+   page : plus de capsule autour, plus de fond ni de lueur. */
+html body #acts-choix{position:static;padding:0;border:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}
+@media(max-width:600px){html body #acts-choix{padding:0}}
+
+/* ── LA BIBLE DEPUIS UNE RESSOURCE (Emmanuel, 11/10) ──
+   Un seul bouton : le retour aux ressources, un mince trait, puis le livre
+   qui ouvre la Bible par-dessus la ressource, barre comprise. */
+html:root body .res-plein-acts{
+  position:fixed;z-index:201;display:flex;align-items:stretch;
+  left:max(16px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  background:var(--h-or);border-radius:999px;overflow:hidden;transition:box-shadow .3s;
+}
+html:root body .res-plein-acts:hover{box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent)}
+html:root body .res-plein-acts .res-plein-x{position:static;left:auto;bottom:auto;box-shadow:none;border-radius:0}
+html:root body .res-plein-acts .res-plein-x:first-child{padding-left:24px}
+html:root body .res-plein-acts .res-plein-bible{padding-right:20px}
+html:root body .res-plein-acts .res-plein-bible{padding:10px 16px;position:relative}
+html:root body .res-plein-acts .res-plein-bible::before{
+  content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:rgba(0,0,0,.28);
+}
+html body.plein #bp-voile{z-index:300}
+html body.plein #bp-pan{z-index:310}

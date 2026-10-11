@@ -1,0 +1,59 @@
+/* ════════════════════════════════════════════════════════════════════
+   LUMEN — HABILLAGE DE L'ACCUEIL (et de la page introuvable)
+   ════════════════════════════════════════════════════════════════════
+   La croix seule (Emmanuel, 26/09), mais dans sa lumière : un halo crème
+   très doux derrière elle, qui respire lentement, et de longs rayons à
+   peine visibles qui partent d'elle. Rien d'autre sur la page.
+   ════════════════════════════════════════════════════════════════════ */
+
+html body .hero.hero-seule{
+  position:relative;isolation:isolate;overflow:clip;
+  min-height:calc(100vh - 290px);min-height:calc(100svh - 290px);
+}
+/* le halo : une source de lumière derrière la croix */
+html body .hero.hero-seule::before{
+  content:'';position:absolute;left:50%;top:50%;z-index:-1;
+  width:min(620px,120vw);aspect-ratio:1;transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side,
+    color-mix(in srgb,var(--h-or) 20%,transparent) 0%,
+    color-mix(in srgb,var(--h-or) 9%,transparent) 32%,
+    color-mix(in srgb,var(--h-or) 3%,transparent) 62%,
+    transparent 100%);
+  filter:blur(6px);
+  animation:hRespire 9s ease-in-out infinite;
+}
+/* les rayons : une couronne de lumière très pâle qui tourne à peine */
+html body .hero.hero-seule::after{
+  content:'';position:absolute;left:50%;top:50%;z-index:-2;
+  width:min(1100px,190vw);aspect-ratio:1;transform:translate(-50%,-50%);
+  background:repeating-conic-gradient(from 0deg,
+    color-mix(in srgb,var(--h-or) 4%,transparent) 0deg 1.1deg,
+    transparent 1.2deg 15deg);
+  -webkit-mask:radial-gradient(closest-side,#000 0%,rgba(0,0,0,.5) 35%,transparent 72%);
+          mask:radial-gradient(closest-side,#000 0%,rgba(0,0,0,.5) 35%,transparent 72%);
+  animation:hTourne 240s linear infinite;
+}
+html body .hero.hero-seule .croix{
+  width:80px;height:146px;
+  filter:drop-shadow(0 0 18px color-mix(in srgb,var(--h-or) 55%,transparent)) drop-shadow(0 0 2px rgba(255,255,255,.8));
+  animation:hParait 1.6s var(--h-doux) both;
+}
+@keyframes hRespire{0%,100%{opacity:.75;transform:translate(-50%,-50%) scale(.94)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.04)}}
+@keyframes hTourne{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes hParait{from{opacity:0;transform:translateY(8px);filter:drop-shadow(0 0 0 transparent)}to{opacity:1;transform:none}}
+@media(max-width:720px){
+  html body .hero.hero-seule{min-height:calc(100svh - 330px);margin:0 -20px}
+  html body .hero.hero-seule .croix{width:66px;height:120px}
+}
+@media (prefers-reduced-motion:reduce){
+  html body .hero.hero-seule::before,html body .hero.hero-seule::after,html body .hero.hero-seule .croix{animation:none}
+}
+
+/* ── la page introuvable ── */
+html body .quatre h1{font-family:var(--h-titre);font-weight:400;font-size:48px}
+html body .quatre .q-desc{font-family:var(--h-texte);color:var(--h-t2)}
+html body .quatre .q-lien{
+  display:inline-flex;align-items:center;min-height:44px;padding:11px 22px;border:0;border-radius:0;
+  background:var(--h-or);color:#000;font-family:var(--h-ui);font-size:14px;font-weight:600;letter-spacing:.01em;text-transform:none;
+}
+html body .quatre .q-lien:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000}

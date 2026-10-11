@@ -1,0 +1,468 @@
+/* ════════════════════════════════════════════════════════════════════
+   LUMEN — HABILLAGE COMMUN (10/10)
+   ════════════════════════════════════════════════════════════════════
+   L'apparence entière du site, refaite d'un seul geste. Deux couleurs
+   seulement : le noir, couleur principale, et la crème de l'accent (--or),
+   qui joue le rôle de la lumière. Toutes les nuances (surfaces, filets,
+   lueurs) se tirent de ces deux-là : changer l'accent dans
+   content/settings.json fait suivre tout le site.
+
+   Les polices restent celles du site (Emmanuel, 10/10) :
+   · EB Garamond pour le texte, et aussi pour ce qui se touche et ce qui
+     informe (boutons, navigation, états, dates, libellés) ;
+   · Cormorant Garamond pour les titres ;
+   · L'accent ne sert qu'à ce qui compte : l'action principale, l'endroit
+     où l'on se trouve, ce qui est choisi.
+
+   Formes : surfaces arrondies (16 px pour les cartes, 22 px pour les
+   fenêtres), boutons en pilule, filets très fins teintés de crème. La
+   profondeur vient de la lumière (une lueur crème très douce), jamais
+   d'ombres grises.
+
+   Ce fichier est posé en dernier dans chaque page : il a le dernier mot.
+   Chaque page reçoit ensuite sa propre feuille (habillage/<page>.css).
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. LES JETONS ── */
+:root{
+  /* les deux couleurs */
+  --h-noir:#000;
+  --h-or:var(--or,#efe6cf);
+
+  /* surfaces : du noir, teinté d'une pointe de crème à mesure qu'elles
+     s'élèvent */
+  --h-s1:color-mix(in srgb,var(--h-or) 4%,#000);
+  --h-s2:color-mix(in srgb,var(--h-or) 7%,#030303);
+  --h-s3:color-mix(in srgb,var(--h-or) 11%,#050505);
+  --h-s4:color-mix(in srgb,var(--h-or) 16%,#070707);
+
+  /* filets */
+  --h-l1:color-mix(in srgb,var(--h-or) 10%,transparent);
+  --h-l2:color-mix(in srgb,var(--h-or) 18%,transparent);
+  --h-l3:color-mix(in srgb,var(--h-or) 32%,transparent);
+
+  /* texte */
+  --h-t1:#fff;
+  --h-t2:rgba(255,255,255,.78);
+  --h-t3:rgba(255,255,255,.58);
+  --h-t4:rgba(255,255,255,.4);
+
+  /* lumière */
+  --h-voile:color-mix(in srgb,var(--h-or) 8%,transparent);
+  --h-voile-fort:color-mix(in srgb,var(--h-or) 14%,transparent);
+  --h-lueur:0 0 0 1px var(--h-l2),0 22px 60px -30px color-mix(in srgb,var(--h-or) 38%,transparent);
+  --h-ombre:0 30px 80px -20px rgba(0,0,0,.85),0 0 0 1px var(--h-l2);
+
+  /* polices */
+  --h-ui:'EB Garamond',Georgia,serif;
+  --h-titre:'Cormorant Garamond',Georgia,serif;
+  --h-texte:'EB Garamond',Georgia,serif;
+
+  /* rayons */
+  --h-r1:0;
+  --h-r2:0;
+  --h-r3:0;
+  --h-rp:0;
+
+  /* mouvement */
+  --h-doux:cubic-bezier(.22,.8,.26,1);
+
+  /* les noms anciens des pages suivent les nouveaux : toutes les règles
+     écrites dans les pages prennent d'un coup les nouvelles nuances */
+  --encre:#000;
+  --encre-2:var(--h-s1);
+  --encre-3:var(--h-s2);
+  --filet:var(--h-l1);
+  --filet-f:var(--h-l1);
+  --filet-fort:var(--h-l2);
+  --surv:var(--h-voile);
+  --pa:var(--h-t2);
+  --pa2:var(--h-t3);
+  --parchemin:#fff;
+  --parchemin-att:var(--h-t2);
+  --display:var(--h-titre);
+  --serif:var(--h-texte);
+  --or-pale:color-mix(in srgb,var(--h-or) 55%,#fff);
+}
+
+/* ── 2. LE FOND ET LE TEXTE ── */
+html{background:#000;color-scheme:dark}
+html body{overflow-x:clip;background:#000;color:#fff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+::selection{background:var(--sel,color-mix(in srgb,var(--h-or) 50%,transparent));color:#000}
+
+/* focus clavier : un anneau de lumière, net */
+html body :is(a,button,[role="button"],[tabindex],summary):focus-visible{outline:2px solid color-mix(in srgb,var(--h-or) 70%,transparent);outline-offset:3px}
+
+/* barres de défilement : fines, crème discrète */
+html{scrollbar-color:color-mix(in srgb,var(--h-or) 28%,transparent) #000}
+*{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--h-or) 28%,transparent) transparent}
+::-webkit-scrollbar{width:10px;height:10px;background:transparent}
+::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--h-or) 28%,transparent);background-clip:content-box;border:3px solid transparent;border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:color-mix(in srgb,var(--h-or) 50%,transparent);background-clip:content-box}
+
+/* ════════════════════════════════════════════════════════════════════
+   3. LA BARRE DU HAUT
+   Une barre de verre noir. À gauche, la croix et le nom ; à droite, les
+   cinq lieux du site, la recherche et le compte. Rien n'y est encadré
+   (Emmanuel, 10/10) : ni fond ni cadre autour des lieux ou des icônes ;
+   l'endroit où l'on se trouve est souligné d'un trait crème, comme avant.
+   La poignée qui range la barre reste juste après le nom.
+   ════════════════════════════════════════════════════════════════════ */
+html body header{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,#000 82%,transparent);
+  -webkit-backdrop-filter:saturate(140%) blur(18px);backdrop-filter:saturate(140%) blur(18px);
+  border-bottom:1px solid var(--h-l1);
+}
+html body header .barre{
+  max-width:1240px;margin:0 auto;padding:10px 28px;
+  display:flex;align-items:center;gap:10px;line-height:1.2;height:auto;
+}
+html body header .barre .logo{
+  display:inline-flex;align-items:center;gap:13px;
+  font-family:var(--h-titre);font-weight:500;font-size:23px;line-height:1;
+  letter-spacing:.32em;text-transform:uppercase;color:#fff;padding:6px 0 6px 2px;
+  transition:color .3s;
+}
+/* la croix devant le nom : un petit trait de lumière */
+html body header .barre .logo::before{
+  content:'';flex:none;width:13px;height:22px;
+  background:var(--h-or);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 132'%3E%3Cpolygon points='34.5,40 37.5,40 41,2 31,2'/%3E%3Cpolygon points='34.5,40 37.5,40 41,130 31,130'/%3E%3Cpolygon points='36,38.5 36,41.5 2,45 2,35'/%3E%3Cpolygon points='36,38.5 36,41.5 70,45 70,35'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 132'%3E%3Cpolygon points='34.5,40 37.5,40 41,2 31,2'/%3E%3Cpolygon points='34.5,40 37.5,40 41,130 31,130'/%3E%3Cpolygon points='36,38.5 36,41.5 2,45 2,35'/%3E%3Cpolygon points='36,38.5 36,41.5 70,45 70,35'/%3E%3C/svg%3E") center/contain no-repeat;
+  filter:drop-shadow(0 0 6px color-mix(in srgb,var(--h-or) 60%,transparent));
+}
+html body header .barre .logo:hover{color:var(--h-or)}
+
+/* la poignée : discrète, sans cadre */
+html body .barre-poignee{
+  width:32px;height:32px;margin:0 auto 0 2px;border-radius:0;
+  color:var(--h-t4);background:none;transition:color .3s,background .3s;
+}
+html body .barre-poignee:hover,html body .barre-poignee:focus-visible{color:var(--h-or);background:none}
+html body .barre-poignee svg{width:20px;height:7px}
+
+/* les lieux */
+html body header nav.menu{
+  display:flex;align-items:center;gap:28px;margin:0 0 0 auto;justify-self:auto;
+  grid-column:auto;grid-row:auto;
+}
+html body header nav.menu a{
+  position:relative;
+  font-family:var(--h-ui);font-size:14.5px;font-weight:500;letter-spacing:.01em;text-transform:none;
+  color:var(--h-t2);padding:9px 0 7px;border:0;border-bottom:1px solid transparent;border-radius:0;background:none;
+  transition:color .25s,border-color .25s;
+}
+html body header nav.menu a:hover{color:#fff;background:none;border-color:var(--h-l3)}
+html body header nav.menu a.actif{color:#fff;background:none;border-color:var(--h-or)}
+/* la loupe et le compte : deux icônes nues */
+html body header nav.menu .rech-loupe{
+  width:34px;height:40px;justify-content:center;border-radius:0;
+  color:var(--h-t2);transition:color .25s,background .25s;
+}
+html body header nav.menu #rech-ouvrir{margin-left:6px;position:relative}
+html body header nav.menu .rech-loupe:hover,html body header nav.menu .rech-loupe:focus-visible{color:var(--h-or);background:none}
+html body header nav.menu .rech-loupe svg{width:18px;height:18px}
+/* compte connecté : une petite lumière sur l'icône */
+html body header .auth-icone.connecte::after{content:'';position:absolute;top:9px;right:5px;width:6px;height:6px;border-radius:50%;background:var(--h-or);box-shadow:0 0 8px var(--h-or)}
+
+/* barre rangée : un mince bandeau, la poignée seule au centre */
+html.barre-rangee body header{background:#000}
+html.barre-rangee body header .barre{display:block;padding:0;max-width:none}
+html.barre-rangee body .barre-poignee{width:100%;height:auto;margin:0;padding:6px 0 7px;border-radius:0}
+html.barre-rangee body .barre-poignee:hover{background:var(--h-s1)}
+
+/* ── LE TÉLÉPHONE : barre fine en haut, barre d'onglets en bas ── */
+@media(max-width:720px){
+  html body header .barre{padding:6px 8px 6px 18px;gap:4px}
+  html body header .barre .logo{font-size:20px;gap:11px;letter-spacing:.3em}
+  html body header .barre .logo::before{width:11px;height:19px}
+  html body .barre-poignee{width:40px;height:40px;margin:0 auto 0 0}
+  html body header nav.menu a{display:none}
+  html body header nav.menu #rech-ouvrir{margin-left:0}
+  html body header nav.menu #rech-ouvrir::before{content:none}
+  html body header nav.menu .rech-loupe{width:44px;height:44px}
+
+  /* la barre d'onglets : du verre noir sur toute la largeur, collée au
+     bas de l'écran, sans cadre ; l'onglet ouvert s'allume en crème et
+     porte un trait crème au-dessus */
+  :root{--lv-bas:calc(62px + env(safe-area-inset-bottom,0px))}
+  html.barre-rangee,html.panneau{--lv-bas:0px}
+  html body .nav-bas{
+    left:0;right:0;bottom:0;
+    height:var(--lv-bas);padding:0 0 env(safe-area-inset-bottom,0px);border-radius:0;
+    background:color-mix(in srgb,#000 88%,transparent);
+    -webkit-backdrop-filter:saturate(150%) blur(22px);backdrop-filter:saturate(150%) blur(22px);
+    border:0;border-top:1px solid var(--h-l1);
+    box-shadow:none;
+  }
+  html body .nav-bas a{
+    gap:4px;border-radius:0;color:var(--h-t3);
+    font-family:var(--h-ui);font-size:11px;font-weight:500;letter-spacing:.01em;
+    transition:color .25s,background .25s;
+  }
+  html body .nav-bas a svg{width:22px;height:22px;stroke-width:1.5}
+  html body .nav-bas a.actif{color:var(--h-or);background:none}
+  html body .nav-bas a.actif::before{content:'';position:absolute;top:-1px;left:24%;right:24%;height:1px;background:var(--h-or)}
+  html body .nav-bas a:active{background:none}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   4. LE PIED DE PAGE
+   Le verset d'Isaïe seul, en blanc, avec sa lueur (Emmanuel, 27/09). Un
+   court trait de lumière le sépare du contenu, à la place du filet sur
+   toute la largeur.
+   ════════════════════════════════════════════════════════════════════ */
+html body footer{
+  position:relative;border-top:0;margin-top:72px;padding:56px 28px 64px;text-align:center;background:none;
+}
+html body footer::before{
+  content:'';position:absolute;top:0;left:50%;width:min(420px,70%);height:1px;transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,var(--h-l3),transparent);
+}
+html body footer .verset-pied{
+  max-width:620px;margin:0 auto;font-family:var(--h-texte);font-style:italic;
+  font-size:17px;line-height:1.65;color:#fff;
+  text-shadow:0 0 18px rgba(255,255,255,.28);text-wrap:balance;
+}
+html body footer .verset-pied .ref-pied{
+  font-style:normal;font-family:var(--h-ui);font-weight:500;font-size:12.5px;letter-spacing:.06em;
+  color:#fff;white-space:nowrap;margin-left:4px;
+}
+html body footer .marque,html body footer .copy{display:none}
+@media(max-width:720px){
+  html body footer{margin-top:48px;padding:44px 24px 40px}
+  html body footer .verset-pied{font-size:16px}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   5. LA RECHERCHE
+   Une palette de commande : un grand champ dans une carte flottante, les
+   résultats dessous, chacun dans une rangée qui s'allume au survol.
+   ════════════════════════════════════════════════════════════════════ */
+html body .rech-overlay{
+  background:color-mix(in srgb,#000 78%,transparent);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+}
+html body .rech-overlay .rech-boite{
+  max-width:720px;height:auto;max-height:calc(100% - 14vh);margin:10vh auto 0;padding:0;
+  background:var(--h-s1);border-radius:0;box-shadow:var(--h-ombre);overflow:hidden;
+}
+html body .rech-overlay .rech-haut{gap:14px;padding:18px 18px 18px 22px;border-bottom:1px solid var(--h-l1)}
+html body .rech-overlay .rech-haut svg{color:var(--h-or);width:20px;height:20px}
+html body #rech-champ{font-family:var(--h-titre);font-size:28px;line-height:1.2;color:#fff;padding:2px 0}
+html body #rech-champ::placeholder{color:var(--h-t4);font-style:italic;opacity:1}
+html body .rech-overlay .rech-fermer{
+  display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border-radius:0;
+  font-size:15px;color:var(--h-t2);background:var(--h-s3);transition:background .25s,color .25s;
+}
+html body .rech-overlay .rech-fermer:hover{color:#fff;background:var(--h-s4)}
+html body .rech-overlay .rech-res{margin:0;padding:8px;overflow-y:auto}
+html body .rech-overlay .rech-res:empty{display:none}
+html body .rech-msg{padding:22px 16px;font-family:var(--h-texte);font-size:17px;color:var(--h-t3)}
+html body .rech-item{padding:14px 16px;border:0;border-radius:0;transition:background .2s}
+html body .rech-item:hover,html body .rech-item.kact{padding-left:16px;background:var(--h-s3)}
+html body .rech-meta{font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.1em;color:var(--h-or);margin-bottom:4px}
+html body .rech-titre{font-family:var(--h-titre);font-size:22px}
+html body .rech-extrait{font-family:var(--h-texte);font-size:16px;color:var(--h-t2)}
+@media(max-width:720px){
+  html body .rech-overlay .rech-boite{margin:12px 10px 0;max-height:calc(100% - 24px - var(--lv-bas,0px))}
+  html body #rech-champ{font-size:23px}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   6. LES FENÊTRES (compte, connexion, et toutes les fenêtres des pages)
+   Une carte flottante aux coins doux, sur un voile noir flouté. Titre en
+   Cormorant, actions en pilules.
+   ════════════════════════════════════════════════════════════════════ */
+html body :is(.auth-overlay,.auth-ov){
+  background:color-mix(in srgb,#000 74%,transparent);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+}
+html body :is(.auth-modal,.auth-box){
+  background:var(--h-s1);border:0;border-radius:0;box-shadow:var(--h-ombre);
+  padding:34px 30px 26px;max-width:400px;
+}
+html body :is(.auth-fermer,.auth-x){
+  position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:0;font-size:14px;line-height:1;color:var(--h-t2);background:var(--h-s3);
+  transition:background .25s,color .25s;
+}
+html body :is(.auth-fermer,.auth-x):hover{color:#fff;background:var(--h-s4)}
+html body :is(.auth-m-title,.auth-t){font-family:var(--h-titre);font-weight:500;font-size:28px;letter-spacing:0;text-transform:none;color:#fff;text-align:center;margin-bottom:6px}
+html body :is(.auth-m-email,.auth-mail){font-family:var(--h-ui);font-size:13.5px;color:var(--h-t3);text-align:center;margin-bottom:24px}
+html body .auth-m-tabs{display:flex;gap:4px;padding:4px;margin:18px 0 20px;border:0;border-radius:0;background:var(--h-s3)}
+html body .auth-m-tab{flex:1;padding:9px 12px;border:0;border-radius:0;font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--h-t2);background:none}
+html body .auth-m-tab.on{color:#000;background:var(--h-or)}
+html body .auth-modal input,html body .auth-box input{
+  border-radius:0;background:#000;border:1px solid var(--h-l2);padding:12px 14px;margin-bottom:10px;
+  font-family:var(--h-ui);font-size:15px;color:#fff;
+}
+html body .auth-modal input:focus,html body .auth-box input:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body .auth-m-or{font-family:var(--h-ui);font-size:12px;letter-spacing:.08em;color:var(--h-t4)}
+html body :is(.auth-m-link){font-family:var(--h-ui);font-size:13.5px;color:var(--h-t3);margin-top:14px}
+html body :is(.auth-m-link):hover{color:var(--h-or)}
+html body .auth-m-msg{border-radius:0;font-family:var(--h-ui);font-size:13.5px}
+
+/* rangées de réglages dans le compte */
+html body :is(.ttx-row,.tog-row){margin:12px 0 4px;padding:14px 2px 0;border-top:1px solid var(--h-l1)}
+html body :is(.ttx-lab,.tog-lab){font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--h-t2)}
+html body .ttx-btns{gap:0;padding:3px;border-radius:0;background:var(--h-s3)}
+html:root body .ttx-b{
+  min-width:40px;height:32px;padding:0 10px;border:0;border-radius:0;
+  font-family:var(--h-ui);font-size:13px;font-weight:600;
+  background:none;color:var(--h-t2);
+}
+html:root body .ttx-b:is(:hover,:focus-visible){background:var(--h-or);color:#000}
+/* interrupteur arrondi */
+html body .tog-sw{width:46px;height:28px;border-radius:0;border:0;background:var(--h-s4);transition:background .25s}
+html body .tog-sw::after{left:3px;width:22px;height:22px;border-radius:0;background:rgba(255,255,255,.7);box-shadow:0 2px 6px rgba(0,0,0,.5)}
+html body .tog-sw.on{background:var(--h-or)}
+html body .tog-sw.on::after{left:21px;background:#000}
+
+/* ════════════════════════════════════════════════════════════════════
+   7. LES BOUTONS
+   Tous les boutons restent pleins, fond crème et texte noir (Emmanuel,
+   27/09). Ils deviennent des pilules, en police d'interface, sans
+   majuscules espacées ; le survol les éclaircit et les soulève d'une
+   lueur.
+   ════════════════════════════════════════════════════════════════════ */
+html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.auth-m-primary,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x,.memo-start){
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:44px;padding:11px 22px;border:0;border-radius:0;
+  background:var(--h-or);color:#000;
+  font-family:var(--h-ui);font-size:14px;font-weight:600;letter-spacing:.01em;text-transform:none;line-height:1.15;text-shadow:none;
+  box-shadow:0 0 0 0 transparent;
+  transition:background .25s,box-shadow .3s,transform .2s,color .25s;
+}
+html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.auth-m-primary,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x,.memo-start):is(:hover,:focus-visible){
+  background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;border-color:transparent;
+  box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent);
+}
+html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.ghost-btn,.finish,.memo-start):active{transform:scale(.98)}
+html:root body :is(.acts .act,.ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn)::before{content:none}
+/* les boutons de liste dans les fenêtres (Mes notes, Mes signets…) */
+html:root body :is(.macct-btn,.auth-m-btn,.bacct-btn){display:flex;width:100%;margin-bottom:8px}
+/* le bouton Google garde son logo en couleur */
+html:root body :is(.auth-google,.auth-m-google,.ab-google) svg{flex:none}
+
+/* rangées d'actions */
+html body .acts{gap:10px}
+html body #acts-liste{gap:10px}
+html body #acts-liste .acts-haut{gap:10px}
+html body #acts-liste .acts-outils{gap:8px}
+html:root body #acts-liste .acts-outils .act{min-height:38px;padding:8px 18px;font-size:13px}
+/* les rangées d'actions des listes (Articles, Ressources, Commentaires)
+   portaient des capitales espacées écrites par identifiant : elles passent
+   à la voix des boutons */
+html:root body #acts-liste .act{letter-spacing:.01em;text-transform:none;background-image:none;white-space:nowrap}
+html:root body #acts-liste .act::before,html:root body #acts-liste .act::after{content:none}
+@media(max-width:600px){
+  html:root body #acts-liste .acts-haut .act{min-height:48px;padding:10px 12px;font-size:13.5px;letter-spacing:.01em;line-height:1.2;white-space:normal}
+  html:root body #acts-liste .acts-outils .act{flex:1 1 0;min-height:40px;padding:8px 10px;font-size:13px;letter-spacing:.01em}
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   8. LES « ⋯ » : blancs, bien allumés, partout (Emmanuel, 27/09). Ils
+   gagnent un fond rond au survol.
+   ════════════════════════════════════════════════════════════════════ */
+html body :is(.art-menu,.ct-menu,.rub-menu,.ry-menu,.nt-menu,.sec-menu){
+  color:#fff;opacity:1;border-radius:0;
+  text-shadow:0 0 10px rgba(255,255,255,.7),0 0 20px rgba(255,255,255,.3);
+  transition:background .2s,text-shadow .2s;
+}
+html body :is(.art-menu,.ct-menu,.rub-menu,.ry-menu,.nt-menu,.sec-menu):is(:hover,:focus-visible){
+  background:var(--h-s3);color:#fff;text-shadow:0 0 12px rgba(255,255,255,.95),0 0 26px rgba(255,255,255,.45);
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   9. LES CHAMPS
+   ════════════════════════════════════════════════════════════════════ */
+html body :is(input,textarea,select):focus-visible{outline:none}
+html body input::placeholder,html body textarea::placeholder{color:var(--h-t4)}
+
+/* ════════════════════════════════════════════════════════════════════
+   10. LE RETOUR EN HAUT
+   ════════════════════════════════════════════════════════════════════ */
+html:root body .haut-page{
+  width:46px;height:46px;border-radius:0;border:0;
+  background:var(--h-or);color:#000;font-size:18px;
+  box-shadow:0 10px 30px -8px rgba(0,0,0,.8),0 0 24px -6px color-mix(in srgb,var(--h-or) 60%,transparent);
+  right:20px;bottom:calc(20px + var(--lv-bas,0px));
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   11. L'ONGLET ET LE TIROIR DE LA BIBLE
+   L'onglet garde son fond noir (Emmanuel, 27/09) ; il devient une
+   languette arrondie, filet crème. Le tiroir est un panneau de verre noir
+   aux coins doux du côté de la page.
+   ════════════════════════════════════════════════════════════════════ */
+html body #bp-tab{
+  background:#000;border:1px solid var(--h-l2);border-left:0;border-radius:0;
+  padding:18px 9px;font-family:var(--h-ui);font-size:10.5px;font-weight:600;letter-spacing:.22em;color:var(--h-t2);
+  box-shadow:6px 0 24px -12px color-mix(in srgb,var(--h-or) 30%,transparent);
+  transition:color .25s,border-color .25s,padding .25s,box-shadow .3s;
+}
+html body #bp-tab:hover{background:#000;color:var(--h-or);border-color:var(--h-l3);padding-left:12px;box-shadow:8px 0 30px -10px color-mix(in srgb,var(--h-or) 45%,transparent)}
+html body #bp-voile{background:color-mix(in srgb,#000 60%,transparent);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+html body #bp-pan{
+  background:#000;border-right:1px solid var(--h-l2);border-radius:0;overflow:hidden;
+  box-shadow:none;
+}
+/* l'ombre n'existe que tiroir ouvert : fermé, il ne doit rien assombrir au
+   bord gauche de la page */
+html body #bp-pan.on{box-shadow:30px 0 80px -30px rgba(0,0,0,.9)}
+html body #bp-pan .bp-tete{gap:10px;padding:12px 14px 12px 20px;border-bottom:1px solid var(--h-l1)}
+html body #bp-pan .bp-titre{font-family:var(--h-titre);font-size:20px;font-weight:500;letter-spacing:.02em;text-transform:none;color:#fff;margin-right:auto}
+html body #bp-pan .bp-icone{width:36px;height:36px;justify-content:center;border-radius:0;color:var(--h-t2);padding:0}
+html body #bp-pan .bp-icone:first-of-type{margin-left:0}
+html body #bp-pan .bp-icone:hover{color:#fff;background:var(--h-s3)}
+html body #bp-pan .bp-page{font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.01em;text-transform:none;color:#000;background:var(--h-or);padding:8px 14px;border-radius:0}
+html body #bp-pan .bp-page:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000}
+html body #bp-pan .bp-fermer{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;border-radius:0;font-size:14px;color:var(--h-t2);background:var(--h-s3)}
+html body #bp-pan .bp-fermer:hover{color:#fff;background:var(--h-s4)}
+html body #bp-pan .bp-refrow{gap:8px;padding:12px 14px 12px 20px;border-bottom:1px solid var(--h-l1)}
+html body #bp-pan .bp-ref{border:1px solid var(--h-l2);border-radius:0;padding:9px 16px;background:var(--h-s1);font-family:var(--h-ui);font-size:14px}
+html body #bp-pan .bp-ref:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body #bp-pan .bp-ref::placeholder{font-style:normal;color:var(--h-t4)}
+html body #bp-pan .bp-aller{font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.01em;text-transform:none;color:#000;background:var(--h-or);padding:9px 16px;border-radius:0}
+html body #bp-pan .bp-aller:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000}
+html body #bp-pan .bp-chip{border-radius:0;border-color:var(--h-l2);padding:5px 12px;font-family:var(--h-ui);font-size:13px;background:var(--h-s1)}
+html body #bp-pan .bp-chip:hover{border-color:var(--h-l3);background:var(--h-s3)}
+@media(max-width:720px){html body #bp-pan{border-radius:0}}
+
+/* ════════════════════════════════════════════════════════════════════
+   12. LES PETITES FENÊTRES D'INFORMATION ET LES MENUS FLOTTANTS
+   Les pages ouvrent des menus (⋯) et des fenêtres de confirmation : ils
+   prennent tous la même carte flottante, sans rien changer à leur
+   fonctionnement.
+   ════════════════════════════════════════════════════════════════════ */
+html body :is(.overlay){background:color-mix(in srgb,#000 74%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+html body :is(.overlay)>.modal{background:var(--h-s1);border:0;border-radius:0;box-shadow:var(--h-ombre)}
+
+/* ── 13. MOUVEMENT ── */
+@keyframes hMonte{from{opacity:0;transform:translateY(10px) scale(.99)}to{opacity:1;transform:none}}
+@keyframes hVoile{from{opacity:0}to{opacity:1}}
+html body .rech-overlay.ouvert .rech-boite,html body :is(.auth-overlay,.auth-ov).ouvert :is(.auth-modal,.auth-box){animation:hMonte .38s var(--h-doux) both}
+html body .rech-overlay.ouvert,html body :is(.auth-overlay,.auth-ov).ouvert{animation:hVoile .25s ease both}
+@media (prefers-reduced-motion:reduce){
+  html body *,html body *::before,html body *::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+/* ── 14. IMPRESSION ── */
+@media print{
+  html body header,html body .nav-bas,html body footer::before,html body #bp-tab{display:none!important}
+}
+
+/* ── 15. LA DÉCONNEXION ──
+   Un lien discret en police d'interface, au bas de chaque fenêtre de
+   compte, quelle que soit la page qui la porte. */
+html body .auth-out{font-family:var(--h-ui);font-size:13.5px;letter-spacing:0;color:var(--h-t3);margin-top:16px;transition:color .25s}
+html body .auth-out:hover{color:var(--h-or)}
+
+/* ── LA BARRE REPLIÉE, COMME AVANT (Emmanuel, 10/10) ──
+   Repliée, la poignée reprend exactement son dessin d'origine : le chevron
+   large et fin, crème atténuée, qui s'allume au survol. */
+html.barre-rangee body .barre-poignee{padding:7px 0 8px;color:rgba(231,224,207,.42)}
+html.barre-rangee body .barre-poignee:hover,html.barre-rangee body .barre-poignee:focus-visible{color:var(--or,#efe6cf);background:none}
+html.barre-rangee body .barre-poignee svg{display:block;width:30px;height:9px;margin:0 auto;transform:rotate(180deg)}

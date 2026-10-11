@@ -343,6 +343,15 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .sum-sub{font-size:15px;letter-spacing:.04em;color:var(--pa);margin:14px 0 8px}
 .sum-detail{font-size:14px;color:var(--pa2);margin-bottom:8px}
 .sum-rap{font-size:13px;letter-spacing:.03em;color:var(--pa2);margin-bottom:32px}
+/* le bilan : la répartition en couleurs, puis les versets manqués */
+.sum-detail{display:flex;justify-content:center;gap:22px}
+.sum-c{display:inline-flex;align-items:center;gap:8px;font-size:17px;color:var(--parchemin)}
+.sum-c b{font-weight:500}
+.sum-dot{display:inline-block;flex:none;width:10px;height:10px;border-radius:50%}
+.sum-t{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa);margin:26px 0 10px}
+.sum-liste{list-style:none;margin:0 auto;padding:0;max-width:420px;text-align:left}
+.sum-liste li{display:flex;align-items:center;gap:12px;padding:9px 2px;border-top:1px solid var(--filet);font-size:17px;letter-spacing:0;color:var(--parchemin)}
+.sum-liste li:last-child{border-bottom:1px solid var(--filet)}
 #sum-back{max-width:260px;margin:0 auto}
 
 /* ═══ MODAL ═══ */
@@ -915,7 +924,7 @@ const T={
     find_ref:'Quelle est la référence ?', find_verse:'Quel est le verset ?',
     answered:'répondues', correct:'justes', finish:'Terminer',
     rap_r:'Pas du tout', rap_a:'À peu près', rap_v:'Parfaitement',
-    done:'Session terminée', of:'sur', acquired:'versets acquis',
+    done:'Session terminée', of:'sur', acquired:'versets acquis', seen:'versets vus', seen1:'verset vu', missed:'À reprendre', missed_none:'Aucune erreur dans cette série.',
     backbtn:'Retour',
     addverse:'Verset', edit:'Modifier', rename:'Renommer', del:'Supprimer',
     mcat:'Nouvelle catégorie', mcat_edit:'Renommer la catégorie', mv_edit:'Modifier le verset',
@@ -952,7 +961,7 @@ const T={
     mcat_p:'Nouvelle catégorie de passages',
     f_titre:'Titre du passage', f_ref_p:'Référence (ex : Marc 10:46-52)',
     ph_titre:'La guérison de l’aveugle de Jéricho',
-    acquired_p:'passages acquis',
+    acquired_p:'passages acquis', seen_p:'passages vus', seen1_p:'passage vu',
     no_cats_p:'Aucune catégorie de passages. Créez-en une, puis ajoutez-y des passages.',
     empty_sel_p:'Aucun passage coché. Touchez « Tout sélectionner » en haut de la liste, ou cochez au moins deux passages.',
     not_enough_p:'Il faut au moins deux passages pour commencer. Cochez-en un second, ou ajoutez un passage.',
@@ -977,7 +986,7 @@ const T={
     mcat_c:'Nouvelle catégorie de fiches',
     f_cit:'Le texte (une citation, une définition…)', f_src:'Ce à quoi il se rapporte (ex : saint Augustin, ou le mot défini)',
     ph_cit:'Tu nous as faits pour toi, et notre cœur est sans repos tant qu\u2019il ne repose en toi.',
-    acquired_c:'fiches acquises',
+    acquired_c:'fiches acquises', seen_c:'fiches vues', seen1_c:'fiche vue',
     no_cats_c:'Aucune catégorie de fiches. Créez-en une, puis ajoutez-y des fiches.',
     empty_sel_c:'Aucune fiche cochée. Touchez « Tout sélectionner » en haut de la liste, ou cochez au moins deux fiches.',
     not_enough_c:'Il faut au moins deux fiches pour commencer. Cochez-en une seconde, ou ajoutez une fiche.',
@@ -1051,8 +1060,8 @@ const modeC=()=>S.mode==='c';
    les trois onglets parlent chacun leur langue sans multiplier les tests. */
 function tk(base,kind){
   const k=kind||S.mode;
-  if(k==='p')return t({no_cats:'no_cats_p',empty_sel:'empty_sel_p',not_enough:'not_enough_p',acquired:'acquired_p',del_cat_q:'del_cat_q_p',mcat:'mcat_p',addverse:'addpassage'}[base]||base);
-  if(k==='c')return t({no_cats:'no_cats_c',empty_sel:'empty_sel_c',not_enough:'not_enough_c',acquired:'acquired_c',del_cat_q:'del_cat_q_c',mcat:'mcat_c',addverse:'addcitation'}[base]||base);
+  if(k==='p')return t({seen:'seen_p',seen1:'seen1_p',no_cats:'no_cats_p',empty_sel:'empty_sel_p',not_enough:'not_enough_p',acquired:'acquired_p',del_cat_q:'del_cat_q_p',mcat:'mcat_p',addverse:'addpassage'}[base]||base);
+  if(k==='c')return t({seen:'seen_c',seen1:'seen1_c',no_cats:'no_cats_c',empty_sel:'empty_sel_c',not_enough:'not_enough_c',acquired:'acquired_c',del_cat_q:'del_cat_q_c',mcat:'mcat_c',addverse:'addcitation'}[base]||base);
   return t(base);
 }
 /* Les catégories du mode où l'on se trouve, et elles seules. */
@@ -1716,6 +1725,8 @@ function startSession(){
     return;
   }
   S.answered=0; S.correct=0; S.lastId=null; S.rap={r:0,a:0,v:0}; S.tour=0; S.fenR=[];
+  /* le bilan de la série : ce qui a été vu, et ce qui a été manqué */
+  S.vus={}; S.rates={};
   /* l'heure de départ de la séance : ce qui a été vu avant elle compte comme
      « pas encore vu dans cette séance » */
   S.debut=maintenant();
@@ -1877,6 +1888,7 @@ function pick(opt,btn){
   S.cur.done=true;
   const q=S.cur, ok=opt.id===q.item.id;
   S.answered++; if(ok)S.correct++;
+  (S.vus=S.vus||{})[q.item.id]=q.item; if(!ok)(S.rates=S.rates||{})[q.item.id]=q.item;
   const dit=q.touche?q.rappel:null;
   if(dit)S.rap[dit]=(S.rap[dit]||0)+1;
   answer(q.item.id,ok,dit); saveProgressGroupe();
@@ -1894,14 +1906,24 @@ function endSession(){
   coupeTic();
   videAttente();      // la séance se termine : rien ne reste en attente
   showView('summary');
-  $('sum-num').textContent=S.answered?Math.round(S.correct/S.answered*100)+'%':'—';
-  $('sum-sub').textContent=t('done');
-  let vCount=0; allItems().forEach(i=>{if(levelOf(i.id)==='v')vCount++;});
-  $('sum-detail').textContent=S.correct+' / '+S.answered+' '+t('correct')+'  ·  '+vCount+' '+tk('acquired');
-  /* Ce que TU as déclaré, à côté de ce que la machine a mesuré. La ligne
-     n'apparaît que si tu t'es noté au moins une fois. */
-  const R=S.rap||{}, tot=(R.r||0)+(R.a||0)+(R.v||0);
-  $('sum-rap').textContent=tot?t('rap_v')+' '+(R.v||0)+'  ·  '+t('rap_a')+' '+(R.a||0)+'  ·  '+t('rap_r')+' '+(R.r||0):'';
+  /* ── LE BILAN DE LA SÉRIE (Emmanuel, 10/10) ──
+     La couleur d'un verset est ton jugement à toi ; une bonne réponse ne
+     prouve rien. Le bilan ne donne donc plus de pourcentage de bonnes
+     réponses : il dit combien de versets ont été vus, où ils en sont dans
+     tes trois couleurs, et lesquels ont été manqués (une erreur est ce qui
+     fait descendre une couleur), avec leur couleur d'à présent. */
+  const vus=Object.keys(S.vus||{}), n=vus.length;
+  $('sum-num').textContent=n;
+  $('sum-sub').textContent=tk(n===1?'seen1':'seen');
+  const coul={r:0,a:0,v:0}; vus.forEach(id=>{coul[levelOf(id)]=(coul[levelOf(id)]||0)+1;});
+  const pastille=k=>'<span class="sum-dot" style="background:var(--'+({r:'rouge',a:'ambre',v:'vert'})[k]+')"></span>';
+  $('sum-detail').innerHTML=n?['r','a','v'].map(k=>'<span class="sum-c">'+pastille(k)+'<b>'+coul[k]+'</b></span>').join(''):'';
+  const lang=S.lang||'fr';
+  const libelle=it=>{const d=it[lang]||it.fr||it.en||{};return it.pas&&d.text?(d.text+' — '+(d.ref||'')):(d.ref||d.text||'');};
+  const rates=Object.keys(S.rates||{});
+  $('sum-rap').innerHTML=!n?'':(rates.length
+    ?'<div class="sum-t">'+besc(t('missed'))+'</div><ul class="sum-liste">'+rates.map(id=>'<li>'+pastille(levelOf(id))+'<span>'+besc(libelle(S.rates[id]))+'</span></li>').join('')+'</ul>'
+    :'<div class="sum-t">'+besc(t('missed_none'))+'</div>');
   S.soloCat=null; S.soloSec=null;
   renderCats();
 }

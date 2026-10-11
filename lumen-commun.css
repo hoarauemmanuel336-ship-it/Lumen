@@ -9,6 +9,12 @@
    l'emporte partout à la fois. Tout changement de ton, de taille ou de
    forme commun aux pages se fait désormais ici, une seule fois.
 
+   HABILLAGE (10/10) : l'apparence du site a été entièrement refaite dans
+   le dossier habillage/ (commun.css, puis une feuille par page), posé en
+   DERNIER dans chaque page. C'est désormais là que se règle l'apparence ;
+   cette feuille-ci reste pour les réglages anciens que l'habillage
+   reprend ou dépasse.
+
    Elle ne touche jamais à la couleur d'accent (--or) : celle-ci vient de
    content/settings.json, posée après elle par le build.
 

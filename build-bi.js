@@ -53,6 +53,25 @@ function fsLireCollection(nom) {
 let COMMUN_CSS = '';
 try { COMMUN_CSS = fs.readFileSync('lumen-commun.css', 'utf8'); } catch (e) { console.warn('lumen-commun.css absente'); }
 const COMMUN_TAG = COMMUN_CSS ? '<style id="lumen-commun">' + COMMUN_CSS + '</style>' : '';
+/* ── L'HABILLAGE (10/10) ──
+   Le dossier habillage/ porte l'apparence du site : commun.css pour tout ce
+   qui se retrouve sur chaque page (barre, navigation, fenêtres, boutons,
+   cartes, champs, pied), puis une feuille par page. Il est posé en DERNIER
+   dans chaque page, après tout le reste : c'est lui qui a le dernier mot sur
+   l'apparence. Il ne fixe jamais la couleur d'accent (--or), qui vient de
+   content/settings.json ; il en tire toutes ses nuances. */
+function habillage(nomPage) {
+  let css = '';
+  for (const f of ['habillage/commun.css', `habillage/${nomPage}.css`]) {
+    if (fs.existsSync(f)) css += fs.readFileSync(f, 'utf8') + '\n';
+  }
+  return css ? '<style id="habillage">' + css + '</style>' : '';
+}
+/* les polices : les deux Garamond du site, avec les graisses dont
+   l'habillage se sert ; l'adresse des pages copiées est remplacée au build */
+const POLICES_AVANT = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap';
+const POLICES_URL = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap';
+const polices = h => h.split(POLICES_AVANT).join(POLICES_URL);
 /* ── FONCTIONNEMENT COMMUN (26/09) ──
    Les fonctions que plusieurs pages recopiaient à l'identique vivent dans le
    dossier commun/, un fichier par famille. Chaque page reçoit, avant son
@@ -116,7 +135,7 @@ function rel(fromDir, toPath) {
 /* ---- polices + petite règle pour le bouton de langue ---- */
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">`;
+<link href="${POLICES_URL}" rel="stylesheet">`;
 
 const FIREBASE_HEAD = `<script>
 /* Firebase à la demande : chargé après le rendu (ou à la première interaction). */
@@ -712,6 +731,7 @@ ${FIREBASE_HEAD}
 ${COMMUN_TAG}
 <style>${APPEARANCE_CSS}</style>
 ${BARRE_TETE}
+${habillage('accueil')}
 </head>
 <body>
 ${header(lang, type, base, otherRel, ctx)}
@@ -962,6 +982,7 @@ if (fs.existsSync('memoriser.html')) {
     console.log('Mémoriser : barre et pied canoniques injectés');
   }
   mh = injecteAvant(mh, '</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script>');
+  mh = polices(injecteAvant(mh, '</head>', habillage('memoriser')));
   fs.writeFileSync(`${OUT}/memoriser.html`, mh);
   console.log('Copié : memoriser.html');
 }
@@ -986,6 +1007,7 @@ if (fs.existsSync('articles.html')) {
     console.log('Articles : barre et pied canoniques injectés');
   }
   ah = injecteAvant(ah, '</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script>');
+  ah = polices(injecteAvant(ah, '</head>', habillage('articles')));
   fs.writeFileSync(`${OUT}/articles.html`, ah);
   console.log('Copié : articles.html');
 }
@@ -1010,6 +1032,7 @@ if (fs.existsSync('ressources.html')) {
     console.log('Ressources : barre et pied canoniques injectés');
   }
   rh = injecteAvant(rh, '</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script>');
+  rh = polices(injecteAvant(rh, '</head>', habillage('ressources')));
   fs.writeFileSync(`${OUT}/ressources.html`, rh);
   console.log('Copié : ressources.html');
 }
@@ -1037,6 +1060,7 @@ if (fs.existsSync('commentaires.html')) {
     console.log('Commentaires : barre et pied canoniques injectés');
   }
   ch = injecteAvant(ch, '</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script>');
+  ch = polices(injecteAvant(ch, '</head>', habillage('commentaires')));
   fs.writeFileSync(`${OUT}/commentaires.html`, ch);
   console.log('Copié : commentaires.html');
 }
@@ -1082,6 +1106,7 @@ if (fs.existsSync('bible.html')) {
     bh = injecteAvant(bh, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Bible : barre et pied canoniques injectés');
   }
+  bh = polices(injecteAvant(bh, '</head>', habillage('bible')));
   fs.writeFileSync(`${OUT}/bible.html`, bh);
   console.log('Copié : bible.html');
   // Chaque Bible est UN fichier source que le build redécoupe en un fichier

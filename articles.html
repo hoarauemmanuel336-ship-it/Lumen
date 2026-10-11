@@ -372,7 +372,8 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 
 <main class="wrap">
   <section id="ecran-liste">
-    <div class="tete"><h1>Articles</h1></div>
+    <div class="fil" id="fil"></div>
+    <div class="tete"><h1 id="titre-liste">Articles</h1></div>
     <div class="resume" id="mot-liste"></div>
     <div id="liste"></div>
     <div class="acts" id="acts-liste">
@@ -380,6 +381,18 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
       <button class="act majeur" id="b-nouveau">+ Écrire un article</button>
       <button class="act" id="b-section">+ Nouvelle section</button>
       </div>
+      <div class="acts-outils">
+      <button class="act" id="b-organiser">Organiser</button>
+      <button class="act" id="b-choisir">Choisir</button>
+      </div>
+    </div>
+    <!-- Le mode Choisir : ses actions prennent la place des autres -->
+    <div class="acts" id="acts-choix" style="display:none">
+      <span class="compte-choix" id="compte-choix"></span>
+      <button class="act" id="b-tout">Tout choisir</button>
+      <button class="act" id="b-deplacer">Déplacer</button>
+      <button class="act danger" id="b-jeter">Supprimer</button>
+      <button class="act" id="b-choix-fin">Terminer</button>
     </div>
   </section>
 
@@ -503,7 +516,7 @@ try{db.enablePersistence({synchronizeTabs:true}).catch(function(){});}catch(_){}
 const AUTEUR='hoarauemmanuel336@gmail.com';
 
 // ════════ ÉTAT ════════
-const S={uid:null,email:null,auteur:false,liste:[],art:null,sale:false,minute:null,rubs:[],rubOpen:{}};
+const S={uid:null,email:null,auteur:false,liste:[],art:null,sale:false,minute:null,rubs:[],rubOpen:{},ouLa:'',pubOu:'',choix:false,pris:new Set(),organise:false};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 const acol=()=>db.collection('users/'+S.uid+'/articles');
@@ -519,7 +532,12 @@ const rdoc=()=>db.doc('users/'+S.uid+'/meta/rubriques');
 const RUB_MAX=3;
 const rubDe=id=>S.rubs.find(r=>r.id===id)||null;
 /* (fonctions communes : voir commun/rubriques.js, posé par le build) */
-function articlesDe(rid){return S.liste.filter(a=>(rubValide(a.rub)?a.rub:'')===(rid||''));}
+function articlesDe(rid){
+  /* l'ordre posé à la main (Organiser) d'abord ; sans lui, l'ordre des dates */
+  const l=S.liste.filter(a=>(rubValide(a.rub)?a.rub:'')===(rid||''));
+  const rang=a=>(typeof a.ordre==='number')?a.ordre:1e9;
+  return l.map((a,i)=>[a,i]).sort((x,y)=>(rang(x[0])-rang(y[0]))||(x[1]-y[1])).map(x=>x[0]);
+}
 function compteRub(rid){return descendance(rid).reduce((n,x)=>n+articlesDe(x).length,0);}
 /* Replié par défaut (Emmanuel, 22/08) : la page s'ouvre comme un sommaire.
    Ce qu'on déplie reste déplié sur l'appareil. */
@@ -853,7 +871,7 @@ window.addEventListener('scroll',suitVue,{passive:true,capture:true});
 window.addEventListener('resize',suitVue);
 
 function ligneArticle(a){
-  const l=document.createElement('div'); l.className='art-ligne';
+  const l=document.createElement('div'); l.className='art-ligne'+(S.pris.has('a:'+a.id)?' pris':''); l.dataset.cle='a:'+a.id;
   const t=(a.titre||'').trim();
   const ex=texteBrut(a).slice(0,180);
   l.innerHTML='<button class="art-item" data-id="'+esc(a.id)+'">'
@@ -861,48 +879,300 @@ function ligneArticle(a){
     +(ex?'<div class="art-extrait">'+esc(ex)+'</div>':'')
     +'<div class="art-pied"><span class="art-etat'+(a.publie?' publie':'')+'">'+(a.publie?'Publié':'Privé')+'</span><span>'+esc(dateFr(a.maj||a.cree))+'</span></div>'
     +'</button><span class="art-menu" data-amenu="'+esc(a.id)+'" role="button" tabindex="0" aria-label="Cet article">⋯</span>';
+  if(S.organise)l.insertAdjacentHTML('afterbegin','<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>');
   return l;
 }
+/* ── UNE SECTION, UNE PAGE (Emmanuel, 10/10) ──
+   Comme dans Ressources : la liste ne montre que l'endroit où l'on est. Une
+   section est une rangée ; la toucher ouvre sa propre page, avec ses
+   sous-sections et ses articles, un fil d'Ariane au-dessus pour remonter,
+   et son nom en grand titre. L'adresse porte l'endroit (#s/…), si bien que
+   « précédent » ramène d'une section à l'autre. */
+function ici(){ return rubValide(S.ouLa) ? S.ouLa : ''; }
+function vaVers(id){
+  S.ouLa=id||'';
+  const cible=S.ouLa?'#s/'+S.ouLa:'';
+  if((location.hash||'')!==cible){try{history.pushState(null,'',cible||location.pathname);}catch(_){}}
+  vue('liste');
+}
+function majFil(){
+  const f=$('fil'); if(!f)return;
+  const bouts=[]; let r=rubDe(ici()), garde=0;
+  while(r&&garde++<8){bouts.unshift(r);r=r.parent?rubDe(r.parent):null;}
+  let h='<span data-va="" role="button" tabindex="0">Articles</span>';
+  bouts.slice(0,-1).forEach(x=>{h+='<i>›</i><span data-va="'+esc(x.id)+'" role="button" tabindex="0">'+esc(x.nom)+'</span>';});
+  f.innerHTML=bouts.length?h:'';
+  $('titre-liste').textContent=bouts.length?bouts[bouts.length-1].nom:'Articles';
+  $('titre-liste').parentElement.classList.toggle('dedans',!!bouts.length);
+  /* une nouvelle section se crée là où l'on est ; au dernier niveau
+     permis, il n'y a plus de section à créer */
+  const bs=$('b-section'); if(bs)bs.style.display=(ici()&&niveau(ici())>=RUB_MAX)?'none':'';
+}
 function elementRub(r){
-  const n=niveau(r.id), ouverte=rubOuverte(r.id);
   const d=document.createElement('div');
-  d.className='rub rub-'+n+(ouverte?' ouvert':'');
-  d.dataset.rid=r.id;
-  const tete=document.createElement('div');
-  tete.className='rub-tete'; tete.dataset.rtog=r.id;
-  tete.setAttribute('role','button'); tete.setAttribute('tabindex','0');
-  tete.innerHTML='<span class="rub-nom">'+esc(r.nom)+'</span><span class="rub-n">'+compteRub(r.id)+'</span>'
+  d.className='rub rub-1'+(S.pris.has('r:'+r.id)?' pris':'');
+  d.dataset.rid=r.id; d.dataset.cle='r:'+r.id;
+  d.innerHTML='<div class="rub-tete" data-va="'+esc(r.id)+'" role="button" tabindex="0">'
+    +'<span class="rub-nom">'+esc(r.nom)+'</span><span class="rub-n">'+compteRub(r.id)+'</span>'
     +'<span class="rub-menu" data-rmenu="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Cette section">⋯</span>'
-    +'<span class="rub-chev">›</span>';
-  d.appendChild(tete);
-  const corps=document.createElement('div'); corps.className='rub-corps';
-  const fils=enfants(r.id), arts=articlesDe(r.id);
-  fils.forEach(f=>corps.appendChild(elementRub(f)));
-  arts.forEach(a=>corps.appendChild(ligneArticle(a)));
-  if(!fils.length&&!arts.length)corps.innerHTML='<div class="rub-vide">Aucun article ici.</div>';
-  d.appendChild(corps);
+    +'<span class="rub-chev">›</span></div>';
+  if(S.organise)d.querySelector('.rub-tete').insertAdjacentHTML('afterbegin','<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>');
   return d;
 }
 function rendLister(){
   const h=$('liste'); h.innerHTML='';
-  if(!S.liste.length&&!S.rubs.length){
+  const ou=ici();
+  majFil();
+  if(!ou&&!S.liste.length&&!S.rubs.length){
     h.innerHTML='<div class="vide">Rien encore.<br>Le premier article vous attend.</div>';
     return;
   }
-  enfants('').forEach(r=>h.appendChild(elementRub(r)));
-  const libres=articlesDe('');
-  if(S.rubs.length&&libres.length){
-    const d=document.createElement('div');
-    d.className='rub rub-1'+(rubOuverte('__libres')?' ouvert':'');
-    d.dataset.rid='__libres';
-    d.innerHTML='<div class="rub-tete" data-rtog="__libres" role="button" tabindex="0"><span class="rub-nom">Hors section</span><span class="rub-n">'+libres.length+'</span><span class="rub-chev">›</span></div>';
-    const corps=document.createElement('div'); corps.className='rub-corps';
-    libres.forEach(a=>corps.appendChild(ligneArticle(a)));
-    d.appendChild(corps);
-    h.appendChild(d);
-  }else{
-    libres.forEach(a=>h.appendChild(ligneArticle(a)));
+  const fils=enfants(ou), arts=articlesDe(ou);
+  fils.forEach(r=>h.appendChild(elementRub(r)));
+  arts.forEach(a=>h.appendChild(ligneArticle(a)));
+  if(ou&&!fils.length&&!arts.length)h.innerHTML='<div class="rub-vide">Aucun article ici.</div>';
+}
+
+// ════════ ORGANISER ════════
+/* ── ORGANISER (Emmanuel, 10/10) ──
+   Comme dans Ressources : « Organiser » fait paraître une poignée ⠿ devant
+   chaque section et chaque article. On tire par la poignée et on pose :
+   sur une section, l'objet y entre ; sur un maillon du fil d'Ariane, il
+   remonte ; entre deux voisins de même espèce, il prend cette place. Les
+   sections restent en tête de la liste, les articles dessous. Échap annule. */
+function basculeOrganise(on){
+  S.organise=(on===undefined)?!S.organise:!!on;
+  if(S.organise&&S.choix)basculeChoisir(false);
+  document.body.classList.toggle('organise',S.organise);
+  const b=$('b-organiser'); if(b){b.textContent=S.organise?'Terminer':'Organiser';b.classList.toggle('majeur',S.organise);}
+  const m=$('mot-liste'); if(m&&S.auteur)m.textContent=''; /* pas de mode d'emploi à l'écran (Emmanuel, 10/10) */
+  rendLister();
+}
+function hauteurR(id){let h=1;enfants(id).forEach(e=>{h=Math.max(h,1+hauteurR(e.id));});return h;}
+async function articleDans(id,cible){
+  const a=S.liste.find(x=>x.id===id); if(!a)return;
+  cible=rubValide(cible)?cible:'';
+  if((rubValide(a.rub)?a.rub:'')===cible)return;
+  try{
+    await acol().doc(id).set({rub:cible,ordre:null},{merge:true});
+    a.rub=cible; a.ordre=null;
+    if(a.publie)await rafraichitPublic(a);
+  }catch(e){console.warn('rangement',e);lvInfo('Le rangement n’a pas pu être enregistré.');}
+  rendLister();
+}
+function sectionDans(id,cible){
+  const r=rubDe(id); if(!r)return;
+  cible=rubValide(cible)?cible:'';
+  if(cible===(r.parent&&rubValide(r.parent)?r.parent:''))return;
+  if(cible&&descendance(id).indexOf(cible)>=0)return;
+  if(cible&&niveau(cible)+hauteurR(id)>RUB_MAX){lvInfo('Trop profond : le rangement ne descend pas au-delà de '+RUB_MAX+' niveaux.');return;}
+  r.parent=cible; saveRubs(); rafraichitRub(id); rendLister();
+}
+function sectionA(id,pos){
+  const ou=ici(), freres=enfants(ou), r=rubDe(id); if(!r)return;
+  const sans=freres.filter(x=>x.id!==id); pos=Math.max(0,Math.min(sans.length,pos));
+  const neuf=sans.slice(0,pos).concat([r],sans.slice(pos));
+  if(neuf.every((x,k)=>x===freres[k])){rendLister();return;}
+  /* les sœurs reprennent, dans le nouvel ordre, les places qu'elles
+     occupaient dans la liste générale */
+  const places=freres.map(x=>S.rubs.indexOf(x)).sort((a,b)=>a-b);
+  places.forEach((p,k)=>{S.rubs[p]=neuf[k];});
+  saveRubs(); rendLister();
+}
+async function articleA(id,pos){
+  const ou=ici(), liste=articlesDe(ou), a=liste.find(x=>x.id===id); if(!a)return;
+  const sans=liste.filter(x=>x.id!==id); pos=Math.max(0,Math.min(sans.length,pos));
+  const neuf=sans.slice(0,pos).concat([a],sans.slice(pos));
+  const changes=neuf.filter((x,k)=>x.ordre!==k);
+  if(!changes.length){rendLister();return;}
+  changes.forEach(x=>{x.ordre=neuf.indexOf(x);});
+  rendLister();
+  try{
+    const lot=db.batch();
+    changes.forEach(x=>lot.set(acol().doc(x.id),{ordre:x.ordre},{merge:true}));
+    await lot.commit();
+  }catch(e){console.warn('ordre',e);lvInfo('La place n’a pas pu être enregistrée. Vérifiez la connexion et réessayez.');}
+}
+let DRAG=null;
+function dragNettoie(){
+  if(!DRAG)return;
+  if(DRAG.ghost&&DRAG.ghost.parentNode)DRAG.ghost.parentNode.removeChild(DRAG.ghost);
+  DRAG.el.classList.remove('fantome');
+  document.querySelectorAll('.avant,.apres,.cible').forEach(x=>x.classList.remove('avant','apres','cible'));
+  if(DRAG.defile)cancelAnimationFrame(DRAG.defile);
+  DRAG=null;
+}
+function dragMarque(c){
+  document.querySelectorAll('.avant,.apres,.cible').forEach(x=>x.classList.remove('avant','apres','cible'));
+  if(!c)return;
+  if(c.type==='dans')c.el.classList.add('cible'); else c.el.classList.add(c.avant?'avant':'apres');
+}
+function dragCible(x,y){
+  const sous=document.elementsFromPoint(x,y).filter(e=>!DRAG.ghost.contains(e));
+  const fil=sous.map(e=>e.closest&&e.closest('#fil [data-va]')).find(Boolean);
+  if(fil)return {type:'dans',el:fil,id:fil.getAttribute('data-va')||''};
+  const rub=sous.map(e=>e.closest&&e.closest('#liste > .rub')).find(Boolean);
+  if(rub&&rub!==DRAG.el){
+    const rid=rub.dataset.rid;
+    if(DRAG.kind==='a')return {type:'dans',el:rub,id:rid};
+    if(descendance(DRAG.id).indexOf(rid)<0){
+      const r=rub.getBoundingClientRect(), fy=(y-r.top)/r.height;
+      if(fy>.3&&fy<.7)return {type:'dans',el:rub,id:rid};
+    }
   }
+  /* sinon : le voisin le plus proche, de même espèce */
+  const sel=DRAG.kind==='a'?'#liste > .art-ligne':'#liste > .rub';
+  const freres=[...document.querySelectorAll(sel)].filter(e=>e!==DRAG.el);
+  if(!freres.length)return null;
+  let best=null,bd=1e12;
+  freres.forEach(e=>{const r=e.getBoundingClientRect();const cy=Math.max(r.top,Math.min(r.bottom,y));const d=Math.abs(cy-y);if(d<bd){bd=d;best=e;}});
+  const r=best.getBoundingClientRect();
+  return {type:'ordre',el:best,avant:y<r.top+r.height/2};
+}
+document.addEventListener('pointerdown',e=>{
+  const h=e.target.closest?e.target.closest('#liste .poignee'):null;
+  if(!h||!S.organise||!S.auteur)return;
+  const el=h.closest('#liste > .rub, #liste > .art-ligne'); if(!el)return;
+  e.preventDefault();
+  const kind=el.classList.contains('rub')?'r':'a';
+  const id=kind==='r'?el.dataset.rid:String(el.dataset.cle||'').slice(2);
+  const r=el.getBoundingClientRect();
+  const ghost=el.cloneNode(true); ghost.classList.add('tire');
+  ghost.style.width=r.width+'px'; ghost.style.height=r.height+'px'; ghost.style.left=r.left+'px'; ghost.style.top=r.top+'px';
+  document.body.appendChild(ghost);
+  el.classList.add('fantome');
+  DRAG={kind,id,el,ghost,dx:e.clientX-r.left,dy:e.clientY-r.top,cible:null,x:e.clientX,y:e.clientY,defile:0};
+  try{h.setPointerCapture(e.pointerId);}catch(_){}
+  const boucle=()=>{ if(!DRAG)return;
+    const marge=70, v=window.innerHeight;
+    if(DRAG.y<marge)window.scrollBy(0,-Math.ceil((marge-DRAG.y)/6));
+    else if(DRAG.y>v-marge)window.scrollBy(0,Math.ceil((DRAG.y-(v-marge))/6));
+    DRAG.defile=requestAnimationFrame(boucle); };
+  DRAG.defile=requestAnimationFrame(boucle);
+});
+document.addEventListener('pointermove',e=>{
+  if(!DRAG)return;
+  DRAG.x=e.clientX; DRAG.y=e.clientY;
+  DRAG.ghost.style.left=(e.clientX-DRAG.dx)+'px'; DRAG.ghost.style.top=(e.clientY-DRAG.dy)+'px';
+  DRAG.cible=dragCible(e.clientX,e.clientY);
+  dragMarque(DRAG.cible);
+});
+document.addEventListener('pointerup',()=>{
+  if(!DRAG)return;
+  const d=DRAG, c=d.cible; dragNettoie();
+  if(!c)return;
+  if(c.type==='dans'){ if(d.kind==='a')articleDans(d.id,c.id); else sectionDans(d.id,c.id); return; }
+  const sel=d.kind==='a'?'#liste > .art-ligne':'#liste > .rub';
+  const sans=[...document.querySelectorAll(sel)].filter(x=>x!==d.el);
+  let pos=sans.indexOf(c.el); if(!c.avant)pos++;
+  if(d.kind==='a')articleA(d.id,pos); else sectionA(d.id,pos);
+});
+document.addEventListener('pointercancel',()=>dragNettoie());
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&DRAG)dragNettoie();});
+
+// ════════ CHOISIR PLUSIEURS ════════
+/* ── CHOISIR (Emmanuel, 10/10 : « sélectionner plusieurs choses en même
+   temps pour les supprimer et les déplacer ») ──
+   Comme dans Ressources : « Choisir » ouvre un mode où l'on coche articles
+   et sections ; la barre du bas dit combien sont pris, et l'action porte sur
+   tout le lot. Le chevron › d'une section y descend sans quitter le mode. */
+function basculeChoisir(on){
+  S.choix=(on===undefined)?!S.choix:!!on;
+  if(S.choix&&S.organise)basculeOrganise(false);
+  if(!S.choix)S.pris.clear();
+  document.body.classList.toggle('choisir',S.choix);
+  majChoix(); rendLister();
+}
+function majChoix(){
+  const a=$('acts-liste'), c=$('acts-choix');
+  if(a&&S.auteur)a.style.display=S.choix?'none':'';
+  if(c)c.style.display=(S.choix&&S.auteur)?'':'none';
+  const n=S.pris.size, t=$('compte-choix');
+  if(t)t.textContent=n?(n+(n>1?' choisis':' choisi')):'Rien de choisi';
+  ['b-jeter','b-deplacer'].forEach(k=>{const j=$(k); if(j){j.style.opacity=n?'1':'.4';j.disabled=!n;}});
+}
+function prend(cle,el){
+  if(S.pris.has(cle)){S.pris.delete(cle);if(el)el.classList.remove('pris');}
+  else{S.pris.add(cle);if(el)el.classList.add('pris');}
+  majChoix();
+}
+function toutChoisir(){
+  const ou=ici(), fils=enfants(ou), arts=articlesDe(ou), tout=fils.length+arts.length;
+  const deja=tout>0&&fils.every(r=>S.pris.has('r:'+r.id))&&arts.every(a=>S.pris.has('a:'+a.id));
+  S.pris.clear();
+  if(!deja){fils.forEach(r=>S.pris.add('r:'+r.id));arts.forEach(a=>S.pris.add('a:'+a.id));}
+  majChoix(); rendLister();
+}
+function prisDecoupe(){
+  const pris=[...S.pris];
+  return {
+    rids:pris.filter(k=>k.slice(0,2)==='r:').map(k=>k.slice(2)).filter(rubValide),
+    arts:pris.filter(k=>k.slice(0,2)==='a:').map(k=>k.slice(2)).map(id=>S.liste.find(x=>x.id===id)).filter(Boolean)
+  };
+}
+function hauteurRub(id){let h=1;enfants(id).forEach(e=>{h=Math.max(h,1+hauteurRub(e.id));});return h;}
+async function deplaceChoix(){
+  const {rids,arts}=prisDecoupe();
+  if(!rids.length&&!arts.length){basculeChoisir(false);return;}
+  const interdits=[]; rids.forEach(id=>interdits.push(...descendance(id)));
+  const hMax=rids.reduce((m,id)=>Math.max(m,hauteurRub(id)),0);
+  const e=[{cle:'r:',nom:'Hors section',note:ici()?'':'ici'}];
+  S.rubs.forEach(r=>{
+    if(interdits.indexOf(r.id)>=0)return;
+    if(rids.length&&niveau(r.id)+hMax>RUB_MAX)return;
+    e.push({cle:'r:'+r.id,nom:chemin(r.id),note:ici()===r.id?'ici':''});
+  });
+  const n=rids.length+arts.length;
+  const c=await lvChoix('Déplacer '+(n>1?('les '+n+' éléments choisis'):'l’élément choisi')+' dans…',e);
+  if(!c)return;
+  const cible=c.slice(2);
+  try{
+    for(const a of arts){
+      if((rubValide(a.rub)?a.rub:'')===cible)continue;
+      await acol().doc(a.id).set({rub:cible},{merge:true});
+      a.rub=cible;
+      if(a.publie)await rafraichitPublic(a);
+    }
+    let rubsChangees=false;
+    rids.forEach(id=>{const r=rubDe(id); if(r&&(r.parent||'')!==cible){r.parent=cible;rubsChangees=true;}});
+    if(rubsChangees){saveRubs(); for(const id of rids)await rafraichitRub(id);}
+  }catch(e2){console.warn('déplacement',e2);lvInfo('Le déplacement n’a pas pu être enregistré. Vérifiez la connexion, puis réessayez.');}
+  basculeChoisir(false);
+}
+async function supprimeChoix(){
+  const {rids,arts}=prisDecoupe();
+  if(!rids.length&&!arts.length){basculeChoisir(false);return;}
+  const bouts=[];
+  if(arts.length)bouts.push(arts.length+(arts.length>1?' articles':' article'));
+  if(rids.length)bouts.push(rids.length+(rids.length>1?' sections':' section'));
+  let txt='Supprimer '+bouts.join(' et ')+' ?';
+  if(arts.length)txt+=(arts.length>1?' Les articles ne pourront pas être récupérés.':' L’article ne pourra pas être récupéré.');
+  const dedans=rids.reduce((k,id)=>k+compteRub(id),0)-arts.filter(a=>rids.some(id=>descendance(id).indexOf(a.rub)>=0)).length;
+  if(rids.length&&dedans>0)txt+=' Les articles rangés dans les sections sont conservés : ils reviennent hors section.';
+  if(!await lvConfirm(txt,1))return;
+  try{
+    for(const a of arts){
+      SUPPRIMES.add(a.id);
+      const medias=(a.blocs||[]).filter(b=>b.t==='image'&&b.media).map(b=>b.media);
+      if(a.publie)await retireDeLigne(a);
+      await acol().doc(a.id).delete();
+      for(const m of medias)await effaceMedia(m);
+    }
+    if(rids.length){
+      const partis=[]; rids.forEach(id=>partis.push(...descendance(id)));
+      S.rubs=S.rubs.filter(r2=>partis.indexOf(r2.id)<0);
+      saveRubs();
+      for(const a of S.liste.filter(a=>partis.indexOf(a.rub)>=0&&!SUPPRIMES.has(a.id))){
+        try{await acol().doc(a.id).set({rub:''},{merge:true});}catch(e){console.warn('déclassement',e);}
+        a.rub='';
+        if(a.publie)await rafraichitPublic(a);
+      }
+    }
+  }catch(e){
+    console.warn('suppression',e);
+    lvInfo('Une partie n’a pas pu être supprimée. Vérifiez la connexion, puis réessayez.');
+  }
+  basculeChoisir(false);
 }
 
 // ════════ ACTIONS DE RANGEMENT ════════
@@ -1059,24 +1329,61 @@ async function litPublic(){
     PUBS.sort((x,y)=>String(y.maj||y.cree||'').localeCompare(String(x.maj||x.cree||'')));
   }catch(e){console.warn('articles publics',e);PUBS=[];}
 }
+/* Le visiteur n'a pas la liste des sections, qui est privée : ses pages de
+   section se lisent dans le chemin recopié sur chaque article publié
+   (« Section › Sous-section »). Même parcours que chez l'auteur : une
+   rangée par section, sa page à part, le fil d'Ariane pour remonter. */
+const SEP_CH=' › ';
+function pubVaVers(ch){
+  S.pubOu=ch||'';
+  const cible=S.pubOu?'#c/'+encodeURIComponent(S.pubOu):'';
+  if((location.hash||'')!==cible){try{history.pushState(null,'',cible||location.pathname);}catch(_){}}
+  vue('liste');
+}
+function pubFil(){
+  const f=$('fil'); if(!f)return;
+  const bouts=S.pubOu?S.pubOu.split(SEP_CH):[];
+  let h='<span data-pva="" role="button" tabindex="0">Articles</span>';
+  bouts.slice(0,-1).forEach((x,i)=>{h+='<i>›</i><span data-pva="'+esc(bouts.slice(0,i+1).join(SEP_CH))+'" role="button" tabindex="0">'+esc(x)+'</span>';});
+  f.innerHTML=bouts.length?h:'';
+  $('titre-liste').textContent=bouts.length?bouts[bouts.length-1]:'Articles';
+  $('titre-liste').parentElement.classList.toggle('dedans',!!bouts.length);
+}
 function rendPublic(){
   const h=$('liste'); h.innerHTML='';
-  $('mot-liste').textContent=PUBS.length?'':'Aucun article publié pour l\u2019instant.';
   $('acts-liste').style.display='none';
-  /* regroupés par chemin de section, l'ordre des sections suivant la date du
-     plus récent article de chacune */
-  const groupes=new Map();
-  PUBS.forEach(a=>{const c=a.chemin||'';if(!groupes.has(c))groupes.set(c,[]);groupes.get(c).push(a);});
-  groupes.forEach((liste,c)=>{
-    if(c){const t=document.createElement('div');t.className='rub-nom';t.style.margin='26px 0 10px';t.textContent=c;h.appendChild(t);}
-    liste.forEach(a=>{
-      const d=document.createElement('div'); d.className='art-ligne';
-      d.innerHTML='<button class="art-item" type="button" data-lire="'+esc(a.id)+'">'
-        +'<div class="art-titre">'+esc(a.titre||'Sans titre')+'</div>'
-        +'<div class="art-extrait">'+esc(extraitDe(a))+'</div>'
-        +'<div class="art-pied"><span>'+esc(dateFr(a.maj||a.cree))+'</span></div></button>';
-      h.appendChild(d);
-    });
+  const ou=S.pubOu||'';
+  /* un chemin qui ne mène plus à aucun article ramène à l'accueil des articles */
+  if(ou&&!PUBS.some(a=>(a.chemin||'')===ou||(a.chemin||'').indexOf(ou+SEP_CH)===0))S.pubOu='';
+  const ici=S.pubOu||'';
+  pubFil();
+  $('mot-liste').textContent=PUBS.length?'':'Aucun article publié pour l’instant.';
+  const prof=ici?ici.split(SEP_CH).length:0;
+  /* les sections qui s'ouvrent ici, dans l'ordre de leur article le plus
+     récent, avec le nombre d'articles qu'elles contiennent */
+  const sous=new Map(), ici_arts=[];
+  PUBS.forEach(a=>{
+    const c=a.chemin||'';
+    if(c===ici){ici_arts.push(a);return;}
+    if(ici&&c.indexOf(ici+SEP_CH)!==0)return;
+    const b=c.split(SEP_CH);
+    if(!c||b.length<=prof)return;
+    const cle=b.slice(0,prof+1).join(SEP_CH);
+    sous.set(cle,(sous.get(cle)||0)+1);
+  });
+  sous.forEach((n,cle)=>{
+    const d=document.createElement('div'); d.className='rub rub-1';
+    d.innerHTML='<div class="rub-tete" data-pva="'+esc(cle)+'" role="button" tabindex="0">'
+      +'<span class="rub-nom">'+esc(cle.split(SEP_CH).pop())+'</span><span class="rub-n">'+n+'</span><span class="rub-chev">›</span></div>';
+    h.appendChild(d);
+  });
+  ici_arts.forEach(a=>{
+    const d=document.createElement('div'); d.className='art-ligne';
+    d.innerHTML='<button class="art-item" type="button" data-lire="'+esc(a.id)+'">'
+      +'<div class="art-titre">'+esc(a.titre||'Sans titre')+'</div>'
+      +'<div class="art-extrait">'+esc(extraitDe(a))+'</div>'
+      +'<div class="art-pied"><span>'+esc(dateFr(a.maj||a.cree))+'</span></div></button>';
+    h.appendChild(d);
   });
 }
 function extraitDe(a){
@@ -1154,6 +1461,13 @@ function vue(quoi){
   /* la liste ne se redessine pas pendant l'écriture, pour ne pas déplacer le
      curseur : on la redessine donc en y revenant. */
   if(quoi==='liste'){ if(S.auteur)rendLister(); else rendPublic(); }
+  /* l'écriture a sa propre adresse (#e), posée par-dessus celle de la
+     section : « précédent » ramène ainsi à la section d'où l'on venait.
+     Revenu à la liste par un autre chemin, on remet l'adresse de l'endroit. */
+  if(S.auteur){
+    if(quoi==='edit'&&location.hash!=='#e'){try{history.pushState(null,'','#e');}catch(_){}}
+    else if(quoi==='liste'&&location.hash==='#e'){try{history.replaceState(null,'',ici()?'#s/'+ici():location.pathname);}catch(_){}}
+  }
   window.scrollTo(0,0);
 }
 function rendEditeur(){
@@ -1246,7 +1560,7 @@ async function enregistre(silence){
   }
 }
 function nouveau(){
-  S.art={id:'a'+Date.now(),titre:'',blocs:[blocNeuf('p')],publie:false,rub:'',cree:null,maj:null};
+  S.art={id:'a'+Date.now(),titre:'',blocs:[blocNeuf('p')],publie:false,rub:ici(),cree:null,maj:null};
   S.sale=false; $('etat-enr').textContent=''; majEtatEditeur();
   rendEditeur(); vue('edit');
   setTimeout(()=>$('ed-titre').focus(),80);
@@ -1339,7 +1653,7 @@ function bibUtilise(avecTexte){
 // ════════ ÉVÉNEMENTS ════════
 document.addEventListener('DOMContentLoaded',()=>{
   $('b-nouveau').onclick=nouveau;
-  $('b-retour').onclick=async()=>{ if(S.sale)await enregistre(true); S.art=null; vue('liste'); };
+  $('b-retour').onclick=async()=>{ if(location.hash==='#e'){try{history.back();return;}catch(_){}} if(S.sale)await enregistre(true); S.art=null; vue('liste'); };
   $('b-enr').onclick=()=>enregistre();
   $('b-etat').onclick=async()=>{
     if(!S.art)return;
@@ -1353,7 +1667,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     /* arrivé par un lien direct, il n'y a pas d'entrée précédente sur le
        site : on remplace l'adresse au lieu de reculer hors du site */
     if(HIST_POUSSE>0){HIST_POUSSE--;try{history.back();return;}catch(_){}}
-    try{history.replaceState(null,'','/articles.html');}catch(_){}
+    try{history.replaceState(null,'',S.pubOu?'#c/'+encodeURIComponent(S.pubOu):'/articles.html');}catch(_){}
     vue('liste');
   };
   $('liste').addEventListener('click',e=>{
@@ -1398,22 +1712,32 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('m-code').addEventListener('click',e=>{if(e.target===$('m-code'))codeFin(null);});
 
   $('liste').addEventListener('click',e=>{
-    const am=e.target.closest('[data-amenu]'); if(am){menuArticle(am.dataset.amenu);return;}
-    const rm=e.target.closest('[data-rmenu]'); if(rm){menuRub(rm.dataset.rmenu);return;}
-    const rt=e.target.closest('[data-rtog]'); if(rt){
-      const id=rt.dataset.rtog;
-      S.rubOpen[id]=!rubOuverte(id); rubOpenEcrit();
-      const w=rt.closest('.rub'); if(w)w.classList.toggle('ouvert',rubOuverte(id));
+    if(S.choix){
+      const ch=e.target.closest('.rub-chev'), ru=e.target.closest('[data-va]');
+      if(ch&&ru){vaVers(ru.dataset.va);return;}
+      const el=e.target.closest('[data-cle]'); if(el)prend(el.dataset.cle,el);
       return;
     }
+    if(S.organise&&e.target.closest('.poignee'))return;
+    if(S.organise&&!e.target.closest('[data-va]'))return;
+    const am=e.target.closest('[data-amenu]'); if(am){menuArticle(am.dataset.amenu);return;}
+    const rm=e.target.closest('[data-rmenu]'); if(rm){menuRub(rm.dataset.rmenu);return;}
+    const va=e.target.closest('[data-va]'); if(va){vaVers(va.dataset.va);return;}
+    const pv=e.target.closest('[data-pva]'); if(pv){pubVaVers(pv.dataset.pva);return;}
     const it=e.target.closest('.art-item'); if(it&&it.dataset.id)ouvre(it.dataset.id);
   });
   $('liste').addEventListener('keydown',e=>{
     if(e.key!=='Enter'&&e.key!==' ')return;
-    const el=e.target.closest&&e.target.closest('[data-amenu],[data-rmenu],[data-rtog]');
+    const el=e.target.closest&&e.target.closest('[data-amenu],[data-rmenu],[data-va],[data-pva]');
     if(!el)return; e.preventDefault(); el.click();
   });
-  $('b-section').onclick=()=>nouvelleRub('');
+  $('b-section').onclick=()=>nouvelleRub(ici());
+  $('b-choisir').onclick=()=>basculeChoisir();
+  $('b-organiser').onclick=()=>basculeOrganise();
+  $('b-choix-fin').onclick=()=>basculeChoisir(false);
+  $('b-tout').onclick=toutChoisir;
+  $('b-deplacer').onclick=deplaceChoix;
+  $('b-jeter').onclick=supprimeChoix;
   $('b-ranger').onclick=async()=>{
     if(!S.art)return;
     /* un article jamais enregistré n'existe pas encore dans la liste : on
@@ -1574,11 +1898,38 @@ auth.onAuthStateChanged(u=>{
    la lecture publique tout de suite, elle sera simplement redessinée si un
    compte se présente. */
 ouvrePublic();
-function routeHash(){
-  if(S.auteur)return;
-  const m=(location.hash||'').match(/^#a\/(.+)$/);
-  if(m&&PUBS.some(x=>x.id===m[1]))lit(m[1]); else vue('liste');
+async function routeHash(){
+  const h=location.hash||'';
+  if(S.auteur){
+    /* « précédent » pendant l'écriture : l'article est enregistré, puis on
+       revient à la liste, comme par « ← Mes articles » */
+    if(h==='#e'&&S.art)return;
+    if(S.art){ if(S.sale)await enregistre(true); S.art=null; }
+    const s=h.match(/^#s\/(.+)$/); S.ouLa=s?s[1]:'';
+    vue('liste'); return;
+  }
+  const m=h.match(/^#a\/(.+)$/);
+  if(m&&PUBS.some(x=>x.id===m[1])){lit(m[1]);return;}
+  const c=h.match(/^#c\/(.+)$/);
+  try{S.pubOu=c?decodeURIComponent(c[1]):'';}catch(_){S.pubOu='';}
+  vue('liste');
 }
+/* le fil d'Ariane, au-dessus de la liste : chaque maillon ramène à sa page */
+$('fil').addEventListener('click',e=>{
+  const va=e.target.closest('[data-va]'); if(va){vaVers(va.dataset.va);return;}
+  const pv=e.target.closest('[data-pva]'); if(pv)pubVaVers(pv.dataset.pva);
+});
+$('fil').addEventListener('keydown',e=>{
+  if(e.key!=='Enter'&&e.key!==' ')return;
+  const el=e.target.closest&&e.target.closest('[data-va],[data-pva]'); if(!el)return;
+  e.preventDefault(); el.click();
+});
+/* arrivé directement sur une section (lien, rechargement) : on s'y place */
+(function(){
+  const h=location.hash||'';
+  const s=h.match(/^#s\/(.+)$/); if(s)S.ouLa=s[1];
+  const c=h.match(/^#c\/(.+)$/); if(c){try{S.pubOu=decodeURIComponent(c[1]);}catch(_){}}
+})();
 window.addEventListener('popstate',routeHash);
 </script>
 <script>
