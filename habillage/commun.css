@@ -814,3 +814,6 @@ html:root body:not(#_):not(#_):not(#_):not(#_) :is(#sel-barre .sb-oter,.surl-ite
 html:root body:not(#_):not(#_):not(#_):not(#_) :is(#amt-si,#ab-tab-si,#tab-si,#bp-pan .bp-page,#bp-pan .bp-aller,#auth-submit,#cat-enr,#ab-valider,#ab-google,#b-google,#auth-google,#b-voir-retour,#b-lire-retour,#mbib-go,#b-nouveau,#lvp-oter,#b-submit,#conf-ok,#start-btn,#finish-btn,#sum-back,.haut-page):is(:hover,:focus-visible){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;
   box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);transform:none}
+/* le résultat de la recherche propre à la Bible s'éclaire comme les autres */
+html:root body:not(#_):not(#_) .b-r:is(:hover,.kact){background:var(--h-or);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);position:relative;z-index:1}
+html:root body:not(#_):not(#_) .b-r:is(:hover,.kact) *{color:#000!important}

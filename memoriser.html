@@ -809,10 +809,8 @@ if(typeof firebase==='undefined'){var m=document.getElementById('auth-msg');if(m
 <!-- modals -->
 <div class="overlay" id="m-search">
   <div class="modal">
-    <div class="modal-title" id="msrch-title">Rechercher un verset</div>
-    <div class="auth-fieldrow"><textarea class="field champ-ligne" id="i-srch" rows="1" placeholder="Référence ou texte…" autocomplete="off"></textarea></div>
+    <div class="auth-fieldrow msrch-haut"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><textarea class="field champ-ligne" id="i-srch" rows="1" placeholder="Rechercher…" autocomplete="off" spellcheck="false"></textarea><span class="msrch-fermer" id="msrch-close" role="button" tabindex="0" aria-label="Fermer">✕</span></div>
     <div id="srch-results"></div>
-    <div class="modal-btns"><button class="m-cancel" id="msrch-close">Fermer</button></div>
   </div>
 </div>
 <div class="overlay" id="m-move">
@@ -1980,14 +1978,13 @@ function renderSearch(){
       host.appendChild(r);
     });
   });
-  if(!total){const e=document.createElement('div');e.className='srch-vide';e.textContent=S.lang==='fr'?'Rien trouvé.':'Nothing found.';host.appendChild(e);}
+  if(!total){const e=document.createElement('div');e.className='srch-vide';e.textContent=S.lang==='fr'?'Aucun verset trouvé pour « '+$('i-srch').value.trim()+' ».':'No verse found for “'+$('i-srch').value.trim()+'”.';host.appendChild(e);}
 }
 function openSearch(){
   /* La recherche couvre les deux séries : elle ne s'appelle donc plus
      « rechercher un verset ». */
-  $('msrch-title').textContent=S.lang==='fr'?'Rechercher':'Search';
-  $('i-srch').placeholder=S.lang==='fr'?'Référence, texte ou titre…':'Reference, text or title…';
-  $('msrch-close').textContent=S.lang==='fr'?'Fermer':'Close';
+  $('i-srch').placeholder=S.lang==='fr'?'Rechercher…':'Search…';
+  $('msrch-close').setAttribute('aria-label',S.lang==='fr'?'Fermer':'Close');
   $('i-srch').value=''; $('srch-results').innerHTML='';
   openModal('m-search'); setTimeout(()=>$('i-srch').focus(),60);
 }
@@ -2777,6 +2774,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     else if(e.key==='Enter'){const c=its[SKIDX>=0?SKIDX:0];if(c){e.preventDefault();c.click();}}
   });
   $('msrch-close').onclick=()=>closeModal('m-search');
+  $('msrch-close').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();closeModal('m-search');}});
   $('mmove-cancel').onclick=()=>closeModal('m-move');
   $('mv-cancel').onclick=()=>closeModal('m-verse'); $('mv-ok').onclick=saveVerseModal; $('mv-reset').onclick=resetVerseOrig;
   /* le bloc « Bible du site » suit la saisie ; l'interrupteur déclare l'écart voulu */

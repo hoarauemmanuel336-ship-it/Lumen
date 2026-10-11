@@ -841,7 +841,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
   </footer>
   <div class="b-ov" id="brech-voile">
     <div class="b-boite" role="dialog" aria-modal="true" aria-label="Recherche">
-      <div class="b-tete"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><textarea class="b-champ champ-ligne" id="brech-champ" rows="1" placeholder="Rechercher dans Lumen…" autocomplete="off" spellcheck="false"></textarea><span class="b-fermer" id="brech-fermer" role="button" tabindex="0" aria-label="Fermer">✕</span></div>
+      <div class="b-tete"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><textarea class="b-champ champ-ligne" id="brech-champ" rows="1" placeholder="Rechercher…" autocomplete="off" spellcheck="false"></textarea><span class="b-fermer" id="brech-fermer" role="button" tabindex="0" aria-label="Fermer">✕</span></div>
       <div class="b-res" id="brech-res"></div>
     </div>
   </div>
@@ -1316,15 +1316,14 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     var nq = norm(q);
     var h = '';
     if (!String(q).trim()) {
-      z.innerHTML = '<div class="b-hint">Tapez une référence, par exemple Jean 3:16, pour ouvrir le passage.</div>';
+      z.innerHTML = '';
       return;
     }
     if (String(q).trim()) {
       var an = refsDepuis(q);
       if (an.refs.length && !an.mauvais.length) {
         DERNIERES_REFS = an.refs;
-        var avecSel = an.refs.some(function(r){ return r.v1; });
-        h += '<span class="b-r b-ref" id="brech-go" role="button" tabindex="0"><b>Aller à : ' + esc(an.refs.map(etiquetteRef).join(', ')) + '</b><span>Référence biblique — Entrée pour ouvrir' + (avecSel ? ' et sélectionner' : '') + '</span></span>';
+        h += '<span class="b-r b-ref" id="brech-go" role="button" tabindex="0"><span class="rech-meta">Bible</span><b>' + esc(an.refs.map(etiquetteRef).join(', ')) + '</b></span>';
       }
     }
     z.innerHTML = h || (nq ? '<div class="b-vide">Aucune référence reconnue dans « ' + esc(q) + ' ».</div>' : '');

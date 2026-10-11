@@ -117,7 +117,7 @@ const UI = {
     notfound_title: 'Page introuvable', notfound_text: "Cette page n'existe pas.", notfound_back: "Revenir à l'accueil",
     site_desc_home: "La Sainte Bible en français et un outil pour apprendre les versets par cœur, à votre rythme.",
     t_home: 'Lumen · La Sainte Bible', t_404: 'Page introuvable · Lumen',
-    search_placeholder: 'Une référence, par exemple Jean 3:16…', search_hint: 'Tapez une référence, par exemple Jean 3:16, pour l\u2019ouvrir dans la Bible.', search_empty: 'Aucune référence reconnue dans',
+    search_placeholder: 'Rechercher…', search_hint: 'Tapez une référence, par exemple Jean 3:16, pour l\u2019ouvrir dans la Bible.', search_empty: 'Aucune référence reconnue dans',
     memo_label:"L'outil", memo_title:'Mémoriser', memo_open:'Ouvrir Mémoriser', memo_start:'Commencer',
     art_label:'Les écrits', art_title:'Articles', art_open:'Ouvrir les articles', res_label:'Pour étudier', res_title:'Ressources', res_open:'Ouvrir les ressources', memo_mastery:'de maîtrise', memo_acquired:'acquis', memo_learning:'en cours', memo_review:'à revoir', memo_signedout:'Connectez-vous pour suivre votre progression.',
   }
@@ -652,7 +652,7 @@ const RECH_JS = `(function(){
     var out='';
     parts.forEach(function(p){
       var br=brefParse(p);
-      if(br)out+='<a class="rech-item" href="'+br.href+'"><div class="rech-meta">Bible</div><div class="rech-titre">'+br.lab+'</div><div class="rech-extrait">'+(L.lang==='en'?'Open in the Bible':'Ouvrir dans la Bible')+'</div></a>';
+      if(br)out+='<a class="rech-item" href="'+br.href+'"><div class="rech-meta">Bible</div><div class="rech-titre">'+br.lab+'</div></a>';
     });
     return out;
   }
@@ -661,7 +661,7 @@ const RECH_JS = `(function(){
   function kmaj(){var its=kitems();for(var i=0;i<its.length;i++)its[i].classList.toggle('kact',i===kidx);if(kidx>=0&&its[kidx]&&its[kidx].scrollIntoView)its[kidx].scrollIntoView({block:'nearest'});}
   function chercher(q){
     kidx=-1;
-    if(!String(q||'').trim()){res.innerHTML='<div class="rech-msg">'+L.hint+'</div>';return;}
+    if(!String(q||'').trim()){res.innerHTML='';return;}
     var bib=brefItem(q);
     /* le texte tapé est échappé avant d'entrer dans la page (22/09) */
     var qe=String(q).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});
@@ -678,7 +678,7 @@ const RECH_JS = `(function(){
     sc.onerror=function(){enCours=false;attentes.length=0;res.innerHTML='<div class="rech-msg">La recherche est momentanément indisponible.</div>';};
     document.body.appendChild(sc);
   }
-  function ouvre(){overlay.classList.add('ouvert');document.body.style.overflow='hidden';if(!charge)res.innerHTML='<div class="rech-msg">'+L.hint+'</div>';setTimeout(function(){champ.focus();},40);chargerPuis(function(){chercher(champ.value);});}
+  function ouvre(){overlay.classList.add('ouvert');document.body.style.overflow='hidden';if(!charge)res.innerHTML='';setTimeout(function(){champ.focus();},40);chargerPuis(function(){chercher(champ.value);});}
   function ferme(){overlay.classList.remove('ouvert');document.body.style.overflow='';}
   ouvrir.addEventListener('click',ouvre);
   ouvrir.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();ouvre();}});
