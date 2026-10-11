@@ -875,3 +875,13 @@ html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-plein{flex:none;di
 html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-plein:is(:hover,:focus-visible){background:none;box-shadow:none;color:var(--h-or)}
 html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-fermer{flex:none}
 html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-err{flex:1 1 100%}
+
+/* ════════════════════════════════════════════════════════════════════
+   TAILLE DU TEXTE : un bandeau carré, le crème remplit sa case
+   jusqu'aux bords, et seul le bouton survolé s'éclaire.
+   ════════════════════════════════════════════════════════════════════ */
+html:root body:not(#_):not(#_):not(#_):not(#_) .ttx-btns{display:inline-flex;gap:0;padding:0;border-radius:0;overflow:visible;background:var(--h-s3);box-shadow:none}
+html:root body:not(#_):not(#_):not(#_):not(#_) .ttx-btns>.ttx-b{position:relative;margin:0;height:36px;min-width:46px;border-radius:0;box-shadow:none}
+html:root body:not(#_):not(#_):not(#_):not(#_) .ttx-btns>.ttx-b+.ttx-b::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:1px;background:var(--h-l1);transition:opacity .2s}
+html:root body:not(#_):not(#_):not(#_):not(#_) .ttx-btns>.ttx-b:is(:hover,:focus-visible){z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
+html:root body:not(#_):not(#_):not(#_):not(#_) .ttx-btns>.ttx-b:is(:hover,:focus-visible)::before,html:root body:not(#_):not(#_):not(#_):not(#_) .ttx-btns>.ttx-b:is(:hover,:focus-visible)+.ttx-b::before{opacity:0}
