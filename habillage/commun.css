@@ -802,3 +802,15 @@ html:root body:not(#_):not(#_) a.chap:hover{background:var(--h-s1);border-color:
 html:root body:not(#_):not(#_) .ou:hover{background:transparent;color:var(--h-t2);box-shadow:inset 0 0 0 1px var(--h-or)}
 html:root body:not(#_):not(#_) :is(.mbib-livre,.rech-item,.srch-v):is(:hover,.kact){background:var(--h-or);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);position:relative;z-index:1}
 html:root body:not(#_):not(#_) :is(.mbib-livre,.rech-item,.srch-v):is(:hover,.kact) *{color:#000!important}
+
+/* ── LES CROIX ROUGES S'ALLUMENT AU SURVOL (Emmanuel, 11/10) ──
+   Au survol, une croix rouge devient d'un rouge vif et s'entoure d'une
+   lueur rouge, au lieu de pâlir. */
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(#sel-barre .sb-oter,.surl-item .surl-oter,.nb2 .nb-suppr,.sb-x,.del-v):is(:hover,:focus-visible){color:#ff5446;text-shadow:0 0 12px rgba(255,84,70,.7)}
+
+/* ── UN BOUTON SEUL S'ÉCLAIRE COMME UN BOUTON DE BANDEAU (Emmanuel, 11/10) ──
+   Les boutons crème posés seuls prennent au survol exactement l'effet des
+   cases d'un bandeau : un crème plus clair et la même lueur tout autour. */
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(#amt-si,#ab-tab-si,#tab-si,#bp-pan .bp-page,#bp-pan .bp-aller,#auth-submit,#cat-enr,#ab-valider,#ab-google,#b-google,#auth-google,#b-voir-retour,#b-lire-retour,#mbib-go,#b-nouveau,#lvp-oter,#b-submit,#conf-ok,#start-btn,#finish-btn,#sum-back,.haut-page):is(:hover,:focus-visible){
+  background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;
+  box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);transform:none}

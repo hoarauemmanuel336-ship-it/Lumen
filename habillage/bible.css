@@ -1096,3 +1096,12 @@ html:root body:not(#_):not(#_) #menu-flot.mf-signet:has(.mf-act:is(:hover,:focus
    Au survol, seul le contour s'allume de la couleur d'accent : le fond et
    le texte restent tels quels, sans lueur. */
 html:root body:not(#_):not(#_) #sel-barre .sb-chip:hover{background:var(--h-s3);color:#fff;box-shadow:inset 0 0 0 1px var(--h-or);text-shadow:none}
+
+/* ── LA COULEUR LIBRE, UN ROND DE TOUTES LES COULEURS (Emmanuel, 11/10) ──
+   Le bouton de la couleur libre montre l'arc-en-ciel entier, pour qu'on
+   voie d'un coup d'œil qu'il ouvre le choix de n'importe quelle couleur. */
+html:root body:not(#_):not(#_) :is(#sb-cercle,#lv-frag-pop .lvp-libre){
+  background:conic-gradient(from 0deg,#ff2b2b,#ffb700,#ffe600,#35ff6a,#00cfff,#2979ff,#b04dff,#ff4da6,#ff2b2b)!important}
+html:root body:not(#_):not(#_) :is(#sb-cercle,#lv-frag-pop .lvp-libre)::-webkit-color-swatch{opacity:0}
+html:root body:not(#_):not(#_) :is(#sb-cercle,#lv-frag-pop .lvp-libre)::-moz-color-swatch{opacity:0}
+@media(max-width:600px){html:root body:not(#_):not(#_) #sb-cercle{width:32px;height:32px}}
