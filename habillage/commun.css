@@ -783,3 +783,22 @@ html:root body:not(#_):not(#_):not(#_):not(#_) .jete>.jt-act~.jt-act{border-radi
   html:root body:not(#_):not(#_):not(#_):not(#_) #sel-barre .sb-act>.sb-btn+.sb-btn::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:color-mix(in srgb,var(--h-or) 84%,#000)}
   html:root body:not(#_):not(#_):not(#_):not(#_) #sel-barre .sb-act>.sb-btn:is(:hover,:focus-visible,:active){background:color-mix(in srgb,var(--h-or) 70%,#fff)}
 }
+
+/* ── LES MENUS ET LES ÉTIQUETTES S'ÉCLAIRENT EN COULEUR D'ACCENT (Emmanuel, 11/10) ──
+   Dans un menu, la ligne survolée prend le crème d'accent, texte foncé et
+   lueur, comme le menu du signet ; « Supprimer » garde son rouge. Une petite
+   étiquette (référence, numéro de chapitre) n'allume que son contour,
+   comme l'onglet Bible. */
+html:root body:not(#_):not(#_) :is(#menu-flot .mf-act,.choix:not(.del):not(.off),.move-row:not(.del)):is(:hover,:focus-visible){background:var(--h-or);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);position:relative;z-index:1}
+html:root body:not(#_):not(#_) :is(.choix:not(.del):not(.off),.move-row:not(.del)):is(:hover,:focus-visible) :is(i,b,span){color:#000}
+html:root body:not(#_):not(#_) #bp-pan .bp-chip:hover{background:var(--h-s1);border-color:var(--h-or);color:inherit}
+html:root body:not(#_):not(#_) .mbib-chap:hover{background:var(--h-s2);border-color:var(--h-or);color:var(--h-t2)}
+
+/* ── D'AUTRES ÉLÉMENTS DU MÊME GENRE (Emmanuel, 11/10) ──
+   Les numéros de chapitre de la Bible et les outils de l'éditeur
+   n'allument que leur contour ; la liste des livres de « Choisir un verset »
+   et les résultats de recherche prennent le crème d'accent, comme les menus. */
+html:root body:not(#_):not(#_) a.chap:hover{background:var(--h-s1);border-color:var(--h-or);color:var(--h-t2);box-shadow:none}
+html:root body:not(#_):not(#_) .ou:hover{background:transparent;color:var(--h-t2);box-shadow:inset 0 0 0 1px var(--h-or)}
+html:root body:not(#_):not(#_) :is(.mbib-livre,.rech-item,.srch-v):is(:hover,.kact){background:var(--h-or);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);position:relative;z-index:1}
+html:root body:not(#_):not(#_) :is(.mbib-livre,.rech-item,.srch-v):is(:hover,.kact) *{color:#000!important}

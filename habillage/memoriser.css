@@ -711,3 +711,13 @@ html:root body:not(#_):not(#_):not(#_) .modal-btns>:is(.m-cancel,.m-ok){flex:1 1
   html:root body:not(#_):not(#_):not(#_) .modal-btns>.m-reset:not([style*="none"])~.m-ok{border-radius:0 0 14px 0!important}
   html:root body:not(#_):not(#_):not(#_) .modal-btns>.m-reset+.m-cancel::before{content:none}
 }
+
+/* ── QUAND « COMMENCER » N'EST PAS LÀ (Emmanuel, 11/10) ──
+   Tant qu'un mode n'a encore rien à réciter, « Commencer » se cache : le
+   bandeau des créations se referme alors seul, arrondi en bas comme en haut. */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #app:has(#start-btn[style*="none"]) .cat-acts{border-radius:14px;padding-bottom:3px}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #app:has(#start-btn[style*="none"]) .cat-acts>:nth-child(1 of :not([style*="none"])){border-bottom-left-radius:14px}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #app:has(#start-btn[style*="none"]) .cat-acts>:nth-last-child(1 of :not([style*="none"])){border-bottom-right-radius:14px}
+@media(max-width:600px){
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #app:has(#start-btn[style*="none"]) .cat-acts{padding-bottom:0}
+}
