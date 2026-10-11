@@ -376,7 +376,7 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
     <div class="acts" id="acts-liste">
       <div class="acts-haut">
       <button class="act majeur" id="b-nouveau">+ Écrire un article</button>
-      <button class="act" id="b-section">+ Nouvelle section</button>
+      <button class="act" id="b-section">+ Nouvelle catégorie</button>
       </div>
       <div class="acts-outils">
       <button class="act" id="b-organiser">Organiser</button>
@@ -417,7 +417,7 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
     <textarea class="ed-titre" id="ed-titre" rows="1" placeholder="Titre de l’article" spellcheck="true"></textarea>
     <div class="ed-corps" id="ed-corps"></div>
     <div class="acts">
-      <button class="act" id="b-retour">← Mes articles</button>
+      <button class="act" id="b-retour">← Les articles</button>
       <button class="act" id="b-enr">Enregistrer</button>
       <button class="act" id="b-etat">Publier</button>
       <button class="act" id="b-ranger">Ranger</button>
@@ -527,6 +527,9 @@ const rdoc=()=>db.doc('users/'+S.uid+'/meta/rubriques');
    son rub ; s'il pointe une rubrique disparue, il retombe de lui-même hors
    section. */
 const RUB_MAX=3;
+/* les mots du rangement, les mêmes partout (11/10) : le premier niveau est une
+   catégorie, ce qui se range dedans une section */
+const motRub=id=>niveau(id)<=1?'catégorie':'section';
 const rubDe=id=>S.rubs.find(r=>r.id===id)||null;
 /* (fonctions communes : voir commun/rubriques.js, posé par le build) */
 function articlesDe(rid){
@@ -903,7 +906,7 @@ function majFil(){
   $('titre-liste').parentElement.classList.toggle('dedans',!!bouts.length);
   /* une nouvelle section se crée là où l'on est ; au dernier niveau
      permis, il n'y a plus de section à créer */
-  const bs=$('b-section'); if(bs)bs.style.display=(ici()&&niveau(ici())>=RUB_MAX)?'none':'';
+  const bs=$('b-section'); if(bs){bs.style.display=(ici()&&niveau(ici())>=RUB_MAX)?'none':''; bs.textContent=ici()?'+ Nouvelle section':'+ Nouvelle catégorie';}
 }
 function elementRub(r){
   const d=document.createElement('div');
@@ -911,7 +914,7 @@ function elementRub(r){
   d.dataset.rid=r.id; d.dataset.cle='r:'+r.id;
   d.innerHTML='<div class="rub-tete" data-va="'+esc(r.id)+'" role="button" tabindex="0">'
     +'<span class="rub-nom">'+esc(r.nom)+'</span><span class="rub-n">'+compteRub(r.id)+'</span>'
-    +'<span class="rub-menu" data-rmenu="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Cette section">⋯</span>'
+    +'<span class="rub-menu" data-rmenu="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Actions">⋯</span>'
     +'<span class="rub-chev">›</span></div>';
   if(S.organise)d.querySelector('.rub-tete').insertAdjacentHTML('afterbegin','<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>');
   return d;
@@ -1113,7 +1116,7 @@ async function deplaceChoix(){
   if(!rids.length&&!arts.length){basculeChoisir(false);return;}
   const interdits=[]; rids.forEach(id=>interdits.push(...descendance(id)));
   const hMax=rids.reduce((m,id)=>Math.max(m,hauteurRub(id)),0);
-  const e=[{cle:'r:',nom:'Hors section',note:ici()?'':'ici'}];
+  const e=[{cle:'r:',nom:'Sans catégorie',note:ici()?'':'ici'}];
   S.rubs.forEach(r=>{
     if(interdits.indexOf(r.id)>=0)return;
     if(rids.length&&niveau(r.id)+hMax>RUB_MAX)return;
@@ -1141,11 +1144,11 @@ async function supprimeChoix(){
   if(!rids.length&&!arts.length){basculeChoisir(false);return;}
   const bouts=[];
   if(arts.length)bouts.push(arts.length+(arts.length>1?' articles':' article'));
-  if(rids.length)bouts.push(rids.length+(rids.length>1?' sections':' section'));
+  if(rids.length){const m=[...new Set(rids.map(motRub))];bouts.push(rids.length>1?(rids.length+' '+m.map(x=>x+'s').join(' ou ')):('cette '+m[0]));}
   let txt='Supprimer '+bouts.join(' et ')+' ?';
   if(arts.length)txt+=(arts.length>1?' Les articles ne pourront pas être récupérés.':' L’article ne pourra pas être récupéré.');
   const dedans=rids.reduce((k,id)=>k+compteRub(id),0)-arts.filter(a=>rids.some(id=>descendance(id).indexOf(a.rub)>=0)).length;
-  if(rids.length&&dedans>0)txt+=' Les articles rangés dans les sections sont conservés : ils reviennent hors section.';
+  if(rids.length&&dedans>0)txt+=' Les articles rangés dedans sont conservés : ils reviennent sans catégorie.';
   if(!await lvConfirm(txt,1))return;
   try{
     for(const a of arts){
@@ -1174,7 +1177,7 @@ async function supprimeChoix(){
 
 // ════════ ACTIONS DE RANGEMENT ════════
 async function nouvelleRub(parent){
-  const nom=await lvSaisie(parent?'Nouvelle sous-section':'Nouvelle section','','','Nom');
+  const nom=await lvSaisie(parent?'Nouvelle section':'Nouvelle catégorie','','','Nom');
   if(!nom||!nom.trim())return null;
   const r={id:'r'+Date.now(),nom:nom.trim(),parent:parent||''};
   S.rubs.push(r); S.rubOpen[r.id]=true; rubOpenEcrit(); saveRubs(); rendLister();
@@ -1184,7 +1187,7 @@ async function menuRub(id){
   const r=rubDe(id); if(!r)return;
   const freres=enfants(r.parent||''), i=freres.findIndex(x=>x.id===id);
   const e=[{cle:'renom',nom:'Renommer'}];
-  if(niveau(id)<RUB_MAX)e.push({cle:'sous',nom:'Ajouter une sous-section'});
+  if(niveau(id)<RUB_MAX)e.push({cle:'sous',nom:'Ajouter une section dedans'});
   if(i>0)e.push({cle:'haut',nom:'Monter'});
   if(i<freres.length-1)e.push({cle:'bas',nom:'Descendre'});
   e.push({cle:'suppr',nom:'Supprimer',danger:true});
@@ -1206,9 +1209,9 @@ async function menuRub(id){
   }
   if(c==='suppr'){
     const n=compteRub(id), sous=descendance(id).length-1;
-    let txt='Supprimer cette section ?';
-    if(sous)txt+=' Ses '+sous+' sous-section'+(sous>1?'s':'')+' partent avec elle.';
-    if(n)txt+=' Ses '+n+' article'+(n>1?'s':'')+' sont conservés : ils reviennent hors section.';
+    let txt='Supprimer cette '+motRub(id)+' ?';
+    if(sous)txt+=' Ses '+sous+' section'+(sous>1?'s':'')+' partent avec elle.';
+    if(n)txt+=' Ses '+n+' article'+(n>1?'s':'')+' sont conservés : ils reviennent sans catégorie.';
     if(!await lvConfirm(txt,1))return;
     const partis=descendance(id);
     S.rubs=S.rubs.filter(r2=>partis.indexOf(r2.id)<0);
@@ -1227,8 +1230,8 @@ async function rangeArticle(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
   const e=[];
   S.rubs.forEach(r=>e.push({cle:'r:'+r.id,nom:chemin(r.id),note:(rubValide(a.rub)?a.rub:'')===r.id?'ici':''}));
-  e.push({cle:'r:',nom:'Hors section',note:rubValide(a.rub)?'':'ici'});
-  e.push({cle:'neuve',nom:'+ Nouvelle section'});
+  e.push({cle:'r:',nom:'Sans catégorie',note:rubValide(a.rub)?'':'ici'});
+  e.push({cle:'neuve',nom:'+ Nouvelle catégorie'});
   const c=await lvChoix('Ranger l’article dans…',e);
   if(!c)return;
   let cible=null;
@@ -1427,7 +1430,7 @@ async function menuArticle(id){
   const c=await lvChoix((a.titre||'Sans titre'),[
     {cle:'ouvrir',nom:'Ouvrir'},
     {cle:'etat',nom:a.publie?'Rendre privé':'Publier',note:a.publie?'publié':'privé'},
-    {cle:'ranger',nom:'Ranger dans…',note:rubValide(a.rub)?chemin(a.rub):'hors section'},
+    {cle:'ranger',nom:'Ranger dans…',note:rubValide(a.rub)?chemin(a.rub):'sans catégorie'},
     {cle:'suppr',nom:'Supprimer',danger:true}
   ]);
   if(c==='ouvrir')ouvre(id);

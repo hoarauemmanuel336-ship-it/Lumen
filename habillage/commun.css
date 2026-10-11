@@ -504,3 +504,49 @@ html body .auth-out:hover{color:var(--h-or)}
 html.barre-rangee body .barre-poignee{padding:7px 0 8px;color:rgba(231,224,207,.42)}
 html.barre-rangee body .barre-poignee:hover,html.barre-rangee body .barre-poignee:focus-visible{color:var(--or,#efe6cf);background:none}
 html.barre-rangee body .barre-poignee svg{display:block;width:30px;height:9px;margin:0 auto;transform:rotate(180deg)}
+
+/* ════════════════════════════════════════════════════════════════════
+   LES BANDEAUX D'ACTIONS (Emmanuel, 11/10)
+   Partout où plusieurs boutons crème se suivent, ils se collent en un seul
+   bandeau, comme la barre qui paraît sous un verset choisi dans la Bible :
+   un fond crème, chaque action une case, un mince trait sombre entre deux
+   cases ; le survol éclaircit la case seule. Les listes à deux rangées
+   (Articles, Ressources) empilent leurs deux rangées dans le même bandeau.
+   Sur téléphone, le bandeau prend toute la largeur et ses cases se
+   partagent les lignes, séparées par le même trait.
+   Un bouton seul garde sa forme de toujours.
+   ════════════════════════════════════════════════════════════════════ */
+html:root body:not(#_) :is(#acts-liste:has(>.acts-haut),#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts){
+  display:flex;flex-wrap:nowrap;align-items:stretch;justify-content:center;gap:0;width:fit-content;max-width:100%;
+  margin-left:auto;margin-right:auto;padding:3px;background:var(--h-or);border:0;border-radius:0;
+  box-shadow:0 10px 30px -14px color-mix(in srgb,var(--h-or) 70%,transparent);
+  -webkit-backdrop-filter:none;backdrop-filter:none;position:static;transform:none;left:auto;
+}
+html:root body:not(#_):not(#_) .nzm-acts{margin-right:0}
+html:root body:not(#_) #acts-liste:has(>.acts-haut){flex-direction:column}
+html:root body:not(#_) #acts-liste>:is(.acts-haut,.acts-outils){display:flex;flex-wrap:nowrap;gap:0;margin:0;padding:0;background:none;justify-content:stretch}
+html:root body:not(#_) #acts-liste>.acts-outils{border-top:1px solid color-mix(in srgb,var(--h-or) 84%,#000)}
+html:root body:not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn){
+  position:relative;flex:1 1 auto;min-width:0;min-height:40px;height:auto;margin:0;padding:9px 18px;border:0;border-radius:0;
+  background:transparent;box-shadow:none;transform:none;white-space:nowrap;
+  font-family:var(--h-ui);font-size:13.5px;font-weight:600;letter-spacing:.01em;text-transform:none;line-height:1.2;color:#000;
+}
+html:root body:not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn)+:is(.act,.ghost-btn,.notes-btn)::before{
+  content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:rgba(0,0,0,.16);inset-inline-end:auto;
+}
+html:root body:not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible){
+  background:color-mix(in srgb,var(--h-or) 45%,#fff);color:#000;box-shadow:none;transform:none;
+}
+html:root body:not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):active{transform:none}
+@media(max-width:600px){
+  html:root body:not(#_) :is(#acts-liste:has(>.acts-haut),#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts){width:100%;flex-wrap:wrap}
+  html:root body:not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts){gap:1px;padding:0;background:color-mix(in srgb,var(--h-or) 84%,#000);border:3px solid var(--h-or)}
+  html:root body:not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn){flex:1 1 30%;background:var(--h-or)}
+  html:root body:not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn)+:is(.act,.ghost-btn,.notes-btn)::before{content:none}
+  html:root body:not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn){min-height:44px;padding:8px 8px;font-size:13px;white-space:normal}
+  html:root body:not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible){background:color-mix(in srgb,var(--h-or) 45%,#fff)}
+}
+
+/* un bouton réduit à son icône (la poubelle des Ressources, 11/10) : la case
+   reste à la taille des autres, l'icône centrée */
+html:root body .act.act-ic .ic-poubelle{display:block;width:18px;height:18px}

@@ -885,6 +885,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       </div>
       <div class="nb-refs" id="nb-refs"></div>
       <div class="nb2-verset" id="nb-verset"></div>
+      <input class="nb2-ti" id="nb-ti" type="text" placeholder="Titre (facultatif)" autocomplete="off" spellcheck="true" aria-label="Titre de la note">
       <textarea class="nb-zone" id="nb-zone" placeholder="Écrire la note…"></textarea>
       <div class="nb-actes">
         <span class="nb-btn nb-suppr" id="nb-supprimer" role="button" tabindex="0" aria-label="Supprimer la note" title="Supprimer la note">✕</span>
@@ -1033,7 +1034,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
   function estTech(id, nom){ return id === 'lv-' + nom || id === '__' + nom + '__'; }
   function cloudSet(n){
     if (!UID || !db) return;
-    cloudDoc(n.id).set({ d: n.d, m: n.m || n.d, t: n.t, refs: n.refs || [], c: n.c || '' })
+    cloudDoc(n.id).set({ d: n.d, m: n.m || n.d, t: n.t, ti: n.ti || '', refs: n.refs || [], c: n.c || '' })
       .catch(function(e){ console.warn('sync note', e); });
   }
   function cloudDel(id){
@@ -1496,6 +1497,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     try { localStorage.setItem(TRAD_CLE, k); } catch(e) {}
     majTrad();
     route();
+    if (noteEnCours) citeNote(noteEnCours);
   }
   /* même délégation que les boutons de taille du texte : le sélecteur est
      redessiné à chaque rendu, l'écoute ne l'est pas */
@@ -1870,23 +1872,37 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     document.getElementById('nb-refs').innerHTML = (note.refs || []).map(function(g){
       return '<span class="nb2-ref">' + esc(libelle(g)) + '</span>';
     }).join('<span class="nb2-sep">\u00b7</span>') || '<span class="nb2-ref nb2-sans">Sans r\u00e9f\u00e9rence</span>';
-    var cite = (note.refs || []).map(function(g){
-      var d = CACHE[g.slug], ch = null;
-      if (!d || !g.ch) return '';
-      for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === g.ch) { ch = d.chapitres[i]; break; }
-      if (!ch) return '';
-      var a = g.v1 || 1, b = g.v2 || a;
-      return ch.versets.filter(function(v){ return v.v >= a && v.v <= b; }).map(function(v){ return v.t; }).join(' ');
-    }).filter(Boolean).join(' \u2026 ');
-    if (cite.length > 420) { cite = cite.slice(0, 420); var sp = cite.lastIndexOf(' '); if (sp > 300) cite = cite.slice(0, sp); cite += '\u2026'; }
-    var ve = document.getElementById('nb-verset');
-    ve.textContent = cite ? '\u00ab\u00a0' + cite + '\u00a0\u00bb' : '';
-    ve.style.display = cite ? '' : 'none';
+    /* le passage annoté, dans la traduction en cours (celle de la page de
+       lecture et de « Mes notes ») ; la fiche n'a pas son propre choix */
+    citeNote(note);
+    document.getElementById('nb-ti').value = note.ti || '';
     document.getElementById('nb-zone').value = note.t || '';
     document.getElementById('nb-cat').innerHTML = optionsCats(note.c || '');
     document.getElementById('nb-supprimer').style.display = note.id ? '' : 'none';
     document.getElementById('note-voile').classList.add('ouvert');
     document.getElementById('nb-zone').focus();
+  }
+  function citeNote(note){
+    var ve = document.getElementById('nb-verset');
+    var refs = (note.refs || []).filter(function(g){ return g && g.slug && g.ch; });
+    function remplit(){
+      if (noteEnCours !== note) return;
+      var cite = refs.map(function(g){
+        var d = CACHE[g.slug], ch = null;
+        if (!d) return '';
+        for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === g.ch) { ch = d.chapitres[i]; break; }
+        if (!ch) return '';
+        var a = g.v1 || 1, b = g.v2 || a;
+        return ch.versets.filter(function(v){ return v.v >= a && v.v <= b; }).map(function(v){ return v.t.replace(/\n/g, ' '); }).join(' ');
+      }).filter(Boolean).join(' \u2026 ');
+      if (cite.length > 420) { cite = cite.slice(0, 420); var sp = cite.lastIndexOf(' '); if (sp > 300) cite = cite.slice(0, sp); cite += '\u2026'; }
+      ve.textContent = cite ? '\u00ab\u00a0' + cite + '\u00a0\u00bb' : '';
+      ve.style.display = cite ? '' : 'none';
+    }
+    remplit();
+    var manque = {}; refs.forEach(function(g){ if (!CACHE[g.slug]) manque[g.slug] = 1; });
+    var l = Object.keys(manque);
+    if (l.length) Promise.all(l.map(livreDataSur)).then(remplit);
   }
   /* Un texte tapé et non enregistré ne se perd pas d'un Échap ou d'un clic à
      côté de la fiche : on demande d'abord. « force » (vrai) ferme sans rien
@@ -1894,7 +1910,8 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
   function noteModifiee(){
     if (!noteEnCours) return false;
     var z = document.getElementById('nb-zone');
-    return z.value.trim() !== String(noteEnCours.t || '').trim();
+    return z.value.trim() !== String(noteEnCours.t || '').trim()
+        || document.getElementById('nb-ti').value.trim() !== String(noteEnCours.ti || '').trim();
   }
   function fermeNote(force){
     if (force !== true && noteModifiee()) {
@@ -1906,7 +1923,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
   var catEnCours = null;
   function ouvreCat(o){
     catEnCours = o;
-    var t = o.mode === 'ren' ? 'Renommer' : (o.mode === 'sub' ? 'Nouvelle sous-section' : 'Nouvelle cat\u00e9gorie');
+    var t = o.mode === 'ren' ? 'Renommer' : (o.mode === 'sub' ? 'Nouvelle section' : 'Nouvelle cat\u00e9gorie');
     if (o.mode === 'sub') { var pa = catParId(o.parent); if (pa) t += ' \u2014 ' + pa.nom; }
     document.getElementById('cat-titre').textContent = t;
     var ch = document.getElementById('cat-nom');
@@ -2093,7 +2110,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     var ids = String(pt.getAttribute('data-nt') || '').split(',').filter(Boolean);
     if (ids.length === 1) {
       var n = null; NOTES.forEach(function(x){ if (x.id === ids[0]) n = x; });
-      if (n) { ouvreNote({ id: n.id, refs: n.refs, t: n.t, c: n.c }); return; }
+      if (n) { ouvreNote({ id: n.id, refs: n.refs, t: n.t, ti: n.ti, c: n.c }); return; }
     }
     var f = pt.getAttribute('data-ref') || '';
     location.hash = '#notes' + (f ? '/' + encodeURIComponent(f) : '');
@@ -2713,12 +2730,13 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
   actifId('nb-enregistrer', function(){
     if (!noteEnCours) return;
     var t = document.getElementById('nb-zone').value.trim();
-    if (!t && !(noteEnCours.refs || []).length) { fermeNote(true); return; }
+    var ti = document.getElementById('nb-ti').value.trim();
+    if (!t && !ti && !(noteEnCours.refs || []).length) { fermeNote(true); return; }
     var maintenant = new Date().toISOString();
     var trouvee = false;
     if (noteEnCours.id) {
       for (var i = 0; i < NOTES.length; i++) if (NOTES[i].id === noteEnCours.id) {
-        NOTES[i].t = t; NOTES[i].m = maintenant; NOTES[i].c = document.getElementById('nb-cat').value; cloudSet(NOTES[i]);
+        NOTES[i].t = t; NOTES[i].ti = ti; NOTES[i].m = maintenant; NOTES[i].c = document.getElementById('nb-cat').value; cloudSet(NOTES[i]);
         trouvee = true;
       }
     }
@@ -2726,7 +2744,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
        pendant qu'on l'écrivait : le texte tapé n'est pas perdu, il devient
        une note nouvelle, sous un nouvel identifiant (22/09) */
     if (!trouvee) {
-      var n = { id: String(Date.now()), d: noteEnCours.d || maintenant, m: maintenant, t: t, refs: noteEnCours.refs || [], c: document.getElementById('nb-cat').value };
+      var n = { id: String(Date.now()), d: noteEnCours.d || maintenant, m: maintenant, t: t, ti: ti, refs: noteEnCours.refs || [], c: document.getElementById('nb-cat').value };
       NOTES.unshift(n); cloudSet(n);
     }
     sauveNotes(); majLienNotes(); marqueNotes(); fermeNote(true);
@@ -2757,7 +2775,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     var c = catParId(id); if (!c) return;
     ouvreConf({
       titre: 'Supprimer la catégorie',
-      texte: '« ' + c.nom + ' » et ses sous-sections seront supprimées. Les notes qu’elles contiennent redeviennent non classées.',
+      texte: '« ' + c.nom + ' » et ses sections seront supprimées. Les notes qu’elles contiennent redeviennent non classées.',
       bouton: 'Supprimer',
       suite: function(){
         var mortes = {}; mortes[id] = 1;
@@ -2821,7 +2839,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     var h;
     if (type === 'cat') {
       h = '<span class="mf-act" data-cren="' + id + '" role="button" tabindex="0">Renommer</span>'
-        + '<span class="mf-act" data-csub="' + id + '" role="button" tabindex="0">Ajouter une sous-section</span>'
+        + '<span class="mf-act" data-csub="' + id + '" role="button" tabindex="0">Ajouter une section</span>'
         + '<span class="mf-act mf-sep" data-csup="' + id + '" role="button" tabindex="0">Supprimer</span>';
     } else if (type === 'scat') {
       h = '<span class="mf-act" data-cren="' + id + '" role="button" tabindex="0">Renommer</span>'
@@ -2883,7 +2901,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     if (!cible.closest('[data-menu]') && cible.closest('[data-ouvre]')) {
       var no = null, idn = cible.closest('[data-ouvre]').getAttribute('data-ouvre');
       NOTES.forEach(function(x){ if (x.id === idn) no = x; });
-      if (no) { ouvreNote({ id: no.id, refs: no.refs, t: no.t, c: no.c }); return true; }
+      if (no) { ouvreNote({ id: no.id, refs: no.refs, t: no.t, ti: no.ti, c: no.c }); return true; }
     }
     if (cible.closest('#notes-rech')) return false;
     var el;
@@ -2911,7 +2929,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     if ((el = cible.closest('[data-csup]'))) { supprimeCat(el.getAttribute('data-csup')); return true; }
     if ((el = cible.closest('[data-mod]'))) {
       var nm = NOTES.filter(function(x){ return x.id === el.getAttribute('data-mod'); })[0];
-      if (nm) ouvreNote({ id: nm.id, refs: nm.refs, t: nm.t, c: nm.c });
+      if (nm) ouvreNote({ id: nm.id, refs: nm.refs, t: nm.t, ti: nm.ti, c: nm.c });
       return true;
     }
     if ((el = cible.closest('[data-cop]'))) { copieNote(el); return true; }
@@ -2968,7 +2986,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     var f = norm(filtre || '');
     var liste = NOTES.filter(function(n){
       if (!f) return true;
-      if (norm(n.t).indexOf(f) >= 0) return true;
+      if (norm(n.t).indexOf(f) >= 0 || norm(n.ti || '').indexOf(f) >= 0) return true;
       return (n.refs || []).some(function(g){ return norm(libelle(g)).indexOf(f) >= 0; });
     });
     var nSurl = compteSurl();
@@ -3013,10 +3031,14 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     var h = '<div class="nzm-modes" role="tablist">'
           + '<span class="nzm-mode' + (surlOn ? '' : ' on') + '" data-fil="" role="tab" tabindex="0">Notes</span>'
           + '<span class="nzm-mode' + (surlOn ? ' on' : '') + '" data-fil="__surl__" role="tab" tabindex="0">' + esc(LVF_TXT.surl) + '</span>'
+          /* la traduction des passages cités (Emmanuel, 11/10) : un petit
+             sélecteur au bout de la rangée des onglets ; c'est le même choix
+             que sur la page de lecture */
+          + htmlTrad('nzm-trad')
           + '</div>';
     h += '<div class="nzm-tete"><span class="nzm-lbl">' + (surlOn ? esc(LVF_TXT.surl) : 'Mes notes') + '</span>'
-       + (!surlOn ? '<span class="nzm-acts"><span class="notes-btn" id="note-libre" role="button" tabindex="0">Écrire une note</span>'
-         + '<span class="notes-btn" id="cat-nouvelle" role="button" tabindex="0">Nouvelle catégorie</span></span>' : '')
+       + (!surlOn ? '<span class="nzm-acts"><span class="notes-btn" id="note-libre" role="button" tabindex="0">+ Écrire une note</span>'
+         + '<span class="notes-btn" id="cat-nouvelle" role="button" tabindex="0">+ Nouvelle catégorie</span></span>' : '')
        + '</div>';
     if (!surlOn) {
       h += '<div class="nzm-outils"><textarea class="notes-rech champ-ligne" id="notes-rech" rows="1" placeholder="Rechercher dans les notes…">' + esc(filtre || '') + '</textarea>'
@@ -3045,6 +3067,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
           return '<span class="note-ref" data-nav="' + n.id + ':' + i + '">' + esc(libelle(g)) + '</span>';
         }).join('<span class="note-sep">\u00b7</span>') + '</div>';
       }
+      if (n.ti) x += '<div class="note-ti">' + esc(n.ti) + '</div>';
       /* note longue : apercu tronque tant qu'on n'a pas depli\u00e9 */
       var LIM = 420;
       if ((n.t || '').length > LIM) {
@@ -3067,7 +3090,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
         + '<span class="nzm-ref">' + esc(refs || 'Sans r\u00e9f\u00e9rence') + '</span>'
         + '<span class="nzm-date">' + date + '</span>'
         + '<span class="nt-menu" data-menu="note:' + n.id + '" role="button" tabindex="0" aria-label="Actions de la note">\u22ef</span>'
-        + '<span class="nzm-txt">' + esc(n.t || '') + '</span></div>';
+        + '<span class="nzm-txt">' + (n.ti ? '<b class="nzm-ti">' + esc(n.ti) + '</b>' + (n.t ? ' ' : '') : '') + esc(n.t || '') + '</span></div>';
     }
 
     /* Par livre : chaque note se range sous chaque livre qu'elle cite, dans
@@ -3140,7 +3163,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
             if (f && !dn.length) return;
             corps += '<div class="notes-scat"><span class="notes-scat-nom">' + esc(sc.nom) + '</span>'
                    + '<span class="notes-cat-n">' + dn.length + '</span>'
-                   + '<span class="nt-menu" data-menu="scat:' + sc.id + '" role="button" tabindex="0" aria-label="Actions de la sous-section">\u22ef</span></div>'
+                   + '<span class="nt-menu" data-menu="scat:' + sc.id + '" role="button" tabindex="0" aria-label="Actions de la section">\u22ef</span></div>'
                    + '<div class="notes-sgroupe">';
             dn.forEach(function(n){ corps += rangeeNote(n); });
             corps += '</div>';

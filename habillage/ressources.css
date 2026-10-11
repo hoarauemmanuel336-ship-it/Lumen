@@ -550,3 +550,12 @@ html body.plein #bp-pan{z-index:310}
    Sur cette page, le ⋯ des cartes et des domaines ne prend plus de fond au
    survol : il s'allume, c'est tout. */
 html body :is(.ct-menu,.rub-menu,.ry-menu):is(:hover,:focus-visible){background:none}
+
+/* ── « REMETTRE » ET « SUPPRIMER » COLLÉS (Emmanuel, 11/10) ──
+   Dans chaque rangée de la corbeille, les deux actions forment un petit
+   bandeau crème, séparées d'un mince trait sombre, comme la barre de la
+   Bible. */
+html:root body .jt-act+.jt-act{margin-left:-14px;position:relative}
+html:root body .jt-act+.jt-act::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:1px;background:rgba(0,0,0,.16)}
+html:root body .jt-act:is(:hover,:focus-visible),html:root body .jt-act.danger:is(:hover,:focus-visible){background:color-mix(in srgb,var(--h-or) 45%,#fff);box-shadow:none}
+@media(max-width:600px){html:root body .jt-act+.jt-act{margin-left:-10px}}

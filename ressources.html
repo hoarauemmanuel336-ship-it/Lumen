@@ -572,7 +572,7 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
     <div class="acts" id="acts-liste" style="display:none">
       <div class="acts-haut">
       <button class="act majeur" id="b-nouveau">+ Ajouter une ressource</button>
-      <button class="act" id="b-section">+ Nouveau domaine</button>
+      <button class="act" id="b-section">+ Nouvelle catégorie</button>
       </div>
       <div class="acts-outils">
       <button class="act" id="b-organiser">Organiser</button>
@@ -587,7 +587,7 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
       <button class="act" id="b-tout">Tout choisir</button>
       <button class="act" id="b-telech">Télécharger</button>
       <button class="act" id="b-deplacer">Déplacer</button>
-      <button class="act danger" id="b-jeter">Mettre à la corbeille</button>
+      <button class="act danger act-ic" id="b-jeter" aria-label="Mettre à la corbeille" title="Mettre à la corbeille"><svg class="ic-poubelle" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4.5 7h15M9.5 7V5.2c0-.4.3-.7.7-.7h3.6c.4 0 .7.3.7.7V7M6.5 7l.9 11.6c.1.8.7 1.4 1.5 1.4h6.2c.8 0 1.4-.6 1.5-1.4L17.5 7M10.2 10.5v6M13.8 10.5v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <button class="act" id="b-choix-fin">Terminer</button>
     </div>
   </section>
@@ -619,11 +619,11 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
     <textarea class="ed-titre" id="ed-titre" rows="1" placeholder="Titre de la ressource" spellcheck="true"></textarea>
     <div id="res-form"></div>
     <div class="acts">
-      <button class="act" id="b-retour">&#8592; Mes ressources</button>
+      <button class="act" id="b-retour">&#8592; Les ressources</button>
       <button class="act" id="b-enr">Enregistrer</button>
       <button class="act" id="b-etat">Publier</button>
       <button class="act" id="b-ranger">Ranger</button>
-      <button class="act danger" id="b-suppr">À la corbeille</button>
+      <button class="act danger act-ic" id="b-suppr" aria-label="Mettre à la corbeille" title="Mettre à la corbeille"><svg class="ic-poubelle" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4.5 7h15M9.5 7V5.2c0-.4.3-.7.7-.7h3.6c.4 0 .7.3.7.7V7M6.5 7l.9 11.6c.1.8.7 1.4 1.5 1.4h6.2c.8 0 1.4-.6 1.5-1.4L17.5 7M10.2 10.5v6M13.8 10.5v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
   </section>
 </main>
@@ -797,7 +797,7 @@ const ICONE=t=>'<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin=
    trouver à l'étroit, et pas au-delà, car un rangement plus profond coûte
    plus à tenir qu'il ne fait gagner. */
 const RUB_MAX=5;
-const motRub=id=>niveau(id)<=1?'domaine':'section';
+const motRub=id=>niveau(id)<=1?'catégorie':'section';
 const rubDe=id=>S.rubs.find(r=>r.id===id)||null;
 /* (fonctions communes : voir commun/rubriques.js, posé par le build) */
 /* ── L'ORDRE DES RESSOURCES (05/09, Emmanuel : « je veux pouvoir choisir la
@@ -1756,7 +1756,7 @@ function rayonDe(r,publik){
   d.innerHTML=(publik?'':'<span class="coche" aria-hidden="true">✓</span>'
     +'<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>')
     +'<span class="ry-nom">'+esc(r.nom)+'</span><span class="ry-n">'+compteRub(r.id)+'</span>'
-    +(publik?'':'<span class="ry-menu" data-rmenu="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Ce rayon">⋯</span>')
+    +(publik?'':'<span class="ry-menu" data-rmenu="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Actions">⋯</span>')
     +'<span class="ry-chev">›</span>';
   return d;
 }
@@ -1765,7 +1765,7 @@ function rendLister(){
   majFil();
   /* le bouton dit ce qu'il va faire À CET ENDROIT : un domaine à la racine,
      une section dès qu'on est entré quelque part */
-  const bs=$('b-section'); if(bs)bs.textContent=ou?'+ Nouvelle section':'+ Nouveau domaine';
+  const bs=$('b-section'); if(bs)bs.textContent=ou?'+ Nouvelle section':'+ Nouvelle catégorie';
   const h=$('liste'); h.innerHTML='';
   /* Tant qu'on ne sait pas QUI REGARDE, on ne montre le rangement de personne.
      La lecture publique part au chargement, avant le compte : quand elle
@@ -1786,7 +1786,7 @@ function rendLister(){
       ? '<div class="vide">Rien ici pour l’instant.</div>'
       : (publik
          ? '<div class="vide">Aucune ressource publiée pour l’instant.</div>'
-         : '<div class="vide">Rien encore.<br>Crée un domaine (Bible, Liturgie, Histoire…),<br>puis range dedans ce que tu veux garder.</div>');
+         : '<div class="vide">Rien encore.<br>Crée une catégorie (Bible, Liturgie, Histoire…),<br>puis range dedans ce que tu veux garder.</div>');
     return;
   }
   if(fils.length){
@@ -1800,7 +1800,7 @@ function rendLister(){
 
 // ════════ ACTIONS DE RANGEMENT ════════
 async function nouvelleRub(parent){
-  const nom=await lvSaisie(parent?'Nouvelle section':'Nouveau domaine','',
+  const nom=await lvSaisie(parent?'Nouvelle section':'Nouvelle catégorie','',
     '',parent?'Ancien Testament, Genèse…':'Bible, Liturgie, Histoire…');
   if(!nom||!nom.trim())return null;
   const r={id:'r'+Date.now(),nom:nom.trim(),parent:parent||''};
@@ -1837,12 +1837,12 @@ async function menuRub(id){
     if(dedans){
       const q=await lvChoix(dedans>1?('Et les '+dedans+' ressources rangées dedans ?'):'Et la ressource rangée dedans ?',[
         {cle:'avec',nom:'Les mettre aussi à la corbeille',fort:true},
-        {cle:'sans',nom:'Les laisser, sans domaine'}
+        {cle:'sans',nom:'Les laisser, sans catégorie'}
       ]);
       if(!q)return;
       avec=(q==='avec');
     }
-    if(!await lvConfirm('Mettre ce '+mot+' à la corbeille'+(dedans&&avec?', avec son contenu':'')+' ?'))return;
+    if(!await lvConfirm('Mettre cette '+mot+' à la corbeille'+(dedans&&avec?', avec son contenu':'')+' ?'))return;
     try{ await jetteRubrique(id,avec); majCorbBouton(); }
     catch(e){
       console.warn('corbeille',e);
@@ -1858,7 +1858,7 @@ async function deplaceRub(id){
   const interdits=descendance(id), h=hauteur(id);
   const parent=r.parent&&rubValide(r.parent)?r.parent:'';
   const peut=cid=>niveau(cid)+h<=RUB_MAX;
-  const e=[{cle:'r:',nom:'À la racine, comme domaine',note:parent?'':'ici',fort:true}];
+  const e=[{cle:'r:',nom:'À la racine, comme catégorie',note:parent?'':'ici',fort:true}];
   e.push(...entreesArbre(interdits,peut,parent));
   const c=await lvChoix('Ranger « '+r.nom+' » dans…',e);
   if(!c)return;
@@ -1887,9 +1887,9 @@ function entreesArbre(exclure,peut,courant){
 async function rangeRessource(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
   const ou=rubValide(a.rub)?a.rub:'';
-  const e=[{cle:'r:',nom:'Sans domaine',note:ou?'':'ici',fort:true}];
+  const e=[{cle:'r:',nom:'Sans catégorie',note:ou?'':'ici',fort:true}];
   e.push(...entreesArbre(null,()=>true,ou));
-  e.push({cle:'neuve',nom:'+ Nouveau domaine',fort:true});
+  e.push({cle:'neuve',nom:'+ Nouvelle catégorie',fort:true});
   const c=await lvChoix('Ranger « '+(a.titre||'Sans titre')+' » dans…',e);
   if(!c)return;
   let cible=null;
@@ -2121,7 +2121,7 @@ async function telechargeChoix(){
   const vus=new Set(res.map(a=>a.id)), lot=res.slice();
   rids.forEach(id=>descendance(id).forEach(d=>S.liste.filter(a=>a.rub===d&&!a.suppr).forEach(a=>{if(!vus.has(a.id)){vus.add(a.id);lot.push(a);}})));
   const ok=lot.filter(telechargeable), sans=lot.length-ok.length;
-  if(!ok.length){lvInfo(lot.length?'Rien à télécharger : les liens ne se téléchargent pas.':'Ces domaines ne contiennent aucune ressource.');return;}
+  if(!ok.length){lvInfo(lot.length?'Rien à télécharger : les liens ne se téléchargent pas.':'Ces catégories ne contiennent aucune ressource.');return;}
   if(ok.length>1&&!await lvConfirm('Télécharger '+ok.length+' fichiers ?'+(sans?' ('+sans+(sans>1?' liens ne se téléchargent pas)':' lien ne se télécharge pas)'):'')))return;
   /* l'un après l'autre, avec un court répit : les navigateurs refusent
      plusieurs téléchargements lancés au même instant */
@@ -2136,7 +2136,7 @@ async function deplaceChoix(){
   const interdits=[]; rids.forEach(id=>interdits.push(...descendance(id)));
   const hMax=rids.reduce((m,id)=>Math.max(m,hauteur(id)),0);
   const peut=cid=>!rids.length||niveau(cid)+hMax<=RUB_MAX;
-  const e=[{cle:'r:',nom:rids.length?'À la racine':'Sans domaine',fort:true}];
+  const e=[{cle:'r:',nom:rids.length?'À la racine':'Sans catégorie',fort:true}];
   e.push(...entreesArbre(interdits,peut,ici()));
   const n=rids.length+res.length;
   const c=await lvChoix('Déplacer '+(n>1?('les '+n+' éléments choisis'):'l’élément choisi')+' dans…',e);
@@ -2177,7 +2177,7 @@ async function jetteChoix(){
   if(sous){
     const q=await lvChoix(sous>1?('Et les '+sous+' ressources rangées dedans ?'):'Et la ressource rangée dedans ?',[
       {cle:'avec',nom:'Les mettre aussi à la corbeille',fort:true},
-      {cle:'sans',nom:'Les laisser, sans domaine'}
+      {cle:'sans',nom:'Les laisser, sans catégorie'}
     ]);
     if(!q)return;
     avec=(q==='avec');
@@ -2185,7 +2185,7 @@ async function jetteChoix(){
   const bouts=[];
   if(res.length)bouts.push(res.length+(res.length>1?' ressources':' ressource'));
   /* un seul rayon se nomme par ce qu'il est, plusieurs se comptent ensemble */
-  if(rids.length)bouts.push(rids.length>1?(rids.length+' domaines ou sections'):('ce '+motRub(rids[0])));
+  if(rids.length)bouts.push(rids.length>1?(rids.length+' catégories ou sections'):('cette '+motRub(rids[0])));
   if(!await lvConfirm('Mettre à la corbeille '+bouts.join(' et ')+' ?'))return;
   /* du plus haut vers le plus profond : un domaine emporte ses sections, et
      celles qui étaient cochées avec lui sont déjà parties quand leur tour
@@ -2276,7 +2276,7 @@ async function remetRubrique(id){
   S.corb=S.corb.filter(x=>(x.racine||x.id)!==id);
   saveRubs();
   try{for(const a of S.jetees.filter(a=>a.supprRub===id))await remetRessource(a);}
-  catch(e2){console.warn('restauration',e2);lvInfo('Une partie des ressources de ce domaine n’a pas pu être restaurée. Vérifiez la connexion et réessayez depuis la corbeille.');}
+  catch(e2){console.warn('restauration',e2);lvInfo('Une partie des ressources de cette catégorie n’a pas pu être restaurée. Vérifiez la connexion et réessayez depuis la corbeille.');}
   rendCorbeille(); majCorbBouton();
 }
 async function detruitRubrique(id){
@@ -2302,7 +2302,7 @@ function rendCorbeille(){
   if(!n){h.innerHTML='<div class="vide">La corbeille est vide.</div>';return;}
   racines.forEach(x=>{
     const dedans=S.jetees.filter(a=>a.supprRub===x.id).length;
-    const note=(x.parent?'Section':'Domaine')
+    const note=(x.parent?'Section':'Catégorie')
       +(dedans?' · '+dedans+(dedans>1?' ressources':' ressource'):'')
       +' · '+dateFr(x.suppr);
     h.appendChild(ligneJetee(x.nom||'Sans nom',note,'data-corb-r="'+esc(x.id)+'"','data-corb-rx="'+esc(x.id)+'"'));
@@ -2748,7 +2748,7 @@ async function menuRessource(id){
     {cle:'modif',nom:'Modifier'},
     ...(telechargeable(a)?[{cle:'tel',nom:'Télécharger',note:nomTelecharge(a)}]:[]),
     {cle:'etat',nom:a.publie?'Rendre privé':'Publier',note:a.publie?'publiée':'privée'},
-    {cle:'ranger',nom:'Ranger dans…',note:rubValide(a.rub)?chemin(a.rub):'sans domaine'},
+    {cle:'ranger',nom:'Ranger dans…',note:rubValide(a.rub)?chemin(a.rub):'sans catégorie'},
     {cle:'suppr',nom:'Mettre à la corbeille',danger:true}
   ]);
   if(c==='modif')ouvre(id);

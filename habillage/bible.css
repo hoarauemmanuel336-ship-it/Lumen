@@ -159,9 +159,9 @@ html body .ch-texte .ch-sect:first-child{margin-top:2px}
 /* NUMÉROS DE VERSETS : police d'interface, petite, crème atténuée */
 html body .ch-texte sup.vn{
   font-family:var(--h-ui);font-size:10.5px;font-weight:600;letter-spacing:.01em;font-variant-numeric:tabular-nums;
-  color:color-mix(in srgb,var(--h-or) 62%,transparent);
+  color:var(--h-or);   /* éclairés : l'accent plein, et non plus voilé (Emmanuel, 11/10) */
 }
-html body .ch-texte sup.vsub{font-family:var(--h-ui);font-size:9.5px;font-weight:600;color:color-mix(in srgb,var(--h-or) 62%,transparent)}
+html body .ch-texte sup.vsub{font-family:var(--h-ui);font-size:9.5px;font-weight:600;color:var(--h-or)}
 /* en vers, le numéro pend dans la marge même quand le verset porte une note
    ou un commentaire : la marque le remettait dans le flux et décalait la
    première ligne. Il se cale à droite de la marge, à un souffle du premier
@@ -1016,3 +1016,30 @@ html body #menu-flot.mf-signet:has(.mf-act:hover)::before{background:var(--h-s4)
    les notes. Numéros de versets et sous-titres de section restent en
    Garamond, la police de l'interface. */
 html body .ch-texte,html body .note-texte{font-family:var(--h-texte)}
+
+/* ── LE TITRE D'UNE NOTE ET LA TRADUCTION DES PASSAGES (Emmanuel, 11/10) ──
+   Dans la fiche, la ligne « Traduction Chérubin · Séraphin » se tient sous la
+   référence, comme sous le titre d'un chapitre ; le titre facultatif est une
+   ligne sans cadre, posée au-dessus de la page où l'on écrit. Dans la liste,
+   le titre ouvre l'aperçu, en blanc. */
+/* le sélecteur de traduction de « Mes notes » : deux mots sans cadre,
+   séparés d'un point, au bout de la rangée des onglets ; la traduction choisie en crème, l'autre
+   éteinte (Emmanuel, 11/10) */
+html body .nzm-modes{align-items:center;flex-wrap:wrap}
+html body .nzm-trad{margin:0 0 0 auto;display:inline-flex;align-items:center;gap:10px;flex-wrap:nowrap;
+  font-size:inherit;letter-spacing:0;text-transform:none;line-height:1}
+html body .nzm-trad .trad-lab{display:none}
+html body .nzm-trad .trad-sep{font-size:13.5px;line-height:1}
+html body .nzm-trad .trad-o{font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:.01em;text-transform:none;transition:color .25s}
+html body .nzm-trad .trad-o.on{color:var(--h-or)}
+html body .nzm-trad .trad-o::before{inset:-10px -8px}
+html body .nb2 .nb2-ti,html body .nb2 .nb2-ti:focus{
+  display:block;width:100%;margin:22px 0 0;padding:16px 0 0;border:0;border-top:1px solid var(--h-l1);border-radius:0;
+  background:none;box-shadow:none;outline:none;
+  font-family:var(--h-titre);font-size:26px;font-weight:500;line-height:1.2;color:#fff;
+}
+html body .nb2 .nb2-ti::placeholder{color:var(--h-t4);font-style:italic}
+html body .nb2 .nb2-ti+.nb-zone,html body .nb2 .nb2-ti+.nb-zone:focus{margin-top:10px;padding-top:8px;border-top:0}
+html body .nzm-txt .nzm-ti{font-weight:600;color:#fff}
+html body .note-ti{font-family:var(--h-titre);font-size:22px;font-weight:500;line-height:1.2;color:#fff;margin:4px 0 6px}
+@media(max-width:720px){html body .nb2 .nb2-ti{font-size:22px}}
