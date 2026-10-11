@@ -52,13 +52,20 @@ html body .fil span.cible{color:#000;background:var(--h-or);box-shadow:none}
 
 html body .tete,html body .tete.dedans{
   display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  padding:0;margin:0 0 36px;border:0;
+  padding:0 0 22px;margin:0 0 36px;border:0;position:relative;
+}
+/* sous le titre, le même court trait de lumière que dans les articles
+   (Emmanuel, 11/10) */
+html body .tete::after{
+  content:'';position:absolute;left:0;bottom:0;width:132px;height:1px;
+  background:linear-gradient(90deg,var(--h-or),color-mix(in srgb,var(--h-or) 0%,transparent));
+  opacity:.7;
 }
 html body .tete h1,html body .tete.dedans h1{
   font-family:var(--h-titre);font-size:54px;font-weight:400;line-height:1.04;letter-spacing:-.005em;text-transform:none;color:#fff;
 }
 @media(max-width:720px){
-  html body .tete,html body .tete.dedans{margin-bottom:26px}
+  html body .tete,html body .tete.dedans{padding-bottom:18px;margin-bottom:26px}
   html body .tete h1,html body .tete.dedans h1{font-size:38px}
 }
 
@@ -297,26 +304,20 @@ html body #ecran-voir .acts,html body #ecran-corbeille .acts,html body #ecran-ed
 
 /* ════════════════════════════════════════════════════════════════════
    8. LE PLEIN ÉCRAN
-   Un diagramme, un livre, un cours s'ouvrent sur tout l'écran, au-dessus
-   d'une barre de verre où se pose le bouton de retour (et, s'il est là,
-   celui du fichier). Le contenu s'arrête au bord de la barre : rien n'est
-   caché dessous.
+   Un diagramme, un livre, un cours s'ouvrent sur tout l'écran ; le bouton
+   de retour (et, s'il est là, celui du fichier) flotte par-dessus.
    ════════════════════════════════════════════════════════════════════ */
-html body .res-plein{height:calc(100% - var(--re-barre));height:calc(100dvh - var(--re-barre))}
-html body.plein::after{
-  content:'';position:fixed;left:0;right:0;bottom:0;z-index:200;height:var(--re-barre);
-  background:color-mix(in srgb,var(--h-s1) 92%,transparent);
-  -webkit-backdrop-filter:saturate(140%) blur(20px);backdrop-filter:saturate(140%) blur(20px);
-  border-top:1px solid var(--h-l2);
-  box-shadow:0 -20px 50px -30px color-mix(in srgb,var(--h-or) 40%,transparent);
-}
+/* Plus de barre (Emmanuel, 11/10) : la ressource prend tout l'écran et le
+   bouton flotte par-dessus, en bas à gauche. */
+html body .res-plein{height:100%;height:100dvh}
+html body.plein::after{content:none;display:none}
 html:root body .res-plein-x{
   left:max(16px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:201;
   min-height:44px;padding:10px 20px;font-size:13.5px;
 }
 html:root body .res-plein-x.tel{left:auto;right:max(16px,env(safe-area-inset-right,0px))}
 /* sur tout l'écran, ni le dock ni l'onglet Bible ne restent derrière la
-   barre */
+   ressource */
 html body.plein .nav-bas,html body.plein #bp-tab{visibility:hidden}
 
 /* ════════════════════════════════════════════════════════════════════
@@ -537,7 +538,7 @@ html body #acts-choix{position:static;padding:0;border:0;background:none;-webkit
 html:root body .res-plein-acts{
   position:fixed;z-index:201;display:flex;align-items:stretch;
   left:max(16px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));
-  background:var(--h-or);border-radius:999px;overflow:hidden;transition:box-shadow .3s;
+  background:var(--h-or);border-radius:999px;overflow:hidden;box-shadow:0 6px 22px rgba(0,0,0,.6);transition:box-shadow .3s;
 }
 html:root body .res-plein-acts:hover{box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent)}
 html:root body .res-plein-acts .res-plein-x{position:static;left:auto;bottom:auto;box-shadow:none;border-radius:0}

@@ -164,7 +164,6 @@ html body header nav.menu #rech-ouvrir{margin-left:6px;position:relative}
 html body header nav.menu .rech-loupe:hover,html body header nav.menu .rech-loupe:focus-visible{color:var(--h-or);background:none}
 html body header nav.menu .rech-loupe svg{width:18px;height:18px}
 /* compte connecté : une petite lumière sur l'icône */
-html body header .auth-icone.connecte::after{content:'';position:absolute;top:9px;right:5px;width:6px;height:6px;border-radius:50%;background:var(--h-or);box-shadow:0 0 8px var(--h-or)}
 
 /* barre rangée : un mince bandeau, la poignée seule au centre */
 html.barre-rangee body header{background:#000}
@@ -400,10 +399,10 @@ html:root body .haut-page{
 html body #bp-tab{
   background:#000;border:1px solid var(--h-l2);border-left:0;border-radius:0;
   padding:18px 9px;font-family:var(--h-ui);font-size:10.5px;font-weight:600;letter-spacing:.22em;color:var(--h-t2);
-  box-shadow:6px 0 24px -12px color-mix(in srgb,var(--h-or) 30%,transparent);
-  transition:color .25s,border-color .25s,padding .25s,box-shadow .3s;
+  box-shadow:none;
+  transition:color .25s,border-color .25s,padding .25s;
 }
-html body #bp-tab:hover{background:#000;color:var(--h-or);border-color:var(--h-l3);padding-left:12px;box-shadow:8px 0 30px -10px color-mix(in srgb,var(--h-or) 45%,transparent)}
+html body #bp-tab:hover{background:#000;color:var(--h-or);border-color:var(--h-l3);padding-left:12px;box-shadow:none}
 html body #bp-voile{background:color-mix(in srgb,#000 60%,transparent);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 html body #bp-pan{
   background:#000;border-right:1px solid var(--h-l2);border-radius:0;overflow:hidden;
