@@ -1043,3 +1043,43 @@ html body .nb2 .nb2-ti+.nb-zone,html body .nb2 .nb2-ti+.nb-zone:focus{margin-top
 html body .nzm-txt .nzm-ti{font-weight:600;color:#fff}
 html body .note-ti{font-family:var(--h-titre);font-size:22px;font-weight:500;line-height:1.2;color:#fff;margin:4px 0 6px}
 @media(max-width:720px){html body .nb2 .nb2-ti{font-size:22px}}
+
+/* ── LE CHEVRON DE LA BARRE DE SÉLECTION (Emmanuel, 11/10) ──
+   Sur téléphone seulement : un chevron à droite des références replie ou
+   rouvre les actions. Repliée, la barre ne garde que les références. */
+html body .sb-pli{display:none}
+@media(max-width:720px){
+  html body #sel-barre .sb-int{position:relative}
+  html body #sel-barre .sb-refs{padding-right:40px}
+  html body .sb-pli{
+    display:inline-flex;align-items:center;justify-content:center;position:absolute;top:8px;right:8px;width:32px;height:32px;
+    border-radius:10px;color:var(--h-t2);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:color .25s,background .25s,transform .25s}
+  /* jamais de cadre : sur téléphone le survol « colle » après un toucher */
+  html body .sb-pli,html body .sb-pli:hover,html body .sb-pli:active,html body .sb-pli:focus{background:none;outline:none}
+  @media(hover:hover){html body .sb-pli:hover{color:var(--h-or)}}
+  html body .sb-pli svg{transition:transform .25s}
+  html body #sel-barre.replie .sb-pli svg{transform:rotate(180deg)}
+  html body #sel-barre.replie :is(.sb-act,.sb-surl){display:none!important}
+}
+/* dépliée, la barre ne montre que le bandeau des actions et son chevron :
+   les références n'y servent à rien (Emmanuel, 11/10) */
+@media(max-width:720px){
+  html body #sel-barre:not(.replie) .sb-refs{display:none}
+  html body #sel-barre:not(.replie) .sb-int{flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px}
+  html body #sel-barre:not(.replie) .sb-act{flex:1 1 0;min-width:0;width:auto;order:1}
+  html body #sel-barre:not(.replie) .sb-pli{position:static;order:2;flex:none}
+  html body #sel-barre:not(.replie) .sb-surl{order:1;flex:1 1 0;min-width:0}
+}
+/* pendant le choix d'une couleur, seule la palette reste, le chevron à sa droite */
+@media(max-width:720px){
+  html body #sel-barre:has(#sb-surl.ouvert) .sb-act{display:none!important}
+  html body #sel-barre:not(.replie):has(#sb-surl.ouvert) .sb-pli{align-self:flex-start}
+  html body #sel-barre:not(.replie):has(#sb-surl.ouvert) #sb-surl{flex:1 1 0;flex-basis:0;min-width:0;justify-content:flex-start;padding:2px 0}
+}
+
+/* « Retirer le surlignage » : une simple croix rouge au bout des couleurs
+   (Emmanuel, 11/10) */
+html:root body:not(#_):not(#_):not(#_) #sel-barre .sb-oter,html:root body:not(#_):not(#_):not(#_) #sel-barre .sb-oter:is(:hover,:focus-visible,:active){
+  display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;min-height:0;padding:0;margin-left:2px;
+  background:none;box-shadow:none;border-radius:50%;transform:none;font-family:var(--h-ui);font-size:18px;font-weight:600;line-height:1;color:#c75d52}
+@media(hover:hover){html:root body:not(#_):not(#_):not(#_) #sel-barre .sb-oter:hover{color:#e07a6e}}

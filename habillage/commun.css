@@ -686,3 +686,100 @@ html:root body:not(#_):not(#_):not(#_) .sb-btn:is(:hover,:focus-visible),
 html:root body:not(#_):not(#_):not(#_) .jt-act:is(:hover,:focus-visible),
 html:root body:not(#_):not(#_):not(#_) #app .start:is(:hover,:focus-visible){
   box-shadow:0 0 0 1px color-mix(in srgb,var(--h-or) 60%,#fff),0 0 28px -4px color-mix(in srgb,var(--h-or) 80%,transparent)}
+
+/* ── LA CASE SURVOLÉE VA JUSQU'AU BORD (Emmanuel, 11/10) ──
+   Plus de marge crème autour des cases : le bandeau n'a plus de rembourrage,
+   si bien que la case survolée s'éclaire jusqu'au bord du bandeau ; ses
+   coins reprennent l'arrondi du bandeau. */
+html:root body:not(#_):not(#_):not(#_) :is(#acts-liste:has(>.acts-haut),#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.pile-btn,.sb-act){padding:0}
+html:root body:not(#_):not(#_):not(#_) .modal-btns:has(>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)~:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)){padding:0}
+html:root body:not(#_):not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn),
+html:root body:not(#_):not(#_):not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn),
+html:root body:not(#_):not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2),
+html:root body:not(#_):not(#_):not(#_) .sb-btn{border-radius:14px}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   LES BANDEAUX, VERSION PROPRE (Emmanuel, 11/10)
+   Une case survolée s'éclaire exactement sur sa surface : jusqu'aux traits
+   qui la séparent de ses voisines, et jusqu'au bord du bandeau. Ses coins
+   restent droits à l'intérieur du bandeau et ne s'arrondissent que là où
+   elle touche un coin du bandeau, si bien que rien ne déborde ni ne laisse
+   de vide. La lueur rayonne autour d'elle, sans liseré.
+   Les actions d'une catégorie de Mémoriser (+ Verset, Renommer, Ranger,
+   Supprimer) et celles de sa corbeille (Restaurer, Supprimer) forment
+   désormais elles aussi un bandeau.
+   ════════════════════════════════════════════════════════════════════ */
+/* les nouveaux bandeaux */
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(.bandeau-mini,.trash-acts){display:inline-flex;flex-wrap:nowrap;align-items:stretch;gap:0;padding:0;border-radius:14px;background:var(--h-or);
+  box-shadow:0 10px 30px -14px color-mix(in srgb,var(--h-or) 70%,transparent)}
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(.bandeau-mini,.trash-acts)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn){position:relative;margin:0;background:transparent;box-shadow:none;transition:background .25s,box-shadow .3s,transform .2s}
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(.bandeau-mini,.trash-acts)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn)+:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn)::before{content:'';position:absolute;left:0;top:11px;bottom:11px;right:auto;width:1px;height:auto;inset-inline-start:0;background:color-mix(in srgb,var(--h-or) 84%,#000);transition:opacity .2s}
+html:root body:not(#_):not(#_):not(#_):not(#_) .cat-custom-acts{display:block}
+
+/* toutes les cases : coins droits, puis arrondies seulement dans les coins du bandeau */
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),html:root body:not(#_):not(#_):not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),html:root body:not(#_):not(#_):not(#_):not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn){border-radius:0}
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-top-left-radius:14px;border-bottom-left-radius:14px}
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-last-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-top-right-radius:14px;border-bottom-right-radius:14px}
+html:root body:not(#_):not(#_):not(#_):not(#_) #app .cat-acts>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]){border-bottom-left-radius:0;border-bottom-right-radius:0}
+html:root body:not(#_):not(#_):not(#_):not(#_) #acts-liste>.acts-haut>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-top-left-radius:14px}
+html:root body:not(#_):not(#_):not(#_):not(#_) #acts-liste>.acts-haut>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-last-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-top-right-radius:14px}
+html:root body:not(#_):not(#_):not(#_):not(#_) #acts-liste>.acts-outils>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-bottom-left-radius:14px}
+html:root body:not(#_):not(#_):not(#_):not(#_) #acts-liste>.acts-outils>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-last-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-bottom-right-radius:14px}
+html:root body:not(#_):not(#_):not(#_):not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):not([style*="none"]):nth-child(1 of :is(.bacct-btn,.macct-btn,.auth-m-btn):not([style*="none"])){border-top-left-radius:14px;border-top-right-radius:14px}
+html:root body:not(#_):not(#_):not(#_):not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):not([style*="none"]):nth-last-child(1 of :is(.bacct-btn,.macct-btn,.auth-m-btn):not([style*="none"])){border-bottom-left-radius:14px;border-bottom-right-radius:14px}
+
+/* le survol : l'éclat sur toute la case, une lueur autour, sans liseré */
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(:is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),:is(#acts-liste>.acts-haut,#acts-liste>.acts-outils)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),.pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn),.jt-act):is(:hover,:focus-visible){z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);transform:none}
+html:root body:not(#_):not(#_):not(#_):not(#_) #app .start:is(:hover,:focus-visible){box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(:is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),:is(#acts-liste>.acts-haut,#acts-liste>.acts-outils)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),.pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn)):is(:hover,:focus-visible)::before,
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(:is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),:is(#acts-liste>.acts-haut,#acts-liste>.acts-outils)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),.pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn)):is(:hover,:focus-visible)+:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn)::before,
+html:root body:not(#_):not(#_):not(#_):not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):is(:hover,:focus-visible)+:is(.bacct-btn,.macct-btn,.auth-m-btn)::before{opacity:0}
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(:is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),:is(#acts-liste>.acts-haut,#acts-liste>.acts-outils)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),.pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn)):active{transform:none}
+/* la corbeille des Ressources : deux cases collées, coins extérieurs arrondis */
+html:root body:not(#_):not(#_):not(#_):not(#_) .jt-act{border-radius:0}
+html:root body:not(#_):not(#_):not(#_):not(#_) .jt-act:not(:has(~.jt-act)):not(.jt-act~.jt-act){border-radius:12px}
+html:root body:not(#_):not(#_):not(#_):not(#_) .jete>.jt-act:not(.jt-act~.jt-act){border-radius:12px 0 0 12px}
+html:root body:not(#_):not(#_):not(#_):not(#_) .jete>.jt-act~.jt-act{border-radius:0 12px 12px 0}
+
+@media(max-width:600px){
+  /* trois cases par ligne : seules les cases des coins s'arrondissent */
+  html:root body:not(#_):not(#_):not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]){border-radius:0}
+  html:root body:not(#_):not(#_):not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-top-left-radius:14px}
+  html:root body:not(#_):not(#_):not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-child(3 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])),
+  html:root body:not(#_):not(#_):not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-child(-n+2 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])):nth-last-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-top-right-radius:14px}
+  html:root body:not(#_):not(#_):not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.nzm-acts,.bandeau-mini)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-child(3n+1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])):nth-last-child(-n+3 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-bottom-left-radius:14px}
+  html:root body:not(#_):not(#_):not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.nzm-acts,.bandeau-mini)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-last-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-bottom-right-radius:14px}
+  html:root body:not(#_):not(#_):not(#_):not(#_) .bandeau-mini{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));width:100%}
+  html:root body:not(#_):not(#_):not(#_):not(#_) .bandeau-mini>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn){grid-column:span 2;min-height:40px;padding:8px 6px;white-space:normal;text-align:center}
+  html:root body:not(#_):not(#_):not(#_):not(#_) .bandeau-mini>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-child(3n+1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])):nth-last-child(2 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])),html:root body:not(#_):not(#_):not(#_):not(#_) .bandeau-mini>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-child(3n+1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])):nth-last-child(2 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]))~:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]){grid-column:span 3}
+  html:root body:not(#_):not(#_):not(#_):not(#_) .bandeau-mini>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-child(3n+1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])):nth-last-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){grid-column:span 6}
+  html:root body:not(#_):not(#_):not(#_):not(#_) .bandeau-mini>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn)::before{content:none}
+  html:root body:not(#_):not(#_):not(#_):not(#_) .bandeau-mini>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):not(:nth-child(3n+1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])))::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:color-mix(in srgb,var(--h-or) 84%,#000)}
+  html:root body:not(#_):not(#_):not(#_):not(#_) .bandeau-mini>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-child(n+4 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]))::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:color-mix(in srgb,var(--h-or) 84%,#000)}
+  /* la corbeille de Mémoriser empile ses deux actions */
+  html:root body:not(#_):not(#_):not(#_):not(#_) .trash-acts{display:flex;flex-direction:column}
+  html:root body:not(#_):not(#_):not(#_):not(#_) .trash-acts>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]){border-radius:0}
+  html:root body:not(#_):not(#_):not(#_):not(#_) .trash-acts>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-radius:14px 14px 0 0}
+  html:root body:not(#_):not(#_):not(#_):not(#_) .trash-acts>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-last-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-radius:0 0 14px 14px}
+  html:root body:not(#_):not(#_):not(#_):not(#_) .trash-acts>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn)+:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn)::before{left:14px;right:14px;top:0;bottom:auto;width:auto;height:1px}
+  /* la fenêtre du choix d'un passage empile ses trois boutons */
+  html:root body:not(#_):not(#_):not(#_):not(#_) #m-bib .modal-btns>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]){border-radius:0}
+  html:root body:not(#_):not(#_):not(#_):not(#_) #m-bib .modal-btns>.m-ok{border-radius:14px 14px 0 0}
+  html:root body:not(#_):not(#_):not(#_):not(#_) #m-bib .modal-btns>.m-annul{border-radius:0 0 14px 14px}
+}
+
+/* ── LA BARRE DE SÉLECTION SUR TÉLÉPHONE, PLUS LÉGÈRE (Emmanuel, 11/10) ──
+   Les quatre actions tiennent sur une seule ligne, collées en bandeau comme
+   sur ordinateur, au lieu de deux rangées de grosses pilules : la barre
+   n'occupe plus que le bas de l'écran et laisse voir le texte. */
+@media(max-width:720px){
+  html:root body:not(#_):not(#_):not(#_):not(#_) #sel-barre .sb-int{padding:8px;gap:8px}
+  html:root body:not(#_):not(#_):not(#_):not(#_) #sel-barre .sb-chip{min-height:30px;font-size:13px;padding:0 4px 0 12px}
+  html:root body:not(#_):not(#_):not(#_):not(#_) #sel-barre .sb-act{display:flex;flex-wrap:nowrap;width:100%;gap:0;padding:0;border-radius:14px;background:var(--h-or);
+    box-shadow:0 10px 30px -14px color-mix(in srgb,var(--h-or) 70%,transparent)}
+  html:root body:not(#_):not(#_):not(#_):not(#_) #sel-barre .sb-act>.sb-btn{flex:1 1 0;min-width:0;height:auto;min-height:44px;padding:6px 6px;background:transparent;
+    font-size:12.5px;line-height:1.15;white-space:normal;text-align:center}
+  html:root body:not(#_):not(#_):not(#_):not(#_) #sel-barre .sb-act>.sb-btn+.sb-btn::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:color-mix(in srgb,var(--h-or) 84%,#000)}
+  html:root body:not(#_):not(#_):not(#_):not(#_) #sel-barre .sb-act>.sb-btn:is(:hover,:focus-visible,:active){background:color-mix(in srgb,var(--h-or) 70%,#fff)}
+}

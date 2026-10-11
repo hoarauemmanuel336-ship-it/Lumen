@@ -693,3 +693,21 @@ html body #app .start:active{transform:none}
   html:root body:not(#_):not(#_) #app .cat-acts{max-width:none;padding:0;border-bottom:0}
   html body #app .start,html body #app .start:is(:hover,:focus-visible){max-width:none}
 }
+/* « Commencer » s'éclaire lui aussi jusqu'au bord du bloc */
+html:root body:not(#_) #app .start,html:root body:not(#_) #app .start:is(:hover,:focus-visible){border-left:0;border-right:0;border-bottom:0}
+
+/* ── LES BOUTONS DES FENÊTRES, D'UN SEUL TENANT (Emmanuel, 11/10) ──
+   La page posait ses boutons de fenêtre dans une grille espacée, qui
+   coupait le bandeau en deux sur téléphone : ils se recollent. « Revenir au
+   texte d'origine », quand il paraît, prend toute une ligne du bandeau. */
+html:root body:not(#_):not(#_):not(#_) .modal-btns:has(>:is(.m-cancel,.m-ok,.m-reset)~:is(.m-cancel,.m-ok,.m-reset)){display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:0!important;align-items:stretch!important}
+html:root body:not(#_):not(#_):not(#_) .modal-btns>.m-reset{margin:0!important}
+html:root body:not(#_):not(#_):not(#_) .modal-btns>:is(.m-cancel,.m-ok){flex:1 1 auto}
+@media(max-width:600px){
+  html:root body:not(#_):not(#_):not(#_) .modal-btns:has(>:is(.m-cancel,.m-ok,.m-reset)~:is(.m-cancel,.m-ok,.m-reset)){width:100%}
+  html:root body:not(#_):not(#_):not(#_) .modal-btns>:is(.m-cancel,.m-ok){flex:1 1 0;width:auto;min-width:0}
+  html:root body:not(#_):not(#_):not(#_) .modal-btns>.m-reset:not([style*="none"]){flex:1 0 100%;padding:11px 14px!important;border-radius:14px 14px 0 0!important;border-bottom:1px solid color-mix(in srgb,var(--h-or) 84%,#000)}
+  html:root body:not(#_):not(#_):not(#_) .modal-btns>.m-reset:not([style*="none"])~.m-cancel{border-radius:0 0 0 14px!important}
+  html:root body:not(#_):not(#_):not(#_) .modal-btns>.m-reset:not([style*="none"])~.m-ok{border-radius:0 0 14px 0!important}
+  html:root body:not(#_):not(#_):not(#_) .modal-btns>.m-reset+.m-cancel::before{content:none}
+}
