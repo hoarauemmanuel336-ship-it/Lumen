@@ -1203,17 +1203,6 @@ html body .nzm-row .nzm-ti{grid-column:1/-1;display:block;margin:6px 0 2px;font-
 /* dans le tiroir, la barre « Aller à » du tiroir suffit : celle de l'accueil
    de la Bible s'efface (11/10) */
 html.panneau body #bib-aller{display:none}
-
-/* ── LA PROSE, SUR TÉLÉPHONE, EN FER À GAUCHE (Emmanuel, 11/10) ──
-   Sur une colonne étroite, la justification ouvrait de grands blancs entre
-   les mots, surtout là où le navigateur ne coupe pas les mots français : le
-   texte s'aligne à gauche, comme les réponses de Mémoriser. Sur ordinateur,
-   les lignes sont assez longues pour rester justifiées. Le tiroir de la
-   Bible, étroit lui aussi, suit la même règle. */
-@media(max-width:600px){
-  html body .ch-texte{text-align:left;-webkit-hyphens:manual;hyphens:manual}
-}
-html.panneau body .ch-texte{text-align:left;-webkit-hyphens:manual;hyphens:manual}
 /* sur téléphone, le numéro du chapitre reste sur la ligne du livre (11/10) */
 @media(max-width:600px){
   html:root body:not(#_):not(#_):not(#_) h2.ch-titre{font-size:30px}
@@ -1222,8 +1211,12 @@ html.panneau body .ch-texte{text-align:left;-webkit-hyphens:manual;hyphens:manua
 }
 @media(max-width:600px){html:root body:not(#_) .ch-tete .titre-ligne{max-width:calc(100% - 46px)}}
 
-/* ── LES VERS, ALIGNÉS À GAUCHE ET À DROITE (Emmanuel, 11/10) ──
-   Un vers trop long pour la colonne s'étire jusqu'au bord droit ; sa
-   dernière ligne reste à gauche : on voit ainsi où un vers continue. Sans
-   l'équilibrage, qui raccourcissait les lignes et les aurait trop étirées. */
-html body .ch-texte .vst.po,html body .ch-texte .vst.po .li{text-align:justify;text-wrap:wrap}
+/* ── LES VERS, ALIGNÉS À GAUCHE ET À DROITE, EN RETRAIT DES DEUX CÔTÉS (Emmanuel, 11/10) ──
+   Un vers trop long s'étire jusqu'à sa marge droite, sa dernière ligne reste
+   à gauche. Le bloc des vers garde à droite le même retrait qu'à gauche, pour
+   ne pas toucher le bord de l'écran, et les mots se coupent en fin de ligne
+   comme dans la prose, ce qui évite les grands blancs entre les mots. */
+html body .ch-texte .vst.po{padding-right:2.2em}
+html body .ch-texte .vst.po,html body .ch-texte .vst.po .li{
+  text-align:justify;text-wrap:wrap;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 2}
+@media(max-width:600px){html body .ch-texte .vst.po{padding-right:1.7em}}
