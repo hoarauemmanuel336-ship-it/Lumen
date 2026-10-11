@@ -666,3 +666,12 @@ html body #summary .sum-num{text-shadow:none}
 html body #summary #sum-back,html body #summary #sum-back:is(:hover,:focus-visible){box-shadow:none}
 /* « À reprendre » se cale à gauche, au-dessus de sa liste (Emmanuel, 11/10) */
 html body #summary .sum-t{text-align:left;max-width:420px;margin-left:auto;margin-right:auto;padding-left:2px}
+
+/* « Choisir dans la Bible » sans cadre : un simple lien crème (Emmanuel, 11/10) */
+html:root body #app .mv-bible,html:root body .mv-bible{
+  background:none;border:0;box-shadow:none;padding:8px 4px;min-height:0;
+  font-family:var(--h-ui);font-size:14px;font-weight:600;letter-spacing:.01em;text-transform:none;color:var(--h-or);
+}
+html:root body #app .mv-bible:is(:hover,:focus-visible,:active),html:root body .mv-bible:is(:hover,:focus-visible,:active){
+  background:none;box-shadow:none;color:#fff;
+}
