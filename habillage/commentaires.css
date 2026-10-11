@@ -411,7 +411,7 @@ html body .champ{
   border-radius:0;background:#000;border:1px solid var(--h-l2);padding:12px 14px;margin-top:14px;
   font-family:var(--h-ui);font-size:15px;line-height:1.35;color:#fff;transition:border-color .25s,box-shadow .25s;
 }
-html body .champ:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body .champ:focus{border-color:var(--h-or);box-shadow:none}
 html body .champ::placeholder{color:var(--h-t4)}
 html body textarea.champ.code{border-radius:0;font-size:13px;line-height:1.55;background:#000}
 html body .modal-btns{gap:10px;margin-top:24px;align-items:center}
@@ -425,7 +425,7 @@ html:root body .modal-btns :is(.m-annul,.m-ok){
 }
 html:root body .modal-btns :is(.m-annul,.m-ok):is(:hover,:focus-visible){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;
-  box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent);
+  box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);
 }
 html:root body .modal-btns :is(.m-annul,.m-ok):active{transform:scale(.98)}
 

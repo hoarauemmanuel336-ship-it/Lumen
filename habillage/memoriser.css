@@ -53,7 +53,7 @@ html:root body :is(.mini-act,.trash-act,.mv-bible,.mbib-tout){
 }
 html:root body :is(.mini-act,.trash-act,.mv-bible,.mbib-tout):is(:hover,:focus-visible,:active){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;border-color:transparent;
-  box-shadow:0 8px 24px -10px color-mix(in srgb,var(--h-or) 70%,transparent);
+  box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);
 }
 html:root body :is(.mini-act,.trash-act):active{transform:scale(.97)}
 html body #sel-all:empty{display:none}
@@ -381,7 +381,7 @@ html body .field{
 }
 html body textarea.field{font-family:var(--h-texte);font-size:17px;line-height:1.5}
 html body textarea.field.champ-ligne{font-family:var(--h-ui);font-size:15px;line-height:1.4}
-html body .field:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body .field:focus{border-color:var(--h-or);box-shadow:none}
 
 /* les boutons des fenêtres : pleins, crème, en pilule */
 html body .modal-btns{gap:10px;margin-top:26px;align-items:center}
@@ -393,7 +393,7 @@ html:root body :is(.m-cancel,.m-ok,.m-reset){
 }
 html:root body :is(.m-cancel,.m-ok,.m-reset):is(:hover,:focus-visible){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;
-  box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent);
+  box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);
 }
 html:root body :is(.m-cancel,.m-ok,.m-reset):active{transform:scale(.98)}
 html:root body .m-reset{margin-right:auto;text-align:center}
@@ -499,7 +499,7 @@ html:root body .auth-primary{
   background:var(--h-or);color:#000;font-family:var(--h-ui);font-size:14.5px;font-weight:600;letter-spacing:.01em;text-transform:none;
   transition:background .25s,box-shadow .3s,transform .2s;
 }
-html:root body .auth-primary:is(:hover,:focus-visible){background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent)}
+html:root body .auth-primary:is(:hover,:focus-visible){background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 html:root body .auth-primary:active{transform:scale(.98)}
 html body .auth-or{margin:20px 0;font-family:var(--h-ui);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:none;color:var(--h-t4)}
 html body .auth-or::before,html body .auth-or::after{background:var(--h-l1)}

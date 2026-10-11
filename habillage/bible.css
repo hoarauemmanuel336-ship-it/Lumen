@@ -50,7 +50,7 @@ html body .bib-aller{
   transition:border-color .25s,box-shadow .25s,background-color .25s;
 }
 html body .bib-aller:hover{border-color:var(--h-l3)}
-html body .bib-aller:focus-within{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body .bib-aller:focus-within{border-color:var(--h-or);box-shadow:none}
 html body .bib-aller .champ-ligne{
   padding:12px 4px;font-family:var(--h-ui);font-size:16px;line-height:1.3;color:#fff;
 }
@@ -62,7 +62,7 @@ html:root body .bib-aller button{
 }
 html:root body .bib-aller button:is(:hover,:focus-visible){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;
-  box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent);
+  box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);
 }
 html body .bib-err{font-family:var(--h-ui);font-size:13.5px;color:#e3a7a0}
 html body .bib-err:empty{display:none}
@@ -192,7 +192,7 @@ html body .com-fermer{
   font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.01em;text-transform:none;
   background:var(--h-or);color:#000;transition:background .25s,box-shadow .3s;
 }
-html body .com-fermer:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 8px 24px -10px color-mix(in srgb,var(--h-or) 70%,transparent)}
+html body .com-fermer:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 
 /* NAVIGATION ENTRE CHAPITRES : le précédent et le suivant sans cadre
    (Emmanuel, 11/10), le retour à la grille au milieu */
@@ -356,7 +356,7 @@ html body .notes-rech{
   transition:border-color .25s,box-shadow .25s;
 }
 html body .notes-rech:hover{border-color:var(--h-l3)}
-html body .notes-rech:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body .notes-rech:focus{border-color:var(--h-or);box-shadow:none}
 html body .notes-rech::placeholder{font-style:normal;color:var(--h-t4)}
 
 /* les actions : deux boutons pleins ; le classement : une capsule */
@@ -370,7 +370,7 @@ html body :is(.notes-btn,.notes-lien){
 html body :is(.notes-btn,.notes-lien)::before{font-family:var(--h-ui);font-size:18px;font-weight:400;line-height:1;color:#000}
 html body :is(.notes-btn,.notes-lien):is(:hover,:active,:focus-visible){
   color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);
-  box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent);
+  box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);
 }
 html body :is(.notes-btn,.notes-lien):is(:hover,:active)::before{color:#000}
 /* le mot « Classer » est écrit à même la capsule : il prend la voix des
@@ -396,7 +396,7 @@ html body .sync-act{
   font-family:var(--h-ui);font-style:normal;font-size:13.5px;font-weight:600;background:var(--h-or);color:#000;
   transition:background .25s,box-shadow .3s;
 }
-html body .sync-act:hover{color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent)}
+html body .sync-act:hover{color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 
 /* les filtres : un contrôle segmenté qui défile de côté s'il est trop long */
 html body .nz-rail{
@@ -634,7 +634,7 @@ html body .cat-input{
   margin-bottom:16px;padding:12px 14px;border:1px solid var(--h-l2);border-radius:0;background:#000;
   font-family:var(--h-ui);font-size:15px;color:#fff;transition:border-color .25s,box-shadow .25s;
 }
-html body .cat-input:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body .cat-input:focus{border-color:var(--h-or);box-shadow:none}
 
 /* LA CONNEXION : comme la fenêtre de connexion du site */
 html body .ab-boite{
@@ -654,7 +654,7 @@ html body .ab-champ{
   margin-bottom:10px;padding:12px 14px;border:1px solid var(--h-l2);border-radius:0;background:#000;
   font-family:var(--h-ui);font-size:15px;color:#fff;transition:border-color .25s,box-shadow .25s;
 }
-html body .ab-champ:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body .ab-champ:focus{border-color:var(--h-or);box-shadow:none}
 html:root body .ab-principal{display:flex;width:100%;margin-top:6px}
 html:root body .ab-google{display:flex;width:100%}
 html body .ab-ou{margin:14px 0;font-family:var(--h-ui);font-size:12px;letter-spacing:.08em;color:var(--h-t4)}
@@ -679,7 +679,7 @@ html body .nb-zone{
   min-height:280px;padding:14px 16px;border:1px solid var(--h-l2);border-radius:0;background:#000;
   transition:border-color .25s,box-shadow .25s;
 }
-html body .nb-zone:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body .nb-zone:focus{border-color:var(--h-or);box-shadow:none}
 html body .nb-zone::placeholder{color:var(--h-t4)}
 html body .nb-cat-ligne{margin:18px 0 4px;padding-top:16px;border-top:1px solid var(--h-l1)}
 html body .nb-cat-lab{font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--h-t2)}
@@ -687,7 +687,7 @@ html body .note-depl{
   padding:9px 34px 9px 14px;border:1px solid var(--h-l2);border-radius:0;background:#000;
   font-family:var(--h-ui);font-size:14px;color:#fff;transition:border-color .25s,box-shadow .25s;
 }
-html body .note-depl:focus{border-color:var(--h-or);box-shadow:0 0 0 3px var(--h-voile-fort)}
+html body .note-depl:focus{border-color:var(--h-or);box-shadow:none}
 html body .note-sel::after{right:13px;color:var(--h-or)}
 html body .nb-actes{gap:10px;margin-top:18px}
 html body .nb-btn,html body .nb-btn.principal{
@@ -697,7 +697,7 @@ html body .nb-btn,html body .nb-btn.principal{
 }
 html body .nb-btn:is(:hover,:focus-visible),html body .nb-btn.principal:is(:hover,:focus-visible){
   color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);
-  box-shadow:0 8px 28px -10px color-mix(in srgb,var(--h-or) 70%,transparent);
+  box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);
 }
 html body .nb-btn:active{transform:scale(.98)}
 html body .nb-suppr{margin-left:auto}
