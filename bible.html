@@ -3601,7 +3601,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       for (var i = 0; i < d.chapitres.length; i++) if (d.chapitres[i].n === n) { ch = d.chapitres[i]; break; }
       if (!ch) return vueChapitres(slug);
       var ps = (slug === 'psaumes');
-      var nomCh = ps ? 'Psaume ' + n : esc(inf.nom) + (inf.nch > 1 ? ' ' + n : '');
+      var nomCh = ps ? 'Psaume\u00a0' + n : esc(inf.nom) + (inf.nch > 1 ? '\u00a0' + n : '');
       /* le dernier chapitre ouvert, pour « Reprendre » en tête de la liste */
       try { localStorage.setItem('lv_bible_lu', JSON.stringify({ s: slug, n: n, t: ps ? 'Psaume ' + n : inf.nom + (inf.nch > 1 ? ' ' + n : '') })); } catch(e){}
       document.title = nomCh + ' · La Sainte Bible · Lumen Veritatis';
