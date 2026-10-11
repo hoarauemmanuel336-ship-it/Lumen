@@ -559,3 +559,18 @@ html:root body .jt-act+.jt-act{margin-left:-14px;position:relative}
 html:root body .jt-act+.jt-act::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:1px;background:rgba(0,0,0,.16)}
 html:root body .jt-act:is(:hover,:focus-visible),html:root body .jt-act.danger:is(:hover,:focus-visible){background:color-mix(in srgb,var(--h-or) 45%,#fff);box-shadow:none}
 @media(max-width:600px){html:root body .jt-act+.jt-act{margin-left:-10px}}
+
+/* ── LA POIGNÉE SANS CADRE (Emmanuel, 11/10) ──
+   Le ⠿ seul, dans le coin de la carte : ni fond ni contour, au repos comme
+   au survol, où il s'allume simplement de la couleur d'accent. */
+html:root body:not(#_) .poignee,html:root body:not(#_) .poignee:hover,
+html body.organise .poignee,html body.organise .poignee:hover{background:none;box-shadow:none;border:0;border-radius:0}
+html body.organise .poignee:hover{color:var(--h-or)}
+/* le ⠿ au plus près du coin haut gauche de la carte ; une zone de toucher
+   invisible garde la poignée facile à saisir */
+html body.organise .carte .poignee{left:0;top:0;width:auto;height:auto;padding:3px 0 0 4px;align-items:flex-start;justify-content:flex-start;line-height:1}
+html body.organise .carte .poignee::after{content:'';position:absolute;left:0;top:0;width:32px;height:32px}
+/* même écart au bord gauche et au bord haut (5 px, mesurés sur le signe
+   lui-même et non sur sa boîte) */
+html body.organise .carte .poignee{padding:3px 0 0 1.75px}
+@media(max-width:600px){html body.organise .carte .poignee{padding:2.5px 0 0 1.75px}}

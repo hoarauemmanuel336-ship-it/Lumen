@@ -628,3 +628,61 @@ html:root body:not(#_) .jt-act+.jt-act{border-top-left-radius:0;border-bottom-le
 html:root body:not(#_) .jt-act:has(+.jt-act){border-top-right-radius:0;border-bottom-right-radius:0}
 html:root body:not(#_) .jt-act:is(:hover,:focus-visible),html:root body:not(#_) .jt-act.danger:is(:hover,:focus-visible){border-radius:12px;z-index:1;color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 8px 24px -10px color-mix(in srgb,var(--h-or) 70%,transparent)}
 html:root body .jt-act:is(:hover,:focus-visible)::before,html:root body .jt-act:is(:hover,:focus-visible)+.jt-act::before{opacity:0}
+
+/* ════════════════════════════════════════════════════════════════════
+   LES DERNIERS BOUTONS CARRÉS (Emmanuel, 11/10)
+   Les boutons crème qui restaient carrés s'arrondissent à leur tour et se
+   comportent au survol comme tous les autres : ils s'éclaircissent et se
+   soulèvent d'une lueur. Les onglets choisis et les petites poignées
+   s'arrondissent aussi. Les deux boutons d'une fenêtre (Annuler, Valider…)
+   se collent en bandeau, comme ailleurs.
+   ════════════════════════════════════════════════════════════════════ */
+html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.nt-plus,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.ttx-b){
+  border-radius:12px;transition:background .25s,box-shadow .3s,transform .2s,color .25s}
+html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.nt-plus,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible){
+  background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 8px 24px -10px color-mix(in srgb,var(--h-or) 70%,transparent)}
+html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.nt-plus,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):active{transform:scale(.97)}
+html:root body:not(#_) :is(.ab-tab,.auth-m-tab,.auth-tab){border-radius:10px}
+html:root body:not(#_) :is(.ab-tabs,.auth-m-tabs,.auth-tabs){border-radius:13px}
+html:root body:not(#_) .poignee,html:root body:not(#_) .fil span.cible{border-radius:8px}
+html:root body:not(#_) #sel-barre{border-radius:16px}
+html:root body:not(#_) .sb-chip{border-radius:10px}
+
+/* les boutons d'une fenêtre, collés en bandeau */
+html:root body:not(#_):not(#_) .modal-btns:has(>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)~:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)){
+  display:flex;flex-wrap:nowrap;gap:0;width:fit-content;max-width:100%;margin-left:auto;padding:3px;border-radius:14px;background:var(--h-or);
+  box-shadow:0 10px 30px -14px color-mix(in srgb,var(--h-or) 70%,transparent)}
+html:root body:not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2){position:relative;margin:0;border-radius:11px;background:transparent;box-shadow:none}
+html:root body:not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)+:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)::before{
+  content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:color-mix(in srgb,var(--h-or) 84%,#000);transition:opacity .2s}
+html:root body:not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible){z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff)}
+html:root body:not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible)::before,
+html:root body:not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible)+:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)::before{opacity:0}
+/* une fenêtre à un seul bouton garde son bouton seul, arrondi */
+html:root body:not(#_):not(#_) .modal-btns:not(:has(>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)~:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)))>:is(.m-annul,.m-ok,.m-cancel,.m-reset){background:var(--h-or)}
+@media(max-width:600px){
+  html:root body:not(#_):not(#_) .modal-btns:has(>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)~:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)){width:100%;display:flex}
+  html:root body:not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2){flex:1 1 0;min-width:0;width:auto;padding-left:8px;padding-right:8px}
+  /* la fenêtre du choix d'un passage empile ses trois boutons */
+  html:root body:not(#_):not(#_) #m-bib .modal-btns{flex-direction:column!important}
+  /* ordre affiché : Valider, le verset entier, Annuler ; un trait au-dessus
+     de chaque bouton sauf le premier affiché */
+  html:root body:not(#_):not(#_) #m-bib .modal-btns>:is(.m-annul,.m-ok,.mbib-2)::before{content:'';position:absolute;left:16px;right:16px;top:0;bottom:auto;width:auto;height:1px;background:color-mix(in srgb,var(--h-or) 84%,#000)}
+  html:root body:not(#_):not(#_) #m-bib .modal-btns>.m-ok::before{content:none}
+}
+/* l'interrupteur « Onglet Bible » : une pilule et une pastille rondes */
+html:root body:not(#_) .tog-sw{border-radius:999px}
+html:root body:not(#_) .tog-sw::after{border-radius:50%}
+
+/* ── LA LUEUR DES CASES D'UN BANDEAU (Emmanuel, 11/10) ──
+   Dans un bandeau, la lueur d'une case survolée rayonne tout autour d'elle,
+   et non plus seulement vers le bas : une case de la rangée du haut déborde
+   ainsi par le haut du bandeau, une case du milieu d'une pile par les côtés,
+   si bien que chaque case s'allume visiblement, où qu'elle soit. */
+html:root body:not(#_):not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible),
+html:root body:not(#_):not(#_):not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):is(:hover,:focus-visible),
+html:root body:not(#_):not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible),
+html:root body:not(#_):not(#_):not(#_) .sb-btn:is(:hover,:focus-visible),
+html:root body:not(#_):not(#_):not(#_) .jt-act:is(:hover,:focus-visible),
+html:root body:not(#_):not(#_):not(#_) #app .start:is(:hover,:focus-visible){
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--h-or) 60%,#fff),0 0 28px -4px color-mix(in srgb,var(--h-or) 80%,transparent)}
