@@ -747,3 +747,5 @@ html:root body:not(#_) .v-check::after{
   content:'';inset:auto;left:5px;top:1px;width:5px;height:10px;font-size:0;
   border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(45deg);text-shadow:none}
 html:root body:not(#_) .v-check.on::after{text-shadow:none}
+/* une catégorie ouverte garde le même fond qu'une catégorie fermée (11/10) */
+html:root body:not(#_):not(#_) .cat.open{background:transparent}
