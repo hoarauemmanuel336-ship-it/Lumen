@@ -1200,3 +1200,6 @@ html body .nb2-cat .note-sel:focus-visible select{border-color:var(--h-or)}
 /* le titre d'une note, sur sa propre ligne dans « Mes notes » (11/10) */
 html body .nzm-row .nzm-ti{grid-column:1/-1;display:block;margin:6px 0 2px;font-family:var(--h-titre);font-size:22px;font-weight:500;line-height:1.2;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-right:44px}
 @media(max-width:600px){html body .nzm-row .nzm-ti{padding-right:0}}
+/* dans le tiroir, la barre « Aller à » du tiroir suffit : celle de l'accueil
+   de la Bible s'efface (11/10) */
+html.panneau body #bib-aller{display:none}

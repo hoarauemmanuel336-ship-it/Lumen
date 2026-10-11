@@ -348,13 +348,8 @@ const BARRE_JS = `(function(){
     });
   }
   var p=location.pathname.replace(/index\\.html$/,'')||'/';
-  /* Barre du bas : « Bible », hors de la page Bible, ouvre le tiroir de la
-     Bible par-dessus la page, sans perdre sa place ; « Pleine page », dans le
-     tiroir, mène à la Bible elle-même. */
-  var nb=document.getElementById('nav-bas-bible');
-  if(nb&&p!=='/bible.html'){nb.addEventListener('click',function(e){
-    if(window.LVBible&&typeof window.LVBible.bascule==='function'){e.preventDefault();window.LVBible.bascule();}
-  });}
+  /* Barre du bas : « Bible » mène à la page Bible, comme les autres onglets
+     (Emmanuel, 11/10) ; le tiroir s'ouvre par l'onglet Bible du bord. */
   Array.prototype.forEach.call(document.querySelectorAll('nav.menu a, .nav-bas a'),function(a){
     var h=(a.getAttribute('href')||'').replace(/index\\.html$/,'');
     if(h===p)a.classList.add('actif');

@@ -859,3 +859,19 @@ html:root body:not(#_):not(#_) :is(.mbib-rech .mbib-go,#bp-pan .bp-aller){
   font-family:var(--h-ui);font-size:14px;font-weight:600;letter-spacing:.01em;text-transform:none;background:var(--h-or);color:#000}
 html:root body:not(#_):not(#_) #bp-pan .bp-refrow{flex-wrap:wrap}
 html:root body:not(#_):not(#_) #bp-pan .bp-err:empty{display:none}
+
+/* ── LE TIROIR DE LA BIBLE, SANS DOUBLON (Emmanuel, 11/10) ──
+   L'en-tête du tiroir ne répète plus « La Sainte Bible » : la page le dit
+   déjà en grand ; ses boutons se rangent à droite. */
+html:root body:not(#_):not(#_) #bp-pan .bp-titre{display:none}
+html:root body:not(#_):not(#_) #bp-pan .bp-tete{justify-content:flex-end}
+html:root body:not(#_):not(#_) #bp-pan .bp-tete #bp-rech{margin-left:auto}
+html:root body:not(#_):not(#_) #bp-pan .bp-page{white-space:nowrap}
+/* le tiroir tient en une rangée : barre « Aller à », pleine page, croix (11/10) */
+html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-tete{display:none}
+html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow{flex-wrap:wrap;align-items:center;gap:10px;padding:12px 14px}
+html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-barre{flex:1 1 0;min-width:0}
+html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-plein{flex:none;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;background:none;box-shadow:none;border-radius:0;color:var(--h-t3);transition:color .25s}
+html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-plein:is(:hover,:focus-visible){background:none;box-shadow:none;color:var(--h-or)}
+html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-fermer{flex:none}
+html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-err{flex:1 1 100%}
