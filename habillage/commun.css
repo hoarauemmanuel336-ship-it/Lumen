@@ -817,3 +817,13 @@ html:root body:not(#_):not(#_):not(#_):not(#_) :is(#amt-si,#ab-tab-si,#tab-si,#b
 /* le résultat de la recherche propre à la Bible s'éclaire comme les autres */
 html:root body:not(#_):not(#_) .b-r:is(:hover,.kact){background:var(--h-or);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);position:relative;z-index:1}
 html:root body:not(#_):not(#_) .b-r:is(:hover,.kact) *{color:#000!important}
+
+/* ── LE SURVOL DES LIGNES, PLUS VISIBLE (Emmanuel, 11/10) ──
+   Une ligne de liste survolée s'éclaircit nettement. */
+html:root body:not(#_):not(#_) :is(.sec-head,.cat-row,.vrow,.trash-head,.mbib-v,.rub-tete,.rub-corps>.art-ligne,.note-item,.sg-carte,.surl-item,.sgm-row,.nzm-row,.rayon):hover{background:rgba(255,255,255,.12);box-shadow:none}
+
+/* ── AU SURVOL D'UNE LIGNE, LES NOMS RESTENT BLANCS (Emmanuel, 11/10) ──
+   Et les articles de la liste principale prennent le même fond éclairci
+   que toutes les autres lignes, sans contour ni lueur. */
+html:root body:not(#_):not(#_) :is(.sec-head:hover .sec-nom,.rub-tete:hover .rub-nom,.art-ligne:hover .art-titre,.rayon:hover .ry-nom,.rayon:hover .ry-chev,.sgm-row:hover .sgm-go){color:#fff}
+html:root body:not(#_):not(#_) #liste>.art-ligne:hover{background:rgba(255,255,255,.12);border-color:var(--h-l1);box-shadow:none}

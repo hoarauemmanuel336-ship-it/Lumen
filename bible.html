@@ -781,8 +781,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
 
   <main class="wrap">
     <div class="hero" id="hero">
-      <div class="trad" id="trad" role="group" aria-label="Traduction"></div>
-      <h1 class="titre">La Sainte Bible</h1>
+      <div class="titre-ligne"><h1 class="titre">La Sainte Bible</h1><span class="trad-ic" role="button" tabindex="0" aria-label="Choisir la traduction" aria-haspopup="true" aria-expanded="false" title="Traduction"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M12 6.5C10.2 5.2 7.6 4.6 4 4.8v13.4c3.6-.2 6.2.4 8 1.7 1.8-1.3 4.4-1.9 8-1.7V4.8c-3.6-.2-6.2.4-8 1.7z"/><path d="M12 6.5v13.4"/></svg></span></div>
       <div class="souligne"></div>
     </div>
     <div id="vue"><div class="chargement">Chargement…</div></div>
@@ -1473,6 +1472,10 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     return '<div class="trad' + (cls ? ' ' + cls : '') + '" role="group" aria-label="Traduction">'
          + optionsTrad() + '</div>';
   }
+  /* la petite icône qui ouvre le choix de la traduction (Emmanuel, 11/10) */
+  function icTrad(){
+    return '<span class="trad-ic" role="button" tabindex="0" aria-label="Choisir la traduction" aria-haspopup="true" aria-expanded="false" title="Traduction"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M12 6.5C10.2 5.2 7.6 4.6 4 4.8v13.4c3.6-.2 6.2.4 8 1.7 1.8-1.3 4.4-1.9 8-1.7V4.8c-3.6-.2-6.2.4-8 1.7z"/><path d="M12 6.5v13.4"/></svg></span>';
+  }
   function majTrad(){
     var ds = document.querySelectorAll('.trad');
     for (var i = 0; i < ds.length; i++) ds[i].innerHTML = optionsTrad();
@@ -1502,6 +1505,47 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     route();
     if (noteEnCours) citeNote(noteEnCours);
   }
+  /* ───────── Le choix de la traduction, depuis l'icône du titre (Emmanuel, 11/10) ─────────
+     Une petite icône à droite de « La Sainte Bible » ouvre un menu où
+     chaque traduction a sa ligne ; la traduction en cours porte une coche. */
+  (function(){
+    var ic = null;
+    var m = document.createElement('div');
+    m.className = 'trad-menu'; m.id = 'trad-menu'; m.setAttribute('role', 'menu');
+    document.body.appendChild(m);
+    function rend(){
+      var h = '';
+      ['cherubin', 'seraphin'].forEach(function(k){
+        h += '<span class="tm-o' + (TRAD === k ? ' on' : '') + '" data-tm="' + k + '" role="menuitemradio" aria-checked="' + (TRAD === k) + '" tabindex="0">'
+           + '<span>' + esc(TRADS[k].nom) + '</span><i aria-hidden="true">' + (TRAD === k ? '\u2713' : '') + '</i></span>';
+      });
+      m.innerHTML = h;
+    }
+    function place(){
+      if (!ic) return;
+      var r = ic.getBoundingClientRect(), w = m.offsetWidth;
+      var g = Math.max(10, Math.min(r.left + r.width / 2 - w / 2, window.innerWidth - w - 10));
+      var tl = ic.closest('.titre-ligne'), bas = tl ? Math.max(r.bottom, tl.getBoundingClientRect().bottom) : r.bottom;
+      m.style.left = Math.round(g) + 'px'; m.style.top = Math.round(bas + 10) + 'px';
+    }
+    function ouvre(el){ ic = el; rend(); m.classList.add('ouvert'); ic.setAttribute('aria-expanded', 'true'); place(); }
+    function ferme(){ m.classList.remove('ouvert'); if (ic) ic.setAttribute('aria-expanded', 'false'); }
+    document.addEventListener('click', function(e){
+      var el = e.target.closest ? e.target.closest('.trad-ic') : null;
+      if (el) { e.stopPropagation(); (m.classList.contains('ouvert') && ic === el) ? ferme() : ouvre(el); return; }
+      var o = e.target.closest ? e.target.closest('.tm-o') : null;
+      if (o && m.contains(o)) { ferme(); choisitTraduction(o.getAttribute('data-tm')); return; }
+      if (m.classList.contains('ouvert') && !m.contains(e.target)) ferme();
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && m.classList.contains('ouvert')) { ferme(); if (ic) ic.focus(); return; }
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var t = e.target.closest ? e.target.closest('.trad-ic, .tm-o') : null;
+      if (t) { e.preventDefault(); t.click(); }
+    });
+    window.addEventListener('scroll', function(){ if (m.classList.contains('ouvert')) ferme(); }, { passive: true });
+    window.addEventListener('resize', function(){ if (m.classList.contains('ouvert')) place(); });
+  })();
   /* même délégation que les boutons de taille du texte : le sélecteur est
      redessiné à chaque rendu, l'écoute ne l'est pas */
   document.addEventListener('click', function(e){
@@ -3059,7 +3103,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
           /* la traduction des passages cités (Emmanuel, 11/10) : un petit
              sélecteur au bout de la rangée des onglets ; c'est le même choix
              que sur la page de lecture */
-          + htmlTrad('nzm-trad')
+          + icTrad()
           + '</div>';
     h += '<div class="nzm-tete"><span class="nzm-lbl">' + (surlOn ? esc(LVF_TXT.surl) : 'Mes notes') + '</span>'
        + (!surlOn ? '<span class="nzm-acts"><span class="notes-btn" id="note-libre" role="button" tabindex="0">+ Écrire une note</span>'
@@ -3456,9 +3500,10 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     var lu = null;
     try { lu = JSON.parse(localStorage.getItem('lv_bible_lu') || 'null'); } catch(e){ lu = null; }
     h += '<div class="bib-tete">';
+    h += '<form class="bib-aller" id="bib-aller" autocomplete="off"><textarea id="bib-ref" class="champ-ligne" rows="1" placeholder="Aller à…" spellcheck="false" enterkeyhint="go" aria-label="Aller à une référence"></textarea><button type="submit">Aller</button></form>'
+       + '<div class="bib-err" id="bib-err" aria-live="polite"></div>';
     if (lu && lu.s && lu.n && infoLivre(lu.s)) h += '<a class="bib-reprendre" href="#' + esc(lu.s) + '/' + (+lu.n) + '"><span class="br-l">Reprendre</span><span class="br-r">' + esc(lu.t || '') + '</span></a>';
-    h += '<form class="bib-aller" id="bib-aller" autocomplete="off"><textarea id="bib-ref" class="champ-ligne" rows="1" placeholder="Aller à : Jean 3:16" spellcheck="false" enterkeyhint="go" aria-label="Aller à une référence"></textarea><button type="submit">Aller</button></form>'
-       + '<div class="bib-err" id="bib-err" aria-live="polite"></div></div>';
+    h += '</div>';
     IDX.groupes.forEach(function(g){
       if (g.test !== testCourant) {
         testCourant = g.test;
@@ -3522,12 +3567,11 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       try { localStorage.setItem('lv_bible_lu', JSON.stringify({ s: slug, n: n, t: ps ? 'Psaume ' + n : inf.nom + (inf.nch > 1 ? ' ' + n : '') })); } catch(e){}
       document.title = nomCh + ' · La Sainte Bible · Lumen Veritatis';
       var h = '<div class="lecture-col">' +
-              '<div class="ch-tete"><h2 class="ch-titre">' + nomCh + '</h2>' +
+              '<div class="ch-tete"><span class="titre-ligne"><h2 class="ch-titre">' + nomCh + '</h2>' + icTrad() + '</span>' +
               '<span class="signet-btn" id="signet-btn" role="button" tabindex="0">' + RUBAN + '</span></div>';
       if (ch.vulg) h += '<div class="ch-vulg">Vulgate : ' + esc(ch.vulg) + '</div>';
       if (ch.titre) h += ps ? '<div class="ch-psaume-titre">' + esc(ch.titre) + '</div>'
                             : '<div class="ch-section">' + esc(ch.titre) + '</div>';
-      h += htmlTrad('ch-trad');
       h += '<div class="ch-sep"></div><div class="ch-texte">';
       var secT = {};
       if (ch.titres) ch.titres.forEach(function(t){ if (t && t.titre) secT[t.v] = t.titre; });

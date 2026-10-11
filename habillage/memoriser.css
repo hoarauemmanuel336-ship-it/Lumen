@@ -732,3 +732,10 @@ html:root body:not(#_) #m-search .msrch-fermer{flex:none;display:inline-flex;ali
 html:root body:not(#_) #m-search .msrch-fermer:hover{color:#fff;background:var(--h-s4)}
 html:root body:not(#_) #m-search .srch-vide{padding:22px 16px;font-family:var(--h-ui);font-size:17px;font-style:italic;color:var(--h-t3)}
 html:root body:not(#_) #m-search{padding-top:0}
+
+/* ── LE BANDEAU DES CATÉGORIES SUR TOUTE LA COLONNE (Emmanuel, 11/10) ──
+   Il s'aligne sur « Catégories & mémoire » et sur les onglets. */
+html:root body:not(#_):not(#_):not(#_) #app .cat-acts{max-width:none!important;width:100%}
+html:root body:not(#_):not(#_):not(#_) #app .start{max-width:none!important;width:100%}
+/* au survol d'un verset, la référence reste blanche (Emmanuel, 11/10) */
+html:root body:not(#_) .vline:hover .vref,html:root body:not(#_) .vrow.pas .vline:hover .vtext{color:#fff}

@@ -1110,3 +1110,58 @@ html:root body:not(#_):not(#_) :is(#sb-cercle,#lv-frag-pop .lvp-libre)::-moz-col
    Une petite étiquette « Bible » au-dessus de la référence, rien d'autre. */
 html:root body:not(#_) #brech-res .b-r .rech-meta{display:block;margin:0 0 4px;font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--h-or)}
 html:root body:not(#_) #brech-res .b-r b{font-family:var(--h-titre);font-size:22px;font-weight:400}
+
+/* ── LA TRADUCTION, UNE ICÔNE À CÔTÉ DU TITRE (Emmanuel, 11/10) ──
+   Le titre reste centré ; l'icône se pose à sa droite, dans un petit rond
+   dont seul le contour s'allume au survol, comme l'onglet Bible. Son menu
+   reprend celui du signet : une ligne par traduction, crème au survol. */
+html body .hero .titre-ligne{position:relative;display:inline-block}
+html body .hero .trad-ic{
+  position:absolute;left:calc(100% + 14px);top:50%;transform:translateY(-50%);
+  display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--h-l2);color:var(--h-t2);cursor:pointer;transition:border-color .25s,color .25s;
+}
+html body .hero .trad-ic:is(:hover,:focus-visible,[aria-expanded="true"]){border-color:var(--h-or);color:var(--h-or);outline:none}
+@media(max-width:600px){html body .hero .trad-ic{left:calc(100% + 10px);width:32px;height:32px}}
+html body .trad-menu{
+  position:fixed;z-index:130;display:none;flex-direction:column;min-width:190px;overflow:hidden;
+  background:var(--h-s2);border:1px solid var(--h-l2);border-radius:14px;box-shadow:0 20px 46px rgba(0,0,0,.62);
+}
+html body .trad-menu.ouvert{display:flex;animation:hMonte .25s var(--h-doux) both}
+html body .trad-menu .tm-o{
+  display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 20px;cursor:pointer;
+  font-family:var(--h-ui);font-size:15px;font-weight:500;color:var(--h-t2);transition:background .25s,color .25s,box-shadow .25s;
+}
+html body .trad-menu .tm-o + .tm-o{border-top:1px solid var(--h-l1)}
+html body .trad-menu .tm-o.on{color:#fff}
+html body .trad-menu .tm-o i{font-style:normal;font-size:14px;color:var(--h-or)}
+html body .trad-menu .tm-o:is(:hover,:focus-visible){outline:none;background:var(--h-or);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
+html body .trad-menu .tm-o:is(:hover,:focus-visible) i{color:#000}
+
+/* ── LE HAUT DE LA BIBLE, DANS L'ORDRE (Emmanuel, 11/10) ──
+   « Aller à » d'abord, juste sous le titre ; « Reprendre » dessous, de la
+   même largeur ; la barre arrondie comme ses boutons. L'icône de la
+   traduction se fait discrète : sans rond, d'un gris doux. */
+html body .bib-tete .bib-err:empty{display:none}
+html:root body:not(#_) .bib-tete .bib-reprendre{align-self:stretch;justify-content:center;width:auto;max-width:none;margin:0}
+html:root body:not(#_) .bib-aller{border-radius:17px}
+html:root body:not(#_) .hero .trad-ic{border:0;width:30px;height:30px;color:var(--h-t4);left:calc(100% + 8px)}
+html:root body:not(#_) .hero .trad-ic:is(:hover,:focus-visible,[aria-expanded="true"]){color:var(--h-or)}
+html:root body:not(#_) .hero .trad-ic{transform:translateY(calc(-50% - 8px))}
+@media(max-width:600px){html:root body:not(#_) .hero .trad-ic{transform:translateY(calc(-50% - 5px))}}
+
+/* ── L'ICÔNE DE LA TRADUCTION, AUSSI DANS LES CHAPITRES ET LES NOTES (Emmanuel, 11/10) ──
+   Dans un chapitre, elle se pose à droite du titre comme sur l'accueil ;
+   dans « Mes notes », au bout de la rangée des onglets. */
+html body .ch-tete{text-align:center}
+html body .ch-tete .titre-ligne{position:relative;display:inline-block;max-width:calc(100% - 36px)}
+html body :is(.ch-tete,.nzm-modes) .trad-ic{
+  display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;
+  color:var(--h-t4);cursor:pointer;transition:color .25s}
+html body :is(.ch-tete,.nzm-modes) .trad-ic:is(:hover,:focus-visible,[aria-expanded="true"]){color:var(--h-or);outline:none}
+html body .ch-tete .trad-ic{position:absolute;left:calc(100% + 6px);top:50%;transform:translateY(calc(-50% - 7px))}
+@media(max-width:600px){html body .ch-tete .trad-ic{transform:translateY(calc(-50% - 5px))}}
+html body .nzm-modes .trad-ic{margin-left:auto}
+/* un titre de chapitre sur deux lignes : l'icône reste au bout de la première */
+html body .ch-tete .trad-ic{top:19px;transform:translateY(-50%)}
+@media(max-width:600px){html body .ch-tete .trad-ic{top:15px;transform:translateY(-50%)}}

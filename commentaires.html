@@ -1031,7 +1031,7 @@ function rendPublic(){
   if(S.livre&&!parLivre[S.livre])S.livre='';
   majFil(!!S.livre);
   $('mot-liste').textContent=n
-    ?(S.livre?'':'Les commentaires se lisent dans la Bible, sur les versets qui en portent la marque. Chaque ligne y mène.')
+    ?''
     :'Aucun commentaire publié pour l’instant.';
   const tri=(x,y)=>{const a=x.refs[0],b=y.refs[0];return (a.ch-b.ch)||(a.v1-b.v1)||(a.v2-b.v2);};
   if(S.livre){parLivre[S.livre].sort(tri).forEach(a=>h.appendChild(ligneCom(a,true)));return;}

@@ -623,3 +623,4 @@ html body .art-pied .art-etat::before{background:#fff;border:0;box-shadow:0 0 8p
 /* LA LECTURE EN LITERATA (11/10) : le corps du commentaire, à la lecture
    comme dans l'éditeur ; les intertitres gardent Cormorant */
 html body :is(#lire-corps,#ed-corps){font-family:var(--h-texte)}
+html body #mot-liste:empty{display:none}
