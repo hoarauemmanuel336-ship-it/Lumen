@@ -3419,8 +3419,8 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       h += '<div class="groupe-nom">' + esc(g.nom) + '</div><div class="livres-grille">';
       IDX.livres.forEach(function(l){
         if (l.groupe !== g.nom) return;
-        h += '<a class="livre" href="#' + l.slug + '"><span class="ln">' + esc(l.nom) + '</span>' +
-             '<span class="lc">' + l.nch + (l.nch > 1 ? ' chapitres' : ' chapitre') + '</span></a>';
+        /* le nom seul : plus de nombre de chapitres (Emmanuel, 11/10) */
+        h += '<a class="livre" href="#' + l.slug + '"><span class="ln">' + esc(l.nom) + '</span></a>';
       });
       h += '</div>';
     });

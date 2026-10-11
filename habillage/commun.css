@@ -439,9 +439,9 @@ html body #bp-tab{
   box-shadow:none;
   transition:color .25s,border-color .25s,padding .25s;
 }
-/* au survol, ni le texte ni le filet ne changent de couleur : l'onglet ne
-   s'éclaire pas (Emmanuel, 11/10) ; seul son léger glissement demeure */
-html body #bp-tab:hover{background:#000;color:var(--h-t2);border-color:var(--h-l2);padding-left:12px;box-shadow:none}
+/* au survol, seul le contour s'éclaire, de la couleur d'accent, sans lueur ;
+   le texte ne change pas (Emmanuel, 11/10) */
+html body #bp-tab:hover{background:#000;color:var(--h-t2);border-color:var(--h-or);padding-left:12px;box-shadow:none;text-shadow:none}
 html body #bp-voile{background:color-mix(in srgb,#000 60%,transparent);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 html body #bp-pan{
   background:#000;border-right:1px solid var(--h-l2);border-radius:0;overflow:hidden;
