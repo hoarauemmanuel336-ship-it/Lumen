@@ -863,7 +863,7 @@ if(typeof firebase==='undefined'){var m=document.getElementById('auth-msg');if(m
   <div class="modal">
     <div class="modal-title">Choisir un verset</div>
     <div class="mbib-fil" id="mbib-fil"></div>
-    <div class="mbib-rech"><textarea class="field champ-ligne" id="i-mbib" rows="1" placeholder="Référence : Jean 3:16" autocomplete="off"></textarea><button type="button" class="mbib-go" id="mbib-go">Aller</button></div>
+    <div class="mbib-rech"><textarea class="field champ-ligne" id="i-mbib" rows="1" placeholder="Aller à…" autocomplete="off"></textarea><button type="button" class="mbib-go" id="mbib-go">Aller</button></div>
     <div class="mbib-corps" id="mbib-corps"></div>
     <div class="mbib-apercu" id="mbib-apercu"></div>
     <div class="modal-btns"><button class="m-cancel" id="mbib-cancel">Annuler</button><button class="m-ok" id="mbib-ok">Utiliser</button></div>
@@ -2074,7 +2074,7 @@ function bibVaRef(){
   if(!v)return;
   const r=api.ref(v);
   if(!r){champ.value='';champ.placeholder='Référence non reconnue';return;}
-  champ.value='';champ.placeholder='Référence : Jean 3:16';
+  champ.value='';champ.placeholder='Aller à…';
   if(!r.ch)return bibChaps(r.slug);
   bibVersets(r.slug,r.ch,r.v1,r.v2);
 }

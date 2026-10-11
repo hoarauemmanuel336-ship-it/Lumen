@@ -579,3 +579,13 @@ html body.organise .carte .poignee{padding:3px 0 0 1.75px}
    Sous le titre, aligné à gauche, dans l'écriture de lecture. */
 html:root body:not(#_) #liste>.vide{font-family:var(--h-texte);font-size:17.5px;font-style:normal;line-height:1.55;color:rgba(255,255,255,.78);text-align:left;align-self:stretch;width:100%;padding:0;margin:0 0 26px}
 @media(max-width:600px){html:root body:not(#_) #liste>.vide{font-size:16.5px}}
+
+/* ── UNE SEULE COCHE SUR TOUT LE SITE (Emmanuel, 11/10) ──
+   La case de « Choisir » est celle de Mémoriser : 20 pixels, le trait
+   dessiné en noir sur le crème, sans lueur. */
+html:root body.choisir:not(#_) .coche{position:relative;width:20px;height:20px;flex:none;font-size:0;color:transparent;background:#000;box-shadow:none}
+html:root body.choisir:not(#_) .coche::after{
+  content:'';position:absolute;left:6px;top:2.5px;width:5px;height:10px;
+  border:solid #000;border-width:0 2px 2px 0;transform:rotate(45deg);opacity:0;transition:opacity .2s}
+html:root body.choisir:not(#_) .pris>.coche{background:var(--h-or);border-color:var(--h-or);box-shadow:none}
+html:root body.choisir:not(#_) .pris>.coche::after{opacity:1}

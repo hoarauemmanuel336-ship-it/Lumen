@@ -30,11 +30,11 @@
   var BP_PAGE = BP_EN ? '/en/bible.html' : '/bible.html';
   var BP_T = BP_EN ? {
     bible: 'The Holy Bible', ouvrir: 'Open the Bible', page: 'Full page',
-    ph: 'Reference: Matthew 7:6-8', aller: 'Go', fermer: 'Close', rech: 'Search', compte: 'Account',
+    ph: 'Go to…', aller: 'Go', fermer: 'Close', rech: 'Search', compte: 'Account',
     inconnue: 'Not recognised.', errBible: 'The Bible could not be loaded.'
   } : {
     bible: 'La Sainte Bible', ouvrir: 'Ouvrir la Bible', page: 'Pleine page',
-    ph: 'R\u00e9f\u00e9rence : Matthieu 7:6-8', aller: 'Aller', fermer: 'Fermer', rech: 'Rechercher', compte: 'Mon compte',
+    ph: 'Aller \u00e0\u2026', aller: 'Aller', fermer: 'Fermer', rech: 'Rechercher', compte: 'Mon compte',
     inconnue: 'Non reconnue.', errBible: 'La Bible n\u2019a pas pu \u00eatre charg\u00e9e.'
   };
 
@@ -120,8 +120,8 @@
     + '  <span class="bp-fermer" id="bp-fermer" role="button" tabindex="0" aria-label="' + BP_T.fermer + '">\u2715</span>'
     + '</div>'
     + '<div class="bp-refrow">'
-    + '  <textarea class="bp-ref champ-ligne" id="bp-ref" rows="1" placeholder="' + BP_T.ph + '" autocomplete="off" spellcheck="false"></textarea>'
-    + '  <span class="bp-aller" id="bp-aller" role="button" tabindex="0">' + BP_T.aller + '</span>'
+    + '  <div class="bp-barre"><textarea class="bp-ref champ-ligne" id="bp-ref" rows="1" placeholder="' + BP_T.ph + '" autocomplete="off" spellcheck="false"></textarea>'
+    + '  <span class="bp-aller" id="bp-aller" role="button" tabindex="0">' + BP_T.aller + '</span></div>'
     + '  <span class="bp-err" id="bp-err"></span>'
     + '</div>'
     + '<div class="bp-chips" id="bp-chips"></div>'

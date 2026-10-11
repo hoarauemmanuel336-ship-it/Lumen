@@ -1517,7 +1517,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
       var h = '';
       ['cherubin', 'seraphin'].forEach(function(k){
         h += '<span class="tm-o' + (TRAD === k ? ' on' : '') + '" data-tm="' + k + '" role="menuitemradio" aria-checked="' + (TRAD === k) + '" tabindex="0">'
-           + '<span>' + esc(TRADS[k].nom) + '</span><i aria-hidden="true">' + (TRAD === k ? '\u2713' : '') + '</i></span>';
+           + '<span>' + esc(TRADS[k].nom) + '</span><i class="coche-trait" aria-hidden="true"></i></span>';
       });
       m.innerHTML = h;
     }
@@ -1545,6 +1545,45 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     });
     window.addEventListener('scroll', function(){ if (m.classList.contains('ouvert')) ferme(); }, { passive: true });
     window.addEventListener('resize', function(){ if (m.classList.contains('ouvert')) place(); });
+  })();
+  /* ───────── Le choix de la catégorie d'une note, sans la liste du système (Emmanuel, 11/10) ─────────
+     La liste déroulante du navigateur s'ouvrait en bleu : la case garde son
+     allure, mais un clic ouvre le même petit menu que celui de la traduction. */
+  (function(){
+    var sel = document.getElementById('nb-cat'); if (!sel) return;
+    var boite = sel.parentNode;
+    sel.tabIndex = -1; sel.style.pointerEvents = 'none';
+    boite.setAttribute('role', 'button'); boite.tabIndex = 0; boite.setAttribute('aria-haspopup', 'true');
+    var m = document.createElement('div');
+    m.className = 'trad-menu cat-menu-n'; m.setAttribute('role', 'menu');
+    document.body.appendChild(m);
+    function rend(){
+      var h = '';
+      for (var i = 0; i < sel.options.length; i++) {
+        var o = sel.options[i], on = o.value === sel.value;
+        h += '<span class="tm-o' + (on ? ' on' : '') + '" data-v="' + esc(o.value) + '" role="menuitemradio" aria-checked="' + on + '" tabindex="0">'
+           + '<span>' + esc(o.textContent) + '</span><i class="coche-trait" aria-hidden="true"></i></span>';
+      }
+      m.innerHTML = h;
+    }
+    function ouvre(){
+      rend(); m.classList.add('ouvert');
+      var r = boite.getBoundingClientRect(), w = Math.max(m.offsetWidth, r.width);
+      m.style.minWidth = Math.round(r.width) + 'px';
+      m.style.left = Math.round(Math.max(10, Math.min(r.right - m.offsetWidth, window.innerWidth - m.offsetWidth - 10))) + 'px';
+      m.style.top = Math.round(r.bottom + 8) + 'px';
+    }
+    function ferme(){ m.classList.remove('ouvert'); }
+    boite.addEventListener('click', function(e){ e.stopPropagation(); m.classList.contains('ouvert') ? ferme() : ouvre(); });
+    boite.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') { e.preventDefault(); ouvre(); var f = m.querySelector('.tm-o'); if (f) f.focus(); } });
+    m.addEventListener('click', function(e){
+      var o = e.target.closest('.tm-o'); if (!o) return;
+      e.stopPropagation(); sel.value = o.getAttribute('data-v');
+      sel.dispatchEvent(new Event('change', { bubbles: true })); ferme(); boite.focus();
+    });
+    m.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { var o = e.target.closest('.tm-o'); if (o) { e.preventDefault(); o.click(); } } });
+    document.addEventListener('click', function(e){ if (m.classList.contains('ouvert') && !m.contains(e.target)) ferme(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && m.classList.contains('ouvert')) { e.stopPropagation(); ferme(); boite.focus(); } }, true);
   })();
   /* même délégation que les boutons de taille du texte : le sélecteur est
      redessiné à chaque rendu, l'écoute ne l'est pas */
@@ -3159,7 +3198,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
         + '<span class="nzm-ref">' + esc(refs || 'Sans r\u00e9f\u00e9rence') + '</span>'
         + '<span class="nzm-date">' + date + '</span>'
         + '<span class="nt-menu" data-menu="note:' + n.id + '" role="button" tabindex="0" aria-label="Actions de la note">\u22ef</span>'
-        + '<span class="nzm-txt">' + (n.ti ? '<b class="nzm-ti">' + esc(n.ti) + '</b>' + (n.t ? ' ' : '') : '') + esc(n.t || '') + '</span></div>';
+        + (n.ti ? '<span class="nzm-ti">' + esc(n.ti) + '</span>' : '') + '<span class="nzm-txt">' + esc(n.t || '') + '</span></div>';
     }
 
     /* Par livre : chaque note se range sous chaque livre qu'elle cite, dans
