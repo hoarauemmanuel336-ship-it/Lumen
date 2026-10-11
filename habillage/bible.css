@@ -1004,3 +1004,10 @@ html body #sel-barre:has(#sb-surl.ouvert) .sb-surl{flex-basis:auto;flex:1;flex-w
   html body #sel-barre:has(#sb-surl.ouvert) .sb-surl{flex-basis:100%;flex-wrap:wrap;justify-content:center;padding:6px 0 2px}
 }
 html body #sel-barre:has(#sb-surl.ouvert) .sb-oter{white-space:nowrap;flex:none}
+
+/* le petit menu du ruban : au survol, la lueur remplit toute la bulle
+   arrondie, sans carré à l'intérieur (Emmanuel, 11/10) */
+html body #menu-flot.mf-signet{padding:0}
+html body #menu-flot.mf-signet .mf-act{border-radius:13px}
+html body #menu-flot.mf-signet::before{background:var(--h-s2);transition:background .25s}
+html body #menu-flot.mf-signet:has(.mf-act:hover)::before{background:var(--h-s4)}
