@@ -678,3 +678,18 @@ html:root body #app .mv-bible:is(:hover,:focus-visible,:active),html:root body .
 
 /* LA LECTURE EN LITERATA (11/10) : le verset à réciter et ses propositions */
 html body .q-prompt,html body .opt{font-family:var(--h-texte)}
+
+/* ── « COMMENCER » DANS LE MÊME BANDEAU (Emmanuel, 11/10) ──
+   « Nouvelle catégorie », « Nouvelle section » et « Commencer » forment un
+   seul bandeau crème, de la largeur de « Commencer » : les deux créations
+   en haut, « Commencer » dessous, séparés par le même mince trait. */
+html:root body:not(#_):not(#_) #app .cat-acts{width:100%;max-width:520px;margin:20px auto 0;padding:3px 3px 0;box-shadow:none}
+html body #app .start,html body #app .start:is(:hover,:focus-visible){
+  max-width:520px;min-height:46px;margin:0 auto;border:3px solid var(--h-or);border-top:1px solid color-mix(in srgb,var(--h-or) 84%,#000);
+  box-shadow:0 10px 30px -14px color-mix(in srgb,var(--h-or) 70%,transparent)}
+html body #app .start:is(:hover,:focus-visible){background:color-mix(in srgb,var(--h-or) 45%,#fff)}
+html body #app .start:active{transform:none}
+@media(max-width:600px){
+  html:root body:not(#_):not(#_) #app .cat-acts{max-width:none;padding:0;border-bottom:0}
+  html body #app .start,html body #app .start:is(:hover,:focus-visible){max-width:none}
+}

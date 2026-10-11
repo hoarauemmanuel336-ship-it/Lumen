@@ -550,3 +550,5 @@ html:root body:not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts
 /* un bouton réduit à son icône (la poubelle des Ressources, 11/10) : la case
    reste à la taille des autres, l'icône centrée */
 html:root body .act.act-ic .ic-poubelle{display:block;width:18px;height:18px}
+html:root body .act.act-ic .corb-n{margin-left:7px;font-variant-numeric:tabular-nums;line-height:1}
+html:root body .act.act-ic{gap:0}
