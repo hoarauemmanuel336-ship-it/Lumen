@@ -759,7 +759,8 @@ if(typeof firebase==='undefined'){var m=document.getElementById('auth-msg');if(m
         <button type="button" class="mode" id="mode-c">Fiches</button>
       </div>
       <div class="block">
-        <div class="block-head bh-cats" style="display:flex;align-items:center;justify-content:space-between;gap:14px"><span class="lbl" id="lbl-cats">Catégories &amp; mémoire</span><span class="mini-act" id="sel-all"></span></div>
+        <div class="block-head bh-cats" style="display:flex;align-items:center;justify-content:space-between;gap:14px"><span class="lbl" id="lbl-cats">Catégories &amp; mémoire</span><span class="bh-droite"><button type="button" class="trash-ic" id="trash-btn" style="display:none"></button><span class="mini-act" id="sel-all"></span></span></div>
+        <div id="trash-block" style="display:none"></div>
         <div id="cat-list"></div>
         <button class="ghost-btn" id="cat-more" style="display:none"></button>
         <div class="cat-acts">
@@ -768,9 +769,7 @@ if(typeof firebase==='undefined'){var m=document.getElementById('auth-msg');if(m
           <button class="ghost-btn" id="restore-base" style="display:none">Restaurer les catégories de base</button>
         </div>
       </div>
-      <div class="block" id="trash-block"></div>
       <button class="start" id="start-btn">Commencer</button>
-      <button class="reset-link" id="reset-btn">Réinitialiser toute la mémoire</button>
     </section>
 
     <section id="study">
@@ -1696,7 +1695,7 @@ function applyLang(){
   if($('macct-ttx'))$('macct-ttx').textContent=(S.lang==='fr')?'Taille du texte':'Text size';
   if($('macct-tog'))$('macct-tog').textContent=(S.lang==='fr')?'Onglet Bible \u00e0 gauche':'Bible tab on the left';
   $('lbl-cats').textContent=tl.cats; $('lbl-newcat').textContent=tl.newcat; $('lbl-newsec').textContent=tl.sec_new;
-  $('start-btn').textContent=tl.start; $('reset-btn').textContent=tl.reset; $('finish-btn').textContent=tl.finish;
+  $('start-btn').textContent=tl.start; $('finish-btn').textContent=tl.finish;
   $('sum-back').textContent=tl.backbtn;
   majMode();
 }
@@ -1923,7 +1922,7 @@ function endSession(){
   const rates=Object.keys(S.rates||{});
   $('sum-rap').innerHTML=!n?'':(rates.length
     ?'<div class="sum-t">'+besc(t('missed'))+'</div><ul class="sum-liste">'+rates.map(id=>'<li>'+pastille(levelOf(id))+'<span>'+besc(libelle(S.rates[id]))+'</span></li>').join('')+'</ul>'
-    :'<div class="sum-t">'+besc(t('missed_none'))+'</div>');
+    :'');
   S.soloCat=null; S.soloSec=null;
   renderCats();
 }
@@ -2600,15 +2599,19 @@ function trashListe(items){
   return h;
 }
 function renderTrash(){
-  const host=$('trash-block'); if(!host)return;
-  if(!S.trash.length){host.style.display='none';host.innerHTML='';return;}
+  /* La corbeille tient dans une petite poubelle, à droite de l'en-tête des
+     catégories (Emmanuel, 11/10) ; son contenu s'ouvre juste dessous. */
+  const host=$('trash-block'), btn=$('trash-btn'); if(!host||!btn)return;
+  if(!S.trash.length){S.trashOpen=false;btn.style.display='none';host.style.display='none';host.innerHTML='';return;}
+  btn.style.display='';
+  btn.classList.toggle('on',!!S.trashOpen);
+  btn.setAttribute('aria-label',t('trash')+' ('+S.trash.length+')');
+  btn.title=t('trash')+' ('+S.trash.length+')';
+  btn.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 7h15M9.5 7V5.2c0-.4.3-.7.7-.7h3.6c.4 0 .7.3.7.7V7M6.5 7l.9 11.6c.1.8.7 1.4 1.5 1.4h6.2c.8 0 1.4-.6 1.5-1.4L17.5 7M10.2 10.5v6M13.8 10.5v6"/></svg><span class="trash-n">'+S.trash.length+'</span>';
+  if(!S.trashOpen){host.style.display='none';host.innerHTML='';return;}
   host.style.display='';
-  let h='<div class="trash-head'+(S.trashOpen?' open':'')+'" id="trash-toggle"><span class="lbl">'+t('trash')+' ('+S.trash.length+')</span><span class="cat-chev">\u203A</span></div>';
-  if(S.trashOpen){
-    h+='<div class="trash-body">'+trashListe(S.trash)
-      +'<button class="reset-link" id="trash-empty" style="margin:20px 0 0">'+t('trash_empty_btn')+'</button></div>';
-  }
-  host.innerHTML=h;
+  host.innerHTML='<div class="trash-body">'+trashListe(S.trash)
+    +'<button class="reset-link" id="trash-empty" style="margin:20px 0 0">'+t('trash_empty_btn')+'</button></div>';
 }
 
 // ════════ AUTH UI ════════
@@ -2663,7 +2666,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('sum-back').onclick=()=>{showView('setup');ecouteLive();};
   /* Remettre la mémoire à zéro efface les niveaux ET les échéances : tout
      redevient immédiatement disponible, il n'y a rien à attendre. */
-  $('reset-btn').onclick=async()=>{if(await lvConfirm(t('reset_q'),1)){S.progress={};S.step=0;RAZ_PROG=true;saveProgress();renderCats();}};
   $('mode-v').onclick=()=>vaMode('v');
   $('mode-p').onclick=()=>vaMode('p');
   $('mode-c').onclick=()=>vaMode('c');
@@ -2676,8 +2678,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('i-sec').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();saveSecModal();}});
   $('sel-all').onclick=toggleSelectAll;
   $('cat-more').onclick=()=>{S.showAllCats=!S.showAllCats;renderCats();};
+  $('trash-btn').onclick=()=>{S.trashOpen=!S.trashOpen;renderTrash();};
   $('trash-block').addEventListener('click',e=>{
-    if(e.target.closest('#trash-toggle')){S.trashOpen=!S.trashOpen;renderTrash();return;}
     const rst=e.target.closest('[data-trestore]'); if(rst){restoreTrash(rst.dataset.trestore);return;}
     const tdl=e.target.closest('[data-tdel]'); if(tdl){deleteTrashPerm(tdl.dataset.tdel);return;}
     if(e.target.closest('#trash-empty')){emptyTrash();return;}

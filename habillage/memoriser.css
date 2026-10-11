@@ -631,3 +631,38 @@ html body .sum-c b{font-weight:600}
 html body .sum-rap{word-spacing:normal;margin-bottom:30px}
 html body .sum-t{font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-or);margin:28px 0 10px}
 html body .sum-liste li{font-family:var(--h-texte);font-size:17px;color:#fff;border-color:var(--h-l1)}
+
+/* la corbeille se range sous le bouton « Commencer » (Emmanuel, 11/10) */
+
+
+/* ── LE BAS DE LA PAGE (Emmanuel, 11/10) ──
+   « Commencer » prend la largeur et la hauteur du rang des deux boutons
+   du dessus, juste sous eux. */
+html body #app .start{max-width:520px;min-height:46px;margin:10px auto 0;padding:11px 18px;font-size:14px;letter-spacing:.01em}
+@media(max-width:720px){html body #app .start{max-width:none;margin-top:10px}}
+
+/* La corbeille : une petite poubelle à droite de l'en-tête des catégories,
+   avec le nombre d'éléments ; son contenu s'ouvre sous l'en-tête. */
+html body .bh-cats .bh-droite{display:flex;align-items:center;gap:14px;margin-left:auto}
+html body .bh-cats .bh-droite #sel-all{margin-left:0}
+html body .trash-ic{
+  display:inline-flex;align-items:center;gap:5px;padding:6px 6px;background:none;border:0;cursor:pointer;
+  color:var(--h-t3);font-family:var(--h-ui);font-size:12px;font-weight:600;transition:color .2s;
+}
+html body .trash-ic:hover,html body .trash-ic.on{color:var(--h-or)}
+html body .trash-ic .trash-n{font-variant-numeric:tabular-nums}
+html body #app #trash-block{margin:0 0 16px}
+/* entre les deux boutons du haut et « Commencer », le même petit écart
+   qu'entre les deux boutons eux-mêmes */
+html body #app .block:has(> .cat-acts){margin-bottom:0}
+
+/* ── LA FIN DE SÉRIE (Emmanuel, 11/10) ──
+   Le cadre sans lueur, et « verset vu » à côté du nombre, sur la même ligne. */
+html body #summary{background:var(--h-s1);box-shadow:none}
+html body #summary .sum-num,html body #summary .sum-sub{display:inline-block;vertical-align:baseline}
+html body #summary .sum-sub{margin:0 0 0 14px}
+html body #summary .sum-detail{margin-top:22px}
+html body #summary .sum-num{text-shadow:none}
+html body #summary #sum-back,html body #summary #sum-back:is(:hover,:focus-visible){box-shadow:none}
+/* « À reprendre » se cale à gauche, au-dessus de sa liste (Emmanuel, 11/10) */
+html body #summary .sum-t{text-align:left;max-width:420px;margin-left:auto;margin-right:auto;padding-left:2px}
