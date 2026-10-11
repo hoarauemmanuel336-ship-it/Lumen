@@ -225,7 +225,7 @@ html body footer .verset-pied{
   text-shadow:0 0 18px rgba(255,255,255,.28);text-wrap:balance;
 }
 html body footer .verset-pied .ref-pied{
-  font-style:normal;font-family:var(--h-ui);font-weight:700;font-size:12.5px;letter-spacing:.06em;
+  font-style:normal;font-family:var(--h-ui);font-weight:700;font-size:15.5px;letter-spacing:.04em;
   color:#fff;white-space:nowrap;margin-left:4px;
 }
 html body footer .marque,html body footer .copy{display:none}
