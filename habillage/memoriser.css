@@ -153,7 +153,7 @@ html body .vref{width:118px;font-family:var(--h-titre);font-size:17px;font-weigh
 html body .vtext{font-family:var(--h-texte);font-size:15px;color:var(--h-t3)}
 html body .vline:hover .vref{color:var(--h-or)}
 html body .vline:hover .vtext{color:var(--h-t2)}
-html body .vrow.pas .vref{color:#fff;font-family:var(--h-texte);font-size:16px}
+html body .vrow.pas .vref{color:#fff;font-family:var(--h-ui);font-size:16px}
 html body .vrow.pas .vtext{font-family:var(--h-ui);font-size:12.5px;font-weight:500;letter-spacing:.01em;color:var(--h-t3)}
 html body .vline:hover .vrow.pas .vtext,html body .vrow.pas .vline:hover .vtext{color:var(--h-or)}
 html body .vrow.voff .vline,html body .vrow.voff .lvl,html body .vrow.voff .mov-v{opacity:.32}
@@ -456,7 +456,7 @@ html body .mbib-corps{margin:0 -8px;padding:12px 8px 4px;border-top:1px solid va
 html body .mbib-charge{font-family:var(--h-ui);font-style:normal;font-size:13.5px;color:var(--h-t4)}
 html body .mbib-test{font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.14em;color:var(--h-or);margin:18px 6px 8px}
 html body .mbib-grp{font-family:var(--h-ui);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--h-t4);margin:14px 6px 6px}
-html body .mbib-livre{align-items:center;min-height:44px;padding:10px 12px;border-bottom:0;border-radius:0;font-family:var(--h-texte);font-size:16.5px;color:#fff;transition:background .2s,color .2s}
+html body .mbib-livre{align-items:center;min-height:44px;padding:10px 12px;border-bottom:0;border-radius:0;font-family:var(--h-ui);font-size:16.5px;color:#fff;transition:background .2s,color .2s}
 html body .mbib-livre:hover{color:#fff;background:var(--h-s3)}
 html body .mbib-n{font-family:var(--h-ui);font-size:12px;color:var(--h-t4);font-variant-numeric:tabular-nums}
 html body .mbib-chaps{grid-template-columns:repeat(auto-fill,minmax(50px,1fr));gap:8px}
@@ -675,3 +675,6 @@ html:root body #app .mv-bible,html:root body .mv-bible{
 html:root body #app .mv-bible:is(:hover,:focus-visible,:active),html:root body .mv-bible:is(:hover,:focus-visible,:active){
   background:none;box-shadow:none;color:#fff;
 }
+
+/* LA LECTURE EN LITERATA (11/10) : le verset à réciter et ses propositions */
+html body .q-prompt,html body .opt{font-family:var(--h-texte)}

@@ -44,7 +44,7 @@ function genre(url, req) {
     if (req.mode === 'navigate' || PAGES.indexOf(p) >= 0) return 'page';
     if (p.indexOf('/bible-data/') === 0 || p.indexOf('/bible-data-seraphin/') === 0) return 'bible';
     if (p.indexOf('/js/') === 0 || p === '/lumen-app.js' || p === '/bible-panneau.js' ||
-        p === '/recherche-fr.js' || p.indexOf('/icones/') === 0 || p === '/manifest.webmanifest') return 'fixe';
+        p === '/recherche-fr.js' || p.indexOf('/icones/') === 0 || p.indexOf('/polices/') === 0 || p === '/manifest.webmanifest') return 'fixe';
     return '';
   }
   if (url.host === 'www.gstatic.com' && url.pathname.indexOf('/firebasejs/') === 0) return 'fixe';

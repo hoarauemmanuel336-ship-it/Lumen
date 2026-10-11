@@ -56,7 +56,8 @@ function concerne(url) {
         || url.pathname === '/memoriser-manifest.webmanifest'
         || url.pathname === '/bible-panneau.js'
         || url.pathname.indexOf('/bible-data/') === 0
-        || url.pathname.indexOf('/icones/') === 0;
+        || url.pathname.indexOf('/icones/') === 0
+        || url.pathname.indexOf('/polices/') === 0;
   }
   /* scripts Firebase statiques (jamais les API auth/Firestore) */
   if (url.host === 'www.gstatic.com' && url.pathname.indexOf('/firebasejs/') === 0) return true;

@@ -7,9 +7,12 @@
    lueurs) se tirent de ces deux-là : changer l'accent dans
    content/settings.json fait suivre tout le site.
 
-   Les polices restent celles du site (Emmanuel, 10/10) :
-   · EB Garamond pour le texte, et aussi pour ce qui se touche et ce qui
-     informe (boutons, navigation, états, dates, libellés) ;
+   Les polices (Emmanuel, 11/10) : une police par rôle, les mêmes que
+   dans ses skills (livres, cours, diagrammes, parcours) :
+   · Literata pour le texte qu'on lit longtemps (la Bible, les articles,
+     les commentaires, les notes, les versets cités) ;
+   · EB Garamond pour ce qui se touche et ce qui informe (boutons,
+     navigation, états, dates, libellés, sous-titres de section) ;
    · Cormorant Garamond pour les titres ;
    · L'accent ne sert qu'à ce qui compte : l'action principale, l'endroit
      où l'on se trouve, ce qui est choisi.
@@ -22,6 +25,40 @@
    Ce fichier est posé en dernier dans chaque page : il a le dernier mot.
    Chaque page reçoit ensuite sa propre feuille (habillage/<page>.css).
    ════════════════════════════════════════════════════════════════════ */
+
+/* ── 0. LES POLICES ──
+   Les trois polices du site sont servies par le site lui-même (dossier
+   polices/, 11/10) : plus rien ne vient de Google, et tout reste lisible hors
+   connexion. Chacune est « variable » : un seul fichier porte toutes ses
+   graisses. Chaque police n'est téléchargée que pour les alphabets que la
+   page contient vraiment (latin, latin étendu, grec).
+   · Literata, la lecture, avec ses tailles optiques (elle affine son dessin
+     en grand et l'épaissit en petit). Elle est ramenée à 92,7 % : à taille
+     écrite égale, elle occupe la place qu'occupait EB Garamond, si bien
+     qu'aucune taille du site n'a eu à changer.
+   · EB Garamond, l'interface.
+   · Cormorant Garamond, les titres ; ses graisses commencent à 400, comme
+     avant, pour qu'un titre demandé plus fin garde son dessin habituel. */
+@font-face{font-family:'Literata';font-style:normal;font-weight:200 900;font-display:swap;size-adjust:92.7%;src:url(/polices/literata-latin-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Literata';font-style:italic;font-weight:200 900;font-display:swap;size-adjust:92.7%;src:url(/polices/literata-latin-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Literata';font-style:normal;font-weight:200 900;font-display:swap;size-adjust:92.7%;src:url(/polices/literata-latin-ext-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Literata';font-style:italic;font-weight:200 900;font-display:swap;size-adjust:92.7%;src:url(/polices/literata-latin-ext-italic.woff2) format('woff2');unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Literata';font-style:normal;font-weight:200 900;font-display:swap;size-adjust:92.7%;src:url(/polices/literata-greek-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'Literata';font-style:italic;font-weight:200 900;font-display:swap;size-adjust:92.7%;src:url(/polices/literata-greek-italic.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'Literata';font-style:normal;font-weight:200 900;font-display:swap;size-adjust:92.7%;src:url(/polices/literata-greek-ext-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'Literata';font-style:italic;font-weight:200 900;font-display:swap;size-adjust:92.7%;src:url(/polices/literata-greek-ext-italic.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-weight:400 800;font-display:swap;src:url(/polices/eb-garamond-latin-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'EB Garamond';font-style:italic;font-weight:400 800;font-display:swap;src:url(/polices/eb-garamond-latin-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'EB Garamond';font-style:normal;font-weight:400 800;font-display:swap;src:url(/polices/eb-garamond-latin-ext-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-weight:400 800;font-display:swap;src:url(/polices/eb-garamond-latin-ext-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-weight:400 800;font-display:swap;src:url(/polices/eb-garamond-greek-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-weight:400 800;font-display:swap;src:url(/polices/eb-garamond-greek-italic.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-weight:400 800;font-display:swap;src:url(/polices/eb-garamond-greek-ext-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-weight:400 800;font-display:swap;src:url(/polices/eb-garamond-greek-ext-italic.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400 700;font-display:swap;src:url(/polices/cormorant-garamond-latin-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400 700;font-display:swap;src:url(/polices/cormorant-garamond-latin-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400 700;font-display:swap;src:url(/polices/cormorant-garamond-latin-ext-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400 700;font-display:swap;src:url(/polices/cormorant-garamond-latin-ext-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 
 /* ── 1. LES JETONS ── */
 :root{
@@ -56,7 +93,7 @@
   /* polices */
   --h-ui:'EB Garamond',Georgia,serif;
   --h-titre:'Cormorant Garamond',Georgia,serif;
-  --h-texte:'EB Garamond',Georgia,serif;
+  --h-texte:'Literata',Georgia,serif;
 
   /* rayons */
   --h-r1:0;
@@ -81,7 +118,7 @@
   --parchemin:#fff;
   --parchemin-att:var(--h-t2);
   --display:var(--h-titre);
-  --serif:var(--h-texte);
+  --serif:var(--h-ui);   /* le fond de page reste en Garamond : seule la lecture passe en Literata */
   --or-pale:color-mix(in srgb,var(--h-or) 55%,#fff);
 }
 
@@ -258,7 +295,7 @@ html body .rech-overlay .rech-fermer{
 html body .rech-overlay .rech-fermer:hover{color:#fff;background:var(--h-s4)}
 html body .rech-overlay .rech-res{margin:0;padding:8px;overflow-y:auto}
 html body .rech-overlay .rech-res:empty{display:none}
-html body .rech-msg{padding:22px 16px;font-family:var(--h-texte);font-size:17px;color:var(--h-t3)}
+html body .rech-msg{padding:22px 16px;font-family:var(--h-ui);font-size:17px;color:var(--h-t3)}
 html body .rech-item{padding:14px 16px;border:0;border-radius:0;transition:background .2s}
 html body .rech-item:hover,html body .rech-item.kact{padding-left:16px;background:var(--h-s3)}
 html body .rech-meta{font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.1em;color:var(--h-or);margin-bottom:4px}
@@ -402,7 +439,9 @@ html body #bp-tab{
   box-shadow:none;
   transition:color .25s,border-color .25s,padding .25s;
 }
-html body #bp-tab:hover{background:#000;color:var(--h-or);border-color:var(--h-l3);padding-left:12px;box-shadow:none}
+/* au survol, ni le texte ni le filet ne changent de couleur : l'onglet ne
+   s'éclaire pas (Emmanuel, 11/10) ; seul son léger glissement demeure */
+html body #bp-tab:hover{background:#000;color:var(--h-t2);border-color:var(--h-l2);padding-left:12px;box-shadow:none}
 html body #bp-voile{background:color-mix(in srgb,#000 60%,transparent);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 html body #bp-pan{
   background:#000;border-right:1px solid var(--h-l2);border-radius:0;overflow:hidden;

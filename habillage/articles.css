@@ -112,7 +112,7 @@ html body .rub-3>.rub-tete .rub-nom{font-size:18.5px;color:var(--h-t1)}
 html body .rub-corps>.rub>.rub-corps{padding:0 10px 10px}
 html body .rub-corps .rub-corps>.rub{background:var(--h-s3)}
 html body .rub-vide{
-  font-family:var(--h-texte);font-style:italic;font-size:16.5px;color:var(--h-t3);padding:6px 10px 10px;
+  font-family:var(--h-ui);font-style:italic;font-size:16.5px;color:var(--h-t3);padding:6px 10px 10px;
 }
 
 /* ════════════════════════════════════════════════════════════════════
@@ -179,7 +179,7 @@ html body .art-ligne .art-menu::before{inset:-4px}
 
 /* état vide : une carte en pointillés, le message en Garamond */
 html body .vide{
-  font-family:var(--h-texte);font-style:italic;font-size:18px;line-height:1.6;color:var(--h-t3);
+  font-family:var(--h-ui);font-style:italic;font-size:18px;line-height:1.6;color:var(--h-t3);
   padding:48px 24px;text-align:center;border:1px dashed var(--h-l2);border-radius:0;
 }
 
@@ -398,7 +398,7 @@ html body .modal-titre{
   font-family:var(--h-titre);font-weight:500;font-size:27px;line-height:1.15;letter-spacing:0;color:#fff;
   margin:0 0 16px;padding-right:8px;text-wrap:balance;
 }
-html body .modal-txt{font-family:var(--h-texte);font-size:17px;line-height:1.55;color:var(--h-t2);margin-bottom:4px}
+html body .modal-txt{font-family:var(--h-ui);font-size:17px;line-height:1.55;color:var(--h-t2);margin-bottom:4px}
 html body .champ{
   border-radius:0;background:#000;border:1px solid var(--h-l2);padding:12px 14px;margin-top:14px;
   font-family:var(--h-ui);font-size:15px;line-height:1.35;color:#fff;transition:border-color .25s,box-shadow .25s;
@@ -467,7 +467,7 @@ html body .mbib-rech{gap:8px;margin-bottom:14px;align-items:stretch}
 html body .mbib-rech .champ{margin-top:0;border-radius:0;padding:11px 18px;min-height:46px}
 html:root body .mbib-go{min-height:46px;padding:0 22px;align-self:stretch}
 html body .mbib-corps{border-top:1px solid var(--h-l1);padding:8px 4px 4px;margin:0 -4px}
-html body .mbib-charge{font-family:var(--h-texte);color:var(--h-t3)}
+html body .mbib-charge{font-family:var(--h-ui);color:var(--h-t3)}
 html body .mbib-test{
   font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-or);
   margin:22px 6px 8px;
@@ -479,7 +479,7 @@ html body .mbib-grp{
 }
 html body .mbib-livre{
   align-items:center;padding:10px 12px;border:0;border-radius:0;
-  font-family:var(--h-texte);font-size:17px;color:#fff;transition:background .2s,color .2s;
+  font-family:var(--h-ui);font-size:17px;color:#fff;transition:background .2s,color .2s;
 }
 html body .mbib-livre:hover{background:var(--h-s3);color:#fff}
 html body .mbib-n{font-family:var(--h-ui);font-size:12px;font-weight:500;color:var(--h-t4);font-variant-numeric:tabular-nums}
@@ -508,7 +508,7 @@ html body .mbib-tout:hover{color:var(--h-or)}
 html body .mbib-mots{font-family:var(--h-texte);font-size:16.5px}
 html body .mbib-mot{border-radius:0}
 html body .mbib-mot.on{background:var(--h-voile-fort);color:#fff}
-html body .mbib-mot-vide{font-family:var(--h-texte);color:var(--h-t3)}
+html body .mbib-mot-vide{font-family:var(--h-ui);color:var(--h-t3)}
 /* « Le verset entier » : un bouton plein, comme les autres */
 html:root body .mbib-2{min-height:44px;padding:11px 22px}
 @media(max-width:720px){
@@ -658,3 +658,7 @@ html body .art-pied .art-etat::before{background:#fff;border:0;box-shadow:0 0 8p
 /* le nombre d'éléments choisis ne s'affiche plus (Emmanuel, 10/10) */
 html body #compte-choix{display:none!important}
 html body #mot-liste:empty{display:none}
+
+/* LA LECTURE EN LITERATA (11/10) : le corps de l'article, à la lecture
+   comme dans l'éditeur ; les intertitres gardent Cormorant */
+html body :is(#lire-corps,#ed-corps){font-family:var(--h-texte)}

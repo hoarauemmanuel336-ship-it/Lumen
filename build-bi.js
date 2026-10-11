@@ -67,11 +67,13 @@ function habillage(nomPage) {
   }
   return css ? '<style id="habillage">' + css + '</style>' : '';
 }
-/* les polices : les deux Garamond du site, avec les graisses dont
-   l'habillage se sert ; l'adresse des pages copiées est remplacée au build */
-const POLICES_AVANT = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap';
-const POLICES_URL = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap';
-const polices = h => h.split(POLICES_AVANT).join(POLICES_URL);
+/* les polices (11/10) : servies par le site lui-même, déclarées dans
+   habillage/commun.css. Chaque page annonce d'emblée les deux fichiers dont
+   elle a besoin tout de suite (lecture et interface, alphabet latin), pour
+   que le texte paraisse dans sa police dès le premier affichage. */
+const POLICES_PRECHARGE = ['literata-latin-normal', 'eb-garamond-latin-normal']
+  .map(f => `<link rel="preload" href="/polices/${f}.woff2" as="font" type="font/woff2" crossorigin>`).join('\n');
+const polices = h => h.replace(/<link[^>]*fonts\.(?:googleapis|gstatic)\.com[^>]*>\n?/g, '').replace('</head>', POLICES_PRECHARGE + '\n</head>');
 /* ── FONCTIONNEMENT COMMUN (26/09) ──
    Les fonctions que plusieurs pages recopiaient à l'identique vivent dans le
    dossier commun/, un fichier par famille. Chaque page reçoit, avant son
@@ -133,9 +135,7 @@ function rel(fromDir, toPath) {
 }
 
 /* ---- polices + petite règle pour le bouton de langue ---- */
-const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="${POLICES_URL}" rel="stylesheet">`;
+const FONTS = POLICES_PRECHARGE;
 
 const FIREBASE_HEAD = `<script>
 /* Firebase à la demande : chargé après le rendu (ou à la première interaction). */
@@ -1082,6 +1082,11 @@ if (fs.existsSync('memoriser-sw.js')) {
   if (!/__VERSION__/.test(swSrc) || !/__PAN_V__/.test(swSrc)) throw new Error('memoriser-sw.js : marqueurs __VERSION__ / __PAN_V__ absents');
   fs.writeFileSync(`${OUT}/memoriser-sw.js`, swSrc.replace(/__VERSION__/g, SW_V).replace(/__PAN_V__/g, PAN_V)   /* toutes les occurrences : la première est dans un commentaire */);
 }
+/* la police de lecture, servie par le site lui-même (11/10) */
+if (fs.existsSync('polices')) {
+  fs.mkdirSync(`${OUT}/polices`, { recursive: true });
+  for (const f of fs.readdirSync('polices')) fs.copyFileSync(`polices/${f}`, `${OUT}/polices/${f}`);
+}
 if (fs.existsSync('icones')) {
   fs.mkdirSync(`${OUT}/icones`, { recursive: true });
   for (const ic of fs.readdirSync('icones')) fs.copyFileSync(`icones/${ic}`, `${OUT}/icones/${ic}`);
@@ -1257,7 +1262,10 @@ function coupesVerset(t) {
   const n = t.length;
   if (n < 70) return null;
   const cand = [];
-  const re = /[;:!?.,]\s/g;
+  /* une VRAIE espace seulement : l'espace insécable qui suit « ? » ou « ! »
+     annonce un guillemet fermant (« vin ? » tandis… ») ; couper là rejetait
+     le « » » seul en tête de la ligne suivante (11/10) */
+  const re = /[;:!?.,] /g;
   let m;
   while ((m = re.exec(t))) {
     const k = m.index + 1;                       // l'indice de l'espace

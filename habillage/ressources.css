@@ -129,7 +129,7 @@ html body .rayon:hover .ry-chev{color:var(--h-or)}
 
 /* ════════════════════════════════════════════════════════════════════
    4. ORGANISER
-   La poignée et les deux flèches deviennent de petits boutons ronds ; la
+   La poignée devient un petit bouton carré ; la
    poignée prend la place du médaillon des domaines. Le repère qui dit où
    l'objet va se poser est un trait de crème ; la carte tirée flotte dans
    la lumière.
@@ -139,12 +139,8 @@ html body.organise .poignee{
   transition:color .25s,background .25s;
 }
 html body.organise .poignee:hover{color:#000;background:var(--h-or)}
-html body.organise .fleches{gap:4px}
-html body.organise .fleches b{
-  width:30px;height:30px;border-radius:0;background:var(--h-s3);color:var(--h-t2);
-  font-family:var(--h-ui);font-size:16px;font-weight:500;line-height:1;transition:color .25s,background .25s;
-}
-html body.organise .fleches b:hover{color:#000;background:var(--h-or)}
+/* sur une carte, la poignée est collée dans le coin haut gauche (11/10) */
+html body.organise .carte .poignee{width:28px;height:28px;font-size:15px}
 html body.organise .rayon::before{display:none}
 html body.organise .rayon:hover{background:transparent}
 /* le repère de dépose */
@@ -156,7 +152,6 @@ html body .rayon.cible .ry-nom{color:var(--h-or)}
 }
 @media(max-width:600px){
   html body.organise .rayon{gap:8px}
-  html body.organise .fleches b{width:34px;height:34px}
 }
 html body .fantome{opacity:.28}
 html body .tire{
@@ -423,7 +418,7 @@ html body .overlay.on{animation:hVoile .25s ease both}
 html body .modal-titre{
   margin-bottom:16px;padding-right:8px;font-family:var(--h-titre);font-size:27px;font-weight:500;line-height:1.2;color:#fff;
 }
-html body .modal-txt{font-family:var(--h-texte);font-size:17.5px;line-height:1.55;color:var(--h-t2)}
+html body .modal-txt{font-family:var(--h-ui);font-size:17.5px;line-height:1.55;color:var(--h-t2)}
 html body .modal-txt:empty{display:none}
 html body .champ{
   margin-top:14px;padding:12px 14px;border-radius:0;background:#000;border:1px solid var(--h-l2);
@@ -550,3 +545,8 @@ html:root body .res-plein-acts .res-plein-bible::before{
 }
 html body.plein #bp-voile{z-index:300}
 html body.plein #bp-pan{z-index:310}
+
+/* ── LE ⋯ SANS CADRE (Emmanuel, 11/10) ──
+   Sur cette page, le ⋯ des cartes et des domaines ne prend plus de fond au
+   survol : il s'allume, c'est tout. */
+html body :is(.ct-menu,.rub-menu,.ry-menu):is(:hover,:focus-visible){background:none}

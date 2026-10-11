@@ -7,9 +7,6 @@
 <meta name="darkreader-lock"><style>html{color-scheme:dark}@media (prefers-color-scheme:dark){html{color-scheme:dark}}@media (prefers-color-scheme:light){html{color-scheme:dark}}</style>
 <title>La Sainte Bible · Lumen Veritatis</title>
 <meta name="description" content="La Sainte Bible, traduction Chérubin. Lecture en ligne, Ancien et Nouveau Testament.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <script>
 /* Firebase à la demande : chargé après le rendu (ou à la première interaction). */
 window.lvFB=function(){if(window.__lvFBP)return window.__lvFBP;window.__lvFBP=new Promise(function(res){var u=['app','auth','firestore'].map(function(n){return 'https://www.gstatic.com/firebasejs/10.7.1/firebase-'+n+'-compat.js';});(function next(i){if(i>=u.length){try{document.dispatchEvent(new Event('lv-fb-ready'));}catch(_){}res();return;}var s=document.createElement('script');s.src=u[i];s.onload=function(){next(i+1);};s.onerror=function(){res();};document.head.appendChild(s);})(0);});return window.__lvFBP;};
@@ -428,9 +425,17 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    se limite pas à la bande d'une ligne comme en prose. Sans cela, un verset
    de deux lignes montrait une bande de couleur au milieu et deux bandes
    noires au-dessus et en dessous, à l'intérieur même du halo (06/09). */
-.vst.po{display:block;position:relative;text-align:left;hyphens:none;line-height:1.08;margin:.7em 0;padding-left:2.2em;background-size:100% 100%}
+/* 11/10 : Literata, plus haute à l'œil, demande un peu d'air entre les
+   lignes d'un même verset (1.2) ; l'écart entre deux versets reste plus grand. */
+.vst.po{display:block;position:relative;text-align:left;hyphens:none;line-height:1.2;margin:.7em 0;padding-left:2.2em;background-size:100% 100%}
 .vst.po.sent{margin:1.25em 0}
-.vst.po .li{display:block;position:relative}
+/* UNE LIGNE TROP LONGUE POUR L'ÉCRAN SE PARTAGE EN DEUX MOITIÉS ÉGALES
+   (11/10). Sur téléphone, une ligne de vers déborde souvent la colonne : le
+   navigateur la remplissait à ras bord et rejetait un ou deux mots tout seuls
+   sur la ligne suivante (« … la fille de » / « Jérusalem : »), qui passaient
+   pour un nouveau vers. Équilibrée, la ligne se coupe en deux morceaux de
+   même longueur et se lit comme une seule phrase repliée. */
+.vst.po .li{display:block;position:relative;text-wrap:balance}
 /* Le numéro sort du flux et va se poser dans la marge : sans cela il
    pousserait la première ligne vers la droite et elle ne s'alignerait plus
    sur les suivantes. Il s'accroche à SA ligne, pas au verset entier, sinon

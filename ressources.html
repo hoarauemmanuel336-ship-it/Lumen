@@ -6,9 +6,6 @@
 <meta name="color-scheme" content="dark">
 <meta name="darkreader-lock"><style>html{color-scheme:dark}@media (prefers-color-scheme:dark){html{color-scheme:dark}}@media (prefers-color-scheme:light){html{color-scheme:dark}}</style>
 <title>Ressources &#183; Lumen Veritatis</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="apple-touch-icon" href="/icones/lumen-180.png">
 <meta name="theme-color" content="#000000">
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
@@ -457,23 +454,18 @@ body.plein{overflow:hidden}
    veut. Le mode « Organiser » fait apparaître une poignée (⠿) sur chaque
    carte et chaque rayon ; on la tire, un repère doré dit où l'objet va se
    poser, et l'on lâche. Une carte posée SUR un rayon y entre ; posée sur un
-   maillon du fil d'Ariane, elle remonte. Les deux petites flèches font le
-   même travail au clavier et au pouce, d'un cran à la fois. Hors du mode,
+   maillon du fil d'Ariane, elle remonte. Plus de petites flèches
+   (Emmanuel, 11/10) : la poignée seule, collée dans le coin haut gauche de
+   la carte. Le rang exact se pose aussi par « Placer… ». Hors du mode,
    rien de tout cela n'existe, et la page reste ce qu'elle est. */
 .poignee,.fleches{display:none}
 body.organise .poignee{display:flex;align-items:center;justify-content:center;flex:none;width:30px;height:30px;color:var(--pa2);font-size:17px;line-height:1;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;transition:color .25s}
 body.organise .poignee:hover{color:var(--or)}
-body.organise .fleches{display:inline-flex;gap:2px;flex:none}
-body.organise .fleches b{display:flex;align-items:center;justify-content:center;width:26px;height:26px;font-family:var(--display);font-weight:400;font-size:18px;line-height:1;color:var(--pa2);cursor:pointer;transition:color .25s}
-body.organise .fleches b:hover{color:var(--or)}
 body.organise .carte,body.organise .rayon{cursor:default}
 body.organise .carte:hover{border-color:var(--filet);background:var(--encre-2);box-shadow:none}
 body.organise .carte:hover .ct-titre{color:var(--parchemin);text-shadow:none}
 body.organise .rayon:hover .ry-nom{color:var(--parchemin)}
-body.organise .carte .ct-bas{padding-left:40px}
-body.organise .carte .poignee{position:absolute;left:6px;top:14px}
-body.organise .carte .fleches{position:absolute;right:40px;top:8px}
-body.organise .carte .ct-titre{padding-right:96px}
+body.organise .carte .poignee{position:absolute;left:0;top:0;z-index:2}
 body.organise .rayon .ry-chev{display:none}
 .fantome{opacity:.28}
 .tire{position:fixed;z-index:500;pointer-events:none;opacity:.92;transform:scale(1.02);box-shadow:0 14px 40px rgba(0,0,0,.6);border-color:var(--or)!important;background:var(--encre-2)!important}
@@ -605,7 +597,6 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
        descendu avec lui ; on remet, ou l'on supprime pour de bon. -->
   <section id="ecran-corbeille">
     <div class="tete dedans"><h1>Corbeille</h1><span class="art-etat" id="compte-corb"></span></div>
-    <div class="resume" id="mot-corb"></div>
     <div id="corb-liste"></div>
     <div class="acts">
       <button class="act" id="b-corb-retour">&#8592; Les ressources</button>
@@ -1722,7 +1713,7 @@ function carteRessource(r,publik){
     +(publik?(telechargeable(r)?'<span class="ct-menu" data-rmenu3="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Cette ressource">⋯</span>':''):'<span class="coche" aria-hidden="true">✓</span>'
       +'<span class="ct-menu" data-rmenu2="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Cette ressource">⋯</span>'
       +'<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>'
-      +'<span class="fleches"><b data-mv="-1" role="button" tabindex="0" aria-label="Avancer">‹</b><b data-mv="1" role="button" tabindex="0" aria-label="Reculer">›</b></span>');
+      );
   return d;
 }
 function grilleDe(liste,publik){
@@ -1765,8 +1756,7 @@ function rayonDe(r,publik){
   d.innerHTML=(publik?'':'<span class="coche" aria-hidden="true">✓</span>'
     +'<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>')
     +'<span class="ry-nom">'+esc(r.nom)+'</span><span class="ry-n">'+compteRub(r.id)+'</span>'
-    +(publik?'':'<span class="fleches"><b data-mv="-1" role="button" tabindex="0" aria-label="Avancer">‹</b><b data-mv="1" role="button" tabindex="0" aria-label="Reculer">›</b></span>'
-      +'<span class="ry-menu" data-rmenu="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Ce rayon">⋯</span>')
+    +(publik?'':'<span class="ry-menu" data-rmenu="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Ce rayon">⋯</span>')
     +'<span class="ry-chev">›</span>';
   return d;
 }
@@ -2307,9 +2297,6 @@ function rendCorbeille(){
   majCorbBouton();
   const racines=racinesJetees(), seules=jeteesSeules(), n=racines.length+seules.length;
   $('compte-corb').textContent=n?(n+(n>1?' éléments':' élément')):'';
-  $('mot-corb').textContent=n
-    ? 'Ce qui est ici attend : rien n’en part de lui-même. Remettez ce que vous voulez garder, videz le reste.'
-    : '';
   const bv=$('b-corb-vider'); if(bv)bv.style.display=n?'':'none';
   h.innerHTML='';
   if(!n){h.innerHTML='<div class="vide">La corbeille est vide.</div>';return;}

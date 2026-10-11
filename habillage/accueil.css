@@ -7,7 +7,7 @@
 
 /* ── la page introuvable ── */
 html body .quatre h1{font-family:var(--h-titre);font-weight:400;font-size:48px}
-html body .quatre .q-desc{font-family:var(--h-texte);color:var(--h-t2)}
+html body .quatre .q-desc{font-family:var(--h-ui);color:var(--h-t2)}
 html body .quatre .q-lien{
   display:inline-flex;align-items:center;min-height:44px;padding:11px 22px;border:0;border-radius:0;
   background:var(--h-or);color:#000;font-family:var(--h-ui);font-size:14px;font-weight:600;letter-spacing:.01em;text-transform:none;
