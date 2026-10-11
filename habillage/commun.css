@@ -552,3 +552,79 @@ html:root body:not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts
 html:root body .act.act-ic .ic-poubelle{display:block;width:18px;height:18px}
 html:root body .act.act-ic .corb-n{margin-left:7px;font-variant-numeric:tabular-nums;line-height:1}
 html:root body .act.act-ic{gap:0}
+
+/* ════════════════════════════════════════════════════════════════════
+   LES BOUTONS ARRONDIS (Emmanuel, 11/10)
+   Tous les boutons crème du site prennent des coins arrondis : 12 px pour un
+   bouton seul, 14 px pour un bandeau. Dans un bandeau, chaque case garde le
+   comportement d'un bouton seul : au survol elle s'éclaircit, s'arrondit et
+   se soulève d'une lueur, comme « Tout désélectionner » dans Mémoriser ;
+   pressée, elle s'enfonce d'un rien.
+   ════════════════════════════════════════════════════════════════════ */
+html:root body:not(#_) :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.auth-m-primary,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.memo-start,.mini-act,.trash-act,.mv-bible,.mbib-tout,.jt-act,.notes-btn,.notes-lien){border-radius:12px}
+html:root body:not(#_) #app .start{border-radius:12px}
+
+/* les bandeaux : le contour arrondi, chaque case arrondie à l'intérieur */
+html:root body:not(#_):not(#_) :is(#acts-liste:has(>.acts-haut),#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts){border-radius:14px;overflow:visible}
+html:root body:not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn){
+  border-radius:11px;transition:background .25s,box-shadow .3s,transform .2s}
+html:root body:not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible){
+  z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);
+  box-shadow:0 8px 24px -10px color-mix(in srgb,var(--h-or) 70%,transparent)}
+html:root body:not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):active{transform:scale(.97)}
+/* le trait de séparation s'efface autour de la case survolée */
+html:root body:not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible)::before,
+html:root body:not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible)+:is(.act,.ghost-btn,.notes-btn)::before{opacity:0}
+/* Mémoriser : le bandeau des créations et « Commencer » forment un seul bloc
+   arrondi ; « Commencer » est la case du bas */
+html:root body:not(#_):not(#_) #app .cat-acts{border-radius:14px 14px 0 0}
+html:root body:not(#_) #app .start,html:root body:not(#_) #app .start:is(:hover,:focus-visible){border-radius:0 0 14px 14px}
+@media(max-width:600px){
+  /* Sur téléphone, les cases se rangent par trois sur chaque ligne ; une
+     dernière ligne de deux ou d'une case s'élargit pour la remplir. Entre deux
+     cases, le même petit trait que sur ordinateur, vertical dans une ligne,
+     et un trait sur toute la largeur d'une ligne à l'autre ; la case survolée s'arrondit et se
+     soulève comme un bouton seul. */
+  html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts){display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;padding:3px;background:var(--h-or);border:0;border-radius:14px;overflow:visible}
+  html:root body:not(#_):not(#_) #app .cat-acts{padding-bottom:0;border-radius:14px 14px 0 0}
+  html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn){grid-column:span 2;order:0;background:transparent;box-shadow:none;border-radius:11px}
+  html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):not([style*="none"]):nth-child(3n+1 of :is(.act,.ghost-btn,.notes-btn):not([style*="none"])):nth-last-child(2 of :is(.act,.ghost-btn,.notes-btn):not([style*="none"])),
+  html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):not([style*="none"]):nth-child(3n+1 of :is(.act,.ghost-btn,.notes-btn):not([style*="none"])):nth-last-child(2 of :is(.act,.ghost-btn,.notes-btn):not([style*="none"]))~:is(.act,.ghost-btn,.notes-btn):not([style*="none"]){grid-column:span 3}
+  html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):not([style*="none"]):nth-child(3n+1 of :is(.act,.ghost-btn,.notes-btn):not([style*="none"])):nth-last-child(1 of :is(.act,.ghost-btn,.notes-btn):not([style*="none"])){grid-column:span 6}
+  html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn)::before,html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn)::after{content:none}
+  html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):not([style*="none"]):not(:nth-child(3n+1 of :is(.act,.ghost-btn,.notes-btn):not([style*="none"])))::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:color-mix(in srgb,var(--h-or) 84%,#000);transition:opacity .2s}
+  html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):not([style*="none"]):nth-child(n+4 of :is(.act,.ghost-btn,.notes-btn):not([style*="none"]))::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:color-mix(in srgb,var(--h-or) 84%,#000);transition:opacity .2s}
+  html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible){background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 8px 24px -10px color-mix(in srgb,var(--h-or) 70%,transparent)}
+  html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible)::before,html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible)::after,html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible)+:is(.act,.ghost-btn,.notes-btn)::before{opacity:0}
+}
+
+/* ── LES BOUTONS EMPILÉS DU COMPTE (le bonhomme, 11/10) ──
+   « Mes notes », « Mes signets »… forment un bandeau vertical : un fond
+   crème arrondi, un mince trait entre deux boutons, et le bouton survolé
+   se comporte comme un bouton seul. */
+html:root body:not(#_) .pile-btn{display:flex;flex-direction:column;gap:0;margin:0 0 12px;padding:3px;border-radius:14px;background:var(--h-or);
+  box-shadow:0 10px 30px -14px color-mix(in srgb,var(--h-or) 70%,transparent)}
+html:root body:not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn){
+  position:relative;display:flex;width:100%;margin:0;border:0;border-radius:11px;background:transparent;box-shadow:none;transform:none;color:#000;
+  transition:background .25s,box-shadow .3s,transform .2s}
+html:root body:not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn)+:is(.bacct-btn,.macct-btn,.auth-m-btn)::before{
+  content:'';position:absolute;top:0;left:16px;right:16px;height:1px;background:color-mix(in srgb,var(--h-or) 84%,#000);transition:opacity .2s}
+html:root body:not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):is(:hover,:focus-visible){
+  z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 8px 24px -10px color-mix(in srgb,var(--h-or) 70%,transparent)}
+html:root body:not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):is(:hover,:focus-visible)::before,
+html:root body:not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):is(:hover,:focus-visible)+:is(.bacct-btn,.macct-btn,.auth-m-btn)::before{opacity:0}
+html:root body:not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):active{transform:scale(.98)}
+
+/* la barre de la Bible, modèle des bandeaux, s'arrondit de même */
+html:root body:not(#_) .sb-act{border-radius:14px}
+html:root body:not(#_) .sb-btn{border-radius:11px;transition:background .25s,box-shadow .3s,transform .2s}
+html:root body:not(#_) .sb-btn:is(:hover,:focus-visible){z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 8px 24px -10px color-mix(in srgb,var(--h-or) 70%,transparent)}
+html body .sb-btn:is(:hover,:focus-visible)::before,html body .sb-btn:is(:hover,:focus-visible)+.sb-btn::before{opacity:0}
+html body .sb-btn:active{transform:scale(.97)}
+@media(max-width:720px){html:root body:not(#_) .sb-btn{border-radius:12px}}
+/* les deux boutons de chaque ligne de la corbeille des Ressources */
+html:root body .jt-act+.jt-act::before{transition:opacity .2s}
+html:root body:not(#_) .jt-act+.jt-act{border-top-left-radius:0;border-bottom-left-radius:0}
+html:root body:not(#_) .jt-act:has(+.jt-act){border-top-right-radius:0;border-bottom-right-radius:0}
+html:root body:not(#_) .jt-act:is(:hover,:focus-visible),html:root body:not(#_) .jt-act.danger:is(:hover,:focus-visible){border-radius:12px;z-index:1;color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 8px 24px -10px color-mix(in srgb,var(--h-or) 70%,transparent)}
+html:root body .jt-act:is(:hover,:focus-visible)::before,html:root body .jt-act:is(:hover,:focus-visible)+.jt-act::before{opacity:0}
