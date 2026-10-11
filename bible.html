@@ -1936,14 +1936,21 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
   });
   function appliqueSurl(hex){
     SEL.forEach(function(x){ SURL[x.s + '|' + x.c + '|' + x.v] = hex; });
-    sauveSurl(); marqueSurl();
+    sauveSurl(); marqueSurl(); fermePalette();
+  }
+  /* Pendant le choix d'une couleur, la barre ne montre que la palette ; une
+     fois la couleur posée (ou retirée), les actions reviennent (Emmanuel, 11/10). */
+  function fermePalette(){
+    var p = document.getElementById('sb-surl');
+    if (p && p.classList.contains('ouvert')) { p.classList.remove('ouvert'); planifieHauteur(); return true; }
+    return false;
   }
   document.getElementById('sb-surl').addEventListener('click', function(e){
     var pa = e.target.closest ? e.target.closest('.sb-past') : null;
     if (pa) { appliqueSurl(pa.getAttribute('data-suc')); return; }
     if (e.target.closest && e.target.closest('#sb-oter')) {
       SEL.forEach(function(x){ delete SURL[x.s + '|' + x.c + '|' + x.v]; });
-      sauveSurl(); marqueSurl();
+      sauveSurl(); marqueSurl(); fermePalette();
     }
   });
   /* « change » et non « input » : un sélecteur de couleur émet « input » en
@@ -2694,6 +2701,7 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
     /* la confirmation, si elle est ouverte, se ferme seule : sinon Échap
        refermerait aussi la question que l'on vient de poser */
     if (document.getElementById('conf-voile').classList.contains('ouvert')) { fermeConf(); return; }
+    if (fermePalette()) return;
     fermeNote(); fermeCat(); fermeAuth(); fermeOv('brech-voile'); fermeFragPop(); fermeMenu();
     document.getElementById('bacct-voile').classList.remove('ouvert');
   });

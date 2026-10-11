@@ -988,3 +988,19 @@ html body .trad-o:not(.on):hover{color:var(--h-t2)}
 /* ── LE POINT ENTRE LES DEUX TRADUCTIONS (Emmanuel, 10/10) ──
    Il était là mais presque noir : on le rend visible, en blanc doux. */
 html body .trad-sep{color:var(--h-t2);font-weight:700;letter-spacing:0}
+
+/* ── LA RÉFÉRENCE CHOISIE AU SURVOL (Emmanuel, 11/10) ──
+   Rien ne s'allume à l'intérieur : seul le contour s'allume. La petite
+   croix, elle, passe simplement au rouge. */
+html body .sb-chip{box-shadow:inset 0 0 0 1px transparent}
+html body .sb-chip:hover{background:var(--h-s3);box-shadow:inset 0 0 0 1px var(--h-l3)}
+html body .sb-x:hover{background:none;color:#c75d52;box-shadow:none}
+
+/* Pendant le choix d'une couleur, les actions s'effacent : la palette
+   prend leur place, sur la même ligne que la référence. */
+html body #sel-barre:has(#sb-surl.ouvert) .sb-act{display:none}
+html body #sel-barre:has(#sb-surl.ouvert) .sb-surl{flex-basis:auto;flex:1;flex-wrap:nowrap;border-top:0;margin:0;padding:0 4px;justify-content:flex-end}
+@media(max-width:720px){
+  html body #sel-barre:has(#sb-surl.ouvert) .sb-surl{flex-basis:100%;flex-wrap:wrap;justify-content:center;padding:6px 0 2px}
+}
+html body #sel-barre:has(#sb-surl.ouvert) .sb-oter{white-space:nowrap;flex:none}
