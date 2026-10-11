@@ -885,3 +885,13 @@ html:root body:not(#_):not(#_):not(#_):not(#_) .ttx-btns>.ttx-b{position:relativ
 html:root body:not(#_):not(#_):not(#_):not(#_) .ttx-btns>.ttx-b+.ttx-b::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:1px;background:var(--h-l1);transition:opacity .2s}
 html:root body:not(#_):not(#_):not(#_):not(#_) .ttx-btns>.ttx-b:is(:hover,:focus-visible){z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 html:root body:not(#_):not(#_):not(#_):not(#_) .ttx-btns>.ttx-b:is(:hover,:focus-visible)::before,html:root body:not(#_):not(#_):not(#_):not(#_) .ttx-btns>.ttx-b:is(:hover,:focus-visible)+.ttx-b::before{opacity:0}
+
+/* ════════════════════════════════════════════════════════════════════
+   LES BANDEAUX CRÈME AU REPOS : plus de halo sous le bandeau. Ce halo
+   tombait sous la dernière case et la faisait paraître allumée seule
+   (« Mes signets » dans le compte). Au repos, aucune case ne brille ;
+   seule la case survolée s'éclaire.
+   ════════════════════════════════════════════════════════════════════ */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) :is(.pile-btn,#acts-liste:has(>.acts-haut),#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.modal-btns,.bandeau-mini,.trash-acts,.sb-act){box-shadow:none}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #app .start{box-shadow:none}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #app .start:is(:hover,:focus-visible){box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
