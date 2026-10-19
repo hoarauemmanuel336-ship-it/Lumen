@@ -44,7 +44,6 @@ Le dossier `site/` est le site fabriqué. Il ne vit pas dans le dépôt : Netlif
 
 - L'IA change ce qu'il a demandé, et seulement cela : une retouche demandée pour un élément ou une page reste sur cet élément ou cette page.
 - Quand il réfléchit à voix haute, l'IA répond et attend qu'il dise « fais-le » pour toucher au site.
-- Quand il dit « rends ça le plus agréable à l'œil possible » ou « réimagine l'UI/UX », le jugement esthétique revient entièrement à l'IA : elle juge et fait, sans lui poser de questions de design.
 - Ses données (versets, progression, notes, articles, ressources, commentaires) passent avant tout. Une modification qui touche à la forme des données lit l'ancien format, le convertit sans rien perdre, et garde la progression intacte.
 
 ## Le langage visuel du site
