@@ -1076,8 +1076,8 @@ html body .qc-bas .act:disabled{opacity:.5;cursor:default}
 
 /* l'état sur la carte de l'élément */
 html body .qc-etat{margin-left:12px;font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:none;color:var(--h-or)}
-html body .qc-etat.vif{animation:qcPouls 1.8s ease-in-out infinite}
-@keyframes qcPouls{50%{opacity:.45}}
+html body .qc-etat.vif{position:relative;display:inline-block;width:64px;height:1px;vertical-align:middle;overflow:hidden;background:var(--h-l2)}
+html body .qc-etat.vif::after{content:'';position:absolute;top:0;left:-40%;width:40%;height:1px;background:var(--h-or);box-shadow:0 0 6px var(--h-or);animation:qcCourt 1.4s ease-in-out infinite}
 
 @media(max-width:600px){
   html body .qc-haut{padding:12px 16px}
@@ -1088,5 +1088,5 @@ html body .qc-etat.vif{animation:qcPouls 1.8s ease-in-out infinite}
   html body .qc-bas .bandeau-mini,html body .qc-bas .act{width:100%}
 }
 @media (prefers-reduced-motion:reduce){
-  html body .qc-court::after,html body .qc-etat.vif{animation:none}
+  html body .qc-court::after,html body .qc-etat.vif::after{animation:none}
 }

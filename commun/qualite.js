@@ -15,11 +15,11 @@
    13:4-7 ») et joint les versets correspondants des deux Bibles du site.
 
    Pendant que l'IA travaille, rien n'attend à l'écran : la carte de
-   l'élément dit où en est le travail.
+   l'élément montre que le travail avance.
 
    Le dernier rapport de chaque élément est gardé dans le compte
    (art_qc ou res_qc) : rouvrir le contrôle le montre aussitôt, sans
-   relancer l'IA. « Refaire le contrôle » le remplace.
+   relancer l'IA.
 
    Emmanuel : « il faut surtout qu'elle puisse corriger l'artefact ».
    « Corriger » fait corriger par l'IA les points cochés du rapport, et
@@ -110,9 +110,9 @@ async function qcVersets(html){
 function qcMarque(a){try{return marqueDe(a)||'';}catch(_){return '';}}
 
 /* ── L'ÉTAT SUR LA CARTE ──
-   Pendant le travail de l'IA, aucune fenêtre n'attend à l'écran : la
-   carte de l'élément dit « Contrôle en cours », « Correction en cours »,
-   puis « Rapport prêt ». On continue à lire ou ranger pendant ce temps. */
+   Pendant le travail de l'IA, aucune fenêtre n'attend à l'écran : un
+   trait crème court sur la carte de l'élément, puis la carte dit
+   « Rapport prêt ». On continue à lire ou ranger pendant ce temps. */
 const QC_ETATS=new Map();
 function qcEtat(id,mot){
   if(mot)QC_ETATS.set(id,mot);else QC_ETATS.delete(id);
@@ -129,8 +129,12 @@ function qcPoseEtats(){
     const pied=c.querySelector('.ct-pied,.art-pied'); if(!pied)return;
     let e=pied.querySelector('.qc-etat');
     if(!e){e=document.createElement('span');e.className='qc-etat';pied.appendChild(e);}
-    e.textContent=mot;
-    e.classList.toggle('vif',/cours/.test(mot));
+    /* pendant le travail, un trait crème qui court plutôt qu'une phrase
+       (Emmanuel : « une animation ») ; « Rapport prêt » reste écrit */
+    const vif=/cours/.test(mot);
+    e.classList.toggle('vif',vif);
+    e.textContent=vif?'':mot;
+    if(vif)e.setAttribute('aria-label',mot);else e.removeAttribute('aria-label');
   });
 }
 /* la liste se redessine souvent : l'état revient sur la nouvelle carte */
@@ -181,12 +185,10 @@ function qcRend(a,r,espece){
   $('qc-outils').onclick=async()=>{
     const c=await lvChoix('Contrôle qualité',[
       {cle:'qc_copie',nom:'Copier le rapport',icone:'cite'},
-      ...(r.avant?[{cle:'qc_avant',nom:'Revenir à la version d’avant',icone:'retour'}]:[]),
-      {cle:'qc_refait',nom:'Refaire le contrôle',icone:'qc'}
+      ...(r.avant?[{cle:'qc_avant',nom:'Revenir à la version d’avant',icone:'retour'}]:[])
     ]);
     if(c==='qc_copie')copiePresse(qcTexteRapport(a,r));
     else if(c==='qc_avant')qcRevient(a,r,espece);
-    else if(c==='qc_refait')qcLance(a,espece);
   };
   if(QC_ETATS.get(a.id)==='Rapport prêt')qcEtat(a.id,'');
 
