@@ -307,16 +307,17 @@ html body #lv-frag-pop{
 html body #lv-frag-pop .lvp-past{width:22px;height:22px;border:2px solid var(--h-s1);box-shadow:0 0 0 1px var(--h-l3)}
 html body #lv-frag-pop .lvp-past:hover{transform:scale(1.14);box-shadow:0 0 0 1.5px #fff}
 html body #lv-frag-pop .lvp-sep{height:20px;background:var(--h-l2)}
+/* assez large pour tenir sur une ligne sur ordinateur, bandeau compris */
+html body #lv-frag-pop{width:max-content;max-width:min(calc(100vw - 24px),840px)}
 html body #lv-frag-pop .lvp-oter{margin-left:0}
-/* « Demander à l'IA » : le texte sélectionné part au panneau de question */
-/* assez large pour tenir sur une ligne sur ordinateur, bouton compris */
-html body #lv-frag-pop{max-width:min(calc(100vw - 24px),660px)}
-html body #lv-frag-pop .lvp-ia{
-  display:inline-flex;align-items:center;gap:7px;min-height:30px;padding:0 12px;cursor:pointer;white-space:nowrap;
-  font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.01em;color:var(--h-or);
-  border:1px solid color-mix(in srgb,var(--h-or) 55%,transparent);transition:background .25s,color .25s;
-}
-html body #lv-frag-pop .lvp-ia:hover{background:var(--h-or);color:#000}
+/* Retirer, copier, demander à l'IA : un seul bandeau crème arrondi,
+   séparé par de petits traits ; chaque case réagit au survol seule */
+html body #lv-frag-pop .lvp-bandeau{display:inline-flex;align-items:stretch;border-radius:14px;background:var(--h-or);overflow:hidden}
+html body #lv-frag-pop .lvp-bandeau>*{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:34px;margin:0;border-radius:0;background:transparent;color:#000;cursor:pointer;transition:background .2s}
+html body #lv-frag-pop .lvp-bandeau>*+*::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:color-mix(in srgb,var(--h-or) 70%,#000)}
+html body #lv-frag-pop .lvp-bandeau>:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000}
+html body #lv-frag-pop .lvp-bandeau .lvp-oter{padding:0 14px}
+html body #lv-frag-pop .lvp-ic{width:40px}
 
 @media(max-width:720px){
   html body #sel-barre{width:calc(100% - 20px);bottom:calc(8px + var(--lv-bas,0px));border-radius:0}

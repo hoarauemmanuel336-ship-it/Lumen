@@ -52,6 +52,12 @@ Même organisation qu'Articles, avec ses propres noms : `ressources`, `res_code`
 | `users/{uid}/commentaires/{id}` | Les commentaires en cours d'écriture et affichés. |
 | `users/{uid}/medias/{id}` | Leurs images, en tranches. |
 
+## Questions à l'IA
+
+| Chemin | Contenu |
+|---|---|
+| `users/{uid}/questions/{id}` | Une conversation avec l'IA sur un passage sélectionné : le passage, la conversation telle que l'IA la relit (pour la continuer), les questions et réponses affichées, les dates. Gardée après chaque réponse ; « Mes questions » la rouvre. |
+
 ## Données anciennes
 
 - `users/{uid}/articles` : les articles de l'ancien éditeur, que la page n'affiche plus ; Emmanuel les supprimera lui-même.

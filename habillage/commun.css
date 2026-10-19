@@ -1100,14 +1100,13 @@ html body .qc-etat.vif{display:inline-block;width:15px;height:15px;vertical-alig
    bas dans un champ sans arrondi, envoyée par un bouton crème.
    ════════════════════════════════════════════════════════════════════ */
 html body .qa-bouton{
-  position:fixed;z-index:261;display:none;align-items:center;gap:8px;padding:9px 16px 9px 13px;border:0;border-radius:14px;
-  background:var(--h-or);color:#000;font-family:var(--h-ui);font-size:14.5px;font-weight:600;letter-spacing:.01em;cursor:pointer;
+  position:fixed;z-index:261;display:none;align-items:stretch;border-radius:14px;overflow:hidden;background:var(--h-or);
   box-shadow:0 10px 30px -10px rgba(0,0,0,.9),0 0 24px -6px color-mix(in srgb,var(--h-or) 70%,transparent);
-  transition:background .2s;
 }
 html body .qa-bouton.on{display:inline-flex;animation:hMonte .22s var(--h-doux) both}
-html body .qa-bouton:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff)}
-
+html body .qa-b{position:relative;display:inline-flex;align-items:center;justify-content:center;width:46px;height:40px;padding:0;border:0;background:transparent;color:#000;cursor:pointer;transition:background .2s}
+html body .qa-b+.qa-b::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:1px;background:color-mix(in srgb,var(--h-or) 70%,#000)}
+html body .qa-b:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff)}
 html body .qa-panneau{
   position:fixed;top:0;right:0;bottom:0;z-index:260;display:flex;flex-direction:column;width:min(460px,100vw);
   background:#000;border-left:1px solid var(--h-l2);box-shadow:-30px 0 60px -30px rgba(0,0,0,.9);
@@ -1117,6 +1116,15 @@ html body .qa-panneau.on{transform:none}
 html body .qa-tete{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 14px 24px;border-bottom:1px solid var(--h-l1)}
 html body .qa-label{display:inline-flex;align-items:center;gap:9px;font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--h-t2)}
 html body .qa-label svg{color:var(--h-or)}
+html body .qa-outils{display:inline-flex;align-items:center;gap:4px}
+html body .qa-panneau.liste #qa-saisie{display:none}
+html body .qa-vide{margin:0;font-family:var(--h-ui);font-size:15.5px;color:var(--h-t3)}
+html body .qa-ligne{display:flex;flex-direction:column;gap:5px;width:100%;padding:16px 0;border:0;border-bottom:1px solid var(--h-l1);background:none;text-align:left;cursor:pointer}
+html body .qa-ligne:first-child{padding-top:0}
+html body .qa-l-q{font-family:var(--h-ui);font-size:16px;font-weight:600;line-height:1.4;color:#fff}
+html body .qa-l-p{font-family:'Literata',Georgia,serif;font-style:italic;font-size:14.5px;line-height:1.5;color:var(--h-t2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+html body .qa-l-d{font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--h-t3)}
+html body .qa-ligne:hover .qa-l-q{text-decoration:underline;text-decoration-color:var(--h-l3);text-underline-offset:4px}
 html body .qa-x{display:inline-flex;padding:6px;border:0;background:none;color:var(--h-t2);cursor:pointer;transition:color .2s}
 html body .qa-x:hover{color:#fff}
 html body .qa-fil{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:22px 24px 10px}
