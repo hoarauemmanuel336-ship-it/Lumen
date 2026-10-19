@@ -15,7 +15,9 @@
    13:4-7 ») et joint les versets correspondants des deux Bibles du site.
 
    Pendant que l'IA travaille, rien n'attend à l'écran : la carte de
-   l'élément montre que le travail avance.
+   l'élément montre que le travail avance. En mode « Choisir », le
+   contrôle se lance sur plusieurs éléments d'un coup, l'un après
+   l'autre.
 
    Le dernier rapport de chaque élément est gardé dans le compte
    (art_qc ou res_qc) : rouvrir le contrôle le montre aussitôt, sans
@@ -235,9 +237,19 @@ function qcFini(a,r,espece){
   else qcEtat(a.id,'Rapport prêt');
 }
 
+/* ── LA FILE D'ATTENTE ──
+   Un seul travail de l'IA à la fois : un contrôle demandé pendant qu'un
+   autre tourne prend la file, et part dès que le précédent a fini. La
+   carte tourne dès qu'il est dans la file. */
+const QC_FILE=[];
+function qcSuivant(){
+  const n=QC_FILE.shift();
+  if(n)qcLance(n.a,n.espece);
+}
+
 async function qcLance(a,espece){
   if(QC_EN_COURS){
-    if(QC_EN_COURS!==a.id)lvInfo('Un travail de l’IA est déjà en cours. Attendez qu’il se termine, puis relancez celui-ci.');
+    if(QC_EN_COURS!==a.id&&!QC_FILE.some(x=>x.a.id===a.id)){QC_FILE.push({a,espece});qcEtat(a.id,'Contrôle en cours');}
     return;
   }
   QC_EN_COURS=a.id;
@@ -278,6 +290,7 @@ async function qcLance(a,espece){
     lvInfo(e&&e.message?e.message:'Le contrôle qualité a échoué.');
   }finally{
     QC_EN_COURS='';
+    qcSuivant();
   }
 }
 
@@ -363,6 +376,7 @@ async function qcCorrige(a,r,espece){
     lvInfo(e&&e.message?e.message:'La correction a échoué.');
   }finally{
     QC_EN_COURS='';
+    qcSuivant();
   }
 }
 
@@ -382,4 +396,21 @@ async function qcRevient(a,r,espece){
     console.warn('qc retour',e);
     lvInfo(e&&e.message?e.message:'Le retour à la version d’avant a échoué. Vérifiez la connexion, puis réessayez.');
   }
+}
+
+/* ── CONTRÔLER PLUSIEURS ──
+   En mode « Choisir », « Contrôle qualité » lance le contrôle de chaque
+   page HTML choisie (et de celles rangées dans les catégories choisies),
+   l'une après l'autre. Chaque carte tourne jusqu'à son rapport. */
+async function qcChoix(espece){
+  if(!S.pris.size)return;
+  const {rids,res}=prisDecoupe();
+  const vus=new Set(res.map(a=>a.id)), lot=res.slice();
+  rids.forEach(id=>descendance(id).forEach(d=>S.liste.filter(a=>a.rub===d&&!a.suppr).forEach(a=>{if(!vus.has(a.id)){vus.add(a.id);lot.push(a);}})));
+  const ok=lot.filter(a=>typeDe(a)==='diagramme');
+  if(!ok.length){lvInfo('Rien à contrôler : le contrôle qualité vaut pour les pages HTML.');return;}
+  const mot=espece==='articles'?(ok.length>1?' articles':' article'):(ok.length>1?' ressources':' ressource');
+  if(!await lvConfirm('Lancer le contrôle qualité de '+ok.length+mot+' ? Chaque contrôle remplace le rapport précédent.'))return;
+  basculeChoisir(false);
+  ok.forEach(a=>qcLance(a,espece));
 }

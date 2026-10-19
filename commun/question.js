@@ -14,7 +14,10 @@
    Chaque conversation est gardée dans le compte (users/…/questions)
    après chaque réponse (Emmanuel : « sinon après une question on ferme
    par inadvertance et c'est perdu »). « Mes questions », dans le panneau
-   et dans « Mon compte », les rouvre, et on peut les continuer.
+   et dans « Mon compte », les rouvre, et on peut les continuer. Une
+   poubelle, dans la liste et dans la conversation ouverte, en supprime
+   une après confirmation ; « Choisir », en tête de la liste, en supprime
+   plusieurs ou toutes d'un coup.
 
    Dans Articles et Ressources, la page tourne dans un cadre isolé qui
    n'a aucun accès au site : le cadre dit seulement ce qui y est
@@ -49,6 +52,7 @@ const qaEsc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g
 const QA_IC_COPIE='<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="1"/><path d="M15.5 8.5V5.5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3"/></svg>';
 const QA_IC_FAIT='<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 const QA_IC_MES='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 4.5v3h3"/><path d="M12 8.5V12l2.5 2"/></svg>';
+const QA_IC_JETER='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 7h15M9.5 7V5.2c0-.4.3-.7.7-.7h3.6c.4 0 .7.3.7.7V7M6.5 7l.9 11.6c.1.8.7 1.4 1.5 1.4h6.2c.8 0 1.4-.6 1.5-1.4L17.5 7M10.2 10.5v6M13.8 10.5v6"/></svg>';
 const QA_IC_IA='<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg>';
 
 /* ── LE BANDEAU ──
@@ -121,12 +125,29 @@ function qaSelectionCadre(sel,cadre,source,espece){
   qaPoseBouton();
 }
 
+/* ── LE COMPTE ──
+   Dans la Bible, le service de connexion se charge à la demande, et le
+   compte se reconnaît un instant après : on attend l'un et l'autre avant
+   de dire qu'il faut se connecter. */
+async function qaCompte(){
+  if(window.lvFB){try{await window.lvFB();}catch(_){}}
+  for(let i=0;i<30&&!(window.firebase&&firebase.apps&&firebase.apps.length);i++)await new Promise(r=>setTimeout(r,100));
+  if(!(window.firebase&&firebase.auth&&firebase.apps&&firebase.apps.length))return null;
+  const a=firebase.auth();
+  if(a.currentUser)return a.currentUser;
+  return new Promise(res=>{
+    let off=null;
+    const t=setTimeout(()=>{if(off)off();res(null);},5000);
+    off=a.onAuthStateChanged(u=>{if(!u)return;clearTimeout(t);if(off)off();res(u);});
+  });
+}
+
 /* ── L'APPEL ──
    La réponse arrive au fil de l'eau. Quand l'IA demande des versets, la
    page les lit dans les Bibles du site, les lui rend, et la réponse
    reprend. */
 async function qaFlux(messages,surTexte){
-  const u=window.firebase&&firebase.auth&&firebase.auth().currentUser;
+  const u=await qaCompte();
   if(!u)throw new Error('Connectez-vous pour poser une question à l’IA.');
   const jeton=await u.getIdToken();
   const r=await fetch('/api/ia',{method:'POST',headers:{'content-type':'application/json','authorization':'Bearer '+jeton},body:JSON.stringify({tache:'question',donnees:{messages}})});
@@ -205,13 +226,33 @@ function qaPanneau(){
   p.id='qa-panneau'; p.className='qa-panneau';
   p.setAttribute('role','dialog'); p.setAttribute('aria-label','Question à l’IA');
   p.innerHTML='<div class="qa-tete"><span class="qa-label" id="qa-label">'+QA_IC_IA+'<span>Question à l’IA</span></span>'
-    +'<span class="qa-outils"><button type="button" class="qa-x" id="qa-mes" aria-label="Mes questions" title="Mes questions">'+QA_IC_MES+'</button>'
+    +'<span class="qa-outils"><button type="button" class="qa-x" id="qa-jeter" aria-label="Supprimer cette conversation" title="Supprimer cette conversation">'+QA_IC_JETER+'</button>'
+    +'<button type="button" class="qa-x" id="qa-mes" aria-label="Mes questions" title="Mes questions">'+QA_IC_MES+'</button>'
     +'<button type="button" class="qa-x" id="qa-ferme" aria-label="Fermer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span></div>'
     +'<div class="qa-fil" id="qa-fil"></div>'
     +'<form class="qa-saisie" id="qa-saisie"><textarea id="qa-champ" rows="1" placeholder="Votre question sur ce passage…"></textarea>'
-    +'<button type="submit" class="qa-envoi" id="qa-envoi" aria-label="Envoyer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button></form>';
+    +'<button type="submit" class="qa-envoi" id="qa-envoi" aria-label="Envoyer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button></form>'
+    +'<div class="qa-choix" id="qa-choix"><div class="qa-conf-b"><button type="button" id="qa-ch-tout">Tout choisir</button>'
+    +'<button type="button" id="qa-ch-jeter" aria-label="Supprimer les conversations choisies" title="Supprimer">'+QA_IC_JETER+'<span id="qa-ch-n"></span></button>'
+    +'<button type="button" id="qa-ch-fin">Terminer</button></div></div>'
+    +'<div class="qa-conf" id="qa-conf"><p id="qa-conf-txt"></p><div class="qa-conf-b"><button type="button" id="qa-conf-non">Annuler</button><button type="button" id="qa-conf-oui">Supprimer</button></div></div>';
   document.body.appendChild(p);
   p.querySelector('#qa-ferme').onclick=qaFerme;
+  p.querySelector('#qa-ch-fin').onclick=()=>{QA_CHOIX=false;QA_PRIS=new Set();qaRendListe();qaMajChoix();};
+  p.querySelector('#qa-ch-tout').onclick=()=>{
+    QA_PRIS=QA_PRIS.size===QA_LISTE.length?new Set():new Set(QA_LISTE.map(c=>c.id));
+    qaRendListe(); qaMajChoix();
+  };
+  p.querySelector('#qa-ch-jeter').onclick=async()=>{
+    const n=QA_PRIS.size; if(!n)return;
+    if(!await qaConfirme(n===QA_LISTE.length?'Supprimer toutes les conversations ?':('Supprimer '+(n>1?'ces '+n+' conversations':'cette conversation')+' ?')))return;
+    await qaJetteTout([...QA_PRIS]);
+  };
+  p.querySelector('#qa-jeter').onclick=async()=>{
+    if(!QA_ID)return;
+    if(!await qaConfirme('Supprimer cette conversation ? Elle disparaîtra de « Mes questions ».'))return;
+    if(await qaJette(QA_ID)){QA_ID='';QA_PASSAGE=null;QA_MSGS=[];QA_VU=[];qaListe();}
+  };
   p.querySelector('#qa-mes').onclick=()=>{if(p.classList.contains('liste')&&QA_PASSAGE)qaMontreConv();else qaListe();};
   const champ=p.querySelector('#qa-champ');
   const hauteur=()=>{champ.style.height='auto';champ.style.height=Math.min(champ.scrollHeight,160)+'px';};
@@ -254,7 +295,9 @@ async function qaOuvre(passage){
 function qaMontreConv(){
   const p=qaPanneau();
   p.classList.remove('liste');
+  QA_CHOIX=false; qaMajChoix();
   $qa('qa-label').lastChild.textContent='Question à l’IA';
+  $qa('qa-jeter').style.display=QA_ID?'':'none';
   const P=QA_PASSAGE||{texte:''};
   let h='<blockquote class="qa-passage"><p>'+qaEsc(P.texte)+'</p>'
     +(P.etiquette?'<cite>'+qaEsc(P.etiquette)+'</cite>':'')+'</blockquote>';
@@ -268,44 +311,116 @@ function qaMontreConv(){
    Les conversations gardées, de la plus récente à la plus ancienne :
    le passage, la première question, la date. Toucher une conversation la
    rouvre ; on peut la continuer. */
-const qaCol=()=>{
-  const u=window.firebase&&firebase.auth&&firebase.auth().currentUser;
+async function qaCol(){
+  const u=await qaCompte();
   if(!u||!firebase.firestore)return null;
   return firebase.firestore().collection('users/'+u.uid+'/questions');
-};
+}
+let QA_LISTE=[], QA_CHOIX=false, QA_PRIS=new Set();
 async function qaListe(){
   const p=qaPanneau();
   p.classList.add('liste','on');
   document.documentElement.classList.add('qa-ouvert');
   $qa('qa-label').lastChild.textContent='Mes questions';
+  $qa('qa-jeter').style.display='none';
+  QA_CHOIX=false; QA_PRIS=new Set(); qaMajChoix();
   const fil=$qa('qa-fil');
   fil.innerHTML='<span class="qa-roue" aria-label="Chargement"></span>';
-  const col=qaCol();
+  const col=await qaCol();
   if(!col){fil.innerHTML='<p class="qa-vide">Connectez-vous pour retrouver vos questions.</p>';return;}
   let l=[];
-  try{const r=await col.orderBy('maj','desc').limit(80).get();r.forEach(d=>l.push(Object.assign({id:d.id},d.data())));}
+  try{const r=await col.orderBy('maj','desc').limit(200).get();r.forEach(d=>l.push(Object.assign({id:d.id},d.data())));}
   catch(e){console.warn('questions',e);fil.innerHTML='<p class="qa-vide">Les questions n’ont pas pu être chargées.</p>';return;}
   if(!p.classList.contains('liste'))return;
   l.sort((a,b)=>String(b.maj||'').localeCompare(String(a.maj||'')));
-  if(!l.length){fil.innerHTML='<p class="qa-vide">Aucune question pour l’instant.</p>';return;}
+  QA_LISTE=l;
+  qaRendListe();
+}
+
+/* la liste : en mode « Choisir », chaque rangée se coche d'un toucher, et
+   le bas du panneau porte « Tout choisir », la poubelle et « Terminer » */
+function qaRendListe(){
+  const fil=$qa('qa-fil'), l=QA_LISTE;
+  if(!l.length){fil.innerHTML='<p class="qa-vide">Aucune question pour l’instant.</p>';QA_CHOIX=false;qaMajChoix();return;}
   const date=iso=>{const d=new Date(iso);return isNaN(d)?'':d.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});};
-  fil.innerHTML=l.map((c,i)=>'<button type="button" class="qa-ligne" data-qi="'+i+'">'
+  /* « Choisir » en tête ; en mode choix, « Terminer » est dans le bandeau du bas */
+  fil.innerHTML=(QA_CHOIX?'':'<div class="qa-l-barre"><button type="button" class="qa-l-choisir" id="qa-choisir">Choisir</button></div>')
+    +l.map((c,i)=>'<div class="qa-ligne'+(QA_CHOIX?' qa-en-choix':'')+(QA_PRIS.has(c.id)?' qa-pris':'')+'" data-qi="'+i+'">'
+    +'<div class="qa-l-txt" role="'+(QA_CHOIX?'checkbox':'button')+'" tabindex="0"'+(QA_CHOIX?' aria-checked="'+QA_PRIS.has(c.id)+'"':'')+'>'
     +'<span class="qa-l-q">'+qaEsc((c.vu&&c.vu[0]&&c.vu[0].q)||'')+'</span>'
     +'<span class="qa-l-p">« '+qaEsc(String((c.passage&&c.passage.texte)||'').slice(0,140))+' »</span>'
     +'<span class="qa-l-d">'+qaEsc(((c.passage&&c.passage.etiquette)?c.passage.etiquette+'  ·  ':'')+date(c.maj))+'</span>'
-    +'</button>').join('');
-  fil.scrollTop=0;
-  fil.querySelectorAll('[data-qi]').forEach(b=>b.onclick=()=>{
-    const c=l[+b.dataset.qi];
-    QA_TOUR++; QA_ATTENTE=false; $qa('qa-envoi').disabled=false;
-    QA_ID=c.id; QA_PASSAGE=c.passage||{texte:''}; QA_MSGS=Array.isArray(c.msgs)?c.msgs:[]; QA_VU=Array.isArray(c.vu)?c.vu:[];
-    qaMontreConv();
+    +'</div>'
+    +(QA_CHOIX?'<span class="qa-l-coche" aria-hidden="true">✓</span>'
+      :'<button type="button" class="qa-x qa-l-jeter" aria-label="Supprimer cette conversation" title="Supprimer">'+QA_IC_JETER+'</button>')
+    +'</div>').join('');
+  if($qa('qa-choisir'))$qa('qa-choisir').onclick=()=>{QA_CHOIX=true;QA_PRIS=new Set();qaRendListe();qaMajChoix();};
+  fil.querySelectorAll('[data-qi]').forEach(ligne=>{
+    const c=l[+ligne.dataset.qi], t=ligne.querySelector('.qa-l-txt');
+    const touche=()=>{
+      if(QA_CHOIX){
+        if(QA_PRIS.has(c.id))QA_PRIS.delete(c.id);else QA_PRIS.add(c.id);
+        ligne.classList.toggle('qa-pris',QA_PRIS.has(c.id));
+        t.setAttribute('aria-checked',QA_PRIS.has(c.id));
+        qaMajChoix();
+        return;
+      }
+      QA_TOUR++; QA_ATTENTE=false; $qa('qa-envoi').disabled=false;
+      QA_ID=c.id; QA_PASSAGE=c.passage||{texte:''}; QA_MSGS=Array.isArray(c.msgs)?c.msgs:[]; QA_VU=Array.isArray(c.vu)?c.vu:[];
+      qaMontreConv();
+    };
+    t.onclick=touche;
+    t.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();touche();}};
+    const j=ligne.querySelector('.qa-l-jeter');
+    if(j)j.onclick=async()=>{
+      if(!await qaConfirme('Supprimer cette conversation ? Elle disparaîtra de « Mes questions ».'))return;
+      await qaJetteTout([c.id]);
+    };
   });
+}
+
+function qaMajChoix(){
+  const z=$qa('qa-choix'); if(!z)return;
+  z.classList.toggle('on',QA_CHOIX);
+  const n=QA_PRIS.size, j=$qa('qa-ch-jeter');
+  j.disabled=!n;
+  $qa('qa-ch-n').textContent=n?String(n):'';
+  $qa('qa-ch-tout').textContent=(QA_LISTE.length&&n===QA_LISTE.length)?'Aucun':'Tout choisir';
+}
+async function qaJetteTout(ids){
+  const faits=[];
+  for(const id of ids){if(await qaJette(id))faits.push(id);}
+  if(faits.length<ids.length)console.warn('questions non supprimées',ids.length-faits.length);
+  QA_LISTE=QA_LISTE.filter(c=>faits.indexOf(c.id)<0);
+  faits.forEach(id=>QA_PRIS.delete(id));
+  if(faits.indexOf(QA_ID)>=0){QA_ID='';QA_PASSAGE=null;QA_MSGS=[];QA_VU=[];}
+  QA_CHOIX=false; QA_PRIS=new Set();
+  qaRendListe(); qaMajChoix();
+}
+
+/* ── SUPPRIMER ──
+   La confirmation se fait dans le panneau lui-même, en bas : un mot, et
+   le bandeau « Annuler | Supprimer ». */
+function qaConfirme(txt){
+  const z=$qa('qa-conf');
+  $qa('qa-conf-txt').textContent=txt;
+  z.classList.add('on');
+  return new Promise(res=>{
+    const fin=v=>{z.classList.remove('on');res(v);};
+    $qa('qa-conf-non').onclick=()=>fin(false);
+    $qa('qa-conf-oui').onclick=()=>fin(true);
+  });
+}
+async function qaJette(id){
+  const col=await qaCol(); if(!col||!id)return false;
+  try{await col.doc(id).delete();return true;}
+  catch(e){console.warn('question supprimée',e);return false;}
 }
 
 /* la conversation part dans le compte après chaque réponse */
 async function qaGarde(){
-  const col=qaCol(); if(!col||!QA_VU.length)return;
+  if(!QA_VU.length)return;
+  const col=await qaCol(); if(!col)return;
   const maintenant=new Date().toISOString();
   const doc=JSON.parse(JSON.stringify({
     maj:maintenant,

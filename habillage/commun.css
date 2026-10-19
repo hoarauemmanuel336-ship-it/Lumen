@@ -1119,12 +1119,35 @@ html body .qa-label svg{color:var(--h-or)}
 html body .qa-outils{display:inline-flex;align-items:center;gap:4px}
 html body .qa-panneau.liste #qa-saisie{display:none}
 html body .qa-vide{margin:0;font-family:var(--h-ui);font-size:15.5px;color:var(--h-t3)}
-html body .qa-ligne{display:flex;flex-direction:column;gap:5px;width:100%;padding:16px 0;border:0;border-bottom:1px solid var(--h-l1);background:none;text-align:left;cursor:pointer}
+html body .qa-ligne{display:flex;align-items:flex-start;gap:10px;padding:16px 0;border-bottom:1px solid var(--h-l1)}
 html body .qa-ligne:first-child{padding-top:0}
+html body .qa-l-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px;cursor:pointer}
 html body .qa-l-q{font-family:var(--h-ui);font-size:16px;font-weight:600;line-height:1.4;color:#fff}
 html body .qa-l-p{font-family:'Literata',Georgia,serif;font-style:italic;font-size:14.5px;line-height:1.5;color:var(--h-t2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 html body .qa-l-d{font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--h-t3)}
-html body .qa-ligne:hover .qa-l-q{text-decoration:underline;text-decoration-color:var(--h-l3);text-underline-offset:4px}
+html body .qa-l-txt:hover .qa-l-q{text-decoration:underline;text-decoration-color:var(--h-l3);text-underline-offset:4px}
+html body .qa-l-jeter{flex:0 0 auto;margin-top:-4px}
+html body .qa-l-barre{display:flex;justify-content:flex-end;margin:-6px 0 8px}
+html body .qa-l-choisir{padding:4px 0;border:0;background:none;font-family:var(--h-ui);font-size:14.5px;font-weight:600;color:var(--h-or);cursor:pointer}
+html body .qa-l-choisir:hover{color:#fff}
+html body .qa-ligne.qa-en-choix .qa-l-txt:hover .qa-l-q{text-decoration:none}
+html body .qa-l-coche{flex:0 0 auto;padding:0 4px;font-family:var(--h-ui);font-size:20px;line-height:1.2;color:var(--h-t4);transition:color .2s}
+html body .qa-ligne.qa-pris .qa-l-coche{color:var(--h-or)}
+html body .qa-ligne.qa-en-choix:not(.qa-pris) .qa-l-txt{opacity:.62}
+html body .qa-choix{display:none;justify-content:center;padding:14px 18px calc(16px + env(safe-area-inset-bottom));border-top:1px solid var(--h-l1);background:#000}
+html body .qa-choix.on{display:flex}
+html body .qa-panneau:has(.qa-conf.on) .qa-choix{display:none}
+html body #qa-ch-jeter{display:inline-flex;align-items:center;gap:6px}
+html body #qa-ch-jeter:disabled{opacity:.45;cursor:default}
+/* la confirmation, en bas du panneau, à la place de la question */
+html body .qa-conf{display:none;align-items:center;justify-content:space-between;gap:14px;padding:14px 18px calc(16px + env(safe-area-inset-bottom)) 24px;border-top:1px solid var(--h-l1);background:#000}
+html body .qa-conf.on{display:flex}
+html body .qa-panneau:has(.qa-conf.on) #qa-saisie{display:none}
+html body .qa-conf p{margin:0;font-family:var(--h-ui);font-size:15px;line-height:1.4;color:var(--h-t1)}
+html body .qa-conf-b{flex:0 0 auto;display:inline-flex;border-radius:14px;overflow:hidden;background:var(--h-or)}
+html body .qa-conf-b button{position:relative;min-height:42px;padding:0 16px;border:0;background:transparent;font-family:var(--h-ui);font-size:14.5px;font-weight:600;color:#000;cursor:pointer;transition:background .2s}
+html body .qa-conf-b button+button::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:1px;background:color-mix(in srgb,var(--h-or) 70%,#000)}
+html body .qa-conf-b button:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff)}
 html body .qa-x{display:inline-flex;padding:6px;border:0;background:none;color:var(--h-t2);cursor:pointer;transition:color .2s}
 html body .qa-x:hover{color:#fff}
 html body .qa-fil{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:22px 24px 10px}
