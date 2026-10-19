@@ -326,7 +326,7 @@ body.organise .poignee:hover{color:var(--or)}
       <button class="act" id="b-deplacer">Déplacer</button>
       <button class="act" id="b-qc">Contrôle qualité</button>
       <button class="act danger act-ic" id="b-jeter" aria-label="Mettre à la corbeille" title="Mettre à la corbeille"><svg class="ic-poubelle" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4.5 7h15M9.5 7V5.2c0-.4.3-.7.7-.7h3.6c.4 0 .7.3.7.7V7M6.5 7l.9 11.6c.1.8.7 1.4 1.5 1.4h6.2c.8 0 1.4-.6 1.5-1.4L17.5 7M10.2 10.5v6M13.8 10.5v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <button class="act" id="b-choix-fin">Terminer</button>
+      <button class="act act-x" id="b-choix-fin" aria-label="Terminer" title="Terminer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
   </section>
 
@@ -1463,7 +1463,12 @@ function basculeOrganise(on){
   S.organise=(on===undefined)?!S.organise:!!on;
   if(S.organise&&S.choix)basculeChoisir(false);
   document.body.classList.toggle('organise',S.organise);
-  const b=$('b-organiser'); if(b){b.textContent=S.organise?'Terminer':'Organiser';b.classList.toggle('majeur',S.organise);}
+  /* en mode Organiser, le bouton devient une croix qui en sort
+     (Emmanuel : « au lieu de Terminer, mets cette croix ») */
+  const b=$('b-organiser'); if(b){
+    if(S.organise){b.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';b.setAttribute('aria-label','Terminer');b.title='Terminer';}
+    else{b.textContent='Organiser';b.removeAttribute('aria-label');b.removeAttribute('title');}
+    b.classList.toggle('majeur',S.organise);b.classList.toggle('act-x',S.organise);}
   const m=$('mot-liste'); if(m&&S.auteur)m.textContent=''; /* pas de mode d'emploi à l'écran (choix d'Emmanuel) */
   rendLister();
 }

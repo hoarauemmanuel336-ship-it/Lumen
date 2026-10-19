@@ -1783,7 +1783,6 @@ function openMoveVerse(srcId,vId){
   const host=$('move-list'); host.innerHTML='';
   /* La liste ne propose que des catégories du mode courant (groupesCats les
      filtre déjà) : un verset ne peut pas atterrir chez les passages. */
-  $('m-move').classList.remove('liste-versets');
   $('mmove-title').textContent=modeP()?'Déplacer le passage dans…':(modeC()?'Déplacer la fiche dans…':'Déplacer le verset dans…');
   $('mmove-cancel').textContent='Annuler';
   // les catégories sont proposées dans l'ordre des sections, chacune portant
@@ -2246,7 +2245,6 @@ function suitTrace(cle,cats,genre){
   const l=versetsSignes(cats,genre); if(!l.length)return;
   if(l.length===1){vaVerset(l[0].c.id,l[0].v.id);return;}
   const host=$('move-list'); host.innerHTML='';
-  $('m-move').classList.add('liste-versets');
   $('mmove-title').textContent=l.length+(genre==='ecart'?' versets s’écartent de la Bible':' versets sont aussi ailleurs');
   $('mmove-cancel').textContent='Fermer';
   l.forEach(x=>{
@@ -2280,7 +2278,6 @@ function allerJumeau(catId,vId){
   const j=jumeauxDe(catId,vId); if(!j.length)return;
   if(j.length===1){vaVerset(j[0].cat.id,j[0].v.id);return;}
   const host=$('move-list'); host.innerHTML='';
-  $('m-move').classList.add('liste-versets');
   $('mmove-title').textContent='Aussi dans…';
   $('mmove-cancel').textContent='Fermer';
   j.forEach(x=>{

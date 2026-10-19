@@ -998,13 +998,15 @@ html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-s
   html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search)>.modal{padding:28px 8px calc(10px + env(safe-area-inset-bottom,0px))}
   html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.modal-titre,.modal-title){margin:0 14px 8px;font-size:24px}
   html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.modal-titre,.modal-title)::after{width:100%}
-  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .feuille-x{display:none}
+  /* la croix, en haut à droite, comme sur ordinateur ; le bouton seul
+     « Annuler » ou « Fermer » s'efface (Emmanuel : « garde plutôt la
+     petite croix ») */
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .feuille-x{top:22px;right:14px}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.modal-titre,.modal-title){margin-right:58px}
   html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(#choix-liste,#pick-list,#move-list){max-height:none}
   html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix,.move-row){min-height:56px;padding-left:calc(14px + var(--niv,0) * 16px);padding-right:14px}
   html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix i{max-width:42%}
-  /* « Annuler » plein large, sous le pouce */
-  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .modal-btns{display:flex;margin:12px 6px 0;padding:0}
-  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .modal-btns>:is(.m-annul,.m-cancel){flex:1;min-height:52px;border-radius:14px;background:var(--h-or);color:#000;font-size:16px}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .modal-btns:not(:has(>:nth-child(2))){display:none!important}
   html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) :is(#m-conf,#m-info) :is(.modal-titre,.modal-title){font-size:25px}
   html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) :is(#m-conf,#m-info) .modal-btns{display:flex;width:100%}
   html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) :is(#m-conf,#m-info) .modal-btns>*{flex:1 1 0;min-height:52px}
@@ -1216,3 +1218,7 @@ html body .lv-ouverture{display:flex;flex-direction:column;align-items:center;ga
 html body .lv-ouverture p{margin:0;font-family:var(--h-ui);font-size:16px;color:var(--h-t2);text-align:center}
 @keyframes qcTourne{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){html body .lv-roue{animation-duration:2.4s}}
+
+/* les boutons « Terminer » d'un mode (Organiser, Choisir) : la croix */
+html:root body .act.act-x{display:inline-flex;align-items:center;justify-content:center;min-width:48px;padding-left:14px;padding-right:14px}
+html:root body #qa-ch-fin{display:inline-flex;align-items:center;justify-content:center;min-width:48px}

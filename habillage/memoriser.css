@@ -738,7 +738,3 @@ html body.memo-charge .cat-acts,html body.memo-charge #start-btn,html body.memo-
 html body .trace-txt{display:flex;flex-direction:column;gap:3px;min-width:0}
 html body .trace-ref{font-family:var(--h-ui);font-size:15.5px;font-weight:500;color:#fff}
 html body .trace-ext{font-family:var(--h-texte);font-size:14px;color:var(--h-t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-
-/* dans la liste des versets d'un signe, « Fermer » se range à droite */
-html:root body:not(#_):not(#_):not(#_) #m-move.liste-versets .modal-btns{display:flex!important;justify-content:flex-end!important}
-html:root body:not(#_):not(#_):not(#_) #m-move.liste-versets .modal-btns>*{flex:0 0 auto!important;width:auto!important;min-width:150px}
