@@ -14,7 +14,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <style>
 :root{
-  --encre:#000000;--encre-2:#0b0b0b;--encre-3:#111111;
+  --encre:#000000;--encre-2:#0b0b0b;
   --or:#efe6cf;--or-pale:#f8f3e6;
   /* fond de survol : la couleur d'accent, une seule intensité pour tout
      le site. La seconde ligne suit l'accent quand il change ; un vieux
@@ -34,13 +34,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{height:100%}
 body{background:var(--encre);color:var(--parchemin);font-family:var(--serif);font-size:20px;line-height:1.6;min-height:100%;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-::selection{background:var(--sel);color:var(--encre)}
 :focus{outline:none}
-:focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}
-::-webkit-scrollbar{width:10px}
-::-webkit-scrollbar-track{background:var(--encre)}
-::-webkit-scrollbar-thumb{background:rgba(239,230,207,.35)}
-::-webkit-scrollbar-thumb:hover{background:rgba(239,230,207,.6)}
 html{scrollbar-color:rgba(239,230,207,.35) var(--encre)}
 
 a{color:inherit;text-decoration:none}
@@ -53,7 +47,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .field:focus{border-color:var(--or)}
 .field::placeholder{color:var(--pa2)}
 .field:focus{border-bottom-color:var(--or)}
-.field::placeholder{color:var(--pa2)}
 textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 
 /* ═══ RECHERCHE, DÉPLACEMENT, CONNEXION ═══ */
@@ -71,12 +64,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 #auth-screen{display:none;align-items:center;justify-content:center;min-height:calc(100vh - 86px);background:transparent;padding:32px 24px}
 .auth-panel{position:relative;width:100%;max-width:400px;border:1px solid var(--filet-f);background:var(--encre);padding:40px 34px;animation:fade .35s ease both}
 .auth-paneltitle{font-family:var(--display);font-size:24px;text-align:center;margin-bottom:24px;color:var(--parchemin)}
-.auth-cross{width:48px;height:88px;margin:0 auto 22px;background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2072%20132'%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,2%2031,2'%20fill='%23ffffff'/%3E%3Cpolygon%20points='34.5,40%2037.5,40%2041,130%2031,130'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%202,45%202,35'%20fill='%23ffffff'/%3E%3Cpolygon%20points='36,38.5%2036,41.5%2070,45%2070,35'%20fill='%23ffffff'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:contain}
-.auth-logo{font-family:var(--display);font-size:23px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;text-align:center;padding-left:.42em;margin-bottom:34px}
-.auth-tabs{display:flex;border-bottom:1px solid var(--filet-f);margin-bottom:22px}
-.auth-tab{flex:1;padding:9px 0;background:none;border:none;border-bottom:2px solid transparent;font-family:var(--display);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa);cursor:pointer;transition:color .3s,border-color .3s}
-.auth-tab.on{color:var(--or);border-bottom-color:var(--or)}
-.auth-cross{display:none}
 .auth-fieldrow{margin-bottom:20px}
 .auth-primary{display:block;width:100%;text-align:center;padding:13px;margin-top:10px;background:var(--or);color:var(--encre);font-family:var(--display);font-size:15px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;transition:background .3s}
 .auth-primary:hover{background:var(--or-pale)}
@@ -93,15 +80,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 /* ═══ APP ═══ */
 #app{display:none;min-height:calc(100vh - 86px);flex-direction:column}
 #app.on{display:flex}
-.hdr{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:12px;padding:18px 30px;background:#000;border-bottom:1px solid var(--filet)}
-.hdr-logo{font-family:var(--display);font-size:20px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;padding-left:.34em;transition:color .3s}
-.hdr-logo:hover{color:var(--or)}
-.hdr-sep{color:var(--pa2)}
-.hdr-title{font-family:var(--display);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa);flex:1}
-.hdr-right{display:flex;align-items:center;gap:16px}
-.hdr-act{font-family:var(--display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa);transition:color .3s}
-.hdr-act:hover{color:var(--or)}
-.hdr-mail{font-size:13px;color:var(--pa2);max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wrap{flex:1;width:100%;max-width:680px;margin:0 auto;padding:46px 26px 80px}
 
 .lbl{font-family:var(--display);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa)}
@@ -359,8 +337,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 
 @media(max-width:600px){
   .auth-panel{padding:40px 26px}
-  .hdr{padding:14px 16px;gap:9px}
-  .hdr-mail{display:none}
   .wrap{padding:32px 16px 60px}
   .opts.two{grid-template-columns:1fr}
   .q-prompt{font-size:calc(23px*var(--lvz,1))}
@@ -372,10 +348,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
   .vrow.pas .vtext{display:block;font-size:13px}
 }
 /* corbeille */
-.trash-head{display:flex;align-items:center;gap:12px;padding:6px 2px;cursor:pointer;border-bottom:1px solid var(--filet)}
-.trash-head .lbl{flex:1}
-.trash-head .cat-chev{transition:transform .3s,color .3s}
-.trash-head.open .cat-chev{transform:rotate(90deg);color:var(--or)}
 .trash-body{animation:fade .35s ease both;padding-top:6px}
 .trash-item{display:flex;align-items:center;gap:14px;padding:11px 0;border-top:1px solid var(--filet)}
 .trash-vmeta{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
@@ -401,10 +373,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:var(--parchemin-att);transition:color .3s;background:none;border:none;padding:0;outline:none}
 .rech-loupe:hover,.rech-loupe:focus{color:var(--or)}
 .rech-loupe svg{display:block}
-.user-btn{display:inline-flex;align-items:center;justify-content:center;min-width:19px;padding-bottom:3px}
-.user-btn svg{display:block;flex:none}
-.user-btn .user-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.user-btn:hover svg{stroke:var(--parchemin)}
 .rech-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);display:none}
 .rech-overlay.ouvert{display:block}
 .rech-boite{max-width:760px;margin:0 auto;padding:8vh 24px 40px;height:100%;display:flex;flex-direction:column;box-sizing:border-box}
@@ -430,39 +398,16 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 @media(max-width:720px){
   nav.menu .rech-loupe{width:100%;justify-content:flex-start;gap:14px;padding:12px 0;border-bottom:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#ffffff}
   nav.menu .rech-loupe .ll-mob{display:inline}
-  nav.menu .user-btn{display:flex;align-items:center;justify-content:flex-start;gap:14px;padding:12px 0;min-height:0;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#ffffff}
-  nav.menu .user-btn .user-label{position:static;width:auto;height:auto;padding:0;margin:0;overflow:visible;clip:auto;white-space:nowrap}
-}
-@media(min-width:721px){nav.menu .user-btn{width:19px;height:24px;padding-left:0;padding-right:0}}
-
-
-/* l'en-tête reprend l'intensité de texte de l'accueil */
-#app > header nav.menu a,
-#app > header nav.menu .menu-act,
-#app > header .rech-loupe{
-  color:#ffffff;
-}
-#app > header nav.menu a:hover,
-#app > header nav.menu a.actif,
-#app > header nav.menu .menu-act:hover{
-  color:var(--parchemin);
-}
-#app > header .rech-loupe:hover,
-#app > header .rech-loupe:focus{
-  color:var(--or);
 }
 
 /* ═══ LISTE DES VERSETS : AFFICHAGE MOBILE PLUS PROPRE ═══ */
 @media(max-width:720px){
   .wrap{padding:32px 20px 60px}
-  .cat-row{gap:10px}
   .cat-name{min-width:0;font-size:20px}
   .cat-nom-t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .cat-body{padding:2px 0 18px 0}
-  .vrow{gap:10px;padding:13px 0;align-items:flex-start}
   .vline{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
   .vref{width:auto;max-width:100%;min-width:0;font-size:17px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--parchemin)}
-  .vtext{display:-webkit-box;font-size:14px;line-height:1.35;color:var(--pa);white-space:normal;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;-webkit-box-orient:vertical}
   .lvl{gap:9px;flex:0 0 auto;padding-top:4px}
   .dot{width:15px;height:15px}
   .del-v{font-size:19px;padding-left:3px;color:var(--pa2)}
@@ -487,13 +432,9 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .m-reset{white-space:normal;line-height:1.35;text-align:left}
 @media(max-width:600px){
   .overlay{padding:18px 14px;align-items:flex-start;overflow:auto}
-  .modal{max-width:none;width:100%;padding:30px 22px;margin:28px 0;max-height:none}
   .modal-title{font-size:22px;margin-bottom:22px}
   .modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
-  .modal-btns .m-reset{grid-column:1 / -1;margin:0;padding:0 0 2px;width:100%}
-  .modal-btns .m-cancel,.modal-btns .m-ok{width:100%;text-align:center;padding:11px 10px}
 }
-@media(max-width:380px){.modal-btns{grid-template-columns:1fr}}
 
 
 /* ═══ MOBILE : CATÉGORIES, VERSETS, MODALES ═══ */
@@ -656,7 +597,7 @@ body.memo-vide .cat-acts #add-cat:hover{background:var(--or-pale)}
 </style>
 <style>
 .auth-ov{position:fixed;inset:0;z-index:4000;background:rgba(8,8,8,.98);display:none;align-items:center;justify-content:center;padding:24px}
-.auth-ov.on{display:flex}#auth-overlay.ouvert{display:flex}
+#auth-overlay.ouvert{display:flex}
 .auth-box{position:relative;width:100%;max-width:400px;background:var(--encre);border:1px solid var(--filet);padding:40px 34px}
 .auth-x{position:absolute;top:16px;right:18px;cursor:pointer;color:var(--pa);font-size:22px;line-height:1;transition:color .3s}
 .auth-x:hover{color:var(--parchemin)}
@@ -704,15 +645,9 @@ if(typeof firebase==='undefined'){var m=document.getElementById('auth-msg');if(m
 <div id="auth-screen">
   <div class="auth-panel">
     <div class="auth-paneltitle" id="auth-paneltitle">Connexion</div>
-    <!-- site privé : pas d'inscription, seulement la connexion (onglets cachés) -->
-    <div class="auth-tabs" id="auth-tabs" style="display:none">
-      <button class="auth-tab on" id="tab-si">Connexion</button>
-      <button class="auth-tab" id="tab-su">Inscription</button>
-    </div>
     <div class="auth-msg" id="auth-msg"></div>
     <div class="auth-fieldrow"><input type="email" class="field" id="i-email" placeholder="Adresse e-mail" autocomplete="email"></div>
     <div class="auth-fieldrow" id="row-pw"><input type="password" class="field" id="i-pw" placeholder="Mot de passe" autocomplete="current-password"></div>
-    <div class="auth-fieldrow" id="row-cf" style="display:none"><input type="password" class="field" id="i-cf" placeholder="Confirmer le mot de passe" autocomplete="new-password"></div>
     <button class="auth-primary" id="b-submit">Se connecter</button>
     <div class="auth-or" id="auth-or">ou</div>
     <button class="auth-google" id="b-google">
@@ -881,27 +816,23 @@ try{db.enablePersistence({synchronizeTabs:true}).catch(function(){});}catch(_){}
 // ════════ i18n ════════
 const T={
   fr:{
-    hdr:'Mémoriser', tag:'Mémoriser', close:'Fermer',
-    tab_si:'Connexion', tab_su:'Inscription',
-    ph_email:'Adresse e-mail', ph_pw:'Mot de passe', ph_cf:'Confirmer le mot de passe',
-    b_si:'Se connecter', b_su:'Créer le compte', b_reset:'Envoyer le lien',
+    hdr:'Mémoriser',
+    ph_email:'Adresse e-mail', ph_pw:'Mot de passe',
+    b_si:'Se connecter', b_reset:'Envoyer le lien',
     google:'Continuer avec Google', forgot:'Mot de passe oublié ?', back:'← Retour',
     reset_sent:'Lien envoyé. Vérifiez votre boîte mail.',
-    pw_mismatch:'Les mots de passe ne correspondent pas.',
-    logout:'Déconnexion',
     cats:'Catégories & mémoire', newcat:'Nouvelle catégorie',
-    start:'Commencer', reset:'Réinitialiser toute la mémoire',
-    reset_q:'Réinitialiser toute la mémoire ? Tous les niveaux reviennent au rouge. Action irréversible.',
+    start:'Commencer',
     reset_verse:'Réinitialiser ce verset',
     find_ref:'Quelle est la référence ?', find_verse:'Quel est le verset ?',
     answered:'répondues', correct:'justes', finish:'Terminer',
     rap_r:'Pas du tout', rap_a:'À peu près', rap_v:'Parfaitement',
-    done:'Session terminée', of:'sur', acquired:'versets acquis', seen:'versets vus', seen1:'verset vu', missed:'À reprendre', missed_none:'Aucune erreur dans cette série.',
+    seen:'versets vus', seen1:'verset vu', missed:'À reprendre',
     backbtn:'Retour',
-    addverse:'Verset', edit:'Modifier', rename:'Renommer', del:'Supprimer',
+    addverse:'Verset', rename:'Renommer', del:'Supprimer',
     mcat:'Nouvelle catégorie', mcat_edit:'Renommer la catégorie', mv_edit:'Modifier le verset',
     f_text:'Texte', f_ref:'Référence (ex : Jean 3:16)', f_name:'Nom',
-    mv:'Ajouter un verset', save:'Enregistrer', cancel:'Annuler',
+    mv:'Ajouter un verset', cancel:'Annuler',
     no_cats:'Aucune catégorie disponible. Ajoutez une catégorie, ou restaurez les catégories de base.',
     empty_sel:'Aucun verset coché. Touchez « Tout sélectionner » en haut de la liste, ou cochez au moins deux versets.',
     not_enough:'Il faut au moins deux versets pour commencer. Cochez-en un second, ou ajoutez un verset.',
@@ -933,7 +864,7 @@ const T={
     mcat_p:'Nouvelle catégorie de passages',
     f_titre:'Titre du passage', f_ref_p:'Référence (ex : Marc 10:46-52)',
     ph_titre:'La guérison de l’aveugle de Jéricho',
-    acquired_p:'passages acquis', seen_p:'passages vus', seen1_p:'passage vu',
+    seen_p:'passages vus', seen1_p:'passage vu',
     no_cats_p:'Aucune catégorie de passages. Créez-en une, puis ajoutez-y des passages.',
     empty_sel_p:'Aucun passage coché. Touchez « Tout sélectionner » en haut de la liste, ou cochez au moins deux passages.',
     not_enough_p:'Il faut au moins deux passages pour commencer. Cochez-en un second, ou ajoutez un passage.',
@@ -954,7 +885,7 @@ const T={
     mcat_c:'Nouvelle catégorie de fiches',
     f_cit:'Le texte (une citation, une définition…)', f_src:'Ce à quoi il se rapporte (ex : saint Augustin, ou le mot défini)',
     ph_cit:'Tu nous as faits pour toi, et notre cœur est sans repos tant qu\u2019il ne repose en toi.',
-    acquired_c:'fiches acquises', seen_c:'fiches vues', seen1_c:'fiche vue',
+    seen_c:'fiches vues', seen1_c:'fiche vue',
     no_cats_c:'Aucune catégorie de fiches. Créez-en une, puis ajoutez-y des fiches.',
     empty_sel_c:'Aucune fiche cochée. Touchez « Tout sélectionner » en haut de la liste, ou cochez au moins deux fiches.',
     not_enough_c:'Il faut au moins deux fiches pour commencer. Cochez-en une seconde, ou ajoutez une fiche.',
@@ -992,7 +923,7 @@ const S={
    nuage du compte suivant à la première action. */
 function razEtat(){
   S.selCats=[]; S.offV={}; S.progress={}; S.step=0; S.customCats=[]; S.baseEdits={}; S.hidCats=[]; S.trash=[];
-  S.sections=[]; S.catSec={}; S.soloCat=null; S.soloSec=null; S.charge=false; S.chargeErr=false; S.grp={}; SALES={}; RAZ_PROG=false;
+  S.sections=[]; S.catSec={}; S.soloCat=null; S.soloSec=null; S.charge=false; S.chargeErr=false; S.grp={}; SALES={};
 }
 
 // ════════ OUTILS ════════
@@ -1013,33 +944,25 @@ function effectiveCats(){
   });
   return [...base,...S.customCats.map(c=>({...c,base:false}))];
 }
-const allCats=effectiveCats;
 /* ── LE GENRE D'UNE CATÉGORIE ──
    'p' pour un passage, 'c' pour une fiche ; rien d'écrit veut dire
    « versets ». Les catégories de base du site sont des versets par nature. */
 const kindDe=c=>{const k=c&&c.kind;return (k==='p'||k==='c')?k:'v';};
 const estPassage=c=>kindDe(c)==='p';
-const estCitation=c=>kindDe(c)==='c';
 const modeP=()=>S.mode==='p';
 const modeC=()=>S.mode==='c';
 /* Le mot juste selon la série où l'on se trouve : une seule table, pour que
    les trois onglets parlent chacun leur langue sans multiplier les tests. */
 function tk(base,kind){
   const k=kind||S.mode;
-  if(k==='p')return t({seen:'seen_p',seen1:'seen1_p',no_cats:'no_cats_p',empty_sel:'empty_sel_p',not_enough:'not_enough_p',acquired:'acquired_p',del_cat_q:'del_cat_q_p',mcat:'mcat_p',addverse:'addpassage'}[base]||base);
-  if(k==='c')return t({seen:'seen_c',seen1:'seen1_c',no_cats:'no_cats_c',empty_sel:'empty_sel_c',not_enough:'not_enough_c',acquired:'acquired_c',del_cat_q:'del_cat_q_c',mcat:'mcat_c',addverse:'addcitation'}[base]||base);
+  if(k==='p')return t({seen:'seen_p',seen1:'seen1_p',no_cats:'no_cats_p',empty_sel:'empty_sel_p',not_enough:'not_enough_p',del_cat_q:'del_cat_q_p',mcat:'mcat_p',addverse:'addpassage'}[base]||base);
+  if(k==='c')return t({seen:'seen_c',seen1:'seen1_c',no_cats:'no_cats_c',empty_sel:'empty_sel_c',not_enough:'not_enough_c',del_cat_q:'del_cat_q_c',mcat:'mcat_c',addverse:'addcitation'}[base]||base);
   return t(base);
 }
 /* Les catégories du mode où l'on se trouve, et elles seules. */
 function catsMode(){return effectiveCats().filter(c=>kindDe(c)===S.mode);}
 function modeLit(){try{const m=localStorage.getItem('lv_memo_mode');if(m==='p'||m==='v'||m==='c')S.mode=m;}catch(e){}}
 function modeEcrit(){try{localStorage.setItem('lv_memo_mode',S.mode);}catch(e){}}
-/* Le genre d'une carte se lit sur sa catégorie. Ces deux fonctions n'ont
-   aucun appel : allItems pose déjà « pas » et « genre » sur chaque carte
-   tirée. */
-function pasDe(vId){const c=effectiveCats().find(x=>x.verses.some(v=>v.id===vId));return c?estPassage(c):false;}
-/* le genre complet d'une carte (verset, passage, fiche) */
-function genreDe(vId){const c=effectiveCats().find(x=>x.verses.some(v=>v.id===vId));return c?kindDe(c):'v';}
 /* ── SECTIONS ──
    Une section range des catégories, elle ne contient aucun verset et ne
    touche à aucun identifiant de progression : c'est un pur classement.
@@ -1047,7 +970,6 @@ function genreDe(vId){const c=effectiveCats().find(x=>x.verses.some(v=>v.id===vI
    une catégorie sans entrée, ou rangée dans une section disparue, tombe
    d'elle-même dans « Hors section ». */
 const secDe=catId=>{const s=S.catSec[catId];return s&&S.sections.some(x=>x.id===s)?s:null;};
-const secNom=id=>{const s=S.sections.find(x=>x.id===id);return s?s.name:'';};
 const secOuverte=id=>S.secOpen[id]!==false;
 function secOpenLit(){try{const o=JSON.parse(localStorage.getItem('lv_memo_sec')||'{}');S.secOpen=(o&&typeof o==='object')?o:{};}catch(e){S.secOpen={};}}
 function secOpenEcrit(){try{localStorage.setItem('lv_memo_sec',JSON.stringify(S.secOpen));}catch(e){}}
@@ -1109,7 +1031,6 @@ function isBase(catId){return PRE.some(c=>c.id===catId);}
    vert ; les groupes arrêtés au départ de la séance ; chacun son tour dans
    un groupe. Le vert revient toutes les six questions, et un verset neuf ne
    bloque jamais un ancien. */
-const JOUR=86400000;
 /* ── L'HEURE VIENT DU SERVEUR ──
    La date d'un passage (p.t) se prend sur l'heure du serveur qui sert la
    page (en-tête « Date » d'une requête HEAD), pour qu'une horloge d'appareil
@@ -1149,10 +1070,6 @@ const niveauEffectif=id=>POIDS[levelOf(id)];
 /* un verset « EN JEU » a déjà été répondu au moins une fois */
 const enJeu=id=>{const p=S.progress[id];return !!(p&&p.t);};
 const vuesOf=id=>(S.progress[id]||{}).v||0;
-/* Sans échéance, rien n'est jamais « dû » : ces deux fonctions disent
-   toujours non, et aucun appel ne les utilise. */
-const isDue=()=>false;
-const dateOf=()=>0;
 
 function answer(id,ok,rap){
   const p=S.progress[id]||{};
@@ -1388,14 +1305,12 @@ async function loadUser(){
    Pour que deux appareils (ou un appareil resté hors ligne) ne s'écrasent
    pas l'un l'autre, on n'envoie que les versets modifiés depuis le dernier
    envoi, fusionnés dans le document (merge) ; un verset retiré est effacé
-   champ par champ. RAZ_PROG réécrirait tout le document, mais rien ne
-   l'arme aujourd'hui. */
-let SALES={}, RAZ_PROG=false;
+   champ par champ. */
+let SALES={};
 function marqueSale(id){SALES[id]=1;}
 function peutEcrire(){return !!(S.uid&&S.charge);}
 function saveProgress(){
   if(!peutEcrire()){return Promise.resolve();}
-  if(RAZ_PROG){RAZ_PROG=false;SALES={};return udoc('meta/progress').set({items:S.progress,step:S.step}).catch(e=>console.warn('sync progress',e));}
   const ids=Object.keys(SALES); SALES={};
   const items={};
   ids.forEach(id=>{items[id]=S.progress[id]?S.progress[id]:firebase.firestore.FieldValue.delete();});
@@ -1610,12 +1525,12 @@ function toggleSelectAll(){const cs=catsMode();const allSel=cs.length&&cs.every(
 function applyLang(){
   const tl=T.fr;
   document.documentElement.lang='fr'; document.title=tl.hdr+' · Lumen Veritatis';
-  $('tab-si').textContent=tl.tab_si; $('tab-su').textContent=tl.tab_su; if($('auth-paneltitle'))$('auth-paneltitle').textContent=('Connexion');
-  $('i-email').placeholder=tl.ph_email; $('i-pw').placeholder=tl.ph_pw; $('i-cf').placeholder=tl.ph_cf;
+  if($('auth-paneltitle'))$('auth-paneltitle').textContent=('Connexion');
+  $('i-email').placeholder=tl.ph_email; $('i-pw').placeholder=tl.ph_pw;
   $('lbl-google').textContent=tl.google;
   $('auth-or').textContent='ou';
   $('b-forgot').textContent=authMode==='forgot'?tl.back:tl.forgot;
-  $('b-submit').textContent=authMode==='si'?tl.b_si:authMode==='su'?tl.b_su:tl.b_reset;
+  $('b-submit').textContent=authMode==='si'?tl.b_si:tl.b_reset;
   if($('macct-ttx'))$('macct-ttx').textContent='Taille du texte';
   if($('macct-tog'))$('macct-tog').textContent='Onglet Bible \u00e0 gauche';
   $('lbl-cats').textContent=tl.cats; $('lbl-newcat').textContent=tl.newcat; $('lbl-newsec').textContent=tl.sec_new;
@@ -1665,12 +1580,6 @@ function startSession(){
      travail se lit dans la liste et dans la prochaine séance. */
   S.grp={}; allItems().forEach(i=>{S.grp[i.id]=enJeu(i.id)?GROUPE_DE(i.id):'r';});
   showView('study'); nextQuestion();
-}
-/* Reste-t-il dans la sélection un verset qui n'est pas vert ? Aucun appel
-   ne l'utilise, et rien ne s'affiche à ce sujet pendant la séance
-   (Emmanuel : l'en-tête reste léger). */
-function resteAReviser(){
-  return allItems().some(i=>levelOf(i.id)!=='v');
 }
 function nextQuestion(){
   const item=nextItem(); if(!item){endSession();return;}
@@ -2509,10 +2418,7 @@ function renderTrash(){
 let authMode='si';
 function setAuth(m){
   authMode=m; clrMsg();
-  $('tab-si').classList.toggle('on',m==='si'); $('tab-su').classList.toggle('on',m==='su');
-  $('auth-tabs').style.display='none';
   $('row-pw').style.display=m==='forgot'?'none':'block';
-  $('row-cf').style.display=m==='su'?'block':'none';
   $('auth-or').style.display=m==='forgot'?'none':'flex';
   $('b-google').style.display=m==='forgot'?'none':'flex';
   applyLang();
@@ -2527,18 +2433,15 @@ document.addEventListener('DOMContentLoaded',()=>{
   caleHorloge();
   window.addEventListener('online',caleHorloge);
   modeLit();
-  $('tab-si').onclick=()=>setAuth('si');
-  $('tab-su').onclick=()=>setAuth('su');
   $('b-forgot').onclick=()=>setAuth(authMode==='forgot'?'si':'forgot');
   $('b-submit').onclick=async()=>{
-    const em=$('i-email').value.trim(),pw=$('i-pw').value,cf=$('i-cf').value; clrMsg();
+    const em=$('i-email').value.trim(),pw=$('i-pw').value; clrMsg();
     try{
       if(authMode==='forgot'){await auth.sendPasswordResetEmail(em);showMsg(t('reset_sent'),'ok');}
-      else if(authMode==='su'){if(pw!==cf){showMsg(t('pw_mismatch'),'err');return;}await auth.createUserWithEmailAndPassword(em,pw);}
       else{await auth.signInWithEmailAndPassword(em,pw);}
     }catch(e){showMsg(e.message,'err');}
   };
-  ['i-email','i-pw','i-cf'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')$('b-submit').click();}));
+  ['i-email','i-pw'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')$('b-submit').click();}));
   $('b-google').onclick=async()=>{try{await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());}catch(e){showMsg(e.message,'err');}};
   $('auth-ouvrir').onclick=(e)=>{e.stopPropagation();
     if(!(auth.currentUser)) return;

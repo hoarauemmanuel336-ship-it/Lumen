@@ -13,7 +13,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <style>
 :root{
-  --encre:#000000;--encre-2:#0b0b0b;--encre-3:#111111;
+  --encre:#000000;--encre-2:#0b0b0b;
   --or:#efe6cf;--or-pale:#f8f3e6;
   /* fond de survol : l'accent, une seule intensité pour tout le site. La
      seconde ligne suit l'accent ; un vieux navigateur garde la première. */
@@ -67,55 +67,8 @@ body>footer{flex-shrink:0}
 .act.danger:hover{color:var(--pourpre)}
 @media(max-width:720px){.acts{gap:24px;margin-top:26px}}
 
-/* ═══ RANGEMENT : SECTIONS ET SOUS-SECTIONS ═══ */
-/* Une rubrique est un intitulé, jamais une boîte. Aucun filet sur les
-   en-têtes, sinon les traits s'empilent (Emmanuel : « des traits sur des
-   traits »). La hiérarchie tient à la taille, à la couleur et au décalage. */
-.rub{margin-bottom:0}
-.rub-tete{display:flex;align-items:center;gap:12px;padding:26px 2px 13px;cursor:pointer}
-.rub-1:first-child>.rub-tete{padding-top:12px}
-.rub-nom{flex:1;min-width:0;font-family:var(--display);font-size:14.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.88);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .3s}
-.rub-tete:hover .rub-nom{color:var(--or)}
-.rub-n{flex-shrink:0;font-size:12.5px;color:var(--pa2)}
-.rub-menu{position:relative;flex-shrink:0;color:var(--pa2);font-size:15px;line-height:1;padding:0 4px;letter-spacing:.08em;transition:color .3s}
-.rub-menu::before{content:'';position:absolute;inset:-14px -7px}
-.rub-menu:hover{color:var(--or)}
-.rub-chev{flex-shrink:0;font-family:var(--display);font-size:18px;color:var(--pa2);line-height:1;transition:transform .3s,color .3s}
-.rub.ouvert>.rub-tete .rub-chev{transform:rotate(90deg);color:var(--or)}
-.rub-corps{display:none;padding-left:18px}
-.rub.ouvert>.rub-corps{display:block;animation:fade .3s ease both}
-.rub-2>.rub-tete{padding:20px 2px 11px}
-.rub-2>.rub-tete .rub-nom{font-size:12.5px;letter-spacing:.18em;color:color-mix(in srgb,var(--or) 82%,transparent)}
-.rub-3>.rub-tete{padding:17px 2px 9px}
-.rub-3>.rub-tete .rub-nom{font-size:13px;letter-spacing:.16em;color:rgba(255,255,255,.55)}
-.rub-vide{font-size:14px;color:var(--pa2);padding:10px 2px 14px}
-@media(max-width:720px){
-  .rub-tete{padding:24px 2px 14px}
-  .rub-corps{padding-left:13px}
-  .rub-chev{font-size:20px}
-}
-
 /* ═══ LISTE ═══ */
-.art-item{display:block;width:100%;text-align:left;padding:20px 10px 18px;box-shadow:inset 0 -1px 0 var(--filet);transition:background .25s,box-shadow .25s;cursor:pointer}
-.art-item:hover{background:var(--surv);box-shadow:inset 2px 0 0 var(--or),inset 0 -1px 0 var(--filet)}
-.art-titre{font-family:var(--display);font-size:23px;color:var(--parchemin);line-height:1.3;transition:color .25s,text-shadow .25s}
-.art-extrait{transition:color .25s}
-.art-vide-titre{color:var(--pa2);font-style:italic}
-.art-extrait{font-size:15px;color:var(--pa);margin-top:5px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.art-pied{display:flex;align-items:center;gap:12px;margin-top:9px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.58)}
-.art-ligne{display:flex;align-items:flex-start;gap:6px;box-shadow:inset 0 -1px 0 var(--filet);transition:background .25s,box-shadow .25s}
-/* Au survol, la ligne s'illumine sans bouger : halo, fond au ton d'accent. */
-.art-ligne:hover{background:var(--surv);box-shadow:0 0 26px var(--halo),inset 0 -1px 0 var(--filet)}
-.art-ligne:hover .art-titre{color:#fff;text-shadow:0 0 14px color-mix(in srgb,var(--or) 28%,transparent)}
-.art-ligne:hover .art-extrait{color:rgba(255,255,255,.75)}
-.art-ligne .art-item{flex:1;min-width:0;box-shadow:none;background:none}
-.art-ligne .art-item:hover{background:none;box-shadow:none}
-.art-menu{position:relative;flex-shrink:0;align-self:center;color:var(--pa2);font-size:15px;line-height:1;padding:0 8px;letter-spacing:.08em;transition:color .3s}
-.art-menu::before{content:'';position:absolute;inset:-16px -8px}
-.art-menu:hover{color:var(--or)}
 .art-etat{color:var(--pa2)}
-.art-etat.publie{color:var(--or)}
-#b-etat.publie{color:var(--or)}
 .vide{font-size:15px;color:var(--pa2);padding:40px 2px;text-align:center;line-height:1.7}
 
 /* ═══ ÉDITEUR ═══ */
@@ -123,80 +76,15 @@ body>footer{flex-shrink:0}
 #ecran-voir{display:none}
 .lire-titre{font-family:var(--display);font-size:calc(38px*var(--lvz,1));line-height:1.16;font-weight:400;color:var(--parchemin);text-align:center;padding:10px 0 6px}
 .lire-pied{text-align:center;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.58);margin-bottom:26px}
-#lire-corps .bloc{padding-left:0}
 @media(max-width:720px){.lire-titre{font-size:calc(30px*var(--lvz,1))}}
 .ed-titre{width:100%;background:none;border:none;color:var(--parchemin);font-family:var(--display);font-size:calc(38px*var(--lvz,1));line-height:1.22;padding:10px 0 20px;outline:none;resize:none;overflow:hidden;text-align:center}
 .ed-titre::placeholder{color:rgba(255,255,255,.22)}
-.ed-corps{padding-top:10px}
-/* La poignée d'un bloc se loge dans la marge, hors du texte, pour que le
-   texte reste d'aplomb sous le titre centré ; sous 900 px, sans marge, elle
-   passe à l'intérieur. */
-.bloc{position:relative;padding:2px 0;margin:0 0 20px}
-.bloc:focus-within .bl-poignee{opacity:1}
-.bl-poignee{position:absolute;left:-34px;top:2px;width:26px;text-align:center;font-size:17px;line-height:1.5;color:rgba(255,255,255,.22);opacity:0;transition:opacity .25s,color .25s;cursor:pointer}
-@media(max-width:900px){.bloc{padding-left:30px}.bl-poignee{left:0}}
-.bloc:hover .bl-poignee{opacity:1}
-.bl-poignee:hover{color:var(--or)}
-.zone{outline:none;min-height:1.6em;word-wrap:break-word}
-.zone:empty::before{content:attr(data-vide);color:rgba(255,255,255,.22);pointer-events:none}
-.zone b,.zone strong{font-weight:600;color:#fff}
-.zone i,.zone em{font-style:italic}
-.zone a{color:var(--or);border-bottom:1px solid rgba(231,224,207,.3)}
-.zone .ref{color:var(--or);cursor:pointer;border-bottom:1px dotted rgba(231,224,207,.4)}
-/* Le texte se lit comme la Bible : même taille, même interligne serré
-   (voulu), même colonne. C'est le blanc entre les blocs qui sépare. */
-.b-p .zone{font-size:calc(20.5px*var(--lvz,1));line-height:1.08;color:rgba(255,255,255,.9)}
-.b-h2 .zone{font-family:var(--display);font-size:calc(28px*var(--lvz,1));line-height:1.16;color:var(--parchemin);margin-top:16px}
-.b-h2{margin-top:20px}
-.b-h3 .zone{font-family:var(--display);font-size:calc(15px*var(--lvz,1));letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin-top:12px}
-.b-h3{margin-top:14px}
-/* Citation : romaine et bien lisible, un filet à gauche la distingue d'un
-   paragraphe. */
-.b-cite{padding-top:10px;padding-bottom:6px}
-.b-cite .zone{font-size:calc(20.5px*var(--lvz,1));line-height:1.14;color:rgba(255,255,255,.88);padding-left:20px;box-shadow:inset 2px 0 0 var(--filet-fort)}
-/* Pas de guillemets automatiques : on les tape si on en veut, certaines
-   citations n'en demandent pas. */
-.b-cite .zone:empty::before{content:attr(data-vide)}
-/* Verset : le format du site, texte en italique entre guillemets français,
-   référence en gras à la suite, sans parenthèses. Les guillemets viennent de
-   la feuille de style : on ne les tape pas, on ne peut pas les effacer. */
-/* L'interligne se pose aussi sur le bloc : une ligne prend la plus grande
-   hauteur entre son contenu et son conteneur. */
-.b-verset{padding-top:4px;padding-bottom:4px;line-height:1.14}
-.b-verset .v-txt{display:inline;font-style:italic;font-size:calc(20.5px*var(--lvz,1));line-height:1.14;color:rgba(255,255,255,.92)}
-.b-verset .v-txt::before{content:'«\00a0'}
-.b-verset .v-txt::after{content:'\00a0»'}
-.b-verset .v-txt:empty::before{content:attr(data-vide);font-style:normal}
-.b-verset .v-txt:empty::after{content:''}
-.b-verset .v-ref{display:inline;font-weight:700;font-size:calc(20.5px*var(--lvz,1));line-height:1.14;color:var(--or);margin-left:.32em;white-space:nowrap}
-.b-verset .v-ref:empty::before{content:attr(data-vide);font-weight:400;white-space:normal}
-/* Image : elle occupe la largeur du texte, sa légende se met dessous. */
-.b-image{padding-top:22px;padding-bottom:16px}
-.b-image figure{margin:0}
-.b-image img{display:block;width:100%;height:auto;background:var(--encre-2)}
-.b-image figcaption{font-size:calc(15px*var(--lvz,1));line-height:1.2;color:var(--pa2);margin-top:9px;font-style:italic}
-.b-image figcaption:empty::before{font-style:normal}
-.im-place{display:flex;align-items:center;justify-content:center;gap:14px;min-height:120px;box-shadow:inset 0 0 0 1px var(--filet);color:var(--pa2);font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:color .3s,background .3s}
-.im-place:hover{color:var(--or);background:var(--surv)}
-.im-etat{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa2);padding:8px 0}
-/* Bloc interactif : le code tourne enfermé, sans accès au site ni aux comptes. */
-.b-html{padding-top:22px;padding-bottom:16px}
-.b-html iframe{display:block;width:100%;border:1px solid var(--filet);background:var(--encre-2)}
-.b-html .im-place{min-height:96px}
-.b-sep{padding-top:14px;padding-bottom:14px}
-.trait-sep{width:44px;height:1px;background:var(--or);opacity:.45;margin:0 auto}
 
-/* barre de mise en forme */
+/* barre de l'éditeur : l'état de l'enregistrement */
 .outils{position:sticky;top:var(--hbar,86px);z-index:30;display:flex;align-items:center;gap:22px;flex-wrap:wrap;padding:12px 2px;margin-bottom:6px;background:var(--encre);box-shadow:inset 0 -1px 0 var(--filet)}
-.ou{position:relative;font-family:var(--display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa2);transition:color .25s}
-.ou::before{content:'';position:absolute;inset:-13px -8px}
-.ou:hover,.ou.on{color:var(--or)}
-.ou-g{font-weight:600}
-.ou-i{font-style:italic;letter-spacing:.1em}
-.ou-sep{width:1px;height:15px;background:var(--filet-f);flex:none}
 .enr{margin-left:auto;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.28);transition:color .3s}
 .enr.vu{color:var(--pa2)}
-@media(max-width:720px){.outils{gap:16px;font-size:12px}.ed-titre{font-size:calc(30px*var(--lvz,1))}.bloc{padding-left:28px;margin-bottom:17px}.b-cite{padding-top:8px;padding-bottom:5px}.b-h2 .zone{font-size:calc(24px*var(--lvz,1))}.b-p .zone,.b-cite .zone,.b-verset .v-txt,.b-verset .v-ref{font-size:calc(19.5px*var(--lvz,1))}}
+@media(max-width:720px){.outils{gap:16px;font-size:12px}.ed-titre{font-size:calc(30px*var(--lvz,1))}}
 
 /* ═══ MODALES ═══ */
 .overlay{position:fixed;inset:0;z-index:120;background:rgba(4,4,4,.9);display:none;align-items:center;justify-content:center;padding:24px}
@@ -298,7 +186,6 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 .ct-pied{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-top:auto;padding-top:15px;font-family:var(--display);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3)}
 .ct-pied::before{content:'';flex-basis:100%;height:1px;margin-bottom:10px;background:linear-gradient(90deg,rgba(231,224,207,.16),rgba(231,224,207,.06) 55%,transparent);transition:background .3s}
 .carte:hover .ct-pied::before{background:linear-gradient(90deg,color-mix(in srgb,var(--or) 45%,transparent),color-mix(in srgb,var(--or) 12%,transparent) 55%,transparent)}
-.ct-etat.publie{color:color-mix(in srgb,var(--or) 85%,transparent)}
 
 /* le choix de la marque, dans l'éditeur : une rangée de tuiles, l'icône
    au-dessus de son nom */
@@ -322,16 +209,14 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 .ct-mq .mq-svg{filter:drop-shadow(0 0 5px color-mix(in srgb,var(--or) 45%,transparent))}
 .carte:hover .ct-mq,.carte.pris .ct-mq{box-shadow:inset 0 0 0 1px var(--or);background:none}
 .ct-pied{color:var(--or);font-size:12.5px;text-shadow:0 0 10px color-mix(in srgb,var(--or) 40%,transparent)}
-.ct-etat.publie{color:var(--or)}
 @media(max-width:600px){.grille{gap:12px}.ct-bas{padding:18px 18px 13px}.ct-titre{font-size:19.5px}.ct-tete{gap:13px}.ct-mq{width:30px;height:30px}}
 /* sans survol, le ⋯ reste bien visible, et le doigt reçoit un retour bref */
 @media not ((hover:hover) and (pointer:fine)){.ct-menu{opacity:.85}.carte:active{background:linear-gradient(180deg,#141414,#0b0b0b 70%)}}
 /* ── LE ⋯ EN BLANC, BIEN ALLUMÉ ──
-   Les trois points des cartes, des catégories et des rayons sont en blanc
+   Les trois points des cartes et des rayons sont en blanc
    plein avec un halo, sans attendre le survol, qui ajoute un peu de lumière. */
-html body .ct-menu,html body .rub-menu,html body .rayon .ry-menu{color:#fff;opacity:1;text-shadow:0 0 10px rgba(255,255,255,.7),0 0 20px rgba(255,255,255,.3)}
-html body .ct-menu:hover,html body .rub-menu:hover,html body .rayon .ry-menu:hover{color:#fff;text-shadow:0 0 12px rgba(255,255,255,.95),0 0 26px rgba(255,255,255,.45)}
-html body .ct-etat,html body .ct-etat.publie{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.7),0 0 20px rgba(255,255,255,.3)}
+html body .ct-menu,html body .rayon .ry-menu{color:#fff;opacity:1;text-shadow:0 0 10px rgba(255,255,255,.7),0 0 20px rgba(255,255,255,.3)}
+html body .ct-menu:hover,html body .rayon .ry-menu:hover{color:#fff;text-shadow:0 0 12px rgba(255,255,255,.95),0 0 26px rgba(255,255,255,.45)}
 
 /* ── la ressource en grand ── */
 .res-cadre{border:1px solid var(--filet);background:#050505;margin:6px 0 4px}
@@ -361,10 +246,6 @@ body.plein{overflow:hidden}
 .res-desc{font-family:var(--serif);font-size:calc(17px*var(--lvz,1));line-height:1.72;color:var(--pa);margin:20px 0 4px;white-space:pre-wrap}
 .res-lien{display:inline-block;margin:22px 0 4px;padding:13px 26px;border:1px solid var(--filet-f);font-family:var(--display);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchemin);text-decoration:none;transition:border-color .3s,color .3s,background .3s}
 .res-lien:hover{border-color:var(--or);color:var(--or);background:var(--surv)}
-.res-tel-rang{display:flex;align-items:center;justify-content:center;margin:26px 0 2px}
-.res-tel{position:relative;font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2);text-decoration:none;transition:color .3s}
-.res-tel::before{content:'';position:absolute;inset:-15px -10px}
-.res-tel:hover{color:var(--or)}
 .res-url{font-size:12.5px;color:var(--pa2);word-break:break-all;margin-top:12px}
 
 /* ── le formulaire ── */
@@ -405,7 +286,7 @@ body.plein{overflow:hidden}
    carte posée sur un rayon y entre ; posée sur un maillon du fil d'Ariane,
    elle remonte. Pas de petites flèches : la poignée seule. Hors du mode,
    rien de tout cela n'existe. */
-.poignee,.fleches{display:none}
+.poignee{display:none}
 body.organise .poignee{display:flex;align-items:center;justify-content:center;flex:none;width:30px;height:30px;color:var(--pa2);font-size:17px;line-height:1;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;transition:color .25s}
 body.organise .poignee:hover{color:var(--or)}
 body.organise .carte,body.organise .rayon{cursor:default}
@@ -663,10 +544,10 @@ const rdoc=()=>db.doc('users/'+S.uid+'/meta/res_rubriques');
    Un lien est une fiche qui montre la porte. L'espèce se choisit à la
    création et ne se montre plus ensuite (choix d'Emmanuel). */
 const TYPES={
-  diagramme:{nom:'Code',      pl:'Codes', accept:'', icone:'<path d="M4 4h6v6H4zM14 4h6v6h-6zM9 14h6v6H9zM7 10v2h10v-2M12 12v2"/>'},
-  image:    {nom:'Image',     pl:'Images',     accept:'image/*', icone:'<path d="M3 5h18v14H3zM3 16l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="9" r="1.5"/>'},
-  pdf:      {nom:'PDF',       pl:'PDF',        accept:'application/pdf', icone:'<path d="M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h6"/>'},
-  lien:     {nom:'Lien',      pl:'Liens',      accept:'', icone:'<path d="M10 13a4 4 0 0 0 6 .5l2-2a4 4 0 0 0-6-6l-1 1M14 11a4 4 0 0 0-6-.5l-2 2a4 4 0 0 0 6 6l1-1"/>'}
+  diagramme:{nom:'Code',  accept:''},
+  image:    {nom:'Image', accept:'image/*'},
+  pdf:      {nom:'PDF',   accept:'application/pdf'},
+  lien:     {nom:'Lien',  accept:''}
 };
 const typeDe=r=>TYPES[r&&r.type]?r.type:'lien';
 
@@ -714,7 +595,6 @@ function marqueDe(r){
   if(MARQUES[m])return m;
   return devineMarque(r);
 }
-const ICONE=t=>'<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">'+(TYPES[t]||TYPES.lien).icone+'</svg>';
 
 // ════════ RANGEMENT ════════
 /* Une rubrique vaut {id, nom, parent}. Le parent est l'identifiant d'une
@@ -758,7 +638,7 @@ let RUBS_LUES=false;
    La page note ce qui est arrivé : qui regarde, le rangement, la liste. Tant
    qu'il manque une pièce, elle dit « Chargement… » au lieu d'affirmer « Rien
    encore » ou de montrer ses boutons trop tôt. */
-let AUTH_VU=false, PUBS_LUES=false, PUB_ERR=false, LISTE_LUE=false, LISTE_ERR=false, RUBS_ERR=false;
+let AUTH_VU=false, LISTE_LUE=false, LISTE_ERR=false, RUBS_ERR=false;
 function pretListe(){
   if(!AUTH_VU)return false;
   /* une lecture qui a ÉCHOUÉ compte comme faite : on montre ce qu'on a, et
@@ -836,8 +716,8 @@ function nomFichier(titre,ext){
 /* le contenu est lu à la demande, puis la ressource s'ouvre en plein écran ;
    « seulSiVue » : ouverture automatique, qui n'a lieu que si l'on est
    toujours sur cette fiche quand le contenu arrive */
-function ouvrePleinCharge(a,publik,seulSiVue){
-  contenuDe(a,publik).then(code=>{
+function ouvrePleinCharge(a,seulSiVue){
+  contenuDe(a).then(code=>{
     if(seulSiVue&&S.vu!==a.id)return;
     if(!code){lvInfo('Ce code est vide.');return;}
     ouvrePlein(a);
@@ -858,11 +738,11 @@ function nomTelecharge(a){
   const ext=((a.nom||'').match(/\.[a-z0-9]{2,5}$/i)||[t==='pdf'?'.pdf':''])[0];
   return a.titre?nomFichier(a.titre,ext):(a.nom||'ressource');
 }
-async function telechargeRessource(a,publik){
+async function telechargeRessource(a){
   if(!a)return;
   if(typeDe(a)==='diagramme'){ telechargeCode(a); return; }
   try{
-    const u=await chargeMedia(a.media,publik);
+    const u=await chargeMedia(a.media);
     const l=document.createElement('a');
     l.href=u; l.download=nomTelecharge(a); l.style.display='none';
     document.body.appendChild(l); l.click(); l.remove();
@@ -870,7 +750,7 @@ async function telechargeRessource(a,publik){
 }
 async function telechargeCode(a){
   if(!a)return;
-  try{ await contenuDe(a,!S.auteur); }catch(e){ lvInfo('Le contenu n’a pas pu être chargé. Vérifiez la connexion, puis réessayez.'); return; }
+  try{ await contenuDe(a); }catch(e){ lvInfo('Le contenu n’a pas pu être chargé. Vérifiez la connexion, puis réessayez.'); return; }
   if(!a.code)return;
   const u=URL.createObjectURL(new Blob([a.code],{type:'text/html;charset=utf-8'}));
   const l=document.createElement('a');
@@ -917,9 +797,8 @@ async function envoieFichier(f){
   if(vieux&&vieux!==id)effaceMedia(vieux);
   rendEditeur(); marqueSale(); enregistre(true);
 }
-async function chargeMedia(id,publik){
-  const cle=(publik?'p:':'')+id;
-  if(CACHE.has(cle))return CACHE.get(cle);
+async function chargeMedia(id){
+  if(CACHE.has(id))return CACHE.get(id);
   const col=mcol();
   const meta=await col.doc(id).get();
   if(!meta.exists)throw new Error('fichier introuvable');
@@ -929,7 +808,7 @@ async function chargeMedia(id,publik){
     bouts.push(t.exists?(t.data().d||''):'');
   }
   const url='data:'+(m.mime||'application/octet-stream')+';base64,'+bouts.join('');
-  CACHE.set(cle,url);
+  CACHE.set(id,url);
   return url;
 }
 /* Un PDF ne s'ouvre pas de façon fiable depuis une adresse « data: ».
@@ -958,7 +837,7 @@ async function effaceMedia(id){
 // ════════ CADRE ISOLÉ ════════
 /* Le code d'une ressource tourne dans un cadre isolé : sandbox sans
    allow-same-origin, donc il ne peut lire ni les comptes, ni les données, ni
-   le reste de la page. Il annonce sa hauteur par message, on l'écoute. */
+   le reste de la page. Il parle à la page par messages, elle les écoute. */
 function pageCadre(code){
   return '<!doctype html><html lang="fr"><head><meta charset="utf-8">'
     +'<meta name="viewport" content="width=device-width,initial-scale=1">'
@@ -978,13 +857,12 @@ function pageCadre(code){
     /* le texte reste sélectionnable au doigt : sur mobile, la copie par
        appui long reste possible */
     +'body{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}'
-    /* Posé dans la page, le cadre est taillé à la hauteur exacte de son
-       contenu : un ascenseur n'y paraîtrait que pour un écart de quelques
-       pixels, et sous Windows il volerait quinze pixels de largeur. Il est
-       fermé d'office (le plein écran le rouvre, voir plus bas). */
+    /* L'ascenseur est fermé d'office : il se rouvre dès que le contenu
+       dépasse l'écran (voir plus bas). Ouvert pour un écart de quelques
+       pixels, il volerait sous Windows quinze pixels de largeur. */
     +'html{overflow:hidden}'
     /* Le contenu est enfermé dans une boîte mesurable. display:flow-root
-       retient les marges de ses enfants : sans cela la boîte serait annoncée
+       retient les marges de ses enfants : sans cela la boîte serait mesurée
        trop courte et le bas du contenu coupé. */
     +'#lv-mesure{display:flow-root}</style></he'+'ad><body>'
     +'<div id="lv-mesure">'+code+'</div>'
@@ -996,9 +874,9 @@ function pageCadre(code){
        l'arbre des éléments et retient le bord bas le plus loin. Elle emporte
        la limite de ce qu'on voit : un élément qui coupe ce qui dépasse (une
        section repliée) devient la nouvelle limite pour ses descendants, et un
-       sous-arbre masqué sort du compte. Le chiffre annoncé est le dernier
+       sous-arbre masqué sort du compte. Le chiffre retenu est le dernier
        pixel vu. */
-    +'var w=document.getElementById("lv-mesure"),dernier=-1,demande=0;'
+    +'var w=document.getElementById("lv-mesure"),dernier=-1;'
     +'function scrute(e,coupe){var cs=getComputedStyle(e);'
     +'if(cs.display==="none"||cs.visibility==="hidden")return 0;'
     +'var r=e.getBoundingClientRect(),b=Math.min(r.bottom,coupe),m=0,i,v,k;'
@@ -1019,22 +897,16 @@ function pageCadre(code){
     /* La boîte est taillée à cette hauteur : sans cela une marge basse rendrait
        la page du cadre défilable de quelques pixels, et le contenu glisserait
        sous le doigt sans raison visible. */
-    +'w.style.height=n+"px";demande=n;'
+    +'w.style.height=n+"px";'
     /* ── QUI DÉFILE, ET QUAND ──
-       Posé dans la page, le cadre fait la hauteur de son contenu : son
-       ascenseur reste fermé. En plein écran, le cadre fait l'écran et le
-       contenu le dépasse : c'est lui qui défile. Il le voit seul en comparant
-       la hauteur mesurée à celle de sa fenêtre. */
-    +'document.documentElement.style.overflow=(n>window.innerHeight+1)?"auto":"hidden";'
-    +'try{parent.postMessage({lvHaut:n},"*");}catch(e){}}'
+       Le cadre fait l'écran : quand le contenu le dépasse, c'est lui qui
+       défile. Il le voit seul en comparant la hauteur mesurée à celle de sa
+       fenêtre. */
+    +'document.documentElement.style.overflow=(n>window.innerHeight+1)?"auto":"hidden";}'
     /* ── CE QUI COLLE EN HAUT SUIT LA LECTURE ──
-       Quand c'est la page qui défile et non le cadre (cadre posé dans la
-       page, à sa hauteur exacte), les éléments « collants » du contenu n'ont
-       rien à quoi s'accrocher. La page envoie alors au cadre la hauteur de
-       contenu passée sous le bord haut de la lecture ; le cadre recense ses
-       éléments collants et les fait glisser d'autant par une translation
-       (fluide, sans refaire la mise en page), sans sortir de leur bloc. En
-       plein écran, le cadre défile lui-même et la page n'envoie rien. */
+       Le cadre recense ses éléments « collants » ; celui qui est passé
+       au-dessus du haut de l'écran glisse jusque-là par une translation
+       (fluide, sans refaire la mise en page), sans sortir de son bloc. */
     +'var vueHaut=0,collants=[],attente=0;'
     /* Chaque recensement remet à zéro les translations qu'il a posées avant de
        refaire sa liste : un titre qui ne colle plus (section repliée)
@@ -1059,10 +931,6 @@ function pageCadre(code){
     +'pr=p.getBoundingClientRect();d=vueHaut+s.t-nat;if(d<0)d=0;'
     +'max=pr.bottom-nat-r.height;if(max<0)max=0;if(d>max)d=max;'
     +'if(d!==s.d){s.d=d;e.style.transform=d?("translateY("+d+"px)"):"";}}}'
-    /* ── LA PAGE RÉPOND CE QU'ELLE A PU DONNER ──
-       Elle plafonne la hauteur par prudence. Le cadre écoute la réponse : s'il
-       a eu moins que demandé, il rouvre son défilement pour que rien de ce qui
-       dépasse ne soit perdu. */
     /* ── LA PLACE OÙ L'ON EN ÉTAIT ──
        En plein écran, le cadre défile : lui seul sait où le lecteur s'est
        arrêté. Il le dit à la page, qui le garde et le lui rend à la
@@ -1107,10 +975,8 @@ function pageCadre(code){
     +'window.scrollTo(0,Math.max(0,Math.min(Math.round(cible()),m)));}'
     +'window.addEventListener("message",function(e){var d=e.data;if(!d)return;'
     +'if(typeof d.lvRevoir==="number"){posVoulue=d.lvRevoir;posInfo=d.lvRevoirInfo||null;reposeToi();'
-    +'setTimeout(reposeToi,150);setTimeout(reposeToi,500);setTimeout(reposeToi,1200);return;}'
-    +'if(d.lvVue&&typeof d.lvVue.haut==="number"){vueHaut=d.lvVue.haut;colle();return;}'
-    +'if(typeof d.lvApplique!=="number")return;'
-    +'document.documentElement.style.overflow=(d.lvApplique<demande-1)?"auto":"hidden";});'
+    +'setTimeout(reposeToi,150);setTimeout(reposeToi,500);setTimeout(reposeToi,1200);}'
+    +'});'
     /* ── LES LIENS INTERNES DU CONTENU RESTENT CHEZ LUI ──
        Le cadre est écrit par srcdoc : son adresse de base est celle de la
        page, si bien qu'un lien « #ch13 » chargerait ressources.html dans le
@@ -1213,31 +1079,15 @@ function copieVieille(txt){
     return true;
   }catch(e){return false;}
 }
-/* Les messages des cadres : hauteur, ancre, place, état, progression,
-   copies. On ne répond qu'aux cadres de cette page : n'importe quel onglet
-   peut envoyer un message, aucun ne doit pouvoir écrire dans le
-   presse-papier par ce chemin. */
+/* Les messages des cadres : ancre, place, état, progression, copies. On
+   ne répond qu'aux cadres de cette page : n'importe quel onglet peut
+   envoyer un message, aucun ne doit pouvoir écrire dans le presse-papier
+   par ce chemin. */
 window.addEventListener('message',e=>{
   const d=e.data; if(!d)return;
   let cadre=null;
   document.querySelectorAll('iframe[data-diag]').forEach(f=>{if(f.contentWindow===e.source)cadre=f;});
   if(!cadre)return;
-  if(typeof d.lvHaut==='number'){
-    /* Le cadre vaut exactement ce que le contenu annonce, sans pixel de rab.
-       Le plafond de quarante mille pixels n'est qu'un garde-fou contre un
-       chiffre aberrant, hors d'atteinte d'un vrai diagramme déplié. La
-       hauteur accordée est renvoyée au cadre, qui rouvre son défilement si
-       elle est inférieure à sa demande. */
-    /* En plein écran, le cadre fait l'écran : la hauteur annoncée ne le
-       concerne pas. Les codes de cette page s'ouvrant tous en plein écran,
-       la suite ne sert qu'à un cadre posé dans la page. */
-    if(cadre.classList.contains('res-plein'))return;
-    const accorde=Math.max(40,Math.min(40000,Math.round(d.lvHaut)));
-    cadre.style.height=accorde+'px';
-    try{e.source.postMessage({lvApplique:accorde},'*');}catch(_){}
-    suitVue();
-    return;
-  }
   /* Un cadre qui ne défile pas lui-même : quand un lien interne de son
      contenu désigne un endroit plus bas, c'est la page qui porte la lecture
      jusque-là, sous la barre du site. */
@@ -1451,28 +1301,7 @@ function pousseProgression(){
 document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='hidden')pousseProgression(); });
 window.addEventListener('pagehide',pousseProgression);
 
-/* ── LA PAGE DIT AU CADRE OÙ EN EST LA LECTURE ──
-   Pour un cadre posé dans la page (pas en plein écran), qui ne défile
-   jamais : on lui envoie combien de contenu est passé au-dessus du bord haut
-   de la lecture, c'est-à-dire sous la barre du site, mesurée à l'instant. Il
-   fait glisser lui-même ce qui doit rester visible. L'envoi est calé sur le
-   rythme d'affichage : un message par image, pas un par pixel. */
-let vuePrevue=0;
-function diffuseVue(){
-  vuePrevue=0;
-  const cadres=document.querySelectorAll('iframe[data-diag]');
-  if(!cadres.length)return;
-  const plafond=hautLecture();
-  cadres.forEach(f=>{
-    if(f.classList.contains('res-plein'))return;
-    const r=f.getBoundingClientRect();
-    try{f.contentWindow.postMessage({lvVue:{haut:Math.max(0,plafond-r.top)}},'*');}catch(_){}
-  });
-}
-window.addEventListener('scroll',suitVue,{passive:true,capture:true});
-window.addEventListener('resize',suitVue);
-
-function carteRessource(r,publik){
+function carteRessource(r){
   const t=typeDe(r), titre=(r.titre||'').trim();
   const d=document.createElement('div');
   d.className='carte'+(S.pris.has('c:'+r.id)?' pris':''); d.dataset.rid2=r.id;
@@ -1487,15 +1316,14 @@ function carteRessource(r,publik){
     +'<div class="ct-pied">'
     +'<span>'+esc(dateFr(r.maj||r.cree))+'</span>'
     +'</div></div>'
-    +(publik?'':'<span class="coche" aria-hidden="true">✓</span>'
-      +'<span class="ct-menu" data-rmenu2="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Cette ressource">⋯</span>'
-      +'<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>'
-      );
+    +'<span class="coche" aria-hidden="true">✓</span>'
+    +'<span class="ct-menu" data-rmenu2="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Cette ressource">⋯</span>'
+    +'<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>';
   return d;
 }
-function grilleDe(liste,publik){
+function grilleDe(liste){
   const g=document.createElement('div'); g.className='grille';
-  liste.forEach(r=>g.appendChild(carteRessource(r,publik)));
+  liste.forEach(r=>g.appendChild(carteRessource(r)));
   return g;
 }
 /* ── OÙ L'ON EST ──
@@ -1525,19 +1353,19 @@ function majFil(){
   $('titre-liste').textContent=bouts.length?bouts[bouts.length-1].nom:'Ressources';
   const tete=$('titre-liste').parentElement; if(tete)tete.classList.toggle('dedans',!!bouts.length);
 }
-function rayonDe(r,publik){
+function rayonDe(r){
   const d=document.createElement('div');
   d.className='rayon'+(S.pris.has('r:'+r.id)?' pris':''); d.dataset.va=r.id;
   d.setAttribute('role','button'); d.setAttribute('tabindex','0');
-  d.innerHTML=(publik?'':'<span class="coche" aria-hidden="true">✓</span>'
-    +'<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>')
+  d.innerHTML='<span class="coche" aria-hidden="true">✓</span>'
+    +'<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>'
     +'<span class="ry-nom">'+esc(r.nom)+'</span><span class="ry-n">'+compteRub(r.id)+'</span>'
-    +(publik?'':'<span class="ry-menu" data-rmenu="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Actions">⋯</span>')
+    +'<span class="ry-menu" data-rmenu="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Actions">⋯</span>'
     +'<span class="ry-chev">›</span>';
   return d;
 }
 function rendLister(){
-  const ou=ici(), publik=!S.auteur;
+  const ou=ici();
   majFil();
   /* le bouton dit ce qu'il va faire à cet endroit : une catégorie à la
      racine, une section dès qu'on est entré quelque part */
@@ -1551,21 +1379,19 @@ function rendLister(){
   if(!pretListe()){ h.innerHTML='<div class="vide">Chargement…</div>'; return; }
   const fils=enfants(ou), res=ressourcesDe(ou);
   if(!fils.length&&!res.length){
-    if((PUB_ERR&&!S.auteur)||(LISTE_ERR&&S.auteur)){ h.innerHTML='<div class="vide">Les ressources n’ont pas pu être lues.<br>Vérifiez la connexion, puis rechargez la page.</div>'; return; }
+    if(LISTE_ERR&&S.auteur){ h.innerHTML='<div class="vide">Les ressources n’ont pas pu être lues.<br>Vérifiez la connexion, puis rechargez la page.</div>'; return; }
     h.innerHTML=ou
       ? '<div class="vide">Rien ici pour l’instant.</div>'
-      : (publik
-         ? '<div class="vide">Aucune ressource publiée pour l’instant.</div>'
-         : '<div class="vide">Rien encore.<br>Crée une catégorie (Bible, Liturgie, Histoire…),<br>puis range dedans ce que tu veux garder.</div>');
+      : '<div class="vide">Rien encore.<br>Crée une catégorie (Bible, Liturgie, Histoire…),<br>puis range dedans ce que tu veux garder.</div>';
     return;
   }
   if(fils.length){
     const g=document.createElement('div'); g.className='rayons';
-    fils.forEach(r=>g.appendChild(rayonDe(r,publik)));
+    fils.forEach(r=>g.appendChild(rayonDe(r)));
     h.appendChild(g);
   }
   /* Ce qui est ici vient après les rayons : on descend d'abord, on lit ensuite. */
-  if(res.length)h.appendChild(grilleDe(res,publik));
+  if(res.length)h.appendChild(grilleDe(res));
 }
 
 // ════════ ACTIONS DE RANGEMENT ════════
@@ -1883,7 +1709,7 @@ async function telechargeChoix(){
   if(ok.length>1&&!await lvConfirm('Télécharger '+ok.length+' fichiers ?'+(sans?' ('+sans+(sans>1?' liens ne se téléchargent pas)':' lien ne se télécharge pas)'):'')))return;
   /* l'un après l'autre, avec un court répit : les navigateurs refusent
      plusieurs téléchargements lancés au même instant */
-  for(const a of ok){ await telechargeRessource(a,false); await new Promise(r=>setTimeout(r,450)); }
+  for(const a of ok){ await telechargeRessource(a); await new Promise(r=>setTimeout(r,450)); }
 }
 async function deplaceChoix(){
   if(!S.pris.size)return;
@@ -2153,7 +1979,7 @@ async function effaceCode(col,id){
   if(m&&m.n)await effaceTranches(col,id,m);
   await col.doc(id).delete();
 }
-async function contenuDe(a,publik){
+async function contenuDe(a){
   if(!a||typeDe(a)!=='diagramme')return '';
   if(typeof a.code==='string'&&a.code)return a.code;
   if(CODES.has(a.id)){a.code=CODES.get(a.id);return a.code;}
@@ -2164,7 +1990,7 @@ async function contenuDe(a,publik){
   CODES.set(a.id,code); a.code=code;
   /* la marque devinée est mise à jour dès qu'on ouvre le contenu, et la
      liste la montre ensuite */
-  if(!publik&&S.auteur&&S.uid&&code){
+  if(S.auteur&&S.uid&&code){
     const m=devineMarque(a);
     if(m&&m!==(a.marqueDevinee||'')){ a.marqueDevinee=m; acol().doc(a.id).update({marqueDevinee:m}).catch(()=>{}); }
   }
@@ -2210,7 +2036,7 @@ function vue(quoi){
   else if(quoi==='corbeille')rendCorbeille();
   window.scrollTo(0,0);
 }
-function corpsVoir(a,publik){
+function corpsVoir(a){
   const t=typeDe(a), c=document.createElement('div');
   if(t==='lien'){
     let u=String(a.url||'').trim();
@@ -2228,9 +2054,9 @@ function corpsVoir(a,publik){
       if(a.desc){const d=document.createElement('div');d.className='res-desc';d.textContent=a.desc;c.appendChild(d);}
       const b=document.createElement('button');
       b.type='button'; b.className='res-rouvrir'; b.textContent='Ouvrir';
-      b.onclick=()=>ouvrePleinCharge(a,publik,false);
+      b.onclick=()=>ouvrePleinCharge(a,false);
       c.appendChild(b);
-      setTimeout(()=>ouvrePleinCharge(a,publik,true),60);
+      setTimeout(()=>ouvrePleinCharge(a,true),60);
       return c;
     }
     c.innerHTML='<div class="res-desc">Ce code est vide.</div>';
@@ -2242,7 +2068,7 @@ function corpsVoir(a,publik){
   c.appendChild(cadre);
   if(a.desc){const d=document.createElement('div');d.className='res-desc';d.textContent=a.desc;c.appendChild(d);}
   if(a.media){
-    chargeMedia(a.media,publik).then(u=>{
+    chargeMedia(a.media).then(u=>{
       cadre.innerHTML='';
       if(t==='image'){
         const im=document.createElement('img'); im.alt=a.titre||''; im.src=u;
@@ -2336,14 +2162,14 @@ document.addEventListener('keydown',e=>{
   /* Échap referme d'abord la Bible si elle est ouverte, sans quitter la ressource */
   if(e.key==='Escape'&&PLEIN&&!document.querySelector('#bp-pan.on'))retourRessources();
 });
-function voit(a,publik){
+function voit(a){
   if(!a){S.vu='';vue('liste');return;}
   /* on retient la ressource ouverte : c'est elle que l'on rouvre si la page
      se réveille (retour d'onglet, compte rafraîchi) au lieu de la liste */
   S.vu=a.id;
   $('voir-titre').textContent=a.titre||'Sans titre';
   $('voir-pied').textContent=dateFr(a.maj||a.cree)+(a.chemin?'  ·  '+a.chemin:'');
-  const c=$('voir-corps'); c.innerHTML=''; c.appendChild(corpsVoir(a,publik));
+  const c=$('voir-corps'); c.innerHTML=''; c.appendChild(corpsVoir(a));
   vue('voir');
   /* une entrée d'historique par ressource ouverte, jamais deux fois la même :
      sinon chaque « précédent » recréerait l'entrée et l'on ne sortirait plus.
@@ -2359,14 +2185,14 @@ async function menuRessource(id){
     {cle:'suppr',nom:'Mettre à la corbeille',danger:true}
   ]);
   if(c==='modif')ouvre(id);
-  else if(c==='tel')telechargeRessource(a,false);
+  else if(c==='tel')telechargeRessource(a);
   else if(c==='ranger')rangeRessource(id);
   else if(c==='suppr'){
-    if(!await lvConfirm('Mettre cette ressource à la corbeille ? Elle quitte la ligne et vous la retrouvez dans la corbeille.'))return;
+    if(!await lvConfirm('Mettre cette ressource à la corbeille ? Vous pourrez la rétablir depuis la corbeille.'))return;
     try{ await jetteRessource(a,''); rendLister(); majCorbBouton(); }
     catch(e){
       console.warn('corbeille',e); rendLister();
-      lvInfo('La mise à la corbeille a échoué : la ressource est peut-être encore en ligne. Vérifiez la connexion, puis réessayez.');
+      lvInfo('La mise à la corbeille n’a pas abouti. Vérifiez la connexion, puis réessayez.');
     }
   }
 }
@@ -2549,7 +2375,7 @@ async function enregistreUneFois(silence){
 async function ouvre(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
   let code='';
-  try{ code=await contenuDe(a,false); }
+  try{ code=await contenuDe(a); }
   catch(e){ console.warn('contenu',e); lvInfo('Le contenu de cette ressource n’a pas pu être chargé. Vérifiez la connexion, puis réessayez.'); return; }
   S.res=JSON.parse(JSON.stringify(a)); S.sale=false;
   if(typeDe(a)==='diagramme')S.res.code=code;
@@ -2567,7 +2393,7 @@ function nouveau(){
 }
 async function supprime(){
   if(!S.res)return;
-  if(!await lvConfirm('Mettre cette ressource à la corbeille ? Elle quitte la ligne et vous la retrouvez dans la corbeille.'))return;
+  if(!await lvConfirm('Mettre cette ressource à la corbeille ? Vous pourrez la rétablir depuis la corbeille.'))return;
   clearTimeout(S.minute);
   const copie=S.res;
   S.res=null; S.sale=false;
@@ -2580,7 +2406,7 @@ async function supprime(){
     rendLister(); majCorbBouton();
   }catch(e){
     console.warn('corbeille',e); rendLister();
-    lvInfo('La mise à la corbeille a échoué : la ressource est peut-être encore en ligne. Vérifiez la connexion, puis réessayez.');
+    lvInfo('La mise à la corbeille n’a pas abouti. Vérifiez la connexion, puis réessayez.');
   }
 }
 
@@ -2675,15 +2501,6 @@ document.addEventListener('click',e=>{
   if(c){e.stopPropagation();menuRessource(c.getAttribute('data-rmenu2'));return;}
   const m=e.target.closest?e.target.closest('[data-rmenu]'):null;
   if(m){e.stopPropagation();menuRub(m.getAttribute('data-rmenu'));return;}
-  const fl=e.target.closest?e.target.closest('[data-mv]'):null;
-  if(fl&&S.organise){
-    e.stopPropagation();
-    const pas=parseInt(fl.getAttribute('data-mv'),10)||0;
-    const ca=fl.closest('.carte'), ry=fl.closest('.rayon');
-    if(ca){const id=ca.dataset.rid2,a=S.liste.find(x=>x.id===id);if(a){const f=ressourcesDe(rubValide(a.rub)?a.rub:'');deplaceRessource(id,f.findIndex(x=>x.id===id)+pas);}}
-    else if(ry){const id=ry.dataset.va,r=rubDe(id);if(r){const f=enfants(r.parent||'');deplaceRubrique(id,f.findIndex(x=>x.id===id)+pas);}}
-    return;
-  }
   if(e.target.closest&&e.target.closest('.poignee'))return;
   const v=e.target.closest?e.target.closest('[data-va]'):null;
   if(v){
@@ -2698,7 +2515,7 @@ document.addEventListener('click',e=>{
     if(S.organise)return;
     const id=k.getAttribute('data-rid2');
     const a=S.auteur?S.liste.find(x=>x.id===id):null;
-    if(a)voit(a,!S.auteur);
+    if(a)voit(a);
   }
 });
 document.addEventListener('keydown',e=>{
@@ -2763,7 +2580,7 @@ auth.onAuthStateChanged(u=>{
   /* les règles de sécurité n'acceptent l'écriture que d'une adresse
      vérifiée : si ce n'est pas le cas, on le dit tout de suite plutôt que de
      laisser chaque enregistrement échouer sans explication */
-  if(S.auteur&&u&&u.emailVerified===false)setTimeout(()=>lvInfo('Votre adresse e-mail n’est pas vérifiée : les règles de sécurité refuseront toute mise en ligne tant qu’elle ne l’est pas. Connectez-vous avec Google, ou faites vérifier l’adresse depuis la console Firebase.'),600);
+  if(S.auteur&&u&&u.emailVerified===false)setTimeout(()=>lvInfo('Votre adresse e-mail n’est pas vérifiée : les règles de sécurité refuseront tout enregistrement tant qu’elle ne l’est pas. Connectez-vous avec Google, ou faites vérifier l’adresse depuis la console Firebase.'),600);
   S.res=null; S.vu=''; S.liste=[]; S.jetees=[]; S.rubs=[]; S.corb=[]; S.pris.clear(); RUBS_LUES=false; RUBS_ERR=false; LISTE_ERR=false;
   if(S.auteur){ vue('liste'); motAccueil(); ecoute(); setTimeout(()=>{menagePublic().catch(e=>console.warn('ménage',e));},4000); }
   else{ if(COUPE){COUPE();COUPE=null;} $('acts-liste').style.display='none'; ouvrePublic(); }
@@ -2782,7 +2599,7 @@ function routeHash(){
   const mr=h.match(/^#r\/(.+)$/);
   if(mr){
     const a=S.auteur?S.liste.find(x=>x.id===mr[1]):null;
-    if(a){voit(a,!S.auteur);return;}
+    if(a){voit(a);return;}
     /* la liste n'est pas encore arrivée : on garde l'adresse en mémoire et on
        ouvrira dès que les données seront là, plutôt que de retomber à la
        racine */

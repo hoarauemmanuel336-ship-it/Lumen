@@ -63,7 +63,6 @@
 /* ── 1. LES JETONS ── */
 :root{
   /* les deux couleurs */
-  --h-noir:#000;
   --h-or:var(--or,#efe6cf);
 
   /* surfaces : du noir, teinté d'une pointe de crème à mesure qu'elles
@@ -96,10 +95,7 @@
   --h-texte:'Literata',Georgia,serif;
 
   /* rayons */
-  --h-r1:0;
   --h-r2:0;
-  --h-r3:0;
-  --h-rp:0;
 
   /* mouvement */
   --h-doux:cubic-bezier(.22,.8,.26,1);
@@ -108,7 +104,6 @@
      toutes les règles des pages prennent les mêmes nuances */
   --encre:#000;
   --encre-2:var(--h-s1);
-  --encre-3:var(--h-s2);
   --filet:var(--h-l1);
   --filet-f:var(--h-l1);
   --filet-fort:var(--h-l2);
@@ -205,7 +200,6 @@ html body header nav.menu .rech-loupe svg{width:18px;height:18px}
 html.barre-rangee body header{background:#000}
 html.barre-rangee body header .barre{display:block;padding:0;max-width:none}
 html.barre-rangee body .barre-poignee{width:100%;height:auto;margin:0;padding:6px 0 7px;border-radius:0}
-html.barre-rangee body .barre-poignee:hover{background:var(--h-s1)}
 
 /* ── LE TÉLÉPHONE : barre fine en haut, barre d'onglets en bas ── */
 @media(max-width:720px){
@@ -263,7 +257,6 @@ html body footer .verset-pied .ref-pied{
   font-style:normal;font-family:var(--h-ui);font-weight:700;font-size:15.5px;letter-spacing:.04em;
   color:#fff;white-space:nowrap;margin-left:4px;
 }
-html body footer .marque,html body footer .copy{display:none}
 @media(max-width:720px){
   html body footer{margin-top:48px;padding:44px 24px 40px}
   html body footer .verset-pied{font-size:16px}
@@ -298,7 +291,6 @@ html body .rech-item{padding:14px 16px;border:0;border-radius:0;transition:backg
 html body .rech-item:hover,html body .rech-item.kact{padding-left:16px;background:var(--h-s3)}
 html body .rech-meta{font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.1em;color:var(--h-or);margin-bottom:4px}
 html body .rech-titre{font-family:var(--h-titre);font-size:22px}
-html body .rech-extrait{font-family:var(--h-texte);font-size:16px;color:var(--h-t2)}
 @media(max-width:720px){
   html body .rech-overlay .rech-boite{margin:12px 10px 0;max-height:calc(100% - 24px - var(--lv-bas,0px))}
   html body #rech-champ{font-size:23px}
@@ -342,13 +334,11 @@ html body .auth-m-msg{border-radius:0;font-family:var(--h-ui);font-size:13.5px}
 /* rangées de réglages dans le compte */
 html body :is(.ttx-row,.tog-row){margin:12px 0 4px;padding:14px 2px 0;border-top:1px solid var(--h-l1)}
 html body :is(.ttx-lab,.tog-lab){font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--h-t2)}
-html body .ttx-btns{gap:0;padding:3px;border-radius:0;background:var(--h-s3)}
 html:root body .ttx-b{
   min-width:40px;height:32px;padding:0 10px;border:0;border-radius:0;
   font-family:var(--h-ui);font-size:13px;font-weight:600;
   background:none;color:var(--h-t2);
 }
-html:root body .ttx-b:is(:hover,:focus-visible){background:var(--h-or);color:#000}
 /* l'interrupteur (sa forme ronde est réglée plus bas) */
 html body .tog-sw{width:46px;height:28px;border-radius:0;border:0;background:var(--h-s4);transition:background .25s}
 html body .tog-sw::after{left:3px;width:22px;height:22px;border-radius:0;background:rgba(255,255,255,.7);box-shadow:0 2px 6px rgba(0,0,0,.5)}
@@ -361,7 +351,7 @@ html body .tog-sw.on::after{left:21px;background:#000}
    d'interface, sans majuscules espacées ; le survol les éclaircit et les
    soulève d'une lueur. Leurs coins arrondis sont réglés plus bas.
    ════════════════════════════════════════════════════════════════════ */
-html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.auth-m-primary,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x,.memo-start){
+html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.auth-m-primary,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x){
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   min-height:44px;padding:11px 22px;border:0;border-radius:0;
   background:var(--h-or);color:#000;
@@ -369,11 +359,11 @@ html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct
   box-shadow:0 0 0 0 transparent;
   transition:background .25s,box-shadow .3s,transform .2s,color .25s;
 }
-html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.auth-m-primary,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x,.memo-start):is(:hover,:focus-visible){
+html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.auth-m-primary,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x):is(:hover,:focus-visible){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;border-color:transparent;
   box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);
 }
-html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.ghost-btn,.finish,.memo-start):active{transform:scale(.98)}
+html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.ghost-btn,.finish):active{transform:scale(.98)}
 html:root body :is(.acts .act,.ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn)::before{content:none}
 /* les boutons de liste dans les fenêtres (Mes notes, Mes signets…) */
 html:root body :is(.macct-btn,.auth-m-btn,.bacct-btn){display:flex;width:100%;margin-bottom:8px}
@@ -383,18 +373,11 @@ html:root body :is(.auth-google,.auth-m-google,.ab-google) svg{flex:none}
 /* rangées d'actions */
 html body .acts{gap:10px}
 html body #acts-liste{gap:10px}
-html body #acts-liste .acts-haut{gap:10px}
-html body #acts-liste .acts-outils{gap:8px}
-html:root body #acts-liste .acts-outils .act{min-height:38px;padding:8px 18px;font-size:13px}
 /* les rangées d'actions des listes (Articles, Ressources, Commentaires) :
    les pages leur donnent des capitales espacées, ramenées ici à la voix
    des boutons */
 html:root body #acts-liste .act{letter-spacing:.01em;text-transform:none;background-image:none;white-space:nowrap}
 html:root body #acts-liste .act::before,html:root body #acts-liste .act::after{content:none}
-@media(max-width:600px){
-  html:root body #acts-liste .acts-haut .act{min-height:48px;padding:10px 12px;font-size:13.5px;letter-spacing:.01em;line-height:1.2;white-space:normal}
-  html:root body #acts-liste .acts-outils .act{flex:1 1 0;min-height:40px;padding:8px 10px;font-size:13px;letter-spacing:.01em}
-}
 
 /* ════════════════════════════════════════════════════════════════════
    8. LES « ⋯ » : blancs, bien allumés, partout. Un fond sombre paraît
@@ -412,7 +395,6 @@ html body :is(.art-menu,.ct-menu,.rub-menu,.ry-menu,.nt-menu,.sec-menu):is(:hove
 /* ════════════════════════════════════════════════════════════════════
    9. LES CHAMPS
    ════════════════════════════════════════════════════════════════════ */
-html body :is(input,textarea,select):focus-visible{outline:none}
 html body input::placeholder,html body textarea::placeholder{color:var(--h-t4)}
 
 /* ════════════════════════════════════════════════════════════════════
@@ -453,18 +435,10 @@ html body #bp-pan .bp-icone{width:36px;height:36px;justify-content:center;border
 html body #bp-pan .bp-icone:first-of-type{margin-left:0}
 html body #bp-pan .bp-icone:hover{color:#fff;background:var(--h-s3)}
 html body #bp-pan .bp-page{font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.01em;text-transform:none;color:#000;background:var(--h-or);padding:8px 14px;border-radius:0}
-html body #bp-pan .bp-page:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000}
 html body #bp-pan .bp-fermer{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;border-radius:0;font-size:14px;color:var(--h-t2);background:var(--h-s3)}
 html body #bp-pan .bp-fermer:hover{color:#fff;background:var(--h-s4)}
 html body #bp-pan .bp-refrow{gap:8px;padding:12px 14px 12px 20px;border-bottom:1px solid var(--h-l1)}
-html body #bp-pan .bp-ref{border:1px solid var(--h-l2);border-radius:0;padding:9px 16px;background:var(--h-s1);font-family:var(--h-ui);font-size:14px}
-html body #bp-pan .bp-ref:focus{border-color:var(--h-or);box-shadow:none}
-html body #bp-pan .bp-ref::placeholder{font-style:normal;color:var(--h-t4)}
-html body #bp-pan .bp-aller{font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.01em;text-transform:none;color:#000;background:var(--h-or);padding:9px 16px;border-radius:0}
-html body #bp-pan .bp-aller:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000}
 html body #bp-pan .bp-chip{border-radius:0;border-color:var(--h-l2);padding:5px 12px;font-family:var(--h-ui);font-size:13px;background:var(--h-s1)}
-html body #bp-pan .bp-chip:hover{border-color:var(--h-l3);background:var(--h-s3)}
-@media(max-width:720px){html body #bp-pan{border-radius:0}}
 
 /* ════════════════════════════════════════════════════════════════════
    12. LES PETITES FENÊTRES D'INFORMATION ET LES MENUS FLOTTANTS
@@ -531,17 +505,10 @@ html:root body:not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts
 html:root body:not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn)+:is(.act,.ghost-btn,.notes-btn)::before{
   content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:rgba(0,0,0,.16);inset-inline-end:auto;
 }
-html:root body:not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible){
-  background:color-mix(in srgb,var(--h-or) 45%,#fff);color:#000;box-shadow:none;transform:none;
-}
-html:root body:not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):active{transform:none}
 @media(max-width:600px){
   html:root body:not(#_) :is(#acts-liste:has(>.acts-haut),#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts){width:100%;flex-wrap:wrap}
-  html:root body:not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts){gap:1px;padding:0;background:color-mix(in srgb,var(--h-or) 84%,#000);border:3px solid var(--h-or)}
   html:root body:not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn){flex:1 1 30%;background:var(--h-or)}
-  html:root body:not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn)+:is(.act,.ghost-btn,.notes-btn)::before{content:none}
   html:root body:not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn){min-height:44px;padding:8px 8px;font-size:13px;white-space:normal}
-  html:root body:not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible){background:color-mix(in srgb,var(--h-or) 45%,#fff)}
 }
 
 /* un bouton réduit à son icône (la poubelle) : la case reste à la taille
@@ -558,17 +525,12 @@ html:root body .act.act-ic{gap:0}
    soulève d'une lueur. Les coins des cases sont repris plus bas (« LES
    CASES DES BANDEAUX »).
    ════════════════════════════════════════════════════════════════════ */
-html:root body:not(#_) :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.auth-m-primary,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.memo-start,.mini-act,.trash-act,.mv-bible,.mbib-tout,.jt-act,.notes-btn,.notes-lien){border-radius:12px}
-html:root body:not(#_) #app .start{border-radius:12px}
+html:root body:not(#_) :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.auth-m-primary,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.mini-act,.trash-act,.mv-bible,.mbib-tout,.jt-act,.notes-btn){border-radius:12px}
 
 /* les bandeaux : le contour arrondi, chaque case arrondie à l'intérieur */
 html:root body:not(#_):not(#_) :is(#acts-liste:has(>.acts-haut),#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts){border-radius:14px;overflow:visible}
 html:root body:not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn){
   border-radius:11px;transition:background .25s,box-shadow .3s,transform .2s}
-html:root body:not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible){
-  z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);
-  box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
-html:root body:not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):active{transform:scale(.97)}
 /* le trait de séparation s'efface autour de la case survolée */
 html:root body:not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible)::before,
 html:root body:not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible)+:is(.act,.ghost-btn,.notes-btn)::before{opacity:0}
@@ -591,7 +553,6 @@ html:root body:not(#_) #app .start,html:root body:not(#_) #app .start:is(:hover,
   html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn)::before,html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn)::after{content:none}
   html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):not([style*="none"]):not(:nth-child(3n+1 of :is(.act,.ghost-btn,.notes-btn):not([style*="none"])))::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:color-mix(in srgb,var(--h-or) 84%,#000);transition:opacity .2s}
   html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):not([style*="none"]):nth-child(n+4 of :is(.act,.ghost-btn,.notes-btn):not([style*="none"]))::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:color-mix(in srgb,var(--h-or) 84%,#000);transition:opacity .2s}
-  html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible){background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
   html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible)::before,html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible)::after,html:root body:not(#_):not(#_) :is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible)+:is(.act,.ghost-btn,.notes-btn)::before{opacity:0}
 }
 
@@ -606,24 +567,12 @@ html:root body:not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn){
   transition:background .25s,box-shadow .3s,transform .2s}
 html:root body:not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn)+:is(.bacct-btn,.macct-btn,.auth-m-btn)::before{
   content:'';position:absolute;top:0;left:16px;right:16px;height:1px;background:color-mix(in srgb,var(--h-or) 84%,#000);transition:opacity .2s}
-html:root body:not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):is(:hover,:focus-visible){
-  z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
-html:root body:not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):is(:hover,:focus-visible)::before,
-html:root body:not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):is(:hover,:focus-visible)+:is(.bacct-btn,.macct-btn,.auth-m-btn)::before{opacity:0}
-html:root body:not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):active{transform:scale(.98)}
 
 /* la barre de la Bible, modèle des bandeaux, s'arrondit de même */
 html:root body:not(#_) .sb-act{border-radius:14px}
 html:root body:not(#_) .sb-btn{border-radius:11px;transition:background .25s,box-shadow .3s,transform .2s}
-html:root body:not(#_) .sb-btn:is(:hover,:focus-visible){z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
-html body .sb-btn:is(:hover,:focus-visible)::before,html body .sb-btn:is(:hover,:focus-visible)+.sb-btn::before{opacity:0}
-html body .sb-btn:active{transform:scale(.97)}
-@media(max-width:720px){html:root body:not(#_) .sb-btn{border-radius:12px}}
 /* les deux boutons de chaque ligne de la corbeille des Ressources */
 html:root body .jt-act+.jt-act::before{transition:opacity .2s}
-html:root body:not(#_) .jt-act+.jt-act{border-top-left-radius:0;border-bottom-left-radius:0}
-html:root body:not(#_) .jt-act:has(+.jt-act){border-top-right-radius:0;border-bottom-right-radius:0}
-html:root body:not(#_) .jt-act:is(:hover,:focus-visible),html:root body:not(#_) .jt-act.danger:is(:hover,:focus-visible){border-radius:12px;z-index:1;color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 html:root body .jt-act:is(:hover,:focus-visible)::before,html:root body .jt-act:is(:hover,:focus-visible)+.jt-act::before{opacity:0}
 
 /* ════════════════════════════════════════════════════════════════════
@@ -634,13 +583,13 @@ html:root body .jt-act:is(:hover,:focus-visible)::before,html:root body .jt-act:
    arrondis aussi. Les boutons d'une fenêtre (Annuler, Valider…) se
    collent en bandeau, comme ailleurs.
    ════════════════════════════════════════════════════════════════════ */
-html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.nt-plus,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.ttx-b){
+html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.ttx-b){
   border-radius:12px;transition:background .25s,box-shadow .3s,transform .2s,color .25s}
-html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.nt-plus,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible){
+html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
-html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.nt-plus,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):active{transform:scale(.97)}
-html:root body:not(#_) :is(.ab-tab,.auth-m-tab,.auth-tab){border-radius:10px}
-html:root body:not(#_) :is(.ab-tabs,.auth-m-tabs,.auth-tabs){border-radius:13px}
+html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):active{transform:scale(.97)}
+html:root body:not(#_) .auth-m-tab{border-radius:10px}
+html:root body:not(#_) .auth-m-tabs{border-radius:13px}
 html:root body:not(#_) .poignee,html:root body:not(#_) .fil span.cible{border-radius:8px}
 html:root body:not(#_) #sel-barre{border-radius:16px}
 html:root body:not(#_) .sb-chip{border-radius:10px}
@@ -652,9 +601,6 @@ html:root body:not(#_):not(#_) .modal-btns:has(>:is(.m-annul,.m-ok,.m-cancel,.m-
 html:root body:not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2){position:relative;margin:0;border-radius:11px;background:transparent;box-shadow:none}
 html:root body:not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)+:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)::before{
   content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:color-mix(in srgb,var(--h-or) 84%,#000);transition:opacity .2s}
-html:root body:not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible){z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff)}
-html:root body:not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible)::before,
-html:root body:not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible)+:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)::before{opacity:0}
 /* une fenêtre à un seul bouton garde son bouton seul, arrondi */
 html:root body:not(#_):not(#_) .modal-btns:not(:has(>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)~:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)))>:is(.m-annul,.m-ok,.m-cancel,.m-reset){background:var(--h-or)}
 @media(max-width:600px){
@@ -671,28 +617,11 @@ html:root body:not(#_):not(#_) .modal-btns:not(:has(>:is(.m-annul,.m-ok,.m-cance
 html:root body:not(#_) .tog-sw{border-radius:999px}
 html:root body:not(#_) .tog-sw::after{border-radius:50%}
 
-/* ── LA LUEUR DES CASES D'UN BANDEAU ──
-   Dans un bandeau, la lueur d'une case survolée rayonne tout autour
-   d'elle : une case de la rangée du haut déborde par le haut du bandeau,
-   une case du milieu d'une pile par les côtés, si bien que chaque case
-   s'allume visiblement, où qu'elle soit. */
-html:root body:not(#_):not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):is(:hover,:focus-visible),
-html:root body:not(#_):not(#_):not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):is(:hover,:focus-visible),
-html:root body:not(#_):not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible),
-html:root body:not(#_):not(#_):not(#_) .sb-btn:is(:hover,:focus-visible),
-html:root body:not(#_):not(#_):not(#_) .jt-act:is(:hover,:focus-visible),
-html:root body:not(#_):not(#_):not(#_) #app .start:is(:hover,:focus-visible){
-  box-shadow:0 0 0 1px color-mix(in srgb,var(--h-or) 60%,#fff),0 0 28px -4px color-mix(in srgb,var(--h-or) 80%,transparent)}
-
 /* ── LA CASE SURVOLÉE VA JUSQU'AU BORD ──
    Le bandeau n'a pas de rembourrage : la case survolée s'éclaire jusqu'à
    son bord. */
 html:root body:not(#_):not(#_):not(#_) :is(#acts-liste:has(>.acts-haut),#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.pile-btn,.sb-act){padding:0}
 html:root body:not(#_):not(#_):not(#_) .modal-btns:has(>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)~:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2)){padding:0}
-html:root body:not(#_):not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn),
-html:root body:not(#_):not(#_):not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn),
-html:root body:not(#_):not(#_):not(#_) .modal-btns>:is(.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2),
-html:root body:not(#_):not(#_):not(#_) .sb-btn{border-radius:14px}
 
 
 /* ════════════════════════════════════════════════════════════════════
@@ -726,7 +655,6 @@ html:root body:not(#_):not(#_):not(#_):not(#_) .pile-btn>:is(.bacct-btn,.macct-b
 
 /* le survol : l'éclat sur toute la case, une lueur autour, sans liseré */
 html:root body:not(#_):not(#_):not(#_):not(#_) :is(:is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),:is(#acts-liste>.acts-haut,#acts-liste>.acts-outils)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),.pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn),.jt-act):is(:hover,:focus-visible){z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);transform:none}
-html:root body:not(#_):not(#_):not(#_):not(#_) #app .start:is(:hover,:focus-visible){box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 html:root body:not(#_):not(#_):not(#_):not(#_) :is(:is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),:is(#acts-liste>.acts-haut,#acts-liste>.acts-outils)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),.pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn)):is(:hover,:focus-visible)::before,
 html:root body:not(#_):not(#_):not(#_):not(#_) :is(:is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),:is(#acts-liste>.acts-haut,#acts-liste>.acts-outils)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),.pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn)):is(:hover,:focus-visible)+:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn)::before,
 html:root body:not(#_):not(#_):not(#_):not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):is(:hover,:focus-visible)+:is(.bacct-btn,.macct-btn,.auth-m-btn)::before{opacity:0}
@@ -807,7 +735,7 @@ html:root body:not(#_):not(#_):not(#_):not(#_) :is(#sel-barre .sb-oter,.surl-ite
 /* ── UN BOUTON SEUL S'ÉCLAIRE COMME UN BOUTON DE BANDEAU ──
    Les boutons crème posés seuls prennent au survol exactement l'effet des
    cases d'un bandeau : un crème plus clair et la même lueur tout autour. */
-html:root body:not(#_):not(#_):not(#_):not(#_) :is(#amt-si,#ab-tab-si,#tab-si,#bp-pan .bp-page,#bp-pan .bp-aller,#auth-submit,#cat-enr,#ab-valider,#ab-google,#b-google,#auth-google,#b-voir-retour,#b-lire-retour,#mbib-go,#b-nouveau,#lvp-oter,#b-submit,#conf-ok,#start-btn,#finish-btn,#sum-back,.haut-page):is(:hover,:focus-visible){
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(#amt-si,#bp-pan .bp-page,#bp-pan .bp-aller,#auth-submit,#cat-enr,#ab-valider,#ab-google,#b-google,#auth-google,#b-voir-retour,#mbib-go,#b-nouveau,#lvp-oter,#b-submit,#conf-ok,#start-btn,#finish-btn,#sum-back,.haut-page):is(:hover,:focus-visible){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;
   box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);transform:none}
 /* le résultat de la recherche propre à la Bible s'éclaire comme les autres */
@@ -816,7 +744,7 @@ html:root body:not(#_):not(#_) .b-r:is(:hover,.kact) *{color:#000!important}
 
 /* ── LE SURVOL DES LIGNES, BIEN VISIBLE ──
    Une ligne de liste survolée s'éclaircit nettement. */
-html:root body:not(#_):not(#_) :is(.sec-head,.cat-row,.vrow,.trash-head,.mbib-v,.rub-tete,.rub-corps>.art-ligne,.note-item,.sg-carte,.surl-item,.sgm-row,.nzm-row,.rayon):hover{background:rgba(255,255,255,.12);box-shadow:none}
+html:root body:not(#_):not(#_) :is(.sec-head,.cat-row,.vrow,.mbib-v,.rub-tete,.note-item,.surl-item,.sgm-row,.nzm-row,.rayon):hover{background:rgba(255,255,255,.12);box-shadow:none}
 
 /* ── AU SURVOL D'UNE LIGNE, LES NOMS RESTENT BLANCS ──
    Et les articles de la liste principale prennent le même fond éclairci
@@ -831,9 +759,9 @@ html:root body:not(#_):not(#_) #liste>.art-ligne:hover{background:rgba(255,255,2
 html:root body:not(#_):not(#_) :is(.overlay .modal,.auth-modal,.auth-box,.ab-boite,.note-boite):not(#m-search .modal){padding:32px 30px}
 @media(max-width:600px){html:root body:not(#_):not(#_) :is(.overlay .modal,.auth-modal,.auth-box,.ab-boite,.note-boite):not(#m-search .modal){padding:26px 22px}}
 html:root body:not(#_):not(#_) :is(.rech-fermer,.msrch-fermer,.b-fermer,.auth-fermer,.auth-x,.bacct-x,#bp-pan .bp-fermer){width:36px;height:36px;font-size:15px}
-html:root body:not(#_):not(#_) :is(#i-email,#i-pw,#i-cf,#i-mbib){padding:12px 14px}
-html:root body:not(#_):not(#_) :is(h2.ch-titre,#voir-titre,#lire-titre){font-size:52px}
-@media(max-width:600px){html:root body:not(#_):not(#_) :is(h2.ch-titre,#voir-titre,#lire-titre){font-size:38px}}
+html:root body:not(#_):not(#_) :is(#i-email,#i-pw,#i-mbib){padding:12px 14px}
+html:root body:not(#_):not(#_) :is(h2.ch-titre,#voir-titre){font-size:52px}
+@media(max-width:600px){html:root body:not(#_):not(#_) :is(h2.ch-titre,#voir-titre){font-size:38px}}
 html:root body:not(#_):not(#_) .note-boite{background:var(--h-s1);border-color:transparent}
 
 /* ── « ALLER », PARTOUT COMME SUR LA PAGE BIBLE ──
@@ -853,7 +781,6 @@ html:root body:not(#_):not(#_) :is(.mbib-rech #i-mbib,#bp-pan .bp-ref)::placehol
 html:root body:not(#_):not(#_) :is(.mbib-rech .mbib-go,#bp-pan .bp-aller){
   flex:none;align-self:stretch;display:inline-flex;align-items:center;justify-content:center;min-width:0;min-height:44px;padding:0 24px;margin:0;border:0;border-radius:12px;
   font-family:var(--h-ui);font-size:14px;font-weight:600;letter-spacing:.01em;text-transform:none;background:var(--h-or);color:#000}
-html:root body:not(#_):not(#_) #bp-pan .bp-refrow{flex-wrap:wrap}
 html:root body:not(#_):not(#_) #bp-pan .bp-err:empty{display:none}
 
 /* ── LE TIROIR DE LA BIBLE, SANS DOUBLON ──

@@ -260,12 +260,10 @@ html body .sb-chip{
   background:var(--h-s3);font-family:var(--h-ui);font-size:13.5px;font-weight:500;color:#fff;
   transition:background .25s,box-shadow .25s;
 }
-html body .sb-chip:hover{background:var(--h-s4);box-shadow:inset 0 0 0 1px var(--h-l2)}
 html body .sb-x{
   display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;padding:0;border-radius:0;
   font-size:11px;color:var(--h-t3);transition:color .25s,background .25s;
 }
-html body .sb-x:hover{color:#fff;background:var(--h-voile-fort)}
 /* les actions : un bandeau crème, chaque action un bouton plein */
 html body .sb-act{
   gap:0;padding:3px;margin-left:auto;border-radius:0;background:var(--h-or);
@@ -333,18 +331,11 @@ html body #lv-frag-pop .lvp-oter{margin-left:0}
 
 /* ════════════════════════════════════════════════════════════════════
    5. LES NOTES ET LES SURLIGNAGES
-   Le compte en sur-titre, « Mes notes » en grand, la recherche, les
-   actions en boutons pleins, le classement et les filtres. Chaque
+   La recherche, les actions en boutons pleins, le classement. Chaque
    catégorie porte son titre ; ses notes forment une liste groupée.
    La forme finale de la page est plus bas (« Mes notes, à la manière
    de Mémoriser »).
    ════════════════════════════════════════════════════════════════════ */
-html body .notes-tete{display:flex;flex-direction:column;margin:72px auto 0;animation:hMonte .45s var(--h-doux) both}
-html body .notes-tete::after{content:none}
-html body .notes-compte{
-  order:-1;margin:0 0 12px;font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--h-or);
-}
-html body h2.notes-titre{font-family:var(--h-titre);font-weight:400;font-size:54px;line-height:1.04;letter-spacing:.005em;color:#fff}
 
 /* la recherche : un champ, la loupe dedans */
 html body .notes-rech{
@@ -359,19 +350,18 @@ html body .notes-rech:focus{border-color:var(--h-or);box-shadow:none}
 html body .notes-rech::placeholder{font-style:normal;color:var(--h-t4)}
 
 /* les actions : deux boutons pleins ; le classement à leur suite */
-html body .notes-actions{gap:10px;margin:18px auto 0}
-html body :is(.notes-btn,.notes-lien){
+html body .notes-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 22px 0 18px;
   border-radius:0;background:var(--h-or);color:#000;
   font-family:var(--h-ui);font-size:14px;font-weight:600;letter-spacing:.01em;text-transform:none;
   transition:background .25s,box-shadow .3s,transform .2s;
 }
-html body :is(.notes-btn,.notes-lien)::before{font-family:var(--h-ui);font-size:18px;font-weight:400;line-height:1;color:#000}
-html body :is(.notes-btn,.notes-lien):is(:hover,:active,:focus-visible){
+html body .notes-btn::before{font-family:var(--h-ui);font-size:18px;font-weight:400;line-height:1;color:#000}
+html body .notes-btn:is(:hover,:active,:focus-visible){
   color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);
   box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);
 }
-html body :is(.notes-btn,.notes-lien):is(:hover,:active)::before{color:#000}
+html body .notes-btn:is(:hover,:active)::before{color:#000}
 /* le classement : ses deux choix prennent la voix des onglets */
 html body .nz-tri{
   gap:2px;padding:4px 4px 4px 13px;margin-left:auto;
@@ -384,8 +374,6 @@ html body .nz-tri-o{
   transition:color .25s,background .25s;
 }
 html body .nz-tri-o+.nz-tri-o{margin-left:0}
-html body .nz-tri-o:hover{color:#fff;background:var(--h-voile)}
-html body .nz-tri-o.on{color:var(--h-or);background:var(--h-voile-fort);box-shadow:inset 0 0 0 1px var(--h-l2)}
 
 /* la ligne qui invite à se connecter */
 html body .sync-ligne{margin-top:20px;font-family:var(--h-ui);font-style:normal;font-size:13.5px;color:var(--h-t3)}
@@ -396,25 +384,7 @@ html body .sync-act{
 }
 html body .sync-act:hover{color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 
-/* les filtres : une rangée qui défile de côté si elle est trop longue */
-html body .nz-rail{
-  gap:2px;width:fit-content;max-width:min(760px,100%);padding:4px;
-  margin:30px auto 0 max(0px,calc((100% - 760px) / 2));
-  background:var(--h-s2);border:1px solid var(--h-l1);border-radius:0;box-shadow:none;
-}
-html body .nz-fil{
-  display:inline-flex;align-items:center;min-height:36px;padding:0 15px;border-radius:0;
-  font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t2);
-  transition:color .25s,background .25s;
-}
-html body .nz-fil::after{content:none}
-html body .nz-fil:hover{color:#fff;background:var(--h-voile)}
-html body .nz-fil.on{color:var(--h-or);background:var(--h-voile-fort);box-shadow:inset 0 0 0 1px var(--h-l2)}
-html body .nz-fil i{margin-left:7px;font-size:12px;font-weight:600;color:var(--h-t4);font-variant-numeric:tabular-nums}
-html body .nz-fil.on i{color:color-mix(in srgb,var(--h-or) 62%,transparent)}
-
 /* EN-TÊTE DE CATÉGORIE : un titre Cormorant, son nombre en pastille */
-html body .nz-liste{margin-top:36px}
 html body .notes-cat{
   gap:12px;margin:44px auto 10px;padding:12px 4px 10px;
   background:#000;box-shadow:none;
@@ -436,20 +406,18 @@ html body .notes-scat .notes-cat-n{height:20px;font-size:11.5px}
 /* LES LISTES GROUPÉES : notes et surlignages se rangent en rangées dans
    un même cadre, séparées par des filets ; la première et la dernière
    rangée ferment le cadre */
-html body :is(.note-item,.surl-item,.sg-carte){
+html body :is(.note-item,.surl-item){
   background:var(--h-s1);border:1px solid var(--h-l1);border-top-width:0;border-radius:0;box-shadow:none;
   transition:background .2s;
 }
 html body .note-item:not(.note-item+.note-item),
-html body .surl-item:not(.surl-item+.surl-item),
-html body .sg-carte:not(.sg-carte+.sg-carte){border-top-width:1px;border-top-left-radius:var(--h-r2);border-top-right-radius:var(--h-r2)}
+html body .surl-item:not(.surl-item+.surl-item){border-top-width:1px;border-top-left-radius:var(--h-r2);border-top-right-radius:var(--h-r2)}
 html body .note-item:not(:has(+.note-item)),
-html body .surl-item:not(:has(+.surl-item)),
-html body .sg-carte:not(:has(+.sg-carte)){border-bottom-left-radius:var(--h-r2);border-bottom-right-radius:var(--h-r2)}
+html body .surl-item:not(:has(+.surl-item)){border-bottom-left-radius:var(--h-r2);border-bottom-right-radius:var(--h-r2)}
 /* surlignages dépliés (« Voir tout ») : la suite prolonge la même liste */
 html body .surl-item:has(+.surl-reste:not([hidden])){border-bottom-left-radius:0;border-bottom-right-radius:0}
 html body .surl-reste>.surl-item:first-child{border-top-width:0;border-top-left-radius:0;border-top-right-radius:0}
-html body :is(.note-item,.sg-carte):hover{background:var(--h-s2);box-shadow:none}
+html body .note-item:hover{background:var(--h-s2);box-shadow:none}
 
 /* une note */
 html body .note-item{padding:20px 62px 18px 22px}
@@ -458,15 +426,6 @@ html body .nt-menu{
   display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;
   font-size:18px;letter-spacing:0;line-height:1;
 }
-html body .note-refs{font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.01em;color:var(--h-or);margin-bottom:8px}
-html body .note-ref:hover{color:color-mix(in srgb,var(--h-or) 60%,#fff)}
-html body .note-sep{color:var(--h-l3)}
-html body .note-pied{margin-top:12px;font-family:var(--h-ui);font-size:12px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t4)}
-html body .nt-plus{
-  display:inline-flex;align-items:center;min-height:28px;padding:0 12px;margin:6px 0 0;border-radius:0;vertical-align:middle;
-  font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.01em;text-transform:none;background:var(--h-or);color:#000;
-}
-html body .nt-plus:hover,html body .nt-plus:active{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000}
 
 /* le menu ⋯ : une petite carte flottante, ses actions en rangées */
 html body #menu-flot{
@@ -503,22 +462,15 @@ html body .surl-item .surl-oter{
   top:14px;right:14px;display:inline-flex;align-items:center;min-height:30px;padding:0 13px;border-radius:0;
   font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.01em;text-transform:none;background:var(--h-or);color:#000;
 }
-html body .surl-item .surl-oter:hover,html body .surl-item .surl-oter:active{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000}
 
 /* aucune note : un titre et sa phrase, centrés */
 html body .notes-vide-t{font-family:var(--h-titre);font-size:30px;font-weight:400;color:#fff}
 html body .notes-vide-p{font-family:var(--h-ui);font-size:16.5px;color:var(--h-t3)}
 
 @media(max-width:720px){
-  html body .notes-tete{margin-top:46px}
-  html body h2.notes-titre{font-size:40px}
-  html body .notes-compte{font-size:11.5px;letter-spacing:.12em;margin-bottom:10px}
   html body .notes-rech{margin-top:22px;padding:12px 18px 12px 44px;background-position:left 17px center;font-size:15px}
-  html body .notes-actions{gap:8px;margin-top:14px}
-  html body :is(.notes-btn,.notes-lien){flex:1 1 0;padding:0 14px;font-size:13.5px}
+  html body .notes-btn{flex:1 1 0;padding:0 14px;font-size:13.5px}
   html body .nz-tri{width:fit-content;margin:4px 0 0}
-  html body .nz-rail{margin-top:22px}
-  html body .nz-fil{padding:0 13px;font-size:13px}
   html body .notes-cat{margin-top:36px;padding:10px 2px 8px}
   html body .notes-cat-nom{font-size:24px;letter-spacing:0}
   html body .notes-scat{padding-left:14px}
@@ -526,38 +478,14 @@ html body .notes-vide-p{font-family:var(--h-ui);font-size:16.5px;color:var(--h-t
   html body .note-item>.nt-menu{top:8px;right:8px}
   html body .surl-item{padding:16px 16px 14px 18px}
   html body .surl-item .surl-tete{padding-right:84px}
-  html body .surl-item .surl-oter{top:12px;right:12px}
 }
 
 
 /* ════════════════════════════════════════════════════════════════════
-   6. LES SIGNETS (ancienne liste)
-   La page ne fabrique plus ces rangées : les signets passent par
-   « Mes signets, à la manière de Mémoriser », plus bas.
+   6. LES SIGNETS
+   Le message « Aucun signet » ; la liste elle-même est plus bas (« Mes
+   signets, à la manière de Mémoriser »).
    ════════════════════════════════════════════════════════════════════ */
-html body .sg-liste{margin:8px auto 0}
-html body .sg-liste+.sg-liste{margin-top:44px}
-html body .sg-trad{
-  gap:10px;padding:0 4px 12px;border-bottom:0;
-  font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--h-or);
-}
-html body .sg-trad-n{
-  display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:20px;padding:0 7px;border-radius:0;
-  background:var(--h-s3);font-size:11.5px;letter-spacing:0;color:var(--h-t2);
-}
-html body .sg-carte{gap:16px;padding:14px 14px 14px 16px}
-html body .sg-ruban{
-  width:40px;height:40px;align-items:center;justify-content:center;border-radius:0;
-  background:var(--h-voile-fort);color:var(--h-or);
-}
-html body .sg-ruban svg{width:13px;height:17px}
-html body .sg-ref{font-family:var(--h-titre);font-size:23px;font-weight:500;line-height:1.15;color:#fff}
-html body .sg-date{margin-top:3px;font-family:var(--h-ui);font-size:12.5px;letter-spacing:.01em;color:var(--h-t3)}
-html body .sg-x{
-  display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border-radius:0;
-  font-size:13px;color:var(--h-t2);background:var(--h-s3);transition:color .25s,background .25s;
-}
-html body .sg-x:hover{color:#fff;background:var(--h-s4)}
 html body .sg-vide{font-family:var(--h-ui);font-size:18px;color:var(--h-t3);max-width:460px;margin:0 auto}
 
 
@@ -590,7 +518,7 @@ html body .b-fermer{
 html body .b-fermer:hover{color:#fff;background:var(--h-s4)}
 html body .b-res{margin:0;padding:8px;flex:0 1 auto}
 html body .b-res:empty{display:none}
-html body .b-hint,html body .b-vide{padding:22px 16px;font-family:var(--h-ui);font-size:17px;text-align:left;color:var(--h-t3)}
+html body .b-vide{padding:22px 16px;font-family:var(--h-ui);font-size:17px;text-align:left;color:var(--h-t3)}
 html body :is(a.b-r,.b-r){padding:14px 16px;border:0;border-radius:0;transition:background .2s}
 html body :is(a.b-r,.b-r):hover,html body .b-r.kact{background:var(--h-s3)}
 html body :is(a.b-r,.b-r) b{font-family:var(--h-titre);font-size:22px;font-weight:500}
@@ -627,7 +555,7 @@ html body .bacct-deco{
 html body .bacct-deco:hover{color:var(--h-or);background:var(--h-voile)}
 html body .bacct .ttx-row{margin-bottom:6px}
 html body .conf-txt{margin:10px 0 24px;font-family:var(--h-ui);font-size:17px;line-height:1.5;color:var(--h-t2)}
-html body #cat-voile .bacct-t,html body #conf-voile .bacct-t{margin-bottom:18px}
+html body #cat-voile .bacct-t{margin-bottom:18px}
 html body #conf-voile .bacct-t{margin-bottom:4px}
 html body .cat-input{
   margin-bottom:16px;padding:12px 14px;border:1px solid var(--h-l2);border-radius:0;background:#000;
@@ -641,14 +569,6 @@ html body .ab-boite{
   background:var(--h-s1);box-shadow:var(--h-ombre);animation:hMonte .38s var(--h-doux) both;
 }
 html body .ab-titre{margin-bottom:6px;font-family:var(--h-titre);font-weight:500;font-size:28px;color:#fff}
-html body .ab-tabs{gap:4px;padding:4px;margin:16px 0 20px;border-radius:0;background:var(--h-s3)}
-html body .ab-tab{
-  flex:1;padding:9px 12px;border:0;border-radius:0;
-  font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--h-t2);background:none;
-  transition:color .25s,background .25s;
-}
-html body .ab-tab:hover{color:#fff}
-html body .ab-tab.on{color:#000;background:var(--h-or)}
 html body .ab-champ{
   margin-bottom:10px;padding:12px 14px;border:1px solid var(--h-l2);border-radius:0;background:#000;
   font-family:var(--h-ui);font-size:15px;color:#fff;transition:border-color .25s,box-shadow .25s;
@@ -673,14 +593,12 @@ html body .note-boite{
 }
 html body .nb-titre{margin-bottom:14px;font-family:var(--h-titre);font-weight:500;font-size:29px;line-height:1.2;color:#fff}
 html body .nb-refs{gap:6px}
-html body .nb-refs .sb-chip{padding:0 14px;cursor:default}
 html body .nb-zone{
   min-height:280px;padding:14px 16px;border:1px solid var(--h-l2);border-radius:0;background:#000;
   transition:border-color .25s,box-shadow .25s;
 }
 html body .nb-zone:focus{border-color:var(--h-or);box-shadow:none}
 html body .nb-zone::placeholder{color:var(--h-t4)}
-html body .nb-cat-ligne{margin:18px 0 4px;padding-top:16px;border-top:1px solid var(--h-l1)}
 html body .nb-cat-lab{font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--h-t2)}
 html body .note-depl{
   padding:9px 34px 9px 14px;border:1px solid var(--h-l2);border-radius:0;background:#000;
@@ -731,32 +649,16 @@ html.panneau body .livre-sous{margin-top:40px}
 html.panneau body h2.livre-titre{font-size:42px}
 html.panneau body .lecture-col{padding:36px 0 32px}
 html.panneau body h2.ch-titre{font-size:38px}
-html.panneau body .notes-tete{margin-top:40px}
-html.panneau body h2.notes-titre{font-size:42px}
 html.panneau body .notes-cat{top:0}
 html.panneau body #sel-barre{bottom:10px;width:calc(100% - 20px)}
 
-/* ── LES FILTRES DES NOTES, SUR TÉLÉPHONE, VONT À LA LIGNE ──
-   Sur téléphone, chaque filtre devient une pastille à part, et elles vont
-   à la ligne au lieu de défiler de côté : le dernier filtre ne se coupe
-   pas au bord de l'écran. */
-@media(max-width:600px){
-  html body .nz-rail{flex-wrap:wrap;gap:6px;width:auto;max-width:100%;margin-left:0;padding:0;overflow:visible;background:none;border:0}
-  html body .nz-fil{background:var(--h-s1);box-shadow:inset 0 0 0 1px var(--h-l1)}
-}
-
 /* ── LES CHOIX EXCLUSIFS (voulus par Emmanuel) ──
-   Classement et filtres des notes : sans fond teinté ni cadre ; des mots
-   côte à côte, celui qui est choisi en blanc, souligné d'un trait crème. */
-html body :is(.nz-tri,.nz-rail){background:none;border:0;box-shadow:none;padding:0;gap:18px}
-html body :is(.nz-tri-o,.nz-fil){padding:0 2px;min-height:34px;background:none;box-shadow:inset 0 -1px 0 transparent;color:var(--h-t3)}
-html body :is(.nz-tri-o,.nz-fil):hover{background:none;color:#fff}
-html body :is(.nz-tri-o,.nz-fil).on{background:none;color:#fff;box-shadow:inset 0 -1px 0 var(--h-or)}
-@media(max-width:600px){
-  html body .nz-rail{gap:6px 18px}
-  html body .nz-fil{background:none;box-shadow:inset 0 -1px 0 transparent}
-  html body .nz-fil.on{box-shadow:inset 0 -1px 0 var(--h-or)}
-}
+   Classement des notes : sans fond teinté ni cadre ; des mots côte à
+   côte, celui qui est choisi en blanc, souligné d'un trait crème. */
+html body .nz-tri{background:none;border:0;box-shadow:none;padding:0;gap:18px}
+html body .nz-tri-o{padding:0 2px;min-height:34px;background:none;box-shadow:inset 0 -1px 0 transparent;color:var(--h-t3)}
+html body .nz-tri-o:hover{background:none;color:#fff}
+html body .nz-tri-o.on{background:none;color:#fff;box-shadow:inset 0 -1px 0 var(--h-or)}
 
 
 /* le ruban : l'appui long ouvre son petit menu, sans le menu du téléphone */
@@ -950,36 +852,20 @@ html body .nb2 .nb-btn:not(.principal),html body .nb2 .nb-btn:not(.principal):is
 html body .nb2 .nb-btn:not(.principal):hover{color:#fff}
 html body .nb2 .nb-suppr,html body .nb2 .nb-suppr:is(:hover,:focus-visible){margin-right:auto;margin-left:0;color:#c75d52}
 html body .nb2 .nb-suppr:hover{color:#e07a6e}
-html body .nb2 .nb-btn.principal{margin-left:0}
-html body .nb2 .nb-actes:not(:has(.nb-suppr:not([style*="none"]))) #nb-annuler{margin-left:auto}
 @media(max-width:720px){
   html body .note-boite.nb2{border:0;padding:20px 18px calc(16px + env(safe-area-inset-bottom))}
   html body .nb2-tete{margin-bottom:14px}
-  html body .nb2-ref{font-size:26px}
   html body .nb2 .nb-zone{flex:1;min-height:0;resize:none}
-  html body .nb2 .nb-actes{gap:18px}
   html body .nb2 .nb-btn.principal{flex:0 0 auto;padding:0 18px}
 }
 html body .nb2 .nb-btn{flex:none}
 html body .nb2 .nb-btn.nb-suppr,html body .nb2 .nb-btn.nb-suppr:focus-visible{color:#c75d52}
 html body .nb2 .nb-btn.nb-suppr:hover{color:#e07a6e}
 html body .nb2 .nb-zone,html body .nb2 .nb-zone:focus{resize:none}
-/* la suppression : une croix rouge, sans cadre. « Enregistrer » en simple
-   mot crème : le bandeau crème, plus bas, passe par-dessus. */
+/* la suppression : une croix rouge, sans cadre. « Enregistrer » ne
+   s'enfonce pas sous le doigt ; sa forme est plus bas (le bandeau crème). */
 html body .nb2 .nb-btn.nb-suppr,html body .nb2 .nb-btn.nb-suppr:is(:hover,:focus-visible){font-size:16px;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:flex-start}
-html body .nb2 .nb-btn.principal,html body .nb2 .nb-btn.principal:is(:hover,:focus-visible){
-  min-height:0;padding:0;background:none;border:0;box-shadow:none;transform:none;
-  font-family:var(--h-ui);font-size:14px;font-weight:600;color:var(--h-or);
-}
-html body .nb2 .nb-btn.principal:hover{color:#fff}
-/* un mince trait vertical entre « Annuler » et « Enregistrer » */
-html body .nb2 .nb-btn.principal{position:relative;padding-left:22px}
-html body .nb2 .nb-btn.principal::before{content:'';position:absolute;left:0;top:50%;width:1px;height:14px;transform:translateY(-50%);background:var(--h-l3)}
-
-html body .trad-o:not(.on){color:rgba(255,255,255,.28)}
-html body .trad-o:not(.on):hover{color:var(--h-t2)}
-
-html body .trad-sep{color:var(--h-t2);font-weight:700;letter-spacing:0}
+html body .nb2 .nb-btn.principal{transform:none}
 
 /* ── LA RÉFÉRENCE CHOISIE AU SURVOL ──
    Rien ne s'allume à l'intérieur : seul le contour s'allume. La petite
@@ -1004,23 +890,15 @@ html body #menu-flot.mf-signet .mf-act{border-radius:13px}
 html body #menu-flot.mf-signet::before{background:var(--h-s2);transition:background .25s}
 html body #menu-flot.mf-signet:has(.mf-act:hover)::before{background:var(--h-s4)}
 
-/* LA LECTURE EN LITERATA : le texte de la Bible, ses commentaires et les
-   notes. Numéros de versets et sous-titres de section restent en
-   Garamond, la police de l'interface. */
-html body .ch-texte,html body .note-texte{font-family:var(--h-texte)}
+/* LA LECTURE EN LITERATA : le texte de la Bible et ses commentaires.
+   Numéros de versets et sous-titres de section restent en Garamond, la
+   police de l'interface. */
+html body .ch-texte{font-family:var(--h-texte)}
 
 /* ── LE TITRE D'UNE NOTE ──
    Dans la fiche, le titre facultatif est une ligne sans cadre, posée
-   au-dessus de la page où l'on écrit. Dans la liste, le titre ouvre
-   l'aperçu, en blanc. */
+   au-dessus de la page où l'on écrit. */
 html body .nzm-modes{align-items:center;flex-wrap:wrap}
-html body .nzm-trad{margin:0 0 0 auto;display:inline-flex;align-items:center;gap:10px;flex-wrap:nowrap;
-  font-size:inherit;letter-spacing:0;text-transform:none;line-height:1}
-html body .nzm-trad .trad-lab{display:none}
-html body .nzm-trad .trad-sep{font-size:13.5px;line-height:1}
-html body .nzm-trad .trad-o{font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:.01em;text-transform:none;transition:color .25s}
-html body .nzm-trad .trad-o.on{color:var(--h-or)}
-html body .nzm-trad .trad-o::before{inset:-10px -8px}
 html body .nb2 .nb2-ti,html body .nb2 .nb2-ti:focus{
   display:block;width:100%;margin:22px 0 0;padding:16px 0 0;border:0;border-top:1px solid var(--h-l1);border-radius:0;
   background:none;box-shadow:none;outline:none;
@@ -1028,8 +906,6 @@ html body .nb2 .nb2-ti,html body .nb2 .nb2-ti:focus{
 }
 html body .nb2 .nb2-ti::placeholder{color:var(--h-t4);font-style:italic}
 html body .nb2 .nb2-ti+.nb-zone,html body .nb2 .nb2-ti+.nb-zone:focus{margin-top:10px;padding-top:8px;border-top:0}
-html body .nzm-txt .nzm-ti{font-weight:600;color:#fff}
-html body .note-ti{font-family:var(--h-titre);font-size:22px;font-weight:500;line-height:1.2;color:#fff;margin:4px 0 6px}
 @media(max-width:720px){html body .nb2 .nb2-ti{font-size:22px}}
 
 /* ── LE CHEVRON DE LA BARRE DE SÉLECTION ──
@@ -1108,7 +984,6 @@ html body .hero .trad-ic{
   border:1px solid var(--h-l2);color:var(--h-t2);cursor:pointer;transition:border-color .25s,color .25s;
 }
 html body .hero .trad-ic:is(:hover,:focus-visible,[aria-expanded="true"]){border-color:var(--h-or);color:var(--h-or);outline:none}
-@media(max-width:600px){html body .hero .trad-ic{left:calc(100% + 10px);width:32px;height:32px}}
 html body .trad-menu{
   position:fixed;z-index:130;display:none;flex-direction:column;min-width:190px;overflow:hidden;
   background:var(--h-s2);border:1px solid var(--h-l2);border-radius:14px;box-shadow:0 20px 46px rgba(0,0,0,.62);
@@ -1146,7 +1021,6 @@ html body :is(.ch-tete,.nzm-modes) .trad-ic{
   color:var(--h-t4);cursor:pointer;transition:color .25s}
 html body :is(.ch-tete,.nzm-modes) .trad-ic:is(:hover,:focus-visible,[aria-expanded="true"]){color:var(--h-or);outline:none}
 html body .ch-tete .trad-ic{position:absolute;left:calc(100% + 6px);top:50%;transform:translateY(calc(-50% - 7px))}
-@media(max-width:600px){html body .ch-tete .trad-ic{transform:translateY(calc(-50% - 5px))}}
 html body .nzm-modes .trad-ic{margin-left:auto}
 /* un titre de chapitre sur deux lignes : l'icône reste au bout de la première */
 html body .ch-tete .trad-ic{top:19px;transform:translateY(-50%)}

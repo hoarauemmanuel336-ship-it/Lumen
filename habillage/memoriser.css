@@ -30,7 +30,6 @@ html body .modes .mode{
   color:var(--h-t3);background:none;transition:color .25s,background .25s,box-shadow .25s;
 }
 html body .modes .mode:hover{color:#fff}
-html body .modes .mode.on{color:var(--h-or);background:var(--h-voile-fort);box-shadow:inset 0 0 0 1px var(--h-l2)}
 html body .modes .mode.on::after{content:none}
 
 /* ── 3. L'EN-TÊTE DE LA LISTE ──
@@ -90,7 +89,7 @@ html body :is(.sec-chev,.cat-chev){
   font-family:var(--h-ui);font-size:18px;font-weight:400;line-height:1;color:var(--h-t4);
   transition:transform .3s var(--h-doux),color .3s;
 }
-html body .sec.open>.sec-head .sec-chev,html body .cat.open .cat-chev,html body .trash-head.open .cat-chev{color:var(--h-or)}
+html body .sec.open>.sec-head .sec-chev,html body .cat.open .cat-chev{color:var(--h-or)}
 html body .sec-corps{border-top:1px solid var(--h-l1)}
 html body .sec:not(.open) .sec-corps{border-top:0}
 html body .sec-vide{padding:18px 20px;font-family:var(--h-ui);font-size:13.5px;line-height:1.55;color:var(--h-t3)}
@@ -104,7 +103,6 @@ html body #cat-list>.sec-vide{border:1px dashed var(--h-l2);border-radius:0;padd
    progression fine, le pourcentage, ▷ et le chevron. */
 html body .cat{border-bottom:0;border-top:1px solid var(--h-l1);transition:background .3s}
 html body .sec-corps>.cat:first-child,html body #cat-list>.cat:first-child{border-top:0}
-html body .cat.open{background:color-mix(in srgb,var(--h-or) 2.5%,transparent)}
 html body .cat-row{gap:14px;min-height:64px;padding:12px 12px 12px 20px;transition:background .2s}
 html body .cat-row:hover{background:var(--h-s2)}
 html body .cat-name{font-family:var(--h-titre);font-size:21px;font-weight:500;line-height:1.25;color:#fff}
@@ -149,11 +147,9 @@ html body .v-check::after{font-family:var(--h-ui);font-size:15px;font-weight:600
 html body .v-check.on::after{opacity:1;text-shadow:0 0 10px color-mix(in srgb,var(--h-or) 50%,transparent)}
 html body .vref{width:118px;font-family:var(--h-titre);font-size:17px;font-weight:500;color:#fff}
 html body .vtext{font-family:var(--h-texte);font-size:15px;color:var(--h-t3)}
-html body .vline:hover .vref{color:var(--h-or)}
 html body .vline:hover .vtext{color:var(--h-t2)}
 html body .vrow.pas .vref{color:#fff;font-family:var(--h-ui);font-size:16px}
 html body .vrow.pas .vtext{font-family:var(--h-ui);font-size:12.5px;font-weight:500;letter-spacing:.01em;color:var(--h-t3)}
-html body .vline:hover .vrow.pas .vtext,html body .vrow.pas .vline:hover .vtext{color:var(--h-or)}
 html body .vrow.voff .vline,html body .vrow.voff .lvl,html body .vrow.voff .mov-v{opacity:.32}
 
 /* les marques : « aussi ailleurs » (deux carrés) et l'écart (≠) */
@@ -211,11 +207,6 @@ html body #app .start{
   box-shadow:0 0 0 1px color-mix(in srgb,var(--h-or) 40%,transparent),0 18px 50px -16px color-mix(in srgb,var(--h-or) 60%,transparent),0 0 80px -24px color-mix(in srgb,var(--h-or) 70%,transparent);
   transition:background .25s,box-shadow .35s,transform .2s;
 }
-html body #app .start:is(:hover,:focus-visible){
-  background:color-mix(in srgb,var(--h-or) 70%,#fff);
-  box-shadow:0 0 0 1px color-mix(in srgb,var(--h-or) 60%,transparent),0 22px 60px -16px color-mix(in srgb,var(--h-or) 75%,transparent),0 0 100px -20px color-mix(in srgb,var(--h-or) 80%,transparent);
-}
-html body #app .start:active{transform:scale(.985)}
 html body #app .start.pas-pret{opacity:.55;box-shadow:none}
 html body #app .reset-link{
   display:block;margin:22px auto 0;padding:10px 14px;border-radius:0;
@@ -227,9 +218,6 @@ html body #app .reset-link:hover{color:var(--rouge);background:color-mix(in srgb
    Le même cadre que les sections ; ses versets en rangées, leurs deux
    actions en petits boutons crème. */
 html body #trash-block{border:1px solid var(--h-l1);border-radius:0;background:var(--h-s1);overflow:hidden}
-html body .trash-head{gap:10px;min-height:52px;padding:10px 12px 10px 20px;border-bottom:0;transition:background .2s}
-html body .trash-head:hover{background:var(--h-s2)}
-html body .trash-head .lbl{color:var(--h-t3)}
 html body .trash-body{padding:0 12px 16px;border-top:1px solid var(--h-l1)}
 html body .trash-item{gap:14px;padding:12px 8px;border-top:1px solid var(--h-l1)}
 html body .trash-vref{font-family:var(--h-titre);font-size:17px;font-weight:500;color:#fff}
@@ -261,7 +249,6 @@ html body .qbox{
 }
 html body .q-label{margin-bottom:0;font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--h-or)}
 html body .qbox .rule{width:44px;height:1px;margin:20px auto 24px;opacity:1;background:linear-gradient(90deg,transparent,var(--h-l3),transparent)}
-html body .qbox .rule:last-child{display:none}
 html body .q-prompt{color:#fff;text-wrap:pretty}
 html body .q-prompt.ref{font-family:var(--h-titre);font-weight:500;letter-spacing:.01em;color:#fff;text-shadow:0 0 30px color-mix(in srgb,var(--h-or) 30%,transparent)}
 html body .q-prompt.titre{font-family:var(--h-titre);font-weight:500;color:#fff}
@@ -415,7 +402,6 @@ html body .srch-vide{font-family:var(--h-ui);font-size:13.5px;color:var(--h-t3);
 /* la fenêtre d'un verset : « Choisir dans la Bible » (un lien crème, plus
    bas), l'encadré d'écart en carte douce teintée d'ambre */
 html body .mv-src{margin:4px 0 22px}
-html body .mv-bible{min-height:40px;padding:9px 20px;font-size:13.5px}
 html body .mv-ecart{margin:-4px 0 20px;padding:16px 18px 6px;border:1px solid color-mix(in srgb,var(--ambre) 28%,transparent);border-radius:0;background:color-mix(in srgb,var(--ambre) 5%,var(--h-s2))}
 html body .mv-ecart-lab{font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.12em;color:var(--ambre);margin-bottom:8px}
 html body .mv-ecart-txt{font-family:var(--h-texte);font-size:16px;line-height:1.5;color:var(--h-t2)}
@@ -476,8 +462,7 @@ html body .mbib-mot.bout{box-shadow:inset 0 -2px 0 var(--h-or)}
    15. L'ÉCRAN DE CONNEXION
    La page porte sa propre fenêtre de connexion : elle prend le rendu des
    fenêtres de compte du socle (carte flottante, boutons crème, champs
-   sombres). Ses onglets restent cachés : le site est privé, il n'offre
-   que la connexion.
+   sombres).
    ════════════════════════════════════════════════════════════════════ */
 html body #auth-screen{padding:40px 20px}
 html body .auth-panel{
@@ -487,10 +472,6 @@ html body .auth-panel{
   animation:hMonte .45s var(--h-doux) both;
 }
 html body .auth-paneltitle{font-family:var(--h-titre);font-size:32px;font-weight:500;color:#fff;margin-bottom:20px}
-html body .auth-tabs{gap:4px;padding:4px;margin-bottom:22px;border:0;border-radius:0;background:var(--h-s3)}
-html body .auth-tab{min-height:38px;padding:9px 12px;border:0;border-radius:0;font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--h-t2);transition:color .25s,background .25s}
-html body .auth-tab:hover{color:#fff}
-html body .auth-tab.on{color:#000;background:var(--h-or);border-color:transparent}
 html body #auth-screen .auth-fieldrow{margin-bottom:10px}
 html body #auth-screen .field{padding:13px 16px}
 html:root body .auth-primary{
@@ -550,7 +531,6 @@ html body .auth-out:hover{color:var(--h-or)}
 
   html body .cat-acts{gap:10px;margin-top:18px}
   html:root body .cat-acts .ghost-btn{flex:1 1 0;min-width:0;padding:11px 12px;white-space:nowrap}
-  html body #app .start{max-width:none;margin-top:32px}
   html:root body .trash-act{min-height:36px;padding:7px 13px}
   html body .trash-acts{flex-direction:column;align-items:stretch;gap:6px}
 
@@ -636,7 +616,6 @@ html body .sum-liste li{font-family:var(--h-texte);font-size:17px;color:#fff;bor
    « Commencer » prend la largeur et la hauteur du rang des deux boutons
    du dessus, juste sous eux. */
 html body #app .start{max-width:520px;min-height:46px;margin:10px auto 0;padding:11px 18px;font-size:14px;letter-spacing:.01em}
-@media(max-width:720px){html body #app .start{max-width:none;margin-top:10px}}
 
 /* La corbeille : une petite poubelle à droite de l'en-tête des catégories,
    avec le nombre d'éléments ; son contenu s'ouvre sous l'en-tête. */
@@ -688,7 +667,6 @@ html body #app .start:is(:hover,:focus-visible){background:color-mix(in srgb,var
 html body #app .start:active{transform:none}
 @media(max-width:600px){
   html:root body:not(#_):not(#_) #app .cat-acts{max-width:none;padding:0;border-bottom:0}
-  html body #app .start,html body #app .start:is(:hover,:focus-visible){max-width:none}
 }
 /* « Commencer » s'éclaire lui aussi jusqu'au bord du bloc */
 html:root body:not(#_) #app .start,html:root body:not(#_) #app .start:is(:hover,:focus-visible){border-left:0;border-right:0;border-bottom:0}

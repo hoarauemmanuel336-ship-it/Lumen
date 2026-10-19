@@ -39,7 +39,6 @@ const CHOIX_IC={
   modif:'<path d="M4.5 19.5h3.6L18.6 9a2.1 2.1 0 0 0-3-3L5.1 16.5z"/><path d="M13.8 7.8l2.9 2.9"/>',
   tel:'<path d="M12 4.5v10.5M7.5 10.5l4.5 4.5 4.5-4.5M5 19.5h14"/>',
   publier:'<circle cx="12" cy="12" r="8.2"/><path d="M3.8 12h16.4M12 3.8c2.4 2.4 2.4 14 0 16.4M12 3.8c-2.4 2.4-2.4 14 0 16.4"/>',
-  prive:'<rect x="5.5" y="10.5" width="13" height="9.5" rx="1"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/>',
   ranger:'<path d="M3.5 7.2c0-.9.7-1.7 1.7-1.7h4.1l1.9 2.1h7.6c.9 0 1.7.8 1.7 1.7v8.5c0 .9-.8 1.7-1.7 1.7H5.2c-1 0-1.7-.8-1.7-1.7z"/><path d="M9.5 13.5h5.5M12.8 11.2l2.3 2.3-2.3 2.3"/>',
   sous:'<path d="M3.5 7.2c0-.9.7-1.7 1.7-1.7h4.1l1.9 2.1h7.6c.9 0 1.7.8 1.7 1.7v8.5c0 .9-.8 1.7-1.7 1.7H5.2c-1 0-1.7-.8-1.7-1.7z"/><path d="M12 10.5v6M9 13.5h6"/>',
   renom:'<path d="M4.5 7V5.5h10V7M9.5 5.5v13M7.5 18.5h4"/><path d="M15 12.5h5M17.5 12.5v6"/>',
@@ -61,9 +60,9 @@ const CHOIX_IC={
   retour:'<path d="M9 7.5L4.5 12 9 16.5"/><path d="M4.5 12h10a5 5 0 0 1 0 10h-2"/>'
 };
 function choixIcone(e){
-  const c=e.cle, n=String(e.nom||'');
+  const c=e.cle;
   if(e.icone)return e.icone;
-  if(c==='etat')return /priv/i.test(n)?'prive':'publier';
+  if(c==='etat')return 'publier';
   if(e.danger||c==='avec')return 'jeter';
   const m={modif:'modif',tel:'tel',ranger:'ranger',deplacer:'ranger',sous:'sous',neuve:'sous',renom:'renom',sans:'garder',
     ouvrir:'ouvrir',haut:'haut',bas:'bas',apres:'ajout',p:'p',h2:'titre',h3:'titre',cite:'cite',verset:'verset',bib:'verset',

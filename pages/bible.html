@@ -14,7 +14,7 @@ window.lvFB=function(){if(window.__lvFBP)return window.__lvFBP;window.__lvFBP=ne
 </script>
 <style>
 :root{
-  --encre:#000000;--encre-2:#0b0b0b;--encre-3:#111111;
+  --encre:#000000;--encre-2:#0b0b0b;
   --or:#efe6cf;--or-pale:#f8f3e6;
   /* fond de survol : la couleur d'accent, une seule intensité pour tout
      le site. La seconde ligne suit l'accent quand il change ; un vieux
@@ -26,7 +26,6 @@ window.lvFB=function(){if(window.__lvFBP)return window.__lvFBP;window.__lvFBP=ne
      seule intensité pour tout le surlignage, 38 % (Emmanuel : « que tout soit à
      38 pour cent, tout le surlignage du site d'ailleurs »). --voile-doux vaut
      la même chose ; il reste pour ne pas éparpiller les appels. */
-  --voile-vif:color-mix(in srgb,var(--or) 38%,transparent);
   --voile-vif:color-mix(in srgb, var(--or) 38%, transparent);
   --voile-doux:var(--voile-vif);
   /* texte sélectionné : la même couleur, franche cette fois, avec le
@@ -35,7 +34,7 @@ window.lvFB=function(){if(window.__lvFBP)return window.__lvFBP;window.__lvFBP=ne
   --sel:color-mix(in srgb, var(--or) 50%, transparent);
   --parchemin:#ffffff;--pa:rgba(255,255,255,.6);--pa2:rgba(255,255,255,.5);
   --filet:rgba(231,224,207,.14);--filet-f:rgba(231,224,207,.28);
-  --parchemin-att:rgba(255,255,255,.52);--filet-fort:rgba(231,224,207,.34);--pourpre:#9a3b3b;
+  --parchemin-att:rgba(255,255,255,.52);--filet-fort:rgba(231,224,207,.34);
   --serif:'EB Garamond',Georgia,serif;--display:'Cormorant Garamond',serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -56,10 +55,8 @@ html{scrollbar-color:rgba(239,230,207,.35) var(--encre)}
 .b-ov.ouvert{display:block}
 .b-boite{max-width:760px;margin:0 auto;padding:8vh 24px 40px;height:100%;display:flex;flex-direction:column;box-sizing:border-box}
 .b-tete{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--filet-f);padding-bottom:18px;color:#fff}
-.b-titre{font-family:var(--display);font-size:22px;color:#fff;flex:1}
 .b-champ{flex:1;min-width:0;background:none;border:none;padding:0;font-size:30px;letter-spacing:.01em;font-family:var(--display);color:#fff;outline:none}
 .b-champ::placeholder{color:rgba(255,255,255,.5);font-style:italic}
-.b-hint{padding:38px 4px;color:rgba(255,255,255,.5);font-style:italic;font-size:18px}
 @media(max-width:720px){.b-champ{font-size:24px}.b-boite{padding-top:6vh}}
 .b-fermer{cursor:pointer;color:rgba(255,255,255,.6);font-size:24px;line-height:1;flex:none;transition:color .3s;padding:2px 6px}
 .b-fermer:hover{color:#fff}
@@ -70,10 +67,6 @@ a.b-r span,.b-r span{font-size:14.5px;color:rgba(255,255,255,.45);line-height:1.
 a.b-r:hover b,.b-r:hover b,.b-r.kact b{color:var(--or-pale)}
 .b-r.kact{background:var(--surv)}
 .b-vide{text-align:center;font-style:italic;color:rgba(255,255,255,.45);padding:26px 0}
-.nv-d{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--or);margin:20px 0 16px}
-.nv-l{position:relative;padding-left:22px;color:#ffffff;font-size:18px;line-height:1.55}
-.nv-l::before{content:"";position:absolute;left:0;top:.85em;width:12px;height:1px;background:var(--or);opacity:.6}
-.nv-l + .nv-l{margin-top:16px}
 
 /* ---------- taille de lecture (réglée depuis Mon compte) ---------- */
 .ch-texte{font-size:calc(20.5px*var(--lvz,1))}
@@ -82,33 +75,21 @@ a.b-r:hover b,.b-r:hover b,.b-r.kact b{color:var(--or-pale)}
 .ttx-btns{display:flex;gap:8px}
 .ttx-b{background:none;border:1px solid var(--filet);color:#fff;font-family:var(--display);font-size:14px;min-width:38px;padding:7px 8px;cursor:pointer;transition:border-color .25s,color .25s}
 .ttx-b:hover{border-color:var(--or)}
-.tog-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:14px 0 6px;padding-top:16px;border-top:1px solid var(--filet)}
-.tog-lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-.tog-sw{position:relative;width:46px;height:24px;border:1px solid var(--filet-f);background:none;cursor:pointer;flex:none;transition:border-color .25s}
-.tog-sw:hover{border-color:var(--or)}
-.tog-sw::after{content:'';position:absolute;top:50%;left:3px;width:16px;height:16px;background:rgba(255,255,255,.55);transform:translateY(-50%);transition:left .25s,background .25s}
-.tog-sw.on{border-color:var(--or)}
-.tog-sw.on::after{left:25px;background:var(--or)}
-#bp-tab.bp-tab-masque{display:none!important}
 /* ---------- focus clavier ---------- */
 :focus{outline:none}
 :focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}
-.ic-btn:focus,.ic-btn:focus-visible{outline:none}
 #brech-voile :focus,#brech-voile :focus-visible{outline:none}
 /* ---------- impression ---------- */
 @media print{
   body{background:#fff;color:#000}
-  .barre,nav.menu,.burger,.ctx,.hero,.ref-barre,#sel-barre,.b-ov,#note-voile,#auth-voile,
-  #bacct-voile,#cat-voile,#conf-voile,#menu-flot,.nt-menu,.nz-rail,.nz-tri,.notes-btn,.notes-lien,.notes-rech,.surl-oter,footer,.ch-nav{display:none!important}
+  .barre,nav.menu,.burger,.ctx,.hero,#sel-barre,.b-ov,#note-voile,#auth-voile,
+  #bacct-voile,#cat-voile,#conf-voile,#menu-flot,.nt-menu,.nz-tri,.notes-btn,.notes-rech,.surl-oter,footer,.ch-nav{display:none!important}
   .notes-cat{position:static!important;background:none!important}
   .wrap{padding-bottom:0!important}
   .vst,.vn,.ch-titre,.livre-titre,h1,h2{color:#000}
   .vst sup{color:#000}
   a{color:#000;text-decoration:none}
 }
-
-/* — Barre de référence — */
-@media(max-width:720px){.ref-int{padding:8px 18px;gap:12px}.ref-champ{font-size:15px;min-width:0}.ref-erreur{display:none}}
 
 /* — Cadre général — */
 .wrap{width:100%;max-width:1100px;margin:0 auto;padding:0 28px 90px}
@@ -130,13 +111,6 @@ html.panneau .notes-cat{top:0}
    barre de sélection recouvrirait alors la fin du chapitre. À spécificité
    égale, la dernière règle gagne. */
 body.sel-active .wrap{padding-bottom:calc(var(--sb-h,190px) + 28px)}
-.trad{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:0 10px;font-size:13px;letter-spacing:.24em;text-transform:uppercase;line-height:1.7;color:var(--pa)}
-.trad-o{color:rgba(255,255,255,.72);cursor:pointer;transition:color .3s;position:relative}.trad-o::before{content:'';position:absolute;inset:-12px -6px}
-.trad-o:hover{color:var(--or-pale)}
-.trad-o.on{color:var(--or);cursor:default}
-.trad-sep{color:var(--filet-f)}
-.hero .trad{margin-bottom:18px}
-.ch-trad{margin:26px 0 0}
 h1.titre{font-family:var(--display);font-weight:400;font-size:48px;line-height:1.1;letter-spacing:.04em}
 .hero .souligne{width:54px;height:1px;background:linear-gradient(90deg,transparent,var(--filet-f),transparent);margin:26px auto 0}
 @media(max-width:720px){h1.titre{font-size:36px}.hero{padding:52px 0 18px}}
@@ -167,10 +141,8 @@ h1.titre{font-family:var(--display);font-weight:400;font-size:48px;line-height:1
 .bib-err{font-size:14px;color:#eba0a0;text-align:center;min-height:0}
 a.livre{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:11px 4px;border-bottom:1px solid rgba(231,224,207,.10);transition:border-color .35s,color .3s}
 a.livre .ln{font-size:19px;transition:color .3s}
-a.livre .lc{font-size:13px;color:var(--pa);letter-spacing:.06em;white-space:nowrap;transition:color .3s}
 a.livre:hover{border-color:var(--or);background:var(--surv)}
 a.livre:hover .ln{color:var(--parchemin,#fff)}
-a.livre:hover .lc{color:var(--pa)}
 
 /* — Vue : chapitres — */
 h2.livre-titre{font-family:var(--display);font-weight:400;font-size:40px;text-align:center;margin:52px 0 8px}
@@ -196,19 +168,6 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .signet-btn.pose svg{fill:currentColor}
 @media(max-width:600px){.ch-tete{padding:0 36px}.signet-btn{width:34px;height:34px}}
 .sg-vide{text-align:center;color:var(--parchemin-att);font-style:italic;padding:56px 0}
-.sg-liste{max-width:760px;margin:36px auto 0}
-.sg-carte{display:flex;align-items:center;gap:16px;padding:16px 6px;border-bottom:1px solid var(--filet);cursor:pointer;transition:border-color .3s,background .3s}
-.sg-carte:hover{border-color:var(--or);background:var(--surv)}
-.sg-ruban{flex:none;display:flex;color:var(--or)}
-.sg-ruban svg{display:block;fill:currentColor;stroke:none}
-.sg-txt{flex:1;min-width:0}
-.sg-ref{font-family:var(--display);font-size:20px;color:var(--parchemin)}
-.sg-date{font-size:12px;letter-spacing:.04em;color:var(--parchemin-att);margin-top:4px}
-.sg-x{flex:none;font-size:14px;color:var(--parchemin-att);padding:8px 6px;transition:color .3s}
-.sg-x:hover{color:var(--or)}
-.sg-trad{display:flex;align-items:baseline;gap:10px;padding:0 6px 10px;border-bottom:1px solid var(--filet);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--or)}
-.sg-trad-n{font-size:11px;letter-spacing:.08em;color:var(--parchemin-att)}
-.sg-liste+.sg-liste{margin-top:48px}
 .ch-vulg{font-size:13.5px;color:var(--parchemin-att);text-align:center;font-style:italic;margin-top:6px}
 .ch-section{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);text-align:center;margin-top:22px}
 .ch-sect{font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin:30px 0 12px;text-align:left}
@@ -226,7 +185,6 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    avec : c'est elle qui empêche la justification de creuser des trous béants
    sur une colonne étroite. L'une sans l'autre donne un mauvais résultat. */
 .ch-texte{text-align:justify;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 2;line-height:1.08}
-@media(max-width:600px){.ch-texte{line-height:1.08}}
 /* Le paragraphe respire des deux côtés : un poème enchâssé dans le récit
    (le Gloria au milieu de Luc 2) doit être aussi dégagé au-dessous qu'au-dessus. */
 .ch-texte .par{margin:1.25em 0}
@@ -480,11 +438,6 @@ body.sel-active #sel-barre{display:block}
    Une liste de lecture, pas une grille de cartes : la note est le héros,
    la date et le menu se tiennent en retrait, et la structure se lit
    d'un coup d'œil grâce aux en-têtes en capitales espacées. */
-.notes-tete{box-sizing:border-box;max-width:760px;margin:60px auto 0}
-h2.notes-titre{font-family:var(--display);font-weight:400;font-size:44px;line-height:1.06;letter-spacing:.01em;color:var(--or-pale)}
-.notes-compte{margin-top:12px;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-/* le même filet d'or que sous le titre de la Bible, mais aligné à gauche : signature de la maison */
-.notes-tete::after{content:"";display:block;width:52px;height:1px;background:linear-gradient(90deg,rgba(231,224,207,.55),transparent);margin-top:24px}
 .notes-rech{display:block;width:100%;box-sizing:border-box;max-width:760px;margin:24px auto 0;appearance:none;-webkit-appearance:none;border-radius:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-opacity='.38' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5 21 21'/%3E%3C/svg%3E") no-repeat left 1px center/16px 16px;border:none;border-bottom:1px solid rgba(231,224,207,.2);padding:11px 2px 11px 29px;font-size:17px;color:var(--parchemin);outline:none;transition:border-color .3s}
 .notes-rech::placeholder{color:rgba(255,255,255,.36);font-style:italic}
 .notes-rech:focus{border-color:var(--or)}
@@ -493,25 +446,11 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:44px;line-he
 .notes-btn::before{content:"+";font-size:15px;line-height:1;letter-spacing:0;color:rgba(231,224,207,.5);transition:color .3s}
 .notes-btn:hover,.notes-btn:active{color:var(--or-pale)}
 .notes-btn:hover::before,.notes-btn:active::before{color:var(--or)}
-.notes-lien{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--pa);cursor:pointer;white-space:nowrap;padding:11px 2px;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.notes-lien::before{content:"+";font-size:15px;line-height:1;letter-spacing:0;color:rgba(255,255,255,.28);transition:color .3s}
-.notes-lien:hover,.notes-lien:active{color:var(--or-pale)}
-.notes-lien:hover::before,.notes-lien:active::before{color:var(--or)}
-.nz-rail{display:flex;gap:30px;box-sizing:border-box;max-width:760px;margin:30px auto 0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;box-shadow:inset 0 -1px 0 rgba(239,230,207,.1)}
-.nz-rail::-webkit-scrollbar{display:none}
-.nz-fil{position:relative;flex:0 0 auto;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.46);padding:11px 1px 13px;cursor:pointer;white-space:nowrap;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.nz-fil::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--or);opacity:0;transition:opacity .35s}
-.nz-fil:hover{color:var(--parchemin)}
-.nz-fil.on{color:var(--or)}
-.nz-fil.on::after{opacity:1}
-.nz-fil i{font-style:normal;color:rgba(255,255,255,.28);margin-left:7px}
-.nz-fil.on i{color:rgba(231,224,207,.5)}
 .nz-liste{box-sizing:border-box;max-width:760px;margin:46px auto 0}
 .nz-liste>.notes-cat:first-child{margin-top:0}
 /* entrée de note : filet fin, barre d'or au survol, aucun cadre */
 .note-item{position:relative;box-sizing:border-box;max-width:760px;margin:0 auto;padding:20px 30px 18px 18px;box-shadow:inset 0 -1px 0 rgba(231,224,207,.09),inset 2px 0 0 transparent;transition:box-shadow .35s,background .35s}
 .note-item:hover{background:var(--surv);box-shadow:inset 0 -1px 0 rgba(231,224,207,.09),inset 2px 0 0 var(--or)}
-.note-pied{margin-top:12px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.32)}
 /* Un seul déclencheur au lieu d'une rangée de libellés répétée partout. */
 .nt-menu{color:rgba(255,255,255,.38);font-size:16px;line-height:1;letter-spacing:.12em;cursor:pointer;padding:14px 12px;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-user-select:none;user-select:none}
 .nt-menu:hover,.nt-menu:active{color:var(--or-pale)}
@@ -522,15 +461,9 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:44px;line-he
 .mf-act{display:block;padding:13px 20px;font-size:14px;color:var(--parchemin-att);cursor:pointer;white-space:nowrap;transition:color .25s,background .25s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .mf-act:hover,.mf-act:active{color:var(--parchemin);background:var(--surv)}
 .mf-sep{margin-top:5px;padding-top:14px;box-shadow:inset 0 1px 0 var(--filet)}
-.note-refs{margin-bottom:9px;font-size:13.5px;line-height:1.5;letter-spacing:.03em;color:var(--or)}
-.note-ref{cursor:pointer;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.note-ref:hover,.note-ref:active{color:var(--or-pale);text-decoration:underline}
-.note-sep{color:rgba(231,224,207,.26);margin:0 9px}
-.note-texte{font-size:calc(17.5px*var(--lvz,1));line-height:1.68;color:rgba(255,255,255,.9);white-space:pre-wrap;overflow-wrap:anywhere}
 .notes-vide{box-sizing:border-box;max-width:760px;margin:0 auto;text-align:center;padding:80px 12px}
 .notes-vide-t{font-family:var(--display);font-size:27px;color:rgba(255,255,255,.7);margin-bottom:12px}
 .notes-vide-p{font-size:15.5px;line-height:1.65;font-style:italic;color:rgba(255,255,255,.42);max-width:420px;margin:0 auto}
-.notes-vide.notes-vide-min{padding:34px 12px 2px}
 
 /* — Modale de note — */
 #note-voile{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:90px 20px 40px;overflow-y:auto}
@@ -547,7 +480,6 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:44px;line-he
 .nb-btn.principal{color:var(--or)}
 .nb-btn.principal:hover{color:var(--or-pale)}
 .nb-suppr{margin-left:auto;color:var(--parchemin-att)}
-.nb-cat-ligne{display:flex;align-items:center;gap:12px;margin:20px 0 16px;padding-top:18px;border-top:1px solid var(--filet)}
 .nb-cat-lab{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
 
 /* — Compte / synchronisation — */
@@ -575,7 +507,6 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:44px;line-he
 input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
 .cat-input{width:100%;box-sizing:border-box;background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:15px;padding:11px 12px;outline:none;margin-bottom:18px}
 .cat-input:focus{border-color:var(--or)}
-.notes-actions{display:flex;align-items:center;gap:32px;flex-wrap:wrap;box-sizing:border-box;max-width:760px;margin:22px auto 0}
 /* ── CLASSER PAR CATÉGORIE OU PAR LIVRE (Emmanuel) ──
    Deux mots au bout de la ligne d'outils : celui qui est choisi s'allume.
    « Par livre » range les notes dans l'ordre de la Bible, puis par chapitre et
@@ -596,26 +527,13 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
 .note-depl{background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:13px;padding:5px 26px 5px 8px;outline:none;max-width:230px;appearance:none;-webkit-appearance:none;cursor:pointer}
 .note-sel{position:relative;display:inline-block}
 .note-sel::after{content:"›";position:absolute;right:9px;top:50%;transform:translateY(-50%) rotate(90deg);color:rgba(231,224,207,.6);pointer-events:none;font-size:14px;line-height:1}
-.nt-plus{display:inline-block;color:var(--or,#e7d9a8);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;white-space:nowrap;padding:9px 10px 9px 0;margin:2px 0 0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:color .3s}
-.nt-plus:hover,.nt-plus:active{color:var(--or-pale,#f8f3e6)}
 @media(max-width:720px){
-  .notes-tete{margin:38px auto 0}
-  h2.notes-titre{font-size:33px}
-  .notes-compte{margin-top:9px;font-size:11px;letter-spacing:.16em}
-  .notes-tete::after{margin-top:18px;width:40px}
   .notes-rech{margin-top:20px;font-size:16px;padding:10px 2px 10px 27px;background-size:15px 15px}
-  .notes-actions{gap:22px;margin-top:16px}
   .notes-btn{padding:11px 1px;font-size:11px;letter-spacing:.14em;gap:8px}
-  .notes-lien{padding:11px 1px;font-size:11px;letter-spacing:.14em;gap:8px}
   .sync-ligne{margin-top:18px;font-size:13.5px}
-  .nz-rail{margin-top:24px;gap:22px}
-  .nz-fil{font-size:11px;padding:11px 1px 12px}
   .nz-liste{margin-top:38px}
   .note-item{padding:18px 26px 16px 14px}
   .note-item>.nt-menu{right:-12px;top:4px}
-  .note-refs{font-size:13px;margin-bottom:8px}
-  .note-texte{font-size:calc(16.5px*var(--lvz,1));line-height:1.64}
-  .note-pied{margin-top:10px;letter-spacing:.16em}
   .notes-cat{margin-top:46px;padding:13px 0 10px}
   .notes-cat-nom{font-size:11.5px;letter-spacing:.22em}
   .notes-scat{margin-top:26px;padding-left:14px}
@@ -633,19 +551,13 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
   .nb-titre{flex:0 0 auto;font-size:23px;margin-bottom:12px}
   .nb-refs{flex:0 0 auto;margin-bottom:12px;max-height:22vh;overflow-y:auto}
   .nb-zone{flex:1 1 auto;min-height:0;resize:none;font-size:17px}
-  .nb-cat-ligne{flex:0 0 auto;margin:14px 0 0;padding-top:14px}
   .nb-actes{flex:0 0 auto;margin-top:12px;gap:12px}
   .nb-btn{padding:13px 4px}
   .note-depl{max-width:none;flex:1;font-size:14px;padding:10px 26px 10px 10px}
-  .nb-cat-ligne .note-sel{flex:1;display:flex}
 }
 @supports(height:100dvh){@media(max-width:720px){.note-boite{height:100dvh;max-height:100dvh}}}
 .ab-boite{width:100%;max-width:400px;background:var(--encre);border:1px solid var(--filet);padding:32px 34px;animation:rise .4s ease both}
 .ab-titre{font-family:var(--display);font-weight:400;font-size:27px;margin-bottom:18px;text-align:center}
-.ab-tabs{display:flex;gap:24px;justify-content:center;margin-bottom:20px}
-.ab-tab{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-att);padding:6px 2px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
-.ab-tab.on{color:var(--parchemin);border-color:var(--or)}
-.ab-tab:hover{color:var(--or-pale)}
 .ab-msg{font-size:14px;line-height:1.5;margin-bottom:12px;min-height:0;text-align:center}
 .ab-msg.err{color:#c75d52}
 .ab-msg.ok{color:#7ba37e}
@@ -813,16 +725,9 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   <div id="auth-voile">
     <div class="ab-boite" role="dialog" aria-modal="true" aria-label="Compte">
       <div class="ab-titre">Compte</div>
-      <!-- site privé : seulement la connexion, l'onglet Inscription reste
-           masqué -->
-      <div class="ab-tabs" style="display:none">
-        <button class="ab-tab on" id="ab-tab-si">Connexion</button>
-        <button class="ab-tab" id="ab-tab-su">Inscription</button>
-      </div>
       <div class="ab-msg" id="ab-msg"></div>
       <input type="email" class="ab-champ" id="ab-email" placeholder="Adresse e-mail" autocomplete="email">
       <input type="password" class="ab-champ" id="ab-pw" placeholder="Mot de passe" autocomplete="current-password">
-      <input type="password" class="ab-champ" id="ab-cf" placeholder="Confirmer le mot de passe" autocomplete="new-password" style="display:none">
       <button class="ab-principal" id="ab-valider">Se connecter</button>
       <div class="ab-ou">ou</div>
       <button class="ab-google" id="ab-google">
@@ -897,7 +802,6 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   var CACHE = CACHES[TRAD];
   /* la place du lecteur, gardée le temps d'un changement de traduction */
   var repriseLecture = null;
-  var pendingSel = null;
 
   /* ───────── Firebase : compte et synchronisation des notes ───────── */
   var FB = false;
@@ -1147,12 +1051,9 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   }
   function abModeSet(m){
     abMode = m;
-    document.getElementById('ab-tab-si').classList.toggle('on', m === 'si');
-    document.getElementById('ab-tab-su').classList.toggle('on', m === 'su');
     document.getElementById('ab-pw').style.display = (m === 'forgot') ? 'none' : '';
-    document.getElementById('ab-cf').style.display = (m === 'su') ? '' : 'none';
     document.getElementById('ab-valider').textContent =
-      m === 'su' ? 'Cr\u00e9er le compte' : m === 'forgot' ? 'Envoyer le lien' : 'Se connecter';
+      m === 'forgot' ? 'Envoyer le lien' : 'Se connecter';
     abMsg('');
   }
   function ouvreAuth(){
@@ -1169,8 +1070,6 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     var c = (e && e.code) || '';
     var t = c === 'auth/invalid-credential' || c === 'auth/wrong-password' || c === 'auth/user-not-found'
         ? 'Identifiants incorrects.'
-      : c === 'auth/email-already-in-use' ? 'Cette adresse est d\u00e9j\u00e0 utilis\u00e9e.'
-      : c === 'auth/weak-password' ? 'Mot de passe trop court (6 caract\u00e8res minimum).'
       : c === 'auth/invalid-email' ? 'Adresse e-mail invalide.'
       : c === 'auth/popup-closed-by-user' ? ''
       : '\u00c9chec de la connexion.';
@@ -1183,26 +1082,20 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   function brancheAuth(){
     if (authBranche || !FB) return;
     authBranche = true;
-    document.getElementById('ab-tab-si').addEventListener('click', function(){ abModeSet('si'); });
-    document.getElementById('ab-tab-su').addEventListener('click', function(){ abModeSet('su'); });
     document.getElementById('ab-oubli').addEventListener('click', function(){ abModeSet(abMode === 'forgot' ? 'si' : 'forgot'); });
     document.getElementById('ab-valider').addEventListener('click', function(){
       var em = document.getElementById('ab-email').value.trim();
       var pw = document.getElementById('ab-pw').value;
-      var cf = document.getElementById('ab-cf').value;
       abMsg('');
       if (abMode === 'forgot') {
         auth.sendPasswordResetEmail(em)
           .then(function(){ abMsg('Lien de r\u00e9initialisation envoy\u00e9.', 'ok'); })
           .catch(abErreur);
-      } else if (abMode === 'su') {
-        if (pw !== cf) { abMsg('Les mots de passe ne correspondent pas.', 'err'); return; }
-        auth.createUserWithEmailAndPassword(em, pw).catch(abErreur);
       } else {
         auth.signInWithEmailAndPassword(em, pw).catch(abErreur);
       }
     });
-    ['ab-email','ab-pw','ab-cf'].forEach(function(id){
+    ['ab-email','ab-pw'].forEach(function(id){
       document.getElementById(id).addEventListener('keydown', function(e){
         if (e.key === 'Enter') document.getElementById('ab-valider').click();
       });
@@ -1282,22 +1175,6 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       tzApplique(v);
     });
   })();
-  (function(){
-    /* interrupteur « Onglet Bible à gauche » : écrit la préférence par
-       appareil ; bible-panneau.js l'applique sur les pages qui ont l'onglet.
-       Cette page ne pose pas l'interrupteur (voir Mon compte) : le bloc n'y
-       trouve rien et ne fait rien. */
-    function obCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_onglet_bible_mobile':'lv_onglet_bible_pc';}catch(e){return 'lv_onglet_bible_pc';}}
-    function obMasque(){try{return localStorage.getItem(obCle())==='0';}catch(e){return false;}}
-    var sw=document.getElementById('tog-bible');
-    function etat(){if(sw)sw.classList.toggle('on',!obMasque());}
-    etat();
-    if(sw){
-      function bascule(){var m=obMasque();try{localStorage.setItem(obCle(),m?'1':'0');}catch(e){}etat();}
-      sw.addEventListener('click',bascule);
-      sw.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();bascule();}});
-    }
-  })();
   document.getElementById('brech-voile').addEventListener('click', function(e){ if (e.target === this) fermeOv('brech-voile'); });
   function ouvreCompte(){
     var u = (FB && firebase.auth().currentUser) || null;
@@ -1367,33 +1244,10 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     return null;
   }
 
-  /* ───────── Le sélecteur de traduction en ligne ─────────
-     htmlTrad n'est appelée nulle part dans cette page : le choix passe par
-     l'icône du titre (icTrad). majTrad redessine les lignes .trad présentes, et
-     ajouter une traduction se fait dans la seule table TRADS. */
-  function optionsTrad(){
-    var h = '<span class="trad-lab">Traduction</span>';
-    ['cherubin', 'seraphin'].forEach(function(k, i){
-      if (i) h += '<span class="trad-sep" aria-hidden="true">\u00b7</span>';
-      h += '<span class="trad-o' + (TRAD === k ? ' on' : '') + '" data-trad="' + k + '"'
-         + ' role="button" tabindex="0" aria-pressed="' + (TRAD === k ? 'true' : 'false') + '">'
-         + esc(TRADS[k].nom) + '</span>';
-    });
-    return h;
-  }
-  function htmlTrad(cls){
-    return '<div class="trad' + (cls ? ' ' + cls : '') + '" role="group" aria-label="Traduction">'
-         + optionsTrad() + '</div>';
-  }
   /* la petite icône qui ouvre le choix de la traduction */
   function icTrad(){
     return '<span class="trad-ic" role="button" tabindex="0" aria-label="Choisir la traduction" aria-haspopup="true" aria-expanded="false" title="Traduction"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M12 6.5C10.2 5.2 7.6 4.6 4 4.8v13.4c3.6-.2 6.2.4 8 1.7 1.8-1.3 4.4-1.9 8-1.7V4.8c-3.6-.2-6.2.4-8 1.7z"/><path d="M12 6.5v13.4"/></svg></span>';
   }
-  function majTrad(){
-    var ds = document.querySelectorAll('.trad');
-    for (var i = 0; i < ds.length; i++) ds[i].innerHTML = optionsTrad();
-  }
-  majTrad();
   /* Changer de traduction ne doit pas renvoyer le lecteur en haut du chapitre.
      On retient le premier verset qui touche le haut de l'écran et la hauteur
      exacte à laquelle il se tient : l'autre texte n'a pas les mêmes lignes,
@@ -1414,7 +1268,6 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     TRAD = k;
     CACHE = CACHES[k];
     try { localStorage.setItem(TRAD_CLE, k); } catch(e) {}
-    majTrad();
     route();
     if (noteEnCours) citeNote(noteEnCours);
   }
@@ -1491,7 +1344,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     }
     function ouvre(){
       rend(); m.classList.add('ouvert');
-      var r = boite.getBoundingClientRect(), w = Math.max(m.offsetWidth, r.width);
+      var r = boite.getBoundingClientRect();
       m.style.minWidth = Math.round(r.width) + 'px';
       m.style.left = Math.round(Math.max(10, Math.min(r.right - m.offsetWidth, window.innerWidth - m.offsetWidth - 10))) + 'px';
       m.style.top = Math.round(r.bottom + 8) + 'px';
@@ -1508,13 +1361,6 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     document.addEventListener('click', function(e){ if (m.classList.contains('ouvert') && !m.contains(e.target)) ferme(); });
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && m.classList.contains('ouvert')) { e.stopPropagation(); ferme(); boite.focus(); } }, true);
   })();
-  /* même délégation que les boutons de taille du texte : le sélecteur est
-     redessiné à chaque rendu, l'écoute ne l'est pas */
-  document.addEventListener('click', function(e){
-    var o = e.target.closest ? e.target.closest('.trad-o') : null;
-    if (!o) return;
-    choisitTraduction(o.getAttribute('data-trad'));
-  });
 
   /* ───────── Références : analyse de « Matthieu 7:6-8 » ───────── */
   var ALIAS = {
@@ -2830,12 +2676,6 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       document.body.removeChild(ta);
     }
   }
-  function basculePlus(el){
-    var z = el.closest('.nt-trunc'); if (!z) return;
-    var c = z.querySelector('.nt-court'), fl = z.querySelector('.nt-full');
-    if (!fl.hasAttribute('hidden')) { fl.setAttribute('hidden',''); c.removeAttribute('hidden'); el.textContent = el.getAttribute('data-more'); }
-    else { c.setAttribute('hidden',''); fl.removeAttribute('hidden'); el.textContent = el.getAttribute('data-less'); }
-  }
   /* ── Menu d'actions : un seul point d'entrée par élément ── */
   var menuFlot = document.createElement('div');
   menuFlot.id = 'menu-flot';
@@ -2942,14 +2782,6 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       return true;
     }
     if ((el = cible.closest('[data-cop]'))) { copieNote(el); return true; }
-    if ((el = cible.closest('.nt-plus'))) { basculePlus(el); return true; }
-    if ((el = cible.closest('[data-nav]'))) {
-      var p = el.getAttribute('data-nav').split(':');
-      var nn = NOTES.filter(function(x){ return x.id === p[0]; })[0];
-      var g = nn && nn.refs[parseInt(p[1], 10)];
-      if (g) location.hash = '#' + g.slug + '/' + g.ch + '/' + g.v1;
-      return true;
-    }
     if ((el = cible.closest('.surl-plus'))) { basculeSurlGroupe(el); return true; }
     if ((el = cible.closest('[data-snav]'))) { location.hash = '#' + el.getAttribute('data-snav'); return true; }
     if ((el = cible.closest('[data-soff]'))) { oteSurlignage(el.getAttribute('data-soff')); return true; }
@@ -3003,11 +2835,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     CATS.forEach(function(c){ valides[c.id] = 1; });
     var racines = CATS.filter(function(c){ return !c.parent; });
     var libres = liste.filter(function(n){ return !n.c || !valides[n.c]; });
-    /* un filtre qui pointe sur une catégorie supprimée doit retomber sur Tout */
-    if (filtreCat && filtreCat !== '__surl__' && filtreCat !== '__libre__'
-        && !valides[filtreCat]) filtreCat = '';
     if (filtreCat === '__surl__' && !nSurl) filtreCat = '';
-    if (filtreCat === '__libre__' && !libres.length) filtreCat = '';
     /* ── À LA MANIÈRE DE MÉMORISER (Emmanuel) ──
        Deux onglets, Notes et Surlignages ; chaque catégorie (ou chaque livre)
        est une section encadrée, son nom en petites capitales et son nombre de
@@ -3025,10 +2853,6 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
         liste.forEach(function(x){ if (x.c === sc.id) n++; });
       });
       return n;
-    }
-    function puce(id, nom, n){
-      return '<span class="nz-fil' + (filtreCat === id ? ' on' : '') + '" data-fil="' + id + '"'
-           + ' role="button" tabindex="0">' + esc(nom) + '<i>' + n + '</i></span>';
     }
 
     var resume = [];
@@ -3067,31 +2891,6 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
            + (menu ? '<span class="nt-menu" data-menu="' + menu + '" role="button" tabindex="0" aria-label="Actions de la cat\u00e9gorie">\u22ef</span>' : '')
            + '</div>';
     }
-    function carteNote(n){
-      var date = new Date(n.d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-      var x = '<div class="note-item" data-id="' + n.id + '">'
-            + '<span class="nt-menu" data-menu="note:' + n.id + '" role="button" tabindex="0" aria-label="Actions de la note">\u22ef</span>';
-      if ((n.refs || []).length) {
-        x += '<div class="note-refs">' + n.refs.map(function(g, i){
-          return '<span class="note-ref" data-nav="' + n.id + ':' + i + '">' + esc(libelle(g)) + '</span>';
-        }).join('<span class="note-sep">\u00b7</span>') + '</div>';
-      }
-      if (n.ti) x += '<div class="note-ti">' + esc(n.ti) + '</div>';
-      /* note longue : aperçu tronqué tant qu'on ne l'a pas dépliée */
-      var LIM = 420;
-      if ((n.t || '').length > LIM) {
-        var coupe = n.t.slice(0, LIM);
-        var sp = coupe.lastIndexOf(' ');
-        if (sp > LIM - 80) coupe = coupe.slice(0, sp);
-        x += '<div class="note-texte nt-trunc">'
-           + '<span class="nt-court">' + esc(coupe) + '\u2026</span>'
-           + '<span class="nt-full" hidden>' + esc(n.t) + '</span> '
-           + '<span class="nt-plus" role="button" tabindex="0" data-more="Voir plus" data-less="Voir moins">Voir plus</span></div>';
-      } else {
-        x += '<div class="note-texte">' + esc(n.t) + '</div>';
-      }
-      return x + '<div class="note-pied">' + date + '</div></div>';
-    }
     function rangeeNote(n){
       var date = new Date(n.d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
       var refs = (n.refs || []).map(function(g){ return libelle(g); }).join(' \u00b7 ');
@@ -3106,18 +2905,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
        l'ordre de la Bible ; dans un livre, par chapitre puis par verset. Les
        notes sans référence ferment la liste. */
     function parLivre(){
-      var dansCat = {};
-      if (filtreCat && filtreCat !== '__libre__') {
-        dansCat[filtreCat] = 1;
-        CATS.forEach(function(x){ if (x.parent === filtreCat) dansCat[x.id] = 1; });
-      }
-      var choix = liste.filter(function(n){
-        if (!filtreCat) return true;
-        if (filtreCat === '__libre__') return !n.c || !valides[n.c];
-        return !!dansCat[n.c];
-      });
       var livres = {}, sans = [];
-      choix.forEach(function(n){
+      liste.forEach(function(n){
         var refs = (n.refs || []).filter(function(g){ return g && g.slug; });
         if (!refs.length) { sans.push(n); return; }
         var premier = {};
@@ -3157,9 +2946,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       corps = parLivre();
     }
     if (filtreCat !== '__surl__') {
-      if (triNotes !== 'livre' && filtreCat !== '__libre__') {
+      if (triNotes !== 'livre') {
         racines.forEach(function(c){
-          if (filtreCat && filtreCat !== c.id) return;
           var directes = liste.filter(function(n){ return n.c === c.id; });
           var sous = CATS.filter(function(x){ return x.parent === c.id; });
           var notesSous = sous.some(function(sc){ return liste.some(function(n){ return n.c === sc.id; }); });
@@ -3179,7 +2967,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
           corps += finSec();
         });
       }
-      if (triNotes !== 'livre' && (!filtreCat || filtreCat === '__libre__')) {
+      if (triNotes !== 'livre') {
         if (libres.length) {
           corps += enTete(CATS.length ? 'Non class\u00e9es' : 'Mes notes', libres.length, '');
           libres.forEach(function(n){ corps += rangeeNote(n); });
@@ -3187,15 +2975,10 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
         }
       }
       if (!corps) {
-        /* surlSuivent reste faux : les surlignages ont leur propre onglet, ce
-           message intermédiaire ne paraît pas */
-        var surlSuivent = false;
         corps = NOTES.length
           ? '<div class="notes-vide"><div class="notes-vide-p">Aucune note ne correspond.</div></div>'
-          : surlSuivent
-            ? '<div class="notes-vide notes-vide-min"><div class="notes-vide-p">Aucune note pour l’instant. Vos surlignages sont rassemblés plus bas.</div></div>'
-            : '<div class="notes-vide"><div class="notes-vide-t">Rien encore</div>'
-              + '<div class="notes-vide-p">Ouvrez un chapitre, s\u00e9lectionnez un verset, puis \u00e9crivez. Vos notes et vos surlignages se rassemblent ici.</div></div>';
+          : '<div class="notes-vide"><div class="notes-vide-t">Rien encore</div>'
+            + '<div class="notes-vide-p">Ouvrez un chapitre, s\u00e9lectionnez un verset, puis \u00e9crivez. Vos notes et vos surlignages se rassemblent ici.</div></div>';
       }
     }
     if (corps) h += '<div class="nz-liste">' + corps + '</div>';
@@ -3286,7 +3069,6 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     if (k !== TRAD) {
       TRAD = k; CACHE = CACHES[k];
       try { localStorage.setItem(TRAD_CLE, k); } catch(e) {}
-      majTrad();
     }
     var cible = hashSignet(g);
     if (location.hash === cible) route(); else location.hash = cible;
@@ -3545,16 +3327,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       actifId('signet-btn', basculeSignet);
       versSignets(document.getElementById('signet-btn'));
       majSignets();
-      if (pendingSel && pendingSel.slug === slug && pendingSel.ch === n) {
-        for (var v = pendingSel.v1; v <= pendingSel.v2; v++) {
-          if (document.getElementById('va-' + v) && selIdx(slug, n, v) < 0) SEL.push({ s: slug, c: n, v: v });
-        }
-        pendingSel = null;
-        sauveSel(); majPlateau();
-      } else {
-        marqueSelection();
-        marqueSurl();
-      }
+      marqueSelection();
+      marqueSurl();
       marqueSurlF();
       marqueNotes();
       /* on remet le lecteur là où il était avant de changer de traduction ;

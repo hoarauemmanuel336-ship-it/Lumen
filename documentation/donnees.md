@@ -18,7 +18,7 @@ Le texte des deux Bibles ne vient pas de la base : il est découpé par livre à
 
 | Chemin | Contenu |
 |---|---|
-| `config/memoriser` | La bibliothèque de départ ; la fabrication l'intègre à la page, et prend `contenu/memoriser.json` quand elle est vide. |
+| `config/memoriser` | La bibliothèque de départ en ligne : la page la relit au chargement et la préfère, quand elle existe, à celle qu'elle embarque. La fabrication, elle, embarque dans la page `contenu/memoriser.json`. |
 | `users/{uid}/categories/{id}` | Les catégories créées par Emmanuel, avec leurs versets ; un verset vaut `{id, fr: {text, ref}}`. |
 | `users/{uid}/meta/progress` | La progression : la couleur et l'historique de chaque verset, par identifiant de verset. |
 | `users/{uid}/meta/prefs` | Les catégories choisies, les versets écartés des séries. |

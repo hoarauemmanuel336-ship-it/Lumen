@@ -12,7 +12,6 @@
    ============================================================ */
 :root{
   --encre:#000000;          /* fond global, noir total */
-  --encre-2:#0b0b0b;        /* fond des surfaces légèrement levées */
   --parchemin:#ffffff;      /* texte principal, blanc franc */
   --parchemin-att:#ffffff;  /* texte secondaire, blanc lui aussi */
   --or:#efe6cf;             /* accent principal, crème clair */
@@ -90,18 +89,6 @@ nav.menu a:hover,nav.menu a.actif{color:var(--parchemin);border-color:var(--or)}
 .burger{display:none;background:none;border:none;color:var(--parchemin);
   font-size:24px;cursor:pointer;line-height:1}
 
-/* contexte d'article (thème · date) dans le bandeau, entre le logo et le menu */
-.contexte-bar{
-  grid-column:2;grid-row:1;text-align:left;min-width:0;
-  overflow:hidden;text-overflow:ellipsis;
-  font-family:'Cormorant Garamond',serif;
-  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--parchemin-att);white-space:nowrap;pointer-events:auto;
-}
-.contexte-bar:empty{display:none}
-.contexte-bar a{transition:color .3s}
-.contexte-bar a:hover{color:var(--or)}
-
 /* ---------- recherche ---------- */
 .rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:var(--parchemin-att);transition:color .3s;background:none;border:none;padding:0;outline:none}
 .rech-loupe:hover,.rech-loupe:focus{color:var(--or)}
@@ -123,8 +110,6 @@ nav.menu a:hover,nav.menu a.actif{color:var(--parchemin);border-color:var(--or)}
 .rech-meta{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin-bottom:6px}
 .rech-titre{font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.15;transition:color .3s}
 .rech-item:hover .rech-titre,.rech-item.kact .rech-titre{color:var(--or-pale)}
-.rech-extrait{margin-top:7px;font-size:16px;color:var(--parchemin-att);line-height:1.55}
-.rech-extrait mark{background:none;color:var(--or);font-weight:600}
 @media(max-width:720px){#rech-champ{font-size:24px}.rech-boite{padding-top:6vh}}
 
 /* ---------- conteneur de page ---------- */
@@ -148,26 +133,6 @@ footer{flex-shrink:0}
   background-repeat:no-repeat;background-position:center;background-size:contain;
 }
 
-
-/* titres de section internes */
-.titre-section{
-  display:flex;align-items:baseline;gap:18px;
-  margin:72px 0 36px;
-}
-.titre-section .num{
-  font-family:'Cormorant Garamond',serif;
-  font-size:15px;letter-spacing:.2em;color:var(--or);
-  white-space:nowrap;
-}
-.titre-section h2{
-  font-family:'Cormorant Garamond',serif;
-  font-weight:400;font-size:34px;letter-spacing:.02em;
-  white-space:nowrap;
-}
-.titre-section .trait{flex:1;height:1px;background:var(--filet)}
-
-.titre-section h2{text-wrap:balance}
-
 /* ---------- pied de page ---------- */
 footer{
   border-top:1px solid var(--filet);
@@ -175,17 +140,10 @@ footer{
   padding:48px 32px 56px;
   text-align:center;
 }
-footer .marque{
-  font-family:'Cormorant Garamond',serif;
-  letter-spacing:.34em;text-transform:uppercase;font-size:18px;
-  padding-left:.34em;color:var(--parchemin);
-}
 footer .verset-pied{
   margin-top:18px;font-style:italic;color:var(--parchemin-att);font-size:17px;
 }
 footer .verset-pied .ref-pied{font-style:normal}
-footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--parchemin-att);
-  font-family:'Cormorant Garamond',serif}
 
 /* ---------- responsive ---------- */
 @media(max-width:720px){
@@ -203,9 +161,6 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:var(--par
   nav.menu.ouvert{transform:none}
   nav.menu a{font-size:15px;padding:12px 0;width:100%;border-bottom:none}
   .burger{display:block}
-  .contexte-bar{display:none}
-  .titre-section h2{font-size:26px;white-space:normal}
-  .titre-section{flex-wrap:wrap}
 }
 .ll-mob{display:none}
 @media(max-width:720px){
@@ -234,40 +189,15 @@ nav.menu .rech-loupe .ll-mob{display:inline}
 /* ---------- impression ---------- */
 @media print{
   body{background:#fff;color:#000;font-size:12pt}
-  .barre,nav.menu,.burger,.contexte-bar,footer,.rech-overlay,
-  #bp-tab,#bp-pan,#bp-voile,.memo-accueil{display:none!important}
+  .barre,nav.menu,.burger,footer,.rech-overlay,
+  #bp-tab,#bp-pan,#bp-voile{display:none!important}
   main{padding:0}
   .vue{max-width:none}
-  h1,h2,h3,.titre-section h2{color:#000}
+  h1,h2,h3{color:#000}
   .ref-pied,.rech-meta{color:#000}
   em{color:#000}
   a{color:#000;text-decoration:none}
 }
-
-/* ---------- bloc Mémoriser (accueil) ---------- */
-.memo-bloc{max-width:628px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:30px}
-.memo-droite{width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
-.memo-pct{display:flex;align-items:baseline;justify-content:center;gap:11px}
-.memo-pct span{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:48px;line-height:1;color:var(--parchemin)}
-.memo-pct i{font-style:italic;font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.04em;text-transform:none;color:#ffffff}
-.memo-bar{display:flex;width:100%;height:4px;overflow:hidden;background:var(--filet)}
-.memo-bar i{display:block;height:100%;width:0;transition:width .6s cubic-bezier(.2,.7,.3,1)}
-.memo-bar .r{background:#c75d52}
-.memo-bar .a{background:#cfa24f}
-.memo-bar .v{background:#7ba37e}
-.memo-bar .l{background:var(--or)}
-.memo-leg{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--parchemin-att)}
-.memo-leg b{color:var(--parchemin);font-weight:600;font-variant-numeric:tabular-nums}
-.memo-note{font-size:16px;color:var(--parchemin-att);font-style:italic;margin:0;display:none;text-align:center}
-.memo-droite[data-state="out"] .memo-note,
-.memo-droite[data-state="empty"] .memo-note{display:block}
-.memo-droite:not([data-state="ok"]) .memo-pct,
-.memo-droite:not([data-state="ok"]) .memo-bar,
-.memo-droite:not([data-state="ok"]) .memo-leg{display:none}
-/* tant que rien n'est chargé, le bloc vide ne creuse pas d'écart au-dessus du bouton */
-.memo-droite[data-state="load"]{display:none}
-.memo-start{display:inline-block;width:min(100%,340px);box-sizing:border-box;text-align:center;padding:15px 20px;background:var(--or);color:var(--encre);font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;transition:background .3s}
-.memo-start:hover{background:var(--or-pale)}
 </style>
 </head>
 <body>

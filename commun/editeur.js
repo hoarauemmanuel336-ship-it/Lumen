@@ -1,6 +1,6 @@
 /* ════════════════════════════════════════════════════════════════════
    LUMEN · FONCTIONNEMENT COMMUN : EDITEUR
-   Pages : Articles, Commentaires.
+   Pages : Commentaires.
    L'éditeur de blocs (texte, verset, image, code), les images déposées et le sélecteur de passage biblique.
    La fabrication pose ce fichier dans chaque page concernée, avant le script
    de la page : une correction faite ici vaut pour toutes.
@@ -125,25 +125,23 @@ async function envoieImage(f,i){
   rendEditeur(); marqueSale(); enregistre(true);
 }
 
-async function chargeMedia(id,publik){
-  const cle=(publik?'p:':'')+id;
-  if(CACHE.has(cle))return CACHE.get(cle);
-  const col=publik?pmed():mcol();
-  const meta=await col.doc(id).get();
+async function chargeMedia(id){
+  if(CACHE.has(id))return CACHE.get(id);
+  const meta=await mcol().doc(id).get();
   if(!meta.exists)throw new Error('média introuvable');
   const m=meta.data(), bouts=[];
   for(let k=0;k<(m.n||0);k++){
-    const t=await col.doc(id).collection('tranches').doc(String(k)).get();
+    const t=await mcol().doc(id).collection('tranches').doc(String(k)).get();
     bouts.push(t.exists?(t.data().d||''):'');
   }
   const url='data:'+(m.mime||'image/jpeg')+';base64,'+bouts.join('');
-  CACHE.set(cle,url);
+  CACHE.set(id,url);
   return url;
 }
 
-function poseImage(img,id,publik){
+function poseImage(img,id){
   if(!img)return;
-  chargeMedia(id,publik).then(u=>{img.src=u;}).catch(()=>{
+  chargeMedia(id).then(u=>{img.src=u;}).catch(()=>{
     const f=img.parentNode; if(!f)return;
     const d=document.createElement('div'); d.className='im-etat'; d.textContent='Image introuvable';
     f.replaceChild(d,img);
@@ -190,8 +188,8 @@ async function copieMediaPublic(id){
   const meta=await mcol().doc(id).get();
   if(!meta.exists)return;
   const m=meta.data(), n=m.n||0;
-  /* un média ne change jamais sous le même identifiant : s'il est déjà en
-     ligne, complet, il n'est pas recopié (sinon chaque enregistrement
+  /* un média ne change jamais sous le même identifiant : s'il est déjà
+     copié, complet, il n'est pas recopié (sinon chaque enregistrement
      automatique renverrait toutes les images, tranche par tranche) */
   try{const pub=await pmed().doc(id).get();if(pub.exists&&(pub.data().n||0)===n&&n>0)return;}catch(e){}
   for(let k=0;k<n;k++){

@@ -3,10 +3,9 @@
    ════════════════════════════════════════════════════════════════════
    Un article est une page HTML (skill article-html) qui s'ouvre en plein
    écran : la page Articles fonctionne comme Ressources. La première moitié
-   de cette feuille reprend donc habillage/ressources.css à l'identique
-   (en-tête, modes Organiser et Choisir, corbeille, fiche, plein écran,
-   éditeur, fenêtres) ; les règles des domaines et des cartes n'y trouvent
-   pas d'élément, la page n'en ayant pas.
+   de cette feuille reprend donc les règles de habillage/ressources.css qui
+   valent aussi ici (en-tête, modes Organiser et Choisir, corbeille, fiche,
+   plein écran, éditeur, fenêtres).
 
    La seconde moitié, à partir de « LA LISTE EN RANGÉES », dessine la liste :
    catégories, sections et articles en rangées sur le noir, séparées par
@@ -14,17 +13,13 @@
    ════════════════════════════════════════════════════════════════════ */
 
 :root{
-  /* les deux pictogrammes dessinés par la feuille (dossier, corbeille) :
-     des masques, que la couleur d'accent remplit */
-  --re-dossier:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3.5 7.2c0-.9.7-1.7 1.7-1.7h4.1l1.9 2.1h7.6c.9 0 1.7.8 1.7 1.7v8.5c0 .9-.8 1.7-1.7 1.7H5.2c-1 0-1.7-.8-1.7-1.7z' fill='none' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E");
+  /* le pictogramme de la corbeille, dessiné par la feuille : un masque,
+     que la couleur d'accent remplit */
   --re-corbeille:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 7h15M9.5 7V5.2c0-.4.3-.7.7-.7h3.6c.4 0 .7.3.7.7V7M6.5 7l.9 11.6c.1.8.7 1.4 1.5 1.4h6.2c.8 0 1.4-.6 1.5-1.4L17.5 7M10.2 10.5v6M13.8 10.5v6' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  --re-medaillon:color-mix(in srgb,var(--h-or) 12%,transparent);
-  --re-barre:calc(68px + env(safe-area-inset-bottom,0px));
 }
 
 /* ── LA COLONNE ── */
 html body main.wrap{padding:64px 26px 40px}
-@media(max-width:720px){html body main.wrap{padding:36px 18px 24px}}
 
 /* ════════════════════════════════════════════════════════════════════
    1. L'EN-TÊTE ET LE FIL D'ARIANE
@@ -73,110 +68,26 @@ html body .resume{
 html body .resume:empty{display:none}
 
 /* ════════════════════════════════════════════════════════════════════
-   2. LES DOMAINES
-   Des rangées : l'icône de dossier, le nom en Cormorant, le nombre, le ⋯
-   et le chevron. Leur dessin final, sans cadre ni médaillon, est fixé plus
-   bas (« SANS CADRES »), qui l'emporte sur ces règles de base.
-   ════════════════════════════════════════════════════════════════════ */
-html body .rayons{
-  display:flex;flex-direction:column;gap:0;margin:0 0 28px;
-  background:var(--h-s1);border:1px solid var(--h-l1);border-radius:0;overflow:hidden;
-}
-html body .rayon{
-  position:relative;display:flex;align-items:center;gap:14px;min-height:68px;padding:12px 14px 12px 14px;
-  border:0;border-bottom:1px solid var(--h-l1);background:transparent;
-  transition:background .25s;
-}
-html body .rayons>.rayon:last-child{border-bottom:0}
-html body .rayon:hover{background:var(--h-s2);border-color:var(--h-l1)}
-/* l'icône de dossier, dessinée par masque dans la couleur d'accent */
-html body .rayon::before{
-  content:'';flex:none;width:40px;height:40px;border-radius:0;background:var(--h-or);
-  -webkit-mask:var(--re-dossier) center/20px 20px no-repeat,linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.12));
-          mask:var(--re-dossier) center/20px 20px no-repeat,linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.12));
-}
-html body .rayon .ry-nom{
-  flex:1;min-width:0;font-family:var(--h-titre);font-size:22px;font-weight:500;line-height:1.2;color:#fff;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .25s;
-}
-html body .rayon:hover .ry-nom{color:#fff}
-html body .rayon .ry-n{
-  flex:none;display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:24px;padding:0 8px;border-radius:0;
-  background:var(--h-s3);font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--h-t2);line-height:1;
-}
-html body .rayon .ry-menu{
-  position:relative;flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;padding:0;
-  font-size:18px;letter-spacing:.04em;line-height:1;
-}
-html body .rayon .ry-menu::before{content:'';position:absolute;inset:-3px;width:auto}
-html body .rayon .ry-chev{
-  flex:none;width:18px;text-align:center;font-family:var(--h-ui);font-size:22px;font-weight:400;line-height:1;color:var(--h-t3);
-  transition:color .25s;
-}
-html body .rayon:hover .ry-chev{color:var(--h-or)}
-@media(max-width:600px){
-  html body .rayon{gap:12px;min-height:64px;padding:10px 10px 10px 12px}
-  html body .rayon::before{width:36px;height:36px;border-radius:0}
-  html body .rayon .ry-nom{font-size:20px}
-  html body .rayon .ry-menu{width:44px;height:44px;margin:-4px -6px}
-}
-
-/* ════════════════════════════════════════════════════════════════════
    4. ORGANISER
-   La poignée ⠿ prend la place de l'icône des domaines (son dessin final
-   est plus bas, « LA POIGNÉE SANS CADRE »). Un trait crème dit où l'objet
-   va se poser ; l'objet tiré flotte, cerné de crème.
+   La poignée ⠿ (son dessin final est plus bas, « LA POIGNÉE SANS
+   CADRE »). L'objet tiré flotte, cerné de crème.
    ════════════════════════════════════════════════════════════════════ */
 html body.organise .poignee{
   width:32px;height:32px;border-radius:0;color:var(--h-t2);font-size:16px;background:var(--h-s3);
   transition:color .25s,background .25s;
 }
 html body.organise .poignee:hover{color:#000;background:var(--h-or)}
-/* sur une carte, la poignée est plus petite ; sa place dans le coin
-   est fixée plus bas */
-html body.organise .carte .poignee{width:28px;height:28px;font-size:15px}
-html body.organise .rayon::before{display:none}
-html body.organise .rayon:hover{background:transparent}
-/* le repère de dépose */
-html body .rayons .rayon.avant{box-shadow:inset 0 2px 0 var(--h-or)}
-html body .rayons .rayon.apres{box-shadow:inset 0 -2px 0 var(--h-or)}
-html body .rayon.cible{background:var(--h-voile-fort);box-shadow:inset 0 0 0 1px var(--h-or)}
-html body .rayon.cible .ry-nom{color:var(--h-or)}
-@media(max-width:640px){
-}
-@media(max-width:600px){
-  html body.organise .rayon{gap:8px}
-}
 html body .fantome{opacity:.28}
 html body .tire{
   border-radius:0;border:1px solid var(--h-or)!important;background:var(--h-s2)!important;
   box-shadow:var(--h-lueur),0 24px 60px -20px rgba(0,0,0,.9)!important;
 }
-html body .rayon.tire::before{display:none}
 
 /* ════════════════════════════════════════════════════════════════════
    5. CHOISIR (supprimer plusieurs d'un coup)
-   Une case paraît en tête de chaque domaine, à la place de l'icône (son
-   dessin final est plus bas, « UNE SEULE COCHE »). Les cartes n'en portent
-   pas : prises, elles se reconnaissent à leur contour crème. Les actions
-   se posent sous la liste.
+   La case de chaque rangée est dessinée plus bas (« LE MODE CHOISIR »).
+   Les actions se posent sous la liste.
    ════════════════════════════════════════════════════════════════════ */
-html body.choisir .coche{
-  width:26px;height:26px;border-radius:0;box-sizing:border-box;border:1.5px solid var(--h-l3);background:transparent;
-  font-family:var(--h-ui);font-size:13px;font-weight:700;line-height:1;color:transparent;
-  transition:background .2s,border-color .2s,color .2s,box-shadow .2s;
-}
-html body.choisir .pris>.coche{
-  background:var(--h-or);border-color:var(--h-or);color:#000;
-  box-shadow:0 0 14px color-mix(in srgb,var(--h-or) 45%,transparent);
-}
-html body.choisir .rayon::before{display:none}
-html body.choisir .rayon .coche{margin:0 0 0 7px}
-html body.choisir .rayon .ry-chev{color:var(--h-or);padding:0 4px}
-html body.choisir .rayon .ry-chev:hover{color:#fff}
-html body .rayon.pris,html body .rayon.pris:hover{background:var(--h-voile);box-shadow:none;border-color:var(--h-l1)}
-html body .rayon.pris .ry-nom{color:#fff}
-
 /* les actions du mode Choisir (allégées plus bas : ni capsule, ni fond) */
 html body #acts-choix{
   position:sticky;bottom:calc(16px + var(--lv-bas,0px));z-index:40;
@@ -190,7 +101,6 @@ html body #acts-choix{
 html body #compte-choix{
   margin-right:8px;font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.01em;text-transform:none;color:var(--h-or);white-space:nowrap;
 }
-html:root body #acts-choix .act{min-height:40px;padding:9px 18px;font-size:13.5px}
 @media(max-width:600px){
   html body #acts-choix{
     display:grid;grid-template-columns:1fr 1fr;width:100%;padding:12px;border-radius:0;
@@ -301,7 +211,6 @@ html:root body .res-plein-x{
   left:max(16px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:201;
   min-height:44px;padding:10px 20px;font-size:13.5px;
 }
-html:root body .res-plein-x.tel{left:auto;right:max(16px,env(safe-area-inset-right,0px))}
 /* sur tout l'écran, ni le dock ni l'onglet Bible ne restent derrière la
    ressource */
 html body.plein .nav-bas,html body.plein #bp-tab{visibility:hidden}
@@ -309,8 +218,7 @@ html body.plein .nav-bas,html body.plein #bp-tab{visibility:hidden}
 /* ════════════════════════════════════════════════════════════════════
    9. L'ÉDITEUR
    Le titre se tape en grand sur un mince trait qui s'allume à l'écriture.
-   L'espèce se choisit dans une rangée d'onglets, la marque dans des
-   tuiles ; la zone de dépôt est un cadre en pointillé, son bouton crème.
+   La zone de dépôt est un cadre en pointillé, son bouton crème.
    ════════════════════════════════════════════════════════════════════ */
 html body .outils{
   top:var(--hbar,64px);justify-content:flex-end;min-height:0;padding:0;margin:0 0 8px;
@@ -337,41 +245,11 @@ html body .ed-titre::placeholder{color:var(--h-t4)}
 html body .champ-lab{
   margin:32px 0 12px;font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-t3);
 }
-/* l'espèce : règles de base, redessinées plus bas en onglets soulignés */
-html body .types{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;border-radius:0;background:var(--h-s2);border:1px solid var(--h-l1)}
-html body .ty{
-  min-height:38px;padding:8px 20px;border:0;border-radius:0;background:none;
-  font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t2);
-  transition:color .25s,background .25s;
-}
-html body .ty:hover{color:#fff;background:var(--h-voile);border-color:transparent}
-html body .ty.on,html body .ty.on:hover{color:var(--h-or);background:var(--h-voile-fort);border-color:transparent}
-/* la marque : des tuiles, l'icône au-dessus du nom ; la dernière rangée
-   s'élargit pour ne pas laisser de vide */
-html body .marques{display:flex;flex-wrap:wrap;gap:8px}
-html body .mq-b{
-  flex:1 1 80px;min-height:86px;gap:9px;padding:14px 6px 12px;border:1px solid var(--h-l1);border-radius:0;background:var(--h-s1);
-  font-family:var(--h-ui);font-size:12.5px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t3);
-}
-html body .mq-b .mq-svg{width:24px;height:24px;color:var(--h-t2)}
-html body .mq-b .mq-rien{width:24px;height:24px;font-family:var(--h-ui);font-size:19px;opacity:.7}
-html body .mq-b.on{border-color:color-mix(in srgb,var(--h-or) 60%,transparent);background:var(--h-voile);color:var(--h-or);box-shadow:none}
-html body .mq-b.on .mq-svg{color:var(--h-or);filter:drop-shadow(0 0 6px color-mix(in srgb,var(--h-or) 40%,transparent))}
-@media (hover:hover) and (pointer:fine){
-  html body .mq-b:hover{border-color:var(--h-l3);color:#fff}
-  html body .mq-b.on:hover{border-color:color-mix(in srgb,var(--h-or) 60%,transparent);color:var(--h-or)}
-}
-@media(max-width:600px){
-  html body .mq-b{flex-basis:72px}
-  html body .types{display:flex}
-  html body .ty{flex:1 1 0;padding:8px 6px}
-}
 /* les champs */
 html body .res-zone{
   border-radius:0;background:#000;border:1px solid var(--h-l2);padding:13px 15px;
   font-family:var(--h-ui);font-size:15px;line-height:1.5;color:#fff;transition:border-color .25s,box-shadow .25s;
 }
-html body #f-desc{font-family:var(--h-texte);font-size:17px;line-height:1.55}
 html body .res-zone.code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.55;color:var(--h-t2)}
 html body .res-zone:focus{border-color:var(--h-or);box-shadow:none}
 /* la zone de dépôt */
@@ -379,7 +257,6 @@ html body .depose{
   gap:14px 16px;margin-bottom:10px;padding:16px 16px 16px 20px;border:1.5px dashed var(--h-l2);border-radius:0;background:var(--h-s1);color:var(--h-t2);
 }
 html body .depose .dep-mot{font-family:var(--h-ui);font-size:14px;color:var(--h-t3)}
-html body .depose .nom{font-family:var(--h-ui);font-size:14.5px;font-weight:500;color:#fff}
 html body .depose .poids{font-family:var(--h-ui);font-size:12.5px;color:var(--h-t3)}
 html body .depose .poids:empty{display:none}
 html body .depose.survol,html body .res-zone.code.survol{border-color:var(--h-or);border-style:solid;background:var(--h-voile);box-shadow:none}
@@ -446,8 +323,6 @@ html body .choix i{
 }
 html body .choix .cx-arbre{font-family:var(--h-ui);font-weight:500;color:var(--h-t4);margin-right:-4px}
 html body .choix.fort{font-family:var(--h-ui);font-weight:600;letter-spacing:.01em}
-html body .choix.del{color:color-mix(in srgb,#c96a6a 70%,#fff)}
-html body .choix.del:hover{color:color-mix(in srgb,#c96a6a 55%,#fff);background:color-mix(in srgb,#9a3b3b 20%,transparent)}
 html body .choix.off,html body .choix.off:hover{color:var(--h-t4);background:none}
 
 /* le compte : la déconnexion, en voix d'interface */
@@ -464,49 +339,6 @@ html body .auth-out:hover{color:var(--h-or)}
   html body .modal-btns>:only-child{grid-column:1/-1}
   html:root body .modal-btns :is(.m-annul,.m-ok){width:100%;padding:12px 8px}
 }
-
-/* ── L'ESPÈCE ──
-   Ni fond ni cadre : l'espèce choisie en blanc, soulignée d'un trait
-   crème (choix d'Emmanuel). */
-html body .types{background:none;border:0;border-bottom:1px solid var(--h-l1);padding:0;gap:22px}
-html body .ty{padding:8px 2px;background:none;box-shadow:inset 0 -1px 0 transparent}
-html body .ty:hover{background:none}
-html body .ty.on,html body .ty.on:hover{color:#fff;background:none;box-shadow:inset 0 -1px 0 var(--h-or)}
-
-
-/* ── SANS CADRES ──
-   Les domaines ne sont pas dans une boîte : des rangées posées sur le
-   noir, séparées par un filet, comme les rangées des Articles ; le
-   dossier est une simple icône, le nombre un simple chiffre. Le survol
-   éclaire le nom. Les cartes de ressources gardent leur contour, qui
-   s'allume au survol. */
-html body .rayons{background:none;border:0;border-top:1px solid var(--h-l2);overflow:visible}
-html body .rayons>.rayon,html body .rayons>.rayon:last-child{border-bottom:1px solid var(--h-l2)}
-html body .rayon{padding-left:2px}
-html body .rayon:hover{background:none}
-html body .rayon:hover .ry-nom{color:var(--h-or)}
-html body .rayon::before{width:22px;height:22px;
-  -webkit-mask:var(--re-dossier) center/20px 20px no-repeat;mask:var(--re-dossier) center/20px 20px no-repeat;opacity:.85}
-html body .rayon .ry-n{min-width:0;height:auto;padding:0;background:none;color:var(--h-t3)}
-
-/* ── LES CARTES DE RESSOURCES ──
-   Les cartes gardent le dessin propre à la page (coin coupé, médaillon,
-   état, survol) : ces variables leur rendent les nuances de la feuille
-   de la page, que habillage/commun.css redéfinit pour tout le site. */
-html body .carte{
-  --encre-2:#0b0b0b;--encre-3:#111111;--surv:color-mix(in srgb,var(--or) 6%,transparent);
-  --halo:color-mix(in srgb,var(--or) 10%,transparent);
-  --pa:rgba(255,255,255,.76);--pa2:rgba(255,255,255,.64);--parchemin-att:rgba(255,255,255,.7);
-  --filet:rgba(231,224,207,.17);--filet-f:rgba(231,224,207,.28);--filet-fort:rgba(231,224,207,.34);
-  --display:'Cormorant Garamond',serif;--serif:'EB Garamond',Georgia,serif;
-}
-
-/* ── PAS DE COCHE SUR LES CARTES ──
-   En mode Choisir, une carte prise se reconnaît à son contour crème ; la
-   case n'y paraît pas, et la carte garde sa mise en page. */
-html body.choisir .carte .coche{display:none}
-html body.choisir .carte .ct-bas{padding-left:22px}
-@media(max-width:600px){html body.choisir .carte .ct-bas{padding-left:18px}}
 
 /* le nombre d'éléments choisis ne s'affiche pas (choix d'Emmanuel) */
 html body #compte-choix{display:none!important}
@@ -530,7 +362,6 @@ html:root body .res-plein-acts{
 html:root body .res-plein-acts:hover{box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 html:root body .res-plein-acts .res-plein-x{position:static;left:auto;bottom:auto;box-shadow:none;border-radius:0}
 html:root body .res-plein-acts .res-plein-x:first-child{padding-left:24px}
-html:root body .res-plein-acts .res-plein-bible{padding-right:20px}
 html:root body .res-plein-acts .res-plein-bible{padding:10px 16px;position:relative}
 html:root body .res-plein-acts .res-plein-bible::before{
   content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:rgba(0,0,0,.28);
@@ -541,7 +372,7 @@ html body.plein #bp-pan{z-index:310}
 /* ── LE ⋯ SANS CADRE ──
    Sur cette page, le ⋯ ne prend pas de fond au survol : il s'allume,
    c'est tout. */
-html body :is(.ct-menu,.rub-menu,.ry-menu):is(:hover,:focus-visible){background:none}
+html body .rub-menu:is(:hover,:focus-visible){background:none}
 
 /* ── « REMETTRE » ET « SUPPRIMER » COLLÉS ──
    Dans chaque rangée de la corbeille, les deux actions forment un seul
@@ -558,30 +389,12 @@ html:root body .jt-act:is(:hover,:focus-visible),html:root body .jt-act.danger:i
 html:root body:not(#_) .poignee,html:root body:not(#_) .poignee:hover,
 html body.organise .poignee,html body.organise .poignee:hover{background:none;box-shadow:none;border:0;border-radius:0}
 html body.organise .poignee:hover{color:var(--h-or)}
-/* le ⠿ au plus près du coin haut gauche de la carte ; une zone de toucher
-   invisible garde la poignée facile à saisir */
-html body.organise .carte .poignee{left:0;top:0;width:auto;height:auto;padding:3px 0 0 4px;align-items:flex-start;justify-content:flex-start;line-height:1}
-html body.organise .carte .poignee::after{content:'';position:absolute;left:0;top:0;width:32px;height:32px}
-/* même écart au bord gauche et au bord haut (5 px, mesurés sur le signe
-   lui-même et non sur sa boîte) */
-html body.organise .carte .poignee{padding:3px 0 0 1.75px}
-@media(max-width:600px){html body.organise .carte .poignee{padding:2.5px 0 0 1.75px}}
 
 /* ── LE MESSAGE DE PAGE VIDE ──
    Sous le titre, aligné à gauche, dans l'écriture de lecture, comme sur
    les autres pages. */
 html:root body:not(#_) #liste>.vide{font-family:var(--h-texte);font-size:17.5px;font-style:normal;line-height:1.55;color:rgba(255,255,255,.78);text-align:left;align-self:stretch;width:100%;padding:0;margin:0 0 26px}
 @media(max-width:600px){html:root body:not(#_) #liste>.vide{font-size:16.5px}}
-
-/* ── UNE SEULE COCHE SUR TOUT LE SITE ──
-   La case de « Choisir » est celle de Mémoriser : 20 pixels, le trait
-   dessiné en noir sur le crème, sans lueur. */
-html:root body.choisir:not(#_) .coche{position:relative;width:20px;height:20px;flex:none;font-size:0;color:transparent;background:#000;box-shadow:none}
-html:root body.choisir:not(#_) .coche::after{
-  content:'';position:absolute;left:6px;top:2.5px;width:5px;height:10px;
-  border:solid #000;border-width:0 2px 2px 0;transform:rotate(45deg);opacity:0;transition:opacity .2s}
-html:root body.choisir:not(#_) .pris>.coche{background:var(--h-or);border-color:var(--h-or);box-shadow:none}
-html:root body.choisir:not(#_) .pris>.coche::after{opacity:1}
 
 /* ── LE BANDEAU DU PLEIN ÉCRAN : seule la moitié survolée s'éclaire ── */
 html:root body:not(#_):not(#_) .res-plein-acts{overflow:visible}
@@ -599,17 +412,12 @@ html:root body:not(#_):not(#_) .res-plein-acts>:is(.res-plein-x:hover+.res-plein
    la question en titre, le début de la réponse dessous.
    ════════════════════════════════════════════════════════════════════ */
 html body main.wrap{padding-top:56px;padding-bottom:72px}
-html body :is(#ecran-liste,#ecran-lire,#ecran-edit){animation:hMonte .42s var(--h-doux) both}
+html body :is(#ecran-liste,#ecran-edit){animation:hMonte .42s var(--h-doux) both}
 @media(max-width:720px){
   html body main.wrap{padding:36px 16px 40px}
 }
 html body .tete{
   display:block;padding:0 0 22px;margin:0 0 30px;border:0;position:relative;
-}
-html body .tete::after{
-  content:'';position:absolute;left:0;bottom:0;width:132px;height:1px;
-  background:linear-gradient(90deg,var(--h-or),color-mix(in srgb,var(--h-or) 0%,transparent));
-  opacity:.7;
 }
 html body .tete h1{
   font-family:var(--h-titre);font-weight:400;font-size:54px;line-height:1.02;
@@ -618,7 +426,6 @@ html body .tete h1{
 html body .resume{
   font-family:var(--h-texte);font-size:17.5px;line-height:1.55;color:var(--h-t2);margin:0 0 26px;max-width:620px;
 }
-html body .resume:empty{display:none}
 @media(max-width:720px){
   html body .tete{padding-bottom:18px;margin-bottom:24px}
   html body .tete h1{font-size:38px;letter-spacing:0}
@@ -635,23 +442,19 @@ html body .resume:empty{display:none}
 html body #liste:has(> .rub){
   background:var(--h-s1);border:1px solid var(--h-l1);border-radius:0;overflow:clip;
 }
-html body #liste > .rub + .rub{border-top:1px solid var(--h-l1)}
-html body #liste > .art-ligne + .rub,html body #liste > .rub + .art-ligne{margin-top:10px}
+html body #liste > .rub + .art-ligne{margin-top:10px}
 
 html body .rub-tete,
 html body .rub-1:first-child>.rub-tete{
   display:flex;align-items:center;gap:6px;min-height:62px;padding:10px 10px 10px 22px;
   cursor:pointer;transition:background .25s;
 }
-html body .rub-tete:hover{background:var(--h-s2)}
-html body .rub.ouvert>.rub-tete{background:color-mix(in srgb,var(--h-s2) 60%,transparent)}
 html body .rub-tete:focus-visible{outline-offset:-3px}
 html body .rub-nom,
-html body :is(.rub-1,.rub-2,.rub-3)>.rub-tete .rub-nom{
+html body .rub-1>.rub-tete .rub-nom{
   flex:1;min-width:0;font-family:var(--h-titre);font-weight:500;font-size:23px;line-height:1.2;
   letter-spacing:0;text-transform:none;color:#fff;transition:color .25s;
 }
-html body .rub-tete:hover .rub-nom{color:#fff}
 /* le nombre d'articles */
 html body .rub-n{
   flex:none;display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:22px;padding:0 8px;
@@ -670,25 +473,6 @@ html body .rub-chev{
   font-family:var(--h-ui);font-size:20px;line-height:1;color:var(--h-t3);
   transition:transform .3s var(--h-doux),color .25s;
 }
-html body .rub.ouvert>.rub-tete .rub-chev{transform:rotate(90deg);color:var(--h-or)}
-html body .rub.ouvert>.rub-tete .rub-n{background:var(--h-voile-fort);color:var(--h-or)}
-
-/* le corps d'une section dépliée */
-html body .rub-corps{padding:2px 12px 14px 12px}
-html body .rub.ouvert>.rub-corps{animation:hMonte .32s var(--h-doux) both}
-/* les sous-sections */
-html body .rub-corps>.rub{
-  margin:0 0 10px;background:var(--h-s2);border:1px solid var(--h-l1);border-radius:0;overflow:clip;
-}
-html body .rub-corps>.rub>.rub-tete{min-height:54px;padding:8px 8px 8px 18px}
-html body .rub-corps>.rub>.rub-tete:hover{background:var(--h-s3)}
-html body .rub-2>.rub-tete .rub-nom{font-size:20px}
-html body .rub-3>.rub-tete .rub-nom{font-size:18.5px;color:var(--h-t1)}
-html body .rub-corps>.rub>.rub-corps{padding:0 10px 10px}
-html body .rub-corps .rub-corps>.rub{background:var(--h-s3)}
-html body .rub-vide{
-  font-family:var(--h-ui);font-style:italic;font-size:16.5px;color:var(--h-t3);padding:6px 10px 10px;
-}
 
 /* ════════════════════════════════════════════════════════════════════
    4. LES RANGÉES D'ARTICLES
@@ -701,10 +485,6 @@ html body .art-ligne{
   background:var(--h-s1);border:1px solid var(--h-l1);border-radius:0;
   box-shadow:none;transition:border-color .25s,box-shadow .3s,background .25s;
 }
-html body .rub-corps>.art-ligne{background:#000;border-radius:0}
-html body .rub-corps>.art-ligne:last-child{margin-bottom:0}
-html body .art-ligne:hover{background:var(--h-s1);border-color:var(--h-l3);box-shadow:var(--h-lueur)}
-html body .rub-corps>.art-ligne:hover{background:#000}
 html body .art-ligne:hover .art-titre{color:#fff;text-shadow:none}
 html body .art-ligne:hover .art-extrait{color:var(--h-t2)}
 html body .art-ligne .art-item,
@@ -726,21 +506,6 @@ html body .art-pied{
   display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;margin-top:13px;
   font-family:var(--h-ui);font-size:12.5px;font-weight:500;letter-spacing:.01em;text-transform:none;color:var(--h-t3);
 }
-html body .art-pied .art-etat,
-html body .art-pied .art-etat.publie{
-  display:inline-flex;align-items:center;gap:7px;
-  font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
-  color:#fff;text-shadow:0 0 10px rgba(255,255,255,.65),0 0 20px rgba(255,255,255,.25);
-}
-html body .art-pied .art-etat::before{
-  content:'';width:6px;height:6px;border-radius:50%;flex:none;
-  box-shadow:inset 0 0 0 1.3px #fff,0 0 8px rgba(255,255,255,.55);
-}
-html body .art-pied .art-etat.publie::before{background:#fff;box-shadow:0 0 8px rgba(255,255,255,.85)}
-html body .art-pied .art-etat + span::before{
-  content:'';display:inline-block;width:3px;height:3px;border-radius:50%;margin:0 12px 0 0;vertical-align:middle;
-  background:var(--h-t4);
-}
 /* le ⋯ de chaque article, à droite de la rangée */
 html body .art-ligne .art-menu{
   flex:none;align-self:center;display:inline-flex;align-items:center;justify-content:center;
@@ -755,109 +520,48 @@ html body .vide{
   padding:48px 24px;text-align:center;border:1px dashed var(--h-l2);border-radius:0;
 }
 
-html body #liste > .rub-nom{
-  display:flex;align-items:center;gap:16px;
-  margin:44px 0 16px!important;
-  font-family:var(--h-titre);font-weight:500;font-size:25px;line-height:1.2;letter-spacing:0;text-transform:none;
-  color:#fff;white-space:normal;overflow:visible;
-}
-html body #liste > .rub-nom:first-child{margin-top:4px!important}
-html body #liste > .rub-nom::after{content:'';flex:1;min-width:24px;height:1px;background:linear-gradient(90deg,var(--h-l2),transparent)}
-
 /* ── LES ACTIONS DE LA LISTE ── */
 html body #acts-liste{margin:36px 0 0}
 
 @media(max-width:720px){
   html body .rub-tete,html body .rub-1:first-child>.rub-tete{min-height:58px;padding:8px 4px 8px 18px;gap:2px}
-  html body .rub-nom,html body :is(.rub-1,.rub-2,.rub-3)>.rub-tete .rub-nom{font-size:21px}
-  html body .rub-2>.rub-tete .rub-nom{font-size:19px}
-  html body .rub-3>.rub-tete .rub-nom{font-size:17.5px}
+  html body .rub-nom,html body .rub-1>.rub-tete .rub-nom{font-size:21px}
   html body .rub-menu{width:44px;height:44px}
   html body .rub-chev{width:30px}
-  html body .rub-corps{padding:0 8px 10px}
-  html body .rub-corps>.rub>.rub-tete{padding:6px 2px 6px 14px}
-  html body .rub-corps>.rub>.rub-corps{padding:0 6px 6px}
   html body .art-ligne .art-item,html body .art-ligne .art-item:hover{padding:17px 4px 15px 18px}
   html body .art-titre{font-size:22.5px;line-height:1.18}
   html body .art-extrait{font-size:15.5px;margin-top:6px}
   html body .art-pied{margin-top:11px;font-size:12px}
   html body .art-ligne .art-menu{width:44px;height:44px;margin-right:4px}
-  html body #liste > .rub-nom{font-size:22px;margin:36px 0 12px!important}
 }
 
-/* ── CHAQUE SECTION, UN BLOC À PART ──
-   Étape intermédiaire, que « SANS CADRES » plus bas remplace en grande
-   partie : chaque section a son propre cadre, séparé du suivant par un
-   vide. */
+/* ── LA LISTE SANS CADRE D'ENSEMBLE ── */
 html body #liste:has(> .rub){background:none;border:0;overflow:visible}
-html body #liste > .rub{background:var(--h-s1);border:1px solid var(--h-l2);overflow:clip}
-html body #liste > .rub + .rub{margin-top:16px;border-top:1px solid var(--h-l2)}
-
-/* ── RIEN D'ENCADRÉ DANS UNE SECTION ──
-   Ce qu'une section contient (articles et sous-sections) s'y range en
-   simples rangées, séparées par un filet, sans fond, contour ni lueur.
-   Les sous-sections se décalent vers la droite pour qu'on voie qu'elles
-   sont dedans. */
-html body .rub-corps{padding:0}
-html body .rub-corps>.rub,
-html body .rub-corps .rub-corps>.rub{margin:0;background:none;border:0;border-top:1px solid var(--h-l1);overflow:visible}
-html body .rub-corps>.rub>.rub-tete{padding-left:38px}
-html body .rub-corps .rub-corps>.rub>.rub-tete{padding-left:54px}
-html body .rub-corps>.rub>.rub-tete:hover{background:var(--h-s2)}
-html body .rub-corps>.rub>.rub-corps{padding:0}
-html body .rub-corps>.art-ligne,
-html body .rub-corps>.art-ligne:hover{margin:0;background:none;border:0;border-top:1px solid var(--h-l1);box-shadow:none}
-html body .rub-corps>.art-ligne:hover{background:var(--h-s2)}
-html body .rub-corps>.art-ligne .art-item{padding-left:24px}
-html body .rub-corps .rub-corps>.art-ligne .art-item{padding-left:40px}
-html body .rub-vide{padding:14px 24px;border-top:1px solid var(--h-l1)}
-@media(max-width:600px){
-  html body .rub-corps>.rub>.rub-tete{padding-left:26px}
-  html body .rub-corps>.art-ligne .art-item{padding-left:18px}
-  html body .rub-corps .rub-corps>.art-ligne .art-item{padding-left:30px}
-}
 
 /* ── SANS CADRES ──
    Emmanuel : « toujours trop carré dans des carrés ». Aucune boîte : les
    sections sont des rangées posées sur le noir, séparées par un filet ;
-   les articles d'une section sont des rangées décalées, séparées par un
-   filet plus fin ; les nombres sont de simples chiffres. Le survol
-   éclaire le titre, pas un fond. */
+   les nombres sont de simples chiffres. Le survol éclaire le titre, pas
+   un fond. */
 html body #liste > .rub,html body #liste > .rub + .rub{margin:0;background:none;border:0;border-bottom:1px solid var(--h-l2);overflow:visible}
 html body #liste > .rub:first-child{border-top:1px solid var(--h-l2)}
 html body .rub-tete,html body .rub-1:first-child>.rub-tete{padding-left:4px}
-html body .rub-tete:hover,html body .rub-corps>.rub>.rub-tete:hover{background:none}
+html body .rub-tete:hover{background:none}
 html body .rub-tete:hover .rub-nom{color:var(--h-or)}
-html body .rub-n,html body .rub.ouvert>.rub-tete .rub-n{min-width:0;height:auto;padding:0;background:none;color:var(--h-t3)}
-html body .art-ligne,html body .art-ligne:hover,
-html body .rub-corps>.art-ligne,html body .rub-corps>.art-ligne:hover{margin:0;background:none;border:0;border-top:1px solid var(--h-l1);box-shadow:none}
+html body .rub-n{min-width:0;height:auto;padding:0;background:none;color:var(--h-t3)}
+html body .art-ligne,html body .art-ligne:hover{margin:0;background:none;border:0;border-top:1px solid var(--h-l1);box-shadow:none}
 html body .art-ligne:hover .art-titre{color:var(--h-or)}
 html body #liste > .art-ligne:last-child{border-bottom:1px solid var(--h-l1)}
-html body .rub-corps>.art-ligne .art-item{padding-left:28px}
-html body .rub-corps>.rub>.rub-tete{padding-left:28px}
-html body .rub-corps .rub-corps>.art-ligne .art-item{padding-left:52px}
-html body .rub-corps .rub-corps>.rub>.rub-tete{padding-left:52px}
 html body #liste > .art-ligne .art-item{padding-left:4px}
-@media(max-width:600px){
-  html body .rub-corps>.art-ligne .art-item,html body .rub-corps>.rub>.rub-tete{padding-left:20px}
-  html body .rub-corps .rub-corps>.art-ligne .art-item,html body .rub-corps .rub-corps>.rub>.rub-tete{padding-left:36px}
-}
-html body .rub.ouvert>.rub-tete{background:none}
 
 /* ── LE FIL D'ARIANE D'UNE SECTION ──
    Une section s'ouvre sur sa propre page, comme dans Ressources : au-dessus
    du titre, le chemin qui y mène, chaque maillon ramenant à sa page ; le
-   nom de la section devient le grand titre. */
-html body .fil{
-  display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;padding:0 0 10px;
-  font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-t3);line-height:1.4;
-}
-html body .fil:empty{display:none}
+   nom de la section devient le grand titre. Le fil reprend le dessin de
+   la partie 1. */
 html body .fil span{display:inline-flex;align-items:center;min-height:28px;padding:0 9px;margin:0 -9px;color:var(--h-or);cursor:pointer;transition:color .25s}
 html body .fil span:hover{color:#fff}
-html body .fil i{padding:0 10px 0 12px;color:var(--h-t4);font-style:normal;font-weight:400;letter-spacing:0}
 html body .rub-tete .rub-chev{transform:none}
-html body .rub-vide{border-top:0;padding:14px 4px}
 
 /* ── LE MODE CHOISIR ──
    Une case paraît devant chaque section et chaque article ; cochée, elle
@@ -901,8 +605,3 @@ html body .tire{position:fixed;z-index:1000;pointer-events:none;margin:0;backgro
 html body #liste .avant{box-shadow:inset 0 2px 0 var(--h-or)}
 html body #liste .apres{box-shadow:inset 0 -2px 0 var(--h-or)}
 html body #liste .cible,html body #fil .cible{outline:1px solid var(--h-or);outline-offset:-1px;background:var(--h-s2)}
-
-html body .art-pied .art-etat::before{background:#fff;border:0;box-shadow:0 0 8px rgba(255,255,255,.85)}
-
-/* le nombre d'éléments choisis ne s'affiche pas (choix d'Emmanuel) */
-html body #compte-choix{display:none!important}

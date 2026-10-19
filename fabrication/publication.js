@@ -57,8 +57,6 @@ function differe(OUT, nom, html) {
   return tete + reste;
 }
 
-const SCRIPT_RE = /<script((?:\s+data-commun="[^"]*")?)>([\s\S]*?)<\/script>/g;
-
 function sansCommentairesCSS(css) {
   return css
     .replace(/\/\*[\s\S]*?\*\//g, '')
@@ -99,7 +97,7 @@ async function allegeHTML(html) {
   return morceaux.map(p => p.v).join('');
 }
 
-function controlePage(nom, html, attendu, defauts, alertes) {
+function controlePage(nom, html, attendu, defauts) {
   /* chaque script de la page doit se compiler */
   let m, n = 0;
   const re = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi;
@@ -180,7 +178,7 @@ module.exports = async function publication(OUT, attendu) {
   for (const f of ['index.html', 'bible.html', 'memoriser.html', 'articles.html', 'ressources.html', 'commentaires.html', '404.html']) {
     if (!fs.existsSync(path.join(OUT, f))) defauts.push(f + ' : page absente');
   }
-  for (const f of pages) controlePage(f, fs.readFileSync(path.join(OUT, f), 'utf8'), attendu || {}, defauts, alertes);
+  for (const f of pages) controlePage(f, fs.readFileSync(path.join(OUT, f), 'utf8'), attendu || {}, defauts);
   for (const f of scriptsJS) {
     const p = path.join(OUT, f);
     if (!fs.existsSync(p)) continue;

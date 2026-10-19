@@ -55,30 +55,24 @@ html body .resume:empty{display:none}
 
 /* ════════════════════════════════════════════════════════════════════
    3. LES LIVRES
-   Règles de base des rangées de livres (et des sous-niveaux, au cas où la
-   page en recevrait). Leur dessin final, sans cadres, est fixé en fin de
-   feuille (« SANS CADRES »).
+   Règles de base des rangées de livres. Leur dessin final, sans cadres,
+   est fixé en fin de feuille (« SANS CADRES »).
    ════════════════════════════════════════════════════════════════════ */
 html body #liste:has(> .rub){
   background:var(--h-s1);border:1px solid var(--h-l1);border-radius:0;overflow:clip;
 }
-html body #liste > .rub + .rub{border-top:1px solid var(--h-l1)}
-html body #liste > .art-ligne + .rub,html body #liste > .rub + .art-ligne{margin-top:10px}
 
 html body .rub-tete,
 html body .rub-1:first-child>.rub-tete{
   display:flex;align-items:center;gap:6px;min-height:62px;padding:10px 10px 10px 22px;
   cursor:pointer;transition:background .25s;
 }
-html body .rub-tete:hover{background:var(--h-s2)}
-html body .rub.ouvert>.rub-tete{background:color-mix(in srgb,var(--h-s2) 60%,transparent)}
 html body .rub-tete:focus-visible{outline-offset:-3px}
 html body .rub-nom,
-html body :is(.rub-1,.rub-2,.rub-3)>.rub-tete .rub-nom{
+html body .rub-1>.rub-tete .rub-nom{
   flex:1;min-width:0;font-family:var(--h-titre);font-weight:500;font-size:23px;line-height:1.2;
   letter-spacing:0;text-transform:none;color:#fff;transition:color .25s;
 }
-html body .rub-tete:hover .rub-nom{color:#fff}
 /* le nombre de commentaires */
 html body .rub-n{
   flex:none;display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:22px;padding:0 8px;
@@ -86,35 +80,11 @@ html body .rub-n{
   font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:0;font-variant-numeric:tabular-nums;
   color:var(--h-t2);margin-right:4px;
 }
-/* le ⋯ et le chevron, de même taille */
-html body .rub-menu{
-  flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;padding:0;
-  font-size:17px;letter-spacing:.06em;line-height:1;
-}
-html body .rub-menu::before{inset:-4px}
+/* le chevron */
 html body .rub-chev{
   flex:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;
   font-family:var(--h-ui);font-size:20px;line-height:1;color:var(--h-t3);
   transition:transform .3s var(--h-doux),color .25s;
-}
-html body .rub.ouvert>.rub-tete .rub-chev{transform:rotate(90deg);color:var(--h-or)}
-html body .rub.ouvert>.rub-tete .rub-n{background:var(--h-voile-fort);color:var(--h-or)}
-
-/* le corps d'une section dépliée */
-html body .rub-corps{padding:2px 12px 14px 12px}
-html body .rub.ouvert>.rub-corps{animation:hMonte .32s var(--h-doux) both}
-/* les sous-sections */
-html body .rub-corps>.rub{
-  margin:0 0 10px;background:var(--h-s2);border:1px solid var(--h-l1);border-radius:0;overflow:clip;
-}
-html body .rub-corps>.rub>.rub-tete{min-height:54px;padding:8px 8px 8px 18px}
-html body .rub-corps>.rub>.rub-tete:hover{background:var(--h-s3)}
-html body .rub-2>.rub-tete .rub-nom{font-size:20px}
-html body .rub-3>.rub-tete .rub-nom{font-size:18.5px;color:var(--h-t1)}
-html body .rub-corps>.rub>.rub-corps{padding:0 10px 10px}
-html body .rub-corps .rub-corps>.rub{background:var(--h-s3)}
-html body .rub-vide{
-  font-family:var(--h-ui);font-style:italic;font-size:16.5px;color:var(--h-t3);padding:6px 10px 10px;
 }
 
 /* ════════════════════════════════════════════════════════════════════
@@ -129,10 +99,6 @@ html body .art-ligne{
   background:var(--h-s1);border:1px solid var(--h-l1);border-radius:0;
   box-shadow:none;transition:border-color .25s,box-shadow .3s,background .25s;
 }
-html body .rub-corps>.art-ligne{background:#000;border-radius:0}
-html body .rub-corps>.art-ligne:last-child{margin-bottom:0}
-html body .art-ligne:hover{background:var(--h-s1);border-color:var(--h-l3);box-shadow:var(--h-lueur)}
-html body .rub-corps>.art-ligne:hover{background:#000}
 html body .art-ligne:hover .art-titre{color:#fff;text-shadow:none}
 html body .art-ligne:hover .art-extrait{color:var(--h-t2)}
 html body .art-ligne .art-item,
@@ -146,7 +112,6 @@ html body .art-titre{
   font-family:var(--h-titre);font-weight:500;font-size:25px;line-height:1.2;letter-spacing:0;
   color:#fff;text-wrap:pretty;
 }
-html body .art-vide-titre{color:var(--h-t3);font-style:italic}
 html body .art-extrait{
   font-family:var(--h-texte);font-size:16.5px;line-height:1.5;color:rgba(255,255,255,.64);margin-top:7px;
 }
@@ -184,34 +149,18 @@ html body .vide{
   padding:48px 24px;text-align:center;border:1px dashed var(--h-l2);border-radius:0;
 }
 
-html body #liste > .rub-nom{
-  display:flex;align-items:center;gap:16px;
-  margin:44px 0 16px!important;
-  font-family:var(--h-titre);font-weight:500;font-size:25px;line-height:1.2;letter-spacing:0;text-transform:none;
-  color:#fff;white-space:normal;overflow:visible;
-}
-html body #liste > .rub-nom:first-child{margin-top:4px!important}
-html body #liste > .rub-nom::after{content:'';flex:1;min-width:24px;height:1px;background:linear-gradient(90deg,var(--h-l2),transparent)}
-
 /* ── LES ACTIONS DE LA LISTE ── */
 html body #acts-liste{margin:36px 0 0}
 
 @media(max-width:720px){
   html body .rub-tete,html body .rub-1:first-child>.rub-tete{min-height:58px;padding:8px 4px 8px 18px;gap:2px}
-  html body .rub-nom,html body :is(.rub-1,.rub-2,.rub-3)>.rub-tete .rub-nom{font-size:21px}
-  html body .rub-2>.rub-tete .rub-nom{font-size:19px}
-  html body .rub-3>.rub-tete .rub-nom{font-size:17.5px}
-  html body .rub-menu{width:44px;height:44px}
+  html body .rub-nom,html body .rub-1>.rub-tete .rub-nom{font-size:21px}
   html body .rub-chev{width:30px}
-  html body .rub-corps{padding:0 8px 10px}
-  html body .rub-corps>.rub>.rub-tete{padding:6px 2px 6px 14px}
-  html body .rub-corps>.rub>.rub-corps{padding:0 6px 6px}
   html body .art-ligne .art-item,html body .art-ligne .art-item:hover{padding:17px 4px 15px 18px}
   html body .art-titre{font-size:22.5px;line-height:1.18}
   html body .art-extrait{font-size:15.5px;margin-top:6px}
   html body .art-pied{margin-top:11px;font-size:12px}
   html body .art-ligne .art-menu{width:44px;height:44px;margin-right:4px}
-  html body #liste > .rub-nom{font-size:22px;margin:36px 0 12px!important}
 }
 
 /* ════════════════════════════════════════════════════════════════════
@@ -439,8 +388,6 @@ html body .choix + .choix{border-top:1px solid var(--h-l1)}
 html body .choix:hover,html body .choix:focus-visible{background:var(--h-s3);color:#fff}
 html body .choix:focus-visible{outline-offset:-3px}
 html body .choix i{font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.1em;color:var(--h-t4)}
-html body .choix.del{color:color-mix(in srgb,var(--pourpre,#9a3b3b) 55%,#fff)}
-html body .choix.del:hover{color:color-mix(in srgb,var(--pourpre,#9a3b3b) 40%,#fff);background:color-mix(in srgb,var(--pourpre,#9a3b3b) 16%,transparent)}
 
 @media(max-width:600px){
   html body .overlay{padding:16px}
@@ -538,38 +485,8 @@ html body .auth-out{
 html body .auth-out:hover{color:var(--h-or);background:var(--h-s2)}
 html body .auth-box .tog-row{margin-top:14px}
 
-/* ── CHAQUE SECTION, UN BLOC À PART ──
-   Étape intermédiaire, que « SANS CADRES » plus bas remplace en grande
-   partie : chaque section a son propre cadre, séparé du suivant par un
-   vide. */
+/* ── LA LISTE SANS CADRE D'ENSEMBLE ── */
 html body #liste:has(> .rub){background:none;border:0;overflow:visible}
-html body #liste > .rub{background:var(--h-s1);border:1px solid var(--h-l2);overflow:clip}
-html body #liste > .rub + .rub{margin-top:16px;border-top:1px solid var(--h-l2)}
-
-/* ── RIEN D'ENCADRÉ DANS UNE SECTION ──
-   Ce qu'une section contient (commentaires et sous-sections) s'y range en
-   simples rangées, séparées par un filet, sans fond, contour ni lueur.
-   Les sous-sections se décalent vers la droite pour qu'on voie qu'elles
-   sont dedans. */
-html body .rub-corps{padding:0}
-html body .rub-corps>.rub,
-html body .rub-corps .rub-corps>.rub{margin:0;background:none;border:0;border-top:1px solid var(--h-l1);overflow:visible}
-html body .rub-corps>.rub>.rub-tete{padding-left:38px}
-html body .rub-corps .rub-corps>.rub>.rub-tete{padding-left:54px}
-html body .rub-corps>.rub>.rub-tete:hover{background:var(--h-s2)}
-html body .rub-corps>.rub>.rub-corps{padding:0}
-html body .rub-corps>.art-ligne,
-html body .rub-corps>.art-ligne:hover{margin:0;background:none;border:0;border-top:1px solid var(--h-l1);box-shadow:none}
-html body .rub-corps>.art-ligne:hover{background:var(--h-s2)}
-html body .rub-corps>.art-ligne .art-item{padding-left:24px}
-html body .rub-corps .rub-corps>.art-ligne .art-item{padding-left:40px}
-html body .rub-vide{padding:14px 24px;border-top:1px solid var(--h-l1)}
-@media(max-width:600px){
-  html body .rub-corps>.rub>.rub-tete{padding-left:26px}
-  html body .rub-corps>.art-ligne .art-item{padding-left:18px}
-  html body .rub-corps .rub-corps>.art-ligne .art-item{padding-left:30px}
-}
-
 
 /* ── SANS CADRES ──
    Emmanuel : « toujours trop carré dans des carrés ». Aucune boîte : les
@@ -579,23 +496,13 @@ html body .rub-vide{padding:14px 24px;border-top:1px solid var(--h-l1)}
 html body #liste > .rub,html body #liste > .rub + .rub{margin:0;background:none;border:0;border-bottom:1px solid var(--h-l2);overflow:visible}
 html body #liste > .rub:first-child{border-top:1px solid var(--h-l2)}
 html body .rub-tete,html body .rub-1:first-child>.rub-tete{padding-left:4px}
-html body .rub-tete:hover,html body .rub-corps>.rub>.rub-tete:hover{background:none}
+html body .rub-tete:hover{background:none}
 html body .rub-tete:hover .rub-nom{color:var(--h-or)}
-html body .rub-n,html body .rub.ouvert>.rub-tete .rub-n{min-width:0;height:auto;padding:0;background:none;color:var(--h-t3)}
-html body .art-ligne,html body .art-ligne:hover,
-html body .rub-corps>.art-ligne,html body .rub-corps>.art-ligne:hover{margin:0;background:none;border:0;border-top:1px solid var(--h-l1);box-shadow:none}
+html body .rub-n{min-width:0;height:auto;padding:0;background:none;color:var(--h-t3)}
+html body .art-ligne,html body .art-ligne:hover{margin:0;background:none;border:0;border-top:1px solid var(--h-l1);box-shadow:none}
 html body .art-ligne:hover .art-titre{color:var(--h-or)}
 html body #liste > .art-ligne:last-child{border-bottom:1px solid var(--h-l1)}
-html body .rub-corps>.art-ligne .art-item{padding-left:28px}
-html body .rub-corps>.rub>.rub-tete{padding-left:28px}
-html body .rub-corps .rub-corps>.art-ligne .art-item{padding-left:52px}
-html body .rub-corps .rub-corps>.rub>.rub-tete{padding-left:52px}
 html body #liste > .art-ligne .art-item{padding-left:4px}
-@media(max-width:600px){
-  html body .rub-corps>.art-ligne .art-item,html body .rub-corps>.rub>.rub-tete{padding-left:20px}
-  html body .rub-corps .rub-corps>.art-ligne .art-item,html body .rub-corps .rub-corps>.rub>.rub-tete{padding-left:36px}
-}
-html body .rub.ouvert>.rub-tete{background:none}
 
 /* ── LE FIL D'ARIANE D'UN LIVRE ──
    Un livre s'ouvre sur sa propre page, comme une section dans Articles et
@@ -610,7 +517,6 @@ html body .fil span{display:inline-flex;align-items:center;min-height:28px;paddi
 html body .fil span:hover{color:#fff}
 html body .fil i{padding:0 10px 0 12px;color:var(--h-t4);font-style:normal;font-weight:400;letter-spacing:0}
 html body .rub-tete .rub-chev{transform:none}
-html body .rub-vide{border-top:0;padding:14px 4px}
 
 /* ── UN SEUL POINT POUR L'ÉTAT ──
    « Dans la Bible » et « Brouillon » s'affichent de la même façon, avec
@@ -619,5 +525,5 @@ html body .art-pied .art-etat::before{background:#fff;border:0;box-shadow:0 0 8p
 
 /* LA LECTURE EN LITERATA : le corps du commentaire dans l'éditeur ; les
    intertitres gardent Cormorant */
-html body :is(#lire-corps,#ed-corps){font-family:var(--h-texte)}
+html body #ed-corps{font-family:var(--h-texte)}
 html body #mot-liste:empty{display:none}

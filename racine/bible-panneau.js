@@ -20,15 +20,10 @@
 (function(){
   'use strict';
   if (document.getElementById('bp-tab')) return;
-  if (location.pathname === '/bible.html' || location.pathname === '/en/bible.html') return;
-  var BP_EN = location.pathname.indexOf('/en/') === 0;
-  var BP_DATA = BP_EN ? '/bible-data-en/' : '/bible-data/';
-  var BP_PAGE = BP_EN ? '/en/bible.html' : '/bible.html';
-  var BP_T = BP_EN ? {
-    bible: 'The Holy Bible', ouvrir: 'Open the Bible', page: 'Full page',
-    ph: 'Go to…', aller: 'Go', fermer: 'Close', rech: 'Search', compte: 'Account',
-    inconnue: 'Not recognised.', errBible: 'The Bible could not be loaded.'
-  } : {
+  if (location.pathname === '/bible.html') return;
+  var BP_DATA = '/bible-data/';
+  var BP_PAGE = '/bible.html';
+  var BP_T = {
     bible: 'La Sainte Bible', ouvrir: 'Ouvrir la Bible', page: 'Pleine page',
     ph: 'Aller \u00e0\u2026', aller: 'Aller', fermer: 'Fermer', rech: 'Rechercher', compte: 'Mon compte',
     inconnue: 'Non reconnue.', errBible: 'La Bible n\u2019a pas pu \u00eatre charg\u00e9e.'
@@ -76,7 +71,7 @@
   + '.bp-corps{flex:1;position:relative;min-height:0}'
   + '#bp-cadre{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}'
   + '.bp-charge{text-align:center;font-style:italic;color:var(--parchemin-att,rgba(255,255,255,.45));padding:40px 18px;font-family:var(--serif,Georgia,serif)}'
-  + '#bp-pan :focus{outline:none}#bp-tab:focus{outline:none}'
+  + '#bp-pan :focus{outline:none}'
   + '#bp-pan :focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}'
   + '#bp-tab:focus,#bp-tab:focus-visible{outline:none}'
   + '#bp-pan .bp-refrow :focus,#bp-pan .bp-refrow :focus-visible{outline:none}'
@@ -309,7 +304,7 @@
   function etiquetteRef(r){
     var inf = infoLivre(r.slug);
     var t = inf ? inf.nom : r.slug;
-    if (r.slug === 'psaumes' && r.ch) t = (BP_EN ? 'Psalm' : 'Psaume');
+    if (r.slug === 'psaumes' && r.ch) t = 'Psaume';
     if (r.ch) t += ' ' + r.ch;
     if (r.v1) { t += ':' + r.v1; if (r.v2 > r.v1) t += '-' + r.v2; }
     return t;
@@ -463,9 +458,6 @@
     livre: livreData,
     info: infoLivre,
     ref: parseRef,
-    refs: decoupeRefs,
-    etiquette: etiquetteRef,
-    ouvreSurRef: ouvreSurRef,
     /* la barre du bas du téléphone ouvre et referme le tiroir */
     bascule: function(){ if (pan.classList.contains('on')) ferme(); else ouvre(); }
   };

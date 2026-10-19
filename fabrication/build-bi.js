@@ -22,41 +22,8 @@ const PAGES = 'pages/', RACINE = 'racine/', CONTENU = 'contenu/';
    reste reconnu. */
 const SRC = process.argv[2] || ['accueil.html', 'index__48_.html'].map(f => PAGES + f).find(f => fs.existsSync(f)) || PAGES + 'accueil.html';
 const OUT = process.argv[3] || 'site';
-const DOMAINE = 'https://lumenveritatis.net';
 const src = fs.readFileSync(SRC, 'utf8');
 const css = src.slice(src.indexOf('<style>') + 7, src.indexOf('</style>')).replace(/—/g, '-');
-
-
-/* ── Lecture de Firestore pendant la fabrication ──
-   Sert à la bibliothèque de départ de Mémoriser (config/memoriser). La
-   lecture se fait sans compte : les règles de la base n'admettent que celui
-   d'Emmanuel, elle revient donc vide et la fabrication prend
-   contenu/memoriser.json. */
-const FS_BASE = 'https://firestore.googleapis.com/v1/projects/lumen-veritatis/databases/(default)/documents/';
-function fsValeur(v) {
-  if (v == null) return null;
-  if (v.stringValue !== undefined) return v.stringValue;
-  if (v.booleanValue !== undefined) return v.booleanValue;
-  if (v.integerValue !== undefined) return Number(v.integerValue);
-  if (v.doubleValue !== undefined) return v.doubleValue;
-  if (v.nullValue !== undefined) return null;
-  if (v.timestampValue !== undefined) return v.timestampValue;
-  if (v.mapValue !== undefined) { const o = {}; const f = v.mapValue.fields || {}; for (const k in f) o[k] = fsValeur(f[k]); return o; }
-  if (v.arrayValue !== undefined) return (v.arrayValue.values || []).map(fsValeur);
-  return null;
-}
-function fsChamps(fields) { const o = {}; const f = fields || {}; for (const k in f) o[k] = fsValeur(f[k]); return o; }
-function fsCurl(url) {
-  const { execSync } = require('child_process');
-  const brut = execSync('curl -s --max-time 12 "' + url + '"', { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
-  return JSON.parse(brut);
-}
-function fsLireDoc(chemin) {
-  try { const r = fsCurl(FS_BASE + chemin); return (r && r.fields) ? fsChamps(r.fields) : null; } catch (e) { return null; }
-}
-function fsLireCollection(nom) {
-  try { const r = fsCurl(FS_BASE + nom + '?pageSize=300'); if (!r || r.error) return null; return (r.documents || []).map(d => ({ id: d.name.split('/').pop(), data: fsChamps(d.fields) })); } catch (e) { return null; }
-}
 
 /* ── FEUILLE COMMUNE ──
    lumen-commun.css est posée dans chaque page, après la feuille propre de la
@@ -120,30 +87,13 @@ if (fs.existsSync(CONTENU + 'settings.json')) {
 /* ---- textes de l'interface ---- */
 const UI = {
   fr: {
-    html: 'fr', oglocale: 'fr_FR',
-    menu_home: 'Accueil', menu_memorise: 'Mémoriser',
-    bible_label: 'Le texte', bible_title: 'La Sainte Bible',
-    bible_open: 'Ouvrir la Bible',
-    footer_verse: '« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l\'ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span>',
-    notfound_title: 'Page introuvable', notfound_text: "Cette page n'existe pas.", notfound_back: "Revenir à l'accueil",
+    html: 'fr',
+    notfound_text: "Cette page n'existe pas.",
     site_desc_home: "La Sainte Bible en français et un outil pour apprendre les versets par cœur, à votre rythme.",
     t_home: 'Lumen · La Sainte Bible', t_404: 'Page introuvable · Lumen',
-    search_placeholder: 'Rechercher…', search_hint: 'Tapez une référence, par exemple Jean 3:16, pour l\u2019ouvrir dans la Bible.', search_empty: 'Aucune référence reconnue dans',
-    memo_label:"L'outil", memo_title:'Mémoriser', memo_open:'Ouvrir Mémoriser', memo_start:'Commencer',
-    art_label:'Les écrits', art_title:'Articles', art_open:'Ouvrir les articles', res_label:'Pour étudier', res_title:'Ressources', res_open:'Ouvrir les ressources', memo_mastery:'de maîtrise', memo_acquired:'acquis', memo_learning:'en cours', memo_review:'à revoir', memo_signedout:'Connectez-vous pour suivre votre progression.',
+    search_placeholder: 'Rechercher…', search_empty: 'Aucune référence reconnue dans',
   }
 };
-
-/* ---- chemin relatif d'un dossier vers une cible (chemins absolus) ---- */
-function rel(fromDir, toPath) {
-  const f = fromDir.split('/').filter(Boolean);
-  const t = toPath.split('/').filter(Boolean);
-  let i = 0; while (i < f.length && i < t.length && f[i] === t[i]) i++;
-  let r = '../'.repeat(f.length - i) + t.slice(i).join('/');
-  if (r === '') return './';
-  if (toPath.endsWith('/') && !r.endsWith('/')) r += '/';
-  return r;
-}
 
 /* ---- préchargement des polices ---- */
 const FONTS = POLICES_PRECHARGE;
@@ -162,17 +112,15 @@ const BARRE_CSS = `
   html{scroll-behavior:auto!important}
 }
 
-/* fond plein (22/09) : le texte qui défilait dessous restait lisible à travers le titre */
+/* fond plein : le texte qui défile dessous ne se lit pas à travers le titre */
 header{position:sticky;top:0;z-index:50;background:#000;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid rgba(231,224,207,.14)}
-/* ── LA BARRE SE RANGE (Emmanuel, 12/09) ──
-   Une poignée sous la barre la replie : il ne reste qu'un mince bandeau avec
-   son chevron, et l'écran entier revient à la lecture. Elle reste rangée tant
-   qu'on ne la rappelle pas, sur cet appareil. Elle est posée en bas de la
-   barre, centrée, et reste en place une fois la barre repliée : c'est par elle
-   qu'on la fait revenir. */
-/* La poignée se tient juste à droite du titre « Lumen » (22/09) : elle ne
-   prend plus de hauteur à la barre. Rangée, la barre n'est plus qu'elle,
-   en mince bandeau. */
+/* ── LA BARRE SE RANGE ──
+   Une poignée replie la barre : il ne reste qu'un mince bandeau avec son
+   chevron, et l'écran entier revient à la lecture. Elle reste rangée tant
+   qu'on ne la rappelle pas, sur cet appareil. La poignée se tient juste à
+   droite du titre « Lumen », sans prendre de hauteur à la barre ; rangée,
+   la barre n'est plus qu'elle, en mince bandeau, et c'est par elle qu'on la
+   fait revenir. */
 .barre-poignee{display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin:0 0 0 -8px;padding:0;background:none;border:0;line-height:0;cursor:pointer;color:rgba(231,224,207,.42);transition:color .3s;-webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .barre-poignee:hover,.barre-poignee:focus-visible{color:var(--or,#efe6cf)}
 .barre-poignee svg{display:block;margin:0 auto;width:30px;height:9px;transition:transform .3s}
@@ -185,10 +133,9 @@ html.barre-rangee .barre-poignee svg{transform:rotate(180deg)}
 html.barre-rangee .barre-poignee{width:100%;height:auto;margin:0;padding:7px 0 8px}
 /* le menu déplié se referme avec la barre : il n'a plus de barre où s'accrocher */
 html.barre-rangee nav.menu{display:none}
-/* ── UNE BARRE PLUS MINCE (Emmanuel, 01/10 : « la barre du haut, même
-   dépliée, reste un peu trop large ») ── marges et interligne resserrés :
-   elle passe d'environ 85 à 60 px de haut sur ordinateur, et le bandeau
-   rangé s'amincit avec elle. */
+/* ── UNE BARRE MINCE (Emmanuel : « la barre du haut, même dépliée, reste
+   un peu trop large ») ── marges et interligne resserrés : environ 60 px de
+   haut sur ordinateur, et le bandeau rangé s'amincit avec elle. */
 .barre{max-width:1080px;margin:0 auto;padding:11px 32px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:24px;height:auto;line-height:1.35}
 .barre .logo{grid-column:1;grid-row:1;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px;letter-spacing:.34em;text-transform:uppercase;color:var(--parchemin,#ffffff);padding-left:.34em;border-bottom:none;text-decoration:none;transition:color .3s}
 /* Le titre est un lien vers l'accueil : il répond au survol comme les
@@ -196,7 +143,6 @@ html.barre-rangee nav.menu{display:none}
    éteignait le survol écrit dans les pages. */
 .barre .logo:hover{color:var(--or-pale,#f8f3e6)}
 a:focus-visible,button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible,summary:focus-visible{outline:1px solid var(--or,#efe6cf);outline-offset:3px}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}
 .burger{display:none;background:none;border:none;padding:0;margin:0;color:var(--parchemin,#ffffff);font-size:24px;cursor:pointer;line-height:1;-webkit-appearance:none;appearance:none}
 nav.menu{display:flex;gap:30px;grid-column:3;grid-row:1;justify-self:end;align-items:center;margin-left:0}
 nav.menu a{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:var(--parchemin,#ffffff);padding:0 0 3px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;text-decoration:none;position:static}
@@ -212,7 +158,7 @@ footer .verset-pied{margin-top:18px;font-style:italic;color:rgba(255,255,255,.55
 footer .verset-pied .ref-pied{font-style:normal;font-weight:600;color:rgba(255,255,255,.55)}
 footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,255,255,.45);font-family:'Cormorant Garamond',serif}
 @media(max-width:720px){
-  /* ── NAVIGATION DU TÉLÉPHONE (22/09) ──
+  /* ── NAVIGATION DU TÉLÉPHONE ──
      Le menu déroulant cède la place à une barre d'onglets en bas de l'écran,
      à portée du pouce. En haut ne restent que le titre, la loupe et le
      compte, chacun sur une zone de toucher de 44 px. */
@@ -230,7 +176,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
   .overlay:not(:has(input,textarea,select))>.modal{margin-top:auto;margin-bottom:auto}
 }
 
-/* ── BARRE D'ONGLETS DU TÉLÉPHONE (22/09) ──
+/* ── BARRE D'ONGLETS DU TÉLÉPHONE ──
    --lv-bas porte sa hauteur : les pages y calent ce qui se pose au bas de
    l'écran (barre de sélection de la Bible, bouton « haut de page »). Barre
    du haut rangée, celle du bas se range avec elle : l'écran entier revient
@@ -261,7 +207,6 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
    intacte. */
 const BARRE_TETE = `<script>try{var ac=/^\\/(index\\.html)?$/.test(location.pathname);if(!ac&&localStorage.getItem('lv_barre')==='1')document.documentElement.classList.add('barre-rangee');}catch(e){}</scr`+`ipt>`;
 const SVG_LOUPE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg>';
-const SVG_CLOCHE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke-linecap="round"/></svg>';
 const SVG_COMPTE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg>';
 const NAV_LIENS = [['/', 'Accueil'], ['/bible.html', 'Bible'], ['/memoriser.html', 'Mémoriser'],
                    ['/articles.html', 'Articles'], ['/ressources.html', 'Ressources']];
@@ -308,11 +253,11 @@ function piedCanon() {
    service worker du site, menu, poignée, lien actif, clavier. Il part dans
    lumen-app.js pour l'accueil et la 404, et tel quel dans les autres pages. */
 const BARRE_JS = `(function(){
-  /* ── LES CHAMPS DE RECHERCHE PASSENT À LA LIGNE (Emmanuel, 27/09) ──
-     Un champ d'une seule ligne cachait le début de ce qu'on tapait et
-     obligeait à le faire défiler de côté. Les champs de recherche et de
-     référence sont des zones qui s'agrandissent vers le bas à mesure qu'on
-     écrit ; Entrée lance la recherche, jamais un retour à la ligne. */
+  /* ── LES CHAMPS DE RECHERCHE PASSENT À LA LIGNE ──
+     Les champs de recherche et de référence sont des zones qui
+     s'agrandissent vers le bas à mesure qu'on écrit : le début de ce qu'on
+     tape reste visible, sans défilement de côté. Entrée lance la recherche,
+     jamais un retour à la ligne. */
   (function(){
     function ligne(t){return t&&t.classList&&t.classList.contains('champ-ligne');}
     function ajuste(t){if(!ligne(t))return;t.style.height='auto';t.style.height=t.scrollHeight+'px';}
@@ -360,16 +305,16 @@ const BARRE_JS = `(function(){
     });
   }
   var p=location.pathname.replace(/index\\.html$/,'')||'/';
-  /* Barre du bas : « Bible » mène à la page Bible, comme les autres onglets
-     (Emmanuel, 11/10) ; le tiroir s'ouvre par l'onglet Bible du bord. */
+  /* Barre du bas : « Bible » mène à la page Bible, comme les autres
+     onglets ; le tiroir s'ouvre par l'onglet Bible du bord. */
   Array.prototype.forEach.call(document.querySelectorAll('nav.menu a, .nav-bas a'),function(a){
     var h=(a.getAttribute('href')||'').replace(/index\\.html$/,'');
     if(h===p)a.classList.add('actif');
   });
   /* La loupe, le compte et la croix du panneau de compte sont des « boutons »
-     pour le lecteur d'écran (role=button) : Entrée et Espace doivent donc les
-     activer, sur TOUTES les pages. Chaque page branchait le clic, presque
-     aucune le clavier (05/09). Un seul geste ici vaut pour toutes. */
+     pour le lecteur d'écran (role=button) : Entrée et Espace les activent,
+     sur toutes les pages. Les pages branchent le clic ; le clavier se
+     branche ici, une fois pour toutes. */
   document.addEventListener('keydown',function(e){
     if(e.key!=='Enter'&&e.key!==' ')return;
     var t=e.target; if(!t||!t.closest)return;
@@ -392,14 +337,10 @@ const EXTRA_CSS = `${BARRE_CSS}
   header,.haut-page{display:none!important}
 }
 
-:focus-visible{outline:1px solid var(--or,#efe6cf);outline-offset:3px}
-
 html{scroll-behavior:smooth}
 .haut-page{position:fixed;right:18px;bottom:calc(18px + var(--lv-bas,0px));width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--filet,rgba(231,224,207,.25));color:var(--or,#efe6cf);font-size:17px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .35s,border-color .3s;z-index:1100}
 .haut-page.on{opacity:1;pointer-events:auto}
 .haut-page:hover{border-color:var(--or,#efe6cf)}
-
-.ctx-sep{opacity:.5;margin:0 7px}
 
 .auth-icone{position:relative}
 .auth-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);display:none;align-items:center;justify-content:center;padding:24px}
@@ -430,7 +371,6 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
 .auth-m-btn:hover{border-color:var(--or);color:var(--or-pale)}
 
 /* ── Raffinements d'interface ── */
-html{scroll-behavior:smooth}
 body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 ::selection{background:var(--sel,rgba(239,230,207,.5));color:var(--encre,#000)}
 h1,h2,h3{text-wrap:balance}
@@ -441,20 +381,19 @@ h1,h2,h3{text-wrap:balance}
 ::-webkit-scrollbar-thumb:hover{background:rgba(231,224,207,.6);background-clip:content-box;border:3px solid transparent}
 :focus-visible{outline:1px solid rgba(231,224,207,.28);outline-offset:3px}
 
-/* — Titre de page réservé aux moteurs et aux lecteurs d'écran — */
+/* — Titre de page réservé aux lecteurs d'écran — */
 .titre-cache{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 `;
 
-function header(lang, type, base, otherRel, ctx) {
+function header(lang) {
   const u = UI[lang];
-  const home = base === '' ? './' : base;
   return `${barreCanon()}
 <div class="rech-overlay" id="rech-overlay">
   <div class="rech-boite">
     <div class="rech-haut">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg>
       <textarea id="rech-champ" class="champ-ligne" rows="1" placeholder="${u.search_placeholder}" autocomplete="off" spellcheck="false"></textarea>
-      <span class="rech-fermer" id="rech-fermer" role="button" tabindex="0" aria-label="${u.menu_home === 'Home' ? 'Close' : 'Fermer'}">\u2715</span>
+      <span class="rech-fermer" id="rech-fermer" role="button" tabindex="0" aria-label="Fermer">\u2715</span>
     </div>
     <div class="rech-res" id="rech-res"></div>
   </div>
@@ -463,31 +402,31 @@ function header(lang, type, base, otherRel, ctx) {
   <div class="auth-modal">
     <span class="auth-fermer" id="auth-fermer" role="button" tabindex="0">✕</span>
     <div id="auth-out">
-      <div class="auth-m-title">${lang === 'fr' ? 'Connexion' : 'Sign in'}</div>
+      <div class="auth-m-title">Connexion</div>
       <div class="auth-m-tabs">
-        <button class="auth-m-tab on" id="amt-si">${lang === 'fr' ? 'Connexion' : 'Sign in'}</button>
-        <button class="auth-m-tab" id="amt-su">${lang === 'fr' ? 'Inscription' : 'Sign up'}</button>
+        <button class="auth-m-tab on" id="amt-si">Connexion</button>
+        <button class="auth-m-tab" id="amt-su">Inscription</button>
       </div>
       <div class="auth-m-msg" id="auth-m-msg"></div>
-      <input type="email" id="auth-email" placeholder="${lang === 'fr' ? 'Adresse e-mail' : 'Email address'}" autocomplete="email">
-      <input type="password" id="auth-pw" placeholder="${lang === 'fr' ? 'Mot de passe' : 'Password'}" autocomplete="current-password">
-      <input type="password" id="auth-cf" placeholder="${lang === 'fr' ? 'Confirmer le mot de passe' : 'Confirm password'}" autocomplete="new-password" style="display:none">
-      <button class="auth-m-primary" id="auth-submit">${lang === 'fr' ? 'Se connecter' : 'Sign in'}</button>
-      <div class="auth-m-or">${lang === 'fr' ? 'ou' : 'or'}</div>
-      <button class="auth-m-google" id="auth-google"><svg width="17" height="17" viewBox="0 0 18 18"><path fill="#EA4335" d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.54C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z"/><path fill="#FBBC05" d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9 9 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z"/><path fill="#4A90D9" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.96 13.04C2.44 15.98 5.48 18 9 18z"/></svg>${lang === 'fr' ? 'Continuer avec Google' : 'Continue with Google'}</button>
-      <button class="auth-m-link" id="auth-forgot">${lang === 'fr' ? 'Mot de passe oublié ?' : 'Forgot password?'}</button>
+      <input type="email" id="auth-email" placeholder="Adresse e-mail" autocomplete="email">
+      <input type="password" id="auth-pw" placeholder="Mot de passe" autocomplete="current-password">
+      <input type="password" id="auth-cf" placeholder="Confirmer le mot de passe" autocomplete="new-password" style="display:none">
+      <button class="auth-m-primary" id="auth-submit">Se connecter</button>
+      <div class="auth-m-or">ou</div>
+      <button class="auth-m-google" id="auth-google"><svg width="17" height="17" viewBox="0 0 18 18"><path fill="#EA4335" d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.54C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z"/><path fill="#FBBC05" d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9 9 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z"/><path fill="#4A90D9" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.96 13.04C2.44 15.98 5.48 18 9 18z"/></svg>Continuer avec Google</button>
+      <button class="auth-m-link" id="auth-forgot">Mot de passe oublié ?</button>
     </div>
     <div id="auth-in" style="display:none">
-      <div class="auth-m-title">${lang === 'fr' ? 'Mon compte' : 'My account'}</div>
+      <div class="auth-m-title">Mon compte</div>
       <div class="auth-m-email" id="auth-in-email"></div>
       <div class="pile-btn">
-      <a class="auth-m-btn" href="/bible.html#notes">${lang === 'fr' ? 'Mes notes' : 'My notes'}</a>
-      <a class="auth-m-btn" href="/bible.html#signets">${lang === 'fr' ? 'Mes signets' : 'My bookmarks'}</a>
-      <a class="auth-m-btn" id="auth-m-coms" href="/commentaires.html" style="display:none">${lang === 'fr' ? 'Mes commentaires' : 'My commentaries'}</a>
+      <a class="auth-m-btn" href="/bible.html#notes">Mes notes</a>
+      <a class="auth-m-btn" href="/bible.html#signets">Mes signets</a>
+      <a class="auth-m-btn" id="auth-m-coms" href="/commentaires.html" style="display:none">Mes commentaires</a>
       </div>
-      <div class="ttx-row"><span class="ttx-lab">${lang === 'fr' ? 'Taille du texte' : 'Text size'}</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
-      <div class="tog-row"><span class="tog-lab">${lang === 'fr' ? 'Onglet Bible à gauche' : 'Bible tab on the left'}</span><span class="tog-sw" id="tog-bible" role="button" tabindex="0" aria-label="${lang === 'fr' ? 'Afficher ou masquer l’onglet Bible' : 'Show or hide the Bible tab'}"></span></div>
-      <button class="auth-m-link" id="auth-logout">${lang === 'fr' ? 'Déconnexion' : 'Sign out'}</button>
+      <div class="ttx-row"><span class="ttx-lab">Taille du texte</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
+      <div class="tog-row"><span class="tog-lab">Onglet Bible à gauche</span><span class="tog-sw" id="tog-bible" role="button" tabindex="0" aria-label="Afficher ou masquer l’onglet Bible"></span></div>
+      <button class="auth-m-link" id="auth-logout">Déconnexion</button>
     </div>
   </div>
 </div>`;
@@ -496,35 +435,6 @@ function header(lang, type, base, otherRel, ctx) {
 function footer() {
   return piedCanon();
 }
-
-const MEMO_JS = `(function lvMemoBoot(){
-  var box=document.getElementById('memo-scores'); if(!box)return;
-  if(typeof firebase==='undefined'||!firebase.auth||!firebase.firestore){document.addEventListener('lv-fb-ready',lvMemoBoot,{once:true});return;}
-  var cfg={apiKey:"AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA",authDomain:"lumen-veritatis.firebaseapp.com",projectId:"lumen-veritatis",storageBucket:"lumen-veritatis.firebasestorage.app",messagingSenderId:"195902823875",appId:"1:195902823875:web:a8be1f216a5ae1d945f176"};
-  if(!firebase.apps.length)firebase.initializeApp(cfg);
-  var auth=firebase.auth(), db=firebase.firestore();
-  var FR=!(window.LUMEN&&window.LUMEN.lang==='en');
-  var L={out:FR?'Connectez-vous pour suivre votre progression.':'Sign in to track your progress.',empty:FR?'Commencez par mémoriser vos premiers versets.':'Start memorising your first verses.'};
-  function note(t){var n=document.getElementById('memo-note');if(n)n.textContent=t;}
-  function bar(r,a,v){var t=(r+a+v)||1,e;e=box.querySelector('#memo-bar .r');if(e)e.style.width=(r/t*100)+'%';e=box.querySelector('#memo-bar .a');if(e)e.style.width=(a/t*100)+'%';e=box.querySelector('#memo-bar .v');if(e)e.style.width=(v/t*100)+'%';}
-  auth.onAuthStateChanged(function(u){
-    if(!u){note(L.out);box.setAttribute('data-state','out');return;}
-    db.doc('users/'+u.uid+'/meta/progress').get().then(function(s){
-      var items=(s.exists&&s.data().items)?s.data().items:{};
-      var r=0,a=0,v=0,sum=0,tot=0,id,b;
-      /* l'échelle monte jusqu'au niveau 7 mais l'acquisition est le niveau 5 : au-delà, on ne compte pas plus de 100 % */
-      for(id in items){if(!Object.prototype.hasOwnProperty.call(items,id))continue;b=Math.max(0,Math.min(7,Math.floor(+(items[id]&&items[id].box))||0));tot++;sum+=Math.min(5,b);if(b<=1)r++;else if(b<=3)a++;else v++;}
-      if(!tot){note(L.empty);box.setAttribute('data-state','empty');return;}
-      var pct=Math.round(sum/(5*tot)*100);
-      var ep=document.getElementById('memo-pct');if(ep)ep.textContent=pct+(FR?String.fromCharCode(160)+'%':'%');
-      var ev=document.getElementById('memo-v');if(ev)ev.textContent=v;
-      var ea=document.getElementById('memo-a');if(ea)ea.textContent=a;
-      var er=document.getElementById('memo-r');if(er)er.textContent=r;
-      bar(r,a,v);
-      box.setAttribute('data-state','ok');
-    }).catch(function(){note(L.out);box.setAttribute('data-state','out');});
-  });
-})();`;
 
 const AUTH_JS = `(function(){
   /* taille de lecture : appliquée au chargement, réglée depuis « Mon compte », sans dépendance */
@@ -563,8 +473,6 @@ const AUTH_JS = `(function(){
   if(typeof firebase==='undefined'||!firebase.auth){document.addEventListener('lv-fb-ready',lvAuthBoot,{once:true});return;}
   if(!firebase.apps.length)firebase.initializeApp(cfg);
   var auth=firebase.auth();
-  var FR=!(window.LUMEN&&window.LUMEN.lang==='en');
-  function L(fr,en){return FR?fr:en;}
   var icone=document.getElementById('auth-ouvrir'),ov=document.getElementById('auth-overlay'),fe=document.getElementById('auth-fermer');
   if(!icone||!ov)return;
   var vOut=document.getElementById('auth-out'),vIn=document.getElementById('auth-in'),mode='si';
@@ -576,8 +484,8 @@ const AUTH_JS = `(function(){
     el('amt-su').classList.toggle('on',x==='su');
     el('auth-cf').style.display=(x==='su')?'block':'none';
     el('auth-pw').style.display=(x==='forgot')?'none':'block';
-    el('auth-submit').textContent=(x==='si')?L('Se connecter','Sign in'):(x==='su')?L('Créer le compte','Create account'):L('Envoyer le lien','Send link');
-    el('auth-forgot').textContent=(x==='forgot')?L('← Retour','← Back'):L('Mot de passe oublié ?','Forgot password?');
+    el('auth-submit').textContent=(x==='si')?'Se connecter':(x==='su')?'Créer le compte':'Envoyer le lien';
+    el('auth-forgot').textContent=(x==='forgot')?'← Retour':'Mot de passe oublié ?';
   }
   function open(){clr();
     if(auth.currentUser){vOut.style.display='none';vIn.style.display='block';el('auth-in-email').textContent=auth.currentUser.email||auth.currentUser.displayName||'';
@@ -596,8 +504,8 @@ const AUTH_JS = `(function(){
   el('auth-forgot').addEventListener('click',function(){setMode(mode==='forgot'?'si':'forgot');});
   el('auth-submit').addEventListener('click',function(){
     var em=el('auth-email').value.trim(),pw=el('auth-pw').value,cf=el('auth-cf').value;clr();
-    if(mode==='forgot'){auth.sendPasswordResetEmail(em).then(function(){msg(L('Lien envoyé. Vérifiez votre boîte mail.','Link sent. Check your inbox.'),'ok');}).catch(function(e){msg(e.message,'err');});return;}
-    if(mode==='su'){if(pw!==cf){msg(L('Les mots de passe ne correspondent pas.','Passwords do not match.'),'err');return;}auth.createUserWithEmailAndPassword(em,pw).catch(function(e){msg(e.message,'err');});return;}
+    if(mode==='forgot'){auth.sendPasswordResetEmail(em).then(function(){msg('Lien envoyé. Vérifiez votre boîte mail.','ok');}).catch(function(e){msg(e.message,'err');});return;}
+    if(mode==='su'){if(pw!==cf){msg('Les mots de passe ne correspondent pas.','err');return;}auth.createUserWithEmailAndPassword(em,pw).catch(function(e){msg(e.message,'err');});return;}
     auth.signInWithEmailAndPassword(em,pw).catch(function(e){msg(e.message,'err');});
   });
   ['auth-email','auth-pw','auth-cf'].forEach(function(id){var x=el(id);if(x)x.addEventListener('keydown',function(e){if(e.key==='Enter')el('auth-submit').click();});});
@@ -610,14 +518,14 @@ const RECH_JS = `(function(){
   var ouvrir=document.getElementById('rech-ouvrir'),overlay=document.getElementById('rech-overlay'),
       champ=document.getElementById('rech-champ'),res=document.getElementById('rech-res'),fermer=document.getElementById('rech-fermer');
   if(!ouvrir||!overlay) return;
-  var L=window.LUMEN||{base:'',lang:'fr',hint:'',empty:''};
+  var L=window.LUMEN||{base:'',lang:'fr',empty:''};
   var charge=false,enCours=false;
   /* références bibliques : « Jean 3:16 » ouvre la Bible depuis n'importe où.
      Même logique que la recherche de la page Bible (dico + alias + préfixe
      unique), sur la table LUMEN_BIBLE injectée dans recherche-<lang>.js */
   var BALIAS={'genese':['gn','gen'],'exode':['ex','exo'],'levitique':['lv','lev'],'nombres':['nb','nbr','num'],'deuteronome':['dt','deut'],'josue':['jos'],'juges':['jg','jug'],'ruth':['rt'],'1-samuel':['1s','1sam','1sm'],'2-samuel':['2s','2sam','2sm'],'1-rois':['1r','1roi'],'2-rois':['2r','2roi'],'1-chroniques':['1ch','1chr','1par'],'2-chroniques':['2ch','2chr','2par'],'esdras':['esd'],'nehemie':['ne','neh'],'tobie':['tb','tob'],'judith':['jdt'],'esther':['est'],'1-maccabees':['1m','1ma','1mac','1macc'],'2-maccabees':['2m','2ma','2mac','2macc'],'job':['jb'],'psaumes':['ps','psaume'],'proverbes':['pr','prv','prov'],'ecclesiaste':['qo','eccl','qohelet'],'cantique-des-cantiques':['ct','cant','cantique','cantiques'],'sagesse':['sg','sag'],'ecclesiastique':['si','sir','siracide','eccli','ecclesiastique'],'isaie':['is','isa','esaie'],'jeremie':['jr','jer'],'lamentations':['lm','lam'],'baruch':['ba','bar'],'ezechiel':['ez','eze'],'daniel':['dn','dan'],'osee':['os'],'joel':['jl'],'amos':['am'],'abdias':['ab','abd'],'jonas':['jon'],'michee':['mi','mich'],'nahum':['na','nah'],'habacuc':['ha','hab'],'sophonie':['so','soph'],'aggee':['ag','agg'],'zacharie':['za','zac'],'malachie':['ml','mal'],'matthieu':['mt','mat','matt'],'marc':['mc'],'luc':['lc'],'jean':['jn'],'actes':['ac','act'],'romains':['rm','rom'],'1-corinthiens':['1co','1cor'],'2-corinthiens':['2co','2cor'],'galates':['ga','gal'],'ephesiens':['ep','eph'],'philippiens':['ph','phil','php'],'colossiens':['col'],'1-thessaloniciens':['1th','1thes','1thess'],'2-thessaloniciens':['2th','2thes','2thess'],'1-timothee':['1tm','1tim'],'2-timothee':['2tm','2tim'],'tite':['tt','tit'],'philemon':['phm','phlm'],'hebreux':['he','heb'],'jacques':['jc','jac'],'1-pierre':['1p','1pi'],'2-pierre':['2p','2pi'],'1-jean':['1jn'],'2-jean':['2jn'],'3-jean':['3jn'],'jude':['jud'],'apocalypse':['ap','apc','apoc']};
   /* mêmes noms additifs que le tiroir Bible (bible-panneau.js), pour que la
-     recherche du site reconnaisse les mêmes références (22/09) */
+     recherche du site reconnaisse les mêmes références */
   (function(){var X={       'josue':['joshua','josh'],'juges':['judg','jdg'],       '1-samuel':['1samuel'],'2-samuel':['2samuel'],       '1-rois':['3rois','3r','3kings'],'2-rois':['4rois','4r','4kings'],       '1-chroniques':['1chronicles','1chron','1paralipomenes'],'2-chroniques':['2chronicles','2chron','2paralipomenes'],       'esdras':['ezra','1esdras'],'nehemie':['nehemiah','nehemias','2esdras','neemie'],'tobie':['tobit'],       'psaumes':['psalm','pss'],       'ecclesiaste':['qoheleth','coheleth','eccles'],       'cantique-des-cantiques':['songofsongs','songofsolomon','canticles','canticleofcanticles'],       'ecclesiastique':['sirach','bensira','sirac','ecclus'],       'sagesse':['wisdom','wis','sagessedesalomon','wisdomofsolomon'],       'isaie':['isaiah'],'jeremie':['jeremiah'],       'lamentations':['threnes','lamentationsdejeremie'],       'ezechiel':['ezekiel','ezek'],       'osee':['hosea','hos'],'abdias':['obadiah','obad'],'jonas':['jonah'],'michee':['micah','mic'],       'habacuc':['habakkuk'],'sophonie':['zephaniah','zeph'],'aggee':['haggai','hag'],       'zacharie':['zechariah','zech'],'malachie':['malachi'],       '1-maccabees':['1maccabees'],'2-maccabees':['2maccabees'],       'matthieu':['matthew'],'marc':['mk'],'luc':['lk'],'actes':['actsoftheapostles','actesdesapotres'],       '1-thessaloniciens':['1thessalonians'],'2-thessaloniciens':['2thessalonians'],       '1-timothee':['1timothy'],'2-timothee':['2timothy'],       'jacques':['jas'],'1-pierre':['1peter','1pet'],'2-pierre':['2peter','2pet'],       '1-jean':['1john'],'2-jean':['2john'],'3-jean':['3john'],       'apocalypse':['revelation','rev','revelations','apocalypsedejean']     };Object.keys(X).forEach(function(k){BALIAS[k]=(BALIAS[k]||[]).concat(X[k]);});})();
   var BDICO=null;
   function bnorm(s){return String(s).toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/[^a-z0-9]+/g,'');}
@@ -670,7 +578,7 @@ const RECH_JS = `(function(){
     kidx=-1;
     if(!String(q||'').trim()){res.innerHTML='';return;}
     var bib=brefItem(q);
-    /* le texte tapé est échappé avant d'entrer dans la page (22/09) */
+    /* le texte tapé est échappé avant d'entrer dans la page */
     var qe=String(q).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});
     res.innerHTML=bib||('<div class="rech-msg">'+L.empty+' « '+qe+' ».</div>');
   }
@@ -702,9 +610,8 @@ const RECH_JS = `(function(){
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('ouvert'))ferme();});
 })();`;
 
-function page({ lang, type, title, description, frPath, enPath, base, otherRel, ctx, main, extraJS, noindex }) {
+function page({ lang, title, description, base, main }) {
   const u = UI[lang];
-  const url = DOMAINE + frPath;
   /* site privé : aucune page n'est faite pour les moteurs de recherche */
   const robots = '\n<meta name="robots" content="noindex,nofollow">';
   return `<!DOCTYPE html>
@@ -730,26 +637,24 @@ ${BARRE_TETE}
 ${habillage('accueil')}
 </head>
 <body>
-${header(lang, type, base, otherRel, ctx)}
+${header(lang)}
 <main id="app">
 ${main}
 </main>
 ${footer()}
 <script>
-window.LUMEN={base:${JSON.stringify(base)},lang:${JSON.stringify(lang)},hint:${JSON.stringify(u.search_hint)},empty:${JSON.stringify(u.search_empty)}};
+window.LUMEN={base:${JSON.stringify(base)},lang:${JSON.stringify(lang)},empty:${JSON.stringify(u.search_empty)}};
 </script>
 <script src="/lumen-app.js?v=${APP_V}"></script>
-<!-- L'onglet Bible au bord gauche : il vivait sur « Mémoriser » et sur les
-     articles, et manquait sur l'accueil, où le réglage du compte promettait
-     pourtant de l'afficher. -->
-<script src="/bible-panneau.js?v=${PAN_V}" defer></script>${extraJS ? `
-<script>${extraJS}</script>` : ''}
+<!-- L'onglet Bible au bord gauche, ici comme sur les autres pages : le
+     réglage du compte promet de l'afficher partout. -->
+<script src="/bible-panneau.js?v=${PAN_V}" defer></script>
 </body>
 </html>`;
 }
 
 /* ---- vues ---- */
-function mainAccueil(lang, base) {
+function mainAccueil() {
   /* Accueil (Emmanuel : « sur la page d'accueil, garde juste la croix ») :
      la croix seule, au centre de la place libre. Le menu du haut et la
      barre du bas mènent aux autres pages. */
@@ -800,11 +705,10 @@ const crypto = require('crypto');
 
 const UX_JS = `
 (function(){
-  var FR=!(window.LUMEN&&window.LUMEN.lang==='en');
   /* retour en haut, toutes pages */
   var h=document.createElement('span');
   h.className='haut-page'; h.setAttribute('role','button'); h.setAttribute('tabindex','0');
-  h.setAttribute('aria-label',FR?'Revenir en haut de la page':'Back to top');
+  h.setAttribute('aria-label','Revenir en haut de la page');
   h.textContent='\u2191';
   h.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
   h.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});} });
@@ -814,7 +718,7 @@ const UX_JS = `
   window.addEventListener('scroll',function(){ if(!t2){t2=true;requestAnimationFrame(majHaut);} },{passive:true});
   majHaut();
 })();`;
-const APP_JS = [BARRE_JS, RECH_JS, AUTH_JS, MEMO_JS, UX_JS].join('\n');
+const APP_JS = [BARRE_JS, RECH_JS, AUTH_JS, UX_JS].join('\n');
 const APP_V = crypto.createHash('md5').update(APP_JS).digest('hex').slice(0, 8);
 const PAN_V = fs.existsSync(RACINE + 'bible-panneau.js') ? crypto.createHash('md5').update(fs.readFileSync(RACINE + 'bible-panneau.js')).digest('hex').slice(0, 8) : '1';
 fs.mkdirSync(OUT, { recursive: true });
@@ -822,41 +726,28 @@ fs.writeFileSync(`${OUT}/lumen-app.js`, APP_JS);
 console.log(`Communs : lumen-app.js (${Math.round(APP_JS.length / 1024)} Ko, v=${APP_V})`);
 
 function genPaire(spec) {
-  // spec : type, frPath, enPath, frFile, enFile, title, desc, main, ctx, extraJS ; seul le français est fabriqué
-  pairs.push({ fr: spec.frPath, en: spec.enPath });
-  ['fr'].forEach(lang => {
-    const u = UI[lang];
-    const pPath = lang === 'fr' ? spec.frPath : spec.enPath;
-    const oPath = lang === 'fr' ? spec.enPath : spec.frPath;
-    const dir = pPath.replace(/[^\/]*$/, '');              // dossier de la page
-    const otherRel = rel(dir, oPath);
-    const langRoot = lang === 'fr' ? '/' : '/en/';
-    const depth = dir.slice(langRoot.length).split('/').filter(Boolean).length;
-    const base = '../'.repeat(depth);
-    ecrire(lang === 'fr' ? spec.frFile : spec.enFile, page({
-      lang, type: spec.type,
-      title: spec.title(lang), description: spec.desc(lang),
-      frPath: spec.frPath, enPath: spec.enPath, base, otherRel,
-      ctx: spec.ctx ? spec.ctx(lang, base) : '',
-      main: spec.main(lang, base),
-      extraJS: typeof spec.extraJS === 'function' ? spec.extraJS(lang) : spec.extraJS
-    }));
-  });
+  // spec : frPath, frFile, title, desc, main
+  pairs.push(spec.frPath);
+  const lang = 'fr';
+  const dir = spec.frPath.replace(/[^\/]*$/, '');              // dossier de la page
+  const base = '../'.repeat(dir.split('/').filter(Boolean).length);
+  ecrire(spec.frFile, page({
+    lang, title: spec.title(lang), description: spec.desc(lang),
+    base, main: spec.main()
+  }));
 }
 
 // accueil
 genPaire({
-  type: 'home', frPath: '/', enPath: '/en/',
-  frFile: 'index.html', enFile: 'en/index.html',
+  frPath: '/', frFile: 'index.html',
   title: l => UI[l].t_home, desc: l => UI[l].site_desc_home,
-  main: (l, b) => mainAccueil(l, b)
+  main: () => mainAccueil()
 });
 
 // 404, à la racine
 ecrire('404.html', page({
-  lang: 'fr', type: '', title: UI.fr.t_404, description: UI.fr.notfound_text,
-  frPath: '/404.html', enPath: '/404.html', base: '/', otherRel: '/en/',
-  main: main404(), noindex: true
+  lang: 'fr', title: UI.fr.t_404, description: UI.fr.notfound_text,
+  base: '/', main: main404()
 }));
 
 // robots.txt
@@ -882,8 +773,8 @@ ecrire('recherche-fr.js', 'window.LUMEN_BIBLE=' + JSON.stringify(bibFR) + ';');
 // les pages écrites à la main, complétées puis copiées
 /* Les pages copiées reçoivent la description et le manifeste qui leur
    manquent, sans dupliquer ce qu'une page porte déjà. */
-function metaCopie(h, chemin, titre, desc){
-  const url = DOMAINE + chemin, e = x => String(x).replace(/"/g, '&quot;');
+function metaCopie(h, desc){
+  const e = x => String(x).replace(/"/g, '&quot;');
   let m = '';
   if (!/name="description"/.test(h)) m += `<meta name="description" content="${e(desc)}">\n`;
   if (!/rel="manifest"/.test(h)) m += `<link rel="manifest" href="/manifest.webmanifest">\n`;
@@ -900,15 +791,13 @@ function injecteAvant(s, balise, ajout){
 }
 if (fs.existsSync(PAGES + 'memoriser.html')) {
   let mh = fs.readFileSync(PAGES + 'memoriser.html', 'utf8');
+  /* La bibliothèque de départ vient de contenu/memoriser.json. Une liste
+     vide ne remplace pas ce que la page embarque. */
   {
-    let catsSrc = null, origineCats = '';
-    const memLigne = fsLireDoc('config/memoriser');
-    if (memLigne && Array.isArray(memLigne.categories) && memLigne.categories.length) { catsSrc = memLigne.categories; origineCats = 'en ligne'; }
-    else if (fs.existsSync(CONTENU + 'memoriser.json')) {
-      /* même exigence que pour la source en ligne : une liste VIDE ne remplace
-         pas ce que la page embarque */
+    let catsSrc = null;
+    if (fs.existsSync(CONTENU + 'memoriser.json')) {
       const cf = JSON.parse(fs.readFileSync(CONTENU + 'memoriser.json', 'utf8')).categories;
-      if (Array.isArray(cf) && cf.length) { catsSrc = cf; origineCats = 'fichier'; }
+      if (Array.isArray(cf) && cf.length) catsSrc = cf;
     }
     if (catsSrc) {
       const cats = catsSrc;
@@ -928,7 +817,7 @@ if (fs.existsSync(PAGES + 'memoriser.html')) {
         /* remplacement par fonction : une chaîne interpréterait les motifs « $& », « $' »… présents dans un verset */
         const preSrc = '/*PRE_START*/const PRE=' + JSON.stringify(cats).replace(/</g, '\\u003c') + ';/*PRE_END*/';
         mh = mh.replace(reMarq, () => preSrc);
-        console.log('Mémoriser : versets de base injectés (' + cats.length + ' catégories, source ' + origineCats + ')');
+        console.log('Mémoriser : versets de base injectés (' + cats.length + ' catégories)');
       }
     }
   }
@@ -944,7 +833,7 @@ if (fs.existsSync(PAGES + 'memoriser.html')) {
     mh = mh.replace(hOld[0], barreCanon());
     mh = mh.replace(fOld[0], piedCanon());
     mh = injecteAvant(mh, '</head>', '<style>' + BARRE_CSS + '</style>' + BARRE_TETE);
-    mh = metaCopie(mh, '/memoriser.html', 'Mémoriser · Lumen Veritatis', 'Mémorisation de versets et de passages bibliques, par répétition espacée.');
+    mh = metaCopie(mh, 'Mémorisation de versets et de passages bibliques, par répétition espacée.');
     mh = injecteAvant(mh, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Mémoriser : barre et pied canoniques injectés');
   }
@@ -969,7 +858,7 @@ if (fs.existsSync(PAGES + 'articles.html')) {
     ah = ah.replace(hOld[0], barreCanon());
     ah = ah.replace(fOld[0], piedCanon());
     ah = injecteAvant(ah, '</head>', '<style>' + BARRE_CSS + '</style>' + BARRE_TETE);
-    ah = metaCopie(ah, '/articles.html', 'Articles · Lumen Veritatis', 'Articles de théologie catholique, accessibles aux débutants.');
+    ah = metaCopie(ah, 'Articles de théologie catholique, accessibles aux débutants.');
     ah = injecteAvant(ah, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Articles : barre et pied canoniques injectés');
   }
@@ -994,7 +883,7 @@ if (fs.existsSync(PAGES + 'ressources.html')) {
     rh = rh.replace(hOld[0], barreCanon());
     rh = rh.replace(fOld[0], piedCanon());
     rh = injecteAvant(rh, '</head>', '<style>' + BARRE_CSS + '</style>' + BARRE_TETE);
-    rh = metaCopie(rh, '/ressources.html', 'Ressources · Lumen Veritatis', 'Diagrammes, cartes, documents et liens pour étudier la foi catholique.');
+    rh = metaCopie(rh, 'Diagrammes, cartes, documents et liens pour étudier la foi catholique.');
     rh = injecteAvant(rh, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Ressources : barre et pied canoniques injectés');
   }
@@ -1021,7 +910,7 @@ if (fs.existsSync(PAGES + 'commentaires.html')) {
     ch = ch.replace(hOld[0], barreCanon());
     ch = ch.replace(fOld[0], piedCanon());
     ch = injecteAvant(ch, '</head>', '<style>' + BARRE_CSS + '</style>' + BARRE_TETE);
-    ch = metaCopie(ch, '/commentaires.html', 'Commentaires bibliques · Lumen Veritatis', 'Commentaires bibliques de Lumen Veritatis, à lire dans la Bible.');
+    ch = metaCopie(ch, 'Commentaires bibliques de Lumen Veritatis, à lire dans la Bible.');
     ch = injecteAvant(ch, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Commentaires : barre et pied canoniques injectés');
   }
@@ -1073,7 +962,7 @@ if (fs.existsSync(PAGES + 'bible.html')) {
     bh = bh.replace(hOld[0], barreCanon());
     bh = bh.replace(fOld[0], piedCanon());
     bh = injecteAvant(bh, '</head>', '<style>' + BARRE_CSS + '</style>' + BARRE_TETE);
-    bh = metaCopie(bh, '/bible.html', 'La Sainte Bible · Lumen Veritatis', 'La Sainte Bible, traduction Chérubin. Lecture en ligne, Ancien et Nouveau Testament.');
+    bh = metaCopie(bh, 'La Sainte Bible, traduction Chérubin. Lecture en ligne, Ancien et Nouveau Testament.');
     bh = injecteAvant(bh, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
     console.log('Bible : barre et pied canoniques injectés');
   }
@@ -1370,17 +1259,7 @@ function poseVersSeraphin(livre) {
     console.log('Bible (' + dossier + ') : ' + nb + ' livres + index, ' + poe + ' versets en vers');
     return true;
   };
-  if (!decoupeBible(CONTENU + 'bible.json', 'bible-data')) if (fs.existsSync(CONTENU + 'bible')) {
-    // repli : ancien format (un fichier par livre déjà découpé)
-    fs.mkdirSync(`${OUT}/bible-data`, { recursive: true });
-    let nb = 0;
-    for (const f of fs.readdirSync(CONTENU + 'bible')) {
-      if (!f.endsWith('.json')) continue;
-      fs.copyFileSync(CONTENU + `bible/${f}`, `${OUT}/bible-data/${f}`);
-      nb++;
-    }
-    console.log('Bible : ' + nb + ' fichiers de données copiés (ancien format)');
-  }
+  decoupeBible(CONTENU + 'bible.json', 'bible-data');
   /* ── LA SÉRAPHIN ──
      Même découpage par livre, même index, un dossier à elle. La page ne va
      la chercher que si le lecteur la demande. Son index est identique à
@@ -1417,8 +1296,8 @@ function poseVersSeraphin(livre) {
   console.log('Barres : identiques sur les ' + vues + ' surfaces');
 }
 
-console.log('Site bilingue généré dans «', OUT, '»');
-console.log('Pages générées :', pairs.length, '(FR) + 404 + robots');
+console.log('Site généré dans «', OUT, '»');
+console.log('Pages générées :', pairs.length, '+ 404 + robots');
 
 /* Dernière étape : allègement puis contrôle des pages produites (voir
    publication.js). Au moindre défaut grave, la fabrication échoue et la

@@ -17,7 +17,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <style>
 :root{
-  --encre:#000000;--encre-2:#0b0b0b;--encre-3:#111111;
+  --encre:#000000;--encre-2:#0b0b0b;
   --or:#efe6cf;--or-pale:#f8f3e6;
   /* fond de survol : la couleur d'accent, une seule intensité pour tout
      le site. La seconde ligne suit l'accent ; un vieux navigateur garde la
@@ -81,21 +81,9 @@ body>footer{flex-shrink:0}
 .rub-nom{flex:1;min-width:0;font-family:var(--display);font-size:14.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.88);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .3s}
 .rub-tete:hover .rub-nom{color:var(--or)}
 .rub-n{flex-shrink:0;font-size:12.5px;color:var(--pa2)}
-.rub-menu{position:relative;flex-shrink:0;color:var(--pa2);font-size:15px;line-height:1;padding:0 4px;letter-spacing:.08em;transition:color .3s}
-.rub-menu::before{content:'';position:absolute;inset:-14px -7px}
-.rub-menu:hover{color:var(--or)}
 .rub-chev{flex-shrink:0;font-family:var(--display);font-size:18px;color:var(--pa2);line-height:1;transition:transform .3s,color .3s}
-.rub.ouvert>.rub-tete .rub-chev{transform:rotate(90deg);color:var(--or)}
-.rub-corps{display:none;padding-left:18px}
-.rub.ouvert>.rub-corps{display:block;animation:fade .3s ease both}
-.rub-2>.rub-tete{padding:20px 2px 11px}
-.rub-2>.rub-tete .rub-nom{font-size:12.5px;letter-spacing:.18em;color:color-mix(in srgb,var(--or) 82%,transparent)}
-.rub-3>.rub-tete{padding:17px 2px 9px}
-.rub-3>.rub-tete .rub-nom{font-size:13px;letter-spacing:.16em;color:rgba(255,255,255,.55)}
-.rub-vide{font-size:14px;color:var(--pa2);padding:10px 2px 14px}
 @media(max-width:720px){
   .rub-tete{padding:24px 2px 14px}
-  .rub-corps{padding-left:13px}
   .rub-chev{font-size:20px}
 }
 
@@ -104,7 +92,6 @@ body>footer{flex-shrink:0}
 .art-item:hover{background:var(--surv);box-shadow:inset 2px 0 0 var(--or),inset 0 -1px 0 var(--filet)}
 .art-titre{font-family:var(--display);font-size:23px;color:var(--parchemin);line-height:1.3;transition:color .25s,text-shadow .25s}
 .art-extrait{transition:color .25s}
-.art-vide-titre{color:var(--pa2);font-style:italic}
 /* La référence commentée coiffe chaque ligne, en petites capitales dorées :
    c'est elle qui identifie un commentaire, le titre reste facultatif. */
 .com-ref{font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin-bottom:3px}
@@ -488,7 +475,7 @@ const AUTEUR='hoarauemmanuel336@gmail.com';
 // ════════ ÉTAT ════════
 /* S.art est le commentaire ouvert (le nom vient de l'éditeur partagé avec
    Articles). S.livre : le livre dont la page est ouverte. */
-const S={uid:null,email:null,auteur:false,liste:[],art:null,sale:false,minute:null,ouv:{},livre:''};
+const S={uid:null,email:null,auteur:false,liste:[],art:null,sale:false,minute:null,livre:''};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 const acol=()=>db.collection('users/'+S.uid+'/commentaires');
@@ -543,11 +530,6 @@ function commentairesDe(slug){
     return (a.ch||0)-(b.ch||0)||(a.v1||0)-(b.v1||0)||(a.v2||0)-(b.v2||0);
   });
 }
-/* Mémoire des livres dépliés, gardée sur l'appareil (S.ouv). La liste, un
-   livre par page, ne la consulte pas. */
-const livreOuvert=slug=>S.ouv[slug]===true;
-function ouvLit(){try{const o=JSON.parse(localStorage.getItem('lv_com_liv')||'{}');S.ouv=(o&&typeof o==='object')?o:{};}catch(e){S.ouv={};}}
-function ouvEcrit(){try{localStorage.setItem('lv_com_liv',JSON.stringify(S.ouv));}catch(e){}}
 
 // ════════ MODALES MAISON ════════
 /* Aucune boîte native : sur iOS, confirm() et alert() sont ignorés dès que la
@@ -779,22 +761,16 @@ function diffuseVue(){
 window.addEventListener('scroll',suitVue,{passive:true,capture:true});
 window.addEventListener('resize',suitVue);
 
-function ligneCom(a,publik){
+function ligneCom(a){
   const l=document.createElement('div'); l.className='art-ligne';
   const t=(a.titre||'').trim(), ref=refValide(a)?etiquette(a.refs[0]):'';
-  const ex=publik?extraitDe(a):texteBrut(a).slice(0,180);
-  /* en lecture publique, la ligne mène au passage dans la Bible :
-     « #livre/ch/v1-v2 » marque le passage sans le sélectionner */
-  const g=refValide(a)?a.refs[0]:null;
-  const cible=g?('#'+g.slug+'/'+g.ch+'/'+g.v1+(g.v2>g.v1?'-'+g.v2:'')):'';
-  const ouv=publik?'<a class="art-item" href="/bible.html'+esc(cible)+'">':'<button class="art-item" data-id="'+esc(a.id)+'">';
-  const fin=publik?'</a>':'</button><span class="art-menu" data-amenu="'+esc(a.id)+'" role="button" tabindex="0" aria-label="Ce commentaire">⋯</span>';
-  l.innerHTML=ouv
+  const ex=texteBrut(a).slice(0,180);
+  l.innerHTML='<button class="art-item" data-id="'+esc(a.id)+'">'
     +'<div class="com-ref'+(ref?'':' vide')+'">'+esc(ref||(a.ref?'Référence non reconnue : '+a.ref:'Sans référence'))+'</div>'
     +(t?'<div class="art-titre">'+esc(t)+'</div>':'')
     +(ex?'<div class="art-extrait">'+esc(ex)+'</div>':'')
-    +'<div class="art-pied">'+(publik?'':'<span class="art-etat'+(a.publie?' publie':'')+'">'+(a.publie?'Dans la Bible':'Brouillon')+'</span>')+'<span>'+esc(dateFr(a.maj||a.cree))+'</span></div>'
-    +fin;
+    +'<div class="art-pied"><span class="art-etat'+(a.publie?' publie':'')+'">'+(a.publie?'Dans la Bible':'Brouillon')+'</span><span>'+esc(dateFr(a.maj||a.cree))+'</span></div>'
+    +'</button><span class="art-menu" data-amenu="'+esc(a.id)+'" role="button" tabindex="0" aria-label="Ce commentaire">⋯</span>';
   return l;
 }
 /* ── UN LIVRE, UNE PAGE ──
@@ -839,11 +815,11 @@ function rendLister(){
     return;
   }
   if(S.livre){
-    (S.livre==='__sans'?sans:commentairesDe(S.livre)).forEach(a=>h.appendChild(ligneCom(a,false)));
+    (S.livre==='__sans'?sans:commentairesDe(S.livre)).forEach(a=>h.appendChild(ligneCom(a)));
     return;
   }
   /* un seul livre : pas de page intermédiaire, les commentaires sont là */
-  if(livres.length===1&&!sans.length){commentairesDe(livres[0]).forEach(a=>h.appendChild(ligneCom(a,false)));return;}
+  if(livres.length===1&&!sans.length){commentairesDe(livres[0]).forEach(a=>h.appendChild(ligneCom(a)));return;}
   livres.forEach(slug=>h.appendChild(rangeeLivre(slug,commentairesDe(slug).length,'data-lva')));
   if(sans.length)h.appendChild(rangeeLivre('__sans',sans.length,'data-lva'));
 }
@@ -916,46 +892,6 @@ async function retireDeLigne(a){
   for(const m of medias)await effaceMediaPublic(m);
 }
 
-/* ── UN AUTRE COMPTE, OU AUCUN ──
-   La page montre seulement la liste de ce qui est affiché dans la Bible,
-   chaque ligne menant au verset commenté. Les règles de la base n'ouvrent
-   cette lecture qu'au compte d'Emmanuel : pour tout autre, elle reste vide. */
-let PUBS=[];
-async function litPublic(){
-  try{
-    const sn=await pcol().get();
-    PUBS=sn.docs.map(d=>Object.assign({id:d.id},d.data()));
-  }catch(e){console.warn('commentaires publics',e);PUBS=[];}
-}
-function rendPublic(){
-  const h=$('liste'); h.innerHTML='';
-  const n=PUBS.length;
-  $('acts-liste').style.display='none';
-  const parLivre={};
-  PUBS.forEach(a=>{const l=refValide(a)?a.refs[0].slug:'';if(!l)return;(parLivre[l]=parLivre[l]||[]).push(a);});
-  if(S.livre&&!parLivre[S.livre])S.livre='';
-  majFil(!!S.livre);
-  $('mot-liste').textContent=n
-    ?''
-    :'Aucun commentaire dans la Bible pour l’instant.';
-  const tri=(x,y)=>{const a=x.refs[0],b=y.refs[0];return (a.ch-b.ch)||(a.v1-b.v1)||(a.v2-b.v2);};
-  if(S.livre){parLivre[S.livre].sort(tri).forEach(a=>h.appendChild(ligneCom(a,true)));return;}
-  Object.keys(parLivre).sort((a,b)=>ordreLivre(a)-ordreLivre(b)||nomLivre(a).localeCompare(nomLivre(b))).forEach(slug=>{
-    h.appendChild(rangeeLivre(slug,parLivre[slug].length,'data-lva'));
-  });
-}
-function extraitDe(a){
-  const b=(a.blocs||[]).find(x=>x.t==='p'||x.t==='cite');
-  if(!b)return '';
-  const d=document.createElement('div'); d.innerHTML=propre(b.h||'');
-  /* coupé à la fin d'un mot, jamais au milieu, avec des points de suspension */
-  const t=(d.textContent||'').replace(/\s+/g,' ').trim();
-  if(t.length<=180)return t;
-  let c=t.slice(0,180); const i=c.lastIndexOf(' ');
-  if(i>100)c=c.slice(0,i);
-  return c.replace(/[\s,;:(« ]+$/,'')+'…';
-}
-
 async function menuCom(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
   const c=await lvChoix((refValide(a)?etiquette(a.refs[0]):(a.titre||'Sans référence')),[
@@ -975,7 +911,7 @@ async function menuCom(id){
       for(const m of medias)await effaceMedia(m);
     }catch(e){
       console.warn('suppression',e); SUPPRIMES.delete(id); rendLister();
-      lvInfo('La suppression a échoué : le commentaire est peut-être encore en ligne. Vérifiez la connexion et réessayez.');
+      lvInfo('La suppression a échoué. Vérifiez la connexion et réessayez.');
     }
   }
 }
@@ -988,7 +924,7 @@ function vue(quoi){
   $('ecran-edit').style.display=quoi==='edit'?'block':'none';
   /* la liste ne se redessine pas pendant l'écriture, pour ne pas déplacer le
      curseur : on la redessine donc en y revenant. */
-  if(quoi==='liste'){ if(S.auteur)rendLister(); else rendPublic(); }
+  if(quoi==='liste'&&S.auteur)rendLister();
   /* l'écriture a sa propre adresse (#e), posée par-dessus celle du livre :
      « précédent » ramène ainsi au livre d'où l'on venait */
   if(S.auteur){
@@ -1092,7 +1028,7 @@ async function enregistre(silence){
     if(gen===(S.gen||0))S.sale=false;
     /* Enregistré mais pas remis dans la Bible : cela se dit et reste
        affiché, sinon la Bible garderait l'ancienne version en silence. */
-    if(!enLigne){$('etat-enr').textContent='Enregistré, mais pas remis en ligne';$('etat-enr').classList.remove('vu');S.sale=true;return;}
+    if(!enLigne){$('etat-enr').textContent='Enregistré, mais pas remis dans la Bible';$('etat-enr').classList.remove('vu');S.sale=true;return;}
     $('etat-enr').textContent=S.sale?'Modifié':'Enregistré'; $('etat-enr').classList.toggle('vu',!S.sale);
     if(!silence)setTimeout(()=>{if(!S.sale)$('etat-enr').textContent='';},2600);
   }catch(e){
@@ -1131,7 +1067,7 @@ async function supprime(){
     for(const m of medias)await effaceMedia(m);
   }catch(e){
     console.warn('suppression',e); SUPPRIMES.delete(id); rendLister();
-    lvInfo('La suppression a échoué : le commentaire est peut-être encore en ligne. Vérifiez la connexion et réessayez.');
+    lvInfo('La suppression a échoué. Vérifiez la connexion et réessayez.');
   }
 }
 
@@ -1204,7 +1140,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   prepareBible().then(()=>{
     if(S.art){majRefEtat();if(!refValide(S.art)&&S.art.ref)litEditeur();return;}
     /* la liste se redessine : les livres prennent leur nom et leur ordre */
-    if(S.auteur)rendLister(); else if(PUBS.length)rendPublic();
+    if(S.auteur)rendLister();
   });
   $('b-nouveau').onclick=()=>nouveau('');
   $('b-retour').onclick=async()=>{ if(location.hash==='#e'){try{history.back();return;}catch(_){}} if(S.sale)await enregistre(true); S.art=null; vue('liste'); };
@@ -1375,7 +1311,6 @@ let COUPE=null, PREMIERE_LISTE=false;
 function ecoute(){
   if(COUPE){try{COUPE();}catch(e){}COUPE=null;}
   if(!S.uid)return;
-  ouvLit();
   PREMIERE_LISTE=false;
   COUPE=acol().onSnapshot(sn=>{
     const l=sn.docs.map(d=>Object.assign({id:d.id},d.data()));
@@ -1408,19 +1343,6 @@ function motAccueil(){
   if(!S.auteur){$('acts-liste').style.display='none';return;}
   $('mot-liste').textContent=''; $('acts-liste').style.display='';
 }
-/* Un autre compte, ou aucun, voit la liste de ce qui est affiché dans la
-   Bible, qui y mène. L'auteur retrouve ses brouillons et son éditeur. */
-let LECTURE_PUB=null;
-async function ouvrePublic(){
-  if(!LECTURE_PUB)LECTURE_PUB=litPublic().finally(()=>{LECTURE_PUB=null;});
-  await LECTURE_PUB;
-  /* la lecture publique part au chargement, avant que le compte ne soit
-     connu, et revient APRÈS lui : chez l'auteur elle ne doit pas remplacer
-     sa liste */
-  if(S.auteur){ if(!S.art)rendLister(); return; }
-  if(S.art)return;
-  rendPublic(); vue('liste');
-}
 /* Même compte qui se représente (réveil de l'onglet, jeton rafraîchi) : on ne
    touche à rien, sinon le commentaire en cours d'écriture serait refermé. */
 let COMPTE_CONNU='∅';
@@ -1433,15 +1355,13 @@ auth.onAuthStateChanged(u=>{
   /* les règles de sécurité n'acceptent que l'adresse VÉRIFIÉE : si ce n'est
      pas le cas, mieux vaut le dire tout de suite que de laisser chaque
      écriture échouer sans explication */
-  if(S.auteur&&u&&u.emailVerified===false)setTimeout(()=>lvInfo('Votre adresse e-mail n’est pas vérifiée : les règles de sécurité refuseront toute mise en ligne tant qu’elle ne l’est pas. Connectez-vous avec Google, ou faites vérifier l’adresse depuis la console Firebase.'),600);
+  if(S.auteur&&u&&u.emailVerified===false)setTimeout(()=>lvInfo('Votre adresse e-mail n’est pas vérifiée : les règles de sécurité refuseront tout enregistrement tant qu’elle ne l’est pas. Connectez-vous avec Google, ou faites vérifier l’adresse depuis la console Firebase.'),600);
   S.art=null; S.liste=[];
   if(S.auteur){ vue('liste'); motAccueil(); ecoute(); }
-  else{ if(COUPE){COUPE();COUPE=null;} $('acts-liste').style.display='none'; ouvrePublic(); }
+  /* Sans compte, ou avec un autre compte, la page n'a rien à montrer : les
+     règles de la base n'ouvrent les commentaires qu'au compte d'Emmanuel. */
+  else{ if(COUPE){COUPE();COUPE=null;} S.livre=''; majFil(false); $('liste').innerHTML=''; motAccueil(); vue('liste'); }
 });
-/* Sans compte du tout, Firebase ne prévient parfois jamais : on affiche donc
-   la lecture publique tout de suite, elle sera simplement redessinée si un
-   compte se présente. */
-ouvrePublic();
 /* l'adresse dit le livre ouvert : on s'y place à l'arrivée, et « précédent »
    ou « suivant » y ramènent */
 (function(){const m=(location.hash||'').match(/^#l\/(.+)$/);if(m)S.livre=m[1];})();
