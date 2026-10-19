@@ -1015,22 +1015,38 @@ html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-s
    « Mineur » restent en blanc atténué. Aucune couleur vive.
    ════════════════════════════════════════════════════════════════════ */
 html body #m-qc .modal-titre{margin-bottom:4px}
-html body .qc-sous{margin-bottom:18px;font-family:var(--h-ui);font-size:14.5px;color:var(--h-t3)}
+html body .qc-sous{margin-bottom:6px;font-family:var(--h-ui);font-size:14.5px;color:var(--h-t3)}
+html body .qc-outils{display:flex;flex-wrap:wrap;gap:4px 18px;margin-bottom:16px}
+html body .qc-outils button{padding:2px 0;border:0;background:none;font-family:var(--h-ui);font-size:14px;font-weight:600;color:var(--h-or);cursor:pointer;transition:color .2s}
+html body .qc-outils button:is(:hover,:focus-visible){color:#fff}
 html body .qc-corps{max-height:min(62vh,640px);overflow-y:auto;overscroll-behavior:contain;padding-right:6px;font-family:var(--h-ui);color:var(--h-t1)}
 html body .qc-attente{margin:6px 0 4px;font-size:16.5px;line-height:1.55;color:var(--h-t2)}
-html body .qc-avis{margin:0 0 14px;padding:9px 12px;border:1px solid var(--h-l2);font-size:14.5px;color:var(--h-t2)}
-html body .qc-bilan{margin:0 0 20px;font-size:17px;line-height:1.55;color:#fff}
+html body .qc-avis{margin:0 0 16px;padding:10px 12px;border:1px solid var(--h-l2);font-size:14.5px;line-height:1.5;color:var(--h-t2)}
+html body .qc-avis p{margin:0}
+html body .qc-avis p+p{margin-top:6px}
+html body .qc-manque{color:var(--h-t3)}
+html body .qc-bilan{margin:0 0 12px;font-size:17px;line-height:1.55;color:#fff}
+html body .qc-aide{margin:0 0 20px;font-size:14px;color:var(--h-t3)}
 html body .qc-rien{margin:0;font-size:16px;color:var(--h-t2)}
 html body .qc-groupe{margin:0 0 22px}
 html body .qc-g{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid var(--h-l1);font-family:var(--h-titre);font-size:21px;font-weight:500;color:#fff}
 html body .qc-g span{font-family:var(--h-ui);font-size:13px;font-weight:600;color:var(--h-t3)}
-html body .qc-point{margin:0 0 14px;padding:2px 0 2px 14px;border-left:2px solid var(--h-l2)}
+/* un point : un filet à gauche (crème pour le grave), une coche carrée à
+   droite qui dit s'il part à la correction */
+html body .qc-point{position:relative;margin:0 0 14px;padding:2px 40px 2px 14px;border-left:2px solid var(--h-l2);cursor:pointer;transition:opacity .2s}
 html body .qc-grave .qc-point{border-left-color:var(--h-or)}
+html body .qc-point:not(.on){opacity:.5}
+html body .qc-point:focus-visible{outline:1px solid var(--h-l3);outline-offset:4px}
+html body .qc-coche{position:absolute;top:2px;right:2px;width:18px;height:18px;border:1px solid var(--h-l3);background:#000}
+html body .qc-point.on .qc-coche{border-color:var(--h-or);background:var(--h-or)}
+html body .qc-point.on .qc-coche::after{content:'';position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #000;border-width:0 2px 2px 0;transform:rotate(45deg)}
+html body .qc-point.fait:not(.on){opacity:.4}
 html body .qc-ou{margin-bottom:4px;font-size:12.5px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--h-t3)}
 html body .qc-grave .qc-ou{color:var(--h-or)}
 html body .qc-extrait{margin-bottom:5px;font-style:italic;font-size:15.5px;line-height:1.5;color:var(--h-t2)}
 html body .qc-constat{font-size:16px;line-height:1.5;color:#fff}
 html body .qc-corr{margin-top:5px;font-size:15.5px;line-height:1.5;color:var(--h-t2)}
+html body #qc-corrige:disabled{opacity:.45;cursor:default}
 @media(max-width:600px){
   html body .qc-corps{max-height:none;overflow:visible;padding-right:0}
   html body #m-qc .modal-btns{grid-template-columns:1fr}

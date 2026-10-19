@@ -20,6 +20,9 @@
      (doctrine, citations, exactitude) est un travail exigeant, où une
      erreur manquée coûte plus cher que la relecture ; Opus le fait au
      niveau voulu pour deux fois moins que Fable.
+   - corriger (la correction d'une page d'après son contrôle qualité) :
+     Claude Opus 5.5, avec réflexion. Corriger sans abîmer le reste de
+     la page demande la même finesse que la relecture.
 
    La réponse de l'IA est relayée telle quelle, au fil de l'eau : la
    page la lit à mesure qu'elle arrive, et un long rangement ne bute
@@ -34,6 +37,7 @@ const CLE_FIREBASE = 'AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA';
 const MODELES = {
   ranger: 'claude-sonnet-5-5',
   controler: 'claude-opus-5-5',
+  corriger: 'claude-opus-5-5',
 };
 
 function json(corps, statut) {
@@ -213,7 +217,79 @@ async function demandeControler(donnees) {
   };
 }
 
-const TACHES = { ranger: demandeRanger, controler: demandeControler };
+/* ── CORRIGER ──
+   L'IA reçoit la page, les problèmes du contrôle qu'Emmanuel a retenus
+   et les versets cités. Elle ne réécrit pas la page entière (un livre
+   dépasserait ce qu'elle peut rendre d'un coup) : elle rend une liste de
+   remplacements, chacun un passage exact de la page et ce qui le
+   remplace. La page les applique elle-même. */
+const SCHEMA_CORRIGER = {
+  type: 'object',
+  properties: {
+    modifications: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: { point: { type: 'integer' }, ancien: { type: 'string' }, nouveau: { type: 'string' } },
+        required: ['point', 'ancien', 'nouveau'],
+        additionalProperties: false,
+      },
+    },
+    laisses: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: { point: { type: 'integer' }, raison: { type: 'string' } },
+        required: ['point', 'raison'],
+        additionalProperties: false,
+      },
+    },
+    resume: { type: 'string' },
+  },
+  required: ['modifications', 'laisses', 'resume'],
+  additionalProperties: false,
+};
+
+const CONSIGNE_CORRIGER = `Tu corriges une page HTML de la bibliothèque personnelle d’étude d’Emmanuel, un catholique, d’après le contrôle qualité qui vient d’en être fait. Tu reçois le code source de la page, les problèmes qu’Emmanuel a retenus (numérotés), et le texte des deux Bibles du site (la Chérubin, traduction par défaut, et la Séraphin, littérale) pour chaque référence que la page cite.
+
+Tu rends tes corrections sous forme de remplacements :
+- ancien : un passage copié du code source caractère pour caractère, balises, entités, espaces et espaces insécables compris, tel qu’il figure dans la page. Il est assez long pour n’apparaître qu’une seule fois dans la page.
+- nouveau : ce qui le remplace, dans le même code, avec le même balisage et les mêmes classes que le reste de la page.
+- point : le numéro du problème que ce remplacement corrige.
+
+Un problème peut demander plusieurs remplacements : une faute répétée reçoit un remplacement par endroit. Tu changes ce que chaque problème demande et rien d’autre ; tout le reste de la page reste tel quel. Une correction s’accorde avec le reste de la page : même ton, même mise en forme, même structure.
+
+Les règles du contenu : lecture selon la doctrine et la théologie de l’Église catholique ; une citation biblique reprend le texte fourni, de la Chérubin, ou de la Séraphin quand la page cite déjà la Séraphin à cet endroit, en italique entre guillemets français, la référence en gras après, au format « Genèse 44:2-3 » ; un mot de la langue d’origine se présente avec sa langue, sa translittération en italique et le mot français qui le traduit ; typographie française (guillemets « », apostrophe courbe, espaces insécables avant « : ; ! ? ») ; un terme technique s’explique au moment où il apparaît.
+
+Quand un problème retenu te paraît faux après réflexion, ou impossible à corriger sans qu’Emmanuel tranche, tu le mets dans laisses avec sa raison, en une phrase simple. resume dit en une ou deux phrases ce qui a été corrigé, en français.`;
+
+async function demandeCorriger(donnees) {
+  const points = (donnees.points || []).slice(0, 200).map((p, i) => ({
+    numero: i + 1, gravite: String(p.gravite || ''), domaine: String(p.domaine || ''), endroit: String(p.endroit || ''),
+    extrait: String(p.extrait || ''), constat: String(p.constat || ''), correction: String(p.correction || ''),
+  }));
+  const versets = (donnees.versets || []).slice(0, 300).map(v => ({
+    reference: String(v.ref || ''), cherubin: String(v.cherubin || ''), seraphin: String(v.seraphin || ''),
+  }));
+  return {
+    model: MODELES.corriger,
+    max_tokens: 64000,
+    stream: true,
+    thinking: { type: 'adaptive' },
+    system: CONSIGNE_CORRIGER,
+    messages: [{
+      role: 'user',
+      content: [
+        { type: 'text', text: 'Titre : ' + String(donnees.titre || 'Sans titre') + '\n\nLe code source de la page :\n\n' + String(donnees.html || '') },
+        { type: 'text', text: 'Les problèmes à corriger :\n\n' + JSON.stringify(points) },
+        { type: 'text', text: 'Les textes de référence des versets cités (' + versets.length + ') :\n\n' + JSON.stringify(versets) },
+      ],
+    }],
+    output_config: { effort: 'high', format: { type: 'json_schema', schema: SCHEMA_CORRIGER } },
+  };
+}
+
+const TACHES = { ranger: demandeRanger, controler: demandeControler, corriger: demandeCorriger };
 
 export default async (request) => {
   if (request.method !== 'POST') return json({ erreur: 'Méthode non permise.' }, 405);

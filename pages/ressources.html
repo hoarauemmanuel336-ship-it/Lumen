@@ -451,6 +451,16 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
   <div class="verset-pied">&#171; Le peuple qui marchait dans les t&#233;n&#232;bres a vu une grande lumi&#232;re &#187; <span class="ref-pied">Isa&#239;e 9:1</span></div>
 </footer>
 
+<!-- le rapport du contrôle qualité passe sous les autres fenêtres :
+     une confirmation ou un message ouvert depuis lui reste au-dessus -->
+<div class="overlay" id="m-qc"><div class="modal modal-large">
+  <div class="modal-titre">Contrôle qualité</div>
+  <div class="qc-sous" id="qc-sous"></div>
+  <div class="qc-outils" id="qc-outils"><button type="button" id="qc-copie">Copier le rapport</button><button type="button" id="qc-retour">Revenir à la version d’avant</button></div>
+  <div class="qc-corps" id="qc-corps"></div>
+  <div class="modal-btns"><button class="m-ok" id="qc-corrige">Corriger</button><button class="m-annul" id="qc-refait">Refaire le contrôle</button><button class="m-annul" id="qc-ferme">Fermer</button></div>
+</div></div>
+
 <div class="overlay" id="m-conf"><div class="modal">
   <div class="modal-titre" id="conf-titre">Confirmer</div>
   <div class="modal-txt" id="conf-txt"></div>
@@ -477,13 +487,6 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
   <div class="modal-txt">Collez ici du HTML. Il tournera dans un cadre isolé, sans accès au site ni aux comptes.</div>
   <textarea class="champ code" id="code-champ" rows="14" spellcheck="false" placeholder="&lt;div&gt;…&lt;/div&gt;"></textarea>
   <div class="modal-btns"><button class="m-annul" id="code-annul">Annuler</button><button class="m-ok" id="code-ok">Valider</button></div>
-</div></div>
-
-<div class="overlay" id="m-qc"><div class="modal modal-large">
-  <div class="modal-titre">Contrôle qualité</div>
-  <div class="qc-sous" id="qc-sous"></div>
-  <div class="qc-corps" id="qc-corps"></div>
-  <div class="modal-btns"><button class="m-annul" id="qc-copie">Copier le rapport</button><button class="m-annul" id="qc-refait">Refaire le contrôle</button><button class="m-ok" id="qc-ferme">Fermer</button></div>
 </div></div>
 
 <div class="overlay" id="m-choix"><div class="modal">
