@@ -733,3 +733,8 @@ html:root body:not(#_):not(#_) .cat.open{background:transparent}
 
 /* pendant la lecture des données : le cercle seul, sans actions */
 html body.memo-charge .cat-acts,html body.memo-charge #start-btn,html body.memo-charge .bh-cats{visibility:hidden}
+
+/* la liste des versets concernés par un signe */
+html body .trace-txt{display:flex;flex-direction:column;gap:3px;min-width:0}
+html body .trace-ref{font-family:var(--h-ui);font-size:15.5px;font-weight:500;color:#fff}
+html body .trace-ext{font-family:var(--h-texte);font-size:14px;color:var(--h-t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}

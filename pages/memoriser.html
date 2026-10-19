@@ -594,6 +594,9 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .move-row:hover{color:var(--or-pale);background:var(--surv)}
 .move-row.on{color:var(--or);box-shadow:inset 2px 0 0 var(--or),inset 0 -1px 0 var(--filet)}
 .move-row.del:hover{color:var(--pourpre)}
+.trace-txt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.trace-ref{color:var(--parchemin)}
+.trace-ext{font-size:13.5px;color:var(--pa2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .move-sec{flex-shrink:0;font-family:var(--display);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--pa2)}
 #m-pick .modal{max-height:82vh;overflow:auto}
 @media(max-width:720px){
@@ -1434,7 +1437,7 @@ function elementCat(cat){
     });
     body+='<div class="cat-custom-acts"><span class="bandeau-mini"><span class="mini-act" data-addv="1">+ '+tk('addverse',kind0)+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span><span class="mini-act" data-secc="1">'+t('sec_range')+'</span>'+(cat.base?'<span class="mini-act" data-restorec="1">'+t('cat_restore')+'</span>':'')+'<span class="mini-act del" data-delc="1">'+t('del')+'</span></span></div>';
     body+='</div>';
-    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp"><span class="cat-nom-t">'+besc(cat.name.fr||'')+'</span><span class="cat-ecart'+(catEcart(cat)?' on':'')+'" data-catecart="'+cat.id+'" role="button" title="Un verset de cette catégorie s’écarte de la Bible du site. Toucher pour le rejoindre.">≠</span><span class="cat-jum'+(catJum(cat)?' on':'')+'" data-catjum="'+cat.id+'" role="button" title="Des versets de cette catégorie sont aussi dans d’autres catégories. Toucher pour les rejoindre."><svg viewBox="0 0 24 24"><path d="M3 3h13v13H3zM8 8h13v13H8z"/></svg></span></span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-go" data-act="solo" title="'+('Lancer cette catégorie')+'" aria-label="'+('Lancer cette catégorie')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
+    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp"><span class="cat-nom-t">'+besc(cat.name.fr||'')+'</span><span class="cat-ecart'+(catEcart(cat)?' on':'')+'" data-catecart="'+cat.id+'" role="button" title="Des versets de cette catégorie s’écartent de la Bible du site. Toucher pour les voir.">≠</span><span class="cat-jum'+(catJum(cat)?' on':'')+'" data-catjum="'+cat.id+'" role="button" title="Des versets de cette catégorie sont aussi dans d’autres catégories. Toucher pour les voir."><svg viewBox="0 0 24 24"><path d="M3 3h13v13H3zM8 8h13v13H8z"/></svg></span></span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-go" data-act="solo" title="'+('Lancer cette catégorie')+'" aria-label="'+('Lancer cette catégorie')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
     return div;
 }
 /* Sans aucune section, la liste montre les six premières catégories, puis
@@ -1450,8 +1453,8 @@ function elementSection(sec,cats){
   tete.setAttribute('role','button'); tete.setAttribute('tabindex','0');
   const sEc=cats.some(catEcart), sJu=cats.some(catJum);
   let h='<span class="sec-nom">'+besc(sec?sec.name:t('sec_libres'))+'</span>'
-    +'<span class="sec-mq"><span class="sec-mq-ecart'+(sEc?' on':'')+'" data-sececart="'+id+'" role="button" title="Un verset de cette section s’écarte de la Bible du site. Toucher pour le rejoindre.">≠</span>'
-    +'<span class="sec-mq-jum'+(sJu?' on':'')+'" data-secjum="'+id+'" role="button" title="Des versets de cette section sont aussi dans d’autres catégories. Toucher pour les rejoindre."><svg viewBox="0 0 24 24"><path d="M3 3h13v13H3zM8 8h13v13H8z"/></svg></span></span>'
+    +'<span class="sec-mq"><span class="sec-mq-ecart'+(sEc?' on':'')+'" data-sececart="'+id+'" role="button" title="Des versets de cette section s’écartent de la Bible du site. Toucher pour les voir.">≠</span>'
+    +'<span class="sec-mq-jum'+(sJu?' on':'')+'" data-secjum="'+id+'" role="button" title="Des versets de cette section sont aussi dans d’autres catégories. Toucher pour les voir."><svg viewBox="0 0 24 24"><path d="M3 3h13v13H3zM8 8h13v13H8z"/></svg></span></span>'
     +'<span class="sec-n">'+cats.length+'</span>';
   if(sec){
     if(cats.length)h+='<span class="sec-go" data-secgo="'+id+'" role="button" tabindex="0" title="'+t('sec_start')+'" aria-label="'+t('sec_start')+'">▷</span>';
@@ -2216,11 +2219,12 @@ async function ecartTexte(ref,texte){
 function poseMarqueEcart(id,on){ document.querySelectorAll('[data-ecart="'+id+'"]').forEach(el=>el.classList.toggle('on',!!on)); majEcartsCats(); }
 /* une catégorie porte le signe dès qu'un de ses versets s'écarte sans que ce soit voulu */
 function catEcart(c){ return kindDe(c)==='v'&&c.verses.some(v=>!v.libre&&ecartConnu(v)); }
-/* ── LES DEUX CARRÉS, LES DEUX SIGNES, À LA TRACE ──
+/* ── LES DEUX CARRÉS ET LE ≠, À SUIVRE À LA TRACE ──
    Emmanuel : « est-ce que c'est visible depuis la section, la catégorie,
    et qu'on peut ensuite le suivre à la trace ? ». Une catégorie et une
    section portent les deux signes de leurs versets. Toucher un signe mène
-   au premier verset concerné ; le toucher de nouveau mène au suivant. */
+   au verset concerné ; s'il y en a plusieurs, il ouvre leur liste, d'où
+   l'on choisit. */
 function aJumeaux(c,v){
   const g=(IDX_JUM||(IDX_JUM=indexJumeaux()))[cleVerset(v,kindDe(c))]||[];
   return g.some(x=>x.cat.id!==c.id);
@@ -2234,11 +2238,25 @@ function versetsSignes(cats,genre){
   }));
   return out;
 }
-const TRACE={cle:'',i:-1};
+/* un seul verset concerné : on y va ; plusieurs : la liste, d'où l'on
+   choisit (Emmanuel : toucher plusieurs fois à l'aveugle « n'est pas le
+   plus top ») */
 function suitTrace(cle,cats,genre){
   const l=versetsSignes(cats,genre); if(!l.length)return;
-  TRACE.i=TRACE.cle===cle?(TRACE.i+1)%l.length:0; TRACE.cle=cle;
-  vaVerset(l[TRACE.i].c.id,l[TRACE.i].v.id);
+  if(l.length===1){vaVerset(l[0].c.id,l[0].v.id);return;}
+  const host=$('move-list'); host.innerHTML='';
+  $('mmove-title').textContent=l.length+(genre==='ecart'?' versets s’écartent de la Bible':' versets sont aussi ailleurs');
+  $('mmove-cancel').textContent='Fermer';
+  l.forEach(x=>{
+    const pas=estPassage(x.c), d=x.v.fr||{};
+    const r=document.createElement('div'); r.className='move-row trace-row';
+    r.innerHTML='<span class="trace-txt"><span class="trace-ref">'+besc(pas?trunc(d.text||'',60):(d.ref||''))+'</span>'
+      +'<span class="trace-ext">'+besc(pas?(d.ref||''):trunc(d.text||'',70))+'</span></span>'
+      +'<span class="move-sec">'+besc(x.c.name.fr||'')+'</span>';
+    r.onclick=()=>{closeModal('m-move');vaVerset(x.c.id,x.v.id);};
+    host.appendChild(r);
+  });
+  openModal('m-move');
 }
 /* ouvre la section et la catégorie, amène le verset au milieu de l'écran
    et l'éclaire un instant */
