@@ -1288,6 +1288,7 @@ async function loadUser(){
       if(anglais.base)saveBaseEdits();
       if(anglais.trash)saveTrash();
     }catch(e){console.warn('nettoyage',e);}
+    purgeTrash();
   }catch(e){
     /* lecture impossible (réseau, Firestore) : on le dit, et surtout on
        n'écrit RIEN tant que l'on n'a pas lu, sinon un état vide remplacerait
@@ -2278,6 +2279,25 @@ async function deleteTrashPerm(vId){
     editBase(rec.catId,c=>{c.moved=(c.moved||[]).concat(vId);});
   S.trash=S.trash.filter(x=>x.vId!==vId); delete S.progress[vId]; marqueSale(vId);
   saveProgress(); saveTrash(); renderTrash();
+}
+/* ── LA CORBEILLE SE VIDE D'ELLE-MÊME ──
+   Emmanuel : « pour les corbeilles du site, mets un délai avant une
+   suppression automatique ». Un verset à la corbeille depuis plus de
+   trente jours part pour de bon, comme par « Supprimer », sans question.
+   Le même délai vaut pour les corbeilles d'Articles, de Ressources et des
+   questions à l'IA. */
+const CORBEILLE_JOURS=30;
+function purgeTrash(){
+  const limite=Date.now()-CORBEILLE_JOURS*864e5;
+  const vieux=S.trash.filter(x=>typeof x.ts==='number'&&x.ts<limite);
+  if(!vieux.length||!peutEcrire())return;
+  vieux.forEach(x=>{
+    if(x.origin==='base'&&isBase(x.catId))editBase(x.catId,c=>{c.moved=(c.moved||[]).concat(x.vId);});
+    delete S.progress[x.vId]; marqueSale(x.vId);
+  });
+  const ids=new Set(vieux.map(x=>x.vId));
+  S.trash=S.trash.filter(x=>!ids.has(x.vId));
+  saveProgress(); saveTrash();
 }
 async function emptyTrash(){
   if(!S.trash.length)return; if(!await lvConfirm(t('trash_empty_q'),1))return;

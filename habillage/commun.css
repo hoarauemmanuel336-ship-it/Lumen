@@ -1127,7 +1127,15 @@ html body .qa-l-p{font-family:'Literata',Georgia,serif;font-style:italic;font-si
 html body .qa-l-d{font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--h-t3)}
 html body .qa-l-txt:hover .qa-l-q{text-decoration:underline;text-decoration-color:var(--h-l3);text-underline-offset:4px}
 html body .qa-l-jeter{flex:0 0 auto;margin-top:-4px}
-html body .qa-l-barre{display:flex;justify-content:flex-end;margin:-6px 0 8px}
+html body .qa-l-barre{display:flex;justify-content:space-between;align-items:center;margin:-6px 0 8px}
+html body .qa-l-lien{display:inline-flex;align-items:center;gap:7px;padding:4px 0;border:0;background:none;font-family:var(--h-ui);font-size:14.5px;font-weight:500;color:var(--h-t2);cursor:pointer;transition:color .2s}
+html body .qa-l-lien:hover{color:#fff}
+html body .qa-l-lien svg{width:16px;height:16px}
+html body .qa-l-n{font-size:12.5px;color:var(--h-t3)}
+html body .qa-ligne.qa-jetee:not(.qa-en-choix) .qa-l-txt{cursor:default}
+html body .qa-ligne.qa-jetee:not(.qa-en-choix) .qa-l-txt:hover .qa-l-q{text-decoration:none}
+html body .qa-l-remet{flex:0 0 auto;margin-top:-4px}
+html body #qa-ch-remet:disabled{opacity:.45;cursor:default}
 html body .qa-l-choisir{padding:4px 0;border:0;background:none;font-family:var(--h-ui);font-size:14.5px;font-weight:600;color:var(--h-or);cursor:pointer}
 html body .qa-l-choisir:hover{color:#fff}
 html body .qa-ligne.qa-en-choix .qa-l-txt:hover .qa-l-q{text-decoration:none}

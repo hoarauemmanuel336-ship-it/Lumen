@@ -15,9 +15,10 @@
    après chaque réponse (Emmanuel : « sinon après une question on ferme
    par inadvertance et c'est perdu »). « Mes questions », dans le panneau
    et dans « Mon compte », les rouvre, et on peut les continuer. Une
-   poubelle, dans la liste et dans la conversation ouverte, en supprime
-   une après confirmation ; « Choisir », en tête de la liste, en supprime
-   plusieurs ou toutes d'un coup.
+   poubelle, dans la liste et dans la conversation ouverte, en met une à
+   la corbeille ; « Choisir », en tête de la liste, en met plusieurs ou
+   toutes. La corbeille, au bout de la liste, les remet ou les supprime
+   pour de bon.
 
    Dans Articles et Ressources, la page tourne dans un cadre isolé qui
    n'a aucun accès au site : le cadre dit seulement ce qui y est
@@ -53,6 +54,7 @@ const QA_IC_COPIE='<svg viewBox="0 0 24 24" width="17" height="17" fill="none" s
 const QA_IC_FAIT='<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 const QA_IC_MES='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 4.5v3h3"/><path d="M12 8.5V12l2.5 2"/></svg>';
 const QA_IC_JETER='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 7h15M9.5 7V5.2c0-.4.3-.7.7-.7h3.6c.4 0 .7.3.7.7V7M6.5 7l.9 11.6c.1.8.7 1.4 1.5 1.4h6.2c.8 0 1.4-.6 1.5-1.4L17.5 7M10.2 10.5v6M13.8 10.5v6"/></svg>';
+const QA_IC_REMET='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7.5L4.5 12 9 16.5"/><path d="M4.5 12h10a5 5 0 0 1 0 10h-2"/></svg>';
 const QA_IC_IA='<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg>';
 
 /* ── LE BANDEAU ──
@@ -233,6 +235,7 @@ function qaPanneau(){
     +'<form class="qa-saisie" id="qa-saisie"><textarea id="qa-champ" rows="1" placeholder="Votre question sur ce passage…"></textarea>'
     +'<button type="submit" class="qa-envoi" id="qa-envoi" aria-label="Envoyer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button></form>'
     +'<div class="qa-choix" id="qa-choix"><div class="qa-conf-b"><button type="button" id="qa-ch-tout">Tout choisir</button>'
+    +'<button type="button" id="qa-ch-remet">Remettre</button>'
     +'<button type="button" id="qa-ch-jeter" aria-label="Supprimer les conversations choisies" title="Supprimer">'+QA_IC_JETER+'<span id="qa-ch-n"></span></button>'
     +'<button type="button" id="qa-ch-fin">Terminer</button></div></div>'
     +'<div class="qa-conf" id="qa-conf"><p id="qa-conf-txt"></p><div class="qa-conf-b"><button type="button" id="qa-conf-non">Annuler</button><button type="button" id="qa-conf-oui" aria-label="Supprimer" title="Supprimer">'+QA_IC_JETER+'</button></div></div>';
@@ -244,14 +247,15 @@ function qaPanneau(){
     qaRendListe(); qaMajChoix();
   };
   p.querySelector('#qa-ch-jeter').onclick=async()=>{
-    const n=QA_PRIS.size; if(!n)return;
-    if(!await qaConfirme(n===QA_LISTE.length?'Supprimer toutes les conversations ?':('Supprimer '+(n>1?'ces '+n+' conversations':'cette conversation')+' ?')))return;
-    await qaJetteTout([...QA_PRIS]);
+    const ids=[...QA_PRIS]; if(!ids.length)return;
+    if(QA_VUE==='corbeille')qaEffaceDemande(ids);else qaCorbeilleDemande(ids);
   };
+  p.querySelector('#qa-ch-remet').onclick=()=>{const ids=[...QA_PRIS];if(ids.length)qaRemet(ids);};
   p.querySelector('#qa-jeter').onclick=async()=>{
     if(!QA_ID)return;
-    if(!await qaConfirme('Supprimer cette conversation ? Elle disparaîtra de « Mes questions ».'))return;
-    if(await qaJette(QA_ID)){QA_ID='';QA_PASSAGE=null;QA_MSGS=[];QA_VU=[];qaListe();}
+    const id=QA_ID;
+    if(!await qaConfirme('Mettre cette conversation à la corbeille ? Vous pourrez la rétablir.'))return;
+    if(await qaMarque([id],new Date().toISOString())){QA_ID='';QA_PASSAGE=null;QA_MSGS=[];QA_VU=[];qaListe();}
   };
   p.querySelector('#qa-mes').onclick=()=>{if(p.classList.contains('liste')&&QA_PASSAGE)qaMontreConv();else qaListe();};
   const champ=p.querySelector('#qa-champ');
@@ -316,12 +320,14 @@ async function qaCol(){
   if(!u||!firebase.firestore)return null;
   return firebase.firestore().collection('users/'+u.uid+'/questions');
 }
-let QA_LISTE=[], QA_CHOIX=false, QA_PRIS=new Set();
-async function qaListe(){
+/* QA_TOUS : toutes les conversations gardées ; QA_LISTE : celles que la
+   vue montre, « Mes questions » ou la corbeille */
+let QA_TOUS=[], QA_LISTE=[], QA_VUE='liste', QA_CHOIX=false, QA_PRIS=new Set();
+async function qaListe(vue){
   const p=qaPanneau();
+  QA_VUE=vue==='corbeille'?'corbeille':'liste';
   p.classList.add('liste','on');
   document.documentElement.classList.add('qa-ouvert');
-  $qa('qa-label').lastChild.textContent='Mes questions';
   $qa('qa-jeter').style.display='none';
   QA_CHOIX=false; QA_PRIS=new Set(); qaMajChoix();
   const fil=$qa('qa-fil');
@@ -329,34 +335,61 @@ async function qaListe(){
   const col=await qaCol();
   if(!col){fil.innerHTML='<p class="qa-vide">Connectez-vous pour retrouver vos questions.</p>';return;}
   let l=[];
-  try{const r=await col.orderBy('maj','desc').limit(200).get();r.forEach(d=>l.push(Object.assign({id:d.id},d.data())));}
+  try{const r=await col.orderBy('maj','desc').limit(300).get();r.forEach(d=>l.push(Object.assign({id:d.id},d.data())));}
   catch(e){console.warn('questions',e);fil.innerHTML='<p class="qa-vide">Les questions n’ont pas pu être chargées.</p>';return;}
   if(!p.classList.contains('liste'))return;
   l.sort((a,b)=>String(b.maj||'').localeCompare(String(a.maj||'')));
-  QA_LISTE=l;
+  /* une conversation à la corbeille depuis plus de trente jours part pour
+     de bon (le même délai que les autres corbeilles du site) */
+  const limite=Date.now()-30*864e5;
+  for(const c of l.filter(c=>{const t=Date.parse(c.jete||'');return isFinite(t)&&t<limite;})){
+    try{await col.doc(c.id).delete();c.efface=true;}catch(e){console.warn('corbeille des questions',e);}
+  }
+  l=l.filter(c=>!c.efface);
+  QA_TOUS=l;
   qaRendListe();
 }
 
-/* la liste : en mode « Choisir », chaque rangée se coche d'un toucher, et
-   le bas du panneau porte « Tout choisir », la poubelle et « Terminer » */
+/* la vue : en tête, l'accès à la corbeille (ou le retour aux questions)
+   et « Choisir » ; en mode choix, chaque rangée se coche d'un toucher et
+   le bas du panneau porte « Tout choisir », « Remettre » (corbeille), la
+   poubelle et « Terminer » */
 function qaRendListe(){
-  const fil=$qa('qa-fil'), l=QA_LISTE;
-  if(!l.length){fil.innerHTML='<p class="qa-vide">Aucune question pour l’instant.</p>';QA_CHOIX=false;qaMajChoix();return;}
+  const fil=$qa('qa-fil'), corb=QA_VUE==='corbeille';
+  QA_LISTE=QA_TOUS.filter(c=>corb?!!c.jete:!c.jete);
+  const nCorb=QA_TOUS.filter(c=>c.jete).length;
+  $qa('qa-label').lastChild.textContent=corb?'Corbeille':'Mes questions';
+  QA_PRIS.forEach(id=>{if(!QA_LISTE.some(c=>c.id===id))QA_PRIS.delete(id);});
+  if(!QA_LISTE.length){QA_CHOIX=false;QA_PRIS=new Set();}
   const date=iso=>{const d=new Date(iso);return isNaN(d)?'':d.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});};
-  /* « Choisir » en tête ; en mode choix, « Terminer » est dans le bandeau du bas */
-  fil.innerHTML=(QA_CHOIX?'':'<div class="qa-l-barre"><button type="button" class="qa-l-choisir" id="qa-choisir">Choisir</button></div>')
-    +l.map((c,i)=>'<div class="qa-ligne'+(QA_CHOIX?' qa-en-choix':'')+(QA_PRIS.has(c.id)?' qa-pris':'')+'" data-qi="'+i+'">'
-    +'<div class="qa-l-txt" role="'+(QA_CHOIX?'checkbox':'button')+'" tabindex="0"'+(QA_CHOIX?' aria-checked="'+QA_PRIS.has(c.id)+'"':'')+'>'
+  let h='';
+  if(!QA_CHOIX){
+    h+='<div class="qa-l-barre">'
+      +(corb?'<button type="button" class="qa-l-lien" id="qa-vers-liste">← Mes questions</button>'
+            :(nCorb?'<button type="button" class="qa-l-lien" id="qa-vers-corb">'+QA_IC_JETER+'<span>Corbeille</span><span class="qa-l-n">'+nCorb+'</span></button>':'<span></span>'))
+      +(QA_LISTE.length?'<button type="button" class="qa-l-choisir" id="qa-choisir">Choisir</button>':'')
+      +'</div>';
+  }
+  if(!QA_LISTE.length)h+='<p class="qa-vide">'+(corb?'La corbeille est vide.':'Aucune question pour l’instant.')+'</p>';
+  h+=QA_LISTE.map((c,i)=>'<div class="qa-ligne'+(QA_CHOIX?' qa-en-choix':'')+(QA_PRIS.has(c.id)?' qa-pris':'')+(corb?' qa-jetee':'')+'" data-qi="'+i+'">'
+    +'<div class="qa-l-txt"'+((QA_CHOIX||!corb)?' role="'+(QA_CHOIX?'checkbox':'button')+'" tabindex="0"':'')+(QA_CHOIX?' aria-checked="'+QA_PRIS.has(c.id)+'"':'')+'>'
     +'<span class="qa-l-q">'+qaEsc((c.vu&&c.vu[0]&&c.vu[0].q)||'')+'</span>'
     +'<span class="qa-l-p">« '+qaEsc(String((c.passage&&c.passage.texte)||'').slice(0,140))+' »</span>'
-    +'<span class="qa-l-d">'+qaEsc(((c.passage&&c.passage.etiquette)?c.passage.etiquette+'  ·  ':'')+date(c.maj))+'</span>'
+    +'<span class="qa-l-d">'+qaEsc(((c.passage&&c.passage.etiquette)?c.passage.etiquette+'  ·  ':'')+date(corb?c.jete:c.maj))+'</span>'
     +'</div>'
     +(QA_CHOIX?'<span class="qa-l-coche" aria-hidden="true">✓</span>'
-      :'<button type="button" class="qa-x qa-l-jeter" aria-label="Supprimer cette conversation" title="Supprimer">'+QA_IC_JETER+'</button>')
+      :(corb?'<button type="button" class="qa-x qa-l-remet" aria-label="Remettre dans Mes questions" title="Remettre">'+QA_IC_REMET+'</button>'
+            +'<button type="button" class="qa-x qa-l-jeter" aria-label="Supprimer définitivement" title="Supprimer définitivement">'+QA_IC_JETER+'</button>'
+            :'<button type="button" class="qa-x qa-l-jeter" aria-label="Mettre à la corbeille" title="Mettre à la corbeille">'+QA_IC_JETER+'</button>'))
     +'</div>').join('');
-  if($qa('qa-choisir'))$qa('qa-choisir').onclick=()=>{QA_CHOIX=true;QA_PRIS=new Set();qaRendListe();qaMajChoix();};
+  fil.innerHTML=h;
+  fil.scrollTop=0;
+  const lien=(id,f)=>{const b=$qa(id);if(b)b.onclick=f;};
+  lien('qa-choisir',()=>{QA_CHOIX=true;QA_PRIS=new Set();qaRendListe();qaMajChoix();});
+  lien('qa-vers-corb',()=>{QA_VUE='corbeille';QA_CHOIX=false;QA_PRIS=new Set();qaRendListe();qaMajChoix();});
+  lien('qa-vers-liste',()=>{QA_VUE='liste';QA_CHOIX=false;QA_PRIS=new Set();qaRendListe();qaMajChoix();});
   fil.querySelectorAll('[data-qi]').forEach(ligne=>{
-    const c=l[+ligne.dataset.qi], t=ligne.querySelector('.qa-l-txt');
+    const c=QA_LISTE[+ligne.dataset.qi], t=ligne.querySelector('.qa-l-txt');
     const touche=()=>{
       if(QA_CHOIX){
         if(QA_PRIS.has(c.id))QA_PRIS.delete(c.id);else QA_PRIS.add(c.id);
@@ -365,6 +398,7 @@ function qaRendListe(){
         qaMajChoix();
         return;
       }
+      if(corb)return;
       QA_TOUR++; QA_ATTENTE=false; $qa('qa-envoi').disabled=false;
       QA_ID=c.id; QA_PASSAGE=c.passage||{texte:''}; QA_MSGS=Array.isArray(c.msgs)?c.msgs:[]; QA_VU=Array.isArray(c.vu)?c.vu:[];
       qaMontreConv();
@@ -372,35 +406,30 @@ function qaRendListe(){
     t.onclick=touche;
     t.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();touche();}};
     const j=ligne.querySelector('.qa-l-jeter');
-    if(j)j.onclick=async()=>{
-      if(!await qaConfirme('Supprimer cette conversation ? Elle disparaîtra de « Mes questions ».'))return;
-      await qaJetteTout([c.id]);
-    };
+    if(j)j.onclick=()=>corb?qaEffaceDemande([c.id]):qaCorbeilleDemande([c.id]);
+    const r=ligne.querySelector('.qa-l-remet');
+    if(r)r.onclick=()=>qaRemet([c.id]);
   });
 }
 
 function qaMajChoix(){
   const z=$qa('qa-choix'); if(!z)return;
   z.classList.toggle('on',QA_CHOIX);
-  const n=QA_PRIS.size, j=$qa('qa-ch-jeter');
-  j.disabled=!n;
+  const n=QA_PRIS.size;
+  $qa('qa-ch-jeter').disabled=!n;
+  $qa('qa-ch-remet').disabled=!n;
+  $qa('qa-ch-remet').style.display=QA_VUE==='corbeille'?'':'none';
+  $qa('qa-ch-jeter').setAttribute('aria-label',QA_VUE==='corbeille'?'Supprimer définitivement':'Mettre à la corbeille');
   $qa('qa-ch-n').textContent=n?String(n):'';
   $qa('qa-ch-tout').textContent=(QA_LISTE.length&&n===QA_LISTE.length)?'Aucun':'Tout choisir';
 }
-async function qaJetteTout(ids){
-  const faits=[];
-  for(const id of ids){if(await qaJette(id))faits.push(id);}
-  if(faits.length<ids.length)console.warn('questions non supprimées',ids.length-faits.length);
-  QA_LISTE=QA_LISTE.filter(c=>faits.indexOf(c.id)<0);
-  faits.forEach(id=>QA_PRIS.delete(id));
-  if(faits.indexOf(QA_ID)>=0){QA_ID='';QA_PASSAGE=null;QA_MSGS=[];QA_VU=[];}
-  QA_CHOIX=false; QA_PRIS=new Set();
-  qaRendListe(); qaMajChoix();
-}
 
-/* ── SUPPRIMER ──
-   La confirmation se fait dans le panneau lui-même, en bas : un mot, et
-   le bandeau « Annuler | Supprimer ». */
+/* ── LA CORBEILLE ──
+   Comme pour les articles et les ressources : une conversation supprimée
+   part d'abord à la corbeille, d'où on la remet ; la poubelle de la
+   corbeille la supprime pour de bon. Au bout de trente jours, elle part
+   d'elle-même. La
+   confirmation se fait dans le panneau lui-même, en bas. */
 function qaConfirme(txt){
   const z=$qa('qa-conf');
   $qa('qa-conf-txt').textContent=txt;
@@ -411,10 +440,37 @@ function qaConfirme(txt){
     $qa('qa-conf-oui').onclick=()=>fin(true);
   });
 }
-async function qaJette(id){
-  const col=await qaCol(); if(!col||!id)return false;
-  try{await col.doc(id).delete();return true;}
-  catch(e){console.warn('question supprimée',e);return false;}
+const qaCombien=(ids,tout)=>ids.length===tout?(ids.length>1?'toutes les conversations':'la conversation'):(ids.length>1?'ces '+ids.length+' conversations':'cette conversation');
+async function qaCorbeilleDemande(ids){
+  if(!await qaConfirme('Mettre '+qaCombien(ids,QA_LISTE.length)+' à la corbeille ? Vous pourrez '+(ids.length>1?'les':'la')+' rétablir.'))return;
+  await qaMarque(ids,new Date().toISOString());
+  if(ids.indexOf(QA_ID)>=0){QA_ID='';QA_PASSAGE=null;QA_MSGS=[];QA_VU=[];}
+  QA_CHOIX=false; QA_PRIS=new Set(); qaRendListe(); qaMajChoix();
+}
+async function qaRemet(ids){
+  await qaMarque(ids,'');
+  QA_CHOIX=false; QA_PRIS=new Set(); qaRendListe(); qaMajChoix();
+}
+async function qaEffaceDemande(ids){
+  const n=QA_TOUS.filter(c=>c.jete).length;
+  if(!await qaConfirme('Supprimer définitivement '+qaCombien(ids,n)+' ?'))return;
+  const col=await qaCol(); if(!col)return;
+  const faits=[];
+  for(const id of ids){try{await col.doc(id).delete();faits.push(id);}catch(e){console.warn('question supprimée',e);}}
+  QA_TOUS=QA_TOUS.filter(c=>faits.indexOf(c.id)<0);
+  QA_CHOIX=false; QA_PRIS=new Set(); qaRendListe(); qaMajChoix();
+}
+/* jete : la date de mise à la corbeille, ou vide quand elle en revient */
+async function qaMarque(ids,jete){
+  const col=await qaCol(); if(!col)return false;
+  let ok=true;
+  for(const id of ids){
+    try{
+      await col.doc(id).set({jete},{merge:true});
+      const c=QA_TOUS.find(x=>x.id===id); if(c)c.jete=jete;
+    }catch(e){console.warn('corbeille des questions',e);ok=false;}
+  }
+  return ok;
 }
 
 /* la conversation part dans le compte après chaque réponse */

@@ -413,7 +413,8 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
     </div>
   </section>
 
-  <!-- LA CORBEILLE : rien n'en part tout seul (choix d'Emmanuel). Ce qui y
+  <!-- LA CORBEILLE : au bout de trente jours, ce qui y est part de
+       soi-même (commun/rubriques.js). Ce qui y
        tombe garde son nom, sa date et, pour une catégorie, ce qui est
        descendu avec elle ; on remet, ou l'on supprime pour de bon. -->
   <section id="ecran-corbeille">
@@ -1814,8 +1815,9 @@ async function jetteChoix(){
    à la liste « corbeille » du même document, avec toute sa branche, chaque
    rubrique notant la racine avec laquelle elle est tombée : « Remettre »
    relève l'arbre entier d'un geste, avec les ressources descendues avec lui.
-   Rien n'en part tout seul (choix d'Emmanuel) : le départ définitif se
-   demande, ligne par ligne ou par « Vider la corbeille ». */
+   Le départ définitif se demande, ligne par ligne ou par « Vider la
+   corbeille » ; au bout de trente jours, il se fait de lui-même
+   (commun/rubriques.js). */
 const maintenant=()=>new Date().toISOString();
 const racinesJetees=()=>S.corb.filter(x=>(x.racine||x.id)===x.id);
 /* une ressource jetée seule, ou dont la catégorie a depuis quitté la corbeille,
@@ -2562,7 +2564,7 @@ function ecoute(){
   if(!S.uid)return;
   RUBS_LUES=false; LISTE_LUE=false;
   rdoc().get()
-    .then(d=>{S.rubs=(d.exists&&d.data().list)||[];S.corb=(d.exists&&d.data().corbeille)||[];RUBS_LUES=true;
+    .then(d=>{S.rubs=(d.exists&&d.data().list)||[];S.corb=(d.exists&&d.data().corbeille)||[];RUBS_LUES=true;lvPlanPurge();
       /* si une ressource est déjà ouverte à l'écran, on la laisse : relire le
          rangement ne doit pas la refermer */
       if(!S.res&&$('ecran-voir').style.display==='none')routeHash();})
@@ -2573,7 +2575,7 @@ function ecoute(){
     /* Ce qui est à la corbeille porte une date de mise au rebut : la liste
        courante ne montre que ce qui vit, la corbeille montre le reste. */
     S.jetees=l.filter(a=>!!a.suppr).sort((a,b)=>String(b.suppr).localeCompare(String(a.suppr)));
-    S.liste=l.filter(a=>!a.suppr); LISTE_LUE=true;
+    S.liste=l.filter(a=>!a.suppr); LISTE_LUE=true; lvPlanPurge();
     /* les ressources qui portent encore leur contenu dans leur fiche le
        déposent dans la sienne, en arrière-plan */
     setTimeout(()=>migreContenus(l),1500);
@@ -2609,7 +2611,7 @@ auth.onAuthStateChanged(u=>{
      vérifiée : si ce n'est pas le cas, on le dit tout de suite plutôt que de
      laisser chaque enregistrement échouer sans explication */
   if(S.auteur&&u&&u.emailVerified===false)setTimeout(()=>lvInfo('Votre adresse e-mail n’est pas vérifiée : les règles de sécurité refuseront tout enregistrement tant qu’elle ne l’est pas. Connectez-vous avec Google, ou faites vérifier l’adresse depuis la console Firebase.'),600);
-  S.res=null; S.vu=''; S.liste=[]; S.jetees=[]; S.rubs=[]; S.corb=[]; S.pris.clear(); RUBS_LUES=false; RUBS_ERR=false; LISTE_ERR=false;
+  S.res=null; S.vu=''; S.liste=[]; S.jetees=[]; S.rubs=[]; S.corb=[]; S.pris.clear(); PURGE_FAITE=false; RUBS_LUES=false; RUBS_ERR=false; LISTE_ERR=false;
   if(S.auteur){ vue('liste'); motAccueil(); ecoute(); setTimeout(()=>{menagePublic().catch(e=>console.warn('ménage',e));},4000); }
   else{ if(COUPE){COUPE();COUPE=null;} $('acts-liste').style.display='none'; ouvrePublic(); }
 });

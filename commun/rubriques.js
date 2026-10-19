@@ -28,3 +28,31 @@ function descendance(id,vus){
   enfants(id).forEach(e=>out.push(...descendance(e.id,vus)));
   return out;
 }
+
+/* ── LA CORBEILLE SE VIDE D'ELLE-MÊME ──
+   Emmanuel : « pour les corbeilles du site, mets un délai avant une
+   suppression automatique ». Ce qui est à la corbeille depuis plus de
+   trente jours part pour de bon, éléments comme catégories. Le ménage se
+   fait une fois par visite, quand la liste et le rangement sont lus.
+   Le même délai vaut pour les corbeilles de Mémoriser et des questions à
+   l'IA. */
+const CORBEILLE_JOURS=30;
+let PURGE_FAITE=false;
+function lvPlanPurge(){
+  if(PURGE_FAITE||!LISTE_LUE||!RUBS_LUES||LISTE_ERR||RUBS_ERR||!S.uid)return;
+  PURGE_FAITE=true;
+  setTimeout(lvPurgeCorbeille,2500);
+}
+async function lvPurgeCorbeille(){
+  const limite=Date.now()-CORBEILLE_JOURS*864e5;
+  const vieux=d=>{const t=Date.parse(d||'');return isFinite(t)&&t<limite;};
+  try{
+    for(const a of S.jetees.filter(a=>vieux(a.suppr)))await detruitRessource(a);
+    const racines=S.corb.filter(x=>(!x.racine||x.racine===x.id)&&vieux(x.suppr)).map(x=>x.id);
+    if(racines.length){
+      S.corb=S.corb.filter(x=>racines.indexOf(x.racine||x.id)<0);
+      saveRubs();
+    }
+  }catch(e){console.warn('corbeille, ménage',e);}
+  try{rendCorbeille();majCorbBouton();}catch(_){}
+}
