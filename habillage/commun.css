@@ -317,10 +317,9 @@ html body :is(.auth-fermer,.auth-x){
 }
 html body :is(.auth-fermer,.auth-x):hover{color:#fff;background:var(--h-s4)}
 html body :is(.auth-m-title,.auth-t){font-family:var(--h-titre);font-weight:500;font-size:28px;letter-spacing:0;text-transform:none;color:#fff;text-align:center;margin-bottom:6px}
+/* sans onglets, le titre de la connexion laisse de l'air avant les champs */
+html body #auth-out .auth-m-title{margin-bottom:26px}
 html body :is(.auth-m-email,.auth-mail){font-family:var(--h-ui);font-size:13.5px;color:var(--h-t3);text-align:center;margin-bottom:24px}
-html body .auth-m-tabs{display:flex;gap:4px;padding:4px;margin:18px 0 20px;border:0;border-radius:0;background:var(--h-s3)}
-html body .auth-m-tab{flex:1;padding:9px 12px;border:0;border-radius:0;font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--h-t2);background:none}
-html body .auth-m-tab.on{color:#000;background:var(--h-or)}
 html body .auth-modal input,html body .auth-box input{
   border-radius:0;background:#000;border:1px solid var(--h-l2);padding:12px 14px;margin-bottom:10px;
   font-family:var(--h-ui);font-size:15px;color:#fff;
@@ -588,8 +587,6 @@ html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-ote
 html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):active{transform:scale(.97)}
-html:root body:not(#_) .auth-m-tab{border-radius:10px}
-html:root body:not(#_) .auth-m-tabs{border-radius:13px}
 html:root body:not(#_) .poignee,html:root body:not(#_) .fil span.cible{border-radius:8px}
 html:root body:not(#_) #sel-barre{border-radius:16px}
 html:root body:not(#_) .sb-chip{border-radius:10px}
@@ -735,7 +732,7 @@ html:root body:not(#_):not(#_):not(#_):not(#_) :is(#sel-barre .sb-oter,.surl-ite
 /* ── UN BOUTON SEUL S'ÉCLAIRE COMME UN BOUTON DE BANDEAU ──
    Les boutons crème posés seuls prennent au survol exactement l'effet des
    cases d'un bandeau : un crème plus clair et la même lueur tout autour. */
-html:root body:not(#_):not(#_):not(#_):not(#_) :is(#amt-si,#bp-pan .bp-page,#bp-pan .bp-aller,#auth-submit,#cat-enr,#ab-valider,#ab-google,#b-google,#auth-google,#b-voir-retour,#mbib-go,#b-nouveau,#lvp-oter,#b-submit,#conf-ok,#start-btn,#finish-btn,#sum-back,.haut-page):is(:hover,:focus-visible){
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(#bp-pan .bp-page,#bp-pan .bp-aller,#auth-submit,#cat-enr,#ab-valider,#ab-google,#b-google,#auth-google,#b-voir-retour,#mbib-go,#b-nouveau,#lvp-oter,#b-submit,#conf-ok,#start-btn,#finish-btn,#sum-back,.haut-page):is(:hover,:focus-visible){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;
   box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);transform:none}
 /* le résultat de la recherche propre à la Bible s'éclaire comme les autres */
@@ -796,7 +793,7 @@ html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-tete{display:none}
 html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow{flex-wrap:wrap;align-items:center;gap:10px;padding:12px 14px}
 html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-barre{flex:1 1 0;min-width:0}
 html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-plein{flex:none;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;background:none;box-shadow:none;border-radius:0;color:var(--h-t3);transition:color .25s}
-html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-plein:is(:hover,:focus-visible){background:none;box-shadow:none;color:var(--h-or)}
+html:root body:not(#_):not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-plein:is(:hover,:focus-visible){background:none;box-shadow:none;color:var(--h-or)}
 html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-fermer{flex:none}
 html:root body:not(#_):not(#_):not(#_) #bp-pan .bp-refrow .bp-err{flex:1 1 100%}
 

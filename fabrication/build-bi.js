@@ -349,9 +349,6 @@ html{scroll-behavior:smooth}
 .auth-fermer{position:absolute;top:16px;right:18px;cursor:pointer;color:var(--parchemin-att);font-size:22px;line-height:1;transition:color .3s}
 .auth-fermer:hover{color:var(--parchemin)}
 .auth-m-title{font-family:'Cormorant Garamond',serif;font-size:24px;text-align:center;margin-bottom:24px;color:var(--parchemin)}
-.auth-m-tabs{display:flex;border-bottom:1px solid var(--filet-fort);margin-bottom:22px}
-.auth-m-tab{flex:1;padding:9px;background:none;border:none;border-bottom:2px solid transparent;color:var(--parchemin-att);font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:color .25s,border-color .25s}
-.auth-m-tab.on{color:var(--or);border-bottom-color:var(--or)}
 .auth-modal input{width:100%;background:#161616;border:1px solid var(--filet-fort);color:var(--parchemin);font-family:'EB Garamond',serif;font-size:16px;padding:10px 13px;margin-bottom:12px;outline:none;border-radius:0}
 .auth-modal input:focus{border-color:var(--or)}
 .auth-modal input::placeholder{color:var(--parchemin-att)}
@@ -403,14 +400,9 @@ function header(lang) {
     <span class="auth-fermer" id="auth-fermer" role="button" tabindex="0">✕</span>
     <div id="auth-out">
       <div class="auth-m-title">Connexion</div>
-      <div class="auth-m-tabs">
-        <button class="auth-m-tab on" id="amt-si">Connexion</button>
-        <button class="auth-m-tab" id="amt-su">Inscription</button>
-      </div>
       <div class="auth-m-msg" id="auth-m-msg"></div>
       <input type="email" id="auth-email" placeholder="Adresse e-mail" autocomplete="email">
       <input type="password" id="auth-pw" placeholder="Mot de passe" autocomplete="current-password">
-      <input type="password" id="auth-cf" placeholder="Confirmer le mot de passe" autocomplete="new-password" style="display:none">
       <button class="auth-m-primary" id="auth-submit">Se connecter</button>
       <div class="auth-m-or">ou</div>
       <button class="auth-m-google" id="auth-google"><svg width="17" height="17" viewBox="0 0 18 18"><path fill="#EA4335" d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.54C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z"/><path fill="#FBBC05" d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9 9 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z"/><path fill="#4A90D9" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.96 13.04C2.44 15.98 5.48 18 9 18z"/></svg>Continuer avec Google</button>
@@ -480,11 +472,8 @@ const AUTH_JS = `(function(){
   function msg(txt,kind){var m=el('auth-m-msg');m.textContent=txt;m.className='auth-m-msg '+kind;}
   function clr(){var m=el('auth-m-msg');m.className='auth-m-msg';m.textContent='';}
   function setMode(x){mode=x;clr();
-    el('amt-si').classList.toggle('on',x==='si');
-    el('amt-su').classList.toggle('on',x==='su');
-    el('auth-cf').style.display=(x==='su')?'block':'none';
     el('auth-pw').style.display=(x==='forgot')?'none':'block';
-    el('auth-submit').textContent=(x==='si')?'Se connecter':(x==='su')?'Créer le compte':'Envoyer le lien';
+    el('auth-submit').textContent=(x==='si')?'Se connecter':'Envoyer le lien';
     el('auth-forgot').textContent=(x==='forgot')?'← Retour':'Mot de passe oublié ?';
   }
   function open(){clr();
@@ -499,16 +488,13 @@ const AUTH_JS = `(function(){
   fe.addEventListener('click',close);
   ov.addEventListener('click',function(e){if(e.target===ov)close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('ouvert'))close();});
-  el('amt-si').addEventListener('click',function(){setMode('si');});
-  el('amt-su').addEventListener('click',function(){setMode('su');});
   el('auth-forgot').addEventListener('click',function(){setMode(mode==='forgot'?'si':'forgot');});
   el('auth-submit').addEventListener('click',function(){
-    var em=el('auth-email').value.trim(),pw=el('auth-pw').value,cf=el('auth-cf').value;clr();
+    var em=el('auth-email').value.trim(),pw=el('auth-pw').value;clr();
     if(mode==='forgot'){auth.sendPasswordResetEmail(em).then(function(){msg('Lien envoyé. Vérifiez votre boîte mail.','ok');}).catch(function(e){msg(e.message,'err');});return;}
-    if(mode==='su'){if(pw!==cf){msg('Les mots de passe ne correspondent pas.','err');return;}auth.createUserWithEmailAndPassword(em,pw).catch(function(e){msg(e.message,'err');});return;}
     auth.signInWithEmailAndPassword(em,pw).catch(function(e){msg(e.message,'err');});
   });
-  ['auth-email','auth-pw','auth-cf'].forEach(function(id){var x=el(id);if(x)x.addEventListener('keydown',function(e){if(e.key==='Enter')el('auth-submit').click();});});
+  ['auth-email','auth-pw'].forEach(function(id){var x=el(id);if(x)x.addEventListener('keydown',function(e){if(e.key==='Enter')el('auth-submit').click();});});
   el('auth-google').addEventListener('click',function(){auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){msg(e.message,'err');});});
   el('auth-logout').addEventListener('click',function(){auth.signOut().then(close);});
   auth.onAuthStateChanged(function(u){icone.classList.toggle('connecte',!!u);if(ov.classList.contains('ouvert'))open();});

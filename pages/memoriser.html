@@ -87,9 +87,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 /* bascule Versets / Passages / Fiches : des onglets sobres, un filet
    d'accent sous celui où l'on est, comme un intercalaire dans un classeur */
 .modes{display:flex;flex-wrap:wrap;gap:30px;margin:0 0 34px;border-bottom:1px solid var(--filet)}
-/* les trois onglets tiennent sur la largeur d'un téléphone en resserrant
-   la lettre */
-@media(max-width:430px){.modes{gap:17px}.mode{font-size:12.5px;letter-spacing:.12em}}
 .mode{background:none;border:0;padding:0 0 13px;font-family:var(--display);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa2);cursor:pointer;position:relative;transition:color .3s}
 .mode:hover{color:var(--pa)}
 .mode.on{color:var(--or)}
@@ -415,8 +412,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
      seule, en dessous : c'est l'ordre dans lequel on les lit */
   .vrow.pas .vref{display:-webkit-box;white-space:normal;font-size:16px;line-height:1.32;-webkit-line-clamp:2;-webkit-box-orient:vertical}
   .vrow.pas .vtext{display:block;font-size:13px;white-space:nowrap}
-  .modes{gap:24px;margin-bottom:28px}
-  .mode{font-size:13px;letter-spacing:.16em}
 }
 @media(max-width:430px){
   .wrap{padding-left:16px;padding-right:16px}
