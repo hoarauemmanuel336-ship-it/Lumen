@@ -73,7 +73,7 @@ Les deux Bibles vivent dans `contenu/`. Une correction du texte se fait dans le 
 
 ## L'IA dans le site
 
-Le site appelle l'API Claude d'Anthropic, et seulement elle, par `netlify/edge-functions/ia.js`. Ce passage vérifie auprès de Google que la demande vient du compte d'Emmanuel, puis relaie la réponse au fil de l'eau. La clé vit dans la variable `ANTHROPIC_API_KEY` de Netlify et nulle part ailleurs. Chaque usage a le modèle qui lui convient ; c'est Emmanuel qui décide des usages à ajouter. Le détail est dans `documentation/ia.md`.
+Le site appelle l'API Claude d'Anthropic, et seulement elle, par `netlify/edge-functions/ia.js`. Ce passage vérifie auprès de Google que la demande vient du compte d'Emmanuel, puis relaie la réponse au fil de l'eau. La clé vit dans la variable `ANTHROPIC_API_KEY` de Netlify et nulle part ailleurs. Chaque usage reçoit le modèle au meilleur rapport qualité-prix pour la tâche demandée, choisi dans la gamme du moment : de nouveaux modèles sortent souvent, et le choix se refait quand ils paraissent. C'est Emmanuel qui décide des usages à ajouter. Le détail est dans `documentation/ia.md`.
 
 ## Les secrets
 

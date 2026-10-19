@@ -22,13 +22,8 @@ La consommation se paie sur les crédits API compris dans l'abonnement Max d'Emm
 
 **Ranger.** L'IA reçoit les catégories et sections actuelles et, pour chaque élément, son titre, sa description et son endroit. Elle rend un rangement complet : elle peut créer, renommer, fusionner, déplacer et supprimer des catégories et des sections, jusqu'à cinq niveaux, et placer chaque élément une fois. Le rangement s'applique aussitôt, sans validation (choix d'Emmanuel). Le rangement d'avant est gardé : « Organiser », puis « Revenir au rangement d'avant ».
 
-## Les modèles disponibles
+## Choisir le modèle
 
-| Modèle | Identifiant | Pour quoi |
-|---|---|---|
-| Claude Haiku 5.5 | `claude-haiku-5-5` | Petites tâches rapides et répétées : classer, extraire, proposer une catégorie. |
-| Claude Sonnet 5.5 | `claude-sonnet-5-5` | Le quotidien : le meilleur équilibre entre vitesse et intelligence. |
-| Claude Opus 5.5 | `claude-opus-5-5` | Le travail exigeant : écrire un contenu, relire le fond, comparer des traductions. |
-| Claude Fable 5.1 | `claude-fable-5-1` | Les cas les plus difficiles, quand Opus ne suffit pas. |
+Anthropic sort souvent de nouveaux modèles. Le choix ne repose donc sur aucune liste figée : à chaque nouvel usage, et quand une nouvelle génération de modèles paraît, l'IA consulte la gamme du moment et ses prix dans la documentation d'Anthropic (platform.claude.com/docs, page « Models overview »), puis retient pour chaque tâche le modèle au meilleur rapport qualité-prix. Elle met ensuite à jour le tableau des usages ci-dessus et le modèle écrit dans `netlify/edge-functions/ia.js`.
 
-Les prix et les modèles évoluent : la référence est la documentation d'Anthropic (platform.claude.com/docs, page « Models overview »).
+Les repères qui ne changent pas d'une génération à l'autre : le plus petit modèle de la gamme sert les tâches simples et répétées (classer, extraire, proposer une catégorie) ; le modèle intermédiaire sert le quotidien, où il faut à la fois du jugement et de la rapidité ; le plus grand sert le travail exigeant (écrire un contenu, relire le fond, comparer des traductions).
