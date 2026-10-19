@@ -23,7 +23,7 @@ Les six pages du site :
 |---|---|
 | `pages/` | Les six pages, une par fichier HTML, chacune avec son propre script. |
 | `habillage/` | L'apparence : `lumen-commun.css` (le socle), `commun.css` (ce qui vaut pour toutes les pages, fenêtres et menus compris), puis une feuille par page. |
-| `commun/` | Le fonctionnement partagé entre plusieurs pages (fenêtres et menus, rangement en catégories, éditeur des commentaires, choix d'un verset, IA, contrôle qualité, ménage des anciennes copies publiques). La fabrication pose dans chaque page les familles dont elle a besoin. |
+| `commun/` | Le fonctionnement partagé entre plusieurs pages (fenêtres et menus, rangement en catégories, éditeur des commentaires, choix d'un verset, IA, versets cités, contrôle qualité, question à l'IA, ménage des anciennes copies publiques). La fabrication pose dans chaque page les familles dont elle a besoin. |
 | `contenu/` | Les deux Bibles (`bible.json` pour la Chérubin, `bible-seraphin.json` pour la Séraphin), la bibliothèque de départ de Mémoriser, les réglages d'apparence. |
 | `racine/` | Les fichiers servis tels quels à la racine du site : panneau de la Bible ouvert depuis les autres pages, service workers (hors ligne), manifestes, icônes, polices. |
 | `fabrication/` | Ce qui construit le site : `build-bi.js` assemble les pages, `publication.js` allège et contrôle le résultat. |

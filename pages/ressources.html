@@ -882,6 +882,9 @@ function pageCadre(code){
        trop courte et le bas du contenu coupé. */
     +'#lv-mesure{display:flow-root}</style></he'+'ad><body>'
     +'<div id="lv-mesure">'+code+'</div>'
+    /* le cadre dit ce qui y est sélectionné : « Demander à l'IA »
+       (commun/question.js) */
+    +(typeof QA_CADRE==='string'?QA_CADRE:'')
     +'<scr'+'ipt>(function(){'
     /* ── LA HAUTEUR EST CELLE DU DERNIER PIXEL VISIBLE ──
        Ni la hauteur de la page du cadre (elle ne descend jamais sous celle
@@ -1104,6 +1107,8 @@ window.addEventListener('message',e=>{
   let cadre=null;
   document.querySelectorAll('iframe[data-diag]').forEach(f=>{if(f.contentWindow===e.source)cadre=f;});
   if(!cadre)return;
+  /* une sélection dans le cadre : le bouton « Demander à l'IA » */
+  if('lvSel' in d){const a=S.liste.find(x=>x.id===(cadre.dataset.res||S.vu));qaSelectionCadre(d.lvSel,cadre,a?a.titre:'','une ressource');return;}
   /* Un cadre qui ne défile pas lui-même : quand un lien interne de son
      contenu désigne un endroit plus bas, c'est la page qui porte la lecture
      jusque-là, sous la barre du site. */

@@ -20,6 +20,10 @@
      (doctrine, citations, exactitude) est un travail exigeant, où une
      erreur manquée coûte plus cher que la relecture ; Opus le fait au
      niveau voulu pour deux fois moins que Fable.
+   - question (une question sur un passage sélectionné dans un article,
+     une ressource ou la Bible) : Claude Opus 5.5. Une réponse de
+     doctrine ou d'exégèse doit être juste avant tout ; pour une réponse
+     courte, Opus coûte à peine plus d'un centime.
    - corriger (la correction d'une page d'après son contrôle qualité) :
      Claude Opus 5.5, avec réflexion. Corriger sans abîmer le reste de
      la page demande la même finesse que la relecture.
@@ -40,6 +44,7 @@ const MODELES = {
   ranger: 'claude-sonnet-5-5',
   controler: 'claude-opus-5-5',
   corriger: 'claude-opus-5-5',
+  question: 'claude-opus-5-5',
 };
 
 function json(corps, statut) {
@@ -309,7 +314,53 @@ function savoirPour(espece, marqueCle) {
   return t;
 }
 
-const TACHES = { ranger: demandeRanger, controler: demandeControler, corriger: demandeCorriger };
+/* ── QUESTION ──
+   Emmanuel sélectionne un passage et pose sa question. La page envoie
+   toute la conversation (messages) ; le serveur y ajoute la consigne, ses
+   instructions personnalisées et un outil, lire_versets, que la page
+   exécute elle-même avec les deux Bibles du site : l'IA cite ainsi
+   l'Écriture d'après le texte exact du site. */
+const OUTIL_VERSETS = {
+  name: 'lire_versets',
+  description: 'Renvoie le texte exact de versets bibliques dans les deux traductions du site d’Emmanuel : la Chérubin (traduction par défaut) et la Séraphin (littérale). Les références s’écrivent au format « Jean 3:16 » ou « 1 Corinthiens 13:4-7 », avec les noms de livres en français sous leur forme standard.',
+  input_schema: {
+    type: 'object',
+    properties: { references: { type: 'array', items: { type: 'string' } } },
+    required: ['references'],
+  },
+};
+
+const CONSIGNE_QUESTION = `Tu réponds aux questions d’Emmanuel, un catholique qui étudie seul avec l’IA, sur un passage qu’il vient de sélectionner dans sa bibliothèque personnelle : un article, une ressource d’étude ou la Bible de son site. Il ne code pas ; il lit ta réponse dans un panneau, à côté du passage.
+
+Tu réponds à la question posée, directement, en partant du passage et de son contexte. La réponse est claire pour le novice comme pour le lecteur confirmé : un terme technique s’explique au moment où il apparaît. Elle reste aussi courte que la question le permet ; une question qui demande de l’ampleur reçoit de l’ampleur.
+
+Pour citer un verset, tu lis d’abord son texte exact avec l’outil lire_versets, puis tu le cites d’après la Chérubin, ou d’après la Séraphin quand le passage sélectionné vient de la Séraphin. Tu demandes en une fois tous les versets dont tu as besoin.
+
+Mise en forme : des paragraphes courts ; **gras** pour le très important, *italique* pour les citations et les mots étrangers ; une liste avec « - » en début de ligne quand le contenu s’y prête ; aucun titre.`;
+
+function demandeQuestion(donnees) {
+  const roles = new Set(['user', 'assistant']);
+  const blocs = new Set(['text', 'tool_use', 'tool_result']);
+  const messages = (Array.isArray(donnees.messages) ? donnees.messages : []).slice(-40)
+    .filter(m => m && roles.has(m.role))
+    .map(m => ({
+      role: m.role,
+      content: typeof m.content === 'string' ? m.content
+        : (Array.isArray(m.content) ? m.content.filter(b => b && blocs.has(b.type)) : ''),
+    }));
+  return {
+    model: MODELES.question,
+    max_tokens: 8000,
+    stream: true,
+    system: CONSIGNE_QUESTION + (SAVOIR.instructions
+      ? '\n\n<instructions_emmanuel>\nLes instructions personnalisées d’Emmanuel, les mêmes que celles qu’il donne à Claude.\n\n' + SAVOIR.instructions + '\n</instructions_emmanuel>'
+      : ''),
+    tools: [OUTIL_VERSETS],
+    messages,
+  };
+}
+
+const TACHES = { ranger: demandeRanger, controler: demandeControler, corriger: demandeCorriger, question: demandeQuestion };
 
 export default async (request) => {
   if (request.method !== 'POST') return json({ erreur: 'Méthode non permise.' }, 405);

@@ -58,8 +58,9 @@ const polices = h => h.replace(/<link[^>]*fonts\.(?:googleapis|gstatic)\.com[^>]
    elle se sert, posées dans la page elle-même et non en fichiers à part :
    Mémoriser fonctionne hors ligne, et rien de plus n'est à mettre en cache. */
 const COMMUN_JS_PAGES = {
-  'articles.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage'],
-  'ressources.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage'],
+  'articles.html': ['outils', 'rubriques', 'ia', 'versets', 'qualite', 'question', 'menage'],
+  'ressources.html': ['outils', 'rubriques', 'ia', 'versets', 'qualite', 'question', 'menage'],
+  'bible.html': ['versets', 'question'],
   'commentaires.html': ['outils', 'editeur', 'choix-verset'],
   'memoriser.html': ['choix-verset'],
 };
@@ -963,6 +964,7 @@ console.log('Copié : memoriser-sw.js + manifests + icônes');
 if (fs.existsSync(PAGES + 'bible.html')) {
   let bh = fs.readFileSync(PAGES + 'bible.html', 'utf8');
   bh = injecteAvant(bh, '</head>', COMMUN_TAG);
+  bh = injecteAvant(bh, '</head>', communJS('bible.html'));
   if (APPEARANCE_CSS && bh.indexOf('</head>') >= 0) {
     bh = injecteAvant(bh, '</head>', '<style>' + APPEARANCE_CSS + '</style>');
   }

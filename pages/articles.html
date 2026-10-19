@@ -772,6 +772,9 @@ function pageCadre(code){
        retient les marges de ses enfants, sinon le bas serait coupé. */
     +'#lv-mesure{display:flow-root}</style></he'+'ad><body>'
     +'<div id="lv-mesure">'+code+'</div>'
+    /* le cadre dit ce qui y est sélectionné : « Demander à l'IA »
+       (commun/question.js) */
+    +(typeof QA_CADRE==='string'?QA_CADRE:'')
     +'<scr'+'ipt>(function(){'
     /* ── LA HAUTEUR EST CELLE DU DERNIER PIXEL VU ──
        Ni la hauteur de la page du cadre (qui ne descend jamais sous celle de
@@ -995,6 +998,8 @@ window.addEventListener('message',e=>{
   let cadre=null;
   document.querySelectorAll('iframe[data-diag]').forEach(f=>{if(f.contentWindow===e.source)cadre=f;});
   if(!cadre)return;
+  /* une sélection dans le cadre : le bouton « Demander à l'IA » */
+  if('lvSel' in d){const a=S.liste.find(x=>x.id===(cadre.dataset.res||S.vu));qaSelectionCadre(d.lvSel,cadre,a?a.titre:'','un article');return;}
   /* Le cadre s'ouvre toujours en plein écran : il fait l'écran, la hauteur
      qu'il annonce ne le concerne pas, et le contenu fait glisser lui-même ce
      qui colle. */

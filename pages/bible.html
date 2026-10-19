@@ -657,6 +657,9 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     <span class="lvp-past" data-suc="#b8ff00" style="background:#b8ff00" role="button" tabindex="0" aria-label="Anis"></span>
     <span class="lvp-sep" aria-hidden="true"></span>
     <span class="lvp-oter" id="lvp-oter" role="button" tabindex="0">Retirer</span>
+    <!-- poser une question à l'IA sur le texte sélectionné (commun/question.js) -->
+    <span class="lvp-sep" aria-hidden="true"></span>
+    <span class="lvp-ia" id="lvp-ia" role="button" tabindex="0" title="Demander à l’IA"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg>Demander à l’IA</span>
   </div>
 
   <footer>
@@ -2407,7 +2410,25 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     var pa = e.target.closest ? e.target.closest('.lvp-past') : null;
     if (pa) { appliqueFrag(pa.getAttribute('data-suc')); return; }
     if (e.target.closest && e.target.closest('#lvp-oter')) { appliqueFrag(null); return; }
+    if (e.target.closest && e.target.closest('#lvp-ia')) { demandeIA(); return; }
   });
+  /* ── DEMANDER À L'IA ──
+     Le texte sélectionné part au panneau de question (commun/question.js)
+     avec sa référence, sa traduction et le chapitre entier pour contexte. */
+  function demandeIA(){
+    if (!pendingFrag || !pendingFrag.length || !window.LVQuestion) { fermeFragPop(); return; }
+    var f = pendingFrag, vm = verseTextMap() || {};
+    var vs = f.map(function(x){ return x.v; });
+    var ctx = Object.keys(vm).map(function(v){ return v + ' ' + vm[v]; }).join(' ');
+    window.LVQuestion.ouvre({
+      texte: f.map(function(x){ return x.t; }).join(' ').replace(/\s+/g, ' ').trim(),
+      bible: { slug: f[0].slug, ch: f[0].ch, v1: Math.min.apply(null, vs), v2: Math.max.apply(null, vs) },
+      traduction: TRADS[TRAD].nom,
+      contexte: ctx.length > 12000 ? '' : ctx,
+      espece: 'la Bible'
+    });
+    clearNativeSel(); fermeFragPop();
+  }
   /* « change » : avec « input », la première nuance traversée serait appliquée
      et refermerait le menu, les suivantes seraient perdues */
   document.getElementById('lvp-cercle').addEventListener('change', function(){ appliqueFrag(this.value); });

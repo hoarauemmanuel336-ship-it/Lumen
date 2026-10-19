@@ -308,6 +308,15 @@ html body #lv-frag-pop .lvp-past{width:22px;height:22px;border:2px solid var(--h
 html body #lv-frag-pop .lvp-past:hover{transform:scale(1.14);box-shadow:0 0 0 1.5px #fff}
 html body #lv-frag-pop .lvp-sep{height:20px;background:var(--h-l2)}
 html body #lv-frag-pop .lvp-oter{margin-left:0}
+/* « Demander à l'IA » : le texte sélectionné part au panneau de question */
+/* assez large pour tenir sur une ligne sur ordinateur, bouton compris */
+html body #lv-frag-pop{max-width:min(calc(100vw - 24px),660px)}
+html body #lv-frag-pop .lvp-ia{
+  display:inline-flex;align-items:center;gap:7px;min-height:30px;padding:0 12px;cursor:pointer;white-space:nowrap;
+  font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.01em;color:var(--h-or);
+  border:1px solid color-mix(in srgb,var(--h-or) 55%,transparent);transition:background .25s,color .25s;
+}
+html body #lv-frag-pop .lvp-ia:hover{background:var(--h-or);color:#000}
 
 @media(max-width:720px){
   html body #sel-barre{width:calc(100% - 20px);bottom:calc(8px + var(--lv-bas,0px));border-radius:0}

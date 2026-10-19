@@ -1091,3 +1091,62 @@ html body .qc-etat.vif{display:inline-block;width:15px;height:15px;vertical-alig
   html body .qc-court::after{animation:none}
   html body .qc-etat.vif{animation-duration:2.4s}
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   LA QUESTION À L'IA (Articles, Ressources, Bible)
+   Le bouton « Demander à l'IA », crème, au bord de la sélection. Le
+   panneau : un tiroir noir à droite (en bas sur téléphone), le passage en
+   tête sous un filet crème, la conversation en Literata, la question en
+   bas dans un champ sans arrondi, envoyée par un bouton crème.
+   ════════════════════════════════════════════════════════════════════ */
+html body .qa-bouton{
+  position:fixed;z-index:261;display:none;align-items:center;gap:8px;padding:9px 16px 9px 13px;border:0;border-radius:14px;
+  background:var(--h-or);color:#000;font-family:var(--h-ui);font-size:14.5px;font-weight:600;letter-spacing:.01em;cursor:pointer;
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.9),0 0 24px -6px color-mix(in srgb,var(--h-or) 70%,transparent);
+  transition:background .2s;
+}
+html body .qa-bouton.on{display:inline-flex;animation:hMonte .22s var(--h-doux) both}
+html body .qa-bouton:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff)}
+
+html body .qa-panneau{
+  position:fixed;top:0;right:0;bottom:0;z-index:260;display:flex;flex-direction:column;width:min(460px,100vw);
+  background:#000;border-left:1px solid var(--h-l2);box-shadow:-30px 0 60px -30px rgba(0,0,0,.9);
+  transform:translateX(102%);transition:transform .32s var(--h-doux);
+}
+html body .qa-panneau.on{transform:none}
+html body .qa-tete{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 14px 24px;border-bottom:1px solid var(--h-l1)}
+html body .qa-label{display:inline-flex;align-items:center;gap:9px;font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--h-t2)}
+html body .qa-label svg{color:var(--h-or)}
+html body .qa-x{display:inline-flex;padding:6px;border:0;background:none;color:var(--h-t2);cursor:pointer;transition:color .2s}
+html body .qa-x:hover{color:#fff}
+html body .qa-fil{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:22px 24px 10px}
+html body .qa-passage{margin:0 0 24px;padding:2px 0 2px 16px;border-left:2px solid var(--h-or)}
+html body .qa-passage p{margin:0;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden;font-family:'Literata',Georgia,serif;font-style:italic;font-size:15.5px;line-height:1.6;color:var(--h-t1)}
+html body .qa-passage cite{display:block;margin-top:8px;font-family:var(--h-ui);font-style:normal;font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--h-t3)}
+html body .qa-q{margin:22px 0 12px;padding-top:18px;border-top:1px solid var(--h-l1);font-family:var(--h-ui);font-size:16.5px;font-weight:600;line-height:1.45;color:#fff}
+html body .qa-passage+.qa-q{margin-top:0;padding-top:0;border-top:0}
+html body .qa-r{font-family:'Literata',Georgia,serif;font-size:16px;line-height:1.65;color:var(--h-t1)}
+html body .qa-r p{margin:0 0 12px}
+html body .qa-r ul{margin:0 0 12px;padding-left:20px}
+html body .qa-r li{margin-bottom:6px}
+html body .qa-r strong{color:#fff;font-weight:600}
+html body .qa-r.erreur{color:var(--h-t3)}
+html body .qa-roue{display:inline-block;width:15px;height:15px;vertical-align:-2px;border:1.5px solid var(--h-l2);border-top-color:var(--h-or);border-radius:50%;animation:qcTourne .8s linear infinite}
+html body .qa-saisie{display:flex;align-items:flex-end;gap:10px;padding:14px 18px calc(16px + env(safe-area-inset-bottom)) 24px;border-top:1px solid var(--h-l1);background:#000}
+html body .qa-saisie textarea{
+  flex:1;min-height:46px;max-height:160px;resize:none;padding:12px 14px;border:1px solid var(--h-l2);border-radius:0;background:var(--h-s1);
+  font-family:var(--h-ui);font-size:16px;line-height:1.4;color:#fff;outline:none;transition:border-color .2s;
+}
+html body .qa-saisie textarea:focus{border-color:var(--h-or)}
+html body .qa-saisie textarea::placeholder{color:var(--h-t4)}
+html body .qa-envoi{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border:0;border-radius:14px;background:var(--h-or);color:#000;cursor:pointer;transition:background .2s,opacity .2s}
+html body .qa-envoi:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff)}
+html body .qa-envoi:disabled{opacity:.45;cursor:default}
+@media(max-width:600px){
+  html body .qa-panneau{top:auto;left:0;width:100%;height:min(86dvh,760px);border-left:0;border-top:1px solid var(--h-l2);transform:translateY(102%)}
+  html body .qa-fil{padding:18px 16px 8px}
+  html body .qa-tete{padding:14px 12px 12px 16px}
+  html body .qa-saisie{padding:12px 12px calc(12px + env(safe-area-inset-bottom)) 16px}
+}
+@keyframes qcTourne{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){html body .qa-panneau{transition:none}html body .qa-roue{animation-duration:2.4s}}
