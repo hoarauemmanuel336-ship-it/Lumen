@@ -612,6 +612,10 @@ html body #liste .cible,html body #fil .cible{outline:1px solid var(--h-or);outl
    du contrôle qualité qui la suit) se range au bord droit de la rangée ;
    le ⋯ monte à hauteur du titre. */
 html body .art-pied{justify-content:flex-end}
+/* la date s'écrit comme sur les cartes des ressources (Emmanuel : « met
+   le texte pareil que ressource ») : Cormorant en capitales espacées,
+   crème légèrement éclairée */
+html body .art-pied>span:first-child{font-family:var(--display);font-size:12.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--or);text-shadow:0 0 10px color-mix(in srgb,var(--or) 40%,transparent)}
 html body .art-pied .qc-etat{margin-left:0}
 html body #liste .art-ligne{position:relative}
 html body #liste .art-ligne .art-item,html body #liste .art-ligne .art-item:hover{padding-right:24px}
