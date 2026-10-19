@@ -1,6 +1,6 @@
 # L'IA dans Lumen
 
-Le site utilise uniquement les modèles d'Anthropic, par l'API Claude. Chaque usage reçoit le modèle qui donne le meilleur rapport qualité-prix pour ce qu'il demande. C'est Emmanuel qui décide quels usages ajouter.
+Pour les modèles de langage (LLM), le site utilise uniquement Anthropic, par l'API Claude. Chaque usage reçoit le modèle qui donne le meilleur rapport qualité-prix pour ce qu'il demande. C'est Emmanuel qui décide quels usages ajouter.
 
 ## Le passage vers l'API
 
