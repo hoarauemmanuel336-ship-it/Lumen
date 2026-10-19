@@ -7,9 +7,18 @@
 const fs = require('fs');
 const path = require('path');
 
+/* ── LE DÉPÔT RANGÉ PAR DOSSIERS (19/10) ──
+   Ce fichier vit dans fabrication/ ; il travaille depuis la racine du dépôt,
+   où il trouve pages/ (les pages), habillage/ (l'apparence), commun/ (le
+   fonctionnement partagé), contenu/ (les Bibles et les réglages) et racine/
+   (les fichiers servis tels quels à la racine du site). Le site fabriqué
+   sort dans site/, à la racine du dépôt, comme avant. */
+process.chdir(path.join(__dirname, '..'));
+const PAGES = 'pages/', RACINE = 'racine/', CONTENU = 'contenu/';
+
 /* La page d'accueil s'appelle accueil.html (26/09) ; l'ancien nom de
    brouillon reste reconnu, au cas où il traînerait encore dans le dépôt. */
-const SRC = process.argv[2] || ['accueil.html', 'index__48_.html'].find(f => fs.existsSync(f)) || 'accueil.html';
+const SRC = process.argv[2] || ['accueil.html', 'index__48_.html'].map(f => PAGES + f).find(f => fs.existsSync(f)) || PAGES + 'accueil.html';
 const OUT = process.argv[3] || 'site';
 const DOMAINE = 'https://lumenveritatis.net';
 const src = fs.readFileSync(SRC, 'utf8');
@@ -42,7 +51,7 @@ function fsLireDoc(chemin) {
 function fsLireCollection(nom) {
   try { const r = fsCurl(FS_BASE + nom + '?pageSize=300'); if (!r || r.error) return null; return (r.documents || []).map(d => ({ id: d.name.split('/').pop(), data: fsChamps(d.fields) })); } catch (e) { return null; }
 }
-// Apparence éditable : couleur d'accent (--or) depuis content/settings.json
+// Apparence éditable : couleur d'accent (--or) depuis contenu/settings.json
 
 /* — Poussière lumineuse en suspension (interactive) — */
 
@@ -51,7 +60,7 @@ function fsLireCollection(nom) {
    page et avant la couleur d'accent : ce qu'elle dit vaut partout à la fois.
    C'est là que se font désormais les réglages communs aux pages. */
 let COMMUN_CSS = '';
-try { COMMUN_CSS = fs.readFileSync('lumen-commun.css', 'utf8'); } catch (e) { console.warn('lumen-commun.css absente'); }
+try { COMMUN_CSS = fs.readFileSync('habillage/lumen-commun.css', 'utf8'); } catch (e) { console.warn('lumen-commun.css absente'); }
 const COMMUN_TAG = COMMUN_CSS ? '<style id="lumen-commun">' + COMMUN_CSS + '</style>' : '';
 /* ── L'HABILLAGE (10/10) ──
    Le dossier habillage/ porte l'apparence du site : commun.css pour tout ce
@@ -59,7 +68,7 @@ const COMMUN_TAG = COMMUN_CSS ? '<style id="lumen-commun">' + COMMUN_CSS + '</st
    cartes, champs, pied), puis une feuille par page. Il est posé en DERNIER
    dans chaque page, après tout le reste : c'est lui qui a le dernier mot sur
    l'apparence. Il ne fixe jamais la couleur d'accent (--or), qui vient de
-   content/settings.json ; il en tire toutes ses nuances. */
+   contenu/settings.json ; il en tire toutes ses nuances. */
 function habillage(nomPage) {
   let css = '';
   for (const f of ['habillage/commun.css', `habillage/${nomPage}.css`]) {
@@ -94,9 +103,9 @@ function communJS(page) {
   }).join('');
 }
 let APPEARANCE_CSS = '';
-if (fs.existsSync('content/settings.json')) {
+if (fs.existsSync(CONTENU + 'settings.json')) {
   try {
-    const st = JSON.parse(fs.readFileSync('content/settings.json', 'utf8'));
+    const st = JSON.parse(fs.readFileSync(CONTENU + 'settings.json', 'utf8'));
     const a = String(st.accent || '').trim();
     /* #efe6cf est la couleur d'accent par défaut des pages : la remettre n'est pas une personnalisation */
     if (/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(a) && a.toLowerCase() !== '#efe6cf') {
@@ -807,7 +816,7 @@ const UX_JS = `
 })();`;
 const APP_JS = [BARRE_JS, RECH_JS, AUTH_JS, MEMO_JS, UX_JS].join('\n');
 const APP_V = crypto.createHash('md5').update(APP_JS).digest('hex').slice(0, 8);
-const PAN_V = fs.existsSync('bible-panneau.js') ? crypto.createHash('md5').update(fs.readFileSync('bible-panneau.js')).digest('hex').slice(0, 8) : '1';
+const PAN_V = fs.existsSync(RACINE + 'bible-panneau.js') ? crypto.createHash('md5').update(fs.readFileSync(RACINE + 'bible-panneau.js')).digest('hex').slice(0, 8) : '1';
 fs.mkdirSync(OUT, { recursive: true });
 fs.writeFileSync(`${OUT}/lumen-app.js`, APP_JS);
 console.log(`Communs : lumen-app.js (${Math.round(APP_JS.length / 1024)} Ko, v=${APP_V})`);
@@ -866,10 +875,10 @@ const tableBible = (src, base) => {
     return { base, livres: b.livres.map(l => [l.nom, l.slug, l.nch]) };
   } catch (e) { return null; }
 };
-const bibFR = tableBible('content/bible.json', '/bible.html');
+const bibFR = tableBible(CONTENU + 'bible.json', '/bible.html');
 /* sans bible.json, la recherche serait un fichier vide servi sans erreur :
    on préfère un build qui échoue à un site qui répond « rien trouvé » (05/09) */
-if (!bibFR) throw new Error('content/bible.json illisible : recherche-fr.js serait vide');
+if (!bibFR) throw new Error(CONTENU + 'bible.json illisible : recherche-fr.js serait vide');
 ecrire('recherche-fr.js', 'window.LUMEN_BIBLE=' + JSON.stringify(bibFR) + ';');
 
 // copie des pages autonomes (hors pipeline bilingue)
@@ -897,16 +906,16 @@ function injecteAvant(s, balise, ajout){
   if (i < 0) throw new Error('ancre ' + balise + ' introuvable');
   return s.slice(0, i) + ajout + s.slice(i);
 }
-if (fs.existsSync('memoriser.html')) {
-  let mh = fs.readFileSync('memoriser.html', 'utf8');
+if (fs.existsSync(PAGES + 'memoriser.html')) {
+  let mh = fs.readFileSync(PAGES + 'memoriser.html', 'utf8');
   {
     let catsSrc = null, origineCats = '';
     const memLigne = fsLireDoc('config/memoriser');
     if (memLigne && Array.isArray(memLigne.categories) && memLigne.categories.length) { catsSrc = memLigne.categories; origineCats = 'en ligne'; }
-    else if (fs.existsSync('content/memoriser.json')) {
+    else if (fs.existsSync(CONTENU + 'memoriser.json')) {
       /* même exigence que pour la source en ligne : une liste VIDE ne remplace
          pas ce que la page embarque (05/09) */
-      const cf = JSON.parse(fs.readFileSync('content/memoriser.json', 'utf8')).categories;
+      const cf = JSON.parse(fs.readFileSync(CONTENU + 'memoriser.json', 'utf8')).categories;
       if (Array.isArray(cf) && cf.length) { catsSrc = cf; origineCats = 'fichier'; }
     }
     if (catsSrc) {
@@ -954,8 +963,8 @@ if (fs.existsSync('memoriser.html')) {
 }
 
 // ── Articles : la page d'écriture et de lecture, même traitement que les autres ──
-if (fs.existsSync('articles.html')) {
-  let ah = fs.readFileSync('articles.html', 'utf8');
+if (fs.existsSync(PAGES + 'articles.html')) {
+  let ah = fs.readFileSync(PAGES + 'articles.html', 'utf8');
   ah = injecteAvant(ah, '</head>', COMMUN_TAG);
   ah = injecteAvant(ah, '</head>', communJS('articles.html'));
   if (APPEARANCE_CSS && ah.indexOf('</head>') >= 0) {
@@ -979,8 +988,8 @@ if (fs.existsSync('articles.html')) {
 }
 
 // ── Ressources : diagrammes, cartes, livres et liens, même traitement ──
-if (fs.existsSync('ressources.html')) {
-  let rh = fs.readFileSync('ressources.html', 'utf8');
+if (fs.existsSync(PAGES + 'ressources.html')) {
+  let rh = fs.readFileSync(PAGES + 'ressources.html', 'utf8');
   rh = injecteAvant(rh, '</head>', COMMUN_TAG);
   rh = injecteAvant(rh, '</head>', communJS('ressources.html'));
   if (APPEARANCE_CSS && rh.indexOf('</head>') >= 0) {
@@ -1007,8 +1016,8 @@ if (fs.existsSync('ressources.html')) {
 //    hors plan du site, non indexée (la page porte son « noindex ») ; les
 //    commentaires se lisent dans la Bible. Même barre, même pied, même panneau
 //    Bible que les autres pages. ──
-if (fs.existsSync('commentaires.html')) {
-  let ch = fs.readFileSync('commentaires.html', 'utf8');
+if (fs.existsSync(PAGES + 'commentaires.html')) {
+  let ch = fs.readFileSync(PAGES + 'commentaires.html', 'utf8');
   ch = injecteAvant(ch, '</head>', COMMUN_TAG);
   ch = injecteAvant(ch, '</head>', communJS('commentaires.html'));
   if (APPEARANCE_CSS && ch.indexOf('</head>') >= 0) {
@@ -1033,35 +1042,35 @@ if (fs.existsSync('commentaires.html')) {
 
 // ── Fichiers communs à toutes les pages : panneau Bible, service worker, manifestes, icônes ──
 // (hors de toute condition : chaque page les référence, ils doivent toujours être copiés)
-if (fs.existsSync('bible-panneau.js')) {
-  fs.copyFileSync('bible-panneau.js', `${OUT}/bible-panneau.js`);
+if (fs.existsSync(RACINE + 'bible-panneau.js')) {
+  fs.copyFileSync(RACINE + 'bible-panneau.js', `${OUT}/bible-panneau.js`);
   console.log('Copié : bible-panneau.js');
 }
 for (const f of ['memoriser-manifest.webmanifest', 'manifest.webmanifest']) {
-  if (fs.existsSync(f)) fs.copyFileSync(f, `${OUT}/${f}`);
+  if (fs.existsSync(RACINE + f)) fs.copyFileSync(RACINE + f, `${OUT}/${f}`);
 }
 /* le service worker reçoit sa version du build : empreinte de la page, du
    panneau et de lui-même, pour qu'un changement de l'un renouvelle le cache */
-if (fs.existsSync('memoriser-sw.js')) {
-  const swSrc = fs.readFileSync('memoriser-sw.js', 'utf8');
+if (fs.existsSync(RACINE + 'memoriser-sw.js')) {
+  const swSrc = fs.readFileSync(RACINE + 'memoriser-sw.js', 'utf8');
   const SW_V = crypto.createHash('md5').update(swSrc + PAN_V + fs.readFileSync(`${OUT}/memoriser.html`, 'utf8')).digest('hex').slice(0, 8);
   if (!/__VERSION__/.test(swSrc) || !/__PAN_V__/.test(swSrc)) throw new Error('memoriser-sw.js : marqueurs __VERSION__ / __PAN_V__ absents');
   fs.writeFileSync(`${OUT}/memoriser-sw.js`, swSrc.replace(/__VERSION__/g, SW_V).replace(/__PAN_V__/g, PAN_V)   /* toutes les occurrences : la première est dans un commentaire */);
 }
 /* la police de lecture, servie par le site lui-même (11/10) */
-if (fs.existsSync('polices')) {
+if (fs.existsSync(RACINE + 'polices')) {
   fs.mkdirSync(`${OUT}/polices`, { recursive: true });
-  for (const f of fs.readdirSync('polices')) fs.copyFileSync(`polices/${f}`, `${OUT}/polices/${f}`);
+  for (const f of fs.readdirSync(RACINE + 'polices')) fs.copyFileSync(RACINE + `polices/${f}`, `${OUT}/polices/${f}`);
 }
-if (fs.existsSync('icones')) {
+if (fs.existsSync(RACINE + 'icones')) {
   fs.mkdirSync(`${OUT}/icones`, { recursive: true });
-  for (const ic of fs.readdirSync('icones')) fs.copyFileSync(`icones/${ic}`, `${OUT}/icones/${ic}`);
+  for (const ic of fs.readdirSync(RACINE + 'icones')) fs.copyFileSync(RACINE + `icones/${ic}`, `${OUT}/icones/${ic}`);
 }
 console.log('Copié : memoriser-sw.js + manifests + icônes');
 
 // ── La Sainte Bible (traduction Chérubin) : page de lecture + données par livre ──
-if (fs.existsSync('bible.html')) {
-  let bh = fs.readFileSync('bible.html', 'utf8');
+if (fs.existsSync(PAGES + 'bible.html')) {
+  let bh = fs.readFileSync(PAGES + 'bible.html', 'utf8');
   bh = injecteAvant(bh, '</head>', COMMUN_TAG);
   if (APPEARANCE_CSS && bh.indexOf('</head>') >= 0) {
     bh = injecteAvant(bh, '</head>', '<style>' + APPEARANCE_CSS + '</style>');
@@ -1380,13 +1389,13 @@ function poseVersSeraphin(livre) {
     console.log('Bible (' + dossier + ') : ' + nb + ' livres + index, ' + poe + ' versets en vers');
     return true;
   };
-  if (!decoupeBible('content/bible.json', 'bible-data')) if (fs.existsSync('content/bible')) {
+  if (!decoupeBible(CONTENU + 'bible.json', 'bible-data')) if (fs.existsSync(CONTENU + 'bible')) {
     // repli : ancien format (un fichier par livre déjà découpé)
     fs.mkdirSync(`${OUT}/bible-data`, { recursive: true });
     let nb = 0;
-    for (const f of fs.readdirSync('content/bible')) {
+    for (const f of fs.readdirSync(CONTENU + 'bible')) {
       if (!f.endsWith('.json')) continue;
-      fs.copyFileSync(`content/bible/${f}`, `${OUT}/bible-data/${f}`);
+      fs.copyFileSync(CONTENU + `bible/${f}`, `${OUT}/bible-data/${f}`);
       nb++;
     }
     console.log('Bible : ' + nb + ' fichiers de données copiés (ancien format)');
@@ -1398,7 +1407,7 @@ function poseVersSeraphin(livre) {
      (mêmes livres, mêmes slugs, mêmes chapitres) : il est écrit tout de même,
      pour que le dossier se tienne debout tout seul. */
   {
-    const src = ['content/bible-seraphin.json', 'bible-seraphin.json'].find(p => fs.existsSync(p));
+    const src = [CONTENU + 'bible-seraphin.json', 'bible-seraphin.json'].find(p => fs.existsSync(p));
     if (src) decoupeBible(src, 'bible-data-seraphin', poseVersSeraphin);
     else console.warn('⚠ bible-seraphin.json absent : la page Bible n’ouvrira que la Chérubin');
   }

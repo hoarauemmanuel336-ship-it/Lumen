@@ -197,7 +197,7 @@ module.exports = async function publication(OUT, attendu) {
   }
   /* 3. LE SERVICE WORKER DU SITE reçoit les empreintes du site et de la
      Bible : un changement de l'un ou de l'autre renouvelle le bon cache */
-  if (fs.existsSync('site-sw.js')) {
+  if (fs.existsSync('racine/site-sw.js')) {
     const empreinte = (fichiers) => {
       const h = crypto.createHash('sha1');
       for (const f of fichiers) if (fs.existsSync(f)) h.update(f).update(fs.readFileSync(f));
@@ -206,7 +206,7 @@ module.exports = async function publication(OUT, attendu) {
     const tous = (d) => fs.existsSync(d) ? fs.readdirSync(d).sort().map(f => path.join(d, f)) : [];
     const bibleV = empreinte(tous(path.join(OUT, 'bible-data')).concat(tous(path.join(OUT, 'bible-data-seraphin'))));
     const siteV = empreinte(pages.map(f => path.join(OUT, f)).concat(scriptsJS.map(f => path.join(OUT, f))));
-    const sw = fs.readFileSync('site-sw.js', 'utf8');
+    const sw = fs.readFileSync('racine/site-sw.js', 'utf8');
     if (!/__SITE_V__/.test(sw) || !/__BIBLE_V__/.test(sw)) defauts.push('site-sw.js : marqueurs __SITE_V__ / __BIBLE_V__ absents');
     const final = await allegeJS(sw.replace(/__SITE_V__/g, siteV).replace(/__BIBLE_V__/g, bibleV));
     try { new vm.Script(final, { filename: 'site-sw.js' }); } catch (e) { defauts.push('site-sw.js : illisible (' + e.message + ')'); }

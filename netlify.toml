@@ -1,5 +1,5 @@
 [build]
-  command   = "node build-bi.js"
+  command   = "node fabrication/build-bi.js"
   publish   = "site"
 
 [build.environment]
