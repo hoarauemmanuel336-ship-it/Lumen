@@ -70,6 +70,31 @@ function communJS(page) {
     return '<script data-commun="' + nom + '">' + fs.readFileSync(f, 'utf8') + '</scr' + 'ipt>';
   }).join('');
 }
+/* ── LE SAVOIR DE L'IA DU SITE ──
+   Les skills d'artefact d'Emmanuel (ia/skills/) et ses instructions
+   personnalisées (ia/instructions.md) sont les mêmes que dans Claude :
+   l'IA du site contrôle et corrige une page avec la skill qui l'a faite.
+   La fabrication les écrit dans un module que lit le serveur de l'IA
+   (netlify/edge-functions/ia.js) ; Netlify assemble ce serveur après la
+   fabrication, il prend donc toujours la version du dépôt. Seul le texte
+   des SKILL.md part à l'IA : les moteurs restent dans le dépôt, pour que
+   chaque skill y soit complète. */
+{
+  const savoir = { instructions: '', skills: {} };
+  try { savoir.instructions = fs.readFileSync('ia/instructions.md', 'utf8'); } catch (e) { console.warn('⚠ ia/instructions.md absent'); }
+  if (fs.existsSync('ia/skills')) {
+    for (const nom of fs.readdirSync('ia/skills').sort()) {
+      const f = `ia/skills/${nom}/SKILL.md`;
+      if (fs.existsSync(f)) savoir.skills[nom] = fs.readFileSync(f, 'utf8');
+    }
+  }
+  fs.mkdirSync('netlify/savoir', { recursive: true });
+  fs.writeFileSync('netlify/savoir/savoir.js',
+    '/* Fichier écrit par la fabrication (fabrication/build-bi.js) à partir de ia/ : ne pas le modifier à la main. */\n'
+    + 'export const SAVOIR = ' + JSON.stringify(savoir) + ';\n');
+  console.log("Savoir de l'IA : instructions + " + Object.keys(savoir.skills).length + ' skills (' + Object.keys(savoir.skills).join(', ') + ')');
+}
+
 /* La couleur d'accent (--or) se règle dans contenu/settings.json. */
 let APPEARANCE_CSS = '';
 if (fs.existsSync(CONTENU + 'settings.json')) {

@@ -101,6 +101,10 @@ async function qcVersets(html){
   }));
 }
 
+/* la marque (livre, diagramme, cours…) dit au serveur quelle skill a
+   fait la page */
+function qcMarque(a){try{return marqueDe(a)||'';}catch(_){return '';}}
+
 /* ── LA FENÊTRE ── */
 function qcOuvre(){$('m-qc').classList.add('on');}
 function qcFerme(){$('m-qc').classList.remove('on');}
@@ -246,7 +250,7 @@ async function qcCorrige(a,r,espece){
     const versets=await qcVersets(html);
     dit('L’IA corrige '+choisis.length+(choisis.length>1?' points':' point')+'. Cela peut prendre quelques minutes ; vous pouvez fermer cette fenêtre, la correction continue.');
     const res=await lvIA('corriger',{
-      espece, titre:a.titre||'', html, versets,
+      espece, titre:a.titre||'', html, versets, marqueCle:qcMarque(a),
       points:choisis.map(i=>r.points[i])
     },n=>dit('L’IA écrit ses corrections… '+Math.round(n/100)/10+' k signes reçus.'));
     /* les numéros de l'IA désignent les points envoyés : on les ramène à
@@ -355,6 +359,7 @@ async function qcLance(a,espece){
       espece,
       titre:a.titre||'',
       marque:(typeof iaType==='function'?iaType(a):''),
+      marqueCle:qcMarque(a),
       html,
       versets
     },n=>dit('L’IA écrit son rapport… '+Math.round(n/100)/10+' k signes reçus.'));

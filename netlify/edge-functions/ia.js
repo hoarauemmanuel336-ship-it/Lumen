@@ -29,6 +29,8 @@
    sur aucun délai d'attente.
    ============================================================ */
 
+import { SAVOIR } from '../savoir/savoir.js';
+
 const PROPRIETAIRE = 'hoarauemmanuel336@gmail.com';
 /* la clé PUBLIQUE de Firebase, celle qui figure déjà dans les pages :
    elle sert seulement à demander à Google qui est connecté */
@@ -205,7 +207,7 @@ async function demandeControler(donnees) {
     max_tokens: 48000,
     stream: true,
     thinking: { type: 'adaptive' },
-    system: consigneControler(espece, marque),
+    system: consigneControler(espece, marque) + savoirPour(espece, donnees.marqueCle),
     messages: [{
       role: 'user',
       content: [
@@ -276,7 +278,7 @@ async function demandeCorriger(donnees) {
     max_tokens: 64000,
     stream: true,
     thinking: { type: 'adaptive' },
-    system: CONSIGNE_CORRIGER,
+    system: CONSIGNE_CORRIGER + savoirPour(donnees.espece === 'articles' ? 'articles' : 'ressources', donnees.marqueCle),
     messages: [{
       role: 'user',
       content: [
@@ -287,6 +289,24 @@ async function demandeCorriger(donnees) {
     }],
     output_config: { effort: 'high', format: { type: 'json_schema', schema: SCHEMA_CORRIGER } },
   };
+}
+
+/* ── LES SKILLS ET LES INSTRUCTIONS D'EMMANUEL ──
+   Le contrôle et la correction lisent ses instructions personnalisées et
+   la skill qui a fait la page, d'après sa marque. Elles viennent de ia/
+   dans le dépôt (voir fabrication/build-bi.js). */
+const SKILL_DE = {
+  article: 'article-html', livre: 'livre-html', diagramme: 'diagrammes-interactifs',
+  cours: 'cours-html', parcours: 'parcours-etude',
+};
+function savoirPour(espece, marqueCle) {
+  const cle = espece === 'articles' ? 'article' : String(marqueCle || '');
+  const nom = SKILL_DE[cle] || '';
+  const skill = nom && SAVOIR.skills[nom] ? SAVOIR.skills[nom] : '';
+  let t = '';
+  if (SAVOIR.instructions) t += '\n\n<instructions_emmanuel>\nLes instructions personnalisées d’Emmanuel, les mêmes que celles qu’il donne à Claude. Elles valent pour tout contenu de sa bibliothèque.\n\n' + SAVOIR.instructions + '\n</instructions_emmanuel>';
+  if (skill) t += '\n\n<skill nom="' + nom + '">\nLa skill qui a servi à composer cette page : elle dit ce que la page doit être, dans son contenu, sa forme et son fonctionnement. Tu juges et tu corriges la page d’après elle. Les étapes de travail qu’elle décrit (sous-agents, relecture, assemblage) concernent sa fabrication et ne s’appliquent pas ici.\n\n' + skill + '\n</skill>';
+  return t;
 }
 
 const TACHES = { ranger: demandeRanger, controler: demandeControler, corriger: demandeCorriger };

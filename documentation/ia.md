@@ -28,6 +28,10 @@ La consommation se paie sur les crédits API compris dans l'abonnement Max d'Emm
 
 **Corriger.** Dans le rapport, chaque problème se coche ou se décoche (tous cochés d'emblée). « Corriger » envoie à l'IA la page, les points cochés et les versets cités. Elle ne réécrit pas la page entière, qu'un livre rendrait trop longue : elle rend des remplacements, chacun un passage exact de la page et ce qui le remplace, et peut laisser un point en disant pourquoi. La page applique les remplacements dont le passage s'y trouve une seule fois, enregistre aussitôt la page corrigée (choix d'Emmanuel : « il faut surtout qu'elle puisse corriger l'artefact »), et dit dans le rapport ce qui n'a pas pu l'être. La version d'avant est gardée : « Revenir à la version d'avant » la remet.
 
+## Les skills et les instructions d'Emmanuel
+
+Le contrôle et la correction lisent ses instructions personnalisées (`ia/instructions.md`) et la skill qui a fait la page, d'après sa marque : article-html pour un article, livre-html, diagrammes-interactifs, cours-html ou parcours-etude pour une ressource. La fabrication réunit le texte des SKILL.md et les instructions dans `netlify/savoir/savoir.js`, que lit le serveur ; les moteurs des skills restent dans le dépôt, pour que chaque skill y soit complète. Ces copies suivent celles de Claude (voir CLAUDE.md) ; la mémoire de Claude n'en fait pas partie.
+
 ## Choisir le modèle
 
 Anthropic sort souvent de nouveaux modèles. Le choix ne repose donc sur aucune liste figée : à chaque nouvel usage, et quand une nouvelle génération de modèles paraît, l'IA consulte la gamme du moment et ses prix dans la documentation d'Anthropic (platform.claude.com/docs, page « Models overview »), puis retient pour chaque tâche le modèle au meilleur rapport qualité-prix. Elle met ensuite à jour le tableau des usages ci-dessus et le modèle écrit dans `netlify/edge-functions/ia.js`.

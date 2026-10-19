@@ -28,6 +28,7 @@ Les six pages du site :
 | `racine/` | Les fichiers servis tels quels à la racine du site : panneau de la Bible ouvert depuis les autres pages, service workers (hors ligne), manifestes, icônes, polices. |
 | `fabrication/` | Ce qui construit le site : `build-bi.js` assemble les pages, `publication.js` allège et contrôle le résultat. |
 | `netlify/edge-functions/` | Le serveur : `porte.js` (le mot de passe du site) et `ia.js` (le seul passage vers l'API Claude). |
+| `ia/` | Ce que l'IA du site sait d'Emmanuel : ses skills d'artefact (`ia/skills/`, complètes, moteurs compris) et ses instructions personnalisées (`ia/instructions.md`). |
 | `documentation/` | Les fiches de référence : données, IA, règles de sécurité de la base. |
 
 Le dossier `site/` est le site fabriqué. Il ne vit pas dans le dépôt : Netlify le refait à chaque dépôt.
@@ -73,6 +74,8 @@ Les deux Bibles vivent dans `contenu/`. Une correction du texte se fait dans le 
 ## L'IA dans le site
 
 Pour les modèles de langage (LLM), le site n'utilise qu'Anthropic, par l'API Claude, en passant par `netlify/edge-functions/ia.js`. Ce passage vérifie auprès de Google que la demande vient du compte d'Emmanuel, puis relaie la réponse au fil de l'eau. La clé vit dans la variable `ANTHROPIC_API_KEY` de Netlify et nulle part ailleurs. Chaque usage reçoit le modèle au meilleur rapport qualité-prix pour la tâche demandée, choisi dans la gamme du moment : de nouveaux modèles sortent souvent, et le choix se refait quand ils paraissent. C'est Emmanuel qui décide des usages à ajouter. Le détail est dans `documentation/ia.md`.
+
+**Le site reste synchronisé avec Claude, sauf la mémoire.** Les skills d'artefact d'Emmanuel et ses instructions personnalisées vivent aussi dans `ia/`, à l'identique de ce qu'il a dans Claude : l'IA du site s'en sert pour contrôler et corriger ses pages. Le site ne peut pas les lire dans son compte Claude ; c'est donc l'IA qui tient la copie à jour : dès qu'une skill change (elle livre à Emmanuel un nouveau SKILL.md, ou il en apporte un) ou qu'il change ses instructions, elle met `ia/` à jour dans le même mouvement et le dépose. La mémoire de Claude n'entre pas sur le site.
 
 ## Les secrets
 
