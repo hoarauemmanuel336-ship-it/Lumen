@@ -169,6 +169,13 @@ const SCHEMA_CONTROLER = {
   additionalProperties: false,
 };
 
+/* ce que l'on contrôle : le contenu, la partie technique, ou les deux */
+const PORTEE_CONTROLE = {
+  contenu: '\n\nCe contrôle porte sur le contenu seul : ce que dit la page, son exactitude, sa doctrine, son écriture et ses citations. Le code, l’apparence et le fonctionnement restent hors du rapport.',
+  technique: '\n\nCe contrôle porte sur la partie technique seule : le code de la page, son apparence, sa tenue sur ordinateur et sur téléphone, et son fonctionnement. Le fond du texte reste hors du rapport.',
+  tout: '',
+};
+
 function consigneControler(espece, marque) {
   const quoi = espece === 'articles'
     ? 'un article au format question-réponse : une question en titre, une réponse brève en tête qui répond vraiment à la question, puis la réponse développée en parties. Il s’adresse à la fois au novice, qui découvre le sujet, et au lecteur confirmé qui veut approfondir'
@@ -202,7 +209,7 @@ async function demandeControler(donnees) {
     max_tokens: 48000,
     stream: true,
     thinking: { type: 'adaptive' },
-    system: consigneControler(espece, marque) + savoirPour(espece, donnees.marqueCle),
+    system: consigneControler(espece, marque) + (PORTEE_CONTROLE[donnees.portee] || '') + savoirPour(espece, donnees.marqueCle),
     messages: [{
       role: 'user',
       content: [

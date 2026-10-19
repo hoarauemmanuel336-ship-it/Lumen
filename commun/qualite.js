@@ -40,6 +40,17 @@ const QC_GRAVITES=[
   {cle:'a_revoir',nom:'À revoir'},
   {cle:'mineur',nom:'Mineur'}
 ];
+/* ── CE QUE L'ON CONTRÔLE ──
+   Emmanuel : « pouvoir choisir la partie technique de l'artefact, soit le
+   contenu, soit les deux ». Le choix se fait avant chaque contrôle. */
+const QC_PORTEES={contenu:'Le contenu',technique:'La technique',tout:'Les deux'};
+function qcPortee(titre){
+  return lvChoix(titre,[
+    {cle:'contenu',nom:'Le contenu',note:'texte, fond, Écriture',icone:'cite'},
+    {cle:'technique',nom:'La technique',note:'code, affichage',icone:'code'},
+    {cle:'tout',nom:'Les deux',icone:'qc'}
+  ]);
+}
 const QC_DOMAINES={fond:'Fond',ecriture:'Écriture',forme:'Forme',fonctionnement:'Fonctionnement'};
 
 /* les versets cités par la page, lus dans les deux Bibles du site
@@ -99,7 +110,7 @@ function qcFerme(){$('m-qc').classList.remove('on');document.documentElement.cla
 function qcTete(a,r){
   QC_VU=a.id;
   $('qc-ferme').textContent=QC_ESPECE==='articles'?'← Les articles':'← Les ressources';
-  $('qc-label').textContent='Contrôle qualité'+(r&&r.quand?'  ·  '+dateFr(r.quand):'');
+  $('qc-label').textContent='Contrôle qualité'+(r&&QC_PORTEES[r.portee]&&r.portee!=='tout'?'  ·  '+(r.portee==='contenu'?'Contenu':'Technique'):'')+(r&&r.quand?'  ·  '+dateFr(r.quand):'');
   $('qc-titre').textContent=a.titre||'Sans titre';
   $('qc-outils').style.display=r?'':'none';
 }
@@ -226,8 +237,9 @@ async function controleQualite(a,espece){
   if(QC_EN_COURS===a.id&&QC_ETATS.get(a.id)==='Contrôle en cours'){qcAttente(a,'Relecture en cours');qcOuvre();return;}
   let r=null;
   try{const d=await qcCol(espece).doc(a.id).get();if(d.exists)r=d.data();}catch(_){}
-  if(r){qcRend(a,r,espece);qcOuvre();}
-  else qcLance(a,espece);
+  if(r){qcRend(a,r,espece);qcOuvre();return;}
+  const portee=await qcPortee('Contrôler « '+(a.titre||'Sans titre')+' »');
+  if(portee)qcLance(a,espece,portee);
 }
 
 /* la fin d'un travail : l'écran se met à jour s'il montre cet élément ;
@@ -244,12 +256,13 @@ function qcFini(a,r,espece){
 const QC_FILE=[];
 function qcSuivant(){
   const n=QC_FILE.shift();
-  if(n)qcLance(n.a,n.espece);
+  if(n)qcLance(n.a,n.espece,n.portee);
 }
 
-async function qcLance(a,espece){
+async function qcLance(a,espece,portee){
+  portee=QC_PORTEES[portee]?portee:'tout';
   if(QC_EN_COURS){
-    if(QC_EN_COURS!==a.id&&!QC_FILE.some(x=>x.a.id===a.id)){QC_FILE.push({a,espece});qcEtat(a.id,'Contrôle en cours');}
+    if(QC_EN_COURS!==a.id&&!QC_FILE.some(x=>x.a.id===a.id)){QC_FILE.push({a,espece,portee});qcEtat(a.id,'Contrôle en cours');}
     return;
   }
   QC_EN_COURS=a.id;
@@ -266,10 +279,12 @@ async function qcLance(a,espece){
       marque:(typeof iaType==='function'?iaType(a):''),
       marqueCle:qcMarque(a),
       html,
-      versets
+      versets,
+      portee
     });
     const r={
       quand:new Date().toISOString(),
+      portee,
       maj:a.maj||a.cree||'',
       bilan:String(res.bilan||'').trim(),
       points:(Array.isArray(res.points)?res.points:[]).map(p=>({
@@ -410,7 +425,9 @@ async function qcChoix(espece){
   const ok=lot.filter(a=>typeDe(a)==='diagramme');
   if(!ok.length){lvInfo('Rien à contrôler : le contrôle qualité vaut pour les pages HTML.');return;}
   const mot=espece==='articles'?(ok.length>1?' articles':' article'):(ok.length>1?' ressources':' ressource');
-  if(!await lvConfirm('Lancer le contrôle qualité de '+ok.length+mot+' ? Chaque contrôle remplace le rapport précédent.'))return;
+  /* le choix de ce qu'on contrôle tient lieu de confirmation */
+  const portee=await qcPortee('Contrôler '+ok.length+mot);
+  if(!portee)return;
   basculeChoisir(false);
-  ok.forEach(a=>qcLance(a,espece));
+  ok.forEach(a=>qcLance(a,espece,portee));
 }
