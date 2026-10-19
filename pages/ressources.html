@@ -654,7 +654,7 @@ function compteRub(rid){return descendance(rid).reduce((n,x)=>n+ressourcesDe(x).
 let RUBS_LUES=false;
 /* ── CE QUE LA PAGE SAIT DÉJÀ, ET CE QU'ELLE ATTEND ENCORE ──
    La page note ce qui est arrivé : qui regarde, le rangement, la liste. Tant
-   qu'il manque une pièce, elle dit « Chargement… » au lieu d'affirmer « Rien
+   qu'il manque une pièce, elle montre le cercle de chargement au lieu d'affirmer « Rien
    encore » ou de montrer ses boutons trop tôt. */
 let AUTH_VU=false, LISTE_LUE=false, LISTE_ERR=false, RUBS_ERR=false;
 function pretListe(){
@@ -664,7 +664,7 @@ function pretListe(){
   return S.auteur ? ((RUBS_LUES||RUBS_ERR)&&LISTE_LUE) : true;
 }
 /* Si le service de connexion ne répond jamais (bloqueur, réseau coupé), on ne
-   reste pas sur « Chargement… » : passé six secondes, la page s'affiche sans
+   reste pas sur le cercle de chargement : passé six secondes, la page s'affiche sans
    compte. */
 setTimeout(()=>{if(!AUTH_VU){AUTH_VU=true;try{vue('liste');}catch(_){}}},6000);
 function saveRubs(){
@@ -734,12 +734,18 @@ function nomFichier(titre,ext){
 /* le contenu est lu à la demande, puis la ressource s'ouvre en plein écran ;
    « seulSiVue » : ouverture automatique, qui n'a lieu que si l'on est
    toujours sur cette fiche quand le contenu arrive */
-function ouvrePleinCharge(a,seulSiVue){
+function ouvrePleinCharge(a,seulSiVue,zone){
+  const echec=mot=>{
+    if(zone&&S.vu===a.id){
+      zone.innerHTML='<div class="lv-ouverture"><p>'+esc(mot)+'</p><button type="button" class="res-rouvrir">Réessayer</button></div>';
+      zone.querySelector('button').onclick=()=>{zone.innerHTML='<div class="lv-attente"><span class="lv-roue" role="status" aria-label="Chargement"></span></div>';ouvrePleinCharge(a,seulSiVue,zone);};
+    }else lvInfo(mot);
+  };
   contenuDe(a).then(code=>{
     if(seulSiVue&&S.vu!==a.id)return;
-    if(!code){lvInfo('Ce code est vide.');return;}
+    if(!code){echec('Cette page est vide.');return;}
     ouvrePlein(a);
-  }).catch(e=>{ console.warn('contenu',e); lvInfo('Le contenu de cette ressource n’a pas pu être chargé. Vérifiez la connexion, puis réessayez.'); });
+  }).catch(e=>{ console.warn('contenu',e); echec('Le contenu n’a pas pu être chargé. Vérifiez la connexion, puis réessayez.'); });
 }
 /* ── TÉLÉCHARGER PASSE PAR LE « ⋯ » ──
    Pas de bouton « Télécharger » dans la fiche ni en plein écran : on
@@ -1399,7 +1405,7 @@ function rendLister(){
      se déplace, c'est une page qui bouge. */
   if(S.auteur)$('acts-liste').style.display=pretListe()?'':'none';
   if(S.auteur){majCorbBouton();majChoix();}
-  if(!pretListe()){ h.innerHTML='<div class="vide">Chargement…</div>'; return; }
+  if(!pretListe()){ h.innerHTML='<div class="lv-attente"><span class="lv-roue" role="status" aria-label="Chargement"></span></div>'; return; }
   const fils=enfants(ou), res=ressourcesDe(ou);
   if(!fils.length&&!res.length){
     if(LISTE_ERR&&S.auteur){ h.innerHTML='<div class="vide">Les ressources n’ont pas pu être lues.<br>Vérifiez la connexion, puis rechargez la page.</div>'; return; }
@@ -2073,14 +2079,10 @@ function corpsVoir(a){
   }
   if(t==='diagramme'){
     if(typeof a.code!=='string'||a.code||a.codeTaille){
-      /* Le contenu s'ouvre en plein écran, tout de suite, et la fiche reste
-         derrière avec son bouton pour le rouvrir. */
-      if(a.desc){const d=document.createElement('div');d.className='res-desc';d.textContent=a.desc;c.appendChild(d);}
-      const b=document.createElement('button');
-      b.type='button'; b.className='res-rouvrir'; b.textContent='Ouvrir';
-      b.onclick=()=>ouvrePleinCharge(a,false);
-      c.appendChild(b);
-      setTimeout(()=>ouvrePleinCharge(a,true),60);
+      /* Le contenu s'ouvre en plein écran dès qu'il est là ; en
+         attendant, le cercle seul. Un échec laisse « Réessayer ». */
+      c.innerHTML='<div class="lv-attente"><span class="lv-roue" role="status" aria-label="Chargement"></span></div>';
+      ouvrePleinCharge(a,true,c);
       return c;
     }
     c.innerHTML='<div class="res-desc">Ce code est vide.</div>';
@@ -2088,7 +2090,7 @@ function corpsVoir(a){
     return c;
   }
   const cadre=document.createElement('div'); cadre.className='res-cadre';
-  cadre.innerHTML='<div class="res-desc" style="padding:26px;margin:0">Chargement…</div>';
+  cadre.innerHTML='<div class="lv-attente"><span class="lv-roue" role="status" aria-label="Chargement"></span></div>';
   c.appendChild(cadre);
   if(a.desc){const d=document.createElement('div');d.className='res-desc';d.textContent=a.desc;c.appendChild(d);}
   if(a.media){
@@ -2589,7 +2591,7 @@ function ecoute(){
   },e=>{console.warn('ressources',e);LISTE_ERR=true;LISTE_LUE=true;if(!S.res&&!S.vu)rendLister();});
 }
 function motAccueil(){
-  if(!S.uid){$('mot-liste').textContent='Connectez-vous pour ajouter des ressources.';$('acts-liste').style.display='none';return;}
+  if(!S.uid){$('mot-liste').innerHTML='<div class="lv-porte"><p>Connectez-vous pour retrouver vos ressources.</p><a href="/#connexion">Se connecter</a></div>';$('liste').innerHTML='';$('acts-liste').style.display='none';return;}
   if(!S.auteur){$('mot-liste').textContent='Ce compte n’a pas accès à cette page.';$('acts-liste').style.display='none';$('liste').innerHTML='';return;}
   $('mot-liste').textContent=''; $('acts-liste').style.display=pretListe()?'':'none';
 }
@@ -2616,7 +2618,7 @@ auth.onAuthStateChanged(u=>{
   else{ if(COUPE){COUPE();COUPE=null;} $('acts-liste').style.display='none'; ouvrePublic(); }
 });
 /* ── ON DESSINE TOUT DE SUITE ──
-   La page dit « Chargement… » dès la première image, sans attendre la
+   La page montre le cercle de chargement dès la première image, sans attendre la
    première réponse du serveur : sur une connexion lente, une page nue
    paraîtrait en échec. */
 vue('liste');
@@ -2656,7 +2658,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     e.stopPropagation();
     /* le formulaire de connexion vit sur l'accueil : cette page n'en porte
        pas, on y renvoie plutôt que de ne rien faire */
-    if(!auth.currentUser){location.href='/';return;}
+    if(!auth.currentUser){location.href='/#connexion';return;}
     $('macct-mail').textContent=auth.currentUser.email||'';
     $('auth-overlay').classList.add('ouvert');
   };

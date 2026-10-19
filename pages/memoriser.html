@@ -929,7 +929,7 @@ const S={
   grp:{},           // idVerset -> 'j' | 'r' | 'v', arrêté au départ de la séance
   pendingCat:null, pendingPas:false, editCat:null, editVerse:null, editSec:null, pendingCatSec:null,
   charge:false,     // vrai une fois les données du compte lues : avant, on n'écrit rien dans le nuage
-  chargeErr:false   // vrai si cette lecture a échoué : l'écran le dit au lieu de rester sur « Chargement… »
+  chargeErr:false   // vrai si cette lecture a échoué : l'écran le dit au lieu de rester sur le cercle de chargement
 };
 /* Remise à zéro de l'état propre à un compte : à la déconnexion et avant de
    lire un autre compte. Sans elle, ce qui reste en mémoire du compte
@@ -1473,13 +1473,13 @@ function renderCats(){
   partageProgression();
   const host=$('cat-list'); host.innerHTML='';
   /* ── TANT QUE LES DONNÉES NE SONT PAS LÀ, ON LE DIT ──
-     Pendant la lecture, la page dit « Chargement… » plutôt qu'une liste vide
+     Pendant la lecture, la page montre le cercle de chargement plutôt qu'une liste vide
      sous un « Commencer » qui répondrait à tort « Aucune catégorie ». Si la
      lecture échoue, elle le dit aussi. */
   if(!S.charge){
-    host.innerHTML='<div class="sec-vide">'+(S.chargeErr
-      ?'Vos données n’ont pas pu être lues. Vérifiez la connexion, puis rechargez la page.'
-      :'Chargement…')+'</div>';
+    host.innerHTML=S.chargeErr
+      ?'<div class="sec-vide">Vos données n’ont pas pu être lues. Vérifiez la connexion, puis rechargez la page.</div>'
+      :'<div class="lv-attente"><span class="lv-roue" role="status" aria-label="Chargement"></span></div>';
     $('cat-more').style.display='none'; $('sel-all').textContent='';
     const rb0=$('restore-base'); if(rb0)rb0.style.display='none';
     renderTrash(); updateStart();
@@ -1515,7 +1515,10 @@ function renderCats(){
    geste principal de la page. On attend que les données soient lues :
    pendant le chargement, la liste est vide sans l'être vraiment. */
 function updateStart(){const b=$('start-btn');b.disabled=false;b.classList.toggle('pas-pret',allItems().length<2);
-  const vide=!!S.charge&&!catsMode().length; b.style.display=vide?'none':''; document.body.classList.toggle('memo-vide',vide);}
+  const vide=!!S.charge&&!catsMode().length; b.style.display=vide?'none':''; document.body.classList.toggle('memo-vide',vide);
+  /* tant que les données ne sont pas lues, ni actions ni « Commencer » :
+     le cercle seul */
+  document.body.classList.toggle('memo-charge',!S.charge);}
 /* ── LA BASCULE ──
    Changer d'onglet, c'est changer d'endroit : la portée d'une catégorie ou
    d'une section lancée ne suit pas, et la liste repart repliée. Rien n'est

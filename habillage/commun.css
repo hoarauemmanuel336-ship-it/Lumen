@@ -1195,3 +1195,24 @@ html body .qa-envoi:disabled{opacity:.45;cursor:default}
 }
 @keyframes qcTourne{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){html body .qa-panneau{transition:none}html body .qa-roue{animation-duration:2.4s}}
+
+/* ════════════════════════════════════════════════════════════════════
+   L'ATTENTE ET LA PORTE (toutes les pages)
+   Emmanuel : « quand une page n'est pas encore chargée, corrige l'UI/UX,
+   et regarde ce qui s'affiche quand je ne suis pas connecté ».
+   L'attente : le cercle de chargement crème, seul, au milieu de la place
+   que le contenu va prendre, sans phrase. La porte : quand le compte
+   n'est pas connecté, un mot et le bouton « Se connecter », centrés, à la
+   place du contenu, et rien d'autre (ni actions, ni cadre vide).
+   ════════════════════════════════════════════════════════════════════ */
+html body .lv-roue{display:inline-block;width:22px;height:22px;border:1.5px solid var(--h-l2);border-top-color:var(--h-or);border-radius:50%;animation:qcTourne .8s linear infinite}
+html body .lv-attente{display:flex;align-items:center;justify-content:center;min-height:180px;padding:40px 0;border:0;background:none;animation:hVoile .4s ease .15s both}
+html body .lv-porte{display:flex;flex-direction:column;align-items:center;gap:20px;padding:70px 20px 40px;text-align:center}
+html body .lv-porte p{margin:0;font-family:var(--h-ui);font-size:17px;line-height:1.5;color:var(--h-t2)}
+html body .lv-porte a{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 28px;border-radius:14px;background:var(--h-or);color:#000;font-family:var(--h-ui);font-size:15px;font-weight:600;text-decoration:none;transition:background .25s,box-shadow .3s}
+html body .lv-porte a:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
+html body #mot-liste:has(.lv-porte){padding:0;border:0;background:none;box-shadow:none}
+html body .lv-ouverture{display:flex;flex-direction:column;align-items:center;gap:18px;padding:40px 0}
+html body .lv-ouverture p{margin:0;font-family:var(--h-ui);font-size:16px;color:var(--h-t2);text-align:center}
+@keyframes qcTourne{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){html body .lv-roue{animation-duration:2.4s}}

@@ -510,6 +510,12 @@ const AUTH_JS = `(function(){
     ov.classList.add('ouvert');document.body.style.overflow='hidden';}
   function close(){ov.classList.remove('ouvert');document.body.style.overflow='';}
   icone.addEventListener('click',open);
+  /* venu d'une autre page par « Se connecter » : la fenêtre s'ouvre
+     d'elle-même, une fois connu l'état du compte */
+  if(location.hash==='#connexion'){
+    try{history.replaceState(null,'',location.pathname);}catch(_){}
+    var vu=auth.onAuthStateChanged(function(u){vu();if(!u)open();});
+  }
   icone.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
   fe.addEventListener('click',close);
   ov.addEventListener('click',function(e){if(e.target===ov)close();});

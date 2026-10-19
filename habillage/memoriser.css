@@ -730,3 +730,6 @@ html:root body:not(#_) .v-check::after{
 html:root body:not(#_) .v-check.on::after{text-shadow:none}
 /* une catégorie ouverte garde le même fond qu'une catégorie fermée */
 html:root body:not(#_):not(#_) .cat.open{background:transparent}
+
+/* pendant la lecture des données : le cercle seul, sans actions */
+html body.memo-charge .cat-acts,html body.memo-charge #start-btn,html body.memo-charge .bh-cats{visibility:hidden}

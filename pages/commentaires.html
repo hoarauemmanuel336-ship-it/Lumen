@@ -1296,7 +1296,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     e.stopPropagation();
     /* le formulaire de connexion vit sur l'accueil : cette page n'en porte
        pas, on y renvoie plutôt que de ne rien faire */
-    if(!auth.currentUser){location.href='/';return;}
+    if(!auth.currentUser){location.href='/#connexion';return;}
     $('macct-mail').textContent=auth.currentUser.email||'';
     $('auth-overlay').classList.add('ouvert');
   };
@@ -1339,7 +1339,7 @@ function traiteHash(){
   if(BIBLE_PRETE||!window.LVBible)suite(); else prepareBible().then(suite);
 }
 function motAccueil(){
-  if(!S.uid){$('mot-liste').textContent='Connectez-vous pour écrire.';$('acts-liste').style.display='none';return;}
+  if(!S.uid){$('mot-liste').innerHTML='<div class="lv-porte"><p>Connectez-vous pour écrire vos commentaires.</p><a href="/#connexion">Se connecter</a></div>';$('acts-liste').style.display='none';return;}
   if(!S.auteur){$('acts-liste').style.display='none';return;}
   $('mot-liste').textContent=''; $('acts-liste').style.display='';
 }
