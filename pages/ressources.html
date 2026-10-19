@@ -15,17 +15,14 @@
 :root{
   --encre:#000000;--encre-2:#0b0b0b;--encre-3:#111111;
   --or:#efe6cf;--or-pale:#f8f3e6;
-  /* fond de survol : la couleur d'accent, une seule intensité pour tout
-     le site. La seconde ligne suit l'accent quand il change ; un vieux
-     navigateur l'ignore et garde la première. */
+  /* fond de survol : l'accent, une seule intensité pour tout le site. La
+     seconde ligne suit l'accent ; un vieux navigateur garde la première. */
   --surv:rgba(239,230,207,.06);
   --surv:color-mix(in srgb, var(--or) 6%, transparent);
-  /* texte sélectionné : la même couleur, franche cette fois, avec le
-     texte en noir pour rester lisible. */
+  /* texte sélectionné : l'accent franc, texte en noir pour rester lisible */
   --sel:rgba(239,230,207,.5);
   --sel:color-mix(in srgb, var(--or) 50%, transparent);
-  /* halo de survol des cartes, dans l'esprit des diagrammes interactifs :
-     une lueur diffuse au-dehors, doublée d'une bordure intérieure ténue. */
+  /* halo de survol des cartes : une lueur diffuse au-dehors */
   --halo:rgba(239,230,207,.1);
   --halo:color-mix(in srgb, var(--or) 10%, transparent);
   --parchemin:#ffffff;--pa:rgba(255,255,255,.6);--pa2:rgba(255,255,255,.5);
@@ -59,25 +56,21 @@ body>footer{flex-shrink:0}
 
 /* actions en texte, jamais en boîte */
 .acts{display:flex;align-items:center;justify-content:center;gap:30px;flex-wrap:wrap;margin:28px 0 6px}
-/* (en-tête, états, actions : voir lumen-commun.css, posée par le build dans chaque page)*/
+/* (en-tête, états, actions : voir lumen-commun.css, posée par la fabrication dans chaque page)*/
 .act{position:relative;font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2);transition:color .3s}
 .act::before{content:'';position:absolute;inset:-15px -10px}
 .act:hover{color:var(--or)}
-/* Les actions de la liste (écrire, ajouter, nouvelle section, organiser)
-   sont allumées d'emblée, à la couleur d'accent : ce sont les portes de la
-   page, elles n'attendent pas la souris. Le survol les éclaircit d'un cran.
-   Les actions de l'éditeur, elles, gardent leur teinte discrète. */
+/* Les actions de la liste sont allumées d'emblée, à l'accent : ce sont les
+   portes de la page. Celles de l'éditeur restent discrètes. */
 #acts-liste .act{color:var(--or)}
 #acts-liste .act:hover{color:var(--or-pale)}
 .act.danger:hover{color:var(--pourpre)}
 @media(max-width:720px){.acts{gap:24px;margin-top:26px}}
 
 /* ═══ RANGEMENT : SECTIONS ET SOUS-SECTIONS ═══ */
-/* Une rubrique est un intitulé, jamais une boîte. AUCUN FILET sur les
-   en-têtes : seuls les articles portent leur ligne de séparation, sinon les
-   traits s'empilent dès qu'une section en suit une autre (Emmanuel, 22/08 :
-   « des traits sur des traits »). La hiérarchie tient à la taille, à la
-   couleur et au décalage, et chaque niveau reste franchement lisible. */
+/* Une rubrique est un intitulé, jamais une boîte. Aucun filet sur les
+   en-têtes, sinon les traits s'empilent (Emmanuel : « des traits sur des
+   traits »). La hiérarchie tient à la taille, à la couleur et au décalage. */
 .rub{margin-bottom:0}
 .rub-tete{display:flex;align-items:center;gap:12px;padding:26px 2px 13px;cursor:pointer}
 .rub-1:first-child>.rub-tete{padding-top:12px}
@@ -111,8 +104,7 @@ body>footer{flex-shrink:0}
 .art-extrait{font-size:15px;color:var(--pa);margin-top:5px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .art-pied{display:flex;align-items:center;gap:12px;margin-top:9px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.58)}
 .art-ligne{display:flex;align-items:flex-start;gap:6px;box-shadow:inset 0 -1px 0 var(--filet);transition:background .25s,box-shadow .25s}
-/* Au survol, la ligne s'illumine sans bouger : halo diffus au-dehors,
-   bordure intérieure ténue, fond au ton d'accent. Rien ne se déplace. */
+/* Au survol, la ligne s'illumine sans bouger : halo, fond au ton d'accent. */
 .art-ligne:hover{background:var(--surv);box-shadow:0 0 26px var(--halo),inset 0 -1px 0 var(--filet)}
 .art-ligne:hover .art-titre{color:#fff;text-shadow:0 0 14px color-mix(in srgb,var(--or) 28%,transparent)}
 .art-ligne:hover .art-extrait{color:rgba(255,255,255,.75)}
@@ -136,12 +128,9 @@ body>footer{flex-shrink:0}
 .ed-titre{width:100%;background:none;border:none;color:var(--parchemin);font-family:var(--display);font-size:calc(38px*var(--lvz,1));line-height:1.22;padding:10px 0 20px;outline:none;resize:none;overflow:hidden;text-align:center}
 .ed-titre::placeholder{color:rgba(255,255,255,.22)}
 .ed-corps{padding-top:10px}
-/* La poignée qui sert à déplacer un bloc allait jusque-là chercher sa place
-   DANS la colonne : tout l'article s'en trouvait poussé de trente-quatre
-   pixels vers la droite, alors que le titre, lui, restait centré sur la
-   colonne entière. L'article n'était pas d'aplomb. La poignée va maintenant
-   se loger dans la marge, hors du texte ; sous 900 px, où il n'y a plus de
-   marge, elle reprend sa place à l'intérieur. */
+/* La poignée d'un bloc se loge dans la marge, hors du texte, pour que le
+   texte reste d'aplomb sous le titre centré ; sous 900 px, sans marge, elle
+   passe à l'intérieur. */
 .bloc{position:relative;padding:2px 0;margin:0 0 20px}
 .bloc:focus-within .bl-poignee{opacity:1}
 .bl-poignee{position:absolute;left:-34px;top:2px;width:26px;text-align:center;font-size:17px;line-height:1.5;color:rgba(255,255,255,.22);opacity:0;transition:opacity .25s,color .25s;cursor:pointer}
@@ -154,31 +143,25 @@ body>footer{flex-shrink:0}
 .zone i,.zone em{font-style:italic}
 .zone a{color:var(--or);border-bottom:1px solid rgba(231,224,207,.3)}
 .zone .ref{color:var(--or);cursor:pointer;border-bottom:1px dotted rgba(231,224,207,.4)}
-/* Un article se lit comme la Bible se lit : même taille de texte (20,5 px),
-   même interligne serré (1,08), même largeur de colonne. C'est le blanc
-   ENTRE les blocs qui sépare, pas celui entre les lignes. */
+/* Le texte se lit comme la Bible : même taille, même interligne serré
+   (voulu), même colonne. C'est le blanc entre les blocs qui sépare. */
 .b-p .zone{font-size:calc(20.5px*var(--lvz,1));line-height:1.08;color:rgba(255,255,255,.9)}
 .b-h2 .zone{font-family:var(--display);font-size:calc(28px*var(--lvz,1));line-height:1.16;color:var(--parchemin);margin-top:16px}
 .b-h2{margin-top:20px}
 .b-h3 .zone{font-family:var(--display);font-size:calc(15px*var(--lvz,1));letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin-top:12px}
 .b-h3{margin-top:14px}
-/* Citation d'un auteur : romaine et bien lisible, entre guillemets français
-   posés par la feuille de style, avec un filet à gauche pour la distinguer
-   d'un paragraphe. L'italique à 60 % de blanc, illisible sur un long passage,
-   a été abandonné le 22/08. */
+/* Citation : romaine et bien lisible, un filet à gauche la distingue d'un
+   paragraphe. */
 .b-cite{padding-top:10px;padding-bottom:6px}
 .b-cite .zone{font-size:calc(20.5px*var(--lvz,1));line-height:1.14;color:rgba(255,255,255,.88);padding-left:20px;box-shadow:inset 2px 0 0 var(--filet-fort)}
-/* Les guillemets ne sont plus posés par la feuille de style (Emmanuel,
-   26/08) : on les tape si on en veut. Le filet à gauche suffit à dire que
-   c'est une citation, et certaines citations n'en demandent pas. */
+/* Pas de guillemets automatiques : on les tape si on en veut, certaines
+   citations n'en demandent pas. */
 .b-cite .zone:empty::before{content:attr(data-vide)}
 /* Verset : le format du site, texte en italique entre guillemets français,
    référence en gras à la suite, sans parenthèses. Les guillemets viennent de
    la feuille de style : on ne les tape pas, on ne peut pas les effacer. */
-/* L'interligne doit être posé sur le BLOC, pas seulement sur les morceaux de
-   texte qui sont dedans : une ligne prend la hauteur la plus grande entre
-   celle de son contenu et celle de son conteneur. Réglé sur les seuls
-   .v-txt et .v-ref, le verset restait aéré comme le reste de la page. */
+/* L'interligne se pose aussi sur le bloc : une ligne prend la plus grande
+   hauteur entre son contenu et son conteneur. */
 .b-verset{padding-top:4px;padding-bottom:4px;line-height:1.14}
 .b-verset .v-txt{display:inline;font-style:italic;font-size:calc(20.5px*var(--lvz,1));line-height:1.14;color:rgba(255,255,255,.92)}
 .b-verset .v-txt::before{content:'«\00a0'}
@@ -280,20 +263,15 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 </style>
 <style>
 /* ═══════════ RESSOURCES ═══════════
-   Sans aperçu, une ressource se présente par son titre, posé en grand dans le
-   Cormorant du site, sur une carte sobre. Deux cartes par rangée, comme les
-   rayons au-dessus : la page garde une seule colonne de mesure, et les titres
-   tiennent le plus souvent sur une ligne. Au survol, la carte s'illumine sans
-   bouger, à la manière des lignes de la liste des articles : fond au ton
-   d'accent, halo diffus, titre qui s'éclaire. */
+   Sans aperçu, une ressource se présente par son titre en Cormorant, sur une
+   carte sobre, deux par rangée comme les rayons. Au survol, la carte
+   s'illumine sans bouger. */
 .grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;padding:8px 0 4px}
-/* ── LA CARTE PREND LE LANGAGE DES CONTENUS (Emmanuel, 26/09 : « rends ça le
-   plus agréable à l'œil possible ») ──
-   Les diagrammes, les livres, les cours et les parcours que la page accueille ont leur
-   signature : coin coupé, filet ténu, lumière rasante, halo. La carte la
-   reprend à l'or du site : un fond qui descend doucement vers le noir, une
-   ligne de lumière au bord haut, et le coin supérieur droit tranché en
-   biais, le biais s'allumant au survol avec le contour. */
+/* ── LA CARTE PREND LE LANGAGE DES CONTENUS ──
+   Coin coupé, filet ténu, lumière rasante, comme les diagrammes, livres,
+   cours et parcours qu'elle range : fond qui descend vers le noir, ligne de
+   lumière au bord haut, coin supérieur droit tranché en biais, qui s'allume
+   au survol avec le contour. */
 .carte{position:relative;display:flex;flex-direction:column;text-align:left;border:1px solid var(--filet);background:linear-gradient(180deg,#0f0f0f,#090909 70%);box-shadow:inset 0 1px 0 rgba(255,255,255,.035);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .3s,background .3s,box-shadow .3s}
 .carte::before,.carte::after{content:'';position:absolute;top:-1px;right:-1px;width:16px;height:16px;pointer-events:none;z-index:1}
 .carte::before{background:linear-gradient(225deg,var(--encre) 0 calc(50% - .7px),rgba(231,224,207,.22) calc(50% - .7px) calc(50% + .5px),transparent calc(50% + .5px))}
@@ -306,27 +284,21 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 .ct-mq .mq-svg{width:19px;height:19px;transition:filter .3s}
 .carte:hover .ct-mq,.carte.pris .ct-mq{color:var(--or);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--or) 50%,transparent);background:color-mix(in srgb,var(--or) 6%,transparent)}
 .carte:hover .ct-mq .mq-svg{filter:drop-shadow(0 0 5px color-mix(in srgb,var(--or) 45%,transparent))}
-/* Au survol, c'est le CONTOUR qui s'allume : le trait passe à la couleur
-   d'accent et le halo se pose autour. Le fond de la carte ne bouge pas.
-   L'ancien « background:var(--surv) » remplaçait le fond au lieu de s'y
-   ajouter, si bien que la carte perdait son corps et paraissait sombre. */
+/* Au survol, c'est le contour qui s'allume, avec le halo autour. Le fond ne
+   change pas : un fond de survol remplacerait le dégradé et la carte
+   paraîtrait sombre. */
 .carte:hover{border-color:var(--or);box-shadow:0 0 26px var(--halo)}
 .ct-bas{flex:1;display:flex;flex-direction:column;padding:20px 22px 15px}
 .ct-titre{font-family:var(--display);font-size:21.5px;font-weight:500;line-height:1.25;color:var(--parchemin);padding-right:26px;transition:color .25s,text-shadow .25s}
 .carte:hover .ct-titre{color:#fff;text-shadow:0 0 14px color-mix(in srgb,var(--or) 28%,transparent)}
 .ct-vide{color:var(--pa2);font-style:italic;font-weight:400}
-/* La ligne du bas tombe au ras de la carte : dans une rangée, les cartes ont
-   la même hauteur et ces lignes s'alignent d'une carte à l'autre. Elle porte
-   la date, ou l'état de publication dans l'espace de l'auteur. */
-/* le pied : un filet qui s'efface vers la droite, puis l'état ou la date,
-   toujours rangés à droite pour que les lignes s'alignent d'une carte à
-   l'autre */
+/* le pied tombe au ras de la carte : un filet qui s'efface vers la droite,
+   puis la date, rangée à droite pour s'aligner d'une carte à l'autre dans
+   une rangée */
 .ct-pied{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-top:auto;padding-top:15px;font-family:var(--display);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3)}
 .ct-pied::before{content:'';flex-basis:100%;height:1px;margin-bottom:10px;background:linear-gradient(90deg,rgba(231,224,207,.16),rgba(231,224,207,.06) 55%,transparent);transition:background .3s}
 .carte:hover .ct-pied::before{background:linear-gradient(90deg,color-mix(in srgb,var(--or) 45%,transparent),color-mix(in srgb,var(--or) 12%,transparent) 55%,transparent)}
 .ct-etat.publie{color:color-mix(in srgb,var(--or) 85%,transparent)}
-/* La marque ouvre la ligne du bas : l'icône à l'or du site, son nom dans
-   la voix des libellés. L'état ou la date se range à droite. */
 
 /* le choix de la marque, dans l'éditeur : une rangée de tuiles, l'icône
    au-dessus de son nom */
@@ -342,11 +314,10 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 .ct-menu::before{content:'';position:absolute;inset:-8px}
 .carte:hover .ct-menu{opacity:1}
 .ct-menu:hover{color:var(--or)}
-/* ── CE QUI RENSEIGNE S'ALLUME (Emmanuel, 26/09) ──
-   La carte garde son fond, son contour et son filet sobres ; seuls l'icône,
-   son cadre et l'état (Privé, Publié) passent à la pleine lumière de
-   l'accent, pour que l'œil trouve d'emblée ce qu'est la ressource et où elle
-   en est. */
+/* ── CE QUI RENSEIGNE S'ALLUME ──
+   La carte reste sobre ; seuls l'icône, son cadre et le pied passent à la
+   pleine lumière de l'accent, pour que l'œil trouve d'emblée ce qu'est la
+   ressource. */
 .ct-mq{color:var(--or);box-shadow:inset 0 0 0 1px var(--or);background:none}
 .ct-mq .mq-svg{filter:drop-shadow(0 0 5px color-mix(in srgb,var(--or) 45%,transparent))}
 .carte:hover .ct-mq,.carte.pris .ct-mq{box-shadow:inset 0 0 0 1px var(--or);background:none}
@@ -355,37 +326,31 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 @media(max-width:600px){.grille{gap:12px}.ct-bas{padding:18px 18px 13px}.ct-titre{font-size:19.5px}.ct-tete{gap:13px}.ct-mq{width:30px;height:30px}}
 /* sans survol, le ⋯ reste bien visible, et le doigt reçoit un retour bref */
 @media not ((hover:hover) and (pointer:fine)){.ct-menu{opacity:.85}.carte:active{background:linear-gradient(180deg,#141414,#0b0b0b 70%)}}
-/* ── LE ⋯ ET L'ÉTAT EN BLANC, BIEN ALLUMÉS (Emmanuel, 27/09) ──
-   Les trois points des cartes, des domaines et des rayons, et l'état
-   (Privé, Publié), passent en blanc plein avec un halo blanc, sans survol :
-   ils se voient d'emblée. Le survol n'ajoute qu'un peu plus de lumière. */
+/* ── LE ⋯ EN BLANC, BIEN ALLUMÉ ──
+   Les trois points des cartes, des catégories et des rayons sont en blanc
+   plein avec un halo, sans attendre le survol, qui ajoute un peu de lumière. */
 html body .ct-menu,html body .rub-menu,html body .rayon .ry-menu{color:#fff;opacity:1;text-shadow:0 0 10px rgba(255,255,255,.7),0 0 20px rgba(255,255,255,.3)}
 html body .ct-menu:hover,html body .rub-menu:hover,html body .rayon .ry-menu:hover{color:#fff;text-shadow:0 0 12px rgba(255,255,255,.95),0 0 26px rgba(255,255,255,.45)}
 html body .ct-etat,html body .ct-etat.publie{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.7),0 0 20px rgba(255,255,255,.3)}
 
 /* ── la ressource en grand ── */
 .res-cadre{border:1px solid var(--filet);background:#050505;margin:6px 0 4px}
-/* ── LE CODE S'OUVRE EN PLEIN ÉCRAN (Emmanuel, 12/09) ──
-   Un code, un diagramme ou un livre prend tout l'écran, sans cadre ni barre
-   autour : il se lit exactement comme si le fichier était ouvert seul, avec sa
-   propre barre, son sommaire et sa progression. Un bouton discret en bas à
-   gauche (et la touche Échap) ramène à la fiche. */
+/* ── LE CODE S'OUVRE EN PLEIN ÉCRAN ──
+   Un code (diagramme, livre…) prend tout l'écran, sans cadre ni barre : il
+   se lit comme le fichier ouvert seul. Un bouton discret en bas à gauche (et
+   la touche Échap) ramène à la fiche. */
 .res-plein{position:fixed;top:0;left:0;width:100%;height:100%;height:100dvh;border:0;z-index:200;background:#000;display:block}
 .res-plein-x{position:fixed;left:max(12px,env(safe-area-inset-left,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));z-index:201;display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(0,0,0,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-family:var(--display);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);cursor:pointer;transition:color .3s,border-color .3s,background .3s}
 .res-plein-x:hover,.res-plein-x:focus-visible{color:#fff;border-color:var(--or);background:rgba(0,0,0,.82)}
-/* le même galet, à droite : le fichier du contenu, pris d'un geste */
 .res-plein-x.tel{left:auto;right:max(12px,env(safe-area-inset-right,0px))}
 body.plein{overflow:hidden}
 /* la fiche qui attend derrière : de quoi rouvrir sans repasser par la liste */
 .res-rouvrir{display:inline-block;margin:20px 0 4px;padding:13px 26px;border:1px solid var(--filet-f);font-family:var(--display);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchemin);background:none;cursor:pointer;transition:border-color .3s,color .3s,background .3s}
 .res-rouvrir:hover{border-color:var(--or);color:var(--or);background:var(--surv)}
 /* ── UNE IMAGE SE VOIT D'ABORD EN ENTIER ──
-   Elle occupait toute la largeur de la colonne, quelle que soit sa forme. Une
-   image en hauteur, comme une page de prière, devenait alors plus haute que
-   l'écran : on n'en voyait que le premier tiers et il fallait faire défiler
-   pour deviner le reste. Elle tient maintenant dans l'écran d'un seul coup,
-   posée au centre de son cadre ; un clic la porte à sa pleine largeur pour
-   lire les petits caractères, un second la remet en place. */
+   Elle tient dans l'écran d'un seul coup, même en hauteur, centrée dans son
+   cadre ; un clic la porte à pleine largeur pour lire les petits caractères,
+   un second la remet en place. */
 .res-cadre.img{display:flex;align-items:center;justify-content:center;padding:14px}
 .res-cadre.img img{display:block;width:auto;max-width:100%;max-height:min(78vh,1000px);height:auto;cursor:zoom-in;transition:max-height .35s ease}
 .res-cadre.img.zoom{padding:0}
@@ -396,17 +361,6 @@ body.plein{overflow:hidden}
 .res-desc{font-family:var(--serif);font-size:calc(17px*var(--lvz,1));line-height:1.72;color:var(--pa);margin:20px 0 4px;white-space:pre-wrap}
 .res-lien{display:inline-block;margin:22px 0 4px;padding:13px 26px;border:1px solid var(--filet-f);font-family:var(--display);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--parchemin);text-decoration:none;transition:border-color .3s,color .3s,background .3s}
 .res-lien:hover{border-color:var(--or);color:var(--or);background:var(--surv)}
-/* ── TÉLÉCHARGER N'EST PAS L'ACTION PRINCIPALE ──
-   Le cadre encadré pesait autant que l'image elle-même, alors que l'image est
-   déjà là, sous les yeux : télécharger n'est qu'un service rendu à qui le
-   veut. Le bouton redevient donc ce qu'il aurait dû rester, une ligne de
-   petites capitales comme « ← Les ressources » juste en dessous, discrète et
-   qui s'éclaire quand on la vise. Le bouton encadré reste pour la ressource
-   de type « lien », où ouvrir EST l'action.
-   Il reprend au trait près le « + Nouvelle catégorie » de Mémoriser : même
-   caractère, même corps, même interlettrage, même gris, même or au survol,
-   même zone de clic élargie autour du texte, et centré comme lui. Un seul
-   geste discret, écrit deux fois de la même façon dans le site. */
 .res-tel-rang{display:flex;align-items:center;justify-content:center;margin:26px 0 2px}
 .res-tel{position:relative;font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2);text-decoration:none;transition:color .3s}
 .res-tel::before{content:'';position:absolute;inset:-15px -10px}
@@ -429,17 +383,13 @@ body.plein{overflow:hidden}
 .depose .poids{font-size:12px;color:var(--pa2);white-space:nowrap}
 .aide{font-size:12.5px;line-height:1.6;color:var(--pa2);margin-top:10px}
 
-/* ── LES DOMAINES ──
-   Le premier niveau porte un nom de domaine et se détache : un filet dessous,
-   les lettres en or. Les niveaux suivants s'effacent à mesure qu'ils
-   descendent, pour qu'un coup d'œil suffise à savoir où l'on est. */
 /* ── ON ENTRE, ON RESSORT ──
-   Pas d'arbre qui se déplie : on entre dans un domaine comme on ouvre un
-   rayon, et le fil d'Ariane dit où l'on est et ramène d'un clic. C'est le
-   geste de la Bible du site, livres puis chapitres puis lecture. */
+   Pas d'arbre qui se déplie : on entre dans une catégorie ou une section, et
+   le fil d'Ariane dit où l'on est et ramène d'un clic, comme dans la Bible
+   du site. */
 .fil{font-family:var(--display);font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa2);padding:4px 0 6px}
-/* Entré dans un domaine, son nom prend la place du petit intitulé : un vrai
-   titre, dans le Cormorant, le compte posé sur sa ligne de base. */
+/* Dedans, le nom de l'endroit devient un vrai titre en Cormorant, le compte
+   posé sur sa ligne de base. */
 .tete.dedans{padding-bottom:14px;margin-bottom:8px}
 .tete.dedans h1{font-size:31px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--parchemin);line-height:1.15}
 .tete.dedans .art-etat{font-family:var(--display);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
@@ -448,16 +398,13 @@ body.plein{overflow:hidden}
 .fil span:hover{color:var(--or)}
 .fil i{font-style:normal;padding:0 9px;color:rgba(255,255,255,.22)}
 .fil b{font-weight:400;color:var(--pa)}
-/* ═══ ORGANISER : GLISSER-DÉPOSER (05/09) ═══
-   Emmanuel, sur la liste « Placer… » : « c'est vraiment pas top comme
-   système ». Le geste juste, c'est de prendre l'objet et de le poser où l'on
-   veut. Le mode « Organiser » fait apparaître une poignée (⠿) sur chaque
-   carte et chaque rayon ; on la tire, un repère doré dit où l'objet va se
-   poser, et l'on lâche. Une carte posée SUR un rayon y entre ; posée sur un
-   maillon du fil d'Ariane, elle remonte. Plus de petites flèches
-   (Emmanuel, 11/10) : la poignée seule, collée dans le coin haut gauche de
-   la carte. Le rang exact se pose aussi par « Placer… ». Hors du mode,
-   rien de tout cela n'existe, et la page reste ce qu'elle est. */
+/* ═══ ORGANISER : GLISSER-DÉPOSER ═══
+   Le geste juste : prendre l'objet et le poser où l'on veut. Le mode
+   « Organiser » fait paraître une poignée (⠿) sur chaque carte (coin haut
+   gauche) et chaque rayon ; un repère doré dit où l'objet va se poser. Une
+   carte posée sur un rayon y entre ; posée sur un maillon du fil d'Ariane,
+   elle remonte. Pas de petites flèches : la poignée seule. Hors du mode,
+   rien de tout cela n'existe. */
 .poignee,.fleches{display:none}
 body.organise .poignee{display:flex;align-items:center;justify-content:center;flex:none;width:30px;height:30px;color:var(--pa2);font-size:17px;line-height:1;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;transition:color .25s}
 body.organise .poignee:hover{color:var(--or)}
@@ -494,14 +441,11 @@ body.organise .rayon .ry-chev{display:none}
 .rayon .ry-chev{flex-shrink:0;font-family:var(--display);font-size:17px;color:var(--pa2);line-height:1}
 @media(max-width:600px){.rayon .ry-nom{font-size:16px}}
 
-/* ═══ CHOISIR : PLUSIEURS D'UN COUP (12/09) ═══
-   Emmanuel : « je veux pouvoir supprimer plusieurs ressources ou domaines ».
-   Le mode « Choisir » se tient à côté d'« Organiser » et suit le même esprit :
-   une coche paraît sur chaque carte et chaque rayon, le tap coche au lieu
-   d'ouvrir, et la barre du bas dit combien sont pris. La coche est un signe
-   nu, sans cadre, dans le langage des pastilles de Mémoriser ; ce qui est pris
-   porte en plus la barre d'accent à gauche, comme une ligne d'article
-   survolée. Hors du mode, rien de tout cela n'existe. */
+/* ═══ CHOISIR : PLUSIEURS D'UN COUP ═══
+   Pour agir sur plusieurs ressources ou catégories à la fois. Une coche nue,
+   sans cadre, paraît sur chaque carte et chaque rayon ; le tap coche au lieu
+   d'ouvrir, et la barre du bas dit combien sont pris. Ce qui est pris porte
+   la barre d'accent à gauche. Hors du mode, rien de tout cela n'existe. */
 .coche{display:none}
 body.choisir .coche{display:flex;align-items:center;justify-content:center;flex:none;width:26px;height:26px;font-family:var(--display);font-size:16px;line-height:1;color:rgba(255,255,255,.3);user-select:none;-webkit-user-select:none;transition:color .25s}
 body.choisir .carte .coche{position:absolute;left:8px;top:14px}
@@ -510,7 +454,7 @@ body.choisir .carte .ct-bas{padding-left:40px}
 body.choisir .carte .ct-menu,body.choisir .rayon .ry-menu{display:none}
 body.choisir .carte .ct-titre{padding-right:6px}
 /* En mode Choisir, la ligne d'un rayon se coche et son chevron reste la
-   porte : on descend dans un domaine sans quitter le mode, et l'on coche à
+   porte : on descend dans une catégorie sans quitter le mode, et l'on coche à
    l'étage où l'on se trouve. */
 body.choisir .rayon .ry-chev{position:relative;color:var(--or);padding:0 4px}
 body.choisir .rayon .ry-chev::before{content:'';position:absolute;top:-14px;bottom:-14px;left:-10px;right:-8px}
@@ -524,8 +468,8 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
 
 /* ═══ LA CORBEILLE ═══
    Une ligne par chose jetée, dans le dessin des rayons : le nom, la date, ce
-   qui est descendu avec elle, puis les deux gestes. Un domaine jeté avec son
-   contenu revient entier d'un seul « Remettre ». */
+   qui est descendu avec elle, puis les deux gestes. Une catégorie jetée avec
+   son contenu revient entière d'un seul « Remettre ». */
 #ecran-corbeille{display:none}
 .jete{display:flex;align-items:baseline;gap:16px;padding:15px 2px;border-bottom:1px solid var(--filet)}
 .jt-nom{flex:1;min-width:0;font-family:var(--serif);font-size:17.5px;color:var(--parchemin);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -534,9 +478,8 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
 .jt-act:hover{color:var(--or)}
 .jt-act.danger:hover{color:var(--pourpre)}
 @media(max-width:600px){
-  /* trois lignes, toujours les mêmes : le nom, ce qu'il en est, les deux
-     gestes. Une note courte cessait sinon de tenir sa ligne et les lignes de
-     la corbeille n'avaient plus la même forme. */
+  /* trois lignes, toujours les mêmes : le nom, la note, les deux gestes,
+     pour que toutes les lignes de la corbeille gardent la même forme */
   .jete{flex-wrap:wrap;gap:8px 16px;padding:16px 2px}
   .jt-nom{flex:1 0 100%;white-space:normal}
   .jt-note{flex:1 0 100%}
@@ -588,9 +531,9 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
     </div>
   </section>
 
-  <!-- LA CORBEILLE : rien n'en part tout seul (choix d'Emmanuel, 12/09). Ce
-       qui y tombe garde son nom, sa date et, pour un domaine, ce qui est
-       descendu avec lui ; on remet, ou l'on supprime pour de bon. -->
+  <!-- LA CORBEILLE : rien n'en part tout seul (choix d'Emmanuel). Ce qui y
+       tombe garde son nom, sa date et, pour une catégorie, ce qui est
+       descendu avec elle ; on remet, ou l'on supprime pour de bon. -->
   <section id="ecran-corbeille">
     <div class="tete dedans"><h1>Corbeille</h1><span class="art-etat" id="compte-corb"></span></div>
     <div id="corb-liste"></div>
@@ -679,10 +622,8 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
 
 <script>
 // ════════ FIREBASE ════════
-// ════════ FIREBASE ════════
-/* Sans le service de connexion (bloqueur, réseau coupé), tout le code de la
-   page mourait sur sa première ligne et l'écran restait muet. On le dit, et
-   on s'arrête proprement (05/09). */
+/* Sans le service de connexion (bloqueur, réseau coupé), la page le dit et
+   s'arrête proprement au lieu de rester muette. */
 if(typeof firebase==='undefined'){
   const dire=()=>{const m=document.getElementById('mot-liste');if(m)m.textContent='Le service de connexion n’a pas pu être chargé. Vérifiez la connexion ou un bloqueur, puis rechargez la page.';const l=document.getElementById('liste');if(l)l.innerHTML='';const a=document.getElementById('acts-liste');if(a)a.style.display='none';};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',dire);else dire();
@@ -700,16 +641,15 @@ const auth=firebase.auth();
 const db=firebase.firestore();
 try{db.enablePersistence({synchronizeTabs:true}).catch(function(){});}catch(_){}
 
-/* Une seule plume : les articles sont écrits par ce compte, et par lui seul.
-   La vraie barrière viendra des règles Firestore le jour de la publication ;
-   ici, les brouillons vivent dans l’espace privé de chaque compte, donc rien
-   n’est exposé. */
+/* Le seul compte qui a accès à la page. La vraie barrière est dans les
+   règles de sécurité de la base ; les ressources vivent dans l’espace privé
+   du compte. */
 const AUTEUR='hoarauemmanuel336@gmail.com';
 
 // ════════ ÉTAT ════════
 /* liste : ce qui vit. jetees : ce qui est à la corbeille (même compte, même
-   collection, marqué d'une date de mise au rebut). corb : les domaines et
-   sections jetés. pris : ce qui est coché en mode Choisir. */
+   collection, marqué d'une date de mise au rebut). corb : les catégories et
+   sections jetées. pris : ce qui est coché en mode Choisir. */
 const S={uid:null,email:null,auteur:false,liste:[],jetees:[],res:null,sale:false,minute:null,rubs:[],corb:[],ouLa:'',vu:'',choix:false,pris:new Set()};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -717,11 +657,11 @@ const acol=()=>db.collection('users/'+S.uid+'/ressources');
 const rdoc=()=>db.doc('users/'+S.uid+'/meta/res_rubriques');
 
 /* ── LES QUATRE ESPÈCES ──
-   Un code est une page HTML qui tourne dans un cadre isolé (Emmanuel, 12/09 :
-   cette espèce s'appelle « Code » et non plus « Diagramme »). Une image et
-   un PDF sont des fichiers déposés dans le compte, découpés en tranches. Un
-   lien ne pèse rien : c'est une fiche qui montre la porte. L'espèce se choisit
-   à la création et ne se montre plus nulle part ensuite (Emmanuel, 12/09). */
+   Un code est une page HTML qui tourne dans un cadre isolé ; il s'appelle
+   « Code » à l'écran, sa clé reste « diagramme » dans les données. Une image
+   et un PDF sont des fichiers déposés dans le compte, découpés en tranches.
+   Un lien est une fiche qui montre la porte. L'espèce se choisit à la
+   création et ne se montre plus ensuite (choix d'Emmanuel). */
 const TYPES={
   diagramme:{nom:'Code',      pl:'Codes', accept:'', icone:'<path d="M4 4h6v6H4zM14 4h6v6h-6zM9 14h6v6H9zM7 10v2h10v-2M12 12v2"/>'},
   image:    {nom:'Image',     pl:'Images',     accept:'image/*', icone:'<path d="M3 5h18v14H3zM3 16l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="9" r="1.5"/>'},
@@ -730,13 +670,12 @@ const TYPES={
 };
 const typeDe=r=>TYPES[r&&r.type]?r.type:'lien';
 
-/* ── LES MARQUES (Emmanuel, 26/09 : « des icônes que je peux choisir, pour
+/* ── LES MARQUES (Emmanuel : « des icônes que je peux choisir, pour
    identifier les choses dans ressources ») ──
    L'espèce dit comment la ressource est rangée (code, image, PDF, lien) ; la
-   MARQUE dit ce qu'elle est pour le lecteur : un diagramme, un livre, un
-   parcours, une carte, une image. Elle se choisit dans l'éditeur, et son
-   icône paraît au pied de la carte dans la liste.
-   Tant qu'aucune marque n'a été choisie, la page la devine d'après le
+   marque dit ce qu'elle est pour le lecteur (diagramme, livre, cours…). Elle
+   se choisit dans l'éditeur, et son icône paraît en tête de la carte.
+   Tant qu'aucune marque n'est choisie, la page la devine d'après le
    contenu : chaque skill laisse dans sa page une signature reconnaissable.
    Choisir « Aucune » retire l'icône pour de bon. */
 const MARQUES={
@@ -756,12 +695,9 @@ function devineMarque(r){
      à l'enregistrement */
   if(typeof r.code!=='string'||!r.code)return r.marqueDevinee||'';
   const c=r.code;
-  /* ── LE BLOC DE PROGRESSION DIT CE QU'EST LE FICHIER (27/09, Emmanuel :
-     « est-ce que l'icône détecte bien automatiquement tout ? ») ──
-     Un cours et un parcours portent tous deux un bloc lv-progression : le
-     cours y range ses « acquis », le parcours ses « sujets ». C'est la
-     signature la plus sûre, puisque les deux skills l'écrivent toujours ;
-     les clés de stockage restent reconnues pour les fichiers plus anciens. */
+  /* Le bloc lv-progression est la signature la plus sûre : le cours y range
+     ses « acquis », le parcours ses « sujets ». Les clés de stockage restent
+     reconnues pour les fichiers plus anciens. */
   const bloc=(c.match(/<script\b[^>]*\bid=["']lv-progression["'][^>]*>([\s\S]*?)<\/script>/i)||[])[1]||'';
   if(/"acquis"/.test(bloc))return 'cours';
   if(/"sujets"/.test(bloc))return 'parcours';
@@ -781,28 +717,24 @@ function marqueDe(r){
 const ICONE=t=>'<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">'+(TYPES[t]||TYPES.lien).icone+'</svg>';
 
 // ════════ RANGEMENT ════════
-/* ── RANGEMENT ──
-   Une rubrique vaut {id, nom, parent}. Le parent est l'identifiant d'une autre
-   rubrique, ou une chaîne vide pour une rubrique de premier niveau : la
-   profondeur n'est donc pas écrite dans les données, elle se lit. Trois
-   niveaux au plus, au-delà le rangement dessert la lecture. Une ressource porte
-   son rub ; si elle pointe une rubrique disparue, elle retombe hors
-   section. */
-/* Le premier niveau est un DOMAINE (« Bible »), ceux d'en dessous sont des
-   sections (« Ancien Testament », puis « Genèse », puis ce qu'on veut).
-   Cinq niveaux : de quoi descendre du domaine jusqu'au chapitre sans se
-   trouver à l'étroit, et pas au-delà, car un rangement plus profond coûte
-   plus à tenir qu'il ne fait gagner. */
+/* Une rubrique vaut {id, nom, parent}. Le parent est l'identifiant d'une
+   autre rubrique, ou une chaîne vide au premier niveau : la profondeur se
+   lit, elle n'est pas écrite. Une ressource porte son rub ; si elle pointe
+   une rubrique disparue, elle retombe hors section.
+   Le premier niveau est une catégorie (« Bible »), les suivants des sections
+   (« Ancien Testament », « Genèse »…). Cinq niveaux au plus : de quoi
+   descendre jusqu'au chapitre, un rangement plus profond coûte plus qu'il ne
+   rapporte. */
 const RUB_MAX=5;
 const motRub=id=>niveau(id)<=1?'catégorie':'section';
 const rubDe=id=>S.rubs.find(r=>r.id===id)||null;
-/* (fonctions communes : voir commun/rubriques.js, posé par le build) */
-/* ── L'ORDRE DES RESSOURCES (05/09, Emmanuel : « je veux pouvoir choisir la
-   place qu'a un objet, avant ou après un autre ») ──
-   Une ressource peut porter un rang (ordre, un nombre) : à l'intérieur d'un
-   endroit, celles qui en ont un passent d'abord, dans cet ordre ; celles qui
-   n'en ont pas suivent, de la plus récente à la plus ancienne, comme avant.
-   Le rang se pose par « Placer… » et voyage avec la copie publique. */
+/* (fonctions communes : voir commun/rubriques.js, posé par la fabrication) */
+/* ── L'ORDRE DES RESSOURCES (Emmanuel : « je veux pouvoir choisir la place
+   qu'a un objet, avant ou après un autre ») ──
+   Une ressource peut porter un rang (ordre, un nombre) : dans un endroit,
+   celles qui en ont un passent d'abord, dans cet ordre ; les autres suivent,
+   de la plus récente à la plus ancienne. Le rang se pose en glissant la
+   carte en mode Organiser. */
 const rangDe=a=>(typeof a.ordre==='number'&&isFinite(a.ordre))?a.ordre:null;
 function triRessources(l){
   return l.slice().sort((a,b)=>{
@@ -815,23 +747,17 @@ function triRessources(l){
 }
 function ressourcesDe(rid){return triRessources(S.liste.filter(a=>(rubValide(a.rub)?a.rub:'')===(rid||'')));}
 function compteRub(rid){return descendance(rid).reduce((n,x)=>n+ressourcesDe(x).length,0);}
-/* Ici, rien ne se déplie : on ENTRE dans un domaine, comme on ouvre un rayon.
-   La position vit dans l'adresse (voir vaVers), donc elle se partage et le
-   bouton « précédent » du navigateur remonte d'un cran. */
+/* Ici, rien ne se déplie : on entre dans une catégorie. La position vit dans
+   l'adresse (voir vaVers), donc le bouton « précédent » du navigateur
+   remonte d'un cran. */
 /* On n'écrit la liste des rubriques qu'après l'avoir lue : sinon une lecture
    ratée (hors ligne, erreur passagère) ferait repartir de zéro et le premier
    enregistrement effacerait tout le rangement. */
 let RUBS_LUES=false;
-/* ── CE QUE LA PAGE SAIT DÉJÀ, ET CE QU'ELLE ATTEND ENCORE (05/09) ──
-   Emmanuel : « quand je clique pour aller dessus, ça charge mal parfois. »
-   La page se dessinait avant d'avoir la moindre donnée : elle annonçait donc
-   « Aucune ressource publiée » ou « Rien encore » à qui en avait des dizaines,
-   montrait un instant les deux boutons de l'auteur à tout le monde, et le
-   rangement public s'affichait une seconde avant d'être remplacé par celui de
-   l'auteur. Rien n'était cassé, tout était simplement dit trop tôt.
-   On note donc ce qui est arrivé : qui regarde, la liste publique, la liste
-   privée. Tant qu'il manque une pièce, la page dit « Chargement… » au lieu
-   d'affirmer une absence qu'elle ne connaît pas. */
+/* ── CE QUE LA PAGE SAIT DÉJÀ, ET CE QU'ELLE ATTEND ENCORE ──
+   La page note ce qui est arrivé : qui regarde, le rangement, la liste. Tant
+   qu'il manque une pièce, elle dit « Chargement… » au lieu d'affirmer « Rien
+   encore » ou de montrer ses boutons trop tôt. */
 let AUTH_VU=false, PUBS_LUES=false, PUB_ERR=false, LISTE_LUE=false, LISTE_ERR=false, RUBS_ERR=false;
 function pretListe(){
   if(!AUTH_VU)return false;
@@ -840,38 +766,30 @@ function pretListe(){
   return S.auteur ? ((RUBS_LUES||RUBS_ERR)&&LISTE_LUE) : true;
 }
 /* Si le service de connexion ne répond jamais (bloqueur, réseau coupé), on ne
-   reste pas sur « Chargement… » : passé six secondes, on regarde en visiteur. */
+   reste pas sur « Chargement… » : passé six secondes, la page s'affiche sans
+   compte. */
 setTimeout(()=>{if(!AUTH_VU){AUTH_VU=true;try{vue('liste');}catch(_){}}},6000);
 function saveRubs(){
   if(!RUBS_LUES){lvInfo('Le rangement n’est pas encore chargé. Réessayez dans un instant.');return;}
   /* la corbeille voyage avec le rangement : elle est faite des mêmes rubriques,
      mises de côté au lieu d'être effacées */
   rdoc().set({list:S.rubs,corbeille:S.corb}).catch(e=>{console.warn('rubriques',e);lvInfo('Le rangement n’a pas pu être enregistré.');});
-  /* ── L'ORDRE DES DOMAINES SE VOIT AUSSI CHEZ LE VISITEUR (05/09) ──
-     Le visiteur reconstruisait l'arbre à partir des chemins des ressources
-     publiées, dans l'ordre où elles lui arrivaient (les plus récentes
-     d'abord) : l'ordre soigneusement choisi par l'auteur n'existait que chez
-     lui. L'arbre (noms et ordre, rien de privé) est donc aussi déposé dans
-     un document public, que le visiteur lit et suit. */
 }
 
-// ════════ MODALES MAISON ════════
 // ════════ MODALES MAISON ════════
 /* Aucune boîte native : sur iOS, confirm() et alert() sont ignorés dès que la
    page tourne en application installée. */
 let _res=null;
-/* (fonctions communes : voir commun/outils.js, posé par le build) */
+/* (fonctions communes, dont lvChoix : voir commun/outils.js, posé par la fabrication) */
 let _sres=null;
 let CHOIX_FIN=null;
-/* (lvChoix : voir commun/outils.js, posé par le build) */
 
 
 
 // ════════ FICHIERS ════════
-/* Le fichier part TEL QUEL, découpé en tranches qui tiennent chacune sous le
-   mégaoctet imposé par Firestore. Vingt-cinq mégaoctets au plus : au-delà, le
-   découpage devient long et coûteux, et une fiche « Lien » vers un fichier
-   hébergé ailleurs sert mieux. */
+/* Le fichier part tel quel, découpé en tranches qui tiennent chacune sous le
+   mégaoctet imposé par Firestore. Vingt-cinq mégaoctets au plus : au-delà,
+   une fiche « Lien » vers un fichier hébergé ailleurs sert mieux. */
 const FICH_MAX=25*1024*1024;
 const TRANCHE=480000;
 const mcol=()=>db.collection('users/'+S.uid+'/res_medias');
@@ -884,11 +802,10 @@ function poids(o){
   if(o<1024*1024)return Math.round(o/1024)+' Ko';
   return (o/1048576).toFixed(o<10485760?1:0)+' Mo';
 }
-/* ── UN CODE SE DÉPOSE COMME UN FICHIER (Emmanuel, 26/09 : « je suis obligé
-   de copier-coller à chaque fois ») ──
-   Le fichier HTML est lu comme du texte et verse son contenu dans la zone du
-   code, exactement comme un collage. Si la ressource n'a pas encore de
-   titre, elle prend le nom du fichier. */
+/* ── UN CODE SE DÉPOSE COMME UN FICHIER ──
+   Pour ne pas avoir à copier-coller : le fichier HTML est lu comme du texte
+   et versé dans la zone du code, comme un collage. Sans titre, la ressource
+   prend le nom du fichier. */
 async function chargeCode(f){
   if(!f||!S.res)return;
   const dit=m=>{const e=$('dep-code-etat');if(e)e.textContent=m;};
@@ -926,12 +843,10 @@ function ouvrePleinCharge(a,publik,seulSiVue){
     ouvrePlein(a);
   }).catch(e=>{ console.warn('contenu',e); lvInfo('Le contenu de cette ressource n’a pas pu être chargé. Vérifiez la connexion, puis réessayez.'); });
 }
-/* ── TÉLÉCHARGER PASSE PAR LE « ⋯ » (Emmanuel, 27/09) ──
-   Plus de bouton « Télécharger » dans la fiche ni en plein écran : on
-   télécharge depuis les trois points de la carte. L'auteur y trouve
-   « Télécharger » parmi ses actions ; le visiteur, sur une ressource
-   publiée, a lui aussi ses trois points, avec « Voir » et « Télécharger ».
-   Un code se télécharge en page HTML, une image ou un PDF tel quel. */
+/* ── TÉLÉCHARGER PASSE PAR LE « ⋯ » ──
+   Pas de bouton « Télécharger » dans la fiche ni en plein écran : on
+   télécharge depuis les trois points de la carte (ou en mode Choisir). Un
+   code se télécharge en page HTML, une image ou un PDF tel quel. */
 function telechargeable(a){
   const t=typeDe(a);
   if(t==='diagramme')return !!(a.codeTaille||a.code||typeof a.code!=='string');
@@ -968,9 +883,8 @@ async function envoieFichier(f){
   const t=typeDe(S.res);
   if(t==='image'&&!/^image\//.test(f.type)){lvInfo('Ce fichier n’est pas une image.');return;}
   if(t==='pdf'&&f.type&&f.type.indexOf('pdf')<0){lvInfo('Ce fichier n’est pas un PDF.');return;}
-  /* un PDF sans type déclaré (cela arrive selon l'appareil) reste un PDF :
-     sans ce type, le navigateur proposait de le télécharger au lieu de
-     l'afficher */
+  /* un PDF sans type déclaré (selon l'appareil) reçoit le sien : sans lui,
+     le navigateur proposerait de le télécharger au lieu de l'afficher */
   const mimeF=(f.type)||(t==='pdf'&&/\.pdf$/i.test(f.name||'')?'application/pdf':'')||'application/octet-stream';
   if(f.size>FICH_MAX){lvInfo('Ce fichier dépasse 25 Mo. Choisissez-en un plus léger, ou faites-en une fiche « Lien » vers l’endroit où il est déjà hébergé.');return;}
   const cible=S.res, typeAvant=t;
@@ -993,9 +907,8 @@ async function envoieFichier(f){
     await mcol().doc(id).set({mime:mimeF,n:parts.length,taille:f.size,complet:true,cree:new Date().toISOString()});
   }catch(e){dis('');lvInfo('L’envoi a échoué. Réessayez.');console.warn('envoi',e);effaceMedia(id);return;}
   CACHE.set(id,url);
-  /* Plus de vignette : les cartes ne montrent plus d'image, et une miniature
-     inutile alourdirait la fiche pour rien. Le champ reste, vide, pour que les
-     fiches anciennes gardent la même forme. */
+  /* Pas de vignette : les cartes ne montrent pas d'image. Le champ reste,
+     vide, pour que toutes les fiches gardent la même forme. */
   const vign='';
   /* l'envoi est long : la ressource a pu être quittée ou changée entre-temps */
   if(S.res!==cible||typeDe(cible)!==typeAvant){effaceMedia(id);dis('');return;}
@@ -1043,8 +956,7 @@ async function effaceMedia(id){
 }
 
 // ════════ CADRE ISOLÉ ════════
-// ════════ BLOCS INTERACTIFS ════════
-/* Le code de l'auteur tourne dans un cadre isolé : sandbox SANS
+/* Le code d'une ressource tourne dans un cadre isolé : sandbox sans
    allow-same-origin, donc il ne peut lire ni les comptes, ni les données, ni
    le reste de la page. Il annonce sa hauteur par message, on l'écoute. */
 function pageCadre(code){
@@ -1052,65 +964,40 @@ function pageCadre(code){
     +'<meta name="viewport" content="width=device-width,initial-scale=1">'
     +'<style>html,body{margin:0;padding:0;background:#000;color:#fff;'
     +'font-family:Georgia,serif}*{box-sizing:border-box}'
-    /* ── L'ASCENSEUR DU CADRE PORTE L'ACCENT DU SITE (12/09) ──
-       Le contenu vit dans son propre document : la feuille de style du site
-       ne l'atteint pas, et sa barre de défilement était celle du navigateur,
-       claire et large, la seule pièce du plein écran à ne pas être de la
-       maison. On lui pose donc les mêmes règles qu'aux pages : filet mince à
-       l'or du site sur fond transparent, et color-scheme sombre pour que tout
-       ce que le navigateur dessine de lui-même suive la même nuit. */
+    /* ── L'ASCENSEUR DU CADRE PORTE L'ACCENT DU SITE ──
+       La feuille de style du site n'atteint pas le document du cadre : on lui
+       pose les mêmes règles qu'aux pages (filet mince à l'accent, fond
+       transparent) et un color-scheme sombre pour ce que le navigateur
+       dessine de lui-même. */
     +'html{color-scheme:dark}'
     +'*{scrollbar-width:thin;scrollbar-color:rgba(239,230,207,.35) transparent}'
     +'::-webkit-scrollbar{width:10px;height:10px}'
     +'::-webkit-scrollbar-track{background:transparent}'
     +'::-webkit-scrollbar-thumb{background:rgba(239,230,207,.35);background-clip:content-box;border:3px solid transparent;border-radius:99px}'
     +'::-webkit-scrollbar-thumb:hover{background:rgba(239,230,207,.6);background-clip:content-box;border:3px solid transparent}'
-    /* le texte du diagramme reste sélectionnable au doigt : sur mobile, la
-       copie à l'ancienne, par appui long, doit rester possible */
+    /* le texte reste sélectionnable au doigt : sur mobile, la copie par
+       appui long reste possible */
     +'body{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}'
-    /* Le cadre est TOUJOURS taillé à la hauteur exacte de son contenu : un
-       ascenseur à l'intérieur n'aurait donc jamais rien à faire défiler, et
-       s'il apparaît c'est le signe d'un écart de quelques pixels entre la
-       mesure et le rendu. Sous Windows il prend en plus sa place et vole
-       quinze pixels de largeur, ce qui suffit à décaler la mise en page.
-       On le retire donc franchement. */
+    /* Posé dans la page, le cadre est taillé à la hauteur exacte de son
+       contenu : un ascenseur n'y paraîtrait que pour un écart de quelques
+       pixels, et sous Windows il volerait quinze pixels de largeur. Il est
+       fermé d'office (le plein écran le rouvre, voir plus bas). */
     +'html{overflow:hidden}'
-    /* Le contenu est enfermé dans une boîte qu'on peut mesurer. display:flow-root
-       empêche les marges de ses enfants de s'échapper : sans cela la boîte
-       serait annoncée plus courte que ce qu'elle occupe et le bas du diagramme
-       se ferait couper. */
+    /* Le contenu est enfermé dans une boîte mesurable. display:flow-root
+       retient les marges de ses enfants : sans cela la boîte serait annoncée
+       trop courte et le bas du contenu coupé. */
     +'#lv-mesure{display:flow-root}</style></he'+'ad><body>'
     +'<div id="lv-mesure">'+code+'</div>'
     +'<scr'+'ipt>(function(){'
-    /* ── LA HAUTEUR SE MESURE SUR LE CONTENU, PAS SUR LA PAGE ──
-       On lisait avant document.documentElement.scrollHeight, qui ne descend
-       JAMAIS sous la hauteur de la fenêtre du cadre, laquelle est justement la
-       hauteur qu'on vient de donner au cadre. Le chiffre annoncé ne pouvait
-       donc que monter : en dépliant une section le cadre grandissait, en la
-       repliant il restait grand, et chaque aller-retour ajoutait sa bande
-       noire sous le diagramme. On mesure maintenant la boîte du contenu, qui
-       rétrécit quand le contenu rétrécit. */
-    /* On ne mesure pas la BOÎTE du contenu mais son DERNIER PIXEL VISIBLE :
-       on parcourt les éléments et on retient le bord bas le plus loin. La
-       différence n'est pas théorique. Le diagramme se termine par sa ligne
-       « cliquez sur un élément », qui porte une marge basse ; cette marge fait
-       partie de la boîte sans rien afficher, et se lisait donc comme une bande
-       noire sous le diagramme, présente aussi bien replié que déplié. */
-    /* ── CE QUI EST REPLIÉ OCCUPE ENCORE DE LA PLACE, POUR QUI MESURE MAL ──
-       Une section repliée garde tout son contenu dans la page : l'enveloppe
-       qui la referme descend à zéro et coupe ce qui dépasse, mais le bloc
-       enfermé dedans, lui, conserve sa taille entière. Le parcours à plat des
-       éléments lisait donc le bas de ce contenu invisible, plusieurs centaines
-       de pixels sous la dernière ligne réellement affichée, et le cadre
-       s'étirait d'autant : une longue bande noire sous un diagramme tout
-       replié. C'est le débordement qui dépassait, pas le diagramme.
-       La mesure descend maintenant l'arbre au lieu de le parcourir à plat, et
-       elle emporte avec elle la limite de ce que l'on voit : chaque fois
-       qu'elle traverse un élément qui coupe ce qui dépasse, elle retient son
-       bord bas comme nouvelle limite, et tout ce qui se trouve en dessous est
-       ramené à cette limite. Un sous-arbre masqué, par l'affichage ou par la
-       visibilité, sort du compte avec toute sa descendance. Le chiffre annoncé
-       est ainsi le dernier pixel VU, quoi que contienne le diagramme. */
+    /* ── LA HAUTEUR EST CELLE DU DERNIER PIXEL VISIBLE ──
+       Ni la hauteur de la page du cadre (elle ne descend jamais sous celle
+       du cadre, donc ne ferait que grandir), ni la boîte du contenu (une
+       marge basse y compterait comme une bande noire). La mesure descend
+       l'arbre des éléments et retient le bord bas le plus loin. Elle emporte
+       la limite de ce qu'on voit : un élément qui coupe ce qui dépasse (une
+       section repliée) devient la nouvelle limite pour ses descendants, et un
+       sous-arbre masqué sort du compte. Le chiffre annoncé est le dernier
+       pixel vu. */
     +'var w=document.getElementById("lv-mesure"),dernier=-1,demande=0;'
     +'function scrute(e,coupe){var cs=getComputedStyle(e);'
     +'if(cs.display==="none"||cs.visibility==="hidden")return 0;'
@@ -1124,59 +1011,34 @@ function pageCadre(code){
     +'return m+(window.pageYOffset||0);}'
     +'function h(){if(!w)return;var n=Math.ceil(bas());'
     +'if(n<=0)n=Math.ceil(Math.max(w.getBoundingClientRect().height,w.scrollHeight));'
-    /* Le recensement des éléments collants est demandé à chaque remaniement,
-       même quand la hauteur totale ne bouge pas : la barre de sélection qui
-       apparaît décale le point d'accrochage des titres de sections, et c'est
-       un changement de position sans changement de hauteur. */
+    /* Le recensement des éléments collants est demandé à chaque mesure, même
+       sans changement de hauteur : une barre de sélection qui apparaît décale
+       l'accroche des titres sans rien changer à la hauteur. */
     +'planRecense();'
     +'if(n===dernier)return;dernier=n;'
-    /* On taille aussi la boîte à cette hauteur. Sans cela il reste sous le
-       dernier élément une marge basse qui n'affiche rien mais qui rend la page
-       du cadre défilable de quelques pixels : le diagramme se décalait sous le
-       doigt ou la molette sans qu'on voie pourquoi. La boîte étant close, la
-       page du cadre fait exactement la hauteur de ce qu'elle montre. */
+    /* La boîte est taillée à cette hauteur : sans cela une marge basse rendrait
+       la page du cadre défilable de quelques pixels, et le contenu glisserait
+       sous le doigt sans raison visible. */
     +'w.style.height=n+"px";demande=n;'
-    /* ── QUI DÉFILE, ET QUAND (Emmanuel, 12/09 : « vérifie si on peut bien
-       scroller ») ──
-       Posé dans la page, le cadre fait la hauteur exacte de son contenu : rien
-       n'a à défiler chez lui, et son ascenseur reste fermé. En PLEIN ÉCRAN, le
-       cadre fait l'écran et le contenu le dépasse : c'est lui, alors, qui doit
-       défiler. Le cadre le voit tout seul en comparant la hauteur mesurée à
-       celle de sa propre fenêtre, si bien qu'un livre de cent cinquante mille
-       pixels se parcourt du doigt comme à la molette. */
+    /* ── QUI DÉFILE, ET QUAND ──
+       Posé dans la page, le cadre fait la hauteur de son contenu : son
+       ascenseur reste fermé. En plein écran, le cadre fait l'écran et le
+       contenu le dépasse : c'est lui qui défile. Il le voit seul en comparant
+       la hauteur mesurée à celle de sa fenêtre. */
     +'document.documentElement.style.overflow=(n>window.innerHeight+1)?"auto":"hidden";'
     +'try{parent.postMessage({lvHaut:n},"*");}catch(e){}}'
-    /* ── CE QUI COLLE EN HAUT DOIT SUIVRE LA LECTURE ──
-       Ouvert seul dans un navigateur, le diagramme voit sa barre « Explorer »
-       et ses titres de sections rester au bord haut de l'écran pendant tout le
-       défilement : ils sont posés en « collant », et le collant s'accroche à
-       ce qui défile. Ici, c'est LA PAGE qui défile, jamais le cadre : celui-ci
-       fait exactement la hauteur du diagramme et n'a rien à faire glisser.
-       Le collant n'avait donc rien à quoi s'accrocher et restait au point où
-       il était né, tout en haut du diagramme. On sélectionnait trois cartes en
-       bas de page, et il fallait remonter chercher le bouton.
-       La page dit maintenant au cadre où en est la lecture : à chaque
-       défilement elle lui envoie la hauteur de diagramme déjà passée sous le
-       bord haut de l'écran, sous la barre du site. Le cadre reconnaît tout
-       seul ses éléments collants, quels qu'ils soient, et les fait glisser
-       d'autant, sans jamais les laisser sortir du bloc auquel ils
-       appartiennent, exactement comme le ferait le navigateur. Le mouvement
-       passe par une translation, que l'écran compose sans refaire la mise en
-       page : le geste reste fluide sur un long diagramme.
-       La barre « Explorer » et le titre de la section ouverte accompagnent
-       ainsi la lecture, et l'on copie sa sélection de là où on la fait. */
+    /* ── CE QUI COLLE EN HAUT SUIT LA LECTURE ──
+       Quand c'est la page qui défile et non le cadre (cadre posé dans la
+       page, à sa hauteur exacte), les éléments « collants » du contenu n'ont
+       rien à quoi s'accrocher. La page envoie alors au cadre la hauteur de
+       contenu passée sous le bord haut de la lecture ; le cadre recense ses
+       éléments collants et les fait glisser d'autant par une translation
+       (fluide, sans refaire la mise en page), sans sortir de leur bloc. En
+       plein écran, le cadre défile lui-même et la page n'envoie rien. */
     +'var vueHaut=0,collants=[],attente=0;'
-    /* ── CHAQUE RECENSEMENT REND SA PLACE À CE QUI NE COLLE PLUS ──
-       Un titre de section n'est collant que pendant que sa section est ouverte.
-       Tant qu'il l'est, il porte une translation qui le fait descendre avec la
-       lecture. Au repli, il sort du recensement suivant, et la translation
-       posée sur lui restait en place : le titre demeurait figé à la hauteur où
-       la lecture l'avait laissé, plusieurs centaines de pixels sous sa vraie
-       ligne, si bien que l'ordre des sections paraissait bouleversé et qu'un
-       grand vide s'ouvrait au milieu du diagramme.
-       Le recensement remet donc à zéro toutes les translations qu'il a posées
-       avant de refaire sa liste : ceux qui collent encore la reçoivent de
-       nouveau dans la foulée, les autres retrouvent leur place. */
+    /* Chaque recensement remet à zéro les translations qu'il a posées avant de
+       refaire sa liste : un titre qui ne colle plus (section repliée)
+       retrouve sa place au lieu de rester figé plus bas. */
     +'function recense(){var j;for(j=0;j<collants.length;j++){'
     +'collants[j].e.style.transform="";collants[j].d=0;}'
     +'collants=[];var l=w.getElementsByTagName("*"),i,cs,t;'
@@ -1184,10 +1046,9 @@ function pageCadre(code){
     +'if(cs.position==="sticky"){t=parseFloat(cs.top);'
     +'if(t===t)collants.push({e:l[i],t:t,d:0});}}'
     +'colle();}'
-    /* Le recensement se refait après chaque changement de hauteur, c'est-à-dire
-       à chaque ouverture ou repli de section : un titre ne devient collant que
-       lorsque sa section s'ouvre. Le délai laisse l'animation finir et ramène
-       toute une cascade de mesures à un seul parcours. */
+    /* Le recensement se refait après chaque ouverture ou repli de section. Le
+       délai laisse l'animation finir et ramène une cascade de mesures à un
+       seul parcours. */
     +'function planRecense(){clearTimeout(attente);attente=setTimeout(recense,180);}'
     /* La position naturelle se retrouve en retirant la translation déjà posée :
        une translation ne change rien à la mise en page, le bloc parent garde
@@ -1199,27 +1060,22 @@ function pageCadre(code){
     +'max=pr.bottom-nat-r.height;if(max<0)max=0;if(d>max)d=max;'
     +'if(d!==s.d){s.d=d;e.style.transform=d?("translateY("+d+"px)"):"";}}}'
     /* ── LA PAGE RÉPOND CE QU'ELLE A PU DONNER ──
-       Elle refuse au-delà d'une certaine hauteur, par prudence. Tant que le
-       cadre l'ignorait, un grand diagramme entièrement déplié dépassait ce
-       plafond et TOUT CE QUI EST AU-DELÀ DISPARAISSAIT, sans bande, sans
-       ascenseur, sans rien pour le signaler : coupé net. Le cadre écoute donc
-       la réponse. S'il a eu ce qu'il demandait, il verrouille son défilement
-       comme prévu ; s'il a eu moins, il le rouvre, et le peu qui dépasse
-       redevient atteignable. Rien ne peut plus être perdu. */
-    /* ── LA PLACE OÙ L'ON EN ÉTAIT (Emmanuel, 12/09) ──
-       En plein écran, c'est le cadre qui défile : lui seul sait où le lecteur
-       s'est arrêté. Il le dit à la page, qui le garde ; en rouvrant, la page
-       le lui rend et il s'y repose. Plusieurs tentatives, car le contenu
-       s'installe (polices, images, sections) après les premières images. */
-    /* ── LA PLACE SE RETROUVE SUR UN AUTRE ÉCRAN (Emmanuel, 26/09 : « harmonise
-       ça entre mobile et pc ») ──
-       Un nombre de pixels ne dit la place que sur un écran de même largeur :
-       sur téléphone, le texte se replie en plus de lignes et le même chiffre
-       tombe bien plus haut. Le cadre retient donc aussi un REPÈRE : l'élément
-       qui passe au tiers de l'écran (hors barres collantes), désigné par son
-       chemin dans le contenu, et la fraction de lui-même qui s'y trouve. Sur
-       un écran de même largeur, le chiffre sert tel quel ; sur un autre, on
-       ramène ce repère au même tiers d'écran. */
+       Elle plafonne la hauteur par prudence. Le cadre écoute la réponse : s'il
+       a eu moins que demandé, il rouvre son défilement pour que rien de ce qui
+       dépasse ne soit perdu. */
+    /* ── LA PLACE OÙ L'ON EN ÉTAIT ──
+       En plein écran, le cadre défile : lui seul sait où le lecteur s'est
+       arrêté. Il le dit à la page, qui le garde et le lui rend à la
+       réouverture. Plusieurs tentatives, car le contenu s'installe (polices,
+       images, sections) après les premières images. */
+    /* ── LA PLACE SE RETROUVE SUR UN AUTRE ÉCRAN (Emmanuel : « harmonise ça
+       entre mobile et pc ») ──
+       Un nombre de pixels ne vaut que pour une même largeur d'écran. Le cadre
+       retient donc aussi un repère : l'élément qui passe vers le tiers de
+       l'écran (hors barres collantes), désigné par son chemin dans le
+       contenu, et la fraction de lui-même qui s'y trouve. Même largeur : le
+       chiffre sert tel quel ; autre largeur : on ramène le repère au même
+       endroit de l'écran. */
     +'var posVoulue=-1,posInfo=null,posDit=0;'
     +'function chemin(e){var p=[];while(e&&e!==w){var q=e.parentElement;if(!q)return null;p.unshift(Array.prototype.indexOf.call(q.children,e));e=q;}return e===w?p:null;}'
     +'function suit(p){var e=w,i;for(i=0;i<p.length;i++){e=e.children[p[i]];if(!e)return null;}return e;}'
@@ -1234,11 +1090,10 @@ function pageCadre(code){
     +'try{parent.postMessage({lvPos:y,lvPosInfo:{y:y,l:window.innerWidth,h:document.documentElement.scrollHeight,a:a}},"*");}catch(e){}}'
     +'function planPos(){if(posDit)return;posDit=setTimeout(ditPos,220);}'
     +'window.addEventListener("scroll",planPos,{passive:true});'
-    /* ── LE GESTE DU LECTEUR CLÔT LA REPRISE (12/09) ──
+    /* ── LE GESTE DU LECTEUR CLÔT LA REPRISE ──
        La place est reposée plusieurs fois, le temps que le contenu s'installe.
-       Un lecteur qui prend la molette ou le doigt dans cette seconde-là se
-       voyait ramené en arrière par la reprise suivante. Son premier geste met
-       donc fin aux reprises : à partir de là, c'est lui qui mène. */
+       Le premier geste du lecteur (molette, doigt, clavier) y met fin : c'est
+       lui qui mène, sans être ramené en arrière. */
     +'var posGeste=0;'
     +'function siGeste(){posGeste=1;}'
     +'window.addEventListener("wheel",siGeste,{passive:true});'
@@ -1256,17 +1111,13 @@ function pageCadre(code){
     +'if(d.lvVue&&typeof d.lvVue.haut==="number"){vueHaut=d.lvVue.haut;colle();return;}'
     +'if(typeof d.lvApplique!=="number")return;'
     +'document.documentElement.style.overflow=(d.lvApplique<demande-1)?"auto":"hidden";});'
-    /* ── LES LIENS INTERNES DU CONTENU RESTENT CHEZ LUI (12/09) ──
-       Le cadre est écrit par srcdoc : son adresse de base est celle de LA
-       PAGE, pas la sienne. Un lien de sommaire « #ch13 » ne désignait donc pas
-       le chapitre treize du livre mais l'ancre treize de ressources.html, et
-       le cadre partait charger la page du site à la place du livre : le
-       sommaire faisait disparaître le livre.
-       On reconnaît donc ces liens au moment du clic et on fait le travail
-       nous-mêmes : on cherche la cible dans le contenu et on l'amène en haut
-       de la lecture. Le cadre défile en plein écran, et c'est lui qui bouge ;
-       posé dans la page, il ne défile pas, et il demande alors à la page de
-       porter la lecture à la bonne hauteur. */
+    /* ── LES LIENS INTERNES DU CONTENU RESTENT CHEZ LUI ──
+       Le cadre est écrit par srcdoc : son adresse de base est celle de la
+       page, si bien qu'un lien « #ch13 » chargerait ressources.html dans le
+       cadre à la place du contenu. Ces liens sont donc pris au clic : on
+       cherche la cible dans le contenu et on l'amène en haut. Si le cadre
+       défile, c'est lui qui bouge ; sinon il demande à la page de porter la
+       lecture à la bonne hauteur. */
     +'document.addEventListener("click",function(e){'
     +'if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;'
     +'var a=e.target&&e.target.closest?e.target.closest("a"):null;if(!a)return;'
@@ -1285,49 +1136,38 @@ function pageCadre(code){
     +'window.addEventListener("resize",function(){h();planRecense();});'
     +'setTimeout(h,120);setTimeout(h,600);setTimeout(recense,700);'
     /* ── QUI SURVEILLE QUOI ──
-       On ferme la boîte à la hauteur mesurée, donc elle ne bouge plus : la
-       surveiller ELLE ne dirait plus jamais rien, et un diagramme qu'on déplie
-       resterait coupé à sa hauteur du moment. Ce sont donc les éléments QU'ELLE
-       CONTIENT qu'on surveille, eux qui grandissent et rétrécissent pour de
-       bon. */
+       La boîte est fermée à la hauteur mesurée et ne bouge plus : on surveille
+       donc les éléments qu'elle contient, eux qui grandissent et rétrécissent. */
     +'if(window.ResizeObserver){var ro=new ResizeObserver(h),k;'
     +'for(k=0;k<w.children.length;k++)ro.observe(w.children[k]);'
     +'if(!w.children.length)ro.observe(w);}'
     /* ── LA COPIE PASSE PAR LA PAGE ──
-       Le cadre n'a pas le droit d'écrire dans le presse-papier : il est en
-       bac à sable sans allow-same-origin, donc d'origine opaque, et le
-       navigateur lui refuse l'accès sans un mot dire. Le diagramme croyait
-       copier, son ✓ s'affichait, et rien n'était copié. On intercepte donc
-       l'appel et on fait faire le travail à la page, qui a le droit. La
-       tentative directe est conservée : là où elle passe, elle passe. */
+       En bac à sable sans allow-same-origin, le cadre est d'origine opaque :
+       le navigateur lui refuse le presse-papier sans le dire. On intercepte
+       l'appel et la page, qui en a le droit, fait le travail. La tentative
+       directe est gardée : là où elle passe, elle passe. */
     +'function relais(t){try{parent.postMessage({lvCopie:String(t)},"*");}catch(e){}}'
-    /* ── LA COPIE SE FAIT SUR PLACE, DANS LE GESTE, *ET* PAR LA PAGE ──
-       Le relais vers la page arrive par message, donc APRÈS le doigt : la page
-       n'a plus le « geste récent » que les navigateurs exigent pour toucher au
-       presse-papier. Chrome ferme les yeux, Brave non. On copie donc aussi ici
-       même, pendant le clic, par la vieille commande de copie, qui n'a besoin
-       ni d'origine ni de permission, seulement du geste.
-       LES DEUX SONT TENTÉES À CHAQUE FOIS, et c'est le point. La vieille
-       commande RÉPOND « réussi » même quand le navigateur a bloqué l'écriture
-       (vérifié : dans un cadre en bac à sable, elle renvoie vrai sans que rien
-       n'atterrisse dans le presse-papier). Sa réponse ne peut donc pas servir
-       à décider s'il faut relayer : on relaie toujours. Deux écritures du même
-       texte ne coûtent rien, et il suffit qu'une seule passe. */
+    /* ── LA COPIE SE FAIT SUR PLACE, DANS LE GESTE, ET PAR LA PAGE ──
+       Le relais arrive par message, donc après le geste : certains navigateurs
+       (Brave) refusent alors le presse-papier à la page. On copie donc aussi
+       ici même, pendant le clic, par la vieille commande de copie, qui n'a
+       besoin que du geste.
+       Les deux sont tentées à chaque fois : la vieille commande répond
+       « réussi » même quand l'écriture a été bloquée dans un cadre en bac à
+       sable, sa réponse ne peut donc pas décider du relais. Deux écritures du
+       même texte ne coûtent rien. */
     /* ── OÙ SE POSE LE CHAMP DE COPIE ──
-       Il se posait en haut du cadre. Or sélectionner un champ le fait amener à
-       l'écran, et le cadre ne défile pas lui-même : c'est LA PAGE qui bougeait,
-       et l'on se retrouvait ramené en haut du diagramme à chaque copie. Il se
-       pose donc désormais à la hauteur du doigt, là où l'on est déjà : amener
-       cet endroit à l'écran ne déplace rien. Et le focus est demandé sans
-       défilement, ce que les navigateurs savent faire. */
+       À la hauteur du doigt : sélectionner un champ l'amène à l'écran, et un
+       champ posé ailleurs ferait sauter la lecture à chaque copie. Le focus
+       est demandé sans défilement. */
     +'var lvY=0;'
     +'function lvPose(e){var y=e&&e.pageY;if(typeof y==="number"&&y>=0)lvY=y;}'
     +'document.addEventListener("pointerdown",lvPose,true);'
     +'document.addEventListener("click",lvPose,true);'
     +'function surPlace(t){try{var z=document.createElement("textarea");z.value=String(t);'
     +'z.setAttribute("readonly","");'
-    /* rendu mais invisible : masqué pour de bon, rien ne serait sélectionnable ;
-       16px sinon iOS zoome de lui-même au moment de la sélection */
+    /* rendu mais invisible (masqué, rien ne serait sélectionnable) ; 16px,
+       sinon iOS zoome de lui-même à la sélection */
     +'z.style.cssText="position:absolute;left:0;width:1px;height:1px;padding:0;border:0;font-size:16px;opacity:0";'
     +'z.style.top=Math.max(0,lvY-8)+"px";'
     +'document.body.appendChild(z);var ok=false;'
@@ -1343,27 +1183,24 @@ function pageCadre(code){
     +'if(nat)return nat(v).catch(function(){return undefined;});return Promise.resolve();},'
     +'readText:function(){return Promise.reject(new Error("indisponible"));}}});}catch(e){}'
     +'})();</scr'+'ipt>'
-    /* Balise fermante coupée en deux : le build injecte son script sur la
-       PREMIERE balise de fermeture du corps qu'il trouve dans le fichier, et
-       il tomberait sinon au milieu de cette chaîne. Ne pas la recoller, et ne
-       jamais écrire cette balise en clair dans ce fichier, commentaires
-       compris. */
+    /* Balise fermante coupée en deux : la fabrication injecte son script sur
+       la première balise de fermeture du corps qu'elle trouve dans le
+       fichier, et tomberait sinon au milieu de cette chaîne. Elle reste
+       coupée, et cette balise ne s'écrit en clair nulle part avant la vraie,
+       en fin de page, commentaires compris. */
     +'</bo'+'dy></html>';
 }
-/* Un diagramme annonce sa hauteur ; on l'écoute pour ne laisser ni bande
-   blanche ni ascenseur inutile. */
-/* Copie de secours, à l'ancienne : un champ posé hors champ, sélectionné, puis
-   la commande de copie du navigateur. Il doit rester RENDU (ni display:none ni
-   visibility:hidden), sinon rien n'est sélectionnable, et sa police à 16px, en
-   dessous de quoi iOS zoome tout seul au moment de la sélection. */
+/* Copie de secours : un champ posé hors champ, sélectionné, puis la commande
+   de copie du navigateur. Il reste rendu (ni display:none ni
+   visibility:hidden), sinon rien n'est sélectionnable, et sa police est à
+   16px, en dessous de quoi iOS zoome à la sélection. */
 function copieVieille(txt){
   try{
     const z=document.createElement('textarea');
     z.value=txt; z.readOnly=false; z.contentEditable='true';
-    /* posé À LA HAUTEUR OÙ L'ON LIT, pas en haut de la page : sélectionner un
-       champ le fait amener à l'écran, et un champ posé en haut ramenait donc
-       la page tout en haut à chaque copie. Le focus est en plus demandé sans
-       défilement. */
+    /* posé à la hauteur où l'on lit : sélectionner un champ l'amène à
+       l'écran, un champ en haut ramènerait la page en haut. Le focus est
+       demandé sans défilement. */
     z.style.cssText='position:absolute;left:-9999px;width:1px;height:1px;font-size:16px;opacity:0';
     z.style.top=(window.pageYOffset||document.documentElement.scrollTop||0)+'px';
     document.body.appendChild(z);
@@ -1376,30 +1213,24 @@ function copieVieille(txt){
     return true;
   }catch(e){return false;}
 }
-/* Un diagramme annonce sa hauteur ; on l'écoute pour ne laisser ni bande
-   blanche ni ascenseur inutile. Il demande aussi les copies, n'ayant pas le
-   droit de les faire lui-même. On ne répond qu'aux cadres de cette page :
-   n'importe quel onglet peut envoyer un message, aucun ne doit pouvoir écrire
-   dans le presse-papier par ce chemin. */
+/* Les messages des cadres : hauteur, ancre, place, état, progression,
+   copies. On ne répond qu'aux cadres de cette page : n'importe quel onglet
+   peut envoyer un message, aucun ne doit pouvoir écrire dans le
+   presse-papier par ce chemin. */
 window.addEventListener('message',e=>{
   const d=e.data; if(!d)return;
   let cadre=null;
   document.querySelectorAll('iframe[data-diag]').forEach(f=>{if(f.contentWindow===e.source)cadre=f;});
   if(!cadre)return;
   if(typeof d.lvHaut==='number'){
-    /* Pas un pixel de rab : le cadre vaut exactement ce que le diagramme
-       annonce. Les deux pixels ajoutés « au cas où » se voyaient.
-       LE PLAFOND N'EST PAS UNE MISE EN PAGE, C'EST UN GARDE-FOU. Il était à
-       quatre mille pixels, ce qu'un diagramme d'une dizaine de sections
-       entièrement dépliées dépasse largement : mesuré à neuf mille six cent
-       soixante-quinze sur un cas d'essai. Tout le bas était alors perdu.
-       On le monte à quarante mille, hors d'atteinte d'un vrai diagramme, et
-       il ne sert plus qu'à ce pour quoi il est fait : arrêter un chiffre
-       aberrant. On renvoie en plus au cadre la hauteur réellement accordée,
-       pour qu'il rouvre son défilement dans le cas, désormais improbable, où
-       elle serait inférieure à ce qu'il demandait. */
+    /* Le cadre vaut exactement ce que le contenu annonce, sans pixel de rab.
+       Le plafond de quarante mille pixels n'est qu'un garde-fou contre un
+       chiffre aberrant, hors d'atteinte d'un vrai diagramme déplié. La
+       hauteur accordée est renvoyée au cadre, qui rouvre son défilement si
+       elle est inférieure à sa demande. */
     /* En plein écran, le cadre fait l'écran : la hauteur annoncée ne le
-       concerne pas, et le contenu fait glisser lui-même ce qui colle. */
+       concerne pas. Les codes de cette page s'ouvrant tous en plein écran,
+       la suite ne sert qu'à un cadre posé dans la page. */
     if(cadre.classList.contains('res-plein'))return;
     const accorde=Math.max(40,Math.min(40000,Math.round(d.lvHaut)));
     cadre.style.height=accorde+'px';
@@ -1407,9 +1238,9 @@ window.addEventListener('message',e=>{
     suitVue();
     return;
   }
-  /* Le cadre posé dans la page ne défile pas lui-même : quand un lien interne
-     de son contenu désigne un endroit plus bas, c'est la page qui porte la
-     lecture jusque-là, sous la barre du site. */
+  /* Un cadre qui ne défile pas lui-même : quand un lien interne de son
+     contenu désigne un endroit plus bas, c'est la page qui porte la lecture
+     jusque-là, sous la barre du site. */
   if(typeof d.lvAncre==='number'){
     const r=cadre.getBoundingClientRect();
     const y=r.top+(window.pageYOffset||0)+d.lvAncre-hautLecture()-8;
@@ -1425,14 +1256,12 @@ window.addEventListener('message',e=>{
     }
     return;
   }
-  /* ── L'ÉTAT DU CONTENU EST GARDÉ PAR LA PAGE (Emmanuel, 12/09) ──
-     Le cadre est en bac à sable, donc d'origine opaque : le stockage local lui
-     est fermé, et il ne peut rien garder lui-même d'une visite à l'autre. Il
-     envoie donc son état à la page, qui le garde par ressource et le lui rend
-     à la réouverture, exactement comme elle garde déjà la place de lecture.
-     La page ne lit pas cet état : elle le range tel quel et le rend tel quel,
-     si bien que chaque contenu y met ce qui lui est propre, sections dépliées,
-     chapitre ouvert au sommaire, épaisseur de lecture choisie. */
+  /* ── L'ÉTAT DU CONTENU EST GARDÉ PAR LA PAGE ──
+     D'origine opaque, le cadre n'a pas de stockage local. Il envoie son état
+     à la page, qui le garde par ressource et le lui rend à la réouverture,
+     comme la place de lecture. La page ne lit pas cet état : elle le range et
+     le rend tel quel, chaque contenu y met ce qui lui est propre (sections
+     dépliées, chapitre ouvert, épaisseur de lecture). */
   if(typeof d.lvEtat!=='undefined'&&d.lvEtat!==null){
     const id=cadre.dataset.res;
     /* tant que l'état gardé n'a pas été rendu au cadre, ce qu'il envoie n'est
@@ -1476,16 +1305,14 @@ function rendEtat(cadre){
 }
 
 /* ── L'ÉTAT ET LA PLACE SUIVENT LE LECTEUR D'UN APPAREIL À L'AUTRE
-   (Emmanuel, 26/09 : « harmonise ça entre mobile et pc ») ──
-   Jusqu'ici, l'état d'une ressource (sections ouvertes, sujets cochés,
-   réglages) et la place de lecture ne vivaient que dans le stockage de
-   l'appareil : ce qu'on cochait sur le PC restait sur le PC. Ils sont
-   maintenant aussi rangés dans l'espace du compte, une fiche par ressource
-   (users/…/res_lecture/…), chaque valeur avec son heure. À l'ouverture, on lit
-   la fiche, et la plus récente des deux versions l'emporte, celle de
-   l'appareil ou celle du compte. L'écriture vers le compte est groupée (une
-   toutes les secondes et demie au plus) et partie aussitôt quand la page se
-   cache, se quitte ou qu'on revient aux ressources. */
+   (Emmanuel : « harmonise ça entre mobile et pc ») ──
+   L'état d'une ressource (sections ouvertes, réglages) et la place de
+   lecture vivent dans le stockage de l'appareil et dans l'espace du compte,
+   une fiche par ressource (users/…/res_lecture/…), chaque valeur avec son
+   heure. À l'ouverture, la plus récente des deux versions l'emporte.
+   L'écriture vers le compte est groupée (une toutes les secondes et demie au
+   plus) et part aussitôt quand la page se cache, se quitte ou qu'on revient
+   aux ressources. */
 const LECT={att:{},minuteur:0};
 function lLit(q,id){try{return localStorage.getItem('lv_res_'+q+'_'+id);}catch(_){return null;}}
 function lMaj(q,id){return parseInt(lLit(q+'maj',id)||'0',10)||0;}
@@ -1524,23 +1351,18 @@ function rapatrie(id){
   return Promise.race([lu,new Promise(r=>setTimeout(r,2500))]);
 }
 
-/* ── LA PROGRESSION D'UN PARCOURS EST ÉCRITE DANS SON FICHIER
-   (Emmanuel, 26/09 : « je vais mettre à jour le fichier parcours avec
-   Claude, c'est pour ça que je veux que ce soit le fichier qui se modifie ») ──
-   Un parcours porte, en tête de son code, un petit bloc réservé à la
-   progression : <script type="application/json" id="lv-progression">.
-   Quand un sujet change d'état, le parcours envoie {lvProgression:{maj,sujets}}
-   et la page réécrit CE BLOC SEUL dans le code de la ressource. Le reste du
-   fichier n'est jamais touché. Le fichier téléchargé porte donc les coches,
-   et Claude les voit quand on lui confie le parcours.
-   L'écriture relit le code dans le nuage au moment d'écrire (transaction) :
-   un appareil qui aurait gardé une ancienne version du parcours n'écrase
-   jamais la nouvelle, il y inscrit seulement la progression.
-   UN COURS FAIT DE MÊME (Emmanuel, 27/09 : « ça doit faire comme la skill de
-   parcours, et enregistrer le code du fichier ») : son bloc porte, à côté de
-   l'heure, les affirmations « Je sais… » cochées, sous « acquis ». La page
-   garde l'une et l'autre forme, et le fichier du cours téléchargé porte ses
-   coches comme celui d'un parcours. */
+/* ── LA PROGRESSION D'UN PARCOURS OU D'UN COURS EST ÉCRITE DANS SON FICHIER
+   (Emmanuel : « je vais mettre à jour le fichier parcours avec Claude,
+   c'est pour ça que je veux que ce soit le fichier qui se modifie ») ──
+   Le fichier porte, en tête, un petit bloc JSON réservé à la progression,
+   d'identifiant lv-progression : les « sujets » d'un parcours, les « acquis »
+   (« Je sais… » cochés) d'un cours. Quand elle change, le contenu envoie
+   {lvProgression:…} et la page réécrit ce bloc seul dans le code de la
+   ressource, sans toucher au reste. Le fichier téléchargé porte donc les
+   coches, et Claude les voit.
+   L'écriture relit le code dans la base au moment d'écrire (transaction) :
+   un appareil qui garde une ancienne version n'écrase jamais la nouvelle, il
+   y inscrit seulement la progression. */
 const PROG={att:{},minuteur:0};
 const PROG_BLOC=/<script\b[^>]*\bid=["']lv-progression["'][^>]*>[\s\S]*?<\/script>/i;
 const PROG_ETATS=['en-cours','termine','a-revoir'];
@@ -1629,19 +1451,12 @@ function pousseProgression(){
 document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='hidden')pousseProgression(); });
 window.addEventListener('pagehide',pousseProgression);
 
-/* ── LA PAGE DIT AU DIAGRAMME OÙ EN EST LA LECTURE ──
-   Le cadre fait la hauteur exacte du diagramme et ne défile donc jamais : ce
-   qu'il tient pour « le haut de l'écran » est le haut du diagramme, et sa
-   barre « Explorer » restait plantée là, tout en haut, alors que le lecteur
-   était descendu. On lui envoie la seule chose qui lui manque : combien de
-   diagramme est déjà passé au-dessus du bord haut de la zone de lecture. Il
-   fait glisser lui-même ce qui doit rester visible.
-   Le bord haut de la lecture n'est pas le bord de la fenêtre : la barre du
-   site y est posée et couvre ce qui passe dessous. On lui rend donc sa
-   hauteur, mesurée à l'instant, pour que le bouton se fige juste en dessous
-   au lieu de disparaître derrière.
-   L'envoi est calé sur le rythme d'affichage de l'écran : un message par
-   image, pas un par pixel parcouru. */
+/* ── LA PAGE DIT AU CADRE OÙ EN EST LA LECTURE ──
+   Pour un cadre posé dans la page (pas en plein écran), qui ne défile
+   jamais : on lui envoie combien de contenu est passé au-dessus du bord haut
+   de la lecture, c'est-à-dire sous la barre du site, mesurée à l'instant. Il
+   fait glisser lui-même ce qui doit rester visible. L'envoi est calé sur le
+   rythme d'affichage : un message par image, pas un par pixel. */
 let vuePrevue=0;
 function diffuseVue(){
   vuePrevue=0;
@@ -1662,9 +1477,9 @@ function carteRessource(r,publik){
   const d=document.createElement('div');
   d.className='carte'+(S.pris.has('c:'+r.id)?' pris':''); d.dataset.rid2=r.id;
   d.setAttribute('role','button'); d.setAttribute('tabindex','0');
-  /* Pas d'aperçu : une carte porte son titre et son état, rien de plus. Une
-     miniature qui ne montre rien vaut moins qu'un titre lisible. L'espèce, elle,
-     ne se montre plus (Emmanuel, 12/09). */
+  /* Pas d'aperçu : une carte porte sa marque, son titre et sa date. Une
+     miniature qui ne montre rien vaut moins qu'un titre lisible. L'espèce ne
+     se montre pas (choix d'Emmanuel). */
   const m=marqueDe(r);
   d.innerHTML='<div class="ct-bas"><div class="ct-tete">'
     +(m?'<span class="ct-mq" title="'+esc(MARQUES[m].nom)+'" aria-label="'+esc(MARQUES[m].nom)+'">'+svgMarque(m)+'</span>':'')
@@ -1684,9 +1499,9 @@ function grilleDe(liste,publik){
   return g;
 }
 /* ── OÙ L'ON EST ──
-   Une seule variable dit tout : l'identifiant du domaine ou de la section
-   ouverte, vide à la racine. Elle vit aussi dans l'adresse, donc le bouton
-   « précédent » du navigateur remonte d'un cran et un endroit se partage. */
+   Une seule variable dit tout : l'identifiant de la catégorie ou de la
+   section ouverte, vide à la racine. Elle vit aussi dans l'adresse, donc le
+   bouton « précédent » du navigateur remonte d'un cran. */
 function ici(){ return rubValide(S.ouLa) ? S.ouLa : ''; }
 function vaVers(id){
   S.ouLa = id || ''; S.vu='';
@@ -1702,9 +1517,8 @@ function majFil(){
   while(r&&garde++<8){bouts.unshift(r);r=r.parent?rubDe(r.parent):null;}
   /* Le fil ne répète pas l'endroit où l'on est : il n'aligne que le chemin
      qui y mène, chaque maillon ramenant d'un clic. L'endroit courant, lui,
-     devient le titre, en grand, comme le nom d'un livre au-dessus de ses
-     chapitres. À la racine, ni fil ni grand titre : le petit intitulé
-     « Ressources » suffit, tel qu'il est sur la page des articles. */
+     devient le titre, en grand. À la racine, ni fil ni grand titre : le
+     petit intitulé « Ressources » suffit, comme sur la page des articles. */
   let h='<span data-va="">Ressources</span>';
   bouts.slice(0,-1).forEach(x=>{ h+='<i>›</i><span data-va="'+esc(x.id)+'">'+esc(x.nom)+'</span>'; });
   f.innerHTML=bouts.length?h:'';
@@ -1725,23 +1539,17 @@ function rayonDe(r,publik){
 function rendLister(){
   const ou=ici(), publik=!S.auteur;
   majFil();
-  /* le bouton dit ce qu'il va faire À CET ENDROIT : un domaine à la racine,
-     une section dès qu'on est entré quelque part */
+  /* le bouton dit ce qu'il va faire à cet endroit : une catégorie à la
+     racine, une section dès qu'on est entré quelque part */
   const bs=$('b-section'); if(bs)bs.textContent=ou?'+ Nouvelle section':'+ Nouvelle catégorie';
   const h=$('liste'); h.innerHTML='';
-  /* Tant qu'on ne sait pas QUI REGARDE, on ne montre le rangement de personne.
-     La lecture publique part au chargement, avant le compte : quand elle
-     revenait la première, l'auteur voyait s'afficher une seconde la liste
-     publique, puis la sienne par-dessus. */
-  /* les deux boutons de l'auteur arrivent AVEC la liste, pas avant : un
-     élément qui se pose puis se déplace, c'est encore une page qui bouge */
+  /* Tant qu'on ne sait pas qui regarde, on ne montre aucun rangement. Les
+     boutons arrivent avec la liste, pas avant : un élément qui se pose puis
+     se déplace, c'est une page qui bouge. */
   if(S.auteur)$('acts-liste').style.display=pretListe()?'':'none';
   if(S.auteur){majCorbBouton();majChoix();}
   if(!pretListe()){ h.innerHTML='<div class="vide">Chargement…</div>'; return; }
   const fils=enfants(ou), res=ressourcesDe(ou);
-  /* Le compte dit ce que contient l'endroit où l'on est, sous-sections
-     comprises ; à la racine, c'est tout le rayonnage. Un « 5 ressources »
-     au-dessus d'une seule carte laissait croire à une erreur. */
   if(!fils.length&&!res.length){
     if((PUB_ERR&&!S.auteur)||(LISTE_ERR&&S.auteur)){ h.innerHTML='<div class="vide">Les ressources n’ont pas pu être lues.<br>Vérifiez la connexion, puis rechargez la page.</div>'; return; }
     h.innerHTML=ou
@@ -1756,7 +1564,7 @@ function rendLister(){
     fils.forEach(r=>g.appendChild(rayonDe(r,publik)));
     h.appendChild(g);
   }
-  /* Ce qui est ICI vient après les rayons : on descend d'abord, on lit ensuite. */
+  /* Ce qui est ici vient après les rayons : on descend d'abord, on lit ensuite. */
   if(res.length)h.appendChild(grilleDe(res,publik));
 }
 
@@ -1774,11 +1582,8 @@ async function menuRub(id){
   const freres=enfants(r.parent||''), i=freres.findIndex(x=>x.id===id);
   const e=[{cle:'renom',nom:'Renommer'}];
   if(niveau(id)<RUB_MAX)e.push({cle:'sous',nom:'Ajouter une section dedans'});
-  /* « Placer… » remplace Monter / Descendre : une seule liste pour aller
-     n'importe où d'un coup, au lieu d'un cran à la fois. « Ranger dans… »
-     manquait tout à fait : un domaine ou une section ne pouvait pas changer
-     de parent, il fallait le recréer ailleurs et redéplacer chaque ressource
-     une à une (05/09). */
+  /* « Ranger dans… » change le parent d'une catégorie ou d'une section, avec
+     tout ce qu'elle contient, d'un seul geste. */
   e.push({cle:'deplacer',nom:'Ranger dans…',note:r.parent&&rubValide(r.parent)?chemin(r.parent):'à la racine'});
   e.push({cle:'suppr',nom:'Mettre à la corbeille',danger:true});
   const c=await lvChoix(r.nom,e);
@@ -1792,8 +1597,8 @@ async function menuRub(id){
   if(c==='sous'){await nouvelleRub(id);return;}
 
   if(c==='suppr'){
-    /* Le contenu suit le domaine, ou reste : c'est Emmanuel qui le dit, chaque
-       fois qu'il y a quelque chose dedans (12/09). */
+    /* Le contenu suit la catégorie, ou reste : Emmanuel le choisit chaque
+       fois qu'il y a quelque chose dedans. */
     const dedans=compteRub(id), mot=motRub(id);
     let avec=true;
     if(dedans){
@@ -1826,14 +1631,11 @@ async function deplaceRub(id){
   if(!c)return;
   rubDans(id,c.slice(2));
 }
-/* ── L'ARBRE DU RANGEMENT (05/09, Emmanuel : « le truc pour ranger est
-   catastrophique ») ──
-   Avant : une liste plate de tous les chemins complets (« Bible › Ancien
-   Testament › Genèse »), sans ordre lisible, où chaque ligne répétait tout le
-   chemin. Maintenant : le rangement se lit comme un sommaire, domaine par
-   domaine, sections en retrait, « ici » sur l'endroit courant. Les entrées
-   qu'on ne peut pas choisir restent visibles mais grisées, pour qu'on
-   comprenne l'arbre entier. */
+/* ── L'ARBRE DU RANGEMENT ──
+   Le choix d'un endroit se lit comme un sommaire : catégorie par catégorie,
+   sections en retrait, « ici » sur l'endroit courant. Les entrées qu'on ne
+   peut pas choisir restent visibles mais grisées, pour qu'on comprenne
+   l'arbre entier. */
 function entreesArbre(exclure,peut,courant){
   const e=[];
   const marche=(pid,niv)=>{
@@ -1858,20 +1660,18 @@ async function rangeRessource(id){
   if(c==='neuve'){cible=await nouvelleRub('');if(!cible)return;}
   else cible=c.slice(2);
   try{
-    /* en changeant de domaine, la ressource perd sa place de l'ancien : elle
-       rejoint la fin de sa nouvelle liste au lieu d'y prendre un rang au hasard */
+    /* en changeant d'endroit, la ressource perd son rang : elle rejoint les
+       ressources sans rang au lieu d'en prendre un au hasard */
     await acol().doc(id).set({rub:cible||'',ordre:null},{merge:true});
     a.rub=cible||''; a.ordre=null;
     if(S.res&&S.res.id===id){S.res.rub=cible||'';S.res.ordre=null;}
-    /* le chemin est recopié en clair dans la version publique */
   }catch(e2){console.warn('rangement',e2);lvInfo('Le rangement n’a pas pu être enregistré.');}
   rendLister();
 }
 
-/* ── L'ORDRE S'ÉCRIT (05/09) ──
+/* ── L'ORDRE S'ÉCRIT ──
    Une liste de ressources dans son nouvel ordre : chacune reçoit son rang,
-   seules celles dont le rang a changé sont réécrites, par lot, et leur copie
-   publique suit. */
+   seules celles dont le rang a changé sont réécrites, par lot. */
 async function appliqueOrdre(nouvel){
   const changes=nouvel.filter((x,k)=>rangDe(x)!==k);
   if(!changes.length){rendLister();return;}
@@ -1884,7 +1684,7 @@ async function appliqueOrdre(nouvel){
     if(S.res)S.res.ordre=(S.liste.find(x=>x.id===S.res.id)||{}).ordre;
   }catch(e2){console.warn('placement',e2);lvInfo('La place n’a pas pu être enregistrée. Vérifiez la connexion et réessayez.');}
 }
-/* déplacer une ressource d'un cran (les flèches), ou la poser à un rang donné */
+/* poser une ressource à un rang donné parmi ses voisines */
 function deplaceRessource(id,vers){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
   const freres=ressourcesDe(rubValide(a.rub)?a.rub:'');
@@ -1934,15 +1734,15 @@ function basculeOrganise(on){
   if(S.organise&&S.choix)basculeChoisir(false);
   document.body.classList.toggle('organise',S.organise);
   const b=$('b-organiser'); if(b){b.textContent=S.organise?'Terminer':'Organiser';b.classList.toggle('majeur',S.organise);}
-  const m=$('mot-liste'); if(m&&S.auteur)m.textContent=''; /* pas de mode d'emploi à l'écran (Emmanuel, 10/10) */
+  const m=$('mot-liste'); if(m&&S.auteur)m.textContent=''; /* pas de mode d'emploi à l'écran (choix d'Emmanuel) */
   rendLister();
 }
 /* ── LE GLISSER-DÉPOSER LUI-MÊME ──
    Événements de pointeur : une seule mécanique pour la souris, le doigt et
    le stylet. La poignée capture le pointeur, un double de l'objet suit le
    doigt, l'original pâlit, et à chaque mouvement on cherche sous le pointeur
-   soit un rayon ou un maillon du fil (poser DEDANS), soit le voisin le plus
-   proche (poser AVANT ou APRÈS, selon le côté). Près des bords, la page
+   soit un rayon ou un maillon du fil (poser dedans), soit le voisin le plus
+   proche (poser avant ou après, selon le côté). Près des bords, la page
    défile d'elle-même. Échap annule. */
 let DRAG=null;
 function dragNettoie(){
@@ -1969,7 +1769,7 @@ function dragCible(x,y){
     /* une carte entre dans le rayon ; un rayon y entre aussi, sauf s'il est
        lui-même ou un de ses propres descendants */
     if(DRAG.kind==='c'||(descendance(DRAG.id).indexOf(rid)<0)){
-      /* pour un rayon posé sur un rayon FRÈRE, on préfère le réordonner :
+      /* pour un rayon posé sur un rayon frère, on préfère le réordonner :
          « dedans » se fait en visant le bord intérieur (tiers central) */
       if(DRAG.kind==='r'&&ray.parentElement===DRAG.el.parentElement){
         const r=ray.getBoundingClientRect(), fx=(x-r.left)/r.width, fy=(y-r.top)/r.height;
@@ -2039,13 +1839,12 @@ document.addEventListener('pointercancel',()=>dragNettoie());
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&DRAG)dragNettoie();});
 
 // ════════ CHOISIR PLUSIEURS ════════
-/* ── CHOISIR (12/09, Emmanuel : « je veux pouvoir supprimer plusieurs
-   ressources ou domaines ») ──
-   Un mode, dans l'esprit d'Organiser : on coche ce qu'on veut, la barre du bas
-   dit combien sont pris, et l'action porte sur tout le lot d'un coup. Le tap
-   coche ; le chevron › d'un rayon reste la porte, si bien qu'on descend d'un
-   étage sans quitter le mode et que la sélection déjà faite tient. Organiser
-   et Choisir s'excluent : chacun demande le tap pour lui. */
+/* ── CHOISIR (Emmanuel : « je veux pouvoir supprimer plusieurs ressources
+   ou domaines ») ──
+   On coche ce qu'on veut, la barre du bas dit combien sont pris, et l'action
+   porte sur tout le lot. Le tap coche ; le chevron › d'un rayon reste la
+   porte, si bien qu'on descend d'un étage sans perdre la sélection.
+   Organiser et Choisir s'excluent : chacun demande le tap pour lui. */
 function basculeChoisir(on){
   S.choix=(on===undefined)?!S.choix:!!on;
   if(S.choix&&S.organise)basculeOrganise(false);
@@ -2053,7 +1852,7 @@ function basculeChoisir(on){
   document.body.classList.toggle('choisir',S.choix);
   const b=$('b-choisir'); if(b){b.textContent=S.choix?'Terminer':'Choisir';b.classList.toggle('majeur',S.choix);}
   const m=$('mot-liste');
-  if(m&&S.auteur)m.textContent=''; /* pas de mode d'emploi à l'écran (Emmanuel, 10/10) */
+  if(m&&S.auteur)m.textContent=''; /* pas de mode d'emploi à l'écran (choix d'Emmanuel) */
   majChoix(); rendLister();
 }
 function majChoix(){
@@ -2064,10 +1863,10 @@ function majChoix(){
   if(t)t.textContent=n?(n+(n>1?' choisis':' choisi')):'Rien de choisi';
   ['b-jeter','b-telech','b-deplacer'].forEach(k=>{const j=$(k); if(j){j.style.opacity=n?'1':'.4';j.disabled=!n;}});
 }
-/* ── TÉLÉCHARGER ET DÉPLACER PLUSIEURS (Emmanuel, 10/10) ──
-   Le mode Choisir ne sert plus seulement à jeter : ce qui est coché se
-   télécharge d'un coup (les ressources cochées, et celles rangées dans les
-   domaines cochés), ou se range d'un coup dans un autre domaine. */
+/* ── TÉLÉCHARGER ET DÉPLACER PLUSIEURS ──
+   Ce qui est coché se télécharge d'un coup (les ressources cochées, et
+   celles rangées dans les catégories cochées), ou se range d'un coup
+   ailleurs. */
 function prisDecoupe(){
   const pris=[...S.pris];
   const rids=pris.filter(k=>k.slice(0,2)==='r:').map(k=>k.slice(2)).filter(rubValide);
@@ -2090,7 +1889,7 @@ async function deplaceChoix(){
   if(!S.pris.size)return;
   const {rids,res}=prisDecoupe();
   if(!rids.length&&!res.length){basculeChoisir(false);return;}
-  /* un domaine ne descend ni en lui-même ni dans ses propres sections, ni
+  /* une catégorie ne descend ni en elle-même ni dans ses propres sections, ni
      plus bas que la profondeur permise */
   const interdits=[]; rids.forEach(id=>interdits.push(...descendance(id)));
   const hMax=rids.reduce((m,id)=>Math.max(m,hauteur(id)),0);
@@ -2114,7 +1913,7 @@ function prend(cle,el){
   else{S.pris.add(cle);if(el)el.classList.add('pris');}
   majChoix();
 }
-/* « Tout choisir » prend ce qui est À CET ENDROIT, rayons et cartes ; un
+/* « Tout choisir » prend ce qui est à cet endroit, rayons et cartes ; un
    second appui rend tout. */
 function toutChoisir(){
   const ou=ici(), fils=enfants(ou), res=ressourcesDe(ou), tout=fils.length+res.length;
@@ -2145,9 +1944,9 @@ async function jetteChoix(){
   /* un seul rayon se nomme par ce qu'il est, plusieurs se comptent ensemble */
   if(rids.length)bouts.push(rids.length>1?(rids.length+' catégories ou sections'):('cette '+motRub(rids[0])));
   if(!await lvConfirm('Mettre à la corbeille '+bouts.join(' et ')+' ?'))return;
-  /* du plus haut vers le plus profond : un domaine emporte ses sections, et
-     celles qui étaient cochées avec lui sont déjà parties quand leur tour
-     vient */
+  /* du plus haut vers le plus profond : une catégorie emporte ses sections,
+     et celles qui étaient cochées avec elle sont déjà parties quand leur
+     tour vient */
   const ordre=rids.slice().sort((x,y)=>niveau(x)-niveau(y));
   try{
     for(const a of res)await jetteRessource(a,'');
@@ -2160,27 +1959,25 @@ async function jetteChoix(){
 }
 
 // ════════ LA CORBEILLE ════════
-/* ── LA CORBEILLE (12/09, Emmanuel : « ajoute aussi une corbeille ») ──
-   Une ressource jetée garde sa place dans le compte et reçoit une date de mise
-   au rebut : elle sort de la liste, elle entre à la corbeille, son fichier
-   reste attaché, et sa copie publique est retirée de la ligne. Un domaine jeté
-   passe de la liste des rubriques à la liste « corbeille » du même document,
-   avec toute sa branche, chaque rubrique notant la RACINE avec laquelle elle
-   est tombée : « Remettre » relève l'arbre entier d'un seul geste, et les
-   ressources descendues avec lui reviennent avec lui. Rien n'en part tout seul
-   (choix d'Emmanuel) : le départ définitif se demande, ligne par ligne ou d'un
-   coup par « Vider la corbeille ». Une ressource remise revient PRIVÉE : elle
-   a quitté la ligne en tombant, et c'est à l'auteur de la republier. */
+/* ── LA CORBEILLE ──
+   Une ressource jetée garde sa place dans le compte et reçoit une date de
+   mise au rebut : elle sort de la liste, entre à la corbeille, et son
+   fichier reste attaché. Une catégorie jetée passe de la liste des rubriques
+   à la liste « corbeille » du même document, avec toute sa branche, chaque
+   rubrique notant la racine avec laquelle elle est tombée : « Remettre »
+   relève l'arbre entier d'un geste, avec les ressources descendues avec lui.
+   Rien n'en part tout seul (choix d'Emmanuel) : le départ définitif se
+   demande, ligne par ligne ou par « Vider la corbeille ». */
 const maintenant=()=>new Date().toISOString();
 const racinesJetees=()=>S.corb.filter(x=>(x.racine||x.id)===x.id);
-/* une ressource jetée seule, ou dont le domaine a depuis quitté la corbeille,
+/* une ressource jetée seule, ou dont la catégorie a depuis quitté la corbeille,
    se présente pour elle-même */
 const jeteesSeules=()=>S.jetees.filter(a=>!a.supprRub||!S.corb.some(x=>x.id===a.supprRub));
 const nCorbeille=()=>racinesJetees().length+jeteesSeules().length;
 function majCorbBouton(){
   const b=$('b-corbeille'); if(!b)return;
   const n=nCorbeille();
-  /* une poubelle et, s'il y a quelque chose dedans, le nombre (11/10) */
+  /* une poubelle et, s'il y a quelque chose dedans, le nombre */
   b.innerHTML='<svg class="ic-poubelle" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4.5 7h15M9.5 7V5.2c0-.4.3-.7.7-.7h3.6c.4 0 .7.3.7.7V7M6.5 7l.9 11.6c.1.8.7 1.4 1.5 1.4h6.2c.8 0 1.4-.6 1.5-1.4L17.5 7M10.2 10.5v6M13.8 10.5v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'+(n?'<span class="corb-n">'+n+'</span>':'');
   b.setAttribute('aria-label',n?('Corbeille, '+n+(n>1?' éléments':' élément')):'Corbeille');
   b.title='Corbeille';
@@ -2199,8 +1996,6 @@ async function remetRessource(a){
 async function detruitRessource(a){
   if(!a)return;
   SUPPRIMES.add(a.id);
-  /* la copie publique est déjà retirée à la mise à la corbeille ; ce filet
-     couvre une fiche tombée là avant cette règle */
   await acol().doc(a.id).delete();
   try{ await effaceCode(ccol(),a.id); }catch(e){console.warn('contenu',e);}
   CODES.delete(a.id);
@@ -2216,7 +2011,7 @@ async function jetteRubrique(id,avec){
   for(const a of dedans){
     if(avec)await jetteRessource(a,id);
     else{
-      /* laissées en place, elles ressortent sans domaine */
+      /* laissées en place, elles ressortent sans catégorie */
       a.rub=''; await acol().doc(a.id).set({rub:''},{merge:true});
       }
   }
@@ -2283,36 +2078,30 @@ async function videCorbeille(){
 }
 
 // ════════ SITE PRIVÉ ════════
-/* ── PLUS DE PUBLICATION (19/10, Emmanuel : « je ne compte plus le rendre
-   public ») ──
-   Le site est privé : rien ne se publie plus, rien ne se recopie dans un
-   espace public, et il n'y a plus de visiteur à servir. Ce qui reste des
-   anciennes copies publiques dans la base n'est plus lu par personne. */
+/* Le site est privé (Emmanuel : « je ne compte plus le rendre public ») :
+   rien ne se publie, il n'y a pas de visiteur à servir. Les anciennes
+   copies publiques sont effacées une fois pour toutes par le ménage de
+   commun/menage.js, lancé à l'arrivée du compte. */
 
-/* ── LE CONTENU À PART, LA LISTE LÉGÈRE (26/09) ──
-   Le code d'une ressource (un livre, un diagramme, un parcours) pèse de
-   quelques dizaines à plusieurs centaines de kilo-octets. Il vivait dans la
-   fiche elle-même : pour afficher vingt titres, la liste téléchargeait vingt
-   contenus entiers, et recommençait à chaque modification. Il vit maintenant
-   dans sa propre fiche (res_code, public_res_code pour la copie publique),
-   lue seulement quand on ouvre, modifie, télécharge ou publie la ressource.
-   La fiche garde la taille du contenu et la marque devinée, dont la liste a
-   besoin.
-   Les ressources d'avant sont déplacées d'elles-mêmes, une à une, la
-   première fois que la liste les voit : le contenu est d'abord écrit à sa
-   nouvelle place, puis seulement retiré de la fiche. */
+/* ── LE CONTENU À PART, LA LISTE LÉGÈRE ──
+   Le code d'une ressource pèse de quelques dizaines à plusieurs centaines de
+   kilo-octets. Il vit dans sa propre fiche (res_code), lue seulement quand on
+   ouvre, modifie ou télécharge la ressource : la liste n'a pas à charger
+   tous les contenus pour afficher des titres. La fiche de la ressource garde
+   la taille du contenu et la marque devinée, dont la liste a besoin.
+   Une ressource qui porte encore son code dans sa fiche est déplacée
+   d'elle-même la première fois que la liste la voit : le contenu est d'abord
+   écrit à sa nouvelle place, puis seulement retiré de la fiche. */
 const ccol=()=>db.collection('users/'+S.uid+'/res_code');
 const CODES=new Map();
 
-/* ── LES GROS CONTENUS EN TRANCHES (28/09) ──
-   Emmanuel : « je peux pas upload des ressources qui font plus de 1 Mo ».
+/* ── LES GROS CONTENUS EN TRANCHES ──
    Firestore refuse une fiche de plus d'un mégaoctet. Un contenu qui tient
    dans une fiche y reste tel quel, {code}. Au-delà, il est découpé en
-   tranches, rangées sous la fiche du contenu, comme les fichiers : la fiche
-   ne garde que leur nombre et leur « génération ». Une nouvelle version
-   écrit ses tranches sous une génération neuve, bascule la fiche d'un seul
-   coup, puis efface les tranches de l'ancienne : à aucun instant la fiche ne
-   désigne un contenu à moitié écrit. */
+   tranches rangées sous la fiche du contenu, qui ne garde que leur nombre et
+   leur « génération ». Une nouvelle version écrit ses tranches sous une
+   génération neuve, bascule la fiche d'un seul coup, puis efface les
+   anciennes : la fiche ne désigne jamais un contenu à moitié écrit. */
 const CODE_MAX=25*1024*1024;      // au-delà, une fiche « Lien » sert mieux
 const CODE_SEUL=900000;           // sous ce poids, le contenu tient dans sa fiche
 const CODE_TRANCHE=300000;        // signes par tranche : moins d'un mégaoctet même tout en accents
@@ -2368,13 +2157,13 @@ async function contenuDe(a,publik){
   if(!a||typeDe(a)!=='diagramme')return '';
   if(typeof a.code==='string'&&a.code)return a.code;
   if(CODES.has(a.id)){a.code=CODES.get(a.id);return a.code;}
-  /* une lecture ratée LÈVE : un contenu pris pour vide serait ensuite
+  /* une lecture ratée lève une erreur : un contenu pris pour vide serait ensuite
      enregistré vide par-dessus le vrai */
   const lu=await litCode(ccol(),a.id);
   const code=lu!==null?lu:(typeof a.code==='string'?a.code:'');
   CODES.set(a.id,code); a.code=code;
-  /* une ressource enregistrée avant qu'on sache reconnaître son espèce
-     reçoit sa marque dès qu'on l'ouvre, et la liste la montre ensuite */
+  /* la marque devinée est mise à jour dès qu'on ouvre le contenu, et la
+     liste la montre ensuite */
   if(!publik&&S.auteur&&S.uid&&code){
     const m=devineMarque(a);
     if(m&&m!==(a.marqueDevinee||'')){ a.marqueDevinee=m; acol().doc(a.id).update({marqueDevinee:m}).catch(()=>{}); }
@@ -2398,8 +2187,8 @@ async function migreContenus(liste){
   }
 }
 
-/* Qui n'est pas connecté avec le compte de l'auteur voit seulement
-   l'invitation à se connecter. */
+/* Qui n'est pas connecté avec le compte d'Emmanuel ne voit que le mot
+   d'accueil (se connecter, ou pas d'accès). */
 function rendPublic(){
   $('acts-liste').style.display='none'; $('liste').innerHTML='';
   const f=$('fil'); if(f)f.innerHTML='';
@@ -2434,8 +2223,8 @@ function corpsVoir(a,publik){
   }
   if(t==='diagramme'){
     if(typeof a.code!=='string'||a.code||a.codeTaille){
-      /* Le contenu ne vit plus dans la page : il s'ouvre en plein écran, tout
-         de suite, et la fiche reste derrière avec son bouton pour le rouvrir. */
+      /* Le contenu s'ouvre en plein écran, tout de suite, et la fiche reste
+         derrière avec son bouton pour le rouvrir. */
       if(a.desc){const d=document.createElement('div');d.className='res-desc';d.textContent=a.desc;c.appendChild(d);}
       const b=document.createElement('button');
       b.type='button'; b.className='res-rouvrir'; b.textContent='Ouvrir';
@@ -2507,14 +2296,14 @@ function ouvrePlein(a){
   });
   f.addEventListener('load',()=>{rends();setTimeout(rends,300);setTimeout(rends,1000);});
   const x=document.createElement('button');
-  /* Un seul bouton par-dessus le contenu, et il ramène aux ressources
-     (Emmanuel, 12/09 : « pas besoin de bouton fermer, juste un bouton de
-     retour »). La touche Échap fait la même chose. */
+  /* Par-dessus le contenu, un bouton de retour aux ressources (Emmanuel :
+     « pas besoin de bouton fermer, juste un bouton de retour »). La touche
+     Échap fait la même chose. */
   x.type='button'; x.className='res-plein-x'; x.textContent='\u2190  Les ressources';
   x.setAttribute('aria-label','Revenir aux ressources');
   x.onclick=retourRessources;
-  /* Dans le même bouton que le retour, séparé par un mince trait, le livre
-     qui ouvre la Bible par-dessus la ressource (Emmanuel, 11/10). */
+  /* Dans le même bandeau que le retour, séparé par un mince trait, le livre
+     qui ouvre la Bible par-dessus la ressource. */
   const bi=document.createElement('button');
   bi.type='button'; bi.className='res-plein-x res-plein-bible';
   bi.innerHTML='<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10.3 5.2 7.8 4.6 4 4.6v13.2c3.8 0 6.3.6 8 1.9 1.7-1.3 4.2-1.9 8-1.9V4.6c-3.8 0-6.3.6-8 1.9z"/><path d="M12 6.5v13.2"/></svg>';
@@ -2557,9 +2346,8 @@ function voit(a,publik){
   const c=$('voir-corps'); c.innerHTML=''; c.appendChild(corpsVoir(a,publik));
   vue('voir');
   /* une entrée d'historique par ressource ouverte, jamais deux fois la même :
-     sinon chaque « précédent » recréait l'entrée et l'on ne sortait plus.
-     L'auteur y a droit aussi : sans adresse, sa ressource ouverte était
-     perdue au moindre rechargement d'état. */
+     sinon chaque « précédent » recréerait l'entrée et l'on ne sortirait plus.
+     L'adresse garde aussi la ressource ouverte au rechargement. */
   if(location.hash!=='#r/'+a.id){try{history.pushState(null,'','#r/'+a.id);}catch(_){}}
 }
 async function menuRessource(id){
@@ -2655,11 +2443,10 @@ function rendEditeur(){
     b.onclick=async()=>{
       const k=b.dataset.ty;
       if(k===typeDe(S.res))return;
-      /* UN FICHIER NE SUIT PAS LE CHANGEMENT D'ESPÈCE. Une image ne devient pas
-         le fichier d'un lien, ni celui d'un PDF. Si on le laissait attaché, il
-         resterait dans le compte sans que rien ne l'affiche : invisible, et à
-         charge. On le détache donc et on l'efface, mais jamais sans demander,
-         car un fichier lourd ne se renvoie pas d'un clic. */
+      /* Un fichier ne suit pas le changement d'espèce : laissé attaché, il
+         resterait dans le compte sans que rien ne l'affiche. On le détache et
+         on l'efface, jamais sans demander, car un fichier lourd ne se renvoie
+         pas d'un clic. */
       if(S.res.media){
         if(!await lvConfirm('Changer d’espèce retire le fichier déjà déposé. Continuer ?'))return;
         const vieux=S.res.media;
@@ -2678,20 +2465,16 @@ function litEditeur(){
   if(co)S.res.code=co.value;
   if(de)S.res.desc=de.value.trim();
 }
-/* Une ressource supprimée ne doit pas renaître : un enregistrement
-   automatique parti juste avant la suppression la remettait en ligne. */
+/* Une ressource supprimée ne renaît pas : un enregistrement automatique
+   parti juste avant la suppression ne la réécrit pas. */
 const SUPPRIMES=new Set();
 const LIMITE_DOC=1000000;   // Firestore refuse un document au-delà d'un mégaoctet
-/* ── UN ENREGISTREMENT À LA FOIS (01/10, Emmanuel : « quand je supprime un
-   fichier et que je recrée un autre fichier avec le même nom, il ne se crée
-   pas, une alerte dit que le précédent a été supprimé ») ──
-   Une ressource neuve qui porte un gros code met plusieurs secondes à partir.
-   Pendant ce temps, l'enregistrement automatique repartait de lui-même : il
-   croyait la ressource déjà dans le nuage (sa date de création était posée
-   dès le départ du premier envoi), ne l'y trouvait pas encore, et concluait
-   qu'elle avait été supprimée ailleurs. Désormais les enregistrements
-   passent l'un après l'autre, et une ressource n'est tenue pour « déjà dans
-   le nuage » qu'une fois son premier envoi réellement abouti. */
+/* ── UN ENREGISTREMENT À LA FOIS ──
+   Une ressource neuve qui porte un gros code met plusieurs secondes à
+   partir. Les enregistrements passent donc l'un après l'autre, et une
+   ressource n'est tenue pour « déjà dans la base » qu'une fois son premier
+   envoi abouti : sinon un second enregistrement, ne la trouvant pas encore,
+   la croirait supprimée ailleurs. */
 let ENR_EN_COURS=null, ENR_REJOUE=false;
 function enregistre(silence){
   if(ENR_EN_COURS){
@@ -2712,7 +2495,7 @@ async function enregistreUneFois(silence){
   clearTimeout(S.minute);
   litEditeur();
   const a=S.res, gen=S.gen||0;
-  /* une ressource neuve n'existe dans le nuage qu'après son premier envoi réussi */
+  /* une ressource neuve n'existe dans la base qu'après son premier envoi réussi */
   const deja=!a.neuve;
   a.maj=new Date().toISOString();
   if(!a.cree)a.cree=a.maj;
@@ -2734,13 +2517,9 @@ async function enregistreUneFois(silence){
     return;
   }
   try{
-    /* ── UN AUTRE ONGLET, UN AUTRE APPAREIL (22/09) ──
-       Supprimé ailleurs pendant qu'il restait ouvert ici : l'enregistrement
-       automatique le recréait, et le remettait en ligne s'il était publié.
-       Publié ou retiré ailleurs : on le réécrivait avec l'état d'ici, et sa
-       copie publique pouvait rester en ligne alors qu'on le croyait privé.
-       On relit donc le nuage avant d'écrire : ce qui a disparu ne renaît
-       pas, et l'état publié est celui du nuage, que seul le bouton change. */
+    /* ── UN AUTRE ONGLET, UN AUTRE APPAREIL ──
+       On relit la base avant d'écrire : une ressource supprimée ailleurs
+       pendant qu'elle restait ouverte ici ne renaît pas. */
     const ex=await acol().doc(a.id).get();
     if(S.res!==a)return;
     if(deja&&!ex.exists){
@@ -2793,9 +2572,9 @@ async function supprime(){
   const copie=S.res;
   S.res=null; S.sale=false;
   vue('liste');
-  /* la ressource ouverte dans l'éditeur tombe comme une autre : elle quitte la
-     ligne, garde son fichier, et attend à la corbeille. Un échec se dit, et
-     elle revient à la liste telle qu'elle était (05/09). */
+  /* la ressource ouverte dans l'éditeur tombe comme une autre : elle garde
+     son fichier et attend à la corbeille. Un échec se dit, et elle reste à
+     la liste telle qu'elle était. */
   try{
     await jetteRessource(copie,'');
     rendLister(); majCorbBouton();
@@ -2829,7 +2608,7 @@ $('b-retour').onclick=async()=>{if(S.sale)await enregistre(true);S.res=null;S.vu
 $('b-voir-retour').onclick=()=>{S.res=null;S.vu='';vaVers(ici());vue('liste');};
 $('b-enr').onclick=()=>enregistre();
 /* une ressource jamais enregistrée n'existe pas encore dans la liste : on
-   l'enregistre d'abord, sinon ces boutons ne faisaient rien, sans un mot */
+   l'enregistre d'abord, sinon le bouton ne ferait rien */
 $('b-ranger').onclick=async()=>{if(!S.res)return;if(!S.liste.some(x=>x.id===S.res.id))await enregistre(true);rangeRessource(S.res.id);};
 $('b-suppr').onclick=supprime;
 $('ed-titre').addEventListener('input',function(){autoHauteur(this);marqueSale();});
@@ -2881,8 +2660,8 @@ document.addEventListener('click',e=>{
     return;
   }
   /* ── EN MODE CHOISIR, LE TAP PREND ET REND ──
-     La carte se coche, la ligne d'un rayon se coche, et seuls le chevron › du
-     rayon et le fil d'Ariane mènent encore quelque part. */
+     La carte et la ligne d'un rayon se cochent ; seuls le chevron › du rayon
+     et le fil d'Ariane mènent encore quelque part. */
   if(S.choix&&S.auteur){
     const ch=e.target.closest?e.target.closest('.ry-chev'):null;
     const ry=ch?ch.closest('.rayon'):null;
@@ -2950,12 +2729,12 @@ function ecoute(){
        courante ne montre que ce qui vit, la corbeille montre le reste. */
     S.jetees=l.filter(a=>!!a.suppr).sort((a,b)=>String(b.suppr).localeCompare(String(a.suppr)));
     S.liste=l.filter(a=>!a.suppr); LISTE_LUE=true;
-    /* les ressources d'avant, qui portent encore leur contenu, le déposent à
-       sa nouvelle place, en arrière-plan */
+    /* les ressources qui portent encore leur contenu dans leur fiche le
+       déposent dans la sienne, en arrière-plan */
     setTimeout(()=>migreContenus(l),1500);
     if($('ecran-corbeille').style.display!=='none')rendCorbeille();
-    /* on ne rebâtit la liste que si elle est bien à l'écran : sinon un simple
-       rafraîchissement des données chassait la ressource ouverte */
+    /* on ne rebâtit la liste que si elle est à l'écran : un rafraîchissement
+       des données ne chasse pas la ressource ouverte */
     if(!S.res&&!S.vu)rendLister();
     /* arrivé avec une adresse #r/… : la ressource n'existait pas encore quand
        la page a lu l'adresse, elle est là maintenant, on l'ouvre */
@@ -2967,13 +2746,12 @@ function motAccueil(){
   if(!S.auteur){$('mot-liste').textContent='Ce compte n’a pas accès à cette page.';$('acts-liste').style.display='none';$('liste').innerHTML='';return;}
   $('mot-liste').textContent=''; $('acts-liste').style.display=pretListe()?'':'none';
 }
-/* Le visiteur voit les ressources PUBLIÉES. L'auteur retrouve les siennes et
-   son formulaire. Une seule page, deux visages. */
+/* sans le compte d'Emmanuel, la page suit seulement l'adresse ; routeHash
+   n'ouvre rien d'autre que la liste vide et le mot d'accueil */
 function ouvrePublic(){ routeHash(); }
 /* Firebase redit qui est connecté à chaque réveil de la page (retour d'onglet,
-   jeton rafraîchi). Ce n'est pas un changement de compte : si c'est le même
-   utilisateur, on ne touche à rien, sinon on refermait la ressource ouverte et
-   l'on retombait à l'accueil chaque fois que l'on revenait sur l'onglet. */
+   jeton rafraîchi). Si c'est le même utilisateur, on ne touche à rien : la
+   ressource ouverte reste ouverte. */
 let COMPTE_CONNU='∅';
 auth.onAuthStateChanged(u=>{
   const cle=u?u.uid:null;
@@ -2982,23 +2760,23 @@ auth.onAuthStateChanged(u=>{
   COMPTE_CONNU=cle;
   S.uid=cle; S.email=u?(u.email||''):null;
   S.auteur=!!(u&&u.email&&u.email.toLowerCase()===AUTEUR);
-  /* les règles de sécurité n'acceptent la mise en ligne que d'une adresse
-     VÉRIFIÉE : si ce n'est pas le cas, mieux vaut le dire tout de suite que de
-     laisser chaque publication échouer sans explication (05/09) */
+  /* les règles de sécurité n'acceptent l'écriture que d'une adresse
+     vérifiée : si ce n'est pas le cas, on le dit tout de suite plutôt que de
+     laisser chaque enregistrement échouer sans explication */
   if(S.auteur&&u&&u.emailVerified===false)setTimeout(()=>lvInfo('Votre adresse e-mail n’est pas vérifiée : les règles de sécurité refuseront toute mise en ligne tant qu’elle ne l’est pas. Connectez-vous avec Google, ou faites vérifier l’adresse depuis la console Firebase.'),600);
   S.res=null; S.vu=''; S.liste=[]; S.jetees=[]; S.rubs=[]; S.corb=[]; S.pris.clear(); RUBS_LUES=false; RUBS_ERR=false; LISTE_ERR=false;
   if(S.auteur){ vue('liste'); motAccueil(); ecoute(); setTimeout(()=>{menagePublic().catch(e=>console.warn('ménage',e));},4000); }
   else{ if(COUPE){COUPE();COUPE=null;} $('acts-liste').style.display='none'; ouvrePublic(); }
 });
 /* ── ON DESSINE TOUT DE SUITE ──
-   Rien n'était affiché tant que la première réponse du serveur n'était pas
-   revenue : sur une connexion lente, la page restait nue une seconde ou deux
-   sous son titre, et l'on croyait qu'elle avait échoué. Elle dit maintenant
-   « Chargement… » dès la première image. */
+   La page dit « Chargement… » dès la première image, sans attendre la
+   première réponse du serveur : sur une connexion lente, une page nue
+   paraîtrait en échec. */
 vue('liste');
 ouvrePublic();
 /* L'adresse porte l'endroit : #d/… pour un rayon, #r/… pour une ressource
-   publiée. Le bouton « précédent » du navigateur remonte donc tout seul. */
+   ouverte, #corbeille. Le bouton « précédent » du navigateur remonte donc
+   tout seul. */
 function routeHash(){
   const h=location.hash||'';
   const mr=h.match(/^#r\/(.+)$/);
@@ -3011,7 +2789,7 @@ function routeHash(){
     if(S.auteur&&!S.liste.length){S.vu=mr[1];return;}
   }
   /* la corbeille a son adresse : le bouton « précédent » du navigateur en
-     ressort comme d'un domaine */
+     ressort comme d'une catégorie */
   if(h==='#corbeille'&&S.auteur){S.vu='';vue('corbeille');return;}
   const md=h.match(/^#d\/(.+)$/);
   S.ouLa=(md&&rubValide(md[1]))?md[1]:'';
@@ -3019,13 +2797,12 @@ function routeHash(){
   vue('liste');
 }
 /* popstate couvre déjà les changements de fragment : écouter aussi hashchange
-   faisait deux rendus par retour arrière */
+   ferait deux rendus par retour arrière */
 window.addEventListener('popstate',routeHash);
 
-/* Le panneau « Mon compte » : MÊME câblage que sur les articles, sur la Bible
-   et sur Mémoriser. La barre du site est posée par le build, donc ses deux
-   icônes n'existent qu'une fois la page servie : on attend qu'elles soient là
-   plutôt que de les chercher trop tôt. */
+/* Le panneau « Mon compte » : même câblage que sur les articles, la Bible et
+   Mémoriser. La barre du site est posée par la fabrication : on attend que
+   ses icônes soient là plutôt que de les chercher trop tôt. */
 document.addEventListener('DOMContentLoaded',()=>{
   const ao=$('auth-ouvrir');
   if(ao)ao.onclick=e=>{
@@ -3045,7 +2822,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 </script>
 <script>
-/* Réglage de la taille du texte et bascule de l'onglet Bible : MÊME CODE que
+/* Réglage de la taille du texte et bascule de l'onglet Bible : même code que
    sur l'accueil, la Bible et Mémoriser. La clé de rangement est distincte
    entre téléphone et ordinateur, pour qu'un choix fait sur l'un ne s'impose
    pas à l'autre. */
@@ -3054,8 +2831,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   function tzCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_taille_mobile':'lv_taille_pc';}catch(e){return 'lv_taille_pc';}}
   function tzLit(){var v=1;try{v=parseFloat(localStorage.getItem(tzCle())||localStorage.getItem('lv_taille'))||1;}catch(e){}return v;}
   function tzApplique(v){document.documentElement.style.setProperty('--lvz',v);}
-  /* application au chargement : sans elle, la taille choisie ailleurs resterait
-     sans effet sur cette page tant qu'on n'aurait pas retouché A+ ou A−. */
+  /* appliquée au chargement : la taille choisie ailleurs vaut aussi ici */
   tzApplique(tzLit());
   document.addEventListener('click',function(e){
     var b=e.target.closest?e.target.closest('.ttx-b'):null;

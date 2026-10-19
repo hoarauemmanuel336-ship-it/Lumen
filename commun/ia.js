@@ -1,8 +1,8 @@
 /* ════════════════════════════════════════════════════════════════════
    LUMEN · FONCTIONNEMENT COMMUN : IA
    Pages : Articles, Ressources.
-   Ranger avec l'IA (19/10, Emmanuel : « je veux que l'IA puisse ranger
-   les ressources et articles »).
+   Ranger avec l'IA (Emmanuel : « je veux que l'IA puisse ranger les
+   ressources et articles »).
 
    L'IA reçoit le rangement actuel et la liste des éléments (titre,
    description, endroit), puis rend un rangement complet : elle peut
@@ -120,12 +120,12 @@ async function iaApplique(rubs,ou,rang){
   return changes.length;
 }
 
-/* ── LE BOUTON « ORGANISER » (19/10, Emmanuel : « au lieu d'un autre
-   bouton, mets une option quand on clique sur Organiser ») ──
-   Hors du mode Organiser, le bouton ouvre un choix : organiser à la main
-   (le glisser-déposer d'avant), ranger avec l'IA, et, quand l'IA a déjà
-   rangé, revenir au rangement d'avant. Dans le mode, il le referme comme
-   avant. */
+/* ── LE BOUTON « ORGANISER » ──
+   Pas de bouton à part pour l'IA (Emmanuel : « mets une option quand on
+   clique sur Organiser »). Hors du mode Organiser, le bouton ouvre un
+   choix : organiser à la main (glisser-déposer), ranger avec l'IA, et,
+   quand l'IA a déjà rangé, revenir au rangement d'avant. Dans le mode, il
+   le referme. */
 async function organiser(espece){
   if(S.organise){basculeOrganise(false);return;}
   if(IA_EN_COURS)return;

@@ -1,18 +1,18 @@
 /* ============================================================
-   LUMEN — la porte (26/09)
+   LUMEN — la porte
    Le site est privé : aucune page, aucun fichier n'est servi sans
    le mot de passe. Le mot de passe n'est écrit nulle part dans le
    code : il vit dans la variable LUMEN_MOT_DE_PASSE, réglée dans
    Netlify (Site configuration → Environment variables).
    Une fois la porte passée, l'appareil est reconnu pendant un an,
-   et chaque visite prolonge ce délai.
+   et chaque page ouverte prolonge ce délai.
    ============================================================ */
 
 const COOKIE = 'lumen_cle';
 const DUREE = 60 * 60 * 24 * 365;
 
-/* Ce qui reste servi sans mot de passe : les icônes et les
-   manifestes (le navigateur les demande sans cookie pour installer
+/* Ce qui reste servi sans mot de passe : robots.txt, les icônes et
+   les manifestes (le navigateur les demande sans cookie pour installer
    l'application sur l'écran d'accueil ; ils ne contiennent rien). */
 function libre(p) {
   return p === '/robots.txt'
@@ -123,7 +123,8 @@ export default async (request, context) => {
     return page('Mot de passe incorrect.', suite, 401);
   }
 
-  /* Appareil reconnu : on sert la page et on prolonge d'un an */
+  /* Appareil reconnu : la page est servie, et une page HTML prolonge
+     la reconnaissance d'un an */
   if (egal(lireCookie(request, COOKIE), attendu)) {
     const rep = await context.next();
     const r = new Response(rep.body, rep);

@@ -2,11 +2,8 @@
    LUMEN · FONCTIONNEMENT COMMUN : EDITEUR
    Pages : Articles, Commentaires.
    L'éditeur de blocs (texte, verset, image, code), les images déposées et le sélecteur de passage biblique.
-
-   Ces fonctions étaient recopiées à l'identique dans chacune de ces pages
-   (26/09). Elles vivent maintenant ici, une seule fois : le build les pose
-   dans chaque page concernée, avant le script de la page, et toute
-   correction faite ici vaut pour toutes ces pages à la fois.
+   La fabrication pose ce fichier dans chaque page concernée, avant le script
+   de la page : une correction faite ici vaut pour toutes.
    ════════════════════════════════════════════════════════════════════ */
 
 /* (lvChoix : voir commun/outils.js, posé par le build) */
@@ -21,7 +18,7 @@ function propre(html){
       if(!t){
         marche(n,vers);
         /* un élément de bloc (paragraphe, titre, ligne de liste…) se termine
-           par un retour à la ligne, sinon les paragraphes collés se soudaient */
+           par un retour à la ligne, sinon les paragraphes collés se soudent */
         if(/^(P|DIV|LI|H[1-6]|BLOCKQUOTE|TR|PRE|SECTION|ARTICLE)$/.test(n.tagName)&&n.nextSibling&&vers.lastChild){
           const dern=vers.lastChild;
           if(!(dern.nodeType===1&&dern.tagName==='BR'))vers.appendChild(document.createElement('br'));
@@ -45,15 +42,13 @@ function propre(html){
   return out.innerHTML.replace(/\s+$/,'');
 }
 
-/* ── LE TEXTE RESTE COLLÉ À GAUCHE (23/09) ──
-   « Quand j'écris des articles, des mots sont décalés à droite, je dois
-   effacer les espaces. » Ces espaces venaient du collage : les retraits et
-   retours à la ligne du texte copié, que le navigateur garde sous forme
-   d'espaces insécables, et qui poussaient le début des lignes vers la droite.
-   On retire donc tout blanc en début de ligne (début du bloc ou après un
-   retour à la ligne) et en fin de ligne, et l'on ramène une suite de blancs à
-   un seul, en gardant l'espace insécable devant : ; ? ! ». Comme le texte
-   repasse ici à l'affichage, les articles déjà écrits se corrigent aussi. */
+/* ── LE TEXTE RESTE COLLÉ À GAUCHE ──
+   Un texte collé apporte ses retraits et retours à la ligne, que le
+   navigateur garde en espaces insécables : le début des lignes part à
+   droite. On retire tout blanc en début et en fin de ligne, et l'on ramène
+   une suite de blancs à un seul, en gardant l'espace insécable devant
+   : ; ? ! ». Le texte repasse ici à l'affichage : les articles déjà écrits
+   en profitent aussi. */
 function alignGauche(racine){
   const w=document.createTreeWalker(racine,NodeFilter.SHOW_ELEMENT|NodeFilter.SHOW_TEXT);
   let debut=true, dernierTexte=null, n;
@@ -118,8 +113,8 @@ async function envoieImage(f,i){
     await mcol().doc(id).set({mime:f.type,n:parts.length,taille:f.size,complet:true,cree:new Date().toISOString()});
   }catch(e){dis('Choisir une image');lvInfo('L’envoi a échoué. Réessayez.');console.warn('envoi',e);effaceMedia(id);return;}
   CACHE.set(id,url);
-  /* l'envoi est long : l'article a pu être quitté, changé, ou le bloc déplacé.
-     On ne pose l'image que si la cible est toujours celle qu'on visait. */
+  /* l'envoi est long : l'article a pu être quitté ou le bloc déplacé.
+     L'image ne se pose que si la cible est toujours celle qu'on visait. */
   if(S.art!==cible||rang()<0){effaceMedia(id);return;}
   litEditeur();
   const j=rang();
@@ -181,12 +176,11 @@ function copieVieille(txt){
   }catch(e){return false;}
 }
 
-/* Le bouton de l'éditeur dit l'état courant : « Publier » quand l'article est
-   privé, « Rendre privé » quand il est publié. */
+/* Le bouton de l'éditeur dit l'état courant. Le site est privé : « publier »
+   un commentaire, c'est le faire paraître dans la Bible, et le bouton le dit
+   ainsi (« Afficher dans la Bible » / « Retirer de la Bible »). */
 function majEtatEditeur(){
   const b=document.getElementById('b-etat'); if(!b||!S.art)return;
-  /* le site est privé (19/10) : « publier » un commentaire, c'est le faire
-     paraître dans la Bible ; le bouton le dit ainsi */
   b.textContent=S.art.publie?'Retirer de la Bible':'Afficher dans la Bible';
   b.classList.toggle('publie',!!S.art.publie);
 }
@@ -197,8 +191,8 @@ async function copieMediaPublic(id){
   if(!meta.exists)return;
   const m=meta.data(), n=m.n||0;
   /* un média ne change jamais sous le même identifiant : s'il est déjà en
-     ligne, complet, on ne le recopie pas (chaque enregistrement automatique
-     renvoyait sinon toutes les images, tranche par tranche) */
+     ligne, complet, il n'est pas recopié (sinon chaque enregistrement
+     automatique renverrait toutes les images, tranche par tranche) */
   try{const pub=await pmed().doc(id).get();if(pub.exists&&(pub.data().n||0)===n&&n>0)return;}catch(e){}
   for(let k=0;k<n;k++){
     const t=await mcol().doc(id).collection('tranches').doc(String(k)).get();
@@ -270,11 +264,10 @@ function majOutils(){
   }catch(e){}
 }
 
-/* Après un renvoi posé, le curseur restait collé au bord du renvoi : tout ce
-   qu'Emmanuel tapait ensuite (« parce que… ») entrait dans le renvoi et prenait
-   sa couleur. On pose une marque invisible juste après lui et on met le curseur
-   derrière : la suite s'écrit en texte ordinaire. La marque part au nettoyage,
-   donc elle n'est jamais enregistrée. */
+/* Après un renvoi posé, une marque invisible se place juste après lui, le
+   curseur derrière : la suite s'écrit en texte ordinaire au lieu d'entrer
+   dans le renvoi et de prendre sa couleur. La marque part au nettoyage, elle
+   n'est jamais enregistrée. */
 function sortApres(el){
   try{
     const s=getSelection(); if(!s)return;
@@ -319,10 +312,9 @@ async function poseLien(){
   marqueSale();
 }
 
-/* La référence se CHOISIT dans la Bible, elle ne se tape plus au clavier
-   (Emmanuel, 05/09) : le renvoi posé est toujours un vrai passage. La barre de
-   recherche du sélecteur accepte quand même une référence écrite, pour aller
-   vite. */
+/* La référence se choisit dans la Bible, elle ne se tape pas au clavier :
+   le renvoi posé est toujours un vrai passage. La barre de recherche du
+   sélecteur accepte quand même une référence écrite, pour aller vite. */
 function poseRef(){
   const z=zoneActive(); if(!z){lvInfo('Placez d’abord le curseur dans un texte.');return;}
   const s=getSelection();

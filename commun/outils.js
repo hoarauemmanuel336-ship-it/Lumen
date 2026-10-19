@@ -2,11 +2,8 @@
    LUMEN · FONCTIONNEMENT COMMUN : OUTILS
    Pages : Articles, Ressources, Commentaires.
    Le menu d'actions, les fenêtres de choix, de saisie et de confirmation, la copie, les dates, la lecture de fichier, les cadres isolés et le suivi de la lecture.
-
-   Ces fonctions étaient recopiées à l'identique dans chacune de ces pages
-   (26/09). Elles vivent maintenant ici, une seule fois : le build les pose
-   dans chaque page concernée, avant le script de la page, et toute
-   correction faite ici vaut pour toutes ces pages à la fois.
+   La fabrication pose ce fichier dans chaque page concernée, avant le script
+   de la page : une correction faite ici vaut pour toutes.
    ════════════════════════════════════════════════════════════════════ */
 
 function lvConfirm(txt,danger){
@@ -31,12 +28,11 @@ function lvSaisie(titre,aide,valeur,marque){
 
 function saiFin(v){$('m-saisie').classList.remove('on');const f=_sres;_sres=null;if(f)f(v);}
 
-/* ── LE MENU D'ACTIONS (19/10, Emmanuel : « réimagine l'UI/UX ») ──
-   Une feuille plutôt qu'une boîte : le nom de l'objet en tête, une croix
-   pour refermer, puis les actions en rangées légères, chacune précédée de
-   son pictogramme, sa précision (un nom de fichier, un état, un endroit)
-   rangée à droite. L'action qui jette est mise à part, en bas, dans sa
-   teinte. Sur téléphone, la feuille monte du bas de l'écran, sous le pouce.
+/* ── LE MENU D'ACTIONS ──
+   Une feuille : le nom de l'objet en tête, une croix pour refermer, puis
+   une rangée par action, son pictogramme devant, sa précision (un nom de
+   fichier, un état, un endroit) à droite. L'action qui jette est mise à
+   part, en bas. Sur téléphone, la feuille monte du bas de l'écran.
    Une entrée peut porter niv (retrait dans un arbre), off (visible mais
    impossible), fort (une création), danger (ce qui jette ou supprime). */
 const CHOIX_IC={
@@ -94,8 +90,7 @@ function lvChoix(titre,entrees){
     entrees.forEach((e,i)=>{
       const d=document.createElement('div');
       d.className='choix'+(e.danger?' del':'')+(e.off?' off':'')+(e.fort?' fort':'');
-      /* niv : profondeur dans un arbre (le rangement se lit en retrait, comme
-         un sommaire) ; off : visible mais impossible à choisir */
+      /* niv : le rangement se lit en retrait, comme un sommaire */
       if(e.niv)d.style.setProperty('--niv',e.niv);
       const ic=ics[i];
       d.innerHTML=(avecIc?'<b class="cx-ic">'+(ic?svgChoix(ic):'')+'</b>':'')
@@ -115,7 +110,7 @@ function lvChoix(titre,entrees){
       h.appendChild(d);
     });
     ov.classList.add('on');
-    /* le clavier entre dans le menu : première entrée en main */
+    /* le clavier entre dans le menu sur la première entrée */
     setTimeout(()=>{const p=h.querySelector('.choix:not(.off)');if(p)p.focus({preventScroll:true});},40);
     /* Échap, la croix et le clic hors de la feuille ferment aussi : la
        promesse doit se résoudre dans tous les cas */
@@ -168,8 +163,8 @@ function dateFr(iso){
   return d.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
 }
 
-/* Un article publié puis modifié doit être remis en ligne, sinon les lecteurs
-   gardent l'ancienne version sans que rien ne le dise. */
+/* Un commentaire affiché dans la Bible puis modifié est remis dans sa copie
+   publique : sinon la Bible garde l'ancienne version sans que rien ne le dise. */
 async function rafraichitPublic(a){
   if(!a||!a.publie)return true;
   try{await metEnLigne(a);return true;}catch(e){console.warn('rafraîchissement public',e);return false;}

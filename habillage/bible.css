@@ -1,22 +1,20 @@
 /* ════════════════════════════════════════════════════════════════════
-   LUMEN — HABILLAGE DE LA BIBLE (10/10)
+   LUMEN — HABILLAGE DE LA BIBLE
    ════════════════════════════════════════════════════════════════════
-   La page Bible dans le nouveau langage du site. Elle a plusieurs visages :
-   la bibliothèque (titre, traduction, « Aller à », livres), la grille des
-   chapitres, la lecture, la barre de sélection et ses menus, les notes et
-   les surlignages, les signets, ses propres fenêtres (recherche, compte,
-   note, catégorie, confirmation). Elle s'affiche aussi dans le tiroir des
-   autres pages (« mode panneau »).
-   Rien ne touche à la taille ni à l'interligne du texte des versets, ni
-   aux couleurs de surlignage choisies par Emmanuel : seuls changent les
-   numéros, les titres, les contrôles et les surfaces autour du texte.
+   La page Bible a plusieurs visages : la bibliothèque (titre, « Aller à »,
+   livres), la grille des chapitres, la lecture, la barre de sélection et
+   ses menus, les notes et les surlignages, les signets, ses propres
+   fenêtres (recherche, compte, note, catégorie, confirmation). Elle
+   s'affiche aussi dans le tiroir des autres pages (« mode panneau »).
+   Rien ici ne touche à la taille ni à l'interligne du texte des versets,
+   ni aux couleurs de surlignage choisies par Emmanuel.
    ════════════════════════════════════════════════════════════════════ */
 
 
 /* ════════════════════════════════════════════════════════════════════
    1. LA BIBLIOTHÈQUE
-   Un grand titre Cormorant, la traduction au-dessus telle qu'avant,
-   puis la reprise de lecture et le champ « Aller à » en grande pilule.
+   Un grand titre Cormorant, l'icône de la traduction à sa droite, puis
+   « Aller à » et la reprise de lecture.
    ════════════════════════════════════════════════════════════════════ */
 html body .wrap{padding:0 28px 96px}
 html body .hero{
@@ -30,7 +28,7 @@ html body .hero h1.titre{
 html body .hero .souligne{display:none}
 
 
-/* la tête de la liste : la reprise au-dessus, le champ dessous */
+/* la tête de la liste : « Aller à », puis « Reprendre » */
 html body .bib-tete{max-width:600px;margin:44px auto 0;gap:14px;align-items:center}
 
 /* REPRENDRE : un bouton plein, le mot en petite étiquette, le chapitre en
@@ -41,7 +39,7 @@ html:root body .bib-reprendre{
 html body .bib-reprendre .br-l{font-family:var(--h-ui);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(0,0,0,.58)}
 html body .bib-reprendre .br-r{font-family:var(--h-titre);font-size:21px;font-weight:600;line-height:1;color:#000}
 
-/* ALLER À : une grande pilule, son bouton crème logé dedans, une loupe
+/* ALLER À : un champ large, son bouton crème logé dedans, une loupe
    discrète devant le texte */
 html body .bib-aller{
   width:100%;align-items:center;gap:8px;padding:5px 5px 5px 46px;
@@ -81,10 +79,10 @@ html body .groupe-nom{
   margin:48px 0 22px;font-family:var(--h-titre);font-style:italic;font-weight:400;font-size:30px;line-height:1.15;color:#fff;
 }
 
-/* LES LIVRES : la disposition d'avant (Emmanuel, 10/10) : trois colonnes
+/* LES LIVRES : la disposition voulue par Emmanuel : trois colonnes
    alignées, chaque livre sur une ligne, le nom à gauche et le nombre de
    chapitres à droite, un filet dessous ; deux colonnes sur tablette et sur
-   téléphone, où le nombre passe sous le nom. Seules les polices changent. */
+   téléphone, où le nombre passe sous le nom. */
 html body .livres-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:0 44px;max-width:920px;margin:0 auto}
 html body a.livre{
   display:flex;flex-direction:row;align-items:baseline;justify-content:space-between;gap:14px;min-width:0;
@@ -107,7 +105,7 @@ html body a.livre:hover .lc{color:var(--h-t2)}
 /* ════════════════════════════════════════════════════════════════════
    2. LES CHAPITRES D'UN LIVRE
    Le groupe en sur-titre, le nom du livre en grand, puis les chapitres en
-   pastilles rondes, toutes de même taille.
+   cases carrées, toutes de même taille.
    ════════════════════════════════════════════════════════════════════ */
 html body #vue:has(> .chap-grille){display:flex;flex-direction:column;align-items:center;animation:hMonte .45s var(--h-doux) both}
 html body .livre-sous{
@@ -130,16 +128,16 @@ html body a.chap:hover{border-color:var(--h-l3);color:#fff;background:var(--h-s2
 
 /* ════════════════════════════════════════════════════════════════════
    3. LA LECTURE
-   Le titre du chapitre en grand, le ruban du signet dans un bouton rond, la
-   capsule de traduction, puis le texte. Les sous-titres de section passent
-   en sur-titre ; les numéros de versets en police d'interface, petits, en
-   crème atténuée. La taille et l'interligne du texte ne changent pas.
+   Le titre du chapitre en grand, le ruban du signet et l'icône de la
+   traduction, puis le texte. Les sous-titres de section passent en
+   sur-titre ; les numéros de versets en police d'interface, petits, à
+   l'accent. La taille et l'interligne du texte ne changent pas.
    ════════════════════════════════════════════════════════════════════ */
 html body .lecture-col{padding:72px 0 48px;animation:hMonte .5s var(--h-doux) both}
 html body .ch-tete{padding:0 56px}
 html body h2.ch-titre{font-family:var(--h-titre);font-weight:400;font-size:50px;line-height:1.06;color:#fff;text-wrap:balance}
 
-/* le signet garde son dessin d'origine : le ruban seul, sans cadre (Emmanuel, 10/10) */
+/* le signet : le ruban seul, sans cadre, comme le veut Emmanuel */
 
 /* ce qui accompagne le titre */
 html body .ch-vulg{margin-top:10px;font-family:var(--h-ui);font-style:normal;font-size:12.5px;letter-spacing:.02em;color:var(--h-t3)}
@@ -156,16 +154,16 @@ html body .ch-texte .ch-sect{
 }
 html body .ch-texte .ch-sect:first-child{margin-top:2px}
 
-/* NUMÉROS DE VERSETS : police d'interface, petite, crème atténuée */
+/* NUMÉROS DE VERSETS : police d'interface, petite, à l'accent plein */
 html body .ch-texte sup.vn{
   font-family:var(--h-ui);font-size:10.5px;font-weight:600;letter-spacing:.01em;font-variant-numeric:tabular-nums;
-  color:var(--h-or);   /* éclairés : l'accent plein, et non plus voilé (Emmanuel, 11/10) */
+  color:var(--h-or);
 }
 html body .ch-texte sup.vsub{font-family:var(--h-ui);font-size:9.5px;font-weight:600;color:var(--h-or)}
-/* en vers, le numéro pend dans la marge même quand le verset porte une note
-   ou un commentaire : la marque le remettait dans le flux et décalait la
-   première ligne. Il se cale à droite de la marge, à un souffle du premier
-   mot, si bien que « § 12 » et « 3 » finissent au même endroit. */
+/* en vers, le numéro pend dans la marge, même quand le verset porte une
+   note ou un commentaire (la marque le remettrait sinon dans le flux et
+   décalerait la première ligne). Il se cale à droite de la marge, à un
+   souffle du premier mot : « § 12 » et « 3 » finissent au même endroit. */
 html body .ch-texte .vst.po sup.vn{position:absolute;left:auto;right:calc(100% + 8px);top:.62em;white-space:nowrap}
 html body .ch-texte sup.vn.a-note .vnn{padding-bottom:2px}
 html body .ch-texte sup.vn .cm{font-family:var(--h-ui);font-size:14px;color:var(--h-or)}
@@ -194,8 +192,8 @@ html body .com-fermer{
 }
 html body .com-fermer:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 
-/* NAVIGATION ENTRE CHAPITRES : le précédent et le suivant sans cadre
-   (Emmanuel, 11/10), le retour à la grille au milieu */
+/* NAVIGATION ENTRE CHAPITRES : le précédent et le suivant sans cadre, le
+   retour à la grille au milieu */
 html body .ch-nav{
   display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:12px;
   margin-top:72px;padding-top:0;border-top:0;
@@ -318,7 +316,7 @@ html body #lv-frag-pop .lvp-oter{margin-left:0}
   html body .sb-int{padding:10px;gap:10px}
   html body .sb-refs{gap:6px}
   html body .sb-chip{font-size:14px}
-  /* sur téléphone, les actions deviennent des pilules séparées, sur une ou
+  /* sur téléphone, les actions deviennent des boutons séparés, sur une ou
      deux rangées qui remplissent la largeur */
   html body .sb-act{flex-wrap:wrap;gap:6px;padding:0;background:none;box-shadow:none;width:100%}
   html body .sb-btn{
@@ -335,10 +333,11 @@ html body #lv-frag-pop .lvp-oter{margin-left:0}
 
 /* ════════════════════════════════════════════════════════════════════
    5. LES NOTES ET LES SURLIGNAGES
-   Le compte en sur-titre, « Mes notes » en grand, la recherche en pilule,
-   les actions en boutons pleins, les filtres et le classement en contrôles
-   segmentés. Chaque catégorie porte son titre ; ses notes forment une
-   liste groupée dans un même conteneur arrondi.
+   Le compte en sur-titre, « Mes notes » en grand, la recherche, les
+   actions en boutons pleins, le classement et les filtres. Chaque
+   catégorie porte son titre ; ses notes forment une liste groupée.
+   La forme finale de la page est plus bas (« Mes notes, à la manière
+   de Mémoriser »).
    ════════════════════════════════════════════════════════════════════ */
 html body .notes-tete{display:flex;flex-direction:column;margin:72px auto 0;animation:hMonte .45s var(--h-doux) both}
 html body .notes-tete::after{content:none}
@@ -347,7 +346,7 @@ html body .notes-compte{
 }
 html body h2.notes-titre{font-family:var(--h-titre);font-weight:400;font-size:54px;line-height:1.04;letter-spacing:.005em;color:#fff}
 
-/* la recherche : une pilule, la loupe dedans */
+/* la recherche : un champ, la loupe dedans */
 html body .notes-rech{
   margin:30px auto 0;padding:13px 20px 13px 48px;
   background-color:var(--h-s1);background-position:left 20px center;background-size:16px 16px;
@@ -359,7 +358,7 @@ html body .notes-rech:hover{border-color:var(--h-l3)}
 html body .notes-rech:focus{border-color:var(--h-or);box-shadow:none}
 html body .notes-rech::placeholder{font-style:normal;color:var(--h-t4)}
 
-/* les actions : deux boutons pleins ; le classement : une capsule */
+/* les actions : deux boutons pleins ; le classement à leur suite */
 html body .notes-actions{gap:10px;margin:18px auto 0}
 html body :is(.notes-btn,.notes-lien){
   display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 22px 0 18px;
@@ -373,8 +372,7 @@ html body :is(.notes-btn,.notes-lien):is(:hover,:active,:focus-visible){
   box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);
 }
 html body :is(.notes-btn,.notes-lien):is(:hover,:active)::before{color:#000}
-/* le mot « Classer » est écrit à même la capsule : il prend la voix des
-   petites étiquettes, ses deux choix reprennent celle des onglets */
+/* le classement : ses deux choix prennent la voix des onglets */
 html body .nz-tri{
   gap:2px;padding:4px 4px 4px 13px;margin-left:auto;
   background:var(--h-s2);border:1px solid var(--h-l1);border-radius:0;
@@ -398,7 +396,7 @@ html body .sync-act{
 }
 html body .sync-act:hover{color:#000;background:color-mix(in srgb,var(--h-or) 70%,#fff);box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 
-/* les filtres : un contrôle segmenté qui défile de côté s'il est trop long */
+/* les filtres : une rangée qui défile de côté si elle est trop longue */
 html body .nz-rail{
   gap:2px;width:fit-content;max-width:min(760px,100%);padding:4px;
   margin:30px auto 0 max(0px,calc((100% - 760px) / 2));
@@ -415,8 +413,7 @@ html body .nz-fil.on{color:var(--h-or);background:var(--h-voile-fort);box-shadow
 html body .nz-fil i{margin-left:7px;font-size:12px;font-weight:600;color:var(--h-t4);font-variant-numeric:tabular-nums}
 html body .nz-fil.on i{color:color-mix(in srgb,var(--h-or) 62%,transparent)}
 
-/* EN-TÊTE DE CATÉGORIE : un titre Cormorant, son nombre en pastille,
-   collé en haut pendant qu'on fait défiler ses notes */
+/* EN-TÊTE DE CATÉGORIE : un titre Cormorant, son nombre en pastille */
 html body .nz-liste{margin-top:36px}
 html body .notes-cat{
   gap:12px;margin:44px auto 10px;padding:12px 4px 10px;
@@ -436,9 +433,9 @@ html body .notes-scat-nom{font-family:var(--h-ui);font-size:12px;font-weight:600
 html body .notes-scat-nom::before{width:14px;background:var(--h-l3);margin-right:10px}
 html body .notes-scat .notes-cat-n{height:20px;font-size:11.5px}
 
-/* LES LISTES GROUPÉES : notes, surlignages et signets se rangent en
-   rangées dans un même conteneur arrondi, séparées par des filets ; la
-   première et la dernière rangée portent les coins */
+/* LES LISTES GROUPÉES : notes et surlignages se rangent en rangées dans
+   un même cadre, séparées par des filets ; la première et la dernière
+   rangée ferment le cadre */
 html body :is(.note-item,.surl-item,.sg-carte){
   background:var(--h-s1);border:1px solid var(--h-l1);border-top-width:0;border-radius:0;box-shadow:none;
   transition:background .2s;
@@ -534,7 +531,9 @@ html body .notes-vide-p{font-family:var(--h-ui);font-size:16.5px;color:var(--h-t
 
 
 /* ════════════════════════════════════════════════════════════════════
-   6. LES SIGNETS
+   6. LES SIGNETS (ancienne liste)
+   La page ne fabrique plus ces rangées : les signets passent par
+   « Mes signets, à la manière de Mémoriser », plus bas.
    ════════════════════════════════════════════════════════════════════ */
 html body .sg-liste{margin:8px auto 0}
 html body .sg-liste+.sg-liste{margin-top:44px}
@@ -737,19 +736,18 @@ html.panneau body h2.notes-titre{font-size:42px}
 html.panneau body .notes-cat{top:0}
 html.panneau body #sel-barre{bottom:10px;width:calc(100% - 20px)}
 
-/* ── LES FILTRES DES NOTES, SUR TÉLÉPHONE, PASSENT À LA LIGNE ──
-   Dans la capsule, le dernier filtre se coupait au bord de l'écran : sur
-   téléphone, chaque filtre devient une pastille à part, et elles vont à la
-   ligne au lieu de défiler de côté. */
+/* ── LES FILTRES DES NOTES, SUR TÉLÉPHONE, VONT À LA LIGNE ──
+   Sur téléphone, chaque filtre devient une pastille à part, et elles vont
+   à la ligne au lieu de défiler de côté : le dernier filtre ne se coupe
+   pas au bord de l'écran. */
 @media(max-width:600px){
   html body .nz-rail{flex-wrap:wrap;gap:6px;width:auto;max-width:100%;margin-left:0;padding:0;overflow:visible;background:none;border:0}
   html body .nz-fil{background:var(--h-s1);box-shadow:inset 0 0 0 1px var(--h-l1)}
 }
 
-/* ── LES CHOIX EXCLUSIFS, COMME AVANT (Emmanuel, 10/10) ──
-   Classement et filtres des notes : plus de fond teinté ni de
-   cadre ; des mots côte à côte, celui qui est choisi en blanc, souligné
-   d'un trait crème. */
+/* ── LES CHOIX EXCLUSIFS (voulus par Emmanuel) ──
+   Classement et filtres des notes : sans fond teinté ni cadre ; des mots
+   côte à côte, celui qui est choisi en blanc, souligné d'un trait crème. */
 html body :is(.nz-tri,.nz-rail){background:none;border:0;box-shadow:none;padding:0;gap:18px}
 html body :is(.nz-tri-o,.nz-fil){padding:0 2px;min-height:34px;background:none;box-shadow:inset 0 -1px 0 transparent;color:var(--h-t3)}
 html body :is(.nz-tri-o,.nz-fil):hover{background:none;color:#fff}
@@ -764,7 +762,7 @@ html body :is(.nz-tri-o,.nz-fil).on{background:none;color:#fff;box-shadow:inset 
 /* le ruban : l'appui long ouvre son petit menu, sans le menu du téléphone */
 html body .signet-btn{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
 
-/* ── MES SIGNETS, À LA MANIÈRE DE MÉMORISER (Emmanuel, 10/10) ──
+/* ── MES SIGNETS, À LA MANIÈRE DE MÉMORISER ──
    Les onglets des traductions comme ceux de Mémoriser (Versets, Passages,
    Fiches), l'intitulé en petites capitales crème, une section par livre
    dans un cadre, et ses signets en rangées : ruban, référence en
@@ -811,7 +809,7 @@ html body .sgm-vide{margin:0;padding:22px 24px;border:1px dashed var(--h-l2);tex
   html body .sgm-sec-tete{padding-left:14px}
 }
 
-/* le menu du ruban : un cadre aux coins arrondis (Emmanuel, 10/10) */
+/* le menu du ruban : un cadre aux coins arrondis (choix d'Emmanuel) */
 html body #menu-flot.mf-signet{clip-path:none;border-radius:14px;min-width:0;border:1px solid var(--filet-f);box-shadow:0 20px 46px rgba(0,0,0,.62)}
 /* la pointe qui le relie au ruban */
 html body #menu-flot.mf-signet::before{
@@ -822,9 +820,8 @@ html body #menu-flot.mf-signet::before{
 html body #menu-flot.mf-signet.mf-dessus::before{top:auto;bottom:-6px;transform:translateX(-50%) rotate(225deg)}
 html body #menu-flot.mf-signet .mf-act{padding-left:20px;padding-right:20px}
 
-/* ── RETIRER UN SURLIGNAGE : UNE CROIX ROUGE (Emmanuel, 10/10) ──
-   Plus de bouton « Retirer » : une simple croix, d'un rouge sourd, qui
-   s'avive au survol. */
+/* ── RETIRER UN SURLIGNAGE : UNE CROIX ROUGE ──
+   Une simple croix, d'un rouge sourd, qui s'avive au survol. */
 html body .surl-item .surl-oter,html body .surl-item .surl-oter:hover,html body .surl-item .surl-oter:active{
   top:12px;right:12px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;min-height:0;padding:0;
   background:none;box-shadow:none;font-family:var(--h-ui);font-size:15px;font-weight:400;letter-spacing:0;text-transform:none;
@@ -833,7 +830,7 @@ html body .surl-item .surl-oter,html body .surl-item .surl-oter:hover,html body 
 html body .surl-item .surl-oter:hover{color:#e07a6e}
 html body .surl-item{padding-right:56px}
 
-/* ── MES NOTES, À LA MANIÈRE DE MÉMORISER (Emmanuel, 10/10) ──
+/* ── MES NOTES, À LA MANIÈRE DE MÉMORISER ──
    Les onglets Notes et Surlignages comme ceux de Mémoriser ; l'intitulé
    en petites capitales crème avec les deux actions à sa droite ; la
    recherche et le classement dessous ; une section encadrée par catégorie
@@ -913,14 +910,14 @@ html body :is(.nzm-modes,.nzm-tete,.nzm-outils,.nz-liste,#surl-zone){box-sizing:
 html body .nzm-modes{margin-top:56px}
 @media(max-width:600px){html body .nzm-modes{margin-top:32px}}
 
-/* ── LA FICHE D'UNE NOTE, RÉIMAGINÉE (Emmanuel, 10/10) ──
-   Une page plutôt qu'une boîte : en tête, « Nouvelle note » ou « Note »
-   en petites capitales crème, la catégorie à droite ; la référence du
-   passage en grand Cormorant ; le texte du passage cité en italique, un
+/* ── LA FICHE D'UNE NOTE ──
+   Une page plutôt qu'une boîte : en tête le titre, la catégorie à droite ;
+   la référence du passage ; le texte du passage cité en italique, un
    filet crème à sa gauche ; puis la page où l'on écrit, sans cadre, posée
-   sur un filet ; en bas, « Supprimer » en rouge discret à gauche,
+   sur un filet ; en bas, la croix rouge de suppression à gauche,
    « Annuler » et « Enregistrer » à droite. Sur téléphone, la fiche prend
-   tout l'écran. */
+   tout l'écran. Le titre, la référence et les deux boutons prennent leur
+   forme finale plus bas (« La fenêtre Note comme les autres »). */
 html body .note-boite.nb2{
   max-width:640px;padding:30px 34px 24px;border:1px solid var(--h-l2);background:#000;clip-path:none;
   box-shadow:0 30px 80px -20px rgba(0,0,0,.9);
@@ -967,8 +964,8 @@ html body .nb2 .nb-btn{flex:none}
 html body .nb2 .nb-btn.nb-suppr,html body .nb2 .nb-btn.nb-suppr:focus-visible{color:#c75d52}
 html body .nb2 .nb-btn.nb-suppr:hover{color:#e07a6e}
 html body .nb2 .nb-zone,html body .nb2 .nb-zone:focus{resize:none}
-/* la fiche sans boutons (Emmanuel, 10/10) : une croix rouge pour
-   supprimer, « Enregistrer » en simple mot crème, sans cadre */
+/* la suppression : une croix rouge, sans cadre. « Enregistrer » en simple
+   mot crème : le bandeau crème, plus bas, passe par-dessus. */
 html body .nb2 .nb-btn.nb-suppr,html body .nb2 .nb-btn.nb-suppr:is(:hover,:focus-visible){font-size:16px;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:flex-start}
 html body .nb2 .nb-btn.principal,html body .nb2 .nb-btn.principal:is(:hover,:focus-visible){
   min-height:0;padding:0;background:none;border:0;box-shadow:none;transform:none;
@@ -979,17 +976,12 @@ html body .nb2 .nb-btn.principal:hover{color:#fff}
 html body .nb2 .nb-btn.principal{position:relative;padding-left:22px}
 html body .nb2 .nb-btn.principal::before{content:'';position:absolute;left:0;top:50%;width:1px;height:14px;transform:translateY(-50%);background:var(--h-l3)}
 
-/* ── LA TRADUCTION NON CHOISIE, ÉTEINTE (Emmanuel, 10/10) ──
-   Seule la traduction en cours reste allumée en crème ; l'autre se tient
-   dans l'ombre et ne se rallume qu'au survol. */
 html body .trad-o:not(.on){color:rgba(255,255,255,.28)}
 html body .trad-o:not(.on):hover{color:var(--h-t2)}
 
-/* ── LE POINT ENTRE LES DEUX TRADUCTIONS (Emmanuel, 10/10) ──
-   Il était là mais presque noir : on le rend visible, en blanc doux. */
 html body .trad-sep{color:var(--h-t2);font-weight:700;letter-spacing:0}
 
-/* ── LA RÉFÉRENCE CHOISIE AU SURVOL (Emmanuel, 11/10) ──
+/* ── LA RÉFÉRENCE CHOISIE AU SURVOL ──
    Rien ne s'allume à l'intérieur : seul le contour s'allume. La petite
    croix, elle, passe simplement au rouge. */
 html body .sb-chip{box-shadow:inset 0 0 0 1px transparent}
@@ -1006,25 +998,21 @@ html body #sel-barre:has(#sb-surl.ouvert) .sb-surl{flex-basis:auto;flex:1;flex-w
 html body #sel-barre:has(#sb-surl.ouvert) .sb-oter{white-space:nowrap;flex:none}
 
 /* le petit menu du ruban : au survol, la lueur remplit toute la bulle
-   arrondie, sans carré à l'intérieur (Emmanuel, 11/10) */
+   arrondie, sans carré à l'intérieur (voulu par Emmanuel) */
 html body #menu-flot.mf-signet{padding:0}
 html body #menu-flot.mf-signet .mf-act{border-radius:13px}
 html body #menu-flot.mf-signet::before{background:var(--h-s2);transition:background .25s}
 html body #menu-flot.mf-signet:has(.mf-act:hover)::before{background:var(--h-s4)}
 
-/* LA LECTURE EN LITERATA (11/10) : le texte de la Bible, ses commentaires et
-   les notes. Numéros de versets et sous-titres de section restent en
+/* LA LECTURE EN LITERATA : le texte de la Bible, ses commentaires et les
+   notes. Numéros de versets et sous-titres de section restent en
    Garamond, la police de l'interface. */
 html body .ch-texte,html body .note-texte{font-family:var(--h-texte)}
 
-/* ── LE TITRE D'UNE NOTE ET LA TRADUCTION DES PASSAGES (Emmanuel, 11/10) ──
-   Dans la fiche, la ligne « Traduction Chérubin · Séraphin » se tient sous la
-   référence, comme sous le titre d'un chapitre ; le titre facultatif est une
-   ligne sans cadre, posée au-dessus de la page où l'on écrit. Dans la liste,
-   le titre ouvre l'aperçu, en blanc. */
-/* le sélecteur de traduction de « Mes notes » : deux mots sans cadre,
-   séparés d'un point, au bout de la rangée des onglets ; la traduction choisie en crème, l'autre
-   éteinte (Emmanuel, 11/10) */
+/* ── LE TITRE D'UNE NOTE ──
+   Dans la fiche, le titre facultatif est une ligne sans cadre, posée
+   au-dessus de la page où l'on écrit. Dans la liste, le titre ouvre
+   l'aperçu, en blanc. */
 html body .nzm-modes{align-items:center;flex-wrap:wrap}
 html body .nzm-trad{margin:0 0 0 auto;display:inline-flex;align-items:center;gap:10px;flex-wrap:nowrap;
   font-size:inherit;letter-spacing:0;text-transform:none;line-height:1}
@@ -1044,7 +1032,7 @@ html body .nzm-txt .nzm-ti{font-weight:600;color:#fff}
 html body .note-ti{font-family:var(--h-titre);font-size:22px;font-weight:500;line-height:1.2;color:#fff;margin:4px 0 6px}
 @media(max-width:720px){html body .nb2 .nb2-ti{font-size:22px}}
 
-/* ── LE CHEVRON DE LA BARRE DE SÉLECTION (Emmanuel, 11/10) ──
+/* ── LE CHEVRON DE LA BARRE DE SÉLECTION ──
    Sur téléphone seulement : un chevron à droite des références replie ou
    rouvre les actions. Repliée, la barre ne garde que les références. */
 html body .sb-pli{display:none}
@@ -1062,7 +1050,7 @@ html body .sb-pli{display:none}
   html body #sel-barre.replie :is(.sb-act,.sb-surl){display:none!important}
 }
 /* dépliée, la barre ne montre que le bandeau des actions et son chevron :
-   les références n'y servent à rien (Emmanuel, 11/10) */
+   les références n'y servent à rien (voulu par Emmanuel) */
 @media(max-width:720px){
   html body #sel-barre:not(.replie) .sb-refs{display:none}
   html body #sel-barre:not(.replie) .sb-int{flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px}
@@ -1077,14 +1065,13 @@ html body .sb-pli{display:none}
   html body #sel-barre:not(.replie):has(#sb-surl.ouvert) #sb-surl{flex:1 1 0;flex-basis:0;min-width:0;justify-content:flex-start;padding:2px 0}
 }
 
-/* « Retirer le surlignage » : une simple croix rouge au bout des couleurs
-   (Emmanuel, 11/10) */
+/* « Retirer le surlignage » : une simple croix rouge au bout des couleurs */
 html:root body:not(#_):not(#_):not(#_) #sel-barre .sb-oter,html:root body:not(#_):not(#_):not(#_) #sel-barre .sb-oter:is(:hover,:focus-visible,:active){
   display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;min-height:0;padding:0;margin-left:2px;
   background:none;box-shadow:none;border-radius:50%;transform:none;font-family:var(--h-ui);font-size:18px;font-weight:600;line-height:1;color:#c75d52}
 @media(hover:hover){html:root body:not(#_):not(#_):not(#_) #sel-barre .sb-oter:hover{color:#e07a6e}}
 
-/* ── LE MENU DU SIGNET S'ÉCLAIRE EN COULEUR D'ACCENT (Emmanuel, 11/10) ──
+/* ── LE MENU DU SIGNET S'ÉCLAIRE EN COULEUR D'ACCENT ──
    Au survol, « Mes signets » prend le fond crème des boutons, texte foncé
    et lueur ; la petite pointe du menu suit la même couleur. */
 html:root body:not(#_):not(#_) #menu-flot.mf-signet .mf-act{transition:background .25s,color .25s,box-shadow .25s}
@@ -1092,12 +1079,12 @@ html:root body:not(#_):not(#_) #menu-flot.mf-signet .mf-act:is(:hover,:focus-vis
 html:root body:not(#_):not(#_) #menu-flot.mf-signet:has(.mf-act:is(:hover,:focus-visible)){border-color:var(--h-or);background:var(--h-or)}
 html:root body:not(#_):not(#_) #menu-flot.mf-signet:has(.mf-act:is(:hover,:focus-visible))::before{background:var(--h-or);border-color:var(--h-or)}
 
-/* ── LA RÉFÉRENCE DU VERSET CHOISI, COMME L'ONGLET BIBLE (Emmanuel, 11/10) ──
+/* ── LA RÉFÉRENCE DU VERSET CHOISI, COMME L'ONGLET BIBLE ──
    Au survol, seul le contour s'allume de la couleur d'accent : le fond et
    le texte restent tels quels, sans lueur. */
 html:root body:not(#_):not(#_) #sel-barre .sb-chip:hover{background:var(--h-s3);color:#fff;box-shadow:inset 0 0 0 1px var(--h-or);text-shadow:none}
 
-/* ── LA COULEUR LIBRE, UN ROND DE TOUTES LES COULEURS (Emmanuel, 11/10) ──
+/* ── LA COULEUR LIBRE, UN ROND DE TOUTES LES COULEURS ──
    Le bouton de la couleur libre montre l'arc-en-ciel entier, pour qu'on
    voie d'un coup d'œil qu'il ouvre le choix de n'importe quelle couleur. */
 html:root body:not(#_):not(#_) :is(#sb-cercle,#lv-frag-pop .lvp-libre){
@@ -1106,15 +1093,14 @@ html:root body:not(#_):not(#_) :is(#sb-cercle,#lv-frag-pop .lvp-libre)::-webkit-
 html:root body:not(#_):not(#_) :is(#sb-cercle,#lv-frag-pop .lvp-libre)::-moz-color-swatch{opacity:0}
 @media(max-width:600px){html:root body:not(#_):not(#_) #sb-cercle{width:32px;height:32px}}
 
-/* ── LE RÉSULTAT DE RECHERCHE, COMME CELUI DU SITE (Emmanuel, 11/10) ──
+/* ── LE RÉSULTAT DE RECHERCHE, COMME CELUI DU SITE ──
    Une petite étiquette « Bible » au-dessus de la référence, rien d'autre. */
 html:root body:not(#_) #brech-res .b-r .rech-meta{display:block;margin:0 0 4px;font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--h-or)}
 html:root body:not(#_) #brech-res .b-r b{font-family:var(--h-titre);font-size:22px;font-weight:400}
 
-/* ── LA TRADUCTION, UNE ICÔNE À CÔTÉ DU TITRE (Emmanuel, 11/10) ──
-   Le titre reste centré ; l'icône se pose à sa droite, dans un petit rond
-   dont seul le contour s'allume au survol, comme l'onglet Bible. Son menu
-   reprend celui du signet : une ligne par traduction, crème au survol. */
+/* ── LA TRADUCTION, UNE ICÔNE À CÔTÉ DU TITRE ──
+   Le titre reste centré ; l'icône se pose à sa droite. Son menu reprend
+   celui du signet : une ligne par traduction, crème au survol. */
 html body .hero .titre-ligne{position:relative;display:inline-block}
 html body .hero .trad-ic{
   position:absolute;left:calc(100% + 14px);top:50%;transform:translateY(-50%);
@@ -1138,7 +1124,7 @@ html body .trad-menu .tm-o i{font-style:normal;font-size:14px;color:var(--h-or)}
 html body .trad-menu .tm-o:is(:hover,:focus-visible){outline:none;background:var(--h-or);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 html body .trad-menu .tm-o:is(:hover,:focus-visible) i{color:#000}
 
-/* ── LE HAUT DE LA BIBLE, DANS L'ORDRE (Emmanuel, 11/10) ──
+/* ── LE HAUT DE LA BIBLE, DANS L'ORDRE ──
    « Aller à » d'abord, juste sous le titre ; « Reprendre » dessous, de la
    même largeur ; la barre arrondie comme ses boutons. L'icône de la
    traduction se fait discrète : sans rond, d'un gris doux. */
@@ -1150,7 +1136,7 @@ html:root body:not(#_) .hero .trad-ic:is(:hover,:focus-visible,[aria-expanded="t
 html:root body:not(#_) .hero .trad-ic{transform:translateY(calc(-50% - 8px))}
 @media(max-width:600px){html:root body:not(#_) .hero .trad-ic{transform:translateY(calc(-50% - 5px))}}
 
-/* ── L'ICÔNE DE LA TRADUCTION, AUSSI DANS LES CHAPITRES ET LES NOTES (Emmanuel, 11/10) ──
+/* ── L'ICÔNE DE LA TRADUCTION, AUSSI DANS LES CHAPITRES ET LES NOTES ──
    Dans un chapitre, elle se pose à droite du titre comme sur l'accueil ;
    dans « Mes notes », au bout de la rangée des onglets. */
 html body .ch-tete{text-align:center}
@@ -1165,15 +1151,15 @@ html body .nzm-modes .trad-ic{margin-left:auto}
 /* un titre de chapitre sur deux lignes : l'icône reste au bout de la première */
 html body .ch-tete .trad-ic{top:19px;transform:translateY(-50%)}
 @media(max-width:600px){html body .ch-tete .trad-ic{top:15px;transform:translateY(-50%)}}
-/* la coche du menu de la traduction : le même trait dessiné que partout (11/10) */
+/* la coche du menu de la traduction : le même trait dessiné que partout */
 html body .trad-menu .tm-o .coche-trait{position:relative;width:12px;height:14px;flex:none}
 html body .trad-menu .tm-o.on .coche-trait::after{
   content:'';position:absolute;left:3.5px;top:0;width:5px;height:10px;
   border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(45deg)}
-/* la fenêtre « Note » a un grand titre, comme toutes les fenêtres (11/10) */
+/* la fenêtre « Note » a un grand titre, comme toutes les fenêtres */
 html:root body:not(#_) .nb2 .nb-titre{font-family:var(--h-titre);font-size:28px;font-weight:500;letter-spacing:normal;text-transform:none;color:#fff;line-height:1.2}
 
-/* ── LA FENÊTRE « NOTE » COMME LES AUTRES (Emmanuel, 11/10) ──
+/* ── LA FENÊTRE « NOTE » COMME LES AUTRES ──
    La référence en petite étiquette sous le titre ; « Annuler » et
    « Enregistrer » en bandeau crème. */
 html:root body:not(#_):not(#_) .nb2-ref{font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-or)}
@@ -1192,18 +1178,18 @@ html:root body:not(#_):not(#_):not(#_) .nb2 #nb-enregistrer::before{inset:11px a
 html:root body:not(#_):not(#_):not(#_) .nb2 .nb-actes:has(:is(#nb-annuler,#nb-enregistrer):hover) #nb-enregistrer::before{opacity:0}
 html:root body:not(#_):not(#_):not(#_) .nb2 .nb-actes #nb-enregistrer{position:relative!important}
 html:root body:not(#_):not(#_):not(#_) .nb2 #nb-enregistrer::before{transform:none}
-/* le menu de la catégorie passe au-dessus de la fenêtre de note (11/10) */
+/* le menu de la catégorie passe au-dessus de la fenêtre de note */
 html body .trad-menu.cat-menu-n{z-index:400}
 html body .nb2-cat .note-sel{cursor:pointer}
 html body .nb2-cat .note-sel:focus-visible{outline:none}
 html body .nb2-cat .note-sel:focus-visible select{border-color:var(--h-or)}
-/* le titre d'une note, sur sa propre ligne dans « Mes notes » (11/10) */
+/* le titre d'une note, sur sa propre ligne dans « Mes notes » */
 html body .nzm-row .nzm-ti{grid-column:1/-1;display:block;margin:6px 0 2px;font-family:var(--h-titre);font-size:22px;font-weight:500;line-height:1.2;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-right:44px}
 @media(max-width:600px){html body .nzm-row .nzm-ti{padding-right:0}}
 /* dans le tiroir, la barre « Aller à » du tiroir suffit : celle de l'accueil
-   de la Bible s'efface (11/10) */
+   de la Bible s'efface */
 html.panneau body #bib-aller{display:none}
-/* sur téléphone, le numéro du chapitre reste sur la ligne du livre (11/10) */
+/* sur téléphone, le numéro du chapitre reste sur la ligne du livre */
 @media(max-width:600px){
   html:root body:not(#_):not(#_):not(#_) h2.ch-titre{font-size:30px}
   html:root body:not(#_) .ch-tete .trad-ic{width:26px;left:calc(100% + 4px)}
@@ -1211,7 +1197,7 @@ html.panneau body #bib-aller{display:none}
 }
 @media(max-width:600px){html:root body:not(#_) .ch-tete .titre-ligne{max-width:calc(100% - 46px)}}
 
-/* ── LES VERS, ALIGNÉS À GAUCHE ET À DROITE, EN RETRAIT DES DEUX CÔTÉS (Emmanuel, 11/10) ──
+/* ── LES VERS, ALIGNÉS À GAUCHE ET À DROITE, EN RETRAIT DES DEUX CÔTÉS ──
    Un vers trop long s'étire jusqu'à sa marge droite, sa dernière ligne reste
    à gauche. Le bloc des vers garde à droite le même retrait qu'à gauche, pour
    ne pas toucher le bord de l'écran, et les mots se coupent en fin de ligne
@@ -1221,8 +1207,7 @@ html body .ch-texte .vst.po,html body .ch-texte .vst.po .li{
   text-align:justify;text-wrap:wrap;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 2}
 @media(max-width:600px){html body .ch-texte .vst.po{padding-right:1.7em}}
 
-/* ── L'ICÔNE DE LA TRADUCTION CONTRE LE TITRE, SON MENU ACCROCHÉ À ELLE
-   (Emmanuel, 19/10) ──
+/* ── L'ICÔNE DE LA TRADUCTION CONTRE LE TITRE, SON MENU ACCROCHÉ À ELLE ──
    Sur l'accueil de la Bible, l'icône se rapproche du « e » de « Bible ».
    Le menu des traductions se tient sous l'icône, relié à elle par une
    petite pointe, comme le menu du ruban des signets. */

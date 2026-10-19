@@ -3,10 +3,10 @@
    scripts Firebase, polices) pour un usage hors ligne. Ne touche à
    AUCUNE autre partie du site, ni aux API Firebase (auth, Firestore). */
 'use strict';
-/* Le nom du cache et la version du panneau biblique sont posés PAR LE BUILD
-   (« __VERSION__ » et « __PAN_V__ » remplacés dans build-bi.js) : à chaque
-   changement de contenu, le cache change de nom et l'ancien est effacé. Il
-   n'y a plus de « v3 » à penser à incrémenter à la main (05/09). */
+/* Le nom du cache et la version du panneau biblique sont posés par la
+   fabrication (« __VERSION__ » et « __PAN_V__ » remplacés dans build-bi.js) :
+   à chaque changement de contenu, le cache change de nom et l'ancien est
+   effacé. */
 var CACHE = 'lv-memoriser-__VERSION__';
 var PAN_V = '__PAN_V__';
 var COQUILLE = [
@@ -17,8 +17,8 @@ var COQUILLE = [
   '/icones/memoriser-180.png',
   '/icones/memoriser-512-maskable.png',
   /* le sélecteur « Choisir dans la Bible » de Mémoriser en dépend : sans
-     eux, l'application installée affichait hors ligne « la Bible n'est pas
-     encore prête » pour toujours (05/09) */
+     eux, l'application installée resterait hors ligne sur « la Bible n'est
+     pas encore prête » */
   '/bible-panneau.js?v=' + PAN_V,
   '/bible-data/index.json',
   'https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js',
@@ -72,23 +72,22 @@ self.addEventListener('fetch', function (e) {
   try { url = new URL(e.request.url); } catch (_) { return; }
   if (!concerne(url)) return;
   /* La page est rangée sous UNE clé, sans paramètres : l'accueil y envoie
-     avec « ?demarrer=1 », et cette variante ne correspondait à rien dans le
-     cache (hors ligne : erreur au lieu de la page). */
+     avec « ?demarrer=1 », variante qui sinon ne correspondrait à rien dans
+     le cache hors ligne. */
   var page = (url.origin === self.location.origin && url.pathname === '/memoriser.html');
   var cle = page ? '/memoriser.html' : e.request;
   /* Deux promesses posées AU MOMENT DE L'ÉVÉNEMENT : la réponse à rendre, et
      la mise à jour en arrière-plan, RETENUE par waitUntil. Sans cela le
-     navigateur pouvait arrêter le worker avant l'écriture en cache, et une
-     icône ou un manifeste changé restait périmé chez qui avait installé
-     l'application (05/09). */
+     navigateur peut arrêter le worker avant l'écriture en cache, et une
+     icône ou un manifeste changé reste périmé sur l'application installée. */
   var travail = caches.open(CACHE).then(function (c) {
     /* la page ignore ses paramètres (« ?demarrer=1 ») ; les fichiers versionnés
        (« ?v=… »), eux, ne doivent JAMAIS être confondus avec une version antérieure */
     return c.match(cle, page ? { ignoreSearch: true } : undefined).then(function (enCache) {
       var reseau = fetch(e.request).then(function (r) {
-        /* pour la page, on n'accepte en cache qu'une VRAIE page du site : un
+        /* pour la page, seule une VRAIE page du site entre en cache : un
            portail Wi-Fi qui répond « 200 » avec sa propre page d'accueil ne
-           doit pas devenir notre page hors ligne (05/09) */
+           doit pas devenir la page hors ligne */
         var ok = r && (r.ok || r.type === 'opaque');
         if (ok && page) ok = r.type === 'basic' && /text\/html/.test(r.headers.get('content-type') || '');
         if (ok) return c.put(cle, r.clone()).then(function () { return r; }, function () { return r; });

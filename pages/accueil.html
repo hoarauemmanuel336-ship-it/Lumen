@@ -6,8 +6,9 @@
 <title>Lumen · Théologie catholique</title>
 <style>
 /* ============================================================
-   LUMEN — feuille de style
-   Palette « manuscrit nocturne » : encre profonde, parchemin, or ancien.
+   LUMEN, feuille de style commune du site
+   Les noms des variables ne disent pas les couleurs : « encre » est le
+   noir, « parchemin » le blanc, « or » la crème d'accent.
    ============================================================ */
 :root{
   --encre:#000000;          /* fond global, noir total */
@@ -17,7 +18,8 @@
   --or:#efe6cf;             /* accent principal, crème clair */
   --or-pale:#f8f3e6;        /* crème éclairci, hover */
   /* fond de survol : la couleur d'accent, une seule intensité pour tout le
-     site ; la seconde ligne suit l'accent, une vieille version l'ignore. */
+     site ; la seconde ligne suit l'accent, un vieux navigateur garde la
+     première. */
   --surv:rgba(239,230,207,.06);
   --surv:color-mix(in srgb, var(--or) 6%, transparent);
   /* texte sélectionné : la même couleur, franche, texte en noir */
@@ -88,7 +90,7 @@ nav.menu a:hover,nav.menu a.actif{color:var(--parchemin);border-color:var(--or)}
 .burger{display:none;background:none;border:none;color:var(--parchemin);
   font-size:24px;cursor:pointer;line-height:1}
 
-/* contexte d'article (thème · date) centré dans le bandeau */
+/* contexte d'article (thème · date) dans le bandeau, entre le logo et le menu */
 .contexte-bar{
   grid-column:2;grid-row:1;text-align:left;min-width:0;
   overflow:hidden;text-overflow:ellipsis;
@@ -270,14 +272,12 @@ nav.menu .rech-loupe .ll-mob{display:inline}
 </head>
 <body>
 <!-- ============================================================
-     SOURCE DU GENERATEUR - node build-bi.js
-     Le build ne lit qu'une seule chose dans ce fichier : la
-     feuille de style ci-dessus, qui porte tout l'habillage du
-     site. Les pages publiques (accueil, Bible, Memoriser) sont
-     construites par build-bi.js et deposees dans site/.
-     Ne rien ajouter ici : aucun contenu de ce corps n'est lu ni
-     affiche, et un gabarit oublie finirait par reapparaitre par
-     erreur dans le site.
+     SOURCE DE LA FABRICATION (fabrication/build-bi.js)
+     La fabrication ne lit de ce fichier que la feuille de style
+     ci-dessus, qui porte l'habillage commun du site, et construit
+     elle-même les pages dans site/.
+     Rien n'entre dans ce corps : il n'est ni lu ni affiché, et un
+     gabarit oublié finirait par reparaître par erreur.
      ============================================================ -->
 </body>
 </html>

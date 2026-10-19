@@ -2,13 +2,11 @@
    LUMEN · FONCTIONNEMENT COMMUN : MÉNAGE DES COPIES PUBLIQUES
    Pages : Articles, Ressources.
 
-   Le site est privé (19/10, Emmanuel : « je ne compte plus le rendre
-   public », puis « retire tout ça, copie et trad anglaise »). Quand un
-   article ou une ressource était publié, le site en recopiait la fiche,
-   le contenu et le fichier dans un espace public de la base. Ces copies
-   ne servent plus : au premier passage de l'auteur sur Articles ou
-   Ressources, elles sont effacées, une fois pour toutes, et un drapeau
-   dans le compte dit que c'est fait.
+   Le site est privé (Emmanuel : « je ne compte plus le rendre public »).
+   Les anciennes copies publiques des articles et des ressources (fiche,
+   contenu, fichier) ne servent plus : au premier passage de l'auteur sur
+   Articles ou Ressources, elles sont effacées une fois pour toutes, et un
+   drapeau dans le compte dit que c'est fait.
 
    Les commentaires bibliques ne sont pas touchés : leur copie publique
    est celle que la Bible lit pour les afficher, et leurs images restent
@@ -69,7 +67,7 @@ async function menagePublic(){
     for(const d of await lis(nom))await mgFichier(nom,d.id);
   }
   for(const id of deArticles)if(!deCommentaires.has(id))await mgFichier('public_medias',id);
-  /* l'arbre des catégories, déposé autrefois pour les visiteurs */
+  /* l'arbre public des catégories */
   for(const chemin of ['config/res_rubriques','config/art_rubriques'])await db.doc(chemin).delete().catch(()=>{});
 
   /* l'ancien état « publié » des fiches privées */

@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════════
-   LUMEN · SERVICE WORKER DU SITE (26/09)
+   LUMEN · SERVICE WORKER DU SITE
    ════════════════════════════════════════════════════════════════════
    Mémoriser a le sien (memoriser-sw.js), limité à sa page. Celui-ci garde
    sur l'appareil le reste du site : les pages, leurs scripts, la Bible dans
@@ -16,7 +16,7 @@
    · LE RESTE (scripts versionnés, outil de connexion, polices, icônes) :
      l'appareil d'abord, avec une mise à jour discrète en arrière-plan.
 
-   Le build remplace __SITE_V__ et __BIBLE_V__ par les empreintes du site et
+   La fabrication remplace __SITE_V__ et __BIBLE_V__ par les empreintes du site et
    de la Bible. Une réponse qui n'est pas la bonne (la porte à mot de passe,
    une erreur, un portail Wi-Fi) n'est jamais gardée.
    ════════════════════════════════════════════════════════════════════ */

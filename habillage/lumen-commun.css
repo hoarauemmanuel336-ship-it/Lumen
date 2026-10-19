@@ -1,36 +1,28 @@
 /* ════════════════════════════════════════════════════════════════════
-   LUMEN — FEUILLE COMMUNE À TOUTES LES PAGES (26/09)
+   LUMEN — FEUILLE COMMUNE À TOUTES LES PAGES
    ════════════════════════════════════════════════════════════════════
-   Chaque page porte encore sa propre feuille, écrite à part : c'est ainsi
-   que Commentaires était resté à l'ancien en-tête pendant qu'Articles et
-   Ressources changeaient, et que le crème s'était retrouvé écrit en dur à
-   plusieurs endroits. Cette feuille-ci est posée par le build dans CHAQUE
-   page, juste après la feuille propre de la page : ce qu'elle dit
-   l'emporte partout à la fois. Tout changement de ton, de taille ou de
-   forme commun aux pages se fait désormais ici, une seule fois.
-
-   HABILLAGE (10/10) : l'apparence du site a été entièrement refaite dans
-   le dossier habillage/ (commun.css, puis une feuille par page), posé en
-   DERNIER dans chaque page. C'est désormais là que se règle l'apparence ;
-   cette feuille-ci reste pour les réglages anciens que l'habillage
-   reprend ou dépasse.
+   La fabrication pose cette feuille dans CHAQUE page, juste après la
+   feuille propre de la page : ce qu'elle dit l'emporte sur les pages.
+   L'habillage (commun.css, puis une feuille par page) vient ensuite, en
+   dernier, et a le dernier mot : c'est là que se règle l'apparence.
+   Cette feuille-ci garde les réglages communs que l'habillage reprend ou
+   dépasse.
 
    Elle ne touche jamais à la couleur d'accent (--or) : celle-ci vient de
-   content/settings.json, posée après elle par le build.
+   contenu/settings.json, posée après elle par la fabrication.
 
    Le site parle de trois voix :
-   · CE QUI SE LIT (titres, textes, extraits) : le romain de lecture, en
-     blanc, grandes et petites lettres ;
-   · CE QUI SE TOUCHE (actions) : un bouton qui se voit comme tel, cadre
-     fin à coin coupé, à la couleur d'accent ;
-   · CE QUI INFORME (états, dates, nombres, libellés) : petites capitales
-     espacées, sans cadre, à l'accent quand l'information compte.
+   · CE QUI SE LIT (titres, textes, extraits) : en blanc, grandes et
+     petites lettres ;
+   · CE QUI SE TOUCHE (actions) : un bouton plein, à la couleur d'accent,
+     texte noir ;
+   · CE QUI INFORME (états, dates, nombres, libellés) : sans cadre, à
+     l'accent quand l'information compte.
    ════════════════════════════════════════════════════════════════════ */
 
 /* ── LE TEXTE SECONDAIRE SE LIT SANS EFFORT ──
-   Les tons secondaires descendaient à 50 % et 60 % de blanc : extraits,
-   dates et aides passaient pour des ombres, surtout sur téléphone. Ils
-   remontent, et les filets avec eux. */
+   Extraits, dates et aides restent bien lisibles, téléphone compris :
+   leurs tons ne descendent pas sous 64 % de blanc. */
 :root{
   --pa:rgba(255,255,255,.76);
   --pa2:rgba(255,255,255,.64);
@@ -43,14 +35,11 @@
 @media(max-width:600px){.tete h1{font-size:16px;letter-spacing:.14em}}
 
 /* ── CE QUI SE TOUCHE : LES ACTIONS SONT DES BOUTONS ──
-   Elles étaient des mots nus, qu'on devinait plus qu'on ne les voyait. Dans
-   toutes les rangées d'actions, chacune est un bouton de même taille et de
-   même couleur, suppression comprise (Emmanuel, 26/09).
-   BOUTONS PLEINS (Emmanuel, 27/09). Ils étaient en cadre fin à l'accent,
-   mais la crème en trait d'un pixel, dans le noir, se lit presque blanche :
-   elle ne rendait pas la couleur du gros bouton « Commencer ». Ils sont
-   désormais remplis comme lui : fond à l'accent, texte noir, fond éclairci
-   au survol. */
+   Dans toutes les rangées d'actions, chacune est un bouton de même taille
+   et de même couleur, suppression comprise (choix d'Emmanuel). Les boutons
+   sont pleins, comme « Commencer » : fond à l'accent, texte noir, fond
+   éclairci au survol. Un simple cadre crème d'un pixel, dans le noir, se
+   lirait presque blanc. */
 .acts{gap:12px}
 .acts .act{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:11px 20px;line-height:1.1;font-size:12.5px;color:var(--encre);text-shadow:none;border:1px solid var(--or);background:var(--or);transition:color .25s,border-color .3s,background .3s}
 .acts .act::before{content:none}
@@ -67,8 +56,8 @@
 #acts-liste .acts-outils .act+.act::after{content:none}
 #acts-liste .acts-outils .act.majeur{border-color:var(--or)}
 #acts-liste .acts-outils .act.majeur:hover{border-color:var(--or-pale)}
-/* les pages donnaient au texte des actions la couleur d'accent, par une règle
-   plus forte : sur un bouton plein, le texte reste noir, survol compris */
+/* certaines pages donnent au texte des actions la couleur d'accent par une
+   règle plus forte : sur un bouton plein, le texte reste noir, survol compris */
 #acts-liste .act,#acts-liste .act:hover,.acts .act.danger:hover{color:var(--encre)}
 @media(max-width:600px){
   .acts .act{min-height:44px}
@@ -84,7 +73,7 @@
 .cat-acts .ghost-btn::before{content:none}
 .cat-acts .ghost-btn:hover{color:var(--encre);border-color:var(--or-pale);background:var(--or-pale)}
 /* Nouvelle catégorie et Nouvelle section vont par deux, côte à côte et de
-   même taille, que Mémoriser soit vide ou non (Emmanuel, 26/09) */
+   même taille, que Mémoriser soit vide ou non */
 .cat-acts,body.memo-vide .cat-acts{flex-direction:row;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:12px;width:100%;max-width:520px;margin-left:auto;margin-right:auto}
 .cat-acts #add-cat,.cat-acts #add-sec,body.memo-vide .cat-acts #add-cat{flex:1 1 0;min-width:0;width:auto;margin:0;padding:12px 14px;font-size:12.5px;letter-spacing:.14em;background:var(--or);color:var(--encre);border:1px solid var(--or);text-shadow:none}
 .cat-acts #add-cat:hover,.cat-acts #add-sec:hover,body.memo-vide .cat-acts #add-cat:hover{background:var(--or-pale);border-color:var(--or-pale);color:var(--encre)}
@@ -95,8 +84,8 @@
 .art-menu:hover,.ct-menu:hover,.rub-menu:hover,.ry-menu:hover{color:var(--or-pale)}
 
 /* ── CE QUI INFORME ──
-   L'état d'une fiche, Privé comme Publié, le nombre et le chevron des
-   rubriques : à l'accent, comme les cartes des ressources. */
+   L'état d'un commentaire (Brouillon, Dans la Bible), le nombre et le
+   chevron des rubriques : à l'accent, comme les cartes des ressources. */
 .art-pied .art-etat,.art-pied .art-etat.publie,.ct-etat,.ct-etat.publie{color:var(--or);text-shadow:0 0 10px color-mix(in srgb,var(--or) 40%,transparent)}
 .rub-n,.rub-chev,.rayon .ry-n,.rayon .ry-chev{color:var(--or)}
 
@@ -112,18 +101,14 @@
   .resume,.aide{font-size:15px}
 }
 
-/* ── TOUS LES BOUTONS À CADRE SONT PLEINS (Emmanuel, 27/09 : « menu compte,
-   commentaires, notes, Bible… il faut vérifier partout ») ──
-   Comme les rangées d'actions plus haut, chaque bouton qui portait un cadre
-   est rempli comme « Commencer » : fond à l'accent, texte noir, fond
-   éclairci au survol. Menus du compte, fenêtres de connexion, boutons
-   Google, notes et signets de la Bible, reprise de lecture, « Réessayer »,
-   choix du passage, « Terminer », ouverture d'une ressource, boutons du
-   plein écran, retour en haut, taille du texte.
+/* ── TOUS LES BOUTONS SONT PLEINS, PARTOUT ──
+   Comme les rangées d'actions plus haut, chaque bouton est rempli comme
+   « Commencer » : fond à l'accent, texte noir, fond éclairci au survol
+   (Emmanuel : « il faut vérifier partout »).
    Restent à part, parce que ce ne sont pas des boutons : les cartes, les
    champs, les onglets, les interrupteurs, les grilles de livres et de
    chapitres, les options de réponse. L'onglet Bible, à gauche, garde son
-   fond noir (Emmanuel, 27/09). */
+   fond noir. */
 html:root :is(.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x,.haut-page,.ttx-b){
   background:var(--or);border-color:var(--or);color:var(--encre);text-shadow:none;box-shadow:none;
   -webkit-backdrop-filter:none;backdrop-filter:none;transition:background .3s,border-color .3s,color .3s,opacity .3s}
@@ -134,33 +119,31 @@ html:root :is(.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.
 html:root #cat-more{background:none;border:none;color:var(--pa2)}
 html:root #cat-more:hover{color:var(--or)}
 
-/* ── LE PIED DE PAGE : LE VERSET SEUL, ÉCLAIRÉ (Emmanuel, 27/09) ──
-   « Lumen » et « © année Lumen » sont retirés ; le verset d'Isaïe et sa
-   référence passent en blanc plein, avec un léger halo. */
+/* ── LE PIED DE PAGE : LE VERSET SEUL, ÉCLAIRÉ ──
+   « Lumen » et « © année Lumen » sont masqués ; le verset d'Isaïe et sa
+   référence sont en blanc plein, avec un léger halo. */
 html body footer .marque,html body footer .copy{display:none}
 html body footer .verset-pied{margin-top:0;color:#fff;text-shadow:0 0 14px rgba(255,255,255,.35)}
 html body footer .verset-pied .ref-pied{color:#fff}
 
-/* ── LES CHAMPS DE RECHERCHE PASSENT À LA LIGNE (Emmanuel, 27/09) ──
+/* ── LES CHAMPS DE RECHERCHE PASSENT À LA LIGNE ──
    Ce sont des zones de texte d'une ligne qui s'agrandissent vers le bas :
    tout ce qu'on tape reste visible, sans défilement de côté. */
 html body textarea.champ-ligne{resize:none;overflow:hidden;display:block;min-height:0;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;line-height:1.3;field-sizing:content;box-sizing:border-box;vertical-align:top}
 html body #brech-champ,html body #rech-champ{line-height:1.2}
 /* un seul contour autour d'un champ : son propre cadre, qui s'allume à
-   l'écriture ; le second trait, posé autour par le réglage général du
-   focus, disparaît */
+   l'écriture, sans le second trait du réglage général du focus */
 html body :is(input,textarea,select):focus-visible{outline:none}
 /* les résultats et messages des recherches restent dans l'écran */
 html body :is(#brech-res,#rech-res,.b-res,.rech-res,#srch-results){overflow-x:hidden;overflow-wrap:anywhere}
 
-/* « Aller » de la Bible : bouton plein, comme les autres ; le champ où
-   l'on tape reste tel quel */
+/* « Aller » de la Bible : bouton plein, comme les autres */
 html:root .bib-aller button{background:var(--or);color:var(--encre);border:0;transition:background .3s}
 html:root .bib-aller button:is(:hover,:focus-visible){background:var(--or-pale);color:var(--encre)}
 
-/* ── BARRES DE DÉFILEMENT (Emmanuel, 27/09) ──
+/* ── BARRES DE DÉFILEMENT ──
    Partout la même : fine, curseur crème discret sur fond noir, plus clair
-   au survol. Aucune barre claire du système n'apparaît. */
+   au survol, jamais la barre claire du système. */
 html{scrollbar-color:rgba(239,230,207,.35) #000}
 *{scrollbar-width:thin;scrollbar-color:rgba(239,230,207,.35) transparent}
 ::-webkit-scrollbar{width:10px;height:10px;background:transparent}
@@ -168,19 +151,17 @@ html{scrollbar-color:rgba(239,230,207,.35) #000}
 ::-webkit-scrollbar-thumb{background:rgba(239,230,207,.35);background-clip:content-box;border:3px solid transparent;border-radius:99px}
 ::-webkit-scrollbar-thumb:hover{background:rgba(239,230,207,.6);background-clip:content-box}
 
-/* ── LE BOUTON « PUBLIER » UNE FOIS PUBLIÉ (Emmanuel, 27/09) ──
-   Articles, Ressources et Commentaires donnaient au bouton publié le texte
-   à l'accent : sur le bouton plein, « Rendre privé » disparaissait, crème
-   sur crème. Il garde le texte noir de tous les boutons, survol compris. */
+/* ── UN BOUTON À L'ÉTAT ACTIF GARDE SON TEXTE NOIR ──
+   « Retirer de la Bible » (Commentaires) et toute action marquée active :
+   les pages leur donnent le texte à l'accent, qui disparaîtrait sur le
+   bouton plein, crème sur crème. Le texte reste noir, survol compris. */
 html body #b-etat,html body #b-etat.publie,html body #b-etat.publie:hover,
 html body .acts .act:is(.publie,.on,.actif,:disabled){color:var(--encre)}
 
-/* ── LES « ⋯ » EN BLANC, BIEN ALLUMÉS, PARTOUT (Emmanuel, 27/09) ──
-   Comme dans Ressources : les trois points des articles, des commentaires,
-   des sections, des rayons, des notes et des catégories de la Bible, des
-   sections de Mémoriser et des blocs de l'éditeur passent en blanc plein
-   avec un halo blanc. La poignée des blocs garde sa façon de n'apparaître
-   qu'au survol du bloc. */
+/* ── LES « ⋯ » EN BLANC, BIEN ALLUMÉS, PARTOUT ──
+   Les trois points de toutes les pages et la poignée des blocs de
+   l'éditeur sont en blanc plein, avec un halo blanc. La poignée des blocs
+   n'apparaît toujours qu'au survol du bloc. */
 html body :is(.art-menu,.ct-menu,.rub-menu,.ry-menu,.nt-menu,.sec-menu,.bl-poignee),html body .rayon .ry-menu{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.7),0 0 20px rgba(255,255,255,.3)}
 html body :is(.art-menu,.ct-menu,.rub-menu,.ry-menu,.nt-menu,.sec-menu):is(:hover,:active,:focus-visible),html body .rayon .ry-menu:hover,html body .bl-poignee:hover{color:#fff;text-shadow:0 0 12px rgba(255,255,255,.95),0 0 26px rgba(255,255,255,.45)}
 html body :is(.art-menu,.ct-menu,.rub-menu,.ry-menu,.nt-menu,.sec-menu){opacity:1}

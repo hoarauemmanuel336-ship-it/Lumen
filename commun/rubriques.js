@@ -1,12 +1,9 @@
 /* ════════════════════════════════════════════════════════════════════
    LUMEN · FONCTIONNEMENT COMMUN : RUBRIQUES
    Pages : Articles, Ressources.
-   Le rangement en domaines et sections : validité, parenté, profondeur, chemin affiché.
-
-   Ces fonctions étaient recopiées à l'identique dans chacune de ces pages
-   (26/09). Elles vivent maintenant ici, une seule fois : le build les pose
-   dans chaque page concernée, avant le script de la page, et toute
-   correction faite ici vaut pour toutes ces pages à la fois.
+   Le rangement en catégories et sections : validité, parenté, profondeur, chemin affiché.
+   La fabrication pose ce fichier dans chaque page concernée, avant le script
+   de la page : une correction faite ici vaut pour toutes.
    ════════════════════════════════════════════════════════════════════ */
 
 function rubValide(id){return !!(id&&rubDe(id));}

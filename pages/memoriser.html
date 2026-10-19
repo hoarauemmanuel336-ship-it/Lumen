@@ -48,7 +48,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
-/* champ : style filet bas, pas de boîte */
+/* champ de saisie : fond sombre, filet fin, accent au focus */
 .field{width:100%;background:#161616;border:1px solid var(--filet-f);color:var(--parchemin);font-family:var(--serif);font-size:16px;padding:10px 13px;outline:none;border-radius:0;transition:border-color .3s}
 .field:focus{border-color:var(--or)}
 .field::placeholder{color:var(--pa2)}
@@ -56,7 +56,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .field::placeholder{color:var(--pa2)}
 textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 
-/* ═══ AUTH ═══ */
+/* ═══ RECHERCHE, DÉPLACEMENT, CONNEXION ═══ */
 .mov-v{flex-shrink:0;color:var(--pa2);font-size:14px;line-height:1;cursor:pointer;opacity:.6;transition:color .3s,opacity .3s;padding:0 4px}
 .mov-v:hover{opacity:1;color:var(--or)}
 .srch-cat{font-family:var(--display);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--pa);margin:16px 0 8px}
@@ -106,18 +106,19 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 
 .lbl{font-family:var(--display);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa)}
 
-/* bascule Versets / Passages : deux onglets sobres, un filet d'or sous celui
-   où l'on est, comme un intercalaire dans un classeur */
+/* bascule Versets / Passages / Fiches : des onglets sobres, un filet
+   d'accent sous celui où l'on est, comme un intercalaire dans un classeur */
 .modes{display:flex;flex-wrap:wrap;gap:30px;margin:0 0 34px;border-bottom:1px solid var(--filet)}
-/* trois onglets tiennent sur la largeur d'un téléphone en resserrant la
-   lettre : « Versets Passages Citations » (Emmanuel, 12/09) */
+/* les trois onglets tiennent sur la largeur d'un téléphone en resserrant
+   la lettre */
 @media(max-width:430px){.modes{gap:17px}.mode{font-size:12.5px;letter-spacing:.12em}}
 .mode{background:none;border:0;padding:0 0 13px;font-family:var(--display);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--pa2);cursor:pointer;position:relative;transition:color .3s}
 .mode:hover{color:var(--pa)}
 .mode.on{color:var(--or)}
 .mode.on::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--or)}
 /* ligne de passage : le titre prend la place, la référence se pose à droite
-   en petites capitales dorées, là où un verset porte sa référence à gauche */
+   en lettres de titre, couleur d'accent, là où un verset porte sa référence
+   à gauche */
 .vrow.pas .vref{width:auto;flex:1 1 auto;min-width:0;color:var(--parchemin);font-family:var(--serif);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vrow.pas .vtext{flex:0 0 auto;font-family:var(--display);color:var(--or);font-size:14px;letter-spacing:.02em}
 .vline:hover .vrow.pas .vtext{color:var(--or-pale)}
@@ -129,10 +130,9 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .cat-row{display:flex;align-items:center;gap:14px;padding:15px 2px;cursor:pointer}
 .cat-check{flex-shrink:0;width:16px;height:16px;border:1px solid var(--filet-f);position:relative;transition:border-color .3s}
 .cat-check::after{content:'';position:absolute;inset:3px;background:var(--or);opacity:0;transition:opacity .2s}
-/* La case d'un verset n'est plus le petit frère de celle d'une catégorie :
-   le cadre reste le signe d'une catégorie, la coche celui d'un verset compté
-   dans les révisions. Deux formes, deux niveaux, plus de confusion possible
-   (Emmanuel, 05/09). Coche pâle : le verset est mis de côté. */
+/* Le cadre est le signe d'une catégorie, la coche celui d'un verset compté
+   dans les révisions : deux formes pour deux niveaux. Coche pâle : le verset
+   est mis de côté. */
 .v-check{flex-shrink:0;width:14px;height:14px;margin-top:2px;position:relative;cursor:pointer;color:var(--or)}
 .v-check::after{content:'\2713';position:absolute;inset:0;font-family:var(--serif);font-size:14px;line-height:14px;text-align:center;opacity:.16;transition:opacity .2s}
 .v-check.on::after{opacity:1}
@@ -164,7 +164,7 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .vref{flex-shrink:0;font-family:var(--display);font-size:15px;color:var(--or);width:124px}
 .vtext{flex:1;font-size:15px;color:var(--pa);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .25s}
 .lvl{display:flex;gap:8px;flex-shrink:0}
-/* ── MARQUES SUR LA LIGNE D'UN VERSET (05/09) ──
+/* ── MARQUES SUR LA LIGNE D'UN VERSET ──
    Deux petits signes entre le texte et les pastilles. Les deux carrés :
    ce verset est aussi dans d'autres catégories, et sa progression y est
    partagée. Le ≠ : le texte s'écarte de la Bible du site ; il se tait dès
@@ -179,7 +179,7 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .mq-ecart.on{display:inline-flex}
 .mq-ecart:hover{color:var(--or-pale)}
 .mq-ecart::before{content:'';position:absolute;inset:-12px -6px}   /* zone tactile */
-/* le signe d'écart remonte aussi sur la catégorie et sur la question (23/09) */
+/* le signe d'écart paraît aussi sur la catégorie et sur la question */
 .cat-name{display:flex;align-items:baseline;gap:10px;min-width:0}
 .cat-nom-t{min-width:0}
 .cat-ecart{display:none;flex-shrink:0;color:var(--ambre);font-family:var(--display);font-size:16px;line-height:1}
@@ -229,21 +229,18 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .opts.two{grid-template-columns:1fr 1fr}
 .opt{text-align:left;padding:16px 20px;border:1px solid var(--filet);background:var(--encre-2);font-family:var(--serif);font-size:calc(17px*var(--lvz,1));line-height:1.5;color:rgba(255,255,255,.9);transition:border-color .25s,color .25s,background .25s;animation:rise .45s cubic-bezier(.2,.7,.3,1) both}
 .opt .num{font-family:var(--display);font-size:13px;color:var(--pa2);margin-right:10px}
-/* le texte d'un verset se compose comme dans la Bible : aligné à gauche et
-   à droite, avec la coupure des mots (27/09, Emmanuel) */
+/* le texte d'un verset se compose comme dans la Bible : justifié, avec la
+   coupure des mots (Emmanuel) */
 .opt{text-align:justify;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 2}
 /* les références, elles, tiennent sur une ligne : au fer à gauche */
 .opts.two .opt{text-align:left;-webkit-hyphens:none;hyphens:none}
 .opt.refopt{font-family:var(--display);font-size:calc(19px*var(--lvz,1));letter-spacing:.03em}
-/* même remarque que pour les cartes : le voile se pose sur le fond de la
-   réponse, il ne le remplace pas */
-/* ── LE SURVOL N'EXISTE QU'AVEC UNE SOURIS (27/09, Emmanuel : « quand je
-   clique sur une option sur mobile et que ça passe à la question suivante,
-   un des cadres d'options passe en mode survolé ») ──
+/* ── LE SURVOL N'EXISTE QU'AVEC UNE SOURIS ──
    Sur un écran tactile, le navigateur garde l'état « survolé » à l'endroit
-   du dernier toucher : la nouvelle proposition qui naît sous le doigt le
-   prenait aussitôt. Les effets de survol du quiz ne valent donc que là où
-   un vrai pointeur survole. */
+   du dernier toucher : la proposition suivante, née sous le doigt, le
+   prendrait aussitôt. Les effets de survol du quiz ne valent donc que pour
+   un vrai pointeur. Le voile se pose sur le fond de la proposition, il ne
+   le remplace pas. */
 @media (hover:hover) and (pointer:fine){
   .opt:hover:not(:disabled){border-color:var(--or);color:var(--parchemin);background:linear-gradient(var(--surv),var(--surv)),var(--encre-2)}
 }
@@ -255,18 +252,16 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 
 /* ═══ AUTO-ÉVALUATION ═══
    Trois points de couleur sous le texte à retrouver, pour dire ce dont on
-   s'est souvenu. Les propositions restent visibles : la discipline de ne pas
-   les lire d'abord appartient au lecteur, la machine ne la force plus. Rien
-   n'est écrit sous les points, le mot reste au survol. */
+   s'est souvenu. Les propositions restent visibles : ne pas les lire
+   d'abord est la discipline du lecteur. Rien n'est écrit sous les points,
+   le mot paraît au survol. */
 .rappel{display:flex;justify-content:center;align-items:center;gap:38px;margin-top:28px}
-/* ── LA PREMIÈRE FOIS, LA COULEUR EST OBLIGATOIRE (06/09) ──
-   Emmanuel : « rends obligatoire le fait de cocher rouge, jaune ou vert ;
-   pas à chaque réponse, mais la première fois que le verset apparaît ».
-   Un verset jamais vu arrive sans aucune couleur, et c'est le moment où la
-   déclaration renseigne le plus : elle fixe le niveau de départ (voir answer).
-   Les propositions restent lisibles mais s'estompent ; cliquer une
-   proposition sans avoir choisi fait trembler les pastilles. Sans phrase :
-   Emmanuel n'en voulait pas (« je ne veux pas de cette phrase »). */
+/* ── LA PREMIÈRE FOIS, LA COULEUR EST OBLIGATOIRE ──
+   Emmanuel : « pas à chaque réponse, mais la première fois que le verset
+   apparaît ». Un verset jamais vu n'a aucune couleur : la déclaration fixe
+   son niveau de départ (voir answer). Les propositions restent lisibles
+   mais s'estompent ; en toucher une sans avoir choisi fait trembler les
+   pastilles, sans phrase d'explication (« je ne veux pas de cette phrase »). */
 .rappel.secoue{animation:secoue .45s}
 @keyframes secoue{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
 .opts.attend .opt{opacity:.3}
@@ -282,32 +277,21 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .rap:disabled:not(.choisi) .pastille{opacity:.1;transform:none}
 .opts{margin-top:26px}
 @media(max-width:600px){.rappel{gap:34px}}
-/* ── LES PASTILLES DES PROPOSITIONS (26/09, Emmanuel) ──
-   « Je regarde toutes les références dans les options et j'essaie de me
-   souvenir du verset, et inversement : ça permet de réviser trois autres
-   sujets en même temps. Je voudrais que, quand on survole les options, on
-   puisse changer la couleur aussi. » Chaque proposition porte donc ses trois
-   pastilles, à droite, qui paraissent au survol ; la couleur du verset de la
-   proposition est allumée. Les toucher pose cette couleur sans répondre.
-   La bonne réponse n'en porte pas : sa couleur se pose en haut. Qu'elle
-   se distingue ainsi est voulu, puisqu'on survole, ou qu'on touche le
-   bouton, au moment qu'on choisit.
-   SUR TÉLÉPHONE, UN BOUTON (26/09, Emmanuel : « si ça s'affiche direct, en
-   voyant les niveaux, on devine la réponse »). Rien ne se survole sur un
-   écran tactile : un petit bouton sous les propositions fait paraître leurs
-   pastilles, et elles se cachent de nouveau à chaque question. */
-/* ── LES PASTILLES NE DÉCALENT PLUS LE TEXTE (27/09, Emmanuel : « par
-   rapport aux couleurs qu'on peut choisir dans les options, ça décale tout
-   le texte ») ──
-   Une marge de 78px leur était réservée à droite de chaque proposition, sur
-   toute sa hauteur : le texte entier se tassait vers la gauche et passait à
-   la ligne plus tôt, surtout sur téléphone et dans les propositions en deux
-   colonnes. Les pastilles se rangent maintenant À LA VERTICALE, en une fine
-   colonne contre le bord droit de la proposition, à mi-hauteur, sans cadre
-   (27/09, Emmanuel : « c'est pas possible de mettre les couleurs à la
-   verticale ? », puis : pas de gélule autour). Leur colonne ne prend que
-   20px de plus que la marge gauche, la même à chaque question et qu'elles
-   soient visibles ou non : le texte ne bouge jamais. */
+/* ── LES PASTILLES DES PROPOSITIONS ──
+   Emmanuel révise aussi les propositions : « je regarde toutes les
+   références dans les options et j'essaie de me souvenir du verset, et
+   inversement ». Chaque proposition porte donc ses trois pastilles, qui
+   paraissent au survol, la couleur de son verset allumée ; les toucher pose
+   cette couleur sans répondre. La bonne réponse n'en porte pas : sa couleur
+   se pose en haut. Qu'elle se distingue ainsi est voulu, puisqu'on survole
+   au moment où l'on choisit.
+   SUR TÉLÉPHONE, rien ne se survole : un petit bouton sous les propositions
+   fait paraître leurs pastilles, cachées de nouveau à chaque question (« si
+   ça s'affiche direct, en voyant les niveaux, on devine la réponse »).
+   Les pastilles se rangent À LA VERTICALE, contre le bord droit, à
+   mi-hauteur, sans cadre. Leur colonne prend 20px de plus que la marge
+   gauche, la même qu'elles soient visibles ou non : le texte ne bouge
+   jamais. */
 .opt{position:relative;padding-right:40px}
 .odots{position:absolute;right:15px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;pointer-events:none;transition:opacity .25s}
 .opt:focus-visible .odots{opacity:1;pointer-events:auto}
@@ -326,7 +310,8 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .opt:disabled .odots{opacity:0}
 .odot{position:relative;display:block;width:8px;height:8px;border-radius:50%;opacity:.3;transition:opacity .25s,transform .25s;cursor:pointer}
 /* la cible du doigt s'élargit sur les côtés et s'arrête à mi-chemin de la
-   pastille voisine : la gélule reste plus basse qu'une proposition d'une ligne */
+   pastille voisine : la colonne reste plus basse qu'une proposition d'une
+   ligne */
 .odot::before{content:'';position:absolute;inset:-3px -10px}
 .odot[data-r="r"]{background:var(--rouge)}
 .odot[data-r="a"]{background:var(--ambre)}
@@ -383,8 +368,7 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
   .q-prompt.titre{font-size:calc(25px*var(--lvz,1))}
   .vref{width:96px;font-size:14px}
   .vtext{display:none}
-  /* pour un passage, ce n'est pas le second champ qui s'efface mais rien du
-     tout : la référence EST la réponse, elle doit rester lisible */
+  /* pour un passage, la référence reste affichée : c'est la réponse */
   .vrow.pas .vtext{display:block;font-size:13px}
 }
 /* corbeille */
@@ -412,8 +396,7 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .m-reset:hover{color:var(--or)}
 
 
-/* ═══ EN-TÊTE ALIGNÉ SUR L'ACCUEIL ═══ */
-/* ═══ NOUVEAUTÉS / NOTIFICATIONS ═══ */
+/* ═══ EN-TÊTE : RECHERCHE ET COMPTE, ALIGNÉS SUR L'ACCUEIL ═══ */
 .ll-mob{display:none}
 .rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:var(--parchemin-att);transition:color .3s;background:none;border:none;padding:0;outline:none}
 .rech-loupe:hover,.rech-loupe:focus{color:var(--or)}
@@ -453,7 +436,7 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 @media(min-width:721px){nav.menu .user-btn{width:19px;height:24px;padding-left:0;padding-right:0}}
 
 
-/* Correction : l'en-tête de Mémoriser reprend la même intensité de texte que l'accueil. */
+/* l'en-tête reprend l'intensité de texte de l'accueil */
 #app > header nav.menu a,
 #app > header nav.menu .menu-act,
 #app > header .rech-loupe{
@@ -513,7 +496,7 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 @media(max-width:380px){.modal-btns{grid-template-columns:1fr}}
 
 
-/* ═══ CORRECTION MOBILE CATÉGORIES / VERSETS / MODALES ═══ */
+/* ═══ MOBILE : CATÉGORIES, VERSETS, MODALES ═══ */
 @media(max-width:720px){
   /* Ligne de catégorie sur deux rangées : nom + actions, puis barre de progression + pourcentage */
   .cat-row{display:grid;grid-template-columns:18px minmax(0,1fr) auto auto;grid-template-areas:"chk nom go chev" ". dist pct pct";align-items:center;column-gap:10px;row-gap:9px;padding:17px 2px}
@@ -637,18 +620,18 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .sec.open .sec-corps{display:block;animation:fade .3s ease both}
 .sec-vide{font-size:14px;color:var(--pa2);padding:14px 2px}
 .cat-acts{display:flex;align-items:center;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:28px}
-/* La corbeille n'a plus de sous-titre : le filet de son en-tête et celui du
-   premier verset se retrouvaient l'un sous l'autre. Un seul suffit. */
+/* le premier élément de la corbeille n'a pas de filet : celui de l'en-tête
+   suffit */
 .trash-body .trash-item:first-child{border-top:none}
 /* Les actions de cette zone sont du texte, jamais des boîtes : sous une liste
-   déjà faite de filets, un cadre pèse (règle du 1er août sur les cadres
-   empilés). La zone tactile reste entière, posée en ::before. */
+   déjà faite de filets, un cadre pèse. La zone tactile reste entière,
+   posée en ::before. */
 #cat-more,.cat-acts .ghost-btn{position:relative;margin:0;padding:0;border:none;background:none;font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2);transition:color .3s}
 #cat-more::before,.cat-acts .ghost-btn::before{content:'';position:absolute;inset:-15px -10px}
 #cat-more:hover{color:var(--or)}
-/* « Nouvelle catégorie » et « Nouvelle section » ouvrent la page : elles
-   sont allumées d'emblée, à la couleur d'accent, sans attendre la souris
-   (Emmanuel, 05/09). Le survol les éclaircit encore d'un cran. */
+/* « Nouvelle catégorie » et « Nouvelle section » sont allumées d'emblée, à
+   la couleur d'accent, sans attendre la souris (Emmanuel). Le survol les
+   éclaircit d'un cran. */
 .cat-acts .ghost-btn{color:var(--or)}
 .cat-acts .ghost-btn:hover{color:var(--or-pale)}
 #cat-more{display:block;width:100%;text-align:center;margin-top:26px}
@@ -721,7 +704,7 @@ if(typeof firebase==='undefined'){var m=document.getElementById('auth-msg');if(m
 <div id="auth-screen">
   <div class="auth-panel">
     <div class="auth-paneltitle" id="auth-paneltitle">Connexion</div>
-    <!-- site privé (19/10) : plus d'inscription, seulement la connexion -->
+    <!-- site privé : pas d'inscription, seulement la connexion (onglets cachés) -->
     <div class="auth-tabs" id="auth-tabs" style="display:none">
       <button class="auth-tab on" id="tab-si">Connexion</button>
       <button class="auth-tab" id="tab-su">Inscription</button>
@@ -745,8 +728,8 @@ if(typeof firebase==='undefined'){var m=document.getElementById('auth-msg');if(m
 
   <main class="wrap">
     <section id="setup">
-      <!-- Deux séries, deux onglets. Les versets d'un côté, les passages de
-           l'autre ; rien ne se mélange, ni à l'écran ni dans les questions. -->
+      <!-- Trois séries, trois onglets : versets, passages, fiches. Rien ne se
+           mélange, ni à l'écran ni dans les questions. -->
       <div class="modes" id="modes">
         <button type="button" class="mode on" id="mode-v">Versets</button>
         <button type="button" class="mode" id="mode-p">Passages</button>
@@ -777,8 +760,7 @@ if(typeof firebase==='undefined'){var m=document.getElementById('auth-msg');if(m
         <div class="rule"></div>
         <div class="q-prompt" id="q-prompt"></div>
         <!-- Les pastilles sont DANS le cadre de la question : elles portent sur
-             la référence ou le verset qu'il faut retrouver, pas sur les quatre
-             propositions, qui ne sont même pas encore lisibles. -->
+             la référence ou le verset à retrouver, pas sur les propositions. -->
         <div class="rappel" id="rappel">
           <button class="rap" data-r="r"><span class="pastille"></span></button>
           <button class="rap" data-r="a"><span class="pastille"></span></button>
@@ -956,19 +938,15 @@ const T={
     empty_sel_p:'Aucun passage coché. Touchez « Tout sélectionner » en haut de la liste, ou cochez au moins deux passages.',
     not_enough_p:'Il faut au moins deux passages pour commencer. Cochez-en un second, ou ajoutez un passage.',
     del_cat_q_p:'Supprimer cette catégorie et ses passages ?',
-    /* ── FICHES (anciennement « Citations », renommé le 23/09) ──
-       « Au final ce sera pas juste pour les citations mais pour tout et
-       n'importe quoi, par exemple des définitions » (Emmanuel). Le troisième
-       onglet s'appelle donc « Fiches » : d'un côté un texte (une citation, une
-       définition, une formule…), de l'autre ce à quoi il se rapporte (l'auteur,
-       le mot défini, un titre…). Rien ne change dans les données : les
-       anciennes citations sont des fiches comme les autres.
-       Ce qui suit est l'ancienne note, toujours vraie pour le fonctionnement :
-       Une carte « citation » retient une parole qui n'est pas de l'Écriture :
-       d'un côté son texte, de l'autre sa source, écrite en une ligne (auteur,
-       œuvre, numéro). Même carte, même algorithme, mêmes couleurs que les
-       versets ; seuls les mots changent, et la Bible du site n'a rien à y
-       dire : ni bouton « Choisir dans la Bible », ni signe d'écart. */
+    /* ── FICHES ──
+       « Pas juste pour les citations mais pour tout et n'importe quoi, par
+       exemple des définitions » (Emmanuel). Une fiche porte d'un côté un
+       texte (une citation, une définition, une formule…), de l'autre ce à
+       quoi il se rapporte (l'auteur, le mot défini, un titre…). Dans les
+       données, son genre s'écrit 'c' (citation). Même carte, même
+       algorithme, mêmes couleurs que les versets ; seuls les mots changent,
+       et la Bible du site n'a rien à y dire : ni bouton « Choisir dans la
+       Bible », ni signe d'écart. */
     mode_c:'Fiches',
     find_ref_c:'À quoi correspond ce texte ?', find_citation:'Quel texte y correspond ?',
     addcitation:'Fiche',
@@ -990,10 +968,10 @@ const T={
 
 // ════════ ÉTAT ════════
 const S={
-  /* 'v' pour les versets, 'p' pour les passages. Les deux séries ne se
-     mélangent jamais : le mode décide quelles catégories s'affichent et
-     lesquelles entrent dans le tirage. Il vit sur l'appareil, pas dans le
-     nuage : c'est un endroit où l'on est, pas une donnée. */
+  /* 'v' pour les versets, 'p' pour les passages, 'c' pour les fiches. Les
+     séries ne se mélangent jamais : le mode décide quelles catégories
+     s'affichent et lesquelles entrent dans le tirage. Il vit sur l'appareil,
+     pas dans le nuage : c'est un endroit où l'on est, pas une donnée. */
   mode:'v',
   uid:null,
   selCats:[], offV:{}, progress:{}, step:0, customCats:[], baseEdits:{}, hidCats:[], trash:[], trashOpen:false, showAllCats:false,
@@ -1009,8 +987,8 @@ const S={
   chargeErr:false   // vrai si cette lecture a échoué : l'écran le dit au lieu de rester sur « Chargement… »
 };
 /* Remise à zéro de l'état propre à un compte : à la déconnexion et avant de
-   lire un autre compte. Sans cela, ce qui restait en mémoire du compte
-   précédent (ou un état vide, si la lecture avait échoué) partait dans le
+   lire un autre compte. Sans elle, ce qui reste en mémoire du compte
+   précédent (ou un état vide, si la lecture a échoué) partirait dans le
    nuage du compte suivant à la première action. */
 function razEtat(){
   S.selCats=[]; S.offV={}; S.progress={}; S.step=0; S.customCats=[]; S.baseEdits={}; S.hidCats=[]; S.trash=[];
@@ -1027,8 +1005,8 @@ function effectiveCats(){
   const base=PRE.filter(c=>!(S.hidCats||[]).includes(c.id)).map(c=>{
     const ov=S.baseEdits[c.id];
     if(!ov) return {id:c.id,name:c.name,verses:c.verses,base:true};
-    // catégorie de base éditée : on conserve l'édition de l'utilisateur, mais on y ajoute
-    // les versets du modèle apparus depuis (absents de l'édition ET non mis à la corbeille)
+    // catégorie de base éditée : on garde l'édition, et on y ajoute les versets
+    // du modèle absents de l'édition, ni mis à la corbeille, ni déplacés
     const have=new Set(ov.verses.map(v=>v.id));
     const extra=c.verses.filter(v=>!have.has(v.id)&&!trashIds.has(v.id)&&!((ov.moved||[]).includes(v.id)));
     return {id:c.id,name:ov.name,verses:ov.verses.concat(extra),base:true};
@@ -1037,9 +1015,8 @@ function effectiveCats(){
 }
 const allCats=effectiveCats;
 /* ── LE GENRE D'UNE CATÉGORIE ──
-   Rien d'écrit veut dire « versets » : toutes les catégories existantes le
-   sont, et aucune donnée n'a besoin d'être retouchée pour que les passages
-   arrivent. Les catégories de base du site sont des versets par nature. */
+   'p' pour un passage, 'c' pour une fiche ; rien d'écrit veut dire
+   « versets ». Les catégories de base du site sont des versets par nature. */
 const kindDe=c=>{const k=c&&c.kind;return (k==='p'||k==='c')?k:'v';};
 const estPassage=c=>kindDe(c)==='p';
 const estCitation=c=>kindDe(c)==='c';
@@ -1057,10 +1034,11 @@ function tk(base,kind){
 function catsMode(){return effectiveCats().filter(c=>kindDe(c)===S.mode);}
 function modeLit(){try{const m=localStorage.getItem('lv_memo_mode');if(m==='p'||m==='v'||m==='c')S.mode=m;}catch(e){}}
 function modeEcrit(){try{localStorage.setItem('lv_memo_mode',S.mode);}catch(e){}}
-/* Le genre d'un verset ou d'un passage se lit sur sa catégorie ; on le pose
-   sur chaque carte tirée pour que l'écran de question sache quels mots dire. */
+/* Le genre d'une carte se lit sur sa catégorie. Ces deux fonctions n'ont
+   aucun appel : allItems pose déjà « pas » et « genre » sur chaque carte
+   tirée. */
 function pasDe(vId){const c=effectiveCats().find(x=>x.verses.some(v=>v.id===vId));return c?estPassage(c):false;}
-/* le genre complet d'une carte (verset, passage, citation) */
+/* le genre complet d'une carte (verset, passage, fiche) */
 function genreDe(vId){const c=effectiveCats().find(x=>x.verses.some(v=>v.id===vId));return c?kindDe(c):'v';}
 /* ── SECTIONS ──
    Une section range des catégories, elle ne contient aucun verset et ne
@@ -1089,12 +1067,10 @@ function groupesCats(){
   return g;
 }
 /* Le tirage ne voit que le mode courant : c'est là qu'est la séparation des
-   deux séries, et il n'y en a pas d'autre à faire. Les propositions fausses
-   sont tirées du même vivier, donc on ne se voit jamais proposer un verset
-   en réponse à un passage. */
-/* Un verset présent dans plusieurs catégories choisies n'entre qu'une fois
-   dans le tirage : c'est le même verset, sa progression est partagée, le
-   poser deux fois serait le poser en double (05/09). */
+   séries. Les propositions fausses sont tirées du même vivier, donc on ne se
+   voit jamais proposer un verset en réponse à un passage.
+   Un verset présent dans plusieurs catégories choisies n'entre qu'une fois
+   dans le tirage : c'est le même verset, sa progression est partagée. */
 function allItems(){const out=[],vus={};catsMode().filter(c=>S.soloCat?c.id===S.soloCat:(S.soloSec?secDe(c.id)===S.soloSec:true)).forEach(c=>{const pas=estPassage(c),k0=kindDe(c);c.verses.forEach(v=>{if(S.offV[v.id])return;const k=cleVerset(v,k0);if(vus[k])return;vus[k]=1;out.push({...v,catId:c.id,pas:pas,genre:k0});});});return out;}
 function syncSelCats(){S.selCats=effectiveCats().filter(c=>c.verses.length&&c.verses.every(v=>!S.offV[v.id])).map(c=>c.id);}
 // clone profond de la version effective d'une catégorie de base, pour la rendre éditable
@@ -1103,57 +1079,42 @@ function editBase(catId,fn){const c=S.baseEdits[catId]||baseClone(catId);fn(c);S
 function isBase(catId){return PRE.some(c=>c.id===catId);}
 
 // ════════ ALGORITHME (trois couleurs, série infinie) ════════
-/* ── PLUS D'ÉCHÉANCES (06/09, Emmanuel : « Est-ce que ce n'est pas mieux de
-   simplement supprimer les échéances ? » puis « Remplace ») ──
-   Jusqu'ici une machine à mesurer l'oubli (huit niveaux, délais de 1 à 160
-   jours, verrou de montée, crédit, pâlissement par retard, journée à 4 h)
-   était greffée sur un exercice de par cœur en série infinie. Les deux se
-   contredisaient : la série reposait les versets pendant leur délai, si bien
-   que l'échéance jugeait une mémoire rafraîchie la veille (mesuré : un vert
-   revu 14 à 52 fois avant son échéance). Il en reste ce qui est vrai.
-
-   TROIS COULEURS, et rien d'autre : rouge (à apprendre), jaune (à peu près
-   su), vert (su). Chaque verset porte :
+/* ── TROIS COULEURS, SANS ÉCHÉANCE ──
+   Rouge (à apprendre), jaune (à peu près su), vert (su). Aucune échéance ni
+   délai : l'exercice est une série infinie. Chaque verset porte :
      p.k   sa couleur : 'r', 'a' (ambre, le jaune) ou 'v'
      p.t   la dernière fois qu'il a été vu
      p.v   le compteur d'expositions (départage)
      p.s   la mise à l'écart courte, dans la séance seule
-   Les anciens champs (box, n, c, j, d) ne servent plus ; un profil d'avant
-   est lu par sa boîte : 0-1 rouge, 2-3 jaune, 4 et plus vert.
+   Un profil plus ancien (champs box, n, c, j, d) est lu par sa boîte : 0-1
+   rouge, 2-3 jaune, 4 et plus vert ; ces champs s'effacent à la première
+   écriture.
 
-   MONTER SUR SA PAROLE, DESCENDRE SUR UNE PREUVE (06/09, Emmanuel).
-   « Ça c'est à moi de sélectionner, pas à l'algo » ; puis, sur ce que vaut
-   une bonne réponse : « je peux très bien choisir la bonne réponse tout en
-   étant sur rouge ou jaune ». Un choix multiple mesure la reconnaissance,
-   pas le souvenir : retrouver la bonne case parmi quatre ne prouve rien,
-   une chance sur quatre tombe juste au hasard. Une bonne réponse ne fait
-   donc RIEN. Une erreur, elle, est une preuve forte (se tromper avec les
-   quatre propositions sous les yeux, c'est ne pas savoir) : elle fait
-   redescendre le verset d'une couleur. Les montées n'appartiennent qu'à lui,
-   par la pastille. Un frein (montée après trois journées réussies) et un
-   pâlissement (une couleur de moins par soixante jours) ont existé quelques
-   heures et ont été retirés : c'était l'algorithme qui jugeait à sa place
-   sur des clics.
+   MONTER SUR SA PAROLE, DESCENDRE SUR UNE PREUVE. « Ça c'est à moi de
+   sélectionner, pas à l'algo » (Emmanuel). Un choix multiple mesure la
+   reconnaissance, pas le souvenir (« je peux très bien choisir la bonne
+   réponse tout en étant sur rouge ou jaune ») : une bonne réponse ne fait
+   donc RIEN. Une erreur, avec les quatre propositions sous les yeux, est une
+   preuve : le verset redescend d'une couleur. Les montées n'appartiennent
+   qu'à Emmanuel, par la pastille ; aucun frein ni pâlissement automatique
+   ne juge à sa place.
 
-   LA PASTILLE ALLUMÉE EST LA COULEUR DU VERSET. Elle reste allumée, la même
-   dans les deux sens de question, puisque le verset n'a qu'une couleur. La
-   toucher, c'est poser cette couleur (rouge, jaune ou vert), et le verset
-   change de groupe sur-le-champ ; sa parole l'emporte sur tout, y compris
-   sur une erreur faite à la même question. Ne pas la toucher, c'est laisser
-   la couleur, sauf erreur. Une erreur ou un rouge posé font en plus revenir
-   le verset trois questions plus loin, pour qu'on le revoie.
+   LA PASTILLE ALLUMÉE EST LA COULEUR DU VERSET, la même dans les deux sens
+   de question. La toucher pose cette couleur, et le verset change de groupe
+   sur-le-champ ; sa parole l'emporte, même sur une erreur faite à la même
+   question. Ne pas la toucher laisse la couleur, sauf erreur. Une erreur ou
+   un rouge posé font revenir le verset trois questions plus loin.
 
-   LE TIRAGE, lui, est automatique, et c'est le seul mécanisme : la cadence
-   jaune, jaune, rouge, jaune, rouge, vert ; les groupes figés au départ de
-   la séance ; chacun son tour dans un groupe. Le vert revient donc toutes
-   les six questions, qu'on ait fait un verset trois fois ou trois mille, et
-   un verset neuf ne bloque jamais un ancien. */
+   LE TIRAGE est automatique : la cadence jaune, jaune, rouge, jaune, rouge,
+   vert ; les groupes arrêtés au départ de la séance ; chacun son tour dans
+   un groupe. Le vert revient toutes les six questions, et un verset neuf ne
+   bloque jamais un ancien. */
 const JOUR=86400000;
-/* ── L'HEURE NE VIENT PLUS DE L'APPAREIL SEUL ──
-   Le jour d'une réussite et le pâlissement se calculent sur une heure qu'on
-   demande au serveur qui sert la page (en-tête « Date » d'une requête HEAD),
-   pour qu'une tablette à l'horloge fausse ne compte pas des jours qui
-   n'existent pas. Hors ligne, on retombe sur l'horloge de l'appareil. */
+/* ── L'HEURE VIENT DU SERVEUR ──
+   La date d'un passage (p.t) se prend sur l'heure du serveur qui sert la
+   page (en-tête « Date » d'une requête HEAD), pour qu'une horloge d'appareil
+   fausse ne dérègle pas l'ordre des versets. Hors ligne, l'horloge de
+   l'appareil sert. */
 let DECALAGE=0;
 const maintenant=()=>Date.now()+DECALAGE;
 async function caleHorloge(){
@@ -1174,8 +1135,8 @@ function couleurBrute(p){
   if(p.box!=null){ const b=Math.floor(+p.box)||0; return b<=1?'r':b<=3?'a':'v'; }
   return null;
 }
-/* la pastille à allumer pour un verset : sa couleur d'aujourd'hui, ou rien
-   s'il n'a jamais été répondu */
+/* la pastille à allumer pour un verset : sa couleur, ou rien s'il n'a
+   jamais été répondu */
 const rapDe=id=>enJeu(id)?levelOf(id):null;
 const vuLe=id=>{const p=S.progress[id];if(!p||!p.t)return 0;const t=Date.parse(p.t);return isNaN(t)?0:Math.min(t,maintenant());};
 function retenu(id){const p=S.progress[id];return !!(p&&p.s&&S.step<p.s);}
@@ -1188,8 +1149,8 @@ const niveauEffectif=id=>POIDS[levelOf(id)];
 /* un verset « EN JEU » a déjà été répondu au moins une fois */
 const enJeu=id=>{const p=S.progress[id];return !!(p&&p.t);};
 const vuesOf=id=>(S.progress[id]||{}).v||0;
-/* Plus d'échéance : rien n'est jamais « dû ». Les deux fonctions restent
-   pour les endroits qui les appellent encore, et disent toujours non. */
+/* Sans échéance, rien n'est jamais « dû » : ces deux fonctions disent
+   toujours non, et aucun appel ne les utilise. */
 const isDue=()=>false;
 const dateOf=()=>0;
 
@@ -1203,8 +1164,8 @@ function answer(id,ok,rap){
      allumée n'a pas été touchée (voir pick) */
   const declare=couleurValide(rap)?rap:null;
   if(premiereFois){
-    /* la première couleur est le point de départ ; sans couleur (clavier,
-       vieux chemins), le verset part rouge et repasse une fois dans la séance */
+    /* la première couleur est le point de départ ; sans couleur (repli), le
+       verset part rouge et repasse une fois dans la séance */
     k=declare||'r';
     if(!declare||declare==='r')p.s=S.step+5; else delete p.s;
   } else if(declare){
@@ -1222,7 +1183,7 @@ function answer(id,ok,rap){
     delete p.s;
   }
   p.k=k;
-  delete p.box; delete p.n; delete p.c; delete p.due; delete p.r; delete p.j; delete p.d;   // les anciennes machines
+  delete p.box; delete p.n; delete p.c; delete p.due; delete p.r; delete p.j; delete p.d;   // les champs d'un profil ancien
   /* ce qui change la couleur déplace le verset dans son groupe sur-le-champ :
      ta parole, ou une erreur. Un vert manqué rejoint donc les jaunes, à
      apprendre, sans attendre la séance suivante. */
@@ -1235,46 +1196,31 @@ function answer(id,ok,rap){
   S.progress[id]=p; S.step++; marqueSale(id);
   propageProg(id);
 }
-/* ── L'ORDRE DES PRIORITÉS (05/09, Emmanuel) ──
+/* ── L'ORDRE DES PRIORITÉS ──
    « C'est très simple : priorité à ce qu'on connaît moyennement, puis à ce
    qu'on ne maîtrise pas, et ensuite à ce qu'on maîtrise. » Et : « répéter,
-   c'est comme ça qu'on apprend. » Valable aux échéances comme dans la série
-   infinie.
-   Trois groupes, réglés sur LA COULEUR QUE TU VOIS : le JAUNE (ce qu'on
-   connaît moyennement), le ROUGE et le NEUF (ce qu'on ne maîtrise pas), le
-   VERT (ce qu'on maîtrise). Ils passent à tour de rôle selon une cadence fixe
-   de SIX tirages : trois jaunes, deux rouges, un vert. Un groupe vide cède
-   son tour au suivant dans l'ordre des priorités ; s'il ne reste que du vert,
-   tout lui revient.
-   ── UN VERT TOUS LES SIX (06/09, Emmanuel) ──
-   La cadence est passée à onze dans la journée (« le vert apparaît encore un
-   peu trop souvent »), puis est revenue à six sur sa demande : « mets un vert
-   tous les six ». Entre-temps la vraie cause de ce qu'il voyait a été trouvée
-   et corrigée : la pastille rouge ne faisait rien au niveau, et les montées
-   de la séance redistribuaient les groupes en cours de route, si bien que le
-   vert prenait TOUT dès que le jaune et le rouge se vidaient. Une fois ces
-   deux défauts réparés, une place sur six ne fait plus déborder le vert :
-   mesuré, sa part observée reste à un sixième dès qu'il existe du jaune ou du
-   rouge. Le rapport du jaune au rouge reste trois pour deux.
-   À l'intérieur d'un groupe, ce qui est mûr passe d'abord (le niveau commande,
-   le compteur d'expositions départage, puis le plus en retard) ; sinon, ce que
-   la séance n'a pas encore montré, du plus faible au plus solide ; puis le
-   plus anciennement vu. Rien n'est limité à un passage par séance : un jaune
-   revient autant que son tour le ramène. Ce qui rend cette répétition sans
-   danger est écrit dans answer : hors échéance, l'exercice n'abaisse plus
-   rien.
-   Un verset neuf, jamais vu, appartient au rouge : c'est ce qu'on ne maîtrise
-   pas, par définition. L'ancienne cadence particulière des neufs (un sur cinq)
-   n'a donc plus lieu d'être. */
+   c'est comme ça qu'on apprend. » (Emmanuel)
+   Trois groupes, réglés sur la couleur affichée : le JAUNE (ce qu'on connaît
+   moyennement), le ROUGE et le NEUF (ce qu'on ne maîtrise pas), le VERT (ce
+   qu'on maîtrise). Ils passent selon une cadence fixe de SIX tirages : trois
+   jaunes, deux rouges, un vert (« mets un vert tous les six »). Un groupe
+   vide cède sa place (voir nextItem) ; s'il ne reste que du vert, tout lui
+   revient.
+   À l'intérieur d'un groupe : ce que la séance n'a pas encore montré, du
+   plus faible au plus solide ; puis le plus anciennement vu. Rien n'est
+   limité à un passage par séance : un jaune revient autant que son tour le
+   ramène, et une bonne réponse n'abaisse rien (voir answer).
+   Un verset neuf, jamais vu, appartient au rouge : c'est ce qu'on ne
+   maîtrise pas, par définition. */
 const TOUR=['j','j','r','j','r','v'];
 /* dérivé de la couleur affichée, pour que les deux ne divergent jamais */
 const GROUPE_DE=id=>{const l=levelOf(id);return l==='a'?'j':l;};
-/* ── LES ROUGES PAR PETITE FENÊTRE (26/09, Emmanuel) ──
+/* ── LES ROUGES PAR PETITE FENÊTRE (Emmanuel) ──
    « Quand on coche beaucoup de trucs nouveaux d'un coup, que tout est rouge,
    tous sont à égalité dans le nombre de fois qu'ils passent. On apprend par
    la répétition : il faudrait que l'algorithme se concentre sur des rouges
    et mette d'autres rouges en attente. »
-   Le rouge ne tourne donc plus sur TOUS ses versets, mais sur une fenêtre de
+   Le rouge ne tourne donc pas sur TOUS ses versets, mais sur une fenêtre de
    FENETRE_ROUGE versets. Les autres attendent. Une place se libère quand un
    verset de la fenêtre quitte le rouge (pastille jaune ou verte) : le rouge
    suivant entre aussitôt. Pour entrer, les rouges déjà travaillés passent
@@ -1302,8 +1248,8 @@ function nextItem(){
   let pool=items.filter(i=>i.id!==S.lastId); if(!pool.length)pool=items;
   let libres=pool.filter(i=>!retenu(i.id)); if(!libres.length)libres=pool;
   const debut=S.debut||0;
-  /* plus d'échéance, donc plus de « mûr » : le seul vrai besoin, dans un
-     groupe, est ce que la séance n'a pas encore montré */
+  /* le vrai besoin, dans un groupe, est ce que la séance n'a pas encore
+     montré */
   const inedit=i=>vuLe(i.id)<debut;
   const g={j:[],r:[],v:[]};
   const grpDe=i=>(S.grp&&S.grp[i.id])||(enJeu(i.id)?GROUPE_DE(i.id):'r');
@@ -1321,15 +1267,13 @@ function nextItem(){
   const ordre=['j','r','v'];
   let choix=TOUR[k], src=g;
   if(!g[choix].length){
-    /* ── LA PLACE DE L'APPRENTISSAGE RESTE À L'APPRENTISSAGE (06/09) ──
-       Un verset qu'on vient de poser est écarté trois questions. Avec peu de
-       jaunes et de rouges, ils étaient donc tous « en réserve » au moment de
-       leur propre tour, le groupe paraissait vide, et la place tombait au
-       vert : mesuré, dix verts pour un jaune et un neuf donnaient jusqu'à
-       huit verts d'affilée. Une place de jaune ou de rouge cherche donc
-       l'autre groupe d'apprentissage, PUIS ces mêmes groupes en réserve, et
-       ne va au vert qu'en dernier, quand il n'y a vraiment plus rien à
-       apprendre. La réserve est un confort de lecture, pas une règle. */
+    /* ── LA PLACE DE L'APPRENTISSAGE RESTE À L'APPRENTISSAGE ──
+       Un verset qu'on vient de poser est écarté trois questions : avec peu
+       de jaunes et de rouges, tous peuvent être « en réserve » à leur propre
+       tour, et la place tomberait au vert. Une place de jaune ou de rouge
+       cherche donc l'autre groupe d'apprentissage, PUIS ces mêmes groupes en
+       réserve, et ne va au vert qu'en dernier, quand il n'y a vraiment plus
+       rien à apprendre. La réserve est un confort de lecture, pas une règle. */
     const prio=(choix==='v')?['v','j','r']:[choix,choix==='j'?'r':'j'];
     let t=prio.find(x=>g[x].length);
     if(!t){ t=prio.find(x=>gp[x].length); if(t)src=gp; }
@@ -1337,32 +1281,22 @@ function nextItem(){
     if(!t){ t=ordre.find(x=>gp[x].length); if(t)src=gp; }
     choix=t;
   }
-  /* ── UNE RÉPÉTITION NE PASSE PAS DEVANT UN VRAI BESOIN (06/09) ──
-     Le jaune garde ses places, mais quand il n'a plus rien d'inédit à offrir
-     (seulement des répétitions de la séance), et que le rouge, lui, a des
-     versets jamais vus qui attendent, la place va au rouge. Et l'inverse,
-     plus rare. Le vert n'est pas concerné.
-     Mesuré sur cent vingt jours simulés, apprenant qui se trompe parfois :
-     une fois sur quatre, le tirage s'enfermait dans un cercle où les places
-     du jaune allaient à des répétitions pendant que les rouges dus se
-     multipliaient et que cinquante-sept versets neufs n'étaient jamais
-     posés. Apprendre passe avant réviser ; entre deux façons d'apprendre,
-     ce qui n'a jamais été vu passe avant ce qu'on vient de revoir. */
+  /* ── UNE RÉPÉTITION NE PASSE PAS DEVANT UN VRAI BESOIN ──
+     Quand le jaune n'a plus rien d'inédit à offrir (seulement des
+     répétitions de la séance) et que le rouge a des versets pas encore
+     montrés, la place va au rouge ; et l'inverse. Le vert n'est pas
+     concerné. Sans cela, le tirage peut tourner en répétitions pendant que
+     des versets neufs ne sont jamais posés. Ce que la séance n'a pas encore
+     montré passe avant ce qu'on vient de revoir. */
   const besoin=x=>src[x].some(inedit);
   if(choix!=='v'&&!besoin(choix)){ const autre=choix==='j'?'r':'j'; if(src[autre].length&&besoin(autre))choix=autre; }
   const vivier=src[choix];
-  /* ── DANS UN GROUPE, CHACUN SON TOUR (06/09) ──
-     Le niveau passait avant l'ancienneté : le verset le plus faible du groupe
-     reprenait CHAQUE place du groupe dès qu'il était libre, et ses voisins
-     d'un cran au-dessus n'étaient jamais posés. Séance jouée par l'interface,
-     quarante-quatre questions : un verset manqué posé sept fois, un verset
-     déclaré « pas du tout » posé une fois, un troisième jamais. Le rouge
-     déclaré ne revenait pas.
-     L'ordre est donc : ce que la séance n'a pas encore montré, du plus faible
-     au plus solide ; puis, parmi ce qui a déjà été montré, LE PLUS ANCIENNEMENT
-     VU d'abord, le niveau ne départageant que les égaux. Le groupe tourne, et
-     comme il garde sa part (six places sur onze pour le jaune), chacun de ses
-     versets repasse bel et bien plusieurs fois par séance. */
+  /* ── DANS UN GROUPE, CHACUN SON TOUR ──
+     D'abord ce que la séance n'a pas encore montré, du plus faible au plus
+     solide ; puis, parmi ce qui a déjà été montré, LE PLUS ANCIENNEMENT VU,
+     le niveau ne départageant que les égaux. Ainsi le verset le plus faible
+     ne reprend pas chaque place du groupe : le groupe tourne, et chacun de
+     ses versets repasse plusieurs fois par séance. */
   const tri=vivier.slice().sort((a,b)=>{
     const sa=inedit(a)?0:1,sb=inedit(b)?0:1;if(sa!==sb)return sa-sb;
     const na=niveauEffectif(a.id),nb=niveauEffectif(b.id);
@@ -1375,20 +1309,16 @@ function nextItem(){
   return memeAge[0|Math.random()*memeAge.length];
 }
 /* Les propositions doivent être DISCERNABLES. Un même verset peut vivre dans
-   deux catégories sous deux identifiants ; deux versets peuvent aussi partager
-   une référence. Trier sur l'identifiant seul laissait alors passer deux
-   boutons rigoureusement identiques, dont un seul était compté juste : environ
-   une question sur dix dès qu'un verset était rangé à deux endroits. On écarte
-   donc sur le LIBELLÉ RÉELLEMENT AFFICHÉ, qui dépend du sens de la question. */
+   deux catégories sous deux identifiants, et deux versets peuvent partager
+   une référence : trier sur l'identifiant seul laisserait passer deux
+   boutons identiques dont un seul compte juste. On écarte donc sur le
+   LIBELLÉ RÉELLEMENT AFFICHÉ, qui dépend du sens de la question. */
 function libelleOpt(o,qMode){const d=o.fr||{};return((qMode==='vr'?d.ref:d.text)||'').trim().toLowerCase();}
-/* ── DEUX CITATIONS DU MÊME AUTEUR (22/09) ──
-   Deux versets n'ont jamais la même référence ; deux citations ont souvent la
-   même source (« saint Augustin »). Sans garde, « De qui est cette citation ? »
-   n'offrait qu'un seul choix, la bonne réponse, et « Quelle citation est-ce ? »
-   posait « saint Augustin » en proposant trois phrases de saint Augustin dont
-   une seule comptait juste. Une option n'est donc retenue que si elle ne
-   partage pas ce qui est affiché en question : sa réponse doit être la seule
-   juste. */
+/* ── DEUX FICHES DE MÊME SOURCE ──
+   Deux fiches ont souvent la même source (« saint Augustin ») : posée en
+   question, cette source rendrait justes plusieurs propositions. Une option
+   n'est donc retenue que si elle ne partage pas ce qui est affiché en
+   question : sa réponse doit être la seule juste. */
 function libelleQuestion(o,qMode){return libelleOpt(o,qMode==='vr'?'rv':'vr');}
 function getOptions(item,qMode){
   const pris={}; pris[libelleOpt(item,qMode)]=1;
@@ -1402,7 +1332,7 @@ function getOptions(item,qMode){
   };
   shuffle(allItems()).forEach(prend);
   /* Quand on joue une seule catégorie (ou une petite sélection), les fausses
-     réponses peuvent manquer : une catégorie de citations d'un seul auteur ne
+     réponses peuvent manquer : une catégorie de fiches d'une seule source ne
      laisse aucun autre nom à proposer. On complète alors avec le reste de ce
      genre, même non coché : ce ne sont que des leurres, pas des questions. */
   if(others.length<3){
@@ -1439,8 +1369,8 @@ async function loadUser(){
       syncSelCats();}
     else{S.selCats=PRE.map(c=>c.id);S.offV={};}
     S.charge=true;
-    /* le nettoyage de la base, une seule fois : ce qui portait encore une
-       copie anglaise est réécrit sans elle */
+    /* le nettoyage de la base : ce qui porte encore une copie anglaise est
+       réécrit sans elle */
     try{
       for(const c of anglais.cats){const x=S.customCats.find(y=>y.id===c.id);if(x)saveCat(x).catch(e=>console.warn('nettoyage',e));}
       if(anglais.base)saveBaseEdits();
@@ -1455,11 +1385,11 @@ async function loadUser(){
   }
 }
 /* ── ÉCRITURE PAR VERSET, FUSIONNÉE ──
-   La progression vivait dans un seul document réécrit EN BLOC : deux appareils
-   (ou un appareil resté hors ligne) s'écrasaient l'un l'autre, le dernier à
-   écrire emportant tout. On n'envoie plus que les versets modifiés depuis le
-   dernier envoi, fusionnés dans le document (merge) ; un verset retiré est
-   effacé champ par champ. Seule la remise à zéro complète réécrit tout. */
+   Pour que deux appareils (ou un appareil resté hors ligne) ne s'écrasent
+   pas l'un l'autre, on n'envoie que les versets modifiés depuis le dernier
+   envoi, fusionnés dans le document (merge) ; un verset retiré est effacé
+   champ par champ. RAZ_PROG réécrirait tout le document, mais rien ne
+   l'arme aujourd'hui. */
 let SALES={}, RAZ_PROG=false;
 function marqueSale(id){SALES[id]=1;}
 function peutEcrire(){return !!(S.uid&&S.charge);}
@@ -1472,12 +1402,10 @@ function saveProgress(){
   return udoc('meta/progress').set({items:items,step:S.step},{merge:true}).catch(e=>console.warn('sync progress',e));
 }
 /* ── ENREGISTREMENT GROUPÉ ──
-   La progression part en UN SEUL document : avec trois mille versets il pèse
-   260 Ko, et l'envoyer à chaque réponse, c'est vingt-six mégaoctets pour une
-   séance de cent cartes, sur la connexion du téléphone. On regroupe donc les
-   réponses rapprochées et on n'envoie qu'une fois toutes les quatre secondes.
-   Rien n'est perdu pour autant : la mémoire est vidée d'un coup à la fin de
-   la séance et dès que la page passe en arrière-plan. */
+   Les réponses rapprochées partent ensemble, une fois toutes les quatre
+   secondes au plus, pour ménager la connexion du téléphone. Rien n'est
+   perdu : l'attente est vidée à la fin de la séance et dès que la page passe
+   en arrière-plan. */
 let ATTENTE=null;
 function saveProgressGroupe(){ if(ATTENTE)return; ATTENTE=setTimeout(()=>{ATTENTE=null;saveProgress();},4000); }
 function videAttente(){ if(ATTENTE){clearTimeout(ATTENTE);ATTENTE=null;saveProgress();} }
@@ -1566,10 +1494,10 @@ function elementCat(cat){
       /* Pour un passage, c'est le TITRE qui identifie la carte : il prend la
          place de la référence, et la référence passe à sa suite. On lit
          « La guérison de l'aveugle · Marc 10:46-52 », dans cet ordre. */
-      body+='<div class="vrow'+(voff?' voff':'')+(pas?' pas':'')+'"><span class="v-check'+(voff?'':' on')+'" data-togv="'+vv.id+'" title="Inclure ou exclure des révisions"></span><span class="vline" data-editv="'+vv.id+'"><span class="vref">'+besc(pas?trunc(vv.fr.text,72):vv.fr.ref)+'</span><span class="vtext">'+besc(pas?vv.fr.ref:trunc(vv.fr.text,58))+'</span>'+(mq?'<span class="vmq">'+mq+'</span>':'')+'</span>'/* le compteur d'expositions continue de compter, il ne s'affiche plus
-             (Emmanuel, 22/08 : « retire l'affichage, pas le système ») */+'<span class="lvl">'
+      body+='<div class="vrow'+(voff?' voff':'')+(pas?' pas':'')+'"><span class="v-check'+(voff?'':' on')+'" data-togv="'+vv.id+'" title="Inclure ou exclure des révisions"></span><span class="vline" data-editv="'+vv.id+'"><span class="vref">'+besc(pas?trunc(vv.fr.text,72):vv.fr.ref)+'</span><span class="vtext">'+besc(pas?vv.fr.ref:trunc(vv.fr.text,58))+'</span>'+(mq?'<span class="vmq">'+mq+'</span>':'')+'</span>'/* le compteur d'expositions compte toujours, il ne s'affiche pas
+             (Emmanuel : « retire l'affichage, pas le système ») */+'<span class="lvl">'
         /* les trois points se touchent : on pose la couleur d'ici, sans attendre
-           que le verset passe en séance (Emmanuel, 23/09) */
+           que le verset passe en séance (Emmanuel) */
         +['r','a','v'].map(k=>'<span class="dot '+k+(l===k?' act':'')+'" data-niv="'+k+'" data-nivid="'+vv.id+'" role="button" title="'+besc(t('rap_'+k))+'" aria-label="'+besc(t('rap_'+k))+'"></span>').join('')+'</span>'
         +'<span class="mov-v" data-movev="'+vv.id+'" title="'+('Déplacer dans…')+'">\u21C4</span>'
         +'<span class="del-v" data-delv="'+vv.id+'">×</span></div>';
@@ -1579,9 +1507,9 @@ function elementCat(cat){
     div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp"><span class="cat-nom-t">'+besc(cat.name.fr||'')+'</span><span class="cat-ecart'+(catEcart(cat)?' on':'')+'" data-catecart="'+cat.id+'" title="Un verset de cette catégorie s’écarte de la Bible du site">≠</span></span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-go" data-act="solo" title="'+('Lancer cette catégorie')+'" aria-label="'+('Lancer cette catégorie')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
     return div;
 }
-/* Sans aucune section, la liste reste ce qu'elle était : les six premières
-   catégories, puis « Afficher tout ». Dès qu'une section existe, le classement
-   prend le relais et chaque groupe se replie. */
+/* Sans aucune section, la liste montre les six premières catégories, puis
+   « Afficher tout ». Dès qu'une section existe, les catégories se rangent
+   par section, et chaque section se replie. */
 function elementSection(sec,cats){
   const id=sec?sec.id:'__libres', ouverte=secOuverte(id);
   const w=document.createElement('div');
@@ -1610,12 +1538,10 @@ function renderCats(){
   IDX_JUM=null;
   partageProgression();
   const host=$('cat-list'); host.innerHTML='';
-  /* ── TANT QUE LES DONNÉES NE SONT PAS LÀ, ON LE DIT (05/09) ──
-     Filmé image par image : l'écran apparaissait vide sous « Catégories &
-     mémoire », avec un grand « Commencer » cliquable, pendant tout le temps de
-     la lecture ; et « Commencer » répondait alors « Aucune catégorie », ce qui
-     est faux. La page dit maintenant « Chargement… », et si la lecture a
-     échoué, elle le dit aussi au lieu de laisser un vide. */
+  /* ── TANT QUE LES DONNÉES NE SONT PAS LÀ, ON LE DIT ──
+     Pendant la lecture, la page dit « Chargement… » plutôt qu'une liste vide
+     sous un « Commencer » qui répondrait à tort « Aucune catégorie ». Si la
+     lecture échoue, elle le dit aussi. */
   if(!S.charge){
     host.innerHTML='<div class="sec-vide">'+(S.chargeErr
       ?'Vos données n’ont pas pu être lues. Vérifiez la connexion, puis rechargez la page.'
@@ -1643,18 +1569,17 @@ function renderCats(){
     host.appendChild(vide);}
   const _cs=catsMode(),_all=_cs.length&&_cs.every(c=>c.verses.every(v=>!S.offV[v.id]));$('sel-all').textContent=_cs.length?(_all?t('deselect_all'):t('select_all')):'';
   try{verifieEcarts();}catch(_){}
-  /* une catégorie de base supprimée doit pouvoir revenir : le message
-     « restaurez les catégories de base » promettait un geste qui n'existait pas */
+  /* une catégorie de base supprimée peut revenir : c'est le geste que promet
+     le message « restaurez les catégories de base » */
   const rb=$('restore-base'); if(rb){rb.style.display=(S.hidCats||[]).length?'':'none';rb.textContent=t('base_restore');}
   renderTrash();
   updateStart();
 }
-/* ── SANS CATÉGORIE, PAS DE « COMMENCER » (22/09) ──
-   Le bouton restait affiché, grisé, et répondait « Aucune catégorie » : il
-   promettait ce qu'il ne pouvait pas tenir. Tant que l'onglet n'a aucune
-   catégorie, il s'efface, et « Nouvelle catégorie » devient le geste
-   principal de la page. On attend que les données soient lues : pendant le
-   chargement, la liste est vide sans l'être vraiment. */
+/* ── SANS CATÉGORIE, PAS DE « COMMENCER » ──
+   Tant que l'onglet n'a aucune catégorie, le bouton s'efface (il ne
+   promettrait rien qu'il puisse tenir), et « Nouvelle catégorie » devient le
+   geste principal de la page. On attend que les données soient lues :
+   pendant le chargement, la liste est vide sans l'être vraiment. */
 function updateStart(){const b=$('start-btn');b.disabled=false;b.classList.toggle('pas-pret',allItems().length<2);
   const vide=!!S.charge&&!catsMode().length; b.style.display=vide?'none':''; document.body.classList.toggle('memo-vide',vide);}
 /* ── LA BASCULE ──
@@ -1675,10 +1600,9 @@ function vaMode(m){
   renderCats();
 }
 function toggleSelectAll(){const cs=catsMode();const allSel=cs.length&&cs.every(c=>c.verses.every(v=>!S.offV[v.id]));
-  /* On ne touche qu'aux cartes du mode où l'on est. Vider la liste des
-     exclusions d'un coup, comme avant, aurait rallumé en douce tous les
-     versets décochés dès qu'on aurait touché « Tout sélectionner » du côté
-     des passages, et l'inverse. */
+  /* On ne touche qu'aux cartes du mode où l'on est : vider toute la liste
+     des exclusions rallumerait en douce les cartes décochées des autres
+     onglets. */
   cs.forEach(c=>c.verses.forEach(v=>{if(allSel)S.offV[v.id]=1;else delete S.offV[v.id];}));
   savePrefs();renderCats();}
 
@@ -1705,8 +1629,8 @@ function showView(v){
   $('summary').style.display=v==='summary'?'block':'none';
 }
 /* La pause qui laisse lire la bonne réponse appartient à la séance en cours.
-   Sans ce garde-fou elle survivait à « Terminer » et posait une carte toute
-   seule, par-dessus la question de la séance suivante. */
+   Sans ce garde-fou, elle survivrait à « Terminer » et poserait une carte
+   toute seule, par-dessus la question de la séance suivante. */
 let TIC=null;
 function coupeTic(){if(TIC){clearTimeout(TIC);TIC=null;}}
 function startSession(){
@@ -1732,27 +1656,19 @@ function startSession(){
   /* la mise à l'écart courte d'un verset manqué ne vaut que dans la séance où
      il a été manqué : on repart d'une ardoise nette */
   Object.keys(S.progress).forEach(id=>{const p=S.progress[id];if(p&&p.s!==undefined)delete p.s;});
-  /* ── LA COULEUR DU DÉPART TIENT TOUTE LA SÉANCE (06/09) ──
-     Emmanuel : « j'avais au moins cinq ou six verts d'affilée ». Mesuré :
-     avec six jaunes dus et deux verts, en répondant « limpide » (le silence),
-     chaque jaune saute deux crans dès son premier passage et devient vert.
-     Au bout d'un tour, le jaune est vide, le rouge aussi, et TOUT le reste de
-     la séance est vert : quatre-vingt-dix pour cent de verts sur soixante
-     questions. Un verset devenu vert il y a deux minutes n'est pourtant pas
-     un verset maîtrisé : il n'a rien traversé.
-     Le groupe de chaque verset est donc arrêté au moment où la séance
-     commence, et il ne bouge plus jusqu'à la fin. Le travail fait pendant la
-     séance compte pleinement, il se lit dans la liste et dans la prochaine
-     séance ; il ne redistribue pas les places de celle qui est en cours. */
+  /* ── LES GROUPES SONT ARRÊTÉS AU DÉPART DE LA SÉANCE ──
+     Le groupe de chaque verset est fixé au moment où la séance commence, pour
+     que les places de la cadence ne se vident pas toutes vers le vert en
+     cours de route (Emmanuel : « j'avais au moins cinq ou six verts
+     d'affilée »). Seuls une pastille touchée ou une erreur déplacent un
+     verset pendant la séance (voir answer et poseDepuisOption) ; le reste du
+     travail se lit dans la liste et dans la prochaine séance. */
   S.grp={}; allItems().forEach(i=>{S.grp[i.id]=enJeu(i.id)?GROUPE_DE(i.id):'r';});
   showView('study'); nextQuestion();
 }
-/* Reste-t-il un verset arrivé à terme ? Un verset jamais vu compte toujours
-   comme arrivé à terme : tant qu'il en reste un seul dans la sélection, la
-   réponse est oui. RIEN N'EST PLUS AFFICHÉ à ce sujet pendant la séance
-   (Emmanuel, 02/09) : la phrase « tous tes versets sont à jour… » tenait deux
-   lignes, déplaçait le bouton « Terminer » et alourdissait l'en-tête. La
-   fonction reste, elle sert au tirage. */
+/* Reste-t-il dans la sélection un verset qui n'est pas vert ? Aucun appel
+   ne l'utilise, et rien ne s'affiche à ce sujet pendant la séance
+   (Emmanuel : l'en-tête reste léger). */
 function resteAReviser(){
   return allItems().some(i=>levelOf(i.id)!=='v');
 }
@@ -1794,8 +1710,8 @@ function renderQuestion(){
     b.dataset.oid=opt.id;
     const noms={r:t('rap_r'),a:t('rap_a'),v:t('rap_v')};
     /* pas de pastilles sur la bonne réponse : on la note déjà en haut
-       (26/09, Emmanuel : « on survole quand on veut, et on appuie sur le
-       bouton quand on veut »). */
+       (Emmanuel : « on survole quand on veut, et on appuie sur le bouton
+       quand on veut »). */
     b.innerHTML=(opt.id===q.item.id?'':'<span class="odots">'+['r','a','v'].map(k=>'<span class="odot" data-r="'+k+'" title="'+besc(noms[k]||'')+'"></span>').join('')+'</span>')
       +'<span class="num">'+(i+1)+'</span>'+besc(q.qMode==='vr'?opt[l].ref:opt[l].text);
     b.addEventListener('click',e=>{
@@ -1805,21 +1721,17 @@ function renderQuestion(){
     });
     opts.appendChild(b);
   });
-  /* LA NOTE NE SE VIDE PLUS À CHAQUE CARTE. Elle repart de la dernière
-     couleur déclarée POUR CE VERSET, et un verset n'a qu'une mémoire : la
-     couleur posée quand la référence s'affichait ressort telle quelle quand
-     c'est le verset qui s'affiche, et l'inverse. Les pastilles éteintes à
-     chaque question donnaient l'impression que les deux sens vivaient
-     chacun de leur côté, alors que la progression n'a jamais été rangée que
-     par verset. */
+  /* LA NOTE REPART DE LA COULEUR DU VERSET. Un verset n'a qu'une mémoire :
+     la couleur posée quand la référence s'affichait ressort telle quelle
+     quand c'est le verset qui s'affiche, et l'inverse. */
   majEcartQuestion();
   q.rappel=rapDe(q.item.id);   // allumée : la couleur du verset aujourd'hui
   q.touche=false;              // ne sera envoyée que si on la touche
   /* première apparition : la couleur est exigée avant la réponse */
   q.exige=!enJeu(q.item.id);
   majExigence();
-  /* Le mot n'est plus écrit sous le point : il reste accessible au survol et
-     aux lecteurs d'écran, mais il n'encombre plus la page. */
+  /* Le mot n'est pas écrit sous le point : il reste au survol et pour les
+     lecteurs d'écran, sans encombrer la page. */
   {const m={r:t('rap_r'),a:t('rap_a'),v:t('rap_v')};
    document.querySelectorAll('#rappel .rap').forEach(b=>{const x=m[b.dataset.r]||'';b.title=x;b.setAttribute('aria-label',x);});}
   document.querySelectorAll('#rappel .rap').forEach(b=>{b.classList.toggle('choisi',b.dataset.r===q.rappel);b.disabled=false;});
@@ -1856,13 +1768,8 @@ function poseDepuisOption(id,k){
   }
   majPastillesOptions();
 }
-/* La note reste facultative et modifiable tant qu'on n'a pas répondu : on peut
-   changer d'avis en touchant un autre point. Elle se fige au moment de la
-   réponse, pas avant.
-   ON PEUT AUSSI TOUT ENLEVER : rappuyer sur la couleur déjà posée la retire et
-   laisse les trois pastilles éteintes. Sans ce geste, une note gardée d'une
-   séance sur l'autre serait devenue impossible à défaire : on aurait pu passer
-   du rouge au vert, jamais revenir à « je ne me prononce pas ». */
+/* La note reste modifiable tant qu'on n'a pas répondu : toucher un autre
+   point change d'avis. Elle se fige au moment de la réponse. */
 function noteRappel(r){
   if(!S.cur||S.cur.done)return;
   /* la pastille allumée est la couleur du verset : la toucher, c'est la
@@ -1905,9 +1812,9 @@ function endSession(){
   coupeTic();
   videAttente();      // la séance se termine : rien ne reste en attente
   showView('summary');
-  /* ── LE BILAN DE LA SÉRIE (Emmanuel, 10/10) ──
+  /* ── LE BILAN DE LA SÉRIE (Emmanuel) ──
      La couleur d'un verset est ton jugement à toi ; une bonne réponse ne
-     prouve rien. Le bilan ne donne donc plus de pourcentage de bonnes
+     prouve rien. Le bilan ne donne donc pas de pourcentage de bonnes
      réponses : il dit combien de versets ont été vus, où ils en sont dans
      tes trois couleurs, et lesquels ont été manqués (une erreur est ce qui
      fait descendre une couleur), avec leur couleur d'à présent. */
@@ -1976,8 +1883,8 @@ function renderSearch(){
       r.innerHTML='<span class="vref"></span><span class="vtext"></span>';
       r.querySelector('.vref').textContent=(pas?trunc(dv.text||'',72):dv.ref)||'';
       r.querySelector('.vtext').textContent=pas?(dv.ref||''):trunc(dv.text||'',90);
-      /* La recherche fouille les deux séries : si le résultat vit dans
-         l'autre onglet, on y va, sinon le clic n'ouvrirait rien de visible. */
+      /* La recherche fouille toutes les séries : si le résultat vit dans un
+         autre onglet, on y va, sinon le clic n'ouvrirait rien de visible. */
       r.onclick=()=>{closeModal('m-search');if(S.mode!==kindDe(c)){S.mode=kindDe(c);modeEcrit();}S.showAllCats=true;S.open[c.id]=true;const _s=secDe(c.id);if(_s){S.secOpen[_s]=true;secOpenEcrit();}renderCats();const el=document.querySelector('.cat[data-id="'+c.id+'"]');if(el)el.scrollIntoView({behavior:'smooth',block:'center'});};
       host.appendChild(r);
     });
@@ -1985,8 +1892,8 @@ function renderSearch(){
   if(!total){const e=document.createElement('div');e.className='srch-vide';e.textContent='Aucun verset trouvé pour « '+$('i-srch').value.trim()+' ».';host.appendChild(e);}
 }
 function openSearch(){
-  /* La recherche couvre les deux séries : elle ne s'appelle donc plus
-     « rechercher un verset ». */
+  /* La recherche couvre toutes les séries : elle s'appelle « Rechercher… »,
+     pas « rechercher un verset ». */
   $('i-srch').placeholder='Rechercher…';
   $('msrch-close').setAttribute('aria-label','Fermer');
   $('i-srch').value=''; $('srch-results').innerHTML='';
@@ -2103,7 +2010,7 @@ function lvConfirm(msg,danger){
   $('mconf-no').textContent='Annuler';
   $('mconf-yes').textContent=danger?'Supprimer':'Confirmer';
   /* une confirmation encore ouverte est tenue pour refusée : sinon sa
-     promesse ne se résolvait jamais */
+     promesse ne se résoudrait jamais */
   if(_confRes){const anc=_confRes;_confRes=null;anc(false);}
   openModal('m-conf');
   return new Promise(res=>{_confRes=res;});
@@ -2134,11 +2041,11 @@ async function delCatById(id){
   if(!await lvConfirm(tk('del_cat_q',_c?kindDe(_c):'v'),1))return;
   const base=isBase(id);
   /* l'écran répond d'abord : sur mobile, une écriture Firestore lente ou
-     refusée laissait autrefois l'impression que le bouton ne marchait pas */
-  /* une catégorie de base est MASQUÉE, pas vidée (22/09) : ses retouches
-     restent, pour qu'elle revienne telle qu'on l'avait laissée si on la
-     restaure. Effacer ses retouches faisait revenir, à la restauration, les
-     versets supprimés pour de bon et, en double, ceux déplacés ailleurs. */
+     refusée donnerait l'impression que le bouton ne marche pas */
+  /* une catégorie de base est MASQUÉE, pas vidée : ses retouches restent,
+     pour qu'elle revienne telle qu'on l'avait laissée si on la restaure.
+     Effacer ses retouches ferait revenir, à la restauration, les versets
+     supprimés pour de bon et, en double, ceux déplacés ailleurs. */
   if(base){ if(!S.hidCats.includes(id))S.hidCats.push(id); }
   else S.customCats=S.customCats.filter(c=>c.id!==id);
   S.selCats=S.selCats.filter(x=>x!==id);
@@ -2151,9 +2058,9 @@ async function delCatById(id){
   }catch(e){console.warn('suppression',e);}
 }
 function modalVerseLang(){
-  /* La même modale sert aux deux : pour un passage, « Texte » devient
-     « Titre du passage » et l'exemple de référence change. Le champ garde une
-     seule ligne d'invite, il n'y a rien de plus à expliquer. */
+  /* La même modale sert aux trois séries : les libellés, l'exemple et la
+     hauteur du champ changent selon le genre. Le champ garde une seule ligne
+     d'invite, il n'y a rien de plus à expliquer. */
   const k=S.pendingKind||'v', pas=k==='p', cit=k==='c';
   const lt=t(pas?'f_titre':(cit?'f_cit':'f_text')), lr=t(pas?'f_ref_p':(cit?'f_src':'f_ref'));
   $('lbl-vfr').textContent=lt;
@@ -2162,8 +2069,8 @@ function modalVerseLang(){
   $('i-vfr').placeholder=ph;
   $('i-vfr').rows=pas?2:3;
   /* Le choix dans la Bible reste offert aux passages : il n'y remplit que la
-     RÉFÉRENCE, jamais le titre, qui s'écrit à la main. Une citation, elle, ne
-     vient pas de l'Écriture : le bouton disparaît (Emmanuel, 12/09). */
+     RÉFÉRENCE, jamais le titre, qui s'écrit à la main. Une fiche ne vient
+     pas de l'Écriture : le bouton disparaît (Emmanuel). */
   const zsrc=$('row-vsrc'); if(zsrc)zsrc.style.display=cit?'none':'';
   const src=$('mv-bible'); if(src)src.textContent=pas?t('bible_ref'):('Choisir dans la Bible');
 }
@@ -2204,14 +2111,14 @@ async function saveVerseModal(){
   closeModal('m-verse'); renderCats();
 }
 const clone=o=>JSON.parse(JSON.stringify(o));
-// ════════ VERSETS JUMEAUX, ÉCART AVEC LA BIBLE (05/09) ════════
+// ════════ VERSETS JUMEAUX, ÉCART AVEC LA BIBLE ════════
 /* Emmanuel : « je vais probablement mettre le même verset dans plusieurs
    catégories différentes ; quand le verset est exactement pareil, je veux
    que leur progression soit partagée ».
-   Deux versets sont JUMEAUX quand ils sont du même genre (verset ou passage)
-   et portent la même référence et le même texte, à la casse, à la
+   Deux versets sont JUMEAUX quand ils sont du même genre (verset, passage
+   ou fiche) et portent la même référence et le même texte, à la casse, à la
    ponctuation et aux espaces près : un point final en plus ne fait pas un
-   autre verset. Le texte français fait foi, l'anglais n'est qu'une copie. */
+   autre verset. */
 function normTexte(x){
   return String(x||'').normalize('NFC').toLowerCase().replace(/[\u2019\u02bc\u2018]/g,"'")
     .replace(/[^\p{L}\p{N}']+/gu,' ').replace(/\s+/g,' ').trim();
@@ -2220,7 +2127,7 @@ function cleVerset(v,kind){
   const d=(v&&v.fr)||{};
   return (kind||'v')+'|'+normTexte(d.ref)+'|'+normTexte(d.text);
 }
-/* clé → [{cat, v}] sur toutes les catégories, des deux genres */
+/* clé → [{cat, v}] sur toutes les catégories, de tous les genres */
 function indexJumeaux(){
   const m={};
   effectiveCats().forEach(c=>{const k0=kindDe(c);c.verses.forEach(v=>{const k=cleVerset(v,k0);(m[k]=m[k]||[]).push({cat:c,v:v});});});
@@ -2234,7 +2141,7 @@ function jumeauxDe(catId,vId){
   g.forEach(x=>{ if(x.cat.id===catId||vus[x.cat.id])return; vus[x.cat.id]=1; out.push(x); });
   return out;
 }
-/* La progression la plus avancée d'un groupe : la boîte la plus haute,
+/* La progression la plus avancée d'un groupe : la couleur la plus haute,
    puis la réponse la plus récente. */
 function meilleureProg(ids){
   let best=null;
@@ -2243,10 +2150,10 @@ function meilleureProg(ids){
     if(!best||b>bb||(b===bb&&t>tb))best=p;});
   return best;
 }
-/* Met tous les jumeaux au même niveau. Appelé après chaque rendu : à la
-   lecture du compte (des copies faites avant ce partage se rejoignent, la
-   plus avancée l'emporte), après un ajout, une retouche, un rangement. Ne
-   touche à rien tant que le compte n'est pas lu, ni pendant une séance. */
+/* Met tous les jumeaux au même niveau. Appelé à chaque rendu de la liste :
+   à la lecture du compte (des copies divergentes se rejoignent, la plus
+   avancée l'emporte), après un ajout, une retouche, un rangement. Ne touche
+   à rien tant que le compte n'est pas lu, ni pendant une séance. */
 function partageProgression(){
   if(!S.charge||enSession())return;
   const idx=indexJumeaux(); let touche=false;
@@ -2269,15 +2176,13 @@ function propageProg(id){
   const g=indexJumeaux()[cle]||[];
   g.forEach(x=>{ if(x.v.id!==id){S.progress[x.v.id]=clone(p);marqueSale(x.v.id);} });
 }
-/* ── POSER LA COULEUR DEPUIS LA LISTE (23/09) ──
-   « Je veux pouvoir sélectionner le niveau que je veux sur un verset,
-   passage, citation, dans le menu : ça permettra de ne pas attendre que le
-   truc passe pour choisir la couleur si on sait qu'on a régressé ou
-   progressé. » Toucher un des trois points d'une ligne pose cette couleur,
-   comme la pastille en séance : le verset change de groupe pour la
-   prochaine séance, et ses jumeaux des autres catégories suivent. Un verset
-   jamais répondu compte désormais comme déjà noté : sa couleur n'est plus
-   redemandée à sa première apparition. */
+/* ── POSER LA COULEUR DEPUIS LA LISTE ──
+   « Ça permettra de ne pas attendre que le truc passe pour choisir la
+   couleur si on sait qu'on a régressé ou progressé » (Emmanuel). Toucher un
+   des trois points d'une ligne pose cette couleur, comme la pastille en
+   séance : le verset change de groupe pour la prochaine séance, et ses
+   jumeaux des autres catégories suivent. Un verset noté ainsi compte comme
+   déjà vu : sa couleur n'est pas redemandée à sa première apparition. */
 function poseNiveau(id,k){
   if(!id||!couleurValide(k))return;
   const p=S.progress[id]||{};
@@ -2305,10 +2210,10 @@ function montreJumeaux(catId,vId){
    écart : ce sont les mots de la Bible. Un mot changé, une référence qui ne
    correspond pas au texte, un verset tapé de mémoire : écart. La casse, la
    ponctuation et les espaces ne comptent pas. Les passages (un titre et
-   une référence) n'ont rien à comparer. */
+   une référence) et les fiches n'ont rien à comparer. */
 const ECART={}, LIVRES_P={};
 function livreP(slug){ const api=bibApi(); if(!api)return Promise.resolve(null); return LIVRES_P[slug]||(LIVRES_P[slug]=api.livre(slug).catch(()=>null)); }
-/* ── LES DEUX TRADUCTIONS DU SITE (23/09) ──
+/* ── LES DEUX TRADUCTIONS DU SITE ──
    Un verset recopié de la Séraphin n'est pas un écart : le site a deux Bibles.
    On compare donc aux deux, et le signe ne s'allume que si le texte ne se
    trouve ni dans la Chérubin ni dans la Séraphin. */
@@ -2345,7 +2250,7 @@ function majEcartsCats(){
     el.classList.toggle('on',!!(c&&catEcart(c)));
   });
 }
-/* ── ÉTEINDRE LE SIGNE D'UN TOUCHER (23/09) ──
+/* ── ÉTEINDRE LE SIGNE D'UN TOUCHER ──
    « Si c'est fait exprès, on peut déjà appuyer dessus pour éteindre le
    bouton, non ? » Toucher le signe, dans la liste ou pendant la série,
    demande si l'écart est voulu ; oui, et il ne s'affiche plus pour ce verset
@@ -2391,9 +2296,9 @@ function verifieEcarts(){
       if(e&&e.cle===k)return;
       ECART[v.id]={cle:k,res:undefined};
       ecartTexte(v.fr&&v.fr.ref,v.fr&&v.fr.text).then(res=>{
-        /* rien à dire parce que la Bible n'était pas encore chargée (le tiroir
+        /* rien à dire parce que la Bible n'est pas encore chargée (le tiroir
            arrive après la page) : on ne le retient pas, on reviendra voir.
-           Sans cela, le signe ne s'allumait jamais de toute la visite. */
+           Sinon le signe ne s'allumerait jamais de toute la visite. */
         if(res===null&&!bibPrete()){ delete ECART[v.id]; relanceEcarts(); return; }
         ECART[v.id]={cle:k,res:res}; poseMarqueEcart(v.id,res===true);
       });
@@ -2483,7 +2388,7 @@ async function restoreCatBase(catId){
   if(!isBase(catId))return; if(!await lvConfirm(t('cat_restore_q')))return;
   /* les versets qui avaient été DÉPLACÉS dans cette catégorie (venus d'une
      autre, ou ajoutés à la main) n'appartiennent pas au modèle : sans ce
-     passage par la corbeille, ils disparaissaient sans retour */
+     passage par la corbeille, ils disparaîtraient sans retour */
   const ov=S.baseEdits[catId];
   const modele=PRE.find(c=>c.id===catId);
   if(ov&&modele){
@@ -2575,8 +2480,8 @@ function trashListe(items){
     /* Un passage se reconnaît à son titre, pas à sa référence : la corbeille
        montre donc de lui ce qui permet de le retrouver. */
     const d=(it.verse&&it.verse.fr)||{};
-    /* une citation se reconnaît à ses mots, non à son auteur, que plusieurs
-       citations partagent (22/09) */
+    /* une fiche se reconnaît à son texte, non à sa source, que plusieurs
+       fiches partagent */
     h+='<div class="trash-item"><span class="trash-vmeta"><span class="trash-vref">'+besc((it.kind==='p'?(d.text||d.ref):(it.kind==='c'?trunc(d.text||d.ref||'',72):d.ref))||'')
       +'</span><span class="trash-vcat">'+besc(it.catName?(it.catName.fr||''):'')+'</span></span>'
       +'<span class="trash-acts"><span class="trash-act" data-trestore="'+it.vId+'">'+t('trash_restore')
@@ -2586,7 +2491,7 @@ function trashListe(items){
 }
 function renderTrash(){
   /* La corbeille tient dans une petite poubelle, à droite de l'en-tête des
-     catégories (Emmanuel, 11/10) ; son contenu s'ouvre juste dessous. */
+     catégories (Emmanuel) ; son contenu s'ouvre juste dessous. */
   const host=$('trash-block'), btn=$('trash-btn'); if(!host||!btn)return;
   if(!S.trash.length){S.trashOpen=false;btn.style.display='none';host.style.display='none';host.innerHTML='';return;}
   btn.style.display='';
@@ -2617,8 +2522,8 @@ function clrMsg(){const m=$('auth-msg');m.className='auth-msg';m.textContent='';
 
 // ════════ ÉVÉNEMENTS ════════
 document.addEventListener('DOMContentLoaded',()=>{
-  /* on cale l'horloge sur le serveur avant tout calcul d'échéance, et on la
-     recale dès que la connexion revient */
+  /* on cale l'horloge sur le serveur, et on la recale dès que la connexion
+     revient */
   caleHorloge();
   window.addEventListener('online',caleHorloge);
   modeLit();
@@ -2650,8 +2555,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('start-btn').onclick=()=>{S.soloCat=null;S.soloSec=null;startSession();};
   $('finish-btn').onclick=endSession;
   $('sum-back').onclick=()=>{showView('setup');ecouteLive();};
-  /* Remettre la mémoire à zéro efface les niveaux ET les échéances : tout
-     redevient immédiatement disponible, il n'y a rien à attendre. */
   $('mode-v').onclick=()=>vaMode('v');
   $('mode-p').onclick=()=>vaMode('p');
   $('mode-c').onclick=()=>vaMode('c');
@@ -2799,14 +2702,11 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 // ════════ OBSERVATEUR AUTH ════════
 function demarrerAuto(){try{if(/[?&]demarrer=1/.test(location.search)){try{sessionStorage.setItem('lm_dem','1')}catch(_){}history.replaceState(null,'','/memoriser.html');}var go=false;try{go=sessionStorage.getItem('lm_dem')==='1';if(go)sessionStorage.removeItem('lm_dem');}catch(_){}if(!go)return;if(!allItems().length){S.offV={};S.selCats=PRE.map(function(c){return c.id;});}if(allItems().length>=2){S.soloCat=null;S.soloSec=null;startSession();return true;}}catch(e){}return false;}
-/* Les catégories de base lues en ligne reçoivent les mêmes identifiants que
-   ceux que le site leur donne à la construction : une catégorie ou un verset
-   sans « id » recevait sinon la clé « undefined », partagée par tous. */
-/* ── PLUS D'ANGLAIS (19/10, Emmanuel : « retire tout ça, trad anglaise ») ──
-   Le site n'est plus qu'en français. Un nom de catégorie ou un verset
-   portait une copie « anglaise » (le même texte, gardé pour un site
-   bilingue qui n'existe plus) : elle est retirée à la lecture, et la base
-   est nettoyée une fois pour toutes au premier chargement. */
+/* ── FRANÇAIS SEUL ──
+   Le site est en français seulement (Emmanuel : « retire tout ça, trad
+   anglaise »). Une ancienne copie « anglaise » d'un nom de catégorie ou d'un
+   verset est retirée à la lecture, et la base en est nettoyée au chargement
+   (voir loadUser). */
 function versetFr(v){
   if(!v||typeof v!=='object')return v;
   if(!v.fr||typeof v.fr!=='object'||(!v.fr.text&&!v.fr.ref))v.fr=(v.en&&typeof v.en==='object')?v.en:(v.fr||{ref:'',text:''});
@@ -2827,6 +2727,9 @@ function corbeilleFr(it){
   return it;
 }
 const aDeLAnglais=x=>/"en":/.test(JSON.stringify(x||null));
+/* Les catégories de base lues en ligne reçoivent les mêmes identifiants que
+   ceux que le site leur donne à la construction : sinon une catégorie ou un
+   verset sans « id » recevrait la clé « undefined », partagée par tous. */
 function normaliseBase(cats){
   const slug=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
   const vusC=new Set();
@@ -2846,8 +2749,8 @@ function normaliseBase(cats){
 }
 async function chargerBaseLV(){try{const s=await db.doc('config/memoriser').get();if(s.exists){const c=s.data().categories;if(Array.isArray(c)&&c.length){const n=normaliseBase(c);PRE.length=0;n.forEach(x=>PRE.push(x));}}}catch(e){}}
 /* Le service worker ne couvre que Mémoriser (portée « /memoriser ») : posé sur
-   « / », il s'installait sur tout le site, et l'application installée
-   revendiquait alors la Bible et les articles comme siens. Une ancienne
+   « / », il s'installerait sur tout le site, et l'application installée
+   revendiquerait la Bible et les articles comme siens. Une ancienne
    installation à la racine est retirée au passage. */
 if('serviceWorker' in navigator){
   try{
@@ -2861,9 +2764,9 @@ if('serviceWorker' in navigator){
   }catch(_){}
 }
 /* Même compte qui se représente : on ne relit rien et on ne change pas
-   d'écran. Sans ce garde, un réveil de l'onglet en pleine séance ramenait à
-   l'accueil et rechargeait la progression par-dessus les réponses encore en
-   attente d'envoi (05/09). */
+   d'écran. Sans ce garde, un réveil de l'onglet en pleine séance ramènerait
+   à l'accueil et rechargerait la progression par-dessus les réponses encore
+   en attente d'envoi. */
 let COMPTE_CONNU='∅';
 auth.onAuthStateChanged(async u=>{
   const cle=u?u.uid:null;
@@ -2907,8 +2810,8 @@ auth.onAuthStateChanged(async u=>{
   function tzCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_taille_mobile':'lv_taille_pc';}catch(e){return 'lv_taille_pc';}}
   function tzLit(){var v=1;try{v=parseFloat(localStorage.getItem(tzCle())||localStorage.getItem('lv_taille'))||1;}catch(e){}return v;}
   function tzApplique(v){document.documentElement.style.setProperty('--lvz',v);}
-  /* application au chargement : sans elle, la taille choisie restait sans effet
-     sur cette page tant qu'on n'avait pas retouché A+ ou A−. */
+  /* application au chargement : sans elle, la taille choisie resterait sans
+     effet sur cette page tant qu'on ne retouche pas A+ ou A−. */
   tzApplique(tzLit());
   document.addEventListener('click',function(e){
     var b=e.target.closest?e.target.closest('.ttx-b'):null;

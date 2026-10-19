@@ -6,10 +6,9 @@
 <meta name="color-scheme" content="dark">
 <meta name="darkreader-lock"><style>html{color-scheme:dark}@media (prefers-color-scheme:dark){html{color-scheme:dark}}@media (prefers-color-scheme:light){html{color-scheme:dark}}</style>
 <title>Commentaires bibliques · Lumen Veritatis</title>
-<!-- Page de travail de l'auteur : les commentaires se LISENT dans la Bible,
-     sur le verset qu'ils éclairent. Cette page n'est ni dans le menu, ni dans
-     le plan du site, ni indexée : on y vient par la Bible (« Commenter ») ou
-     par le panneau du compte (« Mes commentaires »). -->
+<!-- Atelier d'écriture des commentaires bibliques, qui se lisent dans la
+     Bible, sur le verset qu'ils éclairent. Hors menu : on y vient par la
+     Bible (« Commenter ») ou par le panneau du compte (« Mes commentaires »). -->
 <meta name="robots" content="noindex">
 <link rel="apple-touch-icon" href="/icones/lumen-180.png">
 <meta name="theme-color" content="#000000">
@@ -21,16 +20,14 @@
   --encre:#000000;--encre-2:#0b0b0b;--encre-3:#111111;
   --or:#efe6cf;--or-pale:#f8f3e6;
   /* fond de survol : la couleur d'accent, une seule intensité pour tout
-     le site. La seconde ligne suit l'accent quand il change ; un vieux
-     navigateur l'ignore et garde la première. */
+     le site. La seconde ligne suit l'accent ; un vieux navigateur garde la
+     première. */
   --surv:rgba(239,230,207,.06);
   --surv:color-mix(in srgb, var(--or) 6%, transparent);
-  /* texte sélectionné : la même couleur, franche cette fois, avec le
-     texte en noir pour rester lisible. */
+  /* texte sélectionné : la même couleur, franche, texte en noir */
   --sel:rgba(239,230,207,.5);
   --sel:color-mix(in srgb, var(--or) 50%, transparent);
-  /* halo de survol des cartes, dans l'esprit des diagrammes interactifs :
-     une lueur diffuse au-dehors, doublée d'une bordure intérieure ténue. */
+  /* halo de survol des lignes : lueur diffuse au-dehors */
   --halo:rgba(239,230,207,.1);
   --halo:color-mix(in srgb, var(--or) 10%, transparent);
   --parchemin:#ffffff;--pa:rgba(255,255,255,.6);--pa2:rgba(255,255,255,.5);
@@ -67,18 +64,16 @@ body>footer{flex-shrink:0}
 .act{position:relative;font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2);transition:color .3s}
 .act::before{content:'';position:absolute;inset:-15px -10px}
 .act:hover{color:var(--or)}
-/* Les actions de la liste (écrire, ajouter, nouvelle section, organiser)
-   sont allumées d'emblée, à la couleur d'accent : ce sont les portes de la
-   page, elles n'attendent pas la souris. Le survol les éclaircit d'un cran.
-   Les actions de l'éditeur, elles, gardent leur teinte discrète. */
+/* Les actions de la liste sont allumées d'emblée, à la couleur d'accent :
+   ce sont les portes de la page. Celles de l'éditeur restent discrètes. */
 #acts-liste .act{color:var(--or)}
 #acts-liste .act:hover{color:var(--or-pale)}
 .act.danger:hover{color:var(--pourpre)}
 @media(max-width:720px){.acts{gap:24px;margin-top:26px}}
 
 /* ═══ RANGEMENT : PAR LIVRE DE LA BIBLE ═══ */
-/* Ici, aucune section à créer : un commentaire se range de lui-même sous le
-   livre qu'il commente, dans l'ordre de la Bible. Les en-têtes reprennent le
+/* Aucune section à créer : un commentaire se range de lui-même sous le
+   livre qu'il commente, dans l'ordre de la Bible. Les rangées reprennent le
    dessin des sections d'Articles (un intitulé, jamais une boîte). */
 .rub{margin-bottom:0}
 .rub-tete{display:flex;align-items:center;gap:12px;padding:26px 2px 13px;cursor:pointer}
@@ -117,8 +112,8 @@ body>footer{flex-shrink:0}
 .art-extrait{font-size:15px;color:var(--pa);margin-top:5px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .art-pied{display:flex;align-items:center;gap:12px;margin-top:9px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.58)}
 .art-ligne{display:flex;align-items:flex-start;gap:6px;box-shadow:inset 0 -1px 0 var(--filet);transition:background .25s,box-shadow .25s}
-/* Au survol, la ligne s'illumine sans bouger : halo diffus au-dehors,
-   bordure intérieure ténue, fond au ton d'accent. Rien ne se déplace. */
+/* Au survol, la ligne s'illumine sans bouger : halo au-dehors, fond au ton
+   d'accent. */
 .art-ligne:hover{background:var(--surv);box-shadow:0 0 26px var(--halo),inset 0 -1px 0 var(--filet)}
 .art-ligne:hover .art-titre{color:#fff;text-shadow:0 0 14px color-mix(in srgb,var(--or) 28%,transparent)}
 .art-ligne:hover .art-extrait{color:rgba(255,255,255,.75)}
@@ -137,18 +132,13 @@ body>footer{flex-shrink:0}
 #ecran-edit{display:none}
 .ed-titre{width:100%;background:none;border:none;color:var(--parchemin);font-family:var(--display);font-size:calc(38px*var(--lvz,1));line-height:1.22;padding:10px 0 20px;outline:none;resize:none;overflow:hidden;text-align:center}
 .ed-titre::placeholder{color:rgba(255,255,255,.22)}
-/* Le champ de référence : centré comme le titre, en petites capitales dorées,
-   avec sous lui la lecture qu'en fait le site (« Matthieu 5:3-12 ») ou ce
-   qui ne va pas. Un commentaire sans référence valable ne peut pas être mis
-   en ligne : la Bible ne saurait pas où l'accrocher. */
-/* UNE SEULE LIGNE (Emmanuel, 05/09 : « enlève cette double ligne, Matthieu et
-   en dessous commentaire de, c'est moche ») : la référence s'affichait dans un
-   champ, et une seconde ligne la répétait mot pour mot sous prétexte de dire
-   ce qui avait été compris. La référence EST maintenant le bouton : on la
-   touche, le sélecteur biblique s'ouvre. Rien ne la répète, et la ligne du
-   dessous ne paraît que si quelque chose ne va pas. */
-/* aucun filet sous la référence (Emmanuel, 05/09) : la barre d'outils a déjà
-   le sien juste au-dessus, deux traits pour deux lignes faisaient une échelle */
+/* La référence commentée, centrée comme le titre, en petites capitales
+   dorées, EST le bouton : la toucher ouvre le sélecteur biblique. Une seule
+   ligne (« enlève cette double ligne ») : rien ne la répète, et la ligne du
+   dessous ne paraît que si la référence n'est pas reconnue. Aucun filet
+   dessous : la barre d'outils a déjà le sien juste au-dessus. Sans référence
+   valable, un commentaire ne s'affiche pas dans la Bible, qui ne saurait pas
+   où l'accrocher. */
 .ed-ref-ligne{text-align:center;padding:16px 0 4px}
 .ed-ref{position:relative;display:inline-block;font-family:var(--display);font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);cursor:pointer;transition:color .3s}
 .ed-ref::before{content:'';position:absolute;inset:-14px -16px}
@@ -158,12 +148,9 @@ body>footer{flex-shrink:0}
 .ed-ref-etat{text-align:center;font-size:13.5px;color:var(--pourpre);padding:8px 0 0}
 .ed-ref-etat:empty{display:none}
 .ed-corps{padding-top:10px}
-/* La poignée qui sert à déplacer un bloc allait jusque-là chercher sa place
-   DANS la colonne : tout l'article s'en trouvait poussé de trente-quatre
-   pixels vers la droite, alors que le titre, lui, restait centré sur la
-   colonne entière. L'article n'était pas d'aplomb. La poignée va maintenant
-   se loger dans la marge, hors du texte ; sous 900 px, où il n'y a plus de
-   marge, elle reprend sa place à l'intérieur. */
+/* La poignée d'un bloc se loge dans la marge, hors du texte : le texte reste
+   d'aplomb avec le titre centré. Sous 900 px, faute de marge, elle passe à
+   l'intérieur. */
 .bloc{position:relative;padding:2px 0;margin:0 0 20px}
 .bloc:focus-within .bl-poignee{opacity:1}
 .bl-poignee{position:absolute;left:-34px;top:2px;width:26px;text-align:center;font-size:17px;line-height:1.5;color:rgba(255,255,255,.22);opacity:0;transition:opacity .25s,color .25s;cursor:pointer}
@@ -176,34 +163,29 @@ body>footer{flex-shrink:0}
 .zone i,.zone em{font-style:italic}
 .zone a{color:var(--or);border-bottom:1px solid rgba(231,224,207,.3)}
 .zone .ref{color:var(--or);cursor:pointer;border-bottom:1px dotted rgba(231,224,207,.4)}
-/* une référence garde son épaisseur normale, même dans un passage en gras
-   (Emmanuel, 12/09) : cela vaut aussi pour les articles écrits avant */
+/* une référence garde son épaisseur normale, même dans un passage en gras,
+   y compris dans les textes déjà écrits */
 .ref{font-weight:400}
-/* Un article se lit comme la Bible se lit : même taille de texte (20,5 px),
-   même interligne serré (1,08), même largeur de colonne. C'est le blanc
-   ENTRE les blocs qui sépare, pas celui entre les lignes. */
+/* Un commentaire se lit comme la Bible : même taille de texte (20,5 px),
+   même interligne serré (1,08), voulu, même largeur de colonne. C'est le
+   blanc ENTRE les blocs qui sépare, pas celui entre les lignes. */
 .b-p .zone{font-size:calc(20.5px*var(--lvz,1));line-height:1.08;color:rgba(255,255,255,.9)}
 .b-h2 .zone{font-family:var(--display);font-size:calc(28px*var(--lvz,1));line-height:1.16;color:var(--parchemin);margin-top:16px}
 .b-h2{margin-top:20px}
 .b-h3 .zone{font-family:var(--display);font-size:calc(15px*var(--lvz,1));letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin-top:12px}
 .b-h3{margin-top:14px}
-/* Citation d'un auteur : romaine et bien lisible, entre guillemets français
-   posés par la feuille de style, avec un filet à gauche pour la distinguer
-   d'un paragraphe. L'italique à 60 % de blanc, illisible sur un long passage,
-   a été abandonné le 22/08. */
+/* Citation d'un auteur : romaine et bien lisible, avec un filet à gauche
+   qui suffit à la distinguer d'un paragraphe. Les guillemets se tapent si on
+   en veut : certaines citations n'en demandent pas. */
 .b-cite{padding-top:10px;padding-bottom:6px}
 .b-cite .zone{font-size:calc(20.5px*var(--lvz,1));line-height:1.14;color:rgba(255,255,255,.88);padding-left:20px;box-shadow:inset 2px 0 0 var(--filet-fort)}
-/* Les guillemets ne sont plus posés par la feuille de style (Emmanuel,
-   26/08) : on les tape si on en veut. Le filet à gauche suffit à dire que
-   c'est une citation, et certaines citations n'en demandent pas. */
 .b-cite .zone:empty::before{content:attr(data-vide)}
 /* Verset : le format du site, texte en italique entre guillemets français,
    référence en gras à la suite, sans parenthèses. Les guillemets viennent de
    la feuille de style : on ne les tape pas, on ne peut pas les effacer. */
-/* L'interligne doit être posé sur le BLOC, pas seulement sur les morceaux de
-   texte qui sont dedans : une ligne prend la hauteur la plus grande entre
-   celle de son contenu et celle de son conteneur. Réglé sur les seuls
-   .v-txt et .v-ref, le verset restait aéré comme le reste de la page. */
+/* L'interligne se pose sur le BLOC, pas seulement sur les morceaux de texte
+   qui sont dedans : une ligne prend la hauteur la plus grande entre celle de
+   son contenu et celle de son conteneur. */
 .b-verset{padding-top:4px;padding-bottom:4px;line-height:1.14}
 .b-verset .v-txt{display:inline;font-style:italic;font-size:calc(20.5px*var(--lvz,1));line-height:1.14;color:rgba(255,255,255,.92)}
 .b-verset .v-txt::before{content:'«\00a0'}
@@ -269,11 +251,10 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 }
 
 /* ═══ CHOISIR UN VERSET DANS LA BIBLE ═══ */
-/* Le même sélecteur que dans Mémoriser (Emmanuel, 05/09 : « pour sélectionner
-   une référence, rends ça pareil que dans Mémoriser ») : on feuillette les
-   livres, puis les chapitres, on touche les versets, et l'aperçu du bas
-   permet de resserrer sur quelques mots. Ces règles sont reprises de
-   memoriser.html : si on les retouche ici, il faut les retoucher là-bas. */
+/* Le même sélecteur que dans Mémoriser (« rends ça pareil que dans
+   Mémoriser ») : livres, chapitres, versets à toucher, et l'aperçu du bas
+   pour resserrer sur quelques mots. Règles reprises de memoriser.html : une
+   retouche ici se refait là-bas. */
 #m-bib .modal{max-width:660px;display:flex;flex-direction:column;height:min(760px,calc(100vh - 48px));max-height:calc(100vh - 48px);overflow:hidden}
 #m-bib .modal-titre,#m-bib .modal-btns,.mbib-fil,.mbib-rech{flex:0 0 auto}
 #m-bib .modal-titre{margin-bottom:14px}
@@ -324,14 +305,12 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 }
 @supports(height:100dvh){@media(max-width:720px){#m-bib .modal{height:100dvh!important;max-height:100dvh!important}}}
 
-/* Deuxième validation : poser le VERSET (son texte et sa référence) et non la
-   seule référence (Emmanuel, 05/09 : « si on veut mettre aussi le verset ? »).
-   Bouton bordé, pas plein : c'est un second choix, à côté du principal. */
+/* Second choix : poser le VERSET (son texte et sa référence) et non la
+   seule référence. Bouton bordé, pas plein : il est secondaire. */
 .mbib-2{font-family:var(--display);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--parchemin);border:1px solid var(--filet-fort);background:none;padding:9px 18px;cursor:pointer;transition:border-color .3s,color .3s,background .3s}
 .mbib-2:hover{border-color:var(--or);color:var(--or-pale);background:var(--surv)}
 /* Sur téléphone, les trois boutons s'empilent : les deux façons d'insérer
-   d'abord, la sortie en dernier. En grille deux colonnes ils laissaient des
-   trous et « Annuler » se retrouvait seul en tête. */
+   d'abord, « Annuler » en dernier. */
 @media(max-width:600px){
   #m-bib .modal-btns{display:flex!important;flex-direction:column;gap:10px}
   #m-bib .modal-btns .m-ok{order:1}
@@ -349,9 +328,8 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 .auth-mail{text-align:center;color:var(--pa);font-size:15px;margin-bottom:20px;word-break:break-all}
 .macct-btn{display:block;width:100%;text-align:center;padding:13px 10px;margin-bottom:10px;border:1px solid var(--filet-fort);color:var(--parchemin);font-family:var(--display);font-size:14px;letter-spacing:.18em;text-transform:uppercase;transition:border-color .3s,color .3s,background .3s}
 .macct-btn:hover{border-color:var(--or);color:var(--or-pale);background:var(--surv)}
-/* Le panneau « Mon compte » doit être LE MÊME sur les quatre surfaces. Ces
-   règles sont reprises mot pour mot de bible.html et memoriser.html : si on
-   les retouche ici, il faut les retoucher là-bas aussi. */
+/* Le panneau « Mon compte » est LE MÊME partout : ces règles sont reprises
+   de bible.html et memoriser.html, une retouche ici se refait là-bas. */
 .ttx-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:18px 0 6px;padding-top:18px;border-top:1px solid var(--filet)}
 .ttx-lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
 .ttx-btns{display:flex;gap:8px}
@@ -482,9 +460,8 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 
 <script>
 // ════════ FIREBASE ════════
-/* Sans le service de connexion (bloqueur, réseau coupé), tout le code de la
-   page mourait sur sa première ligne et l'écran restait muet. On le dit, et
-   on s'arrête proprement (05/09). */
+/* Sans le service de connexion (bloqueur, réseau coupé), la page le dit et
+   s'arrête proprement au lieu de rester muette. */
 if(typeof firebase==='undefined'){
   const dire=()=>{const m=document.getElementById('mot-liste');if(m)m.textContent='Le service de connexion n’a pas pu être chargé. Vérifiez la connexion ou un bloqueur, puis rechargez la page.';const l=document.getElementById('liste');if(l)l.innerHTML='';const a=document.getElementById('acts-liste');if(a)a.style.display='none';};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',dire);else dire();
@@ -502,14 +479,15 @@ const auth=firebase.auth();
 const db=firebase.firestore();
 try{db.enablePersistence({synchronizeTabs:true}).catch(function(){});}catch(_){}
 
-/* Une seule plume : les commentaires sont écrits par ce compte, et par lui
-   seul. Les brouillons vivent dans l’espace privé du compte ; publier en
-   recopie une version dans « public_commentaires », que la Bible lit. */
+/* Une seule plume : les commentaires sont écrits par ce compte seul. Les
+   brouillons vivent dans l’espace privé du compte ; « Afficher dans la
+   Bible » en recopie une version dans « public_commentaires », que la Bible
+   lit. */
 const AUTEUR='hoarauemmanuel336@gmail.com';
 
 // ════════ ÉTAT ════════
-/* S.art garde son nom d'origine (le code de l'éditeur vient d'Articles) : c'est
-   le commentaire ouvert. S.ouv : les livres dépliés dans la liste. */
+/* S.art est le commentaire ouvert (le nom vient de l'éditeur partagé avec
+   Articles). S.livre : le livre dont la page est ouverte. */
 const S={uid:null,email:null,auteur:false,liste:[],art:null,sale:false,minute:null,ouv:{},livre:''};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -517,13 +495,11 @@ const acol=()=>db.collection('users/'+S.uid+'/commentaires');
 
 /* ── LA RÉFÉRENCE ──
    Un commentaire porte UNE référence : un verset, ou une plage de versets
-   d'un même chapitre (Matthieu 5:3-12). C'est le dictionnaire de
-   bible-panneau.js qui la lit (noms de livres, abréviations, « Ps 23:1 »…),
-   le même que la loupe de la Bible : ce qui est reconnu ici l'est là-bas.
-   On garde dans le document trois choses : le texte tel qu'il a été tapé
-   (ref), la lecture qu'on en a faite (refs : livre, chapitre, versets) et le
-   livre seul (livres), par lequel la Bible retrouve d'un coup tous les
-   commentaires d'un livre. */
+   d'un même chapitre (Matthieu 5:3-12). Le dictionnaire de bible-panneau.js
+   la lit, le même que la loupe de la Bible : ce qui est reconnu ici l'est
+   là-bas. Le document garde le libellé (ref), sa lecture (refs : livre,
+   chapitre, versets) et le livre seul (livres), par lequel la Bible retrouve
+   d'un coup tous les commentaires d'un livre. */
 let BIBLE_PRETE=false;
 function prepareBible(){
   if(!window.LVBible||typeof LVBible.pret!=='function')return Promise.resolve(false);
@@ -567,8 +543,8 @@ function commentairesDe(slug){
     return (a.ch||0)-(b.ch||0)||(a.v1||0)-(b.v1||0)||(a.v2||0)-(b.v2||0);
   });
 }
-/* Replié par défaut : la page s'ouvre comme un sommaire, et ce qu'on déplie
-   reste déplié sur l'appareil. */
+/* Mémoire des livres dépliés, gardée sur l'appareil (S.ouv). La liste, un
+   livre par page, ne la consulte pas. */
 const livreOuvert=slug=>S.ouv[slug]===true;
 function ouvLit(){try{const o=JSON.parse(localStorage.getItem('lv_com_liv')||'{}');S.ouv=(o&&typeof o==='object')?o:{};}catch(e){S.ouv={};}}
 function ouvEcrit(){try{localStorage.setItem('lv_com_liv',JSON.stringify(S.ouv));}catch(e){}}
@@ -600,16 +576,16 @@ const TYPES=[
 ];
 const typeDe=c=>TYPES.find(t=>t.cle===c)||TYPES[0];
 /* Chaque bloc porte une clé stable (k) : l'éditeur reconstruit ses blocs à
-   chaque lecture, et un envoi d'image en cours, qui retenait l'ancien objet,
-   ne retrouvait plus son bloc et jetait l'image. */
+   chaque lecture, et un envoi d'image en cours retrouve son bloc par cette
+   clé. */
 let CLE_BLOC=0;
 const cleBloc=()=>'b'+Date.now().toString(36)+(CLE_BLOC++).toString(36);
 
 // ════════ IMAGES ════════
 /* L'image part TELLE QUELLE, sans retouche ni recompression (exigence
-   d'Emmanuel du 22/08). Firestore refuse tout enregistrement de plus d'un
-   mégaoctet : on la découpe donc en tranches, et le navigateur la recolle à
-   l'affichage. Rien n'est perdu, pas un pixel. */
+   d'Emmanuel). Firestore refuse tout document de plus d'un mégaoctet : elle
+   est découpée en tranches, que le navigateur recolle à l'affichage. Pas un
+   pixel perdu. */
 const IMG_MAX=20*1024*1024;      // plafond de sécurité, 20 Mo
 const TRANCHE=480000;            // caractères par tranche, bien sous le mégaoctet
 const mcol=()=>db.collection('users/'+S.uid+'/medias');
@@ -629,48 +605,23 @@ function pageCadre(code){
        copie à l'ancienne, par appui long, doit rester possible */
     +'body{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}'
     /* Le cadre est TOUJOURS taillé à la hauteur exacte de son contenu : un
-       ascenseur à l'intérieur n'aurait donc jamais rien à faire défiler, et
-       s'il apparaît c'est le signe d'un écart de quelques pixels entre la
-       mesure et le rendu. Sous Windows il prend en plus sa place et vole
-       quinze pixels de largeur, ce qui suffit à décaler la mise en page.
-       On le retire donc franchement. */
+       ascenseur n'y aurait rien à faire défiler, et sous Windows il volerait
+       quinze pixels de largeur. Il est retiré. */
     +'html{overflow:hidden}'
-    /* Le contenu est enfermé dans une boîte qu'on peut mesurer. display:flow-root
-       empêche les marges de ses enfants de s'échapper : sans cela la boîte
-       serait annoncée plus courte que ce qu'elle occupe et le bas du diagramme
-       se ferait couper. */
+    /* Le contenu est enfermé dans une boîte mesurable. display:flow-root
+       retient les marges de ses enfants : sans cela la boîte serait annoncée
+       plus courte que ce qu'elle occupe et le bas du diagramme serait coupé. */
     +'#lv-mesure{display:flow-root}</style></he'+'ad><body>'
     +'<div id="lv-mesure">'+code+'</div>'
     +'<scr'+'ipt>(function(){'
-    /* ── LA HAUTEUR SE MESURE SUR LE CONTENU, PAS SUR LA PAGE ──
-       On lisait avant document.documentElement.scrollHeight, qui ne descend
-       JAMAIS sous la hauteur de la fenêtre du cadre, laquelle est justement la
-       hauteur qu'on vient de donner au cadre. Le chiffre annoncé ne pouvait
-       donc que monter : en dépliant une section le cadre grandissait, en la
-       repliant il restait grand, et chaque aller-retour ajoutait sa bande
-       noire sous le diagramme. On mesure maintenant la boîte du contenu, qui
-       rétrécit quand le contenu rétrécit. */
-    /* On ne mesure pas la BOÎTE du contenu mais son DERNIER PIXEL VISIBLE :
-       on parcourt les éléments et on retient le bord bas le plus loin. La
-       différence n'est pas théorique. Le diagramme se termine par sa ligne
-       « cliquez sur un élément », qui porte une marge basse ; cette marge fait
-       partie de la boîte sans rien afficher, et se lisait donc comme une bande
-       noire sous le diagramme, présente aussi bien replié que déplié. */
-    /* ── CE QUI EST REPLIÉ OCCUPE ENCORE DE LA PLACE, POUR QUI MESURE MAL ──
-       Une section repliée garde tout son contenu dans la page : l'enveloppe
-       qui la referme descend à zéro et coupe ce qui dépasse, mais le bloc
-       enfermé dedans, lui, conserve sa taille entière. Le parcours à plat des
-       éléments lisait donc le bas de ce contenu invisible, plusieurs centaines
-       de pixels sous la dernière ligne réellement affichée, et le cadre
-       s'étirait d'autant : une longue bande noire sous un diagramme tout
-       replié. C'est le débordement qui dépassait, pas le diagramme.
-       La mesure descend maintenant l'arbre au lieu de le parcourir à plat, et
-       elle emporte avec elle la limite de ce que l'on voit : chaque fois
-       qu'elle traverse un élément qui coupe ce qui dépasse, elle retient son
-       bord bas comme nouvelle limite, et tout ce qui se trouve en dessous est
-       ramené à cette limite. Un sous-arbre masqué, par l'affichage ou par la
-       visibilité, sort du compte avec toute sa descendance. Le chiffre annoncé
-       est ainsi le dernier pixel VU, quoi que contienne le diagramme. */
+    /* ── LA HAUTEUR EST CELLE DU DERNIER PIXEL VU ──
+       Ni la page du cadre (elle ne descend jamais sous la hauteur déjà
+       donnée, le cadre ne pourrait que grandir), ni la boîte du contenu (elle
+       compte des marges basses qui n'affichent rien). La mesure descend
+       l'arbre en emportant la limite de ce qui est visible : un élément qui
+       coupe ce qui dépasse devient la nouvelle limite (une section repliée
+       garde son contenu à pleine taille sous une enveloppe à zéro), et un
+       sous-arbre masqué, par l'affichage ou la visibilité, sort du compte. */
     +'var w=document.getElementById("lv-mesure"),dernier=-1,demande=0;'
     +'function scrute(e,coupe){var cs=getComputedStyle(e);'
     +'if(cs.display==="none"||cs.visibility==="hidden")return 0;'
@@ -685,37 +636,24 @@ function pageCadre(code){
     +'function h(){if(!w)return;var n=Math.ceil(bas());'
     +'if(n<=0)n=Math.ceil(Math.max(w.getBoundingClientRect().height,w.scrollHeight));'
     /* Le recensement des éléments collants est demandé à chaque remaniement,
-       même quand la hauteur totale ne bouge pas : la barre de sélection qui
-       apparaît décale le point d'accrochage des titres de sections, et c'est
-       un changement de position sans changement de hauteur. */
+       même à hauteur égale : la barre de sélection qui apparaît décale le
+       point d'accrochage des titres de sections sans changer la hauteur. */
     +'planRecense();'
     +'if(n===dernier)return;dernier=n;'
-    /* On taille aussi la boîte à cette hauteur. Sans cela il reste sous le
-       dernier élément une marge basse qui n'affiche rien mais qui rend la page
-       du cadre défilable de quelques pixels : le diagramme se décalait sous le
-       doigt ou la molette sans qu'on voie pourquoi. La boîte étant close, la
-       page du cadre fait exactement la hauteur de ce qu'elle montre. */
+    /* La boîte est taillée à cette hauteur : sans cela, la marge basse du
+       dernier élément rendrait la page du cadre défilable de quelques pixels,
+       et le diagramme glisserait sous le doigt ou la molette. */
     +'w.style.height=n+"px";demande=n;'
     +'try{parent.postMessage({lvHaut:n},"*");}catch(e){}}'
-    /* ── CE QUI COLLE EN HAUT DOIT SUIVRE LA LECTURE ──
-       Ouvert seul dans un navigateur, le diagramme voit sa barre « Explorer »
-       et ses titres de sections rester au bord haut de l'écran pendant tout le
-       défilement : ils sont posés en « collant », et le collant s'accroche à
-       ce qui défile. Ici, c'est LA PAGE qui défile, jamais le cadre : celui-ci
-       fait exactement la hauteur du diagramme et n'a rien à faire glisser.
-       Le collant n'avait donc rien à quoi s'accrocher et restait au point où
-       il était né, tout en haut du diagramme. On sélectionnait trois cartes en
-       bas de page, et il fallait remonter chercher le bouton.
-       La page dit maintenant au cadre où en est la lecture : à chaque
-       défilement elle lui envoie la hauteur de diagramme déjà passée sous le
-       bord haut de l'écran, sous la barre du site. Le cadre reconnaît tout
-       seul ses éléments collants, quels qu'ils soient, et les fait glisser
-       d'autant, sans jamais les laisser sortir du bloc auquel ils
-       appartiennent, exactement comme le ferait le navigateur. Le mouvement
-       passe par une translation, que l'écran compose sans refaire la mise en
-       page : le geste reste fluide sur un long diagramme.
-       La barre « Explorer » et le titre de la section ouverte accompagnent
-       ainsi la lecture, et l'on copie sa sélection de là où on la fait. */
+    /* ── CE QUI COLLE EN HAUT SUIT LA LECTURE ──
+       C'est LA PAGE qui défile, jamais le cadre : les éléments collants du
+       diagramme (barre « Explorer », titres de sections) n'ont rien à quoi
+       s'accrocher. La page envoie donc au cadre, à chaque défilement, la
+       hauteur de diagramme déjà passée sous la barre du site. Le cadre
+       reconnaît seul ses éléments collants et les fait glisser d'autant, sans
+       les laisser sortir de leur bloc, comme le ferait le navigateur. Une
+       translation, composée sans refaire la mise en page, garde le geste
+       fluide. On copie ainsi sa sélection de là où on la fait. */
     +'var vueHaut=0,collants=[],attente=0;'
     +'function recense(){collants=[];var l=w.getElementsByTagName("*"),i,cs,t;'
     +'for(i=0;i<l.length;i++){cs=getComputedStyle(l[i]);'
@@ -737,13 +675,9 @@ function pageCadre(code){
     +'max=pr.bottom-nat-r.height;if(max<0)max=0;if(d>max)d=max;'
     +'if(d!==s.d){s.d=d;e.style.transform=d?("translateY("+d+"px)"):"";}}}'
     /* ── LA PAGE RÉPOND CE QU'ELLE A PU DONNER ──
-       Elle refuse au-delà d'une certaine hauteur, par prudence. Tant que le
-       cadre l'ignorait, un grand diagramme entièrement déplié dépassait ce
-       plafond et TOUT CE QUI EST AU-DELÀ DISPARAISSAIT, sans bande, sans
-       ascenseur, sans rien pour le signaler : coupé net. Le cadre écoute donc
-       la réponse. S'il a eu ce qu'il demandait, il verrouille son défilement
-       comme prévu ; s'il a eu moins, il le rouvre, et le peu qui dépasse
-       redevient atteignable. Rien ne peut plus être perdu. */
+       Elle plafonne la hauteur par prudence. Le cadre écoute la réponse :
+       s'il a eu ce qu'il demandait, son défilement reste verrouillé ; s'il a
+       eu moins, il le rouvre, et ce qui dépasse le plafond reste atteignable. */
     +'window.addEventListener("message",function(e){var d=e.data;if(!d)return;'
     +'if(d.lvVue&&typeof d.lvVue.haut==="number"){vueHaut=d.lvVue.haut;colle();return;}'
     +'if(typeof d.lvApplique!=="number")return;'
@@ -751,41 +685,28 @@ function pageCadre(code){
     +'window.addEventListener("load",function(){h();recense();});'
     +'setTimeout(h,120);setTimeout(h,600);setTimeout(recense,700);'
     /* ── QUI SURVEILLE QUOI ──
-       On ferme la boîte à la hauteur mesurée, donc elle ne bouge plus : la
-       surveiller ELLE ne dirait plus jamais rien, et un diagramme qu'on déplie
-       resterait coupé à sa hauteur du moment. Ce sont donc les éléments QU'ELLE
-       CONTIENT qu'on surveille, eux qui grandissent et rétrécissent pour de
-       bon. */
+       La boîte est fermée à la hauteur mesurée et ne bouge plus : ce sont les
+       éléments QU'ELLE CONTIENT qu'on surveille, eux qui grandissent et
+       rétrécissent. */
     +'if(window.ResizeObserver){var ro=new ResizeObserver(h),k;'
     +'for(k=0;k<w.children.length;k++)ro.observe(w.children[k]);'
     +'if(!w.children.length)ro.observe(w);}'
     /* ── LA COPIE PASSE PAR LA PAGE ──
-       Le cadre n'a pas le droit d'écrire dans le presse-papier : il est en
-       bac à sable sans allow-same-origin, donc d'origine opaque, et le
-       navigateur lui refuse l'accès sans un mot dire. Le diagramme croyait
-       copier, son ✓ s'affichait, et rien n'était copié. On intercepte donc
-       l'appel et on fait faire le travail à la page, qui a le droit. La
-       tentative directe est conservée : là où elle passe, elle passe. */
+       Le cadre, en bac à sable sans allow-same-origin, n'a pas accès au
+       presse-papier, et le navigateur refuse sans rien dire. L'appel est
+       intercepté et relayé à la page, qui a le droit. La tentative directe
+       reste : là où elle passe, elle passe. */
     +'function relais(t){try{parent.postMessage({lvCopie:String(t)},"*");}catch(e){}}'
     /* ── LA COPIE SE FAIT SUR PLACE, DANS LE GESTE, *ET* PAR LA PAGE ──
-       Le relais vers la page arrive par message, donc APRÈS le doigt : la page
-       n'a plus le « geste récent » que les navigateurs exigent pour toucher au
-       presse-papier. Chrome ferme les yeux, Brave non. On copie donc aussi ici
-       même, pendant le clic, par la vieille commande de copie, qui n'a besoin
-       ni d'origine ni de permission, seulement du geste.
-       LES DEUX SONT TENTÉES À CHAQUE FOIS, et c'est le point. La vieille
-       commande RÉPOND « réussi » même quand le navigateur a bloqué l'écriture
-       (vérifié : dans un cadre en bac à sable, elle renvoie vrai sans que rien
-       n'atterrisse dans le presse-papier). Sa réponse ne peut donc pas servir
-       à décider s'il faut relayer : on relaie toujours. Deux écritures du même
-       texte ne coûtent rien, et il suffit qu'une seule passe. */
+       Le relais arrive par message, APRÈS le doigt : la page n'a plus le
+       « geste récent » que certains navigateurs (Brave) exigent. On copie donc
+       aussi ici, pendant le clic, par la vieille commande de copie, qui n'a
+       besoin que du geste. LES DEUX SONT TENTÉES À CHAQUE FOIS : la vieille
+       commande répond « réussi » même quand l'écriture est bloquée, sa
+       réponse ne peut donc pas décider du relais. */
     /* ── OÙ SE POSE LE CHAMP DE COPIE ──
-       Il se posait en haut du cadre. Or sélectionner un champ le fait amener à
-       l'écran, et le cadre ne défile pas lui-même : c'est LA PAGE qui bougeait,
-       et l'on se retrouvait ramené en haut du diagramme à chaque copie. Il se
-       pose donc désormais à la hauteur du doigt, là où l'on est déjà : amener
-       cet endroit à l'écran ne déplace rien. Et le focus est demandé sans
-       défilement, ce que les navigateurs savent faire. */
+       À la hauteur du doigt, avec un focus sans défilement : sélectionner un
+       champ l'amène à l'écran, et posé ailleurs il ferait bouger la page. */
     +'var lvY=0;'
     +'function lvPose(e){var y=e&&e.pageY;if(typeof y==="number"&&y>=0)lvY=y;}'
     +'document.addEventListener("pointerdown",lvPose,true);'
@@ -809,20 +730,16 @@ function pageCadre(code){
     +'if(nat)return nat(v).catch(function(){return undefined;});return Promise.resolve();},'
     +'readText:function(){return Promise.reject(new Error("indisponible"));}}});}catch(e){}'
     +'})();</scr'+'ipt>'
-    /* Balise fermante coupée en deux : le build injecte son script sur la
-       PREMIERE balise de fermeture du corps qu'il trouve dans le fichier, et
-       il tomberait sinon au milieu de cette chaîne. Ne pas la recoller, et ne
-       jamais écrire cette balise en clair dans ce fichier, commentaires
-       compris. */
+    /* Balise fermante du corps coupée en deux, par prudence : écrite en
+       clair, elle ferait une seconde fin de corps dans le fichier. Le build
+       injecte ses scripts avant la dernière. Ne pas la recoller, et ne jamais
+       écrire cette balise en clair dans ce fichier, commentaires compris. */
     +'</bo'+'dy></html>';
 }
-/* Un bloc interactif annonce sa hauteur ; on l'écoute, dans l'éditeur comme
-   en lecture (les cadres de lecture restaient figés à la hauteur mesurée sur
-   l'écran de l'auteur, et se coupaient sur téléphone). On ne répond qu'aux
-   cadres de cette page. La hauteur retenue pour le brouillon est mise de
-   côté sans « salir » l'article : elle partira avec le prochain vrai
-   enregistrement, au lieu de déclencher un enregistrement (et une recopie
-   des images) à chaque rendu. */
+/* Un bloc interactif de l'éditeur annonce sa hauteur ; on ne répond qu'aux
+   cadres de cette page. La hauteur est mise de côté sans marquer le
+   commentaire comme modifié : elle part avec le prochain vrai
+   enregistrement, au lieu d'en déclencher un à chaque rendu. */
 window.addEventListener('message',e=>{
   const d=e.data; if(!d)return;
   let cadre=null;
@@ -843,18 +760,11 @@ window.addEventListener('message',e=>{
 });
 
 /* ── LA PAGE DIT AU DIAGRAMME OÙ EN EST LA LECTURE ──
-   Le cadre fait la hauteur exacte du diagramme et ne défile donc jamais : ce
-   qu'il tient pour « le haut de l'écran » est le haut du diagramme, et sa
-   barre « Explorer » restait plantée là, tout en haut, alors que le lecteur
-   était descendu. On lui envoie la seule chose qui lui manque : combien de
-   diagramme est déjà passé au-dessus du bord haut de la zone de lecture. Il
-   fait glisser lui-même ce qui doit rester visible.
-   Le bord haut de la lecture n'est pas le bord de la fenêtre : la barre du
-   site y est posée et couvre ce qui passe dessous. On lui rend donc sa
-   hauteur, mesurée à l'instant, pour que le bouton se fige juste en dessous
-   au lieu de disparaître derrière.
-   L'envoi est calé sur le rythme d'affichage de l'écran : un message par
-   image, pas un par pixel parcouru. */
+   Le cadre ne défile jamais : on lui envoie combien de diagramme est déjà
+   passé au-dessus du bord haut de la zone de lecture, c'est-à-dire sous la
+   barre du site, dont la hauteur est mesurée à l'instant. Il fait glisser
+   lui-même ce qui doit rester visible. Un message par image affichée, pas un
+   par pixel parcouru. */
 let vuePrevue=0;
 function diffuseVue(){
   vuePrevue=0;
@@ -873,8 +783,8 @@ function ligneCom(a,publik){
   const l=document.createElement('div'); l.className='art-ligne';
   const t=(a.titre||'').trim(), ref=refValide(a)?etiquette(a.refs[0]):'';
   const ex=publik?extraitDe(a):texteBrut(a).slice(0,180);
-  /* pour le visiteur, la ligne mène au passage dans la Bible : « #livre/ch/v1-v2 »,
-     qui marque le passage sans le sélectionner */
+  /* en lecture publique, la ligne mène au passage dans la Bible :
+     « #livre/ch/v1-v2 » marque le passage sans le sélectionner */
   const g=refValide(a)?a.refs[0]:null;
   const cible=g?('#'+g.slug+'/'+g.ch+'/'+g.v1+(g.v2>g.v1?'-'+g.v2:'')):'';
   const ouv=publik?'<a class="art-item" href="/bible.html'+esc(cible)+'">':'<button class="art-item" data-id="'+esc(a.id)+'">';
@@ -887,12 +797,12 @@ function ligneCom(a,publik){
     +fin;
   return l;
 }
-/* ── UN LIVRE, UNE PAGE (Emmanuel, 10/10) ──
+/* ── UN LIVRE, UNE PAGE ──
    Comme dans Articles et Ressources : la liste ne montre que l'endroit où
-   l'on est. Chaque livre est une rangée ; la toucher ouvre sa page, avec ses
-   commentaires dans l'ordre des chapitres, le fil d'Ariane au-dessus pour
-   remonter et le nom du livre en grand titre. L'adresse porte le livre
-   (#l/…), si bien que « précédent » ramène à la liste des livres. */
+   l'on est. Chaque livre est une rangée qui ouvre sa page : commentaires
+   dans l'ordre des chapitres, fil d'Ariane pour remonter, nom du livre en
+   titre. L'adresse porte le livre (#l/…) : « précédent » ramène à la liste
+   des livres. */
 const TITRE_COM='Commentaires bibliques';
 function rangeeLivre(slug,n,attr){
   const d=document.createElement('div');
@@ -938,9 +848,9 @@ function rendLister(){
   if(sans.length)h.appendChild(rangeeLivre('__sans',sans.length,'data-lva'));
 }
 
-/* PUBLIÉ OU PRIVÉ : depuis le menu du commentaire, et depuis la barre de
-   l'éditeur. Publier recopie le commentaire dans l'espace public que la Bible
-   lit ; rendre privé retire cette copie. */
+/* DANS LA BIBLE OU BROUILLON : depuis le menu du commentaire et depuis la
+   barre de l'éditeur. Afficher recopie le commentaire dans l'espace que la
+   Bible lit ; retirer efface cette copie. */
 async function basculeEtat(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
   const versPublic=!a.publie;
@@ -956,9 +866,9 @@ async function basculeEtat(id){
     if(S.art&&S.art.id===id)S.art.publie=a.publie;
   }catch(e){
     console.warn('publication',e);
-    /* Si la copie publique a été faite mais que l'état privé n'a pas pu être
-       écrit, on DÉFAIT la copie publique : sinon l'article était en ligne,
-       marqué « Privé », et le menu ne proposait plus de le retirer (05/09). */
+    /* Copie faite mais état non écrit : on DÉFAIT la copie, sinon le
+       commentaire serait dans la Bible, marqué brouillon, et le menu ne
+       proposerait plus de l'en retirer. */
     if(enLigneFait){try{if(versPublic)await retireDeLigne(a);else await metEnLigne(a);}catch(_){}}
     lvInfo(e&&e.lvSansRef
       ? 'Indiquez d\u2019abord une référence valable (un verset ou une plage de versets) : sans elle, la Bible ne saurait pas où accrocher ce commentaire.'
@@ -969,13 +879,11 @@ async function basculeEtat(id){
   if(b)b.disabled=false;
   rendLister(); majEtatEditeur();
 }
-/* ════════ L'ESPACE PUBLIC ════════
-   Les brouillons vivent sous users/{compte}/commentaires, que personne
-   d'autre ne peut lire. Publier RECOPIE une version dans
-   « public_commentaires », ouverte à tous en lecture : c'est là que la Bible
-   va chercher, livre par livre, les commentaires à afficher. Les images
-   passent par « public_medias », le même espace que celles des articles
-   (leurs identifiants ne peuvent pas se croiser). */
+/* ════════ L'ESPACE LU PAR LA BIBLE ════════
+   Les brouillons vivent sous users/{compte}/commentaires. « Afficher dans
+   la Bible » RECOPIE une version dans « public_commentaires » : c'est là que
+   la Bible va chercher, livre par livre, les commentaires à afficher. Les
+   images passent par « public_medias ». */
 const pcol=()=>db.collection('public_commentaires');
 const pmed=()=>db.collection('public_medias');
 
@@ -1002,15 +910,16 @@ async function metEnLigne(a){
 }
 async function retireDeLigne(a){
   const medias=(a.blocs||[]).filter(b=>b.t==='image'&&b.media).map(b=>b.media);
-  /* si la copie publique ne peut pas être retirée, l'erreur remonte : sans
-     cela le commentaire s'affichait « Privé » tout en restant lisible en ligne */
+  /* si la copie ne peut pas être retirée, l'erreur remonte : le commentaire
+     ne doit pas se dire brouillon en restant affiché dans la Bible */
   await pcol().doc(a.id).delete();
   for(const m of medias)await effaceMediaPublic(m);
 }
 
-/* ── LE VISITEUR ──
-   Les commentaires se lisent dans la Bible ; cette page lui montre simplement
-   la liste de ce qui est publié, chaque ligne menant au verset commenté. */
+/* ── UN AUTRE COMPTE, OU AUCUN ──
+   La page montre seulement la liste de ce qui est affiché dans la Bible,
+   chaque ligne menant au verset commenté. Les règles de la base n'ouvrent
+   cette lecture qu'au compte d'Emmanuel : pour tout autre, elle reste vide. */
 let PUBS=[];
 async function litPublic(){
   try{
@@ -1088,8 +997,8 @@ function vue(quoi){
   }
   window.scrollTo(0,0);
 }
-/* La ligne de référence : le passage commenté, ou l'invitation à le choisir.
-   Rien d'autre — sauf une référence illisible, qui se dit en dessous. */
+/* La ligne de référence : le passage commenté, ou l'invitation à le choisir ;
+   une référence illisible se signale en dessous. */
 function majRefEtat(){
   const b=$('ed-ref'), e=$('ed-ref-etat'); if(!b||!e||!S.art)return;
   const a=S.art, bon=refValide(a);
@@ -1113,9 +1022,8 @@ function rendEditeur(){
 function litEditeur(){
   const a=S.art; if(!a)return;
   a.titre=$('ed-titre').value.trim();
-  /* la référence n'est plus tapée : elle est posée par le sélecteur biblique,
-     déjà lue et vérifiée. On relit tout de même ce qu'on a, au cas où la
-     Bible serait arrivée depuis (référence écrite avant qu'elle soit prête). */
+  /* la référence est posée par le sélecteur biblique, déjà lue et vérifiée ;
+     on relit tout de même une référence écrite avant que la Bible soit prête */
   if(!refValide(a)&&a.ref){
     const an=analyseRef(a.ref);
     if(an.ok){a.ref=an.ref;a.refs=an.refs;a.livres=an.livres;}
@@ -1142,9 +1050,8 @@ function litEditeur(){
   });
   a.blocs=blocs;
 }
-/* Un article supprimé ne doit pas renaître : un enregistrement automatique
-   parti juste avant la suppression retrouvait, à son retour, un article
-   « publié » et le remettait en ligne. */
+/* Un commentaire supprimé ne renaît pas : un enregistrement automatique
+   parti juste avant la suppression le remettrait sinon dans la Bible. */
 const SUPPRIMES=new Set();
 const LIMITE_DOC=1000000;   // Firestore refuse un document au-delà d'un mégaoctet
 async function enregistre(silence){
@@ -1163,13 +1070,10 @@ async function enregistre(silence){
     return;
   }
   try{
-    /* ── UN AUTRE ONGLET, UN AUTRE APPAREIL (22/09) ──
-       Supprimé ailleurs pendant qu'il restait ouvert ici : l'enregistrement
-       automatique le recréait, et le remettait en ligne s'il était publié.
-       Publié ou retiré ailleurs : on le réécrivait avec l'état d'ici, et sa
-       copie publique pouvait rester en ligne alors qu'on le croyait privé.
-       On relit donc le nuage avant d'écrire : ce qui a disparu ne renaît
-       pas, et l'état publié est celui du nuage, que seul le bouton change. */
+    /* ── UN AUTRE ONGLET, UN AUTRE APPAREIL ──
+       On relit le nuage avant d'écrire : un commentaire supprimé ailleurs ne
+       renaît pas, et l'état « dans la Bible » est celui du nuage, que seul le
+       bouton change. */
     const ex=await acol().doc(a.id).get();
     if(S.art!==a)return;
     if(deja&&!ex.exists){
@@ -1186,9 +1090,8 @@ async function enregistre(silence){
     /* une frappe survenue pendant l'envoi reste « modifiée » et partira au
        prochain passage ; sinon elle se perdait si l'on quittait aussitôt */
     if(gen===(S.gen||0))S.sale=false;
-    /* Enregistré chez soi mais pas remis en ligne : ça se dit, et ça reste
-       affiché. Avant, « Enregistré » s'affichait et les lecteurs gardaient
-       l'ancienne version sans que rien ne le signale (05/09). */
+    /* Enregistré mais pas remis dans la Bible : cela se dit et reste
+       affiché, sinon la Bible garderait l'ancienne version en silence. */
     if(!enLigne){$('etat-enr').textContent='Enregistré, mais pas remis en ligne';$('etat-enr').classList.remove('vu');S.sale=true;return;}
     $('etat-enr').textContent=S.sale?'Modifié':'Enregistré'; $('etat-enr').classList.toggle('vu',!S.sale);
     if(!silence)setTimeout(()=>{if(!S.sale)$('etat-enr').textContent='';},2600);
@@ -1199,8 +1102,8 @@ async function enregistre(silence){
   }
 }
 /* « refTexte » : la référence déjà connue quand on arrive de la Bible
-   (« Commenter » sur un verset sélectionné) ; sinon le champ est vide et
-   c'est lui qui prend la main. */
+   (« Commenter » sur un verset sélectionné) ; sinon elle est vide et le
+   sélecteur biblique s'ouvre. */
 function nouveau(refTexte){
   S.art={id:'c'+Date.now(),titre:'',blocs:[blocNeuf('p')],publie:false,ref:refTexte||'',refs:[],livres:[],cree:null,maj:null};
   const an=analyseRef(S.art.ref);
@@ -1220,10 +1123,8 @@ async function supprime(){
   SUPPRIMES.add(id);
   S.art=null; S.sale=false;
   vue('liste');
-  /* Les trois étapes sous UN SEUL filet (05/09). Le retrait de la copie
-     publique pouvait échouer (hors ligne, règles) : l'écran disait déjà
-     « supprimé », l'article restait lisible par tous, et personne n'en
-     savait rien. Désormais un échec se dit, et l'article revient à la liste. */
+  /* Les trois étapes sous UN SEUL filet : un échec (hors ligne, règles) se
+     dit, et le commentaire revient à la liste. */
   try{
     if(etaitPublie)await retireDeLigne(copie);   // il ne doit rien rester en ligne
     await acol().doc(id).delete();
@@ -1238,14 +1139,12 @@ let CIBLE_IMG=-1;
 let _cres=null;
 
 // ════════ CHOISIR UN VERSET DANS LA BIBLE ════════
-/* Le même choix que dans Mémoriser (Emmanuel, 05/09 : « pour sélectionner une
-   référence, rends ça pareil que dans Mémoriser ») : on feuillette les livres
-   et les chapitres, on touche les versets pour prendre un passage, et l'on
-   peut resserrer sur quelques mots. Tout le savoir biblique vient du panneau
+/* Le même choix que dans Mémoriser (« rends ça pareil que dans
+   Mémoriser ») : livres, chapitres, versets à toucher, et l'on peut
+   resserrer sur quelques mots. Tout le savoir biblique vient du panneau
    (window.LVBible) : ni dictionnaire ni texte recopiés ici.
-   BIB_CIBLE dit ce que « Utiliser » doit remplir : une référence dans le
-   texte, un bloc de verset (texte ET référence), ou le champ de référence
-   d'un commentaire. */
+   BIB_CIBLE dit ce que « Utiliser » remplit : une référence dans le texte,
+   un bloc de verset (texte ET référence), ou la référence du commentaire. */
 const B={slug:null,ch:0,v1:0,v2:0,versets:[],mots:[],wa:null,wb:null};
 let BIB_CIBLE=null;
 /* (fonctions communes : voir commun/choix-verset.js, posé par le build) */
@@ -1256,7 +1155,7 @@ function bibUtilise(avecTexte){
   const c=BIB_CIBLE; if(!c)return;
   const r=bibResultat();
   const ref=r?r.ref:(c.chapOk?bibChapRef():null);
-  /* rien de choisi : on le dit, au lieu de laisser le bouton sans réponse (22/09) */
+  /* rien de choisi : on le dit, au lieu de laisser le bouton sans réponse */
   const rien=()=>{lvInfo(c.quoi==='verset'||avecTexte?'Choisissez d\u2019abord un verset (touchez son numéro).':'Choisissez d\u2019abord un chapitre ou un verset.');};
   if(!ref&&!(c.quoi==='verset'&&r))return rien();
   if(c.quoi==='verset'&&!r)return rien();
@@ -1291,7 +1190,7 @@ function bibUtilise(avecTexte){
     it.textContent='\u00ab\u00a0'+r.texte+'\u00a0\u00bb ';
     insere(it);
     /* la référence d'une citation suit le texte, sans parenthèses et sans
-       gras (Emmanuel, 12/09) ; elle reste cliquable et mène au passage */
+       gras (choix d'Emmanuel) ; elle reste cliquable et mène au passage */
     insere(sp); sortApres(sp);
     return;
   }
@@ -1426,9 +1325,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.execCommand('insertHTML',false,t);
     marqueSale();
   });
-  /* Une référence ouvre la Bible dans le panneau latéral : c'est
-     bible-panneau.js qui s'en charge (il écoute tous les clics sur .ref) ;
-     un second appel ici rechargeait le panneau. */
+  /* Une référence ouvre la Bible dans le panneau latéral : bible-panneau.js
+     écoute tous les clics sur .ref. Un second appel ici rechargerait le
+     panneau. */
   $('ed-titre').addEventListener('input',()=>{autoHauteur($('ed-titre'));marqueSale();});
   $('ed-titre').addEventListener('keydown',e=>{
     if(e.key==='Enter'){e.preventDefault();const z=$('ed-corps').querySelector('.zone');if(z)z.focus();}
@@ -1509,8 +1408,8 @@ function motAccueil(){
   if(!S.auteur){$('acts-liste').style.display='none';return;}
   $('mot-liste').textContent=''; $('acts-liste').style.display='';
 }
-/* Le visiteur, connecté ou non, voit la liste des commentaires PUBLIÉS, qui
-   mène à la Bible. L'auteur retrouve ses brouillons et son éditeur. */
+/* Un autre compte, ou aucun, voit la liste de ce qui est affiché dans la
+   Bible, qui y mène. L'auteur retrouve ses brouillons et son éditeur. */
 let LECTURE_PUB=null;
 async function ouvrePublic(){
   if(!LECTURE_PUB)LECTURE_PUB=litPublic().finally(()=>{LECTURE_PUB=null;});
@@ -1523,7 +1422,7 @@ async function ouvrePublic(){
   rendPublic(); vue('liste');
 }
 /* Même compte qui se représente (réveil de l'onglet, jeton rafraîchi) : on ne
-   touche à rien, sinon le commentaire en cours d'écriture était refermé. */
+   touche à rien, sinon le commentaire en cours d'écriture serait refermé. */
 let COMPTE_CONNU='∅';
 auth.onAuthStateChanged(u=>{
   const cle=u?u.uid:null;
@@ -1531,9 +1430,9 @@ auth.onAuthStateChanged(u=>{
   COMPTE_CONNU=cle;
   S.uid=cle; S.email=u?(u.email||''):null;
   S.auteur=!!(u&&u.email&&u.email.toLowerCase()===AUTEUR);
-  /* les règles de sécurité n'acceptent la mise en ligne que d'une adresse
-     VÉRIFIÉE : si ce n'est pas le cas, mieux vaut le dire tout de suite que de
-     laisser chaque publication échouer sans explication */
+  /* les règles de sécurité n'acceptent que l'adresse VÉRIFIÉE : si ce n'est
+     pas le cas, mieux vaut le dire tout de suite que de laisser chaque
+     écriture échouer sans explication */
   if(S.auteur&&u&&u.emailVerified===false)setTimeout(()=>lvInfo('Votre adresse e-mail n’est pas vérifiée : les règles de sécurité refuseront toute mise en ligne tant qu’elle ne l’est pas. Connectez-vous avec Google, ou faites vérifier l’adresse depuis la console Firebase.'),600);
   S.art=null; S.liste=[];
   if(S.auteur){ vue('liste'); motAccueil(); ecoute(); }
@@ -1559,16 +1458,14 @@ $('fil').addEventListener('keydown',e=>{if(e.key!=='Enter'&&e.key!==' ')return;c
 </script>
 <script>
 /* Réglage de la taille du texte et bascule de l'onglet Bible : MÊME CODE que
-   sur l'accueil, la Bible et Mémoriser. La clé de rangement est distincte
-   entre téléphone et ordinateur, pour qu'un choix fait sur l'un ne s'impose
-   pas à l'autre. */
+   sur les autres pages. La clé de rangement est distincte entre téléphone et
+   ordinateur, pour qu'un choix fait sur l'un ne s'impose pas à l'autre. */
 (function(){
   var TZ=[0.85,0.925,1,1.08,1.16,1.25];
   function tzCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_taille_mobile':'lv_taille_pc';}catch(e){return 'lv_taille_pc';}}
   function tzLit(){var v=1;try{v=parseFloat(localStorage.getItem(tzCle())||localStorage.getItem('lv_taille'))||1;}catch(e){}return v;}
   function tzApplique(v){document.documentElement.style.setProperty('--lvz',v);}
-  /* application au chargement : sans elle, la taille choisie ailleurs resterait
-     sans effet sur cette page tant qu'on n'aurait pas retouché A+ ou A−. */
+  /* application au chargement : la taille choisie ailleurs vaut aussi ici */
   tzApplique(tzLit());
   document.addEventListener('click',function(e){
     var b=e.target.closest?e.target.closest('.ttx-b'):null;

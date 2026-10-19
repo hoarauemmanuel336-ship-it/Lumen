@@ -1,5 +1,5 @@
 /* ============================================================
-   LUMEN — l'IA (19/10)
+   LUMEN — l'IA
    La seule porte du site vers l'IA d'Anthropic. Elle garde la clé
    de l'API Claude hors des pages : la clé vit dans la variable
    ANTHROPIC_API_KEY, réglée dans Netlify (Site configuration →
@@ -13,8 +13,8 @@
    Chaque tâche a son modèle, choisi pour ce qu'elle demande :
    - ranger (Articles, Ressources) : Claude Sonnet 5.5. Réorganiser
      toute une bibliothèque demande du jugement ; Sonnet le fait
-     presque aussi finement qu'Opus, plus vite et pour moitié prix
-     (choix du 19/10, au meilleur rapport qualité-prix).
+     presque aussi finement qu'Opus, plus vite et pour moitié prix :
+     le meilleur rapport qualité-prix pour cette tâche.
 
    La réponse de l'IA est relayée telle quelle, au fil de l'eau : la
    page la lit à mesure qu'elle arrive, et un long rangement ne bute

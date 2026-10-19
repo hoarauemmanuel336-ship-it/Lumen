@@ -1,23 +1,25 @@
 /* ============================================================
-   LUMEN — générateur du site
-   Trois surfaces : l'accueil (/), la Sainte Bible (/bible.html)
-   Mémoriser (/memoriser.html) et les Articles (/articles.html). Le CSS vient
-   de accueil.html.
+   LUMEN : fabrication du site
+   Fabrique l'accueil et la page 404 (leur CSS de base vient de
+   pages/accueil.html), complète les autres pages (Bible, Mémoriser,
+   Articles, Ressources, Commentaires) avec la barre, le pied et
+   l'habillage communs, découpe les deux Bibles par livre, puis passe la
+   main à publication.js.
    ============================================================ */
 const fs = require('fs');
 const path = require('path');
 
-/* ── LE DÉPÔT RANGÉ PAR DOSSIERS (19/10) ──
-   Ce fichier vit dans fabrication/ ; il travaille depuis la racine du dépôt,
+/* ── LES DOSSIERS DU DÉPÔT ──
+   Ce fichier vit dans fabrication/ et travaille depuis la racine du dépôt,
    où il trouve pages/ (les pages), habillage/ (l'apparence), commun/ (le
    fonctionnement partagé), contenu/ (les Bibles et les réglages) et racine/
    (les fichiers servis tels quels à la racine du site). Le site fabriqué
-   sort dans site/, à la racine du dépôt, comme avant. */
+   sort dans site/. */
 process.chdir(path.join(__dirname, '..'));
 const PAGES = 'pages/', RACINE = 'racine/', CONTENU = 'contenu/';
 
-/* La page d'accueil s'appelle accueil.html (26/09) ; l'ancien nom de
-   brouillon reste reconnu, au cas où il traînerait encore dans le dépôt. */
+/* La page d'accueil est pages/accueil.html ; l'ancien nom de brouillon
+   reste reconnu. */
 const SRC = process.argv[2] || ['accueil.html', 'index__48_.html'].map(f => PAGES + f).find(f => fs.existsSync(f)) || PAGES + 'accueil.html';
 const OUT = process.argv[3] || 'site';
 const DOMAINE = 'https://lumenveritatis.net';
@@ -25,7 +27,11 @@ const src = fs.readFileSync(SRC, 'utf8');
 const css = src.slice(src.indexOf('<style>') + 7, src.indexOf('</style>')).replace(/—/g, '-');
 
 
-/* ── Lecture Firestore au build (publication des créations en ligne) ── */
+/* ── Lecture de Firestore pendant la fabrication ──
+   Sert à la bibliothèque de départ de Mémoriser (config/memoriser). La
+   lecture se fait sans compte : les règles de la base n'admettent que celui
+   d'Emmanuel, elle revient donc vide et la fabrication prend
+   contenu/memoriser.json. */
 const FS_BASE = 'https://firestore.googleapis.com/v1/projects/lumen-veritatis/databases/(default)/documents/';
 function fsValeur(v) {
   if (v == null) return null;
@@ -51,24 +57,19 @@ function fsLireDoc(chemin) {
 function fsLireCollection(nom) {
   try { const r = fsCurl(FS_BASE + nom + '?pageSize=300'); if (!r || r.error) return null; return (r.documents || []).map(d => ({ id: d.name.split('/').pop(), data: fsChamps(d.fields) })); } catch (e) { return null; }
 }
-// Apparence éditable : couleur d'accent (--or) depuis contenu/settings.json
 
-/* — Poussière lumineuse en suspension (interactive) — */
-
-/* ── FEUILLE COMMUNE (26/09) ──
-   lumen-commun.css est posée dans CHAQUE page, après la feuille propre de la
-   page et avant la couleur d'accent : ce qu'elle dit vaut partout à la fois.
-   C'est là que se font désormais les réglages communs aux pages. */
+/* ── FEUILLE COMMUNE ──
+   lumen-commun.css est posée dans chaque page, après la feuille propre de la
+   page et avant la couleur d'accent : ce qu'elle dit vaut partout à la fois. */
 let COMMUN_CSS = '';
 try { COMMUN_CSS = fs.readFileSync('habillage/lumen-commun.css', 'utf8'); } catch (e) { console.warn('lumen-commun.css absente'); }
 const COMMUN_TAG = COMMUN_CSS ? '<style id="lumen-commun">' + COMMUN_CSS + '</style>' : '';
-/* ── L'HABILLAGE (10/10) ──
-   Le dossier habillage/ porte l'apparence du site : commun.css pour tout ce
-   qui se retrouve sur chaque page (barre, navigation, fenêtres, boutons,
-   cartes, champs, pied), puis une feuille par page. Il est posé en DERNIER
-   dans chaque page, après tout le reste : c'est lui qui a le dernier mot sur
-   l'apparence. Il ne fixe jamais la couleur d'accent (--or), qui vient de
-   contenu/settings.json ; il en tire toutes ses nuances. */
+/* ── L'HABILLAGE ──
+   habillage/commun.css pour ce qui se retrouve sur chaque page (barre,
+   navigation, fenêtres, boutons, cartes, champs, pied), puis une feuille par
+   page. Il est posé en dernier dans chaque page : il a le dernier mot sur
+   l'apparence. La couleur d'accent (--or) vient de contenu/settings.json ;
+   l'habillage en tire ses nuances. */
 function habillage(nomPage) {
   let css = '';
   for (const f of ['habillage/commun.css', `habillage/${nomPage}.css`]) {
@@ -76,19 +77,19 @@ function habillage(nomPage) {
   }
   return css ? '<style id="habillage">' + css + '</style>' : '';
 }
-/* les polices (11/10) : servies par le site lui-même, déclarées dans
-   habillage/commun.css. Chaque page annonce d'emblée les deux fichiers dont
-   elle a besoin tout de suite (lecture et interface, alphabet latin), pour
-   que le texte paraisse dans sa police dès le premier affichage. */
+/* Les polices sont servies par le site lui-même et déclarées dans
+   habillage/commun.css. Chaque page précharge les deux fichiers dont elle a
+   besoin tout de suite (lecture et interface, alphabet latin), pour que le
+   texte paraisse dans sa police dès le premier affichage ; les liens vers
+   Google Fonts sont retirés. */
 const POLICES_PRECHARGE = ['literata-latin-normal', 'eb-garamond-latin-normal']
   .map(f => `<link rel="preload" href="/polices/${f}.woff2" as="font" type="font/woff2" crossorigin>`).join('\n');
 const polices = h => h.replace(/<link[^>]*fonts\.(?:googleapis|gstatic)\.com[^>]*>\n?/g, '').replace('</head>', POLICES_PRECHARGE + '\n</head>');
-/* ── FONCTIONNEMENT COMMUN (26/09) ──
-   Les fonctions que plusieurs pages recopiaient à l'identique vivent dans le
-   dossier commun/, un fichier par famille. Chaque page reçoit, avant son
-   propre script, exactement les familles dont elle se sert. Ils sont posés
-   dans la page elle-même, pas en fichiers à part : Mémoriser fonctionne hors
-   ligne, et rien de plus n'est à mettre en cache. */
+/* ── FONCTIONNEMENT COMMUN ──
+   Les fonctions partagées vivent dans commun/, un fichier par famille.
+   Chaque page reçoit, avant son propre script, exactement les familles dont
+   elle se sert, posées dans la page elle-même et non en fichiers à part :
+   Mémoriser fonctionne hors ligne, et rien de plus n'est à mettre en cache. */
 const COMMUN_JS_PAGES = {
   'articles.html': ['outils', 'rubriques', 'ia', 'menage'],
   'ressources.html': ['outils', 'rubriques', 'ia', 'menage'],
@@ -102,6 +103,7 @@ function communJS(page) {
     return '<script data-commun="' + nom + '">' + fs.readFileSync(f, 'utf8') + '</scr' + 'ipt>';
   }).join('');
 }
+/* La couleur d'accent (--or) se règle dans contenu/settings.json. */
 let APPEARANCE_CSS = '';
 if (fs.existsSync(CONTENU + 'settings.json')) {
   try {
@@ -115,7 +117,7 @@ if (fs.existsSync(CONTENU + 'settings.json')) {
   } catch (e) { console.warn('settings.json illisible, accent par défaut'); }
 }
 
-/* ---- interface, par langue ---- */
+/* ---- textes de l'interface ---- */
 const UI = {
   fr: {
     html: 'fr', oglocale: 'fr_FR',
@@ -143,7 +145,7 @@ function rel(fromDir, toPath) {
   return r;
 }
 
-/* ---- polices + petite règle pour le bouton de langue ---- */
+/* ---- préchargement des polices ---- */
 const FONTS = POLICES_PRECHARGE;
 
 const FIREBASE_HEAD = `<script>
@@ -252,10 +254,10 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
   .tog-row:has(#tog-bible){display:none}
 }
 `;
-/* L'état de la barre est lu AVANT le premier affichage : sans cela la barre
-   apparaîtrait le temps d'une image, puis la page sauterait en la repliant. */
-/* Sur l'accueil, la barre s'ouvre toujours dépliée (Emmanuel, 26/09) : la
-   préférence rangée vaut pour les autres pages, et l'accueil la laisse
+/* L'état de la barre est lu avant le premier affichage : sinon la barre
+   apparaîtrait le temps d'une image, puis la page sauterait en la repliant.
+   Sur l'accueil, la barre s'ouvre toujours dépliée (choix d'Emmanuel) : la
+   préférence « rangée » vaut pour les autres pages, et l'accueil la laisse
    intacte. */
 const BARRE_TETE = `<script>try{var ac=/^\\/(index\\.html)?$/.test(location.pathname);if(!ac&&localStorage.getItem('lv_barre')==='1')document.documentElement.classList.add('barre-rangee');}catch(e){}</scr`+`ipt>`;
 const SVG_LOUPE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg>';
@@ -274,10 +276,10 @@ const NAV_BAS = [
 ];
 const VERSET_PIED = '« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l\u2019ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span>';
 
-/* Une seule barre, un seul pied. Aucun argument, donc aucune dérive possible :
-   mêmes balises, mêmes identifiants, mêmes libellés sur l'accueil, la Bible,
-   Mémoriser et la page 404. Chaque page se contente de brancher ses propres
-   ouvertures sur les identifiants gelés « rech-ouvrir » et « auth-ouvrir ». */
+/* Une seule barre, un seul pied, sans argument, donc sans dérive possible :
+   mêmes balises, mêmes identifiants, mêmes libellés sur toutes les pages.
+   Chaque page branche ses propres ouvertures sur les identifiants gelés
+   « rech-ouvrir » et « auth-ouvrir ». */
 function barreCanon() {
   return `<header>
   <div class="barre">
@@ -295,15 +297,16 @@ function barreCanon() {
 </nav>`;
 }
 function piedCanon() {
-  /* le pied ne porte plus que le verset (Emmanuel, 27/09) : ni « Lumen »,
+  /* le pied ne porte que le verset (choix d'Emmanuel) : ni « Lumen »,
      ni « © année Lumen » */
   return `<footer>
   <div class="verset-pied">${VERSET_PIED}</div>
 </footer>`;
 }
 
-/* Câblage canonique de la barre : le menu déroulant, l'année du pied et le
-   lien actif. Injecté tel quel sur les quatre surfaces. */
+/* Câblage commun de la barre : champs de recherche qui s'agrandissent,
+   service worker du site, menu, poignée, lien actif, clavier. Il part dans
+   lumen-app.js pour l'accueil et la 404, et tel quel dans les autres pages. */
 const BARRE_JS = `(function(){
   /* ── LES CHAMPS DE RECHERCHE PASSENT À LA LIGNE (Emmanuel, 27/09) ──
      Un champ d'une seule ligne cachait le début de ce qu'on tapait et
@@ -702,8 +705,7 @@ const RECH_JS = `(function(){
 function page({ lang, type, title, description, frPath, enPath, base, otherRel, ctx, main, extraJS, noindex }) {
   const u = UI[lang];
   const url = DOMAINE + frPath;
-  /* la page d'erreur ne doit pas se retrouver dans les moteurs de recherche */
-  /* site privé (19/10) : aucune page n'est faite pour les moteurs de recherche */
+  /* site privé : aucune page n'est faite pour les moteurs de recherche */
   const robots = '\n<meta name="robots" content="noindex,nofollow">';
   return `<!DOCTYPE html>
 <html lang="${u.html}">
@@ -748,10 +750,9 @@ window.LUMEN={base:${JSON.stringify(base)},lang:${JSON.stringify(lang)},hint:${J
 
 /* ---- vues ---- */
 function mainAccueil(lang, base) {
-  /* Accueil (26/09, Emmanuel : « sur la page d'accueil, garde juste la
-     croix ») : la croix seule, au centre de la place libre. Le menu du haut
-     et la barre du bas mènent à la Bible, à Mémoriser, aux Articles et aux
-     Ressources. */
+  /* Accueil (Emmanuel : « sur la page d'accueil, garde juste la croix ») :
+     la croix seule, au centre de la place libre. Le menu du haut et la
+     barre du bas mènent aux autres pages. */
   return `<style>
     .hero.hero-seule{display:flex;align-items:center;justify-content:center;padding:0;min-height:calc(100vh - 300px);min-height:calc(100svh - 300px)}
     @media(max-width:720px){.hero.hero-seule{min-height:calc(100svh - 330px)}}
@@ -792,9 +793,8 @@ fs.rmSync(OUT, { recursive: true, force: true });
 
 const pairs = [];
 
-/* ── Fichiers communs mis en cache : données et code partagés par toutes les pages.
-   Versionnés par empreinte de contenu (?v=hash) pour un cache navigateur long :
-   l'URL change quand le contenu change, sinon zéro re-téléchargement. ── */
+/* ── Fichiers communs mis en cache, versionnés par empreinte (?v=…) : l'adresse
+   change quand le contenu change, sinon rien n'est retéléchargé. ── */
 const crypto = require('crypto');
 
 
@@ -822,7 +822,7 @@ fs.writeFileSync(`${OUT}/lumen-app.js`, APP_JS);
 console.log(`Communs : lumen-app.js (${Math.round(APP_JS.length / 1024)} Ko, v=${APP_V})`);
 
 function genPaire(spec) {
-  // spec: type, frPath, enPath, frFile, enFile, titleKey, descKey, mainFn, ctxFn, extraJS
+  // spec : type, frPath, enPath, frFile, enFile, title, desc, main, ctx, extraJS ; seul le français est fabriqué
   pairs.push({ fr: spec.frPath, en: spec.enPath });
   ['fr'].forEach(lang => {
     const u = UI[lang];
@@ -852,20 +852,18 @@ genPaire({
   main: (l, b) => mainAccueil(l, b)
 });
 
-// 404 (racine, bilingue) — sans paire ni hreflang
+// 404, à la racine
 ecrire('404.html', page({
   lang: 'fr', type: '', title: UI.fr.t_404, description: UI.fr.notfound_text,
   frPath: '/404.html', enPath: '/404.html', base: '/', otherRel: '/en/',
   main: main404(), noindex: true
 }));
 
-/* Site privé (19/10) : plus de plan du site pour les moteurs de recherche. */
-
 // robots.txt
-/* Site privé (26/09) : aucun moteur de recherche n'entre. */
+/* Site privé : aucun moteur de recherche n'entre, et il n'y a pas de plan du site. */
 ecrire('robots.txt', `User-agent: *\nDisallow: /\n`);
 
-// l'ancien contenu (bibliothèque et articles) retombe sur l'accueil, en 301
+// les anciennes adresses (bibliothèque, article, à propos, /en/) retombent sur l'accueil, en 301
 ecrire('_redirects', ['/bibliotheque/*  /  301', '/article/*  /  301', '/a-propos/*  /  301', '/en/*  /  301'].join('\n') + '\n');
 
 // table des livres bibliques pour la recherche de références (Jean 3:16)
@@ -877,17 +875,13 @@ const tableBible = (src, base) => {
 };
 const bibFR = tableBible(CONTENU + 'bible.json', '/bible.html');
 /* sans bible.json, la recherche serait un fichier vide servi sans erreur :
-   on préfère un build qui échoue à un site qui répond « rien trouvé » (05/09) */
+   on préfère une fabrication qui échoue à un site qui répond « rien trouvé » */
 if (!bibFR) throw new Error(CONTENU + 'bible.json illisible : recherche-fr.js serait vide');
 ecrire('recherche-fr.js', 'window.LUMEN_BIBLE=' + JSON.stringify(bibFR) + ';');
 
-// copie des pages autonomes (hors pipeline bilingue)
-/* ── LES PAGES COPIÉES REÇOIVENT AUSSI LEURS MÉTADONNÉES (05/09) ──
-   Seules les pages générées (accueil, 404) portaient canonical, description
-   et cartes de partage ; les quatre pages copiées n'avaient rien, si bien que
-   /memoriser.html?demarrer=1 était indexable en doublon et qu'un lien partagé
-   sortait sans titre. On complète sans jamais dupliquer ce qu'une page porte
-   déjà. */
+// les pages écrites à la main, complétées puis copiées
+/* Les pages copiées reçoivent la description et le manifeste qui leur
+   manquent, sans dupliquer ce qu'une page porte déjà. */
 function metaCopie(h, chemin, titre, desc){
   const url = DOMAINE + chemin, e = x => String(x).replace(/"/g, '&quot;');
   let m = '';
@@ -895,12 +889,10 @@ function metaCopie(h, chemin, titre, desc){
   if (!/rel="manifest"/.test(h)) m += `<link rel="manifest" href="/manifest.webmanifest">\n`;
   return m ? injecteAvant(h, '</head>', m) : h;
 }
-/* ── INJECTER AVANT LA DERNIÈRE BALISE, PAS LA PREMIÈRE (05/09) ──
-   String.replace frappe la première occurrence : si une page écrivait un
-   jour « </body> » dans une chaîne JavaScript (les pages qui fabriquent des
-   cadres isolés en portent une, écrite coupée en deux par prudence), le
-   script du build atterrissait DANS cette chaîne, en silence. On vise donc la
-   dernière occurrence, qui est la vraie, et l'on s'arrête si elle manque. */
+/* ── INJECTER AVANT LA DERNIÈRE BALISE, PAS LA PREMIÈRE ──
+   Une page peut écrire « </body> » dans une chaîne JavaScript (les cadres
+   isolés) : viser la première occurrence poserait l'ajout dans cette chaîne.
+   On vise la dernière, qui est la vraie, et l'on s'arrête si elle manque. */
 function injecteAvant(s, balise, ajout){
   const i = s.lastIndexOf(balise);
   if (i < 0) throw new Error('ancre ' + balise + ' introuvable');
@@ -914,7 +906,7 @@ if (fs.existsSync(PAGES + 'memoriser.html')) {
     if (memLigne && Array.isArray(memLigne.categories) && memLigne.categories.length) { catsSrc = memLigne.categories; origineCats = 'en ligne'; }
     else if (fs.existsSync(CONTENU + 'memoriser.json')) {
       /* même exigence que pour la source en ligne : une liste VIDE ne remplace
-         pas ce que la page embarque (05/09) */
+         pas ce que la page embarque */
       const cf = JSON.parse(fs.readFileSync(CONTENU + 'memoriser.json', 'utf8')).categories;
       if (Array.isArray(cf) && cf.length) { catsSrc = cf; origineCats = 'fichier'; }
     }
@@ -1012,10 +1004,9 @@ if (fs.existsSync(PAGES + 'ressources.html')) {
   console.log('Copié : ressources.html');
 }
 
-// ── Commentaires bibliques : la page d'écriture de l'auteur (05/09). Hors menu,
-//    hors plan du site, non indexée (la page porte son « noindex ») ; les
-//    commentaires se lisent dans la Bible. Même barre, même pied, même panneau
-//    Bible que les autres pages. ──
+// ── Commentaires bibliques : l'atelier où Emmanuel les écrit, hors menu (on y
+//    entre par « Mon compte ») ; les commentaires se lisent dans la Bible.
+//    Même barre, même pied, même panneau Bible que les autres pages. ──
 if (fs.existsSync(PAGES + 'commentaires.html')) {
   let ch = fs.readFileSync(PAGES + 'commentaires.html', 'utf8');
   ch = injecteAvant(ch, '</head>', COMMUN_TAG);
@@ -1057,7 +1048,7 @@ if (fs.existsSync(RACINE + 'memoriser-sw.js')) {
   if (!/__VERSION__/.test(swSrc) || !/__PAN_V__/.test(swSrc)) throw new Error('memoriser-sw.js : marqueurs __VERSION__ / __PAN_V__ absents');
   fs.writeFileSync(`${OUT}/memoriser-sw.js`, swSrc.replace(/__VERSION__/g, SW_V).replace(/__PAN_V__/g, PAN_V)   /* toutes les occurrences : la première est dans un commentaire */);
 }
-/* la police de lecture, servie par le site lui-même (11/10) */
+/* les polices, servies par le site lui-même */
 if (fs.existsSync(RACINE + 'polices')) {
   fs.mkdirSync(`${OUT}/polices`, { recursive: true });
   for (const f of fs.readdirSync(RACINE + 'polices')) fs.copyFileSync(RACINE + `polices/${f}`, `${OUT}/polices/${f}`);
@@ -1068,7 +1059,7 @@ if (fs.existsSync(RACINE + 'icones')) {
 }
 console.log('Copié : memoriser-sw.js + manifests + icônes');
 
-// ── La Sainte Bible (traduction Chérubin) : page de lecture + données par livre ──
+// ── La Sainte Bible : page de lecture, puis données par livre des deux traductions ──
 if (fs.existsSync(PAGES + 'bible.html')) {
   let bh = fs.readFileSync(PAGES + 'bible.html', 'utf8');
   bh = injecteAvant(bh, '</head>', COMMUN_TAG);
@@ -1089,22 +1080,19 @@ if (fs.existsSync(PAGES + 'bible.html')) {
   bh = polices(injecteAvant(bh, '</head>', habillage('bible')));
   fs.writeFileSync(`${OUT}/bible.html`, bh);
   console.log('Copié : bible.html');
-  // Chaque Bible est UN fichier source que le build redécoupe en un fichier
 
 /* ════════ MISE EN PAGE POÉTIQUE ════════
-   Une Bible imprimée ne coule pas les psaumes et les proverbes en un seul
-   pavé : chaque verset y tient sa ligne, et la seconde moitié du verset,
-   celle qui répond à la première, est mise en retrait. C'est le balancement
-   de la poésie hébraïque, et c'est ce qui rend ces livres lisibles.
-   Ici, la décision est prise À LA FABRICATION : le texte source n'est jamais
-   modifié, on lui ajoute seulement deux indications par verset :
-     p = 1        ce verset se lit en vers, donc en bloc à lui seul
+   Comme dans une Bible imprimée, chaque verset poétique tient sa ligne, et
+   sa seconde moitié, qui répond à la première, est mise en retrait : c'est
+   le balancement de la poésie hébraïque. La décision se prend à la
+   fabrication ; le texte reste intact, il reçoit seulement :
+     p = 1        ce verset se lit en vers, en bloc à lui seul
      c = [i, …]   les endroits où couper : chaque i est l'indice de l'ESPACE
-                  qui termine une ligne. L'espace reste dans la ligne qu'il
-                  termine, si bien que la suite des caractères affichés est
-                  rigoureusement celle du verset : les surlignages de
-                  fragments, qui travaillent sur des positions, ne bougent pas.
-   Ne jamais transformer c en un tableau de textes déjà découpés : ce sont les
+                  qui termine une ligne. L'espace reste dans sa ligne, si
+                  bien que la suite des caractères affichés est celle du
+                  verset : les surlignages de fragments, qui travaillent sur
+                  des positions, ne bougent pas.
+   c reste une liste de positions, jamais de textes découpés : ce sont les
    positions qui garantissent que rien ne se décale. */
 
 /* Qui est en vers. true = le livre entier. Sinon une liste d'étendues
@@ -1189,13 +1177,10 @@ const POESIE_SAUF = {
 };
 
 /* ── DEUX RÉGIMES DE POÉSIE, ET ILS NE SE LISENT PAS PAREIL ──
-   Une SENTENCE est un dicton qui se suffit à lui-même : le proverbe d'à côté
-   ne le continue pas, il en dit un autre. Chacun doit donc être posé seul,
-   entouré d'air, comme une perle sur un fil.
-   Un POÈME SUIVI est tout le contraire : les versets s'enchaînent, un psaume
-   ou un oracle est UNE seule coulée. Les espacer largement le hacherait en
-   morceaux qui n'existent pas. Ses lignes se serrent, et l'air ne revient
-   qu'aux titres de section, qui marquent les vraies articulations.
+   Une SENTENCE est un dicton qui se suffit à lui-même : chacune est posée
+   seule, entourée d'air (s = 1).
+   Un POÈME SUIVI est une seule coulée (un psaume, un oracle) : ses lignes se
+   serrent, et l'air ne revient qu'aux titres de section.
    Tout ce qui n'est pas listé ici est un poème suivi. */
 const SENTENCES = {
   /* Les deux grands recueils de dictons de Salomon. Les chapitres 1 à 9 en
@@ -1237,9 +1222,9 @@ function coupesVerset(t) {
   const n = t.length;
   if (n < 70) return null;
   const cand = [];
-  /* une VRAIE espace seulement : l'espace insécable qui suit « ? » ou « ! »
-     annonce un guillemet fermant (« vin ? » tandis… ») ; couper là rejetait
-     le « » » seul en tête de la ligne suivante (11/10) */
+  /* une vraie espace seulement : l'espace insécable qui suit « ? » ou « ! »
+     annonce un guillemet fermant, et couper là rejetterait le « » » seul en
+     tête de la ligne suivante */
   const re = /[;:!?.,] /g;
   let m;
   while ((m = re.exec(t))) {
@@ -1271,14 +1256,12 @@ function coupesVerset(t) {
   return out.sort((x, y) => x - y);
 }
 /* ── LES PARAGRAPHES DE LA PROSE ──
-   Un chapitre de récit coulé d'un seul tenant est une muraille. On le
-   respire en paragraphes, sans jamais rien affirmer sur le sens : la coupure
-   ne tombe QU'APRÈS UNE PHRASE ACHEVÉE, et seulement quand le paragraphe a
-   déjà de quoi tenir debout. Un verset qui ouvre un paragraphe porte br = 1.
-   Un titre de section ouvre toujours un paragraphe, c'est le lecteur qui le
-   voit, pas la donnée. */
-/* Les paragraphes de prose : adoptés par Emmanuel le 26/08 après l'exemple
-   de Genèse 1. L'interrupteur reste, il n'est plus qu'un témoin. */
+   Un chapitre de récit d'un seul tenant est une muraille : on le découpe en
+   paragraphes, sans rien affirmer sur le sens. La coupure ne tombe qu'après
+   une phrase achevée, et seulement quand le paragraphe a de quoi tenir
+   debout. Un titre de section ouvre toujours un paragraphe ; c'est la page
+   qui le montre, pas la donnée. Les paragraphes de prose sont voulus par
+   Emmanuel ; l'interrupteur ci-dessous reste. */
 const PARAGRAPHES = true;
 const FIN_PHRASE = /[.!?…][»"'\u2019\u201d\)\]]*\s*$/;
 function poseParagraphes(ch) {
@@ -1299,7 +1282,7 @@ function poseParagraphes(ch) {
      un seulement s'il reste quelque chose. */
   return nb;
 }
-/* ── LES VERSETS DE LA SEPTANTE (23/09) ──
+/* ── LES VERSETS DE LA SEPTANTE ──
    Un verset que seule la Septante contient (1 Rois 2:35a, Proverbes 9:12a…)
    vit à la suite du verset hébreu qui le précède, précédé de son numéro entre
    deux « word joiner » (U+2060) : la page le dessine en petit numéro. En vers,
@@ -1335,20 +1318,17 @@ function posePoesie(livre) {
   }
   return nb;
 }
-/* ── LES VERS DE LA LITTÉRALE ──
-   La littérale n'a rien à deviner : elle porte ses coupes dans son texte, un
-   « \n » à chaque fin de vers, posé par le traducteur lui-même. On les
-   CONVERTIT donc dans la seule notation que la page connaisse, celle de la
-   Chérubin : le retour à la ligne devient l'espace qui termine la ligne, et
-   sa position entre dans c. Le texte servi ne contient plus aucun « \n », la
-   suite des caractères affichés reste celle du verset, et la mécanique des
-   positions (surlignages de fragments) est rigoureusement la même des deux
-   côtés. On ne fait JAMAIS tourner coupesVerset sur ce texte : la heuristique
-   inventerait des coupes là où le traducteur n'en a pas voulu.
-   QUI EST EN VERS ICI : les mêmes étendues que la Chérubin, PLUS tout verset
-   qui porte un « \n ». Ce sont les oracles et les psaumes cités au milieu
-   d'un récit (Matthieu 2:6, Isaïe 7:7…), que les étendues ne couvrent pas et
-   que la littérale, elle, compose en vers. */
+/* ── LES VERS DE LA SÉRAPHIN ──
+   La Séraphin (littérale) porte ses coupes dans son texte : un « \n » à
+   chaque fin de vers, posé par le traducteur. On les convertit dans la
+   notation de la Chérubin : le retour à la ligne devient l'espace qui
+   termine la ligne, et sa position entre dans c. Le texte servi ne contient
+   plus de « \n », et les positions (surlignages de fragments) marchent de la
+   même façon des deux côtés. coupesVerset ne tourne pas sur ce texte : il
+   inventerait des coupes que le traducteur n'a pas voulues.
+   Sont en vers : les mêmes étendues que la Chérubin, plus tout verset qui
+   porte un « \n » (oracles et psaumes cités au milieu d'un récit, comme
+   Matthieu 2:6). */
 function poseVersSeraphin(livre) {
   let nb = 0;
   for (const ch of livre.chapitres) {
@@ -1373,7 +1353,8 @@ function poseVersSeraphin(livre) {
   return nb;
 }
 
-  // par livre + un index : FR (Crampon) → /bible-data/, EN (Douay-Rheims) → /bible-data-en/.
+  // Chaque Bible est un seul fichier source, redécoupé en un fichier par livre
+  // plus un index : la Chérubin dans /bible-data/, la Séraphin dans /bible-data-seraphin/.
   const decoupeBible = (src, dossier, pose) => {
     if (!fs.existsSync(src)) return false;
     fs.mkdirSync(`${OUT}/${dossier}`, { recursive: true });
@@ -1400,12 +1381,11 @@ function poseVersSeraphin(livre) {
     }
     console.log('Bible : ' + nb + ' fichiers de données copiés (ancien format)');
   }
-  /* ── LA SECONDE TRADUCTION ──
-     La littérale suit exactement le chemin de la Chérubin : même découpage par
-     livre, même index, un dossier à elle. La page ne va la chercher que si le
-     lecteur la demande. Son index est celui de la Chérubin à la virgule près
-     (mêmes livres, mêmes slugs, mêmes chapitres) : il est écrit tout de même,
-     pour que le dossier se tienne debout tout seul. */
+  /* ── LA SÉRAPHIN ──
+     Même découpage par livre, même index, un dossier à elle. La page ne va
+     la chercher que si le lecteur la demande. Son index est identique à
+     celui de la Chérubin ; il est écrit quand même, pour que le dossier se
+     suffise à lui-même. */
   {
     const src = [CONTENU + 'bible-seraphin.json', 'bible-seraphin.json'].find(p => fs.existsSync(p));
     if (src) decoupeBible(src, 'bible-data-seraphin', poseVersSeraphin);
@@ -1414,8 +1394,8 @@ function poseVersSeraphin(livre) {
 }
 
 
-/* Garde-fou : la barre et le pied doivent être rigoureusement identiques
-   sur les quatre surfaces. Le build échoue si l'un d'eux dérive. */
+/* Garde-fou : la barre et le pied sont identiques sur toutes les pages. La
+   fabrication échoue si l'un d'eux dérive. */
 {
   const surfaces = ['index.html', 'bible.html', 'memoriser.html', 'articles.html', 'ressources.html', 'commentaires.html', '404.html'];
   const ref = { h: null, f: null };
@@ -1441,6 +1421,6 @@ console.log('Site bilingue généré dans «', OUT, '»');
 console.log('Pages générées :', pairs.length, '(FR) + 404 + robots');
 
 /* Dernière étape : allègement puis contrôle des pages produites (voir
-   publication.js). Au moindre défaut grave, le build échoue et la version
-   déjà en ligne reste en place. */
+   publication.js). Au moindre défaut grave, la fabrication échoue et la
+   version déjà en ligne reste en place. */
 require('./publication.js')(OUT, COMMUN_JS_PAGES).catch(e => { console.error(e.message); process.exitCode = 1; });

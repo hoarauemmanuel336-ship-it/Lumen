@@ -1,26 +1,22 @@
 /* Lumen Veritatis — panneau biblique latéral.
    Onglet discret au bord gauche, panneau coulissant par-dessus la page.
 
-   IL N'Y A PLUS QU'UNE SEULE BIBLE. Ce fichier contenait autrefois sa propre
-   lecture : sa mise en page, sa navigation, ses chapitres. C'était une seconde
-   Bible, forcément en retard sur la vraie, et il lui manquait tout ce qui fait
-   la page : la sélection de versets, le surlignage au verset et au fragment,
-   les notes et leurs catégories, la recherche, le compte et la synchronisation,
-   la taille de texte, la mise en page de la poésie. Le panneau affiche
-   désormais la page « bible.html » elle-même, dans son mode panneau, où seuls
-   la barre du site et le pied sont retirés. Tout ce qu'on gagne sur la page,
-   on le gagne ici le jour même, sans rien recopier.
+   UNE SEULE BIBLE. Le panneau n'a pas de lecture à lui : il affiche la page
+   « bible.html » elle-même, dans son mode panneau, où seuls la barre du site
+   et le pied sont retirés. Tout ce que la page sait faire (sélection,
+   surlignage, notes, recherche, compte, poésie) vaut ici aussitôt, sans rien
+   recopier.
 
-   Ce qui reste ici : l'onglet, le tiroir, le champ de référence, les puces
+   Ce qui vit ici : l'onglet, le tiroir, le champ de référence, les puces
    quand un texte en cite plusieurs, et le petit analyseur de références que
-   « Mémoriser » utilise aussi (window.LVBible).
+   les autres pages utilisent aussi (window.LVBible).
 
    LES DEUX TRADUCTIONS. Le tiroir n'a rien à faire pour elles : il montre
    « bible.html », qui porte le sélecteur, et le choix du lecteur est gardé
    dans le stockage local du site, donc commun à la page et au tiroir.
    BP_DATA, lui, reste sur la Chérubin : il ne sert pas à lire, il sert à
-   window.LVBible, c'est-à-dire au sélecteur de verset de « Mémoriser » et à
-   son signe d'écart, qui se comparent à la Bible du site. */
+   window.LVBible, c'est-à-dire aux sélecteurs de verset des autres pages et
+   au signe d'écart de « Mémoriser », qui se comparent à la Bible du site. */
 (function(){
   'use strict';
   if (document.getElementById('bp-tab')) return;
@@ -48,8 +44,8 @@
   + '#bp-tab.bp-tab-masque{display:none!important}'
   + '#bp-voile{position:fixed;inset:0;z-index:108;background:rgba(0,0,0,.55);display:none}'
   + '#bp-voile.on{display:block}'
-  /* Le tiroir est plus large qu'avant : il porte maintenant la vraie page, avec
-     sa barre de sélection et ses menus, qui ont besoin de place pour respirer. */
+  /* Le tiroir est large : il porte la vraie page, avec sa barre de sélection
+     et ses menus, qui ont besoin de place pour respirer. */
   + '#bp-pan{position:fixed;left:0;top:0;bottom:0;width:min(640px,100vw);z-index:110;background:#000;'
   + 'border-right:1px solid var(--filet,rgba(231,224,207,.14));display:flex;flex-direction:column;'
   + 'transform:translateX(-103%);transition:transform .35s cubic-bezier(.25,.7,.3,1)}'
@@ -86,7 +82,7 @@
   + '#bp-pan .bp-refrow :focus,#bp-pan .bp-refrow :focus-visible{outline:none}'
   + 'span.ref{cursor:pointer}'
   + 'span.ref:hover{text-decoration:underline;text-underline-offset:3px}'
-  /* zones de toucher de 44 px autour des petits boutons du tiroir (22/09) */
+  /* zones de toucher de 44 px autour des petits boutons du tiroir */
   + '.bp-icone,.bp-fermer,.bp-page,.bp-aller{position:relative}'
   + '.bp-icone::before,.bp-fermer::before,.bp-page::before,.bp-aller::before{content:"";position:absolute;inset:-12px -8px}'
   + '.bp-page,.bp-aller{font-size:12.5px}'
@@ -120,7 +116,7 @@
     + '<div class="bp-refrow">'
     + '  <div class="bp-barre"><textarea class="bp-ref champ-ligne" id="bp-ref" rows="1" placeholder="' + BP_T.ph + '" autocomplete="off" spellcheck="false"></textarea>'
     + '  <span class="bp-aller" id="bp-aller" role="button" tabindex="0">' + BP_T.aller + '</span></div>'
-    /* une seule rangée (Emmanuel, 11/10) : la barre, la pleine page, la croix */
+    /* une seule rangée (choix d'Emmanuel) : la barre, la pleine page, la croix */
     + '  <a class="bp-page bp-plein" href="' + BP_PAGE + '" aria-label="' + BP_T.page + '" title="' + BP_T.page + '"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></a>'
     + '  <span class="bp-fermer" id="bp-fermer" role="button" tabindex="0" aria-label="' + BP_T.fermer + '">\u2715</span>'
     + '  <span class="bp-err" id="bp-err"></span>'
@@ -273,8 +269,8 @@
     cadre.src = BP_PAGE + '?p=1' + (depart || '');
     corps.appendChild(cadre);
     cadre.addEventListener('load', function(){
-      /* on retient la dernière position lue, pour rouvrir là où on s'était
-         arrêté, exactement comme le faisait l'ancien panneau */
+      /* la dernière position lue est retenue, pour rouvrir là où l'on
+         s'était arrêté */
       try {
         cadre.contentWindow.addEventListener('hashchange', function(){
           sauveCoin(cadre.contentWindow.location.hash || '');
@@ -289,9 +285,9 @@
   function va(hash){
     if (!cadre) { faitCadre(hash || ''); return; }
     try {
-      /* même adresse qu'avant : on fait simplement rejouer le routage de la
-         page (elle revient au verset), au lieu de la recharger entièrement,
-         ce qui perdait la sélection et les notes ouvertes */
+      /* même adresse qu'avant : le routage de la page rejoue (elle revient
+         au verset), sans la recharger, ce qui garde la sélection et les
+         notes ouvertes */
       if (cadre.contentWindow.location.hash === hash) cadre.contentWindow.dispatchEvent(new Event('hashchange'));
       else cadre.contentWindow.location.hash = hash;
     } catch(_){ cadre.src = BP_PAGE + '?p=1' + hash; }
@@ -300,9 +296,8 @@
   function hashDe(r){
     if (!r) return '';
     /* une PLAGE (Matthieu 7:6-8) s'écrit « #matthieu/7/6-8 » : la page marque
-       les versets 6 à 8 et s'y rend, SANS les sélectionner. Elle passait avant
-       par « #ref=… », qui sélectionne : la barre du bas s'ouvrait et la
-       sélection restait ensuite dans la Bible du lecteur (05/09). */
+       les versets 6 à 8 et s'y rend, SANS les sélectionner (une sélection
+       ouvrirait la barre du bas et resterait dans la Bible du lecteur). */
     return '#' + r.slug + (r.ch ? '/' + r.ch + (r.v1 ? '/' + r.v1 + (r.v2 > r.v1 ? '-' + r.v2 : '') : '') : '');
   }
 
@@ -339,9 +334,9 @@
   });
 
   /* ───────── Champ de référence ───────── */
-  /* Le champ de référence a besoin du dictionnaire des noms de livres. Sans
-     cette attente, taper une référence avant que l'index ne soit là faisait
-     lire un dictionnaire encore vide, et la page tombait en erreur. */
+  /* Le champ de référence attend le dictionnaire des noms de livres : une
+     référence tapée avant l'arrivée de l'index lirait sinon un dictionnaire
+     vide. */
   function vaRef(){ assureIdx().then(vaRefVrai).catch(function(){
     document.getElementById('bp-err').textContent = BP_T.errBible;
   }); }
@@ -394,10 +389,9 @@
   /* ───────── Ouverture / fermeture ───────── */
   function assureIdx(){
     if (IDX) return Promise.resolve();
-    /* une seule requête en vol, partagée : ouvrir le tiroir puis taper une
-       référence dans la seconde qui suit lançait deux téléchargements de
-       l'index (05/09). Et IDX n'est posé qu'une fois le dictionnaire
-       construit : un index tronqué ne fige plus le champ pour toujours. */
+    /* une seule requête en vol, partagée, même si l'on ouvre le tiroir et
+       tape une référence dans la même seconde. IDX n'est posé qu'une fois le
+       dictionnaire construit : un index tronqué ne fige pas le champ. */
     if (pend) return pend;
     pend = charge(BP_DATA + 'index.json').then(function(d){
       if (!d || !d.livres) throw new Error('index');
@@ -460,9 +454,9 @@
   });
 
   /* ───────── Petite porte ouverte sur la Bible ─────────
-     « Mémoriser » a besoin de lire les livres et d'analyser une référence.
-     Plutôt qu'une troisième copie de parseRef et des alias, le panneau
-     expose ce qu'il sait déjà faire. */
+     Les sélecteurs de verset des autres pages ont besoin de lire les livres
+     et d'analyser une référence : le panneau expose ce qu'il sait déjà
+     faire, plutôt qu'une copie de parseRef et des alias. */
   window.LVBible = {
     pret: assureIdx,
     index: function(){ return IDX; },
@@ -472,7 +466,7 @@
     refs: decoupeRefs,
     etiquette: etiquetteRef,
     ouvreSurRef: ouvreSurRef,
-    /* la barre du bas du téléphone ouvre et referme le tiroir (22/09) */
+    /* la barre du bas du téléphone ouvre et referme le tiroir */
     bascule: function(){ if (pan.classList.contains('on')) ferme(); else ouvre(); }
   };
 })();

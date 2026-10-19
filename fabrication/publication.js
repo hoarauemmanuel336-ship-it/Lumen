@@ -1,36 +1,33 @@
 /* ════════════════════════════════════════════════════════════════════
-   LUMEN · DERNIÈRE ÉTAPE DE LA MISE EN LIGNE (26/09)
+   LUMEN · DERNIÈRE ÉTAPE DE LA FABRICATION
    ════════════════════════════════════════════════════════════════════
-   Appelé par build-bi.js une fois toutes les pages produites dans le
-   dossier de sortie. Deux temps :
+   Appelé par build-bi.js une fois toutes les pages produites.
 
    0. DIFFÉRER. Sur Articles, Ressources et Commentaires, l'outil de
-      connexion (Firebase, plusieurs centaines de kilo-octets) se chargeait
-      avant que la page s'affiche. Il est maintenant demandé en « defer »,
-      et les scripts de la page sortent dans des fichiers à part, eux aussi
-      en « defer », dans le même ordre : la page s'affiche tout de suite, puis
-      l'outil de connexion et les scripts s'exécutent, l'un après l'autre,
-      exactement comme avant. Les fonctions communes, posées dans l'en-tête,
-      restent en place. Mémoriser n'en a pas besoin : son mode hors ligne
-      garde déjà l'outil de connexion sur l'appareil.
+      connexion (Firebase, plusieurs centaines de kilo-octets) est demandé
+      en « defer », et les scripts du corps de la page sortent dans des
+      fichiers à part, eux aussi en « defer », dans le même ordre : la page
+      s'affiche tout de suite, puis tout s'exécute l'un après l'autre. Les
+      fonctions communes, posées dans l'en-tête, restent en place.
+      Mémoriser n'en a pas besoin : son mode hors ligne garde déjà l'outil
+      de connexion sur l'appareil.
 
-   1. ALLÉGER. Les fichiers du dépôt portent de longues explications (les
-      décisions, leurs dates, leurs raisons) : elles restent dans le dépôt,
-      où elles servent, mais ne partent plus chez le lecteur, à qui elles ne
-      servent à rien. On retire les commentaires du HTML, des feuilles de
-      style et des scripts. Les scripts passent par terser réglé au plus
-      sage : il réécrit le code sans le transformer (ni compression, ni
-      renommage), seulement sans ses commentaires ni ses blancs. Si terser
-      n'est pas installé, ou si un script lui résiste, ce script part tel
-      quel : l'allègement ne peut jamais casser une page.
+   1. ALLÉGER. Les commentaires servent dans le dépôt, pas chez le
+      lecteur : on les retire du HTML, des feuilles de style et des
+      scripts. Terser est réglé au plus sage (ni compression, ni
+      renommage) : il ôte seulement commentaires et blancs. Sans terser, ou
+      si un script lui résiste, le script part tel quel : l'allègement ne
+      casse jamais une page.
 
-   2. CONTRÔLER. Chaque page produite est relue : chacun de ses scripts doit
-      se compiler, la feuille commune doit y être, les fonctions communes
-      attendues aussi, et les données de la Bible doivent se lire. Au
-      premier défaut grave, le build échoue : Netlify garde alors en ligne
-      la version précédente, intacte, et le journal dit ce qui ne va pas.
-      Les écarts moins graves (un identifiant cherché par le script et
-      absent de la page) sont signalés sans bloquer.
+   2. CONTRÔLER. Chaque script doit se compiler, la feuille commune et les
+      fonctions communes attendues doivent être là, les données de la Bible
+      doivent se lire. Au premier défaut grave, la fabrication échoue :
+      Netlify garde en ligne la version précédente, et le journal dit ce
+      qui ne va pas. Un identifiant cherché par un script et absent de la
+      page est signalé sans bloquer.
+
+   3. Le service worker du site reçoit les empreintes du site et de la
+      Bible.
    ════════════════════════════════════════════════════════════════════ */
 'use strict';
 const fs = require('fs');
@@ -122,10 +119,10 @@ function controlePage(nom, html, attendu, defauts, alertes) {
   }
 }
 
-/* Les identifiants que le script va chercher doivent exister quelque part
-   dans la page, écrits dans le HTML ou fabriqués par le script. Relevé sur
-   la page avant allègement, quand le code garde encore ses guillemets
-   d'origine. Quelques absences sont voulues et connues. */
+/* Les identifiants cherchés par le script doivent exister dans la page,
+   écrits dans le HTML ou fabriqués par le script. Relevé avant allègement,
+   quand le code garde ses guillemets d'origine. Quelques absences sont
+   voulues. */
 const ABSENCES_VOULUES = {
   /* la Bible n'a pas d'onglet Bible : le script commun le cherche et passe */
   'bible.html': ['tog-bible'],

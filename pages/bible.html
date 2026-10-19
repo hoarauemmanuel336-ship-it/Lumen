@@ -22,15 +22,10 @@ window.lvFB=function(){if(window.__lvFBP)return window.__lvFBP;window.__lvFBP=ne
   --surv:rgba(239,230,207,.06);
   --surv:color-mix(in srgb, var(--or) 6%, transparent);
   /* Le voile d'un verset (survol, clic, passage commenté, verset visé) : la
-     couleur d'accent du site, en transparence. Elle SUIT donc l'accent, au
-     lieu du gris chaud figé qu'on écrivait en dur (Emmanuel, 05/09 : « le
-     survol et le surlignage n'ont même plus la couleur d'accent du site »).
-     Première ligne pour les vieux navigateurs, seconde pour les autres. */
-  /* UNE SEULE INTENSITÉ POUR TOUT LE SURLIGNAGE : 38 % (Emmanuel, 05/09,
-     « que tout soit à 38 pour cent, tout le surlignage du site d'ailleurs »).
-     Le verset visé par un renvoi était plus discret, un verset surligné d'une
-     couleur était plus franc : tout se vaut désormais. --voile-doux existe
-     encore pour ne pas éparpiller les appels, mais vaut la même chose. */
+     couleur d'accent en transparence, pour qu'il suive l'accent du site. Une
+     seule intensité pour tout le surlignage, 38 % (Emmanuel : « que tout soit à
+     38 pour cent, tout le surlignage du site d'ailleurs »). --voile-doux vaut
+     la même chose ; il reste pour ne pas éparpiller les appels. */
   --voile-vif:color-mix(in srgb,var(--or) 38%,transparent);
   --voile-vif:color-mix(in srgb, var(--or) 38%, transparent);
   --voile-doux:var(--voile-vif);
@@ -122,28 +117,19 @@ body{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
 main.wrap{flex:1 0 auto}
 body>footer{flex-shrink:0}
 .hero{text-align:center;padding:74px 0 26px;animation:rise .7s ease both}
-/* ═══ MODE PANNEAU ═══ Rien n'est retiré des fonctions : on enlève la barre et
-   le pied, qui appartiennent à la page d'accueil de la Bible et non à la
-   lecture, et on resserre les marges pour une colonne étroite. */
+/* ═══ MODE PANNEAU ═══ Aucune fonction n'est retirée : la barre et le pied, qui
+   appartiennent à la page et non à la lecture, disparaissent, et les marges se
+   resserrent pour une colonne étroite. */
 html.panneau header,html.panneau footer{display:none!important}
 html.panneau .wrap{max-width:none;padding:0 20px 40px}
 html.panneau .hero{padding:26px 0 14px}
 html.panneau h1.titre{font-size:32px}
 html.panneau .notes-cat{top:0}
-/* Posée APRÈS le mode panneau, et pas avant (05/09) : « html.panneau .wrap »
-   a la même spécificité et son raccourci « padding » écrasait ce
-   padding-bottom. Dans le tiroir, la barre de sélection recouvrait alors la
-   fin du chapitre et aucun défilement ne permettait d'atteindre les derniers
-   versets. Même piège que celui documenté pour les @media : à spécificité
+/* Posée APRÈS le mode panneau : « html.panneau .wrap » a la même spécificité et
+   son raccourci « padding » écraserait ce padding-bottom. Dans le tiroir, la
+   barre de sélection recouvrirait alors la fin du chapitre. À spécificité
    égale, la dernière règle gagne. */
 body.sel-active .wrap{padding-bottom:calc(var(--sb-h,190px) + 28px)}
-/* ═══ LE CHOIX DE LA TRADUCTION ═══
-   Il se fait là où la traduction s'annonçait déjà : la ligne en petites
-   capitales sous le titre de la page. La même ligne revient sous le titre du
-   chapitre, juste avant le filet qui ouvre le texte, pour que le lecteur
-   n'ait jamais à remonter pour changer. Celle qu'on lit est en or, l'autre
-   attend en retrait. Sur un écran étroit la ligne se replie, elle ne déborde
-   jamais. */
 .trad{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:0 10px;font-size:13px;letter-spacing:.24em;text-transform:uppercase;line-height:1.7;color:var(--pa)}
 .trad-o{color:rgba(255,255,255,.72);cursor:pointer;transition:color .3s;position:relative}.trad-o::before{content:'';position:absolute;inset:-12px -6px}
 .trad-o:hover{color:var(--or-pale)}
@@ -160,8 +146,8 @@ h1.titre{font-family:var(--display);font-weight:400;font-size:48px;line-height:1
 .groupe-nom{font-family:var(--display);font-style:italic;font-weight:400;font-size:25px;color:var(--parchemin,#fff);text-align:center;margin:40px 0 20px}
 .livres-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:0 44px;max-width:920px;margin:0 auto}
 @media(max-width:900px){.livres-grille{grid-template-columns:repeat(2,1fr)}}
-/* Sur téléphone, deux colonnes et le nombre de chapitres sous le nom : la
-   liste des 73 livres passe de près de six mètres d'écran à la moitié (22/09). */
+/* Sur téléphone, deux colonnes : la liste des 73 livres tient en moitié moins
+   d'écran. */
 @media(max-width:560px){
   .livres-grille{grid-template-columns:1fr 1fr;gap:0 18px}
   a.livre{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:3px;padding:11px 2px 12px}
@@ -229,30 +215,16 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .ch-sect:first-child{margin-top:4px}
 .ch-psaume-titre{font-style:italic;color:var(--pa);text-align:center;margin-top:22px;font-size:19px}
 .ch-sep{width:44px;height:1px;background:linear-gradient(90deg,transparent,var(--filet-f),transparent);margin:30px auto 34px}
-/* L'INTERLIGNE EST CELUI D'UN BLOC, PAS D'UNE LISTE DE LIGNES (Emmanuel,
-   26/08 : « trop d'espace haut et en bas alors que c'est dans le même
-   bloc »). Les lignes d'un même paragraphe se tiennent : c'est le blanc
-   ENTRE les paragraphes qui doit se voir, pas celui entre deux lignes.
-   POURQUOI LA PROSE N'EST PAS AUSSI SERRÉE QUE LES VERS : ce n'est pas un
-   oubli. Une ligne de vers fait une trentaine de signes, l'œil retrouve le
-   début de la suivante sans effort. Une ligne de prose en fait
-   soixante-seize sur un écran large : trop serrée, le regard qui revient à
-   gauche retombe sur la ligne qu'il vient de lire. L'interligne suit donc la
-   LARGEUR DE LA COLONNE, comme en typographie : large sur un écran d'ordi,
-   resserré sur un téléphone où la ligne ne fait plus que trente-cinq signes
-   et rejoint alors celui des vers. */
-/* ── LE TEXTE TOUCHE LES DEUX BORDS (Emmanuel, 06/09) ──
-   Il avait fait retirer la justification le 26/08 (« l'espace entre les
-   mots »), et le texte est passé au fer à gauche. Il y revient en voyant le
-   bord droit irrégulier : « pourquoi certains mots sont vides comme à droite
-   et certains sautent à la ligne trop tôt ? Regarde le "Cherchez" ».
-   La ligne s'arrêtait tôt parce que le mot suivant, « d'abord », est
-   insécable pour le dictionnaire français. Justifié, le bord droit est droit
-   et ces trous de fin de ligne disparaissent ; ils deviennent un peu d'air
-   réparti entre les mots de la ligne, ce qui se voit beaucoup moins.
-   La coupure des mots reste active : c'est elle qui empêche la
-   justification de creuser des trous béants sur une colonne étroite. Les
-   deux vont ensemble, l'une sans l'autre donne un mauvais résultat. */
+/* L'INTERLIGNE EST CELUI D'UN BLOC, PAS D'UNE LISTE DE LIGNES (Emmanuel :
+   « trop d'espace haut et en bas alors que c'est dans le même bloc »). Les
+   lignes d'un paragraphe se tiennent serrées : c'est le blanc ENTRE les
+   paragraphes qui se voit. La prose est à 1,08, les vers à 1,2 (voir .vst.po). */
+/* ── LE TEXTE TOUCHE LES DEUX BORDS (Emmanuel) ──
+   Justifié, le bord droit est droit : les trous de fin de ligne, laissés par un
+   mot insécable comme « d'abord », deviennent un peu d'air réparti entre les
+   mots de la ligne, ce qui se voit beaucoup moins. La coupure des mots va
+   avec : c'est elle qui empêche la justification de creuser des trous béants
+   sur une colonne étroite. L'une sans l'autre donne un mauvais résultat. */
 .ch-texte{text-align:justify;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 2;line-height:1.08}
 @media(max-width:600px){.ch-texte{line-height:1.08}}
 /* Le paragraphe respire des deux côtés : un poème enchâssé dans le récit
@@ -263,20 +235,12 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .ch-texte sup.vn{font-family:var(--serif);font-size:12.5px;color:var(--or);line-height:0;margin-right:5px;letter-spacing:0}
 /* un verset que seule la Septante contient (35a, 35b…) : son numéro, dans le fil du verset hébreu qui le précède */
 .ch-texte sup.vsub{font-family:var(--serif);font-size:11.5px;color:var(--or);line-height:0;letter-spacing:0;opacity:.85}
-/* ── LA MARQUE D'UNE NOTE (05/09, Emmanuel : « quelque chose de subtil sur le
-   verset pour montrer qu'il y a une ou des notes ») ──
-   Un point d'or, petit et à demi éteint, collé au numéro du verset : il ne
-   touche pas au texte, il se voit quand on le cherche, il s'allume au survol,
-   et il ouvre la note quand on le touche. Deux notes ou plus : le point est un
-   peu plus plein, et son infobulle le dit. */
-/* LE NUMÉRO LUI-MÊME PORTE LA MARQUE : un filet doré sous le chiffre, rien
-   d'ajouté au flux du texte (choix d'Emmanuel parmi huit essais, 05/09).
-   UN SEUL TRAIT, TOUJOURS LE MÊME : qu'il y ait une note ou dix, la marque
-   dit « il y a une note ici », et rien d'autre (Emmanuel, 05/09 : « je ne
-   veux pas plusieurs affichages selon s'il y a plusieurs notes ou pas, mets
-   juste un trait »). Le filet passe par un dégradé plutôt que par une
-   bordure, pour tenir sous la ligne de base sans déplacer le chiffre d'un
-   pixel. */
+/* ── LA MARQUE D'UNE NOTE ──
+   Un filet doré sous le chiffre du verset, rien d'ajouté au flux du texte. Un
+   seul trait, qu'il y ait une note ou dix (Emmanuel : « je ne veux pas
+   plusieurs affichages selon s'il y a plusieurs notes ou pas, mets juste un
+   trait »). Le filet est un dégradé et non une bordure, pour tenir sous la
+   ligne de base sans déplacer le chiffre d'un pixel. */
 .ch-texte sup.vn.a-note .vnn{background-image:linear-gradient(var(--or),var(--or));background-repeat:no-repeat;background-size:100% 1px;background-position:0 100%;padding-bottom:1.5px}
 .ch-texte sup.vn.a-note{opacity:.8;transition:opacity .25s}
 .ch-texte .vst:hover sup.vn.a-note,.ch-texte sup.vn.a-note:hover{opacity:1}
@@ -287,16 +251,14 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .ch-texte sup.vn .nt{position:absolute;inset:-10px -8px;display:block;width:auto;height:auto;background:none;cursor:pointer}
 .ch-texte sup.vn.a-note,.ch-texte sup.vn.a-com{position:relative;cursor:pointer}
 .ch-texte sup.vn .nt:focus-visible{outline:1px solid var(--or);outline-offset:0}
-/* ── LA MARQUE D'UN COMMENTAIRE (05/09) ──
-   Autre chose qu'une note : un commentaire est écrit par l'auteur du site et
-   lu par tous. Sa marque est un petit « § » doré posé DEVANT le numéro, le
-   signe des paragraphes commentés dans les éditions savantes. Il ne prend pas
-   le filet des notes (le filet ne court que sous le chiffre, .vnn), pour que
-   les deux marques restent lisibles côte à côte. Il passe au-dessus de la
-   zone de la note (.nt) : le toucher ouvre le commentaire, pas la note. */
-/* Il était trop discret (Emmanuel, 05/09 : « le truc pour indiquer qu'il y a
-   un commentaire n'est pas assez visible ») : parmi huit essais montrés côte à
-   côte, choix du § PLUS GRAND ET GRAS, en pleine lumière. */
+/* ── LA MARQUE D'UN COMMENTAIRE ──
+   Un commentaire n'est pas une note : il est écrit par l'auteur du site dans
+   l'atelier Commentaires. Sa marque est un « § » doré posé DEVANT le numéro, le
+   signe des paragraphes commentés dans les éditions savantes, plus grand et
+   gras pour se voir (Emmanuel : « pas assez visible »). Il ne prend pas le
+   filet des notes (.vnn), pour que les deux marques restent lisibles côte à
+   côte, et passe au-dessus de la zone de la note (.nt) : le toucher ouvre le
+   commentaire, pas la note. */
 .ch-texte sup.vn .cm{position:relative;z-index:1;display:inline-block;font-style:normal;font-weight:700;font-size:13px;line-height:1;color:var(--or);opacity:1;margin-right:3.5px;cursor:pointer;transition:opacity .25s;letter-spacing:0}
 /* Zone du doigt : vers la gauche et en hauteur seulement, pour laisser le
    chiffre à la note quand le verset porte les deux marques ; s'il n'y a pas
@@ -312,9 +274,9 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .com-pan{display:block;margin:.85em 0 1.15em;padding:12px 18px 14px 20px;border-left:2px solid var(--or);background:color-mix(in srgb,var(--or) 3.5%,transparent);text-align:left;hyphens:none;line-height:1.3;animation:rise .3s ease both;font-size:calc(17.5px*var(--lvz,1));color:rgba(255,255,255,.88);cursor:auto}
 .vst.po+.com-pan{margin-left:2.2em}
 @media(max-width:600px){.com-pan{padding:11px 14px 12px 16px;font-size:calc(17px*var(--lvz,1))}.vst.po+.com-pan{margin-left:1.7em}}
-/* Pas d'en-tête (Emmanuel, 05/09 : « supprime le "Commentaire · référence" ») :
-   le passage surligné au-dessus dit de quoi il s'agit. Il ne reste qu'un
-   « Fermer » discret, en pied. */
+/* Pas d'en-tête (Emmanuel : « supprime le "Commentaire · référence" ») : le
+   passage surligné au-dessus dit de quoi il s'agit. Seul reste un « Fermer »
+   discret, en pied. */
 .com-pied{text-align:right;margin-top:10px}
 .com-fermer{font-family:var(--display);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa2);cursor:pointer;transition:color .25s;position:relative}
 .com-fermer::before{content:'';position:absolute;inset:-10px -8px}
@@ -341,100 +303,63 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .cb a{color:var(--or);border-bottom:1px solid rgba(231,224,207,.3)}
 .cb .ref{color:var(--or);cursor:pointer;border-bottom:1px dotted rgba(231,224,207,.4)}
 @media print{.com-pan{display:none}.ch-texte sup.vn .cm{display:none}}
-/* --vc : teinte du surlignage de verset entier (posée par le script), --vc-sel :
-   la même teinte, un peu plus franche, quand ce verset est en plus sélectionné.
-   Sans couleur, un verset est nu ; sélectionné, il prend le voile parchemin. */
-/* AUCUN FONDU SUR LE VOILE (05/09, Emmanuel : « quand je surligne, il faut que
-   je resurvole pour que ça s'affiche bien, ça doit être bien dès le départ ;
-   pareil quand on survole juste un verset »). Le fond passait en trois dixièmes
-   de seconde : pendant tout ce temps le verset n'était qu'à demi teinté, et un
-   simple passage de souris ne montrait qu'un voile pâle et inachevé. Le voile
-   se pose maintenant d'un coup, entier. Ne pas remettre de transition ici. */
-/* ── LE VOILE S'ARRÊTE UN PIXEL SOUS LE HAUT DE LA LIGNE (05/09) ──
-   Mesures faites sur la page : le texte remplit sa ligne à ras (22,0 px de
-   hauteur naturelle pour 22,1 px d'interligne), et les jambages — le pied des
-   j, g, p, q, y — descendent 0,9 px DANS la ligne suivante. Le voile de cette
-   ligne-là les teintait donc, ce qui se voyait à peine en gris mais donnait un
-   rose sale avec un surlignage de couleur.
-   Le voile est peint par un dégradé plat, d'où sa hauteur réglable : il part
-   du bas de la ligne et s'arrête un pixel avant le haut. Ce pixel, c'est
-   justement celui qu'occupent les jambages du dessus, qui restent donc blancs
-   et nets. Les lignes d'un même surlignage sont séparées par un filet sombre
-   d'un pixel, comme les passages d'un vrai surligneur.
-   ── LA HAUTEUR DE LA BANDE NE VIENT PLUS DE LA POLICE (05/09) ──
-   « 100 % » désignait la boîte du texte, dont la hauteur dépend des mesures
-   internes de la police, et celles-ci ne sont PAS lues de la même façon d'un
-   système à l'autre. Sous Linux, cette boîte valait 22 px pour une ligne de
-   22,1 px : rien ne dépassait, et mes vérifications ne voyaient rien. Sous
-   Windows, la même police annonce une boîte d'environ une fois et demie le
-   corps : la bande faisait alors 31 px pour une ligne de 22, elle mordait de
-   neuf pixels sur la ligne voisine, et les deux bandes qui se recouvraient
-   donnaient une raie plus foncée entre chaque ligne (mesuré sur la capture
-   d'Emmanuel : 131,22,22 au lieu de 77,13,13, soit exactement deux couches).
-   La bande est donc taillée À LA HAUTEUR DE LA LIGNE, moins deux pixels, et
-   centrée. Une boîte de texte et sa ligne partagent toujours le même centre
-   (le demi-interligne se répartit également au-dessus et au-dessous) : le
-   calage est donc juste partout, quelles que soient les mesures de la police.
-   Les deux pixels laissés libres, un en haut, un en bas, sont ceux où passent
-   les jambages de la ligne du dessus et les hampes de celle du dessous.
-   Si l'interligne du texte change, changer 1.08em ici aussi.
-   La teinte passe par --voile, pour n'écrire le dégradé qu'une fois. */
+/* --vc : teinte du surlignage d'un verset entier (posée par le script) ;
+   --vc-sel : sa teinte quand ce verset est aussi sélectionné. Sans couleur, un
+   verset est nu ; sélectionné, il prend le voile d'accent. */
+/* AUCUN FONDU SUR LE VOILE (Emmanuel : « ça doit être bien dès le départ ;
+   pareil quand on survole juste un verset »). Avec une transition, un
+   surlignage ou un simple passage de souris ne montre d'abord qu'un voile pâle
+   et inachevé. Le voile se pose d'un coup, entier. Ne pas remettre de
+   transition ici. */
+/* ── LA BANDE DU VOILE ──
+   Un dégradé plat, taillé À LA HAUTEUR DE LA LIGNE moins deux pixels, et
+   centré. La boîte du texte, elle, dépend des mesures internes de la police,
+   lues différemment d'un système à l'autre : sous Windows elle déborde
+   d'environ la moitié du corps, et deux bandes voisines se recouvriraient en
+   une raie plus foncée. Une boîte de texte et sa ligne partagent toujours le
+   même centre : le calage est juste partout. Les deux pixels libres, un en
+   haut, un en bas, laissent nets les jambages de la ligne du dessus et les
+   hampes de celle du dessous ; les lignes d'un même surlignage sont séparées
+   par un filet sombre, comme au surligneur.
+   Si l'interligne du texte change, changer 1.08em ici aussi. La teinte passe
+   par --voile, pour n'écrire le dégradé qu'une fois. */
 .vst{scroll-margin-top:160px;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:3px;--voile:var(--vc,transparent);background-image:linear-gradient(var(--voile),var(--voile));background-repeat:no-repeat;background-size:100% calc(1.08em - 2px);background-position:0 50%}
-/* Un verset de prose porte sa propre marge intérieure, retirée par une marge
-   extérieure négative de même largeur : rien ne bouge dans le texte, mais le
-   fond (sélection, surlignage) déborde un peu du mot et recouvre l'espace qui
-   sépare deux versets. Sans cela, deux versets voisins sélectionnés laissent
-   voir une couture sombre entre eux. */
-/* ── LE VOILE NE MASQUE PLUS RIEN (05/09, Emmanuel : « quand je survole ou
-   clique sur un verset, ça bloque la vue du verset du dessus/dessous », puis,
-   après une première tentative, « toujours pareil ») ──
-   Le fond était OPAQUE : tout ce qu'il recouvrait disparaissait. Or l'interligne
-   du texte est serré (1,08) : les jambages d'une ligne — le pied des j, des p,
-   des g — descendent dans la ligne suivante. Le fond de la ligne du dessous les
-   effaçait donc, y compris À L'INTÉRIEUR d'un même verset de trois lignes.
-   Réduire la hauteur du fond n'y suffisait pas.
-   Le voile est maintenant TRANSPARENT : posé sur le noir il donne exactement la
-   même teinte qu'avant (le parchemin à 17 %, soit rgb(41,39,35)), mais posé sur
-   une lettre il la laisse voir. Plus rien n'est effacé.
-   Plus AUCUNE marge, ni verticale ni horizontale : l'espace qui sépare deux
-   versets est désormais écrit DANS le verset qui précède (voir corpsVerset),
-   si bien que deux voiles se touchent exactement, sans couture sombre entre
-   eux ni transparence doublée à la jointure. Ne pas remettre de couleur opaque
-   ni de marge ici. */
+/* ── LE VOILE NE MASQUE RIEN (Emmanuel : « quand je survole ou clique sur un
+   verset, ça bloque la vue du verset du dessus/dessous ») ──
+   L'interligne est serré (1,08) : les jambages d'une ligne descendent dans la
+   ligne suivante, et un fond opaque les effacerait, même à l'intérieur d'un
+   verset. Le voile est donc TRANSPARENT : il laisse voir les lettres.
+   AUCUNE marge, ni verticale ni horizontale : l'espace qui sépare deux versets
+   est écrit DANS le verset qui précède (voir corpsVerset), si bien que deux
+   voiles se touchent exactement, sans couture sombre ni transparence doublée à
+   la jointure. Ne pas remettre de couleur opaque ni de marge ici. */
 /* ── LES VERS ──
    Un verset de psaume, de proverbe ou d'oracle ne se coule pas dans le
-   paragraphe : il tient sa ligne, comme dans une Bible imprimée, et les
-   versets respirent entre eux. Rien n'est justifié : la poésie se lit au fil
-   du souffle, pas au cordeau.
-   AUCUN DÉCALAGE ENTRE LES LIGNES (Emmanuel, 26/08 : « arrête tout simplement
-   cette espèce de décalage bizarre »). Toutes les lignes d'un verset partent
-   du même bord ; seul le NUMÉRO pend dans la marge, en avant de ce bord, ce
-   qui aligne le premier mot de la première ligne sur celui des suivantes. Ne
-   pas remettre de retrait sur la seconde moitié du verset. */
+   paragraphe : il tient sa ligne, comme dans une Bible imprimée. Rien n'est
+   justifié : la poésie se lit au fil du souffle, pas au cordeau.
+   AUCUN DÉCALAGE ENTRE LES LIGNES (Emmanuel : « arrête tout simplement cette
+   espèce de décalage bizarre »). Toutes les lignes d'un verset partent du même
+   bord ; seul le NUMÉRO pend dans la marge. Ne pas remettre de retrait sur la
+   seconde moitié du verset. */
 /* DEUX RÉGIMES. Un poème suivi (psaume, oracle, discours de Job) est UNE
    coulée : ses lignes se serrent, et l'air ne revient qu'aux titres de
    section. Une sentence (un proverbe, une maxime du Siracide) se suffit à
    elle-même : elle est posée seule, entourée d'air. */
 /* L'AIR EST ENTRE LES VERSETS, PAS ENTRE LES LIGNES D'UN MÊME VERSET
-   (Emmanuel, 26/08). Les lignes d'un verset se tiennent serrées : elles ne
-   font qu'une phrase, coupée pour l'œil. C'est le blanc AUTOUR du verset qui
-   dit où il commence et où il finit. Interligne de prose : 1.74 ; interligne
-   d'un verset : 1.42. Ne pas revenir à un interligne large ici, sinon un
-   simple passage à la ligne se confond avec un changement de verset. */
-/* Un verset en vers est un BLOC : sa couleur remplit tout le bloc, elle ne
-   se limite pas à la bande d'une ligne comme en prose. Sans cela, un verset
-   de deux lignes montrait une bande de couleur au milieu et deux bandes
-   noires au-dessus et en dessous, à l'intérieur même du halo (06/09). */
-/* 11/10 : Literata, plus haute à l'œil, demande un peu d'air entre les
-   lignes d'un même verset (1.2) ; l'écart entre deux versets reste plus grand. */
+   (Emmanuel). Les lignes d'un verset ne font qu'une phrase, coupée pour l'œil :
+   c'est le blanc AUTOUR du verset qui dit où il commence et où il finit. Ne pas
+   revenir à un interligne large ici, sinon un simple passage à la ligne se
+   confond avec un changement de verset. */
+/* Un verset en vers est un BLOC : sa couleur remplit tout le bloc, sans bandes
+   noires entre ses lignes. */
+/* Literata, plus haute à l'œil, demande un peu d'air entre les lignes d'un même
+   verset (1.2) ; l'écart entre deux versets reste plus grand. */
 .vst.po{display:block;position:relative;text-align:left;hyphens:none;line-height:1.2;margin:.7em 0;padding-left:2.2em;background-size:100% 100%}
 .vst.po.sent{margin:1.25em 0}
-/* UNE LIGNE TROP LONGUE POUR L'ÉCRAN SE PARTAGE EN DEUX MOITIÉS ÉGALES
-   (11/10). Sur téléphone, une ligne de vers déborde souvent la colonne : le
-   navigateur la remplissait à ras bord et rejetait un ou deux mots tout seuls
-   sur la ligne suivante (« … la fille de » / « Jérusalem : »), qui passaient
-   pour un nouveau vers. Équilibrée, la ligne se coupe en deux morceaux de
-   même longueur et se lit comme une seule phrase repliée. */
+/* UNE LIGNE TROP LONGUE POUR L'ÉCRAN SE PARTAGE EN DEUX MOITIÉS ÉGALES. Sans
+   cela, sur téléphone, un ou deux mots rejetés seuls à la ligne suivante
+   (« Jérusalem : ») passent pour un nouveau vers. Équilibrée, la ligne se lit
+   comme une seule phrase repliée. */
 .vst.po .li{display:block;position:relative;text-wrap:balance}
 /* Le numéro sort du flux et va se poser dans la marge : sans cela il
    pousserait la première ligne vers la droite et elle ne s'alignerait plus
@@ -442,10 +367,9 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
    il flotterait au-dessus du texte. */
 .vst.po .vn{position:absolute;left:-2.2em;top:.42em;margin-right:0;line-height:1}
 @media(max-width:600px){.vst.po{margin:.62em 0;padding-left:1.7em}.vst.po.sent{margin:1.1em 0}.vst.po .vn{left:-1.7em}}
-/* Le survol montre EXACTEMENT ce que donnera le clic (Emmanuel, 05/09 :
-   « quand je survole un verset avec la souris, fais en sorte que le
-   surlignage soit le même que quand je clique dessus ») : même voile de
-   parchemin que la sélection, et non plus une teinte à peine visible. */
+/* Le survol montre EXACTEMENT ce que donnera le clic (Emmanuel : « fais en
+   sorte que le surlignage soit le même que quand je clique dessus ») : même
+   voile que la sélection. */
 @media(hover:hover){.vst:hover{--voile:var(--vc-sel,var(--voile-vif))}.vst.po:hover{box-shadow:0 0 0 5px var(--vc-sel,var(--voile-vif))}}
 #sb-cercle{width:26px;height:22px;padding:1px;background:#0a0a0a;border:1px solid rgba(255,255,255,.25);cursor:pointer}
 .sb-surl{display:none;align-items:center;gap:10px;padding:8px 0 2px;flex-wrap:wrap}
@@ -454,22 +378,18 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 .sb-past:hover{transform:scale(1.18);border-color:#fff}
 .sb-oter{font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.55);cursor:pointer;padding:2px 6px}
 .sb-oter:hover{color:#fff}
-/* Verset sélectionné : un voile de parchemin, net mais léger, pas une dalle
-   grise. En prose il n'y a plus de halo (le débord vient de la marge intérieure
-   ci-dessus) ; seuls les vers, posés en bloc, gardent un halo pour respirer. */
-/* Les teintes sont données déjà fondues sur le noir (opaques) : deux versets
-   voisins se recouvrent d'un rien, et deux voiles transparents superposés
-   feraient une bande plus claire à la jointure. Parchemin à 17 % sur noir =
-   rgb(41,39,35) ; à 12 % = rgb(29,28,25).
-   Un verset déjà coloré ne devient pas gris quand on le sélectionne : il garde
-   sa couleur, simplement plus franche (--vc-sel). */
+/* Verset sélectionné : le voile d'accent. En prose, pas de halo ; seuls les
+   vers, posés en bloc, gardent un halo pour respirer. */
+/* Les teintes sont transparentes (voir surlOpaque dans le script). Un verset
+   déjà coloré ne devient pas gris quand on le sélectionne : il garde sa couleur
+   (--vc-sel). */
 /* « important » : la sélection l'emporte sur .cible, déclarée plus bas */
 .vst.sel,.vst.com-on{--voile:var(--vc-sel,var(--voile-vif))!important;box-shadow:none!important}
 .vst.po.sel,.vst.po.com-on{box-shadow:0 0 0 5px var(--vc-sel,var(--voile-vif))!important}
-/* .com-on : les versets du passage dont le commentaire est ouvert (05/09,
-   Emmanuel : « il faut que ça surligne tout le passage et ensuite il y a la
-   note »). Même voile que la sélection, pour que le lecteur voie d'un coup
-   d'œil jusqu'où va le passage commenté ; le commentaire vient dessous. */
+/* .com-on : les versets du passage dont le commentaire est ouvert (Emmanuel :
+   « il faut que ça surligne tout le passage et ensuite il y a la note »). Même
+   voile que la sélection, pour voir d'un coup d'œil jusqu'où va le passage
+   commenté ; le commentaire vient dessous. */
 .vst.po.com-on+.vst.po.com-on::before{content:'';position:absolute;left:-5px;right:-5px;bottom:100%;height:.7em;background:var(--vc-sel,var(--voile-vif));pointer-events:none}
 .vst.po.sent+.vst.po.com-on::before,.vst.po.com-on+.vst.po.sent.com-on::before{height:1.25em}
 @media(max-width:600px){.vst.po.com-on+.vst.po.com-on::before{height:.62em}.vst.po.sent+.vst.po.com-on::before,.vst.po.com-on+.vst.po.sent.com-on::before{height:1.1em}}
@@ -480,12 +400,10 @@ h2.ch-titre{font-family:var(--display);font-weight:400;font-size:38px;text-align
 @media(max-width:600px){.vst.po.sel+.vst.po.sel::before{height:.62em}.vst.po.sent+.vst.po.sel::before,.vst.po.sel+.vst.po.sent.sel::before{height:1.1em}}
 .vst.cible{--voile:var(--vc,var(--voile-doux))}
 .vst.po.cible{box-shadow:0 0 0 5px var(--vc,var(--voile-doux))}
-/* Portion surlignée à la souris : même voile, mêmes coins doux que le verset
-   entier ; la marge intérieure est reprise par une marge extérieure négative,
-   le texte ne bouge pas d'un cheveu. */
-/* même règle que pour le verset entier : pas de marge intérieure verticale,
-   sinon la couleur mord sur les lignes voisines (05/09) */
-/* exactement la même bande qu'un verset entier */
+/* Portion surlignée à la souris : exactement la même bande qu'un verset entier,
+   mêmes coins doux. Aucune marge intérieure verticale, sinon la couleur mord
+   sur les lignes voisines ; la petite marge horizontale est reprise par une
+   marge extérieure négative, le texte ne bouge pas. */
 .lv-frag{border-radius:3px;padding:0 .06em;margin:0 -.06em;box-decoration-break:clone;-webkit-box-decoration-break:clone;cursor:pointer;background-image:linear-gradient(var(--voile,transparent),var(--voile,transparent));background-repeat:no-repeat;background-size:100% calc(1.08em - 2px);background-position:0 50%}
 /* petit menu flottant de surlignage de fragment */
 #lv-frag-pop{position:absolute;z-index:120;display:none;align-items:center;gap:8px;padding:8px 10px;background:rgba(12,12,12,.97);border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 30px rgba(0,0,0,.55);backdrop-filter:blur(8px);flex-wrap:wrap;max-width:min(92vw,340px)}
@@ -579,10 +497,8 @@ h2.notes-titre{font-family:var(--display);font-weight:400;font-size:44px;line-he
 .notes-lien::before{content:"+";font-size:15px;line-height:1;letter-spacing:0;color:rgba(255,255,255,.28);transition:color .3s}
 .notes-lien:hover,.notes-lien:active{color:var(--or-pale)}
 .notes-lien:hover::before,.notes-lien:active::before{color:var(--or)}
-/* rail de filtres : la seule navigation transversale de la vue */
 .nz-rail{display:flex;gap:30px;box-sizing:border-box;max-width:760px;margin:30px auto 0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;box-shadow:inset 0 -1px 0 rgba(239,230,207,.1)}
 .nz-rail::-webkit-scrollbar{display:none}
-/* onglets : un filet continu sous tout le rail, l'onglet actif le rehausse d'or */
 .nz-fil{position:relative;flex:0 0 auto;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.46);padding:11px 1px 13px;cursor:pointer;white-space:nowrap;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .nz-fil::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--or);opacity:0;transition:opacity .35s}
 .nz-fil:hover{color:var(--parchemin)}
@@ -660,10 +576,10 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
 .cat-input{width:100%;box-sizing:border-box;background:#0b0b0b;border:1px solid var(--filet-f);color:#fff;font:inherit;font-size:15px;padding:11px 12px;outline:none;margin-bottom:18px}
 .cat-input:focus{border-color:var(--or)}
 .notes-actions{display:flex;align-items:center;gap:32px;flex-wrap:wrap;box-sizing:border-box;max-width:760px;margin:22px auto 0}
-/* ── CLASSER PAR CATÉGORIE OU PAR LIVRE (26/09, Emmanuel) ──
-   Deux mots au bout de la ligne d'actions : celui qui est choisi s'allume.
-   « Livre » range les notes dans l'ordre de la Bible, puis par chapitre et
-   par verset ; les catégories restent, et leurs puces filtrent toujours. */
+/* ── CLASSER PAR CATÉGORIE OU PAR LIVRE (Emmanuel) ──
+   Deux mots au bout de la ligne d'outils : celui qui est choisi s'allume.
+   « Par livre » range les notes dans l'ordre de la Bible, puis par chapitre et
+   par verset. */
 .nz-tri{display:inline-flex;align-items:center;gap:16px;margin-left:auto;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3)}
 .nz-tri-o{cursor:pointer;color:rgba(255,255,255,.46);padding:11px 0;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .nz-tri-o:hover{color:var(--parchemin)}
@@ -785,13 +701,14 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   <div id="sel-barre">
     <div class="sb-int">
       <div class="sb-refs" id="sb-refs"></div>
-      <!-- sur téléphone : afficher ou masquer les actions (Emmanuel, 11/10) -->
+      <!-- sur téléphone : afficher ou masquer les actions -->
       <span class="sb-pli" id="sb-pli" role="button" tabindex="0" aria-label="Masquer les actions" aria-expanded="true"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <div class="sb-act">
         <span class="sb-btn" id="sb-copier" role="button" tabindex="0">Copier</span>
         <span class="sb-btn" id="sb-surligner" role="button" tabindex="0">Surligner</span>
         <span class="sb-btn" id="sb-note" role="button" tabindex="0">Prendre une note</span>
-        <!-- l'auteur du site seulement : écrire un commentaire public sur la sélection -->
+        <!-- l'auteur du site seulement : écrire un commentaire biblique sur la
+             sélection -->
         <span class="sb-btn" id="sb-com" role="button" tabindex="0" style="display:none">Commenter</span>
         <span class="sb-btn" id="sb-vider" role="button" tabindex="0">Tout effacer</span>
       </div>
@@ -896,7 +813,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   <div id="auth-voile">
     <div class="ab-boite" role="dialog" aria-modal="true" aria-label="Compte">
       <div class="ab-titre">Compte</div>
-      <!-- site privé (19/10) : plus d'inscription, seulement la connexion -->
+      <!-- site privé : seulement la connexion, l'onglet Inscription reste
+           masqué -->
       <div class="ab-tabs" style="display:none">
         <button class="ab-tab on" id="ab-tab-si">Connexion</button>
         <button class="ab-tab" id="ab-tab-su">Inscription</button>
@@ -1020,11 +938,10 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   }
   function cloudDoc(id){ return db.doc('users/' + UID + '/bibleNotes/' + id); }
   /* Documents techniques (surlignages, portions, signets, catégories, tombes).
-     Ils s'appelaient __surl__, __meta__… or Firestore réserve les noms qui
-     commencent ET finissent par deux tirets bas (« __.*__ ») : une écriture
-     sous un tel nom peut être refusée en silence, et rien ne se synchronise.
-     On écrit désormais sous lv-surl, lv-meta…, et l'on continue de LIRE les
-     anciens noms s'ils existent, pour ne rien perdre. */
+     Firestore réserve les noms qui commencent ET finissent par deux tirets bas
+     (« __.*__ ») : une écriture sous un tel nom peut être refusée en silence.
+     On écrit donc sous lv-surl, lv-meta…, et l'on LIT encore les anciens noms
+     s'ils existent, pour ne rien perdre. */
   function docTech(nom){ return db.doc('users/' + UID + '/bibleNotes/lv-' + nom); }
   function ecritTech(nom, data){
     if (!UID || !db) return;
@@ -1184,10 +1101,9 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     if (location.hash === '#notes') vueNotes(filtreNotes);
   }
   /* Changement de compte sur le même navigateur : les notes et surlignages
-     restés en local appartiennent au compte précédent. Sans ce garde-fou, ils
-     étaient envoyés dans le nouveau compte à la connexion. Le travail fait
-     sans compte (aucun compte mémorisé) reste, lui, rattaché au premier
-     compte qui se connecte. */
+     restés en local appartiennent au compte précédent, ils sont effacés au lieu
+     de partir dans le nouveau compte. Le travail fait sans compte (aucun compte
+     mémorisé) reste, lui, rattaché au premier compte qui se connecte. */
   function dernierUid(){ try { return localStorage.getItem('lv_bible_uid') || ''; } catch(e){ return ''; } }
   function razLocal(){
     NOTES = []; CATS = []; CATS_T = {}; CATS_P = {}; CATS_M = 0;
@@ -1260,10 +1176,9 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       : '\u00c9chec de la connexion.';
     if (t) abMsg(t, 'err');
   }
-  /* Le formulaire de compte n'est branché qu'une fois Firebase arrivé : comme
-     Firebase se charge après la page (ou au premier geste), un simple
-     « if (FB) » exécuté au chargement laissait le formulaire muet (onglets,
-     boutons, touche Entrée, voile : rien ne répondait). */
+  /* Le formulaire de compte n'est branché qu'une fois Firebase arrivé :
+     Firebase se charge après la page (ou au premier geste), et un simple
+     « if (FB) » au chargement laisserait le formulaire muet. */
   var authBranche = false;
   function brancheAuth(){
     if (authBranche || !FB) return;
@@ -1368,8 +1283,10 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     });
   })();
   (function(){
-    /* interrupteur « Onglet Bible à gauche » dans Mon compte : écrit la préférence par appareil.
-       L'application réelle sur l'onglet se fait dans bible-panneau.js (présent sur les pages à onglet). */
+    /* interrupteur « Onglet Bible à gauche » : écrit la préférence par
+       appareil ; bible-panneau.js l'applique sur les pages qui ont l'onglet.
+       Cette page ne pose pas l'interrupteur (voir Mon compte) : le bloc n'y
+       trouve rien et ne fait rien. */
     function obCle(){try{return (window.matchMedia&&(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:720px)').matches))?'lv_onglet_bible_mobile':'lv_onglet_bible_pc';}catch(e){return 'lv_onglet_bible_pc';}}
     function obMasque(){try{return localStorage.getItem(obCle())==='0';}catch(e){return false;}}
     var sw=document.getElementById('tog-bible');
@@ -1407,10 +1324,10 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   });
 
   /* échappement complet : le texte passe aussi dans des attributs (value=,
-     data-…), où un guillemet non échappé coupait l'attribut */
+     data-…), où un guillemet non échappé couperait l'attribut */
   function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-  /* Un réseau de téléphone lâche une requête sur deux : on retente avant
-     de déclarer la page perdue (bug « index non disponible », 25/07). */
+  /* Un réseau de téléphone lâche parfois une requête : on retente avant de
+     déclarer la page perdue. */
   function charge(url, restant){
     var n = (restant == null) ? 3 : restant;
     return fetch(url).then(function(r){
@@ -1438,8 +1355,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     var t = TRAD, c = CACHES[t];
     return charge(TRADS[t].dossier + '/' + slug + '.json').then(function(d){ c[slug] = d; return d; });
   }
-  /* Variante tolérante : une donnée ancienne au slug disparu ne doit JAMAIS
-     faire échouer un Promise.all entier (bug « Mes notes » vide, 23/07). */
+  /* Variante tolérante : une donnée ancienne au slug disparu ne fait JAMAIS
+     échouer un Promise.all entier (« Mes notes » resterait vide). */
   function livreDataSur(slug){
     return livreData(slug).catch(function(){ return null; });
   }
@@ -1450,10 +1367,10 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     return null;
   }
 
-  /* ───────── Le sélecteur de traduction ─────────
-     UNE SEULE FABRIQUE pour les deux endroits où il paraît : le haut de la
-     page et la tête du chapitre. Deux libellés ne peuvent donc pas diverger,
-     et ajouter une traduction se ferait dans la seule table TRADS. */
+  /* ───────── Le sélecteur de traduction en ligne ─────────
+     htmlTrad n'est appelée nulle part dans cette page : le choix passe par
+     l'icône du titre (icTrad). majTrad redessine les lignes .trad présentes, et
+     ajouter une traduction se fait dans la seule table TRADS. */
   function optionsTrad(){
     var h = '<span class="trad-lab">Traduction</span>';
     ['cherubin', 'seraphin'].forEach(function(k, i){
@@ -1468,7 +1385,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     return '<div class="trad' + (cls ? ' ' + cls : '') + '" role="group" aria-label="Traduction">'
          + optionsTrad() + '</div>';
   }
-  /* la petite icône qui ouvre le choix de la traduction (Emmanuel, 11/10) */
+  /* la petite icône qui ouvre le choix de la traduction */
   function icTrad(){
     return '<span class="trad-ic" role="button" tabindex="0" aria-label="Choisir la traduction" aria-haspopup="true" aria-expanded="false" title="Traduction"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M12 6.5C10.2 5.2 7.6 4.6 4 4.8v13.4c3.6-.2 6.2.4 8 1.7 1.8-1.3 4.4-1.9 8-1.7V4.8c-3.6-.2-6.2.4-8 1.7z"/><path d="M12 6.5v13.4"/></svg></span>';
   }
@@ -1501,9 +1418,9 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     route();
     if (noteEnCours) citeNote(noteEnCours);
   }
-  /* ───────── Le choix de la traduction, depuis l'icône du titre (Emmanuel, 11/10) ─────────
-     Une petite icône à droite de « La Sainte Bible » ouvre un menu où
-     chaque traduction a sa ligne ; la traduction en cours porte une coche. */
+  /* ───────── Le choix de la traduction, depuis l'icône du titre ─────────
+     Une petite icône à droite de « La Sainte Bible » ouvre un menu où chaque
+     traduction a sa ligne ; la traduction en cours porte une coche. */
   (function(){
     var ic = null;
     var m = document.createElement('div');
@@ -1517,8 +1434,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       });
       m.innerHTML = h;
     }
-    /* ── ACCROCHÉ À L'ICÔNE (Emmanuel, 19/10 : « relie-le à l'icône, comme le
-       fait le clic droit sur les signets ») ──
+    /* ── ACCROCHÉ À L'ICÔNE (Emmanuel : « relie-le à l'icône, comme le fait le
+       clic droit sur les signets ») ──
        Le menu se pose juste sous l'icône, sa petite pointe la touche ; il
        s'ouvre vers la droite, à l'écart du titre, et se retourne au-dessus
        quand la place manque en bas. */
@@ -1552,8 +1469,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     window.addEventListener('scroll', function(){ if (m.classList.contains('ouvert')) ferme(); }, { passive: true });
     window.addEventListener('resize', function(){ if (m.classList.contains('ouvert')) place(); });
   })();
-  /* ───────── Le choix de la catégorie d'une note, sans la liste du système (Emmanuel, 11/10) ─────────
-     La liste déroulante du navigateur s'ouvrait en bleu : la case garde son
+  /* ───────── Le choix de la catégorie d'une note, sans la liste du système ─────────
+     La liste déroulante du navigateur s'ouvre en bleu : la case garde son
      allure, mais un clic ouvre le même petit menu que celui de la traduction. */
   (function(){
     var sel = document.getElementById('nb-cat'); if (!sel) return;
@@ -1701,7 +1618,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   var SEL = [];
   try { SEL = JSON.parse(localStorage.getItem('lv_bible_sel') || '[]'); } catch(e) { SEL = []; }
   function sauveSel(){ try { localStorage.setItem('lv_bible_sel', JSON.stringify(SEL)); } catch(e){} }
-  /* — surlignage : par verset, six couleurs, synchronise au compte — */
+  /* Surlignage par verset : onze couleurs et une couleur libre, synchronisé au
+     compte. */
   var SURL = {}, SURL_M = 0, SURL_T = {}, SURL_P = {};
   try { SURL = JSON.parse(localStorage.getItem('lv_bible_surl') || '{}'); } catch(e) { SURL = {}; }
   try { SURL_M = parseInt(localStorage.getItem('lv_bible_surl_m') || '0', 10) || 0; } catch(e) { SURL_M = 0; }
@@ -1732,17 +1650,10 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
     return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
   }
-  /* Même teinte, mais déjà fondue sur le noir de la page (opaque). Sert au
-     fond d'un verset entier : deux versets voisins se recouvrent un peu, et
-     deux voiles transparents superposés feraient une bande plus claire à la
-     jointure ; un fond opaque ne laisse rien voir. */
-  /* La teinte d'un surlignage. Elle était fondue sur le noir et rendue OPAQUE,
-     pour que deux versets voisins ne laissent pas voir de couture. Mais un fond
-     opaque efface les jambages de la ligne du dessus (interligne serré) : on
-     rend donc la couleur telle quelle, en transparence, ce qui donne le même
-     ton sur le noir et laisse les lettres passer au travers (05/09). Les
-     marges intérieures ont été resserrées pour que deux voiles ne se
-     superposent pas. */
+  /* La teinte d'un surlignage, en transparence malgré le nom de la fonction.
+     L'interligne est serré : un fond opaque effacerait les jambages de la ligne
+     du dessus, alors que la couleur transparente donne le même ton sur le noir
+     et laisse passer les lettres. */
   function surlOpaque(hex, a){
     hex = hexSur(hex);
     var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
@@ -1758,25 +1669,20 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       var k = ctx.slug + '|' + ctx.ch + '|' + v;
       var c = (SURL[k] != null) ? surlCouleur(SURL[k]) : null;
       if (c) {
-        /* la couleur passe par deux variables CSS : le fond (--vc) et sa
-           version plus franche quand le verset est aussi sélectionné (--vc-sel),
-           que la feuille de style applique elle-même */
-        /* MÊME FORCE AU REPOS ET AU SURVOL (05/09, Emmanuel : « je dois à
-           nouveau survoler pour avoir la bonne couleur »). Un verset surligné
-           s'affichait à 30 % et ne prenait sa couleur franche qu'une fois
-           survolé ou sélectionné : la couleur choisie ne se voyait donc
-           jamais telle quelle. Une seule valeur désormais. */
-        /* ── LA COULEUR CHOISIE SE VOIT (06/09) ──
-           Emmanuel : « couleur pas assez vive, pourtant c'est le cas dans le
-           sélecteur de couleur ». Une couleur posée à 38 % sur du noir perd
-           les deux tiers de son éclat : le rouge vif de la pastille arrivait
-           en bordeaux sombre. Elle est portée à 65 %, la plus haute valeur
-           qui laisse le texte blanc lisible par-dessus sur les onze couleurs
-           (au-delà, il faudrait passer le texte en noir). */
+        /* La couleur passe par deux variables CSS : le fond (--vc) et celui du
+           verset aussi sélectionné (--vc-sel), que la feuille de style applique
+           elle-même. MÊME FORCE AU REPOS, AU SURVOL ET À LA SÉLECTION
+           (Emmanuel : « je dois à nouveau survoler pour avoir la bonne
+           couleur »).
+           65 % : posée à 38 % sur du noir, une couleur perd les deux tiers de
+           son éclat (Emmanuel : « couleur pas assez vive, pourtant c'est le cas
+           dans le sélecteur de couleur »). 65 % est la plus haute valeur qui
+           laisse le texte blanc lisible sur les onze couleurs ; au-delà, il
+           faudrait passer le texte en noir. */
         sp.style.setProperty('--vc', surlOpaque(c, .65));
         sp.style.setProperty('--vc-sel', surlOpaque(c, .65));
-        /* en prose le fond déborde déjà grâce à la marge intérieure du verset ;
-           le halo ne sert qu'aux vers posés en bloc */
+        /* en prose, pas de halo : l'espace entre deux versets appartient déjà
+           au verset ; le halo ne sert qu'aux vers posés en bloc */
         sp.style.boxShadow = sp.classList.contains('po') ? '0 0 0 5px var(--vc)' : '';
       } else {
         sp.style.removeProperty('--vc');
@@ -1966,9 +1872,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     });
     return o;
   }
-  /* « Mes notes (n) » dans la fiche de compte, comme « Mes signets (n) » :
-     l'ancien identifiant visé (lien-notes) n'existait plus, le compte ne
-     s'affichait jamais */
+  /* « Mes notes (n) » dans la fiche de compte, comme « Mes signets (n) » */
   function majLienNotes(){
     var l = document.getElementById('bacct-notes'); if (!l) return;
     var n = NOTES.length;
@@ -1977,11 +1881,11 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   var noteEnCours = null;
   function ouvreNote(note){
     noteEnCours = note;
-    /* ── LA FICHE D'UNE NOTE (Emmanuel, 10/10) ──
-       En tête, « Nouvelle note » ou « Note » en petites capitales, la
-       catégorie à droite ; puis le passage annoté, sa référence en grand et
-       son texte cité dessous, quand le chapitre est déjà chargé ; enfin la
-       page où l'on écrit, sans cadre, et les actions en bas. */
+    /* ── LA FICHE D'UNE NOTE (Emmanuel) ──
+       En tête, « Nouvelle note » ou « Note » en petites capitales, la catégorie
+       à droite ; puis le passage annoté, sa référence en grand et son texte
+       cité dessous ; enfin la page où l'on écrit, sans cadre, et les actions en
+       bas. */
     document.getElementById('nb-titre').textContent = note.id ? 'Note' : 'Nouvelle note';
     document.getElementById('nb-refs').innerHTML = (note.refs || []).map(function(g){
       return '<span class="nb2-ref">' + esc(libelle(g)) + '</span>';
@@ -2075,7 +1979,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     sauveSurl(); marqueSurl(); fermePalette();
   }
   /* Pendant le choix d'une couleur, la barre ne montre que la palette ; une
-     fois la couleur posée (ou retirée), les actions reviennent (Emmanuel, 11/10). */
+     fois la couleur posée (ou retirée), les actions reviennent (Emmanuel). */
   function fermePalette(){
     var p = document.getElementById('sb-surl');
     if (p && p.classList.contains('ouvert')) { p.classList.remove('ouvert'); planifieHauteur(); return true; }
@@ -2090,7 +1994,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     }
   });
   /* « change » et non « input » : un sélecteur de couleur émet « input » en
-     rafale pendant qu'on déplace le curseur, ce qui déclenchait une
+     rafale pendant qu'on déplace le curseur, ce qui déclencherait une
      sauvegarde (et une écriture dans le nuage) à chaque nuance traversée */
   document.getElementById('sb-cercle').addEventListener('change', function(){
     appliqueSurl(this.value);
@@ -2160,20 +2064,16 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
      une ligne reste dans cette ligne, donc la suite des caractères affichés
      est exactement celle du verset et aucune position ne se décale. */
   function corpsVerset(v, text, frags, coupes, vers){
-    /* le chiffre a sa propre boîte (.vnn) : c'est elle qui porte le filet
-       d'une note, et non le sup entier, qui reçoit aussi la marque d'un
-       commentaire (05/09) */
+    /* le chiffre a sa propre boîte (.vnn) : c'est elle qui porte le filet d'une
+       note, et non le sup entier, qui reçoit aussi la marque d'un commentaire */
     var sup = '<sup class="vn"><span class="vnn">' + v + '</span></sup>';
     /* La prose reste un flux : aucun bloc, le verset se coule dans le
        paragraphe. Les vers, eux, passent toujours par une ligne, même quand
        ils n'ont pas été coupés : c'est ce qui aligne leur premier mot sur
        celui des versets coupés. */
-    /* L'ESPACE QUI SUIT LE VERSET LUI APPARTIENT (05/09). Elle vivait entre les
-       deux balises : le voile de chaque verset devait donc déborder pour la
-       recouvrir, faute de quoi une couture sombre apparaissait entre deux
-       versets voisins — et ce débord, lui, superposait deux transparences.
-       L'espace étant dedans, deux versets se touchent exactement : ni couture,
-       ni superposition, sans aucune marge. */
+    /* L'ESPACE QUI SUIT LE VERSET LUI APPARTIENT : deux versets voisins se
+       touchent exactement, sans couture sombre ni superposition de voiles, et
+       sans aucune marge. */
     if (!vers) return sup + fragLigne(text, frags, 0, text.length) + ' ';
     if (!coupes || !coupes.length) return '<span class="li">' + sup + fragLigne(text, frags, 0, text.length) + '</span>';
     var bornes = [0];
@@ -2186,7 +2086,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     }
     return out;
   }
-  /* Les versets qui portent une note reçoivent leur point (voir la feuille de
+  /* Les versets qui portent une note reçoivent leur marque (voir la feuille de
      style, .nt). Rejoué après chaque rendu de chapitre et après toute écriture
      ou suppression de note, comme les surlignages. */
   function notesDuVerset(ctx, v){
@@ -2218,8 +2118,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   }
   /* Une seule note : elle s'ouvre sur place, sans quitter le chapitre.
      Plusieurs : la page « Mes notes » s'ouvre DÉJÀ FILTRÉE sur ce verset, pour
-     n'avoir à choisir qu'entre celles qui le concernent (05/09) ; avant, elle
-     s'ouvrait entière et il fallait retrouver le verset à la main. */
+     n'avoir à choisir qu'entre celles qui le concernent. */
   function ouvreNotesDe(pt){
     var ids = String(pt.getAttribute('data-nt') || '').split(',').filter(Boolean);
     if (ids.length === 1) {
@@ -2229,13 +2128,12 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     var f = pt.getAttribute('data-ref') || '';
     location.hash = '#notes' + (f ? '/' + encodeURIComponent(f) : '');
   }
-  /* ───────── Commentaires bibliques (05/09) ─────────
-     Écrits par l'auteur du site sur commentaires.html, publiés dans
-     « public_commentaires », lus par tous. La Bible les va chercher LIVRE PAR
-     LIVRE (une seule requête par livre ouvert, gardée en mémoire le temps de
-     la visite), marque d'un « § » le premier verset de chaque passage
-     commenté, et ouvre le commentaire sous ce verset d'un toucher, sans
-     quitter le chapitre. */
+  /* ───────── Commentaires bibliques ─────────
+     Écrits par l'auteur du site dans l'atelier Commentaires, rangés dans
+     « public_commentaires ». La Bible les va chercher LIVRE PAR LIVRE (une
+     seule requête par livre ouvert, gardée en mémoire le temps de la visite),
+     marque d'un « § » le premier verset de chaque passage commenté, et ouvre le
+     commentaire sous ce verset d'un toucher, sans quitter le chapitre. */
   var AUTEUR = 'hoarauemmanuel336@gmail.com', EST_AUTEUR = false;
   var COMS = {}, COMS_P = {}, COM_MED = {};
   function majAuteur(){
@@ -2296,9 +2194,9 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   }
   /* Le panneau vit HORS des versets (les réécritures du verset par le
      surlignage ne l'emportent pas), APRÈS LE DERNIER VERSET du passage : le
-     lecteur voit d'abord tout le passage, surligné comme une sélection, puis
-     le commentaire (Emmanuel, 05/09). Il porte le premier verset (data-v) et
-     le dernier (data-v2) pour savoir quoi éteindre en se refermant. */
+     lecteur voit d'abord tout le passage, surligné comme une sélection, puis le
+     commentaire (Emmanuel). Il porte le premier verset (data-v) et le dernier
+     (data-v2) pour savoir quoi éteindre en se refermant. */
   function panneauDe(v){ return vue.querySelector('.com-pan[data-v="' + v + '"]'); }
   function fermeCom(pan){
     var v1 = parseInt(pan.getAttribute('data-v'), 10), v2 = parseInt(pan.getAttribute('data-v2'), 10) || v1;
@@ -2439,12 +2337,11 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       + 'for(i=0;i<k.length;i++){v=scrute(k[i],1/0);if(v>m)m=v;}'
       + 'return m+(window.pageYOffset||0);}'
       + 'function h(){if(!w)return;var n=Math.ceil(bas());if(n<=0)n=Math.ceil(Math.max(w.getBoundingClientRect().height,w.scrollHeight));planRecense();if(n===dernier)return;dernier=n;w.style.height=n+"px";demande=n;try{parent.postMessage({lvHaut:n},"*");}catch(e){}}'
-      /* Le cadre fait la hauteur exacte du diagramme et ne défile jamais :
-         ce qu'il tient pour le haut de l'écran est le haut du diagramme, et
-         sa barre « Explorer » y restait plantée. La page lui dit maintenant
-         quelle part est déjà passée sous le bord haut de la lecture, et il
-         fait glisser lui-même ses éléments collants, chacun retenu par le
-         bloc auquel il appartient, comme le ferait le navigateur. */
+      /* Le cadre fait la hauteur exacte du diagramme et ne défile jamais : pour
+         lui, le haut de l'écran est le haut du diagramme. La page lui dit
+         quelle part est déjà passée sous le bord haut de la lecture, et il fait
+         glisser lui-même ses éléments collants (sa barre « Explorer »…), chacun
+         retenu par le bloc auquel il appartient, comme le ferait le navigateur. */
       + 'var vueHaut=0,collants=[],attente=0;'
       + 'function recense(){collants=[];var l=w.getElementsByTagName("*"),i,cs,t;'
       + 'for(i=0;i<l.length;i++){cs=getComputedStyle(l[i]);'
@@ -2547,21 +2444,19 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       var inner = corpsVerset(v, txt, recaleFrags(SURLF[key], txt).ok, cm[v], sp.classList.contains('po'));
       /* on compare avec ce que l'on a soi-même écrit la dernière fois : le
          navigateur réécrit les espaces insécables en « &nbsp; », et comparer
-         avec innerHTML faisait reconstruire la moitié des versets à chaque
-         passage (ce qui effaçait aussi la sélection en cours) */
+         avec innerHTML ferait reconstruire la moitié des versets à chaque
+         passage (ce qui effacerait aussi la sélection en cours) */
       if (sp._rendu !== inner) { sp.innerHTML = inner; sp._rendu = inner; reecrit = true; }
     });
-    /* un verset réécrit (surlignage posé ou retiré) perdait sa marque de note
-       et de commentaire jusqu'au prochain passage : on les repose (05/09) */
+    /* un verset réécrit (surlignage posé ou retiré) perd sa marque de note et
+       de commentaire : on les repose */
     if (reecrit) { marqueNotes(); marqueComs(); }
   }
-  /* ── UNE PORTION SURLIGNÉE SUIT SES MOTS (22/09) ──
-     Une portion est gardée par ses positions dans le texte, et la Chérubin
-     et la Séraphin n'ont pas le même texte : repassée dans l'autre
-     traduction, la couleur tombait sur d'autres mots. On la recale donc sur
-     les mots qu'elle portait ; introuvables dans le texte affiché, elle
-     appartient à l'autre traduction : on ne la dessine pas, et on la garde
-     intacte pour elle. */
+  /* ── UNE PORTION SURLIGNÉE SUIT SES MOTS ──
+     Une portion est gardée par ses positions dans le texte, et la Chérubin et
+     la Séraphin n'ont pas le même texte. On la recale donc sur les mots qu'elle
+     porte ; introuvables dans le texte affiché, elle appartient à l'autre
+     traduction : on ne la dessine pas, et on la garde intacte pour elle. */
   function recaleFrags(frags, text){
     var ok = [], autres = [];
     (frags || []).forEach(function(f){
@@ -2667,8 +2562,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     if (pa) { appliqueFrag(pa.getAttribute('data-suc')); return; }
     if (e.target.closest && e.target.closest('#lvp-oter')) { appliqueFrag(null); return; }
   });
-  /* « change » : avec « input », la première nuance traversée était appliquée
-     et refermait le menu, les suivantes étaient perdues */
+  /* « change » : avec « input », la première nuance traversée serait appliquée
+     et refermerait le menu, les suivantes seraient perdues */
   document.getElementById('lvp-cercle').addEventListener('change', function(){ appliqueFrag(this.value); });
 
   /* ── Surlignages dans « Mes notes » ── */
@@ -2692,8 +2587,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     for (var j = 0; j < LVF_COUL_ANC.length; j++) if (LVF_COUL_ANC[j][0] === hex) return LVF_COUL_ANC[j][1];
     return 'Couleur libre ' + hex.toUpperCase();
   }
-  /* la couleur du groupe passe au CSS (trait à gauche, filet, halo) : la pastille
-     n'est plus la seule à la porter */
+  /* la couleur du groupe passe au CSS (trait à gauche, filet, halo) : la
+     pastille n'est pas seule à la porter */
   function surlVars(hex){
     if (!/^#[0-9a-f]{6}$/i.test(hex || '')) return '';
     return '--sc:' + hex + ';--sc-f:' + surlRgba(hex, .3);
@@ -2731,7 +2626,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     if (reste.hasAttribute('hidden')) { reste.removeAttribute('hidden'); el.textContent = el.getAttribute('data-less'); }
     else { reste.setAttribute('hidden', ''); el.textContent = el.getAttribute('data-more'); }
   }
-  /* Compte synchrone, pour le rail : remplirSurlignages() est asynchrone. */
+  /* Compte synchrone des surlignages : remplirSurlignages() est asynchrone. */
   function compteSurl(){
     var n = 0;
     Object.keys(SURLF).forEach(function(k){
@@ -2855,8 +2750,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       }
     }
     /* la note a pu être supprimée ailleurs (autre onglet, autre appareil)
-       pendant qu'on l'écrivait : le texte tapé n'est pas perdu, il devient
-       une note nouvelle, sous un nouvel identifiant (22/09) */
+       pendant qu'on l'écrivait : le texte tapé n'est pas perdu, il devient une
+       note nouvelle, sous un nouvel identifiant */
     if (!trouvee) {
       var n = { id: String(Date.now()), d: noteEnCours.d || maintenant, m: maintenant, t: t, ti: ti, refs: noteEnCours.refs || [], c: document.getElementById('nb-cat').value };
       NOTES.unshift(n); cloudSet(n);
@@ -2876,9 +2771,9 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   });
 
   /* ───────── Mes notes : un seul gestionnaire, posé une fois ─────────
-     Les écouteurs posés élément par élément mouraient à chaque rendu de la
-     vue et ne répondaient pas de façon fiable au doigt. Ici tout passe par
-     un gestionnaire unique sur « vue », qui survit à tous les rendus. */
+     Tout passe par un gestionnaire unique sur « vue », qui survit à tous les
+     rendus et répond de façon fiable au doigt ; des écouteurs posés élément par
+     élément mourraient à chaque rendu. */
   var filtreNotes = '';
   var filtreCat = '';
   /* classement des notes : « cat » (les catégories) ou « livre » (l'ordre de
@@ -3113,12 +3008,12 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
         && !valides[filtreCat]) filtreCat = '';
     if (filtreCat === '__surl__' && !nSurl) filtreCat = '';
     if (filtreCat === '__libre__' && !libres.length) filtreCat = '';
-    /* ── À LA MANIÈRE DE MÉMORISER (Emmanuel, 10/10) ──
-       Deux onglets, Notes et Surlignages, à la place de la rangée de
-       filtres ; chaque catégorie (ou chaque livre) devient une section
-       encadrée, son nom en petites capitales et son nombre de notes ; chaque
-       note, une rangée : la référence, le début du texte, la date, le ⋯.
-       Toucher la rangée ouvre la note. */
+    /* ── À LA MANIÈRE DE MÉMORISER (Emmanuel) ──
+       Deux onglets, Notes et Surlignages ; chaque catégorie (ou chaque livre)
+       est une section encadrée, son nom en petites capitales et son nombre de
+       notes ; chaque note, une rangée : la référence, le début du texte, la
+       date, le ⋯. Toucher la rangée ouvre la note. Il n'y a pas de filtre par
+       catégorie : seul l'onglet Surlignages se retient. */
     if (filtreCat !== '__surl__') filtreCat = '';
 
     function pl(n, un, pls){ return n + ' ' + (n > 1 ? pls : un); }
@@ -3145,9 +3040,9 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     var h = '<div class="nzm-modes" role="tablist">'
           + '<span class="nzm-mode' + (surlOn ? '' : ' on') + '" data-fil="" role="tab" tabindex="0">Notes</span>'
           + '<span class="nzm-mode' + (surlOn ? ' on' : '') + '" data-fil="__surl__" role="tab" tabindex="0">' + esc(LVF_TXT.surl) + '</span>'
-          /* la traduction des passages cités (Emmanuel, 11/10) : un petit
-             sélecteur au bout de la rangée des onglets ; c'est le même choix
-             que sur la page de lecture */
+          /* la traduction des passages cités (Emmanuel) : la petite icône au
+             bout de la rangée des onglets, le même choix que sur la page de
+             lecture */
           + icTrad()
           + '</div>';
     h += '<div class="nzm-tete"><span class="nzm-lbl">' + (surlOn ? esc(LVF_TXT.surl) : 'Mes notes') + '</span>'
@@ -3182,7 +3077,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
         }).join('<span class="note-sep">\u00b7</span>') + '</div>';
       }
       if (n.ti) x += '<div class="note-ti">' + esc(n.ti) + '</div>';
-      /* note longue : apercu tronque tant qu'on n'a pas depli\u00e9 */
+      /* note longue : aperçu tronqué tant qu'on ne l'a pas dépliée */
       var LIM = 420;
       if ((n.t || '').length > LIM) {
         var coupe = n.t.slice(0, LIM);
@@ -3209,8 +3104,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
 
     /* Par livre : chaque note se range sous chaque livre qu'elle cite, dans
        l'ordre de la Bible ; dans un livre, par chapitre puis par verset. Les
-       notes sans référence ferment la liste. La puce de catégorie choisie
-       limite toujours ce qui est montré. */
+       notes sans référence ferment la liste. */
     function parLivre(){
       var dansCat = {};
       if (filtreCat && filtreCat !== '__libre__') {
@@ -3293,7 +3187,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
         }
       }
       if (!corps) {
-        /* des surlignages s'affichent juste en dessous : ne pas dire « rien » */
+        /* surlSuivent reste faux : les surlignages ont leur propre onglet, ce
+           message intermédiaire ne paraît pas */
         var surlSuivent = false;
         corps = NOTES.length
           ? '<div class="notes-vide"><div class="notes-vide-p">Aucune note ne correspond.</div></div>'
@@ -3333,7 +3228,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   function etiquetteRef(r){
     var inf = infoLivre(r.slug);
     var t = inf ? inf.nom : r.slug;
-    if (r.slug === 'psaumes' && r.ch) t = 'Psaume';   // aligné sur libelle() et sur le panneau (05/09)
+    if (r.slug === 'psaumes' && r.ch) t = 'Psaume';   // aligné sur libelle() et sur le panneau
     if (r.ch) t += ' ' + r.ch;
     if (r.v1) { t += ':' + r.v1; if (r.v2 > r.v1) t += '-' + r.v2; }
     return t;
@@ -3372,15 +3267,15 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   SIGN_P = JSON.parse(JSON.stringify(SIGN));
   var RUBAN = '<svg viewBox="0 0 24 24" width="20" height="26" aria-hidden="true"><path d="M6 3h12v18l-6-4.2L6 21z"/></svg>';
 
-  /* ── LE SIGNET RETIENT SA TRADUCTION (Emmanuel, 27/09 : « quand je mets un
-     signet dans la Bible, ça doit enregistrer et classer en fonction de la
-     traduction que j'ai choisie ») ──
+  /* ── LE SIGNET RETIENT SA TRADUCTION (Emmanuel : « quand je mets un signet
+     dans la Bible, ça doit enregistrer et classer en fonction de la traduction
+     que j'ai choisie ») ──
      Chaque signet garde la traduction ouverte au moment où il est posé : un
      même chapitre peut porter un signet en Chérubin et un autre en Séraphin.
-     Les signets de la Chérubin gardent leur clé d'avant, ceux de la Séraphin
-     portent la leur en préfixe ; les signets posés avant ce changement, qui
-     ne disaient rien de leur traduction, sont rangés avec la Chérubin, la
-     traduction ouverte par défaut. Rouvrir un signet rouvre sa traduction. */
+     Les clés de la Chérubin n'ont pas de préfixe, celles de la Séraphin portent
+     le leur ; un signet qui ne dit rien de sa traduction est rangé avec la
+     Chérubin, la traduction ouverte par défaut. Rouvrir un signet rouvre sa
+     traduction. */
   function cleSignet(slug, ch, t){
     t = t || TRAD;
     return (t === 'cherubin' ? '' : t + ':') + slug + '/' + ch;
@@ -3410,7 +3305,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   function libelleSignet(g){
     var inf = infoLivre(g.s);
     var nom = inf ? inf.nom : g.s;
-    var t = (g.s === 'psaumes') ? 'Psaume ' + g.c : nom + ((inf && inf.nch === 1) ? '' : ' ' + g.c);   // sans index, le chapitre reste (05/09)
+    var t = (g.s === 'psaumes') ? 'Psaume ' + g.c : nom + ((inf && inf.nch === 1) ? '' : ' ' + g.c);   // sans index, le chapitre reste
     if (g.v) t += ':' + g.v;
     return t;
   }
@@ -3434,11 +3329,11 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     var n = Object.keys(SIGN).length;
     if (l) l.textContent = 'Mes signets' + (n ? ' (' + n + ')' : '');
   }
-  /* ── LE RUBAN MÈNE AUSSI AUX SIGNETS (Emmanuel, 10/10) ──
-     Un clic pose ou retire le signet, comme avant. Un clic droit sur le
-     ruban, ou un appui long sur téléphone, ouvre son petit menu, le même
-     que celui des notes : « Mes signets » y mène, où l'on reprend ou
-     retire les anciens, sans passer par le compte. */
+  /* ── LE RUBAN MÈNE AUSSI AUX SIGNETS (Emmanuel) ──
+     Un clic pose ou retire le signet. Un clic droit sur le ruban, ou un appui
+     long sur téléphone, ouvre son petit menu, le même que celui des notes :
+     « Mes signets » y mène, où l'on reprend ou retire les anciens, sans passer
+     par le compte. */
   var SG_LONG = false;
   function versSignets(b){
     if (!b) return;
@@ -3467,12 +3362,12 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     sauveSignets();
     if (location.hash === '#signets') vueSignets();
   }
-  /* ── MES SIGNETS, À LA MANIÈRE DE MÉMORISER (Emmanuel, 10/10) ──
+  /* ── MES SIGNETS, À LA MANIÈRE DE MÉMORISER (Emmanuel) ──
      En haut, les onglets des traductions ; puis l'intitulé « Mes signets » ;
-     puis une section par livre, dans l'ordre de la Bible, son nom en
-     petites capitales et le nombre de signets, et dessous une rangée par
-     signet : le ruban, la référence, la date, ▷ pour reprendre la lecture,
-     ✕ pour retirer le signet. Toute la rangée rouvre le signet. */
+     puis une section par livre, dans l'ordre de la Bible, son nom en petites
+     capitales et le nombre de signets, et dessous une rangée par signet : le
+     ruban, la référence, la date, ▷ pour reprendre la lecture, ✕ pour retirer
+     le signet. Toute la rangée rouvre le signet. */
   var SG_ONGLET = '';
   function vueSignets(){
     document.title = 'Mes signets · La Sainte Bible · Lumen Veritatis';
@@ -3557,7 +3452,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       h += '<div class="groupe-nom">' + esc(g.nom) + '</div><div class="livres-grille">';
       IDX.livres.forEach(function(l){
         if (l.groupe !== g.nom) return;
-        /* le nom seul : plus de nombre de chapitres (Emmanuel, 11/10) */
+        /* le nom seul, sans le nombre de chapitres (Emmanuel) */
         h += '<a class="livre" href="#' + l.slug + '"><span class="ln">' + esc(l.nom) + '</span></a>';
       });
       h += '</div>';
@@ -3675,8 +3570,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       marqueComs();
       chargeComs(slug).then(function(){ if (jeton === JETON) marqueComs(); });
       /* Le doigt et la souris passent par la même porte. Sur iOS, le clic
-         synthétique qui suit le toucher rejouait la bascule et annulait la
-         sélection aussitôt posée : le toucher le neutralise désormais. */
+         synthétique qui suit le toucher rejouerait la bascule et annulerait la
+         sélection aussitôt posée : le toucher le neutralise. */
       var zoneT = vue.querySelector('.ch-texte');
       var dernierDoigt = 0, amorce = null;
       function agitSur(cible){
@@ -3774,18 +3669,18 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       /* une adresse mal formée (un « % » isolé) ne doit pas figer la page */
       try { g = parseRef(decodeURIComponent(brut.slice(4))); } catch(e) { g = null; }
       if (!g) { vueLivres(); window.scrollTo(0, 0); return; }
-      /* la plage est SÉLECTIONNÉE, puis on s'y rend : même chemin que la
-         loupe de la page (allerRefs). Avant, l'adresse était réécrite vers
-         le seul premier verset et la plage se perdait (05/09). */
+      /* la plage est SÉLECTIONNÉE, puis on s'y rend : même chemin que la loupe
+         de la page (allerRefs), pour que la plage entière soit gardée et pas
+         seulement son premier verset. */
       allerRefs([g]).catch(function(){ location.replace('#' + g.slug + (g.ch ? '/' + g.ch + (g.v1 ? '/' + g.v1 : '') : '')); });
       return;
     }
     var p = brut.split('/');
     var slug = p[0] || '';
     if (slug === 'notes') {
-      /* « #notes/Matthieu 7:5 » : la page des notes s'ouvre déjà filtrée sur
-         ce verset. C'est par là qu'arrive le clic sur un numéro souligné
-         quand le verset porte plusieurs notes (05/09). */
+      /* « #notes/Matthieu 7:5 » : la page des notes s'ouvre déjà filtrée sur ce
+         verset. C'est par là qu'arrive le clic sur un numéro souligné quand le
+         verset porte plusieurs notes. */
       var fN = p.slice(1).join('/');
       try { fN = decodeURIComponent(fN); } catch(_) {}
       vueNotes(fN); window.scrollTo(0, 0); return;
@@ -3794,7 +3689,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     if (!slug) { vueLivres(); window.scrollTo(0, 0); return; }
     /* « #matthieu/7/1 » vise un verset, « #matthieu/7/1-2 » un passage : un
        renvoi mène au passage entier sans rien SÉLECTIONNER, sinon la barre du
-       bas s'ouvrait et la sélection restait sur les bras du lecteur (05/09). */
+       bas s'ouvrirait et la sélection resterait sur les bras du lecteur. */
     var n = parseInt(p[1], 10);
     var mv = String(p[2] || '').match(/^(\d+)(?:-(\d+))?$/);
     var v = mv ? parseInt(mv[1], 10) : 0, vf = (mv && mv[2]) ? parseInt(mv[2], 10) : v;
@@ -3835,8 +3730,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   demarre();
   /* Deux exemplaires de la page peuvent vivre côte à côte (un onglet Bible et
      le panneau latéral des autres pages). Chacun réécrit le stockage local en
-     bloc : sans cette écoute, ce que l'un enregistrait effaçait ce que
-     l'autre venait de faire. Dès que l'autre exemplaire écrit, on relit. */
+     bloc : sans cette écoute, ce que l'un enregistre effacerait ce que l'autre
+     vient de faire. Dès que l'autre exemplaire écrit, on relit. */
   function litLocal(k, def){ try { return JSON.parse(localStorage.getItem(k) || def); } catch(e){ return JSON.parse(def); } }
   function litNombre(k){ try { return parseInt(localStorage.getItem(k) || '0', 10) || 0; } catch(e){ return 0; } }
   var rechargeTimer = null;

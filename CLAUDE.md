@@ -81,4 +81,11 @@ Aucun secret n'entre dans le dépôt. Le mot de passe du site (`LUMEN_MOT_DE_PAS
 
 ## Les commentaires dans le code
 
-Le code porte de longues explications en français, datées, qui disent ce qu'Emmanuel a demandé et pourquoi (souvent avec ses mots). Elles sont la mémoire du projet : l'IA les lit avant de modifier un passage, et en écrit de semblables pour ses propres changements. La fabrication les retire du site envoyé au navigateur.
+Les commentaires sont la mémoire du projet : ils disent pourquoi une chose est faite ainsi, pour qu'aucune IA ne « corrige » un choix voulu. L'IA les lit avant de modifier un passage.
+
+- Chaque commentaire dit **ce qui est vrai maintenant et pourquoi**, au présent, en français, en quelques lignes. Les mots d'Emmanuel y restent entre guillemets quand ils protègent un choix (« l'interligne serré est voulu »).
+- L'histoire (dates, « avant c'était… », récits de bugs) vit dans les messages de dépôt sur GitHub, pas dans le code.
+- Quand l'IA change le code, elle met à jour le commentaire qui l'accompagne dans le même mouvement ; quand une chose disparaît, son commentaire disparaît avec elle. Un commentaire ne contredit jamais le code.
+- Un commentaire qui répète ce que le code dit clairement n'a pas lieu d'être.
+
+La fabrication retire les commentaires du site envoyé au navigateur.
