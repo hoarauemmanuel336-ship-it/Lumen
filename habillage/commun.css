@@ -1010,44 +1010,83 @@ html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-s
 
 /* ════════════════════════════════════════════════════════════════════
    LE CONTRÔLE QUALITÉ (Articles, Ressources)
-   La fenêtre du rapport : le bilan, puis les problèmes groupés par
-   gravité. Le grave porte un filet crème à gauche ; « À revoir » et
-   « Mineur » restent en blanc atténué. Aucune couleur vive.
+   Un écran entier, noir, comme une page du site : le titre de l'élément
+   en Cormorant, le bilan en Literata, puis les problèmes en rangées sans
+   cadre, séparées par des filets. La gravité se lit à un petit carré :
+   plein de crème pour le grave, filet crème pour « à revoir », filet gris
+   pour le mineur. La coche sans cadre, à droite, dit si le point part à
+   la correction. Un seul bandeau crème en bas : « Corriger ».
    ════════════════════════════════════════════════════════════════════ */
-html body #m-qc .modal-titre{margin-bottom:4px}
-html body .qc-sous{margin-bottom:6px;font-family:var(--h-ui);font-size:14.5px;color:var(--h-t3)}
-html body .qc-outils{display:flex;flex-wrap:wrap;gap:4px 18px;margin-bottom:16px}
-html body .qc-outils button{padding:2px 0;border:0;background:none;font-family:var(--h-ui);font-size:14px;font-weight:600;color:var(--h-or);cursor:pointer;transition:color .2s}
-html body .qc-outils button:is(:hover,:focus-visible){color:#fff}
-html body .qc-corps{max-height:min(62vh,640px);overflow-y:auto;overscroll-behavior:contain;padding-right:6px;font-family:var(--h-ui);color:var(--h-t1)}
-html body .qc-attente{margin:6px 0 4px;font-size:16.5px;line-height:1.55;color:var(--h-t2)}
-html body .qc-avis{margin:0 0 16px;padding:10px 12px;border:1px solid var(--h-l2);font-size:14.5px;line-height:1.5;color:var(--h-t2)}
-html body .qc-avis p{margin:0}
-html body .qc-avis p+p{margin-top:6px}
-html body .qc-manque{color:var(--h-t3)}
-html body .qc-bilan{margin:0 0 12px;font-size:17px;line-height:1.55;color:#fff}
-html body .qc-aide{margin:0 0 20px;font-size:14px;color:var(--h-t3)}
-html body .qc-rien{margin:0;font-size:16px;color:var(--h-t2)}
-html body .qc-groupe{margin:0 0 22px}
-html body .qc-g{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid var(--h-l1);font-family:var(--h-titre);font-size:21px;font-weight:500;color:#fff}
-html body .qc-g span{font-family:var(--h-ui);font-size:13px;font-weight:600;color:var(--h-t3)}
-/* un point : un filet à gauche (crème pour le grave), une coche carrée à
-   droite qui dit s'il part à la correction */
-html body .qc-point{position:relative;margin:0 0 14px;padding:2px 40px 2px 14px;border-left:2px solid var(--h-l2);cursor:pointer;transition:opacity .2s}
-html body .qc-grave .qc-point{border-left-color:var(--h-or)}
-html body .qc-point:not(.on){opacity:.5}
-html body .qc-point:focus-visible{outline:1px solid var(--h-l3);outline-offset:4px}
-html body .qc-coche{position:absolute;top:2px;right:2px;width:18px;height:18px;border:1px solid var(--h-l3);background:#000}
-html body .qc-point.on .qc-coche{border-color:var(--h-or);background:var(--h-or)}
-html body .qc-point.on .qc-coche::after{content:'';position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #000;border-width:0 2px 2px 0;transform:rotate(45deg)}
-html body .qc-point.fait:not(.on){opacity:.4}
-html body .qc-ou{margin-bottom:4px;font-size:12.5px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--h-t3)}
-html body .qc-grave .qc-ou{color:var(--h-or)}
-html body .qc-extrait{margin-bottom:5px;font-style:italic;font-size:15.5px;line-height:1.5;color:var(--h-t2)}
-html body .qc-constat{font-size:16px;line-height:1.5;color:#fff}
-html body .qc-corr{margin-top:5px;font-size:15.5px;line-height:1.5;color:var(--h-t2)}
-html body #qc-corrige:disabled{opacity:.45;cursor:default}
+html body .qc-ecran{position:fixed;inset:0;z-index:110;display:none;flex-direction:column;background:#000;color:#fff;overflow-y:auto;overscroll-behavior:contain}
+html body .qc-ecran.on{display:flex;animation:hVoile .25s ease both}
+html.qc-ouvert,html.qc-ouvert body{overflow:hidden}
+html body .qc-haut{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 28px;background:#000;border-bottom:1px solid var(--h-l1)}
+html body .qc-sortie{padding:6px 0;border:0;background:none;font-family:var(--h-ui);font-size:15.5px;font-weight:500;color:var(--h-t2);cursor:pointer;transition:color .2s}
+html body .qc-sortie:is(:hover,:focus-visible){color:#fff}
+html body .qc-menu{padding:2px 6px;border:0;background:none;font-family:var(--h-ui);font-size:24px;line-height:1;letter-spacing:.05em;color:#fff;cursor:pointer}
+html body .qc-page{width:100%;max-width:760px;margin:0 auto;padding:52px 28px 40px;flex:1 0 auto}
+html body .qc-label{font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--h-t3)}
+html body .qc-titre{margin:10px 0 0;font-family:var(--h-titre);font-size:44px;font-weight:500;line-height:1.1;color:#fff}
+html body .qc-sep{width:200px;height:1px;margin:24px 0 28px;background:linear-gradient(90deg,var(--h-or),transparent)}
+html body .qc-etat-page{margin:0 0 14px;font-family:var(--h-ui);font-size:15px;color:var(--h-or)}
+html body .qc-bilan{margin:0 0 34px;font-family:'Literata',Georgia,serif;font-size:18px;line-height:1.6;color:var(--h-t1)}
+html body .qc-rien{margin:0;font-family:var(--h-ui);font-size:17px;color:var(--h-t2)}
+
+/* l'attente : un trait qui court sous le titre, deux mots */
+html body .qc-court{position:relative;height:1px;margin:4px 0 16px;overflow:hidden;background:var(--h-l1)}
+html body .qc-court::after{content:'';position:absolute;top:0;left:-30%;width:30%;height:1px;background:var(--h-or);animation:qcCourt 1.6s ease-in-out infinite}
+@keyframes qcCourt{to{left:100%}}
+html body .qc-attente{margin:0;font-family:var(--h-ui);font-size:16px;color:var(--h-t3)}
+
+/* les onglets de gravité, à la façon de la barre du haut */
+html body .qc-filtres{display:flex;flex-wrap:wrap;gap:6px 26px;margin-bottom:6px;border-bottom:1px solid var(--h-l1)}
+html body .qc-f{position:relative;padding:8px 0 12px;border:0;background:none;font-family:var(--h-ui);font-size:16px;font-weight:500;color:var(--h-t3);cursor:pointer;transition:color .2s}
+html body .qc-f span{margin-left:7px;font-size:13px;color:var(--h-t4)}
+html body .qc-f:hover,html body .qc-f.on{color:#fff}
+html body .qc-f.on::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--h-or)}
+
+/* une rangée */
+html body .qc-ligne{display:grid;grid-template-columns:1fr auto;align-items:start;border-bottom:1px solid var(--h-l1)}
+html body .qc-tete{display:flex;align-items:flex-start;gap:16px;width:100%;padding:20px 0;border:0;background:none;text-align:left;color:inherit;cursor:pointer}
+html body .qc-marque{flex:0 0 auto;width:9px;height:9px;margin-top:8px;border:1px solid var(--h-t4)}
+html body .g-grave .qc-marque{background:var(--h-or);border-color:var(--h-or)}
+html body .g-a_revoir .qc-marque{border-color:var(--h-or)}
+html body .qc-txt{display:flex;flex-direction:column;gap:6px;min-width:0}
+html body .qc-ou{font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--h-t3)}
+html body .g-grave .qc-ou{color:var(--h-or)}
+html body .qc-constat{font-family:var(--h-ui);font-size:17.5px;line-height:1.45;color:#fff}
+html body .qc-tete:hover .qc-constat{color:#fff;text-decoration:underline;text-decoration-color:var(--h-l3);text-underline-offset:4px}
+html body .qc-coche{margin:16px 0 0 18px;padding:4px 2px;border:0;background:none;font-family:var(--h-ui);font-size:22px;line-height:1;color:var(--h-t4);cursor:pointer;transition:color .2s}
+html body .qc-ligne.retenu .qc-coche{color:var(--h-or)}
+html body .qc-fait{margin:22px 0 0 18px;font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--h-t3)}
+html body .qc-ligne.fait .qc-constat{color:var(--h-t3)}
+html body .qc-ligne:not(.retenu):not(.fait) .qc-constat{color:var(--h-t2)}
+html body .qc-detail{grid-column:1/-1;display:none;padding:0 0 22px 25px}
+html body .qc-ligne.ouvert .qc-detail{display:block}
+html body .qc-detail p{margin:0}
+html body .qc-detail p+p{margin-top:10px}
+html body .qc-extrait{font-family:'Literata',Georgia,serif;font-style:italic;font-size:16px;line-height:1.6;color:var(--h-t2)}
+html body .qc-corr{font-family:var(--h-ui);font-size:16.5px;line-height:1.5;color:#fff}
+html body .qc-laisse{font-family:var(--h-ui);font-size:15px;line-height:1.5;color:var(--h-t3)}
+
+/* le bas : le bandeau crème, toujours à portée */
+html body .qc-bas{position:sticky;bottom:0;display:flex;justify-content:center;padding:18px 28px 22px;background:linear-gradient(transparent,#000 40%)}
+html:root body .qc-bas .bandeau-mini>.act{min-width:240px;min-height:48px;padding:12px 26px;color:#000;font-family:var(--h-ui);font-size:15.5px;font-weight:600;letter-spacing:.01em;text-transform:none}
+html body .qc-bas .act:disabled{opacity:.5;cursor:default}
+
+/* l'état sur la carte de l'élément */
+html body .qc-etat{margin-left:12px;font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:none;color:var(--h-or)}
+html body .qc-etat.vif{animation:qcPouls 1.8s ease-in-out infinite}
+@keyframes qcPouls{50%{opacity:.45}}
+
 @media(max-width:600px){
-  html body .qc-corps{max-height:none;overflow:visible;padding-right:0}
-  html body #m-qc .modal-btns{grid-template-columns:1fr}
+  html body .qc-haut{padding:12px 16px}
+  html body .qc-page{padding:32px 16px 28px}
+  html body .qc-titre{font-size:33px}
+  html body .qc-bilan{font-size:17px}
+  html body .qc-bas{padding:14px 16px calc(16px + env(safe-area-inset-bottom))}
+  html body .qc-bas .bandeau-mini,html body .qc-bas .act{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  html body .qc-court::after,html body .qc-etat.vif{animation:none}
 }

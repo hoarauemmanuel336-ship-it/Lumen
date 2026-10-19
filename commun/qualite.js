@@ -14,6 +14,9 @@
    repère chaque référence biblique citée (« Jean 3:16 », « 1 Corinthiens
    13:4-7 ») et joint les versets correspondants des deux Bibles du site.
 
+   Pendant que l'IA travaille, rien n'attend à l'écran : la carte de
+   l'élément dit où en est le travail.
+
    Le dernier rapport de chaque élément est gardé dans le compte
    (art_qc ou res_qc) : rouvrir le contrôle le montre aussitôt, sans
    relancer l'IA. « Refaire le contrôle » le remplace.
@@ -26,8 +29,9 @@
 
 const qcCol=espece=>db.collection('users/'+S.uid+'/'+(espece==='articles'?'art_qc':'res_qc'));
 let QC_EN_COURS='';
-/* l'élément que la fenêtre montre en ce moment */
+/* l'élément que l'écran du contrôle montre en ce moment */
 let QC_VU='';
+let QC_ESPECE='';
 
 const QC_GRAVITES=[
   {cle:'grave',nom:'Grave'},
@@ -105,108 +109,243 @@ async function qcVersets(html){
    fait la page */
 function qcMarque(a){try{return marqueDe(a)||'';}catch(_){return '';}}
 
-/* ── LA FENÊTRE ── */
-function qcOuvre(){$('m-qc').classList.add('on');}
-function qcFerme(){$('m-qc').classList.remove('on');}
-function qcBoutons(rapport){
-  $('qc-outils').style.display=rapport?'':'none';
-  $('qc-refait').style.display=rapport?'':'none';
-  $('qc-corrige').style.display=rapport&&rapport.points&&rapport.points.length?'':'none';
+/* ── L'ÉTAT SUR LA CARTE ──
+   Pendant le travail de l'IA, aucune fenêtre n'attend à l'écran : la
+   carte de l'élément dit « Contrôle en cours », « Correction en cours »,
+   puis « Rapport prêt ». On continue à lire ou ranger pendant ce temps. */
+const QC_ETATS=new Map();
+function qcEtat(id,mot){
+  if(mot)QC_ETATS.set(id,mot);else QC_ETATS.delete(id);
+  qcPoseEtats();
 }
+let QC_POSE=0;
+function qcPoseEtats(){
+  document.querySelectorAll('.qc-etat').forEach(e=>{
+    const c=e.closest('[data-rid2]');
+    if(!c||!QC_ETATS.has(c.dataset.rid2))e.remove();
+  });
+  QC_ETATS.forEach((mot,id)=>{
+    const c=document.querySelector('[data-rid2="'+CSS.escape(id)+'"]'); if(!c)return;
+    const pied=c.querySelector('.ct-pied,.art-pied'); if(!pied)return;
+    let e=pied.querySelector('.qc-etat');
+    if(!e){e=document.createElement('span');e.className='qc-etat';pied.appendChild(e);}
+    e.textContent=mot;
+    e.classList.toggle('vif',/cours/.test(mot));
+  });
+}
+/* la liste se redessine souvent : l'état revient sur la nouvelle carte */
+new MutationObserver(()=>{
+  if(!QC_ETATS.size||QC_POSE)return;
+  QC_POSE=requestAnimationFrame(()=>{QC_POSE=0;qcPoseEtats();});
+}).observe(document.documentElement,{childList:true,subtree:true});
 
-function qcAttente(a,mot){
+/* ── L'ÉCRAN DU CONTRÔLE ──
+   Un écran entier, comme une page : le titre de l'élément, le bilan, puis
+   la liste des problèmes en rangées séparées par des filets. Une rangée
+   se déplie pour montrer le passage en cause et la correction proposée ;
+   la coche à droite dit si le point part à la correction. En bas, un seul
+   bouton : « Corriger ». */
+let QC_FILTRE='tout', QC_OUVERTS=new Set(), QC_RETENUS=new Set();
+
+function qcOuvre(){$('m-qc').classList.add('on');document.documentElement.classList.add('qc-ouvert');}
+function qcFerme(){$('m-qc').classList.remove('on');document.documentElement.classList.remove('qc-ouvert');}
+
+function qcTete(a,r){
   QC_VU=a.id;
-  $('qc-sous').textContent=a.titre||'Sans titre';
-  $('qc-corps').innerHTML='<p class="qc-attente">'+esc(mot)+'</p>';
-  qcBoutons(null);
+  $('qc-ferme').textContent=QC_ESPECE==='articles'?'← Les articles':'← Les ressources';
+  $('qc-label').textContent='Contrôle qualité'+(r&&r.quand?'  ·  '+dateFr(r.quand):'');
+  $('qc-titre').textContent=a.titre||'Sans titre';
+  $('qc-outils').style.display=r?'':'none';
 }
 
-/* ── LES POINTS RETENUS ──
-   Chaque problème se coche ou se décoche d'un toucher : seuls les points
-   cochés partent à la correction. Tous sont cochés d'emblée, sauf ceux
-   déjà corrigés. */
-let QC_RETENUS=new Set();
-function qcMajCorrige(){
-  const n=QC_RETENUS.size;
-  $('qc-corrige').textContent=n?'Corriger ('+n+')':'Corriger';
-  $('qc-corrige').disabled=!n;
+/* pendant le travail : le titre, un trait qui court, deux mots */
+function qcAttente(a,mot){
+  qcTete(a,null);
+  $('qc-corps').innerHTML='<div class="qc-court" aria-hidden="true"></div><p class="qc-attente">'+esc(mot)+'</p>';
+  $('qc-bas').style.display='none';
+}
+
+function qcMajCorrige(r){
+  const n=QC_RETENUS.size, b=$('qc-corrige');
+  b.textContent=n?('Corriger '+n+(n>1?' points':' point')):'Aucun point coché';
+  b.disabled=!n||!!QC_EN_COURS;
+  if(QC_EN_COURS===QC_VU&&QC_VU){b.textContent='Correction en cours…';b.disabled=true;}
+  $('qc-bas').style.display=r&&r.points&&r.points.length&&!(r.points.length===((r.corrige&&r.corrige.faits)||[]).length)?'':'none';
 }
 
 function qcRend(a,r,espece){
-  QC_VU=a.id;
-  $('qc-refait').onclick=()=>qcLance(a,espece);
+  QC_ESPECE=espece;
+  qcTete(a,r);
   $('qc-corrige').onclick=()=>qcCorrige(a,r,espece);
-  $('qc-copie').textContent='Copier le rapport';
-  $('qc-copie').onclick=()=>{
-    copiePresse(qcTexteRapport(a,r));
-    $('qc-copie').textContent='Copié';
-    setTimeout(()=>{$('qc-copie').textContent='Copier le rapport';},1600);
+  /* les actions secondaires passent par le ⋯, comme partout sur le site */
+  $('qc-outils').onclick=async()=>{
+    const c=await lvChoix('Contrôle qualité',[
+      {cle:'qc_copie',nom:'Copier le rapport',icone:'cite'},
+      ...(r.avant?[{cle:'qc_avant',nom:'Revenir à la version d’avant',icone:'retour'}]:[]),
+      {cle:'qc_refait',nom:'Refaire le contrôle',icone:'qc'}
+    ]);
+    if(c==='qc_copie')copiePresse(qcTexteRapport(a,r));
+    else if(c==='qc_avant')qcRevient(a,r,espece);
+    else if(c==='qc_refait')qcLance(a,espece);
   };
-  $('qc-retour').style.display=r.avant?'':'none';
-  $('qc-retour').onclick=()=>qcRevient(a,r,espece);
-  const date=dateFr(r.quand);
-  const maj=a.maj||a.cree||'';
-  const c=r.corrige||null;
-  $('qc-sous').textContent=(a.titre||'Sans titre')+(date?'  ·  '+date:'');
+  if(QC_ETATS.get(a.id)==='Rapport prêt')qcEtat(a.id,'');
+
+  const maj=a.maj||a.cree||'', c=r.corrige||null;
   const pts=Array.isArray(r.points)?r.points:[];
-  const faits=new Set(c?c.faits||[]:[]);
-  const ecartes=new Set(r.ecartes||[]);
+  const faits=new Set(c?c.faits||[]:[]), ecartes=new Set(r.ecartes||[]);
+  const manques=new Map(((c&&c.manques)||[]).map(m=>[m.point,m.raison]));
   QC_RETENUS=new Set(pts.map((_,i)=>i).filter(i=>!faits.has(i)&&!ecartes.has(i)));
+
   let h='';
-  if(c){
-    h+='<div class="qc-avis"><p>Corrigée le '+esc(dateFr(c.quand))+' : '+faits.size+(faits.size>1?' points corrigés.':' point corrigé.')
-      +(c.resume?' '+esc(c.resume):'')+'</p>';
-    (c.manques||[]).forEach(m=>{
-      const p=pts[m.point]||{};
-      h+='<p class="qc-manque">Non corrigé, '+esc((p.endroit||'un point').replace(/^./,x=>x.toLowerCase()))+' : '+esc(m.raison.replace(/^./,x=>x.toLowerCase()))+'</p>';
-    });
-    if(c.maj!==maj)h+='<p>La page a encore été modifiée depuis.</p>';
-    h+='</div>';
-  }else if((r.maj||'')!==maj)h+='<p class="qc-avis">La page a été modifiée depuis ce contrôle.</p>';
+  if(c)h+='<p class="qc-etat-page">Corrigée le '+esc(dateFr(c.quand))+' : '+faits.size+(faits.size>1?' points corrigés':' point corrigé')+(manques.size?', '+manques.size+' laissé'+(manques.size>1?'s':''):'')+'.'+(c.maj!==maj?' La page a été modifiée depuis.':'')+'</p>';
+  else if((r.maj||'')!==maj)h+='<p class="qc-etat-page">La page a été modifiée depuis ce contrôle.</p>';
   h+='<p class="qc-bilan">'+esc(r.bilan||'')+'</p>';
-  if(!pts.length)h+='<p class="qc-rien">Aucun problème relevé.</p>';
-  else h+='<p class="qc-aide">Les points cochés partent à la correction ; touchez un point pour le cocher ou le décocher.</p>';
-  QC_GRAVITES.forEach(g=>{
-    const l=pts.map((p,i)=>({p,i})).filter(x=>x.p.gravite===g.cle);
-    if(!l.length)return;
-    h+='<section class="qc-groupe qc-'+g.cle+'"><h3 class="qc-g">'+g.nom+'<span>'+l.length+'</span></h3>';
-    l.forEach(({p,i})=>{
-      const fait=faits.has(i);
-      h+='<div class="qc-point'+(fait?' fait':'')+(QC_RETENUS.has(i)?' on':'')+'" data-qc="'+i+'" role="checkbox" tabindex="0" aria-checked="'+QC_RETENUS.has(i)+'">'
-        +'<b class="qc-coche" aria-hidden="true"></b>'
-        +'<div class="qc-ou">'+esc(QC_DOMAINES[p.domaine]||'')+(p.endroit?'  ·  '+esc(p.endroit):'')+(fait?'  ·  corrigé':'')+'</div>'
-        +(p.extrait?'<div class="qc-extrait">« '+esc(p.extrait)+' »</div>':'')
-        +'<div class="qc-constat">'+esc(p.constat||'')+'</div>'
-        +(p.correction?'<div class="qc-corr">→ '+esc(p.correction)+'</div>':'')
-        +'</div>';
-    });
-    h+='</section>';
-  });
+
+  if(!pts.length){h+='<p class="qc-rien">Aucun problème relevé.</p>';}
+  else{
+    const nb=k=>pts.filter(p=>p.gravite===k).length;
+    if(QC_FILTRE!=='tout'&&!nb(QC_FILTRE))QC_FILTRE='tout';
+    h+='<div class="qc-filtres" role="tablist">'
+      +[{cle:'tout',nom:'Tout',n:pts.length},...QC_GRAVITES.map(g=>({cle:g.cle,nom:g.nom,n:nb(g.cle)}))].filter(f=>f.n)
+        .map(f=>'<button type="button" role="tab" class="qc-f'+(QC_FILTRE===f.cle?' on':'')+'" data-qcf="'+f.cle+'" aria-selected="'+(QC_FILTRE===f.cle)+'">'+f.nom+'<span>'+f.n+'</span></button>').join('')
+      +'</div><div class="qc-liste">';
+    const ordre=QC_GRAVITES.map(g=>g.cle);
+    pts.map((p,i)=>({p,i})).filter(x=>QC_FILTRE==='tout'||x.p.gravite===QC_FILTRE)
+      .sort((x,y)=>(faits.has(x.i)-faits.has(y.i))||(ordre.indexOf(x.p.gravite)-ordre.indexOf(y.p.gravite))||(x.i-y.i))
+      .forEach(({p,i})=>{
+        const fait=faits.has(i), ouvert=QC_OUVERTS.has(i), g=QC_GRAVITES.find(x=>x.cle===p.gravite)||QC_GRAVITES[1];
+        h+='<div class="qc-ligne g-'+p.gravite+(fait?' fait':'')+(ouvert?' ouvert':'')+(QC_RETENUS.has(i)?' retenu':'')+'" data-qc="'+i+'">'
+          +'<button type="button" class="qc-tete" aria-expanded="'+ouvert+'">'
+            +'<span class="qc-marque" aria-hidden="true"></span>'
+            +'<span class="qc-txt"><span class="qc-ou">'+esc(g.nom)+'  ·  '+esc(QC_DOMAINES[p.domaine]||'')+(p.endroit?'  ·  '+esc(p.endroit):'')+'</span>'
+            +'<span class="qc-constat">'+esc(p.constat||'')+'</span></span>'
+          +'</button>'
+          +(fait?'<span class="qc-fait">Corrigé</span>'
+                :'<button type="button" class="qc-coche" aria-pressed="'+QC_RETENUS.has(i)+'" aria-label="À corriger" title="À corriger">✓</button>')
+          +'<div class="qc-detail">'
+            +(p.extrait?'<p class="qc-extrait">« '+esc(p.extrait)+' »</p>':'')
+            +(p.correction?'<p class="qc-corr">→ '+esc(p.correction)+'</p>':'')
+            +(manques.has(i)?'<p class="qc-laisse">Laissé à la dernière correction : '+esc(String(manques.get(i)).replace(/^./,x=>x.toLowerCase()))+'</p>':'')
+          +'</div>'
+          +'</div>';
+      });
+    h+='</div>';
+  }
   const corps=$('qc-corps');
   corps.innerHTML=h;
-  corps.scrollTop=0;
-  corps.querySelectorAll('[data-qc]').forEach(d=>{
-    const bascule=()=>{
-      const i=+d.getAttribute('data-qc');
-      if(QC_RETENUS.has(i))QC_RETENUS.delete(i);else QC_RETENUS.add(i);
-      d.classList.toggle('on',QC_RETENUS.has(i));
-      d.setAttribute('aria-checked',QC_RETENUS.has(i));
-      qcMajCorrige();
+  corps.querySelectorAll('[data-qcf]').forEach(b=>b.onclick=()=>{QC_FILTRE=b.dataset.qcf;qcRend(a,r,espece);});
+  corps.querySelectorAll('.qc-ligne').forEach(l=>{
+    const i=+l.dataset.qc;
+    l.querySelector('.qc-tete').onclick=()=>{
+      if(QC_OUVERTS.has(i))QC_OUVERTS.delete(i);else QC_OUVERTS.add(i);
+      l.classList.toggle('ouvert',QC_OUVERTS.has(i));
+      l.querySelector('.qc-tete').setAttribute('aria-expanded',QC_OUVERTS.has(i));
     };
-    d.onclick=bascule;
-    d.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();bascule();}};
+    const k=l.querySelector('.qc-coche');
+    if(k)k.onclick=()=>{
+      if(QC_RETENUS.has(i))QC_RETENUS.delete(i);else QC_RETENUS.add(i);
+      l.classList.toggle('retenu',QC_RETENUS.has(i));
+      k.setAttribute('aria-pressed',QC_RETENUS.has(i));
+      qcMajCorrige(r);
+    };
   });
-  qcBoutons(r);
-  qcMajCorrige();
+  qcMajCorrige(r);
+}
+
+/* le rapport en texte simple, pour le coller ailleurs (à Claude, avec le
+   fichier, pour faire corriger la page) */
+function qcTexteRapport(a,r){
+  const l=['Contrôle qualité : '+(a.titre||'Sans titre')+(r.quand?' ('+dateFr(r.quand)+')':''),'',r.bilan||''];
+  const pts=Array.isArray(r.points)?r.points:[];
+  if(!pts.length)l.push('','Aucun problème relevé.');
+  QC_GRAVITES.forEach(g=>{
+    const p=pts.filter(x=>x.gravite===g.cle);
+    if(!p.length)return;
+    l.push('',g.nom.toUpperCase()+' ('+p.length+')');
+    p.forEach((x,i)=>{
+      l.push('',(i+1)+'. '+(QC_DOMAINES[x.domaine]||'')+(x.endroit?' · '+x.endroit:''));
+      if(x.extrait)l.push('   « '+x.extrait+' »');
+      l.push('   '+(x.constat||''));
+      if(x.correction)l.push('   → '+x.correction);
+    });
+  });
+  return l.join('\n');
+}
+
+/* ── LE CONTRÔLE ──
+   Le ⋯ appelle controleQualite : un rapport déjà fait s'affiche ; sinon
+   le contrôle part et la carte le dit. */
+async function controleQualite(a,espece){
+  if(!a)return;
+  QC_ESPECE=espece;
+  QC_FILTRE='tout'; QC_OUVERTS=new Set();
+  if(QC_EN_COURS===a.id&&QC_ETATS.get(a.id)==='Contrôle en cours'){qcAttente(a,'Relecture en cours');qcOuvre();return;}
+  let r=null;
+  try{const d=await qcCol(espece).doc(a.id).get();if(d.exists)r=d.data();}catch(_){}
+  if(r){qcRend(a,r,espece);qcOuvre();}
+  else qcLance(a,espece);
+}
+
+/* la fin d'un travail : l'écran se met à jour s'il montre cet élément ;
+   sinon la carte dit que le rapport est prêt */
+function qcFini(a,r,espece){
+  if(QC_VU===a.id&&$('m-qc').classList.contains('on')){qcEtat(a.id,'');qcRend(a,r,espece);}
+  else qcEtat(a.id,'Rapport prêt');
+}
+
+async function qcLance(a,espece){
+  if(QC_EN_COURS){
+    if(QC_EN_COURS!==a.id)lvInfo('Un travail de l’IA est déjà en cours. Attendez qu’il se termine, puis relancez celui-ci.');
+    return;
+  }
+  QC_EN_COURS=a.id;
+  qcEtat(a.id,'Contrôle en cours');
+  if(QC_VU===a.id&&$('m-qc').classList.contains('on')){qcAttente(a,'Relecture en cours');}
+  try{
+    await contenuDe(a);
+    const html=typeof a.code==='string'?a.code:'';
+    if(!html.trim())throw new Error('Cette page est vide : il n’y a rien à contrôler.');
+    const versets=await qcVersets(html);
+    const res=await lvIA('controler',{
+      espece,
+      titre:a.titre||'',
+      marque:(typeof iaType==='function'?iaType(a):''),
+      marqueCle:qcMarque(a),
+      html,
+      versets
+    });
+    const r={
+      quand:new Date().toISOString(),
+      maj:a.maj||a.cree||'',
+      bilan:String(res.bilan||'').trim(),
+      points:(Array.isArray(res.points)?res.points:[]).map(p=>({
+        gravite:['grave','a_revoir','mineur'].indexOf(p.gravite)>=0?p.gravite:'a_revoir',
+        domaine:QC_DOMAINES[p.domaine]?p.domaine:'fond',
+        endroit:String(p.endroit||''),extrait:String(p.extrait||''),
+        constat:String(p.constat||''),correction:String(p.correction||'')
+      }))
+    };
+    try{await qcCol(espece).doc(a.id).set(r);}catch(e){console.warn('qc enregistrement',e);}
+    QC_EN_COURS='';
+    qcFini(a,r,espece);
+  }catch(e){
+    console.warn('qc',e);
+    QC_EN_COURS='';
+    qcEtat(a.id,'');
+    if(QC_VU===a.id)qcFerme();
+    lvInfo(e&&e.message?e.message:'Le contrôle qualité a échoué.');
+  }finally{
+    QC_EN_COURS='';
+  }
 }
 
 /* ── CORRIGER ──
    L'IA rend des remplacements (un passage exact de la page, ce qui le
    remplace). La page applique ceux dont le passage s'y trouve une seule
    fois, et dit ce qui n'a pas pu l'être. Avant d'écrire, la version
-   d'avant est gardée (art_avant ou res_avant) : « Revenir à la version
-   d'avant » la remet. La correction s'enregistre aussitôt, sans
-   validation, comme le rangement par l'IA. */
+   d'avant est gardée (art_avant ou res_avant) : « Version d'avant » la
+   remet. La correction s'enregistre aussitôt, sans validation, comme le
+   rangement par l'IA. */
 const qcAvantCol=espece=>db.collection('users/'+S.uid+'/'+(espece==='articles'?'art_avant':'res_avant'));
 
 function qcApplique(code,mods){
@@ -241,18 +380,17 @@ async function qcCorrige(a,r,espece){
   const choisis=[...QC_RETENUS].sort((x,y)=>x-y);
   if(!choisis.length)return;
   QC_EN_COURS=a.id;
-  const dit=t=>{if(QC_VU===a.id)$('qc-corps').innerHTML='<p class="qc-attente">'+esc(t)+'</p>';};
-  qcAttente(a,'Lecture de la page…');
+  qcEtat(a.id,'Correction en cours');
+  qcMajCorrige(r);
   try{
     await contenuDe(a);
     const html=typeof a.code==='string'?a.code:'';
     if(!html.trim())throw new Error('Cette page est vide : il n’y a rien à corriger.');
     const versets=await qcVersets(html);
-    dit('L’IA corrige '+choisis.length+(choisis.length>1?' points':' point')+'. Cela peut prendre quelques minutes ; vous pouvez fermer cette fenêtre, la correction continue.');
     const res=await lvIA('corriger',{
       espece, titre:a.titre||'', html, versets, marqueCle:qcMarque(a),
       points:choisis.map(i=>r.points[i])
-    },n=>dit('L’IA écrit ses corrections… '+Math.round(n/100)/10+' k signes reçus.'));
+    });
     /* les numéros de l'IA désignent les points envoyés : on les ramène à
        leur place dans le rapport */
     const vers=n=>choisis[n-1];
@@ -264,7 +402,6 @@ async function qcCorrige(a,r,espece){
     rates.forEach((raison,k)=>{if(!faits.has(k)&&!manques.some(m=>m.point===k))manques.push({point:k,raison});});
     choisis.forEach(k=>{if(!faits.has(k)&&!manques.some(m=>m.point===k))manques.push({point:k,raison:'l’IA n’a proposé aucun changement pour ce point.'});});
     if(faits.size){
-      dit('Enregistrement de la page corrigée…');
       await ecritCode(qcAvantCol(espece),a.id,html);
       await qcEcrit(a,code);
     }
@@ -274,11 +411,13 @@ async function qcCorrige(a,r,espece){
     /* les points décochés le restent au prochain affichage */
     r.ecartes=r.points.map((_,i)=>i).filter(i=>!QC_RETENUS.has(i)&&!r.corrige.faits.includes(i));
     try{await qcCol(espece).doc(a.id).set(r);}catch(e){console.warn('qc enregistrement',e);}
-    qcRend(a,r,espece);
-    qcOuvre();
+    QC_EN_COURS='';
+    qcFini(a,r,espece);
   }catch(e){
     console.warn('qc correction',e);
-    if(QC_VU===a.id)qcRend(a,r,espece);
+    QC_EN_COURS='';
+    qcEtat(a.id,'');
+    if(QC_VU===a.id&&$('m-qc').classList.contains('on'))qcRend(a,r,espece);
     lvInfo(e&&e.message?e.message:'La correction a échoué.');
   }finally{
     QC_EN_COURS='';
@@ -297,91 +436,8 @@ async function qcRevient(a,r,espece){
     r.maj=a.maj;
     try{await qcCol(espece).doc(a.id).set(r);}catch(_){}
     qcRend(a,r,espece);
-    lvInfo('La version d’avant la correction est revenue.');
   }catch(e){
     console.warn('qc retour',e);
     lvInfo(e&&e.message?e.message:'Le retour à la version d’avant a échoué. Vérifiez la connexion, puis réessayez.');
-  }
-}
-
-/* le rapport en texte simple, pour le coller ailleurs (à Claude, avec le
-   fichier, pour faire corriger la page) */
-function qcTexteRapport(a,r){
-  const l=['Contrôle qualité : '+(a.titre||'Sans titre')+(r.quand?' ('+dateFr(r.quand)+')':''),'',r.bilan||''];
-  const pts=Array.isArray(r.points)?r.points:[];
-  if(!pts.length)l.push('','Aucun problème relevé.');
-  QC_GRAVITES.forEach(g=>{
-    const p=pts.filter(x=>x.gravite===g.cle);
-    if(!p.length)return;
-    l.push('',g.nom.toUpperCase()+' ('+p.length+')');
-    p.forEach((x,i)=>{
-      l.push('',(i+1)+'. '+(QC_DOMAINES[x.domaine]||'')+(x.endroit?' · '+x.endroit:''));
-      if(x.extrait)l.push('   « '+x.extrait+' »');
-      l.push('   '+(x.constat||''));
-      if(x.correction)l.push('   → '+x.correction);
-    });
-  });
-  return l.join('\n');
-}
-
-/* ── LE CONTRÔLE ──
-   Le ⋯ appelle controleQualite : un rapport déjà fait s'affiche ; sinon
-   le contrôle part aussitôt. */
-async function controleQualite(a,espece){
-  if(!a)return;
-  if(QC_EN_COURS===a.id){qcOuvre();return;}
-  qcAttente(a,'Lecture du dernier contrôle…');
-  qcOuvre();
-  let r=null;
-  try{const d=await qcCol(espece).doc(a.id).get();if(d.exists)r=d.data();}catch(_){}
-  if(QC_VU!==a.id)return;
-  if(r)qcRend(a,r,espece);
-  else qcLance(a,espece);
-}
-
-async function qcLance(a,espece){
-  if(QC_EN_COURS){
-    if(QC_EN_COURS!==a.id)lvInfo('Un contrôle est déjà en cours. Attendez qu’il se termine, puis relancez celui-ci.');
-    return;
-  }
-  QC_EN_COURS=a.id;
-  const dit=t=>{if(QC_VU===a.id)$('qc-corps').innerHTML='<p class="qc-attente">'+esc(t)+'</p>';};
-  qcAttente(a,'Lecture de la page…');
-  qcOuvre();
-  try{
-    await contenuDe(a);
-    const html=typeof a.code==='string'?a.code:'';
-    if(!html.trim())throw new Error('Cette page est vide : il n’y a rien à contrôler.');
-    dit('Recherche des versets cités dans les deux Bibles du site…');
-    const versets=await qcVersets(html);
-    dit('L’IA relit la page'+(versets.length?' et vérifie '+versets.length+(versets.length>1?' références bibliques':' référence biblique'):'')+'. Cela peut prendre quelques minutes ; vous pouvez fermer cette fenêtre, le contrôle continue.');
-    const res=await lvIA('controler',{
-      espece,
-      titre:a.titre||'',
-      marque:(typeof iaType==='function'?iaType(a):''),
-      marqueCle:qcMarque(a),
-      html,
-      versets
-    },n=>dit('L’IA écrit son rapport… '+Math.round(n/100)/10+' k signes reçus.'));
-    const r={
-      quand:new Date().toISOString(),
-      maj:a.maj||a.cree||'',
-      bilan:String(res.bilan||'').trim(),
-      points:(Array.isArray(res.points)?res.points:[]).map(p=>({
-        gravite:['grave','a_revoir','mineur'].indexOf(p.gravite)>=0?p.gravite:'a_revoir',
-        domaine:QC_DOMAINES[p.domaine]?p.domaine:'fond',
-        endroit:String(p.endroit||''),extrait:String(p.extrait||''),
-        constat:String(p.constat||''),correction:String(p.correction||'')
-      }))
-    };
-    try{await qcCol(espece).doc(a.id).set(r);}catch(e){console.warn('qc enregistrement',e);}
-    qcRend(a,r,espece);
-    qcOuvre();
-  }catch(e){
-    console.warn('qc',e);
-    if(QC_VU===a.id)qcFerme();
-    lvInfo(e&&e.message?e.message:'Le contrôle qualité a échoué.');
-  }finally{
-    QC_EN_COURS='';
   }
 }
