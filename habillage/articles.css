@@ -605,3 +605,19 @@ html body .tire{position:fixed;z-index:1000;pointer-events:none;margin:0;backgro
 html body #liste .avant{box-shadow:inset 0 2px 0 var(--h-or)}
 html body #liste .apres{box-shadow:inset 0 -2px 0 var(--h-or)}
 html body #liste .cible,html body #fil .cible{outline:1px solid var(--h-or);outline-offset:-1px;background:var(--h-s2)}
+
+/* ── LA DATE À DROITE, LE ⋯ EN HAUT ──
+   Emmanuel : « pour les articles met la date et le cercle à droite, et
+   rehausse les trois petits points ». La date (et le cercle de chargement
+   du contrôle qualité qui la suit) se range au bord droit de la rangée ;
+   le ⋯ monte à hauteur du titre. */
+html body .art-pied{justify-content:flex-end}
+html body .art-pied .qc-etat{margin-left:0}
+html body #liste .art-ligne{position:relative}
+html body #liste .art-ligne .art-item,html body #liste .art-ligne .art-item:hover{padding-right:24px}
+html body #liste .art-ligne .art-titre{padding-right:44px}
+html body #liste .art-ligne .art-menu{position:absolute;top:14px;right:12px;margin:0}
+@media(max-width:720px){
+  html body #liste .art-ligne .art-item,html body #liste .art-ligne .art-item:hover{padding-right:18px}
+  html body #liste .art-ligne .art-menu{top:8px;right:4px}
+}
