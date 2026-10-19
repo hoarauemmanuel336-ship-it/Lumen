@@ -1147,6 +1147,7 @@ html body .qa-conf p{margin:0;font-family:var(--h-ui);font-size:15px;line-height
 html body .qa-conf-b{flex:0 0 auto;display:inline-flex;border-radius:14px;overflow:hidden;background:var(--h-or)}
 html body .qa-conf-b button{position:relative;min-height:42px;padding:0 16px;border:0;background:transparent;font-family:var(--h-ui);font-size:14.5px;font-weight:600;color:#000;cursor:pointer;transition:background .2s}
 html body .qa-conf-b button+button::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:1px;background:color-mix(in srgb,var(--h-or) 70%,#000)}
+html body #qa-conf-oui{display:inline-flex;align-items:center;justify-content:center;min-width:48px}
 html body .qa-conf-b button:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff)}
 html body .qa-x{display:inline-flex;padding:6px;border:0;background:none;color:var(--h-t2);cursor:pointer;transition:color .2s}
 html body .qa-x:hover{color:#fff}

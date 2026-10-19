@@ -235,7 +235,7 @@ function qaPanneau(){
     +'<div class="qa-choix" id="qa-choix"><div class="qa-conf-b"><button type="button" id="qa-ch-tout">Tout choisir</button>'
     +'<button type="button" id="qa-ch-jeter" aria-label="Supprimer les conversations choisies" title="Supprimer">'+QA_IC_JETER+'<span id="qa-ch-n"></span></button>'
     +'<button type="button" id="qa-ch-fin">Terminer</button></div></div>'
-    +'<div class="qa-conf" id="qa-conf"><p id="qa-conf-txt"></p><div class="qa-conf-b"><button type="button" id="qa-conf-non">Annuler</button><button type="button" id="qa-conf-oui">Supprimer</button></div></div>';
+    +'<div class="qa-conf" id="qa-conf"><p id="qa-conf-txt"></p><div class="qa-conf-b"><button type="button" id="qa-conf-non">Annuler</button><button type="button" id="qa-conf-oui" aria-label="Supprimer" title="Supprimer">'+QA_IC_JETER+'</button></div></div>';
   document.body.appendChild(p);
   p.querySelector('#qa-ferme').onclick=qaFerme;
   p.querySelector('#qa-ch-fin').onclick=()=>{QA_CHOIX=false;QA_PRIS=new Set();qaRendListe();qaMajChoix();};
