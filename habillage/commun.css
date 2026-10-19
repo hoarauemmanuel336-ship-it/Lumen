@@ -911,15 +911,13 @@ html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #app .start:is(:hover,:fo
    - les menus d'actions deviennent des FEUILLES : une croix pour fermer,
      des rangées légères précédées d'un pictogramme dans un petit cadre à
      coin coupé, la précision rangée à droite, l'action qui jette mise à
-     part, en bas, dans une teinte de rose éteint ;
+     part, en bas, en blanc comme les autres ;
    - sur téléphone, menus, confirmations et informations montent du bas de
      l'écran, sous le pouce, avec une poignée et un « Annuler » plein
      large.
    Les boutons gardent leur bandeau crème (11/10).
    ════════════════════════════════════════════════════════════════════ */
 :root{
-  --fx-rose:#dba69d;
-  --fx-rose-voile:color-mix(in srgb,#dba69d 11%,transparent);
   --fx-coin:18px;
 }
 @keyframes fxMonte{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
@@ -1042,15 +1040,17 @@ html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-s
 /* l'élément où l'on se trouve déjà (Mémoriser) */
 html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .move-row.on{color:var(--h-or);background:var(--h-voile);box-shadow:inset 3px 0 0 var(--h-or)}
 /* ce qui jette : mis à part, en bas, dans le rose éteint */
-html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix.del,.move-row.del){color:var(--fx-rose);margin-top:13px}
+/* ce qui jette garde la couleur des autres actions, en blanc (Emmanuel,
+   19/10) ; seule sa place, en bas et à part, le distingue */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix.del,.move-row.del){color:rgba(255,255,255,.92);margin-top:13px}
 html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix.del,.move-row.del)::before{
   content:'';position:absolute;left:16px;right:16px;top:-7px;height:1px;background:var(--h-l1);
 }
 html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix.del,.move-row.del):first-child{margin-top:0}
 html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix.del,.move-row.del):first-child::before{content:none}
-html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix.del,.move-row.del):is(:hover,:focus-visible){background:var(--fx-rose-voile);color:#f0c4bd}
-html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix.del .cx-ic{color:var(--fx-rose);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--fx-rose) 32%,transparent);background:color-mix(in srgb,var(--fx-rose) 5%,transparent)}
-html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix.del:is(:hover,:focus-visible) .cx-ic{box-shadow:inset 0 0 0 1px var(--fx-rose);background:var(--fx-rose-voile)}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix.del,.move-row.del):is(:hover,:focus-visible){background:var(--h-voile);color:#fff}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix.del .cx-ic{color:var(--h-or);box-shadow:inset 0 0 0 1px var(--h-l2);background:color-mix(in srgb,var(--h-or) 4%,transparent)}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix.del:is(:hover,:focus-visible) .cx-ic{box-shadow:inset 0 0 0 1px var(--h-or);background:color-mix(in srgb,var(--h-or) 9%,transparent)}
 /* deux « jeter » qui se suivent (Les laisser / Les mettre aussi…) ne
    s'écartent qu'une fois */
 html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix.del+.choix.del{margin-top:0}
