@@ -193,6 +193,11 @@ html body header nav.menu .rech-loupe{
   color:var(--h-t2);transition:color .25s,background .25s;
 }
 html body header nav.menu #rech-ouvrir{margin-left:6px;position:relative}
+/* la loupe et le compte vont ensemble : un petit écart entre eux, pas
+   celui qui sépare les rubriques (Emmanuel : « c'est quoi cet espace
+   entre le bonhomme et la loupe ? ») */
+html body header nav.menu #rech-ouvrir+#auth-ouvrir{margin-left:-22px}
+@media(max-width:720px){html body header nav.menu #rech-ouvrir+#auth-ouvrir{margin-left:-28px}}
 html body header nav.menu .rech-loupe:hover,html body header nav.menu .rech-loupe:focus-visible{color:var(--h-or);background:none}
 html body header nav.menu .rech-loupe svg{width:18px;height:18px}
 
