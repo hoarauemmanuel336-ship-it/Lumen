@@ -146,7 +146,6 @@ a.livre:hover .ln{color:var(--parchemin,#fff)}
 
 /* — Vue : chapitres — */
 h2.livre-titre{font-family:var(--display);font-weight:400;font-size:40px;text-align:center;margin:52px 0 8px}
-.livre-sous{font-size:14px;color:var(--parchemin-att);text-align:center;font-style:italic;margin-bottom:40px}
 .chap-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(56px,1fr));gap:10px;max-width:760px;margin:0 auto}
 a.chap{display:flex;align-items:center;justify-content:center;height:52px;border:1px solid var(--filet);font-size:17px;color:var(--pa);transition:border-color .35s,color .3s,box-shadow .4s}
 a.chap:hover{border-color:var(--or);color:var(--or-pale);background:var(--surv)}
@@ -3293,8 +3292,9 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     hero.style.display = 'none';
     vue._ctx = null;
     if (inf.nch === 1) { location.replace('#' + slug + '/1'); return; }
-    var h = '<h2 class="livre-titre">' + esc(inf.nom) + '</h2>' +
-            '<div class="livre-sous">' + esc(inf.groupe) + '</div><div class="chap-grille">';
+    /* le nom du livre seul, sans le groupe auquel il appartient
+       (Emmanuel : « garde le nom du livre, mais retire le groupe ») */
+    var h = '<h2 class="livre-titre">' + esc(inf.nom) + '</h2><div class="chap-grille">';
     for (var i = 1; i <= inf.nch; i++) h += '<a class="chap" href="#' + slug + '/' + i + '">' + i + '</a>';
     h += '</div>';
     vue.innerHTML = h;

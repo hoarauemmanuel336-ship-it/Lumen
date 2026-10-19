@@ -104,15 +104,11 @@ html body a.livre:hover .lc{color:var(--h-t2)}
 
 /* ════════════════════════════════════════════════════════════════════
    2. LES CHAPITRES D'UN LIVRE
-   Le groupe en sur-titre, le nom du livre en grand, puis les chapitres en
-   cases carrées, toutes de même taille.
+   Le nom du livre en grand, seul (sans son groupe, choix d'Emmanuel),
+   puis les chapitres en cases carrées, toutes de même taille.
    ════════════════════════════════════════════════════════════════════ */
 html body #vue:has(> .chap-grille){display:flex;flex-direction:column;align-items:center;animation:hMonte .45s var(--h-doux) both}
-html body .livre-sous{
-  order:-1;margin:80px 0 12px;
-  font-family:var(--h-ui);font-style:normal;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--h-or);
-}
-html body h2.livre-titre{margin:0;font-family:var(--h-titre);font-weight:400;font-size:56px;line-height:1.05;color:#fff;text-align:center}
+html body h2.livre-titre{margin:80px 0 0;font-family:var(--h-titre);font-weight:400;font-size:56px;line-height:1.05;color:#fff;text-align:center}
 html body .chap-grille{
   width:100%;max-width:780px;margin:48px auto 0;
   grid-template-columns:repeat(auto-fill,58px);justify-content:center;gap:12px;
@@ -220,8 +216,7 @@ html body .ch-nav .vide{visibility:hidden}
   html body .bib-tete{margin-top:34px}
   html body .testament{margin-top:64px;gap:14px}
   html body .groupe-nom{font-size:26px;margin:36px 0 16px}
-  html body .livre-sous{margin-top:52px}
-  html body h2.livre-titre{font-size:40px}
+  html body h2.livre-titre{font-size:40px;margin-top:52px}
   html body .chap-grille{grid-template-columns:repeat(auto-fill,50px);gap:8px;margin-top:36px}
   html body a.chap{width:50px;height:50px;font-size:14.5px}
   html body .lecture-col{padding:44px 0 34px}
@@ -655,8 +650,7 @@ html.panneau body .hero h1.titre{font-size:40px}
 html.panneau body .bib-tete{margin-top:28px}
 html.panneau body .testament{margin-top:56px}
 html.panneau body .groupe-nom{font-size:25px;margin:32px 0 16px}
-html.panneau body .livre-sous{margin-top:40px}
-html.panneau body h2.livre-titre{font-size:42px}
+html.panneau body h2.livre-titre{font-size:42px;margin-top:40px}
 html.panneau body .lecture-col{padding:36px 0 32px}
 html.panneau body h2.ch-titre{font-size:38px}
 html.panneau body .notes-cat{top:0}
