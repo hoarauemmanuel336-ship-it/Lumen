@@ -176,7 +176,7 @@ html body .barre-poignee svg{width:20px;height:7px}
 
 /* les lieux */
 html body header nav.menu{
-  display:flex;align-items:center;gap:28px;margin:0 0 0 auto;justify-self:auto;
+  display:flex;align-items:center;gap:22px;margin:0 0 0 auto;justify-self:auto;
   grid-column:auto;grid-row:auto;
 }
 html body header nav.menu a{
@@ -189,15 +189,15 @@ html body header nav.menu a:hover{color:#fff;background:none;border-color:var(--
 html body header nav.menu a.actif{color:#fff;background:none;border-color:var(--h-or)}
 /* la loupe et le compte : deux icônes nues */
 html body header nav.menu .rech-loupe{
-  width:34px;height:40px;justify-content:center;border-radius:0;
+  width:30px;height:40px;justify-content:center;border-radius:0;
   color:var(--h-t2);transition:color .25s,background .25s;
 }
 html body header nav.menu #rech-ouvrir{margin-left:6px;position:relative}
 /* la loupe et le compte vont ensemble : un petit écart entre eux, pas
    celui qui sépare les rubriques (Emmanuel : « c'est quoi cet espace
    entre le bonhomme et la loupe ? ») */
-html body header nav.menu #rech-ouvrir+#auth-ouvrir{margin-left:-22px}
-@media(max-width:720px){html body header nav.menu #rech-ouvrir+#auth-ouvrir{margin-left:-28px}}
+html body header nav.menu #rech-ouvrir+#auth-ouvrir{margin-left:-20px}
+@media(max-width:720px){html body header nav.menu #rech-ouvrir+#auth-ouvrir{margin-left:-22px}}
 html body header nav.menu .rech-loupe:hover,html body header nav.menu .rech-loupe:focus-visible{color:var(--h-or);background:none}
 html body header nav.menu .rech-loupe svg{width:18px;height:18px}
 
@@ -215,7 +215,7 @@ html.barre-rangee body .barre-poignee{width:100%;height:auto;margin:0;padding:6p
   html body header nav.menu a{display:none}
   html body header nav.menu #rech-ouvrir{margin-left:0}
   html body header nav.menu #rech-ouvrir::before{content:none}
-  html body header nav.menu .rech-loupe{width:44px;height:44px}
+  html body header nav.menu .rech-loupe{width:36px;height:44px}
 
   /* la barre d'onglets : du verre noir sur toute la largeur, collée au
      bas de l'écran, sans cadre ; l'onglet ouvert s'allume en crème et
