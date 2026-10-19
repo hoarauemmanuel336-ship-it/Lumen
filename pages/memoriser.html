@@ -164,6 +164,28 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .q-ecart::before{content:'';position:absolute;inset:-8px}
 .q-ecart.on{display:block}
 .q-ecart:hover{color:var(--or-pale)}
+/* les deux carrés : le verset posé est aussi dans d'autres catégories */
+.q-jum{display:none;position:absolute;padding:0;cursor:pointer;background:none;border:0}
+.q-jum.on{display:inline-flex}
+.q-jum svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linejoin:round}
+/* sur la catégorie et la section, les mêmes signes ; un toucher mène au
+   verset concerné, le suivant au verset concerné d'après */
+.cat-jum,.sec-mq-jum{display:none;flex-shrink:0;align-items:center;color:var(--pa2);cursor:pointer}
+.cat-jum.on,.sec-mq-jum.on{display:inline-flex}
+.cat-jum svg,.sec-mq-jum svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linejoin:round}
+.cat-ecart{cursor:pointer}
+.sec-mq{display:inline-flex;align-items:center;gap:10px;margin-right:6px}
+.sec-mq-ecart{display:none;color:var(--ambre);cursor:pointer}
+.sec-mq-ecart.on{display:inline}
+/* le verset que l'on vient de rejoindre s'éclaire un instant */
+.vrow.vu-trace{animation:vuTrace 1.8s ease both}
+@keyframes vuTrace{0%,35%{background:rgba(239,230,207,.14)}100%{background:transparent}}
+/* sur les propositions : les signes, discrets, dans le coin haut droit ;
+   ils ne se touchent pas (toucher la proposition, c'est répondre) */
+.omq{position:absolute;top:9px;right:14px;display:inline-flex;align-items:center;gap:7px;pointer-events:none}
+.omq-e{color:var(--ambre);font-family:var(--display);font-size:14px;line-height:1}
+.omq-j{display:inline-flex;color:var(--pa2)}
+.omq-j svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linejoin:round}
 .dot{width:13px;height:13px;border-radius:50%;cursor:pointer;opacity:.22;transition:opacity .25s,box-shadow .25s;position:relative}
 .dot::before{content:'';position:absolute;inset:-9px -4px}   /* zone tactile, invisible */
 .dot:not(.act):hover{opacity:.6}
@@ -519,12 +541,9 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
 .mbib-ref{font-family:var(--display);font-size:15px;color:var(--or)}
 .mbib-tout{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--pa2);cursor:pointer;transition:color .3s}
 .mbib-tout:hover{color:var(--or-pale)}
-.mbib-mots{flex:1 1 auto;min-height:52px;max-height:26vh;overflow-y:auto;line-height:1.85;font-size:15.5px}
-.mbib-mot{cursor:pointer;padding:1px 2px;color:var(--pa2);transition:color .2s,background .2s;-webkit-tap-highlight-color:transparent}
-.mbib-mot.on{color:var(--parchemin);background:rgba(231,224,207,.16)}
-.mbib-mot.bout{box-shadow:inset 0 -1.5px 0 var(--or)}
-.mbib-mots.tout .mbib-mot{color:var(--parchemin);background:none;box-shadow:none}
-.mbib-mots.tout .mbib-mot:hover{background:var(--surv)}
+.mbib-texte{flex:1 1 auto;min-height:52px;max-height:26vh;overflow-y:auto;line-height:1.85;font-size:15.5px;color:var(--pa2);-webkit-user-select:text;user-select:text;cursor:text}
+.mbib-texte.tout{color:var(--parchemin)}
+.mbib-texte .mbib-sel{color:var(--parchemin);background:rgba(231,224,207,.16);box-shadow:inset 0 -1.5px 0 var(--or)}
 @media(max-width:720px){
   #m-bib{padding:0!important;align-items:stretch!important;overflow:hidden!important}
   #m-bib .modal{box-sizing:border-box;width:100%!important;max-width:none!important;margin:0!important;border:none;height:100vh!important;max-height:100vh!important;padding:20px 16px 16px!important;overflow:hidden!important}
@@ -532,7 +551,6 @@ textarea.field{resize:vertical;min-height:92px;line-height:1.45;display:block}
   #m-bib .modal-btns{margin-top:14px;grid-template-columns:1fr 1fr!important}
   #m-bib .modal-btns .m-cancel,#m-bib .modal-btns .m-ok{padding:11px 6px!important}
   .mbib-v{font-size:16px;padding:11px 6px}
-  .mbib-mot{padding:3px 2px}
 }
 @supports(height:100dvh){@media(max-width:720px){#m-bib .modal{height:100dvh!important;max-height:100dvh!important}}}
 
@@ -686,6 +704,7 @@ if(typeof firebase==='undefined'){var m=document.getElementById('auth-msg');if(m
       </div>
       <div class="qbox" id="qbox">
         <button type="button" class="q-ecart" id="q-ecart" title="Ce verset s’écarte de la Bible du site. Toucher si c’est voulu, pour ne plus le signaler." aria-label="Ce verset s’écarte de la Bible du site">≠</button>
+        <button type="button" class="q-jum" id="q-jum" title="Ce verset est aussi dans d’autres catégories" aria-label="Ce verset est aussi dans d’autres catégories"><svg viewBox="0 0 24 24"><path d="M3 3h13v13H3zM8 8h13v13H8z"/></svg></button>
         <div class="q-label" id="q-label"></div>
         <div class="rule"></div>
         <div class="q-prompt" id="q-prompt"></div>
@@ -1396,7 +1415,7 @@ function elementCat(cat){
       let mq='';
       if(autres.length){
         const noms=autres.map(x=>x.name.fr||'').filter(Boolean).join(', ');
-        mq+='<span class="mq mq-jum" data-jum="'+vv.id+'" role="button" tabindex="0" title="'+besc(('Aussi dans : ')+noms)+'">'
+        mq+='<span class="mq mq-jum" data-jum="'+vv.id+'" role="button" tabindex="0" title="'+besc(('Aussi dans : ')+noms+'. Toucher pour y aller.')+'">'
           +'<svg viewBox="0 0 24 24"><path d="M3 3h13v13H3zM8 8h13v13H8z"/></svg></span>';
       }
       if(kind0==='v'&&!vv.libre){
@@ -1415,7 +1434,7 @@ function elementCat(cat){
     });
     body+='<div class="cat-custom-acts"><span class="bandeau-mini"><span class="mini-act" data-addv="1">+ '+tk('addverse',kind0)+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span><span class="mini-act" data-secc="1">'+t('sec_range')+'</span>'+(cat.base?'<span class="mini-act" data-restorec="1">'+t('cat_restore')+'</span>':'')+'<span class="mini-act del" data-delc="1">'+t('del')+'</span></span></div>';
     body+='</div>';
-    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp"><span class="cat-nom-t">'+besc(cat.name.fr||'')+'</span><span class="cat-ecart'+(catEcart(cat)?' on':'')+'" data-catecart="'+cat.id+'" title="Un verset de cette catégorie s’écarte de la Bible du site">≠</span></span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-go" data-act="solo" title="'+('Lancer cette catégorie')+'" aria-label="'+('Lancer cette catégorie')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
+    div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp"><span class="cat-nom-t">'+besc(cat.name.fr||'')+'</span><span class="cat-ecart'+(catEcart(cat)?' on':'')+'" data-catecart="'+cat.id+'" role="button" title="Un verset de cette catégorie s’écarte de la Bible du site. Toucher pour le rejoindre.">≠</span><span class="cat-jum'+(catJum(cat)?' on':'')+'" data-catjum="'+cat.id+'" role="button" title="Des versets de cette catégorie sont aussi dans d’autres catégories. Toucher pour les rejoindre."><svg viewBox="0 0 24 24"><path d="M3 3h13v13H3zM8 8h13v13H8z"/></svg></span></span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-go" data-act="solo" title="'+('Lancer cette catégorie')+'" aria-label="'+('Lancer cette catégorie')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
     return div;
 }
 /* Sans aucune section, la liste montre les six premières catégories, puis
@@ -1429,7 +1448,11 @@ function elementSection(sec,cats){
   const tete=document.createElement('div');
   tete.className='sec-head'; tete.dataset.sectog=id;
   tete.setAttribute('role','button'); tete.setAttribute('tabindex','0');
-  let h='<span class="sec-nom">'+besc(sec?sec.name:t('sec_libres'))+'</span><span class="sec-n">'+cats.length+'</span>';
+  const sEc=cats.some(catEcart), sJu=cats.some(catJum);
+  let h='<span class="sec-nom">'+besc(sec?sec.name:t('sec_libres'))+'</span>'
+    +'<span class="sec-mq"><span class="sec-mq-ecart'+(sEc?' on':'')+'" data-sececart="'+id+'" role="button" title="Un verset de cette section s’écarte de la Bible du site. Toucher pour le rejoindre.">≠</span>'
+    +'<span class="sec-mq-jum'+(sJu?' on':'')+'" data-secjum="'+id+'" role="button" title="Des versets de cette section sont aussi dans d’autres catégories. Toucher pour les rejoindre."><svg viewBox="0 0 24 24"><path d="M3 3h13v13H3zM8 8h13v13H8z"/></svg></span></span>'
+    +'<span class="sec-n">'+cats.length+'</span>';
   if(sec){
     if(cats.length)h+='<span class="sec-go" data-secgo="'+id+'" role="button" tabindex="0" title="'+t('sec_start')+'" aria-label="'+t('sec_start')+'">▷</span>';
     h+='<span class="sec-menu" data-secact="'+id+'" role="button" tabindex="0" aria-label="'+t('sec_rename')+'">⋯</span>';
@@ -1630,6 +1653,7 @@ function renderQuestion(){
      la couleur posée quand la référence s'affichait ressort telle quelle
      quand c'est le verset qui s'affiche, et l'inverse. */
   majEcartQuestion();
+  majMarquesSerie();
   q.rappel=rapDe(q.item.id);   // allumée : la couleur du verset aujourd'hui
   q.touche=false;              // ne sera envoyée que si on la touche
   /* première apparition : la couleur est exigée avant la réponse */
@@ -1858,33 +1882,73 @@ function bibVersets(slug,ch,v1,v2){
     bibApercu();
   }).catch(()=>{$('mbib-corps').innerHTML='<div class="mbib-charge">Le texte n’a pas pu être chargé.</div>';});
 }
+/* ── UN EXTRAIT, D'UNE LETTRE À UNE AUTRE ──
+   Emmanuel : « pour l'instant ce n'est que des mots qu'on peut choisir, il
+   faut que ce soit d'une lettre à une autre ». Le texte des versets choisis
+   s'affiche d'un seul tenant ; on y sélectionne l'extrait comme n'importe
+   quel texte, à la souris ou au doigt, d'une lettre à une autre. Le
+   passage choisi reste éclairé ; « Tout le passage » le défait. */
+function bibTexte(){
+  const segs=[]; let txt='';
+  if(!B.v1)return {txt,segs};
+  B.versets.forEach(v=>{
+    if(v.v<B.v1||v.v>B.v2)return;
+    if(txt)txt+=' ';
+    const d=txt.length; txt+=String(v.t); segs.push({v:v.v,d,f:txt.length});
+  });
+  return {txt,segs};
+}
 function bibResultat(){
-  bibMots();
-  if(!B.mots.length)return null;
-  let a=0,b=B.mots.length-1;
-  if(B.wa!==null){a=B.wa;b=(B.wb===null?B.wa:B.wb);}
-  const part=B.mots.slice(a,b+1);
-  if(!part.length)return null;
+  const {txt,segs}=bibTexte();
+  if(!txt)return null;
+  let a=0,b=txt.length;
+  const partiel=B.cT===txt&&B.ca!=null&&B.cb>B.ca;
+  if(partiel){a=B.ca;b=B.cb;}
+  /* les blancs du bord ne comptent pas */
+  while(a<b&&/\s/.test(txt[a]))a++;
+  while(b>a&&/\s/.test(txt[b-1]))b--;
+  if(b<=a)return null;
+  const touches=segs.filter(s=>s.f>a&&s.d<b);
   const api=bibApi(), inf=api.info(B.slug);
   let nom=inf?inf.nom:B.slug;
   if(B.slug==='psaumes')nom='Psaume';
-  const va=part[0].v, vb=part[part.length-1].v;
-  return {texte:part.map(x=>x.m).join(' '),ref:nom+' '+B.ch+':'+va+(vb>va?'-'+vb:''),a:a,b:b};
+  const va=touches[0].v, vb=touches[touches.length-1].v;
+  return {texte:txt.slice(a,b),ref:nom+' '+B.ch+':'+va+(vb>va?'-'+vb:''),a,b,partiel,txt};
 }
 function bibApercu(){
   const z=$('mbib-apercu'), r=bibResultat();
   if(!r){z.innerHTML='';z.classList.add('vide');return;}
   z.classList.remove('vide');
-  let h='<div class="mbib-tete"><span class="mbib-ref">'+besc(r.ref)+'</span>';
-  if(B.wa!==null)h+='<span class="mbib-tout" id="mbib-tout">Tout le passage</span>';
-  h+='</div><div class="mbib-mots'+(B.wa===null?' tout':'')+'" id="mbib-mots">';
-  B.mots.forEach((x,i)=>{
-    const on=i>=r.a&&i<=r.b, bout=(i===r.a||i===r.b)&&B.wa!==null;
-    h+='<span class="mbib-mot'+(on?' on':'')+(bout?' bout':'')+'" data-m="'+i+'">'+besc(x.m)+'</span> ';
-  });
+  let h='<div class="mbib-tete"><span class="mbib-ref" id="mbib-ref">'+besc(r.ref)+'</span>';
+  if(r.partiel)h+='<span class="mbib-tout" id="mbib-tout">Tout le passage</span>';
+  h+='</div><div class="mbib-texte'+(r.partiel?'':' tout')+'" id="mbib-texte">';
+  h+=r.partiel?besc(r.txt.slice(0,r.a))+'<mark class="mbib-sel">'+besc(r.txt.slice(r.a,r.b))+'</mark>'+besc(r.txt.slice(r.b)):besc(r.txt);
   h+='</div>';
   z.innerHTML=h;
 }
+/* la sélection faite dans le texte devient l'extrait ; la référence suit
+   à mesure, et l'extrait s'éclaire une fois la sélection lâchée */
+function bibLitSelection(){
+  const z=$('mbib-texte'); if(!z)return false;
+  const s=window.getSelection(); if(!s||!s.rangeCount||s.isCollapsed)return false;
+  const rg=s.getRangeAt(0);
+  if(!z.contains(rg.startContainer)||!z.contains(rg.endContainer))return false;
+  const pos=(n,o)=>{const r=document.createRange();r.setStart(z,0);r.setEnd(n,o);return r.toString().length;};
+  const a=pos(rg.startContainer,rg.startOffset), b=pos(rg.endContainer,rg.endOffset);
+  if(b<=a)return false;
+  B.cT=bibTexte().txt; B.ca=a; B.cb=b;
+  const r=bibResultat(), ref=$('mbib-ref'); if(r&&ref)ref.textContent=r.ref;
+  return true;
+}
+let BIB_SEL_T=0;
+document.addEventListener('selectionchange',()=>{
+  clearTimeout(BIB_SEL_T);
+  BIB_SEL_T=setTimeout(bibLitSelection,120);
+});
+['mouseup','touchend'].forEach(ev=>document.addEventListener(ev,e=>{
+  if(!e.target.closest||!e.target.closest('#mbib-texte'))return;
+  setTimeout(()=>{if(bibLitSelection())bibApercu();},ev==='touchend'?450:0);
+}));
 function bibVaRef(){
   const api=bibApi(), champ=$('i-mbib'), v=champ.value.trim();
   if(!v)return;
@@ -2149,10 +2213,70 @@ async function ecartTexte(ref,texte){
 function poseMarqueEcart(id,on){ document.querySelectorAll('[data-ecart="'+id+'"]').forEach(el=>el.classList.toggle('on',!!on)); majEcartsCats(); }
 /* une catégorie porte le signe dès qu'un de ses versets s'écarte sans que ce soit voulu */
 function catEcart(c){ return kindDe(c)==='v'&&c.verses.some(v=>!v.libre&&ecartConnu(v)); }
+/* ── LES DEUX CARRÉS, LES DEUX SIGNES, À LA TRACE ──
+   Emmanuel : « est-ce que c'est visible depuis la section, la catégorie,
+   et qu'on peut ensuite le suivre à la trace ? ». Une catégorie et une
+   section portent les deux signes de leurs versets. Toucher un signe mène
+   au premier verset concerné ; le toucher de nouveau mène au suivant. */
+function aJumeaux(c,v){
+  const g=(IDX_JUM||(IDX_JUM=indexJumeaux()))[cleVerset(v,kindDe(c))]||[];
+  return g.some(x=>x.cat.id!==c.id);
+}
+function catJum(c){ return c.verses.some(v=>aJumeaux(c,v)); }
+/* les versets concernés, dans l'ordre de la liste */
+function versetsSignes(cats,genre){
+  const out=[];
+  cats.forEach(c=>c.verses.forEach(v=>{
+    if(genre==='ecart'?(kindDe(c)==='v'&&!v.libre&&ecartConnu(v)):aJumeaux(c,v))out.push({c,v});
+  }));
+  return out;
+}
+const TRACE={cle:'',i:-1};
+function suitTrace(cle,cats,genre){
+  const l=versetsSignes(cats,genre); if(!l.length)return;
+  TRACE.i=TRACE.cle===cle?(TRACE.i+1)%l.length:0; TRACE.cle=cle;
+  vaVerset(l[TRACE.i].c.id,l[TRACE.i].v.id);
+}
+/* ouvre la section et la catégorie, amène le verset au milieu de l'écran
+   et l'éclaire un instant */
+function vaVerset(catId,vId){
+  const c=effectiveCats().find(x=>x.id===catId); if(!c)return;
+  if(S.mode!==kindDe(c)){S.mode=kindDe(c);modeEcrit();}
+  S.showAllCats=true; S.open[c.id]=true;
+  const s=secDe(c.id); if(s){S.secOpen[s]=true;secOpenEcrit();}
+  renderCats();
+  const cel=document.querySelector('.cat[data-id="'+c.id+'"]'); if(!cel)return;
+  const lv=cel.querySelector('[data-editv="'+vId+'"]'), row=lv&&lv.closest('.vrow');
+  const cible=row||cel;
+  cible.scrollIntoView({behavior:'smooth',block:'center'});
+  if(row){row.classList.remove('vu-trace');void row.offsetWidth;row.classList.add('vu-trace');}
+}
+/* les deux carrés d'un verset : une seule autre catégorie, on y va ;
+   plusieurs, on choisit laquelle */
+function allerJumeau(catId,vId){
+  const j=jumeauxDe(catId,vId); if(!j.length)return;
+  if(j.length===1){vaVerset(j[0].cat.id,j[0].v.id);return;}
+  const host=$('move-list'); host.innerHTML='';
+  $('mmove-title').textContent='Aussi dans…';
+  $('mmove-cancel').textContent='Fermer';
+  j.forEach(x=>{
+    const g=secDe(x.cat.id), sec=g&&S.sections.find(s=>s.id===g);
+    const r=document.createElement('div'); r.className='move-row';
+    r.innerHTML='<span>'+besc(x.cat.name.fr||'')+'</span>'+(sec?'<span class="move-sec">'+besc(sec.name)+'</span>':'');
+    r.onclick=()=>{closeModal('m-move');vaVerset(x.cat.id,x.v.id);};
+    host.appendChild(r);
+  });
+  openModal('m-move');
+}
 function majEcartsCats(){
   document.querySelectorAll('[data-catecart]').forEach(el=>{
     const c=effectiveCats().find(x=>x.id===el.dataset.catecart);
     el.classList.toggle('on',!!(c&&catEcart(c)));
+  });
+  /* la section s'allume dès qu'une de ses catégories s'allume */
+  document.querySelectorAll('[data-sececart]').forEach(el=>{
+    const w=el.closest('.sec');
+    el.classList.toggle('on',!!(w&&w.querySelector('.cat-ecart.on')));
   });
 }
 /* ── ÉTEINDRE LE SIGNE D'UN TOUCHER ──
@@ -2178,6 +2302,41 @@ async function accepteEcart(catId,vId){
   for(const cid in aSauver){ try{await saveCat(aSauver[cid]);}catch(e){console.warn('ecart',e);} }
   if(S.cur&&S.cur.item&&cibles.some(x=>x.v.id===S.cur.item.id)){ S.cur.item.libre=true; majEcartQuestion(); }
   if(!enSession())renderCats(); else majEcartsCats();
+}
+/* ── PENDANT LA SÉRIE : LES SIGNES SUR LA QUESTION ET LES PROPOSITIONS ──
+   Les deux carrés paraissent en haut du cadre quand le verset posé est
+   aussi ailleurs (un toucher dit où). Chaque proposition porte, dans son
+   coin, le ≠ et les deux carrés de son verset. */
+function catsDuVerset(it){
+  const k=cleVerset(it,it.genre||'v'), g=(IDX_JUM||(IDX_JUM=indexJumeaux()))[k]||[], vus={}, out=[];
+  g.forEach(x=>{if(!vus[x.cat.id]){vus[x.cat.id]=1;out.push(x.cat);}});
+  return out;
+}
+function majMarquesSerie(){
+  const q=S.cur, it=q&&q.item; if(!it)return;
+  const qj=$('q-jum');
+  if(qj){
+    const cats=catsDuVerset(it);
+    qj.classList.toggle('on',cats.length>1);
+    qj.onclick=()=>lvInfo('Ce verset est dans : '+cats.map(c=>c.name.fr||'').filter(Boolean).join(', ')+'.\nSa progression est partagée entre elles.');
+  }
+  $('opts').querySelectorAll('.opt').forEach(b=>{
+    const o=q.options.find(x=>x.id===b.dataset.oid); if(!o)return;
+    const pose=on=>{
+      let m=b.querySelector('.omq');
+      const j=catsDuVerset(o).length>1;
+      if(!on&&!j){if(m)m.remove();return;}
+      if(!m){m=document.createElement('span');m.className='omq';b.appendChild(m);}
+      m.innerHTML=(on?'<span class="omq-e" title="Ce verset s’écarte de la Bible du site">≠</span>':'')
+        +(j?'<span class="omq-j" title="Aussi dans d’autres catégories"><svg viewBox="0 0 24 24"><path d="M3 3h13v13H3zM8 8h13v13H8z"/></svg></span>':'');
+    };
+    const ecartPossible=(o.genre||'v')==='v'&&!o.pas&&!o.libre;
+    const e=ECART[o.id];
+    if(!ecartPossible){pose(false);return;}
+    if(e&&e.res!==undefined&&e.cle===cleVerset(o,'v')){pose(e.res===true);return;}
+    pose(false);
+    ecartTexte(o.fr&&o.fr.ref,o.fr&&o.fr.text).then(res=>{if(S.cur===q)pose(res===true&&!o.libre);});
+  });
 }
 /* pendant la série : le même signe, en haut du cadre de la question */
 function majEcartQuestion(){
@@ -2526,6 +2685,20 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('cat-list').addEventListener('click',async e=>{
     // en-têtes de section : traités avant les catégories, car ils vivent hors
     // de tout élément .cat
+    const sme=e.target.closest('[data-sececart],[data-secjum]');
+    if(sme){
+      const sid=sme.dataset.sececart||sme.dataset.secjum, genre=sme.dataset.sececart?'ecart':'jum';
+      const g=groupesCats().find(x=>(x.sec?x.sec.id:'__libres')===sid);
+      if(g)suitTrace('s:'+sid+':'+genre,g.cats,genre);
+      return;
+    }
+    const cme=e.target.closest('[data-catecart],[data-catjum]');
+    if(cme){
+      const cid=cme.dataset.catecart||cme.dataset.catjum, genre=cme.dataset.catecart?'ecart':'jum';
+      const c=effectiveCats().find(x=>x.id===cid);
+      if(c)suitTrace('c:'+cid+':'+genre,[c],genre);
+      return;
+    }
     const sgo=e.target.closest('[data-secgo]');
     if(sgo){S.soloCat=null;S.soloSec=sgo.dataset.secgo;startSession();return;}
     const sact=e.target.closest('[data-secact]');
@@ -2545,7 +2718,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const niv=e.target.closest('[data-niv]');
     if(niv){poseNiveau(niv.dataset.nivid,niv.dataset.niv);return;}
     const jum=e.target.closest('[data-jum]');
-    if(jum){montreJumeaux(id,jum.dataset.jum);return;}
+    if(jum){allerJumeau(id,jum.dataset.jum);return;}
     const editv=e.target.closest('[data-editv]');
     const movv=e.target.closest('[data-movev]');
     const delv=e.target.closest('[data-delv]');
@@ -2612,8 +2785,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     else if(el.dataset.b==='v')bibTapVerset(+el.dataset.v);
   });
   $('mbib-apercu').addEventListener('click',e=>{
-    if(e.target.id==='mbib-tout'){B.wa=null;B.wb=null;bibApercu();return;}
-    const m=e.target.closest('.mbib-mot'); if(m)bibTapMot(+m.dataset.m);
+    if(e.target.id==='mbib-tout'){B.ca=null;B.cb=null;bibApercu();return;}
   });
   ['m-cat','m-verse','m-search','m-move','m-bib','m-pick','m-sec'].forEach(id=>$(id).addEventListener('click',e=>{if(e.target===$(id))closeModal(id);}));
 });

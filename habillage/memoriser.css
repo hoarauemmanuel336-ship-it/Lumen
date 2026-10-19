@@ -256,6 +256,12 @@ html body .q-prompt.titre{font-family:var(--h-titre);font-weight:500;color:#fff}
 html body .q-ecart{top:14px;right:14px;width:36px;height:36px;padding:0;border-radius:0;font-family:var(--h-ui);font-size:16px;font-weight:600;color:var(--ambre);background:color-mix(in srgb,var(--ambre) 10%,transparent);transition:background .2s}
 html body .q-ecart.on{display:inline-flex;align-items:center;justify-content:center}
 html body .q-ecart:hover{color:var(--ambre);background:color-mix(in srgb,var(--ambre) 20%,transparent)}
+/* les deux carrés, à côté du ≠ (ou à sa place quand il ne paraît pas) */
+html body .q-jum{top:14px;right:14px;width:36px;height:36px;align-items:center;justify-content:center;color:var(--h-t3);background:var(--h-voile);transition:color .2s,background .2s}
+html body .q-ecart.on~.q-jum{right:54px}
+html body .q-jum:hover{color:var(--h-or)}
+html body .cat-jum:hover,html body .sec-mq-jum:hover{color:var(--h-or)}
+html body .sec-mq-ecart{font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:0}
 
 /* les trois pastilles de la question : plus grandes, un anneau sur la
    couleur choisie */
@@ -454,9 +460,9 @@ html body .mbib-apercu{margin-top:12px;padding:14px 16px 10px;border:1px solid v
 html body .mbib-apercu.vide{padding:0;border:0;background:none}
 html body .mbib-ref{font-family:var(--h-titre);font-size:18px;font-weight:500;color:#fff}
 html body .mbib-tout{min-height:30px;padding:6px 13px;font-size:12px}
-html body .mbib-mot{border-radius:0;color:var(--h-t4)}
-html body .mbib-mot.on{color:#fff;background:var(--h-voile-fort)}
-html body .mbib-mot.bout{box-shadow:inset 0 -2px 0 var(--h-or)}
+html body .mbib-texte{color:var(--h-t3)}
+html body .mbib-texte.tout{color:#fff}
+html body .mbib-texte .mbib-sel{color:#fff;background:var(--h-voile-fort);box-shadow:inset 0 -2px 0 var(--h-or)}
 
 /* ════════════════════════════════════════════════════════════════════
    15. L'ÉCRAN DE CONNEXION
