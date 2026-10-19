@@ -31,14 +31,3 @@ function descendance(id,vus){
   enfants(id).forEach(e=>out.push(...descendance(e.id,vus)));
   return out;
 }
-
-/* après un renommage de section : les articles publiés qu'elle contient
-   (sous-sections comprises) portent le nouveau chemin */
-async function rafraichitRub(id){
-  const dedans=descendance(id);
-  for(const a of S.liste.filter(a=>a.publie&&dedans.indexOf(a.rub)>=0))await rafraichitPublic(a);
-}
-
-/* Le chemin de rangement est recopié EN CLAIR : le visiteur n'a pas accès à
-   la liste des sections, qui est privée. */
-function cheminTexte(rid){ return rubValide(rid)?chemin(rid):''; }

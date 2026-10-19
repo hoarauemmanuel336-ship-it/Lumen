@@ -543,10 +543,6 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
   .jt-act{min-height:38px;display:inline-flex;align-items:center}
 }
 </style>
-<meta property="og:image" content="https://lumenveritatis.net/icones/partage.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 
@@ -621,7 +617,6 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
     <div class="acts">
       <button class="act" id="b-retour">&#8592; Les ressources</button>
       <button class="act" id="b-enr">Enregistrer</button>
-      <button class="act" id="b-etat">Publier</button>
       <button class="act" id="b-ranger">Ranger</button>
       <button class="act danger act-ic" id="b-suppr" aria-label="Mettre à la corbeille" title="Mettre à la corbeille"><svg class="ic-poubelle" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4.5 7h15M9.5 7V5.2c0-.4.3-.7.7-.7h3.6c.4 0 .7.3.7.7V7M6.5 7l.9 11.6c.1.8.7 1.4 1.5 1.4h6.2c.8 0 1.4-.6 1.5-1.4L17.5 7M10.2 10.5v6M13.8 10.5v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
@@ -842,7 +837,7 @@ function pretListe(){
   if(!AUTH_VU)return false;
   /* une lecture qui a ÉCHOUÉ compte comme faite : on montre ce qu'on a, et
      l'on dit ce qui manque, plutôt que d'attendre pour toujours */
-  return S.auteur ? ((RUBS_LUES||RUBS_ERR)&&LISTE_LUE) : PUBS_LUES;
+  return S.auteur ? ((RUBS_LUES||RUBS_ERR)&&LISTE_LUE) : true;
 }
 /* Si le service de connexion ne répond jamais (bloqueur, réseau coupé), on ne
    reste pas sur « Chargement… » : passé six secondes, on regarde en visiteur. */
@@ -858,7 +853,6 @@ function saveRubs(){
      d'abord) : l'ordre soigneusement choisi par l'auteur n'existait que chez
      lui. L'arbre (noms et ordre, rien de privé) est donc aussi déposé dans
      un document public, que le visiteur lit et suit. */
-  try{db.doc('config/res_rubriques').set({list:S.rubs.map(r=>({id:r.id,nom:r.nom,parent:r.parent||''}))}).catch(e=>console.warn('rubriques publiques',e));}catch(_){}
 }
 
 // ════════ MODALES MAISON ════════
@@ -869,32 +863,8 @@ let _res=null;
 /* (fonctions communes : voir commun/outils.js, posé par le build) */
 let _sres=null;
 let CHOIX_FIN=null;
-function lvChoix(titre,entrees){
-  $('choix-titre').textContent=titre;
-  const h=$('choix-liste'); h.innerHTML='';
-  return new Promise(res=>{
-    entrees.forEach(e=>{
-      const d=document.createElement('div');
-      d.className='choix'+(e.danger?' del':'')+(e.off?' off':'')+(e.fort?' fort':'');
-      /* niv : profondeur dans un arbre (le rangement se lit en retrait, comme
-         un sommaire) ; off : visible mais impossible à choisir (soi-même, ses
-         descendants, un niveau trop profond) */
-      if(e.niv)d.style.paddingLeft=(10+e.niv*22)+'px';
-      d.innerHTML=(e.niv?'<b class="cx-arbre">›</b>':'')+'<span>'+esc(e.nom)+'</span>'+(e.note?'<i>'+esc(e.note)+'</i>':'');
-      d.setAttribute('role','button'); d.tabIndex=e.off?-1:0;
-      d.onclick=()=>{if(e.off)return;CHOIX_FIN=null;$('m-choix').classList.remove('on');res(e.cle);};
-      d.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();d.click();}};
-      h.appendChild(d);
-    });
-    $('m-choix').classList.add('on');
-    /* le clavier entre dans le menu : première entrée en main */
-    setTimeout(()=>{const p=h.querySelector('.choix');if(p)p.focus();},40);
-    /* Échap et le clic hors de la boîte ferment aussi : la promesse doit se
-       résoudre dans tous les cas, sinon l'appelant reste suspendu */
-    CHOIX_FIN=()=>{$('m-choix').classList.remove('on');res(null);};
-    $('choix-annul').onclick=CHOIX_FIN;
-  });
-}
+/* (lvChoix : voir commun/outils.js, posé par le build) */
+
 
 
 // ════════ FICHIERS ════════
@@ -983,15 +953,6 @@ async function telechargeRessource(a,publik){
     document.body.appendChild(l); l.click(); l.remove();
   }catch(e){ lvInfo('Ce fichier n’a pas pu être chargé. Vérifiez la connexion, puis réessayez.'); }
 }
-async function menuPublic(id){
-  const a=PUBS.find(x=>x.id===id); if(!a)return;
-  /* « Voir » n'y figure pas : toucher la carte l'ouvre déjà (27/09) */
-  if(!telechargeable(a))return;
-  const c=await lvChoix((a.titre||'Sans titre'),[
-    {cle:'tel',nom:'Télécharger',note:nomTelecharge(a)}
-  ]);
-  if(c==='tel')telechargeRessource(a,true);
-}
 async function telechargeCode(a){
   if(!a)return;
   try{ await contenuDe(a,!S.auteur); }catch(e){ lvInfo('Le contenu n’a pas pu être chargé. Vérifiez la connexion, puis réessayez.'); return; }
@@ -1040,13 +1001,13 @@ async function envoieFichier(f){
   if(S.res!==cible||typeDe(cible)!==typeAvant){effaceMedia(id);dis('');return;}
   const vieux=cible.media;
   cible.media=id; cible.mime=mimeF; cible.taille=f.size; cible.nom=f.name||''; cible.vign=vign;
-  if(vieux&&vieux!==id){effaceMedia(vieux);if(cible.publie)effaceMediaPublic(vieux);}
+  if(vieux&&vieux!==id)effaceMedia(vieux);
   rendEditeur(); marqueSale(); enregistre(true);
 }
 async function chargeMedia(id,publik){
   const cle=(publik?'p:':'')+id;
   if(CACHE.has(cle))return CACHE.get(cle);
-  const col=publik?pmed():mcol();
+  const col=mcol();
   const meta=await col.doc(id).get();
   if(!meta.exists)throw new Error('fichier introuvable');
   const m=meta.data(), bouts=[];
@@ -1709,10 +1670,9 @@ function carteRessource(r,publik){
     +(m?'<span class="ct-mq" title="'+esc(MARQUES[m].nom)+'" aria-label="'+esc(MARQUES[m].nom)+'">'+svgMarque(m)+'</span>':'')
     +'<div class="ct-titre'+(titre?'':' ct-vide')+'">'+esc(titre||'Sans titre')+'</div></div>'
     +'<div class="ct-pied">'
-    +(publik?'<span>'+esc(dateFr(r.maj||r.cree))+'</span>'
-            :'<span class="ct-etat'+(r.publie?' publie':'')+'">'+(r.publie?'Publié':'Privé')+'</span>')
+    +'<span>'+esc(dateFr(r.maj||r.cree))+'</span>'
     +'</div></div>'
-    +(publik?(telechargeable(r)?'<span class="ct-menu" data-rmenu3="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Cette ressource">⋯</span>':''):'<span class="coche" aria-hidden="true">✓</span>'
+    +(publik?'':'<span class="coche" aria-hidden="true">✓</span>'
       +'<span class="ct-menu" data-rmenu2="'+esc(r.id)+'" role="button" tabindex="0" aria-label="Cette ressource">⋯</span>'
       +'<span class="poignee" aria-label="Glisser pour déplacer" title="Glisser pour déplacer">⠿</span>'
       );
@@ -1826,7 +1786,7 @@ async function menuRub(id){
   if(c==='deplacer'){await deplaceRub(id);return;}
   if(c==='renom'){
     const nom=await lvSaisie('Renommer','',r.nom,'Nom');
-    if(nom&&nom.trim()){r.nom=nom.trim();saveRubs();rendLister();rafraichitRub(id);}
+    if(nom&&nom.trim()){r.nom=nom.trim();saveRubs();rendLister();}
     return;
   }
   if(c==='sous'){await nouvelleRub(id);return;}
@@ -1904,7 +1864,6 @@ async function rangeRessource(id){
     a.rub=cible||''; a.ordre=null;
     if(S.res&&S.res.id===id){S.res.rub=cible||'';S.res.ordre=null;}
     /* le chemin est recopié en clair dans la version publique */
-    if(a.publie)await rafraichitPublic(a);
   }catch(e2){console.warn('rangement',e2);lvInfo('Le rangement n’a pas pu être enregistré.');}
   rendLister();
 }
@@ -1923,7 +1882,6 @@ async function appliqueOrdre(nouvel){
     changes.forEach(x=>lot.set(acol().doc(x.id),{ordre:x.ordre},{merge:true}));
     await lot.commit();
     if(S.res)S.res.ordre=(S.liste.find(x=>x.id===S.res.id)||{}).ordre;
-    for(const x of changes)if(x.publie)await rafraichitPublic(x);
   }catch(e2){console.warn('placement',e2);lvInfo('La place n’a pas pu être enregistrée. Vérifiez la connexion et réessayez.');}
 }
 /* déplacer une ressource d'un cran (les flèches), ou la poser à un rang donné */
@@ -1954,7 +1912,6 @@ async function metDans(id,cible){
   try{
     await acol().doc(id).set({rub:cible,ordre:null},{merge:true});
     a.rub=cible; a.ordre=null; if(S.res&&S.res.id===id){S.res.rub=cible;S.res.ordre=null;}
-    if(a.publie)await rafraichitPublic(a);
   }catch(e2){console.warn('rangement',e2);lvInfo('Le rangement n’a pas pu être enregistré.');}
   rendLister();
 }
@@ -1967,7 +1924,7 @@ function rubDans(id,cible){
   if(cible&&descendance(id).indexOf(cible)>=0)return false;
   if(cible&&niveau(cible)+hauteur(id)>RUB_MAX){lvInfo('Trop profond : le rangement ne descend pas au-delà de '+RUB_MAX+' niveaux.');return false;}
   const ouAvant=S.ouLa;
-  r.parent=cible; saveRubs(); rafraichitRub(id);
+  r.parent=cible; saveRubs();
   if(ouAvant&&descendance(id).indexOf(ouAvant)>=0)vaVers(ouAvant); else rendLister();
   return true;
 }
@@ -2148,7 +2105,6 @@ async function deplaceChoix(){
     const lot=db.batch(); let k=0;
     res.forEach(a=>{ if((rubValide(a.rub)?a.rub:'')===cible)return; lot.set(acol().doc(a.id),{rub:cible,ordre:null},{merge:true}); a.rub=cible; a.ordre=null; k++; });
     if(k)await lot.commit();
-    for(const a of res)if(a.publie)await rafraichitPublic(a);
     rids.forEach(id=>rubDans(id,cible));
   }catch(e2){console.warn('déplacement',e2);lvInfo('Le déplacement n’a pas pu être enregistré. Vérifiez la connexion, puis réessayez.');}
   basculeChoisir(false);
@@ -2231,8 +2187,7 @@ function majCorbBouton(){
 }
 async function jetteRessource(a,racine){
   if(!a)return;
-  if(a.publie)await retireDeLigne(a);
-  const q={suppr:maintenant(),supprRub:racine||'',publie:false};
+  const q={suppr:maintenant(),supprRub:racine||''};
   await acol().doc(a.id).set(q,{merge:true});
   Object.assign(a,q);
 }
@@ -2246,7 +2201,6 @@ async function detruitRessource(a){
   SUPPRIMES.add(a.id);
   /* la copie publique est déjà retirée à la mise à la corbeille ; ce filet
      couvre une fiche tombée là avant cette règle */
-  try{ if(a.publie)await retireDeLigne(a); }catch(e){console.warn('retrait',e);}
   await acol().doc(a.id).delete();
   try{ await effaceCode(ccol(),a.id); }catch(e){console.warn('contenu',e);}
   CODES.delete(a.id);
@@ -2264,8 +2218,7 @@ async function jetteRubrique(id,avec){
     else{
       /* laissées en place, elles ressortent sans domaine */
       a.rub=''; await acol().doc(a.id).set({rub:''},{merge:true});
-      if(a.publie)await rafraichitPublic(a);
-    }
+      }
   }
   /* si l'on se tenait dedans, on remonte d'un cran plutôt que de rester sur
      une page qui n'existe plus */
@@ -2329,13 +2282,12 @@ async function videCorbeille(){
   rendCorbeille(); majCorbBouton();
 }
 
-// ════════ L'ESPACE PUBLIC ════════
-/* Les ressources privées vivent sous users/{compte}/… , que personne d'autre
-   ne peut lire. Publier ne « déverrouille » donc rien : cela RECOPIE la fiche
-   et son fichier dans deux collections ouvertes à tous. Ce qui n'a pas été
-   copié n'est pas lisible, point. */
-const pcol=()=>db.collection('public_ressources');
-const pmed=()=>db.collection('public_res_medias');
+// ════════ SITE PRIVÉ ════════
+/* ── PLUS DE PUBLICATION (19/10, Emmanuel : « je ne compte plus le rendre
+   public ») ──
+   Le site est privé : rien ne se publie plus, rien ne se recopie dans un
+   espace public, et il n'y a plus de visiteur à servir. Ce qui reste des
+   anciennes copies publiques dans la base n'est plus lu par personne. */
 
 /* ── LE CONTENU À PART, LA LISTE LÉGÈRE (26/09) ──
    Le code d'une ressource (un livre, un diagramme, un parcours) pèse de
@@ -2350,7 +2302,6 @@ const pmed=()=>db.collection('public_res_medias');
    première fois que la liste les voit : le contenu est d'abord écrit à sa
    nouvelle place, puis seulement retiré de la fiche. */
 const ccol=()=>db.collection('users/'+S.uid+'/res_code');
-const pccol=()=>db.collection('public_res_code');
 const CODES=new Map();
 
 /* ── LES GROS CONTENUS EN TRANCHES (28/09) ──
@@ -2419,7 +2370,7 @@ async function contenuDe(a,publik){
   if(CODES.has(a.id)){a.code=CODES.get(a.id);return a.code;}
   /* une lecture ratée LÈVE : un contenu pris pour vide serait ensuite
      enregistré vide par-dessus le vrai */
-  const lu=await litCode(publik?pccol():ccol(),a.id);
+  const lu=await litCode(ccol(),a.id);
   const code=lu!==null?lu:(typeof a.code==='string'?a.code:'');
   CODES.set(a.id,code); a.code=code;
   /* une ressource enregistrée avant qu'on sache reconnaître son espèce
@@ -2441,154 +2392,18 @@ async function migreContenus(liste){
       if(code){
         await ccol().doc(a.id).set({code:code});
         CODES.set(a.id,code);
-        if(a.publie){ await pccol().doc(a.id).set({code:code}); await pcol().doc(a.id).update({code:FV.delete()}).catch(()=>{}); }
       }
       await acol().doc(a.id).update({code:FV.delete(),codeTaille:new Blob([code]).size,marqueDevinee:devineMarque(a)});
     }catch(e){ console.warn('déplacement du contenu',a.id,e); MIGRES.delete(a.id); }
   }
 }
 
-async function copieMediaPublic(id){
-  if(!id)return;
-  const meta=await mcol().doc(id).get();
-  if(!meta.exists)return;
-  const m=meta.data(), n=m.n||0;
-  /* un fichier ne change jamais sous le même identifiant : s'il est déjà en
-     ligne, complet, on ne le recopie pas (chaque enregistrement automatique
-     renvoyait sinon tout le fichier, tranche par tranche) */
-  try{const pub=await pmed().doc(id).get();if(pub.exists&&(pub.data().n||0)===n&&n>0)return;}catch(e){}
-  for(let k=0;k<n;k++){
-    const t=await mcol().doc(id).collection('tranches').doc(String(k)).get();
-    await pmed().doc(id).collection('tranches').doc(String(k)).set({d:t.exists?(t.data().d||''):''});
-  }
-  await pmed().doc(id).set({mime:m.mime||'application/octet-stream',n:n});
-}
-async function effaceMediaPublic(id){
-  if(!id)return;
-  try{
-    const meta=await pmed().doc(id).get();
-    const n=meta.exists?(meta.data().n||0):0;
-    for(let k=0;k<n;k++)await pmed().doc(id).collection('tranches').doc(String(k)).delete();
-    await pmed().doc(id).delete();
-  }catch(e){console.warn('fichier public',e);}
-}
-async function metEnLigne(a){
-  if(SUPPRIMES.has(a.id))return;
-  if(a.media)await copieMediaPublic(a.media);
-  /* l'ancien fichier public, s'il a été remplacé, est retiré */
-  try{
-    const anc=await pcol().doc(a.id).get();
-    const avant=anc.exists?(anc.data().media||''):'';
-    if(avant&&avant!==(a.media||''))await effaceMediaPublic(avant);
-  }catch(e){console.warn('nettoyage fichier public',e);}
-  if(typeDe(a)==='diagramme'){
-    const code=await contenuDe(a,false);
-    await ecritCode(pccol(),a.id,code);
-  }
-  await pcol().doc(a.id).set({
-    titre:a.titre||'', type:typeDe(a), desc:a.desc||'', chemin:cheminTexte(a.rub),
-    media:a.media||'', mime:a.mime||'', taille:a.taille||0, nom:a.nom||'',
-    vign:a.vign||'', url:a.url||'', marque:a.marque||'',
-    codeTaille:a.codeTaille||0, marqueDevinee:devineMarque(a),
-    cree:a.cree||null, maj:a.maj||null,
-    ordre:rangDe(a)===null?null:a.ordre
-  });
-}
-async function retireDeLigne(a){
-  /* si la copie publique ne peut pas être retirée, l'erreur remonte : sans
-     cela la fiche s'affichait « Privée » tout en restant lisible en ligne */
-  await pcol().doc(a.id).delete();
-  try{ await effaceCode(pccol(),a.id); }catch(e){console.warn('contenu public',e);}
-  if(a.media)await effaceMediaPublic(a.media);
-}
-async function basculeEtat(id){
-  const a=S.liste.find(x=>x.id===id); if(!a)return;
-  const versPublic=!a.publie;
-  const b=$('b-etat');
-  if(b){b.disabled=true;b.textContent=versPublic?'Publication…':'Retrait…';}
-  let enLigneFait=false;
-  try{
-    if(versPublic)await metEnLigne(a); else await retireDeLigne(a);
-    enLigneFait=true;
-    const maj=new Date().toISOString();
-    await acol().doc(id).set({publie:versPublic,maj:maj},{merge:true});
-    a.publie=versPublic; a.maj=maj;
-    if(S.res&&S.res.id===id)S.res.publie=a.publie;
-  }catch(e){
-    console.warn('publication',e);
-    /* copie publique faite mais état privé non écrit : on défait la copie,
-       sinon la ressource était en ligne, marquée « Privé », sans moyen de la
-       retirer (05/09) */
-    if(enLigneFait){try{if(versPublic)await retireDeLigne(a);else await metEnLigne(a);}catch(_){}}
-    lvInfo(versPublic
-      ? 'La mise en ligne a échoué, rien n’a été changé. Si c’est la première fois, les règles de sécurité ne sont peut-être pas encore posées : voir REGLES-firestore.txt.'
-      : 'Le retrait a échoué, rien n’a été changé. Réessayez.');
-  }
-  if(b)b.disabled=false;
-  rendLister(); majEtatEditeur();
-}
-function majEtatEditeur(){
-  const b=$('b-etat'); if(!b||!S.res)return;
-  b.textContent=S.res.publie?'Rendre privé':'Publier';
-  b.classList.toggle('publie',!!S.res.publie);
-}
-
-// ════════ LECTURE PUBLIQUE ════════
-let PUBS=[];
-async function litPublic(){
-  try{
-    const [sn,rp]=await Promise.all([pcol().get(),db.doc('config/res_rubriques').get().catch(()=>null)]);
-    RUBS_PUB=(rp&&rp.exists&&Array.isArray(rp.data().list))?rp.data().list:null;
-    PUBS=sn.docs.map(d=>Object.assign({id:d.id},d.data()));
-    PUBS.sort((x,y)=>String(y.maj||y.cree||'').localeCompare(String(x.maj||x.cree||'')));
-    /* SEULEMENT POUR LE VISITEUR. L'auteur a ses propres domaines, lus depuis
-       son compte ; l'arbre reconstruit à partir des ressources publiées ne doit
-       surtout pas les remplacer. La lecture publique part au chargement, avant
-       que le compte ne soit connu : quand elle revenait après, elle vidait le
-       rangement de l'auteur et le renvoyait à la racine, même s'il avait ouvert
-       une page profonde. */
-    if(!S.auteur)arbrePublic();
-    PUBS_LUES=true; PUB_ERR=false;
-  }catch(e){console.warn('ressources publiques',e);PUBS=[];if(!S.auteur)S.rubs=[];PUBS_LUES=true;PUB_ERR=true;}
-}
-/* Le visiteur n'a pas accès à la liste des domaines, qui est privée : chaque
-   ressource publiée porte seulement son chemin écrit en clair. On reconstruit
-   donc l'arborescence à partir de ces chemins, et le visiteur navigue de la
-   même façon que l'auteur, sans que rien de privé n'ait été exposé. */
-let RUBS_PUB=null;
-function arbrePublic(){
-  /* L'arbre publié par l'auteur, s'il existe, donne l'ordre ; chaque ressource
-     y est rattachée par son chemin (les noms). Ce qui n'y correspond pas (un
-     arbre pas encore republié) est ajouté à la suite, comme avant. Puis les
-     branches sans ressource publiée sont retirées : le visiteur ne voit pas
-     de rayon vide. */
-  const rubs=[], vus={};
-  (Array.isArray(RUBS_PUB)?RUBS_PUB:[]).forEach(r=>{ if(r&&r.id&&r.nom){rubs.push({id:String(r.id),nom:String(r.nom),parent:String(r.parent||'')});} });
-  const parentOk=id=>!id||rubs.some(x=>x.id===id);
-  rubs.forEach(r=>{ if(!parentOk(r.parent))r.parent=''; });
-  /* clé de chemin → id, pour l'arbre publié */
-  const cheminDe=(id)=>{const b=[];let r=rubs.find(x=>x.id===id),g=0;while(r&&g++<8){b.unshift(r.nom);r=r.parent?rubs.find(x=>x.id===r.parent):null;}return b.join('/');};
-  rubs.forEach(r=>{vus[cheminDe(r.id)]=r.id;});
-  PUBS.forEach(a=>{
-    const bouts=String(a.chemin||'').split('›').map(x=>x.trim()).filter(Boolean);
-    let parent='', cle='';
-    bouts.forEach(nom=>{
-      cle=cle?cle+'/'+nom:nom;
-      if(!vus[cle]){ vus[cle]='p'+rubs.length; rubs.push({id:vus[cle],nom:nom,parent:parent}); }
-      parent=vus[cle];
-    });
-    a.rub=parent;
-  });
-  S.rubs=rubs;
-  const pleines=new Set();
-  PUBS.forEach(a=>{let id=a.rub,g=0;while(id&&g++<8){pleines.add(id);const r=rubDe(id);id=r?r.parent:'';}});
-  S.rubs=rubs.filter(r=>pleines.has(r.id));
-}
+/* Qui n'est pas connecté avec le compte de l'auteur voit seulement
+   l'invitation à se connecter. */
 function rendPublic(){
-  $('mot-liste').textContent='';
-  $('acts-liste').style.display='none';
-  S.liste=PUBS;
-  rendLister();
+  $('acts-liste').style.display='none'; $('liste').innerHTML='';
+  const f=$('fil'); if(f)f.innerHTML='';
+  motAccueil();
 }
 
 // ════════ VOIR UNE RESSOURCE ════════
@@ -2752,13 +2567,11 @@ async function menuRessource(id){
   const c=await lvChoix((a.titre||'Sans titre'),[
     {cle:'modif',nom:'Modifier'},
     ...(telechargeable(a)?[{cle:'tel',nom:'Télécharger',note:nomTelecharge(a)}]:[]),
-    {cle:'etat',nom:a.publie?'Rendre privé':'Publier',note:a.publie?'publiée':'privée'},
     {cle:'ranger',nom:'Ranger dans…',note:rubValide(a.rub)?chemin(a.rub):'sans catégorie'},
     {cle:'suppr',nom:'Mettre à la corbeille',danger:true}
   ]);
   if(c==='modif')ouvre(id);
   else if(c==='tel')telechargeRessource(a,false);
-  else if(c==='etat')await basculeEtat(id);
   else if(c==='ranger')rangeRessource(id);
   else if(c==='suppr'){
     if(!await lvConfirm('Mettre cette ressource à la corbeille ? Elle quitte la ligne et vous la retrouvez dans la corbeille.'))return;
@@ -2851,7 +2664,7 @@ function rendEditeur(){
         if(!await lvConfirm('Changer d’espèce retire le fichier déjà déposé. Continuer ?'))return;
         const vieux=S.res.media;
         S.res.media=''; S.res.mime=''; S.res.taille=0; S.res.nom=''; S.res.vign='';
-        effaceMedia(vieux); if(S.res.publie)effaceMediaPublic(vieux);
+        effaceMedia(vieux);
       }
       S.res.type=k; rendEditeur(); marqueSale();
     };
@@ -2904,7 +2717,7 @@ async function enregistreUneFois(silence){
   a.maj=new Date().toISOString();
   if(!a.cree)a.cree=a.maj;
   const doc={
-    titre:a.titre||'', type:typeDe(a), desc:a.desc||'', publie:!!a.publie, rub:a.rub||'',
+    titre:a.titre||'', type:typeDe(a), desc:a.desc||'', rub:a.rub||'',
     media:a.media||'', mime:a.mime||'', taille:a.taille||0, nom:a.nom||'',
     vign:a.vign||'', url:a.url||'', cree:a.cree, maj:a.maj,
     marque:a.marque||''
@@ -2935,7 +2748,6 @@ async function enregistreUneFois(silence){
       lvInfo('Cette ressource a été supprimée depuis un autre onglet ou un autre appareil : cette version n\u2019a pas été enregistrée. Copiez votre texte si vous voulez le garder.');
       return;
     }
-    if(ex.exists){ const pub=!!(ex.data()||{}).publie; if(pub!==!!a.publie){ a.publie=pub; doc.publie=pub; try{ if(typeof majEtatEditeur==='function')majEtatEditeur(); }catch(_){} } }
     /* contenu et fiche partent ensemble, ou pas du tout */
     if(avecCode&&CODES.get(a.id)!==a.code)await ecritCode(ccol(),a.id,a.code,lot=>lot.set(acol().doc(a.id),doc));
     else await acol().doc(a.id).set(doc);
@@ -2943,13 +2755,10 @@ async function enregistreUneFois(silence){
     delete a.neuve;
     /* quittée ou supprimée pendant l'envoi : on n'y touche plus */
     if(S.res!==a||SUPPRIMES.has(a.id))return;
-    const enLigne=a.publie?await rafraichitPublic(a):true;
     if(S.res!==a)return;
     /* une frappe survenue pendant l'envoi reste « modifiée » et partira au
        prochain passage */
     if(gen===(S.gen||0))S.sale=false;
-    /* enregistrée chez soi mais pas remise en ligne : ça se dit (05/09) */
-    if(!enLigne){$('etat-enr').textContent='Enregistré, mais pas remis en ligne';$('etat-enr').classList.remove('vu');S.sale=true;return;}
     $('etat-enr').textContent=S.sale?'Modifié':'Enregistré'; $('etat-enr').classList.toggle('vu',!S.sale);
     if(!silence)setTimeout(()=>{if(!S.sale)$('etat-enr').textContent='';},2600);
   }catch(e){
@@ -2966,14 +2775,14 @@ async function ouvre(id){
   S.res=JSON.parse(JSON.stringify(a)); S.sale=false;
   if(typeDe(a)==='diagramme')S.res.code=code;
   $('etat-enr').textContent='';
-  rendEditeur(); majEtatEditeur(); vue('edit');
+  rendEditeur(); vue('edit');
 }
 function nouveau(){
   /* la ressource naît là où l'on se trouve : on vient d'ouvrir « Pentateuque »,
      c'est là qu'elle doit se ranger, sans avoir à le redire */
-  S.res={id:'s'+Date.now(),titre:'',type:'diagramme',desc:'',publie:false,rub:ici(),
+  S.res={id:'s'+Date.now(),titre:'',type:'diagramme',desc:'',rub:ici(),
          media:'',mime:'',taille:0,nom:'',vign:'',code:'',url:'',cree:null,maj:null,neuve:true};
-  S.sale=false; $('etat-enr').textContent=''; majEtatEditeur();
+  S.sale=false; $('etat-enr').textContent='';
   rendEditeur(); vue('edit');
   setTimeout(()=>$('ed-titre').focus(),80);
 }
@@ -2998,7 +2807,7 @@ async function supprime(){
 
 // ════════ ÉVÉNEMENTS ════════
 $('b-nouveau').onclick=nouveau;
-$('b-organiser').onclick=()=>basculeOrganise();
+$('b-organiser').onclick=()=>organiser('ressources');
 $('b-choisir').onclick=()=>basculeChoisir();
 $('b-choix-fin').onclick=()=>basculeChoisir(false);
 $('b-tout').onclick=toutChoisir;
@@ -3021,7 +2830,6 @@ $('b-voir-retour').onclick=()=>{S.res=null;S.vu='';vaVers(ici());vue('liste');};
 $('b-enr').onclick=()=>enregistre();
 /* une ressource jamais enregistrée n'existe pas encore dans la liste : on
    l'enregistre d'abord, sinon ces boutons ne faisaient rien, sans un mot */
-$('b-etat').onclick=async()=>{if(!S.res)return;if(!S.liste.some(x=>x.id===S.res.id))await enregistre(true);basculeEtat(S.res.id);};
 $('b-ranger').onclick=async()=>{if(!S.res)return;if(!S.liste.some(x=>x.id===S.res.id))await enregistre(true);rangeRessource(S.res.id);};
 $('b-suppr').onclick=supprime;
 $('ed-titre').addEventListener('input',function(){autoHauteur(this);marqueSale();});
@@ -3086,8 +2894,6 @@ document.addEventListener('click',e=>{
   }
   const c=e.target.closest?e.target.closest('[data-rmenu2]'):null;
   if(c){e.stopPropagation();menuRessource(c.getAttribute('data-rmenu2'));return;}
-  const c3=e.target.closest?e.target.closest('[data-rmenu3]'):null;
-  if(c3){e.stopPropagation();menuPublic(c3.getAttribute('data-rmenu3'));return;}
   const m=e.target.closest?e.target.closest('[data-rmenu]'):null;
   if(m){e.stopPropagation();menuRub(m.getAttribute('data-rmenu'));return;}
   const fl=e.target.closest?e.target.closest('[data-mv]'):null;
@@ -3112,7 +2918,7 @@ document.addEventListener('click',e=>{
   if(k){
     if(S.organise)return;
     const id=k.getAttribute('data-rid2');
-    const a=S.auteur?S.liste.find(x=>x.id===id):PUBS.find(x=>x.id===id);
+    const a=S.auteur?S.liste.find(x=>x.id===id):null;
     if(a)voit(a,!S.auteur);
   }
 });
@@ -3158,21 +2964,12 @@ function ecoute(){
 }
 function motAccueil(){
   if(!S.uid){$('mot-liste').textContent='Connectez-vous pour ajouter des ressources.';$('acts-liste').style.display='none';return;}
-  if(!S.auteur){$('mot-liste').textContent=pretListe()?'Aucune ressource publiée pour l’instant.':'';$('acts-liste').style.display='none';$('liste').innerHTML='';return;}
+  if(!S.auteur){$('mot-liste').textContent='Ce compte n’a pas accès à cette page.';$('acts-liste').style.display='none';$('liste').innerHTML='';return;}
   $('mot-liste').textContent=''; $('acts-liste').style.display=pretListe()?'':'none';
 }
 /* Le visiteur voit les ressources PUBLIÉES. L'auteur retrouve les siennes et
    son formulaire. Une seule page, deux visages. */
-let LECTURE_PUB=null;
-async function ouvrePublic(){
-  /* lancée au chargement puis à l'arrivée du compte : une seule lecture à la
-     fois, la seconde attend la première au lieu de tout refaire */
-  if(!LECTURE_PUB)LECTURE_PUB=litPublic().finally(()=>{LECTURE_PUB=null;});
-  await LECTURE_PUB;
-  /* routeHash choisit lui-même le visage à montrer : la liste de l'auteur ou
-     celle du visiteur. Rien d'autre à faire ici. */
-  routeHash();
-}
+function ouvrePublic(){ routeHash(); }
 /* Firebase redit qui est connecté à chaque réveil de la page (retour d'onglet,
    jeton rafraîchi). Ce n'est pas un changement de compte : si c'est le même
    utilisateur, on ne touche à rien, sinon on refermait la ressource ouverte et
@@ -3190,7 +2987,7 @@ auth.onAuthStateChanged(u=>{
      laisser chaque publication échouer sans explication (05/09) */
   if(S.auteur&&u&&u.emailVerified===false)setTimeout(()=>lvInfo('Votre adresse e-mail n’est pas vérifiée : les règles de sécurité refuseront toute mise en ligne tant qu’elle ne l’est pas. Connectez-vous avec Google, ou faites vérifier l’adresse depuis la console Firebase.'),600);
   S.res=null; S.vu=''; S.liste=[]; S.jetees=[]; S.rubs=[]; S.corb=[]; S.pris.clear(); RUBS_LUES=false; RUBS_ERR=false; LISTE_ERR=false;
-  if(S.auteur){ vue('liste'); motAccueil(); ecoute(); }
+  if(S.auteur){ vue('liste'); motAccueil(); ecoute(); setTimeout(()=>{menagePublic().catch(e=>console.warn('ménage',e));},4000); }
   else{ if(COUPE){COUPE();COUPE=null;} $('acts-liste').style.display='none'; ouvrePublic(); }
 });
 /* ── ON DESSINE TOUT DE SUITE ──
@@ -3206,7 +3003,7 @@ function routeHash(){
   const h=location.hash||'';
   const mr=h.match(/^#r\/(.+)$/);
   if(mr){
-    const a=S.auteur?S.liste.find(x=>x.id===mr[1]):PUBS.find(x=>x.id===mr[1]);
+    const a=S.auteur?S.liste.find(x=>x.id===mr[1]):null;
     if(a){voit(a,!S.auteur);return;}
     /* la liste n'est pas encore arrivée : on garde l'adresse en mémoire et on
        ouvrira dès que les données seront là, plutôt que de retomber à la

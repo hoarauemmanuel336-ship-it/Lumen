@@ -81,8 +81,8 @@ const polices = h => h.replace(/<link[^>]*fonts\.(?:googleapis|gstatic)\.com[^>]
    dans la page elle-même, pas en fichiers à part : Mémoriser fonctionne hors
    ligne, et rien de plus n'est à mettre en cache. */
 const COMMUN_JS_PAGES = {
-  'articles.html': ['outils', 'rubriques', 'editeur', 'choix-verset'],
-  'ressources.html': ['outils', 'rubriques'],
+  'articles.html': ['outils', 'rubriques', 'ia', 'menage'],
+  'ressources.html': ['outils', 'rubriques', 'ia', 'menage'],
   'commentaires.html': ['outils', 'editeur', 'choix-verset'],
   'memoriser.html': ['choix-verset'],
 };
@@ -692,10 +692,10 @@ const RECH_JS = `(function(){
 
 function page({ lang, type, title, description, frPath, enPath, base, otherRel, ctx, main, extraJS, noindex }) {
   const u = UI[lang];
-  const hreflang = '';
   const url = DOMAINE + frPath;
   /* la page d'erreur ne doit pas se retrouver dans les moteurs de recherche */
-  const robots = noindex ? '\n<meta name="robots" content="noindex">' : '';
+  /* site privé (19/10) : aucune page n'est faite pour les moteurs de recherche */
+  const robots = '\n<meta name="robots" content="noindex,nofollow">';
   return `<!DOCTYPE html>
 <html lang="${u.html}">
 <head>
@@ -705,18 +705,6 @@ function page({ lang, type, title, description, frPath, enPath, base, otherRel, 
 <meta name="darkreader-lock"><style>html{color-scheme:dark}@media (prefers-color-scheme:dark){html{color-scheme:dark}}@media (prefers-color-scheme:light){html{color-scheme:dark}}</style>
 <title>${title}</title>
 <meta name="description" content="${description}">${robots}
-<link rel="canonical" href="${url}">
-${hreflang}
-<meta property="og:type" content="${type === 'article' ? 'article' : 'website'}">
-<meta property="og:locale" content="${u.oglocale}">
-<meta property="og:site_name" content="Lumen">
-<meta property="og:title" content="${title}">
-<meta property="og:description" content="${description}">
-<meta property="og:url" content="${url}">
-<meta property="og:image" content="${DOMAINE}/icones/partage.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/icones/lumen-180.png">
 <meta name="theme-color" content="#0a0a0a">
@@ -862,23 +850,7 @@ ecrire('404.html', page({
   main: main404(), noindex: true
 }));
 
-// sitemap bilingue avec alternates
-/* Le sitemap liste toutes les surfaces publiques. Auparavant il ne portait que
-   l'accueil, parce que « pairs » ne contient que les pages passées par
-   genPaire ; la Bible, Mémoriser et les Articles en étaient absents. */
-/* on regarde les fichiers SOURCE : à ce moment du build, les pages ne sont pas
-   encore copiées dans le dossier de sortie */
-const CHEMINS_PUBLICS = ['bible.html', 'memoriser.html', 'articles.html', 'ressources.html']
-  .filter(f => fs.existsSync(f)).map(f => '/' + f);
-const sm = pairs.map(p => p.fr).concat(CHEMINS_PUBLICS).map(u => {
-  return `  <url>
-    <loc>${DOMAINE}${u}</loc>
-  </url>`;
-}).join('\n');
-ecrire('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${sm}
-</urlset>`);
+/* Site privé (19/10) : plus de plan du site pour les moteurs de recherche. */
 
 // robots.txt
 /* Site privé (26/09) : aucun moteur de recherche n'entre. */
@@ -910,10 +882,7 @@ ecrire('recherche-fr.js', 'window.LUMEN_BIBLE=' + JSON.stringify(bibFR) + ';');
 function metaCopie(h, chemin, titre, desc){
   const url = DOMAINE + chemin, e = x => String(x).replace(/"/g, '&quot;');
   let m = '';
-  if (!/rel="canonical"/.test(h)) m += `<link rel="canonical" href="${url}">\n`;
   if (!/name="description"/.test(h)) m += `<meta name="description" content="${e(desc)}">\n`;
-  if (!/property="og:title"/.test(h)) m += `<meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Lumen">\n<meta property="og:title" content="${e(titre)}"><meta property="og:description" content="${e(desc)}"><meta property="og:url" content="${url}">\n`;
-  if (!/property="og:image"/.test(h)) m += `<meta property="og:image" content="${DOMAINE}/icones/partage.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">\n`;
   if (!/rel="manifest"/.test(h)) m += `<link rel="manifest" href="/manifest.webmanifest">\n`;
   return m ? injecteAvant(h, '</head>', m) : h;
 }
@@ -1460,7 +1429,7 @@ function poseVersSeraphin(livre) {
 }
 
 console.log('Site bilingue généré dans «', OUT, '»');
-console.log('Pages générées :', pairs.length, '(FR) + 404 + sitemap + robots');
+console.log('Pages générées :', pairs.length, '(FR) + 404 + robots');
 
 /* Dernière étape : allègement puis contrôle des pages produites (voir
    publication.js). Au moindre défaut grave, le build échoue et la version

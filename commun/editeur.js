@@ -9,29 +9,7 @@
    correction faite ici vaut pour toutes ces pages à la fois.
    ════════════════════════════════════════════════════════════════════ */
 
-function lvChoix(titre,entrees){
-  $('choix-titre').textContent=titre;
-  const h=$('choix-liste'); h.innerHTML='';
-  return new Promise(res=>{
-    entrees.forEach(e=>{
-      const d=document.createElement('div');
-      d.className='choix'+(e.danger?' del':'');
-      d.innerHTML='<span>'+esc(e.nom)+'</span>'+(e.note?'<i>'+esc(e.note)+'</i>':'');
-      d.setAttribute('role','button'); d.tabIndex=0;
-      d.onclick=()=>{CHOIX_FIN=null;$('m-choix').classList.remove('on');res(e.cle);};
-      d.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();d.click();}};
-      h.appendChild(d);
-    });
-    $('m-choix').classList.add('on');
-    /* le clavier entre dans le menu : première entrée en main */
-    setTimeout(()=>{const p=h.querySelector('.choix');if(p)p.focus();},40);
-    /* Échap et le clic hors de la boîte ferment aussi : la promesse doit se
-       résoudre dans tous les cas, sinon l'appelant reste suspendu */
-    CHOIX_FIN=()=>{$('m-choix').classList.remove('on');res(null);};
-    $('choix-annul').onclick=CHOIX_FIN;
-  });
-}
-
+/* (lvChoix : voir commun/outils.js, posé par le build) */
 function propre(html){
   const doc=new DOMParser().parseFromString('<div>'+html+'</div>','text/html');
   const src=doc.body.firstChild, out=document.createElement('div');
@@ -207,7 +185,9 @@ function copieVieille(txt){
    privé, « Rendre privé » quand il est publié. */
 function majEtatEditeur(){
   const b=document.getElementById('b-etat'); if(!b||!S.art)return;
-  b.textContent=S.art.publie?'Rendre privé':'Publier';
+  /* le site est privé (19/10) : « publier » un commentaire, c'est le faire
+     paraître dans la Bible ; le bouton le dit ainsi */
+  b.textContent=S.art.publie?'Retirer de la Bible':'Afficher dans la Bible';
   b.classList.toggle('publie',!!S.art.publie);
 }
 

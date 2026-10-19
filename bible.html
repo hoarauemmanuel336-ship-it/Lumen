@@ -746,10 +746,6 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
 /* — Pied — */
 .chargement{text-align:center;color:var(--parchemin-att);font-style:italic;padding:80px 0}
 </style>
-<meta property="og:image" content="https://lumenveritatis.net/icones/partage.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/icones/lumen-180.png">
 <meta name="theme-color" content="#0a0a0a">
@@ -760,8 +756,7 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
 <script>try{if(/[?&]p=1(&|$)/.test(location.search)){document.documentElement.classList.add('panneau');
 /* la même page sous deux adresses : on demande aux moteurs de n'en retenir
    qu'une, sinon le tiroir ferait doublon avec la page dans les résultats */
-var m=document.createElement('meta');m.name='robots';m.content='noindex';document.head.appendChild(m);
-if(!document.querySelector('link[rel=canonical]')){var c=document.createElement('link');c.rel='canonical';c.href=location.origin+location.pathname;document.head.appendChild(c);}}}catch(e){}</script>
+var m=document.createElement('meta');m.name='robots';m.content='noindex';document.head.appendChild(m);}}catch(e){}</script>
 </head>
 <body>
   <header>
@@ -901,7 +896,8 @@ if(!document.querySelector('link[rel=canonical]')){var c=document.createElement(
   <div id="auth-voile">
     <div class="ab-boite" role="dialog" aria-modal="true" aria-label="Compte">
       <div class="ab-titre">Compte</div>
-      <div class="ab-tabs">
+      <!-- site privé (19/10) : plus d'inscription, seulement la connexion -->
+      <div class="ab-tabs" style="display:none">
         <button class="ab-tab on" id="ab-tab-si">Connexion</button>
         <button class="ab-tab" id="ab-tab-su">Inscription</button>
       </div>

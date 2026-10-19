@@ -367,10 +367,6 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 .auth-out{display:block;width:100%;text-align:center;color:rgba(255,255,255,.55);font-family:var(--display);font-size:14px;margin-top:16px;transition:color .25s}
 .auth-out:hover{color:var(--or)}
 </style>
-<meta property="og:image" content="https://lumenveritatis.net/icones/partage.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 
@@ -418,7 +414,7 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
     <div class="acts">
       <button class="act" id="b-retour">← Les commentaires</button>
       <button class="act" id="b-enr">Enregistrer</button>
-      <button class="act" id="b-etat">Publier</button>
+      <button class="act" id="b-etat">Afficher dans la Bible</button>
       <button class="act danger" id="b-suppr">Supprimer</button>
     </div>
   </section>
@@ -887,7 +883,7 @@ function ligneCom(a,publik){
     +'<div class="com-ref'+(ref?'':' vide')+'">'+esc(ref||(a.ref?'Référence non reconnue : '+a.ref:'Sans référence'))+'</div>'
     +(t?'<div class="art-titre">'+esc(t)+'</div>':'')
     +(ex?'<div class="art-extrait">'+esc(ex)+'</div>':'')
-    +'<div class="art-pied">'+(publik?'':'<span class="art-etat'+(a.publie?' publie':'')+'">'+(a.publie?'Publié':'Privé')+'</span>')+'<span>'+esc(dateFr(a.maj||a.cree))+'</span></div>'
+    +'<div class="art-pied">'+(publik?'':'<span class="art-etat'+(a.publie?' publie':'')+'">'+(a.publie?'Dans la Bible':'Brouillon')+'</span>')+'<span>'+esc(dateFr(a.maj||a.cree))+'</span></div>'
     +fin;
   return l;
 }
@@ -949,7 +945,7 @@ async function basculeEtat(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
   const versPublic=!a.publie;
   const b=document.getElementById('b-etat');
-  if(b){b.disabled=true;b.textContent=versPublic?'Publication…':'Retrait…';}
+  if(b){b.disabled=true;b.textContent=versPublic?'Affichage…':'Retrait…';}
   let enLigneFait=false;
   try{
     if(versPublic)await metEnLigne(a); else await retireDeLigne(a);
@@ -967,7 +963,7 @@ async function basculeEtat(id){
     lvInfo(e&&e.lvSansRef
       ? 'Indiquez d\u2019abord une référence valable (un verset ou une plage de versets) : sans elle, la Bible ne saurait pas où accrocher ce commentaire.'
       : versPublic
-      ? 'La mise en ligne a échoué, rien n\u2019a été changé. Si c\u2019est la première fois, les règles de sécurité ne sont peut-être pas encore posées (bloc « public_commentaires ») : voir REGLES-firestore.txt.'
+      ? 'L\u2019affichage dans la Bible a échoué, rien n\u2019a été changé. Vérifiez la connexion, puis réessayez.'
       : 'Le retrait a échoué, rien n\u2019a été changé. Réessayez.');
   }
   if(b)b.disabled=false;
@@ -1032,7 +1028,7 @@ function rendPublic(){
   majFil(!!S.livre);
   $('mot-liste').textContent=n
     ?''
-    :'Aucun commentaire publié pour l’instant.';
+    :'Aucun commentaire dans la Bible pour l’instant.';
   const tri=(x,y)=>{const a=x.refs[0],b=y.refs[0];return (a.ch-b.ch)||(a.v1-b.v1)||(a.v2-b.v2);};
   if(S.livre){parLivre[S.livre].sort(tri).forEach(a=>h.appendChild(ligneCom(a,true)));return;}
   Object.keys(parLivre).sort((a,b)=>ordreLivre(a)-ordreLivre(b)||nomLivre(a).localeCompare(nomLivre(b))).forEach(slug=>{
@@ -1055,7 +1051,7 @@ async function menuCom(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
   const c=await lvChoix((refValide(a)?etiquette(a.refs[0]):(a.titre||'Sans référence')),[
     {cle:'ouvrir',nom:'Ouvrir'},
-    {cle:'etat',nom:a.publie?'Rendre privé':'Publier',note:a.publie?'publié':'privé'},
+    {cle:'etat',nom:a.publie?'Retirer de la Bible':'Afficher dans la Bible',note:a.publie?'dans la Bible':'brouillon'},
     {cle:'suppr',nom:'Supprimer',danger:true}
   ]);
   if(c==='ouvrir')ouvre(id);

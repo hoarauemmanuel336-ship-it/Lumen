@@ -895,3 +895,198 @@ html:root body:not(#_):not(#_):not(#_):not(#_) .ttx-btns>.ttx-b:is(:hover,:focus
 html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) :is(.pile-btn,#acts-liste:has(>.acts-haut),#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.modal-btns,.bandeau-mini,.trash-acts,.sb-act){box-shadow:none}
 html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #app .start{box-shadow:none}
 html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #app .start:is(:hover,:focus-visible){box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   LES FENÊTRES DU SITE, RÉIMAGINÉES (19/10)
+   Emmanuel, devant le menu d'une ressource : « pour les UI de ce genre
+   sur le site, réimagine l'UI/UX ».
+   Une seule famille pour toutes les fenêtres (menus d'actions,
+   confirmations, informations, saisies, formulaires de Mémoriser) :
+   - un panneau noir à peine teinté de crème, filet fin, coin supérieur
+     droit tranché en biais comme les cartes des ressources, un trait de
+     lumière qui court sous le bord haut ;
+   - le titre en Cormorant, souligné d'un séparateur qui s'éteint vers la
+     droite ; le texte en Literata ;
+   - les menus d'actions deviennent des FEUILLES : une croix pour fermer,
+     des rangées légères précédées d'un pictogramme dans un petit cadre à
+     coin coupé, la précision rangée à droite, l'action qui jette mise à
+     part, en bas, dans une teinte de rose éteint ;
+   - sur téléphone, menus, confirmations et informations montent du bas de
+     l'écran, sous le pouce, avec une poignée et un « Annuler » plein
+     large.
+   Les boutons gardent leur bandeau crème (11/10).
+   ════════════════════════════════════════════════════════════════════ */
+:root{
+  --fx-rose:#dba69d;
+  --fx-rose-voile:color-mix(in srgb,#dba69d 11%,transparent);
+  --fx-coin:18px;
+}
+@keyframes fxMonte{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes fxFeuille{from{transform:translateY(100%)}to{transform:none}}
+@keyframes fxVoile{from{opacity:0}to{opacity:1}}
+
+/* ── le voile ── */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:not(#m-search){
+  background:color-mix(in srgb,#000 68%,transparent);
+  -webkit-backdrop-filter:blur(10px) saturate(.8);backdrop-filter:blur(10px) saturate(.8);
+  padding:24px;
+}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.on:not(#m-search){animation:fxVoile .22s ease both}
+
+/* ── le panneau ── */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:not(#m-search)>.modal{
+  position:relative;width:100%;max-width:460px;
+  padding:30px 30px 26px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--h-or) 5%,#0a0a0a),#060606 62%);
+  border:0;border-radius:0;
+  box-shadow:inset 0 0 0 1px var(--h-l2);
+  clip-path:polygon(0 0,calc(100% - var(--fx-coin)) 0,100% var(--fx-coin),100% 100%,0 100%);
+  max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);overflow-y:auto;overscroll-behavior:contain;
+  animation:fxMonte .32s var(--h-doux) both;
+}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:not(#m-search)>.modal.modal-large{max-width:720px}
+/* le biais du coin, tracé d'un filet */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:not(#m-search)>.modal::after{
+  content:'';position:absolute;top:0;right:0;width:var(--fx-coin);height:var(--fx-coin);pointer-events:none;
+  background:linear-gradient(225deg,transparent calc(50% - .7px),var(--h-l3) calc(50% - .7px) calc(50% + .5px),transparent calc(50% + .5px));
+}
+/* le trait de lumière sous le bord haut */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:not(#m-search)>.modal::before{
+  content:'';position:absolute;top:0;left:0;right:var(--fx-coin);height:1px;pointer-events:none;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--h-or) 55%,transparent),color-mix(in srgb,var(--h-or) 14%,transparent) 55%,transparent);
+}
+
+/* ── le titre et le texte ── */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:not(#m-search) :is(.modal-titre,.modal-title){
+  position:relative;margin:0 0 18px;padding:0 0 16px;
+  font-family:var(--h-titre);font-weight:500;font-size:27px;line-height:1.14;letter-spacing:0;text-transform:none;
+  color:#fff;text-wrap:pretty;
+}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:not(#m-search) :is(.modal-titre,.modal-title)::after{
+  content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--h-or) 45%,transparent),color-mix(in srgb,var(--h-or) 12%,transparent) 45%,transparent);
+}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:not(#m-search) .modal-txt{
+  font-family:var(--h-texte);font-size:16.5px;line-height:1.6;color:var(--h-t2);margin:0 0 4px;
+}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:not(#m-search) .modal-flbl{
+  display:block;margin:16px 0 8px;font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--h-t3);
+}
+
+/* ── les champs ── */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:not(#m-search) .modal :is(input.champ,textarea.champ,input.field,textarea.field){
+  width:100%;margin-top:4px;padding:13px 15px;
+  background:#0c0c0c;border:1px solid var(--h-l2);border-radius:0;
+  font-family:var(--h-ui);font-size:18px;line-height:1.4;color:#fff;
+  transition:border-color .25s,box-shadow .25s,background .25s;
+}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:not(#m-search) .modal :is(textarea.champ.code){font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:not(#m-search) .modal :is(input.champ,textarea.champ,input.field,textarea.field)::placeholder{color:var(--h-t4)}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:not(#m-search) .modal :is(input.champ,textarea.champ,input.field,textarea.field):focus{
+  outline:none;border-color:var(--h-or);background:#0e0e0d;box-shadow:0 0 0 3px var(--h-voile),0 0 24px -6px color-mix(in srgb,var(--h-or) 40%,transparent);
+}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:not(#m-search) .modal-btns{margin-top:26px}
+
+/* ════ LA FEUILLE D'ACTIONS ════ */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search)>.modal{padding:24px 14px 14px;max-width:440px}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.modal-titre,.modal-title){margin:0 58px 10px 16px;padding:0 0 15px;font-size:26px}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.modal-titre,.modal-title)::after{width:calc(100% + 42px)}
+/* la croix */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .feuille-x{
+  position:absolute;top:18px;right:24px;z-index:2;display:inline-flex;align-items:center;justify-content:center;
+  width:38px;height:38px;padding:0;border:0;border-radius:50%;background:transparent;color:var(--h-t3);cursor:pointer;
+  transition:color .25s,background .25s;
+}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .feuille-x:is(:hover,:focus-visible){color:#fff;background:var(--h-voile-fort);outline:none}
+/* la liste : elle défile seule quand elle est longue */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(#choix-liste,#pick-list,#move-list){
+  max-height:min(62vh,560px);overflow-y:auto;overscroll-behavior:contain;padding:2px 0;margin:0;
+  background:none;border:0;border-radius:0;box-shadow:none;
+}
+/* une rangée */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix,.move-row){
+  position:relative;display:flex;align-items:center;gap:14px;min-height:54px;margin:0;
+  padding:8px 16px 8px calc(16px + var(--niv,0) * 20px);
+  border:0;border-radius:12px;background:transparent;box-shadow:none;
+  font-family:var(--h-ui);font-size:18.5px;font-weight:500;letter-spacing:0;line-height:1.25;color:rgba(255,255,255,.92);
+  cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s,color .2s;
+}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix,.move-row):is(:hover,:focus-visible){background:var(--h-voile);color:#fff;outline:none;box-shadow:none}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix,.move-row) span{color:inherit}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix.fort:is(:hover,:focus-visible){color:var(--h-or)}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix:is(:hover,:focus-visible) i{color:var(--h-t2)}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix,.move-row):active{background:var(--h-voile-fort)}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* le pictogramme, dans son petit cadre à coin coupé */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix .cx-ic{
+  flex:none;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;
+  color:var(--h-or);background:color-mix(in srgb,var(--h-or) 4%,transparent);
+  box-shadow:inset 0 0 0 1px var(--h-l2);
+  clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,0 100%);
+  transition:box-shadow .2s,background .2s,color .2s;
+}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix .cx-ic:empty{box-shadow:none;background:none}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix:is(:hover,:focus-visible) .cx-ic:not(:empty){box-shadow:inset 0 0 0 1px var(--h-or);background:color-mix(in srgb,var(--h-or) 9%,transparent)}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix .cx-arbre{flex:none;margin:0 -6px 0 0;font-family:var(--h-titre);font-weight:400;font-style:normal;color:var(--h-t4)}
+/* la précision, à droite */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix i{
+  flex:0 1 auto;max-width:48%;margin-left:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-family:var(--h-ui);font-style:normal;font-weight:400;font-size:14.5px;letter-spacing:.01em;text-transform:none;color:var(--h-t3);
+}
+/* ce qui crée : à l'accent */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix.fort{color:var(--h-or)}
+/* ce qui ne se peut pas : visible, éteint */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix.off{opacity:.36;cursor:default}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix.off:hover{background:transparent}
+/* l'élément où l'on se trouve déjà (Mémoriser) */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .move-row.on{color:var(--h-or);background:var(--h-voile);box-shadow:inset 3px 0 0 var(--h-or)}
+/* ce qui jette : mis à part, en bas, dans le rose éteint */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix.del,.move-row.del){color:var(--fx-rose);margin-top:13px}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix.del,.move-row.del)::before{
+  content:'';position:absolute;left:16px;right:16px;top:-7px;height:1px;background:var(--h-l1);
+}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix.del,.move-row.del):first-child{margin-top:0}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix.del,.move-row.del):first-child::before{content:none}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix.del,.move-row.del):is(:hover,:focus-visible){background:var(--fx-rose-voile);color:#f0c4bd}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix.del .cx-ic{color:var(--fx-rose);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--fx-rose) 32%,transparent);background:color-mix(in srgb,var(--fx-rose) 5%,transparent)}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix.del:is(:hover,:focus-visible) .cx-ic{box-shadow:inset 0 0 0 1px var(--fx-rose);background:var(--fx-rose-voile)}
+/* deux « jeter » qui se suivent (Les laisser / Les mettre aussi…) ne
+   s'écartent qu'une fois */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix.del+.choix.del{margin-top:0}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix.del+.choix.del::before{content:none}
+/* sur ordinateur, la croix, Échap et le clic au-dehors suffisent */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .modal-btns{display:none}
+
+/* ════ SUR TÉLÉPHONE : DU BAS DE L'ÉCRAN ════ */
+@media (max-width:600px){
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:is(.feuille,#m-conf,#m-info){align-items:flex-end;justify-content:stretch;padding:0;overflow:hidden}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:is(.feuille,#m-conf,#m-info)>.modal{
+    max-width:none;width:100%;margin:0;max-height:88vh;max-height:88dvh;overflow-y:auto;
+    padding:30px 18px calc(16px + env(safe-area-inset-bottom,0px));
+    clip-path:none;border-radius:22px 22px 0 0;
+    box-shadow:inset 0 1px 0 var(--h-l2),0 -20px 60px -10px rgba(0,0,0,.9);
+    animation:fxFeuille .34s var(--h-doux) both;
+  }
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:is(.feuille,#m-conf,#m-info)>.modal::after{content:none}
+  /* la poignée */
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay:is(.feuille,#m-conf,#m-info)>.modal::before{
+    top:10px;left:50%;right:auto;width:40px;height:4px;margin-left:-20px;border-radius:2px;background:rgba(255,255,255,.22);
+  }
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search)>.modal{padding:28px 8px calc(10px + env(safe-area-inset-bottom,0px))}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.modal-titre,.modal-title){margin:0 14px 8px;font-size:24px}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.modal-titre,.modal-title)::after{width:100%}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .feuille-x{display:none}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(#choix-liste,#pick-list,#move-list){max-height:none}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) :is(.choix,.move-row){min-height:56px;padding-left:calc(14px + var(--niv,0) * 16px);padding-right:14px}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .choix i{max-width:42%}
+  /* « Annuler » plein large, sous le pouce */
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .modal-btns{display:flex;margin:12px 6px 0;padding:0}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-search) .modal-btns>:is(.m-annul,.m-cancel){flex:1;min-height:52px;border-radius:14px;background:var(--h-or);color:#000;font-size:16px}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) :is(#m-conf,#m-info) :is(.modal-titre,.modal-title){font-size:25px}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) :is(#m-conf,#m-info) .modal-btns{display:flex;width:100%}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) :is(#m-conf,#m-info) .modal-btns>*{flex:1 1 0;min-height:52px}
+}
+@media (prefers-reduced-motion:reduce){
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay>.modal{animation:none!important}
+}
