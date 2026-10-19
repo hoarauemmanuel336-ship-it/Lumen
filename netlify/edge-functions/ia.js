@@ -71,8 +71,8 @@ async function quiEst(jeton) {
 
 /* ── RANGER ──
    L'IA reçoit le rangement actuel (catégories et sections) et la
-   liste des éléments (titre, description, endroit actuel), et rend
-   le nouveau rangement complet. */
+   liste des éléments (titre, description, aperçu du contenu, endroit
+   actuel), et rend le nouveau rangement complet. */
 const SCHEMA_RANGER = {
   type: 'object',
   properties: {
@@ -106,7 +106,7 @@ function consigneRanger(espece) {
     : 'des ressources d’étude : livres, diagrammes, cours, parcours d’étude, cartes, images, documents et liens';
   return `Tu ranges la bibliothèque personnelle d’étude d’un catholique. Elle contient ${quoi}. Les sujets relèvent surtout de l’Écriture, de la théologie, de la liturgie, de l’histoire de l’Église et de la philosophie, lues selon la tradition catholique.
 
-Tu reçois le rangement actuel et la liste des éléments. Tu rends le rangement complet que tu juges le meilleur : tu peux garder, renommer, fusionner, déplacer et supprimer les catégories et sections existantes, et en créer de nouvelles.
+Tu reçois le rangement actuel et la liste des éléments : pour chacun, son titre, sa description, son genre, un aperçu de son contenu (les titres de ses parties et le début du texte) et l’endroit où il est rangé. Tu ranges chaque élément d’après ce qu’il contient réellement. Tu rends le rangement complet que tu juges le meilleur : tu peux garder, renommer, fusionner, déplacer et supprimer les catégories et sections existantes, et en créer de nouvelles.
 
 Forme du rangement :
 - Le premier niveau, ce sont les catégories : de grands domaines, peu nombreux, qui se comprennent d’un coup d’œil. En dessous viennent les sections, puis des sous-sections quand un domaine est assez fourni pour le demander. La profondeur va jusqu’à cinq niveaux, catégorie comprise ; un rangement simple se lit mieux qu’un rangement profond.
@@ -126,7 +126,7 @@ async function demandeRanger(donnees) {
     rubriques: (donnees.rubriques || []).map(r => ({ id: String(r.id), nom: String(r.nom || ''), parent: String(r.parent || '') })),
     elements: (donnees.elements || []).map(e => ({
       id: String(e.id), titre: String(e.titre || ''), description: String(e.description || ''),
-      type: String(e.type || ''), rubrique_actuelle: String(e.rubrique_actuelle || ''),
+      type: String(e.type || ''), contenu: String(e.contenu || '').slice(0, 2000), rubrique_actuelle: String(e.rubrique_actuelle || ''),
     })),
   };
   return {

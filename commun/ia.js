@@ -5,7 +5,7 @@
    ressources et articles »).
 
    L'IA reçoit le rangement actuel et la liste des éléments (titre,
-   description, endroit), puis rend un rangement complet : elle peut
+   description, aperçu du contenu, endroit), puis rend un rangement complet : elle peut
    créer, renommer, fusionner, déplacer et supprimer catégories et
    sections, et déplacer tout élément (choix d'Emmanuel). Le rangement
    s'applique aussitôt, sans validation. Le rangement d'avant est
@@ -62,6 +62,42 @@ function iaDescription(a){
   if(typeof a.extrait==='string'&&a.extrait.trim())return a.extrait.trim();
   if(typeof a.desc==='string'&&a.desc.trim())return a.desc.trim().slice(0,300);
   return '';
+}
+/* ── CE QUE CONTIENT LA PAGE ──
+   Emmanuel : « quand l'IA range, elle vérifie au moins ce qu'elle range ? ».
+   Pour chaque page HTML, l'IA reçoit aussi un aperçu de son contenu : les
+   titres de ses parties, puis le début du texte, quelques centaines de
+   mots en tout. Les pages se lisent quatre à la fois ; une page qui ne se
+   lit pas part sans aperçu. */
+const IA_APERCU_MAX=1800;
+function iaApercuDe(html){
+  try{
+    const d=new DOMParser().parseFromString(String(html||''),'text/html');
+    d.querySelectorAll('script,style,noscript,template,svg').forEach(e=>e.remove());
+    const net=t=>String(t||'').replace(/\s+/g,' ').trim();
+    const titres=[...d.querySelectorAll('h1,h2,h3')].map(h=>net(h.textContent)).filter(Boolean);
+    const vus=new Set(), uniques=titres.filter(t=>!vus.has(t)&&vus.add(t));
+    let out=uniques.length?'Parties : '+uniques.slice(0,30).join(' · ')+'\n':'';
+    /* le texte morceau par morceau, séparé d'une espace : un titre et le
+       paragraphe qui le suit ne se collent pas */
+    const morceaux=[], w=d.createTreeWalker(d.body||d.documentElement,NodeFilter.SHOW_TEXT);
+    let n; while((n=w.nextNode())){const x=net(n.nodeValue);if(x)morceaux.push(x);}
+    out+=morceaux.join(' ');
+    return out.slice(0,IA_APERCU_MAX);
+  }catch(_){return '';}
+}
+async function iaApercus(liste,avance){
+  const res=new Map(), html=liste.filter(a=>typeDe(a)==='diagramme');
+  let i=0, faits=0;
+  const ouvrier=async()=>{
+    while(i<html.length){
+      const a=html[i++];
+      try{const code=await contenuDe(a);res.set(a.id,iaApercuDe(typeof code==='string'?code:a.code));}catch(_){}
+      faits++; if(avance)avance(faits,html.length);
+    }
+  };
+  await Promise.all([ouvrier(),ouvrier(),ouvrier(),ouvrier()]);
+  return res;
 }
 function iaType(a){
   try{const m=marqueDe(a);if(m&&MARQUES[m])return MARQUES[m].nom;}catch(_){}
@@ -151,12 +187,14 @@ async function rangerIA(espece){
   const b=$('b-organiser'), m=$('mot-liste'), libelle=b?b.textContent:'';
   if(b){b.textContent='L’IA range…';b.disabled=true;}
   const dit=t=>{if(m)m.textContent=t;};
-  dit('L’IA lit '+mot+' et prépare un nouveau rangement. Cela peut prendre une minute ou deux.');
   try{
+    dit('Lecture '+(espece==='articles'?'des articles':'des ressources')+'…');
+    const apercus=await iaApercus(S.liste,(n,t)=>dit('Lecture '+(espece==='articles'?'des articles':'des ressources')+'… '+n+' / '+t));
+    dit('L’IA lit '+mot+' et prépare un nouveau rangement. Cela peut prendre une minute ou deux.');
     const plan=await lvIA('ranger',{
       espece,
       rubriques:S.rubs.map(r=>({id:r.id,nom:r.nom,parent:r.parent||''})),
-      elements:S.liste.map(a=>({id:a.id,titre:a.titre||'',description:iaDescription(a),type:iaType(a),rubrique_actuelle:rubValide(a.rub)?a.rub:''}))
+      elements:S.liste.map(a=>({id:a.id,titre:a.titre||'',description:iaDescription(a),type:iaType(a),contenu:apercus.get(a.id)||'',rubrique_actuelle:rubValide(a.rub)?a.rub:''}))
     },n=>dit('L’IA écrit le nouveau rangement… '+Math.round(n/100)/10+' k signes reçus.'));
     const {rubs,ou,rang}=iaPlan(plan);
     dit('Rangement en cours…');
