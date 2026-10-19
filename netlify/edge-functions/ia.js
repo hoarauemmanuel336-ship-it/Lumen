@@ -171,8 +171,8 @@ const SCHEMA_CONTROLER = {
 
 /* ce que l'on contrôle : le contenu, la partie technique, ou les deux */
 const PORTEE_CONTROLE = {
-  contenu: '\n\nCe contrôle porte sur le contenu seul : ce que dit la page, son exactitude, sa doctrine, son écriture et ses citations. Le code, l’apparence et le fonctionnement restent hors du rapport.',
-  technique: '\n\nCe contrôle porte sur la partie technique seule : le code de la page, son apparence, sa tenue sur ordinateur et sur téléphone, et son fonctionnement. Le fond du texte reste hors du rapport.',
+  contenu: '\n\nCe contrôle porte sur le contenu seul.',
+  technique: '\n\nCe contrôle porte sur la partie technique seule.',
   tout: '',
 };
 
