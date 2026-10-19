@@ -479,6 +479,13 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
   <div class="modal-btns"><button class="m-annul" id="code-annul">Annuler</button><button class="m-ok" id="code-ok">Valider</button></div>
 </div></div>
 
+<div class="overlay" id="m-qc"><div class="modal modal-large">
+  <div class="modal-titre">Contrôle qualité</div>
+  <div class="qc-sous" id="qc-sous"></div>
+  <div class="qc-corps" id="qc-corps"></div>
+  <div class="modal-btns"><button class="m-annul" id="qc-copie">Copier le rapport</button><button class="m-annul" id="qc-refait">Refaire le contrôle</button><button class="m-ok" id="qc-ferme">Fermer</button></div>
+</div></div>
+
 <div class="overlay" id="m-choix"><div class="modal">
   <div class="modal-titre" id="choix-titre"></div>
   <div id="choix-liste"></div>
@@ -2182,11 +2189,14 @@ async function menuRessource(id){
     {cle:'modif',nom:'Modifier'},
     ...(telechargeable(a)?[{cle:'tel',nom:'Télécharger',note:nomTelecharge(a)}]:[]),
     {cle:'ranger',nom:'Ranger dans…',note:rubValide(a.rub)?chemin(a.rub):'sans catégorie'},
+    /* le contrôle qualité vaut pour une page HTML (commun/qualite.js) */
+    ...(typeDe(a)==='diagramme'?[{cle:'qc',nom:'Contrôle qualité'}]:[]),
     {cle:'suppr',nom:'Mettre à la corbeille',danger:true}
   ]);
   if(c==='modif')ouvre(id);
   else if(c==='tel')telechargeRessource(a);
   else if(c==='ranger')rangeRessource(id);
+  else if(c==='qc')controleQualite(a,'ressources');
   else if(c==='suppr'){
     if(!await lvConfirm('Mettre cette ressource à la corbeille ? Vous pourrez la rétablir depuis la corbeille.'))return;
     try{ await jetteRessource(a,''); rendLister(); majCorbBouton(); }
@@ -2447,6 +2457,7 @@ window.addEventListener('drop',e=>{if(e.dataTransfer&&e.dataTransfer.files&&e.da
 $('conf-non').onclick=()=>confFin(false);
 $('conf-oui').onclick=()=>confFin(true);
 $('info-ok').onclick=()=>$('m-info').classList.remove('on');
+$('qc-ferme').onclick=qcFerme;
 $('sai-annul').onclick=()=>saiFin(null);
 $('sai-ok').onclick=()=>saiFin($('sai-champ').value);
 $('sai-champ').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();saiFin($('sai-champ').value);}});
@@ -2455,6 +2466,7 @@ document.addEventListener('keydown',e=>{
   if($('m-choix').classList.contains('on')){choixFin();return;}
   if($('m-saisie').classList.contains('on')){saiFin(null);return;}
   if($('m-conf').classList.contains('on')){confFin(false);return;}
+  if($('m-qc').classList.contains('on')){qcFerme();return;}
   $('m-info').classList.remove('on');
   document.getElementById('auth-overlay').classList.remove('ouvert');
 });

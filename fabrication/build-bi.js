@@ -58,8 +58,8 @@ const polices = h => h.replace(/<link[^>]*fonts\.(?:googleapis|gstatic)\.com[^>]
    elle se sert, posées dans la page elle-même et non en fichiers à part :
    Mémoriser fonctionne hors ligne, et rien de plus n'est à mettre en cache. */
 const COMMUN_JS_PAGES = {
-  'articles.html': ['outils', 'rubriques', 'ia', 'menage'],
-  'ressources.html': ['outils', 'rubriques', 'ia', 'menage'],
+  'articles.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage'],
+  'ressources.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage'],
   'commentaires.html': ['outils', 'editeur', 'choix-verset'],
   'memoriser.html': ['choix-verset'],
 };

@@ -38,10 +38,11 @@ La progression est rangée par identifiant de verset : un verset garde sa progre
 | `users/{uid}/art_lecture/{id}` | L'endroit où la lecture s'est arrêtée. |
 | `users/{uid}/meta/art_rubriques` | Les catégories et sections, et la corbeille des rubriques. |
 | `users/{uid}/meta/art_rubriques_ia_avant` | Le rangement d'avant le dernier rangement par l'IA (pour y revenir). |
+| `users/{uid}/art_qc/{id}` | Le dernier contrôle qualité de l'article : date, bilan, problèmes relevés. |
 
 ## Ressources
 
-Même organisation qu'Articles, avec ses propres noms : `ressources`, `res_code`, `res_medias`, `res_lecture`, `meta/res_rubriques` et `meta/res_rubriques_ia_avant`. Une ressource porte en plus une espèce (code, image, PDF, lien) et une marque (livre, diagramme, cours, parcours…).
+Même organisation qu'Articles, avec ses propres noms : `ressources`, `res_code`, `res_medias`, `res_lecture`, `res_qc`, `meta/res_rubriques` et `meta/res_rubriques_ia_avant`. Une ressource porte en plus une espèce (code, image, PDF, lien) et une marque (livre, diagramme, cours, parcours…).
 
 ## Commentaires (l'atelier)
 

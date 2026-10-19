@@ -57,7 +57,8 @@ const CHOIX_IC={
   sep:'<path d="M4.5 12h15"/><circle cx="12" cy="12" r=".6"/>',
   main:'<path d="M12 3.5v17M3.5 12h17M9.5 6L12 3.5 14.5 6M9.5 18l2.5 2.5 2.5-2.5M6 9.5L3.5 12 6 14.5M18 9.5l2.5 2.5-2.5 2.5"/>',
   ia:'<path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/>',
-  retour:'<path d="M9 7.5L4.5 12 9 16.5"/><path d="M4.5 12h10a5 5 0 0 1 0 10h-2"/>'
+  retour:'<path d="M9 7.5L4.5 12 9 16.5"/><path d="M4.5 12h10a5 5 0 0 1 0 10h-2"/>',
+  qc:'<circle cx="10.5" cy="10.5" r="6.3"/><path d="M15.2 15.2l4.8 4.8"/><path d="M7.8 10.6l2 2 3.6-3.8"/>'
 };
 function choixIcone(e){
   const c=e.cle;
@@ -66,7 +67,7 @@ function choixIcone(e){
   if(e.danger||c==='avec')return 'jeter';
   const m={modif:'modif',tel:'tel',ranger:'ranger',deplacer:'ranger',sous:'sous',neuve:'sous',renom:'renom',sans:'garder',
     ouvrir:'ouvrir',haut:'haut',bas:'bas',apres:'ajout',p:'p',h2:'titre',h3:'titre',cite:'cite',verset:'verset',bib:'verset',
-    image:'image',img:'image',html:'code',code:'code',sep:'sep',ia_go:'ia',ia_retour:'retour',main:'main'};
+    image:'image',img:'image',html:'code',code:'code',sep:'sep',ia_go:'ia',ia_retour:'retour',main:'main',qc:'qc'};
   return m[c]||'';
 }
 const svgChoix=k=>'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+CHOIX_IC[k]+'</svg>';

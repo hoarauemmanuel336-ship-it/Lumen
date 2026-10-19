@@ -15,6 +15,11 @@
      toute une bibliothèque demande du jugement ; Sonnet le fait
      presque aussi finement qu'Opus, plus vite et pour moitié prix :
      le meilleur rapport qualité-prix pour cette tâche.
+   - controler (le contrôle qualité d'un article ou d'une ressource) :
+     Claude Opus 5.5, avec réflexion. Relire le fond d'un contenu
+     (doctrine, citations, exactitude) est un travail exigeant, où une
+     erreur manquée coûte plus cher que la relecture ; Opus le fait au
+     niveau voulu pour deux fois moins que Fable.
 
    La réponse de l'IA est relayée telle quelle, au fil de l'eau : la
    page la lit à mesure qu'elle arrive, et un long rangement ne bute
@@ -28,6 +33,7 @@ const CLE_FIREBASE = 'AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA';
 
 const MODELES = {
   ranger: 'claude-sonnet-5-5',
+  controler: 'claude-opus-5-5',
 };
 
 function json(corps, statut) {
@@ -122,7 +128,92 @@ async function demandeRanger(donnees) {
   };
 }
 
-const TACHES = { ranger: demandeRanger };
+/* ── CONTRÔLER ──
+   Le contrôle qualité d'une page HTML (article ou ressource). L'IA
+   reçoit la page entière, telle qu'elle est enregistrée, et le texte
+   des deux Bibles du site pour chaque référence que la page cite. Elle
+   rend un constat : elle ne corrige rien, Emmanuel décide ensuite. */
+const SCHEMA_CONTROLER = {
+  type: 'object',
+  properties: {
+    bilan: { type: 'string' },
+    points: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          gravite: { type: 'string', enum: ['grave', 'a_revoir', 'mineur'] },
+          domaine: { type: 'string', enum: ['fond', 'ecriture', 'forme', 'fonctionnement'] },
+          endroit: { type: 'string' },
+          extrait: { type: 'string' },
+          constat: { type: 'string' },
+          correction: { type: 'string' },
+        },
+        required: ['gravite', 'domaine', 'endroit', 'extrait', 'constat', 'correction'],
+        additionalProperties: false,
+      },
+    },
+  },
+  required: ['bilan', 'points'],
+  additionalProperties: false,
+};
+
+function consigneControler(espece, marque) {
+  const quoi = espece === 'articles'
+    ? 'un article au format question-réponse : une question en titre, une réponse brève en tête qui répond vraiment à la question, puis la réponse développée en parties. Il s’adresse à la fois au novice, qui découvre le sujet, et au lecteur confirmé qui veut approfondir'
+    : 'une ressource d’étude' + (marque ? ' (' + marque.toLowerCase() + ')' : '') + ', écrite pour qu’Emmanuel apprenne seul, sans autre source';
+  return `Tu fais le contrôle qualité d’une page HTML de la bibliothèque personnelle d’étude d’Emmanuel, un catholique. Cette page est ${quoi}. Emmanuel ne code pas : il lira ton rapport en langage courant, puis décidera lui-même de ce qu’il fait corriger. Tu ne réécris pas la page, tu en dresses le constat.
+
+Tu reçois la page entière, telle qu’elle est enregistrée, puis le texte des deux Bibles du site (la Chérubin, traduction par défaut, et la Séraphin, littérale) pour chaque référence que la page cite.
+
+Ce que tu examines :
+
+1. Le fond. L’exactitude des faits, des dates, des noms et des attributions. La conformité à la doctrine et à la théologie de l’Église catholique, appuyée sur les Pères, la Tradition et le Magistère. La cohérence interne : une partie s’accorde avec les autres, ce qui est annoncé est tenu. Chaque terme technique est expliqué au moment où il apparaît.
+
+2. L’Écriture. Chaque citation biblique se compare au texte de référence fourni : les mots, le livre, le chapitre, les versets. Une citation reprend la Chérubin ou la Séraphin ; quand elle s’écarte des deux, tu le signales. Le verset dit bien ce que la page lui fait dire, lu dans son contexte. Le format attendu : le texte en italique entre guillemets français, la référence en gras juste après, au format « Genèse 44:2-3 », les versets qui se suivent réunis en une seule citation. Un mot de la langue d’origine (hébreu, grec, araméen, latin) se présente avec sa langue, sa translittération en italique et le mot français qui le traduit dans le passage ; tu vérifies que le sens donné est juste. Pour une référence absente des textes fournis, tu t’appuies sur ta connaissance et tu le précises.
+
+3. La forme. L’orthographe, la grammaire, les accords. La typographie française : guillemets « », apostrophe courbe, espaces insécables avant « : ; ! ? ». La clarté de l’expression. L’apparence telle que le code la dessine : lisibilité, éléments qui se chevauchent ou débordent, tenue sur téléphone, unité de la mise en page.
+
+4. Le fonctionnement. Ce que fait le code de la page : boutons, sections qui se déplient, réglages, sommaire, liens internes, progression. Tu signales ce qui ne marcherait pas, ce qui renvoie à une partie absente, et ce qui empêcherait la page de s’afficher. Tu le dis en mots simples, sans noms de fonctions ni extraits de code.
+
+Ce que tu rends :
+- bilan : deux à quatre phrases sur l’état général de la page, ses qualités comme ses faiblesses, et ce qui presse le plus.
+- points : chaque problème trouvé, du plus grave au plus léger.
+  · gravite : « grave » pour une erreur de fond, une affirmation contraire à la doctrine, une citation fausse ou mal attribuée, une partie de la page qui ne fonctionne pas ; « a_revoir » pour une imprécision, une explication qui manque, une incohérence, une citation mal présentée ; « mineur » pour une faute d’orthographe ou de typographie, une tournure maladroite.
+  · domaine : fond, ecriture, forme ou fonctionnement.
+  · endroit : où se trouve le problème, pour qu’Emmanuel le retrouve d’un coup d’œil (la partie, le titre de la section, l’élément de la page).
+  · extrait : le passage fautif, cité mot pour mot et brièvement ; la chaîne vide quand le problème ne tient pas dans une citation.
+  · constat : ce qui ne va pas et pourquoi, en une ou deux phrases simples.
+  · correction : ce qu’il faudrait mettre à la place, ou ce qu’il faudrait faire.
+
+Tu rapportes chaque problème réel une fois, en regroupant les fautes répétées du même genre en un seul point qui dit où elles reviennent. Quand tu doutes, tu le dis dans le constat (« à vérifier »). Une page sans défaut reçoit une liste vide et un bilan qui le dit. Tout est en français, avec la typographie française.`;
+}
+
+async function demandeControler(donnees) {
+  const espece = donnees && donnees.espece === 'articles' ? 'articles' : 'ressources';
+  const marque = String(donnees.marque || '');
+  const versets = (donnees.versets || []).slice(0, 300).map(v => ({
+    reference: String(v.ref || ''), cherubin: String(v.cherubin || ''), seraphin: String(v.seraphin || ''),
+  }));
+  const html = String(donnees.html || '');
+  return {
+    model: MODELES.controler,
+    max_tokens: 48000,
+    stream: true,
+    thinking: { type: 'adaptive' },
+    system: consigneControler(espece, marque),
+    messages: [{
+      role: 'user',
+      content: [
+        { type: 'text', text: 'Titre : ' + String(donnees.titre || 'Sans titre') + '\n\nLa page à contrôler :\n\n' + html },
+        { type: 'text', text: 'Les textes de référence des versets cités (' + versets.length + ') :\n\n' + JSON.stringify(versets) },
+      ],
+    }],
+    output_config: { effort: 'high', format: { type: 'json_schema', schema: SCHEMA_CONTROLER } },
+  };
+}
+
+const TACHES = { ranger: demandeRanger, controler: demandeControler };
 
 export default async (request) => {
   if (request.method !== 'POST') return json({ erreur: 'Méthode non permise.' }, 405);

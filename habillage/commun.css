@@ -1007,3 +1007,31 @@ html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-s
 @media (prefers-reduced-motion:reduce){
   html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay>.modal{animation:none!important}
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   LE CONTRÔLE QUALITÉ (Articles, Ressources)
+   La fenêtre du rapport : le bilan, puis les problèmes groupés par
+   gravité. Le grave porte un filet crème à gauche ; « À revoir » et
+   « Mineur » restent en blanc atténué. Aucune couleur vive.
+   ════════════════════════════════════════════════════════════════════ */
+html body #m-qc .modal-titre{margin-bottom:4px}
+html body .qc-sous{margin-bottom:18px;font-family:var(--h-ui);font-size:14.5px;color:var(--h-t3)}
+html body .qc-corps{max-height:min(62vh,640px);overflow-y:auto;overscroll-behavior:contain;padding-right:6px;font-family:var(--h-ui);color:var(--h-t1)}
+html body .qc-attente{margin:6px 0 4px;font-size:16.5px;line-height:1.55;color:var(--h-t2)}
+html body .qc-avis{margin:0 0 14px;padding:9px 12px;border:1px solid var(--h-l2);font-size:14.5px;color:var(--h-t2)}
+html body .qc-bilan{margin:0 0 20px;font-size:17px;line-height:1.55;color:#fff}
+html body .qc-rien{margin:0;font-size:16px;color:var(--h-t2)}
+html body .qc-groupe{margin:0 0 22px}
+html body .qc-g{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid var(--h-l1);font-family:var(--h-titre);font-size:21px;font-weight:500;color:#fff}
+html body .qc-g span{font-family:var(--h-ui);font-size:13px;font-weight:600;color:var(--h-t3)}
+html body .qc-point{margin:0 0 14px;padding:2px 0 2px 14px;border-left:2px solid var(--h-l2)}
+html body .qc-grave .qc-point{border-left-color:var(--h-or)}
+html body .qc-ou{margin-bottom:4px;font-size:12.5px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--h-t3)}
+html body .qc-grave .qc-ou{color:var(--h-or)}
+html body .qc-extrait{margin-bottom:5px;font-style:italic;font-size:15.5px;line-height:1.5;color:var(--h-t2)}
+html body .qc-constat{font-size:16px;line-height:1.5;color:#fff}
+html body .qc-corr{margin-top:5px;font-size:15.5px;line-height:1.5;color:var(--h-t2)}
+@media(max-width:600px){
+  html body .qc-corps{max-height:none;overflow:visible;padding-right:0}
+  html body #m-qc .modal-btns{grid-template-columns:1fr}
+}

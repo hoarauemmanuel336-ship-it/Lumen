@@ -19,8 +19,11 @@ La consommation se paie sur les crédits API compris dans l'abonnement Max d'Emm
 | Usage | Où | Modèle | Pourquoi ce modèle |
 |---|---|---|---|
 | Ranger | « Organiser », puis « Ranger avec l'IA », dans Articles et Ressources | Claude Sonnet 5.5 | Réorganiser une bibliothèque demande du jugement ; Sonnet le fait presque aussi finement qu'Opus, plus vite et pour moitié prix. |
+| Contrôler | « Contrôle qualité » dans le ⋯ d'un article ou d'une ressource HTML | Claude Opus 5.5, avec réflexion | Relire le fond (doctrine, citations, exactitude) est un travail exigeant ; Opus le fait au niveau voulu pour deux fois moins que Fable. |
 
 **Ranger.** L'IA reçoit les catégories et sections actuelles et, pour chaque élément, son titre, sa description et son endroit. Elle rend un rangement complet : elle peut créer, renommer, fusionner, déplacer et supprimer des catégories et des sections, jusqu'à cinq niveaux, et placer chaque élément une fois. Le rangement s'applique aussitôt, sans validation (choix d'Emmanuel). Le rangement d'avant est gardé : « Organiser », puis « Revenir au rangement d'avant ».
+
+**Contrôler.** L'IA reçoit la page HTML entière et, pour chaque référence biblique que la page cite, le texte des deux Bibles du site (la page repère les références et va chercher les versets elle-même). Elle examine le fond, l'Écriture, la forme et le fonctionnement, et rend un bilan puis les problèmes classés en « grave », « à revoir » et « mineur », chacun avec son endroit, le passage fautif, le constat et la correction proposée. Elle ne corrige rien : Emmanuel décide. Le dernier rapport de chaque élément est gardé ; « Copier le rapport » le met en texte simple, prêt à être donné à Claude avec le fichier pour faire corriger la page.
 
 ## Choisir le modèle
 
