@@ -1517,12 +1517,22 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       });
       m.innerHTML = h;
     }
+    /* ── ACCROCHÉ À L'ICÔNE (Emmanuel, 19/10 : « relie-le à l'icône, comme le
+       fait le clic droit sur les signets ») ──
+       Le menu se pose juste sous l'icône, sa petite pointe la touche ; il
+       s'ouvre vers la droite, à l'écart du titre, et se retourne au-dessus
+       quand la place manque en bas. */
     function place(){
       if (!ic) return;
-      var r = ic.getBoundingClientRect(), w = m.offsetWidth;
-      var g = Math.max(10, Math.min(r.left + r.width / 2 - w / 2, window.innerWidth - w - 10));
-      var tl = ic.closest('.titre-ligne'), bas = tl ? Math.max(r.bottom, tl.getBoundingClientRect().bottom) : r.bottom;
-      m.style.left = Math.round(g) + 'px'; m.style.top = Math.round(bas + 10) + 'px';
+      var svg = ic.querySelector('svg') || ic;
+      var r = svg.getBoundingClientRect(), w = m.offsetWidth, h = m.offsetHeight, ecart = 12;
+      var centre = r.left + r.width / 2;
+      var g = Math.max(10, Math.min(centre - 26, window.innerWidth - w - 10));
+      var haut = r.bottom + ecart, dessus = false;
+      if (haut + h > window.innerHeight - 10 && r.top - h - ecart > 10) { haut = r.top - h - ecart; dessus = true; }
+      m.classList.toggle('tm-dessus', dessus);
+      m.style.left = Math.round(g) + 'px'; m.style.top = Math.round(haut) + 'px';
+      m.style.setProperty('--pointe', Math.round(centre - g) + 'px');
     }
     function ouvre(el){ ic = el; rend(); m.classList.add('ouvert'); ic.setAttribute('aria-expanded', 'true'); place(); }
     function ferme(){ m.classList.remove('ouvert'); if (ic) ic.setAttribute('aria-expanded', 'false'); }

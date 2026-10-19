@@ -1220,3 +1220,24 @@ html body .ch-texte .vst.po{padding-right:2.2em}
 html body .ch-texte .vst.po,html body .ch-texte .vst.po .li{
   text-align:justify;text-wrap:wrap;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 2}
 @media(max-width:600px){html body .ch-texte .vst.po{padding-right:1.7em}}
+
+/* ── L'ICÔNE DE LA TRADUCTION CONTRE LE TITRE, SON MENU ACCROCHÉ À ELLE
+   (Emmanuel, 19/10) ──
+   Sur l'accueil de la Bible, l'icône se rapproche du « e » de « Bible ».
+   Le menu des traductions se tient sous l'icône, relié à elle par une
+   petite pointe, comme le menu du ruban des signets. */
+html:root body:not(#_):not(#_) .hero .trad-ic{left:calc(100% - 3px)}
+@media(max-width:600px){html:root body:not(#_):not(#_) .hero .trad-ic{left:calc(100% - 4px)}}
+html body .trad-menu{overflow:visible}
+html body .trad-menu .tm-o:first-child{border-radius:13px 13px 0 0}
+html body .trad-menu .tm-o:last-child{border-radius:0 0 13px 13px}
+html body .trad-menu .tm-o:only-child{border-radius:13px}
+html body .trad-menu::before{
+  content:'';position:absolute;top:-6px;left:var(--pointe,26px);width:10px;height:10px;z-index:1;
+  background:var(--h-s2);border-left:1px solid var(--h-l2);border-top:1px solid var(--h-l2);
+  transform:translateX(-50%) rotate(45deg);transition:background .25s,border-color .25s;
+}
+html body .trad-menu.tm-dessus::before{top:auto;bottom:-6px;transform:translateX(-50%) rotate(225deg)}
+/* la pointe prend la lumière de la ligne qu'elle touche, quand on la survole */
+html body .trad-menu:not(.tm-dessus):has(.tm-o:first-child:is(:hover,:focus-visible))::before,
+html body .trad-menu.tm-dessus:has(.tm-o:last-child:is(:hover,:focus-visible))::before{background:var(--h-or);border-color:var(--h-or)}
