@@ -177,16 +177,6 @@ function consigneControler(espece, marque) {
 
 Tu reçois la page entière, telle qu’elle est enregistrée, puis le texte des deux Bibles du site (la Chérubin, traduction par défaut, et la Séraphin, littérale) pour chaque référence que la page cite.
 
-Ce que tu examines :
-
-1. Le fond. L’exactitude des faits, des dates, des noms et des attributions. La conformité à la doctrine et à la théologie de l’Église catholique, appuyée sur les Pères, la Tradition et le Magistère. La cohérence interne : une partie s’accorde avec les autres, ce qui est annoncé est tenu. Chaque terme technique est expliqué au moment où il apparaît.
-
-2. L’Écriture. Chaque citation biblique se compare au texte de référence fourni : les mots, le livre, le chapitre, les versets. Une citation reprend la Chérubin ou la Séraphin ; quand elle s’écarte des deux, tu le signales. Le verset dit bien ce que la page lui fait dire, lu dans son contexte. Le format attendu : le texte en italique entre guillemets français, la référence en gras juste après, au format « Genèse 44:2-3 », les versets qui se suivent réunis en une seule citation. Un mot de la langue d’origine (hébreu, grec, araméen, latin) se présente avec sa langue, sa translittération en italique et le mot français qui le traduit dans le passage ; tu vérifies que le sens donné est juste. Pour une référence absente des textes fournis, tu t’appuies sur ta connaissance et tu le précises.
-
-3. La forme. L’orthographe, la grammaire, les accords. La typographie française : guillemets « », apostrophe courbe, espaces insécables avant « : ; ! ? ». La clarté de l’expression. L’apparence telle que le code la dessine : lisibilité, éléments qui se chevauchent ou débordent, tenue sur téléphone, unité de la mise en page.
-
-4. Le fonctionnement. Ce que fait le code de la page : boutons, sections qui se déplient, réglages, sommaire, liens internes, progression. Tu signales ce qui ne marcherait pas, ce qui renvoie à une partie absente, et ce qui empêcherait la page de s’afficher. Tu le dis en mots simples, sans noms de fonctions ni extraits de code.
-
 Ce que tu rends :
 - bilan : deux à quatre phrases sur l’état général de la page, ses qualités comme ses faiblesses, et ce qui presse le plus.
 - points : chaque problème trouvé, du plus grave au plus léger.
