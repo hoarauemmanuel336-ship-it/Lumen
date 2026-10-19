@@ -111,8 +111,8 @@ function qcMarque(a){try{return marqueDe(a)||'';}catch(_){return '';}}
 
 /* ── L'ÉTAT SUR LA CARTE ──
    Pendant le travail de l'IA, aucune fenêtre n'attend à l'écran : un
-   trait crème court sur la carte de l'élément, puis la carte dit
-   « Rapport prêt ». On continue à lire ou ranger pendant ce temps. */
+   petit cercle de chargement tourne sur la carte de l'élément, puis la
+   carte dit « Rapport prêt ». On continue à lire ou ranger pendant ce temps. */
 const QC_ETATS=new Map();
 function qcEtat(id,mot){
   if(mot)QC_ETATS.set(id,mot);else QC_ETATS.delete(id);
@@ -129,8 +129,9 @@ function qcPoseEtats(){
     const pied=c.querySelector('.ct-pied,.art-pied'); if(!pied)return;
     let e=pied.querySelector('.qc-etat');
     if(!e){e=document.createElement('span');e.className='qc-etat';pied.appendChild(e);}
-    /* pendant le travail, un trait crème qui court plutôt qu'une phrase
-       (Emmanuel : « une animation ») ; « Rapport prêt » reste écrit */
+    /* pendant le travail, le cercle de chargement plutôt qu'une phrase
+       (Emmanuel : « le truc de chargement connu, le cercle ») ;
+       « Rapport prêt » reste écrit */
     const vif=/cours/.test(mot);
     e.classList.toggle('vif',vif);
     e.textContent=vif?'':mot;
