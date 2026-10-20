@@ -1167,13 +1167,50 @@ html body .qa-conf-b button:hover{background:color-mix(in srgb,var(--h-or) 70%,#
 html body .qa-x{display:inline-flex;padding:6px;border:0;background:none;color:var(--h-t2);cursor:pointer;transition:color .2s}
 html body .qa-x:hover{color:#fff}
 html body .qa-fil{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:22px 24px 10px}
-html body .qa-passage{margin:0 0 24px;padding:2px 0 2px 16px;border-left:2px solid var(--h-or)}
-html body .qa-passage p{margin:0;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden;font-family:'Literata',Georgia,serif;font-style:italic;font-size:15.5px;line-height:1.6;color:var(--h-t1)}
-html body .qa-passage cite{display:block;margin-top:8px;font-family:var(--h-ui);font-style:normal;font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--h-t3)}
-html body .qa-q{margin:22px 0 12px;padding-top:18px;border-top:1px solid var(--h-l1);font-family:var(--h-ui);font-size:16.5px;font-weight:600;line-height:1.45;color:#fff}
-html body .qa-passage+.qa-q{margin-top:0;padding-top:0;border-top:0}
+/* le salon de discussion : les messages d'Emmanuel en bulles rondes à
+   droite (« les bulles doivent être rondes ») ; ceux de l'IA à gauche,
+   sans cadre */
+html body .qa-q{
+  width:fit-content;max-width:86%;margin:22px 0 16px auto;padding:10px 16px 11px;
+  background:var(--h-s2);border:1px solid var(--h-l2);
+  border-radius:18px;
+  font-family:'Literata',Georgia,serif;font-size:15.5px;line-height:1.5;color:#fff;white-space:pre-wrap;overflow-wrap:break-word;
+}
+/* le passage surligné n'est pas un message : il se pose en tête de la
+   discussion comme une note du salon, centré, sans cadre ni bulle,
+   l'origine entre deux filets, le texte en italique estompé, coupé à
+   trois lignes */
+html body .qa-cite{
+  display:block;width:100%;margin:0 0 26px;padding:0;border:0;background:none;
+  text-align:center;cursor:pointer;color:inherit;font:inherit;
+}
+html body .qa-cite-src{
+  display:flex;align-items:center;gap:12px;margin-bottom:8px;
+  font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--h-t3);
+}
+html body .qa-cite-src::before,html body .qa-cite-src::after{content:'';flex:1;height:1px;background:var(--h-l1)}
+html body .qa-cite-corps{position:relative;display:block}
+html body .qa-cite-txt{display:block;max-height:calc(1.55em * 3);overflow:hidden;padding:0 6px;font-family:'Literata',Georgia,serif;font-style:italic;font-size:14.5px;line-height:1.55;color:var(--h-t3);transition:color .2s}
+html body .qa-cite:hover .qa-cite-txt{color:var(--h-t2)}
+html body .qa-cite.ouvert .qa-cite-txt{max-height:none;overflow:visible}
+/* les « … » du passage coupé : posés au bout de la troisième ligne sur un
+   fondu noir ; survolés, ils grossissent et passent en crème (« quand on
+   survole les … ça doit faire grossir ces points ») */
+html body .qa-cite-plus{
+  display:none;position:absolute;right:0;bottom:0;padding:0 16px 0 34px;
+  background:linear-gradient(to right,transparent,#000 30px);
+  font-family:'Literata',Georgia,serif;font-size:14.5px;line-height:1.55;color:var(--h-t2);
+}
+html body .qa-cite.coupe:not(.ouvert) .qa-cite-plus{display:block}
+/* le zoom part du bord gauche des points et grandit sur le fond noir, sans
+   toucher le texte */
+html body .qa-cite-plus i{display:inline-block;font-style:normal;transform-origin:0 75%;transition:transform .22s var(--h-doux,ease),color .2s}
+html body .qa-cite-plus:hover i{transform:scale(1.7);color:var(--h-or)}
+html body .qa-copie-r{display:inline-flex;margin:0 0 6px -6px;padding:6px;border:0;background:none;color:var(--h-t3);cursor:pointer;transition:color .2s}
+html body .qa-copie-r:hover{color:#fff}
 html body .qa-r{font-family:'Literata',Georgia,serif;font-size:16px;line-height:1.65;color:var(--h-t1)}
 html body .qa-r p{margin:0 0 12px}
+html body .qa-r>:last-child{margin-bottom:4px}
 html body .qa-r ul{margin:0 0 12px;padding-left:20px}
 html body .qa-r li{margin-bottom:6px}
 html body .qa-r strong{color:#fff;font-weight:600}
@@ -1222,3 +1259,40 @@ html body .lv-ouverture p{margin:0;font-family:var(--h-ui);font-size:16px;color:
 /* les boutons « Terminer » d'un mode (Organiser, Choisir) : la croix */
 html:root body .act.act-x{display:inline-flex;align-items:center;justify-content:center;min-width:48px;padding-left:14px;padding-right:14px}
 html:root body #qa-ch-fin{display:inline-flex;align-items:center;justify-content:center;min-width:48px}
+
+/* ── LE MESSAGE D'UNE PAGE VIDE ──
+   Le même cadre pointillé partout (Articles, Ressources, Commentaires,
+   Mémoriser) : le texte respire à l'intérieur, sans toucher le filet, et
+   prend l'interligne de la Bible (« met pareil que la bible »). La
+   première phrase forme sa propre ligne ; le reste suit la largeur. */
+html:root body:not(#_) :is(.lv-vide,#cat-list>.sec-vide){
+  display:block;align-self:stretch;width:100%;box-sizing:border-box;margin:0 0 26px;
+  padding:22px 24px;border:1px dashed var(--h-l2);border-radius:0;background:none;
+  font-family:var(--h-texte);font-style:normal;font-size:17.5px;line-height:1.08;
+  color:rgba(255,255,255,.78);text-align:left;text-wrap:pretty;
+}
+html:root body:not(#_) .lv-vide .lv-vide-t{display:block;margin-bottom:10px;color:#fff}
+@media(max-width:600px){html:root body:not(#_) :is(.lv-vide,#cat-list>.sec-vide){padding:18px 18px;font-size:16.5px}}
+
+/* ── LE NOM D'UNE CATÉGORIE, EN ENTIER ──
+   Un nom long passe à la ligne au lieu d'être coupé par « … ». */
+html:root body:not(#_) :is(.rayon .ry-nom,.rub-nom){white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:break-word}
+
+/* ── SUR ÉCRAN TACTILE, PAS DE SURVOL QUI RESTE ──
+   Un doigt laisse le « survol » sur la case qu'il vient de toucher : quand
+   le bandeau change sous lui (Choisir, Organiser), une autre case resterait
+   allumée. Sans souris, les cases gardent leur teinte et leurs traits. */
+@media(hover:none){
+  html:root body:not(#_):not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):hover:not(:focus-visible){background:var(--h-or);box-shadow:none}
+  html:root body:not(#_):not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):hover:not(:focus-visible)::before,
+  html:root body:not(#_):not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outils,#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts)>:is(.act,.ghost-btn,.notes-btn):hover:not(:focus-visible)+:is(.act,.ghost-btn,.notes-btn)::before{opacity:1}
+}
+
+/* ── LE CERCLE QUI TOURNE, PARTOUT OÙ QUELQUE CHOSE SE FAIT ──
+   Il remplace les messages « … en cours » : petit dans un bouton ou une
+   ligne, noir sur le crème d'un bouton ; plus court en hauteur quand il
+   attend au-dessus d'une liste ou dans une fenêtre. */
+html body .lv-roue.petite{width:15px;height:15px;vertical-align:-3px;margin:0 2px}
+html:root body :is(.act,.qc-corrige,#qc-corrige,button.act) .lv-roue{border-color:rgba(0,0,0,.18);border-top-color:#000}
+html body .lv-attente.lv-attente-courte{min-height:0;padding:22px 0}
+html:root body:not(#_) .resume:has(>.lv-attente){border:0;background:none;padding:0;box-shadow:none;clip-path:none}

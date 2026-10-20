@@ -648,11 +648,19 @@ async function chargeCode(f){
   }
   S.res.code=txt;
   const co=$('f-code'); if(co)co.value=txt;
-  const ti=$('ed-titre');
-  if(ti&&!ti.value.trim()){ti.value=titreDuCode(txt)||nom.replace(/\.[^.]+$/,'').replace(/[-_]+/g,' ').trim();S.res.titre=ti.value;autoHauteur(ti);}
+  const ti=$('ed-titre'), vide=!!ti&&!ti.value.trim(), cible=S.res;
+  let auto='';
+  if(vide){auto=titreDuCode(txt)||nom.replace(/\.[^.]+$/,'').replace(/[-_]+/g,' ').trim();ti.value=auto;S.res.titre=auto;autoHauteur(ti);}
   marqueSale();
-  /* la marque se devine de nouveau d'après le nouveau contenu */
   dit(nom+'  ·  '+poids(f.size));
+  if(!vide)return;
+  /* sans titre donné, l'IA lit la page et lui donne son vrai titre ; un
+     titre retouché entre-temps à la main est gardé */
+  const etat=$('dep-code-etat'); if(etat)etat.insertAdjacentHTML('beforeend',' '+LV_ROUE_NOMME);
+  const r=await lvNomme('articles',txt,nom);
+  const e2=$('dep-code-etat'); if(e2){const ro=e2.querySelector('.lv-roue');if(ro)ro.remove();}
+  const t=r&&String(r.titre||'').trim(), ti2=$('ed-titre');
+  if(t&&S.res===cible&&cible.code===txt&&ti2&&ti2.value===auto&&t!==auto){ti2.value=t;cible.titre=t;autoHauteur(ti2);marqueSale();}
 }
 /* Le fichier téléchargé porte le titre de l'article, débarrassé des signes
    que les systèmes refusent dans un nom de fichier. */
@@ -1287,10 +1295,10 @@ function rendLister(){
   if(!pretListe()){ h.innerHTML='<div class="lv-attente"><span class="lv-roue" role="status" aria-label="Chargement"></span></div>'; return; }
   const fils=enfants(ou), res=ressourcesDe(ou);
   if(!fils.length&&!res.length){
-    if(LISTE_ERR&&S.auteur){ h.innerHTML='<div class="vide">Les articles n’ont pas pu être lus.<br>Vérifiez la connexion, puis rechargez la page.</div>'; return; }
+    if(LISTE_ERR&&S.auteur){ h.innerHTML='<div class="vide lv-vide">Les articles n’ont pas pu être lus.<br>Vérifiez la connexion, puis rechargez la page.</div>'; return; }
     h.innerHTML=ou
-      ? '<div class="vide">Rien ici pour l’instant.</div>'
-      : '<div class="vide">Rien encore.<br>Ajoute un article, ou crée d’abord une catégorie<br>pour les ranger.</div>';
+      ? '<div class="vide lv-vide">Rien ici pour l’instant.</div>'
+      : '<div class="vide lv-vide"><span class="lv-vide-t">Rien encore.</span>Ajoute un article, ou crée d’abord une catégorie pour les ranger.</div>';
     return;
   }
   /* les sections d'abord, les articles dessous, tous en rangées */
@@ -1789,7 +1797,7 @@ function rendCorbeille(){
   $('compte-corb').textContent=n?(n+(n>1?' éléments':' élément')):'';
   const bv=$('b-corb-vider'); if(bv)bv.style.display=n?'':'none';
   h.innerHTML='';
-  if(!n){h.innerHTML='<div class="vide">La corbeille est vide.</div>';return;}
+  if(!n){h.innerHTML='<div class="vide lv-vide">La corbeille est vide.</div>';return;}
   racines.forEach(x=>{
     const dedans=S.jetees.filter(a=>a.supprRub===x.id).length;
     const note=(x.parent?'Section':'Catégorie')

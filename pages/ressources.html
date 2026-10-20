@@ -574,9 +574,11 @@ const typeDe=r=>TYPES[r&&r.type]?r.type:'lien';
    L'espèce dit comment la ressource est rangée (code, image, PDF, lien) ; la
    marque dit ce qu'elle est pour le lecteur (diagramme, livre, cours…). Elle
    se choisit dans l'éditeur, et son icône paraît en tête de la carte.
-   Tant qu'aucune marque n'est choisie, la page la devine d'après le
-   contenu : chaque skill laisse dans sa page une signature reconnaissable.
-   Choisir « Aucune » retire l'icône pour de bon. */
+   Quand une page HTML est déposée, c'est l'IA qui la lit et lui donne sa
+   marque (commun/ia.js, lvNomme) ; marqueIA retient qu'elle vient de
+   l'IA, qui peut donc la revoir au dépôt d'une nouvelle version. Une
+   marque choisie à la main reste celle d'Emmanuel. Choisir « Aucune »
+   retire l'icône pour de bon. */
 const MARQUES={
   diagramme:{nom:'Diagramme',icone:'<circle cx="12" cy="4.8" r="2.3"/><circle cx="5" cy="18.6" r="2.3"/><circle cx="19" cy="18.6" r="2.3"/><circle cx="12" cy="13.2" r="1.6"/><path d="M12 7.1v4.5M10.7 14.2l-4.1 2.8M13.3 14.2l4.1 2.8"/>'},
   livre:    {nom:'Livre',    icone:'<path d="M12 6.4C9.9 4.9 6.9 4.3 3.2 4.7v13.6c3.7-.4 6.7.2 8.8 1.7 2.1-1.5 5.1-2.1 8.8-1.7V4.7c-3.7-.4-6.7.2-8.8 1.7zM12 6.4V20"/>'},
@@ -590,21 +592,8 @@ function devineMarque(r){
   const t=typeDe(r);
   if(t==='image')return 'image';
   if(t!=='diagramme')return '';
-  /* le contenu n'est chargé qu'à l'ouverture : la liste lit la marque devinée
-     à l'enregistrement */
-  if(typeof r.code!=='string'||!r.code)return r.marqueDevinee||'';
-  const c=r.code;
-  /* Le bloc lv-progression est la signature la plus sûre : le cours y range
-     ses « acquis », le parcours ses « sujets ». Les clés de stockage restent
-     reconnues pour les fichiers plus anciens. */
-  const bloc=(c.match(/<script\b[^>]*\bid=["']lv-progression["'][^>]*>([\s\S]*?)<\/script>/i)||[])[1]||'';
-  if(/"acquis"/.test(bloc))return 'cours';
-  if(/"sujets"/.test(bloc))return 'parcours';
-  if(c.indexOf('cours-html:')>=0)return 'cours';
-  if(c.indexOf('parcours-etude:')>=0)return 'parcours';
-  if(c.indexOf('id="toc"')>=0||c.indexOf('class="tocbtn"')>=0)return 'livre';
-  if(c.indexOf('diag-etat-')>=0||c.indexOf('data-name=')>=0)return 'diagramme';
-  return '';
+  /* une fiche plus ancienne garde la marque qui lui avait été trouvée */
+  return r.marqueDevinee||'';
 }
 /* la marque choisie l'emporte ; « aucune » est un choix, et il est gardé */
 function marqueDe(r){
@@ -717,12 +706,27 @@ async function chargeCode(f){
   }
   S.res.code=txt;
   const co=$('f-code'); if(co)co.value=txt;
-  const ti=$('ed-titre');
-  if(ti&&!ti.value.trim()){ti.value=nom.replace(/\.[^.]+$/,'').replace(/[-_]+/g,' ').trim();S.res.titre=ti.value;autoHauteur(ti);}
+  const ti=$('ed-titre'), vide=!!ti&&!ti.value.trim(), cible=S.res;
+  let auto='';
+  if(vide){auto=nom.replace(/\.[^.]+$/,'').replace(/[-_]+/g,' ').trim();ti.value=auto;S.res.titre=auto;autoHauteur(ti);}
   marqueSale();
-  /* la marque se devine de nouveau d'après le nouveau contenu */
-  if(!S.res.marque)rendEditeur();
   dit(nom+'  ·  '+poids(f.size));
+  /* l'IA lit la page : elle lui donne son vrai titre quand aucun n'était
+     donné (un titre retouché entre-temps à la main est gardé), et sa
+     marque, sauf si Emmanuel en a choisi une lui-même */
+  const etat=$('dep-code-etat'); if(etat)etat.insertAdjacentHTML('beforeend',' '+LV_ROUE_NOMME);
+  const r=await lvNomme('ressources',txt,nom);
+  const e2=$('dep-code-etat'); if(e2){const ro=e2.querySelector('.lv-roue');if(ro)ro.remove();}
+  if(!r||S.res!==cible||cible.code!==txt)return;
+  let change=false;
+  const t=String(r.titre||'').trim(), ti2=$('ed-titre');
+  if(t&&vide&&ti2&&ti2.value===auto&&t!==auto){ti2.value=t;cible.titre=t;autoHauteur(ti2);change=true;}
+  const mq=r.marque==='aucune'?'aucune':(MARQUES[r.marque]?r.marque:'');
+  if(mq&&(!cible.marque||cible.marqueIA)&&cible.marque!==mq){
+    cible.marque=mq; cible.marqueIA=true; change=true;
+    document.querySelectorAll('#res-form .mq-b').forEach(x=>{const on=x.dataset.mq===mq;x.classList.toggle('on',on);x.setAttribute('aria-pressed',String(on));});
+  }
+  if(change)marqueSale();
 }
 /* ── LE CODE SE REPREND EN FICHIER ──
    Le fichier porte le titre de la ressource, débarrassé des signes que les
@@ -792,8 +796,8 @@ async function envoieFichier(f){
   const mimeF=(f.type)||(t==='pdf'&&/\.pdf$/i.test(f.name||'')?'application/pdf':'')||'application/octet-stream';
   if(f.size>FICH_MAX){lvInfo('Ce fichier dépasse 25 Mo. Choisissez-en un plus léger, ou faites-en une fiche « Lien » vers l’endroit où il est déjà hébergé.');return;}
   const cible=S.res, typeAvant=t;
-  const dis=m=>{const e=$('dep-etat');if(e)e.textContent=m;};
-  dis('Lecture…');
+  const dis=(m,h)=>{const e=$('dep-etat');if(e){if(h)e.innerHTML=m;else e.textContent=m;}};
+  dis('<span class="lv-roue petite" role="status" aria-label="Lecture du fichier"></span>',true);
   let url;
   try{url=await litFichier(f);}catch(e){dis('');lvInfo('La lecture du fichier a échoué.');return;}
   const b64=url.slice(url.indexOf(',')+1);
@@ -805,7 +809,7 @@ async function envoieFichier(f){
        retirer, sinon les tranches resteraient introuvables et perdues */
     await mcol().doc(id).set({mime:mimeF,n:parts.length,taille:f.size,complet:false,cree:new Date().toISOString()});
     for(let k=0;k<parts.length;k++){
-      dis('Envoi '+Math.round((k+1)/parts.length*100)+' %');
+      dis('<span class="lv-roue petite" role="status" aria-label="Envoi en cours"></span> '+Math.round((k+1)/parts.length*100)+' %',true);
       await mcol().doc(id).collection('tranches').doc(String(k)).set({d:parts[k]});
     }
     await mcol().doc(id).set({mime:mimeF,n:parts.length,taille:f.size,complet:true,cree:new Date().toISOString()});
@@ -1408,10 +1412,10 @@ function rendLister(){
   if(!pretListe()){ h.innerHTML='<div class="lv-attente"><span class="lv-roue" role="status" aria-label="Chargement"></span></div>'; return; }
   const fils=enfants(ou), res=ressourcesDe(ou);
   if(!fils.length&&!res.length){
-    if(LISTE_ERR&&S.auteur){ h.innerHTML='<div class="vide">Les ressources n’ont pas pu être lues.<br>Vérifiez la connexion, puis rechargez la page.</div>'; return; }
+    if(LISTE_ERR&&S.auteur){ h.innerHTML='<div class="vide lv-vide">Les ressources n’ont pas pu être lues.<br>Vérifiez la connexion, puis rechargez la page.</div>'; return; }
     h.innerHTML=ou
-      ? '<div class="vide">Rien ici pour l’instant.</div>'
-      : '<div class="vide">Rien encore.<br>Crée une catégorie (Bible, Liturgie, Histoire…),<br>puis range dedans ce que tu veux garder.</div>';
+      ? '<div class="vide lv-vide">Rien ici pour l’instant.</div>'
+      : '<div class="vide lv-vide"><span class="lv-vide-t">Rien encore.</span>Crée une catégorie (Bible, Liturgie, Histoire…), puis range dedans ce que tu veux garder.</div>';
     return;
   }
   if(fils.length){
@@ -1913,7 +1917,7 @@ function rendCorbeille(){
   $('compte-corb').textContent=n?(n+(n>1?' éléments':' élément')):'';
   const bv=$('b-corb-vider'); if(bv)bv.style.display=n?'':'none';
   h.innerHTML='';
-  if(!n){h.innerHTML='<div class="vide">La corbeille est vide.</div>';return;}
+  if(!n){h.innerHTML='<div class="vide lv-vide">La corbeille est vide.</div>';return;}
   racines.forEach(x=>{
     const dedans=S.jetees.filter(a=>a.supprRub===x.id).length;
     const note=(x.parent?'Section':'Catégorie')
@@ -2023,12 +2027,6 @@ async function contenuDe(a){
   const lu=await litCode(ccol(),a.id);
   const code=lu!==null?lu:(typeof a.code==='string'?a.code:'');
   CODES.set(a.id,code); a.code=code;
-  /* la marque devinée est mise à jour dès qu'on ouvre le contenu, et la
-     liste la montre ensuite */
-  if(S.auteur&&S.uid&&code){
-    const m=devineMarque(a);
-    if(m&&m!==(a.marqueDevinee||'')){ a.marqueDevinee=m; acol().doc(a.id).update({marqueDevinee:m}).catch(()=>{}); }
-  }
   return code;
 }
 const MIGRES=new Set();
@@ -2294,7 +2292,7 @@ function rendEditeur(){
   if(bf)bf.onclick=()=>{const i=$('f-fichier');i.accept=TYPES[t].accept||'';i.value='';i.click();};
   $('res-form').querySelectorAll('.mq-b').forEach(b=>{
     b.onclick=()=>{
-      S.res.marque=b.dataset.mq;
+      S.res.marque=b.dataset.mq; S.res.marqueIA=false;
       $('res-form').querySelectorAll('.mq-b').forEach(x=>{const on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',String(on));});
       marqueSale();
     };
@@ -2363,7 +2361,7 @@ async function enregistreUneFois(silence){
     titre:a.titre||'', type:typeDe(a), desc:a.desc||'', rub:a.rub||'',
     media:a.media||'', mime:a.mime||'', taille:a.taille||0, nom:a.nom||'',
     vign:a.vign||'', url:a.url||'', cree:a.cree, maj:a.maj,
-    marque:a.marque||''
+    marque:a.marque||'', marqueIA:!!a.marqueIA
   };
   /* le contenu part dans sa propre fiche ; la fiche garde sa taille et la
      marque devinée, dont la liste a besoin */

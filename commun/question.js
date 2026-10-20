@@ -6,10 +6,12 @@
    une question à l'IA ».
 
    Un texte sélectionné fait paraître un petit bandeau de deux icônes :
-   copier le texte, et demander à l'IA. La seconde ouvre un panneau : le
-   passage en tête, puis la conversation, la question en bas. On peut
-   poser d'autres questions à la suite ; une nouvelle sélection ouvre une
-   nouvelle conversation.
+   copier le texte, et demander à l'IA. La seconde ouvre un salon de
+   discussion (Emmanuel : « ça doit être un salon de chat, on doit pouvoir
+   lui répondre aussi ») : le passage en tête, puis les messages, ceux
+   d'Emmanuel en bulles à droite, ceux de l'IA en texte de lecture à
+   gauche, chacun avec son bouton copier ; le champ du bas sert à lui
+   répondre. Une nouvelle sélection ouvre une nouvelle discussion.
 
    Chaque conversation est gardée dans le compte (users/…/questions)
    après chaque réponse (Emmanuel : « sinon après une question on ferme
@@ -219,6 +221,26 @@ function qaRendu(t){
   }).join('');
 }
 
+/* un message d'Emmanuel : l'espace tapé avant « ? ! : ; » et autour des
+   guillemets devient insécable, pour que le signe ne parte pas seul à la
+   ligne dans la bulle */
+const qaBulle=s=>qaEsc(s).replace(/ ([?!:;»])/g,'\u00a0$1').replace(/« /g,'«\u00a0');
+/* un message de l'IA : son texte, puis le bouton qui le copie */
+function qaMsgIA(t){
+  return '<div class="qa-r">'+qaRendu(t)+'</div>'
+    +'<button type="button" class="qa-copie-r" aria-label="Copier la réponse" title="Copier la réponse">'+QA_IC_COPIE+'</button>';
+}
+document.addEventListener('click',e=>{
+  const c=e.target.closest&&e.target.closest('.qa-cite');
+  if(c){const o=c.classList.toggle('ouvert');c.setAttribute('aria-expanded',o?'true':'false');return;}
+  const b=e.target.closest&&e.target.closest('.qa-copie-r'); if(!b)return;
+  const r=b.previousElementSibling; if(!r)return;
+  qaCopie(r.innerText.trim());
+  b.innerHTML=QA_IC_FAIT; setTimeout(()=>{b.innerHTML=QA_IC_COPIE;},1400);
+});
+/* le champ invite à poser la question, puis à répondre */
+const qaInvite=()=>{const c=$qa('qa-champ');if(c)c.placeholder=QA_VU.length?'Répondre à l’IA…':'Votre question sur ce passage…';};
+
 /* ── LE PANNEAU ── */
 let QA_MSGS=[], QA_VU=[], QA_ID='', QA_PASSAGE=null, QA_ATTENTE=false, QA_TOUR=0;
 function qaPanneau(){
@@ -303,10 +325,19 @@ function qaMontreConv(){
   $qa('qa-label').lastChild.textContent='Question à l’IA';
   $qa('qa-jeter').style.display=QA_ID?'':'none';
   const P=QA_PASSAGE||{texte:''};
-  let h='<blockquote class="qa-passage"><p>'+qaEsc(P.texte)+'</p>'
-    +(P.etiquette?'<cite>'+qaEsc(P.etiquette)+'</cite>':'')+'</blockquote>';
-  QA_VU.forEach(x=>{h+='<div class="qa-q">'+qaEsc(x.q)+'</div><div class="qa-r">'+qaRendu(x.r)+'</div>';});
+  /* le passage surligné ouvre la discussion comme une note du salon,
+     distincte des messages, coupée à trois lignes ; la toucher la déplie */
+  let h='<button type="button" class="qa-cite" aria-expanded="false" title="Voir tout le passage">'
+    +'<span class="qa-cite-src">'+qaEsc(P.etiquette||'Passage')+'</span>'
+    +'<span class="qa-cite-corps"><span class="qa-cite-txt">'+qaEsc(P.texte)+'</span><span class="qa-cite-plus" aria-hidden="true"><i>…</i></span></span></button>';
+  QA_VU.forEach(x=>{h+='<div class="qa-q">'+qaBulle(x.q)+'</div>'+qaMsgIA(x.r);});
   $qa('qa-fil').innerHTML=h;
+  qaInvite();
+  /* les « … » ne paraissent que si le passage dépasse ses trois lignes */
+  requestAnimationFrame(()=>document.querySelectorAll('#qa-fil .qa-cite').forEach(c=>{
+    const t=c.querySelector('.qa-cite-txt');
+    c.classList.toggle('coupe',t.scrollHeight>t.clientHeight+2);
+  }));
   $qa('qa-fil').scrollTop=$qa('qa-fil').scrollHeight;
   const champ=$qa('qa-champ'); champ.value=''; champ.style.height='auto';
 }
@@ -516,7 +547,7 @@ async function qaEnvoie(){
   champ.value=''; champ.style.height='auto';
   QA_ATTENTE=true; $qa('qa-envoi').disabled=true;
   const tour=QA_TOUR, fil=$qa('qa-fil');
-  const qd=document.createElement('div'); qd.className='qa-q'; qd.textContent=q; fil.appendChild(qd);
+  const qd=document.createElement('div'); qd.className='qa-q'; qd.innerHTML=qaBulle(q); fil.appendChild(qd);
   const rd=document.createElement('div'); rd.className='qa-r'; rd.innerHTML='<span class="qa-roue" aria-label="Réponse en cours"></span>'; fil.appendChild(rd);
   qd.scrollIntoView({block:'start',behavior:'smooth'});
   let contenu=q;
@@ -528,7 +559,7 @@ async function qaEnvoie(){
   }
   const avant=QA_MSGS.length;
   QA_MSGS.push({role:'user',content:contenu});
-  let texte='';
+  let texte='', ok=false;
   const montre=()=>{if(tour===QA_TOUR)rd.innerHTML=qaRendu(texte)+(QA_ATTENTE?'<span class="qa-roue" aria-hidden="true"></span>':'');};
   try{
     for(let n=0;n<5;n++){
@@ -544,7 +575,7 @@ async function qaEnvoie(){
       if(texte&&!/\n$/.test(texte))texte+='\n\n';
     }
     if(!texte.trim())texte='L’IA n’a rien répondu. Reformulez la question, puis réessayez.';
-    else{QA_VU.push({q,r:texte});qaGarde();}
+    else{QA_VU.push({q,r:texte});qaGarde();qaInvite();ok=true;}
   }catch(e){
     console.warn('question',e);
     if(tour!==QA_TOUR)return;
@@ -554,7 +585,11 @@ async function qaEnvoie(){
     texte=(texte?texte+'\n\n':'')+(e&&e.message?e.message:'La question n’a pas pu partir.');
     rd.classList.add('erreur');
   }finally{
-    if(tour===QA_TOUR){QA_ATTENTE=false;$qa('qa-envoi').disabled=false;montre();champ.focus();}
+    if(tour===QA_TOUR){
+      QA_ATTENTE=false;$qa('qa-envoi').disabled=false;montre();
+      if(ok)rd.insertAdjacentHTML('afterend','<button type="button" class="qa-copie-r" aria-label="Copier la réponse" title="Copier la réponse">'+QA_IC_COPIE+'</button>');
+      champ.focus();
+    }
   }
 }
 

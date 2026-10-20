@@ -390,11 +390,6 @@ html:root body:not(#_) .poignee,html:root body:not(#_) .poignee:hover,
 html body.organise .poignee,html body.organise .poignee:hover{background:none;box-shadow:none;border:0;border-radius:0}
 html body.organise .poignee:hover{color:var(--h-or)}
 
-/* ── LE MESSAGE DE PAGE VIDE ──
-   Sous le titre, aligné à gauche, dans l'écriture de lecture, comme sur
-   les autres pages. */
-html:root body:not(#_) #liste>.vide{font-family:var(--h-texte);font-size:17.5px;font-style:normal;line-height:1.55;color:rgba(255,255,255,.78);text-align:left;align-self:stretch;width:100%;padding:0;margin:0 0 26px}
-@media(max-width:600px){html:root body:not(#_) #liste>.vide{font-size:16.5px}}
 
 /* ── LE BANDEAU DU PLEIN ÉCRAN : seule la moitié survolée s'éclaire ── */
 html:root body:not(#_):not(#_) .res-plein-acts{overflow:visible}
@@ -442,7 +437,8 @@ html body .resume{
 html body #liste:has(> .rub){
   background:var(--h-s1);border:1px solid var(--h-l1);border-radius:0;overflow:clip;
 }
-html body #liste > .rub + .art-ligne{margin-top:10px}
+/* le premier article sous les catégories : un seul filet les sépare */
+html body #liste > .rub + .art-ligne{margin-top:0;border-top:0}
 
 html body .rub-tete,
 html body .rub-1:first-child>.rub-tete{
@@ -497,6 +493,9 @@ html body .art-ligne .art-item:focus-visible{outline-offset:-2px}
 html body .art-titre{
   font-family:var(--h-titre);font-weight:500;font-size:25px;line-height:1.2;letter-spacing:0;
   color:#fff;text-wrap:pretty;
+  /* « le titre des articles aligné à droite et à gauche » : justifié comme
+     la Bible, dernière ligne à gauche */
+  text-align:justify;text-align-last:left;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 2;
 }
 html body .art-vide-titre{color:var(--h-t3);font-style:italic}
 html body .art-extrait{
@@ -513,12 +512,6 @@ html body .art-ligne .art-menu{
 }
 html body .art-ligne .art-menu::before{inset:-4px}
 
-/* état vide : un cadre en pointillés (remplacé plus haut, pour la liste,
-   par le message aligné à gauche) */
-html body .vide{
-  font-family:var(--h-ui);font-style:italic;font-size:18px;line-height:1.6;color:var(--h-t3);
-  padding:48px 24px;text-align:center;border:1px dashed var(--h-l2);border-radius:0;
-}
 
 /* ── LES ACTIONS DE LA LISTE ── */
 html body #acts-liste{margin:36px 0 0}
@@ -619,7 +612,11 @@ html body .art-pied>span:first-child{font-family:var(--display);font-size:12.5px
 html body .art-pied .qc-etat{margin-left:0}
 html body #liste .art-ligne{position:relative}
 html body #liste .art-ligne .art-item,html body #liste .art-ligne .art-item:hover{padding-right:24px}
-html body #liste .art-ligne .art-titre{padding-right:44px}
+/* le ⋯ en haut à droite ne réserve sa place que sur la première ligne du
+   titre : les lignes suivantes prennent toute la largeur, ce qui garde des
+   espaces réguliers dans le titre justifié */
+html body #liste .art-ligne .art-titre{padding-right:0}
+html body #liste .art-ligne .art-titre::before{content:'';float:right;width:44px;height:1em}
 html body #liste .art-ligne .art-menu{position:absolute;top:14px;right:12px;margin:0}
 @media(max-width:720px){
   html body #liste .art-ligne .art-item,html body #liste .art-ligne .art-item:hover{padding-right:18px}

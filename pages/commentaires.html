@@ -811,7 +811,7 @@ function rendLister(){
   if(S.livre&&!(S.livre==='__sans'?sans.length:livres.indexOf(S.livre)>=0))S.livre='';
   majFil(!!S.livre);
   if(!n){
-    h.innerHTML='<div class="vide">Rien encore.<br>Le premier commentaire vous attend : depuis la Bible, sélectionnez un verset et choisissez « Commenter ».</div>';
+    h.innerHTML='<div class="vide lv-vide"><span class="lv-vide-t">Rien encore.</span>Le premier commentaire vous attend : depuis la Bible, sélectionnez un verset et choisissez «\u00a0Commenter\u00a0».</div>';
     return;
   }
   if(S.livre){
@@ -831,7 +831,7 @@ async function basculeEtat(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
   const versPublic=!a.publie;
   const b=document.getElementById('b-etat');
-  if(b){b.disabled=true;b.textContent=versPublic?'Affichage…':'Retrait…';}
+  if(b){b.disabled=true;b.innerHTML='<span class="lv-roue petite" role="status" aria-label="'+(versPublic?'Affichage':'Retrait')+' en cours"></span>';}
   let enLigneFait=false;
   try{
     if(versPublic)await metEnLigne(a); else await retireDeLigne(a);

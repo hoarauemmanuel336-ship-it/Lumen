@@ -54,6 +54,27 @@ async function lvIA(tache,donnees,avance){
   try{return JSON.parse(texte);}catch(_){throw new Error('La réponse de l’IA est illisible. Réessayez.');}
 }
 
+/* ── NOMMER UNE PAGE DÉPOSÉE ──
+   Emmanuel : « quand j'upload un artefact, fais en sorte que l'IA puisse
+   renommer le fichier correctement si nécessaire », sans « Diagramme
+   sur… » ni « Livre sur… », puisque l'icône dit déjà la forme ; et c'est
+   l'IA qui reconnaît la forme, pour l'icône. Elle reçoit le nom du
+   fichier, le titre écrit dans la page, le début et la fin du code et un
+   aperçu du texte ; elle rend {titre, marque}. Une panne laisse le titre
+   tiré du fichier : rien ne bloque le dépôt. */
+async function lvNomme(espece,code,nomFichier){
+  let titrePage='';
+  try{
+    const d=new DOMParser().parseFromString(String(code||''),'text/html');
+    const h=d.querySelector('h1'), t=d.querySelector('title');
+    titrePage=[t&&t.textContent,h&&h.textContent].map(x=>String(x||'').replace(/\s+/g,' ').trim()).filter((x,i,l)=>x&&l.indexOf(x)===i).join('  |  ');
+  }catch(_){}
+  try{
+    return await lvIA('nommer',{espece,code:String(code||''),nom_fichier:nomFichier||'',titre_page:titrePage,apercu:iaApercuDe(code)});
+  }catch(e){console.warn('nommer',e);return null;}
+}
+const LV_ROUE_NOMME='<span class="lv-roue petite" role="status" aria-label="L’IA lit la page"></span>';
+
 /* ── RANGER ── */
 const iaAvant=()=>db.doc(rdoc().path+'_ia_avant');
 let IA_EN_COURS=false;
@@ -185,19 +206,20 @@ async function rangerIA(espece){
 
   IA_EN_COURS=true;
   const b=$('b-organiser'), m=$('mot-liste'), libelle=b?b.textContent:'';
-  if(b){b.textContent='L’IA range…';b.disabled=true;}
+  /* pendant le rangement, le cercle qui tourne tient lieu de message, sur
+     le bouton et au-dessus de la liste (Emmanuel : « au lieu de “l'IA
+     range” met le cercle qui tourne ») */
+  if(b){b.innerHTML='<span class="lv-roue petite" role="status" aria-label="L’IA range"></span>';b.disabled=true;}
   const dit=t=>{if(m)m.textContent=t;};
+  if(m)m.innerHTML='<div class="lv-attente lv-attente-courte"><span class="lv-roue" role="status" aria-label="L’IA range '+mot+'"></span></div>';
   try{
-    dit('Lecture '+(espece==='articles'?'des articles':'des ressources')+'…');
-    const apercus=await iaApercus(S.liste,(n,t)=>dit('Lecture '+(espece==='articles'?'des articles':'des ressources')+'… '+n+' / '+t));
-    dit('L’IA lit '+mot+' et prépare un nouveau rangement. Cela peut prendre une minute ou deux.');
+    const apercus=await iaApercus(S.liste,()=>{});
     const plan=await lvIA('ranger',{
       espece,
       rubriques:S.rubs.map(r=>({id:r.id,nom:r.nom,parent:r.parent||''})),
       elements:S.liste.map(a=>({id:a.id,titre:a.titre||'',description:iaDescription(a),type:iaType(a),contenu:apercus.get(a.id)||'',rubrique_actuelle:rubValide(a.rub)?a.rub:''}))
-    },n=>dit('L’IA écrit le nouveau rangement… '+Math.round(n/100)/10+' k signes reçus.'));
+    },()=>{});
     const {rubs,ou,rang}=iaPlan(plan);
-    dit('Rangement en cours…');
     const nb=await iaApplique(rubs,ou,rang);
     dit('');
     try{vaVers('');}catch(_){rendLister();}

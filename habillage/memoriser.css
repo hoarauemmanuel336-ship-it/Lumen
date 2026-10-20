@@ -96,7 +96,6 @@ html body .sec-vide{padding:18px 20px;font-family:var(--h-ui);font-size:13.5px;l
 
 /* sans section, la liste entière prend le même cadre */
 html body #cat-list:has(>.cat){border:1px solid var(--h-l1);border-radius:0;background:var(--h-s1);overflow:hidden}
-html body #cat-list>.sec-vide{border:1px dashed var(--h-l2);border-radius:0;padding:22px 24px;text-align:center}
 
 /* ── 5. LES CATÉGORIES ──
    Des rangées aérées : la case, le nom en Cormorant, la barre de
@@ -738,3 +737,13 @@ html body.memo-charge .cat-acts,html body.memo-charge #start-btn,html body.memo-
 html body .trace-txt{display:flex;flex-direction:column;gap:3px;min-width:0}
 html body .trace-ref{font-family:var(--h-ui);font-size:15.5px;font-weight:500;color:#fff}
 html body .trace-ext{font-family:var(--h-texte);font-size:14px;color:var(--h-t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ── LA QUESTION JUSTIFIÉE, COMME LA BIBLE ──
+   « aligne le texte à droite et à gauche, comme dans mes bibles » : la
+   question se justifie aux deux bords, sur téléphone aussi, dernière ligne
+   à gauche. Le bloc épouse sa largeur, si bien qu'une question d'une
+   seule ligne reste centrée ; la référence seule garde son centrage. */
+html body .q-prompt:not(.ref){
+  width:fit-content;max-width:min(30em,100%);margin-left:auto;margin-right:auto;
+  text-align:justify;text-align-last:left;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 2;
+}

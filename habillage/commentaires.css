@@ -143,11 +143,6 @@ html body .art-ligne .art-menu{
 }
 html body .art-ligne .art-menu::before{inset:-4px}
 
-/* état vide : un cadre en pointillés */
-html body .vide{
-  font-family:var(--h-ui);font-style:italic;font-size:18px;line-height:1.6;color:var(--h-t3);
-  padding:48px 24px;text-align:center;border:1px dashed var(--h-l2);border-radius:0;
-}
 
 /* ── LES ACTIONS DE LA LISTE ── */
 html body #acts-liste{margin:36px 0 0}

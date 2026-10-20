@@ -126,7 +126,7 @@ function qcMajCorrige(r){
   const n=QC_RETENUS.size, b=$('qc-corrige');
   b.textContent=n?('Corriger '+n+(n>1?' points':' point')):'Aucun point coché';
   b.disabled=!n||!!QC_EN_COURS;
-  if(QC_EN_COURS===QC_VU&&QC_VU){b.textContent='Correction en cours…';b.disabled=true;}
+  if(QC_EN_COURS===QC_VU&&QC_VU){b.innerHTML='<span class="lv-roue petite" role="status" aria-label="Correction en cours"></span>';b.disabled=true;}
   $('qc-bas').style.display=r&&r.points&&r.points.length&&!(r.points.length===((r.corrige&&r.corrige.faits)||[]).length)?'':'none';
 }
 

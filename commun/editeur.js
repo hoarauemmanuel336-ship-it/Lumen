@@ -94,8 +94,8 @@ async function envoieImage(f,i){
   /* le bloc est retrouvé par sa clé à chaque fois : son rang et son élément
      peuvent changer pendant l'envoi */
   const rang=()=>(S.art===cible?S.art.blocs.findIndex(b=>b&&b.k===cle):-1);
-  const dis=m=>{const j=rang();if(j<0)return;const bloc=$('ed-corps').querySelector('.bloc[data-i="'+j+'"]');const place=bloc&&bloc.querySelector('.im-place');if(place)place.textContent=m;};
-  dis('Lecture…');
+  const dis=(m,h)=>{const j=rang();if(j<0)return;const bloc=$('ed-corps').querySelector('.bloc[data-i="'+j+'"]');const place=bloc&&bloc.querySelector('.im-place');if(place){if(h)place.innerHTML=m;else place.textContent=m;}};
+  dis('<span class="lv-roue petite" role="status" aria-label="Lecture du fichier"></span>',true);
   let url;
   try{url=await litFichier(f);}catch(e){dis('Choisir une image');lvInfo('La lecture du fichier a échoué.');return;}
   const virgule=url.indexOf(','), b64=url.slice(virgule+1);
@@ -107,7 +107,7 @@ async function envoieImage(f,i){
        retirer, sinon les tranches resteraient introuvables et perdues */
     await mcol().doc(id).set({mime:f.type,n:parts.length,taille:f.size,complet:false,cree:new Date().toISOString()});
     for(let k=0;k<parts.length;k++){
-      dis('Envoi '+Math.round((k+1)/parts.length*100)+' %');
+      dis('<span class="lv-roue petite" role="status" aria-label="Envoi en cours"></span> '+Math.round((k+1)/parts.length*100)+' %',true);
       await mcol().doc(id).collection('tranches').doc(String(k)).set({d:parts[k]});
     }
     await mcol().doc(id).set({mime:f.type,n:parts.length,taille:f.size,complet:true,cree:new Date().toISOString()});
@@ -401,7 +401,7 @@ function bibOuvre(cible){
   BIB_CIBLE=cible||{quoi:'ref'};
   $('mbib-titre').textContent=BIB_CIBLE.titre||'Choisir un verset';
   $('m-bib').classList.add('on');
-  $('mbib-corps').innerHTML='<div class="mbib-charge">Chargement…</div>';
+  $('mbib-corps').innerHTML='<div class="lv-attente lv-attente-courte"><span class="lv-roue" role="status" aria-label="Chargement"></span></div>';
   $('mbib-apercu').innerHTML=''; bibMajBoutons();
   api.pret().then(()=>{
     /* on ouvre sur la référence déjà en place, quand il y en a une */
@@ -444,7 +444,7 @@ function bibChaps(slug){
 
 function bibVersets(slug,ch,v1,v2){
   const api=bibApi(); B.slug=slug;B.ch=ch;bibRaz();
-  $('mbib-corps').innerHTML='<div class="mbib-charge">Chargement…</div>'; bibFil();
+  $('mbib-corps').innerHTML='<div class="lv-attente lv-attente-courte"><span class="lv-roue" role="status" aria-label="Chargement"></span></div>'; bibFil();
   api.livre(slug).then(d=>{
     let c=null; for(let i=0;i<d.chapitres.length;i++)if(d.chapitres[i].n===ch){c=d.chapitres[i];break;}
     if(!c)return bibChaps(slug);

@@ -24,6 +24,10 @@
      une ressource ou la Bible) : Claude Opus 5.5. Une réponse de
      doctrine ou d'exégèse doit être juste avant tout ; pour une réponse
      courte, Opus coûte à peine plus d'un centime.
+   - nommer (une page HTML qu'on vient de déposer dans Articles ou
+     Ressources) : Claude Haiku 5.5. Lire un aperçu, donner un titre juste
+     et reconnaître la forme de la page est une tâche courte et nette, que
+     le plus léger des modèles fait bien pour une fraction de centime.
    - corriger (la correction d'une page d'après son contrôle qualité) :
      Claude Opus 5.5, avec réflexion. Corriger sans abîmer le reste de
      la page demande la même finesse que la relecture.
@@ -45,6 +49,7 @@ const MODELES = {
   controler: 'claude-opus-5-5',
   corriger: 'claude-opus-5-5',
   question: 'claude-opus-5-5',
+  nommer: 'claude-haiku-5-5',
 };
 
 function json(corps, statut) {
@@ -327,9 +332,11 @@ const OUTIL_VERSETS = {
   },
 };
 
-const CONSIGNE_QUESTION = `Tu réponds aux questions d’Emmanuel, un catholique qui étudie seul avec l’IA, sur un passage qu’il vient de sélectionner dans sa bibliothèque personnelle : un article, une ressource d’étude ou la Bible de son site. Il ne code pas ; il lit ta réponse dans un panneau, à côté du passage.
+const CONSIGNE_QUESTION = `Tu réponds aux questions d’Emmanuel, un catholique qui étudie seul avec l’IA, sur un passage qu’il vient de sélectionner dans sa bibliothèque personnelle : un article, une ressource d’étude ou la Bible de son site. Il ne code pas ; il te lit dans un salon de discussion, à côté du passage.
 
-Tu réponds à la question posée, directement, en partant du passage et de son contexte. La réponse est claire pour le novice comme pour le lecteur confirmé : un terme technique s’explique au moment où il apparaît. Elle reste aussi courte que la question le permet ; une question qui demande de l’ampleur reçoit de l’ampleur.
+C’est une conversation : après ta réponse, il peut te répondre, demander une précision, contester, ou poursuivre sur autre chose. Tu reprends le fil de l’échange à chaque message.
+
+Tu réponds à ce qu’il te dit, directement, en partant du passage et de son contexte. La réponse est claire pour le novice comme pour le lecteur confirmé : un terme technique s’explique au moment où il apparaît. Elle reste aussi courte que la question le permet ; une question qui demande de l’ampleur reçoit de l’ampleur.
 
 Pour citer un verset, tu lis d’abord son texte exact avec l’outil lire_versets, puis tu le cites d’après la Chérubin, ou d’après la Séraphin quand le passage sélectionné vient de la Séraphin. Tu demandes en une fois tous les versets dont tu as besoin.
 
@@ -357,7 +364,65 @@ function demandeQuestion(donnees) {
   };
 }
 
-const TACHES = { ranger: demandeRanger, controler: demandeControler, corriger: demandeCorriger, question: demandeQuestion };
+/* ── NOMMER ──
+   Une page HTML qu'Emmanuel vient de déposer : l'IA lui donne le titre
+   sous lequel elle paraîtra dans la liste, et, pour une ressource, la
+   marque (l'icône de la carte). Elle reconnaît la forme d'après la page
+   elle-même et ce que disent les skills qui l'ont composée. */
+const MARQUES_NOMMER = ['diagramme', 'livre', 'cours', 'parcours', 'carte', 'aucune'];
+const SCHEMA_NOMMER = {
+  type: 'object',
+  properties: {
+    titre: { type: 'string' },
+    marque: { type: 'string', enum: MARQUES_NOMMER },
+  },
+  required: ['titre', 'marque'],
+  additionalProperties: false,
+};
+const MARQUE_DE_SKILL = { 'livre-html': 'livre', 'diagrammes-interactifs': 'diagramme', 'cours-html': 'cours', 'parcours-etude': 'parcours' };
+function descriptionSkill(md) {
+  const m = String(md || '').match(/^---[\s\S]*?\ndescription:\s*(.+)\n[\s\S]*?---/);
+  return m ? m[1].trim().replace(/^["']|["']$/g, '') : '';
+}
+function consigneNommer(espece) {
+  const skills = Object.keys(MARQUE_DE_SKILL)
+    .filter(n => SAVOIR.skills[n])
+    .map(n => '- marque « ' + MARQUE_DE_SKILL[n] + ' » : la skill ' + n + '. ' + descriptionSkill(SAVOIR.skills[n]))
+    .join('\n');
+  const commun = `Emmanuel vient de déposer une page HTML dans sa bibliothèque personnelle. Tu reçois le nom du fichier, le titre écrit dans la page, son début et sa fin en code, et un aperçu de son texte.
+
+Le titre est celui sous lequel la page paraît dans la liste. Il nomme le sujet, en français, dans la typographie française (apostrophe courbe, guillemets « », espace insécable avant « : ; ! ? »), avec une majuscule au premier mot et aux noms propres seulement. Il commence directement par le sujet : la forme de la page se lit à l’icône de sa carte, et le titre la laisse de côté (« La Trinité » plutôt que « Diagramme sur la Trinité »). Un titre déjà juste dans la page se garde tel quel ; un nom de fichier technique se réécrit en vrai titre.`;
+  if (espece === 'articles') return commun + `
+
+C’est un article au format question-réponse : son titre est la question à laquelle il répond, telle que la page la pose. La marque vaut « aucune ».`;
+  return commun + `
+
+La marque dit ce qu’est la page pour le lecteur ; son icône paraît en tête de la carte. Tu la reconnais d’après la structure de la page et ce que disent les skills d’Emmanuel :
+${skills}
+- marque « carte » : une carte géographique ou historique.
+- marque « aucune » : quand aucune de ces formes ne convient.`;
+}
+function demandeNommer(donnees) {
+  const espece = donnees && donnees.espece === 'articles' ? 'articles' : 'ressources';
+  const code = String(donnees.code || '');
+  const page = {
+    nom_fichier: String(donnees.nom_fichier || '').slice(0, 200),
+    titre_dans_la_page: String(donnees.titre_page || '').slice(0, 300),
+    debut_du_code: code.slice(0, 3500),
+    fin_du_code: code.length > 5000 ? code.slice(-1500) : '',
+    apercu_du_texte: String(donnees.apercu || '').slice(0, 2500),
+  };
+  return {
+    model: MODELES.nommer,
+    max_tokens: 1000,
+    stream: true,
+    system: consigneNommer(espece),
+    messages: [{ role: 'user', content: JSON.stringify(page) }],
+    output_config: { format: { type: 'json_schema', schema: SCHEMA_NOMMER } },
+  };
+}
+
+const TACHES = { ranger: demandeRanger, controler: demandeControler, corriger: demandeCorriger, question: demandeQuestion, nommer: demandeNommer };
 
 export default async (request) => {
   if (request.method !== 'POST') return json({ erreur: 'Méthode non permise.' }, 405);

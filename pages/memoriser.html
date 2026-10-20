@@ -1844,7 +1844,7 @@ function bibOuvre(){
   const api=bibApi();
   if(!api){lvInfo('La Bible n’est pas encore prête. Réessayez dans un instant.');return;}
   openModal('m-bib');
-  $('mbib-corps').innerHTML='<div class="mbib-charge">Chargement…</div>';
+  $('mbib-corps').innerHTML='<div class="lv-attente lv-attente-courte"><span class="lv-roue" role="status" aria-label="Chargement"></span></div>';
   $('mbib-apercu').innerHTML='';
   api.pret().then(()=>{ if(B.slug&&B.ch) bibVersets(B.slug,B.ch); else bibLivres(); })
     .catch(()=>{$('mbib-corps').innerHTML='<div class="mbib-charge">La Bible n’a pas pu être chargée. Fermez et réessayez.</div>';});
@@ -1875,7 +1875,7 @@ function bibChaps(slug){
 }
 function bibVersets(slug,ch,v1,v2){
   const api=bibApi(); B.slug=slug;B.ch=ch;bibRaz();
-  $('mbib-corps').innerHTML='<div class="mbib-charge">Chargement…</div>'; bibFil();
+  $('mbib-corps').innerHTML='<div class="lv-attente lv-attente-courte"><span class="lv-roue" role="status" aria-label="Chargement"></span></div>'; bibFil();
   api.livre(slug).then(d=>{
     let c=null; for(let i=0;i<d.chapitres.length;i++)if(d.chapitres[i].n===ch){c=d.chapitres[i];break;}
     if(!c)return bibChaps(slug);

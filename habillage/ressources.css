@@ -559,11 +559,6 @@ html body.organise .carte .poignee::after{content:'';position:absolute;left:0;to
 html body.organise .carte .poignee{padding:3px 0 0 1.75px}
 @media(max-width:600px){html body.organise .carte .poignee{padding:2.5px 0 0 1.75px}}
 
-/* ── LE MESSAGE DE PAGE VIDE ──
-   Sous le titre, aligné à gauche, dans l'écriture de lecture, comme sur
-   les autres pages. */
-html:root body:not(#_) #liste>.vide{font-family:var(--h-texte);font-size:17.5px;font-style:normal;line-height:1.55;color:rgba(255,255,255,.78);text-align:left;align-self:stretch;width:100%;padding:0;margin:0 0 26px}
-@media(max-width:600px){html:root body:not(#_) #liste>.vide{font-size:16.5px}}
 
 /* ── UNE SEULE COCHE SUR TOUT LE SITE ──
    La case de « Choisir » est celle de Mémoriser : 20 pixels, le trait

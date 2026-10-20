@@ -43,7 +43,7 @@ La progression est rangée par identifiant de verset : un verset garde sa progre
 
 ## Ressources
 
-Même organisation qu'Articles, avec ses propres noms : `ressources`, `res_code`, `res_medias`, `res_lecture`, `res_qc`, `res_avant`, `meta/res_rubriques` et `meta/res_rubriques_ia_avant`. Une ressource porte en plus une espèce (code, image, PDF, lien) et une marque (livre, diagramme, cours, parcours…).
+Même organisation qu'Articles, avec ses propres noms : `ressources`, `res_code`, `res_medias`, `res_lecture`, `res_qc`, `res_avant`, `meta/res_rubriques` et `meta/res_rubriques_ia_avant`. Une ressource porte en plus une espèce (code, image, PDF, lien) et une marque (livre, diagramme, cours, parcours…) : `marque` est celle qui s'affiche, `marqueIA` dit qu'elle vient de l'IA au dépôt du fichier (elle peut alors la revoir au dépôt suivant), et `marqueDevinee` garde, pour les fiches plus anciennes, la marque qui leur avait été trouvée.
 
 ## Commentaires (l'atelier)
 
