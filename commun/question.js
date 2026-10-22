@@ -73,7 +73,7 @@ function qaBouton(){
     +'<button type="button" class="qa-b" data-qa="ia" aria-label="Demander à l’IA" title="Demander à l’IA">'+QA_IC_IA+'</button>';
   /* le bandeau ne prend pas la main : la sélection reste visible */
   b.addEventListener('mousedown',e=>e.preventDefault());
-  b.querySelector('[data-qa="ia"]').onclick=()=>{const s=QA_SEL;qaCacheBouton();if(s)qaOuvre(s.passage);};
+  b.querySelector('[data-qa="ia"]').onclick=()=>{const s=QA_SEL;qaCacheBouton();if(s)qaOuvre(s.passage,s.code);};
   const c=b.querySelector('[data-qa="copie"]');
   c.onclick=()=>{
     if(!QA_SEL)return;
@@ -122,12 +122,45 @@ window.addEventListener('scroll',()=>{if(QA_SEL&&QA_SEL.cadre)qaPoseBouton();},t
 window.addEventListener('resize',()=>{if(QA_SEL)qaPoseBouton();});
 
 /* Articles et Ressources : la page reçoit la sélection d'un cadre.
-   source : le titre de l'élément ouvert. */
-function qaSelectionCadre(sel,cadre,source,espece){
+   source : le titre de l'élément ouvert ; code : la page entière, dont
+   l'IA reçoit tout le texte (voir qaTexteDe). */
+function qaSelectionCadre(sel,cadre,source,espece,code){
   if(!sel||!sel.texte){qaCacheBouton();return;}
-  QA_SEL={cadre,rect:sel,passage:{texte:sel.texte,contexte:sel.contexte||'',source:source||'',espece:espece||''}};
+  QA_SEL={cadre,rect:sel,passage:{texte:sel.texte,contexte:sel.contexte||'',source:source||'',espece:espece||''},code:code||''};
   qaPoseBouton();
 }
+
+/* ── TOUT LE TEXTE DE LA PAGE ──
+   Un cours ou un livre est découpé en pages, et la sélection ne montre
+   que celle qui est ouverte : l'IA reçoit donc, avec le passage, tout le
+   texte lisible de l'article ou de la ressource (Emmanuel, après une
+   réponse qui ne voyait que le plan d'un cours). Ni code, ni polices, ni
+   images : les mots seuls, titres à la ligne. Le contenu rangé dans un
+   modèle de page ou dans des données compte aussi. Il ne part pas dans le
+   compte avec la conversation : une conversation reprise depuis « Mes
+   questions » garde son passage et son contexte. */
+const QA_DOC_MAX=600000;
+function qaTexteDe(html){
+  try{
+    const d=new DOMParser().parseFromString(String(html||''),'text/html');
+    const extra=[];
+    d.querySelectorAll('script[type="application/json"]').forEach(s=>extra.push(s.textContent));
+    d.querySelectorAll('template').forEach(t=>{const x=document.createElement('div');x.appendChild(t.content.cloneNode(true));t.replaceWith(x);});
+    d.querySelectorAll('script,style,noscript,svg,link,meta').forEach(e=>e.remove());
+    const BLOC=/^(H[1-6]|P|LI|DT|DD|TR|BLOCKQUOTE|FIGCAPTION|SECTION|ARTICLE|HEADER|FOOTER|DIV|BR)$/;
+    const morceaux=[], w=d.createTreeWalker(d.body||d.documentElement,NodeFilter.SHOW_TEXT);
+    let n;
+    while((n=w.nextNode())){
+      const x=n.nodeValue.replace(/\s+/g,' ').trim(); if(!x)continue;
+      const e=n.parentElement;
+      morceaux.push((e&&BLOC.test(e.tagName)&&e.firstChild===n?'\n':' ')+x);
+    }
+    let t=morceaux.join('').replace(/ *\n */g,'\n').replace(/\n{2,}/g,'\n').trim();
+    if(extra.length)t+='\n\n'+extra.join('\n');
+    return t.slice(0,QA_DOC_MAX);
+  }catch(_){return '';}
+}
+let QA_DOC='';
 
 /* ── LE COMPTE ──
    Dans la Bible, le service de connexion se charge à la demande, et le
@@ -154,7 +187,7 @@ async function qaFlux(messages,surTexte){
   const u=await qaCompte();
   if(!u)throw new Error('Connectez-vous pour poser une question à l’IA.');
   const jeton=await u.getIdToken();
-  const r=await fetch('/api/ia',{method:'POST',headers:{'content-type':'application/json','authorization':'Bearer '+jeton},body:JSON.stringify({tache:'question',donnees:{messages}})});
+  const r=await fetch('/api/ia',{method:'POST',headers:{'content-type':'application/json','authorization':'Bearer '+jeton},body:JSON.stringify({tache:'question',donnees:{messages,document:QA_DOC}})});
   const type=r.headers.get('content-type')||'';
   if(!r.ok||type.indexOf('event-stream')<0){
     let m='';
@@ -300,8 +333,9 @@ document.addEventListener('keydown',e=>{
    elle-même, hors cadre, se gère par la Bible) */
 document.addEventListener('mousedown',e=>{if(QA_BOUTON&&!e.target.closest('#qa-bouton'))qaCacheBouton();},true);
 
-async function qaOuvre(passage){
+async function qaOuvre(passage,code){
   const p=qaPanneau();
+  QA_DOC=code?qaTexteDe(code):'';
   QA_PASSAGE=passage; QA_MSGS=[]; QA_VU=[]; QA_ID=''; QA_ATTENTE=false; QA_TOUR++;
   let source=passage.source||'';
   if(passage.bible){
@@ -431,7 +465,7 @@ function qaRendListe(){
       }
       if(corb)return;
       QA_TOUR++; QA_ATTENTE=false; $qa('qa-envoi').disabled=false;
-      QA_ID=c.id; QA_PASSAGE=c.passage||{texte:''}; QA_MSGS=Array.isArray(c.msgs)?c.msgs:[]; QA_VU=Array.isArray(c.vu)?c.vu:[];
+      QA_ID=c.id; QA_DOC=''; QA_PASSAGE=c.passage||{texte:''}; QA_MSGS=Array.isArray(c.msgs)?c.msgs:[]; QA_VU=Array.isArray(c.vu)?c.vu:[];
       qaMontreConv();
     };
     t.onclick=touche;

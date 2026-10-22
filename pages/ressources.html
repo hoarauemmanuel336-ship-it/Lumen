@@ -1139,7 +1139,7 @@ window.addEventListener('message',e=>{
   document.querySelectorAll('iframe[data-diag]').forEach(f=>{if(f.contentWindow===e.source)cadre=f;});
   if(!cadre)return;
   /* une sélection dans le cadre : le bouton « Demander à l'IA » */
-  if('lvSel' in d){const a=S.liste.find(x=>x.id===(cadre.dataset.res||S.vu));qaSelectionCadre(d.lvSel,cadre,a?a.titre:'','une ressource');return;}
+  if('lvSel' in d){const a=S.liste.find(x=>x.id===(cadre.dataset.res||S.vu));qaSelectionCadre(d.lvSel,cadre,a?a.titre:'','une ressource',a&&typeof a.code==='string'?a.code:'');return;}
   /* Un cadre qui ne défile pas lui-même : quand un lien interne de son
      contenu désigne un endroit plus bas, c'est la page qui porte la lecture
      jusque-là, sous la barre du site. */

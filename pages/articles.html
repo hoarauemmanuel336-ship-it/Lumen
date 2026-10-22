@@ -1029,7 +1029,7 @@ window.addEventListener('message',e=>{
   document.querySelectorAll('iframe[data-diag]').forEach(f=>{if(f.contentWindow===e.source)cadre=f;});
   if(!cadre)return;
   /* une sélection dans le cadre : le bouton « Demander à l'IA » */
-  if('lvSel' in d){const a=S.liste.find(x=>x.id===(cadre.dataset.res||S.vu));qaSelectionCadre(d.lvSel,cadre,a?a.titre:'','un article');return;}
+  if('lvSel' in d){const a=S.liste.find(x=>x.id===(cadre.dataset.res||S.vu));qaSelectionCadre(d.lvSel,cadre,a?a.titre:'','un article',a&&typeof a.code==='string'?a.code:'');return;}
   /* Le cadre s'ouvre toujours en plein écran : il fait l'écran, la hauteur
      qu'il annonce ne le concerne pas, et le contenu fait glisser lui-même ce
      qui colle. */

@@ -337,7 +337,7 @@ const CONSIGNE_QUESTION = `Tu réponds aux questions d’Emmanuel, un catholique
 
 C’est une conversation : après ta réponse, il peut te répondre, demander une précision, contester, ou poursuivre sur autre chose. Tu reprends le fil de l’échange à chaque message.
 
-Tu réponds à ce qu’il te dit, directement, en partant du passage et de son contexte. La réponse est claire pour le novice comme pour le lecteur confirmé : un terme technique s’explique au moment où il apparaît. Elle reste aussi courte que la question le permet ; une question qui demande de l’ampleur reçoit de l’ampleur.
+Tu réponds à ce qu’il te dit, directement, en partant du passage et de son contexte. Quand tu reçois tout le texte de l’article ou de la ressource, tu t’en sers : ce que la page dit ailleurs, dans une autre partie ou une autre leçon, fait partie de ce que tu sais d’elle. La réponse est claire pour le novice comme pour le lecteur confirmé : un terme technique s’explique au moment où il apparaît. Elle reste aussi courte que la question le permet ; une question qui demande de l’ampleur reçoit de l’ampleur.
 
 Pour citer un verset, tu lis d’abord son texte exact avec l’outil lire_versets, puis tu le cites d’après la Chérubin, ou d’après la Séraphin quand le passage sélectionné vient de la Séraphin. Tu demandes en une fois tous les versets dont tu as besoin.
 
@@ -353,13 +353,18 @@ function demandeQuestion(donnees) {
       content: typeof m.content === 'string' ? m.content
         : (Array.isArray(m.content) ? m.content.filter(b => b && blocs.has(b.type)) : ''),
     }));
+  /* tout le texte de l'article ou de la ressource, quand la page l'a
+     joint : il se garde en cache d'un message à l'autre de la conversation */
+  const doc = String(donnees.document || '').slice(0, 600000);
+  const system = [{ type: 'text', text: CONSIGNE_QUESTION + (SAVOIR.instructions
+    ? '\n\n<instructions_emmanuel>\nLes instructions personnalisées d’Emmanuel, les mêmes que celles qu’il donne à Claude.\n\n' + SAVOIR.instructions + '\n</instructions_emmanuel>'
+    : '') }];
+  if (doc.trim()) system.push({ type: 'text', text: '<document>\nTout le texte de l’article ou de la ressource d’où vient le passage, toutes ses pages et parties comprises, même celles qui ne sont pas à l’écran.\n\n' + doc + '\n</document>', cache_control: { type: 'ephemeral' } });
   return {
     model: MODELES.question,
     max_tokens: 8000,
     stream: true,
-    system: CONSIGNE_QUESTION + (SAVOIR.instructions
-      ? '\n\n<instructions_emmanuel>\nLes instructions personnalisées d’Emmanuel, les mêmes que celles qu’il donne à Claude.\n\n' + SAVOIR.instructions + '\n</instructions_emmanuel>'
-      : ''),
+    system,
     tools: [OUTIL_VERSETS],
     messages,
   };
