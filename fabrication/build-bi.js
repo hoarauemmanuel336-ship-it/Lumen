@@ -57,12 +57,16 @@ const polices = h => h.replace(/<link[^>]*fonts\.(?:googleapis|gstatic)\.com[^>]
    Chaque page reçoit, avant son propre script, exactement les familles dont
    elle se sert, posées dans la page elle-même et non en fichiers à part :
    Mémoriser fonctionne hors ligne, et rien de plus n'est à mettre en cache. */
+/* La conversation avec l'IA (question, ia-outils, assemblage, versets)
+   vit sur toutes les pages : l'icône de la barre du haut l'ouvre partout. */
+const CONVERSATION = ['versets', 'assemblage', 'ia-outils', 'question'];
 const COMMUN_JS_PAGES = {
-  'articles.html': ['outils', 'rubriques', 'ia', 'versets', 'qualite', 'question', 'menage'],
-  'ressources.html': ['outils', 'rubriques', 'ia', 'versets', 'qualite', 'question', 'menage'],
-  'bible.html': ['versets', 'question'],
-  'commentaires.html': ['outils', 'editeur', 'choix-verset'],
-  'memoriser.html': ['choix-verset'],
+  'articles.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage', ...CONVERSATION],
+  'ressources.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage', ...CONVERSATION],
+  'bible.html': CONVERSATION,
+  'commentaires.html': ['outils', 'editeur', 'choix-verset', ...CONVERSATION],
+  'memoriser.html': ['choix-verset', ...CONVERSATION],
+  'index.html': CONVERSATION,
 };
 function communJS(page) {
   return (COMMUN_JS_PAGES[page] || []).map(nom => {
@@ -233,6 +237,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
    intacte. */
 const BARRE_TETE = `<script>try{var ac=/^\\/(index\\.html)?$/.test(location.pathname);if(!ac&&localStorage.getItem('lv_barre')==='1')document.documentElement.classList.add('barre-rangee');}catch(e){}</scr`+`ipt>`;
 const SVG_LOUPE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg>';
+const SVG_IA = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg>';
 const SVG_COMPTE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg>';
 const NAV_LIENS = [['/', 'Accueil'], ['/bible.html', 'Bible'], ['/memoriser.html', 'Mémoriser'],
                    ['/articles.html', 'Articles'], ['/ressources.html', 'Ressources']];
@@ -258,6 +263,7 @@ function barreCanon() {
     <button class="burger" id="burger" aria-label="Menu">\u2630</button>
     <nav class="menu" id="menu">
       ${NAV_LIENS.map(l => `<a href="${l[0]}">${l[1]}</a>`).join('\n      ')}
+      <span class="rech-loupe ia-icone" id="ia-ouvrir" role="button" tabindex="0" aria-label="Parler avec l’IA" title="IA">${SVG_IA}<span class="ll-mob">IA</span></span>
       <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="Rechercher">${SVG_LOUPE}<span class="ll-mob">Rechercher</span></span>
       <span class="rech-loupe auth-icone" id="auth-ouvrir" role="button" tabindex="0" aria-label="Compte">${SVG_COMPTE}<span class="ll-mob">Compte</span></span>
     </nav>
@@ -344,7 +350,7 @@ const BARRE_JS = `(function(){
   document.addEventListener('keydown',function(e){
     if(e.key!=='Enter'&&e.key!==' ')return;
     var t=e.target; if(!t||!t.closest)return;
-    var el=t.closest('#rech-ouvrir,#auth-ouvrir,#macct-x,.macct-btn[role=button]');
+    var el=t.closest('#rech-ouvrir,#auth-ouvrir,#ia-ouvrir,#macct-x,.macct-btn[role=button]');
     if(!el||el.tagName==='BUTTON'||el.tagName==='A'||el.tagName==='INPUT'||el.tagName==='TEXTAREA')return;
     e.preventDefault(); el.click();
   });
@@ -653,6 +659,7 @@ ${COMMUN_TAG}
 <style>${APPEARANCE_CSS}</style>
 ${BARRE_TETE}
 ${habillage('accueil')}
+${communJS('index.html')}
 </head>
 <body>
 ${header(lang)}
@@ -965,6 +972,15 @@ if (fs.existsSync(RACINE + 'icones')) {
   for (const ic of fs.readdirSync(RACINE + 'icones')) fs.copyFileSync(RACINE + `icones/${ic}`, `${OUT}/icones/${ic}`);
 }
 console.log('Copié : memoriser-sw.js + manifests + icônes');
+/* les moteurs des skills, que la conversation avec l'IA assemble avec le
+   contenu qu'elle écrit (commun/assemblage.js lit /ia-moteurs/<skill>/) */
+for (const sk of ['livre-html', 'diagrammes-interactifs', 'cours-html', 'parcours-etude']) {
+  const src = `ia/skills/${sk}/moteur`;
+  if (!fs.existsSync(src)) continue;
+  fs.mkdirSync(`${OUT}/ia-moteurs/${sk}`, { recursive: true });
+  for (const f of ['gabarit.html', 'polices.css', 'moteur.css', 'moteur.js'])
+    if (fs.existsSync(`${src}/${f}`)) fs.copyFileSync(`${src}/${f}`, `${OUT}/ia-moteurs/${sk}/${f}`);
+}
 
 // ── La Sainte Bible : page de lecture, puis données par livre des deux traductions ──
 if (fs.existsSync(PAGES + 'bible.html')) {

@@ -52,11 +52,14 @@ Même organisation qu'Articles, avec ses propres noms : `ressources`, `res_code`
 | `users/{uid}/commentaires/{id}` | Les commentaires en cours d'écriture et affichés. |
 | `users/{uid}/medias/{id}` | Leurs images, en tranches. |
 
-## Questions à l'IA
+## La conversation avec l'IA
 
 | Chemin | Contenu |
 |---|---|
-| `users/{uid}/questions/{id}` | Une conversation avec l'IA sur un passage sélectionné : le passage, la conversation telle que l'IA la relit (pour la continuer), les questions et réponses affichées, les dates. Gardée après chaque réponse ; « Mes questions » la rouvre. |
+| `users/{uid}/questions/{id}` | Une conversation avec l'IA (sur un passage, sur toute une page, ou libre) : le passage (et l'endroit où la page est rangée, pour la relire), la conversation telle que l'IA la relit (pour la continuer), les questions et réponses affichées (avec la réflexion, les étapes, les sources, les pages créées, les pièces jointes), les dates. Gardée après chaque réponse ; « Mes questions » la rouvre. Au-delà de 900 000 octets, les messages et les échanges complets partent en tranches sous `msgs/m`, et la fiche garde un résumé de chaque échange (`msgsN` le signale). |
+| `users/{uid}/qa_pieces/{id}` | Les images et PDF joints à une conversation, en tranches au-delà d'un mégaoctet ; la conversation n'en garde que l'identifiant. |
+| `users/{uid}/meta/ia_memoire` | La mémoire de l'IA du site : une liste de lignes, tenue par l'IA et corrigée par Emmanuel. Sans lien avec la mémoire de Claude. |
+| `users/{uid}/ia_textes/{a_id ou r_id}` | Le texte lisible d'un article (`a_`) ou d'une ressource (`r_`), tiré de sa page et gardé avec la date de la page, pour que l'IA cherche dans la bibliothèque sans relire chaque page. |
 
 ## Les corbeilles
 

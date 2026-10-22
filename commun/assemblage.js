@@ -13,6 +13,10 @@
    assembleur Python se reporte ici dans le même mouvement.
    Les fichiers du moteur viennent de /ia-moteurs/<skill>/, copie des
    dossiers « moteur » de ia/skills/.
+   La fermeture d'un script et l'ouverture d'un commentaire HTML
+   s'écrivent ici en morceaux ou échappées : ce fichier est posé tel quel
+   dans une balise script des pages, que le navigateur lirait sinon de
+   travers.
    L'inclusion de fichiers (<inclure fichier="…"/>) n'a pas cours ici :
    le contenu arrive déjà complet, en une seule chaîne.
    ════════════════════════════════════════════════════════════════════ */
@@ -117,7 +121,7 @@ function lvAsTypoContenu(contenu,R){
       let attrs=true;
       if(R.code_ouvre(bas)){aPart=true;attrs=R.attrs_sur_code;}
       else if(R.code_ferme(bas)){aPart=false;attrs=R.attrs_sur_code;}
-      else if(R.sans_commentaires&&m.startsWith('<!--'))attrs=false;
+      else if(R.sans_commentaires&&m.startsWith('<!'+'--'))attrs=false;
       if(attrs)morceaux[i]=m.replace(R.attrs,(_,nom,val)=>nom+'="'+R.typo(val)+'"');
     }else if(!aPart){
       morceaux[i]=R.typo(m);
@@ -143,7 +147,7 @@ function lvAsTitre(contenu,motifs,defaut){
 
 /* ── LES QUATRE SKILLS ── */
 const lvAsDebutCode=bas=>bas.startsWith('<style')||bas.startsWith('<script');
-const lvAsFinCode=bas=>bas.startsWith('</style')||bas.startsWith('</script');
+const lvAsFinCode=bas=>bas.startsWith('</style')||bas.startsWith('</scr'+'ipt');
 const LV_AS_CODE_OUVRE=lvAsRe('^<(style|script|code|pre)'+LV_AS_FIN);
 const LV_AS_CODE_FERME=lvAsRe('^</(style|script|code|pre)'+LV_AS_FIN);
 const LV_AS_SKILLS={
@@ -403,7 +407,7 @@ async function lvAssemble(skill,contenu){
     contenu=lvAsIdentifie(lvAsStrip(contenu));
   }else{
     progression=LV_AS_PROG_NEUVE;
-    const m=lvAsRe('<script'+LV_AS_FIN+'[^>]*'+LV_AS_DEBUT+'id=["\']lv-progression["\'][^>]*>([\\s\\S]*?)</script>'+LV_AS_S+'*','i').exec(contenu);
+    const m=lvAsRe('<script'+LV_AS_FIN+'[^>]*'+LV_AS_DEBUT+'id=["\']lv-progression["\'][^>]*>([\\s\\S]*?)<\\/script>'+LV_AS_S+'*','i').exec(contenu);
     if(m){
       progression=lvAsProgressionParcours(lvAsStrip(m[1]));
       contenu=contenu.slice(0,m.index)+contenu.slice(m.index+m[0].length);
