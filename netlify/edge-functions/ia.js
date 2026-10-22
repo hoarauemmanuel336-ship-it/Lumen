@@ -146,7 +146,8 @@ async function demandeRanger(donnees) {
 
 /* ── CONTRÔLER ──
    Le contrôle qualité d'une page HTML (article ou ressource). L'IA
-   reçoit la page entière, telle qu'elle est enregistrée, et le texte
+   reçoit la page entière, ses fichiers intégrés (polices, images)
+   remplacés par une courte mention, et le texte
    des deux Bibles du site pour chaque référence que la page cite. Elle
    rend un constat : elle ne corrige rien, Emmanuel décide ensuite. */
 const SCHEMA_CONTROLER = {
@@ -187,7 +188,7 @@ function consigneControler(espece, marque) {
     : 'une ressource d’étude' + (marque ? ' (' + marque.toLowerCase() + ')' : '') + ', écrite pour qu’Emmanuel apprenne seul, sans autre source';
   return `Tu fais le contrôle qualité d’une page HTML de la bibliothèque personnelle d’étude d’Emmanuel, un catholique. Cette page est ${quoi}. Emmanuel ne code pas : il lira ton rapport en langage courant, puis décidera lui-même de ce qu’il fait corriger. Tu ne réécris pas la page, tu en dresses le constat.
 
-Tu reçois la page entière, telle qu’elle est enregistrée, puis le texte des deux Bibles du site (la Chérubin, traduction par défaut, et la Séraphin, littérale) pour chaque référence que la page cite.
+Tu reçois la page entière, telle qu’elle est enregistrée, puis le texte des deux Bibles du site (la Chérubin, traduction par défaut, et la Séraphin, littérale) pour chaque référence que la page cite. Les fichiers intégrés à la page (polices, images) te parviennent remplacés par la mention « [fichier intégré] » : ils sont bien présents et complets dans la page enregistrée.
 
 Ce que tu rends :
 - bilan : deux à quatre phrases sur l’état général de la page, ses qualités comme ses faiblesses, et ce qui presse le plus.
@@ -259,7 +260,7 @@ const SCHEMA_CORRIGER = {
   additionalProperties: false,
 };
 
-const CONSIGNE_CORRIGER = `Tu corriges une page HTML de la bibliothèque personnelle d’étude d’Emmanuel, un catholique, d’après le contrôle qualité qui vient d’en être fait. Tu reçois le code source de la page, les problèmes qu’Emmanuel a retenus (numérotés), et le texte des deux Bibles du site (la Chérubin, traduction par défaut, et la Séraphin, littérale) pour chaque référence que la page cite.
+const CONSIGNE_CORRIGER = `Tu corriges une page HTML de la bibliothèque personnelle d’étude d’Emmanuel, un catholique, d’après le contrôle qualité qui vient d’en être fait. Tu reçois le code source de la page, les problèmes qu’Emmanuel a retenus (numérotés), et le texte des deux Bibles du site (la Chérubin, traduction par défaut, et la Séraphin, littérale) pour chaque référence que la page cite. Les fichiers intégrés à la page (polices, images) te parviennent remplacés par la mention « [fichier intégré] » : ils sont bien présents et complets dans la page enregistrée ; tes remplacements portent sur le reste de la page et ne touchent pas à ces mentions.
 
 Tu rends tes corrections sous forme de remplacements :
 - ancien : un passage copié du code source caractère pour caractère, balises, entités, espaces et espaces insécables compris, tel qu’il figure dans la page. Il est assez long pour n’apparaître qu’une seule fois dans la page.

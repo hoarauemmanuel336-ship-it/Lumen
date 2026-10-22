@@ -57,6 +57,13 @@ const QC_DOMAINES={fond:'Fond',ecriture:'Écriture',forme:'Forme',fonctionnement
    (commun/versets.js) */
 const qcVersets=html=>lvVersetsCites(html);
 
+/* la page telle que l'IA la lit : les fichiers intégrés (polices,
+   images) sont de longues suites de caractères qui ne disent rien du
+   contenu et dépasseraient ce que l'IA peut lire d'un coup. On les
+   remplace par une courte mention ; la page enregistrée les garde. */
+const QC_INTEGRE='[fichier intégré]';
+const qcAllege=html=>html.replace(/(data:[a-z0-9.+\/-]+(?:;[a-z0-9=.+-]+)*;base64,)[A-Za-z0-9+\/=\s]{200,}/gi,'$1'+QC_INTEGRE);
+
 /* la marque (livre, diagramme, cours…) dit au serveur quelle skill a
    fait la page */
 function qcMarque(a){try{return marqueDe(a)||'';}catch(_){return '';}}
@@ -278,7 +285,7 @@ async function qcLance(a,espece,portee){
       titre:a.titre||'',
       marque:(typeof iaType==='function'?iaType(a):''),
       marqueCle:qcMarque(a),
-      html,
+      html:qcAllege(html),
       versets,
       portee
     });
@@ -358,7 +365,7 @@ async function qcCorrige(a,r,espece){
     if(!html.trim())throw new Error('Cette page est vide : il n’y a rien à corriger.');
     const versets=await qcVersets(html);
     const res=await lvIA('corriger',{
-      espece, titre:a.titre||'', html, versets, marqueCle:qcMarque(a),
+      espece, titre:a.titre||'', html:qcAllege(html), versets, marqueCle:qcMarque(a),
       points:choisis.map(i=>r.points[i])
     });
     /* les numéros de l'IA désignent les points envoyés : on les ramène à
