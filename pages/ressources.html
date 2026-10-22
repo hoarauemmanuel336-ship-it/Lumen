@@ -438,7 +438,10 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
 
   <section id="ecran-edit">
     <div class="outils"><span class="enr" id="etat-enr"></span></div>
-    <textarea class="ed-titre" id="ed-titre" rows="1" placeholder="Titre de la ressource" spellcheck="true"></textarea>
+    <div class="ed-titre-l">
+      <textarea class="ed-titre" id="ed-titre" rows="1" placeholder="Titre de la ressource" spellcheck="true"></textarea>
+      <button type="button" class="ed-ia" id="b-renommer" hidden aria-label="Renommer avec l’IA" title="Renommer avec l’IA"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.5l1.6 4.4 4.4 1.6-4.4 1.6L10 15.5l-1.6-4.4L4 9.5l4.4-1.6zM18 13.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg></button>
+    </div>
     <div id="res-form"></div>
     <div class="acts">
       <button class="act act-ic" id="b-retour" aria-label="Revenir aux ressources" title="Revenir aux ressources"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 12h-15M10.5 6l-6 6 6 6"/></svg></button>
@@ -711,22 +714,38 @@ async function chargeCode(f){
   if(vide){auto=nom.replace(/\.[^.]+$/,'').replace(/[-_]+/g,' ').trim();ti.value=auto;S.res.titre=auto;autoHauteur(ti);}
   marqueSale();
   dit(nom+'  ·  '+poids(f.size));
-  /* l'IA lit la page : elle lui donne son vrai titre quand aucun n'était
-     donné (un titre retouché entre-temps à la main est gardé), et sa
-     marque, sauf si Emmanuel en a choisi une lui-même */
-  const etat=$('dep-code-etat'); if(etat)etat.insertAdjacentHTML('beforeend',' '+LV_ROUE_NOMME);
+  majRenommer();
+  /* l'IA lit la page et lui donne sa marque, sauf si Emmanuel en a choisi
+     une lui-même. Le titre, lui, ne change que par le bouton « Renommer
+     avec l'IA » (Emmanuel : « au lieu que l'IA renomme automatiquement,
+     un bouton pour qu'on puisse renommer avec l'IA »). */
   const r=await lvNomme('ressources',txt,nom);
-  const e2=$('dep-code-etat'); if(e2){const ro=e2.querySelector('.lv-roue');if(ro)ro.remove();}
   if(!r||S.res!==cible||cible.code!==txt)return;
   let change=false;
-  const t=String(r.titre||'').trim(), ti2=$('ed-titre');
-  if(t&&vide&&ti2&&ti2.value===auto&&t!==auto){ti2.value=t;cible.titre=t;autoHauteur(ti2);change=true;}
   const mq=r.marque==='aucune'?'aucune':(MARQUES[r.marque]?r.marque:'');
   if(mq&&(!cible.marque||cible.marqueIA)&&cible.marque!==mq){
     cible.marque=mq; cible.marqueIA=true; change=true;
     document.querySelectorAll('#res-form .mq-b').forEach(x=>{const on=x.dataset.mq===mq;x.classList.toggle('on',on);x.setAttribute('aria-pressed',String(on));});
   }
   if(change)marqueSale();
+}
+/* ── RENOMMER AVEC L'IA ──
+   L'icône au bout du champ du titre : l'IA lit la page et lui donne son vrai
+   titre, qui remplace celui de la fiche. Il ne paraît que lorsqu'il y a
+   une page à lire. */
+function majRenommer(){
+  const b=$('b-renommer'); if(b)b.hidden=!(S.res&&typeDe(S.res)==='diagramme'&&S.res.code&&S.res.code.trim());
+}
+async function renommeIA(){
+  const b=$('b-renommer'), cible=S.res, code=cible&&cible.code;
+  if(!b||!code||!code.trim()||b.disabled)return;
+  b.disabled=true; const mot=b.innerHTML; b.innerHTML=LV_ROUE_NOMME;
+  const r=await lvNomme('ressources',code,'');
+  b.disabled=false; b.innerHTML=mot;
+  const t=r&&String(r.titre||'').trim(), ti=$('ed-titre');
+  if(!t){lvInfo('L’IA n’a pas pu proposer de titre. Réessayez.');return;}
+  if(S.res!==cible||!ti)return;
+  ti.value=t; cible.titre=t; autoHauteur(ti); marqueSale();
 }
 /* ── LE CODE SE REPREND EN FICHIER ──
    Le fichier porte le titre de la ressource, débarrassé des signes que les
@@ -2270,7 +2289,8 @@ function rendEditeur(){
   $('res-form').innerHTML=h;
   const u=$('f-url'), co=$('f-code'), de=$('f-desc');
   if(u)u.addEventListener('input',()=>{S.res.url=u.value;marqueSale();});
-  if(co)co.addEventListener('input',()=>{S.res.code=co.value;marqueSale();});
+  if(co)co.addEventListener('input',()=>{S.res.code=co.value;marqueSale();majRenommer();});
+  const brn=$('b-renommer'); if(brn){brn.onclick=renommeIA;majRenommer();}
   if(de)de.addEventListener('input',()=>{S.res.desc=de.value;marqueSale();});
   const bcf=$('b-code-fichier');
   if(bcf)bcf.onclick=()=>{const i=$('f-code-fichier');i.value='';i.click();};

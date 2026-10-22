@@ -55,8 +55,10 @@ async function lvIA(tache,donnees,avance){
 }
 
 /* ── NOMMER UNE PAGE DÉPOSÉE ──
-   Emmanuel : « quand j'upload un artefact, fais en sorte que l'IA puisse
-   renommer le fichier correctement si nécessaire », sans « Diagramme
+   Le titre vient de l'icône « Renommer avec l'IA », au bout du champ du
+   titre dans l'éditeur (Emmanuel : « un bouton pour qu'on puisse renommer
+   avec l'IA ») ; la marque d'une
+   ressource se reconnaît au dépôt. Le titre est rendu sans « Diagramme
    sur… » ni « Livre sur… », puisque l'icône dit déjà la forme ; et c'est
    l'IA qui reconnaît la forme, pour l'icône. Elle reçoit le nom du
    fichier, le titre écrit dans la page, le début et la fin du code et un

@@ -572,12 +572,12 @@ html body .auth-out:hover{color:var(--h-or)}
   html body .lvl .dot{width:14px;height:14px}
 }
 
-/* ── LES OPTIONS, SUR TÉLÉPHONE, EN FER À GAUCHE ──
-   Dans une carte étroite, la justification ouvrirait de grands blancs
-   entre les mots : le texte s'aligne à gauche, sans coupures. */
-@media(max-width:600px){
-  html body .opt{text-align:left;-webkit-hyphens:manual;hyphens:manual}
-}
+/* ── LES OPTIONS, JUSTIFIÉES PARTOUT ──
+   Le texte des propositions est aligné à gauche et à droite, sur téléphone
+   aussi, comme dans la Bible (Emmanuel) ; la coupure des mots évite les
+   grands blancs dans une carte étroite. Les références restent au fer à
+   gauche (voir la page). */
+html body .opts:not(.two) .opt{text-align:justify;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 2}
 
 /* ── LES ONGLETS (voulus par Emmanuel) ──
    Versets / Passages / Fiches : sans fond teinté ni cadre ; l'onglet
