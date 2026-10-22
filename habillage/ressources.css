@@ -522,7 +522,9 @@ html:root body .res-plein-acts{
 }
 html:root body .res-plein-acts:hover{box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 html:root body .res-plein-acts .res-plein-x{position:static;left:auto;bottom:auto;box-shadow:none;border-radius:0}
-html:root body .res-plein-acts .res-plein-x:first-child{padding-left:24px}
+/* le retour est une flèche seule : un peu plus d'air à gauche, au bord arrondi du bandeau */
+html:root body .res-plein-acts .res-plein-x:first-child{padding:10px 14px 10px 20px}
+html:root body .res-plein-x svg,html:root body .act.act-ic svg{display:block}
 html:root body .res-plein-acts .res-plein-bible{padding:10px 16px;position:relative}
 html:root body .res-plein-acts .res-plein-bible::before{
   content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:rgba(0,0,0,.28);
