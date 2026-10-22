@@ -1047,7 +1047,8 @@ function isBase(catId){return PRE.some(c=>c.id===catId);}
    LE TIRAGE est automatique : la cadence jaune, jaune, rouge, jaune, rouge,
    vert ; les groupes arrêtés au départ de la séance ; chacun son tour dans
    un groupe. Le vert revient toutes les six questions, et un verset neuf ne
-   bloque jamais un ancien. */
+   bloque jamais un ancien. Un verset répondu attend quatre autres questions
+   avant de revenir ; s'il manque de quoi remplir une place, elle va au vert. */
 /* ── L'HEURE VIENT DU SERVEUR ──
    La date d'un passage (p.t) se prend sur l'heure du serveur qui sert la
    page (en-tête « Date » d'une requête HEAD), pour qu'une horloge d'appareil
@@ -1127,6 +1128,7 @@ function answer(id,ok,rap){
     if(k==='r'){ S.fenR=S.fenR||[]; if(!S.fenR.includes(id))S.fenR.push(id); }
   }
   p.t=new Date(ms).toISOString();
+  S.vuAu=S.vuAu||{}; S.vuAu[id]=S.step;
   S.progress[id]=p; S.step++; marqueSale(id);
   propageProg(id);
 }
@@ -1143,7 +1145,7 @@ function answer(id,ok,rap){
    À l'intérieur d'un groupe : ce que la séance n'a pas encore montré, du
    plus faible au plus solide ; puis le plus anciennement vu. Rien n'est
    limité à un passage par séance : un jaune revient autant que son tour le
-   ramène, et une bonne réponse n'abaisse rien (voir answer).
+   ramène, à quatre questions d'écart au moins (voir ECART_MIN), et une bonne réponse n'abaisse rien (voir answer).
    Un verset neuf, jamais vu, appartient au rouge : c'est ce qu'on ne
    maîtrise pas, par définition. */
 const TOUR=['j','j','r','j','r','v'];
@@ -1177,9 +1179,22 @@ function fenetreRouge(items,grpDe){
   const fen={}; S.fenR.forEach(id=>fen[id]=1);
   return fen;
 }
+/* ── UN ÉCART ENTRE DEUX PASSAGES ──
+   « On apprend par la répétition », mais pas coup sur coup : un verset
+   répondu revient au plus tôt après ECART_MIN autres questions. Avec peu
+   de jaunes et de rouges, leurs places en trop vont donc au vert au lieu
+   de les faire tourner en boucle ; avec beaucoup, rien ne change. Un
+   verset manqué ou posé rouge garde son retour plus rapide (voir answer). */
+const ECART_MIN=4;
+function tropRecent(id){
+  const n=S.vuAu&&S.vuAu[id];
+  if(n==null||(S.progress[id]||{}).s!=null)return false;
+  return S.step-n<=ECART_MIN;
+}
 function nextItem(){
   const items=allItems(); if(!items.length)return null;
   let pool=items.filter(i=>i.id!==S.lastId); if(!pool.length)pool=items;
+  const espaces=pool.filter(i=>!tropRecent(i.id)); if(espaces.length)pool=espaces;
   let libres=pool.filter(i=>!retenu(i.id)); if(!libres.length)libres=pool;
   const debut=S.debut||0;
   /* le vrai besoin, dans un groupe, est ce que la séance n'a pas encore
@@ -1587,7 +1602,7 @@ function startSession(){
     updateStart();
     return;
   }
-  S.answered=0; S.correct=0; S.lastId=null; S.rap={r:0,a:0,v:0}; S.tour=0; S.fenR=[];
+  S.answered=0; S.correct=0; S.lastId=null; S.rap={r:0,a:0,v:0}; S.tour=0; S.fenR=[]; S.vuAu={};
   /* le bilan de la série : ce qui a été vu, et ce qui a été manqué */
   S.vus={}; S.rates={};
   /* l'heure de départ de la séance : ce qui a été vu avant elle compte comme
