@@ -123,10 +123,12 @@ window.addEventListener('resize',()=>{if(QA_SEL)qaPoseBouton();});
 
 /* Articles et Ressources : la page reçoit la sélection d'un cadre.
    source : le titre de l'élément ouvert ; code : la page entière, dont
-   l'IA reçoit tout le texte (voir qaTexteDe). */
-function qaSelectionCadre(sel,cadre,source,espece,code){
+   l'IA reçoit tout le texte (voir qaTexteDe) ; ref : où la page est
+   rangée dans le compte, pour la relire quand la conversation est
+   reprise depuis « Mes questions ». */
+function qaSelectionCadre(sel,cadre,source,espece,code,ref){
   if(!sel||!sel.texte){qaCacheBouton();return;}
-  QA_SEL={cadre,rect:sel,passage:{texte:sel.texte,contexte:sel.contexte||'',source:source||'',espece:espece||''},code:code||''};
+  QA_SEL={cadre,rect:sel,passage:{texte:sel.texte,contexte:sel.contexte||'',source:source||'',espece:espece||'',ref:ref||null},code:code||''};
   qaPoseBouton();
 }
 
@@ -136,9 +138,11 @@ function qaSelectionCadre(sel,cadre,source,espece,code){
    texte lisible de l'article ou de la ressource (Emmanuel, après une
    réponse qui ne voyait que le plan d'un cours). Ni code, ni polices, ni
    images : les mots seuls, titres à la ligne. Le contenu rangé dans un
-   modèle de page ou dans des données compte aussi. Il ne part pas dans le
-   compte avec la conversation : une conversation reprise depuis « Mes
-   questions » garde son passage et son contexte. */
+   modèle de page ou dans des données compte aussi. La conversation
+   gardée dans le compte ne retient que l'endroit où la page est rangée :
+   reprise depuis « Mes questions », elle relit la page telle qu'elle est
+   alors, et l'IA en reçoit de nouveau tout le texte (Emmanuel : « je ne
+   veux pas de cette limite »). */
 const QA_DOC_MAX=600000;
 function qaTexteDe(html){
   try{
@@ -160,7 +164,24 @@ function qaTexteDe(html){
     return t.slice(0,QA_DOC_MAX);
   }catch(_){return '';}
 }
-let QA_DOC='';
+let QA_DOC='', QA_DOC_PRET=Promise.resolve('');
+/* relit une page dans le compte, contenu découpé en tranches compris */
+async function qaCodeDe(ref){
+  if(!ref||!ref.id||(ref.col!=='res_code'&&ref.col!=='art_code'))return '';
+  const u=await qaCompte(); if(!u||!firebase.firestore)return '';
+  const col=firebase.firestore().collection('users/'+u.uid+'/'+ref.col);
+  const d=await col.doc(ref.id).get(); if(!d.exists)return '';
+  const m=d.data()||{};
+  if(typeof m.code==='string')return m.code;
+  const n=m.n||0, g=m.gen||''; if(!n)return '';
+  const ts=await Promise.all(Array.from({length:n},(_,k)=>col.doc(ref.id).collection('tranches').doc(g+'_'+k).get()));
+  return ts.map(t=>String((t.exists&&t.data()||{}).d||'')).join('');
+}
+/* le texte de la page : déjà en main, ou relu d'après sa place */
+function qaPrepareDoc(code,ref){
+  QA_DOC='';
+  QA_DOC_PRET=(code?Promise.resolve(code):qaCodeDe(ref)).then(c=>qaTexteDe(c)).catch(e=>{console.warn('texte de la page',e);return '';});
+}
 
 /* ── LE COMPTE ──
    Dans la Bible, le service de connexion se charge à la demande, et le
@@ -335,7 +356,7 @@ document.addEventListener('mousedown',e=>{if(QA_BOUTON&&!e.target.closest('#qa-b
 
 async function qaOuvre(passage,code){
   const p=qaPanneau();
-  QA_DOC=code?qaTexteDe(code):'';
+  qaPrepareDoc(code,passage&&passage.ref);
   QA_PASSAGE=passage; QA_MSGS=[]; QA_VU=[]; QA_ID=''; QA_ATTENTE=false; QA_TOUR++;
   let source=passage.source||'';
   if(passage.bible){
@@ -465,7 +486,7 @@ function qaRendListe(){
       }
       if(corb)return;
       QA_TOUR++; QA_ATTENTE=false; $qa('qa-envoi').disabled=false;
-      QA_ID=c.id; QA_DOC=''; QA_PASSAGE=c.passage||{texte:''}; QA_MSGS=Array.isArray(c.msgs)?c.msgs:[]; QA_VU=Array.isArray(c.vu)?c.vu:[];
+      QA_ID=c.id; QA_PASSAGE=c.passage||{texte:''}; qaPrepareDoc('',QA_PASSAGE.ref); QA_MSGS=Array.isArray(c.msgs)?c.msgs:[]; QA_VU=Array.isArray(c.vu)?c.vu:[];
       qaMontreConv();
     };
     t.onclick=touche;
@@ -545,7 +566,7 @@ async function qaGarde(){
   const maintenant=new Date().toISOString();
   const doc=JSON.parse(JSON.stringify({
     maj:maintenant,
-    passage:{texte:QA_PASSAGE.texte||'',contexte:QA_PASSAGE.contexte||'',etiquette:QA_PASSAGE.etiquette||'',espece:QA_PASSAGE.espece||''},
+    passage:{texte:QA_PASSAGE.texte||'',contexte:QA_PASSAGE.contexte||'',etiquette:QA_PASSAGE.etiquette||'',espece:QA_PASSAGE.espece||'',ref:QA_PASSAGE.ref||null},
     msgs:QA_MSGS, vu:QA_VU
   }));
   try{
@@ -591,6 +612,8 @@ async function qaEnvoie(){
       +(P.contexte&&P.contexte!==P.texte?'\n\nLe texte autour du passage :\n'+P.contexte:'')
       +'\n\nQuestion : '+q;
   }
+  QA_DOC=await QA_DOC_PRET;
+  if(tour!==QA_TOUR)return;
   const avant=QA_MSGS.length;
   QA_MSGS.push({role:'user',content:contenu});
   let texte='', ok=false;
