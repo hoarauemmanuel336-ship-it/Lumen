@@ -337,22 +337,39 @@ const CONSIGNE_QUESTION = `Tu réponds aux questions d’Emmanuel, un catholique
 
 C’est une conversation : après ta réponse, il peut te répondre, demander une précision, contester, ou poursuivre sur autre chose. Tu reprends le fil de l’échange à chaque message.
 
-Tu réponds à ce qu’il te dit, directement, en partant du passage et de son contexte. Quand tu reçois tout le texte de l’article ou de la ressource, tu t’en sers : ce que la page dit ailleurs, dans une autre partie ou une autre leçon, fait partie de ce que tu sais d’elle. La réponse est claire pour le novice comme pour le lecteur confirmé : un terme technique s’explique au moment où il apparaît. Elle reste aussi courte que la question le permet ; une question qui demande de l’ampleur reçoit de l’ampleur.
+Tu réponds à ce qu’il te dit, directement, en partant du passage et de son contexte. Il peut aussi interroger toute la page sans rien sélectionner : tu réponds alors d’après l’ensemble de son texte. Quand tu reçois tout le texte de l’article ou de la ressource, tu t’en sers : ce que la page dit ailleurs, dans une autre partie ou une autre leçon, fait partie de ce que tu sais d’elle. La réponse est claire pour le novice comme pour le lecteur confirmé : un terme technique s’explique au moment où il apparaît. Elle reste aussi courte que la question le permet ; une question qui demande de l’ampleur reçoit de l’ampleur.
 
 Pour citer un verset, tu lis d’abord son texte exact avec l’outil lire_versets, puis tu le cites d’après la Chérubin, ou d’après la Séraphin quand le passage sélectionné vient de la Séraphin. Tu demandes en une fois tous les versets dont tu as besoin.
 
 Mise en forme : des paragraphes courts ; **gras** pour le très important, *italique* pour les citations et les mots étrangers ; une liste avec « - » en début de ligne quand le contenu s’y prête ; aucun titre.`;
 
+const MAX_MESSAGES = 120;
 function demandeQuestion(donnees) {
   const roles = new Set(['user', 'assistant']);
   const blocs = new Set(['text', 'tool_use', 'tool_result']);
-  const messages = (Array.isArray(donnees.messages) ? donnees.messages : []).slice(-40)
+  const tous = (Array.isArray(donnees.messages) ? donnees.messages : [])
     .filter(m => m && roles.has(m.role))
     .map(m => ({
       role: m.role,
       content: typeof m.content === 'string' ? m.content
         : (Array.isArray(m.content) ? m.content.filter(b => b && blocs.has(b.type)) : ''),
     }));
+  /* Une très longue conversation garde son premier message, qui porte le
+     passage sélectionné, puis les derniers échanges : l'IA sait toujours
+     de quoi on parle. La coupe se fait devant une vraie question
+     d'Emmanuel (jamais au milieu d'une lecture de versets), et les deux
+     messages d'Emmanuel ainsi rapprochés n'en font qu'un. */
+  let messages = tous;
+  if (tous.length > MAX_MESSAGES) {
+    let i = tous.length - (MAX_MESSAGES - 1);
+    while (i < tous.length && !(tous[i].role === 'user' && typeof tous[i].content === 'string')) i++;
+    if (i > 1 && i < tous.length) {
+      const premier = tous[0];
+      const texte = (typeof premier.content === 'string' ? premier.content : '')
+        + '\n\n[Une partie de la conversation est omise ici.]\n\n' + tous[i].content;
+      messages = [{ role: 'user', content: texte }].concat(tous.slice(i + 1));
+    }
+  }
   /* tout le texte de l'article ou de la ressource, quand la page l'a
      joint : il se garde en cache d'un message à l'autre de la conversation */
   const doc = String(donnees.document || '').slice(0, 600000);

@@ -293,7 +293,7 @@ document.addEventListener('click',e=>{
   b.innerHTML=QA_IC_FAIT; setTimeout(()=>{b.innerHTML=QA_IC_COPIE;},1400);
 });
 /* le champ invite à poser la question, puis à répondre */
-const qaInvite=()=>{const c=$qa('qa-champ');if(c)c.placeholder=QA_VU.length?'Répondre à l’IA…':'Votre question sur ce passage…';};
+const qaInvite=()=>{const c=$qa('qa-champ');if(c)c.placeholder=QA_VU.length?'Répondre à l’IA…':(QA_PASSAGE&&!QA_PASSAGE.texte?'Votre question sur cette page…':'Votre question sur ce passage…');};
 
 /* ── LE PANNEAU ── */
 let QA_MSGS=[], QA_VU=[], QA_ID='', QA_PASSAGE=null, QA_ATTENTE=false, QA_TOUR=0;
@@ -382,9 +382,11 @@ function qaMontreConv(){
   const P=QA_PASSAGE||{texte:''};
   /* le passage surligné ouvre la discussion comme une note du salon,
      distincte des messages, coupée à trois lignes ; la toucher la déplie */
+  /* une question sur toute la page n'a pas de passage : la note dit
+     « Toute la page » */
   let h='<button type="button" class="qa-cite" aria-expanded="false" title="Voir tout le passage">'
     +'<span class="qa-cite-src">'+qaEsc(P.etiquette||'Passage')+'</span>'
-    +'<span class="qa-cite-corps"><span class="qa-cite-txt">'+qaEsc(P.texte)+'</span><span class="qa-cite-plus" aria-hidden="true"><i>…</i></span></span></button>';
+    +'<span class="qa-cite-corps"><span class="qa-cite-txt">'+qaEsc(P.texte||'Toute la page')+'</span><span class="qa-cite-plus" aria-hidden="true"><i>…</i></span></span></button>';
   QA_VU.forEach(x=>{h+='<div class="qa-q">'+qaBulle(x.q)+'</div>'+qaMsgIA(x.r);});
   $qa('qa-fil').innerHTML=h;
   qaInvite();
@@ -460,7 +462,7 @@ function qaRendListe(){
   h+=QA_LISTE.map((c,i)=>'<div class="qa-ligne'+(QA_CHOIX?' qa-en-choix':'')+(QA_PRIS.has(c.id)?' qa-pris':'')+(corb?' qa-jetee':'')+'" data-qi="'+i+'">'
     +'<div class="qa-l-txt"'+((QA_CHOIX||!corb)?' role="'+(QA_CHOIX?'checkbox':'button')+'" tabindex="0"':'')+(QA_CHOIX?' aria-checked="'+QA_PRIS.has(c.id)+'"':'')+'>'
     +'<span class="qa-l-q">'+qaEsc((c.vu&&c.vu[0]&&c.vu[0].q)||'')+'</span>'
-    +'<span class="qa-l-p">« '+qaEsc(String((c.passage&&c.passage.texte)||'').slice(0,140))+' »</span>'
+    +'<span class="qa-l-p">'+(c.passage&&c.passage.texte?'« '+qaEsc(String(c.passage.texte).slice(0,140))+' »':'Toute la page')+'</span>'
     +'<span class="qa-l-d">'+qaEsc(((c.passage&&c.passage.etiquette)?c.passage.etiquette+'  ·  ':'')+date(corb?c.jete:c.maj))+'</span>'
     +'</div>'
     +(QA_CHOIX?'<span class="qa-l-coche" aria-hidden="true">✓</span>'
@@ -608,9 +610,11 @@ async function qaEnvoie(){
   let contenu=q;
   if(!QA_MSGS.length){
     const P=QA_PASSAGE;
-    contenu='Passage sélectionné'+(P.etiquette?' ('+P.etiquette+')':'')+(P.espece?', dans '+P.espece:'')+' :\n« '+P.texte+' »'
-      +(P.contexte&&P.contexte!==P.texte?'\n\nLe texte autour du passage :\n'+P.contexte:'')
-      +'\n\nQuestion : '+q;
+    contenu=P.texte
+      ?'Passage sélectionné'+(P.etiquette?' ('+P.etiquette+')':'')+(P.espece?', dans '+P.espece:'')+' :\n« '+P.texte+' »'
+        +(P.contexte&&P.contexte!==P.texte?'\n\nLe texte autour du passage :\n'+P.contexte:'')
+        +'\n\nQuestion : '+q
+      :'Question sur toute la page'+(P.etiquette?' « '+P.etiquette+' »':'')+(P.espece?', '+P.espece:'')+', sans passage sélectionné.\n\nQuestion : '+q;
   }
   QA_DOC=await QA_DOC_PRET;
   if(tour!==QA_TOUR)return;
