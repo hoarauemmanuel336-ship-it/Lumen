@@ -444,36 +444,27 @@ La mémoire. Elle t’est donnée plus bas, telle qu’elle est. Tu y poses ce q
 Mise en forme : des paragraphes courts ; **gras** pour le très important, *italique* pour les citations et les mots étrangers ; des listes avec « - » ou « 1. » quand le contenu s’y prête ; des titres « ## » seulement pour une longue réponse en plusieurs parties ; un tableau quand une comparaison s’y prête ; « > » pour une longue citation.`;
 }
 
-/* Une très longue conversation garde son premier message, qui porte le
-   passage sélectionné, puis les derniers échanges : l'IA sait toujours
-   de quoi on parle. La coupe se fait devant une vraie question
-   d'Emmanuel (jamais au milieu d'un appel d'outil), et les deux messages
-   d'Emmanuel ainsi rapprochés n'en font qu'un. */
-const MAX_MESSAGES = 120;
+/* ── LES LONGUES CONVERSATIONS ──
+   Comme dans Claude, aucune limite en nombre de messages : toute la
+   conversation part à l'IA. Quand elle approche de la limite de ce que
+   l'IA peut lire d'un coup, l'API résume elle-même les échanges les plus
+   anciens (la « compaction ») et la conversation continue ; le résumé
+   revient dans la réponse, et la page le renvoie ensuite à la place de
+   ce qu'il résume. Le seuil laisse de la place au texte de la page, à la
+   consigne et à la réponse dans la fenêtre d'un million de tokens. */
+const COMPACTION_SEUIL = 600000;
+const CONSIGNE_RESUME = `Résume la conversation qui précède entre Emmanuel et l’IA de son site, pour que l’échange continue sans rien perdre d’utile. Écris en français. Garde : le passage ou la page d’où part la conversation, avec sa référence ; chaque question d’Emmanuel et ce qui y a été répondu, avec les explications, les distinctions et les conclusions établies ; les versets cités avec leur référence ; les sources trouvées sur internet avec leur adresse ; les éléments de sa bibliothèque consultés, avec leur identifiant ; les pages créées, avec leur titre et leur lien ; ses demandes, ses préférences et ses corrections exprimées dans l’échange ; ce qui reste en cours ou promis. Le résumé suit l’ordre de la conversation.`;
 const BLOCS_PERMIS = new Set(['text', 'image', 'document', 'tool_use', 'tool_result', 'thinking', 'redacted_thinking',
-  'server_tool_use', 'web_search_tool_result', 'web_fetch_tool_result']);
-const questionReelle = m => m.role === 'user' && (typeof m.content === 'string'
-  || (Array.isArray(m.content) && !m.content.some(b => b.type === 'tool_result')));
+  'server_tool_use', 'web_search_tool_result', 'web_fetch_tool_result', 'compaction']);
 function demandeQuestion(donnees) {
   const roles = new Set(['user', 'assistant']);
-  const tous = (Array.isArray(donnees.messages) ? donnees.messages : [])
+  let messages = (Array.isArray(donnees.messages) ? donnees.messages : [])
     .filter(m => m && roles.has(m.role))
     .map(m => ({
       role: m.role,
       content: typeof m.content === 'string' ? m.content
         : (Array.isArray(m.content) ? m.content.filter(b => b && BLOCS_PERMIS.has(b.type)) : ''),
     }));
-  let messages = tous;
-  if (tous.length > MAX_MESSAGES) {
-    let i = tous.length - (MAX_MESSAGES - 1);
-    while (i < tous.length && !questionReelle(tous[i])) i++;
-    if (i > 1 && i < tous.length) {
-      const enBlocs = c => typeof c === 'string' ? [{ type: 'text', text: c }] : c;
-      const premier = enBlocs(tous[0].content).filter(b => b.type === 'text');
-      messages = [{ role: 'user', content: premier.concat([{ type: 'text', text: '[Une partie de la conversation est omise ici.]' }], enBlocs(tous[i].content)) }]
-        .concat(tous.slice(i + 1));
-    }
-  }
   /* la conversation jusqu'au dernier message se garde en cache : les
      tours d'outils et le message suivant la relisent à moindre coût */
   const dernier = messages[messages.length - 1];
@@ -501,6 +492,8 @@ function demandeQuestion(donnees) {
     system,
     tools: OUTILS_SITE.concat(OUTILS_ANTHROPIC),
     messages,
+    context_management: { edits: [{ type: 'compact_20260112', trigger: { type: 'input_tokens', value: COMPACTION_SEUIL }, instructions: CONSIGNE_RESUME }] },
+    _beta: 'compact-2026-01-12',
   };
 }
 
@@ -587,13 +580,15 @@ export default async (request) => {
   if (!tache) return json({ erreur: 'tache', message: 'Tâche inconnue.' }, 400);
 
   const demande = await tache(corps.donnees || {});
+  /* une tâche qui se sert d'une fonction encore en bêta le dit (_beta) */
+  const beta = demande._beta; delete demande._beta;
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
-    headers: {
+    headers: Object.assign({
       'x-api-key': cle,
       'anthropic-version': '2023-06-01',
       'content-type': 'application/json',
-    },
+    }, beta ? { 'anthropic-beta': beta } : {}),
     body: JSON.stringify(demande),
   }).catch(() => null);
   if (!r) return json({ erreur: 'reseau', message: 'Le service de l’IA ne répond pas. Réessayez dans un instant.' }, 502);

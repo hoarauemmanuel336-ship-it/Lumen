@@ -250,6 +250,7 @@ async function qaFlux(messages,sur){
     if(ev.type==='content_block_start'){
       const c=JSON.parse(JSON.stringify(ev.content_block||{}));
       if(c.type==='text'){c.text=c.text||'';}
+      else if(c.type==='compaction'){c.content=c.content||'';sur.resume&&sur.resume();}
       else if(c.type==='thinking'){c.thinking=c.thinking||'';c.signature=c.signature||'';}
       else if(c.type==='tool_use'||c.type==='server_tool_use'){c.json='';}
       blocs[ev.index]=c;
@@ -261,6 +262,7 @@ async function qaFlux(messages,sur){
       if(d.type==='text_delta'){b.text+=d.text;sur.texte&&sur.texte(d.text);}
       else if(d.type==='thinking_delta'){b.thinking+=d.thinking||'';sur.pensee&&sur.pensee(d.thinking||'');}
       else if(d.type==='signature_delta'){b.signature=(b.signature||'')+(d.signature||'');}
+      else if(d.type==='compaction_delta'){b.content=(b.content||'')+(d.content||'');}
       else if(d.type==='input_json_delta'){b.json+=d.partial_json||'';}
       else if(d.type==='citations_delta'&&d.citation){(b.citations=b.citations||[]).push(d.citation);}
     }else if(ev.type==='content_block_stop'){
@@ -287,6 +289,7 @@ async function qaFlux(messages,sur){
     }
     if(b.type==='text'){const o={type:'text',text:b.text};if(b.citations&&b.citations.length)o.citations=b.citations;return o;}
     if(b.type==='thinking')return {type:'thinking',thinking:b.thinking,signature:b.signature};
+    if(b.type==='compaction')return {type:'compaction',content:b.content||''};
     return b;
   }).filter(b=>b.type!=='text'||b.text);
   return {contenu,fin};
@@ -299,6 +302,14 @@ async function qaFlux(messages,sur){
    anciennes laissent à leur place une mention de leur nom. */
 const QA_PIECES_BUDGET=20*1024*1024;
 async function qaPourEnvoi(msgs){
+  /* après un résumé des échanges anciens, l'IA n'a besoin que du résumé
+     et de ce qui le suit : la conversation part à partir du message qui
+     le porte (la page garde tout, pour l'affichage et pour modifier une
+     question) */
+  for(let i=msgs.length-1;i>0;i--){
+    const m=msgs[i];
+    if(m.role==='assistant'&&Array.isArray(m.content)&&m.content.some(b=>b&&b.type==='compaction')){msgs=msgs.slice(i);break;}
+  }
   let reste=QA_PIECES_BUDGET;
   const out=new Array(msgs.length);
   for(let i=msgs.length-1;i>=0;i--){
@@ -1047,6 +1058,7 @@ async function qaEnvoie(reprise){
         texte:d=>{enPensee=false;x.r+=d;planMontre();},
         pensee:d=>{enPensee=true;x.pensee+=d;planMontre();},
         outil:()=>{},
+        resume:()=>etape('Conversation longue : les échanges anciens sont résumés pour continuer'),
         outilPret:b=>etape(qaEtape(b)),
         resultat:b=>{
           /* une lecture de page web : sa source s'ajoute ; une recherche :
