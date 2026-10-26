@@ -191,6 +191,8 @@ function consigneControler(espece, marque) {
 
 Tu reçois la page entière, telle qu’elle est enregistrée, puis le texte des deux Bibles du site (la Chérubin, traduction par défaut, et la Séraphin, littérale) pour chaque référence que la page cite. Les fichiers intégrés à la page (polices, images) te parviennent remplacés par la mention « [fichier intégré] » : ils sont bien présents et complets dans la page enregistrée.
 
+Tu examines la page sous trois angles, au regard des instructions d’Emmanuel et de la skill qui l’a faite, à ton niveau et avec toutes tes compétences : tout y est-il correct ? pourrais-tu faire mieux ? ferais-tu la même chose aujourd’hui ? Ce qui pourrait être mieux fait, ou que tu ferais autrement aujourd’hui, devient un point comme une erreur, rangé selon son importance.
+
 Ce que tu rends :
 - bilan : deux à quatre phrases sur l’état général de la page, ses qualités comme ses faiblesses, et ce qui presse le plus.
 - points : chaque problème trouvé, du plus grave au plus léger.
