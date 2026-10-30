@@ -173,28 +173,10 @@ html body.choisir .rayon .ry-chev:hover{color:#fff}
 html body .rayon.pris,html body .rayon.pris:hover{background:var(--h-voile);box-shadow:none;border-color:var(--h-l1)}
 html body .rayon.pris .ry-nom{color:#fff}
 
-/* les actions du mode Choisir (allégées plus bas : ni capsule, ni fond) */
-html body #acts-choix{
-  position:sticky;bottom:calc(16px + var(--lv-bas,0px));z-index:40;
-  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;
-  width:fit-content;max-width:100%;margin:32px auto 0;padding:8px 8px 8px 20px;
-  border-radius:0;border:1px solid var(--h-l2);
-  background:color-mix(in srgb,var(--h-s2) 84%,transparent);
-  -webkit-backdrop-filter:saturate(140%) blur(18px);backdrop-filter:saturate(140%) blur(18px);
-  box-shadow:0 18px 50px -14px rgba(0,0,0,.9),0 0 40px -18px color-mix(in srgb,var(--h-or) 45%,transparent);
-}
-html body #compte-choix{
-  margin-right:8px;font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.01em;text-transform:none;color:var(--h-or);white-space:nowrap;
-}
-html:root body #acts-choix .act{min-height:40px;padding:9px 18px;font-size:13.5px}
-@media(max-width:600px){
-  html body #acts-choix{
-    display:grid;grid-template-columns:1fr 1fr;width:100%;padding:12px;border-radius:0;
-    bottom:calc(10px + var(--lv-bas,0px));
-  }
-  html body #compte-choix{grid-column:1/-1;margin:0 0 2px;text-align:center}
-  html:root body #acts-choix .act{min-height:44px;padding:9px 10px;white-space:normal;line-height:1.2}
-  html:root body #acts-choix #b-jeter{grid-column:1/-1;order:3}
+/* les actions du mode Choisir : le bandeau crème commun, posé sous la
+   liste ; sur téléphone, la poubelle passe en dernier */
+html body #acts-choix{margin:32px auto 0}
+@media(max-width:600px){html:root body #acts-choix #b-jeter{order:3}}
 }
 
 /* ════════════════════════════════════════════════════════════════════
@@ -501,15 +483,8 @@ html body.choisir .carte .coche{display:none}
 html body.choisir .carte .ct-bas{padding-left:22px}
 @media(max-width:600px){html body.choisir .carte .ct-bas{padding-left:18px}}
 
-/* le nombre d'éléments choisis ne s'affiche pas (choix d'Emmanuel) */
-html body #compte-choix{display:none!important}
 html body #mot-liste:empty{display:none}
 
-/* ── LES ACTIONS DU MODE CHOISIR, SANS CADRE ──
-   Les boutons se posent sous la liste, comme les autres actions de la
-   page : ni capsule, ni fond, ni lueur. */
-html body #acts-choix{position:static;padding:0;border:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}
-@media(max-width:600px){html body #acts-choix{padding:0}}
 
 /* ── LA BIBLE DEPUIS UNE RESSOURCE ──
    Un seul bandeau crème : le retour, un mince trait, puis le livre qui

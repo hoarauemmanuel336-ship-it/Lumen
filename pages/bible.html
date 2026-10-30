@@ -82,7 +82,7 @@ a.b-r:hover b,.b-r:hover b,.b-r.kact b{color:var(--or-pale)}
 /* ---------- impression ---------- */
 @media print{
   body{background:#fff;color:#000}
-  .barre,nav.menu,.burger,.ctx,.hero,#sel-barre,.b-ov,#note-voile,#auth-voile,
+  .barre,nav.menu,.ctx,.hero,#sel-barre,.b-ov,#note-voile,#auth-voile,
   #bacct-voile,#cat-voile,#conf-voile,#menu-flot,.nt-menu,.nz-tri,.notes-btn,.notes-rech,.surl-oter,footer,.ch-nav{display:none!important}
   .notes-cat{position:static!important;background:none!important}
   .wrap{padding-bottom:0!important}
@@ -459,7 +459,6 @@ body.sel-active #sel-barre{display:block}
 #menu-flot.ouvert{display:block}
 .mf-act{display:block;padding:13px 20px;font-size:14px;color:var(--parchemin-att);cursor:pointer;white-space:nowrap;transition:color .25s,background .25s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .mf-act:hover,.mf-act:active{color:var(--parchemin);background:var(--surv)}
-.mf-sep{margin-top:5px;padding-top:14px;box-shadow:inset 0 1px 0 var(--filet)}
 .notes-vide{box-sizing:border-box;max-width:760px;margin:0 auto;text-align:center;padding:80px 12px}
 .notes-vide-t{font-family:var(--display);font-size:27px;color:rgba(255,255,255,.7);margin-bottom:12px}
 .notes-vide-p{font-size:15.5px;line-height:1.65;font-style:italic;color:rgba(255,255,255,.42);max-width:420px;margin:0 auto}
@@ -589,7 +588,6 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   <header>
     <div class="barre">
       <a href="/" class="logo">Lumen</a>
-      <button class="burger" id="burger" aria-label="Menu">☰</button>
       <nav class="menu" id="menu">
         <a href="/">Accueil</a>
         <a href="/bible.html">Bible</a>
@@ -669,13 +667,13 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   </footer>
   <div class="b-ov" id="brech-voile">
     <div class="b-boite" role="dialog" aria-modal="true" aria-label="Recherche">
-      <div class="b-tete"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><textarea class="b-champ champ-ligne" id="brech-champ" rows="1" placeholder="Rechercher…" autocomplete="off" spellcheck="false"></textarea><span class="b-fermer" id="brech-fermer" role="button" tabindex="0" aria-label="Fermer">✕</span></div>
+      <div class="b-tete"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg><textarea class="b-champ champ-ligne" id="brech-champ" rows="1" placeholder="Rechercher…" autocomplete="off" spellcheck="false"></textarea><span class="b-fermer" id="brech-fermer" role="button" tabindex="0" aria-label="Fermer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div>
       <div class="b-res" id="brech-res"></div>
     </div>
   </div>
   <div id="bacct-voile">
     <div class="bacct" role="dialog" aria-modal="true" aria-label="Mon compte">
-      <span class="bacct-x" id="bacct-x" role="button" tabindex="0" aria-label="Fermer">✕</span>
+      <span class="bacct-x" id="bacct-x" role="button" tabindex="0" aria-label="Fermer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
       <div id="auth-in">
       <div class="bacct-t">Mon compte</div>
       <div class="bacct-mail" id="bacct-mail"></div>
@@ -1614,7 +1612,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     if (!SEL.length) { z.innerHTML = ''; marqueSelection(); document.getElementById('sb-surl').classList.remove('ouvert'); return; }
     var h = '';
     groupes().forEach(function(g, i){
-      h += '<span class="sb-chip" data-g="' + i + '">' + esc(libelle(g)) + '<span class="sb-x" data-x="' + i + '">\u2715</span></span>';
+      h += '<span class="sb-chip" data-g="' + i + '">' + esc(libelle(g)) + '<span class="sb-x" data-x="' + i + '" role="button" aria-label="Retirer cette r\u00e9f\u00e9rence">\u2715</span></span>';
     });
     z.innerHTML = h;
     marqueSelection();
@@ -2070,7 +2068,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     pan.setAttribute('data-v', String(v)); pan.setAttribute('data-v2', String(v2));
     cs.forEach(function(c){ pan.appendChild(elementCom(c)); });
     var pied = document.createElement('div'); pied.className = 'com-pied';
-    pied.innerHTML = '<span class="com-fermer" role="button" tabindex="0">Fermer</span>';
+    pied.innerHTML = '<span class="com-fermer" role="button" tabindex="0" aria-label="Fermer le commentaire" title="Fermer le commentaire"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>';
     pan.appendChild(pied);
     dernier.parentNode.insertBefore(pan, dernier.nextSibling);
   }
@@ -2700,8 +2698,8 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
   function copieNote(el){
     var n = NOTES.filter(function(x){ return x.id === el.getAttribute('data-cop'); })[0];
     if (!n) return;
-    var etiq = el.textContent;
-    var fini = function(){ el.textContent = 'Copié ✓'; setTimeout(function(){ el.textContent = etiq; fermeMenu(); }, 1300); };
+    var lab = el.querySelector('span') || el, etiq = lab.textContent;
+    var fini = function(){ lab.textContent = 'Copié ✓'; setTimeout(function(){ lab.textContent = etiq; fermeMenu(); }, 1300); };
     if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(n.t).then(fini).catch(function(){}); }
     else {
       var ta = document.createElement('textarea'); ta.value = n.t; document.body.appendChild(ta); ta.select();
@@ -2709,38 +2707,80 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       document.body.removeChild(ta);
     }
   }
-  /* ── Menu d'actions : un seul point d'entrée par élément ── */
+  /* ── Le menu des ⋯ de « Mes notes » ──
+     Une feuille, comme sur les autres pages : le nom de l'objet en tête,
+     une croix pour refermer, une rangée par action avec son pictogramme
+     dans un petit cadre à coin coupé ; « Supprimer » en bas, sous un filet,
+     en blanc comme les autres. Sur téléphone, elle monte du bas de
+     l'écran. Son apparence vient de l'habillage commun. */
+  var FX = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  var FIC = {
+    modif: '<path d="M4.5 19.5h3.6L18.6 9a2.1 2.1 0 0 0-3-3L5.1 16.5z"/><path d="M13.8 7.8l2.9 2.9"/>',
+    copie: '<rect x="8.5" y="8.5" width="11" height="11" rx="1"/><path d="M15.5 8.5v-3a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3"/>',
+    renom: '<path d="M4.5 7V5.5h10V7M9.5 5.5v13M7.5 18.5h4"/><path d="M15 12.5h5M17.5 12.5v6"/>',
+    sous: '<path d="M3.5 7.2c0-.9.7-1.7 1.7-1.7h4.1l1.9 2.1h7.6c.9 0 1.7.8 1.7 1.7v8.5c0 .9-.8 1.7-1.7 1.7H5.2c-1 0-1.7-.8-1.7-1.7z"/><path d="M12 10.5v6M9 13.5h6"/>',
+    jeter: '<path d="M4.5 7h15M9.5 7V5.2c0-.4.3-.7.7-.7h3.6c.4 0 .7.3.7.7V7M6.5 7l.9 11.6c.1.8.7 1.4 1.5 1.4h6.2c.8 0 1.4-.6 1.5-1.4L17.5 7M10.2 10.5v6M13.8 10.5v6"/>'
+  };
+  var feuille = document.createElement('div');
+  feuille.className = 'overlay feuille'; feuille.id = 'm-choix';
+  feuille.innerHTML = '<div class="modal" role="dialog" aria-modal="true" aria-labelledby="choix-titre">'
+    + '<button type="button" class="feuille-x" id="choix-x" aria-label="Fermer">' + FX + '</button>'
+    + '<div class="modal-titre" id="choix-titre"></div><div id="choix-liste"></div></div>';
+  document.body.appendChild(feuille);
+  var feuilleListe = feuille.querySelector('#choix-liste');
+  var feuilleDe = null;
+  function fermeFeuille(){
+    if (!feuille.classList.contains('on')) return;
+    feuille.classList.remove('on'); feuilleListe.innerHTML = '';
+    var el = feuilleDe; feuilleDe = null;
+    if (el && el.focus && document.contains(el)) el.focus({ preventScroll: true });
+  }
+  function rangeeFeuille(attr, id, ic, nom, jette){
+    return '<div class="choix' + (jette ? ' del' : '') + '" ' + attr + '="' + esc(id) + '" role="button" tabindex="0">'
+      + '<b class="cx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + FIC[ic] + '</svg></b>'
+      + '<span>' + esc(nom) + '</span></div>';
+  }
+  function ouvreMenu(el){
+    var p = String(el.getAttribute('data-menu') || '').split(':');
+    var type = p[0], id = p.slice(1).join(':');
+    var titre, h;
+    if (type === 'cat' || type === 'scat') {
+      var c = catParId(id);
+      titre = c ? c.nom : (type === 'cat' ? 'Catégorie' : 'Section');
+      h = rangeeFeuille('data-cren', id, 'renom', 'Renommer')
+        + (type === 'cat' ? rangeeFeuille('data-csub', id, 'sous', 'Ajouter une section') : '')
+        + rangeeFeuille('data-csup', id, 'jeter', 'Supprimer', true);
+    } else {
+      var n = NOTES.filter(function(x){ return x.id === id; })[0];
+      titre = n ? (n.ti || (n.refs || []).map(function(g){ return libelle(g); }).join(' · ') || 'Note') : 'Note';
+      h = rangeeFeuille('data-mod', id, 'modif', 'Modifier')
+        + rangeeFeuille('data-cop', id, 'copie', 'Copier le texte')
+        + rangeeFeuille('data-nsup', id, 'jeter', 'Supprimer', true);
+    }
+    fermeBulle();
+    feuilleDe = el;
+    feuille.querySelector('#choix-titre').textContent = titre;
+    feuilleListe.innerHTML = h;
+    feuille.classList.add('on');
+    setTimeout(function(){ var r = feuilleListe.querySelector('.choix'); if (r) r.focus({ preventScroll: true }); }, 40);
+  }
+  feuille.querySelector('#choix-x').addEventListener('click', fermeFeuille);
+  feuille.addEventListener('click', function(e){ if (e.target === feuille) fermeFeuille(); });
+  feuilleListe.addEventListener('keydown', function(e){
+    var r = e.target.closest && e.target.closest('.choix'); if (!r) return;
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); r.click(); return; }
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      var l = Array.prototype.slice.call(feuilleListe.querySelectorAll('.choix')), k = l.indexOf(r);
+      var v = l[(k + (e.key === 'ArrowDown' ? 1 : -1) + l.length) % l.length]; if (v) v.focus();
+    }
+  });
+  /* la bulle du ruban (« Mes signets ») reste une petite bulle accrochée */
   var menuFlot = document.createElement('div');
   menuFlot.id = 'menu-flot';
   document.body.appendChild(menuFlot);
-  function fermeMenu(){ menuFlot.classList.remove('ouvert', 'mf-signet', 'mf-dessus'); menuFlot.innerHTML = ''; menuFlot._pour = null; }
-  function ouvreMenu(el){
-    menuFlot._pour = el; menuFlot.classList.remove('mf-signet');
-    var p = String(el.getAttribute('data-menu') || '').split(':');
-    var type = p[0], id = p.slice(1).join(':');
-    var h;
-    if (type === 'cat') {
-      h = '<span class="mf-act" data-cren="' + id + '" role="button" tabindex="0">Renommer</span>'
-        + '<span class="mf-act" data-csub="' + id + '" role="button" tabindex="0">Ajouter une section</span>'
-        + '<span class="mf-act mf-sep" data-csup="' + id + '" role="button" tabindex="0">Supprimer</span>';
-    } else if (type === 'scat') {
-      h = '<span class="mf-act" data-cren="' + id + '" role="button" tabindex="0">Renommer</span>'
-        + '<span class="mf-act mf-sep" data-csup="' + id + '" role="button" tabindex="0">Supprimer</span>';
-    } else {
-      h = '<span class="mf-act" data-mod="' + id + '" role="button" tabindex="0">Modifier</span>'
-        + '<span class="mf-act" data-cop="' + id + '" role="button" tabindex="0">Copier le texte</span>'
-        + '<span class="mf-act mf-sep" data-nsup="' + id + '" role="button" tabindex="0">Supprimer</span>';
-    }
-    menuFlot.innerHTML = h;
-    menuFlot.style.left = '-9999px'; menuFlot.style.top = '0';
-    menuFlot.classList.add('ouvert');
-    var r = el.getBoundingClientRect(), m = menuFlot.getBoundingClientRect(), g = 6;
-    var gauche = Math.max(10, Math.min(r.right - m.width, window.innerWidth - m.width - 10));
-    var haut = r.bottom + g;
-    if (haut + m.height > window.innerHeight - 10) haut = Math.max(10, r.top - m.height - g);
-    menuFlot.style.left = Math.round(gauche) + 'px';
-    menuFlot.style.top = Math.round(haut) + 'px';
-  }
+  function fermeBulle(){ menuFlot.classList.remove('ouvert', 'mf-signet', 'mf-dessus'); menuFlot.innerHTML = ''; menuFlot._pour = null; }
+  function fermeMenu(){ fermeBulle(); fermeFeuille(); }
   /* le menu du ruban : posé sous lui, comme celui des notes sous leur ⋯ */
   function menuSignet(el){
     menuFlot._pour = el;
@@ -2759,13 +2799,13 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     menuFlot.style.top = Math.round(haut) + 'px';
     menuFlot.style.setProperty('--pointe', Math.round(centre - gauche) + 'px');
   }
-  /* un geste hors du menu le ferme ; le bouton « ⋯ » lui-même est laissé à
-     agitNotes, qui bascule (sinon il refermait puis rouvrait aussitôt) */
-  function horsMenu(t){ return menuFlot.classList.contains('ouvert') && !menuFlot.contains(t) && !(t.closest && t.closest('[data-menu]')); }
-  document.addEventListener('touchstart', function(e){ if (horsMenu(e.target)) fermeMenu(); }, true);
-  document.addEventListener('mousedown', function(e){ if (horsMenu(e.target)) fermeMenu(); }, true);
-  window.addEventListener('scroll', function(){ if (menuFlot.classList.contains('ouvert')) fermeMenu(); }, true);
-  window.addEventListener('resize', fermeMenu);
+  /* un geste hors de la bulle la ferme ; la feuille, elle, se ferme par
+     sa croix, Échap ou un toucher sur le voile */
+  function horsMenu(t){ return menuFlot.classList.contains('ouvert') && !menuFlot.contains(t); }
+  document.addEventListener('touchstart', function(e){ if (horsMenu(e.target)) fermeBulle(); }, true);
+  document.addEventListener('mousedown', function(e){ if (horsMenu(e.target)) fermeBulle(); }, true);
+  window.addEventListener('scroll', function(){ if (menuFlot.classList.contains('ouvert')) fermeBulle(); }, true);
+  window.addEventListener('resize', fermeBulle);
   window.addEventListener('hashchange', fermeMenu);
 
   function supprimeNote(id){
@@ -2788,7 +2828,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     if (cible.closest('#notes-rech')) return false;
     var el;
     if ((el = cible.closest('[data-menu]'))) {
-      if (menuFlot.classList.contains('ouvert') && menuFlot._pour === el) fermeMenu(); else ouvreMenu(el);
+      ouvreMenu(el);
       return true;
     }
     if ((el = cible.closest('[data-tri]'))) {
@@ -2841,10 +2881,11 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       if (agitNotes(e.target)) { e.stopPropagation(); if (apres) apres(e.target); }
     });
   }
-  /* Dans la vue, une action ferme le menu ; dans le menu, elle le ferme aussi,
-     sauf la copie qui garde sa confirmation « Copié » un instant. */
-  delegue(vue, function(cible){ if (!cible.closest('[data-menu]')) fermeMenu(); });
-  delegue(menuFlot, function(cible){ if (!cible.closest('[data-cop]')) fermeMenu(); });
+  /* Une action choisie dans la feuille la ferme, sauf la copie qui garde sa
+     confirmation « Copié » un instant. */
+  delegue(vue, function(cible){ if (!cible.closest('[data-menu]')) fermeBulle(); });
+  delegue(menuFlot, function(){ fermeBulle(); });
+  delegue(feuilleListe, function(cible){ if (!cible.closest('[data-cop]')) fermeFeuille(); });
 
   function vueNotes(filtre){
     filtreNotes = filtre || '';
@@ -3385,7 +3426,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       function agitSur(cible){
         if (!cible || !cible.closest) return false;
         /* dans un commentaire ouvert : une référence mène à son verset, le
-           « Fermer » referme ; le reste (liens, texte) est laissé au
+           croix referme ; le reste (liens, texte) est laissé au
            navigateur, et rien ne sélectionne de verset */
         var pan = cible.closest('.com-pan');
         if (pan) {

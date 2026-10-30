@@ -261,7 +261,6 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 .mbib-livre,.mbib-chap{cursor:pointer;transition:color .25s,border-color .3s}
 .mbib-livre{display:flex;justify-content:space-between;gap:12px;padding:8px 2px;border-bottom:1px solid rgba(231,224,207,.07);font-size:15.5px;color:var(--parchemin)}
 .mbib-livre:hover{color:var(--or-pale)}
-.mbib-n{font-size:12px;color:var(--pa2)}
 .mbib-chaps{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:7px}
 .mbib-chap{border:1px solid var(--filet-f);padding:9px 0;text-align:center;font-size:14px;color:var(--pa)}
 .mbib-chap:hover{border-color:var(--or);color:var(--or-pale);background:var(--surv)}
@@ -338,7 +337,6 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 <header>
   <div class="barre">
     <a href="/" class="logo">Lumen</a>
-    <button class="burger" id="burger" aria-label="Menu">☰</button>
     <nav class="menu" id="menu">
       <a href="/">Accueil</a>
       <a href="/bible.html">Bible</a>
@@ -380,7 +378,7 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
       <button class="act" id="b-retour">← Les commentaires</button>
       <button class="act" id="b-enr">Enregistrer</button>
       <button class="act" id="b-etat">Afficher dans la Bible</button>
-      <button class="act danger" id="b-suppr">Supprimer</button>
+      <button class="act danger act-ic" id="b-suppr" aria-label="Supprimer le commentaire" title="Supprimer le commentaire"><svg class="ic-poubelle" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4.5 7h15M9.5 7V5.2c0-.4.3-.7.7-.7h3.6c.4 0 .7.3.7.7V7M6.5 7l.9 11.6c.1.8.7 1.4 1.5 1.4h6.2c.8 0 1.4-.6 1.5-1.4L17.5 7M10.2 10.5v6M13.8 10.5v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
   </section>
 </main>
@@ -433,7 +431,7 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 </div></div>
 
 <div class="auth-ov" id="auth-overlay"><div class="auth-box">
-  <span class="auth-x" id="macct-x" role="button" tabindex="0">✕</span>
+  <span class="auth-x" id="macct-x" role="button" tabindex="0" aria-label="Fermer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
   <div class="auth-t" id="macct-t">Mon compte</div>
   <div class="auth-mail" id="macct-mail"></div>
   <div class="pile-btn">

@@ -359,7 +359,7 @@ html body .tog-sw.on::after{left:21px;background:#000}
    d'interface, sans majuscules espacées ; le survol les éclaircit et les
    soulève d'une lueur. Leurs coins arrondis sont réglés plus bas.
    ════════════════════════════════════════════════════════════════════ */
-html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.auth-m-primary,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x){
+html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.auth-m-primary,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x,.qc-sortie){
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   min-height:44px;padding:11px 22px;border:0;border-radius:0;
   background:var(--h-or);color:#000;
@@ -367,7 +367,7 @@ html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct
   box-shadow:0 0 0 0 transparent;
   transition:background .25s,box-shadow .3s,transform .2s,color .25s;
 }
-html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.auth-m-primary,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x):is(:hover,:focus-visible){
+html:root body :is(.acts .act,.cat-acts .ghost-btn,.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.auth-m-primary,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x,.qc-sortie):is(:hover,:focus-visible){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;border-color:transparent;
   box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);
 }
@@ -658,6 +658,18 @@ html:root body:not(#_):not(#_):not(#_):not(#_) #acts-liste>.acts-outils>:is(.act
 html:root body:not(#_):not(#_):not(#_):not(#_) #acts-liste>.acts-outils>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-last-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-bottom-right-radius:14px}
 html:root body:not(#_):not(#_):not(#_):not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):not([style*="none"]):nth-child(1 of :is(.bacct-btn,.macct-btn,.auth-m-btn):not([style*="none"])){border-top-left-radius:14px;border-top-right-radius:14px}
 html:root body:not(#_):not(#_):not(#_):not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):not([style*="none"]):nth-last-child(1 of :is(.bacct-btn,.macct-btn,.auth-m-btn):not([style*="none"])){border-bottom-left-radius:14px;border-bottom-right-radius:14px}
+
+/* Sur ordinateur, les deux groupes du bandeau d'Articles et de Ressources
+   (créer, puis organiser) tiennent sur une seule ligne, séparés par le même
+   petit trait ; sur téléphone, ils restent l'un sous l'autre. */
+@media(min-width:601px){
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #acts-liste:has(>.acts-haut){flex-direction:row}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #acts-liste>.acts-outils{position:relative;border-top:0}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #acts-liste>.acts-outils::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:rgba(0,0,0,.16)}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #acts-liste>:is(.acts-haut,.acts-outils)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]){border-radius:0}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #acts-liste>.acts-haut>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-top-left-radius:14px;border-bottom-left-radius:14px}
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #acts-liste>.acts-outils>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"]):nth-last-child(1 of :is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn):not([style*="none"])){border-top-right-radius:14px;border-bottom-right-radius:14px}
+}
 
 /* le survol : l'éclat sur toute la case, une lueur autour, sans liseré */
 html:root body:not(#_):not(#_):not(#_):not(#_) :is(:is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),:is(#acts-liste>.acts-haut,#acts-liste>.acts-outils)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),.pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn),.jt-act):is(:hover,:focus-visible){z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);transform:none}
@@ -1032,8 +1044,10 @@ html body .qc-ecran{position:fixed;inset:0;z-index:110;display:none;flex-directi
 html body .qc-ecran.on{display:flex;animation:hVoile .25s ease both}
 html.qc-ouvert,html.qc-ouvert body{overflow:hidden}
 html body .qc-haut{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 28px;background:#000;border-bottom:1px solid var(--h-l1)}
-html body .qc-sortie{padding:6px 0;border:0;background:none;font-family:var(--h-ui);font-size:15.5px;font-weight:500;color:var(--h-t2);cursor:pointer;transition:color .2s}
-html body .qc-sortie:is(:hover,:focus-visible){color:#fff}
+/* le retour : la flèche seule, comme au plein écran d'un article ou d'une
+   ressource (choix d'Emmanuel) */
+html:root body .qc-sortie{min-width:48px;min-height:40px;padding:0 14px;border-radius:12px;cursor:pointer}
+html:root body .qc-sortie svg{display:block}
 html body .qc-menu{padding:2px 6px;border:0;background:none;font-family:var(--h-ui);font-size:24px;line-height:1;letter-spacing:.05em;color:#fff;cursor:pointer}
 html body .qc-page{width:100%;max-width:760px;margin:0 auto;padding:52px 28px 40px;flex:1 0 auto}
 html body .qc-label{font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--h-t3)}
@@ -1218,7 +1232,10 @@ html body .qa-r>:last-child{margin-bottom:4px}
 html body .qa-r ul{margin:0 0 12px;padding-left:20px}
 html body .qa-r li{margin-bottom:6px}
 html body .qa-r strong{color:#fff;font-weight:600}
-html body .qa-r.erreur{color:var(--h-t3)}
+/* une réponse qui n'a pas abouti se distingue d'une réponse : un filet crème
+   à gauche, un léger fond, et « Pas de réponse » en tête, sans couleur vive */
+html body .qa-r.erreur{color:var(--h-t2);padding:12px 16px 12px 18px;border-left:2px solid var(--h-or);background:var(--h-voile)}
+html body .qa-r.erreur::before{content:'Pas de réponse';display:block;margin-bottom:4px;font-family:var(--h-ui);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--h-or)}
 html body .qa-roue{display:inline-block;width:15px;height:15px;vertical-align:-2px;border:1.5px solid var(--h-l2);border-top-color:var(--h-or);border-radius:50%;animation:qcTourne .8s linear infinite}
 html body .qa-saisie{display:flex;flex-direction:column;gap:10px;padding:14px 18px calc(16px + env(safe-area-inset-bottom)) 24px;border-top:1px solid var(--h-l1);background:#000}
 html body .qa-saisie-l{display:flex;align-items:flex-end;gap:10px}
@@ -1420,3 +1437,21 @@ html:root body .ed-ia:is(:hover,:focus-visible){background:color-mix(in srgb,var
 html:root body .ed-ia[hidden]{display:none}
 html:root body .ed-ia:disabled{cursor:default}
 html:root body .ed-ia svg{display:block}
+
+/* ════════════════════════════════════════════════════════════════════
+   LA CROIX QUI FERME : UN SEUL DESSIN
+   Fenêtres, recherches, compte, tiroir de la Bible et feuilles d'actions
+   se ferment par la même croix : tracée fin, sans fond au repos ; au
+   survol, elle passe au blanc sur un disque sombre.
+   ════════════════════════════════════════════════════════════════════ */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) :is(.rech-fermer,.msrch-fermer,.b-fermer,.auth-fermer,.auth-x,.bacct-x,#bp-pan .bp-fermer,.feuille-x){
+  display:inline-flex;align-items:center;justify-content:center;flex:none;width:38px;height:38px;padding:0;border:0;border-radius:50%;
+  background:transparent;box-shadow:none;color:var(--h-t3);font-size:0;line-height:1;cursor:pointer;transition:color .25s,background .25s;
+}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) :is(.rech-fermer,.msrch-fermer,.b-fermer,.auth-fermer,.auth-x,.bacct-x,#bp-pan .bp-fermer,.feuille-x):is(:hover,:focus-visible){color:#fff;background:var(--h-voile-fort);outline:none}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) :is(.rech-fermer,.msrch-fermer,.b-fermer,.auth-fermer,.auth-x,.bacct-x,#bp-pan .bp-fermer,.feuille-x) svg{display:block}
+
+/* ── LES FENÊTRES PASSENT AU-DESSUS DE LA CONVERSATION AVEC L'IA ──
+   Une fenêtre, une feuille d'actions ou une recherche ouverte pendant que
+   la conversation est affichée se pose par-dessus elle, voile compris. */
+html:root body:not(#_):not(#_) :is(.overlay,.rech-overlay){z-index:270}

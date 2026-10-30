@@ -88,27 +88,10 @@ html body .tire{
    La case de chaque rangée est dessinée plus bas (« LE MODE CHOISIR »).
    Les actions se posent sous la liste.
    ════════════════════════════════════════════════════════════════════ */
-/* les actions du mode Choisir (allégées plus bas : ni capsule, ni fond) */
-html body #acts-choix{
-  position:sticky;bottom:calc(16px + var(--lv-bas,0px));z-index:40;
-  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;
-  width:fit-content;max-width:100%;margin:32px auto 0;padding:8px 8px 8px 20px;
-  border-radius:0;border:1px solid var(--h-l2);
-  background:color-mix(in srgb,var(--h-s2) 84%,transparent);
-  -webkit-backdrop-filter:saturate(140%) blur(18px);backdrop-filter:saturate(140%) blur(18px);
-  box-shadow:0 18px 50px -14px rgba(0,0,0,.9),0 0 40px -18px color-mix(in srgb,var(--h-or) 45%,transparent);
-}
-html body #compte-choix{
-  margin-right:8px;font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.01em;text-transform:none;color:var(--h-or);white-space:nowrap;
-}
-@media(max-width:600px){
-  html body #acts-choix{
-    display:grid;grid-template-columns:1fr 1fr;width:100%;padding:12px;border-radius:0;
-    bottom:calc(10px + var(--lv-bas,0px));
-  }
-  html body #compte-choix{grid-column:1/-1;margin:0 0 2px;text-align:center}
-  html:root body #acts-choix .act{min-height:44px;padding:9px 10px;white-space:normal;line-height:1.2}
-  html:root body #acts-choix #b-jeter{grid-column:1/-1;order:3}
+/* les actions du mode Choisir : le bandeau crème commun, posé sous la
+   liste ; sur téléphone, la poubelle passe en dernier */
+html body #acts-choix{margin:32px auto 0}
+@media(max-width:600px){html:root body #acts-choix #b-jeter{order:3}}
 }
 
 /* ════════════════════════════════════════════════════════════════════
@@ -340,15 +323,8 @@ html body .auth-out:hover{color:var(--h-or)}
   html:root body .modal-btns :is(.m-annul,.m-ok){width:100%;padding:12px 8px}
 }
 
-/* le nombre d'éléments choisis ne s'affiche pas (choix d'Emmanuel) */
-html body #compte-choix{display:none!important}
 html body #mot-liste:empty{display:none}
 
-/* ── LES ACTIONS DU MODE CHOISIR, SANS CADRE ──
-   Les boutons se posent sous la liste, comme les autres actions de la
-   page : ni capsule, ni fond, ni lueur. */
-html body #acts-choix{position:static;padding:0;border:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}
-@media(max-width:600px){html body #acts-choix{padding:0}}
 
 /* ── LA BIBLE DEPUIS UNE RESSOURCE ──
    Un seul bandeau crème : le retour, un mince trait, puis le livre qui
@@ -580,7 +556,6 @@ html body.choisir #liste :is(.art-menu,.rub-menu){display:none}
 html body.choisir #liste .rub-chev{color:var(--h-or)}
 html body #acts-choix{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin-top:24px}
 html body #acts-choix[style*="none"]{display:none!important}
-html body #acts-choix .compte-choix{flex-basis:100%;text-align:center;margin-bottom:4px;font-family:var(--h-ui);font-size:13px;color:var(--h-t3)}
 html:root body #acts-choix .act{min-height:38px;padding:8px 18px;font-size:13px}
 
 /* ── LE MODE ORGANISER ──
@@ -609,9 +584,9 @@ html body #liste .cible,html body #fil .cible{outline:1px solid var(--h-or);outl
    le ⋯ monte à hauteur du titre. */
 html body .art-pied{justify-content:flex-end}
 /* la date s'écrit comme sur les cartes des ressources (Emmanuel : « met
-   le texte pareil que ressource ») : Cormorant en capitales espacées,
-   crème légèrement éclairée */
-html body .art-pied>span:first-child{font-family:var(--display);font-size:12.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--or);text-shadow:0 0 10px color-mix(in srgb,var(--or) 40%,transparent)}
+   le texte pareil que ressource ») : la police de l'interface (EB
+   Garamond) en capitales espacées, crème légèrement éclairée */
+html body .art-pied>span:first-child{font-family:var(--h-ui);font-size:12.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--or);text-shadow:0 0 10px color-mix(in srgb,var(--or) 40%,transparent)}
 html body .art-pied .qc-etat{margin-left:0}
 html body #liste .art-ligne{position:relative}
 html body #liste .art-ligne .art-item,html body #liste .art-ligne .art-item:hover{padding-right:24px}

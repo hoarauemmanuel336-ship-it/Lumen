@@ -152,14 +152,17 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 <style>
 /* ═══════════ RESSOURCES ═══════════
    Sans aperçu, une ressource se présente par son titre en Cormorant, sur une
-   carte sobre, deux par rangée comme les rayons. Au survol, la carte
-   s'illumine sans bouger. */
-.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;padding:8px 0 4px}
+   carte sobre, deux par rangée comme les rayons. Au survol, seul son
+   contour s'allume (choix d'Emmanuel). */
+/* les cartes de la dernière rangée s'élargissent pour la remplir : la
+   grille ne laisse pas de vide */
+.grille{display:flex;flex-wrap:wrap;gap:14px;padding:8px 0 4px}
+.grille>.carte{flex:1 1 290px;min-width:0}
 /* ── LA CARTE PREND LE LANGAGE DES CONTENUS ──
    Coin coupé, filet ténu, lumière rasante, comme les diagrammes, livres,
    cours et parcours qu'elle range : fond qui descend vers le noir, ligne de
    lumière au bord haut, coin supérieur droit tranché en biais, qui s'allume
-   au survol avec le contour. */
+   au survol avec le contour : c'est tout ce qui change au survol. */
 .carte{position:relative;display:flex;flex-direction:column;text-align:left;border:1px solid var(--filet);background:linear-gradient(180deg,#0f0f0f,#090909 70%);box-shadow:inset 0 1px 0 rgba(255,255,255,.035);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .3s,background .3s,box-shadow .3s}
 .carte::before,.carte::after{content:'';position:absolute;top:-1px;right:-1px;width:16px;height:16px;pointer-events:none;z-index:1}
 .carte::before{background:linear-gradient(225deg,var(--encre) 0 calc(50% - .7px),rgba(231,224,207,.22) calc(50% - .7px) calc(50% + .5px),transparent calc(50% + .5px))}
@@ -170,22 +173,17 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 .ct-tete .ct-titre{flex:1;min-width:0}
 .ct-mq{flex:none;display:flex;align-items:center;justify-content:center;width:32px;height:32px;margin-top:-1px;color:color-mix(in srgb,var(--or) 72%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--or) 20%,transparent);background:color-mix(in srgb,var(--or) 2.5%,transparent);clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,0 100%);transition:color .3s,box-shadow .3s,background .3s}
 .ct-mq .mq-svg{width:19px;height:19px;transition:filter .3s}
-.carte:hover .ct-mq,.carte.pris .ct-mq{color:var(--or);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--or) 50%,transparent);background:color-mix(in srgb,var(--or) 6%,transparent)}
-.carte:hover .ct-mq .mq-svg{filter:drop-shadow(0 0 5px color-mix(in srgb,var(--or) 45%,transparent))}
-/* Au survol, c'est le contour qui s'allume, avec le halo autour. Le fond ne
-   change pas : un fond de survol remplacerait le dégradé et la carte
-   paraîtrait sombre. */
-.carte:hover{border-color:var(--or);box-shadow:0 0 26px var(--halo)}
+.carte.pris .ct-mq{color:var(--or);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--or) 50%,transparent);background:color-mix(in srgb,var(--or) 6%,transparent)}
+/* Au survol, seul le contour s'allume : ni halo, ni fond, ni titre. */
+.carte:hover{border-color:var(--or)}
 .ct-bas{flex:1;display:flex;flex-direction:column;padding:20px 22px 15px}
 .ct-titre{font-family:var(--display);font-size:21.5px;font-weight:500;line-height:1.25;color:var(--parchemin);padding-right:26px;transition:color .25s,text-shadow .25s}
-.carte:hover .ct-titre{color:#fff;text-shadow:0 0 14px color-mix(in srgb,var(--or) 28%,transparent)}
 .ct-vide{color:var(--pa2);font-style:italic;font-weight:400}
 /* le pied tombe au ras de la carte : un filet qui s'efface vers la droite,
    puis la date, rangée à droite pour s'aligner d'une carte à l'autre dans
    une rangée */
-.ct-pied{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-top:auto;padding-top:15px;font-family:var(--display);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3)}
-.ct-pied::before{content:'';flex-basis:100%;height:1px;margin-bottom:10px;background:linear-gradient(90deg,rgba(231,224,207,.16),rgba(231,224,207,.06) 55%,transparent);transition:background .3s}
-.carte:hover .ct-pied::before{background:linear-gradient(90deg,color-mix(in srgb,var(--or) 45%,transparent),color-mix(in srgb,var(--or) 12%,transparent) 55%,transparent)}
+.ct-pied{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-top:auto;padding-top:15px;font-family:var(--h-ui);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.ct-pied::before{content:'';flex-basis:100%;height:1px;margin-bottom:10px;background:linear-gradient(90deg,rgba(231,224,207,.16),rgba(231,224,207,.06) 55%,transparent)}
 
 /* le choix de la marque, dans l'éditeur : une rangée de tuiles, l'icône
    au-dessus de son nom */
@@ -198,7 +196,8 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
 @media (hover:hover) and (pointer:fine){.mq-b:hover{border-color:var(--filet-fort);color:var(--parchemin)}.mq-b.on:hover{border-color:var(--or);color:var(--or)}}
 @media (max-width:600px){.marques{grid-template-columns:repeat(3,1fr)}}
 .ct-menu{position:absolute;top:13px;right:16px;z-index:2;padding:4px 9px;font-size:15px;line-height:1;color:var(--pa2);opacity:.55;transition:color .3s,opacity .3s}
-.ct-menu::before{content:'';position:absolute;inset:-8px}
+/* sa zone de toucher déborde le signe : 52 × 48 points, assez pour le doigt */
+.ct-menu::before{content:'';position:absolute;inset:-11px -8px}
 .carte:hover .ct-menu{opacity:1}
 .ct-menu:hover{color:var(--or)}
 /* ── CE QUI RENSEIGNE S'ALLUME ──
@@ -207,7 +206,7 @@ textarea.champ.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font
    ressource. */
 .ct-mq{color:var(--or);box-shadow:inset 0 0 0 1px var(--or);background:none}
 .ct-mq .mq-svg{filter:drop-shadow(0 0 5px color-mix(in srgb,var(--or) 45%,transparent))}
-.carte:hover .ct-mq,.carte.pris .ct-mq{box-shadow:inset 0 0 0 1px var(--or);background:none}
+.carte.pris .ct-mq{box-shadow:inset 0 0 0 1px var(--or);background:none}
 .ct-pied{color:var(--or);font-size:12.5px;text-shadow:0 0 10px color-mix(in srgb,var(--or) 40%,transparent)}
 @media(max-width:600px){.grille{gap:12px}.ct-bas{padding:18px 18px 13px}.ct-titre{font-size:19.5px}.ct-tete{gap:13px}.ct-mq{width:30px;height:30px}}
 /* sans survol, le ⋯ reste bien visible, et le doigt reçoit un retour bref */
@@ -291,7 +290,6 @@ body.organise .poignee{display:flex;align-items:center;justify-content:center;fl
 body.organise .poignee:hover{color:var(--or)}
 body.organise .carte,body.organise .rayon{cursor:default}
 body.organise .carte:hover{border-color:var(--filet);background:var(--encre-2);box-shadow:none}
-body.organise .carte:hover .ct-titre{color:var(--parchemin);text-shadow:none}
 body.organise .rayon:hover .ry-nom{color:var(--parchemin)}
 body.organise .carte .poignee{position:absolute;left:0;top:0;z-index:2}
 body.organise .rayon .ry-chev{display:none}
@@ -345,7 +343,6 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
 .rayon.pris{border-color:var(--or);box-shadow:inset 3px 0 0 var(--or)}
 .rayon.pris .ry-nom{color:var(--or-pale)}
 .pris>.coche{color:var(--or)}
-#compte-choix{font-family:var(--display);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2)}
 
 /* ═══ LA CORBEILLE ═══
    Une ligne par chose jetée, dans le dessin des rayons : le nom, la date, ce
@@ -373,7 +370,6 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
 <header>
   <div class="barre">
     <a href="/" class="logo">Lumen</a>
-    <button class="burger" id="burger" aria-label="Menu">&#9776;</button>
     <nav class="menu" id="menu">
       <a href="/">Accueil</a>
       <a href="/bible.html">Bible</a>
@@ -403,7 +399,6 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
     <!-- Les actions du mode Choisir prennent la place des autres : à cet
          instant, la seule chose à faire est d'agir sur ce qui est coché. -->
     <div class="acts" id="acts-choix" style="display:none">
-      <span class="compte-choix" id="compte-choix"></span>
       <button class="act" id="b-tout">Tout choisir</button>
       <button class="act" id="b-telech">Télécharger</button>
       <button class="act" id="b-deplacer">Déplacer</button>
@@ -460,7 +455,7 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
      confirmation ou un message ouvert depuis lui reste au-dessus -->
 <section class="qc-ecran" id="m-qc" aria-label="Contrôle qualité">
   <div class="qc-haut">
-    <button type="button" class="qc-sortie" id="qc-ferme">← Retour</button>
+    <button type="button" class="qc-sortie" id="qc-ferme" aria-label="Revenir aux ressources" title="Revenir aux ressources"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 12h-15M10.5 6l-6 6 6 6"/></svg></button>
     <button type="button" class="qc-menu" id="qc-outils" aria-label="Actions du rapport">⋯</button>
   </div>
   <div class="qc-page">
@@ -507,7 +502,7 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
 </div></div>
 
 <div class="auth-ov" id="auth-overlay"><div class="auth-box">
-  <span class="auth-x" id="macct-x" role="button" tabindex="0">✕</span>
+  <span class="auth-x" id="macct-x" role="button" tabindex="0" aria-label="Fermer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
   <div class="auth-t" id="macct-t">Mon compte</div>
   <div class="auth-mail" id="macct-mail"></div>
   <div class="pile-btn">
@@ -1742,8 +1737,7 @@ function majChoix(){
   const a=$('acts-liste'), c=$('acts-choix');
   if(a&&S.auteur&&pretListe())a.style.display=S.choix?'none':'';
   if(c)c.style.display=(S.choix&&S.auteur)?'':'none';
-  const n=S.pris.size, t=$('compte-choix');
-  if(t)t.textContent=n?(n+(n>1?' choisis':' choisi')):'Rien de choisi';
+  const n=S.pris.size;
   ['b-jeter','b-telech','b-deplacer','b-qc'].forEach(k=>{const j=$(k); if(j){j.style.opacity=n?'1':'.4';j.disabled=!n;}});
 }
 /* ── TÉLÉCHARGER ET DÉPLACER PLUSIEURS ──

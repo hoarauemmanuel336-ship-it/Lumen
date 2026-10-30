@@ -66,7 +66,7 @@
   + '.bp-chips.on{display:flex}'
   + '.bp-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--filet,rgba(231,224,207,.14));padding:4px 10px;font-size:13.5px;color:var(--parchemin,#ffffff);cursor:pointer;transition:border-color .35s,box-shadow .4s}'
   + '.bp-chip:hover{border-color:var(--or,#efe6cf);background:var(--surv,rgba(239,230,207,.06))}'
-  + '.bp-chip .bp-x{font-size:12px;color:var(--pa,rgba(255,255,255,.6));transition:color .3s;padding:0 1px}'
+  + '.bp-chip .bp-x{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;margin:-7px -10px -7px -6px;font-size:12px;color:var(--pa,rgba(255,255,255,.6));transition:color .3s;padding:0}'
   + '.bp-chip .bp-x:hover{color:var(--or-pale,#f8f3e6)}'
   + '.bp-corps{flex:1;position:relative;min-height:0}'
   + '#bp-cadre{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}'
@@ -113,7 +113,7 @@
     + '  <span class="bp-aller" id="bp-aller" role="button" tabindex="0">' + BP_T.aller + '</span></div>'
     /* une seule rangée (choix d'Emmanuel) : la barre, la pleine page, la croix */
     + '  <a class="bp-page bp-plein" href="' + BP_PAGE + '" aria-label="' + BP_T.page + '" title="' + BP_T.page + '"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></a>'
-    + '  <span class="bp-fermer" id="bp-fermer" role="button" tabindex="0" aria-label="' + BP_T.fermer + '">\u2715</span>'
+    + '  <span class="bp-fermer" id="bp-fermer" role="button" tabindex="0" aria-label="' + BP_T.fermer + '"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>'
     + '  <span class="bp-err" id="bp-err"></span>'
     + '</div>'
     + '<div class="bp-chips" id="bp-chips"></div>'
@@ -316,7 +316,7 @@
     if (!MULTI.length) { z.classList.remove('on'); z.innerHTML = ''; return; }
     var h = '';
     MULTI.forEach(function(r, i){
-      h += '<span class="bp-chip" data-bi="' + i + '">' + esc(etiquetteRef(r)) + '<span class="bp-x" data-bx="' + i + '">\u2715</span></span>';
+      h += '<span class="bp-chip" data-bi="' + i + '">' + esc(etiquetteRef(r)) + '<span class="bp-x" data-bx="' + i + '" role="button" aria-label="Retirer cette r\u00e9f\u00e9rence">\u2715</span></span>';
     });
     z.innerHTML = h;
     z.classList.add('on');

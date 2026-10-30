@@ -80,9 +80,9 @@ html body .groupe-nom{
 }
 
 /* LES LIVRES : la disposition voulue par Emmanuel : trois colonnes
-   alignées, chaque livre sur une ligne, le nom à gauche et le nombre de
-   chapitres à droite, un filet dessous ; deux colonnes sur tablette et sur
-   téléphone, où le nombre passe sous le nom. */
+   alignées, chaque livre sur une ligne, son nom seul (sans nombre de
+   chapitres), un filet dessous ; deux colonnes sur tablette et sur
+   téléphone. */
 html body .livres-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:0 44px;max-width:920px;margin:0 auto}
 html body a.livre{
   display:flex;flex-direction:row;align-items:baseline;justify-content:space-between;gap:14px;min-width:0;
@@ -90,10 +90,8 @@ html body a.livre{
   transition:border-color .3s,background .3s;
 }
 html body a.livre .ln{font-family:var(--h-ui);font-size:19px;line-height:1.3;color:#fff;min-width:0;overflow-wrap:anywhere}
-html body a.livre .lc{font-family:var(--h-ui);font-size:12px;font-weight:500;letter-spacing:.01em;color:var(--h-t3);font-variant-numeric:tabular-nums;white-space:nowrap;transition:color .25s}
 html body a.livre:hover{border-color:var(--h-or);background:var(--surv);box-shadow:none}
 html body a.livre:hover .ln{color:#fff}
-html body a.livre:hover .lc{color:var(--h-t2)}
 @media(max-width:900px){html body .livres-grille{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){
   html body .livres-grille{grid-template-columns:1fr 1fr;gap:0 18px}
@@ -181,8 +179,11 @@ html body .cb-html iframe{border-color:var(--h-l2);border-radius:0}
 html body .com-un+.com-un{border-top-color:var(--h-l1)}
 html body .com-vide{font-family:var(--h-ui);font-style:normal;font-size:13.5px;color:var(--h-t3)}
 html body .com-pied{margin-top:14px}
+html body .com-fermer svg{display:block}
+/* le commentaire se referme par une croix (Emmanuel : la petite croix
+   plutôt que « Fermer ») */
 html body .com-fermer{
-  display:inline-flex;align-items:center;min-height:30px;padding:0 14px;border-radius:0;
+  display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:36px;padding:0 13px;border-radius:0;
   font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.01em;text-transform:none;
   background:var(--h-or);color:#000;transition:background .25s,box-shadow .3s;
 }
@@ -255,8 +256,10 @@ html body .sb-chip{
   background:var(--h-s3);font-family:var(--h-ui);font-size:13.5px;font-weight:500;color:#fff;
   transition:background .25s,box-shadow .25s;
 }
+/* la croix d'une référence choisie : un carré de la hauteur de la
+   pastille, assez grand pour le doigt */
 html body .sb-x{
-  display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;padding:0;border-radius:0;
+  display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;margin-right:-6px;padding:0;border-radius:0;
   font-size:11px;color:var(--h-t3);transition:color .25s,background .25s;
 }
 /* les actions : un bandeau crème, chaque action un bouton plein */
@@ -432,7 +435,12 @@ html body .nt-menu{
   font-size:18px;letter-spacing:0;line-height:1;
 }
 
-/* le menu ⋯ : une petite carte flottante, ses actions en rangées */
+/* le menu des ⋯ : la feuille d'actions commune (voir l'habillage commun),
+   posée au-dessus de la page et de la barre du bas */
+html body #m-choix{position:fixed;inset:0;display:none;align-items:center;justify-content:center}
+html body #m-choix.on{display:flex}
+
+/* la bulle du ruban (« Mes signets ») : une petite carte flottante */
 html body #menu-flot{
   min-width:200px;padding:6px;clip-path:none;
   background:var(--h-s2);border-radius:0;box-shadow:var(--h-ombre);
@@ -443,8 +451,6 @@ html body .mf-act{
   font-family:var(--h-ui);font-size:14px;font-weight:500;color:var(--h-t2);
 }
 html body .mf-act:hover,html body .mf-act:active{color:#fff;background:var(--h-s4)}
-html body .mf-sep{margin-top:9px;padding-top:11px;box-shadow:none}
-html body .mf-sep::before{content:'';position:absolute;left:8px;right:8px;top:-5px;height:1px;background:var(--h-l2)}
 
 /* les surlignages : un groupe par couleur, son titre en sur-titre */
 html body .surl-scat{gap:10px;margin:30px auto 10px;padding:0 4px;box-shadow:none}
@@ -792,6 +798,12 @@ html body .nzm-sec .notes-sgroupe .nzm-row{padding-left:32px}
 html body .nzm-ref{font-family:var(--h-titre);font-size:20px;font-weight:500;line-height:1.2;color:#fff;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 html body .nzm-date{font-family:var(--h-ui);font-size:12.5px;color:var(--h-t3);white-space:nowrap}
 html body .nzm-row .nt-menu{position:static;grid-column:3;grid-row:1}
+/* sur téléphone, la zone de toucher d'un ⋯ déborde le signe (48 × 48
+   points), sans rien déplacer */
+@media(max-width:600px){
+  html body :is(.nzm-row,.notes-cat,.notes-scat)>.nt-menu{position:relative}
+  html body .nt-menu::before{content:'';position:absolute;inset:-6px}
+}
 html body .nzm-txt{grid-column:1/-1;font-family:var(--h-texte);font-size:16px;line-height:1.45;color:var(--h-t2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-right:44px}
 
 /* les surlignages : l'intitulé de la zone est déjà en tête ; chaque
@@ -1104,3 +1116,12 @@ html body .trad-menu.tm-dessus::before{top:auto;bottom:-6px;transform:translateX
 /* la pointe prend la lumière de la ligne qu'elle touche, quand on la survole */
 html body .trad-menu:not(.tm-dessus):has(.tm-o:first-child:is(:hover,:focus-visible))::before,
 html body .trad-menu.tm-dessus:has(.tm-o:last-child:is(:hover,:focus-visible))::before{background:var(--h-or);border-color:var(--h-or)}
+
+/* ── LES FENÊTRES PASSENT AU-DESSUS DE LA CONVERSATION AVEC L'IA ──
+   Dans leur ordre : la note, la connexion, la recherche, le compte, la
+   catégorie et la feuille des ⋯, puis la confirmation, toujours devant. */
+html:root body:not(#_):not(#_) #note-voile{z-index:280}
+html:root body:not(#_):not(#_) #auth-voile{z-index:281}
+html:root body:not(#_):not(#_) .b-ov{z-index:282}
+html:root body:not(#_):not(#_) :is(#bacct-voile,#cat-voile,#m-choix){z-index:283}
+html:root body:not(#_):not(#_) #conf-voile{z-index:284}

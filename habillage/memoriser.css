@@ -209,7 +209,7 @@ html body #app .start{
 html body #app .start.pas-pret{opacity:.55;box-shadow:none}
 html body #app .reset-link{
   display:block;margin:22px auto 0;padding:10px 14px;border-radius:0;
-  font-family:var(--h-ui);font-size:13px;font-weight:500;letter-spacing:.01em;color:var(--h-t4);transition:color .25s,background .25s;
+  font-family:var(--h-ui);font-size:13px;font-weight:500;letter-spacing:.01em;color:var(--h-t3);transition:color .25s,background .25s;
 }
 html body #app .reset-link:hover{color:var(--rouge);background:color-mix(in srgb,var(--rouge) 10%,transparent)}
 
@@ -220,23 +220,21 @@ html body #trash-block{border:1px solid var(--h-l1);border-radius:0;background:v
 html body .trash-body{padding:0 12px 16px;border-top:1px solid var(--h-l1)}
 html body .trash-item{gap:14px;padding:12px 8px;border-top:1px solid var(--h-l1)}
 html body .trash-vref{font-family:var(--h-titre);font-size:17px;font-weight:500;color:#fff}
-html body .trash-vcat{font-family:var(--h-ui);font-size:12px;letter-spacing:.01em;color:var(--h-t4)}
+html body .trash-vcat{font-family:var(--h-ui);font-size:12px;letter-spacing:.01em;color:var(--h-t3)}
 html body .trash-acts{gap:8px}
 html body #trash-block #trash-empty{margin:14px auto 0!important}
 
 /* ════════════════════════════════════════════════════════════════════
    10. LA SÉANCE DE QUESTIONS
-   Centrée. « Terminer » en haut ; la question, posée sur le noir (voir
+   Centrée. La croix qui clôt la série en haut à droite ; la question, posée sur le noir (voir
    « La question sans cadre ni lueur ») ; les trois pastilles dessous ;
    puis les propositions en cartes, chacune avec son numéro dans une case.
    ════════════════════════════════════════════════════════════════════ */
-html body .study-top{min-height:44px;margin-bottom:28px;padding:0;border-bottom:0}
-html body .study-stat{
-  display:inline-block;min-height:36px;padding:8px 16px;word-spacing:.14em;border:1px solid var(--h-l1);border-radius:0;background:var(--h-s1);line-height:1.4;
-  font-family:var(--h-ui);font-size:13.5px;font-weight:500;letter-spacing:.01em;color:var(--h-t3);font-variant-numeric:tabular-nums;
-}
-html body .study-stat b{color:var(--h-or);font-weight:600}
-html:root body .study-top .finish{min-height:40px;padding:9px 20px;font-size:13.5px}
+html body .study-top{justify-content:flex-end;min-height:44px;margin-bottom:28px;padding:0;border-bottom:0}
+/* on sort d'une série par une croix, à droite (Emmanuel : la petite croix
+   plutôt que « Terminer ») */
+html:root body .study-top .finish{display:inline-flex;align-items:center;justify-content:center;min-width:48px;min-height:44px;padding:0 14px}
+html:root body .study-top .finish svg{display:block}
 
 /* la question (cadre et lueur s'effacent plus bas) */
 html body .qbox{
@@ -447,7 +445,6 @@ html body .mbib-test{font-family:var(--h-ui);font-size:11.5px;font-weight:600;le
 html body .mbib-grp{font-family:var(--h-ui);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--h-t4);margin:14px 6px 6px}
 html body .mbib-livre{align-items:center;min-height:44px;padding:10px 12px;border-bottom:0;border-radius:0;font-family:var(--h-ui);font-size:16.5px;color:#fff;transition:background .2s,color .2s}
 html body .mbib-livre:hover{color:#fff;background:var(--h-s3)}
-html body .mbib-n{font-family:var(--h-ui);font-size:12px;color:var(--h-t4);font-variant-numeric:tabular-nums}
 html body .mbib-chaps{grid-template-columns:repeat(auto-fill,minmax(50px,1fr));gap:8px}
 html body .mbib-chap{min-height:46px;display:flex;align-items:center;justify-content:center;padding:0;border:1px solid var(--h-l1);border-radius:0;background:var(--h-s2);font-family:var(--h-ui);font-size:14px;font-weight:500;color:var(--h-t2);transition:border-color .2s,background .2s,color .2s}
 html body .mbib-chap:hover{border-color:var(--h-l3);background:var(--h-s3);color:#fff}
@@ -599,11 +596,6 @@ html body .q-prompt,html body .q-prompt.ref,html body .q-prompt.titre{text-shado
 @media(max-width:720px){
   html body .odots-tog{border-radius:999px}
 }
-
-/* ── PAS DE COMPTEUR PENDANT UNE SÉRIE ──
-   « 0 répondues · 0 justes » reste caché ; « Terminer » garde sa place, à
-   droite. */
-html body .study-stat{visibility:hidden}
 
 /* ── LE BILAN DE LA SÉRIE ──
    Le nombre de versets vus en grand, leur répartition dans les trois

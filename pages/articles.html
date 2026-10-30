@@ -263,7 +263,6 @@ body.organise .poignee:hover{color:var(--or)}
 
 /* ═══ CHOISIR : PLUSIEURS D'UN COUP ═══
    Le tap coche au lieu d'ouvrir, et la barre du bas dit combien sont pris. */
-#compte-choix{font-family:var(--display);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--pa2)}
 
 /* ═══ LA CORBEILLE ═══
    Une ligne par chose jetée : le nom, la date, ce qui est descendu avec
@@ -290,7 +289,6 @@ body.organise .poignee:hover{color:var(--or)}
 <header>
   <div class="barre">
     <a href="/" class="logo">Lumen</a>
-    <button class="burger" id="burger" aria-label="Menu">&#9776;</button>
     <nav class="menu" id="menu">
       <a href="/">Accueil</a>
       <a href="/bible.html">Bible</a>
@@ -320,7 +318,6 @@ body.organise .poignee:hover{color:var(--or)}
     <!-- Les actions du mode Choisir prennent la place des autres : à cet
          instant, la seule chose à faire est d'agir sur ce qui est coché. -->
     <div class="acts" id="acts-choix" style="display:none">
-      <span class="compte-choix" id="compte-choix"></span>
       <button class="act" id="b-tout">Tout choisir</button>
       <button class="act" id="b-telech">Télécharger</button>
       <button class="act" id="b-deplacer">Déplacer</button>
@@ -375,7 +372,7 @@ body.organise .poignee:hover{color:var(--or)}
      confirmation ou un message ouvert depuis lui reste au-dessus -->
 <section class="qc-ecran" id="m-qc" aria-label="Contrôle qualité">
   <div class="qc-haut">
-    <button type="button" class="qc-sortie" id="qc-ferme">← Retour</button>
+    <button type="button" class="qc-sortie" id="qc-ferme" aria-label="Revenir aux articles" title="Revenir aux articles"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 12h-15M10.5 6l-6 6 6 6"/></svg></button>
     <button type="button" class="qc-menu" id="qc-outils" aria-label="Actions du rapport">⋯</button>
   </div>
   <div class="qc-page">
@@ -413,7 +410,7 @@ body.organise .poignee:hover{color:var(--or)}
 </div></div>
 
 <div class="auth-ov" id="auth-overlay"><div class="auth-box">
-  <span class="auth-x" id="macct-x" role="button" tabindex="0">✕</span>
+  <span class="auth-x" id="macct-x" role="button" tabindex="0" aria-label="Fermer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
   <div class="auth-t" id="macct-t">Mon compte</div>
   <div class="auth-mail" id="macct-mail"></div>
   <div class="pile-btn">
@@ -1619,8 +1616,7 @@ function majChoix(){
   const a=$('acts-liste'), c=$('acts-choix');
   if(a&&S.auteur&&pretListe())a.style.display=S.choix?'none':'';
   if(c)c.style.display=(S.choix&&S.auteur)?'':'none';
-  const n=S.pris.size, t=$('compte-choix');
-  if(t)t.textContent=n?(n+(n>1?' choisis':' choisi')):'Rien de choisi';
+  const n=S.pris.size;
   ['b-jeter','b-telech','b-deplacer','b-qc'].forEach(k=>{const j=$(k); if(j){j.style.opacity=n?'1':'.4';j.disabled=!n;}});
 }
 /* ── TÉLÉCHARGER ET DÉPLACER PLUSIEURS ──

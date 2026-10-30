@@ -116,7 +116,6 @@ function qcFerme(){$('m-qc').classList.remove('on');document.documentElement.cla
 
 function qcTete(a,r){
   QC_VU=a.id;
-  $('qc-ferme').textContent=QC_ESPECE==='articles'?'← Les articles':'← Les ressources';
   $('qc-label').textContent='Contrôle qualité'+(r&&QC_PORTEES[r.portee]&&r.portee!=='tout'?'  ·  '+(r.portee==='contenu'?'Contenu':'Technique'):'')+(r&&r.quand?'  ·  '+dateFr(r.quand):'');
   $('qc-titre').textContent=a.titre||'Sans titre';
   $('qc-outils').style.display=r?'':'none';

@@ -428,7 +428,7 @@ function bibLivres(){
     if(g.test!==tc){tc=g.test;h+='<div class="mbib-test">'+(g.test==='AT'?'Ancien Testament':'Nouveau Testament')+'</div>';}
     h+='<div class="mbib-grp">'+esc(g.nom)+'</div>';
     IDX.livres.forEach(l=>{if(l.groupe!==g.nom)return;
-      h+='<div class="mbib-livre" data-b="livre" data-slug="'+esc(l.slug)+'"><span>'+esc(l.nom)+'</span><span class="mbib-n">'+l.nch+'</span></div>';});
+      h+='<div class="mbib-livre" data-b="livre" data-slug="'+esc(l.slug)+'"><span>'+esc(l.nom)+'</span></div>';});
   });
   $('mbib-corps').innerHTML=h; $('mbib-corps').scrollTop=0; bibFil(); bibApercu();
 }

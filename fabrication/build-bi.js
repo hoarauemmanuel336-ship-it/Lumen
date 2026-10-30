@@ -173,7 +173,6 @@ html.barre-rangee nav.menu{display:none}
    éteignait le survol écrit dans les pages. */
 .barre .logo:hover{color:var(--or-pale,#f8f3e6)}
 a:focus-visible,button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible,summary:focus-visible{outline:1px solid var(--or,#efe6cf);outline-offset:3px}
-.burger{display:none;background:none;border:none;padding:0;margin:0;color:var(--parchemin,#ffffff);font-size:24px;cursor:pointer;line-height:1;-webkit-appearance:none;appearance:none}
 nav.menu{display:flex;gap:30px;grid-column:3;grid-row:1;justify-self:end;align-items:center;margin-left:0}
 nav.menu a{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:var(--parchemin,#ffffff);padding:0 0 3px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;text-decoration:none;position:static}
 nav.menu a:hover,nav.menu a.actif{color:var(--parchemin,#ffffff);border-color:var(--or,#efe6cf)}
@@ -196,7 +195,6 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
      anciennes règles du menu, qu'il faut emporter */
   header .barre{padding:3px 6px 3px 20px;display:flex;justify-content:space-between}
   .barre-poignee{width:44px;height:44px;margin:0 auto 0 0}
-  header .burger{display:none}
   header nav.menu{position:static;flex-direction:row;gap:0;align-items:center;background:none;padding:0;border:0;transform:none;width:auto}
   header nav.menu a{display:none}
   header nav.menu .rech-loupe{width:44px;height:44px;justify-content:center;padding:0}
@@ -260,7 +258,6 @@ function barreCanon() {
   return `<header>
   <div class="barre">
     <a href="/" class="logo">Lumen</a>
-    <button class="burger" id="burger" aria-label="Menu">\u2630</button>
     <nav class="menu" id="menu">
       ${NAV_LIENS.map(l => `<a href="${l[0]}">${l[1]}</a>`).join('\n      ')}
       <span class="rech-loupe ia-icone" id="ia-ouvrir" role="button" tabindex="0" aria-label="Parler avec l’IA" title="IA">${SVG_IA}<span class="ll-mob">IA</span></span>
@@ -282,7 +279,7 @@ function piedCanon() {
 }
 
 /* Câblage commun de la barre : champs de recherche qui s'agrandissent,
-   service worker du site, menu, poignée, lien actif, clavier. Il part dans
+   service worker du site, poignée, lien actif, clavier. Il part dans
    lumen-app.js pour l'accueil et la 404, et tel quel dans les autres pages. */
 const BARRE_JS = `(function(){
   /* ── LES CHAMPS DE RECHERCHE PASSENT À LA LIGNE ──
@@ -306,8 +303,6 @@ const BARRE_JS = `(function(){
   try{if('serviceWorker' in navigator&&location.pathname.indexOf('/memoriser')!==0){
     window.addEventListener('load',function(){navigator.serviceWorker.register('/site-sw.js',{scope:'/',updateViaCache:'none'}).catch(function(){});});
   }}catch(e){}
-  var b=document.getElementById('burger'),m=document.getElementById('menu');
-  if(b&&m){b.addEventListener('click',function(){m.classList.toggle('ouvert');});}
   /* ── LA POIGNÉE ──
      Elle est fabriquée ici, une fois pour toutes : chaque page garde sa barre
      telle quelle et reçoit la poignée sans rien changer chez elle. */
@@ -328,7 +323,6 @@ const BARRE_JS = `(function(){
     dit();
     pg.addEventListener('click',function(){
       var rangee=document.documentElement.classList.toggle('barre-rangee');
-      if(m)m.classList.remove('ouvert');
       try{localStorage.setItem('lv_barre',rangee?'1':'0');}catch(e){}
       dit();
       /* la barre change de hauteur : les pages qui calent quelque chose
@@ -422,14 +416,14 @@ function header(lang) {
     <div class="rech-haut">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><line x1="15" y1="15" x2="21" y2="21" stroke-linecap="round"/></svg>
       <textarea id="rech-champ" class="champ-ligne" rows="1" placeholder="${u.search_placeholder}" autocomplete="off" spellcheck="false"></textarea>
-      <span class="rech-fermer" id="rech-fermer" role="button" tabindex="0" aria-label="Fermer">\u2715</span>
+      <span class="rech-fermer" id="rech-fermer" role="button" tabindex="0" aria-label="Fermer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
     </div>
     <div class="rech-res" id="rech-res"></div>
   </div>
 </div>
 <div class="auth-overlay" id="auth-overlay">
   <div class="auth-modal">
-    <span class="auth-fermer" id="auth-fermer" role="button" tabindex="0">✕</span>
+    <span class="auth-fermer" id="auth-fermer" role="button" tabindex="0" aria-label="Fermer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
     <div id="auth-out">
       <div class="auth-m-title">Connexion</div>
       <div class="auth-m-msg" id="auth-m-msg"></div>

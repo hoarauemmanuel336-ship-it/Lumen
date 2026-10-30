@@ -428,7 +428,6 @@ html body .mbib-livre{
   font-family:var(--h-ui);font-size:17px;color:#fff;transition:background .2s,color .2s;
 }
 html body .mbib-livre:hover{background:var(--h-s3);color:#fff}
-html body .mbib-n{font-family:var(--h-ui);font-size:12px;font-weight:500;color:var(--h-t4);font-variant-numeric:tabular-nums}
 html body .mbib-chaps{grid-template-columns:repeat(auto-fill,minmax(50px,1fr));gap:6px;padding:4px 2px}
 html body .mbib-chap{
   padding:11px 0;border:1px solid var(--h-l1);border-radius:0;background:var(--h-s2);
