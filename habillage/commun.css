@@ -192,16 +192,12 @@ html body header nav.menu .rech-loupe{
   width:30px;height:40px;justify-content:center;border-radius:0;
   color:var(--h-t2);transition:color .25s,background .25s;
 }
+/* la loupe, l'IA et le compte, dans cet ordre (choix d'Emmanuel), vont
+   ensemble : un petit écart entre eux, pas celui qui sépare les rubriques
+   (Emmanuel : « c'est quoi cet espace entre le bonhomme et la loupe ? ») */
 html body header nav.menu #rech-ouvrir{margin-left:6px;position:relative}
-/* la loupe et le compte vont ensemble : un petit écart entre eux, pas
-   celui qui sépare les rubriques (Emmanuel : « c'est quoi cet espace
-   entre le bonhomme et la loupe ? ») */
-html body header nav.menu #rech-ouvrir+#auth-ouvrir{margin-left:-20px}
-@media(max-width:720px){html body header nav.menu #rech-ouvrir+#auth-ouvrir{margin-left:-22px}}
-/* l'icône de l'IA rejoint la loupe et le compte, avec le même petit écart */
-html body header nav.menu #ia-ouvrir{margin-left:6px}
-html body header nav.menu #ia-ouvrir+#rech-ouvrir{margin-left:-20px}
-@media(max-width:720px){html body header nav.menu #ia-ouvrir{margin-left:0}html body header nav.menu #ia-ouvrir+#rech-ouvrir{margin-left:-22px}}
+html body header nav.menu :is(#rech-ouvrir+#ia-ouvrir,#ia-ouvrir+#auth-ouvrir){margin-left:-20px}
+@media(max-width:720px){html body header nav.menu :is(#rech-ouvrir+#ia-ouvrir,#ia-ouvrir+#auth-ouvrir){margin-left:-22px}}
 html body header nav.menu .rech-loupe:hover,html body header nav.menu .rech-loupe:focus-visible{color:var(--h-or);background:none}
 html body header nav.menu .rech-loupe svg{width:18px;height:18px}
 

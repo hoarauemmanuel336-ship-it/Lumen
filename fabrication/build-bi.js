@@ -260,8 +260,8 @@ function barreCanon() {
     <a href="/" class="logo">Lumen</a>
     <nav class="menu" id="menu">
       ${NAV_LIENS.map(l => `<a href="${l[0]}">${l[1]}</a>`).join('\n      ')}
-      <span class="rech-loupe ia-icone" id="ia-ouvrir" role="button" tabindex="0" aria-label="Parler avec l’IA" title="IA">${SVG_IA}<span class="ll-mob">IA</span></span>
       <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="Rechercher">${SVG_LOUPE}<span class="ll-mob">Rechercher</span></span>
+      <span class="rech-loupe ia-icone" id="ia-ouvrir" role="button" tabindex="0" aria-label="Parler avec l’IA" title="IA">${SVG_IA}<span class="ll-mob">IA</span></span>
       <span class="rech-loupe auth-icone" id="auth-ouvrir" role="button" tabindex="0" aria-label="Compte">${SVG_COMPTE}<span class="ll-mob">Compte</span></span>
     </nav>
   </div>
