@@ -70,6 +70,7 @@
   + '.bp-chip .bp-x:hover{color:var(--or-pale,#f8f3e6)}'
   + '.bp-corps{flex:1;position:relative;min-height:0}'
   + '#bp-cadre{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}'
+  + '.bp-roue{position:absolute;inset:0;min-height:0}'
   + '.bp-charge{text-align:center;font-style:italic;color:var(--parchemin-att,rgba(255,255,255,.45));padding:40px 18px;font-family:var(--serif,Georgia,serif)}'
   + '#bp-pan :focus{outline:none}'
   + '#bp-pan :focus-visible{outline:1px solid rgba(198,164,92,.8);outline-offset:3px}'
@@ -262,8 +263,21 @@
     cadre.id = 'bp-cadre';
     cadre.setAttribute('title', BP_T.bible);
     cadre.src = BP_PAGE + '?p=1' + (depart || '');
+    /* tant que la page de la Bible se charge, le tiroir montre le cercle
+       de chargement sur le noir, au lieu d'un cadre blanc (sur téléphone,
+       le premier chargement prend quelques secondes) */
+    var roue = document.createElement('div');
+    roue.className = 'lv-attente bp-roue';
+    roue.innerHTML = '<span class="lv-roue" role="status" aria-label="Chargement"></span>';
+    corps.appendChild(roue);
+    cadre.style.visibility = 'hidden';
     corps.appendChild(cadre);
     cadre.addEventListener('load', function(){
+      cadre.style.visibility = '';
+      if (roue.parentNode) roue.parentNode.removeChild(roue);
+      /* Safari sur iPhone peut laisser blanc un cadre posé dans un tiroir
+         qui glisse : un calque à lui l'oblige à se peindre */
+      cadre.style.transform = 'translateZ(0)';
       /* la dernière position lue est retenue, pour rouvrir là où l'on
          s'était arrêté */
       try {
