@@ -593,9 +593,9 @@ html:root body .jt-act:is(:hover,:focus-visible)::before,html:root body .jt-act:
    ════════════════════════════════════════════════════════════════════ */
 html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.ttx-b){
   border-radius:12px;transition:background .25s,box-shadow .3s,transform .2s,color .25s}
-html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible){
+html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
-html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):active{transform:scale(.97)}
+html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):active{transform:scale(.97)}
 html:root body:not(#_) .poignee,html:root body:not(#_) .fil span.cible{border-radius:8px}
 html:root body:not(#_) #sel-barre{border-radius:16px}
 html:root body:not(#_) .sb-chip{border-radius:10px}
@@ -747,7 +747,8 @@ html:root body:not(#_):not(#_) :is(.mbib-livre,.rech-item,.srch-v):is(:hover,.ka
 
 /* ── LES CROIX ROUGES S'ALLUMENT AU SURVOL ──
    Au survol, une croix rouge devient d'un rouge vif et s'entoure d'une
-   lueur rouge. */
+   lueur rouge, sans cadre ni fond (Emmanuel : pas de cadre blanc au
+   survol). */
 html:root body:not(#_):not(#_):not(#_):not(#_) :is(#sel-barre .sb-oter,.surl-item .surl-oter,.nb2 .nb-suppr,.sb-x,.del-v):is(:hover,:focus-visible){color:#ff5446;text-shadow:0 0 12px rgba(255,84,70,.7)}
 
 /* ── UN BOUTON SEUL S'ÉCLAIRE COMME UN BOUTON DE BANDEAU ──
