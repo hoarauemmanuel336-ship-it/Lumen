@@ -541,7 +541,8 @@ html:root body:not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outi
 /* Mémoriser : le bandeau des créations et « Commencer » forment un seul bloc
    arrondi ; « Commencer » est la case du bas */
 html:root body:not(#_):not(#_) #app .cat-acts{border-radius:14px 14px 0 0}
-html:root body:not(#_) #app .start,html:root body:not(#_) #app .start:is(:hover,:focus-visible){border-radius:0 0 14px 14px}
+html:root body:not(#_) #app .start{border-radius:0 0 14px 14px}
+html:root body:not(#_) #app .start:is(:hover,:focus-visible){border-radius:11px}
 @media(max-width:600px){
   /* Sur téléphone, les cases se rangent par trois sur chaque ligne ; une
      dernière ligne de deux ou d'une case s'élargit pour la remplir. Entre deux
@@ -669,6 +670,9 @@ html:root body:not(#_):not(#_):not(#_):not(#_) .pile-btn>:is(.bacct-btn,.macct-b
 
 /* le survol : l'éclat sur toute la case, une lueur autour, sans liseré */
 html:root body:not(#_):not(#_):not(#_):not(#_) :is(:is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),:is(#acts-liste>.acts-haut,#acts-liste>.acts-outils)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),.pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn),.jt-act):is(:hover,:focus-visible){z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);transform:none}
+/* au survol, la case éclairée s'arrondit de tous côtés, même au milieu
+   d'un bandeau (Emmanuel : l'arrondi ne doit pas être d'un seul côté) */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) :is(:is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),:is(#acts-liste>.acts-haut,#acts-liste>.acts-outils)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),.pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn),.jt-act):is(:hover,:focus-visible){border-radius:11px}
 html:root body:not(#_):not(#_):not(#_):not(#_) :is(:is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),:is(#acts-liste>.acts-haut,#acts-liste>.acts-outils)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),.pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn)):is(:hover,:focus-visible)::before,
 html:root body:not(#_):not(#_):not(#_):not(#_) :is(:is(#acts-choix,#ecran-edit .acts,#ecran-corbeille .acts,.cat-acts,.nzm-acts,.bandeau-mini,.trash-acts,.sb-act,.modal-btns)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),:is(#acts-liste>.acts-haut,#acts-liste>.acts-outils)>:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn),.pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn)):is(:hover,:focus-visible)+:is(.act,.ghost-btn,.notes-btn,.mini-act,.trash-act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.sb-btn)::before,
 html:root body:not(#_):not(#_):not(#_):not(#_) .pile-btn>:is(.bacct-btn,.macct-btn,.auth-m-btn):is(:hover,:focus-visible)+:is(.bacct-btn,.macct-btn,.auth-m-btn)::before{opacity:0}
@@ -1054,11 +1058,6 @@ html body .qc-etat-page{margin:0 0 14px;font-family:var(--h-ui);font-size:15px;c
 html body .qc-bilan{margin:0 0 34px;font-family:'Literata',Georgia,serif;font-size:18px;line-height:1.6;color:var(--h-t1)}
 html body .qc-rien{margin:0;font-family:var(--h-ui);font-size:17px;color:var(--h-t2)}
 
-/* l'attente : un trait qui court sous le titre, deux mots */
-html body .qc-court{position:relative;height:1px;margin:4px 0 16px;overflow:hidden;background:var(--h-l1)}
-html body .qc-court::after{content:'';position:absolute;top:0;left:-30%;width:30%;height:1px;background:var(--h-or);animation:qcCourt 1.6s ease-in-out infinite}
-@keyframes qcCourt{to{left:100%}}
-html body .qc-attente{margin:0;font-family:var(--h-ui);font-size:16px;color:var(--h-t3)}
 
 /* les onglets de gravité, à la façon de la barre du haut */
 html body .qc-filtres{display:flex;flex-wrap:wrap;gap:6px 26px;margin-bottom:6px;border-bottom:1px solid var(--h-l1)}
@@ -1110,7 +1109,6 @@ html body .qc-etat.vif{display:inline-block;width:15px;height:15px;vertical-alig
   html body .qc-bas .bandeau-mini,html body .qc-bas .act{width:100%}
 }
 @media (prefers-reduced-motion:reduce){
-  html body .qc-court::after{animation:none}
   html body .qc-etat.vif{animation-duration:2.4s}
 }
 

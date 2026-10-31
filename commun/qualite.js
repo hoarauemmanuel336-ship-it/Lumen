@@ -121,10 +121,11 @@ function qcTete(a,r){
   $('qc-outils').style.display=r?'':'none';
 }
 
-/* pendant le travail : le titre, un trait qui court, deux mots */
+/* pendant le travail : le titre, puis le cercle de chargement habituel,
+   sans phrase (Emmanuel : « le truc de chargement connu, le cercle ») */
 function qcAttente(a,mot){
   qcTete(a,null);
-  $('qc-corps').innerHTML='<div class="qc-court" aria-hidden="true"></div><p class="qc-attente">'+esc(mot)+'</p>';
+  $('qc-corps').innerHTML='<div class="lv-attente"><span class="lv-roue" role="status" aria-label="'+esc(mot)+'"></span></div>';
   $('qc-bas').style.display='none';
 }
 

@@ -546,6 +546,14 @@ function qaRemiseAZero(){
   QA_MSGS=[]; QA_VU=[]; QA_ID=''; QA_ATTENTE=false; QA_TOUR++; QA_PIECES=[]; QA_MODIF=-1;
   qaMajEnvoi(); qaRendPieces(); qaModifFin(true);
 }
+/* le bouton de l'IA d'une page ouverte (article, ressource) : rangé puis
+   rappelé, le panneau retombe sur ce qu'on a quitté, tant qu'on n'a pas
+   entamé une conversation sur une autre page (Emmanuel) */
+function qaReprend(passage,code){
+  const r=QA_PASSAGE&&QA_PASSAGE.ref, n=passage&&passage.ref;
+  if(document.getElementById('qa-panneau')&&r&&n&&r.col===n.col&&r.id===n.id){qaMontre();return;}
+  qaOuvre(passage,code);
+}
 async function qaOuvre(passage,code){
   qaPanneau();
   qaRemiseAZero();
@@ -562,10 +570,12 @@ async function qaOuvre(passage,code){
   qaMontreConv(true);
   qaMontre();
 }
-/* une conversation libre, sans passage ni page */
+/* une conversation libre, sans passage ni page ; l'icône de la barre
+   rouvre le panneau tel qu'on l'a laissé (conversation, « Mes questions »
+   ou mémoire), comme le veut Emmanuel */
 function qaLibre(neuve){
-  const p=qaPanneau();
-  if(!neuve&&QA_PASSAGE&&!p.classList.contains('liste')){qaMontre();return;}
+  qaPanneau();
+  if(!neuve&&QA_PASSAGE){qaMontre();return;}
   if(neuve||!QA_PASSAGE){
     qaRemiseAZero(); qaPrepareDoc('',null);
     QA_PASSAGE={texte:'',libre:true,etiquette:''};
@@ -962,7 +972,7 @@ function qaPoseCompte(){
    une conversation libre */
 function qaBranchebarre(){
   const b=document.getElementById('ia-ouvrir');
-  if(b&&!b.dataset.qa){b.dataset.qa='1';b.addEventListener('click',()=>{const m=document.getElementById('menu');if(m)m.classList.remove('ouvert');qaLibre(false);});}
+  if(b&&!b.dataset.qa){b.dataset.qa='1';b.addEventListener('click',()=>qaLibre(false));}
 }
 const qaPret=()=>{qaPoseCompte();qaBranchebarre();};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',qaPret);else qaPret();

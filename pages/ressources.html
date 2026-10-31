@@ -2185,7 +2185,7 @@ function ouvrePlein(a){
   ia.type='button'; ia.className='res-plein-x res-plein-bible res-plein-ia';
   ia.innerHTML='<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.5l1.6 4.4 4.4 1.6-4.4 1.6L10 15.5l-1.6-4.4L4 9.5l4.4-1.6zM18 13.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg>';
   ia.setAttribute('aria-label','Poser une question à l’IA sur cette page'); ia.title='Question à l’IA';
-  ia.onclick=()=>{ if(typeof qaOuvre==='function')qaOuvre({texte:'',contexte:'',source:a.titre||'',espece:'une ressource',ref:{col:'res_code',id:a.id}},typeof a.code==='string'?a.code:''); };
+  ia.onclick=()=>{ if(typeof qaReprend==='function')qaReprend({texte:'',contexte:'',source:a.titre||'',espece:'une ressource',ref:{col:'res_code',id:a.id}},typeof a.code==='string'?a.code:''); };
   g.appendChild(x); g.appendChild(bi); g.appendChild(ia);
   document.body.appendChild(f); document.body.appendChild(g);
   document.body.classList.add('plein');

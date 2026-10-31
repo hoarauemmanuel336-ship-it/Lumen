@@ -222,10 +222,9 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
   .nav-bas a svg{width:22px;height:22px;display:block}
   .nav-bas a.actif{color:var(--or,#efe6cf)}
   .nav-bas a.actif::before{content:'';position:absolute;top:-1px;left:22%;right:22%;height:1px;background:var(--or,#efe6cf)}
-  /* le réglage « onglet Bible à gauche » n'a plus d'objet sur téléphone :
-     la Bible s'ouvre depuis la barre du bas */
-  #bp-tab{display:none!important}
-  .tog-row:has(#tog-bible){display:none}
+  /* l'onglet Bible à gauche reste sur téléphone : il ouvre la Bible
+     par-dessus la page, sans quitter ce qu'on lit (Emmanuel) ; son réglage
+     reste dans « Mon compte » */
 }
 `;
 /* L'état de la barre est lu avant le premier affichage : sinon la barre
