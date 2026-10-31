@@ -33,9 +33,9 @@
      Claude Opus 5.5, avec réflexion. Corriger sans abîmer le reste de
      la page demande la même finesse que la relecture.
 
-   La réponse de l'IA est relayée telle quelle, au fil de l'eau : la
-   page la lit à mesure qu'elle arrive, et un long rangement ne bute
-   sur aucun délai d'attente.
+   La réponse de l'IA est relayée telle quelle, au fil de l'eau : le fil
+   s'ouvre dès la demande reçue, la page lit la réponse à mesure qu'elle
+   arrive, et une longue attente ne bute sur aucun délai de Netlify.
    ============================================================ */
 
 import { SAVOIR } from '../savoir/savoir.js';
@@ -584,24 +584,55 @@ export default async (request) => {
   const demande = await tache(corps.donnees || {});
   /* une tâche qui se sert d'une fonction encore en bêta le dit (_beta) */
   const beta = demande._beta; delete demande._beta;
-  const r = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: Object.assign({
-      'x-api-key': cle,
-      'anthropic-version': '2023-06-01',
-      'content-type': 'application/json',
-    }, beta ? { 'anthropic-beta': beta } : {}),
-    body: JSON.stringify(demande),
-  }).catch(() => null);
-  if (!r) return json({ erreur: 'reseau', message: 'Le service de l’IA ne répond pas. Réessayez dans un instant.' }, 502);
-  if (!r.ok) {
-    const t = await r.text().catch(() => '');
-    let m = '';
-    try { m = JSON.parse(t).error.message; } catch (_) { m = t.slice(0, 300); }
-    return json({ erreur: 'api', statut: r.status, message: m }, 502);
-  }
-  /* le fil de la réponse, relayé tel quel */
-  return new Response(r.body, {
+  /* ── LA RÉPONSE PART TOUT DE SUITE ──
+     Avec une grande page (un cours entier, un livre), l'IA peut mettre
+     longtemps à commencer : Netlify coupe une fonction qui n'a encore rien
+     renvoyé au bout de quarante secondes (erreur 500). Le fil s'ouvre donc
+     aussitôt ; un signe de vie y passe toutes les dix secondes tant que
+     l'IA n'a pas commencé, puis sa réponse est relayée telle quelle. Une
+     panne de l'IA arrive dans le fil comme un événement « error », que la
+     page affiche avec sa raison. */
+  const enc = new TextEncoder();
+  const { readable, writable } = new TransformStream();
+  const ecrit = writable.getWriter();
+  const erreurFil = msg => ecrit.write(enc.encode('event: error\ndata: ' + JSON.stringify({ type: 'error', error: { message: msg } }) + '\n\n'));
+  (async () => {
+    let attente = setInterval(() => { ecrit.write(enc.encode(': attente\n\n')).catch(() => {}); }, 10000);
+    const finAttente = () => { if (attente) { clearInterval(attente); attente = null; } };
+    try {
+      const r = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: Object.assign({
+          'x-api-key': cle,
+          'anthropic-version': '2023-06-01',
+          'content-type': 'application/json',
+        }, beta ? { 'anthropic-beta': beta } : {}),
+        body: JSON.stringify(demande),
+      }).catch(() => null);
+      finAttente();
+      if (!r) { await erreurFil('le service de l’IA ne répond pas. Réessayez dans un instant.'); return; }
+      if (!r.ok) {
+        const t = await r.text().catch(() => '');
+        let m = '';
+        try { m = JSON.parse(t).error.message; } catch (_) { m = t.slice(0, 300); }
+        await erreurFil('erreur ' + r.status + (m ? ' (' + m + ')' : ''));
+        return;
+      }
+      const lect = r.body.getReader();
+      for (;;) {
+        const { value, done } = await lect.read();
+        if (done) break;
+        await ecrit.write(value);
+      }
+    } catch (e) {
+      finAttente();
+      await erreurFil('la réponse a été coupée en route. Réessayez.').catch(() => {});
+    } finally {
+      finAttente();
+      ecrit.close().catch(() => {});
+    }
+  })();
+  return new Response(readable, {
     status: 200,
     headers: { 'content-type': 'text/event-stream; charset=utf-8', 'cache-control': 'no-store' },
   });
