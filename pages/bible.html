@@ -1003,7 +1003,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     });
     NOTES = Object.keys(nuage).map(function(x){ return nuage[x]; })
       .sort(function(a, b){ return a.d < b.d ? 1 : -1; });
-    sauveNotes(); majLienNotes();
+    sauveNotes();
     aEnvoyer.forEach(cloudSet);
     if (location.hash === '#notes') vueNotes(filtreNotes);
   }
@@ -1023,7 +1023,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
      'lv_bible_surlf', 'lv_bible_surlf_t', 'lv_bible_surlf_m',
      'lv_bible_signets', 'lv_bible_signets_t', 'lv_bible_signets_m',
      'lv_bible_morts', 'lv_bible_sel'].forEach(function(k){ try { localStorage.removeItem(k); } catch(e){} });
-    marqueSelection(); majPlateau(); marqueSurl(); marqueSurlF(); marqueNotes(); majSignets(); majLienNotes();
+    marqueSelection(); majPlateau(); marqueSurl(); marqueSurlF(); marqueNotes(); majSignets();
   }
   var authInit = false;
   function initAuth(){
@@ -1723,12 +1723,6 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       });
     });
     return o;
-  }
-  /* « Mes notes (n) » dans la fiche de compte, comme « Mes signets (n) » */
-  function majLienNotes(){
-    var l = document.getElementById('bacct-notes'); if (!l) return;
-    var n = NOTES.length;
-    l.textContent = 'Mes notes' + (n ? ' (' + n + ')' : '');
   }
   var noteEnCours = null;
   function ouvreNote(note){
@@ -2636,7 +2630,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       var n = { id: String(Date.now()), d: noteEnCours.d || maintenant, m: maintenant, t: t, ti: ti, refs: noteEnCours.refs || [], c: document.getElementById('nb-cat').value };
       NOTES.unshift(n); cloudSet(n);
     }
-    sauveNotes(); majLienNotes(); marqueNotes(); fermeNote(true);
+    sauveNotes(); marqueNotes(); fermeNote(true);
     if (location.hash === '#notes') vueNotes(filtreNotes);
   });
   actifId('nb-supprimer', function(){
@@ -2645,7 +2639,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     ouvreConf({ titre: 'Supprimer la note', texte: 'Cette note sera retirée de tous vos appareils.', bouton: 'Supprimer', suite: function(){
       cloudDel(mort);
       NOTES = NOTES.filter(function(n){ return n.id !== mort; });
-      sauveNotes(); majLienNotes(); marqueNotes(); fermeNote(true);
+      sauveNotes(); marqueNotes(); fermeNote(true);
       if (location.hash === '#notes') vueNotes(filtreNotes);
     } });
   });
@@ -2816,7 +2810,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     ouvreConf({ titre: 'Supprimer la note', texte: 'Cette note sera retirée de tous vos appareils.', bouton: 'Supprimer', suite: function(){
       cloudDel(id);
       NOTES = NOTES.filter(function(x){ return x.id !== id; });
-      sauveNotes(); majLienNotes(); vueNotes(filtreNotes);
+      sauveNotes(); vueNotes(filtreNotes);
     } });
   }
 
@@ -3184,9 +3178,6 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       b.setAttribute('aria-label', pose ? 'Retirer le signet' : 'Poser un signet');
       b.setAttribute('title', pose ? 'Retirer le signet' : 'Poser un signet');
     }
-    var l = document.getElementById('bacct-signets');
-    var n = Object.keys(SIGN).length;
-    if (l) l.textContent = 'Mes signets' + (n ? ' (' + n + ')' : '');
   }
   /* ── LE RUBAN MÈNE AUSSI AUX SIGNETS (Emmanuel) ──
      Un clic pose ou retire le signet. Un clic droit sur le ruban, ou un appui
@@ -3556,7 +3547,6 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
       IDX = d;
       IDX.livres.forEach(function(l, i){ ORDRE[l.slug] = i; });
       construitDico();
-      majLienNotes();
       majPlateau();
       initAuth();
       route();
@@ -3600,7 +3590,7 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     SIGN_P = JSON.parse(JSON.stringify(SIGN));
     MORTS = litLocal('lv_bible_morts', '{}');
     SEL = litLocal('lv_bible_sel', '[]');
-    marqueSelection(); majPlateau(); marqueSurl(); marqueSurlF(); marqueNotes(); majSignets(); majLienNotes();
+    marqueSelection(); majPlateau(); marqueSurl(); marqueSurlF(); marqueNotes(); majSignets();
     if (location.hash === '#notes' && !noteEnCours) vueNotes(filtreNotes);
     if (location.hash === '#signets') vueSignets();
   }

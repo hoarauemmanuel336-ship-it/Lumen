@@ -541,8 +541,7 @@ html:root body:not(#_):not(#_) :is(#acts-liste>.acts-haut,#acts-liste>.acts-outi
 /* Mémoriser : le bandeau des créations et « Commencer » forment un seul bloc
    arrondi ; « Commencer » est la case du bas */
 html:root body:not(#_):not(#_) #app .cat-acts{border-radius:14px 14px 0 0}
-html:root body:not(#_) #app .start{border-radius:0 0 14px 14px}
-html:root body:not(#_) #app .start:is(:hover,:focus-visible){border-radius:11px}
+html:root body:not(#_) #app .start,html:root body:not(#_) #app .start:is(:hover,:focus-visible){border-radius:0 0 14px 14px}
 @media(max-width:600px){
   /* Sur téléphone, les cases se rangent par trois sur chaque ligne ; une
      dernière ligne de deux ou d'une case s'élargit pour la remplir. Entre deux
