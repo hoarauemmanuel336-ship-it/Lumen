@@ -1374,7 +1374,7 @@ function veille(cle,ref,applique){
     const emp=JSON.stringify(d);
     if(LIVE_SIG[cle]===emp)return;
     LIVE_SIG[cle]=emp;
-    if(applique(d)===false){delete LIVE_SIG[cle];return;}
+    if(applique(d,sn)===false){delete LIVE_SIG[cle];return;}
     if(!enSession())renderCats();
   },e=>console.warn('sync '+cle,e)));
 }
@@ -1382,7 +1382,27 @@ function ecouteLive(){
   couperLive(); if(!S.uid)return;
   veille('progress',udoc('meta/progress'),d=>{
     if(enSession())return false;
-    S.progress=(d&&d.items)||{}; S.step=(d&&d.step)||0;
+    /* ── LES COULEURS NE SE PERDENT JAMAIS EN ROUTE ──
+       Une copie absente (appareil hors ligne, mémoire de l'appareil vidée)
+       ne remplace pas les couleurs déjà connues : le document des couleurs
+       n'est jamais supprimé, son absence ne dit donc rien. Et chaque verset
+       garde la couleur la plus récente des deux côtés, appareil ou nuage :
+       une copie ancienne, lue hors ligne au chargement, ne l'emporte pas
+       sur ce qui a été fait depuis ailleurs, et ce qui a été fait ici
+       depuis ne se perd pas. */
+    const srv=(d&&d.items)||null;
+    if(!srv){ if(Object.keys(S.progress).length)return false; S.progress={}; S.step=(d&&d.step)||0; return; }
+    const quand=p=>Date.parse((p&&p.t)||0)||0;
+    const fusion=Object.assign({},srv); let aEnvoyer=false;
+    Object.keys(S.progress).forEach(id=>{
+      const l=S.progress[id], r=srv[id];
+      if(!r){ if(SALES[id])fusion[id]=l; return; }
+      if(quand(l)>quand(r)){ fusion[id]=l; marqueSale(id); aEnvoyer=true; }
+    });
+    /* un verset retiré ici et pas encore envoyé reste retiré */
+    Object.keys(SALES).forEach(id=>{ if(!S.progress[id])delete fusion[id]; });
+    S.progress=fusion; S.step=Math.max(S.step||0,(d&&d.step)||0);
+    if(aEnvoyer)saveProgressGroupe();
   });
   veille('prefs',udoc('meta/prefs'),d=>{
     if(!d)return false;
