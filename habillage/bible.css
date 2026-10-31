@@ -273,6 +273,10 @@ html body .sb-btn{
   color:#000;transition:background .2s;
 }
 html body .sb-btn+.sb-btn::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:rgba(0,0,0,.16)}
+/* Copier : une icône seule (choix d'Emmanuel), dans une case de la même hauteur */
+html body .sb-btn.sb-ic{min-width:46px;padding:0 14px}
+html body .sb-btn.sb-ic svg{display:block}
+@media(max-width:600px){html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) #sel-barre .sb-act>.sb-btn.sb-ic{flex:0 0 52px}}
 html body .sb-btn:hover,html body .sb-btn:focus-visible{color:#000;background:color-mix(in srgb,var(--h-or) 45%,#fff)}
 /* la palette : les couleurs d'Emmanuel, en pastilles cerclées */
 html body .sb-surl{flex-basis:100%;gap:10px;padding:12px 6px 4px;margin-top:2px;border-top:1px solid var(--h-l1);justify-content:center}
