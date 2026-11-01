@@ -15,6 +15,10 @@
      toute une bibliothèque demande du jugement ; Sonnet le fait
      presque aussi finement qu'Opus, plus vite et pour moitié prix :
      le meilleur rapport qualité-prix pour cette tâche.
+   - placer (« Ranger dans… » d'un seul élément, quand l'IA choisit) :
+     Claude Sonnet 5.5. Choisir la bonne place, ou la rubrique à créer,
+     demande le même jugement que ranger ; la demande est courte, et le
+     coût reste d'une fraction de centime.
    - controler (le contrôle qualité d'un article ou d'une ressource) :
      Claude Opus 5.5, avec réflexion. Relire le fond d'un contenu
      (doctrine, citations, exactitude) est un travail exigeant, où une
@@ -47,6 +51,7 @@ const CLE_FIREBASE = 'AIzaSyC19lFNWUd-KYhCP4o7gpp0IcyfRTyHOyA';
 
 const MODELES = {
   ranger: 'claude-sonnet-5-5',
+  placer: 'claude-sonnet-5-5',
   controler: 'claude-opus-5-5',
   corriger: 'claude-opus-5-5',
   question: 'claude-opus-5-5',
@@ -557,7 +562,68 @@ function demandeNommer(donnees) {
   };
 }
 
-const TACHES = { ranger: demandeRanger, controler: demandeControler, corriger: demandeCorriger, question: demandeQuestion, nommer: demandeNommer };
+/* ── PLACER UN ÉLÉMENT ──
+   « Ranger dans… » d'un seul article ou d'une seule ressource, quand
+   Emmanuel laisse l'IA choisir. Elle reçoit le rangement actuel, les
+   titres de ce que contient chaque rubrique, et l'élément à placer (titre,
+   description, genre, aperçu du contenu). Elle rend la rubrique choisie et,
+   quand aucune ne convient, les rubriques nouvelles à créer pour lui. Le
+   reste du rangement ne bouge pas. */
+const SCHEMA_PLACER = {
+  type: 'object',
+  properties: {
+    nouvelles: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: { id: { type: 'string' }, nom: { type: 'string' }, parent: { type: 'string' } },
+        required: ['id', 'nom', 'parent'],
+        additionalProperties: false,
+      },
+    },
+    rub: { type: 'string' },
+  },
+  required: ['nouvelles', 'rub'],
+  additionalProperties: false,
+};
+function consignePlacer(espece) {
+  const quoi = espece === 'articles'
+    ? 'des articles au format question-réponse : chacun porte une question en titre et une réponse brève en description'
+    : 'des ressources d’étude : livres, diagrammes, cours, parcours d’étude, cartes, images, documents et liens';
+  return `Tu ranges un élément dans la bibliothèque personnelle d’étude d’un catholique. Elle contient ${quoi}. Les sujets relèvent surtout de l’Écriture, de la théologie, de la liturgie, de l’histoire de l’Église et de la philosophie, lues selon la tradition catholique.
+
+Tu reçois le rangement actuel (catégories et sections, avec les titres de ce que chacune contient déjà) et l’élément à placer : son titre, sa description, son genre, un aperçu de son contenu et l’endroit où il se trouve. Tu choisis l’endroit le plus juste d’après ce que l’élément contient réellement : la rubrique la plus précise qui lui correspond, là où Emmanuel irait naturellement le chercher.
+
+Le rangement existant reste tel qu’il est. Quand une rubrique existante convient, tu y places l’élément. Quand aucune ne convient, tu crées ce qu’il faut : une section dans une catégorie existante, ou une catégorie nouvelle (avec une section dedans si c’est utile). La profondeur va jusqu’à cinq niveaux, catégorie comprise. Les noms sont courts, en français, avec une majuscule au premier mot et aux noms propres seulement, dans la typographie française (apostrophe courbe, espaces avant « : ; ! ? »), et suivent le style des noms déjà présents.
+
+Ce que tu rends :
+- nouvelles : les rubriques à créer, souvent aucune. Chacune reçoit un id de ta main, de la forme n1, n2… Le parent d’une catégorie est la chaîne vide ; celui d’une section est l’id de la rubrique qui la contient, existante ou nouvelle.
+- rub : l’id de la rubrique où va l’élément, existante ou nouvelle.`;
+}
+function demandePlacer(donnees) {
+  const espece = donnees && donnees.espece === 'articles' ? 'articles' : 'ressources';
+  const e = donnees.element || {};
+  const etat = {
+    rubriques: (donnees.rubriques || []).map(r => ({
+      id: String(r.id), nom: String(r.nom || ''), parent: String(r.parent || ''),
+      contient: (Array.isArray(r.contient) ? r.contient : []).slice(0, 40).map(t => String(t || '').slice(0, 160)),
+    })),
+    element: {
+      titre: String(e.titre || ''), description: String(e.description || ''), type: String(e.type || ''),
+      contenu: String(e.contenu || '').slice(0, 2000), rubrique_actuelle: String(e.rubrique_actuelle || ''),
+    },
+  };
+  return {
+    model: MODELES.placer,
+    max_tokens: 2000,
+    stream: true,
+    system: consignePlacer(espece),
+    messages: [{ role: 'user', content: 'Voici le rangement et l’élément à placer :\n\n' + JSON.stringify(etat) }],
+    output_config: { format: { type: 'json_schema', schema: SCHEMA_PLACER } },
+  };
+}
+
+const TACHES = { ranger: demandeRanger, placer: demandePlacer, controler: demandeControler, corriger: demandeCorriger, question: demandeQuestion, nommer: demandeNommer };
 
 export default async (request) => {
   if (request.method !== 'POST') return json({ erreur: 'Méthode non permise.' }, 405);

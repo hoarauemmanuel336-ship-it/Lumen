@@ -10,7 +10,8 @@
    sections, et déplacer tout élément (choix d'Emmanuel). Le rangement
    s'applique aussitôt, sans validation. Le rangement d'avant est
    gardé dans le compte : « Revenir au rangement d'avant » le remet.
-   Tout part du bouton « Organiser ».
+   Tout part du bouton « Organiser ». Un seul élément se range aussi avec
+   l'IA, depuis son « Ranger dans… ».
 
    La demande passe par /api/ia (netlify/edge-functions/ia.js), qui
    garde la clé et vérifie le compte.
@@ -205,6 +206,8 @@ async function rangerIA(espece){
   if(!RUBS_LUES){lvInfo('Le rangement n’est pas encore chargé. Réessayez dans un instant.');return;}
   const mot=espece==='articles'?'les articles':'les ressources';
   if(!S.liste.length){lvInfo('Il n’y a rien à ranger pour l’instant.');return;}
+  /* le rangement complet attend qu'un élément rangé seul ait trouvé sa place */
+  if(IA_UN.size){lvInfo('L’IA range encore un élément. Réessayez dans un instant.');return;}
 
   IA_EN_COURS=true;
   const b=$('b-organiser'), m=$('mot-liste'), libelle=b?b.textContent:'';
@@ -232,6 +235,86 @@ async function rangerIA(espece){
   }finally{
     IA_EN_COURS=false;
     if(b){b.textContent=libelle;b.disabled=false;}
+  }
+}
+
+/* ── RANGER UN SEUL ÉLÉMENT ──
+   Dans « Ranger dans… » d'un article ou d'une ressource, la première
+   rangée laisse l'IA choisir (Emmanuel : « je dois pouvoir choisir que
+   l'IA range »). Elle reçoit le rangement, les titres de ce que contient
+   chaque rubrique et l'élément lui-même avec un aperçu de son contenu ;
+   elle rend l'endroit choisi et, quand rien ne convient, les rubriques à
+   créer. Seul cet élément bouge : le reste du rangement reste tel quel.
+   Pendant le travail, le cercle tourne sur la carte ou la rangée de
+   l'élément, comme pour le contrôle qualité. */
+const IA_UN=new Set();
+async function rangerUnIA(espece,id){
+  const a=S.liste.find(x=>x.id===id); if(!a)return;
+  if(IA_EN_COURS||IA_UN.has(id))return;
+  if(!RUBS_LUES){lvInfo('Le rangement n’est pas encore chargé. Réessayez dans un instant.');return;}
+  IA_UN.add(id);
+  /* un état déjà posé sur la carte (« Rapport prêt ») revient après */
+  const etatAvant=(typeof QC_ETATS!=='undefined')?QC_ETATS.get(id):undefined;
+  const roue=on=>{try{qcEtat(id,on?'Rangement en cours':etatAvant);}catch(_){}};
+  roue(true);
+  try{
+    let contenu='';
+    if(typeDe(a)==='diagramme'){try{const code=await contenuDe(a);contenu=iaApercuDe(typeof code==='string'?code:a.code);}catch(_){}}
+    const titres=new Map();
+    S.liste.forEach(x=>{
+      if(x.id===id||!rubValide(x.rub))return;
+      const l=titres.get(x.rub)||[]; l.push(x.titre||''); titres.set(x.rub,l);
+    });
+    const plan=await lvIA('placer',{
+      espece,
+      rubriques:S.rubs.map(r=>({id:r.id,nom:r.nom,parent:r.parent||'',contient:titres.get(r.id)||[]})),
+      element:{titre:a.titre||'',description:iaDescription(a),type:iaType(a),contenu,rubrique_actuelle:rubValide(a.rub)?a.rub:''}
+    },()=>{});
+    /* les rubriques nouvelles reçoivent un vrai id ; un parent inconnu ou
+       une profondeur de trop les remonte d'un cran, jusqu'à la racine */
+    const ids=new Map(), neuves=[];
+    let n=0;
+    (plan.nouvelles||[]).forEach(r=>{
+      const brut=String(r.id||''); if(!brut||ids.has(brut)||rubValide(brut))return;
+      ids.set(brut,'r'+Date.now().toString(36)+(n++));
+    });
+    const vraiId=x=>ids.get(x)||(rubValide(x)?x:'');
+    const prof=pid=>{let d=0,x=pid,g=0;while(x&&g++<8){d++;const p=neuves.find(z=>z.id===x);x=p?p.parent:(rubDe(x)?(rubValide(rubDe(x).parent)?rubDe(x).parent:''):'');}return d;};
+    (plan.nouvelles||[]).forEach(r=>{
+      const nid=ids.get(String(r.id||'')); if(!nid||neuves.some(z=>z.id===nid))return;
+      let parent=vraiId(String(r.parent||''));
+      if(parent&&!rubValide(parent)&&!neuves.some(z=>z.id===parent))parent='';
+      if(prof(parent)+1>RUB_MAX)parent='';
+      neuves.push({id:nid,nom:String(r.nom||'').trim()||'Sans nom',parent});
+    });
+    const cible=vraiId(String(plan.rub||''));
+    /* une rubrique nouvelle ne se crée que si l'élément y va, ou si elle
+       mène à l'endroit choisi */
+    const utiles=new Set(); let x=cible, g=0;
+    while(x&&g++<8){const z=neuves.find(q=>q.id===x);if(!z)break;utiles.add(z.id);x=z.parent;}
+    const creees=neuves.filter(z=>utiles.has(z.id));
+    if(!cible||(!rubValide(cible)&&!utiles.has(cible))){
+      lvInfo('L’IA n’a pas trouvé d’endroit pour « '+(a.titre||'Sans titre')+' ». Il reste où il était.');
+      return;
+    }
+    if(creees.length){S.rubs.push(...creees);saveRubs();}
+    const avant=rubValide(a.rub)?a.rub:'';
+    if(avant!==cible){
+      /* comme à la main : en changeant d'endroit, l'élément perd son rang */
+      await acol().doc(id).set({rub:cible,ordre:null},{merge:true});
+      a.rub=cible; a.ordre=null;
+      if(S.res&&S.res.id===id){S.res.rub=cible;S.res.ordre=null;}
+    }
+    rendLister();
+    lvInfo(avant===cible
+      ?'« '+(a.titre||'Sans titre')+' » est déjà au bon endroit : '+chemin(cible)+'.'
+      :'« '+(a.titre||'Sans titre')+' » est rangé dans '+chemin(cible)+(creees.length?(creees.length>1?' (rubriques nouvelles).':' (rubrique nouvelle).'):'.'));
+  }catch(e){
+    console.warn('ia, ranger un élément',e);
+    lvInfo(e&&e.message?e.message:'Le rangement par l’IA a échoué.');
+  }finally{
+    IA_UN.delete(id);
+    roue(false);
   }
 }
 

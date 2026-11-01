@@ -1401,11 +1401,13 @@ function entreesArbre(exclure,peut,courant){
 async function rangeRessource(id){
   const a=S.liste.find(x=>x.id===id); if(!a)return;
   const ou=rubValide(a.rub)?a.rub:'';
-  const e=[{cle:'r:',nom:'Sans catégorie',note:ou?'':'ici',fort:true}];
+  /* en tête, laisser l'IA choisir l'endroit (commun/ia.js) */
+  const e=[{cle:'ia_un',nom:'Laisser l’IA choisir',icone:'ia',fort:true},{cle:'r:',nom:'Sans catégorie',note:ou?'':'ici',fort:true}];
   e.push(...entreesArbre(null,()=>true,ou));
   e.push({cle:'neuve',nom:'+ Nouvelle catégorie',fort:true});
   const c=await lvChoix('Ranger « '+(a.titre||'Sans titre')+' » dans…',e);
   if(!c)return;
+  if(c==='ia_un'){rangerUnIA('articles',id);return;}
   let cible=null;
   if(c==='neuve'){cible=await nouvelleRub('');if(!cible)return;}
   else cible=c.slice(2);
