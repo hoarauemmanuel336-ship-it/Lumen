@@ -917,6 +917,7 @@ const S={
   mode:'v',
   uid:null,
   selCats:[], offV:{}, progress:{}, step:0, customCats:[], baseEdits:{}, hidCats:[], trash:[], trashOpen:false, showAllCats:false,
+  noteV:{},         // vId -> true quand la note d'un verset de base est ouverte (le temps de la visite)
   open:{},          // catId -> bool (déplié)
   sections:[],      // [{id,name}] dans l'ordre d'affichage
   catSec:{},        // catId -> sectionId
@@ -943,16 +944,12 @@ const t=k=>T.fr[k]||k;
 const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=0|Math.random()*(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
 const trunc=(s,n)=>{const a=Array.from(String(s));return a.length>n?a.slice(0,n).join('')+'…':String(s);};
 function effectiveCats(){
-  const trashIds=new Set((S.trash||[]).map(t=>t.vId));
-  const base=PRE.filter(c=>!(S.hidCats||[]).includes(c.id)).map(c=>{
-    const ov=S.baseEdits[c.id];
-    if(!ov) return {id:c.id,name:c.name,verses:c.verses,base:true};
-    // catégorie de base éditée : on garde l'édition, et on y ajoute les versets
-    // du modèle absents de l'édition, ni mis à la corbeille, ni déplacés
-    const have=new Set(ov.verses.map(v=>v.id));
-    const extra=c.verses.filter(v=>!have.has(v.id)&&!trashIds.has(v.id)&&!((ov.moved||[]).includes(v.id)));
-    return {id:c.id,name:ov.name,verses:ov.verses.concat(extra),base:true};
-  });
+  /* ── LES VERSETS DE BASE ──
+     Ils viennent du site (contenu/memoriser.json), avec leur note « pourquoi
+     l'apprendre », et se présentent tels quels : ni modifiés, ni déplacés,
+     ni supprimés (Emmanuel : « pas de modification des versets de base ni de
+     suppression »). On les coche, on leur donne sa couleur, c'est tout. */
+  const base=PRE.map(c=>({id:c.id,name:c.name,verses:c.verses,base:true,bloc:c.bloc||''}));
   return [...base,...S.customCats.map(c=>({...c,base:false}))];
 }
 /* ── LE GENRE D'UNE CATÉGORIE ──
@@ -980,13 +977,26 @@ function modeEcrit(){try{localStorage.setItem('lv_memo_mode',S.mode);}catch(e){}
    La vérité est S.sections (l'ordre) + S.catSec (catId -> sectionId) ;
    une catégorie sans entrée, ou rangée dans une section disparue, tombe
    d'elle-même dans « Hors section ». */
-const secDe=catId=>{const s=S.catSec[catId];return s&&S.sections.some(x=>x.id===s)?s:null;};
+const secDe=catId=>{const b=blocDe(catId);if(b)return b;const s=S.catSec[catId];return s&&S.sections.some(x=>x.id===s)?s:null;};
+/* Une catégorie de base appartient à la section de son bloc du parcours
+   (« base:<bloc> »), que le site fixe : elle n'entre pas dans les sections
+   d'Emmanuel, qui restent celles de « Mes versets ». */
+function blocDe(catId){const c=PRE.find(x=>x.id===catId);return c?'base:'+(c.bloc||''):null;}
+function groupesBase(){
+  const g=[];
+  catsMode().filter(c=>c.base).forEach(c=>{
+    const id='base:'+(c.bloc||'');let x=g.find(y=>y.sec.id===id);
+    if(!x){x={sec:{id:id,name:c.bloc||'Versets de base',base:true},cats:[]};g.push(x);}
+    x.cats.push(c);
+  });
+  return g;
+}
 const secOuverte=id=>S.secOpen[id]!==false;
 function secOpenLit(){try{const o=JSON.parse(localStorage.getItem('lv_memo_sec')||'{}');S.secOpen=(o&&typeof o==='object')?o:{};}catch(e){S.secOpen={};}}
 function secOpenEcrit(){try{localStorage.setItem('lv_memo_sec',JSON.stringify(S.secOpen));}catch(e){}}
 function groupesCats(){
-  const all=catsMode(), g=[];
-  const tous=effectiveCats();
+  const all=catsMode().filter(c=>!c.base), g=[];
+  const tous=effectiveCats().filter(c=>!c.base);
   /* Une section qui ne contient rien du mode courant est masquée : la voir
      vide en permanence dans l'autre onglet n'apprend rien. Une section
      RÉELLEMENT vide, elle, reste visible, sinon celle qu'on vient de créer
@@ -1305,13 +1315,19 @@ async function loadUser(){
     Object.keys(S.baseEdits).forEach(k=>{S.baseEdits[k]=catFr(S.baseEdits[k]);});
     S.trash=S.trash.map(corbeilleFr);
     S.hidCats=prefs.exists?(prefs.data().hidCats||[]):[];
+    /* une catégorie qui n'était pas encore là (un thème de versets de base
+       qui arrive) commence décochée, pour ne pas entrer d'elle-même dans
+       les séries en cours ; ce choix est enregistré aussitôt, sinon l'écoute
+       en direct rendrait les anciennes préférences et la cocherait */
+    let nouvelles=false;
     if(prefs.exists){S.selCats=prefs.data().selCats||[];S.offV={};(prefs.data().offV||[]).forEach(id=>S.offV[id]=1);
       if(S.selCats.length||Object.keys(S.offV).length){
-        effectiveCats().forEach(c=>{if(c.verses.length&&!S.selCats.includes(c.id)&&c.verses.every(v=>!S.offV[v.id])){c.verses.forEach(v=>S.offV[v.id]=1);}});
+        effectiveCats().forEach(c=>{if(c.verses.length&&!S.selCats.includes(c.id)&&c.verses.every(v=>!S.offV[v.id])){c.verses.forEach(v=>S.offV[v.id]=1);nouvelles=true;}});
       }
       syncSelCats();}
     else{S.selCats=PRE.map(c=>c.id);S.offV={};}
     S.charge=true;
+    if(nouvelles)savePrefs();
     /* le nettoyage de la base : ce qui porte encore une copie anglaise est
        réécrit sans elle */
     try{
@@ -1450,21 +1466,24 @@ function elementCat(cat){
         mq+='<span class="mq mq-jum" data-jum="'+vv.id+'" role="button" tabindex="0" title="'+besc(('Aussi dans : ')+noms+'. Toucher pour y aller.')+'">'
           +'<svg viewBox="0 0 24 24"><path d="M3 3h13v13H3zM8 8h13v13H8z"/></svg></span>';
       }
-      if(kind0==='v'&&!vv.libre){
+      if(kind0==='v'&&!vv.libre&&!cat.base){
         mq+='<span class="mq mq-ecart'+(ecartConnu(vv)?' on':'')+'" data-ecart="'+vv.id+'" role="button" title="'+('Le texte s\u2019\u00e9carte de la Bible du site. Toucher si c\u2019est voulu, pour ne plus le signaler.')+'">\u2260</span>';
       }
       /* Pour un passage, c'est le TITRE qui identifie la carte : il prend la
          place de la référence, et la référence passe à sa suite. On lit
          « La guérison de l'aveugle · Marc 10:46-52 », dans cet ordre. */
-      body+='<div class="vrow'+(voff?' voff':'')+(pas?' pas':'')+'"><span class="v-check'+(voff?'':' on')+'" data-togv="'+vv.id+'" title="Inclure ou exclure des révisions"></span><span class="vline" data-editv="'+vv.id+'"><span class="vref">'+besc(pas?trunc(vv.fr.text,72):vv.fr.ref)+'</span><span class="vtext">'+besc(pas?vv.fr.ref:trunc(vv.fr.text,58))+'</span>'+(mq?'<span class="vmq">'+mq+'</span>':'')+'</span>'/* le compteur d'expositions compte toujours, il ne s'affiche pas
+      body+='<div class="vrow'+(voff?' voff':'')+(pas?' pas':'')+(cat.base?' vbase'+(S.noteV[vv.id]?' note-on':''):'')+'"><span class="v-check'+(voff?'':' on')+'" data-togv="'+vv.id+'" title="Inclure ou exclure des révisions"></span><span class="vline" '+(cat.base?'data-notev':'data-editv')+'="'+vv.id+'"><span class="vref">'+besc(pas?trunc(vv.fr.text,72):vv.fr.ref)+'</span><span class="vtext">'+besc(pas?vv.fr.ref:trunc(vv.fr.text,58))+'</span>'+(mq?'<span class="vmq">'+mq+'</span>':'')+'</span>'/* le compteur d'expositions compte toujours, il ne s'affiche pas
              (Emmanuel : « retire l'affichage, pas le système ») */+'<span class="lvl">'
         /* les trois points se touchent : on pose la couleur d'ici, sans attendre
            que le verset passe en séance (Emmanuel) */
         +['r','a','v'].map(k=>'<span class="dot '+k+(l===k?' act':'')+'" data-niv="'+k+'" data-nivid="'+vv.id+'" role="button" title="'+besc(t('rap_'+k))+'" aria-label="'+besc(t('rap_'+k))+'"></span>').join('')+'</span>'
-        +'<span class="mov-v" data-movev="'+vv.id+'" title="'+('Déplacer dans…')+'">\u21C4</span>'
-        +'<span class="del-v" data-delv="'+vv.id+'">×</span></div>';
+        +(cat.base
+          /* le verset de base se lit en entier, puis sa note : pourquoi l'apprendre */
+          ?'<div class="vnote"><p class="vnote-texte">'+besc(vv.fr.text)+'</p>'+(vv.note?'<p class="vnote-pq">'+besc(vv.note).replace(/\*([^*]+)\*/g,'<i>$1</i>')+'</p>':'')/* *mot* : une translittération, en italique */+'</div></div>'
+          :'<span class="mov-v" data-movev="'+vv.id+'" title="'+('Déplacer dans…')+'">\u21C4</span>'
+          +'<span class="del-v" data-delv="'+vv.id+'">×</span></div>');
     });
-    body+='<div class="cat-custom-acts"><span class="bandeau-mini"><span class="mini-act" data-addv="1">+ '+tk('addverse',kind0)+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span><span class="mini-act" data-secc="1">'+t('sec_range')+'</span>'+(cat.base?'<span class="mini-act" data-restorec="1">'+t('cat_restore')+'</span>':'')+'<span class="mini-act del" data-delc="1">'+t('del')+'</span></span></div>';
+    if(!cat.base)body+='<div class="cat-custom-acts"><span class="bandeau-mini"><span class="mini-act" data-addv="1">+ '+tk('addverse',kind0)+'</span><span class="mini-act" data-editc="1">'+t('rename')+'</span><span class="mini-act" data-secc="1">'+t('sec_range')+'</span>'+(cat.base?'<span class="mini-act" data-restorec="1">'+t('cat_restore')+'</span>':'')+'<span class="mini-act del" data-delc="1">'+t('del')+'</span></span></div>';
     body+='</div>';
     div.innerHTML='<div class="cat-row"><span class="cat-check" data-act="sel"></span><span class="cat-name" data-act="exp"><span class="cat-nom-t">'+besc(cat.name.fr||'')+'</span><span class="cat-ecart'+(catEcart(cat)?' on':'')+'" data-catecart="'+cat.id+'" role="button" title="Des versets de cette catégorie s’écartent de la Bible du site. Toucher pour les voir.">≠</span><span class="cat-jum'+(catJum(cat)?' on':'')+'" data-catjum="'+cat.id+'" role="button" title="Des versets de cette catégorie sont aussi dans d’autres catégories. Toucher pour les voir."><svg viewBox="0 0 24 24"><path d="M3 3h13v13H3zM8 8h13v13H8z"/></svg></span></span><span class="cat-dist" data-act="exp">'+dist+'</span><span class="cat-pct" data-act="exp">'+pctTxt+'</span><span class="cat-go" data-act="solo" title="'+('Lancer cette catégorie')+'" aria-label="'+('Lancer cette catégorie')+'">\u25b7</span><span class="cat-chev" data-act="exp">\u203A</span></div>'+body;
     return div;
@@ -1487,7 +1506,7 @@ function elementSection(sec,cats){
     +'<span class="sec-n">'+cats.length+'</span>';
   if(sec){
     if(cats.length)h+='<span class="sec-go" data-secgo="'+id+'" role="button" tabindex="0" title="'+t('sec_start')+'" aria-label="'+t('sec_start')+'">▷</span>';
-    h+='<span class="sec-menu" data-secact="'+id+'" role="button" tabindex="0" aria-label="'+t('sec_rename')+'">⋯</span>';
+    if(!sec.base)h+='<span class="sec-menu" data-secact="'+id+'" role="button" tabindex="0" aria-label="'+t('sec_rename')+'">⋯</span>';
   }
   h+='<span class="sec-chev">›</span>';
   tete.innerHTML=h;
@@ -1518,18 +1537,33 @@ function renderCats(){
     return;
   }
   const CATLIM=6;
-  const _allc=catsMode();
+  const _base=groupesBase();
+  const _allc=catsMode().filter(c=>!c.base);
   const _more=$('cat-more');
+  /* ── DEUX PARTIES ──
+     Quand l'onglet a des versets de base, la liste se partage en deux :
+     « Versets de base » (une section par bloc du parcours, une catégorie par
+     thème), puis « Mes versets », les catégories d'Emmanuel, rangées comme
+     il les range. */
+  const partie=nom=>{const d=document.createElement('div');d.className='partie';d.textContent=nom;return d;};
+  if(_base.length){
+    host.appendChild(partie('Versets de base'));
+    _base.forEach(g=>host.appendChild(elementSection(g.sec,g.cats)));
+    host.appendChild(partie('Mes versets'));
+  }
   if(S.sections.length){
     groupesCats().forEach(g=>host.appendChild(elementSection(g.sec,g.cats)));
     _more.style.display='none';
   }else{
-    (S.showAllCats?_allc:_allc.slice(0,CATLIM)).forEach(cat=>host.appendChild(elementCat(cat)));
+    /* sous « Mes versets », les catégories sans section gardent leur cadre
+       à elles, distinct des blocs de base au-dessus */
+    const dest=_base.length&&_allc.length?host.appendChild(Object.assign(document.createElement('div'),{className:'liste-perso'})):host;
+    (S.showAllCats?_allc:_allc.slice(0,CATLIM)).forEach(cat=>dest.appendChild(elementCat(cat)));
     if(_allc.length>CATLIM){_more.style.display='';_more.textContent=S.showAllCats?t('show_less'):t('show_all')+' ('+_allc.length+')';}else{_more.style.display='none';}
   }
   /* Un onglet vide ne doit pas être une page blanche : on dit ce qu'il
      attend. C'est le cas des passages tant que rien n'a été créé. */
-  if(!_allc.length){const vide=document.createElement('div');vide.className='sec-vide';
+  if(!_allc.length&&!_base.length){const vide=document.createElement('div');vide.className='sec-vide';
     vide.textContent=modeP()?'Aucune catégorie de passages pour l’instant. Créez-en une ci-dessous, puis ajoutez-y vos passages : un titre d’un côté, sa référence de l’autre.'
       :(modeC()?'Aucune catégorie de fiches pour l’instant. Créez-en une ci-dessous, puis ajoutez-y vos fiches : d’un côté un texte (une citation, une définition…), de l’autre ce à quoi il se rapporte (l’auteur, le mot défini…).':t('no_cats'));
     host.appendChild(vide);}
@@ -1537,7 +1571,7 @@ function renderCats(){
   try{verifieEcarts();}catch(_){}
   /* une catégorie de base supprimée peut revenir : c'est le geste que promet
      le message « restaurez les catégories de base » */
-  const rb=$('restore-base'); if(rb){rb.style.display=(S.hidCats||[]).length?'':'none';rb.textContent=t('base_restore');}
+  const rb=$('restore-base'); if(rb){rb.style.display=(S.hidCats||[]).some(isBase)?'':'none';rb.textContent=t('base_restore');}
   renderTrash();
   updateStart();
 }
@@ -2763,6 +2797,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(niv){poseNiveau(niv.dataset.nivid,niv.dataset.niv);return;}
     const jum=e.target.closest('[data-jum]');
     if(jum){allerJumeau(id,jum.dataset.jum);return;}
+    const notev=e.target.closest('[data-notev]');
+    if(notev){const vid=notev.dataset.notev;S.noteV[vid]=!S.noteV[vid];const r=notev.closest('.vrow');if(r)r.classList.toggle('note-on',!!S.noteV[vid]);return;}
     const editv=e.target.closest('[data-editv]');
     const movv=e.target.closest('[data-movev]');
     const delv=e.target.closest('[data-delv]');
@@ -2881,7 +2917,9 @@ function normaliseBase(cats){
     return catFr(c);
   });
 }
-async function chargerBaseLV(){try{const s=await db.doc('config/memoriser').get();if(s.exists){const c=s.data().categories;if(Array.isArray(c)&&c.length){const n=normaliseBase(c);PRE.length=0;n.forEach(x=>PRE.push(x));}}}catch(e){}}
+/* La bibliothèque de départ embarquée (contenu/memoriser.json, où vivent les
+   versets de base) fait foi ; la copie en ligne ne sert que si elle est vide. */
+async function chargerBaseLV(){if(PRE.length)return;try{const s=await db.doc('config/memoriser').get();if(s.exists){const c=s.data().categories;if(Array.isArray(c)&&c.length){const n=normaliseBase(c);PRE.length=0;n.forEach(x=>PRE.push(x));}}}catch(e){}}
 /* Le service worker ne couvre que Mémoriser (portée « /memoriser ») : posé sur
    « / », il s'installerait sur tout le site, et l'application installée
    revendiquerait la Bible et les articles comme siens. Une ancienne

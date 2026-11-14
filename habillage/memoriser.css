@@ -739,3 +739,31 @@ html body .q-prompt:not(.ref){
   width:fit-content;max-width:min(30em,100%);margin-left:auto;margin-right:auto;
   text-align:justify;text-align-last:left;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 2;
 }
+
+/* ── LES DEUX PARTIES : VERSETS DE BASE, MES VERSETS ──
+   Un titre en Cormorant au-dessus de chaque partie, souligné d'un filet qui
+   s'éteint vers la droite : un rang au-dessus des sections. */
+html body .partie{margin:30px 0 14px;padding-bottom:9px;font-family:var(--h-titre);font-size:23px;font-weight:500;line-height:1.2;color:#fff;
+  background:linear-gradient(90deg,var(--h-l2),transparent) bottom left/100% 1px no-repeat}
+html body #cat-list>.partie:first-child{margin-top:6px}
+html body .liste-perso{border:1px solid var(--h-l1);background:var(--h-s1);overflow:hidden}
+html body .liste-perso>.cat:first-child{border-top:0}
+html body #cat-list:has(>.partie){border:0;background:none;overflow:visible}
+
+/* ── LA NOTE D'UN VERSET DE BASE ──
+   Toucher le verset le déplie sous sa rangée : son texte entier, puis
+   pourquoi l'apprendre. On la lit dans la liste, jamais pendant une série. */
+html body .vrow.vbase{flex-wrap:wrap}
+html body .vnote{display:none;flex-basis:100%;padding:4px 4px 8px 34px}
+html body .vrow.note-on .vnote{display:block;animation:fade .3s ease both}
+html body .vnote-texte{margin:0 0 10px;font-family:var(--h-texte);font-style:italic;font-size:calc(16px*var(--lvz,1));line-height:1.6;color:#fff;text-align:justify;hyphens:auto}
+html body .vnote-pq{margin:0;font-family:var(--h-ui);font-size:calc(15px*var(--lvz,1));line-height:1.6;color:var(--h-t2)}
+html body .vrow.note-on .vtext{visibility:hidden}
+@media(max-width:720px){html body .vnote{padding-left:30px}}
+/* sur téléphone, la rangée est une grille : le verset de base n'a ni
+   « déplacer » ni « supprimer », et sa note prend toute la largeur */
+@media(max-width:720px){
+  html body .vrow.vbase{grid-template-columns:18px minmax(0,1fr) auto}
+  html body .vrow.vbase .vnote{grid-column:1/-1;padding:6px 2px 6px 26px}
+}
+@media(max-width:420px){html body .vrow.vbase{grid-template-columns:16px minmax(0,1fr) auto}}
