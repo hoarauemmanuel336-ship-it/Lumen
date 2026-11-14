@@ -167,7 +167,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
   html.barre-rangee,html.panneau{--lv-bas:0px}
   html.panneau .nav-bas{display:none!important}
   body{padding-bottom:var(--lv-bas)}
-  .nav-bas{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:55;height:var(--lv-bas);padding-bottom:env(safe-area-inset-bottom,0px);background:#000;border-top:1px solid rgba(231,224,207,.14)}
+  .nav-bas{display:grid;grid-template-columns:repeat(6,1fr);position:fixed;left:0;right:0;bottom:0;z-index:55;height:var(--lv-bas);padding-bottom:env(safe-area-inset-bottom,0px);background:#000;border-top:1px solid rgba(231,224,207,.14)}
   html.barre-rangee .nav-bas{display:none}
   .nav-bas a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:0;color:rgba(255,255,255,.62);text-decoration:none;font-family:'EB Garamond',Georgia,serif;font-size:12.5px;letter-spacing:.02em;line-height:1;transition:color .25s;-webkit-tap-highlight-color:transparent;position:relative}
   .nav-bas a svg{width:22px;height:22px;display:block}
@@ -188,7 +188,7 @@ const SVG_LOUPE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" s
 const SVG_IA = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg>';
 const SVG_COMPTE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg>';
 const NAV_LIENS = [['/', 'Accueil'], ['/bible.html', 'Bible'], ['/memoriser.html', 'Mémoriser'],
-                   ['/articles.html', 'Articles'], ['/ressources.html', 'Ressources']];
+                   ['/articles.html', 'Articles'], ['/ressources.html', 'Ressources'], ['/etude.html', 'Étude']];
 /* Les icônes de la barre du bas : un trait fin, comme la loupe et le compte. */
 const SVGB = d => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>';
 const NAV_BAS = [
@@ -196,7 +196,8 @@ const NAV_BAS = [
   ['/bible.html', 'Bible', SVGB('<path d="M12 6.5C10 5 7 4.6 4 5v13c3-.4 6 0 8 1.5 2-1.5 5-1.9 8-1.5V5c-3-.4-6 0-8 1.5z"/><path d="M12 6.5V19"/>')],
   ['/memoriser.html', 'Mémoriser', SVGB('<rect x="4.5" y="7.5" width="11.5" height="13" rx=".5"/><path d="M8 4.5h11.5v13"/>')],
   ['/articles.html', 'Articles', SVGB('<path d="M6.5 3.5h8l3 3v14h-11z"/><path d="M9.5 11h5M9.5 14.5h5M9.5 7.5h2.5"/>')],
-  ['/ressources.html', 'Ressources', SVGB('<rect x="4.5" y="4.5" width="6.2" height="6.2"/><rect x="13.3" y="4.5" width="6.2" height="6.2"/><rect x="4.5" y="13.3" width="6.2" height="6.2"/><rect x="13.3" y="13.3" width="6.2" height="6.2"/>')]
+  ['/ressources.html', 'Ressources', SVGB('<rect x="4.5" y="4.5" width="6.2" height="6.2"/><rect x="13.3" y="4.5" width="6.2" height="6.2"/><rect x="4.5" y="13.3" width="6.2" height="6.2"/><rect x="13.3" y="13.3" width="6.2" height="6.2"/>')],
+  ['/etude.html', 'Étude', SVGB('<circle cx="5" cy="18.8" r="2.1"/><path d="M7.1 18.8h7.4a3.2 3.2 0 0 0 0-6.4h-5a3.2 3.2 0 0 1 0-6.4h6"/><path d="M16.5 3.2v5.6M16.5 3.2h4.3l-1.2 1.4 1.2 1.4h-4.3"/>')]
 ];
 const VERSET_PIED = '« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l\u2019ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span>';
 
@@ -579,7 +580,7 @@ const RECH_JS = `(function(){
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('ouvert'))ferme();});
 })();`;
 
-function page({ lang, title, description, base, main }) {
+function page({ lang, title, description, base, main, hab = 'accueil' }) {
   const u = UI[lang];
   /* site privé : aucune page n'est faite pour les moteurs de recherche */
   const robots = '\n<meta name="robots" content="noindex,nofollow">';
@@ -603,7 +604,7 @@ ${FIREBASE_HEAD}
 ${COMMUN_TAG}
 <style>${APPEARANCE_CSS}</style>
 ${BARRE_TETE}
-${habillage('accueil')}
+${habillage(hab)}
 ${communJS('index.html')}
 </head>
 <body>
@@ -718,6 +719,26 @@ ecrire('404.html', page({
   lang: 'fr', title: UI.fr.t_404, description: UI.fr.notfound_text,
   base: '/', main: main404()
 }));
+
+/* Étude : la page s'ouvre directement sur le parcours, en plein écran comme
+   une ressource ouverte, avec le même bandeau (retour, Bible, IA) ; voir
+   pages/etude.js et habillage/etude.css. */
+if (fs.existsSync('parcours/la-foi-catholique.html')) {
+  const svg = (d, w = 1.6) => `<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  ecrire('etude.html', page({
+    lang: 'fr', title: 'Étude · Lumen Veritatis', description: 'Parcours d’étude et cours.',
+    base: '/', hab: 'etude',
+    main: `<h1 class="titre-cache">Étude</h1>
+  <iframe id="et-cadre" class="res-plein" src="/parcours/la-foi-catholique.html" title="La foi catholique" allow="clipboard-write"></iframe>
+  <div class="res-plein-acts">
+    <button type="button" id="et-retour" class="res-plein-x" aria-label="Revenir">${svg('<path d="M19.5 12h-15M10.5 6l-6 6 6 6"/>')}</button>
+    <button type="button" id="et-bible" class="res-plein-x res-plein-bible" aria-label="Ouvrir la Bible">${svg('<path d="M12 6.5C10.3 5.2 7.8 4.6 4 4.6v13.2c3.8 0 6.3.6 8 1.9 1.7-1.3 4.2-1.9 8-1.9V4.6c-3.8 0-6.3.6-8 1.9z"/><path d="M12 6.5v13.2"/>')}</button>
+    <button type="button" id="et-ia" class="res-plein-x res-plein-bible res-plein-ia" aria-label="Poser une question à l’IA sur cette page" title="Question à l’IA">${svg('<path d="M10 3.5l1.6 4.4 4.4 1.6-4.4 1.6L10 15.5l-1.6-4.4L4 9.5l4.4-1.6zM18 13.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/>', 1.5)}</button>
+  </div>
+  <script>document.body.classList.add('plein');</script>
+  <script>${fs.readFileSync(PAGES + 'etude.js', 'utf8')}</script>`
+  }));
+}
 
 // le calendrier liturgique de France, une année par fichier, lu par l'accueil
 if (fs.existsSync(CONTENU + 'liturgie')) {
@@ -1308,7 +1329,7 @@ function poseVersSeraphin(livre) {
 /* Garde-fou : la barre et le pied sont identiques sur toutes les pages. La
    fabrication échoue si l'un d'eux dérive. */
 {
-  const surfaces = ['index.html', 'bible.html', 'memoriser.html', 'articles.html', 'ressources.html', 'commentaires.html', '404.html'];
+  const surfaces = ['index.html', 'bible.html', 'memoriser.html', 'articles.html', 'ressources.html', 'commentaires.html', 'etude.html', '404.html'];
   const ref = { h: null, f: null };
   let vues = 0;
   for (const f of surfaces) {

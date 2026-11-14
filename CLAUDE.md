@@ -8,7 +8,7 @@ Lumen est le site personnel d'Emmanuel, en ligne sur **lumenveritatis.net**. C'e
 
 Emmanuel ne code pas. Il confie à l'IA tout le développement : elle lit, modifie, teste et dépose elle-même sur ce dépôt. Elle lui parle en langage courant, en français, sans noms de fonctions, de fichiers techniques ni extraits de code, sauf s'il en demande.
 
-Les six pages du site :
+Les sept pages du site :
 
 - **Accueil** : la croix et l'accès aux autres pages.
 - **Bible** : ses deux traductions françaises, la **Chérubin** (équivalence dynamique, traduction par défaut) et la **Séraphin** (littérale). Notes, surlignages, signets, commentaires bibliques affichés dans le texte, recherche de références.
@@ -16,12 +16,13 @@ Les six pages du site :
 - **Articles** : ses articles, des pages HTML au format question-réponse (faites avec sa skill article-html), rangés en catégories et sections, ouverts en plein écran.
 - **Ressources** : livres, diagrammes, cours, parcours d'étude, images, PDF et liens, rangés de la même façon.
 - **Commentaires** : l'atelier où il écrit les commentaires bibliques ; « Afficher dans la Bible » les fait paraître dans le texte.
+- **Étude** : le parcours « La foi catholique », ouvert d'emblée en plein écran comme une ressource ouverte ; chaque sujet qui a son cours l'ouvre par « Ouvrir le cours ».
 
 ## Où se trouve chaque chose
 
 | Dossier | Contenu |
 |---|---|
-| `pages/` | Les six pages, une par fichier HTML, chacune avec son propre script. |
+| `pages/` | Les pages, une par fichier HTML, chacune avec son propre script (l'accueil et Étude sont assemblées par la fabrication autour de `accueil.js` et `etude.js`). |
 | `habillage/` | L'apparence : `lumen-commun.css` (le socle), `commun.css` (ce qui vaut pour toutes les pages, fenêtres et menus compris), puis une feuille par page. |
 | `commun/` | Le fonctionnement partagé entre plusieurs pages (fenêtres et menus, rangement en catégories, éditeur des commentaires, choix d'un verset, IA, versets cités, contrôle qualité, question à l'IA, ménage des anciennes copies publiques). La fabrication pose dans chaque page les familles dont elle a besoin. |
 | `contenu/` | Les deux Bibles (`bible.json` pour la Chérubin, `bible-seraphin.json` pour la Séraphin), la bibliothèque de départ de Mémoriser, les réglages d'apparence. |

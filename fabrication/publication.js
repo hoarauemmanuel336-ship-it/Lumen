@@ -175,7 +175,7 @@ module.exports = async function publication(OUT, attendu) {
 
   /* 2. CONTRÔLER */
   controlePage.OUT = OUT;
-  for (const f of ['index.html', 'bible.html', 'memoriser.html', 'articles.html', 'ressources.html', 'commentaires.html', '404.html']) {
+  for (const f of ['index.html', 'bible.html', 'memoriser.html', 'articles.html', 'ressources.html', 'commentaires.html', 'etude.html', '404.html']) {
     if (!fs.existsSync(path.join(OUT, f))) defauts.push(f + ' : page absente');
   }
   for (const f of pages) controlePage(f, fs.readFileSync(path.join(OUT, f), 'utf8'), attendu || {}, defauts);

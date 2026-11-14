@@ -1,0 +1,33 @@
+/* ════════════════════════════════════════════════════════════════════
+   LUMEN — HABILLAGE DE LA PAGE ÉTUDE
+   ════════════════════════════════════════════════════════════════════
+   Le parcours prend l'écran entier, sans barre, exactement comme une
+   ressource ouverte dans Ressources : mêmes noms de classes, mêmes règles
+   (le bouton crème lui-même vient de commun.css). Le bandeau du retour, de
+   la Bible et de l'IA flotte en bas à gauche ; le panneau de la Bible passe
+   au-dessus du plein écran.
+   ════════════════════════════════════════════════════════════════════ */
+html body.plein{overflow:hidden}
+html body.plein::after{content:none;display:none}
+html body.plein .nav-bas,html body.plein #bp-tab{visibility:hidden}
+html body .res-plein{position:fixed;top:0;left:0;width:100%;height:100%;height:100dvh;border:0;z-index:200;background:#000;display:block}
+html:root body .res-plein-x{display:inline-flex;align-items:center;min-height:44px;padding:10px 20px;cursor:pointer}
+html:root body .res-plein-x svg{display:block}
+html:root body .res-plein-acts{
+  position:fixed;z-index:201;display:flex;align-items:stretch;
+  left:max(16px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  background:var(--h-or);border-radius:999px;box-shadow:0 6px 22px rgba(0,0,0,.6);
+}
+html:root body .res-plein-acts .res-plein-x{position:static;box-shadow:none;border-radius:0}
+html:root body .res-plein-acts .res-plein-x:first-child{padding:10px 14px 10px 20px}
+html:root body .res-plein-acts .res-plein-bible{padding:10px 16px;position:relative}
+html:root body .res-plein-acts .res-plein-bible::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:rgba(0,0,0,.28)}
+html body.plein #bp-voile{z-index:300}
+html body.plein #bp-pan{z-index:310}
+/* seule la moitié survolée s'éclaire */
+html:root body:not(#_):not(#_) .res-plein-acts>:first-child{border-radius:999px 0 0 999px}
+html:root body:not(#_):not(#_) .res-plein-acts>:last-child{border-radius:0 999px 999px 0}
+html:root body:not(#_):not(#_) .res-plein-acts>:is(.res-plein-x,.res-plein-bible){position:relative;transition:background .25s,box-shadow .3s}
+html:root body:not(#_):not(#_) .res-plein-acts>:is(.res-plein-x,.res-plein-bible):is(:hover,:focus-visible){z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
+html:root body:not(#_):not(#_) .res-plein-acts>:is(.res-plein-x:hover+.res-plein-bible,.res-plein-bible:hover)::before{opacity:0}
+html:root body:not(#_):not(#_) .res-plein-acts>.res-plein-bible:hover+.res-plein-bible::before{opacity:0}
