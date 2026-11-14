@@ -142,44 +142,7 @@ const BARRE_CSS = `
   html{scroll-behavior:auto!important}
 }
 
-/* fond plein : le texte qui défile dessous ne se lit pas à travers le titre */
-header{position:sticky;top:0;z-index:50;background:#000;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid rgba(231,224,207,.14)}
-/* ── LA BARRE SE RANGE ──
-   Une poignée replie la barre : il ne reste qu'un mince bandeau avec son
-   chevron, et l'écran entier revient à la lecture. Elle reste rangée tant
-   qu'on ne la rappelle pas, sur cet appareil. La poignée se tient juste à
-   droite du titre « Lumen », sans prendre de hauteur à la barre ; rangée,
-   la barre n'est plus qu'elle, en mince bandeau, et c'est par elle qu'on la
-   fait revenir. */
-.barre-poignee{display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin:0 0 0 -8px;padding:0;background:none;border:0;line-height:0;cursor:pointer;color:rgba(231,224,207,.42);transition:color .3s;-webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.barre-poignee:hover,.barre-poignee:focus-visible{color:var(--or,#efe6cf)}
-.barre-poignee svg{display:block;margin:0 auto;width:30px;height:9px;transition:transform .3s}
-html.barre-rangee header .barre{display:block;padding:0;max-width:none}
-html.barre-rangee header .barre>*:not(.barre-poignee){display:none!important}
-html.barre-rangee header{background:#000}
-html.barre-rangee .barre-poignee svg{transform:rotate(180deg)}
-/* rangée, la poignée est tout ce qui reste : elle s'épaissit un peu pour
-   rester facile à toucher du doigt */
-html.barre-rangee .barre-poignee{width:100%;height:auto;margin:0;padding:7px 0 8px}
-/* le menu déplié se referme avec la barre : il n'a plus de barre où s'accrocher */
-html.barre-rangee nav.menu{display:none}
-/* ── UNE BARRE MINCE (Emmanuel : « la barre du haut, même dépliée, reste
-   un peu trop large ») ── marges et interligne resserrés : environ 60 px de
-   haut sur ordinateur, et le bandeau rangé s'amincit avec elle. */
-.barre{max-width:1080px;margin:0 auto;padding:11px 32px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:24px;height:auto;line-height:1.35}
-.barre .logo{grid-column:1;grid-row:1;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px;letter-spacing:.34em;text-transform:uppercase;color:var(--parchemin,#ffffff);padding-left:.34em;border-bottom:none;text-decoration:none;transition:color .3s}
-/* Le titre est un lien vers l'accueil : il répond au survol comme les
-   entrées du menu. Sans cette règle, la règle ci-dessus, plus forte,
-   éteignait le survol écrit dans les pages. */
-.barre .logo:hover{color:var(--or-pale,#f8f3e6)}
 a:focus-visible,button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible,summary:focus-visible{outline:1px solid var(--or,#efe6cf);outline-offset:3px}
-nav.menu{display:flex;gap:30px;grid-column:3;grid-row:1;justify-self:end;align-items:center;margin-left:0}
-nav.menu a{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:var(--parchemin,#ffffff);padding:0 0 3px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;text-decoration:none;position:static}
-nav.menu a:hover,nav.menu a.actif{color:var(--parchemin,#ffffff);border-color:var(--or,#efe6cf)}
-.rech-loupe{display:inline-flex;align-items:center;cursor:pointer;color:var(--parchemin,#ffffff);transition:color .3s;background:none;border:none;padding:0;outline:none}
-.rech-loupe:hover{color:var(--or,#efe6cf)}
-.rech-loupe:focus:not(:focus-visible){outline:none}
-.rech-loupe svg{display:block}
 .ll-mob{display:none}
 footer{border-top:1px solid rgba(231,224,207,.14);margin-top:40px;padding:48px 32px 56px;text-align:center;background:none}
 footer .marque{font-family:'Cormorant Garamond',serif;letter-spacing:.34em;text-transform:uppercase;font-size:18px;padding-left:.34em;color:var(--parchemin,#ffffff)}
@@ -187,18 +150,6 @@ footer .verset-pied{margin-top:18px;font-style:italic;color:rgba(255,255,255,.55
 footer .verset-pied .ref-pied{font-style:normal;font-weight:600;color:rgba(255,255,255,.55)}
 footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,255,255,.45);font-family:'Cormorant Garamond',serif}
 @media(max-width:720px){
-  /* ── NAVIGATION DU TÉLÉPHONE ──
-     Le menu déroulant cède la place à une barre d'onglets en bas de l'écran,
-     à portée du pouce. En haut ne restent que le titre, la loupe et le
-     compte, chacun sur une zone de toucher de 44 px. */
-  /* préfixées par « header » : certaines pages gardent leur propre copie des
-     anciennes règles du menu, qu'il faut emporter */
-  header .barre{padding:3px 6px 3px 20px;display:flex;justify-content:space-between}
-  .barre-poignee{width:44px;height:44px;margin:0 auto 0 0}
-  header nav.menu{position:static;flex-direction:row;gap:0;align-items:center;background:none;padding:0;border:0;transform:none;width:auto}
-  header nav.menu a{display:none}
-  header nav.menu .rech-loupe{width:44px;height:44px;justify-content:center;padding:0}
-  header nav.menu .rech-loupe .ll-mob{display:none}
   /* une fenêtre sans champ à remplir (information, confirmation) se centre ;
      un formulaire reste en haut, où le clavier ne le recouvre pas */
   .overlay:not(:has(input,textarea,select))>.modal{margin-top:auto;margin-bottom:auto}
@@ -259,9 +210,9 @@ function barreCanon() {
     <a href="/" class="logo">Lumen</a>
     <nav class="menu" id="menu">
       ${NAV_LIENS.map(l => `<a href="${l[0]}">${l[1]}</a>`).join('\n      ')}
-      <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="Rechercher">${SVG_LOUPE}<span class="ll-mob">Rechercher</span></span>
+      <span class="rech-loupe" id="rech-ouvrir" role="button" tabindex="0" aria-label="Rechercher" title="Rechercher">${SVG_LOUPE}<span class="ll-mob">Rechercher</span></span>
       <span class="rech-loupe ia-icone" id="ia-ouvrir" role="button" tabindex="0" aria-label="Parler avec l’IA" title="IA">${SVG_IA}<span class="ll-mob">IA</span></span>
-      <span class="rech-loupe auth-icone" id="auth-ouvrir" role="button" tabindex="0" aria-label="Compte">${SVG_COMPTE}<span class="ll-mob">Compte</span></span>
+      <span class="rech-loupe auth-icone" id="auth-ouvrir" role="button" tabindex="0" aria-label="Compte" title="Mon compte">${SVG_COMPTE}<span class="ll-mob">Compte</span></span>
     </nav>
   </div>
 </header>
@@ -334,7 +285,8 @@ const BARRE_JS = `(function(){
      onglets ; le tiroir s'ouvre par l'onglet Bible du bord. */
   Array.prototype.forEach.call(document.querySelectorAll('nav.menu a, .nav-bas a'),function(a){
     var h=(a.getAttribute('href')||'').replace(/index\\.html$/,'');
-    if(h===p)a.classList.add('actif');
+    /* la page ouverte est soulignée, et annoncée aux lecteurs d'écran */
+    if(h===p){a.classList.add('actif');a.setAttribute('aria-current','page');}
   });
   /* La loupe, le compte et la croix du panneau de compte sont des « boutons »
      pour le lecteur d'écran (role=button) : Entrée et Espace les activent,

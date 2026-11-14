@@ -134,24 +134,27 @@ html{scrollbar-color:color-mix(in srgb,var(--h-or) 28%,transparent) #000}
 
 /* ════════════════════════════════════════════════════════════════════
    3. LA BARRE DU HAUT
-   Une barre de verre noir. À gauche, la croix et le nom ; à droite, les
-   cinq lieux du site, la recherche et le compte. Rien n'y est encadré
+   La seule description de la barre : la fabrication n'en écrit aucune
+   autre. Un fond noir plein, pour que le texte qui défile dessous ne se
+   lise pas à travers ; la barre a la largeur des pages. À gauche, la croix
+   et le nom ; à droite, les cinq lieux du site, la recherche, l'IA et le
+   compte. Rien n'y est encadré
    (choix d'Emmanuel) : ni fond ni cadre autour des lieux ou des icônes ;
    l'endroit où l'on se trouve est souligné d'un trait crème.
    La poignée qui range la barre se tient juste après le nom.
    ════════════════════════════════════════════════════════════════════ */
 html body header{
   position:sticky;top:0;z-index:50;
-  background:color-mix(in srgb,#000 82%,transparent);
-  -webkit-backdrop-filter:saturate(140%) blur(18px);backdrop-filter:saturate(140%) blur(18px);
+  background:#000;
+  -webkit-backdrop-filter:none;backdrop-filter:none;
   border-bottom:1px solid var(--h-l1);
 }
 html body header .barre{
-  max-width:1240px;margin:0 auto;padding:10px 28px;
+  max-width:1080px;margin:0 auto;padding:10px 32px;
   display:flex;align-items:center;gap:10px;line-height:1.2;height:auto;
 }
 html body header .barre .logo{
-  display:inline-flex;align-items:center;gap:13px;
+  display:inline-flex;align-items:center;gap:13px;text-decoration:none;border:0;
   font-family:var(--h-titre);font-weight:500;font-size:23px;line-height:1;
   letter-spacing:.32em;text-transform:uppercase;color:#fff;padding:6px 0 6px 2px;
   transition:color .3s;
@@ -168,11 +171,14 @@ html body header .barre .logo:hover{color:var(--h-or)}
 
 /* la poignée : discrète, sans cadre */
 html body .barre-poignee{
-  width:32px;height:32px;margin:0 auto 0 2px;border-radius:0;
-  color:var(--h-t4);background:none;transition:color .3s,background .3s;
+  display:flex;align-items:center;justify-content:center;
+  padding:0;border:0;line-height:0;cursor:pointer;
+  -webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  width:40px;height:40px;margin:0 auto 0 2px;border-radius:0;
+  color:var(--h-t2);background:none;transition:color .3s,background .3s;
 }
 html body .barre-poignee:hover,html body .barre-poignee:focus-visible{color:var(--h-or);background:none}
-html body .barre-poignee svg{width:20px;height:7px}
+html body .barre-poignee svg{display:block;margin:0 auto;width:22px;height:8px;transition:transform .3s}
 
 /* les lieux */
 html body header nav.menu{
@@ -180,7 +186,7 @@ html body header nav.menu{
   grid-column:auto;grid-row:auto;
 }
 html body header nav.menu a{
-  position:relative;
+  position:relative;white-space:nowrap;text-decoration:none;
   font-family:var(--h-ui);font-size:14.5px;font-weight:500;letter-spacing:.01em;text-transform:none;
   color:var(--h-t2);padding:9px 0 7px;border:0;border-bottom:1px solid transparent;border-radius:0;background:none;
   transition:color .25s,border-color .25s;
@@ -189,6 +195,7 @@ html body header nav.menu a:hover{color:#fff;background:none;border-color:var(--
 html body header nav.menu a.actif{color:#fff;background:none;border-color:var(--h-or)}
 /* la loupe et le compte : deux icônes nues */
 html body header nav.menu .rech-loupe{
+  display:inline-flex;align-items:center;cursor:pointer;padding:0;border:0;outline:none;
   width:30px;height:40px;justify-content:center;border-radius:0;
   color:var(--h-t2);transition:color .25s,background .25s;
 }
@@ -199,12 +206,16 @@ html body header nav.menu #rech-ouvrir{margin-left:6px;position:relative}
 html body header nav.menu :is(#rech-ouvrir+#ia-ouvrir,#ia-ouvrir+#auth-ouvrir){margin-left:-20px}
 @media(max-width:720px){html body header nav.menu :is(#rech-ouvrir+#ia-ouvrir,#ia-ouvrir+#auth-ouvrir){margin-left:-22px}}
 html body header nav.menu .rech-loupe:hover,html body header nav.menu .rech-loupe:focus-visible{color:var(--h-or);background:none}
-html body header nav.menu .rech-loupe svg{width:18px;height:18px}
+html body header nav.menu .rech-loupe svg{display:block;width:18px;height:18px}
+/* les mots sous les icônes ne servent qu'aux lecteurs d'écran */
+html body header nav.menu .rech-loupe .ll-mob{display:none}
 
 /* barre rangée : un mince bandeau, la poignée seule au centre */
 html.barre-rangee body header{background:#000}
 html.barre-rangee body header .barre{display:block;padding:0;max-width:none}
 html.barre-rangee body .barre-poignee{width:100%;height:auto;margin:0;padding:6px 0 7px;border-radius:0}
+html.barre-rangee body header .barre>*:not(.barre-poignee){display:none!important}
+html.barre-rangee body .barre-poignee svg{transform:rotate(180deg)}
 
 /* ── LE TÉLÉPHONE : barre fine en haut, barre d'onglets en bas ── */
 @media(max-width:720px){
@@ -215,7 +226,8 @@ html.barre-rangee body .barre-poignee{width:100%;height:auto;margin:0;padding:6p
   html body header nav.menu a{display:none}
   html body header nav.menu #rech-ouvrir{margin-left:0}
   html body header nav.menu #rech-ouvrir::before{content:none}
-  html body header nav.menu .rech-loupe{width:36px;height:44px}
+  html body header nav.menu .rech-loupe{width:44px;height:44px}
+  html body .barre-poignee{width:44px;height:44px}
 
   /* la barre d'onglets : du verre noir sur toute la largeur, collée au
      bas de l'écran, sans cadre ; l'onglet ouvert s'allume en crème et

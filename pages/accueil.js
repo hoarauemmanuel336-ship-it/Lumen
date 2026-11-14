@@ -263,7 +263,7 @@
     var d = new Date(); d = new Date(d.getFullYear(), d.getMonth(), d.getDate());
     var j = jour(d);
     if (!j) { Z.innerHTML = ''; return; }
-    var h = '<header class="lit-tete">';
+    var h = '<div class="lit-tete">';
     h += '<p class="lit-date">' + esc(cap(fmtLong.format(d))) + '</p>';
     h += '<h2 class="lit-fete">' + esc(typo(j.n)) + '</h2>';
     var rg = rangDe(j.n, j.r, 0);
@@ -271,7 +271,7 @@
     (j.x || []).forEach(function (x) {
       h += '<p class="lit-aussi">' + pastille(x[2]) + '<span class="lit-aussi-r">' + (rangDe(x[0], x[1], x[3]) || 'Aussi') + NB + ':</span> ' + esc(typo(x[0])) + '</p>';
     });
-    h += '</header>';
+    h += '</div>';
 
     h += bloc('Lectures de la messe', '', 'lit-lect');
     h += bloc('Aujourd’hui dans l’Église', viePratique(d, j).map(function (t) { return '<p class="lit-pt">' + esc(typo(t)) + '</p>'; }).join(''));

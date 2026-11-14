@@ -949,32 +949,17 @@ async function qaGarde(){
   }catch(e){console.warn('conversation gardée',e);}
 }
 
-/* « Mes questions » et « Mémoire » dans « Mon compte », à côté de « Mes notes » */
-function qaPoseCompte(){
-  document.querySelectorAll('.pile-btn').forEach(pile=>{
-    if(pile.querySelector('.qa-compte'))return;
-    const modele=pile.firstElementChild; if(!modele)return;
-    [['Mes questions',()=>qaListe()],['Mémoire de l’IA',()=>qaMemoireVue()]].forEach(([mot,fait])=>{
-      const b=document.createElement('span');
-      b.className=modele.className.split(' ')[0]+' qa-compte';
-      b.setAttribute('role','button'); b.tabIndex=0; b.textContent=mot;
-      const va=()=>{
-        const ov=pile.closest('.auth-ov,.auth-overlay,#bacct-voile');
-        if(ov){ov.classList.remove('ouvert');ov.classList.remove('on');}
-        fait();
-      };
-      b.onclick=va; b.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();va();}};
-      pile.appendChild(b);
-    });
-  });
-}
+/* Tout ce qui touche l'IA (« Mes questions », sa mémoire) vit dans le
+   panneau de l'IA, pas dans « Mon compte » (choix d'Emmanuel) : l'icône
+   « Mes questions » est dans la tête du panneau, la mémoire au haut de
+   la liste des questions. */
 /* l'icône de l'IA dans la barre du haut : la conversation en cours, ou
    une conversation libre */
 function qaBranchebarre(){
   const b=document.getElementById('ia-ouvrir');
   if(b&&!b.dataset.qa){b.dataset.qa='1';b.addEventListener('click',()=>qaLibre(false));}
 }
-const qaPret=()=>{qaPoseCompte();qaBranchebarre();};
+const qaPret=()=>{qaBranchebarre();};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',qaPret);else qaPret();
 
 const $qa=id=>document.getElementById(id);
