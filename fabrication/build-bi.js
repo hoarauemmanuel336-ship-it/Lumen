@@ -932,6 +932,53 @@ for (const sk of ['livre-html', 'diagrammes-interactifs', 'cours-html', 'parcour
     if (fs.existsSync(`${src}/${f}`)) fs.copyFileSync(`${src}/${f}`, `${OUT}/ia-moteurs/${sk}/${f}`);
 }
 
+/* ── Le parcours « La foi catholique » et ses cours ──
+   parcours/ garde le parcours tel que la skill parcours-etude l'a produit,
+   les fichiers de cours (un par thème, faits avec cours-html) et cours.json,
+   qui relie la clé d'un sujet à son cours (fichier#ouverture-<lettre>).
+   Le fichier du parcours reste intact : c'est ici que chaque sujet qui a son
+   cours reçoit le bouton « Ouvrir le cours », sur la carte même, sous les
+   états, pour qu'il se voie sans déplier le sujet (« le bouton est trop
+   loin »). Le moteur du parcours ne met pas la clé dans la page ; il affiche
+   le code thème.rang, que la fabrication calcule d'après l'ordre des thèmes
+   et des sujets du contenu, comme le moteur. */
+if (fs.existsSync('parcours/la-foi-catholique.html')) {
+  fs.mkdirSync(`${OUT}/parcours/cours`, { recursive: true });
+  for (const f of fs.readdirSync('parcours/cours')) fs.copyFileSync(`parcours/cours/${f}`, `${OUT}/parcours/cours/${f}`);
+  const liens = JSON.parse(fs.readFileSync('parcours/cours.json', 'utf8'));
+  let ph = fs.readFileSync('parcours/la-foi-catholique.html', 'utf8');
+  const parCode = {};
+  let num = 0;
+  for (const th of ph.match(/<theme\b[\s\S]*?<\/theme>/g) || []) {
+    num++;
+    (th.match(/<sujet\b[^>]*\bcle="[^"]+"/g) || []).forEach((s, i) => {
+      const cle = s.match(/cle="([^"]+)"/)[1];
+      if (liens[cle]) parCode[String(num).padStart(2, '0') + '.' + (i + 1)] = liens[cle];
+    });
+  }
+  const absents = Object.keys(liens).length - Object.keys(parCode).length;
+  if (absents) throw new Error(`parcours : ${absents} sujet(s) de cours.json introuvable(s) dans le parcours`);
+  for (const u of Object.values(parCode))
+    if (!fs.existsSync('parcours/cours/' + u.split('#')[0])) throw new Error('parcours : cours absent, ' + u);
+  const boutons = '<style>.lv-droite{display:flex;flex-direction:column;align-items:stretch;gap:8px;flex-shrink:0}'
+    + '.lv-cours{display:block;text-align:center;text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent;'
+    + 'font-family:var(--fm);font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;line-height:1.2;padding:6px 8px;'
+    + 'color:var(--a);box-shadow:inset 0 0 0 .5px var(--a);transition:background .25s,color .25s}'
+    + '@media (hover:hover) and (pointer:fine){.lv-cours:hover{background:var(--a);color:#000}}'
+    + '@media (max-width:640px){.lv-droite{width:100%}.lv-cours{height:44px;line-height:44px;padding:0 8px}}</style>'
+    + '<script>(function(){var L=' + JSON.stringify(parCode) + ';'
+    + 'function pose(){document.querySelectorAll(".cw").forEach(function(cw){'
+    + 'var c=cw.querySelector(".ct-t .code"),ch=cw.querySelector(".ch"),sel=cw.querySelector(".sel");'
+    + 'if(!c||!ch||!sel||ch.querySelector(".lv-cours"))return;var u=L[c.textContent.trim()];if(!u)return;'
+    + 'var d=document.createElement("div");d.className="lv-droite";var a=document.createElement("a");'
+    + 'a.className="lv-cours";a.href="cours/"+u;a.textContent="Ouvrir le cours \\u2192";'
+    + 'ch.insertBefore(d,sel);d.appendChild(sel);d.appendChild(a)})}'
+    + 'if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){setTimeout(pose,0)});else setTimeout(pose,0)})();</scr' + 'ipt>';
+  ph = injecteAvant(ph, '</body>', boutons);
+  fs.writeFileSync(`${OUT}/parcours/la-foi-catholique.html`, ph);
+  console.log(`Parcours : ${Object.keys(parCode).length} sujets reliés à leur cours`);
+}
+
 // ── La Sainte Bible : page de lecture, puis données par livre des deux traductions ──
 if (fs.existsSync(PAGES + 'bible.html')) {
   let bh = fs.readFileSync(PAGES + 'bible.html', 'utf8');

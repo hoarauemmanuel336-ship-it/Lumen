@@ -25,6 +25,7 @@ Les six pages du site :
 | `habillage/` | L'apparence : `lumen-commun.css` (le socle), `commun.css` (ce qui vaut pour toutes les pages, fenêtres et menus compris), puis une feuille par page. |
 | `commun/` | Le fonctionnement partagé entre plusieurs pages (fenêtres et menus, rangement en catégories, éditeur des commentaires, choix d'un verset, IA, versets cités, contrôle qualité, question à l'IA, ménage des anciennes copies publiques). La fabrication pose dans chaque page les familles dont elle a besoin. |
 | `contenu/` | Les deux Bibles (`bible.json` pour la Chérubin, `bible-seraphin.json` pour la Séraphin), la bibliothèque de départ de Mémoriser, les réglages d'apparence. |
+| `parcours/` | Le parcours d'étude « La foi catholique » (fichier de la skill parcours-etude, laissé intact), ses cours (un fichier par thème, skill cours-html) et `cours.json`, qui relie chaque sujet à son cours ; la fabrication les sert sous `/parcours/` et pose dans chaque sujet relié le bouton « Ouvrir le cours ». |
 | `racine/` | Les fichiers servis tels quels à la racine du site : panneau de la Bible ouvert depuis les autres pages, service workers (hors ligne), manifestes, icônes, polices. |
 | `fabrication/` | Ce qui construit le site : `build-bi.js` assemble les pages, `publication.js` allège et contrôle le résultat. |
 | `netlify/edge-functions/` | Le serveur : `porte.js` (le mot de passe du site) et `ia.js` (le seul passage vers l'API Claude). |
