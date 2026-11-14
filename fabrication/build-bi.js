@@ -673,19 +673,18 @@ window.LUMEN={base:${JSON.stringify(base)},lang:${JSON.stringify(lang)},empty:${
 
 /* ---- vues ---- */
 function mainAccueil() {
-  /* Accueil (Emmanuel : « sur la page d'accueil, garde juste la croix ») :
-     la croix seule, au centre de la place libre. Le menu du haut et la
-     barre du bas mènent aux autres pages. */
-  return `<style>
-    .hero.hero-seule{display:flex;align-items:center;justify-content:center;padding:0;min-height:calc(100vh - 300px);min-height:calc(100svh - 300px)}
-    @media(max-width:720px){.hero.hero-seule{min-height:calc(100svh - 330px)}}
-  </style>
-  <div class="vue">
+  /* Accueil : la croix, puis « tout ce qui rythme la vie de l'Église »
+     (choix d'Emmanuel), selon le calendrier de France. Le contenu est
+     écrit par pages/accueil.js, d'après /liturgie/ et /api/liturgie. */
+  const js = fs.readFileSync(PAGES + 'accueil.js', 'utf8');
+  return `<div class="vue">
     <h1 class="titre-cache">Lumen Veritatis</h1>
-    <section class="hero hero-seule">
+    <section class="hero hero-lit">
       <div class="croix" aria-hidden="true"></div>
     </section>
-  </div>`;
+    <div class="lit" id="lit" aria-live="polite"></div>
+  </div>
+  <script>${js}</script>`;
 }
 
 function main404() {
@@ -767,6 +766,12 @@ ecrire('404.html', page({
   lang: 'fr', title: UI.fr.t_404, description: UI.fr.notfound_text,
   base: '/', main: main404()
 }));
+
+// le calendrier liturgique de France, une année par fichier, lu par l'accueil
+if (fs.existsSync(CONTENU + 'liturgie')) {
+  fs.mkdirSync(`${OUT}/liturgie`, { recursive: true });
+  for (const f of fs.readdirSync(CONTENU + 'liturgie')) fs.copyFileSync(CONTENU + `liturgie/${f}`, `${OUT}/liturgie/${f}`);
+}
 
 // robots.txt
 /* Site privé : aucun moteur de recherche n'entre, et il n'y a pas de plan du site. */

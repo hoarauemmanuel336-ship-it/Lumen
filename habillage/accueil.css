@@ -14,3 +14,67 @@ html body .quatre .q-lien{
   background:var(--h-or);color:#000;font-family:var(--h-ui);font-size:14px;font-weight:600;letter-spacing:.01em;text-transform:none;
 }
 html body .quatre .q-lien:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000}
+
+/* ── la vie de l'Église, sous la croix ──
+   Une colonne de lecture, des blocs séparés par des filets, sans cadre :
+   le langage des rangées d'Articles. Les couleurs liturgiques sont aussi
+   vives que celles des skills d'Emmanuel (« elles doivent être aussi vives
+   que mes skills ») : c'est la seule exception à la règle des deux couleurs
+   du site, et elle vaut pour ces pastilles et la frise de l'année. */
+html body{--lit-V:#2ee59d;--lit-P:#b46bff;--lit-B:#ffffff;--lit-R:#ff3b5c;--lit-O:#ff5bd6;--lit-N:#8a8a8a}
+html body .hero.hero-lit{padding:72px 0 40px;min-height:0}
+html body .hero.hero-lit .croix{width:52px;height:96px}
+html body .lit{max-width:720px;margin:0 auto 24px;font-family:var(--h-ui)}
+html body .lit-tete{text-align:center;padding:0 0 36px;border-bottom:1px solid var(--h-l1)}
+html body .lit-date{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--h-t3);margin:0 0 14px}
+html body .lit-fete{font-family:var(--h-titre);font-weight:400;font-size:38px;line-height:1.12;color:var(--h-t1);margin:0 auto 16px;max-width:620px;text-wrap:balance}
+html body .lit-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;font-size:16px;color:var(--h-t2);margin:0}
+html body .lit-meta .lit-m-c{display:inline-flex;align-items:center;gap:8px}
+html body .lit-meta sup,html body .lit-val sup{font-size:.62em;line-height:0}
+html body .lit-aussi{font-size:15.5px;color:var(--h-t3);margin:10px 0 0;line-height:1.5}
+html body .lit-aussi .lit-coul{margin-right:8px;vertical-align:1px}
+html body .lit-aussi-r{color:var(--h-t2)}
+html body .lit-coul{display:inline-block;width:9px;height:9px;flex:none;background:var(--lit-B)}
+html body .lit-c-V{background:var(--lit-V)}html body .lit-c-P{background:var(--lit-P)}html body .lit-c-B{background:var(--lit-B)}
+html body .lit-c-R{background:var(--lit-R)}html body .lit-c-O{background:var(--lit-O)}html body .lit-c-N{background:var(--lit-N)}
+
+html body .lit-bloc{display:grid;grid-template-columns:190px 1fr;gap:20px;padding:26px 0;border-bottom:1px solid var(--h-l1)}
+html body .lit-titre{font-family:var(--h-ui);font-weight:500;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--h-or);margin:3px 0 0;line-height:1.5}
+html body .lit-corps{min-width:0;font-size:17px;line-height:1.5;color:var(--h-t2)}
+html body .lit-ligne{display:flex;align-items:baseline;gap:16px;padding:3px 0}
+html body .lit-mot{flex:0 0 150px;color:var(--h-t3);font-size:15.5px}
+html body .lit-val{color:var(--h-t1)}
+html body .lit-ref{background:none;border:0;padding:0;margin:0;font:inherit;color:var(--h-t1);text-align:left;cursor:pointer;border-bottom:1px solid var(--h-l2);transition:border-color .25s,color .25s}
+html body .lit-ref:hover,html body .lit-ref:focus-visible{border-color:var(--h-or);color:#fff;outline:none}
+html body .lit-pt{margin:0;padding:3px 0;color:var(--h-t1)}
+html body .lit-doux{margin:0;color:var(--h-t3);font-style:italic}
+
+html body .lit-frise{margin:18px 0 4px}
+html body .lit-bande{position:relative;height:6px;background:var(--h-l1)}
+html body .lit-seg{position:absolute;top:0;bottom:0}
+html body .lit-seg+.lit-seg{box-shadow:-1px 0 0 #000}
+html body .lit-ici{position:absolute;top:-6px;bottom:-6px;width:2px;margin-left:-1px;background:#fff}
+html body .lit-noms{position:relative;height:22px;margin-top:6px;font-size:13px;color:var(--h-t3)}
+html body .lit-noms span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+html body .lit-noms b{font-weight:inherit}html body .lit-noms .lit-n-s{display:none}
+html body .lit-bornes{display:flex;justify-content:space-between;font-size:12.5px;letter-spacing:.04em;color:var(--h-t4)}
+
+html body .lit-av{display:grid;grid-template-columns:9px 92px 1fr auto;align-items:baseline;gap:14px;padding:5px 0}
+html body .lit-av .lit-coul{align-self:center}
+html body .lit-av-d{color:var(--h-t3);font-size:15.5px}
+html body .lit-av-n{color:var(--h-t1)}
+html body .lit-av-q{color:var(--h-t3);font-size:15px;white-space:nowrap}
+
+@media(max-width:720px){
+  html body .hero.hero-lit{padding:48px 0 28px}
+  html body .lit-fete{font-size:30px}
+  html body .lit-bloc{grid-template-columns:1fr;gap:12px;padding:22px 0}
+  html body .lit-mot{flex-basis:118px}
+  html body .lit-av{grid-template-columns:9px 1fr auto;gap:4px 12px}
+  html body .lit-av-d{grid-column:2;grid-row:1}
+  html body .lit-av-q{grid-column:3;grid-row:1}
+  html body .lit-av-n{grid-column:2/4;grid-row:2;line-height:1.35}
+  html body .lit-noms{font-size:12px}
+  html body .lit-noms .lit-n-court,html body .lit-noms .lit-n-l{display:none}
+  html body .lit-noms .lit-n-s{display:inline}
+}
