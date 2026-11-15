@@ -2,7 +2,7 @@
    La page s'ouvre directement sur le parcours, en plein écran, sans la
    barre du site, et se lit « tout pareil » qu'une ressource ouverte dans
    Ressources : même cadre isolé (commun/cadre.js), même bandeau crème en
-   bas à gauche (retour, Bible, question à l'IA), même mémoire de lecture.
+   bas à gauche (retour, Bible, question à l'IA), replié derrière trois points, même mémoire de lecture.
    Le parcours vient du site (/parcours/), chaque cours du coffre R2
    (/parcours/cours/, voir netlify/edge-functions/fichiers.js). « Ouvrir le
    cours », sur chaque thème du parcours, ouvre le fichier de cours du
@@ -13,6 +13,17 @@
   const PARCOURS='/parcours/la-foi-catholique.html';
   const acts=document.getElementById('et-acts');
   if(!acts)return;
+  /* ── LE CERCLE DE CHARGEMENT ──
+     Le cercle crème du site tourne au milieu de l'écran noir tant que le
+     parcours ou le cours n'est pas dessiné : à l'arrivée sur la page, et à
+     chaque cours ouvert. Il s'efface en fondu quand le cadre a fini de
+     construire sa page. */
+  const attente=document.getElementById('et-charge');
+  const attend=()=>{ if(attente)attente.classList.remove('fini'); };
+  const finAttente=o=>{
+    if(!attente||OUVERT!==o)return;
+    requestAnimationFrame(()=>requestAnimationFrame(()=>setTimeout(()=>{ if(OUVERT===o)attente.classList.add('fini'); },120)));
+  };
 
   /* ── LA MÉMOIRE DE LECTURE ──
      Comme dans Ressources : pour le parcours et pour chaque fichier de
@@ -158,6 +169,7 @@
     if(OUVERT&&OUVERT.id===o.id)return;
     ferme();
     OUVERT=o;
+    attend();
     const pret=rapatrie([o.id,'_reglages']);
     let code='';
     try{ code=await charge(o.adresse); }
@@ -189,8 +201,9 @@
       try{f.contentWindow.postMessage({lvRevoir:Math.max(0,Math.round(pi.y||0)),lvRevoirInfo:pi},'*');}catch(_){}
       o.rendu=true;
     });
-    f.addEventListener('load',()=>{rends();setTimeout(rends,300);setTimeout(rends,1000);});
-    acts.parentNode.insertBefore(f,acts);
+    f.addEventListener('load',()=>{finAttente(o);rends();setTimeout(rends,300);setTimeout(rends,1000);});
+    /* le cadre se glisse sous le cercle de chargement, qui le couvre jusqu'au bout */
+    acts.parentNode.insertBefore(f,attente||acts);
     f.srcdoc=pageCadre(poseProgression(code,litJson('prog',o.id)));
   }
   function envoieEtat(o){
@@ -259,6 +272,8 @@
     if(typeof qaReprend!=='function'||!OUVERT)return;
     qaReprend({texte:'',contexte:'',source:OUVERT.titre||'',espece:enCours()?'un cours':'un parcours',ref:null},OUVERT.code||'');
   };
+  /* le bandeau se tient replié derrière trois points (commun/cadre.js) */
+  lvRepliBandeau(acts);
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'&&!document.querySelector('#bp-pan.on')&&!document.documentElement.classList.contains('qa-ouvert'))retour();
   });

@@ -1,7 +1,7 @@
 {
  "01-la-revelation.html": {
-  "taille": 3301627,
-  "empreinte": "2792c20d61c20d1825f1645324d1a46da66d978866ef92565952551b49cf13d0",
+  "taille": 3301562,
+  "empreinte": "03e874c6bd7fe2ed99152e939efe89181a22e0d229ea36c1a673598dff8fc0e7",
   "cours": {
    "l": "Qu’est-ce que la Révélation",
    "c": "La connaissance naturelle de Dieu et ses limites",
@@ -134,8 +134,8 @@
   }
  },
  "15-les-livres-historiques.html": {
-  "taille": 6427490,
-  "empreinte": "7e515681a932471cc4405405ecd4a0f37a3e85793c8acc3ad83cde04a1c7a261",
+  "taille": 6427407,
+  "empreinte": "f02629d68efebcf3cae8f1d6663425c96d7816dfc137fb99e8fbfdc944d4f9f5",
   "cours": {
    "l": "Les livres historiques, un ensemble",
    "j": "Le livre de Josué",
@@ -153,8 +153,8 @@
   }
  },
  "16-les-livres-sapientiaux-et-poetiques.html": {
-  "taille": 4939549,
-  "empreinte": "b32e7204e424a2fb5c6f3b533dbc517e4077a343bd98e54ef301ce14acc1c59b",
+  "taille": 4939483,
+  "empreinte": "51ac3628cc2e820d29d6259128939efd3ed789eb46799d6e46546b391f2ef0b5",
   "cours": {
    "l": "La sagesse biblique",
    "j": "Le livre de Job",
@@ -168,8 +168,8 @@
   }
  },
  "17-les-prophetes.html": {
-  "taille": 8539934,
-  "empreinte": "1730045c65a5718b1012ce5963b609aeb549065c4aeab2ffcda3b21765318e3c",
+  "taille": 8539868,
+  "empreinte": "11c42e75f4d7bfe4bd98f043f9faa0d614a2a478ab53d02c21a4cd8d43f6da69",
   "cours": {
    "l": "Le prophétisme biblique",
    "i": "Isaïe 1-39 : le prophète de Jérusalem",
@@ -196,8 +196,8 @@
   }
  },
  "18-les-evangiles.html": {
-  "taille": 4919075,
-  "empreinte": "ec336590502e19157e1a1a26dcc5ba1f547d3e3e67a12717b4270ee9c19cb630",
+  "taille": 4919009,
+  "empreinte": "6c69e9c22e84d2d666b9e4b5625e89d740f9a50894772455bdf97d509ddec896",
   "cours": {
    "l": "La formation des Évangiles",
    "q": "La question synoptique",
@@ -209,8 +209,8 @@
   }
  },
  "19-les-actes-et-saint-paul.html": {
-  "taille": 6761392,
-  "empreinte": "7e0ad0c38c154a2bd8ed1e78cd785cee217847f41d227c40bcb5189592ee1bc8",
+  "taille": 6761255,
+  "empreinte": "791e41f2a439fa9fc71d451905af6d38fe9429be4ba608ee6329656ae9f2ec6a",
   "cours": {
    "l": "Les Actes des Apôtres",
    "v": "La vie et les voyages de saint Paul",
@@ -228,8 +228,8 @@
   }
  },
  "20-hebreux-les-epitres-catholiques-et-l-apocalypse.html": {
-  "taille": 4358366,
-  "empreinte": "6611deaf18917aa82111eace45806ad18b53f8d5fd258e6f45956112526eebce",
+  "taille": 4358301,
+  "empreinte": "598870f2b58aa9d72f70f32e9b8bf407979b72cffb7315d38d0366496560b97e",
   "cours": {
    "l": "L’épître aux Hébreux",
    "e": "L’épître de Jacques",
@@ -241,8 +241,8 @@
   }
  },
  "21-les-grands-themes-de-l-ecriture.html": {
-  "taille": 4603826,
-  "empreinte": "7dcd20ef9a5334a42865564b0055eb7465fe0b19526da05daf3580c23202468e",
+  "taille": 4603758,
+  "empreinte": "f41b667066d018085636f526bafbf5b66f69c121a35da19e7e8850693480a6c2",
   "cours": {
    "l": "Les alliances",
    "a": "Les annonces messianiques",
@@ -253,6 +253,41 @@
    "p": "Le peuple de Dieu et l’élection",
    "d": "La Parole de Dieu à travers l’Écriture",
    "u": "L’unité des deux Testaments"
+  }
+ },
+ "75-la-mort-et-le-jugement-particulier.html": {
+  "taille": 2925560,
+  "empreinte": "3b0bc31eb386601db2b08bf92ce64c6879f2def43bbd99996e14a74252ef97bd",
+  "cours": {
+   "l": "L’eschatologie, science des fins dernières",
+   "m": "La mort",
+   "a": "L’âme séparée et l’état intermédiaire",
+   "j": "Le jugement particulier",
+   "p": "Se préparer à la mort"
+  }
+ },
+ "76-le-ciel-le-purgatoire-et-l-enfer.html": {
+  "taille": 2669206,
+  "empreinte": "ef6bfeadfa5f9f5a2f87a73c6952f1a033eb777ed6845d09d0b7e2f8377c9307",
+  "cours": {
+   "l": "Le ciel",
+   "p": "Le purgatoire",
+   "e": "L’enfer",
+   "i": "Les limbes"
+  }
+ },
+ "77-la-fin-des-temps.html": {
+  "taille": 3706921,
+  "empreinte": "e17e96cdb9ff9766841d55b3089fd9177a88560a6cd2981395434f73185909e7",
+  "cours": {
+   "l": "Les signes de la fin des temps",
+   "m": "Le millénarisme",
+   "p": "La parousie",
+   "r": "La résurrection de la chair",
+   "c": "Les corps glorieux",
+   "j": "Le jugement dernier",
+   "t": "Les cieux nouveaux et la terre nouvelle",
+   "e": "L’espérance chrétienne"
   }
  }
 }

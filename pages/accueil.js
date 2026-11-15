@@ -127,19 +127,27 @@
       cur.n++;
     }
     var pos = Math.round((d - b.deb) / 864e5);
-    var h = '<div class="lit-frise" role="img" aria-label="L’année liturgique, du premier dimanche de l’Avent au suivant">';
-    h += '<div class="lit-bande">';
+    var h = '<div class="lit-frise">';
+    h += '<div class="lit-bande" role="img" aria-label="L’année liturgique, du premier dimanche de l’Avent au suivant">';
     segs.forEach(function (s) {
       h += '<span class="lit-seg lit-c-' + COUL_TEMPS[s.s] + '" style="left:' + (s.i / total * 100) + '%;width:' + (s.n / total * 100) + '%"></span>';
     });
-    h += '<span class="lit-ici" style="left:' + ((pos + .5) / total * 100) + '%"></span></div><div class="lit-noms">';
-    var court = { AV: 'Avent', NO: 'Noël', TO: 'Temps ordinaire', CA: 'Carême', TR: '', PA: 'Temps pascal' };
+    h += '<span class="lit-ici" style="left:' + ((pos + .5) / total * 100) + '%"></span></div>';
+    /* Sous la frise, la date où chaque temps commence, posée à la jonction
+       des couleurs par un mince trait ; les dates alternent sur deux
+       hauteurs pour ne pas se chevaucher. Le Triduum, trop court, n'a pas
+       la sienne : la légende le nomme. */
+    var jm = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'short' }), rang = 0;
+    h += '<div class="lit-dates">';
     segs.forEach(function (s) {
-      var w = s.n / total * 100;
-      if (!court[s.s] || w < 6) return;
-      h += '<span' + (w < 12 ? ' class="lit-n-court"' : '') + ' style="left:' + ((s.i + s.n / 2) / total * 100) + '%">' + (w < 12 && s.s === 'TO' ? 'Ordinaire' : s.s === 'PA' ? '<b class="lit-n-l">Temps pascal</b><b class="lit-n-s">Pâques</b>' : court[s.s]) + '</span>';
+      if (s.s === 'TR') return;
+      h += '<span class="lit-d' + (rang++ % 2 ? ' lit-d2' : '') + '" style="left:' + (s.i / total * 100) + '%">' + esc(jm.format(plus(b.deb, s.i))) + '</span>';
     });
-    h += '</div><div class="lit-bornes"><span>' + esc(fmtCourt.format(b.deb)) + '</span><span>' + esc(fmtCourt.format(plus(b.fin, -1))) + '</span></div></div>';
+    h += '</div>';
+    var LEGENDE = [['P', 'Avent, Carême'], ['B', 'Noël, Temps pascal'], ['V', 'Temps ordinaire'], ['R', 'Triduum pascal']];
+    h += '<ul class="lit-legende">';
+    LEGENDE.forEach(function (l) { h += '<li><span class="lit-coul lit-c-' + l[0] + '" aria-hidden="true"></span>' + l[1] + '</li>'; });
+    h += '</ul></div>';
     return h;
   }
 

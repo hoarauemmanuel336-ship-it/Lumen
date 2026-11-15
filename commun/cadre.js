@@ -230,3 +230,65 @@ function pageCadre(code){
        en fin de page, commentaires compris. */
     +'</bo'+'dy></html>';
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   LE BANDEAU REPLIÉ DERRIÈRE TROIS POINTS
+   En plein écran, dans Ressources et dans Étude, le bandeau crème (retour,
+   Bible, question à l'IA) se tient replié : seuls trois petits points
+   restent à l'écran (choix d'Emmanuel). Les toucher déroule les boutons et
+   les points s'effacent ; sans geste dans le bandeau, il se replie de
+   lui-même après quelques secondes, et les points reviennent. Le pointeur posé dessus, ou le clavier dedans, le garde ouvert.
+   Les deux mouvements sont animés par habillage/commun.css (.lv-repli).
+   ════════════════════════════════════════════════════════════════════ */
+function lvRepliBandeau(g){
+  if(!g||g._repli)return;
+  g._repli=true;
+  const ATTENTE=4000;
+  const corps=document.createElement('div');
+  corps.className='lv-repli-corps';
+  while(g.firstChild)corps.appendChild(g.firstChild);
+  const pts=document.createElement('button');
+  pts.type='button'; pts.className='res-plein-x lv-repli-pts';
+  pts.setAttribute('aria-label','Afficher les boutons'); pts.setAttribute('aria-expanded','false');
+  pts.innerHTML='<svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg>';
+  g.appendChild(pts); g.appendChild(corps);
+  g.classList.add('lv-repli');
+  /* fermé, les boutons ne se prennent pas au clavier */
+  const accessibles=o=>corps.querySelectorAll('button').forEach(b=>{if(o)b.removeAttribute('tabindex');else b.tabIndex=-1;});
+  accessibles(false);
+  /* la souris posée sur le bandeau le garde ouvert ; au doigt, :hover
+     resterait accroché après un toucher, d'où ce drapeau */
+  let minuteur=0,survol=false;
+  g.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')survol=true;});
+  const ouvert=()=>g.classList.contains('ouvert');
+  function ferme(){
+    clearTimeout(minuteur);
+    const garde=corps.contains(document.activeElement);
+    g.classList.remove('ouvert');
+    pts.setAttribute('aria-expanded','false'); pts.setAttribute('aria-label','Afficher les boutons');
+    pts.removeAttribute('tabindex');
+    accessibles(false);
+    if(garde)try{pts.focus({preventScroll:true});}catch(_){}
+  }
+  function arme(){
+    clearTimeout(minuteur);
+    minuteur=setTimeout(()=>{
+      if(survol)arme(); else ferme();
+    },ATTENTE);
+  }
+  function ouvre(){
+    const garde=document.activeElement===pts;
+    g.classList.add('ouvert');
+    pts.setAttribute('aria-expanded','true');
+    /* déroulé, les trois points s'effacent : le bandeau ne garde que ses boutons */
+    pts.tabIndex=-1;
+    accessibles(true);
+    if(garde)try{corps.querySelector('button').focus({preventScroll:true});}catch(_){}
+    arme();
+  }
+  pts.addEventListener('click',()=>{if(!ouvert())ouvre();});
+  /* tout geste dans le bandeau ouvert relance l'attente */
+  ['pointerdown','keydown','focusin'].forEach(t=>g.addEventListener(t,()=>{if(ouvert())arme();},{passive:true}));
+  g.addEventListener('pointerleave',()=>{survol=false;if(ouvert())arme();});
+  return {ouvre:ouvre,ferme:ferme};
+}

@@ -54,10 +54,14 @@ html body .lit-bande{position:relative;height:6px;background:var(--h-l1)}
 html body .lit-seg{position:absolute;top:0;bottom:0}
 html body .lit-seg+.lit-seg{box-shadow:-1px 0 0 #000}
 html body .lit-ici{position:absolute;top:-6px;bottom:-6px;width:2px;margin-left:-1px;background:#fff}
-html body .lit-noms{position:relative;height:22px;margin-top:6px;font-size:13px;color:var(--h-t3)}
-html body .lit-noms span{position:absolute;transform:translateX(-50%);white-space:nowrap}
-html body .lit-noms b{font-weight:inherit}html body .lit-noms .lit-n-s{display:none}
-html body .lit-bornes{display:flex;justify-content:space-between;font-size:12.5px;letter-spacing:.04em;color:var(--h-t4)}
+html body .lit-dates{position:relative;height:42px}
+html body .lit-d{position:absolute;top:0;padding:8px 0 0 6px;border-left:1px solid var(--h-l2);font-size:12.5px;line-height:1;letter-spacing:.02em;color:var(--h-t3);white-space:nowrap}
+/* la date du haut passe devant le trait de celle du bas, qui file derrière elle */
+html body .lit-d:not(.lit-d2){z-index:1;padding-right:5px;background:#000}
+html body .lit-d2{padding-top:26px}
+/* la légende : une couleur par entrée, les temps qu'elle couvre à sa suite */
+html body .lit-legende{display:flex;flex-wrap:wrap;gap:6px 22px;margin:10px 0 0;padding:0;list-style:none;font-size:14px;color:var(--h-t3)}
+html body .lit-legende li{display:flex;align-items:center;gap:8px;white-space:nowrap}
 
 html body .lit-av{display:grid;grid-template-columns:9px 92px 1fr auto;align-items:baseline;gap:14px;padding:5px 0}
 html body .lit-av .lit-coul{align-self:center}
@@ -74,7 +78,6 @@ html body .lit-av-q{color:var(--h-t3);font-size:15px;white-space:nowrap}
   html body .lit-av-d{grid-column:2;grid-row:1}
   html body .lit-av-q{grid-column:3;grid-row:1}
   html body .lit-av-n{grid-column:2/4;grid-row:2;line-height:1.35}
-  html body .lit-noms{font-size:12px}
-  html body .lit-noms .lit-n-court,html body .lit-noms .lit-n-l{display:none}
-  html body .lit-noms .lit-n-s{display:inline}
+  html body .lit-legende{gap:6px 18px;font-size:13.5px}
+  html body .lit-d{font-size:12px;padding-left:5px}
 }

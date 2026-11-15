@@ -732,6 +732,7 @@ if (fs.existsSync('parcours/la-foi-catholique.html')) {
     lang: 'fr', title: 'Étude · Lumen Veritatis', description: 'Parcours d’étude et cours.',
     base: '/', hab: 'etude', familles: 'etude.html',
     main: `<h1 class="titre-cache">Étude</h1>
+  <div class="et-charge" id="et-charge"><span class="lv-roue" role="status" aria-label="Chargement"></span></div>
   <div class="res-plein-acts" id="et-acts">
     <button type="button" id="et-retour" class="res-plein-x" aria-label="Revenir">${svg('<path d="M19.5 12h-15M10.5 6l-6 6 6 6"/>')}</button>
     <button type="button" id="et-bible" class="res-plein-x res-plein-bible" aria-label="Ouvrir la Bible">${svg('<path d="M12 6.5C10.3 5.2 7.8 4.6 4 4.6v13.2c3.8 0 6.3.6 8 1.9 1.7-1.3 4.2-1.9 8-1.9V4.6c-3.8 0-6.3.6-8 1.9z"/><path d="M12 6.5v13.2"/>')}</button>

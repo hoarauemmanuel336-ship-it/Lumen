@@ -1899,6 +1899,8 @@ function ouvrePlein(a){
   ia.onclick=()=>{ if(typeof qaReprend==='function')qaReprend({texte:'',contexte:'',source:a.titre||'',espece:'une ressource',ref:{col:'res_code',id:a.id}},typeof a.code==='string'?a.code:''); };
   g.appendChild(x); g.appendChild(bi); g.appendChild(ia);
   document.body.appendChild(f); document.body.appendChild(g);
+  /* le bandeau se tient replié derrière trois points (commun/cadre.js) */
+  lvRepliBandeau(g);
   document.body.classList.add('plein');
   PLEIN={f:f,x:g};
   poseCadre(f,a.code);

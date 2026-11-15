@@ -4,7 +4,8 @@
    Le parcours prend l'écran entier, sans barre, exactement comme une
    ressource ouverte dans Ressources : mêmes noms de classes, mêmes règles
    (le bouton crème lui-même vient de commun.css). Le bandeau du retour, de
-   la Bible et de l'IA flotte en bas à gauche ; le panneau de la Bible passe
+   la Bible et de l'IA flotte en bas à gauche, replié derrière trois points
+   (commun.css) ; le panneau de la Bible passe
    au-dessus du plein écran.
    ════════════════════════════════════════════════════════════════════ */
 html body.plein{overflow:hidden}
@@ -22,6 +23,11 @@ html:root body .res-plein-acts .res-plein-x{position:static;box-shadow:none;bord
 html:root body .res-plein-acts .res-plein-x:first-child{padding:10px 14px 10px 20px}
 html:root body .res-plein-acts .res-plein-bible{padding:10px 16px;position:relative}
 html:root body .res-plein-acts .res-plein-bible::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:rgba(0,0,0,.28)}
+/* le cercle de chargement couvre le cadre tant qu'il se construit, sous le
+   bandeau, qui reste à portée (pages/etude.js) */
+html body .et-charge{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:#000;opacity:1;visibility:visible;transition:opacity .35s ease,visibility 0s}
+html body .et-charge.fini{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .45s ease,visibility 0s .45s}
+html body .et-charge .lv-roue{width:28px;height:28px;animation:qcTourne .8s linear infinite,hVoile .4s ease .15s both}
 html body.plein #bp-voile{z-index:300}
 html body.plein #bp-pan{z-index:310}
 /* seule la moitié survolée s'éclaire */

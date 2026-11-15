@@ -615,6 +615,180 @@
      "note": "Jésus accomplit la Loi et les Prophètes : l’Ancien Testament garde sa valeur et trouve en lui son sens plein. Saint Augustin le dit d’une formule que reprend Dei Verbum 16 : le Nouveau Testament est caché dans l’Ancien, et l’Ancien se dévoile dans le Nouveau."
     }
    ]
+  },
+  {
+   "id": "base-mort",
+   "name": {
+    "fr": "La mort et le jugement particulier"
+   },
+   "bloc": "Les fins dernières",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-siracide-7-36",
+     "fr": {
+      "ref": "Siracide 7:36",
+      "text": "Dans tout ce que tu fais, souviens-toi de ta fin, et jamais tu ne pécheras."
+     },
+     "note": "Le grec *eschata*, rendu ici par « fin », signifie « les choses dernières » et a donné le mot « eschatologie ». La Vulgate le traduit par *novissima* : de là vient la tradition des quatre fins dernières, la mort, le jugement, l’enfer et le paradis. Se souvenir de sa fin, c’est vivre chaque choix en sachant où la vie conduit."
+    },
+    {
+     "id": "base-romains-6-23",
+     "fr": {
+      "ref": "Romains 6:23",
+      "text": "Car le salaire du péché, c'est la mort ; mais le don gratuit de Dieu, c'est la vie éternelle dans le Christ Jésus notre Seigneur."
+     },
+     "note": "La mort est entrée dans le monde par le péché (Catéchisme 1008), et Paul l’appelle son « salaire ». La vie éternelle, en face, se reçoit comme un don gratuit de Dieu, dans le Christ."
+    },
+    {
+     "id": "base-hebreux-9-27",
+     "fr": {
+      "ref": "Hébreux 9:27",
+      "text": "Et comme le sort des hommes est de mourir une seule fois, après quoi vient le jugement,"
+     },
+     "note": "On ne meurt qu’une fois, et le jugement suit. La vie terrestre est unique, il n’y a pas de réincarnation, et le sort éternel de chacun se décide pendant cette vie (Catéchisme 1013). Ce jugement qui suit la mort est le jugement particulier (Catéchisme 1022)."
+    },
+    {
+     "id": "base-jean-11-25-26",
+     "fr": {
+      "ref": "Jean 11:25-26",
+      "text": "Jésus lui dit : « Je suis la résurrection et la vie. Celui qui croit en moi, même s'il meurt, vivra ; et quiconque vit et croit en moi ne mourra jamais. Crois-tu cela ? »"
+     },
+     "note": "Jésus le dit à Marthe, juste avant de rappeler Lazare à la vie. Celui qui croit en lui passe encore par la mort du corps, mais il vit déjà d’une vie que la mort n’interrompt pas, et il ressuscitera au dernier jour (Catéchisme 994). L’Église propose ce passage parmi les évangiles des funérailles."
+    },
+    {
+     "id": "base-philippiens-1-21",
+     "fr": {
+      "ref": "Philippiens 1:21",
+      "text": "Car pour moi, vivre c'est le Christ, et mourir est un gain."
+     },
+     "note": "Paul écrit de prison sans savoir s’il va vivre ou mourir. Pour qui vit du Christ, mourir devient un gain, puisque la mort mène à être avec lui (Philippiens 1:23). Le Catéchisme cite ce verset quand il parle du sens chrétien de la mort (Catéchisme 1010)."
+    },
+    {
+     "id": "base-luc-23-43",
+     "fr": {
+      "ref": "Luc 23:43",
+      "text": "Jésus lui répondit : « Amen, je te le dis : aujourd'hui, tu seras avec moi dans le paradis. »"
+     },
+     "note": "Sur la croix, Jésus fait cette promesse au larron qui se repent. « Aujourd’hui » : le sort de chacun se fixe dès la mort, sans attendre la fin des temps, et le paradis est la vie avec le Christ. Le larron montre aussi qu’on peut encore se tourner vers lui à la dernière heure."
+    }
+   ]
+  },
+  {
+   "id": "base-au-dela",
+   "name": {
+    "fr": "Le ciel, le purgatoire et l’enfer"
+   },
+   "bloc": "Les fins dernières",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-1-corinthiens-13-12",
+     "fr": {
+      "ref": "1 Corinthiens 13:12",
+      "text": "À présent, nous voyons dans un miroir, de façon confuse ; mais alors, ce sera face à face. À présent, ma connaissance est partielle ; mais alors, je connaîtrai comme je suis connu."
+     },
+     "note": "Ici-bas, on connaît Dieu par la foi, comme dans un miroir ; au ciel, on le verra face à face. C’est la vision béatifique, que l’Église a définie comme immédiate, sans aucune créature entre Dieu et l’âme (Benedictus Deus, 1336 ; Catéchisme 1023)."
+    },
+    {
+     "id": "base-1-jean-3-2",
+     "fr": {
+      "ref": "1 Jean 3:2",
+      "text": "Bien-aimés, dès maintenant nous sommes enfants de Dieu, et ce que nous serons n'a pas encore été manifesté. Nous savons que, lors de cette manifestation, nous lui serons semblables, car nous le verrons tel qu'il est."
+     },
+     "note": "Le ciel tient dans cette promesse : voir Dieu tel qu’il est et lui devenir semblable. Les baptisés sont déjà enfants de Dieu, et la vision achèvera ce que la grâce a commencé en eux (Catéchisme 1023)."
+    },
+    {
+     "id": "base-1-corinthiens-2-9",
+     "fr": {
+      "ref": "1 Corinthiens 2:9",
+      "text": "Mais, comme il est écrit : Ce que l'œil n'a pas vu, ce que l'oreille n'a pas entendu, ce qui n'est pas monté au cœur de l'homme, voilà ce que Dieu a préparé pour ceux qui l'aiment."
+     },
+     "note": "Paul reprend ici librement une parole d’Isaïe. Le bonheur du ciel dépasse ce que l’homme peut imaginer : l’Écriture en parle par des images, les noces, la maison du Père, la Jérusalem céleste, et aucune ne l’épuise (Catéchisme 1027)."
+    },
+    {
+     "id": "base-2-maccabees-12-46",
+     "fr": {
+      "ref": "2 Maccabées 12:46",
+      "text": "Voilà pourquoi il fit offrir ce sacrifice d'expiation pour les morts, afin qu'ils soient délivrés de leur péché."
+     },
+     "note": "Judas Maccabée fait offrir un sacrifice pour des soldats morts, afin qu’ils soient délivrés de leur péché. L’Église s’appuie sur ce passage pour la prière pour les défunts et la doctrine du purgatoire (Catéchisme 1032). Le livre est deutérocanonique : il fait partie de la Bible catholique, sans figurer dans la Bible hébraïque."
+    },
+    {
+     "id": "base-matthieu-25-46",
+     "fr": {
+      "ref": "Matthieu 25:46",
+      "text": "Et ils s'en iront, ceux-ci au châtiment éternel, et les justes à la vie éternelle. »"
+     },
+     "note": "La sentence qui conclut le jugement dernier chez Matthieu. Le même adjectif grec, *aiônios*, rendu par « éternel » et « éternelle », qualifie le châtiment et la vie : l’Église enseigne que l’enfer existe et qu’il est éternel (Catéchisme 1035). Tout le passage montre ce qui en exclut, le refus d’aimer le prochain."
+    }
+   ]
+  },
+  {
+   "id": "base-fin-des-temps",
+   "name": {
+    "fr": "La fin des temps"
+   },
+   "bloc": "Les fins dernières",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-actes-des-apotres-1-11",
+     "fr": {
+      "ref": "Actes des Apôtres 1:11",
+      "text": "et leur dirent : « Hommes de Galilée, pourquoi restez-vous là à regarder le ciel ? Ce Jésus qui a été enlevé au ciel du milieu de vous reviendra de la même manière que vous l'avez vu s'en aller vers le ciel. »"
+     },
+     "note": "À l’Ascension, deux anges annoncent aux disciples que Jésus reviendra, lui-même, dans la gloire. L’Église le professe dans le Credo : « Il reviendra dans la gloire, pour juger les vivants et les morts » (Catéchisme 668-682)."
+    },
+    {
+     "id": "base-matthieu-24-36",
+     "fr": {
+      "ref": "Matthieu 24:36",
+      "text": "Quant au jour et à l'heure, personne ne les connaît, pas même les anges des cieux, ni le Fils ; personne, sinon le Père seul."
+     },
+     "note": "Personne ne connaît le jour du retour du Christ : cette parole écarte d’avance tous les calculs de date. Quand il dit que le Fils lui-même l’ignore, Jésus parle de ce qu’il n’a pas mission de révéler (Catéchisme 474)."
+    },
+    {
+     "id": "base-jean-5-28-29",
+     "fr": {
+      "ref": "Jean 5:28-29",
+      "text": "Ne vous en étonnez pas : l'heure vient où tous ceux qui sont dans les tombeaux entendront sa voix et sortiront : ceux qui auront fait le bien, pour une résurrection de vie ; ceux qui auront fait le mal, pour une résurrection de jugement."
+     },
+     "note": "Au dernier jour, tous les morts ressusciteront, les justes comme les méchants (Catéchisme 998). C’est la voix du Christ qui les appellera, et chacun se relèvera pour la vie ou pour le jugement, selon ce qu’il aura fait."
+    },
+    {
+     "id": "base-philippiens-3-20-21",
+     "fr": {
+      "ref": "Philippiens 3:20-21",
+      "text": "Mais notre citoyenneté, à nous, est dans les cieux, d'où nous attendons comme Sauveur le Seigneur Jésus Christ, qui transformera notre corps de misère pour le rendre conforme à son corps de gloire, par la force qui le rend capable de tout se soumettre."
+     },
+     "note": "Le corps du Christ ressuscité est le modèle du corps des justes, qu’il rendra « conforme à son corps de gloire ». Le corps qui ressuscite est le même, transformé ; la tradition décrit ses qualités : impassibilité, clarté, agilité et subtilité."
+    },
+    {
+     "id": "base-matthieu-25-40",
+     "fr": {
+      "ref": "Matthieu 25:40",
+      "text": "Et le Roi leur répondra : Amen, je vous le dis : chaque fois que vous l'avez fait à l'un de ces plus petits de mes frères, c'est à moi que vous l'avez fait."
+     },
+     "note": "Au jugement dernier, le Roi se reconnaît dans les plus petits. Chacun sera jugé sur la charité, et le bien fait au prochain atteint le Christ lui-même (Catéchisme 1033)."
+    },
+    {
+     "id": "base-apocalypse-21-4",
+     "fr": {
+      "ref": "Apocalypse 21:4",
+      "text": "Il essuiera toute larme de leurs yeux ; la mort ne sera plus, il n'y aura plus ni deuil, ni cri, ni douleur, car le monde ancien a disparu. »"
+     },
+     "note": "L’Apocalypse montre le terme de l’histoire : Dieu demeure avec les hommes, et la mort et la douleur prennent fin. Ce qui disparaît, c’est le monde ancien, blessé par le péché ; la création elle-même est renouvelée (Catéchisme 1044)."
+    },
+    {
+     "id": "base-romains-5-5",
+     "fr": {
+      "ref": "Romains 5:5",
+      "text": "et l'espérance ne déçoit pas, parce que l'amour de Dieu a été répandu dans nos cœurs par l'Esprit Saint qui nous a été donné."
+     },
+     "note": "L’espérance chrétienne ne trompe pas, parce qu’elle s’appuie sur l’amour de Dieu déjà reçu par l’Esprit Saint. Le Catéchisme cite ce verset pour la vertu d’espérance (Catéchisme 1820)."
+    }
+   ]
   }
  ]
 }

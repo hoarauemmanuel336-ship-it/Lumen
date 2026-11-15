@@ -13,7 +13,7 @@ Le cours est la porte d'entrée d'un sujet : il fait passer le lecteur de la dé
 
 PUBLIC
 
-Le cours s'adresse en même temps au novice, qui découvre le sujet, et au lecteur confirmé, qui vient l'approfondir. Il part de ce que le novice connaît déjà : chaque terme technique reçoit sa définition à l'endroit même où il paraît, et chaque leçon s'appuie sur les précédentes. Le lecteur confirmé trouve sa part dans la précision des distinctions et dans les exercices les plus exigeants.
+Le cours s'adresse en même temps au novice, qui découvre le sujet, et au lecteur confirmé, qui vient l'approfondir. Il part de ce que le novice connaît déjà : chaque terme technique reçoit sa définition à l'endroit même où il paraît, et chaque leçon s'appuie sur les précédentes. Le lecteur confirmé trouve sa part dans la précision des distinctions et dans les exercices les plus exigeants. Le cours sert ces deux lecteurs par sa manière d'expliquer, et son texte parle du sujet lui-même.
 
 LE MOTEUR ET LE CONTENU
 
@@ -43,7 +43,7 @@ Un sujet vaste se compose en plusieurs cours. Quand la carte du sujet fait para�
 
 Le cours se compose de pages qui se suivent :
 
-- la page d'ouverture : la bannière, avec sa note sur la progression, puis une introduction brève qui dit ce que couvre le cours et à qui il s'adresse, comment les leçons s'enchaînent et comment chaque leçon est construite ; puis le plan du cours et le code du cours ;
+- la page d'ouverture : la bannière, avec sa note sur la progression, puis une introduction brève qui dit ce que couvre le cours, comment les leçons s'enchaînent, en nommant ce que chacune apporte, et comment chaque leçon est construite ; puis le plan du cours et le code du cours ;
 - une page par leçon ;
 - la page de bilan : des exercices qui croisent plusieurs leçons ;
 - la page de révision : les fiches de révision, puis le glossaire.
@@ -130,9 +130,9 @@ Un fichier de cours peut en accueillir d'autres. Il en réunit plusieurs dès sa
 
 Ajouter un cours à un fichier existant. L'IA retire le contenu du fichier par `--extraire`, comme le décrit LE MOTEUR ET LE CONTENU. Elle garde tel quel tout ce qu'il porte, la balise `<progression>`, les cours présents, leurs lettres et les clés de leurs affirmations, puis écrit le nouveau cours à la fin, juste avant la balise fermante `</fichier>`, et assemble le contenu ainsi complété. Le nouveau cours reçoit sa lettre et ses clés à l'assemblage, les cours déjà présents gardent toute la progression du lecteur, et le moteur met à jour de lui-même les surtitres, le plan, le sommaire et la navigation.
 
-Ce que le moteur tient pour tout le fichier. Le fichier garde une seule progression, un seul réglage de taille et un seul état de lecture. Le titre de la page et le nom du fichier prennent le sujet commun des cours réunis. Le moteur reconnaît chaque cours et bâtit pour chacun sa page d'ouverture, son plan, sa progression générale, son bilan, ses fiches, son glossaire trié et sa navigation. Chaque cours reçoit une lettre courte : le premier garde la lettre l, chaque cours ajouté prend une lettre tirée de son titre ; les leçons se numérotent de 1 dans chaque cours et chaque cours forme son propre arc de couleurs, du froid vers le chaud. La bannière de chaque ouverture porte en surtitre la place du cours dans le fichier et le nombre de ses leçons ; le plan de chaque cours mène à l'ouverture de chacun des autres ; le sommaire présente un onglet par cours, et la navigation de pages passe d'un cours au suivant sans s'arrêter.
+Ce que le moteur tient pour tout le fichier. Le fichier garde une seule progression, un seul réglage de taille et un seul état de lecture. Le titre de la page et le nom du fichier prennent le sujet commun des cours réunis. Le moteur reconnaît chaque cours et bâtit pour chacun sa page d'ouverture, son plan, sa progression générale, son bilan, ses fiches, son glossaire trié et sa navigation. Chaque cours reçoit une lettre courte : le premier garde la lettre l, chaque cours ajouté prend une lettre tirée de son titre ; les leçons se numérotent de 1 dans chaque cours et chaque cours forme son propre arc de couleurs, du froid vers le chaud. La bannière de chaque ouverture porte en surtitre la place du cours dans le fichier et le nombre de ses leçons ; le plan de chaque cours mène à l'ouverture de chacun des autres ; le sommaire présente un onglet par cours, et toucher l'onglet d'un autre cours mène droit à la page d'ouverture de ce cours, le sommaire restant ouvert ; la navigation de pages passe d'un cours au suivant sans s'arrêter.
 
-Les cours se répondent. Chaque cours se suit par lui-même : il rappelle d'une phrase, à leur premier emploi, les termes de base qu'un autre cours du fichier définit, et il garde ses encadrés Définition pour les termes qu'il apporte. Ses prérequis et son texte peuvent renvoyer aux leçons d'un autre cours par un lien vers leur identifiant, en nommant le cours, « leçon 3 du cours sur tel sujet ». L'ouverture d'un cours ajouté porte ce qui lui est propre : sa bannière, ce qu'il couvre, l'enchaînement de ses leçons et son plan. Elle dit en une phrase comment il répond aux autres cours du fichier, et, dans la même phrase ou la suivante, que ses leçons partagent la construction et le code des encadrés présentés dans l'ouverture du premier cours, avec un lien vers elle. Ces présentations communes se tiennent ainsi une seule fois dans le fichier, dans l'ouverture du premier cours.
+Les cours se répondent. Chaque cours se suit par lui-même : il rappelle d'une phrase, à leur premier emploi, les termes de base qu'un autre cours du fichier définit, et il garde ses encadrés Définition pour les termes qu'il apporte. Ses prérequis et son texte peuvent renvoyer aux leçons d'un autre cours par un lien vers leur identifiant, en nommant le cours, « leçon 3 du cours sur tel sujet ». Le lecteur connaît des cours, et le texte lui parle de cours : il nomme chacun par son sujet ou son titre, et le mot « fichier » désigne seulement le fichier que le lecteur enregistre ou reçoit. L'ouverture d'un cours ajouté porte ce qui lui est propre : sa bannière, ce qu'il couvre, l'enchaînement de ses leçons et son plan. Elle dit en une phrase comment il répond aux autres cours du fichier, et, dans la même phrase ou la suivante, que ses leçons partagent la construction et le code des encadrés présentés dans l'ouverture du premier cours, avec un lien vers elle. Ces présentations communes se tiennent ainsi une seule fois dans le fichier, dans l'ouverture du premier cours.
 
 Un cours ajouté apporte une matière neuve. Avant d'écrire, l'IA lit les cours déjà présents dans le fichier, leurs leçons, leurs exemples, leurs exercices et leur glossaire. Le nouveau cours prend appui sur ce qu'ils enseignent et le prolonge : ce qu'ils exposent déjà s'y rappelle d'une phrase avec un lien vers la leçon qui le développe, et ses leçons, ses exemples et ses exercices portent ce que le fichier apporte de neuf. Un mot clé déjà défini dans un cours précédent reparaît dans les mots clés d'une leçon par sa seule balise, et le moteur reprend sa définition.
 
@@ -190,7 +190,7 @@ Exemple de forme :
 <fichier sujet="Sujet commun">
 <cours titre="Titre du cours" sous-titre="ce qui le situe">
 <introduction>
-<p>Ce que couvre le cours, à qui il s'adresse, comment les leçons s'enchaînent et comment chaque leçon est construite, avec un lien vers le <a href="#code-l">code du cours</a>.</p>
+<p>Ce que couvre le cours, comment les leçons s'enchaînent et comment chaque leçon est construite, avec un lien vers le <a href="#code-l">code du cours</a>.</p>
 </introduction>
 <lecon titre="Titre de la leçon" desc="Une ligne pour le plan du cours.">
 <objectifs><li>Premier objectif.</li><li>Second objectif.</li></objectifs>
