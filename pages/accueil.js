@@ -152,6 +152,8 @@
     var LEGENDE = [['P', 'Avent, Carême'], ['B', 'Noël, Temps pascal'], ['V', 'Temps ordinaire'], ['R', 'Triduum pascal']];
     h += '<ul class="lit-legende">';
     LEGENDE.forEach(function (l) { h += '<li><span class="lit-coul lit-c-' + l[0] + '" aria-hidden="true"></span>' + l[1] + '</li>'; });
+    /* le trait blanc posé sur la frise marque le jour présent : la légende le nomme */
+    h += '<li><span class="lit-ici-leg" aria-hidden="true"></span>Aujourd’hui</li>';
     h += '</ul></div>';
     return h;
   }
