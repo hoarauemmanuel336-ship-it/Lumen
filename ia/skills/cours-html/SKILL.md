@@ -91,6 +91,8 @@ Comprendre, puis retenir. Le cours distingue ce qui se comprend de ce qui s'appr
 
 Une idée à la fois, à la bonne densité. Chaque paragraphe porte une idée, et chaque phrase fait avancer l'explication. Le texte donne à chaque notion la place qu'elle demande : plus d'espace aux idées difficiles, un pas rapide sur ce qui va de soi. La voix est celle d'un maître qui parle à un élève qu'il estime : claire, précise, chaleureuse.
 
+Des renvois qui éclairent. Chaque passage se lit par lui-même, et un renvoi vers une autre leçon ou un autre cours conduit le lecteur vers ce qui l'aide à comprendre ce passage : la leçon qui définit la notion dont il a besoin, celle qui en fait la démonstration, le cours qui traite le sujet à fond. Un texte déjà cité ailleurs se reprend simplement pour ce qu'il apporte ici.
+
 LE BILAN
 
 Le bilan vérifie que le lecteur tient le cours dans son ensemble. Ses exercices mobilisent chacun plusieurs leçons à la fois : une question qui fait relier deux notions, une situation qui demande d'en combiner plusieurs, une réflexion qui embrasse le sujet entier. Ils vont du plus simple au plus exigeant, et chacun porte son corrigé à déplier, qui montre quelles leçons se rejoignent et comment.
