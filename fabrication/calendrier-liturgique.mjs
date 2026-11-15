@@ -34,6 +34,11 @@ const TEMPS = { ADVENT: 'AV', CHRISTMAS_TIME: 'NO', ORDINARY_TIME: 'TO', LENT: '
    facultatives) prend la couleur du temps : violet au Triduum et en Carême. */
 const COUL_TEMPS = { AV: 'P', NO: 'B', TO: 'V', CA: 'P', TR: 'P', PA: 'B' };
 
+/* Le calendrier français de romcal laisse passer quelques mots anglais
+   dans ses noms ; on les remet en français. */
+const FRANCAIS = [[/ and /g, ' et ']];
+const nom = t => FRANCAIS.reduce((s, [a, b]) => s.replace(a, b), t.normalize('NFC'));
+
 const romcal = new Romcal({ localizedCalendar: France_Fr, scope: 'gregorian' });
 fs.mkdirSync('contenu/liturgie', { recursive: true });
 
@@ -46,7 +51,7 @@ for (let an = DEBUT; an <= FIN; an++) {
     const coul = e => COUL[(e.colors || [])[0]] || COUL_TEMPS[s];
     const cy = princ.cycles || {};
     const j = {
-      n: princ.name.normalize('NFC'),
+      n: nom(princ.name),
       r: RANG[princ.rank] || 'W',
       c: coul(princ),
       s,
@@ -59,7 +64,7 @@ for (let an = DEBUT; an <= FIN; an++) {
     if (princ.periods.includes('EASTER_OCTAVE') || princ.periods.includes('CHRISTMAS_OCTAVE')) j.oc = 1;
     /* La rose du 3e dimanche de l'Avent et du 4e de Carême se garde, le
        violet restant permis : on affiche la rose, couleur propre du jour. */
-    const autres = liste.filter(e => e !== princ).map(e => [e.name.normalize('NFC'), RANG[e.rank] || 'W', coul(e), e.isOptional ? 1 : 0]);
+    const autres = liste.filter(e => e !== princ).map(e => [nom(e.name), RANG[e.rank] || 'W', coul(e), e.isOptional ? 1 : 0]);
     if (autres.length) j.x = autres;
     jours[date] = j;
   }
