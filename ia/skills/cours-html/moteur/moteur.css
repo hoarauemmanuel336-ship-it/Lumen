@@ -274,6 +274,8 @@ p{margin:0 0 .75em;text-indent:0}
 /* ══ SOMMAIRE ══ */
 #voile{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.6);opacity:0;visibility:hidden;transition:opacity .26s var(--eout),visibility 0s .26s}
 #voile.on{opacity:1;visibility:visible;transition:opacity .38s var(--ein)}
+/* le voile ne fait pas défiler la page sous le sommaire */
+#voile{touch-action:none}
 #som{position:fixed;top:0;left:0;bottom:0;z-index:70;width:min(360px,90vw);background:#0a0a0a;box-shadow:inset -.5px 0 0 rgba(255,255,255,.18),20px 0 40px rgba(0,0,0,.5);overflow-y:auto;overscroll-behavior:contain;padding:calc(18px + env(safe-area-inset-top)) 18px calc(28px + env(safe-area-inset-bottom)) calc(18px + env(safe-area-inset-left));transform:translateX(-100%);visibility:hidden;transition:transform .26s var(--eout),visibility 0s .26s;font-family:var(--fi)}
 #som.on{transform:none;visibility:visible;transition:transform .38s var(--ein)}
 .som-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}

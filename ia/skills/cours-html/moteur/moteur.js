@@ -370,10 +370,16 @@ function accueillir(){Object.keys(NOUVEAUX).forEach(function(id){var L=NOUVEAUX[
 function ongletSom(C,cascade){COURS_SOM=C;COURS.forEach(function(O){O.sl.hidden=O!==C;if(O.ong){O.ong.classList.toggle('on',O===C);O.ong.setAttribute('aria-pressed',O===C?'true':'false')}});
   if(cascade){var es=C.sl.querySelectorAll('.se'),n=es.length,pas=n>1?Math.min(25,300/(n-1)):0;
     [].forEach.call(es,function(e,j){anim(e,[{opacity:0,transform:'translateX(-12px)'},{opacity:1,transform:'none'}],{duration:300,delay:j*pas,easing:E_IN,fill:'backwards'})})}}
-function ouvrirSom(){var p=PAGES[CUR];
+/* Dans un cadre qui défile lui-même, le sommaire et son voile se posent sur la page, à la hauteur de l'écran, et la suivent
+   quand elle défile : un panneau fixe dans un cadre défilé se dessine mal sur iPhone (le haut de sa liste reste noir). */
+function placerSom(){var v=[SO,VO];
   if(CADRE&&!libre()){var hs=Math.max(320,Math.min(innerHeight,(screen.availHeight||800)-120)),ts=Math.max(0,Math.min(VUE,innerHeight-hs));
-    SO.style.top=ts+'px';SO.style.bottom='auto';SO.style.height=Math.min(hs,innerHeight)+'px'}
-  else{SO.style.top='';SO.style.bottom='';SO.style.height=''}
+    v.forEach(function(e){e.style.position=''});SO.style.top=ts+'px';SO.style.bottom='auto';SO.style.height=Math.min(hs,innerHeight)+'px';
+    VO.style.top=VO.style.bottom=VO.style.height=''}
+  else if(CADRE){v.forEach(function(e){e.style.position='absolute';e.style.top=(window.pageYOffset||0)+'px';e.style.bottom='auto';e.style.height=innerHeight+'px'})}
+  else v.forEach(function(e){e.style.position=e.style.top=e.style.bottom=e.style.height=''})}
+function ouvrirSom(){var p=PAGES[CUR];
+  placerSom();
   SO.classList.add('on');VO.classList.add('on');ongletSom(p?p.C:COURS[0],true);accueillir();
   var a=SO.querySelector('.sl:not([hidden]) .se.on');if(a&&a.scrollIntoView)a.scrollIntoView({block:'nearest'})}
 function fermerSom(){SO.classList.remove('on');VO.classList.remove('on')}
@@ -460,7 +466,9 @@ D.addEventListener('click',function(e){
   if(b.classList.contains('sv')){enregistrer();return}
   if(b.classList.contains('bh-som')){ouvrirSom();return}
   if(b.classList.contains('som-x')){fermerSom();return}
-  if(b.classList.contains('ong')){ongletSom(b._C,true);return}});
+  if(b.classList.contains('ong')){var C=b._C;ongletSom(C,true);
+    /* un autre cours mène droit à son ouverture, et le sommaire reste ouvert */
+    if(!PAGES[CUR]||PAGES[CUR].C!==C){GESTE=true;aller(C.pages[0].el.id)}return}});
 VO.addEventListener('click',fermerSom);
 D.addEventListener('keydown',function(e){
   if(e.key==='Escape'&&SO.classList.contains('on')){fermerSom();return}
@@ -470,8 +478,8 @@ D.addEventListener('keydown',function(e){
   if(e.key==='ArrowRight'&&CUR<PAGES.length-1){GESTE=true;montrer(CUR+1)}
   else if(e.key==='ArrowLeft'&&CUR>0){GESTE=true;montrer(CUR-1)}});
 D.addEventListener('touchstart',function(){},{passive:true});
-window.addEventListener('scroll',planPos,{passive:true});
-window.addEventListener('resize',planPos);
+window.addEventListener('scroll',function(){planPos();if(CADRE&&SO.classList.contains('on'))placerSom()},{passive:true});
+window.addEventListener('resize',function(){planPos();if(SO.classList.contains('on'))placerSom()});
 ['wheel','touchmove'].forEach(function(k){window.addEventListener(k,function(){GESTE=true},{passive:true})});
 D.addEventListener('visibilitychange',function(){if(D.visibilityState==='hidden')envoyer()});
 window.addEventListener('pagehide',envoyer);
