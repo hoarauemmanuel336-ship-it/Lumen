@@ -1051,7 +1051,7 @@ window.addEventListener('message',e=>{
     if(id&&cadre._rendu)garde('etat',id,JSON.stringify(d.lvEtat));
     return;
   }
-  if(d.lvEtatVoulu){ rendEtat(cadre); return; }
+  if(d.lvEtatVoulu){ rendEtat(cadre); if(!cadre._voulu&&cadre._rends){cadre._voulu=true;cadre._rends();} return; }
   if(d.lvProgression&&typeof d.lvProgression==='object'){
     const id=cadre.dataset.res;
     if(id&&S.auteur)inscritProgression(id,d.lvProgression);
@@ -1992,7 +1992,16 @@ function ouvrePlein(a){
     try{f.contentWindow.postMessage({lvRevoir:Math.max(0,Math.round(pi.y||0)),lvRevoirInfo:pi},'*');}catch(_){}
     f._rendu=true;
   });
-  f.addEventListener('load',()=>{rends();setTimeout(rends,300);setTimeout(rends,1000);});
+  /* Le contenu se déclare prêt (lvEtatVoulu) : c'est seulement alors que
+     son état lui est rendu et que ce qu'il envoie est gardé. Le chargement
+     du cadre ne suffit pas : certains navigateurs (Safari sur iPhone) en
+     annoncent un premier, à blanc, avant le contenu, et l'état de départ du
+     contenu (ouverture du cours, sections fermées) écraserait la reprise.
+     Un contenu qui ne se déclare pas (une page sans moteur) suit le
+     chargement. */
+  f._annonce=typeof a.code==='string'&&a.code.indexOf('lvEtatVoulu')>=0;
+  f._rends=()=>{rends();setTimeout(rends,300);setTimeout(rends,1000);};
+  f.addEventListener('load',()=>{if(!f._annonce)f._rends();});
   const x=document.createElement('button');
   /* Un bouton de retour par-dessus le contenu (Emmanuel : « pas besoin de
      bouton fermer, juste un bouton de retour »). La touche Échap fait la

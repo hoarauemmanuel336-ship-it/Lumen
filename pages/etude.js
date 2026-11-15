@@ -209,7 +209,15 @@
       }
       o.rendu=true;
     });
-    f.addEventListener('load',()=>{finAttente(o);rends();setTimeout(rends,300);setTimeout(rends,1000);});
+    /* Le contenu se déclare prêt (lvEtatVoulu) : c'est seulement alors que
+       son état lui est rendu et que ce qu'il envoie est gardé. Le chargement
+       du cadre ne suffit pas : certains navigateurs (Safari sur iPhone) en
+       annoncent un premier, à blanc, avant le contenu, et l'état de départ du
+       contenu (ouverture du cours, sections fermées) écraserait la reprise.
+       Un contenu qui ne se déclare pas (une page sans moteur) suit le
+       chargement. */
+    o.rends=()=>{rends();setTimeout(rends,300);setTimeout(rends,1000);};
+    f.addEventListener('load',()=>{finAttente(o);if(code.indexOf('lvEtatVoulu')<0)o.rends();});
     /* le document du cadre est écrit avant que le cadre entre dans la page :
        un cadre posé vide se charge d'abord à blanc, et ce premier
        chargement passerait pour le sien. L'état gardé serait alors tenu pour
@@ -280,7 +288,7 @@
       if(r>=0&&String(r)!==lLit('taille','_reglages'))garde('taille','_reglages',String(r));
       return;
     }
-    if(d.lvEtatVoulu){ envoieEtat(o); return; }
+    if(d.lvEtatVoulu){ envoieEtat(o); if(!o.voulu){o.voulu=true;o.rends&&o.rends();} return; }
     if(d.lvProgression&&typeof d.lvProgression==='object'){ garde('prog',o.id,JSON.stringify(progressionPropre(d.lvProgression))); return; }
     if(typeof d.lvCopie==='string')copie(d.lvCopie);
   });
