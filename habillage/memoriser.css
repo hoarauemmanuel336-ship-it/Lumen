@@ -778,5 +778,9 @@ html body .vrow.note-on .vtext{visibility:hidden}
    de son contenu, « Tout cocher / Tout décocher ». */
 html body .cat.coff :is(.cat-name,.cat-dist,.cat-pct){opacity:.4}
 html body .cat.coff .vrow{opacity:.55}
+/* un verset de base ouvert pour être lu reste pleinement lisible, même
+   quand sa catégorie est éteinte (Emmanuel : « c'est pâle, le texte est
+   pas bien lisible ») */
+html body .cat.coff .vrow.note-on{opacity:1}
 html body .cat-tete{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:6px 0 12px 10px}
 @media(max-width:720px){html body .cat-tete{padding:4px 0 10px 0}}
