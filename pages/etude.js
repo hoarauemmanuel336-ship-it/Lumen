@@ -1,21 +1,252 @@
 /* ═══════════ ÉTUDE ═══════════
    La page s'ouvre directement sur le parcours, en plein écran, sans la
-   barre du site : comme une ressource ouverte dans Ressources (« ça doit
-   être tout comme Ressources »). Le même bandeau crème flotte en bas à
-   gauche : le retour, la Bible, la question à l'IA sur la page ouverte.
-   Le parcours vient du site même (/parcours/) : sa progression et celle des
-   cours restent dans ce navigateur. « Ouvrir le cours » change la page du
-   cadre ; le retour ramène alors au parcours, et du parcours à la page
-   d'où l'on venait (l'accueil quand on est arrivé directement ici). Échap
-   fait de même, sauf quand la Bible ou l'IA est ouverte. */
+   barre du site, et se lit « tout pareil » qu'une ressource ouverte dans
+   Ressources : même cadre isolé (commun/cadre.js), même bandeau crème en
+   bas à gauche (retour, Bible, question à l'IA), même mémoire de lecture.
+   Le parcours vient du site (/parcours/), chaque cours du coffre R2
+   (/parcours/cours/, voir netlify/edge-functions/fichiers.js). « Ouvrir le
+   cours », sur chaque thème du parcours, ouvre le fichier de cours du
+   thème ; le retour ramène au parcours, et du parcours à la page d'où l'on
+   venait (l'accueil quand on est arrivé directement ici). Échap fait de
+   même, sauf quand la Bible ou l'IA est ouverte. */
 (function(){
-  var f=document.getElementById('et-cadre');
-  if(!f)return;
-  function chemin(){try{return f.contentWindow.location.pathname;}catch(e){return '';}}
-  function surCours(){return /\/parcours\/cours\//.test(chemin());}
+  const PARCOURS='/parcours/la-foi-catholique.html';
+  const acts=document.getElementById('et-acts');
+  if(!acts)return;
+
+  /* ── LA MÉMOIRE DE LECTURE ──
+     Comme dans Ressources : pour le parcours et pour chaque fichier de
+     cours, l'état du contenu (page atteinte, sections ouvertes, réglages),
+     la place de lecture et la progression vivent dans le stockage de
+     l'appareil et dans l'espace du compte (users/…/etude_lecture/…),
+     chaque valeur avec son heure ; à l'ouverture, la plus récente
+     l'emporte. L'écriture vers le compte est groupée et part aussitôt
+     quand la page se cache ou se quitte. */
+  const LECT={att:{},minuteur:0,uid:''};
+  const lLit=(q,id)=>{try{return localStorage.getItem('lv_etu_'+q+'_'+id);}catch(_){return null;}};
+  const lMaj=(q,id)=>parseInt(lLit(q+'maj',id)||'0',10)||0;
+  function lPose(q,id,val,maj){
+    try{localStorage.setItem('lv_etu_'+q+'_'+id,val);localStorage.setItem('lv_etu_'+q+'maj_'+id,String(maj));}catch(_){}
+  }
+  const lecDoc=id=>firebase.firestore().doc('users/'+LECT.uid+'/etude_lecture/'+id);
+  function garde(q,id,val){
+    const t=Date.now();
+    lPose(q,id,val,t);
+    if(!LECT.uid)return;
+    const a=LECT.att[id]||(LECT.att[id]={});
+    a[q]=val; a[q+'Maj']=t;
+    clearTimeout(LECT.minuteur);
+    LECT.minuteur=setTimeout(pousse,1500);
+  }
+  function pousse(){
+    clearTimeout(LECT.minuteur); LECT.minuteur=0;
+    if(!LECT.uid)return;
+    const att=LECT.att; LECT.att={};
+    Object.keys(att).forEach(id=>{ lecDoc(id).set(att[id],{merge:true}).catch(()=>{}); });
+  }
+  document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='hidden')pousse(); });
+  window.addEventListener('pagehide',pousse);
+  const compte=(typeof qaCompte==='function'?qaCompte():Promise.resolve(null))
+    .then(u=>{ if(u){LECT.uid=u.uid; pousse();} return u; }).catch(()=>null);
+  function rapatrie(ids){
+    const lu=compte.then(u=>{
+      if(!u)return;
+      return Promise.all(ids.map(id=>lecDoc(id).get().then(sn=>{
+        if(!sn.exists)return;
+        const d=sn.data()||{};
+        ['etat','pos','prog','taille'].forEach(q=>{
+          const m=+d[q+'Maj']||0;
+          if(typeof d[q]==='string'&&m>lMaj(q,id))lPose(q,id,d[q],m);
+        });
+      }).catch(()=>{})));
+    });
+    /* hors ligne, on n'attend pas plus de deux secondes et demie */
+    return Promise.race([lu,new Promise(r=>setTimeout(r,2500))]);
+  }
+  const litJson=(q,id)=>{try{return JSON.parse(lLit(q,id)||'null');}catch(_){return null;}};
+
+  /* ── LA TAILLE DU TEXTE EST LA MÊME PARTOUT ──
+     (Emmanuel : « que ça s'applique à tous les cours du parcours, et même
+     sur le parcours lui-même ») Le réglage se garde une fois, sous
+     « _reglages », compté en crans depuis le plus grand : chaque moteur
+     s'ouvre à son plus grand cran, et A− descend d'un cran. Les crans sont
+     ceux des moteurs de cours-html et de parcours-etude. */
+  const CRANS_COURS=[.85,.925,1,1.08,1.16,1.25], CRANS_PARCOURS=[.9,1,1.1,1.2,1.3];
+  function rangDe(e,genre){
+    if(!e||typeof e!=='object')return -1;
+    const l=genre==='parcours'?CRANS_PARCOURS:CRANS_COURS, v=genre==='parcours'?e.z:e.taille;
+    const i=l.indexOf(+v); return i<0?-1:l.length-1-i;
+  }
+  function poseRang(e,genre,r){
+    const l=genre==='parcours'?CRANS_PARCOURS:CRANS_COURS;
+    const v=l[Math.max(0,l.length-1-r)];
+    if(genre==='parcours')e.z=v; else e.taille=v;
+    return e;
+  }
+
+  /* ── CE QUE LE NAVIGATEUR GARDAIT AVANT ──
+     Le parcours et les cours s'ouvraient à l'adresse du site, et leur
+     moteur gardait leur état dans le stockage de l'appareil, sous sa clé
+     propre. Le cadre isolé n'a plus ce stockage : tant que la page n'a
+     rien gardé pour un contenu, elle lui rend cet état d'avant, pour que
+     la progression et la place de lecture restent. */
+  const slug=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60);
+  function decode(s){const t=document.createElement('textarea');t.innerHTML=s;return t.value;}
+  function cleAncienne(o){
+    if(o.genre==='parcours'){const m=/<parcours\b[^>]*\bsujet="([^"]*)"/.exec(o.code);return 'parcours-etude:'+(slug(decode(m?m[1]:''))||'parcours');}
+    const m=/<cours\b[^>]*\btitre="([^"]*)"/.exec(o.code);
+    return 'cours-html:'+(slug(decode(m?m[1]:''))||'cours');
+  }
+  function etatPour(o){
+    let e=litJson('etat',o.id);
+    if(!e){try{e=JSON.parse(localStorage.getItem(cleAncienne(o))||'null');}catch(_){e=null;}}
+    const r=parseInt(lLit('taille','_reglages')||'',10);
+    if(r>=0){e=e&&typeof e==='object'?e:{};poseRang(e,o.genre,r);}
+    return e;
+  }
+
+  /* ── LA PROGRESSION DANS LE FICHIER ──
+     Comme dans Ressources, la progression (sujets d'un parcours, « Je
+     sais… » d'un cours) se pose dans le bloc lv-progression du fichier
+     au moment de l'ouvrir. Ici elle est gardée par la page, avec l'état :
+     les fichiers eux-mêmes ne changent pas. */
+  const PROG_BLOC=/<script\b[^>]*\bid=["']lv-progression["'][^>]*>[\s\S]*?<\/script>/i;
+  const PROG_ETATS=['en-cours','termine','a-revoir'];
+  function progressionPropre(p){
+    const q={maj:Math.max(0,Math.round(+(p&&p.maj)||Date.now()))};
+    if(p&&p.sujets&&typeof p.sujets==='object'){
+      const s={};Object.keys(p.sujets).forEach(k=>{ if(/^[\w.-]{1,80}$/.test(k)&&PROG_ETATS.indexOf(p.sujets[k])>=0)s[k]=p.sujets[k]; });
+      q.sujets=s;
+    }
+    if(p&&p.acquis&&typeof p.acquis==='object'){
+      const a={};Object.keys(p.acquis).forEach(k=>{ if(/^[\w.-]{1,80}$/.test(k)&&p.acquis[k]===true)a[k]=true; });
+      q.acquis=a;
+    }
+    return q;
+  }
+  function poseProgression(code,p){
+    if(!p)return code;
+    const bloc='<script type="application/json" id="lv-progression">\n'+JSON.stringify(p,null,1).replace(/</g,'\\u003c')+'\n<\/script>';
+    if(PROG_BLOC.test(code))return code.replace(PROG_BLOC,()=>bloc);
+    const i=code.search(/<\/head>/i);
+    return i>=0?code.slice(0,i)+bloc+'\n'+code.slice(i):bloc+'\n'+code;
+  }
+
+  /* ── LE CONTENU OUVERT ── */
+  let OUVERT=null;   // {id, genre, fichier, titre, code, f}
+  const enCours=()=>!!(OUVERT&&OUVERT.genre==='cours');
+  function fichierDuLien(){
+    const m=/^#c\/(.+)$/.exec(location.hash||'');
+    if(!m)return '';
+    try{const n=decodeURIComponent(m[1]);return /^[A-Za-z0-9][A-Za-z0-9._-]{0,120}\.html$/.test(n)?n:'';}catch(_){return '';}
+  }
+  async function charge(adresse){
+    const r=await fetch(adresse,{credentials:'same-origin'});
+    if(!r.ok)throw new Error(String(r.status));
+    return r.text();
+  }
+  function ferme(){
+    if(!OUVERT)return;
+    pousse();
+    try{OUVERT.f.remove();}catch(_){}
+    OUVERT=null;
+  }
+  async function montre(){
+    const fichier=fichierDuLien();
+    const o=fichier?{id:'c_'+fichier.replace(/\.html$/,''),genre:'cours',fichier,adresse:'/parcours/cours/'+encodeURIComponent(fichier)}
+                   :{id:'parcours',genre:'parcours',adresse:PARCOURS};
+    if(OUVERT&&OUVERT.id===o.id)return;
+    ferme();
+    OUVERT=o;
+    const pret=rapatrie([o.id,'_reglages']);
+    let code='';
+    try{ code=await charge(o.adresse); }
+    catch(e){
+      if(OUVERT!==o)return;
+      console.warn('étude',e);
+      code='<div style="font-family:Georgia,serif;color:#fff;padding:48px 24px;text-align:center;opacity:.8">Ce contenu n’a pas pu être ouvert. Vérifiez la connexion, puis réessayez.</div>';
+    }
+    await pret;
+    if(OUVERT!==o)return;
+    o.code=code;
+    const t=/<title>([^<]*)<\/title>/i.exec(code);
+    o.titre=t?decode(t[1]).trim():(o.genre==='parcours'?'La foi catholique':'Cours');
+    const f=document.createElement('iframe');
+    f.className='res-plein';
+    f.setAttribute('sandbox','allow-scripts');
+    f.setAttribute('allow','clipboard-write *');
+    f.setAttribute('referrerpolicy','no-referrer');
+    f.setAttribute('title',o.titre);
+    o.f=f;
+    /* l'état avant la place : les sections reprennent leur ouverture,
+       puis la place de lecture tombe sur la page ainsi constituée */
+    const rends=()=>{
+      if(OUVERT!==o)return;
+      envoieEtat(o);
+      const pi=Object.assign({y:0},litJson('pos',o.id)||{});
+      try{f.contentWindow.postMessage({lvRevoir:Math.max(0,Math.round(pi.y||0)),lvRevoirInfo:pi},'*');}catch(_){}
+      o.rendu=true;
+    };
+    f.addEventListener('load',()=>{rends();setTimeout(rends,300);setTimeout(rends,1000);});
+    acts.parentNode.insertBefore(f,acts);
+    f.srcdoc=pageCadre(poseProgression(code,litJson('prog',o.id)));
+  }
+  function envoieEtat(o){
+    const e=etatPour(o);
+    if(!e)return;
+    try{o.f.contentWindow.postMessage({lvEtat:e},'*');}catch(_){}
+  }
+
+  /* ── LES MESSAGES DU CADRE ── */
+  function copie(t){
+    try{ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).catch(()=>vieille(t));return;} }catch(_){}
+    vieille(t);
+  }
+  function vieille(t){
+    try{const z=document.createElement('textarea');z.value=t;z.setAttribute('readonly','');
+      z.style.cssText='position:fixed;left:0;top:0;width:1px;height:1px;opacity:0;font-size:16px';
+      document.body.appendChild(z);z.select();document.execCommand('copy');document.body.removeChild(z);}catch(_){}
+  }
+  window.addEventListener('message',ev=>{
+    const o=OUVERT, d=ev.data;
+    if(!o||!o.f||ev.source!==o.f.contentWindow||!d||typeof d!=='object')return;
+    if(typeof d.lvCours==='string'){ ouvreCours(d.lvCours); return; }
+    if('lvSel' in d){ if(typeof qaSelectionCadre==='function')qaSelectionCadre(d.lvSel,o.f,o.titre,o.genre==='cours'?'un cours':'un parcours',o.code,null); return; }
+    if(typeof d.lvPos==='number'){
+      if(o.rendu){const info=d.lvPosInfo&&typeof d.lvPosInfo==='object'?d.lvPosInfo:{y:d.lvPos};info.y=Math.max(0,Math.round(info.y||0));garde('pos',o.id,JSON.stringify(info));}
+      return;
+    }
+    if(typeof d.lvEtat!=='undefined'&&d.lvEtat!==null){
+      /* tant que l'état gardé n'a pas été rendu, ce que le cadre envoie
+         n'est que son état de naissance */
+      if(!o.rendu)return;
+      garde('etat',o.id,JSON.stringify(d.lvEtat));
+      const r=rangDe(d.lvEtat,o.genre);
+      if(r>=0&&String(r)!==lLit('taille','_reglages'))garde('taille','_reglages',String(r));
+      return;
+    }
+    if(d.lvEtatVoulu){ envoieEtat(o); return; }
+    if(d.lvProgression&&typeof d.lvProgression==='object'){ garde('prog',o.id,JSON.stringify(progressionPropre(d.lvProgression))); return; }
+    if(typeof d.lvCopie==='string')copie(d.lvCopie);
+  });
+
+  /* ── ALLER ET VENIR ──
+     Ouvrir un cours ajoute un pas à l'historique : le retour du téléphone
+     ramène au parcours, comme le bouton de retour. */
+  function ouvreCours(n){
+    if(!/^[A-Za-z0-9][A-Za-z0-9._-]{0,120}\.html$/.test(n))return;
+    history.pushState({etude:'cours'},'','#c/'+encodeURIComponent(n));
+    montre();
+  }
+  window.addEventListener('popstate',montre);
   function retour(){
-    if(surCours()){try{f.contentWindow.history.back();return;}catch(e){}}
-    var r='';try{r=new URL(document.referrer).origin;}catch(e){}
+    if(enCours()){
+      if(history.state&&history.state.etude==='cours'){history.back();return;}
+      history.replaceState(null,'',location.pathname+location.search);
+      montre();return;
+    }
+    pousse();
+    let r='';try{r=new URL(document.referrer).origin;}catch(e){}
     if(r===location.origin&&history.length>1)history.back();else location.href='/';
   }
   document.getElementById('et-retour').onclick=retour;
@@ -23,13 +254,11 @@
     if(window.LVBible&&typeof window.LVBible.bascule==='function')window.LVBible.bascule();
   };
   document.getElementById('et-ia').onclick=function(){
-    if(typeof qaReprend!=='function')return;
-    var d=null;try{d=f.contentDocument;}catch(e){}
-    var titre=(d&&d.title)||'La foi catholique';
-    qaReprend({texte:'',contexte:'',source:titre,espece:surCours()?'un cours':'un parcours',ref:null},
-      d?'<!DOCTYPE html>\n'+d.documentElement.outerHTML:'');
+    if(typeof qaReprend!=='function'||!OUVERT)return;
+    qaReprend({texte:'',contexte:'',source:OUVERT.titre||'',espece:enCours()?'un cours':'un parcours',ref:null},OUVERT.code||'');
   };
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'&&!document.querySelector('#bp-pan.on')&&!document.documentElement.classList.contains('qa-ouvert'))retour();
   });
+  montre();
 })();

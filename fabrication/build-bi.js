@@ -63,7 +63,8 @@ const polices = h => h.replace(/<link[^>]*fonts\.(?:googleapis|gstatic)\.com[^>]
 const CONVERSATION = ['stockage', 'versets', 'assemblage', 'ia-outils', 'question'];
 const COMMUN_JS_PAGES = {
   'articles.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage', ...CONVERSATION, 'coffre'],
-  'ressources.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage', ...CONVERSATION, 'coffre'],
+  'ressources.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage', ...CONVERSATION, 'coffre', 'cadre'],
+  'etude.html': [...CONVERSATION, 'cadre'],
   'bible.html': CONVERSATION,
   'commentaires.html': ['outils', 'editeur', 'choix-verset', ...CONVERSATION],
   'memoriser.html': ['choix-verset', ...CONVERSATION],
@@ -581,7 +582,7 @@ const RECH_JS = `(function(){
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('ouvert'))ferme();});
 })();`;
 
-function page({ lang, title, description, base, main, hab = 'accueil' }) {
+function page({ lang, title, description, base, main, hab = 'accueil', familles = 'index.html' }) {
   const u = UI[lang];
   /* site privé : aucune page n'est faite pour les moteurs de recherche */
   const robots = '\n<meta name="robots" content="noindex,nofollow">';
@@ -606,7 +607,7 @@ ${COMMUN_TAG}
 <style>${APPEARANCE_CSS}</style>
 ${BARRE_TETE}
 ${habillage(hab)}
-${communJS('index.html')}
+${communJS(familles)}
 </head>
 <body>
 ${header(lang)}
@@ -722,16 +723,16 @@ ecrire('404.html', page({
 }));
 
 /* Étude : la page s'ouvre directement sur le parcours, en plein écran comme
-   une ressource ouverte, avec le même bandeau (retour, Bible, IA) ; voir
-   pages/etude.js et habillage/etude.css. */
+   une ressource ouverte, avec le même cadre isolé et le même bandeau
+   (retour, Bible, IA) ; pages/etude.js pose le cadre du parcours ou du
+   cours ouvert, voir aussi habillage/etude.css. */
 if (fs.existsSync('parcours/la-foi-catholique.html')) {
   const svg = (d, w = 1.6) => `<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
   ecrire('etude.html', page({
     lang: 'fr', title: 'Étude · Lumen Veritatis', description: 'Parcours d’étude et cours.',
-    base: '/', hab: 'etude',
+    base: '/', hab: 'etude', familles: 'etude.html',
     main: `<h1 class="titre-cache">Étude</h1>
-  <iframe id="et-cadre" class="res-plein" src="/parcours/la-foi-catholique.html" title="La foi catholique" allow="clipboard-write"></iframe>
-  <div class="res-plein-acts">
+  <div class="res-plein-acts" id="et-acts">
     <button type="button" id="et-retour" class="res-plein-x" aria-label="Revenir">${svg('<path d="M19.5 12h-15M10.5 6l-6 6 6 6"/>')}</button>
     <button type="button" id="et-bible" class="res-plein-x res-plein-bible" aria-label="Ouvrir la Bible">${svg('<path d="M12 6.5C10.3 5.2 7.8 4.6 4 4.6v13.2c3.8 0 6.3.6 8 1.9 1.7-1.3 4.2-1.9 8-1.9V4.6c-3.8 0-6.3.6-8 1.9z"/><path d="M12 6.5v13.2"/>')}</button>
     <button type="button" id="et-ia" class="res-plein-x res-plein-bible res-plein-ia" aria-label="Poser une question à l’IA sur cette page" title="Question à l’IA">${svg('<path d="M10 3.5l1.6 4.4 4.4 1.6-4.4 1.6L10 15.5l-1.6-4.4L4 9.5l4.4-1.6zM18 13.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/>', 1.5)}</button>
@@ -962,12 +963,15 @@ for (const sk of ['livre-html', 'diagrammes-interactifs', 'cours-html', 'parcour
    eux-mêmes vivent dans le coffre R2 et se servent à /parcours/cours/
    (netlify/edge-functions/fichiers.js) : chaque lien se vérifie ici contre
    le sommaire, fichier et lettre du cours.
-   Le fichier du parcours reste intact : c'est ici que chaque sujet qui a son
-   cours reçoit le bouton « Ouvrir le cours », sur la carte même, sous les
-   états, pour qu'il se voie sans déplier le sujet (« le bouton est trop
-   loin »). Le moteur du parcours ne met pas la clé dans la page ; il affiche
-   le code thème.rang, que la fabrication calcule d'après l'ordre des thèmes
-   et des sujets du contenu, comme le moteur. */
+   Le fichier du parcours reste intact : c'est ici que chaque thème qui a
+   son fichier de cours reçoit le bouton « Ouvrir le cours », dans son
+   en-tête, visible sans déplier le thème (un bouton par thème, pas par
+   sujet : « pas sur chaque leçon mais sur chaque bloc/cours »). Le moteur
+   du parcours ne met pas la clé dans la page ; il affiche le numéro du
+   thème, que la fabrication calcule d'après l'ordre des thèmes du
+   contenu, comme le moteur. Dans Étude, le parcours tourne dans un cadre
+   isolé : le bouton demande à la page d'ouvrir le cours (message
+   lvCours, voir pages/etude.js) ; ouvert seul, il mène au fichier. */
 if (fs.existsSync('parcours/la-foi-catholique.html')) {
   fs.mkdirSync(`${OUT}/parcours`, { recursive: true });
   /* une copie de cours gardée dans le dépôt est servie quand le coffre
@@ -979,40 +983,50 @@ if (fs.existsSync('parcours/la-foi-catholique.html')) {
   const liens = JSON.parse(fs.readFileSync('parcours/cours.json', 'utf8'));
   const sommaire = JSON.parse(fs.readFileSync('parcours/cours-sommaire.json', 'utf8'));
   let ph = fs.readFileSync('parcours/la-foi-catholique.html', 'utf8');
-  const parCode = {};
-  let num = 0;
+  const parTheme = {};
+  let num = 0, trouves = 0;
   for (const th of ph.match(/<theme\b[\s\S]*?<\/theme>/g) || []) {
     num++;
-    (th.match(/<sujet\b[^>]*\bcle="[^"]+"/g) || []).forEach((s, i) => {
-      const cle = s.match(/cle="([^"]+)"/)[1];
-      if (liens[cle]) parCode[String(num).padStart(2, '0') + '.' + (i + 1)] = liens[cle];
-    });
+    const fichiers = new Set();
+    for (const s of th.match(/<sujet\b[^>]*\bcle="[^"]+"/g) || []) {
+      const u = liens[s.match(/cle="([^"]+)"/)[1]];
+      if (!u) continue;
+      trouves++;
+      const [fichier, ancre] = u.split('#');
+      if (!sommaire[fichier]) throw new Error('parcours : fichier de cours absent du sommaire, ' + u);
+      if (!sommaire[fichier].cours[(ancre || '').replace(/^ouverture-/, '')]) throw new Error('parcours : cours absent de son fichier, ' + u);
+      fichiers.add(fichier);
+    }
+    if (fichiers.size > 1) throw new Error(`parcours : le thème ${num} renvoie à plusieurs fichiers de cours (${[...fichiers].join(', ')})`);
+    if (fichiers.size) parTheme[String(num).padStart(2, '0')] = [...fichiers][0];
   }
-  const absents = Object.keys(liens).length - Object.keys(parCode).length;
+  const absents = Object.keys(liens).length - trouves;
   if (absents) throw new Error(`parcours : ${absents} sujet(s) de cours.json introuvable(s) dans le parcours`);
-  for (const u of Object.values(parCode)) {
-    const [fichier, ancre] = u.split('#');
-    if (!sommaire[fichier]) throw new Error('parcours : fichier de cours absent du sommaire, ' + u);
-    const lettre = (ancre || '').replace(/^ouverture-/, '');
-    if (!sommaire[fichier].cours[lettre]) throw new Error('parcours : cours absent de son fichier, ' + u);
-  }
-  const boutons = '<style>.lv-droite{display:flex;flex-direction:column;align-items:stretch;gap:8px;flex-shrink:0}'
-    + '.lv-cours{display:block;text-align:center;text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent;'
-    + 'font-family:var(--fm);font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;line-height:1.2;padding:6px 8px;'
+  /* le bouton est une icône seule (Emmanuel : « au lieu de “ouvrir le
+     cours” mets plutôt une icône »), un mortier de diplômé, dans un cadre
+     fin à l'accent du thème ; son nom reste dit aux lecteurs d'écran et
+     au survol */
+  const icone = '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+    + '<path d="M2.5 9.2 12 4.8l9.5 4.4L12 13.6z"/><path d="M6.5 11.1v4.6c1.6 1.4 3.4 2.1 5.5 2.1s3.9-.7 5.5-2.1v-4.6"/><path d="M21.5 9.2v5.3"/></svg>';
+  const boutons = '<style>.lv-cours{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent;'
     + 'color:var(--a);box-shadow:inset 0 0 0 .5px var(--a);transition:background .25s,color .25s}'
+    + '.lv-cours svg{display:block}'
     + '@media (hover:hover) and (pointer:fine){.lv-cours:hover{background:var(--a);color:#000}}'
-    + '@media (max-width:640px){.lv-droite{width:100%}.lv-cours{height:44px;line-height:44px;padding:0 8px}}</style>'
-    + '<script>(function(){var L=' + JSON.stringify(parCode) + ';'
-    + 'function pose(){document.querySelectorAll(".cw").forEach(function(cw){'
-    + 'var c=cw.querySelector(".ct-t .code"),ch=cw.querySelector(".ch"),sel=cw.querySelector(".sel");'
-    + 'if(!c||!ch||!sel||ch.querySelector(".lv-cours"))return;var u=L[c.textContent.trim()];if(!u)return;'
-    + 'var d=document.createElement("div");d.className="lv-droite";var a=document.createElement("a");'
-    + 'a.className="lv-cours";a.href="cours/"+u;a.textContent="Ouvrir le cours \\u2192";'
-    + 'ch.insertBefore(d,sel);d.appendChild(sel);d.appendChild(a)})}'
+    + '@media (max-width:640px){.lv-cours{width:44px;height:44px}}</style>'
+    + '<script>(function(){var L=' + JSON.stringify(parTheme) + ',I=' + JSON.stringify(icone) + ';'
+    + 'var cadre=(function(){try{return parent!==window}catch(e){return true}})();'
+    + 'function pose(){document.querySelectorAll(".th").forEach(function(th){'
+    + 'var h=th.querySelector(".th-h"),g=h&&h.querySelector(".tag"),v=h&&h.querySelector(".th-v");'
+    + 'if(!h||!g||!v||h.querySelector(".lv-cours"))return;var u=L[g.textContent.trim()];if(!u)return;'
+    + 'var a=document.createElement("a");a.className="lv-cours";a.href="cours/"+u;a.innerHTML=I;a.setAttribute("aria-label","Ouvrir le cours");a.title="Ouvrir le cours";'
+    + 'a.addEventListener("click",function(e){e.stopPropagation();if(!cadre)return;e.preventDefault();'
+    + 'try{parent.postMessage({lvCours:u},"*")}catch(x){}});'
+    + 'a.addEventListener("keydown",function(e){e.stopPropagation()});'
+    + 'h.insertBefore(a,v)})}'
     + 'if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){setTimeout(pose,0)});else setTimeout(pose,0)})();</scr' + 'ipt>';
   ph = injecteAvant(ph, '</body>', boutons);
   fs.writeFileSync(`${OUT}/parcours/la-foi-catholique.html`, ph);
-  console.log(`Parcours : ${Object.keys(parCode).length} sujets reliés à leur cours`);
+  console.log(`Parcours : ${Object.keys(parTheme).length} thèmes reliés à leur fichier de cours`);
 }
 
 // ── La Sainte Bible : page de lecture, puis données par livre des deux traductions ──

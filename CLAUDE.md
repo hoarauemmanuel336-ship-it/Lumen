@@ -12,11 +12,11 @@ Les sept pages du site :
 
 - **Accueil** : la croix et l'accès aux autres pages.
 - **Bible** : ses deux traductions françaises, la **Chérubin** (équivalence dynamique, traduction par défaut) et la **Séraphin** (littérale). Notes, surlignages, signets, commentaires bibliques affichés dans le texte, recherche de références.
-- **Mémoriser** : apprendre des versets, des passages et des fiches par séries à choix multiple, avec une couleur par verset (rouge, jaune, vert) qui est le jugement d'Emmanuel lui-même. Deux parties : les « Versets de base » (`contenu/memoriser.json`, une section par bloc du parcours, une catégorie par thème, chaque verset avec sa note « pourquoi l'apprendre », passée par la skill humaniser ; ni modifiables ni supprimables) et « Mes versets ».
+- **Mémoriser** : apprendre des versets, des passages et des fiches par séries à choix multiple, avec une couleur par verset (rouge, jaune, vert) qui est le jugement d'Emmanuel lui-même. Deux parties : les « Versets de base » (`contenu/memoriser.json`, une section par bloc du parcours, une catégorie par thème, chaque verset avec sa note « pourquoi l'apprendre », passée par la skill humaniser, les piliers, à savoir par cœur en premier, en tête de leur catégorie avec une étiquette ; ni modifiables ni supprimables) et « Mes versets ».
 - **Articles** : ses articles, des pages HTML au format question-réponse (faites avec sa skill article-html), rangés en catégories et sections, ouverts en plein écran.
 - **Ressources** : livres, diagrammes, cours, parcours d'étude, images, PDF et liens, rangés de la même façon.
 - **Commentaires** : l'atelier où il écrit les commentaires bibliques ; « Afficher dans la Bible » les fait paraître dans le texte.
-- **Étude** : le parcours « La foi catholique », ouvert d'emblée en plein écran comme une ressource ouverte ; chaque sujet qui a son cours l'ouvre par « Ouvrir le cours ».
+- **Étude** : le parcours « La foi catholique », ouvert d'emblée en plein écran et lu comme une ressource ouverte (même cadre isolé, même mémoire de lecture, synchronisée entre ses appareils) ; chaque thème qui a son fichier de cours l'ouvre par « Ouvrir le cours ». La taille du texte vaut pour le parcours et tous ses cours.
 
 ## Où se trouve chaque chose
 
@@ -24,9 +24,9 @@ Les sept pages du site :
 |---|---|
 | `pages/` | Les pages, une par fichier HTML, chacune avec son propre script (l'accueil et Étude sont assemblées par la fabrication autour de `accueil.js` et `etude.js`). |
 | `habillage/` | L'apparence : `lumen-commun.css` (le socle), `commun.css` (ce qui vaut pour toutes les pages, fenêtres et menus compris), puis une feuille par page. |
-| `commun/` | Le fonctionnement partagé entre plusieurs pages (fenêtres et menus, rangement en catégories, éditeur des commentaires, choix d'un verset, IA, versets cités, contrôle qualité, question à l'IA, ménage des anciennes copies publiques, coffre R2). La fabrication pose dans chaque page les familles dont elle a besoin. |
+| `commun/` | Le fonctionnement partagé entre plusieurs pages (fenêtres et menus, rangement en catégories, éditeur des commentaires, choix d'un verset, IA, versets cités, contrôle qualité, question à l'IA, ménage des anciennes copies publiques, coffre R2, cadre isolé où s'ouvrent une ressource et les pages d'Étude). La fabrication pose dans chaque page les familles dont elle a besoin. |
 | `contenu/` | Les deux Bibles (`bible.json` pour la Chérubin, `bible-seraphin.json` pour la Séraphin), la bibliothèque de départ de Mémoriser, les réglages d'apparence. |
-| `parcours/` | Le parcours d'étude « La foi catholique » (fichier de la skill parcours-etude, laissé intact), `cours.json`, qui relie chaque sujet à son cours, et `cours-sommaire.json`, qui décrit les fichiers de cours (un par thème, skill cours-html). Les fichiers de cours eux-mêmes vivent dans le coffre R2 et se servent à `/parcours/cours/` ; la fabrication vérifie chaque lien contre le sommaire et pose dans chaque sujet relié le bouton « Ouvrir le cours ». |
+| `parcours/` | Le parcours d'étude « La foi catholique » (fichier de la skill parcours-etude, laissé intact), `cours.json`, qui relie chaque sujet à son cours, et `cours-sommaire.json`, qui décrit les fichiers de cours (un par thème, skill cours-html). Les fichiers de cours eux-mêmes vivent dans le coffre R2 et se servent à `/parcours/cours/` ; la fabrication vérifie chaque lien contre le sommaire et pose dans l'en-tête de chaque thème relié le bouton « Ouvrir le cours ». |
 | `racine/` | Les fichiers servis tels quels à la racine du site : panneau de la Bible ouvert depuis les autres pages, service workers (hors ligne), manifestes, icônes, polices. |
 | `fabrication/` | Ce qui construit le site : `build-bi.js` assemble les pages, `publication.js` allège et contrôle le résultat. |
 | `netlify/edge-functions/` | Le serveur : `porte.js` (le mot de passe du site), `ia.js` (le seul passage vers l'API Claude) et `fichiers.js` (le passage vers le coffre R2). Les outils qu'ils partagent sont dans `netlify/serveur/`. |

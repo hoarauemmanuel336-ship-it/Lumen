@@ -18,10 +18,10 @@ Le texte des deux Bibles ne vient pas de la base : il est découpé par livre à
 
 | Chemin | Contenu |
 |---|---|
-| `config/memoriser` | Une bibliothèque de départ en ligne, que la page ne lit que si celle qu'elle embarque est vide. La bibliothèque qui fait foi est `contenu/memoriser.json`, embarquée par la fabrication : les **versets de base**, une catégorie par thème du parcours, rangée dans la section de son bloc (`bloc`), chaque verset portant sa note « pourquoi l'apprendre » (`note`, où `*mot*` s'affiche en italique). Ils ne se modifient ni ne se suppriment ; leur progression est rangée comme celle des autres versets. |
+| `config/memoriser` | Une bibliothèque de départ en ligne, que la page ne lit que si celle qu'elle embarque est vide. La bibliothèque qui fait foi est `contenu/memoriser.json`, embarquée par la fabrication : les **versets de base**, une catégorie par thème du parcours, rangée dans la section de son bloc (`bloc`), chaque verset portant sa note « pourquoi l'apprendre » (`note`, où `*mot*` s'affiche en italique) et, s'il est à savoir par cœur en premier, la marque de pilier (`pilier: true`) : il passe alors en tête de sa catégorie, avec une étiquette. Ils ne se modifient ni ne se suppriment ; leur progression est rangée comme celle des autres versets. |
 | `users/{uid}/categories/{id}` | Les catégories créées par Emmanuel, avec leurs versets ; un verset vaut `{id, fr: {text, ref}}`. |
 | `users/{uid}/meta/progress` | La progression : la couleur et l'historique de chaque verset, par identifiant de verset. |
-| `users/{uid}/meta/prefs` | Les catégories choisies, les versets écartés des séries. |
+| `users/{uid}/meta/prefs` | Ce qui entre dans les séries, à deux niveaux (`v: 2`) : les versets décochés (`offV`) et les catégories éteintes (`offC`). Éteindre une catégorie garde les coches de ses versets. `connues` liste les catégories déjà vues, pour qu'une catégorie nouvelle arrive éteinte ; `selCats` garde les catégories entièrement prises. |
 | `users/{uid}/meta/baseEdits` | Ses retouches sur les catégories de la bibliothèque de départ. |
 | `users/{uid}/meta/sections` | Les sections qui regroupent les catégories. |
 | `users/{uid}/meta/trash` | La corbeille. |
@@ -44,6 +44,12 @@ La progression est rangée par identifiant de verset : un verset garde sa progre
 ## Ressources
 
 Même organisation qu'Articles, avec ses propres noms : `ressources`, `res_code`, `res_medias`, `res_lecture`, `res_qc`, `res_avant`, `meta/res_rubriques` et `meta/res_rubriques_ia_avant`. Une ressource porte en plus une espèce (code, image, PDF, lien) et une marque (livre, diagramme, cours, parcours…) : `marque` est celle qui s'affiche, `marqueIA` dit qu'elle vient de l'IA au dépôt du fichier (elle peut alors la revoir au dépôt suivant), et `marqueDevinee` garde, pour les fiches plus anciennes, la marque qui leur avait été trouvée.
+
+## Étude
+
+| Chemin | Contenu |
+|---|---|
+| `users/{uid}/etude_lecture/{id}` | La mémoire de lecture du parcours (`parcours`) et de chaque fichier de cours (`c_` suivi du nom du fichier) : l'état du contenu (`etat` : page, sections ouvertes, réglages), la place de lecture (`pos`) et la progression (`prog` : sujets du parcours, « Je sais… » cochés d'un cours), chacun avec son heure (`etatMaj`, `posMaj`, `progMaj`). `_reglages` garde la taille du texte commune au parcours et aux cours (`taille`, en crans depuis le plus grand). Les mêmes valeurs vivent dans le stockage de l'appareil ; à l'ouverture, la plus récente l'emporte. |
 
 ## Commentaires (l'atelier)
 

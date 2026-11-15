@@ -916,7 +916,7 @@ const S={
      pas dans le nuage : c'est un endroit où l'on est, pas une donnée. */
   mode:'v',
   uid:null,
-  selCats:[], offV:{}, progress:{}, step:0, customCats:[], baseEdits:{}, hidCats:[], trash:[], trashOpen:false, showAllCats:false,
+  selCats:[], offV:{}, offC:{}, progress:{}, step:0, customCats:[], baseEdits:{}, hidCats:[], trash:[], trashOpen:false, showAllCats:false,
   noteV:{},         // vId -> true quand la note d'un verset de base est ouverte (le temps de la visite)
   open:{},          // catId -> bool (déplié)
   sections:[],      // [{id,name}] dans l'ordre d'affichage
@@ -934,7 +934,7 @@ const S={
    précédent (ou un état vide, si la lecture a échoué) partirait dans le
    nuage du compte suivant à la première action. */
 function razEtat(){
-  S.selCats=[]; S.offV={}; S.progress={}; S.step=0; S.customCats=[]; S.baseEdits={}; S.hidCats=[]; S.trash=[];
+  S.selCats=[]; S.offV={}; S.offC={}; S.progress={}; S.step=0; S.customCats=[]; S.baseEdits={}; S.hidCats=[]; S.trash=[];
   S.sections=[]; S.catSec={}; S.soloCat=null; S.soloSec=null; S.charge=false; S.chargeErr=false; S.grp={}; SALES={};
 }
 
@@ -946,9 +946,10 @@ const trunc=(s,n)=>{const a=Array.from(String(s));return a.length>n?a.slice(0,n)
 function effectiveCats(){
   /* ── LES VERSETS DE BASE ──
      Ils viennent du site (contenu/memoriser.json), avec leur note « pourquoi
-     l'apprendre », et se présentent tels quels : ni modifiés, ni déplacés,
-     ni supprimés (Emmanuel : « pas de modification des versets de base ni de
-     suppression »). On les coche, on leur donne sa couleur, c'est tout. */
+     l'apprendre » et, pour certains, la marque de pilier ; ils ne se
+     modifient ni ne se suppriment (Emmanuel : « pas de modification des
+     versets de base ni de suppression »). On les coche, on leur donne sa
+     couleur ; les piliers passent en tête de leur catégorie. */
   const base=PRE.map(c=>({id:c.id,name:c.name,verses:c.verses,base:true,bloc:c.bloc||''}));
   return [...base,...S.customCats.map(c=>({...c,base:false}))];
 }
@@ -1014,8 +1015,29 @@ function groupesCats(){
    voit jamais proposer un verset en réponse à un passage.
    Un verset présent dans plusieurs catégories choisies n'entre qu'une fois
    dans le tirage : c'est le même verset, sa progression est partagée. */
-function allItems(){const out=[],vus={};catsMode().filter(c=>S.soloCat?c.id===S.soloCat:(S.soloSec?secDe(c.id)===S.soloSec:true)).forEach(c=>{const pas=estPassage(c),k0=kindDe(c);c.verses.forEach(v=>{if(S.offV[v.id])return;const k=cleVerset(v,k0);if(vus[k])return;vus[k]=1;out.push({...v,catId:c.id,pas:pas,genre:k0});});});return out;}
-function syncSelCats(){S.selCats=effectiveCats().filter(c=>c.verses.length&&c.verses.every(v=>!S.offV[v.id])).map(c=>c.id);}
+function allItems(){const out=[],vus={};catsMode().filter(c=>S.soloCat?c.id===S.soloCat:(S.soloSec?secDe(c.id)===S.soloSec:true)).forEach(c=>{const pas=estPassage(c),k0=kindDe(c);c.verses.forEach(v=>{if(!vActif(c,v,S.soloCat===c.id))return;const k=cleVerset(v,k0);if(vus[k])return;vus[k]=1;out.push({...v,catId:c.id,pas:pas,genre:k0});});});return out;}
+function syncSelCats(){S.selCats=effectiveCats().filter(c=>c.verses.length&&c.verses.every(v=>vActif(c,v))).map(c=>c.id);}
+/* ── DEUX NIVEAUX DE COCHE ──
+   (Emmanuel : cocher une catégorie « désactive ceux qu'on a cochés sans
+   décocher les versets », avec de quoi tout cocher ou tout décocher à
+   part.) Un verset entre dans les séries s'il est coché (offV) et si sa
+   catégorie est active (offC). Éteindre une catégorie garde donc les
+   coches de ses versets, qui reviennent telles quelles quand on la
+   rallume. Lancer une catégorie seule (▷) passe outre son interrupteur,
+   pas les coches. */
+function vActif(c,v,sansCat){
+  if(S.offV[v.id])return false;
+  return !!sansCat||!S.offC[c.id];
+}
+/* ── LES PILIERS ──
+   Un verset de base marqué pilier est à savoir par cœur en premier : il
+   passe en tête de sa catégorie, dans l'ordre des leçons, et porte une
+   petite étiquette (« en haut de leur liste avec quelque chose pour
+   signaler qu'ils sont prioritaires »). */
+function versetsClasses(cat){
+  if(!cat.base)return cat.verses;
+  return cat.verses.filter(v=>v.pilier).concat(cat.verses.filter(v=>!v.pilier));
+}
 // clone profond de la version effective d'une catégorie de base, pour la rendre éditable
 function baseClone(catId){const e=effectiveCats().find(c=>c.id===catId);return{name:JSON.parse(JSON.stringify(e.name)),verses:JSON.parse(JSON.stringify(e.verses))};}
 function editBase(catId,fn){const c=S.baseEdits[catId]||baseClone(catId);fn(c);S.baseEdits[catId]=c;saveBaseEdits();}
@@ -1320,9 +1342,22 @@ async function loadUser(){
        les séries en cours ; ce choix est enregistré aussitôt, sinon l'écoute
        en direct rendrait les anciennes préférences et la cocherait */
     let nouvelles=false;
-    if(prefs.exists){S.selCats=prefs.data().selCats||[];S.offV={};(prefs.data().offV||[]).forEach(id=>S.offV[id]=1);
-      if(S.selCats.length||Object.keys(S.offV).length){
-        effectiveCats().forEach(c=>{if(c.verses.length&&!S.selCats.includes(c.id)&&c.verses.every(v=>!S.offV[v.id])){c.verses.forEach(v=>S.offV[v.id]=1);nouvelles=true;}});
+    if(prefs.exists){const p=prefs.data();S.selCats=p.selCats||[];S.offV={};(p.offV||[]).forEach(id=>S.offV[id]=1);
+      S.offC={};
+      if(p.v>=2){
+        (p.offC||[]).forEach(id=>S.offC[id]=1);
+        const connues=p.connues||[];
+        effectiveCats().forEach(c=>{if(c.verses.length&&connues.indexOf(c.id)<0&&!S.offC[c.id]){S.offC[c.id]=1;nouvelles=true;}});
+      }else{
+        if(S.selCats.length||Object.keys(S.offV).length){
+          effectiveCats().forEach(c=>{if(c.verses.length&&!S.selCats.includes(c.id)&&c.verses.every(v=>!S.offV[v.id])){c.verses.forEach(v=>S.offV[v.id]=1);nouvelles=true;}});
+        }
+        /* les préférences d'avant les trois niveaux : une catégorie
+           décochée l'était verset par verset ; elle devient une catégorie
+           éteinte dont les versets restent cochés, ce qui revient au même
+           pour les séries */
+        effectiveCats().forEach(c=>{if(c.verses.length&&c.verses.every(v=>S.offV[v.id])){S.offC[c.id]=1;c.verses.forEach(v=>delete S.offV[v.id]);}});
+        nouvelles=true;
       }
       syncSelCats();}
     else{S.selCats=PRE.map(c=>c.id);S.offV={};}
@@ -1369,7 +1404,7 @@ function saveProgressGroupe(){ if(ATTENTE)return; ATTENTE=setTimeout(()=>{ATTENT
 function videAttente(){ if(ATTENTE){clearTimeout(ATTENTE);ATTENTE=null;saveProgress();} }
 document.addEventListener('visibilitychange',()=>{if(document.hidden)videAttente();});
 window.addEventListener('pagehide',videAttente);
-function savePrefs(){syncSelCats();if(!peutEcrire())return;udoc('meta/prefs').set({selCats:S.selCats,offV:Object.keys(S.offV),hidCats:S.hidCats}).catch(e=>console.warn('sync prefs',e));}
+function savePrefs(){syncSelCats();if(!peutEcrire())return;udoc('meta/prefs').set({v:2,selCats:S.selCats,offV:Object.keys(S.offV),offC:Object.keys(S.offC),connues:effectiveCats().map(c=>c.id),hidCats:S.hidCats}).catch(e=>console.warn('sync prefs',e));}
 function saveCat(c){if(!peutEcrire())return Promise.resolve();return ucol('categories').doc(c.id).set({name:c.name,verses:c.verses,kind:kindDe(c)});}
 function saveBaseEdits(){if(!peutEcrire())return;udoc('meta/baseEdits').set({cats:S.baseEdits}).catch(e=>console.warn('sync baseEdits',e));}
 function saveTrash(){if(!peutEcrire())return;udoc('meta/trash').set({items:S.trash}).catch(e=>console.warn('sync trash',e));}
@@ -1424,6 +1459,7 @@ function ecouteLive(){
     if(!d)return false;
     S.selCats=d.selCats||[];
     S.offV={}; (d.offV||[]).forEach(id=>S.offV[id]=1);
+    if(d.v>=2){S.offC={};(d.offC||[]).forEach(id=>S.offC[id]=1);}
     S.hidCats=d.hidCats||[];
   });
   veille('baseEdits',udoc('meta/baseEdits'),d=>{S.baseEdits=(d&&d.cats)||{};Object.keys(S.baseEdits).forEach(k=>{S.baseEdits[k]=catFr(S.baseEdits[k]);});});
@@ -1435,12 +1471,14 @@ function ecouteLive(){
 // ════════ UI : CATÉGORIES & MÉMOIRE ════════
 function elementCat(cat){
     const pas=estPassage(cat);
-    const _act=cat.verses.filter(vv=>!S.offV[vv.id]).length;
-    const sel=cat.verses.length&&_act===cat.verses.length;
-    const part=!sel&&_act>0;
+    /* la coche de la catégorie dit si elle est active ; la barre et le
+       pourcentage comptent ses versets cochés, active ou non, pour que
+       l'éteindre ne fasse pas oublier où l'on en est */
+    const allumee=!S.offC[cat.id];
+    const actifs=cat.verses.filter(vv=>vActif(cat,vv,true));
+    const sel=allumee&&cat.verses.length&&actifs.length===cat.verses.length;
+    const part=allumee&&!sel;
     const open=!!S.open[cat.id];
-    // distribution
-    const actifs=cat.verses.filter(vv=>!S.offV[vv.id]);
     let r=0,a=0,v=0;
     actifs.forEach(vv=>{const l=levelOf(vv.id);if(l==='r')r++;else if(l==='a')a++;else v++;});
     const tot=actifs.length||1;
@@ -1450,17 +1488,21 @@ function elementCat(cat){
     const pct=actifs.length?Math.round(acquis/(NIVEAU_ACQUIS*actifs.length)*100):0;
     const pctTxt=pct+'\u00a0%';
     const div=document.createElement('div');
-    div.className='cat'+(sel?' sel':part?' part':'')+(open?' open':'');
+    div.className='cat'+(sel?' sel':part?' part':'')+(allumee?'':' coff')+(open?' open':'');
     div.dataset.id=cat.id;
     let body='<div class="cat-body">';
     const idxJ=IDX_JUM||(IDX_JUM=indexJumeaux()), kind0=kindDe(cat);
-    cat.verses.forEach(vv=>{
+    /* en tête du contenu, « Tout cocher / Tout décocher » pour les versets
+       de la catégorie */
+    if(cat.verses.length)body+='<div class="cat-tete"><span class="bandeau-mini"><span class="mini-act" data-cattout="1" role="button" tabindex="0">'+(cat.verses.every(x=>!S.offV[x.id])?'Tout décocher':'Tout cocher')+'</span></span></div>';
+    versetsClasses(cat).forEach(vv=>{
       const l=levelOf(vv.id);
       const voff=!!S.offV[vv.id];
       /* les deux marques : « aussi ailleurs » et « s'écarte de la Bible » */
       const grp=idxJ[cleVerset(vv,kind0)]||[], autres=[];
       grp.forEach(x=>{ if(x.cat.id!==cat.id&&!autres.some(y=>y.id===x.cat.id))autres.push(x.cat); });
       let mq='';
+      if(cat.base&&vv.pilier)mq+='<span class="mq mq-pil" title="Pilier : à savoir par cœur en premier">Pilier</span>';
       if(autres.length){
         const noms=autres.map(x=>x.name.fr||'').filter(Boolean).join(', ');
         mq+='<span class="mq mq-jum" data-jum="'+vv.id+'" role="button" tabindex="0" title="'+besc(('Aussi dans : ')+noms+'. Toucher pour y aller.')+'">'
@@ -1567,7 +1609,7 @@ function renderCats(){
     vide.textContent=modeP()?'Aucune catégorie de passages pour l’instant. Créez-en une ci-dessous, puis ajoutez-y vos passages : un titre d’un côté, sa référence de l’autre.'
       :(modeC()?'Aucune catégorie de fiches pour l’instant. Créez-en une ci-dessous, puis ajoutez-y vos fiches : d’un côté un texte (une citation, une définition…), de l’autre ce à quoi il se rapporte (l’auteur, le mot défini…).':t('no_cats'));
     host.appendChild(vide);}
-  const _cs=catsMode(),_all=_cs.length&&_cs.every(c=>c.verses.every(v=>!S.offV[v.id]));$('sel-all').textContent=_cs.length?(_all?t('deselect_all'):t('select_all')):'';
+  const _cs=catsMode(),_all=_cs.length&&_cs.every(c=>!S.offC[c.id]);$('sel-all').textContent=_cs.length?(_all?t('deselect_all'):t('select_all')):'';
   try{verifieEcarts();}catch(_){}
   /* une catégorie de base supprimée peut revenir : c'est le geste que promet
      le message « restaurez les catégories de base » */
@@ -1602,11 +1644,10 @@ function vaMode(m){
   S.soloCat=null; S.soloSec=null; S.showAllCats=false; S.open={};
   renderCats();
 }
-function toggleSelectAll(){const cs=catsMode();const allSel=cs.length&&cs.every(c=>c.verses.every(v=>!S.offV[v.id]));
-  /* On ne touche qu'aux cartes du mode où l'on est : vider toute la liste
-     des exclusions rallumerait en douce les cartes décochées des autres
-     onglets. */
-  cs.forEach(c=>c.verses.forEach(v=>{if(allSel)S.offV[v.id]=1;else delete S.offV[v.id];}));
+function toggleSelectAll(){const cs=catsMode();const allSel=cs.length&&cs.every(c=>!S.offC[c.id]);
+  /* On ne touche qu'aux catégories du mode où l'on est, et seulement à leur
+     interrupteur : les coches des versets restent ce qu'elles sont. */
+  cs.forEach(c=>{if(allSel)S.offC[c.id]=1;else delete S.offC[c.id];});
   savePrefs();renderCats();}
 
 // ════════ UI : STUDY ════════
@@ -2817,13 +2858,15 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(delc){await delCatById(id);return;}
     if(restorec){await restoreCatBase(id);return;}
     if(act&&act.dataset.act==='solo'){S.soloCat=id;S.soloSec=null;startSession();return;}
+    /* la coche d'une catégorie l'allume ou l'éteint ; ses versets gardent
+       leurs coches */
     if(act&&act.dataset.act==='sel'){
-      const c=effectiveCats().find(x=>x.id===id);
-      if(c&&c.verses.length){
-        const allOn=c.verses.every(v=>!S.offV[v.id]);
-        if(allOn){c.verses.forEach(v=>S.offV[v.id]=1);}
-        else{c.verses.forEach(v=>{delete S.offV[v.id];});}
-      }
+      S.offC[id]?delete S.offC[id]:S.offC[id]=1;
+      savePrefs();renderCats();return;}
+    if(e.target.closest('[data-cattout]')){
+      const c=effectiveCats().find(x=>x.id===id); if(!c)return;
+      const tous=c.verses.every(v=>!S.offV[v.id]);
+      c.verses.forEach(v=>{if(tous)S.offV[v.id]=1;else delete S.offV[v.id];});
       savePrefs();renderCats();return;}
     if(act){S.open[id]=!S.open[id];catEl.classList.toggle('open');return;}
   });

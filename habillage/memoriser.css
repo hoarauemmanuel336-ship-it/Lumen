@@ -108,8 +108,9 @@ html body .cat-name{font-family:var(--h-titre);font-size:21px;font-weight:500;li
 html body .cat-row:hover .cat-name{color:#fff}
 html body .cat-ecart{font-family:var(--h-ui);font-size:14px;font-weight:600;color:var(--ambre)}
 
-/* la case d'une catégorie : un carré ; pleine et cochée quand tous ses
-   versets sont pris, un trait quand une partie l'est */
+/* la case d'une catégorie : un carré ; vide quand la catégorie est
+   éteinte, plein et coché quand elle est active avec tous ses versets,
+   un trait quand elle est active avec une partie d'entre eux */
 html body .cat-check{
   width:20px;height:20px;border:1.5px solid var(--h-l3);border-radius:0;background:#000;
   transition:background .2s,border-color .2s;
@@ -767,3 +768,13 @@ html body .vrow.note-on .vtext{visibility:hidden}
   html body .vrow.vbase .vnote{grid-column:1/-1;padding:6px 2px 6px 26px}
 }
 @media(max-width:420px){html body .vrow.vbase{grid-template-columns:16px minmax(0,1fr) auto}}
+
+/* ── DEUX NIVEAUX DE COCHE ET PILIERS ──
+   Une catégorie éteinte pâlit, ses versets gardent leurs coches. En tête
+   de son contenu, « Tout cocher / Tout décocher ». Le pilier porte une
+   petite étiquette crème. */
+html body .cat.coff :is(.cat-name,.cat-dist,.cat-pct){opacity:.4}
+html body .cat.coff .vrow{opacity:.55}
+html body .cat-tete{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:6px 0 12px 10px}
+html body .mq.mq-pil{width:auto;height:auto;padding:3px 7px 2px;background:var(--h-or);color:#000;font-family:var(--h-ui);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1.2}
+@media(max-width:720px){html body .cat-tete{padding:4px 0 10px 0}}
