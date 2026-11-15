@@ -1,7 +1,7 @@
 {
  "01-la-revelation.html": {
-  "taille": 3304604,
-  "empreinte": "46793cc2d307532999caabda096679e6f4756e598a9c8fd7f4cc80102eb3cbcd",
+  "taille": 3304962,
+  "empreinte": "c0372da9ff1b4e9f2911e5efbc5833af6027c274de38d4030acc4cb7718ae1f1",
   "cours": {
    "l": "Qu’est-ce que la Révélation",
    "c": "La connaissance naturelle de Dieu et ses limites",
@@ -24,8 +24,8 @@
   }
  },
  "02-la-transmission-de-la-revelation.html": {
-  "taille": 3408531,
-  "empreinte": "78a7550835c702dcedf23f0a3da79c547e4231517c797a151dd45f322e3fc680",
+  "taille": 3408889,
+  "empreinte": "5a6b267033f62fc8e533dac41521796ae1c37b9173d30136ef444b0f8cc50849",
   "cours": {
    "l": "Le dépôt de la foi et la Tradition apostolique",
    "t": "La Tradition et les traditions",
@@ -48,8 +48,8 @@
   }
  },
  "03-l-autorite-de-l-enseignement.html": {
-  "taille": 3853721,
-  "empreinte": "df3bea3a570bd3ae562a2ca6f3fc4a8380e2f51571997926c9d069efe227c76e",
+  "taille": 3854079,
+  "empreinte": "af65bfb68f79b5a94d0cc775e291b531901193453980ed2ca46a069a2ba2e607",
   "cours": {
    "l": "Qui enseigne avec autorité",
    "d": "Le dogme et l’hérésie",
@@ -78,8 +78,8 @@
   }
  },
  "04-la-foi.html": {
-  "taille": 3783654,
-  "empreinte": "603ae5a5c9236fedca11bdb3fa440184af2c38a4ec9c5b5873a542b93974c4b8",
+  "taille": 3784012,
+  "empreinte": "2e31afe97651425d0772ae72dd45ffca8ecb9fceff3fcb81bf4a374ae546bd7b",
   "cours": {
    "l": "L’acte de foi",
    "v": "La vertu de foi et ses propriétés",
@@ -102,8 +102,8 @@
   }
  },
  "05-les-symboles-de-foi.html": {
-  "taille": 3196830,
-  "empreinte": "3163aaefb43f27dce4d038a1fca3fc36734cb59adf28f79f862220a97d9c3f40",
+  "taille": 3197188,
+  "empreinte": "9fae18dcd0055c0ae58be645ca5f67c00b3eb4e2686972ff48a05cc54a25edbe",
   "cours": {
    "l": "Nature et origine des Symboles",
    "s": "Le Symbole des Apôtres",
@@ -122,8 +122,8 @@
   }
  },
  "11-inspiration-verite-et-canon.html": {
-  "taille": 4056054,
-  "empreinte": "655b975b8aba792be011e1d871a42de3e74a7fffea8416569eef77a9a990448b",
+  "taille": 4056412,
+  "empreinte": "5fa1cef819175d77cee1c58c2267bc6e4396c0cbb87428d8c9ba0eda0362d7b9",
   "cours": {
    "l": "L’inspiration de l’Écriture",
    "v": "La vérité de l’Écriture",
@@ -150,8 +150,8 @@
   }
  },
  "12-interpreter-l-ecriture.html": {
-  "taille": 4306170,
-  "empreinte": "f3511fab0766949ad641d9a3803c674891256507c9af513d9b8b498499f6ac36",
+  "taille": 4306528,
+  "empreinte": "52e41d607ea77258e8b61e09577246f6c8d1adef86644c936b78adb9f5ad0aa8",
   "cours": {
    "l": "Le sens littéral",
    "s": "Les sens spirituels",
@@ -178,8 +178,8 @@
   }
  },
  "13-l-histoire-d-israel.html": {
-  "taille": 5371389,
-  "empreinte": "54cf2a7b84d82dc7481c69a03d9dfd253d7aa0b07a8d5496f15f4f7e627ef508",
+  "taille": 5371747,
+  "empreinte": "307844179b20aa1bb44243507629f38b4bbd3a1c97b300acff810220c6cc2c6b",
   "cours": {
    "l": "Les sources de l’histoire d’Israël",
    "p": "Les patriarches",
@@ -208,8 +208,8 @@
   }
  },
  "14-le-pentateuque.html": {
-  "taille": 4799953,
-  "empreinte": "f10188c2b874fec8da35b8b098f64ca6ed429dfacae75bbc15d1df4c16bca082",
+  "taille": 4800311,
+  "empreinte": "e447e9fadf5063dfe45ef855d41893c2ff2974862c43f25bf4da85d30be565e6",
   "cours": {
    "l": "Le Pentateuque, un ensemble",
    "g": "Genèse 1-11 : les origines",
@@ -232,8 +232,8 @@
   }
  },
  "15-les-livres-historiques.html": {
-  "taille": 6431454,
-  "empreinte": "d120a17487f015304ba4145927f5303829e4a20f835b7a1b13c91428332a0f0a",
+  "taille": 6431812,
+  "empreinte": "fca70b13444e193d4686458795ee8debbba6c26effbeb9d40840174321a329c7",
   "cours": {
    "l": "Les livres historiques, un ensemble",
    "j": "Le livre de Josué",
@@ -266,8 +266,8 @@
   }
  },
  "16-les-livres-sapientiaux-et-poetiques.html": {
-  "taille": 4942206,
-  "empreinte": "3607faeb644af883d4c6ed6f70427a30a06075716fb9d70e3e2a5e416a64bc6b",
+  "taille": 4942564,
+  "empreinte": "9d9fc82011e84b02fdf0342140e5389459bad9be0a48f91aea02f860af43f5e0",
   "cours": {
    "l": "La sagesse biblique",
    "j": "Le livre de Job",
@@ -292,8 +292,8 @@
   }
  },
  "17-les-prophetes.html": {
-  "taille": 8546708,
-  "empreinte": "c595514a516b9962ec4bc015b640c7e0c3cf36dc48ec9782e354e89def516cdf",
+  "taille": 8547066,
+  "empreinte": "ed8b498cda2e6cf15ff324a41fd31dc880698506e1dadedbf3ce6876ffdf22eb",
   "cours": {
    "l": "Le prophétisme biblique",
    "i": "Isaïe 1-39 : le prophète de Jérusalem",
@@ -344,8 +344,8 @@
   }
  },
  "18-les-evangiles.html": {
-  "taille": 4921466,
-  "empreinte": "5dcf11dcc4a2b0f9931dafd52c01b45e55cf0306cd0daeb50e0a8ea733337dc8",
+  "taille": 4921824,
+  "empreinte": "31394d867a0556f6ea890a22ebf7e915d9aa4a86eec88553568ac8972ceb4bf2",
   "cours": {
    "l": "La formation des Évangiles",
    "q": "La question synoptique",
@@ -366,8 +366,8 @@
   }
  },
  "19-les-actes-et-saint-paul.html": {
-  "taille": 6765134,
-  "empreinte": "3b636cebd8434cc87e4aaaf5506b1f0f103b1461b62d0f8ceacd56076dcd6e67",
+  "taille": 6765492,
+  "empreinte": "94e4466bd8d8ce864416304b60dd8aa651ae50ea58f5788088b60b2c818c6b04",
   "cours": {
    "l": "Les Actes des Apôtres",
    "v": "La vie et les voyages de saint Paul",
@@ -400,8 +400,8 @@
   }
  },
  "20-hebreux-les-epitres-catholiques-et-l-apocalypse.html": {
-  "taille": 4361418,
-  "empreinte": "b4bf465a5abb871d1d009a8c346478b69a26df260b5099fbf605b7b1616bef9c",
+  "taille": 4361776,
+  "empreinte": "8e9a1b74db685da5f9573f05c75d84f8f19a7d4cffbc7cd359ab3d4901747aa2",
   "cours": {
    "l": "L’épître aux Hébreux",
    "e": "L’épître de Jacques",
@@ -422,8 +422,8 @@
   }
  },
  "21-les-grands-themes-de-l-ecriture.html": {
-  "taille": 4606824,
-  "empreinte": "44a6268ce8b89f4f7a1b564bf8d5fe4b1ecd19746a7cfd13b1cbea5efb47e261",
+  "taille": 4607182,
+  "empreinte": "cbb47cd3e53fed2e2a6f50df6c7a2635457537c3a5a054988cdcd1872f22258d",
   "cours": {
    "l": "Les alliances",
    "a": "Les annonces messianiques",
@@ -448,8 +448,8 @@
   }
  },
  "51-l-esprit-saint.html": {
-  "taille": 3944355,
-  "empreinte": "fb0b913cd316f831b86e8f5b17ad361d798fe2d3eb9794788a23a608b3269094",
+  "taille": 3944713,
+  "empreinte": "4bdfd9a6dc7a37483164451fc14592f3e5cb6438a79fa5461cdef0a615b10e25",
   "cours": {
    "l": "Les noms de l’Esprit Saint",
    "s": "Les symboles de l’Esprit Saint",
@@ -476,8 +476,8 @@
   }
  },
  "52-la-grace.html": {
-  "taille": 3913409,
-  "empreinte": "97ad78f447e8eeec4f079501202c5dd7fe539108ec525f2cc85f729f00b88d91",
+  "taille": 3913767,
+  "empreinte": "2b7b2b53089ead8cacfaf62dc03c5e1f157ed0edbf6c04854c10c8703701426b",
   "cours": {
    "l": "La notion de grâce et l’ordre surnaturel",
    "n": "Nature et grâce",
@@ -504,8 +504,8 @@
   }
  },
  "53-la-justification-et-le-merite.html": {
-  "taille": 3272846,
-  "empreinte": "c2666b975ed36033060b28385c4b59a225e18649a0f740a4da6e278bc689adff",
+  "taille": 3273204,
+  "empreinte": "c2c29af560cef399a1ad430b99bad666d6435bc2033b1868dc3b5ea9256c39c7",
   "cours": {
    "l": "La justification selon le concile de Trente",
    "p": "La préparation à la justification",
@@ -526,8 +526,8 @@
   }
  },
  "75-la-mort-et-le-jugement-particulier.html": {
-  "taille": 2928934,
-  "empreinte": "bcdf1fc48193492bba191486bb19083085165a415366f0074b3289a5ba6070b3",
+  "taille": 2929292,
+  "empreinte": "7ad0bcb8bffe70d83b2c66b011c3f9a89cb3f8402c859e98f217a740d9a3da99",
   "cours": {
    "l": "L’eschatologie, science des fins dernières",
    "m": "La mort",
@@ -544,8 +544,8 @@
   }
  },
  "76-le-ciel-le-purgatoire-et-l-enfer.html": {
-  "taille": 2671296,
-  "empreinte": "63a671fd4b6110e3035637781c108e98b56eaf5b7e62641d9232d619f51883cb",
+  "taille": 2671654,
+  "empreinte": "d56f668632386ce6d4a8b48c6551786980d6904d1da44ae5faf7373659fbaba7",
   "cours": {
    "l": "Le ciel",
    "p": "Le purgatoire",
@@ -560,8 +560,8 @@
   }
  },
  "77-la-fin-des-temps.html": {
-  "taille": 3710308,
-  "empreinte": "4a8b43fde9c9c303020129fe7c671dd95ce281091dc09065b28419b247fe01b3",
+  "taille": 3710666,
+  "empreinte": "77f001c65d239f0f5b3aed87f6570a34798df1ef98f6d9cd51959effae1cd8ff",
   "cours": {
    "l": "Les signes de la fin des temps",
    "m": "Le millénarisme",

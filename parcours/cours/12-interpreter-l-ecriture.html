@@ -13418,10 +13418,16 @@ if(D.fonts&&D.fonts.ready)D.fonts.ready.then(function(){progres()});
    un cadre seul sur sa ligne, au-dessus ou au-dessous d'un autre, a des angles droits (classe seul) */
 (function(){
 var SEL='.pc,.exo,.js,.ong,.bx';
-function coins(){var C=[].slice.call(document.querySelectorAll(SEL)),R=C.map(function(c){return c.getBoundingClientRect()});
-  C.forEach(function(c,i){var a=R[i];if(a.width===0)return;
-    var cote=R.some(function(r,j){return j!==i&&r.width>0&&r.top<a.bottom-4&&a.top<r.bottom-4&&(r.right<=a.left+1||r.left>=a.right-1)});
-    c.classList.toggle('cote',cote);c.classList.toggle('seul',!cote)})}
+/* seuls les cadres visibles comptent ; rangés de haut en bas, chacun ne se compare qu'aux cadres qui commencent avant
+   sa fin, si bien que le calcul reste rapide quel que soit leur nombre */
+function coins(){var V=[];
+  [].forEach.call(document.querySelectorAll(SEL),function(c){var a=c.getBoundingClientRect();
+    if(a.width===0||a.height===0)return;V.push({c:c,a:a,cote:false})});
+  V.sort(function(x,y){return x.a.top-y.a.top});
+  for(var i=0;i<V.length;i++){var a=V[i].a;
+    for(var j=i+1;j<V.length&&V[j].a.top<a.bottom-4;j++){var r=V[j].a;
+      if(a.top<r.bottom-4&&(r.right<=a.left+1||r.left>=a.right-1)){V[i].cote=true;V[j].cote=true}}}
+  V.forEach(function(v){v.c.classList.toggle('cote',v.cote);v.c.classList.toggle('seul',!v.cote)})}
 function bientot(){[0,120,400,800].forEach(function(t){setTimeout(coins,t)})}
 bientot();addEventListener('load',bientot);addEventListener('resize',bientot);document.addEventListener('click',bientot);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(bientot);

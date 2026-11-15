@@ -156,11 +156,29 @@
     if(!r.ok)throw new Error(String(r.status));
     return r.text();
   }
+  /* ── LE PARCOURS RESTE EN MÉMOIRE ──
+     Le parcours est long à construire (plus de neuf cents sujets). Quand un
+     cours s'ouvre, son cadre n'est donc pas jeté : il reste dans la page,
+     masqué sous le cours, et la flèche de retour le fait reparaître aussitôt,
+     à sa place, avec ses thèmes dépliés. Un cours, lui, est jeté en le
+     quittant. */
+  let PARC=null;
   function ferme(){
     if(!OUVERT)return;
     pousse();
-    try{OUVERT.f.remove();}catch(_){}
+    if(OUVERT.genre==='parcours'&&OUVERT.f&&OUVERT.rendu){PARC=OUVERT;PARC.f.style.visibility='hidden';PARC.f.setAttribute('aria-hidden','true');}
+    else{try{OUVERT.f.remove();}catch(_){}}
     OUVERT=null;
+  }
+  function reprendParcours(){
+    const o=PARC; PARC=null;
+    if(!o||!o.f||!o.f.isConnected)return false;
+    OUVERT=o;
+    o.f.style.visibility=''; o.f.removeAttribute('aria-hidden');
+    finAttente(o);
+    /* la progression des cours a pu changer pendant qu'on y était */
+    try{o.f.contentWindow.postMessage({lvAuto:etatsDesCours()},'*');}catch(_){}
+    return true;
   }
   async function montre(ancre){
     const fichier=fichierDuLien();
@@ -168,6 +186,7 @@
                    :{id:'parcours',genre:'parcours',adresse:PARCOURS};
     if(OUVERT&&OUVERT.id===o.id){ if(ancre&&OUVERT.f)va(OUVERT,ancre); return; }
     ferme();
+    if(o.genre==='parcours'&&reprendParcours())return;
     o.ancre=ancre||'';
     OUVERT=o;
     attend();
