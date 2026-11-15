@@ -5,7 +5,7 @@ recu/fiches.json qui dit, pour chacune, son identifiant (à mettre dans
 « remplace » au renvoi), son titre et son rangement.
 Pour les cours d'Étude (espèce « cours »), « titres » nomme un fichier
 ou un cours qu'il contient ; le sommaire du dépôt dit lequel."""
-import json, os, sys, tempfile
+import gzip, json, os, sys, tempfile
 from coffre import recoit, liste, ESPECES
 
 demande = json.load(open('demande/demande.json', encoding='utf-8'))
@@ -27,7 +27,11 @@ if espece == 'cours':
         else:
             introuvables.append(t)
     for n in dict.fromkeys(voulus):
-        recoit(f'cours/{n}', os.path.join('recu', n))
+        p = os.path.join('recu', n)
+        recoit(f'cours/{n}', p)
+        b = open(p, 'rb').read()
+        if b[:2] == b'\x1f\x8b':  # un cours rangé compressé redevient lisible
+            open(p, 'wb').write(gzip.decompress(b))
         print(f'Reçu : recu/{n}')
     json.dump({'espece': 'cours', 'fichiers': list(dict.fromkeys(voulus)), 'introuvables': introuvables},
               open('recu/fiches.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)

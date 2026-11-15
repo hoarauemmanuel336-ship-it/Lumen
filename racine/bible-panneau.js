@@ -293,6 +293,9 @@
      directement au bon endroit : une seule charge, pas deux. */
   function va(hash){
     if (!cadre) { faitCadre(hash || ''); return; }
+    /* ce qui recouvre la lecture dans le cadre (recherche, compte, menus)
+       se referme d'abord, pour que le passage demandé se voie */
+    try { if (cadre.contentWindow.lvFermeFenetres) cadre.contentWindow.lvFermeFenetres(); } catch(_){}
     try {
       /* même adresse qu'avant : le routage de la page rejoue (elle revient
          au verset), sans la recharger, ce qui garde la sélection et les

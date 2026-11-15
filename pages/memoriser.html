@@ -946,10 +946,9 @@ const trunc=(s,n)=>{const a=Array.from(String(s));return a.length>n?a.slice(0,n)
 function effectiveCats(){
   /* ── LES VERSETS DE BASE ──
      Ils viennent du site (contenu/memoriser.json), avec leur note « pourquoi
-     l'apprendre » et, pour certains, la marque de pilier ; ils ne se
-     modifient ni ne se suppriment (Emmanuel : « pas de modification des
-     versets de base ni de suppression »). On les coche, on leur donne sa
-     couleur ; les piliers passent en tête de leur catégorie. */
+     l'apprendre », et se présentent tels quels : ni modifiés, ni déplacés,
+     ni supprimés (Emmanuel : « pas de modification des versets de base ni de
+     suppression »). On les coche, on leur donne sa couleur, c'est tout. */
   const base=PRE.map(c=>({id:c.id,name:c.name,verses:c.verses,base:true,bloc:c.bloc||''}));
   return [...base,...S.customCats.map(c=>({...c,base:false}))];
 }
@@ -1028,15 +1027,6 @@ function syncSelCats(){S.selCats=effectiveCats().filter(c=>c.verses.length&&c.ve
 function vActif(c,v,sansCat){
   if(S.offV[v.id])return false;
   return !!sansCat||!S.offC[c.id];
-}
-/* ── LES PILIERS ──
-   Un verset de base marqué pilier est à savoir par cœur en premier : il
-   passe en tête de sa catégorie, dans l'ordre des leçons, et porte une
-   petite étiquette (« en haut de leur liste avec quelque chose pour
-   signaler qu'ils sont prioritaires »). */
-function versetsClasses(cat){
-  if(!cat.base)return cat.verses;
-  return cat.verses.filter(v=>v.pilier).concat(cat.verses.filter(v=>!v.pilier));
 }
 // clone profond de la version effective d'une catégorie de base, pour la rendre éditable
 function baseClone(catId){const e=effectiveCats().find(c=>c.id===catId);return{name:JSON.parse(JSON.stringify(e.name)),verses:JSON.parse(JSON.stringify(e.verses))};}
@@ -1495,14 +1485,13 @@ function elementCat(cat){
     /* en tête du contenu, « Tout cocher / Tout décocher » pour les versets
        de la catégorie */
     if(cat.verses.length)body+='<div class="cat-tete"><span class="bandeau-mini"><span class="mini-act" data-cattout="1" role="button" tabindex="0">'+(cat.verses.every(x=>!S.offV[x.id])?'Tout décocher':'Tout cocher')+'</span></span></div>';
-    versetsClasses(cat).forEach(vv=>{
+    cat.verses.forEach(vv=>{
       const l=levelOf(vv.id);
       const voff=!!S.offV[vv.id];
       /* les deux marques : « aussi ailleurs » et « s'écarte de la Bible » */
       const grp=idxJ[cleVerset(vv,kind0)]||[], autres=[];
       grp.forEach(x=>{ if(x.cat.id!==cat.id&&!autres.some(y=>y.id===x.cat.id))autres.push(x.cat); });
       let mq='';
-      if(cat.base&&vv.pilier)mq+='<span class="mq mq-pil" title="Pilier : à savoir par cœur en premier">Pilier</span>';
       if(autres.length){
         const noms=autres.map(x=>x.name.fr||'').filter(Boolean).join(', ');
         mq+='<span class="mq mq-jum" data-jum="'+vv.id+'" role="button" tabindex="0" title="'+besc(('Aussi dans : ')+noms+'. Toucher pour y aller.')+'">'
@@ -1521,7 +1510,7 @@ function elementCat(cat){
         +['r','a','v'].map(k=>'<span class="dot '+k+(l===k?' act':'')+'" data-niv="'+k+'" data-nivid="'+vv.id+'" role="button" title="'+besc(t('rap_'+k))+'" aria-label="'+besc(t('rap_'+k))+'"></span>').join('')+'</span>'
         +(cat.base
           /* le verset de base se lit en entier, puis sa note : pourquoi l'apprendre */
-          ?'<div class="vnote"><p class="vnote-texte">'+besc(vv.fr.text)+'</p>'+(vv.note?'<p class="vnote-pq">'+besc(vv.note).replace(/\*([^*]+)\*/g,'<i>$1</i>')+'</p>':'')/* *mot* : une translittération, en italique */+'</div></div>'
+          ?'<div class="vnote"><p class="vnote-texte">'+besc(vv.fr.text)+'</p>'+(vv.note?'<p class="vnote-titre">Pourquoi l’apprendre</p><p class="vnote-pq">'+besc(vv.note).replace(/\*([^*]+)\*/g,'<i>$1</i>')+'</p>':'')/* *mot* : une translittération, en italique */+'</div></div>'
           :'<span class="mov-v" data-movev="'+vv.id+'" title="'+('Déplacer dans…')+'">\u21C4</span>'
           +'<span class="del-v" data-delv="'+vv.id+'">×</span></div>');
     });

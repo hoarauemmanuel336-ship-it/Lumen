@@ -2610,6 +2610,21 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     fermeNote(); fermeCat(); fermeAuth(); fermeOv('brech-voile'); fermeFragPop(); fermeMenu();
     document.getElementById('bacct-voile').classList.remove('ouvert');
   });
+  /* ── UN PASSAGE DEMANDÉ D'AILLEURS PASSE DEVANT ──
+     Quand une autre page ouvre un passage dans le tiroir de la Bible (une
+     lecture du jour sur l'accueil, une référence dans un article), ce qui
+     était resté ouvert dans la Bible (recherche, compte, menus, IA) se
+     referme, sinon le passage s'afficherait derrière (Emmanuel : « si j'ai
+     déjà des choses qui se passent sur la page de la Bible, ça ne l'ouvre
+     pas »). Une note en cours de rédaction demande d'abord s'il faut
+     abandonner ses modifications, comme avec Échap ; une confirmation en
+     attente reste ouverte. */
+  window.lvFermeFenetres = function(){
+    if (document.getElementById('conf-voile').classList.contains('ouvert')) return;
+    fermePalette(); fermeNote(); fermeCat(); fermeAuth(); fermeOv('brech-voile'); fermeFragPop(); fermeMenu();
+    document.getElementById('bacct-voile').classList.remove('ouvert');
+    if (typeof qaFerme === 'function' && document.documentElement.classList.contains('qa-ouvert')) qaFerme();
+  };
   actifId('nb-enregistrer', function(){
     if (!noteEnCours) return;
     var t = document.getElementById('nb-zone').value.trim();
@@ -3309,14 +3324,17 @@ var m=document.createElement('meta');m.name='robots';m.content='noindex';documen
     });
     vue.innerHTML = h;
     var fa = document.getElementById('bib-aller');
+    /* le champ lit ce que lit la loupe : une ou plusieurs références
+       (« Jean 3:16 ; Romains 5:8 »), plages comprises, toutes sélectionnées */
     if (fa) fa.addEventListener('submit', function(e){
       e.preventDefault();
       var champ = document.getElementById('bib-ref'), err = document.getElementById('bib-err');
       var val = String(champ.value || '').trim(); if (!val) return;
-      var g = null; try { g = parseRef(val); } catch(_) { g = null; }
-      if (!g) { err.textContent = 'Référence non reconnue.'; return; }
+      var an = { refs: [], mauvais: [val] }; try { an = refsDepuis(val); } catch(_) {}
+      if (!an.refs.length) { err.textContent = 'Référence non reconnue.'; return; }
+      if (an.mauvais.length) { err.textContent = 'Non reconnue\u00a0: ' + an.mauvais.join(', ') + '.'; return; }
       err.textContent = ''; champ.blur();
-      location.hash = 'ref=' + encodeURIComponent(val);
+      allerRefs(an.refs).catch(function(){});
     });
   }
 

@@ -105,7 +105,12 @@ async function sert(req, cle) {
    navigateur le revalide à chaque ouverture (sans le retélécharger s'il
    n'a pas changé). Un cours que le coffre n'a pas, ou un coffre qui ne
    répond pas, laisse la main au site : il sert sa propre copie s'il en
-   a une (parcours/cours/ dans le dépôt). */
+   a une (parcours/cours/ dans le dépôt).
+   Le robot range les cours compressés (gzip, type application/gzip) :
+   ils voyagent ainsi deux à trois fois moins lourds, et le navigateur les
+   décompresse lui-même. Le rare navigateur qui ne lit pas le gzip reçoit
+   le cours décompressé ici. Un cours rangé sans compression part tel
+   quel. */
 async function sertCours(req, nom, suite) {
   if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,120}\.html$/.test(nom)) return new Response('Introuvable.', { status: 404 });
   const entetes = {};
@@ -122,11 +127,18 @@ async function sertCours(req, nom, suite) {
     const v = r.headers.get(k);
     if (v) h.set(k, v);
   }
+  const gz = /gzip/i.test(r.headers.get('content-type') || '');
+  let corps = req.method === 'HEAD' || r.status === 304 ? null : r.body;
+  if (gz) {
+    h.set('vary', 'accept-encoding');
+    if (/\bgzip\b/i.test(req.headers.get('accept-encoding') || '')) h.set('content-encoding', 'gzip');
+    else { h.delete('content-length'); if (corps) corps = corps.pipeThrough(new DecompressionStream('gzip')); }
+  }
   h.set('content-type', 'text/html; charset=utf-8');
   h.set('x-content-type-options', 'nosniff');
   h.set('cache-control', 'private, no-cache');
   h.set('x-robots-tag', 'noindex, nofollow');
-  return new Response(req.method === 'HEAD' || r.status === 304 ? null : r.body, { status: r.status, headers: h });
+  return new Response(corps, { status: r.status, headers: h });
 }
 
 /* ── LES DEMANDES DE LA PAGE ── */

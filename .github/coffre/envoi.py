@@ -6,7 +6,7 @@ fait des fiches : seule la session d'Emmanuel écrit dans Firestore.
 Les cours d'Étude (espèce « cours ») vont droit à leur place, cours/,
 une fois vérifiés contre le sommaire que porte la branche
 (parcours/cours-sommaire.json) : même empreinte, mêmes cours."""
-import hashlib, json, mimetypes, os, re, sys, tempfile, time, unicodedata
+import gzip, hashlib, json, mimetypes, os, re, sys, tempfile, time, unicodedata
 from coffre import envoie, ESPECES
 
 DOSSIER = 'envoi'
@@ -65,10 +65,14 @@ def main():
             if not os.path.isfile(f):
                 sys.exit(f'Fichier introuvable dans envoi/ : « {nom} »')
             cours_verifie(f, nom, sommaire)
+        # rangés compressés : le serveur du site les sert tels quels au
+        # navigateur, deux à trois fois moins lourds (voir fichiers.js)
         for e in cours:
             nom = os.path.basename(e['fichier'])
-            envoie(os.path.join(DOSSIER, e['fichier']), f'cours/{nom}', 'text/html; charset=utf-8')
-            print(f'Cours : {nom} → cours/{nom}')
+            with tempfile.NamedTemporaryFile(suffix='.gz', delete=False) as t:
+                t.write(gzip.compress(open(os.path.join(DOSSIER, e['fichier']), 'rb').read(), 9))
+            envoie(t.name, f'cours/{nom}', 'application/gzip')
+            print(f'Cours : {nom} → cours/{nom} (compressé)')
     for i, e in enumerate(entrees):
         if e.get('espece') == 'cours':
             continue

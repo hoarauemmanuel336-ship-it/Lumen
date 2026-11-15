@@ -166,7 +166,6 @@
       console.warn('étude',e);
       code='<div style="font-family:Georgia,serif;color:#fff;padding:48px 24px;text-align:center;opacity:.8">Ce contenu n’a pas pu être ouvert. Vérifiez la connexion, puis réessayez.</div>';
     }
-    await pret;
     if(OUVERT!==o)return;
     o.code=code;
     const t=/<title>([^<]*)<\/title>/i.exec(code);
@@ -180,13 +179,16 @@
     o.f=f;
     /* l'état avant la place : les sections reprennent leur ouverture,
        puis la place de lecture tombe sur la page ainsi constituée */
-    const rends=()=>{
+    /* le contenu s'affiche aussitôt ; son état et sa place lui sont rendus
+       dès que celui des autres appareils est arrivé (deux secondes et
+       demie au plus), comme dans Ressources */
+    const rends=()=>pret.then(()=>{
       if(OUVERT!==o)return;
       envoieEtat(o);
       const pi=Object.assign({y:0},litJson('pos',o.id)||{});
       try{f.contentWindow.postMessage({lvRevoir:Math.max(0,Math.round(pi.y||0)),lvRevoirInfo:pi},'*');}catch(_){}
       o.rendu=true;
-    };
+    });
     f.addEventListener('load',()=>{rends();setTimeout(rends,300);setTimeout(rends,1000);});
     acts.parentNode.insertBefore(f,acts);
     f.srcdoc=pageCadre(poseProgression(code,litJson('prog',o.id)));

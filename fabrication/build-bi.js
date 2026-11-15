@@ -1024,6 +1024,17 @@ if (fs.existsSync('parcours/la-foi-catholique.html')) {
     + 'a.addEventListener("keydown",function(e){e.stopPropagation()});'
     + 'h.insertBefore(a,v)})}'
     + 'if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){setTimeout(pose,0)});else setTimeout(pose,0)})();</scr' + 'ipt>';
+  /* ── LE PARCOURS TEL QU'IL SERT SUR LE SITE ──
+     Le fichier garde ce que la skill y a mis pour un usage hors du site.
+     Sur le site, les cours sont déjà faits et la progression se garde
+     d'elle-même (« ça ne servira pas pour le site ») : les boutons
+     « Copier » disparaissent, et la présentation du parcours ne parle
+     plus ni de copier pour l'IA, ni du bouton Enregistrer. */
+  const sansCopie = ' Chaque sujet, chaque thème, chaque bloc, et le parcours entier depuis cette bannière, se copie d’un toucher pour être demandé à l’IA en livre (skill livre-html), en diagramme (skill diagrammes-interactifs), en cours (skill cours-html) ou en article.';
+  const progression = /<p>La progression se garde d’elle-même dans le navigateur quand il le permet\.[\s\S]*?<\/p>/;
+  if (!ph.includes(sansCopie) || !progression.test(ph)) throw new Error('parcours : la présentation a changé, revoir les retouches du site dans build-bi.js');
+  ph = ph.replace(sansCopie, '').replace(progression, () => '<p>La progression se garde d’elle-même et se retrouve d’un appareil à l’autre.</p>');
+  ph = injecteAvant(ph, '</body>', '<style>.cpw,.th-cp{display:none!important}</style>');
   ph = injecteAvant(ph, '</body>', boutons);
   fs.writeFileSync(`${OUT}/parcours/la-foi-catholique.html`, ph);
   console.log(`Parcours : ${Object.keys(parTheme).length} thèmes reliés à leur fichier de cours`);

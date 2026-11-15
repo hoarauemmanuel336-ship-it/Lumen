@@ -9,93 +9,12 @@
    "kind": "v",
    "verses": [
     {
-     "id": "base-ephesiens-1-9-10",
-     "fr": {
-      "ref": "Éphésiens 1:9-10",
-      "text": "Il nous a fait connaître le mystère de sa volonté, ce dessein bienveillant qu'il avait formé d'avance dans le Christ, pour le mener à bien quand les temps seraient accomplis : ramener toutes choses sous un seul chef, le Christ, celles du ciel et celles de la terre."
-     },
-     "note": "Dieu révèle d’abord lui-même et son dessein de salut. Le mot grec *mustêrion*, traduit ici par « mystère », désigne ce plan longtemps caché et maintenant dévoilé (Dei Verbum 2). Le verset dit aussi que Dieu se révèle par pure bienveillance : c’est lui qui « nous a fait connaître »."
-    },
-    {
-     "id": "base-2-pierre-1-4",
-     "fr": {
-      "ref": "2 Pierre 1:4",
-      "text": "Par elles, il nous a accordé les précieuses et très grandes promesses, pour que vous deveniez ainsi participants de la nature divine, en fuyant la corruption que la convoitise répand dans le monde."
-     },
-     "note": "Dieu se révèle pour nous faire entrer en communion avec lui, jusqu’à nous rendre « participants de la nature divine ». C’est le verset de référence sur la divinisation du chrétien par la grâce."
-    },
-    {
-     "id": "base-jean-15-15",
-     "fr": {
-      "ref": "Jean 15:15",
-      "text": "Je ne vous appelle plus serviteurs, car le serviteur ne sait pas ce que fait son maître ; je vous appelle mes amis, car tout ce que j'ai entendu de mon Père, je vous l'ai fait connaître."
-     },
-     "note": "Dieu parle aux hommes comme à des amis (Dei Verbum 2). Jésus appelle ses disciples amis parce qu’il leur a fait connaître tout ce qu’il a reçu du Père : la Révélation est une amitié, et elle est complète dans le Christ."
-    },
-    {
-     "id": "base-psaumes-42-2-3",
-     "fr": {
-      "ref": "Psaumes 42:2-3",
-      "text": "Comme le cerf soupire après les eaux vives, ainsi mon âme soupire après toi, ô Dieu. Mon âme a soif de Dieu, du Dieu vivant : quand irai-je paraître devant Dieu ?"
-     },
-     "note": "L’homme a soif de Dieu : ce désir est inscrit dans son cœur et le rend « capable de Dieu » (Catéchisme 27). Une prière à garder, qui dit aussi pourquoi l’homme est fait pour accueillir la Révélation."
-    },
-    {
      "id": "base-romains-1-20",
      "fr": {
       "ref": "Romains 1:20",
       "text": "En effet, depuis la création du monde, ses perfections invisibles, sa puissance éternelle et sa divinité, se laissent voir à l'intelligence à travers ses œuvres. Ils sont donc inexcusables :"
      },
-     "pilier": true,
      "note": "Vatican I s’appuie sur ce verset pour définir que Dieu peut être connu avec certitude par la lumière naturelle de la raison, à partir des choses créées (Dei Filius, chapitre 2). Paul en tire que ceux qui refusent de le reconnaître sont « inexcusables »."
-    },
-    {
-     "id": "base-actes-des-apotres-17-27-28",
-     "fr": {
-      "ref": "Actes des Apôtres 17:27-28",
-      "text": "afin qu'ils cherchent Dieu, si du moins ils peuvent le découvrir comme à tâtons ; aussi bien n'est-il pas loin de chacun de nous. Car c'est en lui que nous avons la vie, le mouvement et l'être ; comme l'ont dit d'ailleurs certains de vos poètes : Nous sommes de sa race."
-     },
-     "note": "À l’Aréopage, Paul dit que les hommes cherchent Dieu « comme à tâtons » et qu’il n’est loin d’aucun d’eux. Le passage éclaire les religions humaines : l’homme y cherche Dieu sans pouvoir le trouver pleinement par ses seules forces."
-    },
-    {
-     "id": "base-1-corinthiens-2-9-10",
-     "fr": {
-      "ref": "1 Corinthiens 2:9-10",
-      "text": "Mais, comme il est écrit : Ce que l'œil n'a pas vu, ce que l'oreille n'a pas entendu, ce qui n'est pas monté au cœur de l'homme, voilà ce que Dieu a préparé pour ceux qui l'aiment. Et c'est à nous que Dieu l'a révélé par l'Esprit ; car l'Esprit scrute tout, jusqu'aux profondeurs de Dieu."
-     },
-     "note": "Ce que Dieu prépare à ceux qui l’aiment dépasse ce que l’homme peut voir, entendre ou imaginer, et c’est l’Esprit qui le révèle. Vatican I cite ce passage pour la nécessité absolue de la Révélation : la raison seule ne découvre pas les mystères auxquels Dieu nous appelle (Dei Filius, chapitre 2)."
-    },
-    {
-     "id": "base-genese-3-15",
-     "fr": {
-      "ref": "Genèse 3:15",
-      "text": "Je mettrai une hostilité entre toi et la femme, entre ta descendance et la sienne : il t'écrasera la tête, et toi, tu le blesseras au talon. »"
-     },
-     "note": "Aussitôt après la chute, Dieu promet la victoire sur le mal. La tradition y lit la première annonce du Rédempteur et de sa Mère, d’où le nom de protévangile (Catéchisme 410-411) : même après le péché, Dieu continue de prendre soin des hommes."
-    },
-    {
-     "id": "base-genese-12-1-3",
-     "fr": {
-      "ref": "Genèse 12:1-3",
-      "text": "Le Seigneur dit à Abram : « Quitte ton pays, ta parenté et la maison de ton père, pour le pays que je te montrerai. Je ferai de toi une grande nation, je te bénirai, je rendrai ton nom grand, et tu deviendras une bénédiction. Je bénirai ceux qui te béniront, et je maudirai celui qui te maudira. En toi seront bénies toutes les familles de la terre. »"
-     },
-     "note": "L’appel d’Abraham ouvre l’histoire du peuple élu, et la promesse vise déjà « toutes les familles de la terre ». Le salut passe par le peuple d’Abraham, père des croyants, et il est pour tous."
-    },
-    {
-     "id": "base-exode-3-14",
-     "fr": {
-      "ref": "Exode 3:14",
-      "text": "Dieu dit à Moïse : « Je suis celui qui suis. » Puis il ajouta : « Voici ce que tu diras aux fils d'Israël : Je Suis m'a envoyé vers vous. »"
-     },
-     "note": "Au buisson ardent, Dieu révèle son Nom, en hébreu *ehyeh asher ehyeh*, rendu par « Je suis celui qui suis ». Jésus reprendra ce Nom pour lui-même : le connaître permet de l’entendre dans l’Évangile."
-    },
-    {
-     "id": "base-jeremie-31-33",
-     "fr": {
-      "ref": "Jérémie 31:33",
-      "text": "Voici l'alliance que je conclurai avec la maison d'Israël après ces jours-là, oracle du Seigneur : je mettrai ma loi au fond d'eux-mêmes, je l'écrirai sur leur cœur ; je serai leur Dieu, et ils seront mon peuple."
-     },
-     "note": "Dieu annonce une alliance nouvelle, avec une loi écrite dans le cœur. Le Christ l’accomplit dans son sang, et la messe le rappelle à chaque consécration en parlant de « la nouvelle et éternelle alliance »."
     },
     {
      "id": "base-hebreux-1-1-2",
@@ -103,7 +22,6 @@
       "ref": "Hébreux 1:1-2",
       "text": "Après avoir, bien des fois et de bien des manières, parlé autrefois à nos pères par les prophètes, Dieu, en ces jours qui sont les derniers, nous a parlé par le Fils, qu'il a établi héritier de toutes choses et par qui il a aussi créé les mondes."
      },
-     "pilier": true,
      "note": "Dieu a parlé par les prophètes, puis par son Fils (Dei Verbum 4). Le passage tient en une phrase toute l’histoire de la Révélation, donnée par étapes et achevée dans le Christ, en qui Dieu a tout dit (Catéchisme 65)."
     },
     {
@@ -112,24 +30,7 @@
       "ref": "Jean 1:14",
       "text": "Et le Verbe s'est fait chair, et il a planté sa tente parmi nous ; et nous avons vu sa gloire, la gloire qu'il tient de son Père comme Fils unique, plein de grâce et de vérité."
      },
-     "pilier": true,
      "note": "La Parole de Dieu s’est faite homme : le Christ est cette Parole en personne. Le grec *eskênôsen*, traduit par « il a planté sa tente », rappelle la tente où Dieu demeurait au milieu d’Israël. L’Angélus fait prier ce verset chaque jour."
-    },
-    {
-     "id": "base-jean-1-18",
-     "fr": {
-      "ref": "Jean 1:18",
-      "text": "Dieu, personne ne l'a jamais vu ; le Fils unique, lui qui est Dieu, lui qui est tourné vers le sein du Père, c'est lui qui l'a fait connaître."
-     },
-     "note": "Personne n’a jamais vu Dieu, et le Fils l’a fait connaître : le Christ est le seul à révéler parfaitement le Père."
-    },
-    {
-     "id": "base-jean-14-9",
-     "fr": {
-      "ref": "Jean 14:9",
-      "text": "Jésus lui répondit : « Il y a si longtemps que je suis avec vous, et tu ne me connais pas, Philippe ! Celui qui m'a vu a vu le Père. Comment peux-tu dire : Montre-nous le Père ?"
-     },
-     "note": "Qui voit le Christ voit le Père. Il est à la fois celui qui révèle et celui qui est révélé."
     },
     {
      "id": "base-jude-1-3",
@@ -138,30 +39,6 @@
       "text": "Bien-aimés, j'avais grand désir de vous écrire au sujet de notre salut commun, quand je me suis vu obligé de le faire pour vous exhorter à combattre pour la foi transmise aux saints une fois pour toutes."
      },
      "note": "La foi a été transmise « une fois pour toutes », en grec *hapax* : la Révélation publique est achevée dans le Christ et ses Apôtres (Catéchisme 66). Aucune Révélation publique nouvelle n’est à attendre avant son retour ; quand l’Église définit un dogme, elle explicite ce qu’elle a reçu, sans rien y ajouter."
-    },
-    {
-     "id": "base-galates-1-8",
-     "fr": {
-      "ref": "Galates 1:8",
-      "text": "Mais si nous-mêmes, ou un ange venu du ciel, vous annoncions une Bonne Nouvelle différente de celle que nous vous avons annoncée : qu'il soit maudit !"
-     },
-     "note": "Même un ange venu du ciel n’a pas le droit d’annoncer un autre Évangile. On le cite face aux « révélations » qui prétendent dépasser ou corriger le Christ (Catéchisme 67)."
-    },
-    {
-     "id": "base-1-thessaloniciens-5-19-21",
-     "fr": {
-      "ref": "1 Thessaloniciens 5:19-21",
-      "text": "N'éteignez pas l'Esprit, ne méprisez pas les prophéties ; examinez tout, retenez ce qui est bon,"
-     },
-     "note": "La règle du discernement : ne pas mépriser les prophéties, tout examiner, garder ce qui est bon. L’Église s’y tient devant les révélations privées, qui aident à vivre la Révélation du Christ sans la compléter (Catéchisme 67)."
-    },
-    {
-     "id": "base-1-jean-1-2-3",
-     "fr": {
-      "ref": "1 Jean 1:2-3",
-      "text": "car la Vie s'est manifestée, et nous l'avons vue ; nous en rendons témoignage et nous vous annonçons la Vie éternelle, qui était auprès du Père et qui s'est manifestée à nous ; ce que nous avons vu et entendu, nous vous l'annonçons, à vous aussi, pour que vous soyez en communion avec nous. Et notre communion, à nous, est avec le Père et avec son Fils Jésus Christ."
-     },
-     "note": "Dei Verbum s’ouvre sur ces mots : l’Église annonce ce qu’elle a vu et entendu, pour que tous entrent en communion avec le Père et le Fils. Le passage dit d’un trait ce qu’est la Révélation, comment elle se transmet et à quoi elle mène."
     }
    ]
   },
@@ -174,20 +51,11 @@
    "kind": "v",
    "verses": [
     {
-     "id": "base-1-corinthiens-15-3-4",
-     "fr": {
-      "ref": "1 Corinthiens 15:3-4",
-      "text": "Je vous ai transmis avant tout ce que j'ai moi-même reçu : le Christ est mort pour nos péchés, selon les Écritures ; il a été mis au tombeau, il est ressuscité le troisième jour, selon les Écritures ;"
-     },
-     "note": "Une des plus anciennes formules de la foi, et déjà le cœur du Credo : Paul transmet ce qu’il a lui-même reçu. « Transmis » rend le grec *paredôka*, de la même famille que *paradosis*, la tradition. La foi arrive ainsi par une chaîne de témoins, où la Tradition et les Écritures se tiennent (« selon les Écritures »)."
-    },
-    {
      "id": "base-1-timothee-6-20",
      "fr": {
       "ref": "1 Timothée 6:20",
       "text": "Ô Timothée, garde le dépôt. Détourne-toi des bavardages profanes et des objections d'une prétendue science ;"
      },
-     "pilier": true,
      "note": "Le verset du dépôt de la foi : « dépôt » traduit le grec *parathêkê*, un bien confié qu’on rend intact. L’Église garde la Révélation sans rien y ajouter ni en retrancher. Saint Vincent de Lérins commente longuement ce verset dans son Commonitorium."
     },
     {
@@ -199,85 +67,12 @@
      "note": "Quatre générations en un verset : Paul, Timothée, des hommes sûrs, puis d’autres après eux. Les évêques continuent cette succession depuis les Apôtres (Dei Verbum 7)."
     },
     {
-     "id": "base-actes-des-apotres-2-42",
-     "fr": {
-      "ref": "Actes des Apôtres 2:42",
-      "text": "Ils étaient assidus à l'enseignement des apôtres et à la communion fraternelle, à la fraction du pain et aux prières."
-     },
-     "note": "La première Église vit de l’enseignement des Apôtres, de la communion, de l’Eucharistie et de la prière. La Tradition est cette doctrine et cette vie ensemble, transmises avant qu’aucun livre du Nouveau Testament soit écrit (Dei Verbum 8)."
-    },
-    {
-     "id": "base-luc-1-1-2",
-     "fr": {
-      "ref": "Luc 1:1-2",
-      "text": "Beaucoup ont entrepris de composer un récit des événements qui se sont accomplis parmi nous, tels que nous les ont transmis ceux qui, dès le commencement, furent témoins oculaires et serviteurs de la Parole."
-     },
-     "note": "Luc dit d’où vient son Évangile : de ce qu’ont transmis les témoins oculaires devenus serviteurs de la Parole. L’Écriture naît de la prédication des Apôtres et la suppose ; elle la met par écrit sous l’inspiration de l’Esprit."
-    },
-    {
-     "id": "base-marc-7-8",
-     "fr": {
-      "ref": "Marc 7:8",
-      "text": "Vous laissez de côté le commandement de Dieu pour vous attacher à la tradition des hommes. »"
-     },
-     "note": "On oppose souvent ce verset à la Tradition catholique. Jésus y condamne des usages humains qui font passer au second plan le commandement de Dieu ; Paul emploie pourtant le même mot grec, *paradosis* (« tradition »), pour la Tradition apostolique qu’il demande de garder (2 Thessaloniciens 2:15). Une tradition qui annule la Parole de Dieu est condamnée, celle qui la transmet se garde."
-    },
-    {
      "id": "base-2-thessaloniciens-2-15",
      "fr": {
       "ref": "2 Thessaloniciens 2:15",
       "text": "Ainsi donc, frères, tenez ferme, et gardez les traditions que vous avez apprises de nous, de vive voix ou par lettre."
      },
-     "pilier": true,
      "note": "Paul demande de garder ce qu’il a transmis « de vive voix ou par lettre » : la parole orale compte autant que l’écrit. On cite ce verset pour montrer que l’Écriture et la Tradition forment un seul dépôt (Dei Verbum 10), et pour répondre au principe de l’Écriture seule."
-    },
-    {
-     "id": "base-jean-14-26",
-     "fr": {
-      "ref": "Jean 14:26",
-      "text": "Mais le Paraclet, l'Esprit Saint que le Père enverra en mon nom, lui, vous enseignera tout et vous rappellera tout ce que je vous ai dit."
-     },
-     "note": "Jésus promet que l’Esprit Saint rappellera aux Apôtres tout ce qu’il a dit. Cette promesse fonde la transmission fidèle de sa parole, écrite dans les Évangiles ou prêchée de vive voix ; l’une et l’autre jaillissent de la même source divine (Dei Verbum 9)."
-    },
-    {
-     "id": "base-jean-16-12-13",
-     "fr": {
-      "ref": "Jean 16:12-13",
-      "text": "J'ai encore beaucoup à vous dire, mais vous ne pouvez pas le porter maintenant. Quand viendra l'Esprit de vérité, il vous conduira dans la vérité tout entière. Car il ne parlera pas de lui-même : il dira tout ce qu'il entendra, et il vous annoncera ce qui doit venir."
-     },
-     "note": "L’Esprit conduira les disciples « dans la vérité tout entière ». Sur cette promesse reposent la Tradition vivante et l’assistance donnée à ceux qui enseignent : l’Église entre peu à peu plus avant dans la Révélation qu’elle a reçue, sans en recevoir de nouvelle."
-    },
-    {
-     "id": "base-luc-2-19",
-     "fr": {
-      "ref": "Luc 2:19",
-      "text": "Quant à Marie, elle gardait tous ces événements et les méditait dans son cœur."
-     },
-     "note": "Marie garde et médite ce qu’elle a vu. Dei Verbum 8 voit là le premier chemin du progrès dans l’intelligence de la foi, la contemplation et l’étude des croyants. Newman a pris ce verset pour texte de son sermon sur le développement de la doctrine : la Révélation est close, et l’Église en saisit peu à peu toute la portée."
-    },
-    {
-     "id": "base-matthieu-13-52",
-     "fr": {
-      "ref": "Matthieu 13:52",
-      "text": "Et il ajouta : « C'est pourquoi tout scribe devenu disciple du royaume des cieux est comparable à un maître de maison qui tire de son trésor du neuf et de l'ancien. »"
-     },
-     "note": "Le disciple tire de son trésor du neuf et de l’ancien. C’est l’image du vrai progrès, qui fait grandir l’intelligence de la foi sans en changer le contenu. Saint Vincent de Lérins le dit à sa façon : dire d’une manière nouvelle sans dire des choses nouvelles, « dans le même dogme, le même sens et la même pensée »."
-    },
-    {
-     "id": "base-1-jean-2-20",
-     "fr": {
-      "ref": "1 Jean 2:20",
-      "text": "Vous, vous avez reçu l'onction qui vient du Saint, et vous savez tous."
-     },
-     "note": "Tous les baptisés ont reçu l’onction de l’Esprit, et Jean leur dit : « vous savez tous ». « Onction » traduit le grec *chrisma*. Vatican II s’appuie sur ce verset pour le sens de la foi : la totalité des fidèles ne peut se tromper dans la foi (Lumen gentium 12)."
-    },
-    {
-     "id": "base-2-timothee-3-16-17",
-     "fr": {
-      "ref": "2 Timothée 3:16-17",
-      "text": "Toute Écriture est inspirée de Dieu et utile pour enseigner, réfuter, corriger, former à la justice, afin que l'homme de Dieu soit accompli, équipé pour toute œuvre bonne."
-     },
-     "note": "Le verset qu’on invoque le plus pour l’Écriture seule. Il dit que toute Écriture est inspirée et utile pour enseigner et former ; il ne dit pas qu’elle seule fait autorité. Juste avant, Paul demande à Timothée de rester ferme dans ce qu’il a appris, « sachant de qui » il l’a appris (verset 14). Le connaître par cœur permet de montrer ce que le texte dit vraiment."
     },
     {
      "id": "base-2-pierre-1-20-21",
@@ -288,20 +83,11 @@
      "note": "Aucune prophétie de l’Écriture n’est affaire d’interprétation privée, puisque l’Esprit Saint l’a inspirée. Le verset répond au libre examen : l’Écriture se lit dans l’Église, chargée de l’interpréter avec autorité (Dei Verbum 10)."
     },
     {
-     "id": "base-2-pierre-3-16",
-     "fr": {
-      "ref": "2 Pierre 3:16",
-      "text": "Il le fait dans toutes les lettres où il parle de ces sujets ; il s'y trouve des passages difficiles à comprendre, que les ignorants et les esprits mal affermis déforment, comme le reste des Écritures, pour leur propre perdition."
-     },
-     "note": "Pierre range les lettres de Paul parmi les Écritures et reconnaît qu’elles ont des passages difficiles, que certains déforment pour leur perte. Le verset répond à l’idée d’une Écriture assez claire pour que chacun l’interprète seul."
-    },
-    {
      "id": "base-1-timothee-3-15",
      "fr": {
       "ref": "1 Timothée 3:15",
       "text": "mais si je tarde, tu sauras comment il faut se conduire dans la maison de Dieu, qui est l'Église du Dieu vivant, colonne et soutien de la vérité."
      },
-     "pilier": true,
      "note": "Paul appelle l’Église « colonne et soutien de la vérité ». C’est elle qui porte et garde la vérité révélée, et non le lecteur isolé ; d’où l’assurance qu’elle ne peut égarer les fidèles dans la foi. Le verset répond à qui veut l’Écriture sans l’Église."
     }
    ]
@@ -328,32 +114,7 @@
       "ref": "Luc 10:16",
       "text": "Celui qui vous écoute m'écoute, celui qui vous rejette me rejette ; et celui qui me rejette rejette celui qui m'a envoyé. »"
      },
-     "pilier": true,
      "note": "Ceux que le Christ envoie parlent en son nom : les écouter, c’est l’écouter lui. Le verset répond à qui demande de quel droit l’Église enseigne."
-    },
-    {
-     "id": "base-matthieu-18-18",
-     "fr": {
-      "ref": "Matthieu 18:18",
-      "text": "Amen, je vous le dis : tout ce que vous aurez lié sur la terre sera lié au ciel, et tout ce que vous aurez délié sur la terre sera délié au ciel. »"
-     },
-     "note": "Le pouvoir de lier et de délier, promis à Pierre (Matthieu 16:19), est donné ici aux Apôtres ensemble. Vatican II y lit la charge du collège des évêques, qui enseigne et gouverne l’Église entière uni au pape, sa tête (Lumen gentium 22)."
-    },
-    {
-     "id": "base-matthieu-23-8",
-     "fr": {
-      "ref": "Matthieu 23:8",
-      "text": "Pour vous, ne vous faites pas appeler « Rabbi », car vous n'avez qu'un seul maître, et vous êtes tous frères."
-     },
-     "note": "On oppose ce verset au mot Magistère, qui vient du latin *magister*, « maître ». Le Magistère enseigne au nom du Christ, l’unique Maître, et il sert la Parole de Dieu sans être au-dessus d’elle (Dei Verbum 10)."
-    },
-    {
-     "id": "base-romains-16-17",
-     "fr": {
-      "ref": "Romains 16:17",
-      "text": "Je vous exhorte, frères, à prendre garde à ceux qui provoquent divisions et scandales, contre l'enseignement que vous avez reçu : écartez-vous d'eux."
-     },
-     "note": "Paul demande de prendre garde à ceux qui provoquent des divisions contre l’enseignement reçu. L’Église distingue deux de ces ruptures : l’hérésie, négation obstinée d’une vérité de foi, et le schisme, refus de se soumettre au pape ou de vivre en communion avec les fidèles qui lui sont unis (Code de droit canonique, canon 751)."
     },
     {
      "id": "base-luc-22-32",
@@ -361,24 +122,7 @@
       "ref": "Luc 22:32",
       "text": "Mais j'ai prié pour toi, afin que ta foi ne défaille pas ; et toi, quand tu seras revenu, affermis tes frères. »"
      },
-     "pilier": true,
      "note": "Le Christ prie pour que la foi de Pierre ne défaille pas, et le charge d’affermir ses frères. Vatican I y rattache le charisme de vérité donné à Pierre et à ses successeurs, d’où l’infaillibilité du pape quand il définit *ex cathedra* (Pastor aeternus, chapitre 4)."
-    },
-    {
-     "id": "base-matthieu-23-2-3",
-     "fr": {
-      "ref": "Matthieu 23:2-3",
-      "text": "« Les scribes et les pharisiens siègent dans la chaire de Moïse. Donc, tout ce qu'ils peuvent vous dire, faites-le et observez-le ; mais n'agissez pas d'après leurs actes, car ils disent et ne font pas."
-     },
-     "note": "Jésus demande d’observer ce qui s’enseigne de la chaire de Moïse, sans imiter la conduite de ceux qui l’occupent. L’autorité tient à la charge, et la sainteté de celui qui l’exerce n’y change rien. Le verset répond à qui rejette l’enseignement de l’Église à cause des fautes de ses pasteurs : l’infaillibilité ne rend pas impeccable."
-    },
-    {
-     "id": "base-actes-des-apotres-15-28",
-     "fr": {
-      "ref": "Actes des Apôtres 15:28",
-      "text": "L'Esprit Saint et nous-mêmes avons décidé de ne pas vous imposer d'autre fardeau que ces exigences indispensables :"
-     },
-     "note": "Au concile de Jérusalem, modèle de tous les conciles, les Apôtres et les Anciens présentent leur décision comme celle de l’Esprit Saint et la leur. Un concile œcuménique enseigne de la même façon, avec Pierre et sous son autorité, assuré de l’assistance de l’Esprit."
     },
     {
      "id": "base-matthieu-16-18",
@@ -386,32 +130,7 @@
       "ref": "Matthieu 16:18",
       "text": "Et moi, je te le dis : tu es Pierre, et sur cette pierre je bâtirai mon Église ; et les portes du séjour des morts ne l'emporteront pas sur elle."
      },
-     "pilier": true,
      "note": "« Pierre » (en grec *Petros*) et « cette pierre » (*petra*) sur laquelle le Christ bâtit son Église, avec la promesse que les portes du séjour des morts ne l’emporteront pas sur elle. C’est le premier appui scripturaire de la primauté de Pierre et de l’indéfectibilité de l’Église, qui demeure jusqu’à la fin dans la vraie foi."
-    },
-    {
-     "id": "base-galates-2-11",
-     "fr": {
-      "ref": "Galates 2:11",
-      "text": "Mais quand Céphas vint à Antioche, je lui résistai en face, car il était dans son tort."
-     },
-     "note": "On cite ce verset contre l’autorité de Pierre. Paul lui reproche une conduite incohérente, et non une erreur de doctrine : Pierre mangeait avec les païens et s’en écarta par crainte, sans rien changer à ce qu’il enseignait (verset 12)."
-    },
-    {
-     "id": "base-hebreux-13-17",
-     "fr": {
-      "ref": "Hébreux 13:17",
-      "text": "Obéissez à vos guides et soyez-leur soumis, car ils veillent sur vos âmes comme devant en rendre compte. Qu'ils le fassent avec joie, et non en gémissant, ce qui ne vous serait d'aucun profit."
-     },
-     "note": "L’obéissance due aux pasteurs va au-delà de l’enseignement infaillible. L’Église distingue trois degrés d’adhésion : la foi due aux dogmes, l’adhésion ferme aux vérités enseignées de façon définitive, et la soumission religieuse de l’intelligence et de la volonté envers l’enseignement authentique non définitif du pape et des évêques (Lumen gentium 25). Ce verset éclaire ce dernier degré."
-    },
-    {
-     "id": "base-2-corinthiens-10-5",
-     "fr": {
-      "ref": "2 Corinthiens 10:5",
-      "text": "et toute prétention qui se dresse contre la connaissance de Dieu, et nous faisons prisonnière toute pensée pour l'amener à obéir au Christ."
-     },
-     "note": "Saint Thomas cite ce verset pour dire comment la théologie se sert de la raison : elle éclaire la foi reçue sans prétendre la prouver ni la juger (Somme théologique I, q. 1, a. 8). C’est la vocation du théologien, une foi qui cherche à comprendre."
     }
    ]
   },
@@ -429,40 +148,7 @@
       "ref": "Hébreux 11:1",
       "text": "Or la foi est la garantie des biens qu'on espère, la preuve des réalités qu'on ne voit pas."
      },
-     "pilier": true,
      "note": "La définition de la foi que donne l’Écriture. Le grec *hupostasis*, traduit par « garantie », dit que la foi donne déjà prise sur les biens promis, et *elenchos*, traduit par « preuve », qu’elle tient pour certain ce qu’on ne voit pas. Avec ce verset, on dit en une phrase ce qu’est croire."
-    },
-    {
-     "id": "base-romains-1-5",
-     "fr": {
-      "ref": "Romains 1:5",
-      "text": "par lui nous avons reçu la grâce et la charge d'apôtre, pour amener en son nom à l'obéissance de la foi toutes les nations,"
-     },
-     "note": "Paul appelle la foi une obéissance : le grec *hupakoê*, traduit par « obéissance », est formé sur le verbe « écouter ». Croire, c’est se soumettre librement à la Parole entendue et se remettre tout entier à Dieu qui se révèle (Dei Verbum 5)."
-    },
-    {
-     "id": "base-luc-1-38",
-     "fr": {
-      "ref": "Luc 1:38",
-      "text": "Marie dit alors : « Voici la servante du Seigneur ; qu'il m'advienne selon ta parole. » Et l'ange la quitta."
-     },
-     "note": "Le oui de Marie est la réalisation la plus parfaite de l’obéissance de la foi (Catéchisme 148) : elle remet toute sa vie à la parole reçue. On le prie dans l’Angélus, et il montre ce que fait celui qui croit."
-    },
-    {
-     "id": "base-2-timothee-1-12",
-     "fr": {
-      "ref": "2 Timothée 1:12",
-      "text": "Voilà aussi pourquoi je souffre ainsi ; mais je n'en ai pas honte, car je sais en qui j'ai mis ma foi, et j'ai la certitude qu'il a le pouvoir de garder mon dépôt jusqu'à ce jour-là."
-     },
-     "note": "« Je sais en qui » : croire, c’est d’abord adhérer à quelqu’un, avant de donner son assentiment à ce qu’il dit (Catéchisme 150). Saint Augustin et saint Thomas parlent de « croire en Dieu » (en latin *credere in Deum*) : se porter vers lui de tout son être."
-    },
-    {
-     "id": "base-1-thessaloniciens-2-13",
-     "fr": {
-      "ref": "1 Thessaloniciens 2:13",
-      "text": "Et voici pourquoi, nous aussi, nous rendons grâce à Dieu sans cesse : en recevant la parole de Dieu que nous vous faisions entendre, vous l'avez accueillie non comme une parole d'hommes, mais comme ce qu'elle est vraiment, la parole de Dieu, qui agit en vous, les croyants."
-     },
-     "note": "On accueille la parole parce qu’elle est la parole de Dieu, qui ne peut ni se tromper ni nous tromper, et non pour la valeur de ceux qui la transmettent (Dei Filius, chapitre 3). La certitude de la foi est donc plus ferme que toute connaissance humaine (Catéchisme 157) : l’Église propose, et c’est à Dieu qui révèle que l’on croit."
     },
     {
      "id": "base-ephesiens-2-8",
@@ -470,48 +156,7 @@
       "ref": "Éphésiens 2:8",
       "text": "Car c'est par la grâce que vous êtes sauvés, au moyen de la foi ; et cela ne vient pas de vous, c'est le don de Dieu."
      },
-     "pilier": true,
      "note": "La foi elle-même est un don de Dieu. Le concile d’Orange (529) cite ce verset contre les semi-pélagiens : la grâce est nécessaire dès le commencement de la foi."
-    },
-    {
-     "id": "base-jean-6-67-69",
-     "fr": {
-      "ref": "Jean 6:67-69",
-      "text": "Alors Jésus dit aux Douze : « Et vous, ne voulez-vous pas partir, vous aussi ? » Simon Pierre lui répondit : « Seigneur, à qui irions-nous ? Tu as les paroles de la vie éternelle. Et nous, nous croyons, et nous savons que tu es le Saint de Dieu. »"
-     },
-     "note": "Jésus laisse les Douze libres de partir : personne ne peut être contraint à croire (Dignitatis humanae 10). Pierre répond par un acte de foi qui s’appuie sur la personne du Christ et reçoit toute sa parole, même quand elle déroute. Une prière simple à garder, devant l’Eucharistie notamment."
-    },
-    {
-     "id": "base-2-corinthiens-5-7",
-     "fr": {
-      "ref": "2 Corinthiens 5:7",
-      "text": "car nous marchons dans la foi, non dans la vision."
-     },
-     "note": "Ici-bas, la foi adhère à ce qu’elle ne voit pas encore, en attendant de voir (Catéchisme 164). On le cite à qui prend l’obscurité de la foi pour un manque de certitude."
-    },
-    {
-     "id": "base-marc-9-24",
-     "fr": {
-      "ref": "Marc 9:24",
-      "text": "Aussitôt le père de l'enfant s'écria : « Je crois ! Viens au secours de mon manque de foi ! »"
-     },
-     "note": "La prière du croyant qui peine : il croit, et demande à Dieu de venir au secours de sa foi. Une difficulté n’est pas un doute (« dix mille difficultés ne font pas un seul doute », disait Newman, cité par le Catéchisme 157), et cette prière se dit telle quelle dans l’épreuve."
-    },
-    {
-     "id": "base-1-corinthiens-13-13",
-     "fr": {
-      "ref": "1 Corinthiens 13:13",
-      "text": "Maintenant donc, ces trois-là demeurent : la foi, l'espérance et la charité ; mais la plus grande des trois, c'est la charité."
-     },
-     "note": "La foi, l’espérance et la charité sont les trois vertus théologales, données par Dieu et tournées vers lui. Le verset situe la foi parmi elles et donne le premier rang à la charité."
-    },
-    {
-     "id": "base-1-pierre-3-15",
-     "fr": {
-      "ref": "1 Pierre 3:15",
-      "text": "mais sanctifiez dans vos cœurs le Christ, le Seigneur. Soyez toujours prêts à défendre l'espérance qui est en vous, devant quiconque vous en demande raison,"
-     },
-     "note": "Le croyant doit pouvoir rendre raison de son espérance : la foi est un acte conforme à la raison. C’est le verset de base de l’apologétique, à citer à qui oppose croire et penser."
     },
     {
      "id": "base-hebreux-11-6",
@@ -519,16 +164,7 @@
       "ref": "Hébreux 11:6",
       "text": "Or, sans la foi, il est impossible de plaire à Dieu ; car celui qui s'approche de Dieu doit croire qu'il existe et qu'il récompense ceux qui le cherchent."
      },
-     "pilier": true,
      "note": "Sans la foi, il est impossible de plaire à Dieu : elle est nécessaire au salut (Catéchisme 161). Le verset dit aussi ce qu’il faut croire au minimum, que Dieu existe et qu’il récompense ceux qui le cherchent ; saint Thomas y voit les deux vérités premières qui contiennent tous les articles du Credo."
-    },
-    {
-     "id": "base-galates-5-6",
-     "fr": {
-      "ref": "Galates 5:6",
-      "text": "Dans le Christ Jésus, en effet, ni la circoncision ni l'incirconcision n'ont de valeur, mais seulement la foi agissant par la charité."
-     },
-     "note": "La foi qui sauve agit par la charité : c’est la foi vivante, que les théologiens disent « formée » par la charité. Le verset répond à l’objection du salut par la foi seule."
     },
     {
      "id": "base-jacques-2-26",
@@ -537,62 +173,6 @@
       "text": "Comme le corps sans souffle est mort, ainsi la foi sans les œuvres est morte."
      },
      "note": "La foi sans les œuvres est morte : elle peut rester une vraie foi, privée de la vie que donne la charité (foi « informe »). Ce verset et celui de Paul aux Galates se complètent et se citent ensemble."
-    },
-    {
-     "id": "base-matthieu-10-32-33",
-     "fr": {
-      "ref": "Matthieu 10:32-33",
-      "text": "Ainsi, quiconque se déclarera pour moi devant les hommes, moi aussi je me déclarerai pour lui devant mon Père qui est aux cieux ; mais celui qui me reniera devant les hommes, moi aussi je le renierai devant mon Père qui est aux cieux."
-     },
-     "note": "Le croyant doit professer sa foi devant les hommes, même quand il en coûte, et renier le Christ est grave (Catéchisme 1816). On s’en souvient dans les situations où se taire reviendrait à le renier."
-    },
-    {
-     "id": "base-luc-17-5",
-     "fr": {
-      "ref": "Luc 17:5",
-      "text": "Les apôtres dirent au Seigneur : « Augmente en nous la foi. »"
-     },
-     "note": "La foi peut grandir, et on le demande à Dieu. Une prière courte, que le Catéchisme cite pour la croissance et la persévérance de la foi (Catéchisme 162)."
-    },
-    {
-     "id": "base-1-timothee-1-19",
-     "fr": {
-      "ref": "1 Timothée 1:19",
-      "text": "en gardant la foi et une bonne conscience. Pour l'avoir rejetée, quelques-uns ont fait naufrage dans la foi ;"
-     },
-     "note": "On peut perdre la foi : rejeter la bonne conscience mène au naufrage dans la foi, et le Catéchisme cite ce verset pour en avertir (Catéchisme 162). L’image vaut pour les péchés contre la foi, jusqu’à l’apostasie, l’abandon total de la foi reçue."
-    },
-    {
-     "id": "base-romains-10-17",
-     "fr": {
-      "ref": "Romains 10:17",
-      "text": "Ainsi la foi naît de la prédication entendue, et cette prédication se fait par la parole du Christ."
-     },
-     "note": "La foi naît de ce qu’on entend : elle vient par la parole reçue d’un autre, et nul ne peut croire seul (Catéchisme 166). Le serment antimoderniste parle de même d’une vérité « reçue du dehors, par l’écoute », contre une foi née du seul sentiment intérieur."
-    },
-    {
-     "id": "base-marc-16-20",
-     "fr": {
-      "ref": "Marc 16:20",
-      "text": "Quant à eux, ils partirent proclamer partout la Bonne Nouvelle, le Seigneur agissant avec eux et confirmant la Parole par les signes qui l'accompagnaient."
-     },
-     "note": "Le Seigneur confirme la Parole par les signes qui l’accompagnent : c’est le principe des motifs de crédibilité, et Dei Filius (chapitre 3) cite ce verset, comme le Catéchisme (156). Les signes montrent que le message vient de Dieu ; la grâce reste nécessaire pour croire."
-    },
-    {
-     "id": "base-isaie-7-9",
-     "fr": {
-      "ref": "Isaïe 7:9",
-      "text": "La tête d'Éphraïm, c'est Samarie, et la tête de Samarie, c'est le fils de Remalya. Si vous ne tenez pas ferme dans la foi, vous ne tiendrez pas ! »"
-     },
-     "note": "En hébreu, *ta’aminou*, rendu par « tenez ferme dans la foi », et *té’aménou*, rendu par « tiendrez », viennent du même verbe *’aman*, d’où vient aussi amen : qui s’appuie sur Dieu tient debout. Saint Augustin lisait ce verset dans une version latine faite sur le grec, « si vous ne croyez pas, vous ne comprendrez pas » ; de là vient la maxime « je crois pour comprendre », que reprend Fides et ratio."
-    },
-    {
-     "id": "base-hebreux-11-3",
-     "fr": {
-      "ref": "Hébreux 11:3",
-      "text": "Par la foi, nous comprenons que les mondes ont été formés par la parole de Dieu, de sorte que le visible n'est pas venu de ce qui paraît."
-     },
-     "note": "La foi fait connaître que le monde vient de la parole de Dieu. Les sciences étudient comment se produisent les phénomènes, la foi en dit l’origine, le sens et la fin ; ces deux ordres de connaissance ne peuvent se contredire (Dei Filius, chapitre 4)."
     }
    ]
   },
@@ -618,104 +198,7 @@
       "ref": "1 Corinthiens 8:6",
       "text": "pour nous il n'y a qu'un seul Dieu, le Père, de qui tout vient et pour qui nous sommes, et un seul Seigneur, Jésus Christ, par qui tout existe et par qui nous sommes."
      },
-     "pilier": true,
      "note": "Une confession en deux membres, qui annonce le plan du Credo : le Père, de qui tout vient, et le Seigneur Jésus Christ, par qui tout existe. Paul range le Christ du côté du Dieu unique sans rien retirer à la foi d’Israël en un seul Dieu."
-    },
-    {
-     "id": "base-ephesiens-4-4-6",
-     "fr": {
-      "ref": "Éphésiens 4:4-6",
-      "text": "Il y a un seul corps et un seul Esprit, de même qu'un seul espoir vous a été donné par votre appel. Il y a un seul Seigneur, une seule foi, un seul baptême, un seul Dieu et Père de tous, qui règne au-dessus de tous, agit à travers tous et demeure en tous."
-     },
-     "note": "Un seul Seigneur, une seule foi, un seul baptême : les Symboles se sont multipliés au fil des siècles, et tous disent la même foi baptismale (Catéchisme 192-193). Le passage suit déjà l’ordre des trois personnes : l’Esprit, le Seigneur, le Père."
-    },
-    {
-     "id": "base-genese-1-1",
-     "fr": {
-      "ref": "Genèse 1:1",
-      "text": "Au commencement, Dieu créa le ciel et la terre."
-     },
-     "note": "Premier article : Dieu a donné l’être à tout ce qui existe, et « le ciel et la terre » désignent l’ensemble du réel. La formule « créateur du ciel et de la terre », absente de l’ancien Symbole romain, a été ajoutée dans la forme reçue en reprenant le premier verset de la Bible."
-    },
-    {
-     "id": "base-matthieu-16-16",
-     "fr": {
-      "ref": "Matthieu 16:16",
-      "text": "Simon Pierre prit la parole : « Tu es le Christ, le Fils du Dieu vivant. »"
-     },
-     "note": "La confession de Pierre réunit les titres du deuxième article. Le grec *Christos*, rendu par « Christ », veut dire « celui qui a reçu l’onction » : Jésus est le Messie attendu, et il est le Fils du Dieu vivant. Le Credo ajoute « unique » : il est Fils par nature, quand les baptisés le sont par adoption."
-    },
-    {
-     "id": "base-luc-1-34-35",
-     "fr": {
-      "ref": "Luc 1:34-35",
-      "text": "Marie dit à l'ange : « Comment cela se fera-t-il, puisque je n'ai pas de relations avec un homme ? » L'ange lui répondit : « L'Esprit Saint viendra sur toi, et la puissance du Très-Haut te couvrira de son ombre. C'est pourquoi celui qui va naître sera saint, et on l'appellera Fils de Dieu."
-     },
-     "note": "Troisième article : Jésus est conçu par la puissance de l’Esprit Saint, sans père humain, et naît de la Vierge Marie. La question de Marie et la réponse de l’ange fondent la conception virginale, que l’Église confesse depuis l’ancien Symbole romain."
-    },
-    {
-     "id": "base-1-pierre-3-18-19",
-     "fr": {
-      "ref": "1 Pierre 3:18-19",
-      "text": "Le Christ lui-même est mort une seule fois pour les péchés, lui, le juste, pour des injustes, afin de vous conduire à Dieu ; mis à mort dans la chair, il a été rendu à la vie dans l'Esprit. C'est en lui qu'il est allé proclamer son message aux esprits en prison,"
-     },
-     "note": "Le texte classique de la descente aux enfers (Catéchisme 632) : mort dans sa chair, le Christ va porter son message aux esprits retenus au séjour des morts. Il y descend pour ouvrir le ciel aux justes qui l’avaient précédé, et non pour délivrer les damnés (Catéchisme 633)."
-    },
-    {
-     "id": "base-psaumes-110-1",
-     "fr": {
-      "ref": "Psaumes 110:1",
-      "text": "Psaume de David. Le Seigneur a dit à mon Seigneur : « Assieds-toi à ma droite, jusqu'à ce que je fasse de tes ennemis le socle de tes pieds. »"
-     },
-     "note": "Un des versets de l’Ancien Testament que le Nouveau cite le plus, et la source du sixième article. Être assis à la droite du Père, c’est partager son autorité et sa gloire ; le Fils y siège avec l’humanité qu’il a prise. L’Église chante ce psaume chaque dimanche aux vêpres."
-    },
-    {
-     "id": "base-actes-des-apotres-10-42",
-     "fr": {
-      "ref": "Actes des Apôtres 10:42",
-      "text": "Et il nous a ordonné de proclamer au peuple et d'attester que c'est lui que Dieu a établi juge des vivants et des morts."
-     },
-     "note": "La formule du septième article, « juge des vivants et des morts », se trouve déjà dans la première prédication de Pierre aux païens. Elle appartient au plus ancien langage de la foi : le Christ reviendra juger tous les hommes."
-    },
-    {
-     "id": "base-1-corinthiens-10-16-17",
-     "fr": {
-      "ref": "1 Corinthiens 10:16-17",
-      "text": "La coupe de bénédiction que nous bénissons n'est-elle pas communion au sang du Christ ? Le pain que nous rompons n'est-il pas communion au corps du Christ ? Puisqu'il y a un seul pain, à plusieurs nous ne sommes qu'un seul corps, car tous nous avons part à ce pain unique."
-     },
-     "note": "Au neuvième article, la communion des saints a deux sens qui se tiennent : la communion aux choses saintes, d’abord l’Eucharistie, et la communion entre les personnes saintes, tous les membres du Christ (Catéchisme 948). Le pain unique fait de plusieurs un seul corps."
-    },
-    {
-     "id": "base-jean-20-22-23",
-     "fr": {
-      "ref": "Jean 20:22-23",
-      "text": "Ayant dit cela, il souffla sur eux et leur dit : « Recevez l'Esprit Saint. Ceux à qui vous remettrez les péchés, ils leur seront remis ; ceux à qui vous les retiendrez, ils leur seront retenus. »"
-     },
-     "note": "Dixième article : le Christ ressuscité donne l’Esprit et confie à ses Apôtres le pouvoir de remettre les péchés. Le pardon est donné d’abord par le baptême, puis, pour les fautes commises ensuite, par le sacrement de pénitence (Catéchisme 977-980)."
-    },
-    {
-     "id": "base-job-19-25-26",
-     "fr": {
-      "ref": "Job 19:25-26",
-      "text": "Mais je sais, moi, que mon Rédempteur est vivant, et qu'en dernier il se dressera sur la poussière. Après que ma peau aura été détruite, alors, dans ma chair, je verrai Dieu."
-     },
-     "note": "Onzième article : en disant « résurrection de la chair », le Credo affirme que l’homme entier ressuscitera, avec son propre corps. Job l’espérait déjà, et l’Église lit ce passage dans la liturgie des défunts."
-    },
-    {
-     "id": "base-1-jean-3-2",
-     "fr": {
-      "ref": "1 Jean 3:2",
-      "text": "Bien-aimés, dès maintenant nous sommes enfants de Dieu, et ce que nous serons n'a pas encore été manifesté. Nous savons que, lors de cette manifestation, nous lui serons semblables, car nous le verrons tel qu'il est."
-     },
-     "note": "Douzième article : la vie éternelle, c’est voir Dieu tel qu’il est et lui devenir semblable, bien plus qu’une durée sans fin. Elle commence dès maintenant, puisque nous sommes déjà enfants de Dieu."
-    },
-    {
-     "id": "base-2-corinthiens-1-20",
-     "fr": {
-      "ref": "2 Corinthiens 1:20",
-      "text": "Toutes les promesses de Dieu ont en effet leur « oui » en lui ; c'est pourquoi, par lui, nous disons l'Amen à Dieu, pour sa gloire."
-     },
-     "note": "Le Credo se termine par le mot hébreu *amen*, que le verset garde tel quel : il dit la solidité et la fidélité, et reprend le « Je crois » du début (Catéchisme 1064). Notre amen s’appuie sur le Christ, en qui toutes les promesses de Dieu ont reçu leur « oui » (Catéchisme 1065)."
     },
     {
      "id": "base-jean-10-30",
@@ -723,32 +206,7 @@
       "ref": "Jean 10:30",
       "text": "Le Père et moi, nous sommes un. »"
      },
-     "pilier": true,
      "note": "Le texte phare de la foi de Nicée. Le grec *hen*, rendu par « un », est au neutre : une seule réalité, et non une seule personne. Les Pères y lisent contre Arius l’unité de nature, que le concile dit d’un mot, consubstantiel, et contre ceux qui confondaient le Père et le Fils la distinction des personnes."
-    },
-    {
-     "id": "base-jean-1-1-3",
-     "fr": {
-      "ref": "Jean 1:1-3",
-      "text": "Au commencement était le Verbe, et le Verbe était auprès de Dieu, et le Verbe était Dieu. Il était au commencement auprès de Dieu. Tout a été fait par lui, et rien de ce qui existe n'a été fait sans lui."
-     },
-     "note": "Le Verbe (en grec *Logos*, « Parole ») était Dieu dès le commencement, et tout a été fait par lui : il n’a donc pas été fait. De là viennent, dans le Symbole de Nicée, « engendré, non pas créé » et « par qui tout a été fait »."
-    },
-    {
-     "id": "base-jean-15-26",
-     "fr": {
-      "ref": "Jean 15:26",
-      "text": "Quand viendra le Paraclet, que je vous enverrai d'auprès du Père, l'Esprit de vérité qui procède du Père, c'est lui qui témoignera de moi."
-     },
-     "note": "La formule « qui procède du Père » vient de ce verset (grec *ekporeuetai*, rendu par « procède »). Elle dit que l’Esprit tient son origine éternelle du Père, ce que l’Orient et l’Occident confessent ensemble."
-    },
-    {
-     "id": "base-galates-4-6",
-     "fr": {
-      "ref": "Galates 4:6",
-      "text": "Et parce que vous êtes fils, Dieu a envoyé dans nos cœurs l'Esprit de son Fils, qui crie : « Abba ! Père ! »"
-     },
-     "note": "L’Esprit y est appelé « l’Esprit de son Fils » : c’est un des appuis de l’Occident pour dire qu’il procède du Père et du Fils (en latin *Filioque*, « et du Fils »). Le verset donne aussi la prière des enfants de Dieu, avec le mot araméen *Abba*, aussitôt traduit par « Père »."
     },
     {
      "id": "base-deuteronome-6-4",
@@ -756,24 +214,405 @@
       "ref": "Deutéronome 6:4",
       "text": "Écoute, Israël : le Seigneur, notre Dieu, est le seul Seigneur."
      },
-     "pilier": true,
      "note": "Le Shema (hébreu *shema*, rendu par « Écoute ») est la confession de foi qu’Israël redit chaque jour, et Jésus l’a faite sienne. Le Symbole dit d’Athanase s’ouvre sur cette foi en un seul Dieu, adoré dans la Trinité : un seul Dieu en trois personnes, et non trois dieux. On le cite à qui accuse les chrétiens de croire en trois dieux."
+    }
+   ]
+  },
+  {
+   "id": "base-inspiration",
+   "name": {
+    "fr": "Inspiration, vérité et canon"
+   },
+   "bloc": "L’Écriture sainte",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-2-timothee-3-16-17",
+     "fr": {
+      "ref": "2 Timothée 3:16-17",
+      "text": "Toute Écriture est inspirée de Dieu et utile pour enseigner, réfuter, corriger, former à la justice, afin que l'homme de Dieu soit accompli, équipé pour toute œuvre bonne."
+     },
+     "note": "Le verset de référence sur l’inspiration (Dei Verbum 11). Le grec *theopneustos*, rendu ici par « inspirée de Dieu », veut dire « soufflée par Dieu » : Dieu est l’auteur de l’Écriture, qu’il a fait écrire par des hommes. Le verset dit aussi à quoi elle sert, enseigner et former le croyant."
     },
     {
-     "id": "base-philippiens-2-6-8",
+     "id": "base-2-pierre-1-20-21",
      "fr": {
-      "ref": "Philippiens 2:6-8",
-      "text": "lui qui, étant de condition divine, n'a pas retenu comme une proie à saisir le fait d'être l'égal de Dieu, mais il s'est anéanti lui-même, prenant la condition d'esclave, devenant semblable aux hommes ; et, reconnu à son aspect comme un homme, il s'est abaissé lui-même, devenant obéissant jusqu'à la mort, et la mort de la croix."
+      "ref": "2 Pierre 1:20-21",
+      "text": "Sachez-le avant tout : aucune prophétie de l'Écriture n'est affaire d'interprétation privée, car ce n'est jamais par une volonté humaine qu'une prophétie a été portée ; c'est poussés par l'Esprit Saint que des hommes ont parlé de la part de Dieu."
      },
-     "note": "Le Christ, de condition divine, prend la condition d’esclave sans cesser d’être Dieu : une seule personne, parfaite dans sa divinité et dans son humanité, comme le dit la seconde partie du Symbole dit d’Athanase. Saint Augustin en tire une règle pour lire l’Écriture : chaque parole sur le Christ se rapporte à l’une ou l’autre de ses conditions."
+     "note": "Avec 2 Timothée 3:16, le grand texte de l’inspiration (Dei Verbum 11) : les auteurs sacrés ont parlé « poussés par l’Esprit Saint ». Le verset en tire une règle de lecture : l’Écriture, venue de l’Esprit, ne s’interprète pas selon le seul jugement de chacun."
     },
     {
-     "id": "base-jean-14-28",
+     "id": "base-isaie-40-8",
      "fr": {
-      "ref": "Jean 14:28",
-      "text": "Vous avez entendu ce que je vous ai dit : Je m'en vais, et je reviens vers vous. Si vous m'aimiez, vous vous réjouiriez de ce que je pars vers le Père, car le Père est plus grand que moi."
+      "ref": "Isaïe 40:8",
+      "text": "L'herbe se dessèche, la fleur se fane, mais la parole de notre Dieu demeure pour toujours."
      },
-     "note": "Les ariens opposaient ce verset à la divinité du Fils. Le Symbole dit d’Athanase en donne la clé : le Christ est égal au Père selon la divinité, inférieur au Père selon l’humanité. On répond ainsi à l’objection sans opposer ce verset à « Le Père et moi, nous sommes un »."
+     "note": "Tout ce qui vit passe, la parole de Dieu demeure. Pierre cite ce verset et l’applique à l’Évangile annoncé aux chrétiens (1 Pierre 1:24-25)."
+    }
+   ]
+  },
+  {
+   "id": "base-exegese",
+   "name": {
+    "fr": "Interpréter l’Écriture"
+   },
+   "bloc": "L’Écriture sainte",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-luc-24-27",
+     "fr": {
+      "ref": "Luc 24:27",
+      "text": "Et, commençant par Moïse et par tous les prophètes, il leur expliqua, dans toutes les Écritures, ce qui le concernait."
+     },
+     "note": "Sur la route d’Emmaüs, le Christ ressuscité lit lui-même l’Ancien Testament comme une annonce de sa personne. C’est la règle de toute lecture chrétienne de la Bible : l’Écriture se comprend à partir du Christ, qui en est le cœur (Catéchisme 112)."
+    },
+    {
+     "id": "base-1-corinthiens-10-11",
+     "fr": {
+      "ref": "1 Corinthiens 10:11",
+      "text": "Tout cela leur arrivait pour servir d'exemple, et fut écrit pour nous avertir, nous qui touchons à la fin des âges."
+     },
+     "note": "Le grec *tupikôs*, rendu ici par « pour servir d’exemple », vient de *tupos*, « figure » : c’est l’origine du mot « typologie ». Les événements de l’Exode sont vraiment arrivés, et ils annoncent en même temps la vie chrétienne. Le Catéchisme fonde sur ce verset le sens moral de l’Écriture (Catéchisme 117)."
+    }
+   ]
+  },
+  {
+   "id": "base-israel",
+   "name": {
+    "fr": "L’histoire d’Israël"
+   },
+   "bloc": "L’Écriture sainte",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-genese-12-3",
+     "fr": {
+      "ref": "Genèse 12:3",
+      "text": "Je bénirai ceux qui te béniront, et je maudirai celui qui te maudira. En toi seront bénies toutes les familles de la terre. »"
+     },
+     "note": "La promesse faite à Abraham ouvre l’histoire d’Israël et vise déjà toutes les nations. Paul y lit l’annonce de l’Évangile offert aux païens (Galates 3:8), et la descendance d’Abraham par qui vient la bénédiction, c’est le Christ (Galates 3:16)."
+    },
+    {
+     "id": "base-2-samuel-7-16",
+     "fr": {
+      "ref": "2 Samuel 7:16",
+      "text": "Ta maison et ta royauté seront stables à jamais devant moi ; ton trône sera affermi pour toujours. »"
+     },
+     "note": "Par le prophète Natan, Dieu promet à David une dynastie et un trône sans fin. Cette promesse nourrit l’attente d’un Messie fils de David, et l’ange Gabriel la reprend à l’Annonciation (Luc 1:32-33)."
+    }
+   ]
+  },
+  {
+   "id": "base-pentateuque",
+   "name": {
+    "fr": "Le Pentateuque"
+   },
+   "bloc": "L’Écriture sainte",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-genese-1-27",
+     "fr": {
+      "ref": "Genèse 1:27",
+      "text": "Dieu créa l'homme à son image, à l'image de Dieu il le créa ; homme et femme il les créa."
+     },
+     "note": "L’homme est créé à l’image de Dieu, homme et femme, avec une égale dignité (Catéchisme 357 et 369). Toute la doctrine chrétienne sur la personne humaine part de ce verset."
+    },
+    {
+     "id": "base-genese-3-15",
+     "fr": {
+      "ref": "Genèse 3:15",
+      "text": "Je mettrai une hostilité entre toi et la femme, entre ta descendance et la sienne : il t'écrasera la tête, et toi, tu le blesseras au talon. »"
+     },
+     "note": "Aussitôt après la chute, Dieu annonce la victoire sur le serpent. La tradition y lit la première annonce du Rédempteur, d’où son nom de « Protévangile », le « premier Évangile », et les Pères y voient aussi la Vierge Marie, la nouvelle Ève (Catéchisme 410-411)."
+    },
+    {
+     "id": "base-exode-3-14",
+     "fr": {
+      "ref": "Exode 3:14",
+      "text": "Dieu dit à Moïse : « Je suis celui qui suis. » Puis il ajouta : « Voici ce que tu diras aux fils d'Israël : Je Suis m'a envoyé vers vous. »"
+     },
+     "note": "Au buisson ardent, Dieu révèle son Nom, en hébreu *ehyeh asher ehyeh*, rendu par « Je suis celui qui suis ». Il est l’Être même, qui ne reçoit l’existence de personne (Catéchisme 213). Jésus reprendra ce « Je suis » pour lui-même (Jean 8:58)."
+    },
+    {
+     "id": "base-levitique-19-18",
+     "fr": {
+      "ref": "Lévitique 19:18",
+      "text": "Tu ne te vengeras pas et tu ne garderas pas de rancune contre les tiens. Tu aimeras ton prochain comme toi-même. Je suis le Seigneur."
+     },
+     "note": "Le second des deux grands commandements vient de ce verset : Jésus le joint au commandement d’aimer Dieu de tout son cœur, tiré du Deutéronome (Matthieu 22:37-40). La Loi de Moïse contient donc déjà le cœur de la morale chrétienne."
+    },
+    {
+     "id": "base-deuteronome-6-4",
+     "fr": {
+      "ref": "Deutéronome 6:4",
+      "text": "Écoute, Israël : le Seigneur, notre Dieu, est le seul Seigneur."
+     },
+     "note": "Le Shema, de l’hébreu *shema*, rendu par « Écoute », la prière qu’Israël redit matin et soir. Le Deutéronome y résume toute la Loi : un seul Seigneur, à aimer de tout son cœur (Deutéronome 6:5), et Jésus en fait le premier des commandements (Marc 12:29-30)."
+    }
+   ]
+  },
+  {
+   "id": "base-historiques",
+   "name": {
+    "fr": "Les livres historiques"
+   },
+   "bloc": "L’Écriture sainte",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-2-maccabees-7-28",
+     "fr": {
+      "ref": "2 Maccabées 7:28",
+      "text": "Je t'en supplie, mon enfant, regarde le ciel et la terre et tout ce qu'ils contiennent, et sache que Dieu les a créés à partir de rien, et que le genre humain est venu à l'existence de la même façon."
+     },
+     "note": "Une mère exhorte son fils à mourir plutôt que de renier la Loi, et lui rappelle que Dieu a tout créé « à partir de rien ». C’est la première affirmation explicite de la création à partir de rien dans l’Écriture (Catéchisme 297). Elle fonde aussi l’espérance de la résurrection : celui qui a tout tiré du néant peut rendre la vie."
+    },
+    {
+     "id": "base-2-maccabees-12-46",
+     "fr": {
+      "ref": "2 Maccabées 12:46",
+      "text": "Voilà pourquoi il fit offrir ce sacrifice d'expiation pour les morts, afin qu'ils soient délivrés de leur péché."
+     },
+     "note": "Judas Maccabée fait offrir un sacrifice pour des soldats morts, afin qu’ils soient délivrés de leur péché. L’Église s’appuie sur ce passage pour la prière pour les défunts et la doctrine du purgatoire (Catéchisme 1032). Le livre est deutérocanonique : il fait partie de la Bible catholique, sans figurer dans la Bible hébraïque."
+    }
+   ]
+  },
+  {
+   "id": "base-sagesse",
+   "name": {
+    "fr": "Les livres sapientiaux et poétiques"
+   },
+   "bloc": "L’Écriture sainte",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-psaumes-111-10",
+     "fr": {
+      "ref": "Psaumes 111:10",
+      "text": "La crainte du Seigneur est le commencement de la sagesse : qui la met en pratique est vraiment avisé. Sa louange subsiste à jamais."
+     },
+     "note": "La crainte du Seigneur est le respect plein d’amour de l’homme devant la grandeur de Dieu, et non la peur d’être puni. Toute la sagesse biblique part de là (Proverbes 1:7 dit la même chose), et la tradition compte la crainte de Dieu parmi les dons du Saint-Esprit (Catéchisme 1831)."
+    },
+    {
+     "id": "base-job-1-21",
+     "fr": {
+      "ref": "Job 1:21",
+      "text": "Il dit : « Nu je suis sorti du ventre de ma mère, et nu j'y retournerai. Le Seigneur a donné, le Seigneur a repris ; il en a été comme il a plu au Seigneur : que le nom du Seigneur soit béni ! »"
+     },
+     "note": "Job vient de perdre ses biens et ses enfants, et il bénit Dieu. Le livre de Job affronte la souffrance du juste, et ce verset en donne la première réponse : la confiance en Dieu, qui reste le maître de ce qu’il donne."
+    },
+    {
+     "id": "base-psaumes-22-2",
+     "fr": {
+      "ref": "Psaumes 22:2",
+      "text": "Mon Dieu, mon Dieu, tourne-toi vers moi : pourquoi m'as-tu abandonné ? Tu restes loin de mon cri, loin de mon salut."
+     },
+     "note": "Jésus prie ce psaume sur la croix (Matthieu 27:46). Le cri d’abandon ouvre un psaume qui s’achève dans la confiance et la louange : en le reprenant, le Christ porte la détresse des hommes et l’offre à son Père (Catéchisme 603)."
+    },
+    {
+     "id": "base-psaumes-51-12",
+     "fr": {
+      "ref": "Psaumes 51:12",
+      "text": "Crée en moi un cœur pur, ô Dieu ; renouvelle au fond de moi un esprit ferme."
+     },
+     "note": "Le Miserere, le grand psaume de la pénitence, que son titre attribue à David après son péché avec Bethsabée. Le pécheur y demande à Dieu un cœur neuf : le verbe hébreu *bara*, rendu par « crée », est celui de Genèse 1:1, et l’Écriture l’emploie pour la seule action de Dieu."
+    }
+   ]
+  },
+  {
+   "id": "base-prophetes",
+   "name": {
+    "fr": "Les prophètes"
+   },
+   "bloc": "L’Écriture sainte",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-isaie-7-14",
+     "fr": {
+      "ref": "Isaïe 7:14",
+      "text": "C'est pourquoi le Seigneur lui-même vous donnera un signe : Voici que la Vierge est enceinte, elle enfante un fils, et elle lui donnera le nom d'Emmanuel."
+     },
+     "note": "Matthieu cite ce verset pour la naissance de Jésus (Matthieu 1:22-23). L’hébreu *almah*, rendu ici par « Vierge », désigne une jeune fille ; la traduction grecque des Septante l’a rendu par *parthenos*, « vierge », le mot que reprend Matthieu. « Emmanuel » veut dire « Dieu avec nous »."
+    },
+    {
+     "id": "base-isaie-53-5",
+     "fr": {
+      "ref": "Isaïe 53:5",
+      "text": "Mais lui, il a été transpercé à cause de nos révoltes, broyé à cause de nos fautes ; le châtiment qui nous rend la paix est tombé sur lui, et c'est par ses blessures que nous sommes guéris."
+     },
+     "note": "Le quatrième chant du Serviteur annonce un innocent qui souffre à la place des coupables. Le Nouveau Testament y reconnaît la Passion du Christ (Catéchisme 601), et 1 Pierre 2:24 en reprend les derniers mots."
+    },
+    {
+     "id": "base-michee-5-1",
+     "fr": {
+      "ref": "Michée 5:1",
+      "text": "Et toi, Bethléem Éphrata, trop petite pour compter parmi les clans de Juda, c'est de toi que sortira pour moi celui qui doit gouverner Israël ; ses origines remontent aux temps anciens, aux jours d'éternité."
+     },
+     "note": "Le prophète annonce que le chef d’Israël sortira de Bethléem, la petite ville de David. Les scribes consultés par Hérode citent ce verset pour dire où le Messie doit naître (Matthieu 2:5-6), et les Pères ont lu dans ses origines « aux jours d’éternité » l’annonce du Fils éternel."
+    },
+    {
+     "id": "base-jeremie-31-31",
+     "fr": {
+      "ref": "Jérémie 31:31",
+      "text": "Voici venir des jours, oracle du Seigneur, où je conclurai avec la maison d'Israël et la maison de Juda une alliance nouvelle."
+     },
+     "note": "La seule mention d’une « alliance nouvelle » dans l’Ancien Testament. Jésus la reprend en instituant l’Eucharistie (Luc 22:20), et l’épître aux Hébreux cite tout l’oracle (Hébreux 8:8-12). Le nom de « Nouveau Testament » veut dire « nouvelle alliance »."
+    },
+    {
+     "id": "base-ezechiel-36-26",
+     "fr": {
+      "ref": "Ézéchiel 36:26",
+      "text": "Je vous donnerai un cœur nouveau et je mettrai en vous un esprit nouveau ; j'ôterai de votre chair le cœur de pierre et je vous donnerai un cœur de chair."
+     },
+     "note": "Dieu promet de changer le cœur de son peuple : un cœur de chair, capable d’aimer, à la place du cœur de pierre, et son propre Esprit (Ézéchiel 36:27). Annoncée avec une eau pure qui purifie (Ézéchiel 36:25), la promesse s’accomplit dans le baptême et le don de l’Esprit Saint."
+    }
+   ]
+  },
+  {
+   "id": "base-evangiles",
+   "name": {
+    "fr": "Les Évangiles"
+   },
+   "bloc": "L’Écriture sainte",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-jean-20-31",
+     "fr": {
+      "ref": "Jean 20:31",
+      "text": "Mais ceux-là ont été écrits pour que vous croyiez que Jésus est le Christ, le Fils de Dieu, et pour qu'en croyant vous ayez la vie en son nom."
+     },
+     "note": "Jean dit pourquoi il a écrit son Évangile : pour que l’on croie que Jésus est le Christ, le Fils de Dieu, et qu’on ait la vie. Les Évangiles sont des témoignages écrits pour la foi, qui rapportent fidèlement ce que Jésus a fait et enseigné (Dei Verbum 19)."
+    },
+    {
+     "id": "base-luc-1-3-4",
+     "fr": {
+      "ref": "Luc 1:3-4",
+      "text": "C'est pourquoi j'ai décidé, moi aussi, après m'être informé avec soin de tout depuis les origines, de t'en écrire un récit ordonné, très honorable Théophile, pour que tu constates la solidité des enseignements que tu as reçus."
+     },
+     "note": "Luc s’est informé avec soin avant d’écrire, auprès de ceux qui furent témoins dès le commencement (Luc 1:2), et il le dit. Ce prologue est le premier appui de l’historicité des Évangiles, que l’Église affirme sans hésitation (Dei Verbum 19)."
+    }
+   ]
+  },
+  {
+   "id": "base-paul",
+   "name": {
+    "fr": "Les Actes et saint Paul"
+   },
+   "bloc": "L’Écriture sainte",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-actes-des-apotres-1-8",
+     "fr": {
+      "ref": "Actes des Apôtres 1:8",
+      "text": "Mais vous allez recevoir une force, celle de l'Esprit Saint qui descendra sur vous ; vous serez alors mes témoins à Jérusalem, dans toute la Judée et la Samarie, et jusqu'aux extrémités de la terre. »"
+     },
+     "note": "Les dernières paroles du Christ avant l’Ascension donnent aussi le plan du livre des Actes : le témoignage part de Jérusalem, passe par la Judée et la Samarie, et va jusqu’à Rome. La mission de l’Église tient sa force de l’Esprit Saint."
+    },
+    {
+     "id": "base-romains-1-16-17",
+     "fr": {
+      "ref": "Romains 1:16-17",
+      "text": "Car je n'ai pas honte de la Bonne Nouvelle : elle est puissance de Dieu pour le salut de tout homme qui croit, du Juif d'abord, puis du Grec. Car en elle se révèle la justice de Dieu, de la foi vers la foi, comme il est écrit : Le juste vivra par la foi."
+     },
+     "note": "Le thème de toute l’épître aux Romains : la Bonne Nouvelle sauve tout homme qui croit, Juif ou païen. « Le juste vivra par la foi » cite Habacuc 2:4. Pour l’Église, la justice que Dieu donne par la grâce transforme vraiment celui qui la reçoit (Catéchisme 1987-1992)."
+    },
+    {
+     "id": "base-galates-2-20",
+     "fr": {
+      "ref": "Galates 2:20",
+      "text": "et ce n'est plus moi qui vis, c'est le Christ qui vit en moi. Ma vie présente dans la chair, je la vis dans la foi au Fils de Dieu, qui m'a aimé et s'est livré lui-même pour moi."
+     },
+     "note": "Paul dit ce que le baptême a fait de lui : le Christ vit en lui. La vie chrétienne est une union au Christ, vécue dans la foi en celui qui « s’est livré lui-même pour moi »."
+    }
+   ]
+  },
+  {
+   "id": "base-epitres",
+   "name": {
+    "fr": "Hébreux, les épîtres catholiques et l’Apocalypse"
+   },
+   "bloc": "L’Écriture sainte",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-hebreux-4-12",
+     "fr": {
+      "ref": "Hébreux 4:12",
+      "text": "Elle est vivante, en effet, la parole de Dieu, et agissante, plus tranchante qu'aucune épée à deux tranchants ; elle pénètre jusqu'à séparer l'âme et l'esprit, les jointures et les moelles ; elle juge les intentions et les pensées du cœur."
+     },
+     "note": "La parole de Dieu agit en celui qui l’écoute : elle l’éclaire et le juge jusqu’au fond du cœur. Dei Verbum cite ce verset pour la force de l’Écriture dans la vie de l’Église (Dei Verbum 21)."
+    },
+    {
+     "id": "base-1-jean-4-8",
+     "fr": {
+      "ref": "1 Jean 4:8",
+      "text": "Celui qui n'aime pas n'a pas connu Dieu, car Dieu est amour."
+     },
+     "note": "La définition de Dieu la plus courte de l’Écriture. Le grec *agapê*, rendu par « amour », désigne l’amour qui se donne. Benoît XVI a ouvert sa première encyclique, Deus caritas est, sur les mêmes mots, en 1 Jean 4:16."
+    },
+    {
+     "id": "base-1-pierre-2-9",
+     "fr": {
+      "ref": "1 Pierre 2:9",
+      "text": "Mais vous, vous êtes une race choisie, un sacerdoce royal, une nation sainte, un peuple que Dieu s'est acquis, pour que vous proclamiez les hauts faits de celui qui vous a appelés des ténèbres à son admirable lumière ;"
+     },
+     "note": "Pierre donne aux baptisés les titres qu’Israël a reçus au Sinaï (Exode 19:6). C’est le texte du sacerdoce commun des fidèles : tout baptisé offre sa vie à Dieu, à côté du sacerdoce ministériel des prêtres (Lumen gentium 10)."
+    },
+    {
+     "id": "base-apocalypse-21-5",
+     "fr": {
+      "ref": "Apocalypse 21:5",
+      "text": "Et celui qui siège sur le trône déclara : « Voici, je fais toutes choses nouvelles. » Puis il dit : « Écris, car ces paroles sont sûres et véritables. »"
+     },
+     "note": "Au terme de l’histoire, Dieu fait toutes choses nouvelles : les cieux nouveaux et la terre nouvelle (Apocalypse 21:1). L’espérance chrétienne attend un monde renouvelé, celui-là même que Dieu a créé (Catéchisme 1042-1047)."
+    }
+   ]
+  },
+  {
+   "id": "base-theologie-biblique",
+   "name": {
+    "fr": "Les grands thèmes de l’Écriture"
+   },
+   "bloc": "L’Écriture sainte",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-marc-1-15",
+     "fr": {
+      "ref": "Marc 1:15",
+      "text": "Il disait : « Le temps est accompli, et le règne de Dieu s'est approché. Convertissez-vous et croyez à la Bonne Nouvelle. »"
+     },
+     "note": "Les premières paroles de Jésus dans l’Évangile de Marc. Le règne de Dieu, attendu dans toute l’Écriture, arrive avec lui, et il demande deux choses : se convertir et croire (Catéchisme 541)."
+    },
+    {
+     "id": "base-luc-22-20",
+     "fr": {
+      "ref": "Luc 22:20",
+      "text": "Après le repas, il fit de même avec la coupe, en disant : « Cette coupe est la nouvelle alliance en mon sang, versé pour vous."
+     },
+     "note": "À la Cène, Jésus fait de son sang versé la nouvelle alliance annoncée par Jérémie (Jérémie 31:31). Les alliances de l’Écriture, avec Noé, Abraham, Moïse et David, s’accomplissent dans ce sacrifice, que l’Eucharistie rend présent (Catéchisme 1365)."
+    },
+    {
+     "id": "base-jean-1-29",
+     "fr": {
+      "ref": "Jean 1:29",
+      "text": "Le lendemain, Jean voit Jésus venir vers lui, et il dit : « Voici l'Agneau de Dieu, celui qui enlève le péché du monde."
+     },
+     "note": "Jean-Baptiste désigne Jésus comme l’Agneau de Dieu : l’agneau pascal de l’Exode et le Serviteur d’Isaïe, mené comme un agneau à l’abattoir (Isaïe 53:7), se rejoignent en lui (Catéchisme 608). L’Église reprend ces mots à chaque messe, avant la communion."
+    },
+    {
+     "id": "base-matthieu-5-17",
+     "fr": {
+      "ref": "Matthieu 5:17",
+      "text": "Ne pensez pas que je sois venu abolir la Loi ou les Prophètes : je ne suis pas venu les abolir, mais les accomplir."
+     },
+     "note": "Jésus accomplit la Loi et les Prophètes : l’Ancien Testament garde sa valeur et trouve en lui son sens plein. Saint Augustin le dit d’une formule que reprend Dei Verbum 16 : le Nouveau Testament est caché dans l’Ancien, et l’Ancien se dévoile dans le Nouveau."
     }
    ]
   }
