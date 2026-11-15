@@ -37,3 +37,15 @@ html:root body:not(#_):not(#_) .res-plein-acts>:is(.res-plein-x,.res-plein-bible
 html:root body:not(#_):not(#_) .res-plein-acts>:is(.res-plein-x,.res-plein-bible):is(:hover,:focus-visible){z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 html:root body:not(#_):not(#_) .res-plein-acts>:is(.res-plein-x:hover+.res-plein-bible,.res-plein-bible:hover)::before{opacity:0}
 html:root body:not(#_):not(#_) .res-plein-acts>.res-plein-bible:hover+.res-plein-bible::before{opacity:0}
+
+/* Le mot bref d'Étude (un lien vers un cours pas encore écrit) : une
+   fenêtre du site en petit, posée en bas de l'écran, qui s'efface seule. */
+.et-avis{position:fixed;left:50%;bottom:calc(28px + env(safe-area-inset-bottom));z-index:300;
+  transform:translate(-50%,8px);opacity:0;visibility:hidden;pointer-events:none;
+  width:max-content;max-width:calc(100vw - 40px);padding:12px 20px;background:#000;color:rgba(255,255,255,.88);
+  box-shadow:inset 0 0 0 .5px rgba(239,230,207,.45);
+  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);
+  font-family:'EB Garamond',Georgia,serif;font-size:17px;letter-spacing:.01em;text-align:center;
+  transition:opacity .25s,transform .25s,visibility 0s .25s}
+.et-avis.vu{opacity:1;visibility:visible;transform:translate(-50%,0);transition:opacity .25s,transform .25s}
+@media (prefers-reduced-motion:reduce){.et-avis,.et-avis.vu{transition:none;transform:translate(-50%,0)}}

@@ -617,6 +617,228 @@
    ]
   },
   {
+   "id": "base-esprit",
+   "name": {
+    "fr": "L’Esprit Saint"
+   },
+   "bloc": "L’Esprit Saint et la grâce",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-jean-14-26",
+     "fr": {
+      "ref": "Jean 14:26",
+      "text": "Mais le Paraclet, l'Esprit Saint que le Père enverra en mon nom, lui, vous enseignera tout et vous rappellera tout ce que je vous ai dit."
+     },
+     "note": "Jésus promet l’Esprit Saint aux apôtres pendant le dernier repas. Il l’appelle le Paraclet, du grec *paraklêtos*, « celui qu’on appelle à ses côtés », traduit par défenseur ou consolateur. L’Esprit garde l’Église dans la mémoire vivante de ce que le Christ a dit et la conduit à le comprendre (Catéchisme 729)."
+    },
+    {
+     "id": "base-jean-15-26",
+     "fr": {
+      "ref": "Jean 15:26",
+      "text": "Quand viendra le Paraclet, que je vous enverrai d'auprès du Père, l'Esprit de vérité qui procède du Père, c'est lui qui témoignera de moi."
+     },
+     "note": "Le Credo de Nicée-Constantinople reprend ces mots : l’Esprit « procède du Père ». La tradition latine confesse qu’il procède du Père et du Fils (*Filioque*), et elle s’appuie entre autres sur ce que le Fils l’envoie lui-même d’auprès du Père (Catéchisme 246-248)."
+    },
+    {
+     "id": "base-actes-des-apotres-2-4",
+     "fr": {
+      "ref": "Actes des Apôtres 2:4",
+      "text": "Ils furent tous remplis de l'Esprit Saint et se mirent à parler en d'autres langues, selon que l'Esprit leur donnait de s'exprimer."
+     },
+     "note": "Cinquante jours après Pâques, l’Esprit descend sur les disciples réunis : c’est la Pentecôte, où l’Église se manifeste au monde (Catéchisme 731-732). Les langues annoncent un Évangile adressé à tous les peuples, à rebours de la dispersion de Babel."
+    },
+    {
+     "id": "base-isaie-11-2",
+     "fr": {
+      "ref": "Isaïe 11:2",
+      "text": "Sur lui reposera l'Esprit du Seigneur : esprit de sagesse et de discernement, esprit de conseil et de force, esprit de connaissance et de crainte du Seigneur."
+     },
+     "note": "Isaïe annonce le Messie sur qui reposera l’Esprit du Seigneur. L’hébreu nomme six dons ; la traduction grecque et la Vulgate en comptent sept, en ajoutant la piété. De là viennent les sept dons de l’Esprit Saint : sagesse, intelligence, conseil, force, science, piété et crainte de Dieu. Ils appartiennent en plénitude au Christ et sont donnés aux baptisés (Catéchisme 1831)."
+    },
+    {
+     "id": "base-galates-5-22-23",
+     "fr": {
+      "ref": "Galates 5:22-23",
+      "text": "Mais le fruit de l'Esprit, c'est la charité, la joie, la paix, la patience, la bonté, la bienveillance, la fidélité, la douceur, la maîtrise de soi. Contre de telles choses, il n'y a pas de loi."
+     },
+     "note": "Paul oppose le fruit de l’Esprit aux œuvres de la chair. La Vulgate en compte douze, et le Catéchisme reprend cette liste de la Tradition : ce sont des perfections que l’Esprit forme en nous, comme les prémices de la gloire éternelle (Catéchisme 1832)."
+    },
+    {
+     "id": "base-romains-8-15",
+     "fr": {
+      "ref": "Romains 8:15",
+      "text": "Vous n'avez pas reçu un esprit d'esclavage pour retomber dans la crainte ; vous avez reçu un Esprit qui fait de vous des fils adoptifs, et par lui nous crions : Abba, Père !"
+     },
+     "note": "L’Esprit fait des baptisés des fils adoptifs de Dieu et leur donne de prier comme Jésus priait. *Abba* est le mot araméen par lequel un enfant appelle son père. C’est la grâce de l’adoption filiale (Catéchisme 1996)."
+    },
+    {
+     "id": "base-1-corinthiens-12-7",
+     "fr": {
+      "ref": "1 Corinthiens 12:7",
+      "text": "À chacun est donnée la manifestation de l'Esprit en vue du bien de tous."
+     },
+     "note": "Les charismes sont des grâces données à chacun pour le bien de tous et pour bâtir l’Église (Catéchisme 799-800). Ils diffèrent de la grâce sanctifiante, qui rend saint celui qui la reçoit. Paul place la charité au-dessus de tous les charismes (1 Corinthiens 13:13), et elle en est la mesure."
+    },
+    {
+     "id": "base-1-corinthiens-3-16",
+     "fr": {
+      "ref": "1 Corinthiens 3:16",
+      "text": "Ne le savez-vous pas ? Vous êtes le temple de Dieu, et l'Esprit de Dieu habite en vous."
+     },
+     "note": "L’Esprit de Dieu habite dans les baptisés comme dans un temple : c’est l’inhabitation de Dieu dans l’âme en état de grâce. Paul le dit ici de toute la communauté de Corinthe, et ailleurs du corps de chacun (1 Corinthiens 6:19 ; Catéchisme 1265)."
+    }
+   ]
+  },
+  {
+   "id": "base-grace",
+   "name": {
+    "fr": "La grâce"
+   },
+   "bloc": "L’Esprit Saint et la grâce",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-ephesiens-2-8",
+     "fr": {
+      "ref": "Éphésiens 2:8",
+      "text": "Car c'est par la grâce que vous êtes sauvés, au moyen de la foi ; et cela ne vient pas de vous, c'est le don de Dieu."
+     },
+     "note": "La foi elle-même est un don de Dieu. Le concile d’Orange (529) cite ce verset contre les semi-pélagiens : la grâce est nécessaire dès le commencement de la foi."
+    },
+    {
+     "id": "base-jean-15-5",
+     "fr": {
+      "ref": "Jean 15:5",
+      "text": "Je suis la vigne, vous êtes les sarments. Celui qui demeure en moi, et moi en lui, porte beaucoup de fruit ; car, sans moi, vous ne pouvez rien faire."
+     },
+     "note": "Sans le Christ, l’homme ne peut rien faire qui mène au salut : c’est la nécessité de la grâce, que saint Augustin défendait contre Pélage. Le concile de Trente reprend l’image : les bonnes œuvres du juste viennent du Christ comme la sève vient de la vigne aux sarments (session VI, chapitre 16)."
+    },
+    {
+     "id": "base-2-pierre-1-4",
+     "fr": {
+      "ref": "2 Pierre 1:4",
+      "text": "Par elles, il nous a accordé les précieuses et très grandes promesses, pour que vous deveniez ainsi participants de la nature divine, en fuyant la corruption que la convoitise répand dans le monde."
+     },
+     "note": "La grâce fait participer l’homme à la nature divine. C’est la divinisation dont parlent les Pères : Dieu s’est fait homme pour que l’homme devienne dieu par grâce (Catéchisme 460, 1265)."
+    },
+    {
+     "id": "base-1-corinthiens-15-10",
+     "fr": {
+      "ref": "1 Corinthiens 15:10",
+      "text": "Mais ce que je suis, je le suis par la grâce de Dieu, et sa grâce envers moi n'a pas été stérile : j'ai travaillé plus qu'eux tous, non pas moi, mais la grâce de Dieu qui est avec moi."
+     },
+     "note": "Paul a travaillé plus que tous, et il en rend la gloire à la grâce qui travaillait avec lui. La grâce n’écarte pas la liberté, elle la fait agir : le bien accompli est à la fois don de Dieu et œuvre de l’homme (Catéchisme 2008)."
+    },
+    {
+     "id": "base-philippiens-2-13",
+     "fr": {
+      "ref": "Philippiens 2:13",
+      "text": "car c'est Dieu qui opère en vous le vouloir et le faire, selon son dessein bienveillant."
+     },
+     "note": "Dieu donne le vouloir et le faire : même le premier mouvement de la volonté vers le bien vient de sa grâce. C’est la grâce actuelle, qui précède et accompagne chaque acte bon. Le concile de Trente cite ce verset à propos de la persévérance (session VI, chapitre 13)."
+    },
+    {
+     "id": "base-2-corinthiens-12-9",
+     "fr": {
+      "ref": "2 Corinthiens 12:9",
+      "text": "Mais il m'a déclaré : « Ma grâce te suffit : car la puissance se déploie tout entière dans la faiblesse. » C'est donc de grand cœur que je me glorifierai plutôt de mes faiblesses, afin que la puissance du Christ habite en moi."
+     },
+     "note": "Paul a demandé trois fois d’être délivré de ce qu’il appelle un aiguillon dans la chair (2 Corinthiens 12:7). Le Seigneur lui répond que sa grâce suffit : sa puissance se déploie dans la faiblesse même, quand elle est acceptée (Catéchisme 268, 273)."
+    },
+    {
+     "id": "base-1-timothee-2-4",
+     "fr": {
+      "ref": "1 Timothée 2:4",
+      "text": "qui veut que tous les hommes soient sauvés et parviennent à la connaissance de la vérité."
+     },
+     "note": "Dieu veut le salut de tous les hommes, sans exception : c’est la volonté salvifique universelle. Le Christ est mort pour tous, et Dieu ne prédestine personne à l’enfer (Catéchisme 851, 1037)."
+    },
+    {
+     "id": "base-1-corinthiens-4-7",
+     "fr": {
+      "ref": "1 Corinthiens 4:7",
+      "text": "Qui donc te distingue ? Qu'as-tu que tu n'aies reçu ? Et si tu l'as reçu, pourquoi t'en glorifier comme si tu ne l'avais pas reçu ?"
+     },
+     "note": "Tout bien en l’homme est reçu de Dieu, et personne ne peut s’en glorifier comme s’il venait de lui. Saint Augustin y a trouvé sa réponse aux semi-pélagiens : le commencement même de la foi est un don."
+    }
+   ]
+  },
+  {
+   "id": "base-justification",
+   "name": {
+    "fr": "La justification et le mérite"
+   },
+   "bloc": "L’Esprit Saint et la grâce",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-romains-3-23-24",
+     "fr": {
+      "ref": "Romains 3:23-24",
+      "text": "tous ont péché et sont privés de la gloire de Dieu, et ils sont justifiés gratuitement par sa grâce, en vertu de la rédemption accomplie dans le Christ Jésus."
+     },
+     "note": "Tous ont péché, et tous sont justifiés gratuitement : la justification est un don venu de la croix du Christ, que personne ne mérite. Le concile de Trente enseigne que rien de ce qui la précède, ni la foi ni les œuvres, ne mérite la grâce de la justification (session VI, chapitre 8 ; Catéchisme 1992)."
+    },
+    {
+     "id": "base-romains-3-28",
+     "fr": {
+      "ref": "Romains 3:28",
+      "text": "Car nous estimons que l'homme est justifié par la foi, indépendamment des œuvres de la Loi."
+     },
+     "note": "Les œuvres de la Loi dont parle Paul sont celles de la Loi de Moïse, comme la circoncision. La justification vient de la foi, que le concile de Trente appelle « le commencement, le fondement et la racine de toute justification » (session VI, chapitre 8). Luther ajoutait le mot « seule » dans sa traduction allemande de ce verset."
+    },
+    {
+     "id": "base-jacques-2-24",
+     "fr": {
+      "ref": "Jacques 2:24",
+      "text": "Vous voyez que l'homme est justifié par les œuvres, et non par la foi seule."
+     },
+     "note": "Jacques et Paul ne se contredisent pas : Paul écarte les œuvres de la Loi faites avant la foi, Jacques réclame les œuvres que la foi produit. Le seul endroit de l’Écriture où paraissent les mots « la foi seule » est ce verset, qui les refuse."
+    },
+    {
+     "id": "base-galates-5-6",
+     "fr": {
+      "ref": "Galates 5:6",
+      "text": "Dans le Christ Jésus, en effet, ni la circoncision ni l'incirconcision n'ont de valeur, mais seulement la foi agissant par la charité."
+     },
+     "note": "La foi qui justifie est la foi vivante, animée par la charité. Le concile de Trente cite ce verset : sans l’espérance et la charité, la foi n’unit pas parfaitement au Christ (session VI, chapitre 7)."
+    },
+    {
+     "id": "base-jacques-2-26",
+     "fr": {
+      "ref": "Jacques 2:26",
+      "text": "Comme le corps sans souffle est mort, ainsi la foi sans les œuvres est morte."
+     },
+     "note": "La foi sans les œuvres est morte : elle peut rester une vraie foi, privée de la vie que donne la charité (foi « informe »). Ce verset et celui de Paul aux Galates se complètent et se citent ensemble."
+    },
+    {
+     "id": "base-1-corinthiens-6-11",
+     "fr": {
+      "ref": "1 Corinthiens 6:11",
+      "text": "Voilà pourtant ce que certains d'entre vous étaient. Mais vous avez été lavés, vous avez été sanctifiés, vous avez été justifiés au nom du Seigneur Jésus Christ et par l'Esprit de notre Dieu."
+     },
+     "note": "Lavés, sanctifiés, justifiés : par le baptême, la justification efface le péché et renouvelle l’homme intérieur. Pour l’Église catholique, être justifié, c’est être rendu juste réellement, et non seulement être déclaré juste (Trente, session VI, chapitre 7 ; Catéchisme 1989)."
+    },
+    {
+     "id": "base-philippiens-2-12",
+     "fr": {
+      "ref": "Philippiens 2:12",
+      "text": "Ainsi, mes bien-aimés, vous qui avez toujours obéi : travaillez à votre salut avec crainte et tremblement, non seulement quand je suis présent, mais bien plus maintenant que je suis absent ;"
+     },
+     "note": "La justification reçue peut grandir, et elle peut se perdre par le péché grave. Le chrétien travaille donc à son salut sans présomption, dans la crainte de celui qui connaît sa faiblesse, et Paul donne aussitôt la raison de sa confiance : « c’est Dieu qui opère en vous le vouloir et le faire » (Philippiens 2:13)."
+    },
+    {
+     "id": "base-2-timothee-4-7-8",
+     "fr": {
+      "ref": "2 Timothée 4:7-8",
+      "text": "J'ai mené le bon combat, j'ai achevé la course, j'ai gardé la foi. Désormais m'est réservée la couronne de justice, que me remettra le Seigneur, le juste Juge, en ce jour-là ; et non à moi seulement, mais à tous ceux qui auront aimé sa manifestation."
+     },
+     "note": "Au terme de sa vie, Paul attend la couronne de justice que le juste Juge lui remettra. La vie éternelle est à la fois une grâce promise et la récompense des bonnes œuvres : c’est la doctrine du mérite (Trente, session VI, chapitre 16). La liturgie le dit avec saint Augustin : en couronnant les mérites des saints, Dieu couronne ses propres dons (Catéchisme 2006)."
+    }
+   ]
+  },
+  {
    "id": "base-mort",
    "name": {
     "fr": "La mort et le jugement particulier"

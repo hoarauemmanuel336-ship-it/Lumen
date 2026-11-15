@@ -469,7 +469,12 @@ D.addEventListener('click',function(e){
   if(b.classList.contains('ong')){var C=b._C;ongletSom(C,true);
     /* un autre cours mène droit à son ouverture, et le sommaire reste ouvert */
     if(!PAGES[CUR]||PAGES[CUR].C!==C){GESTE=true;aller(C.pages[0].el.id)}return}});
+/* Le voile ferme le sommaire dès que le doigt ou la souris s'y pose : sur iPhone, dans un cadre qui défile, un toucher
+   y devient parfois le début d'un défilement et le clic n'arrive jamais. Rien ne défile sous lui tant qu'il est là. */
+VO.addEventListener('pointerdown',function(e){if(e.button)return;e.preventDefault();fermerSom()});
 VO.addEventListener('click',fermerSom);
+VO.addEventListener('touchmove',function(e){e.preventDefault()},{passive:false});
+VO.addEventListener('wheel',function(e){e.preventDefault()},{passive:false});
 D.addEventListener('keydown',function(e){
   if(e.key==='Escape'&&SO.classList.contains('on')){fermerSom();return}
   var t=e.target;if(t&&t.classList&&t.classList.contains('js')&&(e.key===' '||e.key==='Enter')){e.preventDefault();cocher(t);return}

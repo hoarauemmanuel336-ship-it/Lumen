@@ -134,14 +134,19 @@
     });
     h += '<span class="lit-ici" style="left:' + ((pos + .5) / total * 100) + '%"></span></div>';
     /* Sous la frise, la date où chaque temps commence, posée à la jonction
-       des couleurs par un mince trait ; les dates alternent sur deux
-       hauteurs pour ne pas se chevaucher. Le Triduum, trop court, n'a pas
-       la sienne : la légende le nomme. */
+       des couleurs par un mince trait, Triduum compris. Les dates se
+       répartissent sur trois hauteurs à tour de rôle : le Triduum ne dure
+       que trois jours, et sa date tombe juste avant celle du Temps pascal,
+       si bien que deux hauteurs ne suffisent pas à les tenir à l'écart
+       l'une de l'autre et de leurs voisines, même sur téléphone. */
     var jm = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'short' }), rang = 0;
     h += '<div class="lit-dates">';
     segs.forEach(function (s) {
-      if (s.s === 'TR') return;
-      h += '<span class="lit-d' + (rang++ % 2 ? ' lit-d2' : '') + '" style="left:' + (s.i / total * 100) + '%">' + esc(jm.format(plus(b.deb, s.i))) + '</span>';
+      var r = rang++ % 3, dd = plus(b.deb, s.i);
+      /* le Triduum s'ouvre le Jeudi saint au soir, la veille du premier jour
+         qu'il colore : sa date est celle du Jeudi saint */
+      if (s.s === 'TR') { var jv = jour(plus(dd, -1)); if (jv && /^Jeudi Saint/.test(jv.n)) dd = plus(dd, -1); }
+      h += '<span class="lit-d' + (r ? ' lit-d' + (r + 1) : '') + '" style="left:' + (s.i / total * 100) + '%">' + esc(jm.format(dd)) + '</span>';
     });
     h += '</div>';
     var LEGENDE = [['P', 'Avent, Carême'], ['B', 'Noël, Temps pascal'], ['V', 'Temps ordinaire'], ['R', 'Triduum pascal']];

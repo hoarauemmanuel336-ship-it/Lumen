@@ -1471,37 +1471,33 @@ html body .coffre-bandeau p{margin:0;flex:1 1 260px;font-family:var(--h-ui);font
 html:root body .coffre-bandeau .res-rouvrir{margin:0;flex:0 0 auto}
 
 /* ── LE BANDEAU REPLIÉ (Ressources et Étude, plein écran) ──
-   Trois petits points crème ; à leur toucher ils s'effacent, la bande
-   s'allonge et chaque bouton apparaît à son tour, puis tout se replie
-   dans le mouvement inverse et les points reviennent (commun/cadre.js, lvRepliBandeau). */
+   Trois petits points crème ; à leur toucher ils s'effacent et la bande
+   s'allonge en découvrant les boutons, puis elle se referme sur eux dans
+   le mouvement inverse et les points reviennent (commun/cadre.js, lvRepliBandeau). */
 html:root body:not(#_):not(#_) .res-plein-acts.lv-repli{overflow:hidden;align-items:stretch}
 /* déroulé, le bandeau ne garde que ses boutons : les trois points
    s'effacent, et reviennent quand il se replie */
 html:root body:not(#_):not(#_) .res-plein-acts.lv-repli>.lv-repli-pts{
-  padding:10px 16px 10px 18px;border-radius:999px;position:relative;z-index:2;
+  padding:10px 16px 10px 18px;border-radius:999px;position:relative;z-index:2;-webkit-tap-highlight-color:transparent;
   max-width:60px;overflow:hidden;opacity:1;
-  transition:max-width .32s cubic-bezier(.2,.8,.2,1) .3s,padding .32s cubic-bezier(.2,.8,.2,1) .3s,opacity .25s ease .38s,background .25s,box-shadow .3s;
+  transition:max-width .3s cubic-bezier(.2,.8,.2,1) .14s,padding .3s cubic-bezier(.2,.8,.2,1) .14s,opacity .22s ease .26s,background .25s,box-shadow .3s;
 }
 html:root body:not(#_):not(#_) .res-plein-acts.lv-repli.ouvert>.lv-repli-pts{
   max-width:0;padding-left:0;padding-right:0;opacity:0;pointer-events:none;
-  transition:opacity .12s ease,max-width .2s cubic-bezier(.4,0,.2,1),padding .2s cubic-bezier(.4,0,.2,1);
+  transition:opacity .1s ease,max-width .2s cubic-bezier(.4,0,.2,1),padding .2s cubic-bezier(.4,0,.2,1);
 }
+/* La bande s'ouvre comme un rideau : sa largeur suit celle des boutons
+   (posée au pixel par commun/cadre.js), qui restent pleins et se
+   découvrent à mesure, sans jamais laisser de crème vide. */
 html:root body:not(#_):not(#_) .res-plein-acts.lv-repli>.lv-repli-corps{
   display:flex;align-items:stretch;max-width:0;overflow:hidden;
-  transition:max-width .42s cubic-bezier(.4,0,.2,1) .12s;
+  transition:max-width .36s cubic-bezier(.4,0,.2,1);
 }
-html:root body:not(#_):not(#_) .res-plein-acts.lv-repli.ouvert>.lv-repli-corps{max-width:240px;transition:max-width .48s cubic-bezier(.2,.8,.2,1)}
+html:root body:not(#_):not(#_) .res-plein-acts.lv-repli.ouvert>.lv-repli-corps{transition:max-width .42s cubic-bezier(.2,.8,.2,1) .06s}
 html:root body:not(#_):not(#_) .res-plein-acts.lv-repli .lv-repli-corps>.res-plein-x{
   position:relative;flex:0 0 auto;padding:10px 16px;border-radius:0;
-  opacity:0;transform:translateX(-10px) scale(.85);
-  transition:opacity .2s,transform .25s,background .25s,box-shadow .3s;
+  transition:background .25s,box-shadow .3s;
 }
-html:root body:not(#_):not(#_) .res-plein-acts.lv-repli.ouvert .lv-repli-corps>.res-plein-x{opacity:1;transform:none;transition:opacity .3s,transform .4s cubic-bezier(.2,.8,.2,1),background .25s,box-shadow .3s}
-html:root body:not(#_):not(#_) .res-plein-acts.lv-repli.ouvert .lv-repli-corps>.res-plein-x:nth-child(1){transition-delay:.08s,.08s,0s,0s}
-html:root body:not(#_):not(#_) .res-plein-acts.lv-repli.ouvert .lv-repli-corps>.res-plein-x:nth-child(2){transition-delay:.15s,.15s,0s,0s}
-html:root body:not(#_):not(#_) .res-plein-acts.lv-repli.ouvert .lv-repli-corps>.res-plein-x:nth-child(3){transition-delay:.22s,.22s,0s,0s}
-html:root body:not(#_):not(#_) .res-plein-acts.lv-repli:not(.ouvert) .lv-repli-corps>.res-plein-x:nth-child(1){transition-delay:.1s,.1s,0s,0s}
-html:root body:not(#_):not(#_) .res-plein-acts.lv-repli:not(.ouvert) .lv-repli-corps>.res-plein-x:nth-child(2){transition-delay:.05s,.05s,0s,0s}
 /* un mince trait sépare chaque bouton, les trois points compris */
 html:root body:not(#_):not(#_) .res-plein-acts.lv-repli .lv-repli-corps>.res-plein-x::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:rgba(0,0,0,.28);transition:opacity .25s}
 html:root body:not(#_):not(#_) .res-plein-acts.lv-repli .lv-repli-corps>.res-plein-x:last-child{border-radius:0 999px 999px 0;padding-right:18px}
@@ -1512,5 +1508,5 @@ html:root body:not(#_):not(#_) .res-plein-acts.lv-repli .lv-repli-corps>.res-ple
 html:root body:not(#_):not(#_) .res-plein-acts.lv-repli .lv-repli-corps>.res-plein-x:is(:hover,:focus-visible)::before,
 html:root body:not(#_):not(#_) .res-plein-acts.lv-repli .lv-repli-corps>.res-plein-x:is(:hover,:focus-visible)+.res-plein-x::before{opacity:0}
 @media (prefers-reduced-motion:reduce){
-  html:root body:not(#_):not(#_) .res-plein-acts.lv-repli :is(.lv-repli-corps,.lv-repli-corps>.res-plein-x,.lv-repli-pts){transition:none!important}
+  html:root body:not(#_):not(#_) .res-plein-acts.lv-repli :is(.lv-repli-corps,.lv-repli-pts){transition:none!important}
 }

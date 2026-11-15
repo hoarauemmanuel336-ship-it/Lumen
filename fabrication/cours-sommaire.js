@@ -2,9 +2,11 @@
    LUMEN — le sommaire des cours d'Étude
    Les fichiers de cours vivent dans le coffre R2 (cours/), hors du
    dépôt. Le dépôt garde leur sommaire, parcours/cours-sommaire.json :
-   pour chaque fichier, son poids, son empreinte et les cours qu'il
-   réunit (lettre et titre). La fabrication s'en sert pour vérifier
-   les liens du parcours, le robot du coffre pour vérifier qu'un
+   pour chaque fichier, son poids, son empreinte, les cours qu'il
+   réunit (lettre et titre) et le nombre d'affirmations « Je sais… »
+   de chaque cours. La fabrication s'en sert pour vérifier les liens
+   du parcours et pour qu'Étude tire l'état de chaque sujet de
+   l'autoévaluation de son cours, le robot du coffre pour vérifier qu'un
    fichier envoyé est bien celui que décrit le sommaire.
    Usage, depuis la racine du dépôt, après avoir fait ou refait des
    cours :  node fabrication/cours-sommaire.js <fichier.html>…
@@ -22,10 +24,15 @@ function decrit(fichier) {
   const cours = {};
   for (const m of texte.matchAll(/<cours\s+lettre="([a-z0-9]+)"\s+titre="([^"]*)"/g)) cours[m[1]] = m[2];
   if (!Object.keys(cours).length) throw new Error(`${fichier} : aucun cours reconnu dans ce fichier`);
+  /* chaque clé d'affirmation commence par la lettre de son cours (« l01.1 ») */
+  const cles = new Set([...texte.matchAll(/<je-sais\s+cle="([a-z]+)\d+\.\d+"/g)].map(m => m[0]));
+  const sais = {};
+  for (const c of cles) { const l = c.match(/cle="([a-z]+)\d/)[1]; sais[l] = (sais[l] || 0) + 1; }
   return {
     taille: octets.length,
     empreinte: crypto.createHash('sha256').update(octets).digest('hex'),
     cours,
+    sais,
   };
 }
 

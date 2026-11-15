@@ -162,15 +162,17 @@
     try{OUVERT.f.remove();}catch(_){}
     OUVERT=null;
   }
-  async function montre(){
+  async function montre(ancre){
     const fichier=fichierDuLien();
     const o=fichier?{id:'c_'+fichier.replace(/\.html$/,''),genre:'cours',fichier,adresse:'/parcours/cours/'+encodeURIComponent(fichier)}
                    :{id:'parcours',genre:'parcours',adresse:PARCOURS};
-    if(OUVERT&&OUVERT.id===o.id)return;
+    if(OUVERT&&OUVERT.id===o.id){ if(ancre&&OUVERT.f)va(OUVERT,ancre); return; }
     ferme();
+    o.ancre=ancre||'';
     OUVERT=o;
     attend();
-    const pret=rapatrie([o.id,'_reglages']);
+    /* le parcours tire l'état de ses sujets de la progression de tous les cours */
+    const pret=rapatrie(o.genre==='parcours'?[o.id,'_reglages',...idsCours()]:[o.id,'_reglages']);
     let code='';
     try{ code=await charge(o.adresse); }
     catch(e){
@@ -197,14 +199,51 @@
     const rends=()=>pret.then(()=>{
       if(OUVERT!==o)return;
       envoieEtat(o);
-      const pi=Object.assign({y:0},litJson('pos',o.id)||{});
-      try{f.contentWindow.postMessage({lvRevoir:Math.max(0,Math.round(pi.y||0)),lvRevoirInfo:pi},'*');}catch(_){}
+      /* ouvert par un lien d'un autre cours : on va à l'endroit visé plutôt
+         qu'à la place gardée */
+      if(o.genre==='parcours'){try{f.contentWindow.postMessage({lvAuto:etatsDesCours()},'*');}catch(_){}}
+      if(o.ancre)va(o,o.ancre);
+      else{
+        const pi=Object.assign({y:0},litJson('pos',o.id)||{});
+        try{f.contentWindow.postMessage({lvRevoir:Math.max(0,Math.round(pi.y||0)),lvRevoirInfo:pi},'*');}catch(_){}
+      }
       o.rendu=true;
     });
     f.addEventListener('load',()=>{finAttente(o);rends();setTimeout(rends,300);setTimeout(rends,1000);});
+    /* le document du cadre est écrit avant que le cadre entre dans la page :
+       un cadre posé vide se charge d'abord à blanc, et ce premier
+       chargement passerait pour le sien. L'état gardé serait alors tenu pour
+       rendu trop tôt, et l'état de naissance du contenu (première page,
+       sections fermées) l'écraserait. */
+    f.srcdoc=pageCadre(poseProgression(code,litJson('prog',o.id)));
     /* le cadre se glisse sous le cercle de chargement, qui le couvre jusqu'au bout */
     acts.parentNode.insertBefore(f,attente||acts);
-    f.srcdoc=pageCadre(poseProgression(code,litJson('prog',o.id)));
+  }
+  /* ── L'ÉTAT DES SUJETS QUI ONT LEUR COURS ──
+     Un sujet dont le cours existe prend son état de l'autoévaluation de ce
+     cours : aucune affirmation « Je sais… » cochée, à faire ; une partie,
+     en cours ; toutes, terminé. Chaque clé d'affirmation commence par la
+     lettre de son cours, et le sommaire des cours (SAIS_COURS, posé par la
+     fabrication) dit combien chaque cours en compte. */
+  const fichiersCours=()=>[...new Set(Object.values(typeof LIENS_COURS==='object'&&LIENS_COURS||{}).map(u=>String(u).split('#')[0]))];
+  const idsCours=()=>fichiersCours().map(n=>'c_'+n.replace(/\.html$/,''));
+  function etatsDesCours(){
+    const m={}, faits={};
+    fichiersCours().forEach(n=>{
+      const p=litJson('prog','c_'+n.replace(/\.html$/,''));
+      const a=p&&p.acquis&&typeof p.acquis==='object'?p.acquis:{}, c={};
+      Object.keys(a).forEach(k=>{const x=/^([a-z]+)\d+\.\d+$/.exec(k);if(a[k]&&x)c[x[1]]=(c[x[1]]||0)+1;});
+      faits[n]=c;
+    });
+    Object.keys(LIENS_COURS||{}).forEach(cle=>{
+      const [n,an]=String(LIENS_COURS[cle]).split('#'), l=(an||'').replace(/^ouverture-/,'');
+      const tot=((typeof SAIS_COURS==='object'&&SAIS_COURS[n])||{})[l]||0, f=Math.min(tot,(faits[n]||{})[l]||0);
+      m[cle]=!f?'a-faire':(tot&&f>=tot?'termine':'en-cours');
+    });
+    return m;
+  }
+  function va(o,ancre){
+    try{o.f.contentWindow.postMessage({lvVa:ancre},'*');}catch(_){}
   }
   function envoieEtat(o){
     const e=etatPour(o);
@@ -225,7 +264,8 @@
   window.addEventListener('message',ev=>{
     const o=OUVERT, d=ev.data;
     if(!o||!o.f||ev.source!==o.f.contentWindow||!d||typeof d!=='object')return;
-    if(typeof d.lvCours==='string'){ ouvreCours(d.lvCours); return; }
+    if(typeof d.lvSujet==='string'){ ouvreSujet(d.lvSujet); return; }
+    if(typeof d.lvCours==='string'){ ouvreCours(d.lvCours,typeof d.lvCoursAncre==='string'?d.lvCoursAncre:''); return; }
     if('lvSel' in d){ if(typeof qaSelectionCadre==='function')qaSelectionCadre(d.lvSel,o.f,o.titre,o.genre==='cours'?'un cours':'un parcours',o.code,null); return; }
     if(typeof d.lvPos==='number'){
       if(o.rendu){const info=d.lvPosInfo&&typeof d.lvPosInfo==='object'?d.lvPosInfo:{y:d.lvPos};info.y=Math.max(0,Math.round(info.y||0));garde('pos',o.id,JSON.stringify(info));}
@@ -247,13 +287,34 @@
 
   /* ── ALLER ET VENIR ──
      Ouvrir un cours ajoute un pas à l'historique : le retour du téléphone
-     ramène au parcours, comme le bouton de retour. */
-  function ouvreCours(n){
+     ramène au parcours, comme le bouton de retour. Un lien d'un cours vers
+     un autre fichier de cours ouvre celui-ci à l'endroit visé, et le retour
+     ramène au premier cours, à la place où l'on en était. */
+  function ouvreCours(n,ancre){
     if(!/^[A-Za-z0-9][A-Za-z0-9._-]{0,120}\.html$/.test(n))return;
+    if(!/^[A-Za-z0-9_-]{0,80}$/.test(ancre||''))ancre='';
+    if(OUVERT&&OUVERT.fichier===n){ if(ancre)va(OUVERT,ancre); return; }
     history.pushState({etude:'cours'},'','#c/'+encodeURIComponent(n));
-    montre();
+    montre(ancre);
   }
-  window.addEventListener('popstate',montre);
+  /* ── LES LIENS EN ATTENTE ──
+     Un cours peut renvoyer à un sujet du parcours avant que son cours soit
+     écrit. Le lien se résout ici, d'après les liens du parcours vers les
+     cours (parcours/cours.json, posé par la fabrication) : il s'ouvre dès
+     que le cours existe, et en attendant un mot bref le dit. */
+  function ouvreSujet(cle){
+    const u=(typeof LIENS_COURS==='object'&&LIENS_COURS)?LIENS_COURS[cle]:'';
+    if(u){const [n,a]=String(u).split('#');ouvreCours(n,a||'');return;}
+    avis('Ce cours n’est pas encore écrit.');
+  }
+  let avisMin=0;
+  function avis(t){
+    let e=document.getElementById('et-avis');
+    if(!e){e=document.createElement('div');e.id='et-avis';e.className='et-avis';e.setAttribute('role','status');document.body.appendChild(e);}
+    e.textContent=t;void e.offsetWidth;e.classList.add('vu');
+    clearTimeout(avisMin);avisMin=setTimeout(()=>e.classList.remove('vu'),2600);
+  }
+  window.addEventListener('popstate',()=>montre());
   function retour(){
     if(enCours()){
       if(history.state&&history.state.etude==='cours'){history.back();return;}

@@ -739,6 +739,8 @@ if (fs.existsSync('parcours/la-foi-catholique.html')) {
     <button type="button" id="et-ia" class="res-plein-x res-plein-bible res-plein-ia" aria-label="Poser une question à l’IA sur cette page" title="Question à l’IA">${svg('<path d="M10 3.5l1.6 4.4 4.4 1.6-4.4 1.6L10 15.5l-1.6-4.4L4 9.5l4.4-1.6zM18 13.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/>', 1.5)}</button>
   </div>
   <script>document.body.classList.add('plein');</script>
+  <script>const LIENS_COURS=${JSON.stringify(JSON.parse(fs.readFileSync('parcours/cours.json', 'utf8'))).replace(/</g, '\\u003c')};
+  const SAIS_COURS=${JSON.stringify(Object.fromEntries(Object.entries(JSON.parse(fs.readFileSync('parcours/cours-sommaire.json', 'utf8'))).map(([f, d]) => [f, d.sais || {}])))};</script>
   <script>${fs.readFileSync(PAGES + 'etude.js', 'utf8')}</script>`
   }));
 }
@@ -1037,6 +1039,31 @@ if (fs.existsSync('parcours/la-foi-catholique.html')) {
   ph = ph.replace(sansCopie, '').replace(progression, () => '<p>La progression se garde d’elle-même et se retrouve d’un appareil à l’autre.</p>');
   ph = injecteAvant(ph, '</body>', '<style>.cpw,.th-cp{display:none!important}</style>');
   ph = injecteAvant(ph, '</body>', boutons);
+  /* ── L'ÉTAT D'UN SUJET QUI A SON COURS VIENT DU COURS ──
+     (Emmanuel : que la barre du parcours soit « lié au truc des cours,
+     l'autoévaluation ») Pour un sujet dont le cours existe, Étude tire
+     l'état des affirmations « Je sais… » cochées dans ce cours : aucune,
+     à faire ; une partie, en cours ; toutes, terminé. Le sujet n'offre
+     plus que cet état, en simple étiquette, et « À revoir », qui se pose
+     et s'ôte à la main par-dessus. Étude envoie l'état calculé (message
+     lvAuto) ; le sujet le prend par le même chemin qu'un toucher, si
+     bien que la barre, le rail et la progression gardée suivent. */
+  const auto = '<style>.lv-auto .sel button{display:none}'
+    + '.lv-auto .sel button.lv-calc,.lv-auto .sel button[data-e="a-revoir"]{display:inline-block}'
+    + '.lv-auto .sel button.lv-calc{pointer-events:none}</style>'
+    + '<script>(function(){var A=' + JSON.stringify(Object.keys(liens)) + ',C={};'
+    + 'function cw(){var r={};document.querySelectorAll(".cw").forEach(function(c){if(c._S&&A.indexOf(c._S.cle)>=0){c.classList.add("lv-auto");r[c._S.cle]=c;if(!c.querySelector(".lv-calc")){var o=bt(c,c._S.etat==="a-revoir"?"a-faire":c._S.etat);if(o)o.classList.add("lv-calc")}}});return r}'
+    + 'function bt(c,e){return c.querySelector(\'.sel button[data-e="\'+e+\'"]\')}'
+    + 'function pose(m){var L=cw();Object.keys(L).forEach(function(k){var c=L[k],e=m[k]||"a-faire";C[k]=e;'
+    + 'c.querySelectorAll(".sel button").forEach(function(b){b.classList.toggle("lv-calc",b.getAttribute("data-e")===e)});'
+    + 'if(c._S.etat!=="a-revoir"&&c._S.etat!==e){var b=bt(c,e);if(b)b.click()}})}'
+    + 'window.addEventListener("message",function(ev){var d=ev.data;if(ev.source===parent&&d&&d.lvAuto&&typeof d.lvAuto==="object")pose(d.lvAuto)});'
+    /* « À revoir » déjà posé : le toucher l'ôte, et le sujet reprend l'état de son cours */
+    + 'document.addEventListener("click",function(ev){var b=ev.target&&ev.target.closest&&ev.target.closest(".lv-auto .sel button[data-e=a-revoir]");'
+    + 'if(!b)return;var c=b.closest(".cw");if(c._S.etat!=="a-revoir")return;ev.stopPropagation();ev.preventDefault();'
+    + 'var r=bt(c,C[c._S.cle]||"a-faire");if(r)r.click()},true);'
+    + 'if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",cw);else cw()})();</scr' + 'ipt>';
+  ph = injecteAvant(ph, '</body>', auto);
   fs.writeFileSync(`${OUT}/parcours/la-foi-catholique.html`, ph);
   console.log(`Parcours : ${Object.keys(parTheme).length} thèmes reliés à leur fichier de cours`);
 }

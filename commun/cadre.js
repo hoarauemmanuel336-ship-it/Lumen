@@ -150,6 +150,12 @@ function pageCadre(code){
     +'window.addEventListener("message",function(e){var d=e.data;if(!d)return;'
     +'if(typeof d.lvRevoir==="number"){posVoulue=d.lvRevoir;posInfo=d.lvRevoirInfo||null;reposeToi();'
     +'setTimeout(reposeToi,150);setTimeout(reposeToi,500);setTimeout(reposeToi,1200);}'
+    /* la page demande d'aller à un endroit précis (un lien venu d'un autre
+       cours) : la place gardée cède, et un lien interne passe par le même
+       chemin qu'un toucher, si bien que le moteur du cours change de page */
+    +'if(typeof d.lvVa==="string"&&d.lvVa){posGeste=1;'
+    +'if(!document.getElementById(d.lvVa))return;'
+    +'var va=document.createElement("a");va.href="#"+d.lvVa;va.style.display="none";w.appendChild(va);va.click();va.remove();}'
     +'});'
     /* ── LES LIENS INTERNES DU CONTENU RESTENT CHEZ LUI ──
        Le cadre est écrit par srcdoc : son adresse de base est celle de la
@@ -161,7 +167,18 @@ function pageCadre(code){
     +'document.addEventListener("click",function(e){'
     +'if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;'
     +'var a=e.target&&e.target.closest?e.target.closest("a"):null;if(!a)return;'
-    +'var h=a.getAttribute("href")||"";if(h.charAt(0)!=="#"||h.length<2)return;'
+    +'var h=a.getAttribute("href")||"";'
+    /* un lien vers un autre fichier de cours (« 01-la-revelation.html#d2 »)
+       ne peut pas s'ouvrir dans le cadre : il demande à la page d'ouvrir ce
+       cours à cet endroit (message lvCours, voir pages/etude.js) */
+    +'var fc=/^([A-Za-z0-9][A-Za-z0-9._-]{0,120}\\.html)(?:#([A-Za-z0-9_-]{1,80}))?$/.exec(h);'
+    +'if(fc){e.preventDefault();try{parent.postMessage({lvCours:fc[1],lvCoursAncre:fc[2]||""},"*");}catch(e3){}return;}'
+    /* un lien en attente (« #sujet:revelation.dei-verbum ») vise un sujet du
+       parcours dont le cours n'est peut-être pas encore écrit : la page
+       l'ouvre s'il existe, ou le dit */
+    +'var su=/^#sujet:([A-Za-z0-9._-]{1,120})$/.exec(h);'
+    +'if(su){e.preventDefault();try{parent.postMessage({lvSujet:su[1]},"*");}catch(e4){}return;}'
+    +'if(h.charAt(0)!=="#"||h.length<2)return;'
     +'var id=decodeURIComponent(h.slice(1));'
     +'var c=document.getElementById(id)||document.getElementsByName(id)[0];if(!c)return;'
     +'e.preventDefault();'
@@ -265,6 +282,7 @@ function lvRepliBandeau(g){
     clearTimeout(minuteur);
     const garde=corps.contains(document.activeElement);
     g.classList.remove('ouvert');
+    corps.style.maxWidth='';
     pts.setAttribute('aria-expanded','false'); pts.setAttribute('aria-label','Afficher les boutons');
     pts.removeAttribute('tabindex');
     accessibles(false);
@@ -279,6 +297,8 @@ function lvRepliBandeau(g){
   function ouvre(){
     const garde=document.activeElement===pts;
     g.classList.add('ouvert');
+    /* la largeur exacte des boutons : la bande s'arrête pile sur eux */
+    corps.style.maxWidth=corps.scrollWidth+'px';
     pts.setAttribute('aria-expanded','true');
     /* déroulé, les trois points s'effacent : le bandeau ne garde que ses boutons */
     pts.tabIndex=-1;
