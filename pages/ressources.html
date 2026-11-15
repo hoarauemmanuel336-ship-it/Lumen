@@ -1898,12 +1898,17 @@ function ouvrePlein(a){
   ia.setAttribute('aria-label','Poser une question à l’IA sur cette page'); ia.title='Question à l’IA';
   ia.onclick=()=>{ if(typeof qaReprend==='function')qaReprend({texte:'',contexte:'',source:a.titre||'',espece:'une ressource',ref:{col:'res_code',id:a.id}},typeof a.code==='string'?a.code:''); };
   g.appendChild(x); g.appendChild(bi); g.appendChild(ia);
+  /* le document du cadre est écrit avant que le cadre entre dans la page :
+     un cadre posé vide se charge d'abord à blanc, et ce premier chargement
+     passerait pour le sien ; l'état gardé serait tenu pour rendu trop tôt,
+     et l'état de naissance du contenu (première page, sections fermées)
+     l'écraserait */
+  poseCadre(f,a.code);
   document.body.appendChild(f); document.body.appendChild(g);
   /* le bandeau se tient replié derrière trois points (commun/cadre.js) */
   lvRepliBandeau(g);
   document.body.classList.add('plein');
   PLEIN={f:f,x:g};
-  poseCadre(f,a.code);
 }
 function fermePlein(){
   if(!PLEIN)return;
