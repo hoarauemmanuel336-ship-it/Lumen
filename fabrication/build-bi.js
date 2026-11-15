@@ -58,11 +58,12 @@ const polices = h => h.replace(/<link[^>]*fonts\.(?:googleapis|gstatic)\.com[^>]
    elle se sert, posées dans la page elle-même et non en fichiers à part :
    Mémoriser fonctionne hors ligne, et rien de plus n'est à mettre en cache. */
 /* La conversation avec l'IA (question, ia-outils, assemblage, versets)
-   vit sur toutes les pages : l'icône de la barre du haut l'ouvre partout. */
-const CONVERSATION = ['versets', 'assemblage', 'ia-outils', 'question'];
+   vit sur toutes les pages : l'icône de la barre du haut l'ouvre partout.
+   Elle lit et crée des pages dans le coffre R2, d'où « stockage » avec elle. */
+const CONVERSATION = ['stockage', 'versets', 'assemblage', 'ia-outils', 'question'];
 const COMMUN_JS_PAGES = {
-  'articles.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage', ...CONVERSATION],
-  'ressources.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage', ...CONVERSATION],
+  'articles.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage', ...CONVERSATION, 'coffre'],
+  'ressources.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage', ...CONVERSATION, 'coffre'],
   'bible.html': CONVERSATION,
   'commentaires.html': ['outils', 'editeur', 'choix-verset', ...CONVERSATION],
   'memoriser.html': ['choix-verset', ...CONVERSATION],
@@ -955,8 +956,12 @@ for (const sk of ['livre-html', 'diagrammes-interactifs', 'cours-html', 'parcour
 
 /* ── Le parcours « La foi catholique » et ses cours ──
    parcours/ garde le parcours tel que la skill parcours-etude l'a produit,
-   les fichiers de cours (un par thème, faits avec cours-html) et cours.json,
-   qui relie la clé d'un sujet à son cours (fichier#ouverture-<lettre>).
+   cours.json, qui relie la clé d'un sujet à son cours
+   (fichier#ouverture-<lettre>), et cours-sommaire.json, qui décrit les
+   fichiers de cours (un par thème, faits avec cours-html). Les fichiers
+   eux-mêmes vivent dans le coffre R2 et se servent à /parcours/cours/
+   (netlify/edge-functions/fichiers.js) : chaque lien se vérifie ici contre
+   le sommaire, fichier et lettre du cours.
    Le fichier du parcours reste intact : c'est ici que chaque sujet qui a son
    cours reçoit le bouton « Ouvrir le cours », sur la carte même, sous les
    états, pour qu'il se voie sans déplier le sujet (« le bouton est trop
@@ -964,9 +969,15 @@ for (const sk of ['livre-html', 'diagrammes-interactifs', 'cours-html', 'parcour
    le code thème.rang, que la fabrication calcule d'après l'ordre des thèmes
    et des sujets du contenu, comme le moteur. */
 if (fs.existsSync('parcours/la-foi-catholique.html')) {
-  fs.mkdirSync(`${OUT}/parcours/cours`, { recursive: true });
-  for (const f of fs.readdirSync('parcours/cours')) fs.copyFileSync(`parcours/cours/${f}`, `${OUT}/parcours/cours/${f}`);
+  fs.mkdirSync(`${OUT}/parcours`, { recursive: true });
+  /* une copie de cours gardée dans le dépôt est servie quand le coffre
+     ne l'a pas (voir fichiers.js) */
+  if (fs.existsSync('parcours/cours')) {
+    fs.mkdirSync(`${OUT}/parcours/cours`, { recursive: true });
+    for (const f of fs.readdirSync('parcours/cours')) fs.copyFileSync(`parcours/cours/${f}`, `${OUT}/parcours/cours/${f}`);
+  }
   const liens = JSON.parse(fs.readFileSync('parcours/cours.json', 'utf8'));
+  const sommaire = JSON.parse(fs.readFileSync('parcours/cours-sommaire.json', 'utf8'));
   let ph = fs.readFileSync('parcours/la-foi-catholique.html', 'utf8');
   const parCode = {};
   let num = 0;
@@ -979,8 +990,12 @@ if (fs.existsSync('parcours/la-foi-catholique.html')) {
   }
   const absents = Object.keys(liens).length - Object.keys(parCode).length;
   if (absents) throw new Error(`parcours : ${absents} sujet(s) de cours.json introuvable(s) dans le parcours`);
-  for (const u of Object.values(parCode))
-    if (!fs.existsSync('parcours/cours/' + u.split('#')[0])) throw new Error('parcours : cours absent, ' + u);
+  for (const u of Object.values(parCode)) {
+    const [fichier, ancre] = u.split('#');
+    if (!sommaire[fichier]) throw new Error('parcours : fichier de cours absent du sommaire, ' + u);
+    const lettre = (ancre || '').replace(/^ouverture-/, '');
+    if (!sommaire[fichier].cours[lettre]) throw new Error('parcours : cours absent de son fichier, ' + u);
+  }
   const boutons = '<style>.lv-droite{display:flex;flex-direction:column;align-items:stretch;gap:8px;flex-shrink:0}'
     + '.lv-cours{display:block;text-align:center;text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent;'
     + 'font-family:var(--fm);font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;line-height:1.2;padding:6px 8px;'

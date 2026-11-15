@@ -24,12 +24,13 @@ Les sept pages du site :
 |---|---|
 | `pages/` | Les pages, une par fichier HTML, chacune avec son propre script (l'accueil et Étude sont assemblées par la fabrication autour de `accueil.js` et `etude.js`). |
 | `habillage/` | L'apparence : `lumen-commun.css` (le socle), `commun.css` (ce qui vaut pour toutes les pages, fenêtres et menus compris), puis une feuille par page. |
-| `commun/` | Le fonctionnement partagé entre plusieurs pages (fenêtres et menus, rangement en catégories, éditeur des commentaires, choix d'un verset, IA, versets cités, contrôle qualité, question à l'IA, ménage des anciennes copies publiques). La fabrication pose dans chaque page les familles dont elle a besoin. |
+| `commun/` | Le fonctionnement partagé entre plusieurs pages (fenêtres et menus, rangement en catégories, éditeur des commentaires, choix d'un verset, IA, versets cités, contrôle qualité, question à l'IA, ménage des anciennes copies publiques, coffre R2). La fabrication pose dans chaque page les familles dont elle a besoin. |
 | `contenu/` | Les deux Bibles (`bible.json` pour la Chérubin, `bible-seraphin.json` pour la Séraphin), la bibliothèque de départ de Mémoriser, les réglages d'apparence. |
-| `parcours/` | Le parcours d'étude « La foi catholique » (fichier de la skill parcours-etude, laissé intact), ses cours (un fichier par thème, skill cours-html) et `cours.json`, qui relie chaque sujet à son cours ; la fabrication les sert sous `/parcours/` et pose dans chaque sujet relié le bouton « Ouvrir le cours ». |
+| `parcours/` | Le parcours d'étude « La foi catholique » (fichier de la skill parcours-etude, laissé intact), `cours.json`, qui relie chaque sujet à son cours, et `cours-sommaire.json`, qui décrit les fichiers de cours (un par thème, skill cours-html). Les fichiers de cours eux-mêmes vivent dans le coffre R2 et se servent à `/parcours/cours/` ; la fabrication vérifie chaque lien contre le sommaire et pose dans chaque sujet relié le bouton « Ouvrir le cours ». |
 | `racine/` | Les fichiers servis tels quels à la racine du site : panneau de la Bible ouvert depuis les autres pages, service workers (hors ligne), manifestes, icônes, polices. |
 | `fabrication/` | Ce qui construit le site : `build-bi.js` assemble les pages, `publication.js` allège et contrôle le résultat. |
-| `netlify/edge-functions/` | Le serveur : `porte.js` (le mot de passe du site) et `ia.js` (le seul passage vers l'API Claude). |
+| `netlify/edge-functions/` | Le serveur : `porte.js` (le mot de passe du site), `ia.js` (le seul passage vers l'API Claude) et `fichiers.js` (le passage vers le coffre R2). Les outils qu'ils partagent sont dans `netlify/serveur/`. |
+| `.github/` | Le robot du coffre R2 (`workflows/coffre.yml` et ses scripts dans `coffre/`). |
 | `ia/` | Ce que l'IA du site sait d'Emmanuel : ses skills d'artefact (`ia/skills/`, complètes, moteurs compris) et ses instructions personnalisées (`ia/instructions.md`). |
 | `documentation/` | Les fiches de référence : données, IA, règles de sécurité de la base. |
 
@@ -79,9 +80,13 @@ Pour les modèles de langage (LLM), le site n'utilise qu'Anthropic, par l'API Cl
 
 **Le site reste synchronisé avec Claude, sauf la mémoire.** Les skills d'artefact d'Emmanuel et ses instructions personnalisées vivent aussi dans `ia/`, à l'identique de ce qu'il a dans Claude : l'IA du site s'en sert pour contrôler et corriger ses pages. Le site ne peut pas les lire dans son compte Claude ; c'est donc l'IA qui tient la copie à jour : dès qu'une skill change (elle livre à Emmanuel un nouveau SKILL.md, ou il en apporte un) ou qu'il change ses instructions, elle met `ia/` à jour dans le même mouvement et le dépose. La mémoire de Claude n'entre pas sur le site : l'IA du site a sa propre mémoire (`meta/ia_memoire`), sans lien avec celle de Claude.
 
+## Le coffre R2
+
+Les pages et les fichiers des Articles et des Ressources vivent dans le coffre R2 de Cloudflare (bucket `lumen-ressources`, sans accès public) ; Firestore n'en garde que les fiches. Les cours d'Étude y vivent aussi : après avoir fait ou refait des cours, l'IA met leur sommaire à jour (`node fabrication/cours-sommaire.js` suivi des fichiers) et les envoie par le robot avec l'espèce « cours ». L'IA ne joint pas Cloudflare depuis son espace de travail : pour **déposer** une page ou un fichier dans Ressources ou Articles, elle pousse une branche `envoi/…` ; pour **reprendre** une page afin de la modifier, une branche `demande/…`. Le robot GitHub fait le reste, et la page range les arrivées à sa prochaine ouverture. Ces branches ne sont pas des dépôts du site : elles ne touchent pas `main`, mais un envoi change ce qu'Emmanuel voit dans ses pages, si bien qu'il passe, comme un dépôt, par son accord. Le mode d'emploi est dans `documentation/donnees.md`.
+
 ## Les secrets
 
-Aucun secret n'entre dans le dépôt. Le mot de passe du site (`LUMEN_MOT_DE_PASSE`) et la clé de l'API (`ANTHROPIC_API_KEY`) vivent dans les variables d'environnement de Netlify. La clé Firebase écrite dans les pages est une clé publique par nature : la protection des données vient des règles de sécurité de la base (`documentation/regles-firestore.txt`).
+Aucun secret n'entre dans le dépôt. Le mot de passe du site (`LUMEN_MOT_DE_PASSE`) et la clé de l'API (`ANTHROPIC_API_KEY`) vivent dans les variables d'environnement de Netlify ; les clés du coffre R2 (`R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_ENDPOINT`) vivent dans celles de Netlify et dans les secrets du dépôt GitHub. La clé Firebase écrite dans les pages est une clé publique par nature : la protection des données vient des règles de sécurité de la base (`documentation/regles-firestore.txt`).
 
 ## Les commentaires dans le code
 

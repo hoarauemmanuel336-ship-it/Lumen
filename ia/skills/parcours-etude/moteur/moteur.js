@@ -64,7 +64,10 @@ BNR.appendChild(el('h1','bnr-t',TITRE));
 var blocsSrc=kids(SRC,'bloc'),nbTh=0;
 blocsSrc.forEach(function(b){nbTh+=kids(b,'theme').length});
 BNR.appendChild(el('div','bnr-s',SRC.getAttribute('sous-titre')||('Plan d’étude en '+nbTh+' grands thèmes')));
-var bx=panneau(SRC);if(bx){BNR.appendChild(bx);BNR._xw=bx;DEPLIS.b=BNR}
+var bx=panneau(SRC);
+if(!bx){bx=el('div','xw');bx.innerHTML='<div class="xr"><div class="xin"><div class="xpl"></div></div></div>'}
+var bcw=el('div','cpw'),BCP=bouton('cp','Copier le parcours');BCP._copie=function(){return texteParcours()};bcw.appendChild(BCP);bx.querySelector('.xin').appendChild(bcw);
+BNR.appendChild(bx);BNR._xw=bx;DEPLIS.b=BNR;
 W.appendChild(BNR);
 
 /* barres de progression et bouton d'enregistrement */
@@ -73,7 +76,7 @@ var ENR=null;
 if(!CADRE){var ew=el('div','enr-w');ENR=bouton('enr');ENR.innerHTML='<span class="pt-e"></span><span class="enr-l">Enregistrer</span>';ew.appendChild(ENR);W.appendChild(ew)}
 
 /* blocs, thèmes, sujets */
-var num=0;
+var num=0,TOT=0;blocsSrc.forEach(function(bs){TOT+=kids(bs,'theme').length});if(TOT>24)PRG.classList.add('dense');
 blocsSrc.forEach(function(bs,ib){
   var nom=bs.getAttribute('nom')||'',coul=bs.getAttribute('couleur');
   if(!coul){var n=blocsSrc.length;coul=PAL[n<2?1:Math.round(ib*(PAL.length-1)/(n-1))]}
@@ -87,7 +90,7 @@ blocsSrc.forEach(function(bs,ib){
     teinte(bp,coul);var cw=el('div','cpw'),cb=bouton('cp','Copier le bloc');cb._copie=function(){return texteBloc(B)};
     cw.appendChild(cb);bp.querySelector('.xin').appendChild(cw);W.appendChild(bp);bh._xw=bp;DEPLIS[bk]=bh}
   else{var seul=kids(bs,'explication')[0];if(seul&&ths[0]&&!kids(ths[0],'explication').length)ths[0].insertBefore(seul,ths[0].firstChild)}
-  ths.forEach(function(ts){
+  ths.forEach(function(ts,it){
     num++;var tt=ts.getAttribute('titre')||'',tk=ts.getAttribute('cle')||slug(txt(tt));
     var T={num:num,titre:tt,cle:tk,sujets:[],couleur:coul};B.themes.push(T);THEMES.push(T);
     var th=el('div','th');teinte(th,coul);T.el=th;th._T=T;
@@ -122,7 +125,7 @@ blocsSrc.forEach(function(bs,ib){
     ci.appendChild(rail);c.appendChild(ci);th.appendChild(c);W.appendChild(th);
     T.c=c;T.ci=ci;T.sep=sep;T.rail=rail;T.rt=rt;T.rf=rf;T.cp=cp;T.cpBtn=cbt;
     /* segment de barre */
-    var sg=el('div','seg'),br=el('div','bar'),pl=el('span','pl'),hc=el('span','hc');teinte(sg,coul);
+    var sg=el('div','seg'+(it===0?' deb':'')),br=el('div','bar'),pl=el('span','pl'),hc=el('span','hc');teinte(sg,coul);
     br.appendChild(pl);br.appendChild(hc);sg.appendChild(br);sg.appendChild(el('div','num',deux(num)));PRG.appendChild(sg);
     T.pl=pl;T.hc=hc});
 });
@@ -136,6 +139,7 @@ W.appendChild(PIED);
 function texteSujet(S){return txt(S.titre)+'\n\n'+S.points.map(function(p){return '· '+p}).join('\n')}
 function texteTheme(T){return txt(T.titre)+'\n\n'+T.sujets.map(texteSujet).join('\n\n')}
 function texteBloc(B){return txt(B.nom).toUpperCase()+'\n\n'+B.themes.map(texteTheme).join('\n\n\n')}
+function texteParcours(){return txt(TITRE).toUpperCase()+'\n\n'+BLOCS.map(texteBloc).join('\n\n\n\n')}
 
 /* ══ 2. COMPORTEMENT ══ */
 

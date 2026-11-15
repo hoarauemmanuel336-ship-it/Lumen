@@ -299,7 +299,7 @@ async function lvIaCreerPage(e,avance){
     const m=/<(?:livre|diagramme)\b[^>]*?(?<![\w-])titre="([^"]*)"/.exec(contenu);
     if(m&&m[1].trim())titre=lvIaNet(lvAsDeschappe(m[1]));
   }else return {erreur:'Skill inconnue.'};
-  if(lvIaOctets(html)>25*1024*1024)return {erreur:'La page dépasse 25 Mo.'};
+  if(lvIaOctets(html)>LV_R2_CODE_MAX)return {erreur:'La page dépasse 300 Mo.'};
   if(avance)avance('Enregistrement sur le site');
   const id='s'+Date.now(), maj=new Date().toISOString();
   const E=LV_IA_ESPECES[espece];
@@ -308,8 +308,9 @@ async function lvIaCreerPage(e,avance){
   if(espece==='ressource')fiche.marqueIA=true;
   else fiche.extrait=lvIaEnBref(html);
   try{
-    await lvIaEcritGros(db.doc('users/'+uid+'/'+E.code+'/'+id),'code',html);
-    await db.doc('users/'+uid+'/'+E.fiches+'/'+id).set(fiche);
+    /* la page part dans le coffre R2, sa fiche et celle de l'élément
+       basculent ensemble (commun/stockage.js) */
+    await lvContenuEcrit(db.collection('users/'+uid+'/'+E.code),id,html,lot=>lot.set(db.doc('users/'+uid+'/'+E.fiches+'/'+id),fiche));
   }catch(err){console.warn('création',err);return {erreur:'L’enregistrement sur le site a échoué.'};}
   LV_IA_BIBLIO=null;
   return {ok:true,espece,id,titre,marque:fiche.marque||undefined,lien:E.page+'#r/'+id,rangement:'premier niveau de '+(espece==='article'?'Articles':'Ressources')+', à ranger ensuite'};

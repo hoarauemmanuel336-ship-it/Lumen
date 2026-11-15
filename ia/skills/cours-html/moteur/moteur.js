@@ -259,9 +259,9 @@ PAGES.forEach(function(p,i){
     a.innerHTML='<span class="nv-l">'+lib+'</span>';
     var t=el('span','nv-t');if(q.arc){var c=el('span','carre');c.style.marginRight='8px';c.style.verticalAlign='1px';t.appendChild(c)}
     t.appendChild(D.createTextNode((q.C!==p.C?txt(q.C.titre)+' · ':'')+q.titre));a.appendChild(t);return a}
-  nv.appendChild(lien(PAGES[i-1],'prec','← Page précédente'));
+  nv.appendChild(lien(PAGES[i-1],'prec','← <span class="nv-pg">Page </span>précédente'));
   nv.appendChild(el('span','nv-n',deux(p.k+1)+' / '+deux(p.C.pages.length)));
-  nv.appendChild(lien(PAGES[i+1],'suiv','Page suivante →'));
+  nv.appendChild(lien(PAGES[i+1],'suiv','<span class="nv-pg">Page </span>suivante →'));
   p.el.appendChild(nv)});
 
 /* ── barre haute ── */

@@ -384,6 +384,8 @@ body.choisir .rayon .ry-chev:hover{color:var(--or-pale)}
     <div class="fil" id="fil"></div>
     <div class="tete"><h1 id="titre-liste">Ressources</h1></div>
     <div class="resume" id="mot-liste"></div>
+    <!-- le bandeau du déménagement vers le coffre R2 (commun/coffre.js) -->
+    <div class="coffre-bandeau" id="coffre-bandeau" hidden></div>
     <div id="liste"></div>
     <div class="acts" id="acts-liste" style="display:none">
       <div class="acts-haut">
@@ -556,7 +558,7 @@ const rdoc=()=>db.doc('users/'+S.uid+'/meta/res_rubriques');
 /* ── LES QUATRE ESPÈCES ──
    Un code est une page HTML qui tourne dans un cadre isolé ; il s'appelle
    « Code » à l'écran, sa clé reste « diagramme » dans les données. Une image
-   et un PDF sont des fichiers déposés dans le compte, découpés en tranches.
+   et un PDF sont des fichiers rangés dans le coffre R2.
    Un lien est une fiche qui montre la porte. L'espèce se choisit à la
    création et ne se montre plus ensuite (choix d'Emmanuel). */
 const TYPES={
@@ -672,11 +674,10 @@ let CHOIX_FIN=null;
 
 
 // ════════ FICHIERS ════════
-/* Le fichier part tel quel, découpé en tranches qui tiennent chacune sous le
-   mégaoctet imposé par Firestore. Vingt-cinq mégaoctets au plus : au-delà,
-   une fiche « Lien » vers un fichier hébergé ailleurs sert mieux. */
-const FICH_MAX=25*1024*1024;
-const TRANCHE=480000;
+/* Le fichier part tel quel dans le coffre R2 (commun/stockage.js) : la
+   fiche Firestore ne garde que sa clé, son type et sa taille. Deux
+   gigaoctets au plus par fichier. */
+const FICH_MAX=LV_R2_FICH_MAX;
 const mcol=()=>db.collection('users/'+S.uid+'/res_medias');
 const CACHE=new Map();
 const BLOBS=new Map();
@@ -696,7 +697,7 @@ async function chargeCode(f){
   const dit=m=>{const e=$('dep-code-etat');if(e)e.textContent=m;};
   const nom=f.name||'';
   if(!/\.(html?|svg|txt)$/i.test(nom)&&!/^(text\/|image\/svg)/.test(f.type||'')){lvInfo('Ce fichier n’est pas une page HTML.');return;}
-  if(f.size>CODE_MAX){lvInfo('Ce fichier dépasse 25 Mo. Allège-le, ou faites-en une fiche « Lien » vers l’endroit où il est déjà hébergé.');return;}
+  if(f.size>CODE_MAX){lvInfo('Ce fichier dépasse 300 Mo. Allège-le, ou faites-en une fiche « Lien » vers l’endroit où il est déjà hébergé.');return;}
   let txt='';
   try{txt=await f.text();}catch(e){lvInfo('Ce fichier n’a pas pu être lu.');return;}
   if(S.res.code&&S.res.code.trim()&&S.res.code!==txt){
@@ -808,27 +809,14 @@ async function envoieFichier(f){
   /* un PDF sans type déclaré (selon l'appareil) reçoit le sien : sans lui,
      le navigateur proposerait de le télécharger au lieu de l'afficher */
   const mimeF=(f.type)||(t==='pdf'&&/\.pdf$/i.test(f.name||'')?'application/pdf':'')||'application/octet-stream';
-  if(f.size>FICH_MAX){lvInfo('Ce fichier dépasse 25 Mo. Choisissez-en un plus léger, ou faites-en une fiche « Lien » vers l’endroit où il est déjà hébergé.');return;}
+  if(f.size>FICH_MAX){lvInfo('Ce fichier dépasse 2 Go. Faites-en plutôt une fiche « Lien » vers l’endroit où il est déjà hébergé.');return;}
   const cible=S.res, typeAvant=t;
   const dis=(m,h)=>{const e=$('dep-etat');if(e){if(h)e.innerHTML=m;else e.textContent=m;}};
-  dis('<span class="lv-roue petite" role="status" aria-label="Lecture du fichier"></span>',true);
-  let url;
-  try{url=await litFichier(f);}catch(e){dis('');lvInfo('La lecture du fichier a échoué.');return;}
-  const b64=url.slice(url.indexOf(',')+1);
-  const id='m'+Date.now()+Math.floor(Math.random()*1000);
-  const parts=[];
-  for(let k=0;k<b64.length;k+=TRANCHE)parts.push(b64.slice(k,k+TRANCHE));
+  dis('<span class="lv-roue petite" role="status" aria-label="Envoi en cours"></span>',true);
+  let id;
   try{
-    /* la tête d'abord : si l'envoi casse en route, effaceMedia saura quoi
-       retirer, sinon les tranches resteraient introuvables et perdues */
-    await mcol().doc(id).set({mime:mimeF,n:parts.length,taille:f.size,complet:false,cree:new Date().toISOString()});
-    for(let k=0;k<parts.length;k++){
-      dis('<span class="lv-roue petite" role="status" aria-label="Envoi en cours"></span> '+Math.round((k+1)/parts.length*100)+' %',true);
-      await mcol().doc(id).collection('tranches').doc(String(k)).set({d:parts[k]});
-    }
-    await mcol().doc(id).set({mime:mimeF,n:parts.length,taille:f.size,complet:true,cree:new Date().toISOString()});
-  }catch(e){dis('');lvInfo('L’envoi a échoué. Réessayez.');console.warn('envoi',e);effaceMedia(id);return;}
-  CACHE.set(id,url);
+    id=await lvMediaEnvoie(mcol(),f,mimeF,p=>dis('<span class="lv-roue petite" role="status" aria-label="Envoi en cours"></span> '+Math.round(p*100)+' %',true));
+  }catch(e){dis('');lvInfo('L’envoi a échoué. Réessayez.');console.warn('envoi',e);return;}
   /* Pas de vignette : les cartes ne montrent pas d'image. Le champ reste,
      vide, pour que toutes les fiches gardent la même forme. */
   const vign='';
@@ -839,17 +827,11 @@ async function envoieFichier(f){
   if(vieux&&vieux!==id)effaceMedia(vieux);
   rendEditeur(); marqueSale(); enregistre(true);
 }
+/* l'adresse du fichier dans le coffre (/fichiers/…), ou une adresse
+   « data: » pour un fichier plus ancien encore rangé en tranches */
 async function chargeMedia(id){
   if(CACHE.has(id))return CACHE.get(id);
-  const col=mcol();
-  const meta=await col.doc(id).get();
-  if(!meta.exists)throw new Error('fichier introuvable');
-  const m=meta.data(), bouts=[];
-  for(let k=0;k<(m.n||0);k++){
-    const t=await col.doc(id).collection('tranches').doc(String(k)).get();
-    bouts.push(t.exists?(t.data().d||''):'');
-  }
-  const url='data:'+(m.mime||'application/octet-stream')+';base64,'+bouts.join('');
+  const url=await lvMediaAdresse(mcol(),id);
   CACHE.set(id,url);
   return url;
 }
@@ -857,6 +839,7 @@ async function chargeMedia(id){
    On repasse donc par un vrai objet binaire, que le lecteur du navigateur
    sait afficher comme un fichier ordinaire. */
 function blobDe(url){
+  if(!/^data:/.test(url))return url;
   if(BLOBS.has(url))return BLOBS.get(url);
   const i=url.indexOf(','), mime=(url.slice(0,i).match(/^data:([^;]+)/)||[])[1]||'application/octet-stream';
   const bin=atob(url.slice(i+1)), u=new Uint8Array(bin.length);
@@ -867,13 +850,8 @@ function blobDe(url){
 }
 async function effaceMedia(id){
   if(!id)return;
-  try{
-    const meta=await mcol().doc(id).get();
-    const n=meta.exists?(meta.data().n||0):0;
-    for(let k=0;k<n;k++)await mcol().doc(id).collection('tranches').doc(String(k)).delete();
-    await mcol().doc(id).delete();
-    CACHE.delete(id);
-  }catch(e){console.warn('effacement fichier',e);}
+  try{ await lvMediaEfface(mcol(),id); CACHE.delete(id); }
+  catch(e){console.warn('effacement fichier',e);}
 }
 
 // ════════ CADRE ISOLÉ ════════
@@ -1314,8 +1292,9 @@ function pousseProgression(){
       const r=await tx.get(ccol().doc(id));
       if(!r.exists)return;
       const m=r.data()||{};
-      /* un contenu en tranches suit le chemin des gros contenus, plus bas */
-      if(typeof m.code!=='string'){ gros=!!m.n; return; }
+      /* un contenu dans le coffre ou en tranches suit le chemin des gros
+         contenus, plus bas */
+      if(typeof m.code!=='string'||m.r2){ gros=!!(m.n||m.r2); return; }
       const code=m.code;
       if(!code)return;
       const n=poseProgression(code,p);
@@ -1965,74 +1944,27 @@ async function videCorbeille(){
 
 /* ── LE CONTENU À PART, LA LISTE LÉGÈRE ──
    Le code d'une ressource pèse de quelques dizaines à plusieurs centaines de
-   kilo-octets. Il vit dans sa propre fiche (res_code), lue seulement quand on
+   kilo-octets. Il vit à part (fiche res_code et coffre R2), lu seulement quand on
    ouvre, modifie ou télécharge la ressource : la liste n'a pas à charger
    tous les contenus pour afficher des titres. La fiche de la ressource garde
    la taille du contenu et la marque devinée, dont la liste a besoin.
    Une ressource qui porte encore son code dans sa fiche est déplacée
    d'elle-même la première fois que la liste la voit : le contenu est d'abord
-   écrit à sa nouvelle place, puis seulement retiré de la fiche. */
+   écrit dans le coffre, puis seulement retiré de la fiche. */
 const ccol=()=>db.collection('users/'+S.uid+'/res_code');
 const CODES=new Map();
 
-/* ── LES GROS CONTENUS EN TRANCHES ──
-   Firestore refuse une fiche de plus d'un mégaoctet. Un contenu qui tient
-   dans une fiche y reste tel quel, {code}. Au-delà, il est découpé en
-   tranches rangées sous la fiche du contenu, qui ne garde que leur nombre et
-   leur « génération ». Une nouvelle version écrit ses tranches sous une
-   génération neuve, bascule la fiche d'un seul coup, puis efface les
-   anciennes : la fiche ne désigne jamais un contenu à moitié écrit. */
-const CODE_MAX=25*1024*1024;      // au-delà, une fiche « Lien » sert mieux
-const CODE_SEUL=900000;           // sous ce poids, le contenu tient dans sa fiche
-const CODE_TRANCHE=300000;        // signes par tranche : moins d'un mégaoctet même tout en accents
+/* ── LES CONTENUS DANS LE COFFRE ──
+   Le contenu vit dans le coffre R2, sa fiche (res_code) dit où : voir
+   commun/stockage.js. Une fiche plus ancienne, qui porte encore son
+   contenu ou ses tranches, se lit toujours ; le déménagement la fait
+   passer dans le coffre. */
+const CODE_MAX=LV_R2_CODE_MAX;      // une page HTML : trois cents mégaoctets au plus
+const CODE_SEUL=900000;             // sous ce poids, un contenu plus ancien tenait dans sa fiche
 const octets=t=>new Blob([t]).size;
-function decoupe(t){
-  const parts=[];let i=0;
-  while(i<t.length){
-    let j=Math.min(i+CODE_TRANCHE,t.length);
-    /* un caractère écrit en deux moitiés (certains signes, les émojis) ne se coupe pas */
-    if(j<t.length){const c=t.charCodeAt(j-1);if(c>=0xD800&&c<=0xDBFF)j--;}
-    parts.push(t.slice(i,j));i=j;
-  }
-  return parts;
-}
-async function litCode(col,id){
-  const d=await col.doc(id).get();
-  if(!d.exists)return null;
-  const m=d.data()||{};
-  if(typeof m.code==='string')return m.code;
-  const n=m.n||0,g=m.gen||'';
-  if(!n)return '';
-  const ts=await Promise.all(Array.from({length:n},(_,k)=>col.doc(id).collection('tranches').doc(g+'_'+k).get()));
-  return ts.map(t=>{ if(!t.exists)throw new Error('tranche manquante'); return String((t.data()||{}).d||''); }).join('');
-}
-async function effaceTranches(col,id,m){
-  const n=(m&&m.n)||0,g=(m&&m.gen)||'';
-  for(let k=0;k<n;k++)await col.doc(id).collection('tranches').doc(g+'_'+k).delete().catch(()=>{});
-}
-/* écrit le contenu ; avecFiche(lot) ajoute au même envoi ce qui doit partir
-   en même temps que la bascule (la fiche de la ressource) */
-async function ecritCode(col,id,code,avecFiche){
-  let ancien=null;
-  try{const d=await col.doc(id).get();if(d.exists)ancien=d.data()||null;}catch(e){}
-  const lot=db.batch();
-  if(octets(code)<=CODE_SEUL){
-    lot.set(col.doc(id),{code:code});
-  }else{
-    const parts=decoupe(code),gen=Date.now().toString(36);
-    for(let k=0;k<parts.length;k++)await col.doc(id).collection('tranches').doc(gen+'_'+k).set({d:parts[k]});
-    lot.set(col.doc(id),{n:parts.length,gen:gen,taille:octets(code)});
-  }
-  if(avecFiche)avecFiche(lot);
-  await lot.commit();
-  if(ancien&&ancien.n)await effaceTranches(col,id,ancien);
-}
-async function effaceCode(col,id){
-  let m=null;
-  try{const d=await col.doc(id).get();if(d.exists)m=d.data()||null;}catch(e){}
-  if(m&&m.n)await effaceTranches(col,id,m);
-  await col.doc(id).delete();
-}
+const litCode=(col,id)=>lvContenuLit(col,id);
+const ecritCode=(col,id,code,avecFiche)=>lvContenuEcrit(col,id,code,avecFiche);
+const effaceCode=(col,id)=>lvContenuEfface(col,id);
 async function contenuDe(a){
   if(!a||typeDe(a)!=='diagramme')return '';
   if(typeof a.code==='string'&&a.code)return a.code;
@@ -2053,7 +1985,7 @@ async function migreContenus(liste){
       const FV=firebase.firestore.FieldValue;
       const code=a.code;
       if(code){
-        await ccol().doc(a.id).set({code:code});
+        await lvContenuEcrit(ccol(),a.id,code);
         CODES.set(a.id,code);
       }
       await acol().doc(a.id).update({code:FV.delete(),codeTaille:new Blob([code]).size,marqueDevinee:devineMarque(a)});
@@ -2395,7 +2327,7 @@ async function enregistreUneFois(silence){
   /* la limite de Firestore se compte en octets : un accent en pèse deux */
   if(new Blob([JSON.stringify(doc)]).size>LIMITE_DOC||(avecCode&&octets(a.code)>CODE_MAX)){
     $('etat-enr').textContent='Non enregistré';
-    lvInfo('Le code de cette ressource d\u00e9passe la taille maximale (25 Mo). All\u00e9gez-le.');
+    lvInfo('Le code de cette ressource d\u00e9passe la taille maximale (300 Mo). All\u00e9gez-le.');
     return;
   }
   try{
@@ -2593,7 +2525,7 @@ function ecoute(){
   if(!S.uid)return;
   RUBS_LUES=false; LISTE_LUE=false;
   rdoc().get()
-    .then(d=>{S.rubs=(d.exists&&d.data().list)||[];S.corb=(d.exists&&d.data().corbeille)||[];RUBS_LUES=true;lvPlanPurge();
+    .then(d=>{S.rubs=(d.exists&&d.data().list)||[];S.corb=(d.exists&&d.data().corbeille)||[];RUBS_LUES=true;lvPlanPurge();if(LISTE_LUE)lvCoffreDemarre('ressources');
       /* si une ressource est déjà ouverte à l'écran, on la laisse : relire le
          rangement ne doit pas la refermer */
       if(!S.res&&$('ecran-voir').style.display==='none')routeHash();})
@@ -2605,9 +2537,16 @@ function ecoute(){
        courante ne montre que ce qui vit, la corbeille montre le reste. */
     S.jetees=l.filter(a=>!!a.suppr).sort((a,b)=>String(b.suppr).localeCompare(String(a.suppr)));
     S.liste=l.filter(a=>!a.suppr); LISTE_LUE=true; lvPlanPurge();
+    /* le coffre R2 : arrivées, index, déménagement (commun/coffre.js) */
+    if(RUBS_LUES){lvCoffreDemarre('ressources');lvIndexPlus('ressources');}
     /* les ressources qui portent encore leur contenu dans leur fiche le
        déposent dans la sienne, en arrière-plan */
-    setTimeout(()=>migreContenus(l),1500);
+    /* seules comptent les fiches qui portent leur contenu au moment de la
+       lecture : l'ouverture d'un élément pose ensuite son contenu sur la
+       fiche en mémoire, et le recopier dans Firestore écraserait le
+       pointeur vers le coffre R2 */
+    const aDeposer=l.filter(a=>typeof a.code==='string').map(a=>Object.assign({},a));
+    if(aDeposer.length)setTimeout(()=>migreContenus(aDeposer),1500);
     if($('ecran-corbeille').style.display!=='none')rendCorbeille();
     /* on ne rebâtit la liste que si elle est à l'écran : un rafraîchissement
        des données ne chasse pas la ressource ouverte */

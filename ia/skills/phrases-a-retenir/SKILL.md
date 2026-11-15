@@ -1,15 +1,19 @@
 ---
 name: "phrases-a-retenir"
-description: "Transformer n’importe quel sujet à retenir en phrases à mémoriser et à dire à voix haute : une définition, puis une phrase par grande partie, qui portent l’ossature complète du sujet. Les phrases se présentent dans une page HTML sombre affichée directement dans la conversation, où l’on coche celles à réécrire."
+description: "Transformer n’importe quel sujet à retenir en phrases à mémoriser et à dire à voix haute. Forme classique : une définition, puis une phrase par grande partie, qui portent l’ossature complète du sujet, présentées dans une page HTML sombre affichée directement dans la conversation, où l’on coche celles à réécrire. Forme en une seule phrase, à la demande : tout le sujet ramassé en une phrase à mémoriser."
 ---
 
 # Phrases à retenir
 
 Cette skill sert à retenir un sujet grâce à des phrases faciles à réciter. Elle s’applique à tout ce qui est donné à retenir.
 
+## Deux formes
+
+La skill connaît deux formes. La forme classique, par défaut, donne une définition puis une phrase par grande partie, dans une page interactive où l’utilisateur choisit les phrases à garder. La forme en une seule phrase, choisie quand l’utilisateur demande une seule phrase, ramasse tout le sujet en une phrase à mémoriser, donnée directement dans la conversation.
+
 ## Affichée directement dans la conversation
 
-Tout ce que cette skill produit s’affiche directement dans la conversation, sous la forme d’une page HTML interactive, grâce à l’outil qui rend du HTML en ligne dans le fil de la discussion. La page apparaît là où l’utilisateur lit la réponse : il coche, écrit ses remarques et envoie son choix sans quitter la conversation, et son choix revient dans le fil comme un message. La page est le seul emplacement des phrases : la réponse tient tout entière en elle, sans texte autour.
+La forme classique s’affiche directement dans la conversation, sous la forme d’une page HTML interactive, grâce à l’outil qui rend du HTML en ligne dans le fil de la discussion. La page apparaît là où l’utilisateur lit la réponse : il coche, écrit ses remarques et envoie son choix sans quitter la conversation, et son choix revient dans le fil comme un message. La page est le seul emplacement des phrases : la réponse tient tout entière en elle, sans texte autour.
 
 ## Connaître un sujet
 
@@ -17,11 +21,25 @@ Connaître un sujet, c’est le connaître par ses causes : savoir ce dont il es
 
 ## La méthode
 
-**La définition.** Le sujet est d’abord défini : ce qu’il est, en une phrase courte qui dit sa nature.
+**La définition.** Le sujet est d’abord défini : ce qu’il est, en une phrase courte qui dit sa nature. Chacun de ses mots apporte ce que le nom du sujet ne contient pas encore.
 
-**Les phrases détaillées.** Le sujet est découpé en un petit nombre de grandes parties. Ces parties couvrent ce qui vient au-delà de la définition : chacune apporte un aspect nouveau du sujet, et la nature du sujet reste portée par la définition seule. Ensemble, elles font connaître le sujet par ses causes. Chaque partie reçoit sa phrase, qui se dit d’une seule respiration. Chaque morceau de phrase, séparé par une virgule, correspond à une grande idée de la partie, dans son ordre naturel. Les morceaux des phrases d’une partie correspondent ainsi, un à un, à ses grandes idées. Un point-virgule marque un changement d’ensemble à l’intérieur d’une phrase. Le nombre de morceaux d’une phrase reste à la mesure du souffle, pour que la phrase garde l’allure d’une pensée qui avance ; une partie riche en grandes idées se répartit sur deux phrases.
+**Les phrases détaillées.** Le sujet est découpé en un petit nombre de grandes parties. Ces parties couvrent ce qui vient au-delà de la définition : chacune apporte un aspect nouveau du sujet, et la nature du sujet reste portée par la définition seule. Ensemble, elles font connaître le sujet par ses causes. Chaque partie reçoit sa phrase, qui se dit d’une seule respiration. La phrase part de ce que nomme le titre de sa partie, et chacun de ses morceaux apprend quelque chose que ce nom seul ne dit pas. Chaque morceau de phrase, séparé par une virgule, correspond à une grande idée de la partie, dans son ordre naturel. Les morceaux des phrases d’une partie correspondent ainsi, un à un, à ses grandes idées. Un point-virgule marque un changement d’ensemble à l’intérieur d’une phrase. Le nombre de morceaux d’une phrase reste à la mesure du souffle, pour que la phrase garde l’allure d’une pensée qui avance ; une partie riche en grandes idées se répartit sur deux phrases.
 
 Les parties servent à découper les phrases détaillées en morceaux digestes : elles apparaissent comme titres.
+
+## Une seule phrase
+
+La phrase unique porte le cœur du sujet. Elle part de sa nature et y joint les causes qui comptent le plus, assez pour que celui qui la récite tienne l’ossature du sujet. Les morceaux séparés par des virgules suivent les grandes idées dans l’ordre où la pensée les découvre, et un point-virgule marque le passage d’un ensemble à l’autre. Sa longueur reste celle d’une phrase qu’on dit d’un trait, en reprenant au plus son souffle au point-virgule. Quand le sujet est fourni sous forme de texte, la phrase en garde les idées maîtresses et les images fortes, et reprend le vocabulaire de l’auteur là où il est juste.
+
+La phrase reçoit un titre court, qui nomme le sujet tel que la phrase le saisit et aide à la rappeler en mémoire.
+
+Le titre et la phrase se donnent directement dans la conversation, sans texte autour : le titre en gras sur sa propre ligne, puis la phrase dessous. L’utilisateur les commente ou demande une retouche dans la conversation ; ils reviennent alors de la même manière, la phrase réécrite et le titre ajusté quand la phrase a changé de sens.
+
+## La prose des phrases
+
+Chaque phrase, dans les deux formes et à chaque tour, se lit comme écrite par une personne pour être dite à voix haute. Une fois rédigées, les phrases passent par la skill **humaniser** : l’IA la charge, l’applique aux phrases en mode intégré et garde la version finale de chaque phrase, avec tout ce qu’elle dit. L’oreille juge en dernier : la phrase lue à voix haute coule d’un seul mouvement.
+
+Dans la forme classique, cette passe vient après la rédaction de toutes les phrases, et après la relecture d’une seule main quand des sous-agents ont rédigé, juste avant l’assemblage. Dans la forme en une seule phrase, elle vient juste avant que la phrase soit donnée. Seule la version réécrite est montrée.
 
 ## Le moteur et le contenu
 
@@ -80,7 +98,7 @@ La page de choix porte en tête le nom du sujet et une phrase d’accueil qui an
 
 Le bouton d’envoi suit l’état des coches : « Tout garder ↗ » tant qu’aucune phrase n’est cochée, « Réécrire les phrases cochées (n) ↗ » dès qu’une phrase l’est. Au clic, la page envoie dans la conversation un message rédigé en clair : le nom du sujet, les phrases à réécrire chacune avec le titre de sa partie, les remarques, puis les phrases gardées chacune avec le titre de sa partie. Quand aucune phrase n’est cochée, le message annonce que toutes les phrases présentées sont gardées.
 
-Les phrases laissées sans coche sont gardées mot pour mot et mises de côté. Les phrases cochées sont réécrites à neuf, selon toute la méthode et en tenant compte des remarques de l’utilisateur.
+Les phrases laissées sans coche sont gardées mot pour mot et mises de côté. Les phrases cochées sont réécrites à neuf, selon toute la méthode et en tenant compte des remarques de l’utilisateur, puis passent par la skill humaniser, comme décrit dans « La prose des phrases ».
 
 Au tour suivant, une nouvelle page de choix, affichée de même dans la conversation, présente les seules phrases réécrites, chacune sous le titre et le numéro de sa partie. Le va-et-vient continue ainsi, sur les seules phrases encore à revoir, jusqu’à ce que l’utilisateur garde toutes les phrases présentées.
 

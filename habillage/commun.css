@@ -1461,3 +1461,11 @@ html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) :is(.rech-fermer,.msrch-f
    Une fenêtre, une feuille d'actions ou une recherche ouverte pendant que
    la conversation est affichée se pose par-dessus elle, voile compris. */
 html:root body:not(#_):not(#_) :is(.overlay,.rech-overlay){z-index:270}
+
+/* ── LE BANDEAU DU COFFRE R2 (Ressources, Articles) ──
+   Il paraît seulement pendant le déménagement des contenus vers le
+   coffre R2 : une phrase, et le bouton de l'étape suivante. */
+html body .coffre-bandeau{display:flex;align-items:center;justify-content:space-between;gap:14px 20px;flex-wrap:wrap;margin:0 0 24px;padding:16px 18px;border:1px solid color-mix(in srgb,var(--h-or) 28%,transparent)}
+html body .coffre-bandeau[hidden]{display:none}
+html body .coffre-bandeau p{margin:0;flex:1 1 260px;font-family:var(--h-ui);font-size:15.5px;line-height:1.5;color:var(--h-t2)}
+html:root body .coffre-bandeau .res-rouvrir{margin:0;flex:0 0 auto}

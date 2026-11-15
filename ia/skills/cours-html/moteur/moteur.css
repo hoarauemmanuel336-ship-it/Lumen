@@ -355,11 +355,13 @@ p{margin:0 0 .75em;text-indent:0}
   .tb td{border:0;padding:4px 0}
   .tb td::before{content:attr(data-l);display:block;font:700 11px/1.3 var(--fm);text-transform:uppercase;letter-spacing:.12em;color:var(--a);margin-bottom:2px}
   .tb td[data-l=""]::before{display:none}
-  .nv{grid-template-columns:1fr;gap:4px}
-  .nv-n{order:-1;text-align:center;padding-bottom:6px}
-  .nv a.suiv{order:0;text-align:left;align-items:flex-start}
-  .nv a.prec{order:1}
-  .nv a.cache{display:none}
+  .nv{grid-template-columns:1fr 1fr;align-items:start;gap:2px 16px;margin-top:56px;padding-top:14px}
+  .nv-n{grid-column:1 / -1;grid-row:1;text-align:center;padding-bottom:4px}
+  .nv a{padding:8px 0}
+  .nv a.prec{grid-column:1;grid-row:2}
+  .nv a.suiv{grid-column:2;grid-row:2}
+  .nv-pg{display:none}
+  .nv-t{font-size:13px;overflow-wrap:anywhere;hyphens:auto;-webkit-hyphens:auto}
   .nv a,.se,.ong,.mc,.btr,.pc-fin a{min-height:44px}
   .mc,.btr{display:inline-flex;align-items:center}
   .se{padding:12px 10px}

@@ -178,12 +178,7 @@ async function qaCodeDe(ref){
   if(!ref||!ref.id||(ref.col!=='res_code'&&ref.col!=='art_code'))return '';
   const u=await qaCompte(); if(!u||!firebase.firestore)return '';
   const col=firebase.firestore().collection('users/'+u.uid+'/'+ref.col);
-  const d=await col.doc(ref.id).get(); if(!d.exists)return '';
-  const m=d.data()||{};
-  if(typeof m.code==='string')return m.code;
-  const n=m.n||0, g=m.gen||''; if(!n)return '';
-  const ts=await Promise.all(Array.from({length:n},(_,k)=>col.doc(ref.id).collection('tranches').doc(g+'_'+k).get()));
-  return ts.map(t=>String((t.exists&&t.data()||{}).d||'')).join('');
+  return (await lvContenuLit(col,ref.id))||'';
 }
 /* le texte de la page : déjà en main, ou relu d'après sa place */
 function qaPrepareDoc(code,ref){

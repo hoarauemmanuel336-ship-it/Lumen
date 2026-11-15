@@ -53,6 +53,8 @@ button{font:inherit;color:inherit;border:0;background:none;margin:0;-webkit-appe
 .bnr-t{margin:0;padding:0 48px;overflow-wrap:normal!important;font-size:30px;font-weight:700;line-height:1.2;text-transform:uppercase;letter-spacing:.18em;text-indent:.18em}
 .bnr-s{margin-top:12px;font-family:var(--fm);font-size:12px;text-transform:uppercase;letter-spacing:.08em;text-indent:.08em;color:rgba(255,255,255,.75)}
 .bnr .xin{max-width:68ch;margin:22px auto 0}
+.bnr .cpw{margin-top:22px}
+.bnr .cp.ok{background:#fff}
 
 /* ══ BARRES DE PROGRESSION ══ */
 .prg{display:flex;gap:4px;max-width:640px;margin:32px auto 0}
@@ -62,6 +64,10 @@ button{font:inherit;color:inherit;border:0;background:none;margin:0;-webkit-appe
 .bar .pl{background:var(--a)}
 .bar .hc{opacity:.55;background:repeating-linear-gradient(135deg,var(--a) 0 2px,transparent 2px 5px)}
 .seg .num{margin-top:6px;font-family:var(--fm);font-size:10px;font-weight:700;color:var(--a);line-height:1}
+.prg.dense{gap:2px;max-width:760px}
+.prg.dense .seg.deb:not(:first-child){margin-left:5px}
+.prg.dense .seg .num{visibility:hidden;white-space:nowrap;text-align:left}
+.prg.dense .seg.deb .num{visibility:visible}
 
 /* ══ BOUTON D'ENREGISTREMENT ══ */
 .enr-w{text-align:center;margin-top:40px}

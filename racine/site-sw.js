@@ -40,7 +40,9 @@ self.addEventListener('activate', function (e) {
 function genre(url, req) {
   if (url.origin === self.location.origin) {
     var p = url.pathname;
-    if (p.indexOf('/memoriser') === 0 || p.indexOf('/__') === 0) return '';
+    /* les fichiers du coffre R2 passent tout droit : ils sont lourds, se
+       lisent par morceaux (vidéo, PDF) et le navigateur les garde déjà */
+    if (p.indexOf('/memoriser') === 0 || p.indexOf('/__') === 0 || p.indexOf('/fichiers/') === 0 || p.indexOf('/api/') === 0) return '';
     if (req.mode === 'navigate' || PAGES.indexOf(p) >= 0) return 'page';
     if (p.indexOf('/bible-data/') === 0 || p.indexOf('/bible-data-seraphin/') === 0) return 'bible';
     if (p.indexOf('/js/') === 0 || p === '/lumen-app.js' || p === '/bible-panneau.js' ||
