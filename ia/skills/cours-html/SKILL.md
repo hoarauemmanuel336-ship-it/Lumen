@@ -91,7 +91,7 @@ Comprendre, puis retenir. Le cours distingue ce qui se comprend de ce qui s'appr
 
 Une idée à la fois, à la bonne densité. Chaque paragraphe porte une idée, et chaque phrase fait avancer l'explication. Le texte donne à chaque notion la place qu'elle demande : plus d'espace aux idées difficiles, un pas rapide sur ce qui va de soi. La voix est celle d'un maître qui parle à un élève qu'il estime : claire, précise, chaleureuse.
 
-Des renvois qui éclairent. Chaque passage se lit par lui-même, et un renvoi vers une autre leçon ou un autre cours conduit le lecteur vers ce qui l'aide à comprendre ce passage : la leçon qui définit la notion dont il a besoin, celle qui en fait la démonstration, le cours qui traite le sujet à fond. Un texte déjà cité ailleurs se reprend simplement pour ce qu'il apporte ici.
+Des renvois qui éclairent. Chaque passage se lit par lui-même et dit tout ce qu'il affirme. Un renvoi, vers une leçon passée ou à venir comme vers un autre cours, conduit le lecteur vers ce dont le passage a besoin et qu'il ne donne pas lui-même : la leçon qui définit une notion qu'il emploie, celle qui fait la démonstration sur laquelle il s'appuie. Un texte, un fait ou une notion qui paraît aussi ailleurs se dit simplement ici, pour ce qu'il apporte au passage.
 
 LE BILAN
 
