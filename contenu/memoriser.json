@@ -617,6 +617,302 @@
    ]
   },
   {
+   "id": "base-jesus-histoire",
+   "name": {
+    "fr": "Jésus dans l’histoire et ses titres"
+   },
+   "bloc": "Jésus-Christ",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-matthieu-16-16",
+     "fr": {
+      "ref": "Matthieu 16:16",
+      "text": "Simon Pierre prit la parole : « Tu es le Christ, le Fils du Dieu vivant. »"
+     },
+     "note": "À Césarée de Philippe, Jésus demande à ses disciples qui il est, et Pierre répond au nom des Douze. Sa réponse réunit les deux titres que la foi confesse : le Christ, du grec *Christos*, « oint », qui traduit l’hébreu *mashiah*, le Messie attendu par Israël, et le Fils du Dieu vivant. Jésus déclare aussitôt que cette confession vient d’une révélation du Père (Catéchisme 442)."
+    },
+    {
+     "id": "base-jean-20-28",
+     "fr": {
+      "ref": "Jean 20:28",
+      "text": "Thomas lui répondit : « Mon Seigneur et mon Dieu ! »"
+     },
+     "note": "Huit jours après Pâques, Thomas, qui refusait de croire, voit le Ressuscité. Il lui donne le nom de Seigneur, par lequel la Bible grecque rend le nom de Dieu, et le nom de Dieu lui-même. C’est la confession la plus haute des Évangiles, et Jean la place tout près de la fin de son livre (Catéchisme 448)."
+    }
+   ]
+  },
+  {
+   "id": "base-incarnation",
+   "name": {
+    "fr": "L’Incarnation"
+   },
+   "bloc": "Jésus-Christ",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-jean-1-14",
+     "fr": {
+      "ref": "Jean 1:14",
+      "text": "Et le Verbe s'est fait chair, et il a planté sa tente parmi nous ; et nous avons vu sa gloire, la gloire qu'il tient de son Père comme Fils unique, plein de grâce et de vérité."
+     },
+     "note": "Le Verbe, qui était Dieu auprès de Dieu, devient homme. Le grec *sarx*, « chair », désigne l’homme entier dans sa condition fragile et mortelle. L’image de la tente rappelle la Tente de la rencontre, où Dieu habitait au milieu d’Israël au désert. L’Église appelle ce mystère l’Incarnation (Catéchisme 461)."
+    },
+    {
+     "id": "base-galates-4-4-5",
+     "fr": {
+      "ref": "Galates 4:4-5",
+      "text": "Mais quand vint la plénitude du temps, Dieu envoya son Fils, né d'une femme, né sujet de la Loi, pour racheter ceux qui étaient sujets de la Loi, afin que nous recevions l'adoption filiale."
+     },
+     "note": "Paul dit en une phrase le moment, la manière et le but de l’Incarnation : à l’heure fixée par Dieu, le Fils naît d’une femme et entre dans la condition d’Israël, soumis à la Loi, pour faire des hommes des fils adoptifs de Dieu. Le Catéchisme ouvre sur ce texte son exposé sur Jésus-Christ (Catéchisme 422)."
+    },
+    {
+     "id": "base-luc-1-35",
+     "fr": {
+      "ref": "Luc 1:35",
+      "text": "L'ange lui répondit : « L'Esprit Saint viendra sur toi, et la puissance du Très-Haut te couvrira de son ombre. C'est pourquoi celui qui va naître sera saint, et on l'appellera Fils de Dieu."
+     },
+     "note": "L’ange répond à Marie, qui demande comment elle concevra sans connaître d’homme. Jésus est conçu par l’œuvre de l’Esprit Saint, sans père humain : c’est la conception virginale, que le Credo confesse en disant « conçu du Saint-Esprit, né de la Vierge Marie » (Catéchisme 484-485). L’ombre qui couvre Marie rappelle la nuée qui reposait sur la Tente du désert."
+    },
+    {
+     "id": "base-philippiens-2-6-8",
+     "fr": {
+      "ref": "Philippiens 2:6-8",
+      "text": "lui qui, étant de condition divine, n'a pas retenu comme une proie à saisir le fait d'être l'égal de Dieu, mais il s'est anéanti lui-même, prenant la condition d'esclave, devenant semblable aux hommes ; et, reconnu à son aspect comme un homme, il s'est abaissé lui-même, devenant obéissant jusqu'à la mort, et la mort de la croix."
+     },
+     "note": "Paul reprend sans doute une hymne que chantaient les premiers chrétiens. Le Fils, qui est Dieu, prend la condition d’esclave et va jusqu’à la mort sur la croix. Le grec *ekenôsen*, « il s’est anéanti », littéralement « il s’est vidé », a donné le mot kénose. Le Fils garde sa divinité et la voile sous la condition humaine qu’il assume (Catéchisme 461)."
+    }
+   ]
+  },
+  {
+   "id": "base-christologie",
+   "name": {
+    "fr": "Le dogme christologique"
+   },
+   "bloc": "Jésus-Christ",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-colossiens-2-9",
+     "fr": {
+      "ref": "Colossiens 2:9",
+      "text": "Car en lui habite corporellement toute la plénitude de la divinité,"
+     },
+     "note": "Paul l’écrit à des chrétiens tentés de chercher ailleurs que dans le Christ la plénitude de Dieu. Toute la divinité habite en lui « corporellement », dans son humanité même. Le concile de Chalcédoine (451) le définit : le Christ est vrai Dieu et vrai homme, en deux natures unies dans une seule personne (Catéchisme 467)."
+    },
+    {
+     "id": "base-hebreux-4-15",
+     "fr": {
+      "ref": "Hébreux 4:15",
+      "text": "Car nous n'avons pas un grand prêtre incapable de compatir à nos faiblesses ; il a été, comme nous, éprouvé en tout, à l'exception du péché."
+     },
+     "note": "Le Christ a partagé tout ce qui fait la condition humaine, la fatigue, l’angoisse et la tentation, sauf le péché. Le concile de Chalcédoine reprend ces mots : « semblable à nous en tout, hormis le péché » (Catéchisme 467). Parce qu’il a éprouvé notre faiblesse, il peut compatir et intercéder pour nous."
+    },
+    {
+     "id": "base-jean-8-58",
+     "fr": {
+      "ref": "Jean 8:58",
+      "text": "Jésus leur répondit : « Amen, amen, je vous le dis : avant même qu'Abraham vienne à l'existence, moi, Je Suis. »"
+     },
+     "note": "Abraham « vient à l’existence », Jésus dit de lui-même « Je Suis », au présent. Il reprend le nom que Dieu révèle à Moïse au buisson ardent. Ses auditeurs le comprennent et ramassent des pierres pour le lapider comme blasphémateur. Le verset dit l’existence éternelle du Fils, avant sa naissance comme homme (Catéchisme 590)."
+    }
+   ]
+  },
+  {
+   "id": "base-vie-christ",
+   "name": {
+    "fr": "Les mystères de l’enfance et de la vie cachée"
+   },
+   "bloc": "Jésus-Christ",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-luc-2-11",
+     "fr": {
+      "ref": "Luc 2:11",
+      "text": "aujourd'hui, dans la ville de David, vous est né un Sauveur, qui est le Christ, le Seigneur."
+     },
+     "note": "L’ange annonce aux bergers la naissance de Jésus avec trois titres : Sauveur ; Christ, le Messie attendu ; Seigneur, le nom par lequel la Bible grecque rend le nom de Dieu (Catéchisme 437). La liturgie de Noël reprend ce « aujourd’hui » : elle célèbre la naissance du Christ comme un événement présent."
+    },
+    {
+     "id": "base-luc-2-49",
+     "fr": {
+      "ref": "Luc 2:49",
+      "text": "Il leur répondit : « Pourquoi me cherchiez-vous ? Ne saviez-vous pas qu'il me faut être chez mon Père ? »"
+     },
+     "note": "Ce sont les premières paroles de Jésus dans les Évangiles, à douze ans, au Temple. Marie vient de parler de Joseph comme de « ton père » ; Jésus appelle Dieu « mon Père » et laisse voir qu’il connaît déjà sa mission. Luc ajoute que ses parents ne comprirent pas cette parole (Catéchisme 534)."
+    },
+    {
+     "id": "base-luc-2-52",
+     "fr": {
+      "ref": "Luc 2:52",
+      "text": "Et Jésus grandissait en sagesse, en taille et en grâce, devant Dieu et devant les hommes."
+     },
+     "note": "Ce verset résume les années de la vie cachée à Nazareth. Jésus, vrai homme, grandit vraiment, en âge et en sagesse humaine. L’Église y voit qu’il a une âme et une intelligence humaines, qui apprennent comme les nôtres (Catéchisme 472)."
+    }
+   ]
+  },
+  {
+   "id": "base-ministere",
+   "name": {
+    "fr": "Le ministère public"
+   },
+   "bloc": "Jésus-Christ",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-matthieu-3-17",
+     "fr": {
+      "ref": "Matthieu 3:17",
+      "text": "Et voici qu'une voix venue des cieux disait : « Celui-ci est mon Fils bien-aimé, en qui je me complais. »"
+     },
+     "note": "Au baptême de Jésus dans le Jourdain, le Père le déclare son Fils et l’Esprit descend sur lui comme une colombe : la Trinité se manifeste. La parole du Père reprend le Psaume 2 et le premier chant du Serviteur d’Isaïe. Elle ouvre le ministère public de Jésus (Catéchisme 535-536)."
+    },
+    {
+     "id": "base-marc-1-15",
+     "fr": {
+      "ref": "Marc 1:15",
+      "text": "Il disait : « Le temps est accompli, et le règne de Dieu s'est approché. Convertissez-vous et croyez à la Bonne Nouvelle. »"
+     },
+     "note": "Ce sont les premiers mots de la prédication de Jésus en Galilée chez Marc, et ils en donnent tout le programme. Le temps de l’attente est accompli, le règne de Dieu s’est approché, et il appelle deux réponses : se convertir, du grec *metanoeite*, rendu par « convertissez-vous », littéralement « changez de pensée », et croire à la Bonne Nouvelle (Catéchisme 541)."
+    },
+    {
+     "id": "base-matthieu-16-18",
+     "fr": {
+      "ref": "Matthieu 16:18",
+      "text": "Et moi, je te le dis : tu es Pierre, et sur cette pierre je bâtirai mon Église ; et les portes du séjour des morts ne l'emporteront pas sur elle."
+     },
+     "note": "Jésus donne à Simon le nom de Pierre, en araméen *Kêpha*, « rocher », et fait de lui le fondement visible de son Église. Le concile Vatican I s’appuie sur ce verset pour définir la primauté de Pierre et de ses successeurs, les évêques de Rome (*Pastor aeternus*, chapitre 1 ; Catéchisme 552-553)."
+    }
+   ]
+  },
+  {
+   "id": "base-passion",
+   "name": {
+    "fr": "La Passion"
+   },
+   "bloc": "Jésus-Christ",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-luc-22-19-20",
+     "fr": {
+      "ref": "Luc 22:19-20",
+      "text": "Puis il prit du pain, rendit grâce, le rompit et le leur donna en disant : « Ceci est mon corps, donné pour vous. Faites cela en mémoire de moi. » Après le repas, il fit de même avec la coupe, en disant : « Cette coupe est la nouvelle alliance en mon sang, versé pour vous."
+     },
+     "note": "Au dernier repas, Jésus institue l’Eucharistie : il donne son corps et son sang sous les signes du pain et du vin, et il scelle la nouvelle alliance annoncée par les prophètes. Par l’ordre « Faites cela en mémoire de moi », il institue aussi les apôtres prêtres de la nouvelle alliance (concile de Trente, session XXII, canon 2 ; Catéchisme 610-611)."
+    },
+    {
+     "id": "base-luc-22-42",
+     "fr": {
+      "ref": "Luc 22:42",
+      "text": "« Père, si tu le veux, écarte de moi cette coupe ! Cependant, que ce ne soit pas ma volonté, mais la tienne, qui se fasse. »"
+     },
+     "note": "La prière de Jésus à Gethsémani. Devant la mort, il ressent l’effroi que toute nature humaine éprouve, et il soumet sa volonté humaine à celle du Père. Le concile de Constantinople III (681) a défini que le Christ a deux volontés, divine et humaine, et que la seconde suit toujours la première (Catéchisme 475, 612)."
+    },
+    {
+     "id": "base-luc-23-34",
+     "fr": {
+      "ref": "Luc 23:34",
+      "text": "Jésus disait : « Père, pardonne-leur : ils ne savent pas ce qu'ils font. » Et, pour partager ses vêtements, ils les tirèrent au sort."
+     },
+     "note": "La première parole de Jésus en croix rapportée par Luc. Il prie pour ceux qui le crucifient et met en pratique le pardon qu’il a enseigné. Le Catéchisme cite cette prière pour refuser d’imputer la mort de Jésus à tous les Juifs de son temps, et à plus forte raison à ceux d’aujourd’hui (Catéchisme 597)."
+    },
+    {
+     "id": "base-jean-19-30",
+     "fr": {
+      "ref": "Jean 19:30",
+      "text": "Quand il eut pris le vinaigre, Jésus dit : « Tout est accompli. » Puis, inclinant la tête, il remit l'esprit."
+     },
+     "note": "La dernière parole de Jésus chez Jean. Le grec *tetelestai*, « tout est accompli », dit que l’œuvre confiée par le Père est menée à son terme et que les Écritures sont accomplies. Le verbe « remit » montre que Jésus livre lui-même sa vie (Catéchisme 607, 609)."
+    },
+    {
+     "id": "base-isaie-53-5",
+     "fr": {
+      "ref": "Isaïe 53:5",
+      "text": "Mais lui, il a été transpercé à cause de nos révoltes, broyé à cause de nos fautes ; le châtiment qui nous rend la paix est tombé sur lui, et c'est par ses blessures que nous sommes guéris."
+     },
+     "note": "Le quatrième chant du Serviteur, écrit des siècles avant la Passion, décrit un innocent frappé à la place des coupables, dont les blessures guérissent les autres. Les Évangiles, les apôtres et toute la tradition y lisent l’annonce de la Passion du Christ (Catéchisme 601)."
+    }
+   ]
+  },
+  {
+   "id": "base-redemption",
+   "name": {
+    "fr": "La Rédemption"
+   },
+   "bloc": "Jésus-Christ",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-marc-10-45",
+     "fr": {
+      "ref": "Marc 10:45",
+      "text": "Car le Fils de l'homme n'est pas venu pour être servi, mais pour servir et donner sa vie en rançon pour la multitude. »"
+     },
+     "note": "Jésus dit lui-même le sens de sa mort. Il donne sa vie en rançon, du grec *lytron*, rendu par « rançon » : le prix payé pour libérer un captif. « La multitude » reprend le chant du Serviteur d’Isaïe et, à la manière hébraïque, désigne tous les hommes, sans en exclure aucun (Catéchisme 605)."
+    },
+    {
+     "id": "base-1-timothee-2-5-6",
+     "fr": {
+      "ref": "1 Timothée 2:5-6",
+      "text": "Car il y a un seul Dieu, et un seul médiateur entre Dieu et les hommes : un homme, le Christ Jésus, qui s'est donné lui-même en rançon pour tous. Tel est le témoignage rendu au temps voulu,"
+     },
+     "note": "Le Christ est le seul médiateur entre Dieu et les hommes parce qu’il est l’un et l’autre, vrai Dieu et vrai homme, et Paul précise qu’il l’est comme homme. Sa rançon est « pour tous » : l’Église enseigne que le Christ est mort pour tous les hommes sans exception (Catéchisme 605, 618)."
+    },
+    {
+     "id": "base-2-corinthiens-5-21",
+     "fr": {
+      "ref": "2 Corinthiens 5:21",
+      "text": "Celui qui n'avait pas connu le péché, Dieu l'a fait péché pour nous, afin qu'en lui nous devenions justice de Dieu."
+     },
+     "note": "Le cœur de la Rédemption tient dans un échange : l’innocent prend sur lui la condition du pécheur pour que les pécheurs deviennent justes. « Fait péché » ne veut pas dire que le Christ a péché ; Dieu l’a laissé entrer dans la condition que le péché a faite à l’homme, jusqu’à la mort (Catéchisme 602-603)."
+    }
+   ]
+  },
+  {
+   "id": "base-resurrection",
+   "name": {
+    "fr": "La Résurrection et la gloire"
+   },
+   "bloc": "Jésus-Christ",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-1-corinthiens-15-3-5",
+     "fr": {
+      "ref": "1 Corinthiens 15:3-5",
+      "text": "Je vous ai transmis avant tout ce que j'ai moi-même reçu : le Christ est mort pour nos péchés, selon les Écritures ; il a été mis au tombeau, il est ressuscité le troisième jour, selon les Écritures ; il est apparu à Céphas, puis aux Douze."
+     },
+     "note": "Paul transmet aux Corinthiens, vers l’an 55, une formule qu’il a lui-même reçue des premiers témoins. Elle dit le cœur de la foi : le Christ mort pour nos péchés, mis au tombeau, ressuscité le troisième jour, apparu à Pierre puis aux Douze (Catéchisme 639, 642)."
+    },
+    {
+     "id": "base-1-corinthiens-15-14",
+     "fr": {
+      "ref": "1 Corinthiens 15:14",
+      "text": "et si le Christ n'est pas ressuscité, notre proclamation est vide, et vide aussi votre foi."
+     },
+     "note": "Sans la Résurrection, la foi chrétienne perd son objet. La Résurrection confirme tout ce que le Christ a fait et enseigné ; elle est la vérité culminante de la foi (Catéchisme 638, 651)."
+    },
+    {
+     "id": "base-romains-4-25",
+     "fr": {
+      "ref": "Romains 4:25",
+      "text": "lui qui a été livré pour nos fautes et ressuscité pour notre justification."
+     },
+     "note": "Paul unit la mort et la Résurrection dans une même œuvre de salut. Par sa mort, le Christ nous délivre du péché ; par sa Résurrection, il nous ouvre la vie nouvelle de la grâce et nous rend justes devant Dieu (Catéchisme 654)."
+    },
+    {
+     "id": "base-actes-des-apotres-1-11",
+     "fr": {
+      "ref": "Actes des Apôtres 1:11",
+      "text": "et leur dirent : « Hommes de Galilée, pourquoi restez-vous là à regarder le ciel ? Ce Jésus qui a été enlevé au ciel du milieu de vous reviendra de la même manière que vous l'avez vu s'en aller vers le ciel. »"
+     },
+     "note": "Deux hommes vêtus de blanc parlent aux apôtres au moment de l’Ascension. Le Christ est entré avec son humanité dans la gloire de Dieu, et il reviendra de la même manière, dans la gloire, pour juger les vivants et les morts : c’est la parousie, que le Credo confesse (Catéchisme 665, 671)."
+    }
+   ]
+  },
+  {
    "id": "base-esprit",
    "name": {
     "fr": "L’Esprit Saint"

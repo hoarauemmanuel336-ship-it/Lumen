@@ -447,6 +447,218 @@
    "u": 48
   }
  },
+ "43-jesus-dans-l-histoire-et-ses-titres.html": {
+  "taille": 3392503,
+  "empreinte": "8649ed0d73a0668b7fdb80e65a2f93560d1659ce5f2fd95a97e58ac006632cbf",
+  "cours": {
+   "l": "Jésus dans les sources non chrétiennes",
+   "c": "Jésus dans les sources chrétiennes",
+   "h": "La chronologie de la vie de Jésus",
+   "r": "La recherche du Jésus historique",
+   "k": "Les critères d’historicité",
+   "t": "Les grands titres de Jésus",
+   "a": "Les autres titres du Christ",
+   "m": "La conscience messianique de Jésus"
+  },
+  "sais": {
+   "l": 41,
+   "c": 48,
+   "h": 32,
+   "r": 45,
+   "k": 32,
+   "t": 44,
+   "a": 65,
+   "m": 40
+  }
+ },
+ "44-l-incarnation.html": {
+  "taille": 2780448,
+  "empreinte": "f86f5ee4ba9cef889e4261d699696bef9359b79d887939fd74a0af3c4c859826",
+  "cours": {
+   "l": "Le prologue de Jean",
+   "r": "Les raisons de l’Incarnation",
+   "m": "Le motif de l’Incarnation",
+   "v": "La conception virginale",
+   "k": "La kénose"
+  },
+  "sais": {
+   "l": 52,
+   "r": 46,
+   "m": 36,
+   "v": 37,
+   "k": 36
+  }
+ },
+ "45-le-dogme-christologique.html": {
+  "taille": 3649488,
+  "empreinte": "d2eeed166fef39ce5c156f274cf46cdeff223d8e40a3cc68893316a554d64e67",
+  "cours": {
+   "l": "Les hérésies christologiques",
+   "c": "La définition de Chalcédoine",
+   "u": "L’union hypostatique",
+   "v": "Les deux volontés et les deux opérations",
+   "i": "La communication des idiomes",
+   "s": "L’âme et la science du Christ",
+   "t": "La sainteté du Christ",
+   "h": "Le Sacré-Cœur",
+   "a": "L’adoration de l’humanité du Christ"
+  },
+  "sais": {
+   "l": 56,
+   "c": 44,
+   "u": 40,
+   "v": 53,
+   "i": 32,
+   "s": 44,
+   "t": 43,
+   "h": 44,
+   "a": 36
+  }
+ },
+ "46-les-mysteres-de-l-enfance-et-de-la-vie-cachee.html": {
+  "taille": 3642615,
+  "empreinte": "58b3c48fd013b2c53c27b706f6f6fa1a0ea0c8114ffca820cd8caa96e5ffcb45",
+  "cours": {
+   "l": "Pourquoi toute la vie du Christ est mystère",
+   "p": "Jean-Baptiste, le Précurseur",
+   "n": "La naissance de Jésus",
+   "c": "La circoncision de Jésus",
+   "e": "L’Épiphanie",
+   "t": "La présentation au Temple",
+   "f": "La fuite en Égypte et le retour à Nazareth",
+   "v": "La vie cachée à Nazareth",
+   "r": "Le recouvrement au Temple"
+  },
+  "sais": {
+   "l": 50,
+   "p": 51,
+   "n": 45,
+   "c": 36,
+   "e": 48,
+   "t": 42,
+   "f": 40,
+   "v": 40,
+   "r": 32
+  }
+ },
+ "47-le-ministere-public.html": {
+  "taille": 6448997,
+  "empreinte": "7f49dde23378659cc5935579fc0e51383c61b512b7ef2a5e1008308d205c50d9",
+  "cours": {
+   "l": "Le baptême de Jésus",
+   "t": "Les tentations au désert",
+   "r": "L’annonce du Royaume",
+   "j": "Le Sermon sur la montagne : la justice nouvelle",
+   "d": "Le Sermon sur la montagne : la vie du disciple",
+   "p": "Les paraboles : nature et interprétation",
+   "k": "Les paraboles du Royaume",
+   "m": "Les paraboles de la miséricorde",
+   "v": "Les paraboles de la vigilance et du jugement",
+   "n": "Les miracles : nature et sens",
+   "s": "Les miracles dans les Évangiles synoptiques",
+   "e": "Les sept signes de l’Évangile de Jean",
+   "c": "Les controverses et les rencontres de Jésus",
+   "o": "L’appel des Douze",
+   "a": "Les Douze, un à un",
+   "u": "Pierre dans les Évangiles",
+   "f": "La Transfiguration",
+   "h": "L’entrée à Jérusalem"
+  },
+  "sais": {
+   "l": 44,
+   "t": 40,
+   "r": 52,
+   "j": 56,
+   "d": 69,
+   "p": 40,
+   "k": 43,
+   "m": 50,
+   "v": 44,
+   "n": 48,
+   "s": 68,
+   "e": 40,
+   "c": 68,
+   "o": 55,
+   "a": 48,
+   "u": 50,
+   "f": 46,
+   "h": 40
+  }
+ },
+ "48-la-passion.html": {
+  "taille": 3527361,
+  "empreinte": "bd7196e0e8ec6cdf3bed4b006b1ba0d77fe2e9f67279113212ee51a5529c0039",
+  "cours": {
+   "l": "Le complot et la trahison",
+   "c": "La Dernière Cène",
+   "g": "L’agonie et l’arrestation",
+   "p": "Le procès de Jésus",
+   "x": "La crucifixion",
+   "s": "Les sept paroles du Christ en croix",
+   "r": "La responsabilité de la mort de Jésus"
+  },
+  "sais": {
+   "l": 50,
+   "c": 52,
+   "g": 48,
+   "p": 64,
+   "x": 52,
+   "s": 43,
+   "r": 44
+  }
+ },
+ "49-la-redemption.html": {
+  "taille": 3915573,
+  "empreinte": "1233e4f8920853f26203a2a9056eca6a1886264a9382d2690747310d18482688",
+  "cours": {
+   "l": "Le sacrifice de la Croix",
+   "v": "Les mots du salut",
+   "s": "La satisfaction",
+   "m": "Le mérite du Christ",
+   "u": "L’universalité du salut",
+   "t": "Le triple office du Christ",
+   "p": "Le Christ prêtre",
+   "h": "Le Christ prophète",
+   "r": "Le Christ roi",
+   "c": "Notre participation à la Croix"
+  },
+  "sais": {
+   "l": 52,
+   "v": 40,
+   "s": 48,
+   "m": 37,
+   "u": 36,
+   "t": 31,
+   "p": 32,
+   "h": 41,
+   "r": 38,
+   "c": 44
+  }
+ },
+ "50-la-resurrection-et-la-gloire.html": {
+  "taille": 3654701,
+  "empreinte": "4e2d899521001c1deeff3392a6560d09d2294727e111de72c0870de316418ed7",
+  "cours": {
+   "l": "La mise au tombeau",
+   "d": "La descente aux enfers",
+   "r": "La Résurrection, fait historique",
+   "a": "Les apparitions du Ressuscité",
+   "c": "Le corps ressuscité du Christ",
+   "s": "Le sens salvifique de la Résurrection",
+   "e": "L’Ascension",
+   "p": "Le Christ assis à la droite du Père"
+  },
+  "sais": {
+   "l": 52,
+   "d": 44,
+   "r": 52,
+   "a": 48,
+   "c": 38,
+   "s": 48,
+   "e": 42,
+   "p": 36
+  }
+ },
  "51-l-esprit-saint.html": {
   "taille": 3916213,
   "empreinte": "2bab1609016cbdfede523a2a2918331efc6f225a1b9f1947c6976df105d385fe",
