@@ -78,7 +78,10 @@ async function quiEst(jeton) {
      pages : livres, diagrammes, cours, parcours et articles se font dans
      Claude.
    La réflexion est celle du modèle (adaptative) ; son résumé s'affiche
-   replié au-dessus de la réponse, comme dans Claude. */
+   replié au-dessus de la réponse, comme dans Claude. Son niveau est
+   écrit en toutes lettres à « moyen » pour tous les usages du site
+   (Emmanuel : « le niveau de réflexion doit toujours être sur Moyen »),
+   pour qu'il ne change pas avec le réglage par défaut d'un nouveau modèle. */
 const OUTIL_VERSETS = {
   name: 'lire_versets',
   description: 'Renvoie le texte exact de versets bibliques dans les deux traductions du site : la Chérubin (traduction par défaut) et la Séraphin (littérale). Les références s’écrivent au format « Jean 3:16 » ou « 1 Corinthiens 13:4-7 », avec les noms de livres en français sous leur forme standard.',
@@ -212,6 +215,7 @@ function demandeQuestion(donnees) {
     max_tokens: 64000,
     stream: true,
     thinking: { type: 'adaptive', display: 'summarized' },
+    output_config: { effort: 'medium' },
     system,
     tools: OUTILS_SITE.concat(OUTILS_ANTHROPIC),
     messages,

@@ -16,6 +16,8 @@ La consommation se paie sur les crédits API compris dans l'abonnement Max d'Emm
 
 ## Les usages en place
 
+Le niveau de réflexion de l'IA est réglé sur « moyen » pour tous les usages du site, présents et à venir (Emmanuel : « le niveau de réflexion doit toujours être sur Moyen »).
+
 | Usage | Où | Modèle | Pourquoi ce modèle |
 |---|---|---|---|
 | Conversation | L'icône de l'IA dans la barre du haut (toutes les pages), « Demander à l'IA » sur un texte sélectionné, le bouton de l'IA dans un article ouvert ou dans Étude | Claude Opus 5.5, avec réflexion, recherche sur internet et les outils du site | Une réponse de doctrine ou d'exégèse doit être juste avant tout, et la conversation peut composer un livre ou un cours entier : c'est le travail du plus grand modèle. |
