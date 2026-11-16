@@ -11,7 +11,8 @@
    Une fiche plus ancienne porte encore son contenu dans Firestore
    ({code}, ou des tranches {n, gen}) : elle se lit toujours, et le
    déménagement (commun/demenagement.js) la fait passer dans le coffre.
-   Lecture : /fichiers/<clé>, derrière le mot de passe du site.
+   Lecture : /fichiers/<clé>, réservée au compte d'Emmanuel (jeton de
+   connexion joint à la demande).
    Écriture : /api/fichiers donne une adresse signée, valable quelques
    minutes, et le navigateur envoie lui-même le fichier au coffre.
    Le serveur : netlify/edge-functions/fichiers.js.
@@ -46,8 +47,11 @@ async function lvR2Envoie(cle,corps,type,progres){
     x.send(blob);
   });
 }
+/* les fichiers du coffre ne se lisent qu'avec le jeton de connexion du
+   compte d'Emmanuel (netlify/edge-functions/fichiers.js) */
 async function lvR2Texte(cle){
-  const r=await fetch(lvR2Adresse(cle),{credentials:'same-origin'});
+  const u=window.firebase&&firebase.auth&&firebase.auth().currentUser;
+  const r=await fetch(lvR2Adresse(cle),{credentials:'same-origin',headers:u?{authorization:'Bearer '+await u.getIdToken()}:{}});
   if(!r.ok)throw new Error('Fichier introuvable dans le coffre ('+r.status+').');
   return r.text();
 }

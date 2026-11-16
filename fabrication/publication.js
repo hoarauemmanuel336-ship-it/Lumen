@@ -69,6 +69,7 @@ async function allegeHTML(html) {
   return morceaux.map(p => p.v).join('');
 }
 
+const PAGES_FIXES = ['confidentialite.html'];
 function controlePage(nom, html, attendu, defauts) {
   /* chaque script de la page doit se compiler */
   let m, n = 0;
@@ -79,7 +80,9 @@ function controlePage(nom, html, attendu, defauts) {
     try { new vm.Script(m[2], { filename: nom + ' (script ' + n + ')' }); }
     catch (e) { defauts.push(nom + ' : script ' + n + ' illisible (' + e.message + ')'); }
   }
-  if (html.indexOf('id="lumen-commun"') < 0) defauts.push(nom + ' : feuille commune absente');
+  /* les pages fixes (la confidentialité) portent leur propre petite
+     apparence, sans la feuille commune ni la barre du site */
+  if (html.indexOf('id="lumen-commun"') < 0 && !PAGES_FIXES.includes(nom)) defauts.push(nom + ' : feuille commune absente');
   for (const fam of (attendu[nom] || [])) {
     if (html.indexOf('data-commun="' + fam + '"') < 0) defauts.push(nom + ' : fonctions communes « ' + fam + ' » absentes');
   }

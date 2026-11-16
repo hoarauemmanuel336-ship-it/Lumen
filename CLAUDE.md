@@ -4,7 +4,7 @@ Ce fichier présente le projet à toute IA qui ouvre ce dépôt. Il se lit en en
 
 ## Le projet
 
-Lumen est le site personnel d'Emmanuel, en ligne sur **lumenveritatis.net**. C'est un espace **privé** : une porte à mot de passe garde toutes les pages, et la base de données donne tout à son compte Google et, à tout autre compte, son seul propre espace (ses notes, son Mémoriser, ses questions à l'IA…). Le site ne s'adresse à aucun public et ne le fera pas : rien ne se publie, rien ne se partage, rien ne s'optimise pour les moteurs de recherche.
+Lumen est le site personnel d'Emmanuel, en ligne sur **lumenveritatis.net**. Le site **s'ouvre au public** : tant qu'Emmanuel n'a pas retiré lui-même la porte à mot de passe, elle garde encore toutes les pages. La base de données donne tout à son compte Google et, à tout autre compte, son seul propre espace (ses notes, son Mémoriser, ses questions à l'IA…). Chacun peut supprimer son compte et tout ce qu'il contient (« Mon compte »), et une page dit, en langage simple, ce que le site garde de chacun (confidentialité et mentions légales) : toute modification qui change ce que le site garde d'un compte met à jour cette page et la suppression du compte dans le même mouvement. Le référencement dans les moteurs de recherche viendra plus tard, quand Emmanuel le demandera.
 
 Emmanuel ne code pas. Il confie à l'IA tout le développement : elle lit, modifie, teste et dépose elle-même sur ce dépôt. Elle lui parle en langage courant, en français, sans noms de fonctions, de fichiers techniques ni extraits de code, sauf s'il en demande.
 
@@ -22,17 +22,17 @@ Les cinq pages du site :
 |---|---|
 | `pages/` | Les pages, une par fichier HTML, chacune avec son propre script (l'accueil, Étude et Articles sont assemblées par la fabrication autour de `accueil.js`, `etude.js` et `articles.js`). |
 | `habillage/` | L'apparence : `lumen-commun.css` (le socle), `commun.css` (ce qui vaut pour toutes les pages, fenêtres et menus compris), puis une feuille par page. |
-| `commun/` | Le fonctionnement partagé entre plusieurs pages (choix d'un verset, versets cités, question à l'IA et ses outils, lecture du coffre R2, cadre isolé où s'ouvrent les cours d'Étude et les articles). La fabrication pose dans chaque page les familles dont elle a besoin. |
+| `commun/` | Le fonctionnement partagé entre plusieurs pages (choix d'un verset, versets cités, question à l'IA et ses outils, lecture du coffre R2, cadre isolé où s'ouvrent les cours d'Étude et les articles, suppression du compte). La fabrication pose dans chaque page les familles dont elle a besoin. |
 | `articles/` | Le catalogue des articles (`articles.json`) : catégories, sections, et pour chaque article son fichier, sa question, le début de sa réponse et sa place. Les fichiers eux-mêmes vivent dans le coffre R2 et se servent à `/articles/`. |
 | `contenu/` | Les deux Bibles (`bible.json` pour la Chérubin, `bible-seraphin.json` pour la Séraphin), la bibliothèque de départ de Mémoriser, les réglages d'apparence. |
 | `parcours/` | Le parcours d'étude « La foi catholique » (fichier de la skill parcours-etude, laissé intact), `cours.json`, qui relie chaque sujet à son cours, et `cours-sommaire.json`, qui décrit les fichiers de cours (un par thème, skill cours-html). Les fichiers de cours eux-mêmes vivent dans le coffre R2 et se servent à `/parcours/cours/` ; la fabrication vérifie chaque lien contre le sommaire et pose dans l'en-tête de chaque thème relié le bouton « Ouvrir le cours ». |
-| `racine/` | Les fichiers servis tels quels à la racine du site : panneau de la Bible ouvert depuis les autres pages, service workers (hors ligne), manifestes, icônes, polices. |
+| `racine/` | Les fichiers servis tels quels à la racine du site : panneau de la Bible ouvert depuis les autres pages, service workers (hors ligne), manifestes, icônes, polices, et la page de confidentialité et des mentions légales (`confidentialite.html`, page fixe). |
 | `fabrication/` | Ce qui construit le site : `build-bi.js` assemble les pages, `publication.js` allège et contrôle le résultat. |
 | `netlify/edge-functions/` | Le serveur : `porte.js` (le mot de passe du site), `ia.js` (le passage vers l'API Claude pour la conversation), `fichiers.js` (le passage vers le coffre R2), `meditation.js` (la méditation du jour servie à l'accueil) et `liturgie.js` (les lectures du jour). Les outils qu'ils partagent sont dans `netlify/serveur/`. |
 | `netlify/functions/` | La fabrication de la méditation du jour : une horloge, chaque heure, et la fonction de fond qui la fait écrire et relire par Claude, puis lire par ElevenLabs. |
 | `.github/` | Le robot du coffre R2 (`workflows/coffre.yml` et ses scripts dans `coffre/`). |
 | `ia/` | Les règles d'écriture de l'IA du site : les instructions personnalisées d'Emmanuel (`ia/instructions.md`), les mêmes pour tous, et la copie de sa skill humaniser (`ia/humaniser.md`), pour la méditation du jour. |
-| `documentation/` | Les fiches de référence : données, IA, règles de sécurité de la base. |
+| `documentation/` | Les fiches de référence : données, IA, règles de sécurité de la base, frais des services et réglages qui les plafonnent (`frais.md`). |
 
 Le dossier `site/` est le site fabriqué. Il ne vit pas dans le dépôt : Netlify le refait à chaque dépôt.
 
@@ -82,7 +82,7 @@ Pour les modèles de langage (LLM), le site n'utilise qu'Anthropic, par l'API Cl
 
 ## Le coffre R2
 
-Le coffre R2 de Cloudflare (bucket `lumen-ressources`, sans accès public) garde les fichiers lourds du site : les cours d'Étude (`cours/`), les articles (`articles/`) et la méditation du jour (`meditations/`, écrite par le site lui-même). Les anciennes pages et ressources y restent aussi, sans page pour les afficher : l'IA du site peut encore les lire. Après avoir fait ou refait des cours, l'IA met leur sommaire à jour (`node fabrication/cours-sommaire.js` suivi des fichiers) et les envoie par le robot avec l'espèce « cours ». Pour un article, elle l'inscrit au catalogue (`articles/articles.json`, dans le dépôt) et l'envoie par le robot avec l'espèce « article ». L'IA ne joint pas Cloudflare depuis son espace de travail : pour **déposer**, elle pousse une branche `envoi/…` ; pour **reprendre** un fichier afin de le modifier, une branche `demande/…`. Le robot GitHub fait le reste. Ces branches ne sont pas des dépôts du site : elles ne touchent pas `main`, mais un envoi change ce que voient les lecteurs, si bien qu'il passe, comme un dépôt, par l'accord d'Emmanuel. Le mode d'emploi est dans `documentation/donnees.md`.
+Le coffre R2 de Cloudflare (bucket `lumen-ressources`, sans accès public) garde les fichiers lourds du site : les cours d'Étude (`cours/`), les articles (`articles/`) et la méditation du jour (`meditations/`, écrite par le site lui-même). Les anciennes pages et ressources y restent aussi, sans page pour les afficher : l'IA du site peut encore les lire, et seul le compte d'Emmanuel peut les télécharger. Après avoir fait ou refait des cours, l'IA met leur sommaire à jour (`node fabrication/cours-sommaire.js` suivi des fichiers) et les envoie par le robot avec l'espèce « cours ». Pour un article, elle l'inscrit au catalogue (`articles/articles.json`, dans le dépôt) et l'envoie par le robot avec l'espèce « article ». L'IA ne joint pas Cloudflare depuis son espace de travail : pour **déposer**, elle pousse une branche `envoi/…` ; pour **reprendre** un fichier afin de le modifier, une branche `demande/…`. Le robot GitHub fait le reste. Ces branches ne sont pas des dépôts du site : elles ne touchent pas `main`, mais un envoi change ce que voient les lecteurs, si bien qu'il passe, comme un dépôt, par l'accord d'Emmanuel. Le mode d'emploi est dans `documentation/donnees.md`.
 
 ## Les secrets
 

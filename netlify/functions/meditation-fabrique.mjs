@@ -323,6 +323,8 @@ function tempsDesMots(texteLu, texteAffiche, alignement, duree) {
 async function fabrique(jour, etat) {
   const reglages = (await litJson('reglages.json')) || {};
   if (reglages.pause) throw new Arret('pause');
+  /* le jour d'une reprise après pause, seul le lendemain se prépare */
+  if (reglages.reprise === jour) throw new Arret('reprise');
   let m = await litJson(jour + '.json');
   if (m && m.audio) return;
   if (!env('ELEVENLABS_API_KEY')) throw new Arret('cle-eleven');

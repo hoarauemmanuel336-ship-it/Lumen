@@ -1428,3 +1428,23 @@ html body .qa-r h4,html body .qa-r h5{font-size:calc(15.5px*var(--lvz,1))}
 html body .qa-r table{font-size:calc(14.5px*var(--lvz,1))}
 html body .qa-cite-txt{font-size:calc(14.5px*var(--lvz,1))}
 html body .qa-pensee{font-size:calc(14px*var(--lvz,1))}
+
+/* ═══════════════════════════════════════
+   SUPPRIMER SON COMPTE (toutes les pages)
+   « Supprimer mon compte » se tient sous « Déconnexion », plus effacé
+   qu'elle : on ne le touche pas par mégarde. Le lien de la confidentialité
+   vient dessous, et sous « Créer un compte ». La fenêtre reprend le panneau
+   commun ; elle passe au-dessus de « Mon compte », d'où on l'ouvre. */
+html:root body:not(#_):not(#_):not(#_) .lv-suppr-lien{display:block;margin-top:10px;font-family:var(--h-ui);font-size:13px;color:var(--h-t4);background:none;border:0;padding:0;cursor:pointer;text-align:center;width:100%}
+html:root body:not(#_):not(#_):not(#_) .lv-suppr-lien:is(:hover,:focus-visible){color:var(--h-t2);outline:none}
+html:root body:not(#_):not(#_):not(#_) .lv-suppr-lien[hidden]{display:none}
+html:root body:not(#_):not(#_):not(#_) .overlay.lv-suppr{position:fixed;inset:0;z-index:5000;display:none;align-items:center;justify-content:center}
+html:root body:not(#_):not(#_):not(#_) .overlay.lv-suppr.on{display:flex}
+html:root body:not(#_):not(#_):not(#_) .overlay.lv-suppr .lv-suppr-x{position:absolute;top:18px;right:14px}
+html:root body:not(#_):not(#_):not(#_) .overlay.lv-suppr .lv-suppr-mdp{width:100%;margin-top:4px}
+html:root body:not(#_):not(#_):not(#_) .overlay.lv-suppr .lv-suppr-msg{min-height:1.2em;margin:10px 0 0;font-family:var(--h-ui);font-size:14px;color:var(--h-t2)}
+html:root body:not(#_):not(#_):not(#_) .overlay.lv-suppr.attente .modal-btns{opacity:.45;pointer-events:none}
+html:root body:not(#_):not(#_):not(#_) .lv-confid{display:block;margin-top:14px;font-family:var(--h-ui);font-size:12.5px;color:var(--h-t4);text-align:center;text-decoration:none}
+html:root body:not(#_):not(#_):not(#_) .lv-confid:is(:hover,:focus-visible){color:var(--h-t2);outline:none}
+html:root body:not(#_):not(#_):not(#_) .overlay.lv-suppr .modal-btns>button{font-family:var(--h-ui);font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;color:#0a0a0a;min-height:44px;padding:11px 22px;border:0;cursor:pointer}
+html:root body:not(#_):not(#_):not(#_) .overlay.lv-suppr .modal-titre{padding-right:30px}

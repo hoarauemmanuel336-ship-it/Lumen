@@ -42,10 +42,13 @@ async function reglages(req) {
   const c = await req.json().catch(() => ({}));
   const r = (await litJson('reglages.json')) || {};
   if (c && c.action === 'pause') {
+    /* remise en route après une pause : la méditation du jour n'est pas
+       rattrapée, la suivante paraît à minuit (meditation-horloge.mjs) */
+    if (r.pause && !c.pause) r.reprise = jourDe();
     r.pause = !!c.pause;
     await ecritJson('reglages.json', r);
   }
-  return json({ proprio: true, pause: !!r.pause, etat: (await litJson('etat.json')) || null, aujourdhui: jourDe() });
+  return json({ proprio: true, pause: !!r.pause, reprise: r.reprise === jourDe(), etat: (await litJson('etat.json')) || null, aujourdhui: jourDe() });
 }
 
 async function voix(req, jour, url) {
@@ -88,7 +91,7 @@ export default async (req) => {
       const liste = ((journal && journal.meditations) || []).filter(m => garde(m.date)).sort((a, b) => b.date.localeCompare(a.date))
         .map(m => ({ date: m.date, titre: m.titre, sujet: m.sujet, duree: m.duree || 0 }));
       const derniere = liste.length ? await litJson(liste[0].date + '.json') : null;
-      return json({ aujourdhui, liste, derniere: derniere && derniere.audio ? publique(derniere) : null, pause: !!(r && r.pause) });
+      return json({ aujourdhui, liste, derniere: derniere && derniere.audio ? publique(derniere) : null, pause: !!(r && r.pause), reprise: !!(r && r.reprise === aujourdhui) });
     }
     const mp3 = suite.match(/^(\d{4}-\d{2}-\d{2})\.mp3$/);
     if (mp3) return garde(mp3[1]) ? await voix(req, mp3[1], url) : new Response('Introuvable.', { status: 404 });

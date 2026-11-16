@@ -66,7 +66,7 @@ Le coffre est le bucket `lumen-ressources` de Cloudflare R2, sans accès public.
 | `meditations/…` | La méditation du jour : `{AAAA-MM-JJ}.json` (titre, sujet, résumé, texte affiché, texte préparé pour la voix, voix faite ou non, durée, moment où la voix dit chaque mot affiché), `{AAAA-MM-JJ}.mp3` (sa voix), `journal.json` (les méditations parues avec leur résumé, que l'IA lit pour ne pas se répéter, et la durée de chacune), `etat.json` (où en est la fabrique : faite, en pause, crédits épuisés, panne, avec les crédits ElevenLabs), `reglages.json` (la pause) et `essais/{AAAA-MM-JJ}.json` (les pannes du jour, trois pour le texte et trois pour la voix au plus). Écrite par les fonctions de `netlify/functions/`, servie à l'accueil par `/api/meditation` (`netlify/edge-functions/meditation.js`), derrière la porte, pour les trente derniers jours et seulement avec sa voix ; l'état et la pause ne répondent qu'au compte d'Emmanuel. Au-delà de trente jours, l'horloge efface la méditation, sa voix et ses essais ; `journal.json` oublie chaque méditation un an après sa parution. |
 | `res_code/…`, `art_code/…`, `res_avant/…`, `art_avant/…`, `res_medias/…`, `art_medias/…`, `arrivees/…`, `a-ranger/…`, `index/…` | Les anciennes pages, copies et fichiers joints des ressources et des articles de la page d'avant, sans page pour les afficher. L'IA du site lit encore leurs pages. |
 
-Le navigateur lit le coffre par `/fichiers/{clé}`, `/parcours/cours/{fichier}` et `/articles/{fichier}` : c'est `netlify/edge-functions/fichiers.js`, qui vérifie la porte à mot de passe. `/api/fichiers` (adresse d'envoi signée, copie, effacement, liste, écriture d'une petite liste) ne répond qu'au compte d'Emmanuel.
+Le navigateur lit le coffre par `/fichiers/{clé}`, `/parcours/cours/{fichier}` et `/articles/{fichier}` : c'est `netlify/edge-functions/fichiers.js`. `/fichiers/` ne répond qu'au compte d'Emmanuel, d'après le jeton de connexion joint à la demande (ce sont ses anciennes ressources, qui ne deviendront pas publiques) ; les cours et les articles vérifient la porte à mot de passe tant qu'elle existe. `/api/fichiers` (adresse d'envoi signée, copie, effacement, liste, écriture d'une petite liste) ne répond qu'au compte d'Emmanuel.
 
 ### Le robot du coffre
 
@@ -75,6 +75,18 @@ L'espace de travail de Claude ne joint pas Cloudflare : il passe par GitHub, et 
 - **Envoyer des cours d'Étude.** Claude pousse une branche `envoi/{nom}` qui porte un dossier `envoi/` : les fichiers et `envoi/envoi.json`, de la forme `{"entrees": [{"fichier": "…", "espece": "cours"}]}`. La branche porte aussi `parcours/cours-sommaire.json` à jour (refait par `node fabrication/cours-sommaire.js` et les fichiers) : le robot vérifie chaque fichier contre lui (même empreinte, mêmes cours), refuse tout le lot au moindre écart, sinon met les fichiers, compressés, droit dans `cours/`, puis supprime la branche. Le sommaire entre ensuite dans `main` avec le dépôt.
 - **Envoyer des articles.** Même branche `envoi/…`, avec `"espece": "article"` pour chaque fichier. La branche porte le catalogue à jour (`articles/articles.json`), où chaque fichier envoyé est inscrit : le robot refuse tout le lot si l'un ne l'est pas, sinon range les fichiers, compressés, dans `articles/`. Le catalogue entre ensuite dans `main` avec le dépôt, et l'article paraît sur le site.
 - **Reprendre pour modifier.** Claude pousse une branche `demande/{nom}` qui porte `demande/demande.json`, de la forme `{"espece": "cours", "titres": ["…"]}` ou `{"espece": "article", "titres": ["…"]}` : un titre nomme un fichier, un cours qu'il contient, ou la question d'un article. Le robot dépose sur la même branche, dans `recu/`, chaque fichier trouvé, décompressé, et `recu/fiches.json` (fichiers trouvés, introuvables). Claude modifie le fichier, le renvoie par une branche `envoi/…`, puis supprime la branche de demande.
+
+## Supprimer un compte
+
+Dans « Mon compte », sous « Déconnexion », « Supprimer mon compte » (`commun/compte.js`) efface pour de bon, après que la personne a confirmé son identité (son mot de passe, ou Google) :
+
+- tout `users/{son identifiant}/`, collection par collection (`bibleNotes`, `categories`, `meta`, `etude_lecture`, `questions` avec `msgs` et `tranches`, `qa_pieces`, `ia_textes`, et les anciennes `art_pages`, `ressources`, `articles`, `res_code`, `art_code`, `commentaires`, `medias`) ; la base est vidée deux fois, à une seconde et demie d'écart, car une page ouverte qui écoute la base pourrait y renvoyer ce qu'elle gardait ;
+- ce que l'appareil gardait pour ce compte (Étude, Bible) ;
+- le compte lui-même, chez Firebase.
+
+Quand une nouvelle collection apparaît sous `users/{uid}/`, elle s'ajoute à la liste du fichier, et à la page de confidentialité si elle garde une donnée d'une autre sorte. Le compte d'Emmanuel ne voit pas ce lien : le serveur le reconnaît.
+
+La page de confidentialité et des mentions légales (`racine/confidentialite.html`) dit, en langage simple, ce que le site garde et comment l'effacer ; un lien y mène sous « Créer un compte » et dans « Mon compte ».
 
 ## Les corbeilles
 

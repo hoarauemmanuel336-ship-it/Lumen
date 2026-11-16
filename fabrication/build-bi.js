@@ -63,12 +63,15 @@ const polices = h => h.replace(/<link[^>]*fonts\.(?:googleapis|gstatic)\.com[^>]
    les pages : l'icône de la barre du haut l'ouvre partout. Elle lit les
    pages de la bibliothèque dans le coffre R2, d'où « stockage » avec elle. */
 const CONVERSATION = ['stockage', 'versets', 'ia-outils', 'question'];
+/* La suppression du compte (commun/compte.js) se pose sur chaque page,
+   sous « Déconnexion » de « Mon compte ». */
+const COMPTE = ['compte'];
 const COMMUN_JS_PAGES = {
-  'articles.html': [...CONVERSATION, 'cadre'],
-  'etude.html': [...CONVERSATION, 'cadre'],
-  'bible.html': CONVERSATION,
-  'memoriser.html': ['choix-verset', ...CONVERSATION],
-  'index.html': CONVERSATION,
+  'articles.html': [...CONVERSATION, ...COMPTE, 'cadre'],
+  'etude.html': [...CONVERSATION, ...COMPTE, 'cadre'],
+  'bible.html': [...CONVERSATION, ...COMPTE],
+  'memoriser.html': ['choix-verset', ...CONVERSATION, ...COMPTE],
+  'index.html': [...CONVERSATION, ...COMPTE],
 };
 function communJS(page) {
   return (COMMUN_JS_PAGES[page] || []).map(nom => {
@@ -945,7 +948,9 @@ if (fs.existsSync(RACINE + 'bible-panneau.js')) {
   fs.copyFileSync(RACINE + 'bible-panneau.js', `${OUT}/bible-panneau.js`);
   console.log('Copié : bible-panneau.js');
 }
-for (const f of ['memoriser-manifest.webmanifest', 'manifest.webmanifest']) {
+/* la page de confidentialité et des mentions légales, page fixe sans
+   barre ni script : un lien y mène depuis « Mon compte » (commun/compte.js) */
+for (const f of ['memoriser-manifest.webmanifest', 'manifest.webmanifest', 'confidentialite.html']) {
   if (fs.existsSync(RACINE + f)) fs.copyFileSync(RACINE + f, `${OUT}/${f}`);
 }
 /* le service worker reçoit sa version du build : empreinte de la page, du

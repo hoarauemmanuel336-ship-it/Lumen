@@ -1,9 +1,8 @@
 /* ============================================================
    LUMEN — le passage vers le coffre R2
-   Deux portes :
-   · /fichiers/<clé> sert un fichier du coffre (page, image, PDF…),
-     derrière le mot de passe du site, avec les requêtes partielles :
-     un audio ou une vidéo se lit et s'avance sans tout charger.
+   · /fichiers/<clé> sert un fichier du coffre (page, image, PDF…) au
+     seul compte d'Emmanuel, avec les requêtes partielles : un audio ou
+     une vidéo se lit et s'avance sans tout charger.
    · /api/fichiers reçoit les demandes de la page (adresse signée pour
      envoyer un fichier, effacer, copier, lister, état du coffre),
      seulement du compte d'Emmanuel, vérifié auprès de Google comme
@@ -214,6 +213,12 @@ export default async (req, context) => {
     return sertCours(req, cle, () => new Response('Introuvable.', { status: 404 }), 'articles/');
   }
   try { cle = decodeURIComponent(url.pathname.slice('/fichiers/'.length)); } catch (_) { return new Response('Introuvable.', { status: 404 }); }
+  /* les anciens fichiers du coffre (pages, copies et médias des anciennes
+     ressources et des anciens articles) sont à Emmanuel seul : la page les
+     demande avec son jeton de connexion, que Google vérifie. Le mot de
+     passe du site ne suffit pas : il disparaîtra à l'ouverture au public. */
+  const u = await quiEst((req.headers.get('authorization') || '').replace(/^Bearer\s+/i, ''));
+  if (!u || u.email !== PROPRIETAIRE || !u.verifie) return new Response('Accès réservé.', { status: 403, headers: { 'cache-control': 'no-store' } });
   return sert(req, cle);
 };
 

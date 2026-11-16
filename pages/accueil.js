@@ -423,8 +423,10 @@
       MED.liste = d.liste || [];
       MED.aujourdhui = d.aujourdhui || cle(new Date());
       MED.pause = !!d.pause;
+      MED.reprise = !!d.reprise;
       if (d.derniere && d.derniere.date === MED.aujourdhui) { montreMed(d.derniere); return; }
       var h = '<p class="lit-doux">' + (MED.pause ? 'Les méditations sont en pause.'
+        : MED.reprise ? 'Les méditations reprennent : la prochaine paraîtra à minuit.'
         : MED.liste.length ? 'La méditation du jour n’a pas encore paru.' : 'La première méditation paraîtra à minuit.') + '</p>';
       MED.jour = '';
       z.innerHTML = h;
@@ -474,7 +476,7 @@
     var dateRen = c && c.renouvellement ? fmtJour.format(dateDe(c.renouvellement)) : '';
     var demain = e.jour && e.jour > auj ? 'Méditation de demain' + NB + ': ' : '';
     if (d.pause) t = 'Vous les remettez en route dans «' + NB + 'Mon compte' + NB + '», à la ligne «' + NB + 'Méditation du jour' + NB + '».';
-    else if (e.jour && e.jour >= auj && e.raison && e.raison !== 'ok') {
+    else if (e.jour && e.jour >= auj && e.raison && e.raison !== 'ok' && e.raison !== 'reprise') {
       if (e.raison === 'credits-eleven') t = 'Crédits ElevenLabs épuisés' + (c ? NB + ': il en reste ' + fmtNb.format(c.reste) : '') + '. La méditation paraîtra dans l’heure qui suit l’ajout de crédits' + (dateRen ? ', ou au renouvellement du ' + dateRen : '') + '.';
       else if (e.raison === 'credits-claude') t = 'Crédits de l’API Claude épuisés. La méditation paraîtra dans l’heure qui suit leur recharge, sur platform.claude.com.';
       else if (e.raison === 'cle-eleven') t = e.detail ? 'ElevenLabs refuse la clé réglée dans Netlify.' : 'La clé ElevenLabs n’est pas encore réglée dans Netlify (variable ELEVENLABS_API_KEY).';
@@ -492,7 +494,7 @@
   window.addEventListener('lv-med-proprio', function (ev) {
     var d = ev.detail;
     /* la pause vient d'être changée : la phrase que voient tous suit */
-    if (d && d.proprio && !!d.pause !== !!MED.pause && !(Z.querySelector('.med-audio') && !Z.querySelector('.med-audio').paused)) { meditation(); return; }
+    if (d && d.proprio && (!!d.pause !== !!MED.pause || !!d.reprise !== !!MED.reprise) && !(Z.querySelector('.med-audio') && !Z.querySelector('.med-audio').paused)) { meditation(); return; }
     proprio();
   });
 

@@ -10,6 +10,10 @@
    planifiée n'a que trente secondes, la fonction de fond en a quinze
    minutes. Passer chaque heure rattrape aussi un jour où un service
    n'aurait pas répondu, ou où les crédits viennent d'être rechargés.
+   Le jour où Emmanuel remet les méditations en route après une pause, la
+   méditation de ce jour-là n'est pas rattrapée : la reprise commence
+   avec celle du lendemain, pour qu'elle reste un jour entier sur
+   l'accueil (« quand je réactive c'est toujours pour le jour suivant »).
    À chaque passage, elle efface aussi du coffre les méditations de plus
    de trente jours, leur voix comprise : elles ne se réécoutent qu'un
    mois. Le journal, qui ne garde que leur titre et leur résumé pour que
@@ -46,7 +50,7 @@ export default async (req, context) => {
     const reglages = (await litJson('reglages.json')) || {};
     if (reglages.pause) return;
     const m = await litJson(jour + '.json');
-    if (m && m.audio) {
+    if ((m && m.audio) || reglages.reprise === jour) {
       if (heureDe() < HEURE_PREPARATION) return;
       jour = lendemain(jour);
       const demain = await litJson(jour + '.json');
