@@ -1,12 +1,11 @@
 # Le robot du coffre R2. Claude ne peut pas joindre Cloudflare depuis son
 # espace de travail : il passe par GitHub, et ce robot fait le lien.
 # · Une branche « envoi/… » porte un dossier envoi/ (envoi.json et les
-#   fichiers) : le robot envoie les fichiers dans le coffre, laisse une
-#   liste « à ranger » que la page Ressources (ou Articles) transforme en
-#   fiches, puis supprime la branche. Les cours d'Étude vont droit dans
-#   cours/, une fois vérifiés contre parcours/cours-sommaire.json.
+#   fichiers) : le robot range les cours d'Étude dans cours/ et les articles
+#   dans articles/, une fois vérifiés contre le sommaire des cours et le
+#   catalogue des articles que porte la branche, puis supprime la branche.
 # · Une branche « demande/… » porte demande/demande.json : le robot cherche
-#   les pages demandées dans le coffre et les dépose dans recu/, sur la
+#   les fichiers demandés dans le coffre et les dépose dans recu/, sur la
 #   même branche, pour que Claude les lise et les modifie.
 # Le mode d'emploi est dans documentation/donnees.md.
 name: Coffre R2

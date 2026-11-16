@@ -1,8 +1,7 @@
 /* ════════════════════════════════════════════════════════════════════
    LUMEN — HABILLAGE DE LA PAGE ÉTUDE
    ════════════════════════════════════════════════════════════════════
-   Le parcours prend l'écran entier, sans barre, exactement comme une
-   ressource ouverte dans Ressources : mêmes noms de classes, mêmes règles
+   Le parcours prend l'écran entier, sans barre, comme un article ouvert
    (le bouton crème lui-même vient de commun.css). Le bandeau du retour, de
    la Bible et de l'IA flotte en bas à gauche, replié derrière trois points
    (commun.css) ; le panneau de la Bible passe

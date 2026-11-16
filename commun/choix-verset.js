@@ -1,6 +1,6 @@
 /* ════════════════════════════════════════════════════════════════════
    LUMEN · FONCTIONNEMENT COMMUN : CHOIX-VERSET
-   Pages : Commentaires, Mémoriser.
+   Pages : Mémoriser.
    Le choix d'un verset dans la Bible : chargement du texte, marquage des mots, sélection au doigt.
    La fabrication pose ce fichier dans chaque page concernée, avant le script
    de la page : une correction faite ici vaut pour toutes.

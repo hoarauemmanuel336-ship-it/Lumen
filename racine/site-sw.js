@@ -23,7 +23,7 @@
 'use strict';
 var SITE = 'lv-site-__SITE_V__';
 var BIBLE = 'lv-bible-__BIBLE_V__';
-var PAGES = ['/', '/index.html', '/bible.html', '/articles.html', '/ressources.html', '/commentaires.html', '/etude.html'];
+var PAGES = ['/', '/index.html', '/bible.html', '/articles.html', '/etude.html'];
 
 self.addEventListener('install', function (e) { e.waitUntil(self.skipWaiting()); });
 

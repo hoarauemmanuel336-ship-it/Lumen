@@ -20,7 +20,7 @@
      l'accent quand l'information compte.
    ════════════════════════════════════════════════════════════════════ */
 
-/* ── EN-TÊTE DE PAGE (Articles, Ressources, Commentaires) ── */
+/* ── EN-TÊTE DE PAGE (Articles) ── */
 .tete h1{font-size:19px;letter-spacing:.2em;color:#fff}
 @media(max-width:600px){.tete h1{font-size:16px;letter-spacing:.14em}}
 
@@ -56,8 +56,8 @@
 .art-menu,.ct-menu,.rub-menu,.ry-menu{color:var(--or);opacity:1;font-size:18px}
 
 /* ── CE QUI INFORME ──
-   L'état d'un commentaire (Brouillon, Dans la Bible), le nombre et le
-   chevron des rubriques : à l'accent, comme les cartes des ressources. */
+   L'état d'une fiche, le nombre et le chevron des rubriques : à
+   l'accent. */
 .art-pied .art-etat,.art-pied .art-etat.publie{color:var(--or);text-shadow:0 0 10px color-mix(in srgb,var(--or) 40%,transparent)}
 .rub-n,.rub-chev,.rayon .ry-n,.rayon .ry-chev{color:var(--or)}
 

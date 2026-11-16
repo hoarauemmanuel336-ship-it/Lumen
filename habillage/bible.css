@@ -155,39 +155,11 @@ html body .ch-texte sup.vn{
 }
 html body .ch-texte sup.vsub{font-family:var(--h-ui);font-size:9.5px;font-weight:600;color:var(--h-or)}
 /* en vers, le numéro pend dans la marge, même quand le verset porte une
-   note ou un commentaire (la marque le remettrait sinon dans le flux et
-   décalerait la première ligne). Il se cale à droite de la marge, à un
-   souffle du premier mot : « § 12 » et « 3 » finissent au même endroit. */
+   note (la marque le remettrait sinon dans le flux et décalerait la
+   première ligne). Il se cale à droite de la marge, à un souffle du
+   premier mot. */
 html body .ch-texte .vst.po sup.vn{position:absolute;left:auto;right:calc(100% + 8px);top:.62em;white-space:nowrap}
 html body .ch-texte sup.vn.a-note .vnn{padding-bottom:2px}
-html body .ch-texte sup.vn .cm{font-family:var(--h-ui);font-size:14px;color:var(--h-or)}
-
-/* LE COMMENTAIRE, SOUS LE VERSET : une carte, un trait de lumière à gauche */
-html body .com-pan{
-  position:relative;margin:1em 0 1.3em;padding:18px 22px 16px 26px;
-  background:var(--h-s1);border:1px solid var(--h-l2);border-radius:0;
-  box-shadow:0 26px 60px -36px color-mix(in srgb,var(--h-or) 45%,transparent);
-  animation:hMonte .35s var(--h-doux) both;
-}
-html body .com-pan::before{content:'';position:absolute;left:0;top:18px;bottom:18px;width:2px;border-radius:0;background:var(--h-or)}
-html body .com-titre{font-family:var(--h-titre);font-weight:500;color:#fff}
-html body .cb-h2{font-family:var(--h-titre);font-weight:500;color:#fff}
-html body .cb-h3{font-family:var(--h-ui);font-size:calc(11.5px*var(--lvz,1));font-weight:600;letter-spacing:.14em;color:var(--h-or)}
-html body .cb-cite{box-shadow:inset 2px 0 0 var(--h-l3)}
-html body .cb-image img{border-radius:0}
-html body .cb-html iframe{border-color:var(--h-l2);border-radius:0}
-html body .com-un+.com-un{border-top-color:var(--h-l1)}
-html body .com-vide{font-family:var(--h-ui);font-style:normal;font-size:13.5px;color:var(--h-t3)}
-html body .com-pied{margin-top:14px}
-html body .com-fermer svg{display:block}
-/* le commentaire se referme par une croix (Emmanuel : la petite croix
-   plutôt que « Fermer ») */
-html body .com-fermer{
-  display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:36px;padding:0 13px;border-radius:0;
-  font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.01em;text-transform:none;
-  background:var(--h-or);color:#000;transition:background .25s,box-shadow .3s;
-}
-html body .com-fermer:hover{background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
 
 /* NAVIGATION ENTRE CHAPITRES : le précédent et le suivant sans cadre, le
    retour à la grille au milieu */
@@ -224,7 +196,6 @@ html body .ch-nav .vide{visibility:hidden}
   html body .ch-tete{padding:0 50px}
   html body h2.ch-titre{font-size:38px}
   html body .ch-sep{margin:28px auto 32px}
-  html body .com-pan{padding:15px 16px 14px 20px}
   html body .ch-nav{gap:8px;margin-top:56px}
   html body .ch-nav a{padding:14px 0;font-size:13.5px}
   html body .ch-nav a:nth-child(2){padding:10px 8px}
@@ -851,7 +822,7 @@ html body .nb2-cat .nb-cat-lab{font-family:var(--h-ui);font-size:12.5px;color:va
 html body .nb2-cat .note-sel select{min-height:32px;padding:4px 26px 4px 10px;border:1px solid var(--h-l2);background-color:#000;font-family:var(--h-ui);font-size:13px;color:#fff}
 html body .nb2 .nb-refs{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin:0}
 html body .nb2-ref{font-family:var(--h-titre);font-size:30px;font-weight:500;line-height:1.15;color:#fff}
-html body .nb2-ref.nb2-sans{color:var(--h-t3);font-style:italic}
+html body .nb2 .nb-refs:empty{display:none}
 html body .nb2-sep{font-family:var(--h-titre);font-size:24px;color:var(--h-t4)}
 html body .nb2-verset{
   margin:14px 0 0;padding:2px 0 2px 16px;border-left:1px solid var(--h-or);
@@ -910,7 +881,7 @@ html body #menu-flot.mf-signet .mf-act{border-radius:13px}
 html body #menu-flot.mf-signet::before{background:var(--h-s2);transition:background .25s}
 html body #menu-flot.mf-signet:has(.mf-act:hover)::before{background:var(--h-s4)}
 
-/* LA LECTURE EN LITERATA : le texte de la Bible et ses commentaires.
+/* LA LECTURE EN LITERATA : le texte de la Bible.
    Numéros de versets et sous-titres de section restent en Garamond, la
    police de l'interface. */
 html body .ch-texte{font-family:var(--h-texte)}

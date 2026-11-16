@@ -1,13 +1,11 @@
 /* ════════════════════════════════════════════════════════════════════
-   LE CADRE ISOLÉ, PARTAGÉ PAR RESSOURCES ET ÉTUDE
-   Une page (ressource, parcours, cours) tourne dans un cadre isolé :
+   LE CADRE ISOLÉ D'ÉTUDE ET D'ARTICLES
+   Une page (parcours, cours, article) tourne dans un cadre isolé :
    sandbox sans allow-same-origin, donc elle ne peut lire ni les comptes,
    ni les données, ni le reste de la page. Elle parle à la page par
    messages, et la page les écoute. pageCadre(code) écrit le document du
    cadre : le contenu, plus ce qui fait la lecture du site (ascenseur,
-   éléments collants, place de lecture, liens internes, copies). Étude
-   s'en sert pour que le parcours et ses cours se lisent « tout pareil »
-   que dans Ressources.
+   éléments collants, place de lecture, liens internes, copies).
    ════════════════════════════════════════════════════════════════════ */
 function pageCadre(code){
   return '<!doctype html><html lang="fr"><head><meta charset="utf-8">'
@@ -159,7 +157,7 @@ function pageCadre(code){
     +'});'
     /* ── LES LIENS INTERNES DU CONTENU RESTENT CHEZ LUI ──
        Le cadre est écrit par srcdoc : son adresse de base est celle de la
-       page, si bien qu'un lien « #ch13 » chargerait ressources.html dans le
+       page, si bien qu'un lien « #ch13 » chargerait la page hôte dans le
        cadre à la place du contenu. Ces liens sont donc pris au clic : on
        cherche la cible dans le contenu et on l'amène en haut. Si le cadre
        défile, c'est lui qui bouge ; sinon il demande à la page de porter la

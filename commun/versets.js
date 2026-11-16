@@ -1,6 +1,6 @@
 /* ════════════════════════════════════════════════════════════════════
    LUMEN · FONCTIONNEMENT COMMUN : VERSETS
-   Pages : Articles, Ressources, Bible.
+   Pages : toutes (avec la conversation).
    Repérer les références bibliques dans un texte (« Jean 3:16 »,
    « 1 Corinthiens 13:4-7 ») et lire les versets dans les deux Bibles du
    site, la Chérubin et la Séraphin. L'IA s'en sert pour vérifier ou

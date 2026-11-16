@@ -8,7 +8,7 @@
 
    Trois façons d'ouvrir une conversation : un texte sélectionné fait
    paraître un petit bandeau (copier, demander à l'IA) ; le bouton de
-   l'IA, dans le bandeau d'une ressource ou d'un article ouvert, interroge
+   l'IA, dans le bandeau d'un article ouvert ou d'Étude, interroge
    toute la page ; l'icône de l'IA, dans la barre du haut de chaque page,
    ouvre une conversation libre (ou reprend celle qui est en cours).
 
@@ -28,9 +28,9 @@
    continuer. Une poubelle en met une à la corbeille ; « Choisir » en met
    plusieurs ou toutes. La corbeille, au bout de la liste, les remet ou
    les supprime pour de bon. « Mémoire » montre et corrige ce que l'IA
-   retient d'Emmanuel (commun/ia-outils.js).
+   retient de la personne connectée (commun/ia-outils.js).
 
-   Dans Articles et Ressources, la page tourne dans un cadre isolé qui
+   Dans Articles et Étude, la page tourne dans un cadre isolé qui
    n'a aucun accès au site : le cadre dit seulement ce qui y est
    sélectionné (QA_CADRE, ajouté à chaque page encadrée), et c'est la
    page du site qui montre le bandeau. Dans la Bible, les deux icônes
@@ -129,7 +129,7 @@ function qaPoseBouton(){
 window.addEventListener('scroll',()=>{if(QA_SEL&&QA_SEL.cadre)qaPoseBouton();},true);
 window.addEventListener('resize',()=>{if(QA_SEL)qaPoseBouton();});
 
-/* Articles et Ressources : la page reçoit la sélection d'un cadre.
+/* Articles et Étude : la page reçoit la sélection d'un cadre.
    source : le titre de l'élément ouvert ; code : la page entière, dont
    l'IA reçoit tout le texte (voir qaTexteDe) ; ref : où la page est
    rangée dans le compte, pour la relire quand la conversation est
@@ -143,7 +143,7 @@ function qaSelectionCadre(sel,cadre,source,espece,code,ref){
 /* ── TOUT LE TEXTE DE LA PAGE ──
    Un cours ou un livre est découpé en pages, et la sélection ne montre
    que celle qui est ouverte : l'IA reçoit donc, avec le passage, tout le
-   texte lisible de l'article ou de la ressource (Emmanuel, après une
+   texte lisible de l'article ou du cours (Emmanuel, après une
    réponse qui ne voyait que le plan d'un cours). Ni code, ni polices, ni
    images : les mots seuls, titres à la ligne. Le contenu rangé dans un
    modèle de page ou dans des données compte aussi. La conversation
@@ -210,6 +210,7 @@ const QA_IC_ENVOI='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" s
 const QA_IC_RELANCE='<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 4.5v3.5H16"/></svg>';
 const QA_IC_MODIF='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 19.5l1-4L15.8 5.2a1.8 1.8 0 0 1 2.5 0l.5.5a1.8 1.8 0 0 1 0 2.5L8.5 18.5z"/><path d="M14 7l3 3"/></svg>';
 const QA_IC_MEMOIRE='<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5h10a1 1 0 0 1 1 1v15l-6-3.5-6 3.5v-15a1 1 0 0 1 1-1z"/></svg>';
+const QA_IC_CLE='<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="12" r="3.5"/><path d="M11.5 12h9M17.5 12v3M20.5 12v2"/></svg>';
 const QA_IC_PDF='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h8l3 3v14h-11z"/><path d="M14.5 3.5v3h3"/></svg>';
 const QA_IC_PAGE='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h8l3 3v14h-11z"/><path d="M9.5 11h5M9.5 14.5h5"/></svg>';
 
@@ -220,6 +221,16 @@ const QA_IC_PAGE='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" st
    au message suivant. sur(…) dit à la page ce qui arrive : du texte, de
    la réflexion, une recherche lancée. */
 let QA_CTRL=null;
+/* ── CHACUN SA CLÉ ──
+   Un compte autre que celui d'Emmanuel parle à l'IA avec sa propre clé de
+   l'API Anthropic (Emmanuel : « chacun sa clé »). Elle vit sur l'appareil
+   seulement et part avec chaque question ; le serveur la transmet à
+   Anthropic sans la garder. Le compte d'Emmanuel n'en a pas besoin : le
+   serveur se sert de celle du site. L'entrée « Ma clé » paraît dès qu'une
+   clé est enregistrée, ou que le serveur en a demandé une. */
+const QA_CLE='lv_cle_anthropic', QA_CLE_DEMANDEE='lv_cle_demandee';
+const qaCle=()=>{try{return localStorage.getItem(QA_CLE)||'';}catch(_){return '';}};
+const qaCleVisible=()=>{try{return !!(qaCle()||localStorage.getItem(QA_CLE_DEMANDEE));}catch(_){return false;}};
 async function qaFlux(messages,sur){
   const u=await qaCompte();
   if(!u)throw new Error('Connectez-vous pour parler avec l’IA.');
@@ -227,12 +238,12 @@ async function qaFlux(messages,sur){
   let memoire='';
   try{memoire=lvIaMemoireTexte(await lvIaMemoire());}catch(_){}
   const r=await fetch('/api/ia',{method:'POST',signal:QA_CTRL?QA_CTRL.signal:undefined,
-    headers:{'content-type':'application/json','authorization':'Bearer '+jeton},
+    headers:Object.assign({'content-type':'application/json','authorization':'Bearer '+jeton},qaCle()?{'x-lumen-cle':qaCle()}:{}),
     body:JSON.stringify({tache:'question',donnees:{messages:await qaPourEnvoi(messages),document:QA_DOC,memoire}})});
   const type=r.headers.get('content-type')||'';
   if(!r.ok||type.indexOf('event-stream')<0){
     let m='';
-    try{const j=await r.json();m=j.message||'';}catch(_){}
+    try{const j=await r.json();m=j.message||'';if(j.erreur==='cle-perso'){try{localStorage.setItem(QA_CLE_DEMANDEE,'1');}catch(_){}}}catch(_){}
     if(r.status===413)m='Le message est trop lourd : retirez une pièce jointe, puis réessayez.';
     throw new Error(m||('L’IA n’a pas répondu (erreur '+r.status+').'));
   }
@@ -352,8 +363,6 @@ function qaEtape(b){
     case 'lire_element':return 'Lecture d’un élément de votre bibliothèque';
     case 'chercher_conversations':return 'Recherche dans vos conversations : « '+(e.requete||'')+' »';
     case 'memoire':return e.action==='ajouter'?'Mémoire : « '+(e.texte||'')+' »':e.action==='supprimer'?'Mémoire : ligne retirée':'Mémoire mise à jour';
-    case 'lire_skill':return 'Lecture de la skill '+(e.nom||'');
-    case 'creer_page':return 'Création de la page';
     case 'web_search':return 'Recherche sur internet : « '+(e.query||'')+' »';
     case 'web_fetch':return 'Lecture de '+String(e.url||'').replace(/^https?:\/\//,'').slice(0,60);
     default:return 'Outil : '+b.name;
@@ -541,7 +550,7 @@ function qaRemiseAZero(){
   QA_MSGS=[]; QA_VU=[]; QA_ID=''; QA_ATTENTE=false; QA_TOUR++; QA_PIECES=[]; QA_MODIF=-1;
   qaMajEnvoi(); qaRendPieces(); qaModifFin(true);
 }
-/* le bouton de l'IA d'une page ouverte (article, ressource) : rangé puis
+/* le bouton de l'IA d'une page ouverte (article, cours) : rangé puis
    rappelé, le panneau retombe sur ce qu'on a quitté, tant qu'on n'a pas
    entamé une conversation sur une autre page (Emmanuel) */
 function qaReprend(passage,code){
@@ -736,7 +745,8 @@ function qaRendListe(){
     h+='<div class="qa-l-barre">'
       +(corb?'<button type="button" class="qa-l-lien" id="qa-vers-liste">← Mes questions</button>'
             :'<span class="qa-l-gauche">'+(nCorb?'<button type="button" class="qa-l-lien" id="qa-vers-corb">'+QA_IC_JETER+'<span>Corbeille</span><span class="qa-l-n">'+nCorb+'</span></button>':'')
-              +'<button type="button" class="qa-l-lien" id="qa-vers-mem">'+QA_IC_MEMOIRE+'<span>Mémoire</span></button></span>')
+              +'<button type="button" class="qa-l-lien" id="qa-vers-mem">'+QA_IC_MEMOIRE+'<span>Mémoire</span></button>'
+              +(qaCleVisible()?'<button type="button" class="qa-l-lien" id="qa-vers-cle">'+QA_IC_CLE+'<span>Ma clé</span></button>':'')+'</span>')
       +(QA_LISTE.length?'<button type="button" class="qa-l-choisir" id="qa-choisir">Choisir</button>':'')
       +'</div>'
       +'<input type="search" class="qa-l-cherche" id="qa-cherche" placeholder="Chercher dans '+(corb?'la corbeille':'vos questions')+'…" value="'+qaEsc(QA_CHERCHE)+'">';
@@ -760,6 +770,7 @@ function qaRendListe(){
   lien('qa-vers-corb',()=>{QA_VUE='corbeille';QA_CHOIX=false;QA_PRIS=new Set();QA_CHERCHE='';qaRendListe();qaMajChoix();});
   lien('qa-vers-liste',()=>{QA_VUE='liste';QA_CHOIX=false;QA_PRIS=new Set();QA_CHERCHE='';qaRendListe();qaMajChoix();});
   lien('qa-vers-mem',()=>qaMemoireVue());
+  lien('qa-vers-cle',()=>qaCleVue());
   const ch=$qa('qa-cherche');
   if(ch)ch.oninput=()=>{
     QA_CHERCHE=ch.value; const pos=ch.selectionStart;
@@ -831,7 +842,7 @@ async function qaMemoireVue(){
   let l=[];
   try{LV_IA_MEMOIRE=null;l=await lvIaMemoire();}catch(e){fil.innerHTML='<p class="qa-vide">'+qaEsc(e.message||'La mémoire n’a pas pu être lue.')+'</p>';return;}
   fil.innerHTML='<div class="qa-l-barre"><button type="button" class="qa-l-lien" id="qa-mem-retour">← Mes questions</button></div>'
-    +'<p class="qa-mem-aide">Ce que l’IA du site retient de vous d’une conversation à l’autre, une ligne par chose. Elle n’a aucun lien avec la mémoire de Claude.</p>'
+    +'<p class="qa-mem-aide">Ce que l’IA du site retient de vous d’une conversation à l’autre, une ligne par chose.</p>'
     +'<textarea class="qa-mem" id="qa-mem" spellcheck="true" placeholder="La mémoire est vide pour l’instant.">'+qaEsc(l.join('\n'))+'</textarea>'
     +'<div class="qa-mem-acts"><span class="qa-mem-etat" id="qa-mem-etat"></span><button type="button" class="qa-mem-b" id="qa-mem-enr">Enregistrer</button></div>';
   $qa('qa-mem-retour').onclick=()=>qaListe();
@@ -845,8 +856,33 @@ async function qaMemoireVue(){
   };
 }
 
+/* la clé de l'API : un champ masqué, enregistré sur l'appareil ; vide, il
+   retire la clé */
+function qaCleVue(){
+  const p=qaPanneau();
+  p.classList.add('liste','memoire');
+  qaMontre();
+  $qa('qa-jeter').style.display='none';
+  QA_CHOIX=false; qaMajChoix();
+  $qa('qa-label').lastChild.textContent='Ma clé';
+  const fil=$qa('qa-fil');
+  fil.innerHTML='<div class="qa-l-barre"><button type="button" class="qa-l-lien" id="qa-cle-retour">← Mes questions</button></div>'
+    +'<p class="qa-mem-aide">Pour parler avec l’IA du site, collez ici votre clé de l’API Anthropic (elle commence par « sk-ant- »). Elle reste sur cet appareil : le site la transmet à Anthropic à chaque question, sans la garder. Laissez le champ vide pour la retirer.</p>'
+    +'<input type="password" class="qa-cle" id="qa-cle" autocomplete="off" spellcheck="false" placeholder="sk-ant-…" value="'+qaEsc(qaCle())+'">'
+    +'<div class="qa-mem-acts"><span class="qa-mem-etat" id="qa-cle-etat"></span><button type="button" class="qa-mem-b" id="qa-cle-enr">Enregistrer</button></div>';
+  $qa('qa-cle-retour').onclick=()=>qaListe();
+  const z=$qa('qa-cle'), et=$qa('qa-cle-etat');
+  z.addEventListener('input',()=>{et.textContent='';});
+  $qa('qa-cle-enr').onclick=()=>{
+    const v=z.value.trim();
+    if(v&&!/^sk-ant-/.test(v)){et.textContent='Ce n’est pas une clé de l’API Anthropic';return;}
+    try{if(v)localStorage.setItem(QA_CLE,v);else localStorage.removeItem(QA_CLE);et.textContent=v?'Enregistrée sur cet appareil':'Clé retirée';}
+    catch(_){et.textContent='Non enregistrée';}
+  };
+}
+
 /* ── LA CORBEILLE ──
-   Comme pour les articles et les ressources : une conversation supprimée
+   Comme pour les articles : une conversation supprimée
    part d'abord à la corbeille, d'où on la remet ; la poubelle de la
    corbeille la supprime pour de bon. Au bout de trente jours, elle part
    d'elle-même. La confirmation se fait dans le panneau lui-même, en bas. */
@@ -1079,7 +1115,6 @@ async function qaEnvoie(reprise){
       for(const b of outils){
         etape(qaEtape(b));
         const out=await qaOutil(b,t=>{x.etapes[x.etapes.length-1]=qaEtape(b)+' · '+t;planMontre();});
-        if(b.name==='creer_page'){try{const r=JSON.parse(out);if(r.ok)x.pages.push({titre:r.titre,lien:r.lien,espece:r.espece,marque:r.marque||''});}catch(_){}}
         res.push({type:'tool_result',tool_use_id:b.id,content:out});
       }
       if(tour!==QA_TOUR)return;

@@ -1,8 +1,8 @@
 /* ═══════════ ÉTUDE ═══════════
    La page s'ouvre directement sur le parcours, en plein écran, sans la
-   barre du site, et se lit « tout pareil » qu'une ressource ouverte dans
-   Ressources : même cadre isolé (commun/cadre.js), même bandeau crème en
-   bas à gauche (retour, Bible, question à l'IA), replié derrière trois points, même mémoire de lecture.
+   barre du site, et se lit « tout pareil » qu'un article ouvert : cadre
+   isolé (commun/cadre.js), bandeau crème en bas à gauche (retour, Bible,
+   question à l'IA), replié derrière trois points, mémoire de lecture.
    Le parcours vient du site (/parcours/), chaque cours du coffre R2
    (/parcours/cours/, voir netlify/edge-functions/fichiers.js). « Ouvrir le
    cours », sur chaque thème du parcours, ouvre le fichier de cours du
@@ -26,8 +26,7 @@
   };
 
   /* ── LA MÉMOIRE DE LECTURE ──
-     Comme dans Ressources : pour le parcours et pour chaque fichier de
-     cours, l'état du contenu (page atteinte, sections ouvertes, réglages),
+     Pour le parcours et pour chaque fichier de cours, l'état du contenu (page atteinte, sections ouvertes, réglages),
      la place de lecture et la progression vivent dans le stockage de
      l'appareil et dans l'espace du compte (users/…/etude_lecture/…),
      chaque valeur avec son heure ; à l'ouverture, la plus récente
@@ -117,8 +116,7 @@
   }
 
   /* ── LA PROGRESSION DANS LE FICHIER ──
-     Comme dans Ressources, la progression (sujets d'un parcours, « Je
-     sais… » d'un cours) se pose dans le bloc lv-progression du fichier
+     La progression (sujets d'un parcours, « Je sais… » d'un cours) se pose dans le bloc lv-progression du fichier
      au moment de l'ouvrir. Ici elle est gardée par la page, avec l'état :
      les fichiers eux-mêmes ne changent pas. */
   const PROG_BLOC=/<script\b[^>]*\bid=["']lv-progression["'][^>]*>[\s\S]*?<\/script>/i;
@@ -214,7 +212,7 @@
        puis la place de lecture tombe sur la page ainsi constituée */
     /* le contenu s'affiche aussitôt ; son état et sa place lui sont rendus
        dès que celui des autres appareils est arrivé (deux secondes et
-       demie au plus), comme dans Ressources */
+       demie au plus) */
     const rends=()=>pret.then(()=>{
       if(OUVERT!==o)return;
       envoieEtat(o);

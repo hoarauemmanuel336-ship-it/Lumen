@@ -1,16 +1,14 @@
 # Les données de Lumen
 
-Les données d'Emmanuel vivent dans la base Firestore du projet Firebase « lumen-veritatis ». Les règles de sécurité (`regles-firestore.txt`) n'ouvrent la base qu'à son compte, connecté et vérifié. Tout ce qui lui appartient se range sous `users/{son identifiant}/`.
+Les données vivent dans la base Firestore du projet Firebase « lumen-veritatis ». Les règles de sécurité (`regles-firestore.txt`) ouvrent tout au compte d'Emmanuel, et à tout autre compte connecté, à l'adresse confirmée, son seul propre espace. Ce qui appartient à un compte se range sous `users/{son identifiant}/`.
 
-Les pages et les fichiers des Articles et des Ressources vivent dans le **coffre R2** (voir plus bas) ; Firestore n'en garde qu'une petite fiche qui dit où ils sont. Ailleurs (commentaires, conversations), un contenu lourd se découpe encore en **tranches** de moins d'un mégaoctet, rangées dans une sous-collection `tranches` sous sa fiche, parce que Firestore refuse un document de plus d'un mégaoctet.
+Les fichiers lourds (cours d'Étude, articles, anciennes ressources) vivent dans le **coffre R2** (voir plus bas). Dans Firestore (conversations), un contenu lourd se découpe encore en **tranches** de moins d'un mégaoctet, rangées dans une sous-collection `tranches` sous sa fiche, parce que Firestore refuse un document de plus d'un mégaoctet.
 
 ## Bible
 
 | Chemin | Contenu |
 |---|---|
 | `users/{uid}/bibleNotes/{id}` | Notes, surlignages et signets, une fiche chacun ; les fiches `lv-…` portent les réglages de la page. Notes, surlignages et signets se classent selon la traduction (Chérubin ou Séraphin). |
-| `public_commentaires/{id}` | Les commentaires bibliques affichés dans le texte (copiés là par « Afficher dans la Bible »). |
-| `public_medias/{id}` | Les images de ces commentaires, en tranches. |
 
 Le texte des deux Bibles ne vient pas de la base : il est découpé par livre à la fabrication, à partir de `contenu/bible.json` et `contenu/bible-seraphin.json`.
 
@@ -30,20 +28,13 @@ La progression est rangée par identifiant de verset : un verset garde sa progre
 
 ## Articles
 
-| Chemin | Contenu |
-|---|---|
-| `users/{uid}/art_pages/{id}` | La fiche de chaque article : titre, extrait (le bloc « En bref »), catégorie, rang, dates, taille. |
-| `users/{uid}/art_code/{id}` | Où est la page HTML de l'article : `{r2, taille, v}`, `r2` étant sa clé dans le coffre et `v` sa version. |
-| `users/{uid}/art_medias/{id}` | Un fichier joint : `{r2, mime, taille, nom, complet, cree}`. |
-| `users/{uid}/art_lecture/{id}` | L'endroit où la lecture s'est arrêtée. |
-| `users/{uid}/meta/art_rubriques` | Les catégories et sections, et la corbeille des rubriques. |
-| `users/{uid}/meta/art_rubriques_ia_avant` | Le rangement d'avant le dernier rangement par l'IA (pour y revenir). |
-| `users/{uid}/art_qc/{id}` | Le dernier contrôle qualité de l'article : date, bilan, problèmes relevés, points écartés, et l'état de la dernière correction. |
-| `users/{uid}/art_avant/{id}` | Où est la page telle qu'elle était avant la dernière correction par l'IA, ou avant la dernière version déposée par Claude : `{r2, taille, v}`. |
+La page Articles ne lit rien dans la base : le catalogue vit dans le dépôt, `articles/articles.json`, et la fabrication le pose dans la page. Sa forme : `{"categories": [{"id", "nom", "sections": [{"id", "nom"}]}], "articles": [{"fichier", "question", "extrait", "categorie", "section"}]}`. `fichier` est le nom du fichier dans le coffre (lettres, chiffres, points, tirets, `.html`) ; `question` est le titre de l'article, `extrait` le début de sa réponse, qui paraît sous la question dans la liste ; `section` est facultative. L'ordre du catalogue est l'ordre d'affichage. La fabrication refuse un catalogue où un article vise une catégorie ou une section inconnue, ou un même fichier deux fois. La place de lecture d'un article se garde sur l'appareil (`lv_art_pos_{fichier}`).
+
+Les anciennes données de la page d'avant restent dans le compte, sans page pour les afficher : `art_pages`, `art_code`, `art_medias`, `art_lecture`, `art_qc`, `art_avant`, `meta/art_rubriques` et `meta/art_rubriques_ia_avant`. L'IA du site lit encore ces anciens articles.
 
 ## Ressources
 
-Même organisation qu'Articles, avec ses propres noms : `ressources`, `res_code`, `res_medias`, `res_lecture`, `res_qc`, `res_avant`, `meta/res_rubriques` et `meta/res_rubriques_ia_avant`. Une ressource porte en plus une espèce (code, image, PDF, lien) et une marque (livre, diagramme, cours, parcours…) : `marque` est celle qui s'affiche, `marqueIA` dit qu'elle vient de l'IA au dépôt du fichier (elle peut alors la revoir au dépôt suivant), et `marqueDevinee` garde, pour les fiches plus anciennes, la marque qui leur avait été trouvée.
+La page Ressources n'existe plus : ses données restent dans le compte et dans le coffre, et l'IA du site les lit encore. Même organisation que les anciens articles, avec ses propres noms : `ressources`, `res_code`, `res_medias`, `res_lecture`, `res_qc`, `res_avant`, `meta/res_rubriques` et `meta/res_rubriques_ia_avant`. Une ressource porte en plus une espèce (code, image, PDF, lien) et une marque (livre, diagramme, cours, parcours…) : `marque` est celle qui s'affiche, `marqueIA` dit qu'elle vient de l'IA au dépôt du fichier (elle peut alors la revoir au dépôt suivant), et `marqueDevinee` garde, pour les fiches plus anciennes, la marque qui leur avait été trouvée.
 
 ## Étude
 
@@ -51,12 +42,9 @@ Même organisation qu'Articles, avec ses propres noms : `ressources`, `res_code`
 |---|---|
 | `users/{uid}/etude_lecture/{id}` | La mémoire de lecture du parcours (`parcours`) et de chaque fichier de cours (`c_` suivi du nom du fichier) : l'état du contenu (`etat` : page, sections ouvertes, réglages), la place de lecture (`pos`) et la progression (`prog` : sujets du parcours, « Je sais… » cochés d'un cours), chacun avec son heure (`etatMaj`, `posMaj`, `progMaj`). `_reglages` garde la taille du texte commune au parcours et aux cours (`taille`, en crans depuis le plus grand). Les mêmes valeurs vivent dans le stockage de l'appareil ; à l'ouverture, la plus récente l'emporte. |
 
-## Commentaires (l'atelier)
+## Anciens commentaires bibliques
 
-| Chemin | Contenu |
-|---|---|
-| `users/{uid}/commentaires/{id}` | Les commentaires en cours d'écriture et affichés. |
-| `users/{uid}/medias/{id}` | Leurs images, en tranches. |
+Le site n'a plus de commentaires bibliques. Leurs données restent dans la base, sans page pour les écrire ni pour les afficher : `users/{uid}/commentaires/{id}` (les commentaires) et `users/{uid}/medias/{id}` (leurs images), puis leurs copies affichées autrefois dans la Bible, `public_commentaires/{id}` et `public_medias/{id}`.
 
 ## La conversation avec l'IA
 
@@ -73,33 +61,23 @@ Le coffre est le bucket `lumen-ressources` de Cloudflare R2, sans accès public.
 
 | Rangement | Contenu |
 |---|---|
-| `res_code/{id}/{v}.html`, `art_code/{id}/{v}.html` | La page d'une ressource ou d'un article. Chaque version s'écrit sous une clé neuve, la fiche bascule d'un coup, puis l'ancienne version s'efface. |
-| `res_avant/{id}/{v}.html`, `art_avant/{id}/{v}.html` | La copie « avant correction ». |
-| `res_medias/{id}/{nom}`, `art_medias/{id}/{nom}` | Les fichiers joints (images, PDF). |
-| `arrivees/{date}/…` | Les fichiers que le robot vient d'envoyer, en attente d'être rangés. |
-| `a-ranger/{ressources ou articles}/{date}.json` | La liste « à ranger » laissée par le robot : pour chaque fichier, son espèce, son titre, sa marque, son rangement par noms (`["Bible", "Genèse"]`) et, s'il remplace un élément, l'identifiant de cet élément (`remplace`). |
 | `cours/{fichier}.html` | Les fichiers de cours d'Étude, rangés compressés (gzip) par le robot et servis à `/parcours/cours/{fichier}.html`, l'adresse qu'ils avaient sur le site. Le dépôt garde leur sommaire (`parcours/cours-sommaire.json` : poids, empreinte, cours réunis). |
-| `index/{ressources ou articles}.json` | La liste des éléments (identifiant, titre, rangement, espèce, marque, date), que la page réécrit quand elle change ; le robot s'en sert pour retrouver une page par son titre. |
+| `articles/{fichier}.html` | Les articles, rangés compressés par le robot et servis à `/articles/{fichier}.html`. Le dépôt garde leur catalogue (`articles/articles.json`). |
+| `res_code/…`, `art_code/…`, `res_avant/…`, `art_avant/…`, `res_medias/…`, `art_medias/…`, `arrivees/…`, `a-ranger/…`, `index/…` | Les anciennes pages, copies et fichiers joints des ressources et des articles de la page d'avant, sans page pour les afficher. L'IA du site lit encore leurs pages. |
 
-Le navigateur lit le coffre par `/fichiers/{clé}`, et lui parle par `/api/fichiers` (adresse d'envoi signée, copie, effacement, liste, écriture d'une petite liste) : c'est `netlify/edge-functions/fichiers.js`, qui vérifie la porte à mot de passe et, pour `/api/fichiers`, le compte d'Emmanuel. Le navigateur envoie un fichier directement au coffre, par une adresse signée valable un quart d'heure ; pour cela, le coffre porte une règle CORS qui accepte `https://lumenveritatis.net` (méthodes PUT et GET, en-tête `content-type`).
-
-À l'ouverture de Ressources ou d'Articles, la page (`commun/coffre.js`) range les arrivées (elle crée les fiches et les rubriques qui manquent ; un fichier qui remplace un élément garde la version d'avant, que le ⋯ du contrôle qualité propose de remettre), puis réécrit l'index.
+Le navigateur lit le coffre par `/fichiers/{clé}`, `/parcours/cours/{fichier}` et `/articles/{fichier}` : c'est `netlify/edge-functions/fichiers.js`, qui vérifie la porte à mot de passe. `/api/fichiers` (adresse d'envoi signée, copie, effacement, liste, écriture d'une petite liste) ne répond qu'au compte d'Emmanuel.
 
 ### Le robot du coffre
 
 L'espace de travail de Claude ne joint pas Cloudflare : il passe par GitHub, et le robot `.github/workflows/coffre.yml` fait le lien.
 
-- **Envoyer.** Claude pousse une branche `envoi/{nom}` qui porte un dossier `envoi/` : les fichiers (pages HTML, images, PDF) et `envoi/envoi.json`, de la forme `{"entrees": [{"fichier": "…", "espece": "ressources", "titre": "…", "marque": "cours", "rubrique": ["Bible", "Genèse"], "remplace": "…"}]}` (seul `fichier` est obligatoire ; `espece` vaut `ressources` par défaut, `remplace` donne l'identifiant de l'élément à remplacer). Le robot envoie les fichiers dans `arrivees/`, écrit la liste « à ranger », puis supprime la branche. Les fichiers paraissent sur le site à la prochaine ouverture de la page.
-- **Envoyer des cours d'Étude.** Même branche `envoi/…`, avec `"espece": "cours"` pour chaque fichier. La branche porte aussi `parcours/cours-sommaire.json` à jour (refait par `node fabrication/cours-sommaire.js` et les fichiers) : le robot vérifie chaque fichier contre lui (même empreinte, mêmes cours), refuse tout le lot au moindre écart, sinon met les fichiers, compressés, droit dans `cours/`. Repris par une branche `demande/…`, un cours revient décompressé. Le sommaire entre ensuite dans `main` avec le dépôt.
-- **Reprendre pour modifier.** Claude pousse une branche `demande/{nom}` qui porte `demande/demande.json`, de la forme `{"espece": "ressources", "titres": ["…"], "ids": ["…"]}`. Le robot dépose sur la même branche, dans `recu/`, la dernière version de chaque page trouvée et `recu/fiches.json` (identifiant, titre, rangement). Claude modifie la page, puis la renvoie par une branche `envoi/…` avec `"remplace": "{identifiant}"` ; il supprime ensuite la branche de demande. Pour un cours, `{"espece": "cours", "titres": ["…"]}` nomme un fichier ou un cours qu'il contient ; le cours modifié repart avec l'espèce « cours ».
-
-### Le déménagement
-
-Les contenus rangés autrefois dans Firestore (champ `code`, ou tranches `{n, gen}`) se lisent toujours. Le bandeau en tête de Ressources et d'Articles propose de les déménager : chaque contenu part dans le coffre, est relu et comparé, puis sa fiche reçoit `r2` et `verifie: true` en gardant l'original. Quand tout est vérifié, « Libérer la place » retire les originaux de Firestore.
+- **Envoyer des cours d'Étude.** Claude pousse une branche `envoi/{nom}` qui porte un dossier `envoi/` : les fichiers et `envoi/envoi.json`, de la forme `{"entrees": [{"fichier": "…", "espece": "cours"}]}`. La branche porte aussi `parcours/cours-sommaire.json` à jour (refait par `node fabrication/cours-sommaire.js` et les fichiers) : le robot vérifie chaque fichier contre lui (même empreinte, mêmes cours), refuse tout le lot au moindre écart, sinon met les fichiers, compressés, droit dans `cours/`, puis supprime la branche. Le sommaire entre ensuite dans `main` avec le dépôt.
+- **Envoyer des articles.** Même branche `envoi/…`, avec `"espece": "article"` pour chaque fichier. La branche porte le catalogue à jour (`articles/articles.json`), où chaque fichier envoyé est inscrit : le robot refuse tout le lot si l'un ne l'est pas, sinon range les fichiers, compressés, dans `articles/`. Le catalogue entre ensuite dans `main` avec le dépôt, et l'article paraît sur le site.
+- **Reprendre pour modifier.** Claude pousse une branche `demande/{nom}` qui porte `demande/demande.json`, de la forme `{"espece": "cours", "titres": ["…"]}` ou `{"espece": "article", "titres": ["…"]}` : un titre nomme un fichier, un cours qu'il contient, ou la question d'un article. Le robot dépose sur la même branche, dans `recu/`, chaque fichier trouvé, décompressé, et `recu/fiches.json` (fichiers trouvés, introuvables). Claude modifie le fichier, le renvoie par une branche `envoi/…`, puis supprime la branche de demande.
 
 ## Les corbeilles
 
-Articles, Ressources, Mémoriser et les questions à l'IA ont chacun leur corbeille. Ce qui y tombe se remet ou se supprime pour de bon ; au bout de trente jours, cela part de soi-même, au premier passage sur la page. Une conversation à la corbeille porte la date de sa mise au rebut dans `jete`.
+Mémoriser et les questions à l'IA ont chacun leur corbeille. Ce qui y tombe se remet ou se supprime pour de bon ; au bout de trente jours, cela part de soi-même, au premier passage sur la page. Une conversation à la corbeille porte la date de sa mise au rebut dans `jete`.
 
 ## Données anciennes
 

@@ -1,37 +1,26 @@
-"""Le robot d'envoi. Lit envoi/envoi.json, envoie chaque fichier du
-dossier envoi/ dans le coffre (rangement arrivees/), puis écrit pour
-chaque espèce une liste « à ranger » (a-ranger/<espèce>/<date>.json).
-La page Ressources ou Articles la lit à sa prochaine ouverture et en
-fait des fiches : seule la session d'Emmanuel écrit dans Firestore.
-Les cours d'Étude (espèce « cours ») vont droit à leur place, cours/,
-une fois vérifiés contre le sommaire que porte la branche
-(parcours/cours-sommaire.json) : même empreinte, mêmes cours."""
-import gzip, hashlib, json, mimetypes, os, re, sys, tempfile, time, unicodedata
-from coffre import envoie, ESPECES
+"""Le robot d'envoi. Lit envoi/envoi.json et range chaque fichier du
+dossier envoi/ à sa place dans le coffre, compressé : le serveur du site
+les sert tels quels au navigateur, deux à trois fois moins lourds (voir
+netlify/edge-functions/fichiers.js).
+· Les cours d'Étude (espèce « cours ») vont dans cours/, une fois vérifiés
+  contre le sommaire que porte la branche (parcours/cours-sommaire.json) :
+  même empreinte, mêmes cours.
+· Les articles (espèce « article ») vont dans articles/, une fois vérifiés
+  contre le catalogue que porte la branche (articles/articles.json) : le
+  fichier y est inscrit.
+Tout se vérifie avant le premier envoi : un lot refusé n'entre pas à
+moitié."""
+import gzip, hashlib, json, os, re, sys, tempfile
+from coffre import envoie
 
 DOSSIER = 'envoi'
-
-
-def nom_sur(n):
-    n = unicodedata.normalize('NFD', n)
-    n = ''.join(c for c in n if not unicodedata.combining(c))
-    return re.sub(r'[^A-Za-z0-9._-]+', '-', n).strip('-')[-80:] or 'fichier'
-
-
-def type_de(nom, mime):
-    if re.search(r'\.html?$', nom, re.I):
-        return 'diagramme'
-    if mime.startswith('image/'):
-        return 'image'
-    if mime == 'application/pdf':
-        return 'pdf'
-    sys.exit(f'« {nom} » : seules les pages HTML, les images et les PDF se déposent.')
+NOM = r'[A-Za-z0-9][A-Za-z0-9._-]{0,120}\.html'
 
 
 def cours_verifie(f, nom, sommaire):
     """un cours n'entre dans le coffre que s'il est celui que décrit le
     sommaire : même poids, même empreinte, et chaque cours annoncé présent"""
-    if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,120}\.html', nom):
+    if not re.fullmatch(NOM, nom):
         sys.exit(f'« {nom} » : nom de fichier de cours refusé (lettres, chiffres, points, tirets).')
     s = sommaire.get(nom)
     if not s:
@@ -45,61 +34,44 @@ def cours_verifie(f, nom, sommaire):
             sys.exit(f'« {nom} » : le cours « {lettre} » annoncé au sommaire manque.')
 
 
+def article_verifie(nom, catalogue):
+    """un article n'entre dans le coffre que s'il est inscrit au catalogue"""
+    if not re.fullmatch(NOM, nom):
+        sys.exit(f'« {nom} » : nom de fichier d’article refusé (lettres, chiffres, points, tirets).')
+    if not any(a.get('fichier') == nom for a in catalogue.get('articles', [])):
+        sys.exit(f'« {nom} » n’est pas inscrit au catalogue des articles (articles/articles.json).')
+
+
 def main():
     chemin = os.path.join(DOSSIER, 'envoi.json')
     if not os.path.exists(chemin):
         sys.exit('envoi/envoi.json manque : le robot ne sait pas quoi envoyer.')
-    demande = json.load(open(chemin, encoding='utf-8'))
-    entrees = demande.get('entrees') or []
+    entrees = json.load(open(chemin, encoding='utf-8')).get('entrees') or []
     if not entrees:
         sys.exit('envoi.json ne contient aucune entrée.')
-    date = time.strftime('%Y%m%d-%H%M%S', time.gmtime()) + '-' + os.environ.get('GITHUB_RUN_ID', '0')
-    listes = {}
-    cours = [e for e in entrees if e.get('espece') == 'cours']
-    if cours:
-        sommaire = json.load(open('parcours/cours-sommaire.json', encoding='utf-8'))
-        # tout se vérifie avant le premier envoi : un lot refusé n'entre pas à moitié
-        for e in cours:
-            nom = os.path.basename(e.get('fichier', ''))
-            f = os.path.join(DOSSIER, e.get('fichier', ''))
-            if not os.path.isfile(f):
-                sys.exit(f'Fichier introuvable dans envoi/ : « {nom} »')
-            cours_verifie(f, nom, sommaire)
-        # rangés compressés : le serveur du site les sert tels quels au
-        # navigateur, deux à trois fois moins lourds (voir fichiers.js)
-        for e in cours:
-            nom = os.path.basename(e['fichier'])
-            with tempfile.NamedTemporaryFile(suffix='.gz', delete=False) as t:
-                t.write(gzip.compress(open(os.path.join(DOSSIER, e['fichier']), 'rb').read(), 9))
-            envoie(t.name, f'cours/{nom}', 'application/gzip')
-            print(f'Cours : {nom} → cours/{nom} (compressé)')
-    for i, e in enumerate(entrees):
-        if e.get('espece') == 'cours':
-            continue
-        nom = e.get('fichier', '')
-        f = os.path.join(DOSSIER, nom)
+    sommaire = catalogue = None
+    places = []
+    for e in entrees:
+        nom = os.path.basename(e.get('fichier', ''))
+        f = os.path.join(DOSSIER, e.get('fichier', ''))
         if not nom or not os.path.isfile(f):
             sys.exit(f'Fichier introuvable dans envoi/ : « {nom} »')
-        espece = e.get('espece', 'ressources')
-        if espece not in ESPECES:
-            sys.exit(f'Espèce inconnue pour « {nom} » : {espece}')
-        mime = mimetypes.guess_type(nom)[0] or 'application/octet-stream'
-        if re.search(r'\.html?$', nom, re.I):
-            mime = 'text/html; charset=utf-8'
-        type_ = type_de(nom, mime)
-        cle = f'arrivees/{date}/{i:03d}-{nom_sur(nom)}'
-        envoie(f, cle, mime)
-        x = {'fichier': cle, 'type': type_, 'nom': nom, 'mime': mime.split(';')[0], 'taille': os.path.getsize(f)}
-        for k in ('titre', 'marque', 'rubrique', 'remplace'):
-            if e.get(k) not in (None, '', []):
-                x[k] = e[k]
-        listes.setdefault(espece, []).append(x)
-        print(f'Envoyé : {nom} → {cle}')
-    for espece, l in listes.items():
-        with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False, encoding='utf-8') as t:
-            json.dump({'cree': date, 'entrees': l}, t, ensure_ascii=False, indent=1)
-        envoie(t.name, f'a-ranger/{espece}/{date}.json', 'application/json; charset=utf-8')
-        print(f'Liste à ranger : a-ranger/{espece}/{date}.json ({len(l)} élément(s))')
+        espece = e.get('espece')
+        if espece == 'cours':
+            sommaire = sommaire or json.load(open('parcours/cours-sommaire.json', encoding='utf-8'))
+            cours_verifie(f, nom, sommaire)
+            places.append((f, f'cours/{nom}'))
+        elif espece == 'article':
+            catalogue = catalogue or json.load(open('articles/articles.json', encoding='utf-8'))
+            article_verifie(nom, catalogue)
+            places.append((f, f'articles/{nom}'))
+        else:
+            sys.exit(f'Espèce inconnue pour « {nom} » : {espece} (« cours » ou « article »)')
+    for f, cle in places:
+        with tempfile.NamedTemporaryFile(suffix='.gz', delete=False) as t:
+            t.write(gzip.compress(open(f, 'rb').read(), 9))
+        envoie(t.name, cle, 'application/gzip')
+        print(f'{os.path.basename(f)} → {cle} (compressé)')
 
 
 main()

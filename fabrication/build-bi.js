@@ -2,7 +2,7 @@
    LUMEN : fabrication du site
    Fabrique l'accueil et la page 404 (leur CSS de base vient de
    pages/accueil.html), complète les autres pages (Bible, Mémoriser,
-   Articles, Ressources, Commentaires) avec la barre, le pied et
+   Étude, Articles) avec la barre, le pied et
    l'habillage communs, découpe les deux Bibles par livre, puis passe la
    main à publication.js.
    ============================================================ */
@@ -37,9 +37,11 @@ const COMMUN_TAG = COMMUN_CSS ? '<style id="lumen-commun">' + COMMUN_CSS + '</st
    page. Il est posé en dernier dans chaque page : il a le dernier mot sur
    l'apparence. La couleur d'accent (--or) vient de contenu/settings.json ;
    l'habillage en tire ses nuances. */
+/* une page peut prendre plusieurs feuilles, dans l'ordre donné
+   (« etude articles » : Articles lit ses articles comme Étude ses cours) */
 function habillage(nomPage) {
   let css = '';
-  for (const f of ['habillage/commun.css', `habillage/${nomPage}.css`]) {
+  for (const f of ['habillage/commun.css', ...String(nomPage).split(' ').map(n => `habillage/${n}.css`)]) {
     if (fs.existsSync(f)) css += fs.readFileSync(f, 'utf8') + '\n';
   }
   return css ? '<style id="habillage">' + css + '</style>' : '';
@@ -57,16 +59,14 @@ const polices = h => h.replace(/<link[^>]*fonts\.(?:googleapis|gstatic)\.com[^>]
    Chaque page reçoit, avant son propre script, exactement les familles dont
    elle se sert, posées dans la page elle-même et non en fichiers à part :
    Mémoriser fonctionne hors ligne, et rien de plus n'est à mettre en cache. */
-/* La conversation avec l'IA (question, ia-outils, assemblage, versets)
-   vit sur toutes les pages : l'icône de la barre du haut l'ouvre partout.
-   Elle lit et crée des pages dans le coffre R2, d'où « stockage » avec elle. */
-const CONVERSATION = ['stockage', 'versets', 'assemblage', 'ia-outils', 'question'];
+/* La conversation avec l'IA (question, ia-outils, versets) vit sur toutes
+   les pages : l'icône de la barre du haut l'ouvre partout. Elle lit les
+   pages de la bibliothèque dans le coffre R2, d'où « stockage » avec elle. */
+const CONVERSATION = ['stockage', 'versets', 'ia-outils', 'question'];
 const COMMUN_JS_PAGES = {
-  'articles.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage', ...CONVERSATION, 'coffre'],
-  'ressources.html': ['outils', 'rubriques', 'ia', 'qualite', 'menage', ...CONVERSATION, 'coffre', 'cadre'],
+  'articles.html': [...CONVERSATION, 'cadre'],
   'etude.html': [...CONVERSATION, 'cadre'],
   'bible.html': CONVERSATION,
-  'commentaires.html': ['outils', 'editeur', 'choix-verset', ...CONVERSATION],
   'memoriser.html': ['choix-verset', ...CONVERSATION],
   'index.html': CONVERSATION,
 };
@@ -78,28 +78,20 @@ function communJS(page) {
   }).join('');
 }
 /* ── LE SAVOIR DE L'IA DU SITE ──
-   Les skills d'artefact d'Emmanuel (ia/skills/) et ses instructions
-   personnalisées (ia/instructions.md) sont les mêmes que dans Claude :
-   l'IA du site contrôle et corrige une page avec la skill qui l'a faite.
-   La fabrication les écrit dans un module que lit le serveur de l'IA
+   Les règles d'écriture du site (ia/instructions.md, les instructions
+   personnalisées d'Emmanuel, les mêmes que dans Claude) valent pour tous :
+   la conversation avec l'IA les reçoit. La
+   fabrication les écrit dans un module que lit le serveur de l'IA
    (netlify/edge-functions/ia.js) ; Netlify assemble ce serveur après la
-   fabrication, il prend donc toujours la version du dépôt. Seul le texte
-   des SKILL.md part à l'IA : les moteurs restent dans le dépôt, pour que
-   chaque skill y soit complète. */
+   fabrication, il prend donc toujours la version du dépôt. */
 {
-  const savoir = { instructions: '', skills: {} };
+  const savoir = { instructions: '' };
   try { savoir.instructions = fs.readFileSync('ia/instructions.md', 'utf8'); } catch (e) { console.warn('⚠ ia/instructions.md absent'); }
-  if (fs.existsSync('ia/skills')) {
-    for (const nom of fs.readdirSync('ia/skills').sort()) {
-      const f = `ia/skills/${nom}/SKILL.md`;
-      if (fs.existsSync(f)) savoir.skills[nom] = fs.readFileSync(f, 'utf8');
-    }
-  }
   fs.mkdirSync('netlify/savoir', { recursive: true });
   fs.writeFileSync('netlify/savoir/savoir.js',
     '/* Fichier écrit par la fabrication (fabrication/build-bi.js) à partir de ia/ : ne pas le modifier à la main. */\n'
     + 'export const SAVOIR = ' + JSON.stringify(savoir) + ';\n');
-  console.log("Savoir de l'IA : instructions + " + Object.keys(savoir.skills).length + ' skills (' + Object.keys(savoir.skills).join(', ') + ')');
+  console.log("Savoir de l'IA : règles d'écriture du site");
 }
 
 /* La couleur d'accent (--or) se règle dans contenu/settings.json. */
@@ -169,7 +161,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
   html.barre-rangee,html.panneau{--lv-bas:0px}
   html.panneau .nav-bas{display:none!important}
   body{padding-bottom:var(--lv-bas)}
-  .nav-bas{display:grid;grid-template-columns:repeat(6,1fr);position:fixed;left:0;right:0;bottom:0;z-index:55;height:var(--lv-bas);padding-bottom:env(safe-area-inset-bottom,0px);background:#000;border-top:1px solid rgba(231,224,207,.14)}
+  .nav-bas{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;position:fixed;left:0;right:0;bottom:0;z-index:55;height:var(--lv-bas);padding-bottom:env(safe-area-inset-bottom,0px);background:#000;border-top:1px solid rgba(231,224,207,.14)}
   html.barre-rangee .nav-bas{display:none}
   .nav-bas a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:0;color:rgba(255,255,255,.62);text-decoration:none;font-family:'EB Garamond',Georgia,serif;font-size:12.5px;letter-spacing:.02em;line-height:1;transition:color .25s;-webkit-tap-highlight-color:transparent;position:relative}
   .nav-bas a svg{width:22px;height:22px;display:block}
@@ -190,16 +182,15 @@ const SVG_LOUPE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" s
 const SVG_IA = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg>';
 const SVG_COMPTE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke-linecap="round"/></svg>';
 const NAV_LIENS = [['/', 'Accueil'], ['/bible.html', 'Bible'], ['/memoriser.html', 'Mémoriser'],
-                   ['/articles.html', 'Articles'], ['/ressources.html', 'Ressources'], ['/etude.html', 'Étude']];
+                   ['/etude.html', 'Étude'], ['/articles.html', 'Articles']];
 /* Les icônes de la barre du bas : un trait fin, comme la loupe et le compte. */
 const SVGB = d => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>';
 const NAV_BAS = [
   ['/', 'Accueil', SVGB('<path d="M12 3v18M7.5 8.5h9"/>')],
   ['/bible.html', 'Bible', SVGB('<path d="M12 6.5C10 5 7 4.6 4 5v13c3-.4 6 0 8 1.5 2-1.5 5-1.9 8-1.5V5c-3-.4-6 0-8 1.5z"/><path d="M12 6.5V19"/>')],
   ['/memoriser.html', 'Mémoriser', SVGB('<rect x="4.5" y="7.5" width="11.5" height="13" rx=".5"/><path d="M8 4.5h11.5v13"/>')],
-  ['/articles.html', 'Articles', SVGB('<path d="M6.5 3.5h8l3 3v14h-11z"/><path d="M9.5 11h5M9.5 14.5h5M9.5 7.5h2.5"/>')],
-  ['/ressources.html', 'Ressources', SVGB('<rect x="4.5" y="4.5" width="6.2" height="6.2"/><rect x="13.3" y="4.5" width="6.2" height="6.2"/><rect x="4.5" y="13.3" width="6.2" height="6.2"/><rect x="13.3" y="13.3" width="6.2" height="6.2"/>')],
-  ['/etude.html', 'Étude', SVGB('<circle cx="5" cy="18.8" r="2.1"/><path d="M7.1 18.8h7.4a3.2 3.2 0 0 0 0-6.4h-5a3.2 3.2 0 0 1 0-6.4h6"/><path d="M16.5 3.2v5.6M16.5 3.2h4.3l-1.2 1.4 1.2 1.4h-4.3"/>')]
+  ['/etude.html', 'Étude', SVGB('<circle cx="5" cy="18.8" r="2.1"/><path d="M7.1 18.8h7.4a3.2 3.2 0 0 0 0-6.4h-5a3.2 3.2 0 0 1 0-6.4h6"/><path d="M16.5 3.2v5.6M16.5 3.2h4.3l-1.2 1.4 1.2 1.4h-4.3"/>')],
+  ['/articles.html', 'Articles', SVGB('<path d="M6.5 3.5h8l3 3v14h-11z"/><path d="M9.5 11h5M9.5 14.5h5M9.5 7.5h2.5"/>')]
 ];
 const VERSET_PIED = '« Le peuple qui marchait dans les ténèbres a vu une grande lumière ; sur ceux qui habitaient le pays de l\u2019ombre de la mort, une lumière a resplendi » <span class="ref-pied">Isaïe 9:1</span>';
 
@@ -387,6 +378,7 @@ function header(lang) {
       <div class="auth-m-or">ou</div>
       <button class="auth-m-google" id="auth-google"><svg width="17" height="17" viewBox="0 0 18 18"><path fill="#EA4335" d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.54C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z"/><path fill="#FBBC05" d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9 9 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z"/><path fill="#4A90D9" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.96 13.04C2.44 15.98 5.48 18 9 18z"/></svg>Continuer avec Google</button>
       <button class="auth-m-link" id="auth-forgot">Mot de passe oublié ?</button>
+      <button class="auth-m-link" id="auth-creer">Créer un compte</button>
     </div>
     <div id="auth-in" style="display:none">
       <div class="auth-m-title">Mon compte</div>
@@ -394,7 +386,6 @@ function header(lang) {
       <div class="pile-btn">
       <a class="auth-m-btn" href="/bible.html#notes">Mes notes</a>
       <a class="auth-m-btn" href="/bible.html#signets">Mes signets</a>
-      <a class="auth-m-btn" id="auth-m-coms" href="/commentaires.html" style="display:none">Mes commentaires</a>
       </div>
       <div class="ttx-row"><span class="ttx-lab">Taille du texte</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
       <div class="tog-row"><span class="tog-lab">Onglet Bible à gauche</span><span class="tog-sw" id="tog-bible" role="button" tabindex="0" aria-label="Afficher ou masquer l’onglet Bible"></span></div>
@@ -451,18 +442,44 @@ const AUTH_JS = `(function(){
   function el(id){return document.getElementById(id);}
   function msg(txt,kind){var m=el('auth-m-msg');m.textContent=txt;m.className='auth-m-msg '+kind;}
   function clr(){var m=el('auth-m-msg');m.className='auth-m-msg';m.textContent='';}
+  /* trois temps : se connecter (si), retrouver son mot de passe (forgot),
+     créer un compte avec une adresse e-mail (up) */
   function setMode(x){mode=x;clr();
     el('auth-pw').style.display=(x==='forgot')?'none':'block';
-    el('auth-submit').textContent=(x==='si')?'Se connecter':'Envoyer le lien';
+    el('auth-pw').setAttribute('autocomplete',x==='up'?'new-password':'current-password');
+    el('auth-submit').textContent=x==='si'?'Se connecter':(x==='up'?'Créer mon compte':'Envoyer le lien');
+    el('auth-forgot').style.display=x==='up'?'none':'';
     el('auth-forgot').textContent=(x==='forgot')?'← Retour':'Mot de passe oublié ?';
+    el('auth-creer').style.display=x==='forgot'?'none':'';
+    el('auth-creer').textContent=x==='up'?'← J’ai déjà un compte':'Créer un compte';
+  }
+  /* ── L'ADRESSE CONFIRMÉE ──
+     La base n'ouvre son espace qu'à une adresse confirmée. Un compte créé
+     par e-mail reçoit donc le lien de confirmation, puis se déconnecte :
+     la connexion suivante, une fois le lien ouvert, porte la confirmation.
+     Une connexion par e-mail encore sans confirmation renvoie le lien et
+     se défait de même. Google confirme l'adresse de lui-même. */
+  function erreur(e){var c=(e&&e.code)||'';
+    var t=c==='auth/invalid-credential'||c==='auth/wrong-password'||c==='auth/user-not-found'?'Identifiants incorrects.'
+      :c==='auth/invalid-email'?'Adresse e-mail invalide.'
+      :c==='auth/email-already-in-use'?'Un compte existe déjà avec cette adresse.'
+      :c==='auth/weak-password'?'Le mot de passe doit compter au moins six caractères.'
+      :c==='auth/operation-not-allowed'?'L’inscription par e-mail n’est pas encore ouverte.'
+      :c==='auth/popup-closed-by-user'?'':'Échec de la connexion.';
+    if(t)msg(t,'err');}
+  /* le temps de cet aller-retour, la fenêtre garde son mode et le message
+     qui suit (garde) */
+  var garde=false;
+  function pasConfirme(u){
+    garde=true;
+    try{auth.languageCode='fr';}catch(_){}
+    return u.sendEmailVerification().catch(function(){}).then(function(){return auth.signOut();});
   }
   function open(){clr();
-    if(auth.currentUser){vOut.style.display='none';vIn.style.display='block';el('auth-in-email').textContent=auth.currentUser.email||auth.currentUser.displayName||'';
-      /* l'auteur du site seulement : l'entrée vers ses commentaires bibliques */
-      var lc=el('auth-m-coms');if(lc)lc.style.display=(String(auth.currentUser.email||'').toLowerCase()==='hoarauemmanuel336@gmail.com')?'':'none';}
-    else{vOut.style.display='block';vIn.style.display='none';setMode('si');}
+    if(auth.currentUser){vOut.style.display='none';vIn.style.display='block';el('auth-in-email').textContent=auth.currentUser.email||auth.currentUser.displayName||'';}
+    else{vOut.style.display='block';vIn.style.display='none';if(!garde)setMode('si');}
     ov.classList.add('ouvert');document.body.style.overflow='hidden';}
-  function close(){ov.classList.remove('ouvert');document.body.style.overflow='';}
+  function close(){garde=false;ov.classList.remove('ouvert');document.body.style.overflow='';}
   icone.addEventListener('click',open);
   /* venu d'une autre page par « Se connecter » : la fenêtre s'ouvre
      d'elle-même, une fois connu l'état du compte */
@@ -475,10 +492,19 @@ const AUTH_JS = `(function(){
   ov.addEventListener('click',function(e){if(e.target===ov)close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('ouvert'))close();});
   el('auth-forgot').addEventListener('click',function(){setMode(mode==='forgot'?'si':'forgot');});
+  el('auth-creer').addEventListener('click',function(){setMode(mode==='up'?'si':'up');});
   el('auth-submit').addEventListener('click',function(){
     var em=el('auth-email').value.trim(),pw=el('auth-pw').value;clr();
-    if(mode==='forgot'){auth.sendPasswordResetEmail(em).then(function(){msg('Lien envoyé. Vérifiez votre boîte mail.','ok');}).catch(function(e){msg(e.message,'err');});return;}
-    auth.signInWithEmailAndPassword(em,pw).catch(function(e){msg(e.message,'err');});
+    if(mode==='forgot'){auth.sendPasswordResetEmail(em).then(function(){msg('Lien envoyé. Vérifiez votre boîte mail.','ok');}).catch(erreur);return;}
+    if(mode==='up'){
+      if(pw.length<6){msg('Le mot de passe doit compter au moins six caractères.','err');return;}
+      auth.createUserWithEmailAndPassword(em,pw).then(function(c){return pasConfirme(c.user);})
+        .then(function(){setMode('si');msg('Compte créé. Ouvrez le lien de confirmation reçu par e-mail, puis connectez-vous.','ok');}).catch(erreur);
+      return;
+    }
+    auth.signInWithEmailAndPassword(em,pw).then(function(c){
+      if(c&&c.user&&!c.user.emailVerified)return pasConfirme(c.user).then(function(){msg('Votre adresse n’est pas encore confirmée. Un nouvel e-mail de confirmation vient de vous être envoyé : ouvrez son lien, puis reconnectez-vous.','err');});
+    }).catch(erreur);
   });
   ['auth-email','auth-pw'].forEach(function(id){var x=el(id);if(x)x.addEventListener('keydown',function(e){if(e.key==='Enter')el('auth-submit').click();});});
   el('auth-google').addEventListener('click',function(){auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){msg(e.message,'err');});});
@@ -723,7 +749,7 @@ ecrire('404.html', page({
 }));
 
 /* Étude : la page s'ouvre directement sur le parcours, en plein écran comme
-   une ressource ouverte, avec le même cadre isolé et le même bandeau
+   un article ouvert, avec le même cadre isolé et le même bandeau
    (retour, Bible, IA) ; pages/etude.js pose le cadre du parcours ou du
    cours ouvert, voir aussi habillage/etude.css. */
 if (fs.existsSync('parcours/la-foi-catholique.html')) {
@@ -755,8 +781,8 @@ if (fs.existsSync(CONTENU + 'liturgie')) {
 /* Site privé : aucun moteur de recherche n'entre, et il n'y a pas de plan du site. */
 ecrire('robots.txt', `User-agent: *\nDisallow: /\n`);
 
-// les anciennes adresses (bibliothèque, article, à propos, /en/) retombent sur l'accueil, en 301
-ecrire('_redirects', ['/bibliotheque/*  /  301', '/article/*  /  301', '/a-propos/*  /  301', '/en/*  /  301'].join('\n') + '\n');
+// les anciennes adresses (bibliothèque, article, à propos, /en/, Ressources) retombent sur l'accueil, en 301
+ecrire('_redirects', ['/bibliotheque/*  /  301', '/article/*  /  301', '/a-propos/*  /  301', '/en/*  /  301', '/ressources.html  /  301'].join('\n') + '\n');
 
 // table des livres bibliques pour la recherche de références (Jean 3:16)
 const tableBible = (src, base) => {
@@ -844,81 +870,49 @@ if (fs.existsSync(PAGES + 'memoriser.html')) {
   console.log('Copié : memoriser.html');
 }
 
-// ── Articles : la page d'écriture et de lecture, même traitement que les autres ──
-if (fs.existsSync(PAGES + 'articles.html')) {
-  let ah = fs.readFileSync(PAGES + 'articles.html', 'utf8');
-  ah = injecteAvant(ah, '</head>', COMMUN_TAG);
-  ah = injecteAvant(ah, '</head>', communJS('articles.html'));
-  if (APPEARANCE_CSS && ah.indexOf('</head>') >= 0) {
-    ah = injecteAvant(ah, '</head>', '<style>' + APPEARANCE_CSS + '</style>');
+/* ── ARTICLES ──
+   Une page en lecture seule, la même pour tous : le catalogue du dépôt
+   (articles/articles.json) dit les catégories, leurs sections et les
+   articles, dans l'ordre où ils paraissent ; chaque article est un fichier
+   du coffre R2 (articles/), servi à /articles/<fichier>. La fabrication
+   vérifie le catalogue et le pose dans la page ; pages/articles.js fait la
+   liste et ouvre un article en plein écran, comme un cours d'Étude.
+   Forme du catalogue : {categories: [{id, nom, sections: [{id, nom}]}],
+   articles: [{fichier, question, extrait, categorie, section}]}, la
+   section étant facultative. */
+{
+  const CATALOGUE = JSON.parse(fs.readFileSync('articles/articles.json', 'utf8'));
+  const cats = CATALOGUE.categories || [], arts = CATALOGUE.articles || [];
+  const vus = new Set();
+  for (const a of arts) {
+    const ou = 'articles.json, « ' + (a.question || a.fichier || '?') + ' » : ';
+    if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,120}\.html$/.test(a.fichier || '')) throw new Error(ou + 'nom de fichier refusé');
+    if (vus.has(a.fichier)) throw new Error(ou + 'fichier inscrit deux fois');
+    vus.add(a.fichier);
+    if (!a.question) throw new Error(ou + 'question manquante');
+    const c = cats.find(x => x.id === a.categorie);
+    if (!c) throw new Error(ou + 'catégorie inconnue');
+    if (a.section && !(c.sections || []).some(s => s.id === a.section)) throw new Error(ou + 'section inconnue');
   }
-  {
-    const hOld = ah.match(/<header>[\s\S]*?<\/header>/);
-    const fOld = ah.match(/<footer[^>]*>[\s\S]*?<\/footer>/);
-    if (!hOld || !fOld) throw new Error('articles.html : header ou footer introuvable');
-    ah = ah.replace(hOld[0], barreCanon());
-    ah = ah.replace(fOld[0], piedCanon());
-    ah = injecteAvant(ah, '</head>', '<style>' + BARRE_CSS + '</style>' + BARRE_TETE);
-    ah = metaCopie(ah, 'Articles de théologie catholique, accessibles aux débutants.');
-    ah = injecteAvant(ah, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
-    console.log('Articles : barre et pied canoniques injectés');
-  }
-  ah = injecteAvant(ah, '</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script>');
-  ah = polices(injecteAvant(ah, '</head>', habillage('articles')));
-  fs.writeFileSync(`${OUT}/articles.html`, ah);
-  console.log('Copié : articles.html');
-}
-
-// ── Ressources : diagrammes, cartes, livres et liens, même traitement ──
-if (fs.existsSync(PAGES + 'ressources.html')) {
-  let rh = fs.readFileSync(PAGES + 'ressources.html', 'utf8');
-  rh = injecteAvant(rh, '</head>', COMMUN_TAG);
-  rh = injecteAvant(rh, '</head>', communJS('ressources.html'));
-  if (APPEARANCE_CSS && rh.indexOf('</head>') >= 0) {
-    rh = injecteAvant(rh, '</head>', '<style>' + APPEARANCE_CSS + '</style>');
-  }
-  {
-    const hOld = rh.match(/<header>[\s\S]*?<\/header>/);
-    const fOld = rh.match(/<footer[^>]*>[\s\S]*?<\/footer>/);
-    if (!hOld || !fOld) throw new Error('ressources.html : header ou footer introuvable');
-    rh = rh.replace(hOld[0], barreCanon());
-    rh = rh.replace(fOld[0], piedCanon());
-    rh = injecteAvant(rh, '</head>', '<style>' + BARRE_CSS + '</style>' + BARRE_TETE);
-    rh = metaCopie(rh, 'Diagrammes, cartes, documents et liens pour étudier la foi catholique.');
-    rh = injecteAvant(rh, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
-    console.log('Ressources : barre et pied canoniques injectés');
-  }
-  rh = injecteAvant(rh, '</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script>');
-  rh = polices(injecteAvant(rh, '</head>', habillage('ressources')));
-  fs.writeFileSync(`${OUT}/ressources.html`, rh);
-  console.log('Copié : ressources.html');
-}
-
-// ── Commentaires bibliques : l'atelier où Emmanuel les écrit, hors menu (on y
-//    entre par « Mon compte ») ; les commentaires se lisent dans la Bible.
-//    Même barre, même pied, même panneau Bible que les autres pages. ──
-if (fs.existsSync(PAGES + 'commentaires.html')) {
-  let ch = fs.readFileSync(PAGES + 'commentaires.html', 'utf8');
-  ch = injecteAvant(ch, '</head>', COMMUN_TAG);
-  ch = injecteAvant(ch, '</head>', communJS('commentaires.html'));
-  if (APPEARANCE_CSS && ch.indexOf('</head>') >= 0) {
-    ch = injecteAvant(ch, '</head>', '<style>' + APPEARANCE_CSS + '</style>');
-  }
-  {
-    const hOld = ch.match(/<header>[\s\S]*?<\/header>/);
-    const fOld = ch.match(/<footer[^>]*>[\s\S]*?<\/footer>/);
-    if (!hOld || !fOld) throw new Error('commentaires.html : header ou footer introuvable');
-    ch = ch.replace(hOld[0], barreCanon());
-    ch = ch.replace(fOld[0], piedCanon());
-    ch = injecteAvant(ch, '</head>', '<style>' + BARRE_CSS + '</style>' + BARRE_TETE);
-    ch = metaCopie(ch, 'Commentaires bibliques de Lumen Veritatis, à lire dans la Bible.');
-    ch = injecteAvant(ch, '</body>', '<script>' + BARRE_JS + '</scr' + 'ipt>');
-    console.log('Commentaires : barre et pied canoniques injectés');
-  }
-  ch = injecteAvant(ch, '</body>', '<script src="/bible-panneau.js?v=' + PAN_V + '" defer><' + '/script>');
-  ch = polices(injecteAvant(ch, '</head>', habillage('commentaires')));
-  fs.writeFileSync(`${OUT}/commentaires.html`, ch);
-  console.log('Copié : commentaires.html');
+  const svg = (d, w = 1.6) => `<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  ecrire('articles.html', page({
+    lang: 'fr', title: 'Articles · Lumen Veritatis', description: 'Articles de théologie catholique, accessibles aux débutants.',
+    base: '/', hab: 'etude articles', familles: 'articles.html',
+    main: `<div class="art-page">
+    <div class="fil" id="fil"></div>
+    <div class="tete"><h1 id="titre-liste">Articles</h1></div>
+    <div id="liste"></div>
+  </div>
+  <div class="et-charge fini" id="et-charge"><span class="lv-roue" role="status" aria-label="Chargement"></span></div>
+  <div class="res-plein-acts" id="et-acts" hidden>
+    <button type="button" id="et-retour" class="res-plein-x" aria-label="Revenir">${svg('<path d="M19.5 12h-15M10.5 6l-6 6 6 6"/>')}</button>
+    <button type="button" id="et-bible" class="res-plein-x res-plein-bible" aria-label="Ouvrir la Bible">${svg('<path d="M12 6.5C10.3 5.2 7.8 4.6 4 4.6v13.2c3.8 0 6.3.6 8 1.9 1.7-1.3 4.2-1.9 8-1.9V4.6c-3.8 0-6.3.6-8 1.9z"/><path d="M12 6.5v13.2"/>')}</button>
+    <button type="button" id="et-ia" class="res-plein-x res-plein-bible res-plein-ia" aria-label="Poser une question à l’IA sur cet article" title="Question à l’IA">${svg('<path d="M10 3.5l1.6 4.4 4.4 1.6-4.4 1.6L10 15.5l-1.6-4.4L4 9.5l4.4-1.6zM18 13.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/>', 1.5)}</button>
+  </div>
+  <script>const ARTICLES=${JSON.stringify(CATALOGUE).replace(/</g, '\\u003c')};</script>
+  <script>${fs.readFileSync(PAGES + 'articles.js', 'utf8')}</script>`
+  }));
+  console.log('Articles : ' + arts.length + ' article(s), ' + cats.length + ' catégorie(s)');
 }
 
 // ── Fichiers communs à toutes les pages : panneau Bible, service worker, manifestes, icônes ──
@@ -948,15 +942,6 @@ if (fs.existsSync(RACINE + 'icones')) {
   for (const ic of fs.readdirSync(RACINE + 'icones')) fs.copyFileSync(RACINE + `icones/${ic}`, `${OUT}/icones/${ic}`);
 }
 console.log('Copié : memoriser-sw.js + manifests + icônes');
-/* les moteurs des skills, que la conversation avec l'IA assemble avec le
-   contenu qu'elle écrit (commun/assemblage.js lit /ia-moteurs/<skill>/) */
-for (const sk of ['livre-html', 'diagrammes-interactifs', 'cours-html', 'parcours-etude']) {
-  const src = `ia/skills/${sk}/moteur`;
-  if (!fs.existsSync(src)) continue;
-  fs.mkdirSync(`${OUT}/ia-moteurs/${sk}`, { recursive: true });
-  for (const f of ['gabarit.html', 'polices.css', 'moteur.css', 'moteur.js'])
-    if (fs.existsSync(`${src}/${f}`)) fs.copyFileSync(`${src}/${f}`, `${OUT}/ia-moteurs/${sk}/${f}`);
-}
 
 /* ── Le parcours « La foi catholique » et ses cours ──
    parcours/ garde le parcours tel que la skill parcours-etude l'a produit,
@@ -1397,7 +1382,7 @@ function poseVersSeraphin(livre) {
 /* Garde-fou : la barre et le pied sont identiques sur toutes les pages. La
    fabrication échoue si l'un d'eux dérive. */
 {
-  const surfaces = ['index.html', 'bible.html', 'memoriser.html', 'articles.html', 'ressources.html', 'commentaires.html', 'etude.html', '404.html'];
+  const surfaces = ['index.html', 'bible.html', 'memoriser.html', 'articles.html', 'etude.html', '404.html'];
   const ref = { h: null, f: null };
   let vues = 0;
   for (const f of surfaces) {

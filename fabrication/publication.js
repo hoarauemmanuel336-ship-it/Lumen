@@ -3,15 +3,6 @@
    ════════════════════════════════════════════════════════════════════
    Appelé par build-bi.js une fois toutes les pages produites.
 
-   0. DIFFÉRER. Sur Articles, Ressources et Commentaires, l'outil de
-      connexion (Firebase, plusieurs centaines de kilo-octets) est demandé
-      en « defer », et les scripts du corps de la page sortent dans des
-      fichiers à part, eux aussi en « defer », dans le même ordre : la page
-      s'affiche tout de suite, puis tout s'exécute l'un après l'autre. Les
-      fonctions communes, posées dans l'en-tête, restent en place.
-      Mémoriser n'en a pas besoin : son mode hors ligne garde déjà l'outil
-      de connexion sur l'appareil.
-
    1. ALLÉGER. Les commentaires servent dans le dépôt, pas chez le
       lecteur : on les retire du HTML, des feuilles de style et des
       scripts. Terser est réglé au plus sage (ni compression, ni
@@ -38,25 +29,6 @@ let terser = null;
 try { terser = require('terser'); } catch (e) { terser = null; }
 
 const crypto = require('crypto');
-const DIFFEREES = ['articles.html', 'ressources.html', 'commentaires.html'];
-
-function differe(OUT, nom, html) {
-  const corps = html.indexOf('<body');
-  if (corps < 0) return html;
-  let tete = html.slice(0, corps), reste = html.slice(corps), n = 0;
-  tete = tete.replace(/<script src="(https:\/\/www\.gstatic\.com\/firebasejs\/[^"]+)"><\/script>/g,
-    (m, u) => '<script src="' + u + '" defer></scr' + 'ipt>');
-  reste = reste.replace(/<script>([\s\S]*?)<\/script>/g, (m, code) => {
-    n++;
-    const h = crypto.createHash('sha1').update(code).digest('hex').slice(0, 10);
-    const f = nom.replace(/\.html$/, '') + '-' + n + '-' + h + '.js';
-    fs.mkdirSync(path.join(OUT, 'js'), { recursive: true });
-    fs.writeFileSync(path.join(OUT, 'js', f), code);
-    return '<script src="/js/' + f + '" defer></scr' + 'ipt>';
-  });
-  return tete + reste;
-}
-
 function sansCommentairesCSS(css) {
   return css
     .replace(/\/\*[\s\S]*?\*\//g, '')
@@ -107,10 +79,6 @@ function controlePage(nom, html, attendu, defauts) {
     try { new vm.Script(m[2], { filename: nom + ' (script ' + n + ')' }); }
     catch (e) { defauts.push(nom + ' : script ' + n + ' illisible (' + e.message + ')'); }
   }
-  const r3 = /<script src="\/(js\/[^"]+)"/g;
-  while ((m = r3.exec(html))) {
-    if (!fs.existsSync(path.join(controlePage.OUT, m[1]))) defauts.push(nom + ' : ' + m[1] + ' manquant');
-  }
   if (html.indexOf('id="lumen-commun"') < 0) defauts.push(nom + ' : feuille commune absente');
   for (const fam of (attendu[nom] || [])) {
     if (html.indexOf('data-commun="' + fam + '"') < 0) defauts.push(nom + ' : fonctions communes « ' + fam + ' » absentes');
@@ -146,12 +114,6 @@ module.exports = async function publication(OUT, attendu) {
   const defauts = [], alertes = [];
   for (const f of pages) controleIds(f, fs.readFileSync(path.join(OUT, f), 'utf8'), alertes);
 
-  /* 0. DIFFÉRER */
-  for (const f of DIFFEREES) {
-    const p = path.join(OUT, f);
-    if (fs.existsSync(p)) fs.writeFileSync(p, differe(OUT, f, fs.readFileSync(p, 'utf8')));
-  }
-
   /* 1. ALLÉGER */
   let avant = 0, apres = 0;
   for (const f of pages) {
@@ -161,8 +123,7 @@ module.exports = async function publication(OUT, attendu) {
     avant += h.length; apres += l.length;
     fs.writeFileSync(p, l);
   }
-  const scriptsJS = ['lumen-app.js', 'bible-panneau.js', 'memoriser-sw.js']
-    .concat(fs.existsSync(path.join(OUT, 'js')) ? fs.readdirSync(path.join(OUT, 'js')).map(f => 'js/' + f) : []);
+  const scriptsJS = ['lumen-app.js', 'bible-panneau.js', 'memoriser-sw.js'];
   for (const f of scriptsJS) {
     const p = path.join(OUT, f);
     if (!fs.existsSync(p)) continue;
@@ -175,7 +136,7 @@ module.exports = async function publication(OUT, attendu) {
 
   /* 2. CONTRÔLER */
   controlePage.OUT = OUT;
-  for (const f of ['index.html', 'bible.html', 'memoriser.html', 'articles.html', 'ressources.html', 'commentaires.html', 'etude.html', '404.html']) {
+  for (const f of ['index.html', 'bible.html', 'memoriser.html', 'articles.html', 'etude.html', '404.html']) {
     if (!fs.existsSync(path.join(OUT, f))) defauts.push(f + ' : page absente');
   }
   for (const f of pages) controlePage(f, fs.readFileSync(path.join(OUT, f), 'utf8'), attendu || {}, defauts);

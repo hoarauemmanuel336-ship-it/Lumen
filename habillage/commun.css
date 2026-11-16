@@ -10,7 +10,7 @@
    Les polices : une police par rôle, les mêmes que dans les skills
    d'Emmanuel :
    · Literata pour le texte qu'on lit longtemps (la Bible, les articles,
-     les commentaires, les notes, les versets cités) ;
+     les notes, les versets cités) ;
    · EB Garamond pour ce qui se touche et ce qui informe (boutons,
      navigation, états, dates, libellés, sous-titres de section) ;
    · Cormorant Garamond pour les titres ;
@@ -389,7 +389,7 @@ html:root body :is(.auth-google,.auth-m-google,.ab-google) svg{flex:none}
 /* rangées d'actions */
 html body .acts{gap:10px}
 html body #acts-liste{gap:10px}
-/* les rangées d'actions des listes (Articles, Ressources, Commentaires) :
+/* les rangées d'actions des listes (Articles) :
    les pages leur donnent des capitales espacées, ramenées ici à la voix
    des boutons */
 html:root body #acts-liste .act{letter-spacing:.01em;text-transform:none;background-image:none;white-space:nowrap}
@@ -599,11 +599,11 @@ html:root body .jt-act:is(:hover,:focus-visible)::before,html:root body .jt-act:
    arrondis aussi. Les boutons d'une fenêtre (Annuler, Valider…) se
    collent en bandeau, comme ailleurs.
    ════════════════════════════════════════════════════════════════════ */
-html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.ttx-b){
+html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.ttx-b){
   border-radius:12px;transition:background .25s,box-shadow .3s,transform .2s,color .25s}
-html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible){
+html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
-html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.com-fermer,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):active{transform:scale(.97)}
+html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):active{transform:scale(.97)}
 html:root body:not(#_) .poignee,html:root body:not(#_) .fil span.cible{border-radius:8px}
 html:root body:not(#_) #sel-barre{border-radius:16px}
 html:root body:not(#_) .sb-chip{border-radius:10px}
@@ -1044,87 +1044,7 @@ html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille:not(#m-s
 }
 
 /* ════════════════════════════════════════════════════════════════════
-   LE CONTRÔLE QUALITÉ (Articles, Ressources)
-   Un écran entier, noir, comme une page du site : le titre de l'élément
-   en Cormorant, le bilan en Literata, puis les problèmes en rangées sans
-   cadre, séparées par des filets. La gravité se lit à un petit carré :
-   plein de crème pour le grave, filet crème pour « à revoir », filet gris
-   pour le mineur. La coche sans cadre, à droite, dit si le point part à
-   la correction. Un seul bandeau crème en bas : « Corriger ».
-   ════════════════════════════════════════════════════════════════════ */
-html body .qc-ecran{position:fixed;inset:0;z-index:110;display:none;flex-direction:column;background:#000;color:#fff;overflow-y:auto;overscroll-behavior:contain}
-html body .qc-ecran.on{display:flex;animation:hVoile .25s ease both}
-html.qc-ouvert,html.qc-ouvert body{overflow:hidden}
-html body .qc-haut{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 28px;background:#000;border-bottom:1px solid var(--h-l1)}
-/* le retour : la flèche seule, comme au plein écran d'un article ou d'une
-   ressource (choix d'Emmanuel) */
-html:root body .qc-sortie{min-width:48px;min-height:40px;padding:0 14px;border-radius:12px;cursor:pointer}
-html:root body .qc-sortie svg{display:block}
-html body .qc-menu{padding:2px 6px;border:0;background:none;font-family:var(--h-ui);font-size:24px;line-height:1;letter-spacing:.05em;color:#fff;cursor:pointer}
-html body .qc-page{width:100%;max-width:760px;margin:0 auto;padding:52px 28px 40px;flex:1 0 auto}
-html body .qc-label{font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--h-t3)}
-html body .qc-titre{margin:10px 0 0;font-family:var(--h-titre);font-size:44px;font-weight:500;line-height:1.1;color:#fff}
-html body .qc-sep{width:200px;height:1px;margin:24px 0 28px;background:linear-gradient(90deg,var(--h-or),transparent)}
-html body .qc-etat-page{margin:0 0 14px;font-family:var(--h-ui);font-size:15px;color:var(--h-or)}
-html body .qc-bilan{margin:0 0 34px;font-family:'Literata',Georgia,serif;font-size:18px;line-height:1.6;color:var(--h-t1)}
-html body .qc-rien{margin:0;font-family:var(--h-ui);font-size:17px;color:var(--h-t2)}
-
-
-/* les onglets de gravité, à la façon de la barre du haut */
-html body .qc-filtres{display:flex;flex-wrap:wrap;gap:6px 26px;margin-bottom:6px;border-bottom:1px solid var(--h-l1)}
-html body .qc-f{position:relative;padding:8px 0 12px;border:0;background:none;font-family:var(--h-ui);font-size:16px;font-weight:500;color:var(--h-t3);cursor:pointer;transition:color .2s}
-html body .qc-f span{margin-left:7px;font-size:13px;color:var(--h-t4)}
-html body .qc-f:hover,html body .qc-f.on{color:#fff}
-html body .qc-f.on::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--h-or)}
-
-/* une rangée */
-html body .qc-ligne{display:grid;grid-template-columns:1fr auto;align-items:start;border-bottom:1px solid var(--h-l1)}
-html body .qc-tete{display:flex;align-items:flex-start;gap:16px;width:100%;padding:20px 0;border:0;background:none;text-align:left;color:inherit;cursor:pointer}
-html body .qc-marque{flex:0 0 auto;width:9px;height:9px;margin-top:8px;border:1px solid var(--h-t4)}
-html body .g-grave .qc-marque{background:var(--h-or);border-color:var(--h-or)}
-html body .g-a_revoir .qc-marque{border-color:var(--h-or)}
-html body .qc-txt{display:flex;flex-direction:column;gap:6px;min-width:0}
-html body .qc-ou{font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--h-t3)}
-html body .g-grave .qc-ou{color:var(--h-or)}
-html body .qc-constat{font-family:var(--h-ui);font-size:17.5px;line-height:1.45;color:#fff}
-html body .qc-tete:hover .qc-constat{color:#fff;text-decoration:underline;text-decoration-color:var(--h-l3);text-underline-offset:4px}
-html body .qc-coche{margin:16px 0 0 18px;padding:4px 2px;border:0;background:none;font-family:var(--h-ui);font-size:22px;line-height:1;color:var(--h-t4);cursor:pointer;transition:color .2s}
-html body .qc-ligne.retenu .qc-coche{color:var(--h-or)}
-html body .qc-fait{margin:22px 0 0 18px;font-family:var(--h-ui);font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--h-t3)}
-html body .qc-ligne.fait .qc-constat{color:var(--h-t3)}
-html body .qc-ligne:not(.retenu):not(.fait) .qc-constat{color:var(--h-t2)}
-html body .qc-detail{grid-column:1/-1;display:none;padding:0 0 22px 25px}
-html body .qc-ligne.ouvert .qc-detail{display:block}
-html body .qc-detail p{margin:0}
-html body .qc-detail p+p{margin-top:10px}
-html body .qc-extrait{font-family:'Literata',Georgia,serif;font-style:italic;font-size:16px;line-height:1.6;color:var(--h-t2)}
-html body .qc-corr{font-family:var(--h-ui);font-size:16.5px;line-height:1.5;color:#fff}
-html body .qc-laisse{font-family:var(--h-ui);font-size:15px;line-height:1.5;color:var(--h-t3)}
-
-/* le bas : le bandeau crème, toujours à portée */
-html body .qc-bas{position:sticky;bottom:0;display:flex;justify-content:center;padding:18px 28px 22px;background:linear-gradient(transparent,#000 40%)}
-html:root body .qc-bas .bandeau-mini>.act{min-width:240px;min-height:48px;padding:12px 26px;color:#000;font-family:var(--h-ui);font-size:15.5px;font-weight:600;letter-spacing:.01em;text-transform:none}
-html body .qc-bas .act:disabled{opacity:.5;cursor:default}
-
-/* l'état sur la carte de l'élément */
-html body .qc-etat{margin-left:12px;font-family:var(--h-ui);font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:none;color:var(--h-or)}
-html body .qc-etat.vif{display:inline-block;width:15px;height:15px;vertical-align:-3px;border:1.5px solid var(--h-l2);border-top-color:var(--h-or);border-radius:50%;animation:qcTourne .8s linear infinite}
-@keyframes qcTourne{to{transform:rotate(360deg)}}
-
-@media(max-width:600px){
-  html body .qc-haut{padding:12px 16px}
-  html body .qc-page{padding:32px 16px 28px}
-  html body .qc-titre{font-size:33px}
-  html body .qc-bilan{font-size:17px}
-  html body .qc-bas{padding:14px 16px calc(16px + env(safe-area-inset-bottom))}
-  html body .qc-bas .bandeau-mini,html body .qc-bas .act{width:100%}
-}
-@media (prefers-reduced-motion:reduce){
-  html body .qc-etat.vif{animation-duration:2.4s}
-}
-
-/* ════════════════════════════════════════════════════════════════════
-   LA QUESTION À L'IA (Articles, Ressources, Bible)
+   LA QUESTION À L'IA (toutes les pages)
    Le bouton « Demander à l'IA », crème, au bord de la sélection. Le
    panneau : un tiroir noir à droite (en bas sur téléphone), le passage en
    tête sous un filet crème, la conversation en Literata, la question en
@@ -1349,6 +1269,9 @@ html body .qa-l-cherche::placeholder{color:var(--h-t4)}
 html body .qa-mem-aide{margin:0 0 14px;font-family:var(--h-ui);font-size:14.5px;line-height:1.5;color:var(--h-t3)}
 html body .qa-mem{display:block;width:100%;min-height:220px;resize:none;padding:12px 14px;border:1px solid var(--h-l2);border-radius:0;background:var(--h-s1);font-family:var(--h-ui);font-size:15px;line-height:1.6;color:#fff;outline:none}
 html body .qa-mem:focus{border-color:var(--h-or)}
+/* le champ de la clé de l'API : une seule ligne, masquée */
+html body .qa-cle{display:block;width:100%;min-height:46px;padding:0 14px;border:1px solid var(--h-l2);border-radius:0;background:var(--h-s1);font-family:var(--h-ui);font-size:15px;color:#fff;outline:none}
+html body .qa-cle:focus{border-color:var(--h-or)}
 html body .qa-mem-acts{display:flex;align-items:center;justify-content:flex-end;gap:14px;margin:14px 0 20px}
 html body .qa-mem-etat{font-family:var(--h-ui);font-size:13.5px;color:var(--h-t3)}
 html body .qa-mem-b{min-height:42px;padding:0 20px;border:0;border-radius:12px;background:var(--h-or);font-family:var(--h-ui);font-size:14.5px;font-weight:600;color:#000;cursor:pointer;transition:background .2s}
@@ -1388,8 +1311,7 @@ html:root body .act.act-x{display:inline-flex;align-items:center;justify-content
 html:root body #qa-ch-fin{display:inline-flex;align-items:center;justify-content:center;min-width:48px}
 
 /* ── LE MESSAGE D'UNE PAGE VIDE ──
-   Le même cadre pointillé partout (Articles, Ressources, Commentaires,
-   Mémoriser) : le texte respire à l'intérieur, sans toucher le filet, et
+   Le même cadre pointillé partout (Articles, Mémoriser) : le texte respire à l'intérieur, sans toucher le filet, et
    prend l'interligne de la Bible (« met pareil que la bible »). La
    première phrase forme sa propre ligne ; le reste suit la largeur. */
 html:root body:not(#_) :is(.lv-vide,#cat-list>.sec-vide){
@@ -1462,15 +1384,7 @@ html:root body:not(#_):not(#_):not(#_):not(#_):not(#_) :is(.rech-fermer,.msrch-f
    la conversation est affichée se pose par-dessus elle, voile compris. */
 html:root body:not(#_):not(#_) :is(.overlay,.rech-overlay){z-index:270}
 
-/* ── LE BANDEAU DU COFFRE R2 (Ressources, Articles) ──
-   Il paraît seulement pendant le déménagement des contenus vers le
-   coffre R2 : une phrase, et le bouton de l'étape suivante. */
-html body .coffre-bandeau{display:flex;align-items:center;justify-content:space-between;gap:14px 20px;flex-wrap:wrap;margin:0 0 24px;padding:16px 18px;border:1px solid color-mix(in srgb,var(--h-or) 28%,transparent)}
-html body .coffre-bandeau[hidden]{display:none}
-html body .coffre-bandeau p{margin:0;flex:1 1 260px;font-family:var(--h-ui);font-size:15.5px;line-height:1.5;color:var(--h-t2)}
-html:root body .coffre-bandeau .res-rouvrir{margin:0;flex:0 0 auto}
-
-/* ── LE BANDEAU REPLIÉ (Ressources et Étude, plein écran) ──
+/* ── LE BANDEAU REPLIÉ (Étude et Articles, plein écran) ──
    Trois petits points crème ; à leur toucher ils s'effacent et la bande
    s'allonge en découvrant les boutons, puis elle se referme sur eux dans
    le mouvement inverse et les points reviennent (commun/cadre.js, lvRepliBandeau). */

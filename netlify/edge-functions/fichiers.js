@@ -11,6 +11,7 @@
    · /parcours/cours/<nom> sert les cours d'Étude, rangés dans cours/
      du coffre. Ils gardent l'adresse qu'ils avaient sur le site : leur
      progression, gardée par le navigateur sous cette adresse, reste.
+   · /articles/<nom> sert les articles, rangés dans articles/ du coffre.
    Le coffre et sa signature : netlify/serveur/r2.js.
    ============================================================ */
 import { cleValide, demande, adresseSignee, liste, efface, copie, ecrit, etatSecrets } from '../serveur/r2.js';
@@ -111,7 +112,10 @@ async function sert(req, cle) {
    décompresse lui-même. Le rare navigateur qui ne lit pas le gzip reçoit
    le cours décompressé ici. Un cours rangé sans compression part tel
    quel. */
-async function sertCours(req, nom, suite) {
+/* Les articles (articles/ du coffre, servis à /articles/<nom>) suivent le
+   même chemin : rangés compressés par le robot, revalidés à chaque
+   ouverture, lus dans le cadre isolé de la page Articles. */
+async function sertCours(req, nom, suite, dossier = 'cours/') {
   if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,120}\.html$/.test(nom)) return new Response('Introuvable.', { status: 404 });
   const entetes = {};
   for (const h of ['if-none-match', 'if-modified-since']) {
@@ -119,7 +123,7 @@ async function sertCours(req, nom, suite) {
     if (v) entetes[h] = v;
   }
   let r;
-  try { r = await demande(req.method === 'HEAD' ? 'HEAD' : 'GET', 'cours/' + nom, { entetes }); }
+  try { r = await demande(req.method === 'HEAD' ? 'HEAD' : 'GET', dossier + nom, { entetes }); }
   catch (e) { return suite(); }
   if (r.status !== 200 && r.status !== 304) return suite();
   const h = new Headers();
@@ -205,8 +209,12 @@ export default async (req, context) => {
     try { cle = decodeURIComponent(url.pathname.slice('/parcours/cours/'.length)); } catch (_) { return new Response('Introuvable.', { status: 404 }); }
     return sertCours(req, cle, () => (context && context.next ? context.next() : new Response('Introuvable.', { status: 404 })));
   }
+  if (url.pathname.startsWith('/articles/')) {
+    try { cle = decodeURIComponent(url.pathname.slice('/articles/'.length)); } catch (_) { return new Response('Introuvable.', { status: 404 }); }
+    return sertCours(req, cle, () => new Response('Introuvable.', { status: 404 }), 'articles/');
+  }
   try { cle = decodeURIComponent(url.pathname.slice('/fichiers/'.length)); } catch (_) { return new Response('Introuvable.', { status: 404 }); }
   return sert(req, cle);
 };
 
-export const config = { path: ['/fichiers/*', '/api/fichiers', '/parcours/cours/*'] };
+export const config = { path: ['/fichiers/*', '/api/fichiers', '/parcours/cours/*', '/articles/*'] };

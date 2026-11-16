@@ -5,16 +5,11 @@
    aspects », et « l'IA doit avoir la mémoire, juste pas synchronisée
    avec Claude ».
    Ce que la page fait pour l'IA pendant une conversation, avec les
-   données d'Emmanuel :
+   données du compte connecté :
    - la bibliothèque : chercher et lire dans les articles, les
-     ressources, les commentaires bibliques et les notes de la Bible ;
+     ressources et les notes de la Bible ;
    - les conversations passées (« Mes questions ») ;
-   - la mémoire propre au site (users/…/meta/ia_memoire), distincte de
-     celle de Claude ;
-   - les skills, lues dans le serveur ;
-   - la création d'un livre, d'un diagramme, d'un cours, d'un parcours ou
-     d'un article, assemblé ici (commun/assemblage.js) et enregistré dans
-     Ressources ou Articles ;
+   - la mémoire propre au site (users/…/meta/ia_memoire), une par compte ;
    - les pièces jointes (images, PDF), gardées dans le compte ;
    - le rendu du texte de l'IA (titres, listes, tableaux, citations).
    ════════════════════════════════════════════════════════════════════ */
@@ -76,33 +71,24 @@ async function lvIaLitGros(ref,champ){
    donc toute la bibliothèque ; les suivantes vont vite.
    ════════════════════════════════════════════════════════════════════ */
 const LV_IA_ESPECES={
-  article:{fiches:'art_pages',code:'art_code',page:'/articles.html',nom:'article'},
-  ressource:{fiches:'ressources',code:'res_code',page:'/ressources.html',nom:'ressource'}
+  article:{fiches:'art_pages',code:'art_code',nom:'article'},
+  ressource:{fiches:'ressources',code:'res_code',nom:'ressource'}
 };
 let LV_IA_BIBLIO=null, LV_IA_BIBLIO_T=0;
 const LV_IA_TEXTES=new Map();
 function lvIaNet(t){return String(t||'').replace(/<[^>]+>/g,' ').replace(/&nbsp;/g,' ').replace(/\s+/g,' ').trim();}
-/* tout le texte d'un objet (les blocs d'un commentaire, une note) */
-function lvIaTextes(v,out){
-  out=out||[];
-  if(typeof v==='string'){if(v.trim()&&!/^data:/.test(v)&&v.length<200000)out.push(lvIaNet(v));}
-  else if(Array.isArray(v))v.forEach(x=>lvIaTextes(x,out));
-  else if(v&&typeof v==='object')Object.keys(v).forEach(k=>{if(!/^(id|cree|maj|d|m|media|mime|vign|refs|livres|publie|k|c)$/.test(k))lvIaTextes(v[k],out);});
-  return out;
-}
 async function lvIaBibliotheque(){
   if(LV_IA_BIBLIO&&Date.now()-LV_IA_BIBLIO_T<120000)return LV_IA_BIBLIO;
   const {db,uid}=await lvIaBase();
   const col=n=>db.collection('users/'+uid+'/'+n);
   const lire=async n=>{try{const r=await col(n).get();const l=[];r.forEach(d=>l.push(Object.assign({id:d.id},d.data())));return l;}catch(e){console.warn('bibliothèque',n,e);return [];}};
   const rubs=async n=>{try{const d=await db.doc('users/'+uid+'/meta/'+n).get();return (d.exists&&d.data().list)||[];}catch(_){return [];}};
-  const [arts,res,coms,notes,ra,rr]=await Promise.all([lire('art_pages'),lire('ressources'),lire('commentaires'),lire('bibleNotes'),rubs('art_rubriques'),rubs('res_rubriques')]);
+  const [arts,res,notes,ra,rr]=await Promise.all([lire('art_pages'),lire('ressources'),lire('bibleNotes'),rubs('art_rubriques'),rubs('res_rubriques')]);
   const chemin=(rl,id)=>{const b=[];let r=rl.find(x=>x.id===id),g=0;while(r&&g++<6){b.unshift(r.nom);r=r.parent?rl.find(x=>x.id===r.parent):null;}return b.join(' › ');};
   const el=[];
   arts.filter(a=>!a.suppr).forEach(a=>el.push({espece:'article',id:a.id,titre:a.titre||'Sans titre',desc:a.extrait||a.desc||'',ou:chemin(ra,a.rub),maj:a.maj||a.cree||'',html:(a.type||'diagramme')==='diagramme',fiche:a}));
   res.filter(a=>!a.suppr).forEach(a=>el.push({espece:'ressource',id:a.id,titre:a.titre||'Sans titre',desc:a.desc||'',ou:chemin(rr,a.rub),maj:a.maj||a.cree||'',
     sorte:(a.type||'diagramme')==='diagramme'?(a.marque&&a.marque!=='aucune'?a.marque:(a.marqueDevinee||'page')):a.type,url:a.url||'',html:(a.type||'diagramme')==='diagramme',fiche:a}));
-  coms.filter(a=>!a.suppr).forEach(a=>el.push({espece:'commentaire',id:a.id,titre:a.titre||a.ref||'Commentaire',desc:a.ref||'',maj:a.maj||a.cree||'',texte:lvIaTextes(a.blocs||[]).join('\n')}));
   notes.filter(n=>!/^lv-/.test(n.id)&&(n.t||n.ti)).forEach(n=>el.push({espece:'note',id:n.id,titre:n.ti||'Note',desc:(Array.isArray(n.refs)?n.refs.map(r=>typeof r==='string'?r:(r&&(r.ref||r.l)||'')).filter(Boolean).join(', '):''),maj:n.m||n.d||'',texte:lvIaNet(n.t||'')}));
   LV_IA_BIBLIO=el; LV_IA_BIBLIO_T=Date.now();
   return el;
@@ -151,7 +137,7 @@ function lvIaExtraits(texte,mots,max){
 }
 async function lvIaChercher(requete,ou,avance){
   const tout=await lvIaBibliotheque();
-  const filtre={articles:'article',ressources:'ressource',commentaires:'commentaire',notes:'note'}[ou]||'';
+  const filtre={articles:'article',ressources:'ressource',notes:'note'}[ou]||'';
   const liste=filtre?tout.filter(e=>e.espece===filtre):tout;
   const decrit=e=>({espece:e.espece,id:e.id,titre:e.titre,sorte:e.sorte||undefined,rangement:e.ou||undefined,description:e.desc?e.desc.slice(0,300):undefined,date:String(e.maj||'').slice(0,10),lien:e.url||undefined});
   const mots=lvIaMots(requete);
@@ -243,77 +229,6 @@ async function lvIaOutilMemoire(e){
   else return {erreur:'Action inconnue.'};
   const net=await lvIaMemoireEcrit(l);
   return {ok:true,memoire:lvIaMemoireTexte(net)};
-}
-
-/* ── LES SKILLS ──
-   Leur texte vit dans le serveur (le même que dans Claude) ; la page le
-   demande à /api/ia, sans appel à l'IA. */
-async function lvIaSkill(nom){
-  const {u}=await lvIaBase();
-  const r=await fetch('/api/ia',{method:'POST',headers:{'content-type':'application/json','authorization':'Bearer '+await u.getIdToken()},body:JSON.stringify({tache:'skill',donnees:{nom}})});
-  const j=await r.json().catch(()=>({}));
-  if(!r.ok)return {erreur:j.message||'Skill introuvable.'};
-  return {nom,instructions:j.texte};
-}
-
-/* ════════════════════════════════════════════════════════════════════
-   CRÉER UNE PAGE
-   L'IA écrit le contenu avec la skill ; la page l'assemble avec le moteur
-   de la skill (commun/assemblage.js, les mêmes octets que l'assembleur de
-   Claude) et l'enregistre comme le ferait l'éditeur : la fiche dans
-   ressources (ou art_pages), le code dans res_code (ou art_code), au
-   premier niveau du rangement. La marque vient de la skill.
-   ════════════════════════════════════════════════════════════════════ */
-const LV_IA_MARQUE={'livre-html':'livre','diagrammes-interactifs':'diagramme','cours-html':'cours','parcours-etude':'parcours'};
-function lvIaTitreHtml(html){
-  try{const d=new DOMParser().parseFromString(html,'text/html');const h=d.querySelector('h1'),t=d.querySelector('title');return lvIaNet((h&&h.textContent)||(t&&t.textContent)||'');}catch(_){return '';}
-}
-/* le bloc « En bref » d'un article, qui paraît dans la liste sous la question */
-function lvIaEnBref(html){
-  try{
-    const d=new DOMParser().parseFromString(html,'text/html');
-    const lab=[...d.body.querySelectorAll('*')].find(e=>!e.children.length&&/^en bref$/i.test(lvIaNet(e.textContent)));
-    if(!lab)return '';
-    let bloc=lab.parentElement;
-    while(bloc&&bloc!==d.body&&lvIaNet(bloc.textContent).length<=lvIaNet(lab.textContent).length+3)bloc=bloc.parentElement;
-    if(!bloc||bloc===d.body)return '';
-    lab.remove();
-    return lvIaNet(bloc.textContent).slice(0,600);
-  }catch(_){return '';}
-}
-async function lvIaCreerPage(e,avance){
-  const skill=String(e.skill||''), contenu=String(e.contenu||'');
-  if(!contenu.trim())return {erreur:'Le contenu est vide.'};
-  const {db,uid}=await lvIaBase();
-  let html, titre, espece;
-  if(skill==='article-html'){
-    html=contenu; titre=lvIaTitreHtml(html)||'Article'; espece='article';
-  }else if(LV_IA_MARQUE[skill]){
-    if(avance)avance('Assemblage de la page');
-    try{const r=await lvAssemble(skill,contenu);html=r.html;titre=r.titre;}
-    catch(err){return {erreur:'L’assemblage a échoué : '+(err&&err.message||err)};}
-    espece='ressource';
-    /* le nom de la fiche : l'attribut « titre » lui-même de la balise
-       principale, jamais « sous-titre » (l'assembleur, lui, garde sa
-       propre règle pour le titre de la page) */
-    const m=/<(?:livre|diagramme)\b[^>]*?(?<![\w-])titre="([^"]*)"/.exec(contenu);
-    if(m&&m[1].trim())titre=lvIaNet(lvAsDeschappe(m[1]));
-  }else return {erreur:'Skill inconnue.'};
-  if(lvIaOctets(html)>LV_R2_CODE_MAX)return {erreur:'La page dépasse 300 Mo.'};
-  if(avance)avance('Enregistrement sur le site');
-  const id='s'+Date.now(), maj=new Date().toISOString();
-  const E=LV_IA_ESPECES[espece];
-  const fiche={titre,type:'diagramme',desc:String(e.description||'').slice(0,600),rub:'',media:'',mime:'',taille:0,nom:'',vign:'',url:'',cree:maj,maj,
-    marque:espece==='ressource'?LV_IA_MARQUE[skill]:'',codeTaille:lvIaOctets(html),marqueDevinee:''};
-  if(espece==='ressource')fiche.marqueIA=true;
-  else fiche.extrait=lvIaEnBref(html);
-  try{
-    /* la page part dans le coffre R2, sa fiche et celle de l'élément
-       basculent ensemble (commun/stockage.js) */
-    await lvContenuEcrit(db.collection('users/'+uid+'/'+E.code),id,html,lot=>lot.set(db.doc('users/'+uid+'/'+E.fiches+'/'+id),fiche));
-  }catch(err){console.warn('création',err);return {erreur:'L’enregistrement sur le site a échoué.'};}
-  LV_IA_BIBLIO=null;
-  return {ok:true,espece,id,titre,marque:fiche.marque||undefined,lien:E.page+'#r/'+id,rangement:'premier niveau de '+(espece==='article'?'Articles':'Ressources')+', à ranger ensuite'};
 }
 
 /* ════════════════════════════════════════════════════════════════════
@@ -422,8 +337,6 @@ async function lvIaOutil(b,avance){
       case 'lire_element': r=await lvIaLireElement(String(e.espece||''),String(e.id||''),e.debut);break;
       case 'chercher_conversations': r=await lvIaChercherConversations(String(e.requete||''));break;
       case 'memoire': r=await lvIaOutilMemoire(e);break;
-      case 'lire_skill': r=await lvIaSkill(String(e.nom||''));break;
-      case 'creer_page': r=await lvIaCreerPage(e,avance);break;
       default: return null;
     }
     return r;
