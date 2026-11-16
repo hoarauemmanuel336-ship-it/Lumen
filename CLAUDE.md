@@ -32,7 +32,7 @@ Les cinq pages du site :
 | `netlify/functions/` | La fabrication de la méditation du jour : une horloge, chaque heure, et la fonction de fond qui la fait écrire et relire par Claude, puis lire par ElevenLabs. |
 | `.github/` | Le robot du coffre R2 (`workflows/coffre.yml` et ses scripts dans `coffre/`). |
 | `ia/` | Les règles d'écriture de l'IA du site : les instructions personnalisées d'Emmanuel (`ia/instructions.md`), les mêmes pour tous, et la copie de sa skill humaniser (`ia/humaniser.md`), pour la méditation du jour. |
-| `documentation/` | Les fiches de référence : données, IA, règles de sécurité de la base, frais des services et réglages qui les plafonnent (`frais.md`). |
+| `documentation/` | Les fiches de référence : données, IA, règles de sécurité de la base, écriture des cours du parcours (`cours.md`, à lire avant d'en écrire un), frais des services et réglages qui les plafonnent (`frais.md`). |
 
 Le dossier `site/` est le site fabriqué. Il ne vit pas dans le dépôt : Netlify le refait à chaque dépôt.
 
