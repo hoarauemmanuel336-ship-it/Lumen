@@ -21,8 +21,11 @@ export const COFFRE = 'lumen-ressources';
 export const RANGEMENTS = ['res_code/', 'art_code/', 'res_avant/', 'art_avant/', 'res_medias/', 'art_medias/',
   'arrivees/', 'a-ranger/', 'index/', 'demandes/'];
 
+/* les fonctions du bord (Deno) lisent Netlify.env ; la fabrication de la
+   méditation, fonction Node, a aussi process.env */
 function env(nom) {
-  return (typeof Netlify !== 'undefined' && Netlify.env.get(nom)) || '';
+  return (typeof Netlify !== 'undefined' && Netlify.env && Netlify.env.get(nom))
+    || (typeof process !== 'undefined' && process.env && process.env[nom]) || '';
 }
 
 export function etatSecrets() {

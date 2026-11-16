@@ -2,6 +2,12 @@
   command   = "node fabrication/build-bi.js"
   publish   = "site"
 
+# Les fonctions Node (la méditation du jour, dans netlify/functions/) sont
+# assemblées par esbuild : la fabrique emporte avec elle la Chérubin
+# (contenu/bible.json) pour lire les versets qu'elle cite.
+[functions]
+  node_bundler = "esbuild"
+
 [build.environment]
   SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
 

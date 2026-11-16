@@ -13,9 +13,12 @@ const DUREE = 60 * 60 * 24 * 365;
 
 /* Ce qui reste servi sans mot de passe : robots.txt, les icônes et
    les manifestes (le navigateur les demande sans cookie pour installer
-   l'application sur l'écran d'accueil ; ils ne contiennent rien). */
+   l'application sur l'écran d'accueil ; ils ne contiennent rien).
+   La fabrique de la méditation est appelée par l'horloge du site, sans
+   cookie : elle vérifie elle-même son jeton et ne rend rien. */
 function libre(p) {
   return p === '/robots.txt'
+    || p === '/api/meditation-fabrique'
     || p === '/manifest.webmanifest'
     || p === '/memoriser-manifest.webmanifest'
     || p.startsWith('/icones/')

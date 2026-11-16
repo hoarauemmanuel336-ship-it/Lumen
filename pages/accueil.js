@@ -1,7 +1,7 @@
 /* ============================================================
    LUMEN — l'accueil : la croix et la vie de l'Église au jour le jour
    Emmanuel a voulu sur l'accueil « tout ce qui rythme la vie de
-   l'Église », d'après le calendrier de France.
+   l'Église », d'après le calendrier de France, et la méditation du jour.
 
    D'où vient chaque chose :
    · le calendrier (temps, semaine, célébration, couleur, cycles,
@@ -268,6 +268,334 @@
     document.body.removeChild(s);
   });
 
+  /* ───────── La méditation du jour ─────────
+     Écrite chaque nuit par Claude et lue par une voix d'ElevenLabs
+     (netlify/functions/), servie par /api/meditation ; elle paraît à
+     minuit, toujours avec sa voix. L'accueil montre celle du jour : son
+     titre, sa voix (écouter, avancer, télécharger) et son texte, qui
+     suit la voix. Quand elle manque (pause, crédits
+     épuisés), une phrase le dit à tous ; Emmanuel seul voit en plus
+     pourquoi, et quoi faire, d'après ce que le serveur lui répond
+     (lumen-app.js, « lv-med-proprio »). « Les méditations précédentes »
+     ouvre la liste des trente derniers jours ; un toucher sur l'une la
+     pose ici à la place de celle du jour, l'icône à sa droite la
+     télécharge. */
+  var MED = { liste: [], aujourdhui: '', jour: '', pause: false };
+  var IC_JOUER = '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>';
+  var IC_PAUSE = '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M7 4.5h3.6v15H7zM13.4 4.5H17v15h-3.6z" fill="currentColor"/></svg>';
+  var IC_TELE = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/></svg>';
+  var IC_X = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  var fmtJour = new Intl.DateTimeFormat('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+  function dateDe(k) { var p = k.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function minutes(s) { s = Math.max(0, Math.round(s || 0)); return Math.floor(s / 60) + ':' + deux(s % 60); }
+  /* ── le texte qui suit la voix ──
+     Le texte arrive en paragraphes, avec *italique* et **gras**, et, pour
+     chaque mot, le moment où la voix le dit (netlify/functions/
+     meditation-fabrique.mjs, qui découpe paragraphes et mots exactement
+     comme ici : les mots aux espaces ordinaires, jamais aux insécables).
+     Pendant l'écoute, le texte défile de lui-même d'un mouvement continu,
+     ligne après ligne, à la vitesse de la voix, sans à-coups : sa place
+     est calculée à chaque image entre le début d'une ligne et celui de la
+     suivante. Les mots déjà dits s'allument en fondu. Un toucher sur un
+     mot y fait aller la voix ; à l'arrêt, le texte se fait défiler à la
+     main. */
+  function paragraphesMed(t) {
+    var out = [], re = /[^\n]+(?:\n(?![ \t]*\n)[^\n]*)*/g, m;
+    while ((m = re.exec(String(t || '')))) { var p = m[0].trim(); if (p) out.push(p); }
+    return out;
+  }
+  function texteSuivi(m) {
+    var ps = paragraphesMed(m.texte), temps = m.temps && m.temps.length === ps.length ? m.temps : null;
+    var total = 0, avant = 0, it = false, gr = false, h = '';
+    ps.forEach(function (p) { total += p.length + 1; });
+    ps.forEach(function (p, k) {
+      var re = /[^ \t\r\n]+/g, w, i = 0, mots = [];
+      while ((w = re.exec(p))) {
+        var s = w[0], tm = temps && temps[k] && temps[k][i] != null ? temps[k][i] : (m.duree || 0) * (avant + w.index) / (total || 1);
+        /* un mot prend le style en cours à sa première lettre ; ** et *
+           ouvrent ou ferment le gras et l'italique là où ils sont */
+        var cls = null, mot = '';
+        for (var j = 0; j < s.length;) {
+          if (s.substr(j, 2) === '**') { gr = !gr; j += 2; continue; }
+          if (s.charAt(j) === '*') { it = !it; j++; continue; }
+          if (cls === null) cls = 'mw' + (it ? ' it' : '') + (gr ? ' gr' : '');
+          mot += s.charAt(j++);
+        }
+        if (!mot) { i++; continue; }
+        mots.push('<span class="' + cls + '" data-t="' + (Math.round(tm * 100) / 100) + '">' + esc(mot) + '</span>');
+        i++;
+      }
+      avant += p.length + 1;
+      h += '<p>' + mots.join(' ') + '</p>';
+    });
+    return h;
+  }
+  function suivi(z, a) {
+    var boite = z.querySelector('.med-texte'), defil = boite.querySelector('.med-defil');
+    var mots = [].slice.call(boite.querySelectorAll('.mw'));
+    var T = mots.map(function (w) { return +w.getAttribute('data-t') || 0; });
+    var lignes = [], dits = 0, image = 0, mesuree = false, y = 0;
+    /* les lignes du texte, avec le moment où la voix commence chacune */
+    function mesure() {
+      lignes = [];
+      var der = null;
+      for (var i = 0; i < mots.length; i++) {
+        var h = mots[i].offsetTop;
+        if (der === null || Math.abs(h - der) > 4) { lignes.push({ t: T[i], y: h }); der = h; }
+      }
+      mesuree = true;
+    }
+    function hauteur(t) {
+      if (!lignes.length) return 0;
+      if (t <= lignes[0].t) return lignes[0].y;
+      for (var i = 0; i < lignes.length - 1; i++) {
+        var l = lignes[i], s = lignes[i + 1];
+        if (t < s.t) return l.y + (s.y - l.y) * Math.max(0, Math.min(1, (t - l.t) / Math.max(0.05, s.t - l.t)));
+      }
+      return lignes[lignes.length - 1].y;
+    }
+    function allume(t) {
+      while (dits < mots.length && T[dits] <= t) mots[dits++].classList.add('dit');
+      while (dits > 0 && T[dits - 1] > t) mots[--dits].classList.remove('dit');
+    }
+    /* pendant l'écoute, le texte glisse d'un mouvement continu (au
+       sous-pixel près) ; à l'arrêt, il redevient une fenêtre qu'on fait
+       défiler soi-même, à l'endroit où la voix s'est arrêtée */
+    function cible() {
+      if (!mesuree) mesure();
+      var max = Math.max(0, boite.scrollHeight - boite.clientHeight);
+      return Math.max(0, Math.min(max, hauteur(a.currentTime || 0) - boite.clientHeight * 0.36));
+    }
+    function image1() {
+      var c = cible();
+      y = Math.abs(c - y) > 30 ? y + (c - y) * 0.12 : c;
+      defil.style.transform = 'translate3d(0,' + (-y).toFixed(2) + 'px,0)';
+      allume(a.currentTime || 0);
+      image = requestAnimationFrame(image1);
+    }
+    function joue() {
+      cancelAnimationFrame(image);
+      y = boite.scrollTop;
+      boite.scrollTop = 0;
+      boite.classList.add('suit', 'joue');
+      defil.style.transform = 'translate3d(0,' + (-y) + 'px,0)';
+      image = requestAnimationFrame(image1);
+    }
+    function arrete() {
+      cancelAnimationFrame(image);
+      if (!boite.classList.contains('joue')) return;
+      boite.classList.remove('joue');
+      defil.style.transform = '';
+      boite.scrollTop = Math.round(y);
+    }
+    a.addEventListener('play', joue);
+    a.addEventListener('pause', arrete);
+    a.addEventListener('ended', arrete);
+    a.addEventListener('seeked', function () { allume(a.currentTime || 0); if (a.paused && boite.classList.contains('suit')) { y = cible(); boite.scrollTop = Math.round(y); } });
+    boite.addEventListener('click', function (e) {
+      var w = e.target.closest ? e.target.closest('.mw') : null;
+      if (!w) return;
+      try { a.currentTime = +w.getAttribute('data-t') || 0; } catch (_) {}
+      if (a.paused) a.play().catch(function () {});
+    });
+    window.addEventListener('resize', function () { mesuree = false; });
+  }
+
+  function zoneMed() { return Z.querySelector('.lit-medit'); }
+  /* « Les méditations précédentes » se tient sous l'intitulé du bloc, à
+     l'écart du texte qui défile, pour ne pas le gêner */
+  function lienAvant(montre) {
+    var b = Z.querySelector('.med-avant');
+    if (b) b.hidden = !montre;
+  }
+
+  function meditation() {
+    var z = zoneMed();
+    if (!z) return;
+    z.innerHTML = '<span class="lv-roue petite" role="status" aria-label="Chargement"></span>';
+    fetch('/api/meditation', { cache: 'no-cache' }).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    }).then(function (d) {
+      MED.liste = d.liste || [];
+      MED.aujourdhui = d.aujourdhui || cle(new Date());
+      MED.pause = !!d.pause;
+      if (d.derniere && d.derniere.date === MED.aujourdhui) { montreMed(d.derniere); return; }
+      var h = '<p class="lit-doux">' + (MED.pause ? 'Les méditations sont en pause.'
+        : MED.liste.length ? 'La méditation du jour n’a pas encore paru.' : 'La première méditation paraîtra à minuit.') + '</p>';
+      MED.jour = '';
+      z.innerHTML = h;
+      lienAvant(MED.liste.length > 0);
+      proprio();
+    }).catch(function () {
+      z.innerHTML = '<p class="lit-doux">La méditation n’a pas pu être chargée.</p>';
+    });
+  }
+
+  function montreMed(m) {
+    var z = zoneMed();
+    if (!z) return;
+    MED.jour = m.date;
+    var duJour = m.date === MED.aujourdhui;
+    var h = '<h3 class="med-titre">' + esc(m.titre) + '</h3>';
+    var src = '/api/meditation/' + m.date + '.mp3';
+      h += '<div class="med-lecteur">'
+        + '<div class="med-btns">'
+        + '<button type="button" class="med-b med-jouer" aria-label="Écouter">' + IC_JOUER + '<span>Écouter</span></button>'
+        + '<a class="med-b med-tele" href="' + src + '?telecharger" download="meditation-' + m.date + '.mp3" aria-label="Télécharger l’audio">' + IC_TELE + '<span>Télécharger</span></a>'
+        + '</div>'
+        + '<div class="med-piste"><span class="med-t med-ici">0:00</span>'
+        + '<input type="range" class="med-barre" min="0" max="' + (m.duree || 0) + '" step="1" value="0" aria-label="Avancer dans la méditation">'
+        + '<span class="med-t med-tout">' + minutes(m.duree) + '</span></div>'
+        + '<audio class="med-audio" preload="none" src="' + src + '"></audio>'
+        + '</div>';
+    h += '<div class="med-texte"><div class="med-defil">' + texteSuivi(m) + '</div></div>';
+    z.innerHTML = h;
+    branche(z, m);
+    suivi(z, z.querySelector('.med-audio'));
+    lienAvant(MED.liste.length > 1 || !duJour);
+    proprio();
+  }
+
+  /* ── ce que voit Emmanuel seul ──
+     Sous la méditation, une note dit pourquoi elle manque et quoi faire,
+     ou prévient quand les crédits ElevenLabs deviennent justes. */
+  var fmtNb = new Intl.NumberFormat('fr-FR');
+  function proprio() {
+    var z = zoneMed(), d = window.LV_MED_PROPRIO;
+    if (!z) return;
+    var vieille = z.querySelector('.med-proprio');
+    if (vieille) vieille.parentNode.removeChild(vieille);
+    if (!d || !d.proprio) return;
+    var e = d.etat || {}, c = e.credits || null, auj = d.aujourdhui || MED.aujourdhui, t = '';
+    var dateRen = c && c.renouvellement ? fmtJour.format(dateDe(c.renouvellement)) : '';
+    var demain = e.jour && e.jour > auj ? 'Méditation de demain' + NB + ': ' : '';
+    if (d.pause) t = 'Vous les remettez en route dans «' + NB + 'Mon compte' + NB + '», à la ligne «' + NB + 'Méditation du jour' + NB + '».';
+    else if (e.jour && e.jour >= auj && e.raison && e.raison !== 'ok') {
+      if (e.raison === 'credits-eleven') t = 'Crédits ElevenLabs épuisés' + (c ? NB + ': il en reste ' + fmtNb.format(c.reste) : '') + '. La méditation paraîtra dans l’heure qui suit l’ajout de crédits' + (dateRen ? ', ou au renouvellement du ' + dateRen : '') + '.';
+      else if (e.raison === 'credits-claude') t = 'Crédits de l’API Claude épuisés. La méditation paraîtra dans l’heure qui suit leur recharge, sur platform.claude.com.';
+      else if (e.raison === 'cle-eleven') t = e.detail ? 'ElevenLabs refuse la clé réglée dans Netlify.' : 'La clé ElevenLabs n’est pas encore réglée dans Netlify (variable ELEVENLABS_API_KEY).';
+      else if (e.raison === 'voix') t = 'La voix «' + NB + 'Victoria' + NB + '» est introuvable dans le compte ElevenLabs.';
+      else if (e.raison === 'erreur') t = 'La méditation n’a pas pu se faire' + (e.detail ? NB + ': ' + e.detail : '') + '. Elle se retente chaque heure, trois fois par jour au plus.';
+      t = demain + t;
+    }
+    else if (c && c.parJour < 3000) t = 'Crédits ElevenLabs justes' + NB + ': il en reste ' + fmtNb.format(c.reste) + (dateRen ? ' jusqu’au renouvellement du ' + dateRen : '') + '. Les méditations raccourcissent un peu d’ici là.';
+    if (!t) return;
+    var n = document.createElement('div');
+    n.className = 'med-proprio';
+    n.innerHTML = '<span class="med-proprio-l">Visible par vous seul</span><p>' + esc(t) + '</p>';
+    z.appendChild(n);
+  }
+  window.addEventListener('lv-med-proprio', function (ev) {
+    var d = ev.detail;
+    /* la pause vient d'être changée : la phrase que voient tous suit */
+    if (d && d.proprio && !!d.pause !== !!MED.pause && !(Z.querySelector('.med-audio') && !Z.querySelector('.med-audio').paused)) { meditation(); return; }
+    proprio();
+  });
+
+  function branche(z, m) {
+    var a = z.querySelector('.med-audio'), b = z.querySelector('.med-jouer'), barre = z.querySelector('.med-barre');
+    var ici = z.querySelector('.med-ici'), tout = z.querySelector('.med-tout'), glisse = false;
+    function etat() {
+      var joue = !a.paused && !a.ended;
+      b.innerHTML = (joue ? IC_PAUSE : IC_JOUER) + '<span>' + (joue ? 'Pause' : 'Écouter') + '</span>';
+      b.setAttribute('aria-label', joue ? 'Pause' : 'Écouter');
+    }
+    function remplit() { barre.style.setProperty('--med-p', (barre.max > 0 ? barre.value / barre.max * 100 : 0) + '%'); }
+    b.addEventListener('click', function () {
+      if (a.paused || a.ended) {
+        if ('mediaSession' in navigator && window.MediaMetadata) {
+          try { navigator.mediaSession.metadata = new MediaMetadata({ title: m.titre, artist: 'Méditation du jour', album: 'Lumen' }); } catch (_) {}
+        }
+        a.play().catch(function () {});
+      } else a.pause();
+    });
+    a.addEventListener('play', etat);
+    a.addEventListener('pause', etat);
+    a.addEventListener('ended', etat);
+    a.addEventListener('loadedmetadata', function () {
+      if (isFinite(a.duration) && a.duration > 0) { barre.max = Math.round(a.duration); tout.textContent = minutes(a.duration); remplit(); }
+    });
+    a.addEventListener('timeupdate', function () {
+      if (glisse) return;
+      barre.value = Math.round(a.currentTime);
+      ici.textContent = minutes(a.currentTime);
+      remplit();
+    });
+    barre.addEventListener('input', function () { glisse = true; ici.textContent = minutes(barre.value); remplit(); });
+    barre.addEventListener('change', function () {
+      glisse = false;
+      try { a.currentTime = +barre.value; } catch (_) {}
+      if (a.paused && a.preload === 'none') a.preload = 'metadata';
+    });
+    remplit();
+  }
+
+  /* ── la fenêtre des méditations précédentes ── */
+  function fenetre() {
+    var f = document.querySelector('.med-fen');
+    if (f) return f;
+    f = document.createElement('div');
+    f.className = 'overlay feuille med-fen';
+    f.setAttribute('role', 'dialog');
+    f.setAttribute('aria-modal', 'true');
+    f.setAttribute('aria-labelledby', 'med-fen-t');
+    f.innerHTML = '<div class="modal"><h2 class="modal-titre" id="med-fen-t">Les méditations précédentes</h2>'
+      + '<button type="button" class="feuille-x" aria-label="Fermer">' + IC_X + '</button>'
+      + '<div id="choix-liste" class="med-liste"></div></div>';
+    document.body.appendChild(f);
+    f.addEventListener('click', function (e) {
+      if (e.target === f || (e.target.closest && e.target.closest('.feuille-x'))) { ferme(); return; }
+      var r = e.target.closest ? e.target.closest('.choix') : null;
+      if (!r) return;
+      ferme();
+      choisit(r.getAttribute('data-jour'));
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && f.classList.contains('on')) ferme(); });
+    return f;
+  }
+  var fmtCourtJour = new Intl.DateTimeFormat('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' });
+  function ouvre() {
+    var f = fenetre(), h = '';
+    MED.liste.forEach(function (x) {
+      var quand = x.date === MED.aujourdhui ? 'aujourd’hui' : fmtCourtJour.format(dateDe(x.date));
+      h += '<div class="med-rang"><button type="button" class="choix' + (x.date === MED.jour ? ' med-ici-l' : '') + '" data-jour="' + esc(x.date) + '">'
+        + '<span class="cx-ic">' + IC_JOUER + '</span>'
+        + '<span class="med-l">' + esc(x.titre)
+        + '<small>' + esc(quand) + (x.duree ? ' · ' + minutes(x.duree) : '') + '</small></span></button>'
+        + '<a class="med-dl" href="/api/meditation/' + esc(x.date) + '.mp3?telecharger" download="meditation-' + esc(x.date) + '.mp3" aria-label="Télécharger «' + NB + esc(x.titre) + NB + '»">' + IC_TELE + '</a></div>';
+    });
+    f.querySelector('.med-liste').innerHTML = h;
+    f.classList.add('on');
+    document.documentElement.style.overflow = 'hidden';
+    var x = f.querySelector('.feuille-x');
+    if (x) x.focus();
+  }
+  function ferme() {
+    var f = document.querySelector('.med-fen');
+    if (f) f.classList.remove('on');
+    document.documentElement.style.overflow = '';
+  }
+  function choisit(jour) {
+    if (!jour || jour === MED.jour) return;
+    var z = zoneMed();
+    if (!z) return;
+    var a = z.querySelector('.med-audio');
+    if (a) a.pause();
+    z.innerHTML = '<span class="lv-roue petite" role="status" aria-label="Chargement"></span>';
+    fetch('/api/meditation/' + jour, { cache: 'no-cache' }).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    }).then(montreMed).catch(function () {
+      z.innerHTML = '<p class="lit-doux">Cette méditation n’a pas pu être chargée.</p>';
+    });
+  }
+  Z.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('.med-lien') : null;
+    if (!b) return;
+    if (b.classList.contains('med-avant')) ouvre();
+  });
+
   /* ───────── L'affichage ───────── */
   function ligne(mot, val) { return '<div class="lit-ligne"><span class="lit-mot">' + mot + '</span><span class="lit-val">' + val + '</span></div>'; }
   function bloc(titre, corps, id) {
@@ -288,6 +616,9 @@
     });
     h += '</div>';
 
+    h += '<section class="lit-bloc"><div class="med-tete"><h2 class="lit-titre">Méditation du jour</h2>'
+      + '<button type="button" class="med-lien med-avant" hidden>Les méditations précédentes</button></div>'
+      + '<div class="lit-corps lit-medit"></div></section>';
     h += bloc('Lectures de la messe', '', 'lit-lect');
     h += bloc('Aujourd’hui dans l’Église', viePratique(d, j).map(function (t) { return '<p class="lit-pt">' + esc(typo(t)) + '</p>'; }).join(''));
     h += bloc('Prière des heures', heure(j).map(function (x) { return ligne(x[0], x[1]); }).join('') +
@@ -303,6 +634,7 @@
     Z.innerHTML = h;
     Z.setAttribute('data-jour', cle(d));
     lectures(d);
+    meditation();
   }
 
   function demarre() {
@@ -310,9 +642,12 @@
     Promise.all([charge(an - 1), charge(an), charge(an + 1)]).then(affiche);
   }
   demarre();
-  /* L'heure se tient à jour ; à minuit, tout l'accueil passe au jour suivant. */
+  /* L'heure se tient à jour ; à minuit, tout l'accueil passe au jour
+     suivant, sauf pendant qu'une méditation se fait entendre : il attend
+     qu'elle s'arrête. */
   setInterval(function () {
-    if (Z.getAttribute('data-jour') !== cle(new Date())) { demarre(); return; }
+    var son = Z.querySelector('.med-audio');
+    if (Z.getAttribute('data-jour') !== cle(new Date()) && !(son && !son.paused)) { demarre(); return; }
     var z = Z.querySelector('.lit-heure'), j = jour(new Date());
     if (z && j) {
       var lignes = z.querySelectorAll('.lit-ligne'), hh = heure(j);

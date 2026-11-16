@@ -71,6 +71,78 @@ html body .lit-av-d{color:var(--h-t3);font-size:15.5px}
 html body .lit-av-n{color:var(--h-t1)}
 html body .lit-av-q{color:var(--h-t3);font-size:15px;white-space:nowrap}
 
+/* ── la méditation du jour ──
+   Le titre en Cormorant, la voix dans un bandeau crème (écouter,
+   télécharger) au-dessus d'une piste fine, le texte en Literata dans une
+   fenêtre de lecture qui suit la voix (pages/accueil.js) : elle défile
+   seule pendant l'écoute, ses bords s'effacent en fondu, les mots dits
+   s'allument doucement. */
+html body .med-titre{font-family:var(--h-titre);font-weight:400;font-size:30px;line-height:1.15;color:var(--h-t1);margin:-4px 0 18px;text-wrap:balance}
+html body .med-lecteur{margin:0 0 20px}
+html body .med-btns{display:inline-flex;gap:0;padding:3px;border-radius:14px;background:var(--h-or)}
+html body .med-b{position:relative;display:inline-flex;align-items:center;gap:9px;min-height:42px;margin:0;padding:0 18px;border:0;border-radius:11px;background:transparent;
+  font-family:var(--h-ui);font-size:15px;font-weight:600;letter-spacing:.01em;color:#000;text-decoration:none;cursor:pointer;
+  transition:background .25s,box-shadow .3s,transform .2s}
+html body .med-b+.med-b::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:color-mix(in srgb,var(--h-or) 84%,#000);transition:opacity .2s}
+html body .med-b:is(:hover,:focus-visible){z-index:1;background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;outline:none;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
+html body .med-b:is(:hover,:focus-visible)::before,html body .med-b:is(:hover,:focus-visible)+.med-b::before{opacity:0}
+html body .med-b:active{transform:scale(.97)}
+html body .med-b svg{flex:none}
+html body .med-jouer{min-width:124px}
+html body .med-piste{display:flex;align-items:center;gap:14px;margin:16px 0 0}
+html body .med-t{flex:none;min-width:38px;font-size:14px;color:var(--h-t3);font-variant-numeric:tabular-nums}
+html body .med-tout{text-align:right}
+html body .med-barre{flex:1 1 auto;min-width:0;height:22px;margin:0;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer;--med-p:0%}
+html body .med-barre::-webkit-slider-runnable-track{height:3px;background:linear-gradient(90deg,var(--h-or) var(--med-p),var(--h-l2) var(--med-p))}
+html body .med-barre::-moz-range-track{height:3px;background:var(--h-l2)}
+html body .med-barre::-moz-range-progress{height:3px;background:var(--h-or)}
+html body .med-barre::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;margin-top:-5px;border:0;border-radius:50%;background:var(--h-or)}
+html body .med-barre::-moz-range-thumb{width:13px;height:13px;border:0;border-radius:50%;background:var(--h-or)}
+html body .med-barre:focus-visible{outline:none}
+html body .med-barre:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px var(--h-voile-fort)}
+html body .med-texte{position:relative;height:15.5em;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;box-sizing:border-box;
+  font-family:var(--h-texte);font-size:17px;line-height:1.62;color:var(--h-t2);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 9%,#000 74%,transparent);mask-image:linear-gradient(180deg,transparent,#000 9%,#000 74%,transparent)}
+html body .med-texte::-webkit-scrollbar{display:none}
+html body .med-texte.joue{overflow:hidden}
+html body .med-defil{will-change:transform}
+html body .med-defil{padding:.6em 0 9em}
+html body .med-texte p{margin:0 0 .85em}
+html body .med-texte .mw{cursor:pointer;transition:color .6s ease}
+html body .med-texte .mw.it{font-style:italic}
+html body .med-texte .mw.gr{font-weight:600}
+html body .med-texte.suit .mw{color:var(--h-t3)}
+html body .med-texte.suit .mw.dit{color:var(--h-t1)}
+/* l'intitulé du bloc et, dessous, « Les méditations précédentes », loin
+   du texte qui défile ; sur téléphone, les deux sur une même ligne */
+html body .med-tete{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+html body .med-tete .med-avant{font-size:15px;line-height:1.35;text-align:left}
+html body .med-tete .med-avant[hidden]{display:none}
+html body .med-lien{background:none;border:0;padding:0;margin:0;font:inherit;font-size:16px;color:var(--h-t1);cursor:pointer;border-bottom:1px solid var(--h-l2);transition:border-color .25s,color .25s}
+html body .med-lien:hover,html body .med-lien:focus-visible{border-color:var(--h-or);color:#fff;outline:none}
+/* la note qu'Emmanuel voit seul : pourquoi la méditation manque, ou des
+   crédits qui deviennent justes ; un trait crème la distingue du reste */
+html body .med-proprio{margin:20px 0 0;padding:2px 0 2px 16px;border-left:2px solid color-mix(in srgb,var(--h-or) 60%,transparent)}
+html body .med-proprio-l{display:block;margin:0 0 4px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--h-t3)}
+html body .med-proprio p{margin:0;font-size:15.5px;line-height:1.5;color:var(--h-t2)}
+/* la fenêtre des méditations précédentes, sur le modèle des feuilles du site */
+html body .overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center}
+html body .overlay.on{display:flex}
+/* la fenêtre passe aussi au-dessus du bouton qui remonte en haut de page ;
+   chaque rangée porte le titre, puis le jour et la durée dessous, pour que
+   les titres longs se lisent en entier sur téléphone */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.med-fen{z-index:1200}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.med-fen .choix{width:100%;text-align:left}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.med-fen .choix .med-l{white-space:normal;overflow:visible;line-height:1.25;padding:2px 0}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.med-fen .choix .med-l small{display:block;margin-top:3px;font-size:14.5px;font-weight:400;color:var(--h-t3)}
+/* l'icône qui télécharge, au bout de chaque rangée, sans mot */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.med-fen .med-rang{display:flex;align-items:center;gap:4px}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.med-fen .med-rang .choix{flex:1 1 auto;min-width:0}
+html body .med-dl{flex:none;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin-right:6px;border-radius:50%;color:var(--h-t3);transition:color .25s,background .25s}
+html body .med-dl:is(:hover,:focus-visible){color:var(--h-or);background:var(--h-voile);outline:none}
+/* la méditation affichée, marquée dans la liste */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille .choix.med-ici-l{color:var(--h-or);background:var(--h-voile)}
+
 @media(max-width:720px){
   html body .hero.hero-lit{padding:48px 0 28px}
   html body .lit-fete{font-size:30px}
@@ -82,4 +154,8 @@ html body .lit-av-q{color:var(--h-t3);font-size:15px;white-space:nowrap}
   html body .lit-av-n{grid-column:2/4;grid-row:2;line-height:1.35}
   html body .lit-legende{gap:6px 18px;font-size:13.5px}
   html body .lit-d{font-size:12px;padding-left:5px}
+  html body .med-titre{font-size:27px}
+  html body .med-tete{flex-direction:row;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px}
+  html body .med-btns{display:flex}
+  html body .med-b{flex:1 1 0;justify-content:center;padding:0 10px}
 }

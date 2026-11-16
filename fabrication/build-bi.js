@@ -83,10 +83,14 @@ function communJS(page) {
    la conversation avec l'IA les reçoit. La
    fabrication les écrit dans un module que lit le serveur de l'IA
    (netlify/edge-functions/ia.js) ; Netlify assemble ce serveur après la
-   fabrication, il prend donc toujours la version du dépôt. */
+   fabrication, il prend donc toujours la version du dépôt.
+   La méditation du jour passe en plus par la skill humaniser d'Emmanuel
+   (ia/humaniser.md, copie de sa skill ; Emmanuel : « il faudra toujours
+   faire passer un coup de /humaniser »). */
 {
-  const savoir = { instructions: '' };
+  const savoir = { instructions: '', humaniser: '' };
   try { savoir.instructions = fs.readFileSync('ia/instructions.md', 'utf8'); } catch (e) { console.warn('⚠ ia/instructions.md absent'); }
+  try { savoir.humaniser = fs.readFileSync('ia/humaniser.md', 'utf8'); } catch (e) { console.warn('⚠ ia/humaniser.md absent'); }
   fs.mkdirSync('netlify/savoir', { recursive: true });
   fs.writeFileSync('netlify/savoir/savoir.js',
     '/* Fichier écrit par la fabrication (fabrication/build-bi.js) à partir de ia/ : ne pas le modifier à la main. */\n'
@@ -389,6 +393,8 @@ function header(lang) {
       </div>
       <div class="ttx-row"><span class="ttx-lab">Taille du texte</span><span class="ttx-btns"><button type="button" class="ttx-b" data-ttx="-1">A−</button><button type="button" class="ttx-b" data-ttx="0">A</button><button type="button" class="ttx-b" data-ttx="1">A+</button></span></div>
       <div class="tog-row"><span class="tog-lab">Onglet Bible à gauche</span><span class="tog-sw" id="tog-bible" role="button" tabindex="0" aria-label="Afficher ou masquer l’onglet Bible"></span></div>
+      <!-- réservé au compte d'Emmanuel : la page ne l'affiche que si le serveur le reconnaît -->
+      <div class="tog-row" id="tog-med-row" style="display:none"><span class="tog-lab">Méditation du jour</span><span class="tog-sw" id="tog-med" role="button" tabindex="0" aria-label="Mettre en pause ou reprendre la méditation du jour"></span></div>
       <button class="auth-m-link" id="auth-logout">Déconnexion</button>
     </div>
   </div>
@@ -510,6 +516,42 @@ const AUTH_JS = `(function(){
   el('auth-google').addEventListener('click',function(){auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){msg(e.message,'err');});});
   el('auth-logout').addEventListener('click',function(){auth.signOut().then(close);});
   auth.onAuthStateChanged(function(u){icone.classList.toggle('connecte',!!u);if(ov.classList.contains('ouvert'))open();});
+})();
+(function lvMedBoot(){
+  /* La pause de la méditation du jour, réservée au compte d'Emmanuel
+     (« un truc que seul moi peut voir », sous « Onglet Bible à gauche »,
+     même interrupteur). Le serveur reconnaît le compte (/api/meditation) :
+     la page n'en sait rien d'avance. Allumé, la méditation paraît chaque
+     nuit ; éteint, elle est en pause. Ce que le serveur répond (pause,
+     état de la fabrique) passe aussi à l'accueil, qui le montre à
+     Emmanuel seul. La demande part sur l'accueil et à l'ouverture de
+     « Mon compte ». */
+  if(typeof firebase==='undefined'||!firebase.auth){document.addEventListener('lv-fb-ready',lvMedBoot,{once:true});return;}
+  if(!firebase.apps||!firebase.apps.length)return;
+  var row=document.getElementById('tog-med-row'),sw=document.getElementById('tog-med'),icone=document.getElementById('auth-ouvrir');
+  var auth=firebase.auth(),pause=false,attente=false;
+  function publie(d){window.LV_MED_PROPRIO=d;try{window.dispatchEvent(new CustomEvent('lv-med-proprio',{detail:d}));}catch(e){}}
+  function montre(d){
+    if(!d||!d.proprio){if(row)row.style.display='none';publie(null);return;}
+    pause=!!d.pause;
+    if(row)row.style.display='';
+    if(sw){sw.classList.toggle('on',!pause);sw.setAttribute('aria-checked',pause?'false':'true');}
+    publie(d);
+  }
+  function demande(corps){
+    var u=auth.currentUser;
+    if(!u||!u.emailVerified){montre(null);return Promise.resolve();}
+    return u.getIdToken().then(function(j){
+      return fetch('/api/meditation',{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+j},body:JSON.stringify(corps)});
+    }).then(function(r){return r.ok?r.json():null;}).then(montre).catch(function(){});
+  }
+  auth.onAuthStateChanged(function(u){if(!u){montre(null);return;}if(document.getElementById('lit'))demande({action:'etat'});});
+  if(icone)icone.addEventListener('click',function(){if(auth.currentUser)demande({action:'etat'});});
+  if(sw){
+    var bascule=function(){if(attente)return;attente=true;sw.classList.toggle('on',pause);demande({action:'pause',pause:!pause}).then(function(){attente=false;});};
+    sw.addEventListener('click',bascule);
+    sw.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();bascule();}});
+  }
 })();`;
 
 const RECH_JS = `(function(){
