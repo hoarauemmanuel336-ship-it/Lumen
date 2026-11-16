@@ -1106,6 +1106,10 @@ html:root body:not(#_):not(#_) #conf-voile{z-index:284}
    numéros de versets et les titres de section grandissent avec le texte ;
    dans les notes, le verset rappelé, le texte écrit et l'aperçu de la
    liste. L'interface (barre, boutons, menus) garde sa taille. */
+/* sur téléphone, le texte d'un chapitre descend à 18 px : à 20,5 px, une
+   ligne ne tenait qu'une trentaine de lettres et la justification creusait
+   de grands blancs entre les mots */
+@media(max-width:720px){html body .ch-texte{font-size:calc(18px*var(--lvz,1))}}
 html body .ch-texte .ch-sect{font-size:calc(11.5px*var(--lvz,1))}
 html body .ch-texte sup.vn{font-size:calc(10.5px*var(--lvz,1))}
 html body .ch-texte sup.vsub{font-size:calc(9.5px*var(--lvz,1))}

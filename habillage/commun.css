@@ -1448,3 +1448,20 @@ html:root body:not(#_):not(#_):not(#_) .lv-confid{display:block;margin-top:14px;
 html:root body:not(#_):not(#_):not(#_) .lv-confid:is(:hover,:focus-visible){color:var(--h-t2);outline:none}
 html:root body:not(#_):not(#_):not(#_) .overlay.lv-suppr .modal-btns>button{font-family:var(--h-ui);font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;color:#0a0a0a;min-height:44px;padding:11px 22px;border:0;cursor:pointer}
 html:root body:not(#_):not(#_):not(#_) .overlay.lv-suppr .modal-titre{padding-right:30px}
+
+
+/* ═══════════════════════════════════════
+   SUR TÉLÉPHONE, RIEN SOUS 13 PX (toutes les pages)
+   EB Garamond paraît plus petite que les autres polices : sur téléphone,
+   les étiquettes, les noms de la barre du bas, les petits boutons et les
+   dates montent à 13 px, pour qu'aucun texte de l'interface ne passe sous
+   cette taille. Les numéros de versets, les exposants et l'onglet Bible à
+   gauche (en capitales espacées, il grandirait sur ce qu'on lit) gardent
+   la leur. */
+@media(max-width:720px){
+  html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) :is(.nav-bas a,.auth-m-or,.auth-or,.ab-ou,.lit-d,.lv-confid,.lvp-oter,.sb-btn,.sb-oter,.sb-x,.nb-btn,.nb-cat-lab,.nb2 .nb-titre,.testament,
+  .lbl,.modal-flbl,.mv-ecart-lab,.mv-bible,.sec-nom,.sec-n,.sec-go,.cat-go,.cat-pct,.mini-act,#sel-all,.trash-vcat,.q-label,.move-sec,.srch-cat,.sum-t,.vnote-titre,
+  .mbib-fil,.mbib-test,.mbib-grp,.mbib-vn,.mbib-tout,.mbib-go,.rech-meta,.bp-page,.qa-l-d,.qa-l-n,.qa-sources-t,.qa-sources a span,.qa-page-cree i,
+  .bib-reprendre .br-l,.ch-vulg,.notes-btn,.nz-tri,.notes-cat-nom,.notes-cat-n,.notes-scat-nom,.surl-scat-nom,.surl-scat-n,.surl-plus,.surl-oter,.b-r span,
+  .sgm-lbl,.sgm-sec-nom,.sgm-date,.sgm-go,.nzm-lbl,.nzm-date,.med-proprio-l,.rub-n,.ttx-lab,.tog-lab,.reessayer,.ab-principal,.q-lien){font-size:13px}
+}
