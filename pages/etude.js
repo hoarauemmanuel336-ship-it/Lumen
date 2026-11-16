@@ -110,11 +110,17 @@
      début, on ne voit que ce qui reste (Emmanuel : « il y a tellement de
      choses que c'est un peu décourageant »). Le site la remplace, dans le
      cadre, par une case par bloc, qui se remplit au fil des sujets de tous
-     ses thèmes : plein pour les sujets terminés, hachuré pour ceux en
-     cours ou à revoir, comme les cases du moteur, dont elle reprend
-     l'apparence. Sous chaque case, le numéro du premier thème du bloc. Le
+     ses thèmes, comme les cases du moteur, dont elle reprend l'apparence.
+     Un sujet qui a son cours y compte pour la part de ses affirmations
+     « Je sais… » cochées, si bien que la case avance un peu à chaque
+     séance (Emmanuel : un bloc demandait des mois avant d'avancer, « soyons
+     réaliste ») ; Étude envoie ces parts (message lvSais). Un sujet sans
+     cours compte plein quand il est terminé, hachuré quand il est en cours
+     ou à revoir. Sous chaque case, le numéro du premier thème du bloc. Le
      fichier du parcours reste tel quel. */
   const BARRE_BLOCS='<style>#w .prg:not(.lv-blocs){display:none}</style><scr'+'ipt>(function(){'
+    +'var S={},maj=function(){};'
+    +'window.addEventListener("message",function(ev){var d=ev.data;if(ev.source===parent&&d&&d.lvSais&&typeof d.lvSais==="object"){S=d.lvSais;maj();}});'
     +'function bati(){var W=document.getElementById("w"),P=W&&W.querySelector(".prg");'
     +'if(!P||!W.querySelector(".bh .bh-n")||W.querySelector(".lv-blocs"))return !!(W&&W.querySelector(".lv-blocs"));'
     +'var bl=[],b=null,n=0;'
@@ -127,9 +133,10 @@
     +'s.innerHTML="<div class=\\"bar\\"><span class=\\"pl\\"></span><span class=\\"hc\\"></span></div><div class=\\"num\\">"+(B.premier<10?"0":"")+B.premier+"</div>";'
     +'B.pl=s.querySelector(".pl");B.hc=s.querySelector(".hc");N.appendChild(s);});'
     +'P.parentNode.insertBefore(N,P.nextSibling);'
-    +'function maj(){bl.forEach(function(B){var t=B.cw.length||1,f=0,m=0;'
-    +'B.cw.forEach(function(c){var e=c.getAttribute("data-e");if(e==="termine")f++;else if(e&&e!=="a-faire")m++;});'
-    +'B.pl.style.width=(f/t*100)+"%";B.hc.style.left=(f/t*100)+"%";B.hc.style.width=(m/t*100)+"%";});}'
+    +'maj=function(){bl.forEach(function(B){var t=B.cw.length||1,f=0,m=0;'
+    +'B.cw.forEach(function(c){var k=c._S&&c._S.cle,s=k&&S[k],e=c.getAttribute("data-e");'
+    +'if(s&&s[1]>0)f+=Math.min(1,s[0]/s[1]);else if(e==="termine")f++;else if(e&&e!=="a-faire")m++;});'
+    +'B.pl.style.width=(f/t*100)+"%";B.hc.style.left=(f/t*100)+"%";B.hc.style.width=(m/t*100)+"%";});};'
     +'maj();new MutationObserver(maj).observe(W,{subtree:true,attributes:true,attributeFilter:["data-e"]});return true;}'
     +'if(!bati()){var o=new MutationObserver(function(){if(bati())o.disconnect();});o.observe(document.documentElement,{childList:true,subtree:true});}'
     +'})();</scr'+'ipt>';
@@ -229,7 +236,7 @@
     o.f.style.visibility=''; o.f.removeAttribute('aria-hidden');
     finAttente(o);
     /* la progression des cours a pu changer pendant qu'on y était */
-    try{o.f.contentWindow.postMessage({lvAuto:etatsDesCours()},'*');}catch(_){}
+    try{o.f.contentWindow.postMessage({lvAuto:etatsDesCours(),lvSais:saisDesCours()},'*');}catch(_){}
     return true;
   }
   async function montre(ancre){
@@ -275,7 +282,7 @@
       envoieEtat(o);
       /* ouvert par un lien d'un autre cours : on va à l'endroit visé plutôt
          qu'à la place gardée */
-      if(o.genre==='parcours'){try{f.contentWindow.postMessage({lvAuto:etatsDesCours()},'*');}catch(_){}}
+      if(o.genre==='parcours'){try{f.contentWindow.postMessage({lvAuto:etatsDesCours(),lvSais:saisDesCours()},'*');}catch(_){}}
       if(o.ancre)va(o,o.ancre);
       else{
         const pi=Object.assign({y:0},litJson('pos',o.id)||{});
@@ -319,6 +326,12 @@
   const fichiersCours=()=>[...new Set(Object.values(typeof LIENS_COURS==='object'&&LIENS_COURS||{}).map(u=>String(u).split('#')[0]))];
   const idsCours=()=>fichiersCours().map(n=>'c_'+n.replace(/\.html$/,''));
   function etatsDesCours(){
+    const m={}, s=saisDesCours();
+    Object.keys(s).forEach(cle=>{const [f,tot]=s[cle];m[cle]=!f?'a-faire':(tot&&f>=tot?'termine':'en-cours');});
+    return m;
+  }
+  /* pour chaque sujet qui a son cours : [affirmations cochées, affirmations du cours] */
+  function saisDesCours(){
     const m={}, faits={};
     fichiersCours().forEach(n=>{
       const p=litJson('prog','c_'+n.replace(/\.html$/,''));
@@ -329,7 +342,7 @@
     Object.keys(LIENS_COURS||{}).forEach(cle=>{
       const [n,an]=String(LIENS_COURS[cle]).split('#'), l=(an||'').replace(/^ouverture-/,'');
       const tot=((typeof SAIS_COURS==='object'&&SAIS_COURS[n])||{})[l]||0, f=Math.min(tot,(faits[n]||{})[l]||0);
-      m[cle]=!f?'a-faire':(tot&&f>=tot?'termine':'en-cours');
+      m[cle]=[f,tot];
     });
     return m;
   }
