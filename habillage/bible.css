@@ -1100,3 +1100,15 @@ html:root body:not(#_):not(#_) #auth-voile{z-index:281}
 html:root body:not(#_):not(#_) .b-ov{z-index:282}
 html:root body:not(#_):not(#_) :is(#bacct-voile,#cat-voile,#m-choix){z-index:283}
 html:root body:not(#_):not(#_) #conf-voile{z-index:284}
+
+/* ── LA TAILLE DU TEXTE (« Mon compte ») ──
+   Tout ce qui se lit suit le réglage A− / A / A+ : dans un chapitre, les
+   numéros de versets et les titres de section grandissent avec le texte ;
+   dans les notes, le verset rappelé, le texte écrit et l'aperçu de la
+   liste. L'interface (barre, boutons, menus) garde sa taille. */
+html body .ch-texte .ch-sect{font-size:calc(11.5px*var(--lvz,1))}
+html body .ch-texte sup.vn{font-size:calc(10.5px*var(--lvz,1))}
+html body .ch-texte sup.vsub{font-size:calc(9.5px*var(--lvz,1))}
+html body .nzm-txt{font-size:calc(16px*var(--lvz,1))}
+html body .nb2-verset{font-size:calc(17px*var(--lvz,1))}
+html body .nb2 .nb-zone,html body .nb2 .nb-zone:focus{font-size:calc(19px*var(--lvz,1))}

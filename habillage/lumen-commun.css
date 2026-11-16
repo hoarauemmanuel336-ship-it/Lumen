@@ -81,11 +81,11 @@
    champs, les onglets, les interrupteurs, les grilles de livres et de
    chapitres, les options de réponse. L'onglet Bible, à gauche, garde son
    fond noir. */
-html:root :is(.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x,.haut-page,.ttx-b){
+html:root :is(.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x,.ttx-b){
   background:var(--or);border-color:var(--or);color:var(--encre);text-shadow:none;box-shadow:none;
   -webkit-backdrop-filter:none;backdrop-filter:none;transition:background .3s,border-color .3s,color .3s,opacity .3s}
-html:root :is(.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x,.haut-page,.ttx-b) *{color:inherit}
-html:root :is(.haut-page,.ttx-b):is(:hover,:focus-visible){
+html:root :is(.macct-btn,.auth-m-btn,.bacct-btn,.mbib-2,.mbib-go,.ab-principal,.ab-google,.auth-google,.auth-m-google,.reessayer,.bib-reprendre,.finish,.ghost-btn,.res-rouvrir,.res-lien,.res-plein-x,.ttx-b) *{color:inherit}
+html:root .ttx-b:is(:hover,:focus-visible){
   background:var(--or-pale);border-color:var(--or-pale);color:var(--encre);box-shadow:none}
 /* le « voir plus » de Mémoriser est un mot, pas un bouton */
 html:root #cat-more{background:none;border:none;color:var(--pa2)}

@@ -128,7 +128,7 @@ html body .med-proprio p{margin:0;font-size:15.5px;line-height:1.5;color:var(--h
 /* la fenêtre des méditations précédentes, sur le modèle des feuilles du site */
 html body .overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center}
 html body .overlay.on{display:flex}
-/* la fenêtre passe aussi au-dessus du bouton qui remonte en haut de page ;
+/* la fenêtre passe au-dessus de tout ce qui flotte sur la page ;
    chaque rangée porte le titre, puis le jour et la durée dessous, pour que
    les titres longs se lisent en entier sur téléphone */
 html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.med-fen{z-index:1200}
@@ -158,4 +158,23 @@ html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.feuille 
   html body .med-tete{flex-direction:row;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px}
   html body .med-btns{display:flex}
   html body .med-b{flex:1 1 0;justify-content:center;padding:0 10px}
+}
+
+/* ── LA TAILLE DU TEXTE (« Mon compte ») ──
+   Ce qui se lit sur l'accueil suit le réglage A− / A / A+ : la fête du
+   jour et la vie de l'Église, le titre et le texte de la méditation, la
+   note réservée à Emmanuel. Les intitulés des blocs, la frise de l'année
+   et le lecteur (boutons, minutes) gardent leur taille. */
+html body .lit-fete{font-size:calc(38px*var(--lvz,1))}
+html body .lit-meta{font-size:calc(16px*var(--lvz,1))}
+html body .lit-aussi{font-size:calc(15.5px*var(--lvz,1))}
+html body .lit-corps{font-size:calc(17px*var(--lvz,1))}
+html body .lit-mot,html body .lit-av-d{font-size:calc(15.5px*var(--lvz,1))}
+html body .lit-av-q{font-size:calc(15px*var(--lvz,1))}
+html body .med-titre{font-size:calc(30px*var(--lvz,1))}
+html body .med-texte{font-size:calc(17px*var(--lvz,1))}
+html body .med-proprio p{font-size:calc(15.5px*var(--lvz,1))}
+@media(max-width:720px){
+  html body .lit-fete{font-size:calc(30px*var(--lvz,1))}
+  html body .med-titre{font-size:calc(27px*var(--lvz,1))}
 }

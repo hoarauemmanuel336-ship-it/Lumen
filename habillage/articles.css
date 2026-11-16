@@ -77,3 +77,14 @@ html body .art-ligne:hover .art-extrait{color:var(--h-t2)}
 
 /* le bandeau de l'article ouvert n'existe pas tant qu'aucun ne l'est */
 html body #et-acts[hidden]{display:none}
+
+/* ── LA TAILLE DU TEXTE (« Mon compte ») ──
+   La question et le début de la réponse de chaque article suivent le
+   réglage A− / A / A+ ; les catégories et le fil d'Ariane gardent leur
+   taille. */
+html body .art-titre{font-size:calc(25px*var(--lvz,1))}
+html body .art-extrait{font-size:calc(16.5px*var(--lvz,1))}
+@media(max-width:720px){
+  html body .art-titre{font-size:calc(22.5px*var(--lvz,1))}
+  html body .art-extrait{font-size:calc(15.5px*var(--lvz,1))}
+}

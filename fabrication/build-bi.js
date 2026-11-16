@@ -155,7 +155,7 @@ footer .copy{margin-top:22px;font-size:13px;letter-spacing:.08em;color:rgba(255,
 
 /* ── BARRE D'ONGLETS DU TÉLÉPHONE ──
    --lv-bas porte sa hauteur : les pages y calent ce qui se pose au bas de
-   l'écran (barre de sélection de la Bible, bouton « haut de page »). Barre
+   l'écran (barre de sélection de la Bible). Barre
    du haut rangée, celle du bas se range avec elle : l'écran entier revient
    à la lecture. */
 :root{--lv-bas:0px}
@@ -309,13 +309,10 @@ const EXTRA_CSS = `${BARRE_CSS}
 @page{margin:0}
 @media print{
   body{padding:15mm 17mm}
-  header,.haut-page{display:none!important}
+  header{display:none!important}
 }
 
 html{scroll-behavior:smooth}
-.haut-page{position:fixed;right:18px;bottom:calc(18px + var(--lv-bas,0px));width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--filet,rgba(231,224,207,.25));color:var(--or,#efe6cf);font-size:17px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .35s,border-color .3s;z-index:1100}
-.haut-page.on{opacity:1;pointer-events:auto}
-.haut-page:hover{border-color:var(--or,#efe6cf)}
 
 .auth-icone{position:relative}
 .auth-overlay{position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.98);display:none;align-items:center;justify-content:center;padding:24px}
@@ -743,22 +740,7 @@ const pairs = [];
 const crypto = require('crypto');
 
 
-const UX_JS = `
-(function(){
-  /* retour en haut, toutes pages */
-  var h=document.createElement('span');
-  h.className='haut-page'; h.setAttribute('role','button'); h.setAttribute('tabindex','0');
-  h.setAttribute('aria-label','Revenir en haut de la page');
-  h.textContent='\u2191';
-  h.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
-  h.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});} });
-  document.body.appendChild(h);
-  var t2=false;
-  function majHaut(){ t2=false; h.classList.toggle('on', window.scrollY>700); }
-  window.addEventListener('scroll',function(){ if(!t2){t2=true;requestAnimationFrame(majHaut);} },{passive:true});
-  majHaut();
-})();`;
-const APP_JS = [BARRE_JS, RECH_JS, AUTH_JS, UX_JS].join('\n');
+const APP_JS = [BARRE_JS, RECH_JS, AUTH_JS].join('\n');
 const APP_V = crypto.createHash('md5').update(APP_JS).digest('hex').slice(0, 8);
 const PAN_V = fs.existsSync(RACINE + 'bible-panneau.js') ? crypto.createHash('md5').update(fs.readFileSync(RACINE + 'bible-panneau.js')).digest('hex').slice(0, 8) : '1';
 fs.mkdirSync(OUT, { recursive: true });

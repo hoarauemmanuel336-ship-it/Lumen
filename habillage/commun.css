@@ -413,15 +413,6 @@ html body :is(.art-menu,.ct-menu,.rub-menu,.ry-menu,.nt-menu,.sec-menu):is(:hove
    ════════════════════════════════════════════════════════════════════ */
 html body input::placeholder,html body textarea::placeholder{color:var(--h-t4)}
 
-/* ════════════════════════════════════════════════════════════════════
-   10. LE RETOUR EN HAUT
-   ════════════════════════════════════════════════════════════════════ */
-html:root body .haut-page{
-  width:46px;height:46px;border-radius:0;border:0;
-  background:var(--h-or);color:#000;font-size:18px;
-  box-shadow:0 10px 30px -8px rgba(0,0,0,.8),0 0 24px -6px color-mix(in srgb,var(--h-or) 60%,transparent);
-  right:20px;bottom:calc(20px + var(--lv-bas,0px));
-}
 
 /* ════════════════════════════════════════════════════════════════════
    11. L'ONGLET ET LE TIROIR DE LA BIBLE
@@ -599,11 +590,11 @@ html:root body .jt-act:is(:hover,:focus-visible)::before,html:root body .jt-act:
    arrondis aussi. Les boutons d'une fenêtre (Annuler, Valider…) se
    collent en bandeau, comme ailleurs.
    ════════════════════════════════════════════════════════════════════ */
-html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.surl-item .surl-oter,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.ttx-b){
+html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.surl-item .surl-oter,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2,.ttx-b){
   border-radius:12px;transition:background .25s,box-shadow .3s,transform .2s,color .25s}
-html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible){
+html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):is(:hover,:focus-visible){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent)}
-html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,.haut-page,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):active{transform:scale(.97)}
+html:root body:not(#_):not(#_) :is(.q-lien,.bib-aller button,.sb-oter,#lv-frag-pop .lvp-oter,.sync-act,.surl-plus,#bp-pan .bp-page,#bp-pan .bp-aller,.auth-primary,.depose .act,.m-annul,.m-ok,.m-cancel,.m-reset,.mbib-2):active{transform:scale(.97)}
 html:root body:not(#_) .poignee,html:root body:not(#_) .fil span.cible{border-radius:8px}
 html:root body:not(#_) #sel-barre{border-radius:16px}
 html:root body:not(#_) .sb-chip{border-radius:10px}
@@ -765,7 +756,7 @@ html:root body:not(#_):not(#_):not(#_):not(#_) :is(#sel-barre .sb-oter,.surl-ite
 /* ── UN BOUTON SEUL S'ÉCLAIRE COMME UN BOUTON DE BANDEAU ──
    Les boutons crème posés seuls prennent au survol exactement l'effet des
    cases d'un bandeau : un crème plus clair et la même lueur tout autour. */
-html:root body:not(#_):not(#_):not(#_):not(#_) :is(#bp-pan .bp-page,#bp-pan .bp-aller,#auth-submit,#cat-enr,#ab-valider,#ab-google,#b-google,#auth-google,#b-voir-retour,#mbib-go,#b-nouveau,#lvp-oter,#b-submit,#conf-ok,#start-btn,#finish-btn,#sum-back,.haut-page):is(:hover,:focus-visible){
+html:root body:not(#_):not(#_):not(#_):not(#_) :is(#bp-pan .bp-page,#bp-pan .bp-aller,#auth-submit,#cat-enr,#ab-valider,#ab-google,#b-google,#auth-google,#b-voir-retour,#mbib-go,#b-nouveau,#lvp-oter,#b-submit,#conf-ok,#start-btn,#finish-btn,#sum-back):is(:hover,:focus-visible){
   background:color-mix(in srgb,var(--h-or) 70%,#fff);color:#000;
   box-shadow:0 0 26px -4px color-mix(in srgb,var(--h-or) 85%,transparent);transform:none}
 /* le résultat de la recherche propre à la Bible s'éclaire comme les autres */
@@ -1424,3 +1415,16 @@ html:root body:not(#_):not(#_) .res-plein-acts.lv-repli .lv-repli-corps>.res-ple
 @media (prefers-reduced-motion:reduce){
   html:root body:not(#_):not(#_) .res-plein-acts.lv-repli :is(.lv-repli-corps,.lv-repli-pts){transition:none!important}
 }
+
+/* ── LA TAILLE DU TEXTE DANS LA CONVERSATION AVEC L'IA ──
+   Les questions, les réponses, le passage cité et la réflexion de l'IA
+   suivent le réglage A− / A / A+ de « Mon compte » ; les boutons et les
+   étiquettes du panneau gardent leur taille. */
+html body .qa-q{font-size:calc(15.5px*var(--lvz,1))}
+html body .qa-r{font-size:calc(16px*var(--lvz,1))}
+html body .qa-r h2{font-size:calc(19px*var(--lvz,1))}
+html body .qa-r h3{font-size:calc(17px*var(--lvz,1))}
+html body .qa-r h4,html body .qa-r h5{font-size:calc(15.5px*var(--lvz,1))}
+html body .qa-r table{font-size:calc(14.5px*var(--lvz,1))}
+html body .qa-cite-txt{font-size:calc(14.5px*var(--lvz,1))}
+html body .qa-pensee{font-size:calc(14px*var(--lvz,1))}

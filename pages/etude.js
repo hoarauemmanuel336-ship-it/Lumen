@@ -31,12 +31,31 @@
      l'appareil et dans l'espace du compte (users/…/etude_lecture/…),
      chaque valeur avec son heure ; à l'ouverture, la plus récente
      l'emporte. L'écriture vers le compte est groupée et part aussitôt
-     quand la page se cache ou se quitte. */
+     quand la page se cache ou se quitte.
+     La copie de l'appareil est rangée sous le compte connecté, et à part
+     pour qui n'est pas connecté : sur un navigateur partagé, chacun garde
+     sa progression et sa place de lecture, sans reprendre celles d'un
+     autre. */
   const LECT={att:{},minuteur:0,uid:''};
-  const lLit=(q,id)=>{try{return localStorage.getItem('lv_etu_'+q+'_'+id);}catch(_){return null;}};
+  const cleL=(q,id)=>'lv_etu_'+(LECT.uid?LECT.uid+'_':'v_')+q+'_'+id;
+  const lLit=(q,id)=>{try{return localStorage.getItem(cleL(q,id));}catch(_){return null;}};
   const lMaj=(q,id)=>parseInt(lLit(q+'maj',id)||'0',10)||0;
   function lPose(q,id,val,maj){
-    try{localStorage.setItem('lv_etu_'+q+'_'+id,val);localStorage.setItem('lv_etu_'+q+'maj_'+id,String(maj));}catch(_){}
+    try{localStorage.setItem(cleL(q,id),val);localStorage.setItem(cleL(q+'maj',id),String(maj));}catch(_){}
+  }
+  /* Les copies gardées avant ce rangement, sans compte, appartiennent au
+     seul qui se servait alors du site, Emmanuel : le premier compte qui se
+     connecte sur l'appareil les reprend, puis elles s'effacent. */
+  function reprendAnciennes(uid){
+    try{
+      const re=/^lv_etu_((?:etat|pos|prog|taille)(?:maj)?_.+)$/, cles=[];
+      for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(re.test(k))cles.push(k);}
+      cles.forEach(k=>{
+        const n='lv_etu_'+uid+'_'+re.exec(k)[1];
+        if(localStorage.getItem(n)===null)localStorage.setItem(n,localStorage.getItem(k));
+        localStorage.removeItem(k);
+      });
+    }catch(_){}
   }
   const lecDoc=id=>firebase.firestore().doc('users/'+LECT.uid+'/etude_lecture/'+id);
   function garde(q,id,val){
@@ -57,7 +76,7 @@
   document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='hidden')pousse(); });
   window.addEventListener('pagehide',pousse);
   const compte=(typeof qaCompte==='function'?qaCompte():Promise.resolve(null))
-    .then(u=>{ if(u){LECT.uid=u.uid; pousse();} return u; }).catch(()=>null);
+    .then(u=>{ if(u){reprendAnciennes(u.uid); LECT.uid=u.uid; pousse();} return u; }).catch(()=>null);
   function rapatrie(ids){
     const lu=compte.then(u=>{
       if(!u)return;
@@ -80,16 +99,49 @@
      sur le parcours lui-même ») Le réglage se garde une fois, sous
      « _reglages », compté en crans depuis le plus grand : chaque moteur
      s'ouvre à son plus grand cran, et A− descend d'un cran. Les crans sont
-     ceux des moteurs de cours-html et de parcours-etude. */
+     ceux des moteurs de cours-html et de parcours-etude. Le parcours, fait
+     de grands titres plutôt que de longs textes, se tient trois crans plus
+     bas que les cours : au plus grand cran des cours, il est à sa taille
+     normale (Emmanuel : « la page est trop zoomée »). */
   const CRANS_COURS=[.85,.925,1,1.08,1.16,1.25], CRANS_PARCOURS=[.9,1,1.1,1.2,1.3];
+  const DECALAGE_PARCOURS=3, ZOOM_PARCOURS=.85;
+  /* ── LA BARRE DE PROGRESSION DU PARCOURS, PAR BLOC ──
+     Le moteur du parcours dessine une case par thème (cent cinq) : au
+     début, on ne voit que ce qui reste (Emmanuel : « il y a tellement de
+     choses que c'est un peu décourageant »). Le site la remplace, dans le
+     cadre, par une case par bloc, qui se remplit au fil des sujets de tous
+     ses thèmes : plein pour les sujets terminés, hachuré pour ceux en
+     cours ou à revoir, comme les cases du moteur, dont elle reprend
+     l'apparence. Sous chaque case, le numéro du premier thème du bloc. Le
+     fichier du parcours reste tel quel. */
+  const BARRE_BLOCS='<style>#w .prg:not(.lv-blocs){display:none}</style><scr'+'ipt>(function(){'
+    +'function bati(){var W=document.getElementById("w"),P=W&&W.querySelector(".prg");'
+    +'if(!P||!W.querySelector(".bh .bh-n")||W.querySelector(".lv-blocs"))return !!(W&&W.querySelector(".lv-blocs"));'
+    +'var bl=[],b=null,n=0;'
+    +'[].forEach.call(W.children,function(e){'
+    +'if(e.classList.contains("bh")){b={a:e.style.getPropertyValue("--a"),r:e.style.getPropertyValue("--r"),nom:(e.querySelector(".bh-n")||e).textContent,premier:n+1,cw:[]};bl.push(b);}'
+    +'else if(b&&e.classList.contains("th")){n++;b.cw=b.cw.concat([].slice.call(e.querySelectorAll(".cw")));}});'
+    +'var N=document.createElement("div");N.className="prg lv-blocs";'
+    +'bl.forEach(function(B){var s=document.createElement("div");s.className="seg";s.title=B.nom;'
+    +'s.style.setProperty("--a",B.a);s.style.setProperty("--r",B.r);'
+    +'s.innerHTML="<div class=\\"bar\\"><span class=\\"pl\\"></span><span class=\\"hc\\"></span></div><div class=\\"num\\">"+(B.premier<10?"0":"")+B.premier+"</div>";'
+    +'B.pl=s.querySelector(".pl");B.hc=s.querySelector(".hc");N.appendChild(s);});'
+    +'P.parentNode.insertBefore(N,P.nextSibling);'
+    +'function maj(){bl.forEach(function(B){var t=B.cw.length||1,f=0,m=0;'
+    +'B.cw.forEach(function(c){var e=c.getAttribute("data-e");if(e==="termine")f++;else if(e&&e!=="a-faire")m++;});'
+    +'B.pl.style.width=(f/t*100)+"%";B.hc.style.left=(f/t*100)+"%";B.hc.style.width=(m/t*100)+"%";});}'
+    +'maj();new MutationObserver(maj).observe(W,{subtree:true,attributes:true,attributeFilter:["data-e"]});return true;}'
+    +'if(!bati()){var o=new MutationObserver(function(){if(bati())o.disconnect();});o.observe(document.documentElement,{childList:true,subtree:true});}'
+    +'})();</scr'+'ipt>';
   function rangDe(e,genre){
     if(!e||typeof e!=='object')return -1;
     const l=genre==='parcours'?CRANS_PARCOURS:CRANS_COURS, v=genre==='parcours'?e.z:e.taille;
-    const i=l.indexOf(+v); return i<0?-1:l.length-1-i;
+    const i=l.indexOf(+v); if(i<0)return -1;
+    return genre==='parcours'?Math.max(0,l.length-1-i-DECALAGE_PARCOURS):l.length-1-i;
   }
   function poseRang(e,genre,r){
     const l=genre==='parcours'?CRANS_PARCOURS:CRANS_COURS;
-    const v=l[Math.max(0,l.length-1-r)];
+    const v=l[Math.max(0,l.length-1-r-(genre==='parcours'?DECALAGE_PARCOURS:0))];
     if(genre==='parcours')e.z=v; else e.taille=v;
     return e;
   }
@@ -110,8 +162,10 @@
   function etatPour(o){
     let e=litJson('etat',o.id);
     if(!e){try{e=JSON.parse(localStorage.getItem(cleAncienne(o))||'null');}catch(_){e=null;}}
-    const r=parseInt(lLit('taille','_reglages')||'',10);
-    if(r>=0){e=e&&typeof e==='object'?e:{};poseRang(e,o.genre,r);}
+    /* sans réglage gardé, le plus grand cran des cours : le parcours, lui,
+       s'ouvre alors à sa taille normale */
+    const lu=parseInt(lLit('taille','_reglages')||'',10), r=lu>=0?lu:0;
+    e=e&&typeof e==='object'?e:{};poseRang(e,o.genre,r);
     return e;
   }
 
@@ -198,6 +252,9 @@
       code='<div style="font-family:Georgia,serif;color:#fff;padding:48px 24px;text-align:center;opacity:.8">Ce contenu n’a pas pu être ouvert. Vérifiez la connexion, puis réessayez.</div>';
     }
     if(OUVERT!==o)return;
+    /* le compte connu, la copie de l'appareil est la sienne */
+    await pret;
+    if(OUVERT!==o)return;
     o.code=code;
     const t=/<title>([^<]*)<\/title>/i.exec(code);
     o.titre=t?decode(t[1]).trim():(o.genre==='parcours'?'La foi catholique':'Cours');
@@ -240,7 +297,16 @@
        chargement passerait pour le sien. L'état gardé serait alors tenu pour
        rendu trop tôt, et l'état de naissance du contenu (première page,
        sections fermées) l'écraserait. */
-    f.srcdoc=pageCadre(poseProgression(code,litJson('prog',o.id)));
+    /* le parcours se montre un peu dézoomé, toute la page ensemble, textes,
+       cadres et marges : sa mise en page est pensée pour un écran plus
+       grand (Emmanuel : « la page est trop zoomée ») */
+    let doc=pageCadre(poseProgression(code,litJson('prog',o.id)));
+    if(o.genre==='parcours'){
+      doc=doc.replace('<head>','<head><style>html{zoom:'+ZOOM_PARCOURS+'}</style>');
+      const k=doc.lastIndexOf('</body>');
+      doc=k<0?doc+BARRE_BLOCS:doc.slice(0,k)+BARRE_BLOCS+doc.slice(k);
+    }
+    f.srcdoc=doc;
     /* le cadre se glisse sous le cercle de chargement, qui le couvre jusqu'au bout */
     acts.parentNode.insertBefore(f,attente||acts);
   }

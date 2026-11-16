@@ -398,7 +398,10 @@
       try { a.currentTime = +w.getAttribute('data-t') || 0; } catch (_) {}
       if (a.paused) a.play().catch(function () {});
     });
+    /* une fenêtre qui change de largeur, ou la taille du texte réglée dans
+       « Mon compte », déplace les lignes : elles se remesurent */
     window.addEventListener('resize', function () { mesuree = false; });
+    if (window.ResizeObserver) new ResizeObserver(function () { mesuree = false; }).observe(defil);
   }
 
   function zoneMed() { return Z.querySelector('.lit-medit'); }
