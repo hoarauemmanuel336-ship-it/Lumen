@@ -167,7 +167,7 @@ var css='#w .bh.lv-b{display:flex;align-items:center;gap:16px;margin:0;padding:2
 +'#w .lv-bp{display:inline-block;margin-left:8px;vertical-align:.35em;font:400 15px/1 "JetBrains Mono",monospace;color:rgba(255,255,255,.4);padding:2px 4px;cursor:pointer}'
 +'#w .lv-bp:hover{color:var(--a)}'
 +'#w .lv-bc{flex:none;font:700 11px/1 "JetBrains Mono",monospace;letter-spacing:.12em;color:rgba(255,255,255,.45);text-transform:uppercase}'
-+'#w .lv-bv{flex:none;font:400 24px/1 "JetBrains Mono",monospace;color:rgba(255,255,255,.6);transition:transform .25s;padding:10px 12px;margin:-10px -6px -10px 0}'
++'#w .lv-bv{flex:none;font:400 24px/1 "JetBrains Mono",monospace;color:rgba(255,255,255,.6);transition:transform .35s cubic-bezier(.2,.7,.3,1);padding:10px 12px;margin:-10px -6px -10px 0}'
 +'#w .lv-bv:hover{color:var(--a)}'
 +'#w .bh.lv-b.lv-o .lv-bv{transform:rotate(90deg);color:var(--a)}'
 +'#w .bh.lv-b.lv-o{border-top-color:rgb(var(--r) / .6);background:rgb(var(--r) / .13)}'
@@ -187,7 +187,20 @@ var css='#w .bh.lv-b{display:flex;align-items:center;gap:16px;margin:0;padding:2
 +'@media (max-width:640px){#w .lv-rep{flex-wrap:wrap;gap:8px 12px;padding:14px 16px}#w .lv-rep-l{flex-basis:100%}#w .lv-rep-t{font-size:18px}#w .lv-dans{margin-left:14px;padding-left:10px}#w .bh.lv-b{gap:12px;padding:18px 6px}#w .bh.lv-b .bh-n{font-size:23px}#w .lv-bc{display:none}}';
 var st=document.createElement('style');st.textContent=css;(document.head||document.documentElement).appendChild(st);
 function blocs(){var W=document.querySelector('#w');if(!W)return [];var L=[],b=null;
-[].forEach.call(W.children,function(e){if(e.classList.contains('bh')){b={h:e,c:[]};L.push(b);}else if(b&&(e.classList.contains('th')||(e.classList.contains('xw')&&e.classList.contains('bp'))))b.c.push(e);});return L;}
+function range(e){if(e.classList.contains('bh')){b={h:e,c:[]};L.push(b);}else if(e.classList.contains('lv-env'))[].forEach.call(e.children,range);else if(b&&(e.classList.contains('th')||(e.classList.contains('xw')&&e.classList.contains('bp'))))b.c.push(e);}
+[].forEach.call(W.children,range);return L;}
+/* le bloc se déroule et se replie comme une section des diagrammes : son contenu, glissé le temps du geste dans une enveloppe, passe de zéro à sa hauteur en 0,4 s (ralenti en fin de course) et se replie en 0,3 s */
+var ANIM=null;
+function deballe(w){if(!w.parentNode)return;while(w.firstChild)w.parentNode.insertBefore(w.firstChild,w);w.remove();}
+function finit(){if(!ANIM)return;var a=ANIM;ANIM=null;try{a.an.cancel();}catch(_){}deballe(a.w);applique();}
+function anime(b,ouvre){finit();if(!b||!b.c.length||!b.c[0].animate)return;
+try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;}catch(_){}
+var w=document.createElement('div');w.className='lv-env';w.style.overflow='hidden';b.c[0].parentNode.insertBefore(w,b.c[0]);
+b.c.forEach(function(e){w.appendChild(e);e.classList.remove('lv-cache');});
+var H=w.scrollHeight;
+var an=w.animate(ouvre?[{height:'0px'},{height:H+'px'}]:[{height:H+'px'},{height:'0px'}],{duration:ouvre?400:300,easing:ouvre?'cubic-bezier(.2,.7,.3,1)':'cubic-bezier(.4,0,1,1)'});
+ANIM={w:w,an:an};
+an.onfinish=function(){if(!ANIM||ANIM.an!==an)return;ANIM=null;deballe(w);applique();};}
 function applique(){blocs().forEach(function(b,i){var o=!!OUV[i];b.h.classList.toggle('lv-o',o);b.h.setAttribute('aria-expanded',o?'true':'false');b.c.forEach(function(e,k){e.classList.toggle('lv-cache',!o);e.classList.add('lv-dans');e.classList.toggle('lv-dt',k===b.c.length-1);});});}
 function envoie(){var l=[];for(var k in OUV)if(OUV[k])l.push(+k);try{parent.postMessage({lvBlocs:l},'*');}catch(_){}}
 function prepare(){var L=blocs();if(!L.length||!document.querySelector('#w .th'))return false;
@@ -207,15 +220,15 @@ function ouvreVers(el){if(!el)return;var L=blocs(),ch=false;L.forEach(function(b
 /* un clic sur l'en-tête d'un bloc l'ouvre ou le ferme ; le + garde son rôle : déplier l'explication du bloc */
 document.addEventListener('click',function(ev){var h=ev.target.closest&&ev.target.closest('#w .bh.lv-b');if(!h)return;
 if(ev.target.closest('.lv-bp')){var L=blocs();for(var i=0;i<L.length;i++)if(L[i].h===h&&!OUV[i]){OUV[i]=true;applique();envoie();}return;}
-ev.stopPropagation();ev.preventDefault();var L2=blocs(),fl=!!ev.target.closest('.lv-bv');for(var j=0;j<L2.length;j++)if(L2[j].h===h){
+ev.stopPropagation();ev.preventDefault();finit();var L2=blocs(),fl=!!ev.target.closest('.lv-bv'),cible=-1,avant=false;for(var j=0;j<L2.length;j++)if(L2[j].h===h){cible=j;avant=!!OUV[j];
 if(fl){var ths=L2[j].c.filter(function(e){return e.classList.contains('th');}),tous=OUV[j]&&ths.every(function(t){return t.classList.contains('op');});
 if(tous){ths.forEach(function(t){var x=t.querySelector('.th-h');if(x&&t.classList.contains('op'))x.click();});OUV[j]=false;}
 else{OUV[j]=true;applique();ths.forEach(function(t){var x=t.querySelector('.th-h');if(x&&!t.classList.contains('op'))x.click();});}}
 else OUV[j]=!OUV[j];}
-applique();envoie();},true);
+applique();if(cible>=0&&!!OUV[cible]!==avant)anime(L2[cible],!!OUV[cible]);envoie();},true);
 document.addEventListener('keydown',function(ev){if(ev.key!=='Enter'&&ev.key!==' ')return;var h=ev.target.closest&&ev.target.closest('#w .bh.lv-b');if(!h||ev.target.closest('.lv-bp'))return;ev.stopPropagation();ev.preventDefault();h.click();},true);
 /* la flèche « tout ouvrir ou tout replier » du parcours ouvre ou replie aussi tous les blocs */
-function tout(ev){var b=ev.target.closest&&ev.target.closest('#w .glb');if(!b)return;if(ev.type==='keydown'&&ev.key!=='Enter'&&ev.key!==' ')return;var ouvrir=!b.classList.contains('up');blocs().forEach(function(x,i){OUV[i]=ouvrir;});applique();envoie();}
+function tout(ev){var b=ev.target.closest&&ev.target.closest('#w .glb');if(!b)return;if(ev.type==='keydown'&&ev.key!=='Enter'&&ev.key!==' ')return;finit();var ouvrir=!b.classList.contains('up');blocs().forEach(function(x,i){OUV[i]=ouvrir;});applique();envoie();}
 document.addEventListener('click',tout,true);document.addEventListener('keydown',tout,true);
 /* un lien interne vers un thème ou un sujet ouvre d'abord son bloc */
 document.addEventListener('click',function(ev){var a=ev.target.closest&&ev.target.closest('a[href^="#"]');if(!a)return;try{ouvreVers(document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1))));}catch(_){}},true);
