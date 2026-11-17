@@ -1,0 +1,26 @@
+# 68-01-l : Préfigurations et institution du baptême (lettre l, premier cours du fichier 68)
+
+État : EN COURS. Fichiers écrits : voir la liste du dossier (00-ouverture, 01…12, 99-bilan).
+
+Question centrale : comment l'Ancien Testament annonce-t-il le baptême, et comment le Christ l'a-t-il institué ?
+Obstacles du novice : croire que le baptême chrétien est une simple reprise du baptême de Jean ou des ablutions juives ; lire les figures comme des allégories arbitraires ; ne pas voir pourquoi l'eau est à la fois mort et vie ; croire que Jésus s'est fait baptiser parce qu'il avait besoin de pardon ; opposer « au nom de Jésus » (Actes) et la formule trinitaire (Matthieu) ; ignorer que le baptême ouvre une initiation qui s'achève par la confirmation et l'eucharistie.
+Ne pas développer (autres cours du fichier, lien #ouverture-x) : matière, forme, ministre (m), rite (c), effets (e), validité et rebaptême (v), nécessité (n), enfants (b), enfants morts sans baptême (s). Doctrine générale du sacrement : 67 (liens). Orient / Occident : 69#ouverture-i.
+
+Sources vérifiées (vatican.va, fragments) : CEC 1212 (citation de Paul VI), 1213, 1214, 1215, 1216 (Justin), 1218, 1219, 1220, 1221, 1222, 1223, 1224, 1225 (+ Ambroise), 1226, 1227 ; CEC 527, 536, 537 ; SC 5, SC 6, SC 64, SC 71.
+
+Leçons (12) :
+1. L'initiation chrétienne et le mot « baptême ». Les trois sacrements comme un tout (CEC 1212, Paul VI ; 1213) ; analogie de la vie naturelle ; l'ordre ; lien 69-i ; le mot baptizein (plonger), baptô, usages (Naaman 2 R 5:14 ; Mc 7:4 ; Lc 11:38 ; Mc 10:38) ; autres noms (bain : Tt 3:5 ; illumination : Hb 6:4, Justin ; Grégoire de Nazianze).
+2. Lire les figures ; les eaux de la création. Typologie (lien 12-t) ; CEC 1223 ; 1 P 3:21 « figure » ; Gn 1:2 ; Gn 1:20 ; Tertullien De baptismo 3-4 ; bénédiction de l'eau (CEC 1218) ; Esprit et eau ; création nouvelle 2 Co 5:17.
+3. Le déluge. Gn 6-9 ; 1 P 3:18-22 ; eau qui détruit et sauve (CEC 1220) ; huit personnes, huitième jour (Justin, Dialogue 138) ; arche-Église (CEC 1219, Cyprien) ; colombe (Tertullien De baptismo 8) ; bois de l'arche (Sg 14:7) ; Mt 24:37-39.
+4. La mer Rouge et le Jourdain. Ex 14 ; 1 Co 10:1-6, 11 ; nuée et mer ; Pharaon englouti (Tertullien De baptismo 9) ; CEC 1221 ; Vigile pascale (lien 65-v) ; Jos 3-5 : arche, eaux coupées, douze pierres, Guilgal (circoncision, Pâque, fin de la manne) ; Josué/Jésus ; CEC 1222 ; Élie-Élisée, Naaman (Ambroise).
+5. La circoncision, figure du baptême. Gn 17 ; huitième jour ; signe d'alliance, entrée dans le peuple ; Rm 4:11 sceau ; circoncision du cœur (Dt 10:16 ; 30:6 ; Jr 4:4) ; Col 2:11-13 ; CEC 527 ; Ga 3:27-28 ; Ac 15 (sans développer) ; ce qui passe et ce qui demeure.
+6. L'eau qui purifie, promise par les prophètes. Ablutions de la Loi (Nb 19:9) ; Ps 51 ; Is 1:16-18 ; Ez 36:24-28 ; Ez 11:19 ; Ez 47 ; Za 13:1 ; Is 44:3 ; Is 12:3 ; Jl 3:1 ; Jr 31:33 ; accomplissement : Jn 7:37-39 ; Hb 10:22 ; Tt 3:5.
+7. Le baptême de Jean, baptême de pénitence. Mc 1:4-8 ; Mt 3 ; Lc 3:10-14 ; ablutions juives, Qumrân, baptême des prosélytes (datation discutée) ; Josèphe ; Jn 1:31 ; ce que ce baptême donnait et ne donnait pas (Thomas III q. 38 ; Trente VII, baptême can. 1 paraphrasé) ; Ac 19:1-6 ; Ac 18:25 ; lien 46-p.
+8. Le baptême de Jésus au Jourdain. Mt 3:13-17 ; Mc 1:9-11 ; Lc 3:21-22 ; pourquoi ? (justice, anéantissement Ph 2:7, solidarité Is 53:12 ; CEC 536, 1224) ; théophanie trinitaire ; sanctification des eaux (Ignace Éph 18,2 ; Ambroise in Luc ; Thomas III q. 39 a. 1) ; Théophanie en Orient ; CEC 537 ; Lc 12:50, Mc 10:38 ; lien 47-l.
+9. Naître de l'eau et de l'Esprit : Nicodème. Jn 3:1-10 ; « de nouveau / d'en haut » (grec anôthen) ; Jn 3:5 ; Ez 36 arrière-plan (Jn 3:10) ; Jn 3:22, 4:1-2 ; Justin Apol. I, 61 ; Trente VII baptême can. 2 (paraphrase) ; CEC 1215 ; lecture sacramentelle et lecture purement spirituelle ; lien n.
+10. L'eau et le sang du côté transpercé. Jn 19:31-37 ; témoignage ; 1 Jn 5:6-8 ; Ez 47:1, Jn 2:21, Jn 7:37-39 ; Ève du côté d'Adam (Gn 2:21-22) ; SC 5 ; Augustin Tr. Jn 120, 2 ; Chrysostome Catéchèse III ; CEC 1225 (+ Ambroise) ; Vidi aquam ; Ex 17:6, 1 Co 10:4 ; lien 70-f.
+11. L'ordre de baptiser et le baptême des Apôtres. Mt 28:16-20 ; Mc 16:15-16 ; formule trinitaire, « au nom » (grec eis to onoma) ; universalité ; quand le Christ a-t-il institué le baptême (Thomas III q. 66 a. 2 ; CEC 1223-1225 ; lien 67-l) ; Didachè 7 et 9 ; Ac 2:37-42 ; Ac 8:12-13, 26-39 (v. 37 et les manuscrits) ; Ac 9:18, 22:16 ; Ac 10:44-48 ; maisons Ac 16 (lien b) ; « au nom de Jésus Christ » ; chemin : annonce, foi, conversion, baptême, Esprit, communauté ; CEC 1226 ; 1 Co 12:13 ; Ep 4:5.
+12. Mort et résurrection avec le Christ : Rm 6:3-11 (+ CEC 1214, 1227, SC 6, Cyrille Myst. II, Col 2:12, Ga 3:27, Col 3:1-3 ; synthèse des figures).
+
+DÉCISION FINALE (12 leçons) : 1 initiation et mot ; 2 figures et création ; 3 déluge ; 4 mer Rouge et Jourdain ; 5 circoncision ; 6 prophètes ; 7 Jean ; 8 baptême de Jésus ; 9 Nicodème ; 10 côté transpercé ; 11 ordre de baptiser (Mt 28) et pratique apostolique (Actes) ; 12 Rm 6:3-11, mort et résurrection avec le Christ (+ CEC 1214, 1227, SC 6, Cyrille Myst. II, Col 2:12, Ga 3:27, synthèse des figures).
+Bilan : 6 exercices croisés.
