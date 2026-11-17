@@ -21,4 +21,4 @@ Ordre choisi (ordre d'apprentissage) : 1 personne, 2 marché, 3 entreprise, 4 pr
 
 Bilan : 6 exercices croisés.
 
-État : plan fait ; leçons à écrire.
+État : leçons 1 à 7 écrites ; reste 8, 9, 10, bilan.
