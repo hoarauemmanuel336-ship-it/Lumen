@@ -18,4 +18,4 @@ Leçons (12) :
 12. La Commémoration de tous les fidèles défunts : 2 M 12:43-46 ; Tertullien, Augustin (Monique) ; Odilon de Cluny (998) ; Benoît XV 1915 trois messes ; rang n. 3, même un dimanche ; couleur ; préface « vita mutatur, non tollitur » ; indulgences 1-8 novembre ; 1 Th 4:13-14 ; purgatoire (lien).
 Bilan : 6 exercices croisés.
 
-État : (mis à jour au fil de l'écriture)
+État : terminé ; livré dans redaction/65-10-d.html, contrôlé, humanisé, assemblage testé.

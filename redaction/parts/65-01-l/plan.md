@@ -21,3 +21,5 @@ Leçons (12) :
 Bilan : 6 exercices croisés.
 
 État : (mis à jour au fil de l'écriture)
+- Leçons 1 à 10 écrites (01.html … 10.html). Leçon 12 = samedi soir + assemblées sans prêtre (une seule leçon, deux moitiés).
+- Toutes les leçons et le bilan écrits ; assemblage dans redaction/65-01-l.html ; reste : humaniser, contrôle, essai d'assemblage.

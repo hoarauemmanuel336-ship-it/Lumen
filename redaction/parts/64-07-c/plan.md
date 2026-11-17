@@ -1,5 +1,7 @@
 # Plan du cours 64-07-c « Les rites de communion » (lettre c)
 
+État : TERMINÉ (11 leçons et bilan écrits, réunis dans redaction/64-07-c.html, contrôlés).
+
 Question centrale : pourquoi l'Église ne passe-t-elle pas directement de la consécration à la distribution, et que font, dans l'ordre, les prières et les gestes qui mènent à la communion puis la prolongent ?
 Obstacles du novice : croire que ces rites sont des ajouts décoratifs ; confondre fraction et consécration ; croire que le Christ est « brisé » ; croire que la communion sous une espèce donne « la moitié » du Christ ; opposer main et bouche, genoux et debout comme foi et non-foi ; ignorer la purification.
 

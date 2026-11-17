@@ -1,6 +1,6 @@
 # 65-08-e Le temps pascal (lettre e) — plan
 
-ÉTAT : plan fait ; leçons en cours (voir fichiers présents).
+ÉTAT : 11 leçons + bilan écrits, réunis dans redaction/65-08-e.html ; contrôle OK ; reste : humaniser, essai d assemblage, doutes, rapport.
 
 Question centrale : pourquoi Pâques change-t-elle de date chaque année, et comment l'Église fait-elle des cinquante jours qui suivent une seule fête, jusqu'à la Pentecôte ?
 Obstacles du novice : croire que Pâques est un seul dimanche ; ignorer pourquoi la date bouge ; croire que la différence avec les orthodoxes vient d'une querelle de doctrine ; croire que le temps pascal finit à l'Ascension ; confondre Pentecôte juive et chrétienne ; croire la Divine Miséricorde une fête nouvelle détachée de Pâques ; ignorer la mystagogie.
