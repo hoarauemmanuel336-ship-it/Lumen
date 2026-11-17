@@ -48,8 +48,8 @@
   }
  },
  "03-l-autorite-de-l-enseignement.html": {
-  "taille": 3820452,
-  "empreinte": "7eace35d4fa03c1f43ff50f4201dcd75b007e9a37e1f2e22c9170cc9284efebe",
+  "taille": 3820523,
+  "empreinte": "7982beb25b5f02c5c702f35524fffe048fa00d78ab12d6b69bfb0263f6e641e6",
   "cours": {
    "l": "Qui enseigne avec autorité",
    "d": "Le dogme et l’hérésie",
@@ -78,8 +78,8 @@
   }
  },
  "04-la-foi.html": {
-  "taille": 3759827,
-  "empreinte": "f2297f118b8470401cc768821ed282a63cc293d552cdd6e87e1bba241d5ac122",
+  "taille": 3759892,
+  "empreinte": "c4c578f41d85d5fd37487e35da43c6de0ae9a1a218256ea4bc46b8d128eea08a",
   "cours": {
    "l": "L’acte de foi",
    "v": "La vertu de foi et ses propriétés",
@@ -208,8 +208,8 @@
   }
  },
  "14-le-pentateuque.html": {
-  "taille": 4772704,
-  "empreinte": "6ed5fa687306c615233712ea785a3c16e4c40a42953db7b354e5d09b4d3a427e",
+  "taille": 4772769,
+  "empreinte": "d3f1cd8337de20a91c0c68aed733855018423c23dbce7a8f0e76298b59e68b2a",
   "cours": {
    "l": "Le Pentateuque, un ensemble",
    "g": "Genèse 1-11 : les origines",
@@ -292,8 +292,8 @@
   }
  },
  "17-les-prophetes.html": {
-  "taille": 8460351,
-  "empreinte": "5d7c43b008f04029d89b13021e32e9cb6f5b205c2b0b14180f1e9c2052fd5678",
+  "taille": 8460501,
+  "empreinte": "1a72b00d4f7b6e21003862ba5e5bd674cf611a7455a91df81dd031f3841dc9ad",
   "cours": {
    "l": "Le prophétisme biblique",
    "i": "Isaïe 1-39 : le prophète de Jérusalem",
@@ -344,8 +344,8 @@
   }
  },
  "18-les-evangiles.html": {
-  "taille": 4890587,
-  "empreinte": "081e25c6a7ee4f331668dd1a1cd71b0d1de30d0600952988d74d8b8df1835661",
+  "taille": 4890662,
+  "empreinte": "9e4eb8412aba6d4adc8a3148ecf1c41f6776a1abfc23a20c4160ccfcb9819a90",
   "cours": {
    "l": "La formation des Évangiles",
    "q": "La question synoptique",
@@ -366,8 +366,8 @@
   }
  },
  "19-les-actes-et-saint-paul.html": {
-  "taille": 6714605,
-  "empreinte": "72d65c2a34bb21f1bfacb623b3b177d8a87cf5cbcf94d75c77db24370a708412",
+  "taille": 6714676,
+  "empreinte": "e405b0326942b7ba4ce8052ddafc8b1b61e46c36e3f63a683870028fd023ad07",
   "cours": {
    "l": "Les Actes des Apôtres",
    "v": "La vie et les voyages de saint Paul",
@@ -400,8 +400,8 @@
   }
  },
  "20-hebreux-les-epitres-catholiques-et-l-apocalypse.html": {
-  "taille": 4344246,
-  "empreinte": "3a2160fdd10909a5c2685c3bc45afc4131c654150d33e998780e80a57e6fed61",
+  "taille": 4344321,
+  "empreinte": "68b5ecf730cea8cf8c68b23c63d072645ae83efd56ea03fe3b5136ab81a330d5",
   "cours": {
    "l": "L’épître aux Hébreux",
    "e": "L’épître de Jacques",
@@ -516,8 +516,8 @@
   }
  },
  "46-les-mysteres-de-l-enfance-et-de-la-vie-cachee.html": {
-  "taille": 3642624,
-  "empreinte": "0c5f26531c932b738f54eff43a6b014ddb3980f9f0bf3a3e505811b76a154801",
+  "taille": 3642699,
+  "empreinte": "1b6b12311aff0f62666e21b5d7de3131dc1522032a9afdf85feac40c7ee5af48",
   "cours": {
    "l": "Pourquoi toute la vie du Christ est mystère",
    "p": "Jean-Baptiste, le Précurseur",
@@ -608,8 +608,8 @@
   }
  },
  "49-la-redemption.html": {
-  "taille": 3915591,
-  "empreinte": "e9cc315aed75c44dd6ed438fcd7f25e794ba9b3f48c0fc53c862edf30885a126",
+  "taille": 3915656,
+  "empreinte": "a5b29111e20730fe4a33a0ecac7a670bcfe119a2e27bf59c288d3daf6b803ae5",
   "cours": {
    "l": "Le sacrifice de la Croix",
    "v": "Les mots du salut",
@@ -772,8 +772,8 @@
   }
  },
  "77-la-fin-des-temps.html": {
-  "taille": 3686419,
-  "empreinte": "e08bc22bb06e148a937a1fc6a0c5fcf31771aba7e5afabdc2cc9bce711cbd195",
+  "taille": 3686494,
+  "empreinte": "afa9281c9b2cd6366a7fda22cc83d8083b7966bfb183ec49ebd12236b2a43004",
   "cours": {
    "l": "Les signes de la fin des temps",
    "m": "Le millénarisme",
@@ -793,6 +793,90 @@
    "j": 40,
    "t": 40,
    "e": 44
+  }
+ },
+ "91-les-principes-de-la-doctrine-sociale.html": {
+  "taille": 3854751,
+  "empreinte": "34f0119880a8a26b0c72a21f9838f73dadb57f09bc914b3f7e80cda30b20db8d",
+  "cours": {
+   "l": "La nature de la doctrine sociale",
+   "d": "La dignité de la personne humaine",
+   "b": "Le bien commun",
+   "u": "La destination universelle des biens",
+   "o": "L’option préférentielle pour les pauvres",
+   "s": "La subsidiarité",
+   "a": "La solidarité",
+   "p": "La participation",
+   "v": "Les valeurs fondamentales de la vie sociale"
+  },
+  "sais": {
+   "l": 45,
+   "d": 48,
+   "b": 54,
+   "u": 50,
+   "o": 44,
+   "s": 40,
+   "a": 46,
+   "p": 36,
+   "v": 38
+  }
+ },
+ "92-les-grands-textes-de-la-doctrine-sociale.html": {
+  "taille": 4264234,
+  "empreinte": "82d5d9ec28c412916c677a6b7e311b46d39b1d2af81c08289f97e8b3860812f5",
+  "cours": {
+   "l": "Le corpus des textes sociaux",
+   "r": "Léon XIII et Rerum novarum",
+   "q": "Pie XI : Quadragesimo anno et les totalitarismes",
+   "p": "Pie XII et ses radiomessages",
+   "j": "Jean XXIII : Mater et magistra et Pacem in terris",
+   "v": "Vatican II et Paul VI",
+   "t": "Jean-Paul II : les trois encycliques sociales",
+   "b": "Benoît XVI : Deus caritas est et Caritas in veritate",
+   "f": "François : Laudato si' et Fratelli tutti",
+   "c": "Le Compendium de la doctrine sociale"
+  },
+  "sais": {
+   "l": 44,
+   "r": 48,
+   "q": 40,
+   "p": 39,
+   "j": 48,
+   "v": 46,
+   "t": 48,
+   "b": 55,
+   "f": 44,
+   "c": 40
+  }
+ },
+ "93-les-domaines-de-la-vie-sociale.html": {
+  "taille": 4779856,
+  "empreinte": "a61adbea2955b5ba7a80e9e9f671c2d09aeb826a39614ae8cf4fc2bd684e2c9e",
+  "cours": {
+   "l": "La famille dans la société",
+   "t": "Le travail",
+   "e": "L’économie",
+   "i": "Les idéologies face à la doctrine sociale",
+   "p": "La communauté politique",
+   "r": "La liberté religieuse",
+   "c": "La culture et l’éducation",
+   "n": "La communauté internationale",
+   "m": "Les migrations",
+   "o": "L’écologie intégrale",
+   "a": "La construction de la paix"
+  },
+  "sais": {
+   "l": 48,
+   "t": 45,
+   "e": 47,
+   "i": 55,
+   "p": 48,
+   "r": 45,
+   "c": 49,
+   "n": 40,
+   "m": 55,
+   "o": 48,
+   "a": 49
   }
  }
 }

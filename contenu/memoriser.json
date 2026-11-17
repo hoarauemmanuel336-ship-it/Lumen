@@ -1307,6 +1307,212 @@
      "note": "L’espérance chrétienne ne trompe pas, parce qu’elle s’appuie sur l’amour de Dieu déjà reçu par l’Esprit Saint. Le Catéchisme cite ce verset pour la vertu d’espérance (Catéchisme 1820)."
     }
    ]
+  },
+  {
+   "id": "base-principes-sociaux",
+   "name": {
+    "fr": "Les principes de la doctrine sociale"
+   },
+   "bloc": "La doctrine sociale de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-genese-1-27",
+     "fr": {
+      "ref": "Genèse 1:27",
+      "text": "Dieu créa l'homme à son image, à l'image de Dieu il le créa ; homme et femme il les créa."
+     },
+     "note": "Toute la doctrine sociale repose sur cette phrase : chaque personne est créée à l’image de Dieu, et sa dignité ne dépend ni de ses capacités ni de son utilité. Les institutions, l’économie et l’État existent pour la personne, jamais l’inverse."
+    },
+    {
+     "id": "base-jeremie-29-7",
+     "fr": {
+      "ref": "Jérémie 29:7",
+      "text": "Recherchez le bien de la ville où je vous ai déportés, priez le Seigneur pour elle, car son bien fera votre bien."
+     },
+     "note": "Dieu demande aux exilés de travailler au bien d’une ville païenne, parce que leur propre bien en dépend. C’est déjà l’idée du bien commun : le bien de chacun passe par les conditions qui permettent à tous de vivre bien."
+    },
+    {
+     "id": "base-levitique-25-23",
+     "fr": {
+      "ref": "Lévitique 25:23",
+      "text": "Les terres ne se vendront pas à perpétuité, car le pays est à moi, et vous n'êtes chez moi que des immigrés et des hôtes de passage."
+     },
+     "note": "La terre appartient à Dieu, et l’homme n’y est qu’un hôte. C’est la racine biblique de la destination universelle des biens : la propriété privée est légitime, mais elle reste ordonnée à l’usage de tous (*Gaudium et spes* 69)."
+    },
+    {
+     "id": "base-matthieu-25-40",
+     "fr": {
+      "ref": "Matthieu 25:40",
+      "text": "Et le Roi leur répondra : Amen, je vous le dis : chaque fois que vous l'avez fait à l'un de ces plus petits de mes frères, c'est à moi que vous l'avez fait."
+     },
+     "note": "Le Christ se reconnaît dans les plus petits : ce qu’on fait pour eux, on le fait pour lui. L’option préférentielle pour les pauvres vient de là, et Benoît XVI la disait implicite dans la foi au Christ (Aparecida, 2007)."
+    },
+    {
+     "id": "base-exode-18-22",
+     "fr": {
+      "ref": "Exode 18:22",
+      "text": "Qu'ils rendent la justice au peuple en tout temps : toute affaire importante, qu'ils te la soumettent ; mais toute affaire mineure, qu'ils la jugent eux-mêmes. Allège ainsi ta charge, et qu'ils la portent avec toi."
+     },
+     "note": "Jéthro conseille à Moïse de laisser les affaires courantes à des juges choisis dans le peuple et de garder pour lui les plus graves. C’est l’intuition de la subsidiarité : l’échelon supérieur ne retire pas aux plus proches ce qu’ils peuvent faire, il les aide à le faire."
+    },
+    {
+     "id": "base-galates-6-2",
+     "fr": {
+      "ref": "Galates 6:2",
+      "text": "Portez les fardeaux les uns des autres, et vous accomplirez ainsi la loi du Christ."
+     },
+     "note": "Porter les fardeaux les uns des autres, c’est la solidarité vécue au jour le jour. Jean-Paul II en fait une vertu : « la détermination ferme et persévérante de travailler pour le bien commun » (*Sollicitudo rei socialis* 38)."
+    },
+    {
+     "id": "base-ephesiens-4-15",
+     "fr": {
+      "ref": "Éphésiens 4:15",
+      "text": "En professant la vérité dans l'amour, nous grandirons de toutes manières vers celui qui est la tête, le Christ."
+     },
+     "note": "Saint Paul unit la vérité et l’amour. Benoît XVI a tiré de ce verset le titre de son encyclique *Caritas in veritate* (2009), qui fait de la charité dans la vérité le principe de toute la doctrine sociale."
+    }
+   ]
+  },
+  {
+   "id": "base-encycliques",
+   "name": {
+    "fr": "Les grands textes de la doctrine sociale"
+   },
+   "bloc": "La doctrine sociale de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-jacques-5-4",
+     "fr": {
+      "ref": "Jacques 5:4",
+      "text": "Voici qu'il crie, le salaire des ouvriers qui ont moissonné vos champs et dont vous les avez frustrés ; et les cris des moissonneurs sont parvenus aux oreilles du Seigneur de l'univers."
+     },
+     "note": "Léon XIII cite ce verset dans *Rerum novarum* (1891) : frustrer l’ouvrier de son salaire est un crime qui crie vers le ciel. Le juste salaire est resté depuis un point constant de l’enseignement social des papes."
+    },
+    {
+     "id": "base-isaie-32-17",
+     "fr": {
+      "ref": "Isaïe 32:17",
+      "text": "L'œuvre de la justice sera la paix, et le fruit de la justice, le repos et la sécurité pour toujours."
+     },
+     "note": "Pie XII avait pris ce verset pour devise, en latin *Opus iustitiae pax*, « la paix, œuvre de la justice ». Jean-Paul II l’a prolongé dans *Sollicitudo rei socialis* 39 : *Opus solidaritatis pax*, la paix, fruit de la solidarité."
+    },
+    {
+     "id": "base-genese-1-28",
+     "fr": {
+      "ref": "Genèse 1:28",
+      "text": "Dieu les bénit et leur dit : « Soyez féconds et multipliez-vous, remplissez la terre et soumettez-la. Dominez sur les poissons de la mer, sur les oiseaux du ciel, sur tout le bétail, sur toute la terre et sur toute bête qui va et vient sur la terre. »"
+     },
+     "note": "Jean-Paul II ouvre sa réflexion biblique sur le travail par ce verset (*Laborem exercens*) : en travaillant, l’homme accomplit l’ordre reçu de Dieu de soumettre la terre. François rappelle dans *Laudato si’* que cette domination n’autorise pas une exploitation sans limite."
+    },
+    {
+     "id": "base-luc-10-37",
+     "fr": {
+      "ref": "Luc 10:37",
+      "text": "Le docteur répondit : « Celui qui a exercé la miséricorde envers lui. » Jésus lui dit : « Va, et toi aussi, fais de même. »"
+     },
+     "note": "*Fratelli tutti* (2020) fait de la parabole du bon Samaritain la clé de toute l’encyclique. L’ordre de Jésus déplace la question : on ne demande plus qui est mon prochain, on se fait le prochain de celui qui souffre."
+    },
+    {
+     "id": "base-matthieu-13-52",
+     "fr": {
+      "ref": "Matthieu 13:52",
+      "text": "Et il ajouta : « C'est pourquoi tout scribe devenu disciple du royaume des cieux est comparable à un maître de maison qui tire de son trésor du neuf et de l'ancien. »"
+     },
+     "note": "Jean-Paul II applique cette parole à la doctrine sociale au début de *Centesimus annus* (1991) : elle garde ses principes et les éclaire devant les « choses nouvelles » de chaque époque. C’est la loi de tout le corpus, de *Rerum novarum* à nos jours."
+    }
+   ]
+  },
+  {
+   "id": "base-societe",
+   "name": {
+    "fr": "Les domaines de la vie sociale"
+   },
+   "bloc": "La doctrine sociale de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-genese-2-24",
+     "fr": {
+      "ref": "Genèse 2:24",
+      "text": "C'est pourquoi l'homme quittera son père et sa mère, il s'attachera à sa femme, et tous deux ne feront plus qu'une seule chair."
+     },
+     "note": "La famille naît de l’union stable d’un homme et d’une femme. L’Église en fait la « cellule première et vitale de la société » (*Familiaris consortio* 42) : la société se construit à partir d’elle, et elle lui doit protection."
+    },
+    {
+     "id": "base-genese-2-15",
+     "fr": {
+      "ref": "Genèse 2:15",
+      "text": "Le Seigneur Dieu prit l'homme qu'il avait façonné et le plaça dans le jardin d'Éden pour le cultiver et le garder."
+     },
+     "note": "Dieu confie le jardin à l’homme pour le cultiver et le garder, avant toute faute : le travail fait partie de sa vocation. *Laudato si’* 67 lit dans ces deux verbes une relation de réciprocité responsable entre l’homme et la nature."
+    },
+    {
+     "id": "base-matthieu-6-24",
+     "fr": {
+      "ref": "Matthieu 6:24",
+      "text": "Nul ne peut servir deux maîtres : ou bien il détestera l'un et aimera l'autre, ou bien il s'attachera à l'un et méprisera l'autre. Vous ne pouvez pas servir à la fois Dieu et l'Argent."
+     },
+     "note": "Jésus présente l’argent comme un maître qui dispute à Dieu le cœur de l’homme. La doctrine sociale en tire que l’économie doit servir la personne, et François dénonce une « nouvelle idolâtrie de l’argent » (*Evangelii gaudium* 55)."
+    },
+    {
+     "id": "base-matthieu-22-21",
+     "fr": {
+      "ref": "Matthieu 22:21",
+      "text": "Ils répondirent : « De César. » Alors il leur dit : « Rendez donc à César ce qui est à César, et à Dieu ce qui est à Dieu. »"
+     },
+     "note": "Jésus distingue ce qui revient à César et ce qui revient à Dieu. L’Église en tire l’autonomie de la communauté politique et de l’Église, chacune dans son domaine (*Gaudium et spes* 76), et la limite de tout pouvoir humain."
+    },
+    {
+     "id": "base-actes-5-29",
+     "fr": {
+      "ref": "Actes 5:29",
+      "text": "Pierre et les apôtres répondirent : « Il faut obéir à Dieu plutôt qu'aux hommes."
+     },
+     "note": "Devant le Sanhédrin qui leur défend de prêcher, Pierre et les apôtres posent la limite de toute autorité humaine. Le Catéchisme cite ce verset à propos du refus d’obéir à un ordre contraire à la loi de Dieu (n. 2242)."
+    },
+    {
+     "id": "base-deuteronome-6-6-7",
+     "fr": {
+      "ref": "Deutéronome 6:6-7",
+      "text": "Ces paroles que je te donne aujourd'hui seront présentes à ton cœur et à ton âme. Tu les répéteras à tes enfants ; tu en parleras, assis dans ta maison ou en marche sur la route, quand tu te couches et quand tu te lèves."
+     },
+     "note": "Moïse confie aux parents la transmission de la foi, à la maison comme en chemin. L’Église enseigne que les parents sont les premiers et principaux éducateurs de leurs enfants (*Gravissimum educationis* 3), un droit que l’État doit respecter et soutenir."
+    },
+    {
+     "id": "base-actes-17-26",
+     "fr": {
+      "ref": "Actes 17:26",
+      "text": "D'un seul homme, il a fait tout le genre humain pour habiter sur toute la face de la terre, fixant à chaque peuple les temps et les limites de son espace,"
+     },
+     "note": "À Athènes, Paul affirme que tout le genre humain vient d’un seul homme. C’est le fondement de l’unité de la famille humaine, que le concile rappelle en ouvrant *Nostra aetate*, et de tout l’enseignement de l’Église sur la communauté des nations."
+    },
+    {
+     "id": "base-levitique-19-34",
+     "fr": {
+      "ref": "Lévitique 19:34",
+      "text": "Vous traiterez l'immigré qui séjourne parmi vous comme l'un des vôtres ; tu l'aimeras comme toi-même, car vous avez été immigrés au pays d'Égypte. Je suis le Seigneur, votre Dieu."
+     },
+     "note": "La Loi demande d’aimer l’immigré comme soi-même, parce qu’Israël a été étranger en Égypte. La doctrine sociale y enracine le devoir d’accueil, que François résume en quatre verbes : accueillir, protéger, promouvoir, intégrer."
+    },
+    {
+     "id": "base-luc-12-15",
+     "fr": {
+      "ref": "Luc 12:15",
+      "text": "Puis il dit à tous : « Gardez-vous de toute avidité : même dans l'abondance, la vie d'un homme ne dépend pas de ses biens. »"
+     },
+     "note": "La vie ne dépend pas de l’abondance des biens. *Laudato si’* présente la sobriété, vécue librement, comme une libération (n. 223) : elle délivre de la course à la consommation, qui épuise la terre et oublie les pauvres."
+    },
+    {
+     "id": "base-isaie-2-4",
+     "fr": {
+      "ref": "Isaïe 2:4",
+      "text": "Il sera l'arbitre des nations, le juge de peuples nombreux. De leurs épées ils forgeront des socs de charrue, et de leurs lances, des serpes. Jamais plus une nation ne lèvera l'épée contre une autre, on n'apprendra plus à faire la guerre."
+     },
+     "note": "Le prophète annonce le jour où les armes deviendront des outils de travail. Les papes s’en inspirent quand ils demandent le désarmement, et Paul VI le disait à l’ONU le 4 octobre 1965 : « Jamais plus la guerre ! »"
+    }
+   ]
   }
  ]
 }
