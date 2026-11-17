@@ -107,3 +107,33 @@
 - Traductions personnelles de Puebla, Medellín, lettre de 1986 (italien) : vérifier qu'elles sont signalées comme telles.
 - Dilexi te cité d'après un PDF de secam.org. Aparecida via Dilexi te 99.
 - De mémoire : Puebla 27 janvier-13 février 1979 ; Medellín 24 août-6 septembre 1968 ; CELAM 1955 ; pacte des catacombes 16 novembre 1965 ; Gutiérrez 1971 ; Bergoglio et Aparecida ; Journée des pauvres 19 novembre 2017.
+
+## 93-02-t Le travail
+- Humaniser fait par retouches ciblées seulement : relire le style d'un bout à l'autre.
+- Paraphrases de mémoire : CEC 378, 531-533, 1867 ; CA 48 ; LE 5 et 9 ; GS 39. Titre de la partie V de LE entre guillemets non vérifié.
+- De mémoire : Justin ; édit de Constantin 321 ; Abitène 304 ; litanies de saint Joseph 1909 ; Philadelphie 1944 ; conventions OIT 1973, 1999, 2000 ; Rana Plaza. QA et juste salaire sans numéros.
+
+## 93-03-e L'économie
+- « mondialisation de l'indifférence » (EG 54) et « tout homme et tout l'homme » (PP 14) cités sans vérification.
+- De mémoire : CEC 2269 ; Léon XIII et l'impôt ; CA 35 ; Friedman 1970 ; Vix pervenit 1745 ; Code 1917 ; Rochdale, Ketteler 1864, Raiffeisen, Mondragón ; cogestion 1976 ; participation 1967 ; Erhard ; Rana Plaza ; Banque mondiale ; Lehman ; OMC 1995 ; Focolari 1943 ; économie de communion 1991.
+
+## 93-06-r La liberté religieuse
+- Quanta cura paraphrasée d'après l'italien. Histoire conciliaire d'après la presse (380 observations, 500 signataires, 5 ou 6 rédactions, Wojtyła, Paul VI 28 juin 1965).
+- De mémoire : Tertullien, Lactance, Ambroise 386, Gélase 494, Worms 1122, Becket 1170, Grande Charte 1215, Alcuin, Grégoire le Grand, Valuet, DUDH 18, Colisée 7 mai 2000, martyrs coptes 2023, Asia Bibi, Álvarez, accord Chine 2018.
+
+## 93-07-c La culture et l'éducation
+- Genèse de GE ; « une foi qui ne devient pas culture » attribuée à 1982 ; GE 10 et saint Thomas.
+- Dates de mémoire : Secrétariat non-croyants 1965 ; Poupard ; Ravasi ; Praedicate Evangelium 5 juin 2022, Tolentino ; Parvis des Gentils ; Bernardins 2008 ; Pacte éducatif 2019 ; Congrégation 1967 ; Ex corde aux États-Unis ; Land O'Lakes 1967 ; Latran III 1179 ; missel zaïrois 1988 ; lois scolaires françaises (1833, 1850, 1875, 1881-82, Debré 1959, 24 juin 1984) ; chiffre UNESCO.
+
+## 93-08-n La communauté internationale
+- PP 58 et CA 35 : ponctuation retouchée dans la citation (tirets).
+- Paraphrases de mémoire : CEC 2439, 2239 ; Christus Dominus 20 ; canons 3, 361-365 ; SRS 43 ; Vitoria 1539 ; Suárez 1612 ; Summi pontificatus.
+- De mémoire : Hongrie 1964 ; Tunisie 1964 ; Académie ecclésiastique 1701 ; Września 1901 ; Max Havelaar 1988 ; Tanzanie ; Jubilé 2000 20 millions de signatures ; 0,7 % 1970 ; Grégoire apocrisiaire.
+
+## 93-09-m Les migrations
+- Document de 1992 (anglais) ; titre français du document de 2013 traduit.
+- De mémoire : Pie X 1912 ; Scalabrini ; Cabrini ; Dicastère 2017 ; messages signés depuis 1986 ; Lettre à Diognète ; Règle de saint Benoît 53 ; Cicéron ; Augustin 410 ; Julien ; Convention de Genève ; DUDH 13-14. EMCC 49-58 paraphrasés d'après un résumé.
+
+## 93-11-a La paix
+- De mémoire : ratifications du Saint-Siège (TIAN 2017, TNP 1971, Ottawa, Oslo, TCA 2013) ; François au Congrès 2015, G7 2024, 14 septembre 2016, Abou Dhabi ; Beagle (1977, 1978, 25 et 29 novembre 1984) ; Jean-Paul II 13 janvier 2003 ; Benoît XV 1917 ; Pie XII 1939 ; Kofi Annan 2000 ; Pax Christi ; Sant'Egidio Mozambique 1992 ; Cuba 2014 ; Zuppi 2023 ; Soudan du Sud 2019 ; évêques polonais 1965 ; Reims 1962 ; CVR 1995.
+- Paraphrases : Compendium 494-520 ; CEC 2265, 2316 ; GS 78 ; PP 51.

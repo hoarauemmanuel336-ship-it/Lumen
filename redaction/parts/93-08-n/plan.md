@@ -15,3 +15,6 @@ Leçons (10) :
 10. Le commerce international juste : Populorum progressio 56-61 (le libre consentement ne suffit pas entre inégaux) ; protectionnisme et libre-échange ; commerce équitable ; consommateurs ; balance juste dans l'Écriture.
 
 Bilan : 6 exercices croisés.
+
+## État (rédacteur 1)
+Cours terminé : leçons, bilan, passage humaniser, contrôle et essai d assemblage faits ; livré dans redaction/93-08-n.html.

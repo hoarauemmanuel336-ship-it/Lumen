@@ -20,4 +20,4 @@ Fichiers : 00-ouverture.html, 01.html … 11.html, 99-bilan.html.
 
 Bilan : 6 exercices croisés.
 
-État : 00 à 09 écrits.
+État : terminé ; 93-06-r.html réuni, contrôlé, humanisé, essai d assemblage réussi.

@@ -19,4 +19,4 @@ Fichiers : 00-ouverture.html, 01.html … 12.html, 99-bilan.html.
 12. La spiritualité du travail : saint Joseph artisan — Mt 1:19,24 ; Mt 2:13-14 ; Mt 13:55 ; Redemptoris custos 22-24 (15 août 1989) ; Patris corde 6 (8 décembre 2020) ; fête du 1er mai 1955 (rappel lien 92 #ouverture-p) ; Col 3:23-24 ; 1 Co 10:31 ; conscience professionnelle, sanctification de la vie quotidienne, offrande, prière. Mots : Saint Joseph artisan ; Conscience professionnelle ; Sanctification du travail.
 Bilan : 6 exercices croisant les leçons.
 
-État : en cours. Leçons écrites = fichiers présents.
+État : terminé. Cours réuni dans redaction/93-02-t.html, contrôle sans signalement, passage humaniser fait, essai d assemblage réussi.

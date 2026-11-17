@@ -20,3 +20,5 @@ Fichiers : 00-ouverture.html, 01.html … 10.html, 99-bilan.html.
 10. Le Conseil pontifical de la culture (1982) et le dialogue de la foi avec les cultures — fondation 20 mai 1982 (lettre au cardinal Casaroli) ; « une foi qui ne devient pas culture » ; Inde a pontificatus (25 mars 1993) : fusion avec le Conseil pour le dialogue avec les non-croyants, articles 1 à 4 ; Pour une pastorale de la culture (1999) ; Poupard, Ravasi ; Pulchritudinis fidei (2012) ; Parvis des Gentils (2009, Paris 2011) ; Bernardins 2008 ; Praedicate Evangelium (2022) : Dicastère pour la culture et l'éducation ; ce qu'est le dialogue ; 1 Th 5:21, Ph 4:8, Ap 21:24-26.
 
 Bilan : 6 exercices croisant les leçons.
+
+État : toutes les parties écrites (00 à 10, 99), réunies dans redaction/93-07-c.html, contrôle sans signalement, passage humaniser fait, assemblage d'essai réussi.

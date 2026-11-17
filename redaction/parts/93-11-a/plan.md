@@ -18,4 +18,4 @@ Leçons (fichiers 01..11) :
 10. L'éducation à la paix (JP II 1979, Benoît XVI 2012, GS 82).
 11. L'action de l'Église pour la paix dans le monde (prière, parole des papes, diplomatie, mouvements, chacun).
 Bilan : 6 exercices.
-État : voir fichiers présents.
+État : terminé, assemblé dans redaction/93-11-a.html (contrôle propre, assemblage testé).

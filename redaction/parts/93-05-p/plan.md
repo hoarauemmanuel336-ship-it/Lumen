@@ -20,4 +20,4 @@ Leçons (une par élément de la commande, sauf l'autorité, traitée en une le�
 Bilan : 6 exercices croisés.
 
 Fichiers : 00-ouverture.html, 01.html … 12.html, 99-bilan.html.
-État : plan fait.
+État : leçons 1 à 11 écrites (00-ouverture à 11.html). Reste : leçon 12, bilan, assemblage, humaniser, contrôle.
