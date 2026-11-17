@@ -800,3 +800,213 @@
 - « Tous les manuscrits grecs de Matthieu portent la formule trinitaire » ; Actes 8:37 absent des plus anciens manuscrits grecs.
 - Baptême des prosélytes : datation présentée comme discutée ; lecture de Jn 3:5 par « certains auteurs de la Réforme » (Calvin, sans le nommer).
 - Hébreu : même verbe (rahaf) en Gn 1:2 et Dt 32:11 ; « créer » (bara) en Ps 51:12.
+
+## 69-04-m
+- Vérifiés mot à mot sur vatican.va : CIC 97 §2, 99, 842 §1, 843 §1, 845, 866, 874, 882, 883, 884, 885, 889, 890, 891, 892, 893, 1033, 1065 §1 ; CEC 1306, 1307, 1309, 1310, 1311 et fragments de 1312-1314 ; LG 26 et 11 ; Orientalium Ecclesiarum 13-14 ; CCEO 692-697 (latin, cités en français par paraphrase). CIC 886-888 et 895-896 : paraphrasés d'après un résumé de la page (886 : « légitimement » / « licitement » à revoir sur le texte).
+- L1 : Trente, session VII (1547), canon 3 sur la confirmation (évêque seul ministre ordinaire, non tout simple prêtre) : paraphrase de mémoire.
+- L1 : Innocent Ier à Decentius de Gubbio (416) : réserve aux évêques de l'onction du front, appui sur les Actes ; de mémoire.
+- L1 : saint Jérôme, Dialogue contre les lucifériens : l'évêque visite les baptisés des campagnes pour leur imposer les mains ; de mémoire, date « fin du IVe siècle ».
+- L1 : Vatican II aurait choisi « originaire » plutôt qu'« ordinaire » pour tenir compte de la pratique orientale : explication présentée comme lecture, à vérifier dans les actes du concile.
+- L1, L9 : saint Thomas, IIIa q. 72 a. 11 (la dernière main revient à l'art le plus élevé ; chefs qui enrôlent les soldats) et a. 10 (le confirmé conduit par un autre comme une recrue) : paraphrases de mémoire.
+- L2 : Grégoire le Grand à Januarius de Cagliari (Registre IV, 9 et IV, 26, vers 593-594) : contenu de mémoire.
+- L2 : concile de Florence, décret pour les Arméniens (1439) : dispense du Siège apostolique, chrême consacré par l'évêque ; paraphrase de mémoire.
+- L2 : comparaison avec la faculté d'absoudre (CIC 966 §1, non cité par son numéro) : de mémoire. Explication du « pouvoir lié » donnée comme opinion commune des théologiens.
+- L2 : prêtres associés faisant les onctions après la prière de l'évêque sur l'ensemble des confirmands (Rituel, praenotanda 8) : de mémoire.
+- L3 : liste des équiparés à l'évêque diocésain (prélat et abbé territorial, vicaire et préfet apostolique, administrateur apostolique ; CIC 368, 381 §2) : de mémoire.
+- L3 : « sorti de l'enfance » = qui a l'usage de la raison (CIC 852 §1, non cité) : de mémoire.
+- L3 : décret Spiritus Sancti munera de la Congrégation pour la discipline des sacrements (14 septembre 1946, Pie XII), faculté donnée aux curés pour les malades en danger de mort : date et contenu de mémoire.
+- L3 (et ex. 5) : un catholique baptisé enfant et revenu à la pratique n'entre pas dans le cas « admis à la pleine communion » du canon 883, 2° : lecture des canonistes, présentée comme telle ; vérifier s'il existe une réponse authentique.
+- L3 : la « confirmation » anglicane et protestante non reconnue comme sacrement : enseignement constant, non cité.
+- L4 : CCEO 693-696 traduits en français par moi (texte latin vérifié). Formule byzantine « Sceau du don de l'Esprit Saint » et onctions sur plusieurs parties du corps : de mémoire.
+- L4 : restrictions passées du pouvoir des prêtres dans certaines Églises orientales catholiques sous influence latine : de mémoire, sans exemple nommé.
+- L4 : consécration du myron réservée au patriarche ou au chef d'Église dans plusieurs Églises byzantines, souvent le Jeudi saint, pas chaque année : de mémoire.
+- L5 : CIC 844 §1 (sacrements licitement donnés aux seuls fidèles catholiques, exceptions pour pénitence, eucharistie, onction) : paraphrase de mémoire, numéro non cité.
+- L5 : intention requise chez le sujet adulte pour la validité : enseignement commun, non référencé.
+- L6 : Rituel de la confirmation (1971), praenotanda 11 (différée vers sept ans ; âge plus mûr possible pour raisons pastorales, attachement au Christ, témoignage) : paraphrase de mémoire.
+- L6 : norme complémentaire des évêques des États-Unis (de l'âge de discrétion à seize ans environ, précisé par chaque évêque) : de mémoire, non vérifiée en ligne (accès refusé).
+- L6 : « plusieurs canonistes » estiment qu'un enfant ayant l'âge de discrétion, disposé et demandeur, ne peut être écarté malgré l'âge fixé par la conférence : je n'ai pas cité la réponse de la Congrégation pour le culte divin (1999 ?) que je crois exister ; à vérifier.
+- L6 : usage français de la lettre à l'évêque (L7) et confirmation des adultes autour de la Pentecôte (L7, L10) : usages présentés comme fréquents.
+- L8 : saint Thomas IIIa q. 72 a. 7 ad 2 (celui qui s'approche de bonne foi, sans conscience du péché ou imparfaitement contrit, reçoit la rémission) : de mémoire.
+- L8 : reviviscence pour les sacrements qui impriment un caractère : présentée comme enseignement commun. CIC 916 (confession avant la communion) paraphrasé sans numéro.
+- L9 : geste du parrain qui pose la main droite sur l'épaule du confirmand (Rituel) : de mémoire. Rituel, praenotanda 5 : les parents peuvent présenter eux-mêmes leurs enfants : de mémoire.
+- L9 : « un parrain » au singulier pour la confirmation (CIC 892) face à « un parrain et une marraine » possibles au baptême (CIC 873, non cité) : de mémoire pour le 873.
+- L10 : Code de 1917, canon 787 (pas de nécessité de moyen, mais interdit de négliger le sacrement quand l'occasion se présente) : paraphrase de mémoire. Jugement des théologiens sur le refus par mépris (faute grave) : de mémoire.
+- L10 : CIC 879 paraphrasé (plus strictement tenus de répandre et défendre la foi) d'après le résumé de la page.
+
+## 69-03-e
+- Concile de Florence, décret pour les Arméniens (1439) : effet de la confirmation « l'Esprit Saint donné pour la force, comme aux Apôtres à la Pentecôte, afin que le chrétien confesse hardiment le nom du Christ » : paraphrasé de mémoire (DS 1319), sans guillemets (leçons 1 et 6).
+- Paul VI, *Divinae consortium naturae* (1971) : « le Don ineffable, l'Esprit Saint lui-même » donné aux baptisés : paraphrasé de mémoire, la page vatican.va n'a pas livré le texte (leçon 1, repère).
+- Trente, session VII, canon 1 sur la confirmation (rejet de la thèse d'une simple catéchèse d'adolescents rendant compte de leur foi) et canon 9 sur les sacrements en général (caractère, non-réitération) : paraphrasés de mémoire (leçons 7 et 9) ; date 1547.
+- CIC canons 845 (non-réitération, sous condition), 225 (laïcs députés à l'apostolat par baptême et confirmation) : paraphrasés de mémoire.
+- Thomas, Ia-IIae q. 68 (dons = perfections disposant à suivre promptement l'Esprit ; a. 5 : connexion des dons dans la charité, croissance avec elle) : paraphrase de mémoire (leçon 4). L'image rames/voiles est attribuée seulement aux « auteurs spirituels ».
+- Thomas IIIa q. 65 a. 1 (septénaire par analogie avec la vie du corps) : de mémoire ; q. 72 a. 1, 5, 7, 8, 9 vérifiés sur New Advent (anglais), rendus en français par paraphrase.
+- Formule « in baptismo regeneramur ad vitam, post baptismum confirmamur ad pugnam » : citée de mémoire, attribuée à l'homélie de Pentecôte de Fauste de Riez (Ve s.), transmise sous le nom du pape Melchiade (Fausses Décrétales) ; à vérifier mot pour mot (leçon 11).
+- Saint Cyrille de Jérusalem, *Catéchèses mystagogiques* III : rapprochement entre l'onction des néophytes et la descente de l'Esprit sur le Christ après son baptême, paraphrasé de mémoire (leçon 2).
+- Sainte Agnès « douze ans » selon saint Ambroise ; saint Kizito « environ quatorze ans », 1886 ; saint José Sánchez del Río, tué en 1928 à quatorze ans, canonisé en 2016 : de mémoire (leçon 8).
+- LXX d'Isaïe 11:2 rendant la première « crainte » par *eusebeia* (piété) : de mémoire (leçon 4).
+- Doctrine de la reviviscence des sacrements présentée comme « doctrine commune des théologiens », non définie (leçon 7).
+- Orthodoxes reçus dans la pleine communion non reconfirmés ; protestants (y compris confirmés dans leur communauté) confirmés à leur réception : pratique énoncée de mémoire (leçon 7).
+- Expression « sacrement du départ » donnée comme ce qu'« on entend parfois » chez des prêtres (leçon 9).
+- LG 11 latin *perfectius* et *robur* (leçons 5 et 6) : de mémoire.
+
+## 69-05-i
+- Vérifiés sur vatican.va : CEC 1229-1233, 1285, 1290-1292, 1306-1308, 1312-1314, 1318 (fragments exacts) ; CEC 1212 (deux fragments cités) ; CEC 1244 (résumé, non cité mot pour mot) ; SC 64-66, 71 ; OE 12-14 ; *Sacramentum caritatis* 17-18 et notes 46-52 ; CIC 842 § 2, 865, 866, 889-891 ; *Quam singulari* (AAS 2, 1910, p. 577-583 : date, signataires, normes I-VIII en latin, mention des jansénistes, âges de 10, 12, 14 ans, livres liturgiques jusqu'au XIIIe s.) ; date de *Divinae consortium naturae* (15 août 1971).
+- L1 : *Lumen gentium* 11, « source et sommet de toute la vie chrétienne » : de mémoire.
+- L2 : Tertullien, *Sur le baptême* 19 (Pâque, jour le plus solennel ; temps jusqu'à la Pentecôte) et 7-8 (onction, imposition de la main) ; *Sur la résurrection de la chair* 8 (phrase traduite librement) : de mémoire.
+- L2 : *Tradition apostolique* 21 (ordre des rites, coupes d'eau, de lait et de miel) : paraphrase de mémoire.
+- L2 : Cyprien, lettre 73 (Samarie, présentés aux chefs de l'Église, « achevés par le sceau du Seigneur ») ; *De lapsis* 25 (la petite fille et le diacre), daté vers 251 : de mémoire.
+- L2 : Ambroise, *Sur les sacrements* / *Sur les mystères* : lavement des pieds à Milan, « sceau spirituel » avec la liste des sept dons, Psaume 23 (22) appliqué aux néophytes : de mémoire. Baptême d'Augustin à Pâques 387 : de mémoire.
+- L2 : Augustin, *De peccatorum meritis* I (communion des enfants tirée de Jean 6:53 ; chrétiens puniques appelant le baptême « salut » et l'eucharistie « vie ») : de mémoire, sans référence citée.
+- L3 : détails du rite byzantin (renonciation vers l'occident, onctions sur front, yeux, narines, bouche, oreilles, poitrine, mains, pieds ; procession avec Galates 3:27 ; lectures Romains 6 et Matthieu 28) ; consécration du myron le Jeudi saint, parfois à plusieurs années d'intervalle ; communion des nourrissons sous l'espèce du vin à la cuillère : de mémoire.
+- L3 : CCEO 695 § 1, 696 § 1 (chrismation avec le baptême sauf vraie nécessité, myron consacré par un évêque) et 710 (communion des petits enfants selon les livres liturgiques de chaque Église) : contenu de mémoire, renvois tirés du CEC 1290 et de la note 50 de *Sacramentum caritatis*.
+- L3 : latinisations (report de la communion des enfants dans certaines Églises orientales catholiques) et rétablissement depuis Vatican II : de mémoire, formulé en termes généraux.
+- L3 : Nicolas Cabasilas, *La vie en Christ* (baptême = exister, myron = mise en mouvement, eucharistie = garde la vie) : paraphrase de mémoire.
+- L4 : lettre d'Innocent Ier à Decentius de Gubbio, 19 mars 416 (DH 215) : contenu et expression *pontificatus apex* de mémoire.
+- L4 : Jérôme, *Dialogue contre les lucifériens* 9 (vers 380), évêque qui parcourt les campagnes ; « pour l'honneur du sacerdoce plutôt que par nécessité » : paraphrase de mémoire.
+- L4 : concile de Florence, décret pour les Arméniens (1439), prêtres confirmant par dispense du Siège apostolique : paraphrase de mémoire.
+- L4 et L8 : canon 883 (prêtre qui baptise un adulte ou reçoit dans la pleine communion ; danger de mort) : seul le début du canon a été lu, contenu de mémoire et appuyé sur CEC 1312-1314.
+- L5 : concile d'Elvire (canons 38 et 77, début du IVe s.) : de mémoire.
+- L5 : apparition de *confirmare* dans les conciles gaulois du Ve siècle ; homélie de Pentecôte attribuée à Fauste de Riez (« régénérés pour la vie… confirmés pour le combat »), reprise sous le nom d'un pape ancien (Fausses Décrétales, Melchiade) puis chez Gratien et Thomas : de mémoire.
+- L5 : causes de la fin de la communion des nourrissons (retrait du calice, crainte de profanation) : synthèse de mémoire. Trente, session XXI (1562), chap. 4 et canon 4 : paraphrase de mémoire.
+- L5 : Catéchisme romain (1566) sur l'âge de la confirmation (pas avant l'usage de la raison ; au moins sept ans si l'on n'attend pas douze) : de mémoire.
+- L5 et L7 : en France au XIXe s., confirmation souvent donnée après la communion solennelle : de mémoire.
+- L6 : norme VI (communion fréquente « et même chaque jour si possible ») et norme VIII (enterrer « à la manière des tout-petits ») : complétées de mémoire au-delà des fragments lus ; Trente, session XIII (« antidote ») : de mémoire. Canonisation de Pie X en 1954 : de mémoire.
+- L6 : canons 913 et 914 et canon 97 § 2 (présomption de l'usage de la raison à sept ans accomplis) : seuls les débuts de 913-914 lus, le reste de mémoire.
+- L6 : communion privée / communion solennelle en France, devenue « profession de foi » : de mémoire.
+- L7 : lettre de Léon XIII à l'évêque de Marseille (1897, Mgr Robert) approuvant la confirmation avant la première communion : de mémoire, à vérifier (date et destinataire).
+- L7 : constat pastoral de la confirmation devenue « fin de la pratique » : formulé comme observation de pasteurs, sans source.
+- L8 : Rituel de l'initiation chrétienne des adultes, notes d'introduction n° 34-36 (unité du mystère pascal, mission du Fils et effusion de l'Esprit) : paraphrase de mémoire, numéros confirmés par la note 51 de *Sacramentum caritatis*.
+- L8 : canon 852 § 1 (règles des adultes pour ceux qui ont l'usage de la raison) : de mémoire. Étapes du RICA (appel décisif, scrutins, remises) : de mémoire.
+- L9 : « ordre restauré » adopté par plusieurs diocèses, « notamment dans le monde anglophone » : de mémoire, sans diocèse nommé.
+- L10 : Jean-Paul II, l'Église qui « respire avec ses deux poumons » : paraphrase sans guillemets, de mémoire.
+
+## 70-01-l
+- CEC 1324, 1327, 1328, 1329, 1330, 1331, 1332, 1345, 1348, 1402, 1405 : fragments vérifiés sur vatican.va (FRA0013, __P3S, __P3T, __P3V, __P3Y), citations recomposées à partir de ces fragments ; à relire en entier.
+- CEC 1328 : l'original porte des tirets (« qui proclament – surtout pendant le repas – les œuvres de Dieu ») ; remplacés par des virgules dans la citation (règle des tirets).
+- CEC 1329 (fraction) : vérifié jusqu'à « bénissait et distribuait » ; la fin « le pain en maître de table » est de mémoire.
+- CEC 1363, 1379, 1382, 1383, 948 : paraphrases de mémoire, sans guillemets.
+- Missel romain, traduction française de 2021, de mémoire : « Rendons grâce au Seigneur notre Dieu / Cela est juste et bon » ; « Heureux les invités au repas des noces de l'Agneau » ; « Priez, frères et sœurs : que mon sacrifice, qui est aussi le vôtre, soit agréable à Dieu le Père tout-puissant » ; anamnèse de la PE II « Faisant ici mémoire de la mort et de la résurrection de ton Fils, nous t'offrons, Seigneur, le pain de la vie et la coupe du salut » ; acclamation « Il est grand, le mystère de la foi / Nous annonçons ta mort… » ; quatre formules d'envoi (« Allez, dans la paix du Christ », « Allez porter l'Évangile du Seigneur », « Allez en paix, glorifiez le Seigneur par votre vie », « Allez en paix ») ; réponse « Nous rendons grâce à Dieu ».
+- Missale Romanum 2008 : ajout des nouvelles formules de renvoi demandées par Sacramentum caritatis 51 (de mémoire) ; SC 51 paraphrasé.
+- Bénédictions juives (« qui fais sortir le pain de la terre », « qui crées le fruit de la vigne »), birkat ha-mazon en trois temps fondé sur Dt 8:10, coupe de bénédiction des repas de fête : de mémoire. Louis Bouyer (modèle de la prière eucharistique) et Joseph Ratzinger (todah) : attributions de mémoire.
+- Mishna, Pesahim 10, 5 (« à chaque génération, chacun doit se considérer comme s'il était sorti d'Égypte ») : paraphrase, référence non donnée dans le texte ; « vers 200 ».
+- Didachè 9 « Pour l'eucharistie, rendez grâce ainsi » et Didachè 14 « afin que votre sacrifice soit pur » : traductions propres ; datation « fin du Ier siècle ou début du IIe ».
+- Ignace : Aux Smyrniotes 8 (eucharistie légitime sous l'évêque), Aux Philadelphiens 4 (une seule eucharistie, une seule chair, un seul calice, un seul autel), Aux Romains 4 (froment de Dieu moulu par les bêtes) : paraphrases ; martyre « vers 110 » sous Trajan ; grec pharmakon athanasias / antidotos tou mê apothanein.
+- Justin, Première Apologie 66 (« cette nourriture est appelée chez nous eucharistie ») : paraphrase ; « vers 150 ».
+- Irénée, Contre les hérésies IV, 18, 5 (manière de penser accordée à l'eucharistie, cité par CEC 1327 ; corps qui ne sont plus corruptibles) : paraphrases.
+- Augustin, Confessions VII, 10, 16 : traduction propre de « nec tu me in te mutabis… sed tu mutaberis in me ».
+- Martyrs d'Abitinae (304, « une cinquantaine », Sine dominico non possumus) : de mémoire.
+- Pseudo-Denys, Hiérarchie ecclésiastique III : eucharistie « consécration des consécrations » (teletôn teletê) ; datation fin Ve / début VIe siècle.
+- Saint Thomas : III, q. 65, a. 3 (trois raisons de la primauté de l'eucharistie) ; III, q. 73, a. 4 (trois temps : sacrifice, communion ou synaxe, viatique ; eucharistie « bonne grâce ») ; III, q. 83, a. 4, ad 9 (explications de « missa ») ; l'explication du « pain des anges » (anges nourris du Christ par la vision) est attribuée à Thomas sans référence précise.
+- Missa : Égérie (années 380), Ambroise à Marcellina en 386 (« missam facere coepi »), Avit de Vienne vers 500, nom ordinaire au VIe siècle : de mémoire.
+- « Collecte » venant probablement de collecta : présenté comme probable.
+- Liturgie byzantine : saint Basile « une dizaine de fois par an » ; présanctifiés en semaine de Carême ; hymne des Chérubins paraphrasée ; « Les choses saintes aux saints » et réponse « Un seul est saint… » ; fraction de l'Agneau en quatre parts ; synaxe de la Mère de Dieu le 26 décembre.
+- Chronique des temps passés (envoyés de Vladimir à Sainte-Sophie, fin Xe siècle) : de mémoire.
+- Qurbana (syriaque « offrande ») et Badarak (arménien « offrande, sacrifice ») : de mémoire.
+- PGMR (pain eucharistique qui puisse être rompu et distribué au moins à quelques fidèles, n. 321) : paraphrase, numéro non cité dans le texte.
+- Mysterium fidei inséré dans les paroles sur le calice ; encyclique de Paul VI (1965).
+- Trente, session XIII (1551), décret « sur le très saint sacrement de l'eucharistie » ; saint Pierre-Julien Eymard, congrégation fondée à Paris en 1856 ; nom actuel de la solennité « Saint-Sacrement du Corps et du Sang du Christ » ; canon 1247.
+- Grec : kyriakos employé seulement en 1 Co 11:20 et Ap 1:10 ; 1 Co 11:18 « en ekklêsia » ; Ac 20:7 « synêgmenôn » (synagein) ; Ps 78:25 hébreu lèhèm abbirim ; « man hu » à l'origine du mot manne (présenté au conditionnel).
+- Hymnes : Panis angelicus fit panis hominum (Sacris solemniis), Ecce panis angelorum, factus cibus viatorum (Lauda Sion), versets Panem de caelo praestitisti eis / Omne delectamentum in se habentem ; O sacrum convivium « auteur probable » saint Thomas.
+
+## 69-02-r
+- Rituel des huiles (Ordo benedicendi oleum…, 1970) : « huile d'olive ou, selon les circonstances, autre huile extraite des plantes », « huile et aromates ou matière odorante », mélange en privé ou pendant la célébration, insufflation au choix de l'évêque, deux formules de consécration, mains droites des concélébrants, consécration après la communion ou après la liturgie de la Parole : tout paraphrasé de mémoire (date du livre donnée seulement comme « 1970 »).
+- Baume « tiré jadis d'un arbuste de Judée, aujourd'hui d'autres arbres » (leçon 1) : de mémoire.
+- Concile de Florence, décret pour les Arméniens : huile = netteté de la conscience, baume = odeur de la bonne réputation ; ancienne formule latine « Signo te signo crucis et confirmo te chrismate salutis… » : de mémoire (la matière « chrisma ex oleo et balsamo » et la phrase « loco illius manus impositionis… » vérifiées dans Divinae consortium naturae).
+- Droit canonique : chrême consacré par l'évêque même quand un prêtre confirme (can. 880 § 2) ; huiles récentes, pas d'huiles anciennes sauf nécessité (can. 847 § 1) : paraphrasés, non vérifiés en ligne (pages du Code inaccessibles).
+- Usage de brûler les huiles anciennes (lampe du sanctuaire, coton) ; accueil des huiles le Jeudi saint au soir « dans certains diocèses » : usages courants, de mémoire.
+- Myron oriental : « nombreux aromates », renouvellement parfois après plusieurs années : de mémoire (même formulation que le cours 65-05-s).
+- Théophile d'Antioche, À Autolycus I, 12 (« appelés chrétiens parce qu'oints de l'huile de Dieu ») ; Cyrille de Jérusalem, Catéchèses mystagogiques III ; Ignace d'Antioche, Aux Éphésiens 17, 1 (parfum reçu sur la tête pour exhaler l'incorruptibilité sur l'Église) ; Tertullien (De la résurrection de la chair 8 : « la chair est marquée pour que l'âme soit protégée ») : paraphrases de mémoire.
+- Terminaison latine de christianos et nom donné « de l'extérieur » : opinion commune des exégètes, présentée avec « sans doute ».
+- Divinae consortium naturae : date (15 août 1971), phrase d'ouverture, Innocent III, Florence, Trente, rite essentiel, imposition préalable (« integram perfectionem… pleniorem intellegentiam »), formule byzantine, lettre d'un patriarche à Martyrius d'Antioche, 1er janvier 1973 : vérifiés sur le texte latin de vatican.va. Pontificalis Romani recognitio (1968) cité comme précédent pour l'ordre : de mémoire.
+- Catéchisme 1289, 1293-1301 vérifiés sur vatican.va. NB : le texte en ligne du n. 1299 finit par « remplis-les de l'esprit de la crainte de Dieu » (cité tel quel) ; d'autres éditions françaises portent peut-être « esprit d'adoration ».
+- Rituel de la confirmation : promulgation par un décret de la Congrégation pour le culte divin (22 août 1971, date non donnée dans le cours) ; chapitres (dans la messe, hors de la messe, ministre extraordinaire, danger de mort, textes) ; présentation (curé, prêtre, diacre ou catéchiste ; appel par le nom) ; modèle d'homélie ; questions de la rénovation (quatrième question sur l'Esprit « comme aux Apôtres à la Pentecôte ») ; assentiment « Haec est fides nostra… » ; invitation à la prière et silence ; prêtres associés à l'imposition ; pouce droit trempé dans le chrême ; main du parrain sur l'épaule ; « Pax tecum / Et cum spiritu tuo » ; prière universelle après le geste de paix ; communion sous les deux espèces ; bénédiction solennelle ou prière sur le peuple ; confirmation « de more intra Missam » (Praenotanda 13) : tout de mémoire, paraphrasé.
+- Messe rituelle de la confirmation qui cède la place à la messe du jour aux jours les plus solennels ; mention des confirmés dans la prière eucharistique : de mémoire.
+- Réponse officielle donnée peu après la réforme (Commission pour l'interprétation des décrets de Vatican II, 1972 ?) : l'onction faite avec le pouce suffit pour l'imposition de la main ; présentée sans date ni auteur.
+- Innocent Ier, lettre à Decentius (416) réservant aux évêques la marque au front : de mémoire (accordée avec le cours 68-03-c).
+- Saint Thomas, Somme III, q. 72, a. 9 : le front, lieu de la honte, oint pour qu'on ne rougisse pas de confesser le Christ : paraphrase de mémoire, sans référence dans le cours.
+- Tradition apostolique 21 : baiser de l'évêque avec « Le Seigneur soit avec toi » / « Et avec ton esprit », puis baiser de paix avec le peuple : paraphrase de mémoire.
+- Soufflet (alapa) : apparition dans les pontificaux de la fin du XIIIe siècle, notamment celui de Guillaume Durand ; interprétations (soldat du Christ, adoubement, témoin) ; origine probable dans un geste de paix affaibli : de mémoire.
+- Rite byzantin : chrismation donnée avec un pinceau (exemple de la leçon 10) : de mémoire.
+
+## 70-04-s
+- Missel romain 2021 (traduction française) : libellés de l'Orate fratres (« Priez, frères et sœurs : que mon sacrifice, qui est aussi le vôtre, soit agréable à Dieu le Père tout-puissant ») et de sa réponse (« … pour notre bien et celui de toute sa sainte Église »), cités de mémoire (ouverture et leçon 7).
+- Anamnèse de la prière eucharistique II (« Faisant ici mémoire de la mort et de la résurrection de ton Fils, nous t'offrons, Seigneur, le pain de la vie et la coupe du salut ») et doxologie finale, citées de mémoire (leçons 6 et 8).
+- Trente, session XXII : contenu des chapitres 1, 2, 3, 6 et des canons 1 à 4 donné en paraphrase de mémoire (non vérifié en ligne, vatican.va n'ayant pas le texte) ; formules latines citées : verum et proprium sacrificium, una eademque hostia… sola offerendi ratione diversa, gratiam et donum paenitentiae concedens.
+- Thomas d'Aquin, Somme II-II q.85 a.1 et a.3 ad 3 ; III q.76 a.2 ; III q.79 a.5 ; III q.83 a.1 ; II-II q.100 a.2 ad 2 : références et contenus de mémoire.
+- Augustin, Lettre 98, 9 (immolé une fois en lui-même, chaque jour dans le sacrement) et Cité de Dieu X, 5 (sacrifice visible, sacrement du sacrifice invisible) : de mémoire.
+- Didachè 14, Irénée Contre les hérésies IV, 17, 5, Cyprien Lettre 63, 14, Cyrille de Jérusalem Catéchèses mystagogiques V, 8-10, Tertullien De la couronne 3 : paraphrases de mémoire.
+- Grégoire de Nazianze, Lettre 171 (« la voix pour glaive ») : référence et image de mémoire (leçon 5).
+- Grégoire le Grand, Dialogues IV, 57 (trente messes pour un moine défunt) : numéro de chapitre à vérifier (IV, 55 dans certaines éditions) (leçon 10).
+- Mishna, Pesahim 10, 5 (« en chaque génération… comme s'il était lui-même sorti d'Égypte ») : de mémoire (leçon 6).
+- Code de droit canonique, canons 388, 534 (messe pro populo) et 927 (interdiction de consacrer une matière sans l'autre) : de mémoire ; canons 901 et 945-958 vérifiés sur vatican.va (version anglaise).
+- Intentions collectives : décret Mos iugiter (1991) et éventuelle mise à jour par le Dicastère pour le clergé (2025 ?) non vérifiés ; le cours en parle sans date ni chiffre (leçon 10).
+- Théories de l'essence du sacrifice : Bellarmin (Controverses, De Missa), Lessius (immolation mystique), Jean de Lugo (état d'aliment), Maurice de la Taille (Mysterium fidei, 1921), Anscar Vonier (A Key to the Doctrine of the Eucharist, 1925) : présentations et dates de mémoire (leçon 11).
+- Ecclesia de Eucharistia : n. 31, recommandation de la messe quotidienne « même sans fidèles » à confirmer mot pour mot (paraphrasé) ; Redemptionis Sacramentum daté de 2004 de mémoire (leçon 12).
+- Mediator Dei : numéros 69-74, 82-84, 92-93, 98 vérifiés sur la version anglaise de vatican.va ; les phrases françaises sont des paraphrases.
+
+## 69-01-l
+- Vérifié en ligne (vatican.va, mot à mot sur les passages cités entre guillemets) : Catéchisme 1285 (citation de LG 11), 1287, 1288 (dont « L’imposition des mains est à bon droit reconnue… »), 1289. Catéchisme 1286 et 1291 : paraphrasés d’après un résumé de la page vatican.va, non relus mot à mot. La recherche web était épuisée ; aucune autre source n’a pu être ouverte.
+- L1 : conciles de Riez (439) et d’Orange (441) employant *confirmare* ; homélie de Pentecôte attribuée à Fauste de Riez, latin « in baptismo regeneramur ad vitam, post baptismum confirmamur ad pugnam » cité de mémoire ; *consignatio* romaine ; Ambroise, *signaculum spiritale* (De mysteriis / De sacramentis) : de mémoire. Formule byzantine « Sceau du don de l’Esprit Saint » : de mémoire.
+- L3 : prière du rite romain avant l’onction (Esprit « qui reposait sur ton Fils », liste des dons d’Isaïe) : paraphrasée de mémoire. Hébreu *nuah* : de mémoire.
+- L4 : Irénée, *Contre les hérésies* III, 18, 3 (le Père qui oint, le Fils oint, l’Esprit onction) : paraphrasé de mémoire ; Augustin sur le psaume 132 (133) lu de la tête (Christ) au corps : paraphrasé de mémoire.
+- L6 : Florence, décret pour les Arméniens (1439), confirmation donnée « ad robur » comme aux Apôtres à la Pentecôte pour confesser hardiment le nom du Christ : paraphrasé de mémoire. Formule romaine « Sois marqué de l’Esprit Saint, le don de Dieu » (1971) : de mémoire.
+- L7 : saint Jérôme (Dialogue contre les Lucifériens, 9 ?) sur les évêques qui vont imposer les mains aux baptisés des prêtres et diacres : paraphrasé de mémoire, référence non donnée dans le cours. Pentecôtisme « né au début du XXe siècle » : de mémoire.
+- L9 : Thomas, ST III q. 72 a. 1 ad 1 (« non exhibendo, sed promittendo », opinions rejetées d’un concile et des Apôtres, « potestas excellentiae ») : latin cité de mémoire ; Alexandre de Halès et le concile de Meaux (845) : de mémoire ; Trente session XXI, ch. 2 (1562, *salva illorum substantia*) et Pie XII, *Sacramentum ordinis* (1947) : paraphrasés de mémoire. Trente VII, 3 mars 1547 : date reprise du cours 67-03-e.
+- L10 : Tertullien, *De baptismo* 7-8 (latin « Exinde egressi de lavacro perungimur benedicta unctione », « Unde Christus dicitur a chrismate, quod est unctio », « Sic et in nobis carnaliter currit unctio, sed spiritaliter proficit », « Dehinc manus imponitur per benedictionem advocans et invitans spiritum sanctum ») : cités de mémoire ; figure de Jacob aux mains croisées et de la colombe de Noé (ch. 8) : de mémoire ; *De resurrectione carnis* 8 : paraphrasé. *Tradition apostolique* (déroulement après le baptême, double onction, « Le Seigneur soit avec toi ») : paraphrasée de mémoire (trad. Botte). Cyprien, lettre 73, 9 à Jubaïen (256), latin « signaculo dominico consummentur » : de mémoire.
+- L11 : *Catéchèses mystagogiques* III (contenu des §§ 1-7 : « christs », antitype, Ps 45, parallèle pain/chrême, onctions du front, des oreilles, des narines, de la poitrine, Aaron et Salomon, 1 Jn 2) : paraphrasé de mémoire, sans guillemets ; dates de Cyrille (vers 315-387, évêque vers 350, docteur 1883) et des catéchèses (348-350) : de mémoire. Onctions multiples du rite byzantin (front, yeux, narines, bouche, oreilles, poitrine, mains, pieds) : de mémoire.
+- L12 : Luther (*De captivitate*, 1520), Melanchthon (*Apologie*, art. 13, 1531), Calvin (*Institution* IV, 19), Bucer (Ziegenhain, années 1530), Trente-Neuf Articles (art. 25) : paraphrasés de mémoire. Trois canons de Trente sur la confirmation : paraphrasés sans guillemets, avec quelques mots latins (*otiosam caeremoniam*, *verum et proprium sacramentum*, *catechesim quandam*) cités de mémoire ; canon 9 sur le caractère : paraphrasé. SC 71 et LG 11 : paraphrasés (LG 11 vérifié par le Catéchisme 1285).
+
+## 70-03-d
+- Leçon 1 : Peder Borgen (1965, *Bread from Heaven*) comme initiateur de la lecture de Jean 6 en homélie-midrash sur « pain venu du ciel » ; attribution et date de mémoire.
+- Leçon 1 : les ruines de la synagogue de Capharnaüm datées de l’époque byzantine, bâties sur les fondations d’un édifice plus ancien (de mémoire).
+- Leçon 2 : saint Augustin, *Traités sur saint Jean* 25,12 (« Crois, et tu as mangé », sur Jean 6:29) et 26,4 (vers de Virgile « chacun est attiré par son plaisir ») ; formules citées en traduction, numéros non vérifiés en ligne.
+- Leçon 3 : Rudolf Bultmann, commentaire de 1941, attribuant Jean 6:51-58 à un rédacteur ecclésiastique (de mémoire).
+- Leçon 3 : Trente, session XXI (16 juillet 1562), chapitre 1 : la diversité des interprétations patristiques de Jean 6 et le refus d’en tirer l’obligation de la communion sous les deux espèces ; paraphrasé, non vérifié en ligne. Trente cite Jean 6 pour la présence réelle et la communion (session XIII, ch. 2) : de mémoire.
+- Leçon 3 : saint Augustin, *Confessions* VII,10 (« tu ne me changeras pas en toi… mais tu seras changé en moi ») ; paraphrasé.
+- Leçon 3 : l’usage de *trôgein* comme présent suppléant de « manger » en grec tardif, et ses seules occurrences johanniques (6:54-58 et 13:18) ; de mémoire.
+- Leçon 4 : saint Augustin, *Traités sur saint Jean* 27 (sur Jean 6:61-63 : la chair comprise comme celle d’un cadavre dépecé ou vendue à la boucherie ; l’Ascension montrant que le corps ne se distribue pas par morceaux) ; paraphrasé.
+- Leçon 4 : saint Cyrille d’Alexandrie et le concile d’Éphèse (431), 11e anathématisme sur la chair vivifiante du Verbe ; paraphrasé.
+- Leçon 4 : Catéchisme 1336 vérifié sur vatican.va (« retentit à travers les âges »).
+- Leçon 5 : Mishna, Pesahim 10,5 (« en chaque génération… comme s’il était sorti d’Égypte ») ; paraphrasé. Concile de Florence (1439, décret pour les Grecs) sur le pain azyme ou levé : paraphrasé de mémoire.
+- Leçon 5 : Catéchisme 1339-1340 (résumé vérifié sur vatican.va, paraphrasé sans guillemets).
+- Leçon 6 : datations des Évangiles (Marc 65-70, Matthieu et Luc 80-90) présentées comme opinion courante ; texte court de Luc (codex de Bèze, Ve s.) et papyrus du début du IIIe s. (P75) donnant le texte long : de mémoire.
+- Leçon 7 : Joachim Jeremias, *Die Abendmahlsworte Jesu* (1935, rééditions) ; hypothèses Jérusalem / Antioche pour les deux traditions ; proposition araméenne *bisra* : de mémoire.
+- Leçon 7 : texte latin des paroles de la consécration du Missel romain (*quod pro vobis tradetur* ; *hic est enim calix sanguinis mei novi et aeterni testamenti…*) : de mémoire, à vérifier.
+- Leçon 8 : colloque de Marbourg (octobre 1529) et l’anecdote de Luther écrivant *Hoc est corpus meum* à la craie (récit traditionnel) ; Gregory Dix, *The Shape of the Liturgy* (1945) et les quatre actions : de mémoire.
+- Leçon 8 : saint Cyrille de Jérusalem, *Catéchèses mystagogiques* IV, sur « ceci est mon corps » : paraphrasé.
+- Leçon 9 : lettre de la Congrégation pour le culte divin (2006) sur *pro multis*, et lettre de Benoît XVI aux évêques allemands du 14 avril 2012 : contenu résumé de mémoire, à vérifier ; le missel français dit « pour la multitude ».
+- Leçon 10 : Trente, session XXII (17 septembre 1562), chapitre 1 et canon 2 : paraphrasés sans guillemets, non vérifiés en ligne (recherche épuisée). Catéchisme 1341 : résumé vérifié sur vatican.va, paraphrasé.
+- Leçon 10 : Clément de Rome, *Lettre aux Corinthiens* 42-44 (vers 96 ; presbytres « qui ont offert les dons ») et Ignace d’Antioche, *Aux Smyrniotes* 8 (eucharistie valide sous l’évêque ou son délégué) : paraphrasés. Gregory Dix, « Was ever another command so obeyed? » : paraphrasé.
+- Leçon 11 : Catéchisme 1337 (résumé vérifié). Jean-Paul II, *Mane nobiscum Domine* 28 (2004), sur le lavement des pieds à la place de l’institution : paraphrasé de mémoire, numéro non vérifié.
+- Leçon 11 : saint Augustin, *Traités sur saint Jean* 56 (bain = baptême, pieds = fautes quotidiennes) ; saint Ambroise lavant les pieds des néophytes à Milan (*De sacramentis* III) ; Règle de saint Benoît 53 ; décret de la Congrégation pour le culte divin du 6 janvier 2016 sur le choix des personnes au lavement des pieds : de mémoire.
+
+## 70-02-f
+- Vérifiés sur vatican.va : CEC 1333 (Melchisédech), 1334 (en entier), 1335 (multiplication et Cana), 1347 (Emmaüs) ; Dei Verbum 15 et 16 (Augustin, Quaest. in Hept. 2, 73) ; Sacramentum caritatis 9 et 11 (« figura transit in veritatem ») ; Evangelii gaudium 47 ; Mane nobiscum Domine 2 et 12 (7 octobre 2004) ; Ecclesia de Eucharistia 53 et 54.
+- Lectionnaire, de mémoire : Saint-Sacrement A (Dt 8, manne), B (Ex 24:3-8, avec Hb 9 et Mc 14), C (Gn 14:18-20, avec Lc 9) ; dimanches 17 à 21 B (Jn 6), 19e B = 1 R 19:4-8, 20e B = Pr 9:1-6.
+- Concile de Trente, session XXII, ch. 1 : paraphrasé (Melchisédech, ancienne et nouvelle Pâque, oblation pure de Malachie qu'aucune indignité ne souille, sacrifices figuratifs) ; non vérifié en ligne.
+- Saint Thomas, IIIa q. 73 a. 6 (trois niveaux, Melchisédech / sacrifices d'expiation / manne, agneau pascal figure principale) : paraphrase de mémoire. Idem pour l'enseignement que les rites de l'ancienne Loi ne donnaient pas la grâce par eux-mêmes (sans référence précise donnée).
+- Lauda Sion, strophe « In figuris praesignatur… datur manna patribus » : citée en latin de mémoire ; attribution à saint Thomas présentée comme traditionnelle.
+- Canon romain, latin cité de mémoire : Supra quae (« munera pueri tui iusti Abel… sacrificium Patriarchae nostri Abrahae… summus sacerdos tuus Melchisedech, sanctum sacrificium, immaculatam hostiam ») ; Unde et memores (« de tuis donis ac datis ») ; Qui pridie (« elevatis oculis in caelum ad te Deum Patrem suum omnipotentem ») ; consécration du calice (« calix Sanguinis mei novi et aeterni testamenti »). Attribution de « sanctum sacrificium, immaculatam hostiam » à saint Léon le Grand : tradition (Liber pontificalis), de mémoire. « Depuis plus de quinze siècles » (Melchisédech déjà chez Ambroise, De sacramentis IV).
+- Prière eucharistique III : « ut a solis ortu usque ad occasum oblatio munda offeratur nomini tuo », de mémoire. Communion : « Beati qui ad cenam Agni vocati sunt », de mémoire.
+- Pères, paraphrases de mémoire : Clément d'Alexandrie (Stromates IV, 25) sur le pain et le vin de Melchisédech ; Cyprien, Lettre 63, 4 (Melchisédech) et 63, 5 (Proverbes 9, vin mêlé) ; Augustin, Cité de Dieu XVI, 22 (premier sacrifice offert dans tout l'univers) et XVII, 20 (Pr 9 : maison = chair prise dans la Vierge, table de pain et de vin, sacerdoce selon Melchisédech) ; Augustin, Traités sur Jean 9 (Cana : eau = Ancien Testament sans le Christ) ; Origène, Homélies sur la Genèse VIII (Isaac porte le bois ; Christ à la fois Isaac et bélier) et Homélies sur le Lévitique (XIII ?) sur les pains de proposition ; Méliton de Sardes (fragments sur Isaac ; Homélie sur la Pâque) ; Ambroise, Des mystères 8 (manne et eucharistie) ; Catéchèses mystagogiques IV, 2 (Cana) ; Didachè 14 (Ml 1:11.14 résumé) ; Justin, Dialogue 41 (vers 155) ; Irénée, Contre les hérésies IV, 17, 5 (vers 180) ; Léon le Grand, sermon sur l'Ascension (74, 2 : « quod conspicuum fuit… in sacramenta transivit »), paraphrasé.
+- Flavius Josèphe donnant vingt-cinq ans à Isaac (Antiquités juives I, 13, 2), de mémoire.
+- Mishna (Pesahim 10, 5) : « en chaque génération, chacun doit se regarder comme sorti lui-même d'Égypte », paraphrase ; « rédigée vers 200 ».
+- Agneaux immolés au Temple l'après-midi de la Préparation ; Hallel (Ps 113-118) et coupes au repas pascal du Ier siècle (présentés comme discutés dans le détail).
+- Ps 110 « texte de l'AT le plus repris dans le NT » ; Gn 14:18 première occurrence de « prêtre » (kohen) ; hébreu : pesah / pasah, zikkaron, seh, man hu, lehem ha-panim, minhah, masak (mêler le vin, Pr 9:2), 'aqedah ; grec : typikôs (1 Co 10:11), sôma (Col 2:17), agapêtos et « épargner » dans la Septante de Gn 22, en parabolê (Hb 11:19), to haima tês diathêkês, sêmeion, klasis tou artou, eucharistein (Mc 8:6, Jn 6:11).
+- Hb 9:20 « Ceci est » au lieu de « Voici » influencé par les paroles de la Cène : présenté comme opinion de plusieurs exégètes.
+- Jn 21:9 et 18:18 : même mot grec pour le « feu de braises » (anthrakia), donné sans le grec.
+- Peintures des catacombes associant pain et poisson : affirmation générale.
+
+## 70-05-p
+- Vérifiés sur vatican.va : Catéchisme 1373, 1374 (définition de Trente et phrase de Mysterium fidei 39), 1375 (citations d'Ambroise, De mysteriis 9, 50-52, et de Chrysostome), 1377, 1381 (phrase de saint Thomas et parole de Cyrille d'Alexandrie), 1355 (Justin, « eucharistiés », « le bain pour la rémission des péchés et la nouvelle naissance »), 1000 (Irénée IV, 18, 5) ; Sacrosanctum concilium 7 ; Mysterium fidei : passage des quatre opinions (n° 11), règle de langage, citation d'Ignace (Smyrniotes 7), citation de Cyrille de Jérusalem (Cat. myst. IV, 9).
+- Mysterium fidei n° 11 : les tirets du texte (« - conversion dont parle le Concile de Trente - ») ont été remplacés par des virgules dans la citation (règle des tirets).
+- Numéros de Mysterium fidei (11, 18, 19, 24, 35-39, 44, 48, 55, 58, 60) tirés d'un plan de la version anglaise lu en ligne, non vérifiés paragraphe par paragraphe ; le cours ne cite en clair que n° 11, 35-38 et 39.
+- Traductions faites pour le cours, sans édition critique sous les yeux : Ignace, Smyrniotes 7, 1 (fin), Philadelphiens 4, Romains 7, 3 ; Justin, 1re Apologie 66, 2-4 ; Irénée, Contre les hérésies V, 2, 2-3 (d'après la version latine) ; Cyrille de Jérusalem, Cat. myst. IV, 1-3 et V, 7 (et paraphrases de IV, 2, IV, 4, IV, 6, III, 3) ; Ambroise, De sacramentis IV, 14-16, 23, 25 ; texte latin et traduction de l'Adoro te devote (texte latin de mémoire, variantes possibles : « latens Deitas » / « latens veritas »).
+- Ignace, Smyrniotes 2, 3, 6, 8 et Romains 4 (froment de Dieu) : paraphrasés de mémoire.
+- Trente, session XIII (11 octobre 1551) : chapitre 1 (présence naturelle au ciel et sacramentelle ailleurs ; « tropes »), chapitre 3 (vi verborum, concomitance, « ante usum »), chapitre 6 (réserve connue au temps de Nicée), canons 3, 4, 6 : paraphrasés de mémoire ; le latin « ut in signo vel figura aut virtute » et « tantum in usu » de mémoire.
+- Saint Thomas : ST III q. 75 a. 5 (trois raisons des apparences ; les sens non trompés, ad 2), q. 76 a. 1 et q. 81 a. 4 (hypothèse d'une consécration pendant le triduum), q. 77 (corruption des espèces) : paraphrasés de mémoire.
+- Dates de mémoire : Ignace vers 107-110 ; Justin né vers 100, Apologie vers 150-155, mort vers 165 ; Irénée né vers 130-140, évêque après 177, Contre les hérésies vers 180-185, mort vers 200 ; Ambroise né vers 339-340 à Trèves, élu en 374, mort le 4 avril 397 ; De sacramentis/De mysteriis « années 380-390 » ; ouverture de Trente le 13 décembre 1545 ; Paul VI élu en juin 1963 ; ouverture de la 4e session de Vatican II le 14 septembre 1965. Dates de Cyrille de Jérusalem d'après la catéchèse de Benoît XVI du 27 juin 2007 (lue en ligne).
+- Attribution des Catéchèses mystagogiques (Cyrille ou Jean de Jérusalem) et de l'Adoro te devote (saint Thomas) présentées comme discutées, sans trancher.
+- Témoins anciens paraphrasés via Mysterium fidei (plan en ligne) : Origène sur les parcelles, Cyrille d'Alexandrie sur les restes gardés jusqu'au lendemain, Chrysostome sur la soumission à la parole de Dieu.
+- « Fac nobis hanc oblationem… quod est figura corporis et sanguinis » (De sacramentis IV, 21) : de mémoire.
+- Durée de la présence après la communion (« quelques minutes environ selon l'enseignement commun ») : opinion théologique commune, donnée comme telle.

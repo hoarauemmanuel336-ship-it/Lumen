@@ -1,0 +1,24 @@
+# 69-04-m : Le ministre et le sujet de la confirmation (fichier 69, lettre m)
+
+État : plan fait ; rédaction leçon par leçon (voir les fichiers présents : 00-ouverture, 01 … 10, 99-bilan).
+
+Question centrale : qui peut donner la confirmation, qui peut la recevoir, et pourquoi l'Église règle ces deux points comme elle le fait ?
+Obstacles du novice : croire que seul l'évêque confirme validement ; croire que le prêtre qui confirme « remplace » l'évêque sans lien avec lui ; ignorer que la faculté du prêtre touche la validité ; croire que la chrismation orientale par le prêtre est une confirmation « au rabais » ; croire qu'il faut un âge, un examen ou un mérite pour être confirmé ; confondre âge de discrétion et adolescence ; croire que la confession préalable est une condition de validité ; prendre le parrain pour un rôle honorifique ; croire que la confirmation est facultative.
+
+Sources vérifiées sur vatican.va (mot à mot) : CIC 842 §1, 843 §1, 845, 866, 874, 882, 883, 884, 885, 889, 890, 891, 892, 893, 97 §2, 99, 1033, 1065 §1 ; CEC 1306, 1307, 1309, 1310, 1311, fragments de 1312-1314 ; LG 26 (ministres originaires), LG 11 (lien plus parfait, force spéciale) ; Orientalium Ecclesiarum 13-14 ; CCEO 692-697 (latin). Paraphrasés : 886-888, 895-896.
+De mémoire (voir doutes.md) : Trente VII conf. can. 3 ; Florence 1439 ; Innocent Ier à Decentius (416) ; Grégoire le Grand à Januarius (594) ; Jérôme contre les lucifériens ; Thomas III q. 72 a. 10, 11 et a. 7 ad 2 ; *Spiritus Sancti munera* (1946) ; Rituel (praenotanda 5, 7, 8, 11, 12) ; norme des évêques des États-Unis ; Code de 1917 c. 787.
+
+Liens : 67-les-sacrements-en-general.html#ouverture-i (ministre, validité/licéité), #ouverture-o (dispositions, reviviscence), #ouverture-c (caractère), #ouverture-n (nécessité) ; 72-l-onction-des-malades.html#ouverture-v (derniers sacrements) ; 68-le-bapteme.html#ouverture-v (validité, non-réitération) ; même fichier #ouverture-l, -r, -e, -i.
+
+Leçons (10) :
+1. L'évêque, ministre originaire : LG 26, CEC 1312-1313, CIC 882 ; Samarie (Ac 8:14-17) lue pour le ministre ; Tradition apostolique, Innocent Ier, Jérôme ; Trente can. 3 ; « ordinaire » → « originaire » ; trois raisons du lien (successeurs des apôtres et Pentecôte, chef de l'Église locale et unité, achèvement selon Thomas). 6 ex.
+2. Le prêtre délégué par l'évêque : faculté (882, 884 §1, 885 §2) ; validité et territoire (886-887) ; pouvoir reçu à l'ordination et lié par l'Église (comparaison avec la faculté d'absoudre) ; Grégoire le Grand, Florence ; prêtres associés (884 §2) ; chrême de l'évêque. 6 ex.
+3. Le prêtre qui confirme de droit : 883 ; équiparés ; adulte baptisé (866, Vigile pascale, enfant en âge de catéchèse) ; réception dans la pleine communion (protestant oui, orthodoxe non, catholique revenu : hors du cas) ; danger de mort (curé et tout prêtre, 1946, CEC 1307 et 1314, enfants) ; derniers sacrements ; le diacre ne confirme pas. 6 ex.
+4. Le prêtre, ministre ordinaire de la chrismation en Orient : CCEO 694-695 ; OE 13 ; CEC 1312 ; myron consacré par l'évêque ou le patriarche (CCEO 693) ; même lien à l'évêque sous deux formes ; validité croisée (OE 14, CCEO 696) ; orthodoxes non reconfirmés. 6 ex.
+5. Le sujet : tout baptisé non encore confirmé : 889 §1, CEC 1306 ; baptême requis (842 §1) ; non-réitération (845 §1) ; validité / licéité chez le sujet (889 §2, intention de l'adulte) ; enfants, personnes privées de l'usage de la raison (97, 99) ; doute et confirmation sous condition (845 §2), registres (895). 6 ex.
+6. L'âge de la confirmation : âge de discrétion (891, CEC 1307, 97 §2) ; conférence des évêques ; raisons d'un âge plus mûr (Rituel 11) ; diversité des pratiques ; exceptions (danger de mort, cause grave) ; 843 §1 et 885 §1 ; rappel maturité (lien e) et débats (lien i). 6 ex.
+7. La préparation des confirmands : 889 §2, 890, CEC 1309 ; buts (union au Christ, familiarité avec l'Esprit, responsabilités apostoliques, appartenance) ; acteurs (paroisse, parents, catéchistes, parrain, évêque) ; contenu ; adultes ; ce que la préparation n'est pas. 6 ex.
+8. L'état de grâce et la confession préalable : CEC 1310 ; sacrement des vivants ; reçu en péché mortel : valide, sans fruit, sacrilège, reviviscence ; bonne foi (Thomas) ; confession nécessaire pour qui se sait en péché grave, conseillée pour tous ; prière (Ac 1:14, Ps 51). 6 ex.
+9. Le parrain de confirmation : 892, 893, 874 ; CEC 1311 ; Thomas a. 10 ; geste du rite ; conditions (tableau) ; même parrain qu'au baptême ; parents qui présentent sans être parrains ; rôle après la célébration (2 Tm 1:5). 6 ex.
+10. Le devoir de recevoir la confirmation en son temps : 890 ; CEC 1306 ; nécessité de précepte, non de moyen (Code de 1917 c. 787) ; mépris et négligence ; conséquences (1065 §1, 1033, 874 §1 3°) ; devoirs des parents, curés, évêque (885) ; adulte non confirmé ; Ac 2:38. 6 ex.
+Bilan : 6 exercices croisés.

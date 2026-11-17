@@ -1,6 +1,6 @@
 # 70-02-f : Les figures de l'eucharistie (lettre f, fichier 70-l-eucharistie)
 
-État : EN COURS (plan fait).
+État : TERMINÉ (12 leçons, bilan de 6 exercices, contrôle, humaniser, assemblage d essai réussis).
 
 Question centrale : comment l'Ancien Testament et les gestes du Christ annoncent-ils l'eucharistie, et comment lire ces figures sans arbitraire ?
 Obstacles du novice : prendre la typologie pour un jeu d'allégories pieuses ; confondre la figure et la réalité (le pain de Melchisédech, la manne ne sont pas l'eucharistie) ; ne retenir que les figures du repas et réduire l'eucharistie à un repas (Isaac, l'agneau, le sang de l'Alliance sont des sacrifices) ; croire la manne plus merveilleuse que l'eucharistie ; tenir pour également certaines toutes les lectures (Cana, Emmaüs : lectures des Pères et de la liturgie, débat exégétique).
