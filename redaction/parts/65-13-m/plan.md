@@ -19,4 +19,4 @@ Numérotation : psaumes en numérotation hébraïque (celle de la Chérubin), av
 12. La répartition du psautier sur quatre semaines. Mots : Psautier, Semaine du psautier, Psaumes historiques, Psalmodie complémentaire, Propre.
 Bilan : 6 exercices croisés.
 
-État : leçons 1 à 11 écrites et contrôlées ; reste 12, bilan.
+État : TERMINÉ. Cours réuni dans redaction/65-13-m.html, contrôlé, assemblage testé.

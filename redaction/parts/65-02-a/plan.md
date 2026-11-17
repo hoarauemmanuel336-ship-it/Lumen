@@ -17,3 +17,5 @@ Leçons (12) :
 11. La couronne de l’Avent et les messes rorate — Wichern 1839 ; symbolisme ; Directoire ; rorate (Is 45:8), Roraty, Simbang Gabi.
 12. La crèche depuis Greccio (1223) — Celano, Bonaventure ; Isaïe 1:3 ; Admirabile signum (2019) ; usage pendant l’Avent.
 Bilan : 6 exercices.
+
+Décision finale : 12 leçons livrées dans l'ordre prévu (la leçon « attente joyeuse » est la 10 et réunit le caractère de l'Avent, Gaudete et le rose ; la 11 réunit couronne et rorate ; la 12 la crèche). Bilan : 7 exercices. Livré, contrôlé, assemblage essayé.
