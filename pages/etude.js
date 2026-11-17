@@ -149,7 +149,8 @@
      l'explication du bloc. Les blocs ouverts sont gardés comme la place de
      lecture (message lvBlocs, valeur « blocs ») et rendus avant elle
      (lvBlocsOuverts), pour que la place retombe au même endroit. Un lien ou
-     un saut vers un thème ouvre d'abord son bloc. Au-dessus des blocs, « Reprendre »
+     un saut vers un thème ouvre d'abord son bloc ; la flèche de la bannière
+     déplie ou replie tous les blocs d'un coup. Au-dessus des blocs, « Reprendre »
      rouvre le dernier cours ouvert (message lvReprise, voir reprise). Le script passe en tête du
      document, avant le moteur du parcours, pour entendre ces messages le
      premier. Le fichier du parcours reste tel quel. */
@@ -206,6 +207,9 @@ document.addEventListener('click',function(ev){var h=ev.target.closest&&ev.targe
 if(ev.target.closest('.lv-bp')){var L=blocs();for(var i=0;i<L.length;i++)if(L[i].h===h&&!OUV[i]){OUV[i]=true;applique();envoie();}return;}
 ev.stopPropagation();ev.preventDefault();var L2=blocs();for(var j=0;j<L2.length;j++)if(L2[j].h===h){OUV[j]=!OUV[j];}applique();envoie();},true);
 document.addEventListener('keydown',function(ev){if(ev.key!=='Enter'&&ev.key!==' ')return;var h=ev.target.closest&&ev.target.closest('#w .bh.lv-b');if(!h||ev.target.closest('.lv-bp'))return;ev.stopPropagation();ev.preventDefault();h.click();},true);
+/* la flèche de la bannière, qui déplie ou replie tout le parcours, déplie ou replie aussi tous les blocs */
+function tout(ev){var b=ev.target.closest&&ev.target.closest('#w .bnr');if(!b)return;if(ev.type==='keydown'&&ev.key!=='Enter'&&ev.key!==' ')return;var ouvrir=!b.classList.contains('xo');blocs().forEach(function(x,i){OUV[i]=ouvrir;});applique();envoie();}
+document.addEventListener('click',tout,true);document.addEventListener('keydown',tout,true);
 /* un lien interne vers un thème ou un sujet ouvre d'abord son bloc */
 document.addEventListener('click',function(ev){var a=ev.target.closest&&ev.target.closest('a[href^="#"]');if(!a)return;try{ouvreVers(document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1))));}catch(_){}},true);
 window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==parent||!d||typeof d!=='object')return;
