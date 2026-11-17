@@ -17,7 +17,7 @@ Leçons (12) :
 11. L’élévation de l’hostie — Bérenger, désir de voir, statuts d’Eudes de Sully (1196-1208), cloche, encens, calice plus tard, Latran IV 1215 ; lien 70 #ouverture-t.
 12. Le Missel de saint Pie V et Quo primum ; puis Paul VI. => (fusion possible) Finalement : 12 = Pie V ; 13 ? Non : 11 leçons +… voir ci-dessous.
 
-Décision finale : 12 leçons
+Décision finale : 13 leçons (10 = messes privées et messe basse ; 11 = élévation ; 12 = Pie V ; 13 = Paul VI). Livré et contrôlé.
 11. Le Missel de saint Pie V et Quo primum (1570) — Trente, 4 déc. 1563 ; Missel de la Curie (1474) ; 14 juillet 1570 ; exception des 200 ans ; imprimerie ; Congrégation des rites 1588 ; éditions suivantes jusqu’à 1962 (lien #ouverture-v).
 12. Le Missel de Paul VI et ses éditions — mouvement liturgique (lien 63 #ouverture-r), SC 50, Consilium, PE 1968, Missale Romanum 3 avril 1969, Ordo en vigueur 30 nov. 1969, édition typique 1970, 1975, 2002 (2008), traduction française 2021 ; continuité (lien #ouverture-v).
 Bilan : 6 exercices.

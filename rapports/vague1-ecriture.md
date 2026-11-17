@@ -1,0 +1,22 @@
+# Rapports des rédacteurs de la première vague (résumés recopiés)
+Les points de doute détaillés sont dans doutes.md, sous le code de chaque cours.
+- 63-01-l : 10 leçons, 66 ex. Humaniser ciblé. Préface commune IV (latin) et doxologie du Missel français de mémoire ; canon 834 §2 paraphrasé ; Mediator Dei, Mysterium fidei 32, Pierre Damien, Thomas, CEC 1146 et 2105 non vérifiés.
+- 63-03-m : 10 leçons, 66 ex. Vérifiés : CEC 1085-1367 cités, SC 5-106, Thomas IIIa q.56. Mediator Dei 165 lu en anglais (paraphrase). Doutes : Casel, Augustin, Méliton, Origène, Exsultet, « hoc est hodie ».
+- 63-04-t : 11 leçons, 73 ex. Humaniser ciblé. Latin de la messe et Pères de mémoire. SC 8 « partager leur communauté » / CEC 1090 « leur société » : écart signalé.
+- 63-05-s : 12 leçons, 78 ex. Vérifiés : CEC, conciles, PGMR, Desiderio desideravi. Doutes : latin d'Augustin et Thomas, formules liturgiques de mémoire, Ephphata, « collecte ».
+- 63-06-p : 11 leçons, 73 ex. Doutes : génuflexion sur un genou devant l'exposition, Ecclesiae de mysterio art. 6, Pères de mémoire ; Missel cité dans la traduction de vatican.va (2003).
+- 63-07-c : 12 leçons, 78 ex. Humaniser ciblé. Tra le sollecitudini traduit par le rédacteur. Doutes : lettre de Sarto, Jubilate Deo 1974, Confessions X 33, orgue de 757, Trente 1562, Palestrina.
+- 63-08-i : 10 leçons, 66 ex. Humaniser ciblé. Paraphrasés : Inter oecumenici 91, Cérémonial 42-47 ; dates : Tyr vers 315, Polycarpe, Panthéon, Vigile, Giberti, Borromée 1577.
+- 63-09-a : 12 leçons, 80 ex. Vérifiés : SC 122-127, CEC 2502. De mémoire entre guillemets : vers de Suger, latin de saint Bernard, Viollet-le-Duc. Dates : Doura, Pozzo, Saint-Office 1952, 2018, Notre-Dame décembre 2024.
+- 63-10-o : 10 leçons, 62 ex. Doutes : PGMR 122, 277, 118 ; Cirta, Boniface, Liber pontificalis, Innocent III, Ordo romanus I, Jérôme, Code de 1917.
+- 63-11-v : 10 leçons, 66 ex. Doutes : Célestin Ier 428, Laodicée, Tolède IV, pallium, croix pectorale ; Cérémonial et PGMR paraphrasés. Pallium sous Léon XIV vérifié.
+- 63-12-e : 10 leçons, 66 ex. Doutes : Indiculus ch. 8, Vaison 529, Tolède 589, Rome 1014, Augustin lettre 217, Luther 1523, Apostolicae curae, Kavanagh, Basile 379. Mediator Dei en latin.
+- 63-13-r : 12 leçons, 79 ex. Doutes : langue courante 1967, Kyriale, Graduale, Pothier, Mocquereau, Ratzinger, documents 1980/1988, Guardini dans DD 34, Paul VI 4 déc. 1963.
+- 63-14-g : 11 leçons, 70 ex. Vérifiés : SC 22-36, CEC 1124-1125, Liturgiam authenticam, Magnum principium, canon 838, décrets 2021 et 2025, lettre de Léon XIV au card. Roche (29 juin 2026) paraphrasée. Doutes : dates des livres.
+- 64-01-l : 13 leçons (une de plus que le maximum), 85 ex. Traductions personnelles (Didachè, Justin, Tradition apostolique, Ambroise, statut de Paris). Seuls CEC 1332, SC 21 et 50 vérifiés.
+- 64-02-r : 10 leçons, 69 ex. Vérifiés : PGMR 46-54, CEC 1062-1065, 1383, Missel 2021 (Je confesse…). Doutes : traductions de collectes, Gloria, Gélase, Égérie, Hippone, Jérôme, Vaison.
+- 64-03-p : 12 leçons, 66 ex. Vérifiés : Vatican II, PGMR, CEC, Verbum Domini, EG, Lectionnaire 1969/1981. Doutes : acclamation de Carême, Augustin, Jérôme, Credo, Redemptionis sacramentum 74.
+- 64-04-d : 11 leçons, 71 ex. Vérifiés : PGMR, Missel 2021, CEC 1350-1351, canons 924-927, lettre de 2017. Doutes : place de deux oraisons, prière du mélange, usages byzantin et arménien, « Prions ensemble ».
+- 64-05-e : 12 leçons, 79 ex. Canon et PE II-IV cités en latin de mémoire avec traduction littérale ; épiclèse de communion PE II par fragments ; Pères paraphrasés ; nombre de préfaces, élévation vers 1200.
+- 64-06-m : 12 leçons, 78 ex. Humaniser ciblé. Latin de mémoire ; Vagaggini, Communicantes, Hanc igitur, prières pour la réconciliation, forme IV, prières pour enfants dans le Missel 2021.
+- 63-02-u : 12 leçons, 78 ex. Humaniser ciblé. De mémoire : Augustin Ps 85, Hippone 393, Clément, Ignace, Thomas, Pseudo-Denys, deux formules du Missel ; Mediator Dei « première encyclique sur la liturgie ».

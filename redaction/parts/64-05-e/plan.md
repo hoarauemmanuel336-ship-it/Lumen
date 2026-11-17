@@ -1,5 +1,7 @@
 # 64-05-e La prière eucharistique (lettre e) — plan
 
+ÉTAT : terminé (12 leçons + bilan), assemblé dans redaction/64-05-e.html, contrôle et humaniser faits.
+
 Question centrale : que se passe-t-il, partie par partie, dans la grande prière qui va de « Le Seigneur soit avec vous » au grand Amen, et comment ces parties forment une seule prière ?
 Obstacles du novice : réduire la prière eucharistique à la consécration ; la croire prière privée du prêtre ; confondre préparation des dons et oblation ; ignorer l'épiclèse ; ignorer que la prière s'adresse au Père ; lire l'élévation comme le sommet ; croire que le Sanctus est un chant intercalé.
 

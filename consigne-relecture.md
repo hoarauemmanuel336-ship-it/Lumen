@@ -16,6 +16,8 @@ Vous relisez **un cours** déjà écrit par un autre rédacteur, pour le site ca
 5. Vérifiez aussi la forme, en corrigeant au passage : vouvoiement partout ; aucun « comme le montrera la leçon… », « nous y reviendrons », « déjà cité » ; aucun verset sans son texte ; aucun tiret cadratin ; pas de mention de copier ou d'enregistrer.
 6. Relancez `python3 /home/claude/liturgie/outils/verifier.py /home/claude/liturgie/redaction/{code}.html` et `python3 /home/claude/liturgie/outils/liens.py /home/claude/liturgie/redaction/{code}.html` jusqu'à ce qu'ils ne signalent plus rien de réel.
 
+Trois précisions pour ce bloc : la recherche web peut être épuisée, vérifiez alors en ouvrant directement les pages officielles (WebFetch sur vatican.va) ; beaucoup de rédacteurs n'ont fait la relecture humaniser que par retouches ciblées, passez donc aussi la prose au crible de la skill humaniser ; les « tu » adressés à Dieu dans les prières citées sont normaux et restent.
+
 N'écrivez que dans ce fichier `redaction/{code}.html`. Ne touchez à rien dans `/home/claude/lumen/`.
 
 Écrivez votre rapport complet (corrections faites, vérifications, ce qui reste incertain) dans `/home/claude/liturgie/rapports/{code}-relecture.md` : il est sauvegardé avec le travail.

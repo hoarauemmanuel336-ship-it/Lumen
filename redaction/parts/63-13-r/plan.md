@@ -1,5 +1,7 @@
 # Plan du cours 63-13-r « Sacrosanctum concilium et la réforme liturgique » (lettre r)
 
+État : TERMINÉ (12 leçons + bilan), contrôle propre, assemblage réussi.
+
 Question centrale : d'où vient la réforme liturgique de Vatican II, que demande au juste la constitution, comment a-t-elle été mise en œuvre, et comment la lire dans la continuité de la tradition ?
 
 Fichiers : 00-ouverture.html (balise cours + introduction), 01.html … 12.html, 99-bilan.html (bilan + </cours>).
