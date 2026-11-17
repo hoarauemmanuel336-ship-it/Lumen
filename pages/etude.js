@@ -145,9 +145,9 @@
      blocs, et on déplie celui qu'on veut (Emmanuel : « c'est mieux pour la
      navigation »). Le site redessine donc, dans le cadre, l'en-tête de chaque
      bloc en grand titre (numéro du bloc, nom, nombre de thèmes, chevron) ;
-     un clic l'ouvre ou le ferme ; la flèche, elle, ouvre le bloc et
-     déplie tous ses thèmes d'un coup, et un second clic replie tout ; le
-     « + » garde son rôle et déplie l'explication du bloc. Les blocs ouverts sont gardés comme la place de
+     un clic, sur le nom comme sur la flèche, l'ouvre ou le ferme, sans
+     toucher aux thèmes ; le « + » garde son rôle et déplie l'explication du
+     bloc. Les blocs ouverts sont gardés comme la place de
      lecture (message lvBlocs, valeur « blocs ») et rendus avant elle
      (lvBlocsOuverts), pour que la place retombe au même endroit. Un lien ou
      un saut vers un thème ouvre d'abord son bloc ; la flèche « tout ouvrir ou
@@ -220,11 +220,8 @@ function ouvreVers(el){if(!el)return;var L=blocs(),ch=false;L.forEach(function(b
 /* un clic sur l'en-tête d'un bloc l'ouvre ou le ferme ; le + garde son rôle : déplier l'explication du bloc */
 document.addEventListener('click',function(ev){var h=ev.target.closest&&ev.target.closest('#w .bh.lv-b');if(!h)return;
 if(ev.target.closest('.lv-bp')){var L=blocs();for(var i=0;i<L.length;i++)if(L[i].h===h&&!OUV[i]){OUV[i]=true;applique();envoie();}return;}
-ev.stopPropagation();ev.preventDefault();finit();var L2=blocs(),fl=!!ev.target.closest('.lv-bv'),cible=-1,avant=false;for(var j=0;j<L2.length;j++)if(L2[j].h===h){cible=j;avant=!!OUV[j];
-if(fl){var ths=L2[j].c.filter(function(e){return e.classList.contains('th');}),tous=OUV[j]&&ths.every(function(t){return t.classList.contains('op');});
-if(tous){ths.forEach(function(t){var x=t.querySelector('.th-h');if(x&&t.classList.contains('op'))x.click();});OUV[j]=false;}
-else{OUV[j]=true;applique();ths.forEach(function(t){var x=t.querySelector('.th-h');if(x&&!t.classList.contains('op'))x.click();});}}
-else OUV[j]=!OUV[j];}
+ev.stopPropagation();ev.preventDefault();finit();var L2=blocs(),cible=-1,avant=false;for(var j=0;j<L2.length;j++)if(L2[j].h===h){cible=j;avant=!!OUV[j];
+OUV[j]=!OUV[j];}
 applique();if(cible>=0&&!!OUV[cible]!==avant)anime(L2[cible],!!OUV[cible]);envoie();},true);
 document.addEventListener('keydown',function(ev){if(ev.key!=='Enter'&&ev.key!==' ')return;var h=ev.target.closest&&ev.target.closest('#w .bh.lv-b');if(!h||ev.target.closest('.lv-bp'))return;ev.stopPropagation();ev.preventDefault();h.click();},true);
 /* la flèche « tout ouvrir ou tout replier » du parcours ouvre ou replie aussi tous les blocs */
