@@ -1,0 +1,18 @@
+# 67-02-s Le signe efficace de la grâce : plan
+
+Question centrale : comment un rite fait de choses et de paroles peut-il à la fois signifier la grâce et la donner réellement ?
+Obstacles du novice : « symbolique » = « irréel » ; efficacité = magie ; le prêtre produit la grâce ; « contenir » la grâce comme un vase ; la foi seule sauve donc le rite ne fait rien ; certitude du sacrement = certitude d'être en état de grâce.
+
+Leçons (11) :
+1. Un signe qui signifie ce qu'il donne : le sacrement parmi les signes (rappel définition, lien #ouverture-l et 63#ouverture-s) ; signe de la sanctification (ST III 60, 2) ; tableau des signes des sept sacrements et de ce qu'ils signifient ; correspondance signe/effet (CEC 1127) ; pourquoi des signes : « per nota ad ignota ».
+2. Mémoire, présence, promesse : triple rapport (ST III 60, 3 ; CEC 1130) ; cause, forme, fin de la sanctification ; Romains 6:3-5, 1 Co 11:26, O sacrum convivium ; un seul signe ordonné, non équivoque (ad 1).
+3. Un signe qui fait ce qu'il signifie : témoignages de l'Écriture (Jn 3:5, Tt 3:5, Ac 2:38, 22:16, 1 P 3:21, Ep 5:26, Ac 8:17-18, 2 Tm 1:6) ; Augustin « corpus tangat et cor abluat » ; signe pratique/spéculatif ; sacrements de l'ancienne Loi (Florence 1439, ST III 62, 6, He 10:1.4).
+4. Le signe seul, la réalité intermédiaire, la grâce : sacramentum tantum / res et sacramentum / res tantum ; histoire (Augustin, XIIe s., Innocent III 1202) ; tableau des sept ; usages (validité sans fruit, non-réitération, reviviscence) ; liens #ouverture-c, #ouverture-o.
+5. Le Christ, cause principale : Dieu seul donne la grâce (2 P 1:4) ; humanité instrument conjoint (ST III 62, 5 ; lien 45#ouverture-v) ; Passion, source (Jn 19:34) ; le Christ glorifié agit par l'Esprit (CEC 1084, 1127, Jn 1:33) ; ministre (lien #ouverture-i).
+6. Le sacrement, cause instrumentale : cause principale/instrumentale (hache et lit) ; action propre de l'instrument (eau qui lave le corps) ; vertu instrumentale passagère et incomplète (62, 4) ; instrument conjoint/séparé ; Jn 9:6-7, Mc 5:30, Sg 16:7 ; convenance.
+7. La question disputée de la causalité : ce que l'Église affirme (contenir, conférer) et ce qu'elle laisse libre ; causalité physique (Thomas, thomistes) ; morale (Cano, Vázquez, De Lugo, Franzelin) ; occasionnelle / par pacte (Bonaventure en partie, Scot, Ockham, Biel ; méreau de plomb, ST III 62, 1) ; mentions : causalité dispositive (Thomas jeune), intentionnelle (Billot) ; jugement.
+8. La grâce sacramentelle propre : grâce sanctifiante commune (lien 52#ouverture-s) ; « quoddam divinum auxilium » (62, 2) ; CEC 1129, 1131 ; cartes des sept ; sacrements des morts et des vivants (proème de Trente : incipit, augetur, reparatur) ; explications théologiques (mode de la grâce, droit aux grâces actuelles).
+9. L'erreur des réformateurs : justification par la foi seule (lien 53) ; Luther 1520 (promesse et signe ; « non le sacrement mais la foi du sacrement ») ; Confession d'Augsbourg art. 13 ; Zwingli (signe de profession) ; Calvin (signes et sceaux) ; ce qui est vrai (sacrements de la foi, CEC 1123) et ce qui est faux.
+10. Le concile de Trente, session VII (3 mars 1547) : contexte (session VI, 13 janvier 1547) ; forme (proème, 13 canons généraux, 14 baptême, 3 confirmation ; pas de chapitres) ; tableau des 13 canons avec liens ; canons 2, 5, 6, 7, 8 en latin et traduits ; sens de « contenir ».
+11. La raison d'être de sacrements efficaces : la certitude du don du Christ ; Trente VI ch. 9 (ne pas douter de l'efficacité des sacrements / pas de certitude de foi sur son état, lien 52#ouverture-c) ; fidélité (2 Tm 2:13, Is 55:10-11, He 6:18-19) ; enfants, sécheresse, humilité ; dispositions (lien #ouverture-o).
+Bilan : 6 exercices croisés.
