@@ -20,4 +20,4 @@ Leçons (fichiers 01.html … 11.html) :
 11. La mesure de la grâce : Trente VI ch. 7 ; Thomas III q.69 a.8 ; images (2 Rois 4:3-6, Psaumes 81:11, Matthieu 13:23) ; ce qui élargit la mesure (préparation, dévotion, action de grâce) ; la disposition elle-même est grâce (Philippiens 2:13) ; coopération après (2 Corinthiens 6:1, 1 Corinthiens 15:10).
 Bilan (99-bilan.html) : 6 exercices croisés.
 
-État : plan fait.
+État : 11 leçons + bilan écrits ; réunis dans redaction/67-06-o.html ; reste humaniser et test d assemblage.

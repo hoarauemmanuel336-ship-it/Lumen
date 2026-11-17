@@ -1,5 +1,7 @@
 # 67-01-l : Le mot et la définition du sacrement (lettre l, premier cours du fichier 67)
 
+État : TERMINÉ (11 leçons, bilan, contrôle et assemblage d’essai réussis).
+
 Question centrale : qu'est-ce qu'un sacrement, d'où vient ce mot, et comment l'Église est-elle arrivée à la définition qu'elle donne aujourd'hui ?
 Obstacles du novice : croire que « sacrement » est un mot biblique ; confondre mystère (énigme) et mystère (dessein révélé) ; croire que tout rite ou tout objet béni est un sacrement ; penser que les sacrements ont été inventés par l'Église au fil des siècles ; opposer foi et sacrement, ou Église et sacrement.
 Ne pas développer (autres cours du fichier, lien #ouverture-x) : causalité et triple rapport du signe (s), septénaire (e), matière et forme (m), ministre et intention (i), ex opere operato et dispositions (o), caractère (c), nécessité (n).
