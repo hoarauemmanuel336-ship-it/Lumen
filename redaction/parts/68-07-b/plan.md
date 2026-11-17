@@ -1,5 +1,7 @@
 # 68-07-b Le baptême des enfants : plan
 
+État : TERMINÉ, livré dans redaction/68-07-b.html (12 leçons + bilan).
+
 Question centrale : pourquoi l'Église baptise-t-elle des tout-petits qui ne peuvent ni croire ni choisir, et à quelles conditions ?
 Obstacles du novice : « le NT ne parle que d'adultes » ; « c'est une invention tardive » ; « un baptême sans foi personnelle n'a pas de sens » ; « on décide à la place de l'enfant » ; « il suffit de baptiser, l'éducation est facultative » ; « attendre n'a pas d'importance » ; « l'Église refuse de baptiser par sévérité ».
 

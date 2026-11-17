@@ -17,4 +17,4 @@ Liens : 67#ouverture-m (matière et forme), 67#ouverture-i (ministre et intentio
 10. Le nom de baptême : Is 43:1, Gn 17:5, Jn 1:42, Lc 1:59-63, Ap 2:17 ; CEC 2156-2159 ; nom dans la formule ; Hermès, Denys, Apollos ; Chrysostome ; CIC 1917 c. 761 / 1983 c. 855 ; saint patron, mystère, vertu ; Orient (huitième jour).
 Bilan : 6 exercices croisés.
 
-État : 00 à 08 écrits (premier jet, contrôlés) ; reste 09, 10, bilan, puis humaniser et assemblage.
+État : terminé. 10 leçons + bilan réunis dans redaction/68-02-m.html, contrôlé (faux signalements de tutoiement : formule « je te baptise »), relecture humaniser faite, assemblage testé.

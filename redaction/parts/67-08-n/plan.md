@@ -19,4 +19,4 @@ Fichiers : 00-ouverture.html, 01.html … 10.html, 99-bilan.html.
 
 Bilan : 6 exercices croisés.
 
-État : plan fait ; leçons écrites au fur et à mesure (voir les fichiers présents).
+État : terminé ; cours réuni dans redaction/67-08-n.html, contrôlé, humanisé, assemblage testé.

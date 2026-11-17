@@ -1,0 +1,22 @@
+# 70-02-f : Les figures de l'eucharistie (lettre f, fichier 70-l-eucharistie)
+
+État : EN COURS (plan fait).
+
+Question centrale : comment l'Ancien Testament et les gestes du Christ annoncent-ils l'eucharistie, et comment lire ces figures sans arbitraire ?
+Obstacles du novice : prendre la typologie pour un jeu d'allégories pieuses ; confondre la figure et la réalité (le pain de Melchisédech, la manne ne sont pas l'eucharistie) ; ne retenir que les figures du repas et réduire l'eucharistie à un repas (Isaac, l'agneau, le sang de l'Alliance sont des sacrifices) ; croire la manne plus merveilleuse que l'eucharistie ; tenir pour également certaines toutes les lectures (Cana, Emmaüs : lectures des Pères et de la liturgie, débat exégétique).
+Ne pas développer (autres cours du fichier, lien #ouverture-x) : noms de l'eucharistie (l), discours du pain de vie et paroles de l'institution (d), doctrine du sacrifice (s), présence réelle (p), transsubstantiation (t), communion et dispositions (c), culte hors de la messe (e). Sacerdoce de Melchisédech en lui-même : 73-l-ordre#ouverture-l. Typologie en général : 12-interpreter-l-ecriture.html#ouverture-t. Pâque : 21-…#ouverture-e. Sacrifice : 21-…#ouverture-s. Viatique : 72#ouverture-v.
+
+Leçons (12) :
+1. Lire les figures de l'eucharistie : figure/type (typos), ombre et réalité (Hb 10:1 ; Col 2:17 ; 1 Co 10:6.11) ; deux sortes de figures (préfigurations de l'AT, signes du Christ) ; trois familles (sacrifice, nourriture, présence/alliance) ; Lauda Sion « In figuris praesignatur » ; saint Thomas III q.73 a.6 (agneau pascal figure principale) ; Canon romain Supra quae (Abel, Abraham, Melchisédech) ; CEC 1333-1335 ; règles de lecture (histoire réelle, dessein de Dieu, inégalité figure/réalité, degrés d'autorité) ; Lc 24:27.
+2. Melchisédech : Gn 14:18-20 ; roi de Salem, prêtre du Très-Haut ; nom (Hb 7:2) ; pain et vin ; bénédiction ; dîme ; Ps 110:4 ; Hb 7:3 ; question exégétique (apporter des vivres / offrir) ; Cyprien Lettre 63 ; Trente XXII ch. 1 ; Canon romain ; CEC 1333 ; lien 73-l.
+3. Le sacrifice d'Isaac : Gn 22:1-18 ; épreuve ; fils unique bien-aimé ; Moriah (2 Ch 3:1) ; le bois ; « Dieu pourvoira à l'agneau » ; bélier substitué ; Hb 11:17-19 ; Rm 8:32 ; Jn 3:16 ; Akedah ; Méliton ; ce que la figure dit de l'eucharistie (le Père qui donne le Fils ; sacrifice offert et rendu) ; Canon romain.
+4. L'agneau pascal et le repas de la Pâque : Ex 12:1-28 ; l'agneau sans défaut ; le sang ; le repas (azymes, herbes amères, en hâte) ; mémorial (Ex 12:14 ; zikkaron) ; question des enfants (Ex 12:26-27) ; Ex 12:46 / Jn 19:36 ; 1 Co 5:7-8 ; Jn 1:29 ; Thomas : figure principale ; lien 70-d (Cène et date), 70-s (mémorial).
+5. La manne : Ex 16 ; murmures ; pain du ciel ; man hu ; ration quotidienne ; sabbat ; le vase gardé devant le Témoignage ; quarante ans ; Dt 8:3 ; Sg 16:20-21 ; Jn 6:49-51 (lien d) ; 1 Co 10:3 ; Ap 2:17 ; la figure dépassée.
+6. Le sang de l'Alliance : Ex 24:3-8 ; lecture, réponse, autel et douze stèles, sacrifices, sang partagé ; Ex 24:9-11 repas devant Dieu ; Lv 17:11 ; Mc 14:24 ; Lc 22:20 ; Jr 31:31 ; Hb 9:18-22 ; Hb 12:24 ; interdit du sang et coupe offerte.
+7. Les pains de proposition : Lv 24:5-9 ; Ex 25:23-30 ; lehem ha-panim ; douze pains, chaque sabbat, alliance perpétuelle, mangés par les prêtres ; encens mémorial ; Lv 24:1-4 lampe ; 1 S 21:2-7 David ; Mt 12:3-4 ; figure de la présence et du pain réservé.
+8. Le pain d'Élie et le banquet de la Sagesse : 1 R 19:4-8 ; viatique (lien 72-v) ; 40 jours ; Pr 9:1-6 ; Folie Pr 9:13-18 ; Sagesse = Christ (1 Co 1:24) ; Cyprien Lettre 63 ; Si 24 ; Is 55:1-3 ; lectionnaire (19e et 20e dimanches B).
+9. L'oblation pure : Ml 1:6-11 ; minhah ; universalité ; Didachè 14 ; Justin Dialogue 41 ; Irénée IV,17,5 ; Trente XXII ch. 1 ; prière eucharistique III ; lien 67-o.
+10. Cana : Jn 2:1-11 ; premier des signes ; six jarres ; l'heure ; Marie ; vin des noces messianiques (Is 25:6 ; Am 9:13) ; CEC 1335 ; Cyrille Cat. myst. IV,2 ; degrés de lecture.
+11. La multiplication des pains : Mc 6:30-44 ; compassion ; « donnez-leur vous-mêmes » ; quatre gestes (Mc 14:22) ; douze paniers ; 2 R 4:42-44 ; Jn 6:11-13 ; Mc 8 ; lien d.
+12. Les repas du Ressuscité et Emmaüs : Lc 24:13-35 ; Écritures puis fraction du pain ; yeux ouverts ; Lc 24:41-43 ; Jn 21:9-13 ; Ac 10:41 ; débat sur la nature du repas d'Emmaüs ; structure de la messe ; Mane nobiscum Domine ; synthèse.
+Bilan : 6 exercices croisés.

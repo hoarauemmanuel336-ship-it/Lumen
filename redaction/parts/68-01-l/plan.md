@@ -1,6 +1,6 @@
 # 68-01-l : Préfigurations et institution du baptême (lettre l, premier cours du fichier 68)
 
-État : EN COURS. Fichiers écrits : voir la liste du dossier (00-ouverture, 01…12, 99-bilan).
+État : TERMINÉ (12 leçons, bilan de 6 exercices, contrôle, humaniser et assemblage d'essai réussis).
 
 Question centrale : comment l'Ancien Testament annonce-t-il le baptême, et comment le Christ l'a-t-il institué ?
 Obstacles du novice : croire que le baptême chrétien est une simple reprise du baptême de Jean ou des ablutions juives ; lire les figures comme des allégories arbitraires ; ne pas voir pourquoi l'eau est à la fois mort et vie ; croire que Jésus s'est fait baptiser parce qu'il avait besoin de pardon ; opposer « au nom de Jésus » (Actes) et la formule trinitaire (Matthieu) ; ignorer que le baptême ouvre une initiation qui s'achève par la confirmation et l'eucharistie.
