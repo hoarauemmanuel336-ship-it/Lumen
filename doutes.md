@@ -1,0 +1,91 @@
+
+## 63-01-l
+- Citations mot pour mot vérifiées sur vatican.va : SC 7, 9, 10, 12, 13, 22, 26, 27, 33 ; LG 9 et 11 ; CEC 1069 (première phrase) ; canons 834 §1, 904, 906 ; SC 100 (paraphrasé).
+- Canon 834 §2 : paraphrasé (le texte français lu sur vatican.va semblait tronqué : « Ce culte est rendu quand… »).
+- Préface commune IV, citée en latin de mémoire : « cum nostra laude non egeas, tuum tamen est donum quod tibi grates rependamus » (leçon 4), traduction donnée comme telle.
+- Doxologie de la prière eucharistique citée de mémoire selon le Missel français (« Par lui, avec lui et en lui… tout honneur et toute gloire, pour les siècles des siècles »).
+- Paraphrasés sans guillemets, non vérifiés en ligne : Mediator Dei (définition de la liturgie, mise en garde sur culte intérieur/extérieur), Mysterium fidei 32 (toute messe, même privée, action du Christ et de l'Église), 1 Clément 40, Pierre Damien, Dominus vobiscum (l'Église une en tous et tout entière en chacun), saint Thomas IIa-IIae q. 81 a. 7 et q. 84 a. 2, Catéchisme 1070, 1072, 1146, 2105 (numéros à confirmer pour 1146 et 2105).
+- Faits à confirmer au besoin : Directoire sur la piété populaire et la liturgie daté de 2001 ; monument de Lysicrate (IVe s. av. J.-C.) ; entrée du mot liturgia dans l'usage savant d'Occident au XVIe siècle.
+
+## 63-03-m
+
+- Leçon 2 : saint Augustin cité en paraphrase (le Christ « passé au Père par sa passion », Traités sur Jean 55) et les étymologies de Méliton (*paschein*) et d'Origène (« passage ») : non revérifiés en ligne, donnés sans guillemets.
+- Leçon 8 (Casel) : lieu du doctorat de philosophie incertain (Bonn ou Giessen selon les sources), d'où « en Allemagne » ; sa définition du mystère du culte et ses trois sens du mot « mystère » sont paraphrasés de mémoire ; *Mediator Dei* (n° 165 dans la version anglaise du Vatican) paraphrasé d'après le texte anglais, faute d'accès au libellé français ; Bouyer « marqué par sa lecture de Casel » est un jugement d'ensemble.
+- Leçon 6 : le décret de Trente (session XXII, ch. 1 et canon 3, *nuda commemoratio*) est paraphrasé de mémoire, sans citation française.
+- Leçon 7 : formule du canon romain du Jeudi saint (*hoc est hodie*) et de l'*Exsultet* données en latin de mémoire ; la formule de l'acclamation « Nous attendons ta venue dans la gloire » (leçon 10) déclenche un faux signalement de tutoiement.
+
+## 63-10-o
+- Vérifié en ligne (vatican.va) : PGMR 117, 118, 139, 145, 276-280, 286, 307-308, 325-334, 349-351 ; Redemptionis sacramentum 93, 106, 117-120, 132-133 ; canons 939-943 et 1171 (paraphrasés, sans guillemets). Rituel de 1973, n. 85 (4 à 6 cierges / au moins 2) vérifié par une source secondaire (EWTN).
+- De mémoire, non vérifiés mot pour mot : PGMR 122 (croix de procession servant de croix d'autel, « unique ») ; PGMR 277 « par coups simples » pour l'autel ; usage de la pale laissé à l'opportunité (PGMR 118).
+- Faits historiques de mémoire : inventaire de Cirta (303, deux calices d'or et six d'argent) ; mot attribué à saint Boniface (présenté comme attribution) ; patènes de verre sous Zéphyrin et règle du lin sous Sylvestre (Liber pontificalis, présentés comme attributions) ; Innocent III décrivant la croix au milieu de l'autel entre deux chandeliers ; premier Ordo romanus (sept chandeliers et encensoir devant le pape) ; Jérôme, Contre Vigilance (lumières en plein jour pour l'Évangile) ; Code de 1917 réservant à un clerc le premier lavage des linges ; rite de bénédiction du calice et de la patène dans le rituel de la dédicace (1977) ; Eudes de Sully et l'élévation vers 1200 ; calice de saint Remi servant au sacre ; Paschalis sollemnitatis (1988) sur le cierge pascal de cire.
+
+## 63-14-g
+- Sacramentaires (leçons 2-4) : dates données d'après l'état courant de la recherche, non revérifiées en ligne : copie du Véronais vers 600-625 et édition Bianchini 1735 ; Reg. lat. 316 copié vers 750 à Chelles ; envoi de l'Hadrianum « dans les années 780 » ; supplément Hucusque attribué à Benoît d'Aniane ; Ordo romanus I vers 700 (détails du cortège résumés) ; Aymon de Faversham vers 1243-1244 ; premier Missale Romanum imprimé à Milan en 1474.
+- Leçon 5 : années des livres tridentins (1568, 1570, 1584, 1588, 1596, 1600, 1614) et éditions du missel jusqu'en 1962, de mémoire.
+- Leçons 9-10 : années des fascicules du Pontifical et du Rituel, Cérémonial du 14 septembre 1984, Liturgia Horarum 1971-1972 et 1985-1987, Martyrologe 2001 et 2004, Graduel 1908/1974, Graduel simple 1967 : de mémoire, non revérifiés un à un.
+- Leçon 8 : traduction liturgique française de la Bible publiée en 2013, lectionnaires « depuis l'Avent 2014 » ; préliminaires du Lectionnaire (livres dignes, feuillets) paraphrasés sans numéro.
+- Leçon 11 : lettre de François au cardinal Sarah d'octobre 2017 rapportée d'après le commentaire de Mgr Roche (pas de citation). Textes vérifiés en ligne : SC 22, 25, 36 ; CEC 1124-1125 ; Liturgiam authenticam (dates, nn. 20, 27, 37, 47, 80) ; Magnum principium (dates, canon 838) ; décret du 22 octobre 2021 ; décrets de 2025 (messe pro custodia creationis, Newman) ; lettre de Léon XIV au cardinal Roche (29 juin 2026, publiée le 14 août).
+
+## 64-04-d
+- Leçon 10 : attributions données de mémoire, sans vérification en ligne : la secrète « Concede nobis… opus nostrae redemptionis exercetur » reprise dans le missel actuel pour la messe du soir du Jeudi saint et le 2e dimanche du temps ordinaire ; la prière sur les offrandes « Grata tibi sit… sacrosancta commercia » attribuée à la messe de la nuit de Noël ; les noms *super oblata* (sacramentaire grégorien) et *secreta* (gélasien). Les traductions françaises de ces deux oraisons sont faites mot à mot par le rédacteur, pas celles du missel.
+- Leçon 6 : la prière du mélange rattachée à l'oraison de Noël « Deus, qui humanae substantiae » (sacramentaires anciens, collecte de la messe du jour de Noël) ; usage byzantin de l'eau chaude avant la communion ; Église arménienne apostolique sans eau : donnés de mémoire.
+- Leçon 1 et 11 : l'histoire de l'offertoire (Ordo romanus I vers 700, prières privées à partir du IXe siècle) et la *Formula missae* de Luther (1523, offertoire qualifié d'abomination) sont paraphrasées sans citation ; *Bref examen critique* (Ottaviani et Bacci, 1969) cité sans détail.
+- Leçon 8 : saint Cyrille de Jérusalem, Catéchèse mystagogique V, 2, paraphrasé.
+- Leçon 9 : l'ancienne formule française « Prions ensemble, au moment d'offrir le sacrifice de toute l'Église » est donnée comme celle de la traduction précédente ; un site paroissial dit qu'elle reste permise dans le nouveau missel, ce qui n'a pas pu être confirmé (le cours n'en dit rien).
+- Leçon 10 : la forme française de la conclusion brève depuis 2021 n'a pas été vérifiée ; le cours ne donne que le latin traduit.
+
+## 63-11-v
+- Faits donnés de mémoire, sans source en ligne consultée (paraphrasés, sans guillemets) : lettre de Célestin Ier (428) aux évêques de Vienne et de Narbonne ; concile de Laodicée réservant l'orarion (canons 22-23, non numérotés dans le cours) ; Isidore de Séville et Tolède IV (633) sur le bâton et l'anneau ; pallium accordé par Symmaque à Césaire d'Arles et par Grégoire le Grand à Augustin de Cantorbéry (601) ; mitre orientale, panaghia, croix pectorale des prêtres russes.
+- Croix pectorale « imposée à la fin du Moyen Âge, prescrite par les livres liturgiques d'après Trente » : formulation prudente, non vérifiée.
+- Pallium : « tissé par des religieuses de Rome » (Sainte-Cécile du Trastevere non nommée) et « gardé dans la confession sous l'autel majeur » : de mémoire. Usage 2015-2024 (remise à Rome, imposition par le nonce) et imposition par Léon XIV en 2025 : vérifiés (Vatican News, Infovaticana).
+- Formules d'ordination (anneau, mitre, crosse) citées d'après un livret d'ordination épiscopale de 2025 (diocèse de Mende), présentées comme « la traduction française en usage ».
+- Cérémonial des évêques n. 56-63 vérifiés sur une édition italienne en ligne ; Présentation générale du Missel romain n. 335-344 et Redemptionis sacramentum n. 121-128 vérifiés sur vatican.va, mais par résumé (paraphrasés, sans guillemets). Le renvoi aux n. 342-343 (formes et matières) n'a pas été contrôlé mot à mot.
+- Prières de vêture : paraphrasées ; seules les incipit latines de la chasuble et de la dalmatique sont citées. Homélie de Benoît XVI (2005) sur le pallium : paraphrasée.
+
+## 63-12-e
+- Vérifiés en ligne : Catéchisme 1124-1125, 1201, 1206 ; *Dei Verbum* 8 ; *Sacrosanctum concilium* 4, 22 § 3, 33 ; *Mediator Dei* 46-48, 58, 62 (latin et anglais, paraphrasés, seules les phrases latines citées) ; *Munificentissimus Deus* 17-20 ; *Ineffabilis Deus* (liturgie, papes, date) ; Basile, *Traité du Saint-Esprit* 1, 3 ; 27, 66-68 ; 29, 73 et 75 ; Hippone 393, canon 21 ; *Traditionis custodes* art. 1 ; réponse de la CDF sur « Nous te baptisons » (6 août 2020) ; *Gestis verbisque* (2 février 2024) ; Addai et Mari (2001) ; histoire de la fête de la Conception (Catholic Encyclopedia).
+- De mémoire, paraphrasés : texte de l'*Indiculus* ch. 8 (DS 246) et sa datation « 435-442 » ; lettre 217 d'Augustin à Vital ; Orange 529 canon 5 ; Carthage 418 sur le baptême des enfants ; Vaison 529 canon 5 (« sicut erat in principio ») ; Tolède III (589) et Rome (1014) pour le Credo ; Pline, *Lettres* X, 96 ; Évagre, *Traité de l'oraison* ; Ambroise sur l'attente des explications ; Catéchisme 1075 ; Luther (1523), Cranmer, *Apostolicae curae* (1896) ; *Summorum Pontificum* art. 1 ; *Unitatis redintegratio* 17 ; Grégoire de Nazianze défendant la réserve de Basile ; mort de Basile en 379 (date discutée, 378 ou 379).
+- « Théologie première » attribuée à Aidan Kavanagh (1984) à la suite de Schmemann : attribution de mémoire, présentée comme opinion de théologiens.
+- Leçon 9 : le cas du prêtre de Détroit (2020) est raconté sans nom ; *Traditionis custodes* et *Summorum Pontificum* cités seulement pour leur emploi de « lex orandi », sans rien dire de la situation actuelle sous Léon XIV.
+
+## 64-03-p
+- Vérifiés en ligne (vatican.va) : SC 7, 24, 30, 33, 35, 51, 52, 53 ; PGMR 29, 43, 45, 55-71, 132-138, 175, 357-361 ; DV 21 ; CEC 103, 133 ; Verbum Domini 56, 59, 66 ; Evangelii gaudium 135, 137, 138 ; dates de l'OLM (25 mai 1969, 21 janvier 1981) et ses n. 4, 28, 65, 67, 69, 105 ; « consubstantiel » (Missel français 2021).
+- De mémoire, non vérifiés mot pour mot (donnés en paraphrase ou en latin) : saint Augustin, Sermon 85 (« l'Évangile est la bouche du Christ ») ; saint Jérôme sur les cierges allumés à l'Évangile (Contre Vigilance) ; formules latines Accipe Evangelium Christi, Dominus sit in corde tuo, Munda cor meum, Per evangelica dicta ; Redemptionis sacramentum (réserve de l'homélie étendue aux séminaristes ; témoignage d'un laïc après la prière après la communion, n. 74 ?).
+- Exemple français d'acclamation de Carême « Gloire au Christ, Parole éternelle du Dieu vivant ! » (leçon 7) : cité de mémoire.
+- Histoire du Credo (leçon 11) : Constantinople « début du VIe siècle », Tolède 589, Rome « vers 1014 » sous Benoît VIII, remarque de Bernon de Reichenau : faits classiques, source secondaire seulement.
+- Répartition de l'Évangile en semaine (Marc semaines 1-9, Matthieu 10-21, Luc 22-34) et suite des lettres de l'année A (1 Co, Romains, Philippiens, 1 Th) : de mémoire.
+
+## 64-02-r
+
+- Citations de la PGMR (n° 46-54) prises dans la traduction française de vatican.va ; le libellé peut différer légèrement de la PGMR du Missel français de 2021.
+- Traductions françaises des collectes latines (nuit de Noël, 1er dimanche de l'Avent, Pentecôte) et des invocations du Missel latin : faites par le rédacteur, sans guillemets de texte officiel. L'origine exacte de la collecte du 1er dimanche de l'Avent (prière ancienne retouchée) n'a pas été vérifiée.
+- Textes français du Missel 2021 non vérifiés mot pour mot sur une source officielle : les formes de conclusion « lui qui vit et règne avec toi… » et « toi qui vis et règnes avec Dieu le Père… », et les lignes du Gloria « Seigneur, Fils unique, Jésus Christ » et « toi seul es le Très-Haut : Jésus Christ, avec le Saint-Esprit, dans la gloire de Dieu le Père ». Vérifiés : Confiteor, 2e forme, absolution, conclusion longue, début du Gloria, « les péchés du monde ».
+- Faits historiques donnés de mémoire, sans vérification en ligne : litanie attribuée à Gélase Ier, Télesphore et Symmaque d'après le Liber pontificalis, rubrique du sacramentaire grégorien réservant le Gloria aux prêtres à Pâques, Égérie (Journal 24), Augustin (Cité de Dieu XXII, 8 ; De doctrina christiana II, 11 sur Amen et Alléluia non traduits), concile d'Hippone (393), Jérôme (l'Amen « comme un tonnerre »), Épictète et le Kyrie eleison, concile de Vaison (529), aspersion dominicale à l'époque carolingienne.
+- Usage indiqué sans référence précise : un laïc qui conduit une prière n'emploie pas le dialogue « Le Seigneur soit avec vous ».
+
+## 63-08-i
+- Vérifié en ligne : Catéchisme 1179-1186, 1379, 1383 (citations d'Ambroise) ; canons 964, 983, 1205-1239, 934-940 (résumés) ; PGMR 288-318 (résumé vatican.va, texte anglais) ; rituel de la dédicace 1977 (décret du 29 mai 1977, n. 15 « rite le plus important et le seul nécessaire », règles des reliques, sens des gestes) ; Ambroise, lettre 22 ; réponse de la Congrégation du culte divin du 25 septembre 2000 ; Sarah (Londres, 5 juillet 2016) et Lombardi (11 juillet 2016) ; Sacramentum caritatis 69 ; Misericordia Dei 9 et réponse du 7 juillet 1998 ; Dei Verbum 21 ; Sacrosanctum concilium 41 (début seulement cité).
+- Non vérifié en ligne, donné de mémoire et paraphrasé : Inter oecumenici n. 91 (26 septembre 1964) ; Cérémonial des évêques nn. 42-47 sur la cathèdre (seul le n. 49 a été lu) ; canons 857-858, 1212, 1223, 1226 ; introduction générale de l'initiation chrétienne nn. 22 et 25 (lue en anglais, résumé) ; Eusèbe, dédicace de Tyr « vers 315 » ; Polycarpe « vers 155 » ; Panthéon dédié par Boniface IV « au début du VIIe siècle » ; pape Vigile au VIe siècle (lettre à Profuturus de Braga) ; Nicée II canon 7 ; Latran IV (1215) canons 20 et 21 ; Giberti et Borromée pour le tabernacle sur l'autel, Rituel romain de 1614 (tabernacle et confessionnal) ; Borromée, Instructiones fabricae (1577) ; inscriptions des baptistères de Milan (attribuée à Ambroise) et du Latran (Sixte III), paraphrasées ; Cyrille de Jérusalem (tombeau et mère ; renonciation tournée vers l'Occident) ; Pères sur l'Orient (Origène, Basile, Augustin, Damascène, Tertullien) ; Constitutions apostoliques II, 57 ; chaire de Bernin datée de l'époque carolingienne.
+- Préface pascale V (« prêtre, autel et agneau ») et formule de l'ancien Pontifical aux sous-diacres : paraphrasées, sans guillemets.
+
+## 63-05-s
+- Citations latines données de mémoire, non vérifiées en ligne : saint Augustin, *De doctrina christiana* II, 1, 1 (définition du signe) ; saint Thomas, *Somme* III, q. 60, a. 4 (« per sensibilia… ») ; les trois raisons de q. 61, a. 1 sont paraphrasées.
+- Formules liturgiques françaises citées de mémoire : « fruit de la terre / de la vigne et du travail des hommes », « Recevez la lumière du Christ », « Reçois cette alliance, signe de mon amour et de ma fidélité », prière du lavabo (« Lave-moi de mes fautes, Seigneur, purifie-moi de mon péché »), « Prenez, et mangez-en tous ».
+- Paraphrases sans guillemets : Cyrille de Jérusalem (« tombeau et mère », Cat. myst. II, attribution discutée, signalée), *Didachè* 9, Pline le Jeune (lettre X, 96), Égérie (encens à l'Anastasis), saint Justin (baptême « illumination », baiser de paix).
+- Étymologie de « collecte » présentée comme explication traditionnelle (le sens historique de *collecta* est discuté).
+- Place du rite de l'Ephphata dans le baptême des enfants (facultatif, après le vêtement blanc et le cierge) à confirmer.
+- Vérifiés en ligne (vatican.va) : CEC 188, 1075, 1145-1155, 1293-1294 ; SC 7, 14, 19, 21, 22 § 3, 30, 33, 56, 59 ; PGMR 45, 276-277, 320-321 ; *Dei Verbum* 2 ; *Desiderio desideravi* 44-47.
+
+## 63-06-p
+- Citations de la Présentation générale du Missel romain (n. 42, 43, 49, 137, 273-275) prises sur la traduction française de vatican.va (2003) ; le libellé du Missel de 2021 (AELF) peut différer légèrement.
+- Non vérifié en ligne, dit sans guillemets : génuflexion sur un seul genou devant le Saint-Sacrement exposé (rituel du culte eucharistique hors de la messe, 1973, n. 84 ?) ; *Ecclesiae de mysterio*, art. 6 (gestes propres au prêtre célébrant) ; « certaines conférences des évêques » ont admis les mains étendues des fidèles au Notre Père.
+- Paraphrases de mémoire (sans guillemets) : Augustin, *De cura pro mortuis gerenda* ; Thomas, II-II q. 84 a. 2 ; Tertullien, *De corona* 3, *De oratione* 14 et 19 ; Origène, *De oratione* 31 ; Basile, *Traité du Saint-Esprit* 27 ; Cyrille de Jérusalem, *Catéchèses* 13, 36 ; *Constitutions apostoliques* (Évangile debout) ; Nicée, canon 20 ; *Ordo romanus* I ; Ratzinger, *L'Esprit de la liturgie* (récit de l'abbé Apollo).
+- Datations données prudemment : élévation de l'hostie au début du XIIIe s. (Paris) ; génuflexion généralisée à la fin du Moyen Âge et prescrite par le Missel de 1570 ; bancs répandus à la fin du Moyen Âge ; origine féodale des mains jointes présentée comme opinion courante ; prostration « selon leurs rituels » dans la profession perpétuelle.
+- Catéchisme 1235 cité avec « acquis » tel que rendu par vatican.va (accord attendu : « acquise »).
+
+## 63-07-c
+- *Tra le sollecitudini* : vérifié en italien sur vatican.va ; les citations du cours en sont ma traduction française (pas de texte français officiel consulté).
+- Lettre pastorale de G. Sarto sur la musique d'église au temps de Venise (1895) : mentionnée sans date, non vérifiée en ligne.
+- Augustin : « Chanter est le fait de celui qui aime » donné d'après PGMR 39 ; renvoi au Sermon 336 et paraphrase de l'*Enarratio in Ps.* 72, 1 (vérifiée en anglais) et de *Confessions* 10, 33 (de mémoire, paraphrasée).
+- *Jubilate Deo* (1974, envoyé aux évêques à la demande de Paul VI) et Graduel romain de 1974 : de mémoire, non vérifiés en ligne.
+- Faits d'histoire musicale (orgue offert à Pépin en 757, Machaut, *L'Homme armé*, décret de Trente de 1562, Palestrina, Messe du pape Marcel 1567) : de mémoire, formulés avec prudence.

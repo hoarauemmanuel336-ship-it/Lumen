@@ -20,4 +20,4 @@ Sources vérifiées : SC 7, 9, 10, 12, 13, 26, 27, 33 (vatican.va, mot pour mot)
 10 Pourquoi une liturgie : un culte du corps et d'un peuple. Objection (Jean 4:23-24) ; nature corporelle (saint Thomas, Romains 1:20, Romains 12:1, Psaumes 84:3, 1 Corinthiens 6:20, Incarnation Jean 1:14) ; nature sociale (LG 9, Exode 19:6, 1 Pierre 2:9, Psaumes 34:4, Actes 2:42, Hébreux 10:25, CEC 2105) ; réponse.
 99-bilan : 6 exercices croisés.
 
-État : plan fait ; leçons écrites = fichiers présents dans ce dossier.
+État : cours terminé, réuni dans redaction/63-01-l.html, contrôlé et assemblé avec succès.
