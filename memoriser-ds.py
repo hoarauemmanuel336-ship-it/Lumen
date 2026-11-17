@@ -55,11 +55,15 @@ CATEGORIES = [
  ]),
 ]
 
+def typo(s):
+    s = re.sub(r' ([:;!?»])', '\u00a0\\1', s)
+    return re.sub(r'« ', '«\u00a0', s)
+
 def categories():
     out = []
     for cid, nom, vs in CATEGORIES:
         out.append({'id': cid, 'name': {'fr': nom}, 'bloc': BLOC, 'kind': 'v',
-                    'verses': [{'id': ident(r), 'fr': {'ref': r, 'text': texte(r)}, 'note': n} for r, n in vs]})
+                    'verses': [{'id': ident(r), 'fr': {'ref': r, 'text': texte(r)}, 'note': typo(n)} for r, n in vs]})
     return out
 
 if __name__ == '__main__':

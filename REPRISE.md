@@ -12,3 +12,10 @@ Ce dossier est la sauvegarde du travail en cours (branche GitHub `sauvegarde/doc
 5. Ensuite : relecture de fond de chaque cours, assemblage des trois fichiers (`91-…`, `92-…`, `93-…`, plan dans `plan.json`), liens en arrière dans les anciens cours (pistes dans `contextes-anciens.txt`), versets de base de Mémoriser, puis préparation de la mise en ligne, qui attend le « dépose-le ».
 
 Lancer la sauvegarde pendant le travail : `bash outils/sauvegarder.sh boucle 600`.
+
+## État au 17 novembre, 18 h 30
+Tout est écrit, relu, assemblé et prêt. Rien n'est en ligne : on attend le « dépose-le ».
+- Les trois fichiers assemblés sont dans `assemblage/` (contenu) et dans le dépôt local (`parcours/cours/91-…`, `92-…`, `93-…`).
+- Préparés en local dans /home/claude/lumen (non poussés) : la branche `envoi/doctrine-sociale` (envoi au coffre : 3 nouveaux fichiers + 10 anciens cours avec leurs liens) et la branche `depot/doctrine-sociale` (un dépôt à faire sur `main`).
+- Au « dépose-le » : 1) pousser `envoi/doctrine-sociale` et attendre que le robot l'ait traitée (la branche disparaît) ; 2) remettre `depot/doctrine-sociale` sur le dernier `main` (rebase), refaire la fabrication pour vérifier, puis pousser sur `main`.
+- Si la séance est perdue : refaire les deux branches à partir de `assemblage/` (lancer `bash outils/assembler-bloc.sh`), `python3 outils/liens-arriere.py`, `python3 memoriser-ds.py contenu/memoriser.json`, la ligne de cours.json (plan.json) et `node fabrication/cours-sommaire.js`.
