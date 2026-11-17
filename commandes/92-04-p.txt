@@ -1,0 +1,9 @@
+<sujet cle="encycliques.pie-xii" titre="Pie XII et ses radiomessages" desc="L’enseignement social de Pie XII pendant et après la Seconde Guerre mondiale.">
+<p>L’encyclique <i>Summi pontificatus</i> (1939) sur l’unité du genre humain</p>
+<p>Le radiomessage de Pentecôte (1er juin 1941) pour les cinquante ans de <i>Rerum novarum</i></p>
+<p>Le radiomessage de Noël 1942 sur l’ordre intérieur des nations</p>
+<p>Le radiomessage de Noël 1944 sur la démocratie</p>
+<p>L’enseignement de Pie XII sur la communauté internationale et le droit des peuples</p>
+<p>L’institution de la fête de saint Joseph artisan (1955)</p>
+<p>La constitution <i>Exsul familia</i> (1952) sur les migrants</p>
+</sujet>

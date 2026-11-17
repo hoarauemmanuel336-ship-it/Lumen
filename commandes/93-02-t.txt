@@ -1,0 +1,16 @@
+<sujet cle="societe.travail" titre="Le travail" desc="La dignité du travail humain et les droits des travailleurs.">
+<p>Le <b>travail</b> dans l’Écriture : la mission confiée en Genèse 2:15 et la peine après la chute (Genèse 3:17-19)</p>
+<p>Jésus, homme du travail à Nazareth</p>
+<p>La dignité du travail, qui vient de la personne qui travaille</p>
+<p>Le travail, participation à l’œuvre du Créateur et à la Rédemption (<i>Laborem exercens</i> 25-27)</p>
+<p>Le droit au travail et le drame du chômage</p>
+<p>Le <b>juste salaire</b> dans l’économie actuelle</p>
+<p>Les syndicats et leur rôle</p>
+<p>Le droit de grève et ses conditions</p>
+<p>Le repos et le droit au dimanche</p>
+<p>Le travail des femmes et la protection de la maternité</p>
+<p>Le travail des enfants</p>
+<p>La sécurité et la santé au travail</p>
+<p>Les nouvelles formes de travail et la précarité</p>
+<p>La spiritualité du travail : saint Joseph artisan</p>
+</sujet>

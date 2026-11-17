@@ -1,0 +1,12 @@
+<sujet cle="societe.liberte-religieuse" titre="La liberté religieuse" desc="Le droit de chaque personne à ne pas être contrainte en matière religieuse.">
+<p>La déclaration <i>Dignitatis humanae</i> (7 décembre 1965) : son histoire au concile</p>
+<p>La <b>liberté religieuse</b> : l’immunité de contrainte en matière religieuse</p>
+<p>Le fondement de ce droit : la dignité de la personne</p>
+<p>Le devoir de chercher la vérité et d’y adhérer</p>
+<p>Les limites de la liberté religieuse : l’ordre public juste</p>
+<p>La liberté des communautés religieuses</p>
+<p>La liberté de l’Église</p>
+<p>La question de la continuité avec l’enseignement du XIXe siècle (<i>Quanta cura</i>, 1864)</p>
+<p>L’herméneutique de la réforme dans la continuité (Benoît XVI, discours du 22 décembre 2005)</p>
+<p>Les persécutions religieuses dans le monde contemporain</p>
+</sujet>

@@ -1,0 +1,14 @@
+<sujet cle="encycliques.jean-xxiii" titre="Jean XXIII : Mater et magistra et Pacem in terris" desc="Les deux encycliques sociales de Jean XXIII.">
+<p>L’encyclique <i>Mater et magistra</i> (15 mai 1961) : son contexte</p>
+<p>La socialisation et ses ambivalences</p>
+<p>La rémunération du travail et la participation des travailleurs à la vie de l’entreprise</p>
+<p>La question agricole</p>
+<p>Les rapports entre pays riches et pays en voie de développement</p>
+<p>L’encyclique <i>Pacem in terris</i> (11 avril 1963), adressée à tous les hommes de bonne volonté</p>
+<p>L’ordre entre les hommes : droits et devoirs</p>
+<p>Les rapports entre les hommes et les pouvoirs publics</p>
+<p>Les rapports entre les communautés politiques</p>
+<p>Le désarmement selon <i>Pacem in terris</i></p>
+<p>L’appel à une autorité publique de compétence universelle</p>
+<p>La distinction entre l’erreur et la personne qui erre</p>
+</sujet>

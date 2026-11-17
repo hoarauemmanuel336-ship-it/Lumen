@@ -1,0 +1,11 @@
+<sujet cle="societe.migrations" titre="Les migrations" desc="L’enseignement de l’Église sur les migrants et les réfugiés.">
+<p>L’étranger dans l’Écriture : Abraham, l’Exode, la Sainte Famille en Égypte</p>
+<p>« J’étais un étranger et vous m’avez accueilli » (Matthieu 25:35)</p>
+<p>Le droit d’émigrer</p>
+<p>Le droit des États à réguler l’immigration, au service du bien commun</p>
+<p>Les devoirs des migrants envers le pays d’accueil</p>
+<p>Les réfugiés et le droit d’asile</p>
+<p>La Journée mondiale du migrant et du réfugié, instituée en 1914</p>
+<p>L’instruction <i>Erga migrantes caritas Christi</i> (2004)</p>
+<p>Les quatre verbes de François : accueillir, protéger, promouvoir, intégrer</p>
+</sujet>

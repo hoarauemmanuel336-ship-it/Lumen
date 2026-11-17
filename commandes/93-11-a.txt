@@ -1,0 +1,12 @@
+<sujet cle="societe.paix" titre="La construction de la paix" desc="La paix comme œuvre sociale et internationale.">
+<p>La paix dans l’Écriture : le <i>shalom</i> (hébreu, « plénitude, intégrité »)</p>
+<p>Le désarmement et le contrôle international des armes</p>
+<p>La Journée mondiale de la paix, instituée par Paul VI (1968), et les messages des papes</p>
+<p>La non-violence évangélique, style d’une politique pour la paix (message pour la Journée mondiale de la paix, 2017)</p>
+<p>Le pardon et la réconciliation entre les peuples : « pas de paix sans justice, pas de justice sans pardon » (Jean-Paul II, 2002)</p>
+<p>La lutte contre le terrorisme et ses moyens légitimes</p>
+<p>La responsabilité de protéger les populations (Benoît XVI, discours à l’ONU, 2008)</p>
+<p>La médiation du Saint-Siège dans le conflit du canal de Beagle entre l’Argentine et le Chili</p>
+<p>L’éducation à la paix</p>
+<p>L’action de l’Église pour la paix dans le monde</p>
+</sujet>

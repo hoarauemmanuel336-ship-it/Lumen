@@ -1,0 +1,17 @@
+<sujet cle="encycliques.jean-paul-ii" titre="Jean-Paul II : les trois encycliques sociales" desc="Laborem exercens, Sollicitudo rei socialis, Centesimus annus et les instructions sur la libération.">
+<p>L’encyclique <i>Laborem exercens</i> (1981) : le travail, clé de la question sociale</p>
+<p>Le travail au sens objectif et au sens subjectif</p>
+<p>La priorité du travail sur le capital</p>
+<p>L’employeur direct et l’employeur indirect</p>
+<p>L’encyclique <i>Sollicitudo rei socialis</i> (1987) pour les vingt ans de <i>Populorum progressio</i></p>
+<p>La critique des deux blocs, libéral et collectiviste</p>
+<p>Les <b>structures de péché</b>, notion introduite dans <i>Sollicitudo rei socialis</i></p>
+<p>La solidarité comme vertu</p>
+<p>Les instructions de la Congrégation pour la doctrine de la foi sur la théologie de la libération : <i>Libertatis nuntius</i> (1984)</p>
+<p><i>Libertatis conscientia</i> (1986)</p>
+<p>L’encyclique <i>Centesimus annus</i> (1er mai 1991) : la chute des régimes communistes de 1989</p>
+<p>Le rôle légitime de l’entreprise et du profit (<i>Centesimus annus</i> 35)</p>
+<p>La critique du consumérisme (<i>Centesimus annus</i> 36)</p>
+<p>La démocratie et la vérité (<i>Centesimus annus</i> 46)</p>
+<p>L’écologie humaine</p>
+</sujet>

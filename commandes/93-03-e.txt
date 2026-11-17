@@ -1,0 +1,12 @@
+<sujet cle="societe.economie" titre="L’économie" desc="Le marché, l’entreprise, la finance et leurs exigences morales.">
+<p>L’économie au service de la personne, et non l’inverse</p>
+<p>Le marché libre : son efficacité et ses limites (<i>Centesimus annus</i> 34)</p>
+<p>L’<b>entreprise</b>, communauté de personnes</p>
+<p>Le profit, indicateur légitime mais non unique</p>
+<p>Le rôle de l’État dans l’économie</p>
+<p>La finance et ses dérives : le document <i>Oeconomicae et pecuniariae quaestiones</i> (2018)</p>
+<p>L’économie de communion et les entreprises de l’économie sociale</p>
+<p>La mondialisation de l’économie</p>
+<p>La consommation responsable et le consumérisme</p>
+<p>L’impôt juste et la redistribution</p>
+</sujet>

@@ -1,0 +1,11 @@
+<sujet cle="societe.culture" titre="La culture et l’éducation" desc="Ce que l’Église enseigne sur la culture, l’école et l’éducation.">
+<p>La culture selon <i>Gaudium et spes</i> 53-62 : ce que l’homme fait de la nature et de lui-même</p>
+<p>Le rapport entre l’Évangile et les cultures</p>
+<p>Le droit de toute personne à l’éducation</p>
+<p>Les parents, premiers éducateurs de leurs enfants</p>
+<p>La liberté d’enseignement et le rôle de l’État</p>
+<p>La déclaration <i>Gravissimum educationis</i> (1965)</p>
+<p>L’école catholique et sa mission</p>
+<p>L’université catholique et la constitution <i>Ex corde Ecclesiae</i> (1990)</p>
+<p>Le Conseil pontifical de la culture (1982) et le dialogue de la foi avec les cultures</p>
+</sujet>

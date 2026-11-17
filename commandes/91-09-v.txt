@@ -1,0 +1,10 @@
+<sujet cle="principes-sociaux.valeurs" titre="Les valeurs fondamentales de la vie sociale" desc="Vérité, liberté, justice et charité, qui donnent leur âme aux principes.">
+<p>Les valeurs sociales et leur rapport aux principes</p>
+<p>Les quatre piliers de la paix selon <i>Pacem in terris</i> : vérité, justice, amour, liberté</p>
+<p>La <b>vérité</b> dans la vie sociale</p>
+<p>La <b>liberté</b>, signe de l’image de Dieu, et sa juste mesure</p>
+<p>La <b>justice</b> dans la vie sociale</p>
+<p>La <b>charité</b>, critère suprême de la morale sociale</p>
+<p>La « charité politique » et l’amour social</p>
+<p>La charité dans la vérité selon <i>Caritas in veritate</i> (2009)</p>
+</sujet>

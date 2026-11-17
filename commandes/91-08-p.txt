@@ -1,0 +1,11 @@
+<sujet cle="principes-sociaux.participation" titre="La participation" desc="La contribution de chacun à la vie de la communauté.">
+<p>La <b>participation</b> : contribuer, selon ses capacités, à la vie culturelle, économique, politique et sociale</p>
+<p>La participation, conséquence de la subsidiarité</p>
+<p>La participation dans l’entreprise et le travail</p>
+<p>La participation à la vie démocratique (<i>Centesimus annus</i> 46)</p>
+<p>Les obstacles à la participation : exclusion, individualisme, désintérêt</p>
+<p>Le vote</p>
+<p>L’engagement associatif</p>
+<p>L’information comme condition de la participation</p>
+<p>La participation des peuples pauvres aux décisions de la communauté internationale</p>
+</sujet>

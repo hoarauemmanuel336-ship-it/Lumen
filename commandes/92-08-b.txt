@@ -1,0 +1,12 @@
+<sujet cle="encycliques.benoit-xvi" titre="Benoît XVI : Deus caritas est et Caritas in veritate" desc="La charité, la justice et le développement selon Benoît XVI.">
+<p>L’encyclique <i>Deus caritas est</i> (2005) : sa seconde partie sur l’exercice de la charité par l’Église</p>
+<p>La justice, tâche de la politique, et la charité, tâche propre de l’Église</p>
+<p>L’encyclique <i>Caritas in veritate</i> (29 juin 2009) : le contexte de la crise financière</p>
+<p>La charité dans la vérité, principe de la doctrine sociale</p>
+<p>La logique du don et de la gratuité dans l’économie</p>
+<p>Le développement humain intégral et le développement des peuples</p>
+<p>La mondialisation</p>
+<p>L’appel à une autorité politique mondiale</p>
+<p>L’environnement et l’écologie humaine</p>
+<p>La technique et ses limites</p>
+</sujet>

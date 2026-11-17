@@ -1,0 +1,14 @@
+<sujet cle="soc.domaines" titre="La communauté politique" desc="L’autorité, l’État, la démocratie et les rapports entre l’Église et l’État.">
+<p>La nature sociale de l’homme, fondement de la communauté politique</p>
+<p>Le fondement de l’autorité politique : Dieu auteur de l’ordre social, les citoyens qui désignent les gouvernants (<i>Gaudium et spes</i> 74)</p>
+<p>La liberté du choix des régimes politiques</p>
+<p>La <b>démocratie</b> et son exigence de valeurs : « une démocratie sans valeurs se transforme en totalitarisme » (<i>Centesimus annus</i> 46)</p>
+<p>L’État de droit (<i>Centesimus annus</i> 44)</p>
+<p>La séparation des pouvoirs</p>
+<p>La société civile, distincte de l’État et servie par lui</p>
+<p>Les droits des minorités dans la communauté politique</p>
+<p>La corruption politique</p>
+<p>L’Église et l’État : autonomie et coopération (<i>Gaudium et spes</i> 76)</p>
+<p>La laïcité juste et le laïcisme</p>
+<p>L’engagement des catholiques en politique : la note doctrinale de la Congrégation pour la doctrine de la foi (2002)</p>
+</sujet>

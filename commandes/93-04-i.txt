@@ -1,0 +1,13 @@
+<sujet cle="societe.ideologies" titre="Les idéologies face à la doctrine sociale" desc="Le jugement de l’Église sur les grandes idéologies modernes.">
+<p>La notion d’idéologie et pourquoi la doctrine sociale n’en est pas une</p>
+<p>Le <b>socialisme</b> : sa critique par Léon XIII et Pie XI</p>
+<p>Le <b>communisme</b> marxiste : matérialisme athée, lutte des classes, suppression de la propriété</p>
+<p>Le <b>libéralisme</b> philosophique du XIXe siècle et sa condamnation (<i>Mirari vos</i>, 1832 ; <i>Syllabus</i>, 1864)</p>
+<p>Le libéralisme économique et le « laisser-faire »</p>
+<p>Le capitalisme : le jugement nuancé de <i>Centesimus annus</i> 42</p>
+<p>Le totalitarisme et la négation de la dignité transcendante de la personne (<i>Centesimus annus</i> 44)</p>
+<p>Le fascisme</p>
+<p>Le nazisme et son idéologie raciale</p>
+<p>Le paradigme technocratique, idéologie contemporaine selon <i>Laudato si’</i></p>
+<p>Le discernement des mouvements historiques, distincts des doctrines qui les ont inspirés</p>
+</sujet>

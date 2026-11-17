@@ -1,0 +1,13 @@
+<sujet cle="soc.textes" titre="Le corpus des textes sociaux" desc="Ce que contient l’enseignement social des papes et comment il s’est formé.">
+<p>La question sociale au XIXe siècle : la révolution industrielle et la condition ouvrière</p>
+<p>Frédéric Ozanam et la Société de Saint-Vincent-de-Paul (1833)</p>
+<p>Mgr Wilhelm Emmanuel von Ketteler, évêque de Mayence, pionnier du catholicisme social</p>
+<p>Albert de Mun et les cercles catholiques d’ouvriers</p>
+<p>René de La Tour du Pin et la pensée corporatiste</p>
+<p>L’Union de Fribourg, foyer d’études qui prépare <i>Rerum novarum</i></p>
+<p>Les genres de documents : encycliques, lettres apostoliques, radiomessages, constitutions conciliaires, instructions</p>
+<p>La tradition des anniversaires de <i>Rerum novarum</i> : 40 ans, 70 ans, 80 ans, 90 ans, 100 ans</p>
+<p>L’autorité doctrinale propre des textes sociaux et le degré d’assentiment qu’ils demandent</p>
+<p>La distinction entre les principes permanents et les jugements liés aux circonstances</p>
+<p>Le choix du nom de Léon XIV (2025), en référence à Léon XIII et à la nouvelle révolution industrielle de l’intelligence artificielle</p>
+</sujet>

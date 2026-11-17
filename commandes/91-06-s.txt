@@ -1,0 +1,11 @@
+<sujet cle="principes-sociaux.subsidiarite" titre="La subsidiarité" desc="Le principe qui règle les rapports entre la personne, les groupes intermédiaires et l’État.">
+<p>Le mot subsidiarité (latin <i>subsidium</i>, « aide, renfort »)</p>
+<p>La formulation classique de Pie XI (<i>Quadragesimo anno</i> 79)</p>
+<p>Les <b>corps intermédiaires</b> : famille, associations, entreprises, communes</p>
+<p>Le versant négatif : ne pas retirer aux personnes et aux groupes ce qu’ils peuvent faire</p>
+<p>Le versant positif : l’aide due aux échelons inférieurs</p>
+<p>La critique de l’« État de l’assistance » (<i>Centesimus annus</i> 48)</p>
+<p>La suppléance de l’État dans les situations exceptionnelles</p>
+<p>Le lien entre subsidiarité et solidarité</p>
+<p>La subsidiarité dans les institutions internationales</p>
+</sujet>

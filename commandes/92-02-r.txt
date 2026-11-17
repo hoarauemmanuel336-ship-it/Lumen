@@ -1,0 +1,16 @@
+<sujet cle="encycliques.leon-xiii" titre="Léon XIII et Rerum novarum" desc="L’encyclique fondatrice de 1891 et les textes politiques qui l’entourent.">
+<p>Les encycliques politiques de Léon XIII, qui préparent <i>Rerum novarum</i></p>
+<p><i>Diuturnum illud</i> (1881) sur l’origine du pouvoir</p>
+<p><i>Immortale Dei</i> (1885) sur la constitution chrétienne des États</p>
+<p><i>Libertas praestantissimum</i> (1888) sur la liberté humaine</p>
+<p>L’encyclique <i>Rerum novarum</i> (15 mai 1891) : son occasion et son plan</p>
+<p>La réfutation du socialisme dans <i>Rerum novarum</i></p>
+<p>La défense de la propriété privée dans <i>Rerum novarum</i></p>
+<p>Le rôle de l’Église dans la question sociale selon <i>Rerum novarum</i></p>
+<p>Le rôle de l’État : protéger les droits de tous, en particulier des faibles</p>
+<p>Le <b>juste salaire</b>, qui doit faire vivre l’ouvrier honnête et sobre</p>
+<p>Le droit d’association et les syndicats</p>
+<p>La protection des travailleurs : repos, durée du travail, travail des enfants et des femmes</p>
+<p>La lettre <i>Au milieu des sollicitudes</i> (1892) et le ralliement des catholiques français à la République</p>
+<p><i>Graves de communi re</i> (1901) sur la démocratie chrétienne</p>
+</sujet>

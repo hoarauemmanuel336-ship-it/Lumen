@@ -1,0 +1,13 @@
+<sujet cle="encycliques.pie-xi" titre="Pie XI : Quadragesimo anno et les totalitarismes" desc="L’encyclique de 1931 et les condamnations du fascisme, du nazisme et du communisme.">
+<p>L’encyclique <i>Quadragesimo anno</i> (15 mai 1931) : le contexte de la crise de 1929</p>
+<p>La formulation du principe de <b>subsidiarité</b></p>
+<p>La justice sociale dans <i>Quadragesimo anno</i></p>
+<p>La charité sociale dans <i>Quadragesimo anno</i></p>
+<p>La critique de la libre concurrence comme principe directeur de l’économie</p>
+<p>La critique de la concentration du pouvoir économique et de la « dictature économique »</p>
+<p>La condamnation du socialisme : « on ne peut être en même temps bon catholique et vrai socialiste »</p>
+<p>La restauration de l’ordre social par les corps professionnels</p>
+<p>L’encyclique <i>Non abbiamo bisogno</i> (1931) contre le fascisme italien</p>
+<p>L’encyclique <i>Mit brennender Sorge</i> (1937) contre le nazisme</p>
+<p>L’encyclique <i>Divini Redemptoris</i> (1937) contre le communisme athée</p>
+</sujet>

@@ -1,0 +1,10 @@
+<sujet cle="encycliques.compendium" titre="Le Compendium de la doctrine sociale" desc="La synthèse officielle de l’enseignement social de l’Église, publiée en 2004.">
+<p>L’origine du <i>Compendium</i> : le vœu exprimé dans l’exhortation <i>Ecclesia in America</i> (1999)</p>
+<p>La rédaction par le Conseil pontifical Justice et Paix et la publication en 2004</p>
+<p>Le plan général : introduction, trois parties, conclusion</p>
+<p>La première partie : le dessein d’amour de Dieu, la mission de l’Église, la personne, les principes</p>
+<p>La deuxième partie : famille, travail, vie économique, communauté politique, communauté internationale, environnement, paix</p>
+<p>La troisième partie : la doctrine sociale dans l’action pastorale et l’engagement des laïcs</p>
+<p>La conclusion : la civilisation de l’amour</p>
+<p>L’usage du <i>Compendium</i> à côté du Catéchisme de l’Église catholique</p>
+</sujet>

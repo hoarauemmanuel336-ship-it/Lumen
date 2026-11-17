@@ -1,0 +1,14 @@
+<sujet cle="societe.famille" titre="La famille dans la société" desc="La famille comme réalité sociale, ses droits et les politiques qui la servent.">
+<p>La famille, cellule vitale de la société et premier sujet social, non simple somme d’individus</p>
+<p>La <i>Charte des droits de la famille</i> publiée par le Saint-Siège (1983), à la demande du synode de 1980</p>
+<p>Le droit de fonder librement une famille</p>
+<p>Le droit de transmettre la vie et d’élever ses enfants selon ses convictions</p>
+<p>Le droit à la stabilité du lien conjugal et à la protection de l’institution familiale</p>
+<p>Le droit des familles à des conditions économiques dignes : travail, logement, soins, allocations</p>
+<p>Le droit des familles de s’associer et d’être représentées</p>
+<p>Le salaire familial et la conciliation du travail et de la famille (<i>Laborem exercens</i> 19)</p>
+<p>Les politiques familiales et le principe de subsidiarité</p>
+<p>La protection du mariage dans la loi civile</p>
+<p>Les personnes âgées et la solidarité entre générations</p>
+<p>La question démographique et la dénatalité</p>
+</sujet>

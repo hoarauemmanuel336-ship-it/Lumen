@@ -1,0 +1,12 @@
+<sujet cle="encycliques.paul-vi" titre="Vatican II et Paul VI" desc="Gaudium et spes, Populorum progressio et l’enseignement social de Paul VI.">
+<p>La constitution pastorale <i>Gaudium et spes</i> (1965) : l’Église dans le monde de ce temps</p>
+<p>La seconde partie de <i>Gaudium et spes</i> : mariage, culture, vie économique, communauté politique, paix</p>
+<p>Le discours de Paul VI à l’ONU (4 octobre 1965) : « jamais plus la guerre »</p>
+<p>L’encyclique <i>Populorum progressio</i> (26 mars 1967) : le <b>développement intégral</b> de tout l’homme et de tous les hommes</p>
+<p>« Le développement est le nouveau nom de la paix » (<i>Populorum progressio</i> 87)</p>
+<p>La création de la commission pontificale Justice et Paix (1967)</p>
+<p>La lettre apostolique <i>Octogesima adveniens</i> (1971) : l’urbanisation et les questions sociales nouvelles</p>
+<p>Le jugement d’<i>Octogesima adveniens</i> sur les idéologies</p>
+<p>Le synode de 1971 et le document <i>La justice dans le monde</i></p>
+<p>L’exhortation <i>Evangelii nuntiandi</i> (1975) : évangélisation et libération</p>
+</sujet>

@@ -1,0 +1,16 @@
+<sujet cle="encycliques.francois" titre="François : Laudato si’ et Fratelli tutti" desc="L’enseignement social de François.">
+<p>L’exhortation <i>Evangelii gaudium</i> (2013) : son chapitre IV sur la dimension sociale de l’évangélisation</p>
+<p>Les quatre principes de <i>Evangelii gaudium</i> pour bâtir un peuple</p>
+<p>« Le temps est supérieur à l’espace »</p>
+<p>« L’unité prévaut sur le conflit »</p>
+<p>« La réalité est plus importante que l’idée »</p>
+<p>« Le tout est supérieur à la partie »</p>
+<p>L’encyclique <i>Laudato si’</i> (24 mai 2015) : la sauvegarde de la maison commune</p>
+<p>Le paradigme technocratique selon <i>Laudato si’</i></p>
+<p>L’<b>écologie intégrale</b> dans <i>Laudato si’</i> : le cri de la terre et le cri des pauvres</p>
+<p>L’encyclique <i>Fratelli tutti</i> (3 octobre 2020) sur la fraternité et l’amitié sociale</p>
+<p>La parabole du bon Samaritain, clé de lecture de <i>Fratelli tutti</i></p>
+<p>La meilleure politique selon <i>Fratelli tutti</i></p>
+<p>La critique du populisme dans <i>Fratelli tutti</i></p>
+<p>L’exhortation <i>Laudate Deum</i> (2023) sur la crise climatique</p>
+</sujet>

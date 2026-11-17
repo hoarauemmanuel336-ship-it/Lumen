@@ -1,0 +1,11 @@
+<sujet cle="societe.internationale" titre="La communauté internationale" desc="L’unité de la famille humaine et l’organisation de la vie entre les nations.">
+<p>L’unité de la famille humaine</p>
+<p>Les droits des nations</p>
+<p>Le droit international et ses fondements moraux</p>
+<p>L’Organisation des Nations unies et le regard des papes sur elle</p>
+<p>La diplomatie du Saint-Siège</p>
+<p>Les concordats et les accords entre le Saint-Siège et les États</p>
+<p>Le développement solidaire des peuples</p>
+<p>La dette des pays pauvres</p>
+<p>Le commerce international juste</p>
+</sujet>

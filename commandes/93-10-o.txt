@@ -1,0 +1,13 @@
+<sujet cle="societe.ecologie" titre="L’écologie intégrale" desc="La sauvegarde de la création comme question sociale.">
+<p>La création, don de Dieu confié à l’homme</p>
+<p>L’<b>écologie humaine</b> (<i>Centesimus annus</i> 38)</p>
+<p>La pollution et la culture du déchet</p>
+<p>Les racines humaines de la crise écologique</p>
+<p>L’<b>écologie intégrale</b> : tout est lié</p>
+<p>Le cri de la terre et le cri des pauvres</p>
+<p>La dette écologique</p>
+<p>La justice entre les générations</p>
+<p>La conversion écologique</p>
+<p>La sobriété et la spiritualité écologique</p>
+<p>La Journée mondiale de prière pour la sauvegarde de la création (1er septembre)</p>
+</sujet>
