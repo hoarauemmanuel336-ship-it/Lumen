@@ -145,8 +145,9 @@
      blocs, et on déplie celui qu'on veut (Emmanuel : « c'est mieux pour la
      navigation »). Le site redessine donc, dans le cadre, l'en-tête de chaque
      bloc en grand titre (numéro du bloc, nom, nombre de thèmes, chevron) ;
-     un clic l'ouvre ou le ferme, le « + » garde son rôle et déplie
-     l'explication du bloc. Les blocs ouverts sont gardés comme la place de
+     un clic l'ouvre ou le ferme ; la flèche, elle, ouvre le bloc et
+     déplie tous ses thèmes d'un coup, et un second clic replie tout ; le
+     « + » garde son rôle et déplie l'explication du bloc. Les blocs ouverts sont gardés comme la place de
      lecture (message lvBlocs, valeur « blocs ») et rendus avant elle
      (lvBlocsOuverts), pour que la place retombe au même endroit. Un lien ou
      un saut vers un thème ouvre d'abord son bloc ; la flèche de la bannière
@@ -166,7 +167,8 @@ var css='#w .bh.lv-b{display:flex;align-items:center;gap:16px;margin:0;padding:2
 +'#w .lv-bp{display:inline-block;margin-left:8px;vertical-align:.35em;font:400 15px/1 "JetBrains Mono",monospace;color:rgba(255,255,255,.4);padding:2px 4px;cursor:pointer}'
 +'#w .lv-bp:hover{color:var(--a)}'
 +'#w .lv-bc{flex:none;font:700 11px/1 "JetBrains Mono",monospace;letter-spacing:.12em;color:rgba(255,255,255,.45);text-transform:uppercase}'
-+'#w .lv-bv{flex:none;font:400 22px/1 "JetBrains Mono",monospace;color:rgba(255,255,255,.5);transition:transform .25s;padding:4px 6px}'
++'#w .lv-bv{flex:none;font:400 24px/1 "JetBrains Mono",monospace;color:rgba(255,255,255,.6);transition:transform .25s;padding:10px 12px;margin:-10px -6px -10px 0}'
++'#w .lv-bv:hover{color:var(--a)}'
 +'#w .bh.lv-b.lv-o .lv-bv{transform:rotate(90deg);color:var(--a)}'
 +'#w .bh.lv-b.lv-o{border-top-color:rgb(var(--r) / .6);background:rgb(var(--r) / .13)}'
 +'#w .bh.lv-b.lv-o:hover{background:rgb(var(--r) / .18)}'
@@ -205,7 +207,12 @@ function ouvreVers(el){if(!el)return;var L=blocs(),ch=false;L.forEach(function(b
 /* un clic sur l'en-tête d'un bloc l'ouvre ou le ferme ; le + garde son rôle : déplier l'explication du bloc */
 document.addEventListener('click',function(ev){var h=ev.target.closest&&ev.target.closest('#w .bh.lv-b');if(!h)return;
 if(ev.target.closest('.lv-bp')){var L=blocs();for(var i=0;i<L.length;i++)if(L[i].h===h&&!OUV[i]){OUV[i]=true;applique();envoie();}return;}
-ev.stopPropagation();ev.preventDefault();var L2=blocs();for(var j=0;j<L2.length;j++)if(L2[j].h===h){OUV[j]=!OUV[j];}applique();envoie();},true);
+ev.stopPropagation();ev.preventDefault();var L2=blocs(),fl=!!ev.target.closest('.lv-bv');for(var j=0;j<L2.length;j++)if(L2[j].h===h){
+if(fl){var ths=L2[j].c.filter(function(e){return e.classList.contains('th');}),tous=OUV[j]&&ths.every(function(t){return t.classList.contains('op');});
+if(tous){ths.forEach(function(t){var x=t.querySelector('.th-h');if(x&&t.classList.contains('op'))x.click();});OUV[j]=false;}
+else{OUV[j]=true;applique();ths.forEach(function(t){var x=t.querySelector('.th-h');if(x&&!t.classList.contains('op'))x.click();});}}
+else OUV[j]=!OUV[j];}
+applique();envoie();},true);
 document.addEventListener('keydown',function(ev){if(ev.key!=='Enter'&&ev.key!==' ')return;var h=ev.target.closest&&ev.target.closest('#w .bh.lv-b');if(!h||ev.target.closest('.lv-bp'))return;ev.stopPropagation();ev.preventDefault();h.click();},true);
 /* la flèche de la bannière, qui déplie ou replie tout le parcours, déplie ou replie aussi tous les blocs */
 function tout(ev){var b=ev.target.closest&&ev.target.closest('#w .bnr');if(!b)return;if(ev.type==='keydown'&&ev.key!=='Enter'&&ev.key!==' ')return;var ouvrir=!b.classList.contains('xo');blocs().forEach(function(x,i){OUV[i]=ouvrir;});applique();envoie();}
