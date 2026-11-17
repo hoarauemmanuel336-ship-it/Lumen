@@ -119,7 +119,11 @@ Chaque mot clé de vos leçons reçoit sa définition complète (`<mot terme="�
 
 Ne touchez à rien dans `/home/claude/lumen/` : vous ne faites qu'y lire. N'écrivez que dans `/home/claude/liturgie/redaction/`.
 
-**Votre réponse finale** est brève (le texte du cours ne doit pas y figurer) : le chemin du fichier, le nombre de leçons et d'exercices, la taille, ce que le contrôle signale encore, et les points de fond sur lesquels vous avez un doute (une date, une citation que vous n'avez pas pu vérifier…).
+**Vos points de doute** (une date, une citation que vous n'avez pas pu vérifier, une affirmation de mémoire) s'écrivent, avant de finir, dans le fichier `/home/claude/liturgie/doutes.md`, à la suite de ce qui s'y trouve, sous un titre `## {votre code}`, une ligne par point. Le relecteur les vérifiera.
+
+**Votre rapport complet** (ce que vous avez fait, vos choix, ce qui reste incertain) s'écrit dans `/home/claude/liturgie/rapports/{votre code}-ecriture.md` : il est sauvegardé avec le travail.
+
+**Votre réponse finale tient en cinq lignes au plus**, sans le texte du cours : le chemin du fichier, le nombre de leçons et d'exercices, ce que le contrôle signale encore.
 
 ## 10. Vérifier en ligne
 

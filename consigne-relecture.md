@@ -18,5 +18,7 @@ Vous relisez **un cours** déjà écrit par un autre rédacteur, pour le site ca
 
 N'écrivez que dans ce fichier `redaction/{code}.html`. Ne touchez à rien dans `/home/claude/lumen/`.
 
+Écrivez votre rapport complet (corrections faites, vérifications, ce qui reste incertain) dans `/home/claude/liturgie/rapports/{code}-relecture.md` : il est sauvegardé avec le travail.
+
 ## Votre réponse finale
-Brève, sans le texte du cours : le nombre d'erreurs corrigées, la liste courte des corrections de fond (une ligne chacune), et ce qui reste incertain.
+Cinq lignes au plus, sans le texte du cours : le nombre d'erreurs corrigées (fond et forme), les trois corrections de fond les plus importantes, et ce qui reste incertain. Ajoutez enfin votre code, seul sur une ligne, à la fin du fichier `/home/claude/liturgie/relus.txt`.
