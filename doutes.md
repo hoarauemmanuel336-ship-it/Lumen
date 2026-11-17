@@ -63,3 +63,47 @@
 - Ketteler : discours de la Liebfrauenheide 25 juillet 1869 (de mémoire) ; « mon grand prédécesseur » (mot rapporté) ; Lassalle 1864.
 - Œuvre des cercles fin 1871 ; Harmel « par l'ouvrier et avec lui » ; Union de Fribourg audience 1888 ; Mermillod « exilés de l'ordre chrétien ».
 - De mémoire : Charte du travail 1941 ; Dilexi te préparée par François ; paraphrases LE 19 et RN sur le travail des femmes.
+
+## 92-05-j Jean XXIII
+- Numéros de Mater et magistra selon la version anglaise ; 83, 97, 144, 161 non recoupés. « Fondement, cause et fin » (MM 219) : latin ; le français officiel dit « fondement, but et sujets ».
+- De mémoire : « Mater si, magistra no » (National Review 1961) ; Radini Tedeschi et Ranica 1909 ; Pie XII et la cogestion 1950 ; décret du Saint-Office 1949 ; 17 indépendances 1960 ; Gagarine ; traité de Moscou 1963 ; NYT, conférence 1965, crise de Cuba, cancer septembre 1962, Pavan.
+- Augustin Contre Pétilien I, 29, 31 (diligite homines…). PT 142 « 6 juin 1945 » coquille.
+- Environ 130 liens internes vers ses propres leçons : à alléger.
+
+## 91-02-d La dignité
+- MM 219 (voir ci-dessus). Discours de Jean-Paul II à l'ONU 1995 (n. 5, 6, 8, 11) et 1979 (n. 7, 13) paraphrasés.
+- De mémoire : Simone Weil (L'Enracinement, première phrase) ; Thomas I-II q. 21 a. 4 ; Boèce (définition de la personne).
+- Paraphrases : CEC 369, 1882 ; Libertas ; Noël 1942 ; Pie VI 1791 ; Sublimis Deus 1537 ; PT 96 ; Maritain.
+
+## 92-09-f François
+- FT 64 ; EG 221 (« il y [a] ») ; EG 231-232 ; EG 232.
+- De mémoire : LS publiée 18 juin 2015 ; COP28 ; Foucauld ; FT 87/GS 24, FT 177/LS 189 ; amour élicite/impéré ; Guardini ; lecture patristique du Samaritain ; FT 258 et légitime défense.
+
+## 91-07-a La solidarité
+- QA 88 et 137 paraphrasés d'après l'anglais ; Paul VI 17 mai 1970 et 25 décembre 1975 (italien).
+- Citations recomposées : Compendium 196 ; SRS 40.
+- Paraphrases de mémoire : GS 32 ; SRS 39 ; FT 114. Pesch 1854-1926 ; Abou Dhabi 4 février 2019 ; Pierre Claver ; Kolbe 1941 ; Leroux.
+
+## 92-04-p Pie XII
+- Citations italiennes traduites par le rédacteur (Noël 1942, Noël 1944, juristes 1953, 1er mai 1955) : vérifier que la traduction est présentée comme telle.
+- Exsul familia lue en anglais ; Cabrini 1946 ; « saint Joseph travailleur », 1969 ; Radio Vatican 12 février 1931 ; douze évêques fin octobre 1939 ; vénérable 2009.
+- Noël 1942 et la Shoah : « plusieurs observateurs » sans source précise.
+
+## 92-02-r Léon XIII
+- RN 20 et 42 ; Immortale Dei 36 ; toast d'Alger « adhésion sans arrière-pensée ».
+- De mémoire : nonciature Bruxelles 1843-1846 ; Pérouse 1877-1878 ; Liberatore et Zigliara ; Fourmies 9 morts ; lois de 1874, 1892, 1906, 1886, 1889 ; Spuller 1894 ; syndicats 1887, CFTC 1919 ; Toniolo.
+
+## 93-01-l La famille
+- DUDH art. 16 cité de mémoire. Paraphrases : CEC 2358, 2378, 2383, 2384, 2386 ; QA salaire familial ; CA 48 ; Thomas sur la loi humaine ; LE 19.
+- Faits datés : enfant unique 1980-2015 ; Inde 1970 ; Nuremberg 1935 ; Afrique du Sud 1949-1985 ; Cour suprême 1967 ; canicule 2003 ; Journée des grands-parents 31 janvier 2021 ; bombe démographique 1968. Ecclésiaste 4:12.
+- Recoupement possible avec le sujet famille.societe (bloc morale).
+
+## 92-06-v Vatican II et Paul VI
+- Synode 1971 « dimension constitutive » ; histoire de la rédaction (Cosmao, Torrella 1974).
+- Suenens 4 décembre 1962 ; vote 2 309 contre 75 ; GS 80 seule condamnation.
+- Dates : Humanam progressionem 2016 ; Cor Unum 1971 ; Apostolica sollicitudo 15 septembre 1965 ; Iustitiam et pacem 10 décembre 1976 ; messages ONU 1970 et 1978. Léon XIV « plus jamais la guerre » mai 2025.
+
+## 91-05-o L'option pour les pauvres
+- Traductions personnelles de Puebla, Medellín, lettre de 1986 (italien) : vérifier qu'elles sont signalées comme telles.
+- Dilexi te cité d'après un PDF de secam.org. Aparecida via Dilexi te 99.
+- De mémoire : Puebla 27 janvier-13 février 1979 ; Medellín 24 août-6 septembre 1968 ; CELAM 1955 ; pacte des catacombes 16 novembre 1965 ; Gutiérrez 1971 ; Bergoglio et Aparecida ; Journée des pauvres 19 novembre 2017.

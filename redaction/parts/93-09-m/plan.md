@@ -1,0 +1,19 @@
+# Plan du cours 93-09-m : Les migrations (lettre m)
+
+Question centrale : que dit la foi de l'étranger, et comment concilier le droit de chacun à chercher ailleurs une vie digne, le droit des États à régler l'entrée sur leur sol et les devoirs du migrant ?
+Obstacles du novice : croire que l'Église demande des frontières ouvertes sans condition, ou au contraire que la charité envers l'étranger est affaire privée sans portée sociale ; confondre migrant et réfugié ; confondre intégration et assimilation ; lire Matthieu 25 comme un programme politique tout fait ; ignorer les devoirs du migrant ; croire que l'Église a découvert la question avec François.
+
+Fichiers : 00-ouverture.html, 01 à 11, 99-bilan.html.
+
+1. Abraham, l'émigré de la foi : Genèse 12:1-4, 12:10 (famine), 23:4 (immigré, hôte de passage), 18:1-5 (Mamré), Deutéronome 26:5, Hébreux 11:8-16, Psaumes 39:13 ; hébreu ger / gur, toshav. FAIT
+2. L'Exode et la loi de l'immigré : Genèse 46:3-4, 47:5-6, Exode 1:8-14 (peur de l'étranger), 3:7, 2:22, 12:38 ; Exode 22:20, 23:9 ; Lévitique 19:33-34 ; Deutéronome 10:18-19, 24:14.17.19-22, 27:19, 5:14 ; une seule loi (Lévitique 24:22, Nombres 15:16, Exode 12:49) ; ger / nokri ; prophètes (Jérémie 22:3, Malachie 3:5) ; Ruth 2:10 ; Lévitique 25:23. FAIT
+3. La Sainte Famille en Égypte : Matthieu 2:13-15.19-23 ; Osée 11:1 ; Égypte terre de refuge (1 Rois 11:40) ; Luc 2:7, Jean 1:11, Luc 9:58 ; Exsul familia (lien 92 p) ; Erga migrantes 15 ; chrétiens étrangers et voyageurs : 1 Pierre 2:11, grec paroikos → paroisse, Lettre à Diognète, Éphésiens 2:19, Philippiens 3:20. À FAIRE
+4. « J'étais un étranger et vous m'avez accueilli » : Matthieu 25:31-46 ; grec xenos, synagô ; latin hospes ; « plus petits » et GS 27 ; Matthieu 10:40 ; Hébreux 13:2 ; Luc 24:29 ; hospitalité des premiers chrétiens (Romains 12:13, 1 Timothée 3:2) ; Règle de saint Benoît 53 ; Basile ; Julien ; de la charité personnelle à la charité sociale. À FAIRE
+5. Le droit d'émigrer : fondements (dignité, destination universelle des biens, famille) ; Pie XII (lien) ; Pacem in terris 25 ; double aspect (Benoît XVI 2011) ; Déclaration universelle art. 13 ; quitter / entrer ; causes ; droit de ne pas émigrer (Jean-Paul II 2004, FT 38) ; développement des pays d'origine (CiV 62). À FAIRE
+6. Le droit des États à réguler l'immigration : CEC 2241 ; PT 106 ; Benoît XVI 2011 ; Erga migrantes 29 ; bien commun ; jugement prudentiel ; critères ; limites (JPII 1995) ; deux erreurs ; trafic. À FAIRE
+7. Les devoirs des migrants : CEC 2241 ; Benoît XVI 2011 ; Jérémie 29:4-7 ; une seule loi ; Joseph, Daniel ; Romains 13:7 ; intégration / assimilation / ghetto ; Erga migrantes 42 ; migrants missionnaires (Léon XIV 2025). À FAIRE
+8. Les réfugiés et le droit d'asile : Convention de Genève 1951, protocole 1967, non-refoulement, DUDH 14 ; PT 103-106 ; villes de refuge (Nombres 35) ; Deutéronome 23:16-17 ; Isaïe 16:3-4 ; asile des églises (Augustin, 410) ; Les réfugiés, un défi à la solidarité (1992) ; Accueillir le Christ dans les réfugiés (2013) ; réfugiés de fait, déplacés internes. À FAIRE
+9. La Journée mondiale du migrant et du réfugié : grande émigration italienne, Scalabrini, Cabrini, Pie X 1912 ; lettre du 6 décembre 1914 ; 1915 Amériques ; Exsul familia 1952 ; 1969 ; 1970, 1988, 2017 ; messages (1986) ; 2004 date fixe, 2014 centième, 2019 septembre ; 2025 Léon XIV, 2026 enfants. À FAIRE
+10. L'instruction Erga migrantes caritas Christi : dates, auteurs, titre (2 Corinthiens 5:14), plan (1-11, 12-33, 34-69, 70-88, 89-95, 96-104, 22 articles), signe des temps, accueil, catholiques migrants et rites, œcuménisme, autres religions, quatre points, musulmans, aumôniers, laïcs, structures, article 21. À FAIRE
+11. Les quatre verbes de François : Lampedusa 2013 ; forum du 21 février 2017 ; message du 15 août 2017 (Journée du 14 janvier 2018) ; chaque verbe ; FT 129-132 ; pactes mondiaux 2018 ; Dilexi te 75. À FAIRE
+Bilan : 6 exercices croisés. À FAIRE
