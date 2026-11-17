@@ -287,13 +287,20 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
   /* Un coffre qui ne répond pas ne laisse pas tourner le cercle sans fin :
      au bout de vingt-cinq secondes, le contenu dit qu'il n'a pas pu être
      ouvert. */
-  async function charge(adresse){
+  async function chargeUneFois(adresse){
     const arret=new AbortController(), minuteur=setTimeout(()=>arret.abort(),25000);
     try{
-      const r=await fetch(adresse,{credentials:'same-origin',signal:arret.signal});
-      if(!r.ok)throw new Error(String(r.status));
+      const r=await fetch(adresse,{credentials:'same-origin',cache:'no-cache',signal:arret.signal});
+      if(!r.ok)throw new Error('code '+r.status);
       return await r.text();
     }finally{clearTimeout(minuteur);}
+  }
+  /* Une demande qui échoue (le rechargement de la page peut en couper une
+     au vol) est refaite une fois, une seconde plus tard, avant de dire que
+     le contenu n'a pas pu être ouvert. */
+  async function charge(adresse){
+    try{ return await chargeUneFois(adresse); }
+    catch(e){ await new Promise(r=>setTimeout(r,1000)); return chargeUneFois(adresse); }
   }
   /* ── UN COURS S'OUVRE VITE ──
      Un cours est un gros fichier (plusieurs mégaoctets). Deux choses
@@ -392,7 +399,12 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     catch(e){
       if(OUVERT!==o)return;
       console.warn('étude',e);
-      code='<div style="font-family:Georgia,serif;color:#fff;padding:48px 24px;text-align:center;opacity:.8">Ce contenu n’a pas pu être ouvert. Vérifiez la connexion, puis réessayez.</div>';
+      /* le message dit la raison en petit, et « Réessayer » rouvre le
+         contenu (message lvRecharge) */
+      const raison=String(e&&e.name==='AbortError'?'délai dépassé':(e&&e.message)||'réseau').replace(/[<>&"]/g,'');
+      code='<div style="font-family:Georgia,serif;color:#fff;padding:48px 24px;text-align:center"><p style="opacity:.8;margin:0 0 20px">Ce contenu n’a pas pu être ouvert. Vérifiez la connexion, puis réessayez.</p>'
+        +'<button type="button" onclick="parent.postMessage({lvRecharge:1},\'*\')" style="font:500 16px/1 \'EB Garamond\',Georgia,serif;background:#efe6cf;color:#000;border:0;border-radius:999px;padding:10px 22px;cursor:pointer">Réessayer</button>'
+        +'<p style="opacity:.35;font-size:12px;margin:18px 0 0">('+raison+')</p></div>';
     }
     if(OUVERT!==o)return;
     /* le compte connu, la copie de l'appareil est la sienne */
@@ -506,6 +518,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
   window.addEventListener('message',ev=>{
     const o=OUVERT, d=ev.data;
     if(!o||!o.f||ev.source!==o.f.contentWindow||!d||typeof d!=='object')return;
+    if(d.lvRecharge){ ferme(); if(PARC===o){try{o.f.remove();}catch(_){} PARC=null;} montre(); return; }
     if(typeof d.lvSujet==='string'){ ouvreSujet(d.lvSujet); return; }
     if(typeof d.lvCours==='string'){ ouvreCours(d.lvCours,typeof d.lvCoursAncre==='string'?d.lvCoursAncre:''); return; }
     if('lvSel' in d){ if(typeof qaSelectionCadre==='function')qaSelectionCadre(d.lvSel,o.f,o.titre,o.genre==='cours'?'un cours':'un parcours',o.code,null); return; }
