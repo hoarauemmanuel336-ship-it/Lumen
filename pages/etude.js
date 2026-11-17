@@ -175,7 +175,7 @@ var css='#w .bh.lv-b{display:flex;align-items:center;gap:16px;margin:0;padding:2
 +'#w .lv-dt{margin-bottom:22px}'
 +'#w .lv-cache{display:none!important}'
 +'#w .lv-fin{border-top:1px solid rgba(255,255,255,.09);margin-bottom:28px}'
-+'#w .lv-rep{display:flex;align-items:center;gap:16px;margin:28px 0 0;padding:16px 20px;border:1px solid rgba(255,255,255,.16);clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%);cursor:pointer;text-decoration:none;color:#fff}'
++'#w .lv-rep{display:flex;align-items:center;gap:16px;margin:28px 0 0;padding:16px 20px;border:1px solid rgba(255,255,255,.2);background:#000;cursor:pointer;text-decoration:none;color:#fff}'
 +'#w .lv-rep:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.04)}'
 +'#w .lv-rep[hidden]{display:none}'
 +'#w .lv-rep-l{flex:none;font:700 11px/1 "JetBrains Mono",monospace;letter-spacing:.14em;color:rgba(255,255,255,.5);text-transform:uppercase}'
