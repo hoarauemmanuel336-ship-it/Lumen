@@ -32,4 +32,4 @@ Chaque bloc écrit reçoit sa section dans `contenu/memoriser.json` : une catég
 3. Envoyer les fichiers au coffre par le robot, espèce « cours » (mode d'emploi dans `donnees.md`).
 4. Déposer `cours.json`, le sommaire et `memoriser.json` sur `main`.
 
-Comme tout ce qui change ce que voient les lecteurs, l'envoi et le dépôt attendent le « dépose-le » d'Emmanuel ; un changement de contenu ne demande pas de captures d'écran.
+Comme tout ce qui change ce que voient les lecteurs, l'envoi et le dépôt attendent le « dépose-le » d'Emmanuel, ou celui de l'ami qui l'aide à écrire les cours depuis son propre compte ; un changement de contenu ne demande pas de captures d'écran.

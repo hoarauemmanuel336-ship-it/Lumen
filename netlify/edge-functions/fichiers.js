@@ -11,9 +11,13 @@
      du coffre. Ils gardent l'adresse qu'ils avaient sur le site : leur
      progression, gardée par le navigateur sous cette adresse, reste.
    · /articles/<nom> sert les articles, rangés dans articles/ du coffre.
+   · Un cours ou un article ouvert directement à son adresse (un lecteur
+     venu d'un moteur de recherche, ou le moteur lui-même) reçoit en plus
+     son titre, sa description et un lien vers le site (voir habille).
    Le coffre et sa signature : netlify/serveur/r2.js.
    ============================================================ */
 import { cleValide, demande, adresseSignee, liste, efface, copie, ecrit, etatSecrets } from '../serveur/r2.js';
+import { REFERENCEMENT } from '../savoir/referencement.js';
 
 const PROPRIETAIRE = 'hoarauemmanuel336@gmail.com';
 /* clé publique par nature (la même que dans les pages) : elle sert
@@ -98,6 +102,57 @@ async function sert(req, cle) {
   return new Response(req.method === 'HEAD' ? null : r.body, { status: r.status, headers: h });
 }
 
+/* ── UN COURS OU UN ARTICLE OUVERT À SON ADRESSE ──
+   Étude et Articles demandent leurs fichiers par la page et les posent
+   dans leur cadre : ils les reçoivent tels quels. Ouvert directement à son
+   adresse, le fichier est une page à lui seul, celle que retiennent les
+   moteurs de recherche : sa tête reçoit le titre et la description du
+   référencement (écrits par la fabrication dans netlify/savoir/
+   referencement.js), son adresse canonique, et un lien « Lire sur Lumen
+   Veritatis » vers la page du site où il s'ouvre, pour le lecteur qui
+   arrive d'un moteur de recherche. Le lien ne paraît qu'en dehors d'un
+   cadre. Le reste du fichier passe tel quel. */
+function ouvertSeul(req) {
+  const d = (req.headers.get('sec-fetch-dest') || '').toLowerCase();
+  return d === '' || d === 'document';
+}
+function tete(nom, dossier) {
+  const esc = t => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const cours = dossier === 'cours/';
+  const fiche = (cours ? REFERENCEMENT.cours : REFERENCEMENT.articles)[nom];
+  const adresse = (cours ? '/parcours/cours/' : '/articles/') + encodeURIComponent(nom);
+  const vers = (cours ? '/etude.html#c/' : '/articles.html#a/') + encodeURIComponent(nom);
+  const lien = `<style>#lv-lumen{position:fixed;left:18px;bottom:18px;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:#efe6cf;color:#000;font:500 16px/1 "EB Garamond",Georgia,serif;letter-spacing:.01em;text-decoration:none;box-shadow:0 6px 22px rgba(0,0,0,.55)}#lv-lumen:hover{background:#f6efdc}#lv-lumen svg{flex:none}@media print{#lv-lumen{display:none}}</style>`
+    + `<script>addEventListener('DOMContentLoaded',function(){if(window.top!==window)return;var a=document.createElement('a');a.id='lv-lumen';a.href=${JSON.stringify(vers)};a.innerHTML='<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M7 8h10"/></svg>Lire sur Lumen Veritatis';document.body.appendChild(a);});</script>`;
+  return {
+    titre: fiche ? `<title>${esc(fiche.titre)}</title>` : '',
+    ajout: (fiche ? `<meta name="description" content="${esc(fiche.description)}">` : '')
+      + (REFERENCEMENT.adresse ? `<link rel="canonical" href="${esc(REFERENCEMENT.adresse + adresse)}">` : '')
+      + lien,
+  };
+}
+/* Le titre est remplacé et l'ajout posé avant la fin de la tête ; tant
+   qu'elle n'est pas passée, le texte attend, puis tout file sans arrêt. */
+function habille(octets, nom, dossier) {
+  const { titre, ajout } = tete(nom, dossier);
+  let attente = '', fait = false;
+  const pose = t => {
+    const fin = t.search(/<\/head>/i);
+    if (titre) t = t.slice(0, fin).replace(/<title>[\s\S]*?<\/title>/i, titre) + t.slice(fin);
+    const f = t.search(/<\/head>/i);
+    return t.slice(0, f) + ajout + t.slice(f);
+  };
+  return octets.pipeThrough(new TextDecoderStream()).pipeThrough(new TransformStream({
+    transform(bout, ctl) {
+      if (fait) { ctl.enqueue(bout); return; }
+      attente += bout;
+      if (/<\/head>/i.test(attente)) { ctl.enqueue(pose(attente)); attente = ''; fait = true; }
+      else if (attente.length > 4 * 1024 * 1024) { ctl.enqueue(attente); attente = ''; fait = true; }
+    },
+    flush(ctl) { if (attente) ctl.enqueue(attente); },
+  })).pipeThrough(new TextEncoderStream());
+}
+
 /* ── LES COURS D'ÉTUDE ──
    Un cours tourne dans le cadre d'Étude comme une page du site, sans
    « sandbox » : il garde sa progression dans le navigateur et parle à
@@ -131,16 +186,22 @@ async function sertCours(req, nom, suite, dossier = 'cours/') {
     if (v) h.set(k, v);
   }
   const gz = /gzip/i.test(r.headers.get('content-type') || '');
+  const seul = ouvertSeul(req);
   let corps = req.method === 'HEAD' || r.status === 304 ? null : r.body;
-  if (gz) {
-    h.set('vary', 'accept-encoding');
+  h.set('vary', 'accept-encoding, sec-fetch-dest');
+  if (seul) {
+    /* ouvert à son adresse : le fichier est habillé, donc décompressé ici */
+    h.delete('content-length');
+    if (corps) corps = habille(gz ? corps.pipeThrough(new DecompressionStream('gzip')) : corps, nom, dossier);
+  } else if (gz) {
     if (/\bgzip\b/i.test(req.headers.get('accept-encoding') || '')) h.set('content-encoding', 'gzip');
     else { h.delete('content-length'); if (corps) corps = corps.pipeThrough(new DecompressionStream('gzip')); }
   }
   h.set('content-type', 'text/html; charset=utf-8');
   h.set('x-content-type-options', 'nosniff');
   h.set('cache-control', 'private, no-cache');
-  h.set('x-robots-tag', 'noindex, nofollow');
+  /* moteurs de recherche : l'interrupteur est contenu/referencement.json */
+  if (!REFERENCEMENT.ouvert) h.set('x-robots-tag', 'noindex, nofollow');
   return new Response(corps, { status: r.status, headers: h });
 }
 

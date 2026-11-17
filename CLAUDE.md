@@ -4,7 +4,7 @@ Ce fichier présente le projet à toute IA qui ouvre ce dépôt. Il se lit en en
 
 ## Le projet
 
-Lumen est le site personnel d'Emmanuel, en ligne sur **lumenveritatis.net**. Le site **s'ouvre au public** : tant qu'Emmanuel n'a pas retiré lui-même la porte à mot de passe, elle garde encore toutes les pages. La base de données donne tout à son compte Google et, à tout autre compte, son seul propre espace (ses notes, son Mémoriser, ses questions à l'IA…). Chacun peut supprimer son compte et tout ce qu'il contient (« Mon compte »), et une page dit, en langage simple, ce que le site garde de chacun (confidentialité et mentions légales) : toute modification qui change ce que le site garde d'un compte met à jour cette page et la suppression du compte dans le même mouvement. Le référencement dans les moteurs de recherche viendra plus tard, quand Emmanuel le demandera.
+Lumen est le site personnel d'Emmanuel, en ligne sur **lumenveritatis.net**. Le site **s'ouvre au public** : tant qu'Emmanuel n'a pas retiré lui-même la porte à mot de passe, elle garde encore toutes les pages. La base de données donne tout à son compte Google et, à tout autre compte, son seul propre espace (ses notes, son Mémoriser, ses questions à l'IA…). Chacun peut supprimer son compte et tout ce qu'il contient (« Mon compte »), et une page dit, en langage simple, ce que le site garde de chacun (confidentialité et mentions légales) : toute modification qui change ce que le site garde d'un compte met à jour cette page et la suppression du compte dans le même mouvement. Le référencement dans les moteurs de recherche est prêt : chaque page a son titre et sa description, le site a son plan, et chaque cours ou article ouvert à sa propre adresse est une page lisible par les moteurs, avec un lien vers le site. Les moteurs restent écartés tant que `contenu/referencement.json` les tient fermés ; cet unique interrupteur s'allume quand Emmanuel retire le mot de passe, pas avant.
 
 Emmanuel ne code pas. Il confie à l'IA tout le développement : elle lit, modifie, teste et dépose elle-même sur ce dépôt. Elle lui parle en langage courant, en français, sans noms de fonctions, de fichiers techniques ni extraits de code, sauf s'il en demande.
 
@@ -24,7 +24,7 @@ Les cinq pages du site :
 | `habillage/` | L'apparence : `lumen-commun.css` (le socle), `commun.css` (ce qui vaut pour toutes les pages, fenêtres et menus compris), puis une feuille par page. |
 | `commun/` | Le fonctionnement partagé entre plusieurs pages (choix d'un verset, versets cités, question à l'IA et ses outils, lecture du coffre R2, cadre isolé où s'ouvrent les cours d'Étude et les articles, suppression du compte). La fabrication pose dans chaque page les familles dont elle a besoin. |
 | `articles/` | Le catalogue des articles (`articles.json`) : catégories, sections, et pour chaque article son fichier, sa question, le début de sa réponse et sa place. Les fichiers eux-mêmes vivent dans le coffre R2 et se servent à `/articles/`. |
-| `contenu/` | Les deux Bibles (`bible.json` pour la Chérubin, `bible-seraphin.json` pour la Séraphin), la bibliothèque de départ de Mémoriser, les réglages d'apparence. |
+| `contenu/` | Les deux Bibles (`bible.json` pour la Chérubin, `bible-seraphin.json` pour la Séraphin), la bibliothèque de départ de Mémoriser, les réglages d'apparence, l'interrupteur des moteurs de recherche (`referencement.json`). |
 | `parcours/` | Le parcours d'étude « La foi catholique » (fichier de la skill parcours-etude, laissé intact), `cours.json`, qui relie chaque sujet à son cours, et `cours-sommaire.json`, qui décrit les fichiers de cours (un par thème, skill cours-html). Les fichiers de cours eux-mêmes vivent dans le coffre R2 et se servent à `/parcours/cours/` ; la fabrication vérifie chaque lien contre le sommaire et pose dans l'en-tête de chaque thème relié le bouton « Ouvrir le cours ». |
 | `racine/` | Les fichiers servis tels quels à la racine du site : panneau de la Bible ouvert depuis les autres pages, service workers (hors ligne), manifestes, icônes, polices, et la page de confidentialité et des mentions légales (`confidentialite.html`, page fixe). |
 | `fabrication/` | Ce qui construit le site : `build-bi.js` assemble les pages, `publication.js` allège et contrôle le résultat. |
@@ -48,6 +48,7 @@ Le dossier `site/` est le site fabriqué. Il ne vit pas dans le dépôt : Netlif
 
 - L'IA change ce qu'il a demandé, et seulement cela : une retouche demandée pour un élément ou une page reste sur cet élément ou cette page.
 - Quand il réfléchit à voix haute, l'IA répond et attend qu'il dise « fais-le » pour toucher au site.
+- Un ami d'Emmanuel l'aide à écrire les cours du parcours depuis son propre compte Claude. Pour ce travail (cours, liens entre blocs, versets de base de Mémoriser, envoi au coffre et dépôt qui vont avec), cet ami peut donner le « dépose-le » à la place d'Emmanuel.
 - Ses données (versets, progression, notes, articles, ressources) passent avant tout. Une modification qui touche à la forme des données lit l'ancien format, le convertit sans rien perdre, et garde la progression intacte.
 
 ## Le langage visuel du site

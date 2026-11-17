@@ -22,6 +22,18 @@ const PAGES = 'pages/', RACINE = 'racine/', CONTENU = 'contenu/';
    reste reconnu. */
 const SRC = process.argv[2] || ['accueil.html', 'index__48_.html'].map(f => PAGES + f).find(f => fs.existsSync(f)) || PAGES + 'accueil.html';
 const OUT = process.argv[3] || 'site';
+
+/* ── LES MOTEURS DE RECHERCHE ──
+   contenu/referencement.json dit si le site s'ouvre aux moteurs de
+   recherche (« ouvert ») et son adresse. Fermé, tout le site leur demande
+   de ne rien retenir (balise des pages, robots.txt, en-têtes posés par
+   _headers, par la porte et par le passage du coffre). Ouvert, ces
+   interdictions tombent et robots.txt donne le plan du site. C'est
+   l'unique interrupteur : il s'allume quand Emmanuel retire le mot de
+   passe, pas avant, sinon les moteurs retiendraient la page du mot de
+   passe à la place du site. */
+const REF = JSON.parse(fs.readFileSync(CONTENU + 'referencement.json', 'utf8'));
+const ADRESSE = String(REF.adresse || '').replace(/\/+$/, '');
 const src = fs.readFileSync(SRC, 'utf8');
 const css = src.slice(src.indexOf('<style>') + 7, src.indexOf('</style>')).replace(/—/g, '-');
 
@@ -120,8 +132,8 @@ const UI = {
   fr: {
     html: 'fr',
     notfound_text: "Cette page n'existe pas.",
-    site_desc_home: "La Sainte Bible en français et un outil pour apprendre les versets par cœur, à votre rythme.",
-    t_home: 'Lumen · La Sainte Bible', t_404: 'Page introuvable · Lumen',
+    site_desc_home: "La Bible en deux traductions françaises, un parcours de cours pour découvrir la foi catholique, des articles, une méditation chaque jour et un outil pour apprendre les versets par cœur.",
+    t_home: 'Lumen Veritatis · La foi catholique, la Bible et la méditation du jour', t_404: 'Page introuvable · Lumen Veritatis',
     search_placeholder: 'Rechercher…', search_empty: 'Aucune référence reconnue dans',
   }
 };
@@ -650,10 +662,13 @@ const RECH_JS = `(function(){
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('ouvert'))ferme();});
 })();`;
 
-function page({ lang, title, description, base, main, hab = 'accueil', familles = 'index.html' }) {
+function page({ lang, title, description, base, main, hab = 'accueil', familles = 'index.html', chemin = '' }) {
   const u = UI[lang];
-  /* site privé : aucune page n'est faite pour les moteurs de recherche */
-  const robots = '\n<meta name="robots" content="noindex,nofollow">';
+  /* moteurs de recherche : voir REF, en tête de fichier ; l'adresse
+     canonique dit aux moteurs laquelle retenir quand une page répond à
+     plusieurs (/etude et /etude.html) */
+  const robots = (REF.ouvert ? '' : '\n<meta name="robots" content="noindex,nofollow">')
+    + (chemin ? `\n<link rel="canonical" href="${ADRESSE}${chemin}">` : '');
   return `<!DOCTYPE html>
 <html lang="${u.html}">
 <head>
@@ -757,7 +772,7 @@ function genPaire(spec) {
   const dir = spec.frPath.replace(/[^\/]*$/, '');              // dossier de la page
   const base = '../'.repeat(dir.split('/').filter(Boolean).length);
   ecrire(spec.frFile, page({
-    lang, title: spec.title(lang), description: spec.desc(lang),
+    lang, title: spec.title(lang), description: spec.desc(lang), chemin: spec.frPath,
     base, main: spec.main()
   }));
 }
@@ -782,7 +797,9 @@ ecrire('404.html', page({
 if (fs.existsSync('parcours/la-foi-catholique.html')) {
   const svg = (d, w = 1.6) => `<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
   ecrire('etude.html', page({
-    lang: 'fr', title: 'Étude · Lumen Veritatis', description: 'Parcours d’étude et cours.',
+    lang: 'fr', title: 'Étude · La foi catholique, cours par cours · Lumen Veritatis',
+    description: 'Un parcours complet pour découvrir la foi catholique, de la Révélation à la vie spirituelle, avec un cours pour chaque sujet, des exercices et une autoévaluation.',
+    chemin: '/etude.html',
     base: '/', hab: 'etude', familles: 'etude.html',
     main: `<h1 class="titre-cache">Étude</h1>
   <div class="et-charge" id="et-charge"><span class="lv-roue" role="status" aria-label="Chargement"></span></div>
@@ -804,9 +821,11 @@ if (fs.existsSync(CONTENU + 'liturgie')) {
   for (const f of fs.readdirSync(CONTENU + 'liturgie')) fs.copyFileSync(CONTENU + `liturgie/${f}`, `${OUT}/liturgie/${f}`);
 }
 
-// robots.txt
-/* Site privé : aucun moteur de recherche n'entre, et il n'y a pas de plan du site. */
-ecrire('robots.txt', `User-agent: *\nDisallow: /\n`);
+// robots.txt et en-têtes : l'interrupteur des moteurs de recherche (REF)
+ecrire('robots.txt', REF.ouvert
+  ? `User-agent: *\nAllow: /\n\nSitemap: ${ADRESSE}/sitemap.xml\n`
+  : `User-agent: *\nDisallow: /\n`);
+if (!REF.ouvert) ecrire('_headers', '/*\n  X-Robots-Tag: noindex, nofollow\n');
 
 // les anciennes adresses (bibliothèque, article, à propos, /en/, Ressources) retombent sur l'accueil, en 301
 ecrire('_redirects', ['/bibliotheque/*  /  301', '/article/*  /  301', '/a-propos/*  /  301', '/en/*  /  301', '/ressources.html  /  301'].join('\n') + '\n');
@@ -923,7 +942,9 @@ if (fs.existsSync(PAGES + 'memoriser.html')) {
   }
   const svg = (d, w = 1.6) => `<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
   ecrire('articles.html', page({
-    lang: 'fr', title: 'Articles · Lumen Veritatis', description: 'Articles de théologie catholique, accessibles aux débutants.',
+    lang: 'fr', title: 'Articles · Questions sur la foi catholique · Lumen Veritatis',
+    description: 'Des questions sur la foi catholique et leurs réponses, claires pour qui découvre le sujet, utiles pour qui veut l’approfondir.',
+    chemin: '/articles.html',
     base: '/', hab: 'etude articles', familles: 'articles.html',
     main: `<div class="art-page">
     <div class="fil" id="fil"></div>
@@ -1407,6 +1428,64 @@ function poseVersSeraphin(livre) {
   }
 }
 
+
+/* ── RÉFÉRENCEMENT : titres des cours et des articles, plan du site ──
+   Les cours et les articles vivent dans le coffre et s'ouvrent dans un
+   cadre ; pour les moteurs de recherche, chacun est aussi une page à son
+   adresse (/parcours/cours/<fichier>, /articles/<fichier>). Le passage du
+   coffre (netlify/edge-functions/fichiers.js) leur donne alors un titre,
+   une description et un lien vers le site, tirés d'ici :
+   · un cours : le titre de son thème, et la première phrase de
+     l'explication du thème dans le parcours ;
+   · un article : sa question et son extrait, dans le catalogue.
+   La fabrication écrit ces textes dans un module que lit le passage
+   (Netlify l'assemble après la fabrication), puis le plan du site. */
+{
+  const propre = t => String(t || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+  const coupe = (t, n = 160) => {
+    t = propre(t);
+    if (t.length <= n) return t;
+    t = t.slice(0, n - 1);
+    return t.slice(0, t.lastIndexOf(' ')).replace(/[\s,;:·–-]+$/, '') + '…';
+  };
+  const ref = { ouvert: !!REF.ouvert, adresse: ADRESSE, cours: {}, articles: {} };
+  if (fs.existsSync('parcours/la-foi-catholique.html')) {
+    const parcours = fs.readFileSync('parcours/la-foi-catholique.html', 'utf8');
+    const liens = JSON.parse(fs.readFileSync('parcours/cours.json', 'utf8'));
+    const sommaire = JSON.parse(fs.readFileSync('parcours/cours-sommaire.json', 'utf8'));
+    /* le thème de chaque sujet, avec la première phrase de son explication */
+    const themeDe = {};
+    for (const t of parcours.split(/(?=<theme\s)/).slice(1)) {
+      const tete = t.match(/^<theme[^>]*titre="([^"]*)"/);
+      if (!tete) continue;
+      const ex = propre((t.match(/<explication>([\s\S]*?)<\/explication>/) || ['', ''])[1]);
+      const phrase = (ex.match(/^[\s\S]*?[.!?](?=\s|$)/) || [ex])[0];
+      for (const m of t.matchAll(/<sujet\s+cle="([^"]+)"/g)) themeDe[m[1]] = { titre: tete[1], phrase };
+    }
+    for (const [cle, cible] of Object.entries(liens)) {
+      const f = String(cible).split('#')[0];
+      if (!sommaire[f] || ref.cours[f] || !themeDe[cle]) continue;
+      const th = themeDe[cle];
+      ref.cours[f] = {
+        titre: th.titre + ' · Cours de foi catholique · Lumen Veritatis',
+        description: coupe(th.phrase.replace(/^On y apprend\s+/i, 'Ce cours vous apprend ')),
+      };
+    }
+  }
+  const CAT = JSON.parse(fs.readFileSync('articles/articles.json', 'utf8'));
+  for (const a of CAT.articles || []) {
+    ref.articles[a.fichier] = { titre: propre(a.question) + ' · Lumen Veritatis', description: coupe(a.extrait || a.question) };
+  }
+  fs.writeFileSync('netlify/savoir/referencement.js',
+    '/* Fichier écrit par la fabrication (fabrication/build-bi.js) : ne pas le modifier à la main. */\n'
+    + 'export const REFERENCEMENT = ' + JSON.stringify(ref) + ';\n');
+  const adresses = ['/', '/bible.html', '/memoriser.html', '/etude.html', '/articles.html', '/confidentialite.html',
+    ...Object.keys(ref.cours).map(f => '/parcours/cours/' + encodeURIComponent(f)),
+    ...Object.keys(ref.articles).map(f => '/articles/' + encodeURIComponent(f))];
+  ecrire('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    + adresses.map(a => `  <url><loc>${ADRESSE}${a}</loc></url>`).join('\n') + '\n</urlset>\n');
+  console.log(`Référencement : ${Object.keys(ref.cours).length} fichiers de cours, ${Object.keys(ref.articles).length} articles, plan du site (${adresses.length} adresses), moteurs ${REF.ouvert ? 'ouverts' : 'fermés'}`);
+}
 
 /* Garde-fou : la barre et le pied sont identiques sur toutes les pages. La
    fabrication échoue si l'un d'eux dérive. */

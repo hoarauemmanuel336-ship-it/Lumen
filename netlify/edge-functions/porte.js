@@ -8,6 +8,8 @@
    et chaque page ouverte prolonge ce délai.
    ============================================================ */
 
+import { REFERENCEMENT } from '../savoir/referencement.js';
+
 const COOKIE = 'lumen_cle';
 const DUREE = 60 * 60 * 24 * 365;
 
@@ -131,7 +133,8 @@ export default async (request, context) => {
   if (egal(lireCookie(request, COOKIE), attendu)) {
     const rep = await context.next();
     const r = new Response(rep.body, rep);
-    r.headers.set('x-robots-tag', 'noindex, nofollow');
+    /* moteurs de recherche : l'interrupteur est contenu/referencement.json */
+    if (!REFERENCEMENT.ouvert) r.headers.set('x-robots-tag', 'noindex, nofollow');
     if ((request.headers.get('accept') || '').includes('text/html')) {
       r.headers.append('set-cookie', poseCookie(attendu, DUREE));
     }

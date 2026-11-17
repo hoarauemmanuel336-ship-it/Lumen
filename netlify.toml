@@ -51,6 +51,9 @@
 # Site privé (26/09) : la porte à mot de passe est dans
 # netlify/edge-functions/porte.js, le mot de passe dans la variable
 # LUMEN_MOT_DE_PASSE (Netlify → Site configuration → Environment variables).
+# Ce que le site dit aux moteurs de recherche ne se règle pas ici : la
+# fabrication pose l'en-tête qui les écarte (fichier _headers) tant que
+# contenu/referencement.json les tient fermés.
 
 # ── En-têtes de sécurité, sur tout le site (05/09) ──
 # nosniff : un fichier n'est jamais interprété comme autre chose que son type.
@@ -64,4 +67,3 @@
     X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    X-Robots-Tag = "noindex, nofollow"
