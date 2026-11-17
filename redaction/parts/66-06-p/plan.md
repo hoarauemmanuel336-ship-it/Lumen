@@ -1,5 +1,7 @@
 # Plan du cours 66-06-p « La piété populaire »
 
+ÉTAT : terminé, livré dans redaction/66-06-p.html (12 leçons + bilan).
+
 Question centrale : quelle place l'Église donne-t-elle aux dévotions du peuple chrétien, à côté de la liturgie, et comment les juge-t-elle ?
 Obstacles du novice : croire que la piété populaire est une « liturgie de seconde zone » ou au contraire la même chose que la liturgie ; la mépriser comme superstition ou l'idolâtrer ; ignorer qu'elle est facultative ; confondre signe et talisman.
 

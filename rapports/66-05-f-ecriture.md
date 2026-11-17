@@ -1,0 +1,13 @@
+# 66-05-f · Les funérailles chrétiennes · rapport d'écriture
+
+Fichier livré : /home/claude/liturgie/redaction/66-05-f.html (lettre f, 12 leçons, 81 exercices : 74 de leçon + 7 au bilan ; 75 citations bibliques, toutes contrôlées sur la Chérubin). Parties : redaction/parts/66-05-f/ (plan.md, 00-ouverture, 01 à 12, 99-bilan).
+
+Plan (toute la commande traitée) : 1 sens (mystère pascal, prière pour le défunt, trois fins du canon 1176 § 2) ; 2 Antiquité (inhumation, cimetière « dortoir », catacombes, premiers rites, dies natalis, refrigerium) ; 3 Ordo exsequiarum 1969 (rite de 1614, SC 81-82, praenotanda, trois types, quatre moments, ministres et laïcs, livres français) ; 4 veillée, levée du corps et accueil à l'église ; 5 messe des funérailles (PGMR 379-385) et célébration de la Parole sans messe, messe célébrée ensuite ; 6 dernier adieu (sens, déroulement, eau, encens, Subvenite, In paradisum, ancienne absoute) ; 7 cimetière, bénédiction de la tombe, inhumation privilégiée (canon 1176 § 3, raisons d'Ad resurgendum 3) ; 8 crémation et Piam et constantem (1886, 1917, 1963, 1969, 1983, CEC 2301) ; 9 Ad resurgendum cum Christo et conservation des cendres, réponse du DDF de décembre 2023 ; 10 funérailles d'enfants (baptisés, canon 1183 § 2, deuil périnatal) ; 11 refus des funérailles (canons 1176 § 1, 1183-1185, raisons, changements depuis 1917, CEC 2282-2283) ; 12 prière après les funérailles (PGMR 381, offrande de messe, jours de mémoire, trentaine grégorienne, 2 novembre).
+
+Choix : liens vers 75 (préparation à la mort, la mort), 76 (purgatoire, limbes, ciel), 68-s (enfants morts sans baptême), 72-v (viatique), 71-i (indulgences), 70-s (sacrifice de la messe), 63 (notion de liturgie, mystère pascal, livres, lex orandi), #sujet:communion-saints.communion, et dans le fichier #ouverture-s, -p, -l. Ce que 75 et 76 développent (triple but et deuil, suffrages, Requiem aeternam, limbes) n'est que rappelé d'une phrase avec lien. Pas de zone libre.
+
+Contrôle : il ne reste que 18 signalements de tutoiement, tous faux (traductions de prières citées, Subvenite, In paradisum, Non intres ; mot « ton » au sens de tonalité). Contrôle des liens : 0 à revoir. Assemblage d'essai réussi (1 cours, 12 leçons).
+
+Humaniser : passe faite sur tout le texte (contrastes « pas X, mais Y » réduits à ceux qui corrigent une erreur réelle, formule répétée « La question de départ trouve ici sa réponse » remplacée partout, chutes retirées, annonces de place remplacées par des liens simples).
+
+Incertitudes : voir doutes.md, section 66-05-f (citations de vatican.va obtenues par extraits courts ; plusieurs faits historiques et rubriques de mémoire).
