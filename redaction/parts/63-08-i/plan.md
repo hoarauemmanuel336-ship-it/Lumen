@@ -1,0 +1,19 @@
+# 63-08-i · Les lieux de la célébration (lettre i)
+
+Question centrale : pourquoi l'Église célèbre-t-elle dans des lieux consacrés, et que dit chacun des lieux de l'église (autel, ambon, siège, baptistère, tabernacle, lieu de la pénitence, orientation) du mystère qui s'y célèbre ?
+Obstacles du novice : « Dieu est partout, à quoi bon des églises ? » ; confondre église et Église ; croire que l'autel n'est qu'une table ou qu'un meuble ; ignorer pourquoi des reliques ; confondre ambon et pupitre ; confondre siège et trône ; croire que la messe « face au peuple » est obligatoire ou que l'autre forme est interdite.
+
+Leçons (10) :
+1. L'église, maison de Dieu et image de l'Église : culte en esprit et vérité (Jean 4), le Christ vrai temple (Jean 2), pierres vivantes (1 Pierre 2:4-5, Éphésiens 2:19-22), pourquoi bâtir (CEC 1179-1181, can. 1214), mots église / ekklesia / kyriakon, église, oratoire, chapelle, cathédrale, basilique ; seuil et Jérusalem céleste (CEC 1186, Apocalypse 21).
+2. La dédicace d'une église et son rite : précédents bibliques (Jacob, Salomon, Maccabées, Jean 10:22), histoire (Tyr vers 315, Jérusalem 335, pape Vigile, Panthéon), rite de 1977 (Ordo dedicationis, 29 mai 1977) pas à pas, sens des gestes, eucharistie rite principal et seul nécessaire ; dédicace et bénédiction (can. 1205-1217), titulaire, anniversaire (solennité), Latran 9 novembre.
+3. L'autel, signe du Christ, lieu du sacrifice, table du Seigneur : autels de l'AT, « l'autel, c'est le Christ » (Ordo IV, CEC 1383 Ambroise), CEC 1182, Hébreux 13:10, table (1 Corinthiens 10), unité des deux aspects, honneurs (baiser, encens, nappe), unicité, centre, réservé au culte (can. 1239 §1).
+4. L'autel fixe et les reliques des martyrs : fixe/mobile (can. 1235-1237, PGMR 298, 301), pierre ; Apocalypse 6:9 ; tombeaux des martyrs ; Ambroise 386 ; Nicée II 787 ; pierre d'autel, antimension ; normes actuelles (taille, authenticité, sous l'autel, PGMR 302) ; sens : sacrifice des membres et de la Tête ; can. 1239 §2.
+5. L'ambon, table de la Parole : CEC 1184 ; présence du Christ dans la Parole ; Néhémie 8 ; synagogue (Luc 4) ; mot grec ; ambons anciens, jubé, chaire ; PGMR 309 ; qui y monte ; deux tables (Dei Verbum 21) ; harmonie autel-ambon.
+6. Le siège du célébrant et la cathèdre de l'évêque : s'asseoir pour présider (Matthieu 23:2, Luc 4:20) ; PGMR 310, éviter le trône ; ce qui se fait au siège ; cathèdre (Cérémonial des évêques), cathédrale ; SC 41 ; Ignace ; chaire de Pierre (22 février), Latran ; prise de possession.
+7. Le baptistère et les fonts baptismaux : CEC 1185 ; baptistères anciens (Doura, Latran, Poitiers, Fréjus), octogone et huitième jour, cuve à degrés, tombeau et mère (Cyrille) ; place près de l'entrée ; normes (can. 858, Rituel, n. 25) ; cierge pascal ; bénitiers.
+8. Le tabernacle et la réserve eucharistique : CEC 1379 ; mot tente (Jean 1:14) ; formes successives (armoire, colombe, édicule, Latran IV 1215, Giberti, Borromée, Rituel 1614) ; normes (can. 934-940, 938) ; place (PGMR 314-315, Sacramentum caritatis 69, Cérémonial n. 49) ; huiles saintes.
+9. Le lieu de la pénitence et le confessionnal : CEC 1185 ; pénitence publique et lieux ; pénitence privée, prêtre assis ; Latran IV ; Borromée (1577) et le confessionnal ; Rituel 1614 ; can. 964 ; Misericordia Dei 9 (2002), réponse 7 juillet 1998 ; ce que le lieu protège.
+10. L'orientation de la prière vers l'Orient : Écriture (Malachie 3:20, Luc 1:78, Matthieu 24:27, Ézéchiel 43) ; Pères (Tertullien, Origène, Basile, Augustin, Damascène) ; églises orientées, basiliques romaines ; ad orientem et versus populum ; Inter oecumenici 91 (1964), PGMR 299, réponse du 25 septembre 2000 ; Ratzinger (2000), croix au centre ; Sarah et Lombardi (juillet 2016) ; ce qui est permanent.
+Bilan : 6 exercices croisés.
+
+État : voir les fichiers 00-ouverture.html, 01.html … 10.html, 99-bilan.html.

@@ -18,4 +18,4 @@ Leçons (fichiers 01 à 12, puis 99-bilan) :
 12. La garde du patrimoine : SC 123, 126 ; can. 1189, 1190, 1220, 1222, 1283 ; organes du Saint-Siège ; restaurer (Viollet-le-Duc, Charte de Venise) ; Notre-Dame 2019-2024 ; églises désaffectées (2018) ; l'usage vivant.
 Bilan : 6 exercices croisés.
 
-État : (mis à jour au fil de l'écriture)
+État : 00 à 05 écrits.
