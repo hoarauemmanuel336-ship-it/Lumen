@@ -17,3 +17,5 @@ Fichiers : 00-ouverture.html (cours + introduction), 01..11.html, 99-bilan.html.
 10. Le paradigme technocratique — rappel LS (lien 92-09-f) ; pourquoi une idéologie (neutralité prétendue, vrai = faisable CV 70, croissance illimitée LS 106, tout résoudre LS 109, domination LS 108) ; racines (Guardini, Paul VI, CV 14) ; formes actuelles (LD 20-24, IA, homme sans limite) ; réponse (CV 69-70, Gn 2:15, lien #ouverture-o).
 11. Discerner les mouvements historiques — PT 158-160 (erreur/errant, doctrine/mouvement, prudence) ; OA 30-35 (courants socialistes, niveaux du marxisme, « illusoire et dangereux », renouveau libéral) ; cohérence avec DR 58 ; critères ; application aujourd'hui.
 Bilan : 6 exercices croisés.
+
+ÉTAT : terminé. 11 leçons + bilan écrits, humanisés, réunis dans redaction/93-04-i.html ; contrôle propre (seul « avancés » signalé, dans une citation de CA 42) ; assemblage d'essai réussi.

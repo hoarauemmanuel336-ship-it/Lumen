@@ -41,6 +41,18 @@ CATEGORIES = [
   ('Luc 10:37', "*Fratelli tutti* (2020) fait de la parabole du bon Samaritain la clé de toute l’encyclique. L’ordre de Jésus déplace la question : on ne demande plus qui est mon prochain, on se fait le prochain de celui qui souffre."),
   ('Matthieu 13:52', "Jean-Paul II applique cette parole à la doctrine sociale au début de *Centesimus annus* (1991) : elle garde ses principes et les éclaire devant les « choses nouvelles » de chaque époque. C’est la loi de tout le corpus, de *Rerum novarum* à nos jours."),
  ]),
+ ('base-societe', 'Les domaines de la vie sociale', [
+  ('Genèse 2:24', "La famille naît de l’union stable d’un homme et d’une femme. L’Église en fait la « cellule première et vitale de la société » (*Familiaris consortio* 42) : la société se construit à partir d’elle, et elle lui doit protection."),
+  ('Genèse 2:15', "Dieu confie le jardin à l’homme pour le cultiver et le garder, avant toute faute : le travail fait partie de sa vocation. *Laudato si’* 67 lit dans ces deux verbes une relation de réciprocité responsable entre l’homme et la nature."),
+  ('Matthieu 6:24', "Jésus présente l’argent comme un maître qui dispute à Dieu le cœur de l’homme. La doctrine sociale en tire que l’économie doit servir la personne, et François dénonce une « nouvelle idolâtrie de l’argent » (*Evangelii gaudium* 55)."),
+  ('Matthieu 22:21', "Jésus distingue ce qui revient à César et ce qui revient à Dieu. L’Église en tire l’autonomie de la communauté politique et de l’Église, chacune dans son domaine (*Gaudium et spes* 76), et la limite de tout pouvoir humain."),
+  ('Actes 5:29', "Devant le Sanhédrin qui leur défend de prêcher, Pierre et les apôtres posent la limite de toute autorité humaine. Le Catéchisme cite ce verset à propos du refus d’obéir à un ordre contraire à la loi de Dieu (n. 2242)."),
+  ('Deutéronome 6:6-7', "Moïse confie aux parents la transmission de la foi, à la maison comme en chemin. L’Église enseigne que les parents sont les premiers et principaux éducateurs de leurs enfants (*Gravissimum educationis* 3), un droit que l’État doit respecter et soutenir."),
+  ('Actes 17:26', "À Athènes, Paul affirme que tout le genre humain vient d’un seul homme. C’est le fondement de l’unité de la famille humaine, que le concile rappelle en ouvrant *Nostra aetate*, et de tout l’enseignement de l’Église sur la communauté des nations."),
+  ('Lévitique 19:34', "La Loi demande d’aimer l’immigré comme soi-même, parce qu’Israël a été étranger en Égypte. La doctrine sociale y enracine le devoir d’accueil, que François résume en quatre verbes : accueillir, protéger, promouvoir, intégrer."),
+  ('Luc 12:15', "La vie ne dépend pas de l’abondance des biens. *Laudato si’* présente la sobriété, vécue librement, comme une libération (n. 223) : elle délivre de la course à la consommation, qui épuise la terre et oublie les pauvres."),
+  ('Isaïe 2:4', "Le prophète annonce le jour où les armes deviendront des outils de travail. Les papes s’en inspirent quand ils demandent le désarmement, et Paul VI le disait à l’ONU le 4 octobre 1965 : « Jamais plus la guerre ! »"),
+ ]),
 ]
 
 def categories():
