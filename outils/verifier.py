@@ -107,6 +107,8 @@ def verifier(chemin):
     for m in re.finditer(r'[—–]', t):
         ctx = t[max(0, m.start() - 40):m.end() + 40].replace('\n', ' ')
         pb.append((ligne(m.start()), 'TIRET', ctx))
+    for m in re.finditer(r"(?i)(comme le montrer|le montrera|nous y reviendr|on y reviendra|on le verra|nous le verrons|nous verrons|verra plus loin|déjà été cité|déjà cité|présenté ailleurs|comme on l.a vu)", t):
+        pb.append((ligne(m.start()), 'ANNONCE OU RAPPEL DE PLACE', t[max(0, m.start() - 60):m.end() + 40].replace('\n', ' ')))
     for mot in ['copier', 'copiez', 'enregistrer', 'enregistrez', 'débutant', 'avancés']:
         for m in re.finditer(mot, t, re.I):
             pb.append((ligne(m.start()), 'MOT À ÉVITER', t[max(0, m.start() - 50):m.end() + 50].replace('\n', ' ')))
