@@ -22,4 +22,4 @@ Liens prévus : #ouverture-l (pouvoir de remettre les péchés, Jn 20, Trente d�
 Bilan : 6 exercices croisés.
 
 ## État
-(à mettre à jour) 
+Leçons 1 à 10 écrites (01.html à 10.html).
