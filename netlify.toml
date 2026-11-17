@@ -33,6 +33,14 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Les polices des cours : lues par le cadre isolé d'Étude, qui n'a pas
+# l'origine du site, d'où l'accès ouvert à toute origine.
+[[headers]]
+  for = "/polices-cours/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
 [[headers]]
   for = "/site-sw.js"
   [headers.values]

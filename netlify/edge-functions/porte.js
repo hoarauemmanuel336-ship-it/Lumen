@@ -13,7 +13,8 @@ import { REFERENCEMENT } from '../savoir/referencement.js';
 const COOKIE = 'lumen_cle';
 const DUREE = 60 * 60 * 24 * 365;
 
-/* Ce qui reste servi sans mot de passe : robots.txt, les icônes et
+/* Ce qui reste servi sans mot de passe : robots.txt, les icônes, les
+   polices des cours (le cadre isolé d'Étude les demande sans cookie) et
    les manifestes (le navigateur les demande sans cookie pour installer
    l'application sur l'écran d'accueil ; ils ne contiennent rien).
    La fabrique de la méditation est appelée par l'horloge du site, sans
@@ -24,6 +25,7 @@ function libre(p) {
     || p === '/manifest.webmanifest'
     || p === '/memoriser-manifest.webmanifest'
     || p.startsWith('/icones/')
+    || p.startsWith('/polices-cours/')
     || /^\/[a-z0-9-]+\.png$/i.test(p);
 }
 

@@ -810,7 +810,9 @@ if (fs.existsSync('parcours/la-foi-catholique.html')) {
   </div>
   <script>document.body.classList.add('plein');</script>
   <script>const LIENS_COURS=${JSON.stringify(JSON.parse(fs.readFileSync('parcours/cours.json', 'utf8'))).replace(/</g, '\\u003c')};
-  const SAIS_COURS=${JSON.stringify(Object.fromEntries(Object.entries(JSON.parse(fs.readFileSync('parcours/cours-sommaire.json', 'utf8'))).map(([f, d]) => [f, d.sais || {}])))};</script>
+  const SAIS_COURS=${JSON.stringify(Object.fromEntries(Object.entries(JSON.parse(fs.readFileSync('parcours/cours-sommaire.json', 'utf8'))).map(([f, d]) => [f, d.sais || {}])))};
+  const EMPREINTES_COURS=${JSON.stringify(Object.fromEntries(Object.entries(JSON.parse(fs.readFileSync('parcours/cours-sommaire.json', 'utf8'))).map(([f, d]) => [f, String(d.empreinte || '').slice(0, 16)])))};
+  const POLICES_COURS=${JSON.stringify(fs.existsSync(RACINE + 'polices-cours') ? fs.readdirSync(RACINE + 'polices-cours').map(f => f.replace(/\.woff2$/, '')) : [])};</script>
   <script>${fs.readFileSync(PAGES + 'etude.js', 'utf8')}</script>`
   }));
 }
@@ -986,6 +988,17 @@ if (fs.existsSync(RACINE + 'memoriser-sw.js')) {
 if (fs.existsSync(RACINE + 'polices')) {
   fs.mkdirSync(`${OUT}/polices`, { recursive: true });
   for (const f of fs.readdirSync(RACINE + 'polices')) fs.copyFileSync(RACINE + `polices/${f}`, `${OUT}/polices/${f}`);
+}
+/* Les polices des cours d'Étude : les fichiers mêmes que chaque cours
+   embarque, sortis une fois pour toutes (nommés d'après leur empreinte).
+   Étude remplace dans un cours chaque police reconnue par son adresse ici,
+   pour qu'un cours ne transporte plus ses polices à chaque ouverture ;
+   l'affichage reste le même, octet pour octet. Le cadre du cours est
+   isolé : ces fichiers se servent sans mot de passe et à toute origine
+   (porte.js, netlify.toml). */
+if (fs.existsSync(RACINE + 'polices-cours')) {
+  fs.mkdirSync(`${OUT}/polices-cours`, { recursive: true });
+  for (const f of fs.readdirSync(RACINE + 'polices-cours')) fs.copyFileSync(RACINE + `polices-cours/${f}`, `${OUT}/polices-cours/${f}`);
 }
 if (fs.existsSync(RACINE + 'icones')) {
   fs.mkdirSync(`${OUT}/icones`, { recursive: true });

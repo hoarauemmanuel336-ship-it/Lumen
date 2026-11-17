@@ -48,7 +48,7 @@
      connecte sur l'appareil les reprend, puis elles s'effacent. */
   function reprendAnciennes(uid){
     try{
-      const re=/^lv_etu_((?:etat|pos|prog|taille|blocs)(?:maj)?_.+)$/, cles=[];
+      const re=/^lv_etu_((?:etat|pos|prog|taille|blocs|dernier)(?:maj)?_.+)$/, cles=[];
       for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(re.test(k))cles.push(k);}
       cles.forEach(k=>{
         const n='lv_etu_'+uid+'_'+re.exec(k)[1];
@@ -83,7 +83,7 @@
       return Promise.all(ids.map(id=>lecDoc(id).get().then(sn=>{
         if(!sn.exists)return;
         const d=sn.data()||{};
-        ['etat','pos','prog','taille','blocs'].forEach(q=>{
+        ['etat','pos','prog','taille','blocs','dernier'].forEach(q=>{
           const m=+d[q+'Maj']||0;
           if(typeof d[q]==='string'&&m>lMaj(q,id))lPose(q,id,d[q],m);
         });
@@ -149,11 +149,12 @@
      l'explication du bloc. Les blocs ouverts sont gardés comme la place de
      lecture (message lvBlocs, valeur « blocs ») et rendus avant elle
      (lvBlocsOuverts), pour que la place retombe au même endroit. Un lien ou
-     un saut vers un thème ouvre d'abord son bloc. Le script passe en tête du
+     un saut vers un thème ouvre d'abord son bloc. Au-dessus des blocs, « Reprendre »
+     rouvre le dernier cours ouvert (message lvReprise, voir reprise). Le script passe en tête du
      document, avant le moteur du parcours, pour entendre ces messages le
      premier. Le fichier du parcours reste tel quel. */
   const REPLI_BLOCS='<scr'+'ipt>'+String.raw`(function(){
-var OUV={},PRET=false,ENVOI=false;
+var OUV={},PRET=false,REP=null;
 var css='#w .bh.lv-b{display:flex;align-items:center;gap:16px;margin:0;padding:22px 12px 22px 12px;border-top:1px solid rgba(255,255,255,.09);cursor:pointer;-webkit-user-select:none;user-select:none}'
 +'#w .bh.lv-b.lv-premier{margin-top:36px}'
 +'#w .bh.lv-b:hover{background:rgb(var(--r) / .07)}'
@@ -174,7 +175,13 @@ var css='#w .bh.lv-b{display:flex;align-items:center;gap:16px;margin:0;padding:2
 +'#w .lv-dt{margin-bottom:22px}'
 +'#w .lv-cache{display:none!important}'
 +'#w .lv-fin{border-top:1px solid rgba(255,255,255,.09);margin-bottom:28px}'
-+'@media (max-width:640px){#w .lv-dans{margin-left:14px;padding-left:10px}#w .bh.lv-b{gap:12px;padding:18px 6px}#w .bh.lv-b .bh-n{font-size:23px}#w .lv-bc{display:none}}';
++'#w .lv-rep{display:flex;align-items:center;gap:16px;margin:28px 0 0;padding:16px 20px;border:1px solid rgba(255,255,255,.16);clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%);cursor:pointer;text-decoration:none;color:#fff}'
++'#w .lv-rep:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.04)}'
++'#w .lv-rep[hidden]{display:none}'
++'#w .lv-rep-l{flex:none;font:700 11px/1 "JetBrains Mono",monospace;letter-spacing:.14em;color:rgba(255,255,255,.5);text-transform:uppercase}'
++'#w .lv-rep-t{flex:1;min-width:0;font:600 20px/1.3 Inter,"Helvetica Neue",Arial,sans-serif}'
++'#w .lv-rep-v{flex:none;font:400 22px/1 "JetBrains Mono",monospace;color:rgba(255,255,255,.6)}'
++'@media (max-width:640px){#w .lv-rep{flex-wrap:wrap;gap:8px 12px;padding:14px 16px}#w .lv-rep-l{flex-basis:100%}#w .lv-rep-t{font-size:18px}#w .lv-dans{margin-left:14px;padding-left:10px}#w .bh.lv-b{gap:12px;padding:18px 6px}#w .bh.lv-b .bh-n{font-size:23px}#w .lv-bc{display:none}}';
 var st=document.createElement('style');st.textContent=css;(document.head||document.documentElement).appendChild(st);
 function blocs(){var W=document.querySelector('#w');if(!W)return [];var L=[],b=null;
 [].forEach.call(W.children,function(e){if(e.classList.contains('bh')){b={h:e,c:[]};L.push(b);}else if(b&&(e.classList.contains('th')||(e.classList.contains('xw')&&e.classList.contains('bp'))))b.c.push(e);});return L;}
@@ -190,7 +197,9 @@ var c=document.createElement('span');c.className='lv-bc';c.textContent=nb+(nb>1?
 var v=document.createElement('span');v.className='lv-bv';v.textContent='›';h.appendChild(v);});
 var dern=L[L.length-1],z=dern.c[dern.c.length-1];
 if(z&&!document.querySelector('#w .lv-fin')){var f=document.createElement('div');f.className='lv-fin';z.parentNode.insertBefore(f,z.nextSibling);}
-PRET=true;applique();return true;}
+if(!document.querySelector('#w .lv-rep')){var R=document.createElement('a');R.className='lv-rep';R.href='#';R.hidden=true;R.innerHTML='<span class="lv-rep-l">Reprendre</span><span class="lv-rep-t"></span><span class="lv-rep-v">→</span>';L[0].h.parentNode.insertBefore(R,L[0].h);R.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();if(REP)try{parent.postMessage({lvCours:REP.f},'*');}catch(_){}},true);}
+PRET=true;applique();montreReprise();return true;}
+function montreReprise(){var R=document.querySelector('#w .lv-rep');if(!R)return;R.hidden=!REP;if(REP)R.querySelector('.lv-rep-t').textContent=REP.t;}
 function ouvreVers(el){if(!el)return;var L=blocs(),ch=false;L.forEach(function(b,i){if(b.h===el||b.c.some(function(c){return c===el||c.contains(el);})){if(!OUV[i]){OUV[i]=true;ch=true;}}});if(ch){applique();envoie();}}
 /* un clic sur l'en-tête d'un bloc l'ouvre ou le ferme ; le + garde son rôle : déplier l'explication du bloc */
 document.addEventListener('click',function(ev){var h=ev.target.closest&&ev.target.closest('#w .bh.lv-b');if(!h)return;
@@ -201,7 +210,8 @@ document.addEventListener('keydown',function(ev){if(ev.key!=='Enter'&&ev.key!=='
 document.addEventListener('click',function(ev){var a=ev.target.closest&&ev.target.closest('a[href^="#"]');if(!a)return;try{ouvreVers(document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1))));}catch(_){}},true);
 window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==parent||!d||typeof d!=='object')return;
 if(Array.isArray(d.lvBlocsOuverts)){OUV={};d.lvBlocsOuverts.forEach(function(i){if(typeof i==='number')OUV[i]=true;});if(PRET)applique();}
-if(typeof d.lvVa==='string'){ouvreVers(document.getElementById(d.lvVa));}});
+if(typeof d.lvVa==='string'){ouvreVers(document.getElementById(d.lvVa));}
+if('lvReprise' in d){var x=d.lvReprise;REP=x&&typeof x.f==='string'&&typeof x.t==='string'?{f:x.f,t:x.t}:null;montreReprise();}});
 if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect();});o.observe(document.documentElement,{childList:true,subtree:true});}
 })();`+'</scr'+'ipt>';
   function rangDe(e,genre){
@@ -274,10 +284,60 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     if(!m)return '';
     try{const n=decodeURIComponent(m[1]);return /^[A-Za-z0-9][A-Za-z0-9._-]{0,120}\.html$/.test(n)?n:'';}catch(_){return '';}
   }
+  /* Un coffre qui ne répond pas ne laisse pas tourner le cercle sans fin :
+     au bout de vingt-cinq secondes, le contenu dit qu'il n'a pas pu être
+     ouvert. */
   async function charge(adresse){
-    const r=await fetch(adresse,{credentials:'same-origin'});
-    if(!r.ok)throw new Error(String(r.status));
-    return r.text();
+    const arret=new AbortController(), minuteur=setTimeout(()=>arret.abort(),25000);
+    try{
+      const r=await fetch(adresse,{credentials:'same-origin',signal:arret.signal});
+      if(!r.ok)throw new Error(String(r.status));
+      return await r.text();
+    }finally{clearTimeout(minuteur);}
+  }
+  /* ── UN COURS S'OUVRE VITE ──
+     Un cours est un gros fichier (plusieurs mégaoctets). Deux choses
+     l'allègent, sans rien changer à ce qu'on voit :
+     · ses polices : chaque cours embarque les mêmes fichiers de polices ;
+       ceux que le site garde à l'identique (racine/polices-cours, nommés
+       d'après leur empreinte) sont remplacés par leur adresse, que le
+       navigateur ne télécharge qu'une fois. Une police inconnue reste dans
+       le cours.
+     · l'appareil garde le cours ainsi allégé, sous l'empreinte que lui
+       donne son sommaire (parcours/cours-sommaire.json) : tant que le cours
+       n'a pas été refait, il s'ouvre sans rien télécharger ; refait, son
+       empreinte change et il est repris au coffre. L'appareil garde les
+       vingt derniers cours ouverts. */
+  const CACHE_COURS='lv-cours', GARDES_COURS=20;
+  async function empreinte(t){
+    const d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));
+    return Array.from(new Uint8Array(d),x=>x.toString(16).padStart(2,'0')).join('').slice(0,24);
+  }
+  async function allege(code){
+    const re=/url\((["']?)data:font\/woff2;base64,([A-Za-z0-9+\/=]+)\1\)/g, connues=new Map();
+    const vues=new Set(); let m;
+    while((m=re.exec(code)))vues.add(m[2]);
+    for(const b of vues){const h=await empreinte(b);if(POLICES_COURS.indexOf(h)>=0)connues.set(b,h);}
+    if(!connues.size)return code;
+    return code.replace(re,(t,q,b)=>connues.has(b)?'url('+location.origin+'/polices-cours/'+connues.get(b)+'.woff2)':t);
+  }
+  async function chargeCours(fichier,adresse){
+    const e=(typeof EMPREINTES_COURS==='object'&&EMPREINTES_COURS[fichier])||'';
+    const cle=location.origin+'/__cours/'+encodeURIComponent(fichier)+'?e='+e;
+    let boite=null;
+    try{ if(e&&window.caches){boite=await caches.open(CACHE_COURS);const r=await boite.match(cle);if(r)return await r.text();} }catch(_){boite=null;}
+    let code=await charge(adresse);
+    try{ code=await allege(code); }catch(_){}
+    if(boite){
+      try{
+        const cles=await boite.keys(), dossier=location.origin+'/__cours/'+encodeURIComponent(fichier)+'?';
+        for(const k of cles)if(k.url.indexOf(dossier)===0)await boite.delete(k);
+        await boite.put(cle,new Response(code,{headers:{'content-type':'text/html; charset=utf-8'}}));
+        const reste=(await boite.keys()).filter(k=>k.url.indexOf(dossier)!==0);
+        for(let i=0;i<reste.length-(GARDES_COURS-1);i++)await boite.delete(reste[i]);
+      }catch(_){}
+    }
+    return code;
   }
   /* ── LE PARCOURS RESTE EN MÉMOIRE ──
      Le parcours est long à construire (plus de neuf cents sujets). Quand un
@@ -293,6 +353,18 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     else{try{OUVERT.f.remove();}catch(_){}}
     OUVERT=null;
   }
+  /* ── REPRENDRE ──
+     En tête du parcours, « Reprendre » rouvre le dernier cours ouvert, à la
+     place où on l'avait laissé (la place de lecture de chaque cours est
+     déjà gardée). Le dernier cours se garde avec la taille du texte
+     (« _reglages »), donc d'un appareil à l'autre ; un cours qui n'est plus
+     au sommaire ne se propose pas. */
+  function reprise(){
+    const d=litJson('dernier','_reglages');
+    if(!d||typeof d.f!=='string'||typeof d.t!=='string')return null;
+    if(typeof EMPREINTES_COURS==='object'&&!EMPREINTES_COURS[d.f])return null;
+    return {f:d.f,t:d.t};
+  }
   function reprendParcours(){
     const o=PARC; PARC=null;
     if(!o||!o.f||!o.f.isConnected)return false;
@@ -300,7 +372,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     o.f.style.visibility=''; o.f.removeAttribute('aria-hidden');
     finAttente(o);
     /* la progression des cours a pu changer pendant qu'on y était */
-    try{o.f.contentWindow.postMessage({lvAuto:etatsDesCours(),lvSais:saisDesCours()},'*');}catch(_){}
+    try{o.f.contentWindow.postMessage({lvReprise:reprise(),lvAuto:etatsDesCours(),lvSais:saisDesCours()},'*');}catch(_){}
     return true;
   }
   async function montre(ancre){
@@ -316,7 +388,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     /* le parcours tire l'état de ses sujets de la progression de tous les cours */
     const pret=rapatrie(o.genre==='parcours'?[o.id,'_reglages',...idsCours()]:[o.id,'_reglages']);
     let code='';
-    try{ code=await charge(o.adresse); }
+    try{ code=await (o.genre==='cours'?chargeCours(o.fichier,o.adresse):charge(o.adresse)); }
     catch(e){
       if(OUVERT!==o)return;
       console.warn('étude',e);
@@ -329,6 +401,8 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     o.code=code;
     const t=/<title>([^<]*)<\/title>/i.exec(code);
     o.titre=t?decode(t[1]).trim():(o.genre==='parcours'?'La foi catholique':'Cours');
+    /* le dernier cours ouvert, pour « Reprendre » en tête du parcours */
+    if(o.genre==='cours'&&/<cours\b/.test(o.code))garde('dernier','_reglages',JSON.stringify({f:o.fichier,t:o.titre}));
     const f=document.createElement('iframe');
     f.className='res-plein';
     f.setAttribute('sandbox','allow-scripts');
@@ -346,7 +420,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
       envoieEtat(o);
       /* ouvert par un lien d'un autre cours : on va à l'endroit visé plutôt
          qu'à la place gardée */
-      if(o.genre==='parcours'){try{f.contentWindow.postMessage({lvBlocsOuverts:litJson('blocs',o.id)||[],lvAuto:etatsDesCours(),lvSais:saisDesCours()},'*');}catch(_){}}
+      if(o.genre==='parcours'){try{f.contentWindow.postMessage({lvBlocsOuverts:litJson('blocs',o.id)||[],lvReprise:reprise(),lvAuto:etatsDesCours(),lvSais:saisDesCours()},'*');}catch(_){}}
       if(o.ancre)va(o,o.ancre);
       else{
         const pi=Object.assign({y:0},litJson('pos',o.id)||{});
