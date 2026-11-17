@@ -48,7 +48,7 @@
      connecte sur l'appareil les reprend, puis elles s'effacent. */
   function reprendAnciennes(uid){
     try{
-      const re=/^lv_etu_((?:etat|pos|prog|taille)(?:maj)?_.+)$/, cles=[];
+      const re=/^lv_etu_((?:etat|pos|prog|taille|blocs)(?:maj)?_.+)$/, cles=[];
       for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(re.test(k))cles.push(k);}
       cles.forEach(k=>{
         const n='lv_etu_'+uid+'_'+re.exec(k)[1];
@@ -83,7 +83,7 @@
       return Promise.all(ids.map(id=>lecDoc(id).get().then(sn=>{
         if(!sn.exists)return;
         const d=sn.data()||{};
-        ['etat','pos','prog','taille'].forEach(q=>{
+        ['etat','pos','prog','taille','blocs'].forEach(q=>{
           const m=+d[q+'Maj']||0;
           if(typeof d[q]==='string'&&m>lMaj(q,id))lPose(q,id,d[q],m);
         });
@@ -140,6 +140,70 @@
     +'maj();new MutationObserver(maj).observe(W,{subtree:true,attributes:true,attributeFilter:["data-e"]});return true;}'
     +'if(!bati()){var o=new MutationObserver(function(){if(bati())o.disconnect();});o.observe(document.documentElement,{childList:true,subtree:true});}'
     +'})();</scr'+'ipt>';
+  /* ── LES BLOCS DU PARCOURS SE REPLIENT ──
+     Le parcours s'ouvre blocs repliés : on voit d'un coup d'œil les dix-huit
+     blocs, et on déplie celui qu'on veut (Emmanuel : « c'est mieux pour la
+     navigation »). Le site redessine donc, dans le cadre, l'en-tête de chaque
+     bloc en grand titre (numéro du bloc, nom, nombre de thèmes, chevron) ;
+     un clic l'ouvre ou le ferme, le « + » garde son rôle et déplie
+     l'explication du bloc. Les blocs ouverts sont gardés comme la place de
+     lecture (message lvBlocs, valeur « blocs ») et rendus avant elle
+     (lvBlocsOuverts), pour que la place retombe au même endroit. Un lien ou
+     un saut vers un thème ouvre d'abord son bloc. Le script passe en tête du
+     document, avant le moteur du parcours, pour entendre ces messages le
+     premier. Le fichier du parcours reste tel quel. */
+  const REPLI_BLOCS='<scr'+'ipt>'+String.raw`(function(){
+var OUV={},PRET=false,ENVOI=false;
+var css='#w .bh.lv-b{display:flex;align-items:center;gap:16px;margin:0;padding:22px 12px 22px 12px;border-top:1px solid rgba(255,255,255,.09);cursor:pointer;-webkit-user-select:none;user-select:none}'
++'#w .bh.lv-b.lv-premier{margin-top:36px}'
++'#w .bh.lv-b:hover{background:rgb(var(--r) / .07)}'
++'#w .bh.lv-b .bh-l{display:none}'
++'#w .lv-bn{flex:none;font:700 12px/1 "JetBrains Mono",monospace;letter-spacing:.08em;color:var(--a);border:1px solid var(--a);padding:5px 8px}'
++'#w .lv-bt{flex:1;min-width:0;display:block}'
++'#w .bh.lv-b .bh-n{display:inline;font:700 30px/1.2 Inter,"Helvetica Neue",Arial,sans-serif;letter-spacing:0;text-transform:none;color:#fff}'
++'#w .lv-bp{display:inline-block;margin-left:8px;vertical-align:.35em;font:400 15px/1 "JetBrains Mono",monospace;color:rgba(255,255,255,.4);padding:2px 4px;cursor:pointer}'
++'#w .lv-bp:hover{color:var(--a)}'
++'#w .lv-bc{flex:none;font:700 11px/1 "JetBrains Mono",monospace;letter-spacing:.12em;color:rgba(255,255,255,.45);text-transform:uppercase}'
++'#w .lv-bv{flex:none;font:400 22px/1 "JetBrains Mono",monospace;color:rgba(255,255,255,.5);transition:transform .25s;padding:4px 6px}'
++'#w .bh.lv-b.lv-o .lv-bv{transform:rotate(90deg);color:var(--a)}'
++'#w .bh.lv-b.lv-o{border-top-color:rgb(var(--r) / .6);background:rgb(var(--r) / .13)}'
++'#w .bh.lv-b.lv-o:hover{background:rgb(var(--r) / .18)}'
++'#w .bh.lv-b.lv-o .bh-n{color:var(--a)}'
++'#w .lv-dans{margin-left:30px;padding-left:16px;border-left:1px solid rgb(var(--r) / .35)}'
++'#w .lv-dans.lv-dt{margin-bottom:0;padding-bottom:22px}'
++'#w .lv-dt{margin-bottom:22px}'
++'#w .lv-cache{display:none!important}'
++'#w .lv-fin{border-top:1px solid rgba(255,255,255,.09);margin-bottom:28px}'
++'@media (max-width:640px){#w .lv-dans{margin-left:14px;padding-left:10px}#w .bh.lv-b{gap:12px;padding:18px 6px}#w .bh.lv-b .bh-n{font-size:23px}#w .lv-bc{display:none}}';
+var st=document.createElement('style');st.textContent=css;(document.head||document.documentElement).appendChild(st);
+function blocs(){var W=document.querySelector('#w');if(!W)return [];var L=[],b=null;
+[].forEach.call(W.children,function(e){if(e.classList.contains('bh')){b={h:e,c:[]};L.push(b);}else if(b&&(e.classList.contains('th')||(e.classList.contains('xw')&&e.classList.contains('bp'))))b.c.push(e);});return L;}
+function applique(){blocs().forEach(function(b,i){var o=!!OUV[i];b.h.classList.toggle('lv-o',o);b.h.setAttribute('aria-expanded',o?'true':'false');b.c.forEach(function(e,k){e.classList.toggle('lv-cache',!o);e.classList.add('lv-dans');e.classList.toggle('lv-dt',k===b.c.length-1);});});}
+function envoie(){var l=[];for(var k in OUV)if(OUV[k])l.push(+k);try{parent.postMessage({lvBlocs:l},'*');}catch(_){}}
+function prepare(){var L=blocs();if(!L.length||!document.querySelector('#w .th'))return false;
+L.forEach(function(b,i){var h=b.h;if(h.classList.contains('lv-b'))return;h.classList.add('lv-b');if(i===0)h.classList.add('lv-premier');
+var n=h.querySelector('.bh-n'),nb=b.c.filter(function(e){return e.classList.contains('th');}).length;
+var tag=document.createElement('span');tag.className='lv-bn';tag.textContent=(i<9?'0':'')+(i+1);h.insertBefore(tag,h.firstChild);
+var t=document.createElement('span');t.className='lv-bt';h.insertBefore(t,n);t.appendChild(n);
+if(b.c.some(function(e){return e.classList.contains('bp');})){var p=document.createElement('span');p.className='lv-bp';p.textContent='+';p.setAttribute('role','button');p.setAttribute('aria-label','Explication du bloc');t.appendChild(p);}
+var c=document.createElement('span');c.className='lv-bc';c.textContent=nb+(nb>1?' thèmes':' thème');h.appendChild(c);
+var v=document.createElement('span');v.className='lv-bv';v.textContent='›';h.appendChild(v);});
+var dern=L[L.length-1],z=dern.c[dern.c.length-1];
+if(z&&!document.querySelector('#w .lv-fin')){var f=document.createElement('div');f.className='lv-fin';z.parentNode.insertBefore(f,z.nextSibling);}
+PRET=true;applique();return true;}
+function ouvreVers(el){if(!el)return;var L=blocs(),ch=false;L.forEach(function(b,i){if(b.h===el||b.c.some(function(c){return c===el||c.contains(el);})){if(!OUV[i]){OUV[i]=true;ch=true;}}});if(ch){applique();envoie();}}
+/* un clic sur l'en-tête d'un bloc l'ouvre ou le ferme ; le + garde son rôle : déplier l'explication du bloc */
+document.addEventListener('click',function(ev){var h=ev.target.closest&&ev.target.closest('#w .bh.lv-b');if(!h)return;
+if(ev.target.closest('.lv-bp')){var L=blocs();for(var i=0;i<L.length;i++)if(L[i].h===h&&!OUV[i]){OUV[i]=true;applique();envoie();}return;}
+ev.stopPropagation();ev.preventDefault();var L2=blocs();for(var j=0;j<L2.length;j++)if(L2[j].h===h){OUV[j]=!OUV[j];}applique();envoie();},true);
+document.addEventListener('keydown',function(ev){if(ev.key!=='Enter'&&ev.key!==' ')return;var h=ev.target.closest&&ev.target.closest('#w .bh.lv-b');if(!h||ev.target.closest('.lv-bp'))return;ev.stopPropagation();ev.preventDefault();h.click();},true);
+/* un lien interne vers un thème ou un sujet ouvre d'abord son bloc */
+document.addEventListener('click',function(ev){var a=ev.target.closest&&ev.target.closest('a[href^="#"]');if(!a)return;try{ouvreVers(document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1))));}catch(_){}},true);
+window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==parent||!d||typeof d!=='object')return;
+if(Array.isArray(d.lvBlocsOuverts)){OUV={};d.lvBlocsOuverts.forEach(function(i){if(typeof i==='number')OUV[i]=true;});if(PRET)applique();}
+if(typeof d.lvVa==='string'){ouvreVers(document.getElementById(d.lvVa));}});
+if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect();});o.observe(document.documentElement,{childList:true,subtree:true});}
+})();`+'</scr'+'ipt>';
   function rangDe(e,genre){
     if(!e||typeof e!=='object')return -1;
     const l=genre==='parcours'?CRANS_PARCOURS:CRANS_COURS, v=genre==='parcours'?e.z:e.taille;
@@ -282,7 +346,7 @@
       envoieEtat(o);
       /* ouvert par un lien d'un autre cours : on va à l'endroit visé plutôt
          qu'à la place gardée */
-      if(o.genre==='parcours'){try{f.contentWindow.postMessage({lvAuto:etatsDesCours(),lvSais:saisDesCours()},'*');}catch(_){}}
+      if(o.genre==='parcours'){try{f.contentWindow.postMessage({lvBlocsOuverts:litJson('blocs',o.id)||[],lvAuto:etatsDesCours(),lvSais:saisDesCours()},'*');}catch(_){}}
       if(o.ancre)va(o,o.ancre);
       else{
         const pi=Object.assign({y:0},litJson('pos',o.id)||{});
@@ -309,7 +373,7 @@
        grand (Emmanuel : « la page est trop zoomée ») */
     let doc=pageCadre(poseProgression(code,litJson('prog',o.id)));
     if(o.genre==='parcours'){
-      doc=doc.replace('<head>','<head><style>html{zoom:'+ZOOM_PARCOURS+'}</style>');
+      doc=doc.replace('<head>',()=>'<head><style>html{zoom:'+ZOOM_PARCOURS+'}</style>'+REPLI_BLOCS);
       const k=doc.lastIndexOf('</body>');
       doc=k<0?doc+BARRE_BLOCS:doc.slice(0,k)+BARRE_BLOCS+doc.slice(k);
     }
@@ -385,6 +449,7 @@
       return;
     }
     if(d.lvEtatVoulu){ envoieEtat(o); if(!o.voulu){o.voulu=true;o.rends&&o.rends();} return; }
+    if(Array.isArray(d.lvBlocs)){ garde('blocs',o.id,JSON.stringify(d.lvBlocs.filter(i=>Number.isInteger(i)&&i>=0&&i<100))); return; }
     if(d.lvProgression&&typeof d.lvProgression==='object'){ garde('prog',o.id,JSON.stringify(progressionPropre(d.lvProgression))); return; }
     if(typeof d.lvCopie==='string')copie(d.lvCopie);
   });
