@@ -1,0 +1,12 @@
+<sujet cle="liturgie.lex-orandi" titre="Lex orandi, lex credendi" desc="Comment la prière de l’Église exprime et garde sa foi.">
+<p>L’adage <i>lex orandi, lex credendi</i> (latin, « la loi de la prière est la loi de la foi »)</p>
+<p>Son origine chez Prosper d’Aquitaine : <i>ut legem credendi lex statuat supplicandi</i>, dans le contexte de la controverse semi-pélagienne</p>
+<p>La liturgie, lieu de la Tradition et témoin de la foi de l’Église</p>
+<p>Des exemples historiques : la doxologie et la divinité de l’Esprit Saint chez saint Basile (<i>Traité du Saint-Esprit</i>)</p>
+<p>La fête de la Conception de Marie, témoin de la foi avant la définition de 1854</p>
+<p>L’adage dans les deux sens : la foi règle aussi la prière</p>
+<p>La précision de Pie XII dans <i>Mediator Dei</i> (1947) : la liturgie ne crée pas la foi, elle l’exprime sous l’autorité du Magistère</p>
+<p>La liturgie comme « théologie première », vécue avant d’être formulée</p>
+<p>Les conséquences pratiques : une modification de la prière touche la foi, et l’erreur doctrinale déforme la prière</p>
+<p>La liturgie, lieu de l’unité de la foi entre les Églises de rites différents</p>
+</sujet>

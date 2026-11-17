@@ -1,0 +1,20 @@
+<sujet cle="temps-liturgique.heures" titre="La Liturgie des Heures" desc="La prière officielle de l’Église qui sanctifie les heures du jour, heure par heure.">
+<p>Le commandement de prier sans cesse (1 Thessaloniciens 5:17)</p>
+<p>Les heures de prière d’Israël et des premiers chrétiens (Psaume 119:164, Actes 3:1)</p>
+<p>L’office cathédral, prière du peuple autour de l’évêque le matin et le soir</p>
+<p>L’office monastique et la Règle de saint Benoît</p>
+<p>Le bréviaire, livre de l’office au Moyen Âge, et le bréviaire de saint Pie V (1568)</p>
+<p>La Liturgie des Heures, prière du Christ avec son Corps (<i>Sacrosanctum concilium</i>, chapitre IV)</p>
+<p>La constitution apostolique <i>Laudis canticum</i> de Paul VI (1970)</p>
+<p>La suppression de l’heure de Prime (<i>Sacrosanctum concilium</i> 89)</p>
+<p>L’office des lectures</p>
+<p>Les Laudes, prière du matin</p>
+<p>Tierce, heure du milieu de la matinée</p>
+<p>Sexte, heure de midi</p>
+<p>None, heure du milieu de l’après-midi</p>
+<p>L’heure médiane, qui permet de ne célébrer qu’une des trois petites heures</p>
+<p>Les Vêpres, prière du soir</p>
+<p>Les Complies, prière avant le repos de la nuit</p>
+<p>Les clercs et les consacrés tenus de célébrer l’office</p>
+<p>L’invitation faite aux laïcs à prier la Liturgie des Heures (<i>Sacrosanctum concilium</i> 100)</p>
+</sujet>

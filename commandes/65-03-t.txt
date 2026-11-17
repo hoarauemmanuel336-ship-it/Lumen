@@ -1,0 +1,12 @@
+<sujet cle="temps-liturgique.noel" titre="Le temps de Noël" desc="De la Nativité au Baptême du Seigneur.">
+<p>La fête de la Nativité le 25 décembre et la plus ancienne attestation de sa date à Rome (Chronographe de 354)</p>
+<p>Les hypothèses sur le choix de cette date</p>
+<p>Les trois messes de Noël : nuit, aurore, jour</p>
+<p>L’octave de Noël</p>
+<p>La fête de la Sainte Famille</p>
+<p>La solennité de Marie, Mère de Dieu, le 1er janvier</p>
+<p>L’Épiphanie, manifestation du Seigneur aux nations</p>
+<p>La tradition orientale de la Théophanie le 6 janvier</p>
+<p>Le Baptême du Seigneur, fin du temps de Noël</p>
+<p>La Présentation du Seigneur le 2 février et son lien avec Noël</p>
+</sujet>

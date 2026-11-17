@@ -1,0 +1,18 @@
+<sujet cle="rites.funerailles" titre="Les funérailles chrétiennes" desc="Comment l’Église accompagne ses défunts jusqu’à la tombe.">
+<p>Le sens des funérailles chrétiennes : célébration du mystère pascal et prière pour le défunt</p>
+<p>Les funérailles dans l’Antiquité chrétienne : catacombes et cimetières</p>
+<p>Le Rituel des funérailles (<i>Ordo exsequiarum</i>, 1969)</p>
+<p>La veillée de prière auprès du défunt</p>
+<p>L’accueil du corps à l’église</p>
+<p>La messe des funérailles, forme la plus haute de la prière pour le défunt</p>
+<p>La célébration de la Parole quand les funérailles ont lieu sans messe</p>
+<p>Le dernier adieu (recommandation et adieu) et ses gestes : eau bénite, encens</p>
+<p>L’inhumation au cimetière et la bénédiction de la tombe</p>
+<p>L’inhumation, forme privilégiée par l’Église</p>
+<p>La crémation permise par l’instruction <i>Piam et constantem</i> du Saint-Office (1963)</p>
+<p>L’instruction <i>Ad resurgendum cum Christo</i> (2016)</p>
+<p>La conservation des cendres et ce que l’Église demande à leur sujet</p>
+<p>Les funérailles d’enfants</p>
+<p>Le refus des funérailles ecclésiastiques dans le droit et sa raison</p>
+<p>La prière pour les défunts après les funérailles : messes et anniversaires</p>
+</sujet>

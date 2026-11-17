@@ -1,0 +1,13 @@
+<sujet cle="sacrements.signe-efficace" titre="Le signe efficace de la grâce" desc="Comment un sacrement signifie la grâce et la donne réellement.">
+<p>Le sacrement comme signe : il signifie ce qu’il donne</p>
+<p>Le triple rapport du signe sacramentel selon saint Thomas : au passé (la Passion), au présent (la grâce), à l’avenir (la gloire)</p>
+<p>L’efficacité du sacrement : il cause ce qu’il signifie</p>
+<p>La distinction <i>sacramentum tantum</i>, <i>res et sacramentum</i>, <i>res tantum</i> (le signe seul, la réalité intermédiaire, la grâce)</p>
+<p>Le Christ, cause principale de la grâce sacramentelle</p>
+<p>Le sacrement, cause instrumentale de la grâce</p>
+<p>La question disputée de la causalité : causalité instrumentale physique (thomistes), causalité morale, causalité occasionnelle ou par pacte (chez des scotistes et des nominalistes)</p>
+<p>La grâce sacramentelle propre à chaque sacrement</p>
+<p>La doctrine du concile de Trente sur les sacrements (session VII, 1547)</p>
+<p>L’erreur des réformateurs : les sacrements, simples signes qui excitent la foi</p>
+<p>La raison d’être de sacrements efficaces : la certitude de la grâce donnée par le Christ et non produite par notre ferveur</p>
+</sujet>

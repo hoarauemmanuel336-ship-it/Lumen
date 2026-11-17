@@ -1,0 +1,13 @@
+<sujet cle="messe.dons" titre="La préparation des dons" desc="Le moment où le pain et le vin sont apportés et déposés sur l’autel.">
+<p>Le nom ancien d’offertoire et le nom actuel de préparation des dons</p>
+<p>La préparation de l’autel</p>
+<p>La procession des dons et l’offrande des fidèles</p>
+<p>La matière de l’eucharistie : le pain de froment et le vin de raisin</p>
+<p>Les prières de bénédiction sur le pain et le vin, inspirées de la <i>berakah</i> juive</p>
+<p>Le mélange de l’eau au vin et sa signification</p>
+<p>L’encensement des dons, de l’autel, du prêtre et du peuple</p>
+<p>Le lavement des mains (<i>lavabo</i>)</p>
+<p>L’invitation <i>Orate, fratres</i> et sa réponse</p>
+<p>La prière sur les offrandes</p>
+<p>La différence entre préparation des dons et offrande sacrificielle de la prière eucharistique</p>
+</sujet>

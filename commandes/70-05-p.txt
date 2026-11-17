@@ -1,0 +1,16 @@
+<sujet cle="eucharistie.presence-reelle" titre="La présence réelle" desc="La foi de l’Église en la présence vraie du Christ sous le pain et le vin consacrés.">
+<p>Le témoignage de saint Paul (1 Corinthiens 10:16, 1 Corinthiens 11:27-29)</p>
+<p>Le témoignage des Pères : saint Ignace d’Antioche (<i>Lettre aux Smyrniotes</i> 7)</p>
+<p>Saint Justin (<i>Première Apologie</i> 66)</p>
+<p>Saint Irénée et l’eucharistie, gage de la résurrection de la chair (<i>Contre les hérésies</i> V, 2)</p>
+<p>Saint Cyrille de Jérusalem sur le changement des dons (<i>Catéchèses mystagogiques</i> IV)</p>
+<p>Saint Ambroise sur la puissance de la parole du Christ qui change les éléments (<i>De sacramentis</i>, <i>De mysteriis</i>)</p>
+<p>La définition de Trente : le Christ présent vraiment, réellement et substantiellement (session XIII, 1551)</p>
+<p>La présence du Christ tout entier : corps, sang, âme et divinité</p>
+<p>La concomitance : le Christ tout entier sous chaque espèce et dans chaque parcelle</p>
+<p>La permanence de la présence tant que demeurent les espèces</p>
+<p>La présence eucharistique, présence par excellence, parmi les autres modes de présence du Christ</p>
+<p>L’encyclique <i>Mysterium fidei</i> de Paul VI (1965)</p>
+<p>La foi qui reconnaît ce que les sens ne perçoivent pas</p>
+<p>L’hymne <i>Adoro te devote</i></p>
+</sujet>

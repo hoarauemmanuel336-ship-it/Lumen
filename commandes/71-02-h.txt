@@ -1,0 +1,15 @@
+<sujet cle="penitence.histoire" titre="L’histoire de la pénitence" desc="Comment la pratique du pardon a changé au cours des siècles, sans changer de nature.">
+<p>La discipline pénitentielle dans le Nouveau Testament (1 Corinthiens 5:1-5, 2 Corinthiens 2:5-11)</p>
+<p>La pénitence unique après le baptême selon le <i>Pasteur</i> d’Hermas</p>
+<p>La pénitence publique antique : ordre des pénitents, durée, réconciliation par l’évêque le Jeudi saint</p>
+<p>Les péchés graves soumis à la pénitence publique : apostasie, homicide, adultère</p>
+<p>Le refus montaniste de pardonner les péchés graves (Tertullien, <i>De pudicitia</i>)</p>
+<p>Le schisme de Novatien et la condamnation de son rigorisme</p>
+<p>La question des « tombés » (latin <i>lapsi</i>) après la persécution de Dèce et saint Cyprien</p>
+<p>La pénitence tarifée des moines irlandais et les livres pénitentiels</p>
+<p>La généralisation de la confession privée et réitérable</p>
+<p>Le IVe concile du Latran (1215) et le canon <i>Omnis utriusque sexus</i> : la confession annuelle</p>
+<p>Le concile de Trente et la pratique moderne</p>
+<p>Le Rituel de la pénitence (<i>Ordo paenitentiae</i>, 1973) et ses trois formes de célébration</p>
+<p>L’exhortation apostolique <i>Reconciliatio et paenitentia</i> de Jean-Paul II (1984)</p>
+</sujet>

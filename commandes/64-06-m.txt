@@ -1,0 +1,14 @@
+<sujet cle="messe.prieres-eucharistiques" titre="Les prières eucharistiques du Missel romain" desc="Les différentes prières eucharistiques en usage et ce qui les distingue.">
+<p>La pluralité des anaphores en Orient et l’unique Canon romain en Occident jusqu’en 1968</p>
+<p>La prière eucharistique I ou Canon romain : son origine et son antiquité</p>
+<p>La suite des prières du Canon romain, désignées par leurs premiers mots latins (<i>Te igitur</i>, <i>Hanc igitur</i>, <i>Supplices</i> et les autres)</p>
+<p>Les deux listes de saints du Canon romain (<i>Communicantes</i> et <i>Nobis quoque</i>)</p>
+<p>La prière eucharistique II, inspirée de l’anaphore de la <i>Tradition apostolique</i></p>
+<p>La prière eucharistique III et son insistance sur le sacrifice et l’Église</p>
+<p>La prière eucharistique IV, avec sa préface propre retraçant l’histoire du salut</p>
+<p>Les deux prières eucharistiques pour la réconciliation</p>
+<p>Les prières eucharistiques pour des circonstances particulières</p>
+<p>Les prières eucharistiques pour les assemblées d’enfants</p>
+<p>Le choix de la prière eucharistique selon les jours et les célébrations</p>
+<p>L’unité de foi entre ces prières : les éléments que toute anaphore contient</p>
+</sujet>

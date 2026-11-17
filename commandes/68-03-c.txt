@@ -1,0 +1,16 @@
+<sujet cle="bapteme.celebration" titre="La célébration du baptême" desc="Le déroulement du rite du baptême, de l’accueil à l’envoi.">
+<p>Le baptême célébré à la Vigile pascale dans l’Église ancienne</p>
+<p>Le Rituel du baptême des petits enfants (1969)</p>
+<p>Le Rituel de l’initiation chrétienne des adultes (1972)</p>
+<p>Les rites d’accueil et le signe de croix sur le front</p>
+<p>La liturgie de la Parole dans la célébration du baptême</p>
+<p>La prière d’exorcisme</p>
+<p>L’onction avec l’huile des catéchumènes</p>
+<p>La bénédiction de l’eau et ses rappels de l’histoire du salut</p>
+<p>La renonciation à Satan</p>
+<p>La profession de foi baptismale</p>
+<p>L’onction du saint chrême après le baptême</p>
+<p>Le vêtement blanc</p>
+<p>Le cierge allumé au cierge pascal</p>
+<p>Le rite de l’<i>Effata</i> (araméen, « ouvre-toi », Marc 7:34)</p>
+</sujet>

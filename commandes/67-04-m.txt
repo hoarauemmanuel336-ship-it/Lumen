@@ -1,0 +1,13 @@
+<sujet cle="sacrements.matiere-forme" titre="Matière et forme" desc="Les deux éléments qui composent le signe sacramentel.">
+<p>L’application au sacrement du couple philosophique matière et forme (hylémorphisme)</p>
+<p>L’apparition de ce vocabulaire chez les théologiens du début du XIIIe siècle</p>
+<p>Son adoption par le Magistère dans le décret pour les Arméniens (concile de Florence, 1439)</p>
+<p>La matière : la chose ou le geste sensible</p>
+<p>La matière éloignée et la matière prochaine</p>
+<p>La forme : les paroles qui déterminent le sens du geste</p>
+<p>Les sacrements dont la matière n’est pas une chose : pénitence et mariage</p>
+<p>Le pouvoir de l’Église sur les sacrements : la « substance » des sacrements qu’elle ne peut changer (Trente, session XXI)</p>
+<p>Les précisions données par le Magistère sur la matière et la forme (<i>Sacramentum ordinis</i>, 1947, et les constitutions de Paul VI sur les nouveaux rites)</p>
+<p>La validité et la licéité : deux notions distinctes</p>
+<p>Le doute sur la validité et la réitération sous condition</p>
+</sujet>

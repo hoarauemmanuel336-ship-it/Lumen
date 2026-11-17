@@ -1,0 +1,18 @@
+<sujet cle="temps-liturgique.careme" titre="Le Carême" desc="Les quarante jours de préparation à Pâques.">
+<p>Le mot Carême (latin <i>quadragesima</i>, « quarantième ») et le symbolisme biblique des quarante jours</p>
+<p>L’origine du Carême : préparation des catéchumènes et pénitence publique</p>
+<p>Le Mercredi des cendres et l’imposition des cendres</p>
+<p>Les trois œuvres du Carême proclamées dans l’Évangile du Mercredi des cendres (Matthieu 6:1-18)</p>
+<p>Le jeûne : les jours prescrits (Mercredi des cendres et Vendredi saint) et les personnes concernées</p>
+<p>L’abstinence de viande : tous les vendredis de l’année, sauf solennité, et le Mercredi des cendres (canon 1251), la conférence des évêques pouvant, hors Carême, la remplacer par une autre œuvre de pénitence (canon 1253)</p>
+<p>Les personnes tenues à l’abstinence (dès quatorze ans) et au jeûne (de dix-huit à cinquante-neuf ans) (canon 1252)</p>
+<p>Le premier dimanche : les tentations au désert</p>
+<p>Le deuxième dimanche : la Transfiguration</p>
+<p>Les scrutins des catéchumènes aux troisième, quatrième et cinquième dimanches</p>
+<p>Le troisième dimanche de l’année A : la Samaritaine (Jean 4:5-42)</p>
+<p>Le quatrième dimanche de l’année A : l’aveugle-né (Jean 9:1-41)</p>
+<p>Le cinquième dimanche de l’année A : la résurrection de Lazare (Jean 11:1-45)</p>
+<p>Le quatrième dimanche, dimanche de <i>Laetare</i></p>
+<p>Le caractère baptismal et pénitentiel du Carême (<i>Sacrosanctum concilium</i> 109)</p>
+<p>Les anciens temps de préparation : Septuagésime et ses dimanches</p>
+</sujet>

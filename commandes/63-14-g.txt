@@ -1,0 +1,23 @@
+<sujet cle="liturgie.livres" titre="Les livres liturgiques" desc="Les livres officiels qui règlent la célébration et leur histoire.">
+<p>La raison d’être des livres liturgiques : unité de la prière et garantie de la foi</p>
+<p>Le sacramentaire, livre des prières du célébrant</p>
+<p>Le sacramentaire de Vérone, dit léonien</p>
+<p>Le sacramentaire gélasien</p>
+<p>Le sacramentaire grégorien et l’exemplaire envoyé par le pape Adrien Ier à Charlemagne (<i>Hadrianum</i>)</p>
+<p>Les <i>Ordines romani</i>, descriptions du déroulement des rites</p>
+<p>La naissance du missel plénier au Moyen Âge</p>
+<p>L’unification après le concile de Trente</p>
+<p>La notion d’édition typique et l’autorité de l’édition latine</p>
+<p>Le Missel romain</p>
+<p>Le Lectionnaire</p>
+<p>L’Évangéliaire</p>
+<p>Le Pontifical romain, livre des célébrations de l’évêque</p>
+<p>Le Rituel romain et ses différentes parties</p>
+<p>Le Cérémonial des évêques (1984)</p>
+<p>La Liturgie des Heures</p>
+<p>Le Martyrologe romain</p>
+<p>Le Graduel romain et les livres de chant</p>
+<p>L’instruction <i>Liturgiam authenticam</i> (2001) sur la traduction des textes liturgiques</p>
+<p>Le motu proprio <i>Magnum principium</i> (2017) et la compétence des conférences des évêques</p>
+<p>La confirmation des traductions par le Dicastère pour le culte divin</p>
+</sujet>

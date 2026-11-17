@@ -1,0 +1,15 @@
+<sujet cle="liturgie.gestes" titre="Les postures et les gestes liturgiques" desc="Comment le corps prie dans la liturgie, posture par posture et geste par geste.">
+<p>La prière du corps : l’unité des attitudes corporelles et de la prière intérieure</p>
+<p>Les attitudes communes, signe de l’unité de l’assemblée (Présentation générale du Missel romain 42)</p>
+<p>La station debout, attitude du Ressuscité et de l’attente</p>
+<p>La position à genoux, attitude de l’adoration et de la supplication</p>
+<p>La position assise, attitude de l’écoute et de la méditation</p>
+<p>La prostration, au Vendredi saint et dans les ordinations</p>
+<p>Le signe de croix, profession de foi en la Trinité et en la Croix</p>
+<p>L’inclination de la tête et l’inclination profonde</p>
+<p>La génuflexion, adoration du Christ présent dans le Saint-Sacrement</p>
+<p>Les mains levées du prêtre, attitude de l’orant</p>
+<p>Les mains jointes, attitude du recueillement</p>
+<p>Le baiser de l’autel et de l’Évangéliaire</p>
+<p>La procession, image de l’Église en marche vers Dieu</p>
+</sujet>

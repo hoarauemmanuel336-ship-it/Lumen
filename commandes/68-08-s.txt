@@ -1,0 +1,13 @@
+<sujet cle="bapteme.enfants-sans-bapteme" titre="Le sort des enfants morts sans baptême" desc="Ce que l’Église fait et espère pour les enfants qui meurent avant d’avoir été baptisés.">
+<p>La question posée du point de vue du sacrement : la nécessité du baptême et l’enfant qui meurt avant de pouvoir le recevoir</p>
+<p>L’obligation de baptiser sans délai l’enfant en danger de mort (Code de droit canonique, canon 867)</p>
+<p>Le baptême d’urgence donné par tout fidèle, et l’ondoiement : le rite réduit à l’essentiel, complété ensuite à l’église</p>
+<p>Le baptême des fœtus vivants issus d’une fausse couche (canon 871)</p>
+<p>La solution des limbes, hypothèse théologique et non dogme, et la place de cette question dans l’eschatologie</p>
+<p>Le Catéchisme de l’Église catholique (1261) : confier ces enfants à la miséricorde de Dieu</p>
+<p>Les funérailles ecclésiastiques permises pour les enfants que leurs parents voulaient faire baptiser (canon 1183)</p>
+<p>Les prières propres du rite des funérailles d’un enfant mort avant le baptême</p>
+<p>Le désir des parents et la prière de l’Église, qui ne tiennent pas lieu de sacrement</p>
+<p>Ce que l’espérance du salut de ces enfants n’autorise pas : retarder le baptême</p>
+<p>L’accompagnement des parents en deuil d’un enfant mort sans baptême</p>
+</sujet>

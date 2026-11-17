@@ -1,0 +1,14 @@
+<sujet cle="ordre.episcopat" titre="L’épiscopat, plénitude du sacrement de l’ordre" desc="Ce que l’ordination épiscopale donne, en tant que sacrement.">
+<p>La question médiévale : l’épiscopat, simple dignité ou degré du sacrement de l’ordre</p>
+<p>La thèse de saint Jérôme sur l’égalité originelle du prêtre et de l’évêque, et son influence</p>
+<p>La réponse de Vatican II : l’ordination épiscopale confère la plénitude du sacrement de l’ordre (<i>Lumen gentium</i> 21)</p>
+<p>Ce que confère l’ordination épiscopale : avec la charge de sanctifier, celles d’enseigner et de gouverner</p>
+<p>Le pouvoir propre de l’évêque d’ordonner des ministres</p>
+<p>L’évêque, ministre originaire de la confirmation</p>
+<p>Le caractère épiscopal et la grâce qui fait de l’évêque l’image du Christ Pasteur</p>
+<p>L’entrée dans le collège épiscopal par l’ordination et la communion hiérarchique</p>
+<p>Le mandat pontifical requis pour l’ordination d’un évêque</p>
+<p>La règle des trois évêques consécrateurs (concile de Nicée, canon 4)</p>
+<p>L’ordination épiscopale sans mandat pontifical : sa validité et l’excommunication qui la frappe</p>
+<p>La prière consécratoire de l’ordination épiscopale, reprise de la <i>Tradition apostolique</i></p>
+</sujet>

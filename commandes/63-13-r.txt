@@ -1,0 +1,23 @@
+<sujet cle="liturgie.sacrosanctum" titre="Sacrosanctum concilium et la réforme liturgique" desc="La constitution de Vatican II sur la liturgie, ses sources et sa mise en œuvre.">
+<p>Le mouvement liturgique : dom Prosper Guéranger et l’abbaye de Solesmes</p>
+<p>Saint Pie X et la participation active (<i>Tra le sollecitudini</i>, 1903)</p>
+<p>Dom Lambert Beauduin et le congrès de Malines (1909)</p>
+<p>Romano Guardini et <i>L’Esprit de la liturgie</i> (1918)</p>
+<p>La restauration de la Vigile pascale par Pie XII (1951)</p>
+<p>Le nouvel ordre de la Semaine sainte promulgué par Pie XII (1955)</p>
+<p>La constitution <i>Sacrosanctum concilium</i> (4 décembre 1963), premier document promulgué par Vatican II</p>
+<p>Le plan de la constitution, chapitre par chapitre</p>
+<p>Le principe de fidélité à la saine tradition (<i>Sacrosanctum concilium</i> 23)</p>
+<p>Le principe du progrès légitime : aucune innovation sans utilité véritable et certaine (<i>Sacrosanctum concilium</i> 23)</p>
+<p>Le principe de la noble simplicité des rites (<i>Sacrosanctum concilium</i> 34)</p>
+<p>La participation pleine, consciente et active (latin <i>actuosa participatio</i>, <i>Sacrosanctum concilium</i> 14)</p>
+<p>La participation intérieure, première : l’union du cœur à l’action du Christ</p>
+<p>La participation extérieure : les réponses, les chants, les gestes et le silence</p>
+<p>La langue liturgique : le latin conservé et la place ouverte aux langues vivantes (<i>Sacrosanctum concilium</i> 36)</p>
+<p>L’adaptation aux cultures (<i>Sacrosanctum concilium</i> 37-40) et l’instruction <i>Varietates legitimae</i> (1994)</p>
+<p>Le <i>Consilium</i> chargé de la mise en œuvre (1964) et la publication des nouveaux livres</p>
+<p>Les abus dans la mise en œuvre et l’instruction <i>Redemptionis sacramentum</i> (2004)</p>
+<p>Les lectures de la réforme en rupture avec la tradition</p>
+<p>L’« herméneutique de la réforme dans la continuité » (Benoît XVI, discours à la Curie romaine, 22 décembre 2005)</p>
+<p>La lettre apostolique <i>Desiderio desideravi</i> de François (2022) sur la formation liturgique</p>
+</sujet>

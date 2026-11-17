@@ -1,0 +1,17 @@
+<sujet cle="temps-liturgique.paques" titre="Le temps pascal" desc="Les cinquante jours de Pâques à la Pentecôte.">
+<p>La querelle quartodécimane sur la date de Pâques</p>
+<p>La décision du concile de Nicée (325) : une même date pour toute l’Église, un dimanche, indépendamment du calendrier juif</p>
+<p>Le comput : le dimanche qui suit la première pleine lune après l’équinoxe de printemps</p>
+<p>La différence actuelle de date entre Orient et Occident : calendrier julien et calendrier grégorien</p>
+<p>Les cinquante jours comme « un seul jour de fête », le « grand dimanche » selon saint Athanase</p>
+<p>L’octave de Pâques</p>
+<p>Le dimanche de la Divine Miséricorde (2000)</p>
+<p>La lecture des Actes des Apôtres pendant le temps pascal</p>
+<p>La lecture de l’Évangile de Jean pendant le temps pascal</p>
+<p>La mystagogie, catéchèse des nouveaux baptisés</p>
+<p>L’Ascension, quarantième jour</p>
+<p>La neuvaine préparatoire à la Pentecôte</p>
+<p>La Pentecôte, achèvement du temps pascal</p>
+<p>La séquence <i>Veni, Sancte Spiritus</i></p>
+<p>Le <i>Regina caeli</i> qui remplace l’<i>Angelus</i></p>
+</sujet>

@@ -1,0 +1,13 @@
+<sujet cle="ordre.reservation" titre="La réservation de l’ordination aux hommes" desc="Pourquoi l’Église ordonne seulement des hommes au sacerdoce.">
+<p>Le fait : le Christ choisit douze hommes comme Apôtres</p>
+<p>La liberté du Christ à l’égard des usages de son temps</p>
+<p>La pratique constante de l’Église d’Orient et d’Occident</p>
+<p>La déclaration <i>Inter insigniores</i> de la Congrégation pour la doctrine de la foi (1976)</p>
+<p>Les raisons de convenance : le prêtre, image du Christ Époux de l’Église</p>
+<p>La lettre apostolique <i>Ordinatio sacerdotalis</i> de Jean-Paul II (22 mai 1994)</p>
+<p>La réponse de la Congrégation pour la doctrine de la foi (1995) : une doctrine enseignée infailliblement par le magistère ordinaire et universel</p>
+<p>L’égale dignité de l’homme et de la femme et la différence des vocations</p>
+<p>La place des femmes dans l’Église : Marie, plus grande que les Apôtres</p>
+<p>Les objections contemporaines et leurs réponses</p>
+<p>L’article du préfet de la Congrégation pour la doctrine de la foi (29 mai 2018) sur le caractère définitif de la doctrine d’<i>Ordinatio sacerdotalis</i></p>
+</sujet>

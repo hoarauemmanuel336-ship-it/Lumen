@@ -1,0 +1,14 @@
+<sujet cle="penitence.absolution" titre="L’absolution et le ministre" desc="Les paroles du pardon et ceux qui ont le pouvoir de les prononcer.">
+<p>La formule d’absolution du rite latin</p>
+<p>Les paroles essentielles : « Je te pardonne tous tes péchés, au nom du Père, et du Fils, et du Saint-Esprit »</p>
+<p>Les formules d’absolution orientales, de forme déprécative</p>
+<p>Le ministre : l’évêque et les prêtres</p>
+<p>La faculté d’entendre les confessions requise pour la validité</p>
+<p>Le danger de mort : tout prêtre absout validement de tout péché</p>
+<p>Les péchés et les censures dont l’absolution est réservée au Siège apostolique</p>
+<p>La Pénitencerie apostolique, tribunal du for interne</p>
+<p>Le confesseur, juge, médecin et père</p>
+<p>Le refus ou le report de l’absolution et ses raisons</p>
+<p>L’absolution collective sans confession individuelle : ses conditions strictes</p>
+<p>Le motu proprio <i>Misericordia Dei</i> de Jean-Paul II (2002)</p>
+</sujet>

@@ -1,0 +1,16 @@
+<sujet cle="bapteme.effets" titre="Les effets du baptême" desc="Ce que le baptême accomplit dans celui qui le reçoit.">
+<p>La rémission du péché originel et de tous les péchés personnels</p>
+<p>La remise de toute la peine due au péché</p>
+<p>Ce qui demeure après le baptême : la concupiscence, la souffrance, la mort</p>
+<p>La nouvelle naissance et la création nouvelle (2 Corinthiens 5:17)</p>
+<p>La filiation adoptive : enfant de Dieu, frère du Christ, temple de l’Esprit</p>
+<p>La grâce sanctifiante, grâce de la justification</p>
+<p>Les vertus théologales infuses</p>
+<p>Les dons du Saint-Esprit</p>
+<p>L’incorporation à l’Église, Corps du Christ</p>
+<p>La participation au sacerdoce commun des fidèles</p>
+<p>Les droits et devoirs du baptisé dans l’Église</p>
+<p>Le caractère baptismal, sceau indélébile</p>
+<p>Le baptême, lien sacramentel d’unité entre tous les chrétiens (<i>Unitatis redintegratio</i> 22)</p>
+<p>La reconnaissance du baptême donné par d’autres communautés chrétiennes</p>
+</sujet>

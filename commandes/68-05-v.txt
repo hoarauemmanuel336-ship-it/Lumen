@@ -1,0 +1,13 @@
+<sujet cle="bapteme.validite" titre="La validité du baptême et la question du rebaptême" desc="Pourquoi on ne baptise jamais deux fois, et l’histoire de cette question.">
+<p>L’unicité du baptême (Éphésiens 4:5) et la profession « un seul baptême pour le pardon des péchés »</p>
+<p>La controverse entre saint Cyprien et le pape Étienne Ier sur le baptême des hérétiques (milieu du IIIe siècle)</p>
+<p>La règle romaine : ne rien innover que ce qui est transmis</p>
+<p>La décision du concile d’Arles (314) sur la formule trinitaire</p>
+<p>La position de saint Augustin contre les donatistes : le baptême appartient au Christ</p>
+<p>La validité du baptême conféré hors de l’Église catholique et ses conditions</p>
+<p>Les baptêmes invalides : formules non trinitaires</p>
+<p>La réponse de la Congrégation pour la doctrine de la foi sur la formule « Nous te baptisons » (2020)</p>
+<p>La réponse de la même Congrégation sur le baptême conféré par les mormons (2001)</p>
+<p>Le baptême sous condition en cas de doute réel</p>
+<p>Les anabaptistes et leur refus du baptême des enfants</p>
+</sujet>

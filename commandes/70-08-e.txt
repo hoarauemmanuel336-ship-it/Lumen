@@ -1,0 +1,17 @@
+<sujet cle="eucharistie.adoration" titre="Le culte de l’eucharistie hors de la messe" desc="L’adoration du Christ présent dans le Saint-Sacrement.">
+<p>Le culte de latrie dû au Saint-Sacrement (Trente, session XIII, canon 6)</p>
+<p>La réserve eucharistique : son origine pour les malades et les absents</p>
+<p>La lampe du sanctuaire, signe de la présence eucharistique</p>
+<p>Les visites au Saint-Sacrement</p>
+<p>La naissance de la dévotion eucharistique médiévale et l’élévation de l’hostie</p>
+<p>Sainte Julienne de Cornillon et l’origine de la Fête-Dieu à Liège</p>
+<p>La bulle <i>Transiturus</i> d’Urbain IV (1264), qui étend la fête à toute l’Église</p>
+<p>L’office du Saint-Sacrement attribué à saint Thomas d’Aquin (<i>Pange lingua</i>, <i>Lauda Sion</i>)</p>
+<p>Les processions du Saint-Sacrement</p>
+<p>L’exposition et la bénédiction du Saint-Sacrement</p>
+<p>L’adoration perpétuelle</p>
+<p>Les Quarante-Heures</p>
+<p>Les congrès eucharistiques internationaux</p>
+<p>Le rituel <i>De sacra communione et de cultu mysterii eucharistici extra Missam</i> (1973) : l’adoration ordonnée à la messe</p>
+<p>Les objections au culte eucharistique et leurs réponses</p>
+</sujet>

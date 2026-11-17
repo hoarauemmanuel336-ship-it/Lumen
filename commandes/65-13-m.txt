@@ -1,0 +1,20 @@
+<sujet cle="temps-liturgique.office" titre="Les éléments d’un office" desc="Ce qui compose chaque heure de la Liturgie des Heures, élément par élément.">
+<p>La structure d’une heure : l’alternance de la louange, de la Parole et de la supplication</p>
+<p>L’invitatoire et son psaume (Psaume 95), qui ouvrent la prière du jour</p>
+<p>L’hymne</p>
+<p>La psalmodie : psaumes, antiennes et doxologie finale</p>
+<p>La lecture chrétienne des psaumes, prière du Christ et de l’Église</p>
+<p>Les cantiques de l’Ancien Testament aux Laudes</p>
+<p>Les cantiques du Nouveau Testament aux Vêpres</p>
+<p>La lecture brève des heures</p>
+<p>Les deux lectures de l’office des lectures, biblique et patristique</p>
+<p>Le répons</p>
+<p>Le <i>Benedictus</i>, cantique de Zacharie, aux Laudes (Luc 1:68-79)</p>
+<p>Le <i>Magnificat</i>, cantique de Marie, aux Vêpres (Luc 1:46-55)</p>
+<p>Le <i>Nunc dimittis</i>, cantique de Syméon, aux Complies (Luc 2:29-32)</p>
+<p>Les prières d’intercession des Laudes et des Vêpres</p>
+<p>Le Notre Père aux Laudes et aux Vêpres</p>
+<p>L’oraison finale</p>
+<p>L’antienne mariale qui conclut les Complies</p>
+<p>La répartition du psautier sur quatre semaines</p>
+</sujet>

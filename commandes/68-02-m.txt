@@ -1,0 +1,12 @@
+<sujet cle="bapteme.rite" titre="Matière, forme et ministre du baptême" desc="Ce qui est requis pour qu’un baptême soit valide : l’eau, les paroles et celui qui baptise.">
+<p>La matière : l’eau naturelle</p>
+<p>Le baptême par immersion, signe le plus expressif</p>
+<p>Le baptême par infusion, l’eau versée sur la tête</p>
+<p>Le baptême par aspersion et les conditions de sa validité</p>
+<p>La forme : « Je te baptise au nom du Père, et du Fils, et du Saint-Esprit »</p>
+<p>La forme orientale : « Le serviteur de Dieu est baptisé au nom du Père, et du Fils, et du Saint-Esprit »</p>
+<p>Le ministre ordinaire : évêque, prêtre, diacre</p>
+<p>Le ministre en cas de nécessité : toute personne, même non baptisée, qui a l’intention de faire ce que fait l’Église</p>
+<p>Le parrain et la marraine : rôle et conditions</p>
+<p>Le nom de baptême</p>
+</sujet>

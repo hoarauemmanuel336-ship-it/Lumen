@@ -1,0 +1,17 @@
+<sujet cle="lit.messe" titre="L’histoire de la messe" desc="Comment la messe s’est formée depuis la Cène jusqu’à aujourd’hui.">
+<p>Le mot messe (latin <i>missa</i>, tiré du renvoi <i>Ite, missa est</i>)</p>
+<p>Le repas pascal juif et la Dernière Cène comme racines de la messe</p>
+<p>La fraction du pain dans les Actes des Apôtres (Actes 2:42-46, Actes 20:7-11)</p>
+<p>Le repas du Seigneur à Corinthe (1 Corinthiens 11:17-34)</p>
+<p>L’héritage de la prière de la synagogue dans la liturgie de la Parole</p>
+<p>La <i>Didachè</i> et ses prières eucharistiques</p>
+<p>La description de la messe par saint Justin (<i>Première Apologie</i> 65-67)</p>
+<p>L’anaphore de la <i>Tradition apostolique</i> attribuée à Hippolyte</p>
+<p>Le passage du grec au latin dans la liturgie de Rome au IVe siècle</p>
+<p>La formation du Canon romain, déjà cité par saint Ambroise (<i>De sacramentis</i>)</p>
+<p>La messe papale romaine et sa diffusion en Gaule à l’époque carolingienne</p>
+<p>La multiplication des messes privées et la naissance de la messe basse</p>
+<p>L’élévation de l’hostie après la consécration, introduite vers 1200</p>
+<p>Le Missel de saint Pie V et la bulle <i>Quo primum</i> (1570)</p>
+<p>Le Missel de Paul VI (1969-1970) et ses éditions successives</p>
+</sujet>

@@ -1,0 +1,15 @@
+<sujet cle="lit.temps" titre="Le dimanche" desc="Le jour du Seigneur, fondement de toute l’année liturgique.">
+<p>L’année liturgique, déploiement du mystère du Christ au cours d’une année (<i>Sacrosanctum concilium</i> 102)</p>
+<p>Le dimanche, fête primordiale et noyau de l’année liturgique (<i>Sacrosanctum concilium</i> 106)</p>
+<p>Le passage du sabbat au dimanche dans l’Église apostolique</p>
+<p>Le « premier jour de la semaine » et les apparitions du Ressuscité (Jean 20:1-29)</p>
+<p>Le dimanche, jour de la création nouvelle et « huitième jour »</p>
+<p>Le nom de « jour du Seigneur » (grec <i>kyriakê hêmera</i>, Apocalypse 1:10 ; latin <i>dies dominica</i>)</p>
+<p>Les témoins anciens : les martyrs d’Abitène et leur parole « sans le dimanche, nous ne pouvons pas vivre »</p>
+<p>Le dimanche, jour de l’assemblée eucharistique de toute la communauté</p>
+<p>La loi de Constantin sur le repos du dimanche (321)</p>
+<p>La primauté du dimanche dans le calendrier, qui ne cède qu’aux solennités et aux fêtes du Seigneur</p>
+<p>La lettre apostolique <i>Dies Domini</i> de Jean-Paul II (1998)</p>
+<p>La messe anticipée du samedi soir</p>
+<p>Les assemblées dominicales en l’absence de prêtre</p>
+</sujet>

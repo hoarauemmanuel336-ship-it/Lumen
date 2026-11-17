@@ -1,0 +1,17 @@
+<sujet cle="rites.latins" titre="Les rites latins" desc="Les différentes formes de liturgie dans l’Église d’Occident.">
+<p>La famille liturgique latine et sa diversité ancienne</p>
+<p>Le rite romain, le plus répandu</p>
+<p>Le rite ambrosien de Milan</p>
+<p>Le rite hispanique ou mozarabe de Tolède</p>
+<p>Les anciens rites gallicans et leur disparition</p>
+<p>Le rite de Braga</p>
+<p>L’ancien usage de Lyon</p>
+<p>Les rites propres des ordres religieux : leur origine et leur sort après le concile</p>
+<p>Le rite dominicain</p>
+<p>Le rite des chartreux</p>
+<p>L’usage cistercien</p>
+<p>L’usage prémontré</p>
+<p>Le rite carmélitain, dit du Saint-Sépulcre</p>
+<p>L’usage zaïrois du Missel romain (1988)</p>
+<p>Les ordinariats personnels pour d’anciens anglicans (<i>Anglicanorum coetibus</i>, 2009) et leur liturgie propre</p>
+</sujet>

@@ -1,0 +1,11 @@
+<sujet cle="confirmation.orient-occident" titre="L’initiation chrétienne en Orient et en Occident" desc="Pourquoi l’Orient donne les trois sacrements ensemble et l’Occident les sépare.">
+<p>L’unité originelle des trois sacrements de l’initiation dans une même célébration</p>
+<p>La pratique orientale : baptême, chrismation et communion donnés ensemble, même aux nourrissons</p>
+<p>Le choix occidental de réserver la confirmation à l’évêque et ses raisons</p>
+<p>La séparation progressive de la confirmation et du baptême en Occident</p>
+<p>Le décret <i>Quam singulari</i> de saint Pie X (1910) et l’avancement de la première communion</p>
+<p>L’inversion de l’ordre traditionnel dans la pratique latine</p>
+<p>Le rétablissement de l’ordre baptême, confirmation, eucharistie pour les adultes (Rituel de l’initiation chrétienne des adultes)</p>
+<p>Les débats sur l’ordre et l’âge de la confirmation (<i>Sacramentum caritatis</i> 18, 2007)</p>
+<p>L’unité de foi sous la diversité des pratiques</p>
+</sujet>

@@ -1,0 +1,14 @@
+<sujet cle="penitence.satisfaction" titre="La satisfaction" desc="La pénitence donnée par le confesseur et le sens de la réparation.">
+<p>La distinction entre la faute et la peine</p>
+<p>La peine éternelle et la peine temporelle</p>
+<p>La rémission de la peine éternelle par l’absolution et la peine temporelle qui peut demeurer</p>
+<p>La satisfaction ou pénitence imposée par le confesseur</p>
+<p>La réparation des torts causés au prochain : restitution, réparation de la réputation</p>
+<p>La prière comme satisfaction</p>
+<p>L’aumône et les œuvres de miséricorde comme satisfaction</p>
+<p>Les privations volontaires</p>
+<p>L’acceptation patiente des épreuves envoyées par Dieu (Trente, session XIV)</p>
+<p>La satisfaction rendue possible par la satisfaction du Christ</p>
+<p>La doctrine de Trente contre la négation protestante de la satisfaction</p>
+<p>L’adaptation de la pénitence à la personne et aux péchés</p>
+</sujet>

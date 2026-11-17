@@ -1,0 +1,20 @@
+<sujet cle="ordre.rite-effets" titre="Le rite et les effets de l’ordination" desc="Comment se célèbre une ordination et ce qu’elle produit.">
+<p>Le rite de l’ordination dans la <i>Tradition apostolique</i></p>
+<p>La constitution apostolique <i>Sacramentum ordinis</i> de Pie XII (1947) : l’imposition des mains comme matière</p>
+<p>La prière consécratoire propre à chaque degré, forme du sacrement</p>
+<p>Le Pontifical romain de l’ordination (1968, deuxième édition 1989)</p>
+<p>La présentation et l’élection du candidat</p>
+<p>Les engagements de l’ordinand</p>
+<p>La litanie des saints et la prostration</p>
+<p>La remise de l’étole et de la dalmatique au nouveau diacre</p>
+<p>La remise de l’Évangéliaire au diacre</p>
+<p>L’onction des mains du nouveau prêtre</p>
+<p>La remise du pain et du vin au nouveau prêtre</p>
+<p>L’onction de la tête du nouvel évêque</p>
+<p>Le livre des Évangiles tenu ouvert sur la tête de l’élu pendant la prière consécratoire, puis remis à l’évêque</p>
+<p>La remise des insignes au nouvel évêque</p>
+<p>Le caractère sacerdotal, indélébile</p>
+<p>La grâce de l’Esprit Saint propre à chaque degré</p>
+<p>La perte de l’état clérical, qui n’efface pas le caractère</p>
+<p>La lettre apostolique <i>Apostolicae curae</i> de Léon XIII (1896) sur les ordinations anglicanes</p>
+</sujet>

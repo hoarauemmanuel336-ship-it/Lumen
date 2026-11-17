@@ -1,0 +1,12 @@
+<sujet cle="sacrements.ministre" titre="Le ministre et l’intention" desc="Qui donne les sacrements et ce qui est requis de lui.">
+<p>Le Christ, ministre principal de tout sacrement (« C’est le Christ qui baptise », saint Augustin)</p>
+<p>Le ministre humain, instrument du Christ</p>
+<p>La distinction entre ministre ordinaire et ministre extraordinaire d’un sacrement</p>
+<p>L’intention requise : faire ce que fait l’Église</p>
+<p>Le débat sur l’intention extérieure et l’intention intérieure</p>
+<p>L’indignité du ministre qui ne rend pas le sacrement invalide</p>
+<p>La crise donatiste et la réponse de saint Augustin</p>
+<p>La condamnation des erreurs de Wyclif et de Hus sur le ministre en état de péché (concile de Constance)</p>
+<p>Le devoir de sainteté du ministre et la licéité de son action</p>
+<p>La foi du ministre : un ministre hérétique peut-il conférer validement un sacrement ?</p>
+</sujet>

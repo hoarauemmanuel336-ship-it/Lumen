@@ -1,0 +1,19 @@
+<sujet cle="rites.orientaux" titre="Les Églises orientales catholiques" desc="Les Églises d’Orient en communion avec Rome, regroupées en familles liturgiques.">
+<p>Les Églises orientales catholiques : leur nombre et leur statut d’Églises de droit propre</p>
+<p>Le décret <i>Orientalium Ecclesiarum</i> de Vatican II (1964)</p>
+<p>Le Code des canons des Églises orientales (1990)</p>
+<p>Les patriarches et les archevêques majeurs à la tête de ces Églises</p>
+<p>Le synode des évêques de chaque Église et son autonomie de gouvernement</p>
+<p>La tradition alexandrine : Églises copte, éthiopienne et érythréenne catholiques</p>
+<p>La tradition antiochienne ou syriaque occidentale : Églises syriaque catholique et syro-malankare</p>
+<p>L’Église maronite, rattachée à la tradition antiochienne, et sa communion constante avec Rome</p>
+<p>La tradition arménienne : Église arménienne catholique</p>
+<p>La tradition chaldéenne ou syriaque orientale : Églises chaldéenne et syro-malabare</p>
+<p>La tradition byzantine ou constantinopolitaine et ses nombreuses Églises (ukrainienne, melkite, roumaine, ruthène et autres)</p>
+<p>La Divine Liturgie de saint Jean Chrysostome, ordinaire dans la tradition byzantine</p>
+<p>La Divine Liturgie de saint Basile, célébrée aux jours prescrits</p>
+<p>L’iconostase, paroi d’icônes entre le sanctuaire et la nef</p>
+<p>La place de l’Esprit Saint et de l’épiclèse dans les liturgies orientales</p>
+<p>Le calendrier et les grands carêmes des traditions orientales</p>
+<p>L’appel de l’Église à préserver les traditions orientales (<i>Orientale lumen</i> de Jean-Paul II, 1995)</p>
+</sujet>

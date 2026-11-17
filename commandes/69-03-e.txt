@@ -1,0 +1,13 @@
+<sujet cle="confirmation.effets" titre="Les effets de la confirmation" desc="Ce que la confirmation donne à celui qui la reçoit.">
+<p>L’effusion plénière de l’Esprit Saint comme à la Pentecôte</p>
+<p>L’enracinement plus profond dans la filiation divine</p>
+<p>L’union plus ferme au Christ</p>
+<p>L’augmentation des dons du Saint-Esprit</p>
+<p>Le lien plus parfait avec l’Église</p>
+<p>La force pour témoigner de la foi et la confesser (<i>Lumen gentium</i> 11)</p>
+<p>Le caractère de la confirmation et la non-réitération</p>
+<p>La confirmation comme « sacrement de la maturité chrétienne » : sens et limites de l’expression</p>
+<p>La distinction de saint Thomas entre âge corporel et âge spirituel</p>
+<p>La confirmation et la mission des laïcs</p>
+<p>Le rapport entre confirmation et baptême : l’achèvement de la grâce baptismale</p>
+</sujet>

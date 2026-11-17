@@ -1,0 +1,15 @@
+<sujet cle="sacrements.septenaire" titre="Le septénaire sacramentel" desc="Pourquoi il y a sept sacrements, ni plus ni moins.">
+<p>La lente fixation du nombre sept : usages larges du mot sacrement avant le XIIe siècle</p>
+<p>Pierre Lombard et la liste des sept sacrements dans ses <i>Sentences</i></p>
+<p>La profession de foi de Michel Paléologue au IIe concile de Lyon (1274)</p>
+<p>Le décret pour les Arméniens du concile de Florence (1439)</p>
+<p>La définition du concile de Trente (session VII, canon 1, 1547)</p>
+<p>L’accord des Églises orthodoxes sur le nombre de sept</p>
+<p>La convenance du nombre sept selon saint Thomas : analogie avec les étapes de la vie naturelle</p>
+<p>Les sacrements de l’initiation chrétienne : baptême, confirmation, eucharistie</p>
+<p>Les sacrements de guérison : pénitence et onction des malades</p>
+<p>Les sacrements au service de la communion : ordre et mariage</p>
+<p>L’eucharistie, « sacrement des sacrements », vers lequel tous sont ordonnés</p>
+<p>La hiérarchie des sacrements et la nécessité inégale de chacun</p>
+<p>La position des réformateurs : deux sacrements (baptême et Cène) et leur argument</p>
+</sujet>

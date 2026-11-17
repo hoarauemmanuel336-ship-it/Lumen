@@ -1,0 +1,11 @@
+<sujet cle="temps-liturgique.couleurs" titre="Les couleurs liturgiques" desc="Ce que signifie chaque couleur des vêtements selon les temps et les fêtes.">
+<p>L’origine et la fixation des couleurs liturgiques en Occident, du traité <i>De sacro altaris mysterio</i> du futur Innocent III au Missel de saint Pie V</p>
+<p>Le blanc, couleur de la lumière et de la joie, et les célébrations où il est porté</p>
+<p>Le rouge, couleur du feu de l’Esprit et du sang des martyrs, et les célébrations où il est porté</p>
+<p>Le vert : temps ordinaire</p>
+<p>Le violet : Avent, Carême, célébrations pour les défunts</p>
+<p>Le rose : dimanches de <i>Gaudete</i> et de <i>Laetare</i></p>
+<p>Le noir : messes des défunts</p>
+<p>L’or et les vêtements les plus précieux aux jours solennels</p>
+<p>Les usages différents des Églises orientales</p>
+</sujet>

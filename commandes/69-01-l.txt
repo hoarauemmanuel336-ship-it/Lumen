@@ -1,0 +1,16 @@
+<sujet cle="confirmation.institution" titre="L’institution de la confirmation" desc="Les fondements bibliques et historiques du sacrement de confirmation.">
+<p>Le mot confirmation (latin <i>confirmatio</i>, « affermissement ») et le nom oriental de chrismation</p>
+<p>L’onction dans l’Ancien Testament : rois, prêtres, prophètes</p>
+<p>L’annonce de l’Esprit reposant sur le Messie (Isaïe 11:1-2, Isaïe 61:1)</p>
+<p>La promesse de l’effusion de l’Esprit sur tout le peuple (Joël 3:1-2)</p>
+<p>Le Christ oint de l’Esprit au baptême</p>
+<p>La promesse de l’Esprit aux disciples (Jean 14:16-17, Actes 1:8)</p>
+<p>La Pentecôte, source de la confirmation</p>
+<p>L’imposition des mains par les Apôtres à Samarie (Actes 8:14-17)</p>
+<p>L’imposition des mains aux disciples d’Éphèse (Actes 19:5-6)</p>
+<p>La question de l’institution par le Christ et les manières de l’entendre</p>
+<p>Le témoignage de Tertullien sur l’onction et l’imposition des mains après le baptême (<i>De baptismo</i>)</p>
+<p>Les rites qui suivent le baptême dans la <i>Tradition apostolique</i></p>
+<p>Saint Cyrille de Jérusalem et l’onction du chrême (<i>Catéchèses mystagogiques</i> III)</p>
+<p>La sacramentalité de la confirmation niée par les réformateurs et affirmée par le concile de Trente (session VII)</p>
+</sujet>

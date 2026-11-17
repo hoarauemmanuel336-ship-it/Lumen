@@ -1,0 +1,21 @@
+<sujet cle="liturgie.oeuvre-christ" titre="La liturgie, œuvre du Christ et de l’Église" desc="Qui agit dans la liturgie : le Père, le Christ, l’Esprit Saint et l’Église.">
+<p>Le Père, source et terme de la liturgie : la bénédiction (hébreu <i>berakah</i>) reçue et rendue</p>
+<p>Le Christ, grand prêtre et premier acteur de toute célébration (Hébreux 7:24-25)</p>
+<p>Les modes de présence du Christ dans la liturgie selon <i>Sacrosanctum concilium</i> 7 : leur principe et leur ordre</p>
+<p>La présence du Christ dans la personne du ministre</p>
+<p>La présence du Christ sous les espèces eucharistiques, présence par excellence</p>
+<p>La présence du Christ par sa puissance dans les sacrements</p>
+<p>La présence du Christ dans sa Parole proclamée</p>
+<p>La présence du Christ dans l’assemblée qui prie et chante (Matthieu 18:20)</p>
+<p>L’Esprit Saint, artisan de la liturgie (Catéchisme 1091-1109) : son œuvre propre</p>
+<p>L’Esprit qui prépare l’assemblée à la rencontre du Christ</p>
+<p>L’Esprit qui rappelle le mystère du Christ et en donne l’intelligence</p>
+<p>L’Esprit qui rend présent le mystère du Christ</p>
+<p>L’Esprit qui fait la communion de l’Église</p>
+<p>L’épiclèse, invocation de l’Esprit, comme cœur de toute action sacramentelle</p>
+<p>L’Église, Corps du Christ, sujet de la liturgie avec sa Tête (le <i>Christus totus</i> selon saint Augustin)</p>
+<p>L’assemblée célébrante : tout le peuple baptisé, chacun selon sa fonction</p>
+<p>La distinction des ministères dans la célébration : ministres ordonnés et fidèles laïcs</p>
+<p>L’ordre et la hiérarchie dans la célébration comme image de l’Église</p>
+<p>L’encyclique <i>Mediator Dei</i> de Pie XII (1947) sur la liturgie, culte public intégral du Corps mystique</p>
+</sujet>

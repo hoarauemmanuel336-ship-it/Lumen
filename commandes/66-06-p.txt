@@ -1,0 +1,19 @@
+<sujet cle="rites.piete-populaire" titre="La piété populaire" desc="Les dévotions du peuple chrétien et leur lien avec la liturgie.">
+<p>La notion de piété populaire et ses autres noms (religiosité populaire, exercices de piété)</p>
+<p>La valeur de la piété populaire selon <i>Evangelii nuntiandi</i> 48 (1975)</p>
+<p>Le rapport entre piété populaire et liturgie : prolonger la liturgie sans la remplacer (<i>Sacrosanctum concilium</i> 13)</p>
+<p>Le Directoire sur la piété populaire et la liturgie (2001)</p>
+<p>Le chemin de croix</p>
+<p>Les processions</p>
+<p>Les pèlerinages et les sanctuaires</p>
+<p>Les neuvaines</p>
+<p>Les fêtes patronales et les dévotions aux saints locaux</p>
+<p>Le scapulaire</p>
+<p>La pratique des premiers vendredis du mois et l’heure sainte</p>
+<p>Les confréries</p>
+<p>Les critères de discernement de la piété populaire selon le Directoire</p>
+<p>La centralité du Christ et de son mystère pascal</p>
+<p>L’accord avec l’Écriture et avec la liturgie</p>
+<p>Le refus de la superstition et de la magie</p>
+<p>La piété populaire, lieu d’inculturation et d’évangélisation</p>
+</sujet>

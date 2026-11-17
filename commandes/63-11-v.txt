@@ -1,0 +1,18 @@
+<sujet cle="liturgie.vetements" titre="Les vêtements liturgiques et les insignes" desc="Les vêtements des ministres et les insignes de l’évêque, et ce que chacun signifie.">
+<p>Le sens des vêtements liturgiques : le ministre revêtu du Christ (Galates 3:27)</p>
+<p>L’origine des vêtements liturgiques dans le costume civil de l’Antiquité tardive</p>
+<p>L’amict</p>
+<p>L’aube, vêtement commun à tous les ministres</p>
+<p>Le cordon</p>
+<p>L’étole, signe du ministère ordonné, et sa manière d’être portée selon l’ordre</p>
+<p>La chasuble, vêtement propre du prêtre qui célèbre la messe</p>
+<p>La dalmatique, vêtement propre du diacre</p>
+<p>La chape, vêtement des processions et des célébrations solennelles hors de la messe</p>
+<p>Le voile huméral, pour porter le Saint-Sacrement</p>
+<p>Les insignes de l’évêque : leur sens d’ensemble</p>
+<p>La mitre</p>
+<p>La crosse, bâton du pasteur</p>
+<p>L’anneau, signe de l’union de l’évêque avec son Église</p>
+<p>La croix pectorale</p>
+<p>Le pallium, signe de la communion des archevêques métropolitains avec le pape</p>
+</sujet>

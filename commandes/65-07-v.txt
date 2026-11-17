@@ -1,0 +1,17 @@
+<sujet cle="temps-liturgique.vigile" titre="La Vigile pascale" desc="La nuit de Pâques, sommet de toute l’année liturgique, rite par rite.">
+<p>La Vigile pascale, « mère de toutes les saintes vigiles » selon saint Augustin</p>
+<p>Le caractère nocturne de la Vigile et son heure</p>
+<p>Le feu nouveau et sa bénédiction</p>
+<p>Le cierge pascal, signe du Christ ressuscité, et ses inscriptions</p>
+<p>La procession de la lumière et l’acclamation « Lumière du Christ »</p>
+<p>L’<i>Exsultet</i>, annonce de la Pâque</p>
+<p>Les sept lectures de l’Ancien Testament, de la création aux prophètes</p>
+<p>Le retour du <i>Gloria</i> et de l’<i>Alléluia</i></p>
+<p>L’épître (Romains 6:3-11) et l’Évangile de la Résurrection</p>
+<p>La litanie des saints</p>
+<p>La bénédiction de l’eau baptismale</p>
+<p>Les baptêmes et les confirmations des adultes au cours de la Vigile</p>
+<p>Le renouvellement des promesses du baptême par toute l’assemblée</p>
+<p>La liturgie eucharistique de la Vigile, première eucharistie de Pâques</p>
+<p>Le jour de Pâques et la séquence <i>Victimae paschali laudes</i></p>
+</sujet>

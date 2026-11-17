@@ -1,0 +1,21 @@
+<sujet cle="penitence.indulgences" titre="Les indulgences" desc="Ce que sont les indulgences, d’où vient cette doctrine et comment les obtenir.">
+<p>La définition de l’indulgence : la remise devant Dieu de la peine temporelle due aux péchés déjà pardonnés</p>
+<p>Le fondement de la doctrine : la communion des saints</p>
+<p>Le trésor de l’Église : les mérites du Christ et des saints</p>
+<p>L’origine historique : la réduction des pénitences publiques à la demande des martyrs</p>
+<p>L’indulgence plénière accordée aux croisés par Urbain II au concile de Clermont (1095)</p>
+<p>La bulle <i>Unigenitus</i> de Clément VI (1343)</p>
+<p>Les abus de la fin du Moyen Âge et la prédication de Tetzel</p>
+<p>Les 95 thèses de Luther (1517)</p>
+<p>Le décret du concile de Trente sur les indulgences (session XXV, 1563)</p>
+<p>La constitution apostolique <i>Indulgentiarum doctrina</i> de Paul VI (1967)</p>
+<p>L’indulgence plénière et l’indulgence partielle</p>
+<p>Les conditions de l’indulgence plénière : leur principe</p>
+<p>La confession sacramentelle</p>
+<p>La communion eucharistique</p>
+<p>La prière aux intentions du pape</p>
+<p>Le détachement de toute affection au péché, même véniel</p>
+<p>Les indulgences appliquées aux défunts par mode de suffrage</p>
+<p>Le Manuel des indulgences (<i>Enchiridion indulgentiarum</i>)</p>
+<p>Le premier jubilé proclamé par Boniface VIII (1300) et les années jubilaires</p>
+</sujet>

@@ -1,0 +1,13 @@
+<sujet cle="ordre.diaconat" titre="Le diaconat" desc="Ce que l’ordination donne au diacre, ordonné pour le service.">
+<p>Le diaconat, degré du sacrement de l’ordre distinct du sacerdoce</p>
+<p>Les qualités des diacres selon saint Paul (1 Timothée 3:8-13)</p>
+<p>L’ordination du diacre par l’évêque seul (<i>Tradition apostolique</i>)</p>
+<p>Le caractère diaconal et la configuration au Christ serviteur</p>
+<p>Le motu proprio <i>Omnium in mentem</i> de Benoît XVI (2009) : le diacre ne reçoit pas le pouvoir d’agir en la personne du Christ Tête</p>
+<p>Les fonctions liturgiques du diacre</p>
+<p>Le diaconat permanent et le diaconat transitoire : une même ordination</p>
+<p>L’admission d’hommes mariés au diaconat permanent</p>
+<p>L’empêchement à un nouveau mariage pour le diacre devenu veuf</p>
+<p>La promesse de célibat des diacres non mariés</p>
+<p>La question historique des diaconesses et les deux commissions d’étude instituées par François (2016 et 2020)</p>
+</sujet>

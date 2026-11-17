@@ -1,0 +1,16 @@
+<sujet cle="mariage.consentement" titre="Le consentement matrimonial" desc="L’échange des volontés qui fait le mariage, et sa célébration.">
+<p>Le principe : le consentement fait le mariage (latin <i>consensus facit nuptias</i>)</p>
+<p>Le débat médiéval entre consentement et consommation (Gratien, Pierre Lombard) et la synthèse d’Alexandre III</p>
+<p>Le consentement, acte de la volonté par lequel les époux se donnent et se reçoivent (<i>Gaudium et spes</i> 48)</p>
+<p>La liberté du consentement, condition de sa vérité</p>
+<p>L’objet du consentement : le don de toute la vie, avec l’unité, l’indissolubilité et l’ouverture à la vie</p>
+<p>Le décret <i>Tametsi</i> du concile de Trente (1563) contre les mariages clandestins</p>
+<p>Le décret <i>Ne temere</i> (1907)</p>
+<p>La raison d’être de la forme publique : le mariage, réalité ecclésiale et sociale</p>
+<p>Le Rituel du mariage et l’échange des consentements</p>
+<p>La bénédiction et la remise des alliances</p>
+<p>La bénédiction nuptiale</p>
+<p>Le mariage célébré au cours de la messe ou en dehors de la messe</p>
+<p>La préparation au mariage et les <i>Itinéraires catéchuménaux pour la vie conjugale</i> (2022)</p>
+<p>Les mariages mixtes, avec un baptisé non catholique, et la disparité de culte, avec un non-baptisé : leur sens pastoral et les conditions que l’Église y met</p>
+</sujet>

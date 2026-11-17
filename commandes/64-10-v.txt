@@ -1,0 +1,18 @@
+<sujet cle="messe.missels" titre="Le Missel de Paul VI et l’usage du missel de 1962" desc="Les deux missels en usage dans le rite romain et ce que l’Église en a décidé.">
+<p>La constitution apostolique <i>Missale Romanum</i> de Paul VI (3 avril 1969)</p>
+<p>Les éditions typiques du Missel de Paul VI (1970, 1975, 2002)</p>
+<p>La nouvelle traduction française du Missel romain entrée en usage en 2021</p>
+<p>Les différences entre les deux missels : leur principe et leur portée</p>
+<p>Le lectionnaire : un cycle annuel dans le missel de 1962, des cycles de plusieurs années dans celui de Paul VI</p>
+<p>Les prières eucharistiques : le seul Canon romain en 1962, plusieurs prières eucharistiques depuis 1970</p>
+<p>La langue : le latin dans le missel de 1962, le latin et les langues vivantes après le concile</p>
+<p>L’orientation du prêtre à l’autel</p>
+<p>Le calendrier : temps de la Septuagésime, octaves et degrés des fêtes du missel de 1962</p>
+<p>Le missel de 1962, dernière édition du Missel de saint Pie V</p>
+<p>Les objections au nouveau missel et la réponse de l’Église</p>
+<p>Le motu proprio <i>Ecclesia Dei</i> (1988)</p>
+<p>Le motu proprio <i>Summorum Pontificum</i> de Benoît XVI (2007) : deux formes d’un même rite</p>
+<p>Le motu proprio <i>Traditionis custodes</i> de François (2021) : les livres de Paul VI et Jean-Paul II comme unique expression de la <i>lex orandi</i> du rite romain</p>
+<p>Le principe de l’unité du rite romain et de la communion autour de l’évêque</p>
+<p>La dignité de la célébration dans tout usage autorisé</p>
+</sujet>

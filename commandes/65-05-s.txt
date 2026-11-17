@@ -1,0 +1,13 @@
+<sujet cle="temps-liturgique.semaine-sainte" titre="La Semaine sainte" desc="Les jours qui conduisent du dimanche des Rameaux au Triduum.">
+<p>La Semaine sainte, « grande semaine », et son origine à Jérusalem (récit d’Égérie)</p>
+<p>Le dimanche des Rameaux et de la Passion : son double caractère</p>
+<p>La bénédiction des rameaux et la procession, mémoire de l’entrée du Christ à Jérusalem</p>
+<p>La lecture de la Passion selon l’un des trois Évangiles synoptiques</p>
+<p>Les lundi, mardi et mercredi saints</p>
+<p>La messe chrismale, célébrée par l’évêque avec le presbyterium de son diocèse</p>
+<p>La bénédiction de l’huile des malades et de l’huile des catéchumènes</p>
+<p>La consécration du saint chrême</p>
+<p>Le renouvellement des promesses sacerdotales</p>
+<p>La lettre circulaire <i>Paschalis sollemnitatis</i> (1988) sur la préparation et la célébration des fêtes pascales</p>
+<p>Les dévotions populaires de la Semaine sainte et leur rapport avec la liturgie</p>
+</sujet>

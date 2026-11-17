@@ -1,0 +1,10 @@
+<sujet cle="onction.effets" titre="Les effets de l’onction des malades" desc="Ce que le sacrement donne au malade, dans son âme et parfois dans son corps.">
+<p>La grâce propre du sacrement, don de l’Esprit Saint : réconfort, paix et courage dans l’épreuve (Catéchisme 1520)</p>
+<p>La force contre le découragement et l’angoisse devant la mort</p>
+<p>L’union du malade à la passion du Christ</p>
+<p>La rémission des péchés quand le malade n’a pu se confesser</p>
+<p>L’effacement des restes du péché selon le concile de Trente (session XIV)</p>
+<p>Le rétablissement de la santé du corps, si cela convient au salut de l’âme</p>
+<p>La préparation au passage vers la vie éternelle</p>
+<p>La contribution du malade au bien du peuple de Dieu (<i>Lumen gentium</i> 11)</p>
+</sujet>

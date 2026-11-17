@@ -1,0 +1,13 @@
+<sujet cle="liturgie.lieux" titre="Les lieux de la célébration" desc="L’église et ses lieux principaux, et ce que chacun signifie.">
+<p>L’église, maison de Dieu et image de l’Église faite de pierres vivantes (1 Pierre 2:5)</p>
+<p>La dédicace d’une église et son rite</p>
+<p>L’autel, signe du Christ, lieu du sacrifice et table du Seigneur</p>
+<p>L’autel fixe et les reliques de martyrs sous l’autel</p>
+<p>L’ambon, table de la Parole</p>
+<p>Le siège du prêtre célébrant, signe de sa fonction de présidence</p>
+<p>La cathèdre de l’évêque, qui donne son nom à la cathédrale</p>
+<p>Le baptistère et les fonts baptismaux</p>
+<p>Le tabernacle et la réserve eucharistique</p>
+<p>Le lieu de la pénitence et le confessionnal</p>
+<p>L’orientation de la prière vers l’Orient (<i>ad orientem</i>) et les débats sur l’orientation de l’autel</p>
+</sujet>

@@ -1,0 +1,15 @@
+<sujet cle="eucharistie.figures" titre="Les figures de l’eucharistie" desc="Comment l’Ancien Testament et les gestes du Christ annoncent l’eucharistie.">
+<p>Le sens de la typologie eucharistique</p>
+<p>L’offrande du pain et du vin par Melchisédech (Genèse 14:18-20)</p>
+<p>Le sacrifice d’Isaac (Genèse 22:1-18)</p>
+<p>L’agneau pascal et le repas de la Pâque (Exode 12:1-28)</p>
+<p>La manne au désert (Exode 16:1-36)</p>
+<p>Le sang de l’Alliance au Sinaï (Exode 24:3-8)</p>
+<p>Les pains de proposition (Lévitique 24:5-9)</p>
+<p>Le pain donné à Élie (1 Rois 19:4-8)</p>
+<p>Le banquet de la Sagesse (Proverbes 9:1-6)</p>
+<p>L’oblation pure offerte en tout lieu (Malachie 1:11)</p>
+<p>Le signe de Cana (Jean 2:1-11)</p>
+<p>La multiplication des pains (Marc 6:30-44)</p>
+<p>Les repas du Ressuscité et les pèlerins d’Emmaüs (Luc 24:13-35)</p>
+</sujet>

@@ -1,0 +1,16 @@
+<sujet cle="messe.acteurs" titre="Les acteurs de la célébration" desc="Qui fait quoi à la messe, du prêtre à l’assemblée.">
+<p>Le principe : chacun fait tout et seulement ce qui lui revient (<i>Sacrosanctum concilium</i> 28)</p>
+<p>Le prêtre célébrant, qui agit <i>in persona Christi</i> (latin, « en la personne du Christ »)</p>
+<p>La messe présidée par l’évêque, image de l’Église locale</p>
+<p>La concélébration : histoire, sens et règles</p>
+<p>Le diacre et ses fonctions propres</p>
+<p>Les ministères institués de lecteur et d’acolyte (<i>Ministeria quaedam</i>, 1972)</p>
+<p>L’ouverture de ces ministères aux femmes (<i>Spiritus Domini</i>, 2021)</p>
+<p>Les ministres extraordinaires de la communion</p>
+<p>Le psalmiste, qui chante le psaume entre les lectures</p>
+<p>Les servants d’autel</p>
+<p>Le cérémoniaire, qui règle le déroulement des célébrations</p>
+<p>L’assemblée des fidèles et sa participation propre</p>
+<p>La messe célébrée sans peuple et sa valeur</p>
+<p>La Présentation générale du Missel romain, règle de la célébration</p>
+</sujet>

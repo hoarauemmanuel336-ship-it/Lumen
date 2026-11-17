@@ -1,0 +1,10 @@
+<sujet cle="lit.rites" titre="Unité de la foi et diversité des rites" desc="Pourquoi l’Église catholique célèbre une même foi selon plusieurs rites.">
+<p>Le mot rite (latin <i>ritus</i>) : un patrimoine liturgique, théologique, spirituel et disciplinaire</p>
+<p>La distinction entre rite et Église de droit propre (latin <i>sui iuris</i>)</p>
+<p>La formation des grandes traditions liturgiques autour des sièges apostoliques anciens (Rome, Alexandrie, Antioche, Constantinople)</p>
+<p>La diversité des rites comme richesse de l’Église et non comme atteinte à son unité (<i>Sacrosanctum concilium</i> 4)</p>
+<p>L’égale dignité des rites (<i>Orientalium Ecclesiarum</i> 3)</p>
+<p>Ce qui est immuable et ce qui est variable dans la liturgie</p>
+<p>L’unité de la foi et des sacrements sous la diversité des formes</p>
+<p>L’appartenance d’un fidèle à son Église de droit propre et le passage d’une Église à une autre</p>
+</sujet>

@@ -1,0 +1,17 @@
+<sujet cle="sacr.service" titre="Le sacerdoce dans l’Ancien Testament et le sacerdoce du Christ" desc="Ce qu’est un prêtre, d’Aaron jusqu’au Christ unique prêtre.">
+<p>Les sacrements au service de la communion : ordre et mariage</p>
+<p>Le mot ordre (latin <i>ordo</i>, « corps constitué ») et le mot ordination</p>
+<p>Le peuple d’Israël, royaume de prêtres (Exode 19:6)</p>
+<p>Le sacerdoce lévitique : la tribu de Lévi et les descendants d’Aaron</p>
+<p>Les fonctions du prêtre de l’Ancienne Alliance : sacrifice, enseignement de la Loi, bénédiction</p>
+<p>Melchisédech, prêtre du Dieu Très-Haut (Genèse 14:18-20, Psaume 110:4)</p>
+<p>Le Christ, unique grand prêtre de la Nouvelle Alliance (Hébreux 5:1-10, Hébreux 7:23-28)</p>
+<p>Le sacerdoce du Christ, accompli dans l’offrande de lui-même</p>
+<p>Le ministère ordonné, représentation sacramentelle du Christ Tête</p>
+<p>Le passage d’un vocabulaire encore souple dans le Nouveau Testament (presbytres et épiscopes) aux trois degrés attestés par saint Ignace d’Antioche</p>
+<p>La définition du sacrement de l’ordre par le concile de Trente (session XXIII, 1563) contre les réformateurs</p>
+<p>Les trois degrés du sacrement de l’ordre</p>
+<p>Les anciens ordres mineurs : portier, lecteur, exorciste, acolyte</p>
+<p>Le sous-diaconat, ancien ordre majeur</p>
+<p>La suppression des ordres mineurs et du sous-diaconat par <i>Ministeria quaedam</i> (1972) et leur remplacement par les ministères institués</p>
+</sujet>

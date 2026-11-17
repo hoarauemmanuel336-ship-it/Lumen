@@ -1,0 +1,17 @@
+<sujet cle="temps-liturgique.sanctoral" titre="Les degrés des célébrations et le sanctoral" desc="Comment l’Église classe les fêtes et fait mémoire des saints au fil de l’année.">
+<p>Le temporal (mystères du Christ) et le sanctoral (fêtes des saints)</p>
+<p>Le sens de la mémoire des saints : le mystère pascal accompli en eux (<i>Sacrosanctum concilium</i> 104)</p>
+<p>Le dies natalis, jour de la mort du saint comme naissance au ciel</p>
+<p>La solennité, degré le plus élevé</p>
+<p>La fête</p>
+<p>La mémoire obligatoire</p>
+<p>La mémoire facultative</p>
+<p>La férie</p>
+<p>Le tableau des préséances et la règle des coïncidences</p>
+<p>Les Normes universelles de l’année liturgique et du calendrier (motu proprio <i>Mysterii paschalis</i>, 1969)</p>
+<p>Le calendrier romain général et la réforme de 1969</p>
+<p>Les calendriers propres des pays, des diocèses et des familles religieuses</p>
+<p>Les fêtes de précepte et leur transfert au dimanche</p>
+<p>La Toussaint, fête de tous les saints (1er novembre)</p>
+<p>La Commémoration de tous les fidèles défunts (2 novembre)</p>
+</sujet>

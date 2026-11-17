@@ -1,0 +1,16 @@
+<sujet cle="sacr.eucharistie" titre="Les noms de l’eucharistie" desc="Les différents noms du sacrement et ce que chacun en révèle.">
+<p>L’eucharistie, source et sommet de toute la vie chrétienne (<i>Lumen gentium</i> 11)</p>
+<p>Le nom d’eucharistie (grec <i>eucharistia</i>, « action de grâce ») et la bénédiction juive</p>
+<p>Le repas du Seigneur (1 Corinthiens 11:20)</p>
+<p>La fraction du pain (Luc 24:35, Actes 2:42)</p>
+<p>L’assemblée eucharistique (grec <i>synaxis</i>)</p>
+<p>Le mémorial de la passion et de la résurrection</p>
+<p>Le saint sacrifice</p>
+<p>La sainte et divine liturgie</p>
+<p>Les saints mystères</p>
+<p>Le Saint-Sacrement</p>
+<p>La communion</p>
+<p>La messe</p>
+<p>Le pain des anges et le pain du ciel (Psaume 78:24-25, Jean 6:31-33)</p>
+<p>Le remède d’immortalité (saint Ignace d’Antioche, <i>Lettre aux Éphésiens</i> 20)</p>
+</sujet>

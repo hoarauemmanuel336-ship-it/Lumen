@@ -1,0 +1,13 @@
+<sujet cle="messe.ouverture" titre="Les rites d’ouverture" desc="Le début de la messe, qui rassemble l’assemblée et la prépare.">
+<p>La fonction des rites d’ouverture : faire de l’assemblée une communauté prête à écouter et à célébrer</p>
+<p>Le chant d’entrée et la procession</p>
+<p>La vénération de l’autel : baiser et encensement</p>
+<p>Le signe de croix qui ouvre la célébration</p>
+<p>La salutation du célébrant et ses formules bibliques (2 Corinthiens 13:13)</p>
+<p>L’acte pénitentiel et ses formes</p>
+<p>Le <i>Kyrie eleison</i> (grec, « Seigneur, prends pitié »)</p>
+<p>L’aspersion dominicale, qui peut remplacer l’acte pénitentiel</p>
+<p>Le <i>Gloria</i>, hymne ancienne, et les jours où il est chanté</p>
+<p>La prière d’ouverture ou collecte, sa structure et son sens</p>
+<p>Le « Amen » de l’assemblée</p>
+</sujet>

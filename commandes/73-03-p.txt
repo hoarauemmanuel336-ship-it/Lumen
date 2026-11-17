@@ -1,0 +1,15 @@
+<sujet cle="ordre.presbyterat" titre="Le presbytérat" desc="Ce que l’ordination donne au prêtre, coopérateur de l’évêque.">
+<p>Le presbytérat, second degré du sacrement de l’ordre</p>
+<p>La participation au sacerdoce de l’évêque à un degré subordonné</p>
+<p>La configuration au Christ prêtre par le caractère sacerdotal</p>
+<p>Le pouvoir de consacrer l’eucharistie et d’offrir le sacrifice</p>
+<p>Le pouvoir de remettre les péchés</p>
+<p>Le pouvoir de donner l’onction des malades</p>
+<p>L’annonce de la Parole, premier devoir des prêtres (<i>Presbyterorum ordinis</i> 4)</p>
+<p>La fraternité sacramentelle des prêtres entre eux (<i>Presbyterorum ordinis</i> 8)</p>
+<p>La promesse d’obéissance et de respect à l’évêque</p>
+<p>La spiritualité du prêtre : charité pastorale, prière, unité de vie</p>
+<p>La sanctification du prêtre par l’exercice même de son ministère (<i>Presbyterorum ordinis</i> 12)</p>
+<p>Le saint curé d’Ars, patron des curés</p>
+<p>L’Année sacerdotale (2009-2010)</p>
+</sujet>

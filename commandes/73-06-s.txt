@@ -1,0 +1,17 @@
+<sujet cle="ordre.sujet" titre="Le sujet de l’ordination" desc="Qui peut être ordonné et comment l’Église discerne la vocation.">
+<p>Le sujet valide : un homme baptisé</p>
+<p>La vocation : appel intérieur et appel de l’Église</p>
+<p>L’absence de droit à l’ordination</p>
+<p>La foi intègre du candidat</p>
+<p>L’intention droite</p>
+<p>Les vertus et la bonne réputation</p>
+<p>La maturité humaine et affective</p>
+<p>La santé physique et psychique</p>
+<p>Les irrégularités et les empêchements</p>
+<p>Le séminaire : son institution par le concile de Trente</p>
+<p>Le décret <i>Optatam totius</i> (1965) sur la formation des prêtres</p>
+<p>Les quatre dimensions de la formation : humaine, spirituelle, intellectuelle, pastorale</p>
+<p>La <i>Ratio fundamentalis</i> de la formation sacerdotale (2016)</p>
+<p>Les étapes vers l’ordination : admission, ministères de lecteur et d’acolyte, diaconat</p>
+<p>L’âge requis pour chaque degré</p>
+</sujet>

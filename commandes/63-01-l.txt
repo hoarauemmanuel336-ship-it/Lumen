@@ -1,0 +1,16 @@
+<sujet cle="lit.nature" titre="Le mot et la notion de liturgie" desc="Ce que veut dire le mot liturgie et ce que l’Église désigne par là.">
+<p>Le mot liturgie (grec <i>leitourgia</i>, de <i>laos</i>, « peuple », et <i>ergon</i>, « œuvre ») : « œuvre publique », « service rendu au nom du peuple »</p>
+<p>L’usage du mot dans la Septante pour le service du Temple et dans le Nouveau Testament (Luc 1:23, Hébreux 8:6)</p>
+<p>La définition de la liturgie comme exercice de la fonction sacerdotale de Jésus-Christ (<i>Sacrosanctum concilium</i> 7)</p>
+<p>La double dimension de la liturgie : glorification de Dieu et sanctification des hommes</p>
+<p>La liturgie, « sommet et source » de la vie de l’Église (<i>Sacrosanctum concilium</i> 10)</p>
+<p>Ce que la liturgie n’épuise pas : la place de l’annonce de la foi, de la conversion et de la charité (<i>Sacrosanctum concilium</i> 9)</p>
+<p>La distinction entre liturgie et prière privée ou exercices de piété</p>
+<p>Le caractère public et ecclésial de toute action liturgique, même célébrée en petit nombre</p>
+<p>Le culte, honneur rendu à Dieu, dont la liturgie est la forme publique et officielle</p>
+<p>Le rite, forme réglée et transmise d’une action sacrée</p>
+<p>La cérémonie, élément extérieur et visible de l’action liturgique</p>
+<p>La célébration, action de l’assemblée qui fête le mystère</p>
+<p>La raison d’être de la liturgie tirée de la nature corporelle de l’homme : un culte qui engage le corps</p>
+<p>La raison d’être de la liturgie tirée de la nature sociale de l’homme : un culte commun et public, rendu par un peuple</p>
+</sujet>

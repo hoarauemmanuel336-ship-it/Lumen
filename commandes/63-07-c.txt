@@ -1,0 +1,21 @@
+<sujet cle="liturgie.chant" titre="Le chant et la musique sacrée" desc="La place du chant dans la liturgie et les règles de la musique sacrée.">
+<p>Le chant dans l’Ancien Testament : les cantiques d’Israël et les Psaumes</p>
+<p>Les hymnes et cantiques du Nouveau Testament (Luc 1:46-55, Philippiens 2:6-11, Colossiens 3:16)</p>
+<p>Le chant comme partie nécessaire ou intégrante de la liturgie solennelle (<i>Sacrosanctum concilium</i> 112)</p>
+<p>Le principe attribué à saint Augustin : « qui chante bien prie deux fois »</p>
+<p>Le motu proprio <i>Tra le sollecitudini</i> de saint Pie X (1903)</p>
+<p>Les qualités de la musique sacrée selon saint Pie X : leur principe</p>
+<p>La sainteté de la musique sacrée, qui écarte tout caractère profane</p>
+<p>La beauté de la forme, condition d’un art véritable</p>
+<p>L’universalité, qui permet à chaque peuple de la recevoir comme sacrée</p>
+<p>Le chant grégorien, chant propre de la liturgie romaine, et sa place principale (<i>Sacrosanctum concilium</i> 116)</p>
+<p>La polyphonie sacrée et ses maîtres (Palestrina)</p>
+<p>L’orgue à tuyaux, instrument traditionnel de l’Église latine (<i>Sacrosanctum concilium</i> 120)</p>
+<p>Les autres instruments et les conditions de leur admission dans la liturgie</p>
+<p>L’instruction <i>Musicam sacram</i> (1967) et les degrés de participation chantée</p>
+<p>Les chants de l’ordinaire de la messe, aux textes invariables</p>
+<p>Les chants du propre de la messe, aux textes propres à chaque jour : introït, graduel, alléluia, offertoire, communion</p>
+<p>Le chant de l’assemblée</p>
+<p>La schola et le chantre, au service du chant de tous</p>
+<p>Le choix des chants : fidélité aux textes liturgiques et au moment du rite</p>
+</sujet>

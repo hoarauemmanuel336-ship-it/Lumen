@@ -1,0 +1,12 @@
+<sujet cle="eucharistie.transsubstantiation" titre="La transsubstantiation" desc="Le changement du pain et du vin au Corps et au Sang du Christ.">
+<p>La conversion eucharistique dans la foi des Pères orientaux (grec <i>metabolê</i>)</p>
+<p>Le mot transsubstantiation et son entrée dans le langage du Magistère au IVe concile du Latran (1215)</p>
+<p>La définition du concile de Trente : le mot jugé « très approprié » (session XIII, canon 2)</p>
+<p>La notion de substance appliquée au pain et au vin</p>
+<p>Les espèces ou apparences qui demeurent</p>
+<p>L’explication de saint Thomas : une conversion totale de la substance, sans équivalent dans la nature</p>
+<p>La manière d’exister du Christ sous les espèces : ni enfermé dans un lieu, ni multiplié</p>
+<p>Le moment de la conversion : les paroles de la consécration et le rôle de l’épiclèse en Orient</p>
+<p>Ce que la doctrine ne prétend pas : une explication physique du mystère</p>
+<p>Les théories de la transsignification et de la transfinalisation, et leur rejet par <i>Mysterium fidei</i> (1965)</p>
+</sujet>

@@ -1,0 +1,15 @@
+<sujet cle="liturgie.architecture" titre="L’architecture des églises et l’art sacré" desc="Comment les églises ont été bâties et ornées au fil des siècles, et ce que l’Église demande à l’art.">
+<p>Les maisons d’église (latin <i>domus ecclesiae</i>) des premiers siècles et l’exemple de Doura-Europos</p>
+<p>La basilique paléochrétienne après Constantin</p>
+<p>L’église byzantine à coupole et Sainte-Sophie de Constantinople</p>
+<p>L’église romane : la voûte de pierre, le chœur des moines, la crypte des reliques et les chemins de pèlerinage</p>
+<p>La cathédrale gothique et la théologie de la lumière</p>
+<p>L’église de la Renaissance : le plan centré et la proportion, image de l’ordre divin</p>
+<p>L’église baroque de la Réforme catholique</p>
+<p>Les styles néo-médiévaux du XIXe siècle</p>
+<p>Les églises du XXe siècle et l’aménagement des églises après le concile</p>
+<p>L’art sacré et ses exigences (<i>Sacrosanctum concilium</i>, chapitre VII)</p>
+<p>La noble beauté préférée à la somptuosité (<i>Sacrosanctum concilium</i> 124)</p>
+<p>La place et la mesure des images saintes dans l’église (<i>Sacrosanctum concilium</i> 125)</p>
+<p>La garde du patrimoine d’art sacré</p>
+</sujet>

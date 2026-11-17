@@ -1,0 +1,12 @@
+<sujet cle="temps-liturgique.ordinaire" titre="Le temps ordinaire" desc="Les semaines de l’année qui ne célèbrent pas un aspect particulier du mystère.">
+<p>Le nom de temps ordinaire (latin <i>tempus per annum</i>, « au cours de l’année »)</p>
+<p>Les deux périodes du temps ordinaire et leurs trente-trois ou trente-quatre semaines</p>
+<p>Le sens du temps ordinaire : le mystère du Christ dans sa plénitude, la vie publique du Christ</p>
+<p>La lecture continue des Évangiles synoptiques au fil des années A, B et C</p>
+<p>La solennité de la Sainte Trinité</p>
+<p>La solennité du Corps et du Sang du Christ</p>
+<p>La solennité du Sacré-Cœur de Jésus</p>
+<p>La solennité du Christ Roi de l’univers et l’encyclique <i>Quas primas</i> de Pie XI (1925)</p>
+<p>Les derniers dimanches et l’attente des fins dernières</p>
+<p>Les Quatre-Temps et les Rogations : leur origine romaine, leur sens (sanctifier les saisons et le travail des hommes) et leur place laissée aux conférences des évêques par les Normes de 1969</p>
+</sujet>

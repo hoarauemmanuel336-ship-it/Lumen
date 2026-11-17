@@ -1,0 +1,16 @@
+<sujet cle="messe.priere-eucharistique" titre="La prière eucharistique" desc="Le cœur de la messe, expliqué partie par partie.">
+<p>Le nom de prière eucharistique, canon ou anaphore (grec <i>anaphora</i>, « élévation, offrande »)</p>
+<p>Le caractère de la prière eucharistique : prière présidentielle adressée au Père, au nom de toute l’Église</p>
+<p>Le dialogue initial : « Élevons notre cœur » (<i>Sursum corda</i>)</p>
+<p>La préface, action de grâce pour l’œuvre du salut</p>
+<p>Le <i>Sanctus</i> et son origine biblique (Isaïe 6:3, Matthieu 21:9)</p>
+<p>L’épiclèse de consécration, qui demande que l’Esprit sanctifie les dons</p>
+<p>Le récit de l’institution et la consécration</p>
+<p>L’élévation et l’ostension de l’hostie et du calice</p>
+<p>L’acclamation après la consécration (« Il est grand, le mystère de la foi »)</p>
+<p>L’anamnèse, mémoire de la passion, de la résurrection et de l’ascension</p>
+<p>L’oblation, offrande de la victime sans tache au Père</p>
+<p>L’épiclèse de communion, qui demande l’unité de ceux qui vont communier</p>
+<p>Les intercessions pour l’Église, les vivants et les défunts, en communion avec les saints</p>
+<p>La doxologie finale (« Par lui, avec lui et en lui ») et le grand Amen</p>
+</sujet>

@@ -1,0 +1,17 @@
+<sujet cle="messe.parole" titre="La liturgie de la Parole" desc="Les lectures, l’homélie, le Credo et la prière universelle.">
+<p>La présence du Christ qui parle quand on lit l’Écriture dans l’Église</p>
+<p>La table de la Parole ouverte plus largement aux fidèles (<i>Sacrosanctum concilium</i> 51)</p>
+<p>Le Lectionnaire de 1969 et son principe : lire au peuple les parties les plus importantes de l’Écriture</p>
+<p>Le cycle des dimanches sur trois ans : année A (Matthieu), année B (Marc), année C (Luc)</p>
+<p>Le cycle de semaine sur deux ans, années paires et années impaires</p>
+<p>La première lecture, souvent tirée de l’Ancien Testament, et son lien avec l’Évangile</p>
+<p>Le psaume responsorial</p>
+<p>La deuxième lecture, tirée des Apôtres</p>
+<p>L’acclamation de l’Évangile : l’<i>Alléluia</i> (hébreu, « louez Yah ») et son remplacement en Carême</p>
+<p>La proclamation de l’Évangile, réservée au diacre ou au prêtre</p>
+<p>Les honneurs rendus à l’Évangile : procession, cierges, encens, baiser de l’Évangéliaire</p>
+<p>L’homélie, partie de la liturgie réservée au ministre ordonné, son but et son contenu</p>
+<p>Le silence après les lectures et l’homélie</p>
+<p>La profession de foi : Symbole de Nicée-Constantinople ou Symbole des Apôtres</p>
+<p>La prière universelle et l’ordre de ses intentions</p>
+</sujet>

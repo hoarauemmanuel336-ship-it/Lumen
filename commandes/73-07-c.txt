@@ -1,0 +1,15 @@
+<sujet cle="ordre.celibat" titre="Le célibat sacerdotal" desc="Pourquoi les prêtres latins sont célibataires, et ce qu’il en est en Orient.">
+<p>Le célibat pour le Royaume (Matthieu 19:12)</p>
+<p>La virginité et le cœur sans partage selon saint Paul (1 Corinthiens 7:32-35)</p>
+<p>La continence des clercs dans l’Église ancienne : le concile d’Elvire (début du IVe siècle)</p>
+<p>La discipline orientale fixée par le concile <i>in Trullo</i> (692) : prêtres mariés avant l’ordination, évêques célibataires</p>
+<p>La réforme grégorienne et le IIe concile du Latran (1139)</p>
+<p>La confirmation par le concile de Trente</p>
+<p>L’encyclique <i>Sacerdotalis caelibatus</i> de Paul VI (1967)</p>
+<p>La raison christologique du célibat : la configuration au Christ vierge</p>
+<p>La raison ecclésiologique : le don sans partage à l’Église</p>
+<p>La raison eschatologique : le signe du Royaume à venir</p>
+<p>Le célibat, loi ecclésiastique et non dogme : ce qui en découle</p>
+<p>Les exceptions dans l’Église latine : anciens ministres protestants devenus prêtres catholiques</p>
+<p>Les débats contemporains sur les prêtres mariés</p>
+</sujet>

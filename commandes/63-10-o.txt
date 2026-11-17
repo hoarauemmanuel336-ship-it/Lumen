@@ -1,0 +1,15 @@
+<sujet cle="liturgie.objets" titre="Les objets liturgiques" desc="Les vases, les linges et les objets de la célébration, et leur sens.">
+<p>Le sens des objets liturgiques : dignité, noblesse et destination exclusive au culte</p>
+<p>Le calice, coupe du Sang du Christ</p>
+<p>La patène, plat du pain consacré</p>
+<p>Le ciboire, vase de la réserve et de la distribution des hosties</p>
+<p>La custode, petite boîte pour porter la communion aux malades</p>
+<p>L’ostensoir et la lunule qui y reçoit l’hostie</p>
+<p>Le corporal, linge sur lequel reposent les espèces consacrées</p>
+<p>Le purificatoire, linge qui essuie le calice</p>
+<p>La pale, carré rigide qui couvre le calice</p>
+<p>Le manuterge, linge du lavement des mains</p>
+<p>La croix de l’autel</p>
+<p>Les cierges et leur nombre selon les célébrations</p>
+<p>L’encensoir et la navette</p>
+</sujet>

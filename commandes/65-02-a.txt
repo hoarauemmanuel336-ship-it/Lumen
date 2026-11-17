@@ -1,0 +1,16 @@
+<sujet cle="temps-liturgique.avent" titre="L’Avent" desc="Le temps de préparation à Noël et d’attente du retour du Christ.">
+<p>Le mot Avent (latin <i>adventus</i>, « venue, avènement »)</p>
+<p>L’origine historique de l’Avent en Gaule, en Espagne et à Rome</p>
+<p>Le double sens de l’Avent : attente de la venue glorieuse et préparation à la fête de la naissance</p>
+<p>Les quatre dimanches de l’Avent et leurs thèmes</p>
+<p>Le prophète Isaïe, voix de l’attente messianique dans les lectures de l’Avent</p>
+<p>Jean-Baptiste, le Précurseur, aux deuxième et troisième dimanches</p>
+<p>La Vierge Marie, figure de l’attente accomplie, au quatrième dimanche</p>
+<p>Le troisième dimanche, dimanche de <i>Gaudete</i>, et la couleur rose</p>
+<p>Les féries du 17 au 24 décembre</p>
+<p>Les grandes antiennes « Ô » des Vêpres</p>
+<p>Le caractère de l’Avent : attente joyeuse plutôt que pénitence</p>
+<p>La couronne de l’Avent</p>
+<p>La crèche et sa tradition depuis saint François d’Assise à Greccio (1223)</p>
+<p>Les messes <i>rorate</i>, célébrées à la lueur des cierges avant l’aube</p>
+</sujet>

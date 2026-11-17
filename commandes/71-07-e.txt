@@ -1,0 +1,12 @@
+<sujet cle="penitence.effets" titre="Les effets de la pénitence" desc="Ce que le sacrement du pardon rend au pécheur.">
+<p>La réconciliation avec Dieu et le retour de la grâce sanctifiante</p>
+<p>La réconciliation avec l’Église</p>
+<p>La remise de la peine éternelle</p>
+<p>La remise au moins partielle de la peine temporelle</p>
+<p>La reviviscence des mérites acquis avant le péché</p>
+<p>La paix et la sérénité de la conscience</p>
+<p>L’accroissement des forces spirituelles pour le combat chrétien</p>
+<p>La réconciliation avec soi-même, avec les frères et avec la création</p>
+<p>La pénitence comme anticipation du jugement</p>
+<p>La fréquence de la confession et son rôle dans la vie spirituelle</p>
+</sujet>

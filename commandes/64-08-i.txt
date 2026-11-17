@@ -1,0 +1,12 @@
+<sujet cle="messe.conclusion" titre="Les rites de conclusion" desc="La fin de la messe : bénédiction et envoi.">
+<p>Les annonces éventuelles</p>
+<p>La salutation finale</p>
+<p>La bénédiction simple</p>
+<p>La bénédiction solennelle et la prière sur le peuple</p>
+<p>La bénédiction de l’évêque</p>
+<p>Le renvoi : <i>Ite, missa est</i> et ses formules en français</p>
+<p>Le sens de l’envoi : la messe se prolonge dans la mission et la vie quotidienne</p>
+<p>La vénération de l’autel à la fin de la messe</p>
+<p>La procession de sortie</p>
+<p>Les prières et l’action de grâce personnelle après la messe</p>
+</sujet>

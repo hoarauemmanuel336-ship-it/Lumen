@@ -1,0 +1,13 @@
+<sujet cle="sacrements.ex-opere-operato" titre="L’efficacité ex opere operato et les dispositions" desc="Pourquoi le sacrement agit par lui-même, et ce que le fidèle doit apporter.">
+<p>L’expression <i>ex opere operato</i> (latin, « par l’œuvre accomplie ») et son sens exact</p>
+<p>Le contraste avec <i>ex opere operantis</i> (« par l’œuvre de celui qui agit »)</p>
+<p>La définition du concile de Trente (session VII, canon 8)</p>
+<p>Le fondement de cette efficacité : l’action du Christ et la puissance de l’Esprit Saint</p>
+<p>Ce que l’expression ne veut pas dire : magie, automatisme, dispense de la foi</p>
+<p>Les dispositions du sujet : foi, repentir, intention de recevoir le sacrement</p>
+<p>La différence entre validité et fécondité d’un sacrement</p>
+<p>L’obstacle (latin <i>obex</i>) qui empêche la grâce</p>
+<p>La reviviscence des sacrements reçus validement mais sans fruit</p>
+<p>La mesure de la grâce reçue selon les dispositions</p>
+<p>L’intention du sujet adulte, requise pour la validité</p>
+</sujet>

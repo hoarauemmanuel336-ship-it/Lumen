@@ -1,0 +1,17 @@
+<sujet cle="sacr.initiation" titre="Préfigurations et institution du baptême" desc="Comment l’Ancien Testament annonce le baptême et comment le Christ l’a institué.">
+<p>L’initiation chrétienne : baptême, confirmation et eucharistie comme un tout</p>
+<p>Le mot baptême (grec <i>baptizein</i>, « plonger, immerger »)</p>
+<p>Les eaux de la création et l’Esprit qui planait sur elles (Genèse 1:2)</p>
+<p>Le déluge, figure du baptême (1 Pierre 3:20-21)</p>
+<p>Le passage de la mer Rouge (1 Corinthiens 10:1-2)</p>
+<p>Le passage du Jourdain et l’entrée dans la Terre promise</p>
+<p>La circoncision, figure du baptême (Colossiens 2:11-12)</p>
+<p>Les annonces prophétiques d’une eau qui purifie (Ézéchiel 36:25-27)</p>
+<p>Le baptême de Jean, baptême de pénitence</p>
+<p>Le baptême de Jésus au Jourdain, qui sanctifie les eaux</p>
+<p>L’entretien avec Nicodème : naître de l’eau et de l’Esprit (Jean 3:5)</p>
+<p>L’eau et le sang du côté transpercé (Jean 19:34)</p>
+<p>L’envoi en mission et l’ordre de baptiser (Matthieu 28:19)</p>
+<p>Le baptême dans l’Église apostolique (Actes 2:38-41, Actes 8:36-38)</p>
+<p>Le baptême, mort et résurrection avec le Christ (Romains 6:3-11)</p>
+</sujet>

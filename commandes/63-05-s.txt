@@ -1,0 +1,18 @@
+<sujet cle="liturgie.signes" titre="Les signes et les symboles liturgiques" desc="Pourquoi la liturgie parle par des choses et des paroles, et ce que signifient ses grands signes.">
+<p>La notion de signe et de symbole (grec <i>symbolon</i>, « objet partagé qui se rejoint »)</p>
+<p>La raison d’être des signes : l’homme, esprit incarné, accède aux réalités invisibles par le sensible</p>
+<p>Les signes tirés du monde créé : leur principe, la création qui parle de Dieu</p>
+<p>La lumière, signe du Christ et de la foi</p>
+<p>L’eau, signe de la mort et de la vie, et de la purification</p>
+<p>Le feu, signe de l’Esprit Saint et de l’amour de Dieu</p>
+<p>L’huile, signe de la force, de la guérison et de la consécration</p>
+<p>Le pain, fruit de la terre et du travail des hommes</p>
+<p>Le vin, signe de la joie et de l’alliance</p>
+<p>Les signes empruntés à la vie sociale des hommes, que la liturgie reprend et transfigure</p>
+<p>Les signes de l’Ancienne Alliance, que la liturgie chrétienne reçoit comme figures accomplies</p>
+<p>Les signes assumés par le Christ dans son ministère, qui annoncent les sacrements</p>
+<p>L’unité des paroles et des actions dans la célébration</p>
+<p>L’encens, signe de la prière qui monte vers Dieu (Psaume 141:2)</p>
+<p>Le silence sacré et ses moments dans la célébration</p>
+<p>Le danger de signes devenus illisibles et le devoir de formation qui en découle</p>
+</sujet>

@@ -1,0 +1,13 @@
+<sujet cle="sacrements.caractere" titre="Le caractère sacramentel" desc="La marque indélébile imprimée par trois sacrements.">
+<p>Le mot caractère (grec <i>charaktêr</i>, « empreinte, marque ») et l’image du sceau (<i>sphragis</i>) chez les Pères</p>
+<p>L’Écriture et le sceau de l’Esprit (2 Corinthiens 1:21-22, Éphésiens 1:13)</p>
+<p>Les trois sacrements qui impriment un caractère : baptême, confirmation, ordre</p>
+<p>L’enseignement du concile de Trente (session VII, canon 9)</p>
+<p>Le caractère indélébile et la non-réitération de ces sacrements</p>
+<p>L’origine de la doctrine dans la controverse sur le baptême des hérétiques</p>
+<p>La nature du caractère selon saint Thomas : une participation au sacerdoce du Christ, puissance ordonnée au culte</p>
+<p>Le caractère, disposition permanente à la grâce et signe de configuration au Christ</p>
+<p>Le caractère baptismal, qui députe au culte et rend apte à recevoir les autres sacrements</p>
+<p>Le caractère de la confirmation, qui députe à la confession publique de la foi</p>
+<p>Le caractère de l’ordre, qui configure au Christ Tête pour agir en son nom</p>
+</sujet>

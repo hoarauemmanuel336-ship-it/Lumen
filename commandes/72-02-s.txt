@@ -1,0 +1,14 @@
+<sujet cle="onction.rite-effets" titre="Le sujet, le ministre et le rite de l’onction" desc="Qui reçoit l’onction des malades, qui la donne et comment elle est célébrée.">
+<p>Le sujet : le fidèle dont la santé est gravement atteinte par la maladie ou la vieillesse</p>
+<p>L’onction avant une opération chirurgicale grave</p>
+<p>L’onction des personnes âgées dont les forces déclinent</p>
+<p>L’onction des enfants qui ont l’usage de la raison</p>
+<p>L’onction des malades privés de conscience</p>
+<p>La réitération du sacrement en cas de rechute ou d’aggravation</p>
+<p>Le ministre : les prêtres seulement</p>
+<p>L’huile des malades bénie par l’évêque à la messe chrismale, ou par le prêtre en cas de nécessité</p>
+<p>La constitution apostolique <i>Sacram unctionem infirmorum</i> de Paul VI (1972)</p>
+<p>Le rite : prière de la foi, imposition des mains, onction sur le front et les mains</p>
+<p>La formule sacramentelle et ses deux parties</p>
+<p>La célébration communautaire de l’onction</p>
+</sujet>

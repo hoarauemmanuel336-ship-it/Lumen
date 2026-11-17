@@ -1,0 +1,15 @@
+<sujet cle="temps-liturgique.triduum" titre="Le Triduum pascal" desc="Les trois jours de la Passion, du repos au tombeau et de la Résurrection, jusqu’à la veille de Pâques.">
+<p>Le Triduum pascal, sommet de l’année liturgique, du soir du Jeudi saint au soir du dimanche de Pâques</p>
+<p>L’unité des trois jours, célébration d’un seul mystère de mort et de résurrection</p>
+<p>La messe en mémoire de la Cène du Seigneur : institution de l’eucharistie et du sacerdoce</p>
+<p>Le lavement des pieds (Jean 13:1-15)</p>
+<p>La translation du Saint-Sacrement au reposoir</p>
+<p>Le dépouillement de l’autel</p>
+<p>Le Vendredi saint, jour où l’Église ne célèbre pas l’eucharistie</p>
+<p>La célébration de la Passion du Seigneur : la liturgie de la Parole et la Passion selon saint Jean</p>
+<p>La grande prière universelle du Vendredi saint</p>
+<p>L’adoration de la Croix</p>
+<p>Les impropères (latin <i>improperia</i>, « reproches »)</p>
+<p>La communion du Vendredi saint</p>
+<p>Le Samedi saint, jour du silence auprès du tombeau</p>
+</sujet>

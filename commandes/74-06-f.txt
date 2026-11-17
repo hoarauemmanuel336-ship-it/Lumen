@@ -1,0 +1,12 @@
+<sujet cle="mariage.fins" titre="Les fins du mariage" desc="Ce vers quoi le mariage est ordonné.">
+<p>La notion de fin appliquée au mariage</p>
+<p>La procréation des enfants</p>
+<p>L’éducation des enfants, prolongement de la procréation (<i>Gravissimum educationis</i> 3)</p>
+<p>Le bien des époux et leur aide mutuelle</p>
+<p>Le remède à la concupiscence dans la tradition théologique</p>
+<p>La hiérarchie des fins dans le Code de 1917 : fin primaire et fins secondaires</p>
+<p>Le personnalisme conjugal au XXe siècle (Dietrich von Hildebrand, Herbert Doms) et le décret du Saint-Office sur les fins du mariage (1944)</p>
+<p>La présentation de <i>Gaudium et spes</i> 48-50 et du Code de 1983 (canon 1055)</p>
+<p>La fécondité au-delà de la procréation : hospitalité, adoption, service</p>
+<p>Le mariage sans enfants et sa fécondité propre</p>
+</sujet>

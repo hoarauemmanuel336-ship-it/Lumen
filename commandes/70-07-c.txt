@@ -1,0 +1,17 @@
+<sujet cle="eucharistie.communion" titre="La communion eucharistique" desc="Recevoir le Corps du Christ : conditions, fréquence et fruits.">
+<p>L’état de grâce requis pour communier (1 Corinthiens 11:27-29)</p>
+<p>La confession préalable en cas de péché grave</p>
+<p>Le jeûne eucharistique et sa durée actuelle</p>
+<p>Le respect et la tenue envers le Saint-Sacrement</p>
+<p>Le précepte de la communion pascale (IVe concile du Latran, 1215)</p>
+<p>La communion fréquente et le décret <i>Sacra Tridentina Synodus</i> de saint Pie X (1905)</p>
+<p>La première communion et l’âge de raison (<i>Quam singulari</i>, 1910)</p>
+<p>La communion sous une seule espèce et sous les deux espèces (Trente, session XXI, 1562)</p>
+<p>Le fruit premier : l’union intime au Christ (Jean 6:56)</p>
+<p>La rémission des péchés véniels</p>
+<p>La préservation des péchés mortels</p>
+<p>La charité ravivée et la vie de grâce nourrie</p>
+<p>L’engagement envers les pauvres</p>
+<p>La communion spirituelle</p>
+<p>L’eucharistie, gage de la gloire future et de la résurrection (Jean 6:54)</p>
+</sujet>

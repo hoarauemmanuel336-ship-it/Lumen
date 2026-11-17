@@ -1,0 +1,19 @@
+<sujet cle="messe.communion" titre="Les rites de communion" desc="Les prières et les gestes qui préparent et accompagnent la communion.">
+<p>Le sens des rites de communion : recevoir le Corps et le Sang du Christ comme nourriture</p>
+<p>Le Notre Père, prière de la table du Seigneur</p>
+<p>L’embolisme, développement de la dernière demande du Notre Père (« Délivre-nous de tout mal »)</p>
+<p>La doxologie « Car c’est à toi qu’appartiennent le règne, la puissance et la gloire » et son origine ancienne (<i>Didachè</i> 8)</p>
+<p>La prière pour la paix et le geste de paix</p>
+<p>La fraction du pain et sa signification</p>
+<p>L’immixtion d’une parcelle d’hostie dans le calice</p>
+<p>L’<i>Agnus Dei</i> (latin, « Agneau de Dieu »)</p>
+<p>La prière silencieuse du prêtre avant la communion</p>
+<p>La présentation de l’hostie et la réponse « Seigneur, je ne suis pas digne de te recevoir » (Matthieu 8:8)</p>
+<p>La communion du prêtre puis des fidèles</p>
+<p>Le chant de communion</p>
+<p>La communion reçue dans la bouche ou dans la main</p>
+<p>La communion reçue à genoux ou debout</p>
+<p>La communion sous les deux espèces et ses modalités</p>
+<p>La purification des vases sacrés</p>
+<p>Le silence d’action de grâce et la prière après la communion</p>
+</sujet>

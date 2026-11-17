@@ -1,0 +1,12 @@
+<sujet cle="confirmation.ministre-sujet" titre="Le ministre et le sujet de la confirmation" desc="Qui confirme, et qui peut être confirmé.">
+<p>L’évêque, ministre originaire de la confirmation, et le sens de ce lien</p>
+<p>Le prêtre délégué par l’évêque</p>
+<p>Le prêtre qui confirme de droit : baptême d’un adulte, réception dans la pleine communion, danger de mort</p>
+<p>Le prêtre ministre ordinaire de la chrismation en Orient, avec le chrême consacré par le patriarche ou l’évêque</p>
+<p>Le sujet : tout baptisé non encore confirmé</p>
+<p>L’âge de la confirmation : âge de discrétion selon le droit et choix des conférences des évêques</p>
+<p>La préparation des confirmands</p>
+<p>L’état de grâce requis et la confession préalable</p>
+<p>Le parrain de confirmation</p>
+<p>Le devoir de recevoir la confirmation en son temps</p>
+</sujet>

@@ -1,0 +1,13 @@
+<sujet cle="sacr.general" titre="Le mot et la définition du sacrement" desc="D’où vient le mot sacrement et comment l’Église le définit.">
+<p>Le mot grec <i>mystêrion</i> (« mystère, dessein caché de Dieu ») dans le Nouveau Testament (Éphésiens 3:3-9, Colossiens 1:26-27)</p>
+<p>Le mot latin <i>sacramentum</i> : serment militaire, gage sacré, et son choix pour traduire <i>mystêrion</i> chez Tertullien</p>
+<p>Les mystères de la vie du Christ, fondements des sacrements : « ce qui était visible en notre Rédempteur est passé dans ses sacrements » (saint Léon le Grand)</p>
+<p>La définition de saint Augustin : le sacrement, signe sacré (<i>De civitate Dei</i> X, 5)</p>
+<p>La formule de saint Augustin sur la parole jointe à l’élément (<i>accedit verbum ad elementum et fit sacramentum</i>, <i>Traités sur l’Évangile de Jean</i> 80, 3)</p>
+<p>La définition scolastique : signe sensible et efficace de la grâce, institué par le Christ</p>
+<p>La définition du Catéchisme de l’Église catholique (1131)</p>
+<p>L’institution des sacrements par le Christ : immédiate, et les manières de l’entendre</p>
+<p>Les sacrements de la foi : la foi qu’ils supposent, nourrissent et expriment</p>
+<p>Les sacrements de l’Église : faits par elle et qui font l’Église</p>
+<p>Les sacrements du salut et leur finalité dernière, la vie éternelle</p>
+</sujet>

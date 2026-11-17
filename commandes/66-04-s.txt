@@ -1,0 +1,22 @@
+<sujet cle="rites.sacramentaux" titre="Les sacramentaux" desc="Les bénédictions, consécrations et objets bénits que l’Église a institués.">
+<p>La définition des sacramentaux : signes sacrés institués par l’Église (<i>Sacrosanctum concilium</i> 60)</p>
+<p>La différence avec les sacrements : institution par l’Église et efficacité par la prière de l’Église</p>
+<p>Les effets des sacramentaux : disposer à recevoir la grâce et sanctifier les circonstances de la vie</p>
+<p>La bénédiction, premier des sacramentaux : Dieu béni pour ses dons et invoqué sur les hommes</p>
+<p>La distinction entre bénédictions constitutives, qui consacrent durablement une personne ou une chose, et bénédictions invocatives</p>
+<p>Le livre des bénédictions (<i>De benedictionibus</i>, 1984)</p>
+<p>Les bénédictions de personnes et de familles</p>
+<p>Les bénédictions de maisons et de lieux de vie ou de travail</p>
+<p>Les bénédictions d’objets de piété et d’instruments de travail</p>
+<p>La bénédiction de la table</p>
+<p>La déclaration <i>Fiducia supplicans</i> (2023) sur le sens pastoral des bénédictions</p>
+<p>La consécration des vierges</p>
+<p>La bénédiction d’un abbé ou d’une abbesse</p>
+<p>Le rite de la profession religieuse</p>
+<p>L’eau bénite et son usage</p>
+<p>Les cierges bénits à la Présentation du Seigneur</p>
+<p>Les objets de piété bénits pour l’usage personnel</p>
+<p>Les ministres des sacramentaux, clercs et laïcs selon les cas</p>
+<p>L’exorcisme comme sacramental et le rituel <i>De exorcismis</i> (1999)</p>
+<p>Le bon usage des sacramentaux, à distinguer de la superstition</p>
+</sujet>

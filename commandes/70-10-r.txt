@@ -1,0 +1,15 @@
+<sujet cle="eucharistie.erreurs" titre="Les erreurs sur l’eucharistie" desc="Les doctrines que l’Église a rejetées sur l’eucharistie et ses réponses.">
+<p>Paschase Radbert et son traité sur le corps et le sang du Seigneur</p>
+<p>Ratramne de Corbie et sa lecture symbolique de l’eucharistie</p>
+<p>Bérenger de Tours et sa négation de la conversion réelle</p>
+<p>Les professions de foi imposées à Bérenger (1059 et 1079)</p>
+<p>Wyclif et la thèse de la rémanence du pain</p>
+<p>Luther : présence réelle avec maintien du pain (doctrine appelée consubstantiation)</p>
+<p>Luther et le refus du sacrifice de la messe (<i>De la captivité babylonienne de l’Église</i>, 1520)</p>
+<p>Zwingli : l’eucharistie, simple symbole et mémoire</p>
+<p>Calvin : une présence spirituelle par la vertu du Christ</p>
+<p>L’impanation et l’idée d’une union du Christ avec le pain</p>
+<p>Les réponses du concile de Trente : sessions XIII, XXI et XXII</p>
+<p>La réduction moderne de la messe à un repas fraternel</p>
+<p>Le dialogue œcuménique sur l’eucharistie et ses points de désaccord</p>
+</sujet>
