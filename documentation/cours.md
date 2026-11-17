@@ -7,6 +7,7 @@ Cette fiche réunit ce qu'une IA doit savoir pour écrire, pour le site, les cou
 - Le parcours compte dix-huit blocs, cent cinq thèmes et neuf cent trente sujets. **Un fichier de cours par thème**, qui réunit **un cours par sujet**, dans l'ordre du parcours.
 - C'est Emmanuel qui choisit le bloc suivant ; les blocs s'écrivent donc dans le désordre.
 - Pour chaque sujet, la liste « ce que tu y apprends » du parcours est la commande : elle est définitive et complète, et le cours la traite tout entière.
+- Les cours vouvoient le lecteur, du début à la fin (consignes, exercices, autoévaluation, bilan compris). Les versets cités gardent le texte de la Bible tel qu'il est.
 - Le texte de chaque cours passe par la skill humaniser.
 - Les cours ne parlent ni de copier ni d'enregistrer (le site n'a pas ces boutons), et leurs introductions ne disent pas qu'ils sont faits « pour les débutants et les avancés ».
 
