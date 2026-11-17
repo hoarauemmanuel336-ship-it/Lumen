@@ -78,16 +78,18 @@
   const compte=(typeof qaCompte==='function'?qaCompte():Promise.resolve(null))
     .then(u=>{ if(u){reprendAnciennes(u.uid); LECT.uid=u.uid; pousse();} return u; }).catch(()=>null);
   function rapatrie(ids){
+    /* rend la liste de ce qui a changé (« identifiant:valeur ») */
+    const ch=[];
     const lu=compte.then(u=>{
-      if(!u)return;
+      if(!u)return ch;
       return Promise.all(ids.map(id=>lecDoc(id).get().then(sn=>{
         if(!sn.exists)return;
         const d=sn.data()||{};
         ['etat','pos','prog','taille','blocs','dernier'].forEach(q=>{
           const m=+d[q+'Maj']||0;
-          if(typeof d[q]==='string'&&m>lMaj(q,id))lPose(q,id,d[q],m);
+          if(typeof d[q]==='string'&&m>lMaj(q,id)){lPose(q,id,d[q],m);ch.push(id+':'+q);}
         });
-      }).catch(()=>{})));
+      }).catch(()=>{}))).then(()=>ch);
     });
     /* hors ligne, on n'attend pas plus de deux secondes et demie */
     return Promise.race([lu,new Promise(r=>setTimeout(r,2500))]);
@@ -116,18 +118,23 @@
      séance (Emmanuel : un bloc demandait des mois avant d'avancer, « soyons
      réaliste ») ; Étude envoie ces parts (message lvSais). Un sujet sans
      cours compte plein quand il est terminé, hachuré quand il est en cours
-     ou à revoir. Sous chaque case, le numéro du premier thème du bloc. Le
+     ou à revoir. Sous chaque case, le numéro du premier thème du bloc.
+     Tant que la progression du compte n'est pas arrivée, un cercle de
+     chargement tient la place de la barre (message lvProgPret). Le
      fichier du parcours reste tel quel. */
-  const BARRE_BLOCS='<style>#w .prg:not(.lv-blocs){display:none}</style><scr'+'ipt>(function(){'
-    +'var S={},maj=function(){};'
-    +'window.addEventListener("message",function(ev){var d=ev.data;if(ev.source===parent&&d&&d.lvSais&&typeof d.lvSais==="object"){S=d.lvSais;maj();}});'
+  const BARRE_BLOCS='<style>#w .prg:not(.lv-blocs){display:none}'
+    +'#w .lv-blocs{position:relative}#w .lv-blocs.lv-attend .seg{visibility:hidden}'
+    +'#w .lv-roue-b{display:none;position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-11px 0 0 -11px;border:2px solid rgba(255,255,255,.15);border-top-color:rgba(255,255,255,.75);border-radius:50%;animation:lvrb .8s linear infinite}'
+    +'#w .lv-blocs.lv-attend .lv-roue-b{display:block}@keyframes lvrb{to{transform:rotate(360deg)}}</style><scr'+'ipt>(function(){'
+    +'var S={},maj=function(){},PP=false,NN=null;'
+    +'window.addEventListener("message",function(ev){var d=ev.data;if(ev.source!==parent||!d)return;if(d.lvSais&&typeof d.lvSais==="object"){S=d.lvSais;maj();}if(d.lvProgPret){PP=true;if(NN)NN.classList.remove("lv-attend");}});'
     +'function bati(){var W=document.getElementById("w"),P=W&&W.querySelector(".prg");'
     +'if(!P||!W.querySelector(".bh .bh-n")||W.querySelector(".lv-blocs"))return !!(W&&W.querySelector(".lv-blocs"));'
     +'var bl=[],b=null,n=0;'
     +'[].forEach.call(W.children,function(e){'
     +'if(e.classList.contains("bh")){b={a:e.style.getPropertyValue("--a"),r:e.style.getPropertyValue("--r"),nom:(e.querySelector(".bh-n")||e).textContent,premier:n+1,cw:[]};bl.push(b);}'
     +'else if(b&&e.classList.contains("th")){n++;b.cw=b.cw.concat([].slice.call(e.querySelectorAll(".cw")));}});'
-    +'var N=document.createElement("div");N.className="prg lv-blocs";'
+    +'var N=document.createElement("div");N.className="prg lv-blocs"+(PP?"":" lv-attend");NN=N;N.appendChild(Object.assign(document.createElement("div"),{className:"lv-roue-b"}));'
     +'bl.forEach(function(B){var s=document.createElement("div");s.className="seg";s.title=B.nom;'
     +'s.style.setProperty("--a",B.a);s.style.setProperty("--r",B.r);'
     +'s.innerHTML="<div class=\\"bar\\"><span class=\\"pl\\"></span><span class=\\"hc\\"></span></div><div class=\\"num\\">"+(B.premier<10?"0":"")+B.premier+"</div>";'
@@ -428,8 +435,12 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
         +'<p style="opacity:.35;font-size:12px;margin:18px 0 0">('+raison+')</p></div>';
     }
     if(OUVERT!==o)return;
-    /* le compte connu, la copie de l'appareil est la sienne */
-    await pret;
+    /* le compte connu, la copie de l'appareil est la sienne. Le parcours
+       comme un cours s'affichent aussitôt avec la copie de l'appareil (ils
+       n'attendent le compte qu'un peu plus d'une seconde), puis se mettent
+       à jour quand la progression du compte arrive (voir plus bas). */
+    await Promise.race([compte,new Promise(r=>setTimeout(r,1200))]);
+    o.uid=LECT.uid;
     if(OUVERT!==o)return;
     o.code=code;
     const t=/<title>([^<]*)<\/title>/i.exec(code);
@@ -448,7 +459,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     /* le contenu s'affiche aussitôt ; son état et sa place lui sont rendus
        dès que celui des autres appareils est arrivé (deux secondes et
        demie au plus) */
-    const rends=()=>pret.then(()=>{
+    const rends=()=>Promise.resolve().then(()=>{
       if(OUVERT!==o)return;
       envoieEtat(o);
       /* ouvert par un lien d'un autre cours : on va à l'endroit visé plutôt
@@ -460,7 +471,31 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
         try{f.contentWindow.postMessage({lvRevoir:Math.max(0,Math.round(pi.y||0)),lvRevoirInfo:pi},'*');}catch(_){}
       }
       o.rendu=true;
+      if(o.apresRendu){o.apresRendu();o.apresRendu=null;}
     });
+    /* ── LA PROGRESSION DU COMPTE ARRIVE ──
+       Le parcours reçoit ce qui a changé ailleurs : l'état des sujets tiré
+       des cours, « Reprendre », et, s'ils ont changé, ses blocs ouverts et
+       son état. La barre de progression montre un cercle de chargement
+       jusque-là (message lvProgPret). Un cours reçoit la taille du texte si
+       elle a changé. Si la progression ou l'état du contenu lui-même ont
+       changé sur un autre appareil (ils sont écrits dans le contenu à son
+       ouverture), ou si le compte s'est fait connaître après l'affichage
+       (connexion lente), le contenu se reconstruit, à sa place gardée. */
+    {
+      const rendu=()=>o.rendu?Promise.resolve():new Promise(r=>{o.apresRendu=r;});
+      pret.then(ch=>rendu().then(()=>{
+        if(OUVERT!==o&&PARC!==o)return;
+        const c=Array.isArray(ch)?ch:[];
+        const refait=c.indexOf(o.id+':prog')>=0||(o.genre==='cours'&&c.indexOf(o.id+':etat')>=0)||o.uid!==LECT.uid;
+        if(refait&&OUVERT===o){try{o.f.remove();}catch(_){} OUVERT=null; montre(o.ancre||''); return;}
+        if(c.indexOf(o.id+':etat')>=0||c.indexOf('_reglages:taille')>=0)envoieEtat(o);
+        if(o.genre!=='parcours')return;
+        const m={lvProgPret:1,lvReprise:reprise(),lvAuto:etatsDesCours(),lvSais:saisDesCours()};
+        if(c.indexOf('parcours:blocs')>=0)m.lvBlocsOuverts=litJson('blocs',o.id)||[];
+        try{o.f.contentWindow.postMessage(m,'*');}catch(_){}
+      }));
+    }
     /* Le contenu se déclare prêt (lvEtatVoulu) : c'est seulement alors que
        son état lui est rendu et que ce qu'il envoie est gardé. Le chargement
        du cadre ne suffit pas : certains navigateurs (Safari sur iPhone) en
