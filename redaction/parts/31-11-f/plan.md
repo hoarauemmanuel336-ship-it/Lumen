@@ -18,7 +18,7 @@ Leçons (12) :
 9. Pie V, pape de l'application du concile (Ghislieri ; élection 1566 ; vie ; livres liturgiques rappelés (lien e) ; Thomas docteur 1567 ; Baïus ; Rome réformée ; Regnans in excelsis ; Lépante et le Rosaire ; ombres : Juifs 1569 ; canonisation 1712).
 10. Le Collège romain (1551) et Grégoire XIII (fondation, programme, Germanicum 1552, maîtres, Grégoire XIII et l'Université grégorienne 1584, collèges nationaux, nonciatures, Saint-Barthélemy évoquée avec lien g).
 11. La réforme du calendrier (1582) et Sixte Quint (calendrier julien, Pâques, Lilius, Clavius, Inter gravissimas, adoption ; Sixte Quint, Immensa aeterni Dei 1588, quinze congrégations, soixante-dix cardinaux, Rome de Sixte Quint).
-12. L'Oratoire de Philippe Néri (1575) et l'art baroque → finalement :
+
 12. L'Oratoire de Philippe Néri (1575) [Copiosus in misericordia, Vallicella, exercices de l'oratoire, musique, Baronius, prêtres sans vœux, Oratoire de Bérulle distingué, Newman]
 13. L'art baroque au service de la foi
 (si 13 leçons, regrouper 10 et 11 autrement ; décision finale ci-dessous)
@@ -26,3 +26,7 @@ Leçons (12) :
 Décision finale (12 leçons) :
 1 Mots ; 2 Ximénès ; 3 Divin amour + théatins ; 4 Capucins ; 5 Barnabites + clercs réguliers ; 6 Ursulines ; 7 Compagnie de Jésus + Collège romain ; 8 Inquisition romaine ; 9 Pie V ; 10 Grégoire XIII et Sixte Quint (calendrier et Curie) ; 11 Oratoire de Philippe Néri ; 12 Art baroque.
 Bilan : 6 exercices croisés.
+
+ORDRE DÉFINITIF ÉCRIT (fichiers 01 à 12) :
+1 Mots ; 2 Ximénès ; 3 Divin amour + théatins ; 4 Capucins ; 5 Barnabites + clercs réguliers ; 6 Ursulines ; 7 Compagnie de Jésus + Collège romain ; 8 Oratoire de Philippe Néri ; 9 Inquisition romaine ; 10 Pie V ; 11 Grégoire XIII et Sixte Quint (calendrier, Curie) ; 12 Art baroque. Bilan 99.
+État : 01 à 09 écrites.
