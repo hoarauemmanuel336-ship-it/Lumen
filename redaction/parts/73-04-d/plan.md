@@ -3,6 +3,8 @@
 Question centrale : qu'est-ce que l'ordination donne au diacre, ministre ordonné qui n'est pas prêtre ?
 Obstacles du novice : le diacre « demi-prêtre » ou « laïc avec permissions » ; permanent et transitoire pris pour deux sacrements ; Omnium in mentem lu comme une diminution ; diaconesses confondues avec les diacres ou tenues pour une question close comme le sacerdoce.
 
+Statut : terminé, assemblé dans redaction/73-04-d.html.
+
 Leçons (une par fichier 01.html … 11.html ; 00-ouverture.html ; 99-bilan.html) :
 1. Un degré du sacrement de l'ordre, distinct du sacerdoce — mot diakonos ; vrai sacrement (Trente, Catéchisme 1554, 1569) ; « non en vue du sacerdoce » (LG 29) ; clerc (can. 266) ; ni demi-prêtre ni laïc.
 2. Les diacres de l'Église apostolique et les qualités demandées par saint Paul — Actes 6 (les Sept), Philippiens 1:1, 1 Timothée 3:8-13 lu verset par verset.

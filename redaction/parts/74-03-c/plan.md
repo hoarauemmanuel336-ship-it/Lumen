@@ -18,4 +18,4 @@ Leçons (12) :
 12. Mariages mixtes et disparité de culte : distinction, 1 Co 7:39, 2 Co 6:14, 1 Co 7:12-14, 1 P 3:1-2, CEC 1633-1637, FC 78, can. 1124-1129, 1086, Matrimonia mixta (1970), forme et célébration.
 Bilan : 6 exercices croisés.
 
-État : en cours ; leçons 1 à 9 écrites (parts 00 à 09).
+État : terminé ; fichier réuni dans redaction/74-03-c.html, contrôlé, passé à la relecture humaniser et assemblé à l essai.

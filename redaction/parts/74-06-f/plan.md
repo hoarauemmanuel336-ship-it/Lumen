@@ -1,5 +1,7 @@
 # 74-06-f — Les fins du mariage (lettre f) — plan
 
+État : TERMINÉ (assemblé, contrôlé, humanisé). 
+
 Question centrale : vers quoi le mariage est-il ordonné, et comment l'Église a-t-elle dit l'ordre entre ces fins sans opposer l'enfant et l'amour des époux ?
 Obstacles du novice : « fin » = but subjectif des époux (confusion finis operis / finis operantis) ; « fin primaire » compris comme « la seule qui compte » ou « plus importante pour les époux » ; croire que Vatican II a abandonné la procréation ou qu'il contredit 1917/1944 ; croire qu'un couple sans enfants a un mariage raté ou nul ; « remède à la concupiscence » compris comme licence ou mépris du mariage.
 

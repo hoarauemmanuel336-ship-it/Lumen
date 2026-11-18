@@ -18,4 +18,4 @@ Leçons (12) :
 12. Débats contemporains : pénurie, viri probati, synodes 1971, 1990, 2005, Amazonie 2019 et Querida Amazonia 2020, livre de Benoît XVI et Sarah 2020, Chemin synodal allemand, abus ; ce qui est en jeu, critères de jugement.
 Bilan : 6 exercices croisés.
 
-État : leçons 1 à 7 écrites (parts/01-07) ; suite à écrire.
+État : terminé ; fichier réuni dans redaction/73-07-c.html, contrôlé, passé à la relecture humaniser et assemblé à l essai.
