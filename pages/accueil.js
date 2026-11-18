@@ -444,11 +444,14 @@
     MED.jour = m.date;
     var duJour = m.date === MED.aujourdhui;
     var h = '<h3 class="med-titre">' + esc(m.titre) + '</h3>';
-    var src = '/api/meditation/' + m.date + '.mp3';
+    /* le navigateur garde la voix trente jours : sa durée et son titre
+       font partie de l'adresse, si bien qu'une méditation refaite le même
+       jour se fait entendre avec sa propre voix */
+    var src = '/api/meditation/' + m.date + '.mp3?v=' + (m.duree || 0) + '-' + String(m.titre || '').length;
       h += '<div class="med-lecteur">'
         + '<div class="med-btns">'
         + '<button type="button" class="med-b med-jouer" aria-label="Écouter">' + IC_JOUER + '<span>Écouter</span></button>'
-        + '<a class="med-b med-tele" href="' + src + '?telecharger" download="meditation-' + m.date + '.mp3" aria-label="Télécharger l’audio">' + IC_TELE + '<span>Télécharger</span></a>'
+        + '<a class="med-b med-tele" href="' + src + '&telecharger" download="meditation-' + m.date + '.mp3" aria-label="Télécharger l’audio">' + IC_TELE + '<span>Télécharger</span></a>'
         + '</div>'
         + '<div class="med-piste"><span class="med-t med-ici">0:00</span>'
         + '<input type="range" class="med-barre" min="0" max="' + (m.duree || 0) + '" step="1" value="0" aria-label="Avancer dans la méditation">'

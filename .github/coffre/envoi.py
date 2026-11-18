@@ -52,11 +52,12 @@ def article_verifie(nom, catalogue):
         sys.exit(f'« {nom} » n’est pas inscrit au catalogue des articles (articles/articles.json).')
 
 
-def meditation_verifiee(f, nom, remplacer=False):
+def meditation_verifiee(f, nom, remplacer=False, relire=False):
     """une méditation préparée n'entre que complète, pour aujourd'hui ou
     demain, et si le jour n'a pas déjà la sienne. « remplacer » corrige une
-    méditation que Claude a envoyée et que la voix n'a pas encore lue ; une
-    méditation déjà lue reste telle quelle, la voix ne se paie pas deux fois"""
+    méditation que la voix n'a pas encore lue. « relire » remplace même une
+    méditation déjà lue, et la voix se paie alors une seconde fois : il ne
+    sert que quand Emmanuel demande de refaire la méditation du jour"""
     m = re.fullmatch(r'(\d{4}-\d{2}-\d{2})\.json', nom)
     if not m:
         sys.exit(f'« {nom} » : une méditation se nomme AAAA-MM-JJ.json.')
@@ -76,7 +77,7 @@ def meditation_verifiee(f, nom, remplacer=False):
             sys.exit(f'« {nom} » : ce jour a déjà sa méditation, elle reste telle quelle.')
         a = os.path.join(tempfile.mkdtemp(), nom)
         recoit(f'meditations/{nom}', a)
-        if json.load(open(a, encoding='utf-8')).get('audio'):
+        if json.load(open(a, encoding='utf-8')).get('audio') and not relire:
             sys.exit(f'« {nom} » : la voix a déjà lu cette méditation, elle reste telle quelle.')
     d['audio'] = False
     d['duree'] = 0
@@ -108,7 +109,7 @@ def main():
             article_verifie(nom, catalogue)
             places.append((f, f'articles/{nom}'))
         elif espece == 'meditation':
-            meditation_verifiee(f, nom, bool(e.get('remplacer')))
+            meditation_verifiee(f, nom, bool(e.get('remplacer') or e.get('relire')), bool(e.get('relire')))
             places.append((f, f'meditations/{nom}'))
             jours.append(nom[:10])
             if e.get('prolonger'):
