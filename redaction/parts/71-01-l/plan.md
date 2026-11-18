@@ -18,3 +18,5 @@ Fichiers : 00-ouverture.html (balise cours + introduction), 01.html … 12.html,
 11. Réconciliés avec Dieu et avec l'Église : le péché blesse l'Église (CEC 1440, 1 Co 12:26) ; Jésus réintègre ; lier/délier et communion (CEC 1444-1445, LG 11) ; pourquoi inséparables (opinion théologique de la « paix avec l'Église »).
 12. Objections protestantes : ce que les réformateurs ont refusé et gardé (Luther 1520, Calvin, Augsbourg art. 11, Apologie 13) ; « Dieu seul pardonne » ; « Jean 20 = prédication » ; « invention médiévale, salut par les œuvres » ; réponse d'ensemble.
 Bilan : 6 exercices croisés.
+
+État : toutes les leçons et le bilan sont écrits, humanisés, contrôlés et réunis dans redaction/71-01-l.html (reprise du 18 novembre : leçon 12 et bilan humanisés, citations bibliques complétées, rappels de place remplacés par des liens).

@@ -15,3 +15,4 @@ Question centrale : si Dieu pardonne vraiment dans l'absolution, pourquoi le pé
 11. Trente contre la négation protestante — Luther (thèse 1, « optima poenitentia nova vita », Exsurge Domine 1520), Confession d'Augsbourg art. 12, Calvin Institution III, 4 ; Trente XIV (25 nov. 1551) ch. 8-9, can. 12-15 ; VI can. 30 ; 2 Co 7:10-11 ; réponses. Mots : Canon conciliaire, Anathème.
 12. L'adaptation de la pénitence — Trente ch. 8, 1 Tm 5:22, CEC 1460, can. 981 ; remède contraire ; Pierre Jn 21:15-17 ; personne, âge, santé ; mesure d'aujourd'hui (RP 31) ; part libre du pénitent. Mots : Pénitence médicinale, Remède contraire.
 Bilan : 6 exercices croisés.
+État : terminé, livré redaction/71-05-s.html

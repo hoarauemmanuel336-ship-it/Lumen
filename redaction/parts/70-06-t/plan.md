@@ -18,4 +18,4 @@ Leçons (10) :
 10. Transsignification, transfinalisation et Mysterium fidei — origine (phénoménologie, années 1950-1960), ce qu'elles disent, part de vérité, MF 11 et 46, Credo 1968 n. 25, Ecclesia de Eucharistia 15.
 Bilan : 6 exercices.
 
-État : voir fichiers 00-ouverture.html, 01.html … 10.html, 99-bilan.html.
+État : TERMINÉ. Leçons 1-10 et bilan écrits, assemblés dans redaction/70-06-t.html, contrôlés, essai d'assemblage réussi.
