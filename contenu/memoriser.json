@@ -1135,6 +1135,446 @@
    ]
   },
   {
+   "id": "base-liturgie",
+   "name": {
+    "fr": "Qu’est-ce que la liturgie"
+   },
+   "bloc": "La liturgie et les sacrements",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-jean-4-24",
+     "fr": {
+      "ref": "Jean 4:24",
+      "text": "Dieu est esprit, et ceux qui l'adorent doivent l'adorer en esprit et en vérité. »"
+     },
+     "note": "Jésus le dit à la Samaritaine, qui demandait s’il fallait adorer sur le mont Garizim ou à Jérusalem. Le culte de la nouvelle Alliance ne dépend plus d’un lieu (Catéchisme 1179) : il se rend dans l’Esprit Saint et dans la vérité, qui est le Christ lui-même."
+    },
+    {
+     "id": "base-hebreux-8-1-2",
+     "fr": {
+      "ref": "Hébreux 8:1-2",
+      "text": "Le point capital de ce que nous disons, c'est que nous avons un tel grand prêtre, qui s'est assis à la droite du trône de la Majesté dans les cieux, au service du sanctuaire et de la Tente véritable, celle que le Seigneur a dressée, et non un homme."
+     },
+     "note": "Le Christ est appelé ici, en grec, *leitourgos* du sanctuaire, mot que la Chérubin rend par « au service du » sanctuaire ; c’est la famille du mot « liturgie ». Le vrai liturge est le Christ, qui célèbre dans le ciel, et la liturgie de l’Église sur la terre participe à la sienne (Catéchisme 1090)."
+    },
+    {
+     "id": "base-psaumes-141-2",
+     "fr": {
+      "ref": "Psaumes 141:2",
+      "text": "Que ma prière monte devant toi comme l'encens, mes mains levées, comme l'offrande du soir !"
+     },
+     "note": "La prière monte vers Dieu comme la fumée de l’encens. Les Églises d’Orient chantent ce psaume à chaque office du soir, pendant qu’on encense l’église : il dit ce qu’est la prière liturgique, une offrande."
+    }
+   ]
+  },
+  {
+   "id": "base-messe",
+   "name": {
+    "fr": "La messe"
+   },
+   "bloc": "La liturgie et les sacrements",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-malachie-1-11",
+     "fr": {
+      "ref": "Malachie 1:11",
+      "text": "Car du levant au couchant, mon nom est grand parmi les nations, et en tout lieu on offre à mon nom de l'encens et une offrande pure ; oui, mon nom est grand parmi les nations, dit le Seigneur de l'univers."
+     },
+     "note": "Le prophète annonce une offrande pure présentée au nom de Dieu en tout lieu. Le concile de Trente y voit l’annonce du sacrifice de la messe (session XXII, chapitre 1), et la troisième prière eucharistique en reprend l’image : « du levant au couchant du soleil »."
+    },
+    {
+     "id": "base-actes-2-42",
+     "fr": {
+      "ref": "Actes 2:42",
+      "text": "Ils étaient assidus à l'enseignement des apôtres et à la communion fraternelle, à la fraction du pain et aux prières."
+     },
+     "note": "Luc décrit la première communauté de Jérusalem. On y reconnaît déjà ce qui fait la messe : l’enseignement des apôtres, la communion fraternelle, la fraction du pain et les prières. Le Catéchisme cite ce verset pour montrer l’Église fidèle à l’eucharistie dès le commencement (n. 1342)."
+    },
+    {
+     "id": "base-1-corinthiens-11-26",
+     "fr": {
+      "ref": "1 Corinthiens 11:26",
+      "text": "Ainsi, chaque fois que vous mangez ce pain et que vous buvez cette coupe, vous proclamez la mort du Seigneur, jusqu'à ce qu'il vienne."
+     },
+     "note": "Chaque messe annonce la mort du Seigneur et attend son retour. L’acclamation que le peuple dit après la consécration reprend ce verset : la mort du Christ annoncée, sa résurrection proclamée, sa venue dans la gloire attendue."
+    }
+   ]
+  },
+  {
+   "id": "base-temps-liturgique",
+   "name": {
+    "fr": "Le temps liturgique"
+   },
+   "bloc": "La liturgie et les sacrements",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-psaumes-118-24",
+     "fr": {
+      "ref": "Psaumes 118:24",
+      "text": "Voici le jour que le Seigneur a fait : soyons-en remplis de joie et d'allégresse !"
+     },
+     "note": "C’est le verset de Pâques. L’Église le chante le jour de Pâques et pendant toute l’octave, dans le graduel latin *Haec dies*, et il sert de refrain au psaume de la messe du jour de Pâques."
+    },
+    {
+     "id": "base-1-corinthiens-5-7",
+     "fr": {
+      "ref": "1 Corinthiens 5:7",
+      "text": "Purifiez-vous du vieux levain pour être une pâte nouvelle, puisque vous êtes des pains sans levain. Car notre Pâque, le Christ, a été immolée."
+     },
+     "note": "Le Christ est l’agneau de la vraie Pâque. L’antienne de communion du jour de Pâques reprend ce verset en latin, *Pascha nostrum immolatus est Christus*, et chaque fête pascale tourne autour de cette phrase."
+    },
+    {
+     "id": "base-exode-12-14",
+     "fr": {
+      "ref": "Exode 12:14",
+      "text": "Ce jour-là sera pour vous un mémorial : vous en ferez une fête pour le Seigneur, d'âge en âge ; vous la fêterez comme une loi perpétuelle."
+     },
+     "note": "Dieu fait de la Pâque un mémorial, en hébreu *zikkaron*, que la Chérubin traduit par « mémorial ». Ce verset est lu chaque Jeudi saint à la messe en mémoire de la Cène, et l’eucharistie est le mémorial de la Pâque du Christ (Catéchisme 1363)."
+    },
+    {
+     "id": "base-psaumes-119-164",
+     "fr": {
+      "ref": "Psaumes 119:164",
+      "text": "Sept fois le jour, je te loue pour tes justes décisions."
+     },
+     "note": "Saint Benoît s’appuie sur ce verset pour fixer sept offices de jour dans sa Règle (chapitre 16). C’est l’idée de la Liturgie des Heures : la louange revient à intervalles réguliers et sanctifie tout le cours du jour."
+    }
+   ]
+  },
+  {
+   "id": "base-rites",
+   "name": {
+    "fr": "Les rites, les sacramentaux et la piété"
+   },
+   "bloc": "La liturgie et les sacrements",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-nombres-6-24-26",
+     "fr": {
+      "ref": "Nombres 6:24-26",
+      "text": "Que le Seigneur te bénisse et te garde ! Que le Seigneur fasse briller sur toi son visage et te fasse grâce ! Que le Seigneur tourne vers toi son visage et t'apporte la paix !"
+     },
+     "note": "Dieu confie cette bénédiction à Aaron et à ses fils pour le peuple. L’Église la lit le 1er janvier, en la solennité de Marie, Mère de Dieu, et le Missel la propose parmi les bénédictions solennelles de la fin de la messe."
+    },
+    {
+     "id": "base-1-timothee-4-4-5",
+     "fr": {
+      "ref": "1 Timothée 4:4-5",
+      "text": "Car tout ce que Dieu a créé est bon, et rien n'est à rejeter, si on le reçoit avec action de grâce, car tout est sanctifié par la parole de Dieu et par la prière."
+     },
+     "note": "Paul répond à ceux qui interdisaient certains aliments : rien de ce que Dieu a créé n’est mauvais, et la parole de Dieu avec la prière en sanctifie l’usage. C’est la logique des bénédictions et des autres sacramentaux."
+    },
+    {
+     "id": "base-2-maccabees-12-46",
+     "fr": {
+      "ref": "2 Maccabées 12:46",
+      "text": "Voilà pourquoi il fit offrir ce sacrifice d'expiation pour les morts, afin qu'ils soient délivrés de leur péché."
+     },
+     "note": "Judas Maccabée fait offrir un sacrifice pour ses soldats morts au combat. L’Église y lit le témoignage biblique de la prière pour les défunts (Catéchisme 1032), que la liturgie des funérailles et chaque messe portent encore aujourd’hui."
+    }
+   ]
+  },
+  {
+   "id": "base-sacrements",
+   "name": {
+    "fr": "Les sacrements en général"
+   },
+   "bloc": "La liturgie et les sacrements",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-luc-8-46",
+     "fr": {
+      "ref": "Luc 8:46",
+      "text": "Mais Jésus reprit : « Quelqu'un m'a touché, car j'ai senti qu'une force était sortie de moi. »"
+     },
+     "note": "La femme malade touche le vêtement de Jésus, et une force sort de lui. Le Catéchisme décrit ainsi les sacrements : des « forces qui sortent » du Corps du Christ, toujours vivant et vivifiant (n. 1116)."
+    },
+    {
+     "id": "base-1-corinthiens-4-1",
+     "fr": {
+      "ref": "1 Corinthiens 4:1",
+      "text": "Qu'on nous regarde donc comme des serviteurs du Christ et des intendants des mystères de Dieu."
+     },
+     "note": "Paul se dit intendant des mystères de Dieu : il distribue ce qui ne lui appartient pas. C’est la place du ministre des sacrements, qui agit au nom du Christ et selon l’intention de l’Église."
+    },
+    {
+     "id": "base-2-corinthiens-1-21-22",
+     "fr": {
+      "ref": "2 Corinthiens 1:21-22",
+      "text": "Et celui qui nous affermit avec vous dans le Christ, celui qui nous a marqués de l'onction, c'est Dieu ; il nous a aussi marqués de son sceau et a mis dans nos cœurs l'Esprit, comme un premier acompte."
+     },
+     "note": "Onction, sceau, Esprit donné en acompte : la tradition a lu ces images dans le baptême et la confirmation. Le sceau a donné l’idée du caractère, la marque que ces sacrements impriment pour toujours, si bien qu’on ne les reçoit qu’une fois (Catéchisme 1121 et 1296)."
+    }
+   ]
+  },
+  {
+   "id": "base-bapteme",
+   "name": {
+    "fr": "Le baptême"
+   },
+   "bloc": "La liturgie et les sacrements",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-matthieu-28-19-20",
+     "fr": {
+      "ref": "Matthieu 28:19-20",
+      "text": "Allez donc ! De toutes les nations faites des disciples : baptisez-les au nom du Père, et du Fils, et de l'Esprit Saint ; apprenez-leur à garder tout ce que je vous ai commandé. Et moi, je suis avec vous tous les jours, jusqu'à la fin du monde. »"
+     },
+     "note": "Ce sont les derniers mots de Jésus dans l’Évangile de Matthieu. Ils donnent l’ordre de baptiser et la forme du sacrement, au nom de la Trinité, que le ministre reprend en disant : « Je te baptise au nom du Père, et du Fils, et du Saint-Esprit. »"
+    },
+    {
+     "id": "base-jean-3-5",
+     "fr": {
+      "ref": "Jean 3:5",
+      "text": "Jésus répondit : « Amen, amen, je te le dis : à moins de naître de l'eau et de l'Esprit, nul ne peut entrer dans le règne de Dieu."
+     },
+     "note": "Jésus le dit à Nicodème : renaître de l’eau et de l’Esprit est nécessaire pour entrer dans le règne de Dieu. L’Église fonde sur ce verset la nécessité du baptême pour le salut (Catéchisme 1257)."
+    },
+    {
+     "id": "base-romains-6-3-4",
+     "fr": {
+      "ref": "Romains 6:3-4",
+      "text": "Ou bien ignorez-vous que nous tous, baptisés dans le Christ Jésus, c'est dans sa mort que nous avons été baptisés ? Par le baptême en sa mort, nous avons donc été ensevelis avec lui, afin que, comme le Christ est ressuscité des morts par la gloire du Père, nous menions nous aussi une vie nouvelle."
+     },
+     "note": "Paul explique ce que fait le baptême : le baptisé est enseveli avec le Christ dans sa mort et se relève avec lui pour une vie nouvelle. C’est pourquoi la Vigile pascale, la nuit où l’Église célèbre la mort et la résurrection du Christ, est le moment propre du baptême des adultes."
+    },
+    {
+     "id": "base-actes-2-38",
+     "fr": {
+      "ref": "Actes 2:38",
+      "text": "Pierre leur répondit : « Convertissez-vous, et que chacun de vous soit baptisé au nom de Jésus Christ pour le pardon de ses péchés ; alors vous recevrez le don de l'Esprit Saint."
+     },
+     "note": "Le jour de la Pentecôte, la foule demande à Pierre ce qu’il faut faire. Sa réponse contient déjà tout le baptême chrétien : la conversion, le baptême au nom de Jésus, le pardon des péchés et le don de l’Esprit."
+    }
+   ]
+  },
+  {
+   "id": "base-confirmation",
+   "name": {
+    "fr": "La confirmation"
+   },
+   "bloc": "La liturgie et les sacrements",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-actes-8-15-17",
+     "fr": {
+      "ref": "Actes 8:15-17",
+      "text": "À leur arrivée, ceux-ci prièrent pour les Samaritains, afin qu'ils reçoivent l'Esprit Saint ; car il n'était encore descendu sur aucun d'eux : ils avaient seulement été baptisés au nom du Seigneur Jésus. Alors Pierre et Jean leur imposèrent les mains, et ils reçurent l'Esprit Saint."
+     },
+     "note": "Les Samaritains ont été baptisés ; Pierre et Jean viennent leur imposer les mains, et ils reçoivent l’Esprit Saint. Le Catéchisme voit dans ce geste l’origine du sacrement de la confirmation, qui achève la grâce du baptême (n. 1288)."
+    },
+    {
+     "id": "base-actes-1-8",
+     "fr": {
+      "ref": "Actes 1:8",
+      "text": "Mais vous allez recevoir une force, celle de l'Esprit Saint qui descendra sur vous ; vous serez alors mes témoins à Jérusalem, dans toute la Judée et la Samarie, et jusqu'aux extrémités de la terre. »"
+     },
+     "note": "Jésus promet à ses disciples la force de l’Esprit pour faire d’eux ses témoins. C’est l’effet propre de la confirmation : une force spéciale de l’Esprit Saint pour répandre et défendre la foi, en paroles et en actes (Catéchisme 1303)."
+    }
+   ]
+  },
+  {
+   "id": "base-eucharistie",
+   "name": {
+    "fr": "L’eucharistie"
+   },
+   "bloc": "La liturgie et les sacrements",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-jean-6-51",
+     "fr": {
+      "ref": "Jean 6:51",
+      "text": "Je suis le pain vivant, descendu du ciel. Si quelqu'un mange de ce pain, il vivra pour toujours. Et le pain que je donnerai, c'est ma chair, donnée pour la vie du monde. »"
+     },
+     "note": "Jésus se dit le pain vivant descendu du ciel et annonce qu’il donnera sa chair pour la vie du monde. Le pain de vie est sa personne même, livrée sur la croix et reçue dans la communion."
+    },
+    {
+     "id": "base-jean-6-55-56",
+     "fr": {
+      "ref": "Jean 6:55-56",
+      "text": "Car ma chair est vraiment une nourriture, et mon sang, vraiment une boisson. Celui qui mâche ma chair et boit mon sang demeure en moi, et moi en lui."
+     },
+     "note": "« Vraiment une nourriture », « vraiment une boisson » : Jésus insiste. L’Église lit ici la présence réelle, et la communion qui fait demeurer le fidèle dans le Christ et le Christ en lui (Catéchisme 1391)."
+    },
+    {
+     "id": "base-1-corinthiens-10-16-17",
+     "fr": {
+      "ref": "1 Corinthiens 10:16-17",
+      "text": "La coupe de bénédiction que nous bénissons n'est-elle pas communion au sang du Christ ? Le pain que nous rompons n'est-il pas communion au corps du Christ ? Puisqu'il y a un seul pain, à plusieurs nous ne sommes qu'un seul corps, car tous nous avons part à ce pain unique."
+     },
+     "note": "Paul tire de la communion une conséquence pour l’Église : un seul pain, un seul corps. Saint Augustin disait aux nouveaux baptisés de recevoir ce qu’ils sont, le corps du Christ."
+    },
+    {
+     "id": "base-matthieu-26-26-28",
+     "fr": {
+      "ref": "Matthieu 26:26-28",
+      "text": "Pendant le repas, Jésus prit du pain, prononça la bénédiction, le rompit et, le donnant à ses disciples, il dit : « Prenez, mangez : ceci est mon corps. » Puis, prenant une coupe et rendant grâce, il la leur donna en disant : « Buvez-en tous, car ceci est mon sang, le sang de l'alliance, versé pour la multitude pour le pardon des péchés."
+     },
+     "note": "Ce sont les paroles de l’institution chez Matthieu. Le prêtre les redit à chaque messe, et par elles le Christ rend présents son corps et son sang. Matthieu est le seul à ajouter « pour le pardon des péchés »."
+    }
+   ]
+  },
+  {
+   "id": "base-penitence",
+   "name": {
+    "fr": "La pénitence"
+   },
+   "bloc": "La liturgie et les sacrements",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-jean-20-22-23",
+     "fr": {
+      "ref": "Jean 20:22-23",
+      "text": "Ayant dit cela, il souffla sur eux et leur dit : « Recevez l'Esprit Saint. Ceux à qui vous remettrez les péchés, ils leur seront remis ; ceux à qui vous les retiendrez, ils leur seront retenus. »"
+     },
+     "note": "Le soir de Pâques, le Christ ressuscité souffle sur les apôtres et leur donne le pouvoir de remettre les péchés. Le concile de Trente y voit l’institution du sacrement de pénitence (session XIV, canon 3)."
+    },
+    {
+     "id": "base-luc-15-18",
+     "fr": {
+      "ref": "Luc 15:18",
+      "text": "Je vais me lever, aller vers mon père, et lui dire : Père, j'ai péché contre le ciel et contre toi ;"
+     },
+     "note": "Le fils prodigue décide de rentrer et prépare son aveu. Le Catéchisme lit dans la parabole tout le chemin du sacrement : la conversion, le retour vers le Père, l’aveu, le pardon et la fête (n. 1439)."
+    },
+    {
+     "id": "base-1-jean-1-9",
+     "fr": {
+      "ref": "1 Jean 1:9",
+      "text": "Si nous confessons nos péchés, lui, fidèle et juste, nous pardonne nos péchés et nous purifie de toute injustice."
+     },
+     "note": "Jean promet le pardon à qui reconnaît ses péchés. Le Catéchisme cite ce verset pour dire que l’accueil de la miséricorde de Dieu exige l’aveu de nos fautes (n. 1847)."
+    },
+    {
+     "id": "base-psaumes-51-3",
+     "fr": {
+      "ref": "Psaumes 51:3",
+      "text": "Aie pitié de moi, ô Dieu, dans ton immense amour fidèle ; dans ta grande tendresse, efface mes révoltes."
+     },
+     "note": "Ainsi commence le psaume que la tradition attribue à David après son péché. L’Église le prie chaque vendredi matin aux laudes, et il reste la grande prière de la pénitence."
+    }
+   ]
+  },
+  {
+   "id": "base-onction",
+   "name": {
+    "fr": "L’onction des malades"
+   },
+   "bloc": "La liturgie et les sacrements",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-jacques-5-14-15",
+     "fr": {
+      "ref": "Jacques 5:14-15",
+      "text": "L'un de vous est-il malade ? Qu'il appelle les prêtres de l'Église, et qu'ils prient sur lui, après l'avoir oint d'huile au nom du Seigneur. La prière de la foi sauvera le malade, et le Seigneur le relèvera ; s'il a commis des péchés, ils lui seront pardonnés."
+     },
+     "note": "C’est le texte du sacrement des malades. On y trouve le ministre, les prêtres ; le geste, l’onction d’huile avec la prière ; les effets, le relèvement et le pardon. Le concile de Trente dit que Jacques a promulgué ce sacrement (session XIV)."
+    },
+    {
+     "id": "base-marc-6-13",
+     "fr": {
+      "ref": "Marc 6:13",
+      "text": "Ils chassaient beaucoup de démons, faisaient des onctions d'huile à de nombreux malades et les guérissaient."
+     },
+     "note": "Envoyés en mission, les Douze font des onctions d’huile aux malades. Le concile de Trente voit dans ce geste une première indication du sacrement que Jacques promulguera (session XIV)."
+    }
+   ]
+  },
+  {
+   "id": "base-ordre",
+   "name": {
+    "fr": "L’ordre"
+   },
+   "bloc": "La liturgie et les sacrements",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-luc-22-19",
+     "fr": {
+      "ref": "Luc 22:19",
+      "text": "Puis il prit du pain, rendit grâce, le rompit et le leur donna en disant : « Ceci est mon corps, donné pour vous. Faites cela en mémoire de moi. »"
+     },
+     "note": "« Faites cela en mémoire de moi. » Le concile de Trente enseigne que, par ces mots, le Christ a institué ses apôtres prêtres et leur a ordonné d’offrir son corps et son sang (session XXII, canon 2)."
+    },
+    {
+     "id": "base-psaumes-110-4",
+     "fr": {
+      "ref": "Psaumes 110:4",
+      "text": "Le Seigneur l'a juré, il ne s'en dédira pas : « Tu es prêtre pour toujours selon l'ordre de Melchisédek. »"
+     },
+     "note": "La lettre aux Hébreux applique ce serment au Christ : il est prêtre pour toujours, à la manière de Melchisédek, qui apporta le pain et le vin. Le prêtre ordonné participe à ce sacerdoce unique."
+    },
+    {
+     "id": "base-2-timothee-1-6",
+     "fr": {
+      "ref": "2 Timothée 1:6",
+      "text": "Voilà pourquoi je te le rappelle : ranime le don de grâce de Dieu qui est en toi par l'imposition de mes mains."
+     },
+     "note": "Paul rappelle à Timothée le don reçu par l’imposition de ses mains. Ce geste est resté le cœur de l’ordination, et Pie XII l’a déclaré matière du sacrement de l’ordre en 1947 (*Sacramentum ordinis*)."
+    },
+    {
+     "id": "base-hebreux-5-1",
+     "fr": {
+      "ref": "Hébreux 5:1",
+      "text": "Tout grand prêtre, en effet, pris d'entre les hommes, est établi en faveur des hommes dans le service de Dieu, pour offrir des dons et des sacrifices pour les péchés."
+     },
+     "note": "Ce verset dit ce qu’est un grand prêtre : pris d’entre les hommes, établi pour eux auprès de Dieu, pour offrir. Le Catéchisme le reprend pour parler du sacerdoce (n. 1539), que le Christ accomplit et auquel les prêtres participent."
+    }
+   ]
+  },
+  {
+   "id": "base-mariage",
+   "name": {
+    "fr": "Le mariage"
+   },
+   "bloc": "La liturgie et les sacrements",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-genese-2-24",
+     "fr": {
+      "ref": "Genèse 2:24",
+      "text": "C'est pourquoi l'homme quittera son père et sa mère, il s'attachera à sa femme, et tous deux ne feront plus qu'une seule chair."
+     },
+     "note": "Jésus cite ce verset quand on l’interroge sur le divorce : le mariage remonte au commencement, au dessein du Créateur. L’Église y lit l’unité des époux et leur fidélité."
+    },
+    {
+     "id": "base-matthieu-19-6",
+     "fr": {
+      "ref": "Matthieu 19:6",
+      "text": "Ainsi, ils ne sont plus deux, mais une seule chair. Donc, ce que Dieu a uni, que l'homme ne le sépare pas ! »"
+     },
+     "note": "C’est la parole du Christ sur l’indissolubilité. Le lien du mariage est établi par Dieu lui-même, si bien que le mariage conclu et consommé entre baptisés ne peut jamais être dissous (Catéchisme 1640)."
+    },
+    {
+     "id": "base-ephesiens-5-25",
+     "fr": {
+      "ref": "Éphésiens 5:25",
+      "text": "Maris, aimez votre femme comme le Christ a aimé l'Église : il s'est livré lui-même pour elle,"
+     },
+     "note": "Paul donne au mari la mesure de son amour : celle du Christ, qui se livre pour l’Église. Le mariage chrétien apprend aux époux à s’aimer de cet amour qui se donne."
+    },
+    {
+     "id": "base-ephesiens-5-32",
+     "fr": {
+      "ref": "Éphésiens 5:32",
+      "text": "Ce mystère est grand : je le dis en pensant au Christ et à l'Église."
+     },
+     "note": "« Mystère » traduit ici le grec *mystêrion*, que la Vulgate a rendu par *sacramentum*. L’amour des époux est le signe de l’union du Christ et de l’Église, et le concile de Trente y voit l’indication que le mariage est un sacrement (session XXIV)."
+    }
+   ]
+  },
+  {
    "id": "base-mort",
    "name": {
     "fr": "La mort et le jugement particulier"
