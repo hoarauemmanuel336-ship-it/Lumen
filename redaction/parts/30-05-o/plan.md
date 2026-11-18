@@ -1,6 +1,6 @@
 # 30-05-o · Les ordres mendiants · plan
 
-État : EN COURS (mettre à jour après chaque leçon).
+État : RÉDIGÉ (12 leçons + bilan, réunis dans redaction/30-05-o.html) ; reste : humaniser, contrôle, essai d'assemblage.
 
 Question centrale : pourquoi, au début du XIIIe siècle, l'Église a-t-elle vu naître et a-t-elle approuvé des religieux d'un genre nouveau, qui vivent en ville, sans biens, de dons, pour prêcher, et quels débats cette nouveauté a-t-elle provoqués (pauvreté, université, multiplication des ordres) ?
 

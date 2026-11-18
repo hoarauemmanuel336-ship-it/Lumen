@@ -19,4 +19,4 @@ Obstacles du novice : croire que tous les « hérétiques » se ressemblent (cat
 12. La réponse de l'Église : la prédication, les ordres mendiants, l'enquête judiciaire. Prédication et réconciliation (Innocent III, Latran IV can. 10) ; ordres mendiants (Toulouse 1215, université de Toulouse 1229) ; enquête (1184, 1199, 1215 can. 3, Toulouse 1229, 1231-1233) ; bilan ; jugement de l'Église (Dignitatis humanae 12, 12 mars 2000).
 Bilan : 6 exercices croisés.
 
-État : leçons 00 à 04 écrites et contrôlées.
+État : leçons 00 à 09 écrites et contrôlées.
