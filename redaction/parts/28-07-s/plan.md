@@ -32,4 +32,4 @@ Fichiers : 00-ouverture.html, 01.html … 11.html, 99-bilan.html.
     Jean VII, Constantin Ier, statut chez orthodoxes et catholiques. Commande : 16.
 Bilan : 6 exercices croisés.
 
-État : plan fait.
+État : terminé. Fichier réuni, contrôle sans erreur, assemblage d’essai réussi.

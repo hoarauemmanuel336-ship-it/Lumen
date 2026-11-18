@@ -1,0 +1,457 @@
+
+## 29-01-l
+- L1 : date du passage du Rhin (31 décembre 406, Prosper) donnée comme discutée (certains 405) ; anecdote d'Ammien Marcellin (chiens contre enfants esclaves) citée de mémoire (Ammien XXXI, 4, 11).
+- L2 : traduction du Sermon 81, 9 d'Augustin (« Rome n'a-t-elle pas péri si les Romains ne périssent pas ? ») paraphrasée d'après une traduction française en ligne ; référence de la promesse de Virgile réfutée attribuée au Sermon 105 (de mémoire) ; Cité de Dieu XIV, 28 (deux amours) paraphrasé.
+- L2 : récit d'Orose sur les vases sacrés de saint Pierre (Histoires VII, 39) résumé de mémoire.
+- L3 : Sermon 82 de Léon (Pierre et Paul nouveaux fondateurs de Rome) paraphrasé de mémoire ; rattachement du Sermon 84 à 452 ou 455 donné comme discuté.
+- L3 : ce que Léon obtient de Genséric (ni incendie, ni massacre, ni tortures) et les quatorze jours de pillage : d'après Prosper, de mémoire ; objets du Temple de Jérusalem d'après Procope.
+- L3 : détails sur Deogratias (deux basiliques, lits, visites avec des médecins, mort vers 457) d'après Victor de Vita I, 24-27, de mémoire.
+- L4 : Odoacre « fils d'un chef skire qui avait servi Attila » (Édécon) : origine ethnique discutée ; décret du préfet Basile (483) annulé par le synode romain de 502 : de mémoire.
+- L5 : Philostorge (Ulfila « Moïse de son temps », omission des livres des Rois) ; nombre de lettres de l'alphabet gothique (environ 27) ; martyre de Saba (372) : de mémoire.
+- L5 : formule de Salvien (« hérétiques à nos yeux, non aux leurs », De gubernatione Dei V, 2) paraphrasée de mémoire ; phrase de Jérôme sur le monde qui « s'étonna de se découvrir arien » (Contre les lucifériens 19) paraphrasée.
+- L6 : 80 000 Vandales (Victor I, 2) ; 4 966 déportés (Victor II, 26) ; « plus de 460 évêques » convoqués en 484 (Notitia) ; « plus de deux cents évêques » au concile de Carthage de 535 (217 selon mon souvenir) ; édit du 24 février 484 qui reprend les lois impériales contre les hérétiques : de mémoire.
+- L6 : Libérat et ses six moines (martyrs à Carthage sous Hunéric, fête le 17 août) : de mémoire ; Possidius et les psaumes pénitentiels au mur : de mémoire ; contenu de la Lettre 228 d'Augustin résumé de mémoire.
+- L7 : schisme laurentien (dates 498-506, synode de 501 refusant de juger Symmaque, écrits symmachiens) de mémoire ; canon 1404 du CIC 1983 (« Prima Sedes a nemine iudicatur ») ; culte de Boèce confirmé à Pavie en 1883 ; vision de l'ermite de Lipari (Dialogues IV) ; restitution de Saint-Apollinaire-le-Neuf « vers 561 » : de mémoire.
+- L8 : propos d'Athaulf rapporté par Orose (VII, 43) ; Sidoine, Lettres VII, 6 (liste de cités sans évêque) ; Sixte V et le culte d'Herménégild en Espagne (1585) : de mémoire.
+- L9 : loi de 409 associant l'évêque à l'élection du défenseur de la cité ; affirmation que « les textes donnent à l'évêque le nom de défenseur » ; Rogations introduites par Sidoine à Clermont ; libération de « plusieurs milliers » de captifs par Épiphane chez Gondebaud : de mémoire.
+- L10 : texte latin de la première phrase de Famuli vestrae pietatis cité de mémoire (« Duo quippe sunt, imperator auguste, quibus principaliter mundus hic regitur : auctoritas sacrata pontificum, et regalis potestas ») ; le reste paraphrasé d'après une traduction anglaise ; contenu du Tractatus IV de Gélase et de la Novelle 6 de Justinien (535) paraphrasé de mémoire ; Grégoire VII citant Gélase (lettre à Hermann de Metz, 1081).
+- L11 : contenu de la Sanction pragmatique (évêques associés au choix des gouverneurs) de mémoire ; date de la destruction du Mont-Cassin (577-589) donnée comme discutée ; massacre de Milan en 539.
+- L12 : réponse de Grégoire à l'empereur Maurice (Lettres V, 36) et lettre à Constantina (V, 39) paraphrasées prudemment de mémoire ; homélie « Où est le Sénat ? » (Hom. Ez. II, 6) et homélie sur la sentinelle (Hom. Ez. I, 11) paraphrasées de mémoire ; « environ 850 lettres » ; distributions mensuelles d'après Jean Diacre ; épitaphe « consul de Dieu ».
+
+## 28-03-i
+- Leçon 1 : propos d'Eustathe de Sébaste (n'oser appeler l'Esprit ni Dieu ni créature) rapporté d'après Socrate, Histoire ecclésiastique II, 45, de mémoire.
+- Leçon 1 : Macédonius évêque de Constantinople « de 342 à 360, avec une interruption » (dates de mémoire : 342-346 et 351-360).
+- Leçon 2 : Athanase applique le mot « consubstantiel » à l'Esprit dans la première Lettre à Sérapion (I, 27) : affirmé de mémoire.
+- Leçon 2 : répartition des Lettres à Sérapion (quatre dans les manuscrits, souvent trois pour les éditeurs récents) et date vers 359-361.
+- Leçon 2 : retour d'Athanase à Alexandrie en février 362 ; Tome aux Antiochiens (§ 3 sur l'Esprit, § 7 sur l'âme et l'intelligence du Sauveur) cité de mémoire.
+- Leçon 3 : l'épisode de la fête de martyr vers 372 (fête de saint Eupsyque) et le reproche d'un moine, d'après la lettre 58 de Grégoire de Nazianze, de mémoire.
+- Leçon 3 : date de mort de Basile (1er janvier 379, traditionnelle ; 377 ou 378 selon certains).
+- Leçon 3 : Grégoire de Nazianze, Discours 31, 10 (« L'Esprit est-il Dieu ? Assurément… ») paraphrasé sans guillemets.
+- Leçon 4 : excommunication d'Apollinaire par l'évêque arien de Laodicée pour avoir reçu Athanase en 346 (Sozomène VI, 25) ; synode romain de 377 avec Pierre d'Alexandrie présent ; date de l'ordination de Vitalis « vers 375 ».
+- Leçon 4 : retour d'une partie des apollinaristes « vers 416 » (Catholic Encyclopedia).
+- Leçon 5 : date de l'édit de Thessalonique donnée comme « fin de février 380 » (27 ou 28 selon les éditions) ; loi du 10 janvier 381 (Code théodosien XVI, 5, 6) ; liste des évêques nommés dans la loi du 30 juillet 381 (Code théodosien XVI, 1, 3) donnée partiellement, de mémoire.
+- Leçon 5 : rappel aux macédoniens de leur démarche de 366 auprès de Libère et leur réponse (préférer les ariens au « consubstantiel ») d'après Socrate V, 8, de mémoire.
+- Leçon 6 : songe de Théodose rapporté par Théodoret (V, 7) ; accord sur la succession d'Antioche d'après Socrate et Sozomène ; fin du schisme vers 398 (reconnaissance de Flavien) et 415.
+- Leçon 6 : synode d'Antioche de 379 « avec plus de cent cinquante évêques » (153 selon la tradition).
+- Leçon 7 : élection de Nectaire d'après Sozomène VII, 8 (rôle de Diodore, robe blanche des néophytes) ; refus de Grégoire d'aller au synode de 382 (lettre 130), paraphrasé.
+- Leçon 11 : concile d'Aquilée (septembre 381) et lettres des Italiens soutenant Maxime et Paulin ; présence de Paulin, Épiphane et Jérôme au synode de Rome de 382.
+- Leçon 11 : contenu des anathèmes du Tome de Damase sur l'Esprit (paraphrasés d'après Théodoret V, 11) ; date discutée (382 ou vers 377-380). Décret de Damase : « Esprit du Père et du Fils » et passage sur la primauté, d'authenticité discutée (Dobschütz).
+- Leçon 12 : présence du mot Filioque dans le texte du Symbole lu à Tolède III (589) discutée ; l'anathème sur la procession du Père et du Fils et l'ordre de réciter le Symbole avant le Notre Père (canon 2) donnés de mémoire ; date « mai 589 ».
+- Leçon 12 : le troisième concile de Constantinople (680-681) fait lire le Symbole de 381 (d'après la Catholic Encyclopedia).
+
+## 27-06-o
+- Didachè : découverte par Bryennios en 1873 dans un manuscrit de 1056, publication en 1883 ; « des Pères l’avaient lue comme presque inspirée » (Clément d’Alexandrie, Athanase la recommande aux catéchumènes) : formulation de mémoire.
+- Harnack et la Didachè « dès 1884 » : de mémoire.
+- Ignace : Origène le donne « second après Pierre » (Homélie VI sur Luc), Eusèbe « deuxième après Évode » et martyre vers 107-108 (Chronique) ; Zahn (1873) et Lightfoot (1885) ; hypothèses de datation tardive « vers 140 ou vers 170 » (Hübner, Lechner) : de mémoire.
+- Ignace, Aux Philadelphiens 7, 1 (« d’une voix forte, la voix de Dieu ») et Aux Éphésiens 4, 1 (lyre) : cités de mémoire, paraphrasés.
+- Monépiscopat à Rome « vers l’époque d’Anicet » (thèse de P. Lampe) : présenté comme une opinion d’historiens.
+- Irénée, Contre les hérésies IV, 26, 2 (« charisme assuré de la vérité ») et III, 11, 9 (mise en garde contre le rejet de toute prophétie) : de mémoire.
+- Tertullien, De la prescription 32 (Clément ordonné par Pierre) et De la pudicité 21, 17 (« Église nombre d’évêques ») ; Contre Praxéas 1 : de mémoire.
+- Gaïus et les « trophées » (Eusèbe II, 25, 7) ; Denys de Corinthe à Soter (IV, 23, 10-11) : de mémoire, contenu sûr.
+- Pastor aeternus, chapitre 2 : reprend les termes d’Irénée avec une note qui le cite (vérifié sur papalencyclicals) ; formulation « a repris ses termes ».
+- Cyprien, lettre 59, 14 (« chaire de Pierre », « Église principale ») ; Étienne et « rien d’innover » (lettre 74, 1) ; concile d’Arles 314 sur le baptême : de mémoire.
+- Ut unum sint (1995) n° 95 : invitation à chercher une forme d’exercice de la primauté, paraphrasée.
+- Synode de Carthage sous Agrippinus « vers 220 » (les dates proposées vont de 198 à 220 environ).
+- Synode de Carthage du 1er septembre 256, 87 évêques, préface des Sententiae episcoporum (« évêque des évêques ») ; De l’unité 5 : de mémoire.
+- Synodes d’Antioche 264-268, déposition de Paul de Samosate en 268 (certains disent 269).
+- Primat africain par ancienneté hors de la Proconsulaire : de mémoire.
+- Grégoire le Grand : les trois sièges de Pierre (lettre à Euloge d’Alexandrie, vers 597) et protestation de 595 contre le titre de « patriarche œcuménique » : sans numéro de lettre.
+- Novelle 131 de Justinien (545) ; canon 36 du concile in Trullo (692) ; refus de Serge Ier ; Latran IV, constitution 5 (1215) et Florence, Laetentur caeli (1439) sur l’ordre des patriarches : de mémoire.
+- Juvénal de Jérusalem et l’accord avec Maxime d’Antioche à Chalcédoine (451) donnant les trois Palestines : de mémoire.
+- Léon le Grand, lettres de mai 452 (104 à Marcien, 105 à Pulchérie, 106 à Anatole), paraphrasées.
+- Montanisme : Ardabau « à la limite de la Mysie et de la Phrygie » (Eusèbe V, 16, 7) ; Zotique de Comane et Julien d’Apamée (V, 16, 17) ; Miltiade (V, 17, 1) ; « plus de treize ans de paix » (V, 16, 19) ; synode présidé par Apollinaire vers 177 (tradition tardive, Libellus synodicus).
+- Actes du martyre de Justin 3 : réponse au préfet Rusticus (« au-dessus de certains thermes », nom variable selon les recensions).
+- Fermentum (lettre d’Innocent Ier à Decentius, 416) : évoqué sans le nommer.
+- Doura-Europos : salle de 12,9 m sur 5,15 m, transformation vers 240-241, fouilles 1931-1932 (vérifié sur Wikipédia anglais).
+- Église de Nicomédie rasée en février 303 (Lactance, De la mort des persécuteurs 12) ; « tituli » et Livre des papes : de mémoire.
+- Polycarpe, Aux Philippiens 4, 3 (« autel de Dieu ») ; date de la lettre « vers 110-140 ».
+- Tradition apostolique 10 et 12 (veuves instituées, vierges non ordonnées) ; Didascalie (diacre « oreille et bouche » de l’évêque) : de mémoire.
+- Justin, Première Apologie 15 (hommes et femmes de 60 et 70 ans restés purs) ; Cyprien, De la tenue des vierges 3 ; Tertullien, Du voile des vierges vers 207 ; Marcelline voilée par Libère : de mémoire.
+- Cyprien, lettre 62 (rachat des captifs de Numidie, vers 253) ; Lucien, Sur la mort de Pérégrinus 12-13 ; Pontius, Vie de Cyprien 9 (secours aux païens pendant l’épidémie) : de mémoire.
+- Sept régions de Rome confiées aux sept diacres (attribuée à Fabien par le Livre des papes) : présentée comme « tradition rapportée plus tard ».
+- Calliste : Zéphyrin évêque « de 199 à 217 environ », Calliste « de 217 à 222 environ », inhumé sur la voie Aurélienne ; crypte des papes (Pontien, Antère, Fabien, Lucius, Eutychien, Sixte II) ; de Rossi 1854 ; « des dizaines de milliers » de sépultures (estimation prudente, d’autres avancent beaucoup plus).
+- Hypothèse des associations funéraires (de Rossi) : présentée comme discutée.
+- Code de droit canonique, canon 1254 : paraphrasé.
+
+## 27-02-a
+- Leçon 1 : inscription d’Aphrodisias (liste de *theosebeis*, « une cinquantaine de noms », date discutée) donnée de mémoire ; cohorte « Italique » attestée en Syrie par une inscription plus tardive (de mémoire).
+- Leçon 1 : datation du baptême de Corneille « fin des années 30 ou début des années 40 » (estimation courante, non vérifiée en ligne).
+- Leçon 2 : Josèphe sur Antioche, troisième ville de l’Empire (*Guerre juive* III, 29) et sur les Grecs attirés par la communauté juive (*Guerre juive* VII, 45) : de mémoire, références non données dans le texte.
+- Leçon 2 : famine en Judée « vers le milieu des années 40 » selon Josèphe ; Tacite (incendie de 64, ceux que la foule appelait chrétiens) ; Ignace emploie le nom de chrétien : de mémoire.
+- Leçon 3 : récit d’Izatès d’Adiabène, Ananias et Éléazar (Josèphe, *Antiquités* XX, 34-48), « vers les années 30-40 » : de mémoire.
+- Leçon 4 : Ramsay et F. F. Bruce comme tenants de l’identification Galates 2 = visite de la famine ; Orose plaçant l’édit de Claude en 49 ; Arétas IV mort vers 40 ; Gallion 51-52 : de mémoire (consensus courant). Benoît XVI, audience du 1er octobre 2008, « deuxième moitié des années 40 » : vérifié sur vatican.va.
+- Leçon 6 : variante de Galates 2:5 sans la négation (« quelques témoins anciens, surtout latins ») : de mémoire (codex de Bèze première main, Pères latins) ; formulation laissée générale.
+- Leçon 6 : Benoît XVI parlant de la collecte comme d’un « service » et d’une « liturgie » : vérifié (résumé de l’audience du 1er octobre 2008), paraphrasé.
+- Leçon 7 : Hégésippe (via Eusèbe) et le surnom « le Juste » ; Jérôme / Épiphane sur les « frères » de Jésus : de mémoire. Lecture hébraïque d’Amos 9:12 (« posséder le reste d’Édom ») et différence d’une lettre *Edom/adam*, *yirshu/yidreshu* : de mémoire, standard.
+- Leçon 8 : texte occidental du décret (codex de Bèze : omission de « étouffé », ajout de la règle d’or négative) : de mémoire. Lois noachiques (sept commandements, sources rabbiniques postérieures) : de mémoire.
+- Leçon 8 : Biblis (Eusèbe, HE V, 1, 26), Tertullien (*Apologétique* 9), In Trullo canon 67, Augustin (*Contre Fauste* XXXII, 13), Florence (bulle d’union avec les Coptes, 4 février 1442) : vérifiés en ligne (newadvent, papalencyclicals), tous paraphrasés.
+- Leçon 9 : Cyprien, concile de Carthage de 252, lettre à Corneille (« par la suggestion de l’Esprit Saint ») : vérifié en traduction anglaise (newadvent, Ep. 53 §5), paraphrasé. Concile de Trente « légitimement réuni dans l’Esprit Saint » : formule citée de mémoire entre guillemets, à vérifier.
+- Leçon 9 : CTI 2018, « la figure paradigmatique des synodes célébrés par l’Église » (n. 20) : obtenu par WebFetch, citation courte à confirmer sur le texte français.
+- Leçon 10 : controverse Jérôme-Augustin (Origène, commentaire de Jérôme sur Galates, lettres d’Augustin) et lecture de Clément d’Alexandrie (vérifiée : Eusèbe HE I, 12, 2), Tertullien (vérifié : *Prescription* 23), Thomas (vérifié : II-II q. 33 a. 4 ad 2). Hypothèse d’une pression zélote en Judée (Jewett) mentionnée sans nom, de mémoire. 1 Clément 5 (Pierre et Paul « colonnes ») : de mémoire.
+- Leçon 11 : Ignace, premier emploi de *christianismos* (Magnésiens 10) et de « Église catholique » (Smyrniotes 8) : Magnésiens vérifié en traduction anglaise, Smyrniotes de mémoire. *Nostra aetate* 4 : citations courtes vérifiées sur vatican.va.
+- Leçon 12 : lettre synodale de Nicée aux Églises d’Égypte ; formule finale des documents de Vatican II (Paul VI approuve « en union avec les Pères, dans l’Esprit Saint ») paraphrasée de mémoire. CTI 2018 n. 42, « le caractère exemplaire et normatif du concile de Jérusalem » : obtenu par WebFetch.
+
+## 27-05-r
+- Leçon 1 : Benoît XIV, trois conditions du martyre (mort réelle, odium fidei, acceptation) présentées de mémoire, sans citation ; formule d'Augustin « ce n'est pas la peine qui fait le martyr, c'est la cause » donnée sans référence précise (Ep. 89 ; Enarr. in Ps. 34).
+- Leçon 1 : CEC 2473 cité seulement pour sa première proposition (« Le martyre est le suprême témoignage rendu à la vérité de la foi »), vérifié sur vatican.va.
+- Leçon 2 : Jacques fils de Zébédée tué « vers 43 ou 44 » sous Agrippa Ier ; Clément de Rome (vers 96) comme témoin de la mort de Pierre et Paul à Rome.
+- Leçon 3 : citations d'Ignace (Romains 4,1 ; 4,3 ; 6,1 ; 6,3 ; 7,2) traduites par moi d'après le texte (sauf celles reprises du CEC 2473-2474, vérifiées) ; référence à Tralliens 10 contre les docètes donnée de mémoire ; « dernier des fidèles d'Antioche » (Romains 9,2) paraphrasé.
+- Leçon 4 : traduction de Martyre de Polycarpe 9,3 et 17,3 personnelle (proche de la traduction Camelot) ; le texte grec date au 2 Xanthique / VII des calendes de mars (= 23 février) ; colombe (ch. 16) donnée comme probable ajout ; Polycarpe à Rome chez Anicet « vers 154 ».
+- Leçon 5 : réponses des Scillitains paraphrasées ; trois recensions des Actes de Justin ; canon des conciles d'Afrique (Hippone 393 / Carthage 397) autorisant la lecture des passions ; Delehaye : classement des récits donné sans le nombre exact de catégories ; réforme du calendrier de 1969 décrite en termes généraux ; Martyrologe romain révisé publié en 2001.
+- Leçon 6 : 48 noms de martyrs de Lyon (martyrologe hiéronymien, Grégoire de Tours) ; fête le 2 juin ; Sanctus répondant « en latin » ; Attale livré aux bêtes malgré sa citoyenneté ; parole de Pothin « Si tu en es digne, tu le connaîtras ».
+- Leçon 7 : année 203 et jour 7 mars ; division en chapitres 3-10 (Perpétue) et 11-13 (Saturus) ; noms des diacres Tertius et Pomponius ; accouchement juste après la prière des compagnons, trois jours avant les jeux selon le texte ; inscription de la basilique de Carthage retrouvée au début du XXe siècle (1907 ?).
+- Leçon 8 : Depositio martyrum « établie vers 336, copiée en 354 » ; lettre de Corneille (vers 251) et ses chiffres (46 prêtres, 7 diacres, 7 sous-diacres, 42 acolytes, 52 exorcistes, lecteurs et portiers, plus de 1 500 veuves et indigents) ; épigramme de Damase mentionnant les flammes ; Ambroise, De officiis I,41 (gril) et II,28 (trésors) ; Pio Franchi de' Cavalieri ; sermon de Léon le Grand comparant Laurent à Étienne.
+- Leçon 9 : Tradition apostolique ch. 9 (confesseurs) ; concile d'Elvire, canon 60, date « début du IVe siècle » discutée ; Clément d'Alexandrie, Stromates IV (complicité avec le persécuteur) ; Tertullien, De fuga, « vers 208-212 » ; lettre 228 d'Augustin à Honorat (non nommée) ; Calliste aux mines de Sardaigne ; Pontien et Hippolyte déportés en 235 ; Lumen gentium 42 cité d'après vatican.va.
+- Leçon 10 : Tertullien, De baptismo 16 et Apologétique 50,13 (traduction personnelle) ; Cyprien, Lettre 73,22 ; Tradition apostolique 19 ; Augustin (sermon 159) « prier pour un martyr serait lui faire injure » paraphrasé ; saint Thomas, ST III q.66 a.12 ; estimation « une personne sur dix vers 300 » donnée comme très incertaine.
+- Leçon 11 : Cyprien, Lettres 12 et 39 (jour des confesseurs, sacrifices aux anniversaires) ; Depositio martyrum commençant au 25 décembre par la naissance du Christ ; Gaïus (Eusèbe HE II,25) ; Ambroise, Lettre 22 (Gervais et Protais, 386) ; Carthage 401 et Nicée II canon 7 ; CIC 1237 §2 paraphrasé ; Jérôme à Riparius (404) ; Code théodosien IX,17,7 (386) ; Augustin, De opere monachorum 28 ; Grégoire le Grand à l'impératrice Constantina (594).
+- Leçon 12 : « plus de soixante catacombes » et « plus de 150 km de galeries » (estimations variables) ; Zéphyrin et Calliste « vers 200 » (Hippolyte, Réfutation IX,12) ; découverte de 1578 via Salaria ; Bosio, Roma sotterranea posthume (1632/1634) ; de Rossi et la crypte des papes en 1854 ; commission pontificale de 1852 ; épigramme de Damase sur sa sépulture (paraphrasée) ; souvenir de Jérôme (Commentaire sur Ézéchiel 40) paraphrasé ; cessation des inhumations au début du Ve siècle.
+
+## 28-01-l
+- Leçon 1 : étymologie de concilium par calare « appeler » donnée comme rattachement « d'ordinaire » (non vérifiée dans un dictionnaire).
+- Leçon 1 : Tertullien et les concilia des régions grecques (De ieiunio 13), paraphrasé de mémoire ; datation « début du IIIe siècle ».
+- Leçon 1 : Eusèbe, Vie de Constantin III, 6, premier emploi de l'adjectif œcuménique pour un concile (vérifié : convocation et poste publique ; le mot grec oikoumenikê et la priorité d'Eusèbe sont de mémoire).
+- Leçon 1 : Carthage 256 (87 évêques), Antioche 268 avec lettre aux évêques de Rome et d'Alexandrie (Eusèbe VII, 30), de mémoire. Grégoire le Grand contre le titre de « patriarche œcuménique », fin du VIe siècle.
+- Leçon 2 : Latran IV (1215), canon 6 demandant la publication des décrets provinciaux dans des synodes diocésains annuels et un concile provincial annuel ; Trente, session XXIV, décret de réforme, canon 2 (vérifié pour le synode diocésain annuel par la Catholic Encyclopedia) et concile provincial tous les trois ans.
+- Leçon 2 : Benoît XIV, De synodo dioecesana, 1748 ; conciles pléniers de Baltimore (1852, 1866, 1884), Amérique latine (Rome, 1899), Philippines (1991), Australie (2021-2022) ; Carthage 1er mai 418 approuvé par Zosime ; Orange 529, quatorze évêques, approuvé par Boniface II en 531 ; Tolède III 589 et Récarède.
+- Leçon 2 : synode des évêques créé le 15 septembre 1965 (Apostolica sollicitudo) ; voix délibérative seulement si le pape l'accorde (can. 343), de mémoire.
+- Leçon 3 : Rimini 359, « plus de quatre cents évêques » ; Hiéreia 754, 338 évêques ; Vatican I environ 700 et Vatican II près de 2 500 évêques (chiffres ronds).
+- Leçon 3 : jugement de Nicée II sur Hiéreia paraphrasé d'après une traduction anglaise (Price) citée par un site tiers.
+- Leçon 4 : Eusèbe, Vie de Constantin III, 10 (Constantin s'assied sur un siège bas après signe des évêques) et IV, 24 (« évêque de ceux du dehors »), de mémoire ; lois de Marcien de 452 confirmant Chalcédoine ; Marcien présent à la sixième session.
+- Leçon 4 : Vatican I, souverains catholiques non invités à envoyer des représentants (de mémoire).
+- Leçon 5 : Irénée, Contre les hérésies III, 3, 2, paraphrasé ; légats de Nicée Vitus et Vincentius ; légats d'Éphèse Arcadius, Projectus, Philippe et le discours de Philippe ; Paschasinus de Lilybée à Chalcédoine.
+- Leçon 5 : confirmation de Léon datée du 21 mars 453 ; approbation de Vigile en décembre 553 et février 554 ; Léon II en 682 ; Gélase (fin du Ve siècle) sur le concile approuvé par le premier siège, paraphrasé de mémoire.
+- Leçon 5 : document de Ravenne (2007) de la commission mixte catholique-orthodoxe, accord sur le premier rang de Rome et désaccord sur l'interprétation de ses prérogatives (de mémoire).
+- Leçon 6 : Congar, « La “réception” comme réalité ecclésiologique », 1972 ; encyclique des patriarches d'Orient de 1848 et Khomiakov ; synode de Constantinople de 382 appelant 381 œcuménique (Catholic Encyclopedia) ; assemblée du clergé de France recevant les décrets de Trente en 1615 ; Marc d'Éphèse seul évêque grec non signataire à Florence.
+- Leçon 6 : Symbole chanté à la messe en Orient « dès le début du VIe siècle » (date approximative).
+- Leçon 7 : Jean XXIII, Gaudet Mater Ecclesia (11 octobre 1962), remède de la miséricorde plutôt que sévérité, paraphrasé ; Unitatis redintegratio 3 sur ceux qui naissent dans les communautés séparées, paraphrasé.
+- Leçon 8 : décret de Constance (1415) paraphrasé ; Bâle dépose Eugène IV en 1439 ; Execrabilis (1460). Notification du 16 novembre 1964 et Paul VI du 12 janvier 1966 vérifiés sur vatican.va (citation de Paul VI paraphrasée depuis l'italien).
+- Leçon 9 : Grégoire le Grand, lettre I, 25 (591), vérifiée sur newadvent pour le contenu, date de mémoire ; Constantinople III et Nicée II se disant sixième et septième.
+- Leçon 9 : Gratien compte huit conciles ; Binius 1606 numérote Florence seizième ; édition romaine 1608-1612 (Paul V, Sirmond, Bâle omis sur conseil de Bellarmin) : d'après la New Catholic Encyclopedia et la Catholic Encyclopedia. Bellarmin « dix-huit conciles généraux approuvés » jusqu'à Trente et sa classification en quatre groupes : de mémoire.
+- Leçon 9 : thèse de Dvornik sur le canon de 869-870 contre l'ingérence des laïcs dans les élections épiscopales ; certains orthodoxes tenant 879-880 pour le huitième concile.
+- Leçon 10 : déclarations de 1984 (syriaque) et 1996 (arménienne) ; stèle de Xi'an (781) ; synode de Séleucie-Ctésiphon (410) ; Joseph Ratzinger (1976) sur ce que Rome ne doit pas exiger de l'Orient ; Ut unum sint 95 et Dominus Iesus 17 paraphrasés.
+
+## 27-09-n
+- Leçon 1 : Évagre, *Traité de la prière* 124 (« le moine est séparé de tous et uni à tous ») donné en paraphrase, référence non revérifiée.
+- Leçon 1 : Athénagore, *Supplique* 33 (vers 177), Tertullien *De virginibus velandis* (vers 207-213), Cyprien *De habitu virginum* (vers 249) et le mot « la fleur » de l’Église, de mémoire.
+- Leçon 1 : Ignace, *Aux Smyrniotes* 13, « les vierges appelées veuves », cité entre guillemets de mémoire.
+- Leçon 1 : concile de Gangres « vers 340 » (dates proposées entre 340 et 355).
+- Leçon 1 : Sulpice Sévère sur Martin martyr sans le sang (Lettre 2), paraphrase de mémoire.
+- Leçon 1 : pétition de Karanis du 6 juin 324 (P. Col. 7 171) vérifiée sur papyri.info ; Catéchisme 918, 920, 922 cités seulement pour les débuts vérifiés sur vatican.va.
+- Leçon 2 : Coma placé « sur la rive gauche du Nil » ; 300 aroures rendues par « plus de quatre-vingts hectares » ; date de la *Vie d’Antoine* « vers 357 » ; traduction d’Évagre d’Antioche « vers 370 ».
+- Leçon 2 : *Vie d’Antoine* 10 (la voix « j’étais là ») et 14 (le désert peuplé de moines « comme une ville ») en paraphrase ; « à la demande des évêques » en 338 (ch. 69).
+- Leçon 2 : sept lettres d’Antoine tenues pour authentiques par « beaucoup de spécialistes » (thèse de S. Rubenson) ; *Vie de Paul* de Jérôme datée vers 375-377.
+- Leçons 3 et 5 : les apophtegmes sont ma traduction, faite de mémoire d’après la collection alphabétique (Antoine 1 l’ange, Antoine 10 le poisson, Moïse 2 la corbeille, Moïse 6 la cellule, Arsène 1-2, Synclétique 19, Joseph de Panéphysis 7, Macaire 32, Jean Colobos 1, Agathon 15) ; à confronter à la traduction de Solesmes.
+- Leçon 3 : Cassien, *Conférences* II (Antoine sur le discernement), de mémoire.
+- Leçon 4 : Palladius HL 7, « six cents » anachorètes du « grand désert », identifiés aux Kellia ; chant des psaumes à la neuvième heure ; « si un frère manque, on va le voir » (*Histoire des moines d’Égypte*) de mémoire.
+- Leçon 4 : Amoun installé « entre 315 et 330 » ; son épouse « poursuit de son côté la vie ascétique » (formulation prudente).
+- Leçon 4 : Kellia, plus de 1500 constructions datées surtout des Ve-VIIe siècles, abandon au IXe ; Scété « une journée et une nuit » de marche ; Macaire « soixante ans » à Scété.
+- Leçon 4 : Arsène vers 354-449 et arrivée vers 394 ; Moïse tué vers 407 ; Poemen « près de deux cents » paroles ; parole d’Arsène sur Rome et Scété en paraphrase ; Sérapion (*Conférences* X) en paraphrase.
+- Leçon 5 : collection alphabétique « environ mille apophtegmes sous plus de cent vingt noms » ; formation en Palestine (thèse de L. Regnault) ; traduction de Pélage et Jean au VIe siècle.
+- Leçon 6 : Pacôme enrôlé « vers vingt ans », baptême à Chénoboskion vers 313, sept ans chez Palamon, Tabennèse vers 320-323 ; « neuf monastères d’hommes et deux de femmes » à sa mort ; rassemblements à Pbow à Pâques et en août ; maisons de 20 à 40 moines ; obligation d’apprendre à lire (Préceptes 139-140) ; traduction de Jérôme en 404.
+- Leçon 6 : Règle de saint Benoît 1, les cénobites « la plus forte race ».
+- Leçon 7 : Aphraate « vers 340 » ; *boskoi* chez Sozomène ; condamnation des messaliens à Éphèse en 431.
+- Leçon 7 : Siméon entré à Télanissos « vers 412 » ; images à Rome (Théodoret) ; lettre à l’empereur en faveur de Chalcédoine ; récit d’Évagre le Scholastique (HE I, 13) sur l’ordre de descendre ; sanctuaire « fin du Ve siècle » ; Daniel mort en 493 ; fêtes du 1er septembre et du 5 janvier ; Peter Brown 1971.
+- Leçon 8 : Grandes Règles 7, formulation « à qui laveras-tu les pieds ? » (la traduction anglaise consultée dit « Whom, therefore, will you wash? ») ; Rufin 397 ; Basiliade vers 369-372 ; Grégoire de Nazianze, Discours 43, « nouvelle cité » ; heures de prière (Grandes Règles 37) ; Basile évitant le mot « moine » ; Règle de Benoît 73 « la Règle de notre saint Père Basile ».
+- Leçon 9 : Macrine née vers 327 ; sa vie à égalité avec les servantes et le secours pendant une famine (*Vie de Macrine*) ; Mélanie en Égypte vers 372-374, au mont des Oliviers vers 378-380, Évagre vers 382, retour vers 400 et mort vers 410 ; hostilité tardive de Jérôme.
+- Leçon 9 : Paule veuve vers 32 ans, départ de Rome en 385, Bethléem en 386 ; Marcelline voilée par Libère « vers 353 » ; Égérie vers 381-384 ; dédicaces de traductions de Jérôme à Paule et Eustochium.
+- Leçon 10 : Athanase à Trèves vers 335-337 et à Rome 339-346, et Jérôme (Lettre 127) sur l’arrivée de la connaissance des moines à Rome ; Eusèbe de Verceil vers 345-355 ; Priscillien exécuté à Trèves en 385 avec l’opposition de Martin.
+- Leçon 10 : Martin ermite sur l’île de Gallinara (« île de la côte ligure ») ; ruse de l’élection à Tours ; Marmoutier et ses 80 disciples, copie confiée aux jeunes, évêques issus de Marmoutier (Sulpice, *Vie* 10).
+- Leçon 10 : Honorat et son frère Venance mort en Grèce ; Honorat évêque d’Arles vers 427 ; Eucher, *Éloge du désert* vers 428 ; Vincent, *Commonitorium* en 434.
+- Leçon 10 : Cassien en Égypte « vers 385 », diacre par Chrysostome, Rome en 404, Marseille vers 415 ; *Institutions* vers 420-424, *Conférences* vers 426-429 ; Prosper vers 432 ; Règle de Benoît 42 et 73.
+- Leçon 11 : Ammonios se coupant l’oreille (Palladius HL 11) ; Pacôme se cachant lors de la visite d’Athanase ; lettre d’Athanase à Dracontius vers 354-355 et ses arguments en paraphrase ; lettre de Sirice à Himère (385).
+- Leçon 11 : loi de Théodose du 2 septembre 390 révoquée en 392 (Code théodosien XVI, 3, 1-2) ; plainte de Libanios vers 386 ; Barsauma à Éphèse en 449 ; *Lumen gentium* 44 en paraphrase. Canons 4, 8 et 16 de Chalcédoine vérifiés sur newadvent.
+
+## 28-06-n
+- Date de l'édit contre les Trois Chapitres : « fin 543 ou début 544 » (Catholic Encyclopedia), certains disent 545 ; le cours écrit « vers 544 » et signale l'écart.
+- Premier Constitutum (14 mai 553) : nombre de propositions de Théodore condamnées non vérifié (60 de mémoire, 16 selon un résumé de la CE) ; le cours dit « une longue série ».
+- Second Constitutum : 23 février 554 (Tanner, Wikipédia) ou 26 février (CE) ; le cours écrit « février 554 ».
+- Nombre d'évêques : environ 150 à l'ouverture (152 selon Wikipédia), 160 à 165 signatures selon les listes.
+- Arrestation de Vigile : novembre 545, pendant la fête de sainte Cécile (20 ou 22 novembre selon les lectures) ; non daté au jour.
+- Serment secret de Vigile le 15 août 550, synode africain de 550 sous Reparatus excommuniant Vigile, Homologia de juillet 551, encyclique du 5 février 552, septième session le 26 mai 553 : de mémoire, non revérifiés en ligne.
+- Scène de l'église Saint-Pierre du palais d'Hormisdas (pape tiré par les pieds et la barbe, colonnes de l'autel renversées) : de mémoire, d'après la lettre du clergé italien de 551.
+- Ibas évêque d'Édesse en 435 (la Catholic Encyclopedia dit 439) ; identité de Mari donnée comme discutée ; issue de l'enquête de Tyr et Béryte (448-449) résumée prudemment.
+- Moines scythes : arrivée vers 519, environ quatorze mois à Rome, lettre d'Hormisdas à Possessor (août 520), appui de Fulgence de Ruspe : d'après Wikipédia et de mémoire.
+- Édit de Justinien du 15 mars 533, porté à Rome par Hypatius d'Éphèse et Démétrius de Philippes ; lettre de Jean II de mars 534 (24 ou 25 mars) : de mémoire, la CE confirme le 24 mars 534 pour les acémètes.
+- Conférences de 532 : six évêques chalcédoniens menés par Hypatius ; objection des sévériens contre Théodoret et Ibas : de mémoire.
+- Hymne Monogenês attribué à Justinien, parfois à Sévère : de mémoire.
+- Pélage, apocrisiaire, parmi ceux qui alertèrent Justinien contre les origénistes en 543 : de mémoire (Libératus).
+- Grégoire le Grand à Théodelinde : le cinquième concile n'a rien changé à la foi de Chalcédoine (paraphrase, de mémoire).
+- Pélage Ier : serment à Saint-Pierre et appel à Narsès contre les schismatiques : de mémoire.
+- Retour de Milan : vers 581 selon Wikipédia, « fin du VIe siècle » selon la CE ; le cours écrit « à la fin du VIe siècle ».
+- Synode de Pavie en 698 sous le roi Cunincpert : le roi n'est pas confirmé par la source consultée.
+- Second concile de Dvin (554 ou 555), édit aphthartodocète vers 564, arrestation d'Eutychius le 22 janvier 565 (confirmée), persécution de Justin II à partir de 571 (confirmée).
+- Références d'historiens : Lebon 1909 et Moeller 1951 (confirmés), Gray 1979, Larchet, Devreesse 1948, Sullivan 1956, Guillaumont 1962, Diekamp 1899, Lambeck 1679, A. H. M. Jones 1959 : années de mémoire pour plusieurs.
+- Déclaration Jean-Paul II / Ignace Zakka Ier Iwas (1984) : paraphrasée sans guillemets ; consultations Pro Oriente (1971), commission mixte (2003) : de mémoire.
+- Catéchisme 468 : deux citations vérifiées sur vatican.va ; 366 et 1035 paraphrasés.
+- Les quatorze anathèmes sont paraphrasés d'après la traduction anglaise de papalencyclicals.net (Tanner), sans guillemets.
+
+## 27-01-l
+- Leçon 1 : livre des Jubilés comme première attestation du lien Semaines/Alliance du Sinaï (IIe s. av. J.-C.) ; Tertullien (De baptismo 19) sur la Pentecôte comme temps du baptême : de mémoire.
+- Leçon 1 : CEC 766 (l'Église née du côté ouvert du Christ) paraphrasé, non cité ; CEC 731 cité mot pour mot d'après vatican.va ; Ad gentes 4 cité d'après vatican.va.
+- Leçon 2 : Josèphe mentionne le tombeau de David (Antiquités VII et XIII, Hyrcan) : de mémoire ; bains rituels au pied des escaliers sud comme hypothèse de lieu des baptêmes.
+- Leçon 3 : CEC 1329 et 2624 paraphrasés (numéros de mémoire) ; Didachè 8 (Notre Père trois fois par jour).
+- Leçon 4 : Règle de la Communauté de Qumrân (1QS VI) sur la remise des biens ; proverbe « entre amis tout est commun » (Pythagore/Aristote) et « une seule âme en deux corps » (attribué à Aristote par Diogène Laërce) ; Jean Cassien (Conférences 18,5) faisant remonter les cénobites à l'Église de Jérusalem ; famine sous Claude vers 46-48 et Hélène d'Adiabène chez Josèphe : de mémoire.
+- Leçon 6 : identification de la Belle Porte avec la porte de Nicanor « en bronze de Corinthe » ; Theudas sous Cuspius Fadus (44-46) ; CEC 2242 citant Actes 5:29 (paraphrasé, numéro de mémoire) ; Gamaliel « disciple secret » (tradition tardive, Recognitions clémentines).
+- Leçon 7 : inscription de Théodotos (découverte 1913-1914 par R. Weill sur l'Ophel ; datation avant 70 majoritaire) ; lettre du pape Corneille (Eusèbe, HE VI,43 : 46 prêtres, 7 diacres, 7 sous-diacres, plus de 1500 veuves et indigents) : de mémoire. Irénée (I,26,3 et III,12,10) vérifié sur newadvent.
+- Leçon 8 : reliques d'Étienne découvertes en 415 par le prêtre Lucien à Caphargamala ; basilique d'Eudocie ; fête le 27 décembre en Orient ; mot attribué à Augustin « si Étienne n'avait pas prié… » (présenté comme « souvent attribué ») ; rappel de Pilate fin 36.
+- Leçon 9 : CEC 1315 citant Actes 8:14-17 (numéro de mémoire) ; Justin (1 Apologie 26) sur Simon de Gitta ; Taheb samaritain ; temple du Garizim détruit par Jean Hyrcan (date variable selon les auteurs, fin IIe s. av. J.-C.).
+- Leçon 10 : récit de Josèphe sur la mort d'Agrippa (Antiquités XIX,343-350 : robe d'argent, hibou, cinq jours, 54 ans, 7e année de règne) de mémoire ; tradition de la prédication de Jacques en Espagne apparue au VIIe s. ; découverte du tombeau sous Alphonse II.
+- Leçon 11 : CEC 500 paraphrasé ; Helvidius ; fête de Philippe et Jacques le 3 mai ; Augustin (lettres à Jérôme, « synagogue ensevelie avec honneur ») et Thomas d'Aquin (I-II q.103 a.4) de mémoire. Josèphe sur Jacques et Hégésippe vérifiés via Eusèbe (newadvent). Martyre de Siméon sous Trajan, gouverneur Atticus, 120 ans selon Hégésippe : vérifié.
+- Leçon 12 : chiffres de Josèphe (1 100 000 morts, 97 000 captifs) de mémoire ; saccage de Pella par les rebelles en 66 (Guerre II) ; Yohanan ben Zakkaï et Yavné ; birkat ha-minim et versions de la Genizah du Caire ; Justin (1 Apologie 31 ; Dialogue 16 et 47) ; Ignace (Magnésiens 9-10) ; Jérôme, lettre 112 ; Origène sur les deux sortes d'ébionites ; Jean-Paul II, synagogue de Rome 1986, « frères aînés ». Eusèbe (Pella, 15 évêques, Marc) et Nostra aetate 4 vérifiés en ligne.
+- Bilan : synode de Constantinople de 382 appelant Jérusalem « la mère de toutes les Églises » (lettre synodale rapportée par Théodoret) : de mémoire.
+
+## 27-07-c
+- Date de naissance de Constantin « vers 272 » (Barnes) : les sources permettent d’hésiter entre 270 et 288 environ.
+- Lettre de Licinius : citations françaises traduites du latin de Lactance (De mort. pers. 48) ; vérifier la traduction des expressions « aux chrétiens et à tous », « librement et simplement », « pour la paix de notre temps ».
+- Loi sur l’audience épiscopale datée « d’ordinaire de 318 » (CTh 1.27.1) et constitution Sirmondienne 1 à Ablabius (5 mai 333) : contenu donné de mémoire ; restriction de 398 (CJ 1.4.7).
+- Loi interdisant de marquer le visage (CTh 9.40.2, 315 ou 316) et loi sur la nourrice et le plomb fondu (CTh 9.24.1, 320 ou 326) : dates à confirmer.
+- Concile d’Arles : « une trentaine d’évêques signent », dont ceux d’York et de Londres ; numérotation des canons non donnée.
+- Lettre de Constantin aux évêques d’Arles (Optat, appendice) : « ils réclament mon jugement alors que j’attends moi-même celui du Christ », paraphrasé de mémoire.
+- Constantin et le mot homoousios : d’après la lettre d’Eusèbe à son Église ; date d’ouverture de Nicée donnée « entre fin mai et mi-juin ».
+- Arius : « meurt subitement la veille » de sa réception à Constantinople (336), selon Socrate.
+- Saint-Pierre : début des travaux « dans les années 320 », attribution d’une grande part à Constance II (thèse de R. Westall) ; à vérifier.
+- Pèlerin de Bordeaux (333) : basilique « faite sur l’ordre de l’empereur Constantin », traduit de mémoire.
+- Égérie : détails du Vendredi saint (coffret d’argent doré, pèlerin qui mord le bois) et dédicace célébrée le jour de la découverte de la Croix (Itinéraire 37 et 48).
+- Ambroise, De obitu Theodosii (395) : mors du cheval et diadème, citation de Zacharie 14:20 ; Rufin vers 402 ; Paulin de Nole vers 403.
+- Rohault de Fleury (1870) : calcul du volume des reliques de la Croix, donné sans chiffres.
+- Fête de l’Invention de la Croix (3 mai) retirée du calendrier romain en 1960 : à confirmer.
+- Constantin non inscrit au Martyrologe romain ; fête commune de Constantin et Hélène le 21 mai en Orient ; Hélène le 18 août en Occident.
+- Mosaïque du « Christ-Hélios » dans la nécropole vaticane (mausolée des Julii, IIIe s.) : l’identification au Christ est l’interprétation courante.
+- Panégyrique de 313 : « environ un quart de ses troupes » ; Panégyrique de 310 : vision d’Apollon en Gaule.
+- Fondation de Constantinople le 8 novembre 324 (sources byzantines) ; anecdote de Philostorge sur le tracé des murs ; transfert des restes de Constantin sous Constance II.
+- Zosime : mauvais accueil de Constantin à Rome en 326 (refus de monter au Capitole) ; deux temples (Rhéa, Fortune) à Constantinople.
+- Mot « césaropapisme » attribué à J. H. Böhmer (XVIIIe s.) d’après Wikipédia anglais ; formule de Constance II à Milan (355) d’après Athanase, Histoire des ariens 33 ; lettre d’Ossius, ibid. 44.
+- Expression « fin de l’ère constantinienne » attribuée à M.-D. Chenu (article de 1961) : à confirmer.
+- Erik Peterson, Der Monotheismus als politisches Problem (1935) ; Baynes (conférence de 1929, publiée en 1931) ; Alföldi (1948) ; Barnes (1981) ; Veyne (2007) ; Weiss (1993 et 2003).
+- Synode d’Antioche (début 325) présidé par Ossius et excommunication provisoire d’Eusèbe de Césarée : d’après la lettre synodale syriaque, authenticité discutée par certains.
+
+## 27-03-m
+- Leçon 1 : « quelque quatre-vingt mille kilomètres de grandes voies » (ordre de grandeur courant, non vérifié en ligne).
+- Leçon 1 : saisons de navigation selon Végèce (sûre fin mai-mi-septembre, mer fermée de novembre à mars), de mémoire.
+- Leçon 2 : synagogue d’Ostie « dont les premières phases remontent au Ier siècle » et découverte en 1961 ; l’identification de la phase du Ier siècle comme synagogue est discutée.
+- Leçon 2 : inscription d’Aphrodisias, « une cinquantaine de theosebeis » (54 selon les éditions), date discutée.
+- Leçon 2 : inscription de Théodotos, contenu résumé de mémoire.
+- Leçon 4 : date du message radiodiffusé de Pie XII annonçant la découverte de la tombe (23 décembre 1950), de mémoire.
+- Leçon 4 : datation du mur rouge et de l’édicule vers 160 par des tuiles de canalisation estampillées au nom de Marc Aurèle César et de Faustine (146-161) : vérifié sur stpetersbasilica.info ; noms des quatre archéologues (Ferrua, Kirschbaum, Josi, Apollonj Ghetti) de mémoire.
+- Leçon 4 : restes de « pourpre tissée d’or » sur les ossements du mur G (Guarducci), de mémoire.
+- Leçon 4 et 5 : calendrier romain de 354 (Depositio martyrum) mentionnant la fête du 29 juin avec la date consulaire de 258, de mémoire.
+- Leçon 5 : fouilles de Saint-Paul-hors-les-Murs 2002-2006 par Giorgio Filippi, inscription PAULO APOSTOLO MART, annonce de Benoît XVI le 28 juin 2009 (lin pourpre à paillettes d’or, tissu bleu, encens, os datés Ier-IIe siècle), de mémoire.
+- Leçon 5 : la basilique des trois empereurs « à partir de 386 », de mémoire.
+- Leçon 5 : la parole « Mes petits enfants, aimez-vous les uns les autres » rapportée par Jérôme (Commentaire sur Galates 6:10), de mémoire.
+- Leçon 6 : dates traditionnelles du Kerala (arrivée en 52 à Kodungallur, martyre en 72 à Mylapore), synode de Diamper 1599, serment de Coonan 1653, retour des syro-malankars en 1930, transfert des reliques à Ortona en 1258, Égérie à Édesse vers 384 : de mémoire.
+- Leçon 6 : reliques d’André à Amalfi en 1208 et retour partiel à Patras par Paul VI en 1964, de mémoire.
+- Leçon 7 : réponse de Justin au préfet Rusticus sur son lieu de réunion (le nom des bains varie selon les recensions : je n’ai pas donné de nom).
+- Leçon 7 : Marcia et la libération des confesseurs de Sardaigne vers 190 (Hippolyte), Victor premier auteur latin selon Jérôme, de mémoire.
+- Leçon 8 : concile d’Agrippinus « vers 220 » (date approximative, sources : Cyprien) ; « près d’une centaine d’évêques d’Égypte et de Libye » au début du IVe siècle (synode contre Arius) ; thèse de Bagnall (majorité chrétienne en Égypte au cours du IVe siècle) résumée de mémoire.
+- Leçon 8 : propos de Speratus résumés d’après les Actes (Musurillo) ; la formule « nous honorons notre empereur » est ambiguë dans le latin (empereur ou Dieu).
+- Leçon 9 : lettre de Denys d’Alexandrie aux Arméniens et évêque Méruzanès (Eusèbe, HE VI, 46), de mémoire ; présence d’« environ seize » cités gauloises au concile d’Arles (314) ; décret dit de Gélase daté du VIe siècle.
+- Leçon 9 : chronique d’Édesse, inondation de novembre 201 et « temple de l’Église des chrétiens », de mémoire.
+- Leçon 10 : citations de Tertullien (Apol. 37 et 39), de Pline (X, 96), de Celse (Origène, Contre Celse III, 55), de Denys d’Alexandrie (Eusèbe VII, 22), de Pontius (Vie de Cyprien 9), de Julien (lettre à Arsace) : traduites ou résumées de mémoire, sans guillemets sauf la phrase « Voyez comme ils s’aiment… » de Tertullien.
+- Leçon 10 : mortalité de la peste antonine « de un dixième à un quart » : estimations très variables selon les auteurs.
+- Leçon 12 : citation de Tertullien, Apol. 37, 4 (« Nous sommes d’hier… »), traduite par moi.
+- Leçon 12 : chiffres du modèle de Stark (1996) arrondis ; chiffres de Hopkins (1998) et suggestion de Harnack (7 % vers 250, 10 % vers 312) vérifiés sur l’article de Hopkins ; comparaison avec la croissance mormone, de mémoire.
+- Leçon 12 : soixante évêques au concile romain de 251 (Eusèbe VI, 43, 2), de mémoire.
+
+## 28-04-e
+- Leçon 1 : lettre d'Alexandre d'Alexandrie employant *Theotokos* datée « vers 324 » ; datation du papyrus du *Sub tuum praesidium* (IIIe siècle ou plus tard) donnée comme discutée.
+- Leçon 1 : loi contre les hérétiques obtenue « dès le mois suivant » l'ordination (30 mai 428 ?) ; date des premiers sermons de Nestorius (fin 428 ou début 429).
+- Leçon 2 : sermon de Proclus daté de Noël 428 (« la plupart des historiens ») ; Proclus évêque de Constantinople 434-446 ; *Contestatio* d'Eusèbe datée 428 ou 429 ; lettre de Nestorius à Célestin admettant qu'on puisse tolérer *Theotokos* (paraphrase de mémoire).
+- Leçon 2 : découverte du manuscrit du *Livre d'Héraclide* « à la fin du XIXe siècle » ; éditions Bedjan et Nau en 1910 ; hypothèse d'interpolations partielles (Abramowski) mentionnée sans nom.
+- Leçon 3 : décret de Théodose (juillet 381) rangeant Diodore parmi les garants de l'orthodoxie ; lettre de Chrysostome « À Théodore tombé » rapportée à Théodore de Mopsueste (attribution traditionnelle) ; homélies catéchétiques publiées en 1932-1933 (Mingana) ; Nestorius disciple de Théodore donné comme non prouvé.
+- Leçon 4 : participation de Cyrille au synode du Chêne (403) ; dates des lettres de Cyrille (lettre pascale et lettre aux moines début 429, première lettre milieu 429, deuxième début 430, réponse de Nestorius au printemps 430).
+- Leçon 5 : Célestin citant au synode romain de 430 l'hymne d'Ambroise (*Veni redemptor gentium*), d'après un témoignage conservé (Arnobe le Jeune ?) ; envoi de Palladius en Irlande en 431 (Prosper) ; lettre de Jean d'Antioche à Nestorius en 430 (contenu paraphrasé de mémoire).
+- Leçon 6 : remise de la troisième lettre « au début de décembre 430, un dimanche » (30 novembre, 6 ou 7 décembre selon les sources) ; sermons des 13 et 14 décembre ; canon 13 de Constantinople II sur les écrits de Théodoret contre les douze chapitres (cité sans numéro).
+- Leçon 7 : Flavien de Philippes représentant l'évêque de Thessalonique ; 160 évêques le matin, 198 signatures (Catholic Encyclopedia) ; « plus de cent vingt » votes sur la deuxième lettre (126 selon la CE) ; contenu du florilège.
+- Leçon 8 : arrivée de Jean le 26 ou le 27 juin (les sources varient) ; lettre impériale annulant la séance du 22 juin (fin juin) ; procession de Dalmace ; présents de Cyrille à la cour en 432 (lettre de l'archidiacre Épiphane), sans chiffres.
+- Leçon 8 : paraphrase du discours de Philippe (« Nulli dubium ») et de sa reprise par Vatican I (*Pastor aeternus*, ch. 2).
+- Leçon 9 : Sixte III et l'inscription de Sainte-Marie-Majeure ; *Lux veritatis* (25 décembre 1931) et fête de la Maternité divine (11 octobre) ; solennité du 1er janvier depuis 1969.
+- Leçon 10 : affaire de Charisius (prêtres Anastase et Photius) ; séjour de Julien d'Éclane auprès de Théodore de Mopsueste ; présence de Célestius à Constantinople vers 429 ; confirmation des actes contre les pélagiens à la séance du 17 juillet.
+- Leçon 11 : rôle du tribun Aristolaüs et d'Acace de Bérée ; attribution de la confession à Théodoret ; prédication de Paul d'Émèse à Noël 432 ; date de *Laetentur caeli* (avril 433) ; édit de 435 (« simoniens ») ; exil à Pétra puis dans la grande Oasis ; Alexandre de Hiérapolis exilé en 435 ; Théodoret rallié vers 434-435.
+- Leçon 12 : synodes de 410, 424, 486 ; fermeture de l'école d'Édesse en 489 ; patriarcat de Mar Dinkha IV (1976-2015) ; Mar Awa III patriarche depuis 2021 ; document commun sur la vie sacramentelle (2017) ; Brock cité comme historien du nom « nestorien » (article de 1996).
+
+## 29-03-s
+- Leçon 1 : naissances de Méthode (vers 815) et de Constantin (vers 827) ; Rastislav prince « depuis 846 » ; « environ trois ans et demi » en Moravie (la Vie de Constantin dit 40 mois) ; disciples vendus comme esclaves à Venise et rachetés par un envoyé byzantin (Vie de Naum) ; lieu de captivité de Méthode (Ellwangen ou Reichenau) ; Léon XIII, Grande munus (1880), extension de la fête à l'Église latine ; Wiching nommé évêque de Nitra en 880.
+- Leçon 1 et 3 : citations de Slavorum apostoli prises sur vatican.va par fragments (n. 5, 2, 17, 21, 25, 27) ; la phrase « maillons d'unité, ou comme un pont spirituel, entre la tradition orientale » est coupée là et complétée sans guillemets.
+- Leçon 2 : nombre de lettres du glagolitique (38 à 41) ; Khrabr et l'année 6363 (855 ou 863 selon le comput) ; Jean 1:1 comme premier texte traduit (Vie de Constantin, ch. 14) ; contenu du Proglas (image du peuple « nu » sans livres, reprise d'Isaïe 35) et son attribution ; tablette de Baška vers 1100 ; missel glagolitique de 1483, « premier livre imprimé en croate » ; journée du 24 mai en Bulgarie.
+- Leçon 3 : contenu de la lettre d'Adrien II (Gloria in excelsis) et de celle de Jean VIII de 879 ; paraphrase de Industriae tuae (juin 880), non vérifiée sur le texte latin ; lettre d'Étienne V (885) affirmant un serment de Méthode ; Grégoire VII à Vratislav II (1080) ; Innocent IV à Philippe de Senj (1248) ; liturgie slave célébrée à Saint-Pierre de Rome (Vie de Constantin, ch. 17).
+- Leçon 4 : baptême de Boris (864, 865 ou 866) ; martyre d'Enravota vers 833 ; 52 boyards exécutés ; numéros de chapitres des Réponses de Nicolas Ier (15, 17, 33, 41, 59, 86) vérifiés sur Fordham Medieval Sourcebook ; décision de 870 ; Clément évêque en 893 ; patriarcat bulgare reconnu en 927.
+- Leçon 5 : baptême des quatorze chefs bohêmes à Ratisbonne (845) ; baptême de Bořivoj vers 883 par Méthode (légende) ; église Saint-Clément de Levý Hradec ; Ludmila tuée le 15 septembre 921 ; Venceslas né vers 907, pouvoir vers 924-925, tribut à Henri Ier en 929 ; mort le 28 septembre 935 ou 929 ; transfert vers 938 ; évêché de Prague 973 et Thietmar ; Adalbert évêque en 982, tué le 23 avril 997 ; Břevnov 993 ; légende de Venceslas désarmant son frère.
+- Leçon 6 : baptême de Mieszko le 14 avril 966 (tradition) ; Jordan 968 ; Dagome iudex vers 991 ; Gniezno mars 1000 et ses trois suffragants ; révolte païenne des années 1030 ; gyula baptisé vers 950 avec l'évêque Hiérothée ; propos de Géza rapporté par Thietmar ; couronnement d'Étienne (25 décembre 1000 ou 1er janvier 1001) ; Admonitions et la phrase sur le royaume « d'une seule langue et d'une seule coutume » (citée d'après une traduction) ; Gérard tué en 1046 ; canonisation de 1083 ; fête du 16 août au calendrier romain.
+- Leçon 7 : Photius et les Rus' baptisés (années 860) ; traité de 944 et église Saint-Élie ; baptême d'Olga (957 ou 955) ; mission d'Adalbert (961-962) ; récit de l'examen des religions (Récit des temps passés, années 986-987) ; six mille Varègues ; date du baptême (987-989) ; Hilarion métropolite en 1051 ; Iziaslav et Grégoire VII en 1075 ; vénération de Vladimir par les catholiques ; contenu de Euntes in mundum et Magnum baptismi donum (dates vérifiées, contenu résumé de mémoire).
+- Leçon 8 : naissance d'Anschaire vers 801 ; baptême de Harald Klak en 826 (Mayence ou Ingelheim, non précisé dans le texte) ; Birka 829-831 et préfet Herigar ; archevêché de Hambourg 831 ou 832 ; Brême 847-848, union confirmée en 864 ; mot d'Anschaire sur le miracle (Vie par Rimbert, ch. 39) ; synode d'Ingelheim 948 ; conversion de Harald vers 965 et récit de Widukind ; texte de la pierre de Jelling (traduction courante) ; révolte de Sven vers 986 ; Knut IV tué en 1086, canonisé en 1101 ; Lund 1103-1104.
+- Leçon 9 : assemblée de Frosta et Haakon (sagas) ; confirmation d'Olaf Tryggvason en 994 ; baptême d'Olaf Haraldsson à Rouen (Guillaume de Jumièges) ; loi de Moster vers 1024 ; exhumation d'août 1031 ; Nidaros 1152-1153 ; mention d'Olaf comme martyr au Martyrologe romain ; baptême d'Olof Skötkonung vers 1008 à Husaby ; Skara vers 1014 ; description d'Uppsala par Adam de Brême ; Inge l'Ancien et Sven le Sacrificateur ; Éric tué en 1160 ; Uppsala archevêché 1164 et l'archevêque Étienne cistercien.
+- Leçon 10 : arrivée de Thorvald et de l'évêque Frédéric (années 980) ; Thangbrand 997-999 ; Gizur et Hjalti ; paiement de Thorgeir par Hall selon Ari ; parole de Thorgeir sur la loi et la paix (paraphrase de l'Íslendingabók) ; Goðafoss (tradition tardive) ; Ísleif consacré en 1056 par l'archevêque de Hambourg-Brême ; loi sur la dîme 1096 ou 1097 ; Hólar 1106 ; saint Thorlak vénéré dès 1198.
+- Leçon 11 : couronnement de Mindaugas à l'été 1253 ; apostasie de Mindaugas (discutée) ; lettres de Gediminas en 1323 ; trois martyrs orthodoxes de Vilnius (milieu du XIVe siècle) ; Jadwiga couronnée en 1384 ; mariage le 18 février et couronnement le 4 mars 1386 ; privilège des nobles catholiques (1387) ; récit de Długosz (noms par groupes, chemises de laine, Jogaila traduisant le Credo et le Notre Père) ; évêché de Vilnius 1388 et son premier évêque franciscain ; délégation samogitienne à Constance en 1415 ; thèse de Paul Wladimiri ; évêché de Samogitie le 23 octobre 1417.
+- Leçon 12 : couronne de Stefan en 1217 envoyée par Honorius III ; autocéphalie serbe 1219 ; Isidore de Kiev arrêté en 1441 ; union d'Oujhorod 1646 ; contenu exact de la déclaration de Balamand (1993) résumé d'après des sources secondaires ; Orientalium Ecclesiarum 2 paraphrasé.
+
+## 27-08-t
+- Date de l'édit de Thessalonique : « III kal. Mart. » 380 donné comme « 27 ou 28 février » (380 bissextile) ; traduction française de l'édit faite par le rédacteur d'après le latin de CTh XVI, 1, 2 (à relire).
+- Baptême de Théodose par Acholius : placé « en 380 » ; l'ordre baptême/édit est discuté (Socrate, Sozomène).
+- Loi du 10 janvier 381 (CTh XVI, 5, 6) : groupes nommés (photiniens, ariens, eunomiens) et contenu résumés de mémoire.
+- Loi du 30 juillet 381 (CTh XVI, 1, 3) : liste d'évêques partielle (Nectaire, Timothée, Diodore, Amphiloque, Grégoire de Nysse) vérifiée par Sozomène VII, 9, non sur le texte du Code.
+- « Plus d'une quinzaine de lois » contre les hérétiques sous Théodose : ordre de grandeur de mémoire.
+- Loi de 382 menaçant de mort des groupes rattachés aux manichéens (CTh XVI, 5, 9) : de mémoire.
+- Lois de Constance : CTh XVI, 10, 2 (341) citée en traduction (« Que cesse la superstition… ») ; lois des années 350 sur la fermeture des temples et la peine de mort, datation discutée.
+- Dernière inscription datée donnant aux empereurs le titre de pontifex maximus : 369 (pont de Rome, ILS 771), d'après un blog savant (Roger Pearse), à confirmer.
+- Récit de Zosime IV, 36 et dates proposées (379, vers 382) : à confirmer ; la mention « les papes à partir de la Renaissance surtout » est prudente.
+- Mesures de 382 : interdiction aux vestales de recevoir des legs de terres (Ambroise, lettre 18) de mémoire.
+- Symmaque, Relation III, 10 : traduction française du rédacteur (« Uno itinere non potest perveniri ad tam grande secretum ») ; arguments résumés de mémoire (III, 7-9, 15-16).
+- Symmaque réclamant le châtiment d'une vestale (Lettres IX, 147-148) : de mémoire, non vérifié en ligne.
+- Conseil de Valentinien II en 384 où des conseillers, chrétiens compris, auraient jugé la demande raisonnable (d'après Ambroise, De obitu Valentiniani 19) : de mémoire.
+- Ambroise, lettre 18 : « Rome n'a pas honte de se convertir dans sa vieillesse », argument du progrès, vierges chrétiennes : paraphrases de mémoire.
+- Callinicum (388) : déroulement (lettre 40 puis sermon, refus de célébrer) de mémoire ; loi de 393 sur les synagogues (CTh XVI, 8, 9) de mémoire.
+- Thessalonique : Buthéric, conducteur de chars (Sozomène VII, 25), 7 000 morts (Théodoret V, 17), réconciliation à Noël 390 « selon la tradition » ; loi des trente jours datée de 382 dans le Code (CTh IX, 40, 13) de mémoire.
+- « L'empereur est dans l'Église, non au-dessus de l'Église » : Ambroise, Sermon contre Auxence 36 (386), de mémoire.
+- De obitu Theodosii 34 (insignes déposés, larmes) et récit de la Croix par Hélène (40-51), refrain « Dilexi » : de mémoire.
+- Lois de 391-392 (CTh XVI, 10, 10 ; 10, 11 ; 10, 12) : dates, lieux, destinataires et contenu de mémoire, paraphrasés.
+- Loi de 389 sur les jours fériés (CTh II, 8, 19) : de mémoire.
+- Libanios, Pour les temples (Discours 30) : date « vers 386 » non donnée dans le texte ; image des moines « plus gloutons que des éléphants » de mémoire.
+- Marcel d'Apamée : destruction du temple de Zeus « vers 386 » (Théodoret V, 21).
+- Sérapéum : 391 ou 392 ; rôle d'Olympios, rescrit impérial, d'après Rufin, Socrate, Sozomène, de mémoire.
+- Lois de 399 (CTh XVI, 10, 15 ; 10, 16 ; 10, 18) : de mémoire.
+- Ambroise, De obitu Valentiniani 51 (baptême de désir) : paraphrase de mémoire ; CEC 1259 paraphrasé.
+- Frigidus : statues de Jupiter et foudres d'or données aux coureurs (Augustin, Cité de Dieu V, 26) ; vers de Claudien (Panégyrique pour le troisième consulat d'Honorius, 96-98) traduits par le rédacteur ; consultation de Jean de Lycopolis ; vantardise de Flavien rapportée par Paulin (Vie d'Ambroise 31) : de mémoire.
+- Fin des vestales et des jeux Olympiques (393 traditionnel) : présentées comme incertaines.
+- Mot « païen » dans les lois « à partir des années 370 » (CTh XVI, 2, 18) ; Orose, prologue des Histoires : de mémoire.
+- Sufes (vers 399, une soixantaine de morts, Augustin lettre 50) ; Calama (1er juin 408, lettres 90-91, 103-104) : de mémoire.
+- Martin de Tours et le pin sacré (Sulpice Sévère, Vie de Martin 13) ; Maxime de Turin sur les propriétaires ; Martin de Braga vers 572 ; lettre de Grégoire le Grand à Mellitus (601) : de mémoire.
+- Loi de 416 excluant les païens de l'armée et de l'administration (CTh XVI, 10, 21) ; loi de 423 (XVI, 10, 22) ; Philae fermé vers 535-537 : de mémoire.
+- Estimation de la proportion de chrétiens (un dixième vers 300, majorité vers 400) : ordre de grandeur très incertain, présenté comme tel.
+- Ammien XXVII, 3 (137 cadavres, luxe des évêques de Rome) ; mot de Prétextat (Jérôme, Contre Jean de Jérusalem 8) ; Jérôme, Vie de Malchus 1 : de mémoire.
+- Télémaque et l'interdiction des gladiateurs par Honorius (Théodoret V, 26) ; Fabiola (Jérôme, lettre 77) ; Augustin, De catechizandis rudibus (intentions des candidats) : de mémoire.
+- Hilaire, À Constance I, 6 (« Dieu a enseigné qu'on le connaisse plutôt qu'il ne l'a exigé ») : paraphrase de mémoire.
+- Tertullien, À Scapula 2 : traduction du rédacteur ; Apologétique 24 (libertas religionis) ; Lactance, Institutions divines V, 19-20 : de mémoire.
+- Jean Chrysostome, Homélie 46 sur Matthieu (ne pas tuer les hérétiques, mais on peut les empêcher de se réunir) : de mémoire.
+- Priscillien : Saragosse 380, exécution « vers 385 », réactions de Martin, Ambroise, Sirice ; mot de Sulpice Sévère (Chronique II, 50) : de mémoire.
+- Augustin, Traité sur Jean 26, 2 (« credere non potest nisi volens ») : de mémoire. Lettre 93 (408), §5 et §17 vérifiées sur newadvent.
+- DH 2 : la fin de la citation (« selon sa conscience, en privé comme en public ») est mise hors guillemets, de mémoire.
+- Homélie de Jean-Paul II du 12 mars 2000 : citation vérifiée sur vatican.va (« certains […] ont eu recours dans le service à la vérité »).
+
+## 28-05-o
+- Leçon 1 : Domnus d'Antioche écrivant à l'empereur en 448 contre Eutychès (Apollinarisme) et date de l'Eranistès de Théodoret (vers 447) : de mémoire.
+- Leçon 1 : Chrysaphe tout-puissant « au début des années 440 » ; Théodoret confiné à Cyr par décret en 448 : de mémoire.
+- Leçon 2 : séances du synode de 448 (8, 12, 22 novembre), profession de Flavien (« de deux natures après l'incarnation, en une seule hypostase et une seule personne ») et formule de Basile de Séleucie (« reconnu en deux natures ») : de mémoire, Basile confirmé par Wikipédia (sans le détail de la séance).
+- Leçon 2 : « une trentaine d'évêques et vingt-trois archimandrites » signataires ; lettre antérieure d'Eutychès à Léon sur un réveil du nestorianisme (lettre 20 de Léon, 448) ; lettre de Léon à Flavien en février 449 ; vérification des actes en avril 449 : de mémoire.
+- Leçon 2 : réponse de Pierre Chrysologue à Eutychès, paraphrasée sans guillemets.
+- Leçon 3 : Léon demandant à Cassien son traité contre Nestorius (vers 430) ; collaboration de Prosper d'Aquitaine au Tome (présentée comme opinion d'historiens) ; formules latines du Tome citées de mémoire (salva proprietate…, totus in suis…, agit utraque forma…, multum imprudens et nimis imperitus).
+- Leçon 4 : environ cent trente évêques à Éphèse en 449 ; noms des légats (Julius de Pouzzoles, Hilaire, Dulcitius) ; cris « couper en deux… brûler Eusèbe » ; appel de Flavien retrouvé au XIXe siècle dans une bibliothèque d'Italie ; oratoire d'Hilaire au Latran dédié à saint Jean l'Évangéliste : de mémoire.
+- Leçon 4 : lettre de Léon à Pulchérie du 20 juillet 451 (non iudicium, sed latrocinium) ; interventions de Valentinien III, Galla Placidia et Eudoxie en février 450 : de mémoire.
+- Leçon 5 : Anatole souscrit le Tome « à l'automne 450 » ; Chrysaphe exécuté ; Eutychès « éloigné de son monastère » ; convocation du 17 mai 451 (Catholic Encyclopedia) ; liste des légats (Paschasinus, Lucentius, Boniface, Basile, Julien de Cos).
+- Leçon 6 : nombre d'évêques (520 selon la lettre synodale, 630 tradition, environ 350 selon les listes : encyclopedia.com donne 350-360) ; disposition de la salle ; phrase de Paschasinus sur le synode tenu « sans l'autorité du Siège apostolique » ; mot de Dioscore « de deux natures, non deux natures » ; trois passages contestés du Tome ; Atticus de Nicopolis ; treize évêques égyptiens : de mémoire, en accord avec le cours 45-c.
+- Leçon 6 : traduction de l'acclamation du 10 octobre faite d'après les actes (texte anglais de Schaff vérifié pour l'essentiel ; « Léon et Cyrille ont enseigné la même chose » de mémoire, d'après Price et Gaddis).
+- Leçon 7 : Jean de Germanicie se joignant aux légats le 22 octobre ; discours de Marcien (« à l'exemple de Constantin ») paraphrasé ; tableau des sources de la définition (de Halleux 1976 confirmé ; attributions détaillées de mémoire).
+- Leçon 7 : citation du Catéchisme 467 vérifiée sur vatican.va par comparaison ; le site porte « avant tout les siècles » (coquille), passage paraphrasé.
+- Leçon 8 : article de Karl Rahner « Chalkedon – Ende oder Anfang? » (1954) : de mémoire.
+- Leçon 9 : canon 4 proposé par Marcien le 25 octobre ; date du vote du canon 28 (« fin octobre », 29 ou 31 selon les éditions) ; version latine du canon 6 de Nicée lue par Paschasinus ; lettre du concile à Léon (« comme la tête aux membres ») ; formule de Léon « alia tamen ratio est rerum saecularium, alia divinarum » (lettre 104) ; lettre d'Anatole (454) : de mémoire.
+- Leçon 10 : récit de Priscus (soldats brûlés dans le Sérapéum) ; mort de Protérius pendant la Semaine sainte de 457 ; dates de Pierre le Foulon (470-488), Philoxène (485-519), Sévère (512-518, mort en 538), Jacques Baradée (vers 542) : de mémoire.
+- Leçon 10 : thèse de E. L. Woodward (1916) de mémoire ; article de A. H. M. Jones (JTS 1959) vérifié.
+- Leçon 11 : Acace drapant son église de noir, Daniel le Stylite descendant de sa colonne (476), sentence fixée au vêtement d'Acace, dates d'Anastase (déposition de Macédonius en 511) : de mémoire. Fin du schisme datée « mars 519 » (les sources hésitent entre le 24 et le 28 mars).
+- Leçon 12 : déclaration de Paul VI et Ignace Jacob III (1971) ; consultations Pro Oriente de Vienne (1971) ; reprise par la déclaration de 1973 de la confession de foi de la liturgie copte (« pas même le temps d'un clin d'œil ») ; conciles de Dvin (VIe siècle) ; commission mixte créée en 2003 ; Jean-Paul II et Zakka Ier (1984) : de mémoire. Texte de 1973 paraphrasé d'après la version anglaise de vatican.va ; formule française citée d'après la déclaration de 2017 (vérifiée).
+
+## 28-02-c
+- Date d’ouverture de Nicée : 20 mai 325 (Socrate I, 13, vérifié) ; la date du 19 juin associée au Symbole et le banquet des vicennales du 25 juillet sont de mémoire (Eusèbe, Vie de Constantin III, 15).
+- Philostorge (HE I, 7) : entente préalable d’Alexandre et d’Ossius à Nicomédie sur homoousios ; de mémoire.
+- Ambroise, De fide I, prologue : 318 = TIH (croix + IH) et serviteurs d’Abraham ; de mémoire. Athanase, Ad Afros 2 pour 318 : vérifié (Catholic Encyclopedia).
+- Lettre de Constantin (Socrate I, 9) menaçant de mort quiconque cache un écrit d’Arius : de mémoire, passage non relu en ligne (page tronquée).
+- Théodoret I, 7 : Paul de Néocésarée aux mains paralysées par le fer rouge ; de mémoire.
+- Présence dans les listes d’un évêque des Goths (Théophile) et d’un évêque de Perse : de mémoire.
+- Sermon de Grégoire de Nysse à Constantinople en 383 (De deitate Filii et Spiritus Sancti) avec l’anecdote du pain et du bain : de mémoire (date 383).
+- Profession de foi d’Arius à Alexandre (Athanase, De synodis 16) : « créature parfaite, mais non comme l’une des créatures » et refus d’un Fils « partie consubstantielle » à la manière de Mani ; de mémoire.
+- Sozomène I, 15 : carrière d’Arius sous Pierre et Achillas, synodes de Bithynie et de Palestine ; de mémoire.
+- Épiphane (Panarion 69) : origine libyenne d’Arius, église de Baucalis, version « rigoriste » du schisme de Mélèce ; de mémoire.
+- Licinius interdisant les synodes vers 320 (Eusèbe, Vie de Constantin I, 51) : de mémoire.
+- Déposition d’Eustathe d’Antioche datée « vers 327-330 », motifs (mœurs, offense à Hélène) : de mémoire, date discutée.
+- Concile de Chalcédoine, 16e session : légat (Paschasinus) lisant une version latine du canon 6 commençant par « Ecclesia Romana semper habuit primatum » ; de mémoire.
+- Affaire d’Apiarius (418-419) et canons de Sardique cités comme nicéens ; Rufin comptant 22 canons ; collections arabes de 80 canons et plus : de mémoire.
+- Code de droit canonique 1983, canon 1014 (au moins deux évêques coconsécrateurs) : paraphrasé de mémoire.
+- Exils d’Athanase : 4e exil donné « 362-364 » (retour février 364, fourthcentury.com) ; 5e exil « 365-366 » selon la chronologie moderne (la Catholic Encyclopedia donne 364).
+- Mort d’Alexandre le 17 avril 328 et ordination d’Athanase le 8 juin 328 (Index des lettres festales) : de mémoire.
+- Jules Ier pape 337-352 ; Damase élu en 366 ; Basile mort en 379 (certains proposent 377-378) : de mémoire.
+- Ulfila ordonné vers 341 par Eusèbe de Nicomédie et présent au concile de Constantinople de 360 : de mémoire.
+- « Athanase n’emploie guère homoousios avant les années 350 » : interprétation d’historiens (Hanson, Ayres), présentée comme telle.
+- Lettre des quatre évêques emprisonnés contre Mélèce (conservée en latin) : de mémoire.
+- Usage d’homoousios par les valentiniens ; affaire des deux Denys vers 260 (Athanase, De sententia Dionysii) : de mémoire.
+- Pâques commune le 20 avril 2025 : de mémoire (certain). Léon XIV à İznik le 28 novembre 2025 et lettre In unitate fidei du 23 novembre 2025 : vérifiés (vatican.va, christianunity.va).
+
+## 28-08-a
+- Leçon 1 : « iconomaques » (eikonomachoi) donné comme le nom le plus fréquent dans les sources grecques ; à confirmer.
+- Leçon 1 : canon 36 d'Elvire daté « vers 306 » (dates proposées de 295 à 314) ; lettre d'Eusèbe à Constantia et voile d'Épiphane donnés de mémoire (authenticité discutée, signalé dans le texte).
+- Leçon 1 : excès rapportés par la lettre de Michel II à Louis le Pieux (824) : peinture d'icônes grattée dans le vin de communion, icônes prises pour parrains ; de mémoire.
+- Leçon 2 : silentium « en janvier 730 » (jour exact non donné) ; synode romain de Grégoire III daté 731 (Wikipédia donne des synodes en 730 et 732) ; confiscation des patrimoines « vers 732-733 ».
+- Leçon 2 : doute de Marie-France Auzépy sur la présence d'une image du Christ à la Chalkè avant la fin du VIIIe siècle ; de mémoire.
+- Leçon 2 : Brubaker et Haldon, ouvrage de 2011 (Byzantium in the Iconoclast Era) ; à vérifier si la date est citée.
+- Leçon 3 : Peuseis datées « vers 752-754 » ; Jean 4:24 et Romains 1:23 attribués au dossier iconoclaste de mémoire.
+- Leçon 4 : citation de Jean Damascène (Discours I, 16) traduite par moi : « Je ne vénère pas la matière, je vénère le Créateur de la matière, qui s'est fait matière pour moi » ; formule de l'anathème de Hiéreia (« Mansour », « mal nommé », « esprit sarrasin ») de mémoire ; Léon XIII docteur de l'Église en 1890, de mémoire ; dates des trois Discours.
+- Leçon 5 : Hiéreia ouvert le 10 février 754 et clos en août aux Blachernes (Wikipédia anglaise dit « février à mars 754 ») ; clause interdisant de s'emparer des vases et tissus sacrés sans autorisation, de mémoire ; hippodrome 766 et Lachanodrakon « vers 770 » d'après Théophane ; Vie d'Étienne le Jeune écrite par le diacre Étienne « plus de quarante ans après » (vers 807).
+- Leçon 6 : lettre d'Irène au pape « été 785 », réponse d'Hadrien « octobre 785 » (26 ou 27 octobre) ; omission des reproches d'Hadrien dans la version grecque lue au concile (de mémoire, travaux d'édition des actes) ; second légat « abbé du monastère grec de Saint-Sabas à Rome » ; Paul IV se retirant en 784 en regrettant l'iconoclasme.
+- Leçon 7 : date de l'assemblée de 786 donnée seulement comme « août 786 » (1er, 7 ou 17 août selon les sources) ; dates des sessions 3 et 6 (28 ou 29 sept. ; 6 ou 7 oct.) ; huitième séance à la Magnaure tenue par certains pour un ajout postérieur (Wikipédia anglaise cite E. Lamberz) ; livres mutilés découverts à la 5e session, de mémoire.
+- Leçon 8 : contenu du horos paraphrasé d'après papalencyclicals.net ; fragments du Catéchisme 2131-2132 vérifiés sur vatican.va par extraits courts.
+- Leçon 9 : réponse de la 6e session sur l'Eucharistie (« ni le Seigneur, ni les apôtres, ni les Pères ne l'ont appelée image ») paraphrasée de mémoire ; fragments de Duodecimum saeculum § 9 vérifiés par extraits courts.
+- Leçon 10 : soldats au tombeau de Constantin V en 813 (Scriptor incertus), de mémoire ; Théodote présenté comme laïc ; Euthyme de Sardes mort en 831 ; Graptoi sans date précise ; Méthode patriarche en mars 843 ; mosaïque de l'abside de Sainte-Sophie inaugurée par Photius en 867.
+- Leçon 11 : phrase de Constantin de Constantia et sa traduction latine inversée (d'après la Catholic Encyclopedia) ; Capitulaire porté par Angilbert en 792 ; Livres carolins « vers 790-793 » ; légats Théophylacte et Étienne à Francfort ; mise à l'Index des Livres carolins ; Claude de Turin ; traduction d'Anastase « vers 873 » ; renvoi de Trente (session XXV, décembre 1563) aux décrets de Nicée II, de mémoire.
+
+## 28-07-s
+- Leçon 1 : date du Pacte d'union d'Alexandrie (3 juin 633) et nombre de ses articles (neuf) ; rôle du patrice Bonus et de Serge pendant le siège de 626.
+- Leçon 1 : Denys parlait d'une opération théandrique « nouvelle », changée en « une seule » par le Pacte (relevé par Maxime et au Latran) : à vérifier.
+- Leçon 1 : le mot « Chalcédoine est venue à nous » est attribué à « un chroniqueur byzantin » (sans doute Théophane) ; Benjamin caché une dizaine d'années (Histoire des patriarches coptes).
+- Leçon 2 : Sophrone guéri d'une maladie des yeux au sanctuaire de Cyr et Jean ; Moschos mort à Rome ; Sophrone à genoux devant Cyrus (récit de la lettre de Serge) ; sermon de Noël 634 ; reddition de Jérusalem 637 ou 638 ; mort le 11 mars 638 (639 selon certains).
+- Leçon 2 : la lettre synodale de Sophrone lue et jugée conforme à la foi par le concile de 680-681 (session exacte non vérifiée).
+- Leçon 3 : mosaïque d'Honorius à Sainte-Agnès-hors-les-Murs ; pallium à Cantorbéry et York en 634 ; la seconde lettre d'Honorius connue par des fragments lus en 681 ; Maxime défend Honorius dans une lettre « au prêtre Marinus de Chypre » ; Pyrrhus invoque la lettre d'Honorius dans la dispute de 645.
+- Leçon 3 : la phrase d'Honorius sur « une seule volonté » est donnée en paraphrase (« en substance »), non en citation.
+- Leçon 4 : pillage du trésor du Latran par l'exarque Isaac pendant l'attente de Séverin (640) ; rejet de l'Ecthèse par Séverin « selon certaines sources » ; synode romain de Jean IV « au début de 641 ».
+- Leçon 5 : Vie syriaque publiée par S. Brock en 1973 (origine dans le Golan) ; Chrysopolis vers 613-614, Cyzique, Afrique vers 630, Rome en 646.
+- Leçon 6 : Théodore Ier né à Jérusalem, fils d'un évêque ; encre mêlée au vin consacré (Théophane, IXe siècle) ; synodes africains de 646 ; autel des apocrisiaires au palais de Placidia renversé par Paul ; lettre de Martin à saint Amand ; Jean de Philadelphie vicaire ; thèse de R. Riedinger sur les actes rédigés d'abord en grec.
+- Leçon 7 : chronologie de Martin (arrestation 17 juin 653 ; arrivée 17 septembre 653 ou 654 ; procès décembre 653 ; exil printemps 654 ; mort 16 septembre 655 ou 656) ; l'homme frappé de cécité (Liber pontificalis) ; Olympios mort en Sicile vers 652 ; intercession du patriarche Paul mourant ; Martin « dernier pape vénéré comme martyr » ; fête le 13 avril.
+- Leçon 7 : date de l'arrestation de Maxime ; légats d'Eugène Ier acceptant un compromis et peuple romain empêchant le pape de célébrer (Liber pontificalis) ; paroles de Maxime (« l'empereur n'est pas prêtre », « même si le monde entier communiait ») données en paraphrase ; synode de 662 anathématisant aussi Martin et Sophrone ; fêtes de Maxime (13 août, 21 janvier).
+- Leçon 8 : visite de Constant II à Rome en 663 ; lettre au pape Donus datée du 12 août 678 ; synode de Hatfield (679) professant le synode romain de Martin (Bède, Histoire ecclésiastique IV, 17) ; « environ cent soixante-dix signatures » (la Catholic Encyclopedia dit 174) ; déclaration de Macaire (« mis en pièces et jeté à la mer ») ; Macaire envoyé à Rome ; Polychronios au printemps 681 (quinzième session, 26 avril ?).
+- Leçon 9 : la définition de 681 est rendue en paraphrase « au plus près du texte » ; affirmation que les actes de 681 ne nomment ni Maxime ni Martin ; la citation du Catéchisme 475 est limitée au fragment vérifié.
+- Leçon 10 : versions latine et grecque de la lettre de Léon II (citées en paraphrase) ; lettre au roi Ervige ; profession de foi du Liber diurnus (VIIIe-XIe s.) ; positions de Baronius et de Bellarmin ; Gratry adhérant à la définition avant sa mort (1872) ; Hefele soumis en 1871 ; Döllinger excommunié en 1871.
+- Leçon 11 : Basile de Gortyne ; contenu des canons 62, 65 et 73 ; Serge Ier « né en Sicile » ; Zacharie caché sous le lit du pape (Liber pontificalis) ; Jean VII renvoyant les actes sans correction ; départ de Constantin Ier le 5 octobre 710, rencontre à Nicomédie en 711, rôle du diacre Grégoire ; l'Agnus Dei comme réponse au canon 82 (hypothèse) ; Hadrien Ier en 785 ; position de Jean VIII rapportée par Anastase le Bibliothécaire ; les canons de 692 parmi les sources du CCEO.
+
+## 29-02-c
+- Lettre à Mellitus : date donnée seulement comme « 601 » ; le texte de Bède porte XV kal. Iulias (17 juin), le registre de Grégoire XV kal. Augustas (18 juillet). Lettre au roi Æthelberht dite « juin 601 » (registre XI, 37, 22 juin ?) : à vérifier.
+- Concile d’Orléans (511) : « trente-deux évêques » et « trente et un canons », « juillet 511 » : de mémoire.
+- Mort de Clovis le 27 novembre 511 (repère) : date traditionnelle, de mémoire.
+- Insignes consulaires reçus d’Anastase à Tours en 508 : de mémoire (Grégoire de Tours II, 38).
+- Lettre de Remi à Clovis « dès le début de son règne » (vers 481-486) : de mémoire.
+- « Fille aînée de l’Église » devenue courante au XIXe siècle : formulation prudente, de mémoire.
+- Troisième concile de Tolède : « plus de soixante évêques », « huit évêques ariens », ouverture le 8 mai 589 : de mémoire ; présence du Filioque dans le symbole lu à Tolède III (débat philologique connu).
+- Concile d’Épaone (517) : interdiction de réutiliser les églises des hérétiques (canon 33) : de mémoire.
+- Sigismond converti « avant de régner », mort de son fils en 522, mort de Sigismond en 524, conquête franque 532-534 : de mémoire.
+- Herménégild : conversion vers 579-580, mort à Tarragone en 585 ; culte étendu par Sixte V en 1585 : de mémoire.
+- Grégoire le Grand à Reccared en 599 : de mémoire.
+- Théodelinde : mariage avec Authari en 589, avec Agilulf fin 590, Agilulf roi en 591 ; Adaloald né en 602, baptisé à Pâques 603 à Monza par Secundus de Non ; lettre de Grégoire fin 603 ; mort en 627 ou 628 ; Arioald vers 626 : de mémoire.
+- Grégoire envoie ses Dialogues à Théodelinde (Paul Diacre IV, 5) : de mémoire.
+- Aripert Ier neveu de Théodelinde (fils de son frère Gundoald), roi 653-661 ; synode de Pavie 698 sous Cunipert : de mémoire.
+- Patrick : citations de la Confession (cent prières par jour, deux cents milles, quatorze jours enchaîné, « Nous t’en prions, saint jeune homme… ») traduites de mémoire du latin.
+- Homélie de Cambrai (trois martyres), datée du VIIe siècle : de mémoire.
+- Chronique anglo-saxonne, 891, trois Irlandais en barque sans rames : de mémoire, citation traduite.
+- Fondations : Clonmacnoise vers 545, Bangor vers 555 : dates approximatives de mémoire.
+- Colomban : départ « vers 590 » (Catholic Encyclopedia : 585), Bobbio « 612 ou 613 » (Benoît XVI, audience du 11 juin 2008), mort le 23 novembre 615 (même source) ; synode vers 603 auquel il ne se rend pas : à vérifier.
+- Colomba : naissance en 521, départ en 563, mort le 9 juin 597 (Catholic Encyclopedia) ; livre de Kells commencé à Iona vers 800 : de mémoire.
+- Augustin de Cantorbéry : mort le 26 mai 604 ou 605 ; rencontres avec les Bretons vers 602-603 ; Æthelburh mariée à Edwin en 625 ; derniers royaumes païens (Sussex, Wight) années 680 : de mémoire.
+- Lettre de Grégoire de 595 au gérant du patrimoine en Gaule (Candidus) pour acheter de jeunes Anglais : de mémoire.
+- Bède : « voluntarium, non coactitium » (HE I, 26) et « Non enim pro locis res, sed pro bonis rebus loca amanda sunt » (HE I, 27) : de mémoire.
+- Whitby : Hild favorable à l’usage irlandais, Colman à Inishbofin et Mayo ; sud de l’Irlande rallié dans les années 630, délégation à Rome vers 631 ; Bretons en 768 ; concile de Hertford 672 ou 673 : de mémoire.
+- Déclaration annexée à Sacrosanctum concilium (1963) sur la date de Pâques : paraphrase de mémoire.
+- Willibrord : départ en 690 ; ordination le 21 novembre 695 par Serge Ier (la Catholic Encyclopedia écrit par erreur « Serge III ») ; Heligoland et les trente jeunes Danois (Alcuin) ; procession d’Echternach inscrite à l’UNESCO en 2010 : de mémoire pour ce dernier point.
+- Boniface : lettre de 738 aux Anglais (« du même sang et des mêmes os ») ; Geismar vers 723 ; Mayence « vers 746 » (la Catholic Encyclopedia donne 748 ou 747) ; Lull ordonné vers 752 ; environ cent cinquante lettres dans la collection : à vérifier.
+- Fulda : 12 mars 744, terre donnée par Carloman ; lettre à Zacharie de 751 ; privilège de Zacharie d’authenticité discutée : de mémoire.
+- Leoba appelée vers 735, morte en 782, ensevelie à Fulda ; Thècle à Kitzingen et Ochsenfurt : de mémoire.
+- Boniface demande les épîtres de Pierre en lettres d’or (lettre à l’abbesse Eadburge) : de mémoire.
+- Encyclique Ecclesiae fastos de Pie XII (1954) : de mémoire.
+
+## 27-04-p
+- Traductions personnelles du latin, faites de mémoire du texte original, à confronter à une édition : Tacite, Annales XV 44 (leçon 4) ; Pline, Lettres X 96 et réponse de Trajan X 97 (leçon 5) ; Tertullien, Apologétique 2, 8 (leçon 5), 40, 2 (leçon 2), 30, 32, 34 (paraphrases) et À Scapula 2 ; lettre 80 de Cyprien à Successus (leçon 10) ; édit de Galère d'après Lactance 34 (leçon 11).
+- Leçon 1 : Orose comptant dix persécutions en parallèle avec les dix plaies ; Augustin, Cité de Dieu XVIII 52 (doute sur le nombre) ; expression de Tertullien « religio licita » (Apologétique 21).
+- Leçon 2 : dialogue des martyrs de Scilli (Saturninus, Speratus) en paraphrase ; sacrifice quotidien pour l'empereur au Temple ; « troisième race » chez Tertullien (Aux nations I, 8).
+- Leçon 3 : réponse de Biblis et cri d'Attale (Eusèbe V 1, 26 et 52) en paraphrase ; détails de l'Octavius 9 ; graffito d'Alexamenos daté « vers 200 » ; Justin, 2e Apologie 2 (femme dénoncée par son mari) et 1re Apologie 26 (sectes et lampe renversée) ; Tertullien Apologétique 9 (boudins de sang).
+- Leçon 4 : chiffres de l'incendie (3 quartiers détruits, 7 endommagés sur 14) ; Shaw 2015 et Jones 2017 ; Dion Cassius LXVII 14 (Pandateria) contre Eusèbe III 18 (Pontia, nièce) ; inscriptions de Flavia Domitilla au cimetière de la voie Ardéatine ; fête des premiers martyrs de Rome le 30 juin depuis 1969.
+- Leçon 5 : séjour de Pline en Bithynie daté « entre 109 et 113 selon les datations » ; rescrit d'Hadrien daté vers 124-125 ; lettres d'Antonin aux villes grecques (Méliton chez Eusèbe IV 26).
+- Leçon 6 : Méliton et les « nouveaux décrets » ; Justin jugé par Rusticus vers 165 ; glose de Pensées XI 3 ; fête des Gaules le 1er août comme cadre probable des exécutions ; 48 noms de martyrs de Lyon ; Marcia et les confesseurs de Sardaigne (Hippolyte) ; Apollonius vers 185.
+- Leçon 7 : Proculus guérisseur de Sévère (Tertullien, À Scapula 4) ; martyrs alexandrins de 202-203 (Eusèbe VI 4-5) ; catalogue libérien : renonciation de Pontien le 28 septembre 235, ordination d'Antéros le 21 novembre 235 ; épitaphe de Pontien au cimetière de Calliste ; lettre de Firmilien (Cyprien, lettre 75) datée vers 256 ; Philippe et la veillée pascale (Eusèbe VI 34).
+- Leçon 8 : certificat d'Aurelius Diogène (BGU I 287 : 72 ans, cicatrice au sourcil droit, 26 juin 250) cité de mémoire ; nombre de 47 certificats et prêtresse de Petesouchos (W.Chr. 125) d'après l'article de W. G. Claytor (Tyche) ; commission de cinq notables à Carthage (Cyprien, lettre 43) ; Pionios brûlé le 12 mars 250 (date discutée) ; mort d'Origène vers 253-254 ; Dèce mort à Abrittus en juin 251 ; Corneille mort en 253 à Centumcellae.
+- Leçon 9 : statistiques du clergé romain dans la lettre de Corneille (Eusèbe VI 43 : 46 prêtres, 7 diacres, 7 sous-diacres, 42 acolytes, 52 exorcistes, lecteurs et portiers, plus de 1 500 veuves et indigents) ; mort de Novatien martyr selon Socrate (IV 28).
+- Leçon 10 : Sixte II « évêque depuis l'été 257 » ; épigramme de Damase (Sixte assis enseignant) ; détails du martyre de Cyprien (25 pièces d'or) d'après les Actes proconsulaires ; Fructueux le 21 janvier 259 ; Paul de Samosate et Aurélien (Eusèbe VII 30) ; inscription de Shapur à Naqsh-e Rostam.
+- Leçon 11 : rescrit contre les manichéens daté de 302 (ou 297) ; épisode des haruspices daté vers 299 ; dates des 2e, 3e et 4e édits ; Félix de Thibiuca exécuté le 15 juillet 303 ; Abitinae (février 304, 49 arrêtés, réponse d'Emeritus citée par Jean-Paul II et Benoît XVI) ; Maxence rendant ses biens à l'Église de Rome en 311 ; mutilations de Maximin (œil droit, tendon) ; « un peu moins d'une centaine » de martyrs nommés dans les Martyrs de Palestine (total de 91 calculé d'après Wikipédia) ; estimations de Gibbon (moins de 2 000) et de Frend (3 000 à 3 500, d'après Wikipédia) ; pétition d'Arykanda ; Pierre d'Alexandrie (novembre 311) et Lucien (janvier 312).
+- Leçon 12 : date de Lactance (vers 250 ; préceptorat de Crispus vers 317) ; De mortibus écrit vers 314-315 et dédié à Donat ; manuscrit unique de la bibliothèque de Colbert, publié par Baluze en 1679 ; Acta Sanctorum depuis 1643 ; Ruinart 1689 ; Delehaye 1921 ; sainte Catherine retirée du calendrier en 1969 et réinscrite en 2002 ; Candida Moss 2013.

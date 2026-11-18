@@ -15,6 +15,7 @@ Fichiers : 00-ouverture.html (cours + introduction ; premier cours du fichier : 
 8. Les Wisigoths en Gaule et en Espagne : Toulouse, Euric, Alaric II (Bréviaire, Agde 506), Vouillé 507, Tolède, Léovigild/Herménégild, lien vers Reccared (ouverture-c).
 9. L'évêque, défenseur de la cité : pourquoi l'évêque ; défenseur, Aignan, Loup, Sidoine, Séverin, Césaire ; rachat des captifs.
 10. Gélase Ier et les deux pouvoirs (494) : schisme d'Acace, texte, auctoritas/potestas, lectures ultérieures, enseignement actuel (GS 76).
-11. Justinien, les Lombards et Grégoire le Grand : reconquête 533-554, Sanction pragmatique, Lombards 568, Grégoire administrateur et protecteur.
-   (Si la taille l'exige : 11 = Justinien, 12 = Lombards et Grégoire.)
-Bilan : 6 exercices croisés.
+11. La reconquête de Justinien et l'arrivée des Lombards (568).
+12. Grégoire le Grand, administrateur de Rome et protecteur des populations.
+Bilan : 7 exercices croisés.
+ÉTAT : TERMINÉ (toutes les leçons écrites, assemblées, contrôlées, humanisées).

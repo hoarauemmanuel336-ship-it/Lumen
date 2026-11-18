@@ -1,5 +1,7 @@
 # 28-05-o · Le concile de Chalcédoine (451) · plan
 
+État : TERMINÉ (12 leçons + bilan, assemblé dans redaction/28-05-o.html).
+
 Question centrale : comment, entre 448 et 451, une querelle autour d'un vieux moine de Constantinople a-t-elle abouti à la définition qui confesse le Christ « en deux natures », et pourquoi cette définition, reçue par Rome et Constantinople, a-t-elle séparé une partie de l'Orient jusqu'à nos jours ?
 
 Angle : cours d'histoire. La doctrine elle-même (lecture phrase par phrase de la définition) est dans 45-le-dogme-christologique.html#ouverture-c (cours écrit, très détaillé) : ici on raconte, on montre les sources de chaque formule, qui la voulait, contre qui, comment elle fut négociée et reçue. Liens : #ouverture-e (Éphèse), #ouverture-n (Constantinople II), #ouverture-l (concile œcuménique), #ouverture-i (Constantinople I, canon 3), 45…#ouverture-c et #ouverture-l, #sujet:peres-occident.leon, #sujet:peres-orient.cyrille-alexandrie, #sujet:oecumenisme.orientales.

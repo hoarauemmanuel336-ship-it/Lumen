@@ -20,4 +20,4 @@ Fichiers : 00-ouverture.html (balise cours + introduction), 01.html … 12.html,
 
 Bilan : 6 exercices croisant les leçons.
 
-État : voir les fichiers présents dans ce dossier.
+État : terminé ; cours réuni dans redaction/27-01-l.html, contrôle sans signalement, assemblage d’essai réussi.
