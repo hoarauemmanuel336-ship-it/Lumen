@@ -1,0 +1,5 @@
+- L2 : sermon de Sertillanges à la Madeleine le 10 décembre 1917 en présence du cardinal Amette (paraphrasé ; formule courante « Très Saint-Père, nous ne voulons pas de votre paix » non reprise) ; mise à l'écart ensuite (« plusieurs années »).
+- L2 : sacre de Pacelli le 13 mai 1917 ; rencontres fin juin 1917 (26 et 29 juin) ; réponse allemande « en septembre » ; note remise « dans la première quinzaine d'août ».
+- L2 : Pacem Dei munus (23 mai 1920) paraphrasée, texte non lu en ligne.
+- L3 : chiffres (environ 600 000 pièces de correspondance, près d'un tiers sur des disparus ; « plusieurs dizaines de milliers » d'internés en Suisse ; reste des caisses « quelques dizaines de milliers de dollars ») d'après Wikipédia en anglais ; nom et organisation de l'Opera dei prigionieri non vérifiés en détail ; lettre au sultan (septembre 1915, de mémoire, date non écrite dans le texte) ; appel de 1916 aux catholiques américains pour les enfants belges ; secours au Liban par les patriarches (de mémoire).
+- L3 : statue d'Istanbul (1921, cour de la cathédrale du Saint-Esprit, contributions de juifs et musulmans) d'après un article de presse de 2006 ; inscription paraphrasée.

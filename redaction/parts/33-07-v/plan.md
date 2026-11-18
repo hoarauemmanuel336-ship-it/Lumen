@@ -22,4 +22,4 @@ Fichiers : 00-ouverture.html, 01.html à 12.html, 99-bilan.html.
 12. La quatrième session (14 sept. - 8 déc. 1965) et la clôture : synode des évêques annoncé ; Paul VI à l'ONU (4 oct. 1965) ; votes finaux ; 7 déc. levée des anathèmes ; homélie du 7 déc. (Samaritain) ; 8 déc. clôture, messages, bref In Spiritu Sancto ; chiffres finaux.
 Bilan : 6 exercices croisés.
 
-État : plan fait ; rien d'écrit encore.
+État : 00-ouverture et leçons 1 à 4 écrites (01.html à 04.html) ; reprendre à la leçon 5.

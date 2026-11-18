@@ -19,4 +19,4 @@ Fichiers : 00-ouverture.html (balise cours + introduction), 01.html à 12.html, 
 11. Ratzinger, Küng, Concilium et Communio : Ratzinger théologien (Foi chrétienne hier et aujourd'hui, 1968, expert de Frings) ; Concilium (1965) ; Küng (Infaillible ?, déclaration du 15 déc. 1979) ; Communio (1972) ; deux lectures du concile (lien #ouverture-r).
 12. La théologie de la libération : contexte (Medellín 1968), Gutiérrez et Teología de la liberación (1971), thèmes ; Libertatis nuntius (1984) ; Libertatis conscientia (1986) ; option préférentielle pour les pauvres (lien 91… #ouverture-o) ; Boff ; jugement.
 Bilan : 6 exercices croisés.
-État : plan fait.
+État : leçons 1 à 3 écrites par le premier rédacteur et vérifiées ; reprise à la leçon 4 par le second rédacteur.
