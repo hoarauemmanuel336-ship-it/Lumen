@@ -17,3 +17,7 @@ Leçons (une par fichier, 01.html à 12.html ; 00-ouverture.html ; 99-bilan.html
 11. L'absolution collective : can. 960-963 ; CEC 1483-1484 ; RP 32-33 ; troisième forme du Rituel (lien h) ; deux cas (danger de mort ; grave nécessité aux deux conditions inséparables) ; jugement de l'évêque ; dispositions du fidèle (propos de confession individuelle, can. 962-963) ; exhortation à la contrition ; mars 2020 (Pénitencerie, pandémie).
 12. Le motu proprio Misericordia Dei (7 avril 2002) : contexte (crise, recours abusif à l'absolution générale ; Novo millennio ineunte) ; normes 1 à 9 ; précisions sur la grave nécessité (moins d'un mois n'est pas « longtemps ») ; norme 7 c ; confessionnal à grille fixe ; vaut aussi pour les Églises orientales catholiques.
 Bilan : 6 exercices croisés.
+Leçons 1 à 6 écrites (01.html à 06.html).
+Leçons 7 et 8 écrites.
+Leçon 9 écrite.
+Leçon 10 écrite.

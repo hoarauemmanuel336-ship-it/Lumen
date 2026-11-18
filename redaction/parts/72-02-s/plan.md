@@ -1,6 +1,6 @@
 # 72-02-s : Le sujet, le ministre et le rite de l'onction (fichier 72, lettre s)
 
-État : plan fait ; rédaction leçon par leçon (voir les fichiers présents : 00-ouverture, 01 … 11, 99-bilan).
+État : terminé ; cours réuni dans redaction/72-02-s.html, contrôlé et assemblé à l'essai.
 
 Question centrale : qui peut recevoir l'onction des malades, qui peut la donner, avec quoi et comment elle se célèbre, et pourquoi l'Église règle ces points ainsi ?
 Obstacles du novice : croire que l'onction est réservée aux mourants (« extrême-onction ») ; croire qu'il faut attendre l'agonie ; croire qu'elle se donne pour un rhume ou de façon routinière ; ignorer la place du grand âge ; croire qu'un diacre ou un laïc peut la donner ; ignorer que l'onction se réitère ; confondre huile des malades et saint chrême ; croire que l'imposition des mains est la matière ; croire qu'on oint les morts ; croire que la célébration communautaire est pour tous les fidèles présents.
