@@ -18,5 +18,5 @@ Leçons (fichiers 01 à 12) :
 Bilan : 6 exercices croisés.
 
 
-État (reprise, 2e rédacteur) : 00, 01 (relue, références nues corrigées), 02, 03 écrites. Suite : 04…12, 99-bilan.
+État : TERMINÉ. 00 à 12 et 99-bilan écrits, réunis dans redaction/33-11-e.html, humanisés, contrôlés, assemblage d'essai réussi.
 Faits vérifiés en ligne : voir /home/claude/histoire/rapports/33-11-e-ecriture.md à la fin.
