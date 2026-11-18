@@ -23,4 +23,4 @@ Partage avec les autres cours du fichier 33 : la réception du concile (réforme
 
 Bilan : 6 exercices croisés.
 
-État : plan fait.
+État : 12 leçons et bilan écrits, réunis dans redaction/33-10-a.html, contrôlés et assemblés avec succès.
