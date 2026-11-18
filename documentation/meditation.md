@@ -25,7 +25,7 @@ La tâche suit ces étapes, dans l'ordre. Elle travaille dans un clone du dépô
 
 4. **Humaniser.** La tâche relit le brouillon avec la skill humaniser (`ia/humaniser.md`, la copie que garde le dépôt), en suivant la fonction `consigneRelecture()` de la fabrique : les deux textes restent le même texte, les versets restent mot pour mot.
 
-5. **La mise en forme.** `node fabrication/meditation-prepare.js brouillon.json` donne au texte la typographie du site, vérifie la longueur et chaque citation contre la Chérubin, et écrit `envoi/AAAA-MM-JJ.json` et `envoi/envoi.json`. Une faute signalée se corrige dans le brouillon, puis la commande se relance.
+5. **La mise en forme.** `node fabrication/meditation-prepare.js brouillon.json` donne au texte la typographie du site, vérifie la longueur, chaque citation contre la Chérubin et que le texte affiché dit mot pour mot ce que dit la voix, et écrit `envoi/AAAA-MM-JJ.json` et `envoi/envoi.json`. Une faute signalée se corrige dans le brouillon, puis la commande se relance.
 
 6. **L'envoi.** La tâche pousse une branche `envoi/meditation-AAAA-MM-JJ` qui porte le dossier `envoi/`. Le robot range la méditation dans `meditations/` du coffre, puis supprime la branche. Il la refuse si le jour a déjà sa méditation : celle de l'API n'est jamais remplacée.
 

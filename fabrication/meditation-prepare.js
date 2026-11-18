@@ -5,7 +5,8 @@
    brouillon que Claude a écrit, lui donne la typographie de la fabrique
    du site (la même règle que typo() dans
    netlify/functions/meditation-fabrique.mjs), vérifie chaque verset cité
-   contre la Chérubin, et écrit le fichier que le robot range dans le
+   contre la Chérubin, vérifie que le texte affiché dit mot pour mot ce que
+   dit la voix, et écrit le fichier que le robot range dans le
    coffre : envoi/AAAA-MM-JJ.json et envoi/envoi.json.
    Usage : node fabrication/meditation-prepare.js brouillon.json
    Le brouillon : { "date", "titre", "sujet", "resume", "texte_lu", "texte_ecrit" }.
@@ -53,6 +54,36 @@ while ((c = reCitation.exec(brouillon.texte_ecrit || ''))) {
   const t = versets(c[2]);
   if (!t) fautes.push('référence introuvable : ' + c[2]);
   else if (!nettoie(t).includes(nettoie(c[1]))) fautes.push('le texte cité ne suit pas la Chérubin : ' + c[2]);
+}
+
+/* le texte qui défile suit la voix : les deux textes disent les mêmes mots,
+   aux références en gras, à la mise en forme et aux indications de jeu près ;
+   un nombre écrit en chiffres à l'écran se dit en toutes lettres, et un mot
+   d'une autre langue, en italique à l'écran, s'écrit pour la voix comme il
+   se prononce */
+const mots = (t, ecrit) => nettoie(String(t)
+  .replace(ecrit ? /\*\*[^*]+\*\*/g : /\[[^\]]*\]/g, ' ')
+  .replace(/\*/g, ' ')).split(' ').filter(Boolean);
+function ecarts(a, b) {
+  const L = Array.from({ length: a.length + 1 }, () => new Int32Array(b.length + 1));
+  for (let i = a.length - 1; i >= 0; i--) for (let j = b.length - 1; j >= 0; j--)
+    L[i][j] = a[i] === b[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+  const out = [];
+  let i = 0, j = 0, ea = [], eb = [];
+  const ferme = () => { if (ea.length || eb.length) out.push([ea.join(' '), eb.join(' ')]); ea = []; eb = []; };
+  while (i < a.length || j < b.length) {
+    if (i < a.length && j < b.length && a[i] === b[j]) { ferme(); i++; j++; }
+    else if (j < b.length && (i >= a.length || L[i][j + 1] >= L[i + 1][j])) eb.push(b[j++]);
+    else ea.push(a[i++]);
+  }
+  ferme();
+  return out;
+}
+const etrangers = new Set();
+for (const x of String(brouillon.texte_ecrit).matchAll(/(?<!\*)\*([^*]+)\*(?!\*)(?![^*\n]{0,12}\*\*)/g)) mots(x[1], true).forEach(m => etrangers.add(m));
+for (const [aff, lu] of ecarts(mots(brouillon.texte_ecrit, true), mots(brouillon.texte_lu, false))) {
+  if (aff && aff.split(' ').every(m => /\d/.test(m) || etrangers.has(m))) continue;
+  fautes.push(`le texte affiché et le texte lu diffèrent : à l’écran « ${aff || '…'} », à la voix « ${lu || '…'} »`);
 }
 
 if (fautes.length) { console.error('Méditation refusée :\n- ' + fautes.join('\n- ')); process.exit(1); }

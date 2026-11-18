@@ -16,6 +16,7 @@ netlify/edge-functions/fichiers.js).
   Avec « prolonger », elle reste aussi le lendemain sur l'accueil, et ce
   lendemain n'a pas de méditation à lui (meditations/reglages.json). Un
   jour de reprise après pause qui reçoit sa méditation perd sa reprise.
+  Avec « texte », seul le texte affiché d'une méditation déjà lue change.
   La fabrique du site la trouve et n'a plus qu'à la faire lire
   (documentation/meditation.md).
 Tout se vérifie avant le premier envoi : un lot refusé n'entre pas à
@@ -50,6 +51,22 @@ def article_verifie(nom, catalogue):
         sys.exit(f'« {nom} » : nom de fichier d’article refusé (lettres, chiffres, points, tirets).')
     if not any(a.get('fichier') == nom for a in catalogue.get('articles', [])):
         sys.exit(f'« {nom} » n’est pas inscrit au catalogue des articles (articles/articles.json).')
+
+
+def texte_corrige(f, nom):
+    """« texte » corrige seulement le texte affiché d'une méditation déjà lue :
+    la voix, sa durée et le moment de chaque mot restent ceux du coffre, et le
+    texte lu ne change pas, si bien que la voix ne se paie pas une seconde fois"""
+    if not re.fullmatch(r'\d{4}-\d{2}-\d{2}\.json', nom) or not existe(f'meditations/{nom}'):
+        sys.exit(f'« {nom} » : il n’y a pas de méditation à corriger.')
+    a = os.path.join(tempfile.mkdtemp(), nom)
+    recoit(f'meditations/{nom}', a)
+    ancien, d = json.load(open(a, encoding='utf-8')), json.load(open(f, encoding='utf-8'))
+    for k in ('date', 'texteLu', 'audio', 'duree', 'voix'):
+        if d.get(k) != ancien.get(k):
+            sys.exit(f'« {nom} » : seul le texte affiché se corrige ainsi (« {k} » a changé).')
+    if len(d.get('temps') or []) != len(str(d.get('texte', '')).split('\n\n')):
+        sys.exit(f'« {nom} » : le moment de chaque mot ne suit pas le texte affiché.')
 
 
 def meditation_verifiee(f, nom, remplacer=False, relire=False):
@@ -108,6 +125,9 @@ def main():
             catalogue = catalogue or json.load(open('articles/articles.json', encoding='utf-8'))
             article_verifie(nom, catalogue)
             places.append((f, f'articles/{nom}'))
+        elif espece == 'meditation' and e.get('texte'):
+            texte_corrige(f, nom)
+            places.append((f, f'meditations/{nom}'))
         elif espece == 'meditation':
             meditation_verifiee(f, nom, bool(e.get('remplacer') or e.get('relire')), bool(e.get('relire')))
             places.append((f, f'meditations/{nom}'))
