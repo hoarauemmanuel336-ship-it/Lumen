@@ -19,4 +19,4 @@ Leçons (une par fichier) :
 10. Comment les effets tiennent ensemble. ordre des effets (âme d'abord) ; ex opere operato et dispositions (lien 67-o) ; sans caractère, réitérable (lien 67-c, #ouverture-s) ; rapport à la pénitence et au viatique ; les trois images fausses ; relecture de Jc 5:14-15. Ex. 6.
 Bilan : 6 exercices croisés.
 
-État : (mis à jour au fil de l'écriture)
+État : 00, 01 à 05 écrits et vérifiés. Reste 06 à 10 et bilan.
