@@ -1,7 +1,7 @@
 {
  "01-la-revelation.html": {
-  "taille": 3283747,
-  "empreinte": "39805304708e09e2d75df35b514ac2da21e5f02137bcdede9ca1563758e37eca",
+  "taille": 3283804,
+  "empreinte": "d0bc39c440961c6f7550184fd7bbbbd78e778f9a85ec0a3b1c00963dcff905d6",
   "cours": {
    "l": "Qu’est-ce que la Révélation",
    "c": "La connaissance naturelle de Dieu et ses limites",
@@ -48,8 +48,8 @@
   }
  },
  "03-l-autorite-de-l-enseignement.html": {
-  "taille": 3820607,
-  "empreinte": "1f946c0f805e5e2a53b94251713a93491077d30da3827f3b3215b979a9494e2b",
+  "taille": 3820858,
+  "empreinte": "48c29b8ded37b3baaecabb7df4efb4e6484daf8106d2cb656c673be08ca76f6b",
   "cours": {
    "l": "Qui enseigne avec autorité",
    "d": "Le dogme et l’hérésie",
@@ -78,8 +78,8 @@
   }
  },
  "04-la-foi.html": {
-  "taille": 3759937,
-  "empreinte": "d8595d2fab4ad8632d8ed53791650d23cc08f66cb6f7c5995c3b96d421733790",
+  "taille": 3760121,
+  "empreinte": "06b581a496a4bd82b67d5938b7c503542cb6471f682e3431468fc89fafb0ba51",
   "cours": {
    "l": "L’acte de foi",
    "v": "La vertu de foi et ses propriétés",
@@ -102,8 +102,8 @@
   }
  },
  "05-les-symboles-de-foi.html": {
-  "taille": 3178014,
-  "empreinte": "f42de1a199744fddf1479d849804d7fed3b4f803a18c533cdbbd3118f839738e",
+  "taille": 3178409,
+  "empreinte": "3baf11acb14052763b1dd15e08a497fa0a384f31dad780e23d24ebd435f69b18",
   "cours": {
    "l": "Nature et origine des Symboles",
    "s": "Le Symbole des Apôtres",
@@ -122,8 +122,8 @@
   }
  },
  "11-inspiration-verite-et-canon.html": {
-  "taille": 4021993,
-  "empreinte": "351c581dc90905ef6d6ee10a588ad1a268f988e03e2e125dc7071f6d640f4f00",
+  "taille": 4022131,
+  "empreinte": "c3f9cd114ea1c87b4fe6a289a39e3e02072ad7885bacc5f870008160dffa73de",
   "cours": {
    "l": "L’inspiration de l’Écriture",
    "v": "La vérité de l’Écriture",
@@ -150,8 +150,8 @@
   }
  },
  "12-interpreter-l-ecriture.html": {
-  "taille": 4274867,
-  "empreinte": "424e531a58417b2e0073abf46d18d31661cabc63ade636c61ac9309d6bc2a57e",
+  "taille": 4274981,
+  "empreinte": "d98f4a3b67496b05d2c3a85029bbfb4fb9fc6558fa0f50c67723e929a0e34009",
   "cours": {
    "l": "Le sens littéral",
    "s": "Les sens spirituels",
@@ -400,8 +400,8 @@
   }
  },
  "20-hebreux-les-epitres-catholiques-et-l-apocalypse.html": {
-  "taille": 4344381,
-  "empreinte": "ff16cf87ee5a898fa586a2c3a8fc182dcfab2a4ee622d69e5fc591cc208f501d",
+  "taille": 4344445,
+  "empreinte": "e8b66621acfc714ddc9db28d0e6e177017e9fada544866f9fbaa1dacb6ef50e7",
   "cours": {
    "l": "L’épître aux Hébreux",
    "e": "L’épître de Jacques",
@@ -447,6 +447,208 @@
    "u": 48
   }
  },
+ "27-l-eglise-des-premiers-siecles.html": {
+  "taille": 4156106,
+  "empreinte": "f79b65d8c9f4d7d243d83bad8eec38e2f8c4c19c294001dea5458706ef7e2a63",
+  "cours": {
+   "l": "La communauté de Jérusalem",
+   "a": "L’assemblée de Jérusalem",
+   "m": "La mission et l’expansion",
+   "p": "Les persécutions",
+   "r": "Les martyrs",
+   "o": "L’organisation des communautés",
+   "c": "Constantin et l’édit de Milan",
+   "t": "Théodose et l’Empire chrétien",
+   "n": "La naissance du monachisme"
+  },
+  "sais": {
+   "l": 48,
+   "a": 48,
+   "m": 48,
+   "p": 58,
+   "r": 48,
+   "o": 48,
+   "c": 48,
+   "t": 48,
+   "n": 44
+  }
+ },
+ "28-les-conciles-de-l-eglise-indivise.html": {
+  "taille": 3701510,
+  "empreinte": "f5a2f919a29e7d326b371f7978c149ffd9ede252d0f943fc63d459ce92ca0732",
+  "cours": {
+   "l": "Qu’est-ce qu’un concile œcuménique",
+   "c": "Le concile de Nicée I (325)",
+   "i": "Le concile de Constantinople I (381)",
+   "e": "Le concile d’Éphèse (431)",
+   "o": "Le concile de Chalcédoine (451)",
+   "n": "Le concile de Constantinople II (553)",
+   "s": "Le concile de Constantinople III (680-681)",
+   "a": "Le concile de Nicée II (787)"
+  },
+  "sais": {
+   "l": 40,
+   "c": 54,
+   "i": 48,
+   "e": 48,
+   "o": 48,
+   "n": 49,
+   "s": 41,
+   "a": 44
+  }
+ },
+ "29-le-haut-moyen-age.html": {
+  "taille": 3802828,
+  "empreinte": "85d3dee82fc47c3be3629f107afe65378344c54edbdff3a93ae0b6ae43b2702d",
+  "cours": {
+   "l": "La fin de l’Empire d’Occident",
+   "c": "La conversion des peuples d’Occident",
+   "s": "La conversion des Slaves et des peuples du Nord",
+   "i": "L’islam et la chrétienté",
+   "p": "La papauté et les Francs",
+   "e": "Charlemagne et l’empire carolingien",
+   "m": "Le monachisme bénédictin et Cluny",
+   "h": "Le schisme de 1054"
+  },
+  "sais": {
+   "l": 48,
+   "c": 50,
+   "s": 51,
+   "i": 48,
+   "p": 44,
+   "e": 48,
+   "m": 60,
+   "h": 53
+  }
+ },
+ "30-le-moyen-age-central-et-tardif.html": {
+  "taille": 5980213,
+  "empreinte": "eec7828c791b3cabcebc0e6cb5558e5311fd6e83f12ec8b62a0ae7204452133b",
+  "cours": {
+   "l": "La réforme grégorienne",
+   "p": "La papauté à son sommet : d’Innocent III à Boniface VIII",
+   "c": "Les croisades",
+   "s": "Cîteaux et saint Bernard",
+   "o": "Les ordres mendiants",
+   "u": "Les universités et la scolastique",
+   "h": "Les hérésies médiévales",
+   "m": "La mystique rhénane et flamande",
+   "i": "L’Inquisition médiévale",
+   "n": "Les conciles du Latran",
+   "v": "Les conciles de Lyon et de Vienne",
+   "a": "La papauté d’Avignon",
+   "g": "Le grand schisme d’Occident",
+   "e": "Le concile de Constance (1414-1418)",
+   "b": "Le concile de Bâle-Ferrare-Florence"
+  },
+  "sais": {
+   "l": 48,
+   "p": 56,
+   "c": 51,
+   "s": 48,
+   "o": 60,
+   "u": 60,
+   "h": 56,
+   "m": 53,
+   "i": 48,
+   "n": 48,
+   "v": 48,
+   "a": 53,
+   "g": 60,
+   "e": 59,
+   "b": 52
+  }
+ },
+ "31-la-reforme-et-le-concile-de-trente.html": {
+  "taille": 5168683,
+  "empreinte": "83157637fb3a724d76b3fcef8b0e1d426bcb9fd8e1bf6ce319dfe8b6a30ec576",
+  "cours": {
+   "l": "Les causes de la Réforme",
+   "u": "Luther",
+   "z": "Zwingli",
+   "r": "La Réforme radicale",
+   "c": "Calvin",
+   "a": "L’anglicanisme",
+   "g": "Les guerres de religion",
+   "t": "Le concile de Trente : son déroulement",
+   "d": "Les décrets doctrinaux de Trente",
+   "e": "Les décrets de réforme de Trente et leur application",
+   "f": "La Réforme catholique",
+   "s": "Les saints de la Réforme catholique"
+  },
+  "sais": {
+   "l": 49,
+   "u": 58,
+   "z": 44,
+   "r": 47,
+   "c": 57,
+   "a": 52,
+   "g": 58,
+   "t": 59,
+   "d": 53,
+   "e": 55,
+   "f": 56,
+   "s": 60
+  }
+ },
+ "32-l-eglise-a-l-epoque-moderne.html": {
+  "taille": 4534996,
+  "empreinte": "a13011d4b68f4ea8f506bb6fbdccd1c9ce8a3065b8e32161b12c60c0fad8f799",
+  "cours": {
+   "l": "L’élan missionnaire",
+   "q": "La querelle des rites",
+   "j": "Le jansénisme",
+   "g": "Le gallicanisme et le joséphisme",
+   "u": "Les Lumières",
+   "r": "La Révolution française",
+   "x": "Le renouveau du XIXe siècle",
+   "p": "L’ultramontanisme et Pie IX",
+   "f": "La fin des États pontificaux",
+   "c": "Le concile Vatican I (1869-1870)"
+  },
+  "sais": {
+   "l": 50,
+   "q": 49,
+   "j": 56,
+   "g": 54,
+   "u": 60,
+   "r": 48,
+   "x": 60,
+   "p": 48,
+   "f": 40,
+   "c": 52
+  }
+ },
+ "33-l-eglise-contemporaine.html": {
+  "taille": 4663413,
+  "empreinte": "1c27076f56c925545e11b5d4c3fde89730010dccdec3773a9a2ab98feb42622a",
+  "cours": {
+   "l": "Léon XIII",
+   "s": "Saint Pie X",
+   "c": "La crise moderniste",
+   "b": "Benoît XV et Pie XI",
+   "p": "Pie XII",
+   "t": "Les théologiens du XXe siècle",
+   "v": "Le concile Vatican II : son déroulement",
+   "d": "Les seize documents de Vatican II",
+   "r": "La réception de Vatican II",
+   "a": "Les papes depuis le concile",
+   "e": "Le Catéchisme de l’Église catholique"
+  },
+  "sais": {
+   "l": 45,
+   "s": 48,
+   "c": 48,
+   "b": 48,
+   "p": 48,
+   "t": 59,
+   "v": 51,
+   "d": 47,
+   "r": 48,
+   "a": 48,
+   "e": 48
+  }
+ },
  "43-jesus-dans-l-histoire-et-ses-titres.html": {
   "taille": 3392527,
   "empreinte": "2c91b93754a7a15433517108f5cd657acd131c7ce51d35d9206a347cdf5f832a",
@@ -490,8 +692,8 @@
   }
  },
  "45-le-dogme-christologique.html": {
-  "taille": 3649584,
-  "empreinte": "0f6404c1142aac2b288462996ec1ce4fdcf0e0e3a41bd368fe4c3c85833185fa",
+  "taille": 3649788,
+  "empreinte": "baf7d8f3991cb3b51289aefcb05b417ded437b3a8f20d49399e5de73ac018ca7",
   "cours": {
    "l": "Les hérésies christologiques",
    "c": "La définition de Chalcédoine",
@@ -516,8 +718,8 @@
   }
  },
  "46-les-mysteres-de-l-enfance-et-de-la-vie-cachee.html": {
-  "taille": 3642843,
-  "empreinte": "ee2ffc25a9bdc4c343fc7863e94a5643d7506c9a9099c688ca4e6deb4b573d27",
+  "taille": 3642912,
+  "empreinte": "cfee02ba240f98961cc19d105f2ed406e27bdb21643aa0ae86f5089d2369e4c3",
   "cours": {
    "l": "Pourquoi toute la vie du Christ est mystère",
    "p": "Jean-Baptiste, le Précurseur",
@@ -688,8 +890,8 @@
   }
  },
  "52-la-grace.html": {
-  "taille": 3884437,
-  "empreinte": "6cdbb7d1918deae92fea8d6c8717573e208b225e942b998c8cce1fa40f5dd866",
+  "taille": 3884637,
+  "empreinte": "94a4cad6da568c49558c417e79652d721a0ca75a3a0c8e07206aca8ee9990326",
   "cours": {
    "l": "La notion de grâce et l’ordre surnaturel",
    "n": "Nature et grâce",
@@ -716,8 +918,8 @@
   }
  },
  "53-la-justification-et-le-merite.html": {
-  "taille": 3251038,
-  "empreinte": "fbb73adc776ea9d9e569a6882f1509f4862b5b2a4df4c39f267b1ee6c263322c",
+  "taille": 3251107,
+  "empreinte": "241693a4e54de62b5827eede21584c53cbdc7a0ae5a8fb9985949ffc6b914953",
   "cours": {
    "l": "La justification selon le concile de Trente",
    "p": "La préparation à la justification",
@@ -738,8 +940,8 @@
   }
  },
  "63-qu-est-ce-que-la-liturgie.html": {
-  "taille": 5113211,
-  "empreinte": "d98d239f7c9677a5099c9904f71334b9257e929722374dcef5ef32ff8ba694fb",
+  "taille": 5113337,
+  "empreinte": "a52802bac12ec17ce59bb4b944bd481876d5f6f337596b4eafda42da9bd32808",
   "cours": {
    "l": "Le mot et la notion de liturgie",
    "u": "La liturgie, œuvre du Christ et de l’Église",
@@ -774,8 +976,8 @@
   }
  },
  "64-la-messe.html": {
-  "taille": 4169645,
-  "empreinte": "5263a71fb3b943c55a67fe4a07e64149397b954365af940ef52335894adbe337",
+  "taille": 4169697,
+  "empreinte": "cbc43cacd73f759710302fe2d24dd2a5bd643cdafca871f838d9a9282c6a3cf9",
   "cours": {
    "l": "L’histoire de la messe",
    "r": "Les rites d’ouverture",
@@ -802,8 +1004,8 @@
   }
  },
  "65-le-temps-liturgique.html": {
-  "taille": 4883980,
-  "empreinte": "72c657b493e4a5d8f9de48bffb8cad048e4b4a89685ab950c3ccc051b1ef98ff",
+  "taille": 4884161,
+  "empreinte": "1f91da6da216906346215a766b21a56bc146777b060a1d6fa6408e58544c8373",
   "cours": {
    "l": "Le dimanche",
    "a": "L’Avent",
@@ -836,8 +1038,8 @@
   }
  },
  "66-les-rites-les-sacramentaux-et-la-piete.html": {
-  "taille": 3329364,
-  "empreinte": "b1af1dc2d98feb0f81dc764472541eb7b5fdddadeaebb4e21d4051da09bddef4",
+  "taille": 3329597,
+  "empreinte": "4f3633249e054cb3ded12beb91b54428fea0c4e34dc56340bb3e5b8de77434ee",
   "cours": {
    "l": "Unité de la foi et diversité des rites",
    "r": "Les rites latins",
@@ -856,8 +1058,8 @@
   }
  },
  "67-les-sacrements-en-general.html": {
-  "taille": 3608347,
-  "empreinte": "0e38aa0e45968c650c1947d8836dfe55916d4e091d0c4e41a65751cebc800f93",
+  "taille": 3608464,
+  "empreinte": "ed0e7576b467f59c0086388843827bec7e975b07058523c0765299d5cfbd4147",
   "cours": {
    "l": "Le mot et la définition du sacrement",
    "s": "Le signe efficace de la grâce",
@@ -922,8 +1124,8 @@
   }
  },
  "70-l-eucharistie.html": {
-  "taille": 4424482,
-  "empreinte": "d45efc8f8f0590563948392eaf521e4bd1bf8a7ed968113f5404febdaa097acc",
+  "taille": 4424743,
+  "empreinte": "08a6bab5646e0cf56c4bfaefa551ca52f0c459d6ec8ca7900862ed3a628ff931",
   "cours": {
    "l": "Les noms de l’eucharistie",
    "f": "Les figures de l’eucharistie",
@@ -990,8 +1192,8 @@
   }
  },
  "73-l-ordre.html": {
-  "taille": 3817847,
-  "empreinte": "309d9c983a67e5c785ea3cc81a8142614981cac17074cd410eed674175340073",
+  "taille": 3817916,
+  "empreinte": "e0fb5b4d87e9ca0e71e1120d7193231fbd625c8099925687365888c9b66eb396",
   "cours": {
    "l": "Le sacerdoce dans l’Ancien Testament et le sacerdoce du Christ",
    "e": "L’épiscopat, plénitude du sacrement de l’ordre",
@@ -1036,8 +1238,8 @@
   }
  },
  "75-la-mort-et-le-jugement-particulier.html": {
-  "taille": 2910129,
-  "empreinte": "f9401b2ad537fb17c4ce7ab113cb2f2cbb7e8b51f57298f2119a2b6490faf9d7",
+  "taille": 2910194,
+  "empreinte": "700a58da34c193cd4f1a5afd412f780b4e4486fdf693d2cd83399a5423b756a1",
   "cours": {
    "l": "L’eschatologie, science des fins dernières",
    "m": "La mort",
@@ -1054,8 +1256,8 @@
   }
  },
  "76-le-ciel-le-purgatoire-et-l-enfer.html": {
-  "taille": 2660742,
-  "empreinte": "5184b46c73b4f27d5577032e27b4d729c3aa8ccbf96189e3189457f0dfae5c06",
+  "taille": 2660794,
+  "empreinte": "d7b73331833b168c6be141a78af4a574224cd69c7630cfdc5ce6d8e620bdc3a9",
   "cours": {
    "l": "Le ciel",
    "p": "Le purgatoire",
@@ -1094,8 +1296,8 @@
   }
  },
  "91-les-principes-de-la-doctrine-sociale.html": {
-  "taille": 3854751,
-  "empreinte": "34f0119880a8a26b0c72a21f9838f73dadb57f09bc914b3f7e80cda30b20db8d",
+  "taille": 3854808,
+  "empreinte": "732fadc0c599b8a5af257925601dfa9fc6348054a382637847b8019cde37bfa6",
   "cours": {
    "l": "La nature de la doctrine sociale",
    "d": "La dignité de la personne humaine",
@@ -1120,8 +1322,8 @@
   }
  },
  "92-les-grands-textes-de-la-doctrine-sociale.html": {
-  "taille": 4264234,
-  "empreinte": "82d5d9ec28c412916c677a6b7e311b46d39b1d2af81c08289f97e8b3860812f5",
+  "taille": 4264296,
+  "empreinte": "d70d12e0a4685a9650076f9b5646bc6fc115b0053867048cbbe09a82285c1e6c",
   "cours": {
    "l": "Le corpus des textes sociaux",
    "r": "Léon XIII et Rerum novarum",
@@ -1148,8 +1350,8 @@
   }
  },
  "93-les-domaines-de-la-vie-sociale.html": {
-  "taille": 4779856,
-  "empreinte": "a61adbea2955b5ba7a80e9e9f671c2d09aeb826a39614ae8cf4fc2bd684e2c9e",
+  "taille": 4779980,
+  "empreinte": "db59f3516560cd2a8cba5a2974161e0f78c2abbbf9a44e8fdda79f07cd66d3ac",
   "cours": {
    "l": "La famille dans la société",
    "t": "Le travail",

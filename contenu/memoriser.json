@@ -617,6 +617,260 @@
    ]
   },
   {
+   "id": "base-eglise-antique",
+   "name": {
+    "fr": "L’Église des premiers siècles"
+   },
+   "bloc": "L’histoire de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-actes-4-32",
+     "fr": {
+      "ref": "Actes 4:32",
+      "text": "La multitude des croyants n'avait qu'un cœur et qu'une âme ; personne ne disait sien ce qui lui appartenait, mais ils avaient tout en commun."
+     },
+     "note": "Luc décrit la première communauté de Jérusalem, unie au point de mettre ses biens en commun. Ce portrait a nourri toute l’histoire de la vie religieuse : saint Augustin ouvre sa Règle en rappelant qu’on vit ensemble pour n’avoir qu’une âme et qu’un cœur tournés vers Dieu."
+    },
+    {
+     "id": "base-actes-11-26",
+     "fr": {
+      "ref": "Actes 11:26",
+      "text": "l'ayant trouvé, il l'amena à Antioche. Une année entière durant, ils prirent part aux réunions de l'Église et instruisirent une foule nombreuse. C'est à Antioche que, pour la première fois, les disciples reçurent le nom de chrétiens."
+     },
+     "note": "C’est à Antioche, la grande ville de Syrie où des païens ont reçu l’Évangile, que les disciples sont appelés chrétiens pour la première fois. Le nom dit qui ils suivent : le Christ."
+    },
+    {
+     "id": "base-actes-15-28",
+     "fr": {
+      "ref": "Actes 15:28",
+      "text": "L'Esprit Saint et nous-mêmes avons décidé de ne pas vous imposer d'autre fardeau que ces exigences indispensables :"
+     },
+     "note": "La lettre de l’assemblée de Jérusalem, vers 48-49, n’impose pas la circoncision aux païens convertis. Sa formule, l’Esprit Saint et nous, dit comment l’Église décide : ses pasteurs réunis, assistés par l’Esprit. Les conciles s’en sont réclamés."
+    },
+    {
+     "id": "base-jean-15-20",
+     "fr": {
+      "ref": "Jean 15:20",
+      "text": "Souvenez-vous de la parole que je vous ai dite : le serviteur n'est pas plus grand que son maître. S'ils m'ont persécuté, ils vous persécuteront, vous aussi ; s'ils ont gardé ma parole, ils garderont aussi la vôtre."
+     },
+     "note": "Jésus annonce à ses disciples qu’ils seront persécutés comme lui. Jusqu’à la paix de 313, les martyrs ont vécu cette parole, et leur sang, disait Tertullien, est une semence de chrétiens."
+    },
+    {
+     "id": "base-matthieu-19-21",
+     "fr": {
+      "ref": "Matthieu 19:21",
+      "text": "Jésus lui répondit : « Si tu veux être parfait, va, vends ce que tu possèdes, donne-le aux pauvres, et tu auras un trésor dans les cieux. Puis viens, suis-moi. »"
+     },
+     "note": "Saint Athanase raconte qu’Antoine, jeune encore, entendit ce verset lu à l’église et le prit pour lui : il vendit ses biens et partit vers le désert. C’est le point de départ du monachisme (Vie d’Antoine, chapitre 2)."
+    }
+   ]
+  },
+  {
+   "id": "base-conciles",
+   "name": {
+    "fr": "Les conciles de l’Église indivise"
+   },
+   "bloc": "L’histoire de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-jean-10-30",
+     "fr": {
+      "ref": "Jean 10:30",
+      "text": "Le Père et moi, nous sommes un. »"
+     },
+     "note": "Arius disait le Fils créé, inférieur au Père. Le concile de Nicée, en 325, lui a répondu en confessant le Fils « consubstantiel au Père », de même nature que lui, ce que ce verset dit déjà à sa manière."
+    },
+    {
+     "id": "base-luc-1-43",
+     "fr": {
+      "ref": "Luc 1:43",
+      "text": "Comment m'est-il donné que la mère de mon Seigneur vienne jusqu'à moi ?"
+     },
+     "note": "Élisabeth appelle Marie « la mère de mon Seigneur ». Contre Nestorius, le concile d’Éphèse, en 431, a défendu le titre que la tradition lit déjà dans ce cri : en grec *Theotokos*, « Mère de Dieu »."
+    },
+    {
+     "id": "base-jean-1-14",
+     "fr": {
+      "ref": "Jean 1:14",
+      "text": "Et le Verbe s'est fait chair, et il a planté sa tente parmi nous ; et nous avons vu sa gloire, la gloire qu'il tient de son Père comme Fils unique, plein de grâce et de vérité."
+     },
+     "note": "Le Verbe s’est fait chair : c’est ce mystère que le concile de Chalcédoine, en 451, a précisé. Le Christ est une seule personne en deux natures, vrai Dieu et vrai homme, sans confusion ni séparation."
+    },
+    {
+     "id": "base-colossiens-1-15",
+     "fr": {
+      "ref": "Colossiens 1:15",
+      "text": "Il est l'image du Dieu invisible, le premier-né de toute la création,"
+     },
+     "note": "Le Christ est l’image visible du Dieu invisible. C’est l’argument central des défenseurs des icônes : depuis que Dieu s’est fait voir dans la chair, on peut le représenter. Le concile de Nicée II, en 787, en a approuvé la vénération."
+    }
+   ]
+  },
+  {
+   "id": "base-haut-moyen-age",
+   "name": {
+    "fr": "Le haut Moyen Âge"
+   },
+   "bloc": "L’histoire de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-romains-10-14-15",
+     "fr": {
+      "ref": "Romains 10:14-15",
+      "text": "Mais comment l'invoquer sans avoir cru en lui ? Comment croire en lui sans l'avoir entendu ? Comment l'entendre sans prédicateur ? Et comment prêcher sans être envoyé ? Ainsi est-il écrit : Qu'ils sont beaux, les pas de ceux qui annoncent la bonne nouvelle !"
+     },
+     "note": "Paul montre que la foi naît de la prédication, et la prédication de l’envoi. Les missionnaires du haut Moyen Âge ont été envoyés ainsi : Augustin de Cantorbéry et Boniface par Rome, Cyrille et Méthode par Constantinople."
+    },
+    {
+     "id": "base-psaumes-119-164",
+     "fr": {
+      "ref": "Psaumes 119:164",
+      "text": "Sept fois le jour, je te loue pour tes justes décisions."
+     },
+     "note": "La Règle de saint Benoît s’appuie sur ce verset pour fixer les sept offices du jour (chapitre 16). Bénédictins et clunisiens ont fait de cette louange continue le cœur de leur vie."
+    },
+    {
+     "id": "base-jean-17-21",
+     "fr": {
+      "ref": "Jean 17:21",
+      "text": "que tous soient un, comme toi, Père, tu es en moi et moi en toi ; qu'eux aussi soient un en nous, pour que le monde croie que tu m'as envoyé."
+     },
+     "note": "Jésus prie pour l’unité de ses disciples, pour que le monde croie. La séparation entre Rome et Constantinople, qu’on date souvent de 1054, blesse cette unité ; les excommunications de 1054 ont été levées le 7 décembre 1965 par Paul VI et le patriarche Athénagoras."
+    }
+   ]
+  },
+  {
+   "id": "base-moyen-age",
+   "name": {
+    "fr": "Le Moyen Âge central et tardif"
+   },
+   "bloc": "L’histoire de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-matthieu-16-18",
+     "fr": {
+      "ref": "Matthieu 16:18",
+      "text": "Et moi, je te le dis : tu es Pierre, et sur cette pierre je bâtirai mon Église ; et les portes du séjour des morts ne l'emporteront pas sur elle."
+     },
+     "note": "Les papes de la réforme grégorienne et du Moyen Âge fondent sur ce verset la primauté de l’évêque de Rome, successeur de Pierre. La frise de la coupole de Saint-Pierre de Rome le porte en latin."
+    },
+    {
+     "id": "base-matthieu-10-9",
+     "fr": {
+      "ref": "Matthieu 10:9",
+      "text": "Ne vous procurez ni or, ni argent, ni monnaie à glisser dans vos ceintures,"
+     },
+     "note": "Vers 1208, saint François entend à la messe l’Évangile de l’envoi des disciples, sans or ni argent, et décide d’en vivre à la lettre. Les ordres mendiants naissent de ce choix de la pauvreté au service de la prédication."
+    }
+   ]
+  },
+  {
+   "id": "base-reforme",
+   "name": {
+    "fr": "La Réforme et le concile de Trente"
+   },
+   "bloc": "L’histoire de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-romains-1-17",
+     "fr": {
+      "ref": "Romains 1:17",
+      "text": "Car en elle se révèle la justice de Dieu, de la foi vers la foi, comme il est écrit : Le juste vivra par la foi."
+     },
+     "note": "Luther dit avoir compris l’Évangile en méditant ce verset : la justice de Dieu est celle qu’il donne au croyant. Le concile de Trente reçoit la justification par la foi, d’une foi qui ne va pas sans l’espérance et la charité (session VI, chapitre 7)."
+    },
+    {
+     "id": "base-jacques-2-24",
+     "fr": {
+      "ref": "Jacques 2:24",
+      "text": "Vous voyez que l'homme est justifié par les œuvres, et non par la foi seule."
+     },
+     "note": "Luther doutait de la lettre de Jacques, qu’il appelait une « épître de paille ». Le concile de Trente cite ce verset pour enseigner que la justice reçue grandit par les bonnes œuvres (session VI, chapitre 10)."
+    },
+    {
+     "id": "base-ephesiens-2-8-9",
+     "fr": {
+      "ref": "Éphésiens 2:8-9",
+      "text": "Car c'est par la grâce que vous êtes sauvés, au moyen de la foi ; et cela ne vient pas de vous, c'est le don de Dieu. Cela ne vient pas des œuvres, afin que personne ne puisse s'en glorifier."
+     },
+     "note": "Le concile de Trente enseigne que rien de ce qui précède la justification, ni la foi ni les œuvres, ne mérite cette grâce (session VI, chapitre 8). Catholiques et luthériens l’ont redit ensemble dans la Déclaration commune signée à Augsbourg le 31 octobre 1999."
+    }
+   ]
+  },
+  {
+   "id": "base-epoque-moderne",
+   "name": {
+    "fr": "L’Église à l’époque moderne"
+   },
+   "bloc": "L’histoire de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-marc-16-15",
+     "fr": {
+      "ref": "Marc 16:15",
+      "text": "Puis il leur dit : « Allez dans le monde entier, proclamez la Bonne Nouvelle à toute la création."
+     },
+     "note": "De François Xavier en Asie aux missions d’Amérique, l’élan missionnaire de l’époque moderne obéit à cet envoi. En 1622, Grégoire XV crée la congrégation de la Propagande pour le coordonner."
+    },
+    {
+     "id": "base-jean-21-17",
+     "fr": {
+      "ref": "Jean 21:17",
+      "text": "Il lui dit une troisième fois : « Simon, fils de Jean, as-tu de l'amitié pour moi ? » Pierre fut peiné d'être ainsi interrogé une troisième fois, et il lui répondit : « Seigneur, toi qui sais tout, tu connais mon amitié pour toi. » Jésus lui dit : « Fais paître mes brebis."
+     },
+     "note": "Le Christ ressuscité confie à Pierre tout son troupeau. Le concile Vatican I, en 1870, s’appuie sur ce passage pour la primauté de Pierre et de ses successeurs (*Pastor aeternus*, chapitre 1)."
+    },
+    {
+     "id": "base-luc-22-32",
+     "fr": {
+      "ref": "Luc 22:32",
+      "text": "Mais j'ai prié pour toi, afin que ta foi ne défaille pas ; et toi, quand tu seras revenu, affermis tes frères. »"
+     },
+     "note": "Dans *Pastor aeternus*, le concile Vatican I cite cette prière du Christ pour Pierre (chapitre 4) : il y fonde l’infaillibilité du pape quand il définit une doctrine de foi ou de mœurs pour toute l’Église."
+    }
+   ]
+  },
+  {
+   "id": "base-eglise-contemporaine",
+   "name": {
+    "fr": "L’Église contemporaine"
+   },
+   "bloc": "L’histoire de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-matthieu-16-3",
+     "fr": {
+      "ref": "Matthieu 16:3",
+      "text": "et le matin : Aujourd'hui, de l'orage, car le ciel est d'un rouge sombre. L'aspect du ciel, vous savez l'interpréter ; mais les signes des temps, vous n'en êtes pas capables !"
+     },
+     "note": "Jean XXIII reprend l’expression « signes des temps » en convoquant le concile en 1961, et *Gaudium et spes* demande à l’Église de les scruter et de les interpréter à la lumière de l’Évangile (n. 4)."
+    },
+    {
+     "id": "base-hebreux-13-8",
+     "fr": {
+      "ref": "Hébreux 13:8",
+      "text": "Jésus Christ est le même hier, aujourd'hui et pour les siècles."
+     },
+     "note": "*Gaudium et spes* cite ce verset (n. 10) : sous les changements du monde, le Christ demeure. Le grand jubilé de l’an 2000 l’a pris pour devise."
+    },
+    {
+     "id": "base-ephesiens-4-5",
+     "fr": {
+      "ref": "Éphésiens 4:5",
+      "text": "Il y a un seul Seigneur, une seule foi, un seul baptême,"
+     },
+     "note": "Le décret sur l’œcuménisme *Unitatis redintegratio*, en 1964, cite ce verset pour dire l’unité que le Christ veut pour son Église (n. 2)."
+    }
+   ]
+  },
+  {
    "id": "base-jesus-histoire",
    "name": {
     "fr": "Jésus dans l’histoire et ses titres"
