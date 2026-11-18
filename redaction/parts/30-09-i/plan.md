@@ -17,7 +17,6 @@ Lettre i. 12 leçons. Fichier 00 ouverture, 01 à 12, 99 bilan. Vouvoiement.
 10. Le procès de Jeanne d'Arc (1431) et sa réhabilitation (1456).
 11. Après le Moyen Âge : l'Inquisition espagnole (1478), institution de la Couronne, et l'Inquisition romaine (1542), institution distincte ; tableau comparatif.
 12. Les chiffres et la légende noire ; puis le jugement de l'Église : Tertio millennio adveniente 35, Dignitatis humanae, symposium 1998, 12 mars 2000, lettre du 15 juin 2004.
-   (Option : scinder 12 en deux leçons : 12 chiffres et légende noire, 13 pardon. Décision : 12 = chiffres et légende noire ; 13 ? Non : on garde 12 leçons, la leçon 11 = chiffres/légende noire, la 12 = demande de pardon, et les inquisitions espagnole et romaine en leçon 10 ; Jeanne d'Arc en leçon 9 ; manuels et Bernard Gui fusionnés avec... voir ci-dessous.)
 
 ORDRE DÉFINITIF (12 leçons) :
 1 Le mot et la procédure inquisitoire

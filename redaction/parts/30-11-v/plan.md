@@ -19,4 +19,4 @@ Fichiers : 00-ouverture.html, 01..12.html, 99-bilan.html. Liens internes #v3, #v
 12. Béguines, bégards et langues d'Orient — béguines (rappel), Marguerite Porete, Ad nostrum (huit erreurs), Cum de quibusdam mulieribus, suites (Jean XXII), béguinages ; décret des langues (hébreu, arabe, chaldéen ; curie, Paris, Oxford, Bologne, Salamanque ; deux maîtres), Raymond Lulle, application et héritage.
 Bilan : 6 exercices croisés.
 
-État : (mis à jour au fil de l'écriture)
+État : terminé (12 leçons + bilan), réuni dans redaction/30-11-v.html, contrôle sans signalement.

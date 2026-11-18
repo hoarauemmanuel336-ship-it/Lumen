@@ -1,5 +1,7 @@
 # 30-06-u : Les universités et la scolastique (lettre u, fichier 30)
 
+État : TERMINÉ. Toutes les leçons (01-12) et le bilan sont écrits, réunis dans redaction/30-06-u.html, contrôlés et assemblés à l'essai.
+
 Question centrale : comment, entre le XIe et le XIVe siècle, l'Occident est passé des écoles des monastères et des cathédrales à l'université, et quelle méthode de travail (la scolastique) y a mis la foi en dialogue réglé avec la raison, d'Abélard à Duns Scot.
 
 Obstacles du novice : « scolastique » = ergotage stérile ; l'université vue comme création de l'État ou institution laïque ; Moyen Âge obscurantiste qui aurait interdit Aristote par peur de la raison ; Thomas tenu pour seul et toujours admis ; 1277 lu comme une condamnation de Thomas ; Sic et non lu comme un livre sceptique.

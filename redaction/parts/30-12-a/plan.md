@@ -17,3 +17,5 @@ Leçons (fichiers 01.html à 12.html) :
 11. La « captivité de Babylone » : Babylone dans la Bible, Pétrarque (Liber sine nomine, sonnets 136-138), Brigitte de Suède, jugement des historiens.
 12. Catherine de Sienne et le retour de Grégoire XI (1377) : Grégoire XI, guerre des Huit Saints, Catherine à Avignon (juin 1376), départ du 13 septembre 1376, entrée du 17 janvier 1377, Cesena, mort et schisme.
 Bilan : 6 exercices croisés.
+
+Statut : terminé ; fichier réuni dans redaction/30-12-a.html.
