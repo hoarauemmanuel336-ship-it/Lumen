@@ -29,4 +29,4 @@ Bilan : 6 exercices croisés.
 
 ORDRE DÉFINITIF ÉCRIT (fichiers 01 à 12) :
 1 Mots ; 2 Ximénès ; 3 Divin amour + théatins ; 4 Capucins ; 5 Barnabites + clercs réguliers ; 6 Ursulines ; 7 Compagnie de Jésus + Collège romain ; 8 Oratoire de Philippe Néri ; 9 Inquisition romaine ; 10 Pie V ; 11 Grégoire XIII et Sixte Quint (calendrier, Curie) ; 12 Art baroque. Bilan 99.
-État : 01 à 09 écrites.
+État : terminé (01 à 12, bilan, humaniser, contrôle, assemblage d'essai réussi).

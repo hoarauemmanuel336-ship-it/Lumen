@@ -19,4 +19,4 @@ Obstacles : croire que la Révolution fut antireligieuse dès 1789 (le bas clerg
 12. Le sacre de Napoléon (1804) et la captivité de Pie VII (1809-1814) : sacre ; catéchisme impérial ; Saint-Napoléon ; rupture ; Rome occupée ; annexion ; Quum memoranda ; arrestation 6 juillet 1809 ; Savone ; institution canonique refusée ; cardinaux noirs ; concile de 1811 ; Fontainebleau ; concordat de 1813 et rétractation ; retour 24 mai 1814 ; bilan.
 Bilan : 6 exercices croisés.
 
-État : (mettre à jour au fil de l'écriture)
+État : TERMINÉ. Toutes les leçons (01-12), l'ouverture et le bilan (7 exercices) sont écrits, humanisés, vérifiés ; fichier réuni : redaction/32-06-r.html.

@@ -15,5 +15,5 @@ Fichiers : 00-ouverture.html (balise cours + introduction), 01.html à 12.html, 
 9. Louis Veuillot et L’Univers : vie, conversion, journalisme, Inter multiplices (1853), suppression de 1860, L’Illusion libérale, Vatican I.
 10. Les catholiques libéraux et Montalembert : définition, Le Correspondant, Malines 1863, Montalembert (L’Avenir, liberté d’enseignement, Moines d’Occident, mort 1870).
 11. Dupanloup : vie, Talleyrand, éducation, Orléans, brochure de 1865 (thèse / hypothèse), Vatican I (lien #ouverture-c), Jeanne d’Arc, mort 1878.
-12. La dévotion populaire au pape : denier de Saint-Pierre, pèlerinages, jubilés, images, zouaves (lien #ouverture-f), « prisonnier », fin du pontificat, Mortara, béatification (2000), bilan.
-Bilan : 6 exercices croisés.
+12. La dévotion populaire au pape et le bilan d’un pontificat (écrite) : denier de Saint-Pierre, pèlerinages, jubilés, images, zouaves (lien #ouverture-f), « prisonnier », fin du pontificat, Mortara, béatification (2000), bilan.
+Bilan : 6 exercices croisés (écrit). État : cours complet, assemblé dans redaction/32-08-p.html.

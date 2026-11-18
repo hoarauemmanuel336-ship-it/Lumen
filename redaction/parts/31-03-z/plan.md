@@ -20,4 +20,4 @@ Liens : Luther #ouverture-u ; causes #ouverture-l ; Réforme radicale #ouverture
 11. Le Consensus Tigurinus (1549). Contexte (Luther 1544, Smalkalde, Intérim, Berne) ; échanges Calvin-Bullinger 1547-1548 ; mai 1549 Calvin et Farel à Zurich ; 26 articles, publiés 1551 ; contenu ; ce que chacun cède ; adoption ; Westphal et seconde querelle ; naissance de la famille réformée ; jugement catholique (Trente XIII, Unitatis redintegratio 22).
 Bilan : 6 exercices croisés.
 
-État : plan fait.
+État : terminé. Leçons 00 à 11 et bilan écrits, contrôlés, humanisés ; fichier réuni 31-03-z.html ; assemblage d'essai réussi.

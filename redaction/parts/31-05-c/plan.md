@@ -1,6 +1,6 @@
 # 31-05-c · Calvin · plan
 
-État : EN COURS.
+État : TERMINÉ (12 leçons + bilan de 7 exercices, réunis dans redaction/31-05-c.html, humanisé, contrôlé, assemblage essayé).
 
 Question centrale : comment un juriste humaniste picard, converti vers 1533-1534, a-t-il fait de Genève le centre d'une seconde Réforme, distincte de celle de Luther, avec sa doctrine (souveraineté de Dieu, double prédestination, Cène spirituelle), son Église organisée (quatre ministères, consistoire) et son réseau européen (France, Écosse, Palatinat, Provinces-Unies) ; et comment l'Église catholique juge-t-elle cette doctrine ?
 

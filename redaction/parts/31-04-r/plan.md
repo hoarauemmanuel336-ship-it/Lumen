@@ -17,4 +17,4 @@ Obstacles du novice : confondre anabaptistes pacifiques et Münster ; croire que
 10. Fauste Socin et les sociniens. Sienne (1539), oncle Lelio ; Bâle, De Jesu Christo Servatore ; Transylvanie (1578-1579) ; Pologne (1579), Raków ; doctrine (Christ homme, rejet de la satisfaction, raison et Écriture) ; Catéchisme de Raków (1605) ; Académie de Raków ; expulsion de 1658 ; Bibliotheca Fratrum Polonorum ; postérité (unitariens, Lumières) ; jugement catholique.
 Bilan : 6 exercices croisés.
 
-État : plan fait.
+État : terminé. Leçons 00 à 10 et bilan écrits, contrôlés, relus selon la skill humaniser ; fichier réuni 31-04-r.html ; contrôle sans signalement ; assemblage d’essai réussi.

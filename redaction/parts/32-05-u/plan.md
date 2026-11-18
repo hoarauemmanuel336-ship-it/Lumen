@@ -1,6 +1,6 @@
 # 32-05-u : Les Lumières (lettre u, fichier 32)
 
-État : plan fait ; leçons en cours d'écriture (voir les fichiers présents).
+État : TERMINÉ. Leçons 01-12 et bilan écrits, réunis dans redaction/32-05-u.html, contrôlés (verifier.py : seuls de faux signalements de tutoiement, citations de Kant et mot « ton ») et assemblés à l essai.
 
 Question centrale : qu'ont voulu les Lumières en matière de religion, comment la critique de la Révélation s'est diffusée au XVIIIe siècle, comment l'Église y a répondu (condamnations, réformes, savoir, sainteté, apologétique), et comment la Compagnie de Jésus a été chassée, supprimée, puis rétablie.
 

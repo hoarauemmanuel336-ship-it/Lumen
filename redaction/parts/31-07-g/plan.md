@@ -20,3 +20,5 @@ Liens à faire : Luther (#ouverture-u : paix d'Augsbourg 1555, Confession d'Augs
 11. Les traités de Westphalie (1648) et la carte confessionnelle de l'Europe. Congrès de Münster et Osnabrück ; signatures (30 janvier et 24 octobre 1648) ; clauses religieuses (calvinistes reconnus, année normative 1624, droit de réformer limité, culte privé, émigration, parité, itio in partes) ; Provinces-Unies et Suisse ; protestation d'Innocent X (Zelo domus Dei) ; carte confessionnelle ; conséquences (fin des guerres de religion dans l'Empire, sécularisation du politique).
 12. Juger les guerres de religion. Lectures (Lumières : Voltaire ; débat Cavanaugh ; Crouzet ; Davis) ; principes de l'Église (liberté de l'acte de foi, Dignitatis humanae 2 et 12) ; 12 mars 2000 (confession des péchés au service de la vérité et contre l'unité) ; Jean-Paul II 1997 ; chemin œcuménique (Unitatis redintegratio 3, Lund 2016) ; jugement juste.
 Bilan : 6 exercices croisés.
+
+État : TERMINÉ. Toutes les leçons et le bilan sont écrits, réunis dans redaction/31-07-g.html, contrôlés et humanisés.

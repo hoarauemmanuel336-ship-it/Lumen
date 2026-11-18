@@ -18,4 +18,4 @@ Leçons (fichiers 01.html à 12.html) :
 12. Rome et l'anglicanisme : Apostolicae curae (1896) et Anglicanorum coetibus (2009) : Halifax et Portal, commission (1896), lettre du 13 septembre 1896, défaut de forme et d'intention, ordinations de Marie (Praeclara charissimi 1555), Gordon (1704), conclusion « nulles » ; Saepius officio (1897) ; note de 1998 ; Malines ; Paul VI et Ramsey (1966), ARCIC ; ordination de femmes (1992-1994, 2014-2015, Mullally 2025-2026) ; Pastoral Provision ; demande de la TAC (2007) ; constitution du 4 novembre 2009 (annonce 20 octobre) ; contenu ; trois ordinariats (2011, 2012, 2012), Lopes (2016), Divine Worship (2015) ; sens : unité dans la diversité (Unitatis redintegratio, Jean 17:21).
 Bilan : 6 exercices croisés.
 
-Statut : plan fait.
+Statut : terminé ; fichier réuni dans redaction/31-06-a.html (12 leçons, 83 exercices dont 7 au bilan).
