@@ -16,3 +16,5 @@ Question centrale : comment deux papes, de 1914 à 1939, ont-ils tenu la mission
 11. Mexique et Espagne : constitution de 1917, loi Calles, suspension du culte, Cristiada (1926-1929), arreglos, Miguel Pro, martyrs canonisés ; Espagne : République, Dilectissima nobis, guerre civile, chiffres (Montero), béatifications.
 12. Face au Reich et au communisme : concordat du 20 juillet 1933, débats, violations, Mit brennender Sorge (14/21 mars 1937), Divini Redemptoris (19 mars 1937), « intrinsèquement pervers », mort de Pie XI (10 févr. 1939), encyclique inachevée.
 Bilan : 6 exercices croisés.
+
+État (reprise) : leçons 1 à 12 et bilan écrits (01.html … 12.html, 99-bilan.html). Reste : réunion, contrôle, humaniser, essai d'assemblage.

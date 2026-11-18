@@ -22,3 +22,7 @@ Bilan : 6 exercices croisés.
 - Reprise (2e rédacteur) : 04 et 05 écrits.
 - 06 et 07 écrits.
 - 08 et 09 écrits.
+- 10 écrit.
+- 11 écrit.
+- 12 écrit ; reste le bilan.
+- TERMINÉ : bilan écrit, cours réuni, contrôlé et assemblé à l'essai.
