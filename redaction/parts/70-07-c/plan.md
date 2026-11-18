@@ -19,3 +19,5 @@ Leçons (12) :
 11. La communion spirituelle : Trente XIII ch. 8 (trois manières de manger) ; désir et fruit (Thomas, de mémoire) ; Thérèse d'Avila (EdE 34) ; Alphonse de Liguori (de mémoire, paraphrase) ; quand on ne peut pas communier (SC 55) ; la foi agissant par la charité (Ga 5:6) ; ce qu'elle n'est pas.
 12. Le gage de la gloire future et de la résurrection : Jn 6:54 ; CEC 1402-1405 ; O sacrum convivium ; « jusqu'à ce qu'il vienne » (1 Co 11:26) ; Ignace (remède d'immortalité, lien l) ; Irénée (lien p) ; Rm 8:11 ; viatique (lien 72) ; Ap 19:9 ; ce que veut dire « gage ».
 Bilan : 6 exercices croisés.
+
+Statut : leçons 1 à 12 et bilan (7 exercices) écrits ; cours assemblé dans redaction/70-07-c.html, contrôle propre.

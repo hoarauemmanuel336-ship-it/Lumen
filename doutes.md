@@ -1141,3 +1141,33 @@
 - *Ordo paenitentiae* (1973) : déroulement de la réconciliation individuelle (prière du pénitent après l'acceptation de la satisfaction, avant l'absolution) et propositions de formules bibliques : de mémoire.
 - Saint Ignace, *Exercices spirituels* : examen général en cinq points et examen particulier : de mémoire.
 - Personne ne peut éviter tout péché véniel sans un privilège spécial (Trente, VI, canon 23) : de mémoire, donné sans référence.
+
+## 70-07-c
+- Leçon 3 : lettre 54 de saint Augustin à Janvier, paraphrasée de mémoire (ordre de la Cène laissé aux Apôtres, Corps du Seigneur reçu avant les autres aliments).
+- Leçon 3 : Tertullien, *Ad uxorem* II, 5, « avant toute nourriture », cité de mémoire.
+- Leçon 3 : Code de 1917, dispenses du jeûne naturel (danger de mort ; malades alités depuis longtemps, canon 858 § 2), de mémoire ; dates *Christus Dominus* (1953), *Sacram communionem* (1957), Paul VI (1964) de mémoire.
+- Leçon 4 : concile d'Agde (506), canon 18 (Noël, Pâques, Pentecôte), et chiffre « plus de quatre cents évêques » au Latran IV, de mémoire ; Code de 1917 (temps pascal des Rameaux au dimanche in albis, extensible du 4e dimanche de Carême à la Trinité), de mémoire.
+- Leçon 4 : Innocent XI, 1679, proposition laxiste condamnée sur la communion pascale sacrilège, de mémoire.
+- Leçon 5 : condamnation romaine (Alexandre VIII, 1690) de la thèse janséniste sur la pénitence préalable, datée « fin du XVIIe siècle », de mémoire ; interprétation authentique du canon 917 (1984), de mémoire.
+- Leçon 5 : saint Ambroise, *Des sacrements* V, 4, 25, *Accipe quotidie quod quotidie tibi prosit*, cité de mémoire.
+- Leçon 6 : normes de *Quam singulari* paraphrasées ; latin *circa septimum annum, sive supra, sive etiam infra* de mémoire.
+- Leçon 7 : Pie IV, concession du calice en 1564 à des diocèses de l'Empire ; Jacobellus de Stříbro ; décret de Constance (1415), de mémoire.
+- Leçon 8 : Augustin, *Confessions* VII, 10, traduction libre (« que l'on peut traduire ainsi »).
+- Leçon 9 : formule byzantine après la communion (Isaïe 6:7) et position de saint Thomas sur le péché mortel ignoré (III, q. 79, a. 3), de mémoire.
+- Leçon 10 : homélie 50 de Chrysostome sur Matthieu (coupes d'or, Christ nu), paraphrasée ; saint Justin, *Apologie* I, 67 ; PGMR 73 (dons pour les pauvres), de mémoire.
+- Leçon 11 : prière de communion spirituelle de saint Alphonse de Liguori paraphrasée ; recommandation du curé d'Ars, de mémoire.
+- Leçon 12 : antienne *O sacrum convivium* attribuée à saint Thomas pour l'office du Saint-Sacrement ; Ignace mort « vers 110 » ; acclamation d'anamnèse « Nous annonçons ta mort… » et invitation « Heureux les invités au repas des noces de l'Agneau » (Missel romain, traduction française de 2021), de mémoire.
+- Vérifiés en ligne sur vatican.va : CEC 1384-1397 (citations des leçons 1 à 10), 1000, 1402, 1404, 1405 ; *Ecclesia de Eucharistia* 20, 34, 37 ; *Sacramentum caritatis* 55, 66, 88 ; *Lumen gentium* 26.
+
+## 71-02-h
+- Reprise : les leçons 1 à 10 viennent d'un premier rédacteur interrompu ; leurs dates et citations patristiques (Hermas, Tertullien, Cyprien, Léon 459, Innocent Ier 416, conciles de Carthage, Agde 506, Tolède 589, Chalon, pénitentiels, Joinville en 1250) n'ont pas été revérifiées une à une. La citation du Catéchisme 1447 (leçon 9) a été vérifiée sur vatican.va.
+- Leçon 11 : session XIV de Trente (25 novembre 1551, neuf chapitres, quinze canons) et ses affirmations sur la confession secrète « depuis le commencement », la confession publique non prescrite et le Latran qui fixe seulement le temps : paraphrasées de mémoire (chap. 5, canons 6 et 8). Session XIII (octobre 1551) sur la confession avant la communion : de mémoire.
+- Leçon 11 : Luther et la Confession d'Augsbourg (art. 11, absolution privée maintenue), Calvin attaquant le canon du Latran : de mémoire.
+- Leçon 11 : confessionnal de saint Charles Borromée et ses *Instructions* de 1577 ; Rituel romain de Paul V (1614), surplis et étole violette, deux prières déprécatives avant « Je t'absous » : de mémoire.
+- Leçon 11 : Vincent de Paul à Folleville le 25 janvier 1617, jésuites d'Amiens appelés en renfort : de mémoire.
+- Leçon 11 : condamnations laxistes d'Alexandre VII (1665-1666) et d'Innocent XI (1679, 65 propositions) ; proposition janséniste condamnée par Alexandre VIII en 1690 (satisfaction avant l'absolution par loi du Christ) ; *Auctorem fidei* (1794) contre le synode de Pistoie sur la pénitence : de mémoire.
+- Leçon 11 : saint Alphonse (*Théologie morale* à partir de 1748, résumé de l'équiprobabilisme, « père, médecin, docteur et juge » dans la *Pratique du confesseur*, docteur en 1871, patron des confesseurs en 1950) : de mémoire.
+- Leçon 11 : curé d'Ars de 1818 à 1859, canonisé en 1925, patron des curés en 1929 ; « de longues heures », « une grande partie de la journée » vérifiés (audience de Benoît XVI du 5 août 2009).
+- Leçon 11 : *Quam singulari* du 8 août 1910 ; *Mystici Corporis* du 29 juin 1943 et la liste des fruits de la confession fréquente (n° 88), paraphrasée.
+- Leçon 12 : vérifiés sur vatican.va : SC 72 et 110, Catéchisme 1447-1449 (formule d'absolution), *Reconciliatio et paenitentia* 16, 17, 18, 31, 32, 33 (citations courtes), date du 2 décembre 1984, et date de l'*Ordo paenitentiae* (2 décembre 1973, *Notitiae* 2015).
+- Leçon 12 : synode de 1983 situé « à l'automne » (sixième assemblée générale) ; conditions de l'absolution générale et canon 964 (confessionnal à grille fixe, autres dispositions par les conférences des évêques), paraphrasés de mémoire.
