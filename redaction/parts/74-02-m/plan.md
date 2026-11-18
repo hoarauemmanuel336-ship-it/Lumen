@@ -21,4 +21,4 @@ Sources vérifiées en ligne (vatican.va) : CEC 1613, 1614, 1615, 1617, 1623, 16
 12. Gaudium et spes 47-52 : situation (47) ; 48 communauté de vie et d'amour, alliance, consentement irrévocable, lien sacré, Christ vient à la rencontre ; 49 amour conjugal guéri, parfait, élevé ; 50 fécondité (« pas seulement la procréation » → #ouverture-f) ; 51 respect de la vie ; 52 promotion par tous ; continuité (notes 105-113) et accent personnaliste.
 Bilan : 6 exercices croisés.
 
-État : plan fait ; rédaction en cours.
+État : terminé. 12 leçons + bilan réunis dans redaction/74-02-m.html ; contrôle sans signalement ; passage humaniser fait ; assemblage testé.

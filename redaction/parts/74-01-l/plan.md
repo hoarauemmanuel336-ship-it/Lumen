@@ -1,5 +1,7 @@
 # Plan du cours 74-01-l : Le mariage dans le dessein du Créateur
 
+État : TERMINÉ. Ouverture, leçons 01 à 12 et bilan écrits, humanisés et réunis dans redaction/74-01-l.html.
+
 Cours l du fichier 74-le-mariage.html (premier cours : introduction avec construction commune + présentation des cours m, c, u, i, f, e).
 Vouvoiement. Versets de la Chérubin (Tobie suit la Vulgate : trois nuits de prière, « ce n'est pas pour satisfaire ma passion »).
 Fichiers : 00-ouverture.html, 01.html … 12.html, 99-bilan.html
