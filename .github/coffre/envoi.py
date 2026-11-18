@@ -14,8 +14,9 @@ netlify/edge-functions/fichiers.js).
   son sujet, son résumé et ses deux textes. Elle n'entre que si le jour
   n'a pas déjà sa méditation (celle de l'API n'est jamais remplacée).
   Avec « prolonger », elle reste aussi le lendemain sur l'accueil, et ce
-  lendemain n'a pas de méditation à lui (meditations/reglages.json) ; à
-  22 h, la fabrique du site la trouve et n'a plus qu'à la faire lire
+  lendemain n'a pas de méditation à lui (meditations/reglages.json). Un
+  jour de reprise après pause qui reçoit sa méditation perd sa reprise.
+  La fabrique du site la trouve et n'a plus qu'à la faire lire
   (documentation/meditation.md).
 Tout se vérifie avant le premier envoi : un lot refusé n'entre pas à
 moitié."""
@@ -82,7 +83,8 @@ def main():
     entrees = json.load(open(chemin, encoding='utf-8')).get('entrees') or []
     if not entrees:
         sys.exit('envoi.json ne contient aucune entrée.')
-    sommaire = catalogue = None
+    sommaire = catalogue = prolonge = None
+    jours = []
     places = []
     for e in entrees:
         nom = os.path.basename(e.get('fichier', ''))
@@ -101,20 +103,29 @@ def main():
         elif espece == 'meditation':
             meditation_verifiee(f, nom)
             places.append((f, f'meditations/{nom}'))
+            jours.append(nom[:10])
             if e.get('prolonger'):
                 prolonge = (datetime.date.fromisoformat(nom[:10]) + datetime.timedelta(days=1)).isoformat()
         else:
             sys.exit(f'Espèce inconnue pour « {nom} » : {espece} (« cours », « article » ou « meditation »)')
-    if 'prolonge' in locals():
-        # la méditation reste aussi le lendemain : ce jour-là n'a pas la sienne
+    if jours:
+        # un jour de reprise après pause n'a pas de méditation à lui : si
+        # Claude lui en donne une, la reprise de ce jour s'efface, sans quoi
+        # la fabrique ne la ferait jamais lire. Avec « prolonger », la
+        # méditation reste aussi le lendemain : ce jour-là n'a pas la sienne.
         r = os.path.join(tempfile.mkdtemp(), 'reglages.json')
         reglages = {}
         if existe('meditations/reglages.json'):
             recoit('meditations/reglages.json', r)
             reglages = json.load(open(r, encoding='utf-8'))
-        reglages['prolonge'] = prolonge
-        json.dump(reglages, open(r, 'w', encoding='utf-8'), ensure_ascii=False)
-        places.append((r, 'meditations/reglages.json'))
+        avant = dict(reglages)
+        if reglages.get('reprise') in jours:
+            del reglages['reprise']
+        if prolonge:
+            reglages['prolonge'] = prolonge
+        if reglages != avant:
+            json.dump(reglages, open(r, 'w', encoding='utf-8'), ensure_ascii=False)
+            places.append((r, 'meditations/reglages.json'))
     for f, cle in places:
         if cle.startswith('meditations/'):
             envoie(f, cle, 'application/json')
