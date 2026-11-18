@@ -18,4 +18,4 @@ Leçons (12) :
 12. Les étapes vers l'ordination et l'âge requis — admission (can. 1034) ; lecteur et acolyte (can. 1035, lien #ouverture-l) ; déclaration (1036) ; célibat (1037) ; retraite (1039) ; documents et scrutins (1050-1052) ; âges (1031, 378) ; Trente 22/23/25 ; Nb 8:24, Lc 3:23, 1 Tm 4:12.
 Bilan : 6 exercices croisés.
 
-État : plan fait ; leçons en cours.
+État : leçons 1 à 9 écrites (01.html à 09.html) ; reste 10, 11, 12 et le bilan.
