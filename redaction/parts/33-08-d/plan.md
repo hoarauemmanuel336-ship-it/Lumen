@@ -19,3 +19,6 @@ Fichiers : 00-ouverture.html, 01.html … 12.html, 99-bilan.html.
 11. Inter mirifica et Gravissimum educationis : communication sociale (vote le plus contesté, journée mondiale), éducation (droit, parents, école catholique, commission postconciliaire).
 12. Les grands axes : l'Église mystère et peuple de Dieu, la Parole, la liturgie, le dialogue ; comment les seize textes se tiennent ; lire un texte à la lumière des autres.
 Bilan : 6 exercices croisés.
+- Reprise (2e rédacteur) : 04 et 05 écrits.
+- 06 et 07 écrits.
+- 08 et 09 écrits.

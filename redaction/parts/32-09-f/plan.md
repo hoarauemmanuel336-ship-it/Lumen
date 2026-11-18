@@ -15,4 +15,4 @@ Obstacles du novice : croire que le pouvoir temporel est un dogme ; confondre Ri
 10. La question romaine jusqu'au XXe siècle (positions, Léon XIII, Crispi, Giordano Bruno 1889, La Haye 1899, visite de Loubet 1904, guerre de 1914-1918 et article 15 du pacte de Londres, Pie XI, accords du Latran 1929 rappelés avec lien 33 ouverture-b, jugement de l'Église : Montini 1962, Benoît XVI 2011).
 Bilan : 6 exercices croisés.
 
-État : voir les fichiers présents dans ce dossier.
+État : terminé (leçons 1 à 10 et bilan écrits, assemblés dans redaction/32-09-f.html, contrôlés).

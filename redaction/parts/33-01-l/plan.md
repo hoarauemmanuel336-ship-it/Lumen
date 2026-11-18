@@ -19,4 +19,4 @@ Fichiers : 00-ouverture.html (balise cours + introduction), 01.html à 11.html, 
 11. Annum sacrum (25 mai 1899) et la fin du pontificat : Marie du Divin Cœur (lettres 1898-1899, morte 8 juin 1899, béatifiée 1975) ; encyclique (Ps 2:8, Mt 28:18, signe et Constantin, 11 juin 1899) ; dernières années (1900, efforts d'unité, Mirae caritatis), mort 20 juillet 1903 ; bilan du pontificat.
 Bilan : 6 exercices croisés.
 
-État : plan fait ; leçons écrites au fur et à mesure (voir les fichiers présents).
+État : leçons 1 à 10 écrites (01-10.html) ; reste 11 et bilan.

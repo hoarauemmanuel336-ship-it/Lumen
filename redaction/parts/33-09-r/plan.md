@@ -21,4 +21,4 @@ Liens prévus : 28-les-conciles-de-l-eglise-indivise.html#ouverture-l (la récep
 
 Bilan : 6 exercices croisés.
 
-État : (mis à jour au fil de l'écriture)
+État : terminé ; assemblé dans redaction/33-09-r.html, contrôle propre, essai d assemblage réussi.

@@ -18,4 +18,4 @@ Fichiers : 00-ouverture.html (balise cours + introduction), 01.html à 12.html, 
 11. Döllinger et le schisme des vieux-catholiques : Döllinger, Nuremberg (août 1870), lettre de mars 1871, excommunication (avril 1871), congrès de Munich (sept. 1871), Reinkens (1873, Heykamp, Utrecht ; lien #ouverture-j), Kulturkampf, Suisse (Herzog), Union d'Utrecht (1889) ; jugement catholique.
 12. La déclaration des évêques allemands (1875) et la doctrine de l'épiscopat laissée inachevée : dépêche de Bismarck (14 mai 1872, publiée fin 1874), Gladstone et Newman, déclaration collective (janv.-fév. 1875), approbation de Pie IX (mars 1875), Lumen gentium 27 ; schéma De Ecclesia inachevé, second schéma de Kleutgen, Vatican II (LG 18, 22), collégialité (lien #sujet:hierarchie.college, 33 #ouverture-v).
 Bilan : 6 exercices croisés.
-État : plan fait.
+État : leçons 1 à 10 écrites (4 à 10 par le second rédacteur) ; suite : 11.

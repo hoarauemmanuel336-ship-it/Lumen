@@ -17,3 +17,4 @@ Leçons (12) :
 11. L'intégrisme, la Sapinière (Benigni) et l'apaisement d'Ad beatissimi (1914).
 12. Les questions posées par la crise : histoire et dogme, foi et critique ; suites (Divino afflante, Vatican II, Mysterium Ecclesiae, Ratzinger 1990).
 Bilan : 6 exercices.
+- État : terminé, assemblé (redaction/33-03-c.html), contrôle propre.
