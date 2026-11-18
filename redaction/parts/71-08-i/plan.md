@@ -19,4 +19,4 @@ Sources vérifiées (WebFetch) : CEC 1471 (définition, partielle/plénière, ca
 11. Les conditions : principe ; can. 996 (baptisé, non excommunié, état de grâce, intention) ; confession (une pour plusieurs) ; communion (1 Co 10:16-17) ; prière aux intentions du pape (Ac 12:5, 1 Tm 2:1-2 ; Notre Père et Je vous salue Marie) ; détachement (Ps 51:12, He 12:1) ; plusieurs jours ; empêchés. Mots : Œuvre prescrite, Conditions habituelles, Détachement du péché, Intentions du pape.
 12. Les défunts : CEC 1479, can. 994 ; 2 M 12:43-46 ; par mode de suffrage ; pas aux vivants ; incertitude ; indulgences de novembre ; Sixte IV 1476 ; esprit. Mots : Par mode de suffrage, Suffrage, Âmes du purgatoire.
 Bilan : 6 exercices croisés.
-État : plan fait ; leçons en cours.
+État : terminé, livré redaction/71-08-i.html (verifier : rien ; liens : 0 ; assemblage d essai réussi).

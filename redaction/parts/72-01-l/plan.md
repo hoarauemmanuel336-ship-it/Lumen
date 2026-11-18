@@ -17,3 +17,4 @@ Leçons (fichiers 01 à 10) :
 9. Les conciles de Florence et de Trente (Exsultate Deo, 22 nov. 1439 ; Luther, Calvin ; session XIV, 25 nov. 1551, préambule, chap. 1-3, canons 1-4 ; « praesertim »).
 10. Le retour au nom d'onction des malades (Code 1917 c. 940 ; SC 73-75 ; Paul VI 1972 en une phrase + lien #ouverture-s ; CEC 1512-1514 ; continuité).
 Bilan : 6 exercices croisés.
+Statut : terminé, assemblé dans redaction/72-01-l.html

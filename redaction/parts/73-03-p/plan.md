@@ -18,4 +18,4 @@ Leçons (12) :
 12. Le saint curé d'Ars et l'Année sacerdotale : vie (1786-1859), ministère (catéchisme, confessionnal), patron des curés (Pie XI 1929), CEC 1589, Année 2009-2010 (16 mars 2009 annonce, 19 juin 2009 ouverture, lettre du 16 juin, cœur relique, clôture 11 juin 2010).
 Bilan : 6 exercices croisés.
 
-État : en cours. Fichiers écrits : voir le dossier.
+État : terminé ; fichier réuni dans redaction/73-03-p.html, contrôlé et assemblé à l essai.

@@ -21,3 +21,6 @@ Leçons 1 à 6 écrites (01.html à 06.html).
 Leçons 7 et 8 écrites.
 Leçon 9 écrite.
 Leçon 10 écrite.
+Leçon 11 écrite.
+Bilan écrit. Assemblage et relecture à faire.
+Assemblé dans redaction/71-06-a.html ; contrôle et essai d'assemblage réussis.
