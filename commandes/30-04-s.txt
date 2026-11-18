@@ -1,0 +1,17 @@
+<sujet cle="moyen-age.citeaux" titre="Cîteaux et saint Bernard" desc="Les nouveaux ordres monastiques des XIe et XIIe siècles et la grande figure de Bernard de Clairvaux.">
+<p>Le désir de retour à la pureté de la Règle à la fin du XIe siècle</p>
+<p>Bruno et la Chartreuse (1084)</p>
+<p>Robert de Molesme et la fondation de Cîteaux (1098)</p>
+<p>Albéric, deuxième abbé de Cîteaux</p>
+<p>Étienne Harding, troisième abbé de Cîteaux</p>
+<p>La <i>Charte de charité</i> et l’organisation de l’ordre cistercien</p>
+<p>Les frères convers</p>
+<p>L’architecture cistercienne et son dépouillement</p>
+<p>Bernard (1090-1153), son entrée à Cîteaux et la fondation de Clairvaux (1115)</p>
+<p>Bernard et le schisme d’Anaclet (1130)</p>
+<p>Bernard contre Abélard et le concile de Sens</p>
+<p>Bernard et les Templiers : l’<i>Éloge de la nouvelle chevalerie</i></p>
+<p>Eugène III, pape cistercien, et le <i>De consideratione</i> que Bernard lui adresse</p>
+<p>Norbert de Xanten et les Prémontrés (1120), chanoines réguliers</p>
+<p>L’essor et la diffusion des cisterciens en Europe</p>
+</sujet>

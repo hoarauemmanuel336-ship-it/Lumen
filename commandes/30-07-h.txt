@@ -1,0 +1,14 @@
+<sujet cle="moyen-age.heresies" titre="Les hérésies médiévales" desc="Les grands mouvements hérétiques des XIIe et XIIIe siècles et la réponse de l’Église.">
+<p>Les bogomiles des Balkans, à l’origine du catharisme</p>
+<p>Le catharisme (grec <i>katharos</i>, « pur ») et sa doctrine dualiste</p>
+<p>L’Église cathare : les parfaits, les croyants, le <i>consolamentum</i></p>
+<p>La mission de Dominique et des légats en Languedoc</p>
+<p>L’assassinat du légat Pierre de Castelnau (1208)</p>
+<p>La croisade contre les Albigeois (1209-1229) et Simon de Montfort</p>
+<p>La chute de Montségur (1244)</p>
+<p>Pierre Valdès et les vaudois (vers 1170)</p>
+<p>La condamnation des vaudois (1184) et leur rattachement à la Réforme (1532)</p>
+<p>Joachim de Flore et le joachimisme</p>
+<p>Le mouvement du Libre-Esprit</p>
+<p>La réponse de l’Église : la prédication, les ordres mendiants, l’enquête judiciaire</p>
+</sujet>

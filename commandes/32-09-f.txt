@@ -1,0 +1,12 @@
+<sujet cle="moderne.question-romaine" titre="La fin des États pontificaux" desc="Comment le pape a perdu ses États lors de l’unification de l’Italie.">
+<p>Les États pontificaux : leur origine et leur raison d’être</p>
+<p>Le Risorgimento et l’unité italienne</p>
+<p>La perte des Romagnes et la bataille de Castelfidardo (1860)</p>
+<p>Rome protégée par les troupes françaises</p>
+<p>Les zouaves pontificaux et Mentana (1867)</p>
+<p>La prise de Rome par la brèche de la Porta Pia (20 septembre 1870)</p>
+<p>La loi des Garanties (1871) refusée par Pie IX</p>
+<p>Le pape « prisonnier du Vatican »</p>
+<p>Le <i>Non expedit</i> : l’abstention des catholiques italiens à la vie politique</p>
+<p>La <b>question romaine</b> jusqu’au XXe siècle</p>
+</sujet>

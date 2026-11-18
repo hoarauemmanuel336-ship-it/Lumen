@@ -1,0 +1,16 @@
+<sujet cle="contemporaine.reception" titre="La réception de Vatican II" desc="Comment le concile a été appliqué et interprété, et les débats qu’il a suscités.">
+<p>Le mot <b>réception</b> et son sens pour un concile</p>
+<p>La mise en œuvre de la réforme liturgique et le Missel de Paul VI (1969-1970)</p>
+<p>Le synode des évêques (<i>Apostolica sollicitudo</i>, 1965)</p>
+<p>Les conférences épiscopales</p>
+<p>La crise de l’après-concile : départs de prêtres et de religieux, baisse de la pratique</p>
+<p>La réception difficile d’<i>Humanae vitae</i> (1968)</p>
+<p>L’« esprit du concile » invoqué contre la lettre des textes</p>
+<p>Mgr Lefebvre et la Fraternité Saint-Pie-X (1970)</p>
+<p>Les sacres de 1988 et le motu proprio <i>Ecclesia Dei</i></p>
+<p>Le synode extraordinaire de 1985 et l’ecclésiologie de communion</p>
+<p>Le Code de droit canonique de 1983, présenté comme traduction du concile</p>
+<p>Le discours de Benoît XVI à la Curie (22 décembre 2005) : herméneutique de la rupture et <b>herméneutique de la réforme</b> dans la continuité</p>
+<p>Le motu proprio <i>Summorum pontificum</i> (2007)</p>
+<p>Le motu proprio <i>Traditionis custodes</i> (2021)</p>
+</sujet>

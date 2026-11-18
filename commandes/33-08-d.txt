@@ -1,0 +1,20 @@
+<sujet cle="contemporaine.documents-vatican-2" titre="Les seize documents de Vatican II" desc="Chacun des documents du concile, ce qu’il dit et ce qu’il a changé.">
+<p>L’organisation des documents : quatre constitutions, neuf décrets, trois déclarations</p>
+<p><i>Sacrosanctum concilium</i>, constitution sur la liturgie (4 décembre 1963)</p>
+<p><i>Inter mirifica</i>, décret sur les moyens de communication sociale (4 décembre 1963)</p>
+<p><i>Lumen gentium</i>, constitution dogmatique sur l’Église (21 novembre 1964)</p>
+<p><i>Orientalium Ecclesiarum</i>, décret sur les Églises orientales catholiques (21 novembre 1964)</p>
+<p><i>Unitatis redintegratio</i>, décret sur l’œcuménisme (21 novembre 1964)</p>
+<p><i>Christus Dominus</i>, décret sur la charge pastorale des évêques (28 octobre 1965)</p>
+<p><i>Perfectae caritatis</i>, décret sur le renouveau de la vie religieuse (28 octobre 1965)</p>
+<p><i>Optatam totius</i>, décret sur la formation des prêtres (28 octobre 1965)</p>
+<p><i>Gravissimum educationis</i>, déclaration sur l’éducation chrétienne (28 octobre 1965)</p>
+<p><i>Nostra aetate</i>, déclaration sur les religions non chrétiennes (28 octobre 1965)</p>
+<p><i>Dei Verbum</i>, constitution dogmatique sur la Révélation (18 novembre 1965)</p>
+<p><i>Apostolicam actuositatem</i>, décret sur l’apostolat des laïcs (18 novembre 1965)</p>
+<p><i>Dignitatis humanae</i>, déclaration sur la liberté religieuse (7 décembre 1965)</p>
+<p><i>Ad gentes</i>, décret sur l’activité missionnaire (7 décembre 1965)</p>
+<p><i>Presbyterorum ordinis</i>, décret sur le ministère et la vie des prêtres (7 décembre 1965)</p>
+<p><i>Gaudium et spes</i>, constitution pastorale sur l’Église dans le monde de ce temps (7 décembre 1965)</p>
+<p>Les grands axes qui traversent les documents : l’Église mystère et peuple de Dieu, la Parole, la liturgie, le dialogue</p>
+</sujet>

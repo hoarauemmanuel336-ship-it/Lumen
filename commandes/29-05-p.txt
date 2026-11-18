@@ -1,0 +1,13 @@
+<sujet cle="haut-moyen-age.papaute-francs" titre="La papauté et les Francs" desc="L’alliance entre les papes et les rois francs, et la naissance des États pontificaux.">
+<p>La menace lombarde sur Rome</p>
+<p>L’éloignement de Byzance, affaiblie et iconoclaste</p>
+<p>L’appel du pape Grégoire III à Charles Martel (739)</p>
+<p>La réponse du pape Zacharie et l’accession de Pépin le Bref à la royauté (751)</p>
+<p>Le voyage du pape Étienne II en Gaule et le sacre de Pépin à Saint-Denis (754)</p>
+<p>La signification du sacre royal, inspiré de l’onction des rois d’Israël</p>
+<p>Les expéditions de Pépin contre les Lombards</p>
+<p>La donation de Pépin (756) et la naissance des <b>États pontificaux</b></p>
+<p>La <i>Donation de Constantin</i>, faux du VIIIe siècle, et sa démonstration par Lorenzo Valla (1440)</p>
+<p>Les Fausses Décrétales (IXe siècle) et leur influence</p>
+<p>La fin du royaume lombard, conquis par Charlemagne (774)</p>
+</sujet>

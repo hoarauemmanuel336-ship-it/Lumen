@@ -1,0 +1,18 @@
+<sujet cle="moderne.lumieres" titre="Les Lumières" desc="La critique de la religion au XVIIIe siècle et les épreuves de l’Église.">
+<p>Le mot Lumières et le projet d’une raison autonome</p>
+<p>Le déisme dans la société des Lumières : sa diffusion dans les salons, les élites et les loges, et son rejet de la Révélation</p>
+<p>Voltaire et son combat contre « l’infâme »</p>
+<p>L’<i>Encyclopédie</i></p>
+<p>Rousseau et la religion civile</p>
+<p>La franc-maçonnerie et sa condamnation par Clément XII (<i>In eminenti</i>, 1738)</p>
+<p>Benoît XIV, pape érudit</p>
+<p>Les Lumières catholiques et Muratori</p>
+<p>Alphonse de Liguori et la théologie morale</p>
+<p>Les apologistes catholiques face aux philosophes</p>
+<p>L’expulsion des jésuites du Portugal par Pombal (1759)</p>
+<p>La suppression des jésuites en France (1764)</p>
+<p>L’expulsion des jésuites d’Espagne (1767)</p>
+<p>La suppression de la Compagnie de Jésus par Clément XIV (<i>Dominus ac Redemptor</i>, 1773)</p>
+<p>La survie des jésuites en Russie</p>
+<p>Le rétablissement de la Compagnie par Pie VII (1814)</p>
+</sujet>

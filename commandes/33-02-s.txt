@@ -1,0 +1,13 @@
+<sujet cle="contemporaine.pie-x" titre="Saint Pie X" desc="Le pontificat de Pie X et sa réforme de la vie chrétienne.">
+<p>Pie X (1903-1914) et sa devise : « tout restaurer dans le Christ »</p>
+<p>La communion fréquente (<i>Sacra Tridentina Synodus</i>, 1905)</p>
+<p>La communion des enfants dès l’âge de raison (<i>Quam singulari</i>, 1910)</p>
+<p>La réforme de la musique sacrée et le chant grégorien (<i>Tra le sollecitudini</i>, 1903)</p>
+<p>La loi française de séparation des Églises et de l’État (1905)</p>
+<p>La condamnation de la loi de séparation (<i>Vehementer nos</i>, 1906)</p>
+<p>La réforme de la Curie (1908)</p>
+<p>Le lancement de la codification du droit canonique</p>
+<p>Le catéchisme de saint Pie X</p>
+<p>La réforme du bréviaire (<i>Divino afflatu</i>, 1911)</p>
+<p>La canonisation de Pie X (1954)</p>
+</sujet>

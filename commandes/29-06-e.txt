@@ -1,0 +1,16 @@
+<sujet cle="haut-moyen-age.charlemagne" titre="Charlemagne et l’empire carolingien" desc="L’empire de Charlemagne, la renaissance carolingienne et l’Église impériale.">
+<p>Le couronnement impérial de Charlemagne par Léon III (25 décembre 800)</p>
+<p>La signification de l’empire restauré en Occident</p>
+<p>La conversion forcée des Saxons</p>
+<p>La protestation d’Alcuin : la foi s’enseigne, elle ne s’impose pas</p>
+<p>Alcuin et la renaissance carolingienne</p>
+<p>Les écoles épiscopales et monastiques</p>
+<p>La copie des manuscrits et la minuscule caroline</p>
+<p>L’<i>Admonitio generalis</i> (789) et la réforme du clergé</p>
+<p>L’adoption du rite romain dans l’empire</p>
+<p>L’adoptianisme espagnol (Élipand de Tolède, Félix d’Urgel) et sa condamnation</p>
+<p>Le <i>Filioque</i> au concile d’Aix-la-Chapelle (809) et la réserve de Léon III</p>
+<p>L’Église impériale : évêques et abbés au service de l’empire</p>
+<p>Louis le Pieux et la Constitution romaine (824) sur l’élection du pape</p>
+<p>Le partage de Verdun (843) et la dislocation de l’empire</p>
+</sujet>

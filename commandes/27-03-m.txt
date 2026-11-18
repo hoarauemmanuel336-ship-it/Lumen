@@ -1,0 +1,24 @@
+<sujet cle="eglise-antique.expansion" titre="La mission et l’expansion" desc="Comment l’Évangile s’est répandu dans l’Empire romain et au-delà durant les trois premiers siècles.">
+<p>La paix romaine (<i>pax romana</i>) et la sécurité des déplacements, condition de l’expansion</p>
+<p>Les routes et les voies maritimes de l’Empire, chemins de la mission</p>
+<p>La langue grecque commune (<i>koinê</i>), langue de la première mission</p>
+<p>La diaspora juive et les synagogues, premiers points d’appui de la mission</p>
+<p>La méthode missionnaire de Paul : les grandes villes, la synagogue, les maisons</p>
+<p>La venue de Pierre à Rome et son martyre sous Néron</p>
+<p>La tombe de Pierre et les fouilles sous la basilique Saint-Pierre</p>
+<p>Le martyre de Paul à Rome</p>
+<p>La tradition de Jean à Éphèse</p>
+<p>La tradition de Thomas en Inde et les chrétiens de saint Thomas</p>
+<p>Les traditions sur la mission des autres Apôtres et leur valeur historique</p>
+<p>L’Église de Rome aux deux premiers siècles</p>
+<p>Alexandrie et la diffusion en Égypte</p>
+<p>L’Afrique du Nord : Carthage et les martyrs scillitains (180)</p>
+<p>La Gaule : Lyon et Vienne au IIe siècle</p>
+<p>Édesse et les débuts du christianisme de langue syriaque</p>
+<p>L’Arménie, premier royaume chrétien au début du IVe siècle, et Grégoire l’Illuminateur</p>
+<p>Le témoignage des chrétiens, cause de l’expansion</p>
+<p>La charité envers les pauvres et les malades, signe qui frappe les païens</p>
+<p>La vie familiale chrétienne et le refus de l’abandon des enfants</p>
+<p>L’espérance de la résurrection face à la mort</p>
+<p>Le nombre des chrétiens vers l’an 300 et les estimations des historiens</p>
+</sujet>

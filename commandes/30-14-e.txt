@@ -1,0 +1,15 @@
+<sujet cle="moyen-age.constance" titre="Le concile de Constance (1414-1418)" desc="Le concile qui met fin au grand schisme et condamne Jean Hus.">
+<p>L’empereur Sigismond et la convocation par Jean XXIII de Pise (1414)</p>
+<p>Le vote par nations</p>
+<p>La fuite de Jean XXIII</p>
+<p>Le décret <i>Haec sancta</i> (1415) et le débat sur sa portée</p>
+<p>La déposition de Jean XXIII et de Benoît XIII</p>
+<p>La renonciation de Grégoire XII</p>
+<p>L’élection de Martin V (11 novembre 1417)</p>
+<p>Le décret <i>Frequens</i> sur la tenue régulière des conciles</p>
+<p>John Wyclif et la condamnation de ses thèses</p>
+<p>Jan Hus et sa doctrine de l’Église</p>
+<p>Le procès et la mort de Jan Hus sur le bûcher (1415)</p>
+<p>Jérôme de Prague</p>
+<p>Les guerres hussites</p>
+</sujet>

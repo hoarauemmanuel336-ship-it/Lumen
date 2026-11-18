@@ -1,0 +1,10 @@
+<sujet cle="moyen-age.mystique" titre="La mystique rhénane et flamande" desc="Les grands mystiques des pays du Rhin et des Flandres à la fin du Moyen Âge.">
+<p>Le contexte : les béguines et l’essor d’une spiritualité en langue vulgaire</p>
+<p>Maître Eckhart (vers 1260-1328) : le détachement et la naissance de Dieu dans l’âme</p>
+<p>La bulle <i>In agro dominico</i> (1329), qui condamne des propositions tirées d’Eckhart</p>
+<p>Jean Tauler et la prédication de la vie intérieure</p>
+<p>Henri Suso et la dévotion à la Sagesse éternelle</p>
+<p>Jean Ruusbroec et <i>L’Ornement des noces spirituelles</i></p>
+<p>La dévotion à l’humanité souffrante du Christ à la fin du Moyen Âge</p>
+<p>L’héritage de cette mystique chez les maîtres du Carmel et dans la <i>devotio moderna</i></p>
+</sujet>

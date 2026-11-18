@@ -1,0 +1,18 @@
+<sujet cle="moyen-age.reforme-gregorienne" titre="La réforme grégorienne" desc="Le grand effort des papes du XIe siècle pour libérer l’Église des pouvoirs laïcs et réformer le clergé.">
+<p>La situation de la papauté au Xe siècle, aux mains des familles romaines</p>
+<p>La <b>simonie</b> (achat des charges d’Église, d’après Simon le magicien, Actes 8:18-24)</p>
+<p>Le nicolaïsme : le mariage et le concubinage des clercs</p>
+<p>L’Église impériale ottonienne : les évêques au service de l’empereur</p>
+<p>L’investiture laïque : la crosse et l’anneau remis par le prince</p>
+<p>Henri III et le synode de Sutri (1046)</p>
+<p>Léon IX (1049-1054), pape réformateur</p>
+<p>Le décret de Nicolas II sur l’élection du pape par les cardinaux (1059)</p>
+<p>Hildebrand devenu Grégoire VII (1073-1085)</p>
+<p>Les <i>Dictatus papae</i> (1075)</p>
+<p>La querelle des investitures entre Grégoire VII et Henri IV</p>
+<p>Canossa (1077)</p>
+<p>L’exil et la mort de Grégoire VII à Salerne (1085)</p>
+<p>Le concordat de Worms (1122) : la distinction entre investiture spirituelle et investiture temporelle</p>
+<p>La liberté de l’Église (<i>libertas Ecclesiae</i>), idée maîtresse de la réforme</p>
+<p>Le Décret de Gratien (vers 1140) et la naissance du droit canonique classique</p>
+</sujet>

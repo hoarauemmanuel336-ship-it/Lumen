@@ -1,0 +1,15 @@
+<sujet cle="eglise-antique.theodose" titre="Théodose et l’Empire chrétien" desc="Comment le christianisme est devenu la religion officielle de l’Empire à la fin du IVe siècle.">
+<p>Les fils de Constantin et la faveur de Constance II pour l’arianisme</p>
+<p>Julien l’Apostat (361-363) et sa tentative de restaurer le paganisme</p>
+<p>Gratien renonce au titre de grand pontife (<i>pontifex maximus</i>)</p>
+<p>Le retrait de l’autel de la Victoire du Sénat (382)</p>
+<p>La controverse de l’autel de la Victoire entre Symmaque et Ambroise (384)</p>
+<p>L’édit de Thessalonique (380) : la foi de Nicée, religion de l’Empire</p>
+<p>Théodose et le concile de Constantinople (381)</p>
+<p>Les lois de 391-392 contre les cultes païens</p>
+<p>Le massacre de Thessalonique (390) et la pénitence imposée par Ambroise à l’empereur</p>
+<p>Le partage de l’Empire à la mort de Théodose (395)</p>
+<p>La survivance du paganisme dans les campagnes et les élites</p>
+<p>Le passage de l’Église persécutée à l’Église d’État et ses conséquences</p>
+<p>La liberté de l’acte de foi face à la contrainte publique : la question telle qu’elle se pose dès l’Antiquité</p>
+</sujet>

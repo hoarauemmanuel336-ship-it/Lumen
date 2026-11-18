@@ -1,0 +1,23 @@
+<sujet cle="conciles.nicee-1" titre="Le concile de Nicée I (325)" desc="Le premier concile œcuménique, qui proclame le Fils de même substance que le Père contre Arius.">
+<p>Arius, prêtre d’Alexandrie, et le début de la controverse vers 318</p>
+<p>La doctrine d’Arius : le Fils, première créature, « il fut un temps où il n’était pas »</p>
+<p>La <i>Thalie</i> d’Arius et la diffusion de ses idées</p>
+<p>L’évêque Alexandre d’Alexandrie et la condamnation d’Arius par le synode d’Alexandrie</p>
+<p>L’intervention de Constantin dans la controverse</p>
+<p>Ossius de Cordoue, conseiller de l’empereur</p>
+<p>Le déroulement du concile à Nicée en Bithynie (325) et le nombre traditionnel de 318 Pères</p>
+<p>Le Symbole de Nicée et ses formules : « engendré, non pas créé », « né de la substance du Père »</p>
+<p>Le terme <b>homoousios</b> (grec, « de même substance ») : sens, origine, difficultés</p>
+<p>Les anathèmes joints au Symbole</p>
+<p>Athanase, diacre d’Alexandrie au concile</p>
+<p>La règle commune pour la date de Pâques</p>
+<p>Le schisme mélétien d’Égypte et sa solution</p>
+<p>Les vingt canons du concile, dont le canon 6 sur les sièges d’Alexandrie, de Rome et d’Antioche</p>
+<p>La crise arienne après Nicée et les cinq exils d’Athanase</p>
+<p>Les partis du IVe siècle et leurs formules</p>
+<p>Les homéousiens : le Fils « semblable en substance » au Père</p>
+<p>Les homéens : le Fils « semblable » au Père, sans parler de substance</p>
+<p>Les anoméens (Aèce, Eunome) : le Fils « dissemblable » du Père</p>
+<p>Les conciles de Rimini et de Séleucie (359) et le mot de Jérôme sur le monde qui « s’étonna d’être arien »</p>
+<p>Le retour à la foi de Nicée grâce à Athanase et aux Cappadociens</p>
+</sujet>

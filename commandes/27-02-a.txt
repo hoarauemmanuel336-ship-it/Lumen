@@ -1,0 +1,15 @@
+<sujet cle="eglise-antique.assemblee" titre="L’assemblée de Jérusalem" desc="La première grande décision de l’Église : accueillir les païens sans leur imposer la Loi de Moïse.">
+<p>Le baptême du centurion Corneille par Pierre (Actes 10), première ouverture aux païens</p>
+<p>La communauté d’Antioche, où les disciples reçoivent le nom de chrétiens (Actes 11:26)</p>
+<p>La question posée : les païens convertis doivent-ils recevoir la circoncision et observer la Loi de Moïse</p>
+<p>Les deux récits de l’assemblée : Actes 15:1-35 et Galates 2:1-10</p>
+<p>La date de l’assemblée, vers 48-49</p>
+<p>L’intervention de Pierre : le salut par la grâce du Seigneur Jésus (Actes 15:7-11)</p>
+<p>Le témoignage de Paul et de Barnabé</p>
+<p>Le discours de Jacques et son appui sur Amos 9:11-12</p>
+<p>Le <b>décret apostolique</b> et ses quatre abstentions (Actes 15:29)</p>
+<p>La formule « l’Esprit Saint et nous-mêmes avons décidé » (Actes 15:28) et l’autorité qu’elle exprime</p>
+<p>L’incident d’Antioche entre Pierre et Paul (Galates 2:11-14)</p>
+<p>La portée de la décision : l’Église ne se réduit pas à un courant du judaïsme</p>
+<p>L’assemblée de Jérusalem, modèle des conciles à venir</p>
+</sujet>

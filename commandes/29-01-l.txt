@@ -1,0 +1,17 @@
+<sujet cle="haut-moyen-age.fin-empire" titre="La fin de l’Empire d’Occident" desc="L’Église face aux invasions et à la disparition de l’Empire romain en Occident.">
+<p>Les migrations des peuples germaniques dans l’Empire</p>
+<p>Le sac de Rome par Alaric (410) et son écho chez Jérôme et Augustin</p>
+<p>Le pape Léon le Grand devant Attila (452)</p>
+<p>Le sac de Rome par Genséric (455)</p>
+<p>La déposition de Romulus Augustule par Odoacre (476)</p>
+<p>L’arianisme des peuples germaniques, reçu au IVe siècle</p>
+<p>Ulfila, évêque des Goths et traducteur de la Bible en gothique</p>
+<p>Les Vandales en Afrique et la persécution des catholiques</p>
+<p>Les Ostrogoths en Italie et Théodoric</p>
+<p>Les Wisigoths en Gaule et en Espagne</p>
+<p>L’évêque, défenseur de la cité dans l’effondrement de l’administration romaine</p>
+<p>La lettre du pape Gélase Ier à l’empereur Anastase (494) et la doctrine des deux pouvoirs</p>
+<p>La reconquête de Justinien en Occident</p>
+<p>L’arrivée des Lombards en Italie (568)</p>
+<p>Le pape Grégoire le Grand, administrateur de Rome et protecteur des populations</p>
+</sujet>

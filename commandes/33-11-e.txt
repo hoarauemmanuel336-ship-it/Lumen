@@ -1,0 +1,18 @@
+<sujet cle="contemporaine.catechisme" titre="Le Catéchisme de l’Église catholique" desc="L’histoire, le plan et l’usage du Catéchisme publié en 1992.">
+<p>Le mot catéchisme (grec <i>katêchein</i>, « faire retentir, enseigner de vive voix »)</p>
+<p>Le Catéchisme romain de 1566, précédent du Catéchisme universel</p>
+<p>La demande du synode extraordinaire de 1985</p>
+<p>La commission présidée par le cardinal Ratzinger (1986)</p>
+<p>La constitution apostolique <i>Fidei depositum</i> (11 octobre 1992)</p>
+<p>L’édition typique latine (<i>Laetamur magnopere</i>, 1997)</p>
+<p>Le plan en quatre parties et sa tradition</p>
+<p>Première partie : la profession de la foi</p>
+<p>Deuxième partie : la célébration du mystère chrétien</p>
+<p>Troisième partie : la vie dans le Christ</p>
+<p>Quatrième partie : la prière chrétienne</p>
+<p>Les sources citées : Écriture, Pères, conciles, liturgie, saints</p>
+<p>L’autorité du Catéchisme : « norme sûre pour l’enseignement de la foi »</p>
+<p>Le <i>Compendium</i> du Catéchisme (2005)</p>
+<p>La révision du numéro 2267 sur la peine de mort (2018)</p>
+<p>La manière de se servir du Catéchisme : numérotation, renvois, index, résumés</p>
+</sujet>

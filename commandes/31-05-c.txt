@@ -1,0 +1,17 @@
+<sujet cle="reforme.calvin" titre="Calvin" desc="Jean Calvin, la Réforme à Genève et la diffusion du calvinisme.">
+<p>Jean Calvin (né en 1509 à Noyon) et sa conversion</p>
+<p>L’<i>Institution de la religion chrétienne</i> (1536, version française 1541)</p>
+<p>Le premier séjour à Genève, l’expulsion (1538) et Strasbourg</p>
+<p>Le retour à Genève (1541) et les <i>Ordonnances ecclésiastiques</i></p>
+<p>Les quatre ministères : pasteurs, docteurs, anciens, diacres</p>
+<p>La souveraineté de Dieu dans la théologie de Calvin</p>
+<p>La double <b>prédestination</b> selon Calvin</p>
+<p>La Cène selon Calvin : la présence spirituelle</p>
+<p>Le consistoire et la discipline à Genève</p>
+<p>L’affaire Michel Servet (1553)</p>
+<p>L’Académie de Genève (1559) et Théodore de Bèze</p>
+<p>Le calvinisme en France : les huguenots</p>
+<p>John Knox et le presbytérianisme écossais</p>
+<p>Le Catéchisme de Heidelberg (1563)</p>
+<p>Le synode de Dordrecht (1618-1619)</p>
+</sujet>

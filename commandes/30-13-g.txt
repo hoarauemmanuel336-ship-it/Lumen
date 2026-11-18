@@ -1,0 +1,14 @@
+<sujet cle="moyen-age.grand-schisme" titre="Le grand schisme d’Occident" desc="La période où deux, puis trois papes se sont disputé l’Église, de 1378 à 1417.">
+<p>L’élection d’Urbain VI (1378) dans un climat de pression</p>
+<p>L’élection de Clément VII par les mêmes cardinaux</p>
+<p>Les deux obédiences, romaine et avignonnaise, et le partage de l’Europe</p>
+<p>Catherine de Sienne, partisane d’Urbain VI</p>
+<p>Vincent Ferrier, longtemps partisan de l’obédience avignonnaise</p>
+<p>Les voies proposées pour sortir du schisme : cession, compromis, concile</p>
+<p>Benoît XIII (Pedro de Luna) et son refus de céder</p>
+<p>Le concile de Pise (1409) et l’élection d’un troisième pape</p>
+<p>Le <b>conciliarisme</b> : le concile au-dessus du pape</p>
+<p>Jean Gerson, théologien du conciliarisme</p>
+<p>Pierre d’Ailly, théologien du conciliarisme</p>
+<p>La lignée reconnue aujourd’hui comme légitime et ses raisons</p>
+</sujet>

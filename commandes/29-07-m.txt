@@ -1,0 +1,26 @@
+<sujet cle="hist.moyen-age" titre="Le monachisme bénédictin et Cluny" desc="Saint Benoît, la diffusion de sa Règle et le grand essor de Cluny.">
+<p>Benoît de Nursie (vers 480-547), Subiaco et le Mont-Cassin</p>
+<p>Le <i>Livre II des Dialogues</i> de Grégoire le Grand, source de la vie de Benoît</p>
+<p>Les sources de la <b>Règle de saint Benoît</b>, dont la <i>Règle du Maître</i></p>
+<p>L’esprit de la Règle : la mesure (<i>discretio</i>)</p>
+<p>L’office divin (<i>opus Dei</i>), au centre de la journée bénédictine</p>
+<p>La lecture des Écritures et des Pères (<i>lectio divina</i>)</p>
+<p>Le travail manuel</p>
+<p>La diffusion de la Règle en Occident</p>
+<p>Benoît d’Aniane et les conciles d’Aix-la-Chapelle (816-817)</p>
+<p>Les monastères et la copie des manuscrits</p>
+<p>Les écoles monastiques</p>
+<p>Les monastères et le défrichement des terres</p>
+<p>Le déclin des monastères aux IXe et Xe siècles : abbés laïcs, invasions</p>
+<p>La fondation de Cluny (910) par Guillaume d’Aquitaine</p>
+<p>L’<b>exemption</b> : Cluny soustrait aux pouvoirs locaux et rattaché directement au pape</p>
+<p>Odon, deuxième abbé de Cluny</p>
+<p>Maïeul de Cluny</p>
+<p>Odilon et l’institution de la commémoraison des défunts (2 novembre)</p>
+<p>Hugues de Semur et l’apogée de l’ordre clunisien</p>
+<p>L’ordre clunisien comme réseau de prieurés</p>
+<p>La liturgie clunisienne et l’abbatiale de Cluny III</p>
+<p>La Paix de Dieu : la protection des clercs, des pauvres et des biens d’Église</p>
+<p>La Trêve de Dieu : la suspension des combats à certains jours</p>
+<p>Pierre le Vénérable et le déclin de Cluny</p>
+</sujet>

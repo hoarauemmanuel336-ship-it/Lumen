@@ -1,0 +1,12 @@
+<sujet cle="reforme.guerres" titre="Les guerres de religion" desc="Les conflits armés nés de la division religieuse en Europe aux XVIe et XVIIe siècles.">
+<p>La guerre de Smalkalde (1546-1547) en Allemagne</p>
+<p>Les guerres de religion en France (1562-1598)</p>
+<p>La Saint-Barthélemy (1572)</p>
+<p>La Ligue catholique</p>
+<p>La conversion d’Henri IV (1593)</p>
+<p>L’édit de Nantes (1598)</p>
+<p>La révocation de l’édit de Nantes (1685)</p>
+<p>La révolte des Pays-Bas</p>
+<p>La guerre de Trente Ans (1618-1648)</p>
+<p>Les traités de Westphalie (1648) et la carte confessionnelle de l’Europe</p>
+</sujet>

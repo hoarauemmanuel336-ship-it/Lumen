@@ -1,0 +1,17 @@
+<sujet cle="conciles.nicee-2" titre="Le concile de Nicée II (787)" desc="Le concile qui justifie la vénération des saintes images contre les iconoclastes.">
+<p>Le mot <b>iconoclasme</b> (grec, « bris des images »)</p>
+<p>Le début de l’iconoclasme sous Léon III l’Isaurien (vers 726-730) et ses causes discutées</p>
+<p>Les arguments iconoclastes : l’interdit des images, l’impossibilité de représenter le divin</p>
+<p>Jean Damascène et ses <i>Discours</i> pour la défense des images</p>
+<p>Le concile iconoclaste de Hiéreia (754) sous Constantin V</p>
+<p>La persécution des moines iconophiles</p>
+<p>L’impératrice Irène et le patriarche Taraise</p>
+<p>Le pape Hadrien Ier et ses légats</p>
+<p>La première tentative dispersée par l’armée (786) et la réunion à Nicée (787)</p>
+<p>La distinction entre <b>vénération</b> (grec <i>proskynêsis</i>) et adoration (grec <i>latreia</i>)</p>
+<p>« L’honneur rendu à l’image passe à son prototype » (Basile de Césarée)</p>
+<p>Le fondement christologique des images : l’Incarnation rend Dieu visible</p>
+<p>Le second iconoclasme (815-843)</p>
+<p>Le Triomphe de l’orthodoxie (843) et la fête du dimanche de l’orthodoxie</p>
+<p>La réception difficile en Occident : les <i>Livres carolins</i> et le concile de Francfort (794)</p>
+</sujet>

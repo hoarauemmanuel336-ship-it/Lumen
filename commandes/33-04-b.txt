@@ -1,0 +1,20 @@
+<sujet cle="contemporaine.benoit-xv-pie-xi" titre="Benoît XV et Pie XI" desc="Les papes de la Première Guerre mondiale et de l’entre-deux-guerres face aux idéologies.">
+<p>Benoît XV (1914-1922) et la neutralité pendant la guerre</p>
+<p>La note de paix du 1er août 1917 et le « massacre inutile »</p>
+<p>L’œuvre humanitaire du Saint-Siège pendant la guerre</p>
+<p>Le Code de droit canonique de 1917</p>
+<p>La lettre <i>Maximum illud</i> (1919) sur les missions et le clergé indigène</p>
+<p>Pie XI (1922-1939) et sa devise : « la paix du Christ dans le règne du Christ »</p>
+<p>L’encyclique <i>Quas primas</i> (1925) et la fête du Christ-Roi</p>
+<p>L’Action catholique</p>
+<p>Pie XI et les missions : le sacre des premiers évêques chinois (1926)</p>
+<p>La condamnation de l’Action française (1926)</p>
+<p>L’encyclique <i>Casti connubii</i> (1930) sur le mariage</p>
+<p>Les accords du Latran (11 février 1929) et l’État de la Cité du Vatican</p>
+<p>L’encyclique <i>Non abbiamo bisogno</i> (1931) contre le fascisme</p>
+<p>La persécution au Mexique et les Cristeros</p>
+<p>Les martyrs de la guerre d’Espagne</p>
+<p>Le concordat avec le Reich (1933)</p>
+<p>L’encyclique <i>Mit brennender Sorge</i> (1937) contre le nazisme</p>
+<p>L’encyclique <i>Divini Redemptoris</i> (1937) contre le communisme athée</p>
+</sujet>

@@ -1,0 +1,18 @@
+<sujet cle="conciles.constantinople-3" titre="Le concile de Constantinople III (680-681)" desc="Le concile qui affirme dans le Christ deux volontés et deux opérations, divine et humaine.">
+<p>Le <b>monoénergisme</b> (« une seule opération ») et le patriarche Serge de Constantinople</p>
+<p>L’empereur Héraclius et la recherche d’union avec les monophysites</p>
+<p>Sophrone de Jérusalem, premier opposant</p>
+<p>La lettre du pape Honorius Ier à Serge</p>
+<p>L’<i>Ecthèse</i> d’Héraclius (638) et le <b>monothélisme</b> (« une seule volonté »)</p>
+<p>Maxime le Confesseur et sa défense des deux volontés</p>
+<p>Le <i>Type</i> de Constant II (648), qui interdit la discussion</p>
+<p>Le concile du Latran (649) réuni par le pape Martin Ier</p>
+<p>Le procès, l’exil et la mort de Martin Ier (655)</p>
+<p>Le procès, la mutilation et la mort de Maxime (662)</p>
+<p>La convocation par Constantin IV et la lettre dogmatique du pape Agathon</p>
+<p>La définition : deux volontés naturelles et deux opérations naturelles dans le Christ</p>
+<p>La volonté humaine du Christ, distincte de la volonté divine et soumise à elle</p>
+<p>La condamnation d’Honorius et sa confirmation par Léon II</p>
+<p>La question d’Honorius dans les débats sur l’infaillibilité pontificale</p>
+<p>Le concile <i>in Trullo</i> ou Quinisexte (692) : ses canons disciplinaires et son statut</p>
+</sujet>

@@ -1,0 +1,19 @@
+<sujet cle="reforme.trente-doctrine" titre="Les décrets doctrinaux de Trente" desc="Ce que le concile de Trente a défini sur la foi face aux doctrines protestantes.">
+<p>Le décret sur l’Écriture et les traditions et la liste des livres canoniques (session IV, 1546)</p>
+<p>La Vulgate déclarée authentique (session IV)</p>
+<p>Le décret sur le péché originel (session V, 1546)</p>
+<p>Le décret sur la <b>justification</b> (session VI, 1547) : seize chapitres et trente-trois canons</p>
+<p>Les sacrements en général et le septénaire (session VII, 1547)</p>
+<p>Le baptême (session VII)</p>
+<p>La confirmation (session VII)</p>
+<p>L’eucharistie : présence réelle et transsubstantiation (session XIII, 1551)</p>
+<p>La pénitence (session XIV, 1551)</p>
+<p>L’extrême-onction (session XIV)</p>
+<p>La communion sous les deux espèces (session XXI, 1562)</p>
+<p>Le sacrifice de la messe (session XXII, 1562)</p>
+<p>Le sacrement de l’ordre (session XXIII, 1563)</p>
+<p>Le sacrement du mariage (session XXIV, 1563)</p>
+<p>Le purgatoire (session XXV, 1563)</p>
+<p>L’invocation des saints, les reliques et les images (session XXV)</p>
+<p>Les indulgences (session XXV)</p>
+</sujet>

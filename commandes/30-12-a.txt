@@ -1,0 +1,16 @@
+<sujet cle="moyen-age.avignon" titre="La papauté d’Avignon" desc="Le séjour des papes à Avignon au XIVe siècle et le retour à Rome.">
+<p>L’installation de Clément V à Avignon (1309) et ses raisons</p>
+<p>Les sept papes d’Avignon, de Clément V à Grégoire XI</p>
+<p>La centralisation administrative et la fiscalité pontificale</p>
+<p>Jean XXII et la controverse sur la vision béatifique</p>
+<p>La constitution <i>Benedictus Deus</i> de Benoît XII (1336)</p>
+<p>Le palais des papes</p>
+<p>Clément VI, l’achat d’Avignon (1348) et la bulle <i>Unigenitus</i> (1343) sur le trésor de l’Église</p>
+<p>La peste noire (1348) et la vie de l’Église</p>
+<p>Innocent VI et la reconquête des États pontificaux par le cardinal Albornoz</p>
+<p>Urbain V et son retour temporaire à Rome (1367-1370)</p>
+<p>La critique de la « captivité de Babylone » (Pétrarque)</p>
+<p>Brigitte de Suède et son appel au retour</p>
+<p>Catherine de Sienne et son action auprès de Grégoire XI</p>
+<p>Le retour de Grégoire XI à Rome (1377)</p>
+</sujet>

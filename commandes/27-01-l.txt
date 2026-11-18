@@ -1,0 +1,18 @@
+<sujet cle="hist.origines" titre="La communauté de Jérusalem" desc="Les débuts de l’Église à Jérusalem, de la Pentecôte à la destruction du Temple.">
+<p>La Pentecôte comme naissance publique de l’Église (Actes 2:1-13)</p>
+<p>Le premier discours de Pierre et les premiers baptêmes (Actes 2:14-41)</p>
+<p>Le portrait de la première communauté : enseignement des Apôtres, communion fraternelle, fraction du pain et prières (Actes 2:42-47)</p>
+<p>La mise en commun des biens (Actes 4:32-37) et son sens</p>
+<p>Pierre à la tête de la communauté et le rôle des Douze</p>
+<p>Les premières oppositions du Sanhédrin et la prédication au Temple (Actes 4 et 5)</p>
+<p>Les Hellénistes et les Hébreux : deux groupes dans la communauté</p>
+<p>L’institution des Sept (Actes 6:1-7)</p>
+<p>Étienne, premier martyr (Actes 7)</p>
+<p>La dispersion qui suit sa mort et l’annonce de l’Évangile en Samarie (Actes 8)</p>
+<p>La persécution d’Hérode Agrippa Ier et le martyre de Jacques, fils de Zébédée, vers 44 (Actes 12:1-2)</p>
+<p>Jacques, « frère du Seigneur », chef de l’Église de Jérusalem, et sa mort vers 62</p>
+<p>La fidélité des premiers chrétiens au Temple et aux usages juifs</p>
+<p>La destruction de Jérusalem et du Temple en 70 et le départ des chrétiens vers Pella selon Eusèbe</p>
+<p>La séparation progressive de l’Église et de la synagogue</p>
+<p>Les groupes judéo-chrétiens après 70 (nazaréens, ébionites)</p>
+</sujet>

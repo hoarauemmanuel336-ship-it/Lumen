@@ -1,0 +1,20 @@
+<sujet cle="moderne.gallicanisme" titre="Le gallicanisme et le joséphisme" desc="Les doctrines qui voulaient limiter l’autorité du pape au profit des Églises nationales et des princes.">
+<p>Le mot <b>gallicanisme</b> et ses racines médiévales</p>
+<p>Le gallicanisme royal : le roi indépendant du pape</p>
+<p>Le gallicanisme épiscopal : les droits des évêques face à Rome</p>
+<p>Le gallicanisme parlementaire : les juges royaux contre la juridiction de l’Église</p>
+<p>L’affaire de la régale sous Louis XIV</p>
+<p>L’assemblée du clergé de 1682</p>
+<p>Bossuet, rédacteur de la Déclaration</p>
+<p>La Déclaration des quatre articles (1682)</p>
+<p>Premier article : l’indépendance des rois dans l’ordre temporel</p>
+<p>Deuxième article : l’autorité des décrets de Constance sur le concile</p>
+<p>Troisième article : l’usage du pouvoir pontifical réglé par les canons et les coutumes gallicanes</p>
+<p>Quatrième article : le jugement du pape en matière de foi non irréformable sans le consentement de l’Église</p>
+<p>La condamnation romaine et le retrait de 1693</p>
+<p>Le fébronianisme (Hontheim, 1763)</p>
+<p>Le <b>joséphisme</b> : Joseph II et l’Église d’État</p>
+<p>La suppression des monastères contemplatifs par Joseph II</p>
+<p>Les séminaires généraux contrôlés par l’État</p>
+<p>Le voyage de Pie VI à Vienne (1782)</p>
+</sujet>

@@ -1,0 +1,10 @@
+<sujet cle="reforme.zwingli" titre="Zwingli" desc="La Réforme à Zurich et sa doctrine de la Cène.">
+<p>Ulrich Zwingli, curé de Zurich (1519)</p>
+<p>Les 67 thèses et la dispute de Zurich (1523)</p>
+<p>La réforme zurichoise : suppression de la messe et des images</p>
+<p>La Cène comme mémorial : l’interprétation symbolique de « ceci est mon corps »</p>
+<p>Le colloque de Marbourg (1529) et la rupture avec Luther</p>
+<p>La mort de Zwingli à la bataille de Kappel (1531)</p>
+<p>Henri Bullinger, successeur de Zwingli</p>
+<p>L’accord de Zurich avec Calvin sur la Cène (<i>Consensus Tigurinus</i>, 1549)</p>
+</sujet>

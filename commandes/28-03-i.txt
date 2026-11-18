@@ -1,0 +1,20 @@
+<sujet cle="conciles.constantinople-1" titre="Le concile de Constantinople I (381)" desc="Le concile qui affirme la divinité du Saint-Esprit et complète le Symbole de Nicée.">
+<p>Les pneumatomaques (grec, « adversaires de l’Esprit »), dits aussi macédoniens</p>
+<p>Apollinaire de Laodicée et sa doctrine : le Verbe tenant lieu d’âme intelligente dans le Christ</p>
+<p>La théologie de l’Esprit Saint chez Athanase (<i>Lettres à Sérapion</i>)</p>
+<p>La théologie de l’Esprit Saint chez Basile (<i>Traité du Saint-Esprit</i>)</p>
+<p>La convocation par Théodose et un concile composé d’évêques d’Orient</p>
+<p>La présidence de Mélèce d’Antioche et sa mort pendant le concile</p>
+<p>La présidence de Grégoire de Nazianze et sa démission</p>
+<p>Nectaire, élu évêque de Constantinople, dernier président</p>
+<p>Le Symbole de Nicée-Constantinople et ses ajouts sur l’Esprit : « Seigneur et qui donne la vie », « adoré et glorifié avec le Père et le Fils »</p>
+<p>Pourquoi le concile affirme la divinité de l’Esprit sans employer le mot <i>homoousios</i></p>
+<p>Les ajouts du Symbole sur le Fils : « son règne n’aura pas de fin »</p>
+<p>Les ajouts du Symbole sur l’Église, le baptême et la résurrection</p>
+<p>La condamnation des ariens, des pneumatomaques et des apollinaristes (canon 1)</p>
+<p>Le canon 3 : Constantinople, « nouvelle Rome », au second rang après Rome</p>
+<p>Le refus romain du canon 3</p>
+<p>Le synode romain de Damase (382) et sa doctrine sur l’Esprit</p>
+<p>La reconnaissance tardive de ce concile comme œcuménique, au concile de Chalcédoine (451)</p>
+<p>L’ajout ultérieur du <i>Filioque</i> au Symbole en Occident (Tolède, 589)</p>
+</sujet>

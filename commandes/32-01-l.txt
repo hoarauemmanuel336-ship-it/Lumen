@@ -1,0 +1,25 @@
+<sujet cle="hist.moderne" titre="L’élan missionnaire" desc="L’annonce de l’Évangile dans les Amériques, en Asie et en Afrique à partir du XVIe siècle.">
+<p>Les grandes découvertes et la bulle <i>Inter caetera</i> (1493)</p>
+<p>Le traité de Tordesillas (1494)</p>
+<p>Le patronage royal (portugais <i>padroado</i>, espagnol <i>patronato</i>)</p>
+<p>La conquête de l’Amérique et l’évangélisation</p>
+<p>Le sermon d’Antonio de Montesinos (1511)</p>
+<p>Bartolomé de Las Casas, défenseur des Indiens</p>
+<p>Francisco de Vitoria et le droit des peuples</p>
+<p>La bulle <i>Sublimis Deus</i> de Paul III (1537)</p>
+<p>La controverse de Valladolid (1550-1551)</p>
+<p>Notre-Dame de Guadalupe (1531) et son rôle dans l’évangélisation du Mexique</p>
+<p>Les réductions jésuites du Paraguay</p>
+<p>François Xavier en Inde et au Japon</p>
+<p>Les martyrs de Nagasaki (1597) et Paul Miki</p>
+<p>Turibe de Mogrovejo, archevêque de Lima, et le troisième concile de Lima (1582-1583)</p>
+<p>Rose de Lima, première sainte du Nouveau Monde</p>
+<p>La congrégation de la Propagande (<i>Propaganda fide</i>, 1622)</p>
+<p>Les Missions étrangères de Paris</p>
+<p>La Nouvelle-France et les martyrs jésuites</p>
+<p>Marie de l’Incarnation et les ursulines de Québec</p>
+<p>François de Laval, premier évêque de Québec</p>
+<p>Le royaume du Kongo et le roi Afonso Ier</p>
+<p>Pierre Claver et les esclaves</p>
+<p>La mission aux Philippines</p>
+</sujet>

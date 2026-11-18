@@ -1,0 +1,19 @@
+<sujet cle="moyen-age.bale-florence" titre="Le concile de Bâle-Ferrare-Florence" desc="Le dernier grand concile médiéval, la crise conciliaire et l’union éphémère avec les Grecs.">
+<p>L’ouverture du concile à Bâle (1431) et le pape Eugène IV</p>
+<p>Le conflit entre le concile et le pape</p>
+<p>La Pragmatique Sanction de Bourges (1438)</p>
+<p>Le transfert du concile à Ferrare (1438) puis à Florence (1439)</p>
+<p>La délégation grecque : l’empereur Jean VIII Paléologue et le patriarche Joseph II</p>
+<p>Bessarion de Nicée, artisan de l’union</p>
+<p>La bulle d’union avec les Grecs <i>Laetentur caeli</i> (1439)</p>
+<p>L’accord sur le <i>Filioque</i></p>
+<p>L’accord sur le purgatoire</p>
+<p>L’accord sur le pain azyme et le pain levé</p>
+<p>L’accord sur la primauté du pape</p>
+<p>Le refus de Marc d’Éphèse et le rejet de l’union en Orient</p>
+<p>Le décret pour les Arméniens (<i>Exsultate Deo</i>, 1439) et sa doctrine des sacrements</p>
+<p>Le décret pour les Coptes (<i>Cantate Domino</i>, 1442)</p>
+<p>La déposition d’Eugène IV par Bâle et l’antipape Félix V</p>
+<p>La chute de Constantinople (1453)</p>
+<p>La bulle <i>Execrabilis</i> de Pie II (1460) contre l’appel du pape au concile</p>
+</sujet>

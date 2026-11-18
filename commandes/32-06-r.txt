@@ -1,0 +1,19 @@
+<sujet cle="moderne.revolution" titre="La Révolution française" desc="L’Église de France dans la tourmente révolutionnaire, puis le Concordat.">
+<p>Le clergé aux États généraux (1789)</p>
+<p>L’abolition des dîmes et la mise des biens du clergé à la disposition de la Nation (1789)</p>
+<p>La suppression des vœux monastiques (1790)</p>
+<p>La Constitution civile du clergé (12 juillet 1790)</p>
+<p>Le serment : prêtres jureurs et prêtres réfractaires</p>
+<p>La condamnation par Pie VI (<i>Quod aliquantum</i>, 1791)</p>
+<p>Les massacres de septembre 1792 et les martyrs des Carmes</p>
+<p>La déchristianisation (1793-1794) et le calendrier républicain</p>
+<p>Le culte de la Raison (1793)</p>
+<p>Le culte de l’Être suprême (1794)</p>
+<p>La guerre de Vendée</p>
+<p>Les carmélites de Compiègne (1794)</p>
+<p>Pie VI mort captif à Valence (1799)</p>
+<p>Le Concordat de 1801 entre Pie VII et Bonaparte</p>
+<p>Les Articles organiques (1802)</p>
+<p>Le sacre de Napoléon (1804)</p>
+<p>La captivité de Pie VII (1809-1814)</p>
+</sujet>

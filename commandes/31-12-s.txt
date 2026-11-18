@@ -1,0 +1,15 @@
+<sujet cle="reforme.saints" titre="Les saints de la Réforme catholique" desc="Les grandes figures de sainteté qui ont porté le renouveau de l’Église après la Réforme.">
+<p>Ignace de Loyola, fondateur de la Compagnie de Jésus</p>
+<p>Charles Borromée, archevêque de Milan, modèle de l’évêque tridentin</p>
+<p>Philippe Néri, apôtre de Rome</p>
+<p>Thérèse d’Avila, réformatrice du Carmel</p>
+<p>Jean de la Croix, réformateur des carmes</p>
+<p>Pierre Canisius, apôtre de l’Allemagne et ses catéchismes</p>
+<p>Robert Bellarmin et ses <i>Controverses</i></p>
+<p>Jean de Dieu et les Frères hospitaliers</p>
+<p>Camille de Lellis et le soin des malades</p>
+<p>François de Sales, évêque de Genève et la mission du Chablais</p>
+<p>Jeanne de Chantal et la Visitation</p>
+<p>Vincent de Paul et la charité</p>
+<p>Louise de Marillac et les Filles de la Charité</p>
+</sujet>

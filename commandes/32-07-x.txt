@@ -1,0 +1,18 @@
+<sujet cle="moderne.renouveau" titre="Le renouveau du XIXe siècle" desc="La renaissance de la vie catholique après la Révolution.">
+<p>Chateaubriand et le <i>Génie du christianisme</i> (1802)</p>
+<p>La floraison des congrégations religieuses, surtout féminines</p>
+<p>Le curé d’Ars, Jean-Marie Vianney</p>
+<p>Lacordaire, les conférences de Notre-Dame et le rétablissement des dominicains en France</p>
+<p>Dom Guéranger, Solesmes (1833) et le renouveau liturgique</p>
+<p>Frédéric Ozanam et la Société de Saint-Vincent-de-Paul (1833)</p>
+<p>Pauline Jaricot et l’Œuvre de la Propagation de la foi (1822)</p>
+<p>Les nouvelles missions en Afrique et en Océanie</p>
+<p>Le cardinal Lavigerie et les Pères blancs (1868)</p>
+<p>Jean Bosco et les salésiens</p>
+<p>La conversion de Newman (1845) et le catholicisme anglais</p>
+<p>Lourdes (1858) et l’essor des pèlerinages</p>
+<p>Les débuts du catholicisme social : Ketteler</p>
+<p>La loi Falloux (1850) et l’enseignement catholique en France</p>
+<p>Le culte du Sacré-Cœur et le vœu national de Montmartre (1873)</p>
+<p>La théologie catholique du XIXe siècle hors de France : l’école de Tübingen (Johann Adam Möhler), Matthias Joseph Scheeben, le Collège romain (Giovanni Perrone, Johann Baptist Franzelin)</p>
+</sujet>

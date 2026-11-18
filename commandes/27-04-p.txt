@@ -1,0 +1,22 @@
+<sujet cle="eglise-antique.persecutions" titre="Les persécutions" desc="Pourquoi et comment l’Empire romain a persécuté les chrétiens, de Néron à Dioclétien.">
+<p>Le mot persécution et la situation juridique des chrétiens dans l’Empire</p>
+<p>Le refus du culte des dieux et de l’empereur, raison première des persécutions</p>
+<p>L’accusation d’athéisme portée contre les chrétiens</p>
+<p>Les calomnies populaires contre les chrétiens (repas cannibales, incestes) et leur origine</p>
+<p>Néron et l’incendie de Rome (64) d’après Tacite</p>
+<p>La persécution sous Domitien (vers 95)</p>
+<p>Le rescrit de Trajan à Pline le Jeune (vers 112) : ne pas rechercher les chrétiens, punir ceux qui sont dénoncés et persistent</p>
+<p>Les persécutions sous Marc Aurèle et les martyrs de Lyon (177)</p>
+<p>La persécution sous Septime Sévère (vers 202)</p>
+<p>La persécution sous Maximin le Thrace (235) et la déportation des chefs de l’Église de Rome</p>
+<p>Dèce (250) : l’édit de sacrifice universel et les certificats (<i>libelli</i>)</p>
+<p>La question des <b>lapsi</b> (latin, « tombés ») et de leur réconciliation</p>
+<p>Le schisme de Novatien (251) et son refus de réconcilier les <i>lapsi</i></p>
+<p>Valérien (257-258) : les édits contre le clergé et les martyres de Cyprien, de Sixte II et de Laurent</p>
+<p>La « petite paix de l’Église » sous Gallien (260)</p>
+<p>La Grande Persécution de Dioclétien (303-311) et ses quatre édits</p>
+<p>L’édit de tolérance de Galère (311)</p>
+<p>Les Actes des martyrs, source sur les persécutions</p>
+<p>L’<i>Histoire ecclésiastique</i> d’Eusèbe de Césarée, source sur les persécutions</p>
+<p>Lactance et son traité <i>De la mort des persécuteurs</i></p>
+</sujet>

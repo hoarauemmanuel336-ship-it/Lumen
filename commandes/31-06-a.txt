@@ -1,0 +1,20 @@
+<sujet cle="reforme.anglicanisme" titre="L’anglicanisme" desc="La séparation de l’Église d’Angleterre d’avec Rome et la formation de l’anglicanisme.">
+<p>Henri VIII, « défenseur de la foi » (1521)</p>
+<p>La demande d’annulation du mariage avec Catherine d’Aragon</p>
+<p>L’Acte de suprématie (1534) : le roi chef suprême de l’Église d’Angleterre</p>
+<p>John Fisher, évêque de Rochester, martyr (1535)</p>
+<p>Thomas More, chancelier d’Angleterre, martyr (1535)</p>
+<p>La dissolution des monastères</p>
+<p>Thomas Cranmer, archevêque de Cantorbéry</p>
+<p>Édouard VI et le <i>Book of Common Prayer</i> (1549, 1552)</p>
+<p>Marie Tudor, le cardinal Pole et la restauration catholique</p>
+<p>Élisabeth Ire et l’Acte d’uniformité (1559)</p>
+<p>Les Trente-Neuf Articles</p>
+<p>L’excommunication d’Élisabeth (<i>Regnans in excelsis</i>, 1570)</p>
+<p>Les martyrs catholiques anglais sous Élisabeth et ses successeurs</p>
+<p>Edmond Campion, jésuite martyr (1581)</p>
+<p>La <i>via media</i> anglicane</p>
+<p>Le mouvement d’Oxford au XIXe siècle</p>
+<p>La lettre <i>Apostolicae curae</i> de Léon XIII sur les ordinations anglicanes (1896)</p>
+<p>La constitution <i>Anglicanorum coetibus</i> (2009) et les ordinariats personnels</p>
+</sujet>

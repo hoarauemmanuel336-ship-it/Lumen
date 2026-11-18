@@ -1,0 +1,17 @@
+<sujet cle="haut-moyen-age.conversion-nord-est" titre="La conversion des Slaves et des peuples du Nord" desc="Comment l’Europe centrale, l’Europe orientale et la Scandinavie ont reçu l’Évangile.">
+<p>Cyrille et Méthode, apôtres des Slaves, et la mission de Grande-Moravie (863)</p>
+<p>L’alphabet glagolitique, créé pour écrire la langue slave</p>
+<p>La liturgie en langue slave et son approbation par Rome</p>
+<p>Les Bulgares : le baptême du khan Boris Ier (vers 864)</p>
+<p>La Bohême : saint Venceslas</p>
+<p>La Pologne : le baptême de Mieszko Ier (966)</p>
+<p>La Rus’ de Kiev : le baptême de Vladimir (988)</p>
+<p>La Hongrie : saint Étienne, roi couronné vers l’an 1000</p>
+<p>Anschaire, apôtre du Nord, au IXe siècle</p>
+<p>Le Danemark : Harald à la Dent bleue</p>
+<p>La Norvège : saint Olaf (mort en 1030)</p>
+<p>La Suède et sa christianisation lente</p>
+<p>L’Islande et l’adoption du christianisme par l’Althing (vers l’an 1000)</p>
+<p>La Lituanie, dernier pays d’Europe baptisé (1387)</p>
+<p>Le partage de l’Europe slave entre rite latin et rite byzantin</p>
+</sujet>

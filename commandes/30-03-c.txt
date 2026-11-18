@@ -1,0 +1,26 @@
+<sujet cle="moyen-age.croisades" titre="Les croisades" desc="Les expéditions armées vers la Terre sainte, leurs motifs, leur déroulement et leur jugement.">
+<p>Le mot croisade, apparu plus tard que les expéditions</p>
+<p>Le contexte : les Turcs seldjoukides, la défaite byzantine de Manzikert (1071) et l’appel d’Alexis Comnène</p>
+<p>L’appel d’Urbain II à Clermont (1095)</p>
+<p>La croisade comme pèlerinage armé vers le tombeau du Christ</p>
+<p>Le vœu de croisade et la croix cousue sur le vêtement</p>
+<p>L’indulgence de croisade</p>
+<p>La croisade populaire de Pierre l’Ermite et les massacres de Juifs en Rhénanie (1096)</p>
+<p>La première croisade et la prise de Jérusalem (1099)</p>
+<p>Les États latins d’Orient</p>
+<p>Les Templiers</p>
+<p>Les Hospitaliers de Saint-Jean</p>
+<p>Les chevaliers Teutoniques</p>
+<p>La deuxième croisade (1147-1149), prêchée par Bernard de Clairvaux</p>
+<p>Saladin, la bataille de Hattin et la perte de Jérusalem (1187)</p>
+<p>La troisième croisade (1189-1192)</p>
+<p>La quatrième croisade et le sac de Constantinople (1204)</p>
+<p>La cinquième croisade et le siège de Damiette (1217-1221)</p>
+<p>La croisade de Frédéric II et la restitution négociée de Jérusalem (1229)</p>
+<p>Les croisades de saint Louis (1248-1254 et 1270)</p>
+<p>La chute d’Acre (1291) et la fin des États latins</p>
+<p>François d’Assise devant le sultan al-Kamil (1219)</p>
+<p>Les croisades hors de la Terre sainte : l’Espagne et la Baltique</p>
+<p>Le jugement historique sur les croisades</p>
+<p>La demande de pardon de Jean-Paul II lors du Jubilé (2000)</p>
+</sujet>

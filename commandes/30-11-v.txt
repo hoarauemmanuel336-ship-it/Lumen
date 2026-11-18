@@ -1,0 +1,16 @@
+<sujet cle="moyen-age.lyon-vienne" titre="Les conciles de Lyon et de Vienne" desc="Les trois conciles œcuméniques du XIIIe et du début du XIVe siècle.">
+<p>Lyon I (1245) : Innocent IV et la déposition de Frédéric II</p>
+<p>Lyon II (1274) : Grégoire X et le projet d’union avec les Grecs</p>
+<p>L’empereur Michel VIII Paléologue et ses motifs</p>
+<p>La profession de foi sur l’Esprit qui procède du Père et du Fils « comme d’un seul principe »</p>
+<p>La constitution <i>Ubi periculum</i> et l’institution du conclave</p>
+<p>La mort de Thomas d’Aquin en chemin vers le concile</p>
+<p>La mort de Bonaventure pendant le concile</p>
+<p>L’échec de l’union en Orient</p>
+<p>Vienne (1311-1312) : Clément V sous la pression de Philippe le Bel</p>
+<p>Le procès des Templiers</p>
+<p>La suppression de l’ordre du Temple (<i>Vox in excelso</i>, 1312)</p>
+<p>La définition de l’âme raisonnable, forme du corps par elle-même et essentiellement</p>
+<p>La condamnation des erreurs attribuées aux béguines et aux bégards</p>
+<p>La création de chaires de langues orientales dans les universités</p>
+</sujet>

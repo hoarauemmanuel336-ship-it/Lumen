@@ -1,0 +1,18 @@
+<sujet cle="eglise-antique.martyrs" titre="Les martyrs" desc="Le témoignage des martyrs, ce que l’Église en a compris et comment elle les a honorés.">
+<p>Le mot martyr (grec <i>martys</i>, « témoin »)</p>
+<p>Le martyre dans le Nouveau Testament, à la suite du Christ</p>
+<p>Le martyre comme imitation du Christ dans les lettres d’Ignace d’Antioche</p>
+<p>Le <i>Martyre de Polycarpe</i> (vers 155), premier récit de martyre</p>
+<p>Les actes des martyrs, récits fondés sur les procès-verbaux d’interrogatoire</p>
+<p>Les passions, récits plus amples, et la valeur historique des deux genres</p>
+<p>Les martyrs de Lyon et Blandine (177)</p>
+<p>La <i>Passion de Perpétue et Félicité</i> (Carthage, 203)</p>
+<p>Laurent de Rome, diacre martyr (258)</p>
+<p>Les confesseurs : ceux qui ont souffert pour la foi sans mourir</p>
+<p>Le refus du martyre provoqué et la discipline de l’Église sur la fuite</p>
+<p>Le martyre comme baptême de sang</p>
+<p>Le culte des martyrs : le jour de leur mort fêté comme naissance au ciel (<i>dies natalis</i>)</p>
+<p>Les tombeaux des martyrs, l’autel et les reliques</p>
+<p>Les catacombes : ce qu’elles étaient (cimetières) et ce qu’elles n’étaient pas (refuges)</p>
+<p>La parole de Tertullien : « le sang des chrétiens est une semence »</p>
+</sujet>

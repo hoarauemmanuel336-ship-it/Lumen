@@ -1,0 +1,18 @@
+<sujet cle="reforme.causes" titre="Les causes de la Réforme" desc="Pourquoi l’Église d’Occident s’est divisée au XVIe siècle.">
+<p>Le besoin de réforme exprimé depuis le XIVe siècle (« réforme dans la tête et dans les membres »)</p>
+<p>Les papes de la Renaissance et la mondanité de la cour romaine</p>
+<p>Le cumul des bénéfices ecclésiastiques</p>
+<p>L’absence des évêques de leur diocèse</p>
+<p>L’ignorance d’une partie du clergé</p>
+<p>La piété inquiète de la fin du Moyen Âge : peur de la mort, recherche du salut</p>
+<p>La <i>devotio moderna</i> et les Frères de la vie commune (Gérard Groote)</p>
+<p>L’humanisme chrétien et le retour aux textes</p>
+<p>Érasme, l’<i>Éloge de la folie</i> et son édition du Nouveau Testament grec (1516)</p>
+<p>L’imprimerie</p>
+<p>L’héritage nominaliste (Gabriel Biel) dans la formation de Luther</p>
+<p>Les précurseurs revendiqués par les réformateurs</p>
+<p>La prédication des indulgences pour la basilique Saint-Pierre, Albert de Brandebourg et Jean Tetzel</p>
+<p>Les princes allemands et leur intérêt à la rupture</p>
+<p>Le sentiment national allemand face à Rome</p>
+<p>L’échec des tentatives de réforme, dont celle de Latran V</p>
+</sujet>

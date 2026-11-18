@@ -1,0 +1,16 @@
+<sujet cle="moyen-age.inquisition" titre="L’Inquisition médiévale" desc="Ce qu’était l’Inquisition au Moyen Âge, comment elle fonctionnait et comment la juger.">
+<p>Le mot inquisition (latin <i>inquisitio</i>, « enquête »)</p>
+<p>La procédure inquisitoire, distincte de la procédure accusatoire</p>
+<p>L’inquisition épiscopale et la décrétale <i>Ad abolendam</i> (1184)</p>
+<p>Les mesures du quatrième concile du Latran contre l’hérésie</p>
+<p>Grégoire IX confie l’enquête aux dominicains et aux franciscains (1231-1233)</p>
+<p>Le déroulement d’une enquête : le temps de grâce, les témoins, l’interrogatoire</p>
+<p>Les peines : pénitences, pèlerinages, prison, remise au bras séculier</p>
+<p>L’autorisation de la torture par Innocent IV (<i>Ad extirpanda</i>, 1252)</p>
+<p>Les manuels d’inquisiteurs et Bernard Gui</p>
+<p>Le procès de Jeanne d’Arc (1431) et sa réhabilitation (1456)</p>
+<p>Les chiffres établis par les historiens et la légende noire</p>
+<p>L’Inquisition espagnole (1478), institution de la Couronne</p>
+<p>L’Inquisition romaine (1542), institution distincte de l’Inquisition médiévale</p>
+<p>La demande de pardon du Jubilé (12 mars 2000)</p>
+</sujet>

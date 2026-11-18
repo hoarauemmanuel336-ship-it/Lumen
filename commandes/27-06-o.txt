@@ -1,0 +1,21 @@
+<sujet cle="eglise-antique.organisation" titre="L’organisation des communautés" desc="Comment les premières Églises étaient dirigées, reliées entre elles et réunies pour le culte.">
+<p>Les ministères dans le Nouveau Testament : un vocabulaire encore souple</p>
+<p>Les épiscopes (grec <i>episkopos</i>, « surveillant »)</p>
+<p>Les presbytres (grec <i>presbyteros</i>, « ancien »)</p>
+<p>Les diacres (grec <i>diakonos</i>, « serviteur »)</p>
+<p>Les apôtres, prophètes et docteurs itinérants dans la <i>Didachè</i></p>
+<p>L’évêque unique entouré du presbyterium et des diacres chez Ignace d’Antioche</p>
+<p>La <b>succession apostolique</b> chez Clément de Rome et les listes épiscopales d’Irénée</p>
+<p>La place de l’Église de Rome dans les premiers siècles (lettre de Clément aux Corinthiens, Irénée)</p>
+<p>La querelle de la date de Pâques et l’intervention du pape Victor Ier (vers 190)</p>
+<p>Les synodes régionaux des IIe et IIIe siècles</p>
+<p>Les métropoles et les provinces ecclésiastiques</p>
+<p>Les grands sièges des premiers siècles : Rome, Alexandrie, Antioche</p>
+<p>La montée de Constantinople et de Jérusalem et l’idée de pentarchie, formée aux Ve et VIe siècles</p>
+<p>Le montanisme : la « nouvelle prophétie » face aux ministères établis</p>
+<p>Le culte du dimanche d’après Justin (<i>Première Apologie</i> 65-67)</p>
+<p>Les veuves, les vierges et les diaconesses dans les communautés</p>
+<p>L’Église de Rome propriétaire de cimetières : le diacre Calliste et la catacombe qui porte son nom</p>
+<p>Les maisons-églises et l’exemple de Doura-Europos</p>
+<p>La charité organisée : veuves, orphelins, pauvres, prisonniers</p>
+</sujet>

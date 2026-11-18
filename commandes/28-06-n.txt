@@ -1,0 +1,17 @@
+<sujet cle="conciles.constantinople-2" titre="Le concile de Constantinople II (553)" desc="Le concile de Justinien, qui condamne les Trois Chapitres et lit Chalcédoine à la lumière de Cyrille.">
+<p>Les tentatives impériales de réconciliation avec les adversaires de Chalcédoine</p>
+<p>Justinien, empereur théologien</p>
+<p>La formule « un de la Trinité a souffert dans la chair » et les moines scythes</p>
+<p>Les Trois Chapitres : définition de l’affaire</p>
+<p>Premier chapitre : la personne et les écrits de Théodore de Mopsueste</p>
+<p>Deuxième chapitre : les écrits de Théodoret de Cyr contre Cyrille</p>
+<p>Troisième chapitre : la lettre d’Ibas d’Édesse au Perse Mari</p>
+<p>L’édit de Justinien contre les Trois Chapitres (vers 544)</p>
+<p>Le pape Vigile : <i>Judicatum</i> (548), <i>Constitutum</i> (553), puis approbation du concile</p>
+<p>Les quatorze anathématismes du concile</p>
+<p>La lecture de Chalcédoine à la lumière de Cyrille, dite « néochalcédonisme »</p>
+<p>La notion d’<b>enhypostasie</b> : la nature humaine du Christ subsiste dans l’hypostase du Verbe</p>
+<p>Les anathèmes contre l’origénisme et la question de leur rattachement au concile</p>
+<p>Le schisme des Trois Chapitres en Italie du Nord (Aquilée, Milan)</p>
+<p>L’échec de la réconciliation avec les Églises orientales</p>
+</sujet>

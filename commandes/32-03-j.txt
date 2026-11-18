@@ -1,0 +1,19 @@
+<sujet cle="moderne.jansenisme" titre="Le jansénisme" desc="Le mouvement rigoriste né d’une lecture d’Augustin sur la grâce, et ses longues querelles.">
+<p>Cornelius Jansenius et l’<i>Augustinus</i> (1640)</p>
+<p>La doctrine de l’<i>Augustinus</i> en ses grandes lignes, telle que la défendait le parti janséniste</p>
+<p>Saint-Cyran</p>
+<p>Port-Royal et la mère Angélique Arnauld</p>
+<p>Antoine Arnauld et <i>De la fréquente communion</i> (1643)</p>
+<p>Les cinq propositions condamnées par Innocent X (<i>Cum occasione</i>, 1653)</p>
+<p>La distinction du droit et du fait</p>
+<p>Pascal et les <i>Provinciales</i> contre la casuistique</p>
+<p>Le formulaire d’Alexandre VII (1665)</p>
+<p>La paix clémentine (1669)</p>
+<p>Pasquier Quesnel et les <i>Réflexions morales</i></p>
+<p>La destruction de Port-Royal des Champs (1709-1711)</p>
+<p>La bulle <i>Unigenitus</i> (1713) et les appelants</p>
+<p>Les convulsionnaires de Saint-Médard</p>
+<p>Le jansénisme parlementaire et l’affaire des refus de sacrements (années 1750)</p>
+<p>Le synode de Pistoia (1786) et la bulle <i>Auctorem fidei</i> (1794)</p>
+<p>Les traces du jansénisme : rigorisme, communion rare</p>
+</sujet>

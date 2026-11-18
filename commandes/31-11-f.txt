@@ -1,0 +1,17 @@
+<sujet cle="reforme.reforme-catholique" titre="La Réforme catholique" desc="Le grand renouveau de l’Église catholique aux XVIe et XVIIe siècles.">
+<p>Les mots « Réforme catholique » et « Contre-Réforme » et ce qu’ils soulignent</p>
+<p>Les réformes antérieures à Luther : le cardinal Ximénès en Espagne</p>
+<p>L’Oratoire du divin amour</p>
+<p>Les théatins (1524)</p>
+<p>Les capucins (1528)</p>
+<p>Les ursulines et Angèle Merici (1535)</p>
+<p>La Compagnie de Jésus approuvée par Paul III (<i>Regimini militantis Ecclesiae</i>, 1540)</p>
+<p>La congrégation de l’Inquisition romaine (<i>Licet ab initio</i>, 1542) contre la diffusion protestante en Italie</p>
+<p>Le Collège romain (1551), foyer de formation du clergé</p>
+<p>Pie V, pape de l’application du concile</p>
+<p>Grégoire XIII et la réforme du calendrier (1582)</p>
+<p>Sixte Quint et l’organisation de la Curie en congrégations (1588)</p>
+<p>L’Oratoire de Philippe Néri (1575)</p>
+<p>Les barnabites (1533) et les clercs réguliers</p>
+<p>L’art baroque au service de la foi</p>
+</sujet>

@@ -1,0 +1,21 @@
+<sujet cle="eglise-antique.monachisme" titre="La naissance du monachisme" desc="Les premiers moines au désert d’Égypte et de Syrie, puis l’arrivée du monachisme en Occident.">
+<p>Le mot moine (grec <i>monachos</i>, « seul, unifié »)</p>
+<p>Les racines : les ascètes et les vierges consacrées des premiers siècles</p>
+<p>Le monachisme comme « martyre blanc » après la fin des persécutions</p>
+<p>Antoine le Grand (mort en 356) et la <i>Vie d’Antoine</i> écrite par Athanase</p>
+<p>L’<b>anachorèse</b> (grec <i>anachôrêsis</i>, « retraite ») : la vie érémitique</p>
+<p>Nitrie et les Kellia, déserts de Basse-Égypte</p>
+<p>Scété, désert des grands anciens</p>
+<p>Les <i>Apophtegmes des Pères du désert</i></p>
+<p>Pacôme et le <b>cénobitisme</b> (grec <i>koinos bios</i>, « vie commune ») à Tabennèse</p>
+<p>Le monachisme syrien et les stylites (Siméon)</p>
+<p>Basile de Césarée et ses <i>Règles</i></p>
+<p>Le monachisme féminin des origines : sa place et ses formes</p>
+<p>Macrine, sœur de Basile, et sa communauté d’Annisa</p>
+<p>Mélanie l’Ancienne et le monastère du mont des Oliviers</p>
+<p>Paule, disciple de Jérôme, et les monastères de Bethléem</p>
+<p>Martin de Tours, Ligugé (361) et Marmoutier</p>
+<p>Jean Cassien et la fondation de Saint-Victor de Marseille (vers 415)</p>
+<p>Lérins et Honorat (vers 410)</p>
+<p>La place du monachisme dans l’Église : pasteurs issus des monastères, rapport aux évêques</p>
+</sujet>

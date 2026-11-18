@@ -1,0 +1,10 @@
+<sujet cle="reforme.radicale" titre="La Réforme radicale" desc="Les anabaptistes et les courants qui ont voulu aller plus loin que Luther et Zwingli.">
+<p>Le mot anabaptiste (grec, « qui rebaptise »)</p>
+<p>Conrad Grebel et les premiers baptêmes d’adultes à Zurich (1525)</p>
+<p>La Confession de Schleitheim (1527) et la séparation d’avec le monde</p>
+<p>Thomas Müntzer</p>
+<p>Le royaume anabaptiste de Münster (1534-1535)</p>
+<p>Menno Simons et les mennonites</p>
+<p>Les antitrinitaires du XVIe siècle</p>
+<p>Fauste Socin et les sociniens</p>
+</sujet>

@@ -1,0 +1,20 @@
+<sujet cle="haut-moyen-age.islam" titre="L’islam et la chrétienté" desc="La naissance de l’islam, ses conquêtes et leurs conséquences pour les chrétiens.">
+<p>Mahomet et la naissance de l’islam (l’Hégire, 622)</p>
+<p>Les premiers débats entre chrétiens et musulmans : le dialogue du patriarche Timothée Ier et du calife al-Mahdi (vers 782)</p>
+<p>La prise de Jérusalem (638) et le patriarche Sophrone</p>
+<p>La conquête de la Syrie et la bataille du Yarmouk (636)</p>
+<p>La conquête de l’Égypte (639-642)</p>
+<p>La conquête de l’Afrique du Nord et la prise de Carthage (698)</p>
+<p>La disparition progressive de l’Église d’Afrique du Nord</p>
+<p>Le statut de <i>dhimmi</i> (arabe, « protégé ») imposé aux chrétiens et aux juifs</p>
+<p>La conquête de l’Espagne (711)</p>
+<p>La bataille de Poitiers (732)</p>
+<p>Jean Damascène et sa lecture de l’islam comme hérésie chrétienne</p>
+<p>Les chrétiens mozarabes et les martyrs de Cordoue (milieu du IXe siècle)</p>
+<p>Les débuts de la Reconquista</p>
+<p>Les chrétiens d’Orient sous domination musulmane : une condition commune</p>
+<p>L’Église melkite, fidèle à Chalcédoine, sous les califes</p>
+<p>Les Églises de langue syriaque sous les califes</p>
+<p>L’Église copte sous domination musulmane</p>
+<p>La transmission des savoirs antiques par les traducteurs chrétiens de Bagdad (Hunayn ibn Ishaq)</p>
+</sujet>

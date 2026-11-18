@@ -1,0 +1,16 @@
+<sujet cle="haut-moyen-age.schisme" titre="Le schisme de 1054" desc="Comment l’Église d’Orient et l’Église d’Occident se sont séparées.">
+<p>L’éloignement progressif de l’Orient et de l’Occident : langues, cultures, empires</p>
+<p>Deux conceptions de l’autorité : la primauté romaine et la pentarchie</p>
+<p>L’affaire Photius, patriarche de Constantinople (858)</p>
+<p>Le concile de Constantinople IV (869-870), compté par l’Église catholique comme huitième concile œcuménique</p>
+<p>Le synode de 879-880 et la réhabilitation de Photius</p>
+<p>La querelle du <i>Filioque</i></p>
+<p>La querelle des azymes (pain sans levain) pour l’eucharistie et la lettre de Léon d’Ohrid (1053)</p>
+<p>Les différences de discipline : le mariage des prêtres, le jeûne du samedi</p>
+<p>Le patriarche Michel Cérulaire</p>
+<p>Le cardinal Humbert de Moyenmoutier et la légation de 1054</p>
+<p>La bulle déposée sur l’autel de Sainte-Sophie (16 juillet 1054)</p>
+<p>Les excommunications réciproques et leur portée limitée aux personnes</p>
+<p>L’aggravation de la rupture par les croisades et le sac de Constantinople (1204)</p>
+<p>La levée des anathèmes par Paul VI et le patriarche Athénagoras (7 décembre 1965)</p>
+</sujet>

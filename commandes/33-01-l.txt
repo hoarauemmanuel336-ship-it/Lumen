@@ -1,0 +1,15 @@
+<sujet cle="contemporaine.leon-xiii" titre="Léon XIII" desc="Le pape qui ouvre l’Église au monde moderne à la fin du XIXe siècle.">
+<p>L’élection de Léon XIII (1878) et son programme</p>
+<p>L’encyclique <i>Aeterni Patris</i> (1879) et la restauration du thomisme</p>
+<p>La fin du <i>Kulturkampf</i> en Allemagne</p>
+<p>L’encyclique <i>Immortale Dei</i> (1885) sur l’Église et l’État</p>
+<p>L’encyclique <i>Libertas</i> (1888) sur la liberté humaine</p>
+<p>L’encyclique <i>Rerum novarum</i> (1891) et la question ouvrière</p>
+<p>Le Ralliement des catholiques français à la République (<i>Au milieu des sollicitudes</i>, 1892)</p>
+<p>L’encyclique <i>Providentissimus Deus</i> (1893) sur l’étude de l’Écriture</p>
+<p>Les encycliques sur le Rosaire</p>
+<p>La lettre <i>Testem benevolentiae</i> (1899) et l’américanisme</p>
+<p>La consécration du genre humain au Sacré-Cœur (<i>Annum sacrum</i>, 1899)</p>
+<p>L’ouverture des Archives vaticanes aux chercheurs (1881)</p>
+<p>La Commission biblique pontificale (1902)</p>
+</sujet>

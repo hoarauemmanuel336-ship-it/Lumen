@@ -1,0 +1,36 @@
+<sujet cle="contemporaine.papes" titre="Les papes depuis le concile" desc="Les pontificats de Paul VI à Léon XIV et leurs grands actes.">
+<p>Paul VI (1963-1978) : l’achèvement et l’application du concile</p>
+<p>Paul VI : les premiers voyages pontificaux</p>
+<p>Paul VI : la rencontre avec Athénagoras à Jérusalem (1964)</p>
+<p>Paul VI : <i>Populorum progressio</i> (1967)</p>
+<p>Paul VI : le <i>Credo du peuple de Dieu</i> (1968)</p>
+<p>Paul VI : <i>Humanae vitae</i> (1968)</p>
+<p>Paul VI : <i>Evangelii nuntiandi</i> (1975)</p>
+<p>Jean-Paul Ier (1978) et son pontificat de trente-trois jours</p>
+<p>Jean-Paul II (1978-2005) : l’élection d’un pape polonais</p>
+<p>Jean-Paul II et la chute du communisme en Europe</p>
+<p>L’attentat du 13 mai 1981</p>
+<p>Jean-Paul II, pape voyageur</p>
+<p>Les Journées mondiales de la jeunesse</p>
+<p>Jean-Paul II : <i>Redemptor hominis</i> (1979), première encyclique</p>
+<p>Jean-Paul II : <i>Veritatis splendor</i> (1993)</p>
+<p>Jean-Paul II : <i>Evangelium vitae</i> (1995)</p>
+<p>Jean-Paul II : <i>Fides et ratio</i> (1998)</p>
+<p>Le grand Jubilé de l’an 2000</p>
+<p>Benoît XVI (2005-2013) : l’élection de Joseph Ratzinger</p>
+<p>Benoît XVI : <i>Deus caritas est</i> (2005)</p>
+<p>Benoît XVI : <i>Spe salvi</i> (2007)</p>
+<p>Benoît XVI : <i>Caritas in veritate</i> (2009)</p>
+<p>Le discours de Ratisbonne (2006) sur la foi et la raison</p>
+<p>La renonciation de Benoît XVI (11 février 2013)</p>
+<p>François (2013-2025), premier pape venu d’Amérique</p>
+<p>François : <i>Evangelii gaudium</i> (2013)</p>
+<p>François : <i>Laudato si’</i> (2015)</p>
+<p>François : <i>Amoris laetitia</i> (2016)</p>
+<p>François : <i>Fratelli tutti</i> (2020)</p>
+<p>François et la synodalité</p>
+<p>François : la réforme de la Curie (<i>Praedicate Evangelium</i>, 2022)</p>
+<p>La crise des abus sexuels et les réponses des papes (<i>Vos estis lux mundi</i>, 2019)</p>
+<p>Léon XIV, élu le 8 mai 2025, premier pape né aux États-Unis</p>
+<p>Les canonisations des papes du concile : Jean XXIII et Jean-Paul II (2014), Paul VI (2018)</p>
+</sujet>

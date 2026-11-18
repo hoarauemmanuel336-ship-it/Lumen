@@ -1,0 +1,16 @@
+<sujet cle="moyen-age.mendiants" titre="Les ordres mendiants" desc="Franciscains, dominicains et autres ordres nés au XIIIe siècle pour prêcher l’Évangile dans les villes.">
+<p>Le contexte : l’essor des villes, le désir de pauvreté évangélique, les hérésies</p>
+<p>Le mot <b>mendiant</b> : vivre de dons sans propriété commune</p>
+<p>François d’Assise (vers 1181-1226) et sa conversion</p>
+<p>Les règles franciscaines : l’approbation orale (vers 1209) et la Règle bullée (1223)</p>
+<p>Claire d’Assise et les clarisses</p>
+<p>La querelle de la pauvreté franciscaine et les spirituels</p>
+<p>Dominique de Guzmán (vers 1170-1221) et la prédication en pays cathare</p>
+<p>La confirmation de l’ordre des Prêcheurs (1216)</p>
+<p>La vocation dominicaine : étude et prédication</p>
+<p>Les carmes, venus du mont Carmel</p>
+<p>Les ermites de saint Augustin et la Grande Union (1256)</p>
+<p>Les tiers-ordres pour les laïcs</p>
+<p>La querelle des mendiants et des maîtres séculiers à l’université de Paris</p>
+<p>L’interdiction de nouvelles règles religieuses par le quatrième concile du Latran (1215)</p>
+</sujet>

@@ -1,0 +1,21 @@
+<sujet cle="moyen-age.universites" titre="Les universités et la scolastique" desc="La naissance des universités et de la méthode scolastique dans l’Occident médiéval.">
+<p>Les écoles monastiques et les écoles cathédrales</p>
+<p>L’école de Chartres au XIIe siècle</p>
+<p>L’abbaye de Saint-Victor de Paris (Hugues et Richard de Saint-Victor)</p>
+<p>Pierre Abélard, maître des écoles de Paris, et le <i>Sic et non</i></p>
+<p>Les <i>Sentences</i> de Pierre Lombard, manuel des écoles</p>
+<p>Le mot <b>université</b> (latin <i>universitas</i>, « corporation »)</p>
+<p>Les premières universités : Bologne, Paris, Oxford</p>
+<p>La bulle <i>Parens scientiarum</i> de Grégoire IX (1231)</p>
+<p>Les facultés : les arts, la médecine, le droit, la théologie</p>
+<p>Les grades : baccalauréat, licence, doctorat</p>
+<p>Les collèges et la fondation de la Sorbonne (1257)</p>
+<p>La méthode scolastique : <i>lectio</i>, <i>quaestio</i>, <i>disputatio</i></p>
+<p>La redécouverte d’Aristote et les interdictions de 1210 et 1215</p>
+<p>Albert le Grand, maître à Paris et à Cologne</p>
+<p>Bonaventure, maître à Paris puis ministre général des franciscains</p>
+<p>Thomas d’Aquin et ses deux régences à l’université de Paris</p>
+<p>Les condamnations de 1277 par l’évêque Étienne Tempier</p>
+<p>Jean Duns Scot, maître à Oxford et à Paris</p>
+<p>Oxford, foyer franciscain : Robert Grosseteste</p>
+</sujet>

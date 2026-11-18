@@ -1,0 +1,24 @@
+<sujet cle="contemporaine.theologiens" titre="Les théologiens du XXe siècle" desc="Les grandes figures de la théologie catholique du XXe siècle et leurs apports.">
+<p>Les mouvements de renouveau : biblique, liturgique, patristique, œcuménique</p>
+<p>Le <b>ressourcement</b> : le retour aux sources de l’Écriture et des Pères</p>
+<p>Marie-Joseph Lagrange et l’École biblique de Jérusalem (1890)</p>
+<p>Réginald Garrigou-Lagrange et le thomisme romain</p>
+<p>Romano Guardini : <i>L’Esprit de la liturgie</i> (1918), <i>Le Seigneur</i> (1937)</p>
+<p>Odo Casel et la théologie des mystères</p>
+<p>Henri de Lubac : <i>Catholicisme</i> (1938) et <i>Surnaturel</i> (1946)</p>
+<p>Jean Daniélou : la typologie des Pères, <i>Sacramentum futuri</i> (1950)</p>
+<p>La collection <i>Sources chrétiennes</i> (1942)</p>
+<p>La « nouvelle théologie » et sa mise en cause par <i>Humani generis</i></p>
+<p>Yves Congar : <i>Chrétiens désunis</i> (1937), <i>Jalons pour une théologie du laïcat</i> (1953), sa pensée de l’Église et de la Tradition</p>
+<p>Marie-Dominique Chenu : <i>Une école de théologie : le Saulchoir</i> (1937) et sa mise à l’Index (1942)</p>
+<p>Karl Rahner : l’existential surnaturel et le <i>Traité fondamental de la foi</i> (1976)</p>
+<p>Hans Urs von Balthasar : la trilogie de <i>La Gloire et la Croix</i>, de la <i>Dramatique divine</i> et de la <i>Théologique</i></p>
+<p>Pierre Teilhard de Chardin et l’avertissement du Saint-Office (1962)</p>
+<p>Joseph Ratzinger théologien : <i>Foi chrétienne hier et aujourd’hui</i> (1968), son rôle d’expert au concile, la revue <i>Communio</i></p>
+<p>Hans Küng et le retrait de sa mission d’enseigner (1979)</p>
+<p>La théologie de la libération</p>
+<p>Gustavo Gutiérrez et sa <i>Théologie de la libération</i> (1971)</p>
+<p>L’instruction <i>Libertatis nuntius</i> (1984) et ses mises en garde</p>
+<p>L’instruction <i>Libertatis conscientia</i> (1986) sur la liberté chrétienne</p>
+<p>Les revues <i>Concilium</i> et <i>Communio</i></p>
+</sujet>

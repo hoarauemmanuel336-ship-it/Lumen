@@ -1,0 +1,18 @@
+<sujet cle="reforme.trente-reforme" titre="Les décrets de réforme de Trente et leur application" desc="Les mesures du concile de Trente pour réformer les évêques, le clergé et la vie chrétienne, et les actes des papes qui les appliquent.">
+<p>L’obligation de résidence des évêques et des curés</p>
+<p>L’interdiction du cumul des charges</p>
+<p>La création des <b>séminaires</b> (session XXIII)</p>
+<p>La prédication et le catéchisme obligatoires</p>
+<p>Les visites pastorales</p>
+<p>Les synodes diocésains et les conciles provinciaux</p>
+<p>Le décret <i>Tametsi</i> contre les mariages clandestins (session XXIV)</p>
+<p>La réforme des ordres religieux</p>
+<p>La clôture des moniales</p>
+<p>Les actes pontificaux qui appliquent le concile : leur principe, le concile ayant confié au pape les travaux inachevés</p>
+<p>L’Index des livres interdits de Pie IV (1564)</p>
+<p>Le Catéchisme romain (1566)</p>
+<p>Le Bréviaire romain (1568)</p>
+<p>Le Missel romain de Pie V (1570) et la bulle <i>Quo primum</i></p>
+<p>La Vulgate sixto-clémentine (1592)</p>
+<p>L’application du concile dans les diocèses</p>
+</sujet>

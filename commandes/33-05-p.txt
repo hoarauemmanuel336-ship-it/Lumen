@@ -1,0 +1,20 @@
+<sujet cle="contemporaine.pie-xii" titre="Pie XII" desc="Le pape de la Seconde Guerre mondiale et de l’après-guerre.">
+<p>L’élection d’Eugenio Pacelli (1939) et sa carrière diplomatique</p>
+<p>L’encyclique <i>Summi pontificatus</i> (1939)</p>
+<p>Le radiomessage de Noël 1942</p>
+<p>L’aide aux Juifs cachés dans les couvents et les institutions de Rome</p>
+<p>Le débat historique sur les « silences » de Pie XII, de la pièce <i>Le Vicaire</i> (1963) à l’ouverture des archives (2020)</p>
+<p>Maximilien Kolbe, martyr à Auschwitz (1941)</p>
+<p>Edith Stein, martyre à Auschwitz (1942)</p>
+<p>L’encyclique <i>Mystici corporis</i> (1943)</p>
+<p>L’encyclique <i>Divino afflante Spiritu</i> (1943)</p>
+<p>L’encyclique <i>Mediator Dei</i> (1947)</p>
+<p>L’encyclique <i>Humani generis</i> (1950)</p>
+<p>La définition de l’Assomption (<i>Munificentissimus Deus</i>, 1950)</p>
+<p>L’Église du silence derrière le rideau de fer</p>
+<p>Le cardinal Mindszenty en Hongrie</p>
+<p>Le cardinal Stepinac en Croatie</p>
+<p>Le cardinal Wyszyński en Pologne</p>
+<p>Le décret du Saint-Office contre le communisme (1949)</p>
+<p>La réforme de la Semaine sainte (1955)</p>
+</sujet>

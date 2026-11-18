@@ -1,0 +1,17 @@
+<sujet cle="moderne.ultramontanisme" titre="L’ultramontanisme et Pie IX" desc="Le mouvement d’attachement au pape au XIXe siècle et le long pontificat de Pie IX.">
+<p>Le mot <b>ultramontanisme</b> (« au-delà des monts », c’est-à-dire vers Rome)</p>
+<p>Joseph de Maistre et <i>Du pape</i> (1819)</p>
+<p>Lamennais et le journal <i>L’Avenir</i></p>
+<p>L’encyclique <i>Mirari vos</i> de Grégoire XVI (1832)</p>
+<p>L’encyclique <i>Singulari nos</i> (1834) et la rupture de Lamennais</p>
+<p>Pie IX (1846-1878) et la révolution de 1848</p>
+<p>La fuite de Pie IX à Gaète</p>
+<p>La définition de l’Immaculée Conception (<i>Ineffabilis Deus</i>, 1854), acte du pape seul avant Vatican I</p>
+<p>L’encyclique <i>Quanta cura</i> (1864)</p>
+<p>Le <i>Syllabus</i> et ses quatre-vingts propositions condamnées (1864)</p>
+<p>Louis Veuillot et <i>L’Univers</i></p>
+<p>Les catholiques libéraux</p>
+<p>Montalembert</p>
+<p>Dupanloup</p>
+<p>La dévotion populaire au pape</p>
+</sujet>

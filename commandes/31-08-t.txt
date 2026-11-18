@@ -1,0 +1,17 @@
+<sujet cle="hist.trente" titre="Le concile de Trente : son déroulement" desc="L’histoire du concile de Trente, de sa convocation à sa clôture.">
+<p>L’appel à un concile et les réticences de la papauté</p>
+<p>Paul III et la convocation du concile</p>
+<p>Le choix de la ville de Trente</p>
+<p>L’ouverture du concile (13 décembre 1545)</p>
+<p>La méthode : traiter ensemble doctrine et réforme</p>
+<p>La forme des décrets : chapitres doctrinaux et canons avec anathème</p>
+<p>La première période (1545-1547) et le transfert à Bologne</p>
+<p>La deuxième période (1551-1552) sous Jules III et la venue de délégués protestants</p>
+<p>La troisième période (1562-1563) sous Pie IV</p>
+<p>Les légats pontificaux qui président le concile</p>
+<p>Girolamo Seripando, général des augustins puis légat</p>
+<p>Giovanni Morone, légat qui conduit le concile à son terme</p>
+<p>Charles Quint et les princes</p>
+<p>La clôture du concile (4 décembre 1563)</p>
+<p>La confirmation par Pie IV (<i>Benedictus Deus</i>, 1564)</p>
+</sujet>

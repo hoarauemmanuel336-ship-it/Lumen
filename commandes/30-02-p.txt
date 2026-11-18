@@ -1,0 +1,14 @@
+<sujet cle="moyen-age.papaute-apogee" titre="La papauté à son sommet : d’Innocent III à Boniface VIII" desc="L’autorité des papes au XIIIe siècle et son affrontement avec les rois.">
+<p>Innocent III (1198-1216) et la <i>plenitudo potestatis</i> (latin, « plénitude du pouvoir »)</p>
+<p>Le titre de vicaire du Christ</p>
+<p>Innocent III et les rois : l’interdit jeté sur la France et la soumission de Jean sans Terre (1213)</p>
+<p>La doctrine des deux glaives et ses interprétations</p>
+<p>Les <i>Décrétales</i> de Grégoire IX (1234) et le droit pontifical</p>
+<p>Le conflit entre la papauté et l’empereur Frédéric II</p>
+<p>Boniface VIII (1294-1303) et Philippe le Bel</p>
+<p>La bulle <i>Clericis laicos</i> (1296) sur l’imposition du clergé</p>
+<p>Le premier jubilé (1300)</p>
+<p>La bulle <i>Unam sanctam</i> (1302) : une seule Église hors de laquelle il n’y a ni salut ni rémission des péchés, la doctrine des deux glaives, la soumission au pontife romain déclarée « de nécessité de salut », et la discussion sur sa portée dogmatique</p>
+<p>L’attentat d’Anagni (1303)</p>
+<p>La fin de la théocratie pontificale et la naissance des États modernes</p>
+</sujet>

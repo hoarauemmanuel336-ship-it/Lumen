@@ -1,0 +1,31 @@
+<sujet cle="reforme.luther" titre="Luther" desc="La vie et la doctrine de Martin Luther, à l’origine de la Réforme protestante.">
+<p>La jeunesse de Luther (né en 1483 à Eisleben) et son entrée chez les augustins d’Erfurt (1505)</p>
+<p>Luther professeur d’Écriture sainte à Wittenberg</p>
+<p>L’angoisse du salut et la découverte de la justice de Dieu (Romains 1:17)</p>
+<p>Les 95 thèses sur les indulgences (31 octobre 1517)</p>
+<p>La dispute de Leipzig avec Jean Eck (1519)</p>
+<p><i>À la noblesse chrétienne de la nation allemande</i> (1520)</p>
+<p><i>Prélude sur la captivité babylonienne de l’Église</i> (1520)</p>
+<p><i>De la liberté du chrétien</i> (1520)</p>
+<p>La bulle <i>Exsurge Domine</i> (1520) et l’excommunication (<i>Decet Romanum Pontificem</i>, 1521)</p>
+<p>La diète de Worms (1521)</p>
+<p>La Wartburg et la traduction du Nouveau Testament en allemand</p>
+<p>La justification par la foi seule (<i>sola fide</i>)</p>
+<p>Le salut par la grâce seule (<i>sola gratia</i>)</p>
+<p>L’Écriture seule (<i>sola scriptura</i>), principe de Luther</p>
+<p>La justice imputée et la formule « à la fois juste et pécheur » (<i>simul justus et peccator</i>)</p>
+<p>La distinction de la Loi et de l’Évangile</p>
+<p>Le sacerdoce universel des baptisés selon Luther</p>
+<p>La réduction des sacrements au baptême et à la Cène</p>
+<p>Le rejet du sacrifice de la messe</p>
+<p>La doctrine luthérienne de la présence réelle (union sacramentelle, dite consubstantiation)</p>
+<p>La guerre des Paysans (1525)</p>
+<p>La controverse avec Érasme sur le libre arbitre (<i>Du serf arbitre</i>, 1525)</p>
+<p>Le mariage de Luther avec Catherine de Bora</p>
+<p>Philippe Melanchthon, théologien de la Réforme luthérienne</p>
+<p>La Confession d’Augsbourg (1530)</p>
+<p>La mort de Luther (1546)</p>
+<p>La paix d’Augsbourg (1555) : « tel prince, telle religion »</p>
+<p>La doctrine des deux règnes et la soumission de l’Église aux princes</p>
+<p>La Formule de Concorde (1577) et le Livre de Concorde (1580), qui fixent la doctrine luthérienne</p>
+</sujet>

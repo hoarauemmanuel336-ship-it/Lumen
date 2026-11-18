@@ -1,0 +1,19 @@
+<sujet cle="contemporaine.modernisme" titre="La crise moderniste" desc="Le mouvement qui voulait adapter la foi à la pensée moderne au point d’en changer le sens, et sa condamnation.">
+<p>Le mot <b>modernisme</b> et ce qu’il désigne</p>
+<p>La critique historique de la Bible, contexte du modernisme</p>
+<p>Les philosophies de l’immanence, contexte du modernisme</p>
+<p>L’histoire des dogmes et la tentation d’en faire de simples produits du temps</p>
+<p>Alfred Loisy et <i>L’Évangile et l’Église</i> (1902)</p>
+<p>George Tyrrell</p>
+<p>Ernesto Buonaiuti</p>
+<p>Maurice Blondel et la méthode d’immanence, distincte du modernisme</p>
+<p>Le décret <i>Lamentabili</i> (1907) et ses soixante-cinq propositions</p>
+<p>L’encyclique <i>Pascendi dominici gregis</i> (8 septembre 1907)</p>
+<p>Le modernisme, « rendez-vous de toutes les hérésies » selon <i>Pascendi</i></p>
+<p>L’excommunication de Loisy (1908)</p>
+<p>Le serment antimoderniste (1910) et son abandon (1967)</p>
+<p>L’intégrisme, réaction excessive à la crise</p>
+<p>Le réseau de la Sapinière (Umberto Benigni)</p>
+<p>L’encyclique <i>Ad beatissimi</i> de Benoît XV (1914) et l’apaisement</p>
+<p>Les questions posées par la crise : histoire et dogme, foi et critique</p>
+</sujet>

@@ -1,0 +1,21 @@
+<sujet cle="conciles.ephese" titre="Le concile d’Éphèse (431)" desc="Le concile qui proclame Marie Mère de Dieu et l’unité de la personne du Christ contre Nestorius.">
+<p>Nestorius, patriarche de Constantinople (428), et son refus du titre <i>Theotokos</i> (grec, « qui a enfanté Dieu »)</p>
+<p>Le titre de <i>Christotokos</i> (« qui a enfanté le Christ ») proposé par Nestorius</p>
+<p>L’école d’Antioche et Théodore de Mopsueste, arrière-plan de la pensée de Nestorius</p>
+<p>Cyrille d’Alexandrie et ses lettres à Nestorius</p>
+<p>Le pape Célestin Ier et le synode romain de 430</p>
+<p>Les douze anathématismes de Cyrille</p>
+<p>La convocation par Théodose II</p>
+<p>L’ouverture du concile par Cyrille le 22 juin 431, avant l’arrivée des Orientaux</p>
+<p>La déposition de Nestorius</p>
+<p>Le contre-concile de Jean d’Antioche</p>
+<p>L’adhésion des légats romains</p>
+<p>La doctrine reçue : l’unité de la personne du Verbe incarné</p>
+<p>Le titre de <b>Theotokos</b> reconnu à Marie</p>
+<p>La deuxième lettre de Cyrille à Nestorius, approuvée comme expression de la foi</p>
+<p>L’interdiction de composer une autre formule de foi que celle de Nicée (canon 7)</p>
+<p>La condamnation de Célestius et des pélagiens</p>
+<p>La Formule d’union de 433 entre Cyrille et Jean d’Antioche</p>
+<p>La séparation de l’Église de l’Orient (aujourd’hui Église assyrienne)</p>
+<p>La Déclaration christologique commune de Jean-Paul II et du patriarche Mar Dinkha IV (1994)</p>
+</sujet>

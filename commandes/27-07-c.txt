@@ -1,0 +1,21 @@
+<sujet cle="eglise-antique.constantin" titre="Constantin et l’édit de Milan" desc="Le tournant du IVe siècle : la fin des persécutions et l’Église protégée par l’empereur.">
+<p>La tétrarchie et la lutte pour le pouvoir après Dioclétien</p>
+<p>La bataille du pont Milvius (312) et le signe rapporté par Lactance et Eusèbe</p>
+<p>Le chrisme, monogramme du Christ</p>
+<p>L’accord de Milan (313), dit « édit de Milan », et son contenu : liberté de culte, restitution des biens</p>
+<p>La conversion de Constantin et son baptême à la fin de sa vie (337)</p>
+<p>Le repos du dimanche institué par Constantin (321)</p>
+<p>La juridiction des évêques reconnue par l’État (<i>episcopalis audientia</i>)</p>
+<p>Les privilèges du clergé : exemption des charges publiques</p>
+<p>La basilique du Latran, cathédrale de Rome</p>
+<p>La basilique Saint-Pierre bâtie sur la tombe de l’Apôtre</p>
+<p>La basilique du Saint-Sépulcre à Jérusalem</p>
+<p>Hélène, mère de Constantin, et la tradition de la Croix retrouvée</p>
+<p>Constantin et la crise donatiste : le concile d’Arles (314)</p>
+<p>Constantin convoque le concile de Nicée (325)</p>
+<p>La fondation de Constantinople (330)</p>
+<p>Eusèbe de Césarée, théologien de l’empire chrétien</p>
+<p>Le <b>césaropapisme</b> : la tentation de l’empereur de gouverner l’Église</p>
+<p>Le débat sur le « tournant constantinien » : bienfaits et ambiguïtés</p>
+<p>Le débat des historiens sur la conversion de Constantin : sincérité, progressivité, culte du Soleil invaincu, et l’inscription de l’arc de Constantin (315)</p>
+</sujet>

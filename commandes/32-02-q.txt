@@ -1,0 +1,14 @@
+<sujet cle="moderne.rites" titre="La querelle des rites" desc="Le débat sur l’adaptation de la foi aux cultures chinoise et indienne.">
+<p>Matteo Ricci et son arrivée à Pékin (1601)</p>
+<p>La méthode d’<b>accommodation</b> des jésuites</p>
+<p>Le nom de Dieu en chinois</p>
+<p>Le culte de Confucius et des ancêtres : civil ou religieux</p>
+<p>Roberto de Nobili et les rites malabares en Inde</p>
+<p>L’opposition des dominicains et des franciscains</p>
+<p>La constitution <i>Ex illa die</i> de Clément XI (1715)</p>
+<p>La bulle <i>Ex quo singulari</i> de Benoît XIV (1742)</p>
+<p>La condamnation des rites malabares (<i>Omnium sollicitudinum</i>, 1744)</p>
+<p>L’édit de tolérance de l’empereur Kangxi (1692)</p>
+<p>Les conséquences des condamnations pour la mission en Chine</p>
+<p>L’instruction <i>Plane compertum est</i> de Pie XII (1939) et la nouvelle approche</p>
+</sujet>

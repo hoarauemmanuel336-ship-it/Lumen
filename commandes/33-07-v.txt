@@ -1,0 +1,22 @@
+<sujet cle="hist.vatican" titre="Le concile Vatican II : son déroulement" desc="L’histoire du concile Vatican II, de son annonce à sa clôture.">
+<p>Jean XXIII (1958-1963), pape de transition devenu pape du concile</p>
+<p>L’annonce du concile à Saint-Paul-hors-les-Murs (25 janvier 1959)</p>
+<p>La préparation et les schémas préparatoires</p>
+<p>L’<b>aggiornamento</b> (italien, « mise à jour ») et le but pastoral du concile</p>
+<p>L’ouverture (11 octobre 1962) et le discours <i>Gaudet Mater Ecclesia</i></p>
+<p>Les Pères conciliaires</p>
+<p>Les experts (<i>periti</i>)</p>
+<p>Les observateurs non catholiques</p>
+<p>La première session (1962) et le rejet du schéma sur les sources de la Révélation</p>
+<p>L’encyclique <i>Pacem in terris</i> (1963)</p>
+<p>La mort de Jean XXIII (3 juin 1963)</p>
+<p>L’élection de Paul VI (21 juin 1963) et la poursuite du concile</p>
+<p>La deuxième session (1963)</p>
+<p>La troisième session (1964) et la <i>Note explicative préliminaire</i> sur la collégialité</p>
+<p>La quatrième session (1965)</p>
+<p>Les auditeurs laïcs et les auditrices</p>
+<p>Le groupe de la minorité (<i>Coetus internationalis Patrum</i>)</p>
+<p>Les questions réservées par Paul VI hors des débats : la contraception et le célibat des prêtres</p>
+<p>La clôture du concile (8 décembre 1965)</p>
+<p>Le « concile des médias » et le concile des Pères</p>
+</sujet>

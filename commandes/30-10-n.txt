@@ -1,0 +1,18 @@
+<sujet cle="moyen-age.latran" titre="Les conciles du Latran" desc="Les cinq conciles œcuméniques réunis au palais du Latran, de 1123 à 1517.">
+<p>Le palais et la basilique du Latran, siège du pape</p>
+<p>Latran I (1123) : la ratification du concordat de Worms</p>
+<p>Latran II (1139) : la fin du schisme d’Anaclet et l’invalidité du mariage des clercs majeurs</p>
+<p>Latran III (1179) : la majorité des deux tiers pour l’élection du pape</p>
+<p>Latran IV (1215) : le plus grand concile du Moyen Âge, réuni par Innocent III</p>
+<p>La profession de foi <i>Firmiter credimus</i></p>
+<p>Le terme de <b>transsubstantiation</b> employé par le concile</p>
+<p>La condamnation de la doctrine trinitaire de Joachim de Flore</p>
+<p>La formule sur l’analogie : toute ressemblance entre Créateur et créature implique une dissemblance plus grande</p>
+<p>La confession annuelle et la communion pascale (canon 21)</p>
+<p>Les mesures sur la réforme du clergé et la prédication</p>
+<p>Les mesures contre les Juifs (signe distinctif) et leur jugement aujourd’hui</p>
+<p>Latran V (1512-1517) et le contexte de la Renaissance</p>
+<p>La définition de l’immortalité de l’âme individuelle (<i>Apostolici regiminis</i>, 1513)</p>
+<p>Le concordat de Bologne (1516) entre Léon X et François Ier</p>
+<p>L’échec de Latran V à réformer l’Église</p>
+</sujet>

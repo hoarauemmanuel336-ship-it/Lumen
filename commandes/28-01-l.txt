@@ -1,0 +1,19 @@
+<sujet cle="hist.conciles-anciens" titre="Qu’est-ce qu’un concile œcuménique" desc="Ce qu’est un concile, ce qui le rend œcuménique et quelle autorité ont ses décisions.">
+<p>Le mot concile (latin <i>concilium</i>) et le mot synode (grec <i>synodos</i>, « chemin commun »)</p>
+<p>Le mot œcuménique (grec <i>oikoumenê</i>, « la terre habitée »)</p>
+<p>Les degrés des assemblées ecclésiales, du diocèse à l’Église entière</p>
+<p>Le synode diocésain, assemblée du clergé et des fidèles autour de l’évêque</p>
+<p>Le concile provincial, réunion des évêques d’une province</p>
+<p>Le concile plénier, réunion des évêques d’une nation ou d’une région</p>
+<p>Le concile œcuménique, réunion de l’épiscopat de toute l’Église</p>
+<p>La convocation des conciles par l’empereur dans l’Antiquité</p>
+<p>Le rôle de l’évêque de Rome : légats, approbation, confirmation</p>
+<p>La <b>réception</b> d’un concile par l’Église et sa place dans la reconnaissance de son autorité</p>
+<p>La définition dogmatique et l’anathème</p>
+<p>Les canons disciplinaires, distincts des définitions de foi</p>
+<p>L’infaillibilité du concile œcuménique uni au pape (<i>Lumen gentium</i> 22 et 25 ; Code de droit canonique, canons 337 à 341)</p>
+<p>La liste des vingt et un conciles reconnus comme œcuméniques par l’Église catholique et la manière dont elle s’est fixée</p>
+<p>Les sept conciles reconnus en commun par catholiques et orthodoxes</p>
+<p>Les Églises qui ne reçoivent que les deux premiers conciles (Église assyrienne de l’Orient) ou les trois premiers (Églises orthodoxes orientales)</p>
+<p>La fixation de la liste des conciles œcuméniques à l’époque moderne (édition romaine de 1608, Robert Bellarmin), et les cas discutés : Constantinople IV (869-870), le synode de 879-880</p>
+</sujet>

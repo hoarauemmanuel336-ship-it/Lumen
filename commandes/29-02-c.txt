@@ -1,0 +1,20 @@
+<sujet cle="haut-moyen-age.conversion-occident" titre="La conversion des peuples d’Occident" desc="Comment les Francs, les Wisigoths, les Irlandais, les Anglais et les Germains sont devenus chrétiens.">
+<p>Les méthodes de la mission au haut Moyen Âge et la lettre de Grégoire le Grand à l’abbé Mellitus (601)</p>
+<p>Clotilde, épouse catholique de Clovis</p>
+<p>Le baptême de Clovis à Reims par Remi, à une date discutée</p>
+<p>La portée du baptême de Clovis : un roi germanique catholique et non arien</p>
+<p>Les Wisigoths : la conversion du roi Reccared au troisième concile de Tolède (589)</p>
+<p>Les Burgondes et leur passage au catholicisme</p>
+<p>Les Lombards et le rôle de la reine Théodelinde</p>
+<p>L’Irlande : saint Patrick au Ve siècle</p>
+<p>Le monachisme irlandais, ses abbés et son ascèse</p>
+<p>La pénitence tarifée, née en Irlande, et les pénitentiels</p>
+<p>L’Écosse : Colomba et le monastère d’Iona (563)</p>
+<p>Colomban sur le continent : Luxeuil et Bobbio</p>
+<p>L’Angleterre : la mission d’Augustin de Cantorbéry envoyée par Grégoire le Grand (597)</p>
+<p>Le synode de Whitby (664) et l’adoption des usages romains en Angleterre</p>
+<p>Les Frisons : Willibrord</p>
+<p>Boniface, apôtre de la Germanie, et l’organisation de l’Église germanique en lien avec Rome</p>
+<p>La fondation de Fulda</p>
+<p>Le martyre de Boniface en Frise (754)</p>
+</sujet>

@@ -1,0 +1,18 @@
+<sujet cle="moderne.vatican-1" titre="Le concile Vatican I (1869-1870)" desc="Le concile qui définit la primauté et l’infaillibilité du pape.">
+<p>La bulle de convocation <i>Aeterni Patris</i> (1868)</p>
+<p>L’ouverture du concile (8 décembre 1869)</p>
+<p>La majorité favorable à la définition : Manning, Dechamps</p>
+<p>La minorité dite « inopportuniste » : Dupanloup, Strossmayer, Hefele</p>
+<p>La constitution <i>Dei Filius</i> sur la foi catholique (24 avril 1870)</p>
+<p>La constitution <i>Pastor aeternus</i> (18 juillet 1870)</p>
+<p>Le chapitre premier : l’institution de la primauté en Pierre</p>
+<p>Le chapitre deuxième : la perpétuité de la primauté dans les pontifes romains</p>
+<p>Le chapitre troisième : la nature de la primauté, juridiction ordinaire, immédiate et épiscopale</p>
+<p>Le chapitre quatrième : l’<b>infaillibilité</b> du pape parlant <i>ex cathedra</i> et ses conditions</p>
+<p>La formule « irréformables par elles-mêmes et non en vertu du consentement de l’Église »</p>
+<p>Le vote final (533 voix pour, 2 contre)</p>
+<p>La suspension du concile après la prise de Rome (20 octobre 1870)</p>
+<p>Le schisme des vieux-catholiques et Döllinger</p>
+<p>La déclaration des évêques allemands (1875) sur le sens de la définition</p>
+<p>La doctrine de l’épiscopat laissée inachevée</p>
+</sujet>
