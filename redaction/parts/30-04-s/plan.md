@@ -18,3 +18,5 @@ Leçons (fichiers 01 à 12) :
 11. Norbert de Xanten et les Prémontrés : chanoines réguliers ; conversion de Norbert (1115) ; prédication itinérante ; Prémontré (1120) ; règle de saint Augustin ; Magdebourg ; Bernard et Norbert ; diffusion.
 12. L'essor et la diffusion des cisterciens : chiffres ; Clairvaux et ses filles ; Savigny (1147) ; Angleterre, péninsule Ibérique, Europe centrale et nordique ; moniales ; ordres militaires ; Bernard canonisé (1174), docteur (1830) ; essoufflement (XIIIe-XIVe) ; héritage.
 Bilan : 6 exercices croisés.
+
+État : les 12 leçons et le bilan (7 exercices) sont écrits, contrôlés (verifier.py, liens.py) et passés par humaniser ; fichier réuni : redaction/30-04-s.html.
