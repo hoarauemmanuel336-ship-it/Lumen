@@ -24,3 +24,11 @@ def envoie(chemin, cle, mime):
 
 def recoit(cle, chemin):
     aws('s3', 'cp', f's3://{COFFRE}/{cle}', chemin, '--only-show-errors')
+
+
+def existe(cle):
+    """vrai si le coffre a déjà un fichier à cette clé"""
+    point = os.environ.get('R2_ENDPOINT', '')
+    r = subprocess.run(['aws', '--endpoint-url', point, 's3api', 'head-object', '--bucket', COFFRE, '--key', cle],
+                       capture_output=True, text=True)
+    return r.returncode == 0

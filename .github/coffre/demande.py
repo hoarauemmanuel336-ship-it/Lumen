@@ -4,7 +4,11 @@ recu/fiches.json qui dit lesquels ont été trouvés.
 · Cours d'Étude (espèce « cours ») : « titres » nomme un fichier ou un
   cours qu'il contient ; le sommaire du dépôt dit lequel.
 · Articles (espèce « article ») : « titres » nomme un fichier ou une
-  question ; le catalogue du dépôt (articles/articles.json) dit lequel."""
+  question ; le catalogue du dépôt (articles/articles.json) dit lequel.
+· Méditations (espèce « meditation ») : « titres » nomme « journal »,
+  « reglages » ou un jour (AAAA-MM-JJ), pour la tâche programmée qui écrit
+  la méditation (documentation/meditation.md). Un fichier absent du
+  coffre est dit introuvable."""
 import gzip, json, os, sys
 from coffre import recoit
 
@@ -24,8 +28,18 @@ elif espece == 'article':
     def cherche(tl):
         return [a['fichier'] for a in articles if a['fichier'].casefold() in (tl, tl + '.html')] or \
                [a['fichier'] for a in articles if tl in a.get('question', '').casefold()]
+elif espece == 'meditation':
+    dossier = 'meditations'
+    import re
+    from coffre import existe
+
+    def cherche(tl):
+        n = tl + '.json'
+        if (tl in ('journal', 'reglages') or re.fullmatch(r'\d{4}-\d{2}-\d{2}', tl)) and existe(f'meditations/{n}'):
+            return [n]
+        return []
 else:
-    sys.exit(f'Espèce inconnue : {espece} (« cours » ou « article »)')
+    sys.exit(f'Espèce inconnue : {espece} (« cours », « article » ou « meditation »)')
 
 os.makedirs('recu', exist_ok=True)
 voulus, introuvables = [], []

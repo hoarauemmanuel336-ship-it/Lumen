@@ -31,33 +31,6 @@ function json(corps, statut) {
   });
 }
 
-/* ── LA PORTE DU SITE ──
-   Les fichiers restent derrière le mot de passe. Selon l'ordre où
-   Netlify enchaîne ses fonctions, la porte (porte.js) peut passer
-   après celle-ci : le passage vérifie donc lui-même la clé de
-   l'appareil, avec le même calcul que la porte. */
-async function jetonPorte(mdp) {
-  const cle = await crypto.subtle.importKey('raw', new TextEncoder().encode(mdp), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
-  const sig = await crypto.subtle.sign('HMAC', cle, new TextEncoder().encode('lumen-porte-v1'));
-  return btoa(String.fromCharCode(...new Uint8Array(sig))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-}
-function cookie(req, nom) {
-  for (const m of (req.headers.get('cookie') || '').split(';')) {
-    const [k, ...v] = m.trim().split('=');
-    if (k === nom) return v.join('=');
-  }
-  return '';
-}
-async function porteOuverte(req) {
-  const mdp = (typeof Netlify !== 'undefined' && Netlify.env.get('LUMEN_MOT_DE_PASSE')) || '';
-  if (!mdp) return false;
-  const a = await jetonPorte(mdp), b = cookie(req, 'lumen_cle');
-  if (a.length !== b.length) return false;
-  let d = 0;
-  for (let i = 0; i < a.length; i++) d |= a.charCodeAt(i) ^ b.charCodeAt(i);
-  return d === 0;
-}
-
 /* Google dit à qui appartient le jeton de connexion */
 async function quiEst(jeton) {
   if (!jeton) return null;
@@ -262,7 +235,6 @@ async function api(req) {
 export default async (req, context) => {
   const url = new URL(req.url);
   if (url.pathname === '/api/fichiers') return api(req);
-  if (!(await porteOuverte(req))) return new Response('Accès réservé.', { status: 401, headers: { 'cache-control': 'no-store' } });
   if (req.method !== 'GET' && req.method !== 'HEAD') return new Response('Méthode non permise.', { status: 405 });
   let cle = '';
   if (url.pathname.startsWith('/parcours/cours/')) {
@@ -276,8 +248,8 @@ export default async (req, context) => {
   try { cle = decodeURIComponent(url.pathname.slice('/fichiers/'.length)); } catch (_) { return new Response('Introuvable.', { status: 404 }); }
   /* les anciens fichiers du coffre (pages, copies et médias des anciennes
      ressources et des anciens articles) sont à Emmanuel seul : la page les
-     demande avec son jeton de connexion, que Google vérifie. Le mot de
-     passe du site ne suffit pas : il disparaîtra à l'ouverture au public. */
+     demande avec son jeton de connexion, que Google vérifie ; les cours et
+     les articles, eux, sont ouverts à tous. */
   const u = await quiEst((req.headers.get('authorization') || '').replace(/^Bearer\s+/i, ''));
   if (!u || u.email !== PROPRIETAIRE || !u.verifie) return new Response('Accès réservé.', { status: 403, headers: { 'cache-control': 'no-store' } });
   return sert(req, cle);

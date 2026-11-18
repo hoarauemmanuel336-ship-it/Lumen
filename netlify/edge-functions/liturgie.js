@@ -8,7 +8,6 @@
 
    Seules les références des lectures sont transmises, jamais leur texte :
    l'accueil les ouvre dans la Bible du site, Chérubin ou Séraphin.
-   La porte (porte.js) garde ce passage comme le reste du site.
    ============================================================ */
 
 const SOURCE = 'https://api.aelf.org/v1/messes/';

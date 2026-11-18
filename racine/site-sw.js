@@ -17,8 +17,8 @@
      l'appareil d'abord, avec une mise à jour discrète en arrière-plan.
 
    La fabrication remplace __SITE_V__ et __BIBLE_V__ par les empreintes du site et
-   de la Bible. Une réponse qui n'est pas la bonne (la porte à mot de passe,
-   une erreur, un portail Wi-Fi) n'est jamais gardée.
+   de la Bible. Une réponse qui n'est pas la bonne (une erreur, un portail
+   Wi-Fi) n'est jamais gardée.
    ════════════════════════════════════════════════════════════════════ */
 'use strict';
 var SITE = 'lv-site-__SITE_V__';
@@ -85,9 +85,9 @@ self.addEventListener('fetch', function (e) {
       };
       var fin, fond;
       if (g === 'page') {
-        /* hors ligne ou serveur en panne : la dernière version gardée ; la
-           porte à mot de passe, elle, passe toujours (jamais remplacée par
-           une page gardée) */
+        /* hors ligne ou serveur en panne : la dernière version gardée ; une
+           page refusée, elle, passe toujours (jamais remplacée par une page
+           gardée) */
         fond = aller();
         fin = fond.then(function (r) { return (!r || r.status >= 500) ? (enCache || r) : r; });
       } else if (enCache) {

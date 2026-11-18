@@ -11,9 +11,9 @@ l'IA, la mémoire de l'IA à son sujet), et nulle part ailleurs ; pour qui
 n'est pas connecté, la base est fermée.
 
 
-POURQUOI CE VERROU EN PLUS DE LA PORTE À MOT DE PASSE
-La porte protège les pages du site. Mais la base de données (Firestore)
-est chez Google, pas chez Netlify : sans ces règles, quelqu'un qui
+POURQUOI CE VERROU
+La base de données (Firestore) est chez Google, pas chez Netlify : sans
+ces règles, quelqu'un qui
 connaîtrait l'adresse du projet pourrait lire tes données. Avec elles,
 chaque compte ne voit que son propre espace, et le tien reste à toi seul.
 
@@ -95,10 +95,6 @@ LES AUTRES COMPTES. Chaque compte a son espace sous son propre
 identifiant : il n'y voit que ce qu'il y a mis, et ne voit rien du tien.
 Les réglages et les anciennes données communes restent à toi seul, en
 lecture comme en écriture.
-
-LA PORTE RESTE FERMÉE. Tant que le mot de passe du site garde les pages,
-personne d'autre n'arrive jusqu'à elles : ces règles préparent seulement
-le jour où le site s'ouvrira.
 
 CE QUE ÇA COÛTE. Rien pour l'instant. Le projet reste sur le forfait
 gratuit, dont les limites se reverront si beaucoup de comptes s'en

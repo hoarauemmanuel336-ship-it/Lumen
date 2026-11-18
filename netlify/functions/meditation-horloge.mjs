@@ -14,6 +14,9 @@
    méditation de ce jour-là n'est pas rattrapée : la reprise commence
    avec celle du lendemain, pour qu'elle reste un jour entier sur
    l'accueil (« quand je réactive c'est toujours pour le jour suivant »).
+   Un jour « prolongé » (reglages.prolonge) n'a pas de méditation à lui :
+   celle de la veille reste sur l'accueil jusqu'à minuit (une fois, à la
+   demande d'Emmanuel, pour une méditation lancée en cours de journée).
    À chaque passage, elle efface aussi du coffre les méditations de plus
    de trente jours, leur voix comprise : elles ne se réécoutent qu'un
    mois. Le journal, qui ne garde que leur titre et leur résumé pour que
@@ -50,7 +53,7 @@ export default async (req, context) => {
     const reglages = (await litJson('reglages.json')) || {};
     if (reglages.pause) return;
     const m = await litJson(jour + '.json');
-    if ((m && m.audio) || reglages.reprise === jour) {
+    if ((m && m.audio) || reglages.reprise === jour || reglages.prolonge === jour) {
       if (heureDe() < HEURE_PREPARATION) return;
       jour = lendemain(jour);
       const demain = await litJson(jour + '.json');

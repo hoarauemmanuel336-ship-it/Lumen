@@ -14,11 +14,10 @@
    voix ; celle du lendemain, préparée la veille, reste cachée jusqu'à
    minuit. La méditation s'écrit chaque nuit dans
    netlify/functions/ ; son rangement est décrit dans
-   netlify/serveur/meditation.js. Le passage reste derrière la porte du
-   site, comme le reste.
+   netlify/serveur/meditation.js. La méditation se lit librement ; seul
+   le compte d'Emmanuel la met en pause.
    ============================================================ */
 import { demande } from '../serveur/r2.js';
-import { porteOuverte } from '../serveur/porte-ouverte.js';
 import { estProprietaire } from '../serveur/compte.js';
 import { DOSSIER, jourDe, jourValide, premierJourGarde, litJson, ecritJson } from '../serveur/meditation.js';
 
@@ -75,7 +74,6 @@ async function voix(req, jour, url) {
 }
 
 export default async (req) => {
-  if (!(await porteOuverte(req))) return new Response('Accès réservé.', { status: 401, headers: { 'cache-control': 'no-store' } });
   const url = new URL(req.url);
   if (req.method === 'POST' && url.pathname === '/api/meditation') {
     try { return await reglages(req); }
@@ -91,7 +89,7 @@ export default async (req) => {
       const liste = ((journal && journal.meditations) || []).filter(m => garde(m.date)).sort((a, b) => b.date.localeCompare(a.date))
         .map(m => ({ date: m.date, titre: m.titre, sujet: m.sujet, duree: m.duree || 0 }));
       const derniere = liste.length ? await litJson(liste[0].date + '.json') : null;
-      return json({ aujourdhui, liste, derniere: derniere && derniere.audio ? publique(derniere) : null, pause: !!(r && r.pause), reprise: !!(r && r.reprise === aujourdhui) });
+      return json({ aujourdhui, liste, derniere: derniere && derniere.audio ? publique(derniere) : null, pause: !!(r && r.pause), reprise: !!(r && r.reprise === aujourdhui), prolonge: !!(r && r.prolonge === aujourdhui) });
     }
     const mp3 = suite.match(/^(\d{4}-\d{2}-\d{2})\.mp3$/);
     if (mp3) return garde(mp3[1]) ? await voix(req, mp3[1], url) : new Response('Introuvable.', { status: 404 });

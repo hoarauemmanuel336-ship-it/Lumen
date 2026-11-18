@@ -24,6 +24,11 @@ html body .quatre .q-lien:hover{background:color-mix(in srgb,var(--h-or) 70%,#ff
 html body{--lit-V:#2ee59d;--lit-P:#b46bff;--lit-B:#ffffff;--lit-R:#ff3b5c;--lit-O:#ff5bd6;--lit-N:#8a8a8a}
 html body .hero.hero-lit{padding:72px 0 40px;min-height:0}
 html body .hero.hero-lit .croix{width:52px;height:96px}
+/* la mention de la version bêta, discrète sous la croix */
+html body .hero.hero-lit .beta{margin:28px 0 0;font-family:'EB Garamond',serif;font-size:14px;letter-spacing:.02em;color:rgba(255,255,255,.55);text-align:center}
+html body .hero.hero-lit .beta b{font-weight:500;color:var(--or,#efe6cf)}
+html body .hero.hero-lit .beta a{display:inline-block;margin-left:6px;color:var(--or,#efe6cf);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--or,#efe6cf) 40%,transparent);white-space:nowrap}
+html body .hero.hero-lit .beta a:hover{border-bottom-color:var(--or,#efe6cf)}
 html body .lit{max-width:720px;margin:0 auto 24px;font-family:var(--h-ui)}
 html body .lit-tete{text-align:center;padding:0 0 36px;border-bottom:1px solid var(--h-l1)}
 html body .lit-date{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--h-t3);margin:0 0 14px}

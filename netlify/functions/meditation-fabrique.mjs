@@ -329,6 +329,8 @@ async function fabrique(jour, etat) {
   if (reglages.pause) throw new Arret('pause');
   /* le jour d'une reprise après pause, seul le lendemain se prépare */
   if (reglages.reprise === jour) throw new Arret('reprise');
+  /* un jour prolongé garde la méditation de la veille (meditation-horloge.mjs) */
+  if (reglages.prolonge === jour) throw new Arret('reprise');
   let m = await litJson(jour + '.json');
   if (m && m.audio) return;
   if (!env('ELEVENLABS_API_KEY')) throw new Arret('cle-eleven');

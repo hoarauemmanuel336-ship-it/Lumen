@@ -107,51 +107,18 @@
      normale (Emmanuel : « la page est trop zoomée »). */
   const CRANS_COURS=[.85,.925,1,1.08,1.16,1.25], CRANS_PARCOURS=[.9,1,1.1,1.2,1.3];
   const DECALAGE_PARCOURS=3, ZOOM_PARCOURS=.85;
-  /* ── LA BARRE DE PROGRESSION DU PARCOURS, PAR BLOC ──
-     Le moteur du parcours dessine une case par thème (cent cinq) : au
-     début, on ne voit que ce qui reste (Emmanuel : « il y a tellement de
-     choses que c'est un peu décourageant »). Le site la remplace, dans le
-     cadre, par une case par bloc, qui se remplit au fil des sujets de tous
-     ses thèmes, comme les cases du moteur, dont elle reprend l'apparence.
-     Un sujet qui a son cours y compte pour la part de ses affirmations
-     « Je sais… » cochées, si bien que la case avance un peu à chaque
-     séance (Emmanuel : un bloc demandait des mois avant d'avancer, « soyons
-     réaliste ») ; Étude envoie ces parts (message lvSais). Un sujet sans
-     cours compte plein quand il est terminé, hachuré quand il est en cours
-     ou à revoir. Sous chaque case, le numéro du premier thème du bloc.
-     Tant que la progression du compte n'est pas arrivée, un cercle de
-     chargement tient la place de la barre (message lvProgPret). Le
-     fichier du parcours reste tel quel. */
-  const BARRE_BLOCS='<style>#w .prg:not(.lv-blocs){display:none}'
-    +'#w .lv-blocs{position:relative}#w .lv-blocs.lv-attend .seg{visibility:hidden}'
-    +'#w .lv-roue-b{display:none;position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-11px 0 0 -11px;border:2px solid rgba(255,255,255,.15);border-top-color:rgba(255,255,255,.75);border-radius:50%;animation:lvrb .8s linear infinite}'
-    +'#w .lv-blocs.lv-attend .lv-roue-b{display:block}@keyframes lvrb{to{transform:rotate(360deg)}}</style><scr'+'ipt>(function(){'
-    +'var S={},maj=function(){},PP=false,NN=null;'
-    +'window.addEventListener("message",function(ev){var d=ev.data;if(ev.source!==parent||!d)return;if(d.lvSais&&typeof d.lvSais==="object"){S=d.lvSais;maj();}if(d.lvProgPret){PP=true;if(NN)NN.classList.remove("lv-attend");}});'
-    +'function bati(){var W=document.getElementById("w"),P=W&&W.querySelector(".prg");'
-    +'if(!P||!W.querySelector(".bh .bh-n")||W.querySelector(".lv-blocs"))return !!(W&&W.querySelector(".lv-blocs"));'
-    +'var bl=[],b=null,n=0;'
-    +'[].forEach.call(W.children,function(e){'
-    +'if(e.classList.contains("bh")){b={a:e.style.getPropertyValue("--a"),r:e.style.getPropertyValue("--r"),nom:(e.querySelector(".bh-n")||e).textContent,premier:n+1,cw:[]};bl.push(b);}'
-    +'else if(b&&e.classList.contains("th")){n++;b.cw=b.cw.concat([].slice.call(e.querySelectorAll(".cw")));}});'
-    +'var N=document.createElement("div");N.className="prg lv-blocs"+(PP?"":" lv-attend");NN=N;N.appendChild(Object.assign(document.createElement("div"),{className:"lv-roue-b"}));'
-    +'bl.forEach(function(B){var s=document.createElement("div");s.className="seg";s.title=B.nom;'
-    +'s.style.setProperty("--a",B.a);s.style.setProperty("--r",B.r);'
-    +'s.innerHTML="<div class=\\"bar\\"><span class=\\"pl\\"></span><span class=\\"hc\\"></span></div><div class=\\"num\\">"+(B.premier<10?"0":"")+B.premier+"</div>";'
-    +'B.pl=s.querySelector(".pl");B.hc=s.querySelector(".hc");N.appendChild(s);});'
-    +'P.parentNode.insertBefore(N,P.nextSibling);'
-    +'maj=function(){bl.forEach(function(B){var t=B.cw.length||1,f=0,m=0;'
-    +'B.cw.forEach(function(c){var k=c._S&&c._S.cle,s=k&&S[k],e=c.getAttribute("data-e");'
-    +'if(s&&s[1]>0)f+=Math.min(1,s[0]/s[1]);else if(e==="termine")f++;else if(e&&e!=="a-faire")m++;});'
-    +'B.pl.style.width=(f/t*100)+"%";B.hc.style.left=(f/t*100)+"%";B.hc.style.width=(m/t*100)+"%";});};'
-    +'maj();new MutationObserver(maj).observe(W,{subtree:true,attributes:true,attributeFilter:["data-e"]});return true;}'
-    +'if(!bati()){var o=new MutationObserver(function(){if(bati())o.disconnect();});o.observe(document.documentElement,{childList:true,subtree:true});}'
-    +'})();</scr'+'ipt>';
+  /* ── PAS DE BARRE DE PROGRESSION DANS LE PARCOURS ──
+     Le parcours se lit sans barre de progression (Emmanuel l'a retirée) :
+     le site masque, dans le cadre, celle que dessine le moteur du parcours.
+     L'état de chaque sujet reste affiché sur le sujet lui-même. */
+  const SANS_BARRE='<style>#w .prg{display:none!important}</style>';
   /* ── LES BLOCS DU PARCOURS SE REPLIENT ──
      Le parcours s'ouvre blocs repliés : on voit d'un coup d'œil les dix-huit
      blocs, et on déplie celui qu'on veut (Emmanuel : « c'est mieux pour la
      navigation »). Le site redessine donc, dans le cadre, l'en-tête de chaque
-     bloc en grand titre (numéro du bloc, nom, nombre de thèmes, chevron) ;
+     bloc en grand titre (numéro du bloc, nom, étiquette, nombre de thèmes,
+     chevron) ; l'étiquette dit si les cours du bloc sont écrits
+     (« Disponible »), en partie (« En partie · 3/5 ») ou « À venir » ;
      un clic, sur le nom comme sur la flèche, l'ouvre ou le ferme, sans
      toucher aux thèmes ; le « + » garde son rôle et déplie l'explication du
      bloc. Les blocs ouverts sont gardés comme la place de
@@ -165,7 +132,8 @@
   const REPLI_BLOCS='<scr'+'ipt>'+String.raw`(function(){
 var OUV={},PRET=false,REP=null;
 var css='#w .bh.lv-b{display:flex;align-items:center;gap:16px;margin:0;padding:22px 12px 22px 12px;border-top:1px solid rgba(255,255,255,.09);cursor:pointer;-webkit-user-select:none;user-select:none}'
-+'#w .bh.lv-b.lv-premier{margin-top:36px}'
++'#w .bh.lv-b.lv-premier{margin-top:32px}'
++'#w .lv-rep:not([hidden])+.bh.lv-b.lv-premier{margin-top:24px}'
 +'#w .bh.lv-b:hover{background:rgb(var(--r) / .07)}'
 +'#w .bh.lv-b .bh-l{display:none}'
 +'#w .lv-bn{flex:none;font:700 12px/1 "JetBrains Mono",monospace;letter-spacing:.08em;color:var(--a);border:1px solid var(--a);padding:5px 8px}'
@@ -185,13 +153,15 @@ var css='#w .bh.lv-b{display:flex;align-items:center;gap:16px;margin:0;padding:2
 +'#w .lv-dt{margin-bottom:22px}'
 +'#w .lv-cache{display:none!important}'
 +'#w .lv-fin{border-top:1px solid rgba(255,255,255,.09);margin-bottom:28px}'
-+'#w .lv-rep{display:flex;align-items:center;gap:16px;margin:28px 0 0;padding:16px 20px;border:1px solid rgba(255,255,255,.2);background:#000;cursor:pointer;text-decoration:none;color:#fff}'
++'#w .lv-rep{display:flex;align-items:center;gap:16px;margin:32px 0 0;padding:16px 20px;border:1px solid rgba(255,255,255,.2);background:#000;cursor:pointer;text-decoration:none;color:#fff}'
 +'#w .lv-rep:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.04)}'
 +'#w .lv-rep[hidden]{display:none}'
 +'#w .lv-rep-l{flex:none;font:700 11px/1 "JetBrains Mono",monospace;letter-spacing:.14em;color:rgba(255,255,255,.5);text-transform:uppercase}'
 +'#w .lv-rep-t{flex:1;min-width:0;font:600 20px/1.3 Inter,"Helvetica Neue",Arial,sans-serif}'
 +'#w .lv-rep-v{flex:none;font:400 22px/1 "JetBrains Mono",monospace;color:rgba(255,255,255,.6)}'
-+'@media (max-width:640px){#w .lv-rep{flex-wrap:wrap;gap:8px 12px;padding:14px 16px}#w .lv-rep-l{flex-basis:100%}#w .lv-rep-t{font-size:18px}#w .lv-dans{margin-left:14px;padding-left:10px}#w .bh.lv-b{gap:12px;padding:18px 6px}#w .bh.lv-b .bh-n{font-size:23px}#w .lv-bc{display:none}}';
++'#w .lv-be{flex:none;font:700 11px/1 "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;padding:5px 8px;border:1px solid currentColor}'
++'#w .lv-be.ok{color:var(--a)}#w .lv-be.part{color:rgba(255,255,255,.7)}#w .lv-be.avenir{color:rgba(255,255,255,.35)}#w .lv-be:empty{display:none}'
++'@media (max-width:640px){#w .lv-be{font-size:10px;padding:4px 6px}#w .lv-rep{flex-wrap:wrap;gap:8px 12px;padding:14px 16px}#w .lv-rep-l{flex-basis:100%}#w .lv-rep-t{font-size:18px}#w .lv-dans{margin-left:14px;padding-left:10px}#w .bh.lv-b{gap:12px;padding:18px 6px}#w .bh.lv-b .bh-n{font-size:23px}#w .lv-bc{display:none}}';
 var st=document.createElement('style');st.textContent=css;(document.head||document.documentElement).appendChild(st);
 function blocs(){var W=document.querySelector('#w');if(!W)return [];var L=[],b=null;
 function range(e){if(e.classList.contains('bh')){b={h:e,c:[]};L.push(b);}else if(e.classList.contains('lv-env'))[].forEach.call(e.children,range);else if(b&&(e.classList.contains('th')||(e.classList.contains('xw')&&e.classList.contains('bp'))))b.c.push(e);}
@@ -216,12 +186,17 @@ var n=h.querySelector('.bh-n'),nb=b.c.filter(function(e){return e.classList.cont
 var tag=document.createElement('span');tag.className='lv-bn';tag.textContent=(i<9?'0':'')+(i+1);h.insertBefore(tag,h.firstChild);
 var t=document.createElement('span');t.className='lv-bt';h.insertBefore(t,n);t.appendChild(n);
 if(b.c.some(function(e){return e.classList.contains('bp');})){var p=document.createElement('span');p.className='lv-bp';p.textContent='+';p.setAttribute('role','button');p.setAttribute('aria-label','Explication du bloc');t.appendChild(p);}
+var e=document.createElement('span');e.className='lv-be';h.appendChild(e);
 var c=document.createElement('span');c.className='lv-bc';c.textContent=nb+(nb>1?' thèmes':' thème');h.appendChild(c);
 var v=document.createElement('span');v.className='lv-bv';v.textContent='›';h.appendChild(v);});
 var dern=L[L.length-1],z=dern.c[dern.c.length-1];
 if(z&&!document.querySelector('#w .lv-fin')){var f=document.createElement('div');f.className='lv-fin';z.parentNode.insertBefore(f,z.nextSibling);}
 if(!document.querySelector('#w .lv-rep')){var R=document.createElement('a');R.className='lv-rep';R.href='#';R.hidden=true;R.innerHTML='<span class="lv-rep-l">Reprendre</span><span class="lv-rep-t"></span><span class="lv-rep-v">→</span>';L[0].h.parentNode.insertBefore(R,L[0].h);R.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();if(REP)try{parent.postMessage({lvCours:REP.f},'*');}catch(_){}},true);}
-PRET=true;applique();montreReprise();return true;}
+PRET=true;applique();montreReprise();etiquettes();var ET=0,W0=document.querySelector('#w');new MutationObserver(function(ms){if(ET)return;if(!ms.some(function(m){return [].some.call(m.addedNodes,function(x){return x.classList&&x.classList.contains('lv-cours');});}))return;ET=requestAnimationFrame(function(){ET=0;etiquettes();});}).observe(W0,{childList:true,subtree:true});return true;}
+/* l'étiquette de chaque bloc : ses cours sont-ils écrits ? un thème qui a son cours porte le bouton « Ouvrir le cours » */
+function etiquettes(){blocs().forEach(function(b){var e=b.h.querySelector('.lv-be');if(!e)return;var ths=b.c.filter(function(x){return x.classList.contains('th');}),n=ths.filter(function(t){return !!t.querySelector('.lv-cours');}).length;
+if(!ths.length){e.textContent='';return;}
+if(n===ths.length){e.className='lv-be ok';e.textContent='Disponible';}else if(n){e.className='lv-be part';e.textContent='En partie · '+n+'/'+ths.length;}else{e.className='lv-be avenir';e.textContent='À venir';}});}
 function montreReprise(){var R=document.querySelector('#w .lv-rep');if(!R)return;R.hidden=!REP;if(REP)R.querySelector('.lv-rep-t').textContent=REP.t;}
 function ouvreVers(el){if(!el)return;var L=blocs(),ch=false;L.forEach(function(b,i){if(b.h===el||b.c.some(function(c){return c===el||c.contains(el);})){if(!OUV[i]){OUV[i]=true;ch=true;}}});if(ch){applique();envoie();}}
 /* un clic sur l'en-tête d'un bloc l'ouvre ou le ferme ; le + garde son rôle : déplier l'explication du bloc */
@@ -407,7 +382,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     o.f.style.visibility=''; o.f.removeAttribute('aria-hidden');
     finAttente(o);
     /* la progression des cours a pu changer pendant qu'on y était */
-    try{o.f.contentWindow.postMessage({lvReprise:reprise(),lvAuto:etatsDesCours(),lvSais:saisDesCours()},'*');}catch(_){}
+    try{o.f.contentWindow.postMessage({lvReprise:reprise(),lvAuto:etatsDesCours()},'*');}catch(_){}
     return true;
   }
   async function montre(ancre){
@@ -464,7 +439,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
       envoieEtat(o);
       /* ouvert par un lien d'un autre cours : on va à l'endroit visé plutôt
          qu'à la place gardée */
-      if(o.genre==='parcours'){try{f.contentWindow.postMessage({lvBlocsOuverts:litJson('blocs',o.id)||[],lvReprise:reprise(),lvAuto:etatsDesCours(),lvSais:saisDesCours()},'*');}catch(_){}}
+      if(o.genre==='parcours'){try{f.contentWindow.postMessage({lvBlocsOuverts:litJson('blocs',o.id)||[],lvReprise:reprise(),lvAuto:etatsDesCours()},'*');}catch(_){}}
       if(o.ancre)va(o,o.ancre);
       else{
         const pi=Object.assign({y:0},litJson('pos',o.id)||{});
@@ -476,8 +451,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     /* ── LA PROGRESSION DU COMPTE ARRIVE ──
        Le parcours reçoit ce qui a changé ailleurs : l'état des sujets tiré
        des cours, « Reprendre », et, s'ils ont changé, ses blocs ouverts et
-       son état. La barre de progression montre un cercle de chargement
-       jusque-là (message lvProgPret). Un cours reçoit la taille du texte si
+       son état. Un cours reçoit la taille du texte si
        elle a changé. Si la progression ou l'état du contenu lui-même ont
        changé sur un autre appareil (ils sont écrits dans le contenu à son
        ouverture), ou si le compte s'est fait connaître après l'affichage
@@ -491,7 +465,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
         if(refait&&OUVERT===o){try{o.f.remove();}catch(_){} OUVERT=null; montre(o.ancre||''); return;}
         if(c.indexOf(o.id+':etat')>=0||c.indexOf('_reglages:taille')>=0)envoieEtat(o);
         if(o.genre!=='parcours')return;
-        const m={lvProgPret:1,lvReprise:reprise(),lvAuto:etatsDesCours(),lvSais:saisDesCours()};
+        const m={lvReprise:reprise(),lvAuto:etatsDesCours()};
         if(c.indexOf('parcours:blocs')>=0)m.lvBlocsOuverts=litJson('blocs',o.id)||[];
         try{o.f.contentWindow.postMessage(m,'*');}catch(_){}
       }));
@@ -517,7 +491,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     if(o.genre==='parcours'){
       doc=doc.replace('<head>',()=>'<head><style>html{zoom:'+ZOOM_PARCOURS+'}</style>'+REPLI_BLOCS);
       const k=doc.lastIndexOf('</body>');
-      doc=k<0?doc+BARRE_BLOCS:doc.slice(0,k)+BARRE_BLOCS+doc.slice(k);
+      doc=k<0?doc+SANS_BARRE:doc.slice(0,k)+SANS_BARRE+doc.slice(k);
     }
     f.srcdoc=doc;
     /* le cadre se glisse sous le cercle de chargement, qui le couvre jusqu'au bout */

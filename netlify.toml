@@ -56,12 +56,10 @@
   [headers.values]
     Cache-Control = "no-cache, max-age=0, must-revalidate"
 
-# Site privé (26/09) : la porte à mot de passe est dans
-# netlify/edge-functions/porte.js, le mot de passe dans la variable
-# LUMEN_MOT_DE_PASSE (Netlify → Site configuration → Environment variables).
-# Ce que le site dit aux moteurs de recherche ne se règle pas ici : la
-# fabrication pose l'en-tête qui les écarte (fichier _headers) tant que
-# contenu/referencement.json les tient fermés.
+# Le site est ouvert au public, sans mot de passe. Ce que le site dit aux
+# moteurs de recherche ne se règle pas ici : la fabrication pose l'en-tête
+# qui les écarte (fichier _headers) quand contenu/referencement.json les
+# tient fermés.
 
 # ── En-têtes de sécurité, sur tout le site (05/09) ──
 # nosniff : un fichier n'est jamais interprété comme autre chose que son type.

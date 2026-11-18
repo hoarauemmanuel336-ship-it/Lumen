@@ -44,4 +44,4 @@ L'abonnement donne un nombre de crédits par mois ; la méditation se raccourcit
 
 ## Quand le site deviendra public
 
-Après le retrait du mot de passe, les cours, les articles et la méditation pourront être gardés par Netlify au plus près des lecteurs, pour qu'un même fichier ne soit lu qu'une fois dans le coffre : c'est à faire en même temps que l'ouverture.
+Le site est ouvert : les cours, les articles et la méditation pourront être gardés par Netlify au plus près des lecteurs, pour qu'un même fichier ne soit lu qu'une fois dans le coffre : c'est à faire en même temps que l'ouverture.

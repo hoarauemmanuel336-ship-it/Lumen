@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Nouveautés et projets · Lumen Veritatis</title>
+<meta name="description" content="Ce qui est nouveau sur Lumen Veritatis, et ce qui se prépare.">
+<link rel="canonical" href="https://lumenveritatis.net/nouveautes.html">
+<link rel="icon" href="/icones/lumen-192.png">
+<!--
+  NOUVEAUTÉS ET PROJETS
+  Une page fixe, servie telle quelle, ouverte depuis la mention « Version
+  bêta » de l'accueil (Emmanuel : les nouveautés et les choses à venir,
+  reliées à la bêta plutôt qu'à une cloche dans la barre). Quand une
+  nouveauté visible paraît sur le site, l'IA l'ajoute en tête, datée, en
+  quelques mots pour le lecteur ; quand un projet aboutit, il passe de « À
+  venir » aux nouveautés.
+-->
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400 700;font-display:swap;src:url(/polices/cormorant-garamond-latin-normal.woff2) format('woff2')}
+@font-face{font-family:'Literata';font-style:normal;font-weight:300 700;font-display:swap;src:url(/polices/literata-latin-normal.woff2) format('woff2')}
+@font-face{font-family:'Literata';font-style:italic;font-weight:300 700;font-display:swap;src:url(/polices/literata-latin-italic.woff2) format('woff2')}
+@font-face{font-family:'EB Garamond';font-style:normal;font-weight:400 700;font-display:swap;src:url(/polices/eb-garamond-latin-normal.woff2) format('woff2')}
+:root{--or:#efe6cf;--t1:rgba(255,255,255,.92);--t2:rgba(255,255,255,.78);--t3:rgba(255,255,255,.58);--filet:color-mix(in srgb,#efe6cf 14%,transparent)}
+*{box-sizing:border-box}
+html{background:#000;color:var(--t2);-webkit-text-size-adjust:100%}
+body{margin:0;font-family:'Literata',Georgia,serif;font-size:16.5px;line-height:1.6}
+main{max-width:720px;margin:0 auto;padding:28px 22px 80px}
+.retour{display:inline-block;font-family:'EB Garamond',Georgia,serif;font-size:16px;color:var(--or);text-decoration:none;opacity:.85}
+.retour:hover{opacity:1}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:40px;line-height:1.1;color:#fff;margin:34px 0 8px}
+.maj{font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--t3);margin:0 0 30px}
+h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:26px;line-height:1.2;color:#fff;margin:40px 0 12px;padding-bottom:8px;
+  border-bottom:1px solid transparent;border-image:linear-gradient(90deg,color-mix(in srgb,#efe6cf 38%,transparent),transparent) 1}
+p,li{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+p{margin:0 0 12px}
+ul{margin:0 0 12px;padding-left:20px}
+li{margin:0 0 6px}
+li::marker{color:var(--or)}
+strong{color:var(--t1);font-weight:600}
+a{color:var(--or)}
+.bloc{border-left:1px solid var(--filet);padding:2px 0 2px 16px;margin:0 0 12px}
+.bloc p{margin:0}
+@media (max-width:600px){h1{font-size:33px}h2{font-size:23px}body{font-size:16px}}
+/* deux onglets, comme « Versets de base / Mes versets » dans Mémoriser :
+   un filet crème sous celui où l'on est */
+.modes{display:flex;flex-wrap:wrap;gap:30px;margin:30px 0 8px;border-bottom:1px solid var(--filet)}
+.mode{background:none;border:0;padding:0 0 13px;font-family:'EB Garamond',Georgia,serif;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);cursor:pointer;position:relative;transition:color .3s}
+.mode:hover{color:var(--t1)}
+.mode.on{color:var(--or)}
+.mode.on::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--or)}
+.volet[hidden]{display:none}
+.volet>ul:first-child{margin-top:24px}
+.date{font-family:'EB Garamond',Georgia,serif;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--or);margin:26px 0 8px}
+</style>
+</head>
+<body>
+<main>
+<a class="retour" href="/">← Accueil</a>
+<h1>Nouveautés et projets</h1>
+<p class="maj">Lumen est en version bêta : le site grandit au fil des semaines.</p>
+
+<div class="modes" role="tablist">
+<button type="button" class="mode on" role="tab" aria-selected="true" data-v="nouveautes">Nouveautés</button>
+<button type="button" class="mode" role="tab" aria-selected="false" data-v="a-venir">À venir</button>
+</div>
+
+<section class="volet" id="nouveautes">
+<p class="date">18 novembre 2026</p>
+<ul>
+<li>Lumen s’ouvre à tous, en version bêta.</li>
+<li>Étude : deux nouveaux blocs de cours, <strong>La liturgie et les sacrements</strong> et <strong>L’histoire de l’Église</strong>.</li>
+<li>Étude : chaque bloc du parcours dit si ses cours sont disponibles, en partie écrits ou à venir.</li>
+</ul>
+<p class="date">17 novembre 2026</p>
+<ul>
+<li>Étude : nouveau bloc de cours, <strong>La doctrine sociale de l’Église</strong>, avec ses versets de base dans Mémoriser.</li>
+<li>Étude : le parcours s’ouvre blocs repliés ; un clic sur un bloc le déroule.</li>
+<li>Étude : « Reprendre », en tête du parcours, rouvre le dernier cours là où vous l’aviez laissé.</li>
+<li>Étude : les cours s’ouvrent bien plus vite, et presque aussitôt la deuxième fois.</li>
+</ul>
+<p class="date">16 novembre 2026</p>
+<ul>
+<li>Accueil : une méditation chaque jour, à écouter ou à lire, et à réécouter pendant un mois.</li>
+<li>Étude : nouveau bloc de cours, <strong>Jésus-Christ</strong>.</li>
+<li>Chacun peut créer son compte, avec ses notes, son Mémoriser et sa progression, et le supprimer quand il le veut.</li>
+</ul>
+<p class="date">15 novembre 2026</p>
+<ul>
+<li>Étude : nouveaux blocs de cours, <strong>L’Esprit Saint et la grâce</strong> et <strong>Les fins dernières</strong>.</li>
+<li>Mémoriser : des versets de base à savoir par cœur, choisis pour chaque grand thème de la foi.</li>
+</ul>
+<p class="date">14 novembre 2026</p>
+<ul>
+<li>Nouvelle page Étude : le parcours « La foi catholique », avec les cours de ses premiers blocs, <strong>La Révélation et sa transmission</strong> et <strong>L’Écriture sainte</strong>.</li>
+</ul>
+
+</section>
+
+<section class="volet" id="a-venir" hidden>
+<ul>
+<li>Les cours des blocs encore à écrire du parcours, bloc après bloc.</li>
+<li>Les versets de base de Mémoriser pour chacun de ces blocs.</li>
+<li>Pour chaque cours, un diagramme interactif : une vue d’ensemble du sujet, à explorer d’un clic.</li>
+<li>Des articles : des questions sur la foi catholique et leurs réponses.</li>
+</ul>
+</section>
+</main>
+<script>
+/* l'onglet ouvert se lit dans l'adresse (#a-venir), pour qu'un lien puisse y mener */
+(function(){
+  var b=[].slice.call(document.querySelectorAll('.mode'));
+  function va(v){b.forEach(function(x){var on=x.getAttribute('data-v')===v;x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false');document.getElementById(x.getAttribute('data-v')).hidden=!on;});}
+  b.forEach(function(x){x.addEventListener('click',function(){var v=x.getAttribute('data-v');va(v);history.replaceState(null,'',v==='nouveautes'?location.pathname:'#'+v);});});
+  if(location.hash==='#a-venir')va('a-venir');
+})();
+</script>
+</body>
+</html>

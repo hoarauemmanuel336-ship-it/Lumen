@@ -3,7 +3,8 @@
 # · Une branche « envoi/… » porte un dossier envoi/ (envoi.json et les
 #   fichiers) : le robot range les cours d'Étude dans cours/ et les articles
 #   dans articles/, une fois vérifiés contre le sommaire des cours et le
-#   catalogue des articles que porte la branche, puis supprime la branche.
+#   catalogue des articles que porte la branche, et la méditation préparée
+#   par Claude dans meditations/, puis supprime la branche.
 # · Une branche « demande/… » porte demande/demande.json : le robot cherche
 #   les fichiers demandés dans le coffre et les dépose dans recu/, sur la
 #   même branche, pour que Claude les lise et les modifie.

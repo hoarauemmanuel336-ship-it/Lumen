@@ -27,11 +27,9 @@ const OUT = process.argv[3] || 'site';
    contenu/referencement.json dit si le site s'ouvre aux moteurs de
    recherche (« ouvert ») et son adresse. Fermé, tout le site leur demande
    de ne rien retenir (balise des pages, robots.txt, en-têtes posés par
-   _headers, par la porte et par le passage du coffre). Ouvert, ces
-   interdictions tombent et robots.txt donne le plan du site. C'est
-   l'unique interrupteur : il s'allume quand Emmanuel retire le mot de
-   passe, pas avant, sinon les moteurs retiendraient la page du mot de
-   passe à la place du site. */
+   _headers et par le passage du coffre). Ouvert, ces interdictions
+   tombent et robots.txt donne le plan du site. C'est l'unique
+   interrupteur : il est ouvert depuis que le site est public. */
 const REF = JSON.parse(fs.readFileSync(CONTENU + 'referencement.json', 'utf8'));
 const ADRESSE = String(REF.adresse || '').replace(/\/+$/, '');
 const src = fs.readFileSync(SRC, 'utf8');
@@ -711,7 +709,9 @@ window.LUMEN={base:${JSON.stringify(base)},lang:${JSON.stringify(lang)},empty:${
 
 /* ---- vues ---- */
 function mainAccueil() {
-  /* Accueil : la croix, puis « tout ce qui rythme la vie de l'Église »
+  /* Accueil : la croix, la mention de la version bêta (le texte choisi par
+     Emmanuel) et son lien vers « Nouveautés et projets »
+     (racine/nouveautes.html), puis « tout ce qui rythme la vie de l'Église »
      (choix d'Emmanuel), selon le calendrier de France. Le contenu est
      écrit par pages/accueil.js, d'après /liturgie/ et /api/liturgie. */
   const js = fs.readFileSync(PAGES + 'accueil.js', 'utf8');
@@ -719,6 +719,7 @@ function mainAccueil() {
     <h1 class="titre-cache">Lumen Veritatis</h1>
     <section class="hero hero-lit">
       <div class="croix" aria-hidden="true"></div>
+      <p class="beta"><b>Version bêta</b>\u00a0: le site est encore en cours de finition. <a href="/nouveautes.html">Nouveautés et projets\u00a0→</a></p>
     </section>
     <div class="lit" id="lit" aria-live="polite"></div>
   </div>
@@ -973,7 +974,7 @@ if (fs.existsSync(RACINE + 'bible-panneau.js')) {
 }
 /* la page de confidentialité et des mentions légales, page fixe sans
    barre ni script : un lien y mène depuis « Mon compte » (commun/compte.js) */
-for (const f of ['memoriser-manifest.webmanifest', 'manifest.webmanifest', 'confidentialite.html']) {
+for (const f of ['memoriser-manifest.webmanifest', 'manifest.webmanifest', 'confidentialite.html', 'nouveautes.html']) {
   if (fs.existsSync(RACINE + f)) fs.copyFileSync(RACINE + f, `${OUT}/${f}`);
 }
 /* le service worker reçoit sa version du build : empreinte de la page, du
@@ -1492,7 +1493,7 @@ function poseVersSeraphin(livre) {
   fs.writeFileSync('netlify/savoir/referencement.js',
     '/* Fichier écrit par la fabrication (fabrication/build-bi.js) : ne pas le modifier à la main. */\n'
     + 'export const REFERENCEMENT = ' + JSON.stringify(ref) + ';\n');
-  const adresses = ['/', '/bible.html', '/memoriser.html', '/etude.html', '/articles.html', '/confidentialite.html',
+  const adresses = ['/', '/bible.html', '/memoriser.html', '/etude.html', '/articles.html', '/confidentialite.html', '/nouveautes.html',
     ...Object.keys(ref.cours).map(f => '/parcours/cours/' + encodeURIComponent(f)),
     ...Object.keys(ref.articles).map(f => '/articles/' + encodeURIComponent(f))];
   ecrire('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

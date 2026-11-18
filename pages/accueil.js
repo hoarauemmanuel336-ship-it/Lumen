@@ -424,7 +424,8 @@
       MED.aujourdhui = d.aujourdhui || cle(new Date());
       MED.pause = !!d.pause;
       MED.reprise = !!d.reprise;
-      if (d.derniere && d.derniere.date === MED.aujourdhui) { montreMed(d.derniere); return; }
+      /* un jour prolongé, la méditation de la veille reste celle du jour */
+      if (d.derniere && (d.derniere.date === MED.aujourdhui || d.prolonge)) { montreMed(d.derniere); return; }
       var h = '<p class="lit-doux">' + (MED.pause ? 'Les méditations sont en pause.'
         : MED.reprise ? 'Les méditations reprennent : la prochaine paraîtra à minuit.'
         : MED.liste.length ? 'La méditation du jour n’a pas encore paru.' : 'La première méditation paraîtra à minuit.') + '</p>';
