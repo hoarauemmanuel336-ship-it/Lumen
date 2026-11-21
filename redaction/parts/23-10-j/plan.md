@@ -23,4 +23,4 @@ Sources vérifiées : traduction ANF (newadvent) de 1 Apol, 2 Apol, Dialogue, Ma
 Bilan : 6 exercices croisés.
 
 ## État
-- Leçons 0-4 écrites (00 à 04).
+- Leçons 0-7 écrites (00 à 07).

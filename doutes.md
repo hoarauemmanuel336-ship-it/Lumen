@@ -514,3 +514,26 @@
 - Boniface VIII, 1298 (fêtes des quatre docteurs) ; attributs iconographiques ; chaire du Bernin (1666) avec Ambroise, Augustin, Athanase, Chrysostome : de mémoire.
 - Ambrosiaster : Érasme premier à douter, nom donné par les éditeurs bénédictins : à vérifier.
 - Pélage louant Ambroise (Augustin, De la grâce du Christ I, 43, 47) ; « Ubi Petrus, ibi ecclesia » (Explication du Psaume 40, 30) ; « l'eau et les larmes » tirée de la lettre 41, 12 (Catéchisme 1429) : de mémoire.
+
+## 26-01-l
+- Accès web refusé pendant la rédaction (WebFetch non autorisé) : TOUS les extraits d'Augustin et de Possidius sont traduits de mémoire du latin, sans vérification en ligne. Références à contrôler en priorité : Conf. I, 11, 17 ; II, 3, 5 ; III, 1, 1 ; III, 3, 6 ; III, 4, 7-8 ; III, 5, 9 ; III, 6, 10 ; III, 11, 20 ; III, 12, 21 ; IV, 1, 1 ; IV, 2, 2 (deux extraits) ; IV, 4, 9 ; V, 8, 15 ; V, 10, 18-19 ; V, 13, 23 ; V, 14, 24-25 ; VI, 3, 3 ; VI, 4, 6 (deux extraits) ; VI, 6, 9 ; VI, 15, 25 ; VII, 9, 13-14 ; VII, 10, 16 ; VII, 18, 24 ; VIII, 2, 4 ; VIII, 5, 10 ; VIII, 6, 15 ; VIII, 7, 16-17 ; VIII, 9, 21 ; VIII, 11, 26-27 ; VIII, 12, 28-30 ; IX, 4, 8 ; IX, 6, 14 (quatre extraits) ; IX, 9, 22 ; IX, 10, 23-26 ; IX, 11, 27-28.
+- La Vie heureuse 1, 6 (« le jour des ides de novembre était celui de ma naissance ») et 1, 4 (Hortensius à dix-neuf ans) : de mémoire.
+- Possidius, Vie d'Augustin 1 (parents « honorables et chrétiens », grammaire à Thagaste puis rhétorique à Carthage), 26 (sœur veuve à la tête d'une communauté de femmes), 31 (mort dans sa soixante-seizième année) : de mémoire.
+- Numéro de paragraphe de la réponse de Monique sur le songe : III, 11, 20 (le songe est en III, 11, 19) ; à confirmer.
+- Contre les académiciens II, 2, 3 (remerciements à Romanianus) et L'Utilité de croire 1, 2 (la raison sans l'autorité) : paraphrasés de mémoire.
+- Le Bien du mariage 5, 5 (l'homme qui garde une femme en attendant un parti, la femme fidèle meilleure que bien des épouses) : contenu paraphrasé de mémoire.
+- Révisions I, 1, 4 (regret d'avoir trop loué les platoniciens) : de mémoire.
+- Panégyrique du consul Bauton au début de 385 : donné sans référence (Contre les lettres de Pétilien III, 25, 30, de mémoire).
+- Augustin désapprouvant les « sorts » tirés des pages de l'Évangile (Lettre 55, 20, 37) : mentionné sans référence, de mémoire.
+- Catéchisme 2390 (union libre) et 1371 (cite les dernières paroles de Monique à propos de l'Eucharistie pour les défunts) : numéros de mémoire, paraphrasés sans guillemets.
+- Translation des reliques de Monique à Rome par Martin V en 1430 et fragment de l'épitaphe trouvé à Ostie en 1945 : de mémoire.
+- Fête de sainte Monique le 27 août dans le calendrier romain actuel : de mémoire.
+- Ambroise né à Trèves « vers 339 ou 340 » : fourchette usuelle, d'autres disent 334 ou 337.
+- Te Deum attribué « souvent, sans certitude » à Nicétas de Rémésiana : état de la question donné de mémoire.
+- Cassiciacum identifié « le plus souvent » à Cassago Brianza (autre candidat : Casciago, près de Varèse) : de mémoire.
+- Madaure « à une trentaine de kilomètres au sud de Thagaste » ; études à Madaure « vers 365-369 » ; Thagaste vers 374-375 ; Carthage vers 376-383 : chronologie usuelle, de mémoire.
+- Ouverture du raisonnement de l'Hortensius par « tous les hommes veulent être heureux » (fragment cité par Augustin) : de mémoire.
+- Pierre Courcelle, Recherches sur les Confessions de saint Augustin (1950), et sa thèse sur le figuier et la voix d'enfant : présentés de mémoire.
+- Conf. VIII, 12, 28 : Augustin y cite les psaumes (« jusqu'à quand, Seigneur, seras-tu irrité pour toujours ? ») ; le cours cite Psaumes 79:5 de la Chérubin comme passage correspondant (numérotation hébraïque), à confirmer.
+- Ponticianus « haut fonctionnaire au palais » (praeclare in palatio militans) : de mémoire ; le cours ne dit plus qu'il était lui-même agens in rebus.
+- Présence d'Alypius à Ostie non affirmée (retirée par prudence).
