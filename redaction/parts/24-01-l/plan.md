@@ -21,4 +21,4 @@ Leçons (12) :
 
 Bilan : 6 exercices croisés.
 
-État : plan fait. Leçons écrites : (mettre à jour)
+État : leçons écrites : 00, 01, 02
