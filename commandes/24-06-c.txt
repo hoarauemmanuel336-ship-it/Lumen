@@ -1,0 +1,14 @@
+<sujet cle="peres-orient.cyrille-jerusalem" titre="Cyrille de Jérusalem" desc="L’évêque de Jérusalem dont les catéchèses montrent comment on devenait chrétien au IVe siècle.">
+<p>La naissance vers 315 et l’élection au siège de Jérusalem vers 350</p>
+<p>Les trois exils, dus aux conflits avec Acace de Césarée et aux luttes ariennes</p>
+<p>La participation au concile de Constantinople (381) et la mort en 387</p>
+<p>La <i>Procatéchèse</i> : l’accueil des candidats au baptême au début du Carême</p>
+<p>Les dix-huit <b>Catéchèses baptismales</b> : l’explication du Symbole de foi de Jérusalem article par article</p>
+<p>Les cinq <b>Catéchèses mystagogiques</b> : l’explication des rites du baptême, de la chrismation et de l’eucharistie aux nouveaux baptisés</p>
+<p>La question de l’attribution des <i>Catéchèses mystagogiques</i>, à Cyrille ou à son successeur Jean de Jérusalem</p>
+<p>La doctrine eucharistique : la présence réelle, la transformation du pain et du vin, l’épiclèse</p>
+<p>La prière pour les défunts au cours de l’eucharistie</p>
+<p>La <b>mystagogie</b> (grec <i>mystagôgia</i>, « initiation aux mystères ») comme méthode : expliquer les sacrements après les avoir fait vivre</p>
+<p>Le témoin de la liturgie de Jérusalem et des lieux saints au IVe siècle</p>
+<p>La proclamation comme docteur de l’Église par Léon XIII (1883)</p>
+</sujet>

@@ -1,0 +1,15 @@
+<sujet cle="augustin.heritage" titre="La règle et l’héritage d’Augustin" desc="La règle de vie d’Augustin et son influence sur toute l’histoire de l’Occident.">
+<p>La <b>Règle de saint Augustin</b> : un seul cœur et une seule âme tournés vers Dieu, la vie commune et le partage des biens</p>
+<p>Les familles religieuses qui suivent cette règle : chanoines réguliers, prémontrés, dominicains, ermites de saint Augustin (Grande Union de 1256)</p>
+<p>Les reliques d’Augustin, de la Sardaigne à Pavie</p>
+<p>Augustin chez saint Anselme : « la foi qui cherche à comprendre »</p>
+<p>Augustin chez saint Bonaventure et dans l’école franciscaine : l’illumination et le primat de l’amour</p>
+<p>Augustin chez saint Thomas d’Aquin, le Père le plus cité dans la <i>Somme de théologie</i></p>
+<p>Le titre de <b>docteur de la grâce</b> et sa place parmi les quatre grands docteurs de l’Occident</p>
+<p>Les lectures contestées d’Augustin : Luther, moine augustin, et la Réforme</p>
+<p>Le jansénisme et l’<i>Augustinus</i> de Jansénius (1640)</p>
+<p>La lettre apostolique <i>Augustinum Hipponensem</i> de Jean-Paul II (1986), pour le seizième centenaire de sa conversion</p>
+<p>Augustin chez Benoît XVI, qui lui consacra sa thèse de doctorat</p>
+<p>Le pape Léon XIV, élu en 2025, religieux de l’ordre de Saint-Augustin</p>
+<p>La présence d’Augustin dans la culture : l’intériorité, le temps, la volonté, le désir de Dieu</p>
+</sujet>

@@ -1,0 +1,12 @@
+<sujet cle="patristique.alexandrie" titre="L’école d’Alexandrie" desc="Le grand foyer intellectuel chrétien d’Égypte, et sa manière de lire l’Écriture.">
+<p>Alexandrie, capitale culturelle du monde grec, et sa Bibliothèque</p>
+<p>Le judaïsme hellénistique d’Alexandrie et la traduction grecque de la Bible qui y vit le jour, la Septante</p>
+<p>Philon d’Alexandrie, exégète juif, et sa lecture allégorique de la Loi, source de l’exégèse alexandrine</p>
+<p>Le <b>Didascalée</b> : l’école catéchétique d’Alexandrie et ses maîtres successifs (Pantène, Clément, Origène, puis Didyme l’Aveugle au IVe siècle)</p>
+<p>L’<b>allégorie</b> (grec <i>allêgoria</i>, « dire autre chose ») : la recherche du sens spirituel caché sous la lettre</p>
+<p>L’accueil de la philosophie platonicienne comme préparation à l’Évangile</p>
+<p>La théologie du Logos : le Verbe éternel au centre de la pensée alexandrine</p>
+<p>La christologie dite « Logos-sarx » (Verbe-chair) : l’accent mis sur l’unité du Christ à partir du Verbe</p>
+<p>Les grands héritiers alexandrins : Athanase et Cyrille</p>
+<p>La dérive que la tendance alexandrine pouvait favoriser : l’apollinarisme, puis le monophysisme</p>
+</sujet>

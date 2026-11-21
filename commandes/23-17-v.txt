@@ -1,0 +1,18 @@
+<sujet cle="premiers-peres.origene-vie" titre="Origène : vie et œuvres" desc="Le plus grand savant chrétien du IIIe siècle, sa vie et son œuvre immense.">
+<p>La naissance à Alexandrie vers 185 et le martyre de son père Léonide (202)</p>
+<p>Le geste de mutilation rapporté par Eusèbe (<i>Histoire ecclésiastique</i> VI, 8), qui pesa sur la question de son ordination</p>
+<p>Le jeune maître de l’école catéchétique d’Alexandrie et sa vie ascétique</p>
+<p>Les voyages d’Origène (Rome, Arabie, Antioche) et sa réputation de savant</p>
+<p>Le conflit avec l’évêque Démétrius et l’ordination presbytérale à Césarée de Palestine (vers 231)</p>
+<p>L’installation à Césarée : l’école et la bibliothèque</p>
+<p>Grégoire le Thaumaturge, élève d’Origène, et son <i>Remerciement</i>, témoin de la méthode d’enseignement de son maître</p>
+<p>La torture pendant la persécution de Dèce et la mort à Tyr vers 254</p>
+<p>Les <b>Hexaples</b> : l’Ancien Testament en six colonnes (hébreu, translittération grecque, Aquila, Symmaque, Septante, Théodotion)</p>
+<p>Le <i>Traité des principes</i> (<i>Peri archôn</i>) : la première synthèse de la foi chrétienne, conservée surtout dans la traduction latine de Rufin</p>
+<p>Le <i>Contre Celse</i>, en huit livres : la réponse au philosophe païen Celse</p>
+<p>Les commentaires bibliques, dont le <i>Commentaire sur Jean</i> et le <i>Commentaire sur le Cantique des cantiques</i></p>
+<p>Les homélies sur l’Ancien Testament, transmises en latin par Rufin et Jérôme</p>
+<p>Le traité <i>Sur la prière</i>, avec son commentaire du Notre Père</p>
+<p>L’<i>Exhortation au martyre</i>, écrite pendant la persécution de Maximin le Thrace (235)</p>
+<p>L’<i>Entretien avec Héraclide</i>, découvert à Toura en Égypte en 1941</p>
+</sujet>

@@ -1,0 +1,10 @@
+<sujet cle="premiers-peres.apologistes-latins" titre="Les apologistes latins avant Nicée" desc="Les auteurs latins qui ont défendu et exposé la foi avant le IVe siècle.">
+<p>L’<i>Octavius</i> de Minucius Felix : un dialogue où le chrétien répond aux accusations païennes</p>
+<p>Novatien, prêtre de Rome, et son traité <i>Sur la Trinité</i>, premier grand exposé latin sur ce mystère à Rome</p>
+<p>Novatien antipape (251) et le rigorisme envers les chrétiens tombés dans la persécution</p>
+<p>Arnobe de Sicca et son <i>Contre les nations</i></p>
+<p>Lactance, le « Cicéron chrétien », et ses <i>Institutions divines</i>, premier exposé latin d’ensemble de la foi</p>
+<p>La <i>Mort des persécuteurs</i> de Lactance, source historique sur la persécution de Dioclétien</p>
+<p>Lactance précepteur du fils de Constantin, et le passage de l’apologie à l’ère constantinienne</p>
+<p>L’apport de ces auteurs à la langue théologique latine</p>
+</sujet>

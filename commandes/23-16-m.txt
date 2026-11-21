@@ -1,0 +1,14 @@
+<sujet cle="premiers-peres.clement-alexandrie" titre="Clément d’Alexandrie" desc="Le maître de l’école d’Alexandrie qui mit la culture grecque au service du Christ.">
+<p>Titus Flavius Clemens, né vers 150, païen converti, voyageur en quête de maîtres</p>
+<p>La rencontre de Pantène à Alexandrie et la direction de l’école catéchétique</p>
+<p>Le départ d’Alexandrie lors de la persécution de Septime Sévère (vers 202) et la mort avant 215</p>
+<p>Le <i>Protreptique</i> (<i>Exhortation aux Grecs</i>) : l’appel aux païens à se tourner vers le Logos</p>
+<p>Le <i>Pédagogue</i>, en trois livres : le Christ éducateur et la conduite chrétienne dans la vie quotidienne</p>
+<p>Les <i>Stromates</i> (grec, « tapisseries »), en huit livres : la vraie gnose chrétienne</p>
+<p><i>Quel riche sera sauvé ?</i> : homélie sur Marc 10:17-31 et l’usage chrétien des richesses</p>
+<p>La philosophie, préparation des Grecs à l’Évangile comme la Loi le fut pour les Juifs</p>
+<p>Le <b>vrai gnostique</b> : le chrétien parfait, qui unit foi, connaissance et charité, opposé aux gnostiques hérétiques</p>
+<p>Le Logos, maître et pédagogue de l’humanité</p>
+<p>L’idéal de maîtrise des passions (grec <i>apatheia</i>) et ses limites</p>
+<p>La réception : Clément honoré comme saint en Orient, retiré du Martyrologe romain au XVIIIe siècle</p>
+</sujet>

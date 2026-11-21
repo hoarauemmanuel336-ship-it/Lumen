@@ -1,0 +1,10 @@
+<sujet cle="premiers-peres.hermas" titre="Le Pasteur d’Hermas" desc="Un long écrit romain du IIe siècle, en visions, sur la pénitence.">
+<p>L’auteur Hermas, chrétien de Rome, frère de l’évêque Pie selon le fragment de Muratori, et la date (milieu du IIe siècle)</p>
+<p>La structure de l’œuvre : cinq visions, douze préceptes, dix similitudes</p>
+<p>Le Pasteur, ange de la pénitence qui donne son nom au livre</p>
+<p>Les visions de l’Église : la femme âgée qui rajeunit, la tour en construction faite de pierres vivantes</p>
+<p>La doctrine de la <b>pénitence</b> : une possibilité de pardon offerte après le baptême, une seule fois</p>
+<p>La morale des préceptes : la simplicité, la vérité, la chasteté, le discernement des deux anges</p>
+<p>La christologie obscure du Pasteur et les interprétations qu’elle a suscitées</p>
+<p>La réception : livre lu comme Écriture par certains (Irénée, le Codex Sinaiticus), écarté de la lecture publique par le fragment de Muratori, raillé par Tertullien devenu rigoriste</p>
+</sujet>

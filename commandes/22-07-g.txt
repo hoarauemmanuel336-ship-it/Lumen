@@ -1,0 +1,18 @@
+<sujet cle="patristique.genres" titre="Les genres de la littérature patristique" desc="Les différentes formes d’écrits que nous ont laissés les Pères.">
+<p>La <b>lettre</b> : correspondances pastorales et doctrinales, de Clément de Rome aux registres des papes</p>
+<p>L’<b>apologie</b> : la défense du christianisme adressée aux empereurs et aux païens</p>
+<p>Le traité contre les hérésies et l’<b>hérésiologie</b> (catalogue et réfutation des erreurs)</p>
+<p>L’<b>homélie</b> (grec <i>homilia</i>, « entretien ») : la prédication qui explique l’Écriture lue dans la liturgie</p>
+<p>Le <b>commentaire</b> biblique suivi et la question-réponse sur les difficultés de l’Écriture</p>
+<p>La <b>catéchèse</b> : l’enseignement donné aux catéchumènes qui se préparent au baptême</p>
+<p>La <b>mystagogie</b> (grec <i>mystagôgia</i>, « conduite vers les mystères ») : l’explication des sacrements aux nouveaux baptisés</p>
+<p>Le traité dogmatique : la Trinité, l’Incarnation, l’Esprit Saint</p>
+<p>Les règles monastiques, qui organisent la vie des communautés</p>
+<p>L’<b>hagiographie</b> (grec, « écriture sur les saints ») : les vies de saints, dont la <i>Vie d’Antoine</i> donna le modèle</p>
+<p>Les <b>apophtegmes</b> (grec <i>apophthegmata</i>, « sentences ») : les paroles et les anecdotes des Pères du désert recueillies en collections</p>
+<p>Les récits de martyre (actes et passions des martyrs)</p>
+<p>Les ordres d’Église (<i>Didachè</i>, <i>Tradition apostolique</i>, <i>Constitutions apostoliques</i>) : recueils de règles liturgiques et disciplinaires</p>
+<p>L’histoire ecclésiastique, inaugurée par Eusèbe de Césarée</p>
+<p>La poésie et l’hymnographie : Éphrem, Grégoire de Nazianze, Hilaire, Ambroise</p>
+<p>Les florilèges et les <b>chaînes</b> (latin <i>catenae</i>) : recueils d’extraits de Pères rangés verset par verset</p>
+</sujet>

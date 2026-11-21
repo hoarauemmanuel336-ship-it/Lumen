@@ -1,0 +1,12 @@
+<sujet cle="patristique.editions" titre="Les grandes collections et éditions des Pères" desc="Comment les textes des Pères nous sont parvenus et où on les lit aujourd’hui.">
+<p>La transmission manuscrite : copies monastiques, pertes, textes conservés seulement en traduction (latine, syriaque, arménienne)</p>
+<p>Les éditions humanistes de la Renaissance, dont celles d’Érasme</p>
+<p>Les bénédictins <b>mauristes</b> (congrégation de Saint-Maur) et leurs éditions critiques des XVIIe et XVIIIe siècles</p>
+<p>La <i>Patrologie</i> de l’abbé Migne : la <i>Patrologia latina</i> (221 volumes) et la <i>Patrologia graeca</i> (161 volumes), au XIXe siècle</p>
+<p>Le <i>Corpus scriptorum ecclesiasticorum latinorum</i> de Vienne, fondé au XIXe siècle</p>
+<p>Le <i>Corpus christianorum</i>, édité en Belgique depuis 1953</p>
+<p>La collection <i>Sources chrétiennes</i>, fondée à Lyon en 1942 par les jésuites Henri de Lubac, Jean Daniélou et Claude Mondésert : texte original et traduction française en regard</p>
+<p>Les découvertes modernes de textes perdus (papyrus, manuscrits de Nag Hammadi, sermons d’Augustin retrouvés à Mayence)</p>
+<p>Les outils de travail : les <i>Clavis Patrum</i> (répertoires des œuvres), les patrologies et les dictionnaires</p>
+<p>Les catéchèses de Benoît XVI sur les Pères de l’Église, données aux audiences générales à partir de 2007, porte d’entrée pour le lecteur d’aujourd’hui</p>
+</sujet>

@@ -1,0 +1,15 @@
+<sujet cle="augustin.cite" titre="La Cité de Dieu" desc="La grande réponse d’Augustin au sac de Rome, et sa théologie de l’histoire.">
+<p>Le sac de Rome par Alaric (410) et l’accusation païenne : Rome punie pour avoir abandonné ses dieux</p>
+<p>La rédaction (413-426), en vingt-deux livres, dédiée au tribun Marcellin</p>
+<p>Les livres I à V : les dieux païens n’ont pas assuré le bonheur terrestre de Rome</p>
+<p>Les livres VI et VII : la critique des trois théologies de Varron (fabuleuse, civile, naturelle)</p>
+<p>Les livres VIII à X : le dialogue avec les platoniciens, le Christ seul médiateur</p>
+<p>Les livres XI à XIV : l’origine des deux cités, chez les anges et chez les hommes</p>
+<p>La formule du livre XIV : deux amours ont fait deux cités, l’amour de soi jusqu’au mépris de Dieu, l’amour de Dieu jusqu’au mépris de soi</p>
+<p>Les livres XV à XVIII : le développement des deux cités au cours de l’histoire</p>
+<p>Les livres XIX à XXII : les fins des deux cités, la paix, le jugement, la vision de Dieu</p>
+<p>La <b>paix</b>, « tranquillité de l’ordre » (livre XIX)</p>
+<p>Les deux cités mêlées dans l’histoire : ni la cité de Dieu confondue avec l’Église visible, ni la cité terrestre avec l’État</p>
+<p>La première grande <b>théologie de l’histoire</b> : un temps orienté par la Providence</p>
+<p>L’« augustinisme politique » du Moyen Âge et la distance entre cette lecture et la pensée d’Augustin</p>
+</sujet>

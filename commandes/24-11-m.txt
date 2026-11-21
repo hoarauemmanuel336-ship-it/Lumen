@@ -1,0 +1,23 @@
+<sujet cle="peres-orient.maxime" titre="Maxime le Confesseur" desc="Le moine byzantin qui défendit la volonté humaine du Christ jusqu’à la mutilation.">
+<p>La naissance vers 580 et les deux biographies anciennes contradictoires</p>
+<p>Le haut fonctionnaire de la cour d’Héraclius devenu moine</p>
+<p>La fuite devant les Perses et le séjour en Afrique du Nord</p>
+<p>Le <b>monoénergisme</b> (une seule opération dans le Christ) : la formule de compromis lancée par le patriarche Serge de Constantinople pour rallier les monophysites</p>
+<p>Le monothélisme (une seule volonté dans le Christ), qui prit le relais du monoénergisme</p>
+<p>L’<i>Ecthèse</i> d’Héraclius (638) et le <i>Type</i> de Constant II (648), qui imposent le silence sur la question</p>
+<p>La <i>Dispute avec Pyrrhus</i> à Carthage (645)</p>
+<p>Le concile du Latran de 649 avec le pape Martin Ier</p>
+<p>L’arrestation, les procès à Constantinople, la langue et la main droite coupées, l’exil et la mort en 662</p>
+<p>Le titre de <b>Confesseur</b> : celui qui a souffert pour la foi sans mourir directement du supplice</p>
+<p>Les <i>Ambigua</i> : l’explication des passages difficiles de Grégoire de Nazianze et de Denys</p>
+<p>Les <i>Questions à Thalassios</i> : la lecture spirituelle de l’Écriture</p>
+<p>Les <i>Centuries sur la charité</i></p>
+<p>La <i>Mystagogie</i> : l’église et la liturgie comme image du cosmos et de l’homme</p>
+<p>Le <i>Commentaire du Notre Père</i></p>
+<p>Les <i>Opuscules théologiques et polémiques</i>, où se trouvent ses analyses des deux volontés</p>
+<p>Les deux volontés du Christ : la volonté appartient à la nature, et le Christ, qui a deux natures, a deux volontés</p>
+<p>La <b>volonté naturelle</b> et la volonté gnomique (grec <i>gnômê</i>, « avis ») qui hésite et délibère : la seconde absente du Christ</p>
+<p>L’agonie de Gethsémani lue par Maxime : la volonté humaine du Christ qui consent librement à la volonté du Père</p>
+<p>Les <b>logoi</b> des créatures dans le Logos et la divinisation de l’homme et du cosmos</p>
+<p>L’héritage : la doctrine des deux volontés définie au concile de Constantinople III (681)</p>
+</sujet>

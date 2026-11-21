@@ -1,0 +1,14 @@
+<sujet cle="premiers-peres.didache" titre="La Didachè" desc="Le plus ancien manuel de vie chrétienne et de liturgie, écrit au temps des Apôtres.">
+<p>Le titre <i>Didachè</i> (grec, « enseignement ») et son titre complet : « Doctrine du Seigneur transmise aux nations par les douze Apôtres »</p>
+<p>La redécouverte du texte en 1873 par le métropolite Philothée Bryennios dans un manuscrit de Constantinople, et sa publication en 1883</p>
+<p>La date (fin du Ier siècle, parfois plus tôt) et le milieu probable (Syrie ou Palestine), avec les débats sur l’une et l’autre</p>
+<p>Les deux voies, voie de la vie et voie de la mort (chapitres 1 à 6) : l’enseignement moral donné aux catéchumènes</p>
+<p>Le baptême (chapitre 7) : l’eau vive, l’infusion permise, le jeûne préparatoire</p>
+<p>Le jeûne du mercredi et du vendredi, et le Notre Père récité trois fois par jour (chapitre 8)</p>
+<p>Les prières eucharistiques (chapitres 9 et 10) : action de grâce sur la coupe et le pain, image du pain rassemblé à partir des grains dispersés</p>
+<p>Les ministres itinérants (apôtres, prophètes, docteurs) et les règles pour discerner les faux prophètes (chapitres 11 à 13)</p>
+<p>Le rassemblement du dimanche et l’eucharistie comme <b>sacrifice pur</b> annoncé par Malachie 1:11 (chapitre 14)</p>
+<p>Les épiscopes et les diacres élus par la communauté (chapitre 15)</p>
+<p>L’attente du retour du Seigneur et la conclusion apocalyptique (chapitre 16)</p>
+<p>La valeur de la <i>Didachè</i> : témoin d’une communauté judéo-chrétienne et ancêtre des ordres d’Église</p>
+</sujet>

@@ -1,0 +1,17 @@
+<sujet cle="augustin.trinite" titre="Le De Trinitate" desc="Le grand traité d’Augustin sur la Trinité, qui cherche son image dans l’âme humaine.">
+<p>La rédaction sur une vingtaine d’années (vers 400-420) et le plan en quinze livres</p>
+<p>Les livres I à IV : l’Écriture et l’égalité des trois Personnes, les missions du Fils et de l’Esprit</p>
+<p>Les théophanies de l’Ancien Testament : Augustin les attribue à des anges plutôt qu’au Fils seul</p>
+<p>Les livres V à VII : le vocabulaire trinitaire et la catégorie de <b>relation</b>, contre l’objection arienne</p>
+<p>Le mot « personne », employé « pour ne pas rester sans rien dire »</p>
+<p>Le livre VIII : la recherche de Dieu par la vérité, le bien et l’amour, l’amant, l’aimé et l’amour</p>
+<p>Le livre IX : l’esprit, la connaissance qu’il a de lui-même, l’amour qu’il se porte</p>
+<p>Le livre X : la mémoire, l’intelligence et la volonté, trinité de l’esprit</p>
+<p>Le livre XI : les trinités de l’homme extérieur (dans la perception sensible)</p>
+<p>Les livres XII et XIII : la science et la sagesse</p>
+<p>Le livre XIV : l’image accomplie quand l’esprit se souvient de Dieu, le connaît et l’aime</p>
+<p>Le livre XV : la récapitulation, les limites de toute analogie, l’Esprit Saint Amour et Don</p>
+<p>La procession de l’Esprit du Père et du Fils, principalement du Père, chez Augustin</p>
+<p>Les <b>analogies psychologiques</b> de la Trinité et leur postérité chez Thomas d’Aquin</p>
+<p>La légende de l’enfant au bord de la mer, et ce qu’elle dit du mystère</p>
+</sujet>

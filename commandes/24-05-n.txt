@@ -1,0 +1,19 @@
+<sujet cle="peres-orient.nysse" titre="Grégoire de Nysse" desc="Le frère de Basile, philosophe et mystique, que l’Orient vénère comme un maître de la vie spirituelle.">
+<p>La naissance vers 335, le plus jeune des Cappadociens, formé par Basile et par sa sœur Macrine</p>
+<p>Le rhéteur devenu évêque de Nysse (372), déposé par les ariens (376) puis rétabli</p>
+<p>Le rôle au concile de Constantinople (381) et les missions confiées par l’empereur Théodose</p>
+<p>Le <i>Contre Eunome</i> : la défense de la divinité du Fils et l’infinité de Dieu</p>
+<p><i>À Ablabius, qu’il n’y a pas trois dieux</i> : l’unité de nature et l’unité d’opération des trois Personnes</p>
+<p>La <i>Grande Catéchèse</i> : un exposé de la foi pour les catéchistes</p>
+<p><i>La Création de l’homme</i> : l’image de Dieu dans l’homme, complément de l’<i>Hexaéméron</i> de Basile</p>
+<p>La <i>Vie de Moïse</i> : l’ascension de l’âme vers Dieu à travers la lumière, la nuée et la ténèbre</p>
+<p>Les <i>Homélies sur le Cantique des cantiques</i></p>
+<p>La <i>Vie de Macrine</i> : le portrait de sa sœur, modèle de la vie consacrée féminine</p>
+<p>Le dialogue <i>Sur l’âme et la résurrection</i>, conversation avec Macrine mourante</p>
+<p>Les huit homélies sur les Béatitudes</p>
+<p>Les cinq homélies sur le Notre Père</p>
+<p>L’<b>épectase</b> (grec <i>epektasis</i>, « tension vers l’avant », Philippiens 3:13) : le progrès sans fin de l’âme en Dieu infini</p>
+<p>La théologie négative : Dieu connu dans la « ténèbre lumineuse »</p>
+<p>L’espérance d’une restauration universelle chez Grégoire et la discussion qu’elle soulève</p>
+<p>L’héritage : appelé « Père des Pères » par le IIe concile de Nicée (787), maître de la mystique byzantine</p>
+</sujet>

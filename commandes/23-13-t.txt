@@ -1,0 +1,24 @@
+<sujet cle="premiers-peres.tertullien" titre="Tertullien" desc="Le premier grand écrivain chrétien de langue latine, génial et rigoureux.">
+<p>La naissance à Carthage vers 160, dans une famille païenne, et la formation rhétorique et juridique</p>
+<p>La conversion vers 195</p>
+<p>Le <b>montanisme</b> : la « Nouvelle Prophétie » de Montan, Priscille et Maximille, née en Phrygie, son annonce de la Jérusalem céleste et son rigorisme</p>
+<p>Le passage de Tertullien au montanisme vers 207</p>
+<p>Pourquoi Tertullien n’est pas un Père mais un écrivain ecclésiastique</p>
+<p>L’<i>Apologétique</i> (197) et la formule « le sang des chrétiens est une semence »</p>
+<p>L’âme « naturellement chrétienne » (<i>Apologétique</i> 17 et <i>Le Témoignage de l’âme</i>)</p>
+<p><i>La Prescription contre les hérétiques</i> : l’argument juridique qui réserve l’Écriture à l’Église qui la tient des Apôtres</p>
+<p>La question de <i>La Prescription</i> (chapitre 7) : « Qu’y a-t-il de commun entre Athènes et Jérusalem ? », et la méfiance de Tertullien envers la philosophie</p>
+<p><i>Contre Marcion</i>, en cinq livres : l’unité du Dieu créateur et sauveur</p>
+<p><i>Contre Praxéas</i> : la réfutation du modalisme et les premières formules trinitaires latines (<i>trinitas</i>, <i>una substantia</i>, <i>tres personae</i>)</p>
+<p><i>Le Baptême</i> : le premier traité consacré à un sacrement</p>
+<p><i>La Prière</i> : le premier commentaire du Notre Père</p>
+<p><i>La Chair du Christ</i> : la réalité du corps du Christ contre les docètes</p>
+<p>La formule « je crois parce que c’est absurde », qui n’est pas de Tertullien, et le texte réel de <i>La Chair du Christ</i> 5 dont elle déforme le sens</p>
+<p><i>La Résurrection de la chair</i> et la formule « la chair est le pivot du salut » (latin <i>caro salutis cardo</i>)</p>
+<p><i>L’Âme</i> et le <b>traducianisme</b> : l’âme transmise par les parents, thèse que l’Église n’a pas retenue</p>
+<p><i>La Pudicité</i>, écrit montaniste : le refus que l’Église pardonne l’adultère, l’apostasie et l’homicide, contre un évêque qui accordait ce pardon</p>
+<p><i>La Monogamie</i> : l’interdiction de tout remariage après veuvage</p>
+<p><i>La Fuite dans la persécution</i> : le refus de toute fuite devant le martyre</p>
+<p>Le créateur du latin théologique : <i>persona</i>, <i>substantia</i>, <i>sacramentum</i>, <i>trinitas</i></p>
+<p>L’influence de Tertullien sur Cyprien, qui l’appelait « le maître »</p>
+</sujet>

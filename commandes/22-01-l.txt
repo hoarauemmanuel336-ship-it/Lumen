@@ -1,0 +1,20 @@
+<sujet cle="peres.definition" titre="Qu’est-ce qu’un Père de l’Église" desc="Ce qui fait d’un auteur ancien un Père, et pourquoi l’Église lui donne ce nom.">
+<p>Le mot <b>Père</b> appliqué au maître qui engendre dans la foi : l’usage biblique et antique (le maître appelé père de ses disciples, 1 Corinthiens 4:15)</p>
+<p>Le passage du titre de Père, réservé d’abord aux évêques, à tous les témoins anciens de la foi reconnus par l’Église</p>
+<p>Le critère de l’<b>antiquité</b> : l’appartenance aux premiers siècles de l’Église</p>
+<p>Le critère de l’<b>orthodoxie de la doctrine</b> : la fidélité d’ensemble à la foi de l’Église, qui n’exclut pas des erreurs ponctuelles</p>
+<p>Le critère de la <b>sainteté de vie</b></p>
+<p>Le critère de l’<b>approbation de l’Église</b>, explicite ou implicite (citation par les conciles, les papes, la liturgie)</p>
+<p>Les bornes de l’âge des Pères : Isidore de Séville (mort en 636) en Occident, Jean Damascène (mort vers 749) en Orient</p>
+<p>Le découpage de l’âge des Pères en quatre grandes périodes : son principe et ses repères</p>
+<p>La première période, celle des <b>Pères apostoliques</b> (fin du Ier et début du IIe siècle) : l’expression forgée au XVIIe siècle (édition de Jean-Baptiste Cotelier, 1672) pour les auteurs qui ont connu les Apôtres ou leurs disciples</p>
+<p>La deuxième période, celle des apologistes et des premiers grands théologiens (IIe et IIIe siècles) : la défense de la foi devant l’Empire et la réfutation des hérésies</p>
+<p>La troisième période, l’<b>âge d’or</b> de la patristique, du concile de Nicée (325) au concile de Chalcédoine (451) : la liberté de l’Église et la formulation des dogmes trinitaire et christologique</p>
+<p>La quatrième période, celle des derniers Pères (de 451 au VIIIe siècle) : les synthèses, les florilèges et la transmission au Moyen Âge</p>
+<p>La patristique grecque, la plus abondante, langue des grands conciles d’Orient</p>
+<p>La patristique latine, née en Afrique du Nord à la fin du IIe siècle</p>
+<p>La patristique syriaque, propre à la Mésopotamie et à la Syrie intérieure</p>
+<p>Les traditions copte, arménienne, géorgienne et éthiopienne, qui ont aussi conservé en traduction des œuvres grecques perdues</p>
+<p>La <b>patristique</b> (étude de la pensée des Pères) et la patrologie (étude de leur vie et de leurs œuvres) : la distinction des deux mots</p>
+<p>La raison d’être de la notion : désigner les témoins privilégiés de la Tradition apostolique au moment où la foi se formulait</p>
+</sujet>

@@ -1,0 +1,19 @@
+<sujet cle="augustin.confessions" titre="Les Confessions" desc="Le récit d’une vie devant Dieu, en treize livres, chef-d’œuvre d’Augustin.">
+<p>Le mot <b>confession</b> (latin <i>confessio</i>) : à la fois aveu des péchés, louange de Dieu et confession de foi</p>
+<p>La date de rédaction (vers 397-401) et le destinataire : Dieu lui-même, sous le regard des lecteurs</p>
+<p>Le livre I : l’enfance, et le cœur sans repos tant qu’il ne repose pas en Dieu</p>
+<p>Le livre II : l’adolescence et le vol des poires</p>
+<p>Le livre III : Carthage, l’<i>Hortensius</i>, l’entrée chez les manichéens</p>
+<p>Le livre IV : le professeur, la mort de l’ami et la douleur du deuil</p>
+<p>Le livre V : Fauste le manichéen, le départ pour Rome et l’arrivée à Milan</p>
+<p>Le livre VI : Ambroise, les amis Alypius et Nébridius, la séparation d’avec sa compagne</p>
+<p>Le livre VII : les livres des platoniciens, le mal comme privation, le Verbe incarné</p>
+<p>Le livre VIII : la conversion dans le jardin de Milan</p>
+<p>Le livre IX : Cassiciacum, le baptême, l’extase d’Ostie et la mort de Monique</p>
+<p>Le livre X : la mémoire, la recherche de Dieu en soi, « tard je t’ai aimée, beauté si ancienne et si nouvelle »</p>
+<p>Le livre XI : le temps, comme « distension de l’âme » (latin <i>distentio animi</i>)</p>
+<p>Le livre XII : le ciel et la terre, et la pluralité des sens vrais de l’Écriture</p>
+<p>Le livre XIII : la lecture spirituelle de la création comme image de l’Église</p>
+<p>L’unité de l’œuvre : de la vie d’Augustin à la création entière, un même mouvement de louange</p>
+<p>La postérité des <i>Confessions</i> : modèle de l’autobiographie spirituelle et de l’introspection</p>
+</sujet>

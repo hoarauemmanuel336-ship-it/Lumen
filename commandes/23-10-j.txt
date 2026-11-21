@@ -1,0 +1,17 @@
+<sujet cle="premiers-peres.justin" titre="Justin martyr" desc="Le philosophe converti qui défendit la foi à Rome et mourut martyr.">
+<p>La naissance à Flavia Neapolis (l’actuelle Naplouse) en Samarie, au début du IIe siècle, dans une famille païenne</p>
+<p>L’itinéraire philosophique de Justin : les écoles stoïcienne, péripatéticienne, pythagoricienne et platonicienne</p>
+<p>La conversion après la rencontre d’un vieillard au bord de la mer, qui lui montre les prophètes (<i>Dialogue</i> 3 à 8)</p>
+<p>L’école de Justin à Rome et le christianisme présenté comme la seule philosophie sûre</p>
+<p>La <i>Première Apologie</i> (vers 150-155), adressée à l’empereur Antonin le Pieux</p>
+<p>La description de l’initiation chrétienne et de l’eucharistie du dimanche (<i>Première Apologie</i> 61 à 67), plus ancien témoin complet de la messe</p>
+<p>La <i>Seconde Apologie</i>, plus brève, écrite à la suite de condamnations de chrétiens à Rome</p>
+<p>Le <i>Dialogue avec Tryphon</i> : la discussion avec un juif sur l’accomplissement des Écritures en Jésus</p>
+<p>La doctrine du <b>Logos semeur</b> (grec <i>logos spermatikos</i>) : des « semences du Verbe » présentes chez les philosophes et chez tous les hommes</p>
+<p>Les païens qui ont vécu selon le Logos, comme Socrate, appelés chrétiens avant l’heure</p>
+<p>Le premier parallèle entre <b>Ève et Marie</b> (<i>Dialogue</i> 100)</p>
+<p>La théologie du Logos chez Justin et ses formules encore imprécises sur la subordination du Fils</p>
+<p>Le millénarisme de Justin (<i>Dialogue</i> 80-81) et sa mention de chrétiens orthodoxes qui ne le partagent pas</p>
+<p>Le martyre à Rome vers 165, sous le préfet Rusticus, rapporté par les <i>Actes de Justin</i></p>
+<p>L’héritage de Justin : modèle du dialogue entre foi et raison, cité par <i>Fides et ratio</i> (1998)</p>
+</sujet>

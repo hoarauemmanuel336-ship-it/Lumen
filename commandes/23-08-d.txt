@@ -1,0 +1,11 @@
+<sujet cle="premiers-peres.diognete" titre="La Lettre à Diognète" desc="Un petit écrit anonyme qui décrit la place des chrétiens dans le monde.">
+<p>Un auteur et un destinataire inconnus, une date incertaine (IIe ou IIIe siècle)</p>
+<p>L’histoire du texte : un manuscrit unique, détruit à Strasbourg en 1870</p>
+<p>La critique de l’idolâtrie païenne et des pratiques juives (chapitres 2 à 4)</p>
+<p>Les chrétiens dans le monde (chapitres 5 et 6) : ni pays, ni langue, ni coutumes à part, citoyens du ciel vivant dans leur patrie comme des étrangers</p>
+<p>La comparaison centrale : ce que l’âme est dans le corps, les chrétiens le sont dans le monde</p>
+<p>Le dessein de Dieu révélé par l’envoi de son Fils, non pour dominer mais par douceur (chapitres 7 et 8)</p>
+<p>Le « doux échange » (chapitre 9) : le juste livré pour les injustes, l’innocent pour les coupables</p>
+<p>Les chapitres 11 et 12, probablement d’une autre main</p>
+<p>La place de la lettre dans l’enseignement de l’Église sur les laïcs et le monde, cité par <i>Lumen gentium</i> 38</p>
+</sujet>

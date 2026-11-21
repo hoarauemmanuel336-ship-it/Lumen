@@ -1,0 +1,13 @@
+<sujet cle="peres-occident.cassiodore" titre="Cassiodore" desc="L’homme d’État romain devenu fondateur d’un monastère de copistes.">
+<p>La naissance vers 485 en Calabre et la carrière au service des rois ostrogoths jusqu’à la préfecture du prétoire</p>
+<p>Les <i>Variae</i> : la correspondance officielle, témoin de l’Italie gothique</p>
+<p>L’<i>Histoire des Goths</i>, perdue, connue par le résumé de Jordanès</p>
+<p>Le projet, avec le pape Agapet, d’une école supérieure chrétienne à Rome</p>
+<p>La fondation du monastère de <b>Vivarium</b> en Calabre et sa bibliothèque</p>
+<p>Les <i>Institutions des lettres divines et séculières</i> : un programme d’étude de l’Écriture et des arts libéraux</p>
+<p>La copie des manuscrits comme œuvre spirituelle et apostolique du moine</p>
+<p>L’<i>Exposition des Psaumes</i></p>
+<p>L’<i>Histoire tripartite</i> : l’histoire de l’Église compilée d’après trois historiens grecs</p>
+<p>Le traité <i>De l’orthographe</i>, écrit à plus de quatre-vingt-dix ans pour les copistes de Vivarium</p>
+<p>L’héritage : la transmission de la culture antique aux monastères du Moyen Âge</p>
+</sujet>

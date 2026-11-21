@@ -1,0 +1,10 @@
+<sujet cle="patristique.foyers" titre="Les autres foyers de la patristique" desc="Les régions où se sont formées d’autres traditions de pensée chrétienne.">
+<p>L’Asie Mineure du IIe siècle : Smyrne, Éphèse, Hiérapolis, et la tradition johannique</p>
+<p>Rome : la communauté de langue grecque puis latine, et son rôle de référence doctrinale</p>
+<p>L’Afrique du Nord latine (Carthage, Hippone) : Tertullien, Cyprien, Augustin, et le latin théologique</p>
+<p>Césarée de Palestine : la bibliothèque d’Origène, puis d’Eusèbe</p>
+<p>La Cappadoce : Basile, Grégoire de Nazianze, Grégoire de Nysse</p>
+<p>Le monde syriaque : Édesse, Nisibe, et la théologie poétique d’Éphrem</p>
+<p>Le désert d’Égypte et de Palestine : les Pères du désert et la littérature monastique</p>
+<p>La Gaule (Lyon, Poitiers, Lérins, Marseille) et l’Espagne wisigothique</p>
+</sujet>

@@ -1,0 +1,16 @@
+<sujet cle="peres-orient.ephrem" titre="Éphrem le Syrien" desc="Le grand poète théologien de langue syriaque, surnommé « la harpe de l’Esprit ».">
+<p>La naissance à Nisibe vers 306 et le service de l’Église de Nisibe comme diacre et enseignant</p>
+<p>Le départ pour Édesse après la cession de Nisibe aux Perses (363)</p>
+<p>La mort en 373 au service des victimes d’une famine</p>
+<p>Le syriaque, langue de la Mésopotamie chrétienne, et la tradition syriaque des Pères</p>
+<p>Les <b>hymnes</b> (syriaque <i>madrashê</i>) : la théologie chantée, enseignée par des chœurs de femmes consacrées</p>
+<p>Les <i>Hymnes sur la foi</i> : le mystère de Dieu adoré plutôt que scruté, contre les ariens</p>
+<p>Les <i>Hymnes sur le Paradis</i></p>
+<p>Les <i>Hymnes sur la Nativité</i> et la place de Marie dans sa poésie</p>
+<p>Les <i>Hymnes contre les hérésies</i> : contre Marcion, Bardesane et Mani</p>
+<p>Les homélies métriques (syriaque <i>mêmrê</i>), écrites en vers et récitées</p>
+<p>Le <i>Commentaire du Diatessaron</i>, témoin de l’harmonie des Évangiles en usage dans l’Église syriaque</p>
+<p>La théologie symbolique : les symboles de la nature et de l’Écriture comme chemin vers Dieu</p>
+<p>La doctrine eucharistique d’Éphrem : le feu et l’Esprit dans le pain et dans la coupe</p>
+<p>La proclamation comme docteur de l’Église par Benoît XV (1920)</p>
+</sujet>

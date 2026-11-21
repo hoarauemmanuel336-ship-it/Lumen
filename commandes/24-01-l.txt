@@ -1,0 +1,32 @@
+<sujet cle="peres.grecs" titre="Athanase d’Alexandrie" desc="L’évêque d’Alexandrie qui défendit sans relâche la divinité du Christ contre l’arianisme.">
+<p>La naissance à Alexandrie vers 295 et la formation dans l’entourage de l’évêque Alexandre</p>
+<p>Le diacre Athanase au concile de Nicée (325), aux côtés de son évêque</p>
+<p>L’élection au siège d’Alexandrie (328) et un épiscopat de quarante-cinq ans</p>
+<p>Les cinq exils d’Athanase, qui scandent son épiscopat et suivent les fluctuations de la politique impériale</p>
+<p>Le premier exil (335-337), à Trèves : la déposition par le synode de Tyr et la décision de Constantin</p>
+<p>Le deuxième exil (339-346), à Rome : l’accueil du pape Jules Ier, qui le reconnaît évêque légitime, et le concile de Sardique (343)</p>
+<p>Le troisième exil (356-362), au désert parmi les moines d’Égypte, sous l’empereur Constance, et les grands écrits qui y furent composés</p>
+<p>Le quatrième exil (362-363), ordonné par Julien l’Apostat</p>
+<p>Le cinquième exil (365-366), bref, sous l’empereur arien Valens</p>
+<p>La mort le 2 mai 373 et la devise attachée à son nom : « Athanase contre le monde »</p>
+<p>L’<b>arianisme</b> : Arius et la thèse d’un Fils créature, « il fut un temps où il n’était pas »</p>
+<p>Les <b>eusébiens</b>, groupés autour d’Eusèbe de Nicomédie, principaux adversaires d’Athanase</p>
+<p>Les homéousiens (grec <i>homoiousios</i>, « de substance semblable »), groupés autour de Basile d’Ancyre, avec qui Athanase chercha l’accord</p>
+<p>Les homéens (grec <i>homoios</i>, « semblable »), qui disaient seulement le Fils semblable au Père, parti soutenu par l’empereur Constance (concile de Rimini, 359)</p>
+<p>Les anoméens (grec <i>anomoios</i>, « dissemblable »), Aèce et Eunome, pour qui le Fils est d’une autre substance que le Père</p>
+<p><i>Contre les païens</i> et <i>Sur l’Incarnation du Verbe</i>, diptyque de jeunesse : la création, la chute et la restauration par le Verbe</p>
+<p>La formule de la divinisation : le Verbe s’est fait homme pour que nous soyons faits Dieu (<i>Sur l’Incarnation</i> 54)</p>
+<p>Les <i>Discours contre les ariens</i> : le Fils, vrai Dieu, de même substance que le Père</p>
+<p>La défense du <b>consubstantiel</b> (grec <i>homoousios</i>) de Nicée et l’argument du salut : seul Dieu peut diviniser</p>
+<p><i>Sur les décrets du concile de Nicée</i> : la justification du mot « consubstantiel », absent de l’Écriture mais fidèle à son sens</p>
+<p>L’<i>Apologie contre les ariens</i> : le dossier de documents rassemblé pour sa défense</p>
+<p>L’<i>Apologie pour sa fuite</i> : la fuite devant la persécution justifiée par l’Écriture et l’exemple des saints</p>
+<p>L’<i>Histoire des ariens</i> : le récit de la crise et la critique de l’empereur Constance</p>
+<p><i>Sur les synodes</i> (359) : l’histoire des formules de foi et la main tendue aux homéousiens</p>
+<p>Les <i>Lettres à Sérapion</i> : la divinité de l’Esprit Saint contre les « tropiques »</p>
+<p>La <i>Vie d’Antoine</i> (vers 357) : le modèle de la vie monastique, qui fit connaître le monachisme en Occident</p>
+<p>La 39e <i>Lettre festale</i> (367) : la première liste des vingt-sept livres du Nouveau Testament</p>
+<p>Le synode d’Alexandrie de 362 (<i>Tome aux Antiochiens</i>) : la réconciliation des nicéens et la clarification des mots <i>ousia</i> et <i>hypostasis</i></p>
+<p>L’héritage : l’un des quatre grands docteurs de l’Orient, appelé dans la liturgie byzantine « colonne de l’orthodoxie »</p>
+<p>Le Symbole dit d’Athanase (<i>Quicumque</i>), composé en Occident latin bien après lui et placé sous son nom</p>
+</sujet>

@@ -1,0 +1,11 @@
+<sujet cle="patristique.docteurs" titre="Pères, docteurs et écrivains ecclésiastiques" desc="Trois titres voisins qu’on confond souvent, et ce qui les distingue.">
+<p>Le titre de <b>docteur de l’Église</b> (latin <i>doctor</i>, « celui qui enseigne ») : un titre conféré par l’Église, non lié à une époque</p>
+<p>Les trois conditions du doctorat : une doctrine éminente, une sainteté de vie insigne, une déclaration de l’Église</p>
+<p>Les quatre grands docteurs de l’Occident (Ambroise, Jérôme, Augustin, Grégoire le Grand), proclamés par Boniface VIII en 1298</p>
+<p>Les quatre grands docteurs de l’Orient (Athanase, Basile, Grégoire de Nazianze, Jean Chrysostome), proclamés par Pie V en 1568</p>
+<p>Les Pères devenus docteurs plus tard, d’Isidore de Séville (1722) à Irénée de Lyon (2022) : le titre comme reconnaissance progressive</p>
+<p>Les Pères qui ne sont pas docteurs (comme Grégoire de Nysse ou Ignace d’Antioche) : pourquoi les deux listes ne coïncident pas</p>
+<p>L’<b>écrivain ecclésiastique</b> : l’auteur ancien précieux pour la Tradition à qui manque un critère du Père (Tertullien, Origène, Eusèbe de Césarée)</p>
+<p>L’usage des écrivains ecclésiastiques : témoins de la foi de leur temps, cités avec discernement</p>
+<p>Le Père dans la liturgie : l’office des lectures de la Liturgie des Heures, qui fait lire chaque jour un texte patristique</p>
+</sujet>

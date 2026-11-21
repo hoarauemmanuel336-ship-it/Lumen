@@ -1,0 +1,19 @@
+<sujet cle="peres-orient.basile" titre="Basile de Césarée" desc="L’évêque de Cappadoce, théologien de l’Esprit Saint et père du monachisme oriental.">
+<p>La naissance à Césarée de Cappadoce vers 330 dans une famille de saints : Macrine l’Ancienne, Emmélie, Macrine la Jeune, Grégoire de Nysse, Pierre de Sébaste</p>
+<p>Les études à Constantinople et à Athènes, et l’amitié avec Grégoire de Nazianze</p>
+<p>La conversion à la vie ascétique sous l’influence de sa sœur Macrine, le voyage auprès des moines d’Égypte et de Syrie, la retraite d’Annésis</p>
+<p>Prêtre puis évêque de Césarée (370), métropolite de Cappadoce</p>
+<p>La résistance à l’empereur arien Valens et le dialogue avec le préfet Modeste rapporté par Grégoire de Nazianze</p>
+<p>La <b>Basiliade</b> : la cité charitable fondée aux portes de Césarée (hospice, hôpital, accueil des pauvres)</p>
+<p>La mort le 1er janvier 379 et sa fête commune avec Grégoire de Nazianze le 2 janvier</p>
+<p>Le <i>Contre Eunome</i> : la réfutation de l’anoméisme, qui niait toute ressemblance du Fils avec le Père</p>
+<p>Le <i>Traité du Saint-Esprit</i> (vers 375) : la doxologie « avec l’Esprit » et l’égalité d’honneur de l’Esprit avec le Père et le Fils</p>
+<p>La distinction entre <b>ousia</b> (l’essence commune) et hypostase (la Personne propre), clé de la formule trinitaire</p>
+<p>L’<i>Hexaéméron</i> : neuf homélies sur les six jours de la création</p>
+<p>Les <i>Règles</i> monastiques (Grandes et Petites Règles) : la vie commune préférée à la vie solitaire, au service de la charité</p>
+<p>L’<i>Exhortation aux jeunes gens</i> sur l’usage chrétien des lettres grecques</p>
+<p>Les homélies sociales (contre les riches, sur la famine de 368) : la destination des biens</p>
+<p>La correspondance (plus de 300 lettres) et l’effort pour l’unité des Églises d’Orient et d’Occident</p>
+<p>La <b>liturgie de saint Basile</b>, encore célébrée dans les Églises byzantines</p>
+<p>L’héritage : « Basile le Grand », docteur de l’Église, patron des moines d’Orient (ordres basiliens)</p>
+</sujet>

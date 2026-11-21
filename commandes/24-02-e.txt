@@ -1,0 +1,18 @@
+<sujet cle="peres-orient.eusebe" titre="Eusèbe de Césarée" desc="L’évêque savant de Palestine, père de l’histoire de l’Église, témoin du tournant constantinien.">
+<p>La naissance vers 263 et la formation à Césarée de Palestine auprès du prêtre Pamphile, gardien de la bibliothèque d’Origène</p>
+<p>L’<i>Apologie pour Origène</i>, écrite avec Pamphile, martyr en 310</p>
+<p>L’évêque de Césarée (vers 313) et la mort vers 339</p>
+<p>Le titre d’écrivain ecclésiastique, et non de Père : les sympathies d’Eusèbe pour Arius avant Nicée</p>
+<p>Eusèbe au concile de Nicée (325) : la profession de foi de Césarée et sa signature du Symbole</p>
+<p>La lettre d’Eusèbe à son Église sur le sens qu’il donnait au mot « consubstantiel »</p>
+<p>L’<b>Histoire ecclésiastique</b>, en dix livres : la première histoire de l’Église, des Apôtres à la victoire de Constantin</p>
+<p>La méthode de l’<i>Histoire ecclésiastique</i> : la citation de documents, qui sauve des fragments d’œuvres perdues (Papias, Hégésippe, Denys d’Alexandrie)</p>
+<p>Les listes de successions épiscopales et le classement des livres du Nouveau Testament (reçus, discutés, rejetés), au livre III</p>
+<p>La <i>Chronique</i> : la chronologie universelle, traduite et continuée en latin par Jérôme</p>
+<p>La <i>Préparation évangélique</i> et la <i>Démonstration évangélique</i> : la sagesse païenne et les prophéties orientées vers le Christ</p>
+<p>Les <i>Martyrs de Palestine</i> : le témoin direct de la persécution de Dioclétien</p>
+<p>L’<i>Onomasticon</i> : le dictionnaire des noms de lieux de la Bible</p>
+<p>Les canons d’Eusèbe : les tables qui repèrent les passages parallèles des quatre Évangiles, recopiées dans les manuscrits pendant des siècles</p>
+<p>La <i>Vie de Constantin</i> et l’<i>Éloge de Constantin</i> : l’empereur chrétien vu comme l’image du règne du Logos</p>
+<p>Ce que l’Église doit à Eusèbe et les limites de sa théologie politique</p>
+</sujet>

@@ -1,0 +1,15 @@
+<sujet cle="peres-occident.isidore" titre="Isidore de Séville" desc="L’évêque encyclopédiste de l’Espagne wisigothique, dernier des Pères d’Occident.">
+<p>La naissance vers 560 dans une famille de saints (Léandre, Fulgence, Florentine)</p>
+<p>Léandre de Séville et la conversion du roi wisigoth Reccared au catholicisme (IIIe concile de Tolède, 589)</p>
+<p>L’évêque de Séville, successeur de son frère Léandre vers 600</p>
+<p>La présidence du IVe concile de Tolède (633) et l’organisation de l’Église d’Espagne</p>
+<p>La mort en 636</p>
+<p>Les <b>Étymologies</b>, en vingt livres : une encyclopédie du savoir antique, ordonnée par l’origine des mots</p>
+<p><i>Les Offices ecclésiastiques</i> : la liturgie et les ordres de l’Église</p>
+<p>Les <i>Sentences</i>, en trois livres : une synthèse de la doctrine et de la morale</p>
+<p>L’<i>Histoire des Goths, des Vandales et des Suèves</i> et son éloge de l’Espagne</p>
+<p>La <i>Chronique</i>, histoire universelle depuis la création</p>
+<p>La <i>Règle des moines</i>, pour les monastères d’Espagne</p>
+<p>Les <i>Synonymes</i> : le dialogue de l’âme pécheresse et de la raison</p>
+<p>L’héritage : le maître des écoles du Moyen Âge, docteur de l’Église proclamé par Innocent XIII (1722)</p>
+</sujet>

@@ -1,0 +1,16 @@
+<sujet cle="augustin.philosophie" titre="Augustin philosophe" desc="Les premiers dialogues d’Augustin et les grandes intuitions de sa pensée.">
+<p>Les dialogues de Cassiciacum (386), premières œuvres d’Augustin converti</p>
+<p><i>Contre les académiciens</i> : la réfutation du scepticisme de la Nouvelle Académie</p>
+<p><i>La Vie heureuse</i> : le bonheur dans la possession de Dieu</p>
+<p><i>L’Ordre</i> : la providence et la place du mal dans l’ordre du monde</p>
+<p>Les <i>Soliloques</i> : « Dieu et l’âme, je désire les connaître, rien de plus »</p>
+<p><i>Le Maître</i> (389), dialogue avec Adéodat : le Christ, maître intérieur</p>
+<p><i>La Vraie Religion</i> (390) : le retour vers l’intérieur, où habite la vérité</p>
+<p><i>Le Libre Arbitre</i> : l’origine du mal et la liberté</p>
+<p>L’argument « si je me trompe, je suis » (latin <i>si fallor, sum</i>) contre le scepticisme</p>
+<p>L’<b>illumination</b> : la vérité connue dans la lumière de Dieu</p>
+<p>Foi et intelligence : « comprends pour croire, crois pour comprendre »</p>
+<p>L’ordre de l’amour (latin <i>ordo amoris</i>) : aimer chaque chose à sa juste place</p>
+<p>La distinction entre jouir (latin <i>frui</i>) de Dieu et user (latin <i>uti</i>) des créatures</p>
+<p>Augustin et le platonisme : ce qu’il reçoit, ce qu’il corrige</p>
+</sujet>

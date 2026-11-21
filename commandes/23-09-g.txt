@@ -1,0 +1,18 @@
+<sujet cle="premiers-peres.apologistes" titre="Les apologistes grecs du IIe siècle" desc="Les premiers défenseurs de la foi chrétienne devant l’Empire et les païens.">
+<p>L’<b>apologie</b> (grec <i>apologia</i>, « plaidoirie ») : un genre judiciaire repris pour défendre les chrétiens</p>
+<p>L’accusation d’<b>athéisme</b> : le refus des chrétiens d’honorer les dieux de la cité et l’empereur</p>
+<p>Les accusations de crimes secrets : les « repas de Thyeste » (manger de la chair humaine) et les « unions d’Œdipe » (incestes), nées d’une rumeur sur l’eucharistie et le baiser de paix</p>
+<p>L’accusation de « haine du genre humain » et le soupçon pesant sur une communauté qui se tient à l’écart des fêtes publiques</p>
+<p>Quadratus, auteur de la plus ancienne apologie connue, adressée à l’empereur Hadrien, dont il ne reste qu’un fragment cité par Eusèbe</p>
+<p>Aristide d’Athènes et son <i>Apologie</i>, retrouvée au XIXe siècle en syriaque et en arménien</p>
+<p>Athénagore d’Athènes et sa <i>Supplique pour les chrétiens</i> (vers 177), suivie d’un traité sur la résurrection</p>
+<p>Théophile d’Antioche, <i>À Autolycus</i>, et le premier emploi connu du mot grec <i>trias</i> (« triade ») pour Dieu</p>
+<p>Tatien, disciple de Justin, et son <i>Discours aux Grecs</i>, charge violente contre la culture grecque</p>
+<p>Le <i>Diatessaron</i> (grec, « à travers les quatre ») de Tatien : la première harmonie des quatre Évangiles, longtemps lue dans les Églises de langue syriaque</p>
+<p>L’<b>encratisme</b> (grec <i>enkrateia</i>, « maîtrise de soi ») : la dérive de Tatien vers le rejet du mariage, de la viande et du vin</p>
+<p>Méliton de Sardes et son homélie <i>Sur la Pâque</i>, lecture typologique de l’Exode</p>
+<p>L’argument moral des apologistes : la vie des chrétiens comme preuve de la vérité de leur foi</p>
+<p>L’argument de l’antiquité : Moïse plus ancien que les philosophes grecs, qui lui auraient emprunté</p>
+<p>L’argument des prophéties : l’accomplissement en Jésus des annonces de l’Ancien Testament</p>
+<p>Le dialogue avec la philosophie : la foi présentée comme l’achèvement de la sagesse grecque</p>
+</sujet>

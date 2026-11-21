@@ -1,0 +1,24 @@
+<sujet cle="peres-occident.jerome" titre="Jérôme" desc="Le savant traducteur de la Bible latine, ascète et polémiste.">
+<p>La naissance à Stridon, en Dalmatie, vers 347, et les études à Rome</p>
+<p>Le baptême à Rome, le séjour à Trèves et le cercle ascétique d’Aquilée</p>
+<p>Le départ pour l’Orient, la vie au désert de Chalcis et l’apprentissage de l’hébreu</p>
+<p>Le songe où il se voit reprocher d’être « cicéronien et non chrétien » (Lettre 22)</p>
+<p>L’ordination presbytérale à Antioche et le séjour à Constantinople auprès de Grégoire de Nazianze</p>
+<p>Le secrétaire du pape Damase à Rome (382-385) et le cercle des femmes de l’Aventin (Marcella, Paula, Eustochium)</p>
+<p>L’installation à Bethléem (386), les monastères fondés avec Paula, la mort vers 420</p>
+<p>La <b>Vulgate</b> : la révision des Évangiles demandée par Damase</p>
+<p>La traduction de l’Ancien Testament sur l’hébreu (vers 390-405) et le principe de la « vérité hébraïque » (latin <i>hebraica veritas</i>)</p>
+<p>La position de Jérôme sur les livres deutérocanoniques</p>
+<p>Les commentaires bibliques, surtout sur les prophètes</p>
+<p>La formule : ignorer les Écritures, c’est ignorer le Christ (prologue du <i>Commentaire sur Isaïe</i>)</p>
+<p><i>Les Hommes illustres</i> (393) : le premier répertoire des écrivains chrétiens</p>
+<p>Le <i>Contre Helvidius</i> : la virginité perpétuelle de Marie et les « frères de Jésus »</p>
+<p>Le <i>Contre Jovinien</i> : la supériorité de la virginité sur le mariage, défendue avec des excès que ses amis lui reprochèrent</p>
+<p>Le <i>Contre Vigilance</i> : le culte des martyrs et la vénération des reliques</p>
+<p>La querelle origéniste avec Rufin et l’<i>Apologie contre Rufin</i></p>
+<p>Les vies de moines (Paul de Thèbes, Hilarion, Malchus)</p>
+<p>La correspondance, l’une des plus riches de l’Antiquité</p>
+<p>La Vulgate déclarée authentique par le concile de Trente (1546) : le sens juridique et doctrinal de ce mot</p>
+<p>L’encyclique <i>Spiritus Paraclitus</i> de Benoît XV (1920), pour le quinzième centenaire de sa mort</p>
+<p>L’héritage : l’un des quatre grands docteurs de l’Occident, patron des traducteurs et des biblistes</p>
+</sujet>

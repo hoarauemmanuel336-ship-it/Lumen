@@ -1,0 +1,22 @@
+<sujet cle="premiers-peres.gnosticisme" titre="Le gnosticisme" desc="Le grand courant de pensée qui menaça la foi au IIe siècle, et la réponse de l’Église.">
+<p>Le mot <b>gnose</b> (grec <i>gnôsis</i>, « connaissance ») : un salut obtenu par une connaissance secrète réservée à quelques-uns</p>
+<p>Le <b>dualisme</b> gnostique : un monde matériel mauvais opposé au monde spirituel</p>
+<p>Le <b>démiurge</b> : un dieu inférieur, auteur du monde matériel, identifié au Dieu de l’Ancien Testament</p>
+<p>Le <b>plérôme</b> (grec <i>plêrôma</i>, « plénitude ») et ses éons : le monde divin selon les systèmes gnostiques</p>
+<p>L’étincelle divine prisonnière du corps, et les trois classes d’hommes (spirituels, psychiques, matériels)</p>
+<p>Le <b>docétisme</b> (grec <i>dokein</i>, « paraître ») : un Christ qui n’aurait eu que l’apparence d’un corps</p>
+<p>Basilide, maître gnostique d’Alexandrie au début du IIe siècle</p>
+<p>Valentin, venu d’Alexandrie à Rome, auteur du système gnostique le plus élaboré</p>
+<p>L’école valentinienne et ses disciples, Ptolémée (<i>Lettre à Flora</i>) et Héracléon (premier commentaire connu de l’Évangile de Jean)</p>
+<p>Carpocrate et les gnostiques libertins, qui tiraient du mépris de la matière l’indifférence morale</p>
+<p>Marcion de Sinope, souvent rattaché à la gnose, dont il se distingue : l’opposition du Dieu juste de l’Ancien Testament et du Dieu bon de l’Évangile</p>
+<p>Le canon de Marcion, réduit à un Évangile de Luc expurgé et à dix lettres de Paul, et son rôle dans la fixation du canon par l’Église</p>
+<p>L’excommunication de Marcion à Rome (vers 144) et l’Église marcionite, qui dura plusieurs siècles</p>
+<p>Les Pères hérésiologues (Irénée, Hippolyte, Épiphane), longtemps seule source pour connaître la gnose</p>
+<p>La bibliothèque de <b>Nag Hammadi</b>, découverte en Haute-Égypte en 1945 : des écrits gnostiques en copte lus enfin dans leur texte propre</p>
+<p>Les évangiles gnostiques, dont l’<i>Évangile de Thomas</i> et l’<i>Évangile de vérité</i>, et leur différence avec les Évangiles canoniques</p>
+<p>Première réponse de l’Église : la <b>règle de la foi</b>, résumé public de la foi reçue au baptême, opposé à une tradition secrète</p>
+<p>Deuxième réponse : la succession apostolique, qui garantit que les Églises enseignent ce que les Apôtres ont transmis</p>
+<p>Troisième réponse : la fixation du canon des Écritures, qui écarte les évangiles gnostiques</p>
+<p>Ce que le rejet de la gnose a protégé : la bonté de la création, la réalité de l’Incarnation, la résurrection de la chair, un salut offert à tous</p>
+</sujet>

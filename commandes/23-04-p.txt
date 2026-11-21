@@ -1,0 +1,10 @@
+<sujet cle="premiers-peres.polycarpe" titre="Polycarpe de Smyrne" desc="Le disciple de l’apôtre Jean, évêque et martyr, maître d’Irénée.">
+<p>Polycarpe, évêque de Smyrne, disciple de l’apôtre Jean selon le témoignage d’Irénée</p>
+<p>Sa place de lien vivant entre les Apôtres et la génération suivante, à travers Irénée de Lyon</p>
+<p>Le voyage à Rome auprès du pape Anicet sur la date de Pâques : le désaccord maintenu dans la communion</p>
+<p>La <i>Lettre aux Philippiens</i> : exhortation morale nourrie des écrits apostoliques, et témoin de la réception des lettres de Paul</p>
+<p>Le <i>Martyre de Polycarpe</i> : le plus ancien récit de martyre chrétien conservé, en forme de lettre de l’Église de Smyrne</p>
+<p>La mort de Polycarpe sur le bûcher (vers 155 ou 156), sa prière finale et sa confession de foi devant le proconsul</p>
+<p>La naissance du culte des martyrs : la collecte des ossements et la célébration de l’anniversaire de la mort (le jour de la naissance au ciel, latin <i>dies natalis</i>)</p>
+<p>L’opposition de Polycarpe aux hérétiques (Marcion) rapportée par Irénée</p>
+</sujet>

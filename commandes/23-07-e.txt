@@ -1,0 +1,10 @@
+<sujet cle="premiers-peres.barnabe" titre="L’Épître de Barnabé" desc="Un écrit chrétien ancien qui lit la Loi de Moïse comme une annonce du Christ.">
+<p>L’Épître de Barnabé, rangée parmi les écrits des Pères apostoliques, et son attribution traditionnelle à Barnabé, compagnon de Paul</p>
+<p>La date et le milieu : la première moitié du IIe siècle, probablement à Alexandrie</p>
+<p>La lecture allégorique de la Loi : sacrifices, jeûnes, circoncision et lois alimentaires compris comme figures spirituelles</p>
+<p>La polémique contre une lecture littérale de l’Alliance par Israël, et ses limites</p>
+<p>Le bouc émissaire et la génisse rousse, figures de la Passion</p>
+<p>Le sabbat et le « huitième jour », origine d’une théologie du dimanche</p>
+<p>La doctrine des deux voies, la voie de la lumière et celle des ténèbres, commune avec la Didachè</p>
+<p>La présence de l’épître dans le Codex Sinaiticus et sa place hors du canon</p>
+</sujet>

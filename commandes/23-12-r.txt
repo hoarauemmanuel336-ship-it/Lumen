@@ -1,0 +1,22 @@
+<sujet cle="premiers-peres.irenee" titre="Irénée de Lyon" desc="L’évêque de Lyon qui réfuta les gnostiques et posa les bases de la théologie.">
+<p>L’origine d’Irénée en Asie Mineure et son enfance auprès de Polycarpe de Smyrne</p>
+<p>Prêtre à Lyon, porteur d’une lettre au pape Éleuthère au moment des martyrs de Lyon (177)</p>
+<p>Évêque de Lyon après la mort de l’évêque Pothin, et sa mission auprès des populations celtes</p>
+<p>L’intervention auprès du pape Victor dans la querelle sur la date de Pâques : la paix demandée pour les Églises d’Asie</p>
+<p>La mort vers 200, et la tradition tardive de son martyre</p>
+<p>L’<i>Adversus haereses</i> (<i>Contre les hérésies</i>), dont le titre exact est <i>Dénonciation et réfutation de la gnose au nom menteur</i> : cinq livres, conservés en entier dans une traduction latine</p>
+<p>Le livre I, exposé des systèmes gnostiques, surtout valentiniens</p>
+<p>Le livre II, réfutation rationnelle de la gnose</p>
+<p>Le livre III : la Tradition apostolique, la succession des évêques de Rome, la principauté de l’Église de Rome (III, 3)</p>
+<p>Le livre IV : l’unité des deux Testaments et le même Dieu dans la Loi et l’Évangile</p>
+<p>Le livre V : la résurrection de la chair et la fin des temps</p>
+<p>La <i>Démonstration de la prédication apostolique</i>, catéchèse retrouvée en arménien en 1904</p>
+<p>La <b>règle de vérité</b> : le contenu de la foi reçu au baptême et gardé par toutes les Églises</p>
+<p>La <b>récapitulation</b> (grec <i>anakephalaiôsis</i>) : le Christ reprend en lui toute l’histoire humaine depuis Adam pour la sauver</p>
+<p>Marie nouvelle Ève, dont l’obéissance dénoue le nœud de la désobéissance d’Ève</p>
+<p>Le Fils et l’Esprit, les « deux mains » du Père dans la création et le salut</p>
+<p>L’image et la ressemblance, et la croissance progressive de l’homme vers Dieu</p>
+<p>La gloire de Dieu, c’est l’homme vivant, et la vie de l’homme, c’est la vision de Dieu (IV, 20, 7)</p>
+<p>Les quatre Évangiles, ni plus ni moins : le premier témoin du canon évangélique</p>
+<p>La proclamation d’Irénée comme docteur de l’Église par le pape François en 2022, avec le titre de « docteur de l’unité »</p>
+</sujet>

@@ -1,0 +1,14 @@
+<sujet cle="peres-occident.bede" titre="Bède le Vénérable" desc="Le moine anglais, historien et exégète, qui clôt l’âge des Pères.">
+<p>La naissance en Northumbrie vers 673 et l’entrée enfant au monastère de Wearmouth</p>
+<p>La vie entière au monastère de Jarrow, entre la prière, l’étude et l’enseignement</p>
+<p>La mort en 735 et le récit de ses derniers jours par son disciple Cuthbert</p>
+<p>L’<b>Histoire ecclésiastique du peuple anglais</b> (731) : la conversion de l’Angleterre et la méthode historique de Bède</p>
+<p>Le <i>Comput</i> (<i>De temporum ratione</i>, 725) : le calcul de la date de Pâques</p>
+<p>La diffusion de la datation à partir de l’Incarnation (« l’an du Seigneur »)</p>
+<p>Les commentaires bibliques (Luc, Marc, Actes, le Tabernacle, le Temple) dans la ligne des Pères</p>
+<p>Les homélies sur les Évangiles</p>
+<p>La <i>Vie de Cuthbert</i>, en prose et en vers, consacrée à l’évêque de Lindisfarne</p>
+<p>L’<i>Histoire des abbés</i> de Wearmouth et Jarrow</p>
+<p>Le <i>Martyrologe</i> de Bède, modèle des martyrologes historiques</p>
+<p>L’héritage : le titre de « Vénérable », docteur de l’Église proclamé par Léon XIII (1899)</p>
+</sujet>

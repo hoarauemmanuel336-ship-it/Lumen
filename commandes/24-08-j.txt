@@ -1,0 +1,24 @@
+<sujet cle="peres-orient.chrysostome" titre="Jean Chrysostome" desc="Le plus grand prédicateur de l’Église ancienne, prêtre d’Antioche et évêque de Constantinople.">
+<p>La naissance à Antioche vers 349, l’éducation par sa mère Anthousa et l’enseignement du rhéteur Libanios</p>
+<p>Le baptême, la formation auprès de Diodore de Tarse, la vie ascétique dans les montagnes</p>
+<p>Diacre puis prêtre à Antioche (386) et douze ans de prédication</p>
+<p>L’évêque de Constantinople (398) et ses réformes du clergé et de la cour</p>
+<p>Le conflit avec l’impératrice Eudoxie et avec Théophile d’Alexandrie, et le synode du Chêne (403)</p>
+<p>L’exil à Cucuse en Arménie et la mort sur la route d’un nouvel exil (407)</p>
+<p>Le surnom de <b>Chrysostome</b> (grec <i>chrysostomos</i>, « bouche d’or »)</p>
+<p><i>Sur le sacerdoce</i>, en six livres : la grandeur et les exigences du ministère</p>
+<p>Les <i>Homélies sur les statues</i> (387), prononcées après l’émeute d’Antioche</p>
+<p>Les quatre-vingt-dix homélies sur Matthieu, prêchées à Antioche</p>
+<p>Les homélies sur l’Évangile de Jean</p>
+<p>Les homélies sur les lettres de Paul, à commencer par Romains, et l’admiration de Chrysostome pour l’Apôtre</p>
+<p>Les <i>Catéchèses baptismales</i>, dont une série fut retrouvée au mont Athos et publiée en 1957 par Antoine Wenger</p>
+<p>Les homélies <i>Sur l’incompréhensibilité de Dieu</i>, contre les anoméens</p>
+<p>Les homélies contre les judaïsants d’Antioche et la lecture qu’on en fait aujourd’hui</p>
+<p>Les lettres de l’exil, dont les lettres à la diaconesse Olympias</p>
+<p>La <b>condescendance</b> divine (grec <i>synkatabasis</i>) : Dieu qui s’abaisse à la mesure de l’homme dans l’Écriture</p>
+<p>L’exégèse antiochienne au service de la vie morale</p>
+<p>L’eucharistie et le pauvre : le Christ honoré à l’autel doit l’être dans le pauvre</p>
+<p>La doctrine du mariage et de la famille, « petite Église »</p>
+<p>La <b>liturgie de saint Jean Chrysostome</b>, liturgie ordinaire des Églises byzantines</p>
+<p>L’héritage : docteur de l’Église, l’un des trois saints hiérarques, patron des prédicateurs</p>
+</sujet>

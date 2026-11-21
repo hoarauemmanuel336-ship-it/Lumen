@@ -1,0 +1,16 @@
+<sujet cle="premiers-peres.origene-doctrine" titre="Origène : doctrine et controverses" desc="Ce qu’Origène a apporté à la théologie, et pourquoi une partie de sa pensée fut condamnée.">
+<p>Les trois sens de l’Écriture selon Origène, comme le corps, l’âme et l’esprit de l’homme : sens littéral, moral, spirituel</p>
+<p>L’Écriture comme incarnation du Logos dans la lettre</p>
+<p>La <b>génération éternelle</b> du Fils : le Fils engendré de toute éternité, sans commencement</p>
+<p>L’emploi du mot grec <i>hypostasis</i> pour distinguer le Père, le Fils et l’Esprit</p>
+<p>Les formules subordinatiennes d’Origène et la lecture qu’en firent ensuite les ariens et les nicéens</p>
+<p>La préexistence des âmes et leur chute dans les corps</p>
+<p>L’<b>apocatastase</b> (grec <i>apokatastasis</i>, « restauration ») : l’espérance d’une restauration finale de toutes choses</p>
+<p>La spiritualité d’Origène : l’ascension de l’âme, l’Épouse du Cantique, les sens spirituels</p>
+<p>La distinction entre Origène et l’<b>origénisme</b> des siècles suivants</p>
+<p>La première crise origéniste (fin du IVe siècle) : Épiphane de Salamine, la rupture entre Jérôme et Rufin, Théophile d’Alexandrie</p>
+<p>La seconde crise (VIe siècle) : l’édit de Justinien (543) et les anathématismes contre les origénistes liés au concile de Constantinople II (553)</p>
+<p>La <i>Philocalie d’Origène</i>, anthologie compilée par Basile et Grégoire de Nazianze</p>
+<p>L’influence d’Origène sur l’exégèse spirituelle de l’Orient et de l’Occident, d’Ambroise et Jérôme au Moyen Âge</p>
+<p>La réhabilitation de l’exégète au XXe siècle, notamment par Henri de Lubac (<i>Histoire et esprit</i>, 1950)</p>
+</sujet>

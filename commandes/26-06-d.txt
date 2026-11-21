@@ -1,0 +1,16 @@
+<sujet cle="augustin.donatistes" titre="Augustin contre les donatistes" desc="Le schisme africain qui conduisit Augustin à penser l’Église et les sacrements.">
+<p>L’origine du schisme (311-312) : l’évêque Cécilien de Carthage, accusé d’avoir été ordonné par un « traditeur » (celui qui avait livré les Écritures pendant la persécution)</p>
+<p>Donat et l’Église rivale d’Afrique, qui se veut l’Église des purs</p>
+<p>Optat de Milève, premier adversaire catholique des donatistes</p>
+<p>Les <b>circoncellions</b> et la violence liée au schisme</p>
+<p>Le <i>Psaume contre le parti de Donat</i> (393), chanté par le peuple</p>
+<p>Le <i>Contre la lettre de Parménien</i>, réponse au successeur de Donat</p>
+<p>Le <i>Contre les lettres de Pétilien</i>, évêque donatiste de Cirta</p>
+<p><i>Le Baptême</i>, en sept livres : la discussion de la position de Cyprien</p>
+<p>La validité des sacrements indépendante de la sainteté du ministre : c’est le Christ qui baptise</p>
+<p>La distinction entre un sacrement <b>valide</b> et un sacrement fructueux : le baptême donné hors de l’Église est vrai, mais ne porte son fruit que dans l’unité</p>
+<p>L’Église, <b>corps mêlé</b> (latin <i>corpus permixtum</i>) de bons et de méchants jusqu’au jugement</p>
+<p>La conférence de Carthage (411) et la condamnation des donatistes</p>
+<p>Le recours au pouvoir impérial (« contrains-les d’entrer », Luc 14:23) : l’évolution d’Augustin et la discussion de sa position</p>
+<p>L’héritage : les fondements de la doctrine de l’<i>ex opere operato</i> et de l’ecclésiologie occidentale</p>
+</sujet>

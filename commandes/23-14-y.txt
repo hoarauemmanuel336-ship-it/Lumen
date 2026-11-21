@@ -1,0 +1,23 @@
+<sujet cle="premiers-peres.cyprien" titre="Cyprien de Carthage" desc="L’évêque martyr de Carthage, docteur de l’unité de l’Église.">
+<p>Le rhéteur de Carthage converti vers 246, devenu évêque vers 248-249</p>
+<p>La persécution de Dèce (250) : Cyprien se cache et gouverne son Église par lettres</p>
+<p>La question des <b>lapsi</b> (latin, « ceux qui sont tombés ») : les chrétiens qui ont sacrifié ou acheté un certificat de sacrifice</p>
+<p>Les billets de paix des confesseurs et la réconciliation des lapsi par les conciles de Carthage (251)</p>
+<p>Le schisme de Novatien à Rome (251) : une Église rigoriste qui refuse toute réconciliation aux <i>lapsi</i></p>
+<p>Le schisme de Félicissime à Carthage : le parti laxiste qui réconcilie les <i>lapsi</i> sans pénitence</p>
+<p>La controverse baptismale avec le pape Étienne (256) : Cyprien exige de rebaptiser ceux qui viennent de l’hérésie, Rome s’y oppose</p>
+<p>Le martyre le 14 septembre 258 sous Valérien, rapporté par les <i>Actes proconsulaires</i></p>
+<p><i>Les Tombés</i> (<i>De lapsis</i>) : la pénitence des apostats</p>
+<p><i>L’Unité de l’Église catholique</i> : l’épiscopat un, dont chaque évêque tient une part solidairement, et Pierre origine de l’unité</p>
+<p>Les deux versions du chapitre 4 de <i>L’Unité</i>, dont l’une met davantage en relief la chaire de Pierre</p>
+<p>La formule : on ne peut avoir Dieu pour Père si l’on n’a pas l’Église pour mère</p>
+<p>La formule « hors de l’Église, point de salut » (Lettre 73) et son sens chez Cyprien</p>
+<p><i>L’Oraison dominicale</i> : commentaire du Notre Père</p>
+<p><i>À Donat</i> : le récit de la conversion et de la nouvelle naissance du baptême</p>
+<p><i>La Tenue des vierges</i> : la vie des femmes consacrées</p>
+<p><i>La Mortalité</i> : la mort chrétienne pendant la peste de 252</p>
+<p><i>Les Œuvres et les aumônes</i> : l’aumône qui purifie des péchés commis après le baptême</p>
+<p>La correspondance (81 lettres), dont la Lettre 63 sur le mélange de l’eau et du vin dans le calice</p>
+<p>Cyprien nommé dans le Canon romain, et sa mémoire commune avec le pape Corneille le 16 septembre</p>
+<p>La doctrine de Cyprien sur le baptême des hérétiques, invoquée par les donatistes et corrigée par Augustin</p>
+</sujet>

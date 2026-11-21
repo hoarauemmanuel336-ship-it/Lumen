@@ -1,0 +1,21 @@
+<sujet cle="peres-orient.denys" titre="Le Pseudo-Denys l’Aréopagite" desc="Un auteur mystérieux du VIe siècle qui se présenta comme disciple de saint Paul.">
+<p>L’auteur qui se présente comme Denys l’Aréopagite, converti par Paul à Athènes (Actes 17:34)</p>
+<p>La date réelle (vers 500) et le milieu probable (Syrie)</p>
+<p>L’influence du néoplatonicien Proclus (mort en 485) sur le vocabulaire et la structure de la pensée dionysienne</p>
+<p>La première mention du corpus en 532, à une conférence de Constantinople</p>
+<p>Les doutes de Lorenzo Valla et d’Érasme, et la démonstration de la dépendance à Proclus (Koch et Stiglmayr, 1895)</p>
+<p><i>Les Noms divins</i> : ce que les noms donnés à Dieu (Bien, Être, Vie, Sagesse) disent et ne disent pas de lui</p>
+<p><i>La Théologie mystique</i> : l’union à Dieu dans la ténèbre au-delà de toute connaissance</p>
+<p><i>La Hiérarchie céleste</i> : les neuf chœurs des anges répartis en trois triades</p>
+<p><i>La Hiérarchie ecclésiastique</i> : les sacrements et les ordres de l’Église comme reflet de la hiérarchie céleste</p>
+<p>Les dix <i>Lettres</i></p>
+<p>La théologie cataphatique (grec <i>kataphasis</i>, « affirmation ») : dire de Dieu ce que les créatures laissent voir de lui</p>
+<p>La <b>théologie apophatique</b> (grec <i>apophasis</i>, « négation ») : nier de Dieu toute limite des créatures, et la voie de l’éminence qui dépasse affirmation et négation</p>
+<p>Le mot <b>hiérarchie</b> (grec <i>hierarchia</i>, « principe sacré »), créé par Denys, et son sens : un ordre qui transmet la lumière divine</p>
+<p>La procession et le retour : toutes choses viennent de Dieu et retournent à lui</p>
+<p>La lecture orthodoxe de Denys par Maxime le Confesseur, qui lui assura son autorité en Orient</p>
+<p>Les traductions latines du IXe siècle, par Hilduin de Saint-Denis puis par Jean Scot Érigène</p>
+<p>Denys chez les scolastiques : les commentaires d’Albert le Grand et de Thomas d’Aquin (<i>Sur les Noms divins</i>)</p>
+<p>Denys et la mystique occidentale, du <i>Nuage d’inconnaissance</i> à Jean de la Croix</p>
+<p>La confusion médiévale avec saint Denys, premier évêque de Paris</p>
+</sujet>

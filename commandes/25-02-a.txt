@@ -1,0 +1,25 @@
+<sujet cle="peres-occident.ambroise" titre="Ambroise de Milan" desc="Le haut fonctionnaire devenu évêque, maître d’Augustin et conscience des empereurs.">
+<p>La naissance à Trèves vers 339, fils du préfet du prétoire des Gaules, et la formation à Rome</p>
+<p>Le gouverneur de la province d’Émilie-Ligurie, résidant à Milan</p>
+<p>L’élection inattendue comme évêque de Milan (374), alors qu’il n’était que catéchumène, puis le baptême et l’ordination en quelques jours</p>
+<p>Le conflit avec l’impératrice Justine sur les basiliques (385-386) et le chant des hymnes par le peuple assiégé</p>
+<p>L’affaire de l’autel de la Victoire (384) et la réponse au sénateur Symmaque</p>
+<p>La pénitence publique imposée à l’empereur Théodose après le massacre de Thessalonique (390)</p>
+<p>La découverte des reliques des martyrs Gervais et Protais (386)</p>
+<p>Le baptême d’Augustin dans la nuit de Pâques 387</p>
+<p>La mort le 4 avril 397</p>
+<p><i>Les Devoirs des ministres</i> (<i>De officiis</i>) : la morale chrétienne écrite en reprenant Cicéron</p>
+<p><i>De la foi</i>, adressé à l’empereur Gratien : la divinité du Fils selon la foi de Nicée</p>
+<p><i>Du Saint-Esprit</i> : la divinité de l’Esprit, en dépendance de Basile et de Didyme</p>
+<p><i>Les Mystères</i> et <i>Les Sacrements</i> : les catéchèses mystagogiques données aux nouveaux baptisés de Milan</p>
+<p>La prière eucharistique citée dans <i>Les Sacrements</i> (livre IV), plus ancien témoin du Canon romain</p>
+<p>L’<i>Hexaéméron</i>, homélies sur la création</p>
+<p>Le <i>Commentaire sur l’Évangile de Luc</i></p>
+<p>Les traités sur la virginité, dont <i>Les Vierges</i></p>
+<p><i>Naboth</i> : les biens de la terre donnés à tous</p>
+<p>Les hymnes ambrosiennes (<i>Aeterne rerum conditor</i>, <i>Deus creator omnium</i>) et leur place dans la Liturgie des Heures</p>
+<p>L’exégèse spirituelle d’Ambroise, héritée de Philon et d’Origène</p>
+<p>L’Église et le pouvoir : l’empereur est dans l’Église, et non au-dessus d’elle</p>
+<p>Marie figure de l’Église chez Ambroise</p>
+<p>L’héritage : le rite ambrosien, l’un des quatre grands docteurs de l’Occident</p>
+</sujet>

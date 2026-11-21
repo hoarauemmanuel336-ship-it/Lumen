@@ -1,0 +1,15 @@
+<sujet cle="augustin.manicheens" titre="Augustin contre les manichéens" desc="Comment Augustin réfuta la religion qu’il avait suivie dans sa jeunesse.">
+<p>Mani (IIIe siècle) et la religion qu’il fonda en Perse</p>
+<p>Le dualisme manichéen : deux principes éternels, la Lumière et les Ténèbres</p>
+<p>Les élus et les auditeurs, et la morale manichéenne</p>
+<p>Le rejet de l’Ancien Testament par les manichéens</p>
+<p><i>Les Mœurs de l’Église catholique et les mœurs des manichéens</i></p>
+<p><i>La Genèse contre les manichéens</i> : la défense du récit de la création</p>
+<p>Le débat public avec le prêtre manichéen Fortunat à Hippone (392)</p>
+<p>Le débat avec Félix, docteur manichéen (404), qui se conclut par sa conversion</p>
+<p>Le <i>Contre Fauste</i>, en trente-trois livres : l’unité des deux Testaments</p>
+<p><i>La Nature du bien</i> : tout ce qui est, en tant qu’il est, est bon</p>
+<p>Le mal comme <b>privation</b> de bien, et non comme substance</p>
+<p>Le libre arbitre comme origine du mal moral</p>
+<p>Ce que la victoire sur le manichéisme apporta à la doctrine chrétienne de la création et du mal</p>
+</sujet>

@@ -1,0 +1,9 @@
+<sujet cle="premiers-peres.papias" titre="Papias de Hiérapolis" desc="Un évêque du IIe siècle qui recueillit les traditions orales sur les Évangiles.">
+<p>Papias, évêque de Hiérapolis en Phrygie au début du IIe siècle, auditeur des « presbytres » disciples des Apôtres</p>
+<p>L’<i>Explication des paroles du Seigneur</i> en cinq livres, perdue, connue par les fragments cités par Irénée et Eusèbe</p>
+<p>La préférence de Papias pour la « voix vivante » de la tradition orale</p>
+<p>Le témoignage sur Marc, interprète de Pierre</p>
+<p>Le témoignage sur Matthieu et les « paroles » rédigées en langue hébraïque</p>
+<p>La question des deux Jean (l’Apôtre et le « presbytre Jean ») soulevée par Eusèbe à partir d’un fragment</p>
+<p>Le millénarisme de Papias et le jugement réservé d’Eusèbe</p>
+</sujet>

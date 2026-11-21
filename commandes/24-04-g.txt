@@ -1,0 +1,16 @@
+<sujet cle="peres-orient.nazianze" titre="Grégoire de Nazianze" desc="Le poète et orateur que l’Orient appelle « le Théologien ».">
+<p>La naissance vers 330 à Arianze, près de Nazianze, fils de l’évêque Grégoire l’Ancien</p>
+<p>Les études à Athènes et l’amitié avec Basile</p>
+<p>L’ordination presbytérale imposée (361), la fuite et le retour (<i>Discours</i> 2, sur le sacerdoce)</p>
+<p>L’évêché de Sasimes imposé par Basile (372), jamais occupé, et la blessure de l’amitié</p>
+<p>La mission à Constantinople (379) auprès de la petite communauté nicéenne, dans la chapelle de l’Anastasie</p>
+<p>La présidence du concile de Constantinople (381) après la mort de Mélèce d’Antioche, puis la démission devant les contestations</p>
+<p>Le retour en Cappadoce, la retraite d’Arianze et la mort vers 390</p>
+<p>Les cinq <b>Discours théologiques</b> (<i>Discours</i> 27 à 31, en 380) : la Trinité contre les anoméens et la divinité de l’Esprit Saint</p>
+<p>Les propriétés des Personnes : l’inengendré, l’engendré, le procédant (grec <i>ekporeusis</i>, « procession »)</p>
+<p>L’Esprit Saint appelé clairement Dieu, et la révélation progressive de la Trinité</p>
+<p>Les <i>Lettres à Clédonius</i> contre Apollinaire : « ce qui n’est pas assumé n’est pas guéri »</p>
+<p>Les discours funèbres, dont l’éloge de Basile (<i>Discours</i> 43)</p>
+<p>Les poèmes, dont le grand poème autobiographique <i>Sur sa vie</i></p>
+<p>L’héritage : « le Théologien », l’un des trois saints hiérarques de l’Orient, docteur de l’Église</p>
+</sujet>

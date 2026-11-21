@@ -1,0 +1,14 @@
+<sujet cle="peres-occident.chrysologue" titre="Pierre Chrysologue" desc="L’évêque de Ravenne, prédicateur bref et ardent, docteur de l’Église.">
+<p>La naissance à Imola vers 380 et la formation dans l’Église de cette ville</p>
+<p>L’évêque de Ravenne (vers 431-433), alors résidence de la cour impériale d’Occident et de l’impératrice Galla Placidia</p>
+<p>La mort vers 450</p>
+<p>Le surnom de <b>Chrysologue</b> (grec, « parole d’or »), donné bien après sa mort, pendant latin du Chrysostome de l’Orient</p>
+<p>Le recueil de ses sermons, rassemblé au VIIIe siècle par l’évêque Félix de Ravenne</p>
+<p>La manière de prêcher : des sermons brefs, denses, nourris d’images, pour ne pas lasser le peuple</p>
+<p>Les sermons sur le Symbole, adressés aux candidats au baptême</p>
+<p>Les sermons sur le Notre Père</p>
+<p>Les sermons sur l’Annonciation et la place de Marie dans sa prédication</p>
+<p>Les sermons sur l’Incarnation et la défense de la foi de Chalcédoine</p>
+<p>La lettre à Eutychès (449) : l’invitation à se soumettre au jugement de l’évêque de Rome, en qui saint Pierre continue de présider</p>
+<p>La proclamation comme docteur de l’Église par Benoît XIII (1729)</p>
+</sujet>

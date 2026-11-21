@@ -1,0 +1,18 @@
+<sujet cle="peres-occident.boece" titre="Boèce" desc="Le philosophe romain chrétien, mort en prison, qui transmit la logique antique au Moyen Âge.">
+<p>La naissance vers 480 dans l’aristocratie romaine, et la carrière au service du roi ostrogoth Théodoric</p>
+<p>Le consulat (510) et la charge de maître des offices</p>
+<p>L’accusation de complot, l’emprisonnement à Pavie et l’exécution vers 524</p>
+<p>Le projet de traduire et de commenter en latin toute l’œuvre de Platon et d’Aristote</p>
+<p>Les traductions et commentaires de la logique d’Aristote et de l’<i>Isagogè</i> de Porphyre, seule logique connue de l’Occident jusqu’au XIIe siècle</p>
+<p>La question des <b>universaux</b> (les genres et les espèces existent-ils hors de l’esprit ?), posée par Porphyre et transmise par Boèce au Moyen Âge</p>
+<p>Les manuels des arts du quadrivium (arithmétique, musique)</p>
+<p>Le traité <i>Sur la Trinité</i> : l’application des catégories d’Aristote au mystère trinitaire</p>
+<p>Le traité <i>Contre Eutychès et Nestorius</i> : la défense de la foi de Chalcédoine</p>
+<p>La définition de la <b>personne</b> : substance individuelle de nature raisonnable</p>
+<p>La <b>Consolation de Philosophie</b>, écrite en prison : le dialogue avec Dame Philosophie, alternant prose et vers</p>
+<p>La Fortune et sa roue, le bonheur véritable en Dieu, souverain Bien</p>
+<p>La providence et le destin, la prescience divine et la liberté humaine</p>
+<p>La définition de l’<b>éternité</b> : la possession tout entière et parfaite d’une vie sans terme</p>
+<p>L’héritage intellectuel : le « dernier des Romains et premier des scolastiques », maître de la logique médiévale</p>
+<p>Le culte de saint Séverin Boèce à Pavie, confirmé par Rome en 1883</p>
+</sujet>

@@ -1,0 +1,28 @@
+<sujet cle="augustin.pelage" titre="Augustin contre Pélage" desc="La grande controverse sur la grâce qui valut à Augustin le titre de « docteur de la grâce ».">
+<p>Pélage, moine d’origine bretonne établi à Rome, et son idéal de perfection morale</p>
+<p>La doctrine pélagienne : la nature humaine capable du bien par ses propres forces, la grâce réduite à la loi et à l’exemple du Christ</p>
+<p>Le rejet par Pélage du <b>péché originel</b> transmis à tous</p>
+<p>Célestius, disciple de Pélage, condamné à Carthage (411)</p>
+<p>Le synode de Diospolis en Palestine (415), qui acquitte Pélage</p>
+<p>Les conciles de Carthage et de Milève (416) et leur condamnation de Pélage</p>
+<p>La confirmation de ces conciles par le pape Innocent Ier (417)</p>
+<p>Les hésitations du pape Zosime, successeur d’Innocent, devant les protestations de Pélage et de Célestius</p>
+<p>Le concile de Carthage de 418 et ses canons sur le péché originel et la grâce</p>
+<p>La lettre <i>Tractoria</i> de Zosime (418), qui condamne Pélage et Célestius</p>
+<p><i>Les Mérites et la rémission des péchés</i> (412) : le baptême des enfants et le péché originel</p>
+<p><i>L’Esprit et la lettre</i> (412) : la loi qui commande, la grâce qui donne d’accomplir</p>
+<p><i>La Nature et la grâce</i> (415), réponse au traité <i>La Nature</i> de Pélage</p>
+<p><i>La Grâce du Christ et le péché originel</i> (418)</p>
+<p>La controverse avec Julien d’Éclane et l’<i>Ouvrage inachevé contre Julien</i></p>
+<p>La prière des <i>Confessions</i> qui avait heurté Pélage : « donne ce que tu commandes et commande ce que tu veux »</p>
+<p>La grâce <b>prévenante</b> : Dieu commence en nous le bien avant toute décision de notre part</p>
+<p>La grâce coopérante : Dieu mène à son terme le bien qu’il a commencé, avec notre volonté qu’il rend libre</p>
+<p>Le trouble des moines d’Hadrumète en Afrique (426-427) : la crainte que la grâce rende inutiles la correction et l’effort</p>
+<p><i>La Grâce et le libre arbitre</i> : l’accord de la grâce et de la liberté</p>
+<p><i>La Correction et la grâce</i> : la réprimande fraternelle maintenue sous le régime de la grâce</p>
+<p>Les objections des moines de Marseille (Jean Cassien et son milieu), rapportées à Augustin par Prosper d’Aquitaine et Hilaire</p>
+<p><i>La Prédestination des saints</i> (429) : le commencement même de la foi, don de Dieu</p>
+<p><i>Le Don de la persévérance</i> (429) : la persévérance finale, don gratuit</p>
+<p>La prédestination selon Augustin et la « masse de perdition »</p>
+<p>La réception par l’Église : la confirmation au concile d’Orange (529), et les thèses d’Augustin que l’Église n’a pas faites siennes</p>
+</sujet>

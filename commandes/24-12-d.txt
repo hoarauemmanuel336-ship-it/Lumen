@@ -1,0 +1,18 @@
+<sujet cle="peres-orient.damascene" titre="Jean Damascène" desc="Le dernier des Pères d’Orient, défenseur des images et auteur d’une grande synthèse de la foi.">
+<p>La naissance à Damas vers 650-675, dans une famille chrétienne au service de l’administration du calife</p>
+<p>L’entrée au monastère de Mar Saba près de Jérusalem, le sacerdoce et la mort vers 749</p>
+<p>Le contexte : une chrétienté vivant sous domination musulmane, hors de l’Empire byzantin</p>
+<p>La <i>Source de la connaissance</i>, œuvre en trois parties</p>
+<p>La <i>Dialectique</i> : les notions philosophiques au service de la théologie</p>
+<p><i>Sur les hérésies</i>, dont le chapitre sur l’islam, l’un des plus anciens écrits chrétiens à son sujet</p>
+<p>L’<i>Exposé exact de la foi orthodoxe</i>, en cent chapitres : la synthèse de la théologie des Pères grecs</p>
+<p>La traduction latine de l’<i>Exposé</i> au XIIe siècle et son usage par Pierre Lombard et Thomas d’Aquin</p>
+<p>L’<b>iconoclasme</b> (grec, « bris des images ») lancé par l’empereur Léon III l’Isaurien</p>
+<p>Les <i>Trois Discours contre ceux qui rejettent les saintes images</i></p>
+<p>L’argument de l’Incarnation : Dieu devenu visible peut être représenté</p>
+<p>La distinction entre l’adoration due à Dieu seul (<i>latreia</i>) et la vénération rendue aux images (<i>proskynêsis</i>), qui passe à leur modèle</p>
+<p>La condamnation de Jean par le concile iconoclaste de Hiéreia (754) et sa réhabilitation par le concile de Nicée II (787)</p>
+<p>Les homélies sur la Dormition de Marie, citées par Pie XII dans <i>Munificentissimus Deus</i> (1950)</p>
+<p>Le poète liturgique : hymnes et canons de la liturgie byzantine, dont le canon de Pâques</p>
+<p>La proclamation comme docteur de l’Église par Léon XIII (1890)</p>
+</sujet>

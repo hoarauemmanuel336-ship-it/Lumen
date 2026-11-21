@@ -1,0 +1,19 @@
+<sujet cle="peres-orient.cyrille-alexandrie" titre="Cyrille d’Alexandrie" desc="Le patriarche d’Alexandrie qui défendit l’unité du Christ et le titre de Mère de Dieu.">
+<p>Le neveu de Théophile d’Alexandrie, patriarche de 412 à sa mort en 444</p>
+<p>Les débuts troublés de son épiscopat, et la question de sa responsabilité dans le meurtre de la philosophe Hypatie (415)</p>
+<p>Nestorius, patriarche de Constantinople (428), et son refus du titre de <i>Theotokos</i> (grec, « qui enfante Dieu »)</p>
+<p>La <i>Deuxième Lettre à Nestorius</i>, approuvée par les conciles d’Éphèse et de Chalcédoine</p>
+<p>La <i>Troisième Lettre à Nestorius</i> et ses douze anathématismes</p>
+<p>Le concile d’Éphèse (431) : son ouverture par Cyrille avant l’arrivée des évêques d’Orient, et le contre-concile de Jean d’Antioche</p>
+<p>La Formule d’union de 433 et la réconciliation avec Jean d’Antioche</p>
+<p>Les commentaires bibliques, dont le <i>Commentaire sur Jean</i></p>
+<p>Le <i>Trésor sur la sainte et consubstantielle Trinité</i>, contre les ariens</p>
+<p>Les <i>Dialogues sur la Trinité</i>, en sept livres</p>
+<p>Le <i>Contre Julien</i> : la réponse à l’empereur Julien l’Apostat</p>
+<p>Le dialogue <i>Le Christ est un</i></p>
+<p>L’<b>union hypostatique</b> (grec <i>henôsis kath’ hypostasin</i>) : l’union de la divinité et de l’humanité dans la Personne du Verbe</p>
+<p>La <b>communication des idiomes</b> : attribuer au même Verbe incarné les propriétés divines et humaines</p>
+<p>La formule « une seule nature incarnée du Verbe Dieu », reçue sous le nom d’Athanase mais venue en réalité d’un écrit d’Apollinaire de Laodicée, et les malentendus qu’elle a causés</p>
+<p>La chair vivifiante du Christ dans l’eucharistie</p>
+<p>L’héritage : le « sceau des Pères », docteur de l’Église (1883), revendiqué à la fois par Chalcédoine et par les Églises non chalcédoniennes</p>
+</sujet>

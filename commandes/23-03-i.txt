@@ -1,0 +1,17 @@
+<sujet cle="peres.premiers" titre="Ignace d’Antioche" desc="L’évêque martyr qui écrivit sept lettres en route vers son supplice à Rome.">
+<p>Ignace, évêque d’Antioche, son surnom de <i>Theophoros</i> (grec, « porteur de Dieu »)</p>
+<p>L’arrestation sous Trajan et le voyage vers Rome sous escorte, avec les étapes de Smyrne et de Troas</p>
+<p>Le martyre à Rome, livré aux bêtes, vers 110 (date traditionnelle, discutée par certains historiens)</p>
+<p>Les trois recensions des lettres (moyenne, longue interpolée, courte syriaque) et l’authenticité de la recension moyenne établie au XIXe siècle</p>
+<p>La <i>Lettre aux Éphésiens</i> : l’unité autour de l’évêque, l’eucharistie <b>remède d’immortalité</b> (grec <i>pharmakon athanasias</i>), le mystère de la virginité de Marie caché au prince de ce monde</p>
+<p>La <i>Lettre aux Magnésiens</i> : contre les judaïsants, vivre selon le dimanche et non plus selon le sabbat</p>
+<p>La <i>Lettre aux Tralliens</i> : contre le docétisme, la réalité de la naissance, de la passion et de la résurrection du Christ</p>
+<p>La <i>Lettre aux Romains</i> : l’Église de Rome « qui préside à la charité », le désir du martyre, l’image du froment moulu par la dent des bêtes</p>
+<p>La <i>Lettre aux Philadelphiens</i> : une seule eucharistie, un seul autel, un seul évêque</p>
+<p>La <i>Lettre aux Smyrniotes</i> : l’eucharistie chair du Sauveur contre les docètes, et le premier emploi connu de l’expression <b>Église catholique</b></p>
+<p>La <i>Lettre à Polycarpe</i> : conseils d’un évêque à un évêque</p>
+<p>La hiérarchie à trois degrés (évêque, presbyterium, diacres) et l’épiscopat dit monarchique</p>
+<p>La christologie d’Ignace : Jésus appelé Dieu, vraie chair et vrai Fils de Dieu</p>
+<p>La mystique du martyre comme imitation de la Passion et chemin vers Dieu</p>
+<p>La mémoire liturgique d’Ignace (17 octobre) et sa présence dans le Canon romain</p>
+</sujet>

@@ -1,0 +1,12 @@
+<sujet cle="augustin.eveque" titre="Augustin, prêtre et évêque d’Hippone" desc="Trente-cinq ans de ministère au service d’une Église d’Afrique.">
+<p>Le retour en Afrique (388) et la communauté de serviteurs de Dieu à Thagaste</p>
+<p>L’ordination presbytérale forcée à Hippone (391) par l’évêque Valère</p>
+<p>L’évêque coadjuteur puis évêque d’Hippone (395-396)</p>
+<p>La vie commune avec son clergé dans la maison épiscopale</p>
+<p>La charge quotidienne de l’évêque : prédication, tribunal épiscopal, soin des pauvres, correspondance</p>
+<p>La participation aux conciles africains, autour de l’évêque Aurèle de Carthage</p>
+<p>Les <i>Révisions</i> (<i>Retractationes</i>, 426-427) : la relecture critique de toute son œuvre</p>
+<p>Le siège d’Hippone par les Vandales et la mort le 28 août 430</p>
+<p>La <i>Vie d’Augustin</i> écrite par son disciple Possidius</p>
+<p>Le <i>Bien du mariage</i> (401) et <i>La sainte virginité</i> : les trois biens du mariage (la fidélité, les enfants, le sacrement), reçus par toute la tradition latine</p>
+</sujet>

@@ -1,0 +1,18 @@
+<sujet cle="augustin.exegete" titre="Augustin exégète et prédicateur" desc="Augustin lecteur de l’Écriture et pasteur qui prêchait presque chaque jour.">
+<p><i>La Doctrine chrétienne</i>, en quatre livres : la science d’interpréter l’Écriture et de l’enseigner</p>
+<p>Les choses et les signes, et la charité comme règle de toute interprétation</p>
+<p>Les règles de Tyconius, reprises au livre III</p>
+<p>Le livre IV : l’éloquence chrétienne, instruire, plaire et toucher</p>
+<p>Les commentaires de la Genèse, jusqu’à <i>La Genèse au sens littéral</i> en douze livres</p>
+<p>La création simultanée et les <b>raisons séminales</b> (latin <i>rationes seminales</i>)</p>
+<p><i>L’Accord des évangélistes</i> : les différences entre les Évangiles et leur harmonie</p>
+<p>Les <b>Commentaires sur les Psaumes</b> (<i>Enarrationes in Psalmos</i>) : la voix du Christ et de l’Église dans les Psaumes</p>
+<p>Le <b>Christ total</b> (latin <i>Christus totus</i>) : la Tête et le Corps qui parlent d’une seule voix</p>
+<p>Les <i>Traités sur l’Évangile de Jean</i> (124)</p>
+<p>Les <i>Traités sur la première lettre de Jean</i> et la formule « aime, et fais ce que tu veux »</p>
+<p>Les <i>Sermons</i> au peuple : plus de cinq cents conservés, pris en note par des sténographes</p>
+<p>Les sermons inédits retrouvés à Mayence en 1990 par François Dolbeau</p>
+<p>La prédication eucharistique : « soyez ce que vous voyez, recevez ce que vous êtes »</p>
+<p><i>La Catéchèse des débutants</i> : la méthode pour enseigner ceux qui demandent le baptême</p>
+<p>L’<i>Enchiridion</i> : la foi, l’espérance et la charité</p>
+</sujet>

@@ -1,0 +1,23 @@
+<sujet cle="peres-occident.gregoire" titre="Grégoire le Grand" desc="Le pape moine qui guida l’Église dans un monde en ruine et fit évangéliser l’Angleterre.">
+<p>La naissance vers 540 dans une famille patricienne de Rome</p>
+<p>Le préfet de Rome devenu moine dans sa maison du mont Caelius</p>
+<p>Le représentant du pape à Constantinople (apocrisiaire)</p>
+<p>L’élection au pontificat en 590, en pleine peste, et la mort le 12 mars 604</p>
+<p>La défense de Rome face aux Lombards et la négociation de la paix</p>
+<p>L’administration du patrimoine de saint Pierre, les domaines de l’Église romaine</p>
+<p>Le soin des pauvres et le ravitaillement de Rome</p>
+<p>La mission d’Augustin et de ses moines en Angleterre (596-597)</p>
+<p>Le titre de <b>serviteur des serviteurs de Dieu</b> et la querelle sur le titre de patriarche œcuménique</p>
+<p>Les <i>Morales sur Job</i>, en trente-cinq livres : la lecture de Job selon les sens historique, allégorique et moral</p>
+<p>La <i>Règle pastorale</i> (591) : le gouvernement des âmes, « art des arts »</p>
+<p>Les <i>Dialogues</i>, en quatre livres, dont le livre II consacré à la vie de saint Benoît</p>
+<p>Le livre IV des <i>Dialogues</i> et l’enseignement sur le purgatoire</p>
+<p>Les quarante <i>Homélies sur les Évangiles</i></p>
+<p>Les <i>Homélies sur Ézéchiel</i>, prêchées pendant le siège de Rome par les Lombards</p>
+<p>Le <i>Registre</i> des lettres</p>
+<p>Contemplation et action : la vie du pasteur partagée entre l’une et l’autre</p>
+<p>Grégoire et la liturgie : ses retouches au Canon romain et la place du Notre Père à la messe</p>
+<p>Le chant dit <b>grégorien</b>, attribué à Grégoire plus tard, et ce que les historiens en retiennent</p>
+<p>Les messes grégoriennes (trente messes pour un défunt) et leur origine dans les <i>Dialogues</i></p>
+<p>L’héritage : le « consul de Dieu », l’un des quatre grands docteurs de l’Occident, le maître de la pastorale médiévale</p>
+</sujet>

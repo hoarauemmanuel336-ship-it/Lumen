@@ -1,0 +1,11 @@
+<sujet cle="patristique.antioche" titre="L’école d’Antioche" desc="L’autre grand foyer de l’Orient, attaché au sens historique de l’Écriture.">
+<p>Antioche de Syrie, troisième ville de l’Empire, où les disciples reçurent le nom de chrétiens (Actes 11:26)</p>
+<p>Lucien d’Antioche (mort en 312), maître fondateur, et sa révision du texte grec de la Bible</p>
+<p>Diodore de Tarse, maître de Jean Chrysostome et de Théodore de Mopsueste</p>
+<p>La <b>theôria</b> (grec <i>theôria</i>, « contemplation ») : le sens spirituel appuyé sur le sens littéral et historique, contre l’allégorie jugée arbitraire</p>
+<p>L’attention à l’histoire, à la grammaire et au contexte des textes bibliques</p>
+<p>La christologie dite « Logos-anthropos » (Verbe-homme) : l’accent mis sur l’intégrité de l’humanité du Christ</p>
+<p>Les grands Antiochiens : Jean Chrysostome, Théodore de Mopsueste, Théodoret de Cyr</p>
+<p>La dérive que la tendance antiochienne pouvait favoriser : le nestorianisme</p>
+<p>La synthèse des deux écoles dans la définition du concile de Chalcédoine (451)</p>
+</sujet>

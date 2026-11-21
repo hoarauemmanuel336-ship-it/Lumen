@@ -1,0 +1,17 @@
+<sujet cle="augustin.jeunesse" titre="La jeunesse et la conversion d’Augustin" desc="Le chemin d’Augustin depuis son enfance africaine jusqu’à son baptême à Milan.">
+<p>La naissance à Thagaste, en Numidie, le 13 novembre 354</p>
+<p>Ses parents : Patrice, païen baptisé à la fin de sa vie, et Monique, chrétienne fervente</p>
+<p>Les études à Madaure puis à Carthage</p>
+<p>La vie avec une compagne pendant une quinzaine d’années, et la naissance de leur fils Adéodat (372)</p>
+<p>La lecture de l’<i>Hortensius</i> de Cicéron (373) et l’éveil à l’amour de la sagesse</p>
+<p>Les neuf années chez les manichéens comme simple auditeur</p>
+<p>Le professeur de rhétorique à Thagaste, Carthage, Rome, puis Milan (384)</p>
+<p>La prédication d’Ambroise et la découverte d’une lecture spirituelle de l’Ancien Testament</p>
+<p>La lecture des « livres des platoniciens » et la découverte de Dieu comme être spirituel</p>
+<p>Le récit de Simplicien sur la conversion de Marius Victorinus, rhéteur romain et traducteur des platoniciens</p>
+<p>Le récit de Ponticianus sur la vie d’Antoine et sur des fonctionnaires convertis par sa lecture</p>
+<p>La scène du jardin de Milan (août 386) : « Prends et lis » et la lecture de Romains 13:13-14</p>
+<p>La retraite de Cassiciacum avec ses proches</p>
+<p>Le baptême par Ambroise dans la nuit de Pâques 387, avec Adéodat et son ami Alypius</p>
+<p>L’extase d’Ostie avec Monique et la mort de celle-ci (387)</p>
+</sujet>

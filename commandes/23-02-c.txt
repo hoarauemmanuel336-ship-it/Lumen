@@ -1,0 +1,14 @@
+<sujet cle="premiers-peres.clement" titre="Clément de Rome" desc="Un évêque de Rome de la fin du Ier siècle et sa lettre aux chrétiens de Corinthe.">
+<p>Clément dans la liste des évêques de Rome transmise par Irénée : troisième successeur de Pierre, après Lin et Anaclet</p>
+<p>Ce que l’on sait et ce que l’on ignore de sa vie, et les légendes postérieures (identification avec le Clément de Philippiens 4:3, récit de martyre)</p>
+<p>La <b>Lettre aux Corinthiens</b> (vers 96) : envoyée au nom de l’Église de Rome, attribuée à Clément dès le IIe siècle</p>
+<p>L’occasion de la lettre : la déposition de presbytres par une partie de la communauté de Corinthe</p>
+<p>Le témoignage sur le martyre de Pierre et de Paul (chapitres 5 et 6)</p>
+<p>L’exhortation à l’humilité, à la concorde et à la pénitence, appuyée sur les exemples de l’Ancien Testament</p>
+<p>L’ordre dans la création et dans l’Église, et l’analogie avec le culte lévitique (chapitres 40 et 41)</p>
+<p>La <b>succession apostolique</b> : les Apôtres établis par le Christ, qui établissent à leur tour des ministres et règlent leur succession (chapitres 42 à 44)</p>
+<p>La grande prière finale (chapitres 59 à 61), dont la prière pour les gouvernants</p>
+<p>L’intervention de Rome dans une autre Église : la question de ce qu’elle dit de la primauté romaine</p>
+<p>La lecture publique de la lettre à Corinthe encore vers 170, selon Denys de Corinthe</p>
+<p>Les écrits attribués à tort à Clément : la <i>Seconde lettre de Clément</i> (homélie anonyme) et les romans pseudo-clémentins</p>
+</sujet>

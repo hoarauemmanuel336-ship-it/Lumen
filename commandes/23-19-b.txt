@@ -1,0 +1,14 @@
+<sujet cle="premiers-peres.hippolyte" titre="Hippolyte de Rome" desc="Un prêtre romain du IIIe siècle, opposant puis martyr, à l’œuvre discutée.">
+<p>Hippolyte, prêtre de Rome au début du IIIe siècle, disciple d’Irénée selon la tradition</p>
+<p>L’opposition au pape Calliste sur la discipline pénitentielle, Hippolyte reprochant au pape sa largeur dans la réconciliation des pécheurs</p>
+<p>L’opposition au pape Calliste sur la doctrine trinitaire, Hippolyte l’accusant de complaisance envers le modalisme</p>
+<p>Le <b>modalisme</b> de Noët et de Sabellius, combattu par Hippolyte (<i>Contre Noët</i>)</p>
+<p>Hippolyte présenté comme le premier antipape</p>
+<p>L’exil en Sardaigne avec le pape Pontien (235), la réconciliation et la mort, et leur mémoire commune le 13 août</p>
+<p>La statue retrouvée à Rome en 1551, avec une liste d’œuvres et une table pascale</p>
+<p>Le <i>Commentaire sur Daniel</i>, plus ancien commentaire chrétien d’un livre biblique conservé</p>
+<p>La <i>Réfutation de toutes les hérésies</i> (dite <i>Philosophoumena</i>), à l’attribution discutée</p>
+<p>La <i>Tradition apostolique</i> : un ordre d’Église (ordinations, prière eucharistique, baptême), dont l’attribution et la date sont débattues</p>
+<p>La prière eucharistique de la <i>Tradition apostolique</i>, source de la Prière eucharistique II du Missel de Paul VI</p>
+<p>La « question hippolytéenne » : un seul auteur ou plusieurs sous le même nom</p>
+</sujet>

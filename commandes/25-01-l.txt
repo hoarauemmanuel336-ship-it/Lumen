@@ -1,0 +1,17 @@
+<sujet cle="peres.latins" titre="Hilaire de Poitiers" desc="L’évêque gaulois qui défendit la foi de Nicée en Occident.">
+<p>La naissance à Poitiers vers 315 dans une famille païenne, et la conversion par la lecture de l’Écriture</p>
+<p>L’élection au siège de Poitiers vers 350</p>
+<p>Le refus de condamner Athanase, le synode de Béziers (356) et l’exil en Phrygie</p>
+<p>La découverte de la théologie grecque pendant l’exil</p>
+<p>Le retour en Gaule (360), la lutte contre l’arianisme et contre Auxence de Milan</p>
+<p>Le lien avec saint Martin, son disciple, et la fondation du monastère de Ligugé (361)</p>
+<p>La mort à Poitiers vers 367</p>
+<p>Le <i>Commentaire sur Matthieu</i>, avant l’exil</p>
+<p>Le <i>De Trinitate</i>, en douze livres : la divinité du Fils et l’unité de nature du Père et du Fils</p>
+<p>Le <i>De synodis</i> (359) : l’effort de rapprochement avec les homéousiens d’Orient</p>
+<p>Le <i>Contre Constance</i> : la critique de l’empereur arien</p>
+<p>Les <i>Commentaires sur les Psaumes</i>, marqués par l’exégèse d’Origène</p>
+<p>Le <i>Traité des mystères</i> : les figures du Christ et de l’Église dans l’Ancien Testament</p>
+<p>Les hymnes : Hilaire, premier hymnographe latin connu</p>
+<p>L’héritage : l’« Athanase de l’Occident », docteur de l’Église proclamé par Pie IX (1851)</p>
+</sujet>
