@@ -17,3 +17,4 @@ Fichiers : 00-ouverture.html, 01.html ... 11.html, 99-bilan.html.
 10. Trois arguments : argument moral (Aristide 15, Athénagore 11, 1 P 2:12, Mt 5:16), antiquité (Josèphe, Tatien 31, Théophile III, 21-29 ; nouveauté suspecte à Rome ; valeur et limites), prophéties (Lc 24:27, Théophile I, 14, Athénagore 9 flûte, lien Justin ; motifs de crédibilité, lien 04 #ouverture-m).
 11. La foi et la sagesse grecque : Paul à l'Aréopage (Ac 17), Aristide ch. 1, Athénagore 5-7 (poètes et philosophes, Timée), Justin (lien), Théophile critique, Tatien hostile ; Col 2:8 ; jugement de l'Église (Fides et ratio, lien 04 #ouverture-e) ; bilan de l'apport des apologistes et réception.
 Bilan : 6 exercices croisés.
+État : terminé, livré redaction/23-09-g.html

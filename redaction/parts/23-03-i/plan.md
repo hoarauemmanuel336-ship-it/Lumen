@@ -23,3 +23,8 @@ Bilan : 6 exercices croisés.
 ## État
 - Leçons 1-4 écrites (00, 01, 02, 03, 04).
 - Leçons 5-6 écrites.
+- Leçons 7-8 écrites.
+- Leçon 9 écrite.
+- Leçon 10 écrite.
+- Leçon 11 écrite.
+- Leçon 12 écrite. Reste : bilan, assemblage, contrôle, humaniser, essai.

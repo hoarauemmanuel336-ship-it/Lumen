@@ -31,3 +31,18 @@
 - L8 : triade être / bien-être / être-toujours-bien, et les cinq divisions d'Ambiguum 41 avec leur dépassement par le Christ : de mémoire, non revérifiés en ligne.
 - L8 : « tout ce que Dieu est, sauf l'identité de nature » : paraphrase de mémoire (Amb. 41 ou Amb. 7), sans guillemets.
 - L8 : le Catéchisme n. 460 cite Irénée et Athanase sur l'échange : de mémoire, non revérifié.
+- L9 : vingt-sept opuscules, édition Combefis (1675), PG 91 : de mémoire.
+- L9 : définition de la volonté naturelle (faculté de désirer ce qui est conforme à la nature) : paraphrase de mémoire de l'Opuscule 1, sans guillemets.
+- L9 : distinction « vouloir » (nature) et « comment vouloir » (personne) : de mémoire (Dispute avec Pyrrhus, Opuscules).
+- L9 : lettre à Marinus sur le Filioque (Opuscule 10) et sa reprise dans la clarification du Conseil pontifical pour l'unité (1995) : de mémoire.
+- L9 : lettre au patrice Pierre (Pyrrhus doit satisfaire le pape) : d'après la Catholic Encyclopedia ; fragment latin sur Rome (Opuscule 11) d'authenticité discutée : de mémoire.
+- L9 : Grégoire de Nazianze, Lettre 101, 32 : « Ce qui n'a pas été assumé n'a pas été guéri ; ce qui est uni à Dieu, voilà ce qui est sauvé » : traduit de mémoire du grec.
+- L10 : « remise libre de la gnômê à Dieu » par les saints avec Galates 2:20 (Ambigua 7) : de mémoire.
+- L10 : Opuscule 6 : citations traduites d'après des traductions anglaises vérifiées (Walker, Communio 2002 ; Blowers) ; colonnes 68C et 68D données par la revue Ad Fontes.
+- L10 : Benoît XVI, audience du 25 juin 2008 (« non » d'Adam, « oui » du Christ ; homme sans volonté = homme amputé) : vérifié sur la version anglaise, rendu en paraphrase.
+- L11 : traduction de la définition de 681 faite d'après le latin (DS 556), contrôlée sur la traduction anglaise de NPNF.
+- L11 : raison pour laquelle le concile ne nomme pas Maxime : hypothèse présentée comme telle.
+- L11 : Léon II reprochant à Honorius sa négligence ; Photius lisant Maxime (Bibliothèque) ; Thomas d'Aquin, Somme III, q. 18 ; Balthasar, Liturgie cosmique, 1941 (Wikipédia indique 1940/1961 pour ses travaux) : de mémoire.
+- L11 : apokatastasis chez Maxime (rétablissement des puissances de la nature, « être-toujours-mal » pour ceux qui refusent) : de mémoire (Questions et doutes 19, Ambigua 65).
+- L11 : hypothèses sur la multiplication de l'humanité sans le péché (Amb. 41, Q. Thal. 21, à la suite de Grégoire de Nysse) : de mémoire.
+- L11 : scolies sur Denys en partie de Jean de Scythopolis ; Vie de la Vierge en géorgien (contestée par Jankowiak et Booth) : d'après Wikipédia.

@@ -17,3 +17,4 @@ Leçons (fichiers 01 à 11) :
 10. Volonté naturelle et volonté gnomique ; Gethsémani (Opuscule 6, Grégoire Or. 30). Items 18-19.
 11. L'héritage : Constantinople III (681) et ce qu'il doit à Maxime ; réception (Jean Damascène, Érigène, Philocalie, Balthasar, Benoît XVI) ; fêtes ; jugement juste (opinions propres). Item 21.
 Bilan : 6 exercices.
+Statut : cours complet livré (11 leçons + bilan), contrôle passé, assemblage d'essai réussi.

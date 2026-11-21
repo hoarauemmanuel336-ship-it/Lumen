@@ -18,3 +18,5 @@ Leçons (fichiers 01.html à 11.html) :
 10. Dei Verbum 8 et le ressourcement — DV 8 traduit, DV 23, Optatam totius 16 ; ressourcement (Newman, Möhler, de Lubac 1938, Sources chrétiennes 1942, Daniélou 1946) ; ce qu’il change à l’usage des Pères.
 11. Un consensus et une opinion — virginité perpétuelle (Origène, Jérôme Contre Helvidius 19, Augustin, 553, 649 ; Tertullien et Helvidius) ; millénarisme (Papias, Justin Dial. 80, Irénée, Eusèbe, Augustin CD XX,7 ; 1944, CEC 676) ; tableau des trois conditions.
 Bilan : 6 exercices croisés.
+
+État : toutes les leçons écrites, réunies, contrôlées et humanisées ; livré.

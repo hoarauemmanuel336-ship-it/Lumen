@@ -21,4 +21,4 @@ Leçons (12) :
 
 Bilan : 6 exercices croisés.
 
-État : leçons écrites : 00 à 06
+État : terminé ; assemblé dans redaction/24-01-l.html, contrôlé, humanisé

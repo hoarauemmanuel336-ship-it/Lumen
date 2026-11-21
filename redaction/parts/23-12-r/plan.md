@@ -23,3 +23,7 @@ Bilan : 6 exercices croisés.
 ## Avancement
 (mis à jour au fil de l'écriture)
 - Leçons 1 à 6 écrites (00-ouverture, 01 à 06), contrôle passé.
+- Leçons 7 à 9 écrites.
+- Leçons 10 et 11 écrites ; reste le bilan.
+- Bilan écrit, fichier réuni ; reste humaniser et contrôles.
+- Humaniser fait, contrôle et assemblage d'essai réussis. Cours livré.
