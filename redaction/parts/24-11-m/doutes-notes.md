@@ -1,0 +1,33 @@
+- L1 : étapes en Crète (discussion avec des sévériens, Opuscule 3 ?) et à Chypre après 626 : de mémoire.
+- L1 : monastère d'Eucratas près de Carthage : de mémoire (communauté de Sophrone et Moschus).
+- L1 : Vie syriaque : naissance à Hesfin (Golan), père samaritain, mère esclave perse, nom de Moschion, Vieille Laure de Chariton : de mémoire (Brock 1973), non revérifié en ligne.
+- L1 : entrée à Chrysopolis « vers 613-614 » : d'après le cours 28 (leçon sur Maxime) et la tradition, non revérifié.
+- L2 : date du pacte d'union d'Alexandrie (3 juin 633) et son 7e article « une seule opération théandrique » : de mémoire.
+- L2 : peines du Type (déposition, excommunication, perte de rang, châtiments corporels et exil) : de mémoire.
+- L2 : Jean IV condamne l'Ecthèse en 641 : de mémoire.
+- L3 : « Si la volonté est une, alors, selon l'enseignement des Pères, l'essence aussi est une » : vérifié sur une traduction anglaise (Farrell, § 108) ; colonne PG non retrouvée.
+- L3 : définition de la gnômê « manière de vouloir rapportée à un bien réel ou supposé », « mode d'usage, non principe de nature » : vérifiée en anglais (Farrell § 85 et 87) ; colonne PG 91, 308C de mémoire.
+- L3 : Pyrrhus de nouveau patriarche quelques mois en 654 : de mémoire.
+- L3 : environ 105 évêques, cinq sessions du 5 au 31 octobre 649, vingt canons : de mémoire (105 confirmé par une page encyclopédique).
+- L4 : réponse « l'univers entier » vérifiée sur une traduction anglaise ; la colonne PG 90, 121C est de mémoire.
+- L4 : échange sur l'empereur qui n'est pas prêtre (ne se tient pas à l'autel, ne consacre pas, ne baptise pas) : paraphrase de mémoire de la Relatio motionis.
+- L4 : date de l'arrestation de Maxime (653) discutée ; la Catholic Encyclopedia la met fin 655.
+- L4 : forteresse de Schémaris (Wikipédia : Schemarum) ; mort du moine Anastase en juillet 662, d'Anastase l'apocrisiaire en 666 : d'après la Catholic Encyclopedia.
+- L4 : fêtes : 21 janvier (Orient, avec translation des reliques le 13 août), 13 août (Martyrologe romain) : d'après Catholic Encyclopedia et Wikipédia.
+- L5 : Ambigua à Jean « vers 628-630 », à Thomas « années 630 » ; Questions à Thalassios « vers 630-633 » : datations courantes (Sherwood), de mémoire.
+- L5 : Ambiguum 7 explique Grégoire, Discours 14, 7 (« parcelle de Dieu venue d'en haut ») : de mémoire.
+- L5 : Question à Thalassios 42 sur 2 Co 5:21 (deux sens du péché) : de mémoire, non revérifiée.
+- L5 : Question à Thalassios 60 : traduite d'après une traduction anglaise vérifiée (Blowers-Wilken) ; colonne PG 90, 621A de mémoire.
+- L5 : Question 22 (les deux âges) : vérifiée sur ellopos (extraits grecs).
+- L6 : Centuries I, 1, I, 2 (début), I, 10, I, 17, I, 25 (début) vérifiés sur des textes grecs en ligne (pemptousia.gr, orthodoxianewsagency.gr) ; la suite de I, 25 (Dieu glorifie le vertueux, a pitié du pécheur) et la sentence de II, 10 (inégalité des amours) en paraphrase ; « celui qui aime Dieu ne peut pas ne pas aimer tout homme comme lui-même » paraphrasé (chapitre I, 13 selon ma mémoire, non cité).
+- L6 : dédicace à Elpidios et prologue (recueilli chez les Pères) : de mémoire. Datation vers 626 : Sherwood, de mémoire.
+- L6 : Commentaire du Notre Père : contenu vérifié sur une traduction anglaise (sept mystères, nom = Fils, règne = Esprit, pain = Logos, pardon) ; datation 628-630 de mémoire ; la mention de Grégoire de Nysse pour la variante de Luc 11:2 est de mémoire.
+- L7 : datation de la Mystagogie (vers 628-630) de mémoire ; l'identification du « bienheureux vieillard » à Sophrone est une hypothèse de certains savants, de mémoire.
+- L7 : la signification de chaque rite (chapitres 8 à 21) est donnée de mémoire, d'après le contenu connu de l'œuvre ; les titres des chapitres ont été vérifiés (trad. Stead) ; chapitre 24 (ne pas négliger la synaxe, grâce de l'Esprit présente même si on ne la sent pas) de mémoire.
+- L7 : citation « L'homme est une Église mystique quand, par le temple de son corps, il accomplit les œuvres des commandements » traduite d'après la traduction anglaise de J. Stead, vérifiée.
+- L8 : « Le Logos unique est les logoi multiples, et les logoi multiples sont un seul Logos » vérifié en anglais (Dionysius, revue dal.ca) ; colonne PG 91, 1081C de mémoire.
+- L8 : « Le Logos de Dieu, qui est Dieu, veut toujours et en toutes choses accomplir le mystère de son incarnation » : vérifié en anglais, Amb. 7, PG 91, 1084D.
+- L8 : « prédéterminations » et « volontés divines » (d'après Denys, Noms divins 5, 8) : vérifié.
+- L8 : triade être / bien-être / être-toujours-bien, et les cinq divisions d'Ambiguum 41 avec leur dépassement par le Christ : de mémoire, non revérifiés en ligne.
+- L8 : « tout ce que Dieu est, sauf l'identité de nature » : paraphrase de mémoire (Amb. 41 ou Amb. 7), sans guillemets.
+- L8 : le Catéchisme n. 460 cite Irénée et Athanase sur l'échange : de mémoire, non revérifié.

@@ -21,4 +21,4 @@ Leçons (12) :
 
 Bilan : 6 exercices croisés.
 
-État : leçons écrites : 00, 01, 02
+État : leçons écrites : 00 à 06

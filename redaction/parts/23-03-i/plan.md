@@ -21,3 +21,5 @@ Obstacles du novice : confondre les trois recensions ; croire la date de 107/110
 Bilan : 6 exercices croisés.
 
 ## État
+- Leçons 1-4 écrites (00, 01, 02, 03, 04).
+- Leçons 5-6 écrites.

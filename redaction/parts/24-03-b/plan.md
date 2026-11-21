@@ -18,4 +18,4 @@ Leçons (12) :
 12. La liturgie de saint Basile et l'héritage : anaphore, dix jours par an, versions, Prière eucharistique IV ; « le Grand », docteur (1568), trois hiérarques, fêtes (1er janvier, 2 janvier, 30 janvier) ; ordres basiliens.
 
 Fichiers : 00-ouverture.html, 01.html … 12.html, 99-bilan.html.
-État : plan fait.
+État : leçons 1 à 8 écrites.
