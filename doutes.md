@@ -332,3 +332,185 @@
 - Paul VI, mai 1973 : « père et docteur de l'Église universelle » vérifié en italien (homélie du 6 mai 1973), traduction personnelle ; aucune source trouvée sur un don de reliques, donc non mentionné.
 - Nouvelle traduction française du missel : « consubstantiel au Père » (de mémoire).
 - Tropaire byzantin du 2 mai : « colonne de l'orthodoxie » vérifié en anglais (OCA) ; texte paraphrasé, non cité.
+
+## 25-03-j
+- Recherche web épuisée en cours de travail : plusieurs extraits traduits de mémoire du latin, sans vérification en ligne ; à contrôler en priorité les points ci-dessous.
+- Commentaire sur Ézéchiel XII (sur Éz 40) : souvenir des catacombes « Dum essem Romae puer… » ; extrait traduit de mémoire.
+- Lettre 15, 1 : « reçu le vêtement du Christ » à Rome (« unde olim Christi vestimenta suscepi ») ; citation de mémoire.
+- Lettre 5, 2 : copie à Trèves, pour Rufin, du commentaire d'Hilaire sur les Psaumes et du livre sur les synodes ; de mémoire.
+- Donat appelé « mon maître » dans la Chronique (année 354) ; de mémoire.
+- Lettre 14, 10 : « Ô désert fleuri des fleurs du Christ » ; de mémoire. Lettre 22, 7 (chœurs de jeunes filles au désert) ; de mémoire.
+- Lettre 22, 25 : « Oras : loqueris ad sponsum ; legis : ille tibi loquitur » ; de mémoire, traduit en vouvoiement.
+- Lettre 39, 6 (cri contre les moines aux funérailles de Blésilla) et Lettre 45, 3 (« digne du plus haut sacerdoce ») ; de mémoire.
+- Préface aux Évangiles (Novum opus) : « œuvre nouvelle à partir d'une ancienne », « arbitre », « vérité grecque », « faussaire et sacrilège », « presque autant de textes que de manuscrits » ; texte non retrouvé en ligne (recherche épuisée), traduit de mémoire.
+- Matthieu 6:11 « supersubstantialem » et Luc 11:3 « cotidianum » dans la Vulgate ; CEC 2837 ; et la remarque des spécialistes sur des corrections plus nombreuses au début de Matthieu.
+- Grégoire le Grand, lettre à Léandre en tête des Moralia : il suit la nouvelle version et cite l'ancienne, le Siège apostolique se servant des deux.
+- Jérôme employant lui-même « vulgata editio » pour le texte grec courant de la Septante.
+- Préface de la traduction des Chroniques (comprendre l'Écriture après avoir vu la Judée, comme les historiens grecs après Athènes) ; de mémoire.
+- Lettre 108 : dictée « en deux nuits » ; Lettre 108, 20 (trois groupes de femmes) ; de mémoire.
+- Lettre 127, 12 : « elle est prise, la Ville qui avait pris l'univers » ; Marcella morte peu après le sac des suites des mauvais traitements ; de mémoire.
+- Attaque des monastères en 416, diacre tué, tour fortifiée, lettres d'Innocent Ier ; de mémoire.
+- Sulpice Sévère, Dialogues I, 9 : « totus semper in lectione, totus in libris est… » ; reconstitué à partir de la lettre de François (qui cite I, 9, 5) et de mémoire.
+- Prologue casqué (vers 391-392) et préface aux livres de Salomon (« ad aedificationem plebis, non ad auctoritatem ecclesiasticorum dogmatum confirmandam ») ; préfaces de Tobie (un jour) et de Judith (Nicée) ; Apologie contre Rufin II, 33 (objections des Juifs sur Daniel) ; de mémoire, concordant avec le cours déjà en ligne sur les deutérocanoniques.
+- Préface de la traduction d'Isaïe : « non tam propheta quam evangelista » ; de mémoire.
+- Commentaire sur Isaïe IV (sur Is 11:1) : lecture juive des deux images du Messie, puis tige = Marie, fleur = Christ ; de mémoire.
+- Préface du Commentaire sur Abdias : commentaire allégorique de jeunesse jugé sévèrement ; de mémoire.
+- Office des lectures du 30 septembre tiré du prologue sur Isaïe ; CEC 133 cite la phrase ; de mémoire.
+- Commentaire sur Matthieu (398) écrit très vite pour un ami en partance (Eusèbe de Crémone) ; de mémoire.
+- Homélies sur les Psaumes et sur Marc retrouvées et publiées à la fin du XIXe siècle (dom Morin) ; de mémoire.
+- Nombre de lettres : « environ cent cinquante, dont près de cent vingt de Jérôme » (la Catholic Encyclopedia dit environ cent vingt de lui ; le chiffre 154 de l'édition Hilberg est de mémoire).
+- Notice d'Ambroise dans Les Hommes illustres (124) : jugement réservé parce qu'il est vivant ; de mémoire. Dexter fils de Pacien de Barcelone ; de mémoire.
+- Lettre 107 à Laeta : lettres de buis ou d'ivoire, ordre des lectures bibliques ; de mémoire. Date « vers 400 ».
+- Lettre 141 (418) : éloge d'Augustin « restaurateur de l'antique foi », donné en paraphrase ; de mémoire.
+- Érasme, édition des œuvres de Jérôme à Bâle en 1516 ; de mémoire.
+- Contre Helvidius : exemple « mort avant d'avoir fait pénitence » ; argument tiré de Matthieu 28:20 pour « jusqu'à ce que » ; de mémoire (le texte sûr est en 14 et 19, numérotation latine).
+- Contre Jovinien : synodes de Rome (Sirice) et de Milan (Ambroise) ; Augustin, Révisions II, 22 sur Le bien du mariage ; Familiaris consortio 16 citant Chrysostome ; Trente session 24 canon 10 ; de mémoire.
+- Lettre 48 : « je n'ai jamais condamné le mariage » (vérifié en anglais, section 20) et « le meilleur est au bien » (section 17) ; Pammachius a-t-il « retenu » ou « tenté de retirer » le livre : formulation prudente « tenté d'arrêter la diffusion ».
+- Vigilance porteur d'une lettre de Paulin de Nole en 395 ; translations de reliques (André, Luc, Timothée, Samuel) dans le Contre Vigilance ; de mémoire.
+- Querelle origéniste : Atarbius (393), ordination de Paulinien par Épiphane (394), réconciliation de 397, version littérale des Principes citée dans la Lettre 124, synode de Théophile (400), Augustin Lettre 73 ; de mémoire. Mort de Rufin « vers 410 ou 411 ».
+- Boniface VIII en 1298 et le rang liturgique des quatre docteurs ; de mémoire.
+- Journée internationale de la traduction : résolution de l'Assemblée générale des Nations unies de 2017 ; choix du 30 septembre par la Fédération internationale des traducteurs ; de mémoire.
+- François, Aperuit illis (30 septembre 2019) instituant le dimanche de la Parole de Dieu ; Benoît XVI, deux catéchèses sur Jérôme (novembre 2007) ; de mémoire.
+- Légende du lion transférée depuis la vie d'un autre moine (Gérasime) ; de mémoire.
+- Divino afflante Spiritu : passage sur l'authenticité « juridique » vérifié sur vatican.va (numéroté 26 dans la version française) ; cité sans numéro.
+
+## 23-14-y
+- Les extraits latins de Cyprien ont été vérifiés sur le texte du CSEL 3 (Hartel), numérotation moderne des lettres ; les traductions sont les miennes.
+- Texte de la primauté (L'Unité 4) : traduit d'après l'apparat de Hartel (manuscrit M), dont l'OCR donne « hanc et Pauli unitatem » ; j'ai suivi la leçon habituelle « hanc Petri unitatem » (« cette unité de Pierre ») : à vérifier sur Bévenot.
+- Ordre des deux versions : thèse de Bévenot (texte de la primauté en 251, texte reçu vers 256) et thèse inverse de Chapman, d'après la Catholic Encyclopedia et une source secondaire ; dates des travaux de Bévenot (1938 à 1971) de mémoire.
+- Édition composite « de Rome en 1563 » (Manuce) : date de mémoire, l'apparat de Hartel dit seulement « post Manutium » ; Hartel « 1868 » pour le volume des traités.
+- Augustin, Le Baptême : paragraphes 28 (livre I) et 5 (livre II) vérifiés sur le CSEL ; numéros de chapitre « I, 18, 28 » et « II, 4, 5 » déduits, à confirmer.
+- Actes proconsulaires : extraits vérifiés sur une édition en ligne (Paternus 30 août 257, Curubis, « Christianus sum et episcopus », sentence, « Deo gratias », « et nos cum ipso decollemur », 25 pièces d'or, ager Sexti, areae Macrobii Candidiani sur la via Mappaliensis) ; la réplique « Fais ce qui t'est ordonné… » placée au procès de 258 de mémoire ; numéros de chapitres (1, 3, 4, 5) supposés ; détails « monter aux arbres », « un prêtre et un sous-diacre lui lient les mains », « deux officiers » de mémoire.
+- Jérôme, Les Hommes illustres 53 (« Da magistrum ») : de mémoire.
+- Pontius, Vie de Cyprien : prêtre Caecilianus, foule qui assiège la maison, soins aux malades pendant la peste y compris aux ennemis, vision de Curubis, Sixte « bon et pacifique » : de mémoire.
+- Magistère cité de mémoire et paraphrasé : Lumen gentium 4 (reprise de L'Oraison dominicale 23), 8, 14 et 16 ; Catéchisme 846-848 et 1434 ; Latran IV (1215) ; Pie IX et l'ignorance invincible ; lettre du Saint-Office de 1949 ; Trente, session XXII ch. 7 (eau mêlée au vin) et session VII, canon 4 sur le baptême ; canon du concile d'Arles (314) sur les Africains. Vérifiés en ligne : Catéchisme 181 (L'Unité 6) et 2782 (L'Oraison dominicale 9), audience de Benoît XVI du 6 juin 2007.
+- Prière de l'offertoire en français (« Comme cette eau se mêle au vin… ») et liste du Canon romain (Lin, Clet, Clément, Sixte, Corneille, Cyprien, Laurent, Chrysogone, Jean et Paul, Côme et Damien) : de mémoire.
+- Jean-Paul II honorant les martyrs des autres confessions chrétiennes (Tertio millennio adveniente 37, Ut unum sint 84) : de mémoire, sans citation.
+- Dates de mémoire : martyrs de Scillium 180, Perpétue 203, concile d'Agrippinus vers 220, conciles d'Iconium (attesté par la Lettre 75) et de Synnada « vers 230 », Fabien 20 janvier 250, certificats d'Égypte de l'été 250, Corneille élu en mars 251, concile romain de soixante évêques à l'automne 251 (Eusèbe), Novatien ordonné par des évêques d'Italie, Lettre 30 rédigée par Novatien, prédécesseur de Cyprien nommé Donatus, rite de consécration des vierges rétabli en 1970, Lettre 63 « vers 253 », Lettre 62 « vers 253 », Basilides et Martial « en 254 ».
+- Mort de Tertullien « hors de l'Église » et « passé au montanisme vers 207 » : repris de la commande du cours sur Tertullien.
+
+## 23-03-i
+- Extraits d’Ignace traduits par le rédacteur à partir de sa connaissance du grec, contrôlés sur la traduction anglaise de New Advent (ANF) ; seul le grec d’Éphésiens 20, 2 (*pharmakon athanasias*) a pu être vérifié sur le texte de la Loeb ; les autres mots grecs (*prokathēmenē tēs agapēs*, *katholikē ekklēsia*, *kata kyriakēn zōntes*, *sitos theou*, *mimētēs*, *alēthōs*, *dokein*, *bebaia*, *archeia*, *thysiastērion*, *agennētos*/*agenētos*, mots latins *desertor*, *deposita*, *accepta* en Pol 6, 2) sont donnés de mémoire.
+- Tralliens 3, 1 : « l’évêque, qui est l’image (*typos*) du Père » suit le texte de Lightfoot et le Catéchisme ; la traduction ANF de New Advent lit autrement (« l’évêque comme Jésus Christ, Fils du Père »).
+- Magnésiens 8, 2 : « Verbe sorti du silence » (texte de Lightfoot) ; New Advent porte « non sorti du silence » ; la répartition exacte de cette variante entre manuscrits et recension longue est donnée de mémoire.
+- Éphésiens 2, 1 : noms d’Euplus et de Fronton dans la délégation d’Éphèse, de mémoire.
+- Romains 10, 3 : « neuvième jour avant les calendes de septembre » = 24 août ; ANF lit « la veille du neuvième jour » ; à confirmer.
+- Chronique d’Eusèbe : martyre placé « vers 107-108 » ; année exacte non vérifiée.
+- Datations tardives : T. Barnes (vers 140), R. Hübner (1997) et T. Lechner (1999) pour un faux de 165-175, R. Joly (1979), J. Rius-Camps (1980) : de mémoire.
+- Ussher 1644, Voss 1646 (manuscrit de Florence), Ruinart 1689 (grec de la *Lettre aux Romains* inséré dans le *Martyre*), Daillé 1666, Pearson 1672, Cureton 1845 (découverte 1843), Zahn 1873, Lightfoot 1885 : la plupart confirmées par la Catholic Encyclopedia, sauf Ruinart 1689 et Cureton 1845 (de mémoire).
+- Recension longue « sans doute du même auteur que les Constitutions apostoliques » et ses tendances ariennes ou apollinaristes : opinion courante, résumée de mémoire.
+- Calvin « fatras » (Institution I, 13, 29) : paraphrase de mémoire.
+- Origène cite Éphésiens 19, 1 dans une homélie sur Luc (Hom. 6) et lit Romains 7, 2 « mon Amour est crucifié » (prologue du Commentaire sur le Cantique) : de mémoire.
+- Smyrniotes 3, 2 : Jérôme rattache la parole à un évangile des Hébreux, Origène à la *Doctrine de Pierre* : de mémoire.
+- Athanase, *Sur les synodes* 47, défend « engendré et inengendré » : de mémoire.
+- Denys de Corinthe remerciant Rome de ses secours (Eusèbe, HE IV, 23) : de mémoire.
+- Catéchisme : n. 830, 834, 1549, 1554 vérifiés ; n. 498 (Éph 19, 1), 1369 (Smyrn 8, 1), 1405 (Éph 20, 2), 2175 (Magn 9, 1), 2474 (Rom 6, 1) donnés de mémoire.
+- Lumen gentium 20 et 28 paraphrasés de mémoire (sans guillemets).
+- Calendrier : 17 octobre depuis 1969 (date de la fête à Antioche), auparavant 1er février ; 20 décembre en Orient : partiellement vérifié (17 octobre, antiennes de la messe confirmés en anglais) ; la raison du choix du 17 octobre et l’office des lectures (passage de la *Lettre aux Romains*) sont de mémoire.
+- Canon romain : liste du *Nobis quoque peccatoribus* vérifiée en latin ; le caractère facultatif des noms après Barnabé dans le Missel actuel est de mémoire.
+- Reliques : Tychaeum sous Théodose II et translation à Saint-Clément (CE : 637) d’après la Catholic Encyclopedia ; détail présenté comme mal établi.
+- Trajan « ne séjourna en Orient qu’à la fin de son règne » (campagne parthique, 114-117) : de mémoire.
+- Martyre de Polycarpe 4 (Quintus) et 15 (pain qu’on cuit) : de mémoire.
+
+## 24-08-j
+- Leçon 1 : Palladios (Dialogue V) dit que Jean, dans la grotte, apprenait l'Écriture par cœur (« les testaments du Christ ») : vérifié seulement sur le sens général (traduction Moore), pas sur le grec.
+- Leçon 1 : Maxime, condisciple, « futur évêque de Séleucie » (Socrate VI, 3) : de mémoire.
+- Leçon 1 : baptême « vers 368 (certains proposent 372) » ; retour des montagnes « vers 378 » : dates d'historiens, non vérifiées une à une.
+- Leçon 2 : date du traité Sur le sacerdoce donnée entre 381 et 391 environ (la Catholic Encyclopedia dit 386, Nairn 387) : fourchette volontairement large.
+- Leçon 2 : Catéchisme 983 cité pour Sur le sacerdoce III, 5 (vérifié sur l'index des citations de l'USCCB, pas sur le texte du n. 983).
+- Leçon 3 : l'impôt de 387 rattaché aux fêtes des dix ans de règne (decennalia) de Théodose : de mémoire. Statues de Flacilla et des fils : de mémoire (Sozomène, Théodoret).
+- Leçon 3 : la 19e homélie Sur les statues « peut-être prononcée dans un autre contexte, authenticité discutée » : d'après la Catholic Encyclopedia (« probablement pas authentique »).
+- Leçon 3 : récit de Flavien dans la 21e homélie, moines descendus des montagnes (17e homélie) : de mémoire.
+- Leçon 4 : Eudoxie fournissant les croix d'argent des processions (Socrate VI, 8), sa participation pieds nus à une translation de reliques, son rôle dans la chute d'Eutrope : de mémoire.
+- Leçon 4 : église donnée aux Goths catholiques (Théodoret, HE V, 30) et refus d'une église arienne à Gaïnas (400) : de mémoire.
+- Leçon 4 : homélie contre les jeux et les théâtres en 399 (courses le Vendredi saint) : de mémoire.
+- Leçon 4 : synode d'Éphèse daté de 401 (Benoît XVI) ; certains historiens le placent au début de 402. Six évêques déposés (Benoît XVI).
+- Leçon 5 : trente-six évêques au Chêne (29 venus avec Théophile + 7, d'après la Catholic Encyclopedia) ; présence de Cyrille, neveu de Théophile : de mémoire.
+- Leçon 5 : nature de l'« accident » au palais après le premier exil (sources variables) ; canon invoqué en 404 (canon d'Antioche de 341) : de mémoire.
+- Leçon 5 : date de l'exil de 404 : la Catholic Encyclopedia donne le 24 juin, d'autres sources le 20 juin ; le cours dit seulement « juin 404 ».
+- Leçon 5 : la phrase « il n'y a qu'une seule chose qui soit vraiment terrible… le péché » est la première des lettres à Olympias dans la traduction de Stephens (NPNF) ; numéro de la lettre dans l'édition critique non vérifié, d'où la référence générale « Lettres à Olympias ».
+- Leçon 5 : voyage final de trois mois, vision du martyr Basilisque, habits blancs (Palladios, Dialogue XI) : de mémoire ; « Gloire à Dieu pour tout » vérifié (Benoît XVI, Catholic Encyclopedia).
+- Leçon 5 : rétablissement du nom dans les diptyques « dans les années 410 », demande de pardon de Théodose II en 438 (Théodoret V, 36) : de mémoire.
+- Leçon 6 : extrait des Homélies sur Jean XV donné en « XV, 1 » : numéro de paragraphe non vérifié (la page NPNF ne numérote pas clairement).
+- Leçon 6 : Dei Verbum 13 paraphrasé (vérifié sur la version anglaise, pas sur le texte français officiel).
+- Leçon 7 : la discussion des divergences entre évangiles dans l'homélie 1 sur Matthieu : de mémoire. Traduction latine des homélies sur Matthieu « dès le Ve siècle » (Anianus de Celeda) : de mémoire.
+- Leçon 7 : Catéchisme 2768 et 2825 citent l'homélie 19 sur Matthieu (index USCCB : 19, 4 et 19, 5 ; le cours cite le passage sous XIX, 6 selon la numérotation NPNF).
+- Leçon 8 : nombres d'homélies sur chaque lettre de Paul (d'après NPNF) et répartition Antioche / Constantinople : de mémoire, discutée.
+- Leçon 8 : Julien d'Éclane invoquant Jean et réponse d'Augustin (Contre Julien I, 6) : de mémoire.
+- Leçon 8 : légende de Paul inspirant Jean, rapportée par une vie du VIIe siècle (Georges d'Alexandrie) : de mémoire.
+- Leçon 9 : formule de renonciation et d'adhésion, onctions, triple immersion, formule passive « untel est baptisé », liste des dons du baptême (Catéchèses, éd. Wenger) : paraphrasées de mémoire, sans accès au texte.
+- Leçon 9 : catéchèse sur le sang et l'eau lue à l'office des lectures du Vendredi saint (Catéchèse III, 13-19, éd. Wenger) : référence de mémoire.
+- Leçon 9 : douze homélies contre les anoméens, dont la suite en partie à Constantinople : d'après la Catholic Encyclopedia et SC 396 (de mémoire). Remarque sur « inaccessible » plus fort qu'« incompréhensible » (homélie III) : de mémoire.
+- Leçon 9 : Catéchisme 2179 cite l'homélie III, 6 Sur l'incompréhensibilité (index USCCB) ; contenu paraphrasé de mémoire.
+- Leçon 10 : détails du contexte (serments et guérisons à la synagogue, date de Pâques), comparaison de la synagogue à un théâtre et à un repaire (homélie I) : paraphrasés de mémoire ; Robert Wilken, 1983. Reprise par des auteurs antisémites au XXe siècle : affirmation courante, non vérifiée sur une source précise.
+- Leçon 10 : Nostra aetate 4 paraphrasé (texte de vatican.va inaccessible) ; Catéchisme 597-598 : de mémoire.
+- Leçon 11 : Catéchisme 1375 (De proditione Iudae), 1397, 1620 (De virginitate 10, 1), 2365, 2446 : références vérifiées sur l'index des citations de l'USCCB ; textes du Catéchisme non vérifiés, extraits de Jean traduits depuis NPNF.
+- Leçon 11 : traité Sur la vaine gloire et l'éducation des enfants (l'âme de l'enfant comparée à une ville dont les sens sont les portes) : de mémoire.
+- Leçon 12 : conclusion de Robert Taft (1990) sur le remaniement de l'anaphore par Jean et parenté avec l'anaphore syriaque des Douze Apôtres : de mémoire (la Catholic Encyclopedia dit seulement « peut-être modifiée »).
+- Leçon 12 : institution de la fête des trois saints hiérarques à la fin du XIe siècle : de mémoire. Saint Pie X patron des prédicateurs (1908 ?) : non vérifié. Jean XXIII patron de Vatican II : d'après Benoît XVI (audience du 26 septembre 2007). Remise des reliques en 2004 : Benoît XVI donne le 24 août 2004, la cérémonie publique est d'ordinaire datée du 27 novembre 2004 ; le cours dit « en 2004 ».
+- Leçon 12 : « manuscrits par milliers », traductions anciennes (syriaque, arménien, géorgien, slavon) : de mémoire.
+
+## 23-13-t
+- Montanisme : dates de 157 (Épiphane) et 172 (Chronique d'Eusèbe) données de mémoire, non revérifiées en ligne.
+- Parole de Maximille « après moi plus de prophétesse, mais la fin » attribuée à Épiphane (Panarion 48) : de mémoire, paraphrasée sans guillemets.
+- Miltiade, auteur d'un écrit contre la prophétie en extase (Eusèbe, HE V, 17) : de mémoire.
+- « Plus de treize ans » après la mort de Maximille : rapporté à l'anonyme d'Eusèbe, HE V, 16, 19 ; le résumé consulté plaçait le passage en V, 18 : à vérifier.
+- Évêques de Rome proposés pour Contre Praxéas 1 (Éleuthère, Victor, Zéphyrin) : de mémoire.
+- Praxéas, nom qui signifierait « l'affairé », peut-être sobriquet : hypothèse donnée de mémoire.
+- Vincent de Lérins, Commonitorium 18 : seule la formule « presque autant de pensées que de mots » est vérifiée (via Altaner) ; la comparaison avec Origène et la « grande épreuve » sont paraphrasées de mémoire.
+- Décret dit de Gélase rangeant les opuscules de Tertullien parmi les écrits non reçus : de mémoire.
+- Catéchisme 1015 (caro salutis cardo), 2761 (abrégé de l'Évangile), 366, 404, 362-365, 499-500, 982, 66-67 : numéros donnés de mémoire, contenus paraphrasés sans guillemets.
+- Humani generis (1950) sur la création immédiate des âmes : paraphrasé de mémoire.
+- Dei Verbum 16 (Nouveau caché dans l'Ancien) : paraphrasé de mémoire.
+- Fides et ratio, image des deux ailes : paraphrasée de mémoire.
+- La Pénitence 7 (seconde pénitence, une seule fois) : paraphrasé, non vérifié sur le texte.
+- Tertullien admettant la fuite pendant la période catholique (À son épouse I, 3) : de mémoire.
+- Fin du Baptême (20), demande de se souvenir de « Tertullien pécheur » : de mémoire.
+- Le nom Quintilla (Le Baptême 1) : l'édition Evans le donne pour une conjecture de Gelenius ; à vérifier selon l'édition retenue.
+- Tertullien citant souvent Sénèque (« Seneca saepe noster », L'Âme 20) : de mémoire.
+- Adversus Praxean 7, Dieu « corps » en tant que réalité : de mémoire.
+- « Rat du Pont » qui ronge les Évangiles (Contre Marcion I, 1 ou I, 5) : chapitre non vérifié, donné sans numéro.
+- Martyre de Polycarpe 4 (le Phrygien Quintus qui se livre puis renie) : de mémoire.
+- Rapprochement de La Chair du Christ 5 avec Aristote, Rhétorique II, 23 : hypothèse de plusieurs historiens, donnée de mémoire.
+- Apparition moderne de la formule « credo quia absurdum » : présentée sans date précise.
+- Satisfactio et meritum rattachés à Tertullien : de mémoire, présentés avec prudence.
+- Cyprien : dépendance de L'Oraison dominicale, Le Bienfait de la patience, La Tenue des vierges envers Tertullien : de mémoire (largement admise).
+- Dates des œuvres (Prière 198-204, Baptême 198-206, Chair du Christ 206-212, Résurrection 208-212, Praxéas vers 213, Âme 210-213, Fuite 208-212, Monogamie vers 217) : fourchettes usuelles, en partie d'après Altaner.
+- Apologétique 17, 1 : la fin de la phrase (« ratione qua disposuit… de nihilo expressit ») est citée de mémoire au-delà de « verbo quo iussit ».
+- Prescription 37 : « Je suis l'héritière des Apôtres » (ego sum heres apostolorum) non confirmé par l'outil (coupure de citation), mais bien connu.
+- Apologétique 31 (aimer ses ennemis, prier pour les persécuteurs) : chapitre de mémoire.
+
+## 25-02-a
+- Naissance « vers 339 » (autres dates proposées : 334, 340) : la Catholic Encyclopedia dit « probablement 340 » ; la lettre d'Ambroise donnant son âge n'a pas été relue.
+- Plaidoiries au tribunal du préfet du prétoire « établi alors à Sirmium » (Paulin, Vie 5) : non vérifié en ligne.
+- Parenté avec la vierge martyre Sotère (Les Vierges III, 7, 38) ; Marcelline voilée par Libère un jour de Noël à Saint-Pierre (Les Vierges III, 1, 1) : de mémoire.
+- Récits de Paulin repris en résumé (abeilles, torture dans le tribunal, fuite vers Pavie, refuge chez un ami) : de mémoire ; le cri d'enfant, le mot de Probus et « vieux, mais bon » sont vérifiés (NPNF, Catholic Encyclopedia).
+- Baptême le 30 novembre et ordination le 7 décembre 374 : d'après Operosam diem (Jean-Paul II, 1996) ; certains historiens datent l'ordination de 373.
+- Lettre de Basile se réjouissant de l'élection (lettre 197) ; Ambroise rappelant sa résistance (lettre 63) ; Simplicien « père » d'Ambroise dans la grâce (Confessions VIII, 2, 3) ; « on entrait chez lui sans être annoncé » (Confessions VI, 3, 3) : de mémoire.
+- Mercurinus devenu Auxence ; loi du 23 janvier 386 (Code théodosien XVI, 1, 4) : de mémoire.
+- Lettre 20 : datée de 385 par la NPNF, de 386 par beaucoup d'historiens récents ; le cours dit la répartition discutée.
+- Lettre 22 : « Ambroise les appelle ses défenseurs » (tales ego ambio defensores) : de mémoire ; le reste de la lettre 22 vérifié (tertullian.org).
+- Sermon contre Auxence 2, 17-18, 34, 35, 36, lettre 20, 8 et 19, lettre 21, 4, lettre 51 : traduits depuis la traduction anglaise NPNF / newadvent (vérifiée) ; « mes larmes sont mes armes » (c. Aux. 2) traduit de l'anglais et du latin connu de mémoire.
+- Lettres 17 et 18 (autel de la Victoire) : paraphrasées, non relues sur le texte.
+- Sur la mort de Théodose 34 (« dilexi virum… ») : paraphrase de mémoire ; Gélase, 494, « deux autorités » : de mémoire.
+- Lettre 57 à Eugène (financement des cultes païens) : paraphrase de mémoire.
+- Confessions IX, 6, 14 « Nous fûmes baptisés, et l'inquiétude de notre vie passée s'enfuit loin de nous » : cité de mémoire (et baptizati sumus, et fugit a nobis sollicitudo vitae praeteritae) ; Confessions IX, 5, 13 (Isaïe) : de mémoire. Confessions IX, 7, 15-16 : vérifié sur le latin (bkv.unifr.ch).
+- Dates de Pâques 387 (25 avril) et 397 (5 avril) calculées par le comput julien ; mort dans la nuit du 3 au 4 avril 397 d'après Benoît XVI (audience du 24 octobre 2007).
+- Paulin, Vie 45 : « Je n'ai pas vécu parmi vous de telle sorte que j'aie honte de vivre ; et je ne crains pas de mourir, car nous avons un bon Seigneur » : cité de mémoire ; admiration d'Augustin rapportée par Possidius (Vie d'Augustin 27) : de mémoire.
+- Paulin écrivant la Vie « vers 412-422 » ; reliques d'Agricola et Vital (Bologne) et de Nazaire (Milan) ; Explication du Symbole attribuée à Ambroise : de mémoire.
+- Les Devoirs des ministres : I, 1, 4 ; I, 7, 24 ; I, 28, 130-132 ; II, 28, 136-140 vérifiés sur le latin (PL 16, archive.org) ; date « vers 388-391 » (Mauristes : vers 391). Psaume « lu ce jour-là » (I, 2, 5), devoir moyen et parfait (I, 11, 36-37), quémandeurs (II, 16) : de mémoire. « Premier auteur connu à employer “vertus cardinales” » (Commentaire sur Luc V, 62) : de mémoire.
+- I, 20, 88 (« nous lui parlons quand nous prions… ») repris par Dei Verbum 25 : de mémoire.
+- Naboth : date « fin des années 380 » (fourthcentury.com) ; dépendance de Basile ; ouverture du traité et § 1, 2 paraphrasés de mémoire ; scène du père vendant son fils (De Nab. 5) de mémoire ; citation de Populorum progressio 23 reprise du cours 91 (non relue directement sur vatican.va).
+- De la foi : dates (378 ; vers 380) ; lettre de Gratien ; « non in dialectica complacuit Deo salvum facere populum suum » (I, 5, 42) cité de mémoire ; épigraphe de la Grammaire de l'assentiment de Newman : de mémoire. De la foi IV, 8, 88 vérifié (Operosam diem).
+- Du Saint-Esprit : 381 ; basilique rendue par Gratien (prologue) ; I, 11, 120 (procession du Père et du Fils) : de mémoire ; préface de Jérôme à Didyme (« corneille difforme ») vers 387 : de mémoire.
+- Hexaéméron : neuf homélies, six livres, semaine sainte entre 386 et 390, dépendance de Basile, VI, 10, 75-76 (repos de Dieu) paraphrasé, homélie du coq (V, 24, 88) : de mémoire.
+- Commentaire sur Luc : vers 389-390 ; bon Samaritain (VII) ; larmes de Pierre (X, 88) : de mémoire.
+- Les Mystères 9, 52 et Catéchisme 1375 ; Les Sacrements III, 1, 5 ; IV, 4, 14 ; IV, 5, 21 ; IV, 6, 27 ; V, 4, 25 (communion fréquente, Grecs une fois l'an) ; IV, 5, 25 (« Amen, c'est vrai ») : latin de mémoire, recoupé avec le cours 64 pour la prière eucharistique.
+- Les Vierges : 377, structure, jeunes filles de Plaisance, Bologne, Afrique (I, 10, 57), portrait de Marie (II, 2, 6-15), « je ne condamne pas les noces » : de mémoire.
+- Commentaire sur Luc II, 7 (latin cité) et « nous a conçus de l'Esprit… sans gémissement » : de mémoire ; II, 26 vérifié (Operosam diem). Lumen gentium 63 : paraphrasé, non relu.
+- Bonosus et L'Institution de la vierge (Ézéchiel 44:2) : de mémoire. Omnia Christus est nobis (La Virginité 16, 99) et son développement : de mémoire (devise confirmée par l'audience de Benoît XVI).
+- Hymnes dans la Liturgie des Heures : Deus creator omnium aux premières vêpres des dimanches des semaines I et III (vérifié, Studia theologica 2004) ; Aeterne rerum conditor aux laudes du dimanche, Iam surgit hora tertia à tierce, Veni redemptor gentium au temps de Noël : non vérifiés pour l'édition de 1971.
+- Règle de saint Benoît (ambrosianum) ; Révisions I, 21 ; De natura et gratia 63, 74 ; Sermon 372 : de mémoire (la Catholic Encyclopedia confirme les quatre hymnes attestées par Augustin).
+- Boniface VIII, 1298 (fêtes des quatre docteurs) ; attributs iconographiques ; chaire du Bernin (1666) avec Ambroise, Augustin, Athanase, Chrysostome : de mémoire.
+- Ambrosiaster : Érasme premier à douter, nom donné par les éditeurs bénédictins : à vérifier.
+- Pélage louant Ambroise (Augustin, De la grâce du Christ I, 43, 47) ; « Ubi Petrus, ibi ecclesia » (Explication du Psaume 40, 30) ; « l'eau et les larmes » tirée de la lettre 41, 12 (Catéchisme 1429) : de mémoire.

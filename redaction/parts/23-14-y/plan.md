@@ -18,3 +18,4 @@ Sources latines : CSEL 3 (Hartel), copie locale /tmp/cyp/txt (OpenGreekAndLatin 
 11. La controverse baptismale avec Étienne : conciles 255, 256 (71), 1er septembre 256 (87) ; arguments (Lettres 69, 2 ; 70 ; 73, 21 ; 74, 9 ; 74, 11) ; Étienne « nihil innovetur » (74, 1) ; Firmilien ; fin (Sixte II, martyre) ; Arles 314 ; donatistes ; Augustin, Le Baptême I, 18, 28 et II, 4, 5 ; Trente.
 12. Le martyre de 258 et la mémoire de l'Église : édits de Valérien ; Paternus 30 août 257, Curubis ; 14 septembre 258, Actes proconsulaires ; Pontius ; tombeau via Mappalienne ; Canon romain ; 16 septembre avec Corneille ; titre de « docteur de l'unité » (non officiel) ; Benoît XVI 2007.
 Bilan : 6 exercices croisés.
+État : terminé et livré (redaction/23-14-y.html).

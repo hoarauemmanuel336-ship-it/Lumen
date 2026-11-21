@@ -1,0 +1,24 @@
+# Plan du cours 26-06-d : Augustin contre les donatistes (lettre d)
+
+Question centrale : comment un schisme africain né d'une querelle sur des évêques « traditeurs » a-t-il conduit Augustin à dire ce qu'est l'Église (un corps mêlé, répandu dans le monde entier) et ce qu'est un sacrement (l'acte du Christ, valide quel que soit le ministre, fructueux dans l'unité) ?
+
+Obstacles du novice : confondre schisme et hérésie ; croire que les donatistes étaient des « mauvais » sans idéal (ils voulaient une Église pure) ; confondre valide et fructueux ; croire qu'Augustin a toujours approuvé la force, ou qu'il a approuvé la mort ; prendre « ex opere operato » pour de la magie ; croire que le « corps mêlé » excuse le péché dans l'Église.
+
+Liens : histoire (Constantin, leçon 9 du cours c du fichier 27 : synode de Rome 313, Arles 314, Milan 316) → 27-l-eglise-des-premiers-siecles.html#ouverture-c ; Théodose et la contrainte → 27-...#ouverture-t ; Cyprien → 23-les-premiers-temoins.html#ouverture-y ; sacrements : 67-les-sacrements-en-general.html#ouverture-i (ministre), #ouverture-o (ex opere operato), #ouverture-c (caractère) ; 68-le-bapteme.html#ouverture-v (rebaptême) ; Église : #sujet:notes.saintete, #sujet:mystere-eglise.histoire ; Augustin évêque #ouverture-a ; Pélage #ouverture-u ; Cité de Dieu #ouverture-i.
+
+Leçons (fichiers 01 à 12, puis 99-bilan) :
+1. La naissance du schisme (303-316) : traditeurs, concile de Cirta (305), Mensurius, Cécilien, Lucilla, Félix d'Abthugni, les 70 évêques de Numidie, Majorin ; Augustin historien des origines (les dossiers : Actes de purgation de Félix, Gesta apud Zenophilum, procès-verbal de Cirta) ; rappel d'une phrase de Constantin (lien).
+2. Donat et l'Église des purs : Donat de Carthage (vers 313-355), « Qu'y a-t-il de commun entre l'empereur et l'Église ? » (347), les temps de Macaire, l'exil ; l'ecclésiologie des purs (Éphésiens 5:27, « l'Afrique du midi », Cantique 1:7), le rebaptême ; Parménien, Tyconius, Primien et le schisme maximianiste (393-394).
+3. Optat de Milève : vie, ouvrage contre Parménien (vers 366-367, 2e édition vers 385), schisme et hérésie, « frères », les sacrements saints par eux-mêmes, la chaire unique de Pierre, l'Église catholique répandue ; sa réception par Augustin ; saint.
+4. Les circoncellions et la violence : qui ils étaient (nom, agonistiques, « Deo laudes »), Optat III, 4, les violences (chaux et vinaigre, Maximien de Bagaï, Restitut, l'embuscade manquée contre Augustin), suicides ; débat des historiens (révolte sociale ou mouvement religieux) ; violence des deux côtés (Macaire, lois).
+5. Augustin entre dans le combat : Hippone donatiste, premières lettres (23, 33-35), le Psaume contre le parti de Donat (393) : forme abécédaire, refrain, filet, épilogue de l'Église mère ; Révisions I, 20.
+6. Contre Parménien et contre Pétilien : Parménien, Tyconius, Contre la lettre de Parménien (vers 400, trois livres), « securus iudicat orbis terrarum » ; Pétilien de Cirta, Contre les lettres de Pétilien (400-403, trois livres), « la conscience de celui qui donne saintement », la réponse d'Augustin (le Christ origine, racine et tête).
+7. Le Baptême : Augustin relit Cyprien (vers 400-401, sept livres) : plan, autorité de l'Écriture canonique au-dessus des lettres des évêques, coutume apostolique (IV, 24, 31), conciles pléniers, la charité de Cyprien, l'examen des Sentences de 256.
+8. Le sacrement du Christ, valide et fructueux : « c'est lui qui baptise » (Jean 1:33 ; Traité sur Jean 6, 7), la marque militaire (Contre Parménien II, 13, 29), baptême et ordination non réitérés ; avoir et avoir utilement ; la charité et l'Esprit hors de l'unité ; le retour à l'unité.
+9. Le corps mêlé : paraboles (ivraie, filet, aire), Tyconius et le « corps bipartite » corrigé (Doctrine chrétienne III, 32, 45), « sans tache ni ride » au terme (Révisions), « beaucoup de brebis dehors, beaucoup de loups dedans », les deux temps de l'Église ; Lumen gentium 8.
+10. La conférence de Carthage (411) : édit d'Honorius, Marcellin, juin 411, chiffres, offre catholique, débats, sentence, loi de 412, Abrégé de la conférence, Aux donatistes après la conférence, suites (Gaudentius, Émérite), mort de Marcellin, survie du donatisme.
+11. « Contrains-les d'entrer » : première opinion (lettre 93), concile de 404, édit d'unité de 405, le changement, lettre 93, lettre 185, Luc 14:23, limites (pas de mort ni de torture : lettres 100, 133), « croire ne se peut que si l'on veut » (Traité sur Jean 26, 2), discussion (Bayle, Dignitatis humanae), jugement juste.
+12. L'héritage : ex opere operato (Trente, sess. VII, can. 8 et 12 ; baptême can. 4 ; Catéchisme 1128, 1584), le caractère, Constance contre Wyclif, l'ecclésiologie occidentale (Église répandue, corps mêlé, sainte et toujours à purifier, éléments hors des limites visibles), Newman.
+Bilan : 6 exercices croisés.
+
+État : plan fait.

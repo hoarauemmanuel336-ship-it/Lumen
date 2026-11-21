@@ -1,0 +1,18 @@
+# 23-02-c · Clément de Rome · plan (lettre c)
+
+Sources locales : texte grec de 1 Clément et 2 Clément (éd. Lake 1912, First1KGreek, copié dans /tmp/src23c), Eusèbe HE grec et anglais (Lake), Hermas grec. Tertullien, Prescription 32 vérifié en ligne (tertullian.org). Une recherche web a été bloquée (approbation) : le reste du Magistère est paraphrasé.
+
+Question centrale : qui fut Clément, et que nous apprend la lettre de l'Église de Rome aux Corinthiens sur l'Église à la fin du Ier siècle (ordre, ministères, succession, Rome) ?
+
+1. Le troisième successeur de Pierre : liste d'Irénée (III, 3, 3, grec chez Eusèbe V, 6), Lin (2 Tm 4:21), Anaclet/Clet, Canon romain ; variantes (Tertullien : ordonné par Pierre ; Jérôme ; Eusèbe : 92-101) ; Hermas, Vision II, 4, 3 ; débat sur l'épiscopat collégial ou monarchique à Rome et lecture catholique.
+2. Sa vie et ses légendes : ce qu'on sait (nom, langue, LXX, a connu les apôtres, mort vers 100), ce qu'on ignore ; Philippiens 4:3 (Origène, Eusèbe III, 15) ; hypothèse Flavius Clemens ; récit du martyre en Crimée (ancre), reliques par Cyrille (861/867), Saint-Clément de Rome, 23 novembre, Canon romain.
+3. Une lettre de l'Église de Rome : adresse (paroikousa), pas de nom, attribution (Denys, Hégésippe, Irénée, Clément d'Alexandrie, Eusèbe), date vers 96 et débats, plan en 65 chapitres, rhétorique de la concorde, Écriture (LXX, Paul, Hébreux), manuscrits (Alexandrinus, Bryennios 1873/1875, versions), édition 1633.
+4. La sédition de Corinthe : 1 Co 1:12 ; 47:1-7 ; 3:3 ; 44:6 ; causes inconnues ; ce que Rome demande (57:1, 54:2) ; envoyés (63:3, 65:1) ; issue (Hégésippe, Denys).
+5. Pierre et Paul (ch. 5-6) : athlètes de notre génération ; Pierre (Jean 21:18-19) ; Paul (2 Co 11:25 ; limite de l'Occident, Romains 15:24) ; grande multitude, Danaïdes et Dircés (Néron) ; jalousie ; valeur historique ; Denys de Corinthe (HE II, 25, 8).
+6. Humilité, concorde et pénitence : jalousie (ch. 4, Genèse 4:8) ; pénitence (7:4-7, 8:2, Ézéchiel 33:11) ; obéissance, foi, hospitalité, Rahab (12:7, typologie ; Hébreux 11:31, Jacques 2:25) ; humilité du Christ (16, Isaïe 53 ; Philippiens 2:6-7) ; foi et œuvres (32:4, 33:1) ; charité (49:5, 1 Pierre 4:8, 1 Corinthiens 13:4).
+7. L'ordre du monde et l'ordre de l'Église : ch. 20 (cosmos en concorde) ; résurrection et phénix (24-25, jugement) ; armée et corps (37-38 ; 1 Corinthiens 12:21-22) ; culte lévitique (40-41), premier emploi de « laïc », analogie et non identification.
+8. La succession apostolique : 42:1-2 (Jean 20:21) ; 42:4-5 (Isaïe 60:17 adapté ; Philippiens 1:1 ; Actes 14:23) ; épiscopes/presbytres ; 43 (verge d'Aaron, Nombres 17:20) ; 44:1-6 (epinomè, consentement de l'Église, offrir les dons) ; réception (Irénée, Lumen gentium 20, Catéchisme 861) ; ce que le texte dit et ne dit pas.
+9. La grande prière (59-61) : passage à la prière, « serviteur bien-aimé » (pais), 1 Pierre 2:9 ; louange (59:3) ; intercession (59:4) ; confession (60:1-3) ; prière pour les gouvernants (60:4-61:2 ; 1 Timothée 2:1-2 ; Romains 13:1) ; Christ grand prêtre (61:3) ; héritage liturgique.
+10. Rome et Corinthe : primauté et lecture vers 170 : ton de l'intervention (1:1, 58:2, 59:1, 63:2) ; lectures des historiens et lecture catholique (Ignace, Irénée, Victor ; Benoît XVI paraphrasé) ; Denys de Corinthe à Soter (HE IV, 23, 9-11) ; lue dans « beaucoup d'Églises » (Eusèbe III, 16) ; aux portes du canon (Alexandrinus) sans y entrer.
+11. Les écrits attribués à tort : pseudépigraphie ; 2 Clément (homélie, 1:1, 12:2, 14:2, 19:1 ; Eusèbe III, 38, 4) ; romans pseudo-clémentins (Homélies, Reconnaissances, écrit de base, Rufin, lettre de Clément à Jacques ; Eusèbe III, 38, 5) ; autres (Lettres aux vierges, Constitutions apostoliques, décrétales).
+Bilan : 6 exercices.

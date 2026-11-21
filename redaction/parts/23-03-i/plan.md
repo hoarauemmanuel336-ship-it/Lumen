@@ -28,3 +28,4 @@ Bilan : 6 exercices croisés.
 - Leçon 10 écrite.
 - Leçon 11 écrite.
 - Leçon 12 écrite. Reste : bilan, assemblage, contrôle, humaniser, essai.
+- Terminé : assemblé, contrôlé, humanisé, essai d’assemblage réussi.
