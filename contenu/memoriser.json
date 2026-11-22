@@ -2207,6 +2207,198 @@
      "note": "Le prophète annonce le jour où les armes deviendront des outils de travail. Les papes s’en inspirent quand ils demandent le désarmement, et Paul VI le disait à l’ONU le 4 octobre 1965 : « Jamais plus la guerre ! »"
     }
    ]
+  },
+  {
+   "id": "base-droit-canonique",
+   "name": {
+    "fr": "Le droit canonique"
+   },
+   "bloc": "La vie de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-matthieu-16-19",
+     "fr": {
+      "ref": "Matthieu 16:19",
+      "text": "Je te donnerai les clés du royaume des cieux : tout ce que tu auras lié sur la terre sera lié aux cieux, et tout ce que tu auras délié sur la terre sera délié aux cieux. »"
+     },
+     "note": "Le Christ confie à Pierre le pouvoir de lier et de délier. L’Église y voit la source de son autorité pour faire des lois et en dispenser : son droit vient de la volonté du Christ sur son Église."
+    },
+    {
+     "id": "base-1-corinthiens-14-40",
+     "fr": {
+      "ref": "1 Corinthiens 14:40",
+      "text": "mais que tout se fasse avec dignité et dans l'ordre."
+     },
+     "note": "Paul demande que, dans la communauté, tout se fasse avec dignité et dans l’ordre. Le droit de l’Église sert cette exigence : il règle la vie commune pour que le culte et la charité s’y vivent en paix."
+    },
+    {
+     "id": "base-romains-13-10",
+     "fr": {
+      "ref": "Romains 13:10",
+      "text": "L'amour ne fait aucun tort au prochain : l'amour est donc le plein accomplissement de la Loi."
+     },
+     "note": "L’amour accomplit la Loi tout entière. Chaque règle de l’Église se lit à cette lumière, et le Code se termine sur sa loi suprême : le salut des âmes (canon 1752)."
+    },
+    {
+     "id": "base-matthieu-19-6",
+     "fr": {
+      "ref": "Matthieu 19:6",
+      "text": "Ainsi, ils ne sont plus deux, mais une seule chair. Donc, ce que Dieu a uni, que l'homme ne le sépare pas ! »"
+     },
+     "note": "Ce que Dieu a uni, l’homme ne peut le séparer. Le droit du mariage en découle : l’Église peut déclarer qu’un mariage n’a jamais existé, mais aucune autorité humaine ne dissout un mariage sacramentel conclu et consommé."
+    }
+   ]
+  },
+  {
+   "id": "base-catechese",
+   "name": {
+    "fr": "La catéchèse"
+   },
+   "bloc": "La vie de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-luc-1-4",
+     "fr": {
+      "ref": "Luc 1:4",
+      "text": "pour que tu constates la solidité des enseignements que tu as reçus."
+     },
+     "note": "Luc écrit pour affermir un enseignement déjà reçu. Le verbe grec *katèchein*, « faire résonner », traduit ici par « reçus », a donné le mot catéchèse : elle fait mûrir une foi qu’on a accueillie."
+    },
+    {
+     "id": "base-romains-10-17",
+     "fr": {
+      "ref": "Romains 10:17",
+      "text": "Ainsi la foi naît de la prédication entendue, et cette prédication se fait par la parole du Christ."
+     },
+     "note": "La foi naît de la parole entendue. La catéchèse existe pour cela : elle transmet la parole du Christ afin que la foi naisse et grandisse."
+    },
+    {
+     "id": "base-deuteronome-6-6-7",
+     "fr": {
+      "ref": "Deutéronome 6:6-7",
+      "text": "Ces paroles que je te donne aujourd'hui seront présentes à ton cœur et à ton âme. Tu les répéteras à tes enfants ; tu en parleras, assis dans ta maison ou en marche sur la route, quand tu te couches et quand tu te lèves."
+     },
+     "note": "Moïse confie aux parents la transmission de la foi, à la maison comme sur la route. L’Église en tire que les parents sont les premiers éducateurs de la foi de leurs enfants."
+    },
+    {
+     "id": "base-1-pierre-3-15",
+     "fr": {
+      "ref": "1 Pierre 3:15",
+      "text": "mais sanctifiez dans vos cœurs le Christ, le Seigneur. Soyez toujours prêts à défendre l'espérance qui est en vous, devant quiconque vous en demande raison,"
+     },
+     "note": "Pierre demande d’être prêt à rendre raison de son espérance. La catéchèse forme des croyants capables de dire ce qu’ils croient et pourquoi ils le croient."
+    }
+   ]
+  },
+  {
+   "id": "base-pastorale",
+   "name": {
+    "fr": "La théologie pastorale"
+   },
+   "bloc": "La vie de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-jean-10-11",
+     "fr": {
+      "ref": "Jean 10:11",
+      "text": "Je suis le bon berger. Le bon berger donne sa vie pour ses brebis."
+     },
+     "note": "Jésus se présente comme le bon berger qui donne sa vie pour ses brebis. Toute action pastorale prend ce modèle : le pasteur se donne à ceux qui lui sont confiés."
+    },
+    {
+     "id": "base-1-pierre-5-2-3",
+     "fr": {
+      "ref": "1 Pierre 5:2-3",
+      "text": "faites paître le troupeau de Dieu qui vous est confié, veillant sur lui, non par contrainte, mais de bon gré, selon Dieu ; non pour un gain honteux, mais avec dévouement ; non en dominant sur ceux qui vous sont échus, mais en devenant les modèles du troupeau."
+     },
+     "note": "Pierre décrit le pasteur selon Dieu : il veille de bon gré, sans chercher son profit, et conduit le troupeau par son exemple."
+    },
+    {
+     "id": "base-matthieu-25-36",
+     "fr": {
+      "ref": "Matthieu 25:36",
+      "text": "j'étais nu, et vous m'avez habillé ; j'étais malade, et vous m'avez visité ; j'étais en prison, et vous êtes venus jusqu'à moi."
+     },
+     "note": "Le Christ se reconnaît dans le malade et le prisonnier qu’on vient voir. Visiter les malades et les détenus est une œuvre de miséricorde que la pastorale de l’Église met en pratique."
+    },
+    {
+     "id": "base-galates-6-2",
+     "fr": {
+      "ref": "Galates 6:2",
+      "text": "Portez les fardeaux les uns des autres, et vous accomplirez ainsi la loi du Christ."
+     },
+     "note": "Porter les fardeaux les uns des autres, c’est accompagner : marcher avec une personne pour qu’elle ne reste pas seule devant sa peine."
+    },
+    {
+     "id": "base-2-timothee-4-2",
+     "fr": {
+      "ref": "2 Timothée 4:2",
+      "text": "proclame la Parole, insiste à temps et à contretemps, réfute, menace, encourage, avec une entière patience et le souci d'enseigner."
+     },
+     "note": "Paul demande à Timothée de proclamer la Parole « à temps et à contretemps ». Le prédicateur la sert avec patience, qu’on l’attende ou non, avec le souci d’enseigner."
+    }
+   ]
+  },
+  {
+   "id": "base-mission",
+   "name": {
+    "fr": "La mission"
+   },
+   "bloc": "La vie de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-matthieu-28-19-20",
+     "fr": {
+      "ref": "Matthieu 28:19-20",
+      "text": "Allez donc ! De toutes les nations faites des disciples : baptisez-les au nom du Père, et du Fils, et de l'Esprit Saint ; apprenez-leur à garder tout ce que je vous ai commandé. Et moi, je suis avec vous tous les jours, jusqu'à la fin du monde. »"
+     },
+     "note": "Le Christ envoie ses disciples vers toutes les nations et leur promet sa présence jusqu’à la fin du monde. Ce grand envoi fonde la mission de l’Église."
+    },
+    {
+     "id": "base-jean-20-21",
+     "fr": {
+      "ref": "Jean 20:21",
+      "text": "De nouveau, Jésus leur dit : « La paix soit avec vous ! Comme le Père m'a envoyé, moi aussi je vous envoie. »"
+     },
+     "note": "Le Ressuscité envoie ses disciples comme le Père l’a envoyé. La mission de l’Église prolonge celle du Fils et en reçoit sa source et sa forme."
+    },
+    {
+     "id": "base-actes-1-8",
+     "fr": {
+      "ref": "Actes 1:8",
+      "text": "Mais vous allez recevoir une force, celle de l'Esprit Saint qui descendra sur vous ; vous serez alors mes témoins à Jérusalem, dans toute la Judée et la Samarie, et jusqu'aux extrémités de la terre. »"
+     },
+     "note": "L’Esprit Saint fait des disciples des témoins jusqu’aux extrémités de la terre. Il est l’agent principal de la mission, qui avance par le témoignage."
+    },
+    {
+     "id": "base-1-corinthiens-9-16",
+     "fr": {
+      "ref": "1 Corinthiens 9:16",
+      "text": "Annoncer la Bonne Nouvelle, en effet, n'est pas pour moi un titre de gloire : c'est une nécessité qui s'impose à moi. Malheur à moi si je n'annonce pas la Bonne Nouvelle !"
+     },
+     "note": "Paul vit l’annonce de l’Évangile comme une nécessité qui s’impose à lui. Tout baptisé reçoit cette urgence, car la mission fait partie de la vie chrétienne."
+    },
+    {
+     "id": "base-1-timothee-2-4",
+     "fr": {
+      "ref": "1 Timothée 2:4",
+      "text": "qui veut que tous les hommes soient sauvés et parviennent à la connaissance de la vérité."
+     },
+     "note": "Dieu veut que tous les hommes soient sauvés. L’Église annonce le Christ parce que ce salut est offert à tous : c’est la racine de la mission."
+    },
+    {
+     "id": "base-romains-10-14-15",
+     "fr": {
+      "ref": "Romains 10:14-15",
+      "text": "Mais comment l'invoquer sans avoir cru en lui ? Comment croire en lui sans l'avoir entendu ? Comment l'entendre sans prédicateur ? Et comment prêcher sans être envoyé ? Ainsi est-il écrit : Qu'ils sont beaux, les pas de ceux qui annoncent la bonne nouvelle !"
+     },
+     "note": "Personne ne peut croire sans avoir entendu, ni entendre si personne n’annonce. Paul en tire la nécessité d’envoyer des messagers de l’Évangile."
+    }
+   ]
   }
  ]
 }

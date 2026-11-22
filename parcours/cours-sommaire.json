@@ -121,6 +121,58 @@
    "c": 40
   }
  },
+ "100-la-theologie-pastorale.html": {
+  "taille": 4216115,
+  "empreinte": "d0a2f00a3295ccf772bef4d00e0e2783f94c78a19a96c628a39c0c9db664a998",
+  "cours": {
+   "l": "Ce qu’est la théologie pastorale",
+   "b": "Le Christ, Bon Pasteur",
+   "p": "La vie pastorale de la paroisse",
+   "h": "L’homilétique",
+   "m": "L’accompagnement des malades et des mourants",
+   "f": "L’accompagnement des familles",
+   "a": "L’accompagnement pastoral des personnes",
+   "c": "Les autres champs de la pastorale"
+  },
+  "sais": {
+   "l": 46,
+   "b": 40,
+   "p": 39,
+   "h": 48,
+   "m": 40,
+   "f": 48,
+   "a": 44,
+   "c": 44
+  }
+ },
+ "101-la-mission.html": {
+  "taille": 4835145,
+  "empreinte": "de3a2020dc111c5d4e02d50676877fc6f0c3ffa65502c0360b52a45fba4e1551",
+  "cours": {
+   "l": "L’envoi en mission",
+   "t": "Le fondement trinitaire de la mission",
+   "g": "Le décret Ad gentes",
+   "d": "Les grands textes missionnaires avant le concile",
+   "n": "Evangelii nuntiandi",
+   "r": "Redemptoris missio",
+   "i": "L’inculturation",
+   "v": "La nouvelle évangélisation",
+   "e": "Evangelii gaudium",
+   "m": "Les grands missionnaires"
+  },
+  "sais": {
+   "l": 48,
+   "t": 24,
+   "g": 36,
+   "d": 53,
+   "n": 47,
+   "r": 36,
+   "i": 44,
+   "v": 43,
+   "e": 44,
+   "m": 64
+  }
+ },
  "11-inspiration-verite-et-canon.html": {
   "taille": 4022131,
   "empreinte": "c3f9cd114ea1c87b4fe6a289a39e3e02072ad7885bacc5f870008160dffa73de",
@@ -1377,6 +1429,64 @@
    "m": 55,
    "o": 48,
    "a": 49
+  }
+ },
+ "98-le-droit-canonique.html": {
+  "taille": 7996049,
+  "empreinte": "b4bd06d583459409370115b87227beae1b414e5a38e187ad6f7033f90b774c4e",
+  "cours": {
+   "l": "Le droit dans l’Église",
+   "h": "L’histoire du droit canonique",
+   "c": "Le Code de droit canonique de 1983",
+   "o": "Le Code des canons des Églises orientales",
+   "f": "Droits et devoirs des fidèles",
+   "s": "La structure hiérarchique en droit",
+   "p": "La paroisse en droit",
+   "v": "La vie consacrée en droit",
+   "a": "Le droit des sacrements",
+   "m": "Le mariage en droit",
+   "e": "Les empêchements de mariage",
+   "i": "Les sanctions pénales",
+   "d": "Les délits les plus graves",
+   "t": "Les procès et les tribunaux de l’Église"
+  },
+  "sais": {
+   "l": 56,
+   "h": 72,
+   "c": 75,
+   "o": 56,
+   "f": 53,
+   "s": 103,
+   "p": 51,
+   "v": 81,
+   "a": 56,
+   "m": 91,
+   "e": 75,
+   "i": 63,
+   "d": 70,
+   "t": 65
+  }
+ },
+ "99-la-catechese.html": {
+  "taille": 4392987,
+  "empreinte": "686049f8aada3703c12b04f4be931976717205fea725f31ede2dc365dd8b1af7",
+  "cours": {
+   "l": "Ce qu’est la catéchèse",
+   "c": "Le catéchuménat ancien",
+   "g": "Les grands catéchismes",
+   "e": "Le Catéchisme de l’Église catholique dans la catéchèse",
+   "a": "L’initiation chrétienne des adultes",
+   "f": "La catéchèse des enfants et des familles",
+   "d": "Les directoires de la catéchèse"
+  },
+  "sais": {
+   "l": 68,
+   "c": 56,
+   "g": 64,
+   "e": 56,
+   "a": 52,
+   "f": 48,
+   "d": 36
   }
  }
 }
