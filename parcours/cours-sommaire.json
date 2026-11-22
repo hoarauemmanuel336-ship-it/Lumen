@@ -799,6 +799,116 @@
    "c": 55
   }
  },
+ "38-la-creation.html": {
+  "taille": 4413947,
+  "empreinte": "cd47346906f18d1031ca9b09e223962733ed174d6ffbd49b28d89645cd887479",
+  "cours": {
+   "l": "La création ex nihilo",
+   "t": "La création, œuvre de la Trinité",
+   "f": "La liberté de Dieu et la fin de la création",
+   "b": "La bonté de la création",
+   "c": "La conservation et le concours divin",
+   "p": "La providence",
+   "g": "Les récits de la création dans la Genèse",
+   "s": "Création, évolution et sciences"
+  },
+  "sais": {
+   "l": 52,
+   "t": 40,
+   "f": 54,
+   "b": 44,
+   "c": 52,
+   "p": 52,
+   "g": 44,
+   "s": 70
+  }
+ },
+ "39-les-anges-et-les-demons.html": {
+  "taille": 4257467,
+  "empreinte": "97b35e60a9d8cc43d2238db6c2fcd9a84ba060c50514a8be84ffa941b3cf446d",
+  "cours": {
+   "l": "L’existence et la nature des anges",
+   "h": "Les hiérarchies angéliques",
+   "s": "Les anges dans l’histoire du salut",
+   "g": "Les anges gardiens",
+   "c": "La chute des anges",
+   "d": "Le démon et son action",
+   "e": "Possession et exorcisme"
+  },
+  "sais": {
+   "l": 48,
+   "h": 60,
+   "s": 64,
+   "g": 50,
+   "c": 52,
+   "d": 52,
+   "e": 56
+  }
+ },
+ "40-l-homme-image-de-dieu.html": {
+  "taille": 3637403,
+  "empreinte": "bd14ea8ae56ddc6067658e23ae650c6b4960596d92f1730d33d8520fcc544ae8",
+  "cours": {
+   "l": "Image et ressemblance de Dieu",
+   "a": "L’unité de l’âme et du corps",
+   "h": "Homme et femme",
+   "j": "L’état de justice originelle",
+   "d": "Les dons préternaturels",
+   "v": "La vocation de l’homme"
+  },
+  "sais": {
+   "l": 51,
+   "a": 70,
+   "h": 56,
+   "j": 48,
+   "d": 40,
+   "v": 40
+  }
+ },
+ "41-le-peche-originel.html": {
+  "taille": 4307117,
+  "empreinte": "f56ffa40942a212b02b6cf267cb9e0a8df051249c22c62b26aaad9f79128b98a",
+  "cours": {
+   "l": "Le récit de la chute",
+   "n": "La nature du premier péché",
+   "c": "Les conséquences du péché originel",
+   "t": "La transmission du péché originel",
+   "b": "La nature blessée",
+   "s": "La concupiscence",
+   "h": "L’histoire de la doctrine du péché originel",
+   "p": "Le Protévangile"
+  },
+  "sais": {
+   "l": 52,
+   "n": 40,
+   "c": 56,
+   "t": 44,
+   "b": 48,
+   "s": 48,
+   "h": 69,
+   "p": 55
+  }
+ },
+ "42-le-mystere-du-mal.html": {
+  "taille": 3458463,
+  "empreinte": "08142572a30629049df25c4838bed8c7cb9a30037a98f6d5afbb42a217b960a7",
+  "cours": {
+   "l": "L’objection du mal",
+   "p": "Le mal comme privation",
+   "m": "Mal physique et mal moral",
+   "r": "La liberté et la permission du mal",
+   "b": "Le bien tiré du mal",
+   "s": "La souffrance rédemptrice"
+  },
+  "sais": {
+   "l": 48,
+   "p": 40,
+   "m": 36,
+   "r": 55,
+   "b": 43,
+   "s": 44
+  }
+ },
  "43-jesus-dans-l-histoire-et-ses-titres.html": {
   "taille": 3392527,
   "empreinte": "2c91b93754a7a15433517108f5cd657acd131c7ce51d35d9206a347cdf5f832a",

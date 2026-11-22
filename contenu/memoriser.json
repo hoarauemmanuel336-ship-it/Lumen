@@ -2807,6 +2807,312 @@
      "note": "Jésus prie pour que ses disciples soient un, comme le Père et lui sont un. L’unité des Personnes divines est le modèle et la source de la communion de l’Église."
     }
    ]
+  },
+  {
+   "id": "base-creation",
+   "name": {
+    "fr": "La création"
+   },
+   "bloc": "La création et l’homme",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-genese-1-1",
+     "fr": {
+      "ref": "Genèse 1:1",
+      "text": "Au commencement, Dieu créa le ciel et la terre."
+     },
+     "note": "La Bible s’ouvre sur cette phrase : tout ce qui existe vient de Dieu. Le verbe hébreu bara’ (« créer ») n’a jamais d’autre sujet que Dieu."
+    },
+    {
+     "id": "base-2-maccabees-7-28",
+     "fr": {
+      "ref": "2 Maccabées 7:28",
+      "text": "Je t'en supplie, mon enfant, regarde le ciel et la terre et tout ce qu'ils contiennent, et sache que Dieu les a créés à partir de rien, et que le genre humain est venu à l'existence de la même façon."
+     },
+     "note": "Une mère encourage son fils au martyre en lui rappelant que Dieu a tout créé à partir de rien. C’est le premier texte de l’Écriture qui le dise aussi nettement."
+    },
+    {
+     "id": "base-jean-1-3",
+     "fr": {
+      "ref": "Jean 1:3",
+      "text": "Tout a été fait par lui, et rien de ce qui existe n'a été fait sans lui."
+     },
+     "note": "Tout a été fait par le Verbe. Le Père crée par son Fils, et rien de ce qui existe n’échappe à cette œuvre."
+    },
+    {
+     "id": "base-psaumes-104-30",
+     "fr": {
+      "ref": "Psaumes 104:30",
+      "text": "Tu envoies ton souffle : ils sont créés, et tu renouvelles la face de la terre."
+     },
+     "note": "Le psalmiste voit le souffle de Dieu donner la vie et renouveler la terre. L’Église chante ce verset pour invoquer l’Esprit Créateur."
+    },
+    {
+     "id": "base-genese-1-31",
+     "fr": {
+      "ref": "Genèse 1:31",
+      "text": "Et Dieu vit tout ce qu'il avait fait : cela était très bon. Il y eut un soir, il y eut un matin : ce fut le sixième jour."
+     },
+     "note": "Au soir du sixième jour, Dieu voit que tout ce qu’il a fait est très bon. La matière, le corps et le monde sont bons, parce qu’ils viennent de lui."
+    },
+    {
+     "id": "base-sagesse-11-24",
+     "fr": {
+      "ref": "Sagesse 11:24",
+      "text": "car tu aimes tout ce qui existe, tu n'as de dégoût pour rien de ce que tu as fait : si tu avais haï quelque chose, tu ne l'aurais pas formé."
+     },
+     "note": "Dieu aime tout ce qui existe, sinon il ne l’aurait pas fait. Chaque créature existe parce qu’elle est aimée."
+    },
+    {
+     "id": "base-matthieu-10-29-30",
+     "fr": {
+      "ref": "Matthieu 10:29-30",
+      "text": "Deux moineaux ne se vendent-ils pas pour un sou ? Or, pas un seul ne tombe à terre sans que votre Père le veuille. Quant à vous, même les cheveux de votre tête sont tous comptés."
+     },
+     "note": "Pas un moineau ne tombe sans que le Père le veuille, et nos cheveux sont comptés. La providence de Dieu s’étend aux plus petits détails de notre vie."
+    }
+   ]
+  },
+  {
+   "id": "base-anges",
+   "name": {
+    "fr": "Les anges et les démons"
+   },
+   "bloc": "La création et l’homme",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-hebreux-1-14",
+     "fr": {
+      "ref": "Hébreux 1:14",
+      "text": "Ne sont-ils pas tous des esprits chargés d'un service, envoyés pour le bien de ceux qui doivent recevoir en héritage le salut ?"
+     },
+     "note": "Les anges sont des esprits envoyés pour servir ceux qui doivent recevoir le salut. Leur nom dit leur mission : ange veut dire messager."
+    },
+    {
+     "id": "base-matthieu-18-10",
+     "fr": {
+      "ref": "Matthieu 18:10",
+      "text": "« Gardez-vous de mépriser un seul de ces petits, car, je vous le dis, leurs anges dans les cieux voient sans cesse le visage de mon Père qui est aux cieux."
+     },
+     "note": "Jésus dit que les anges des petits voient sans cesse le visage du Père. L’Église y lit la garde de chaque personne par son ange."
+    },
+    {
+     "id": "base-psaumes-91-11",
+     "fr": {
+      "ref": "Psaumes 91:11",
+      "text": "Car il donnera l'ordre à ses anges de te garder sur tous tes chemins."
+     },
+     "note": "Dieu donne à ses anges l’ordre de nous garder sur nos chemins. Ce verset nourrit la prière confiante à l’ange gardien."
+    },
+    {
+     "id": "base-apocalypse-12-7",
+     "fr": {
+      "ref": "Apocalypse 12:7",
+      "text": "Alors il y eut un combat dans le ciel : Michel et ses anges combattirent contre le dragon. Le dragon et ses anges combattirent,"
+     },
+     "note": "Michel et ses anges combattent le dragon. Saint Michel est la figure des anges restés fidèles à Dieu."
+    },
+    {
+     "id": "base-luc-10-18",
+     "fr": {
+      "ref": "Luc 10:18",
+      "text": "Il leur dit : « Je voyais Satan tomber du ciel comme l'éclair."
+     },
+     "note": "Jésus voit Satan tomber du ciel comme l’éclair. Le démon est déjà vaincu par le Christ, même s’il agit encore."
+    },
+    {
+     "id": "base-jean-8-44",
+     "fr": {
+      "ref": "Jean 8:44",
+      "text": "Vous avez pour père le diable, et vous voulez accomplir les désirs de votre père. Dès le commencement, il a été un meurtrier ; il ne s'est pas tenu dans la vérité, parce qu'il n'y a pas de vérité en lui. Quand il ment, il parle de son propre fonds, car il est menteur et père du mensonge."
+     },
+     "note": "Jésus appelle le diable meurtrier dès le commencement et père du mensonge. Le mensonge est son arme propre, depuis la tentation des origines."
+    },
+    {
+     "id": "base-1-pierre-5-8",
+     "fr": {
+      "ref": "1 Pierre 5:8",
+      "text": "Soyez sobres, veillez. Votre adversaire, le diable, rôde comme un lion rugissant, cherchant qui dévorer."
+     },
+     "note": "Le diable est un adversaire réel, qui cherche à perdre l’homme. Pierre demande la sobriété et la vigilance pour lui résister dans la foi."
+    }
+   ]
+  },
+  {
+   "id": "base-homme",
+   "name": {
+    "fr": "L’homme, image de Dieu"
+   },
+   "bloc": "La création et l’homme",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-genese-1-27",
+     "fr": {
+      "ref": "Genèse 1:27",
+      "text": "Dieu créa l'homme à son image, à l'image de Dieu il le créa ; homme et femme il les créa."
+     },
+     "note": "Dieu crée l’homme à son image, homme et femme. Toute la dignité de la personne humaine repose sur cette ressemblance avec lui."
+    },
+    {
+     "id": "base-genese-2-7",
+     "fr": {
+      "ref": "Genèse 2:7",
+      "text": "Alors le Seigneur Dieu façonna l'homme avec la poussière de l'humus ; il insuffla dans ses narines un souffle de vie, et l'homme devint un être vivant."
+     },
+     "note": "Dieu façonne l’homme avec la poussière du sol et lui insuffle un souffle de vie. L’homme est un seul être, corps tiré de la terre et âme venue de Dieu."
+    },
+    {
+     "id": "base-psaumes-8-5-6",
+     "fr": {
+      "ref": "Psaumes 8:5-6",
+      "text": "je me demande : qu'est-ce que l'homme, pour que tu penses à lui, le fils d'un homme, pour que tu prennes soin de lui ? Tu l'as fait un peu moindre que Dieu, tu l'as couronné de gloire et d'honneur."
+     },
+     "note": "Le psalmiste s’étonne de la grandeur de l’homme, à peine moindre que Dieu. Cette gloire lui vient de Dieu, qui pense à lui et prend soin de lui."
+    },
+    {
+     "id": "base-1-corinthiens-6-19",
+     "fr": {
+      "ref": "1 Corinthiens 6:19",
+      "text": "Ne le savez-vous pas ? Votre corps est le temple de l'Esprit Saint qui est en vous et que vous tenez de Dieu, et vous ne vous appartenez pas."
+     },
+     "note": "Le corps du baptisé est le temple de l’Esprit Saint. Il a part à la dignité de la personne et appartient à Dieu."
+    },
+    {
+     "id": "base-genese-2-24",
+     "fr": {
+      "ref": "Genèse 2:24",
+      "text": "C'est pourquoi l'homme quittera son père et sa mère, il s'attachera à sa femme, et tous deux ne feront plus qu'une seule chair."
+     },
+     "note": "L’homme et la femme deviennent une seule chair. Leur communion fait partie, dès la création, de l’image de Dieu en l’homme."
+    }
+   ]
+  },
+  {
+   "id": "base-peche-originel",
+   "name": {
+    "fr": "Le péché originel"
+   },
+   "bloc": "La création et l’homme",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-romains-5-12",
+     "fr": {
+      "ref": "Romains 5:12",
+      "text": "Ainsi donc, comme par un seul homme le péché est entré dans le monde, et par le péché la mort, la mort a atteint tous les hommes, du fait que tous ont péché."
+     },
+     "note": "Par un seul homme le péché est entré dans le monde, et la mort avec lui. C’est le texte central de la doctrine du péché originel."
+    },
+    {
+     "id": "base-romains-5-19",
+     "fr": {
+      "ref": "Romains 5:19",
+      "text": "Car de même que, par la désobéissance d'un seul homme, la multitude a été constituée pécheresse, de même, par l'obéissance d'un seul, la multitude sera constituée juste."
+     },
+     "note": "La désobéissance d’Adam a rendu la multitude pécheresse, et l’obéissance du Christ la rend juste. Paul met face à face les deux hommes dont dépend l’humanité."
+    },
+    {
+     "id": "base-genese-3-15",
+     "fr": {
+      "ref": "Genèse 3:15",
+      "text": "Je mettrai une hostilité entre toi et la femme, entre ta descendance et la sienne : il t'écrasera la tête, et toi, tu le blesseras au talon. »"
+     },
+     "note": "Aussitôt après la chute, Dieu annonce la victoire de la descendance de la femme sur le serpent. L’Église appelle ce verset le Protévangile, première annonce du salut."
+    },
+    {
+     "id": "base-psaumes-51-7",
+     "fr": {
+      "ref": "Psaumes 51:7",
+      "text": "Vois : je suis né dans la faute, et dans le péché ma mère m'a conçu."
+     },
+     "note": "Le psalmiste se reconnaît pécheur dès sa conception. La tradition y voit l’état dans lequel naît tout homme, privé de la grâce."
+    },
+    {
+     "id": "base-romains-7-19",
+     "fr": {
+      "ref": "Romains 7:19",
+      "text": "Je ne fais pas le bien que je veux, mais le mal que je ne veux pas, voilà ce que je fais."
+     },
+     "note": "Je ne fais pas le bien que je veux : Paul décrit le combat intérieur de l’homme blessé. La concupiscence demeure après le baptême et appelle la lutte."
+    },
+    {
+     "id": "base-1-corinthiens-15-22",
+     "fr": {
+      "ref": "1 Corinthiens 15:22",
+      "text": "De même que tous meurent en Adam, de même tous revivront dans le Christ,"
+     },
+     "note": "Tous meurent en Adam, tous revivront dans le Christ. Le nouvel Adam rend à l’humanité plus que le premier ne lui avait fait perdre."
+    }
+   ]
+  },
+  {
+   "id": "base-mal",
+   "name": {
+    "fr": "Le mystère du mal"
+   },
+   "bloc": "La création et l’homme",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-genese-50-20",
+     "fr": {
+      "ref": "Genèse 50:20",
+      "text": "Vous aviez voulu me faire du mal ; mais Dieu l'a changé en bien, pour accomplir ce qui arrive aujourd'hui : sauver la vie d'un peuple nombreux."
+     },
+     "note": "Joseph pardonne à ses frères : le mal qu’ils voulaient, Dieu l’a changé en bien. Son histoire montre la providence à l’œuvre à travers le péché des hommes."
+    },
+    {
+     "id": "base-romains-5-20",
+     "fr": {
+      "ref": "Romains 5:20",
+      "text": "La Loi, elle, est intervenue pour que la faute abonde ; mais là où le péché a abondé, la grâce a surabondé,"
+     },
+     "note": "Là où le péché a abondé, la grâce a surabondé. Dieu répare le mal et en tire un plus grand bien."
+    },
+    {
+     "id": "base-romains-8-28",
+     "fr": {
+      "ref": "Romains 8:28",
+      "text": "Nous le savons, d'ailleurs : avec ceux qui l'aiment, Dieu collabore en tout pour leur bien, eux qu'il a appelés selon son dessein."
+     },
+     "note": "Dieu collabore en tout au bien de ceux qui l’aiment. Ce verset fonde la confiance du croyant au milieu des épreuves."
+    },
+    {
+     "id": "base-isaie-53-5",
+     "fr": {
+      "ref": "Isaïe 53:5",
+      "text": "Mais lui, il a été transpercé à cause de nos révoltes, broyé à cause de nos fautes ; le châtiment qui nous rend la paix est tombé sur lui, et c'est par ses blessures que nous sommes guéris."
+     },
+     "note": "Le Serviteur est broyé à cause de nos fautes, et ses blessures nous guérissent. La souffrance du Christ innocent devient la source de notre salut."
+    },
+    {
+     "id": "base-colossiens-1-24",
+     "fr": {
+      "ref": "Colossiens 1:24",
+      "text": "Maintenant je trouve ma joie dans les souffrances que j'endure pour vous, et ce qui manque aux détresses du Christ, je l'accomplis en ma chair pour son corps, qui est l'Église."
+     },
+     "note": "Paul trouve sa joie à souffrir pour l’Église, uni aux détresses du Christ. Le chrétien peut offrir sa souffrance pour le salut des autres."
+    },
+    {
+     "id": "base-2-corinthiens-12-9",
+     "fr": {
+      "ref": "2 Corinthiens 12:9",
+      "text": "Mais il m'a déclaré : « Ma grâce te suffit : car la puissance se déploie tout entière dans la faiblesse. » C'est donc de grand cœur que je me glorifierai plutôt de mes faiblesses, afin que la puissance du Christ habite en moi."
+     },
+     "note": "La puissance de Dieu se déploie tout entière dans la faiblesse. Paul apprend à vivre l’épreuve en s’appuyant sur la grâce."
+    },
+    {
+     "id": "base-apocalypse-21-4",
+     "fr": {
+      "ref": "Apocalypse 21:4",
+      "text": "Il essuiera toute larme de leurs yeux ; la mort ne sera plus, il n'y aura plus ni deuil, ni cri, ni douleur, car le monde ancien a disparu. »"
+     },
+     "note": "Dieu essuiera toute larme, et la mort ne sera plus. L’espérance chrétienne voit au-delà du mal la fin de toute souffrance."
+    }
+   ]
   }
  ]
 }
