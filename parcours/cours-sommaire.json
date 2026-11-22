@@ -1431,6 +1431,108 @@
    "a": 49
   }
  },
+ "94-la-priere.html": {
+  "taille": 5214340,
+  "empreinte": "002720a3292b6a59841fa3a0dccbba325f4c2ff45e902fed560c25fe3d782df2",
+  "cours": {
+   "l": "Ce qu’est la prière",
+   "e": "La prière dans l’Écriture",
+   "f": "Les formes de la prière",
+   "x": "Les expressions de la prière",
+   "d": "La lectio divina",
+   "n": "Le Notre Père",
+   "c": "Les difficultés de la prière"
+  },
+  "sais": {
+   "l": 112,
+   "e": 112,
+   "f": 37,
+   "x": 69,
+   "d": 48,
+   "n": 86,
+   "c": 57
+  }
+ },
+ "95-l-ascese-et-le-combat-spirituel.html": {
+  "taille": 4179045,
+  "empreinte": "c3e5fda83d3cd499ed15286798c577b43abdeffefbf15323e5d491fa21a2de65",
+  "cours": {
+   "l": "Le sens de l’ascèse",
+   "p": "Les pratiques de l’ascèse",
+   "v": "La lutte contre les vices",
+   "n": "Les ennemis de la vie spirituelle",
+   "d": "Le discernement des esprits",
+   "r": "La direction spirituelle"
+  },
+  "sais": {
+   "l": 48,
+   "p": 58,
+   "v": 44,
+   "n": 84,
+   "d": 69,
+   "r": 40
+  }
+ },
+ "96-les-etapes-de-la-vie-spirituelle.html": {
+  "taille": 4149109,
+  "empreinte": "7bf3cdbe8ec9e83982b2e49279590d169c7a605036084241070a466118821d0f",
+  "cours": {
+   "l": "L’appel universel à la sainteté",
+   "t": "Les trois voies",
+   "c": "La contemplation",
+   "n": "Les nuits selon saint Jean de la Croix",
+   "d": "Les sept demeures de sainte Thérèse d’Avila",
+   "p": "Les phénomènes extraordinaires"
+  },
+  "sais": {
+   "l": 51,
+   "t": 51,
+   "c": 48,
+   "n": 64,
+   "d": 65,
+   "p": 68
+  }
+ },
+ "97-les-grands-maitres-spirituels.html": {
+  "taille": 7646106,
+  "empreinte": "722aa4d79962853e6dd2fa857f049559df7b6e34e99ba0cc498c07dadfcbe9a3",
+  "cours": {
+   "l": "Les écoles de spiritualité",
+   "d": "Les Pères du désert et Jean Cassien",
+   "e": "Évagre le Pontique et les huit pensées",
+   "o": "Les maîtres de la spiritualité orientale",
+   "b": "Saint Benoît et la Règle",
+   "c": "Saint Bernard de Clairvaux",
+   "f": "Saint François d’Assise",
+   "m": "Les mystiques du Moyen Âge",
+   "i": "L’Imitation de Jésus-Christ",
+   "g": "Saint Ignace de Loyola et les Exercices",
+   "a": "Sainte Thérèse d’Avila",
+   "j": "Saint Jean de la Croix",
+   "s": "Saint François de Sales",
+   "r": "L’école française de spiritualité",
+   "t": "Sainte Thérèse de Lisieux",
+   "x": "Les maîtres spirituels du XXe siècle"
+  },
+  "sais": {
+   "l": 52,
+   "d": 81,
+   "e": 72,
+   "o": 40,
+   "b": 83,
+   "c": 60,
+   "f": 60,
+   "m": 32,
+   "i": 36,
+   "g": 77,
+   "a": 69,
+   "j": 44,
+   "s": 60,
+   "r": 44,
+   "t": 44,
+   "x": 32
+  }
+ },
  "98-le-droit-canonique.html": {
   "taille": 7996049,
   "empreinte": "b4bd06d583459409370115b87227beae1b414e5a38e187ad6f7033f90b774c4e",

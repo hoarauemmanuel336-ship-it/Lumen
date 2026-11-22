@@ -2399,6 +2399,206 @@
      "note": "Personne ne peut croire sans avoir entendu, ni entendre si personne n’annonce. Paul en tire la nécessité d’envoyer des messagers de l’Évangile."
     }
    ]
+  },
+  {
+   "id": "base-priere",
+   "name": {
+    "fr": "La prière"
+   },
+   "bloc": "La vie spirituelle",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-matthieu-6-6",
+     "fr": {
+      "ref": "Matthieu 6:6",
+      "text": "Toi, quand tu pries, entre dans ta chambre, ferme la porte, et prie ton Père présent dans le secret ; et ton Père, qui voit dans le secret, te le rendra."
+     },
+     "note": "Jésus enseigne à prier dans le secret, seul à seul avec le Père qui voit tout. La prière chrétienne est d’abord une rencontre personnelle avec lui."
+    },
+    {
+     "id": "base-luc-11-9",
+     "fr": {
+      "ref": "Luc 11:9",
+      "text": "Et moi, je vous dis : Demandez, on vous donnera ; cherchez, vous trouverez ; frappez, on vous ouvrira."
+     },
+     "note": "Demander, chercher, frapper : Jésus invite à une prière confiante et persévérante. Le Père donne à ses enfants ce qui est bon pour eux."
+    },
+    {
+     "id": "base-1-thessaloniciens-5-17",
+     "fr": {
+      "ref": "1 Thessaloniciens 5:17",
+      "text": "Priez sans cesse."
+     },
+     "note": "Paul demande de prier sans cesse. Toute la vie peut devenir prière, nourrie par des temps fixes donnés à Dieu."
+    },
+    {
+     "id": "base-romains-8-26",
+     "fr": {
+      "ref": "Romains 8:26",
+      "text": "De même, l'Esprit vient au secours de notre faiblesse, car nous ne savons pas prier comme il faut ; mais l'Esprit lui-même intercède pour nous par des gémissements inexprimables."
+     },
+     "note": "Nous ne savons pas prier comme il faut, et l’Esprit Saint prie en nous. Il est le maître intérieur de la prière chrétienne."
+    },
+    {
+     "id": "base-philippiens-4-6-7",
+     "fr": {
+      "ref": "Philippiens 4:6-7",
+      "text": "Ne vous inquiétez de rien, mais en toute chose, par la prière et la supplication, avec l'action de grâce, faites connaître vos demandes à Dieu. Et la paix de Dieu, qui surpasse toute intelligence, gardera vos cœurs et vos pensées dans le Christ Jésus."
+     },
+     "note": "Paul invite à tout confier à Dieu dans la prière, avec l’action de grâce. La paix de Dieu garde alors le cœur et les pensées dans le Christ."
+    }
+   ]
+  },
+  {
+   "id": "base-ascese",
+   "name": {
+    "fr": "L’ascèse et le combat spirituel"
+   },
+   "bloc": "La vie spirituelle",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-luc-9-23",
+     "fr": {
+      "ref": "Luc 9:23",
+      "text": "Puis il dit à tous : « Si quelqu'un veut venir à ma suite, qu'il renonce à lui-même, qu'il prenne sa croix chaque jour et qu'il me suive."
+     },
+     "note": "Suivre le Christ demande de renoncer à soi-même et de porter sa croix chaque jour. Toute ascèse chrétienne part de cet appel."
+    },
+    {
+     "id": "base-matthieu-26-41",
+     "fr": {
+      "ref": "Matthieu 26:41",
+      "text": "Veillez et priez, pour ne pas entrer en tentation : l'esprit est ardent, mais la chair est faible. »"
+     },
+     "note": "À Gethsémani, Jésus demande de veiller et de prier pour ne pas entrer en tentation. La vigilance et la prière sont les premières armes du combat spirituel."
+    },
+    {
+     "id": "base-1-pierre-5-8",
+     "fr": {
+      "ref": "1 Pierre 5:8",
+      "text": "Soyez sobres, veillez. Votre adversaire, le diable, rôde comme un lion rugissant, cherchant qui dévorer."
+     },
+     "note": "Pierre compare le diable à un lion qui rôde en cherchant sa proie. D’où son appel à la sobriété et à la vigilance."
+    },
+    {
+     "id": "base-jacques-4-7",
+     "fr": {
+      "ref": "Jacques 4:7",
+      "text": "Soumettez-vous donc à Dieu. Résistez au diable, et il fuira loin de vous."
+     },
+     "note": "Jacques lie deux gestes : se soumettre à Dieu et résister au diable. Appuyé sur Dieu, le croyant voit l’ennemi reculer."
+    },
+    {
+     "id": "base-1-corinthiens-10-13",
+     "fr": {
+      "ref": "1 Corinthiens 10:13",
+      "text": "Aucune épreuve ne vous est survenue qui dépassât la mesure humaine ; et Dieu est fidèle : il ne permettra pas que vous soyez éprouvés au-delà de vos forces, mais, avec l'épreuve, il donnera le moyen d'en sortir et la force de la supporter."
+     },
+     "note": "Dieu ne permet pas d’épreuve au-delà de nos forces, et il donne avec elle le moyen d’en sortir. Ce verset fonde la confiance au moment de la tentation."
+    },
+    {
+     "id": "base-1-jean-4-1",
+     "fr": {
+      "ref": "1 Jean 4:1",
+      "text": "Bien-aimés, ne croyez pas tout esprit, mais éprouvez les esprits pour voir s'ils viennent de Dieu, car beaucoup de faux prophètes ont surgi dans le monde."
+     },
+     "note": "Jean demande d’éprouver les esprits pour savoir s’ils viennent de Dieu. Le discernement des esprits trouve ici son fondement biblique."
+    }
+   ]
+  },
+  {
+   "id": "base-etapes",
+   "name": {
+    "fr": "Les étapes de la vie spirituelle"
+   },
+   "bloc": "La vie spirituelle",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-levitique-19-2",
+     "fr": {
+      "ref": "Lévitique 19:2",
+      "text": "« Parle à toute la communauté d'Israël et dis-leur : Soyez saints, car je suis saint, moi le Seigneur, votre Dieu."
+     },
+     "note": "Dieu demande à son peuple d’être saint parce que lui-même est saint. Toute sainteté vient de la sienne et lui répond."
+    },
+    {
+     "id": "base-matthieu-5-48",
+     "fr": {
+      "ref": "Matthieu 5:48",
+      "text": "Vous donc, soyez parfaits comme votre Père céleste est parfait."
+     },
+     "note": "Jésus appelle ses disciples à être parfaits comme le Père céleste. Tous les baptisés sont appelés à la perfection de la charité."
+    },
+    {
+     "id": "base-2-corinthiens-3-18",
+     "fr": {
+      "ref": "2 Corinthiens 3:18",
+      "text": "Et nous tous qui, le visage découvert, réfléchissons comme en un miroir la gloire du Seigneur, nous sommes transformés en cette même image, de gloire en gloire, par le Seigneur, qui est Esprit."
+     },
+     "note": "En contemplant la gloire du Seigneur, nous sommes transformés en son image, de gloire en gloire. La vie spirituelle est cette croissance sous l’action de l’Esprit."
+    },
+    {
+     "id": "base-galates-2-20",
+     "fr": {
+      "ref": "Galates 2:20",
+      "text": "et ce n'est plus moi qui vis, c'est le Christ qui vit en moi. Ma vie présente dans la chair, je la vis dans la foi au Fils de Dieu, qui m'a aimé et s'est livré lui-même pour moi."
+     },
+     "note": "Paul ne vit plus pour lui-même : le Christ vit en lui. La vie spirituelle tend vers ce terme, l’union au Christ par la foi et l’amour."
+    },
+    {
+     "id": "base-luc-10-41-42",
+     "fr": {
+      "ref": "Luc 10:41-42",
+      "text": "Le Seigneur lui répondit : « Marthe, Marthe, tu t'inquiètes et t'agites pour bien des choses. Une seule est nécessaire. Marie a choisi la meilleure part, et elle ne lui sera pas enlevée. »"
+     },
+     "note": "Marie, assise aux pieds du Seigneur, a choisi la meilleure part. La tradition y lit la primauté de la contemplation, d’où l’action tire sa source."
+    }
+   ]
+  },
+  {
+   "id": "base-maitres",
+   "name": {
+    "fr": "Les grands maîtres spirituels"
+   },
+   "bloc": "La vie spirituelle",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-matthieu-19-21",
+     "fr": {
+      "ref": "Matthieu 19:21",
+      "text": "Jésus lui répondit : « Si tu veux être parfait, va, vends ce que tu possèdes, donne-le aux pauvres, et tu auras un trésor dans les cieux. Puis viens, suis-moi. »"
+     },
+     "note": "Saint Antoine, puis saint François d’Assise, ont entendu cette parole comme un appel adressé à eux. Elle ouvre la voie des conseils évangéliques."
+    },
+    {
+     "id": "base-psaumes-70-2",
+     "fr": {
+      "ref": "Psaumes 70:2",
+      "text": "Ô Dieu, viens vite me délivrer ! Seigneur, viens vite à mon secours !"
+     },
+     "note": "Jean Cassien recommande ce cri du psaume comme prière de toute heure. La Liturgie des Heures ouvre encore la plupart de ses offices par ce verset."
+    },
+    {
+     "id": "base-luc-18-13",
+     "fr": {
+      "ref": "Luc 18:13",
+      "text": "Le collecteur d'impôts, lui, se tenait à distance et n'osait même pas lever les yeux au ciel ; mais il se frappait la poitrine en disant : Mon Dieu, prends pitié du pécheur que je suis."
+     },
+     "note": "La prière du collecteur d’impôts est à la racine de la prière de Jésus des moines d’Orient. Elle unit l’humilité et la confiance en la miséricorde."
+    },
+    {
+     "id": "base-matthieu-11-29",
+     "fr": {
+      "ref": "Matthieu 11:29",
+      "text": "Prenez sur vous mon joug et mettez-vous à mon école, car je suis doux et humble de cœur, et vous trouverez le repos pour vos âmes."
+     },
+     "note": "Jésus se dit doux et humble de cœur. Saint François de Sales a fait de la douceur et de l’humilité les vertus propres de sa spiritualité."
+    }
+   ]
   }
  ]
 }
