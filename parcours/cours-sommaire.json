@@ -701,6 +701,104 @@
    "e": 48
   }
  },
+ "34-le-dieu-unique.html": {
+  "taille": 5596618,
+  "empreinte": "4ca9963b0e4499edf7e90bcbb477c1799bcc60e64626453e83fa151ba1ab8307",
+  "cours": {
+   "l": "Le monothéisme biblique",
+   "n": "Le Nom révélé",
+   "e": "Dieu, l’Être même",
+   "a": "Les attributs de l’être divin",
+   "s": "La sainteté, la justice et la fidélité de Dieu",
+   "c": "La science de Dieu",
+   "v": "La volonté de Dieu",
+   "p": "La toute-puissance",
+   "m": "Dieu Amour, bonté et miséricorde",
+   "t": "Transcendance et immanence"
+  },
+  "sais": {
+   "l": 95,
+   "n": 62,
+   "e": 48,
+   "a": 64,
+   "s": 60,
+   "c": 52,
+   "v": 48,
+   "p": 44,
+   "m": 90,
+   "t": 56
+  }
+ },
+ "35-la-trinite-revelee.html": {
+  "taille": 3711785,
+  "empreinte": "8ad91627373b37251d2406e027a31b659fe1caad0b1ad65087e4cf7063568035",
+  "cours": {
+   "l": "Un mystère connu par la seule Révélation",
+   "a": "Les annonces de la Trinité dans l’Ancien Testament",
+   "p": "Dieu le Père",
+   "f": "Le Fils dans le Nouveau Testament",
+   "e": "L’Esprit Saint dans le Nouveau Testament",
+   "r": "Les formules trinitaires du Nouveau Testament"
+  },
+  "sais": {
+   "l": 52,
+   "a": 52,
+   "p": 52,
+   "f": 60,
+   "e": 52,
+   "r": 44
+  }
+ },
+ "36-le-dogme-trinitaire.html": {
+  "taille": 5640069,
+  "empreinte": "dfdf74304b4d8bf91fe8008f94a7a0cdf728bce2ea12f9eb2d29a2271d68454d",
+  "cours": {
+   "l": "La formulation historique du dogme",
+   "v": "Le vocabulaire trinitaire",
+   "p": "Les processions divines",
+   "r": "Les relations divines",
+   "n": "Les Personnes et les notions",
+   "c": "La périchorèse",
+   "f": "Le Filioque",
+   "e": "Les erreurs trinitaires",
+   "a": "Les analogies trinitaires",
+   "i": "Le Père, principe sans principe",
+   "g": "Le Fils, Verbe et Image",
+   "d": "L’Esprit Saint, Amour et Don"
+  },
+  "sais": {
+   "l": 64,
+   "v": 60,
+   "p": 44,
+   "r": 48,
+   "n": 48,
+   "c": 57,
+   "f": 56,
+   "e": 64,
+   "a": 48,
+   "i": 39,
+   "g": 44,
+   "d": 40
+  }
+ },
+ "37-la-trinite-a-l-oeuvre.html": {
+  "taille": 3105413,
+  "empreinte": "1630011f90347b1b13365bc5e1043317760c2b86c5631249de4d0bf830225958",
+  "cours": {
+   "l": "Trinité immanente et Trinité économique",
+   "m": "Les missions divines",
+   "a": "L’unité d’opération et les appropriations",
+   "i": "L’inhabitation de la Trinité",
+   "c": "La vie chrétienne, communion trinitaire"
+  },
+  "sais": {
+   "l": 40,
+   "m": 44,
+   "a": 40,
+   "i": 40,
+   "c": 55
+  }
+ },
  "43-jesus-dans-l-histoire-et-ses-titres.html": {
   "taille": 3392527,
   "empreinte": "2c91b93754a7a15433517108f5cd657acd131c7ce51d35d9206a347cdf5f832a",

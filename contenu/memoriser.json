@@ -2599,6 +2599,214 @@
      "note": "Jésus se dit doux et humble de cœur. Saint François de Sales a fait de la douceur et de l’humilité les vertus propres de sa spiritualité."
     }
    ]
+  },
+  {
+   "id": "base-dieu-unique",
+   "name": {
+    "fr": "Le Dieu unique"
+   },
+   "bloc": "Dieu un et trine",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-deuteronome-6-4",
+     "fr": {
+      "ref": "Deutéronome 6:4",
+      "text": "Écoute, Israël : le Seigneur, notre Dieu, est le seul Seigneur."
+     },
+     "note": "C’est le début du Shema, la prière que les Juifs disent chaque jour, et Jésus le cite quand on l’interroge sur le premier commandement. Il n’y a qu’un seul Dieu, à qui l’homme doit tout son amour."
+    },
+    {
+     "id": "base-exode-3-14",
+     "fr": {
+      "ref": "Exode 3:14",
+      "text": "Dieu dit à Moïse : « Je suis celui qui suis. » Puis il ajouta : « Voici ce que tu diras aux fils d'Israël : Je Suis m'a envoyé vers vous. »"
+     },
+     "note": "Au buisson ardent, Dieu révèle son nom à Moïse. Les Pères et saint Thomas y lisent que Dieu est l’Être même, celui qui existe par lui-même."
+    },
+    {
+     "id": "base-isaie-44-6",
+     "fr": {
+      "ref": "Isaïe 44:6",
+      "text": "Ainsi parle le Seigneur, roi d'Israël et son Rédempteur, le Seigneur de l'univers : Je suis le premier et je suis le dernier ; hors moi, il n'y a pas de Dieu."
+     },
+     "note": "Le Seigneur se dit le premier et le dernier, et il n’y a pas d’autre Dieu que lui. Isaïe proclame ici un seul Dieu, qui ne partage sa divinité avec aucun autre."
+    },
+    {
+     "id": "base-malachie-3-6",
+     "fr": {
+      "ref": "Malachie 3:6",
+      "text": "Car moi, le Seigneur, je ne change pas ; et vous, fils de Jacob, vous n'avez pas été anéantis."
+     },
+     "note": "Dieu ne change pas. Son peuple peut donc compter sur ses promesses, car sa fidélité repose sur son immutabilité."
+    },
+    {
+     "id": "base-luc-1-37",
+     "fr": {
+      "ref": "Luc 1:37",
+      "text": "Car rien n'est impossible à Dieu. »"
+     },
+     "note": "L’ange Gabriel répond ainsi à Marie, qui demande comment elle sera mère. Dieu peut tout ce qui n’enferme pas de contradiction."
+    },
+    {
+     "id": "base-1-jean-4-16",
+     "fr": {
+      "ref": "1 Jean 4:16",
+      "text": "Et nous, nous avons connu l'amour que Dieu a pour nous, et nous y avons cru. Dieu est amour ; celui qui demeure dans l'amour demeure en Dieu, et Dieu demeure en lui."
+     },
+     "note": "Jean dit en trois mots qui est Dieu : il est amour. Celui qui demeure dans l’amour demeure en Dieu, et Dieu demeure en lui."
+    },
+    {
+     "id": "base-actes-17-28",
+     "fr": {
+      "ref": "Actes 17:28",
+      "text": "Car c'est en lui que nous avons la vie, le mouvement et l'être ; comme l'ont dit d'ailleurs certains de vos poètes : Nous sommes de sa race."
+     },
+     "note": "Paul le dit aux Athéniens : c’est en Dieu que nous vivons, bougeons et existons. Le Dieu qui dépasse toute chose est aussi présent au plus intime de chaque créature."
+    }
+   ]
+  },
+  {
+   "id": "base-trinite-revelee",
+   "name": {
+    "fr": "La Trinité révélée"
+   },
+   "bloc": "Dieu un et trine",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-jean-1-1",
+     "fr": {
+      "ref": "Jean 1:1",
+      "text": "Au commencement était le Verbe, et le Verbe était auprès de Dieu, et le Verbe était Dieu."
+     },
+     "note": "Le prologue de Jean dit du Verbe qu’il était auprès de Dieu et qu’il était Dieu. Le Fils est donc distinct du Père et Dieu comme lui."
+    },
+    {
+     "id": "base-jean-10-30",
+     "fr": {
+      "ref": "Jean 10:30",
+      "text": "Le Père et moi, nous sommes un. »"
+     },
+     "note": "Jésus dit « nous sommes », ce qui distingue le Père et le Fils, et « un », ce qui affirme leur unité. Saint Augustin y voyait à la fois la distinction des Personnes et leur unité de nature."
+    },
+    {
+     "id": "base-matthieu-28-19-20",
+     "fr": {
+      "ref": "Matthieu 28:19-20",
+      "text": "Allez donc ! De toutes les nations faites des disciples : baptisez-les au nom du Père, et du Fils, et de l'Esprit Saint ; apprenez-leur à garder tout ce que je vous ai commandé. Et moi, je suis avec vous tous les jours, jusqu'à la fin du monde. »"
+     },
+     "note": "Le Christ envoie baptiser au nom du Père, et du Fils, et de l’Esprit Saint : un seul nom pour les trois Personnes. Tout baptême se donne depuis dans la foi en la Trinité."
+    },
+    {
+     "id": "base-2-corinthiens-13-13",
+     "fr": {
+      "ref": "2 Corinthiens 13:13",
+      "text": "La grâce du Seigneur Jésus Christ, l'amour de Dieu et la communion de l'Esprit Saint soient avec vous tous !"
+     },
+     "note": "Paul achève sa lettre par une bénédiction qui nomme ensemble le Seigneur Jésus, Dieu le Père et l’Esprit Saint. Le prêtre peut la reprendre pour saluer l’assemblée au début de la messe."
+    },
+    {
+     "id": "base-galates-4-6",
+     "fr": {
+      "ref": "Galates 4:6",
+      "text": "Et parce que vous êtes fils, Dieu a envoyé dans nos cœurs l'Esprit de son Fils, qui crie : « Abba ! Père ! »"
+     },
+     "note": "Le Père envoie dans nos cœurs l’Esprit de son Fils, qui nous fait dire « Abba ». Les trois Personnes agissent ensemble pour faire de nous des enfants de Dieu."
+    }
+   ]
+  },
+  {
+   "id": "base-dogme-trinitaire",
+   "name": {
+    "fr": "Le dogme trinitaire"
+   },
+   "bloc": "Dieu un et trine",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-jean-15-26",
+     "fr": {
+      "ref": "Jean 15:26",
+      "text": "Quand viendra le Paraclet, que je vous enverrai d'auprès du Père, l'Esprit de vérité qui procède du Père, c'est lui qui témoignera de moi."
+     },
+     "note": "Jésus annonce l’Esprit de vérité, qui procède du Père et qu’il enverra lui-même. La doctrine des processions et le débat sur le Filioque s’appuient sur ce verset."
+    },
+    {
+     "id": "base-jean-14-11",
+     "fr": {
+      "ref": "Jean 14:11",
+      "text": "Croyez-moi : je suis dans le Père, et le Père est en moi. Croyez-le, du moins, à cause des œuvres elles-mêmes."
+     },
+     "note": "Le Père est dans le Fils, et le Fils dans le Père. La tradition appelle périchorèse cette présence mutuelle des Personnes divines."
+    },
+    {
+     "id": "base-jean-16-14",
+     "fr": {
+      "ref": "Jean 16:14",
+      "text": "Lui me glorifiera, car il recevra de ce qui est à moi, et il vous l'annoncera."
+     },
+     "note": "L’Esprit reçoit de ce qui est au Fils. Les Pères latins y voyaient un appui de la foi selon laquelle l’Esprit procède du Père et du Fils."
+    },
+    {
+     "id": "base-romains-11-36",
+     "fr": {
+      "ref": "Romains 11:36",
+      "text": "Car tout est de lui, et par lui, et pour lui. À lui la gloire pour les siècles ! Amen."
+     },
+     "note": "Tout vient de Dieu, existe par lui et va vers lui. Saint Augustin appliquait ces trois mots au Père, au Fils et à l’Esprit, en rappelant qu’ils désignent un seul Dieu."
+    }
+   ]
+  },
+  {
+   "id": "base-trinite-oeuvre",
+   "name": {
+    "fr": "La Trinité à l’œuvre"
+   },
+   "bloc": "Dieu un et trine",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-jean-14-23",
+     "fr": {
+      "ref": "Jean 14:23",
+      "text": "Jésus lui répondit : « Si quelqu'un m'aime, il gardera ma parole ; mon Père l'aimera, nous viendrons vers lui et, chez lui, nous ferons notre demeure."
+     },
+     "note": "Le Père et le Fils viennent faire leur demeure en celui qui aime le Christ et garde sa parole. La théologie appelle cette présence l’inhabitation de la Trinité dans l’âme du juste."
+    },
+    {
+     "id": "base-galates-4-4-5",
+     "fr": {
+      "ref": "Galates 4:4-5",
+      "text": "Mais quand vint la plénitude du temps, Dieu envoya son Fils, né d'une femme, né sujet de la Loi, pour racheter ceux qui étaient sujets de la Loi, afin que nous recevions l'adoption filiale."
+     },
+     "note": "Le Père envoie son Fils, né d’une femme, pour faire de nous des fils adoptifs. Cet envoi dans le temps, la mission du Fils, prolonge sa génération éternelle."
+    },
+    {
+     "id": "base-romains-5-5",
+     "fr": {
+      "ref": "Romains 5:5",
+      "text": "et l'espérance ne déçoit pas, parce que l'amour de Dieu a été répandu dans nos cœurs par l'Esprit Saint qui nous a été donné."
+     },
+     "note": "L’amour de Dieu est répandu dans nos cœurs par l’Esprit Saint qui nous est donné. L’Esprit est le Don en personne, qui fait vivre en nous la charité."
+    },
+    {
+     "id": "base-2-pierre-1-4",
+     "fr": {
+      "ref": "2 Pierre 1:4",
+      "text": "Par elles, il nous a accordé les précieuses et très grandes promesses, pour que vous deveniez ainsi participants de la nature divine, en fuyant la corruption que la convoitise répand dans le monde."
+     },
+     "note": "Dieu nous rend participants de sa nature divine. Par la grâce, l’homme entre dans la vie même de la Trinité."
+    },
+    {
+     "id": "base-jean-17-21",
+     "fr": {
+      "ref": "Jean 17:21",
+      "text": "que tous soient un, comme toi, Père, tu es en moi et moi en toi ; qu'eux aussi soient un en nous, pour que le monde croie que tu m'as envoyé."
+     },
+     "note": "Jésus prie pour que ses disciples soient un, comme le Père et lui sont un. L’unité des Personnes divines est le modèle et la source de la communion de l’Église."
+    }
+   ]
   }
  ]
 }
