@@ -29,7 +29,7 @@ Chaque bloc écrit reçoit sa section dans `contenu/memoriser.json` : une catég
 
 1. Inscrire chaque sujet traité dans `parcours/cours.json` (clé du sujet → `fichier.html#ouverture-{lettre}`).
 2. Refaire le sommaire avec `node fabrication/cours-sommaire.js` suivi des fichiers.
-3. Envoyer les fichiers au coffre par le robot, espèce « cours » (mode d'emploi dans `donnees.md`).
+3. Envoyer les fichiers au coffre par le robot, espèce « cours » (mode d'emploi dans `donnees.md`). Le robot découpe lui-même chaque fichier en un morceau par cours (`fabrication/cours-decoupe.js`), pour qu'Étude ne télécharge que le cours ouvert : on écrit et on envoie toujours le fichier du thème entier.
 4. Déposer `cours.json`, le sommaire et `memoriser.json` sur `main`.
 
 Comme tout ce qui change ce que voient les lecteurs, l'envoi et le dépôt attendent le « dépose-le » d'Emmanuel, ou celui de l'ami qui l'aide à écrire les cours depuis son propre compte ; un changement de contenu ne demande pas de captures d'écran.

@@ -813,6 +813,7 @@ if (fs.existsSync('parcours/la-foi-catholique.html')) {
   <script>const LIENS_COURS=${JSON.stringify(JSON.parse(fs.readFileSync('parcours/cours.json', 'utf8'))).replace(/</g, '\\u003c')};
   const SAIS_COURS=${JSON.stringify(Object.fromEntries(Object.entries(JSON.parse(fs.readFileSync('parcours/cours-sommaire.json', 'utf8'))).map(([f, d]) => [f, d.sais || {}])))};
   const EMPREINTES_COURS=${JSON.stringify(Object.fromEntries(Object.entries(JSON.parse(fs.readFileSync('parcours/cours-sommaire.json', 'utf8'))).map(([f, d]) => [f, String(d.empreinte || '').slice(0, 16)])))};
+  const LETTRES_COURS=${JSON.stringify(Object.fromEntries(Object.entries(JSON.parse(fs.readFileSync('parcours/cours-sommaire.json', 'utf8'))).map(([f, d]) => [f, Object.keys(d.cours || {})])))};
   const POLICES_COURS=${JSON.stringify(fs.existsSync(RACINE + 'polices-cours') ? fs.readdirSync(RACINE + 'polices-cours').map(f => f.replace(/\.woff2$/, '')) : [])};</script>
   <script>${fs.readFileSync(PAGES + 'etude.js', 'utf8')}</script>`
   }));
@@ -1113,6 +1114,24 @@ if (fs.existsSync('parcours/la-foi-catholique.html')) {
     + 'var r=bt(c,C[c._S.cle]||"a-faire");if(r)r.click()},true);'
     + 'if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",cw);else cw()})();</scr' + 'ipt>';
   ph = injecteAvant(ph, '</body>', auto);
+  /* ── LES POLICES DU PARCOURS ──
+     Le parcours embarque ses polices, comme les cours : sur le site, elles
+     sortent du fichier, rangées avec celles des cours (polices-cours,
+     nommées d'après l'empreinte de leur texte), et le parcours n'en garde
+     que l'adresse. Le navigateur les télécharge une fois, au lieu de les
+     reprendre avec le parcours ; l'affichage reste le même. */
+  {
+    fs.mkdirSync(`${OUT}/polices-cours`, { recursive: true });
+    let sorties = 0;
+    ph = ph.replace(/url\((["']?)data:font\/woff2;base64,([A-Za-z0-9+/=]+)\1\)/g, (t, q, b) => {
+      const h = require('crypto').createHash('sha256').update(b).digest('hex').slice(0, 24);
+      const f = `${OUT}/polices-cours/${h}.woff2`;
+      if (!fs.existsSync(f)) fs.writeFileSync(f, Buffer.from(b, 'base64'));
+      sorties++;
+      return `url(/polices-cours/${h}.woff2)`;
+    });
+    console.log(`Parcours : ${sorties} polices servies à part`);
+  }
   fs.writeFileSync(`${OUT}/parcours/la-foi-catholique.html`, ph);
   console.log(`Parcours : ${Object.keys(parTheme).length} thèmes reliés à leur fichier de cours`);
 }

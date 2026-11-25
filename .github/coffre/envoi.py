@@ -4,7 +4,11 @@ les sert tels quels au navigateur, deux à trois fois moins lourds (voir
 netlify/edge-functions/fichiers.js).
 · Les cours d'Étude (espèce « cours ») vont dans cours/, une fois vérifiés
   contre le sommaire que porte la branche (parcours/cours-sommaire.json) :
-  même empreinte, mêmes cours.
+  même empreinte, mêmes cours. Chacun est aussi découpé en morceaux, un
+  par cours (« 17-les-prophetes.m.html », fabrication/cours-decoupe.js),
+  rangés à côté de lui : Étude n'ouvre que le morceau du cours visé.
+· Une entrée « decoupe », sans fichier, redécoupe tous les cours du
+  sommaire déjà rangés dans le coffre (après un changement du découpage).
 · Les articles (espèce « article ») vont dans articles/, une fois vérifiés
   contre le catalogue que porte la branche (articles/articles.json) : le
   fichier y est inscrit.
@@ -21,7 +25,7 @@ netlify/edge-functions/fichiers.js).
   (documentation/meditation.md).
 Tout se vérifie avant le premier envoi : un lot refusé n'entre pas à
 moitié."""
-import datetime, gzip, hashlib, json, os, re, sys, tempfile
+import datetime, glob, gzip, hashlib, json, os, re, subprocess, sys, tempfile
 from coffre import envoie, existe, recoit
 
 DOSSIER = 'envoi'
@@ -43,6 +47,41 @@ def cours_verifie(f, nom, sommaire):
     for lettre in s['cours']:
         if f'<cours lettre="{lettre}"' not in texte:
             sys.exit(f'« {nom} » : le cours « {lettre} » annoncé au sommaire manque.')
+
+
+def morceaux(f, nom):
+    """les morceaux d'un fichier de cours, un par cours, prêts à ranger à
+    côté de lui ; le découpage vérifie lui-même que chaque morceau porte son
+    cours entier et toutes les affirmations « Je sais… » du thème"""
+    d = tempfile.mkdtemp()
+    a = os.path.join(d, nom)
+    if os.path.abspath(f) != os.path.abspath(a):
+        open(a, 'wb').write(open(f, 'rb').read())
+    sortie = os.path.join(d, 'morceaux')
+    r = subprocess.run(['node', 'fabrication/cours-decoupe.js', sortie, a], capture_output=True, text=True)
+    if r.returncode != 0:
+        sys.exit(f'« {nom} » : le découpage a échoué.\n' + r.stderr)
+    print(r.stdout.strip())
+    return [(m, f'cours/{os.path.basename(m)}') for m in sorted(glob.glob(os.path.join(sortie, '*.html')))]
+
+
+def redecoupe(sommaire):
+    """tous les cours du sommaire déjà rangés dans le coffre, redécoupés"""
+    places = []
+    for nom, s in sommaire.items():
+        if not existe(f'cours/{nom}'):
+            print(f'{nom} : pas dans le coffre, laissé de côté')
+            continue
+        f = os.path.join(tempfile.mkdtemp(), nom)
+        recoit(f'cours/{nom}', f)
+        octets = open(f, 'rb').read()
+        if octets[:2] == b'\x1f\x8b':
+            octets = gzip.decompress(octets)
+            open(f, 'wb').write(octets)
+        if hashlib.sha256(octets).hexdigest() != s['empreinte']:
+            sys.exit(f'« {nom} » : le fichier du coffre ne correspond pas au sommaire de la branche.')
+        places += morceaux(f, nom)
+    return places
 
 
 def article_verifie(nom, catalogue):
@@ -112,6 +151,10 @@ def main():
     jours = []
     places = []
     for e in entrees:
+        if e.get('espece') == 'decoupe':
+            sommaire = sommaire or json.load(open('parcours/cours-sommaire.json', encoding='utf-8'))
+            places += redecoupe(sommaire)
+            continue
         nom = os.path.basename(e.get('fichier', ''))
         f = os.path.join(DOSSIER, e.get('fichier', ''))
         if not nom or not os.path.isfile(f):
@@ -121,6 +164,7 @@ def main():
             sommaire = sommaire or json.load(open('parcours/cours-sommaire.json', encoding='utf-8'))
             cours_verifie(f, nom, sommaire)
             places.append((f, f'cours/{nom}'))
+            places += morceaux(f, nom)
         elif espece == 'article':
             catalogue = catalogue or json.load(open('articles/articles.json', encoding='utf-8'))
             article_verifie(nom, catalogue)
@@ -135,7 +179,7 @@ def main():
             if e.get('prolonger'):
                 prolonge = (datetime.date.fromisoformat(nom[:10]) + datetime.timedelta(days=1)).isoformat()
         else:
-            sys.exit(f'Espèce inconnue pour « {nom} » : {espece} (« cours », « article » ou « meditation »)')
+            sys.exit(f'Espèce inconnue pour « {nom} » : {espece} (« cours », « decoupe », « article » ou « meditation »)')
     if jours:
         # un jour de reprise après pause n'a pas de méditation à lui : si
         # Claude lui en donne une, la reprise de ce jour s'efface, sans quoi

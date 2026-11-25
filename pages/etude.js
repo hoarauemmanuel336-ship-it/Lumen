@@ -249,7 +249,10 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     /* sans réglage gardé, le plus grand cran des cours : le parcours, lui,
        s'ouvre alors à sa taille normale */
     const lu=parseInt(lLit('taille','_reglages')||'',10), r=lu>=0?lu:0;
-    e=e&&typeof e==='object'?e:{};poseRang(e,o.genre,r);
+    e=e&&typeof e==='object'?Object.assign({},e):{};poseRang(e,o.genre,r);
+    /* un morceau ne porte que son cours : la page gardée d'un autre cours
+       du thème cède la place à l'ouverture du sien */
+    if(o.lettre&&lettreDe(e.page,o.lettres)!==o.lettre){e.page='ouverture-'+o.lettre;delete e.pos;}
     return e;
   }
 
@@ -279,8 +282,56 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     return i>=0?code.slice(0,i)+bloc+'\n'+code.slice(i):bloc+'\n'+code;
   }
 
+  /* ── UN COURS À LA FOIS ──
+     Un fichier de cours réunit tous les cours d'un thème. Le robot du coffre
+     le découpe en morceaux, un par cours (« 17-les-prophetes.m.html »,
+     fabrication/cours-decoupe.js), et Étude n'ouvre que le morceau du cours
+     visé (Emmanuel : « que ça télécharge juste le cours sur lequel on
+     tombe »). Chaque morceau garde le squelette des autres cours du thème :
+     sommaire, comptes d'acquis et glossaire restent ceux du fichier entier.
+     Aller vers une page d'un autre cours (sommaire, onglet d'un cours, page
+     suivante, lien, flèches du clavier) ouvre son morceau, avec le cercle de
+     chargement. La mémoire de lecture et la progression restent celles du
+     fichier du thème : rien ne change dans ce qui est gardé. Un thème que le
+     coffre n'a pas encore découpé s'ouvre en entier, comme avant.
+     Le cours visé vient de l'ancre (« ouverture-m », « m3-2 », « bilan-m »),
+     sinon de la page gardée, sinon c'est le premier du fichier. */
+  const lettresDe=f=>(typeof LETTRES_COURS==='object'&&LETTRES_COURS[f])||[];
+  function lettreDe(ancre,lettres){
+    const a=String(ancre||'');
+    const m=/^(?:ouverture|plan|bilan|revision|fiches|glossaire|code)-([a-z0-9]+)$/.exec(a)||/^([a-z]+)\d/.exec(a);
+    return m&&lettres.indexOf(m[1])>=0?m[1]:'';
+  }
+  const nomMorceau=(f,l)=>f.replace(/\.html$/,'')+'.'+l+'.html';
+  /* dans le morceau, avant son moteur : ce qui mène vers un autre cours du
+     thème demande à la page d'ouvrir son morceau (message lvCours, avec la
+     lettre du cours), au lieu d'afficher la page vide de son squelette.
+     Le clic est pris avant le moteur ; une page d'un autre cours qui
+     s'affiche malgré tout juste après un geste (flèches du clavier) fait de
+     même. L'onglet d'un autre cours, dans le sommaire, ouvre son cours
+     sommaire ouvert, à la même hauteur, comme dans le fichier entier
+     (lvSom puis lvSomOuvre : la hauteur du sommaire, plus un). */
+  const MORCEAU=(f,l)=>'<scr'+'ipt>'+String.raw`(function(){
+var ICI=${JSON.stringify(l)},F=${JSON.stringify(f)},PARTI=false,GESTE=0;
+function part(id,l,som){if(PARTI)return;PARTI=true;var S=document.querySelector('#som');try{parent.postMessage({lvCours:F,lvCoursAncre:id,lvCoursLettre:l,lvSom:som?1+(S?S.scrollTop:0):0},'*');}catch(_){}}
+function coursDe(e){var s=e&&e.closest?e.closest('section.pg'):null;return s?s.getAttribute('data-cours'):null;}
+function lettres(){var v=[];[].forEach.call(document.querySelectorAll('section.pg'),function(s){var c=s.getAttribute('data-cours');if(v.indexOf(c)<0)v.push(c);});return v;}
+['pointerdown','keydown','touchstart'].forEach(function(t){document.addEventListener(t,function(){GESTE=Date.now();},{capture:true,passive:true});});
+document.addEventListener('click',function(ev){var t=ev.target;if(!t||!t.closest)return;
+var o=t.closest('#som .ong');
+if(o){var i=[].indexOf.call(o.parentNode.querySelectorAll('.ong'),o),l=lettres()[i];if(l&&l!==ICI){ev.preventDefault();ev.stopImmediatePropagation();part('ouverture-'+l,l,true);}return;}
+var a=t.closest('a[href^="#"]');if(!a||ev.button||ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey)return;
+var id;try{id=decodeURIComponent(a.getAttribute('href').slice(1));}catch(_){return;}
+var l2=coursDe(document.getElementById(id));if(!l2||l2===ICI)return;
+ev.preventDefault();ev.stopImmediatePropagation();part(id,l2,false);},true);
+document.addEventListener('DOMContentLoaded',function(){var W=document.querySelector('#w');if(!W||!window.MutationObserver)return;
+new MutationObserver(function(ms){if(PARTI||Date.now()-GESTE>2500)return;for(var i=0;i<ms.length;i++){var p=ms[i].target;
+if(p.parentNode===W&&p.classList.contains('on')){var l=p.getAttribute('data-cours');if(l&&l!==ICI){part(p.id,l,false);return;}}}}).observe(W,{attributes:true,attributeFilter:['class'],subtree:true});});
+window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==parent||!d||!d.lvSomOuvre)return;var b=document.querySelector('#barre .bh-som'),S=document.querySelector('#som');if(!b)return;b.click();if(S)requestAnimationFrame(function(){S.scrollTop=Math.max(0,d.lvSomOuvre-1);});});
+})();`+'</scr'+'ipt>';
+
   /* ── LE CONTENU OUVERT ── */
-  let OUVERT=null;   // {id, genre, fichier, titre, code, f}
+  let OUVERT=null;   // {id, genre, fichier, lettre, titre, code, f}
   const enCours=()=>!!(OUVERT&&OUVERT.genre==='cours');
   function fichierDuLien(){
     const m=/^#c\/(.+)$/.exec(location.hash||'');
@@ -294,7 +345,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     const arret=new AbortController(), minuteur=setTimeout(()=>arret.abort(),25000);
     try{
       const r=await fetch(adresse,{credentials:'same-origin',cache:'no-cache',signal:arret.signal});
-      if(!r.ok)throw new Error('code '+r.status);
+      if(!r.ok){const e=new Error('code '+r.status);e.code=r.status;throw e;}
       return await r.text();
     }finally{clearTimeout(minuteur);}
   }
@@ -303,7 +354,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
      le contenu n'a pas pu être ouvert. */
   async function charge(adresse){
     try{ return await chargeUneFois(adresse); }
-    catch(e){ await new Promise(r=>setTimeout(r,1000)); return chargeUneFois(adresse); }
+    catch(e){ if(e&&e.code===404)throw e; await new Promise(r=>setTimeout(r,1000)); return chargeUneFois(adresse); }
   }
   /* ── UN COURS S'OUVRE VITE ──
      Un cours est un gros fichier (plusieurs mégaoctets). Deux choses
@@ -317,8 +368,8 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
        donne son sommaire (parcours/cours-sommaire.json) : tant que le cours
        n'a pas été refait, il s'ouvre sans rien télécharger ; refait, son
        empreinte change et il est repris au coffre. L'appareil garde les
-       vingt derniers cours ouverts. */
-  const CACHE_COURS='lv-cours', GARDES_COURS=20;
+       quarante derniers cours ouverts (un morceau pèse peu). */
+  const CACHE_COURS='lv-cours', GARDES_COURS=40;
   async function empreinte(t){
     const d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));
     return Array.from(new Uint8Array(d),x=>x.toString(16).padStart(2,'0')).join('').slice(0,24);
@@ -331,8 +382,11 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     if(!connues.size)return code;
     return code.replace(re,(t,q,b)=>connues.has(b)?'url('+location.origin+'/polices-cours/'+connues.get(b)+'.woff2)':t);
   }
-  async function chargeCours(fichier,adresse){
+  /* fichier : le thème, dont l'empreinte vaut pour ses morceaux ; nom : ce
+     qui se télécharge, le thème ou l'un de ses morceaux */
+  async function chargeCours(fichier,adresse,nom){
     const e=(typeof EMPREINTES_COURS==='object'&&EMPREINTES_COURS[fichier])||'';
+    fichier=nom||fichier;
     const cle=location.origin+'/__cours/'+encodeURIComponent(fichier)+'?e='+e;
     let boite=null;
     try{ if(e&&window.caches){boite=await caches.open(CACHE_COURS);const r=await boite.match(cle);if(r)return await r.text();} }catch(_){boite=null;}
@@ -385,20 +439,35 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     try{o.f.contentWindow.postMessage({lvReprise:reprise(),lvAuto:etatsDesCours()},'*');}catch(_){}
     return true;
   }
-  async function montre(ancre){
+  async function montre(ancre,lettre,som){
     const fichier=fichierDuLien();
     const o=fichier?{id:'c_'+fichier.replace(/\.html$/,''),genre:'cours',fichier,adresse:'/parcours/cours/'+encodeURIComponent(fichier)}
                    :{id:'parcours',genre:'parcours',adresse:PARCOURS};
-    if(OUVERT&&OUVERT.id===o.id){ if(ancre&&OUVERT.f)va(OUVERT,ancre); return; }
+    if(fichier){
+      o.lettres=lettresDe(fichier);
+      if(o.lettres.length){
+        const e=litJson('etat',o.id);
+        o.lettre=(lettre&&o.lettres.indexOf(lettre)>=0?lettre:'')||lettreDe(ancre,o.lettres)||lettreDe(e&&e.page,o.lettres)||o.lettres[0];
+        o.morceau=nomMorceau(fichier,o.lettre);
+      }
+    }
+    if(OUVERT&&OUVERT.id===o.id&&(!OUVERT.lettre||!o.lettre||OUVERT.lettre===o.lettre)){ if(ancre&&OUVERT.f)va(OUVERT,ancre); return; }
     ferme();
     if(o.genre==='parcours'&&reprendParcours())return;
     o.ancre=ancre||'';
+    o.som=som||0;
     OUVERT=o;
     attend();
     /* le parcours tire l'état de ses sujets de la progression de tous les cours */
     const pret=rapatrie(o.genre==='parcours'?[o.id,'_reglages',...idsCours()]:[o.id,'_reglages']);
     let code='';
-    try{ code=await (o.genre==='cours'?chargeCours(o.fichier,o.adresse):charge(o.adresse)); }
+    try{
+      if(o.morceau){
+        try{ code=await chargeCours(o.fichier,'/parcours/cours/'+encodeURIComponent(o.morceau),o.morceau); }
+        catch(e){ if(!(e&&e.code===404))throw e; o.lettre=o.morceau=''; }
+      }
+      if(!code)code=await (o.genre==='cours'?chargeCours(o.fichier,o.adresse):charge(o.adresse));
+    }
     catch(e){
       if(OUVERT!==o)return;
       console.warn('étude',e);
@@ -445,6 +514,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
         const pi=Object.assign({y:0},litJson('pos',o.id)||{});
         try{f.contentWindow.postMessage({lvRevoir:Math.max(0,Math.round(pi.y||0)),lvRevoirInfo:pi},'*');}catch(_){}
       }
+      if(o.som){const y=o.som;o.som=0;try{f.contentWindow.postMessage({lvSomOuvre:y},'*');}catch(_){}}
       o.rendu=true;
       if(o.apresRendu){o.apresRendu();o.apresRendu=null;}
     });
@@ -462,7 +532,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
         if(OUVERT!==o&&PARC!==o)return;
         const c=Array.isArray(ch)?ch:[];
         const refait=c.indexOf(o.id+':prog')>=0||(o.genre==='cours'&&c.indexOf(o.id+':etat')>=0)||o.uid!==LECT.uid;
-        if(refait&&OUVERT===o){try{o.f.remove();}catch(_){} OUVERT=null; montre(o.ancre||''); return;}
+        if(refait&&OUVERT===o){try{o.f.remove();}catch(_){} OUVERT=null; montre(o.ancre||'',o.ancre?o.lettre:''); return;}
         if(c.indexOf(o.id+':etat')>=0||c.indexOf('_reglages:taille')>=0)envoieEtat(o);
         if(o.genre!=='parcours')return;
         const m={lvReprise:reprise(),lvAuto:etatsDesCours()};
@@ -487,7 +557,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     /* le parcours se montre un peu dézoomé, toute la page ensemble, textes,
        cadres et marges : sa mise en page est pensée pour un écran plus
        grand (Emmanuel : « la page est trop zoomée ») */
-    let doc=pageCadre(poseProgression(code,litJson('prog',o.id)));
+    let doc=pageCadre((o.lettre?MORCEAU(o.fichier,o.lettre):'')+poseProgression(code,litJson('prog',o.id)));
     if(o.genre==='parcours'){
       doc=doc.replace('<head>',()=>'<head><style>html{zoom:'+ZOOM_PARCOURS+'}</style>'+REPLI_BLOCS);
       const k=doc.lastIndexOf('</body>');
@@ -550,7 +620,7 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
     if(!o||!o.f||ev.source!==o.f.contentWindow||!d||typeof d!=='object')return;
     if(d.lvRecharge){ ferme(); if(PARC===o){try{o.f.remove();}catch(_){} PARC=null;} montre(); return; }
     if(typeof d.lvSujet==='string'){ ouvreSujet(d.lvSujet); return; }
-    if(typeof d.lvCours==='string'){ ouvreCours(d.lvCours,typeof d.lvCoursAncre==='string'?d.lvCoursAncre:''); return; }
+    if(typeof d.lvCours==='string'){ ouvreCours(d.lvCours,typeof d.lvCoursAncre==='string'?d.lvCoursAncre:'',typeof d.lvCoursLettre==='string'?d.lvCoursLettre:'',Math.max(0,Math.round(+d.lvSom||0))); return; }
     if('lvSel' in d){ if(typeof qaSelectionCadre==='function')qaSelectionCadre(d.lvSel,o.f,o.titre,o.genre==='cours'?'un cours':'un parcours',o.code,null); return; }
     if(typeof d.lvPos==='number'){
       if(o.rendu){const info=d.lvPosInfo&&typeof d.lvPosInfo==='object'?d.lvPosInfo:{y:d.lvPos};info.y=Math.max(0,Math.round(info.y||0));garde('pos',o.id,JSON.stringify(info));}
@@ -575,13 +645,20 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
      Ouvrir un cours ajoute un pas à l'historique : le retour du téléphone
      ramène au parcours, comme le bouton de retour. Un lien d'un cours vers
      un autre fichier de cours ouvre celui-ci à l'endroit visé, et le retour
-     ramène au premier cours, à la place où l'on en était. */
-  function ouvreCours(n,ancre){
+     ramène au premier cours, à la place où l'on en était. Passer d'un cours
+     à l'autre d'un même thème (un autre morceau) ne fait pas de pas : c'est
+     le même fichier, comme avant le découpage. */
+  function ouvreCours(n,ancre,lettre,som){
     if(!/^[A-Za-z0-9][A-Za-z0-9._-]{0,120}\.html$/.test(n))return;
     if(!/^[A-Za-z0-9_-]{0,80}$/.test(ancre||''))ancre='';
-    if(OUVERT&&OUVERT.fichier===n){ if(ancre)va(OUVERT,ancre); return; }
+    if(!/^[a-z0-9]{0,20}$/.test(lettre||''))lettre='';
+    if(OUVERT&&OUVERT.fichier===n){
+      const l=lettre||lettreDe(ancre,OUVERT.lettres||[]);
+      if(!OUVERT.lettre||!l||l===OUVERT.lettre){ if(ancre)va(OUVERT,ancre); return; }
+      montre(ancre,l,som); return;
+    }
     history.pushState({etude:'cours'},'','#c/'+encodeURIComponent(n));
-    montre(ancre);
+    montre(ancre,lettre,som);
   }
   /* ── LES LIENS EN ATTENTE ──
      Un cours peut renvoyer à un sujet du parcours avant que son cours soit

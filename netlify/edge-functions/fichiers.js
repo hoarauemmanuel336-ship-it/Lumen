@@ -84,12 +84,18 @@ async function sert(req, cle) {
    referencement.js), son adresse canonique, et un lien « Lire sur Lumen
    Veritatis » vers la page du site où il s'ouvre, pour le lecteur qui
    arrive d'un moteur de recherche. Le lien ne paraît qu'en dehors d'un
-   cadre. Le reste du fichier passe tel quel. */
+   cadre. Le reste du fichier passe tel quel.
+   Le morceau d'un cours (« 17-les-prophetes.m.html », un cours d'un thème
+   découpé par le robot, voir fabrication/cours-decoupe.js) n'est pas une
+   page pour les moteurs : son adresse canonique et son lien mènent au
+   fichier du thème, et il n'est pas indexé. */
+const themeDuMorceau = nom => { const m = /^(.+)\.[a-z0-9]+\.html$/.exec(nom); return m && REFERENCEMENT.cours[m[1] + '.html'] ? m[1] + '.html' : ''; };
 function ouvertSeul(req) {
   const d = (req.headers.get('sec-fetch-dest') || '').toLowerCase();
   return d === '' || d === 'document';
 }
 function tete(nom, dossier) {
+  if (dossier === 'cours/') nom = themeDuMorceau(nom) || nom;
   const esc = t => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const cours = dossier === 'cours/';
   const fiche = (cours ? REFERENCEMENT.cours : REFERENCEMENT.articles)[nom];
@@ -174,7 +180,7 @@ async function sertCours(req, nom, suite, dossier = 'cours/') {
   h.set('x-content-type-options', 'nosniff');
   h.set('cache-control', 'private, no-cache');
   /* moteurs de recherche : l'interrupteur est contenu/referencement.json */
-  if (!REFERENCEMENT.ouvert) h.set('x-robots-tag', 'noindex, nofollow');
+  if (!REFERENCEMENT.ouvert || (dossier === 'cours/' && themeDuMorceau(nom))) h.set('x-robots-tag', 'noindex, nofollow');
   return new Response(corps, { status: r.status, headers: h });
 }
 
