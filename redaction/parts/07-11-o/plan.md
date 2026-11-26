@@ -1,5 +1,7 @@
 # 07-11-o · L’analogie de l’être (lettre o, fichier 07)
 
+État : TERMINÉ (toutes les leçons, bilan, contrôle et humaniser faits ; fichier livré redaction/07-11-o.html).
+
 Question centrale : comment le mot « être » se dit-il de choses si différentes (substance et accident, créature et Dieu) sans changer de sens ni le garder tout entier ?
 Obstacles du novice : croire que « être » est le concept le plus général et le plus vide, univoque comme un genre ; prendre l’analogie pour un à-peu-près ; la confondre avec la métaphore ; s’y perdre dans les classifications (inégalité, attribution intrinsèque/extrinsèque, proportionnalité propre/métaphorique) ; mal situer les débats (Cajetan et ses relecteurs, Scot, Suárez, Przywara et Barth).
 Rappels par lien (sans refaire) : termes univoque/équivoque/analogue (06 #ouverture-o, leçon 6) ; l’être n’est pas un genre (07 l) ; substance et accidents (#ouverture-s), catégories (#ouverture-d), essence et existence (#ouverture-e) ; analogie des noms divins, Latran IV, réponse thomiste à Scot sur les noms divins (09 #ouverture-d) ; Scot (10 #ouverture-b), Cajetan et Suárez (10 #ouverture-e), néothomisme (10 #ouverture-o).
