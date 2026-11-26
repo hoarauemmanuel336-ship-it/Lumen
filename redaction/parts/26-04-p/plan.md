@@ -1,0 +1,21 @@
+# 26-04-p · Augustin philosophe (lettre p, fichier 26-saint-augustin.html)
+
+Question centrale : comment Augustin, converti, a-t-il pensé la vérité, le bonheur, le mal et l'amour, et que doit sa pensée aux platoniciens et à la foi ?
+Obstacles du novice : croire que « philosophe » et « croyant » s'opposent chez lui ; lire les dialogues de Cassiciacum comme non chrétiens (débat Alfaric) ; confondre illumination et vision de Dieu (ontologisme) ; prendre si fallor sum pour Descartes avant la lettre sans nuance ; croire que « user » des créatures = les mépriser ou mépriser le prochain ; croire qu'Augustin est un platonicien baptisé.
+Partage : retraite de Cassiciacum (lieu, personnes) = #ouverture-l ; Confessions VII et X (mémoire, vie heureuse) = #ouverture-c ; mal-privation et manichéens = #ouverture-m ; grâce et Pélage (Libre arbitre lu par les pélagiens) = #ouverture-u ; Doctrine chrétienne (livre I frui/uti traité ici à fond, l'herméneutique = #ouverture-e) ; Cité de Dieu VIII-X = #ouverture-i ; Anselme, Bonaventure, Thomas = #ouverture-r ; De Trinitate X = #ouverture-t. Plotin : #sujet:philosophes.plotin ; Platon : #sujet:philosophes.platon ; Pères philosophes : #sujet:philosophes.peres ; foi et raison : 04-la-foi.html#ouverture-r.
+
+Leçons :
+1. Les dialogues de Cassiciacum : le genre du dialogue, sténographes, participants, liste et dates (Contre les académiciens, Vie heureuse, Ordre, Soliloques), puis Milan (Immortalité de l'âme, disciplines), Rome et Thagaste (Grandeur de l'âme, Libre arbitre I, Musique, Maître) ; débat sur la sincérité (Alfaric 1918, Courcelle) ; Révisions.
+2. Contre les académiciens : Romanianus, Licentius, Trygetius, Alypius ; Nouvelle Académie (Arcésilas, Carnéade, Cicéron), le probable ; arguments : le sage doit savoir, le vraisemblable suppose le vrai, disjonctions, mathématiques, apparences ; doctrine cachée ; autorité et raison (III, 20, 43).
+3. La Vie heureuse : 13 novembre 386, trois jours, Manlius Theodorus ; tous veulent être heureux ; avoir ce qu'on veut ; « celui qui a Dieu est heureux » ; Monique ; la mesure ; vérité, Fils ; conclusion IV, 35 ; Révisions.
+4. L'Ordre : Zenobius ; l'eau dans les canaux, le combat de coqs ; tout est dans l'ordre ; le mal dans l'ordre (le bourreau, les ombres du tableau, le solécisme) ; les arts libéraux comme montée ; autorité et raison ; deux questions : l'âme et Dieu.
+5. Les Soliloques : dialogue avec la Raison ; prière initiale ; « Dieu et l'âme » (I, 2, 7) ; analogie du soleil (I, 8, 15) ; les yeux sains ; livre II : immortalité par la vérité ; « noverim me » ; Immortalité de l'âme.
+6. Le Maître : Adéodat 16 ans, 389 Thagaste ; signes ; on n'apprend rien par les mots ; consulter la vérité intérieure ; le Christ maître intérieur (Matthieu 23:10, Éphésiens 3:16-17) ; Adéodat mort.
+7. La Vraie Religion : 390, Romanianus ; la religion vraie = Église catholique ; Platon et le christianisme (IV, 7) ; « Ne va pas au-dehors, rentre en toi-même » (XXXIX, 72) ; le doute qui atteste la vérité ; création, mal, beauté ; Retractationes.
+8. Le Libre Arbitre : Evodius, Rome 388-Hippone 395 ; d'où vient que nous faisons le mal ; convoitise ; preuve de Dieu par la vérité (livre II) ; volonté bien moyen ; détournement ; prescience et liberté (III) ; usage par les pélagiens, Révisions I, 9.
+9. « Si je me trompe, je suis » et la lumière de la vérité : de la Vie heureuse à la Cité de Dieu XI, 26 et De Trinitate X ; Descartes ; vérités immuables ; illumination : soleil, lumière sui generis, réminiscence corrigée ; interprétations (Thomas, Bonaventure, ontologisme condamné).
+   (à décider : illumination en leçon 10 séparée si la matière déborde)
+10. Foi et intelligence : Isaïe 7:9 LXX ; Sermon 43 ; Lettre 120 ; croire = penser avec assentiment ; autorité et raison ; Catéchisme 158 ; Anselme.
+11. L'ordre de l'amour ; jouir et user : Doctrine chrétienne I ; Cité de Dieu XV, 22 ; quatre choses à aimer ; prochain « en Dieu » ; poids de l'amour.
+12. Augustin et le platonisme : ce qu'il reçoit (Dieu spirituel, intériorité, mal privation, vérité immuable), ce qu'il corrige (création, Incarnation, humilité, médiateur, résurrection de la chair, réminiscence, cycles, théurgie) ; Révisions I, 1, 4 ; jugement de l'Église.
+Bilan : 6 exercices croisés.

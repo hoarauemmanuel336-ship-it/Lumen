@@ -17,3 +17,10 @@ Leçons (une par fichier, 01.html à 12.html) :
 11. Les Sermons au peuple : prêcher presque chaque jour ; sténographes ; plus de 500 ; « pour vous je suis évêque » (340,1) ; Dolbeau, Mayence 1990, 26 sermons ; Erfurt ; prédication eucharistique (Sermon 272, 227 ; En. Ps 98,9).
 12. La Catéchèse des débutants et l'Enchiridion : Deogratias, narration, charité (IV,8), joie, adaptation ; Enchiridion à Laurent : foi (Credo), espérance (Notre Père), charité ; Ench. 11 (mal) ; points non reçus.
 Bilan : 6 exercices croisés.
+
+## État de la reprise (second rédacteur)
+- 00 à 10 : gardés tels quels (leçon 10 complète) ; corrigé une balise </p mal fermée en 08.
+- 11 : écrite (parties : prêcher presque chaque jour ; des sténographes aux bibliothèques ; les sermons retrouvés à Mayence, avec Erfurt 2007 et Pelplin 2026 ; « Soyez ce que vous voyez » en partie 4, cible du lien #e11-4).
+- 12 : écrite (Deogratias ; raconter pour faire aimer ; la joie du catéchiste ; l'Enchiridion ; ce que l'Église a reçu).
+- 99-bilan : 6 exercices croisés.
+- Ensuite : assemblage, contrôle, passage humaniser leçon par leçon, essai d'assemblage.

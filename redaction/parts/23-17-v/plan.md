@@ -19,3 +19,9 @@ Leçons (12), chacune : 4 objectifs, prérequis, Pour commencer, 3-5 parties, 1-
 12. Le traité Sur la prière : date (vers 233-234), Ambroise et Tatienne, objection de l'inutilité de la prière (prescience, liberté), prier sans cesse (XII,2, 1 Th 5:17), à qui adresser la prière (opinion propre : au Père seul), Notre Père (Mt 6:9-13, différences Mt/Lc, épiousios XXVII,7), attitude, lieu, orient, quatre parties (XXXIII), réception. Mots : Sur la prière, épiousios, doxologie.
 
 Bilan : 6 exercices croisés.
+
+## État (reprise)
+- Leçons 1 à 11 : écrites par le premier rédacteur, complètes.
+- Leçon 12 (« Le traité Sur la prière et le Notre Père ») : écrite à la reprise, 7 exercices.
+- Bilan (99-bilan.html) : 6 exercices croisés (dates ; sources ; Ambroise ; transmission ; l'Écriture au centre ; juger Origène).
+- Reste : réunion, contrôle, passage humaniser de tout le texte, doutes, rapport, essai d'assemblage.
