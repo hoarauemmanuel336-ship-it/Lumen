@@ -1098,3 +1098,78 @@
 - Harrison (1936) et la thèse des deux lettres ; Candida Moss (« vers 200 ou plus tard », d'après Wikipédia).
 - Irénée à Victor (HE V, 24, 14) : la liste des évêques de Rome depuis Xyste, de mémoire.
 - Jérôme, Des hommes illustres 17 : latin « totius Asiae princeps » de mémoire (le sens est vérifié sur l'anglais).
+
+## 23-06-a
+- Extraits d'Hermas traduits depuis l'anglais de newadvent (ANF), vérifiés par fragments ; numéros de paragraphes fins (Vis. I, 3, 4 ; II, 2, 5 ; II, 2, 7 ; III, 3, 3 et 3, 5 ; III, 5, 5 ; III, 6, 7 ; III, 8, 9 ; Préc. IV, 2, 2 ; IV, 3, 1 et 4-6 ; V, 1, 2 ; VI, 2, 1 ; IX, 1 ; XI, 7 ; XII, 3, 5 ; XII, 6, 1 ; Sim. V, 3, 3 ; V, 6, 1 et 5-7 ; VI, 3, 2 ; VIII, 3, 3 ; VIII, 6, 2 ; VIII, 8, 3 ; IX, 1, 1 ; IX, 12, 1, 4 et 8 ; IX, 14, 2 ; IX, 16, 4-7 ; IX, 32, 1 ; X, 4, 4) : chapitres vérifiés, subdivisions données de mémoire.
+- Vis. II, 2, 3 (la femme d'Hermas « ne retient pas sa langue ») et Vis. II, 3, 1 (ne pas garder rancune à ses enfants, « le souvenir des torts fait mourir ») : de mémoire.
+- Vis. III, 10-13 : détails des trois formes (debout pour la deuxième, banc à quatre pieds et quatre éléments, comparaison du vieillard qui hérite) : de mémoire, sens vérifié.
+- Vis. III, 7 : réserve « lieu bien inférieur, après avoir été éprouvées » appliquée aux pierres jetées loin de la tour ; rattachement exact à telle catégorie de pierres à vérifier.
+- Vis. IV : monstre « d'environ cent pieds », Thegri qui ferme la gueule du monstre : de mémoire.
+- Sim. IX, 16, 5-7 (apôtres prêchant aux morts et leur donnant le sceau) et sa reprise par Clément d'Alexandrie : de mémoire.
+- Sim. VIII, 2 (le saule « a la vie dure », reprend vie planté en terre) et Sim. VIII, 3, 2 (le saule = la loi = le Fils de Dieu prêché jusqu'aux extrémités de la terre) : la seconde vérifiée en partie, la première de mémoire.
+- Préc. VII (craindre le Seigneur et non le diable) et Préc. IX, 3 (Dieu sans rancune) : de mémoire.
+- Préc. XI : le faux prophète « fuit l'assemblée des justes » et « cherche la première place » : de mémoire.
+- Absence des noms « Jésus » et « Christ » dans le texte grec : vérifiée seulement sur la traduction anglaise ANF (Similitudes) ; affirmation courante chez les spécialistes, à confirmer sur le grec.
+- « Plus long qu'aucun livre du Nouveau Testament » : de mémoire (sûr pour l'essentiel).
+- Codex Sinaiticus : contient « environ jusqu'au Précepte IV » (New Catholic Encyclopedia : « up to Man. 4 ») ; manuscrit de l'Athos daté XIVe (CE) ou XVe siècle (NCE) ; papyrus du Michigan du IIIe siècle (NCE : Sim. 2-9, publié en 1934 ; date de mémoire) ; fin du livre (fin de Sim. IX et Sim. X) connue seulement en latin : déduit de la NCE et de la CE.
+- Numérotation continue en 114 chapitres : de mémoire.
+- Catalogue libérien (recueil de 354, forme ancienne du IIIe siècle) et poème pseudo-tertullien contre Marcion : d'après la CE.
+- Stanislas Giet et les trois auteurs : de mémoire.
+- Origène, Commentaire sur Romains X, 31 (« très utile et, je pense, divinement inspiré ») : d'après la CE, référence de mémoire.
+- Pseudo-Cyprien, Contre les joueurs de dés, « Écriture divine » : d'après la CE.
+- Seconde lettre de Clément 9, 5 (le Christ, d'abord esprit, s'est fait chair) et 14 (Église créée avant le soleil et la lune) : de mémoire.
+- Didachè 1, 5-6 (donner à tous ; l'aumône qui sue dans les mains) : de mémoire.
+- Origène, Traité des principes, citant les deux anges du Pasteur : de mémoire (III, 2, 4 probablement), donné sans référence.
+- Tertullien, La Pénitence (vers 200 ; image de la porte dans le vestibule, ch. 7) : paraphrasé de mémoire. Datations de La Prière (vers 200) et de La Pudicité (vers 210-220) : approximatives.
+- J. N. D. Kelly, « mélange de binitarisme et d'adoptianisme » : d'après Wikipédia anglaise.
+- Fragment de Muratori : texte latin d'après la CE, traduit ; « jusqu'à la fin des temps » (in finem temporum) de sens discuté.
+- Décret dit de Gélase : « Liber qui appellatur Pastoris » vérifié (liste de l'université de Pennsylvanie).
+- Lumen gentium 8 paraphrasé sans guillemets.
+
+## 23-08-d
+- Extraits de la lettre : traduits par le rédacteur depuis le grec de l’édition affichée sur bkv.unifr.ch (contrôlé par fragments) et l’anglais ANF ; 7, 3-5 manque sur bkv : grec donné de mémoire (ἐν ἐπιεικείᾳ καὶ πραΰτητι… βία γὰρ οὐ πρόσεστι τῷ θεῷ), sens contrôlé sur l’ANF. 8, 7-8 (« bienveillant, bon, sans colère, vrai ») et 8, 4 (« prodiges et impostures de charlatans ») : grec de mémoire, partiellement vu. 12, 8 (Ève « crue vierge ») : absent du grec bkv, présent dans l’ANF ; numéro du verset de mémoire.
+- L1 : titre du manuscrit « À Diognète » (de mémoire). Cotelier (1672) sans la lettre, ajoutée ensuite par d’autres éditeurs (XVIIIe s., d’après la Catholic Encyclopedia). Aristide « peuple nouveau » repris du cours 23-09-g.
+- L2 : Andriessen « dans les années 1940 » (1946-1947) ; Marrou, édition de 1951, Pantène et 190-200 : de mémoire ; Ch. Hill (2006) et Polycarpe, « ancien » d’Irénée IV : de mémoire ; Claudius Diognète procurateur d’Égypte vers 200 et inscription de Smyrne : d’après Wikipédia ; Marc Aurèle, Pensées I, 6 : contenu de mémoire ; kratistos pour les chevaliers : de mémoire ; fragment de Quadratus (Eusèbe, HE IV, 3) paraphrasé de mémoire.
+- L3 : Thomas d’Arezzo et le marchand de poissons vers 1436 : seul « fishmonger’s shop, 1436 » vérifié en ligne ; nom de Thomas d’Arezzo de mémoire (présenté comme « récit transmis »). Reuchlin, Marmoutier vers 1560, Strasbourg 1793-1795, copies Haus (1580, retrouvée à Tübingen en 1880), Beurer (vers 1590), Estienne (Leyde), collations Cunitz 1842 et Reuss 1861 : d’après l’introduction de Richardson (ccel.org). Sylburg 1593 : Catholic Encyclopedia. Incendie du Temple-Neuf dans la nuit du 24 au 25 août 1870, bibliothèque de la ville et du séminaire protestant, Hortus deliciarum : de mémoire. Hypothèse d’un faux de la Renaissance (Donaldson, « savant britannique ») : Catholic Encyclopedia. Notes marginales du copiste aux deux lacunes : de mémoire.
+- L5 : Didachè 8 (jeûne du mercredi et du vendredi) de mémoire ; Nostra aetate 4 paraphrasé sans guillemets, de mémoire. Catéchisme 121 et 123 vérifiés sur vatican.va.
+- L6 : inscription de 1 Clément (« l’Église de Dieu qui séjourne à Corinthe », verbe paroikein) et Didachè 2, 2 : de mémoire ; étymologie paroikia → paroisse : usuelle.
+- L7 : Platon, Phédon (âme gardée, phroura) et Socrate dans l’Apologie (ne pas quitter son poste) : de mémoire ; Tertullien, Apologétique 50 (le sang des chrétiens, semence) : de mémoire ; Catéchisme 365 (l’âme « forme » du corps) : paraphrase de mémoire. LG 38 note 120 (Funk I, p. 400 ; Chrysostome, In Mt. hom. 46 (47), 2) vérifiée sur vatican.va.
+- L8 : Dignitatis humanae 11 vérifié sur vatican.va ; Vatican I sur la connaissance naturelle de Dieu : paraphrase de mémoire.
+- L9 : Catéchisme 615 vérifié ; Catéchisme 460 (Irénée, Athanase) et Irénée, Contre les hérésies V, préface : paraphrases de mémoire ; antienne « O admirabile commercium » du 1er janvier : de mémoire.
+- L10 : Bunsen (1852), Connolly (bénédictin anglais, années 1930), Lightfoot pour Pantène, homélie pascale d’Hippolyte (Schwartz) : d’après Wikipédia et Richardson ; « quelques savants ont défendu l’unité » donné sans nom.
+- L11 : office des lectures du mercredi de la 5e semaine de Pâques (ch. 5-6) et du 18 décembre (passages des ch. 8-9) : jour vérifié sur des sites de la liturgie des Heures en anglais ; chapitres du 18 décembre de mémoire. LG 31, LG 38, Catéchisme 2240 et 2113, Evangelii nuntiandi 41 vérifiés sur vatican.va.
+
+## 26-02-a
+- Leçon 1 : départ de Rome « à la fin de l'été ou à l'automne 388 » après la défaite de Maxime ; mort d'Adéodat « vers 389 ou 390 » et de Nébridius « vers la même époque » (de mémoire, dates usuelles).
+- Leçon 1 : Évodius « ancien agent de l'administration impériale », évêque d'Uzalis ; Alypius évêque de Thagaste « vers 395 » (de mémoire).
+- Leçon 1 : traduction « d'être divinisés dans le loisir » (Lettre 10, 2) vérifiée sur le latin d'augustinus.it ; la phrase « pas encore clercs, mais déjà voués au service de Dieu » (Cité de Dieu XXII, 8) vérifiée sur la traduction anglaise seulement.
+- Leçon 2 : distance Thagaste-Hippone « une centaine de kilomètres » ; donatistes « sans doute plus nombreux que les catholiques à Hippone » (opinion courante, non vérifiée).
+- Leçon 2 : Sermon 355 daté « fin de 425 », Sermon 356 « peu après l'Épiphanie de 426 » (le 355, 7 promet un compte rendu après l'Épiphanie ; l'identification avec le 356 est usuelle).
+- Leçon 3 : « cela avait presque eu lieu, Valère avait caché Augustin » (Possidius 8 : résumé du fetch, le « quod et provenisset » cité de mémoire).
+- Leçon 3 : lettre de Megalius mettant Augustin en cause avant l'ordination, retirée ensuite, exploitée par les donatistes (de mémoire : Contre Cresconius III, 80, 92 ; Contre les lettres de Pétilien III, 16, 19). À vérifier ou retirer.
+- Leçon 3 : mort de Valère « sans doute en 396 ou 397 » ; ordination épiscopale « 395 ou 396 ».
+- Leçon 3 : Cité de Dieu XIX, 19 : la suite « si personne n'impose ce fardeau… » traduite de mémoire du latin (le début vérifié sur newadvent) ; Sermon 340, 1 vérifié par Lumen gentium 32 (référence de la note non vue).
+- Leçon 4 : vaisselle « en terre, en bois ou en marbre » et l'anecdote des évêques médisants (Possidius 22) de mémoire ; seuls les vers et les cuillères d'argent vérifiés. Femmes reçues seulement en présence d'un clerc (Possidius 26) de mémoire.
+- Leçon 4 : Eusèbe de Verceil vivant en commun avec son clergé (de mémoire).
+- Leçon 5 : « mieux vaut que les grammairiens nous reprennent que le peuple ne comprenne pas » (Commentaire du psaume 138, 20) de mémoire ; proverbe punique dans un sermon (Sermon 167, 4) évoqué sans référence.
+- Leçon 5 : la raison donnée par Possidius 19 à la préférence pour juger entre inconnus (gagner un ami / en perdre un) citée de mémoire ; la préférence elle-même vérifiée.
+- Leçon 5 : Le Travail des moines daté « vers 400 », écrit pour des moines de Carthage (de mémoire).
+- Leçon 6 : Lettre 10* : « l'Église d'Hippone a fait délivrer environ cent vingt personnes » et « bien peu avaient été vendues par leurs parents » (d'après le résumé de Frend, JEH 1983 : détails à vérifier sur le texte).
+- Leçon 6 : lettres Divjak « identifiées dans des manuscrits conservés en France » (Marseille, Paris), « vingt-neuf lettres » (de mémoire).
+- Leçon 6 : affaire d'Antoninus de Fussala : l'aveu d'Augustin d'avoir choisi trop vite (Lettre 209) résumé de mémoire.
+- Leçon 6 : correspondance avec Macedonius (Lettres 152-155, vers 414) résumée de mémoire, sans citation ; lettre à Boniface sur la paix et la guerre (Lettre 189, 6) paraphrasée de mémoire.
+- Leçon 6 : Ambroise fondant les vases sacrés après Andrinople (Les Devoirs des ministres II, 28) de mémoire.
+- Leçon 7 : Aurèle évêque « vers 391 ou 392 », mort « vers 430 » ; décision de 407 de ne plus réunir de concile plénier annuel que par nécessité ; Apiarius (418-419) et canons de Sardique : de mémoire.
+- Leçon 7 : Sermon 131, 10 (« la cause est terminée ; plaise à Dieu que l'erreur se termine aussi ») cité de mémoire.
+- Leçon 7 : droit actuel permettant à tout fidèle de porter sa cause devant le Saint-Siège (CIC can. 1417) paraphrasé sans numéro.
+- Leçon 8 : prologue des Révisions : « sévérité de juge », « plume de censeur » (sens vérifié par une traduction française ancienne) ; citation de Proverbes 10:19 dans le prologue et invitation à lire ses œuvres dans l'ordre pour voir son progrès : de mémoire.
+- Leçon 8 : Lettre 143, 2 (« écrire en progressant et progresser en écrivant ») de mémoire.
+- Leçon 8 : assemblée du 26 septembre 426 tenue « dans la basilique de la Paix » (Lettre 213, 1) et allusion à une succession troublée dans une autre Église (Milève) : de mémoire.
+- Leçon 9 : dates de l'arrivée des Vandales (printemps 429), du début du siège (début de l'été 430), lettre de reproche à Boniface (Lettre 220, 427), accusation de Procope : de mémoire.
+- Leçon 9 : Possidius 29 : la deuxième demande de la prière (donner aux serviteurs la force de supporter la volonté de Dieu) et la réponse d'Augustin au malade (« s'il avait ce pouvoir… ») de mémoire ; Possidius 31 : « même des chrétiens et des prêtres dignes d'éloge… sans pénitence convenable » de mémoire. L'attribution à Plotin (Ennéades I, 4, 7) de la pensée du « sage » est celle des éditeurs, non de Possidius.
+- Leçon 10 : Possidius au monastère « peu après 391 », Calama « à une soixantaine de kilomètres au sud d'Hippone », émeute de 408 après une procession interdite, voyage en Italie, lettre 177 de 416 signée par lui : de mémoire (la Catholic Encyclopedia confirme 397, 408, 409, 411, 437).
+- Leçon 10 : date de la Vie « sans doute vers 432-437 » ; citation de Jacques 2:12 (« Sic loquimini et sic facite ») dans Possidius 31 : de mémoire.
+- Leçon 11 : Le Bien du mariage 1 (« premier lien naturel… homme et femme ») et 3 (« ordre de la charité » entre époux âgés) : premiers mots vérifiés sur newadvent, la suite de mémoire ; La Genèse au sens littéral IX, 7, 12 cité de mémoire ; synode de Sirice et Pammachius retirant le Contre Jovinien : de mémoire.
+- Leçon 11 : la faute vénielle de l'union non procréative attribuée au chapitre 6 du Bien du mariage (de mémoire, confirmé indirectement par le Sermon 354A tiré de cet ouvrage).
+- Leçon 12 : Augustin lisant en Luc 1:34 un vœu de virginité de Marie (La Sainte Virginité 4) ; commentaire d'Isaïe 56:5 et d'Apocalypse 14:4 dans le même traité ; comparaison de la vierge orgueilleuse et de l'épouse humble (vers les chapitres 44-45) : de mémoire.
+- Leçon 12 : décret pour les Arméniens (Florence, 1439, DS 1327) paraphrasé de mémoire ; Supplément de la Somme q. 49 (cité par GS 48, note) ; Pierre Lombard, Sentences IV, d. 31.
