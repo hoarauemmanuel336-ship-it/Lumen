@@ -1,0 +1,19 @@
+# Plan du cours 06-05-t : Les trois opérations de l'intelligence (lettre t)
+
+Question centrale : comment l'intelligence humaine pense-t-elle (concevoir, juger, raisonner), et quel art la règle pour qu'elle pense juste ?
+Obstacles du novice : croire que la logique est une affaire de calcul ou de mots ; confondre ce qui est vrai des choses et ce qui est vrai des concepts ; confondre valide et vrai ; croire que la logique moderne a rendu Aristote caduc.
+
+Ordre : d'abord la logique et les trois opérations (car l'ordre de l'Organon en découle), puis l'objet et le statut de la logique, puis l'Organon, l'Isagogè, et enfin logique formelle/matérielle et logique moderne.
+
+1. La logique, art de bien conduire sa raison : nom (logikê, logos ; Romains 12:1), définition (Thomas, In Post. An. proème n. 1 : ordinate, faciliter, sine errore ; ars artium n. 3), logique naturelle et logique savante, à quoi elle sert pour la foi (Actes 17:2-3, 1 Pierre 3:15).
+2. Les trois opérations comme ensemble, et la simple appréhension : exemple concret ; pourquoi trois (In Peri Herm. proème ; I q. 85 a. 5) ; chacune s'appuie sur la précédente ; tableau acte/produit/expression ; simple appréhension (indivisibilium intelligentia ; ni vrai ni faux ; I q. 85 a. 6) ; concepts des dogmes (Mysterium fidei, paraphrase).
+3. Le jugement et le raisonnement : composer et diviser ; vrai et faux dans le jugement (Métaph. E 4) ; assentiment ; « est » (I q. 3 a. 4 ad 2) ; raisonner (I q. 79 a. 8) ; anges et Dieu sans discours (I q. 58 a. 3, q. 85 a. 5) ; foi : II-II q. 1 a. 2 et ad 2.
+4. Le signe et le langage : définition du signe (Augustin, De doctrina christiana II, 1, 1) ; naturel/conventionnel ; instrumental/formel (Poinsot) ; De l'interprétation 1, 16a3-8 ; Thomas In Peri Herm. I, l. 2 ; verbum cordis (I q. 27 a. 1) ; Genèse 2:19 ; noms divins (I q. 13 a. 1) ; Verbe (Jean 1:1, lien 36 ouverture-g).
+5. L'objet de la logique : les êtres de raison : sophisme « l'homme est une espèce » ; être réel / être de raison ; In IV Metaph. l. 4 ; intentions premières et secondes (Avicenne) ; fondement dans la chose ; foi : Dieu hors de tout genre (I q. 3 a. 5), relation de raison (I q. 13 a. 7).
+6. Art ou science : le statut de la logique : art libéral (In Boeth. De Trin. q. 5 a. 1 ad 3) ; trivium ; logica docens / utens (In IV Metaph. l. 4) ; partie ou instrument (stoïciens, Diogène Laërce VII 40 ; péripatéticiens ; Boèce ; Thomas ad 2) ; apprise en premier.
+7. L'Organon : l'ensemble, les Catégories et De l'interprétation : Aristote fondateur (Réf. soph. 34) ; nom et ordre des six traités ; Catégories (liste 1b25 ; substance première 2a11 ; Augustin Conf. IV, 16) ; De l'interprétation (proposition, prière 17a4, contradiction, futurs contingents ch. 9, Boèce).
+8. Les Analytiques, les Topiques et les Réfutations sophistiques : trois processus de la raison (Thomas proème n. 5-6) ; Premiers Analytiques (24b18) ; Seconds (71b9) ; Topiques (100a18, endoxa 100b21, usages, disputatio, lieux théologiques) ; Réfutations (165a21) ; Rhétorique et Poétique.
+9. L'Isagogè de Porphyre et la logique des écoles : Porphyre (vie, Contre les chrétiens) ; l'Isagogè (Sicile 268-270, Chrysaorios, cinq voix, question des universaux) ; Boèce ; logica vetus / nova ; Pierre d'Espagne ; faculté des arts ; Port-Royal.
+10. Logique formelle et logique matérielle : valide et vrai ; forme (lettres d'Aristote) ; matière ; logica minor / major ; Arius (Socrate le Scolastique I, 5) ; I q. 1 a. 8.
+11. La logique moderne et la logique d'Aristote : Kant (B VIII) ; Boole, Frege (1879), Russell et Whitehead (1910-1913) ; quantificateurs, relations (De Morgan) ; extension, portée existentielle, carré ; Łukasiewicz (1951) ; Maritain (1923), Bocheński, cercle de Cracovie ; Fides et ratio 88 (scientisme).
+Bilan : 6 exercices croisés.
