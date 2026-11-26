@@ -15,3 +15,4 @@ Question centrale : comment la philosophie du XXe siècle, partie de la descript
 11. Anscombe et Geach : philosophie analytique au service de la pensée catholique ; Modern Moral Philosophy (1958), ses trois thèses, « conséquentialisme » ; Intention ; Geach ; thomisme analytique.
 12. MacIntyre, Spaemann, Taylor : Après la vertu (1981), pratique, récit, tradition ; Spaemann (Personnes, quelqu'un et non quelque chose) ; Taylor (Sources du moi, L'Âge séculier).
 Bilan : 6 exercices croisés.
+Progression : 00, 01-07 écrits ; suite 08-12 puis bilan.

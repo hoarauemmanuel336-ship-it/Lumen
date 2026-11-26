@@ -19,3 +19,5 @@ Fichiers : 00-ouverture.html (balise cours + introduction), 01.html … 11.html,
 Bilan : 6 exercices croisés.
 
 État : plan écrit ; aucune leçon encore rédigée.
+Avancement : 00 à 09 écrites (session 2).
+Avancement : toutes les leçons et le bilan écrits ; réunion faite.

@@ -18,3 +18,4 @@ Fichiers : 00-ouverture.html, 01.html ... 12.html, 99-bilan.html.
 11. La théologie, science subalternée : ST I, q. 1, a. 2 et objections ; unité (a. 3) ; spéculative et pratique (a. 4) ; conclusion théologique ; débat (Scot, Durand) ; Dei Filius ch. 4 (analogie, lien des mystères) ; lien 03 v.
 12. La théologie, sagesse : ST I, q. 1, a. 6 ; juge des autres sciences ; trois sagesses (métaphysique, théologie, don) ; ad 3 inclination/connaissance ; lien 51 d.
 Bilan : 6 exercices croisés.
+Statut : terminé, livré redaction/06-10-d.html

@@ -1,0 +1,117 @@
+<lecon titre="Logique formelle et logique matérielle" desc="La forme correcte d'un raisonnement et la vérité de son contenu : deux exigences distinctes, toutes deux nécessaires.">
+<objectifs>
+<li>Distinguer la validité d'un raisonnement et la vérité de ses propositions.</li>
+<li>Définir la logique formelle et dire comment elle dégage la forme d'un raisonnement.</li>
+<li>Définir la logique matérielle et dire ce qu'elle examine au-delà de la forme.</li>
+<li>Appliquer cette distinction à l'examen d'un argument contre la foi.</li>
+</objectifs>
+<prerequis>
+<li>Le raisonnement, son antécédent et son conséquent (<a href="#t3">leçon 3</a>).</li>
+<li>Les traités du raisonnement et leurs degrés de certitude (<a href="#t8">leçon 8</a>).</li>
+</prerequis>
+<commencer question="Un raisonnement peut-il être parfaitement correct et conclure au faux ?">
+<p>Lisez ce raisonnement : « Tous les oiseaux volent ; l'autruche est un oiseau ; donc l'autruche vole. » Il a l'air impeccable, et sa conclusion est fausse : l'autruche ne vole pas. Lisez maintenant celui-ci : « Tous les chiens sont des mammifères ; tous les chats sont des mammifères ; donc tous les chats sont des chiens. » Celui-là a l'air presque aussi correct, et sa conclusion est absurde.</p>
+<p>Ces deux exemples ne pèchent pas de la même manière. Le premier part d'une prémisse fausse : tous les oiseaux ne volent pas. Le second part de prémisses vraies, mais sa conclusion ne suit pas. Savoir distinguer ces deux défauts, c'est entrer dans l'une des distinctions les plus utiles de la logique.</p>
+</commencer>
+
+<partie titre="Valide et vrai : deux qualités différentes">
+<p>Un raisonnement a deux sortes de qualités. Les propositions qui le composent sont vraies ou fausses. Le lien entre elles est correct ou incorrect : la conclusion suit des prémisses, ou elle n'en suit pas. Les logiciens appellent valide un raisonnement dont la conclusion suit nécessairement des prémisses.</p>
+<definition terme="Validité">la qualité d'un raisonnement dont la conclusion suit nécessairement des prémisses, de sorte que, si les prémisses étaient vraies, la conclusion ne pourrait être fausse.</definition>
+<p>Les deux qualités sont indépendantes. On peut donc rencontrer quatre cas.</p>
+<table>
+<tr><th>Prémisses</th><th>Lien</th><th>Exemple</th><th>Ce que vaut la conclusion</th></tr>
+<tr><td>Vraies</td><td>Valide</td><td>Tout homme est mortel ; Socrate est un homme ; donc Socrate est mortel.</td><td>Certainement vraie</td></tr>
+<tr><td>Fausses (une au moins)</td><td>Valide</td><td>Tous les oiseaux volent ; l'autruche est un oiseau ; donc l'autruche vole.</td><td>Peut être vraie ou fausse : on ne sait rien</td></tr>
+<tr><td>Vraies</td><td>Non valide</td><td>Tous les chiens sont des mammifères ; tous les chats sont des mammifères ; donc tous les chats sont des chiens.</td><td>Peut être vraie ou fausse : on ne sait rien</td></tr>
+<tr><td>Fausses</td><td>Non valide</td><td>Tous les poissons volent ; tous les oiseaux sont des poissons ; donc tous les oiseaux nagent.</td><td>Peut être vraie ou fausse : on ne sait rien</td></tr>
+</table>
+<p>Un seul cas garantit la vérité de la conclusion : des prémisses vraies et un lien valide. Les trois autres ne garantissent rien. Une conclusion vraie peut même sortir d'un raisonnement défectueux par chance : « Tous les chats ont des griffes ; Minou a des griffes ; donc Minou est un chat » peut aboutir à une conclusion vraie (si Minou est un chat) par un raisonnement qui ne vaut rien.</p>
+<retenir><p>Un raisonnement valide aux prémisses vraies donne une conclusion vraie. Un raisonnement valide aux prémisses fausses, ou un raisonnement non valide, ne garantit rien de la conclusion.</p></retenir>
+<attention><p>Ne dites pas qu'un raisonnement est « vrai » ou « faux » : ce sont les propositions qui sont vraies ou fausses. Un raisonnement est valide ou non valide, et, s'il est valide et part de prémisses vraies, il est concluant. Confondre ces mots conduit à croire qu'un argument est réfuté parce que sa conclusion déplaît, ou qu'il est établi parce que sa forme est correcte.</p></attention>
+</partie>
+
+<partie titre="La logique formelle : la forme seule">
+<p>Le premier et le deuxième raisonnement du tableau ont quelque chose en commun : la même disposition. Remplaçons les termes par des lettres :</p>
+<p>Tout M est P ; S est M ; donc S est P.</p>
+<p>Quels que soient les termes que l'on met à la place des lettres, si les deux premières propositions sont vraies, la troisième l'est aussi. La validité dépend donc de la disposition des termes, quel que soit ce dont on parle. C'est ce que les logiciens appellent la forme du raisonnement. Aristote a été le premier à la dégager en remplaçant les termes par des lettres dans les <i>Premiers Analytiques</i>.</p>
+<p>Comparez la disposition du raisonnement sur les chiens et les chats :</p>
+<p>Tout P est M ; tout S est M ; donc tout S est P.</p>
+<p>Cette forme ne vaut rien : on trouve sans peine des termes qui rendent les prémisses vraies et la conclusion fausse. Le moyen terme (« mammifère ») n'y est jamais pris dans toute son étendue, si bien qu'il ne relie pas vraiment les deux autres. Le cours sur <a href="#ouverture-r">le raisonnement et le syllogisme</a> donne les règles qui permettent de reconnaître une forme valide.</p>
+<definition terme="Forme du raisonnement">la disposition des termes et des propositions d'un raisonnement, considérée indépendamment de ce dont ils parlent ; c'est d'elle seule que dépend la validité.</definition>
+<definition terme="Logique formelle">la partie de la logique qui étudie la forme correcte du raisonnement, c'est-à-dire les conditions de sa validité, indépendamment de la vérité de son contenu ; les scolastiques l'appelaient aussi petite logique (latin <i>logica minor</i>).</definition>
+<p>La logique formelle est puissante parce qu'elle est générale : une forme valide l'est dans toutes les matières, en mathématiques comme en théologie. Elle est aussi limitée par là même : elle ne dit jamais si les prémisses sont vraies. Un menteur habile peut employer une forme parfaite.</p>
+<verifie>Le raisonnement « Tous les saints sont humbles ; Marie est humble ; donc Marie est une sainte » est-il valide ?<reponse>Non. Sa forme est « Tout S est H ; M est H ; donc M est S », la même que celle du raisonnement sur les chiens et les chats. La conclusion est vraie (Marie est sainte), mais elle ne suit pas des prémisses : être humble ne suffit pas à prouver qu'on est saint.</reponse></verifie>
+</partie>
+
+<partie titre="La logique matérielle : la vérité du contenu">
+<p>La forme ne suffit pas. Il faut encore que les prémisses soient vraies, que les termes gardent un seul sens, que les définitions soient justes, et savoir quelle sorte de certitude la conclusion peut avoir. Ce travail est celui de la logique matérielle. Le mot « matière » s'entend ici du contenu du raisonnement, ce dont il est fait, par opposition à sa forme, sa disposition, comme dans une statue la matière est le marbre et la forme la figure.</p>
+<definition terme="Logique matérielle">la partie de la logique qui étudie les conditions de la vérité et de la certitude du contenu du raisonnement : la valeur des prémisses, la justesse des définitions, la nature de la conclusion (certaine, probable ou apparente) ; les scolastiques l'appelaient aussi grande logique (latin <i>logica major</i>).</definition>
+<p>La logique matérielle ne remplace pas les sciences : le logicien ne dit pas si tous les oiseaux volent, c'est l'affaire de l'ornithologue. Mais elle dit à quelles conditions une prémisse peut fonder une science, ce qu'est une bonne définition, comment s'assurer qu'un terme ne change pas de sens, quand une induction est solide, et quel degré de certitude on peut attendre selon la matière. C'est pourquoi les scolastiques rangeaient sous elle les <i>Seconds Analytiques</i> (la démonstration), les <i>Topiques</i> (le probable) et les <i>Réfutations sophistiques</i> (l'apparent), ainsi que la doctrine des prédicables et de la définition.</p>
+<table>
+<tr><th>Logique formelle</th><th>Logique matérielle</th></tr>
+<tr><td>Étudie la forme du raisonnement</td><td>Étudie son contenu et sa valeur de vérité</td></tr>
+<tr><td>Garantit la validité</td><td>Cherche la vérité et la certitude</td></tr>
+<tr><td>Vaut pour toute matière</td><td>Distingue les matières : nécessaire, probable, apparente</td></tr>
+<tr><td><i>Premiers Analytiques</i> (et le traité <i>De l'interprétation</i> pour la forme des propositions)</td><td><i>Seconds Analytiques</i>, <i>Topiques</i>, <i>Réfutations sophistiques</i>, doctrine de la définition</td></tr>
+</table>
+<exemple><p>Un plan d'architecte peut être parfaitement tracé, avec des angles justes et des cotes cohérentes ; si l'architecte a supposé un sol de granit là où il y a de l'argile, la maison s'effondrera. La logique formelle vérifie le tracé ; la logique matérielle vérifie le terrain.</p></exemple>
+<p>Les deux logiques sont nécessaires. Une pensée qui n'aurait que la logique formelle tirerait avec rigueur les conséquences de n'importe quoi. Une pensée qui n'aurait que la logique matérielle saurait reconnaître de bonnes prémisses, mais pourrait en tirer de travers ses conclusions.</p>
+</partie>
+
+<partie titre="Examiner un argument contre la foi">
+<p>La distinction donne une méthode simple pour examiner un argument : regarder d'abord sa forme, puis son contenu. Elle sert particulièrement quand un argument conclut contre la foi.</p>
+<p>Saint Thomas pose ici un principe. Puisque la foi repose sur la vérité infaillible de Dieu, et que l'on ne peut jamais démontrer le contraire d'une vérité, les arguments que l'on oppose à la foi ne sont pas des démonstrations, mais des arguments que l'on peut résoudre (<i>Somme de théologie</i> I, q. 1, a. 8). Un argument qui conclut contre la foi a donc toujours un défaut : ou bien sa forme n'est pas valide, ou bien l'une de ses prémisses est fausse ou prise dans un sens équivoque. Le travail consiste à trouver lequel.</p>
+<h4>Un exemple historique : l'argument d'Arius</h4>
+<p>Au début du IVe siècle, le prêtre Arius soutenait que le Fils de Dieu n'est pas éternel. L'historien Socrate le Scolastique rapporte son raisonnement : si le Père a engendré le Fils, celui qui a été engendré a un commencement d'existence ; il y a donc eu un temps où le Fils n'était pas (<i>Histoire ecclésiastique</i> I, 5). On peut le mettre en forme :</p>
+<ul>
+<li>Tout ce qui est engendré a commencé d'exister.</li>
+<li>Le Fils est engendré par le Père.</li>
+<li>Donc le Fils a commencé d'exister.</li>
+</ul>
+<p>La forme est valide : c'est la forme « Tout M est P ; S est M ; donc S est P ». La logique formelle ne trouve rien à redire. Le défaut est donc matériel. La première prémisse est vraie des êtres qui engendrent dans le temps, les hommes et les animaux : un fils humain vient après son père. Elle n'est pas vraie de toute génération. Dans la seconde prémisse, « engendré » se dit d'une génération éternelle, que la foi confesse. Le terme « engendré » n'a pas exactement le même sens dans les deux prémisses, et la majeure, prise universellement, est fausse. Les Pères de Nicée ont répondu en ce sens : le Fils est « engendré, non pas créé », né du Père avant tous les siècles.</p>
+<exemple><p>On peut faire voir le défaut sans parler de Dieu. « Tout ce qui est engendré vient après son principe » : l'éclat du soleil procède du soleil, et pourtant il existe dès que le soleil existe, sans venir après lui. Les Pères aimaient cette comparaison, que le Credo de Nicée-Constantinople garde dans l'expression « lumière, née de la lumière ». Elle ne prouve pas la génération éternelle, mais elle montre que la majeure d'Arius n'est pas universellement vraie.</p></exemple>
+<p>La question du début reçoit sa réponse. Un raisonnement peut être parfaitement valide et conclure au faux, si l'une de ses prémisses est fausse. La logique formelle garantit que la conclusion suit ; la logique matérielle examine si l'on est parti du vrai. Celui qui défend sa foi doit savoir faire les deux examens.</p>
+</partie>
+
+<essentiel>
+<li>Un raisonnement est valide quand sa conclusion suit nécessairement des prémisses ; ses propositions, elles, sont vraies ou fausses.</li>
+<li>Seul un raisonnement valide aux prémisses vraies garantit la vérité de sa conclusion.</li>
+<li>La forme d'un raisonnement est la disposition de ses termes, indépendamment de ce dont il parle ; la validité ne dépend que d'elle.</li>
+<li>La logique formelle étudie les conditions de la validité ; la logique matérielle étudie la vérité et la certitude du contenu.</li>
+<li>Les scolastiques appelaient la logique formelle petite logique et la logique matérielle grande logique.</li>
+<li>Un argument contre la foi n'est jamais une démonstration : il a toujours un défaut de forme ou une prémisse fausse ou équivoque.</li>
+</essentiel>
+<mots-cles>
+<mot terme="Validité">la qualité d'un raisonnement dont la conclusion suit nécessairement des prémisses, de sorte que des prémisses vraies ne pourraient donner une conclusion fausse.</mot>
+<mot terme="Forme du raisonnement">la disposition des termes et des propositions d'un raisonnement, indépendamment de ce dont ils parlent.</mot>
+<mot terme="Logique formelle">la partie de la logique qui étudie la forme correcte du raisonnement, c'est-à-dire sa validité, indépendamment du contenu ; appelée aussi petite logique.</mot>
+<mot terme="Logique matérielle">la partie de la logique qui étudie la vérité et la certitude du contenu du raisonnement : prémisses, définitions, degré de certitude ; appelée aussi grande logique.</mot>
+<mot terme="Prémisses">les propositions d'où part un raisonnement et dont la conclusion est tirée ; elles forment l'antécédent.</mot>
+</mots-cles>
+<exercices>
+<exercice nom="Valide ou non ?" niveau="1">Pour chaque raisonnement, dites s'il est valide, et si ses prémisses sont vraies. a) « Tout métal conduit l'électricité ; le cuivre est un métal ; donc le cuivre conduit l'électricité. » b) « Tout ce qui est rond est un fruit ; la Terre est ronde ; donc la Terre est un fruit. » c) « Tous les catholiques sont baptisés ; Paul est baptisé ; donc Paul est catholique. »
+<corrige><p>a) Valide (forme « Tout M est P ; S est M ; donc S est P ») et prémisses vraies : la conclusion est certaine. b) Valide, même forme, mais la première prémisse est fausse : la conclusion fausse vient du contenu, non de la forme. c) Non valide : la forme est « Tout C est B ; P est B ; donc P est C » ; on peut être baptisé sans être catholique (un baptisé orthodoxe ou protestant). Les prémisses peuvent être vraies et la conclusion fausse. Le piège est c), dont la conclusion paraît naturelle.</p></corrige>
+</exercice>
+<exercice nom="Dégager la forme" niveau="1">Remplacez les termes par des lettres pour dégager la forme du raisonnement : « Aucun ange n'a de corps ; Gabriel est un ange ; donc Gabriel n'a pas de corps. » Donnez un autre raisonnement de même forme sur un tout autre sujet.
+<corrige><p>Forme : « Aucun M n'est P ; S est M ; donc S n'est pas P. » Autre raisonnement de même forme : « Aucun poisson n'a de poumons ; la truite est un poisson ; donc la truite n'a pas de poumons. » La forme est valide : la conclusion suit, quel que soit le sujet. Le fait qu'elle serve aussi bien pour les anges que pour les truites montre que la validité ne dépend pas de la matière.</p></corrige>
+</exercice>
+<exercice nom="Une conclusion vraie mal tirée" niveau="2">Un apologiste raisonne ainsi : « Tout ce que l'Église enseigne est beau ; la doctrine de l'Incarnation est belle ; donc l'Église enseigne la doctrine de l'Incarnation. » La conclusion est vraie. Le raisonnement est-il bon ? Que lui répondriez-vous ?
+<corrige><p>La conclusion est vraie, mais elle ne suit pas des prémisses. La forme est « Tout E est B ; I est B ; donc I est E », qui n'est pas valide : beaucoup de choses belles ne sont pas enseignées par l'Église (une symphonie, un paysage). La beauté d'une doctrine ne prouve pas qu'elle soit enseignée par l'Église. Il faut répondre à l'apologiste que sa cause est bonne et son argument mauvais. Défendre une vérité par un raisonnement non valide l'affaiblit : un adversaire qui verra le défaut croira avoir réfuté la vérité elle-même.</p></corrige>
+</exercice>
+<exercice nom="Formelle ou matérielle ?" niveau="2">Dites si chacune des questions relève de la logique formelle ou de la logique matérielle : a) cette conclusion suit-elle des prémisses ? b) cette définition de l'homme convient-elle à tout homme et à lui seul ? c) le mot « liberté » a-t-il le même sens dans les deux prémisses ? d) cette induction sur cent cas suffit-elle à établir une loi ? e) deux prémisses négatives peuvent-elles conclure ?
+<corrige><p>a) Logique formelle : c'est la question de la validité. b) Logique matérielle : la justesse d'une définition dépend du contenu. c) Logique matérielle : un terme équivoque fait un raisonnement qui paraît valide et ne l'est pas, mais on ne le découvre qu'en examinant le sens des mots. d) Logique matérielle : la valeur d'une induction dépend de la matière et du nombre des cas. e) Logique formelle : c'est une règle de forme, qui vaut pour toute matière. La question c) montre que les deux logiques se touchent : un terme équivoque introduit en réalité un quatrième terme, ce qui détruit la forme.</p></corrige>
+</exercice>
+<exercice nom="L'argument d'Arius" niveau="2">Mettez en forme l'argument d'Arius, montrez que sa forme est valide, et dites où se trouve son défaut.
+<corrige><p>« Tout ce qui est engendré a commencé d'exister ; le Fils est engendré ; donc le Fils a commencé d'exister. » La forme « Tout M est P ; S est M ; donc S est P » est valide. Le défaut est matériel. La majeure tire de la génération humaine et animale une loi universelle : un fils humain vient après son père, parce qu'il naît dans le temps. Mais la génération du Fils de Dieu est éternelle ; elle n'implique pas un commencement. Le mot « engendré » ne se dit pas de la même manière dans les deux prémisses, et la majeure, prise universellement, est fausse. Le symbole de Nicée répond : « engendré, non pas créé ».</p></corrige>
+</exercice>
+<exercice nom="Une méthode pour les objections" niveau="3">En vous appuyant sur saint Thomas (<i>Somme de théologie</i> I, q. 1, a. 8) et sur la distinction de la leçon, décrivez la méthode à suivre devant un argument qui conclut contre un article de foi. Appliquez-la à l'objection : « Ce qui est un ne peut être trois ; Dieu est un ; donc Dieu ne peut être trois. »
+<corrige><p>Saint Thomas pose que l'on ne peut démontrer le contraire d'une vérité, et que la foi repose sur la vérité de Dieu : un argument contre la foi n'est donc jamais une démonstration, il a un défaut. La méthode est double. D'abord examiner la forme : la conclusion suit-elle ? Si non, le montrer. Si la forme est valide, examiner chaque prémisse : est-elle vraie, et ses termes gardent-ils un seul sens ? Application : la forme est valide (« Tout U est non-T ; Dieu est U ; donc Dieu est non-T »). Le défaut est dans la majeure, qui ne distingue pas sous quel rapport. Ce qui est un sous un rapport ne peut être trois sous ce même rapport : c'est le principe de non-contradiction. Mais la foi ne dit pas que Dieu est un et trois sous le même rapport : il est un selon la substance et trois selon les Personnes. Prise sans distinction, la majeure est fausse ; distinguée, elle ne touche plus la foi. On a montré que l'objection ne conclut pas, sans prétendre démontrer la Trinité.</p></corrige>
+</exercice>
+</exercices>
+<autoevaluation>
+<je-sais exercices="1 3">Je sais distinguer la validité d'un raisonnement et la vérité de ses propositions.</je-sais>
+<je-sais exercices="2 4">Je sais définir la logique formelle et dégager la forme d'un raisonnement.</je-sais>
+<je-sais exercices="4">Je sais définir la logique matérielle et dire ce qu'elle examine au-delà de la forme.</je-sais>
+<je-sais exercices="5 6">Je sais appliquer la distinction entre forme et matière à l'examen d'un argument contre la foi.</je-sais>
+</autoevaluation>
+</lecon>

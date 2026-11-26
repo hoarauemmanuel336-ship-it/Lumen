@@ -16,3 +16,4 @@ Obstacles du novice : croire que la vérité est une opinion forte ; confondre v
 10 La certitude, l'évidence et les degrés de certitude : définition, motif ; évidence immédiate/médiate ; certitude de foi (lien) ; degrés : métaphysique, physique (miracle), morale (conduite humaine, témoignage, histoire) ; Lamentabili 25.
 11 L'erreur : nature, différence avec ignorance et mensonge ; seulement dans le jugement ; rôle de la volonté (Descartes 4e Méditation, Thomas) ; causes : précipitation, passion, préjugé ; remèdes.
 99 Bilan : 6 exercices croisés.
+État : terminé, livré redaction/06-02-v.html
