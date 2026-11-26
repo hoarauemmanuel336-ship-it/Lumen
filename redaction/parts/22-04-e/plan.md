@@ -19,4 +19,4 @@ Leçons (01.html à 11.html) :
 11. La pente de l’école : apollinarisme, puis monophysisme — Apollinaire ; Lettre 101 (bref) ; 377, 381 (canon 1) ; correction alexandrine (Tome 362, 7 ; Cyrille) ; Eutychès 448, Éphèse 449, Chalcédoine 451 ; miaphysisme copte ; déclaration de 1973 ; Jean 12:27, Hébreux 2:17.
 Bilan : 6 exercices croisés.
 
-État : plan fait ; leçons en cours.
+État : livré (22-04-e.html), contrôlé, humanisé, essai d’assemblage réussi.

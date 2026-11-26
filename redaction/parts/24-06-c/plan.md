@@ -1,5 +1,7 @@
 # Plan du cours 24-06-c : Cyrille de Jérusalem (lettre c)
 
+État : TERMINÉ (12 leçons + bilan, assemblé dans redaction/24-06-c.html).
+
 Question centrale : comment devenait-on chrétien au IVe siècle, et que nous apprend l'évêque de Jérusalem qui l'a enseigné ?
 Obstacles du novice : croire que Cyrille fut un semi-arien ; confondre catéchèses baptismales et mystagogiques ; croire que « figure » (typos) du pain nie la présence réelle ; croire que la prière pour les défunts est une invention médiévale ; ignorer le débat d'attribution.
 

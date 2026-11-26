@@ -20,3 +20,5 @@ Fichiers : 00-ouverture.html (balise cours + introduction), 01.html … 12.html,
 12. L'héritage : Athanase de l'Occident, Augustin, Jérôme (« Rhône de l'éloquence latine »), docteur de l'Église (Pie IX, 1851), fête le 13 janvier, Benoît XVI (2007), saint Hilaire en France.
 
 Bilan : 6 exercices croisés.
+
+État : les 12 leçons et le bilan sont écrits (fichiers 00 à 12 et 99), réunis dans redaction/25-01-l.html, contrôlés, passés en revue humaniser, assemblage testé.
