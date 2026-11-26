@@ -255,3 +255,191 @@
 - Leçon 10 : décret du 18 septembre 1861 (date et formule tuto tradi non posse vérifiées dans la Catholic Encyclopedia) ; le contenu de la proposition 1 est paraphrasé de mémoire. Post obitum (1887) et Note CDF du 1er juillet 2001 vérifiés sur vatican.va. Béatification de Rosmini en 2007 : de mémoire.
 - Leçon 10 : concile de Vienne, condamnation des bégards sur la lumière de gloire (Ad nostrum) : paraphrase de mémoire.
 - Leçon 11 : Locke II, 1, 2 ; Berkeley, Principes, introduction ; Hume, Traité I, 1, 1 et I, 1, 7, Enquête section II et fin de la section XII ; Leibniz, Nouveaux Essais II, 1, 2 ; Pascendi (agnosticisme, paraphrasé) : de mémoire.
+
+## 08-08-s
+- Recherche web épuisée en cours de travail (WebSearch hors service, WebFetch bloqué ensuite par la limite) : les points suivants n'ont pas pu être vérifiés en ligne.
+- Leçon 2 : *Somme de théologie* I, q. 14, a. 2, réponse 1 (« retour complet » sur son essence, *Livre des causes*) : référence de mémoire.
+- Leçon 2 : *Somme de théologie* I, q. 84, a. 7 (pas de pensée sans images ; lésion de l'imagination) : de mémoire, très probable.
+- Leçon 2 : Aristote, *De l'âme* III, 4, 429a18-27 (intellect « sans mélange », sans organe) : pagination Bekker de mémoire.
+- Leçon 3 : *Somme de théologie* I, q. 80, a. 2 (la volonté veut le particulier selon une raison universelle de bien) et I-II, q. 1, a. 1 (maître de ses actes) : paraphrases de mémoire.
+- Leçon 4 : I, q. 76, a. 5 (l'âme unie au corps parce qu'elle a besoin des sens) et *Somme contre les Gentils* II, 68 (« horizon et confins ») : de mémoire.
+- Leçon 4 : texte et numéro de la 14e des 24 thèses thomistes (âme subsistante, créée quand elle peut être infusée à un sujet disposé, incorruptible) : de mémoire, non vérifié.
+- Leçon 4 : la forme de corporéité des scotistes, présentée brièvement : à vérifier dans sa formulation.
+- Leçon 5 : I, q. 104, a. 4 (Dieu n'anéantit aucune créature) ; Aristote, *De l'âme* I, 4, 408b18-24 (l'œil du vieillard) ; *Du ciel* I, 4, 271a33 (leçon 6) : de mémoire.
+- Leçon 6 : la phrase « Or, chez les êtres qui connaissent, le désir suit la connaissance » (I, q. 75, a. 6) : la suite du passage est vérifiée, cette phrase-là de mémoire.
+- Leçon 6 : position de Duns Scot (raisons probables, *Ordinatio* IV, d. 43, q. 2, non citée dans le cours) : de mémoire. Cajetan : vérifié (Catholic Encyclopedia).
+- Leçon 6 : Aristote, *De l'âme* II, 4, 415a26-b7 (participation à l'éternel par la reproduction) : pagination de mémoire.
+- Leçon 7 : paginations Stephanus du *Phédon* (64c, 67e, 70c-72e, 72e-77a, 77b-c, 78b-84b, 80b, 82e, 85e-86d, 87b-88b, 102a-107a, 107b) : de mémoire ; traductions personnelles abrégées de 64c, 67e et 80b.
+- Leçon 8 : I, q. 90, a. 2 et I, q. 45, a. 5 : de mémoire. L'enseignement sur le respect de l'embryon « dès la conception » et l'argument du doute est paraphrasé sans citation (*Donum vitae* I, 1 ; *Evangelium vitae* 60, non cités).
+- Leçon 8 : « les théologiens tiennent la création immédiate pour une doctrine certaine » : note théologique donnée de mémoire.
+- Leçon 9 : concile de Braga (561) non mentionné finalement ; Anastase II (498) et Benoît XII d'après la Catholic Encyclopedia (« Traducianism ») ; Frohschammer : livre de 1854 condamné en 1857 (Catholic Encyclopedia). Rosmini : la condamnation de propositions sur ce sujet dans le décret *Post obitum* (1887) est de mémoire.
+- Leçon 9 : Augustin, *Lettre* 166 à Jérôme datée de 415 : de mémoire.
+- Leçon 10 : formulation de la thèse de Pomponazzi (« mortelle, tout en ayant quelque chose de l'immortel ») : de mémoire (mortelle *simpliciter*, immortelle *secundum quid*). Faits de la controverse d'après Wikipedia (en) ; dédicace des *Méditations* de Descartes à la Sorbonne invoquant le concile du Latran, et changement de sous-titre entre 1641 et 1642 : de mémoire.
+- Leçon 11 : I, q. 77, a. 8 (facultés sensibles « en leur racine ») et q. 89, a. 5-6 (science acquise) : de mémoire. *Benedictus Deus* (1336) et la lettre de 1979 paraphrasées sans guillemets.
+- Leçon 12 : I, q. 76, a. 1, réponse 6 (inclination naturelle à l'union) ; I, q. 29, a. 1, réponse 5 ; formule « mon âme n'est pas moi » (*Super I Cor.* 15, l. 2) ; « naturelle par sa fin, non par sa cause » (sans référence) : de mémoire.
+- Leçon 12 : Oscar Cullmann, *Immortalité de l'âme ou résurrection des morts ?*, publication 1956 : de mémoire.
+
+## 08-09-d
+- Vérification en ligne très limitée (recherche web épuisée, plusieurs sites refusés) : vérifiés sur vatican.va : Dignitas infinita (dates, signataires, genèse, plan, 13 sous-titres, n. 1, 7, 8, 9, 10, 11, 12, 13, 14, 24, 25), Gaudium et spes 12 à 22, 24, 25, 27 (titres et citations), Pacem in terris 9 ; Cicéron, Des devoirs I, 105-106 sur thelatinlibrary ; Somme I, q. 29, a. 3 et ad 2, et II-II, q. 64, a. 2, ad 3 sur newadvent (anglais).
+- Date de présentation publique de Dignitas infinita : 8 avril 2024 (de mémoire ; le document est daté du 2 avril).
+- Catéchisme 2267 (rédaction 2018) cité entre guillemets : « la peine de mort est inadmissible car elle attente à l'inviolabilité et à la dignité de la personne » (non revérifié en ligne) ; et l'affirmation que Dignitas infinita le rappelle (n. 34, de mémoire).
+- Kant, Fondements II, AA IV 428, 429, 434, 436 : traductions personnelles faites de mémoire du texte allemand, non revérifiées (korpora.org refusé).
+- Saint Thomas, Commentaire des Sentences III, d. 35, q. 1, a. 4 : « dignitas significat bonitatem alicuius propter seipsum, utilitas vero propter aliud » (paraphrasé ; référence de mémoire, à vérifier, notamment la quaestiuncula).
+- Saint Thomas, Somme contre les Gentils III, 112 (créatures intellectuelles gouvernées pour elles-mêmes) : paraphrase et liste des raisons de mémoire.
+- Saint Thomas, Somme I-II, q. 1, a. 1 (« maître de ses actes ») ; I-II, q. 21, a. 4, ad 3 (l'homme non ordonné à la communauté politique selon tout lui-même) ; I-II, q. 26, a. 4 (aimer, c'est vouloir le bien) ; I-II, q. 95, a. 2 (corruption de la loi) ; II-II, q. 57, a. 1 (le droit objet de la justice) ; I, q. 93, a. 4 (trois degrés de l'image) ; Du royaume I, 1 (animal social et politique) : références de mémoire.
+- César, Guerre civile I, 9 (dignité plus chère que la vie) : référence de mémoire.
+- Saint Léon le Grand, Sermon 21, 3 : traduction personnelle de mémoire (« Agnosce, o christiane, dignitatem tuam… »).
+- Aristote : De l'âme III, 8, 431b21 ; Métaphysique Γ, 2, 1003a33-b4 (exemple de « sain ») ; Éthique à Nicomaque II, 6, 1106a15-17 et IX, 4, 1166a31-32 ; Politique I, 2, 1252b29-30, 1253a2-3, 1253a7-10, 1253a27-29 : pagination Bekker de mémoire (perseus refusé).
+- Platon, Gorgias 469c (préférer subir l'injustice) : de mémoire.
+- Augustin, Confessions I, 1 ; Du libre arbitre I, 5, 11 (« une loi injuste ne semble pas être une loi ») : de mémoire.
+- Boèce, Contre Eutychès et Nestorius, chapitre 3 : de mémoire.
+- Locke, Essai II, 27, 9, citation traduite de mémoire ; chapitre ajouté en 1694 (2e édition).
+- Tooley, « Abortion and Infanticide » (1972) ; Singer, Practical Ethics (1979), titre français « Questions d'éthique pratique » ; Ryder et le mot « spécisme » ; Spaemann, Personen (1996), argument paraphrasé : de mémoire.
+- Pic de la Mirandole : discours composé en 1486, titre « De la dignité de l'homme » donné après coup (dit « connu sous le titre ») ; contenu paraphrasé.
+- Binding et Hoche, 1920, « Die Freigabe der Vernichtung lebensunwerten Lebens » : de mémoire.
+- Veritatis splendor 41 (« théonomie participée ») et 80 (reprise de la liste de GS 27) : de mémoire.
+- Humani generis 36 (création immédiate des âmes) : de mémoire.
+- Jean-Paul II, Angélus d'Osnabrück, 16 novembre 1980 : vérifié par la présentation de Dignitas infinita ; sa parole est paraphrasée, sans guillemets.
+- Maritain et l'enquête de l'UNESCO (« d'accord à condition qu'on ne demande pas pourquoi ») : paraphrase sans guillemets.
+- Radbruch (1946) : formule paraphrasée.
+- Gaudium et spes 27 : énumération des « prochains » (vieillard abandonné, travailleur étranger, exilé, enfant né d'une union illégitime, affamé) et mention de Lazare : de mémoire, paraphrasées.
+- Pacem in terris (« construire d'une main et détruire de l'autre », n. 30) : paraphrasé sans numéro.
+- Déclaration universelle de 1948 : préambule et article 1 cités de mémoire (concordent avec le cours 91 déjà en ligne).
+- Victor de l'Aveyron (découvert en 1800, Jean Itard) : de mémoire.
+
+## 10-07-s
+- Naissance « vers 1225 » (1224 ou 1225), oblature au Mont-Cassin vers 1230, entrée chez les Prêcheurs vers avril 1244, captivité d'environ un an (1244-1245) : chronologie de Torrell, de mémoire ; la Catholic Encyclopedia donne d'autres dates (captivité « près de deux ans »).
+- Maîtrise de Thomas au printemps 1256, « plus jeune que ne le prévoyaient les statuts, ce qui demanda l'intervention du pape » : de mémoire (licence obtenue à la demande d'Alexandre IV) ; admission parmi les maîtres en 1257 avec Bonaventure.
+- Parole du « bœuf muet » : rapportée par Guillaume de Tocco (vérifiée sur la Catholic Encyclopedia pour le sens) ; voyage d'Albert à Paris après 1277 pour défendre Thomas : tradition tardive, signalée comme discutée.
+- Parole « tout ce que j'ai écrit me semble de la paille au regard de ce que j'ai vu » : témoignage de Barthélemy de Capoue au procès de Naples (1319), de mémoire, non vérifié en ligne.
+- Accident de la branche en route vers Lyon, commentaire du Cantique à Fossanova, soumission de ses écrits à l'Église romaine en recevant le viatique : traditions des biographes, de mémoire.
+- « Contemplata aliis tradere » : Somme de théologie II-II, q. 188, a. 6, de mémoire.
+- Édition léonine « voulue par Léon XIII à partir de 1879 » : de mémoire (commission fondée 1879-1880).
+- Science acquise du Christ, « bien que j'aie écrit autrement ailleurs » : Somme de théologie III, q. 9, a. 4, de mémoire.
+- Explications du Credo, du Pater, de l'Ave et des commandements prêchées à Naples au carême 1273 : datation courante, de mémoire.
+- Office de la Fête-Dieu (1264) attribué à Thomas, authenticité discutée de l'Adoro te : de mémoire.
+- Liste et dates des douze commentaires d'Aristote (1267-1273, Métaphysique livres I à XII) ; découverte de Proclus dans le commentaire du Livre des causes (1272) ; rôle de Moerbeke : de mémoire. La phrase « studium philosophiae non est ad hoc quod sciatur quid homines senserint, sed qualiter se habeat veritas rerum » est vérifiée (In De caelo I, lect. 22, n. 8, corpusthomisticum).
+- Dates des commentaires bibliques (Isaïe vers 1251-1253, Job 1263-1265, Matthieu 1269-1270, Jean 1270-1272, Psaumes 1272-1273 jusqu'au Ps 54) et de la Catena aurea (1262-1267) : de mémoire, plusieurs datations discutées.
+- Leçon inaugurale « Rigans montes » et son contenu (maîtres, auditeurs) : de mémoire.
+- Pierre le Chantre, « legere, disputare, praedicare » : de mémoire.
+- ST I, q. 1, a. 10, réponse 1 (sens littéral seul argumentatif) : vérifié ; l'ajout « rien de nécessaire à la foi n'est contenu dans le sens spirituel sans être dit ailleurs selon la lettre » est de mémoire (même réponse).
+- Questions disputées : De veritate 29 questions (1256-1259), De potentia 10 questions (vers 1265-1266), De malo 16 questions (vers 1266-1272), douze quodlibets : de mémoire.
+- ST I, q. 2, a. 3 : contenu des objections, sed contra (Exode 3:14) et réponses (Augustin, Enchiridion) de mémoire.
+- Aristote, Métaphysique III (l'image du nœud) et son commentaire par Thomas : de mémoire, paraphrasé sans guillemets.
+- SCG : titre des manuscrits, dates (vers 1259-1265), autographe conservé, récit de Raymond de Peñafort (chronique de Pierre Marsili, 1313) : de mémoire. Textes de SCG I, 1-3 et 9 vérifiés sur corpusthomisticum (pro nostro modulo manifestare… : fin de phrase de mémoire). SCG I, 4 (trois raisons) et I, 7 paraphrasés de mémoire.
+- ST : prologue et plan de I, q. 2 vérifiés ; nombre de questions par partie (119, 114, 189, 90 ; 512) de mémoire ; hypothèse de L. Boyle et article de Chenu (1939) de mémoire ; prologue de la IIIa paraphrasé de mémoire.
+- ST I, q. 1, a. 8, réponse 2 et sed contra : vérifiés (corpusthomisticum). ST I, q. 1, a. 1, réponse 2 (astronome et physicien) et ST I, q. 2, a. 2, réponse 1 (fides praesupponit cognitionem naturalem) : de mémoire.
+- ST I, q. 84, a. 5 (« participata similitudo luminis increati ») ; ST I, q. 3, prologue (« quid non sit ») ; ST I, q. 44, a. 1 (participation à l'être) ; ST I, q. 13, a. 11 (Qui est) : de mémoire. De potentia q. 7, a. 2, ad 9 : vérifié.
+- De l'unité de l'intellect : la formule « per rationem concludo de necessitate… » et la phrase finale « Si quis autem gloriabundus… » sont vérifiées ; « Averroès… dépravateur de la philosophie péripatéticienne » et l'image du mur sont de mémoire.
+- Siger : « chercher l'intention des philosophes plutôt que la vérité » (De anima intellectiva), citation à l'inquisiteur en 1276, mort à Orvieto vers 1284 tué par un clerc devenu fou : de mémoire. Dante, Paradis X, 136-138 : traduction personnelle, de mémoire.
+- Tempier, 10 décembre 1270, treize propositions ; 7 mars 1277, 219 propositions, lettre de Jean XXI du 18 janvier 1277, seize théologiens, prologue « quasi sint duae contrariae veritates » ; Kilwardby, 18 mars 1277, trente propositions : de mémoire (la page de la Stanford Encyclopedia n'a pas pu être consultée).
+- Thèses thomistes atteintes et estimation « de quelques propositions à une vingtaine » (Hissette 1977) : de mémoire.
+- Correctoire de Guillaume de la Mare (vers 1278-1279), chapitre franciscain de Strasbourg (1282), chapitres dominicains de 1278, 1279, 1286 : de mémoire.
+- Enquêtes de canonisation (Naples 1319, Fossanova 1321) ; canonisation le 18 juillet 1323 (vérifiée) ; mot de Jean XXII sur les miracles et les articles : signalé comme attribution ; révocation par Étienne Bourret le 14 février 1325 et sa formule : de mémoire.
+- Translation des reliques à Toulouse le 28 janvier 1369 (vérifiée) ; repos actuel aux Jacobins (retour en 1974) et fête le 28 janvier depuis 1969 : de mémoire.
+- Pie V, bulle Mirabilis Deus, 11 avril 1567 ; édition piane 1570 ; Somme sur la table du concile de Trente (tradition reprise par Aeterni Patris, non attestée dans les actes) : de mémoire, date de la bulle non vérifiée en ligne.
+- Capreolus : naissance vers 1380 (diocèse de Rodez), chapitre de Poitiers 1407, Paris 1408, régent à Toulouse, mort à Rodez le 6 avril 1444, livres achevés en 1409, 1426, 1428, 1433, liste des adversaires : vérifiés sur la Catholic Encyclopedia. « Devient maître en théologie » (licence 1411) : de mémoire. Origine du titre « prince des thomistes » inconnue.
+- Optatam totius 16 et Fides et ratio 43-44 : citations vérifiées sur vatican.va (par morceaux). Fides et ratio 49 (pas de philosophie propre) : paraphrasé sans guillemets, de mémoire. Code de 1983 (canon 252, § 3) mentionné sans citation.
+
+## 10-05-c
+- Actes 17:28 : attribution de « en lui nous avons la vie… » à Épiménide présentée comme incertaine ; « nous sommes de sa race » = Aratos, Phénomènes 5 (de mémoire, sûr).
+- Clément, Stromates I, 11 (50) : lecture de Colossiens 2:8 comme visant les épicuriens (« abolit la providence et divinise le plaisir ») : vérifié sur la traduction anglaise de newadvent ; numéro de paragraphe 50 de mémoire.
+- Justin : 1 Apol 46, 59-60 ; 2 Apol 10 et 13 ; Dialogue 2 et 8 vérifiés sur newadvent (sens) ; Dialogue 7 (prophètes plus anciens) de mémoire. Traductions françaises faites par moi d'après l'anglais et le souvenir du grec.
+- Tertullien, Prescription 7 : latin vérifié pour « Quid ergo Athenis… », « Viderint… », « Nobis curiositate… », « Ipsae denique haereses… » ; la phrase sur Aristote (« Miserum Aristotelen… ») et « Nostra institutio de porticu Salomonis » de mémoire (la page la plaçait au ch. 8, 10 selon un découpage ; l'usage savant met tout au ch. 7). « Cum credimus, nihil desideramus ultra credere » de mémoire.
+- Tertullien, La Chair du Christ 5 (« credibile est, quia ineptum est ») et rapprochement avec un lieu commun de la Rhétorique d'Aristote : de mémoire.
+- Origène, Lettre à Grégoire 1 : sens vérifié sur newadvent ; « Ader » (Hadad l'Édomite) et les veaux d'or de Béthel : vérifié.
+- Augustin, Doctrine chrétienne II, 18, 28 et II, 40, 60-61 : vérifiés sur newadvent (anglais), latin de mémoire ; « mines de la providence » vérifié.
+- Augustin, Sermon 43 : §§ 2-3 et 7, 9 vérifiés sur augustinus.it (le § des pierres et bêtes cité « 43, 3 » : peut-être 43, 2-3).
+- Fides et ratio 38, 40, 41 et titres des chap. II et III : vérifiés sur vatican.va.
+- Lumen gentium 16 (praeparatio evangelica), Ad gentes 11 (semina Verbi), Gaudium et spes 14, Dignitatis humanae 1 et 12, Mysterium fidei 24, Catéchisme 251 : paraphrasés de mémoire, non revérifiés en ligne.
+- Méliton (« notre philosophie », Eusèbe HE IV, 26, 7) ; Augustin, Cité de Dieu VIII, 1 (« verus philosophus est amator Dei ») ; Confessions VII, 20, 26-21, 27 ; VI, 16, 26 (palme à Épicure) ; Rétractations I, 1, 4 ; Lettre 120, 1, 3 ; Prédestination des saints 2, 5 ; Trinité XV, 2, 2 ; Cité de Dieu V, 1 ; V, 9-10 ; XI, 26 ; XII, 14 ; XIV, 9 ; Vraie religion 39, 72 ; Confessions XI, 14, 17 et XIII, 9, 10 ; De l'utilité de croire 1, 2 : de mémoire.
+- Celse et les cardeurs de laine, Contre Celse III, 55 ; Origène, Contre Celse VI, 71 (Dieu des stoïciens corporel) : de mémoire.
+- Pierre Hadot cité comme historien de la « philosophie comme manière de vivre » : de mémoire.
+- Philon : dates (vers 20 av. - vers 45/50), ambassade 39-40, image de l'architecte (Création du monde 17-20), « second Dieu » (Questions sur la Genèse II, 62, chez Eusèbe), proverbe rapporté par Jérôme (De viris illustribus 11), Clément l'appelant « le pythagoricien », emprunts d'Ambroise : de mémoire. Le débat sur la création ex nihilo chez Philon est signalé comme discuté.
+- Stoïciens et épicuriens : dates des fondateurs ; Tertullien, De l'âme 20 (« Seneca saepe noster ») ; correspondance apocryphe Paul-Sénèque mentionnée par Jérôme ; Ambroise, Des devoirs (vers 389) ; paraphrase chrétienne du Manuel d'Épictète ; Cicéron, République III, 33 cité par Lactance, Institutions divines VI, 8 ; Lactance, La Colère de Dieu 13 (dilemme du mal) et doute moderne sur son attribution à Épicure : de mémoire.
+- Basile, Aux jeunes gens : chapitres 2 (teinturiers), 3 (arbre, Moïse, Daniel), 4 (abeilles, roses), 5 (Hésiode, Prodicos) de mémoire ; traduction des abeilles faite par moi sur le souvenir du grec ; destinataires « de sa parenté » (neveux, selon la tradition) non vérifié ; anecdote de Socrate frappé au visage (chap. 7 ?) de mémoire ; traduction latine de Leonardo Bruni « au début du XVe siècle » (vers 1400-1403) de mémoire.
+- Édit de Julien du 17 juin 362 et lettre explicative ; Apollinaire père et fils (Socrate, HE III, 16) ; Grégoire de Nazianze, Discours 43, 11 (défense de la culture) : de mémoire.
+- Grégoire de Nysse, Vie de Moïse (fille du Pharaon stérile, II, 10-12 ; richesses d'Égypte, II, 112-116) : de mémoire.
+- Némésius : date, Émèse, traductions d'Alfano (vers 1080) et Burgundio (vers 1165), attribution à Grégoire de Nysse, Maxime, Jean Damascène, Albert et Thomas : vérifiés sur Wikipédia. Critique de l'entéléchie d'Aristote, union « comme la lumière et l'air » attribuée à Ammonios, application à l'Incarnation, préexistence des âmes (« semble admettre ») : de mémoire, à vérifier.
+- Concile de Nicée, anathème « d'une autre hypostase ou ousia » ; Jérôme, Lettre 15 (vers 376) ; concile d'Alexandrie de 362 ; Basile, Lettre 236, 6 ; Tertullien, Contre Praxéas (vers 213) ; Chalcédoine ; Boèce, Contre Eutychès 3 ; Thomas, I, q. 29, a. 3 : de mémoire.
+- Boèce : naissance vers 480, consul 510, fils consuls et maître des offices 522, mort « sans doute en 524 » ; culte confirmé en 1883 ; liste des traductions ; « quadrivium » (Institution arithmétique I, 1) ; réponse aux universaux (second commentaire de l'Isagogè) ; De Trinitate 4 (catégories changées en Dieu) ; Dante, Paradis X, 124-129 ; traductions d'Alfred, Jean de Meun, Chaucer : de mémoire. Formule « dernier des Romains, premier des scolastiques » signalée comme moderne et d'origine incertaine.
+- Philopon : dates, Ammonios, Contre Proclus (529), Contre Aristote, Sur la création du monde (vers 550), impetus, condamnation comme trithéiste à Constantinople III : vérifiés sur Wikipédia. Les trois arguments de l'infini et leur attribution précise entre Contre Proclus et Contre Aristote : de mémoire. Réponse de Thomas (I, q. 46, a. 2, ad 6) et position de Bonaventure : de mémoire.
+- 529 : décret rapporté par Malalas (XVIII, 47), loi du Code de Justinien (I, 11, 10), départ en Perse vers 531, traité de 532 selon Agathias (II, 30-31), Damascius et Simplicius nommés : partiellement vérifiés (Wikipédia) ; école rouverte « au début du Ve siècle » ; Mont-Cassin « vers 529 » présenté comme date traditionnelle ; Élias, David, Étienne (Constantinople au début du VIIe siècle) : de mémoire.
+- Pages non consultables : plato.stanford.edu/entries/nemesius (permission non accordée à temps), en.wikisource (Basile), Fordham sourcebook (Basile). Recherche web épuisée en cours de travail.
+
+## 06-01-l
+- Aristote : numéros de Bekker donnés de mémoire (Perseus et remacle inaccessibles) : Métaphysique 980a21, 982a8-19, 982a17-18, 982b12-13, 982b25-28, α 993b20-21, Γ 1003a21-22, E 1026a18-19 ; De l'âme II, 1, 412b5-6 ; Éthique à Nicomaque 1094a1-3, 1094b12-25, 1103b27-29. Les traductions françaises de ces extraits sont faites de mémoire du grec, non relues sur le texte.
+- Platon, Théétète 155d (l'étonnement, « pathos du philosophe ») : traduit de mémoire.
+- Cicéron, Tusculanes V, 3, 8-9 : récit de Pythagore et du prince (Léon de Phlionte) donné de mémoire, en paraphrase.
+- Saint Thomas, passages non relus sur le texte latin (paraphrasés ou traduits de mémoire) : ST I q.1 a.6 (exemple de l'architecte, et réponse 3 sur la chasteté et la connaturalité) ; ST I q.1 a.8 réponse 2 (argument d'autorité « infirmissimus ») ; ST I q.3 prologue ; ST I q.32 a.1 (raisons non nécessaires et moquerie des infidèles) ; ST I q.45 a.2 réponse 2 ; ST I q.79 a.11 ; ST I-II q.94 a.4 (dépôt et patrie) ; ST II-II q.1 a.5 ; SCG II, 4 (ordre inverse philosophie / foi) ; Super Boet. De Trin. q.5 a.1 (division des sciences spéculatives) ; date du commentaire de Boèce (vers 1257-1259) et de la Prima pars (vers 1266-1268).
+- Super Boet. De Trin. q.2 a.3 : l'objection 5 citerait Isaïe 1:22 (vin coupé d'eau) : déduit de la réponse 5 vérifiée, non relu. Le sens précis de l'exemple d'Origène (préexistence des âmes) est une interprétation, présentée prudemment.
+- Philon (De congressu, Agar servante de Sara), Clément d'Alexandrie (Stromates I, 5), Pierre Damien (De divina omnipotentia, l'art humain « comme une servante ») : paraphrases de mémoire.
+- Kant, Le Conflit des facultés (1798), image du flambeau et de la traîne : de mémoire.
+- Augustin, Cité de Dieu VI, 5 (les trois théologies de Varron) : de mémoire.
+- Christian Wolff : psychologie empirique et rationnelle, théologie naturelle séparée de l'ontologie (XVIIIe siècle) : de mémoire.
+- Agostino Steuco, De perenni philosophia (1540), et reprise par Leibniz : de mémoire.
+- Débat sur la philosophie chrétienne à partir de 1931 (Bréhier contre Gilson et Maritain) et la comparaison de Bréhier avec une « mathématique chrétienne » : de mémoire.
+- Maritain et la « philosophie morale adéquatement prise » : de mémoire, présenté comme débat libre.
+- Dei Filius chap. 2 et 4 : paraphrasés en français à partir de la traduction anglaise de papalencyclicals.net (texte français non consulté).
+- Latran IV (1215), formule de la dissemblance plus grande ; Trente (1551), transsubstantiation : de mémoire, en paraphrase.
+- Canon 250 (six années dont deux de philosophie) : vérifié par un résumé de la page vatican.va, non mot pour mot.
+- Fides et ratio 4 : la précision « que chacun possède » (hors guillemets) sur la philosophie implicite est de mémoire.
+- Homère : sophia d'abord habileté du charpentier (Iliade XV, 412, non cité) : de mémoire.
+
+## 06-11-s
+- Aristote, Réfutations sophistiques 1, 165a21-23 (définition de la sophistique) et 4, 165b23 (deux familles) : traduction personnelle, numéros Bekker cités de mémoire.
+- Aristote, Réf. soph. 1 (les noms en nombre limité, les choses en nombre illimité), 3 (les cinq buts du sophiste), 5 (pluie et sol mouillé ; définition de la réfutation), 18 (résoudre = montrer d'où vient la fausseté), 30 (diviser la question multiple), 34 (rien avant lui sur le raisonnement) : paraphrasés de mémoire, chapitres non vérifiés en ligne.
+- Aristote, Topiques I, 1 (raisonnement éristique : prémisses qui paraissent probables ou conclusion qui paraît suivre) et VIII, 11 (sophisme = « syllogisme éristique ») ; Topiques VIII, 13 (manières de demander le principe) ; Seconds Analytiques I, 3 (cercle) ; Rhétorique II, 24 (post hoc) : de mémoire.
+- Exemples d'Aristote rapportés sans citation : l'homme assis qui peut marcher, cinq = deux et trois, le vers d'Homère (accent), « être en bonne santé » (forme de l'expression), l'homme à la peau noire et aux dents blanches (secundum quid), l'homme voilé : de mémoire.
+- Kant, Logique (Jäsche, 1800), § 90 : distinction paralogisme (on s'abuse soi-même) / sophisme (on veut abuser autrui), paraphrasée de mémoire.
+- De fallaciis attribué au jeune Thomas, « attribution parfois discutée » : à confirmer.
+- Platon, Euthydème 277e-278b (deux sens de manthanein) et 298d-e (le chien père) ; République I, 331c (Céphale, les armes de l'ami fou) : références Stephanus de mémoire.
+- Homère, Odyssée IX (« Personne ») : chant cité sans vers.
+- Innocent XI, 1679 : condamnation des propositions laxistes sur l'amphibologie et la restriction mentale dans le serment (propositions 26-27, DS 2126-2127), citée sans numéros.
+- Pascal, De l'esprit géométrique : conseil de substituer mentalement les définitions aux définis, paraphrasé.
+- Saint Thomas, Somme I, q. 14, a. 13, ad 3 (sens composé / divisé, blanc et noir) : vérifié sur newadvent (anglais), rendu en paraphrase.
+- Saint Thomas, Somme I, q. 19, a. 7, ad 2 (le regret dit de Dieu par ressemblance des effets) ; I-II, q. 94, a. 4 (le dépôt à ne pas rendre) ; II-II, q. 83, a. 2 (la prière obtient ce que Dieu a disposé d'accomplir par elle) : de mémoire, paraphrasés.
+- Saint Thomas, Commentaire du De caelo, livre I, leçon 22 (l'étude de la philosophie vise la vérité des choses, non ce que les hommes ont pensé) : non vérifié (site inaccessible), donné en paraphrase sans guillemets.
+- Somme I, q. 1, a. 8, ad 2 (texte latin infirmissimus / efficacissimus) et obj. 2 (« secundum Boetium ») : vérifiés sur corpusthomisticum ; la répartition Écriture nécessaire / docteurs probables / philosophes étrangers et probables, de la même réponse, vérifiée mais formulée en paraphrase.
+- Dei Filius, ch. 3 : latin « propter auctoritatem ipsius Dei revelantis, qui nec falli nec fallere potest » cité de mémoire, traduction personnelle ; « hommage conforme à la raison » et « l'Église, motif perpétuel de crédibilité » paraphrasés.
+- Augustin, De Trinitate I, 7 (règle « forme de Dieu / forme de serviteur ») : de mémoire ; Quicumque « aequalis Patri secundum divinitatem, minor Patre secundum humanitatem » : de mémoire.
+- Lumen gentium 8 (sainte et toujours appelée à se purifier) et 12 (infaillibilité du peuple de Dieu in credendo) : paraphrasés.
+- Débat Russell-Copleston (BBC, 1948) et l'objection « chaque homme a une mère, le genre humain n'en a pas » : paraphrase de mémoire.
+- Mill, L'Utilitarisme (1861), ch. 4 (visible / désirable) et Moore, Principia Ethica (1903) : paraphrasés de mémoire.
+- Freud, L'Avenir d'une illusion (1927) : qu'une illusion n'est pas forcément fausse (ch. 6), de mémoire.
+- Hume, Enquête, section X, et C. S. Lewis, Miracles (1947), ch. 13 : paraphrasés de mémoire.
+- Arnauld, Quatrièmes objections (1641), et la réponse de Descartes (évidence présente / souvenir) : paraphrasés.
+- Molière, Le Malade imaginaire (1673), « vertu dormitive » (troisième intermède) : de mémoire.
+- Tertullien, Apologétique 40 : texte latin vérifié sur thelatinlibrary ; date « vers 197 » conventionnelle.
+- Augustin, Cité de Dieu II, 3 « Pluvia defit, causa christiani sunt » : vérifié (thelatinlibrary écrit Pluuia).
+- Cicéron, De divinatione II, 116 (oracle de Pyrrhus, doute sur Apollon parlant latin et soupçon contre Ennius) : vérifié ; la remarque « Apollon n'a jamais parlé latin » est de mémoire (même passage).
+- Cicéron, De natura deorum I, 10 (ipse dixit) : vérifié.
+- Locke, Essai IV, 17, 19-22 (ad verecundiam, ad hominem au sens de presser avec ses propres principes) : de mémoire.
+- Ignace, Exercices spirituels n. 22 (présupposé) : paraphrasé de mémoire.
+- Concile de Trente, session VI (1547), canon 8 (la crainte de l'enfer n'est pas un péché) : de mémoire.
+- Jérôme, Dialogue contre les lucifériens 19 (« le monde entier gémit de se découvrir arien ») ; Vincent de Lérins, Commonitorium ch. 2 : de mémoire.
+- Jean-Paul II et Galilée : « a reconnu les torts de ceux qui l'ont jugé » (discours de 1992), formulation à vérifier.
+- Cygnes noirs découverts en Australie « à la fin du XVIIe siècle » (Vlamingh, 1697) : de mémoire.
+- Dignitatis humanae 1 et Tertio millennio adveniente 35 : vérifiés sur vatican.va. Fides et ratio 38 (Clément, « la haie et le mur de la vigne ») et prologue (« deux ailes ») : vérifiés.
+
+## 10-16-r
+- Scheler : date de son entrée dans l'Église catholique (1899 ou 1901 selon les sources) ; le cours dit seulement « jeune homme ».
+- Scheler : définition de la personne (« unité concrète d'actes de nature différente », Formalisme) et formule « ens amans » d'Ordo amoris, données de mémoire et paraphrasées.
+- Scheler : témoignage d'Edith Stein sur ses conférences de Göttingen (paraphrasé de mémoire, d'après Aus dem Leben einer jüdischen Familie).
+- Hildebrand : soutenance de thèse en 1912 et publication en 1916 ; date de Christian Ethics (1952 ou 1953 : le cours dit « au début des années 1950 ») ; « Pie XII, docteur de l'Église du XXe siècle » signalé comme témoignage indirect ; propos de Ratzinger paraphrasé sans guillemets ; défense publique de Humanae vitae en 1968-1969.
+- Hildebrand : la phrase sur les pages de Scheler consacrées à saint François (d'après Wikipédia anglaise).
+- Edith Stein : thèse soutenue en 1916 (le site du Vatican dit doctorat 1917) ; prise d'habit « avril 1934 » (14 ou 15 avril selon les sources) ; service d'infirmière en 1915 en Moravie ; l'épisode de la femme au panier dans la cathédrale de Francfort et la « première rencontre avec la Croix » chez Anna Reinach (récits autobiographiques, paraphrasés) ; « C'est la vérité » signalé comme récit transmis ; « elle s'est sentie de nouveau juive le jour où elle est devenue catholique » (propos rapporté, à vérifier) ; lettre à Pie XI en avril 1933.
+- Edith Stein : rédaction de L'Être fini et l'Être éternel « entre 1935 et 1937 » (1935-1936, révisé 1937) ; image de l'enfant porté par sa mère et citation d'Exode 3:14 dans le livre (de mémoire) ; place du chapitre sur l'image de la Trinité ; lettre d'octobre 1938 où elle se compare à la reine Esther ; testament de 1939 (les intentions énumérées) ; lettre de 1938 à une bénédictine (Adelgundis Jaegerschmid, 23 mars 1938) « qui cherche la vérité cherche Dieu ».
+- Erich Przywara, Analogia entis : 1932.
+- Mounier : premier livre sur Péguy (1931) ; arrestation en 1942, grève de la faim, libération sans condamnation ; définition du personnalisme du Manifeste (1936) paraphrasée sans guillemets ; trois dimensions vocation, incarnation, communion.
+- Pie XI, Divini Redemptoris (1937) « intrinsèquement pervers » paraphrasé ; décret du Saint-Office de 1949 paraphrasé.
+- Marcel : naissance en décembre 1889 (7 ou 8) ; service de la Croix-Rouge pour les disparus ; lettre de Mauriac en 1929 et baptême le 23 mars 1929 ; l'employé du métro (Position et approches) ; « J'espère en toi pour nous » (Homo viator) et « Aimer un être, c'est lui dire : toi, tu ne mourras pas » (réplique d'une pièce) donnés de mémoire ; Sartre le rangeant parmi les existentialistes chrétiens (L'existentialisme est un humanisme, 1945/1946).
+- Wojtyła : la norme personnaliste paraphrasée d'après la traduction anglaise ; le manuel de métaphysique lu à l'usine (Ma vocation, don et mystère) ; débat de Lublin en 1970 ; controverse sur l'édition anglaise de 1979 ; traduction française de Personne et acte en 1983.
+- Redemptor hominis 10 : « l'homme ne peut vivre sans amour » (citation courte, de mémoire) ; RH 14 « l'homme route de l'Église » paraphrasé.
+- Laborem exercens, Veritatis splendor, Evangelium vitae : contenus paraphrasés de mémoire, sans guillemets.
+- Anscombe : Contraception et chasteté et le texte sur la transsubstantiation cités sans date ; arrestations lors de manifestations devant des cliniques ; Anscombe a-t-elle enseigné à Oxford (Somerville) avant Cambridge (oui de mémoire).
+- Anscombe, Modern Moral Philosophy : les trois thèses et la phrase « esprit corrompu » traduites de mémoire de l'anglais ; l'exemple de la pompe (Intention, § 23 environ).
+- Geach : converti en 1938 ; Good and Evil (Analysis, 1956) ; « les hommes ont besoin des vertus comme les abeilles de leur dard » (The Virtues, 1977) de mémoire ; thomisme analytique nommé dans les années 1990 (John Haldane).
+- MacIntyre : la définition de la vertu et de la tradition (After Virtue, ch. 14 et 15) traduites de mémoire ; la phrase finale sur saint Benoît paraphrasée.
+- Spaemann : « un seul critère de la personne : l'appartenance à la famille humaine » paraphrasé de Personen ; l'argument du futur antérieur (Der letzte Gottesbeweis, 2007, et article de 2005).
+- Taylor : conférence « A Catholic Modernity? » de 1996 (prix marianiste, université de Dayton), publiée en 1999 ; question 1500 / 2000 de A Secular Age paraphrasée.
