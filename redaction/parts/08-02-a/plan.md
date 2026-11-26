@@ -1,3 +1,4 @@
+# ÉTAT : terminé, réuni dans redaction/08-02-a.html
 # Plan du cours 08-02-a « L’âme, forme du corps » (lettre a, fichier 08-la-personne-humaine.html)
 
 Question centrale : comment l’homme est-il un seul être, alors qu’il pense comme un esprit et vit comme un corps ? Obstacles : imaginer l’âme logée dans le corps (pilote, fantôme) ; croire que la science du cerveau a réglé la question ; confondre unité et confusion ; croire que l’âme forme du corps ne peut survivre.

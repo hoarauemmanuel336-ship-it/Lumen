@@ -18,3 +18,4 @@ Bilan : 6 à 7 exercices croisés.
 
 Progression : (tenue à jour ci-dessous)
 - 00 à 09 écrits (ouverture, leçons 1 à 9).
+- Leçons 10 à 12 et bilan écrits ; contrôle propre (reste le faux signalement de tutoiement dans la citation de Kant) ; passe humaniser ciblée ; assemblage testé ; livré dans redaction/10-12-i.html.

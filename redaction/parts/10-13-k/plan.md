@@ -22,3 +22,7 @@ Progression :
 - 00, 01-06 écrites (première rédaction)
 - 07 écrite
 - 08 écrite
+- 09, 10 écrites
+- 11, 12 écrites
+- 99-bilan écrit ; reste : contrôle, humaniser, assemblage
+- Contrôle propre, humanisé, assemblage testé, livré dans redaction/10-13-k.html
