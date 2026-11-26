@@ -1,0 +1,23 @@
+# 10-11-d Descartes et le rationalisme moderne : plan
+
+Cours lettre d, fichier 10-les-philosophes-et-la-foi.html. Vouvoiement. 12 leçons + bilan.
+
+Question centrale : que devient la philosophie, et la connaissance de Dieu, quand elle part de la pensée au lieu de partir de l'être ? Obstacles du novice : croire que le doute cartésien est sceptique ; croire que Descartes est un ennemi de la foi ; confondre « cœur » pascalien et sentiment ; croire que l'Index a « condamné l'hérésie » de Descartes ; croire que l'occasionnalisme honore Dieu davantage ; confondre panthéisme et immanence de Dieu.
+
+Liens prévus (rares) : #ouverture-e (seconde scolastique), #ouverture-s (Thomas), #ouverture-i (empirisme), #ouverture-k (Kant) ; 06-…#ouverture-a (réalisme) ; 09-…#ouverture-a (Anselme), #ouverture-v (autres chemins : pari, contingence), #ouverture-l (théodicée) ; 08-…#ouverture-a (âme forme du corps) ; 07-…#ouverture-s (substance et accidents) ; 38-la-creation.html#ouverture-c (concours) ; 70-l-eucharistie.html#ouverture-t ; 32-l-eglise-a-l-epoque-moderne.html#ouverture-j (jansénisme).
+
+1. René Descartes : La Flèche et le projet d'une science nouvelle. Vie (1596-1650), collège jésuite, déception (Discours I), Beeckman, songes 1619, Bérulle, Hollande, Le Monde et Galilée, œuvres ; projet : arbre de la philosophie, unité du savoir, maîtres et possesseurs ; servir la foi (lettre aux docteurs de Sorbonne, Latran V). Définition : rationalisme.
+2. Le Discours de la méthode et ses règles. 1637, en français, six parties ; bon sens ; les quatre règles (évidence, division, ordre, dénombrement) avec exemples ; modèle géométrique ; critique de la logique scolastique ; morale par provision ; jugement (Aristote : chaque science selon son objet).
+3. Le doute méthodique et le cogito. Méditations 1641 ; doute (sens, rêve, malin génie) ; doute méthodique vs sceptique ; cogito ; chose qui pense ; morceau de cire ; distinction réelle âme/corps ; Thomas : l'âme se connaît par ses actes.
+4. Les preuves de Dieu dans les Méditations. III : idées, réalité objective, principe de causalité, idée d'infini, preuve par mon existence, marque de l'ouvrier ; V : l'être parfait, triangle, montagne et vallée ; Caterus ; jugement thomiste (partir des effets sensibles, Romains 1:20).
+5. Dieu garant de la vérité et le cercle cartésien. IV : erreur, entendement et volonté ; VI : existence des corps ; véracité divine ; objection d'Arnauld (cercle) et réponse (mémoire) ; création des vérités éternelles ; jugement réaliste ; véracité de Dieu dans l'acte de foi (Dei Filius).
+6. Ce que la pensée catholique reproche à Descartes. Primat de la pensée sur l'être (idée « ce que » vs « ce par quoi ») ; l'être premier connu ; dualisme et âme forme du corps (Vienne) ; angélisme (Maritain 1925) ; rupture avec la tradition (table rase, causes finales exclues) ; idéalisme et séparation foi/raison ; Jean-Paul II, Mémoire et identité ; justice rendue (Gilson, dette scolastique).
+7. L'Index (1663) et la querelle de l'eucharistie. Trente ; accidents réels ; matière = étendue ; Arnauld et Quatrièmes réponses (surface) ; lettres à Mesland (1645) ; Louvain 1662 ; décret 1663 donec corrigantur ; 1667, 1671 ; Desgabets, Le Valois ; ce qu'est l'Index (mesure prudentielle, 1966).
+8. Malebranche et l'occasionnalisme. Vie ; Recherche ; vraie cause = liaison nécessaire ; Dieu seule cause ; vision en Dieu ; Nature et grâce, Arnauld, Index ; réponse thomiste (ST I q.105 a.5 ; dignité de la causalité) ; concours divin.
+9. Spinoza et le panthéisme. Vie, herem 1656 ; TTP 1670 ; Éthique : définitions, substance unique, attributs, modes ; Deus sive Natura ; nécessité, pas de fins ; béatitude ; jugement : création, liberté, Dieu personnel ; Vatican I canons ; Actes 17:28 bien lu.
+10. Leibniz. Vie ; monades ; harmonie préétablie ; principes de contradiction et de raison suffisante ; meilleur des mondes (Théodicée 1710, Monadologie 53-55) ; Candide ; jugement thomiste (ST I q.25 a.6) ; œcuménisme avec Bossuet.
+11. Pascal : le Dieu sensible au cœur. Vie et science ; Mémorial (23 novembre 1654) et ses sources bibliques ; Dieu d'Abraham contre Dieu des philosophes ; critique de Descartes ; le cœur (principes, Dieu sensible au cœur) ; trois ordres ; raison et foi (Laf. 183, 188, 173) ; Ratzinger sur le Dieu des philosophes ; pari (lien).
+12. Les Pensées : misère et grandeur. Projet d'apologie, plan, édition 1670, numérotations ; misère (divertissement, imagination, justice) ; grandeur (roseau pensant) ; contrariétés expliquées par la chute ; Jésus-Christ milieu ; Dieu caché ; jansénisme (lien) ; Sublimitas et miseria hominis (2023).
+Bilan : 6-7 exercices croisés.
+
+État : voir les fichiers 00-ouverture.html, 01.html… dans ce dossier.
