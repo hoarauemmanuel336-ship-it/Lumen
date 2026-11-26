@@ -1,0 +1,20 @@
+# 23-07-e · L'Épître de Barnabé (lettre e, fichier 23-les-premiers-temoins)
+
+Question centrale : que fait un écrit chrétien du début du IIe siècle de la Loi de Moïse, et que l'Église garde-t-elle de sa lecture ?
+Obstacles du novice : confondre l'auteur avec Barnabé des Actes ; croire que l'Église a fait sienne la thèse d'une Alliance jamais reçue par Israël ; confondre gnose de Barnabé et gnosticisme ; confondre typologie juste et allégorie qui nie la lettre ; croire que l'épître fut un livre du canon.
+
+Citations de Barnabé : traduites par le rédacteur sur le grec (édition Lightfoot, bkv.unifr.ch) et la traduction anglaise Lightfoot 1891 ; numérotation grecque standard (9, 4 pour l'ange mauvais, 9, 7-8 pour les 318).
+
+## Leçons
+1. Un écrit parmi les Pères apostoliques : ce qu'est le texte (titre, anonymat, deux parties 1-17 et 18-21, but : la gnose jointe à la foi 1, 5 ; ton 1, 8), sa place chez les Pères apostoliques (Cotelier 1672, lien 22 l), sommaire des chapitres, gnose ≠ gnosticisme.
+2. Barnabé, compagnon de Paul, et l'attribution : Barnabé dans le NT (Actes 4:36-37, 11:22-26, 13:2, 14:14, 15:39, Galates 2:13, Colossiens 4:10) ; tradition (Clément d'Alexandrie « l'apôtre Barnabé », Origène « épître catholique », Jérôme De viris 6) ; arguments contre ; Pseudo-Barnabé ; saint Barnabé fêté le 11 juin, Canon romain ; ne pas confondre avec l'Évangile de Barnabé.
+3. Quand et où : bornes 70 (16, 4) et 135 ; chapitre 4 (dix rois) ; chapitre 16 (temple reconstruit, Hadrien) ; trois propositions ; Alexandrie probable (allégorie, Philon, premiers lecteurs Clément et Origène), autres hypothèses ; destinataires tentés par la Loi (3, 6).
+4. Lire la Loi selon l'esprit : gnose, « Moïse a parlé en esprit » (10, 2.9), type (typos), allégorie ; sacrifices (ch. 2 : Isaïe 1:11-13, Jérémie 7:22-23, Psaumes 51:19 ; 2, 6 la loi nouvelle sans joug) ; jeûnes (ch. 3 : Isaïe 58:5-7) ; ce que disaient vraiment les prophètes.
+5. La circoncision et les lois alimentaires : ch. 9 (circoncision des oreilles et du cœur ; 9, 4 ange mauvais ; 9, 6 ; 318 = IH + T) ; ch. 10 (animaux et vices, sabot fendu et rumination, Psaume 1:1, 10, 9) ; parallèles juifs d'Alexandrie (Lettre d'Aristée, Philon qui garde l'observance) ; ce que l'Église retient (Marc 7:19, Actes 10:15).
+6. Israël et l'Alliance : la polémique et ses limites : 4, 6-8 ; 14, 1-5 ; 13 (deux peuples) ; 16, 1-2 (temple) ; 8, 7 ; contraste avec Paul (Romains 9:4-5, 7:12, 11:28-29, Galates 3:24), Hébreux 8:13, Irénée ; jugement de l'Église (CEC 121, 123, 129 ; Nostra aetate 4 ; 2015 « Les dons et l'appel… ») ; ce qui se garde et ce qui s'écarte.
+7. Le bouc émissaire et la génisse rousse : Lévitique 16 et ch. 7 (fiel et vinaigre, deux boucs semblables, laine écarlate, parousie 7, 9, 7, 11) ; Nombres 19 et ch. 8 (génisse = Jésus, enfants = apôtres, laine sur le bois = royaume sur la croix) ; Mishna Yoma ; Hébreux 9:13-14, 13:11-13 ; autres figures de la croix (ch. 12 : Exode 17:11, Nombres 21:8-9, Jean 3:14) ; typologie juste et détails fragiles.
+8. Le sabbat et le huitième jour : ch. 15 (Exode 20:8, Genèse 2:2, six mille ans, Psaumes 90:4 / 2 Pierre 3:8 ; 15, 6-7 ; 15, 8-9) ; Isaïe 1:13 ; dimanche dans les premiers témoins (Didachè 14, Ignace Magn. 9, 1, Justin Apol. I, 67) ; CEC 2174-2175 ; Dies Domini 26 et 55 (notes 26 et 100 citant Barnabé) ; semaine cosmique et millénarisme : opinion.
+9. Les deux voies : ch. 18-21 (lumière et ténèbres, anges, 19, 2.5.12 ; 20, 1-2 ; 21, 1) ; comparaison avec la Didachè (lien), source juive commune, Doctrina apostolorum, Qumrân ; différences ; version latine sans 18-21 ; lien avec la première partie.
+10. Le Codex Sinaiticus et la place hors du canon : Sinaiticus (IVe s., après l'Apocalypse, avant Hermas ; Tischendorf 1844 et 1859 ; Londres, Leipzig, Saint-Pétersbourg, Sinaï) ; Hierosolymitanus 1056 ; manuscrits joints à Polycarpe ; version latine ; Clément, Origène ; Eusèbe III, 25, 4 et VI, 14, 1 ; Jérôme ; critères du canon ; Trente 1546 ; ce que vaut l'épître aujourd'hui.
+
+Bilan : 6 exercices croisés.

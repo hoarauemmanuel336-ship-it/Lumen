@@ -18,3 +18,4 @@ Leçons (12) :
 12. L'héritage : « Vénérable » (IXe s., Aix-la-Chapelle, légende de l'ange ; distinguer du titre actuel), culte (reliques à Durham), lecture médiévale (Boniface, Alcuin, Notker, Dante Par. X), Léon XIII 13 nov. 1899 docteur, fête 27 mai puis 25 mai (mémoire facultative), Benoît XVI 18 févr. 2009, seul Anglais docteur jusqu'à Newman (1er nov. 2025) ; ce que Bède apporte à la foi ; borne de l'âge des Pères (lien 22 l) ; limites et jugement juste.
 
 Bilan : 6 exercices croisant les leçons.
+- État : terminé, livré dans redaction/25-10-v.html (12 leçons, 69 exercices).

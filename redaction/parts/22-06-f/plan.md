@@ -1,0 +1,19 @@
+# 22-06-f : Les autres foyers de la patristique (lettre f)
+
+Question centrale : hors d'Alexandrie et d'Antioche, où la pensée des Pères s'est-elle formée, et qu'est-ce que chaque région a apporté de propre à la foi commune ?
+Obstacles du novice : croire que la patristique se réduit à deux écoles ; confondre un foyer (région, réseau, tradition) avec une école ; croire que Rome fut un grand centre de spéculation ; tenir la théologie syriaque pour moins orthodoxe ; voir le désert comme hors de la théologie ; prendre légendes (Abgar, Marie à Éphèse) pour histoire ; « Roma locuta, causa finita » comme citation exacte.
+
+Leçons (10) :
+1. L'Asie Mineure du IIe siècle et la tradition johannique : Éphèse (Paul, Jean, Irénée III,3,4), Smyrne (Polycarpe, lettre à Florinus HE V,20,6), Hiérapolis (Papias HE III,39,4 ; Philippe), Sardes (Méliton, Sur la Pâque), querelle pascale (Polycrate HE V,24,2 ; Anicet/Polycarpe ; Victor ; Irénée), traits : Logos, chair, eucharistie, martyre, millénarisme, montanisme.
+2. Rome, Église de langue grecque devenue latine : origines (Romains 1:8, Actes 28), Clément, Hermas, Justin, Hippolyte en grec ; carrefour (Polycarpe, Hégésippe, Irénée, Origène) ; passage au latin (Victor, Jérôme DVI 53 ; Novatien ; épitaphes ; liturgie sous Damase ; Vulgate).
+3. Rome, référence doctrinale : Clément à Corinthe ; Ignace « préside à la charité » ; Denys de Corinthe (HE IV,23,10-11) ; Irénée III,3,2 (débat sur le sens) ; listes de succession ; Victor et Pâques ; Cyprien et Étienne ; Jules et Athanase ; Sardique ; Sirice ; Augustin Sermon 131,10 (« causa finita est », pas « Roma locuta ») ; Léon et Chalcédoine ; Rome garde plus qu'elle ne spécule.
+4. L'Afrique du Nord latine : Carthage, Hippone, martyrs scillitains (180), Perpétue (203), Tertullien, Cyprien (De unitate 6), conciles africains, donatisme, Augustin ; le latin théologique (Tertullien : trinitas, persona, substantia, Adv. Prax. 25 ; Apol. 50 ; Vieille latine) ; fin (Vandales, 698).
+5. Césarée de Palestine : la ville (Actes 10:1, 21:8), Origène (vers 232-234), Hexaples, Grégoire le Thaumaturge ; Pamphile (Jérôme DVI 75), Eusèbe (DVI 81), cinquante Bibles pour Constantin ; Euzoïus (DVI 113) ; Jérôme ; colophon du Sinaïticus ; fin (640).
+6. La Cappadoce : région (Actes 2:9, 1 Pierre 1:1), héritage d'Origène par le Thaumaturge et Macrine l'Ancienne ; Basile, Grégoire de Nazianze (Discours 43,20 ; 40,41), Grégoire de Nysse (Vie de Moïse II,239), Macrine ; ousia/hypostase (Basile Lettre 236,6) ; Esprit Saint, Constantinople 381 ; ce que l'Église a reçu et n'a pas reçu.
+7. Le monde syriaque : langue syriaque, Édesse (Abgar : légende, HE I,13), Bardesane, Diatessaron, Aphraate ; Nisibe (Jacques, Éphrem) ; Éphrem (madrashé, memré, Hymnes sur la Nativité 2), docteur 1920 ; école des Perses, Nisibe 489 ; Églises héritières.
+8. Le désert d'Égypte et de Palestine : Antoine (Vie d'Antoine 2, 14, prologue), Pacôme, Nitrie, Kellia, Scété, Évagre ; Palestine (Hilarion, Chariton, Euthyme, Sabas, Gaza : Barsanuphe, Dorothée ; Bethléem) ; littérature (apophtegmes : Antoine 7 ; Histoire des moines ; Histoire lausiaque ; Cassien) ; Règle de Benoît 73.
+9. La Gaule : Lyon (martyrs de 177, HE V,1,19 et 41 ; Irénée), Poitiers (Hilaire, Martin à Ligugé, Fortunat et Radegonde), Lérins (Honorat, Hilaire d'Arles, Eucher, Vincent, Fauste, Césaire), Marseille (Cassien, Conférences 1,4 ; Salvien ; Gennade ; controverse sur la grâce ; Orange 529).
+10. L'Espagne wisigothique : avant les Wisigoths (Romains 15:24, Elvire, Ossius, Prudence, Priscillien, Orose, Égérie, Sirice) ; Wisigoths ariens, Herménégild, Reccared, Tolède III (589), Filioque ; Léandre, Isidore (De laude Spaniae), Braulion, Ildefonse, Julien de Tolède ; conciles de Tolède ; rite hispanique ; 711.
+Bilan : 6 exercices croisés.
+
+État : voir les fichiers présents.
