@@ -1242,3 +1242,29 @@
 - Leçon 9 : Hilaire évêque vers 350, exil 356, docteur 1851 ; Ligugé vers 361 ; Martin évêque en 371 ; Vie de Martin vers 396-397 ; relique de la Croix à Radegonde en 569 et composition du Vexilla regis et du Pange lingua gloriosi proelium certaminis ; Honorat à Lérins vers 400-410, à Arles en 426 ; Hilaire d'Arles en 429 ; Eucher à Lyon vers 434 ; Césaire évêque 502-542 ; Cassien à Marseille vers 415, dates des Institutions et Conférences ; Fauste, De gratia vers 474 ; Orange 529 et Boniface II 531 ; Salvien vers 440 ; Gennade : de mémoire.
 - Leçon 10 : Isidore, Histoire des Goths, prologue et 52 vérifiés (latin, thelatinlibrary) ; la fin de la phrase de 52 (« ramena… au culte de la vraie foi ») traduite de mémoire. Prudence, Cathemerinon 9, 10-12 : contenu confirmé par hymnary.org, numéros de vers de mémoire.
 - Leçon 10 : concile d'Elvire vers 300-306 et 81 canons ; Ossius à Sirmium en 357 ; Cyprien consulté par des Églises d'Espagne (Lettre 67) ; Priscillien exécuté à Trèves en 385 ; Égérie 381-384 ; Herménégild (conversion vers 579-580, mort 585, Grégoire, Dialogues III, 31) ; Reccared converti en 587 ; Tolède III en mai 589 avec le Filioque dans le Credo (authenticité de la formule dans les actes parfois discutée) ; adoption du Filioque à Rome au XIe siècle (1014) ; Léandre à Constantinople vers 580 ; Tolède IV en 633 ; Ildefonse 657-667 ; Julien 680-690 et Prognosticon en 688 ; Tolède XI en 675 ; Cisneros vers 1500 : de mémoire.
+
+## 23-15-o
+- Leçon 1 : épitaphes des papes du IIIe s. en grec dans la crypte de Calliste et épitaphe latine de Corneille (mort en 253) : de mémoire, non vérifié en ligne.
+- Leçon 1 : Jérôme, Hommes illustres 53, place Tertullien « premier des Latins après Victor et Apollonius » : de mémoire.
+- Leçon 1 et 8 : Lactance, Institutions V, 1, sur le style simple des Écritures qui rebute les lettrés : paraphrase de mémoire (le jugement sur Minucius, Tertullien, Cyprien en V, 1 et V, 4 est vérifié sur newadvent).
+- Leçon 2 : Octavius 2-4 (enfants faisant ricocher des coquillages, blocs de pierre protégeant les bains) et 13 (« ce qui est au-dessus de nous ne nous regarde pas ») : de mémoire ; les citations latines de 2, 9, 18, 29, 32, 38, 40 sont vérifiées.
+- Leçon 2 : inscriptions de Cirta nommant un M. Caecilius Natalis au début du IIIe s. : de mémoire.
+- Leçon 2 : restitution de l'Octavius à Minucius au XVIe s. (Baudouin, 1560 ?) laissée sans nom ni date précise.
+- Leçon 3 : Octavius 25 (refuge de brigands, Sabines), 28 (« nous aussi nous avons cru », Épona « déesse des écuries »), 30 (abstention du sang des animaux) : de mémoire, numéros de chapitres à contrôler.
+- Leçon 3 : citation complète d'Octavius 32 (« celui qui pratique l'innocence… meilleure victime ») traduite du latin de mémoire ; seule la première proposition est vérifiée.
+- Leçon 4 : Théodote le corroyeur excommunié par Victor ; Marcion évoqué comme exemple historique, non comme nommé par Novatien.
+- Leçon 5 : Lettre 30 attribuée à Novatien par Cyprien (Lettre 55, 5) et son contenu (secours aux pénitents mourants) : de mémoire, cohérent avec le cours 23-14-y. Lettre 55, 24 (Cyprien raille « philosophie et éloquence ») : de mémoire.
+- Leçon 5 : inscription de 1932 « Novatiano beatissimo martyri Gaudentius diac(onus) fec(it) » près de Saint-Laurent-hors-les-Murs : de mémoire.
+- Leçon 5 : contenu du canon 8 de Nicée paraphrasé de mémoire (profession écrite, communion avec digames et tombés).
+- Leçon 6 : Chronique de Jérôme sur Arnobe (« comme des gages de piété ») : paraphrase de mémoire, l'essentiel confirmé par la traduction ANF ; année 326/327.
+- Leçon 6 : Arnobe I, 39 traduit de mémoire du latin (le contenu est confirmé par le résumé ANF). Jugement de Jérôme sur Arnobe : vérifié (Lettre 58, 10) mais rendu sans numéro dans la leçon.
+- Leçon 6 : Décret gélasien rangeant « les opuscules d'Arnobe » parmi les non reçus : de mémoire (pourrait viser Arnobe le Jeune).
+- Leçon 7 : appel à Nicomédie « dans les années 290 » ; identification du juge de V, 2 à Sossianus Hiéroclès (consensus, non vérifiée ici).
+- Leçon 7 : Cicéron, La République III, 33, conservé par Lactance, Institutions VI, 8 : de mémoire.
+- Leçon 8 : numérotation des chapitres du livre V : « religio cogi non potest » cité V, 19 (numérotation moderne ; V, 20 dans la traduction anglaise ANF) ; égalité « personne n'est esclave ni maître » citée V, 15 et fraternité V, 16 d'après ANF (la numérotation moderne peut décaler d'un chapitre).
+- Leçon 8 : Lactance VI, 20 (refus du métier des armes et de l'accusation capitale), VI, 12 (œuvres de miséricorde, sépulture des étrangers), VI, 10 (humanitas), IV, 7 (Chrestus) : de mémoire.
+- Leçon 8 : reprise de l'étymologie religare par Augustin et discussion par Thomas d'Aquin (II-II, q. 81, a. 1) : de mémoire.
+- Leçon 9 : Donat « des années en prison, plusieurs fois torturé » (La Mort des persécuteurs 16 et 35) : formulé prudemment, non vérifié.
+- Leçon 9 : manuscrit Colbert (BnF lat. 2627), Baluze 1679 : de mémoire ; date de l'exécution de Valeria (vers 314-315).
+- Leçon 10 : naissance de Crispus et date de l'arrivée de Lactance à Trèves présentées comme discutées ; lettres de Constantin après 324 (Eusèbe, Vie de Constantin II) paraphrasées de mémoire ; hypothèse d'influence (E. DePalma Digeser) non nommée.
+- Leçon 11 : Minucius « évite le plus possible le vocabulaire propre aux chrétiens » : jugement courant, non vérifié mot à mot.

@@ -16,4 +16,4 @@ Partage : Tertullien (cours t), Cyprien et le schisme vu de Carthage (cours y, l
 10. Lactance auprès de Constantin : Trèves, Crispus (Jérôme 80, Chronique) ; adresses à Constantin des Institutions ; un apologiste devant un empereur chrétien ; liberté religieuse et politique constantinienne ; mort de Crispus 326 ; fin de l'âge des apologies ; rappel Eusèbe (lien).
 11. L'apport à la langue théologique latine : héritage de Tertullien ; Minucius (latin classique) ; Novatien (précision trinitaire à Rome) ; Arnobe (lexique des cultes) ; Lactance (élégance, religio, Église catholique) ; Jérôme 58, 10 ; Augustin, Doctrine chrétienne II, 40, 61 (or d'Égypte) ; limites d'avant Nicée.
 Bilan : 6 exercices croisés.
-État : plan fait.
+État : terminé et livré (redaction/23-15-o.html), contrôle propre, assemblage testé.

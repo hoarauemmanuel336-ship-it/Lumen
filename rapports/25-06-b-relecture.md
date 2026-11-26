@@ -1,0 +1,45 @@
+# 25-06-b Boèce : rapport de relecture
+
+Fichier relu et corrigé : /home/claude/peres/redaction/25-06-b.html (12 leçons, 78 exercices, bilan de 6). Lu en entier, dans l'ordre du lecteur.
+Contrôles finaux : verifier.py ne signale plus que 18 « tutoiements » qui sont tous dans des citations (Philosophie parlant au prisonnier, prière à Dieu, Dante) ; liens.py : 0 lien à revoir ; aucun tiret ; l'assemblage d'essai réussit.
+
+## Corrections de fond (21)
+
+1. L8, définition de la personne : « cinq mots latins » devient « quatre mots latins », avec le latin cité (*naturae rationabilis individua substantia*).
+2. L8, table grec-latin : le cours disait que les Grecs « sembleraient » dire trois substances, et le corrigé n° 3 faisait de *hypostasis* l'équivalent de *persona*. Or Boèce (*Contre Eutychès* 3) rend *hypostasis* par *substantia* et dit qu'on dirait en latin trois substances en Dieu si l'usage de l'Église ne l'écartait. J'ai récrit le paragraphe et le corrigé (vérifié sur ccel.org et logoslibrary.org, traduction Stewart-Rand).
+3. L7, fin du traité (*Contre Eutychès* 8) : les trois états de l'homme étaient faux (« avant le péché, après, dans la gloire », avec « l'absence de péché » tirée de l'état d'avant la faute). Corrigé d'après le texte : un corps mortel tiré de l'état d'après le péché ; manger, boire et dormir, sans la mort, tirés de l'état d'Adam au paradis ; l'absence de toute volonté de pécher tirée de l'état où l'homme serait monté s'il avait persévéré.
+4. L11, *Consolation* V, prose 4 : l'exemple de la sphère était confondu avec les quatre puissances. La rondeur saisie par la vue et le toucher est un exemple ; sens, imagination, raison et intelligence s'appliquent ensuite à l'homme. Paragraphe et table récrits (texte latin vérifié d'après la structure du commentaire de Georgetown).
+5. L6, fin du traité *Sur la Trinité* : on n'y demande pas à Symmaque de « compléter ». Si l'œuvre a réussi, la joie remonte à Dieu ; sinon, « ses prières suppléeront à ce que la faiblesse retranche » (*vota supplebunt*). Latin vérifié sur logicmuseum.com.
+6. L9, *Consolation* I, prose 1 : *scenicas meretriculas* traduit à tort par « petites comédiennes » ; corrigé en « petites courtisanes de théâtre ».
+7. L9, diagnostic (I, prose 6) : les conséquences de l'oubli étaient mal rattachées (« sa fin » au lieu de « la fin des choses ») et la première manquait (il se lamente d'être exilé et dépouillé). Partie et corrigé n° 4 corrigés.
+8. L2, Commencer : « En septembre 522, Boèce voit ses deux fils consuls » est faux (les consuls entrent en charge le 1er janvier). Devient « En 522… devient maître des offices ».
+9. L7, préface : « l'agitation de tous et l'ignorance de la plupart » ne rendait pas le texte ; devient : chacun criait que la différence était évidente, et personne n'effleurait même la question (Stewart-Rand).
+10. L1, exercice 6 : « Cassiodore compris » ne témoigne pas de la droiture de Boèce. Remplacé par le témoignage vérifié de Procope (*Guerres* V, 1 : justice et largesses envers les pauvres, jalousie des pires ; texte de Dewing sur gutenberg.org).
+11. Introduction : « seul laïc de ce groupe de cours » retiré (le statut de Cassiodore à Vivarium est discuté).
+12. L4 : Boèce ne « forge » pas *genus*, *species*, *propositio* (déjà chez Cicéron et Victorinus) : il les « fixe » dans un sens précis (partie 2 et corrigé n° 3).
+13. L4 et L12 : « tout ce que l'Occident sait de logique vient de lui » est nuancé (« l'essentiel », « presque toute ») avec le reste nommé (abrégés de Martianus Capella et de Cassiodore, *Catégories* paraphrasées sous le nom d'Augustin). Même nuance dans L'essentiel de L4 et les corrigés L4-6 et L12-2.
+14. L4, exemple des lieux : l'argument « s'il n'était pas Dieu, il ne pourrait nous diviniser » est un argument tiré de l'effet, pas « du contraire ».
+15. L6 : les doutes sur l'authenticité des opuscules ne datent pas « à partir du XVIIIe siècle » ; ils datent de l'époque moderne, surtout du XIXe siècle.
+16. L3 : « Nicomaque… du IIe siècle » devient « vers l'an 100 ». La musique instrumentale, présentée comme « écho sensible des deux autres », n'est plus une thèse prêtée à Boèce (partie et corrigé n° 4).
+17. L11 : Thomas (*ST* I, q. 10, a. 1) juge la définition « bien donnée », il ne la tient pas pour « la meilleure ». Le Catéchisme (n° 600) va « dans le même sens » que Boèce : il ne le « reprend » pas.
+18. L11 : « toute fortune est bonne » est rendu exactement (pour les bons, l'heureuse est une récompense et la rude un exercice ; pour les méchants, la rude est une correction ou une peine). La mise en garde sur le mot « destin » ajoute qu'Augustin conseillait de l'éviter.
+19. L12, catéchèse de Benoît XVI du 12 mars 2008 : vérifiée sur vatican.va, puis récrite sans guillemets d'après son contenu réel (Pavie le célèbre dans la liturgie comme martyr de la foi ; il est la figure des prisonniers injustement détenus et de ceux qu'on tue pour leurs convictions).
+20. L8 : « Richard de Saint-Victor, chanoine de Paris » devient « chanoine de l'abbaye Saint-Victor, à Paris ». J'ai ajouté, en paraphrase, l'enseignement du Catéchisme n° 2270 (les droits de la personne reconnus dès le premier moment de l'existence) pour appuyer « il est une personne dès qu'il existe ».
+21. Les affirmations « Je sais… » sans exercice qui les éprouve ont reçu une question et un corrigé : L1 (la formation, exercice 1), L3 (pourquoi l'Occident perdait le grec, exercice 6), L4 (l'*Organon* et l'*Isagogè*, exercice 5), L5 (les réponses médiévales, exercice 5), L7 (l'occasion du traité, exercice 1 ; la formule « de deux natures et en deux natures », exercice 6).
+
+## Corrections de forme (12)
+Passage au crible de la skill humaniser, sur les tics forts : la triade « Parce que… Parce que… Et parce que » (L1) ; les phrases qui ne faisaient que poser (« Le but de ces études n'est pas technique », « Les poèmes ne sont pas des ornements », « La différence est capitale », « Le diagnostic est précis », « Chaque mot compte ») ; « immense » répété (deux occurrences retirées) ; des fins de corrigé en « On peut ajouter / On peut conclure » (L3-6, L7-6, L9-6) ; « exactement », « tous » de trop (L3, L8) ; la chute « une définition juste suffit à dissiper une hérésie » (L7-3). Le vouvoiement est tenu partout, sans tiret, sans renvoi implicite ni annonce ; aucun verset n'est donné sans son texte (33 citations conformes à la Chérubin).
+
+## Vérifié et confirmé tel quel
+- Anonyme de Valois (Perseids) : la phrase de Boèce sur Albinus, les faux témoins, le préfet Eusebius appelé à Ticinum, la sentence sans audition, l'*ager Calventianus*, la mort sous la torture puis à coups de bâton.
+- Procope : la tête de poisson et les remords de Théodoric.
+- Catholic Encyclopedia (newadvent) : confirmation du culte par la Congrégation des Rites en 1883, pour le diocèse de Pavie, le 23 octobre ; *Anecdoton Holderi* publié par Usener à Leipzig en 1877.
+- *Sur la Trinité* (logicmuseum) : la préface (*semina rationum*… Augustin), la formule « la substance garde l'unité, la relation multiplie la Trinité », le « maintenant » divin qui fait l'éternité, l'exemple de la droite et de la gauche, celui du maître et du serviteur, le principe de la pluralité.
+- *Contre Eutychès* (ccel) : la voie moyenne entre deux hérésies, comme les vertus ; l'argument contre Nestorius (tous les saints seraient des Christs, le genre humain ne serait pas sauvé) ; la définition et l'étymologie *personare*.
+- Benoît XVI, 12 mars 2008 : il donne la mort au 23 octobre 524. Cela ne change pas l'exercice 4 de la leçon 2, car aucune source ancienne ne donne le jour.
+- De mémoire, avec une forte confiance (textes très connus, non rouverts en ligne) : les autres citations de la *Consolation* (I pr. 1, 4 et 6 ; II pr. 2, 3, 4 et 8 ; III pr. 2, 10 et 12 ; III m. 9 ; IV pr. 6 ; V pr. 3, 4 et 6), Variae I, 45 et II, 40, la préface du livre II sur les *Catégories*, le second commentaire sur l'*Isagogè* I, 1 et I, 11, le second commentaire *Peri hermeneias* II (préface), l'*Institution arithmétique* I, 1-2, l'*Institution musicale* I, 34, *Paradis* X, 124-129, Gibbon au chapitre 39, Richard de Saint-Victor (*De Trinitate* IV, 22), Thomas (*ST* I, q. 29), le Catéchisme n° 600 et n° 2270.
+
+## Ce qui reste incertain
+- La recherche et l'ouverture de pages ont été limitées en cours de route (un accès a demandé une autorisation restée sans réponse). Je n'ai pas pu rouvrir le latin de la *Consolation* (thelatinlibrary et gutenberg ne répondaient pas). Les traductions de la *Consolation* restent donc vérifiées de mémoire sur le latin, sauf V pr. 4, dont la structure est confirmée.
+- Le lieu de l'accusation (Vérone), le jour exact de 1883 et l'origine de la formule « premier des scolastiques » (souvent rapportée à Grabmann) n'ont pas été vérifiés en ligne. Le cours les donne avec prudence.
+- Le consulat de 510 « sans collègue en Occident » est maintenu : à ma connaissance, Boèce n'a eu de collègue nulle part cette année-là, et la formule reste donc juste.
