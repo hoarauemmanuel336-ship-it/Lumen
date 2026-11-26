@@ -17,3 +17,4 @@ Leçons (10) :
 Bilan : 6 exercices croisés.
 
 État : voir les fichiers présents.
+État : 10 leçons et bilan écrits, assemblés, vérifiés, passe humaniser faite (ciblée).
