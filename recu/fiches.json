@@ -1,0 +1,10 @@
+{
+ "espece": "meditation",
+ "fichiers": [
+  "journal.json",
+  "reglages.json"
+ ],
+ "introuvables": [
+  "2026-11-27"
+ ]
+}
