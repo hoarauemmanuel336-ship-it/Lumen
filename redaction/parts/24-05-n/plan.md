@@ -1,4 +1,5 @@
 # 24-05-n : Grégoire de Nysse (fichier 24-les-peres-d-orient, lettre n)
+Statut : terminé (12 leçons + bilan), réuni dans redaction/24-05-n.html.
 
 Question centrale : comment le cadet des Cappadociens, rhéteur devenu évêque d'une petite ville, est-il devenu le philosophe et le maître de la vie spirituelle que l'Orient appelle « Père des Pères » ?
 

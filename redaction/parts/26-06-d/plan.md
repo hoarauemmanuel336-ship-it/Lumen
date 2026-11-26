@@ -21,4 +21,4 @@ Leçons (fichiers 01 à 12, puis 99-bilan) :
 12. L'héritage : ex opere operato (Trente, sess. VII, can. 8 et 12 ; baptême can. 4 ; Catéchisme 1128, 1584), le caractère, Constance contre Wyclif, l'ecclésiologie occidentale (Église répandue, corps mêlé, sainte et toujours à purifier, éléments hors des limites visibles), Newman.
 Bilan : 6 exercices croisés.
 
-État : plan fait.
+État : leçons 1 à 12 et bilan écrits ; réunion, contrôle, humaniser et essai d'assemblage faits (reprise) ; livré dans redaction/26-06-d.html.

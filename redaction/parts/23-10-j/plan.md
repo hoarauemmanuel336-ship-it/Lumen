@@ -23,4 +23,5 @@ Sources vérifiées : traduction ANF (newadvent) de 1 Apol, 2 Apol, Dialogue, Ma
 Bilan : 6 exercices croisés.
 
 ## État
-- Leçons 0-7 écrites (00 à 07).
+- Ouverture et leçons 1 à 8 écrites et complètes (00 à 08).
+- Reprise par un second rédacteur : leçons 9 à 12 et bilan à écrire (sources vérifiées sur newadvent : 1 Apol 5, 6, 13, 33, 46 ; 2 Apol 3, 6, 8, 10 ; Dial 56, 60-62, 80-81, 100, 127-128 ; Actes de Justin 1-5 ; Fides et ratio 38 ; Benoît XVI 21 mars 2007).

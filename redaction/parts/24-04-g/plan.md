@@ -17,3 +17,5 @@ Leçons (11) :
 11. L'héritage : « le Théologien », trois saints hiérarques, docteur (1568), 2 janvier, reliques (2004), Catéchisme 256, 684, Benoît XVI.
 
 Bilan : 6 exercices croisés.
+
+État (reprise) : leçons 1 à 11 complètes (reprises du premier rédacteur, corrigées) ; bilan écrit (99-bilan.html, 6 exercices) ; fichier réuni dans redaction/24-04-g.html, contrôlé et assemblé.

@@ -7,3 +7,4 @@ Message d'écriture : « Lisez d'abord en entier la consigne commune /home/claud
 Message de relecture : « Lisez en entier /home/claude/peres/consigne-relecture.md et suivez-la à la lettre. Votre cours : code {code}. »
 Après tout : outils/assembler-bloc.sh, liens arrière, Mémoriser, cours.json, sommaire, fabrication, captures, puis attendre « dépose-le ».
 Le dossier /home/claude/eglise est préparé (plan, outils) mais sans consigne : bloc suivant après Philosophie.
+26-09-i et 26-01-l : livrés sans rapport d'écriture (rédacteur coupé par la limite hebdomadaire) ; le relecteur fait le passage humaniser complet.

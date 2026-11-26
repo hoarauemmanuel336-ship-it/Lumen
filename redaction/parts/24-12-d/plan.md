@@ -1,5 +1,7 @@
 # Plan du cours 24-12-d : Jean Damascène (lettre d)
 
+État : TERMINÉ (12 leçons + bilan, réunis dans redaction/24-12-d.html).
+
 Question centrale : comment un chrétien de Damas, fonctionnaire puis moine sous un pouvoir musulman, est-il devenu le dernier des Pères d'Orient, le défenseur des images et le maître que l'Occident a lu jusqu'à Thomas d'Aquin ?
 
 Leçons (12) :

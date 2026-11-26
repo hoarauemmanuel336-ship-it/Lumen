@@ -18,4 +18,4 @@ Leçons (12) :
 12. L'héritage de l'exégète (Grégoire de Nysse, Ambroise, Jérôme, Rufin, Grégoire le Grand, Bède, Bernard, distique des quatre sens CEC 118 ; de Lubac, Histoire et esprit 1950 ; Sources chrétiennes ; Dei Verbum ; Benoît XVI 2007).
 
 Fichiers : 00-ouverture.html, 01.html … 12.html, 99-bilan.html.
-État : voir les fichiers présents.
+État : terminé ; cours réuni dans redaction/23-18-s.html, contrôlé et assemblé à l'essai.
