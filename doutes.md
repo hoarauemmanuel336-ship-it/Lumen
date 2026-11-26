@@ -720,3 +720,18 @@
 - « Les Pères latins appelleront ces vertus cardinales » (saint Ambroise) : de mémoire.
 - Le juste parfait de <i>République</i> II, 361e-362a rapproché du Christ par des auteurs chrétiens anciens (Clément d'Alexandrie, <i>Stromates</i> V, 14) : de mémoire, laissé sans nom d'auteur dans le cours.
 - Anneau de Gygès : chez Platon, l'histoire est racontée d'un ancêtre de Gygès ; le cours dit simplement « Gygès ».
+
+## 07-04-s
+- Aristote, références Bekker de mémoire (non vérifiées sur le grec) : <i>Catégories</i> 2, 1a24-25 ; 5, 2a11-19, 2a34-35, 2b5-8, 2b29-37 ; <i>Métaphysique</i> Z, 1, 1028b2-4 (traduction personnelle) ; Δ, 8, 1017b23-26 ; Δ, 30, 1025a14-21 (le trésor) ; <i>De l'âme</i> II, 1, 412b20-22 (l'œil de pierre ou peint) ; II, 6, 418a20-24 (le fils de Diarès). Le contenu des <i>Catégories</i> 2 et 5 a été vérifié sur la traduction anglaise d'Edghill (Gutenberg).
+- Saint Thomas vérifié sur la traduction anglaise (newadvent) : I, q. 3, a. 5-6 ; I, q. 28, a. 2 ; I, q. 54, a. 1 ; II-II, q. 8, a. 1 ; III, q. 75, a. 4-5 (et réponse 2 de l'a. 5) ; III, q. 76, a. 7 ; III, q. 77, a. 1 (et réponse 2), a. 2. De mémoire : le latin « accidentis esse est inesse » (I, q. 28, a. 2 ; la traduction anglaise porte « essence ») ; I, q. 29, a. 1, réponse 5 ; I, q. 29, a. 2 (subsistance et substance) ; I, q. 75, a. 2, réponse 1 et a. 4 ; I, q. 77, a. 1 et a. 6 ; I, q. 13, a. 7 ; I, q. 87, a. 1 ; I-II, q. 110, a. 2 (la grâce, qualité) ; III, q. 76, a. 3 (le Christ tout entier sous chaque partie, à la manière d'une substance).
+- Saint Thomas, « mon âme n'est pas moi » (<i>Commentaire de la première épître aux Corinthiens</i>, ch. 15, leçon 2) : de mémoire.
+- Saint Thomas, aucun philosophe n'a pu étudier parfaitement la nature d'une mouche (<i>Exposition du Symbole des Apôtres</i>, prologue) : de mémoire, non retrouvé en ligne ; paraphrasé sans guillemets. Idem pour « les principes essentiels des choses nous sont inconnus » (paraphrase, sans référence précise).
+- Descartes, <i>Principes</i> I, 51 et Spinoza, <i>Éthique</i> I, déf. 3 et prop. 14 : de mémoire (citation de Spinoza entre guillemets, traduite par moi).
+- Augustin, <i>La Trinité</i> V, 5, 6 (« rien ne se dit de Dieu selon l'accident ») : de mémoire, paraphrasé.
+- Locke, <i>Essai</i> II, 23, 2 et 4 : vérifiés (hackernoon/Gutenberg) ; II, 23, 5 et II, 13, 19 (l'Indien) : de mémoire ; III, 3, 15 et III, 6, 2 (essence réelle et nominale) : numéros de mémoire. Dates de la controverse avec Stillingfleet (1697-1699) : de mémoire.
+- Hume : <i>Traité</i> I, 1, 6, 1-2 et I, 4, 6, 3-4 et l'Appendice vérifiés (davidhume.org, standardebooks) ; I, 4, 3 (substance et accidents des anciens comme fictions) : de mémoire.
+- Concile de Trente, session XIII (11 octobre 1551), ch. 4 et canon 2 : vérifiés sur la traduction anglaise (papalencyclicals), traduits par moi à partir du latin connu. Constance, session 8 (4 mai 1415), articles 1 et 2 de Wyclif : vérifiés. Latran IV, constitution 1 : vérifiée (le mot « transsubstantiatis » est cité de mémoire du latin). <i>Dei Filius</i> ch. 1 (24 avril 1870) : vérifié. <i>Mysterium fidei</i> n. 11, 24, 46 : vérifiés (vatican.va).
+- Catéchisme 365 (« l'esprit et la matière, dans l'homme, ne sont pas deux natures unies, mais leur union forme une unique nature ») : paraphrasé de mémoire ; 1376 et 1377 : de mémoire.
+- Concile de Vienne (1312) : paraphrasé de mémoire ; vingt-quatre thèses (1914), thèse 5 : de mémoire (déjà donnée par le cours 07-05-d).
+- Ockham (seules substance et qualité réellement distinctes) et la controverse Arnauld-Descartes sur l'eucharistie (Quatrièmes objections) : présentation usuelle, de mémoire.
+- Lewis Carroll, <i>Alice au pays des merveilles</i>, ch. 6 (le sourire du chat) : paraphrasé de mémoire.

@@ -19,3 +19,6 @@ Recoupements : 06-a (idéalisme transcendantal, chose en soi, Jacobi : rappel + 
 Bilan : 6 à 7 exercices croisés.
 
 Progression :
+- 00, 01-06 écrites (première rédaction)
+- 07 écrite
+- 08 écrite

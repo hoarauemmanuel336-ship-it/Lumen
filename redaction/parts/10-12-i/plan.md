@@ -17,3 +17,4 @@ Question centrale : que devient la connaissance quand on la réduit à l'expéri
 Bilan : 6 à 7 exercices croisés.
 
 Progression : (tenue à jour ci-dessous)
+- 00 à 09 écrits (ouverture, leçons 1 à 9).

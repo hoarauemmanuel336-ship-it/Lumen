@@ -1,5 +1,7 @@
 # 07-04-s Substance et accidents : plan
 
+ÉTAT : terminé (11 leçons + bilan), assemblé dans redaction/07-04-s.html, contrôle sans signalement.
+
 Question centrale : qu'est-ce qui, dans une chose, existe en soi, et qu'est-ce qui n'existe qu'en elle ? Et que gagne la foi à le savoir (eucharistie, simplicité de Dieu) ?
 Obstacles du novice : substance = « matière » (chimie) ; « en soi » confondu avec « par soi / de soi » (Spinoza, Descartes) ; accident = événement fâcheux ; accident prédicable / prédicamental ; la substance imaginée comme un noyau caché sous les qualités (Locke) ; croire que la transsubstantiation est un changement chimique ou qu'elle canonise la physique d'Aristote.
 
