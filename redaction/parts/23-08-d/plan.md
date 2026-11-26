@@ -1,0 +1,19 @@
+# Plan du cours 23-08-d : La Lettre à Diognète (lettre d)
+
+Sous-titre : Un petit écrit anonyme qui dit ce que les chrétiens sont dans le monde, et pourquoi.
+Question centrale : comment un écrit sans auteur connu, sauvé par un seul manuscrit aujourd'hui détruit, est-il devenu le texte de référence pour dire la place des chrétiens dans le monde ?
+Obstacles du novice : croire l'auteur connu (Justin, un apôtre) ; prendre « étrangers » pour fuite ou mépris du monde ; lire l'âme et le corps en dualisme (corps mauvais) ; recevoir telle quelle la critique des pratiques juives ; lire le « doux échange » comme une colère du Père apaisée ; croire les ch. 11-12 du même auteur.
+
+Leçons (un fichier par leçon : 01.html ... 11.html ; 00-ouverture.html ; 99-bilan.html)
+1. Un écrit pour un païen curieux : nature, longueur, genre (apologie en forme de lettre), les questions de Diognète (ch. 1), plan des ch. 1-10, place parmi apologistes / Pères apostoliques.
+2. Un auteur et un destinataire inconnus : « Mathetes » (11,1), hypothèses (Justin écarté, Quadratus/Andriessen, Aristide, Hippolyte, Pantène/Marrou, Polycarpe/Hill), Diognète (précepteur de Marc Aurèle, procurateur, nom symbolique), date (IIe-IIIe s.), indices internes, lieu.
+3. Un manuscrit unique, détruit à Strasbourg en 1870 : silence des Anciens, Constantinople 1436, Reuchlin, Marmoutier, Strasbourg, copies (Haus 1580, Beurer, Estienne), éd. princeps 1592, collations Cunitz 1842 et Reuss 1861, incendie du 24 août 1870, lacunes (7,6 et 10,8), comment on édite aujourd'hui.
+4. La vanité des idoles (ch. 2) : invitation à devenir homme nouveau, matière des idoles, sourdes et aveugles, gardées la nuit, l'adorateur devient semblable ; arrière-plan biblique (Ps 115, Is 44) ; lien avec la haine des chrétiens (2,6).
+5. Le culte juif vu par l'auteur (ch. 3-4) : un seul Dieu, juste ; sacrifices (Dieu n'a besoin de rien) ; aliments, sabbat, circoncision, jeûnes, néoménies ; jugement de l'Église (valeur permanente de l'AT, CCC 121-123, marcionisme, Nostra aetate) ; 4,6 le mystère qu'on n'apprend pas d'un homme.
+6. Ni pays, ni langue, ni coutumes à part (ch. 5) : 5,1-4 ; paradoxes 5,5-17 ; paroikoi (paroisse) ; citoyens du ciel ; mariage, enfants non exposés ; obéissance aux lois et vie qui les dépasse ; persécution ; échos de Paul et de Pierre.
+7. Ce que l'âme est dans le corps (ch. 6) : 6,1 ; six correspondances ; « ils maintiennent le monde » ; le poste à ne pas déserter (6,10) ; éviter la lecture dualiste ; sel, lumière, levain.
+8. Dieu a envoyé son Fils par douceur (ch. 7-8) : pas une invention humaine ; le Créateur lui-même envoyé ; non pour dominer : douceur, persuader sans contraindre, « la violence n'est pas en Dieu » ; il viendra juger ; les martyrs ; ch. 8 : nul ne connaissait Dieu ; philosophes ; Dieu s'est montré par la foi ; le dessein caché confié au Fils (pais) puis révélé ; DH 11.
+9. Le doux échange (ch. 9-10) : pourquoi si tard ; le temps de l'injustice et le temps de la justice ; la liste « le saint pour les sans-loi… » ; « ô doux échange » ; lecture catholique (CCC 615, satisfaction) ; noms de Dieu 9,6 ; ch. 10 : connaître le Père, aimer, imiter Dieu, porter le fardeau du prochain ; coupure finale.
+10. Les chapitres 11 et 12, d'une autre main : changement de ton, « disciple des apôtres », Loi et prophètes honorés, Logos toujours jeune, arbres de la connaissance et de la vie, connaissance et amour (1 Co 8,1), Ève vierge ; attributions (Hippolyte : Bunsen, Connolly ; Pantène : Lightfoot ; homélie pascale) ; pourquoi accolés.
+11. La lettre dans l'enseignement de l'Église sur les laïcs et le monde : LG 38 et note 120 (avec Chrysostome, levain), LG 31 caractère séculier, CCC 2240, Office des lectures (mercredi 5e semaine de Pâques ; 18 décembre), autorité d'un texte anonyme, actualité : ni fuite ni dissolution.
+Bilan : 6 exercices.

@@ -1,0 +1,20 @@
+# 23-06-a · Le Pasteur d'Hermas (lettre a, fichier 23-les-premiers-temoins.html)
+
+Question centrale : qu'est-ce que ce long livre romain, aimé puis écarté du canon, et qu'apprend-il de la pénitence et de l'Église du IIe siècle ?
+Obstacles du novice : croire que le Pasteur est le Christ ; confondre « lu comme Écriture » et « canonique » ; lire la pénitence unique comme une doctrine qui limiterait la miséricorde ; prendre la christologie confuse pour une hérésie déclarée, ou au contraire pour la foi de Nicée ; confondre Hermas avec le Hermas de Romains 16:14.
+
+Sources vérifiées (newadvent, ANF, traduites de l'anglais) : Vis. I-V, Mand. I-XII, Sim. II, V, VI, VII, VIII, IX, X ; Irénée AH IV,20,2 ; Tertullien De oratione 16, De pudicitia 10 et 20 ; Eusèbe HE III,3,6 ; Jérôme De viris 10 ; Athanase De decretis 18 ; CEC 760, 1446, 1447 (vatican.va) ; fragment de Muratori (latin, CE).
+
+Leçons (11) :
+1. Hermas, chrétien de Rome : ce qu'il dit de lui (Rhoda, affranchi, commerce, famille), frère de Pie (Muratori, Catalogue libérien), date (Clément de Vis. II,4,3 / Pie), hypothèses de composition, Hermas de Romains 16:14 (Origène).
+2. Cinq visions, douze préceptes, dix similitudes : structure, charnière de la Vision V, la Similitude IX reprise de la Vision III, numérotation continue, genre apocalyptique, longueur, absence de citations (Eldad et Modat) et des noms Jésus/Christ, transmission (Athos, Sinaiticus, latin, éthiopien).
+3. Le Pasteur, ange de la pénitence : Vision V, aspect, envoyé par l'ange très vénérable, « préposé à la pénitence », ange gardien, autres anges (ange du châtiment, Thegri, ange glorieux), le Pasteur n'est pas le Christ, pédagogie.
+4. La femme âgée qui rajeunit : lecture du livre, la Sibylle, créée la première, le monde fait pour elle (CEC 760), trois apparitions expliquées (Vis. III,10-13), la vierge parée (Vis. IV), Église préexistante, sainte et faite de pécheurs.
+5. La tour bâtie sur les eaux : Vis. III (six jeunes gens, eaux = baptême, catégories de pierres, sept femmes-vertus), Sim. IX (rocher et porte = Fils de Dieu, sceau = eau, arrêt de la construction), pierres vivantes (1 Pierre 2:5), urgence de la fin.
+6. Une pénitence après le baptême : metanoia, Vis. II,2 (jour fixé, païens), Mand. IV,3 (maîtres rigoristes, miséricorde, une seule fois, « difficilement il vivra »), arrière-plan Hébreux 6:4-6, débat jubilé / discipline durable.
+7. Ce que demande la pénitence : intelligence (Mand. IV,2), affliction et humilité (Sim. VII), tout le cœur, rameaux de saule (Sim. VIII), délai de la tour (Sim. IX,14 ; X,4), la maison d'Hermas ; doctrine et discipline (CEC 1446-1447), suite de l'histoire (Tertullien, Cyprien, Novatien, pénitence privée).
+8. Simplicité, vérité, chasteté : Mand. I (foi, crainte, continence), II (enfance, médisance, aumône à tous), III (vérité, les mensonges du commerçant), IV,1 et 4 (pensées, adultère, époux trompé, remariage des veufs) ; Sim. II (orme et vigne), Sim. V,3 (jeûne, œuvres au-delà du précepte).
+9. Le discernement des deux anges : Mand. VI (deux voies, deux anges, reconnaître à leurs œuvres), Mand. V (patience, Esprit qui habite), IX (dipsychia, Jacques 1:6-8), X (tristesse, Éphésiens 4:30), XI (vrai et faux prophète, 1 Jean 4:1), XII (désir bon et mauvais) ; parallèles (Qumrân, Didachè) ; postérité (Origène).
+10. Une christologie obscure : Sim. V (parabole de la vigne, esclave = Fils, fils = Esprit, chair associée), Sim. IX,1 et IX,12 (Esprit = Fils ; Fils plus ancien que la création ; porte nouvelle ; homme glorieux), Sim. VIII,3 (Michel) ; lectures : adoptianisme, christologie de l'Esprit, binitarisme, christologie angélique, lecture orthodoxe ; Athanase et les ariens (De decretis 18) ; jugement de l'Église.
+11. Lu comme Écriture, puis écarté : Irénée (« l'Écriture »), Clément d'Alexandrie, Origène, Sinaiticus, Pseudo-Cyprien ; Muratori (lire en privé) ; Tertullien (De oratione 16, puis De pudicitia 10 et 20) ; Eusèbe, Athanase, Jérôme, décret gélasien ; place aujourd'hui (Pères apostoliques, CEC 760).
+Bilan : 6 exercices.
