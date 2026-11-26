@@ -617,6 +617,256 @@
    ]
   },
   {
+   "id": "base-patristique",
+   "name": {
+    "fr": "La patristique"
+   },
+   "bloc": "Les Pères de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-1-corinthiens-4-15",
+     "fr": {
+      "ref": "1 Corinthiens 4:15",
+      "text": "Auriez-vous des milliers de guides dans le Christ, vous n'avez pas plusieurs pères : c'est moi qui, par la Bonne Nouvelle, vous ai engendrés dans le Christ Jésus."
+     },
+     "note": "Paul se dit le père des Corinthiens, qu’il a engendrés à la foi par l’Évangile. Les premiers chrétiens ont donné ce nom à leurs maîtres pour la même raison : « Celui qui a été instruit par la parole d’un autre est appelé le fils de celui qui l’enseigne », écrit Irénée de Lyon (*Contre les hérésies* IV, 41, 2)."
+    },
+    {
+     "id": "base-hebreux-13-7",
+     "fr": {
+      "ref": "Hébreux 13:7",
+      "text": "Souvenez-vous de vos guides, qui vous ont annoncé la parole de Dieu ; considérez l'aboutissement de leur vie, et imitez leur foi."
+     },
+     "note": "L’Église ne compte parmi les Pères que des maîtres à la doctrine sûre dont elle a reconnu la sainteté. Ce verset lie déjà les deux : la parole qu’ils ont annoncée, et leur vie menée jusqu’au bout, dont la foi est à imiter."
+    },
+    {
+     "id": "base-1-timothee-6-20",
+     "fr": {
+      "ref": "1 Timothée 6:20",
+      "text": "Ô Timothée, garde le dépôt. Détourne-toi des bavardages profanes et des objections d'une prétendue science ;"
+     },
+     "note": "Vincent de Lérins commente longuement ce verset dans son *Commonitorium*, en 434 : le dépôt, dit-il, c’est ce qui t’a été confié, non ce que tu as inventé. Le même livre donne sa règle pour reconnaître la foi de l’Église : tenir ce qui a été cru partout, toujours et par tous."
+    },
+    {
+     "id": "base-2-thessaloniciens-2-15",
+     "fr": {
+      "ref": "2 Thessaloniciens 2:15",
+      "text": "Ainsi donc, frères, tenez ferme, et gardez les traditions que vous avez apprises de nous, de vive voix ou par lettre."
+     },
+     "note": "Paul met sur le même rang ce qu’il a transmis de vive voix et ce qu’il a écrit. Jean Chrysostome en tire, dans ses homélies sur cette lettre, que les apôtres n’ont pas tout transmis par écrit et que la tradition de l’Église mérite aussi d’être crue."
+    }
+   ]
+  },
+  {
+   "id": "base-premiers-temoins",
+   "name": {
+    "fr": "Les premiers témoins"
+   },
+   "bloc": "Les Pères de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-malachie-1-11",
+     "fr": {
+      "ref": "Malachie 1:11",
+      "text": "Car du levant au couchant, mon nom est grand parmi les nations, et en tout lieu on offre à mon nom de l'encens et une offrande pure ; oui, mon nom est grand parmi les nations, dit le Seigneur de l'univers."
+     },
+     "note": "La *Didachè* applique cette prophétie à l’eucharistie du dimanche, le sacrifice pur offert en tout lieu (chapitre 14). Justin et Irénée de Lyon la lisent de la même façon."
+    },
+    {
+     "id": "base-jean-6-54",
+     "fr": {
+      "ref": "Jean 6:54",
+      "text": "Celui qui mâche ma chair et boit mon sang a la vie éternelle, et moi, je le ressusciterai au dernier jour."
+     },
+     "note": "En route vers son martyre, Ignace d’Antioche appelle le pain rompu « remède d’immortalité, antidote pour ne pas mourir » (*Aux Éphésiens* 20, 2). Il rejoint cette promesse : la communion dépose déjà en nous le germe de la résurrection."
+    },
+    {
+     "id": "base-philippiens-3-20",
+     "fr": {
+      "ref": "Philippiens 3:20",
+      "text": "Mais notre citoyenneté, à nous, est dans les cieux, d'où nous attendons comme Sauveur le Seigneur Jésus Christ,"
+     },
+     "note": "La *Lettre à Diognète* dit des chrétiens qu’« ils passent leur vie sur la terre, mais ils sont citoyens du ciel » (5, 9), en écho direct à ce verset. Ils vivent dans leur ville comme tout le monde, en sachant que leur patrie est au ciel."
+    },
+    {
+     "id": "base-ephesiens-1-10",
+     "fr": {
+      "ref": "Éphésiens 1:10",
+      "text": "pour le mener à bien quand les temps seraient accomplis : ramener toutes choses sous un seul chef, le Christ, celles du ciel et celles de la terre."
+     },
+     "note": "Irénée de Lyon tire de ce verset le mot central de sa théologie, la récapitulation. Le Christ reprend en lui toute l’histoire humaine depuis Adam, la refait dans l’obéissance pour la sauver et devient la tête de toute la création."
+    },
+    {
+     "id": "base-ephesiens-4-4-6",
+     "fr": {
+      "ref": "Éphésiens 4:4-6",
+      "text": "Il y a un seul corps et un seul Esprit, de même qu'un seul espoir vous a été donné par votre appel. Il y a un seul Seigneur, une seule foi, un seul baptême, un seul Dieu et Père de tous, qui règne au-dessus de tous, agit à travers tous et demeure en tous."
+     },
+     "note": "Saint Cyprien cite ce passage dans *L’Unité de l’Église catholique* (chapitre 4) : l’Église est une, comme sont uniques le Seigneur, la foi et le baptême. Le même traité dit qu’« on ne peut avoir Dieu pour Père si l’on n’a pas l’Église pour mère »."
+    }
+   ]
+  },
+  {
+   "id": "base-peres-orient",
+   "name": {
+    "fr": "Les Pères d’Orient"
+   },
+   "bloc": "Les Pères de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-jean-1-14",
+     "fr": {
+      "ref": "Jean 1:14",
+      "text": "Et le Verbe s'est fait chair, et il a planté sa tente parmi nous ; et nous avons vu sa gloire, la gloire qu'il tient de son Père comme Fils unique, plein de grâce et de vérité."
+     },
+     "note": "Athanase d’Alexandrie consacre tout son traité *Sur l’Incarnation du Verbe* à ce mystère et le résume ainsi : « Lui s’est fait homme pour que nous soyons faits Dieu » (54, 3). Le Catéchisme de l’Église catholique reprend sa formule (n. 460)."
+    },
+    {
+     "id": "base-hebreux-4-15",
+     "fr": {
+      "ref": "Hébreux 4:15",
+      "text": "Car nous n'avons pas un grand prêtre incapable de compatir à nos faiblesses ; il a été, comme nous, éprouvé en tout, à l'exception du péché."
+     },
+     "note": "Apollinaire refusait au Christ une intelligence humaine. Grégoire de Nazianze lui répond par une règle : « ce qui n’a pas été assumé n’a pas été guéri » (*Lettre* 101). Le Christ a pris l’homme tout entier, sauf le péché, comme le dit ce verset."
+    },
+    {
+     "id": "base-philippiens-3-13-14",
+     "fr": {
+      "ref": "Philippiens 3:13-14",
+      "text": "Frères, je n'estime pas l'avoir encore saisi. Mais je fais une seule chose : oubliant ce qui est derrière moi et tendu vers ce qui est devant, je cours vers le but, pour le prix auquel Dieu m'appelle là-haut dans le Christ Jésus."
+     },
+     "note": "Grégoire de Nysse reprend sans cesse le verbe grec de ce passage, *epekteinomai*, « se tendre en avant » : plus l’âme connaît Dieu, plus elle le désire, et elle ne cesse jamais d’avancer vers lui. Les historiens ont tiré de ce verbe le nom de sa doctrine, l’épectase."
+    },
+    {
+     "id": "base-romains-6-4",
+     "fr": {
+      "ref": "Romains 6:4",
+      "text": "Par le baptême en sa mort, nous avons donc été ensevelis avec lui, afin que, comme le Christ est ressuscité des morts par la gloire du Père, nous menions nous aussi une vie nouvelle."
+     },
+     "note": "Cyrille de Jérusalem s’appuie sur ce verset dans sa deuxième catéchèse mystagogique, adressée aux nouveaux baptisés. Plongés trois fois dans l’eau, ils ont imité par un signe la mort et la mise au tombeau du Christ, et ce signe leur a donné vraiment le salut."
+    },
+    {
+     "id": "base-matthieu-25-40",
+     "fr": {
+      "ref": "Matthieu 25:40",
+      "text": "Et le Roi leur répondra : Amen, je vous le dis : chaque fois que vous l'avez fait à l'un de ces plus petits de mes frères, c'est à moi que vous l'avez fait."
+     },
+     "note": "Jean Chrysostome rapproche cette parole du jugement de « Ceci est mon corps » : le Christ qu’on honore à l’autel est le même qu’on sert dans le pauvre (*Homélies sur Matthieu* L, 4). Il ne veut pas qu’on l’honore à l’église avec des étoffes de soie pour le laisser dehors, nu et transi."
+    },
+    {
+     "id": "base-matthieu-26-39",
+     "fr": {
+      "ref": "Matthieu 26:39",
+      "text": "Allant un peu plus loin, il tomba la face contre terre en priant : « Mon Père, s'il est possible, que cette coupe passe loin de moi ! Cependant, non pas comme je veux, mais comme tu veux. »"
+     },
+     "note": "Maxime le Confesseur consacre un opuscule entier à cette prière de Gethsémani. Il y montre deux volontés dans le Christ, la divine et l’humaine, et la volonté humaine qui s’accorde librement à celle du Père ; le concile de Constantinople III l’a défini en 681."
+    }
+   ]
+  },
+  {
+   "id": "base-peres-occident",
+   "name": {
+    "fr": "Les Pères d’Occident"
+   },
+   "bloc": "Les Pères de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-exode-3-14",
+     "fr": {
+      "ref": "Exode 3:14",
+      "text": "Dieu dit à Moïse : « Je suis celui qui suis. » Puis il ajouta : « Voici ce que tu diras aux fils d'Israël : Je Suis m'a envoyé vers vous. »"
+     },
+     "note": "Hilaire de Poitiers raconte, au début de *La Trinité*, que ce verset l’a saisi d’admiration quand il cherchait encore Dieu : il y trouvait sur Dieu une parole d’une grande justesse. Le prologue de Jean l’a ensuite conduit à la foi au Christ."
+    },
+    {
+     "id": "base-2-corinthiens-3-6",
+     "fr": {
+      "ref": "2 Corinthiens 3:6",
+      "text": "lui qui nous a rendus capables d'être les ministres d'une alliance nouvelle, non de la lettre, mais de l'Esprit ; car la lettre tue, mais l'Esprit fait vivre."
+     },
+     "note": "Augustin raconte qu’il entendait souvent Ambroise répéter ce verset à son peuple, comme une règle (*Confessions* VI, 4, 6). En lisant l’Ancien Testament selon l’Esprit, l’évêque de Milan a levé les objections qui tenaient Augustin loin de l’Écriture."
+    },
+    {
+     "id": "base-matthieu-22-29",
+     "fr": {
+      "ref": "Matthieu 22:29",
+      "text": "Jésus leur répondit : « Vous êtes dans l'erreur, faute de connaître les Écritures et la puissance de Dieu."
+     },
+     "note": "Jérôme rapproche cette parole de Jésus de celle de Paul sur le Christ, « puissance de Dieu et sagesse de Dieu ». Il en conclut : « ignorer les Écritures, c’est ignorer le Christ » (*Commentaire sur Isaïe*, prologue)."
+    },
+    {
+     "id": "base-2-pierre-1-4",
+     "fr": {
+      "ref": "2 Pierre 1:4",
+      "text": "Par elles, il nous a accordé les précieuses et très grandes promesses, pour que vous deveniez ainsi participants de la nature divine, en fuyant la corruption que la convoitise répand dans le monde."
+     },
+     "note": "Dans un sermon de Noël, Léon le Grand reprend ce verset : « Reconnais, ô chrétien, ta dignité ; devenu participant de la nature divine, ne retourne pas par une conduite indigne à ton ancienne bassesse » (*Sermon* 21, 3)."
+    },
+    {
+     "id": "base-job-1-21",
+     "fr": {
+      "ref": "Job 1:21",
+      "text": "Il dit : « Nu je suis sorti du ventre de ma mère, et nu j'y retournerai. Le Seigneur a donné, le Seigneur a repris ; il en a été comme il a plu au Seigneur : que le nom du Seigneur soit béni ! »"
+     },
+     "note": "Grégoire le Grand s’arrête longuement, dans ses *Morales sur Job*, sur ce premier mot de Job quand il a tout perdu. Celui qui a reçu ses biens comme un don, explique-t-il, peut les rendre sans se révolter."
+    }
+   ]
+  },
+  {
+   "id": "base-saint-augustin",
+   "name": {
+    "fr": "Saint Augustin"
+   },
+   "bloc": "Les Pères de l’Église",
+   "kind": "v",
+   "verses": [
+    {
+     "id": "base-romains-13-13-14",
+     "fr": {
+      "ref": "Romains 13:13-14",
+      "text": "Conduisons-nous honnêtement, comme en plein jour, sans excès de table ni beuveries, sans débauche ni dérèglement, sans querelle ni jalousie. Revêtez au contraire le Seigneur Jésus Christ, et ne vous laissez pas aller aux convoitises de la chair."
+     },
+     "note": "Dans un jardin de Milan, en 386, Augustin entend une voix d’enfant chanter « Prends, lis », ouvre les lettres de Paul et tombe sur ces versets. « Je ne voulus pas lire davantage, et ce n’était pas nécessaire » (*Confessions* VIII, 12, 29)."
+    },
+    {
+     "id": "base-psaumes-145-3",
+     "fr": {
+      "ref": "Psaumes 145:3",
+      "text": "Le Seigneur est grand, digne de toute louange ; sa grandeur est insondable."
+     },
+     "note": "Les *Confessions* s’ouvrent sur ce verset. Quelques lignes plus loin vient la phrase la plus connue d’Augustin : « tu nous as faits pour toi, et notre cœur est sans repos tant qu’il ne repose pas en toi » (I, 1, 1)."
+    },
+    {
+     "id": "base-romains-5-5",
+     "fr": {
+      "ref": "Romains 5:5",
+      "text": "et l'espérance ne déçoit pas, parce que l'amour de Dieu a été répandu dans nos cœurs par l'Esprit Saint qui nous a été donné."
+     },
+     "note": "Contre Pélage, Augustin revient sans cesse à ce verset. La grâce est l’amour de Dieu répandu dans le cœur par l’Esprit Saint : par lui, l’homme aime le bien et fait par amour ce que la loi commandait du dehors (*L’Esprit et la lettre* 3, 5)."
+    },
+    {
+     "id": "base-1-corinthiens-4-7",
+     "fr": {
+      "ref": "1 Corinthiens 4:7",
+      "text": "Qui donc te distingue ? Qu'as-tu que tu n'aies reçu ? Et si tu l'as reçu, pourquoi t'en glorifier comme si tu ne l'avais pas reçu ?"
+     },
+     "note": "Augustin dit que cette question de Paul l’a convaincu, en 396, que même le commencement de la foi est un don de Dieu. Il la cite sans cesse dans ses derniers écrits sur la grâce, comme *La Prédestination des saints*."
+    },
+    {
+     "id": "base-psaumes-87-3",
+     "fr": {
+      "ref": "Psaumes 87:3",
+      "text": "On dit de toi des choses glorieuses, cité de Dieu ! Séla."
+     },
+     "note": "Au début du livre XI de *La Cité de Dieu*, Augustin explique qu’il a pris ce nom dans l’Écriture, et d’abord dans ce psaume. La Jérusalem chantée par le psalmiste devient chez lui l’image de la cité céleste, en pèlerinage sur la terre au milieu de la cité terrestre."
+    }
+   ]
+  },
+  {
    "id": "base-eglise-antique",
    "name": {
     "fr": "L’Église des premiers siècles"
