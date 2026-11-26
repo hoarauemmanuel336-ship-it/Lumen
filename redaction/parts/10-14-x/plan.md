@@ -14,5 +14,5 @@ Question centrale : quelles grandes manières de penser le XIXe siècle a-t-il o
 10. Newman : Grammaire de l'assentiment (1870) : inférence et assentiment, notionnel et réel, certitude, inférence informelle, sens illatif, convergence ; la conscience ; vie ; docteur de l'Église.
 11. Blondel : L'Action (1893), la question ; méthode d'immanence ; dialectique de la volonté ; l'unique nécessaire et le surnaturel ; Lettre de 1896 ; débats (Pascendi, modernisme) ; Histoire et dogme.
 12. Bergson : durée, intuition, élan vital ; Index 1914 ; Deux Sources (1932) ; testament 1937, adhésion intime ; jugement thomiste (Maritain).
-Bilan : 6 exercices croisés.
-Progression : 00, 01-11 écrits ; suite 12 puis bilan.
+Bilan : 7 exercices croisés.
+Progression : terminé ; contrôle propre, humanisé, assemblage testé, livré dans redaction/10-14-x.html.

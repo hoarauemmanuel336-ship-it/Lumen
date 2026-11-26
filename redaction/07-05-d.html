@@ -61,12 +61,12 @@
 <style>
 .d1-arbre{display:grid;gap:10px;margin:6px 0 4px}
 .d1-ligne{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:10px;align-items:stretch}
-.d1-q,.d1-r{background:#000;border:1px solid rgba(255,255,255,.2);padding:10px 12px}
+.d1-q,.d1-r{background:#000;border:1px solid rgba(255,255,255,.2);padding:10px 12px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)}
 .d1-q{font-family:'JetBrains Mono',monospace;font-size:calc(10.5px * var(--z,1.25));letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.62);line-height:1.5}
 .d1-r{font-family:'Literata',serif;font-size:calc(13px * var(--z,1.25));color:var(--fg);line-height:1.45}
 .d1-r b{color:var(--a);font-weight:600}
 .d1-titre{font-family:'JetBrains Mono',monospace;font-size:calc(10px * var(--z,1.25));letter-spacing:.12em;text-transform:uppercase;color:var(--a);border-bottom:1px solid rgb(var(--r)/.4);padding-bottom:4px;margin-top:6px}
-@media (max-width:640px){.d1-ligne{grid-template-columns:1fr;gap:0}.d1-q{border-bottom:none}}
+@media (max-width:640px){.d1-ligne{grid-template-columns:1fr;gap:0}.d1-q{border-bottom:none}.d1-q,.d1-r{clip-path:none}}
 </style>
 <div class="d1-arbre">
 <div class="d1-titre">Le prédicat est le sujet lui-même</div>
