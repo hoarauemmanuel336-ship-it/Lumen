@@ -1,5 +1,7 @@
 # Plan du cours 10-10-e : La seconde scolastique (lettre e)
 
+Statut : rédaction terminée, assemblée dans redaction/10-10-e.html (12 leçons + bilan).
+
 Question centrale : comment la pensée scolastique, que l'on croit morte avec le Moyen Âge, renaît aux XVIe et XVIIe siècles en Espagne, au Portugal et en Italie, quels outils de la raison elle forge (commentaire, lieux, prémotion, science moyenne, métaphysique systématique, manuels, théorie du signe) et comment elle passe dans la philosophie moderne.
 Obstacles du novice : croire que la scolastique s'arrête en 1300 ; confondre seconde scolastique et néothomisme ; croire que les écoles (dominicains, jésuites) s'opposent sur la foi ; croire que Descartes part de rien.
 
