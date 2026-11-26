@@ -1,0 +1,14 @@
+<sujet cle="metaphysique.transcendantaux" titre="Les transcendantaux" desc="Les propriétés qui accompagnent l’être partout où il se trouve : l’un, le vrai, le bien, le beau.">
+<p>Les transcendantaux (latin <i>transcendentia</i>) comme ensemble : propriétés qui dépassent toutes les catégories et se convertissent avec l’être</p>
+<p>La déduction des transcendantaux chez saint Thomas, <i>De veritate</i>, q. 1, a. 1</p>
+<p>La chose (latin <i>res</i>) : l’être considéré dans son essence</p>
+<p>L’<b>un</b> (latin <i>unum</i>) : l’être indivisé en lui-même</p>
+<p>Le quelque chose (latin <i>aliquid</i>, « autre quoi ») : l’être distinct des autres</p>
+<p>Le <b>vrai</b> (latin <i>verum</i>) : l’être rapporté à l’intelligence</p>
+<p>Le <b>bien</b> (latin <i>bonum</i>) : l’être rapporté à la volonté, ce que tous désirent</p>
+<p>La convertibilité de l’être et du bien : tout ce qui est est bon en tant qu’il est</p>
+<p>Le beau (latin <i>pulchrum</i>) : la question disputée de son rang parmi les transcendantaux</p>
+<p>Les trois conditions du beau selon saint Thomas : intégrité, proportion, éclat (<i>Somme de théologie</i> I, q. 39, a. 8)</p>
+<p>Les transcendantaux en Dieu : Dieu l’Un, le Vrai, le Bien, le Beau par essence</p>
+<p>La théologie de la beauté chez Hans Urs von Balthasar (<i>La Gloire et la Croix</i>)</p>
+</sujet>

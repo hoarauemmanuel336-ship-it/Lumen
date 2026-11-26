@@ -1,0 +1,25 @@
+<sujet cle="logique.sophismes" titre="Les sophismes" desc="Les raisonnements trompeurs, comment les reconnaître et les défaire.">
+<p>Le sophisme (grec <i>sophisma</i>) et le paralogisme : le faux raisonnement voulu et le faux raisonnement involontaire</p>
+<p>Les <i>Réfutations sophistiques</i> d’Aristote et la division des sophismes en deux familles : ceux qui tiennent au langage et ceux qui n’en dépendent pas</p>
+<p>L’équivoque : un même mot pris en deux sens</p>
+<p>L’amphibologie : une phrase dont la construction admet deux sens</p>
+<p>Le sophisme de composition : attribuer au tout ce qui vaut des parties</p>
+<p>Le sophisme de division : attribuer aux parties ce qui vaut du tout</p>
+<p>Le sophisme de l’accent : un sens changé par l’intonation ou l’accentuation</p>
+<p>Le sophisme de la forme de l’expression : conclure d’une ressemblance de grammaire à une ressemblance de réalité</p>
+<p>Le sophisme de l’accident : attribuer à une chose ce qui ne lui convient que par accident</p>
+<p>Le passage du relatif à l’absolu (latin <i>a dicto secundum quid ad dictum simpliciter</i>)</p>
+<p>L’ignorance de la question (latin <i>ignoratio elenchi</i>) : prouver autre chose que ce qui est en cause</p>
+<p>La <b>pétition de principe</b> : supposer ce qu’il faut prouver, et le cercle vicieux</p>
+<p>Le sophisme du conséquent : croire que l’antécédent est vrai parce que le conséquent l’est</p>
+<p>La fausse cause : prendre pour cause ce qui n’en est pas une (<i>post hoc, ergo propter hoc</i>)</p>
+<p>La question multiple : poser plusieurs questions comme une seule</p>
+<p>La généralisation hâtive : conclure à l’universel à partir de quelques cas</p>
+<p>Le faux dilemme : réduire à deux possibilités un choix qui en compte davantage</p>
+<p>L’attaque contre la personne (<i>ad hominem</i>) : réfuter l’auteur au lieu de la thèse</p>
+<p>L’appel à la force (<i>ad baculum</i>) : la menace en guise de preuve</p>
+<p>L’appel à la foule (<i>ad populum</i>) : l’opinion du grand nombre en guise de preuve</p>
+<p>L’homme de paille : réfuter une version déformée de la thèse adverse</p>
+<p>L’argument d’autorité : le plus faible en philosophie, le plus fort en théologie quand l’autorité est Dieu qui révèle (<i>Somme de théologie</i> I, q. 1, a. 8, réponse 2)</p>
+<p>La manière de défaire un sophisme dans la dispute scolastique : distinguer (latin <i>distinguo</i>), concéder, nier</p>
+</sujet>

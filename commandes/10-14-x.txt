@@ -1,0 +1,13 @@
+<sujet cle="philosophes.xixe" titre="Les philosophies du XIXe siècle face à la foi" desc="Idéalisme, critique de la religion, existence, évolution : les grands courants du XIXe siècle et les penseurs catholiques qui leur répondent.">
+<p>Georg Wilhelm Friedrich Hegel : l’Esprit absolu, la dialectique, l’histoire, et la religion dépassée par la philosophie</p>
+<p>Friedrich Schleiermacher : la religion comme sentiment de dépendance absolue, source de la théologie libérale</p>
+<p>La gauche hégélienne : de la philosophie de Hegel à la critique radicale de la religion (David Friedrich Strauss, Feuerbach, Marx)</p>
+<p>Søren Kierkegaard : l’existence, les trois stades (esthétique, éthique, religieux), la foi comme saut</p>
+<p><i>L’Origine des espèces</i> de Charles Darwin (1859) et l’évolutionnisme devenu philosophie</p>
+<p>Le spiritualisme français : Maine de Biran, Félix Ravaisson, et la voie ouverte vers Bergson</p>
+<p>Antonio Rosmini : son œuvre, la condamnation de quarante propositions (1887), la note de 2001 qui en précise la portée, sa béatification (2007)</p>
+<p>Le <i>Syllabus</i> de Pie IX (1864) : les erreurs philosophiques recensées</p>
+<p>Saint John Henry Newman : la <i>Grammaire de l’assentiment</i> (1870), la conscience, la certitude par convergence</p>
+<p>Maurice Blondel : <i>L’Action</i> (1893), la méthode d’immanence et l’ouverture au surnaturel</p>
+<p>Henri Bergson : la durée, l’élan vital, <i>Les Deux Sources de la morale et de la religion</i> (1932) et son adhésion intime au catholicisme</p>
+</sujet>

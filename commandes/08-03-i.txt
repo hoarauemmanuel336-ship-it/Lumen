@@ -1,0 +1,12 @@
+<sujet cle="anthropologie.intelligence" titre="L’intelligence" desc="La faculté qui connaît ce que sont les choses.">
+<p>L’<b>intelligence</b> (latin <i>intellectus</i>, de <i>intus legere</i>, « lire au-dedans ») : faculté de connaître l’être et l’essence des choses</p>
+<p>L’objet propre de l’intelligence humaine : l’essence des choses sensibles</p>
+<p>L’objet commun de l’intelligence : l’être, d’où son ouverture à tout ce qui est</p>
+<p>L’immatérialité de l’opération intellectuelle : connaître l’universel, se connaître soi-même</p>
+<p>Intellect et raison : l’intuition et le discours, une seule faculté</p>
+<p>Raison spéculative et raison pratique : une même intelligence tournée vers le vrai à connaître ou vers l’œuvre à faire</p>
+<p>La connaissance de soi par la réflexion : l’âme qui se connaît par ses actes</p>
+<p>L’intellect agent propre à chaque homme, contre le monopsychisme d’Averroès (saint Thomas, <i>De l’unité de l’intellect contre les averroïstes</i>, 1270)</p>
+<p>La connaissance humaine de Dieu : par les créatures, jamais par une vision directe en cette vie</p>
+<p>Intelligence humaine et intelligence artificielle : ce que la machine calcule, ce que l’intelligence comprend (note <i>Antiqua et nova</i>, Dicastère pour la doctrine de la foi et Dicastère pour la culture et l’éducation, 2025)</p>
+</sujet>

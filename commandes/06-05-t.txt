@@ -1,0 +1,20 @@
+<sujet cle="logique.operations" titre="Les trois opérations de l’intelligence" desc="Concevoir, juger, raisonner : les trois actes de la pensée et la logique qui les règle.">
+<p>La logique (grec <i>logikê</i>, de <i>logos</i>, « parole, raison ») : l’art qui dirige les actes de la raison pour qu’elle procède avec ordre, facilement et sans erreur</p>
+<p>L’objet de la logique : les êtres de raison (les intentions secondes), c’est-à-dire l’ordre que la raison met dans ses concepts</p>
+<p>La logique, art et science : la question de son statut</p>
+<p>L’<i>Organon</i> d’Aristote (grec, « instrument ») comme ensemble : la logique comme instrument de toutes les sciences, et l’ordre de ses six traités</p>
+<p>Les <i>Catégories</i> : les genres suprêmes auxquels se ramènent les termes</p>
+<p>Le traité <i>De l’interprétation</i> : la proposition, l’affirmation et la négation</p>
+<p>Les <i>Premiers Analytiques</i> : le syllogisme</p>
+<p>Les <i>Seconds Analytiques</i> : la démonstration et la science</p>
+<p>Les <i>Topiques</i> : le raisonnement dialectique à partir d’opinions probables</p>
+<p>Les <i>Réfutations sophistiques</i> : les raisonnements trompeurs</p>
+<p>L’<i>Isagogè</i> de Porphyre, introduction aux <i>Catégories</i>, et son rôle dans l’enseignement médiéval</p>
+<p>Les trois opérations de l’intelligence comme ensemble : pourquoi trois, et comment chacune s’appuie sur la précédente</p>
+<p>La simple appréhension : saisir ce qu’est une chose sans rien affirmer ni nier</p>
+<p>Le jugement : unir ou séparer deux concepts en affirmant ou en niant</p>
+<p>Le raisonnement : passer de jugements connus à un jugement nouveau</p>
+<p>Le signe et le langage : le mot signe du concept, le concept signe de la chose</p>
+<p>Logique formelle et logique matérielle : la forme correcte du raisonnement et la vérité de son contenu</p>
+<p>La logique moderne (logique symbolique, Frege, Russell) et son rapport à la logique d’Aristote</p>
+</sujet>

@@ -1,0 +1,21 @@
+<sujet cle="logique.sens" titre="La connaissance sensible" desc="Comment l’homme connaît par ses sens extérieurs et intérieurs.">
+<p>La connaissance comme manière d’être l’autre en tant qu’autre : le connaissant qui devient intentionnellement la chose connue</p>
+<p>L’intentionnalité : la forme de la chose reçue sans sa matière</p>
+<p>Le sens (latin <i>sensus</i>) : faculté qui connaît le singulier matériel par un organe corporel</p>
+<p>Les cinq sens externes comme ensemble : ce qui les distingue (leur objet propre), ce qui les unit</p>
+<p>La vue : la couleur pour objet propre, le sens le plus proche de l’intelligence</p>
+<p>L’ouïe : le son pour objet propre, le sens de la parole reçue et de l’enseignement</p>
+<p>L’odorat : l’odeur pour objet propre</p>
+<p>Le goût : la saveur pour objet propre, une forme de toucher</p>
+<p>Le toucher : les qualités tangibles pour objet, le sens fondamental présent chez tout animal</p>
+<p>Le sensible propre : ce qu’un seul sens perçoit (la couleur pour la vue, le son pour l’ouïe)</p>
+<p>Le sensible commun : ce que plusieurs sens perçoivent ensemble (mouvement, figure, grandeur, nombre)</p>
+<p>Le sensible par accident : ce qui n’est pas senti en lui-même mais saisi avec le senti (l’homme que l’on voit)</p>
+<p>La vérité des sens : le sens ne se trompe pas sur son objet propre, l’erreur vient du jugement</p>
+<p>Les sens internes comme ensemble, d’après saint Thomas (<i>Somme de théologie</i> I, q. 78, a. 4)</p>
+<p>Le sens commun : la faculté qui unifie les données des sens externes et perçoit que l’on sent</p>
+<p>L’imagination : la faculté qui garde et recompose les images (le <i>phantasme</i>, grec <i>phantasma</i>)</p>
+<p>L’estimative chez l’animal et la <b>cogitative</b> chez l’homme : la perception de l’utile et du nuisible, et la saisie de l’individu concret</p>
+<p>La mémoire sensible : la conservation du passé perçu comme passé</p>
+<p>La continuité entre sens et intelligence : « rien n’est dans l’intelligence qui n’ait d’abord été dans les sens » (adage scolastique) et son sens exact</p>
+</sujet>

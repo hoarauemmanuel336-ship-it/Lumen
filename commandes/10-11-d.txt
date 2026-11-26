@@ -1,0 +1,14 @@
+<sujet cle="philosophes.descartes" titre="Descartes et le rationalisme moderne" desc="La philosophie qui part du sujet pensant, et ses héritiers.">
+<p>René Descartes (1596-1650) : sa formation chez les Jésuites de La Flèche, son projet</p>
+<p>Le <i>Discours de la méthode</i> (1637) et les règles de la méthode</p>
+<p>Le doute méthodique et le <b>cogito</b> : « je pense, donc je suis »</p>
+<p>Les preuves de Dieu dans les <i>Méditations métaphysiques</i> (1641) : par l’idée d’infini, par l’idée de l’être parfait</p>
+<p>Dieu garant de la vérité, et le cercle cartésien</p>
+<p>Ce que la pensée catholique reproche à Descartes : le primat de la pensée sur l’être, la rupture avec la tradition</p>
+<p>La mise à l’Index des œuvres de Descartes (1663) et la querelle de l’eucharistie que suscitait sa physique</p>
+<p>Nicolas Malebranche et l’occasionnalisme : Dieu seule cause véritable</p>
+<p>Baruch Spinoza et le panthéisme (« Dieu, c’est-à-dire la nature », <i>Éthique</i>)</p>
+<p>Gottfried Wilhelm Leibniz : les monades, le principe de raison suffisante, le meilleur des mondes possibles</p>
+<p>Blaise Pascal : le Dieu sensible au cœur, le <i>Mémorial</i> (1654) et le Dieu d’Abraham contre le Dieu des philosophes</p>
+<p>Les <i>Pensées</i> de Pascal : la misère et la grandeur de l’homme, l’apologie inachevée</p>
+</sujet>

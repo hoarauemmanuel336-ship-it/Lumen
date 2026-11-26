@@ -1,0 +1,21 @@
+<sujet cle="anthropologie.passions" titre="Les onze passions" desc="Les mouvements de la sensibilité selon saint Thomas, un par un.">
+<p>La passion (latin <i>passio</i>, grec <i>pathos</i>, « ce que l’on subit ») : mouvement de l’appétit sensible accompagné d’une modification corporelle</p>
+<p>Le traité des passions de saint Thomas (<i>Somme de théologie</i> I-II, q. 22 à 48)</p>
+<p>L’appétit <b>concupiscible</b> (le bien et le mal pris simplement) et l’appétit <b>irascible</b> (le bien ou le mal difficile)</p>
+<p>Les onze passions comme ensemble : six du concupiscible, cinq de l’irascible, et leur enchaînement</p>
+<p>L’amour : la première des passions, l’inclination vers le bien</p>
+<p>La haine : le rejet du mal opposé au bien aimé</p>
+<p>Le désir : le mouvement vers le bien absent</p>
+<p>L’aversion ou la fuite : le mouvement d’éloignement du mal à venir</p>
+<p>La joie ou le plaisir (latin <i>delectatio</i>) : le repos dans le bien présent</p>
+<p>La tristesse ou la douleur : l’affliction devant le mal présent</p>
+<p>L’espoir : l’élan vers un bien futur difficile mais possible</p>
+<p>Le désespoir : le recul devant un bien jugé impossible</p>
+<p>La crainte : le recul devant un mal futur difficile à éviter</p>
+<p>L’audace : l’élan contre un mal futur difficile</p>
+<p>La colère : le mouvement contre un mal présent, sans contraire</p>
+<p>La moralité des passions : ni bonnes ni mauvaises en elles-mêmes, bonnes quand la raison les ordonne</p>
+<p>La position chrétienne face au stoïcisme, qui voulait supprimer les passions</p>
+<p>Le traité de Descartes <i>Les Passions de l’âme</i> (1649) et sa différence avec la doctrine de saint Thomas</p>
+<p>Les passions du Christ : la tristesse et la crainte de Gethsémani</p>
+</sujet>

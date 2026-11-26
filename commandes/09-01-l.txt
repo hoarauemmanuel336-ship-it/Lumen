@@ -1,0 +1,13 @@
+<sujet cle="philo.dieu" titre="La théologie naturelle" desc="Ce que la raison peut savoir de Dieu sans la Révélation, et à quelles conditions.">
+<p>La <b>théologie naturelle</b> : la connaissance de Dieu par la lumière de la raison, à partir des créatures</p>
+<p>Le mot théodicée (grec <i>theos</i>, « Dieu », et <i>dikê</i>, « justice ») : son invention par Leibniz (<i>Essais de théodicée</i>, 1710) et son sens élargi</p>
+<p>La distinction entre théologie naturelle et théologie révélée : leur objet commun, leurs lumières différentes</p>
+<p>Sagesse 13:1-9 : l’Artisan qui aurait dû être reconnu à travers ses œuvres</p>
+<p>Romains 1:19-20 : les perfections invisibles de Dieu rendues visibles à l’intelligence par ses œuvres</p>
+<p>Actes 17:22-31 : Paul à l’Aréopage annonce le Dieu que les Athéniens honorent sans le connaître</p>
+<p>Dieu n’est pas évident pour nous : la proposition « Dieu existe » connue par soi en elle-même, mais non pour nous (saint Thomas, <i>Somme de théologie</i> I, q. 2, a. 1)</p>
+<p>La possibilité de démontrer Dieu par ses effets (<i>Somme de théologie</i> I, q. 2, a. 2) : démonstration <i>quia</i> et non <i>propter quid</i></p>
+<p>Les limites de la théologie naturelle : on sait que Dieu est et ce qu’il n’est pas, non ce qu’il est</p>
+<p>Le refus de la théologie naturelle par Karl Barth et sa controverse avec Emil Brunner (1934)</p>
+<p>Les chemins de l’homme vers Dieu selon le <i>Catéchisme de l’Église catholique</i> 31 à 35 : le monde et la personne humaine</p>
+</sujet>

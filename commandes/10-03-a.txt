@@ -1,0 +1,19 @@
+<sujet cle="philosophes.aristote" titre="Aristote" desc="Le philosophe de l’être, de la nature et de la logique, devenu le maître de la scolastique.">
+<p>La vie d’Aristote : élève de Platon, précepteur d’Alexandre, fondateur du Lycée</p>
+<p>La critique de la théorie des Idées : la forme dans la chose et non séparée</p>
+<p>L’œuvre d’Aristote comme ensemble : logique, physique, métaphysique, éthique, politique</p>
+<p>La <i>Physique</i> : nature, mouvement, causes</p>
+<p>Le traité <i>De l’âme</i> : l’âme forme du corps, l’intellect</p>
+<p>La <i>Métaphysique</i> et le premier moteur, pensée de la pensée (livre XII, dit Lambda)</p>
+<p>L’<i>Éthique à Nicomaque</i> : le bonheur (grec <i>eudaimonia</i>), activité de l’âme selon la vertu</p>
+<p>La vertu comme juste milieu entre deux excès</p>
+<p>La prudence (grec <i>phronêsis</i>) : la sagesse pratique qui guide toutes les vertus morales</p>
+<p>L’amitié (<i>Éthique à Nicomaque</i> VIII et IX) : amitié d’utilité, de plaisir et de vertu</p>
+<p>La <i>Politique</i> : l’homme animal politique</p>
+<p>L’éternité du monde chez Aristote, et la réponse de la foi en la création</p>
+<p>Le premier moteur qui ne connaît pas le monde, et la réponse de la foi en la providence</p>
+<p>L’ambiguïté d’Aristote sur l’immortalité personnelle, et les lectures qu’elle a suscitées</p>
+<p>La transmission d’Aristote : Boèce, les commentateurs arabes, les traductions latines des XIIe et XIIIe siècles</p>
+<p>Les interdictions de l’enseignement d’Aristote à Paris (1210, 1215) et leur levée progressive</p>
+<p>Saint Albert le Grand et saint Thomas : Aristote baptisé, ce qu’ils retiennent et corrigent</p>
+</sujet>

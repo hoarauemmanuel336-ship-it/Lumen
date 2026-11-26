@@ -1,0 +1,18 @@
+<sujet cle="theodicee.cinq-voies" titre="Les cinq voies de saint Thomas" desc="Les cinq démonstrations de l’existence de Dieu, une par une.">
+<p>Le texte des cinq voies : <i>Somme de théologie</i> I, q. 2, a. 3, sa place dans la question 2 et sa forme d’article disputé</p>
+<p>Les deux objections placées en tête de l’article : le mal dans le monde, la nature qui se suffirait</p>
+<p>Ce qui est commun aux cinq voies : partir d’un fait d’expérience, appliquer le principe de causalité, refuser la régression à l’infini, conclure à une cause première</p>
+<p>L’impossibilité de la régression à l’infini dans les causes essentiellement ordonnées, et la différence avec une série accidentelle qui peut remonter sans fin</p>
+<p>La première voie, par le <b>mouvement</b> : tout ce qui est mû est mû par un autre, jusqu’au premier moteur immobile (source : Aristote, <i>Physique</i> VIII et <i>Métaphysique</i> XII)</p>
+<p>La deuxième voie, par la <b>cause efficiente</b> : l’ordre des causes efficientes conduit à une cause première</p>
+<p>La troisième voie, par la <b>contingence</b> : le possible et le nécessaire, jusqu’à l’être nécessaire par soi (source : Avicenne, Maïmonide)</p>
+<p>La quatrième voie, par les <b>degrés de perfection</b> : le plus et le moins dans le vrai et le bien supposent un maximum, cause de toute perfection (source : Platon, Aristote, saint Augustin)</p>
+<p>La cinquième voie, par le <b>gouvernement du monde</b> : des êtres sans connaissance agissent en vue d’une fin, donc sont dirigés par une intelligence</p>
+<p>La conclusion de chaque voie (« et c’est ce que tous appellent Dieu ») et le passage du premier principe au Dieu de la foi</p>
+<p>L’objection du principe d’inertie (Newton) contre la première voie, et la réponse</p>
+<p>L’objection faite à la troisième voie : le passage contesté de « chaque chose peut ne pas être » à « un jour rien n’a été », et les lectures qui y répondent</p>
+<p>L’objection de l’évolution darwinienne contre la cinquième voie, et la réponse</p>
+<p>Les réponses de saint Thomas aux deux objections de départ : le bien tiré du mal, la nature qui agit sous une cause supérieure</p>
+<p>Les preuves de Dieu dans la <i>Somme contre les Gentils</i> (livre I, chapitre 13) et leurs variantes</p>
+<p>Après les voies, la voie de négation qui établit la simplicité, la perfection, l’infinité, l’immutabilité, l’éternité et l’unité de Dieu (Somme de théologie I, q. 3 à 11)</p>
+</sujet>

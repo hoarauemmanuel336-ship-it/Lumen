@@ -1,0 +1,17 @@
+<sujet cle="philosophes.platon" titre="Platon et le platonisme" desc="Le philosophe des Idées, et ce que la pensée chrétienne lui doit.">
+<p>La vie de Platon et la fondation de l’Académie à Athènes</p>
+<p>Les dialogues : la forme dialoguée et le classement des œuvres</p>
+<p>La théorie des <b>Idées</b> (ou Formes) : les réalités intelligibles, éternelles et immuables, modèles des choses sensibles</p>
+<p>La participation : comment les choses sensibles tiennent leur être des Idées</p>
+<p>L’Idée du Bien, « au-delà de l’essence » (<i>République</i> VI)</p>
+<p>L’allégorie de la caverne (<i>République</i> VII)</p>
+<p>La réminiscence : connaître, c’est se ressouvenir (<i>Ménon</i>, <i>Phédon</i>)</p>
+<p>L’âme immortelle et le corps tombeau (<i>Phédon</i>)</p>
+<p>L’amour (grec <i>erôs</i>) qui élève de la beauté des corps à la Beauté même (<i>Banquet</i>)</p>
+<p>La justice dans l’âme et dans la cité, et le philosophe-roi (<i>République</i>)</p>
+<p>Le démiurge du <i>Timée</i> et la formation du monde</p>
+<p>La première théologie philosophique : le mot <i>theologia</i> (<i>République</i> II) et la critique des fables</p>
+<p>Le livre X des <i>Lois</i> : la démonstration de l’existence des dieux par l’âme qui se meut elle-même, contre les impies</p>
+<p>Le moyen platonisme et sa rencontre avec les premiers penseurs chrétiens</p>
+<p>Ce que les Pères ont reçu de Platon et ce qu’ils ont corrigé : création contre fabrication, résurrection contre mépris du corps</p>
+</sujet>

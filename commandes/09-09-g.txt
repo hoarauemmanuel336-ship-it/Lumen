@@ -1,0 +1,11 @@
+<sujet cle="theodicee.agnosticisme" titre="L’agnosticisme et la critique de la connaissance de Dieu" desc="Ceux qui pensent qu’on ne peut rien savoir de Dieu, et pourquoi la raison n’y est pas réduite.">
+<p>L’<b>agnosticisme</b> (grec <i>agnôstos</i>, « inconnaissable ») : le mot forgé par Thomas Huxley (1869) et ses deux formes, suspension du jugement et impossibilité affirmée</p>
+<p>David Hume : la critique de la causalité, des miracles (<i>Enquête sur l’entendement humain</i>, 1748, section X) et de l’argument par l’ordre (<i>Dialogues sur la religion naturelle</i>, publiés en 1779)</p>
+<p>Emmanuel Kant : la limite de la raison aux phénomènes et la critique des trois preuves (ontologique, cosmologique, physico-théologique) dans la <i>Critique de la raison pure</i></p>
+<p>La réponse thomiste à Kant : l’intelligence atteint l’être et non seulement le phénomène</p>
+<p>Herbert Spencer et l’Inconnaissable (<i>Premiers principes</i>, 1862) : l’agnosticisme évolutionniste</p>
+<p>Le positivisme logique (cercle de Vienne) : les énoncés sur Dieu déclarés dénués de sens, et l’autoréfutation de ce critère</p>
+<p>L’agnosticisme du modernisme, condamné par l’encyclique <i>Pascendi</i> (1907)</p>
+<p>L’indifférence religieuse contemporaine et la sécularisation</p>
+<p>La réponse de l’Église : la raison capable de Dieu, et la foi qui suppose et purifie la raison (<i>Fides et ratio</i>)</p>
+</sujet>

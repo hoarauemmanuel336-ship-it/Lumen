@@ -1,0 +1,14 @@
+<sujet cle="philosophes.medievaux" titre="La pensée médiévale avant saint Thomas" desc="De Jean Scot Érigène aux philosophes arabes et juifs : ce qui prépare la grande synthèse.">
+<p>Jean Scot Érigène, traducteur du Pseudo-Denys, et le <i>De la division de la nature</i> (<i>Periphyseon</i>), condamné en 1225</p>
+<p>Saint Anselme de Cantorbéry, père de la scolastique : la raison au service de l’intelligence de la foi</p>
+<p>La querelle des universaux au XIIe siècle : Roscelin, Guillaume de Champeaux</p>
+<p>Pierre Abélard : le <i>Sic et non</i> et la méthode dialectique, ses condamnations aux conciles de Soissons et de Sens</p>
+<p>L’école de Chartres et la lecture du <i>Timée</i></p>
+<p>L’école de Saint-Victor : Hugues et Richard de Saint-Victor</p>
+<p>Pierre Lombard et les <i>Sentences</i> : le manuel de théologie commenté pendant des siècles</p>
+<p>Avicenne (Ibn Sînâ) : l’être nécessaire, la distinction de l’essence et de l’existence</p>
+<p>Averroès (Ibn Rushd), le Commentateur d’Aristote : l’unité de l’intellect et le rapport de la religion et de la philosophie</p>
+<p>Moïse Maïmonide et le <i>Guide des égarés</i> : la foi juive et Aristote</p>
+<p>Robert Grosseteste et Roger Bacon : l’école d’Oxford, la métaphysique de la lumière et les débuts de la science expérimentale</p>
+<p>Saint Albert le Grand : l’encyclopédie aristotélicienne et les sciences de la nature</p>
+</sujet>

@@ -1,0 +1,13 @@
+<sujet cle="theodicee.autres-chemins" titre="Les autres chemins vers Dieu" desc="Les arguments qui partent de l’homme, de la conscience ou du commencement du monde.">
+<p>L’argument par la vérité chez saint Augustin (<i>Du libre arbitre</i> II) : la vérité immuable au-dessus de l’esprit</p>
+<p>L’argument par le désir de bonheur : le cœur inquiet tant qu’il ne repose pas en Dieu (<i>Confessions</i> I, 1)</p>
+<p>L’argument par la conscience morale : l’obligation qui renvoie à un législateur, chez John Henry Newman (<i>Grammaire de l’assentiment</i>, 1870)</p>
+<p>L’argument par le commencement du temps : la tradition du <i>kalâm</i> (al-Ghazâlî), saint Bonaventure, et le jugement de saint Thomas pour qui le commencement du monde n’est connu que par la foi</p>
+<p>L’argument par l’ordre de l’univers : de Cicéron à William Paley (<i>Théologie naturelle</i>, 1802), et sa différence avec la cinquième voie</p>
+<p>L’argument par l’ajustement des constantes physiques : la discussion contemporaine et sa portée</p>
+<p>L’argument par la contingence chez Leibniz : pourquoi il y a quelque chose plutôt que rien</p>
+<p>L’argument par le consentement universel des peuples, et sa valeur d’indice</p>
+<p>L’argument par l’expérience religieuse : sa force de témoignage et ses limites</p>
+<p>Le pari de Pascal (<i>Pensées</i>) : un argument qui ne démontre pas Dieu mais engage à le chercher</p>
+<p>La force cumulative des arguments, de la démonstration stricte aux convergences (Newman, le « sens illatif »)</p>
+</sujet>

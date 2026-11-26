@@ -1,0 +1,15 @@
+<sujet cle="theodicee.anselme" titre="L’argument de saint Anselme" desc="La preuve de Dieu par la seule idée de Dieu, et le long débat qu’elle a suscité.">
+<p>Saint Anselme de Cantorbéry et la foi qui cherche à comprendre (latin <i>fides quaerens intellectum</i>)</p>
+<p>Le <i>Monologion</i> et ses preuves par les degrés de bien</p>
+<p>L’argument du <i>Proslogion</i>, chapitre 2 : « ce dont on ne peut rien concevoir de plus grand » existe dans l’intelligence et dans la réalité</p>
+<p>Le <i>Proslogion</i>, chapitre 3 : Dieu ne peut même pas être pensé comme n’existant pas</p>
+<p>L’objection du moine Gaunilon (<i>Pour l’insensé</i>) : l’île parfaite, et la réponse d’Anselme</p>
+<p>La critique de saint Thomas (<i>Somme de théologie</i> I, q. 2, a. 1, réponse 2) : on ne passe pas de l’ordre de la pensée à l’ordre de l’être</p>
+<p>L’accueil favorable de saint Bonaventure</p>
+<p>La reprise retravaillée de Duns Scot, qui établit d’abord que l’être infini est possible</p>
+<p>La reprise de Descartes (<i>Méditations métaphysiques</i> V, 1641) : l’existence comprise dans l’idée de l’être parfait</p>
+<p>La reprise de Leibniz : prouver d’abord que l’être parfait est possible</p>
+<p>La critique de Kant : l’existence n’est pas un prédicat réel (<i>Critique de la raison pure</i>, 1781)</p>
+<p>Les versions modales contemporaines (Alvin Plantinga) et la discussion actuelle</p>
+<p>L’argument relu comme méditation : la lecture de Karl Barth (1931)</p>
+</sujet>

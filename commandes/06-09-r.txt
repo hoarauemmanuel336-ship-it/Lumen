@@ -1,0 +1,31 @@
+<sujet cle="logique.syllogisme" titre="Le raisonnement et le syllogisme" desc="Comment on tire une conclusion certaine de ce que l’on sait déjà.">
+<p>Le raisonnement : l’antécédent, le conséquent et le lien de conséquence</p>
+<p>Le <b>syllogisme</b> (grec <i>syllogismos</i>, « calcul, raisonnement ») : définition d’Aristote dans les <i>Premiers Analytiques</i></p>
+<p>Les trois termes : le grand terme, le petit terme et le moyen terme</p>
+<p>Les trois propositions : la majeure, la mineure, la conclusion</p>
+<p>Les règles du syllogisme comme ensemble : quatre règles des termes, quatre règles des propositions</p>
+<p>La première règle : trois termes seulement, chacun pris dans un seul sens</p>
+<p>La deuxième règle : un terme n’a pas plus d’extension dans la conclusion que dans les prémisses</p>
+<p>La troisième règle : le moyen terme reste hors de la conclusion</p>
+<p>La quatrième règle : le moyen terme est pris au moins une fois universellement</p>
+<p>La cinquième règle : deux prémisses affirmatives donnent une conclusion affirmative</p>
+<p>La sixième règle : deux prémisses négatives ne donnent aucune conclusion</p>
+<p>La septième règle : la conclusion suit la prémisse la plus faible, négative ou particulière</p>
+<p>La huitième règle : deux prémisses particulières ne donnent aucune conclusion</p>
+<p>Les figures du syllogisme : leur principe, la place du moyen terme</p>
+<p>La première figure : le moyen terme sujet de la majeure et prédicat de la mineure</p>
+<p>La deuxième figure : le moyen terme prédicat dans les deux prémisses</p>
+<p>La troisième figure : le moyen terme sujet dans les deux prémisses</p>
+<p>La quatrième figure, dite galénique : le moyen terme prédicat de la majeure et sujet de la mineure, et la question de sa légitimité</p>
+<p>La première figure, figure parfaite, et la réduction des autres figures à la première</p>
+<p>Les modes valides et leurs noms mnémotechniques médiévaux (Barbara, Celarent, Darii, Ferio…)</p>
+<p>Le syllogisme conditionnel : <i>modus ponens</i> et <i>modus tollens</i></p>
+<p>Le syllogisme disjonctif : poser une branche pour exclure l’autre, ou l’inverse</p>
+<p>L’enthymème : le syllogisme dont une prémisse reste sous-entendue</p>
+<p>Le sorite : la chaîne de propositions où le prédicat de chacune devient le sujet de la suivante</p>
+<p>Le dilemme : le raisonnement qui enferme l’adversaire entre deux possibilités</p>
+<p>L’épichérème : le syllogisme dont une prémisse porte sa preuve</p>
+<p>L’<b>induction</b> : passer des cas singuliers à l’universel, et la question de sa valeur</p>
+<p>Le raisonnement par analogie et sa portée</p>
+<p>Le raisonnement théologique : la conclusion théologique, tirée d’une prémisse de foi et d’une prémisse de raison</p>
+</sujet>

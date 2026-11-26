@@ -1,0 +1,11 @@
+<sujet cle="theodicee.vatican" titre="La définition du premier concile du Vatican" desc="Ce que l’Église enseigne avec autorité sur la connaissance naturelle de Dieu.">
+<p>Le contexte du premier concile du Vatican : rationalisme, traditionalisme, fidéisme au XIXe siècle</p>
+<p>La constitution <i>Dei Filius</i> (24 avril 1870), chapitre 2 : Dieu, principe et fin de toutes choses, peut être connu avec <b>certitude</b> par la lumière naturelle de la raison à partir des choses créées</p>
+<p>Le canon correspondant, qui frappe d’anathème la négation de cette possibilité</p>
+<p>Ce que le concile définit : la possibilité de cette connaissance, et non le fait que tout homme la possède</p>
+<p>La précision du serment antimoderniste (1910) : Dieu peut être connu et aussi démontré, comme la cause par ses effets</p>
+<p>L’encyclique <i>Humani generis</i> (1950) sur les difficultés pratiques de cette connaissance</p>
+<p>La reprise par le <i>Catéchisme de l’Église catholique</i> 36 à 38</p>
+<p>La reprise par <i>Fides et ratio</i> (1998), 22 et 53</p>
+<p>La portée de la définition pour l’apologétique et le dialogue avec les non-croyants</p>
+</sujet>

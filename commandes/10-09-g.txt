@@ -1,0 +1,11 @@
+<sujet cle="philosophes.ockham" titre="Le nominalisme et Guillaume d’Ockham" desc="La rupture de la fin du Moyen Âge, et ses suites pour la théologie.">
+<p>Guillaume d’Ockham (vers 1287-1347) : sa vie, sa citation à Avignon, sa rupture avec le pape Jean XXII</p>
+<p>Le <b>nominalisme</b> : seuls existent les individus, l’universel n’est qu’un signe</p>
+<p>Le rasoir d’Ockham : ne pas multiplier les êtres sans nécessité</p>
+<p>La toute-puissance absolue et la toute-puissance ordonnée de Dieu (latin <i>potentia absoluta</i>, <i>potentia ordinata</i>)</p>
+<p>La morale de l’obligation : le bien défini par le commandement divin</p>
+<p>La séparation de la foi et de la raison : la théologie privée de ses appuis rationnels</p>
+<p>La voie moderne (latin <i>via moderna</i>) et la voie ancienne dans les universités du XIVe et du XVe siècle</p>
+<p>Gabriel Biel et la formation de Luther dans le nominalisme</p>
+<p>Les suites du nominalisme selon les historiens catholiques : volontarisme, individualisme, divorce de la foi et de la raison</p>
+</sujet>

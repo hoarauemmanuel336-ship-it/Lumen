@@ -1,0 +1,19 @@
+<sujet cle="metaphysique.categories" titre="Les dix catégories" desc="Les dix manières fondamentales d’être, selon Aristote.">
+<p>Les catégories (grec <i>katêgoriai</i>, « attributions ») comme ensemble : les genres suprêmes de l’être, le traité des <i>Catégories</i> d’Aristote, et pourquoi dix</p>
+<p>La substance, première catégorie, sujet de toutes les autres</p>
+<p>La quantité : l’extension de la substance en parties, quantité continue et discrète</p>
+<p>La qualité comme ensemble : ce qui détermine la substance en elle-même, et sa division en quatre espèces</p>
+<p>L’habitus et la disposition : la qualité qui dispose bien ou mal une nature</p>
+<p>La puissance et l’impuissance naturelles : la qualité qui rend apte ou inapte à agir</p>
+<p>Les qualités sensibles, dites passibles : la couleur, la chaleur, la saveur</p>
+<p>La figure et la forme : la qualité qui détermine la quantité</p>
+<p>La <b>relation</b> : l’être tourné vers un autre, relations réelles et relations de raison</p>
+<p>L’action : la substance en tant qu’elle agit</p>
+<p>La passion : la substance en tant qu’elle subit</p>
+<p>Le lieu (latin <i>ubi</i>)</p>
+<p>Le temps (latin <i>quando</i>) et la définition aristotélicienne du temps comme nombre du mouvement</p>
+<p>La situation (latin <i>situs</i>) : la disposition des parties dans le lieu</p>
+<p>L’avoir (latin <i>habitus</i>) : ce dont la substance est revêtue</p>
+<p>Dieu hors de tout genre : pourquoi aucune catégorie ne le contient (<i>Somme de théologie</i> I, q. 3, a. 5)</p>
+<p>L’usage théologique des catégories : la relation subsistante dans la Trinité selon saint Augustin (<i>De Trinitate</i> V) et saint Thomas</p>
+</sujet>

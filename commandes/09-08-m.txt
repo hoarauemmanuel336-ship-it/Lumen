@@ -1,0 +1,16 @@
+<sujet cle="theodicee.atheisme" titre="L’athéisme et ses maîtres" desc="Les grands penseurs qui ont nié Dieu, leurs arguments et les réponses.">
+<p>L’<b>athéisme</b> (grec <i>atheos</i>, « sans dieu ») : le mot et son histoire</p>
+<p>L’athéisme théorique : la négation de Dieu soutenue par des raisons</p>
+<p>L’athéisme pratique : vivre comme si Dieu n’existait pas</p>
+<p>L’analyse de l’athéisme par Vatican II : <i>Gaudium et spes</i> 19 à 21 (1965)</p>
+<p>Le problème du mal comme objection première, d’Épicure à nos jours</p>
+<p>Ludwig Feuerbach (<i>L’Essence du christianisme</i>, 1841) : Dieu, projection de l’essence humaine, et la réponse</p>
+<p>Karl Marx : la religion « opium du peuple », illusion née de l’aliénation économique, et la réponse (encyclique <i>Divini Redemptoris</i>, 1937)</p>
+<p>Friedrich Nietzsche : « Dieu est mort » (<i>Le Gai Savoir</i>, 1882), la critique de la morale chrétienne, et la réponse</p>
+<p>Sigmund Freud (<i>L’Avenir d’une illusion</i>, 1927) : la religion, illusion née du désir d’un père protecteur, et la réponse</p>
+<p>Auguste Comte et le positivisme : la loi des trois états, la théologie comme âge dépassé</p>
+<p>Jean-Paul Sartre et l’athéisme existentialiste : si Dieu existe, l’homme n’est pas libre</p>
+<p>Le « nouvel athéisme » (Richard Dawkins) et le scientisme</p>
+<p>L’ouvrage d’Henri de Lubac <i>Le Drame de l’humanisme athée</i> (1944) : la lecture chrétienne de Feuerbach, Comte et Nietzsche</p>
+<p>Les causes de l’athéisme selon l’Église, et la part de responsabilité des croyants (<i>Gaudium et spes</i> 19)</p>
+</sujet>

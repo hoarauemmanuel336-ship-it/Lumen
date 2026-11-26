@@ -1,0 +1,14 @@
+<sujet cle="metaphysique.acte-puissance" titre="Acte et puissance" desc="La distinction qui explique le changement et la limite des êtres.">
+<p>Le problème du changement : comment une chose peut devenir autre tout en restant elle-même</p>
+<p>La <b>puissance</b> (grec <i>dynamis</i>, latin <i>potentia</i>) : la capacité réelle d’être ou d’agir (Aristote, <i>Métaphysique</i> IX)</p>
+<p>L’<b>acte</b> (grec <i>energeia</i> ou <i>entelecheia</i>, latin <i>actus</i>) : la réalisation, la perfection</p>
+<p>La puissance passive (capacité de recevoir) et la puissance active (capacité d’agir)</p>
+<p>Le mouvement défini par Aristote : l’acte de ce qui est en puissance, en tant qu’il est en puissance</p>
+<p>Acte premier et acte second : la forme et l’opération</p>
+<p>La primauté de l’acte sur la puissance : en nature, en connaissance, en perfection</p>
+<p>Le principe : « rien ne passe de la puissance à l’acte sinon par un être en acte »</p>
+<p>L’acte limité par la puissance qui le reçoit : la clé de la multiplicité et de la finitude des êtres</p>
+<p>Dieu <b>acte pur</b> (latin <i>actus purus</i>) : l’être en qui il n’y a aucune puissance</p>
+<p>L’immutabilité divine, conséquence de l’acte pur</p>
+<p>La puissance obédientielle : la capacité de la créature à recevoir de Dieu ce qui dépasse sa nature, comme la grâce</p>
+</sujet>

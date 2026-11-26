@@ -1,0 +1,17 @@
+<sujet cle="logique.abstraction" titre="L’intelligence et l’abstraction" desc="Comment l’intelligence tire des idées universelles de ce que voient les sens.">
+<p>La connaissance intellectuelle : la saisie de ce qu’est la chose (sa quiddité, latin <i>quidditas</i>), universelle et immatérielle</p>
+<p>La différence de nature entre l’image sensible et le concept</p>
+<p>L’<b>abstraction</b> (latin <i>abstrahere</i>, « tirer de ») : l’opération par laquelle l’intelligence dégage l’universel du singulier sensible</p>
+<p>L’intellect agent : la lumière qui rend intelligible ce qui est dans l’image (Aristote, <i>De l’âme</i> III, 5)</p>
+<p>L’intellect possible : la puissance qui reçoit la forme intelligible</p>
+<p>L’espèce intelligible (latin <i>species</i>) : la forme reçue par laquelle l’intelligence connaît</p>
+<p>Le verbe mental ou concept : ce que l’intelligence forme en elle-même et en quoi elle connaît la chose</p>
+<p>Le retour à l’image (latin <i>conversio ad phantasmata</i>) : l’intelligence humaine qui pense toujours en s’appuyant sur une image</p>
+<p>Les trois degrés d’abstraction comme ensemble, et la division des sciences qui en découle</p>
+<p>Le premier degré : l’abstraction physique, qui considère la matière sensible commune (les sciences de la nature)</p>
+<p>Le deuxième degré : l’abstraction mathématique, qui retient la quantité seule</p>
+<p>Le troisième degré : la séparation (latin <i>separatio</i>) propre à la métaphysique, qui considère l’être sans condition de matière (saint Thomas, <i>Commentaire du De Trinitate de Boèce</i>, q. 5, a. 3)</p>
+<p>La théorie des idées innées (Descartes) et ce que l’abstraction lui oppose</p>
+<p>La théorie de l’illumination directe de l’intelligence par Dieu et ce que l’abstraction lui oppose</p>
+<p>L’empirisme qui réduit l’idée à une image affaiblie, et ce que l’abstraction lui oppose</p>
+</sujet>

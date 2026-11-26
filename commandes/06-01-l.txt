@@ -1,0 +1,25 @@
+<sujet cle="philo.connaissance" titre="La philosophie servante de la foi" desc="Ce qu’est la philosophie, ses parties, et pourquoi la théologie a besoin d’elle.">
+<p>Le mot philosophie (grec <i>philosophia</i>, « amour de la sagesse ») et la définition de la philosophie comme connaissance des choses par leurs causes les plus hautes, à la lumière de la seule raison</p>
+<p>La sagesse (grec <i>sophia</i>, latin <i>sapientia</i>) : la connaissance qui juge de tout à partir des premiers principes</p>
+<p>La division classique de la philosophie en spéculative (connaître pour connaître) et pratique (connaître pour agir), principe de l’ordre de ses parties</p>
+<p>La logique : l’instrument qui règle les actes de la raison, étudié en premier</p>
+<p>La philosophie de la nature : l’étude de l’être mobile, des corps et du changement</p>
+<p>La philosophie de l’homme, autrefois appelée psychologie rationnelle : l’étude du vivant et de l’âme humaine</p>
+<p>La métaphysique : l’étude de l’être en tant qu’être et de ses causes premières</p>
+<p>La théologie naturelle : le sommet de la métaphysique, qui conduit à Dieu cause de l’être</p>
+<p>La morale ou éthique : la philosophie pratique, qui règle l’agir humain vers sa fin</p>
+<p>La distinction entre philosophie et théologie : même vérité, deux lumières (la raison naturelle, la Révélation reçue dans la foi)</p>
+<p>L’autonomie propre de la philosophie : ses principes, sa méthode, son objet</p>
+<p>La philosophie <b>servante de la théologie</b> (latin <i>ancilla theologiae</i>) : saint Thomas d’Aquin, <i>Somme de théologie</i> I, q. 1, a. 5, et le sens exact de l’image</p>
+<p>Les trois services que saint Thomas assigne à la philosophie dans la science sacrée (<i>Commentaire du De Trinitate de Boèce</i>, q. 2, a. 3), vus comme un tout</p>
+<p>Le premier service : démontrer les préambules de la foi (latin <i>praeambula fidei</i>), vérités que la raison peut établir avant de croire, comme l’existence de Dieu ou la spiritualité de l’âme</p>
+<p>Le deuxième service : éclairer les mystères de la foi par des comparaisons tirées des choses naturelles</p>
+<p>Le troisième service : répondre aux objections contre la foi, en montrant qu’elles sont fausses ou sans nécessité</p>
+<p>La philosophie indépendante de la Révélation (<i>Fides et ratio</i> 75) : sa légitimité et la prétention excessive à se suffire</p>
+<p>La philosophie chrétienne (<i>Fides et ratio</i> 76) : une manière chrétienne de philosopher, où la foi ouvre à la raison des questions et des vérités sans lui ôter sa méthode</p>
+<p>La philosophie requise par la théologie (<i>Fides et ratio</i> 77) : l’instrument dont la foi a besoin pour se comprendre et se dire</p>
+<p>La philosophie dans la formation des prêtres : décret <i>Optatam totius</i> 15 (1965) et canon 251 du Code de droit canonique de 1983</p>
+<p>La dimension sapientielle que <i>Fides et ratio</i> 81 demande à la philosophie : la recherche du sens ultime de la vie</p>
+<p>La portée métaphysique que <i>Fides et ratio</i> 83 demande à la philosophie : passer du phénomène au fondement</p>
+<p>La philosophie dite pérenne (latin <i>philosophia perennis</i>) : l’idée d’un patrimoine de vérités rationnelles reçues par l’Église, et le refus d’une philosophie officielle unique (<i>Fides et ratio</i> 49)</p>
+</sujet>

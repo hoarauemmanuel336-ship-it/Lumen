@@ -1,0 +1,13 @@
+<sujet cle="metaphysique.essence-existence" titre="Essence et existence" desc="Ce qu’est une chose, et le fait qu’elle soit : la distinction au cœur de la pensée de saint Thomas.">
+<p>L’<b>essence</b> (latin <i>essentia</i>) : ce qu’est une chose, ce que dit sa définition</p>
+<p>L’existence ou acte d’être (latin <i>esse</i>, <i>actus essendi</i>) : le fait d’être, perfection de toutes les perfections</p>
+<p>Le traité <i>L’Être et l’Essence</i> (<i>De ente et essentia</i>) de saint Thomas, écrit jeune, et son argument</p>
+<p>L’origine de la distinction chez Avicenne, et ce que saint Thomas en change : l’être compris comme acte et non comme accident de l’essence</p>
+<p>La distinction réelle dans toute créature : l’essence comme puissance, l’être comme acte</p>
+<p>La question disputée : distinction réelle (thomistes, Gilles de Rome) ou distinction de raison (Suárez), et ce qui en dépend</p>
+<p>La participation : la créature qui a l’être, Dieu qui est l’être</p>
+<p>Dieu, l’<b>Être même subsistant</b> (latin <i>ipsum esse subsistens</i>) : en Dieu seul l’essence est l’existence</p>
+<p>Le Nom divin « Je suis » (Exode 3:14) et la lecture qu’en fait saint Thomas (<i>Somme de théologie</i> I, q. 13, a. 11)</p>
+<p>La contingence des créatures : elles pourraient ne pas être, d’où la question de leur cause</p>
+<p>Le thomisme existentiel d’Étienne Gilson : la redécouverte de l’acte d’être au XXe siècle</p>
+</sujet>

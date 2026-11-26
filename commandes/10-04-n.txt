@@ -1,0 +1,17 @@
+<sujet cle="philosophes.plotin" titre="Plotin et le néoplatonisme" desc="La philosophie de l’Un, qui a fourni une langue à la mystique chrétienne.">
+<p>Le néoplatonisme : nom moderne d’un renouveau du platonisme aux IIIe et IVe siècles</p>
+<p>Plotin (vers 205-270) : sa vie, son enseignement à Rome</p>
+<p>Les <i>Ennéades</i> : l’édition de Porphyre en six groupes de neuf traités</p>
+<p>L’<b>Un</b> : le premier principe, au-delà de l’être et de la pensée</p>
+<p>L’Intellect (grec <i>noûs</i>) : la seconde hypostase, lieu des Idées</p>
+<p>L’Âme du monde : la troisième hypostase</p>
+<p>La procession (sortie de l’Un) et la conversion (retour vers l’Un)</p>
+<p>Le mal comme privation et la matière comme dernier degré</p>
+<p>L’union à l’Un et l’extase</p>
+<p>Porphyre et son traité <i>Contre les chrétiens</i></p>
+<p>Proclus et la systématisation athénienne</p>
+<p>Les « livres des platoniciens » lus par saint Augustin (<i>Confessions</i> VII) : ce qu’ils lui ont ouvert, ce qui leur manquait</p>
+<p>La langue néoplatonicienne du Pseudo-Denys et son passage dans la mystique chrétienne</p>
+<p>La première différence décisive avec la foi : la création libre contre l’émanation nécessaire</p>
+<p>La seconde différence décisive avec la foi : les trois Personnes égales contre trois hypostases hiérarchisées</p>
+</sujet>

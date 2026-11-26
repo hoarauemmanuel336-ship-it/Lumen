@@ -1,0 +1,12 @@
+<sujet cle="theodicee.analogie" titre="L’analogie dans le langage sur Dieu" desc="Pourquoi nos mots disent vraiment quelque chose de Dieu, sans le dire comme des créatures.">
+<p>L’impasse de l’univocité : Dieu réduit à la mesure de la créature</p>
+<p>L’impasse de l’équivocité : plus rien de vrai ne peut être dit de Dieu</p>
+<p>L’<b>analogie</b> des noms divins (<i>Somme de théologie</i> I, q. 13, a. 5) : les noms dits de Dieu et des créatures selon une proportion</p>
+<p>Le fondement de l’analogie dans la causalité : la créature ressemble à Dieu comme l’effet à sa cause</p>
+<p>Le nom dit d’abord de Dieu quant à la chose, d’abord des créatures quant à notre manière de le connaître (<i>Somme de théologie</i> I, q. 13, a. 6)</p>
+<p>La relation de la créature à Dieu réelle, la relation de Dieu à la créature de raison seulement</p>
+<p>La règle du quatrième concile du Latran (1215), formulée contre Joachim de Flore : entre le Créateur et la créature, toute ressemblance s’accompagne d’une dissemblance plus grande</p>
+<p>L’univocité de Duns Scot appliquée aux noms divins, et la réponse thomiste</p>
+<p>L’analogie et la métaphore dans l’Écriture : le Dieu rocher, berger, époux</p>
+<p>Le <i>Catéchisme de l’Église catholique</i> 39 à 43 : notre langage sur Dieu</p>
+</sujet>

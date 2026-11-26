@@ -1,0 +1,14 @@
+<sujet cle="metaphysique.principes" titre="Les premiers principes" desc="Les vérités évidentes sur lesquelles repose toute pensée.">
+<p>Les premiers principes comme ensemble : vérités connues par soi (latin <i>per se nota</i>), indémontrables et pourtant certaines</p>
+<p>L’intelligence des principes (latin <i>intellectus principiorum</i>) : l’habitus qui les saisit</p>
+<p>Le principe de <b>non-contradiction</b> : une même chose ne peut être et ne pas être en même temps et sous le même rapport (Aristote, <i>Métaphysique</i> IV), le plus ferme des principes</p>
+<p>La défense du principe de non-contradiction par la réfutation de celui qui le nie</p>
+<p>Le principe d’identité : ce qui est, est</p>
+<p>Le principe du tiers exclu : entre être et ne pas être, il n’y a pas de milieu</p>
+<p>Le principe de raison suffisante : tout ce qui est a sa raison d’être, en soi ou en un autre (formulé par Leibniz)</p>
+<p>Le principe de causalité : tout ce qui commence d’être, ou tout être contingent, a une cause</p>
+<p>La critique du principe de causalité par Hume (une habitude de l’esprit) et la réponse réaliste</p>
+<p>Le principe de finalité : tout agent agit en vue d’une fin</p>
+<p>Le principe « l’agir suit l’être » (latin <i>agere sequitur esse</i>) : connaître la nature d’un être par ses opérations</p>
+<p>Le parallèle de l’ordre pratique : le premier principe « il faut faire le bien et éviter le mal », connu par soi comme ceux de l’ordre spéculatif</p>
+</sujet>

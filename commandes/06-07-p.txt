@@ -1,0 +1,21 @@
+<sujet cle="logique.definition" titre="Les prédicables et la définition" desc="Les cinq manières de dire une chose d’une autre, et l’art de bien définir.">
+<p>Les cinq prédicables comme ensemble (Porphyre, <i>Isagogè</i>) : les manières dont un universel se rapporte à ses sujets</p>
+<p>Le genre : ce qui est dit de plusieurs choses différentes par l’espèce, en réponse à la question « qu’est-ce ? »</p>
+<p>L’espèce : ce qui exprime toute l’essence commune à des individus</p>
+<p>La différence spécifique : ce qui distingue une espèce des autres espèces du même genre</p>
+<p>Le propre : ce qui découle nécessairement de l’essence sans en faire partie</p>
+<p>L’accident prédicable : ce qui peut être présent ou absent sans que la chose change d’espèce</p>
+<p>L’arbre de Porphyre : l’échelle des genres et des espèces, de la substance jusqu’à l’homme</p>
+<p>La <b>définition</b> : le discours qui dit ce qu’est une chose</p>
+<p>La définition essentielle par le genre prochain et la différence spécifique (« l’homme est un animal raisonnable »)</p>
+<p>La définition descriptive, par les propriétés et les accidents</p>
+<p>La définition causale, par la cause efficiente ou finale</p>
+<p>La définition nominale, qui explique seulement le sens du mot</p>
+<p>Première règle de la définition : elle est plus claire que le défini</p>
+<p>Deuxième règle : elle convient à tout le défini et au seul défini</p>
+<p>Troisième règle : le défini n’entre pas dans la définition</p>
+<p>Quatrième règle : elle n’est pas négative quand elle peut être positive</p>
+<p>La division : l’art de distribuer un tout en ses parties</p>
+<p>Les règles de la division : complète, faite selon un seul principe, en parties qui s’excluent, ordonnée</p>
+<p>L’usage de la définition en théologie : les définitions de personne, de sacrement, de vertu</p>
+</sujet>

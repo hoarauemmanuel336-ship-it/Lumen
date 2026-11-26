@@ -1,0 +1,18 @@
+<sujet cle="philo.etre" titre="La métaphysique, science de l’être" desc="Ce qu’est la métaphysique, son objet et sa place parmi les savoirs.">
+<p>Le mot métaphysique : le titre donné aux livres d’Aristote placés « après la physique » (grec <i>meta ta physika</i>), devenu le nom d’une science qui va au-delà du physique</p>
+<p>La <i>Métaphysique</i> d’Aristote : plan de l’œuvre et ses grandes questions</p>
+<p>L’objet de la métaphysique : l’<b>être en tant qu’être</b> (grec <i>to on hêi on</i>)</p>
+<p>La métaphysique comme philosophie première : la science des premiers principes et des premières causes</p>
+<p>La métaphysique comme sagesse : la science qui juge et ordonne toutes les autres</p>
+<p>La métaphysique comme théologie au sens d’Aristote (<i>Métaphysique</i> VI, 1) : l’étude de l’être séparé et divin, distincte de la théologie fondée sur la Révélation</p>
+<p>La notion d’être (latin <i>ens</i>) : le premier connu, ce que l’intelligence saisit en premier en toute chose</p>
+<p>L’être comme acte d’exister (latin <i>esse</i>) et l’étant comme ce qui a l’être</p>
+<p>L’être réel et l’être de raison : ce qui existe dans les choses, ce qui n’existe que dans l’esprit (la négation, les relations logiques)</p>
+<p>L’être par soi et l’être par accident (Aristote, <i>Métaphysique</i> V, 7)</p>
+<p>La découverte de l’être par le jugement de séparation, et non par une simple abstraction</p>
+<p>Le problème de l’être et du devenir, posé par Parménide et Héraclite, d’où naît la métaphysique</p>
+<p>L’ontologie (Christian Wolff, XVIIIe siècle) : l’étude de l’être devenue discipline à part, et ce que ce découpage a changé</p>
+<p>La métaphysique et la théologie : ce que la doctrine de la foi lui emprunte, et pourquoi le dogme en a besoin pour se dire</p>
+<p>Martin Heidegger : l’« oubli de l’être » et la critique de la métaphysique comme onto-théologie</p>
+<p>La réponse de <i>Fides et ratio</i> 83 aux critiques modernes de la métaphysique : la portée métaphysique de toute pensée qui cherche le vrai</p>
+</sujet>

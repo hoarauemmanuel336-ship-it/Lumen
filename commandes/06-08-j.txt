@@ -1,0 +1,22 @@
+<sujet cle="logique.jugement" titre="Le jugement et la proposition" desc="L’acte d’affirmer ou de nier, et la phrase qui l’exprime.">
+<p>Le jugement : l’acte par lequel l’intelligence affirme ou nie, seul lieu du vrai et du faux</p>
+<p>La proposition (ou énonciation) : le discours qui exprime le jugement</p>
+<p>La structure de la proposition : le sujet, le prédicat et la copule « est »</p>
+<p>La qualité des propositions : affirmatives et négatives</p>
+<p>La quantité des propositions : universelles, particulières, singulières</p>
+<p>Les quatre propositions types A, E, I, O, et leur nom</p>
+<p>Le carré logique : l’opposition des propositions comme ensemble</p>
+<p>Les propositions contradictoires : l’une est vraie, l’autre fausse, toujours</p>
+<p>Les propositions contraires : elles ne peuvent être vraies ensemble, elles peuvent être fausses ensemble</p>
+<p>Les propositions subcontraires : elles ne peuvent être fausses ensemble, elles peuvent être vraies ensemble</p>
+<p>Les propositions subalternes : le rapport entre l’universelle et la particulière de même qualité</p>
+<p>La conversion des propositions : intervertir sujet et prédicat sans changer la vérité</p>
+<p>Les propositions modales : celles qui disent la manière dont le prédicat convient au sujet</p>
+<p>Le nécessaire et l’impossible : ce qui ne peut pas ne pas être, ce qui ne peut pas être</p>
+<p>Le possible et le contingent : ce qui peut être, ce qui peut être et ne pas être</p>
+<p>La proposition simple ou catégorique et la proposition composée ou hypothétique : la division d’ensemble</p>
+<p>La proposition conditionnelle (« si… alors… »)</p>
+<p>La proposition disjonctive (« ou… ou… »)</p>
+<p>La proposition conjonctive (« … et … »)</p>
+<p>L’usage du carré logique en théologie : nier exactement une hérésie, sans tomber dans l’erreur contraire</p>
+</sujet>

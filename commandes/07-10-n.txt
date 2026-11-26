@@ -1,0 +1,15 @@
+<sujet cle="metaphysique.personne" titre="Nature, suppôt et personne" desc="Les notions qui permettent de dire la Trinité et l’Incarnation.">
+<p>La <b>nature</b> (latin <i>natura</i>, grec <i>physis</i>) : l’essence en tant que principe d’opération</p>
+<p>Le suppôt (latin <i>suppositum</i>) : le sujet individuel subsistant qui possède une nature</p>
+<p>L’hypostase (grec <i>hypostasis</i>) : le terme grec qui répond au suppôt, la réalité qui subsiste</p>
+<p>La subsistance : le fait d’exister par soi et en soi</p>
+<p>Le mot personne (latin <i>persona</i>, grec <i>prosôpon</i>, « masque, visage ») et son origine</p>
+<p>La <b>personne</b> selon Boèce : « substance individuelle de nature raisonnable » (<i>Contre Eutychès et Nestorius</i>)</p>
+<p>La personne selon Richard de Saint-Victor : « existence incommunicable de nature intellectuelle » (<i>De Trinitate</i>)</p>
+<p>La personne selon saint Thomas : « ce qu’il y a de plus parfait dans toute la nature » (<i>Somme de théologie</i> I, q. 29, a. 3)</p>
+<p>La question disputée de ce qui constitue formellement la personne : les positions de Cajetan, de Capreolus et de Duns Scot</p>
+<p>« Agir est le fait du suppôt » (latin <i>actiones sunt suppositorum</i>) : le sujet à qui l’on attribue les actes</p>
+<p>La personne divine comme relation subsistante : comment la définition de la personne s’ajuste à la Trinité (<i>Somme de théologie</i> I, q. 29, a. 4)</p>
+<p>La nature humaine du Christ, individuelle et complète, qui n’est pas une personne parce qu’elle subsiste dans la personne du Verbe</p>
+<p>La personne dans la philosophie moderne : la personne réduite à la conscience de soi (Locke) et ce que cette réduction fait perdre</p>
+</sujet>

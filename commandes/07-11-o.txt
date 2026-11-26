@@ -1,0 +1,15 @@
+<sujet cle="metaphysique.analogie" titre="L’analogie de l’être" desc="Comment le mot « être » se dit de choses si différentes sans changer de sens ni le garder tout entier.">
+<p>Le problème : l’être se dit de la substance et de l’accident, de la créature et de Dieu</p>
+<p>L’être, ni univoque ni équivoque, mais <b>analogue</b> (Aristote, « l’être se dit en plusieurs sens », <i>Métaphysique</i> IV, 2)</p>
+<p>L’analogie (grec <i>analogia</i>, « proportion ») : un sens en partie le même, en partie différent</p>
+<p>L’analogie de l’être entre la substance et les accidents : la substance, premier sens de l’être, auquel les accidents se rapportent</p>
+<p>L’analogie d’inégalité : une même notion réalisée à des degrés divers</p>
+<p>L’analogie d’attribution : un terme dit d’abord d’un premier, puis des autres par rapport à lui (l’exemple classique de « sain »)</p>
+<p>L’analogie de proportionnalité propre : une ressemblance de rapports, où chaque terme possède vraiment la perfection nommée</p>
+<p>L’analogie de proportionnalité métaphorique : une ressemblance de rapports transposée par image</p>
+<p>Le traité de Cajetan <i>De l’analogie des noms</i> (<i>De nominum analogia</i>, 1498) et la classification qui s’est imposée</p>
+<p>Les relectures de saint Thomas au XXe siècle sur la primauté de l’analogie d’attribution ou de proportionnalité</p>
+<p>L’univocité de l’être selon Duns Scot : un concept d’être commun à Dieu et aux créatures</p>
+<p>La position de Suárez : l’analogie d’attribution intrinsèque comme analogie propre de l’être</p>
+<p>L’<i>analogia entis</i> d’Erich Przywara (1932) et sa critique par Karl Barth</p>
+</sujet>

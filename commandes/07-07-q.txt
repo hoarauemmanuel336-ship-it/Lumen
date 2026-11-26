@@ -1,0 +1,15 @@
+<sujet cle="metaphysique.causes" titre="Les quatre causes" desc="Les quatre manières dont une chose dépend d’une autre pour être ce qu’elle est.">
+<p>La cause (grec <i>aitia</i>, latin <i>causa</i>) : ce dont une chose dépend réellement pour être ou devenir, et sa différence avec la condition et l’occasion</p>
+<p>Les quatre causes comme ensemble : Aristote (<i>Physique</i> II, 3 et <i>Métaphysique</i> V, 2), pourquoi quatre, deux intrinsèques et deux extrinsèques</p>
+<p>La cause matérielle : ce dont une chose est faite</p>
+<p>La cause formelle : ce qui fait qu’une chose est ce qu’elle est</p>
+<p>La cause efficiente : ce qui produit la chose ou le changement</p>
+<p>La cause finale : ce en vue de quoi la chose est ou agit</p>
+<p>La fin, cause des causes : pourquoi la cause finale est première dans l’intention</p>
+<p>La cause exemplaire : le modèle selon lequel l’agent intelligent produit son œuvre, et les idées divines</p>
+<p>La cause instrumentale : l’instrument qui agit par la vertu de l’agent principal</p>
+<p>Cause univoque et cause équivoque : l’effet de même espèce que sa cause, ou d’un ordre inférieur à elle</p>
+<p>Causes essentiellement ordonnées et causes accidentellement ordonnées (latin <i>per se</i> et <i>per accidens</i>)</p>
+<p>La cause première et les causes secondes : Dieu agissant en toute action sans supprimer la causalité propre des créatures</p>
+<p>L’usage théologique : l’humanité du Christ instrument de la divinité, les sacrements causes instrumentales de la grâce</p>
+</sujet>

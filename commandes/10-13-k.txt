@@ -1,0 +1,14 @@
+<sujet cle="philosophes.kant" titre="Kant et la critique de la métaphysique" desc="Le philosophe qui a limité la raison aux phénomènes, et ses conséquences pour la foi.">
+<p>Emmanuel Kant (1724-1804) : sa vie à Königsberg, le « réveil du sommeil dogmatique » par Hume</p>
+<p>La <i>Critique de la raison pure</i> (1781, seconde édition 1787) : la question des conditions de la connaissance</p>
+<p>La révolution copernicienne : l’objet qui se règle sur le sujet</p>
+<p>Les formes de la sensibilité (espace, temps) et les catégories de l’entendement</p>
+<p>Le phénomène et la chose en soi (noumène) : ce qu’on peut connaître et ce qu’on ne peut que penser</p>
+<p>La critique de la métaphysique : les idées de la raison (âme, monde, Dieu) qui ne donnent aucune connaissance</p>
+<p>La <i>Critique de la raison pratique</i> (1788) : l’impératif catégorique, l’autonomie de la volonté</p>
+<p>Les postulats de la raison pratique (liberté, immortalité, existence de Dieu) et leur différence avec une démonstration</p>
+<p>La <i>Critique de la faculté de juger</i> (1790) : le beau et la finalité de la nature</p>
+<p><i>La Religion dans les limites de la simple raison</i> (1793) : le christianisme réduit à la morale</p>
+<p>L’influence de Kant sur la théologie protestante et sur le modernisme</p>
+<p>Le jugement de la pensée catholique sur Kant : <i>Pascendi</i> (1907) et <i>Fides et ratio</i> 46 à 48</p>
+</sujet>

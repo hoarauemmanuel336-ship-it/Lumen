@@ -1,0 +1,25 @@
+<sujet cle="logique.verite" titre="La vérité" desc="Ce que veut dire « vrai », où se trouve la vérité et comment on en est certain.">
+<p>Le mot vérité (latin <i>veritas</i>, grec <i>alêtheia</i>, « dévoilement », hébreu <i>emet</i>, « fermeté, fidélité ») et ce que chaque langue en souligne</p>
+<p>La définition classique : la vérité comme <b>adéquation</b> de l’intelligence et de la chose (latin <i>adaequatio rei et intellectus</i>), saint Thomas, <i>De veritate</i>, q. 1, a. 1</p>
+<p>La vérité logique : le vrai se trouve formellement dans le jugement, quand l’intelligence affirme ce qui est</p>
+<p>La vérité ontologique : la chose vraie parce qu’elle répond à l’intelligence qui la pense (l’intelligence divine qui la crée, l’intelligence humaine qui la connaît)</p>
+<p>La vérité morale ou véracité : l’accord de la parole avec la pensée</p>
+<p>La vérité en Dieu : Dieu vérité première, mesure de toute vérité</p>
+<p>L’unité de la vérité : la vérité de foi et la vérité de raison ne peuvent se contredire, puisque le même Dieu donne l’une et l’autre (<i>Dei Filius</i>, chapitre 4)</p>
+<p>La « double vérité » attribuée aux averroïstes latins, une thèse vraie en philosophie et fausse en théologie, et sa condamnation par le cinquième concile du Latran (1513)</p>
+<p>La vérité-cohérence : le vrai réduit à l’accord des idées entre elles, et ce qu’elle laisse échapper</p>
+<p>La vérité-utilité du pragmatisme (William James) : le vrai réduit à ce qui réussit, et ce qu’elle laisse échapper</p>
+<p>La vérité-consensus : le vrai réduit à l’accord des esprits, et ce qu’elle laisse échapper</p>
+<p>Les états de l’esprit devant le vrai comme ensemble : de l’absence de connaissance jusqu’à l’adhésion ferme</p>
+<p>L’ignorance : l’absence de connaissance, et sa différence avec l’erreur</p>
+<p>Le doute : l’esprit suspendu entre deux propositions contraires, doute positif et doute négatif</p>
+<p>L’opinion : l’adhésion à une proposition avec la crainte que la contraire soit vraie</p>
+<p>La certitude : l’adhésion ferme de l’esprit, sans crainte d’erreur, fondée sur un motif</p>
+<p>L’<b>évidence</b> comme fondement de la certitude : évidence immédiate et évidence médiate</p>
+<p>Les degrés de la certitude comme ensemble : ils se distinguent par la nécessité du lien qui fonde l’adhésion</p>
+<p>La certitude métaphysique : fondée sur l’essence des choses, sans exception possible</p>
+<p>La certitude physique : fondée sur les lois de la nature, qui laissent place au miracle</p>
+<p>La certitude morale : fondée sur les lois constantes de la conduite humaine et sur le témoignage, certitude de la vie courante et de l’histoire</p>
+<p>L’erreur : sa nature (jugement qui affirme ce qui n’est pas), ses causes (précipitation, passion, préjugé)</p>
+<p>La vérité dans l’Écriture : Dieu fidèle, le Christ qui se dit la Vérité (Jean 14:6), la vérité qui rend libre (Jean 8:32)</p>
+</sujet>

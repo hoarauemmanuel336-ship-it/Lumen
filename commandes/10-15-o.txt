@@ -1,0 +1,14 @@
+<sujet cle="philosophes.neothomisme" titre="Le néothomisme" desc="Le renouveau de la pensée de saint Thomas à partir de Léon XIII.">
+<p>Les précurseurs du renouveau thomiste au XIXe siècle : Joseph Kleutgen, Matteo Liberatore, Gaetano Sanseverino</p>
+<p>L’encyclique <i>Aeterni Patris</i> de Léon XIII (4 août 1879) : restaurer la philosophie chrétienne selon saint Thomas</p>
+<p>Le cardinal Désiré Mercier et l’Institut supérieur de philosophie de Louvain</p>
+<p>Le motu proprio <i>Doctoris Angelici</i> de Pie X (1914) : saint Thomas imposé comme maître dans les écoles</p>
+<p>Les vingt-quatre thèses thomistes approuvées par la Congrégation des études (1914)</p>
+<p>Réginald Garrigou-Lagrange et le thomisme romain</p>
+<p>Jacques Maritain : sa conversion, <i>Distinguer pour unir ou les degrés du savoir</i> (1932), <i>Humanisme intégral</i> (1936)</p>
+<p>Étienne Gilson : l’historien de la philosophie médiévale, <i>L’Esprit de la philosophie médiévale</i> (1932), le débat sur la philosophie chrétienne</p>
+<p>Cornelio Fabro et la redécouverte de la participation chez saint Thomas</p>
+<p>Le Saulchoir et la lecture historique de saint Thomas (Marie-Dominique Chenu)</p>
+<p>Le thomisme transcendantal : Joseph Maréchal, Karl Rahner, Bernard Lonergan, et la discussion qu’il suscite</p>
+<p>La place de saint Thomas après Vatican II : <i>Optatam totius</i> 16, le canon 252 du Code de 1983, <i>Fides et ratio</i> 57 à 62</p>
+</sujet>

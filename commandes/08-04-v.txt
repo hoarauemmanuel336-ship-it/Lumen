@@ -1,0 +1,14 @@
+<sujet cle="anthropologie.volonte" titre="La volonté" desc="La faculté qui aime et veut le bien que l’intelligence connaît.">
+<p>L’appétit (latin <i>appetitus</i>) : l’inclination de tout être vers son bien</p>
+<p>L’appétit naturel : l’inclination de toute nature vers son bien, sans connaissance</p>
+<p>L’appétit sensible : l’inclination qui suit la connaissance des sens, commune à l’homme et à l’animal</p>
+<p>La <b>volonté</b> : l’appétit rationnel, qui suit l’intelligence</p>
+<p>L’objet de la volonté : le bien en tant que bien, connu comme tel</p>
+<p>Le bien universel et la béatitude, objet nécessaire de la volonté</p>
+<p>La volonté comme nature et la volonté comme choix (latin <i>voluntas ut natura</i>, <i>voluntas ut ratio</i>)</p>
+<p>L’amour, premier acte de la volonté</p>
+<p>Actes élicites et actes commandés par la volonté</p>
+<p>Le gouvernement de l’appétit sensible par la raison : un pouvoir « politique » et non « despotique » (<i>Somme de théologie</i> I, q. 81, a. 3, réponse 2, d’après Aristote)</p>
+<p>Le rapport de l’intelligence et de la volonté : priorité de l’intelligence (saint Thomas) ou primat de la volonté (Duns Scot), la question disputée</p>
+<p>La volonté mue de l’intérieur par Dieu seul, sans être contrainte (<i>Somme de théologie</i> I-II, q. 9, a. 6)</p>
+</sujet>

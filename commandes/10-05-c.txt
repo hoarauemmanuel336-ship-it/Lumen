@@ -1,0 +1,19 @@
+<sujet cle="philosophes.peres" titre="La philosophie chrétienne des Pères" desc="Comment les premiers penseurs chrétiens ont accueilli, jugé et transformé la philosophie grecque.">
+<p>La rencontre de l’Évangile et de la philosophie : Paul à l’Aréopage (Actes 17:16-34) et la mise en garde de Colossiens 2:8</p>
+<p>Les attitudes des premiers chrétiens devant la philosophie comme ensemble : accueil, méfiance, discernement</p>
+<p>L’accueil : la philosophie comme préparation à l’Évangile, les semences du Verbe chez saint Justin et la philosophie pédagogue des Grecs chez Clément d’Alexandrie</p>
+<p>La méfiance : « Qu’y a-t-il de commun entre Athènes et Jérusalem ? » (Tertullien, <i>De la prescription des hérétiques</i> 7)</p>
+<p>Le discernement : les dépouilles des Égyptiens (Exode 12:35-36), image de l’emprunt légitime chez Origène et saint Augustin (<i>De la doctrine chrétienne</i> II)</p>
+<p>Le christianisme présenté comme la « vraie philosophie » : une sagesse et une manière de vivre</p>
+<p>Philon d’Alexandrie, passeur juif entre l’Écriture et la philosophie grecque, et son influence sur les Pères</p>
+<p>Le stoïcisme chez les Pères : la morale, le <i>logos</i>, et ce qui est écarté (le panthéisme, le destin)</p>
+<p>L’épicurisme rejeté : le matérialisme et la négation de la providence</p>
+<p>Les Cappadociens et la culture grecque : saint Basile, <i>Aux jeunes gens, sur la manière de tirer profit des lettres helléniques</i></p>
+<p>Némésius d’Émèse (<i>De la nature de l’homme</i>, vers 400) : la première anthropologie philosophique chrétienne</p>
+<p>La transformation des notions grecques au service du dogme : <i>logos</i>, <i>ousia</i>, <i>hypostasis</i>, personne</p>
+<p>« Crois pour comprendre, comprends pour croire » : la formule augustinienne du rapport de la foi et de la raison (<i>Sermon</i> 43)</p>
+<p>Saint Augustin, sommet de la philosophie chrétienne antique, et l’augustinisme qui domine le Moyen Âge latin jusqu’au XIIIe siècle</p>
+<p>Boèce, passeur de la logique d’Aristote et du vocabulaire philosophique au Moyen Âge latin</p>
+<p>Jean Philopon (VIe siècle) et la critique chrétienne de l’éternité du monde</p>
+<p>La fermeture de l’école philosophique d’Athènes sous Justinien (529) et la fin de la philosophie païenne</p>
+</sujet>

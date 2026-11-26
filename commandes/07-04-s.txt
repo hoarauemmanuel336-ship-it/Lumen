@@ -1,0 +1,13 @@
+<sujet cle="metaphysique.substance" titre="Substance et accidents" desc="Ce qui existe en soi, et ce qui existe en autre chose.">
+<p>La <b>substance</b> (latin <i>substantia</i>, « ce qui se tient dessous », grec <i>ousia</i>) : ce qui existe en soi et non en un autre</p>
+<p>La substance première (l’individu, tel homme) et la substance seconde (l’espèce et le genre, l’homme)</p>
+<p>Substance complète et substance incomplète : l’âme humaine et le corps, parties d’une seule substance</p>
+<p>L’<b>accident</b> (latin <i>accidens</i>, « ce qui arrive ») : ce qui existe en un autre comme en son sujet</p>
+<p>L’inhérence : l’être de l’accident est d’être dans</p>
+<p>La distinction réelle entre la substance et ses accidents</p>
+<p>La substance connue par l’intelligence et non par les sens</p>
+<p>La critique de John Locke : la substance réduite à un support inconnu, un « je ne sais quoi »</p>
+<p>La critique de David Hume : la substance réduite à un faisceau de perceptions</p>
+<p>La substance et l’eucharistie : ce que la notion permet de dire de la transsubstantiation (concile de Trente, session XIII, 1551) et des accidents qui demeurent sans sujet selon saint Thomas (<i>Somme de théologie</i> III, q. 77, a. 1)</p>
+<p>Dieu sans accidents : en lui, tout ce qui est est sa substance (<i>Somme de théologie</i> I, q. 3, a. 6)</p>
+</sujet>

@@ -1,0 +1,16 @@
+<sujet cle="philosophes.socrate" titre="Les premiers philosophes et Socrate" desc="La naissance de la philosophie grecque, de la recherche du principe du monde à Socrate.">
+<p>La naissance de la philosophie en Grèce : du mythe (grec <i>mythos</i>) au discours raisonné (grec <i>logos</i>)</p>
+<p>Les penseurs de Milet et la recherche du principe (grec <i>archê</i>) : Thalès, Anaximandre, Anaximène</p>
+<p>Pythagore et l’école pythagoricienne : le nombre et l’âme</p>
+<p>Xénophane et la critique des dieux d’Homère : un premier pas vers l’unité du divin</p>
+<p>Héraclite : le devenir et le <i>logos</i></p>
+<p>Parménide : l’être et la voie de la vérité</p>
+<p>Empédocle : les quatre éléments, l’Amour et la Haine</p>
+<p>Anaxagore : l’Intelligence (grec <i>noûs</i>) qui ordonne le monde, saluée par Aristote</p>
+<p>Les atomistes, Leucippe et Démocrite : le premier matérialisme</p>
+<p>Les sophistes : Protagoras, Gorgias, et l’art de persuader</p>
+<p>Socrate et sa méthode : l’ironie et l’interrogation qui fait accoucher les esprits (maïeutique)</p>
+<p>Le « connais-toi toi-même » : la philosophie tournée vers l’homme et le soin de l’âme</p>
+<p>La vertu comme savoir : l’intellectualisme moral de Socrate et sa limite</p>
+<p>La mort de Socrate (399 avant Jésus-Christ) et sa place chez les Pères, qui y voient un juste persécuté (saint Justin)</p>
+</sujet>

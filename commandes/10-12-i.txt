@@ -1,0 +1,13 @@
+<sujet cle="philosophes.empirisme" titre="L’empirisme et le déisme" desc="La connaissance réduite à l’expérience, et la religion réduite à la raison.">
+<p>Francis Bacon et le <i>Novum Organum</i> (1620) : la méthode inductive opposée à la logique d’Aristote</p>
+<p>Thomas Hobbes : le matérialisme mécaniste et l’État souverain (<i>Léviathan</i>, 1651)</p>
+<p>L’<b>empirisme</b> : toute connaissance vient de l’expérience sensible et s’y réduit</p>
+<p>John Locke (<i>Essai sur l’entendement humain</i>, 1690) : l’esprit table rase, la critique des idées innées</p>
+<p>George Berkeley : « être, c’est être perçu », un immatérialisme d’évêque</p>
+<p>David Hume : impressions et idées, l’association des idées, le scepticisme</p>
+<p>Le <b>déisme</b> : un Dieu architecte qui n’intervient pas, la religion naturelle sans Révélation</p>
+<p>Voltaire et la critique de la religion révélée</p>
+<p>Jean-Jacques Rousseau et la <i>Profession de foi du vicaire savoyard</i> (<i>Émile</i>, 1762)</p>
+<p>Les Lumières et la raison autonome : le « Ose savoir ! » de Kant (1784)</p>
+<p>La réponse catholique au déisme : la Révélation possible, nécessaire et attestée</p>
+</sujet>

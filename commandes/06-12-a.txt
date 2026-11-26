@@ -1,0 +1,14 @@
+<sujet cle="logique.realisme" titre="Le réalisme et ses adversaires" desc="La raison peut-elle connaître le réel tel qu’il est ? Les réponses et leur critique.">
+<p>Le problème critique : la question de la valeur de notre connaissance, et sa naissance moderne avec Descartes</p>
+<p>Le <b>réalisme</b> : l’intelligence atteint les choses telles qu’elles sont, d’abord dans la perception de l’être</p>
+<p>Le réalisme méthodique d’Étienne Gilson : partir de l’être et non de la pensée</p>
+<p>Le réalisme critique de Jacques Maritain (<i>Distinguer pour unir ou les degrés du savoir</i>, 1932) et le débat avec Gilson</p>
+<p>Le scepticisme : sa thèse (rien ne peut être connu avec certitude), Pyrrhon et Sextus Empiricus</p>
+<p>La réfutation du scepticisme : la contradiction de celui qui affirme qu’on ne peut rien affirmer, et le <i>si fallor, sum</i> de saint Augustin (<i>Cité de Dieu</i> XI, 26)</p>
+<p>L’idéalisme : sa thèse (l’esprit ne connaît que ses propres représentations), de Descartes à Berkeley, Kant et Hegel</p>
+<p>La réfutation de l’idéalisme : le premier connu est l’être et non la pensée, l’idée comme ce par quoi l’on connaît et non ce que l’on connaît</p>
+<p>Le relativisme : sa thèse (la vérité dépend de l’individu, de la culture ou de l’époque), de Protagoras (« l’homme est la mesure de toutes choses ») aux formes contemporaines</p>
+<p>La réfutation du relativisme : la contradiction de la proposition « tout est relatif » et la distinction entre la vérité et la manière de la dire</p>
+<p>La « dictature du relativisme » : l’homélie du cardinal Ratzinger à la messe pour l’élection du pontife romain (18 avril 2005)</p>
+<p>L’enjeu pour la foi : sans réalisme, ni dogme vrai, ni Révélation communicable (<i>Fides et ratio</i> 82 à 84)</p>
+</sujet>

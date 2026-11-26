@@ -1,0 +1,17 @@
+<sujet cle="philosophes.thomas" titre="Saint Thomas d’Aquin et la synthèse scolastique" desc="Le docteur commun : sa vie, ses œuvres et l’unité qu’il établit entre foi et raison.">
+<p>La vie de saint Thomas d’Aquin (vers 1225-1274) : le Mont-Cassin, Naples, l’entrée chez les Dominicains, Paris, Cologne avec Albert le Grand</p>
+<p>Les grandes œuvres comme ensemble : commentaires, questions disputées, sommes</p>
+<p>Les commentaires d’Aristote : le philosophe lu ligne à ligne</p>
+<p>Les commentaires de l’Écriture : saint Thomas maître en sacrée page</p>
+<p>Les questions disputées (<i>De veritate</i>, <i>De potentia</i>, <i>De malo</i>) : l’enseignement universitaire mis par écrit</p>
+<p>La <i>Somme contre les Gentils</i> : sa visée et son plan</p>
+<p>La <i>Somme de théologie</i> : son plan de sortie et de retour (Dieu, le mouvement de la créature raisonnable vers Dieu, le Christ, voie de ce retour)</p>
+<p>La structure de l’article : objections, « en sens contraire », réponse, solutions</p>
+<p>La distinction et l’harmonie de la foi et de la raison : « la grâce ne supprime pas la nature, mais la perfectionne » (<i>Somme de théologie</i> I, q. 1, a. 8, réponse 2)</p>
+<p>L’originalité de saint Thomas : ce qu’il prend à Aristote, ce qu’il garde d’Augustin et du Pseudo-Denys, et l’acte d’être qui unit le tout</p>
+<p>Le combat contre l’averroïsme latin et Siger de Brabant</p>
+<p>Les condamnations parisiennes de 1277 (Étienne Tempier) et les thèses thomistes atteintes</p>
+<p>La reconnaissance de saint Thomas par l’Église : canonisation (1323) et proclamation comme docteur de l’Église (1567)</p>
+<p>Jean Capreolus, « prince des thomistes », et la première défense systématique de saint Thomas (XVe siècle)</p>
+<p>Saint Thomas, maître recommandé par l’Église : <i>Optatam totius</i> 16 et <i>Fides et ratio</i> 43 à 44</p>
+</sujet>

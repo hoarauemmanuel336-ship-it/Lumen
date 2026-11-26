@@ -1,0 +1,14 @@
+<sujet cle="metaphysique.matiere-forme" titre="Matière et forme" desc="Ce dont les corps sont faits, et ce qui les fait être ce qu’ils sont.">
+<p>L’<b>hylémorphisme</b> (grec <i>hylê</i>, « bois, matière », et <i>morphê</i>, « forme ») : la doctrine d’Aristote sur la composition des corps</p>
+<p>La matière première : pure puissance, sujet de toutes les transformations substantielles</p>
+<p>La forme substantielle : l’acte qui fait d’une matière telle chose, d’une telle espèce</p>
+<p>La matière seconde : la matière déjà formée, sujet des changements accidentels</p>
+<p>La forme accidentelle : la forme qui modifie une substance déjà constituée</p>
+<p>La génération et la corruption : l’apparition et la disparition des substances</p>
+<p>L’éduction des formes : la forme naturelle tirée de la puissance de la matière, et l’âme humaine, qui ne peut en être tirée et vient de Dieu par création</p>
+<p>Le principe d’individuation : la matière marquée par la quantité (latin <i>materia signata quantitate</i>) selon saint Thomas</p>
+<p>L’unicité de la forme substantielle dans chaque être (saint Thomas) et la pluralité des formes (école franciscaine) : la question disputée et ses enjeux</p>
+<p>Les êtres sans matière : les anges, formes subsistantes, chacun seul de son espèce selon saint Thomas</p>
+<p>L’hylémorphisme et les sciences physiques modernes : atomes, particules, et ce que la notion de forme continue d’expliquer</p>
+<p>La matière et la forme des sacrements : l’application de ces notions aux rites sacramentels par les théologiens à partir du XIIIe siècle</p>
+</sujet>

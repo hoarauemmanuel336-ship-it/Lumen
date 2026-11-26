@@ -1,0 +1,17 @@
+<sujet cle="philosophes.personnalisme" titre="Personnalisme et phénoménologie" desc="Les philosophies du XXe siècle centrées sur la personne, et leurs grands penseurs catholiques.">
+<p>Edmund Husserl et la <b>phénoménologie</b> : le retour « aux choses mêmes », l’intentionnalité, la description de l’expérience</p>
+<p>Max Scheler : la phénoménologie des valeurs, la personne et l’amour</p>
+<p>Dietrich von Hildebrand : la phénoménologie réaliste au service de l’éthique chrétienne</p>
+<p>Sainte Edith Stein : élève de Husserl, sa thèse sur l’empathie (1916), sa conversion, le Carmel</p>
+<p>L’œuvre philosophique d’Edith Stein : <i>L’Être fini et l’Être éternel</i>, la rencontre de la phénoménologie et de saint Thomas</p>
+<p>La mort d’Edith Stein à Auschwitz (1942), sa canonisation (1998) sous le nom de sainte Thérèse-Bénédicte de la Croix</p>
+<p>Le <b>personnalisme</b> : la personne au centre de la philosophie et de la vie sociale</p>
+<p>Emmanuel Mounier : la revue <i>Esprit</i> (1932), la révolution personnaliste et communautaire</p>
+<p>Gabriel Marcel : l’existentialisme chrétien, l’être et l’avoir, le mystère et le problème</p>
+<p>Karol Wojtyła philosophe : l’école de Lublin, <i>Amour et responsabilité</i> (1960), la norme personnaliste</p>
+<p><i>Personne et acte</i> (1969) de Karol Wojtyła : la personne qui se révèle dans l’acte</p>
+<p>L’héritage du personnalisme dans le Magistère : <i>Gaudium et spes</i>, les encycliques de Jean-Paul II</p>
+<p>Elizabeth Anscombe, <i>Modern Moral Philosophy</i> (1958), et Peter Geach : la philosophie analytique au service de la pensée catholique</p>
+<p>Alasdair MacIntyre, <i>Après la vertu</i> (1981), et le renouveau de l’éthique des vertus</p>
+<p>Robert Spaemann et Charles Taylor, penseurs catholiques de la modernité</p>
+</sujet>

@@ -1,0 +1,18 @@
+<sujet cle="anthropologie.libre-arbitre" titre="Le libre arbitre" desc="Le pouvoir de choisir, d’où il vient et à quoi il sert.">
+<p>Le <b>libre arbitre</b> (latin <i>liberum arbitrium</i>) : le pouvoir de choisir entre des biens particuliers</p>
+<p>La preuve du libre arbitre : sans lui, les conseils, les exhortations, les préceptes, les récompenses et les peines seraient vains (<i>Somme de théologie</i> I, q. 83, a. 1)</p>
+<p>La racine de la liberté dans la raison : on choisit parce qu’aucun bien particulier ne contraint la volonté</p>
+<p>La liberté d’exercice : agir ou ne pas agir</p>
+<p>La liberté de spécification : faire ceci ou cela</p>
+<p>La liberté devant le bien et le mal : un défaut de la liberté et non son essence</p>
+<p>Liberté de qualité et liberté d’indifférence : la distinction de Servais Pinckaers (<i>Les sources de la morale chrétienne</i>, 1985)</p>
+<p>Le déterminisme physique : tout acte fixé d’avance par les lois de la matière</p>
+<p>Le déterminisme psychologique : le motif le plus fort qui emporterait toujours le choix</p>
+<p>Le déterminisme social : l’homme réduit au produit de son milieu</p>
+<p>Les conditionnements réels de la liberté, qui la limitent sans la supprimer</p>
+<p>Le fatalisme antique et la providence</p>
+<p>La controverse d’Érasme (<i>Du libre arbitre</i>, 1524) et de Luther (<i>Du serf arbitre</i>, 1525)</p>
+<p>Le concile de Trente, session VI (1547), canon 5 : le libre arbitre n’est pas éteint par le péché</p>
+<p>La liberté accomplie : la liberté des enfants de Dieu (Romains 8:21) et l’impeccabilité des bienheureux</p>
+<p>La liberté selon l’encyclique <i>Veritatis splendor</i> (1993) : liberté et vérité</p>
+</sujet>

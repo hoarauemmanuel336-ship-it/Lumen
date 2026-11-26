@@ -1,0 +1,14 @@
+<sujet cle="anthropologie.ame-forme" titre="L’âme, forme du corps" desc="L’unité de l’être humain, ni esprit enfermé dans un corps, ni pure matière.">
+<p>L’âme humaine <b>forme substantielle</b> du corps : un seul être, et non deux choses associées</p>
+<p>Le corps humain, corps animé et non cadavre : le corps qui n’est corps humain que par l’âme</p>
+<p>Le dualisme de Platon : l’âme prisonnière du corps (<i>Phédon</i>, <i>Phèdre</i>)</p>
+<p>Le dualisme de Descartes : la substance pensante et la substance étendue, et la difficulté de leur union</p>
+<p>Le matérialisme antique : l’âme faite d’atomes (Démocrite, Épicure)</p>
+<p>Le matérialisme moderne : l’homme machine (La Mettrie, <i>L’Homme-machine</i>, 1747)</p>
+<p>Le matérialisme contemporain : l’esprit réduit au cerveau, et les limites de cette réduction</p>
+<p>La réponse thomiste au dualisme et au matérialisme : l’âme forme et pourtant subsistante</p>
+<p>Le quatrième concile de Constantinople (869-870), contre ceux qui attribuent deux âmes à l’homme</p>
+<p>Le concile de Vienne (1312) : l’âme rationnelle forme du corps par elle-même et essentiellement</p>
+<p>Le <i>Catéchisme de l’Église catholique</i> 362 à 368 : l’unité de l’âme et du corps</p>
+<p>Le sens de l’unité pour la foi : la dignité du corps, la résurrection de la chair</p>
+</sujet>

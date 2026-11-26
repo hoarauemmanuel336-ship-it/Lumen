@@ -1,0 +1,12 @@
+<sujet cle="philosophes.seconde-scolastique" titre="La seconde scolastique" desc="Le renouveau de la pensée catholique aux XVIe et XVIIe siècles.">
+<p>La seconde scolastique : le renouveau thomiste et scolastique en Espagne, au Portugal et en Italie</p>
+<p>Cajetan (Thomas de Vio) et son commentaire de la <i>Somme de théologie</i></p>
+<p>L’école de Salamanque : Francisco de Vitoria et le droit des gens</p>
+<p>Melchior Cano et les <i>Lieux théologiques</i> (<i>De locis theologicis</i>, 1563) : les sources de l’argument théologique</p>
+<p>Domingo Báñez et la prémotion physique</p>
+<p>Luis de Molina et la science moyenne (<i>Concordia</i>, 1588)</p>
+<p>Francisco Suárez et les <i>Disputes métaphysiques</i> (1597) : le premier traité systématique de métaphysique séparé des commentaires d’Aristote</p>
+<p>Les cours de Coimbra (les <i>Conimbricenses</i>) : les manuels jésuites de philosophie aristotélicienne lus dans toute l’Europe</p>
+<p>Jean de Saint-Thomas et le <i>Cursus philosophicus</i></p>
+<p>L’influence de la seconde scolastique sur la philosophie moderne, de Descartes à Leibniz</p>
+</sujet>

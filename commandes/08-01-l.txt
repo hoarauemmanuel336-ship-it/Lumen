@@ -1,0 +1,13 @@
+<sujet cle="philo.homme" titre="L’âme et les degrés de vie" desc="Ce qu’est la vie, ce qu’est une âme, et les trois degrés du vivant.">
+<p>La vie : le mouvement immanent, l’être qui se meut lui-même</p>
+<p>Le mot âme (latin <i>anima</i>, grec <i>psychê</i>, hébreu <i>nefesh</i>) et ce que chaque langue y entend</p>
+<p>L’<b>âme</b> comme premier principe de vie d’un corps vivant</p>
+<p>La définition d’Aristote : « l’acte premier d’un corps naturel organisé » (<i>De l’âme</i> II, 1)</p>
+<p>Les degrés de vie comme ensemble : pourquoi trois, et leur hiérarchie</p>
+<p>La vie végétative : nutrition, croissance, reproduction</p>
+<p>La vie sensitive : connaissance sensible, appétit sensible, mouvement local</p>
+<p>La vie rationnelle : intelligence et volonté</p>
+<p>Les facultés de l’âme (latin <i>potentiae</i>), distinguées par leurs actes et leurs objets, et leur distinction réelle d’avec l’âme</p>
+<p>L’unicité de l’âme humaine : une seule âme, qui exerce à la fois les fonctions végétatives, sensitives et rationnelles</p>
+<p>La philosophie de la nature vivante face au mécanisme, qui réduit le vivant à une machine</p>
+</sujet>

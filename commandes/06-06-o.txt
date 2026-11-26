@@ -1,0 +1,20 @@
+<sujet cle="logique.concept" titre="Le concept et le terme" desc="L’idée que l’on se fait d’une chose, et le mot qui l’exprime.">
+<p>Le concept : la représentation intellectuelle de ce qu’est une chose</p>
+<p>Le terme : le mot qui signifie le concept, sujet ou prédicat d’une proposition</p>
+<p>La compréhension d’un concept : l’ensemble des notes qui le constituent</p>
+<p>L’extension d’un concept : l’ensemble des êtres auxquels il s’applique, et la loi inverse qui lie compréhension et extension</p>
+<p>Le concept singulier : il ne s’applique qu’à un seul être</p>
+<p>Le concept particulier : il s’applique à une partie indéterminée d’une classe</p>
+<p>Le concept universel : il s’applique à chacun des êtres d’une classe</p>
+<p>Le terme concret et le terme abstrait (« homme » et « humanité »), et leur usage exact dans le langage sur Dieu et sur le Christ</p>
+<p>Le terme <b>univoque</b> : un mot dit de plusieurs choses selon un sens entièrement identique</p>
+<p>Le terme équivoque : un mot dit de plusieurs choses selon des sens entièrement différents</p>
+<p>Le terme analogue : un mot dit de plusieurs choses selon un sens en partie identique, en partie différent</p>
+<p>La supposition (latin <i>suppositio</i>) : ce dont un terme tient lieu dans une phrase donnée</p>
+<p>La querelle des universaux : la question de Porphyre sur le mode d’existence des genres et des espèces</p>
+<p>Le réalisme exagéré : les universaux existent comme tels hors de l’esprit (Platon, Guillaume de Champeaux)</p>
+<p>Le nominalisme : seuls existent les individus, l’universel n’est qu’un nom (Roscelin)</p>
+<p>Le conceptualisme : l’universel n’existe que dans l’esprit, sans fondement dans les choses</p>
+<p>Le réalisme modéré de saint Thomas : l’universel existe formellement dans l’esprit, avec un fondement dans la nature des choses</p>
+<p>Les espèces de la supposition : matérielle, simple et personnelle, et leur usage pour lire exactement les propositions sur le Christ</p>
+</sujet>

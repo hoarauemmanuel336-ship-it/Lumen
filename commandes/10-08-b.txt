@@ -1,0 +1,16 @@
+<sujet cle="philosophes.franciscains" titre="Saint Bonaventure et Duns Scot" desc="L’école franciscaine, autre grande voie de la pensée médiévale.">
+<p>Saint Bonaventure (vers 1217-1274) : ministre général des Franciscains, docteur séraphique</p>
+<p>L’<i>Itinéraire de l’esprit vers Dieu</i> (1259) : les degrés de la montée vers Dieu</p>
+<p>L’exemplarisme de saint Bonaventure : le monde comme livre et vestige de la Trinité</p>
+<p>L’illumination augustinienne chez saint Bonaventure</p>
+<p>Le refus de l’éternité du monde chez saint Bonaventure, jugée contradictoire</p>
+<p>La critique bonaventurienne de l’aristotélisme radical</p>
+<p>Le bienheureux Jean Duns Scot (vers 1266-1308) : docteur subtil</p>
+<p>L’œuvre de Duns Scot : les commentaires des <i>Sentences</i> (<i>Ordinatio</i>, <i>Reportata parisiensia</i>) et les questions sur la <i>Métaphysique</i></p>
+<p>L’eccéité (latin <i>haecceitas</i>, « le fait d’être celui-ci ») : le principe d’individuation selon Duns Scot</p>
+<p>La distinction formelle chez Duns Scot</p>
+<p>Le primat de la volonté et de l’amour chez Duns Scot</p>
+<p>Duns Scot et l’Immaculée Conception : la rédemption préservatrice</p>
+<p>Duns Scot et le primat absolu du Christ, voulu avant toute prévision du péché</p>
+<p>Thomistes et scotistes : les grands lieux de leur désaccord</p>
+</sujet>

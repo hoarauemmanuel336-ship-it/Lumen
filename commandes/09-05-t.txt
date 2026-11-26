@@ -1,0 +1,14 @@
+<sujet cle="theodicee.nommer" titre="Les trois voies pour parler de Dieu" desc="Comment affirmer, nier et dépasser pour parler de Dieu sans le réduire.">
+<p>Le problème : nos mots viennent des créatures, et Dieu dépasse toute créature</p>
+<p>Le Pseudo-Denys l’Aréopagite (<i>Les Noms divins</i>, <i>La Théologie mystique</i>) et l’origine des trois voies</p>
+<p>La voie <b>affirmative</b> : attribuer à Dieu les perfections trouvées dans les créatures</p>
+<p>La voie <b>négative</b> : nier de Dieu toute limite et tout mode créé</p>
+<p>La voie d’<b>éminence</b> : affirmer les perfections en Dieu selon un mode qui dépasse tout</p>
+<p>La théologie apophatique (grec <i>apophasis</i>, « négation ») et la théologie cataphatique (grec <i>kataphasis</i>, « affirmation »)</p>
+<p>La question 13 de la <i>Somme de théologie</i> (I) : les noms divins selon saint Thomas</p>
+<p>Les perfections pures (sagesse, bonté) et les perfections mixtes (raisonner, se mouvoir) : ce qui se dit de Dieu en propre et ce qui se dit par métaphore</p>
+<p>La chose signifiée et la manière de signifier (latin <i>res significata</i>, <i>modus significandi</i>)</p>
+<p>Les noms de Dieu ne sont pas synonymes, bien que Dieu soit simple</p>
+<p>« De Dieu nous ne savons pas ce qu’il est, mais ce qu’il n’est pas » (<i>Somme de théologie</i> I, q. 3, prologue) et le juste sens de cette négation</p>
+<p>Moïse Maïmonide (<i>Guide des égarés</i>) et la théologie purement négative que saint Thomas discute</p>
+</sujet>

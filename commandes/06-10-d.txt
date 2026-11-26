@@ -1,0 +1,19 @@
+<sujet cle="logique.science" titre="La démonstration et la science" desc="Ce qu’est une connaissance démontrée, et pourquoi la théologie peut se dire science.">
+<p>La démonstration : le syllogisme qui produit la science à partir de prémisses vraies, premières et connues par soi (Aristote, <i>Seconds Analytiques</i>)</p>
+<p>La science au sens classique : connaissance certaine par les causes (latin <i>cognitio certa per causas</i>)</p>
+<p>La démonstration <i>propter quid</i> (par la cause) et la démonstration <i>quia</i> (par l’effet)</p>
+<p>Les axiomes ou principes communs : les vérités valables pour toutes les sciences</p>
+<p>Les principes propres d’une science : ses définitions et ses suppositions</p>
+<p>La subalternation des sciences : une science qui reçoit ses principes d’une science supérieure</p>
+<p>Les vertus intellectuelles comme ensemble (Aristote, <i>Éthique à Nicomaque</i> VI) : les spéculatives et les pratiques</p>
+<p>L’intelligence des principes : l’habitus qui saisit les vérités premières</p>
+<p>La science : l’habitus des conclusions démontrées</p>
+<p>La sagesse : l’habitus qui juge de tout par les causes les plus hautes</p>
+<p>La prudence : la droite raison appliquée à l’agir</p>
+<p>L’art : la droite raison appliquée au faire</p>
+<p>La dialectique : le raisonnement à partir d’opinions probables (Aristote, <i>Topiques</i>)</p>
+<p>La rhétorique : l’art de persuader, et l’enthymème</p>
+<p>La science au sens moderne : méthode expérimentale, hypothèse, vérification, et sa différence avec la science aristotélicienne</p>
+<p>La théologie comme <b>science</b> subalternée à la science de Dieu et des bienheureux (saint Thomas, <i>Somme de théologie</i> I, q. 1, a. 2)</p>
+<p>La théologie comme sagesse, la plus haute des sagesses (<i>Somme de théologie</i> I, q. 1, a. 6)</p>
+</sujet>

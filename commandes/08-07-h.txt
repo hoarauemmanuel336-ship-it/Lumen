@@ -1,0 +1,13 @@
+<sujet cle="anthropologie.habitus" titre="L’habitus" desc="Les dispositions stables qui font agir avec aisance, en bien ou en mal.">
+<p>L’<b>habitus</b> (latin, grec <i>hexis</i>, « manière d’être possédée ») : qualité stable qui dispose bien ou mal une nature</p>
+<p>L’habitus et la simple disposition : la stabilité comme différence</p>
+<p>Le traité de l’habitus de saint Thomas (<i>Somme de théologie</i> I-II, q. 49 à 54)</p>
+<p>Habitus entitatifs (qui disposent l’être) et habitus opératifs (qui disposent l’agir)</p>
+<p>Le sujet de l’habitus : les facultés de l’âme capables d’être déterminées</p>
+<p>La formation de l’habitus par la répétition des actes</p>
+<p>La croissance, l’affaiblissement et la perte des habitus</p>
+<p>L’habitus comme « seconde nature » : la facilité, la promptitude et la joie dans l’action</p>
+<p>La différence entre habitus et habitude mécanique</p>
+<p>La vertu et le vice : les habitus bons et mauvais</p>
+<p>Les habitus infus : la grâce et les vertus surnaturelles données par Dieu</p>
+</sujet>
