@@ -15,3 +15,5 @@ Bloc entier écrit (60/60) et relu (60/60). Assemblé dans /home/claude/lumen/pa
 Prêts en local, NON poussés : depot/peres (84a537e) et envoi/peres (41 fichiers, empreintes vérifiées).
 On attend le « dépose-le ». Ordre : pousser envoi/peres, attendre le robot, rebaser depot/peres sur origin/main (conflits possibles sur cours.json, sommaire, memoriser.json, nouveautes.html si Emmanuel a déposé entre-temps : refaire alors cours.json par script, le sommaire par cours-sommaire.js, memoriser par memoriser-peres.py), puis pousser sur main.
 Bloc suivant : « La philosophie au service de la foi » (57 cours).
+
+## 26 novembre, 21 h 20 : DÉPOSÉ. Robot du coffre réussi (run 45830682181), main = 84a537e.
