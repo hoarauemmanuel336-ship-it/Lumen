@@ -1,0 +1,112 @@
+<lecon titre="Contraires, subcontraires, subalternes" desc="Les trois autres rapports du carré logique, leurs lois et le tableau complet des inférences.">
+<objectifs>
+<li>Énoncer la loi des contraires et dire quand elles sont fausses ensemble.</li>
+<li>Énoncer la loi des subcontraires et éviter de tirer O de I.</li>
+<li>Énoncer la loi des subalternes dans ses deux sens.</li>
+<li>Déduire, à partir de la vérité ou de la fausseté d'une proposition, ce que l'on sait des trois autres.</li>
+<li>Dire pourquoi la logique moderne lit autrement une partie du carré.</li>
+</objectifs>
+<prerequis>
+<li>Le carré logique et les contradictoires (<a href="#j5">leçon 5</a>).</li>
+</prerequis>
+<commencer question="« Tous les invités sont arrivés », dit l'un ; « aucun invité n'est arrivé », dit l'autre. Peuvent-ils avoir tort tous les deux ?">
+<p>À première vue, ces deux personnes disent des choses opposées : il semble que l'une des deux doive avoir raison. Pourtant, il suffit d'imaginer la scène pour voir qu'elles peuvent se tromper ensemble : si la moitié des invités est là, ni « tous » ni « aucun » n'est vrai.</p>
+<p>Ce que l'intuition saisit sur cet exemple, la logique le règle en lois précises pour chacun des côtés du carré. Ces lois permettent, à partir d'une seule proposition connue, de savoir ce que l'on peut dire des trois autres, et surtout ce que l'on ne peut pas en dire.</p>
+</commencer>
+
+<partie titre="Les contraires">
+<p>Les contraires sont les deux universelles de qualité opposée : A et E, en haut du carré. « Tout homme est juste » et « nul homme n'est juste ». Elles semblent s'opposer plus fort que les contradictoires, puisque chacune va à l'extrême, mais leur opposition logique est plus faible.</p>
+<definition terme="Propositions contraires">deux universelles de même sujet et de même prédicat qui diffèrent par la qualité (A et E) ; elles ne peuvent être vraies ensemble, mais elles peuvent être fausses ensemble.</definition>
+<p>La loi des contraires tient en deux phrases. Elles ne peuvent pas être vraies ensemble : si tout homme est juste, il est faux qu'aucun ne le soit. Mais elles peuvent être fausses ensemble : quand certains hommes sont justes et d'autres non, ni « tous » ni « aucun » n'est vrai. Aristote le remarque déjà : les contraires universelles ne peuvent être vraies en même temps (<i>De l'interprétation</i> 7, 17b22-23).</p>
+<p>Il en découle une règle d'inférence. De la vérité d'une contraire, on conclut la fausseté de l'autre. De la fausseté d'une contraire, on ne conclut rien sur l'autre : elle peut être vraie ou fausse.</p>
+<p>Les logiciens médiévaux ont précisé quand les deux contraires sont fausses ensemble, en regardant la matière de la proposition, c'est-à-dire le rapport réel entre le prédicat et le sujet. Quand le prédicat appartient nécessairement au sujet (« tout homme est mortel »), ou lui est impossible (« tout homme est une pierre »), l'une des contraires est vraie et l'autre fausse. C'est seulement en matière contingente, quand le prédicat peut convenir à certains et pas à d'autres, qu'elles peuvent être fausses ensemble.</p>
+<exemple><p>« Tous les saints canonisés ont été martyrs » et « aucun saint canonisé n'a été martyr » sont deux contraires, et toutes deux sont fausses : saint Étienne est martyr, saint François d'Assise ne l'est pas. La vérité se trouve dans les deux particulières : « quelques saints canonisés ont été martyrs » et « quelques saints canonisés n'ont pas été martyrs ».</p></exemple>
+<attention><p>C'est l'endroit des erreurs les plus graves. Celui qui rejette une universelle est tenté de passer à l'universelle opposée. Or, la fausseté de A ne donne pas E : elle donne seulement O, sa contradictoire.</p></attention>
+<verifie>On sait qu'il est faux que « toute action humaine est libre ». Peut-on en conclure qu'« aucune action humaine n'est libre » ?<reponse>Non. Les deux sont contraires : de la fausseté de l'une, on ne conclut rien sur l'autre. On peut seulement conclure la contradictoire de la première : « quelque action humaine n'est pas libre » (par exemple un réflexe).</reponse></verifie>
+</partie>
+
+<partie titre="Les subcontraires">
+<p>Les subcontraires sont les deux particulières de qualité opposée : I et O, en bas du carré. « Quelque homme est juste » et « quelque homme n'est pas juste ». Leur nom vient de leur place, « sous » les contraires.</p>
+<definition terme="Propositions subcontraires">deux particulières de même sujet et de même prédicat qui diffèrent par la qualité (I et O) ; elles ne peuvent être fausses ensemble, mais elles peuvent être vraies ensemble.</definition>
+<p>Leur loi est l'inverse de celle des contraires. Elles ne peuvent pas être fausses ensemble : si « quelque homme est juste » est faux, c'est qu'aucun homme n'est juste, et alors « quelque homme n'est pas juste » est vrai. Mais elles peuvent être vraies ensemble, et c'est même le cas le plus ordinaire : quelques hommes sont justes, d'autres ne le sont pas.</p>
+<p>La règle d'inférence suit. De la fausseté d'une subcontraire, on conclut la vérité de l'autre. De la vérité d'une subcontraire, on ne conclut rien sur l'autre.</p>
+<attention><p>Ne tirez pas O de I. « Quelques apôtres ont écrit un évangile » ne permet pas de conclure que « quelques apôtres n'ont pas écrit d'évangile ». La conclusion se trouve être vraie, mais elle ne découle pas de la première : il faut le savoir par ailleurs. Ce glissement vient de l'usage courant, où « quelques-uns » sous-entend « pas tous », alors que la logique entend « au moins un ».</p></attention>
+<p>Les subcontraires donnent une règle de prudence. Celui qui affirme une particulière s'engage peu : il dit seulement « au moins un ». Il ne nie pas pour autant que tous soient tels. Le médecin qui dit « quelques patients ont guéri » n'a pas dit que d'autres sont morts.</p>
+<verifie>On sait qu'il est faux que « quelque ange soit corporel ». Que peut-on dire de « quelque ange n'est pas corporel » ?<reponse>Qu'elle est vraie. Les deux sont subcontraires : elles ne peuvent être fausses ensemble, et la fausseté de I entraîne la vérité de O. On sait d'ailleurs davantage : la fausseté de I entraîne la vérité de sa contradictoire E, « nul ange n'est corporel ».</reponse></verifie>
+</partie>
+
+<partie titre="Les subalternes">
+<p>Les subalternes ont la même qualité et diffèrent par la quantité : A et I, à gauche ; E et O, à droite. L'universelle s'appelle la subalternante, la particulière la subalternée. À proprement parler, elles ne s'opposent pas ; elles s'emboîtent.</p>
+<definition terme="Propositions subalternes">une universelle et une particulière de même sujet, de même prédicat et de même qualité (A et I, E et O) ; la vérité de l'universelle entraîne celle de la particulière, et la fausseté de la particulière entraîne celle de l'universelle.</definition>
+<p>La loi des subalternes va dans deux sens différents. Du haut vers le bas, la vérité descend : si « tout homme a besoin de la grâce pour être sauvé » est vrai, « quelque homme a besoin de la grâce » l'est aussi. Ce qui vaut de tous vaut de chacun, et donc d'au moins un. Du bas vers le haut, c'est la fausseté qui monte : si « quelque cercle est carré » est faux, « tout cercle est carré » l'est aussi.</p>
+<p>Les deux autres mouvements ne sont pas permis. La vérité de la particulière ne garantit pas celle de l'universelle : « quelques apôtres sont morts martyrs » ne permet pas de dire « tous les apôtres sont morts martyrs », et la tradition rapporte précisément que saint Jean est mort âgé, sans martyre sanglant. La fausseté de l'universelle ne garantit pas celle de la particulière : il est faux que tous les hommes soient savants, mais vrai que quelques-uns le sont.</p>
+<retenir><p>La vérité descend de l'universelle à la particulière ; la fausseté monte de la particulière à l'universelle. Rien ne passe dans les deux autres sens.</p></retenir>
+<h4>Une réserve de la logique moderne</h4>
+<p>La descente de A vers I suppose que le sujet existe. « Tout cercle carré est rond » n'entraîne pas « quelque cercle carré est rond », puisqu'il n'y a aucun cercle carré. La logique d'Aristote et des scolastiques parlait de sujets réels et faisait cette supposition sans la dire. La logique moderne, depuis le XIXe siècle, lit au contraire « tout S est P » comme « s'il y a un S, il est P », ce qui reste vrai quand il n'y a aucun S. Pour elle, A n'entraîne plus I, et deux contraires peuvent être vraies ensemble quand le sujet est vide. Les deux lectures sont cohérentes ; il suffit de savoir laquelle on emploie. Ce cours suit la lecture classique, qui convient aux sujets dont on parle en philosophie et en théologie.</p>
+<verifie>Il est vrai que « nul sacrement n'est une simple cérémonie humaine ». Que peut-on dire de « quelque sacrement n'est pas une simple cérémonie humaine » ?<reponse>Qu'elle est vraie : c'est la subalternée de cette E, et la vérité descend de l'universelle à la particulière.</reponse></verifie>
+</partie>
+
+<partie titre="Le tableau des inférences">
+<p>En réunissant les quatre lois, on peut dire, pour chaque proposition dont on connaît la valeur, ce que l'on sait des trois autres. Le tableau suivant les rassemble ; « indéterminée » signifie que la logique seule ne permet pas de conclure.</p>
+<table>
+<tr><th>Si l'on sait que…</th><th>A</th><th>E</th><th>I</th><th>O</th></tr>
+<tr><td>A est vraie</td><td>vraie</td><td>fausse</td><td>vraie</td><td>fausse</td></tr>
+<tr><td>A est fausse</td><td>fausse</td><td>indéterminée</td><td>indéterminée</td><td>vraie</td></tr>
+<tr><td>E est vraie</td><td>fausse</td><td>vraie</td><td>fausse</td><td>vraie</td></tr>
+<tr><td>E est fausse</td><td>indéterminée</td><td>fausse</td><td>vraie</td><td>indéterminée</td></tr>
+<tr><td>I est vraie</td><td>indéterminée</td><td>fausse</td><td>vraie</td><td>indéterminée</td></tr>
+<tr><td>I est fausse</td><td>fausse</td><td>vraie</td><td>fausse</td><td>vraie</td></tr>
+<tr><td>O est vraie</td><td>fausse</td><td>indéterminée</td><td>indéterminée</td><td>vraie</td></tr>
+<tr><td>O est fausse</td><td>vraie</td><td>fausse</td><td>vraie</td><td>fausse</td></tr>
+</table>
+<p>Inutile d'apprendre ce tableau par cœur : il se reconstruit. La méthode la plus sûre est de commencer par la contradictoire, qui donne toujours un résultat, puis d'appliquer la loi des subalternes, et enfin celle des contraires ou des subcontraires.</p>
+<exemple><p>On sait qu'il est faux que « quelque homme est sans besoin de Dieu » (I fausse). La contradictoire E, « nul homme n'est sans besoin de Dieu », est donc vraie. De E vraie, on tire sa subalternée O, « quelque homme n'est pas sans besoin de Dieu », vraie ; et sa contraire A, « tout homme est sans besoin de Dieu », fausse. Une seule proposition connue a suffi à fixer les trois autres.</p></exemple>
+<p>Remarquez que les universelles vraies et les particulières fausses sont des informations riches : elles déterminent tout le carré. Les universelles fausses et les particulières vraies laissent deux cases indéterminées. Elles en disent moins.</p>
+<p>La question de départ se résout d'elle-même. « Tous les invités sont arrivés » et « aucun invité n'est arrivé » sont contraires : elles ne peuvent être vraies ensemble, mais elles peuvent être fausses ensemble, et c'est le cas dès qu'une partie seulement des invités est là. Les deux personnes ont tort, et la vérité est dans les deux particulières : quelques invités sont arrivés, quelques-uns ne le sont pas.</p>
+</partie>
+
+<essentiel>
+<li>Les contraires, A et E, ne peuvent être vraies ensemble, mais elles peuvent être fausses ensemble.</li>
+<li>Deux contraires ne sont fausses ensemble qu'en matière contingente ; la vérité est alors dans les particulières.</li>
+<li>Les subcontraires, I et O, ne peuvent être fausses ensemble, mais elles peuvent être vraies ensemble.</li>
+<li>De la vérité de I, on ne peut pas tirer O, ni l'inverse.</li>
+<li>Entre subalternes, la vérité descend de l'universelle à la particulière, et la fausseté monte de la particulière à l'universelle.</li>
+<li>La descente de A à I suppose que le sujet existe, ce que la logique moderne ne suppose pas.</li>
+<li>Pour remplir le carré à partir d'une proposition connue, on commence par la contradictoire.</li>
+</essentiel>
+<mots-cles>
+<mot terme="Propositions contraires">deux universelles de qualité opposée (A et E) ; elles ne peuvent être vraies ensemble mais peuvent être fausses ensemble.</mot>
+<mot terme="Propositions subcontraires">deux particulières de qualité opposée (I et O) ; elles ne peuvent être fausses ensemble mais peuvent être vraies ensemble.</mot>
+<mot terme="Propositions subalternes">une universelle et une particulière de même qualité (A et I, E et O) ; la vérité descend de l'universelle, la fausseté monte de la particulière.</mot>
+<mot terme="Matière d'une proposition">le rapport réel entre le prédicat et le sujet : nécessaire, impossible ou contingent.</mot>
+<mot terme="Propositions contradictoires"/>
+<mot terme="Carré logique"/>
+</mots-cles>
+<exercices>
+<exercice nom="Nommer le rapport et la loi" niveau="1">Pour chaque paire, nommez le rapport et énoncez sa loi : a) « Tout péché est mortel » et « nul péché n'est mortel ». b) « Quelques prières sont exaucées » et « quelques prières ne sont pas exaucées ». c) « Toute vertu est un habitus » et « quelque vertu est un habitus ».
+<corrige><p>a) Contraires : elles ne peuvent être vraies ensemble, mais peuvent être fausses ensemble. C'est le cas ici : quelques péchés sont mortels, d'autres véniels. b) Subcontraires : elles ne peuvent être fausses ensemble, mais peuvent être vraies ensemble. c) Subalternes : la vérité de l'universelle entraîne celle de la particulière ; la fausseté de la particulière entraînerait celle de l'universelle.</p></corrige>
+</exercice>
+<exercice nom="Remplir le carré" niveau="1">On sait que « quelque homme n'est pas mortel » est fausse. Donnez la valeur des trois autres propositions (A, E, I) de même sujet et de même prédicat, en indiquant à chaque fois la loi employée.
+<corrige><p>O est fausse. Sa contradictoire A, « tout homme est mortel », est donc vraie (loi des contradictoires). La subalternée de A, I, « quelque homme est mortel », est vraie (la vérité descend). La contraire de A, E, « nul homme n'est mortel », est fausse (deux contraires ne peuvent être vraies ensemble). On peut vérifier par une autre voie : O fausse entraîne I vraie, par la loi des subcontraires.</p></corrige>
+</exercice>
+<exercice nom="Ce qu'on ne peut pas conclure" niveau="2">Dites si chaque conclusion découle de la prémisse, et justifiez : a) « Il est faux que tout homme soit menteur ; donc nul homme n'est menteur. » b) « Quelques évêques ont été saints ; donc quelques évêques n'ont pas été saints. » c) « Il est vrai que quelques Pères de l'Église étaient évêques ; donc tous l'étaient. » d) « Il est faux que quelque ange soit corporel ; donc il est faux que tout ange soit corporel. »
+<corrige><p>a) Non : de la fausseté d'une contraire, on ne tire rien sur l'autre ; on peut seulement conclure « quelque homme n'est pas menteur ». b) Non : de la vérité d'une subcontraire, on ne tire rien sur l'autre. c) Non : la vérité ne monte pas de la particulière à l'universelle. Il se trouve d'ailleurs que la conclusion est fausse : saint Jérôme n'était pas évêque. d) Oui : la fausseté monte de la particulière à l'universelle. Trois des quatre fautes viennent du même réflexe : vouloir tirer de la proposition plus qu'elle ne contient.</p></corrige>
+</exercice>
+<exercice nom="Matière et contraires" niveau="2">Pour chacune de ces paires de contraires, dites si les deux peuvent être fausses ensemble, en vous servant de la notion de matière : a) « Tout triangle a trois angles » et « nul triangle n'a trois angles ». b) « Tout chrétien prie chaque jour » et « nul chrétien ne prie chaque jour ». c) « Toute âme humaine est un corps » et « nulle âme humaine n'est un corps ».
+<corrige><p>a) Matière nécessaire : le prédicat découle de ce qu'est le triangle. L'une est vraie (A), l'autre fausse ; elles ne sont pas fausses ensemble. b) Matière contingente : prier chaque jour dépend de chacun. Les deux sont fausses, et la vérité est dans les particulières. c) Matière impossible : être un corps répugne à l'âme, qui est spirituelle. A est fausse, E vraie. Le cas où les contraires sont fausses ensemble est celui où le prédicat convient à certains sujets et non à d'autres.</p></corrige>
+</exercice>
+<exercice nom="Le sujet vide" niveau="3">Un logicien moderne dit : « “Tous les chevaliers de la Table ronde sont braves” et “aucun chevalier de la Table ronde n'est brave” peuvent être vraies ensemble. » Un logicien thomiste proteste. Expliquez le désaccord, puis dites dans quel cas il a une portée en théologie.
+<corrige><p>Le logicien moderne lit « tout S est P » comme « s'il y a un S, il est P ». Si les chevaliers de la Table ronde n'ont jamais existé, il n'y en a aucun qui soit lâche, et aucun qui soit brave : les deux phrases sont vraies, faute de sujet. Le thomiste suppose, comme Aristote, que le sujet dont on parle existe ou est pris comme existant dans l'univers de discours (ici, la légende) ; dans ce cas, les contraires ne peuvent être vraies ensemble, et A entraîne I. Les deux lectures sont cohérentes, et le désaccord tient à une convention sur le sujet. En théologie, la question se pose quand on parle de sujets dont l'existence est en cause : dire « tous les hommes nés sans péché originel sont… » ne dit rien de leur existence dans la lecture moderne, mais la suppose dans la lecture classique. Il faut alors préciser si l'on affirme que de tels sujets existent, sans quoi le lecteur peut se tromper sur ce qui est affirmé.</p></corrige>
+</exercice>
+<exercice nom="Plus fort que nécessaire" niveau="3">Un catéchiste veut réfuter quelqu'un qui dit : « Tous les hommes sont foncièrement mauvais. » Il répond : « Au contraire, aucun homme n'est mauvais ; tous sont bons au fond. » Jugez cette réponse en logique, puis en doctrine.
+<corrige><p>En logique, le catéchiste répond à une A par sa contraire E. Il se charge d'une thèse universelle, qu'un seul contre-exemple suffirait à renverser, alors que la contradictoire, « quelques hommes ne sont pas foncièrement mauvais » (O), suffisait à réfuter son interlocuteur. En doctrine, sa réponse est elle-même inexacte. L'Église enseigne que la nature humaine, créée bonne, n'est pas détruite par le péché originel : elle reste bonne en elle-même, mais elle est blessée, inclinée au mal, et des hommes commettent librement des fautes graves. « Aucun homme n'est mauvais » nie la réalité du péché personnel ; « tous les hommes sont foncièrement mauvais » nie la bonté de la nature. La vérité ne se trouve dans aucune des deux contraires. La réponse juste nie la première exactement, puis précise ce que la foi affirme : la nature humaine est bonne et blessée.</p></corrige>
+</exercice>
+</exercices>
+<autoevaluation>
+<je-sais exercices="1 4">Je sais énoncer la loi des contraires et dire quand elles sont fausses ensemble.</je-sais>
+<je-sais exercices="1 3">Je sais énoncer la loi des subcontraires et éviter de tirer O de I.</je-sais>
+<je-sais exercices="1 3">Je sais énoncer la loi des subalternes dans ses deux sens.</je-sais>
+<je-sais exercices="2 6">Je sais déduire, d'une proposition connue, la valeur des trois autres.</je-sais>
+<je-sais exercices="5">Je sais dire pourquoi la logique moderne lit autrement une partie du carré.</je-sais>
+</autoevaluation>
+</lecon>

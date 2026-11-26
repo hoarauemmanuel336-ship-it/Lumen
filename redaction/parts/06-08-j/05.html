@@ -1,0 +1,140 @@
+<lecon titre="Le carré logique et les contradictoires" desc="Les rapports d'opposition entre A, E, I et O vus d'ensemble, et l'opposition la plus forte : la contradiction.">
+<objectifs>
+<li>Définir l'opposition des propositions et présenter le carré logique comme un ensemble.</li>
+<li>Définir les propositions contradictoires et énoncer leur loi.</li>
+<li>Énoncer les conditions sans lesquelles deux propositions ne se contredisent pas vraiment.</li>
+<li>Se servir de la contradictoire pour réfuter une proposition avec exactitude.</li>
+</objectifs>
+<prerequis>
+<li>Les quatre propositions A, E, I, O (<a href="#j4">leçon 4</a>).</li>
+<li>En « quelque », la logique entend « au moins un » (<a href="#j3-2">leçon 3, partie II</a>).</li>
+</prerequis>
+<commencer question="Un ami affirme : « Tous les politiciens mentent. » Pour lui montrer qu'il a tort, devez-vous prouver qu'aucun politicien ne ment ?">
+<p>Beaucoup de discussions tournent mal à cet endroit. L'un affirme une généralité, l'autre réplique par la généralité inverse, et chacun s'épuise à défendre plus qu'il ne faut. L'ami qui dit « tous les politiciens mentent » se croit réfuté seulement si l'on prouve que tous sont honnêtes ; son contradicteur, emporté, finit par soutenir une thèse aussi intenable que la sienne.</p>
+<p>La logique règle la question avec une précision qui surprend. Il existe, pour chaque proposition, une autre proposition qui la nie exactement, ni plus ni moins. La trouver, c'est savoir ce qu'il suffit d'établir pour avoir raison, et ce qu'on n'a pas besoin de soutenir.</p>
+</commencer>
+
+<partie titre="L'opposition des propositions vue d'ensemble">
+<p>Prenez un sujet et un prédicat, par exemple « homme » et « juste ». Avec eux, on peut former les quatre propositions types : « tout homme est juste » (A), « nul homme n'est juste » (E), « quelque homme est juste » (I), « quelque homme n'est pas juste » (O). Ces quatre propositions ne disent pas la même chose, et elles ne sont pas indépendantes : la vérité de l'une a des conséquences sur la vérité des autres. Leurs rapports s'appellent les oppositions.</p>
+<definition terme="Opposition des propositions">rapport entre deux propositions qui ont le même sujet et le même prédicat mais diffèrent par la qualité, par la quantité, ou par les deux.</definition>
+<p>Il y a quatre rapports possibles. Les contradictoires diffèrent par la qualité et par la quantité (A et O, E et I). Les contraires sont deux universelles de qualité différente (A et E). Les subcontraires sont deux particulières de qualité différente (I et O). Les subalternes ont la même qualité et diffèrent par la quantité (A et I, E et O). À proprement parler, les subalternes ne s'opposent pas, puisqu'elles peuvent être vraies ensemble ; on les range dans la figure parce qu'elles complètent le tableau.</p>
+<p>Ces rapports se dessinent sur un carré, que l'on appelle le carré logique, ou carré des oppositions. Les universelles sont en haut, les particulières en bas, les affirmatives à gauche, les négatives à droite.</p>
+<libre>
+<style>
+.carre-j{max-width:560px;margin:calc(10px * var(--z,1.25)) auto;}
+.carre-j svg{width:100%;height:auto;display:block;background:#000;border:1px solid rgba(255,255,255,.2);}
+.carre-j .coin{font-family:'JetBrains Mono',monospace;font-size:30px;fill:var(--a);font-weight:700;}
+.carre-j .forme{font-family:'Literata',serif;font-size:15px;fill:var(--fg,#e8e8e8);}
+.carre-j .lien{font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.12em;fill:rgba(255,255,255,.75);}
+.carre-j .legende{font-family:'Literata',serif;font-size:calc(13px * var(--z,1.25));color:var(--fg,#e8e8e8);opacity:.8;margin-top:calc(8px * var(--z,1.25));text-align:center;}
+</style>
+<div class="carre-j">
+<svg viewBox="0 0 560 440" role="img" aria-label="Le carré logique : A et E contraires en haut, I et O subcontraires en bas, A-I et E-O subalternes sur les côtés, A-O et E-I contradictoires en diagonale.">
+<line x1="110" y1="95" x2="450" y2="95" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+<line x1="110" y1="345" x2="450" y2="345" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-dasharray="6 5"/>
+<line x1="80" y1="125" x2="80" y2="315" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+<line x1="480" y1="125" x2="480" y2="315" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+<polygon points="80,315 74,301 86,301" fill="rgba(255,255,255,.5)"/>
+<polygon points="480,315 474,301 486,301" fill="rgba(255,255,255,.5)"/>
+<line x1="110" y1="120" x2="450" y2="320" style="stroke:var(--a)" stroke-width="2"/>
+<line x1="450" y1="120" x2="110" y2="320" style="stroke:var(--a)" stroke-width="2"/>
+<text x="80" y="85" text-anchor="middle" class="coin">A</text>
+<text x="480" y="85" text-anchor="middle" class="coin">E</text>
+<text x="80" y="378" text-anchor="middle" class="coin">I</text>
+<text x="480" y="378" text-anchor="middle" class="coin">O</text>
+<text x="80" y="35" text-anchor="middle" class="forme">Tout S est P</text>
+<text x="480" y="35" text-anchor="middle" class="forme">Nul S n'est P</text>
+<text x="80" y="410" text-anchor="middle" class="forme">Quelque S est P</text>
+<text x="480" y="410" text-anchor="middle" class="forme">Quelque S n'est pas P</text>
+<text x="280" y="85" text-anchor="middle" class="lien">CONTRAIRES</text>
+<text x="280" y="365" text-anchor="middle" class="lien">SUBCONTRAIRES</text>
+<text x="280" y="200" text-anchor="middle" class="lien" style="fill:var(--a)">CONTRADICTOIRES</text>
+<text x="62" y="225" text-anchor="middle" class="lien" transform="rotate(-90 62 225)">SUBALTERNES</text>
+<text x="498" y="225" text-anchor="middle" class="lien" transform="rotate(90 498 225)">SUBALTERNES</text>
+</svg>
+<div class="legende">Les diagonales relient les contradictoires ; les flèches vont de l'universelle à la particulière qu'elle entraîne.</div>
+</div>
+</libre>
+<p>Aristote a défini les contradictoires et les contraires dans le traité <i>De l'interprétation</i> (chapitre 7). La figure elle-même est plus tardive. Les historiens la trouvent d'abord dans un petit traité de logique attribué à Apulée, au IIe siècle, puis chez Boèce, au VIe siècle, qui l'a transmise à tout le Moyen Âge latin. Elle a servi pendant des siècles à apprendre et à mémoriser ces rapports.</p>
+<verifie>Quel rapport unit « quelque homme est juste » et « quelque homme n'est pas juste » ? Et « tout homme est juste » et « quelque homme est juste » ?<reponse>Les deux premières sont deux particulières de qualité différente : subcontraires (I et O). Les deux suivantes ont la même qualité et diffèrent par la quantité : subalternes (A et I).</reponse></verifie>
+</partie>
+
+<partie titre="Les contradictoires">
+<p>Deux propositions sont contradictoires quand l'une nie exactement ce que l'autre affirme. Sur le carré, elles se font face en diagonale : A et O, E et I. Elles diffèrent à la fois par la qualité et par la quantité. Aristote les définit ainsi : « J'appelle opposées de manière contradictoire l'affirmation qui signifie l'universel et la négation qui signifie le même sujet pris non universellement, comme “tout homme est blanc” et “non tout homme est blanc” » (<i>De l'interprétation</i> 7, 17b16-19).</p>
+<definition terme="Propositions contradictoires">deux propositions qui ont le même sujet et le même prédicat et diffèrent par la qualité et par la quantité (A et O, E et I) ; l'une est toujours vraie et l'autre toujours fausse.</definition>
+<p>La loi des contradictoires est la plus forte de toutes : elles ne peuvent être ni vraies ensemble, ni fausses ensemble. Si l'une est vraie, l'autre est fausse ; si l'une est fausse, l'autre est vraie. Il n'y a pas de troisième possibilité.</p>
+<p>On le comprend en regardant ce que chacune affirme. « Tout homme est juste » est vraie s'il n'y a aucune exception. « Quelque homme n'est pas juste » est vraie s'il y a au moins une exception. Entre « aucune exception » et « au moins une exception », il n'y a pas de place pour un troisième cas. De même, « nul homme n'est saint » et « quelque homme est saint » partagent toutes les situations possibles : ou bien il n'y a aucun saint, ou bien il y en a au moins un.</p>
+<p>Pour les propositions singulières, la contradictoire est simplement la négation de la copule : « Pierre est assis » et « Pierre n'est pas assis ». Il n'y a pas de quantité à changer, puisque le sujet est un seul être.</p>
+<p>Cette loi repose sur les principes les plus fermes de la pensée : une chose ne peut à la fois être et ne pas être sous le même rapport, et entre être et ne pas être il n'y a pas de milieu. Ce sont le principe de non-contradiction et le principe du tiers exclu, que le cours sur <a href="07-l-etre-et-ses-principes.html#ouverture-p">les premiers principes</a> étudie.</p>
+<retenir><p>La contradictoire d'une universelle est une particulière de qualité opposée : pour nier « tous », on dit « pas tous », c'est-à-dire « quelques-uns ne… pas ». Pour nier « aucun », on dit « au moins un ».</p></retenir>
+<verifie>Quelle est la contradictoire de « nul ange n'est mauvais » ?<reponse>« Quelque ange est mauvais » (I). C'est d'ailleurs celle-là qui est vraie, puisque la foi enseigne que des anges sont tombés : une seule exception suffit à rendre l'universelle négative fausse.</reponse></verifie>
+</partie>
+
+<partie titre="Les conditions d'une vraie contradiction">
+<p>Deux phrases qui semblent se contredire ne se contredisent pas toujours. Pour qu'il y ait contradiction, il faut que l'affirmation et la négation portent sur la même chose, prise de la même façon. Aristote le précise : il faut que la négation nie « le même du même », sans jouer sur un mot à double sens, et il ajoute « les autres précisions de ce genre, que nous posons contre les chicanes des sophistes » (<i>De l'interprétation</i> 6, 17a34-37). La tradition a détaillé ces précisions.</p>
+<ul>
+<li>Le même sujet, pris dans le même sens : « le lion est un animal » et « le Lion n'est pas un animal » (la constellation) ne se contredisent pas.</li>
+<li>Le même prédicat, dans le même sens : « cet élève est fort » (en latin) et « cet élève n'est pas fort » (au rugby) non plus.</li>
+<li>Sous le même rapport : « cette maison est grande » (pour une maison de village) et « cette maison n'est pas grande » (pour un palais).</li>
+<li>Au même moment : « Paul est persécuteur » (avant Damas) et « Paul n'est pas persécuteur » (après).</li>
+</ul>
+<definition terme="Conditions de la contradiction">exigences sans lesquelles une affirmation et une négation ne se contredisent pas : même sujet, même prédicat, chacun pris dans le même sens, sous le même rapport et au même moment.</definition>
+<p>Ces conditions comptent beaucoup pour lire l'Écriture. Le Christ dit dans le même évangile :</p>
+<p>« <i>Le Père et moi, nous sommes un.</i> » <b>Jean 10:30</b></p>
+<p>« <i>Si vous m'aimiez, vous vous réjouiriez de ce que je pars vers le Père, car le Père est plus grand que moi.</i> » <b>Jean 14:28</b></p>
+<p>Si l'on met ces deux paroles en forme, on obtient « le Fils est égal au Père » et « le Fils n'est pas égal au Père ». Elles paraissent contradictoires. Les Pères ont montré qu'elles ne le sont pas, parce qu'elles ne parlent pas du Fils sous le même rapport. Le Symbole dit d'Athanase le formule nettement : le Christ est « égal au Père selon la divinité, inférieur au Père selon l'humanité ». L'unité vaut de la nature divine que le Fils reçoit du Père ; l'infériorité vaut de la nature humaine qu'il a prise. Le cours sur <a href="05-les-symboles-de-foi.html#ouverture-d">le Symbole dit d'Athanase</a> présente ce texte.</p>
+<attention><p>Constater qu'une contradiction n'est qu'apparente n'est pas un tour de passe-passe. Il faut pouvoir dire précisément quelle condition manque : quel mot change de sens, quel rapport diffère. Un « sous un certain rapport » qu'on ne sait pas nommer est une échappatoire.</p></attention>
+<verifie>« Le Christ est mort » et « le Christ est vivant » se contredisent-elles ?<reponse>Non, s'il s'agit de moments différents : il est mort sur la croix le Vendredi saint, et il est vivant depuis sa résurrection. La condition du même moment manque. Elles se contrediraient si on les affirmait du même instant.</reponse></verifie>
+</partie>
+
+<partie titre="À quoi sert la contradictoire">
+<p>La contradictoire indique ce qu'il suffit d'établir pour réfuter une proposition. C'est son premier usage, et le plus pratique.</p>
+<p>Pour réfuter une universelle, il suffit d'un seul cas contraire. Contre « tous les cygnes sont blancs », un cygne noir suffit ; contre « aucun miracle n'est possible », il suffit d'établir qu'un seul miracle l'est. Inversement, pour réfuter une particulière, il faut une universelle : contre « quelque cercle est carré », il faut montrer qu'aucun cercle ne peut l'être. La charge de la preuve n'est donc pas la même selon que l'on attaque une généralité ou un cas.</p>
+<exemple><p>L'auteur d'un livre écrit : « Aucun scientifique sérieux ne croit en Dieu. » C'est une universelle négative (E). Sa contradictoire est « quelque scientifique sérieux croit en Dieu » (I). Pour la réfuter, il n'est pas nécessaire de montrer que la plupart des scientifiques sont croyants. Il suffit d'un exemple incontestable : Louis Pasteur ou Georges Lemaître, prêtre catholique et l'un des pères de la théorie du Big Bang.</p></exemple>
+<p>Le deuxième usage est la précision. En trouvant la contradictoire, on sait exactement ce que l'on nie, et l'on évite de dire trop. C'est ici que se joue l'erreur la plus fréquente : nier une universelle par l'universelle inverse. À « tous les politiciens mentent », on répond « aucun ne ment », alors qu'il suffisait de dire « quelques-uns ne mentent pas ». La seconde réponse est facile à prouver ; la première, sans doute fausse.</p>
+<p>La question de départ est ainsi réglée. Pour montrer à votre ami qu'il a tort, vous n'avez pas à prouver qu'aucun politicien ne ment : cette thèse serait difficile à soutenir. Il suffit de trouver un politicien qui ne ment pas, ou qui n'a pas menti dans une affaire précise. « Quelque politicien ne ment pas » est la contradictoire exacte de son affirmation. Si elle est vraie, la sienne est fausse.</p>
+</partie>
+
+<essentiel>
+<li>L'opposition est le rapport entre deux propositions de même sujet et de même prédicat qui diffèrent par la qualité, la quantité ou les deux.</li>
+<li>Le carré logique range ensemble les quatre rapports : contradictoires, contraires, subcontraires et subalternes.</li>
+<li>Les contradictoires, A et O, E et I, diffèrent par la qualité et par la quantité.</li>
+<li>De deux contradictoires, l'une est toujours vraie et l'autre toujours fausse.</li>
+<li>Pour contredire « tous », on dit « quelques-uns ne… pas » ; pour contredire « aucun », on dit « au moins un ».</li>
+<li>Il n'y a contradiction que si le sujet et le prédicat sont pris dans le même sens, sous le même rapport et au même moment.</li>
+<li>Un seul cas contraire suffit à réfuter une universelle.</li>
+</essentiel>
+<mots-cles>
+<mot terme="Opposition des propositions">rapport entre deux propositions de même sujet et de même prédicat qui diffèrent par la qualité, la quantité, ou les deux.</mot>
+<mot terme="Carré logique">figure qui range les quatre propositions A, E, I, O aux coins d'un carré et fait voir leurs rapports d'opposition.</mot>
+<mot terme="Propositions contradictoires">propositions de même sujet et de même prédicat qui diffèrent par la qualité et la quantité (A et O, E et I) ; l'une est toujours vraie, l'autre toujours fausse.</mot>
+<mot terme="Conditions de la contradiction">même sujet et même prédicat, pris dans le même sens, sous le même rapport et au même moment.</mot>
+<mot terme="Propositions A, E, I, O"/>
+</mots-cles>
+<exercices>
+<exercice nom="Donner la contradictoire" niveau="1">Donnez la contradictoire de chaque proposition : a) « Tout chrétien est catholique. » b) « Nul homme n'est sans péché originel. » c) « Quelques papes ont été saints. » d) « Quelques sacrements ne s'administrent qu'une fois. » e) « Judas s'est repenti. »
+<corrige><p>a) « Quelque chrétien n'est pas catholique » (O contre A). b) « Quelque homme est sans péché originel » (I contre E). La foi tient cette contradictoire pour vraie dans le cas de la Vierge Marie, préservée du péché originel par l'Immaculée Conception, et dans celui du Christ, qui n'a pas contracté ce péché. c) « Nul pape n'a été saint » (E contre I). d) « Tout sacrement s'administre plus d'une fois » (A contre O). e) « Judas ne s'est pas repenti » : pour une singulière, on nie la copule. L'erreur à éviter en a) est de répondre « aucun chrétien n'est catholique » : c'est la contraire, non la contradictoire.</p></corrige>
+</exercice>
+<exercice nom="Lire le carré" niveau="1">Sans regarder la figure, dites quel rapport unit : a) A et E ; b) E et I ; c) I et O ; d) E et O. Pour chacun, rappelez de quoi les deux propositions diffèrent.
+<corrige><p>a) Contraires : deux universelles qui diffèrent par la qualité. b) Contradictoires : elles diffèrent par la qualité (négative, affirmative) et par la quantité (universelle, particulière). c) Subcontraires : deux particulières qui diffèrent par la qualité. d) Subalternes : même qualité (négative), quantité différente. Pour vous en souvenir : les diagonales changent tout, les côtés horizontaux changent la qualité, les côtés verticaux changent la quantité.</p></corrige>
+</exercice>
+<exercice nom="Contradiction ou pas ?" niveau="2">Les paires suivantes se contredisent-elles ? Si non, dites quelle condition manque. a) « Le pain est nourrissant » et « le pain n'est pas nourrissant » (dit d'un pain moisi). b) « Pierre a renié Jésus » et « Pierre n'a pas renié Jésus » (dit de Pierre au Golgotha, après la Pentecôte). c) « L'homme est libre » et « l'homme n'est pas libre » (dit du libre arbitre, puis de l'esclave). d) « Dieu est connaissable » et « Dieu n'est pas connaissable ».
+<corrige><p>a) Le sujet change : on parle du pain en général, puis d'un pain moisi ; il n'y a pas contradiction. b) Le moment change : Pierre a renié Jésus pendant la Passion ; après la Pentecôte, il le confesse. c) Le prédicat change de sens : « libre » désigne d'abord la faculté de choisir, que tout homme a, puis l'absence de servitude sociale. d) Il faut préciser le rapport : Dieu est connaissable par la raison à partir de ses œuvres, mais il n'est pas connaissable dans son essence par nos seules forces. Prises sans précision, les deux phrases paraissent se contredire ; dès qu'on nomme le rapport, elles s'accordent. La doctrine catholique tient les deux, chacune sous son rapport.</p></corrige>
+</exercice>
+<exercice nom="Réfuter avec économie" niveau="2">Pour chacune de ces thèses, dites ce qu'il suffit d'établir pour la réfuter : a) « Aucune religion n'a jamais fait de bien. » b) « Tout ce que dit la Bible est à prendre au sens littéral. » c) « Quelque vérité dépend de l'opinion de la majorité. »
+<corrige><p>a) C'est une E ; sa contradictoire est « quelque religion a fait du bien » (I). Un seul exemple établi suffit : un hôpital, une école, un acte de charité attribuable à une religion. b) C'est une A ; sa contradictoire est « quelque passage de la Bible n'est pas à prendre au sens littéral » (O). Un seul passage clairement figuré suffit, par exemple une parabole. c) C'est une I ; sa contradictoire est « nulle vérité ne dépend de l'opinion de la majorité » (E). Ici, un exemple ne suffit pas : il faut montrer universellement qu'une vérité ne dépend pas d'un vote, par exemple en expliquant ce qu'est la vérité, adéquation de l'intelligence à la chose. Les universelles se réfutent par un cas ; les particulières demandent une universelle.</p></corrige>
+</exercice>
+<exercice nom="Égal et plus grand" niveau="3">Un lecteur pressé conclut des deux paroles du Christ, « <i>Le Père et moi, nous sommes un.</i> » <b>Jean 10:30</b> et « <i>le Père est plus grand que moi</i> » <b>Jean 14:28</b>, que l'évangile de Jean se contredit. Rédigez une réponse ordonnée : mettez les deux propositions en forme, dites pourquoi elles paraissent contradictoires, puis montrez quelle condition de la contradiction manque.
+<corrige><p>Mises en forme, les deux paroles donnent « le Fils est un avec le Père » et « le Fils est inférieur au Père », qui reviennent à « le Fils est égal au Père » et « le Fils n'est pas égal au Père » : une affirmation et une négation singulières, de même sujet et, en apparence, de même prédicat. Si toutes les conditions étaient remplies, l'une serait vraie et l'autre fausse. Mais le sujet, le Fils, n'est pas pris sous le même rapport. Le Fils est Dieu, de même nature que le Père : sous ce rapport, il lui est égal, et « nous sommes un » le dit. Il s'est fait homme : sous ce rapport, il est inférieur au Père, comme toute créature l'est à Dieu, et il parle ainsi en allant vers sa Passion. Le Symbole dit d'Athanase le résume : « égal au Père selon la divinité, inférieur au Père selon l'humanité ». La condition du même rapport manque, donc il n'y a pas contradiction. La réponse n'invente pas une distinction pour sauver le texte : elle nomme ce que la foi confesse du Christ, une seule personne en deux natures.</p></corrige>
+</exercice>
+<exercice nom="Trop dire" niveau="3">Dans un débat, quelqu'un soutient : « Toutes les guerres de religion ont été provoquées par la foi. » Son adversaire répond : « Aucune guerre de religion n'a été provoquée par la foi ; c'était toujours la politique. » Analysez cet échange : quel rapport unit ces deux thèses ? Quelle réponse aurait été plus juste et plus facile à défendre ?
+<corrige><p>La première thèse est une A, la seconde une E sur le même sujet et le même prédicat : elles sont contraires, non contradictoires. L'adversaire a répondu à une généralité par la généralité inverse, et il s'est chargé d'une thèse aussi difficile à prouver que celle qu'il combattait : il lui faudrait montrer que, dans aucun conflit, la foi n'a joué de rôle. La réponse exacte était la contradictoire : « quelques guerres dites de religion n'ont pas été provoquées par la foi » (O), que l'histoire permet d'établir par des cas précis, où des raisons dynastiques, territoriales ou économiques ont pesé lourd. On peut ensuite ajouter, si on le sait, des précisions sur chaque cas. La contradictoire suffit à réfuter, et elle n'oblige pas à défendre une thèse excessive.</p></corrige>
+</exercice>
+</exercices>
+<autoevaluation>
+<je-sais exercices="2">Je sais définir l'opposition des propositions et présenter le carré logique comme un ensemble.</je-sais>
+<je-sais exercices="1">Je sais définir les contradictoires et énoncer leur loi.</je-sais>
+<je-sais exercices="3 5">Je sais énoncer les conditions d'une vraie contradiction et les appliquer.</je-sais>
+<je-sais exercices="4 6">Je sais me servir de la contradictoire pour réfuter une proposition avec exactitude.</je-sais>
+</autoevaluation>
+</lecon>

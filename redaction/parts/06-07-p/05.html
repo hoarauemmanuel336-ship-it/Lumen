@@ -1,0 +1,144 @@
+<lecon titre="L'arbre de Porphyre" desc="L'échelle des genres et des espèces, de la substance jusqu'à l'homme, et ce qu'elle apprend à lire.">
+<objectifs>
+<li>Restituer l'arbre de Porphyre, de la substance jusqu'aux individus.</li>
+<li>Lire l'arbre de haut en bas, comme une division, et de bas en haut, comme une définition.</li>
+<li>Retrouver toutes les notes contenues dans la définition d'une espèce à partir de sa place dans l'arbre.</li>
+<li>Dire ce que l'arbre montre et ce qu'il ne montre pas.</li>
+<li>Situer l'ange, l'âme humaine et Dieu par rapport à l'arbre.</li>
+</objectifs>
+<prerequis>
+<li>Le genre suprême, les subalternes et l'espèce la plus spéciale, vus à la <a href="#p2">leçon 2</a>.</li>
+<li>La différence divisive et constitutive, vue à la <a href="#p3">leçon 3</a>.</li>
+</prerequis>
+<commencer question="Quand on dit que l'homme est un « animal raisonnable », comment savoir qu'on a dit tout ce qu'il est par nature, et rien de trop ?">
+<p>Deux mots semblent bien peu pour dire ce qu'est l'homme. On voudrait ajouter qu'il a un corps, qu'il vit, qu'il sent, qu'il est une substance. Faut-il tout écrire ? Et si l'on ajoute, où s'arrêter ?</p>
+<p>L'arbre de Porphyre répond à cette inquiétude. Il montre que la formule courte contient tout le reste, rangé dans un ordre précis, et qu'on peut l'y retrouver d'un coup d'œil.</p>
+</commencer>
+
+<partie titre="Le texte de Porphyre">
+<p>L'arbre ne se trouve pas, comme dessin, dans l'<i>Isagogè</i>. Porphyre y décrit seulement, en quelques lignes, une suite de genres et d'espèces dans la catégorie de la substance :</p>
+<p>« La substance est elle-même un genre ; sous elle se trouve le corps, sous le corps le corps animé, sous lequel est l'animal ; sous l'animal, l'animal raisonnable, sous lequel est l'homme ; sous l'homme, Socrate, Platon et les hommes particuliers. » (Porphyre, <i>Isagogè</i>, chapitre 2)</p>
+<p>Il ajoute que la substance est le genre le plus général, que l'homme est l'espèce la plus spéciale, et que tout ce qui se trouve entre les deux est à la fois genre et espèce. Les maîtres du Moyen Âge ont tiré de ces lignes une figure : une colonne de genres et d'espèces, avec, à chaque étage, les deux différences opposées qui partagent le genre, l'une qui mène plus bas, l'autre qui part sur le côté. La colonne avec ses branches a reçu le nom d'arbre de Porphyre, en latin <i>arbor porphyriana</i>.</p>
+<definition terme="Arbre de Porphyre">figure qui range, dans la catégorie de la substance, les genres et les espèces depuis la substance jusqu'à l'homme, en montrant à chaque étage les deux différences qui partagent le genre ; elle se termine par les individus.</definition>
+<p>Un détail du texte trahit son auteur. Pour Porphyre, philosophe païen, « animal raisonnable » n'est pas encore l'homme : il y range aussi des dieux, qu'il conçoit comme des vivants raisonnables et immortels. Il lui faut donc une différence de plus, et il définit l'homme comme un « animal raisonnable mortel » ; ce qui le sépare des dieux, dit-il, c'est d'être mortel. Les maîtres chrétiens n'ont pas gardé cette branche : ils ne tiennent pas les anges pour des animaux, puisqu'ils n'ont pas de corps. Parmi les animaux, seul l'homme est raisonnable, et « animal raisonnable » suffit à le définir.</p>
+<verifie>Pourquoi Porphyre définit-il l'homme comme « animal raisonnable mortel », alors que les scolastiques disent seulement « animal raisonnable » ?<reponse>Parce que Porphyre range sous « animal raisonnable » des dieux immortels, et qu'il lui faut une différence de plus pour en séparer l'homme. Les scolastiques chrétiens ne tiennent aucun esprit pour un animal ; « raisonnable » suffit donc à séparer l'homme de tous les autres animaux.</reponse></verifie>
+</partie>
+
+<partie titre="La figure">
+<p>Voici l'arbre tel que les manuels scolastiques le dessinent. À chaque étage, le genre se partage en deux par des différences opposées ; la différence de gauche descend vers l'homme, celle de droite ouvre une branche qui n'est pas développée.</p>
+<libre>
+<style>
+.apo{margin:calc(18px * var(--z,1.25)) 0;display:flex;flex-direction:column;align-items:center;font-family:'Literata',serif;color:var(--fg)}
+.apo-n{background:#000;border:1px solid rgba(255,255,255,.2);padding:calc(8px * var(--z,1.25)) calc(14px * var(--z,1.25));min-width:60%;max-width:100%;text-align:center;box-sizing:border-box}
+.apo-n b{display:block;font-size:calc(15px * var(--z,1.25));font-weight:600;color:var(--fg)}
+.apo-t{display:block;font-family:'JetBrains Mono',monospace;font-size:calc(9px * var(--z,1.25));letter-spacing:.12em;text-transform:uppercase;color:var(--a);margin-bottom:2px}
+.apo-n.fin{border-color:rgb(var(--r)/.6)}
+.apo-l{width:1px;height:calc(10px * var(--z,1.25));background:rgba(255,255,255,.3)}
+.apo-d{display:flex;width:100%;max-width:100%;gap:0;box-sizing:border-box}
+.apo-d>div{flex:1 1 50%;padding:calc(6px * var(--z,1.25)) calc(8px * var(--z,1.25));font-size:calc(12px * var(--z,1.25));line-height:1.35;box-sizing:border-box}
+.apo-d .on{text-align:right;border-right:1px solid rgba(255,255,255,.3);color:var(--a)}
+.apo-d .off{text-align:left;color:rgba(255,255,255,.55)}
+.apo-d .on::after{content:" ↓"}
+.apo-d .off::before{content:"→ "}
+.apo-d em{font-style:italic;color:rgba(255,255,255,.45)}
+.apo-i{margin-top:2px;font-size:calc(12.5px * var(--z,1.25));color:rgba(255,255,255,.7);text-align:center;border-top:1px dashed rgba(255,255,255,.25);padding-top:calc(6px * var(--z,1.25));width:60%}
+.apo-leg{display:flex;flex-wrap:wrap;justify-content:center;gap:calc(14px * var(--z,1.25));margin-top:calc(12px * var(--z,1.25));font-family:'JetBrains Mono',monospace;font-size:calc(9px * var(--z,1.25));letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.apo-leg span.k1{color:var(--a)}
+@media (max-width:560px){.apo-n{min-width:80%}.apo-i{width:85%}}
+</style>
+<div class="apo">
+<div class="apo-n"><span class="apo-t">Genre suprême</span><b>Substance</b></div>
+<div class="apo-d"><div class="on">corporelle</div><div class="off">incorporelle <em>(les esprits)</em></div></div>
+<div class="apo-n"><span class="apo-t">Genre subalterne</span><b>Corps</b></div>
+<div class="apo-d"><div class="on">animé</div><div class="off">inanimé <em>(les minéraux)</em></div></div>
+<div class="apo-n"><span class="apo-t">Genre subalterne</span><b>Corps vivant</b></div>
+<div class="apo-d"><div class="on">sensible</div><div class="off">insensible <em>(les plantes)</em></div></div>
+<div class="apo-n"><span class="apo-t">Genre prochain</span><b>Animal</b></div>
+<div class="apo-d"><div class="on">raisonnable</div><div class="off">sans raison <em>(les bêtes)</em></div></div>
+<div class="apo-n fin"><span class="apo-t">Espèce la plus spéciale</span><b>Homme</b></div>
+<div class="apo-l"></div>
+<div class="apo-i">Socrate · Platon · Pierre · Marie…<br><span class="apo-t" style="margin-top:4px">Individus</span></div>
+<div class="apo-leg"><span class="k1">↓ différence qui descend vers l'homme</span><span>→ différence opposée</span></div>
+</div>
+</libre>
+<p>La figure se lit en cinq étages. Chaque genre y est partagé par une différence et son contraire. La substance est corporelle ou incorporelle ; le corps, animé ou inanimé ; le corps vivant, sensible ou insensible ; l'animal, raisonnable ou sans raison. Au bout de la colonne, l'homme ne se partage plus en espèces, mais seulement en individus.</p>
+<p>Les branches de droite ne sont pas développées, et c'est voulu. L'arbre ne prétend pas ranger toutes les substances ; il suit un seul chemin, celui qui conduit à l'homme, et il montre à chaque pas ce qu'il laisse de côté. On pourrait tracer de la même manière le chemin qui conduit au chêne ou au lion.</p>
+<verifie>Dans la figure, quelle différence sépare l'animal de la plante, et quel est leur genre commun ?<reponse>La différence « sensible » : l'animal sent, la plante ne sent pas. Leur genre commun est le corps vivant, que cette différence partage en deux.</reponse></verifie>
+</partie>
+
+<partie titre="Lire l'arbre dans les deux sens">
+<p>De haut en bas, l'arbre se lit comme une division. On part du plus général et l'on partage chaque genre par deux différences opposées, jusqu'à ce qu'on ne puisse plus partager. La méthode est celle d'une enquête : qu'est-ce que l'homme ? Une substance. Corporelle ou non ? Corporelle. Animée ou non ? Animée. Et ainsi de suite, jusqu'à la dernière réponse.</p>
+<p>De bas en haut, l'arbre se lit comme une définition. L'homme contient tout ce qui est au-dessus de lui : il est une substance, corporelle, animée, sensible, raisonnable. Mais il n'est pas nécessaire de tout écrire. Le genre « animal » contient déjà « substance corporelle animée sensible » : c'est sa propre définition. En disant « animal raisonnable », on dit donc, en deux mots, toutes les notes de l'homme.</p>
+<table>
+<tr><th>Espèce</th><th>Définition par le genre prochain</th><th>Toutes les notes, dépliées</th></tr>
+<tr><td>Corps</td><td>substance corporelle</td><td>substance, corporelle</td></tr>
+<tr><td>Corps vivant</td><td>corps animé</td><td>substance, corporelle, animée</td></tr>
+<tr><td>Animal</td><td>corps vivant sensible</td><td>substance, corporelle, animée, sensible</td></tr>
+<tr><td>Homme</td><td>animal raisonnable</td><td>substance, corporelle, animée, sensible, raisonnable</td></tr>
+</table>
+<retenir><p>L'arbre se lit de haut en bas comme une division, de bas en haut comme une définition. Le genre prochain contient toutes les notes des genres supérieurs ; c'est pourquoi le genre prochain et la différence suffisent à définir.</p></retenir>
+<p>Voilà la réponse à la question du départ. « Animal raisonnable » ne laisse rien dehors, parce que « animal » porte en lui toutes les notes qui le précèdent ; et il n'ajoute rien de trop, parce que chaque mot est nécessaire. Ôtez « raisonnable », il reste un animal quelconque ; ôtez « animal », il reste un être raisonnable quelconque, qui pourrait être un ange.</p>
+<p>Porphyre rapporte aussi un conseil de Platon : en descendant des genres les plus généraux, il faut s'arrêter aux espèces les plus spéciales et laisser les individus, qui sont en nombre infini, car il n'y a pas de science de l'infini. La logique des prédicables s'arrête là où commence la multitude des individus. Pierre et Marie ne se définissent pas ; on les connaît, on les nomme, on les aime, mais leur singularité ne tient dans aucune définition.</p>
+<verifie>Pourquoi n'est-il pas nécessaire d'écrire « substance corporelle animée sensible raisonnable » pour définir l'homme ?<reponse>Parce que « animal » est la définition abrégée de « substance corporelle animée sensible ». Le genre prochain contient toutes les notes des genres supérieurs et de leurs différences ; il suffit de lui ajouter la dernière différence, « raisonnable ».</reponse></verifie>
+</partie>
+
+<partie titre="Ce que l'arbre montre, et ce qu'il ne montre pas">
+<p>L'arbre montre l'ordre des essences : ce qui contient quoi, ce qui précède quoi, ce que chaque espèce partage avec les autres et ce qui la distingue. Il apprend à situer une notion, à repérer le genre prochain, à vérifier qu'une définition n'oublie aucun étage. Il rend aussi visible la loi de la compréhension et de l'extension : en descendant, on ajoute des notes et l'on perd des êtres.</p>
+<p>Il a aussi ses limites, et un bon usage les connaît. D'abord, il ne vaut que pour une catégorie à la fois. L'arbre de Porphyre est celui de la substance ; la qualité, la quantité et les autres catégories ont chacune le leur.</p>
+<p>Ensuite, plusieurs de ses différences sont négatives : « inanimé », « insensible », « sans raison ». Elles disent ce qui manque, non ce qui est. Le minéral, la plante et la bête ont pourtant chacun leur nature positive, que l'arbre laisse dans l'ombre. Cela rejoint ce que la <a href="#p3">leçon 3</a> a montré : nous connaissons mal les différences propres des choses qui ne sont pas nous.</p>
+<p>Enfin, l'arbre n'est pas une généalogie. Il ne dit pas que l'homme vient de l'animal comme un fils de son père, ni que la plante est un ancêtre de la bête. Il range des natures selon ce qu'elles sont, non selon leur histoire. Les questions sur l'apparition des vivants au cours du temps relèvent des sciences ; l'arbre n'y répond pas et ne les contredit pas.</p>
+<attention><p>Ne lisez pas l'arbre comme un schéma de l'évolution. Il ne retrace pas une descendance dans le temps ; il montre comment des essences s'emboîtent. Les deux figures se ressemblent par la forme et répondent à des questions différentes.</p></attention>
+<verifie>Pourquoi peut-on dire que l'arbre de Porphyre connaît mieux l'homme que la plante ?<reponse>Parce que la branche qui mène à l'homme est faite de différences positives, que nous connaissons de l'intérieur, alors que la plante n'y est désignée que par une différence négative, « insensible ». L'arbre dit ce que la plante n'a pas ; il ne dit pas sa différence propre.</reponse></verifie>
+</partie>
+
+<partie titre="L'ange, l'âme et Dieu">
+<p>La branche « incorporelle » attire l'attention du théologien. C'est là que se rangent les anges : des substances, puisqu'ils existent en eux-mêmes, et incorporelles, puisqu'ils n'ont pas de corps. Selon saint Thomas, chacun y forme sa propre espèce, comme la <a href="#p3">leçon 3</a> l'a montré. La branche ne se termine donc pas par une espèce et ses individus, mais par une multitude d'espèces qui n'ont chacune qu'un seul membre.</p>
+<p>L'âme humaine, en revanche, ne s'y range pas comme une espèce complète. Elle est spirituelle, et pourtant elle n'est pas une substance qui ferait espèce à elle seule : elle est la forme du corps, une partie de l'homme. Elle entre dans l'arbre par la différence « raisonnable », qui est prise d'elle, non par la branche des esprits. Le cours sur <a href="08-la-personne-humaine.html#ouverture-a">l'âme, forme du corps</a> explique ce statut singulier.</p>
+<p>Dieu, enfin, n'est nulle part dans l'arbre, pas même au sommet. Le mot « substance » se dit bien de lui, puisqu'il existe en lui-même ; mais il ne se dit pas de lui comme d'une espèce placée sous un genre, ni comme du genre suprême qui contiendrait les autres. La <a href="#p2">leçon 2</a> l'a établi : Dieu n'est dans aucun genre. L'arbre range les créatures ; Dieu est hors de l'arbre, parce qu'il en est l'auteur.</p>
+<retenir><p>Les anges se rangent sur la branche incorporelle, chacun comme une espèce ; l'âme humaine entre dans l'arbre par la différence « raisonnable », non comme une espèce à part ; Dieu n'est dans l'arbre à aucun étage.</p></retenir>
+</partie>
+
+<essentiel>
+<li>L'arbre de Porphyre range, dans la catégorie de la substance, les genres et les espèces depuis la substance jusqu'à l'homme.</li>
+<li>Ses étages sont la substance, le corps, le corps vivant, l'animal et l'homme, puis les individus.</li>
+<li>À chaque étage, deux différences opposées partagent le genre : corporel ou non, animé ou non, sensible ou non, raisonnable ou non.</li>
+<li>De haut en bas, l'arbre se lit comme une division ; de bas en haut, comme une définition.</li>
+<li>Le genre prochain contient toutes les notes des genres supérieurs, si bien qu'« animal raisonnable » dit toute l'essence de l'homme.</li>
+<li>L'arbre range des essences, non une descendance dans le temps, et ne vaut que pour une catégorie à la fois.</li>
+<li>Dieu n'est dans l'arbre à aucun étage, parce qu'il n'est dans aucun genre.</li>
+</essentiel>
+<mots-cles>
+<mot terme="Arbre de Porphyre">figure qui range, dans la catégorie de la substance, les genres et les espèces depuis la substance jusqu'à l'homme, en montrant à chaque étage les deux différences qui partagent le genre ; elle se termine par les individus.</mot>
+<mot terme="Genre suprême"/>
+<mot terme="Genre prochain"/>
+<mot terme="Espèce la plus spéciale"/>
+<mot terme="Différence divisive et constitutive"/>
+</mots-cles>
+<exercices>
+<exercice nom="Redessiner l'arbre" niveau="1">De mémoire, écrivez les étages de l'arbre de Porphyre, avec à chaque étage les deux différences qui partagent le genre.
+<corrige><p>Substance, partagée en corporelle et incorporelle. Corps, partagé en animé et inanimé. Corps vivant, partagé en sensible et insensible. Animal, partagé en raisonnable et sans raison. Homme, espèce la plus spéciale, sous laquelle viennent les individus : Socrate, Platon, et chaque homme. Si vous avez écrit « animal raisonnable mortel », vous suivez Porphyre lui-même, qui distinguait l'homme des dieux qu'il imaginait raisonnables et immortels ; les scolastiques chrétiens s'arrêtent à « raisonnable ».</p></corrige>
+</exercice>
+<exercice nom="Déplier une définition" niveau="1">Dépliez la définition « l'animal est un corps vivant sensible » en toutes les notes qu'elle contient, et dites quelles notes elle ne contient pas.
+<corrige><p>« Corps vivant » contient « corps animé », et « corps » contient « substance corporelle ». La définition contient donc les notes : substance, corporelle, animée, sensible. Elle ne contient ni « raisonnable » ni « sans raison » : l'animal en général n'est ni l'un ni l'autre, puisque ces différences partagent le genre « animal » et ne lui appartiennent pas. C'est pourquoi on peut dire « l'homme est un animal » sans dire que l'animal est raisonnable.</p></corrige>
+</exercice>
+<exercice nom="Placer dans l'arbre" niveau="2">Situez dans l'arbre : une pierre, un chêne, un chien, l'archange saint Michel, l'âme de saint Pierre. Un de ces cas demande une précision : lequel ?
+<corrige><p>La pierre est sur la branche « inanimé » : un corps sans vie. Le chêne, sur la branche « insensible » : un corps vivant qui ne sent pas. Le chien, sur la branche « sans raison » : un animal. Saint Michel est sur la branche « incorporelle » : une substance spirituelle, qui forme à elle seule son espèce selon saint Thomas. L'âme de saint Pierre demande une précision : elle est spirituelle, et pourtant elle ne se range pas sur la branche des esprits comme une espèce complète ; elle est la forme d'un corps humain, une partie de l'homme. Même séparée de son corps après la mort, elle reste l'âme d'un homme, ordonnée à son corps. Elle entre dans l'arbre par la différence « raisonnable ».</p></corrige>
+</exercice>
+<exercice nom="Un arbre de la qualité" niveau="2">Construisez, sur le modèle de l'arbre de Porphyre, un petit arbre dans la catégorie de la qualité, qui descende jusqu'au rouge.
+<corrige><p>Une construction possible : la qualité, genre suprême ; la qualité sensible, c'est-à-dire celle que perçoivent les sens, opposée par exemple à la science ou à la vertu ; la couleur, qualité sensible perçue par la vue, opposée au son, à la saveur, à l'odeur ; le rouge, couleur opposée au bleu, au vert et aux autres. Sous le rouge, les rouges singuliers de telle rose ou de tel drapeau. L'exercice montre que chaque catégorie a son arbre, et que la division n'y est pas toujours en deux : la couleur se partage en plusieurs espèces, non en deux.</p></corrige>
+</exercice>
+<exercice nom="Une généalogie ?" niveau="2">Un ami vous dit : « Votre arbre de Porphyre, c'est la théorie de l'évolution avant l'heure : la plante, puis l'animal, puis l'homme. » Que lui répondez-vous ?
+<corrige><p>Que l'arbre n'est pas une généalogie. Il ne dit pas que l'animal descend de la plante ni l'homme de l'animal ; il dit que l'homme est un animal, que l'animal est un corps vivant, et ainsi de suite. Il range des essences selon ce qu'elles contiennent, non des êtres selon leur origine dans le temps. La question de l'apparition des espèces vivantes relève des sciences de la nature. L'arbre ne la tranche dans aucun sens. Il permet seulement de la poser avec précision : quoi qu'il en soit de l'histoire des vivants, l'homme est aujourd'hui un animal raisonnable, et la raison n'est pas une forme plus complexe de la sensation.</p></corrige>
+</exercice>
+<exercice nom="Dieu au sommet ?" niveau="3">Un manuel ancien place Dieu au-dessus de la substance, en haut de l'arbre. Expliquez pourquoi cette figure est trompeuse, et proposez une manière plus juste de représenter le rapport entre Dieu et l'arbre.
+<corrige><p>La figure suggère que Dieu est un genre encore plus général que la substance, ou le plus haut des êtres dans une même échelle. Or Dieu n'est dans aucun genre : il n'est pas composé d'une part commune et d'une différence, et l'être, qui seul pourrait être son genre, n'est pas un genre. Le placer en haut de l'arbre, c'est en faire la plus grande des créatures. Une représentation plus juste mettrait l'arbre entier d'un côté, et Dieu hors de lui, comme sa cause : non pas au-dessus de la substance dans la même colonne, mais à part, avec une flèche qui va de lui à tout l'arbre. Le rapport de Dieu aux créatures n'est pas celui d'un genre à ses espèces, mais celui d'un auteur à son œuvre.</p></corrige>
+</exercice>
+</exercices>
+<autoevaluation>
+<je-sais exercices="1">Je sais restituer l'arbre de Porphyre, de la substance jusqu'aux individus.</je-sais>
+<je-sais exercices="2 4">Je sais lire l'arbre de haut en bas comme une division et de bas en haut comme une définition.</je-sais>
+<je-sais exercices="2">Je sais retrouver toutes les notes contenues dans la définition d'une espèce.</je-sais>
+<je-sais exercices="4 5">Je sais dire ce que l'arbre montre et ce qu'il ne montre pas.</je-sais>
+<je-sais exercices="3 6">Je sais situer l'ange, l'âme humaine et Dieu par rapport à l'arbre.</je-sais>
+</autoevaluation>
+</lecon>
