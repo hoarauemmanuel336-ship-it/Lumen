@@ -26,3 +26,5 @@ Bilan : 6 exercices croisés.
 - 09 écrit et contrôlé.
 - 10 écrit et contrôlé.
 - 11 écrit et contrôlé.
+- 12 écrit et contrôlé. Reste : bilan, assemblage, humaniser.
+- Assemblé, contrôlé, humanisé, essai d'assemblage réussi. Terminé.
