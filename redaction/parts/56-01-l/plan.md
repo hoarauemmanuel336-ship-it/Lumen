@@ -21,3 +21,8 @@ Bilan : 6 exercices croisés.
 
 État : (mis à jour au fil de l'écriture)
 - 00, 01 à 05 écrits et contrôlés.
+- 06, 07 écrits et contrôlés.
+- 08 écrit et contrôlé.
+- 09 écrit et contrôlé.
+- 10 écrit et contrôlé.
+- 11 écrit et contrôlé.
