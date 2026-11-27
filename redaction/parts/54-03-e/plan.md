@@ -1,0 +1,19 @@
+# Plan du cours 54-03-e : L’Église visible et spirituelle (lettre e)
+
+Question centrale : comment une même Église peut-elle être une société qu’on voit (chefs, lois, pécheurs) et le Corps mystique du Christ, qu’on croit ?
+Obstacles du novice : « Jésus oui, l’Église non » (deux Églises) ; l’Église vraie serait invisible ; l’Église serait une administration ; l’analogie de l’Incarnation prise pour une identité (divinisation de l’institution) ; le scandale des péchés ; « je crois l’Église » mal compris.
+
+Fichiers : 00-ouverture.html, 01.html … 10.html, 99-bilan.html.
+
+1. Une seule réalité complexe (LG 8) : texte et place de LG 8 ; les trois couples (société hiérarchique / Corps mystique ; ensemble discernable / communauté spirituelle ; Église terrestre / enrichie des biens célestes) ; « complexe » (latin complexus) et Léon XIV (audience du 4 mars 2026) ; CEC 771, 779 ; saint Bernard (Cantique 1:5).
+2. L’élément humain et l’élément divin, pas deux Églises : Actes 8:3 et 9:4-5 ; ce qui est humain (2 Co 4:7) ; ce qui est divin (Léon XIV : pas une perfection des membres) ; pas d’Église idéale ; Satis cognitum 3, Mystici corporis 64-65 ; distinguer sans séparer.
+3. L’analogie du Verbe incarné : Jean 1:14, Chalcédoine ; humanité « organe vivant de salut » ; l’organisme social au service de l’Esprit du Christ (Éph 4:16) ; exemple du baptême ; analogie et non identité (pas d’union hypostatique, l’Esprit et non le Verbe, membres pécheurs) ; « incarnation continuée » ; les deux déviations à l’image des hérésies christologiques.
+4. La visibilité et les liens visibles : pourquoi visible (corps, signes, mission : Mt 5:14, Rm 10:14-17, Satis cognitum) ; les trois liens (LG 14, can. 205, Actes 2:41-42, Éph 4:4-5.11-12) ; ce que chaque lien rend visible ; visible mais non transparente (de corps / de cœur, lien vers 58-a).
+5. Bellarmin et la république de Venise : l’homme, les Controverses ; sa définition (trois liens et ceux qu’ils excluent) ; la formule (peuple romain, royaume de France, république de Venise) ; portée et limites (âme et corps de l’Église, « hiérarchologie », reprise par LG 14 avec « ayant l’Esprit du Christ ») ; degré d’autorité.
+6. L’erreur de l’Église invisible : Wyclif, Hus (Constance, 6 juillet 1415, art. 1, 3, 5, 6) ; Luther, Confession d’Augsbourg 7, Apologie (« pas une cité platonicienne »), Calvin IV, 1 ; objection la plus forte (Rm 9:6, 2 Tm 2:19, Mt 7:21-23, 1 Jn 2:19, He 12:23) ; réponse (2 Tm 2:20, Mt 13:47-48, Actes 2:47, 1 Co 5:12-13 ; prédestination secrète ; Satis cognitum, Mystici corporis 14) ; ce qu’il y a de juste.
+7. L’erreur inverse, l’Église réduite à son organisation : formes (naturalisme, Mystici corporis 9 ; juridisme ; Église = clergé ; Satis cognitum) ; pourquoi erreur (MC 63, Jean 6:63, Jean 15:5, can. 1752, Benoît XVI via Léon XIV) ; le faux dilemme (MC 65 ; Sohm) ; signes pratiques (LG 14 : l’incorporation n’assure pas le salut).
+8. Sainte et toujours appelée à se purifier : LG 8 (He 7:26, 2 Co 5:21, He 2:17) ; « à la fois » ; CEC 827, 1 Jn 1:8 ; pénitence et renouvellement (Ap 2:4-5, 1 P 4:17, Lc 22:31-32 ; UR 6) ; semper purificanda / semper reformanda ; Éph 5:25-27.
+9. Entre les persécutions du monde et les consolations de Dieu : LG 8 (pauvreté et persécution, Ph 2:6-8, Jn 15:20) ; Augustin, Cité de Dieu XVIII, 51 (Ps 94:19, 2 Tm 3:12) ; Église en pèlerinage (He 13:14, 1 P 2:11, 2 Co 5:6-7, 1 Co 11:26) ; la force du Ressuscité et le mystère enveloppé d’ombre (2 Co 1:3-5, Rm 8:35-37).
+10. Voir l’Église et croire l’Église : la voir, la rejoindre, lui obéir (Mt 5:14, Actes 2:41, Lc 10:16, He 13:17) ; ce que la foi seule atteint (CEC 770, 779, 812 ; He 11:1 ; Thomas l’apôtre, Jn 20:27-29) ; « Je crois l’Église » (CEC 750 ; Credo in Deum / Credo Ecclesiam ; « à la sainte Église » du Symbole des Apôtres en français) ; synthèse.
+
+Bilan : 6 exercices croisés.

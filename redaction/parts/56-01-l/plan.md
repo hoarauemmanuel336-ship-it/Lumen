@@ -20,3 +20,4 @@ Fichiers : 00-ouverture.html, 01.html … 12.html, 99-bilan.html.
 Bilan : 6 exercices croisés.
 
 État : (mis à jour au fil de l'écriture)
+- 00, 01 à 05 écrits et contrôlés.
