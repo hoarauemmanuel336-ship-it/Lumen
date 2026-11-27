@@ -16,3 +16,5 @@ Bloc entier écrit (57/57) et relu (57/57). Assemblé (06 à 10). 66 liens arri�
 Prêts en local, NON poussés : depot/philo (d5590ea) et envoi/philo (44 fichiers, empreintes vérifiées). On attend le « dépose-le ».
 Ordre : pousser envoi/philo, attendre le robot (15 à 25 min, il découpe), rebaser depot/philo sur origin/main, pousser sur main.
 Bloc suivant : « L’Église et la Vierge Marie » (dossier /home/claude/eglise préparé, consigne à écrire).
+
+## 27 novembre, ~6 h : DÉPOSÉ. Robot réussi (45923036945), main = d5590ea.
