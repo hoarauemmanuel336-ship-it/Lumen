@@ -1,0 +1,18 @@
+# Plan du cours 62-06-y « Les mystères du Rosaire » (lettre y)
+
+Question centrale : quelles sont les vingt scènes que le Rosaire fait méditer, que dit chacune (texte de l'Évangile, sens doctrinal, place de Marie), et quel chemin de la vie du Christ dessinent-elles ensemble ?
+Obstacles du novice : croire que « mystère » veut dire énigme ; croire que le Rosaire est une prière sur Marie et non sur le Christ ; croire que les mystères lumineux sont obligatoires ou qu'ils ont « changé » le Rosaire ; ne pas voir sur quoi reposent les deux derniers mystères glorieux, sans récit évangélique ; confondre le Couronnement d'épines et le Couronnement de Marie ; croire que la rencontre de Jésus et de Marie sur le chemin de croix est dans l'Évangile.
+
+Fichiers : 00-ouverture.html, 01.html … 10.html, 99-bilan.html.
+
+1. Vingt mystères en quatre séries : le mot mystère (CEC 514-521), les quatre séries, l'ordre (Incarnation, vie publique, Passion, gloire), les quinze mystères traditionnels et les cinq de 2002 (RVM 19), la place de Marie dans chacun (RVM 24 : mystères de sa Mère), le Credo, les « fruits » (usage de dévotion, non officiel), la répartition par jours (rappel, lien vers #ouverture-r).
+2. Les deux premiers mystères joyeux : Annonciation (Luc 1:26-38 ; fiat ; lien 60 #ouverture-a), Visitation (Luc 1:39-56 ; arche d'alliance, 2 Samuel 6 ; Magnificat, lien #ouverture-g) ; l'Ave Maria tiré de ces deux scènes.
+3. Les trois derniers mystères joyeux : Nativité (Luc 2:1-20 ; Luc 2:19), Présentation (Luc 2:22-38 ; Exode 13:2, Lévitique 12:8 ; Siméon, l'épée), Recouvrement (Luc 2:41-52 ; trois jours ; « chez mon Père »). La joie traversée d'ombre (RVM 20).
+4. Les mystères lumineux (2002) et les deux premiers : pourquoi l'ajout (RVM 19, 21 ; facultatif ; Jean 8:12) ; Marie en arrière-fond sauf à Cana ; Baptême (Matthieu 3:13-17) ; Cana (Jean 2:1-12 ; signe, heure, « Faites tout ce qu'il vous dira »).
+5. Les trois derniers mystères lumineux : Annonce du Royaume et conversion (Marc 1:14-15 ; metanoia ; pardon, Marc 2:5, Jean 20:22-23) ; Transfiguration (Luc 9:28-36 ; Thabor ; exodos ; 2 Pierre 1:16-18) ; Institution de l'eucharistie (Luc 22:14-20 ; 1 Corinthiens 11:23-25 ; mémorial).
+6. Les deux premiers mystères douloureux : Agonie (Luc 22:39-46 ; agônia ; Gethsémani ; coupe ; v. 43-44 et les manuscrits ; Hébreux 5:7-8) ; Flagellation (Jean 19:1 ; place chez Jean et chez Marc ; Isaïe 50:6, 53:5 ; 1 Pierre 2:24).
+7. Les trois derniers mystères douloureux : Couronnement d'épines (Matthieu 27:27-31 ; Jean 18:36-37 ; Jean 19:5), Portement (Jean 19:17 ; Simon de Cyrène, Luc 23:26 ; Genèse 22:6 ; Luc 9:23 ; la rencontre avec Marie, tradition du chemin de croix), Crucifixion (Luc 23:33-46 ; Jean 19:25-27 ; LG 58).
+8. Les trois premiers mystères glorieux : Résurrection (Matthieu 28:1-10 ; les femmes ; Marie et l'opinion de saint Ignace) ; Ascension (Actes 1:6-11 ; Luc 24:50-52) ; Pentecôte (Actes 2:1-13 ; Actes 1:14 ; LG 59 ; Babel).
+9. Les deux derniers mystères glorieux : Assomption (dogme 1950 ; pas de récit biblique ; Apocalypse 12:1 ; 1 Corinthiens 15:23 ; LG 59 ; liens 61 #ouverture-a, #ouverture-d) ; Couronnement (LG 59 « Reine de l'univers » ; Ad caeli Reginam 1954 ; 2 Timothée 4:8 ; Psaumes 45:10 ; lien #ouverture-i).
+10. Le chemin entier : les échos d'un mystère à l'autre (Annonciation/Pentecôte ; Présentation/Croix ; Recouvrement/Résurrection ; Cana/Croix ; couronnes ; Baptême/Transfiguration ; Ascension/Assomption) ; le pèlerinage de la foi de Marie (LG 58) ; mystères du Christ, de sa Mère et du croyant (RVM 24-25 ; CEC 521) ; un choix non exhaustif (RVM 24).
+Bilan : 6 exercices croisés.
