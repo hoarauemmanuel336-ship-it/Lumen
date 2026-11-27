@@ -17,3 +17,4 @@ Fichiers : 00-ouverture.html, 01.html … 11.html, 99-bilan.html.
 10. La canonisation équipollente : définition, conditions de Lambertini, exemples.
 11. L'infaillibilité des canonisations : saint Thomas, Lambertini, la formule, le commentaire doctrinal de 1998, ce qui est garanti et ce qui ne l'est pas, béatification non infaillible, débat.
 Bilan : 6 exercices croisés.
+- Rédaction terminée : 11 leçons + bilan ; voir rapports/59-04-c-ecriture.md

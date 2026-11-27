@@ -19,4 +19,4 @@ Fichiers : 00-ouverture.html, 01.html … 12.html, 99-bilan.html.
 12. Les deux écueils de LG 67 : excès / étroitesse ; vaine crédulité / sentimentalité stérile ; MC 38 ; Mater populi fidelis 37 (paratonnerre) ; vraie dévotion = vraie foi, amour filial, imitation.
 Bilan : 6 exercices croisés.
 
-État : rédaction en cours.
+État : terminé, assemblé, contrôlé (voir rapports/62-04-m-ecriture.md).
