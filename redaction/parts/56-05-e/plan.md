@@ -25,3 +25,5 @@ Bilan : 6 exercices croisés.
 - 05, 06 écrits et contrôlés.
 - 07 à 10 écrits et contrôlés.
 - 11, 12 écrits et contrôlés. Reste : bilan.
+- Bilan écrit ; fichier réuni.
+- Humanisé, contrôlé, essai d'assemblage réussi, doutes et rapport écrits. Terminé.

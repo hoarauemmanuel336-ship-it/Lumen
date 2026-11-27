@@ -19,4 +19,4 @@ Fichiers : 00-ouverture.html, 01.html … 11.html, 99-bilan.html.
 
 Bilan : 6 exercices croisés.
 
-État : plan fait ; écriture en cours.
+État : terminé, assemblé (redaction/59-02-d.html), contrôlé ; humaniser appliqué ; essai d’assemblage réussi.

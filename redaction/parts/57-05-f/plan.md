@@ -1,5 +1,7 @@
 # 57-05-f · Les formes de vie consacrée (lettre f)
 
+État : TERMINÉ (11 leçons et bilan écrits, réunis, contrôlés, humanisés).
+
 Question centrale : pourquoi l'Église reconnaît-elle tant de manières de se consacrer à Dieu, et qu'ont-elles en commun ?
 Obstacles du novice : croire que « consacré » = « religieux » ; confondre ordre/congrégation/institut/société ; croire que vierges consacrées et membres d'instituts séculiers sont « à moitié » religieux ; croire que contemplatifs sont inutiles ; croire que la clôture est une prison ; croire qu'un fondateur saint garantit tout ou qu'un fondateur pécheur annule tout.
 
