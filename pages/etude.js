@@ -217,6 +217,65 @@ if(typeof d.lvVa==='string'){ouvreVers(document.getElementById(d.lvVa));}
 if('lvReprise' in d){var x=d.lvReprise;REP=x&&typeof x.f==='string'&&typeof x.t==='string'?{f:x.f,t:x.t}:null;montreReprise();}});
 if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect();});o.observe(document.documentElement,{childList:true,subtree:true});}
 })();`+'</scr'+'ipt>';
+  /* ── LES LEÇONS DU SOMMAIRE D'UN COURS SE REPLIENT ──
+     Dans le sommaire d'un cours, chaque leçon s'ouvre repliée : on ne voit
+     que son titre, ses parties (I, II, III…) restent cachées (choix
+     d'Emmanuel : « toutes les leçons repliées de base »). Toucher une leçon
+     repliée la déplie ; toucher une leçon dépliée mène à la leçon ; le
+     chevron, à droite, la déplie ou la replie toujours. Un bouton « Tout
+     déplier / Tout replier », au-dessus de la liste, vaut pour le cours
+     affiché. Les parties se déroulent comme une section des diagrammes (de
+     zéro à leur hauteur en 0,4 s, repli en 0,3 s). Ce qui est déplié dure
+     le temps que le cours reste ouvert. Le script passe en tête du
+     document et attend que le moteur du cours ait bâti son sommaire : les
+     fichiers de cours restent tels quels. */
+  const REPLI_LECONS='<scr'+'ipt>'+String.raw`(function(){
+var css='#som .lv-pl{display:flex;flex-direction:column;gap:1px}'
++'#som .lv-pl[hidden]{display:none}'
++'#som .se.lv-l{padding-right:4px}'
++'#som .lv-lv{flex:none;width:28px;height:28px;margin:-6px 0 -6px 2px;display:flex;align-items:center;justify-content:center;font:400 17px/1 var(--fm,monospace);color:rgba(255,255,255,.5);transition:transform .35s cubic-bezier(.2,.7,.3,1),color .25s}'
++'#som .se.lv-l.lv-o .lv-lv{transform:rotate(90deg);color:#fff}'
++'#som .lv-tt{display:flex;justify-content:flex-end;margin:-4px 0 8px}'
++'#som .lv-tt[hidden]{display:none}'
++'#som .lv-tb{display:flex;align-items:center;gap:8px;padding:8px 10px;margin-right:-6px;font:400 10px/1 var(--fm,monospace);text-transform:uppercase;letter-spacing:.16em;color:rgba(255,255,255,.6);-webkit-tap-highlight-color:transparent;touch-action:manipulation;cursor:pointer;transition:color .25s}'
++'#som .lv-tb i{font-style:normal;font-size:14px;letter-spacing:0;display:inline-block;transform:rotate(90deg);transition:transform .35s cubic-bezier(.2,.7,.3,1)}'
++'#som .lv-tb.up i{transform:rotate(-90deg)}'
++'@media (hover:hover) and (pointer:fine){#som .lv-tb:hover,#som .lv-lv:hover{color:#fff}}'
++'@media (max-width:640px){#som .lv-tb{font-size:11px;min-height:40px}#som .lv-lv{width:36px;height:36px}}';
+var st=document.createElement('style');st.textContent=css;(document.head||document.documentElement).appendChild(st);
+var RM=false;try{RM=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(_){}
+var SO=null,TB=null;
+function lecons(sl){return [].filter.call(sl.querySelectorAll('.se.lv-l'),function(){return true;});}
+function ouverte(a){return a.classList.contains('lv-o');}
+function pose(a,o,anime){var p=a._lvP;if(!p)return;a.classList.toggle('lv-o',o);a.setAttribute('aria-expanded',o?'true':'false');
+if(p._an){try{p._an.cancel();}catch(_){}p._an=null;}
+if(!anime||RM||!p.animate){p.hidden=!o;p.style.overflow='';return;}
+p.hidden=false;p.style.overflow='hidden';var H=p.scrollHeight;
+var an=p.animate(o?[{height:'0px'},{height:H+'px'}]:[{height:H+'px'},{height:'0px'}],{duration:o?400:300,easing:o?'cubic-bezier(.2,.7,.3,1)':'cubic-bezier(.4,0,1,1)'});
+p._an=an;an.onfinish=function(){if(p._an!==an)return;p._an=null;p.style.overflow='';p.hidden=!o;};}
+function visible(){return SO&&SO.querySelector('.sl:not([hidden])');}
+function majBouton(){if(!TB)return;var sl=visible(),L=sl?lecons(sl):[];
+/* rien ne s'écrit quand rien ne change : l'observateur qui appelle ce passage se relancerait sans fin */
+if(TB.parentNode.hidden!==!L.length)TB.parentNode.hidden=!L.length;
+var tout=!!(L.length&&L.every(ouverte)),t=tout?'Tout replier':'Tout déplier';if(TB.classList.contains('up')!==tout)TB.classList.toggle('up',tout);if(TB.firstChild.textContent!==t){TB.firstChild.textContent=t;TB.setAttribute('aria-label',tout?'Replier toutes les leçons':'Déplier toutes les leçons');}}
+function prepare(){SO=document.querySelector('#som');if(!SO)return false;var sls=SO.querySelectorAll('.sl');if(!sls.length)return false;
+[].forEach.call(sls,function(sl){var cur=null;[].slice.call(sl.children).forEach(function(e){
+if(!e.classList||!e.classList.contains('se'))return;
+if(e.classList.contains('sp')){if(cur){if(!cur._lvP){var p=document.createElement('div');p.className='lv-pl';p.hidden=true;e.parentNode.insertBefore(p,e);cur._lvP=p;}cur._lvP.appendChild(e);}return;}
+cur=e.querySelector('.tag')&&!e.classList.contains('sx')?e:null;});
+[].forEach.call(sl.querySelectorAll('.se'),function(a){if(!a._lvP||a.classList.contains('lv-l'))return;a.classList.add('lv-l');a.setAttribute('aria-expanded','false');
+var v=document.createElement('span');v.className='lv-lv';v.textContent='›';v.setAttribute('aria-hidden','true');a.appendChild(v);});});
+var t=document.createElement('div');t.className='lv-tt';t.innerHTML='<button type="button" class="lv-tb">Tout déplier<i>›</i></button>';
+SO.insertBefore(t,sls[0]);TB=t.querySelector('.lv-tb');majBouton();
+new MutationObserver(majBouton).observe(SO,{subtree:true,attributes:true,attributeFilter:['hidden','class']});
+return true;}
+/* le geste passe avant le moteur du cours, qui mènerait sinon à la leçon */
+window.addEventListener('click',function(ev){if(!SO)return;var t=ev.target;if(!t.closest)return;
+var b=t.closest('#som .lv-tb');if(b){ev.preventDefault();ev.stopPropagation();var sl=visible();if(!sl)return;var o=!lecons(sl).every(ouverte);lecons(sl).forEach(function(a){if(ouverte(a)!==o)pose(a,o,true);});majBouton();return;}
+var a=t.closest('#som .se.lv-l');if(!a)return;
+if(t.closest('.lv-lv')||!ouverte(a)){ev.preventDefault();ev.stopPropagation();pose(a,!ouverte(a),true);majBouton();}},true);
+if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect();});o.observe(document.documentElement,{childList:true,subtree:true});}
+})();`+'</scr'+'ipt>';
   function rangDe(e,genre){
     if(!e||typeof e!=='object')return -1;
     const l=genre==='parcours'?CRANS_PARCOURS:CRANS_COURS, v=genre==='parcours'?e.z:e.taille;
@@ -562,6 +621,8 @@ window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==pare
       doc=doc.replace('<head>',()=>'<head><style>html{zoom:'+ZOOM_PARCOURS+'}</style>'+REPLI_BLOCS);
       const k=doc.lastIndexOf('</body>');
       doc=k<0?doc+SANS_BARRE:doc.slice(0,k)+SANS_BARRE+doc.slice(k);
+    }else if(o.genre==='cours'){
+      doc=doc.replace('<head>',()=>'<head>'+REPLI_LECONS);
     }
     f.srcdoc=doc;
     /* le cadre se glisse sous le cercle de chargement, qui le couvre jusqu'au bout */
