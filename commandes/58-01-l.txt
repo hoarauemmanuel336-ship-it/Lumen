@@ -1,0 +1,14 @@
+<sujet cle="egl.salut" titre="« Hors de l’Église, point de salut »" desc="L’origine, l’histoire et le sens exact d’un adage souvent mal compris.">
+<p>L’adage <b>« hors de l’Église, point de salut »</b> (latin <i>extra Ecclesiam nulla salus</i>)</p>
+<p>Origène et l’image de la maison de Rahab : hors de cette maison, nul n’est sauvé (<i>Homélies sur Josué</i> 3, 5)</p>
+<p>Saint Cyprien de Carthage : « il n’y a pas de salut hors de l’Église » (<i>Lettre</i> 73), dans le contexte du baptême des hérétiques</p>
+<p>Saint Cyprien encore : « nul ne peut avoir Dieu pour Père qui n’a pas l’Église pour mère »</p>
+<p>Saint Fulgence de Ruspe et la forme la plus stricte de l’adage</p>
+<p>Le concile du Latran IV (1215) : une seule Église universelle hors de laquelle personne n’est sauvé</p>
+<p>La bulle <i>Unam sanctam</i> de Boniface VIII (1302)</p>
+<p>Le concile de Florence et la bulle <i>Cantate Domino</i> pour les Jacobites (1442)</p>
+<p>Pie IX et l’<b>ignorance invincible</b> (allocution <i>Singulari quadam</i>, 1854 ; encyclique <i>Quanto conficiamur moerore</i>, 1863)</p>
+<p>Le sens positif de l’adage : tout salut vient du Christ Tête par l’Église qui est son Corps (Catéchisme 846)</p>
+<p>La faute de celui qui, sachant l’Église nécessaire, refuse d’y entrer ou d’y demeurer (<i>Lumen gentium</i> 14)</p>
+<p>Les deux erreurs écartées : le rigorisme qui damne tous ceux qui sont hors des limites visibles, et l’indifférentisme qui rend l’Église facultative</p>
+</sujet>

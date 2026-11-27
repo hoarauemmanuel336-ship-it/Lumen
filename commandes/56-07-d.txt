@@ -1,0 +1,10 @@
+<sujet cle="hierarchie.diacres" titre="Les diacres" desc="Les diacres, ordonnés pour le service.">
+<p>Le mot <b>diacre</b> (grec <i>diakonos</i>, « serviteur »)</p>
+<p>L’institution des Sept (Actes 6:1-6) et sa lecture dans la Tradition</p>
+<p>Les diacres au degré inférieur de la hiérarchie, ordonnés « non pour le sacerdoce, mais pour le service » (<i>Lumen gentium</i> 29)</p>
+<p>Le triple service des diacres : la liturgie, la parole, la charité</p>
+<p>Le diaconat dans l’Église ancienne et son déclin en Occident</p>
+<p>Le diaconat <b>permanent</b>, rétabli par Vatican II et organisé par Paul VI (<i>Sacrum diaconatus ordinem</i>, 1967)</p>
+<p>Le diaconat en vue du sacerdoce</p>
+<p>Le diacre et l’évêque : le lien propre du diacre au ministère épiscopal</p>
+</sujet>

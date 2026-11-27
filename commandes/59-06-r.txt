@@ -1,0 +1,13 @@
+<sujet cle="communion-saints.reliques" titre="Les reliques" desc="Pourquoi l’Église vénère les restes des saints.">
+<p>Le mot <b>relique</b> (latin <i>reliquiae</i>, « restes »)</p>
+<p>Les reliques corporelles et les objets ayant appartenu aux saints ou touché leur corps</p>
+<p>La distinction entre reliques insignes et non insignes (instruction de la Congrégation pour les causes des saints, 2017)</p>
+<p>Les fondements bibliques : le mort ranimé au contact des ossements d’Élisée (2 Rois 13:20-21), les linges de Paul (Actes 19:11-12)</p>
+<p>Le <i>Martyre de Polycarpe</i> (18) : les ossements du martyr, plus précieux que des pierres de prix</p>
+<p>L’autel sur le tombeau des martyrs (Apocalypse 6:9) et les reliques déposées dans l’autel</p>
+<p>Le corps du saint, temple de l’Esprit Saint, destiné à la résurrection : la raison théologique du culte des reliques</p>
+<p>Saint Jérôme contre Vigilance (406), adversaire du culte des reliques</p>
+<p>Les abus médiévaux et les mesures du concile du Latran IV (1215)</p>
+<p>L’interdiction de vendre des reliques (canon 1190)</p>
+<p>L’authenticité des reliques et son contrôle</p>
+</sujet>

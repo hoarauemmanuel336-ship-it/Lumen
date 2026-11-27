@@ -1,0 +1,14 @@
+<sujet cle="egl.hierarchie" titre="Les Douze et la succession apostolique" desc="Comment le Christ a institué les Apôtres et comment leur mission se poursuit dans les évêques.">
+<p>Le mot <b>hiérarchie</b> (grec <i>hieros</i>, « sacré », et <i>archè</i>, « principe »), venu du Pseudo-Denys</p>
+<p>L’appel des Douze (Marc 3:13-19) et le sens du nombre douze, rappel des douze tribus d’Israël</p>
+<p>Les Douze, collège stable dont Pierre est le premier</p>
+<p>L’envoi en mission (Matthieu 28:18-20, Jean 20:21-23)</p>
+<p>Le remplacement de Judas par Matthias (Actes 1:15-26), premier signe que la charge apostolique se transmet</p>
+<p>Les ministères dans les communautés du Nouveau Testament : presbytres, épiscopes et diacres (Actes 14:23, Philippiens 1:1, Tite 1:5-9)</p>
+<p>La <b>succession apostolique</b> : la transmission ininterrompue de la charge des Apôtres par l’imposition des mains</p>
+<p>Le témoignage de saint Clément de Rome sur l’institution des successeurs des Apôtres (<i>Lettre aux Corinthiens</i> 42-44)</p>
+<p>Ce qui ne se transmet pas : la fonction unique des Apôtres comme témoins de la Résurrection et fondateurs</p>
+<p>Ce qui se transmet : la charge pastorale d’enseigner, de sanctifier et de gouverner</p>
+<p>Les évêques successeurs des Apôtres par institution divine (<i>Lumen gentium</i> 20)</p>
+<p>L’autorité comme service : « celui qui veut être le premier sera le serviteur de tous » (Marc 10:42-45)</p>
+</sujet>

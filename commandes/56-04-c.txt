@@ -1,0 +1,14 @@
+<sujet cle="hierarchie.college" titre="Le collège des évêques et la collégialité" desc="Comment les évêques forment ensemble un corps avec le pape à sa tête.">
+<p>Le <b>collège</b> des évêques, qui succède au collège des Apôtres (<i>Lumen gentium</i> 22)</p>
+<p>L’entrée dans le collège par l’ordination épiscopale et la communion hiérarchique avec le chef et les membres</p>
+<p>Le collège sujet du pouvoir suprême sur l’Église universelle, jamais sans son chef, le pontife romain</p>
+<p>La <i>Nota explicativa praevia</i> (16 novembre 1964) : le sens juridique de « collège » et la liberté d’action du pape</p>
+<p>L’exercice solennel du pouvoir collégial : le concile œcuménique</p>
+<p>L’acte collégial des évêques dispersés dans le monde, appelé ou reçu par le pape</p>
+<p>L’esprit collégial (<i>affectus collegialis</i>) : la sollicitude de chaque évêque pour toute l’Église</p>
+<p>Le synode des évêques, institué par Paul VI (<i>Apostolica sollicitudo</i>, 15 septembre 1965), et sa réforme (<i>Episcopalis communio</i>, 2018)</p>
+<p>Les provinces ecclésiastiques et l’archevêque métropolitain</p>
+<p>Les patriarcats et les Églises orientales</p>
+<p>Les conférences des évêques et leur autorité doctrinale (motu proprio <i>Apostolos suos</i>, 1998)</p>
+<p>La <b>synodalité</b> : la notion et le synode sur la synodalité (2021-2024)</p>
+</sujet>

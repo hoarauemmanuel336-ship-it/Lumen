@@ -1,0 +1,23 @@
+<sujet cle="etats-de-vie.ordres" titre="Les grands ordres religieux" desc="Les principales familles religieuses et le charisme propre de chacune.">
+<p>La notion de <b>famille religieuse</b> : un fondateur, une règle, un charisme</p>
+<p>Les grandes règles de la tradition, sur lesquelles se fondent la plupart des familles religieuses : de saint Basile, de saint Augustin, de saint Benoît, de saint François</p>
+<p>La règle de saint Basile, référence du monachisme oriental, et les moines basiliens des Églises orientales catholiques</p>
+<p>La règle de saint Augustin, adoptée par les chanoines réguliers et par plusieurs ordres mendiants</p>
+<p>Les <b>bénédictins</b> : la règle de saint Benoît (VIe siècle), « prie et travaille »</p>
+<p>Les <b>chartreux</b>, fondés par saint Bruno (1084) : la solitude au sein d’une communauté</p>
+<p>Les <b>cisterciens</b> (Cîteaux, 1098) et la réforme trappiste</p>
+<p>Les <b>chanoines réguliers</b> : des clercs qui vivent en commun sous une règle au service d’une église</p>
+<p>Les prémontrés, chanoines réguliers fondés par saint Norbert (1120)</p>
+<p>Les <b>franciscains</b>, fondés par saint François d’Assise : la pauvreté et la prédication</p>
+<p>Les <b>clarisses</b> de sainte Claire : la vie contemplative dans la pauvreté</p>
+<p>Les <b>dominicains</b>, ordre des Prêcheurs fondé par saint Dominique (1216) : l’étude et la prédication</p>
+<p>Les <b>carmes</b>, nés sur le mont Carmel, et la réforme du Carmel par sainte Thérèse d’Avila et saint Jean de la Croix</p>
+<p>Les <b>augustins</b>, ordre mendiant d’ermites rassemblés sous la règle de saint Augustin (1256)</p>
+<p>Les trinitaires, fondés par saint Jean de Matha (1198) pour le rachat des captifs</p>
+<p>Les mercédaires, fondés par saint Pierre Nolasque (XIIIe siècle) pour le rachat des captifs</p>
+<p>Les <b>jésuites</b>, Compagnie de Jésus approuvée en 1540 : la mission et l’obéissance au pape</p>
+<p>Les ursulines, fondées par sainte Angèle Merici (1535) pour l’éducation des jeunes filles</p>
+<p>Les Filles de la Charité de saint Vincent de Paul et sainte Louise de Marillac (1633) : la première congrégation féminine apostolique non cloîtrée</p>
+<p>Les salésiens de saint Jean Bosco : l’éducation des jeunes</p>
+<p>Les Missionnaires de la Charité de sainte Teresa de Calcutta (1950)</p>
+</sujet>

@@ -1,0 +1,12 @@
+<sujet cle="notes.apostolicite" titre="L’apostolicité de l’Église" desc="En quoi l’Église est apostolique, bâtie sur les Apôtres.">
+<p>Le mot <b>apôtre</b> (grec <i>apostolos</i>, « envoyé »)</p>
+<p>Les trois sens de l’apostolicité selon le Catéchisme (857)</p>
+<p>L’apostolicité d’<b>origine</b> : l’Église bâtie sur le fondement des Apôtres (Éphésiens 2:20, Apocalypse 21:14)</p>
+<p>L’apostolicité de <b>doctrine</b> : l’Église garde et transmet l’enseignement reçu des Apôtres</p>
+<p>L’apostolicité de <b>succession</b> : l’Église enseignée, sanctifiée et dirigée par les successeurs des Apôtres, les évêques unis au pape</p>
+<p>Les listes de succession épiscopale chez saint Irénée de Lyon (<i>Contre les hérésies</i> III, 3)</p>
+<p>L’argument de prescription chez Tertullien (<i>De la prescription contre les hérétiques</i>) : la doctrine vraie est celle des Églises fondées par les Apôtres</p>
+<p>L’Église tout entière apostolique parce qu’envoyée dans le monde : l’apostolat de tous les membres</p>
+<p>L’erreur d’une apostolicité de seule doctrine, sans succession des ministres, et la réponse catholique</p>
+<p>Le lien entre apostolicité et indéfectibilité : l’Église gardée par le Christ jusqu’à la fin des temps (Matthieu 28:20)</p>
+</sujet>

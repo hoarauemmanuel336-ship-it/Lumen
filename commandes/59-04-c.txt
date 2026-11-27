@@ -1,0 +1,22 @@
+<sujet cle="communion-saints.canonisation" titre="La canonisation" desc="Comment l’Église reconnaît qu’une personne est sainte.">
+<p>Le mot <b>canonisation</b> : l’inscription au catalogue (<i>canon</i>) des saints</p>
+<p>Les premiers saints honorés : les martyrs, par l’acclamation des fidèles et l’autorisation des évêques</p>
+<p>La première canonisation pontificale attestée : saint Ulrich d’Augsbourg, par Jean XV (993)</p>
+<p>La réservation des canonisations au pape au Moyen Âge</p>
+<p>La Congrégation des rites créée par Sixte V (1588) et l’organisation des procès</p>
+<p>La Congrégation pour les causes des saints, créée par Paul VI (1969), devenue Dicastère (2022)</p>
+<p>Le promoteur de la foi, surnommé « avocat du diable », chargé d’examiner les objections contre la cause</p>
+<p>Le traité de Prosper Lambertini, futur Benoît XIV, sur la béatification et la canonisation</p>
+<p>La constitution <i>Divinus perfectionis Magister</i> de Jean-Paul II (1983) et la procédure actuelle</p>
+<p>Le <b>serviteur de Dieu</b> : la cause ouverte dans un diocèse</p>
+<p>Le <b>vénérable</b> : les vertus héroïques reconnues par décret du pape</p>
+<p>Le <b>bienheureux</b> : la béatification, qui permet un culte limité</p>
+<p>Le <b>saint</b> : la canonisation, qui étend le culte à toute l’Église</p>
+<p>Les trois voies vers la béatification : les vertus héroïques, le martyre, l’offrande de la vie</p>
+<p>Le <b>martyre</b> <i>in odium fidei</i> : la mort acceptée par amour du Christ et infligée en haine de la foi</p>
+<p>L’offrande de la vie, voie ajoutée par François (motu proprio <i>Maiorem hac dilectionem</i>, 2017)</p>
+<p>Le <b>miracle</b> requis : un pour la béatification, dont le martyr est dispensé, un second pour la canonisation</p>
+<p>L’examen du miracle : l’enquête médicale, puis le jugement théologique</p>
+<p>La canonisation équipollente, sans procès ordinaire</p>
+<p>La question de l’infaillibilité des canonisations</p>
+</sujet>

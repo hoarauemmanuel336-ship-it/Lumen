@@ -1,0 +1,11 @@
+<sujet cle="egl.notes" titre="Les notes de l’Église" desc="Ce que sont les quatre marques par lesquelles on reconnaît l’Église.">
+<p>Le mot <b>note</b> (latin <i>nota</i>, « marque, signe distinctif »)</p>
+<p>L’origine des quatre notes : le Symbole de Nicée-Constantinople (381), « une, sainte, catholique et apostolique »</p>
+<p>Pourquoi quatre notes : chacune répond à une question sur l’Église (son unité, sa source de vie, son étendue, son origine)</p>
+<p>Les notes, <b>propriétés</b> intrinsèques que l’Église tient du Christ, et non qualités qu’elle se donne</p>
+<p>Les notes, <b>signes</b> qui permettent de reconnaître la véritable Église : la « voie des notes » de l’apologétique</p>
+<p>Saint Robert Bellarmin et sa liste développée des notes de l’Église</p>
+<p>L’Église elle-même, signe levé parmi les nations, motif de crédibilité (Vatican I, <i>Dei Filius</i>, chapitre 3, 1870)</p>
+<p>Les notes liées entre elles : aucune ne se comprend sans les trois autres</p>
+<p>Les notes à la fois données et à réaliser : don du Christ et tâche de l’Église</p>
+</sujet>

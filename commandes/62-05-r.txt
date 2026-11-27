@@ -1,0 +1,15 @@
+<sujet cle="marie-eglise.rosaire" titre="Le Rosaire" desc="L’histoire et la manière de prier le Rosaire.">
+<p>Le mot <b>Rosaire</b> (latin <i>rosarium</i>, « couronne de roses ») et le mot chapelet</p>
+<p>L’origine dans les psautiers des laïcs : cent cinquante <i>Pater</i>, puis cent cinquante <i>Ave</i>, à l’image des cent cinquante psaumes</p>
+<p>La tradition qui rattache le Rosaire à saint Dominique</p>
+<p>Le bienheureux Alain de La Roche et les confréries du Rosaire (XVe siècle)</p>
+<p>Saint Pie V et la bulle <i>Consueverunt Romani Pontifices</i> (1569)</p>
+<p>La bataille de Lépante (7 octobre 1571) et la fête de Notre-Dame du Rosaire</p>
+<p>Léon XIII, pape du Rosaire, et le mois d’octobre consacré au Rosaire</p>
+<p>La structure du chapelet : le Credo, le Notre Père, les dizaines de <i>Je vous salue Marie</i>, le Gloire au Père</p>
+<p>La méditation des mystères, âme du Rosaire</p>
+<p>La lettre apostolique <i>Rosarium Virginis Mariae</i> de Jean-Paul II (16 octobre 2002)</p>
+<p>La répartition des mystères selon les jours de la semaine</p>
+<p>Le Rosaire, « abrégé de tout l’Évangile » (formule de Pie XII reprise par <i>Marialis cultus</i> 42)</p>
+<p>Le Rosaire, prière christologique : contempler le visage du Christ avec Marie (<i>Rosarium Virginis Mariae</i>)</p>
+</sujet>

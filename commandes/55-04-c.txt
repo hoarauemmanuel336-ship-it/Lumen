@@ -1,0 +1,13 @@
+<sujet cle="notes.catholicite" titre="La catholicité de l’Église" desc="En quoi l’Église est catholique, c’est-à-dire universelle.">
+<p>Le mot <b>catholique</b> (grec <i>katholikos</i>, de <i>kath’holou</i>, « selon le tout »)</p>
+<p>Le premier emploi connu de l’expression « Église catholique » : saint Ignace d’Antioche, <i>Lettre aux Smyrniotes</i> 8</p>
+<p>Les sens de la catholicité chez saint Cyrille de Jérusalem (<i>Catéchèse</i> XVIII) : étendue, doctrine complète, appel de tous, remède à tout péché</p>
+<p>La catholicité de <b>plénitude</b> : le Christ présent dans l’Église avec la totalité des moyens de salut</p>
+<p>La catholicité de <b>mission</b> : l’Église envoyée à l’universalité du genre humain (Matthieu 28:19)</p>
+<p>L’Église catholique dès la Pentecôte, avant toute expansion géographique</p>
+<p>Le sens de « catholique » chez saint Vincent de Lérins (<i>Commonitorium</i>, 434) : l’universalité appliquée à la doctrine, ce qui a été cru partout, toujours et par tous</p>
+<p>La catholicité de chaque Église particulière en communion avec l’Église de Rome</p>
+<p>La catholicité et les cultures : l’Église qui assume les richesses des peuples sans s’identifier à aucune</p>
+<p>L’erreur qui réduit la catholicité au nombre ou à l’extension géographique</p>
+<p>Le nom de « catholique » comme nom propre, opposé dès l’Antiquité aux noms des sectes (saint Augustin, saint Pacien de Barcelone)</p>
+</sujet>

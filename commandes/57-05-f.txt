@@ -1,0 +1,14 @@
+<sujet cle="etats-de-vie.formes" titre="Les formes de vie consacrée" desc="Les différentes manières de se consacrer à Dieu dans l’Église.">
+<p>La vie consacrée, définie par la profession des conseils évangéliques dans une forme stable reconnue par l’Église (canon 573)</p>
+<p>La distinction entre vie contemplative et vie apostolique</p>
+<p>La vie <b>érémitique</b> (canon 603) : la séparation du monde dans la solitude et la prière</p>
+<p>L’<b>ordre des vierges</b> consacrées par l’évêque (canon 604) et l’instruction <i>Ecclesiae sponsae imago</i> (2018)</p>
+<p>La vie <b>monastique</b> : la stabilité, la prière commune et le travail</p>
+<p>La clôture des moniales et la constitution apostolique <i>Vultum Dei quaerere</i> (2016)</p>
+<p>Les <b>instituts religieux</b> : vœux publics et vie fraternelle en commun</p>
+<p>La distinction historique entre ordres (vœux solennels) et congrégations (vœux simples)</p>
+<p>Les <b>instituts séculiers</b> : la consécration vécue dans le monde (Pie XII, <i>Provida Mater Ecclesia</i>, 1947)</p>
+<p>Les <b>sociétés de vie apostolique</b>, proches de la vie consacrée, sans vœux religieux</p>
+<p>Les nouvelles formes de vie consacrée, dont l’approbation est réservée au Siège apostolique (canon 605)</p>
+<p>Le charisme du fondateur, critère de l’identité de chaque institut</p>
+</sujet>

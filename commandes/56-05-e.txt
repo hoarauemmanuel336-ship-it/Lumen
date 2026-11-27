@@ -1,0 +1,15 @@
+<sujet cle="hierarchie.eveque" titre="L’évêque" desc="L’évêque, pasteur d’une Église particulière et successeur des Apôtres.">
+<p>Le mot <b>évêque</b> (grec <i>episkopos</i>, « surveillant, gardien »)</p>
+<p>L’épiscopat, plénitude du sacrement de l’ordre (<i>Lumen gentium</i> 21)</p>
+<p>L’évêque, principe et fondement visible de l’unité de son Église particulière (<i>Lumen gentium</i> 23)</p>
+<p>Saint Ignace d’Antioche : « là où paraît l’évêque, que là soit la communauté »</p>
+<p>L’évêque vicaire et légat du Christ dans son diocèse, et non vicaire du pape (<i>Lumen gentium</i> 27)</p>
+<p>L’évêque docteur authentique de la foi dans son diocèse</p>
+<p>L’évêque grand prêtre et premier dispensateur des mystères de Dieu</p>
+<p>L’évêque pasteur qui gouverne avec un pouvoir propre, ordinaire et immédiat</p>
+<p>La nomination des évêques par le pape et le rôle des nonces</p>
+<p>L’évêque diocésain, l’évêque coadjuteur et l’évêque auxiliaire</p>
+<p>La renonciation présentée à soixante-quinze ans et l’évêque émérite</p>
+<p>La visite <i>ad limina Apostolorum</i> (latin, « au seuil des Apôtres ») : le pèlerinage de l’évêque aux tombeaux de Pierre et de Paul et sa rencontre avec le pape</p>
+<p>Le décret <i>Christus Dominus</i> (1965) sur la charge pastorale des évêques</p>
+</sujet>

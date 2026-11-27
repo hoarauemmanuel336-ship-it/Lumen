@@ -1,0 +1,12 @@
+<sujet cle="marie-eglise.lumen-gentium-8" titre="Le chapitre VIII de Lumen gentium" desc="Le texte du concile Vatican II sur la Vierge Marie, section par section.">
+<p>Le titre du chapitre : « La bienheureuse Vierge Marie, Mère de Dieu, dans le mystère du Christ et de l’Église »</p>
+<p>Le vote du 29 octobre 1963 : le texte marial intégré à la constitution sur l’Église au lieu d’un document séparé, et le sens de ce choix</p>
+<p>L’intention du concile : ni doctrine complète sur Marie, ni décision sur les questions disputées entre théologiens (<i>Lumen gentium</i> 54)</p>
+<p>Le préambule (52-54) : Marie dans le mystère du Christ et de l’Église</p>
+<p>La première section (55-59) : le rôle de la bienheureuse Vierge dans l’économie du salut, de l’Ancien Testament à l’Assomption</p>
+<p>La deuxième section (60-65) : la bienheureuse Vierge et l’Église, sa médiation maternelle et son exemplarité</p>
+<p>La troisième section (66-67) : le culte de la bienheureuse Vierge dans l’Église, sa nature et ses règles</p>
+<p>La quatrième section (68-69) : Marie, signe d’espérance certaine et de consolation pour le peuple de Dieu en pèlerinage</p>
+<p>La proclamation de Marie Mère de l’Église par Paul VI le jour de la promulgation de la constitution</p>
+<p>La relecture du chapitre VIII par l’encyclique <i>Redemptoris Mater</i> de Jean-Paul II (1987)</p>
+</sujet>

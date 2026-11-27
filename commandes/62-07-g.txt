@@ -1,0 +1,17 @@
+<sujet cle="marie-eglise.prieres" titre="Les grandes prières mariales" desc="Les prières à Marie les plus répandues, leur origine et leur sens.">
+<p>Le <b>Je vous salue Marie</b> (<i>Ave Maria</i>) : sa partie biblique (Luc 1:28, Luc 1:42)</p>
+<p>La seconde partie du <i>Je vous salue Marie</i>, « Sainte Marie, Mère de Dieu », fixée à la fin du Moyen Âge et reçue dans le bréviaire de saint Pie V (1568)</p>
+<p>Le <b>Magnificat</b>, cantique de Marie chanté chaque soir aux vêpres</p>
+<p>Le <b>Sub tuum praesidium</b> (« Sous l’abri de ta miséricorde »), la plus ancienne prière mariale connue</p>
+<p>L’<b>Angélus</b>, prière du matin, de midi et du soir en mémoire de l’Incarnation</p>
+<p>Les quatre antiennes mariales qui terminent la journée liturgique selon le temps de l’année</p>
+<p>L’<i>Alma Redemptoris Mater</i>, antienne de l’Avent et du temps de Noël</p>
+<p>L’<i>Ave Regina caelorum</i>, antienne du Carême</p>
+<p>Le <i>Regina caeli</i>, antienne du temps pascal, qui remplace l’Angélus</p>
+<p>Le <i>Salve Regina</i>, antienne du temps ordinaire (XIe siècle)</p>
+<p>Le <b>Souvenez-vous</b> (<i>Memorare</i>), attribué à saint Bernard et répandu au XVIIe siècle</p>
+<p>Les <b>litanies de Lorette</b> et leurs invocations, approuvées par Sixte V (1587)</p>
+<p>L’<i>Ave maris stella</i>, hymne des vêpres des fêtes de la Vierge</p>
+<p>Le <i>Stabat Mater</i>, séquence de Notre-Dame des Douleurs</p>
+<p>L’<b>hymne acathiste</b> (grec <i>akathistos</i>, « qu’on chante debout »), grande hymne mariale byzantine</p>
+</sujet>

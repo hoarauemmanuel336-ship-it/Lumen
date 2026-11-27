@@ -1,0 +1,15 @@
+<sujet cle="marie-dogmes.dormition" titre="La Dormition" desc="La tradition orientale de la mort paisible de Marie et la question de sa mort.">
+<p>Le mot <b>Dormition</b> (grec <i>koimèsis</i>, « endormissement ») : la mort de Marie vue comme un sommeil</p>
+<p>Le silence de saint Épiphane de Salamine sur la fin de Marie (<i>Panarion</i> 78)</p>
+<p>Les récits apocryphes du passage de Marie (<i>Transitus Mariae</i>, à partir du Ve siècle)</p>
+<p>La fête de la Dormition fixée au 15 août pour l’Empire byzantin par l’empereur Maurice (vers 600)</p>
+<p>Les homélies de saint Jean Damascène sur la Dormition</p>
+<p>Les homélies de saint Germain de Constantinople sur la Dormition</p>
+<p>Les homélies de saint André de Crète sur la Dormition</p>
+<p>Le tombeau de Marie à Jérusalem, au pied du mont des Oliviers près de Gethsémani</p>
+<p>La tradition d’Éphèse, qui situe la fin de la vie de Marie auprès de saint Jean</p>
+<p>L’icône de la Dormition : le Christ qui reçoit l’âme de sa mère sous la forme d’un enfant</p>
+<p>La question de la mort de Marie : les partisans de la mort de Marie et ceux qui la tiennent pour exemptée de la mort</p>
+<p>La catéchèse de Jean-Paul II du 25 juin 1997, favorable à la mort de Marie à l’imitation de son Fils</p>
+<p>La Dormition et l’Assomption, deux expressions d’une même foi en Orient et en Occident</p>
+</sujet>

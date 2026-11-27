@@ -1,0 +1,24 @@
+<sujet cle="marie-eglise.mysteres" titre="Les mystères du Rosaire" desc="Les vingt scènes de l’Évangile que l’on médite en priant le Rosaire.">
+<p>Les quatre séries de mystères : joyeux, lumineux, douloureux, glorieux, et le parcours de la vie du Christ qu’elles dessinent</p>
+<p>Premier mystère joyeux : l’Annonciation (Luc 1:26-38)</p>
+<p>Deuxième mystère joyeux : la Visitation (Luc 1:39-56)</p>
+<p>Troisième mystère joyeux : la Nativité (Luc 2:1-20)</p>
+<p>Quatrième mystère joyeux : la Présentation au Temple (Luc 2:22-38)</p>
+<p>Cinquième mystère joyeux : le Recouvrement de Jésus au Temple (Luc 2:41-52)</p>
+<p>Les mystères lumineux, ajoutés par Jean-Paul II en 2002 : la vie publique du Christ</p>
+<p>Premier mystère lumineux : le Baptême de Jésus au Jourdain (Matthieu 3:13-17)</p>
+<p>Deuxième mystère lumineux : les Noces de Cana (Jean 2:1-12)</p>
+<p>Troisième mystère lumineux : l’Annonce du Royaume et l’appel à la conversion (Marc 1:14-15)</p>
+<p>Quatrième mystère lumineux : la Transfiguration (Luc 9:28-36)</p>
+<p>Cinquième mystère lumineux : l’Institution de l’eucharistie (Luc 22:14-20)</p>
+<p>Premier mystère douloureux : l’Agonie à Gethsémani (Luc 22:39-46)</p>
+<p>Deuxième mystère douloureux : la Flagellation (Jean 19:1)</p>
+<p>Troisième mystère douloureux : le Couronnement d’épines (Matthieu 27:27-31)</p>
+<p>Quatrième mystère douloureux : le Portement de la croix (Jean 19:17)</p>
+<p>Cinquième mystère douloureux : la Crucifixion et la mort de Jésus (Luc 23:33-46)</p>
+<p>Premier mystère glorieux : la Résurrection (Matthieu 28:1-10)</p>
+<p>Deuxième mystère glorieux : l’Ascension (Actes 1:6-11)</p>
+<p>Troisième mystère glorieux : la Pentecôte (Actes 2:1-13)</p>
+<p>Quatrième mystère glorieux : l’Assomption de Marie</p>
+<p>Cinquième mystère glorieux : le Couronnement de Marie au ciel</p>
+</sujet>

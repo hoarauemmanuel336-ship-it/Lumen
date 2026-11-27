@@ -1,0 +1,14 @@
+<sujet cle="marie-dogmes.saintete" titre="La sainteté de Marie" desc="Marie sans péché personnel et modèle de toutes les vertus.">
+<p>La plénitude de grâce de Marie et sa croissance tout au long de sa vie</p>
+<p>L’absence de tout <b>péché personnel</b>, même véniel, par un privilège spécial (Trente, session VI, canon 23)</p>
+<p>Saint Augustin : pour l’honneur du Seigneur, il ne doit être question d’aucun péché quand on parle de Marie (<i>De la nature et de la grâce</i> 36, 42)</p>
+<p>La question de l’absence de concupiscence en Marie</p>
+<p>Les hésitations de certains Pères grecs (Origène, saint Jean Chrysostome) et l’interprétation du « glaive » de Siméon comme doute</p>
+<p>Les objections tirées des Évangiles (Marc 3:21, Luc 2:48-50) et leur interprétation</p>
+<p>La <b>foi</b> de Marie : « heureuse celle qui a cru » (Luc 1:45)</p>
+<p>Le <b>pèlerinage de la foi</b> de Marie, qui n’a pas tout compris d’avance (Jean-Paul II, <i>Redemptoris Mater</i>, 1987)</p>
+<p>L’espérance de Marie, au pied de la croix et au samedi saint</p>
+<p>La charité de Marie, sommet de sa sainteté</p>
+<p>L’humilité de Marie, « servante du Seigneur »</p>
+<p>Marie, modèle de vertu pour toute l’Église (<i>Lumen gentium</i> 65)</p>
+</sujet>

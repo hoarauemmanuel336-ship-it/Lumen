@@ -1,0 +1,19 @@
+<sujet cle="etats-de-vie.laics" titre="La vocation des laïcs" desc="La mission propre des baptisés qui vivent dans le monde.">
+<p>Le mot <b>laïc</b> (grec <i>laikos</i>, « membre du peuple », de <i>laos</i>, « peuple »)</p>
+<p>La définition des laïcs par <i>Lumen gentium</i> 31 : les fidèles qui ne sont ni ordonnés ni religieux</p>
+<p>Le <b>caractère séculier</b>, propre aux laïcs</p>
+<p>La sanctification du monde de l’intérieur, à la manière d’un ferment</p>
+<p>La participation des laïcs à l’office prophétique : le témoignage de la parole et de la vie</p>
+<p>La participation des laïcs à l’office sacerdotal : l’offrande de leur vie</p>
+<p>La participation des laïcs à l’office royal : l’ordre des réalités temporelles selon Dieu</p>
+<p>La juste autonomie des réalités terrestres (<i>Gaudium et spes</i> 36)</p>
+<p>Le décret <i>Apostolicam actuositatem</i> (1965) sur l’apostolat des laïcs</p>
+<p>L’exhortation apostolique <i>Christifideles laici</i> de Jean-Paul II (1988)</p>
+<p>Les <b>ministères institués</b> confiés à des laïcs : la réforme des ordres mineurs par Paul VI (<i>Ministeria quaedam</i>, 1972)</p>
+<p>Le ministère institué de lecteur : la proclamation de la Parole dans la liturgie</p>
+<p>Le ministère institué d’acolyte : le service de l’autel et la distribution de la communion</p>
+<p>L’ouverture des ministères de lecteur et d’acolyte aux femmes (François, <i>Spiritus Domini</i>, 2021)</p>
+<p>Le ministère institué de catéchiste (François, <i>Antiquum ministerium</i>, 2021)</p>
+<p>Les associations de fidèles, publiques et privées, reconnues par le droit de l’Église</p>
+<p>Les mouvements ecclésiaux et les communautés nouvelles, nés au XXe siècle</p>
+</sujet>

@@ -1,0 +1,16 @@
+<sujet cle="communion-saints.communion" titre="La communion des saints" desc="L’union de tous les membres de l’Église, sur terre, au purgatoire et au ciel.">
+<p>L’article « la communion des saints » (<i>sanctorum communionem</i>) du Symbole des Apôtres et son apparition tardive (saint Nicétas de Remesiana, vers 400)</p>
+<p>Le double sens de l’expression : communion aux choses saintes (<i>sancta</i>) et communion entre les personnes saintes (<i>sancti</i>)</p>
+<p>Les « saints » dans le Nouveau Testament : tous les baptisés (Romains 1:7, Philippiens 1:1)</p>
+<p>Les trois états de l’Église (<i>Lumen gentium</i> 49) : pourquoi les distinguer et ce qui les unit</p>
+<p>L’Église en <b>pèlerinage</b> sur la terre, traditionnellement dite militante</p>
+<p>L’Église en <b>purification</b> après la mort, traditionnellement dite souffrante</p>
+<p>L’Église dans la <b>gloire</b> du ciel, traditionnellement dite triomphante</p>
+<p>La communion dans la foi reçue des Apôtres (Catéchisme 949)</p>
+<p>La communion des sacrements, surtout de l’eucharistie (Catéchisme 950)</p>
+<p>La communion des charismes, donnés pour le bien commun (Catéchisme 951)</p>
+<p>La mise en commun des biens : « ils mettaient tout en commun » (Actes 4:32, Catéchisme 952)</p>
+<p>La communion de la charité : le bien et le mal de chacun touchent tous les autres (1 Corinthiens 12:26, Catéchisme 953)</p>
+<p>La prière pour les défunts (2 Maccabées 12:43-46) et le secours qu’ils reçoivent de l’Église</p>
+<p>L’union qui demeure à travers la mort : l’Église une dans le Christ</p>
+</sujet>

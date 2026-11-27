@@ -1,0 +1,12 @@
+<sujet cle="marie.mediation" titre="Marie, Mère et figure de l’Église" desc="Comment Marie est à la fois membre, mère et modèle de l’Église.">
+<p>Marie <b>figure</b> de l’Église (latin <i>typus Ecclesiae</i>) chez saint Ambroise</p>
+<p>Marie figure de l’Église dans l’ordre de la foi, de la charité et de l’union parfaite au Christ (<i>Lumen gentium</i> 63)</p>
+<p>Marie et l’Église toutes deux vierges et mères : la virginité de la foi et la fécondité de la grâce</p>
+<p>Le parallèle entre Marie et l’Église chez Isaac de l’Étoile (XIIe siècle)</p>
+<p>Marie membre suréminent et tout à fait singulier de l’Église (<i>Lumen gentium</i> 53)</p>
+<p>Marie <b>Mère de l’Église</b>, titre proclamé par Paul VI le 21 novembre 1964</p>
+<p>La maternité spirituelle de Marie fondée sur la parole du Christ en croix (Jean 19:26-27)</p>
+<p>La mémoire de Marie Mère de l’Église, le lundi de Pentecôte (décret de 2018)</p>
+<p>Marie, image de l’Église telle qu’elle sera dans la gloire (<i>Lumen gentium</i> 68)</p>
+<p>Le profil marial et le profil pétrinien de l’Église, chez Hans Urs von Balthasar, repris par Jean-Paul II</p>
+</sujet>

@@ -1,0 +1,11 @@
+<sujet cle="hierarchie.charges" titre="Les trois charges" desc="Enseigner, sanctifier, gouverner : les trois missions des pasteurs.">
+<p>Les trois charges (latin <i>tria munera</i>) et leur source dans le triple office du Christ, prophète, prêtre et roi</p>
+<p>La charge d’<b>enseigner</b> (<i>munus docendi</i>) : annoncer l’Évangile avec autorité</p>
+<p>La charge de <b>sanctifier</b> (<i>munus sanctificandi</i>) : célébrer les sacrements et offrir le culte</p>
+<p>La charge de <b>gouverner</b> (<i>munus regendi</i>) : conduire le peuple de Dieu par le conseil, l’exemple et la loi</p>
+<p>Le pouvoir sacré (<i>sacra potestas</i>) reçu par l’ordination</p>
+<p>La distinction classique entre <b>pouvoir d’ordre</b> et <b>pouvoir de juridiction</b>, et la manière dont Vatican II les relie</p>
+<p>L’unité des trois charges dans le seul ministère pastoral</p>
+<p>La participation des laïcs aux trois offices du Christ, selon leur mode propre</p>
+<p>L’autorité exercée comme service, à l’image du Bon Pasteur (Jean 10:11)</p>
+</sujet>

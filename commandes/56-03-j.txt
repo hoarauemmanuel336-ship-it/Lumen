@@ -1,0 +1,22 @@
+<sujet cle="hierarchie.pape" titre="Le pape et sa juridiction" desc="Le pouvoir du pape, évêque de Rome et successeur de Pierre.">
+<p>Le mot <b>pape</b> (grec <i>pappas</i>, « père »), réservé en Occident à l’évêque de Rome</p>
+<p>Le pape, successeur de Pierre parce qu’évêque de Rome</p>
+<p>Le titre de <b>vicaire du Christ</b> : le pape tenant sur terre la place du Christ pasteur</p>
+<p>Le titre de pasteur de l’Église universelle (canon 331)</p>
+<p>Le titre de serviteur des serviteurs de Dieu (<i>servus servorum Dei</i>), en usage depuis saint Grégoire le Grand</p>
+<p>La constitution <i>Pastor aeternus</i> de Vatican I (18 juillet 1870) : l’institution, la perpétuité et la nature de la primauté</p>
+<p>La série des qualités du pouvoir du pape (canon 331) : pourquoi on la décrit par plusieurs termes</p>
+<p>Un pouvoir <b>plénier</b> : il ne manque rien à l’autorité du pape sur l’Église</p>
+<p>Un pouvoir <b>suprême</b> : aucune autorité dans l’Église au-dessus de lui, et pas d’appel d’un jugement du pape à un concile</p>
+<p>Un pouvoir <b>universel</b> : sur toutes les Églises, tous les pasteurs et tous les fidèles</p>
+<p>Un pouvoir <b>immédiat</b> : exercé directement, sans passer par l’évêque du lieu</p>
+<p>Un pouvoir <b>ordinaire</b> et épiscopal : attaché à la charge et non délégué</p>
+<p>Les <b>cardinaux</b> : leur origine dans le clergé de Rome et leur rôle de premiers conseillers du pape</p>
+<p>L’élection du pape par les cardinaux en conclave (constitution <i>Universi Dominici gregis</i>, 1996)</p>
+<p>La renonciation à la charge (canon 332 § 2) et l’exemple de Benoît XVI (2013)</p>
+<p>La Curie romaine au service du pape (constitution <i>Praedicate Evangelium</i>, 2022)</p>
+<p>Le <b>conciliarisme</b> comme doctrine sur le pouvoir du pape : la thèse du concile supérieur au pape (décret <i>Haec sancta</i> de Constance, 1415) et son rejet par l’Église</p>
+<p>Le <b>gallicanisme</b> comme doctrine sur le pouvoir du pape : la Déclaration des quatre articles (1682), qui soumet les décisions du pape à l’accord de l’Église</p>
+<p>Le <b>fébronianisme</b> : la thèse de Justinus Febronius (1763) qui réduit la primauté au profit des évêques et des princes</p>
+<p>L’invitation de Jean-Paul II à chercher une forme d’exercice de la primauté acceptable par les autres chrétiens (<i>Ut unum sint</i> 95, 1995)</p>
+</sujet>

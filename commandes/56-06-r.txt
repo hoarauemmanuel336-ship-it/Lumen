@@ -1,0 +1,16 @@
+<sujet cle="hierarchie.pretres" titre="Les prêtres" desc="Les prêtres, collaborateurs des évêques au service du peuple de Dieu.">
+<p>Le mot <b>prêtre</b>, venu du grec <i>presbuteros</i>, « ancien »</p>
+<p>Les prêtres, collaborateurs de l’ordre épiscopal (<i>Lumen gentium</i> 28)</p>
+<p>Les prêtres unis aux évêques dans la dignité sacerdotale, mais dépendants d’eux dans l’exercice de leur charge</p>
+<p>Le prêtre qui agit <i>in persona Christi Capitis</i>, « en la personne du Christ Tête »</p>
+<p>Le <b>presbyterium</b> : le corps des prêtres d’un diocèse autour de son évêque</p>
+<p>Les prêtres diocésains et les prêtres religieux</p>
+<p>L’<b>incardination</b> : le rattachement de chaque clerc à un diocèse ou à un institut, qui exclut les clercs sans attache (canon 265)</p>
+<p>Le conseil presbytéral, qui représente le presbyterium auprès de l’évêque</p>
+<p>Le <b>curé</b>, pasteur propre d’une paroisse sous l’autorité de l’évêque</p>
+<p>Le vicaire paroissial, collaborateur du curé</p>
+<p>Le vicaire général, qui assiste l’évêque dans le gouvernement de tout le diocèse</p>
+<p>L’aumônier, chargé du soin pastoral d’une communauté ou d’un groupe particulier</p>
+<p>Le décret <i>Presbyterorum ordinis</i> (1965) sur le ministère et la vie des prêtres</p>
+<p>L’exhortation apostolique <i>Pastores dabo vobis</i> de Jean-Paul II (1992) sur la formation des prêtres</p>
+</sujet>

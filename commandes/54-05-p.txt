@@ -1,0 +1,13 @@
+<sujet cle="mystere-eglise.particuliere" titre="L’Église particulière et l’Église universelle" desc="Comment l’unique Église existe dans chaque diocèse et comment les diocèses forment l’unique Église.">
+<p>L’<b>Église particulière</b> : une portion du peuple de Dieu confiée à un évêque avec son presbyterium, le plus souvent un diocèse</p>
+<p>Le mot <b>diocèse</b> (grec <i>dioikèsis</i>, « administration »), emprunté à l’organisation de l’Empire romain</p>
+<p>L’Église universelle présente et agissante dans chaque Église particulière (<i>Christus Dominus</i> 11)</p>
+<p>Les Églises particulières « dans lesquelles et à partir desquelles » existe l’unique Église catholique (<i>in quibus et ex quibus</i>, <i>Lumen gentium</i> 23)</p>
+<p>Les structures assimilées au diocèse par le droit canonique (canon 368), là où un diocèse n’est pas encore érigé ou ne convient pas</p>
+<p>L’Église née universelle à la Pentecôte : l’antériorité de l’Église universelle sur les Églises particulières (<i>Communionis notio</i> 9, 1992)</p>
+<p>Le débat entre les cardinaux Joseph Ratzinger et Walter Kasper (vers 2000) sur la priorité de l’Église universelle</p>
+<p>La <b>communion des Églises</b> : chaque évêque en communion avec l’évêque de Rome et avec le collège</p>
+<p>Les Églises de droit propre (<i>sui iuris</i>) : l’unique Église en diverses traditions rituelles, latine et orientales</p>
+<p>La paroisse, communauté de fidèles à l’intérieur de l’Église particulière, qui n’est pas elle-même une Église particulière</p>
+<p>Les deux erreurs écartées : l’Église universelle comme simple fédération d’Églises locales, et l’Église locale comme simple circonscription d’une administration centrale</p>
+</sujet>

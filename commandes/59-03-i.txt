@@ -1,0 +1,13 @@
+<sujet cle="communion-saints.intercession" titre="L’intercession des saints" desc="Pourquoi et comment les saints prient pour nous.">
+<p>Le mot <b>intercession</b> (latin <i>intercedere</i>, « s’interposer ») : prier en faveur d’un autre</p>
+<p>L’unique médiation du Christ (1 Timothée 2:5) et la participation des créatures à cette médiation</p>
+<p>La prière des uns pour les autres sur la terre (Jacques 5:16, 1 Timothée 2:1)</p>
+<p>Les saints du ciel qui présentent les prières des fidèles (Apocalypse 5:8, Apocalypse 8:3-4)</p>
+<p>Jérémie qui prie pour le peuple après sa mort (2 Maccabées 15:12-14)</p>
+<p>Le témoignage des inscriptions des catacombes et de la liturgie ancienne</p>
+<p>La connaissance que les saints ont de nos prières dans la vision de Dieu (saint Thomas d’Aquin)</p>
+<p>Le décret du concile de Trente sur l’invocation, la vénération et les reliques des saints, et les saintes images (session XXV, 1563)</p>
+<p>La différence entre demander à un saint de prier pour nous et adorer</p>
+<p>Les saints patrons des personnes, des lieux et des métiers</p>
+<p>La charité des saints qui s’achève au ciel : « je veux passer mon ciel à faire du bien sur la terre » (sainte Thérèse de Lisieux)</p>
+</sujet>

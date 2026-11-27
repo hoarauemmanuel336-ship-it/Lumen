@@ -1,0 +1,11 @@
+<sujet cle="egl.etats" titre="Les fidèles du Christ et leurs états de vie" desc="L’égale dignité de tous les baptisés et la diversité de leurs vocations.">
+<p>Les <b>fidèles du Christ</b> (<i>christifideles</i>) : tous ceux qui, incorporés au Christ par le baptême, forment le peuple de Dieu (canon 204)</p>
+<p>L’<b>égale dignité</b> de tous les baptisés : « il n’y a plus ni Juif ni Grec, ni esclave ni homme libre, ni homme ni femme » (Galates 3:28, <i>Lumen gentium</i> 32)</p>
+<p>La diversité des fonctions : un seul corps, des membres divers (1 Corinthiens 12:4-11)</p>
+<p>Le mariage et la virginité consacrée, deux manières de vivre le don de soi, qui viennent l’une et l’autre du Seigneur et s’éclairent mutuellement (Catéchisme 1620)</p>
+<p>La distinction entre les clercs (ministres ordonnés) et les laïcs, qui tient à la structure hiérarchique de l’Église</p>
+<p>La vie consacrée, état qui ne se place pas entre clercs et laïcs mais se recrute parmi les uns et les autres (<i>Lumen gentium</i> 43)</p>
+<p>La notion d’<b>état de vie</b> : une condition stable dans l’Église</p>
+<p>La vocation universelle à la sainteté, commune à tous les états (<i>Lumen gentium</i> 40)</p>
+<p>Les <b>charismes</b>, dons de l’Esprit répartis entre tous pour l’édification de l’Église</p>
+</sujet>

@@ -1,0 +1,12 @@
+<sujet cle="communion-saints.objections" titre="Les objections protestantes sur les saints" desc="Les principales critiques du culte des saints et les réponses catholiques.">
+<p>La position de la Confession d’Augsbourg (1530, article 21) : la mémoire des saints admise, leur invocation rejetée</p>
+<p>La critique de Calvin dans l’<i>Institution de la religion chrétienne</i></p>
+<p>L’objection de l’unique médiateur (1 Timothée 2:5) et la réponse par la médiation participée</p>
+<p>L’objection de l’absence de fondement dans l’Écriture et la réponse par l’Écriture lue dans la Tradition</p>
+<p>L’objection de la nécromancie interdite (Deutéronome 18:10-12) et la différence entre consulter les morts et prier avec les saints</p>
+<p>L’objection selon laquelle les morts ne savent rien (Qohélet 9:5) et la réponse par la vie des saints en Dieu (Luc 20:38)</p>
+<p>L’objection de l’idolâtrie et la distinction entre adoration et vénération</p>
+<p>L’objection de la gloire ôtée au Christ et la réponse : les saints, chef-d’œuvre de sa grâce</p>
+<p>L’objection tirée des abus historiques et la distinction entre l’usage et l’abus</p>
+<p>La place des saints chez les orthodoxes et dans une partie de la tradition luthérienne et anglicane</p>
+</sujet>

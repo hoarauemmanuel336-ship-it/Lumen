@@ -1,0 +1,12 @@
+<sujet cle="mystere-eglise.sacrement" titre="L’Église, sacrement et communion" desc="Ce que veut dire que l’Église est comme un sacrement, et qu’elle est une communion.">
+<p>Le mot <b>sacrement</b> appliqué à l’Église : latin <i>sacramentum</i>, qui traduit le grec <i>mustèrion</i>, « dessein caché de Dieu révélé »</p>
+<p>L’Église « dans le Christ, comme un sacrement, c’est-à-dire à la fois le signe et le moyen de l’union intime avec Dieu et de l’unité de tout le genre humain » (<i>Lumen gentium</i> 1)</p>
+<p>L’Église <b>signe</b> : elle montre ce qu’elle réalise</p>
+<p>L’Église <b>instrument</b> : le Christ se sert d’elle pour sauver</p>
+<p>Le Christ, sacrement premier du salut, et l’Église, sacrement dans le Christ</p>
+<p>Pourquoi l’Église n’est pas un huitième sacrement : l’emploi analogique du mot, signalé par le « comme » du texte conciliaire</p>
+<p>L’Église, mystère de <b>communion</b> (grec <i>koinônia</i>, « mise en commun ») : avec Dieu et entre les hommes</p>
+<p>L’ecclésiologie de communion, retenue comme idée centrale du concile par le Synode extraordinaire des évêques de 1985</p>
+<p>La lettre <i>Communionis notio</i> de la Congrégation pour la doctrine de la foi (1992) : la communion à la fois invisible et visible</p>
+<p>L’Église icône de la Trinité : une communion de personnes à l’image de la communion divine</p>
+</sujet>

@@ -1,0 +1,15 @@
+<sujet cle="mystere-eglise.lumen-gentium" titre="La constitution Lumen gentium" desc="Le grand texte du concile Vatican II sur l’Église, chapitre par chapitre.">
+<p>La constitution dogmatique <i>Lumen gentium</i> (« Lumière des nations »), promulguée le 21 novembre 1964 : nature et autorité d’une constitution dogmatique</p>
+<p>La genèse du texte : le schéma préparatoire rejeté en 1962 et la nouvelle rédaction</p>
+<p>Le chapitre I, « Le mystère de l’Église » : l’origine trinitaire, les images bibliques, le « subsiste dans »</p>
+<p>Le chapitre II, « Le peuple de Dieu » : le sacerdoce commun, le sens de la foi, l’ordination de tous les hommes à l’Église</p>
+<p>Le choix de placer le peuple de Dieu avant la hiérarchie, et son sens</p>
+<p>Le chapitre III, « La constitution hiérarchique de l’Église et en particulier l’épiscopat » : la sacramentalité de l’épiscopat et la collégialité</p>
+<p>La <i>Nota explicativa praevia</i> jointe au chapitre III : la collégialité toujours avec et sous le pape</p>
+<p>Le chapitre IV, « Les laïcs »</p>
+<p>Le chapitre V, « L’appel universel à la sainteté dans l’Église »</p>
+<p>Le chapitre VI, « Les religieux »</p>
+<p>Le chapitre VII, « Le caractère eschatologique de l’Église en pèlerinage et son union avec l’Église du ciel »</p>
+<p>Le chapitre VIII, « La bienheureuse Vierge Marie, Mère de Dieu, dans le mystère du Christ et de l’Église »</p>
+<p>La continuité entre <i>Mystici corporis</i> et <i>Lumen gentium</i>, et ce que le concile y ajoute</p>
+</sujet>

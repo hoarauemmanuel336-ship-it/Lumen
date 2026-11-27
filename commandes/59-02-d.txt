@@ -1,0 +1,13 @@
+<sujet cle="egl.culte-saints" titre="Latrie, dulie, hyperdulie" desc="Les degrés du culte : l’adoration due à Dieu seul et la vénération des saints.">
+<p>Le mot <b>culte</b> (latin <i>cultus</i>, « soin, honneur rendu ») : l’honneur rendu à quelqu’un en raison de son excellence</p>
+<p>La <b>latrie</b> (grec <i>latreia</i>, « service, adoration ») : l’adoration due à Dieu seul</p>
+<p>La <b>dulie</b> (grec <i>douleia</i>, « service ») : la vénération des saints pour la grâce de Dieu en eux</p>
+<p>L’<b>hyperdulie</b> : la vénération singulière due à la Vierge Marie, Mère de Dieu</p>
+<p>Le culte particulier de saint Joseph, parfois nommé protodulie, et l’encyclique <i>Quamquam pluries</i> de Léon XIII (1889)</p>
+<p>La distinction chez saint Augustin (<i>Contre Fauste</i> XX, 21) : le culte de latrie réservé à Dieu, l’honneur rendu aux martyrs</p>
+<p>La distinction de Nicée II (787) entre la vénération (<i>proskunèsis</i>) et l’adoration (<i>latreia</i>)</p>
+<p>Saint Thomas d’Aquin sur la dulie (<i>Somme théologique</i> IIa-IIae, q. 103)</p>
+<p>Le culte <b>absolu</b>, rendu à une personne pour elle-même, et le culte <b>relatif</b>, rendu à un objet pour la personne qu’il représente</p>
+<p>Le culte public des saints dans la liturgie et le culte privé</p>
+<p>Le culte des saints qui conduit à Dieu : Dieu glorifié dans ses saints (<i>Lumen gentium</i> 50)</p>
+</sujet>

@@ -1,0 +1,12 @@
+<sujet cle="mystere-eglise.visible" titre="L’Église visible et spirituelle" desc="Comment l’Église est à la fois une société visible et une communion de grâce.">
+<p>L’Église, réalité unique et complexe : société dotée d’organes hiérarchiques et Corps mystique du Christ (<i>Lumen gentium</i> 8)</p>
+<p>L’élément humain et l’élément divin de l’Église, qui ne forment pas deux Églises</p>
+<p>L’<b>analogie du Verbe incarné</b> : comme la nature humaine sert au Verbe d’instrument de salut, l’organisme social de l’Église sert à l’Esprit du Christ</p>
+<p>La visibilité de l’Église : ses liens visibles de la foi professée, des sacrements et du gouvernement</p>
+<p>La formule de saint Robert Bellarmin : l’Église aussi visible que le royaume de France ou la république de Venise</p>
+<p>L’erreur de l’Église purement <b>invisible</b>, société des seuls élus ou des seuls justes (Wyclif, Jan Hus, réformateurs)</p>
+<p>L’erreur inverse : l’Église réduite à son organisation juridique, sans la vie de grâce qui la fait vivre</p>
+<p>L’Église sainte et toujours appelée à se purifier (<i>Ecclesia semper purificanda</i>, <i>Lumen gentium</i> 8)</p>
+<p>L’Église qui chemine entre les persécutions du monde et les consolations de Dieu (saint Augustin, <i>Cité de Dieu</i> XVIII, cité par <i>Lumen gentium</i> 8)</p>
+<p>Ce que la double nature de l’Église explique : qu’on puisse la voir, la rejoindre et lui obéir, et qu’elle soit pourtant objet de foi (« Je crois l’Église »)</p>
+</sujet>

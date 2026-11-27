@@ -1,0 +1,17 @@
+<sujet cle="mystere-eglise.histoire" titre="L’ecclésiologie dans l’histoire" desc="Comment l’Église a réfléchi sur elle-même, des Pères à Pie XII.">
+<p>Le mot <b>ecclésiologie</b> : la partie de la théologie qui étudie l’Église, constituée en traité distinct à la fin du Moyen Âge</p>
+<p>Saint Ignace d’Antioche et l’unité autour de l’évêque</p>
+<p>Saint Cyprien de Carthage et le traité <i>De l’unité de l’Église catholique</i> (vers 251)</p>
+<p>Saint Augustin, l’Église contre les donatistes et le Christ total</p>
+<p>La bulle <i>Unam sanctam</i> de Boniface VIII (1302) et l’ecclésiologie des pouvoirs au Moyen Âge</p>
+<p>Le premier traité systématique de l’Église : le <i>De regimine christiano</i> de Jacques de Viterbe (1301-1302)</p>
+<p>Saint Robert Bellarmin et l’ecclésiologie de la Réforme catholique : l’Église comme société visible face aux réformateurs</p>
+<p>Johann Adam Möhler et l’école de Tübingen : l’Église comme organisme vivant animé par l’Esprit (<i>L’Unité dans l’Église</i>, 1825)</p>
+<p>Le concile Vatican I et la constitution <i>Pastor aeternus</i> (1870), seule partie votée du projet sur l’Église</p>
+<p>L’encyclique <i>Mystici corporis</i> de Pie XII (29 juin 1943) : l’Église Corps mystique du Christ</p>
+<p>L’identification du Corps mystique et de l’Église catholique romaine dans <i>Mystici corporis</i>, rappelée par <i>Humani generis</i> (1950)</p>
+<p>Le renouveau de l’ecclésiologie au XXe siècle : le retour aux Pères et à la liturgie</p>
+<p>Yves Congar et l’ecclésiologie du peuple de Dieu, des laïcs et de l’œcuménisme</p>
+<p>Henri de Lubac et le Corps mystique : la redécouverte, chez les Pères, du lien entre l’Église et l’eucharistie (<i>Corpus mysticum</i>, 1944)</p>
+<p>L’ecclésiologie eucharistique orthodoxe (Nicolas Afanassiev, Jean Zizioulas) et son influence sur l’ecclésiologie de communion</p>
+</sujet>

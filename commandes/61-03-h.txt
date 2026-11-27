@@ -1,0 +1,16 @@
+<sujet cle="marie-dogmes.histoire" titre="L’histoire du dogme de l’Immaculée Conception" desc="Huit siècles de débats avant la définition de 1854.">
+<p>La sainteté de Marie chez les Pères grecs, qui l’appellent la Toute-Sainte (<i>Panaghia</i>)</p>
+<p>La fête de la Conception de Marie en Orient (vers le VIIIe siècle) et son arrivée en Angleterre (XIe siècle)</p>
+<p>Eadmer de Canterbury, premier défenseur explicite de la conception immaculée</p>
+<p>L’opposition de saint Bernard à la nouvelle fête (lettre aux chanoines de Lyon, vers 1140)</p>
+<p>Les réserves de saint Thomas d’Aquin et de saint Bonaventure : l’universalité de la Rédemption semblait exiger que Marie eût contracté le péché</p>
+<p>Guillaume de Ware et le bienheureux Jean Duns Scot : la rédemption préservatrice, solution de la difficulté</p>
+<p>L’argument résumé par l’école scotiste : Dieu le pouvait, cela convenait, donc il l’a fait (<i>potuit, decuit, ergo fecit</i>)</p>
+<p>La querelle entre franciscains et dominicains aux XIVe et XVe siècles</p>
+<p>La déclaration du concile de Bâle en faveur de l’Immaculée Conception (session 36, 17 septembre 1439), sans autorité parce que prise après la rupture du concile avec le pape Eugène IV</p>
+<p>Sixte IV, qui approuve la fête et interdit aux deux partis de s’accuser d’hérésie (fin du XVe siècle)</p>
+<p>Le concile de Trente qui déclare ne pas comprendre Marie dans son décret sur le péché originel (session V, 1546)</p>
+<p>Alexandre VII et la bulle <i>Sollicitudo omnium Ecclesiarum</i> (1661)</p>
+<p>L’encyclique <i>Ubi primum</i> de Pie IX (1849) : la consultation des évêques du monde</p>
+<p>La définition de 1854 : l’expression du sens de la foi de l’Église, mûri pendant des siècles</p>
+</sujet>
