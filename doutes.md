@@ -214,3 +214,195 @@
 - Leçon 10 : saint Jean Eudes et les premières fêtes du Cœur de Marie ; demande de Tuy en 1929 ; acte du 7 juin 1981 lu à Sainte-Marie-Majeure ; l'acte de 1984 « évoque les peuples qui ont particulièrement besoin de cette consécration » : de mémoire. Le message de Pie XII de 1942 « en portugais » : d'après Aleteia.
 - Leçon 11 : vision de Simon Stock (1251), privilège sabbatin (bulle de Jean XXII, refus du Saint-Siège « au début du XVIIe siècle »), médaille-scapulaire depuis 1910, lettre de Pie XII pour le 7e centenaire : d'après Wikipédia, sans source officielle. Ratisbonne converti le 20 janvier 1842 à Sant'Andrea delle Fratte, au défi d'un ami (Théodore de Bussières) ; canonisation de Catherine Labouré en 1947 : de mémoire.
 - Leçon 12 : paraphrase de *Lumen gentium* 67 sur l'étude de l'Écriture, des Pères, des docteurs et des liturgies, et sur les privilèges de Marie « toujours relatifs au Christ » : non vérifiée mot pour mot.
+
+## 56-03-j
+- Leçon 1 : Héraclas d'Alexandrie appelé « pape » par Denys (IIIe s., d'après Eusèbe) et le clergé de Rome appelant Cyprien « pape » : de mémoire, non vérifiés en ligne mot à mot.
+- Leçon 1 : le Dictatus papae (1075) « ce nom est unique au monde » (proposition 11) et le nombre de 27 propositions : de mémoire.
+- Leçon 1 : élection de Pie VII à Venise (14 mars 1800), entrée à Rome plusieurs mois après : de mémoire.
+- Leçon 1 : le débat théologique sur la nature du lien primauté-siège de Rome (droit divin ou acte de Pierre) est présenté sans auteur ; à vérifier qu'aucun acte du Magistère ne l'a tranché.
+- Leçon 2 : le synode romain acclamant Gélase « vicaire du Christ » est daté « fin du Ve siècle » (souvent 495) ; usage du titre pour d'autres évêques avant Innocent III : formulation prudente, de mémoire.
+- Leçon 2 : Annuaire pontifical 2020 rangeant « vicaire de Jésus-Christ » parmi les « titres historiques » (source : Wikipédia anglais) ; rétablissement de « patriarche d'Occident » en 2024 (source : USCCB).
+- Leçon 2 : refus par Grégoire le Grand du titre de « pape universel » offert par Euloge d'Alexandrie : de mémoire (Registrum VIII, 29/30), paraphrasé.
+- Leçon 3 : citation du légat Philippe à Éphèse (431) reprise au ch. 2 de Pastor aeternus : paraphrasée de mémoire.
+- Leçon 4 : saint Léon le Grand à Anastase de Thessalonique, « in partem sollicitudinis, non in plenitudinem potestatis » (Lettre 14) : de mémoire.
+- Leçon 4 : le délit pénal de recours au concile contre un acte du pape est mentionné sans numéro de canon (ancien can. 1372 ; numérotation après la révision de 2021 non vérifiée).
+- Leçon 4 : approbation par Pie IX (1875) de la déclaration des évêques allemands contre Bismarck : de mémoire (bref Mirabilis illa constantia).
+- Leçon 5 : l'affirmation que « certains auteurs anciens » ne reconnaissaient au pape qu'un pouvoir d'exception dans les diocèses est générale, sans auteur nommé.
+- Leçon 6 : Henri de Lubac créé cardinal le 2 février 1983 à 86 ans, dispensé de l'ordination épiscopale à sa demande : de mémoire. Formule de la remise de la barrette (rouge et effusion du sang) paraphrasée.
+- Leçon 6 : Nicolas II, In nomine Domini (1059) ; Latran III (1179) et les deux tiers ; Sixte V (1586) 6/50/14 ; Jean XXIII (1962) ; Paul VI (1970, 1975) : vérifiés sur Wikipédia (College of Cardinals) sauf 1179, de mémoire.
+- Leçon 7 : vacance de Viterbe (1268-1271) et Ubi periculum (1274) ; Urbain VI (1378) dernier pape non cardinal ; règle de 2007 (ballottage, les deux candidats ne votent pas) : de mémoire.
+- Leçon 8 : Célestin V (renonciation le 13 décembre 1294, canonisé en 1313) ; décrétale de Boniface VIII dans le Sexte ; Grégoire XII (4 juillet 1415) : de mémoire.
+- Leçon 8 : lettre de Benoît XVI à A. Tornielli (février 2014) sur la validité de sa renonciation : vérifiée par recherche (CNA, Catholic World Report), paraphrasée.
+- Leçon 9 : « approbation en forme spécifique » présentée comme notion de canonistes ; article de Praedicate Evangelium qui fait présider le dicastère pour l'évangélisation par le pape (art. 54) : de mémoire ; entrée en vigueur le 5 juin 2022 : de mémoire.
+- Leçon 9 : débat sur l'origine du pouvoir de gouvernement à la présentation de Praedicate Evangelium (le cardinal Ghirlanda n'est pas nommé) : présenté de manière générale.
+- Leçon 10 : règle du Décret de Gratien (D. 40 c. 6, « nisi deprehendatur a fide devius »), Gerson et d'Ailly comme conciliaristes modérés, Bâle déposant Eugène IV (1439) et élisant Félix V : de mémoire. Latran V (19 décembre 1516) vérifié sur papalencyclicals.
+- Leçon 10 : positions de Cajetan et de Bellarmin sur le pape hérétique résumées de manière générale.
+- Leçon 11 : contenu des quatre articles, Inter multiplices (4 août 1690, publiée 1691, sans censure théologique), 1693 : d'après le cours 32 (gallicanisme) et Wikipédia ; Febronius (27 février 1764, rétractation 1778) vérifié sur la Catholic Encyclopedia.
+- Leçon 12 : 34e canon apostolique paraphrasé ; Melanchthon (1537, souscription aux articles de Smalkalde) paraphrasé de mémoire ; formule de Ratzinger (Graz, 1976) paraphrasée de mémoire ; documents de Ravenne (2007) et de Chieti (2016) résumés de mémoire ; élection des évêques par le synode dans les Églises patriarcales orientales présentée en termes généraux.
+
+## 61-05-a
+- Leçon 2 : date du lectionnaire arménien (417-439, d’après Renoux) et Kathisma « à environ trois kilomètres de Bethléem » : repris d’un article (Panagopoulos, revue Mirabilia), non vérifiés sur l’édition elle-même.
+- Leçon 2 : Théodore Ier (642-649) « a pu contribuer » à introduire la fête à Rome : hypothèse d’historiens (Krausmüller, Wenger) rapportée par le même article.
+- Leçon 2 : nom d’<i>Assumptio</i> « présent dans les livres romains depuis le VIIIe siècle » (sacramentaire grégorien) : de mémoire.
+- Leçon 2 : suppression de l’octave de l’Assomption en 1955 (réforme de Pie XII) : de mémoire.
+- Leçon 2 : messe <i>Signum magnum</i> de 1950 (introït Apocalypse 12:1, évangile de la Visitation) : vérifié seulement par une page de New Liturgical Movement.
+- Leçon 2 : lectures actuelles de la messe du jour (Apocalypse 11:19-12:1… ; 1 Corinthiens 15:20-27 ; Luc 1:39-56) : de mémoire (la page de l’AELF n’a pas pu être ouverte).
+- Leçon 2 : vœu de Louis XIII (10 février 1638) vérifié sur Aleteia ; acte de Pie XI de 1922 (Notre-Dame de l’Assomption patronne principale, Jeanne d’Arc secondaire) : date exacte (2 mars 1922 ?) non vérifiée sur vatican.va.
+- Leçon 2 : les Églises de calendrier julien fêtent la Dormition le 28 août civil ; jeûne de deux semaines (1er-14 août) : de mémoire.
+- Leçon 3 : les deux volumes de pétitions « imprimés à Rome en 1942 » (Hentrich et de Moos) : de mémoire ; l’encyclique dit seulement « deux volumes ».
+- Leçon 3 : texte latin des deux questions de 1946, reconstitué de deux fragments lus sur vatican.va (latin de <i>Munificentissimus Deus</i>) : vérifier qu’ils se suivent sans coupure.
+- Leçon 3 : Pie IX, encyclique <i>Ubi primum</i> (2 février 1849) consultant les évêques sur l’Immaculée Conception : de mémoire ; paraphrase de <i>Pastor aeternus</i> ch. 4 sur les moyens employés par les papes : de mémoire.
+- Leçon 4 : Pie XII met entre guillemets <i>singularis catholicorum Antistitum et fidelium conspiratio</i> ; je n’ai pas identifié la source citée (peut-être <i>Ineffabilis Deus</i>), et le cours ne l’attribue pas.
+- Leçon 5 : « de l’avis commun, la seule définition de ce genre prononcée par un pape depuis 1870 » : affirmation courante, à confirmer.
+- Leçon 5 : canon 751 (hérésie) cité de mémoire ; plan de la constitution par paragraphes établi d’après des résumés de la version anglaise de vatican.va.
+- Leçon 6 : Constantinople II (553) emploie « toujours vierge » dans ses canons ; Latran (649), canon 3 : de mémoire.
+- Leçon 8 : saint Thomas, <i>anima mea non est ego</i> (commentaire de 1 Corinthiens 15, leçon 2) : de mémoire.
+- Leçon 8 : paraphrase de CEC 1024 sur le ciel, de mémoire.
+- Leçon 9 : document de l’ARCIC « Marie : grâce et espérance dans le Christ » (Seattle 2004, publié en 2005) : paraphrase de mémoire de son n. 58 ; position orthodoxe résumée sans source précise.
+- Leçon 10 : <i>Dei Filius</i> ch. 4, <i>e mysteriorum ipsorum nexu inter se</i> : de mémoire.
+- Leçon 10 : préface de la messe de l’Assomption (Dieu n’a pas voulu que connaisse la corruption du tombeau celle qui a engendré son Fils) : paraphrase de mémoire, non vérifiée.
+- Leçon 10 et 11 : les mots attribués à saint Germain (n. 22), saint Alphonse et saint François de Sales (n. 35), saint Jean Damascène (n. 21), saint Bernardin (n. 33) sont des paraphrases d’après des résumés de la version anglaise de <i>Munificentissimus Deus</i>.
+- Leçon 12 : suite de la phrase de Jean-Paul II (9 juillet 1997) sur le corps « appelé à devenir un instrument de sainteté et à participer à sa gloire » : de mémoire (seule la première moitié est vérifiée).
+- Toutes les traductions françaises des passages latins de <i>Munificentissimus Deus</i> (définition, n. 5, n. 11, n. 12, n. 17, n. 45) sont les miennes : vatican.va n’offre pas de texte français lisible.
+
+## 62-08-a
+- Leçon 1 : saint Augustin, *De Genesi ad litteram* XII, termes latins *visio corporalis / spiritualis / intellectualis* (de mémoire) ; la paraphrase de saint Jean de la Croix (Catéchisme 65) ; *Verbum Domini* 14 paraphrasé, non cité.
+- Leçon 2 : concile de Trente, session XXV (1563), décret sur l'invocation des saints, paraphrasé de mémoire ; normes de 1978 « rendues publiques en 2011 » (d'après la présentation des normes de 2024) ; composition de la commission (art. 8 § 1) et critères des art. 14-16 paraphrasés d'après vatican.va.
+- Leçon 3 : mémoires de Notre-Dame de Lourdes (11 février), de Fatima (13 mai) et de Guadalupe (12 décembre) au calendrier romain général (de mémoire) ; la paraphrase de Lambertini vient du commentaire Ratzinger de 2000.
+- Leçon 4 : tilma « de fibres d'agave » (tradition) ; détail des journées des 10 et 11 décembre 1531 ; Juan Diego baptisé vers 1524-1525 ; controverse Montúfar-Bustamante de 1556 ; Miguel Sánchez, 1648 ; codex Escalada rendu public en 1995 ; enquête historique de la cause de canonisation concluant à l'existence de Juan Diego ; titres pontificaux (1754, 1895, 1910, 1945, 1999) d'après une page paroissiale.
+- Leçon 5 : Benoîte « seize ans » en mai 1664 (née le 16 septembre 1647) ; autorisation du pèlerinage par le diocèse d'Embrun en septembre 1665 ; « plus de cent mille » pèlerins en dix-huit mois (une source dit 130 000) ; reconnaissance du 4 mai 2008 (une source anglaise dit 5 mai) ; vertus héroïques reconnues en 2009 (date exacte non vérifiée) ; apparition de décembre 1830 ; enquête de 1836 ; aveu de Catherine à sa supérieure en 1876 ; Ratisbonne rejoint son frère à Notre-Dame de Sion.
+- Leçon 6 : altitude « près de 1 800 mètres » ; libellé des paroles citées (« le bras de mon Fils ») selon Aleteia, les versions varient ; secrets retrouvés en 1999 ; interdiction du Saint-Office avant l'Index du 9 mai 1923 ; Maximin zouave pontifical ; épisode d'Ars (septembre 1850).
+- Leçon 7 : commission créée fin juillet 1858 (28 juillet, de mémoire), travaux à partir de novembre ; paroles du 18 février et du 24 février citées selon la tradition ; mandement du 18 janvier 1862 paraphrasé ; « soixante-douze miracles au printemps 2025 » (Antonia Raco) : vérifier s'il y en a eu d'autres depuis ; Dr Dozous et le cierge du 7 avril ; Journée mondiale du malade instituée en 1992.
+- Leçon 8 : lettres apparues pendant le *Magnificat* ; « les jeunes gens de Pontmain reviennent tous de la guerre » (tradition) ; armistice du 28 janvier 1871 ; à Knock, sol resté sec, âge des témoins, rose d'or offerte en 1979.
+- Leçon 9 : âges des enfants en mai 1917 ; Jean-Paul II « a pris connaissance » du secret après l'attentat (le document de 2000 parle de l'envoi du pli le 18 juillet 1981) ; « plus jeunes saints non martyrs » ; voyages pontificaux à Fatima.
+- Leçon 10 : date du 21 décembre 1932 pour « Je suis la Vierge Immaculée » ; examens médicaux pendant les extases ; libellé des paroles de Banneux (citées de mémoire, versions courantes) ; autorisation du culte à Beauraing « en 1943 » (2 février ou 16 mai selon les sources) ; retour à la foi de Julien Beco.
+- Leçon 11 : deuxième message d'Akita « en août 1973 » (3 août selon certaines sources) ; cent une larmes entre 1975 et 1981 ; vision de Kibeho « en août 1982 » (15 ou 19 août selon les sources) ; Kibeho « première apparition reconnue en Afrique » ; publication par le Saint-Siège le 2 juillet 2001 ; âges des voyants de Medjugorje ; visiteur apostolique (2018) et pèlerinages officiels (2019) ; contenu de la note « La Reine de la paix » paraphrasé d'après la conférence de presse du 19 septembre 2024.
+
+## 57-04-c
+- Ambroise, *Des veuves* 12, 72-73 : paraphrase faite d'après la traduction anglaise de newadvent (précepte aux sujets, conseil aux amis ; loi / grâce) ; date « vers 377 » de mémoire.
+- Thomas, I-II, q. 108, a. 4 : l'opposition « loi de liberté » / « loi de servitude » (lex servitutis) est citée de mémoire pour la seconde moitié.
+- Thomas, II-II, q. 88, a. 6 : l'image de l'arbre et des fruits attribuée à saint Anselme, de mémoire ; q. 88, a. 2 : le mot sur Jephté (« insensé en vouant, impie en accomplissant ») attribué à saint Jérôme, de mémoire.
+- Thomas, II-II, q. 104, a. 5 (limites de l'obéissance : autorité supérieure, domaine de compétence) : de mémoire. La notion d'« état » liée à la liberté ou à la servitude est en II-II, q. 183, a. 1 (non numérotée dans le texte).
+- Thomas, II-II, q. 186, a. 2 : la vie religieuse comme « école » / exercice de perfection, formulation résumée.
+- Conversion de saint Antoine « vers 270 » : date approximative déduite de sa naissance vers 251.
+- Règle de saint Benoît, ch. 58 (stabilité, conversion des mœurs, obéissance) et ch. 33 (rien en propre, tout attendre du père du monastère) : de mémoire.
+- Règle franciscaine de 1223 (« vivre dans l'obéissance, sans rien en propre et dans la chasteté ») et son approbation par Honorius III : paraphrase de mémoire.
+- Les dominicains ne prononcent expressément que le vœu d'obéissance : de mémoire.
+- Boniface VIII (fin du XIIIe siècle, décrétale du Sexte) : sa définition des vœux solennels est attestée par la Catholic Encyclopedia ; le nom de la décrétale (« Quod votum ») n'est pas donné dans le cours.
+- Grégoire XIII (1584), Pie V (1566 et 1568), Léon XIII (*Conditae a Christo*, 8 décembre 1900) : d'après la Catholic Encyclopedia (« Religious Life »).
+- Trois ans de profession simple exigés avant la profession solennelle « sous Pie IX et Léon XIII » : d'après la Catholic Encyclopedia (« Religious Profession »), sans date précise.
+- Trente, session XXV, ch. 15 (un an de noviciat, profession à seize ans) : de mémoire.
+- Trente, session XXIV, canons 9 et 10 : paraphrases de mémoire.
+- Effets anciens des vœux simples et solennels (tableau de la leçon 8) : d'après la Catholic Encyclopedia ; mention de l'exception des jésuites pour l'empêchement de mariage, idem.
+- Pie XII, *Sacra virginitas*, 25 mars 1954 ; Pie XII, *Provida Mater Ecclesia* (1947) parlant d'« états de perfection » : de mémoire.
+- Catéchisme 1620 (citation de saint Jean Chrysostome) et 2102-2103 : paraphrases de mémoire.
+- *Lumen gentium* 44, phrase sur les liens « plus fermes et plus stables » qui représentent le Christ uni à l'Église : paraphrase de mémoire ; LG 46 (les religieux ni étrangers ni inutiles à la cité terrestre ; profession des conseils et épanouissement de la personne) : paraphrase d'après un résumé.
+- *Perfectae caritatis* 12 (maturité éprouvée, mortification, amour fraternel), 13 (loi du travail, pauvreté des instituts, partage), 14 (devoirs des supérieurs) : paraphrases ; seules les courtes citations entre guillemets ont été vérifiées sur vatican.va.
+- Canons 590 § 2, 630 et 668 § 1 : paraphrasés de mémoire (les autres canons cités ont été vérifiés sur vatican.va).
+- *Ecclesiae sanctae* (6 août 1966) : chapitre général spécial et temps d'expérimentation, de mémoire ; *Evangelica testificatio* (29 juin 1971) : date et contenu résumés de mémoire.
+- Synode d'octobre 1994 (date non vérifiée en ligne) ; Journée mondiale de la vie consacrée instituée en 1997 et fixée au 2 février : de mémoire.
+- *Vita consecrata* 27 (attente non passive, travail et mission, esprit des Béatitudes) et 31-32 (vocations au service les unes des autres) : paraphrases ; VC 18, 20, 22, 26, 32, 88, 89, 91, 110 vérifiés sur vatican.va.
+- *Veritatis splendor* : méditation du jeune homme riche aux n. 6-27 (bornes de mémoire) ; n. 18 vérifié.
+- Restauration du rite de la consécration des vierges en 1970 : de mémoire.
+- Filles de la Charité (vœux renouvelés chaque année, non religieux) et serment missionnaire des Missionnaires d'Afrique : de mémoire (la Catholic Encyclopedia parle d'un « serment d'obéissance » des Pères blancs).
+- Grec : *gnômê* en 1 Corinthiens 7:25 ; *alazoneia tou biou* en 1 Jean 2:16 ; Vulgate *superbia vitae* : de mémoire.
+- Vies de saint Antoine (Athanase, vers 360) : détails vérifiés sur newadvent (âge, six mois, terres données, sœur confiée à des vierges).
+
+## 61-03-h
+- Leçon 3 : la phrase latine d’Eadmer « Potuit plane et voluit ; si igitur voluit, fecit » est citée de mémoire (non vérifiée sur l’édition latine) ; l’image de la châtaigne est vérifiée par une traduction anglaise (marianstudies.ac.uk).
+- Leçon 3 : la phrase d’Anselme (De conceptu virginali 18, pureté « telle qu’on n’en puisse concevoir de plus grande au-dessous de Dieu ») est donnée en paraphrase française de mémoire ; la position d’Anselme (Marie conçue avec le péché puis purifiée) aussi.
+- Leçon 3 : dates d’Eadmer (né vers 1060, mort vers 1126 ou après) et date du traité (vers 1125) : les sources varient (1124-1130).
+- Leçon 4 : lettre 174 datée « vers 1140 » (certains disent 1138-1139) ; « la Vierge royale n’a pas besoin d’un faux honneur » et « la nouveauté mère de la témérité » viennent de mémoire et de la traduction CCEL ; Bernard entré à Cîteaux en 1112 (parfois 1113).
+- Leçon 4 et 5 : Albert le Grand jugeant l’opinion contraire « condamnée par saint Bernard » : d’après la Catholic Encyclopedia.
+- Leçon 5 : le jugement de Bonaventure (opinion « plus commune, plus raisonnable et plus sûre », l’autre « semble convenir à l’excellence de la Vierge ») et ses raisons sont donnés de mémoire, sans le latin ; le texte de Somme III q.27 a.2 ad 2 est vérifié (corpusthomisticum) ; le contenu de l’ad 3 (fête tolérée, fête de la sanctification) est de mémoire ; dates du commentaire des Sentences (1252-1256) et de la Tertia pars (1272-1273).
+- Leçon 6 : la maxime de Guillaume de Ware et la phrase de Scot « si auctoritati Ecclesiae… » sont vérifiées par une note d’article (core.ac.uk) ; les trois possibles de Scot et l’argument du médiateur parfait sont résumés de mémoire ; Ware « maître de Scot » donné comme tradition ; légende de la dispute de Paris donnée comme légende.
+- Leçon 1 : Éphrem (Carmina Nisibena 27), Théodote d’Ancyre (lis parmi les épines), Jean Damascène (la nature n’a pas osé devancer la grâce), Grégoire de Nazianze (Discours 38, Marie « purifiée d’avance par l’Esprit ») : paraphrases de mémoire ; traduction française de la litanie byzantine de mémoire.
+- Leçon 2 : André de Crète (canon), Jean d’Eubée vers 750, Georges de Nicomédie, Basile II, Manuel Comnène 1166, Naples IXe s., Irlande au 3 mai, Winchester vers 1030, Helsin, Anselme le Jeune (Bury 1121, Saint-Sabas), Osbert de Clare vers 1127, concile de Londres 1129 : d’après la Catholic Encyclopedia (1910), non recoupé ; « fête aux Normands » de mémoire ; attribution à Prosper d’Aquitaine de la règle de la prière.
+- Leçon 8 : Pierre Auriol, traité vers 1314 ; chapitre de Pise 1263 (CE) ; Dominicains écartés de l’université de Paris de 1387 au début du XVe s. (mémoire) ; serment de l’université en 1497 (mémoire) ; usage des révélations de Brigitte et de textes attribués à Catherine de Sienne (mémoire) ; Bandello et ses centaines de citations (mémoire) ; affaire de Berne vérifiée sur Wikipédia (débat historiographique sur les responsabilités).
+- Leçon 9 : que la session 36 de Bâle ait aussi prescrit la fête du 8 décembre (mémoire) ; Léonard de Nogarolis « clerc de Vérone » (mémoire) ; Cum praeexcelsa daté 27 février 1477 (la CE donne 28 février 1476, ancien style) ; première forme de Grave nimis en 1482 (mémoire) ; élection de Félix V donnée sans date (sources divergentes : 30 octobre ou 5 novembre 1439).
+- Leçon 10 : débat des pères de Trente (demande d’exempter Marie, opposition dominicaine) résumé de mémoire ; traduction française de la déclaration de la session V faite d’après le latin ; proposition 73 de Baïus paraphrasée de mémoire ; Paul V 1617 et Grégoire XV 1622 (dont l’exception pour les dominicains) de mémoire ; qu’Alexandre VII renouvelle les constitutions de Sixte IV, Paul V et Grégoire XV : de mémoire.
+- Leçon 11 : « plus de six cents évêques » d’après Wikipédia (les chiffres courants : environ 603 réponses, 546 favorables) ; commission de 1848 ; article de Newman de 1859 (The Rambler) ; contenu du document ARCIC de 2005 résumé de mémoire ; phrase de Pie IX sur le « naufrage dans la foi » paraphrasée ; Dei Verbum 8 paraphrasé.
+
+## 60-01-l
+- Commande : « Judith 13:18 » (numérotation grecque) ; la Chérubin suit la Vulgate et porte la bénédiction en Judith 13:23 (citée ainsi, avec une note sur la double numérotation). Judith 15:10 de la Chérubin = 15:9 grec.
+- Leçon 1 : étymologies de *Miryam* (racine égyptienne « aimer », *mar*, araméen *mara*, Jérôme *stilla maris* lu *stella maris*) de mémoire ; « saint Justin la dit de la descendance de David » (Dialogue avec Tryphon, de mémoire, sans numéro) ; dates du Protévangile de Jacques (milieu IIe s.) et contenu résumé de mémoire ; traditions Jérusalem / Éphèse pour la fin de la vie de Marie, de mémoire.
+- Leçon 2 : Irénée lisant Gn 3:15 du Christ (Contre les hérésies III, 23 et V, 21, non cité) ; Munificentissimus Deus (n. 39) et CEC 410-411 paraphrasés de mémoire ; la remarque sur *autos* masculin / *sperma* neutre de la Septante ; Néo-Vulgate *ipsum* et hypothèse d’un *ipse* originel chez Jérôme vérifiés sur un seul site (jimmyakin.com) ; Ineffabilis Deus vérifié (papalencyclicals, anglais).
+- Leçon 3 : date « vers 735 » ; Aquila et Théodotion traduisant *neanis* « relevé par saint Irénée » (Contre les hérésies III, 21, 1, de mémoire) ; Justin, Dialogue 71, 77 et 84 vérifiés sur newadvent (pas de numéro donné dans le cours) ; argument chronologique contre Ézéchias (âges des rois en 2 Rois 16 et 18) de mémoire, chronologie discutée.
+- Leçon 4 : Stanislas Lyonnet (article de 1939 dans *Biblica*) et reprise par Benoît XVI dans *L’enfance de Jésus* (2012) de mémoire ; « chaire » de la Septante en So 3:14, Jl 2:21, Za 9:9 de mémoire ; CEC 2676 vérifié en anglais (paraphrasé sans guillemets).
+- Leçon 5 : formule d’Augustin *Novum in Vetere latet…* (Questions sur l’Heptateuque II, 73) et DV 16 paraphrasés ; René Laurentin comme initiateur du parallèle Visitation / 2 Samuel 6 de mémoire ; *anaphônein* : 5 occurrences LXX (1 Ch 15:28 ; 16:4.5.42 ; 2 Ch 5:13) vérifiées sur blueletterbible.
+- Leçon 6 : CEC 489 vérifié en anglais (liste des femmes) ; antienne *Tu gloria Ierusalem…* dans la liturgie de l’Immaculée Conception, de mémoire ; application d’Esther 15:13 (Vulgate *non pro te…*) au privilège de Marie par « des auteurs spirituels », de mémoire.
+- Leçon 7 : date de Galates (milieu des années 50) ; « trois des quatre femmes sont étrangères » (l’origine de Tamar n’est pas dite dans le texte) ; les deux lectures de la décision de Joseph données sans nommer de Père.
+- Leçon 8 : LXX de Gn 25:22 avec *skirtan* et de 1 S 1:11 avec *tapeinôsis*, de mémoire ; quelques témoins latins anciens attribuant le Magnificat à Élisabeth, de mémoire ; LG 66 et CEC 495 paraphrasés.
+- Leçon 9 : lecture d’Origène (Homélies sur Luc 17) suivie par « d’autres Pères grecs » (Basile, Cyrille), de mémoire ; écho LXX d’Ézéchiel 14:17 (*rhomphaia*, même verbe que Luc) de mémoire ; Newman (sermon universitaire de 1843 sur Lc 2:19) de mémoire ; sept douleurs, Stabat Mater de mémoire.
+- Leçon 10 : lecture d’Augustin sur Jean 2:4 (Traités sur Jean 8) résumée de mémoire, sans référence dans le cours ; lecture de 2:4b comme question, attribuée à « certains, anciens ou modernes », sans nom.
+- Leçon 11 : Augustin, De la sainte virginité 3, vérifié (newadvent, anglais ; latin cité de mémoire) ; Origène, Commentaire sur Jean I (section 6 chez newadvent, I, 4, 23 dans d’autres éditions) vérifié en anglais, paraphrasé ; lecture « piété filiale » chez Augustin (Traités sur Jean 119) de mémoire.
+- Leçon 12 : Hippolyte (De l’Antéchrist 61) et Méthode (Banquet VIII) pour la lecture ecclésiale, Épiphane (Panarion 78) pour la lecture mariale, de mémoire ; Paul VI, *Signum magnum* (1967) de mémoire ; lecture d’Ap 11:19 et 12 à la messe de l’Assomption de mémoire ; Ad diem illum 24 et RM 24, 26, 27 vérifiés sur vatican.va.
+
+## 60-02-a
+- Leçon 2 : la population de Nazareth (« quelques centaines d'habitants, sous les cinq cents ») suit les estimations récentes (Strange, environ 480) ; chiffres variables selon les archéologues.
+- Leçon 2 : inscription de Césarée trouvée en 1962, datée d'environ 300 (fin IIIe ou début IVe siècle selon les auteurs) : vérifié sur une source secondaire (Wikipédia), pas sur la publication d'Avi-Yonah.
+- Leçon 2 : âge des fiancées (« vers douze ou treize ans ») et durée des fiançailles « jusqu'à un an » (Mishna, Ketoubot 5, 2) : de mémoire.
+- Leçon 2 : inscription « Verbum caro hic factum est » sous l'autel de la grotte de Nazareth : de mémoire.
+- Leçon 2 : rapprochement Nazareth / hébreu netser (Isaïe 11:1) attribué à « beaucoup de Pères et d'exégètes » : de mémoire (Jérôme notamment).
+- Leçon 3 : traduction de Gabriel par « fortitudo Dei » chez saint Jérôme : de mémoire ; chez Grégoire le Grand (Homélies sur l'Évangile 34) : de mémoire, paraphrasé sans guillemets, comme la distinction anges / archanges de la même homélie.
+- Leçon 3 : fête de Gabriel le 24 mars étendue par Benoît XV en 1921 (vérifié sur Aleteia, citant M. Foley) ; fusion au 29 septembre en 1969 : de mémoire.
+- Leçon 3 : hypothèse de R. Laurentin (490 jours en Luc 1-2) : de mémoire (Structure et théologie de Luc I-II, 1957).
+- Leçon 3 : CEC 329 (« ange » nom d'office, d'après Augustin) et CEC 328 (existence des anges, vérité de foi) : paraphrasés de mémoire.
+- Leçon 4 : Lyonnet, article de 1939 (Biblica) : de mémoire ; l'argument du salut « paix » chez Luc (Luc 10:5 ; 24:36) est présenté comme celui des défenseurs de la lecture.
+- Leçon 4 : « beqirbekh » / « qerev » au sens de « sein » : argument d'exégètes (Laurentin), de mémoire.
+- Leçon 5 : Origène, Homélies sur Luc 6, 7 (salut réservé à Marie) : vérifié par une source secondaire citant la traduction Lienhard.
+- Leçon 5 : Érasme critique de « gratia plena » : de mémoire.
+- Leçon 7 : fragment de Qumrân 4Q246 (« fils de Dieu », « fils du Très-Haut ») : de mémoire.
+- Leçon 7 : « son règne n'aura pas de fin » reçu à Constantinople (381) contre Marcel d'Ancyre : de mémoire.
+- Leçon 7 : CEC 432 paraphrasé.
+- Leçon 8 : Grégoire de Nysse, Discours pour la Nativité du Christ (PG 46, 1140-1141) : paraphrasé, non vérifié sur le texte.
+- Leçon 8 : la phrase d'Augustin (De sancta virginitate 4, 4) est ma traduction du latin « Quod profecto non diceret, nisi Deo virginem se ante vovisset » ; vérifiée sur la traduction anglaise de New Advent.
+- Leçon 8 : Raymond E. Brown (The Birth of the Messiah, 1977) cité comme tenant de la lecture « procédé littéraire » : de mémoire.
+- Leçon 8 : fête de la Présentation de Marie (21 novembre) née de la tradition du Protévangile : de mémoire.
+- Leçon 9 : emploi de episkiazô en Exode 40:35 (Septante) : de mémoire, très probable.
+- Leçon 9 : CEC 498 paraphrasé (opposition des juifs et païens à la foi en la conception virginale).
+- Leçon 10 : saint Bernard, Homélies sur « Missus est » 4, 8 : vérifié sur une traduction anglaise ; paraphrasé sans guillemets ; lecture de cette homélie à l'office des lectures du 20 décembre : de mémoire.
+- Leçon 11 : texte latin de saint Thomas IIIa q. 30 a. 1 vérifié sur corpusthomisticum (deux fragments) ; traduction personnelle.
+- Leçon 12 : Liber pontificalis sur Sergius Ier : seul vérifié « processions pour quatre fêtes de la Vierge » (encyclopedia.com) ; que l'Annonciation en fasse partie est de mémoire.
+- Leçon 12 : apparition de la fête en Orient « au cours du Ve ou du VIe siècle » : formulation prudente d'après la Catholic Encyclopedia ; sacramentaire gélasien (manuscrit du VIIe siècle) d'après la même source.
+- Leçon 12 : fête espagnole du 18 décembre devenue l'« Attente de l'enfantement » (Expectatio partus) : de mémoire.
+- Leçon 12 : PGMR 137 (génuflexion à « et incarnatus est » à l'Annonciation et à Noël) : numéro de mémoire.
+- Leçon 12 : hypothèses Duchesne (fin XIXe) et Talley (1986), De Pascha computus (pseudo-Cyprien, IIIe siècle), Aurélien et le Soleil invaincu (274) : de mémoire, sauf De Pascha computus (Catholic Encyclopedia).
+- Leçon 12 : Evangelium vitae daté du 25 mars 1995 : de mémoire.
+- Leçon 12 : Evangelismos parmi les douze grandes fêtes byzantines, synaxe de Gabriel le 26 mars (vérifié Aleteia) .
+
+## 60-04-v
+- Leçon 1 : Augustin, *De la sainte virginité* (l'Église loue les vierges parce que leur continence est consacrée à Dieu) : paraphrase de mémoire, numéro de paragraphe non donné (vers 8-11).
+- Leçon 1 et 9 : libellés liturgiques (canon romain *semper Virgo*, Confiteor latin *beatam Mariam semper Virginem*, prière byzantine « toute sainte, immaculée… toujours vierge ») cités de mémoire.
+- Leçon 3 : contenu des écrits du IIe s. (*Ascension d'Isaïe* 11, *Odes de Salomon* 19, *Protévangile* 19-20) et Clément d'Alexandrie (*Stromates* VII, 16) résumés de mémoire ; Tertullien, *De la chair du Christ* 23, paraphrasé de mémoire.
+- Leçon 3 : liste des Pères orientaux (Éphrem, Grégoire de Nysse, Proclus) donnée d'après le discours de Jean-Paul II à Capoue (1992), où Grégoire de Nysse n'est pas nommé (Grégoire de Nazianze l'est) : à vérifier.
+- Leçon 3 : application patristique d'Isaïe 66:7 à Marie (Jean Damascène notamment) : affirmée de manière générale, non vérifiée en ligne.
+- Leçon 3 : image médiévale du soleil traversant la vitre : non attribuée, à vérifier si l'on veut un auteur.
+- Leçon 4 : thèse d'Albert Mitterer résumée d'après l'article de W. Most (EWTN) ; la phrase « une naissance privée des traits ordinaires diminuerait la vraie maternité » est mon interprétation de « implied a diminution of motherhood ».
+- Leçon 4 : date du monitum du Saint-Office : séance plénière du mercredi 20 juillet 1960 selon W. Most ; je n'ai écrit que « juillet 1960 ».
+- Leçon 4 : thèse de K. Rahner dans « Virginitas in partu » (1960) résumée de mémoire (référence bibliographique vérifiée : *Kirche und Überlieferung*, 1960, p. 52-80).
+- Leçon 4 : renvoi en note de *Lumen gentium* 57 au Latran de 649 : d'après W. Most, non vérifié sur le texte latin.
+- Leçon 5 : Origène, *Commentaire sur Matthieu* X, 17 (prémices de la pureté) ; homélie de Noël attribuée à Basile (« les amis du Christ ne supportent pas… ») ; Épiphane, *Panarion* 78 (antidicomarianites, vers 377) ; Athanase « toujours vierge » : de mémoire.
+- Leçon 6 : Ambroise, *De institutione virginis* 8 (« Quae est haec porta, nisi Maria ? Ideo clausa, quia virgo ») vérifié ; paragraphe 52 non indiqué. Jérôme, lettre 48 à Pammachius, 21 (393-394) vérifiée. Grégoire de Nysse, *Vie de Moïse* II (buisson), Jérôme et le jardin fermé (*Contre Jovinien* I, 31) : de mémoire.
+- Leçon 7 : l'exemple de Jérôme « Helvidius mort avant d'avoir fait pénitence » est cité de mémoire (Contre Helvidius, vers le § 4-6).
+- Leçon 8 : dates des condamnations de Jovinien données « entre 389 et 393 » (sources divergentes). Capoue « 391 ou 392 ». Siège de Bonose : Sardique (commande) ou Naissus. Attribution de la lettre sur Bonose (Sirice ou Ambroise) laissée ouverte. Augustin, *De haeresibus* 82 et *Révisions* II, 22 : paraphrasés de mémoire. Trente, session XXIV, canon 10 (1563) : de mémoire. Amis de Jérôme retirant les exemplaires du *Contre Jovinien* (Pammachius) : de mémoire.
+- Leçon 9 : Paul IV, *Cum quorundam* (1555), triple formule « ante partum, in partu et perpetuo post partum » : de mémoire (DS 1880, cité en note par le Catéchisme 499), date précise (7 août 1555) non écrite. Latran IV (1215), « ex Maria semper virgine » : de mémoire. Épiphane, *Ancoratus* (374) : vérifié via la catéchèse de Jean-Paul II du 28 août 1996.
+- Leçon 10 : Thomas III q. 29 a. 2 (forme du mariage) et Ignace, *Éphésiens* 19 : de mémoire ; Augustin, trois biens réalisés chez les parents du Christ : vérifié via *Redemptoris custos* 7, note 14.
+- Leçon 11 : formule d'Augustin « generatio Christi a patre sine matre ; generatio Christi a matre sine patre » vérifiée (sermon de Noël, Frangipane 4), sermon non numéroté dans le texte.
+- Leçon 12 : Ambroise, *Des vierges* II, 2, 15 (« Talis fuit Maria… ») et le portrait de Marie : de mémoire ; Catéchisme 922-923 et rite de 1970 : paraphrasés de mémoire.
+
+## 54-05-p
+- Leçon 2 : canon 16 de Nicée employant *paroikia* pour la communauté d’un évêque, et canon 2 de Constantinople I (381) employant « diocèse » pour l’Orient, l’Asie, le Pont, la Thrace : d’après la Catholic Encyclopedia (art. « Diocese »), non vérifié sur le texte des canons.
+- Leçon 2 : « portio » et non « pars » dans *Christus Dominus* 11 : le latin est cité de mémoire (*Dioecesis est populi Dei portio*) ; la lecture « portion qui garde toutes les qualités du tout » est donnée comme celle de commentateurs, sans nom.
+- Leçon 3 : Saint-Maurice d’Agaune fondée en 515, abbaye territoriale avec « quelques paroisses » ; Mission de France prélature territoriale limitée à la paroisse de Pontigny ; vicariats apostoliques d’Arabie du Nord et du Sud ; préfecture apostolique du Sahara occidental ; trois ordinariats personnels (Angleterre et pays de Galles, Amérique du Nord, Australie) : de mémoire, à confirmer.
+- Leçon 4 : latin de *Christus Dominus* 11 « vere inest et operatur » cité de mémoire.
+- Leçon 4 : paraphrases d’Ignace (Philadelphiens 4, Smyrniotes 8), sans guillemets.
+- Leçon 6 : contenu exact du *Pasteur* d’Hermas (Vision II, 4) et de la *Deuxième lettre de Clément* 14, et des renvois à Irénée (*Contre les hérésies* III, 17, 2) et à Fulgence de Ruspe (Sermon 8 sur la Pentecôte) : paraphrasés d’après les notes de *Communionis notio* 9, non relus dans les sources.
+- Leçon 7 : la conférence de Ratzinger au congrès sur la mise en œuvre de Vatican II est datée de février 2000 (25-27 février, d’après le site du Vatican) ; une page d’EWTN parle d’un symposium de novembre 2000. Mois de l’article de Kasper dans *Stimmen der Zeit* (fin 2000) non vérifié. Le volume de 1999 où paraît le premier article de Kasper (*Auf neue Art Kirche sein*) n’est pas nommé dans le cours.
+- Leçon 7 : la lecture de la Pentecôte attribuée à Ratzinger (les Douze nouvel Israël, « commencement intérieur ») vient de l’analyse de Kilian McDonnell (*Theological Studies* 63, 2002), non de l’article d’*America*, où Ratzinger renvoie ce point à plus tard.
+- Leçon 8 : l’usage des lettres de communion dans l’Église ancienne est décrit de mémoire, sans source précise ; canon 4 de Nicée (au moins trois évêques) de mémoire ; *Fidei donum* (1957) de mémoire.
+- Leçon 8 : *Unitatis redintegratio* 14-15 paraphrasé de mémoire (« Églises particulières ou locales » d’Orient, vrais sacrements).
+- Leçon 9 : éparchies ukrainienne, arménienne et maronite de Paris, et ordinariat des catholiques orientaux de France confié à l’archevêque de Paris : de mémoire, sauf l’ordinariat (Wikipédia). Le canon 27 du Code oriental est paraphrasé, non cité : le texte n’a pas pu être ouvert.
+- Leçon 10 : origine des paroisses rurales au IVe siècle, présentée en termes généraux.
+- Leçon 11 : dépêche circulaire de Bismarck datée de 1872 (14 mai selon Tillard) et publiée fin 1874 ; déclaration collective des évêques allemands de début 1875 ; approbation de Pie IX en mars 1875 (lettre *Mirabilis illa constantia* du 4 mars, allocution du 15 mars) : d’après un résumé de J.-M. R. Tillard, non relu dans Denzinger (DH 3112-3117).
+- Leçon 11 : la citation de Grégoire le Grand dans *Pastor aeternus* III est paraphrasée d’après la traduction anglaise.

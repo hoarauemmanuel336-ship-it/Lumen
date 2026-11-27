@@ -1,0 +1,18 @@
+# 58-05-s · Le salut de ceux qui ignorent l'Évangile (lettre s, fichier 58)
+
+Question centrale : que devient celui qui n'a jamais connu le Christ sans en être responsable, et comment son salut, s'il est sauvé, reste-t-il le salut du Christ par l'Église ?
+Obstacles du novice : « il suffit d'être sincère / d'être quelqu'un de bien » (pélagianisme pratique) ; « l'ignorant est sauvé par son ignorance » ; « tous sont sauvés de toute façon » ; à l'inverse « tous les non-baptisés sont damnés » ; confusion possibilité / certitude ; idée que les religions sont des chemins équivalents ; « chrétiens anonymes » pris pour une doctrine de l'Église.
+
+Fichiers : 00-ouverture.html, 01.html … 10.html, 99-bilan.html.
+
+1. L'ignorance invincible : ignorance, nescience ; vincible / invincible ; antécédente, conséquente, affectée, crasse (Thomas I-II q.76) ; coupable ou non ; Jean 15:22, Luc 12:47-48, Romains 10:14 ; Pie IX (rappel + lien #ouverture-l) ; l'ignorance excuse du péché d'infidélité mais ne sauve pas par elle-même.
+2. Lumen gentium 16 : texte ; trois conditions (sans faute, chercher Dieu d'un cœur sincère, s'efforcer sous la grâce d'accomplir sa volonté connue par la conscience) ; ceux qui n'ont pas de connaissance explicite de Dieu ; Romains 2:14-16 ; Actes 10:34-35 ; CEC 847 ; degré d'autorité (Magistère conciliaire). Lien appartenance #ouverture-a.
+3. La grâce toujours nécessaire : Jean 15:5, Jean 6:44 ; pélagianisme (lien 52 #ouverture-p) ; Orange II (529), Trente VI can. 1-3 ; « faire ce qui est en soi » (facienti quod in se est) bien compris ; la grâce prévenante offerte ; l'ignorant de bonne foi est sauvé par grâce et non par sa morale.
+4. Gaudium et spes 22 : texte ; contexte (le Christ homme nouveau) ; « vocation dernière unique, divine » ; l'Esprit Saint ; « d'une manière que Dieu connaît » ; Jean 3:8 ; Redemptoris missio 10 et 28-29 ; Dominus Iesus 21 (lien #ouverture-d) ; ce qu'on sait et ce qu'on ignore.
+5. La foi minimale : Hébreux 11:6 ; foi surnaturelle nécessaire (Trente VI ch. 8 ; Romains 10:17) ; Thomas II-II q.1 a.7, q.2 a.5-8 ; De veritate q.14 a.11 ad 1 (l'homme élevé dans la forêt) ; Innocent XI 1679 propositions 22-23 condamnées ; débat sur la foi au Christ implicite ; foi et croyance (lien #ouverture-d).
+6. Le désir du baptême : Thomas III q.68 a.2, q.69 a.4 ad 2 ; Ambroise et Valentinien ; Trente VI ch. 4 (« sans le bain de la régénération ou le désir de celui-ci ») ; VII can. 4 ; du désir explicite au désir implicite ; définition ; Mystici corporis (lien #ouverture-a) et lettre de 1949 (lien #ouverture-f) ; CEC 1258-1260 ; lien 68 #ouverture-n.
+7. La préparation évangélique : LG 16 (« préparation évangélique… don de Celui qui illumine tout homme ») ; Eusèbe ; Jean 1:9 ; Actes 17:22-28 ; Justin et les semences du Verbe (lien #sujet:religions.semences) ; Nostra aetate 2 ; Ad gentes 9 ; ce qui est préparation n'est pas substitut.
+8. Les « chrétiens anonymes » de Rahner : Rahner (1904-1984) ; existential surnaturel ; thèse (1961, 1964-65) ; religions « légitimes » ; critiques : de Lubac (christianisme anonyme / chrétiens anonymes), Balthasar (Cordula, 1966), Ratzinger, Küng ; risques pour la mission ; statut : opinion théologique.
+9. Possibilité et situation ordinaire : CEC 1257 ; Ad gentes 7 ; LG 14 ; plénitude des moyens (foi explicite, sacrements, communion) ; DI 22 « situation gravement déficitaire » ; analogie ; mission (lien #ouverture-n).
+10. Les dangers du chemin hors de l'Église visible : LG 16 seconde moitié (Romains 1:21.25) ; Mystici corporis (ne pas être sûrs de leur salut) ; CEC 844 ; vérité mêlée d'erreurs ; absence des sacrements ; espérance sans présomption ; réponse à la question de départ.
+Bilan : 6 exercices croisés.
