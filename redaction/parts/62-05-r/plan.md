@@ -18,4 +18,4 @@ Fichiers : 00-ouverture.html, 01.html … 11.html, 99-bilan.html.
 11. Abrégé de l'Évangile, prière christologique. Pie XII (Philippinas Insulas, 1946) ; MC 42-46 (« résumé de tout l'Évangile », Incarnation rédemptrice, Philippiens 2:6-11) ; RVM 1, 3, 18 ; Marie modèle de contemplation (Luc 2:19, 2:51 ; RVM 10-11) ; cinq verbes (RVM 13-17) ; réponse finale.
 Bilan : 6 exercices croisés.
 
-État : en cours.
+État : terminé, assemblé, contrôlé, humanisé (voir rapports/62-05-r-ecriture.md).

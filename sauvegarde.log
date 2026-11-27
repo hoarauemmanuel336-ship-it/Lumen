@@ -48,3 +48,12 @@ To https://github.com/hoarauemmanuel336-ship-it/lumen
  ! [remote rejected] sauvegarde/eglise -> sauvegarde/eglise (cannot lock ref 'refs/heads/sauvegarde/eglise': is at cb065df1dcb43c95c22e7a2cbe146941a31916ba but expected 3e0f3e8e7a44fac4bb1c44a4679de23712cb980e)
 error: failed to push some refs to 'https://github.com/hoarauemmanuel336-ship-it/lumen'
 06:59 sauvegardé (526 fichiers de rédaction)
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/hoarauemmanuel336-ship-it/Lumen.git        
+07:09 sauvegardé (652 fichiers de rédaction)
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/hoarauemmanuel336-ship-it/Lumen.git        
+To https://github.com/hoarauemmanuel336-ship-it/lumen
+ ! [remote rejected] sauvegarde/eglise -> sauvegarde/eglise (cannot lock ref 'refs/heads/sauvegarde/eglise': is at 3ff01b31855a0d138054c2d3da308a71d5800a47 but expected cb065df1dcb43c95c22e7a2cbe146941a31916ba)
+error: failed to push some refs to 'https://github.com/hoarauemmanuel336-ship-it/lumen'
+07:09 sauvegardé (652 fichiers de rédaction)

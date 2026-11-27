@@ -22,3 +22,6 @@ Bilan : 6 exercices croisés.
 
 État : (mis à jour au fil de l'écriture)
 - 00, 01 à 04 écrits et contrôlés (12 leçons : 3 = Ignace + LG 23 ensemble ; 4 docteur ; 5 grand prêtre ; 6 pasteur ; 7 vicaire du Christ ; 8 nomination ; 9 diocésain/coadjuteur/auxiliaire ; 10 renonciation/émérite ; 11 ad limina ; 12 Christus Dominus).
+- 05, 06 écrits et contrôlés.
+- 07 à 10 écrits et contrôlés.
+- 11, 12 écrits et contrôlés. Reste : bilan.
