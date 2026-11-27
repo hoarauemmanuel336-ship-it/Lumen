@@ -1,7 +1,7 @@
 {
  "01-la-revelation.html": {
-  "taille": 3283908,
-  "empreinte": "3088a2f3a8ff8a4d952ecd104aff0015b1041afc404981198d33f3a97c719c23",
+  "taille": 3284084,
+  "empreinte": "6767407aee58c527f0ea910fb0eb0941fbd81351afb3058b51559682be562114",
   "cours": {
    "l": "Qu’est-ce que la Révélation",
    "c": "La connaissance naturelle de Dieu et ses limites",
@@ -24,8 +24,8 @@
   }
  },
  "02-la-transmission-de-la-revelation.html": {
-  "taille": 3383311,
-  "empreinte": "432a00fe9bfabf0ba7f1f9e2cec6d0b8a9311acf60c626f33f73ec7c3d7592f9",
+  "taille": 3383371,
+  "empreinte": "96447a4ca6529e66e4d58cf4615aa39028fa556fd78f4fb96d03950955fb6ba4",
   "cours": {
    "l": "Le dépôt de la foi et la Tradition apostolique",
    "t": "La Tradition et les traditions",
@@ -48,8 +48,8 @@
   }
  },
  "03-l-autorite-de-l-enseignement.html": {
-  "taille": 3820960,
-  "empreinte": "94aaf656f9cc0b76e460d0eb57c362456cee2edb83eb609deed41b96938b52a7",
+  "taille": 3821142,
+  "empreinte": "2feb941da011a1b6ab11b002ba3f20c809ee92aa60c1f9e42c872298454d9c04",
   "cours": {
    "l": "Qui enseigne avec autorité",
    "d": "Le dogme et l’hérésie",
@@ -78,8 +78,8 @@
   }
  },
  "04-la-foi.html": {
-  "taille": 3760225,
-  "empreinte": "f45df978e59deb823e3ba297f654f81a1891850a75155b36a2e4da4cfc60cbcd",
+  "taille": 3760411,
+  "empreinte": "bed15a00e82c1632eac5493162f55d33df2d6e2e3855b877bc22297cd2799e11",
   "cours": {
    "l": "L’acte de foi",
    "v": "La vertu de foi et ses propriétés",
@@ -102,8 +102,8 @@
   }
  },
  "05-les-symboles-de-foi.html": {
-  "taille": 3178507,
-  "empreinte": "cbc0b205f8443a67806775e3718f284bac3e20da0a5fe394559abf47218210e2",
+  "taille": 3178619,
+  "empreinte": "369f545370815949437611084dc168813d0bc2d0f3dc24765ec711b10bc011ba",
   "cours": {
    "l": "Nature et origine des Symboles",
    "s": "Le Symbole des Apôtres",
@@ -119,6 +119,160 @@
    "d": 41,
    "p": 48,
    "c": 40
+  }
+ },
+ "06-la-connaissance-et-la-logique.html": {
+  "taille": 4662499,
+  "empreinte": "d3c3b7bf00bdd827626bac8b9e05dad4f95c9f65c4a346d30c94cbc1941fd475",
+  "cours": {
+   "l": "La philosophie servante de la foi",
+   "v": "La vérité",
+   "c": "La connaissance sensible",
+   "i": "L’intelligence et l’abstraction",
+   "t": "Les trois opérations de l’intelligence",
+   "o": "Le concept et le terme",
+   "p": "Les prédicables et la définition",
+   "j": "Le jugement et la proposition",
+   "r": "Le raisonnement et le syllogisme",
+   "d": "La démonstration et la science",
+   "s": "Les sophismes",
+   "a": "Le réalisme et ses adversaires"
+  },
+  "sais": {
+   "l": 49,
+   "v": 44,
+   "c": 44,
+   "i": 55,
+   "t": 44,
+   "o": 54,
+   "p": 49,
+   "j": 46,
+   "r": 48,
+   "d": 48,
+   "s": 53,
+   "a": 48
+  }
+ },
+ "07-l-etre-et-ses-principes.html": {
+  "taille": 4582368,
+  "empreinte": "50a144d76a0994dbe5ad9883932420c7da2dc87342402d3e2022fb30abf750fc",
+  "cours": {
+   "l": "La métaphysique, science de l’être",
+   "a": "Acte et puissance",
+   "m": "Matière et forme",
+   "s": "Substance et accidents",
+   "d": "Les dix catégories",
+   "e": "Essence et existence",
+   "q": "Les quatre causes",
+   "p": "Les premiers principes",
+   "t": "Les transcendantaux",
+   "n": "Nature, suppôt et personne",
+   "o": "L’analogie de l’être"
+  },
+  "sais": {
+   "l": 43,
+   "a": 59,
+   "m": 47,
+   "s": 44,
+   "d": 49,
+   "e": 44,
+   "q": 57,
+   "p": 55,
+   "t": 55,
+   "n": 48,
+   "o": 53
+  }
+ },
+ "08-la-personne-humaine.html": {
+  "taille": 4009776,
+  "empreinte": "5664963d10aeeb2aa078c3b67077bac36fce895542d19b130ff53319f7fc8225",
+  "cours": {
+   "l": "L’âme et les degrés de vie",
+   "a": "L’âme, forme du corps",
+   "i": "L’intelligence",
+   "v": "La volonté",
+   "b": "Le libre arbitre",
+   "o": "Les onze passions",
+   "h": "L’habitus",
+   "s": "La spiritualité et l’immortalité de l’âme",
+   "d": "La dignité de la personne"
+  },
+  "sais": {
+   "l": 55,
+   "a": 45,
+   "i": 44,
+   "v": 48,
+   "b": 59,
+   "o": 48,
+   "h": 44,
+   "s": 48,
+   "d": 48
+  }
+ },
+ "09-dieu-connu-par-la-raison.html": {
+  "taille": 4075959,
+  "empreinte": "31258f1280b70a7da637b93c6ee3b0bdec8ac534c01aea054bc5d9c4be3897e9",
+  "cours": {
+   "l": "La théologie naturelle",
+   "c": "Les cinq voies de saint Thomas",
+   "a": "L’argument de saint Anselme",
+   "v": "Les autres chemins vers Dieu",
+   "t": "Les trois voies pour parler de Dieu",
+   "d": "L’analogie dans le langage sur Dieu",
+   "p": "La définition du premier concile du Vatican",
+   "m": "L’athéisme et ses maîtres",
+   "g": "L’agnosticisme et la critique de la connaissance de Dieu"
+  },
+  "sais": {
+   "l": 40,
+   "c": 48,
+   "a": 48,
+   "v": 48,
+   "t": 50,
+   "d": 40,
+   "p": 40,
+   "m": 56,
+   "g": 48
+  }
+ },
+ "10-les-philosophes-et-la-foi.html": {
+  "taille": 6254765,
+  "empreinte": "887aa7d857ab92f5f22c1f68c164ba5e8dcb4eb27d60fe72b89e117f1f22ad3c",
+  "cours": {
+   "l": "Les premiers philosophes et Socrate",
+   "p": "Platon et le platonisme",
+   "a": "Aristote",
+   "n": "Plotin et le néoplatonisme",
+   "c": "La philosophie chrétienne des Pères",
+   "m": "La pensée médiévale avant saint Thomas",
+   "s": "Saint Thomas d’Aquin et la synthèse scolastique",
+   "b": "Saint Bonaventure et Duns Scot",
+   "g": "Le nominalisme et Guillaume d’Ockham",
+   "e": "La seconde scolastique",
+   "d": "Descartes et le rationalisme moderne",
+   "i": "L’empirisme et le déisme",
+   "k": "Kant et la critique de la métaphysique",
+   "x": "Les philosophies du XIXe siècle face à la foi",
+   "o": "Le néothomisme",
+   "r": "Personnalisme et phénoménologie"
+  },
+  "sais": {
+   "l": 57,
+   "p": 56,
+   "a": 58,
+   "n": 48,
+   "c": 48,
+   "m": 48,
+   "s": 60,
+   "b": 62,
+   "g": 36,
+   "e": 48,
+   "d": 59,
+   "i": 60,
+   "k": 53,
+   "x": 60,
+   "o": 48,
+   "r": 58
   }
  },
  "100-la-theologie-pastorale.html": {
@@ -202,8 +356,8 @@
   }
  },
  "12-interpreter-l-ecriture.html": {
-  "taille": 4275134,
-  "empreinte": "c301a0bf98c2f9ecb7a2094754ec8ebc306c8d3771c03157ec7dce8ef1465478",
+  "taille": 4275194,
+  "empreinte": "bd93152934b18be307c1199482b12f19e8276a0e69ddf2ad40b2b51949925cc7",
   "cours": {
    "l": "Le sens littéral",
    "s": "Les sens spirituels",
@@ -318,8 +472,8 @@
   }
  },
  "16-les-livres-sapientiaux-et-poetiques.html": {
-  "taille": 4907054,
-  "empreinte": "3c4f716ac67c9f9edd2615da1c8c6d75430606b955c463db2bb1295118f044b0",
+  "taille": 4907168,
+  "empreinte": "9600ee18327619fe4d94b52381519f04b333b768642d5cd2ec225d2d8b1395d8",
   "cours": {
    "l": "La sagesse biblique",
    "j": "Le livre de Job",
@@ -418,8 +572,8 @@
   }
  },
  "19-les-actes-et-saint-paul.html": {
-  "taille": 6714968,
-  "empreinte": "46bd49294ae1b3367ab03d57cbe7dec43c62b277ab0ed8bce4456e24d87ec86b",
+  "taille": 6715086,
+  "empreinte": "8c8d340d4eb3e0259e0484746c73138da47ad1377ffe2cf1fe2a9aa7787c0b32",
   "cours": {
    "l": "Les Actes des Apôtres",
    "v": "La vie et les voyages de saint Paul",
@@ -452,8 +606,8 @@
   }
  },
  "20-hebreux-les-epitres-catholiques-et-l-apocalypse.html": {
-  "taille": 4344445,
-  "empreinte": "e8b66621acfc714ddc9db28d0e6e177017e9fada544866f9fbaa1dacb6ef50e7",
+  "taille": 4344505,
+  "empreinte": "9f3b28ac3c0649c0da187d030f3aa1af603a1409a88b68a26751a2ef0001ecd0",
   "cours": {
    "l": "L’épître aux Hébreux",
    "e": "L’épître de Jacques",
@@ -474,8 +628,8 @@
   }
  },
  "21-les-grands-themes-de-l-ecriture.html": {
-  "taille": 4569704,
-  "empreinte": "db87d7e09a51f8895619c7191cc266b407e906ff09a7909cc7994dac5e575bcf",
+  "taille": 4569762,
+  "empreinte": "b37fb5060704b72aca91e0b9722292e70e65d1bc2a488e8ad0b0c98bb968e6cd",
   "cours": {
    "l": "Les alliances",
    "a": "Les annonces messianiques",
@@ -500,8 +654,8 @@
   }
  },
  "22-la-patristique.html": {
-  "taille": 3659553,
-  "empreinte": "0edea7bff1c043aeec3c1cef0fa2c1e3ee22b0921b869249b65bc07314d954d8",
+  "taille": 3659673,
+  "empreinte": "d875eaa420764801271c8b073d7475bdf22826f96bd2c29294776276ad8d34e6",
   "cours": {
    "l": "Qu’est-ce qu’un Père de l’Église",
    "p": "Pères, docteurs et écrivains ecclésiastiques",
@@ -524,8 +678,8 @@
   }
  },
  "23-les-premiers-temoins.html": {
-  "taille": 6811036,
-  "empreinte": "ccc309ebc67952b8909192af449624e2ba7415d8c55a52f817d498547a8200c4",
+  "taille": 6811159,
+  "empreinte": "530d9a1a93c592022ebf9c526c7ee0188bc352f91c4775c6b359e1debf48aa5b",
   "cours": {
    "l": "La Didachè",
    "c": "Clément de Rome",
@@ -602,8 +756,8 @@
   }
  },
  "25-les-peres-d-occident.html": {
-  "taille": 4219110,
-  "empreinte": "8bf2ef4e8cf550177c885d6cb7a69f8c94cb847757a56d15550d9ff3e830fa18",
+  "taille": 4219169,
+  "empreinte": "570f9c37b6077f67f79048bd8a38a5b3bd77908927a6a2334f1d7979fbca1573",
   "cours": {
    "l": "Hilaire de Poitiers",
    "a": "Ambroise de Milan",
@@ -630,8 +784,8 @@
   }
  },
  "26-saint-augustin.html": {
-  "taille": 4661147,
-  "empreinte": "3fb061e226cbdd22aeb79eeaf4b0a3477050e2b94e3575aecd49969fa7041d13",
+  "taille": 4661205,
+  "empreinte": "caba43af7aa352cfeee2a819c1695a2c00f18a2dc1f046579a9791fa2070d63a",
   "cours": {
    "l": "La jeunesse et la conversion d’Augustin",
    "a": "Augustin, prêtre et évêque d’Hippone",
@@ -660,8 +814,8 @@
   }
  },
  "27-l-eglise-des-premiers-siecles.html": {
-  "taille": 4156106,
-  "empreinte": "f79b65d8c9f4d7d243d83bad8eec38e2f8c4c19c294001dea5458706ef7e2a63",
+  "taille": 4156166,
+  "empreinte": "b2503c2b09b3b9e3a0af86ac7953f0b8119112f6df12e7d6d13a2b1f09e282ed",
   "cours": {
    "l": "La communauté de Jérusalem",
    "a": "L’assemblée de Jérusalem",
@@ -710,8 +864,8 @@
   }
  },
  "29-le-haut-moyen-age.html": {
-  "taille": 3802828,
-  "empreinte": "85d3dee82fc47c3be3629f107afe65378344c54edbdff3a93ae0b6ae43b2702d",
+  "taille": 3802888,
+  "empreinte": "d2427e2c058adf98d962e8cd216ea4abd96ef917d3e1e19acb89ab43f9dc9bce",
   "cours": {
    "l": "La fin de l’Empire d’Occident",
    "c": "La conversion des peuples d’Occident",
@@ -772,8 +926,8 @@
   }
  },
  "31-la-reforme-et-le-concile-de-trente.html": {
-  "taille": 5168732,
-  "empreinte": "241a037dea3e24bc0131fead0a97e8b092d2aa04a872dab30deb268d8a89e6b6",
+  "taille": 5168786,
+  "empreinte": "4a15c60bdd68460279a5148f6af114dbc3b756985772f77bbbcc14fdb68a6e32",
   "cours": {
    "l": "Les causes de la Réforme",
    "u": "Luther",
@@ -804,8 +958,8 @@
   }
  },
  "32-l-eglise-a-l-epoque-moderne.html": {
-  "taille": 4535045,
-  "empreinte": "f902b4696739e36c02a5447ff232a5e7bee8fe84191ef1fd096c9e47ccab9696",
+  "taille": 4535105,
+  "empreinte": "6b5301dfad1ff25182701a89a58595819c051ce9fec50b5ea63938b0c954eddc",
   "cours": {
    "l": "L’élan missionnaire",
    "q": "La querelle des rites",
@@ -832,8 +986,8 @@
   }
  },
  "33-l-eglise-contemporaine.html": {
-  "taille": 4663462,
-  "empreinte": "a45de69c0dec13fe5b5cbc94a0e82351c6248b450552f0f10f1d7a83f2642d03",
+  "taille": 4663643,
+  "empreinte": "f3242b0ac5aa5ac3afbdae338729dd5df7441e2ade97c3b70f97821d12a34ca1",
   "cours": {
    "l": "Léon XIII",
    "s": "Saint Pie X",
@@ -1070,8 +1224,8 @@
   }
  },
  "43-jesus-dans-l-histoire-et-ses-titres.html": {
-  "taille": 3392527,
-  "empreinte": "2c91b93754a7a15433517108f5cd657acd131c7ce51d35d9206a347cdf5f832a",
+  "taille": 3392587,
+  "empreinte": "223f702b25f1d095b92f297a87f366854ac4bf0eee376b3b0fec35b0ff164cab",
   "cours": {
    "l": "Jésus dans les sources non chrétiennes",
    "c": "Jésus dans les sources chrétiennes",
@@ -1094,8 +1248,8 @@
   }
  },
  "44-l-incarnation.html": {
-  "taille": 2780659,
-  "empreinte": "8e31c70a8bbfd02dcddf9fc696f04aaf5c5ca3184d724052ec62c458d7503900",
+  "taille": 2780777,
+  "empreinte": "0103b97d63ffad0856bb616fe39e893fd5b21fac68ffe6d1c8128f41698eab09",
   "cours": {
    "l": "Le prologue de Jean",
    "r": "Les raisons de l’Incarnation",
@@ -1112,8 +1266,8 @@
   }
  },
  "45-le-dogme-christologique.html": {
-  "taille": 3649949,
-  "empreinte": "5d3fc001618b626392f5ada6718bd1f7c9597570861792f2cc296ff31f5b7f2b",
+  "taille": 3650119,
+  "empreinte": "d78cd78dfd6b4846b9512f3c3828945d2b9ca2884202b4cd8e68cd48718bed4a",
   "cours": {
    "l": "Les hérésies christologiques",
    "c": "La définition de Chalcédoine",
@@ -1138,8 +1292,8 @@
   }
  },
  "46-les-mysteres-de-l-enfance-et-de-la-vie-cachee.html": {
-  "taille": 3642912,
-  "empreinte": "cfee02ba240f98961cc19d105f2ed406e27bdb21643aa0ae86f5089d2369e4c3",
+  "taille": 3643031,
+  "empreinte": "cd44aa1dbc27fbc9d4aaec2d367853ba2a993ac6b210e940faf75566bff8c998",
   "cours": {
    "l": "Pourquoi toute la vie du Christ est mystère",
    "p": "Jean-Baptiste, le Précurseur",
@@ -1164,8 +1318,8 @@
   }
  },
  "47-le-ministere-public.html": {
-  "taille": 6448935,
-  "empreinte": "ac6ac4bdbd1f284dac5eaa746c8c019e759f09b9084b1891a7a063e92923fd81",
+  "taille": 6448994,
+  "empreinte": "6ff86cd7387c4867b46057a62e02b06884fdf4dcc9ffd0d53824a76ab361c5e1",
   "cours": {
    "l": "Le baptême de Jésus",
    "t": "Les tentations au désert",
@@ -1258,8 +1412,8 @@
   }
  },
  "50-la-resurrection-et-la-gloire.html": {
-  "taille": 3654879,
-  "empreinte": "7e251e364d239eb5e641b28ec10b982631d86712453959002bc17c5bdf12e8eb",
+  "taille": 3654997,
+  "empreinte": "b68ca0c737bba4a74201908c24afb0a739c6e32bf7b479945208cc5497138805",
   "cours": {
    "l": "La mise au tombeau",
    "d": "La descente aux enfers",
@@ -1282,8 +1436,8 @@
   }
  },
  "51-l-esprit-saint.html": {
-  "taille": 3916355,
-  "empreinte": "2cc3092fffdd69e92c9347ab7c87bf5fd6b14af9dfc4640b6293206ddd8a38c2",
+  "taille": 3916473,
+  "empreinte": "21469c94d4f9b79a1c98ddb13ee60cbbe54d1e7ba2def8be6942f89485e96300",
   "cours": {
    "l": "Les noms de l’Esprit Saint",
    "s": "Les symboles de l’Esprit Saint",
@@ -1310,8 +1464,8 @@
   }
  },
  "52-la-grace.html": {
-  "taille": 3884686,
-  "empreinte": "00f91bfbb19c83353515afac541486af97103b95e36e5577a2349125aa8e1318",
+  "taille": 3884740,
+  "empreinte": "3d477376dc4e49a2fa3aeb47e6e5396050b7c8bf71b127ab2fc7bdad55187216",
   "cours": {
    "l": "La notion de grâce et l’ordre surnaturel",
    "n": "Nature et grâce",
@@ -1338,8 +1492,8 @@
   }
  },
  "53-la-justification-et-le-merite.html": {
-  "taille": 3251107,
-  "empreinte": "241693a4e54de62b5827eede21584c53cbdc7a0ae5a8fb9985949ffc6b914953",
+  "taille": 3251219,
+  "empreinte": "753ec699bcb0ae29e86d3b4784b4fcc8705892343c2864da38d0237344911c97",
   "cours": {
    "l": "La justification selon le concile de Trente",
    "p": "La préparation à la justification",
@@ -1360,8 +1514,8 @@
   }
  },
  "63-qu-est-ce-que-la-liturgie.html": {
-  "taille": 5113500,
-  "empreinte": "f5029bfd96db4abf30e7557d804568c2080c3f985e5cc2217fc781c9642371f4",
+  "taille": 5113560,
+  "empreinte": "15a1e23f31e59ab234b28801b3bfd068735f4821b86971157222abe205d87194",
   "cours": {
    "l": "Le mot et la notion de liturgie",
    "u": "La liturgie, œuvre du Christ et de l’Église",
@@ -1396,8 +1550,8 @@
   }
  },
  "64-la-messe.html": {
-  "taille": 4169752,
-  "empreinte": "1abc9ecbb695eee9fab73d93c4e7c577a3c189a340687e173200db2cc44f7916",
+  "taille": 4169812,
+  "empreinte": "f0df883df7dfe246c2825a85705d7dd47cbc1df676ff679ffc5934e1b4397672",
   "cours": {
    "l": "L’histoire de la messe",
    "r": "Les rites d’ouverture",
@@ -1478,8 +1632,8 @@
   }
  },
  "67-les-sacrements-en-general.html": {
-  "taille": 3608574,
-  "empreinte": "6754be9d8217a9bbfa72daecc084842dbb97e1f515195c2a6201daa1f3bd387c",
+  "taille": 3608634,
+  "empreinte": "a78e70ea411244b2282408c3dbe2868cb2cfdd13eeec90a9f5d9ae9f4c617d6e",
   "cours": {
    "l": "Le mot et la définition du sacrement",
    "s": "Le signe efficace de la grâce",
@@ -1544,8 +1698,8 @@
   }
  },
  "70-l-eucharistie.html": {
-  "taille": 4424904,
-  "empreinte": "5665db5ea819cb2e65627e3e98c11b5ed2b7d21bc7cec4954a3f47429dbdbd64",
+  "taille": 4425022,
+  "empreinte": "a97e5b24d046b38d3564a82b37b483f37442a28aa87728bbf5fce4cc54a54bab",
   "cours": {
    "l": "Les noms de l’eucharistie",
    "f": "Les figures de l’eucharistie",
@@ -1636,8 +1790,8 @@
   }
  },
  "74-le-mariage.html": {
-  "taille": 3569218,
-  "empreinte": "1f7017f64ac72b16ec6070aeb90e56e66e14002f28a615c19fc3697a3f0e0dd5",
+  "taille": 3569278,
+  "empreinte": "b086335548d4c335a8ac821422cfbfc6f64ed4f714d04b2d10c4db7f67c39a7a",
   "cours": {
    "l": "Le mariage dans le dessein du Créateur",
    "m": "Le mariage, sacrement",
@@ -1658,8 +1812,8 @@
   }
  },
  "75-la-mort-et-le-jugement-particulier.html": {
-  "taille": 2910249,
-  "empreinte": "2f42beaae149ba7551e194ed10c5a9474fc7f276c0e96217585a5d4852187d3c",
+  "taille": 2910361,
+  "empreinte": "a04633666110cbb698a91eb3efcaa067c8055fefe1425dd5f2f860ea0fb487d6",
   "cours": {
    "l": "L’eschatologie, science des fins dernières",
    "m": "La mort",
@@ -1676,8 +1830,8 @@
   }
  },
  "76-le-ciel-le-purgatoire-et-l-enfer.html": {
-  "taille": 2660902,
-  "empreinte": "a6afe41004b0b76637782a81862b8d9dacb8c3524bbd71e9750edb3925d4bc28",
+  "taille": 2661025,
+  "empreinte": "9d1c131a683b8be7ee7f2ade295b24fcfbe36d950cbe79c8a204c09008560ef7",
   "cours": {
    "l": "Le ciel",
    "p": "Le purgatoire",
@@ -1692,8 +1846,8 @@
   }
  },
  "77-la-fin-des-temps.html": {
-  "taille": 3686602,
-  "empreinte": "5a486bd092f5de0fb59dd39fe33752166bbe9dafba9aa41fdb2302dd786d74a3",
+  "taille": 3686781,
+  "empreinte": "80a08c835442ad0dfeef407d8c97b5f4a1af7df935b8fe3fe05a6fb3c95a54f5",
   "cours": {
    "l": "Les signes de la fin des temps",
    "m": "Le millénarisme",
@@ -1716,8 +1870,8 @@
   }
  },
  "91-les-principes-de-la-doctrine-sociale.html": {
-  "taille": 3854916,
-  "empreinte": "37dddc014992a4a0a83d62f3bd6e5732fad3e1bd696ae6a4901745d226861972",
+  "taille": 3854976,
+  "empreinte": "530fbafa8cc8ad4bd0ad683933f6ebd53db2d14fc6e802f70ec05d5c6fdeb5aa",
   "cours": {
    "l": "La nature de la doctrine sociale",
    "d": "La dignité de la personne humaine",
@@ -1742,8 +1896,8 @@
   }
  },
  "92-les-grands-textes-de-la-doctrine-sociale.html": {
-  "taille": 4264296,
-  "empreinte": "d70d12e0a4685a9650076f9b5646bc6fc115b0053867048cbbe09a82285c1e6c",
+  "taille": 4264410,
+  "empreinte": "5f6ca0fd6b95e0e80088b6fb4035849e4e5d47fab1962efbb8d4e79a7c5a7a3d",
   "cours": {
    "l": "Le corpus des textes sociaux",
    "r": "Léon XIII et Rerum novarum",
@@ -1770,8 +1924,8 @@
   }
  },
  "93-les-domaines-de-la-vie-sociale.html": {
-  "taille": 4780084,
-  "empreinte": "879be04ae6e5e98bef7e035d930f8343ae815dae05a26498a6965fcad6015d34",
+  "taille": 4780198,
+  "empreinte": "860f0706f43960b02d2b1f144003c2653c0c048c36602fbd1321b3527befbea0",
   "cours": {
    "l": "La famille dans la société",
    "t": "Le travail",
