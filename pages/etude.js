@@ -49,7 +49,7 @@
      connecte sur l'appareil les reprend, puis elles s'effacent. */
   function reprendAnciennes(uid){
     try{
-      const re=/^lv_etu_((?:etat|pos|prog|taille|blocs|dernier)(?:maj)?_.+)$/, cles=[];
+      const re=/^lv_etu_((?:etat|pos|prog|taille|blocs|dernier|places)(?:maj)?_.+)$/, cles=[];
       for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(re.test(k))cles.push(k);}
       cles.forEach(k=>{
         const n='lv_etu_'+uid+'_'+re.exec(k)[1];
@@ -86,7 +86,7 @@
       return Promise.all(ids.map(id=>lecDoc(id).get().then(sn=>{
         if(!sn.exists)return;
         const d=sn.data()||{};
-        ['etat','pos','prog','taille','blocs','dernier'].forEach(q=>{
+        ['etat','pos','prog','taille','blocs','dernier','places'].forEach(q=>{
           const m=+d[q+'Maj']||0;
           if(typeof d[q]==='string'&&m>lMaj(q,id)){lPose(q,id,d[q],m);ch.push(id+':'+q);}
         });
@@ -504,7 +504,13 @@ window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==pare
     const d=litJson('dernier','_reglages');
     if(!d||typeof d.f!=='string'||typeof d.t!=='string')return null;
     if(typeof EMPREINTES_COURS==='object'&&!EMPREINTES_COURS[d.f])return null;
-    return {f:d.f,t:d.t};
+    /* le nom affiché est celui du cours où l'on s'était arrêté (la page
+       gardée dit lequel), sinon celui du thème */
+    const e=litJson('etat','c_'+d.f.replace(/\.html$/,''));
+    const l=lettreDe(e&&e.page,lettresDe(d.f));
+    const th=(typeof THEMES_COURS==='object'&&THEMES_COURS[d.f])||null;
+    const c=l&&th?th.c.find(x=>x[0]===l):null;
+    return {f:d.f,t:c?c[1]:d.t};
   }
   function reprendParcours(){
     const o=PARC; PARC=null;
@@ -710,7 +716,7 @@ window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==pare
     if(typeof d.lvCours==='string'){ ouvreCours(d.lvCours,typeof d.lvCoursAncre==='string'?d.lvCoursAncre:'',typeof d.lvCoursLettre==='string'?d.lvCoursLettre:'',Math.max(0,Math.round(+d.lvSom||0))); return; }
     if('lvSel' in d){ if(typeof qaSelectionCadre==='function')qaSelectionCadre(d.lvSel,o.f,o.titre,o.genre==='cours'?'un cours':'un parcours',o.code,null); return; }
     if(typeof d.lvPos==='number'){
-      if(o.rendu){const info=d.lvPosInfo&&typeof d.lvPosInfo==='object'?d.lvPosInfo:{y:d.lvPos};info.y=Math.max(0,Math.round(info.y||0));garde('pos',o.id,JSON.stringify(info));}
+      if(o.rendu){const info=d.lvPosInfo&&typeof d.lvPosInfo==='object'?d.lvPosInfo:{y:d.lvPos};info.y=Math.max(0,Math.round(info.y||0));garde('pos',o.id,JSON.stringify(info));notePlace(o,null,info);}
       return;
     }
     if(typeof d.lvEtat!=='undefined'&&d.lvEtat!==null){
@@ -718,6 +724,7 @@ window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==pare
          n'est que son état de naissance */
       if(!o.rendu)return;
       garde('etat',o.id,JSON.stringify(d.lvEtat));
+      notePlace(o,d.lvEtat.page,null);
       const r=rangDe(d.lvEtat,o.genre);
       if(r>=0&&String(r)!==lLit('taille','_reglages'))garde('taille','_reglages',String(r));
       return;
@@ -751,14 +758,49 @@ window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==pare
      Le bouton du cours, sur un thème du parcours, ouvre la page où l'on
      choisit l'un de ses cours (Emmanuel : « que ce soit à partir de là
      qu'on peut choisir les cours »), en plus du sommaire de chaque cours.
-     Le numéro et le titre du thème en tête, soulignés du séparateur qui
+     Le titre du thème en tête, souligné du séparateur qui
      s'éteint vers la droite, puis ses cours en rangées sans cadre
      séparées par des filets, comme les articles : numéro, titre, ligne de
-     présentation. Choisir un cours l'ouvre sur sa première leçon, et non
-     sur son ouverture (Emmanuel : « que ça ouvre sur la leçon 1 »).
+     présentation. Choisir un cours le rouvre là où on l'avait quitté ; un
+     cours encore jamais ouvert s'ouvre sur sa première leçon, et non sur
+     son ouverture (Emmanuel : « que ça ouvre sur la leçon 1 »).
      La page se dessine dans Étude même, aux polices et aux couleurs du
      site ; elle ajoute un pas à l'historique, comme le cours qu'on en
      ouvre. La liste vient de la fabrication (THEMES_COURS). */
+  /* ── LA PLACE DE CHAQUE COURS ──
+     Un fichier de thème garde sa page et sa place de lecture, celles du
+     dernier cours lu. Pour que choisir un cours dans la liste ramène là où
+     on l'avait quitté (Emmanuel : « que ça enregistre où j'ai quitté »),
+     chaque cours garde aussi la sienne (« places » : lettre du cours →
+     page et place), synchronisée comme le reste. Un cours jamais ouvert
+     s'ouvre sur sa leçon 1. */
+  function notePlace(o,page,pos){
+    if(o.genre!=='cours')return;
+    if(typeof page==='string'&&page){
+      const l=lettreDe(page,lettresDe(o.fichier));
+      if(!l)return;
+      if(o.placeP!==page){o.placeP=page;o.placeL=l;o.placeY=null;}
+    }
+    if(pos)o.placeY=pos;
+    if(!o.placeL)return;
+    const t=litJson('places',o.id)||{};
+    const v={page:o.placeP};if(o.placeY)v.pos=o.placeY;
+    if(JSON.stringify(t[o.placeL])===JSON.stringify(v))return;
+    t[o.placeL]=v;
+    garde('places',o.id,JSON.stringify(t));
+  }
+  function ouvreDepuisChoix(f,l){
+    const id='c_'+f.replace(/\.html$/,'');
+    const pl=(litJson('places',id)||{})[l];
+    if(!pl||typeof pl.page!=='string'||lettreDe(pl.page,lettresDe(f))!==l){ouvreCours(f,l+'1',l);return;}
+    /* la page et la place de ce cours redeviennent celles du fichier, puis
+       le cours s'ouvre comme par « Reprendre » */
+    const e=litJson('etat',id)||{};
+    e.page=pl.page;
+    garde('etat',id,JSON.stringify(e));
+    garde('pos',id,JSON.stringify(pl.pos&&typeof pl.pos==='object'?pl.pos:{y:0}));
+    ouvreCours(f,'',l);
+  }
   function ouvreTheme(f){
     if(typeof THEMES_COURS!=='object'||!THEMES_COURS[f])return;
     history.pushState({etude:'choix'},'','#t/'+encodeURIComponent(f));
@@ -770,15 +812,14 @@ window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==pare
     const o={id:'choix_'+f.replace(/\.html$/,''),genre:'choix',theme:f,titre:t.t};
     const d=document.createElement('div');
     d.className='et-choix';
-    d.innerHTML='<div class="et-choix-in"><p class="et-choix-k">Thème '+esc(t.n)+'</p><h2 class="et-choix-t">'+esc(t.t)+'</h2><div class="et-choix-sep"></div><ol class="et-choix-l">'
+    d.innerHTML='<div class="et-choix-in"><h2 class="et-choix-t">'+esc(t.t)+'</h2><div class="et-choix-sep"></div><ol class="et-choix-l">'
       +t.c.map((c,i)=>'<li><a href="#" data-l="'+esc(c[0])+'"><span class="et-choix-c">'+esc(t.n)+'.'+(i+1)+'</span><span class="et-choix-x"><span class="et-choix-n">'+esc(c[1])+'</span>'+(c[2]?'<span class="et-choix-d">'+esc(c[2])+'</span>':'')+'</span><span class="et-choix-v" aria-hidden="true">→</span></a></li>').join('')
       +'</ol></div>';
     d.addEventListener('click',ev=>{
       const a=ev.target.closest&&ev.target.closest('a[data-l]');
       if(!a)return;
       ev.preventDefault();
-      const l=a.getAttribute('data-l');
-      ouvreCours(f,l+'1',l);
+      ouvreDepuisChoix(f,a.getAttribute('data-l'));
     });
     /* pour l'IA : le thème et ses cours, en texte */
     o.code='<h1>'+esc(t.t)+'</h1><ol>'+t.c.map(c=>'<li>'+esc(c[1])+(c[2]?' : '+esc(c[2]):'')+'</li>').join('')+'</ol>';

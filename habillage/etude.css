@@ -50,13 +50,12 @@ html:root body:not(#_):not(#_) .res-plein-acts>.res-plein-bible:hover+.res-plein
 @media (prefers-reduced-motion:reduce){.et-avis,.et-avis.vu{transition:none;transform:translate(-50%,0)}}
 
 /* Le choix des cours d'un thème (pages/etude.js) : une page noire du site,
-   sous le bandeau. Le numéro du thème, puis son titre en Cormorant,
+   sous le bandeau. Le titre du thème en Cormorant,
    souligné du séparateur qui s'éteint vers la droite ; ses cours en
    rangées sans cadre séparées par des filets, comme les articles :
    numéro, titre, ligne de présentation, flèche. */
 html body .et-choix{position:fixed;inset:0;z-index:200;background:#000;overflow-y:auto;-webkit-overflow-scrolling:touch;color:#fff}
 .et-choix-in{max-width:760px;margin:0 auto;padding:clamp(40px,9vh,96px) 24px 120px}
-.et-choix-k{margin:0 0 8px;font-family:'EB Garamond',Georgia,serif;font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55)}
 .et-choix-t{margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(34px,6vw,48px);line-height:1.1;color:#fff}
 .et-choix-sep{height:1px;margin:20px 0 8px;background:linear-gradient(90deg,var(--h-or,#efe6cf),rgba(239,230,207,0))}
 .et-choix-l{list-style:none;margin:0;padding:0}
