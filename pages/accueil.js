@@ -746,7 +746,7 @@
     h += bloc('Aujourd’hui dans l’Église', viePratique(d, j).map(function (t) { return '<p class="lit-pt">' + esc(typo(t)) + '</p>'; }).join(''));
     var hh = heure(j);
     h += '<section class="lit-bloc"><div class="med-tete"><h2 class="lit-titre">Prière des heures</h2>'
-      + '<a class="med-lien med-avant" href="/heures.html">Tous les offices du jour</a></div>'
+      + '<a class="med-lien med-offices" href="/heures.html">Tous les offices du jour</a></div>'
       + '<div class="lit-corps lit-heure">'
       + ligne(hh[0][0], lienOffice(hh[0][1])) + ligne(hh[1][0], hh[1][1])
       + (j.p ? ligne('Psautier', ord(j.p) + ' semaine') : '') + '</div></section>';

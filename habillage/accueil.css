@@ -121,7 +121,7 @@ html body .med-texte.suit .mw.dit{color:var(--h-t1)}
 /* l'intitulé du bloc et, dessous, « Les méditations précédentes », loin
    du texte qui défile ; sur téléphone, les deux sur une même ligne */
 html body .med-tete{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
-html body .med-tete .med-avant{font-size:15px;line-height:1.35;text-align:left}
+html body .med-tete .med-avant,html body .med-tete .med-offices{font-size:15px;line-height:1.35;text-align:left}
 html body .med-tete .med-avant[hidden]{display:none}
 html body .med-lien{background:none;border:0;padding:0;margin:0;font:inherit;font-size:16px;color:var(--h-t1);cursor:pointer;border-bottom:1px solid var(--h-l2);transition:border-color .25s,color .25s}
 html body .med-lien:hover,html body .med-lien:focus-visible{border-color:var(--h-or);color:#fff;outline:none}

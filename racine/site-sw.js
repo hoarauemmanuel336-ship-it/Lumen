@@ -8,8 +8,8 @@
    qui conserve sur l'appareil tout ce qui a déjà été lu.
 
    Trois façons de servir :
-   · LES PAGES : le réseau d'abord, pour être toujours à jour ; hors ligne,
-     la dernière version gardée.
+   · LES PAGES (et le parcours d'Étude) : le réseau d'abord, pour être
+     toujours à jour ; hors ligne, la dernière version gardée.
    · LA BIBLE : l'appareil d'abord, sans rien redemander au serveur. Le
      cache de la Bible porte l'empreinte de son texte : quand une mise en
      ligne change la traduction, l'empreinte change et l'ancien cache part.
@@ -44,6 +44,10 @@ function genre(url, req) {
        lisent par morceaux (vidéo, PDF) et le navigateur les garde déjà */
     if (p.indexOf('/memoriser') === 0 || p.indexOf('/__') === 0 || p.indexOf('/fichiers/') === 0 || p.indexOf('/api/') === 0) return '';
     if (req.mode === 'navigate' || PAGES.indexOf(p) >= 0) return 'page';
+    /* le parcours d'Étude se garde comme une page : hors ligne, il se
+       rouvre, et avec lui les cours déjà gardés sur l'appareil (les cours
+       eux-mêmes, venus du coffre, se gardent dans pages/etude.js) */
+    if (p.indexOf('/parcours/') === 0 && p.indexOf('/parcours/cours/') !== 0) return 'page';
     if (p.indexOf('/bible-data/') === 0 || p.indexOf('/bible-data-seraphin/') === 0) return 'bible';
     if (p.indexOf('/js/') === 0 || p === '/lumen-app.js' || p === '/bible-panneau.js' ||
         p === '/recherche-fr.js' || p.indexOf('/icones/') === 0 || p.indexOf('/polices/') === 0 || p.indexOf('/liturgie/') === 0 || p === '/manifest.webmanifest') return 'fixe';
