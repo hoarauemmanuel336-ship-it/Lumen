@@ -18,10 +18,10 @@
    celle de la veille reste sur l'accueil jusqu'à minuit (une fois, à la
    demande d'Emmanuel, pour une méditation lancée en cours de journée).
    À chaque passage, elle efface aussi du coffre les méditations de plus
-   de trente jours, leur voix comprise : elles ne se réécoutent qu'un
-   mois. Le journal, qui ne garde que leur titre et leur résumé pour que
-   l'IA ne redise pas ce qu'elle a déjà dit, oublie chaque méditation un
-   an après sa parution (choix d'Emmanuel).
+   d'un an, leur voix comprise, et le journal, qui garde leur titre et
+   leur résumé pour que l'IA ne redise pas ce qu'elle a déjà dit, les
+   oublie au même moment : une méditation se réécoute aussi longtemps que
+   l'IA s'en souvient (choix d'Emmanuel).
    ============================================================ */
 import { liste, efface } from '../serveur/r2.js';
 import { DOSSIER, jourDe, heureDe, lendemain, premierJourGarde, litJson, ecritJson, jetonFabrique } from '../serveur/meditation.js';
@@ -32,9 +32,7 @@ async function nettoie() {
     const d = (f.cle.match(/(\d{4}-\d{2}-\d{2})\.(json|mp3)$/) || [])[1];
     if (d && d < premier) await efface(f.cle);
   }
-  const an = new Date(jourDe() + 'T12:00:00Z');
-  an.setUTCFullYear(an.getUTCFullYear() - 1);
-  const limite = an.toISOString().slice(0, 10);
+  const limite = premier;
   const journal = await litJson('journal.json');
   if (journal && (journal.meditations || []).some(m => m.date < limite)) {
     journal.meditations = journal.meditations.filter(m => m.date >= limite);

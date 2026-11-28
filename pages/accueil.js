@@ -391,7 +391,7 @@
      épuisés), une phrase le dit à tous ; Emmanuel seul voit en plus
      pourquoi, et quoi faire, d'après ce que le serveur lui répond
      (lumen-app.js, « lv-med-proprio »). « Les méditations précédentes »
-     ouvre la liste des trente derniers jours ; un toucher sur l'une la
+     ouvre la liste de la dernière année, rangée par mois ; un toucher sur l'une la
      pose ici à la place de celle du jour, l'icône à sa droite la
      télécharge. */
   var MED = { liste: [], aujourdhui: '', jour: '', pause: false };
@@ -677,11 +677,22 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && f.classList.contains('on')) ferme(); });
     return f;
   }
-  var fmtCourtJour = new Intl.DateTimeFormat('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' });
+  /* la liste va de la plus récente à la plus ancienne, rangée par mois :
+     le nom du mois en tête de chacun, puis chaque méditation avec sa date
+     entière (Emmanuel : « classe-les par mois avec leur date ») */
+  var fmtJourEntier = new Intl.DateTimeFormat('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+  var fmtMois = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' });
   function ouvre() {
-    var f = fenetre(), h = '';
+    var f = fenetre(), h = '', mois = '';
     MED.liste.forEach(function (x) {
-      var quand = x.date === MED.aujourdhui ? 'aujourd’hui' : fmtCourtJour.format(dateDe(x.date));
+      var m = x.date.slice(0, 7);
+      if (m !== mois) {
+        mois = m;
+        var nom = fmtMois.format(dateDe(x.date));
+        h += '<h3 class="med-mois">' + esc(nom.charAt(0).toUpperCase() + nom.slice(1)) + '</h3>';
+      }
+      var jourEntier = fmtJourEntier.format(dateDe(x.date));
+      var quand = x.date === MED.aujourdhui ? 'aujourd’hui, ' + jourEntier : jourEntier;
       h += '<div class="med-rang"><button type="button" class="choix' + (x.date === MED.jour ? ' med-ici-l' : '') + '" data-jour="' + esc(x.date) + '">'
         + '<span class="cx-ic">' + IC_JOUER + '</span>'
         + '<span class="med-l">' + esc(x.titre)

@@ -37,4 +37,4 @@ La tâche suit ces étapes, dans l'ordre. Elle travaille dans un clone du dépô
 
 ## Ce qui reste à la fabrique du site
 
-La voix, le moment où chaque mot est dit, l'entrée au journal, la parution à minuit, la pause et la reprise après pause, le ménage des méditations de plus de trente jours : tout cela reste à la fabrique et à l'horloge (`netlify/functions/`), quelle que soit la plume.
+La voix, le moment où chaque mot est dit, l'entrée au journal, la parution à minuit, la pause et la reprise après pause, le ménage des méditations de plus d'un an : tout cela reste à la fabrique et à l'horloge (`netlify/functions/`), quelle que soit la plume.

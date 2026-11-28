@@ -1,7 +1,7 @@
 /* ============================================================
    LUMEN — la méditation du jour, servie à l'accueil
-   · /api/meditation : la dernière méditation parue et la liste des
-     trente derniers jours ;
+   · /api/meditation : la dernière méditation parue et la liste de la
+     dernière année ;
    · /api/meditation/AAAA-MM-JJ : la méditation d'un jour ;
    · /api/meditation/AAAA-MM-JJ.mp3 : sa voix, lue par morceaux (le
      lecteur avance où l'on veut sans tout charger), ou téléchargée avec
@@ -9,9 +9,8 @@
    · POST /api/meditation, pour le seul compte d'Emmanuel : où en est la
      fabrique (crédits, pause, panne), et la pause des méditations, qu'il
      règle dans « Mon compte ».
-   Seuls les trente derniers jours se réécoutent (Emmanuel : « sur une
-   période de 1 mois »), et seulement les méditations parues avec leur
-   voix ; celle du lendemain, préparée la veille, reste cachée jusqu'à
+   Les méditations se réécoutent pendant un an, aussi longtemps que
+   l'IA s'en souvient, et seulement celles parues avec leur voix ; celle du lendemain, préparée la veille, reste cachée jusqu'à
    minuit. La méditation s'écrit chaque nuit dans
    netlify/functions/ ; son rangement est décrit dans
    netlify/serveur/meditation.js. La méditation se lit librement ; seul

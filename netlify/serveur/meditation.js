@@ -20,9 +20,6 @@
 import { demande, ecrit } from './r2.js';
 
 export const DOSSIER = 'meditations/';
-/* les méditations se réécoutent pendant trente jours (Emmanuel : « sur
-   une période de 1 mois ») */
-export const JOURS_GARDES = 30;
 
 export function jourDe(d = new Date()) {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'Indian/Reunion', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
@@ -39,9 +36,13 @@ export function jourValide(j) {
   return /^\d{4}-\d{2}-\d{2}$/.test(String(j || ''));
 }
 /* le premier jour encore réécoutable */
+/* les méditations se réécoutent pendant un an, aussi longtemps que le
+   journal s'en souvient (Emmanuel : « garde-les pendant 1 an puisque
+   l'IA garde en mémoire aussi pendant 1 an ») : le premier jour gardé est
+   le même jour, un an plus tôt */
 export function premierJourGarde(aujourdhui = jourDe()) {
   const d = new Date(aujourdhui + 'T12:00:00Z');
-  d.setUTCDate(d.getUTCDate() - (JOURS_GARDES - 1));
+  d.setUTCFullYear(d.getUTCFullYear() - 1);
   return d.toISOString().slice(0, 10);
 }
 
