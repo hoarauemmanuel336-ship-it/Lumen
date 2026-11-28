@@ -23,13 +23,17 @@ La tâche suit ces étapes, dans l'ordre. Elle travaille dans un clone du dépô
 3. **L'écriture.** La consigne est celle que suit l'API, à la lettre : la fonction `consigne()` de `netlify/functions/meditation-fabrique.mjs`, avec le journal reçu (titres et résumés des méditations parues), puis les règles d'écriture d'Emmanuel (`ia/instructions.md`). Le texte lu compte entre 3 000 et 4 000 signes. Chaque verset cité se prend mot pour mot dans la Chérubin (`contenu/bible.json`, ou la skill bible). La tâche écrit un brouillon `brouillon.json` :
    `{"date", "titre", "sujet", "resume", "texte_lu", "texte_ecrit"}`, avec les formes décrites dans la consigne (texte lu écrit comme il se prononce, avec ses indications de jeu entre crochets ; texte affiché avec *italique*, **gras** et paragraphes séparés par une ligne vide).
 
-4. **Humaniser.** La tâche relit le brouillon avec la skill humaniser (`ia/humaniser.md`, la copie que garde le dépôt), en suivant la fonction `consigneRelecture()` de la fabrique : les deux textes restent le même texte, les versets restent mot pour mot.
+4. **L'écoute.** La tâche confie le brouillon à un seul agent, du même modèle qu'elle, avec la consigne de la fonction `consigneEcoute()` de la fabrique et le texte lu : il l'écoute comme un auditeur qui l'entend une seule fois et relève chaque endroit qui ne se comprend pas exactement à la première écoute.
 
-5. **La mise en forme.** `node fabrication/meditation-prepare.js brouillon.json` donne au texte la typographie du site, vérifie la longueur, chaque citation contre la Chérubin et que le texte affiché dit mot pour mot ce que dit la voix, et écrit `envoi/AAAA-MM-JJ.json` et `envoi/envoi.json`. Une faute signalée se corrige dans le brouillon, puis la commande se relance.
+5. **La correction.** La tâche corrige elle-même le brouillon d'après ces remarques, en gardant le reste.
 
-6. **L'envoi.** La tâche pousse une branche `envoi/meditation-AAAA-MM-JJ` qui porte le dossier `envoi/`. Le robot range la méditation dans `meditations/` du coffre, puis supprime la branche. Il la refuse si le jour a déjà sa méditation : celle de l'API n'est jamais remplacée.
+6. **Humaniser, en tout dernier.** La tâche relit le brouillon avec la skill humaniser (`ia/humaniser.md`, la copie que garde le dépôt), en suivant la fonction `consigneRelecture()` de la fabrique : les deux textes restent le même texte, les versets restent mot pour mot.
 
-7. **Le ménage.** La tâche supprime sa branche `demande/…`.
+7. **La mise en forme.** `node fabrication/meditation-prepare.js brouillon.json` donne au texte la typographie du site, vérifie la longueur, chaque citation contre la Chérubin et que le texte affiché dit mot pour mot ce que dit la voix, et écrit `envoi/AAAA-MM-JJ.json` et `envoi/envoi.json`. Une faute signalée se corrige dans le brouillon, puis la commande se relance.
+
+8. **L'envoi.** La tâche pousse une branche `envoi/meditation-AAAA-MM-JJ` qui porte le dossier `envoi/`. Le robot range la méditation dans `meditations/` du coffre, puis supprime la branche. Il la refuse si le jour a déjà sa méditation : celle de l'API n'est jamais remplacée.
+
+9. **Le ménage.** La tâche supprime sa branche `demande/…`.
 
 ## Ce qui reste à la fabrique du site
 

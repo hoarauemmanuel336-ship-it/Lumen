@@ -8,11 +8,15 @@
    3. Claude écrit la méditation, d'après le journal des méditations
       parues, pour varier : un sujet peut revenir avec un regard neuf,
       sans redire la même chose (« la règle ne doit pas être trop stricte ») ;
-   4. Claude la relit avec la skill humaniser d'Emmanuel (« il faudra
-      toujours faire passer un coup de /humaniser ») ;
-   5. la voix « Victoria » d'ElevenLabs la lit, et donne le moment où
+   4. un autre agent Claude l'écoute comme un auditeur qui l'entend une
+      seule fois et relève chaque endroit qui ne se comprend pas exactement
+      à la première écoute ; l'auteur corrige d'après ses remarques ;
+   5. Claude la relit en tout dernier avec la skill humaniser d'Emmanuel
+      (« il faudra toujours faire passer un coup de /humaniser », et
+      « met le passage à humaniser à la toute fin ») ;
+   6. la voix « Victoria » d'ElevenLabs la lit, et donne le moment où
       chaque signe est dit : l'accueil fait suivre le texte à la voix ;
-   6. tout se range dans le coffre (netlify/serveur/meditation.js), et
+   7. tout se range dans le coffre (netlify/serveur/meditation.js), et
       la méditation paraît.
    Une méditation paraît toujours avec sa voix (« voix + texte, jamais
    que le texte ») : sans voix, rien ne paraît, et l'accueil le dit.
@@ -105,6 +109,15 @@ const OUTIL_RENDRE = {
     required: ['titre', 'sujet', 'resume', 'texte_lu', 'texte_ecrit'],
   },
 };
+const OUTIL_REMARQUES = {
+  name: 'rendre_remarques',
+  description: 'Rend les remarques de l’écoute.',
+  input_schema: {
+    type: 'object',
+    properties: { remarques: { type: 'string', description: 'Chaque passage relevé, cité, avec ce que l’auditeur en comprend.' } },
+    required: ['remarques'],
+  },
+};
 const OUTIL_RELU = {
   name: 'rendre_texte_relu',
   description: 'Rend la méditation relue.',
@@ -155,6 +168,14 @@ Tu rends la méditation avec l’outil rendre_meditation :
 <journal>
 ${passees || '(aucune méditation n’a encore paru)'}
 </journal>`;
+}
+
+/* L'écoute : un agent qui n'a pas écrit le texte l'entend comme
+   l'auditeur, qui n'a que ce que dit la voix. Emmanuel l'a voulue pour
+   tout ce qui ne se comprend pas à la première écoute, et non pour une
+   liste de fautes : « problème de ce genre ». */
+function consigneEcoute() {
+  return `Tu écoutes la méditation du jour du site Lumen avant qu’elle paraisse. Une voix de synthèse la lira, et l’auditeur l’entendra une seule fois, sans le texte sous les yeux et sans rien savoir de ce que l’auteur avait en tête. Tu te mets à sa place. Tu relèves chaque endroit où il ne peut pas saisir exactement ce que le texte veut dire, ou risque de le comprendre de travers. Pour chacun, tu cites le passage et tu dis ce que l’auditeur en comprend. Tu rends tes remarques avec l’outil rendre_remarques, et c’est l’auteur qui corrige. Quand tout se comprend du premier coup, tu le dis en une phrase.`;
 }
 
 function consigneRelecture(plafond) {
@@ -225,10 +246,16 @@ function verifieTextes(champs, plafond) {
 async function ecrisMeditation(jour, journal, plafond) {
   const brut = await echange(consigne(jour, journal, plafond) + REGLES(), [OUTIL_VERSETS, OUTIL_RENDRE],
     'Écris la méditation.', 'rendre_meditation', verifieTextes(['titre', 'sujet', 'resume', 'texte_lu', 'texte_ecrit'], plafond));
+  const ecoute = await echange(consigneEcoute(), [OUTIL_REMARQUES],
+    'Écoute cette méditation.\n\n' + brut.texte_lu,
+    'rendre_remarques', m => String(m.remarques || '').trim() ? '' : 'Il manque tes remarques.');
+  const corrige = await echange(consigne(jour, journal, plafond) + REGLES(), [OUTIL_VERSETS, OUTIL_RENDRE],
+    'Voici ta méditation, puis les remarques d’un relecteur qui l’a écoutée comme l’auditeur l’entendra, une seule fois. Corrige chaque endroit qu’il relève, pour que tout se comprenne à la première écoute, en gardant le reste, puis rends la méditation entière.\n\n<meditation>\n' + JSON.stringify(brut, null, 1) + '\n</meditation>\n\n<remarques>\n' + ecoute.remarques + '\n</remarques>',
+    'rendre_meditation', verifieTextes(['titre', 'sujet', 'resume', 'texte_lu', 'texte_ecrit'], plafond));
   const relu = await echange(consigneRelecture(plafond), [OUTIL_RELU],
-    'Relis cette méditation.\n\n' + JSON.stringify({ titre: brut.titre, texte_lu: brut.texte_lu, texte_ecrit: brut.texte_ecrit }, null, 1),
+    'Relis cette méditation.\n\n' + JSON.stringify({ titre: corrige.titre, texte_lu: corrige.texte_lu, texte_ecrit: corrige.texte_ecrit }, null, 1),
     'rendre_texte_relu', verifieTextes(['titre', 'texte_lu', 'texte_ecrit'], plafond));
-  return Object.assign({}, brut, relu);
+  return Object.assign({}, corrige, relu);
 }
 
 /* La typographie française du texte affiché : apostrophe courbe, espaces
