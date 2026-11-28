@@ -153,6 +153,10 @@
       if (s.s === 'TR') { var jv = jour(plus(dd, -1)); if (jv && /^Jeudi Saint/.test(jv.n)) dd = plus(dd, -1); }
       h += '<span class="lit-d' + (r ? ' lit-d' + (r + 1) : '') + '" style="left:' + (s.i / total * 100) + '%">' + esc(jm.format(dd)) + '</span>';
     });
+    /* au bout de la frise, le dernier jour de l'année liturgique, la
+       veille du premier dimanche de l'Avent suivant : la date se pose à
+       gauche de son trait, contre le bord droit */
+    h += '<span class="lit-d lit-d-fin">' + esc(jm.format(plus(b.fin, -1))) + '</span>';
     h += '</div>';
     var LEGENDE = [['P', 'Avent, Carême'], ['B', 'Noël, Temps pascal'], ['V', 'Temps ordinaire'], ['R', 'Triduum pascal']];
     h += '<ul class="lit-legende">';
