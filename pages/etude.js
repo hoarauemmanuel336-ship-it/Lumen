@@ -5,9 +5,10 @@
    question à l'IA), replié derrière trois points, mémoire de lecture.
    Le parcours vient du site (/parcours/), chaque cours du coffre R2
    (/parcours/cours/, voir netlify/edge-functions/fichiers.js). « Ouvrir le
-   cours », sur chaque thème du parcours, ouvre le fichier de cours du
-   thème ; le retour ramène au parcours, et du parcours à la page d'où l'on
-   venait (l'accueil quand on est arrivé directement ici). Échap fait de
+   cours », sur chaque thème du parcours, ouvre le choix des cours du
+   thème, et chaque cours s'ouvre de là sur sa première leçon ; le retour
+   remonte du cours au choix, du choix au parcours, et du parcours à la
+   page d'où l'on venait (l'accueil quand on est arrivé directement ici). Échap fait de
    même, sauf quand la Bible ou l'IA est ouverte. */
 (function(){
   const PARCOURS='/parcours/la-foi-catholique.html';
@@ -221,31 +222,32 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
      Dans le sommaire d'un cours, chaque leçon s'ouvre repliée : on ne voit
      que son titre, ses parties (I, II, III…) restent cachées (choix
      d'Emmanuel : « toutes les leçons repliées de base »). Toucher une leçon
-     repliée la déplie ; toucher une leçon dépliée mène à la leçon ; le
-     chevron, à droite, la déplie ou la replie toujours. Un bouton « Tout
-     déplier / Tout replier », au-dessus de la liste, vaut pour le cours
-     affiché. Les parties se déroulent comme une section des diagrammes (de
-     zéro à leur hauteur en 0,4 s, repli en 0,3 s). Ce qui est déplié dure
-     le temps que le cours reste ouvert. Le script passe en tête du
-     document et attend que le moteur du cours ait bâti son sommaire : les
-     fichiers de cours restent tels quels. */
+     ouvre la leçon ; seul le chevron, à droite, déplie ou replie ses
+     parties. Au-dessus des leçons de chaque cours, sous l'ouverture, une
+     ligne « Leçons » porte le bouton « Tout déplier / Tout replier », qui
+     vaut pour les leçons de ce cours : il se tient avec elles, et non à
+     côté des onglets des cours. Les parties se déroulent comme une section
+     des diagrammes (de zéro à leur hauteur en 0,4 s, repli en 0,3 s). Ce
+     qui est déplié dure le temps que le cours reste ouvert. Le script passe
+     en tête du document et attend que le moteur du cours ait bâti son
+     sommaire : les fichiers de cours restent tels quels. */
   const REPLI_LECONS='<scr'+'ipt>'+String.raw`(function(){
 var css='#som .lv-pl{display:flex;flex-direction:column;gap:1px}'
 +'#som .lv-pl[hidden]{display:none}'
 +'#som .se.lv-l{padding-right:4px}'
-+'#som .lv-lv{flex:none;width:28px;height:28px;margin:-6px 0 -6px 2px;display:flex;align-items:center;justify-content:center;font:400 17px/1 var(--fm,monospace);color:rgba(255,255,255,.5);transition:transform .35s cubic-bezier(.2,.7,.3,1),color .25s}'
++'#som .lv-lv{flex:none;width:32px;height:32px;margin:-8px 0 -8px 2px;display:flex;align-items:center;justify-content:center;font:400 17px/1 var(--fm,monospace);color:rgba(255,255,255,.5);cursor:pointer;transition:transform .35s cubic-bezier(.2,.7,.3,1),color .25s}'
 +'#som .se.lv-l.lv-o .lv-lv{transform:rotate(90deg);color:#fff}'
-+'#som .lv-tt{display:flex;justify-content:flex-end;margin:-4px 0 8px}'
-+'#som .lv-tt[hidden]{display:none}'
++'#som .lv-tt{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0 4px;padding:0 0 0 10px}'
++'#som .lv-tl{font:400 10px/1 var(--fm,monospace);text-transform:uppercase;letter-spacing:.16em;color:rgba(255,255,255,.5)}'
 +'#som .lv-tb{display:flex;align-items:center;gap:8px;padding:8px 10px;margin-right:-6px;font:400 10px/1 var(--fm,monospace);text-transform:uppercase;letter-spacing:.16em;color:rgba(255,255,255,.6);-webkit-tap-highlight-color:transparent;touch-action:manipulation;cursor:pointer;transition:color .25s}'
 +'#som .lv-tb i{font-style:normal;font-size:14px;letter-spacing:0;display:inline-block;transform:rotate(90deg);transition:transform .35s cubic-bezier(.2,.7,.3,1)}'
 +'#som .lv-tb.up i{transform:rotate(-90deg)}'
 +'@media (hover:hover) and (pointer:fine){#som .lv-tb:hover,#som .lv-lv:hover{color:#fff}}'
-+'@media (max-width:640px){#som .lv-tb{font-size:11px;min-height:40px}#som .lv-lv{width:36px;height:36px}}';
++'@media (max-width:640px){#som .lv-tb,#som .lv-tl{font-size:11px}#som .lv-tb{min-height:40px}#som .lv-lv{width:40px;height:40px;margin:-10px -2px -10px 2px}}';
 var st=document.createElement('style');st.textContent=css;(document.head||document.documentElement).appendChild(st);
 var RM=false;try{RM=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(_){}
-var SO=null,TB=null;
-function lecons(sl){return [].filter.call(sl.querySelectorAll('.se.lv-l'),function(){return true;});}
+var SO=null;
+function lecons(sl){return [].slice.call(sl.querySelectorAll('.se.lv-l'));}
 function ouverte(a){return a.classList.contains('lv-o');}
 function pose(a,o,anime){var p=a._lvP;if(!p)return;a.classList.toggle('lv-o',o);a.setAttribute('aria-expanded',o?'true':'false');
 if(p._an){try{p._an.cancel();}catch(_){}p._an=null;}
@@ -253,29 +255,36 @@ if(!anime||RM||!p.animate){p.hidden=!o;p.style.overflow='';return;}
 p.hidden=false;p.style.overflow='hidden';var H=p.scrollHeight;
 var an=p.animate(o?[{height:'0px'},{height:H+'px'}]:[{height:H+'px'},{height:'0px'}],{duration:o?400:300,easing:o?'cubic-bezier(.2,.7,.3,1)':'cubic-bezier(.4,0,1,1)'});
 p._an=an;an.onfinish=function(){if(p._an!==an)return;p._an=null;p.style.overflow='';p.hidden=!o;};}
-function visible(){return SO&&SO.querySelector('.sl:not([hidden])');}
-function majBouton(){if(!TB)return;var sl=visible(),L=sl?lecons(sl):[];
-/* rien ne s'écrit quand rien ne change : l'observateur qui appelle ce passage se relancerait sans fin */
-if(TB.parentNode.hidden!==!L.length)TB.parentNode.hidden=!L.length;
-var tout=!!(L.length&&L.every(ouverte)),t=tout?'Tout replier':'Tout déplier';if(TB.classList.contains('up')!==tout)TB.classList.toggle('up',tout);if(TB.firstChild.textContent!==t){TB.firstChild.textContent=t;TB.setAttribute('aria-label',tout?'Replier toutes les leçons':'Déplier toutes les leçons');}}
+function majBouton(sl){var b=sl&&sl.querySelector('.lv-tb');if(!b)return;var L=lecons(sl);
+var tout=!!(L.length&&L.every(ouverte)),t=tout?'Tout replier':'Tout déplier';b.classList.toggle('up',tout);if(b.firstChild.textContent!==t){b.firstChild.textContent=t;b.setAttribute('aria-label',tout?'Replier toutes les leçons':'Déplier toutes les leçons');}}
 function prepare(){SO=document.querySelector('#som');if(!SO)return false;var sls=SO.querySelectorAll('.sl');if(!sls.length)return false;
 [].forEach.call(sls,function(sl){var cur=null;[].slice.call(sl.children).forEach(function(e){
 if(!e.classList||!e.classList.contains('se'))return;
 if(e.classList.contains('sp')){if(cur){if(!cur._lvP){var p=document.createElement('div');p.className='lv-pl';p.hidden=true;e.parentNode.insertBefore(p,e);cur._lvP=p;}cur._lvP.appendChild(e);}return;}
 cur=e.querySelector('.tag')&&!e.classList.contains('sx')?e:null;});
 [].forEach.call(sl.querySelectorAll('.se'),function(a){if(!a._lvP||a.classList.contains('lv-l'))return;a.classList.add('lv-l');a.setAttribute('aria-expanded','false');
-var v=document.createElement('span');v.className='lv-lv';v.textContent='›';v.setAttribute('aria-hidden','true');a.appendChild(v);});});
-var t=document.createElement('div');t.className='lv-tt';t.innerHTML='<button type="button" class="lv-tb">Tout déplier<i>›</i></button>';
-SO.insertBefore(t,sls[0]);TB=t.querySelector('.lv-tb');majBouton();
-new MutationObserver(majBouton).observe(SO,{subtree:true,attributes:true,attributeFilter:['hidden','class']});
+var v=document.createElement('span');v.className='lv-lv';v.textContent='›';v.setAttribute('role','button');v.setAttribute('aria-label','Déplier les parties de la leçon');a.appendChild(v);});
+var L=lecons(sl);if(!L.length||sl.querySelector('.lv-tt'))return;
+var t=document.createElement('div');t.className='lv-tt';t.innerHTML='<span class="lv-tl">Leçons</span><button type="button" class="lv-tb">Tout déplier<i>›</i></button>';
+sl.insertBefore(t,L[0]);majBouton(sl);});
 return true;}
-/* le geste passe avant le moteur du cours, qui mènerait sinon à la leçon */
+/* le geste passe avant le moteur du cours : le chevron et le bouton ne mènent nulle part, la leçon mène à la leçon */
 window.addEventListener('click',function(ev){if(!SO)return;var t=ev.target;if(!t.closest)return;
-var b=t.closest('#som .lv-tb');if(b){ev.preventDefault();ev.stopPropagation();var sl=visible();if(!sl)return;var o=!lecons(sl).every(ouverte);lecons(sl).forEach(function(a){if(ouverte(a)!==o)pose(a,o,true);});majBouton();return;}
-var a=t.closest('#som .se.lv-l');if(!a)return;
-if(t.closest('.lv-lv')||!ouverte(a)){ev.preventDefault();ev.stopPropagation();pose(a,!ouverte(a),true);majBouton();}},true);
+var b=t.closest('#som .lv-tb');if(b){ev.preventDefault();ev.stopPropagation();var sl=b.closest('.sl');if(!sl)return;var o=!lecons(sl).every(ouverte);lecons(sl).forEach(function(a){if(ouverte(a)!==o)pose(a,o,true);});majBouton(sl);return;}
+var v=t.closest('#som .se.lv-l .lv-lv');if(!v)return;var a=v.closest('.se.lv-l');
+ev.preventDefault();ev.stopPropagation();pose(a,!ouverte(a),true);majBouton(a.closest('.sl'));},true);
 if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect();});o.observe(document.documentElement,{childList:true,subtree:true});}
 })();`+'</scr'+'ipt>';
+  /* ── PAS DE PROGRESSION AFFICHÉE DANS LES COURS ──
+     Les cours ne montrent aucun compte de progression (Emmanuel les a
+     retirés) : ni « Progression … acquis » ni le compte de chaque cours et
+     de chaque leçon dans le sommaire, ni les barres et les comptes du plan
+     du cours, ni la barre au-dessus de l'autoévaluation. Les affirmations
+     « Je sais… » restent à cocher : elles donnent leur état aux sujets du
+     parcours. */
+  const SANS_PROGRESSION='<style>#som .ong-c,#som .se-c,.pgen,.pc-p,.ae-h{display:none!important}'
+    /* la ligne « Progression » vidée garde sa marge, qui écarte les réglages des onglets des cours */
+    +'#som .som-c{height:0;margin:16px 0 0!important;overflow:hidden;visibility:hidden}</style>';
   function rangDe(e,genre){
     if(!e||typeof e!=='object')return -1;
     const l=genre==='parcours'?CRANS_PARCOURS:CRANS_COURS, v=genre==='parcours'?e.z:e.taille;
@@ -391,7 +400,13 @@ window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==pare
 
   /* ── LE CONTENU OUVERT ── */
   let OUVERT=null;   // {id, genre, fichier, lettre, titre, code, f}
-  const enCours=()=>!!(OUVERT&&OUVERT.genre==='cours');
+  const horsParcours=()=>!!(OUVERT&&OUVERT.genre!=='parcours');
+  /* « #t/fichier » : le choix des cours d'un thème */
+  function themeDuLien(){
+    const m=/^#t\/(.+)$/.exec(location.hash||'');
+    if(!m)return '';
+    try{const n=decodeURIComponent(m[1]);return (typeof THEMES_COURS==='object'&&THEMES_COURS[n])?n:'';}catch(_){return '';}
+  }
   function fichierDuLien(){
     const m=/^#c\/(.+)$/.exec(location.hash||'');
     if(!m)return '';
@@ -499,6 +514,11 @@ window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==pare
     return true;
   }
   async function montre(ancre,lettre,som){
+    const th=themeDuLien();
+    if(th){
+      if(OUVERT&&OUVERT.genre==='choix'&&OUVERT.theme===th)return;
+      ferme(); montreChoix(th); return;
+    }
     const fichier=fichierDuLien();
     const o=fichier?{id:'c_'+fichier.replace(/\.html$/,''),genre:'cours',fichier,adresse:'/parcours/cours/'+encodeURIComponent(fichier)}
                    :{id:'parcours',genre:'parcours',adresse:PARCOURS};
@@ -623,6 +643,8 @@ window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==pare
       doc=k<0?doc+SANS_BARRE:doc.slice(0,k)+SANS_BARRE+doc.slice(k);
     }else if(o.genre==='cours'){
       doc=doc.replace('<head>',()=>'<head>'+REPLI_LECONS);
+      const k=doc.lastIndexOf('</body>');
+      doc=k<0?doc+SANS_PROGRESSION:doc.slice(0,k)+SANS_PROGRESSION+doc.slice(k);
     }
     f.srcdoc=doc;
     /* le cadre se glisse sous le cercle de chargement, qui le couvre jusqu'au bout */
@@ -681,6 +703,7 @@ window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==pare
     if(!o||!o.f||ev.source!==o.f.contentWindow||!d||typeof d!=='object')return;
     if(d.lvRecharge){ ferme(); if(PARC===o){try{o.f.remove();}catch(_){} PARC=null;} montre(); return; }
     if(typeof d.lvSujet==='string'){ ouvreSujet(d.lvSujet); return; }
+    if(typeof d.lvTheme==='string'){ ouvreTheme(d.lvTheme); return; }
     if(typeof d.lvCours==='string'){ ouvreCours(d.lvCours,typeof d.lvCoursAncre==='string'?d.lvCoursAncre:'',typeof d.lvCoursLettre==='string'?d.lvCoursLettre:'',Math.max(0,Math.round(+d.lvSom||0))); return; }
     if('lvSel' in d){ if(typeof qaSelectionCadre==='function')qaSelectionCadre(d.lvSel,o.f,o.titre,o.genre==='cours'?'un cours':'un parcours',o.code,null); return; }
     if(typeof d.lvPos==='number'){
@@ -721,6 +744,46 @@ window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==pare
     history.pushState({etude:'cours'},'','#c/'+encodeURIComponent(n));
     montre(ancre,lettre,som);
   }
+  /* ── LE CHOIX DES COURS ──
+     Le bouton du cours, sur un thème du parcours, ouvre la page où l'on
+     choisit l'un de ses cours (Emmanuel : « que ce soit à partir de là
+     qu'on peut choisir les cours »), en plus du sommaire de chaque cours.
+     Le numéro et le titre du thème en tête, soulignés du séparateur qui
+     s'éteint vers la droite, puis ses cours en rangées sans cadre
+     séparées par des filets, comme les articles : numéro, titre, ligne de
+     présentation. Choisir un cours l'ouvre sur sa première leçon, et non
+     sur son ouverture (Emmanuel : « que ça ouvre sur la leçon 1 »).
+     La page se dessine dans Étude même, aux polices et aux couleurs du
+     site ; elle ajoute un pas à l'historique, comme le cours qu'on en
+     ouvre. La liste vient de la fabrication (THEMES_COURS). */
+  function ouvreTheme(f){
+    if(typeof THEMES_COURS!=='object'||!THEMES_COURS[f])return;
+    history.pushState({etude:'choix'},'','#t/'+encodeURIComponent(f));
+    montre();
+  }
+  const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
+  function montreChoix(f){
+    const t=THEMES_COURS[f];
+    const o={id:'choix_'+f.replace(/\.html$/,''),genre:'choix',theme:f,titre:t.t};
+    const d=document.createElement('div');
+    d.className='et-choix';
+    d.innerHTML='<div class="et-choix-in"><p class="et-choix-k">Thème '+esc(t.n)+'</p><h2 class="et-choix-t">'+esc(t.t)+'</h2><div class="et-choix-sep"></div><ol class="et-choix-l">'
+      +t.c.map((c,i)=>'<li><a href="#" data-l="'+esc(c[0])+'"><span class="et-choix-c">'+esc(t.n)+'.'+(i+1)+'</span><span class="et-choix-x"><span class="et-choix-n">'+esc(c[1])+'</span>'+(c[2]?'<span class="et-choix-d">'+esc(c[2])+'</span>':'')+'</span><span class="et-choix-v" aria-hidden="true">→</span></a></li>').join('')
+      +'</ol></div>';
+    d.addEventListener('click',ev=>{
+      const a=ev.target.closest&&ev.target.closest('a[data-l]');
+      if(!a)return;
+      ev.preventDefault();
+      const l=a.getAttribute('data-l');
+      ouvreCours(f,l+'1',l);
+    });
+    /* pour l'IA : le thème et ses cours, en texte */
+    o.code='<h1>'+esc(t.t)+'</h1><ol>'+t.c.map(c=>'<li>'+esc(c[1])+(c[2]?' : '+esc(c[2]):'')+'</li>').join('')+'</ol>';
+    o.f=d;
+    OUVERT=o;
+    acts.parentNode.insertBefore(d,attente||acts);
+    if(attente)attente.classList.add('fini');
+  }
   /* ── LES LIENS EN ATTENTE ──
      Un cours peut renvoyer à un sujet du parcours avant que son cours soit
      écrit. Le lien se résout ici, d'après les liens du parcours vers les
@@ -740,8 +803,8 @@ window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==pare
   }
   window.addEventListener('popstate',()=>montre());
   function retour(){
-    if(enCours()){
-      if(history.state&&history.state.etude==='cours'){history.back();return;}
+    if(horsParcours()){
+      if(history.state&&(history.state.etude==='cours'||history.state.etude==='choix')){history.back();return;}
       history.replaceState(null,'',location.pathname+location.search);
       montre();return;
     }
@@ -755,7 +818,7 @@ window.addEventListener('message',function(ev){var d=ev.data;if(ev.source!==pare
   };
   document.getElementById('et-ia').onclick=function(){
     if(typeof qaReprend!=='function'||!OUVERT)return;
-    qaReprend({texte:'',contexte:'',source:OUVERT.titre||'',espece:enCours()?'un cours':'un parcours',ref:null},OUVERT.code||'');
+    qaReprend({texte:'',contexte:'',source:OUVERT.titre||'',espece:({cours:'un cours',choix:'une liste de cours'})[OUVERT.genre]||'un parcours',ref:null},OUVERT.code||'');
   };
   /* le bandeau se tient replié derrière trois points (commun/cadre.js) */
   lvRepliBandeau(acts);
