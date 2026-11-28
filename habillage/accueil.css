@@ -184,19 +184,47 @@ html body .med-proprio p{font-size:calc(15.5px*var(--lvz,1))}
   html body .med-titre{font-size:calc(27px*var(--lvz,1))}
 }
 
-/* ── le texte officiel d'une lecture de la messe, dans sa fenêtre ──
-   Le texte de lecture en Literata, justifié comme la Bible du site ; le
-   psaume garde son refrain, l'évangile son acclamation, en retrait. */
-html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.lect-fen{z-index:1200}
-html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.lect-fen .modal-titre{margin-right:48px}
-html body .lect-fen .lect-ref{display:block;margin-top:6px;font-family:var(--h-ui);font-size:16px;color:var(--h-t3)}
-html body .lect-fen .lect-intro{margin:0 0 6px;font-family:var(--h-ui);font-size:16px;font-style:italic;color:var(--h-t3)}
-html body .lect-fen .lect-titre{margin:0 0 16px;font-family:var(--h-ui);font-size:17px;font-style:italic;color:var(--h-t1)}
-html body .lect-fen .lect-refrain{margin:0 0 16px;padding-left:16px;border-left:1px solid var(--h-l2);font-family:var(--h-texte);font-size:16.5px;line-height:1.5;font-style:italic;color:var(--h-t2)}
-html body .lect-fen .lect-refrain p{margin:0}
-html body .lect-fen .lect-mot{display:block;margin:0 0 4px;font-family:var(--h-ui);font-style:normal;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--h-or)}
-html body .lect-fen .lect-texte{font-family:var(--h-texte);font-size:17px;line-height:1.55;color:var(--h-t1)}
-html body .lect-fen .lect-texte p{margin:0 0 10px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
-html body .lect-fen .lect-texte .vn{font-family:var(--h-ui);font-size:.72em;color:var(--h-or);margin-right:3px}
-html body .lect-fen .lect-source{margin:18px 0 0;padding-top:12px;border-top:1px solid var(--h-l1);font-family:var(--h-ui);font-size:13.5px;color:var(--h-t3)}
-@media (max-width:720px){html body .lect-fen .lect-texte{font-size:18px}}
+/* ── le texte officiel d'une lecture de la messe, en pleine page ──
+   Il se lit comme un chapitre de la Bible du site (« fais ressembler ça à
+   la bible du site ») : la référence en grand titre Cormorant, centrée,
+   sur un petit séparateur ; la prose en Literata, justifiée, coupée en fin
+   de ligne, l'interligne serré voulu (1,08) ; les numéros de versets petits,
+   à l'accent ; les vers en blocs, un par verset, le numéro pendu dans la
+   marge, l'interligne à 1,2. Les mêmes tailles que la Bible. */
+html body .lect-vue{position:fixed;inset:0;z-index:1200;display:none;background:#000;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+html body .lect-vue.on{display:block;animation:hVoile .25s ease both}
+html body .lect-x{position:fixed;top:18px;right:22px;z-index:2;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:rgba(0,0,0,.6);color:var(--h-t2);cursor:pointer;transition:color .25s,background .25s}
+html body .lect-x:is(:hover,:focus-visible){color:#fff;background:var(--h-voile-fort);outline:none}
+html body .lect-col{max-width:720px;margin:0 auto;padding:72px 24px 80px}
+html body .lect-sur{margin:0 0 12px;text-align:center;font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--h-or)}
+html body .lect-titre{margin:0;text-align:center;font-family:var(--h-titre);font-weight:400;font-size:50px;line-height:1.06;color:#fff;text-wrap:balance}
+html body .lect-vv{margin:12px 0 0;text-align:center;font-family:var(--h-ui);font-size:15px;color:var(--h-t3)}
+html body .lect-vv:empty{display:none}
+html body .lect-sep{width:44px;height:1px;margin:30px auto 34px;background:linear-gradient(90deg,transparent,var(--h-l3),transparent)}
+html body .lect-intro{margin:0 0 6px;text-align:center;font-family:var(--h-titre);font-style:italic;font-size:19px;color:var(--h-t2)}
+html body .lect-sous{margin:0 0 34px;text-align:center;font-family:var(--h-titre);font-style:italic;font-size:22px;line-height:1.25;color:var(--h-t1)}
+html body .lect-refrain{margin:0 0 34px}
+html body .lect-mot{margin:0 0 14px;font-family:var(--h-ui);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;line-height:1.45;color:var(--h-or)}
+html body .lect-refrain .lb-texte{font-style:italic;color:var(--h-t2)}
+html body .lb-texte{font-family:var(--h-texte);font-size:calc(20.5px*var(--lvz,1));line-height:1.08;color:#fff;text-align:justify;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 2}
+html body .lb-par{margin:1.25em 0}
+html body .lb-par:first-child{margin-top:0}
+html body .lb-par:last-child{margin-bottom:0}
+html body .lb-texte sup.lb-vn{font-family:var(--h-ui);font-size:12.5px;color:var(--h-or);line-height:0;margin-right:5px;letter-spacing:0}
+html body .lb-po{display:block;position:relative;line-height:1.2;margin:.7em 0;padding:0 2.2em}
+html body .lb-po.lb-sent{margin:1.25em 0}
+html body .lb-po:first-child{margin-top:0}
+html body .lb-po .lb-li{display:block;position:relative;text-wrap:wrap}
+html body .lb-po sup.lb-vn{position:absolute;left:-2.2em;top:.42em;margin-right:0;line-height:1}
+html body .lect-source{margin:56px 0 0;padding-top:14px;border-top:1px solid var(--h-l1);font-family:var(--h-ui);font-size:13.5px;color:var(--h-t3)}
+@media (max-width:720px){
+  html body .lect-col{padding:64px 20px 64px}
+  html body .lect-titre{font-size:40px}
+  html body .lect-x{top:12px;right:12px}
+  html body .lb-texte{font-size:calc(18px*var(--lvz,1))}
+}
+@media (max-width:600px){
+  html body .lb-po{margin:.62em 0;padding:0 1.7em}
+  html body .lb-po.lb-sent{margin:1.1em 0}
+  html body .lb-po sup.lb-vn{left:-1.7em}
+}
