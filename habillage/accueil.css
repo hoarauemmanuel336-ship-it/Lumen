@@ -183,3 +183,20 @@ html body .med-proprio p{font-size:calc(15.5px*var(--lvz,1))}
   html body .lit-fete{font-size:calc(30px*var(--lvz,1))}
   html body .med-titre{font-size:calc(27px*var(--lvz,1))}
 }
+
+/* ── le texte officiel d'une lecture de la messe, dans sa fenêtre ──
+   Le texte de lecture en Literata, justifié comme la Bible du site ; le
+   psaume garde son refrain, l'évangile son acclamation, en retrait. */
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.lect-fen{z-index:1200}
+html:root body:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .overlay.lect-fen .modal-titre{margin-right:48px}
+html body .lect-fen .lect-ref{display:block;margin-top:6px;font-family:var(--h-ui);font-size:16px;color:var(--h-t3)}
+html body .lect-fen .lect-intro{margin:0 0 6px;font-family:var(--h-ui);font-size:16px;font-style:italic;color:var(--h-t3)}
+html body .lect-fen .lect-titre{margin:0 0 16px;font-family:var(--h-ui);font-size:17px;font-style:italic;color:var(--h-t1)}
+html body .lect-fen .lect-refrain{margin:0 0 16px;padding-left:16px;border-left:1px solid var(--h-l2);font-family:var(--h-texte);font-size:16.5px;line-height:1.5;font-style:italic;color:var(--h-t2)}
+html body .lect-fen .lect-refrain p{margin:0}
+html body .lect-fen .lect-mot{display:block;margin:0 0 4px;font-family:var(--h-ui);font-style:normal;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--h-or)}
+html body .lect-fen .lect-texte{font-family:var(--h-texte);font-size:17px;line-height:1.55;color:var(--h-t1)}
+html body .lect-fen .lect-texte p{margin:0 0 10px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+html body .lect-fen .lect-texte .vn{font-family:var(--h-ui);font-size:.72em;color:var(--h-or);margin-right:3px}
+html body .lect-fen .lect-source{margin:18px 0 0;padding-top:12px;border-top:1px solid var(--h-l1);font-family:var(--h-ui);font-size:13.5px;color:var(--h-t3)}
+@media (max-width:720px){html body .lect-fen .lect-texte{font-size:18px}}

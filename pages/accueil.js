@@ -8,9 +8,9 @@
      psautier, dates à venir) se lit dans /liturgie/AAAA.json, fabriqué
      d'avance par fabrication/calendrier-liturgique.mjs : rien ne dépend
      d'un service extérieur, et tout marche hors ligne ;
-   · les lectures de la messe viennent de l'AELF par /api/liturgie, en
-     références seulement : un toucher les ouvre dans la Bible du site
-     (le tiroir de la Bible, dans la traduction choisie) ;
+   · les lectures de la messe viennent de l'AELF par /api/liturgie, avec
+     leur texte officiel : un toucher l'ouvre dans une fenêtre (Emmanuel
+     veut « l'officiel » pour tout ce qui rythme la vie de l'Église) ;
    · l'obligation, le jeûne et l'abstinence suivent les règles de
      l'Église en France ; l'heure (office, Angélus) suit l'horloge de
      l'appareil.
@@ -195,10 +195,8 @@
     '2Jn': '2 Jean', '3Jn': '3 Jean', Jude: 'Jude', Jud: 'Jude', Ap: 'Apocalypse'
   };
   /* L'AELF écrit « Dn 12, 1-3 » ; le site écrit « Daniel 12:1-3 ». Les
-     psaumes de l'AELF portent la numérotation liturgique suivie de
-     l'hébraïque entre parenthèses, « Ps 15 (16) » : la Bible du site suit
-     l'hébraïque. Le lien ouvre le passage d'un seul tenant, du premier au
-     dernier verset du premier chapitre cité. */
+     psaumes gardent la numérotation officielle de la liturgie, suivie de
+     l'hébraïque entre parenthèses, « Psaume 15 (16) ». */
   function convRef(type, ref) {
     var s = String(ref || '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
     if (/^psaume/.test(type) && /^\d/.test(s)) s = 'Ps ' + s;
@@ -207,17 +205,13 @@
     var ab = m[1].replace(/\s/g, ''), nom = LIV[ab];
     if (!nom) return null;
     var reste = m[2];
-    if (ab === 'Ps') reste = reste.replace(/^(\d+)\s*\((\d+)\)/, '$2');
     var aff = reste
       .replace(/;\s*(\d+)\s*,\s*/g, '; $1:')
       .replace(/(\s[–-]\s*)(\d+)\s*,\s*(\d+)/g, '$1$2:$3')
-      .replace(/^(\d+)\s*,\s*/, '$1:')
+      .replace(/^(\d+(?:\s*\(\d+\))?)\s*,\s*/, '$1:')
       .replace(/\.(?=\d)/g, ', ')
       .replace(/ ;/g, NB + ';');
-    var ch = parseInt(reste, 10), lien = nom + ' ' + ch;
-    var vv = reste.replace(/^\d+\s*,?\s*/, '').split(/;|\s[–-]\s/)[0].match(/\d+/g);
-    if (vv && vv.length) lien += ':' + vv[0] + (vv.length > 1 && +vv[vv.length - 1] > +vv[0] ? '-' + vv[vv.length - 1] : '');
-    return { aff: (ab === 'Ps' ? 'Psaume' : nom) + ' ' + aff, lien: lien };
+    return { aff: (ab === 'Ps' ? 'Psaume' : nom) + ' ' + aff };
   }
   function nomLecture(t) {
     var m = t.match(/^lecture_(\d+)/);
@@ -233,7 +227,7 @@
     if (!z) return;
     var k = cle(d), memo = null;
     try { memo = JSON.parse(localStorage.getItem('lv_liturgie') || 'null'); } catch (_) {}
-    if (memo && memo.date === k) { montreLectures(z, memo); return; }
+    if (memo && memo.date === k && memo.lectures && memo.lectures.length && 'texte' in memo.lectures[0]) { montreLectures(z, memo); return; }
     z.innerHTML = '<span class="lv-roue petite" role="status" aria-label="Chargement"></span>';
     fetch('/api/liturgie?date=' + k).then(function (r) {
       if (!r.ok) throw new Error(r.status);
@@ -246,31 +240,77 @@
       z.innerHTML = '<p class="lit-doux">Les lectures n’ont pas pu être chargées.</p>';
     });
   }
+  var LECT = [];
   function montreLectures(z, dd) {
     var h = '';
-    dd.lectures.forEach(function (l) {
+    LECT = dd.lectures;
+    dd.lectures.forEach(function (l, i) {
       var nom = nomLecture(l.type), r = convRef(l.type, l.ref);
       if (!nom) return;
       h += '<div class="lit-ligne"><span class="lit-mot">' + nom + '</span>';
-      h += r ? '<button type="button" class="lit-ref" data-ref="' + esc(r.lien) + '">' + esc(r.aff) + '</button>'
-             : '<span class="lit-val">' + esc(l.ref) + '</span>';
+      h += l.texte ? '<button type="button" class="lit-ref lit-lu" data-i="' + i + '">' + esc(r ? r.aff : l.ref) + '</button>'
+             : '<span class="lit-val">' + esc(r ? r.aff : l.ref) + '</span>';
       h += '</div>';
     });
     z.innerHTML = h || '<p class="lit-doux">Les lectures n’ont pas pu être chargées.</p>';
   }
-  /* Un toucher sur une référence l'ouvre dans le tiroir de la Bible : le
-     tiroir écoute les références écrites dans les pages (span.ref) ; on lui
-     en tend une, le temps du clic. */
+
+  /* ── le texte d'une lecture ──
+     Un toucher sur une lecture ouvre son texte officiel, celui de l'AELF,
+     dans une fenêtre : pour tout ce qui rythme la vie de l'Église, Emmanuel
+     veut « l'officiel », et non la Bible du site. Le psaume garde son
+     refrain, l'évangile son acclamation ; le texte a été nettoyé par le
+     passage du site, seule la mise en forme de l'AELF y reste. */
+  function typoTexte(racine) {
+    var w = document.createTreeWalker(racine, NodeFilter.SHOW_TEXT), n;
+    while ((n = w.nextNode())) n.nodeValue = n.nodeValue.replace(/[ \u00a0]+([:;!?»])/g, NB + '$1').replace(/«[ \u00a0]+/g, '«' + NB).replace(/'/g, '’');
+  }
+  function fenLecture() {
+    var f = document.querySelector('.lect-fen');
+    if (f) return f;
+    f = document.createElement('div');
+    f.className = 'overlay lect-fen';
+    f.setAttribute('role', 'dialog');
+    f.setAttribute('aria-modal', 'true');
+    f.setAttribute('aria-labelledby', 'lect-fen-t');
+    f.innerHTML = '<div class="modal modal-large"><h2 class="modal-titre" id="lect-fen-t"></h2>'
+      + '<button type="button" class="feuille-x" aria-label="Fermer">' + IC_X + '</button>'
+      + '<div class="lect-corps"></div>'
+      + '<p class="lect-source">Traduction liturgique officielle (AELF).</p></div>';
+    document.body.appendChild(f);
+    f.addEventListener('click', function (e) {
+      if (e.target === f || (e.target.closest && e.target.closest('.feuille-x'))) fermeLecture();
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && f.classList.contains('on')) fermeLecture(); });
+    return f;
+  }
+  function ouvreLecture(l) {
+    var f = fenLecture(), r = convRef(l.type, l.ref), h = '';
+    f.querySelector('.modal-titre').innerHTML = esc(nomLecture(l.type)) + '<span class="lect-ref">' + esc(r ? r.aff : l.ref) + '</span>';
+    if (l.intro) h += '<p class="lect-intro">' + esc(l.intro) + '</p>';
+    if (l.titre) h += '<p class="lect-titre">« ' + esc(l.titre) + ' »</p>';
+    if (l.refrain) h += '<div class="lect-refrain"><span class="lect-mot">Refrain</span>' + l.refrain + '</div>';
+    if (l.verset) h += '<div class="lect-refrain"><span class="lect-mot">Acclamation' + (l.refVerset ? ' · ' + esc(l.refVerset) : '') + '</span>' + l.verset + '</div>';
+    h += '<div class="lect-texte">' + l.texte + '</div>';
+    var c = f.querySelector('.lect-corps');
+    c.innerHTML = h;
+    typoTexte(c);
+    typoTexte(f.querySelector('.modal-titre'));
+    f.classList.add('on');
+    f.querySelector('.modal').scrollTop = 0;
+    document.documentElement.style.overflow = 'hidden';
+    f.querySelector('.feuille-x').focus();
+  }
+  function fermeLecture() {
+    var f = document.querySelector('.lect-fen');
+    if (f) f.classList.remove('on');
+    document.documentElement.style.overflow = '';
+  }
   Z.addEventListener('click', function (e) {
-    var b = e.target.closest ? e.target.closest('.lit-ref') : null;
+    var b = e.target.closest ? e.target.closest('.lit-lu') : null;
     if (!b) return;
-    var s = document.createElement('span');
-    s.className = 'ref';
-    s.textContent = b.getAttribute('data-ref');
-    s.style.display = 'none';
-    document.body.appendChild(s);
-    s.click();
-    document.body.removeChild(s);
+    var l = LECT[+b.getAttribute('data-i')];
+    if (l && l.texte) ouvreLecture(l);
   });
 
   /* ───────── La méditation du jour ─────────

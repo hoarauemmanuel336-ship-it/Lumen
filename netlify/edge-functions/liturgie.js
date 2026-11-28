@@ -6,9 +6,12 @@
    La source est l'AELF (Association épiscopale liturgique pour les pays
    francophones), zone « france ».
 
-   Seules les références des lectures sont transmises, jamais leur texte :
-   l'accueil les ouvre dans la Bible du site, Chérubin ou Séraphin.
+   Les lectures arrivent avec leur texte officiel, celui de l'AELF, nettoyé
+   par netlify/serveur/aelf.js : pour tout ce qui rythme la vie de
+   l'Église, Emmanuel veut « l'officiel », et non la Bible du site.
    ============================================================ */
+
+import { propre, texte } from '../serveur/aelf.js';
 
 const SOURCE = 'https://api.aelf.org/v1/messes/';
 
@@ -39,7 +42,16 @@ export default async (req) => {
     const inf = d.informations || {};
     const messe = messeDuJour(d.messes);
     const lectures = messe && Array.isArray(messe.lectures)
-      ? messe.lectures.map(l => ({ type: String(l.type || ''), ref: String(l.ref || '') })).filter(l => l.ref)
+      ? messe.lectures.map(l => ({
+          type: String(l.type || ''),
+          ref: String(l.ref || ''),
+          titre: texte(l.titre),
+          intro: texte(l.intro_lue),
+          refrain: propre(l.refrain_psalmique),
+          verset: propre(l.verset_evangile),
+          refVerset: texte(l.ref_verset),
+          texte: propre(l.contenu)
+        })).filter(l => l.ref)
       : [];
     return json({
       date,
