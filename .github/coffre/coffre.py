@@ -26,6 +26,10 @@ def recoit(cle, chemin):
     aws('s3', 'cp', f's3://{COFFRE}/{cle}', chemin, '--only-show-errors')
 
 
+def efface(cle):
+    aws('s3', 'rm', f's3://{COFFRE}/{cle}', '--only-show-errors')
+
+
 def existe(cle):
     """vrai si le coffre a déjà un fichier à cette clé"""
     point = os.environ.get('R2_ENDPOINT', '')

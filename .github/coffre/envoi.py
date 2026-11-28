@@ -23,10 +23,17 @@ netlify/edge-functions/fichiers.js).
   Avec « texte », seul le texte affiché d'une méditation déjà lue change.
   La fabrique du site la trouve et n'a plus qu'à la faire lire
   (documentation/meditation.md).
+· Une entrée « meditation-efface », sans fichier, efface du coffre les
+  méditations des jours qu'elle nomme (« jours »), leur voix et leurs
+  essais compris, et les retire du journal : elle sert quand Emmanuel
+  demande de supprimer des méditations parues.
+· Une entrée « meditation-reglages », sans fichier, remet les méditations
+  en route (« pause » : false) ou les met en pause, comme l'interrupteur de
+  « Mon compte ».
 Tout se vérifie avant le premier envoi : un lot refusé n'entre pas à
 moitié."""
 import datetime, glob, gzip, hashlib, json, os, re, subprocess, sys, tempfile
-from coffre import envoie, existe, recoit
+from coffre import efface, envoie, existe, recoit
 
 DOSSIER = 'envoi'
 NOM = r'[A-Za-z0-9][A-Za-z0-9._-]{0,120}\.html'
@@ -147,10 +154,20 @@ def main():
     entrees = json.load(open(chemin, encoding='utf-8')).get('entrees') or []
     if not entrees:
         sys.exit('envoi.json ne contient aucune entrée.')
-    sommaire = catalogue = prolonge = None
+    sommaire = catalogue = prolonge = pause = None
     jours = []
     places = []
+    effaces = []
     for e in entrees:
+        if e.get('espece') == 'meditation-efface':
+            for j in e.get('jours') or []:
+                if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', str(j)):
+                    sys.exit(f'« {j} » : un jour s’écrit AAAA-MM-JJ.')
+                effaces.append(j)
+            continue
+        if e.get('espece') == 'meditation-reglages':
+            pause = bool(e.get('pause'))
+            continue
         if e.get('espece') == 'decoupe':
             sommaire = sommaire or json.load(open('parcours/cours-sommaire.json', encoding='utf-8'))
             places += redecoupe(sommaire)
@@ -180,7 +197,20 @@ def main():
                 prolonge = (datetime.date.fromisoformat(nom[:10]) + datetime.timedelta(days=1)).isoformat()
         else:
             sys.exit(f'Espèce inconnue pour « {nom} » : {espece} (« cours », « decoupe », « article » ou « meditation »)')
-    if jours:
+    for j in effaces:
+        for cle in (f'meditations/{j}.json', f'meditations/{j}.mp3', f'meditations/essais/{j}.json'):
+            if existe(cle):
+                efface(cle)
+                print(f'{cle} effacé')
+    if effaces and existe('meditations/journal.json'):
+        jl = os.path.join(tempfile.mkdtemp(), 'journal.json')
+        recoit('meditations/journal.json', jl)
+        journal = json.load(open(jl, encoding='utf-8'))
+        journal['meditations'] = [m for m in journal.get('meditations', []) if m.get('date') not in effaces]
+        json.dump(journal, open(jl, 'w', encoding='utf-8'), ensure_ascii=False)
+        envoie(jl, 'meditations/journal.json', 'application/json')
+        print('journal.json : ' + ', '.join(effaces) + ' retirés')
+    if jours or pause is not None:
         # un jour de reprise après pause n'a pas de méditation à lui : si
         # Claude lui en donne une, la reprise de ce jour s'efface, sans quoi
         # la fabrique ne la ferait jamais lire. Avec « prolonger », la
@@ -193,6 +223,8 @@ def main():
         avant = dict(reglages)
         if reglages.get('reprise') in jours:
             del reglages['reprise']
+        if pause is not None:
+            reglages['pause'] = pause
         if prolonge:
             reglages['prolonge'] = prolonge
         if reglages != avant:
