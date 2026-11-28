@@ -222,8 +222,9 @@ if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect()
      Dans le sommaire d'un cours, chaque leçon s'ouvre repliée : on ne voit
      que son titre, ses parties (I, II, III…) restent cachées (choix
      d'Emmanuel : « toutes les leçons repliées de base »). Toucher une leçon
-     ouvre la leçon ; seul le chevron, à droite, déplie ou replie ses
-     parties. Au-dessus des leçons de chaque cours, sous l'ouverture, une
+     ouvre la leçon et ferme le sommaire, comme une partie ou l'ouverture
+     (Emmanuel : qu'on n'ait pas à toucher « dans le vide » pour le fermer) ;
+     seul le chevron, à droite, déplie ou replie ses parties. Au-dessus des leçons de chaque cours, sous l'ouverture, une
      ligne « Leçons » porte le bouton « Tout déplier / Tout replier », qui
      vaut pour les leçons de ce cours : il se tient avec elles, et non à
      côté des onglets des cours. Les parties se déroulent comme une section
@@ -271,7 +272,9 @@ return true;}
 /* le geste passe avant le moteur du cours : le chevron et le bouton ne mènent nulle part, la leçon mène à la leçon */
 window.addEventListener('click',function(ev){if(!SO)return;var t=ev.target;if(!t.closest)return;
 var b=t.closest('#som .lv-tb');if(b){ev.preventDefault();ev.stopPropagation();var sl=b.closest('.sl');if(!sl)return;var o=!lecons(sl).every(ouverte);lecons(sl).forEach(function(a){if(ouverte(a)!==o)pose(a,o,true);});majBouton(sl);return;}
-var v=t.closest('#som .se.lv-l .lv-lv');if(!v)return;var a=v.closest('.se.lv-l');
+var v=t.closest('#som .se.lv-l .lv-lv');
+if(!v){if(t.closest('#som .sl .se'))setTimeout(function(){var x=SO.querySelector('.som-x');if(SO.classList.contains('on')&&x)x.click();},0);return;}
+var a=v.closest('.se.lv-l');
 ev.preventDefault();ev.stopPropagation();pose(a,!ouverte(a),true);majBouton(a.closest('.sl'));},true);
 if(!prepare()){var o=new MutationObserver(function(){if(prepare())o.disconnect();});o.observe(document.documentElement,{childList:true,subtree:true});}
 })();`+'</scr'+'ipt>';

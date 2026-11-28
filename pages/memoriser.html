@@ -870,7 +870,7 @@ const S={
   open:{},          // catId -> bool (déplié)
   sections:[],      // [{id,name}] dans l'ordre d'affichage
   catSec:{},        // catId -> sectionId
-  secOpen:{},       // sectionId -> false quand la section est repliée (par appareil)
+  secOpen:{},       // sectionId -> true quand la section est dépliée (le temps de la visite)
   soloSec:null,
   cur:null, lastId:null, rap:{r:0,a:0,v:0}, tour:0,
   grp:{},           // idVerset -> 'j' | 'r' | 'v', arrêté au départ de la séance
@@ -928,9 +928,11 @@ function groupesBase(){
   });
   return g;
 }
-const secOuverte=id=>S.secOpen[id]!==false;
-function secOpenLit(){try{const o=JSON.parse(localStorage.getItem('lv_memo_sec')||'{}');S.secOpen=(o&&typeof o==='object')?o:{};}catch(e){S.secOpen={};}}
-function secOpenEcrit(){try{localStorage.setItem('lv_memo_sec',JSON.stringify(S.secOpen));}catch(e){}}
+/* Sections et catégories arrivent repliées (Emmanuel : « replié de base ») :
+   ce qu'on déplie le reste le temps de la visite, et rien n'est gardé sur
+   l'appareil. L'ancienne mémoire des sections dépliées est effacée. */
+const secOuverte=id=>S.secOpen[id]===true;
+function secOpenLit(){try{localStorage.removeItem('lv_memo_sec');}catch(e){}}
 function groupesCats(){
   const all=effectiveCats().filter(c=>!c.base), g=[];
   /* une section vide reste visible : celle qu'on vient de créer ne doit
@@ -1839,7 +1841,7 @@ function renderSearch(){
       r.querySelector('.vtext').textContent=trunc(dv.text||'',90);
       /* La recherche fouille les deux onglets : si le résultat vit dans
          l'autre, on y va, sinon le clic n'ouvrirait rien de visible. */
-      r.onclick=()=>{closeModal('m-search');if(S.mode!==ongletDe(c)){S.mode=ongletDe(c);modeEcrit();majMode();}S.showAllCats=true;S.open[c.id]=true;const _s=secDe(c.id);if(_s){S.secOpen[_s]=true;secOpenEcrit();}renderCats();const el=document.querySelector('.cat[data-id="'+c.id+'"]');if(el)el.scrollIntoView({behavior:'smooth',block:'center'});};
+      r.onclick=()=>{closeModal('m-search');if(S.mode!==ongletDe(c)){S.mode=ongletDe(c);modeEcrit();majMode();}S.showAllCats=true;S.open[c.id]=true;const _s=secDe(c.id);if(_s){S.secOpen[_s]=true;}renderCats();const el=document.querySelector('.cat[data-id="'+c.id+'"]');if(el)el.scrollIntoView({behavior:'smooth',block:'center'});};
       host.appendChild(r);
     });
   });
@@ -2267,7 +2269,7 @@ function vaVerset(catId,vId){
   const c=effectiveCats().find(x=>x.id===catId); if(!c)return;
   if(S.mode!==ongletDe(c)){S.mode=ongletDe(c);modeEcrit();majMode();}
   S.showAllCats=true; S.open[c.id]=true;
-  const s=secDe(c.id); if(s){S.secOpen[s]=true;secOpenEcrit();}
+  const s=secDe(c.id); if(s){S.secOpen[s]=true;}
   renderCats();
   const cel=document.querySelector('.cat[data-id="'+c.id+'"]'); if(!cel)return;
   const lv=cel.querySelector('[data-editv="'+vId+'"]'), row=lv&&lv.closest('.vrow');
@@ -2512,7 +2514,7 @@ async function restoreCatBase(catId){
 // Ranger une catégorie ne touche ni ses versets ni sa progression : on écrit
 // une seule ligne dans meta/sections.
 function rangeCat(catId,secId){
-  if(secId){S.catSec[catId]=secId;S.secOpen[secId]=true;secOpenEcrit();}
+  if(secId){S.catSec[catId]=secId;S.secOpen[secId]=true;}
   else delete S.catSec[catId];
   saveSections(); renderCats();
 }
@@ -2752,7 +2754,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const stog=e.target.closest('[data-sectog]');
     if(stog){
       const sid=stog.dataset.sectog;
-      S.secOpen[sid]=!secOuverte(sid); secOpenEcrit();
+      S.secOpen[sid]=!secOuverte(sid);
       const w=stog.closest('.sec'); if(w)w.classList.toggle('open',secOuverte(sid));
       return;
     }
