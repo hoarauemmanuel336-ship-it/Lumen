@@ -51,7 +51,7 @@ def fiche(p):
 
 
 def interroge(params):
-    q = dict(params, format='json', prop='imageinfo', iiprop='url|size|mime|extmetadata')
+    q = dict(params, action='query', format='json', prop='imageinfo', iiprop='url|size|mime|extmetadata')
     brut = lit(API + '?' + urllib.parse.urlencode(q))
     try:
         d = json.loads(brut)
