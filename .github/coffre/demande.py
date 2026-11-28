@@ -8,12 +8,22 @@ recu/fiches.json qui dit lesquels ont été trouvés.
 · Méditations (espèce « meditation ») : « titres » nomme « journal »,
   « reglages » ou un jour (AAAA-MM-JJ), pour la tâche programmée qui écrit
   la méditation (documentation/meditation.md). Un fichier absent du
-  coffre est dit introuvable."""
+  coffre est dit introuvable.
+· Images d'un saint ou d'une fête (espèce « images-saint ») : « recherches »
+  donne quelques recherches pour Wikimedia Commons ; le robot y prend les
+  images candidates, en dépose une copie réduite dans recu/images/ et
+  leur fiche dans recu/images.json (titre Commons, auteur, licence,
+  description, catégories), pour que la tâche du soir les regarde et
+  choisisse (documentation/saints.md)."""
 import gzip, json, os, sys
 from coffre import recoit
 
 demande = json.load(open('demande/demande.json', encoding='utf-8'))
 espece = demande.get('espece', '')
+if espece == 'images-saint':
+    from commons import candidates
+    candidates(demande.get('recherches') or [], int(demande.get('nombre') or 8))
+    sys.exit(0)
 if espece == 'cours':
     sommaire = json.load(open('parcours/cours-sommaire.json', encoding='utf-8'))
     dossier = 'cours'
