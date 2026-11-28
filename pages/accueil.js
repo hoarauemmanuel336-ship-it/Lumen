@@ -107,6 +107,11 @@
     ];
   }
 
+  /* L'office du moment ouvre son texte dans la page « Liturgie des
+     Heures », où l'on trouve aussi tous les autres offices du jour. */
+  var ANCRE = { 'Laudes': 'laudes', 'Tierce': 'tierce', 'Sexte': 'sexte', 'None': 'none', 'Vêpres': 'vepres', 'Complies': 'complies' };
+  function lienOffice(o) { return '<a class="lit-ref" href="/heures.html#' + ANCRE[o] + '">' + o + '</a>'; }
+
   /* ───────── L'année liturgique ───────── */
   function estAvent1(j) { return j && j.s === 'AV' && j.w === 1 && j.r === 'D'; }
   function bornesAnnee(d) {
@@ -630,8 +635,12 @@
       + '<div class="lit-corps lit-medit"></div></section>';
     h += bloc('Lectures de la messe', '', 'lit-lect');
     h += bloc('Aujourd’hui dans l’Église', viePratique(d, j).map(function (t) { return '<p class="lit-pt">' + esc(typo(t)) + '</p>'; }).join(''));
-    h += bloc('Prière des heures', heure(j).map(function (x) { return ligne(x[0], x[1]); }).join('') +
-      (j.p ? ligne('Psautier', ord(j.p) + ' semaine') : ''), 'lit-heure');
+    var hh = heure(j);
+    h += '<section class="lit-bloc"><div class="med-tete"><h2 class="lit-titre">Prière des heures</h2>'
+      + '<a class="med-lien med-avant" href="/heures.html">Tous les offices du jour</a></div>'
+      + '<div class="lit-corps lit-heure">'
+      + ligne(hh[0][0], lienOffice(hh[0][1])) + ligne(hh[1][0], hh[1][1])
+      + (j.p ? ligne('Psautier', ord(j.p) + ' semaine') : '') + '</div></section>';
     h += bloc('Année liturgique',
       ligne('Dimanches', 'année ' + esc(j.a)) +
       ligne('Semaine', 'année ' + (j.b === 2 ? 'paire' : 'impaire')) +
@@ -660,7 +669,7 @@
     var z = Z.querySelector('.lit-heure'), j = jour(new Date());
     if (z && j) {
       var lignes = z.querySelectorAll('.lit-ligne'), hh = heure(j);
-      for (var i = 0; i < hh.length && i < lignes.length; i++) lignes[i].querySelector('.lit-val').textContent = hh[i][1];
+      for (var i = 0; i < hh.length && i < lignes.length; i++) lignes[i].querySelector('.lit-val').innerHTML = i === 0 ? lienOffice(hh[i][1]) : hh[i][1];
     }
   }, 60000);
 })();

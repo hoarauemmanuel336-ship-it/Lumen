@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Liturgie des Heures · Lumen Veritatis</title>
+<meta name="description" content="Prier chaque jour la Liturgie des Heures : office des lectures, laudes, tierce, sexte, none, vêpres et complies.">
+<link rel="canonical" href="https://lumenveritatis.net/heures.html">
+<link rel="icon" href="/icones/lumen-192.png">
+<!--
+  LITURGIE DES HEURES
+  Une page fixe, servie telle quelle, ouverte depuis le bloc « Prière des
+  heures » de l'accueil. Elle donne le texte de chaque office du jour, un
+  onglet par office, et s'ouvre sur l'office de l'heure qu'il est (les
+  mêmes heures que l'accueil). Le texte vient de l'AELF, traduction
+  officielle, par le passage /api/heures (netlify/edge-functions/heures.js),
+  qui le remet en ordre et le nettoie ; le pied de la page cite la source.
+  Les offices déjà lus du jour restent sur l'appareil, pour se rouvrir
+  sans réseau.
+-->
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400 700;font-display:swap;src:url(/polices/cormorant-garamond-latin-normal.woff2) format('woff2')}
+@font-face{font-family:'Literata';font-style:normal;font-weight:300 700;font-display:swap;src:url(/polices/literata-latin-normal.woff2) format('woff2')}
+@font-face{font-family:'Literata';font-style:italic;font-weight:300 700;font-display:swap;src:url(/polices/literata-latin-italic.woff2) format('woff2')}
+@font-face{font-family:'EB Garamond';font-style:normal;font-weight:400 700;font-display:swap;src:url(/polices/eb-garamond-latin-normal.woff2) format('woff2')}
+:root{--or:#efe6cf;--t1:rgba(255,255,255,.92);--t2:rgba(255,255,255,.78);--t3:rgba(255,255,255,.58);--filet:color-mix(in srgb,#efe6cf 14%,transparent)}
+*{box-sizing:border-box}
+html{background:#000;color:var(--t2);-webkit-text-size-adjust:100%}
+body{margin:0;font-family:'Literata',Georgia,serif;font-size:17px;line-height:1.55}
+::selection{background:color-mix(in srgb,#efe6cf 50%,transparent);color:#000}
+main{max-width:720px;margin:0 auto;padding:28px 22px 80px}
+.retour{display:inline-block;font-family:'EB Garamond',Georgia,serif;font-size:16px;color:var(--or);text-decoration:none;opacity:.85}
+.retour:hover{opacity:1}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:40px;line-height:1.1;color:#fff;margin:34px 0 8px}
+.jour{font-family:'EB Garamond',Georgia,serif;font-size:16px;color:var(--t3);margin:0}
+.jour b{font-weight:500;color:var(--t1)}
+/* un onglet par office, comme les onglets de Mémoriser : un filet crème
+   sous celui où l'on est */
+.modes{display:flex;flex-wrap:wrap;gap:6px 26px;margin:30px 0 0;border-bottom:1px solid var(--filet)}
+.mode{background:none;border:0;padding:0 0 13px;font-family:'EB Garamond',Georgia,serif;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);cursor:pointer;position:relative;transition:color .3s}
+.mode:hover{color:var(--t1)}
+.mode.on{color:var(--or)}
+.mode.on::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--or)}
+.mode:focus{outline:none}
+.mode:focus-visible{color:var(--t1)}
+.office h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:30px;line-height:1.15;color:#fff;margin:34px 0 0;padding-bottom:10px;
+  border-bottom:1px solid transparent;border-image:linear-gradient(90deg,color-mix(in srgb,#efe6cf 38%,transparent),transparent) 1}
+/* chaque partie : son nom en étiquette crème, sa référence à côté */
+.partie{margin:26px 0 0}
+.nom{font-family:'EB Garamond',Georgia,serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin:0 0 8px;line-height:1.5}
+.nom .ref{letter-spacing:.04em;text-transform:none;font-size:15px;color:var(--t3);margin-left:10px}
+.sous{font-family:'EB Garamond',Georgia,serif;font-size:17px;font-style:italic;color:var(--t1);margin:-2px 0 8px}
+/* le texte de l'office, justifié aux deux bords comme la Bible du site */
+.texte p{margin:0 0 10px;text-align:justify;hyphens:auto;-webkit-hyphens:auto;color:var(--t1)}
+.texte p:last-child{margin-bottom:0}
+.texte blockquote{margin:0 0 10px;padding-left:16px;border-left:1px solid var(--filet)}
+.texte .vn{font-family:'EB Garamond',Georgia,serif;font-size:.72em;color:var(--or);margin-right:3px}
+/* l'antienne : en retrait, en italique, avant son psaume */
+.partie.antienne .texte p{font-style:italic;color:var(--t2)}
+.partie.antienne{padding-left:16px;border-left:1px solid var(--filet)}
+.source{margin:46px 0 0;padding-top:16px;border-top:1px solid var(--filet);font-family:'EB Garamond',Georgia,serif;font-size:14px;color:var(--t3)}
+.source a{color:var(--or);text-decoration:none;border-bottom:1px solid color-mix(in srgb,#efe6cf 40%,transparent)}
+.source a:hover{border-bottom-color:var(--or)}
+.doux{margin:30px 0 0;font-family:'EB Garamond',Georgia,serif;font-size:17px;font-style:italic;color:var(--t3)}
+.attente{display:flex;justify-content:center;padding:70px 0}
+.roue{display:inline-block;width:22px;height:22px;border:1.5px solid color-mix(in srgb,#efe6cf 28%,transparent);border-top-color:var(--or);border-radius:50%;animation:tourne .8s linear infinite}
+@keyframes tourne{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.roue{animation-duration:2.4s}}
+@media (max-width:600px){
+  h1{font-size:33px}
+  .office h2{font-size:26px}
+  .modes{gap:4px 20px}
+  .mode{font-size:13px;letter-spacing:.14em;padding-bottom:11px}
+  /* la Bible du site passe à 18 px sur téléphone : l'office aussi */
+  body{font-size:18px}
+}
+</style>
+</head>
+<body>
+<main>
+<a class="retour" href="/">← Accueil</a>
+<h1>Liturgie des Heures</h1>
+<p class="jour" id="jour"></p>
+
+<div class="modes" role="tablist" id="modes">
+<button type="button" class="mode" role="tab" data-o="lectures">Lectures</button>
+<button type="button" class="mode" role="tab" data-o="laudes">Laudes</button>
+<button type="button" class="mode" role="tab" data-o="tierce">Tierce</button>
+<button type="button" class="mode" role="tab" data-o="sexte">Sexte</button>
+<button type="button" class="mode" role="tab" data-o="none">None</button>
+<button type="button" class="mode" role="tab" data-o="vepres">Vêpres</button>
+<button type="button" class="mode" role="tab" data-o="complies">Complies</button>
+</div>
+
+<section class="office" id="office" role="tabpanel" aria-live="polite"></section>
+
+<p class="source">Textes de la liturgie : traduction officielle de l’Association épiscopale liturgique pour les pays francophones (AELF), <a href="https://www.aelf.org" rel="noopener">aelf.org</a>.</p>
+</main>
+<script>
+(function () {
+  'use strict';
+  var NB = ' ';
+  var NOMS = { lectures: 'Office des lectures', laudes: 'Laudes', tierce: 'Tierce', sexte: 'Sexte', none: 'None', vepres: 'Vêpres', complies: 'Complies' };
+  var Z = document.getElementById('office');
+  var boutons = [].slice.call(document.querySelectorAll('.mode'));
+  var fmtLong = new Intl.DateTimeFormat('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  var demande = 0;
+
+  function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function deux(n) { return (n < 10 ? '0' : '') + n; }
+  function cle(d) { return d.getFullYear() + '-' + deux(d.getMonth() + 1) + '-' + deux(d.getDate()); }
+
+  /* L'office de l'heure qu'il est, aux mêmes heures que l'accueil. */
+  function officeDuMoment() {
+    var h = new Date().getHours();
+    if (h >= 5 && h < 9) return 'laudes';
+    if (h >= 9 && h < 12) return 'tierce';
+    if (h >= 12 && h < 15) return 'sexte';
+    if (h >= 15 && h < 17) return 'none';
+    if (h >= 17 && h < 20) return 'vepres';
+    return 'complies';
+  }
+  /* Les complies dites après minuit sont encore celles de la veille. */
+  function dateDe(o) {
+    var d = new Date();
+    if (o === 'complies' && d.getHours() < 5) d = new Date(d.getFullYear(), d.getMonth(), d.getDate() - 1);
+    return d;
+  }
+
+  /* Typographie française : espace fine insécable devant « : ; ! ? ». */
+  function typo(racine) {
+    var w = document.createTreeWalker(racine, NodeFilter.SHOW_TEXT), n;
+    while ((n = w.nextNode())) {
+      n.nodeValue = n.nodeValue.replace(/[  ]+([:;!?»])/g, NB + '$1').replace(/«[  ]+/g, '«' + NB).replace(/'/g, '’');
+    }
+  }
+
+  function montre(d, o) {
+    var h = '<h2>' + esc(NOMS[o]) + '</h2>';
+    d.parties.forEach(function (p) {
+      h += '<div class="partie' + (p.sorte === 'antienne' ? ' antienne' : '') + '">'
+        + '<p class="nom">' + esc(p.nom) + (p.ref ? '<span class="ref">' + esc(p.ref) + '</span>' : '') + '</p>'
+        + (p.sous ? '<p class="sous">' + esc(p.sous) + '</p>' : '')
+        /* le texte a été nettoyé par le passage du site : seule la mise en
+           forme de l'AELF y reste */
+        + '<div class="texte">' + p.texte + '</div></div>';
+    });
+    Z.innerHTML = h;
+    typo(Z);
+    if (d.info && d.info.fete) {
+      document.getElementById('jour').innerHTML = esc(cap(fmtLong.format(dateDe(o)))) + ' · <b>' + esc(d.info.fete) + '</b>';
+      typo(document.getElementById('jour'));
+    }
+  }
+  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  /* les offices déjà lus du jour restent sur l'appareil ; un autre jour
+     les remplace */
+  function memo() { try { return JSON.parse(localStorage.getItem('lv_heures') || 'null') || {}; } catch (_) { return {}; } }
+
+  function charge(o) {
+    var n = ++demande, d = dateDe(o), k = cle(d) + '/' + o;
+    document.getElementById('jour').textContent = cap(fmtLong.format(d));
+    var m = memo();
+    if (m[k]) { montre(m[k], o); return; }
+    Z.innerHTML = '<div class="attente"><span class="roue" role="status" aria-label="Chargement"></span></div>';
+    fetch('/api/heures?office=' + o + '&date=' + cle(d)).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    }).then(function (x) {
+      if (n !== demande) return;
+      if (!x || !x.parties || !x.parties.length) throw new Error('vide');
+      var garde = {}, vieux = memo();
+      Object.keys(vieux).forEach(function (c) { if (c.slice(0, 10) === k.slice(0, 10)) garde[c] = vieux[c]; });
+      garde[k] = x;
+      try { localStorage.setItem('lv_heures', JSON.stringify(garde)); } catch (_) {}
+      montre(x, o);
+    }).catch(function () {
+      if (n !== demande) return;
+      Z.innerHTML = '<h2>' + esc(NOMS[o]) + '</h2><p class="doux">Cet office n’a pas pu être chargé. Vous le trouverez aussi sur <a href="https://www.aelf.org" style="color:#efe6cf">aelf.org</a>.</p>';
+    });
+  }
+
+  function va(o, garde) {
+    boutons.forEach(function (b) {
+      var on = b.getAttribute('data-o') === o;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    if (garde) history.replaceState(null, '', '#' + o);
+    charge(o);
+  }
+  boutons.forEach(function (b) {
+    b.addEventListener('click', function () { va(b.getAttribute('data-o'), true); window.scrollTo(0, 0); });
+  });
+  /* l'office ouvert se lit dans l'adresse (#laudes), pour que l'accueil
+     puisse y mener ; sans rien, c'est l'office du moment */
+  var h = location.hash.slice(1);
+  va(NOMS[h] ? h : officeDuMoment(), false);
+})();
+</script>
+</body>
+</html>

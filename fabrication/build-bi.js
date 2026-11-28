@@ -973,9 +973,11 @@ if (fs.existsSync(RACINE + 'bible-panneau.js')) {
   fs.copyFileSync(RACINE + 'bible-panneau.js', `${OUT}/bible-panneau.js`);
   console.log('Copié : bible-panneau.js');
 }
-/* la page de confidentialité et des mentions légales, page fixe sans
-   barre ni script : un lien y mène depuis « Mon compte » (commun/compte.js) */
-for (const f of ['memoriser-manifest.webmanifest', 'manifest.webmanifest', 'confidentialite.html', 'nouveautes.html']) {
+/* les pages fixes, servies telles quelles, sans la barre du site : la
+   confidentialité et les mentions légales (un lien y mène depuis « Mon
+   compte », commun/compte.js), les nouveautés et la Liturgie des Heures
+   (ouvertes depuis l'accueil) */
+for (const f of ['memoriser-manifest.webmanifest', 'manifest.webmanifest', 'confidentialite.html', 'nouveautes.html', 'heures.html']) {
   if (fs.existsSync(RACINE + f)) fs.copyFileSync(RACINE + f, `${OUT}/${f}`);
 }
 /* le service worker reçoit sa version du build : empreinte de la page, du
@@ -1512,7 +1514,7 @@ function poseVersSeraphin(livre) {
   fs.writeFileSync('netlify/savoir/referencement.js',
     '/* Fichier écrit par la fabrication (fabrication/build-bi.js) : ne pas le modifier à la main. */\n'
     + 'export const REFERENCEMENT = ' + JSON.stringify(ref) + ';\n');
-  const adresses = ['/', '/bible.html', '/memoriser.html', '/etude.html', '/articles.html', '/confidentialite.html', '/nouveautes.html',
+  const adresses = ['/', '/bible.html', '/memoriser.html', '/etude.html', '/articles.html', '/confidentialite.html', '/nouveautes.html', '/heures.html',
     ...Object.keys(ref.cours).map(f => '/parcours/cours/' + encodeURIComponent(f)),
     ...Object.keys(ref.articles).map(f => '/articles/' + encodeURIComponent(f))];
   ecrire('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
