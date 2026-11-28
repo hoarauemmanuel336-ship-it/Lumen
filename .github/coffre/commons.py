@@ -10,7 +10,7 @@ télécharge, et Claude qui regarde et choisit.
   même (rien de ce qui est crédité ne vient de l'IA).
 Seules entrent les images d'une licence libre (domaine public, CC0,
 CC BY, CC BY-SA)."""
-import html, json, os, re, sys, urllib.parse, urllib.request
+import html, json, os, re, sys, urllib.error, urllib.parse, urllib.request
 
 API = 'https://commons.wikimedia.org/w/api.php'
 AGENT = 'LumenVeritatis/1.0 (https://lumenveritatis.net; lumen974@outlook.com)'
@@ -18,8 +18,11 @@ LIBRES = re.compile(r'public domain|^pd|cc0|cc[ -]by', re.I)
 
 
 def lit(url):
-    r = urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': AGENT}), timeout=60)
-    return r.read()
+    try:
+        r = urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': AGENT, 'Accept': 'application/json, image/*'}), timeout=60)
+        return r.read()
+    except urllib.error.HTTPError as e:
+        sys.exit(f'Commons a répondu {e.code} : ' + e.read()[:300].decode('utf-8', 'replace'))
 
 
 def texte(v):
@@ -49,7 +52,11 @@ def fiche(p):
 
 def interroge(params):
     q = dict(params, format='json', prop='imageinfo', iiprop='url|size|mime|extmetadata')
-    d = json.loads(lit(API + '?' + urllib.parse.urlencode(q)))
+    brut = lit(API + '?' + urllib.parse.urlencode(q))
+    try:
+        d = json.loads(brut)
+    except ValueError:
+        sys.exit('Commons n’a pas répondu en JSON : ' + brut[:300].decode('utf-8', 'replace'))
     return list(((d.get('query') or {}).get('pages') or {}).values())
 
 
